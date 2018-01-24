@@ -34,5 +34,8 @@
         "queue",
         "stack",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

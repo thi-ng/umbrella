@@ -35,5 +35,8 @@
         "lazy",
         "sequences",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

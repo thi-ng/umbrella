@@ -33,5 +33,8 @@
         "packer",
         "RLE",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

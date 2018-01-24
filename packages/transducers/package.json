@@ -34,5 +34,8 @@
         "reducers",
         "transducers",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

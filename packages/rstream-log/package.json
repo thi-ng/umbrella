@@ -34,5 +34,8 @@
         "pipeline",
         "transducers",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -30,5 +30,8 @@
         "stream",
         "iterator",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

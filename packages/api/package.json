@@ -30,5 +30,8 @@
         "generic",
         "interfaces",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

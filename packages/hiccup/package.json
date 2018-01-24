@@ -36,5 +36,8 @@
         "template",
         "typescript",
         "xml"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -40,5 +40,8 @@
         "promise",
         "transducers",
         "typescript"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }
