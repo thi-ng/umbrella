@@ -368,7 +368,7 @@ speeds (up to `cacheLimit` divergence). The cache is shared by *all* forks. If
 one of the forks consumes the input faster than the given `cacheLimit`, the
 other forks will lose intermediate values. If in doubt, increase the cache
 limit to a higher value (default 16). The cache uses
-[@thi.ng/dcons](http://thi.ng/dcons) to avoid unnecessary copying during window
+[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons) to avoid unnecessary copying during window
 sliding.
 
 ```js

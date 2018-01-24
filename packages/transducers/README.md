@@ -27,15 +27,15 @@ implementation does differ (also in contrast to some other JS based
 implementations) and several less common, but generally highly useful operators
 have been added, with at least a couple dozen more to come.
 
-Please see the [@thi.ng/iterators](https://github.com/thi-ng/iterators) &
-[@thi.ng/csp](https://github.com/thi-ng/csp) partner modules for related
+Please see the [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators) &
+[@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) partner modules for related
 functionality, supplementing features of this library. However, this lib has no
 dependencies on either of them. The only dependency is
-[@thi.ng/api](https://github.com/thi-ng/api) for re-using common types &
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api) for re-using common types &
 interfaces.
 
 Having said this, since 0.8.0 this project largely supersedes the
-[@thi.ng/iterators](https://github.com/thi-ng/iterators) library for most use
+[@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators) library for most use
 cases and offers are more powerful API and potentially faster execution of
 composed transformations (due to lack of ES generator overheads).
 
