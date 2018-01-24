@@ -1,0 +1,34 @@
+{
+    "name": "@thi.ng/api",
+    "version": "1.2.0",
+    "description": "Common, generic types & interfaces for thi.ng projects",
+    "main": "./index.js",
+    "typings": "./index.d.ts",
+    "repository": "https://github.com/thi-ng/api",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn run clean && tsc --declaration",
+        "test": "yarn run clean && tsc -p test && mocha build/test/*.js",
+        "clean": "rm -rf *.js *.d.ts build doc decorators mixins",
+        "pub": "yarn run build && (cd build && yarn publish --access public)"
+    },
+    "devDependencies": {
+        "mocha": "^5.0.0",
+        "typedoc": "^0.9.0",
+        "typescript": "^2.6.2",
+        "ts-loader": "^3.3.1",
+        "webpack": "^3.10.0",
+        "@types/mocha": "^2.2.46",
+        "@types/node": "^9.3.0"
+    },
+    "dependencies": {
+        "@thi.ng/checks": "^1.1.0"
+    },
+    "keywords": [
+        "ES6",
+        "generic",
+        "interfaces",
+        "typescript"
+    ]
+}

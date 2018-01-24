@@ -1,0 +1,14 @@
+bench/*
+build/*
+dev/*
+node_modules
+src*
+test*
+bundle.*
+tsconfig.json
+webpack.config.js
+*.html
+*.tgz
+!doc/*
+!*.d.ts
+!*.js
