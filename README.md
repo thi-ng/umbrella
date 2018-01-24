@@ -17,7 +17,7 @@ Mono-repository for thi.ng TypeScript/ES6 projects.
 | [`@thi.ng/rstream`](./packages/rstream) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream) |
 | [`@thi.ng/rstream-log`](./packages/rstream-log) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log) |
 | [`@thi.ng/transducers`](./packages/transducers) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) |
-| [`@thi.ng/unionfind`](./packages/unionfind) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/unionfind.svg)](https://www.npmjs.com/package/@thi.ng/unionfind) |
+| [`@thi.ng/unionstruct`](./packages/unionstruct) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct) |
 
 ## Building
 
