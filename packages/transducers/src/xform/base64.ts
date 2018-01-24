@@ -1,7 +1,6 @@
 import { Transducer, Reducer } from "../api";
 import { compR } from "../func/comp";
-import { isReduced } from "../index";
-import { reduced } from "../reduced";
+import { isReduced, reduced } from "../reduced";
 
 const B64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const B64_SAFE = B64_CHARS.substr(0, 62) + "-_";
