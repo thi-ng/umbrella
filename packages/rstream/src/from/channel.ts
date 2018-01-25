@@ -8,7 +8,7 @@ import { Stream } from "../stream";
  * @param closeWhenCancelled
  */
 export function fromChannel<T>(src: Channel<T>, closeWhenCancelled = true) {
-    return new Stream<T>((o) => {
+    return new Stream<T>((stream) => {
         let isActive = true;
         (async () => {
             let x;
@@ -16,9 +16,9 @@ export function fromChannel<T>(src: Channel<T>, closeWhenCancelled = true) {
                 if (x === undefined || !isActive) {
                     break;
                 }
-                o.next(x);
+                stream.next(x);
             }
-            o.done();
+            stream.done();
         })();
         return () => {
             if (closeWhenCancelled) {

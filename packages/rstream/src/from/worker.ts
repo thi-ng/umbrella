@@ -3,9 +3,9 @@ import { makeWorker } from "../utils/worker";
 
 export function fromWorker<T>(worker: Worker | Blob | string, terminate = true) {
     const _worker = makeWorker(worker);
-    return new Stream<T>((o) => {
-        const ml = (e: MessageEvent) => { o.next(e.data); };
-        const el = (e: MessageEvent) => { o.error(o, e.data); };
+    return new Stream<T>((stream) => {
+        const ml = (e: MessageEvent) => { stream.next(e.data); };
+        const el = (e: MessageEvent) => { stream.error(e.data); };
         _worker.addEventListener("message", ml);
         _worker.addEventListener("error", el);
         return () => {

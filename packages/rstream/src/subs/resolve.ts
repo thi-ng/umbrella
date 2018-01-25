@@ -20,7 +20,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
             } else {
                 console.log(`resolved value in ${State[this.state]} state (${x})`);
             }
-        }).catch((e) => this.error(this, e));
+        }).catch((e) => this.error(e));
     }
 
     done() {

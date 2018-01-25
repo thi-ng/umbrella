@@ -16,11 +16,11 @@ import { fromInterval } from "./interval";
 export function fromRAF() {
     return isNode() ?
         fromInterval(16) :
-        new Stream<number>((o) => {
+        new Stream<number>((stream) => {
             let i = 0, id,
                 isActive = true,
                 loop = () => {
-                    isActive && o.next(i++);
+                    isActive && stream.next(i++);
                     isActive && (id = requestAnimationFrame(loop));
                 };
             id = requestAnimationFrame(loop);

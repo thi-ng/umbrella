@@ -45,7 +45,7 @@ export class Subscription<A, B> implements
                 case 2:
                     if (isFunction(args[0])) {
                         xform = args[0];
-                        id = args[1];
+                        id = args[1] || `xform-${Subscription.NEXT_ID++}`;
                     } else {
                         sub = args[0];
                         if (isFunction(args[1])) {
@@ -120,24 +120,26 @@ export class Subscription<A, B> implements
     }
 
     done() {
-        if (this.xform) {
-            const acc = this.xform[1]([]),
-                uacc = unreduced(acc),
-                n = uacc.length;
-            for (let i = 0; i < n; i++) {
-                this.dispatch(uacc[i]);
+        if (this.state !== State.DONE) {
+            if (this.xform) {
+                const acc = this.xform[1]([]),
+                    uacc = unreduced(acc),
+                    n = uacc.length;
+                for (let i = 0; i < n; i++) {
+                    this.dispatch(uacc[i]);
+                }
             }
+            this.state = State.DONE;
+            this.dispatch(undefined, [...this.subs], "done");
+            this.parent && this.parent.unsubscribe(this);
+            delete this.parent;
+            delete this.subs;
+            delete this.xform;
+            console.log(this.id, "done");
         }
-        this.state = State.DONE;
-        this.dispatch(undefined, [...this.subs], "done");
-        this.parent && this.parent.unsubscribe(this);
-        delete this.parent;
-        delete this.subs;
-        delete this.xform;
-        console.log(this.id, "done");
     }
 
-    error(_, e: Error) {
+    error(e: Error) {
         this.state = State.ERROR;
         console.log(this.id, "unhandled error:", e);
         if (this.parent) {
@@ -158,7 +160,7 @@ export class Subscription<A, B> implements
             try {
                 s[op] && s[op](x);
             } catch (e) {
-                s.error ? s.error(this, e) : this.error(this, e);
+                s.error ? s.error(e) : this.error(e);
             }
         }
     }
