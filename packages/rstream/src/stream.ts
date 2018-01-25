@@ -42,16 +42,17 @@ export class Stream<T> extends Subscription<T, T>
         delete this._cancel;
     }
 
-    error(_, e: Error) {
-        super.error(_, e);
+    error(e: Error) {
+        super.error(e);
         this.cancel();
     }
 
     cancel() {
         if (this._cancel) {
             console.log(this.id, "cancel");
-            this._cancel();
+            const f = this._cancel;
             delete this._cancel;
+            f();
         }
     }
 }
