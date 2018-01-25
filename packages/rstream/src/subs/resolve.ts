@@ -18,7 +18,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                     this.done();
                 }
             } else {
-                throw new Error(`resolved value in ${State[this.state]} state (${x})`);
+                console.log(`resolved value in ${State[this.state]} state (${x})`);
             }
         }).catch((e) => this.error(this, e));
     }
