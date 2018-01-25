@@ -1,6 +1,21 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/comp";
 
+/**
+ * Stateful transducer. Ignores the actual input values, but
+ * produces time measurements since last value processed,
+ * e.g. for use in async usage contexts.
+ *
+ * ```
+ * // example using @thi.ng/rstream
+ * rstream
+ *     .fromInterval(1000)
+ *     .subscribe(
+ *         rstream.trace(),
+ *         comp(benchmark(), movingAverage(60))
+ *     )
+ * ```
+ */
 export function benchmark(): Transducer<any, number> {
     return (rfn: Reducer<any, number>) => {
         const r = rfn[2];

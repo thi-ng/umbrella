@@ -5,11 +5,13 @@ import { isReduced } from "../reduced";
 /**
  * Transforms incoming numbers into their bitstream using specified
  * word size (default 8) and order (MSB first or LSB first). Only the
- * lower `wordSize` bits of each value are used.
+ * lowest `wordSize` bits of each value are used (max 32).
  *
  * ```
  * [...iterator(bits(8), [0xf0, 0xaa])]
  * // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
+ * [...iterator(comp(bits(8), partition(4)), [0xf0, 0xaa])]
+ * // [ [ 1, 1, 1, 1 ], [ 0, 0, 0, 0 ], [ 1, 0, 1, 0 ], [ 1, 0, 1, 0 ] ]
  * ```
  *
  * @param wordSize

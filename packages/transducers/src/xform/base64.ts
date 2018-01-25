@@ -5,6 +5,10 @@ import { isReduced, reduced } from "../reduced";
 const B64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const B64_SAFE = B64_CHARS.substr(0, 62) + "-_";
 
+/**
+ * Stateful transducer. Decodes base64 chars into bytes.
+ * Supports URL safe & unsafe flavors.
+ */
 export function base64Decode(): Transducer<string, number> {
     return (rfn: Reducer<any, number>) => {
         const r = rfn[2];
@@ -32,6 +36,15 @@ export function base64Decode(): Transducer<string, number> {
     };
 }
 
+/**
+ * Stateful transducer. Encodes bytes into base64 chars.
+ * Supports URL safe & unsafe flavors. Uses internal
+ * buffer to store intermediate results and repeatedly
+ * calls reducer to drain buffer whenever it's been filled.
+ *
+ * @param urlSafe
+ * @param bufSize
+ */
 export function base64Encode(urlSafe = false, bufSize = 1024): Transducer<number, string> {
     return ([init, complete, reduce]: Reducer<any, string>) => {
         let a = 0, b;
@@ -97,5 +110,5 @@ export function base64Encode(urlSafe = false, bufSize = 1024): Transducer<number
                 return acc;
             }
         ];
-    }
+    };
 }
