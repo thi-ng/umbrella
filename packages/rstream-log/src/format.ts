@@ -1,13 +1,14 @@
 import { Transducer } from "@thi.ng/transducers/api";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { LogEntryObj, Level, LogEntry } from "./api";
+import { BodyFormat, DateFormat, LogEntryObj, Level, LogEntry } from "./api";
 
-export function formatString(dtfmt?: (dt: number) => string): Transducer<LogEntry, string> {
-    dtfmt = dtfmt || ((dt) => new Date(dt).toISOString());
+export function formatString(dtFmt?: DateFormat, bodyFmt?: BodyFormat): Transducer<LogEntry, string> {
+    dtFmt = dtFmt || ((dt) => new Date(dt).toISOString());
+    bodyFmt = bodyFmt || ((x) => x.toString());
     return map(
         ([level, id, time, ...body]) =>
-            `[${Level[level]}] [${id}] ${dtfmt(time)} ${body}`
+            `[${Level[level]}] [${id}] ${dtFmt(time)} ${bodyFmt(body)}`
     );
 }
 
