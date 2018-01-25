@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^1.1.1",
-        "@thi.ng/rstream": "^0.3.0",
+        "@thi.ng/rstream": "^0.4.0",
         "@thi.ng/transducers": "^0.11.2"
     },
     "keywords": [
