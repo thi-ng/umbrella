@@ -2,13 +2,14 @@ import { State } from "../api";
 import { Stream } from "../stream";
 
 export function fromPromise<T>(src: Promise<T>) {
-    return new Stream<T>((o) => {
+    let canceled = false;
+    return new Stream<T>((stream) => {
         src.then((x) => {
-            if (o.getState() !== State.DONE) {
-                o.next(x);
-                o.done();
+            if (!canceled && stream.getState() < State.DONE) {
+                stream.next(x);
+                stream.done();
             }
-        }).catch(e => o.error(null, e));
-        return () => o.done();
+        }).catch(e => stream.error(e));
+        return () => { canceled = true; };
     }, `promise-${Stream.NEXT_ID++}`);
 }
