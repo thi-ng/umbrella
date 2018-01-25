@@ -1,11 +1,22 @@
 import { ensureIterable } from "../func/ensure-iterable";
 
-export function* concat<T>(...inputs: Iterable<T>[]) {
-    let iter = inputs[Symbol.iterator](),
-        v: IteratorResult<Iterable<T>>;
-    while (((v = iter.next()), !v.done)) {
-        if (v.value != null) {
-            yield* ensureIterable(v.value);
-        }
+/**
+ * Yields iterator producing concatenation of given iterables.
+ * Undefined & null inputs are silently ignored, however any
+ * such values produced or contained in an input will remain.
+ *
+ * ```
+ * [...concat([1, 2, 3], null, [4, 5])]
+ * // [ 1, 2, 3, 4, 5 ]
+ *
+ * [...concat([1, 2, 3, undefined], null, [4, 5])]
+ * // [ 1, 2, 3, undefined, 4, 5 ]
+ * ```
+ *
+ * @param xs
+ */
+export function* concat<T>(...xs: Iterable<T>[]): IterableIterator<T> {
+    for (let x of xs) {
+        x != null && (yield* ensureIterable(x));
     }
 }
