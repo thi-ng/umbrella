@@ -1,5 +1,5 @@
 import { Transducer } from "@thi.ng/transducers/api";
-import { StreamCancel, IStream, ISubscriber, StreamSource } from "./api";
+import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
 import { Subscription } from "./subscription";
 
 export class Stream<T> extends Subscription<T, T>
@@ -16,9 +16,9 @@ export class Stream<T> extends Subscription<T, T>
         this.src = src;
     }
 
-    subscribe(sub: ISubscriber<T>, id?: string): Subscription<T, T>
+    subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe<C>(sub: ISubscriber<C>, xform: Transducer<T, C>, id?: string): Subscription<T, C>
+    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>
     subscribe(...args: any[]) {
         const wrapped = super.subscribe.apply(this, args);
         if (this.subs.length === 1) {
@@ -49,7 +49,7 @@ export class Stream<T> extends Subscription<T, T>
 
     cancel() {
         if (this._cancel) {
-            console.log(this.id, "cancel");
+            DEBUG && console.log(this.id, "cancel");
             const f = this._cancel;
             delete this._cancel;
             f();

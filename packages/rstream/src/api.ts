@@ -21,9 +21,9 @@ export interface ISubscriber<T> {
 
 export interface ISubscribable<T> extends IID<string> {
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe<C>(sub: ISubscriber<T>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe(sub: ISubscriber<T>, id?: string): Subscription<T, T>;
-    unsubscribe(sub?: ISubscriber<T>): boolean;
+    subscribe<C>(sub: Partial<ISubscriber<T>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
+    subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
+    unsubscribe(sub?: Partial<ISubscriber<T>>): boolean;
     getState(): State;
 }
 
@@ -33,3 +33,5 @@ export interface IStream<T> extends ISubscriber<T> {
 
 export type StreamCancel = () => void;
 export type StreamSource<T> = (sub: Stream<T>) => StreamCancel;
+
+export let DEBUG = false;

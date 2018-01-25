@@ -4,7 +4,7 @@ import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { push } from "@thi.ng/transducers/rfn/push";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 
-import { ISubscribable, ISubscriber, State } from "./api";
+import { DEBUG, ISubscribable, ISubscriber, State } from "./api";
 
 export class Subscription<A, B> implements
     ISubscriber<A>,
@@ -34,9 +34,9 @@ export class Subscription<A, B> implements
         return this.state;
     }
 
-    subscribe(sub: ISubscriber<B>, id?: string): Subscription<B, B>
+    subscribe(sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>
     subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
-    subscribe<C>(sub: ISubscriber<C>, xform: Transducer<B, C>, id?: string): Subscription<B, C>
+    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>
     subscribe(...args: any[]) {
         if (this.state < State.DONE) {
             let sub, xform, id;
@@ -88,7 +88,7 @@ export class Subscription<A, B> implements
             }
         }
         if (this.subs) {
-            console.log(this.id, "unsub", sub.id);
+            DEBUG && console.log(this.id, "unsub", sub.id);
             const idx = this.subs.indexOf(sub);
             if (idx >= 0) {
                 this.subs.splice(idx, 1);
@@ -135,7 +135,7 @@ export class Subscription<A, B> implements
             delete this.parent;
             delete this.subs;
             delete this.xform;
-            console.log(this.id, "done");
+            DEBUG && console.log(this.id, "done");
         }
     }
 
@@ -143,7 +143,7 @@ export class Subscription<A, B> implements
         this.state = State.ERROR;
         console.log(this.id, "unhandled error:", e);
         if (this.parent) {
-            console.log(this.id, "unsubscribing...");
+            DEBUG && console.log(this.id, "unsubscribing...");
             this.unsubscribe();
         }
     }
