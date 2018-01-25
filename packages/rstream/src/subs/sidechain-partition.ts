@@ -5,13 +5,11 @@ import { Subscription } from "../index";
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
 
-    side: ISubscribable<B>;
     sideSub: Subscription<B, B>;
     buf: A[];
 
     constructor(side: ISubscribable<B>, pred?: Predicate<B>, id?: string) {
-        super(null, null, null, id || `sidechain-${Stream.NEXT_ID++}`);
-        this.side = side;
+        super(null, null, null, id || `sidepart-${Stream.NEXT_ID++}`);
         this.buf = [];
         const $this = this;
         pred = pred || (() => true);

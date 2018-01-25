@@ -15,6 +15,7 @@ export * from "./subs/bisect";
 export * from "./subs/post-worker";
 export * from "./subs/resolve";
 export * from "./subs/sidechain-partition";
+export * from "./subs/sidechain-toggle";
 export * from "./subs/trace";
 
 export * from "./utils/worker";
