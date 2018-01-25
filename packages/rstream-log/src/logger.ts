@@ -4,9 +4,10 @@ import { ISubscribable } from "@thi.ng/rstream/api";
 import { StreamMerge } from "@thi.ng/rstream/stream-merge";
 import { Subscription } from "@thi.ng/rstream/subscription";
 
-import { Level, LogEntry } from "./api";
+import { ILogger, Level, LogEntry } from "./api";
 
-export class Logger extends StreamMerge<LogEntry, LogEntry> {
+export class Logger extends StreamMerge<LogEntry, LogEntry> implements
+    ILogger {
 
     level: Level;
 

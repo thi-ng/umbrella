@@ -1,4 +1,5 @@
 import { IID } from "@thi.ng/api/api";
+import { ISubscribable } from "../../rstream/api";
 
 export enum Level {
     FINE,
@@ -21,3 +22,14 @@ export interface LogEntryObj extends IID<string> {
     time: number;
     body: any[];
 }
+
+export interface ILogger extends ISubscribable<LogEntry> {
+    fine(...args: any[]);
+    debug(...args: any[]);
+    info(...args: any[]);
+    warn(...args: any[]);
+    severe(...args: any[]);
+}
+
+export type DateFormat = (epoch: number) => string;
+export type BodyFormat = (body: any[]) => string;
