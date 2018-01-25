@@ -16,19 +16,11 @@ export class Stream<T> extends Subscription<T, T>
         this.src = src;
     }
 
+    subscribe(sub: ISubscriber<T>, id?: string): Subscription<T, T>
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe<C>(sub: ISubscriber<T>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe(sub: ISubscriber<T>, id?: string): Subscription<T, T>;
+    subscribe<C>(sub: ISubscriber<C>, xform: Transducer<T, C>, id?: string): Subscription<T, C>
     subscribe(...args: any[]) {
         const wrapped = super.subscribe.apply(this, args);
-        if (this.subs.length === 1) {
-            this._cancel = (this.src && this.src(this)) || (() => void 0);
-        }
-        return wrapped;
-    }
-
-    transform<B>(xform: Transducer<T, B>, id?: string): Subscription<T, B> {
-        const wrapped = super.subscribe(xform, id);
         if (this.subs.length === 1) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
         }

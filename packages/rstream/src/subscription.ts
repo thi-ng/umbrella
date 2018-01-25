@@ -36,7 +36,7 @@ export class Subscription<A, B> implements
 
     subscribe(sub: ISubscriber<B>, id?: string): Subscription<B, B>
     subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
-    subscribe<C>(sub: ISubscriber<B>, xform: Transducer<B, C>, id?: string): Subscription<B, C>
+    subscribe<C>(sub: ISubscriber<C>, xform: Transducer<B, C>, id?: string): Subscription<B, C>
     subscribe(...args: any[]) {
         if (this.state < State.DONE) {
             let sub, xform, id;
