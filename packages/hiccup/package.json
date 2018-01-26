@@ -4,7 +4,7 @@
     "description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
     "main": "./index.js",
     "typings": "./index.d.ts",
-    "repository": "https://github.com/thi-ng/hiccup.git",
+    "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
