@@ -1,5 +1,6 @@
-import * as rs from "../src/index";
 import * as assert from "assert";
+
+import * as rs from "../src/index";
 
 describe("fromIterable()", () => {
     let src: rs.Stream<number>;
