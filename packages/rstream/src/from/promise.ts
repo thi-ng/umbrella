@@ -4,12 +4,15 @@ import { Stream } from "../stream";
 export function fromPromise<T>(src: Promise<T>) {
     let canceled = false;
     return new Stream<T>((stream) => {
-        src.then((x) => {
-            if (!canceled && stream.getState() < State.DONE) {
-                stream.next(x);
-                stream.done();
-            }
-        }).catch(e => stream.error(e));
+        src.then(
+            (x) => {
+                if (!canceled && stream.getState() < State.DONE) {
+                    stream.next(x);
+                    stream.done();
+                }
+            },
+            (e) => stream.error(e)
+        );
         return () => { canceled = true; };
     }, `promise-${Stream.NEXT_ID++}`);
 }
