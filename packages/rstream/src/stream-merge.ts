@@ -1,7 +1,8 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { Transducer } from "@thi.ng/transducers/api";
-import { ISubscribable } from "./api";
+
+import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 
 export class StreamMerge<A, B> extends Subscription<A, B> {
@@ -41,6 +42,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
     }
 
     add(src: ISubscribable<A>) {
+        this.ensureState();
         this.sources.push(src);
         this.wrappedSources.push(
             src.subscribe({
@@ -63,10 +65,18 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
             for (let s of this.wrappedSources) {
                 s.unsubscribe();
             }
+            this.state = State.DONE;
+            delete this.sources;
             delete this.wrappedSources;
             return true;
         }
-        return super.unsubscribe(sub);
+        if (super.unsubscribe(sub)) {
+            if (!this.subs.length) {
+                return this.unsubscribe();
+            }
+            return true;
+        }
+        return false;
     }
 
     done() {
