@@ -10,12 +10,14 @@ describe("StreamMerge", () => {
     let check = (expected, done) => {
         let buf = [];
         return {
-            next(x) { buf.push(x); },
+            next(x) {
+                buf.push(x);
+            },
             done() {
                 assert.deepEqual(buf.sort((a, b) => a - b), expected);
                 done();
             }
-        }
+        };
     };
 
     beforeEach(() => {
@@ -58,5 +60,6 @@ describe("StreamMerge", () => {
             tx.mapcat((x: number) => [x, x + 1])
         );
         src.subscribe(check([1, 2, 2, 3, 10, 11, 20, 21], done));
-    })
+    });
+
 });
