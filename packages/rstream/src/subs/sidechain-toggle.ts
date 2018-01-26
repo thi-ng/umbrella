@@ -8,7 +8,7 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
     sideSub: Subscription<B, B>;
     isActive: boolean;
 
-    constructor(side: ISubscribable<B>, pred?: Predicate<B>, initial = true, id?: string) {
+    constructor(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string) {
         super(null, null, null, id || `sidetoggle-${Stream.NEXT_ID++}`);
         this.isActive = initial;
         const $this = this;
@@ -63,6 +63,6 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
  * @param initial initial switch state
  * @param id
  */
-export function sidechainToggle<A, B>(side: ISubscribable<B>, pred?: Predicate<B>, initial = true, id?: string): Subscription<A, A> {
-    return new SidechainToggle(side, pred, initial, id);
+export function sidechainToggle<A, B>(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string): Subscription<A, A> {
+    return new SidechainToggle(side, initial, pred, id);
 }
