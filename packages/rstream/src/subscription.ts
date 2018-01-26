@@ -38,37 +38,35 @@ export class Subscription<A, B> implements
     subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
     subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>
     subscribe(...args: any[]) {
-        if (this.state < State.DONE) {
-            let sub, xform, id;
-            switch (args.length) {
-                case 1:
-                case 2:
-                    if (isFunction(args[0])) {
-                        xform = args[0];
-                        id = args[1] || `xform-${Subscription.NEXT_ID++}`;
+        this.ensureState();
+        let sub, xform, id;
+        switch (args.length) {
+            case 1:
+            case 2:
+                if (isFunction(args[0])) {
+                    xform = args[0];
+                    id = args[1] || `xform-${Subscription.NEXT_ID++}`;
+                } else {
+                    sub = args[0];
+                    if (isFunction(args[1])) {
+                        xform = args[1];
                     } else {
-                        sub = args[0];
-                        if (isFunction(args[1])) {
-                            xform = args[1];
-                        } else {
-                            id = args[1];
-                        }
+                        id = args[1];
                     }
-                    break;
-                case 3:
-                    [sub, xform, id] = args;
-                    break;
-                default:
-                    throw new Error(`illegal arity: ${args.length}`);
-            }
-            if (implementsFunction(sub, "subscribe")) {
-                sub.parent = this;
-            } else {
-                sub = new Subscription(sub, xform, this, id);
-            }
-            return <Subscription<B, B>>this.addWrapped(sub);
+                }
+                break;
+            case 3:
+                [sub, xform, id] = args;
+                break;
+            default:
+                throw new Error(`illegal arity: ${args.length}`);
         }
-        throw new Error(`called subscribe() in ${State[this.state]} state`);
+        if (implementsFunction(sub, "subscribe")) {
+            sub.parent = this;
+        } else {
+            sub = new Subscription(sub, xform, this, id);
+        }
+        return <Subscription<B, B>>this.addWrapped(sub);
     }
 
     subscribeAll(...subs: ISubscriber<B>[]) {
@@ -100,22 +98,19 @@ export class Subscription<A, B> implements
     }
 
     next(x: A) {
-        if (this.state < State.DONE) {
-            if (this.xform) {
-                const acc = this.xform[2]([], x),
-                    uacc = unreduced(acc),
-                    n = uacc.length;
-                for (let i = 0; i < n; i++) {
-                    this.dispatch(uacc[i]);
-                }
-                if (isReduced(acc)) {
-                    this.done();
-                }
-            } else {
-                this.dispatch(<any>x);
+        this.ensureState();
+        if (this.xform) {
+            const acc = this.xform[2]([], x),
+                uacc = unreduced(acc),
+                n = uacc.length;
+            for (let i = 0; i < n; i++) {
+                this.dispatch(uacc[i]);
+            }
+            if (isReduced(acc)) {
+                this.done();
             }
         } else {
-            throw new Error(`called next() in ${State[this.state]} state`);
+            this.dispatch(<any>x);
         }
     }
 
@@ -162,6 +157,12 @@ export class Subscription<A, B> implements
             } catch (e) {
                 s.error ? s.error(e) : this.error(e);
             }
+        }
+    }
+
+    protected ensureState() {
+        if (this.state >= State.DONE) {
+            throw new Error(`operation not allowed in ${State[this.state]} state`);
         }
     }
 }
