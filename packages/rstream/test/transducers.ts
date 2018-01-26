@@ -62,4 +62,11 @@ describe("transducers", () => {
         );
     });
 
+    it("emits remaining", (done) => {
+        src.subscribe(
+            check([[10, 20], [30]], done),
+            tx.partition(2, true)
+        );
+    });
+
 });
