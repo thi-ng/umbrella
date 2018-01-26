@@ -11,7 +11,7 @@
         "build": "yarn run clean && tsc --declaration",
         "test": "yarn run clean && tsc -p test && mocha build/test/*.js",
         "clean": "rm -rf *.js *.d.ts build doc from subs utils",
-        "pub": "yarn run build && (cd build && yarn publish --access public)"
+        "pub": "yarn run build && yarn publish --access public"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.46",
