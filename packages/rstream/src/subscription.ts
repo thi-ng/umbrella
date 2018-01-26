@@ -115,7 +115,7 @@ export class Subscription<A, B> implements
     }
 
     done() {
-        if (this.state !== State.DONE) {
+        if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[1]([]),
                     uacc = unreduced(acc),
