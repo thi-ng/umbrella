@@ -43,7 +43,7 @@ export class Stream<T> extends Subscription<T, T>
         delete this._cancel;
     }
 
-    error(e: Error) {
+    error(e: any) {
         super.error(e);
         this.cancel();
     }

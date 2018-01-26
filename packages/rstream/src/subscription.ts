@@ -125,7 +125,7 @@ export class Subscription<A, B> implements
                 }
             }
             this.state = State.DONE;
-            this.dispatch(undefined, [...this.subs], "done");
+            this.dispatch(undefined, "done", [...this.subs]);
             this.parent && this.parent.unsubscribe(this);
             delete this.parent;
             delete this.subs;
@@ -134,12 +134,16 @@ export class Subscription<A, B> implements
         }
     }
 
-    error(e: Error) {
+    error(e: any) {
         this.state = State.ERROR;
-        console.log(this.id, "unhandled error:", e);
-        if (this.parent) {
-            DEBUG && console.log(this.id, "unsubscribing...");
-            this.unsubscribe();
+        if (this.subs && this.subs.length) {
+            this.dispatch(e, "error");
+        } else {
+            console.log(this.id, "unhandled error:", e);
+            if (this.parent) {
+                DEBUG && console.log(this.id, "unsubscribing...");
+                this.unsubscribe();
+            }
         }
     }
 
@@ -149,7 +153,7 @@ export class Subscription<A, B> implements
         return wrapped;
     }
 
-    protected dispatch(x: B, subs = this.subs, op = "next") {
+    protected dispatch(x: B, op = "next", subs = this.subs) {
         for (let i = 0, n = subs.length; i < n; i++) {
             const s = subs[i];
             try {

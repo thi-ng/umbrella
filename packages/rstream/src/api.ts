@@ -15,7 +15,7 @@ export type Fn<T> = (x: T) => void;
 
 export interface ISubscriber<T> {
     next: (x: T) => void;
-    error?: (e: Error) => void;
+    error?: (e: any) => void;
     done?: () => void;
 }
 
