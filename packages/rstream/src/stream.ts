@@ -12,7 +12,7 @@ export class Stream<T> extends Subscription<T, T>
 
     protected _cancel: StreamCancel;
 
-    constructor(src: StreamSource<T>, id?: string) {
+    constructor(src?: StreamSource<T>, id?: string) {
         super(null, null, null, id || `stream-${Stream.NEXT_ID++}`);
         this.src = src;
     }
