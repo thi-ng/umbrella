@@ -31,7 +31,7 @@ export class Stream<T> extends Subscription<T, T>
     unsubscribe(sub?: Subscription<T, any>) {
         const res = super.unsubscribe(sub);
         if (res && (!this.subs || !this.subs.length)) {
-            this.cancel();
+            this.done();
         }
         return res;
     }
