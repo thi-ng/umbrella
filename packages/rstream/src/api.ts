@@ -9,6 +9,7 @@ export enum State {
     ACTIVE,
     DONE,
     ERROR,
+    DISABLED, // TODO currently unused
 }
 
 export type Fn<T> = (x: T) => void;
@@ -17,6 +18,7 @@ export interface ISubscriber<T> {
     next: (x: T) => void;
     error?: (e: any) => void;
     done?: () => void;
+    [id: string]: any;
 }
 
 export interface ISubscribable<T> extends IID<string> {
