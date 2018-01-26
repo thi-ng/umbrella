@@ -1,5 +1,6 @@
 import { Channel } from "@thi.ng/csp/channel";
 
+import { DEBUG } from "../api";
 import { Stream } from "../stream";
 
 /**
@@ -23,7 +24,7 @@ export function fromChannel<T>(src: Channel<T>, closeWhenCancelled = true) {
         return () => {
             if (closeWhenCancelled) {
                 src.close(true);
-                console.log("closed channel", src.id);
+                DEBUG && console.log("closed channel", src.id);
             }
             isActive = false;
         };

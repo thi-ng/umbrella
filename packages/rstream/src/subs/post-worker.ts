@@ -1,6 +1,6 @@
 import { isTypedArray } from "@thi.ng/checks/is-typedarray"
 import { isTransferable } from "@thi.ng/checks/is-transferable"
-import { ISubscriber } from "../api";
+import { DEBUG, ISubscriber } from "../api";
 
 import { makeWorker } from "../utils/worker";
 
@@ -29,7 +29,7 @@ export function postWorker<T>(worker: Worker | Blob | string, transfer = false, 
         done: () => {
             if (terminate > 0) {
                 setTimeout(() => {
-                    console.log("terminating worker...");
+                    DEBUG && console.log("terminating worker...");
                     _worker.terminate();
                 }, terminate);
             }

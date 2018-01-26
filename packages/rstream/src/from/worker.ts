@@ -1,3 +1,4 @@
+import { DEBUG } from "../api";
 import { Stream } from "../stream";
 import { makeWorker } from "../utils/worker";
 
@@ -12,7 +13,7 @@ export function fromWorker<T>(worker: Worker | Blob | string, terminate = true) 
             _worker.removeEventListener("message", ml);
             _worker.removeEventListener("error", el);
             if (terminate) {
-                console.log("terminating worker", _worker);
+                DEBUG && console.log("terminating worker", _worker);
                 _worker.terminate();
             }
         };

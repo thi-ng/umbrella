@@ -1,4 +1,4 @@
-import { State } from "../api";
+import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
@@ -18,7 +18,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                     this.done();
                 }
             } else {
-                console.log(`resolved value in ${State[this.state]} state (${x})`);
+                DEBUG && console.log(`resolved value in ${State[this.state]} state (${x})`);
             }
         }).catch((e) => this.error(e));
     }
