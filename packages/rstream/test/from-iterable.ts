@@ -4,19 +4,24 @@ import * as assert from "assert";
 describe("fromIterable()", () => {
     let src: rs.Stream<number>;
     let data = [10, 20, 30];
+
     beforeEach(() => {
         src = rs.fromIterable(data);
     });
+
     it("is a stream", () => {
         assert(src instanceof rs.Stream);
         assert(src instanceof rs.Subscription);
     });
+
     it("has an ID", () => {
         assert(src.id.startsWith("iterable-"));
     });
+
     it("starts in IDLE state", () => {
         assert.equal(src.getState(), rs.State.IDLE);
     });
+
     it("delivers all values", (done) => {
         let buf = [];
         src.subscribe({
@@ -27,6 +32,7 @@ describe("fromIterable()", () => {
             }
         });
     });
+
     it("finishes", (done) => {
         let sub = src.subscribe({
             done() {
@@ -36,6 +42,7 @@ describe("fromIterable()", () => {
             }
         });
     });
+
     it("works with delay", (done) => {
         let buf = [];
         let t0 = Date.now();
@@ -49,6 +56,7 @@ describe("fromIterable()", () => {
             }
         });
     });
+
     it("can be cancelled", (done) => {
         let buf = [];
         let doneCalled = false;
@@ -64,4 +72,5 @@ describe("fromIterable()", () => {
             done();
         }, 50);
     });
+
 });

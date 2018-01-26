@@ -1,4 +1,5 @@
 import { Transducer } from "@thi.ng/transducers/api";
+
 import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
 import { Subscription } from "./subscription";
 
