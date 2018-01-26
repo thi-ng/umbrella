@@ -11,16 +11,19 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
 
     next(x: Promise<T>) {
         this.outstanding++;
-        x.then((y) => {
-            if (this.state < State.DONE) {
-                this.dispatch(y);
-                if (--this.outstanding === 0) {
-                    this.done();
+        x.then(
+            (y) => {
+                if (this.state < State.DONE) {
+                    this.dispatch(y);
+                    if (--this.outstanding === 0) {
+                        this.done();
+                    }
+                } else {
+                    DEBUG && console.log(`resolved value in ${State[this.state]} state (${x})`);
                 }
-            } else {
-                DEBUG && console.log(`resolved value in ${State[this.state]} state (${x})`);
-            }
-        }).catch((e) => this.error(e));
+            },
+            (e) => this.error(e)
+        );
     }
 
     done() {
