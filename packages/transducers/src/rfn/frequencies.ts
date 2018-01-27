@@ -1,9 +1,8 @@
 import { Reducer } from "../api";
+import { identity } from "../func/identity";
+import { count } from "./count";
+import { groupByMap } from "./group-by-map";
 
-export function frequencies<T>(): Reducer<Map<T, number>, T> {
-    return [
-        () => new Map(),
-        (acc) => acc,
-        (acc, x) => acc.set(x, acc.has(x) ? acc.get(x) + 1 : 1)
-    ];
+export function frequencies<A, B>(key: ((x: A) => B) = <any>identity): Reducer<Map<B, number>, A> {
+    return groupByMap(key, count());
 }

@@ -1,8 +1,9 @@
 import { Reducer } from "../api";
 
+import { identity } from "../func/identity";
 import { push } from "./push";
 
-export function groupByMap<A, B, C>(key: (x: A) => B, rfn: Reducer<C, A> = <any>push()): Reducer<Map<B, C>, A> {
+export function groupByMap<A, B, C>(key: ((x: A) => B) = <any>identity, rfn: Reducer<C, A> = <any>push()): Reducer<Map<B, C>, A> {
     return [
         () => new Map(),
         (acc) => acc,
