@@ -1,19 +1,19 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
 import { ensureReduced, isReduced } from "../reduced";
 
-export function scan<A, B>(inner: Reducer<B, A>, acc?: B): Transducer<A, B> {
-    return (outer: Reducer<any, B>) => {
-        acc = acc || inner[0]();
-        const ri = inner[2],
-            ro = outer[2];
-        return compR(outer,
+export function scan<A, B>([initi, completei, reducei]: Reducer<B, A>): Transducer<A, B> {
+    return ([inito, completeo, reduceo]: Reducer<any, B>) => {
+        let acc = initi();
+        return [
+            inito,
+            (_acc) => completeo(reduceo(_acc, completei(acc))),
             (_acc, x) => {
-                acc = <any>ri(acc, x);
+                acc = <any>reducei(acc, x);
                 if (isReduced(acc)) {
-                    return ensureReduced(ro(_acc, (<any>acc).deref()));
+                    return ensureReduced(reduceo(_acc, (<any>acc).deref()));
                 }
-                return ro(_acc, acc);
-            });
+                return reduceo(_acc, acc);
+            }
+        ];
     };
 }
