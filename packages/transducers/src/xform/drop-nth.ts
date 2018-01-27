@@ -1,12 +1,12 @@
-import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { Transducer } from "../api";
+import { throttle } from "./throttle";
 
 export function dropNth<T>(n: number): Transducer<T, T> {
-    n--;
-    return (rfn: Reducer<any, T>) => {
-        const r = rfn[2];
-        let skip = n;
-        return compR(rfn,
-            (acc, x) => skip-- > 0 ? r(acc, x) : (skip = n, acc));
-    };
+    n = Math.max(0, n - 1);
+    return throttle(
+        () => {
+            let skip = n;
+            return () => skip-- > 0 ? true : (skip = n, false);
+        }
+    );
 }
