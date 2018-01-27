@@ -2,11 +2,11 @@ import { Reducer, Transducer } from "../api";
 import { compR } from "../func/comp";
 import { isReduced } from "../reduced";
 
-export function cat<T>(): Transducer<T[], T> {
+export function cat<T>(): Transducer<Iterable<T>, T> {
     return (rfn: Reducer<any, T>) => {
         const r = rfn[2];
         return compR(rfn,
-            (acc, x: T[]) => {
+            (acc, x: Iterable<T>) => {
                 if (x) {
                     for (let y of x) {
                         acc = r(acc, y);
