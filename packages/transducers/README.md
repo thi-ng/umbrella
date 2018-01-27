@@ -18,26 +18,26 @@ Lightweight transducer implementations for ES6 / TypeScript (~24KB minified, ful
 
 ## About
 
-Currently, the library provides altogether 75+ transducers, reducers and
-sequence generators for composing data transformation pipelines.
+This library provides altogether ~85 transducers, reducers and sequence
+generators (iterators) for composing data transformation pipelines.
 
 The overall concept and many of the core functions offered here are directly
 inspired by the original Clojure implementation by Rich Hickey, though the
 implementation does differ (also in contrast to some other JS based
-implementations) and several less common, but generally highly useful operators
+implementations) and dozens of less common, but generally highly useful operators
 have been added, with at least a couple dozen more to come.
 
-Please see the [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators) &
-[@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) partner modules for related
-functionality, supplementing features of this library. However, this lib has no
-dependencies on either of them. The only dependency is
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api) for re-using common types &
-interfaces.
+Please see the
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+& [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+partner modules for related functionality, supplementing features of this
+library and depending on it.
 
-Having said this, since 0.8.0 this project largely supersedes the
-[@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators) library for most use
-cases and offers are more powerful API and potentially faster execution of
-composed transformations (due to lack of ES generator overheads).
+Since 0.8.0 this project largely supersedes the
+[@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
+library for most use cases and offers are more powerful API and potentially
+faster execution of composed transformations (due to lack of ES generator
+overheads).
 
 ## Installation
 
@@ -84,21 +84,18 @@ tx.transduce(xform, tx.conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // [ 3, 9, 15]
 
 // single step execution
-// (currently doesn't work w/ mapcat(), duplicate() and some others)
 // returns undefined if transducer returned no result for this input
+// returns array if transducer step produced multiple results
 f = tx.step(xform);
 f(1) // 3
 f(2) // undefined
 f(3) // 9
 f(4) // undefined
-f(5) // 15
-f(4) // undefined
-f(3) // undefined
-f(2) // undefined
-f(1) // undefined
+
+f = tx.step(take)
 ```
 
-### Histogram generation
+### Histogram generation & result grouping
 
 ```typescript
 // use the `frequencies` reducer to create
@@ -109,20 +106,78 @@ tx.transduce(tx.map(x => x.toUpperCase()), tx.frequencies(), "hello world")
 // reduction only (no transform)
 tx.reduce(tx.frequencies(), [1, 1, 1, 2, 3, 4, 4])
 // Map { 1 => 3, 2 => 1, 3 => 1, 4 => 2 }
+
+// with optional key function, here to bin by word length
+tx.reduce(
+    tx.frequencies(x => x.length),
+    "my camel is collapsing and needs some water".split(" ")
+)
+// Map { 2 => 2, 5 => 3, 10 => 1, 3 => 1, 4 => 1 }
+
+// actual grouping
+tx.reduce(
+    tx.groupByMap(x => x.length),
+    "my camel is collapsing and needs some water".split(" ")
+)
+// Map {
+//   2 => [ 'my', 'is' ],
+//   3 => [ 'and' ],
+//   4 => [ 'some' ],
+//   5 => [ 'camel', 'needs', 'water' ],
+//   10 => [ 'collapsing' ]
+// }
+```
+
+### Multiplexing / parallel transducer application
+
+`multiplex` and `multiplexObj` can be used to transform values in parallel
+using the provided transducers (which can be composed as usual) and results in
+a tuple or keyed object.
+
+```typescript
+tx.transduce(
+    tx.multiplex(
+        tx.map(x => x.charAt(0)),
+        tx.map(x => x.toUpperCase()),
+        tx.map(x => x.length)
+    ),
+    tx.push(),
+    ["Alice", "Bob", "Charlie"]
+)
+// [ [ "A", "ALICE", 5 ], [ "B", "BOB", 3 ], [ "C", "CHARLIE", 7 ] ]
+
+tx.transduce(
+    tx.multiplexObj({
+        initial: tx.map(x => x.charAt(0)),
+        name: tx.map(x => x.toUpperCase()),
+        len: tx.map(x => x.length)
+    }),
+    tx.push(),
+    ["Alice", "Bob", "Charlie"]
+)
+// [ { len: 5, name: 'ALICE', initial: 'A' },
+//   { len: 3, name: 'BOB', initial: 'B' },
+//   { len: 7, name: 'CHARLIE', initial: 'C' } ]
 ```
 
 ### Moving average using sliding window
 
 ```typescript
 // use nested reduce to compute window averages
-// this combined transducer is also directly
-// available as: `tx.movingAverage(n)`
 tx.transduce(
     tx.comp(
         tx.partition(5, 1),
         tx.map(x => tx.reduce(tx.mean(), x))
     ),
     tx.push(),
+    [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10]
+);
+// [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
+
+// this combined transducer is also directly
+// available as: `tx.movingAverage(n)`
+tx.transduce(
+    tx.movingAverage(5),
     [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10]
 );
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
@@ -290,7 +345,7 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 //   '........' ]
 ```
 
-### Base64 en/decoding
+### Base64 & UTF-8 en/decoding
 
 ```typescript
 // add offset (0x80) to allow negative values to be encoded
@@ -300,7 +355,7 @@ enc = tx.transduce(
         tx.map(x => x + 0x80),
         tx.base64Encode()
     ),
-    tx.join(),
+    tx.str(),
     tx.range(-8, 8)
 );
 // "eHl6e3x9fn+AgYKDhIWGhw=="
@@ -314,6 +369,16 @@ enc = tx.transduce(
     ),
     enc)]
 // [ -8, -7, -6, -5, -4, -3, -2, -1 ]
+
+buf = tx.transduce(
+    tx.comp(tx.utf8Encode(), tx.base64Encode()),
+    tx.str(),
+    "beer (🍺) or hot beverage (☕︎)"
+);
+// "YmVlciAo8J+Nuikgb3IgaG90IGJldmVyYWdlICjimJXvuI4p"
+
+tx.transduce(tx.comp(tx.base64Decode(), tx.utf8Decode()), tx.str(), buf)
+// "beer (🍺) or hot beverage (☕︎)"
 ```
 
 ### Weighted random choices
@@ -329,8 +394,8 @@ tx.transduce(tx.take(1000), tx.frequencies(), tx.choices("abcd", [1, 0.5, 0.25, 
 ## API
 
 _Documentation is slowly forthcoming in the form of doc comments (incl. code
-examples) for a small, but growing number the functions listed below. Please
-see source code for now._
+examples) for a growing number the functions listed below. Please see source
+code for now._
 
 ### Types
 
@@ -376,8 +441,8 @@ const push: Reducer<any[], any> = [
 ];
 ```
 
-Currently `partition`, `partitionBy`, `streamSort`, `streamShuffle` are the only operators making
-use of the 1-arity completing function of their reducer.
+`partition`, `partitionBy`, `streamSort`, `streamShuffle` are (examples of)
+transducers making use of their 1-arity completing function.
 
 #### Reduced
 
@@ -513,6 +578,8 @@ reducer and optional initial accumulator/result.
 
 #### `keep<T>(f?: ((x: T) => any)): Transducer<T, T>`
 
+#### `labeled<L, T>(id: L): Transducer<T, [L, T]>`
+
 #### `map<A, B>(fn: (x: A) => B): Transducer<A, B>`
 
 #### `mapcat<A, B>(fn: (x: A) => Iterable<B>): Transducer<A, B>`
@@ -524,6 +591,10 @@ reducer and optional initial accumulator/result.
 #### `mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>`
 
 #### `movingAverage(n: number): Transducer<number, number>`
+
+#### `multiplex<T, A, B>(a: Transducer<T, A>, b: Transducer<T, B>...): Transducer<T, [A, B...]>`
+
+#### `multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn?: Reducer<B, [PropertyKey, any]>): Transducer<A, B>`
 
 #### `padLast<T>(n: number, fill: T): Transducer<T, T>`
 
@@ -565,6 +636,12 @@ reducer and optional initial accumulator/result.
 
 #### `throttle<T>(delay: number): Transducer<T, T>`
 
+#### `throttleTime<T>(delay: number): Transducer<T, T>`
+
+#### `utf8Decode(): Transducer<number, string>`
+
+#### `utf8Encode(): Transducer<string, number>`
+
 ### Reducers
 
 #### `add(): Reducer<number, number>`
@@ -577,7 +654,9 @@ reducer and optional initial accumulator/result.
 
 #### `count(offset?: number, step?: number): Reducer<number, any>`
 
-#### `frequencies<T>(): Reducer<Map<T, number>, T>`
+#### `every<T>(pred?: Predicate<T>): Reducer<boolean, T>`
+
+#### `frequencies<A, B>(key: (x: A) => B): Reducer<Map<B, number>, A>`
 
 #### `groupBinary<T>(bits: number, key: (x: T) => number, branch?: () => IObjectOf<T[]>, leaf?: Reducer<any, T>, left?: PropertyKey, right?: PropertyKey): Reducer<any, T>`
 
@@ -602,6 +681,10 @@ reducer and optional initial accumulator/result.
 #### `push<T>(): Reducer<T[], T>`
 
 #### `pushCopy<T>(): Reducer<T[], T>`
+
+#### `reductions<A, B>(rfn: Reducer<A, B>): Reducer<A[], B>`
+
+#### `some<T>(pred?: Predicate<T>): Reducer<boolean, T>`
 
 ### Generators / Iterators
 
