@@ -1,6 +1,6 @@
 import { Reducer } from "../api";
 
-export function join(sep = ""): Reducer<string, any> {
+export function str(sep = ""): Reducer<string, any> {
     return [
         () => <any>[],
         (acc) => (<any>acc).join(sep),
