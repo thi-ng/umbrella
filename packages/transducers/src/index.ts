@@ -57,6 +57,7 @@ export * from "./xform/mapcat";
 export * from "./xform/moving-average";
 export * from "./xform/multiplex";
 export * from "./xform/multiplex-obj";
+export * from "./xform/noop";
 export * from "./xform/pad-last";
 export * from "./xform/partition-by";
 export * from "./xform/partition-of";

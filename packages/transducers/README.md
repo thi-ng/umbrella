@@ -519,11 +519,12 @@ is done dynamically via for loop.
 
 #### `compR(rfn: Reducer<any, any>, fn: (acc, x) => any): Reducer<any, any>`
 
-Helper function to build reducers.
+Helper function to compose reducers.
 
 #### `iterator<A, B>(tx: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B>`
 
-Similar to `transduce()`, but emits results as ES6 iterator (and hence doesn't use a reduction function).
+Similar to `transduce()`, but emits results as ES6 iterator (and hence doesn't
+use a reduction function).
 
 #### `reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A`
 
@@ -595,6 +596,8 @@ reducer and optional initial accumulator/result.
 #### `multiplex<T, A, B>(a: Transducer<T, A>, b: Transducer<T, B>...): Transducer<T, [A, B...]>`
 
 #### `multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn?: Reducer<B, [PropertyKey, any]>): Transducer<A, B>`
+
+#### `noop<T>(): Transducer<T, T>`
 
 #### `padLast<T>(n: number, fill: T): Transducer<T, T>`
 
