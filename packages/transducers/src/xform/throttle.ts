@@ -1,4 +1,4 @@
-import { Predicate } from "@thi.ng/api/api";
+import { StatefulPredicate } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/comp";
@@ -18,7 +18,7 @@ import { compR } from "../func/comp";
  *
  * @param pred
  */
-export function throttle<T>(pred: () => Predicate<T>): Transducer<T, T> {
+export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T> {
     return (rfn: Reducer<any, T>) => {
         const r = rfn[2];
         const _pred = pred();

@@ -9,9 +9,9 @@ function branchPred<T>(key: (x: T) => number, b: number, l: PropertyKey, r: Prop
 }
 
 /**
- * Creates a bottom-up binary tree of desired depth and choice of
- * data structures. Any value can be indexed, as long as a numeric
- * representation (key) can be obtained. This mapping is produced
+ * Creates a bottom-up, unbalanced binary tree of desired depth and
+ * choice of data structures. Any value can be indexed, as long as a
+ * numeric representation (key) can be obtained. This mapping is produced
  * by the supplied `key` function. IMPORTANT: the returned values
  * MUST be unsigned and less than the provided bit length (i.e. 2^`bits`).
  *

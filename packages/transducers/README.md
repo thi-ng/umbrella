@@ -227,7 +227,7 @@ tx.transduce(
 ### Stream parsing / structuring
 
 The `struct` transducer is simply a composition of: `partitionOf -> partition -> rename -> mapKeys`.
-[See code here](https://github.com/thi-ng/transducers/blob/master/src/xform/struct.ts).
+[See code here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/struct.ts).
 
 ```typescript
 // Higher-order transducer to convert linear input into structured objects
@@ -310,7 +310,7 @@ tx.transduce(tx.comp(tx.scan(tx.count), tx.scan(tx.pushCopy)), tx.push(), [1,1,1
 ### Streaming hexdump
 
 This is a higher-order transducer, purely composed from other transducers.
-[See code here](https://github.com/thi-ng/transducers/blob/master/src/xform/hex-dump.ts).
+[See code here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts).
 
 ```typescript
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
