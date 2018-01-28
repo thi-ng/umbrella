@@ -7,6 +7,6 @@
         "lerna": "^2.8.0"
     },
     "scripts": {
-        "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'update dep graph` && git push"
+        "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'update dep graph' && git push"
     }
 }
