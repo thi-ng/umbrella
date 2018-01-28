@@ -1,0 +1,11 @@
+bench/*
+build/*
+dev/*
+doc/*
+node_modules/*
+.DS_Store
+bundle.*
+*.log
+*.tgz
+*.js
+*.d.ts
