@@ -236,6 +236,8 @@ export interface IObjectOf<T> {
 
 export type Predicate<T> = (x: T) => boolean;
 
+export type StatefulPredicate<T> = () => Predicate<T>;
+
 export interface IRelease {
     release(opt?: any): boolean;
 }
