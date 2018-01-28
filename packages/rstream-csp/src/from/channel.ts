@@ -1,7 +1,6 @@
 import { Channel } from "@thi.ng/csp/channel";
-
-import { DEBUG } from "../api";
-import { Stream } from "../stream";
+import { Stream } from "@thi.ng/rstream/stream";
+import { DEBUG } from "@thi.ng/rstream/api";
 
 /**
  *

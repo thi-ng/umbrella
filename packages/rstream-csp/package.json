@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/rstream",
-    "version": "0.5.1",
-    "description": "Reactive multi-tap streams & transformation pipeline constructs",
+    "name": "@thi.ng/rstream-csp",
+    "version": "0.0.1",
+    "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -10,7 +10,7 @@
     "scripts": {
         "build": "yarn run clean && tsc --declaration",
         "test": "yarn run clean && tsc -p test && mocha build/test/*.js",
-        "clean": "rm -rf *.js *.d.ts build doc from subs utils",
+        "clean": "rm -rf *.js *.d.ts build doc",
         "pub": "yarn run build && yarn publish --access public"
     },
     "devDependencies": {
@@ -24,17 +24,14 @@
     },
     "dependencies": {
         "@thi.ng/api": "^1.2.1",
-        "@thi.ng/transducers": "^0.11.2"
+        "@thi.ng/rstream": "^0.5.1"
     },
     "keywords": [
-        "ES6",
-        "events",
-        "pipeline",
+        "bridge",
+        "csp",
         "reactive",
         "stream",
-        "subscription",
-        "transducer",
-        "transformation",
+        "ES6",
         "typescript"
     ],
     "publishConfig": {
