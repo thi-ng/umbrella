@@ -1,9 +1,9 @@
 import { IEnable, IID, IObjectOf } from "@thi.ng/api/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { DCons } from "@thi.ng/dcons";
+// import { DCons } from "@thi.ng/dcons";
 import * as tx from "@thi.ng/transducers";
 
-import { ErrorHandler, IBuffer, IWriteableChannel } from "../src/api";
+import { IBuffer, IWriteableChannel } from "../src/api";
 import { Channel } from "../src/channel";
 import { Mult } from "../src/mult";
 

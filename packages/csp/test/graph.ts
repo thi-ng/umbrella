@@ -1,5 +1,5 @@
 import * as api from "@thi.ng/api";
-import * as tx from "@thi.ng/transducers";
+// import * as tx from "@thi.ng/transducers";
 import { Channel, Mult } from "../src";
 
 export interface Node {

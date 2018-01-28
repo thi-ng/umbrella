@@ -46,7 +46,7 @@ const sorted = results.tap(
 // into the `sorted` channel
 // (`freqs` is a JS Map and is iterable)
 paths.pipe(proc)
-    .reduce(tx.frequencies<string>())
+    .reduce(tx.frequencies())
     .then(freqs => results.channel().into(freqs));
 
 // kick off process by writing file paths into the 1st channel

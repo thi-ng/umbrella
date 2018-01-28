@@ -48,7 +48,7 @@ async function throttle(d1, d2) {
     const a = Channel.range(0, 1000, 1, d1),
         done = new Channel(),
         t0 = Date.now();
-    a.pipe(tx.throttle(d2))
+    a.pipe(tx.throttleTime(d2))
         .consume((x) => console.log("throttled", x, Date.now() - t0))
         .then(() => {
             console.log("throttle done");
@@ -70,6 +70,7 @@ async function pubsub() {
     // pub.sub("*").consume();
     await pub.channel().into(["alice", "bert", "bella", "charlie", "arthur"]);
     for (let i of topics) {
+        console.log("waiting for", i);
         await done.read();
     }
     console.log("---");
