@@ -4,7 +4,8 @@
         "packages/*"
     ],
     "devDependencies": {
-        "lerna": "^2.8.0"
+        "lerna": "^2.8.0",
+        "tslint": "^5.9.1"
     },
     "scripts": {
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'update dep graph' && git push"
