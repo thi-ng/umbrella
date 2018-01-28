@@ -45,10 +45,11 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
 }
 
 /**
- * Buffers values from `src` until side chain fires,
- * then emits buffer (unless empty) and repeats process until either input is done.
- * By default, the value read from the side chain is ignored, however the optional
- * predicate can be used to only trigger for specific values/conditions.
+ * Buffers values from `src` until side chain fires, then emits buffer
+ * (unless empty) and repeats process until either input is done.
+ * By default, the value read from the side chain is ignored, however
+ * the optional predicate can be used to only trigger for specific
+ * values / conditions.
  *
  * ```
  * // merge various event streams
@@ -57,6 +58,7 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
  *     fromEvent(document,"mousedown"),
  *     fromEvent(document,"mouseup")
  * ]);
+ *
  * // queue event processing to only execute during the
  * // requestAnimationFrame cycle (RAF)
  * events.subscribe(sidechainPartition(fromRAF())).subscribe(trace())

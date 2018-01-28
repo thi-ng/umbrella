@@ -26,7 +26,7 @@ export function postWorker<T>(worker: Worker | Blob | string, transfer = false, 
             }
             _worker.postMessage(x, tx);
         },
-        done: () => {
+        done() {
             if (terminate > 0) {
                 setTimeout(() => {
                     DEBUG && console.log("terminating worker...");
