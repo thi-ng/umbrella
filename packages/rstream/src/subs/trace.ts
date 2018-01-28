@@ -7,6 +7,9 @@ export function trace(prefix?: any): ISubscriber<any> {
         },
         done() {
             prefix ? console.log(prefix, "done") : console.log("done");
+        },
+        error(e) {
+            prefix ? console.log(prefix, "error", e) : console.log("error", e);
         }
     }
 }
