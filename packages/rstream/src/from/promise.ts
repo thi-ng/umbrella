@@ -1,6 +1,13 @@
 import { State } from "../api";
 import { Stream } from "../stream";
 
+/**
+ * Yields a single-value stream of the resolved promise and then
+ * automatically marks itself done. It doesn't matter if the promise
+ * resolves before the first subscriber has attached.
+ *
+ * @param src
+ */
 export function fromPromise<T>(src: Promise<T>) {
     let canceled = false;
     return new Stream<T>((stream) => {

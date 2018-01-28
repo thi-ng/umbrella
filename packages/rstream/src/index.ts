@@ -7,6 +7,7 @@ export * from "./from/event";
 export * from "./from/interval";
 export * from "./from/iterable";
 export * from "./from/promise";
+export * from "./from/promises";
 export * from "./from/raf";
 export * from "./from/worker";
 
