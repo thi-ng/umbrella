@@ -19,6 +19,7 @@ yarn add @thi.ng/rstream-csp
 
 ```typescript
 import * as rs from "@thi.ng/rstream";
+import * as tx from "@thi.ng/transducers";
 import { fromChannel } from "@thi.ng/rstream-csp";
 import { Channel } from "@thi.ng/csp";
 
