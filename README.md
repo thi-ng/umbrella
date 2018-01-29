@@ -1,5 +1,6 @@
 # @thi.ng/umbrella
 
+![Travis status](https://api.travis-ci.org/thi-ng/umbrella.svg?branch=master)
 ![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)
 
 Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
