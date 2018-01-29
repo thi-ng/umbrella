@@ -1,7 +1,8 @@
 #!/bin/sh
 
 readonly MODULE="packages/$1"
-readonly AUTHOR="Karsten Schmidt <k+npm@thi.ng>"
+readonly AUTHOR="Karsten Schmidt"
+readonly EMAIL="k+npm@thi.ng"
 
 echo "generating module: $MODULE"
 mkdir -p $MODULE
@@ -31,7 +32,7 @@ cat << EOF > $MODULE/package.json
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
-    "author": "$AUTHOR",
+    "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn run clean && tsc --declaration",
@@ -49,7 +50,7 @@ cat << EOF > $MODULE/package.json
         "webpack": "^3.10.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^1.2.1"
+        "@thi.ng/api": "^1.4.0"
     },
     "keywords": [
         "ES6",
