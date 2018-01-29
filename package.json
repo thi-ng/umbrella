@@ -5,10 +5,13 @@
     ],
     "devDependencies": {
         "lerna": "^2.8.0",
-        "tslint": "^5.9.1"
+        "tslint": "^5.9.1",
+        "typescript": "^2.6.2"
     },
     "scripts": {
+        "build": "yarn install && lerna bootstrap && lerna run build --sort",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
-        "pub": "lerna publish && yarn depgraph"
+        "pub": "lerna publish && yarn depgraph",
+        "test": "yarn build && lerna run test"
     }
 }

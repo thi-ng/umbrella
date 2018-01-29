@@ -44,9 +44,7 @@ All packages are:
 ```
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella
-yarn install
-lerna bootstrap
-lerna exec yarn build --sort
+yarn build
 ```
 
 ## Testing
@@ -54,7 +52,7 @@ lerna exec yarn build --sort
 (TODO not all packages have tests yet)
 
 ```
-lerna exec yarn test
+yarn test
 # or individually
-lerna exec yarn test --scope @thi.ng/checks
+lerna run test --scope @thi.ng/rstream
 ```
