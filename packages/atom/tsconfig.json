@@ -2,9 +2,9 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": ".",
-        "noUnusedParameters": false,
+        "noUnusedParameters": false
     },
     "include": [
-        "./src/**/*.ts",
+        "./src/**/*.ts"
     ]
 }

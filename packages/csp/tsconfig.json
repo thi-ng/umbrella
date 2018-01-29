@@ -4,6 +4,6 @@
         "outDir": "."
     },
     "include": [
-        "./src/**/*.ts",
+        "./src/**/*.ts"
     ]
 }
