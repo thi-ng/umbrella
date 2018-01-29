@@ -35,6 +35,6 @@ export function struct<T>(fields: StructField[]): Transducer<any, T> {
         partitionOf(fields.map((f) => f[1])),
         partition(fields.length),
         rename(fields.reduce((acc, f, i) => (acc[f[0]] = i, acc), {})),
-        mapKeys(fields.reduce((acc, f) => (f[2] ? (acc[f[0]] = f[2], acc) : acc), {}))
+        mapKeys(fields.reduce((acc, f) => (f[2] ? (acc[f[0]] = f[2], acc) : acc), {}), false)
     );
 }
