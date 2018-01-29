@@ -2,7 +2,8 @@ build
 coverage
 dev
 doc
-src
+src*
 test
 .nyc_output
 *.tgz
+*.html
