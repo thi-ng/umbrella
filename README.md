@@ -48,7 +48,7 @@ cd umbrella
 yarn build
 ```
 
-## Testing
+### Testing
 
 (TODO not all packages have tests yet)
 
@@ -57,3 +57,19 @@ yarn test
 # or individually
 lerna run test --scope @thi.ng/rstream
 ```
+
+### Coverage
+
+```
+yarn cover
+```
+
+The resulting reports will be saved under `/packages/*/coverage/lcov-report/`.
+
+### Documentation
+
+```
+yarn doc
+```
+
+The resulting docs will be saved under `/packages/*/doc/`.

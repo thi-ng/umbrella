@@ -11,7 +11,9 @@
     },
     "scripts": {
         "build": "yarn install && lerna bootstrap && lerna run build --sort",
+        "cover": "yarn test && lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
+        "doc": "lerna run doc",
         "pub": "lerna publish && yarn depgraph",
         "test": "yarn build && lerna run test"
     }
