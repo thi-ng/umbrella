@@ -1,8 +1,9 @@
-bench/*
-build/*
-dev/*
-doc/*
-node_modules/*
+node_modules
+.nyc_output
+coverage
+build
+dev
+doc
 .DS_Store
 bundle.*
 *.log
