@@ -1,11 +1,11 @@
-import { default as iterator, maybeIterator } from "./iterator";
+import { iterator, maybeIterator } from "./iterator";
 import { maybeObjectIterator } from "./object-iterator";
 
 export function walkable(x) {
     return typeof x !== "string" ? maybeIterator(x) || maybeObjectIterator(x) : undefined;
 }
 
-export default function walk(fn: (x: any) => void, input: Iterable<any>, postOrder = false) {
+export function walk(fn: (x: any) => void, input: Iterable<any>, postOrder = false) {
     let inner = (iter) => {
         let v: IteratorResult<any>,
             node;

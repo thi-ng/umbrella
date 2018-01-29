@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* cycle<T>(input: Iterable<T>) {
+export function* cycle<T>(input: Iterable<T>) {
     let cache: T[] = [],
         iter = iterator(input),
         v: IteratorResult<T>;

@@ -1,4 +1,4 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
 export class ReducedValue<T> {
     public value: T;
@@ -8,7 +8,7 @@ export class ReducedValue<T> {
     }
 }
 
-export default function reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) {
+export function reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) {
     let iter = iterator(input),
         v: IteratorResult<A>,
         _acc: B | ReducedValue<B> = acc;

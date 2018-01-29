@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) {
+export function* map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) {
     let v: IteratorResult<T>,
         n = inputs.length;
     switch (n) {

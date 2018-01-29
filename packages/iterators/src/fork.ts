@@ -1,8 +1,8 @@
 import { DCons } from "@thi.ng/dcons";
 
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function fork<T>(src: Iterable<T>, cacheLimit = 16) {
+export function fork<T>(src: Iterable<T>, cacheLimit = 16) {
     const iter = iterator(src),
         cache = new DCons<T>(),
         forks = [];

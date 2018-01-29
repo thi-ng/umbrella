@@ -1,7 +1,7 @@
-import consume from "./consume";
-import iterator from "./iterator";
+import { consume } from "./consume";
+import { iterator } from "./iterator";
 
-export default function* partition<T>(n: number, step: number, input: Iterable<T>, all = false) {
+export function* partition<T>(n: number, step: number, input: Iterable<T>, all = false) {
     if (n < 1) {
         throw new Error(`invalid partition size: ${n}`);
     }

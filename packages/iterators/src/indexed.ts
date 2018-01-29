@@ -1,5 +1,5 @@
-import mapIndexed from "./map-indexed";
+import { mapIndexed } from "./map-indexed";
 
-export default function indexed<T>(input: Iterable<T>): IterableIterator<[number, T]> {
+export function indexed<T>(input: Iterable<T>): IterableIterator<[number, T]> {
     return mapIndexed((i, x) => [i, x], input);
 }

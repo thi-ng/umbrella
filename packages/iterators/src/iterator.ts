@@ -1,4 +1,4 @@
-export default function iterator<T>(x: Iterable<T>) {
+export function iterator<T>(x: Iterable<T>) {
     return x[Symbol.iterator]();
 }
 

@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function every<T>(pred: (x: T) => boolean, input: Iterable<T>) {
+export function every<T>(pred: (x: T) => boolean, input: Iterable<T>) {
     let iter = iterator(input),
         v: IteratorResult<T>,
         empty = true;

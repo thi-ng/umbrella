@@ -1,11 +1,11 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
 export interface FrequencyPair<T> {
     [0]: T;
     [1]: number;
 }
 
-export default function* frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]> {
+export function* frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]> {
     let freqs = {},
         iter = iterator(input),
         v: IteratorResult<any>;

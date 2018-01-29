@@ -1,4 +1,4 @@
-export default function juxt<T>(...fns: ((x: T) => any)[]) {
+export function juxt<T>(...fns: ((x: T) => any)[]) {
     return function (x: T) {
         let res = [];
         for (let i = 0; i < fns.length; i++) {

@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* butLast<T>(input: Iterable<T>) {
+export function* butLast<T>(input: Iterable<T>) {
     let iter = iterator(input),
         v: IteratorResult<T>,
         prev: T,

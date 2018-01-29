@@ -1,4 +1,4 @@
-export default function fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) {
+export function fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) {
     let [cta, ctb, ctc] = ctors;
     switch (ctors.length) {
         case 1:

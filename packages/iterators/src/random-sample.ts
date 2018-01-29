@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* randomSample<T>(prob: number, input: Iterable<T>) {
+export function* randomSample<T>(prob: number, input: Iterable<T>) {
     let iter = iterator(input),
         random = Math.random,
         v: IteratorResult<T>;

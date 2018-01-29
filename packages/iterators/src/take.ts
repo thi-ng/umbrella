@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* take<T>(n: number, input: Iterable<T>) {
+export function* take<T>(n: number, input: Iterable<T>) {
     let iter = iterator(input);
     while (n-- > 0) {
         let v = iter.next();

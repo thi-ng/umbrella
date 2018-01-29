@@ -1,8 +1,8 @@
-export default function range(): IterableIterator<number>;
-export default function range(to: number): IterableIterator<number>;
-export default function range(from: number, to: number): IterableIterator<number>;
-export default function range(from: number, to: number, step: number): IterableIterator<number>;
-export default function* range(from?: number, to?: number, step?: number) {
+export function range(): IterableIterator<number>;
+export function range(to: number): IterableIterator<number>;
+export function range(from: number, to: number): IterableIterator<number>;
+export function range(from: number, to: number, step: number): IterableIterator<number>;
+export function* range(from?: number, to?: number, step?: number) {
     if (from === undefined) {
         from = 0;
         to = Number.POSITIVE_INFINITY;

@@ -1,7 +1,7 @@
-import map from "./map";
+import { map } from "./map";
 import { ensureIterable } from "./ensure";
 
-export default function* mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]): IterableIterator<T> {
+export function* mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]): IterableIterator<T> {
     (inputs as any[]).unshift(fn);
     let iter = map.apply(null, inputs),
         v: IteratorResult<Iterable<T>>;

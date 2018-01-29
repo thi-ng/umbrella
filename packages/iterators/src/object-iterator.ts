@@ -1,6 +1,6 @@
-import map from "./map";
+import { map } from "./map";
 
-export default function objectIterator(x: any) {
+export function objectIterator(x: any) {
     return map((k) => [k, x[k]], Object.keys(x));
 }
 

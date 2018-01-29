@@ -1,8 +1,8 @@
-import iterator from "./iterator";
-import take from "./take";
+import { iterator } from "./iterator";
+import { take } from "./take";
 import { ensureIterable } from "./ensure";
 
-export default function* dropNth<T>(n: number, input: Iterable<T>) {
+export function* dropNth<T>(n: number, input: Iterable<T>) {
     let iter = ensureIterable(iterator(input));
     do {
         yield* take(n - 1, iter);

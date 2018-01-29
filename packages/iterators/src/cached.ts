@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function cached<T>(input: Iterable<T>) {
+export function cached<T>(input: Iterable<T>) {
     let cache: T[] = [],
         iter = iterator(input),
         done = false;

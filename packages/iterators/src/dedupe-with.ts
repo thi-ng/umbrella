@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* dedupeWith<T>(equiv: (a: T, b: T) => boolean, input: Iterable<T>) {
+export function* dedupeWith<T>(equiv: (a: T, b: T) => boolean, input: Iterable<T>) {
     let iter = iterator(input),
         v: IteratorResult<T>,
         prev: T;

@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* flattenWith(tx: (x: any) => any, input: Iterable<any>): IterableIterator<any> {
+export function* flattenWith(tx: (x: any) => any, input: Iterable<any>): IterableIterator<any> {
     let iter = iterator(input),
         v: IteratorResult<any>, val, res;
     while (((v = iter.next()), !v.done)) {

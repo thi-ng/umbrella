@@ -1,6 +1,6 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
-export default function* partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) {
+export function* partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) {
     let iter = iterator(input),
         chunk: T[] = [],
         v: IteratorResult<T>,

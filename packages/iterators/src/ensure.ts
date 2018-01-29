@@ -1,4 +1,4 @@
-import iterator from "./iterator";
+import { iterator } from "./iterator";
 
 export function ensureIterable(x: any): IterableIterator<any> {
     if (!(x != null && x[Symbol.iterator])) {

@@ -1,4 +1,4 @@
-export default function* reverse<T>(input: Iterable<T>) {
+export function* reverse<T>(input: Iterable<T>) {
     if (!(input.constructor === Array || (input as T[]).length !== undefined)) {
         input = [...input];
     }
