@@ -2,7 +2,9 @@ import * as assert from "assert";
 
 import * as rs from "../src/index";
 
-describe("SidechainPartition", () => {
+describe("SidechainPartition", function () {
+
+    this.timeout(10000); // extended delay for travis
 
     it("partitions (manual)", (done) => {
         let src = new rs.Stream();
