@@ -11,6 +11,8 @@ echo "creating /src & /test folders..."
 mkdir -p $MODULE/src $MODULE/test
 touch $MODULE/src/index.ts
 
+cp packages/api/LICENSE $MODULE/
+
 echo "writing test skeleton..."
 cat << EOF > $MODULE/test/index.ts
 import * as assert from "assert";
