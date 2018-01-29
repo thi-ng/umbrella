@@ -62,10 +62,10 @@ export class Cursor<T> implements
     }
 
     removeWatch(id: string): boolean {
-        throw new Error("Method not implemented.");
+        return this.local.removeWatch(id);
     }
 
     notifyWatches(oldState: T, newState: T) {
-        throw new Error("Method not implemented.");
+        return this.local.notifyWatches(oldState, newState);
     }
 }
