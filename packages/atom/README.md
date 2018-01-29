@@ -4,7 +4,9 @@
 
 ## About
 
-Clojure inspired mutable wrapper for (usually) immutable values, with support for watches.
+Clojure inspired mutable wrappers for (usually) immutable values, with support for watches.
+
+TODO
 
 ## Installation
 
@@ -14,10 +16,12 @@ yarn add @thi.ng/atom
 
 ## Usage examples
 
-```typescript
-import { Atom } from "@thi.ng/atom";
+### Atom
 
-const a = new Atom(23);
+```typescript
+import * as atom from "@thi.ng/atom";
+
+const a = new atom.Atom(23);
 
 // obtain value via deref()
 a.deref();
@@ -32,6 +36,31 @@ a.swap((val)=> val + 1);
 
 a.reset(42);
 // foo: 24 -> 42
+```
+
+### Cursor
+
+```typescript
+// main state
+main = new atom.Atom({a: 23, b: 42});
+
+// cursor to `a` value
+// requires both a lookup & update function to given value
+// both fns will be called with cursor's parent state
+// the updater MUST NOT mutate in place
+cursor = new atom.Cursor(main, (state) => state.a, (state, x) => ({...state, a: x}));
+
+// add watch just as with Atom
+cursor.addWatch("foo", console.log);
+
+cursor.deref()
+// 23
+
+cursor.swap(x => x + 1);
+// foo 23 24
+
+main.deref()
+// { a: 24, b: 42 }
 ```
 
 ## Authors
