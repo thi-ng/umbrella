@@ -7,11 +7,12 @@ data / transformation oriented packages.
 
 All packages are:
 
-- distributed as ES6 modules with bundled TypeScript typings
+- distributed as ES6 modules with bundled TypeScript typings & changelogs
 - highly modular with largely only a single exported function / class per file
 - provide re-exports of all their publics (`src/index.ts`)
 - have either none or only @thi.ng internal runtime dependencies (see graph below)
 - declare public interfaces, enums & types in an `src/api.ts` file (larger packages only)
+- licensed under Apache Software License 2.0
 
 ## Projects
 
@@ -48,7 +49,7 @@ lerna bootstrap
 lerna exec yarn build --sort
 ```
 
-### Testing
+## Testing
 
 (TODO not all packages have tests yet)
 
