@@ -38,9 +38,10 @@ cat << EOF > $MODULE/package.json
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn run clean && tsc --declaration",
-        "test": "yarn run clean && tsc -p test && mocha build/test/*.js",
         "clean": "rm -rf *.js *.d.ts build doc",
-        "pub": "yarn run build && yarn publish --access public"
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn run build && yarn publish --access public",
+        "test": "rm -rf build && tsc -p test && mocha build/test/*.js"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.46",
@@ -52,7 +53,7 @@ cat << EOF > $MODULE/package.json
         "webpack": "^3.10.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^1.4.0"
+        "@thi.ng/api": "^1.5.0"
     },
     "keywords": [
         "ES6",
@@ -72,7 +73,7 @@ cat << EOF > $MODULE/tsconfig.json
         "outDir": "."
     },
     "include": [
-        "./src/**/*.ts",
+        "./src/**/*.ts"
     ]
 }
 EOF
@@ -82,7 +83,7 @@ cat << EOF > $MODULE/test/tsconfig.json
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "../build",
+        "outDir": "../build"
     },
     "include": [
         "./**/*.ts",
