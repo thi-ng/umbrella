@@ -73,8 +73,8 @@ describe("iterators", function () {
         assert.deepEqual([...ti.dropNth(-1, ti.range(6))], [], "dropNth(-1)");
     });
     it("dropWhile", () => {
-        assert.deepEqual([...ti.dropWhile((x) => false, [])], [], "empty");
-        assert.deepEqual([...ti.dropWhile((x) => true, [1, 2, 3])], [], "always");
+        assert.deepEqual([...ti.dropWhile((_) => false, [])], [], "empty");
+        assert.deepEqual([...ti.dropWhile((_) => true, [1, 2, 3])], [], "always");
         assert.deepEqual([...ti.dropWhile((x) => x < 3, ti.range(6))], [3, 4, 5], "x<3");
         assert.deepEqual([...ti.dropWhile((x) => x > 3, ti.range(6))], [0, 1, 2, 3, 4, 5], "none");
     });
@@ -84,7 +84,7 @@ describe("iterators", function () {
     });
     it("every", () => {
         let nums = ti.iterator([2, 4, 6, 8, 10]) as IterableIterator<number>;
-        assert(!ti.every((x) => true, []), "empty");
+        assert(!ti.every((_) => true, []), "empty");
         assert(ti.every((x) => (x % 2) === 0, nums), "even");
         assert.deepEqual(nums.next(), { value: undefined, done: true }, "nums done");
         nums = ti.iterator([2, 3, 4]) as IterableIterator<number>;
@@ -92,7 +92,7 @@ describe("iterators", function () {
         assert.deepEqual(nums.next(), { value: 4, done: false }, "next = 4");
     });
     it("filter", () => {
-        assert.deepEqual([...ti.filter((x) => true, [])], [], "empty");
+        assert.deepEqual([...ti.filter((_) => true, [])], [], "empty");
         assert.deepEqual([...ti.filter((x) => (x % 3) === 0, ti.range(10))], [0, 3, 6, 9], "mult3");
     });
     it("flatten", () => {
@@ -266,7 +266,7 @@ describe("iterators", function () {
     });
     it("takeWhile", () => {
         let input = ti.range(10);
-        assert.deepEqual([...ti.takeWhile((x) => true, [])], [], "empty");
+        assert.deepEqual([...ti.takeWhile((_) => true, [])], [], "empty");
         assert.deepEqual([...ti.takeWhile((x) => x < 5, input)], [0, 1, 2, 3, 4], "x<5");
         assert.deepEqual([...input], [6, 7, 8, 9], "rest");
     });
