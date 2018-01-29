@@ -4,7 +4,7 @@
 
 ## Overview
 
-Collection of approx. 50 composable, iterator-centric data processing functions,
+Collection of ~50 composable, iterator-centric data processing functions,
 largely implemented as ES6 iterators / generators, inspired by
 [clojure.core](http://clojure.github.io/clojure/clojure.core-api.html) API.
 Written in TypeScript.
@@ -17,17 +17,15 @@ See [changelog](https://github.com/thi-ng/iterators/blob/master/CHANGELOG.md) fo
 yarn add @thi.ng/iterators
 ```
 
-All functions are defined as sub-modules and exposed as default exports. This is an additional feature. The full library can still be imported as before. Function sub-modules use *Kebab case* whereas function names are in *Camel case*.
+All functions are defined as sub-modules and re-exported to allow the full
+library to be imported if desired. Sub-module file names use *Kebab case*,
+whereas function names are in *Camel case*.
 
 ```js
-// import entire library
-let ti = require("@thi.ng/iterators");
-
-// single function (ES5)
-let map = require("@thi.ng/iterators/map").default;
-
+// import all
+import * as ti from "@thi.ng/iterators";
 // single function (ES6 / TS)
-import map from "@thi.ng/iterators/map";
+import { partitionBy } from "@thi.ng/iterators/partition-by";
 ```
 
 ## API
