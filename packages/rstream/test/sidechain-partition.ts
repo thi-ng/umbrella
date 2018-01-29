@@ -4,8 +4,6 @@ import * as rs from "../src/index";
 
 describe("SidechainPartition", function () {
 
-    this.timeout(10000); // extended delay for travis
-
     it("partitions (manual)", (done) => {
         let src = new rs.Stream();
         let side = new rs.Stream();
