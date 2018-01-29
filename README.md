@@ -1,6 +1,10 @@
 # @thi.ng/umbrella
 
-Mono-repository for thi.ng TypeScript/ES6 projects.
+![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)
+
+Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
+data transformation oriented packages with either none or only internal runtime
+dependencies.
 
 ## Projects
 
@@ -22,6 +26,8 @@ Mono-repository for thi.ng TypeScript/ES6 projects.
 | [`@thi.ng/unionstruct`](./packages/unionstruct) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct) | [changelog](./packages/unionstruct/CHANGELOG.md) |
 
 ## Dependency graph
+
+(This graph is updated automatically after each version update)
 
 ![internal dependencies](./assets/deps.png)
 
