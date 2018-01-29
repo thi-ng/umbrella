@@ -6,14 +6,18 @@ import { isReduced } from "../reduced";
  * of `n`. Only makes sense for finite streams / reductions. Does nothing
  * if the to be transformed data source has exactly multiple of `n`
  * values, but if not pads / supplies additional `fill` values at the end
- * until the next multiple is reached.
+ * until the next multiple is reached. No padding takes place if input
+ * is empty, since length 0 is always a multiple.
  *
  * ```
  * [...iterator(padLast(8, 0), [1, 2, 3, 4, 5])]
  * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  *
  * [...iterator(padLast(8, 0), [1])]
- * // [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+ * // [ 1, 0, 0, 0, 0, 0, 0, 0 ]
+ *
+ * [...iterator(padLast(8, 0), [])]
+ * // []
  *
  * [...iterator(padLast(2, 0), [1, 2, 3])]
  * // [ 1, 2, 3, 0 ]
