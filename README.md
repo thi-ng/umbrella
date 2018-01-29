@@ -3,8 +3,15 @@
 ![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)
 
 Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
-data transformation oriented packages with either none or only internal runtime
-dependencies.
+data / transformation oriented packages.
+
+All packages are:
+
+- distributed as ES6 modules with bundled TypeScript typings
+- highly modular with largely only a single exported function / class per file
+- provide re-exports of all their publics (`src/index.ts`)
+- have either none or only @thi.ng internal runtime dependencies (see graph below)
+- declare public interfaces, enums & types in an `src/api.ts` file (larger packages only)
 
 ## Projects
 
@@ -43,7 +50,7 @@ lerna exec yarn build --sort
 
 ### Testing
 
-(not all packages have tests yet)
+(TODO not all packages have tests yet)
 
 ```
 lerna exec yarn test
