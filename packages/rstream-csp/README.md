@@ -43,8 +43,8 @@ stream.subscribe(rs.trace("tentimes"), tx.map(x => x * 10));
 
 ## Authors
 
-- Karsten Schmidt <k+npm@thi.ng>
+- Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt <k+npm@thi.ng> // Apache Software License 2.0
+&copy; 2018 Karsten Schmidt // Apache Software License 2.0

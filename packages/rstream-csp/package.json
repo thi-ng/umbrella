@@ -10,7 +10,7 @@
     "scripts": {
         "build": "yarn run clean && tsc --declaration",
         "test": "yarn run clean && tsc -p test && mocha build/test/*.js",
-        "clean": "rm -rf *.js *.d.ts build doc",
+        "clean": "rm -rf *.js *.d.ts build doc from",
         "pub": "yarn run build && yarn publish --access public"
     },
     "devDependencies": {
