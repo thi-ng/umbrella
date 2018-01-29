@@ -3,6 +3,7 @@ export * from "./stream";
 export * from "./stream-merge";
 export * from "./subscription";
 
+export * from "./from/atom";
 export * from "./from/event";
 export * from "./from/interval";
 export * from "./from/iterable";
