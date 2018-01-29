@@ -9,13 +9,26 @@ import { Stream } from "../stream";
  * @param src
  */
 export function fromPromise<T>(src: Promise<T>) {
-    let canceled = false;
+    let canceled = false,
+        isError = false,
+        err: any = {};
+    src.catch(
+        (e) => {
+            err = e;
+            isError = true;
+        }
+    );
     return new Stream<T>((stream) => {
         src.then(
             (x) => {
                 if (!canceled && stream.getState() < State.DONE) {
-                    stream.next(x);
-                    stream.done();
+                    if (isError) {
+                        stream.error(err);
+                        err = null;
+                    } else {
+                        stream.next(x);
+                        stream.done();
+                    }
                 }
             },
             (e) => stream.error(e)

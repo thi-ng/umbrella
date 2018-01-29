@@ -98,4 +98,26 @@ describe("fromPromise()", () => {
             });
     });
 
+    it("rejects via Resolver", (done) => {
+        let src = rs.fromPromise(Promise.reject(23)),
+            called = false,
+            sub = src.subscribe(rs.resolve())
+                .subscribe({
+                    next(_) {
+                        assert.fail("called next");
+                    },
+                    error(e) {
+                        assert.equal(e, 23);
+                        called = true;
+                    },
+                    done() {
+                        assert.fail("called done");
+                    }
+                });
+        setTimeout(() => {
+            assert(called, "didn't call error");
+            assert.equal(sub.getState(), rs.State.ERROR, "sub not in error state");
+            done();
+        }, 1);
+    })
 });
