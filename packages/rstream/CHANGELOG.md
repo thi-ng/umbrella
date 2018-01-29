@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.7.4"></a>
+## [0.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.7.3...@thi.ng/rstream@0.7.4) (2018-01-29)
+
+
+### Bug Fixes
+
+* **rstream:** fatal recursion w/ error handling ([382aa05](https://github.com/thi-ng/umbrella/commit/382aa05))
+
+
+
+
 <a name="0.7.3"></a>
 ## [0.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.7.2...@thi.ng/rstream@0.7.3) (2018-01-29)
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@3.2.4...@thi.ng/iterators@4.0.0) (2018-01-29)
+
+
+### Code Refactoring
+
+* **iterators:** remove default exports ([651d07c](https://github.com/thi-ng/umbrella/commit/651d07c))
+
+
+### BREAKING CHANGES
+
+* **iterators:** switch back to named function exports for project consistency
+and following lead from tslint (https://palantir.github.io/tslint/rules/no-default-export/)
+
+
+
+
 <a name="3.2.4"></a>
 ## [3.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@3.2.3...@thi.ng/iterators@3.2.4) (2018-01-29)
 
