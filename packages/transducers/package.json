@@ -8,10 +8,11 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn run clean && tsc --declaration",
-        "test": "yarn run clean && tsc -p test && mocha build/test/*.js",
+        "build": "yarn clean && tsc --declaration",
         "clean": "rm -rf *.js *.d.ts build doc func iter rfn xform",
-        "pub": "yarn run build && yarn publish --access public"
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build && yarn publish --access public",
+        "test": "rm -rf build && tsc -p test && mocha build/test/*.js"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.46",
