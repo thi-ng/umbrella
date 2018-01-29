@@ -1,6 +1,11 @@
 import { IID, IRelease, Watch } from "@thi.ng/api/api";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isString } from "@thi.ng/checks/is-string";
+
 import { IAtom, SwapFn } from "./api";
 import { Atom } from "./atom";
+import { getter, setter } from "./path";
 
 export class Cursor<T> implements
     IAtom<T>,
@@ -16,10 +21,21 @@ export class Cursor<T> implements
     protected lookup: (s: any) => T;
     protected selfUpdate: boolean;
 
-    constructor(parent: IAtom<any>, lookup: (s: any) => T, update: (s: any, v: T) => any) {
+    constructor(parent: IAtom<any>, path: PropertyKey | PropertyKey[]);
+    constructor(parent: IAtom<any>, lookup: (s: any) => T, update: (s: any, v: T) => any);
+    constructor(parent: IAtom<any>, ...opts: any[]) {
         this.parent = parent;
         this.id = `cursor-${Cursor.NEXT_ID++}`;
         this.selfUpdate = false;
+        let lookup, update;
+        if (isString(opts[0]) || isArray(opts[0])) {
+            lookup = getter(opts[0]);
+            update = setter(opts[0]);
+        } else if (isFunction(opts[0]) && isFunction(opts[1])) {
+            [lookup, update] = opts;
+        } else {
+            throw new Error("illegal args");
+        }
         this.local = new Atom<T>(lookup(parent.deref()));
         this.local.addWatch(this.id, (_, prev, curr) => {
             if (prev !== curr) {

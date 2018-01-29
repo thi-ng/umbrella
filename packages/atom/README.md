@@ -42,13 +42,22 @@ a.reset(42);
 
 ```typescript
 // main state
-main = new atom.Atom({a: 23, b: 42});
+main = new atom.Atom({ a: { b: { c: 23 }, d: { e: 42 } }, f: 66 });
 
-// cursor to `a` value
-// requires both a lookup & update function to given value
+// cursor to `c` value
+cursor = new atom.Cursor(main, "a.b.c");
+// or
+cursor = new atom.Cursor(main, ["a","b","c"]);
+
+// alternatively provide path implicitly via lookup & update functions
 // both fns will be called with cursor's parent state
-// the updater MUST NOT mutate in place
-cursor = new atom.Cursor(main, (state) => state.a, (state, x) => ({...state, a: x}));
+// this allows the cursor implementation to work with any data structure
+// as long as the updater DOES NOT mutate in place
+cursor = new atom.Cursor(
+    main,
+    (s) => s.a.b.c,
+    (s, x) => ({...s, a: {...s.a, b: {...s.a.b, c: x}}})
+);
 
 // add watch just as with Atom
 cursor.addWatch("foo", console.log);
