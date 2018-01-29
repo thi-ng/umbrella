@@ -8,6 +8,6 @@
         "tslint": "^5.9.1"
     },
     "scripts": {
-        "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'update dep graph' && git push"
+        "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs(all) update dep graph' && git push"
     }
 }
