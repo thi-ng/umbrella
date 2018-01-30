@@ -92,37 +92,17 @@ cat << EOF > $MODULE/test/tsconfig.json
 }
 EOF
 
-echo "writing .gitignore..."
-cat << EOF > $MODULE/.gitignore
-/bench
-/build
-/dev
-/doc
-/node_modules
-.DS_Store
-/bundle.*
-*.log
-*.tgz
-*.js
-*.d.ts
-EOF
-
 echo "writing .npmignore..."
 cat << EOF > $MODULE/.npmignore
-bench/*
-build/*
-dev/*
-node_modules
+build
+coverage
+dev
+doc
 src*
-test*
-bundle.*
-tsconfig.json
-webpack.config.js
-*.html
+test
+.nyc_output
 *.tgz
-!doc/*
-!*.d.ts
-!*.js
+*.html
 EOF
 
 echo "writing README.md..."
