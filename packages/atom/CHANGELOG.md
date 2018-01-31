@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.2.2...@thi.ng/atom@0.3.0) (2018-01-31)
+
+
+### Bug Fixes
+
+* **atom:** cursor ctor arg checks ([282d989](https://github.com/thi-ng/umbrella/commit/282d989))
+
+
+### Features
+
+* **atom:** add History, add/update tests ([035c51a](https://github.com/thi-ng/umbrella/commit/035c51a))
+* **atom:** add IReset/ISwap impls for History ([e1b57de](https://github.com/thi-ng/umbrella/commit/e1b57de))
+
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.2.1...@thi.ng/atom@0.2.2) (2018-01-30)
 

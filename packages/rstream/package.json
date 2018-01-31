@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream",
-    "version": "0.7.5",
+    "version": "0.7.6",
     "description": "Reactive multi-tap streams & transformation pipeline constructs",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^1.4.2",
-        "@thi.ng/atom": "^0.2.2",
+        "@thi.ng/atom": "^0.3.0",
         "@thi.ng/transducers": "^1.0.4"
     },
     "keywords": [
