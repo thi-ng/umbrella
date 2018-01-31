@@ -7,7 +7,16 @@ export interface ReadonlyAtom<T> extends
     api.IWatch<T> {
 }
 
-export interface IAtom<T> extends ReadonlyAtom<T> {
+export interface IAtom<T> extends
+    ReadonlyAtom<T>,
+    IReset<T>,
+    ISwap<T> {
+}
+
+export interface IReset<T> {
     reset(val: T): T;
+}
+
+export interface ISwap<T> {
     swap(fn: SwapFn<T>, ...args: any[]): T;
 }
