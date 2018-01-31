@@ -138,11 +138,16 @@ export class Subscription<A, B> implements
 
     error(e: any) {
         this.state = State.ERROR;
+        let notified = false;
         if (this.subs && this.subs.length) {
             for (let s of [...this.subs]) {
-                s.error && s.error(e);
+                if (s.error) {
+                    s.error(e);
+                    notified = true;
+                }
             }
-        } else {
+        }
+        if (!notified) {
             console.log(this.id, "unhandled error:", e);
             if (this.parent) {
                 DEBUG && console.log(this.id, "unsubscribing...");
