@@ -13,6 +13,11 @@ describe("atom", function () {
         assert.equal(a.deref(), 23);
     });
 
+    it("can be equiv'd", () => {
+        assert(a.equiv(a));
+        assert(!a.equiv(new Atom(23)));
+    });
+
     it("can be reset", () => {
         assert.equal(a.reset(24), 24);
         assert.equal(a.deref(), 24);

@@ -34,6 +34,7 @@ export class Cursor<T> implements
         } else if (isFunction(opts[0]) && isFunction(opts[1])) {
             [lookup, update] = opts;
         } else {
+            /* istanbul ignore next */
             throw new Error("illegal args");
         }
         this.local = new Atom<T>(lookup(parent.deref()));
@@ -62,6 +63,7 @@ export class Cursor<T> implements
         this.local.removeWatch(this.id);
         this.parent.removeWatch(this.id);
         delete this.local;
+        delete this.parent;
         return true;
     }
 
@@ -81,6 +83,7 @@ export class Cursor<T> implements
         return this.local.removeWatch(id);
     }
 
+    /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) {
         return this.local.notifyWatches(oldState, newState);
     }

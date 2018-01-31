@@ -42,15 +42,18 @@ export class Atom<T> implements
     }
 
     // mixin stub
+    /* istanbul ignore next */
     addWatch(id: string, fn: Watch<T>) {
         return false;
     }
 
     // mixin stub
+    /* istanbul ignore next */
     removeWatch(id: string) {
         return false;
     }
 
     // mixin stub
+    /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) { }
 }
