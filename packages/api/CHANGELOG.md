@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.2...@thi.ng/api@1.5.0) (2018-01-31)
+
+
+### Features
+
+* **api:** add Predicate2 & StatefulPredicate2 types ([fbf8453](https://github.com/thi-ng/umbrella/commit/fbf8453))
+
+
+
+
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.1...@thi.ng/api@1.4.2) (2018-01-30)
 

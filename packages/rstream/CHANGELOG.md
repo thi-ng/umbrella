@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.7.6...@thi.ng/rstream@0.8.0) (2018-01-31)
+
+
+### Features
+
+* **rstream:** add changed predicate for fromAtom(), add tests ([d58cf70](https://github.com/thi-ng/umbrella/commit/d58cf70))
+
+
+
+
 <a name="0.7.6"></a>
 ## [0.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.7.5...@thi.ng/rstream@0.7.6) (2018-01-31)
 
