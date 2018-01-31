@@ -196,7 +196,7 @@ export class DCons<T> implements
         }
     }
 
-    public findWith(fn: (value: T) => boolean) {
+    public findWith(fn: api.Predicate<T>) {
         let cell = this.head;
         while (cell) {
             if (fn(cell.value)) {
