@@ -38,6 +38,8 @@ describe("cursor w/ path", function () {
         assert.strictEqual(c.deref(), undefined);
         c = new Cursor(new Atom(null), "a");
         assert.strictEqual(c.deref(), undefined);
+        c = new Cursor(new Atom(null), 0);
+        assert.strictEqual(c.deref(), undefined);
     });
 
     it("can be deref'd w/ getter", () => {
