@@ -1,7 +1,9 @@
 import { IID, IRelease, Watch } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
+import { isSymbol } from "@thi.ng/checks/is-symbol";
 
 import { IAtom, SwapFn } from "./api";
 import { Atom } from "./atom";
@@ -27,12 +29,13 @@ export class Cursor<T> implements
         this.parent = parent;
         this.id = `cursor-${Cursor.NEXT_ID++}`;
         this.selfUpdate = false;
-        let lookup, update;
-        if (isString(opts[0]) || isArray(opts[0])) {
-            lookup = getter(opts[0]);
-            update = setter(opts[0]);
-        } else if (isFunction(opts[0]) && isFunction(opts[1])) {
-            [lookup, update] = opts;
+        let [a, b] = opts, lookup, update;
+        if (isString(a) || isArray(a) || isNumber(a) || isSymbol(a)) {
+            lookup = getter(<any>a);
+            update = setter(<any>a);
+        } else if (isFunction(a) && isFunction(b)) {
+            lookup = a;
+            update = b;
         } else {
             /* istanbul ignore next */
             throw new Error("illegal args");
