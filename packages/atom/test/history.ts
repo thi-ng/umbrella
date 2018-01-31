@@ -18,7 +18,7 @@ describe("history", () => {
         let h = new History(c, 3);
         assert.equal(h.history.length, 0);
         assert.equal(h.future.length, 0);
-        assert.equal(h.state.deref(), c.deref());
+        assert.equal(h.deref(), c.deref());
     });
 
     it("does record & shift (simple)", () => {
