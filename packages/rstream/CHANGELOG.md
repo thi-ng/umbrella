@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.8.0...@thi.ng/rstream@0.8.1) (2018-01-31)
+
+
+### Bug Fixes
+
+* **rstream:** subscription unhandled error handling ([54cd526](https://github.com/thi-ng/umbrella/commit/54cd526))
+
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.7.6...@thi.ng/rstream@0.8.0) (2018-01-31)
 
