@@ -9,11 +9,15 @@ export function equiv(a, b): boolean {
         if (typeof a.equiv === "function") {
             return a.equiv(b);
         }
+    } else {
+        return a == b;
     }
     if (b != null) {
         if (typeof b.equiv === "function") {
             return b.equiv(a);
         }
+    } else {
+        return a == b;
     }
     if (isPlainObject(a) && isPlainObject(b)) {
         return equivObject(a, b);
