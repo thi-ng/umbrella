@@ -96,7 +96,7 @@ export class History<T> implements
      *
      * @param val
      */
-    swap(fn: SwapFn<T>, ...args: any[]) {
+    swap(fn: SwapFn<T>, ...args: any[]): T {
         const prev = this.state.deref(),
             curr = this.state.swap.apply(this.state, [fn, ...args]);
         this.changed(prev, curr) && this.record(prev);
@@ -119,6 +119,7 @@ export class History<T> implements
             this.history.shift();
         }
         this.history.push(arguments.length > 0 ? state : this.state.deref());
+        this.future.length = 0;
     }
 
     /**
