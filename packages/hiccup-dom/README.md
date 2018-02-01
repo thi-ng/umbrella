@@ -25,8 +25,8 @@ wrapper around React, whereas this library is standalone, more lowlevel &
 less opinionated.
 
 If you're interested in using this, please also consider the
-[@thi.ng/atom](https://github.com/thi-ng/atom)
-[@thi.ng/rstream](https://github.com/thi-ng/rstream) packages to integrate app
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) packages to integrate app
 state handling, event streams & reactive value subscriptions. Examples
 forthcoming...
 
