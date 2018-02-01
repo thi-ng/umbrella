@@ -26,7 +26,7 @@ All packages are:
 | [`@thi.ng/checks`](./packages/checks) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks) | [changelog](./packages/checks/CHANGELOG.md) |
 | [`@thi.ng/csp`](./packages/csp) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp) | [changelog](./packages/csp/CHANGELOG.md) |
 | [`@thi.ng/dcons`](./packages/dcons) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons) | [changelog](./packages/dcons/CHANGELOG.md) |
-| [`@thi.ng/dcons`](./packages/diff) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff) | [changelog](./packages/diff/CHANGELOG.md) |
+| [`@thi.ng/diff`](./packages/diff) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff) | [changelog](./packages/diff/CHANGELOG.md) |
 | [`@thi.ng/hiccup`](./packages/hiccup) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup) | [changelog](./packages/hiccup/CHANGELOG.md) |
 | [`@thi.ng/hiccup-dom`](./packages/hiccup-dom) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-dom.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-dom) | [changelog](./packages/hiccup-dom/CHANGELOG.md) |
 | [`@thi.ng/iterators`](./packages/iterators) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md) |
