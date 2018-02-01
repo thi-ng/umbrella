@@ -21,9 +21,12 @@
         "mocha": "^5.0.0",
         "nyc": "^11.4.1",
         "ts-loader": "^3.3.1",
-        "typedoc": "^0.9.0",
-        "typescript": "^2.6.2",
+        "typedoc": "^0.10.0",
+        "typescript": "^2.7.1",
         "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "@thi.ng/checks": "^1.1.4"
     },
     "keywords": [
         "ES6",
