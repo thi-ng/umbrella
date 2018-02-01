@@ -4,7 +4,7 @@
 
 ```
 git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/dashboard
+cd umbrella/examples/todo-list
 yarn install
 yarn dev
 ```
