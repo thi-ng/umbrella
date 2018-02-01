@@ -10,10 +10,25 @@ Lighweight reactive DOM components using only vanilla JS data structures
 Supports arbitrary attributes, events, CSS conversion from JS objects, SVG.
 Only ~10KB minified.
 
-No precompilation steps needed. The actual DOM update is based on the minimal
-edit set of the recursive difference between the old and new DOM trees (both
-nested JS arrays). Components can be defined as static arrays, closures or
-objects with life cycle hooks (init, render, release).
+No template engine & no precompilation steps needed, just use the full
+expressiveness of ES6 to define your DOM tree.
+
+The actual DOM update is based on the minimal edit set of the recursive
+difference between the old and new DOM trees (both nested JS arrays).
+Components can be defined as static arrays, closures or objects with life cycle
+hooks (init, render, release).
+
+The approach is inspired by Clojure's
+[Hiccup](https://github.com/weavejester/hiccup) and
+[Reagent](http://reagent-project.github.io/) projects, however the latter is a
+wrapper around React, whereas this library is standalone, more lowlevel &
+less opinionated.
+
+If you're interested in using this, please also consider the
+[@thi.ng/atom](https://github.com/thi-ng/atom)
+[@thi.ng/rstream](https://github.com/thi-ng/rstream) packages to integrate app
+state handling, event streams & reactive value subscriptions. Examples
+forthcoming...
 
 ## Installation
 
@@ -30,7 +45,7 @@ yarn add @thi.ng/hiccup-dom
 ### Basic usage patterns
 
 ```typescript
-import * as hdom from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hiccup-dom";
 
 // static component function to create styled box
 const box = (prefix, body) =>
@@ -62,18 +77,8 @@ const app = (() => {
     return () => ["div", ["h1", "Dashboard"], users, profits, timer];
 })();
 
-// update loop
-window.addEventListener("load", () => {
-    requestAnimationFrame(
-        ((parent, tree) => {
-            let prev = [];
-            return function update() {
-                hdom.diffElement(parent, prev, prev = hdom.normalizeTree(tree));
-                requestAnimationFrame(update);
-            }
-        })(document.getElementById("app"), app)
-    );
-});
+// start update loop (RAF)
+window.addEventListener("load", () => start(document.getElementById("app"), app));
 ```
 
 ### Lifecycle hooks

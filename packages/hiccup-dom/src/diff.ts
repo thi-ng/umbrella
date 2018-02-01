@@ -8,11 +8,11 @@ import { TAG_REGEXP } from "@thi.ng/hiccup/api";
 import { DEBUG } from "./api";
 import { createDOM, removeAttribs, setAttrib, removeChild } from "./dom";
 
-export function diffElement(parent: Element, prev, curr) {
+export function diffElement(parent: Element, prev: any, curr: any) {
     _diffElement(parent, prev, curr, 0);
 }
 
-function _diffElement(parent: Element, prev, curr, child) {
+function _diffElement(parent: Element, prev: any, curr: any, child: number) {
     const delta = diff.diffArray(prev, curr),
         edits = delta.linear,
         el = parent.children[child];
@@ -202,7 +202,7 @@ function hasChangedEvents(prev: any, curr: any) {
     return false;
 }
 
-export function diffAttributes(el: Element, prev: any, curr: any) {
+function diffAttributes(el: Element, prev: any, curr: any) {
     const delta = diff.diffObject(prev, curr);
     let i, a, attribs;
     DEBUG && console.log("diff attribs:", delta);
@@ -217,7 +217,7 @@ export function diffAttributes(el: Element, prev: any, curr: any) {
     }
 }
 
-export function extractEquivElements(edits: diff.DiffLogEntry[]) {
+function extractEquivElements(edits: diff.DiffLogEntry[]) {
     const equiv = {};
     let k;
     for (let i = edits.length - 1; i >= 0; i--) {
