@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Lightweight transducer implementations for ES6 / TypeScript",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,7 +26,7 @@
         "webpack": "^3.10.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^1.5.0"
+        "@thi.ng/api": "^2.0.0"
     },
     "keywords": [
         "ES6",

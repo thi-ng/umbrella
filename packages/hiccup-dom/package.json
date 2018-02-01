@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-dom",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,9 +24,9 @@
         "webpack": "^3.10.0"
     },
     "dependencies": {
-        "@thi.ng/diff": "^0.0.1",
-        "@thi.ng/hiccup": "0.1.5",
-        "@thi.ng/iterators": "^4.0.2"
+        "@thi.ng/diff": "^0.1.0",
+        "@thi.ng/hiccup": "^0.1.6",
+        "@thi.ng/iterators": "^4.0.3"
     },
     "keywords": [
         "browser",

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.5.0...@thi.ng/api@2.0.0) (2018-02-01)
+
+
+### Bug Fixes
+
+* **api:** fix equiv string handling, update tests ([1354e29](https://github.com/thi-ng/umbrella/commit/1354e29))
+
+
+### Features
+
+* **api:** update equiv() null handling, add tests ([878520e](https://github.com/thi-ng/umbrella/commit/878520e))
+
+
+### BREAKING CHANGES
+
+* **api:** equiv now treats null & undefined as equal
+
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.2...@thi.ng/api@1.5.0) (2018-01-31)
 
