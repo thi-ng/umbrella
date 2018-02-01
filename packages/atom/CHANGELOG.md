@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.4.1...@thi.ng/atom@0.5.0) (2018-02-01)
+
+
+### Bug Fixes
+
+* **atom:** cursor swap() return type ([36cc956](https://github.com/thi-ng/umbrella/commit/36cc956))
+* **atom:** truncate redo stack in record(), swap() return type ([8218814](https://github.com/thi-ng/umbrella/commit/8218814))
+
+
+### Features
+
+* **atom:** add History.canUndo/Redo() ([c5b6e0f](https://github.com/thi-ng/umbrella/commit/c5b6e0f))
+
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.4.0...@thi.ng/atom@0.4.1) (2018-02-01)
 
