@@ -29,8 +29,13 @@
         "@thi.ng/api": "^1.5.0"
     },
     "keywords": [
+        "cursor",
+        "datastructure",
         "ES6",
-        "typescript"
+        "history",
+        "immutable",
+        "typescript",
+        "undo"
     ],
     "publishConfig": {
         "access": "public"

@@ -29,8 +29,14 @@
         "@thi.ng/iterators": "^4.0.2"
     },
     "keywords": [
+        "browser",
+        "components",
+        "DOM",
         "ES6",
-        "typescript"
+        "reactive",
+        "typescript",
+        "ui",
+        "vdom"
     ],
     "publishConfig": {
         "access": "public"

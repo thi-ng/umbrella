@@ -26,11 +26,12 @@
         "webpack": "^3.10.0"
     },
     "keywords": [
-        "ES6",
         "binary",
         "bits",
-        "stream",
+        "datastructure",
+        "ES6",
         "iterator",
+        "stream",
         "typescript"
     ],
     "publishConfig": {

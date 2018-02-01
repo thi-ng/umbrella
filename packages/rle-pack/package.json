@@ -30,9 +30,9 @@
         "@thi.ng/bitstream": "^0.3.4"
     },
     "keywords": [
-        "ES6",
         "binary",
         "bits",
+        "ES6",
         "packer",
         "RLE",
         "typescript"

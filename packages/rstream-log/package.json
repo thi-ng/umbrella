@@ -31,7 +31,9 @@
     "keywords": [
         "ES6",
         "logger",
+        "logging",
         "multilevel",
+        "multiplex",
         "pipeline",
         "transducers",
         "typescript"

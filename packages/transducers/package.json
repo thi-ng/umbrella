@@ -36,6 +36,7 @@
         "pipeline",
         "reducers",
         "transducers",
+        "transformation",
         "typescript"
     ],
     "publishConfig": {

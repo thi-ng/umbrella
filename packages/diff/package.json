@@ -27,7 +27,11 @@
         "@thi.ng/api": "^1.5.0"
     },
     "keywords": [
+        "array",
+        "diff",
+        "edit",
         "ES6",
+        "nested",
         "typescript"
     ],
     "publishConfig": {

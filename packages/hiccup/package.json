@@ -29,9 +29,9 @@
         "@thi.ng/checks": "^1.1.4"
     },
     "keywords": [
-        "ES6",
         "clojure",
         "components",
+        "ES6",
         "hiccup",
         "html",
         "iterators",

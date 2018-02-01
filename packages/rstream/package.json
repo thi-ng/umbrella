@@ -30,8 +30,9 @@
         "@thi.ng/transducers": "^1.0.5"
     },
     "keywords": [
-        "ES6",
+        "datastructure",
         "events",
+        "ES6",
         "pipeline",
         "reactive",
         "stream",

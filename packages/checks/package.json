@@ -26,10 +26,12 @@
         "webpack": "^3.10.0"
     },
     "keywords": [
-        "ES6",
         "check",
+        "detect",
+        "ES6",
+        "feature",
         "reflection",
-        "type",
+        "types",
         "typescript",
         "validation"
     ],

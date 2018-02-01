@@ -37,9 +37,12 @@
         "async",
         "csp",
         "channel",
+        "datastructure",
         "ES6",
+        "multiplex",
         "pipeline",
         "promise",
+        "pubsub",
         "transducers",
         "typescript"
     ],

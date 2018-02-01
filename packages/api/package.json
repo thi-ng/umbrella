@@ -29,9 +29,12 @@
         "@thi.ng/checks": "^1.1.4"
     },
     "keywords": [
+        "compare",
+        "equality",
         "ES6",
         "generic",
         "interfaces",
+        "type declarations",
         "typescript"
     ],
     "publishConfig": {
