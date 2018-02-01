@@ -13,6 +13,7 @@ export * from "./from/raf";
 export * from "./from/worker";
 
 export * from "./subs/bisect";
+export * from "./subs/cache";
 export * from "./subs/post-worker";
 export * from "./subs/resolve";
 export * from "./subs/sidechain-partition";
