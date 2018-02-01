@@ -21,7 +21,7 @@ describe("StreamMerge", () => {
     };
 
     beforeEach(() => {
-        src = new rs.StreamMerge([
+        src = new rs.StreamMerge<number, number>([
             rs.fromIterable([1, 2]),
             rs.fromIterable([10, 20, 30, 40]),
             rs.fromIterable([100, 200, 300])
@@ -52,7 +52,7 @@ describe("StreamMerge", () => {
     });
 
     it("applies transducer", (done) => {
-        src = new rs.StreamMerge(
+        src = new rs.StreamMerge<number, number>(
             [
                 rs.fromIterable([1, 2]),
                 rs.fromIterable([10, 20])
