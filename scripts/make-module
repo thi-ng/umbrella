@@ -101,6 +101,7 @@ doc
 src*
 test
 .nyc_output
+tsconfig.json
 *.tgz
 *.html
 EOF
