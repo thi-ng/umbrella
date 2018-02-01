@@ -37,7 +37,8 @@ export function comp(...fns: ((x: any) => any)[]) {
         case 10:
         default:
             let ff = (x) => a(b(c(d(e(f(g(h(i(j(x))))))))));
-            return fns.length === 10 ? ff : comp(ff, ...fns.slice(10));
+            // TODO TS2.7.* complains about args here?
+            return fns.length === 10 ? ff : (<any>comp)(ff, ...fns.slice(10));
     }
 }
 
