@@ -16,6 +16,8 @@ yarn add @thi.ng/atom
 
 ## Usage examples
 
+**More advanced & complete example projects can be found in the [/examples](https://github.com/thi-ng/umbrella/tree/master/examples) directory**
+
 ### Atom
 
 ```typescript

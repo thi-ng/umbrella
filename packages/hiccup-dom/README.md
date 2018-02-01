@@ -38,11 +38,27 @@ yarn add @thi.ng/hiccup-dom
 
 ## Usage examples
 
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/dashboard/)
+Even though the overall approach should be obvious from the code examples
+below, it's recommended to first study the
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+reference. It's also important to point out, that this project **currently**
+has some differences as to how some attribute and iterables are treated and/or
+are supported in general. This project also has additional features (e.g. life
+cycle hooks), which aren't needed for the static serialization use cases of
+hiccup. Both experiments started in early 2016, but have somewhat evolved
+independently and require some conceptional synchronization.
 
-![screenshot](http://demo.thi.ng/umbrella/hiccup-dom/dashboard/out.gif)
+### Todo list
+
+A fully documented todo list app with undo / redo feature is here: [/examples/todo-list](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
+
+[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
 
 ### Basic usage patterns
+
+The code below is also available as standalone project in: [/examples/dashboard](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard)
+
+[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/dashboard/)
 
 ```typescript
 import { start } from "@thi.ng/hiccup-dom";
@@ -80,10 +96,6 @@ const app = (() => {
 // start update loop (RAF)
 window.addEventListener("load", () => start(document.getElementById("app"), app));
 ```
-
-### Lifecycle hooks
-
-TODO example forthcoming...
 
 ### @thi.ng/rstream integration
 
