@@ -79,7 +79,7 @@ export function setAttribs(el: Element, attribs: any) {
 }
 
 export function setAttrib(el: Element, k: string, v: any) {
-    if (v !== undefined) {
+    if (v !== undefined && v !== false) {
         switch (k) {
             case "style":
                 setStyle(el, v);
