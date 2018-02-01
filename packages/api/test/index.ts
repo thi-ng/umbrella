@@ -36,6 +36,8 @@ describe("equiv", () => {
     it("string", () => {
         assert(!equiv(null, ""));
         assert(!equiv("", null));
+        assert(equiv("a", "a"));
+        assert(!equiv("a", "ab"));
     });
 
     it("array", () => {
@@ -43,6 +45,8 @@ describe("equiv", () => {
         assert(equiv([], []));
         assert(equiv([], { length: 0 }));
         assert(equiv({ length: 0 }, []));
+        assert(equiv(["a"], ["a"]));
+        assert(!equiv(["a"], ["b"]));
     });
 
     it("object", () => {
