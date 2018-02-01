@@ -74,7 +74,7 @@ export class Cursor<T> implements
         return this.local.reset(val);
     }
 
-    swap(fn: SwapFn<T>, ...args: any[]) {
+    swap(fn: SwapFn<T>, ...args: any[]): T {
         return this.local.swap.apply(this.local, [fn, ...args]);
     }
 
