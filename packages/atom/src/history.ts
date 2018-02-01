@@ -31,6 +31,14 @@ export class History<T> implements
         this.clear();
     }
 
+    canUndo() {
+        return this.history.length > 0;
+    }
+
+    canRedo() {
+        return this.future.length > 0;
+    }
+
     /**
      * Clears history & future stacks
      */
