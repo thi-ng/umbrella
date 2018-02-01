@@ -1,0 +1,21 @@
+{
+    "name": "hiccup-dom-todolist",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "dev": "webpack -w",
+        "clean": "rm -rf bundle.*"
+    },
+    "devDependencies": {
+        "ts-loader": "^3.3.1",
+        "typescript": "^2.7.1",
+        "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "@thi.ng/atom": "^0.5.0",
+        "@thi.ng/hiccup-dom": "^0.1.1",
+        "@thi.ng/transducers": "^1.0.6"
+    }
+}
