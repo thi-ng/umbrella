@@ -1,0 +1,105 @@
+#!/bin/sh
+
+readonly MODULE="examples/$1"
+readonly AUTHOR="Karsten Schmidt"
+readonly EMAIL="k+npm@thi.ng"
+
+echo "generating module: $MODULE"
+mkdir -p $MODULE
+
+echo "creating /src folder..."
+mkdir -p $MODULE/src
+touch $MODULE/src/index.ts
+
+echo "writing package.json..."
+cat << EOF > $MODULE/package.json
+{
+    "name": "$1",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "$AUTHOR <$EMAIL>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "dev": "webpack -w",
+        "clean": "rm -rf bundle.*"
+    },
+    "devDependencies": {
+        "ts-loader": "^3.3.1",
+        "typescript": "^2.7.1",
+        "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^2.0.0",
+        "@thi.ng/hiccup-dom": "^0.1.1",
+        "@thi.ng/rstream": "^0.9.1",
+        "@thi.ng/transducers": "^1.0.6"
+    }
+}
+EOF
+
+echo "writing tsconfig.json..."
+cat << EOF > $MODULE/tsconfig.json
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "."
+    },
+    "include": [
+        "./src/**/*.ts"
+    ]
+}
+EOF
+
+echo "writing webpack.config.js..."
+cat << EOF > $MODULE/webpack.config.js
+module.exports = {
+    entry: "./src/index.ts",
+    output: {
+        path: __dirname,
+        filename: "bundle.js"
+    },
+    resolve: {
+        extensions: [".ts", ".js"]
+    },
+    module: {
+        loaders: [{ test: /\.ts$/, loader: "ts-loader" }]
+    },
+    node: {
+        process: false,
+        setImmediate: false
+    }
+};
+EOF
+
+
+echo "writing index.html..."
+cat << EOF > $MODULE/index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html {
+            font: 100%/1.2 Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>
+EOF
+
+echo "writing README.md..."
+cat << EOF > $MODULE/README.md
+# $1
+
+[Live demo](http://demo.thi.ng/umbrella/$1/)
+
+\`\`\`
+git clone https://github.com/thi-ng/umbrella.git
+cd umbrella/examples/$1
+yarn install
+yarn dev
+\`\`\`
+EOF
