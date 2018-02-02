@@ -13,6 +13,18 @@ function check(id, a, b) {
 describe("serialize", () => {
 
     check(
+        "null",
+        null,
+        ""
+    );
+
+    check(
+        "empty tree",
+        [],
+        ""
+    );
+
+    check(
         "simple div",
         ["div", "foo"],
         `<div>foo</div>`
@@ -98,6 +110,18 @@ describe("serialize", () => {
         "attr fn (null)",
         ["div", { foo: () => null }],
         `<div></div>`
+    );
+
+    check(
+        "event attr fn",
+        ["div", { onclick: () => 1 }],
+        `<div></div>`
+    );
+
+    check(
+        "event attr (string)",
+        ["div", { onclick: "1" }],
+        `<div onclick="1"></div>`
     );
 
     check(

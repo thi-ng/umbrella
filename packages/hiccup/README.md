@@ -117,12 +117,31 @@ If an attribute specifies a function as value, the function is called with the
 entire attribute object as argument. This allows for the dynamic generation of
 attribute values, based on existing ones. The result MUST be a string.
 
+**BREAKING CHANGE since 1.0.0:** Function values for event attributes (any
+attrib name starting with "on") WILL BE OMITTED from output.
+
 ```js
 ["div#foo", { bar: (attribs) => attribs.id + "-bar" }]
 ```
 
 ```html
 <div id="foo" bar="foo-bar"></div>
+```
+
+```js
+["div#foo", { onclick: () => alert("foo") }, "click me!"]
+```
+
+```html
+<div id="foo">click me!</div>
+```
+
+```js
+["div#foo", { onclick: "alert('foo')" }, "click me!"]
+```
+
+```html
+<div id="foo" onclick="alert('foo')">click me!</div>
 ```
 
 ### Simple components

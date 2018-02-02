@@ -92,10 +92,11 @@ const _serialize = (tree: any, esc: boolean) => {
                 res = `<${tag}`;
             for (let a in attribs) {
                 if (attribs.hasOwnProperty(a)) {
-                    let v = attribs[a];
+                    let v = attribs[a],
+                        isEvent = /^on\w+/.test(a);
                     if (v != null) {
                         if (isFunction(v)) {
-                            if ((v = v(attribs)) == null) {
+                            if (isEvent || (v = v(attribs)) == null) {
                                 continue;
                             }
                         }
