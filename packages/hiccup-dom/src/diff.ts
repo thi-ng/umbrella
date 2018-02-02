@@ -195,7 +195,7 @@ export function normalizeTree(el: any, path = [0], keys = true, span = true) {
 
 function hasChangedEvents(prev: any, curr: any) {
     for (let k in curr) {
-        if (k.indexOf("on-") === 0 && prev[k] !== curr[k]) {
+        if (k.indexOf("on") === 0 && prev[k] !== curr[k]) {
             return true;
         }
     }

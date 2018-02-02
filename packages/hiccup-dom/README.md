@@ -21,6 +21,7 @@ Benefits:
 - Only ~10KB minified
 
 ```typescript
+import { serialize } from "@thi.ng/hiccup";
 import { start } from "@thi.ng/hiccup-dom";
 
 // stateless component w/ params
@@ -29,7 +30,7 @@ const greeter = (name) => ["h1.title", "hello ", name];
 // component w/ local state
 const counter = () => {
     let i = 0;
-    return () => ["button", { "on-click": () => (i++) }, `clicks: ${i}`];
+    return () => ["button", { onclick: () => (i++) }, `clicks: ${i}`];
 };
 
 const app = () => {
@@ -39,8 +40,15 @@ const app = () => {
     return ["div#app", [greeter, "world"], ...counters];
 };
 
+// browser only (see diagram below)
 start(document.body, app());
+
+// browser or server side serialization
+// (note: does not emit event attributes w/ functions as values)
+serialize(app);
+// <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 0</button></div>
 ```
+
 [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/) | [standalone example](../../examples/hdom-basics)
 
 No template engine & no precompilation steps needed, just use the full

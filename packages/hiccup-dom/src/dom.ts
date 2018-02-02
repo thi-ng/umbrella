@@ -88,8 +88,8 @@ export function setAttrib(el: Element, k: string, v: any) {
                 updateValueAttrib(<HTMLInputElement>el, v);
                 break;
             default:
-                if (k.indexOf("on-") === 0) {
-                    el.addEventListener(k.substr(3), v);
+                if (k.indexOf("on") === 0) {
+                    el.addEventListener(k.substr(2), v);
                 } else {
                     el.setAttribute(k, v);
                 }
