@@ -10,6 +10,29 @@ Lighweight reactive DOM components using only vanilla JS data structures
 Supports arbitrary attributes, events, CSS conversion from JS objects, SVG.
 Only ~10KB minified.
 
+```typescript
+import { start } from "@thi.ng/hiccup-dom";
+
+// stateless component w/ params
+const greeter = (name) => ["h1.title", "hello ", name];
+
+// component w/ local state
+const counter = () => {
+    let i = 0;
+    return () => ["button", { "on-click": () => (i++) }, `clicks: ${i}`];
+};
+
+const app = () => {
+    // instantiation
+    const counters = [counter(), counter()];
+    // root component is just a static array
+    return ["div#app", [greeter, "world"], ...counters];
+};
+
+start(document.body, app());
+```
+[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/)
+
 No template engine & no precompilation steps needed, just use the full
 expressiveness of ES6 to define your DOM tree.
 
