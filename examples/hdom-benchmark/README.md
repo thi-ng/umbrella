@@ -8,3 +8,5 @@ cd umbrella/examples/hdom-benchmark
 yarn install
 yarn dev
 ```
+
+Once webpack has completed building, refresh your browser...

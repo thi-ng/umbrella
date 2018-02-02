@@ -5,8 +5,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "dev": "webpack -w",
-        "clean": "rm -rf bundle.*"
+        "build": "yarn clean && webpack",
+        "clean": "rm -rf bundle.*",
+        "dev": "open index.html && webpack -w"
     },
     "devDependencies": {
         "ts-loader": "^3.3.1",

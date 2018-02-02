@@ -8,3 +8,5 @@ cd umbrella/examples/todo-list
 yarn install
 yarn dev
 ```
+
+Once webpack has completed building, refresh your browser...
