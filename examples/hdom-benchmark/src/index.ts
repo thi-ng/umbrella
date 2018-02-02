@@ -1,28 +1,55 @@
 import { start } from "@thi.ng/hiccup-dom";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
+import { Stream } from "@thi.ng/rstream/stream";
 import * as tx from "@thi.ng/transducers";
 
+// pre-defined hex formatters
 const hex4 = tx.hex(4);
 const hex6 = tx.hex(6);
 
-const box = (x: number) => [
-    (x & 1) ? "div" : "box",
-    { style: { background: "#" + hex6((x & 0x1ff) << 15 | x << 10 | x) } },
-    hex4(x & 0xffff)
+/**
+ * Single box component. Uses given id to switch between using
+ * `div` or `box` element types, compute color and body text.
+ *
+ * @param id
+ */
+const box = (id: number) => [
+    (id & 1) ? "div" : "box",
+    { style: { background: "#" + hex6((id & 0x1ff) << 15 | id << 10 | id) } },
+    hex4(id & 0xffff)
 ];
 
-const dropdown = (change, items) =>
+/**
+ * Simple generic drop down component.
+ *
+ * @param change onchange listener
+ * @param items drop down options `[value, label]`
+ */
+const dropdown = (change: (e: Event) => void, items: [any, any][]) =>
     tx.transduce(
-        tx.map<any, any>(([value, label]) => ["option", { value }, label]),
+        tx.map(([value, label]) => <any>["option", { value }, label]),
         tx.push(),
         ["select", { "on-change": change }],
         items
     );
 
-const fpsCounter = (src, width = 100, height = 30, period = 50, col = "#09f", txtCol = "#000") => {
+/**
+ * Re-usable FPS stats canvas component, displaying graph of
+ * simple moving avarage of the past `period` frames.
+ * If `stream` is given, uses the time interval between received
+ * values. If not given, attaches itself to a RAF event stream.
+ *
+ * @param src
+ * @param width
+ * @param height
+ * @param period
+ * @param col
+ * @param txtCol
+ */
+const fpsCounter = (src: Stream<any>, width = 100, height = 30, period = 50, col = "#09f", txtCol = "#000") => {
     let ctx;
     let scale = height / 60;
-    src.subscribe(
+    (src || fromRAF()).subscribe(
         {
             next(samples) {
                 ctx.clearRect(0, 0, width, height);
@@ -38,6 +65,7 @@ const fpsCounter = (src, width = 100, height = 30, period = 50, col = "#09f", tx
                 ctx.fillText(`SMA(${period}): ${samples[width - 1].toFixed(1)} fps`, 2, height - 4);
             }
         },
+        // stream transducer to compute the windowed moving avarage
         tx.comp(
             tx.benchmark(),
             tx.movingAverage(period),
@@ -55,21 +83,24 @@ const fpsCounter = (src, width = 100, height = 30, period = 50, col = "#09f", tx
     }];
 };
 
-let i = 0;
-let num = 128;
-
-const fps = fpsCounter(fromRAF(), 100, 60);
-
-const menu = dropdown(
-    (e) => { num = parseInt(e.target.value); },
-    [[128, 128], [192, 192], [256, 256], [384, 384], [512, 512]]
-);
-
+/**
+ *  Main app root component
+ */
 const app = () => {
-    let j = (++i) & 0x1ff;
-    return ["div",
-        ["div#stats", fps, menu],
-        tx.transduce(tx.map<any, any>(box), tx.push(), ["grid"], tx.range(j, j + num))];
+    // initialize local state
+    let i = 0, num = 128;
+    const fps = fpsCounter(null, 100, 60);
+    const menu = dropdown(
+        (e) => { num = parseInt((<HTMLInputElement>e.target).value); },
+        [[128, 128], [192, 192], [256, 256], [384, 384], [512, 512]]
+    );
+
+    return () => {
+        let j = (++i) & 0x1ff;
+        return ["div",
+            ["div#stats", fps, menu],
+            tx.transduce(tx.map(box), tx.push(), <any>["grid"], tx.range(j, j + num))];
+    };
 };
 
-start(document.getElementById("app"), app);
+start(document.getElementById("app"), app());
