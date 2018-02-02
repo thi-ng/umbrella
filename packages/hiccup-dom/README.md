@@ -4,11 +4,12 @@
 
 ## About
 
-Lighweight reactive DOM components using only vanilla JS data structures
+Lightweight reactive DOM components using only vanilla JS data structures
 (arrays, objects, closures, iterators), based on
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
-Supports arbitrary attributes, events, CSS conversion from JS objects, SVG.
-Only ~10KB minified.
+Supports arbitrary attributes, events, CSS conversion from JS objects, SVG and
+server side rendering (by passing the same data structure to @thi.ng/hiccup's
+`serialize()`). Only ~10KB minified.
 
 ```typescript
 import { start } from "@thi.ng/hiccup-dom";

@@ -13,6 +13,10 @@ Forget all the custom toy DSLs for templating and instead use the full power of
 ES6 to directly define fully data-driven, purely functional and easily
 *composable* components for static serialization to HTML & friends.
 
+This library is suitable for static website generation, server side rendering
+etc. For interactive use cases, please see companion package
+[@thi.ng/hiccup-dom](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-dom).
+
 ### Features
 
 - Only uses arrays, functions, ES6 iterables / iterators / generators
