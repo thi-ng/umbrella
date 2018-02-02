@@ -42,6 +42,8 @@ difference between the old and new DOM trees (both nested JS arrays).
 Components can be defined as static arrays, closures or objects with life cycle
 hooks (init, render, release).
 
+![hdom dataflow](../../assets/hdom-dataflow.svg)
+
 The approach is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) projects, however the latter is a
