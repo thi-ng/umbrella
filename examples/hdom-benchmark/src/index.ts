@@ -25,11 +25,11 @@ const box = (id: number) => [
  * @param change onchange listener
  * @param items drop down options `[value, label]`
  */
-const dropdown = (change: (e: Event) => void, items: [any, any][]) =>
+const dropdown = (onchange: (e: Event) => void, items: [any, any][]) =>
     tx.transduce(
         tx.map(([value, label]) => <any>["option", { value }, label]),
         tx.push(),
-        ["select", { "on-change": change }],
+        ["select", { onchange }],
         items
     );
 

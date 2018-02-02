@@ -45,7 +45,7 @@ const taskItem = (id, task: Task) =>
             {
                 type: "checkbox",
                 checked: task.done,
-                "on-click": () => toggleTask(id),
+                onclick: () => toggleTask(id),
             }],
         [{
             init: (el) => !el.value && el.focus(),
@@ -55,8 +55,8 @@ const taskItem = (id, task: Task) =>
                         type: "text",
                         placeholder: "todo...",
                         value: task.body,
-                        "on-keydown": (e) => e.key === "Enter" && e.target.blur(),
-                        "on-blur": (e) => updateTask(id, (<HTMLInputElement>e.target).value)
+                        onkeydown: (e) => e.key === "Enter" && e.target.blur(),
+                        onblur: (e) => updateTask(id, (<HTMLInputElement>e.target).value)
                     }]
         }]];
 
@@ -71,9 +71,9 @@ const taskList = () => {
 
 const toolbar = () =>
     ["div#toolbar",
-        ["button", { "on-click": () => addNewTask() }, "+ Add"],
-        ["button", { "on-click": () => tasks.undo(), disabled: !tasks.canUndo() }, "Undo"],
-        ["button", { "on-click": () => tasks.redo(), disabled: !tasks.canRedo() }, "Redo"]];
+        ["button", { onclick: () => addNewTask() }, "+ Add"],
+        ["button", { onclick: () => tasks.undo(), disabled: !tasks.canUndo() }, "Undo"],
+        ["button", { onclick: () => tasks.redo(), disabled: !tasks.canRedo() }, "Redo"]];
 
 // static header component (simple array)
 const header =
