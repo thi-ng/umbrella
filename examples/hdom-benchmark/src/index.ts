@@ -46,7 +46,11 @@ const fpsCounter = (src, width = 100, height = 30, period = 50, col = "#09f", tx
         )
     );
     return [{
-        init: (el) => (ctx = el.getContext("2d")),
+        init: (el) => {
+            ctx = el.getContext("2d");
+            ctx.fillStyle = txtCol;
+            ctx.fillText("sampling...", 2, height - 4);
+        },
         render: () => ["canvas", { width, height }]
     }];
 };
@@ -68,4 +72,4 @@ const app = () => {
         tx.transduce(tx.map<any, any>(box), tx.push(), ["grid"], tx.range(j, j + num))];
 };
 
-start(document.getElementById("app"), app());
+start(document.getElementById("app"), app);
