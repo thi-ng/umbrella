@@ -32,7 +32,7 @@ const app = () => {
 
 start(document.body, app());
 ```
-[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/) | [standalone example](./examples/hdom-basics)
+[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/) | [standalone example](../../examples/hdom-basics)
 
 No template engine & no precompilation steps needed, just use the full
 expressiveness of ES6 to define your DOM tree.
