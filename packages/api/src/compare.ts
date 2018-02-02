@@ -11,5 +11,8 @@ export function compare(a: any, b: any): number {
     if (typeof a.compare === "function") {
         return a.compare(b);
     }
+    if (typeof b.compare === "function") {
+        return -b.compare(a);
+    }
     return a < b ? -1 : a > b ? 1 : 0;
 }

@@ -1,6 +1,5 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { isString } from "@thi.ng/checks/is-string";
 
 export function equiv(a, b): boolean {
     if (a === b) {
@@ -20,8 +19,8 @@ export function equiv(a, b): boolean {
     } else {
         return a == b;
     }
-    if (isString(a) || isString(b)) {
-        return a === b;
+    if (typeof a === "string" || typeof b === "string") {
+        return false;
     }
     if (isPlainObject(a) && isPlainObject(b)) {
         return equivObject(a, b);
