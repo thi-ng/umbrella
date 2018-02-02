@@ -4,16 +4,18 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org/)
 
 Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
-data / transformation oriented packages.
+data / transformation oriented packages and utilities for building reactive
+applications (not just UI related).
 
 All packages are:
 
 - distributed as ES6 modules with bundled TypeScript typings & changelogs
-- highly modular with largely only a single exported function / class per file
+- highly modular with largely only a single exported function / class per file to help w/ tree shaking
 - provide re-exports of all their publics (`src/index.ts`)
 - have either none or only @thi.ng internal runtime dependencies (see graph below)
 - declare public interfaces, enums & types in an `src/api.ts` file (larger packages only)
 - online documentation available at [docs.thi.ng](http://docs.thi.ng)
+- standalone [examples](./examples)
 - licensed under Apache Software License 2.0
 
 ## Projects
