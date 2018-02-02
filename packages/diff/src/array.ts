@@ -20,6 +20,9 @@ export function diffArray(_a, _b) {
         const: {},
         linear: []
     };
+    if (_a === _b) {
+        return state;
+    }
     const reverse = _a.length >= _b.length,
         adds = state[reverse ? "dels" : "adds"],
         dels = state[reverse ? "adds" : "dels"],

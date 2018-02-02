@@ -6,8 +6,11 @@ export function diffObject(a: any, b: any) {
     const adds = [],
         dels = [],
         edits = [],
-        keys = new Set(Object.keys(a).concat(Object.keys(b)));
-    let distance = 0;
+        keys = new Set(Object.keys(a).concat(Object.keys(b))),
+        state = <ObjectDiff>{ distance: 0, adds, dels, edits };
+    if (a === b) {
+        return state;
+    }
     for (let k of keys) {
         const va = a[k],
             vb = b[k],
@@ -15,12 +18,12 @@ export function diffObject(a: any, b: any) {
         if (hasA && vb !== undefined) {
             if (!equiv(va, vb)) {
                 edits.push([k, vb]);
-                distance++;
+                state.distance++;
             }
         } else {
             (hasA ? dels : adds).push(k);
-            distance++;
+            state.distance++;
         }
     }
-    return <ObjectDiff>{ distance, adds, dels, edits };
+    return state;
 }
