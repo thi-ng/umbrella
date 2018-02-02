@@ -7,9 +7,18 @@
 Lightweight reactive DOM components using only vanilla JS data structures
 (arrays, objects, closures, iterators), based on
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
-Supports arbitrary attributes, events, CSS conversion from JS objects, SVG and
-server side rendering (by passing the same data structure to @thi.ng/hiccup's
-`serialize()`). Only ~10KB minified.
+
+Benefits:
+
+- Use the full expressiveness of ES6/TypeScript to define, annotate & document components
+- Clean, functional component composition and reuse
+- No pre-processing / pre-compilation steps
+- No string parsing / interpolation steps
+- Supports SVG, arbitrary elements, attributes, events
+- CSS conversion from JS objects
+- Suitable for server side rendering (by passing the same data structure to @thi.ng/hiccup's `serialize()`)
+- Fairly fast (see benchmark example below)
+- Only ~10KB minified
 
 ```typescript
 import { start } from "@thi.ng/hiccup-dom";
@@ -35,7 +44,10 @@ start(document.body, app());
 [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/) | [standalone example](../../examples/hdom-basics)
 
 No template engine & no precompilation steps needed, just use the full
-expressiveness of ES6 to define your DOM tree.
+expressiveness of ES6/TypeScript to define your DOM tree. The additional
+benefit of using TypeScript is that your UI components can become strongly
+typed, since they're just normal functions, can use generics, overrides,
+varargs etc.
 
 The actual DOM update is based on the minimal edit set of the recursive
 difference between the old and new DOM trees (both nested JS arrays).
@@ -44,7 +56,7 @@ hooks (init, render, release).
 
 ![hdom dataflow](../../assets/hdom-dataflow.svg)
 
-The approach is inspired by Clojure's
+The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) projects, however the latter is a
 wrapper around React, whereas this library is standalone, more lowlevel &
@@ -52,9 +64,9 @@ less opinionated.
 
 If you're interested in using this, please also consider the
 [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) packages to integrate app
-state handling, event streams & reactive value subscriptions. Examples
-forthcoming...
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+packages to integrate app state handling, event streams & reactive value
+subscriptions. More examples are forthcoming...
 
 ## Installation
 
@@ -126,6 +138,19 @@ window.addEventListener("load", () => start(document.getElementById("app"), app)
 ### @thi.ng/rstream integration
 
 TODO example forthcoming...
+
+### Benchmark
+
+A stress test benchmark is here: [/examples/benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
+
+[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/benchmark/)
+
+Based on [user feedback collected via
+Twitter](https://twitter.com/toxi/status/959246871339454464), performance
+should be more than acceptable for even quite demanding UIs. In the 192/256
+cells configurations this stress test causes approx. 600/800 DOM every single
+frame, something very unlikely for a typical web app. In Chrome 64 on a MBP2016
+this still runs at a pretty stable 30fps (50 frame SMA).
 
 ## Authors
 
