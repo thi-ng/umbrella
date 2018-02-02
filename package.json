@@ -14,6 +14,7 @@
         "cover": "lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
         "doc": "lerna run doc",
+        "examples": "ex=\"examples/*\"; for e in $ex; do (cd $e && yarn build); done",
         "pub": "lerna publish && yarn depgraph && yarn doc && scripts/upload-docs",
         "test": "yarn build && lerna run test"
     }
