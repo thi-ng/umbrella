@@ -15,21 +15,61 @@
             margin-top: 2em;
         }
 
+        .item.light {
+            background: #eee;
+        }
+
+        .item.dark {
+            background: #333;
+            color: #ccc;
+            font-family: Inconsolata, Menlo, monospace;
+        }
+
+        .item.light .meta {
+            background: #999;
+            color: #fff;
+        }
+
+        .item.dark .meta {
+            background: #555;
+            color: #ee0;
+        }
+
+        .item.light ul.tags li {
+            background: #333;
+        }
+
+        .item.dark ul.tags li {
+            background: #ee0;
+        }
+
+        .item.light .meta a:link,
+        .item.light .meta a:visited {
+            color: #fff;
+        }
+
+        .item.dark .meta a:link,
+        .item.dark .meta a:visited {
+            color: #ee0;
+        }
+
+        .item.dark ul.tags a:link,
+        .item.dark ul.tags a:visited {
+            color: #000;
+        }
+
         .item {
             display: inline-block;
             width: 45%;
             margin: 5px;
             padding: 10px;
-            background: #eee;
             vertical-align: top;
         }
 
         .meta {
             font-size: 10px;
-            background: #999;
             margin: 10px -10px;
             padding: 10px 10px 5px 10px;
-            color: #fff;
         }
 
         ul.tags {
@@ -39,7 +79,6 @@
 
         ul.tags li {
             display: inline-block;
-            background: #333;
             padding: 0px 6px 2px 6px;
             border-radius: 8px;
             margin-right: 2px;
@@ -47,7 +86,6 @@
 
         .meta a:link,
         .meta a:visited {
-            color: #fff;
             text-decoration: none;
         }
 
@@ -62,11 +100,17 @@
             width: 100%;
             height: 100%;
             font: 12px/1.2 monospace;
+            background: url(assets/editme.png);
+            background-size: contain;
         }
     </style>
 </head>
 
 <body>
+    <h1>JSON driven components</h1>
+    <p>The components on the right are a direct mapping of the JSON data below using a mapping function from JSON to
+        <a href="https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-dom">hiccup component format</a>, then is used to reactively mutate the DOM (total JS file size: 11.8KB).</p>
+    <p>Edit fields, or copy & paste complete items to add more. Any edits will be immediately reflected in both themed versions.</p>
     <div id="app"></div>
     <footer>
         Made with
