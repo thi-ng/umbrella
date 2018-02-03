@@ -16,6 +16,6 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^1.1.6",
-        "@thi.ng/hiccup-dom": "^1.0.0"
+        "@thi.ng/hiccup-dom": "^1.0.1"
     }
 }
