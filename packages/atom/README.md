@@ -186,7 +186,7 @@ s = setter("a.b.c");
 a = { x: { y: { z: 1 } }, u: { v: 2 } };
 // updated version
 b = s(a, 3);
-// { x: { y: { z: 1 } }, u: { v: 2 }, a: { b: { c: 2 } } }
+// { x: { y: { z: 1 } }, u: { v: 2 }, a: { b: { c: 3 } } }
 
 // verify anything under keys `x` & `u` is still identical
 a.x === b.x // true
