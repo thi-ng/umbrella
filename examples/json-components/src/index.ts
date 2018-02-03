@@ -2,7 +2,7 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { start } from "@thi.ng/hiccup-dom";
 
 // some dummy JSON records
-export const db = [
+let db = [
     {
         meta: {
             author: {
@@ -74,5 +74,24 @@ const item = componentFromSpec([
     }
 ]);
 
+// simple text area editor for our JSON data
+const editor = (() => {
+    let body = JSON.stringify(db, null, 2);
+    return [
+        "textarea",
+        {
+            oninput: (e) => {
+                try {
+                    db = JSON.parse(e.target.value);
+                } catch (_) { }
+            }
+        },
+        body
+    ];
+})();
+
 // start UI
-start(document.getElementById("app"), ["div", ...db.map(item)]);
+start(
+    document.getElementById("app"),
+    () => ["div#container", ["div", editor], ["div", ...db.map(item)]]
+);
