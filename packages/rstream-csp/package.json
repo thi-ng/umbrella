@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-csp",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@thi.ng/csp": "^0.3.10",
-        "@thi.ng/rstream": "^0.9.2"
+        "@thi.ng/rstream": "^0.9.3"
     },
     "keywords": [
         "bridge",
