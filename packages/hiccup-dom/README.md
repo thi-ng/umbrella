@@ -14,6 +14,8 @@ Benefits:
 - Clean, functional component composition and reuse
 - No pre-processing / pre-compilation steps
 - No string parsing / interpolation steps
+- Less verbose than HTML, resulting in smaller file sizes
+- Static components can be distributed as JSON (or [dynamically compose components, based on JSON data](./examples/json-components))
 - Supports SVG, arbitrary elements, attributes, events
 - CSS conversion from JS objects
 - Suitable for server side rendering (by passing the same data structure to @thi.ng/hiccup's `serialize()`)
@@ -96,15 +98,17 @@ independently and require some conceptional synchronization.
 
 ### Todo list
 
-A fully documented todo list app with undo / redo feature is here: [/examples/todo-list](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
+A fully documented todo list app with undo / redo feature is here:
 
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
 
 ### SVG particles
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/svg-particles/)
 
-[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/svg-particles/)
+### JSON based components
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/json-components/)
 
 ### Basic usage patterns
 
