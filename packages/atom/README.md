@@ -105,7 +105,7 @@ cursor.swap(x => x + 1);
 // foo 23 24
 
 main.deref()
-// { a: 24, b: 42 }
+// { a: { b: { c: 24 }, d: { e: 42 } }, f: 66 }
 ```
 
 ### Undo history
