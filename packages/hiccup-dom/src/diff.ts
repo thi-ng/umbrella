@@ -127,6 +127,8 @@ function normalizeElement(spec: any[]) {
     return [tag, attribs, content.length > 0 ? content : undefined];
 }
 
+const NO_SPANS = { text: 1, textarea: 1 };
+
 export function normalizeTree(el: any, path = [0], keys = true, span = true) {
     if (el == null) {
         return;
@@ -161,7 +163,7 @@ export function normalizeTree(el: any, path = [0], keys = true, span = true) {
             const children = norm[2].slice(),
                 n = children.length;
             norm.length = 2;
-            span = span && norm[0] !== "text";
+            span = span && !NO_SPANS[norm[0]];
             for (let i = 0, j = 2, k = 0; i < n; i++) {
                 let el = children[i];
                 if (el != null) {
