@@ -15,7 +15,7 @@ Benefits:
 - No pre-processing / pre-compilation steps
 - No string parsing / interpolation steps
 - Less verbose than HTML, resulting in smaller file sizes
-- Static components can be distributed as JSON (or [dynamically compose components, based on JSON data](./examples/json-components))
+- Static components can be distributed as JSON (or [dynamically compose components, based on JSON data](../../examples/json-components))
 - Supports SVG, arbitrary elements, attributes, events
 - CSS conversion from JS objects
 - Suitable for server side rendering (by passing the same data structure to @thi.ng/hiccup's `serialize()`)
