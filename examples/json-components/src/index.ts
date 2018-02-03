@@ -43,7 +43,7 @@ const content = (body) => ["div", body];
 // generic JSON object tree transformer
 // called with a nested object spec reflecting the structure
 // of the source data and returns composed component function
-export const componentFromSpec = (spec) => {
+const componentFromSpec = (spec) => {
     if (isFunction(spec)) {
         return spec;
     }
@@ -54,7 +54,7 @@ export const componentFromSpec = (spec) => {
     return (x) => {
         const res = {};
         for (let k in mapfns) {
-            res[k] = mapfns[k](x[k]);
+            res[k] = x[k] != null ? mapfns[k](x[k]) : undefined;
         }
         return spec[0](res);
     };
@@ -68,7 +68,14 @@ export const componentFromSpec = (spec) => {
 const item = componentFromSpec([
     summary,
     {
-        meta: [meta, { author, tags, created: date }],
+        meta: [
+            meta,
+            {
+                author,
+                tags,
+                created: date
+            }
+        ],
         title,
         content
     }
