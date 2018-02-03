@@ -71,7 +71,7 @@ wrapper around React, whereas this library is standalone, more lowlevel &
 less opinionated.
 
 If you're interested in using this, please also consider the
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom) and
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 packages to integrate app state handling, event streams & reactive value
 subscriptions. More examples are forthcoming...
@@ -99,6 +99,12 @@ independently and require some conceptional synchronization.
 A fully documented todo list app with undo / redo feature is here: [/examples/todo-list](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
 
 [Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
+
+### SVG particles
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles)
+
+[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/svg-particles/)
 
 ### Basic usage patterns
 
