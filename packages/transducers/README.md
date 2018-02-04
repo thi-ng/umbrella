@@ -128,6 +128,27 @@ tx.reduce(
 // }
 ```
 
+### Pagination
+
+```typescript
+// extract only items for given page id & page length
+[...tx.iterator(tx.page(0, 5), tx.range(12))]
+// [ 0, 1, 2, 3, 4 ]
+
+// when composing with other transducers
+// it's most efficient to place `page()` early on in the chain
+// that way only the page items will be further processed
+[...tx.iterator(tx.comp(tx.page(1, 5), tx.map(x => x * 10)), tx.range(12))]
+// [ 50, 60, 70, 80, 90 ]
+
+// use `padLast()` to fill up missing values
+[...tx.iterator(tx.comp(tx.page(2, 5), tx.padLast(5, "n/a")), tx.range(12))]
+// [ 10, 11, 'n/a', 'n/a', 'n/a' ]
+
+[...tx.iterator(tx.page(3, 5), rtx.ange(12))]
+// []
+```
+
 ### Multiplexing / parallel transducer application
 
 `multiplex` and `multiplexObj` can be used to transform values in parallel
