@@ -9,3 +9,5 @@ for m in $modules; do
     echo "syncing..."
     aws s3 sync $m/doc s3://docs.thi.ng/umbrella/$name --profile toxi-s3 --acl public-read
 done
+
+aws s3 cp dev/docs.html s3://docs.thi.ng/index.html --profile toxi-s3 --acl public-read
