@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-dom@1.0.2...@thi.ng/hiccup-dom@1.0.3) (2018-02-04)
+
+
+### Bug Fixes
+
+* **hiccup-dom:** support parent DOM ID as arg start() ([1f4f4b8](https://github.com/thi-ng/umbrella/commit/1f4f4b8))
+
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-dom@1.0.1...@thi.ng/hiccup-dom@1.0.2) (2018-02-03)
 
