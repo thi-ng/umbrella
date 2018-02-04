@@ -1,3 +1,4 @@
+import { isString } from "@thi.ng/checks/is-string";
 import { diffElement, normalizeTree } from "./diff";
 
 /**
@@ -17,12 +18,15 @@ import { diffElement, normalizeTree } from "./diff";
  * @param parent
  * @param tree
  */
-export function start(parent: Element, tree: any) {
+export function start(parent: Element | string, tree: any) {
     let prev = [];
     let isActive = true;
+    parent = isString(parent) ?
+        document.getElementById(parent) :
+        parent;
     function update() {
         if (isActive) {
-            diffElement(parent, prev, prev = normalizeTree(tree));
+            diffElement(<any>parent, prev, prev = normalizeTree(tree));
             // check again in case one of the components called cancel
             isActive && requestAnimationFrame(update);
         }
