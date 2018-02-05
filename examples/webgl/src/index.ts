@@ -1,17 +1,16 @@
 import { start } from "@thi.ng/hiccup-dom";
 
-let frame = 0;
-
 // reusable GL canvas component
 const glcanvas = (init, update, attribs) => {
     let gl: WebGLRenderingContext;
+    let frame = 0;
     return [{
         init(el: HTMLCanvasElement) {
             gl = el.getContext("webgl");
             init(gl);
         },
         render() {
-            gl && update(gl);
+            gl && update(gl, frame++);
             return ["canvas", attribs]
         }
     }];
@@ -19,14 +18,14 @@ const glcanvas = (init, update, attribs) => {
 
 // canvas init hook
 const initGL = (_: WebGLRenderingContext) => {
-    // init here
+    // GL context initialization steps
+    // ...
 };
 
-// canvas render hook
-const updateGL = (offset) =>
-    (gl: WebGLRenderingContext) => {
-        frame++;
-        const f = offset + frame * 0.01;
+// canvas render hook closure
+const updateGL = (offset, freq) =>
+    (gl: WebGLRenderingContext, frame) => {
+        const f = offset + frame * freq;
         const red = Math.sin(f) * 0.5 + 0.5;
         const green = Math.sin(f + Math.PI * 1 / 3) * 0.5 + 0.5;
         const blue = Math.sin(f + Math.PI * 2 / 3) * 0.5 + 0.5;
@@ -36,9 +35,9 @@ const updateGL = (offset) =>
 
 start(
     document.getElementById("app"),
-    // instantiate multiple canvases
+    // instantiate multiple canvases w/ different configs
     ["div",
-        glcanvas(initGL, updateGL(0), { width: 100, height: 100 }),
-        glcanvas(initGL, updateGL(200), { width: 100, height: 100 }),
-        glcanvas(initGL, updateGL(400), { width: 100, height: 100 })]
+        glcanvas(initGL, updateGL(0, 0.01), { width: 100, height: 100 }),
+        glcanvas(initGL, updateGL(200, 0.025), { width: 100, height: 100 }),
+        glcanvas(initGL, updateGL(400, 0.05), { width: 100, height: 100 })]
 );
