@@ -87,16 +87,15 @@ const _serialize = (tree: any, esc: boolean) => {
         if (isString(tag)) {
             tree = normalize(tree);
             tag = tree[0];
-            let attribs = tree[1],
-                body = tree[2],
-                res = `<${tag}`;
+            let attribs = tree[1];
+            let body = tree[2];
+            let res = `<${tag}`;
             for (let a in attribs) {
                 if (attribs.hasOwnProperty(a)) {
-                    let v = attribs[a],
-                        isEvent = /^on\w+/.test(a);
+                    let v = attribs[a];
                     if (v != null) {
                         if (isFunction(v)) {
-                            if (isEvent || (v = v(attribs)) == null) {
+                            if (/^on\w+/.test(a) || (v = v(attribs)) == null) {
                                 continue;
                             }
                         }

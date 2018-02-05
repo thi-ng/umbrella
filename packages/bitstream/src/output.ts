@@ -50,8 +50,8 @@ export class BitOutputStream {
             this.write(hi, wordSize - 32);
             this.write(x - hi * U32, 32);
         } else if (wordSize > 8) {
-            let n = wordSize & -8,
-                msb = wordSize - n;
+            let n = wordSize & -8;
+            let msb = wordSize - n;
             if (msb > 0) {
                 this._write(x >>> n, msb);
             }
@@ -67,8 +67,8 @@ export class BitOutputStream {
     }
 
     public writeWords(input: Iterable<number>, wordSize = 8) {
-        let iter = input[Symbol.iterator](),
-            v: IteratorResult<number>;
+        let iter = input[Symbol.iterator]();
+        let v: IteratorResult<number>;
         while ((v = iter.next(), !v.done)) {
             this.write(v.value, wordSize);
         }
@@ -88,11 +88,11 @@ export class BitOutputStream {
 
     protected _write(x: number, wordSize: number) {
         x &= (1 << wordSize) - 1;
-        let buf = this.buffer,
-            pos = this.pos,
-            bit = this.bit,
-            b = bit - wordSize,
-            m = bit < 8 ? ~((1 << bit) - 1) : 0;
+        let buf = this.buffer;
+        let pos = this.pos;
+        let bit = this.bit;
+        let b = bit - wordSize;
+        let m = bit < 8 ? ~((1 << bit) - 1) : 0;
         if (b >= 0) {
             m |= (1 << b) - 1;
             buf[pos] = (buf[pos] & m) | (x << b & ~m);

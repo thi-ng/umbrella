@@ -11,9 +11,9 @@
  * @returns decorator function
  */
 export function mixin(behaviour: any, sharedBehaviour = {}) {
-    const instanceKeys = Reflect.ownKeys(behaviour),
-        sharedKeys = Reflect.ownKeys(sharedBehaviour),
-        typeTag = Symbol("isa");
+    const instanceKeys = Reflect.ownKeys(behaviour);
+    const sharedKeys = Reflect.ownKeys(sharedBehaviour);
+    const typeTag = Symbol("isa");
 
     function _mixin(clazz) {
         for (let key of instanceKeys) {

@@ -8,8 +8,8 @@
  */
 export function deprecated(msg?: string, log = console.log): MethodDecorator {
     return function (target: any, prop: string | symbol, descriptor: PropertyDescriptor) {
-        const signature = `${target.constructor.name}#${prop}`,
-            fn = descriptor.value;
+        const signature = `${target.constructor.name}#${prop}`;
+        const fn = descriptor.value;
         if (typeof fn !== "function") {
             throw new Error(`${signature} is not a function`);
         }

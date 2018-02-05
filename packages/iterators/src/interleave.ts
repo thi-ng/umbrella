@@ -7,9 +7,9 @@ export function* interleave(...inputs: Iterable<any>[]) {
     if (n === 0) {
         throw new Error(`no inputs given`);
     }
-    let iter = cycle(map(iterator, inputs)),
-        chunk = [],
-        v: IteratorResult<any>;
+    let iter = cycle(map(iterator, inputs));
+    let chunk = [];
+    let v: IteratorResult<any>;
     while (true) {
         for (let i = 0; i < n; i++) {
             if (((v = (iter.next().value as Iterator<any>).next()), v.done)) {

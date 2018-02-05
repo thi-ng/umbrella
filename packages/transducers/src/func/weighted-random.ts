@@ -11,8 +11,8 @@ import { tuples } from "../iter/tuples";
  * @param weights
  */
 export function weightedRandom<T>(choices: T[], weights?: number[]) {
-    const n = choices.length,
-        opts = [...tuples(choices, weights || repeat(1))].sort((a, b) => b[1] - a[1]);
+    const n = choices.length;
+    const opts = [...tuples(choices, weights || repeat(1))].sort((a, b) => b[1] - a[1]);
     let total = 0, i, r, sum;
     for (i = 0; i < n; i++) {
         total += weights[i];

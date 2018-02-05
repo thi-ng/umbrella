@@ -1,9 +1,9 @@
 import { iterator } from "./iterator";
 
 export function* cycle<T>(input: Iterable<T>) {
-    let cache: T[] = [],
-        iter = iterator(input),
-        v: IteratorResult<T>;
+    let cache: T[] = [];
+    let iter = iterator(input);
+    let v: IteratorResult<T>;
     while (((v = iter.next()), !v.done)) {
         cache.push(v.value);
         yield v.value;

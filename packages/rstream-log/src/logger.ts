@@ -16,9 +16,9 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements
     constructor(id: string, level: Level);
     constructor(id: string, sources: Iterable<ISubscribable<LogEntry>>, level?: Level);
     constructor(...args: any[]) {
-        let id = args[0] || `logger-${Subscription.NEXT_ID++}`,
-            level = Level.FINE,
-            src;
+        let id = args[0] || `logger-${Subscription.NEXT_ID++}`;
+        let level = Level.FINE;
+        let src;
         if (isNumber(args[1])) {
             level = args[1];
         } else {

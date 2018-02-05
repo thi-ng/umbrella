@@ -97,8 +97,8 @@ export class History<T> implements
      * @param val
      */
     swap(fn: SwapFn<T>, ...args: any[]): T {
-        const prev = this.state.deref(),
-            curr = this.state.swap.apply(this.state, [fn, ...args]);
+        const prev = this.state.deref();
+        const curr = this.state.swap.apply(this.state, [fn, ...args]);
         this.changed(prev, curr) && this.record(prev);
         return curr;
     }

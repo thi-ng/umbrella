@@ -11,10 +11,10 @@ describe("iterators", function () {
         assert.deepEqual([...ti.butLast(ti.range(10))], [0, 1, 2, 3, 4, 5, 6, 7, 8], "range");
     });
     it("cached", () => {
-        let cache = ti.cached(ti.range(3)),
-            a = cache(),
-            b = cache(),
-            c = cache();
+        let cache = ti.cached(ti.range(3));
+        let a = cache();
+        let b = cache();
+        let c = cache();
         assert.equal(a.next().value, 0, "a.next 0");
         assert.equal(a.next().value, 1, "a.next 1");
         assert.equal(b.next().value, 0, "b.next 0");
@@ -138,9 +138,9 @@ describe("iterators", function () {
         assert.throws(() => ti.fnil(() => { }));
     });
     it("fork", () => {
-        const f = ti.fork([1, 2, 3, 4], 3),
-            fa = f(),
-            fb = f();
+        const f = ti.fork([1, 2, 3, 4], 3);
+        const fa = f();
+        const fb = f();
         assert.equal(fa.next().value, 1);
         assert.equal(fa.next().value, 2);
         assert.equal(fb.next().value, 1);

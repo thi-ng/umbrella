@@ -200,10 +200,10 @@ export class Channel<T> implements
     static mergeTuples(chans: Channel<any>[], out?: Channel<any>, closeOnFirst = true, closeOutput = true) {
         out = out || new Channel<any>();
         (async () => {
-            let buf = [],
-                orig = [...chans],
-                sel = new Set(chans),
-                n = chans.length;
+            let buf = [];
+            let orig = [...chans];
+            let sel = new Set(chans);
+            let n = chans.length;
             while (true) {
                 let [x, ch] = await Channel.select([...sel]);
                 let idx = orig.indexOf(ch);
@@ -499,10 +499,10 @@ export class Channel<T> implements
     protected async process() {
         if (!this.isBusy) {
             this.isBusy = true;
-            const reads = this.reads,
-                writes = this.writes,
-                buf = this.buf,
-                txbuf = this.txbuf;
+            const reads = this.reads;
+            const writes = this.writes;
+            const buf = this.buf;
+            const txbuf = this.txbuf;
             let doProcess: any = true;
             while (doProcess) {
                 while (reads.length && (txbuf.length || buf.length)) {

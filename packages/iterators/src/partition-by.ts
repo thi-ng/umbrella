@@ -1,10 +1,10 @@
 import { iterator } from "./iterator";
 
 export function* partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) {
-    let iter = iterator(input),
-        chunk: T[] = [],
-        v: IteratorResult<T>,
-        prev;
+    let iter = iterator(input);
+    let chunk: T[] = [];
+    let v: IteratorResult<T>;
+    let prev;
     while (((v = iter.next()), !v.done)) {
         let curr = fn(v.value);
         if (prev !== undefined && prev !== curr) {

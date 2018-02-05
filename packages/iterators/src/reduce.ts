@@ -9,9 +9,9 @@ export class ReducedValue<T> {
 }
 
 export function reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) {
-    let iter = iterator(input),
-        v: IteratorResult<A>,
-        _acc: B | ReducedValue<B> = acc;
+    let iter = iterator(input);
+    let v: IteratorResult<A>;
+    let _acc: B | ReducedValue<B> = acc;
     while (((v = iter.next()), !v.done)) {
         _acc = rfn(_acc as B, v.value);
         if (_acc instanceof ReducedValue) {

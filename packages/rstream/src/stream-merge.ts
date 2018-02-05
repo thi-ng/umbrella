@@ -14,8 +14,8 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
     constructor(xform: Transducer<A, B>, id?: string);
     constructor(sources: Iterable<ISubscribable<A>>, xform: Transducer<A, B>, id?: string);
     constructor(...args: any[]) {
-        let id = isString(args[args.length - 1]) ? args.pop() : `streammerge-${Subscription.NEXT_ID++}`,
-            src, xform;
+        let id = isString(args[args.length - 1]) ? args.pop() : `streammerge-${Subscription.NEXT_ID++}`;
+        let src, xform;
         switch (args.length) {
             case 2:
                 src = args[0];

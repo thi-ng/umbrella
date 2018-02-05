@@ -56,9 +56,9 @@ export class DCons<T> implements
         } else if (this._length > o._length) {
             return 1;
         } else {
-            let ca = this.head,
-                cb = o.head,
-                res = 0;
+            let ca = this.head;
+            let cb = o.head;
+            let res = 0;
             while (ca && res == 0) {
                 res = compare(ca.value, cb.value);
                 ca = ca.next;
@@ -221,8 +221,8 @@ export class DCons<T> implements
     }
 
     public slice(from = 0, to = this.length) {
-        let a = from < 0 ? from + this._length : from,
-            b = to < 0 ? to + this._length : to;
+        let a = from < 0 ? from + this._length : from;
+        let b = to < 0 ? to + this._length : to;
         if (a < 0 || b < 0) {
             throw new Error("invalid indices: ${from} / ${to}")
         }
@@ -427,8 +427,8 @@ export class DCons<T> implements
     }
 
     public reduce<R>(rfn: (acc: R, x: T) => R, initial: R) {
-        let acc: R = initial,
-            cell = this.head;
+        let acc: R = initial;
+        let cell = this.head;
         while (cell) {
             // TODO add early termination support
             acc = rfn(acc, cell.value);
@@ -438,8 +438,8 @@ export class DCons<T> implements
     }
 
     public shuffle() {
-        let n = this._length,
-            cell = this.tail;
+        let n = this._length;
+        let cell = this.tail;
         while (n > 0) {
             let i = Math.floor(Math.random() * n);
             this.swap(this.nthCell(i), cell);
@@ -450,9 +450,9 @@ export class DCons<T> implements
     }
 
     public reverse() {
-        let head = this.head,
-            tail = this.tail,
-            n = (this._length >>> 1) + (this._length & 1);
+        let head = this.head;
+        let tail = this.tail;
+        let n = (this._length >>> 1) + (this._length & 1);
         while (head && tail && n > 0) {
             const t = head.value;
             head.value = tail.value;
@@ -465,8 +465,8 @@ export class DCons<T> implements
     }
 
     public toString() {
-        let res: any = [],
-            cell = this.head;
+        let res: any = [];
+        let cell = this.head;
         while (cell) {
             res.push(cell.value != null ?
                 cell.value.toString() :

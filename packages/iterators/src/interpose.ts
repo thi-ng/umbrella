@@ -1,8 +1,8 @@
 import { iterator } from "./iterator";
 
 export function* interpose(x: any, input: Iterable<any>) {
-    let iter = iterator(input),
-        v: IteratorResult<any> = iter.next();
+    let iter = iterator(input);
+    let v: IteratorResult<any> = iter.next();
     while (!v.done) {
         yield v.value;
         v = iter.next();

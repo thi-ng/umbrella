@@ -3,11 +3,11 @@ import { DCons } from "@thi.ng/dcons";
 import { iterator } from "./iterator";
 
 export function fork<T>(src: Iterable<T>, cacheLimit = 16) {
-    const iter = iterator(src),
-        cache = new DCons<T>(),
-        forks = [];
-    let done = false,
-        total = 0;
+    const iter = iterator(src);
+    const cache = new DCons<T>();
+    const forks = [];
+    let done = false;
+    let total = 0;
 
     function consume() {
         if (!done) {

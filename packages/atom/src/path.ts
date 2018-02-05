@@ -31,8 +31,8 @@ function compG(k, f) {
  * @param path
  */
 export function getter(path: PropertyKey | PropertyKey[]) {
-    const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path],
-        kl = ks.pop();
+    const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path];
+    const kl = ks.pop();
     let f = (s) => s ? s[kl] : undefined;
     for (let i = ks.length - 1; i >= 0; i--) {
         f = compG(ks[i], f);
@@ -83,8 +83,8 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  * @param path
  */
 export function setter(path: PropertyKey | PropertyKey[]) {
-    const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path],
-        kl = ks.pop();
+    const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path];
+    const kl = ks.pop();
     let f = (s, v) => ({ ...(s || {}), [kl]: v });
     for (let i = ks.length - 1; i >= 0; i--) {
         f = compS(ks[i], f);

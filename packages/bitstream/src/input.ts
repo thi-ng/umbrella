@@ -16,9 +16,9 @@ export class BitInputStream {
     }
 
     *[Symbol.iterator]() {
-        let j = this.start,
-            i = j >>> 3,
-            b = 7 - (j & 0x7);
+        let j = this.start;
+        let i = j >>> 3;
+        let b = 7 - (j & 0x7);
         while (j < this.limit) {
             yield (this.buffer[i] >>> b) & 1;
             if (--b < 0) {
@@ -51,9 +51,9 @@ export class BitInputStream {
         if (wordSize > 32) {
             return this.read(wordSize - 32) * U32 + this.read(32);
         } else if (wordSize > 8) {
-            let out = 0,
-                n = wordSize & -8,
-                msb = wordSize - n;
+            let out = 0;
+            let n = wordSize & -8;
+            let msb = wordSize - n;
             if (msb > 0) {
                 out = this._read(msb);
             }
@@ -97,8 +97,7 @@ export class BitInputStream {
 
     protected _read(wordSize: number) {
         this.checkLimit(wordSize);
-        let l = this.bit - wordSize,
-            out;
+        let l = this.bit - wordSize, out;
         if (l >= 0) {
             this.bit = l;
             out = this.buffer[this.pos] >>> l & (1 << wordSize) - 1;

@@ -14,11 +14,11 @@ import { Comparator } from "@thi.ng/api/api";
  */
 export function binarySearch<A, B>(arr: ArrayLike<A>, key: (x: A) => B, cmp: Comparator<B>, x: A) {
     const kx = key(x);
-    let low = 0,
-        high = arr.length - 1;
+    let low = 0;
+    let high = arr.length - 1;
     while (low <= high) {
-        const mid = (low + high) >>> 1,
-            c = cmp(key(arr[mid]), kx);
+        const mid = (low + high) >>> 1;
+        const c = cmp(key(arr[mid]), kx);
         if (c < 0) {
             low = mid + 1;
         } else if (c > 0) {

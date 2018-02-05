@@ -2,10 +2,10 @@ import { Field, union, struct } from "../src/index";
 import * as assert from "assert";
 
 describe("nested struct + union", () => {
-    let i = <Field[]>[["f64", "f64"], ["u8", "u8"]],
-        u = <Field[]>[["u16", "u16"], ["str", "struct", i]],
-        o = <Field[]>[["u8", "u8"], ["un", "union", u], ["u32", "u32"]],
-        bf = <Field[]>[["a", "i32", 1], ["b", "u32", 5], ["c", "u32", 26], ["d", "u32", 28], ["e", "i32", 2], ["f", "f32"]];
+    let i = <Field[]>[["f64", "f64"], ["u8", "u8"]];
+    let u = <Field[]>[["u16", "u16"], ["str", "struct", i]];
+    let o = <Field[]>[["u8", "u8"], ["un", "union", u], ["u32", "u32"]];
+    let bf = <Field[]>[["a", "i32", 1], ["b", "u32", 5], ["c", "u32", 26], ["d", "u32", 28], ["e", "i32", 2], ["f", "f32"]];
     it("sizes (aligned)", () => {
         assert.equal(struct(i).__size, 0x48, "inner");
         assert.equal(union(u).__size, 0x48, "union");

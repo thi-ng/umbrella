@@ -1,9 +1,9 @@
 import { iterator } from "./iterator";
 
 export function cached<T>(input: Iterable<T>) {
-    let cache: T[] = [],
-        iter = iterator(input),
-        done = false;
+    let cache: T[] = [];
+    let iter = iterator(input);
+    let done = false;
     return function () {
         let i = 0;
         return {

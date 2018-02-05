@@ -6,13 +6,13 @@ export interface FrequencyPair<T> {
 }
 
 export function* frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]> {
-    let freqs = {},
-        iter = iterator(input),
-        v: IteratorResult<any>;
+    let freqs = {};
+    let iter = iterator(input);
+    let v: IteratorResult<any>;
     while (((v = iter.next()), !v.done)) {
-        let k = key ? key(v.value) : v.value,
-            id = JSON.stringify(k),
-            bin = freqs[id];
+        let k = key ? key(v.value) : v.value;
+        let id = JSON.stringify(k);
+        let bin = freqs[id];
         if (bin) {
             bin[1]++;
         } else {

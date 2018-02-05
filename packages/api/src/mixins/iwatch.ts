@@ -19,8 +19,8 @@ export const IWatch = mixin({
         return false;
     },
     notifyWatches(oldState: any, newState: any) {
-        const w = (this._watches = this._watches || {}),
-            keys = Object.keys(w);
+        const w = (this._watches = this._watches || {});
+        const keys = Object.keys(w);
         for (let i = keys.length - 1; i >= 0; i--) {
             const id = keys[i];
             w[id](id, oldState, newState);

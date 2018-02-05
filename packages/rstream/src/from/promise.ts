@@ -9,9 +9,9 @@ import { Stream } from "../stream";
  * @param src
  */
 export function fromPromise<T>(src: Promise<T>) {
-    let canceled = false,
-        isError = false,
-        err: any = {};
+    let canceled = false;
+    let isError = false;
+    let err: any = {};
     src.catch(
         (e) => {
             err = e;

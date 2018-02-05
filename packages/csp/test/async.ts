@@ -45,9 +45,9 @@ async function alts() {
 }
 
 async function throttle(d1, d2) {
-    const a = Channel.range(0, 1000, 1, d1),
-        done = new Channel(),
-        t0 = Date.now();
+    const a = Channel.range(0, 1000, 1, d1);
+    const done = new Channel();
+    const t0 = Date.now();
     a.pipe(tx.throttleTime(d2))
         .consume((x) => console.log("throttled", x, Date.now() - t0))
         .then(() => {

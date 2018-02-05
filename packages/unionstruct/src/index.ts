@@ -75,7 +75,7 @@ export let sizeOf = (spec: Field[], union = false, doAlign = true) =>
     _sizeOf(spec, union, doAlign, 0, 0)[0];
 
 let bitReader = (dv: DataView, byteOffset: number, bit: number, size: number) => {
-    let b = bit - size;
+    const b = bit - size;
     if (b >= 0) {
         return () => dv.getUint32(byteOffset, false) >>> b & (1 << size) - 1;
     }
@@ -84,8 +84,8 @@ let bitReader = (dv: DataView, byteOffset: number, bit: number, size: number) =>
 };
 
 let bitWriter = (dv: DataView, byteOffset: number, bit: number, size: number) => {
-    let b = bit - size,
-        m = bit < 32 ? ~((1 << bit) - 1) : 0;
+    const b = bit - size;
+    let m = bit < 32 ? ~((1 << bit) - 1) : 0;
     if (b >= 0) {
         m |= (1 << b) - 1;
         return (x) => {
@@ -101,8 +101,8 @@ let bitWriter = (dv: DataView, byteOffset: number, bit: number, size: number) =>
 };
 
 let makeField = (field: Field, obj: any, dv: DataView, bitOffset: number, doAlign: boolean, le: boolean) => {
-    let [id, type, size] = field as any,
-        isBF = isBitField(field);
+    let [id, type, size] = <any>field;
+    const isBF = isBitField(field);
     bitOffset = doAlign && !isBF ? align(bitOffset, type, size) : bitOffset;
     let byteOffset = bitOffset >>> 3;
     obj.__offsets[id] = bitOffset;
@@ -115,9 +115,9 @@ let makeField = (field: Field, obj: any, dv: DataView, bitOffset: number, doAlig
         });
         bitOffset += (f as any).__size;
     } else {
-        let [dsize, typeid, signed] = TYPES[type],
-            shift = 32 - size,
-            get, set, read, write;
+        let [dsize, typeid, signed] = TYPES[type];
+        let shift = 32 - size;
+        let get, set, read, write;
         if (isBF) {
             byteOffset &= -4;
             let bitPos = 32 - (bitOffset & 0x1f);
@@ -147,15 +147,15 @@ let makeField = (field: Field, obj: any, dv: DataView, bitOffset: number, doAlig
 };
 
 export let typedef = (spec: Field[], struct: boolean, buf?: ArrayBuffer, offset = 0, doAlign = true, le = false) => {
-    let size = sizeOf(spec, !struct, doAlign),
-        dv = new DataView(buf || new ArrayBuffer(((size + 7) & -8) >>> 3)),
-        off = offset << 3,
-        obj = {
-            __buffer: dv.buffer,
-            __spec: spec,
-            __size: size,
-            __offsets: <any>{}
-        };
+    let size = sizeOf(spec, !struct, doAlign);
+    let dv = new DataView(buf || new ArrayBuffer(((size + 7) & -8) >>> 3));
+    let off = offset << 3;
+    let obj = {
+        __buffer: dv.buffer,
+        __spec: spec,
+        __size: size,
+        __offsets: <any>{}
+    };
     for (let i = 0; i < spec.length; i++) {
         let f = spec[i];
         offset = makeField(f, obj, dv, off, doAlign, le);

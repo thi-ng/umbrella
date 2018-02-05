@@ -14,8 +14,8 @@ export function partition<T>(...args: any[]): Transducer<T, T[]> {
         all = args[1];
     }
     return ([init, complete, reduce]: Reducer<any, T[]>) => {
-        let buf: T[] = [],
-            skip = 0;
+        let buf: T[] = [];
+        let skip = 0;
         return [
             init,
             (acc) => {

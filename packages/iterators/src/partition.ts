@@ -8,8 +8,8 @@ export function* partition<T>(n: number, step: number, input: Iterable<T>, all =
     if (step < 1) {
         throw new Error(`invalid step size: ${step}`);
     }
-    let iter = iterator(input),
-        chunk: T[] = [];
+    let iter = iterator(input);
+    let chunk: T[] = [];
     while (true) {
         let i = chunk.length;
         while (i++ < n) {

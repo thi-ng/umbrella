@@ -1,8 +1,8 @@
 import { iterator } from "./iterator";
 
 export function* map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) {
-    let v: IteratorResult<T>,
-        n = inputs.length;
+    let v: IteratorResult<T>;
+    let n = inputs.length;
     switch (n) {
         case 0:
             return;

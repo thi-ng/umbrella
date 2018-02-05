@@ -23,11 +23,11 @@ export function diffArray(_a, _b) {
     if (_a === _b) {
         return state;
     }
-    const reverse = _a.length >= _b.length,
-        adds = state[reverse ? "dels" : "adds"],
-        dels = state[reverse ? "adds" : "dels"],
-        aID = reverse ? -1 : 1,
-        dID = reverse ? 1 : -1;
+    const reverse = _a.length >= _b.length;
+    const adds = state[reverse ? "dels" : "adds"];
+    const dels = state[reverse ? "adds" : "dels"];
+    const aID = reverse ? -1 : 1;
+    const dID = reverse ? 1 : -1;
     let a, b, na, nb;
 
     if (reverse) {
@@ -40,20 +40,20 @@ export function diffArray(_a, _b) {
     na = a.length;
     nb = b.length;
 
-    const offset = na + 1,
-        delta = nb - na,
-        doff = delta + offset,
-        size = na + nb + 3,
-        path = new Array(size).fill(-1),
-        fp = new Array(size).fill(-1),
-        epc = [],
-        pathPos = [];
+    const offset = na + 1;
+    const delta = nb - na;
+    const doff = delta + offset;
+    const size = na + nb + 3;
+    const path = new Array(size).fill(-1);
+    const fp = new Array(size).fill(-1);
+    const epc = [];
+    const pathPos = [];
 
     function snake(k, p, pp) {
-        const koff = k + offset,
-            r = path[koff + ((p > pp) ? -1 : 1)];
-        let y = p > pp ? p : pp,
-            x = y - k;
+        const koff = k + offset;
+        const r = path[koff + ((p > pp) ? -1 : 1)];
+        let y = p > pp ? p : pp;
+        let x = y - k;
         while (x < na && y < nb && equiv(a[x], b[y])) {
             x++;
             y++;

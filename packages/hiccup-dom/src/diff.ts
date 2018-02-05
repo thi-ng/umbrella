@@ -13,17 +13,12 @@ export function diffElement(parent: Element, prev: any, curr: any) {
 }
 
 function _diffElement(parent: Element, prev: any, curr: any, child: number) {
-    const delta = diff.diffArray(prev, curr),
-        edits = delta.linear,
-        el = parent.children[child];
+    const delta = diff.diffArray(prev, curr);
+    const edits = delta.linear;
+    const el = parent.children[child];
     if (delta.distance === 0) {
         return;
     }
-    // DEBUG && console.log("parent", parent, "el", el, "idx", child, "edits:", edits);
-    // replace sub-tree iff:
-    // - different element type
-    // - different `key` attrib
-    // - changes in event handlers
     if (edits[0][0] !== 0 || prev[1].key !== curr[1].key || hasChangedEvents(prev[1], curr[1])) {
         DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
@@ -42,10 +37,10 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
     if (edits[1][0] !== 0) {
         diffAttributes(el, prev[1], curr[1]);
     }
-    const equivKeys = extractEquivElements(edits),
-        n = edits.length,
-        noff = prev.length - 1,
-        offsets = [];
+    const equivKeys = extractEquivElements(edits);
+    const n = edits.length;
+    const noff = prev.length - 1;
+    const offsets = [];
     let i, j, k, eq;
     for (i = noff; i >= 2; i--) {
         offsets[i] = i - 2;
@@ -103,9 +98,9 @@ function releaseDeep(tag: any) {
 }
 
 function normalizeElement(spec: any[]) {
-    let tag = spec[0],
-        content = spec.slice(1), c,
-        match, id, clazz;
+    let tag = spec[0];
+    let content = spec.slice(1), c;
+    let match, id, clazz;
     const attribs: any = {};
     if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
         throw new Error(`${tag} is not a valid tag name`);
@@ -160,8 +155,8 @@ export function normalizeTree(el: any, path = [0], keys = true, span = true) {
             norm[1].key = path.join("-");
         }
         if (norm[2]) {
-            const children = norm[2].slice(),
-                n = children.length;
+            const children = norm[2].slice();
+            const n = children.length;
             norm.length = 2;
             span = span && !NO_SPANS[norm[0]];
             for (let i = 0, j = 2, k = 0; i < n; i++) {
@@ -223,8 +218,8 @@ function extractEquivElements(edits: diff.DiffLogEntry[]) {
     const equiv = {};
     let k;
     for (let i = edits.length - 1; i >= 0; i--) {
-        const e = edits[i],
-            v = e[1][1];
+        const e = edits[i];
+        const v = e[1][1];
         if (isArray(v) && (k = v[1].key)) {
             equiv[k] = equiv[k] || [, ,];
             equiv[k][e[0] + 1] = e[1][0];

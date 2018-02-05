@@ -100,9 +100,9 @@ export class Subscription<A, B> implements
     next(x: A) {
         this.ensureState();
         if (this.xform) {
-            const acc = this.xform[2]([], x),
-                uacc = unreduced(acc),
-                n = uacc.length;
+            const acc = this.xform[2]([], x);
+            const uacc = unreduced(acc);
+            const n = uacc.length;
             for (let i = 0; i < n; i++) {
                 this.dispatch(uacc[i]);
             }
@@ -117,9 +117,9 @@ export class Subscription<A, B> implements
     done() {
         if (this.state < State.DONE) {
             if (this.xform) {
-                const acc = this.xform[1]([]),
-                    uacc = unreduced(acc),
-                    n = uacc.length;
+                const acc = this.xform[1]([]);
+                const uacc = unreduced(acc);
+                const n = uacc.length;
                 for (let i = 0; i < n; i++) {
                     this.dispatch(uacc[i]);
                 }

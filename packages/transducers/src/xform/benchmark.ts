@@ -22,8 +22,8 @@ export function benchmark(): Transducer<any, number> {
         let prev = Date.now();
         return compR(rfn,
             (acc, _) => {
-                let t = Date.now(),
-                    x = t - prev;
+                const t = Date.now();
+                const x = t - prev;
                 prev = t;
                 return r(acc, x);
             });

@@ -5,8 +5,8 @@ import * as rs from "../src/index";
 describe("fromPromise()", () => {
 
     it("resolves to sub", (done) => {
-        let src = rs.fromPromise(Promise.resolve(23)),
-            called = false;
+        let src = rs.fromPromise(Promise.resolve(23));
+        let called = false;
         src.subscribe({
             next(x) {
                 assert.equal(x, 23);
@@ -20,22 +20,22 @@ describe("fromPromise()", () => {
     });
 
     it("rejects to sub", (done) => {
-        let src = rs.fromPromise(Promise.reject(23)),
-            called = false,
-            sub = src.subscribe({
-                next(_) {
-                    assert.fail("called next()");
-                },
-                done() {
-                    assert.fail("called done()");
-                },
-                error(x) {
-                    assert.equal(x, 23);
-                    assert.equal(src.getState(), rs.State.ERROR);
-                    assert.equal(sub.getState(), rs.State.ERROR);
-                    called = true;
-                }
-            });
+        let src = rs.fromPromise(Promise.reject(23));
+        let called = false;
+        let sub = src.subscribe({
+            next(_) {
+                assert.fail("called next()");
+            },
+            done() {
+                assert.fail("called done()");
+            },
+            error(x) {
+                assert.equal(x, 23);
+                assert.equal(src.getState(), rs.State.ERROR);
+                assert.equal(sub.getState(), rs.State.ERROR);
+                called = true;
+            }
+        });
         setTimeout(() => {
             assert(called, "not called");
             done();
@@ -43,22 +43,22 @@ describe("fromPromise()", () => {
     });
 
     it("passes error to sub", (done) => {
-        let src = rs.fromPromise(new Promise(() => { throw new Error("foo"); })),
-            called = false,
-            sub = src.subscribe({
-                next(_) {
-                    assert.fail("called next()");
-                },
-                done() {
-                    assert.fail("called done()");
-                },
-                error(x) {
-                    assert.equal(x.message, "foo");
-                    assert.equal(src.getState(), rs.State.ERROR);
-                    assert.equal(sub.getState(), rs.State.ERROR);
-                    called = true;
-                }
-            });
+        let src = rs.fromPromise(new Promise(() => { throw new Error("foo"); }));
+        let called = false;
+        let sub = src.subscribe({
+            next(_) {
+                assert.fail("called next()");
+            },
+            done() {
+                assert.fail("called done()");
+            },
+            error(x) {
+                assert.equal(x.message, "foo");
+                assert.equal(src.getState(), rs.State.ERROR);
+                assert.equal(sub.getState(), rs.State.ERROR);
+                called = true;
+            }
+        });
         setTimeout(() => {
             assert(called, "not called");
             assert.throws(() => src.next(Promise.resolve()), "no next() allowed");
@@ -69,8 +69,8 @@ describe("fromPromise()", () => {
     });
 
     it("resolves via Resolver", (done) => {
-        let src = rs.fromIterable([Promise.resolve(23)]),
-            called = false;
+        let src = rs.fromIterable([Promise.resolve(23)]);
+        let called = false;
         src.subscribe(rs.resolve())
             .subscribe({
                 next(x) {
