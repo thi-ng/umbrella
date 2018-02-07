@@ -119,7 +119,7 @@ Channel.merge([
     Channel.range(0, 3),
     Channel.range(10, 15),
     Channel.range(100, 110)
-]).reduce(tx.push).then(console.log);
+]).reduce(tx.push()).then(console.log);
 
 // [ 0, 100, 101, 102, 103, 1, 2, 104, 105, 10, 11, 12, 13, 106, 14, 107, 108, 109 ]
 
