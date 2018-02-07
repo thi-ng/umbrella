@@ -57,7 +57,7 @@ const results = new Mult("results");
 // tap result channel and sum word counts
 const counter = results
     .tap(tx.map(x => x[1]))
-    .reduce(tx.add);
+    .reduce(tx.add());
 
 // 2nd output channel with streaming sort transducer
 // (using a sliding window size of 500 items) and dropping
@@ -76,7 +76,7 @@ const sorted = results.tap(
 // into the `sorted` channel
 // (`freqs` is a JS Map and is iterable)
 paths.pipe(proc)
-    .reduce(tx.frequencies)
+    .reduce(tx.frequencies())
     .then(freqs => results.channel().into(freqs));
 
 // start tracing sorted outputs and
