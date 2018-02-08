@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/atom",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "description": "Mutable wrapper for a immutable values",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,7 +26,7 @@
         "webpack": "^3.10.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.0.1"
+        "@thi.ng/api": "^2.0.2"
     },
     "keywords": [
         "cursor",
