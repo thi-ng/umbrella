@@ -1,3 +1,1 @@
-export function odd(x: number) {
-    return (x % 2) === 1;
-}
+export { isOdd as odd } from "@thi.ng/checks/is-odd";
