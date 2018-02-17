@@ -10,7 +10,6 @@
  */
 
 import { IObjectOf } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
 import * as atom from "@thi.ng/atom";
 import { start } from "@thi.ng/hiccup-dom/start";
 import { iterator } from "@thi.ng/transducers/iterator";
@@ -25,16 +24,16 @@ interface Task {
 // central app state (immutable)
 const db = new atom.Atom({ tasks: {}, nextID: 0 });
 // attach undo/redo history for `tasks` branch (arbitrary undo limit of 100 steps)
-const tasks = new atom.History<IObjectOf<Task>>(new atom.Cursor(db, "tasks"), 100, (a, b) => !equiv(a, b));
+const tasks = new atom.History<IObjectOf<Task>>(new atom.Cursor(db, "tasks"), 100);
 // cursor for direct access to `nextID`
 const nextID = new atom.Cursor<number>(db, "nextID");
 
 // state updaters
 // each applies it's updates via the history atom wrapper
 // the `atom.setter` calls produce an immutable update function for given paths
-const addNewTask = () => tasks.swap((s) => atom.setter(nextID.swap((id) => id + 1))(s, { body: "", done: false }));
-const toggleTask = (id) => tasks.swap((tasks) => atom.setter([id, "done"])(tasks, !tasks[id].done));
-const updateTask = (id, body) => tasks.swap((tasks) => atom.setter([id, "body"])(tasks, body));
+const addNewTask = () => tasks.swap((tasks) => atom.setIn(tasks, nextID.swap((id) => id + 1), { body: "", done: false }));
+const toggleTask = (id) => tasks.swap((tasks) => atom.updateIn(tasks, [id, "done"], done => !done));
+const updateTask = (id, body) => tasks.swap((tasks) => atom.setIn(tasks, [id, "body"], body));
 
 // single task component
 // the text field uses lifecycle hooks to set keyboard focus for new tasks
