@@ -1,4 +1,5 @@
 import { Predicate2, Watch } from "@thi.ng/api/api";
+import { equiv } from "@thi.ng/api/equiv";
 
 import { IAtom, SwapFn } from "./api";
 
@@ -22,12 +23,12 @@ export class History<T> implements
     /**
      * @param state parent state
      * @param maxLen max size of undo stack
-     * @param changed predicate to determine changed values (default `!==`)
+     * @param changed predicate to determine changed values (default `!equiv(a,b)`)
      */
     constructor(state: IAtom<T>, maxLen = 100, changed?: Predicate2<T>) {
         this.state = state;
         this.maxLen = maxLen;
-        this.changed = changed || ((a, b) => a !== b);
+        this.changed = changed || ((a, b) => !equiv(a, b));
         this.clear();
     }
 
