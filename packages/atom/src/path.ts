@@ -11,6 +11,10 @@ function compG(k, f) {
     return (s) => s ? f(s[k]) : undefined;
 }
 
+function toPath(path: PropertyKey | PropertyKey[]) {
+    return isArray(path) ? path : isString(path) ? path.split(".") : [path];
+}
+
 /**
  * Composes a getter function for given nested lookup path.
  * If `path` is given as string, it will be split using `.`.
@@ -19,6 +23,11 @@ function compG(k, f) {
  *
  * If any intermediate key is not present in the given obj,
  * descent stops and the function returns `undefined`.
+ *
+ * If `path` is an empty array, the returned getter will simply
+ * return the given state arg (identity function).
+ *
+ * Also see: `getIn()`
  *
  * ```
  * g = getter("a.b.c");
@@ -33,13 +42,16 @@ function compG(k, f) {
  * @param path
  */
 export function getter(path: PropertyKey | PropertyKey[]) {
-    const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path];
-    const kl = ks[ks.length - 1];
-    let f = (s) => s ? s[kl] : undefined;
-    for (let i = ks.length - 2; i >= 0; i--) {
-        f = compG(ks[i], f);
+    const ks = toPath(path);
+    if (ks.length > 0) {
+        const kl = ks[ks.length - 1];
+        let f = (s) => s ? s[kl] : undefined;
+        for (let i = ks.length - 2; i >= 0; i--) {
+            f = compG(ks[i], f);
+        }
+        return f;
     }
-    return f;
+    return (s) => s;
 }
 
 /**
@@ -51,6 +63,11 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  *
  * If any intermediate key is not present in the given obj,
  * creates a plain empty object for that key and descends further.
+ *
+ * If `path` is an empty array, the returned setter will simply
+ * return the new value.
+ *
+ * Also see: `setIn()`, `updateIn()`, `deleteIn()`
  *
  * ```
  * s = setter("a.b.c");
@@ -85,13 +102,16 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  * @param path
  */
 export function setter(path: PropertyKey | PropertyKey[]) {
-    const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path];
-    const kl = ks[ks.length - 1];
-    let f = (s, v) => ({ ...(s || {}), [kl]: v });
-    for (let i = ks.length - 2; i >= 0; i--) {
-        f = compS(ks[i], f);
+    const ks = toPath(path);
+    if (ks.length > 0) {
+        const kl = ks[ks.length - 1];
+        let f = (s, v) => ({ ...(s || {}), [kl]: v });
+        for (let i = ks.length - 2; i >= 0; i--) {
+            f = compS(ks[i], f);
+        }
+        return f;
     }
-    return f;
+    return (_, v) => v;
 }
 
 /**
@@ -143,3 +163,4 @@ export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: Swap
     args.unshift(getIn(state, path));
     return setter(path)(state, fn.apply(null, args));
 }
+
