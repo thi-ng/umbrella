@@ -164,3 +164,24 @@ export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: Swap
     return setter(path)(state, fn.apply(null, args));
 }
 
+/**
+ * Uses `updateIn()` and returns updated state with key for given path removed.
+ * Does not modify original state.
+ *
+ * Returns `undefined` if `path` is an empty array.
+ *
+ * ```
+ * deleteIn({a:{b:{c: 23}}}, "a.b.c");
+ * // {a: {b: {}}}
+ * ```
+ *
+ * @param state
+ * @param path
+ */
+export function deleteIn(state: any, path: PropertyKey | PropertyKey[]) {
+    const ks = [...toPath(path)];
+    if (ks.length > 0) {
+        const k = ks.pop();
+        return updateIn(state, ks, (x) => { x = { ...x }; delete x[k]; return x; });
+    }
+}
