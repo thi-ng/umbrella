@@ -85,8 +85,8 @@ export class History<T> implements
      */
     reset(val: T) {
         const prev = this.state.deref();
-        this.state.reset(val);
         this.changed(prev, val) && this.record(prev);
+        this.state.reset(val);
         return val;
     }
 
@@ -98,10 +98,7 @@ export class History<T> implements
      * @param val
      */
     swap(fn: SwapFn<T>, ...args: any[]): T {
-        const prev = this.state.deref();
-        const curr = this.state.swap.apply(this.state, [fn, ...args]);
-        this.changed(prev, curr) && this.record(prev);
-        return curr;
+        return this.reset(fn.apply(null, [this.state.deref(), ...args]));
     }
 
     /**
@@ -119,6 +116,8 @@ export class History<T> implements
         if (this.history.length >= this.maxLen) {
             this.history.shift();
         }
+        // check for arg given and not if `state == null`
+        // we want to allow null/undefined as possible values
         this.history.push(arguments.length > 0 ? state : this.state.deref());
         this.future.length = 0;
     }
