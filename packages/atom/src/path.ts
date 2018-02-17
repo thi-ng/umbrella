@@ -1,6 +1,8 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
 
+import { SwapFn } from "./api";
+
 function compS(k, f) {
     return (s, v) => ({ ...s, [k]: f((s || {})[k], v) });
 }
@@ -90,4 +92,53 @@ export function setter(path: PropertyKey | PropertyKey[]) {
         f = compS(ks[i], f);
     }
     return f;
+}
+
+/**
+ * Immediate use getter, i.e. same as: `getter(path)(state)`.
+ *
+ * ```
+ * getIn({a: {b: {c: 23}}}, "a.b.c");
+ * // 23
+ * ```
+ *
+ * @param state
+ * @param path
+ */
+export function getIn(state: any, path: PropertyKey | PropertyKey[]) {
+    return getter(path)(state);
+}
+
+/**
+ * Immediate use setter, i.e. same as: `setter(path)(state, val)`.
+ *
+ * ```
+ * setIn({}, "a.b.c", 23);
+ * // {a: {b: {c: 23}}}
+ * ```
+ *
+ * @param state
+ * @param path
+ */
+export function setIn(state: any, path: PropertyKey | PropertyKey[], val: any) {
+    return setter(path)(state, val);
+}
+
+/**
+ * Similar to `setIn()`, but applies given function to current path
+ * value (incl. any additional/optional arguments passed to `updateIn`)
+ * and uses result as new value. Does not modify original state (unless
+ * given function does so itself).
+ *
+ * ```
+ * add = (x, y) => x + y;
+ * updateIn({a: {b: {c: 23}}}, "a.b.c", add, 10);
+ * // {a: {b: {c: 33}}}
+ * ```
+ *
+ * @param state
+ * @param path
+ */
+export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: SwapFn<any>, ...args: any[]) {
+    return setter(path)(state, fn.apply(null, [getter(path)(state), ...args]));
 }
