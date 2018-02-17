@@ -172,12 +172,35 @@ s(null, 24)
 // { a: { b: { c: 24 } } }
 ```
 
+In addition to these higher-order functions, the module also provides
+immediate-use wrappers: `getIn()`, `setIn()`, `updateIn()` and `deleteIn()`.
+These functions are using `getter` / `setter` internally, so have same
+behaviors.
+
+```typescript
+state = {a: {b: {c: 23}}};
+
+getIn(state, "a.b.c")
+// 23
+
+setIn(state, "a.b.c", 24)
+// {a: {b: {c: 24}}}
+
+// apply given function to path value
+updateIn(state, "a.b.c", x => x + 1)
+// {a: {b: {c: 24}}}
+
+// immutably remove path key
+deleteIn(state, "a.b.c.")
+// {a: {b: {}}}
+```
+
 Only keys in the path will be modied, all other keys present in the given
 object retain their original values to provide efficient structural sharing /
 re-use. This is the same *behavior* as in Clojure's immutable maps or those
 provided by ImmutableJS (albeit those implementation are completely different -
 they're using trees, we're using the ES6 spread op and recursive functional
-composition to produce the setter).
+composition to produce the setter/updater).
 
 ```typescript
 s = setter("a.b.c");
