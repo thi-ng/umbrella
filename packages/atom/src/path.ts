@@ -34,9 +34,9 @@ function compG(k, f) {
  */
 export function getter(path: PropertyKey | PropertyKey[]) {
     const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path];
-    const kl = ks.pop();
+    const kl = ks[ks.length - 1];
     let f = (s) => s ? s[kl] : undefined;
-    for (let i = ks.length - 1; i >= 0; i--) {
+    for (let i = ks.length - 2; i >= 0; i--) {
         f = compG(ks[i], f);
     }
     return f;
@@ -86,9 +86,9 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  */
 export function setter(path: PropertyKey | PropertyKey[]) {
     const ks = isArray(path) ? path : isString(path) ? path.split(".") : [path];
-    const kl = ks.pop();
+    const kl = ks[ks.length - 1];
     let f = (s, v) => ({ ...(s || {}), [kl]: v });
-    for (let i = ks.length - 1; i >= 0; i--) {
+    for (let i = ks.length - 2; i >= 0; i--) {
         f = compS(ks[i], f);
     }
     return f;
@@ -140,5 +140,6 @@ export function setIn(state: any, path: PropertyKey | PropertyKey[], val: any) {
  * @param path
  */
 export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: SwapFn<any>, ...args: any[]) {
-    return setter(path)(state, fn.apply(null, [getter(path)(state), ...args]));
+    args.unshift(getIn(state, path));
+    return setter(path)(state, fn.apply(null, args));
 }
