@@ -81,9 +81,8 @@ export class Subscription<A, B> implements
         if (!sub) {
             if (this.parent) {
                 return this.parent.unsubscribe(this);
-            } else {
-                throw new Error("subscription has no parent");
             }
+            return true;
         }
         if (this.subs) {
             DEBUG && console.log(this.id, "unsub", sub.id);
