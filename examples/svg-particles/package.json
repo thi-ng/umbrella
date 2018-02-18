@@ -10,9 +10,9 @@
         "dev": "open index.html && webpack -w"
     },
     "devDependencies": {
-        "ts-loader": "^3.3.1",
-        "typescript": "^2.7.1",
-        "webpack": "^3.10.0"
+        "ts-loader": "^3.5.0",
+        "typescript": "^2.7.2",
+        "webpack": "^3.11.0"
     },
     "dependencies": {
         "@thi.ng/hiccup-dom": "^1.0.1",
