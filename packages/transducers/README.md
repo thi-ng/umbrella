@@ -18,7 +18,7 @@ Lightweight transducer implementations for ES6 / TypeScript (~24KB minified, ful
 
 ## About
 
-This library provides altogether ~85 transducers, reducers and sequence
+This library provides altogether ~90 transducers, reducers and sequence
 generators (iterators) for composing data transformation pipelines.
 
 The overall concept and many of the core functions offered here are directly
@@ -568,6 +568,8 @@ reducer and optional initial accumulator/result.
 
 #### `cat<T>(): Transducer<T[], T>`
 
+#### `convolve2d(src: number[], width: number, height: number, weights: number[], kwidth: number, kheight: number, wrap?: boolean): Transducer<number[], number>`
+
 #### `dedupe<T>(equiv?: (a: T, b: T) => boolean): Transducer<T, T>`
 
 #### `delayed<T>(t: number): Transducer<T, Promise<T>>`
@@ -613,6 +615,8 @@ reducer and optional initial accumulator/result.
 #### `mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>`
 
 #### `movingAverage(n: number): Transducer<number, number>`
+
+#### `movingMedian<A, B>(n: number, key?: ((x: A) => B), cmp?: Comparator<B>): Transducer<A, A>`
 
 #### `multiplex<T, A, B>(a: Transducer<T, A>, b: Transducer<T, B>...): Transducer<T, [A, B...]>`
 
@@ -721,6 +725,10 @@ reducer and optional initial accumulator/result.
 #### `pairs(x: any): IterableIterator<[string, any]>`
 
 #### `range(from?: number, to?: number, step?: number): IterableIterator<number>`
+
+#### `range2d(x1: number, x2: number, y1: number, y2: number, stepx?: number, stepy?: number): IterableIterator<number>`
+
+#### `range3d(x1: number, x2: number, y1: number, y2: number, z1: number, z2: number, stepx?: number, stepy?: number, stepz?: number): IterableIterator<number>`
 
 #### `repeat<T>(x: T, n?: number): IterableIterator<T>`
 
