@@ -15,18 +15,28 @@ import { partition } from "@thi.ng/transducers/xform/partition";
 const W = 128;
 const H = 48;
 
+let grid;
+let rules;
 // 3x3 convolution kernel (Moore neighborhood)
 const kernel = buildKernel2d([1, 1, 1, 1, 0, 1, 1, 1, 1], 3, 3);
-// seed grid with 50% noise
-let grid = [...repeatedly(() => Math.random() < 0.5 ? 1 : 0, W * H)];
-// Conway CA default state rules [[dead], [alive]]
-// (essentially this is a compressed finite state machine)
-let rules = [[0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0, 0]];
 
 // parse rules from location hash (2 groups of 9 bits each)
+// (essentially this is a compressed finite state machine)
 if (location.hash.length === 20) {
     rules = transduce(comp(map((x: string) => parseInt(x, 2)), bits(9), partition(9)), push(), location.hash.substr(1).split("-"));
+} else {
+    // Conway CA default state rules [[dead], [alive]]
+    rules = [[0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0, 0]];
 }
+
+const setHash = () => (location.hash = rules[0].join("") + "-" + rules[1].join(""));
+const randomSeq = (num, prob = 0.5) => [...repeatedly(() => Math.random() < prob ? 1 : 0, num)];
+const randomizeGrid = (prob = 0.5) => (grid = randomSeq(W * H, prob));
+const randomizeRules = () => {
+    rules = [randomSeq(9), randomSeq(9)];
+    randomizeGrid();
+    setHash();
+};
 
 // apply convolution & CA rules
 // this produces the next generation of the CA
@@ -56,7 +66,7 @@ const format = (src) =>
 // event handler for rule edits
 const setRule = (i, j, s) => {
     rules[i][j] = s ? 1 : 0;
-    location.hash = rules[0].join("") + "-" + rules[1].join("");
+    setHash();
 };
 
 // single checkbox component
@@ -69,11 +79,16 @@ const ruleBoxes = (prefix, i) =>
         ...rules[i].map((rule, j) => checkbox(rule, (e) => setRule(i, j, e.target.checked))),
     ];
 
+// seed grid with noise
+randomizeGrid();
+
 // define & start main app component
 start("app", () => {
     return ["div",
         ruleBoxes("birth", 0),
         ruleBoxes("survive", 1),
+        ["div", ["button", { onclick: () => randomizeRules() }, "randomize rules"]],
+        ["div", ["button", { onclick: () => randomizeGrid() }, "reset grid"]],
         ["pre", format(grid = convolve(grid))]
     ];
 });
