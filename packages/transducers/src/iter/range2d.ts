@@ -1,16 +1,20 @@
 import { range } from "./range";
 
+export function range2d(toX: number, toY: number): IterableIterator<[number, number]>;
 export function range2d(fromX: number, toX: number, fromY: number, toY: number): IterableIterator<[number, number]>;
 export function range2d(fromX: number, toX: number, fromY: number, toY: number, stepX: number, stepY: number): IterableIterator<[number, number]>;
 export function* range2d(...args: number[]) {
-    let [fromX, toX, fromY, toY] = args;
-    let stepX, stepY;
+    let fromX, toX, fromY, toY, stepX, stepY;
     switch (args.length) {
-        case 4:
-            break;
         case 6:
             stepX = args[4];
             stepY = args[5];
+        case 4:
+            [fromX, toX, fromY, toY] = args;
+            break;
+        case 2:
+            [toX, toY] = args;
+            fromX = fromY = 0;
             break;
         default:
             throw new Error(`invalid arity: ${args.length}`);
