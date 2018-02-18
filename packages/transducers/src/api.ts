@@ -16,4 +16,8 @@ export interface StructField extends Array<any> {
     [2]?: Fn<any[], any>;
 }
 
+export type ConvolutionKernel1D = [number, number][];
+export type ConvolutionKernel2D = [number, [number, number]][];
+export type ConvolutionKernel3D = [number, [number, number, number]][];
+
 export const SEMAPHORE = Symbol("SEMAPHORE");
