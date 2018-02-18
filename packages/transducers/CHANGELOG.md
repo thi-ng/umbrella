@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.1.0...@thi.ng/transducers@1.2.0) (2018-02-18)
+
+
+### Bug Fixes
+
+* **transducers:** update imports `step()` ([48f8bb8](https://github.com/thi-ng/umbrella/commit/48f8bb8))
+
+
+### Features
+
+* **transducers:** add convolve2d xform & types ([ab8a855](https://github.com/thi-ng/umbrella/commit/ab8a855))
+* **transducers:** add movingMedian() xform ([d7b1d0d](https://github.com/thi-ng/umbrella/commit/d7b1d0d))
+* **transducers:** add range2d / range3d generators ([722042b](https://github.com/thi-ng/umbrella/commit/722042b))
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.7...@thi.ng/transducers@1.1.0) (2018-02-08)
 

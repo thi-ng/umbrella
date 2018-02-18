@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,7 +26,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/checks": "^1.2.0"
+        "@thi.ng/checks": "^1.2.1"
     },
     "keywords": [
         "clojure",

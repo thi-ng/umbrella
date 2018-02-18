@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.9.4...@thi.ng/rstream@1.0.0) (2018-02-18)
+
+
+### Features
+
+* **rstream:** fix [#8](https://github.com/thi-ng/umbrella/issues/8), support infinite StreamMerge's, update ctor ([4942e2e](https://github.com/thi-ng/umbrella/commit/4942e2e))
+
+
+### BREAKING CHANGES
+
+* **rstream:** StreamMerge ctor now accepts an options object
+only (`StreamMergeOpts`).
+
+
+
+
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@0.9.3...@thi.ng/rstream@0.9.4) (2018-02-08)
 

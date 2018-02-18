@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.5.3...@thi.ng/atom@0.6.0) (2018-02-18)
+
+
+### Bug Fixes
+
+* **atom:** empty path handling getter/setter ([fbc819e](https://github.com/thi-ng/umbrella/commit/fbc819e))
+
+
+### Features
+
+* **atom:** add deleteIn() ([b593a9b](https://github.com/thi-ng/umbrella/commit/b593a9b))
+* **atom:** add getIn/setIn/updateIn ([6f6e7e5](https://github.com/thi-ng/umbrella/commit/6f6e7e5))
+
+
+
+
 <a name="0.5.3"></a>
 ## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.5.2...@thi.ng/atom@0.5.3) (2018-02-08)
 
