@@ -74,11 +74,13 @@ setTimeout(()=> raf.done(), 10000);
 ### Stream merging
 
 ```typescript
-new rs.StreamMerge([
-    rs.fromEvent(document, "mousemove"),
-    rs.fromEvent(document, "mousedown"),
-    rs.fromEvent(document, "mouseup"),
-])
+new rs.StreamMerge({
+    src: [
+        rs.fromEvent(document, "mousemove"),
+        rs.fromEvent(document, "mousedown"),
+        rs.fromEvent(document, "mouseup"),
+    ]
+})
 // add event transformer
 .subscribe(tx.map((e) => [e.type, [e.clientX, e.clientY]]))
 // add debug subscription
@@ -97,7 +99,7 @@ import * as atom from "@thi.ng/atom";
 import * as tx from "@thi.ng/transducers";
 
 // central app state / single source of truth
-const app = new atom.Atom({ui: {theme: "dark", mode: false}, foo: "bar"});
+const app = new atom.Atom({ ui: { theme: "dark", mode: false}, foo: "bar" });
 
 // define some cursors for different UI params
 const theme = new atom.Cursor(app, "ui.theme");
@@ -134,8 +136,8 @@ hist.redo();  // 1st
 // theme: light
 // { theme: 'light', mode: false }
 
-// update another part of the app state (SPREAD, DON'T MUTATE!)
-app.swap((state) => ({...state, session: {user: "asterix"}}));
+// update another part of the app state (DON'T MUTATE!)
+app.swap((state) => atom.setIn(state, "session.user", "asterix"));
 // user: asterix
 // { ui: { theme: 'light', mode: false },
 //   foo: 'bar',

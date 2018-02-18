@@ -21,11 +21,13 @@ describe("StreamMerge", () => {
     };
 
     beforeEach(() => {
-        src = new rs.StreamMerge<number, number>([
-            rs.fromIterable([1, 2]),
-            rs.fromIterable([10, 20, 30, 40]),
-            rs.fromIterable([100, 200, 300])
-        ]);
+        src = new rs.StreamMerge<number, number>({
+            src: [
+                rs.fromIterable([1, 2]),
+                rs.fromIterable([10, 20, 30, 40]),
+                rs.fromIterable([100, 200, 300])
+            ]
+        });
     });
 
     it("merges all inputs", (done) => {
@@ -35,10 +37,18 @@ describe("StreamMerge", () => {
     });
 
     it("merges dynamic inputs", (done) => {
-        src = new rs.StreamMerge([]);
+        src = new rs.StreamMerge();
         src.add(rs.fromIterable([1, 2, 3, 4], 10));
         src.add(rs.fromIterable([10, 20], 5));
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
+    });
+
+    it("merges dynamic inputs (synchronous)", (done) => {
+        src = new rs.StreamMerge({ close: false });
+        src.subscribe(check([1, 2, 3, 4, 10, 20], done));
+        src.add(rs.fromIterableSync([1, 2, 3, 4]));
+        src.add(rs.fromIterableSync([10, 20]));
+        src.done();
     });
 
     it("stops when no more subs", () => {
@@ -52,13 +62,13 @@ describe("StreamMerge", () => {
     });
 
     it("applies transducer", (done) => {
-        src = new rs.StreamMerge<number, number>(
-            [
+        src = new rs.StreamMerge<number, number>({
+            src: [
                 rs.fromIterable([1, 2]),
                 rs.fromIterable([10, 20])
             ],
-            tx.mapcat((x: number) => [x, x + 1])
-        );
+            xform: tx.mapcat((x: number) => [x, x + 1])
+        });
         src.subscribe(check([1, 2, 2, 3, 10, 11, 20, 21], done));
     });
 
