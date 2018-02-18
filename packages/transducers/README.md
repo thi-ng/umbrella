@@ -47,6 +47,9 @@ yarn add @thi.ng/transducers
 
 ## Usage examples
 
+**There're several standalone example projects using this library in the
+[/examples](../examples) directory.**
+
 Almost all functions can be imported selectively, but for development purposes
 full module re-exports are defined.
 

@@ -102,6 +102,10 @@ A fully documented todo list app with undo / redo feature is here:
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
 
+### Cellular automata
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata) | [Live demo](http://demo.thi.ng/umbrella/cellular-automata/)
+
 ### SVG particles
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/svg-particles/)
