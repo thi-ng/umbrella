@@ -15,8 +15,8 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/atom": "^0.5.2",
-        "@thi.ng/hiccup-dom": "^1.0.1",
-        "@thi.ng/transducers": "^1.0.7"
+        "@thi.ng/atom": "^0.6.0",
+        "@thi.ng/hiccup-dom": "^1.0.5",
+        "@thi.ng/transducers": "^1.2.0"
     }
 }
