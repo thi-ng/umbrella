@@ -25,7 +25,7 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements
             src = args[1];
             level = args[2] !== undefined ? args[2] : level;
         }
-        super(src, id);
+        super({ src, id, close: false });
         this.level = level;
     }
 
