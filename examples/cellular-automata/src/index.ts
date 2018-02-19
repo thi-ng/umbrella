@@ -2,7 +2,9 @@ import { start } from "@thi.ng/hiccup-dom";
 import { dropdown, DropDownOption } from "@thi.ng/hiccup-dom-components/dropdown";
 
 import { transduce } from "@thi.ng/transducers/transduce";
+import { step } from "@thi.ng/transducers/step";
 import { comp } from "@thi.ng/transducers/func/comp";
+import { lookup2d } from "@thi.ng/transducers/func/lookup";
 import { range2d } from "@thi.ng/transducers/iter/range2d";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { push } from "@thi.ng/transducers/rfn/push";
@@ -18,38 +20,37 @@ const H = 48;
 
 const presets: DropDownOption[] = [
     ["", "custom"],
-    ["000100000-001100000", "conway"],
-    ["000100000-001110000", "maze #1"],
-    ["000111111-000001111", "maze #2"],
-    ["000001111-111111110", "dots"],
-    ["000101111-000001111", "growth"],
-    ["000001011-001011111", "organic"],
-    ["000010011-000011111", "angular"],
+    ["000100000001100000", "conway"],
+    ["000100000001110000", "maze #1"],
+    ["000111111000001111", "maze #2"],
+    ["000001111111111110", "dots"],
+    ["000101111000001111", "growth"],
+    ["000001011001011111", "organic"],
+    ["000010011000011111", "angular"],
 ];
 
-let grid;
-let rules;
+// container for cell states
+let grid: number[];
+// CA rules are stored in a linearized 2x9 array: 2 groups of 9 bits each
+// essentially these rules are a compressed finite state machine
+let rules: number[];
 // 3x3 convolution kernel (Moore neighborhood)
 const kernel = buildKernel2d([1, 1, 1, 1, 0, 1, 1, 1, 1], 3, 3);
 
-const setHash = () => (location.hash = rules[0].join("") + "-" + rules[1].join(""));
+const setHash = () => (location.hash = rules.join(""));
 
-// parse rules from string (e.g. location hash): 2 groups of 9 bits each
-// (essentially these rules are a compressed finite state machine)
-const parseRules = (raw) =>
-    transduce(
-        comp(
-            map((x: string) => parseInt(x, 2)),
-            bits(9),
-            partition(9)
-        ),
-        push(),
-        raw.split("-")
-    );
+// build transducer to parse rules from string (e.g. location hash or preset)
+// (an older version used a preset format w/ "-" to separate rule groups)
+const parseRules = step(
+    comp(
+        map((x: string) => parseInt(x.replace("-", ""), 2)),
+        bits(18)
+    )
+);
 
 const applyRules = (raw) => {
-    if (raw.length === 19) {
-        rules = parseRules(raw);
+    if (raw.length >= 18) {
+        rules = <number[]>parseRules(raw);
         randomizeGrid();
         setHash();
     }
@@ -59,39 +60,41 @@ const applyRules = (raw) => {
 const randomSeq = (num, prob = 0.5) => [...repeatedly(() => Math.random() < prob ? 1 : 0, num)];
 const randomizeGrid = (prob = 0.5) => (grid = randomSeq(W * H, prob));
 const randomizeRules = () => {
-    rules = [randomSeq(9), randomSeq(9)];
+    rules = randomSeq(18);
     randomizeGrid();
     setHash();
 };
 
-// apply convolution & CA rules
+// apply convolution & CA rules (in basically 2 lines of code, i.e. the transducer part!!)
 // this produces the next generation of the CA
-// we're using `multiplex` to produce a tuple of `[orig-cell-value, neighbor-count]`
-export const convolve = (src, wrap = true) =>
+// we're using `multiplex` to run 2 transducers in parallel and
+// produce a tuple of `[neighbor-count, orig-cell-value]`
+// this tuple is then used to lookup the next cell state using the current rule set
+export const convolve = (src: number[], rules: number[], width: number, height: number, rstride = 9, wrap = true) =>
     transduce(
         comp(
-            multiplex(map((p) => src[p[0] + p[1] * W]), convolve2d(src, W, H, kernel, wrap)),
-            map(([alive, neighbors]) => rules[alive][neighbors])
+            multiplex(convolve2d(src, width, height, kernel, wrap), map(lookup2d(src, width))),
+            map(lookup2d(rules, rstride))
         ),
         push(),
-        range2d(W, H)
+        range2d(width, height)
     );
 
 // format grid values as string
-const format = (src) =>
+const format = (src: number[], width: number, fill = "\u2588", empty = " ") =>
     transduce(
         comp(
-            map((x: number) => x ? "\u2588" : " "),
-            partition(W),
-            map(x => x.join(""))
+            map((x: number) => x ? fill : empty),
+            partition(width),
+            map((x) => x.join(""))
         ),
         str("\n"),
         src
     );
 
 // event handler for rule edits
-const setRule = (i, j, s) => {
-    rules[i][j] = s ? 1 : 0;
+const setRule = (i: number, j: number, s: number, rstride = 9) => {
+    rules[i * rstride + j] = s ? 1 : 0;
     setHash();
 };
 
@@ -99,14 +102,16 @@ const setRule = (i, j, s) => {
 const checkbox = (x, onchange) => ["input", { type: "checkbox", checked: !!x, onchange }];
 
 // component for single CA rule group (alive / dead FSM)
-const ruleBoxes = (prefix, i) =>
+const ruleBoxes = (prefix, i, rstride = 9) =>
     ["div",
         ["label", prefix],
-        ...rules[i].map((rule, j) => checkbox(rule, (e) => setRule(i, j, e.target.checked))),
+        ...rules
+            .slice(i * rstride, (i + 1) * rstride)
+            .map((rule, j) => checkbox(rule, (e) => setRule(i, j, e.target.checked))),
     ];
 
 // Use Conway CA default state rules [[dead], [alive]] if no preset present in hash
-applyRules(location.hash.length === 20 ? location.hash.substr(1) : presets[1][0]);
+applyRules(location.hash.length > 18 ? location.hash.substr(1) : presets[1][0]);
 
 // define & start main app component
 start("app", () => {
@@ -118,6 +123,6 @@ start("app", () => {
             ["button", { onclick: () => randomizeGrid() }, "reset grid"],
             dropdown({ onchange: (e) => applyRules(e.target.value) }, presets, location.hash.substr(1))
         ],
-        ["pre", format(grid = convolve(grid))]
+        ["pre", format(grid = convolve(grid, rules, W, H), W)]
     ];
 });
