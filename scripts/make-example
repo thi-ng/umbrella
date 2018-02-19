@@ -73,6 +73,12 @@ module.exports = {
 };
 EOF
 
+echo "writing .gitignore..."
+cat << EOF > $MODULE/.gitignore
+node_modules
+yarn.lock
+*.js
+EOF
 
 echo "writing index.html..."
 cat << EOF > $MODULE/index.html
