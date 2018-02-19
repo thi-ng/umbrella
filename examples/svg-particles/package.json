@@ -7,7 +7,8 @@
     "scripts": {
         "build": "yarn clean && webpack",
         "clean": "rm -rf bundle.*",
-        "dev": "open index.html && webpack -w"
+        "dev": "open index.html && webpack -w",
+        "debdev": "see index.html && webpack -w"
     },
     "devDependencies": {
         "ts-loader": "^3.5.0",
@@ -16,6 +17,6 @@
     },
     "dependencies": {
         "@thi.ng/hiccup-dom": "^1.0.5",
-        "@thi.ng/transducers": "^1.2.0"
+        "@thi.ng/transducers": "^1.3.0"
     }
 }
