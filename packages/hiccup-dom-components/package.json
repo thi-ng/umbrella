@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-dom-components",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
