@@ -17,6 +17,7 @@
     "dependencies": {
         "@thi.ng/api": "^2.0.3",
         "@thi.ng/hiccup-dom": "^1.0.5",
+        "@thi.ng/hiccup-dom-components": "^0.0.1",
         "@thi.ng/rstream": "^1.0.0",
         "@thi.ng/transducers": "^1.2.0"
     }

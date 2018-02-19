@@ -1,4 +1,5 @@
 import { start } from "@thi.ng/hiccup-dom";
+import { dropdown, DropDownOption } from "@thi.ng/hiccup-dom-components/dropdown";
 
 import { transduce } from "@thi.ng/transducers/transduce";
 import { comp } from "@thi.ng/transducers/func/comp";
@@ -15,21 +16,46 @@ import { partition } from "@thi.ng/transducers/xform/partition";
 const W = 128;
 const H = 48;
 
+const presets: DropDownOption[] = [
+    ["", "custom"],
+    ["000100000-001100000", "conway"],
+    ["000100000-001110000", "maze #1"],
+    ["000111111-000001111", "maze #2"],
+    ["000001111-111111110", "dots"],
+    ["000101111-000001111", "growth"],
+    ["000001011-001011111", "organic"],
+    ["000010011-000011111", "angular"],
+];
+
 let grid;
 let rules;
 // 3x3 convolution kernel (Moore neighborhood)
 const kernel = buildKernel2d([1, 1, 1, 1, 0, 1, 1, 1, 1], 3, 3);
 
-// parse rules from location hash (2 groups of 9 bits each)
-// (essentially this is a compressed finite state machine)
-if (location.hash.length === 20) {
-    rules = transduce(comp(map((x: string) => parseInt(x, 2)), bits(9), partition(9)), push(), location.hash.substr(1).split("-"));
-} else {
-    // Conway CA default state rules [[dead], [alive]]
-    rules = [[0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0, 0]];
-}
-
 const setHash = () => (location.hash = rules[0].join("") + "-" + rules[1].join(""));
+
+// parse rules from string (e.g. location hash): 2 groups of 9 bits each
+// (essentially these rules are a compressed finite state machine)
+const parseRules = (raw) =>
+    transduce(
+        comp(
+            map((x: string) => parseInt(x, 2)),
+            bits(9),
+            partition(9)
+        ),
+        push(),
+        raw.split("-")
+    );
+
+const applyRules = (raw) => {
+    if (raw.length === 19) {
+        rules = parseRules(raw);
+        randomizeGrid();
+        setHash();
+    }
+};
+
+// create random bit sequence w/ ones appearing in given probability
 const randomSeq = (num, prob = 0.5) => [...repeatedly(() => Math.random() < prob ? 1 : 0, num)];
 const randomizeGrid = (prob = 0.5) => (grid = randomSeq(W * H, prob));
 const randomizeRules = () => {
@@ -79,16 +105,19 @@ const ruleBoxes = (prefix, i) =>
         ...rules[i].map((rule, j) => checkbox(rule, (e) => setRule(i, j, e.target.checked))),
     ];
 
-// seed grid with noise
-randomizeGrid();
+// Use Conway CA default state rules [[dead], [alive]] if no preset present in hash
+applyRules(location.hash.length === 20 ? location.hash.substr(1) : presets[1][0]);
 
 // define & start main app component
 start("app", () => {
     return ["div",
         ruleBoxes("birth", 0),
         ruleBoxes("survive", 1),
-        ["div", ["button", { onclick: () => randomizeRules() }, "randomize rules"]],
-        ["div", ["button", { onclick: () => randomizeGrid() }, "reset grid"]],
+        ["div",
+            ["button", { onclick: () => randomizeRules() }, "randomize rules"],
+            ["button", { onclick: () => randomizeGrid() }, "reset grid"],
+            dropdown({ onchange: (e) => applyRules(e.target.value) }, presets, location.hash.substr(1))
+        ],
         ["pre", format(grid = convolve(grid))]
     ];
 });
