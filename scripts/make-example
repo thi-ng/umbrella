@@ -22,7 +22,8 @@ cat << EOF > $MODULE/package.json
     "scripts": {
         "build": "yarn clean && webpack",
         "clean": "rm -rf bundle.*",
-        "dev": "open index.html && webpack -w"
+        "dev": "open index.html && webpack -w",
+        "debdev": "see index.html && webpack -w"
     },
     "devDependencies": {
         "ts-loader": "^3.3.1",
@@ -101,7 +102,17 @@ cat << EOF > $MODULE/README.md
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/$1
 yarn install
+\`\`\`
+Then
+
+\`\`\`
+\# For Mac
 yarn dev
+\`\`\`
+
+\`\`\`
+\# For Debian, Ubuntu, Etc.
+yarn debdev
 \`\`\`
 
 Once webpack has completed building, refresh your browser...
