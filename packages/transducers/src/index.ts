@@ -94,6 +94,7 @@ export * from "./func/hex";
 export * from "./func/identity";
 export * from "./func/juxt";
 export * from "./func/key-selector";
+export * from "./func/lookup";
 export * from "./func/odd";
 export * from "./func/renamer";
 export * from "./func/swizzler";
