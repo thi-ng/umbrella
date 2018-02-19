@@ -1,20 +1,5 @@
 import { start } from "@thi.ng/hiccup-dom";
-
-// reusable GL canvas component
-const glcanvas = (init, update, attribs) => {
-    let gl: WebGLRenderingContext;
-    let frame = 0;
-    return [{
-        init(el: HTMLCanvasElement) {
-            gl = el.getContext("webgl");
-            init(gl);
-        },
-        render() {
-            gl && update(gl, frame++);
-            return ["canvas", attribs]
-        }
-    }];
-};
+import { canvasWebGL } from "@thi.ng/hiccup-dom-components/canvas";
 
 // canvas init hook
 const initGL = (_: WebGLRenderingContext) => {
@@ -37,7 +22,7 @@ start(
     document.getElementById("app"),
     // instantiate multiple canvases w/ different configs
     ["div",
-        glcanvas(initGL, updateGL(0, 0.01), { width: 100, height: 100 }),
-        glcanvas(initGL, updateGL(200, 0.025), { width: 100, height: 100 }),
-        glcanvas(initGL, updateGL(400, 0.05), { width: 100, height: 100 })]
+        canvasWebGL(initGL, updateGL(0, 0.01), { width: 100, height: 100 }),
+        canvasWebGL(initGL, updateGL(200, 0.025), { width: 100, height: 100 }),
+        canvasWebGL(initGL, updateGL(400, 0.05), { width: 100, height: 100 })]
 );
