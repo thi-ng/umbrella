@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.2.0...@thi.ng/transducers@1.3.0) (2018-02-19)
+
+
+### Features
+
+* **transducers:** add lookup1d/2d/3d helpers, update re-exports ([193058d](https://github.com/thi-ng/umbrella/commit/193058d))
+
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.1.0...@thi.ng/transducers@1.2.0) (2018-02-18)
 
