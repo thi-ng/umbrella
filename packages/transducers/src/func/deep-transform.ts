@@ -24,7 +24,7 @@ import { TransformSpec } from "../api";
  * // source object to be transformed
  * src = {
  *    meta: {
- *      author: { name: "Alice", email: "a@.b.com" },
+ *      author: { name: "Alice", email: "a@b.com" },
  *      date: 1041510896000
  *    },
  *    type: "post",

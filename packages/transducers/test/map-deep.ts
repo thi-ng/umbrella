@@ -1,0 +1,40 @@
+import { deepTransform } from "../src/func/deep-transform";
+
+import * as assert from "assert";
+
+describe("deepTransform", () => {
+    it("transforms hiccup", () => {
+        assert.deepEqual(
+            deepTransform(
+                [
+                    ({ type, meta, title, body }) => ["div", { class: type }, title, meta, body],
+                    {
+                        meta: [
+                            ({ author, date }) => ["div.meta", author, `(${date})`],
+                            {
+                                author: ({ email, name }) => ["a", { href: `mailto:${email}` }, name],
+                                date: (d) => new Date(d).toLocaleString()
+                            }
+                        ],
+                        title: (title) => ["h1", title]
+                    }
+                ]
+            )(
+                {
+                    meta: {
+                        author: { name: "Alice", email: "a@b.com" },
+                        date: 1041510896000
+                    },
+                    type: "post",
+                    title: "Hello world",
+                    body: "Ratione necessitatibus doloremque itaque."
+                }
+            ),
+            ['div',
+                { class: 'post' },
+                ['h1', 'Hello world'],
+                ['div.meta', ["a", { href: "mailto:a@b.com" }, "Alice"], '(1/2/2003, 12:34:56 PM)'],
+                'Ratione necessitatibus doloremque itaque.']
+        );
+    });
+});
