@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.3.0...@thi.ng/transducers@1.4.0) (2018-02-23)
+
+
+### Features
+
+* **transducers:** add deepTransform & mapDeep xform ([f0fdfa1](https://github.com/thi-ng/umbrella/commit/f0fdfa1))
+
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.2.0...@thi.ng/transducers@1.3.0) (2018-02-19)
 
