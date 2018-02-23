@@ -7,8 +7,8 @@ import { TransformSpec } from "../api";
  * array reflecting same key structure as the object to be mapped,
  * but with functions or sub-specs as their values.
  * Returns a new function, which when called, recursively applies
- * nested transformers in post traversal order and returns the result
- * of the root transformer given.
+ * nested transformers in post-order traversal (child transformers
+ * are run first) and returns the result of the root transformer.
  *
  * The transform specs are given as arrays in this format:
  *
@@ -16,9 +16,9 @@ import { TransformSpec } from "../api";
  * [tx-function, {key1: [tx-function, {...}], key2: tx-fn}]
  * ```
  *
- * If a key in the spec has no further sub maps, its transform function
- * can be given directly without having to wrap it into the usual array
- * structure.
+ * If a key in the spec has no further sub maps, its transform
+ * function can be given directly without having to wrap it into
+ * the usual array structure.
  *
  * ```
  * // source object to be transformed

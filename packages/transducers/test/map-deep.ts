@@ -13,7 +13,7 @@ describe("deepTransform", () => {
                             ({ author, date }) => ["div.meta", author, `(${date})`],
                             {
                                 author: ({ email, name }) => ["a", { href: `mailto:${email}` }, name],
-                                date: (d) => new Date(d).toLocaleString()
+                                date: (epoch) => new Date(epoch).toISOString()
                             }
                         ],
                         title: (title) => ["h1", title]
@@ -33,7 +33,7 @@ describe("deepTransform", () => {
             ['div',
                 { class: 'post' },
                 ['h1', 'Hello world'],
-                ['div.meta', ["a", { href: "mailto:a@b.com" }, "Alice"], '(1/2/2003, 12:34:56 PM)'],
+                ['div.meta', ["a", { href: "mailto:a@b.com" }, "Alice"], '(2003-01-02T12:34:56.000Z)'],
                 'Ratione necessitatibus doloremque itaque.']
         );
     });

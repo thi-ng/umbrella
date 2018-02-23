@@ -21,9 +21,11 @@ export type ConvolutionKernel1D = [number, number][];
 export type ConvolutionKernel2D = [number, [number, number]][];
 export type ConvolutionKernel3D = [number, [number, number, number]][];
 
+export type TransformFn = (x: any) => any;
+export type TransformSubSpec = IObjectOf<TransformSpec | TransformFn>;
 export interface TransformSpec extends Array<any> {
-    [0]: (x: any) => any;
-    [1]?: IObjectOf<TransformSpec | ((x: any) => any)>;
+    [0]: TransformFn;
+    [1]?: TransformSubSpec;
 }
 
 export const SEMAPHORE = Symbol("SEMAPHORE");
