@@ -1,5 +1,6 @@
-import { isFunction } from "@thi.ng/checks/is-function";
 import { start } from "@thi.ng/hiccup-dom";
+import { TransformSubSpec } from "@thi.ng/transducers/api";
+import { deepTransform } from "@thi.ng/transducers/func/deep-transform";
 
 // some dummy JSON records
 let db = [
@@ -43,38 +44,17 @@ const tags = (tags) => ["ul.tags", ...tags.map(tag)];
 const title = (title, level = 3) => [`h${level}`, title];
 const content = (body) => ["div", body];
 
-// generic JSON object tree transformer
-// called with a nested object spec reflecting the structure
-// of the source data, returns composed component function,
-// which calls all nested sub-components
-const componentFromSpec = (spec) => {
-    if (isFunction(spec)) {
-        return spec;
-    }
-    const mapfns = Object.keys(spec[1]).reduce(
-        (acc, k) => (acc[k] = componentFromSpec(spec[1][k]), acc),
-        {}
-    );
-    return (x) => {
-        const res = {};
-        for (let k in mapfns) {
-            res[k] = x[k] != null ? mapfns[k](x[k]) : undefined;
-        }
-        return spec[0](res);
-    };
-};
-
-// now build themed component functions for the above JSON object format
+// now compose themed component functions for the above JSON object format
 // the spec below is is only partially complete and will be reused by
 // the two themes below (this is only for demo purposes and of course
 // one could supply completely different functions per theme, but KISS here... :)
 
 // the full spec is an array of this recursive structure:
 // [mapfn, {optional chid key specs...}]
-// for leaf keys only a function needs to be given, no need to wrap in array
+// for leaf keys only a function needs to be given, no need to wrap in array.
 // giving component functions the same name as their object keys
 // makes this format very succinct
-const itemSpec = {
+const itemSpec: TransformSubSpec = {
     meta: [
         meta,
         {
@@ -87,9 +67,13 @@ const itemSpec = {
     content
 };
 
-// build themed component instances
-const itemLight = componentFromSpec([item("light"), itemSpec]);
-const itemDark = componentFromSpec([item("dark"), itemSpec]);
+// build themed component instances using @thi.ng/tranducers' deepTransform()
+// deepTransform() is generic object tree transformer
+// called with a nested object spec reflecting the structure
+// of the source data, returns composed component function,
+// which calls all nested transformer functions in post-order traversal
+const itemLight = deepTransform([item("light"), itemSpec]);
+const itemDark = deepTransform([item("dark"), itemSpec]);
 
 // simple text area editor for our JSON data
 // any change to the input should be immediately
