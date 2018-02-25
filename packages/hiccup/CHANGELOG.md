@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.0.2...@thi.ng/hiccup@1.1.0) (2018-02-24)
+
+
+### Features
+
+* **hiccup:** add support for more SVG tags (66 total) ([44f33df](https://github.com/thi-ng/umbrella/commit/44f33df))
+
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.0.1...@thi.ng/hiccup@1.0.2) (2018-02-18)
 
