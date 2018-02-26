@@ -195,7 +195,7 @@ deleteIn(state, "a.b.c.")
 // {a: {b: {}}}
 ```
 
-Only keys in the path will be modied, all other keys present in the given
+Only keys in the path will be modified, all other keys present in the given
 object retain their original values to provide efficient structural sharing /
 re-use. This is the same *behavior* as in Clojure's immutable maps or those
 provided by ImmutableJS (albeit those implementation are completely different -

@@ -29,7 +29,7 @@ const tasks = new atom.History<IObjectOf<Task>>(new atom.Cursor(db, "tasks"), 10
 const nextID = new atom.Cursor<number>(db, "nextID");
 
 // state updaters
-// each applies it's updates via the history atom wrapper
+// each applies its updates via the history atom wrapper
 // the `atom.setter` calls produce an immutable update function for given paths
 const addNewTask = () => tasks.swap((tasks) => atom.setIn(tasks, nextID.swap((id) => id + 1), { body: "", done: false }));
 const toggleTask = (id) => tasks.swap((tasks) => atom.updateIn(tasks, [id, "done"], done => !done));
