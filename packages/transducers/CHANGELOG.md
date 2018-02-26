@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.4.0...@thi.ng/transducers@1.5.0) (2018-02-26)
+
+
+### Features
+
+* **transducers:** add keys()/vals() iterators, refactor pairs() ([9824844](https://github.com/thi-ng/umbrella/commit/9824844))
+
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.3.0...@thi.ng/transducers@1.4.0) (2018-02-23)
 
