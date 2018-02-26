@@ -1,4 +1,5 @@
 export const SVG_NS = "http://www.w3.org/2000/svg";
+export const XLINK_NS = "http://www.w3.org/1999/xlink";
 
 export const TAG_REGEXP = /^([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?$/;
 
@@ -8,7 +9,7 @@ export const SVG_TAGS = "animate animateColor animateMotion animateTransform cir
     .reduce((acc, x) => (acc[x] = 1, acc), {});
 
 // tslint:disable-next-line
-export const VOID_TAGS = "area base br col command embed hr img input keygen link meta param source track wbr circle ellipse line path polygon polyline rect stop"
+export const VOID_TAGS = "area base br circle col command ellipse embed hr img input keygen line link meta param path polygon polyline rect source stop track use wbr"
     .split(" ")
     .reduce((acc, x) => (acc[x] = 1, acc), {});
 
