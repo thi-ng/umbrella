@@ -96,6 +96,12 @@ cycle hooks), which aren't needed for the static serialization use cases of
 hiccup. Both experiments started in early 2016, but have somewhat evolved
 independently and require some conceptional synchronization.
 
+### Dataflow graph SVG components
+
+This is a preview of the upcoming [@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) package:
+
+[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live demo](demo.thi.ng/umbrella/estuary/)
+
 ### Todo list
 
 A fully documented todo list app with undo / redo feature is here:
@@ -154,7 +160,7 @@ const app = (() => {
 })();
 
 // start update loop (RAF)
-window.addEventListener("load", () => start(document.getElementById("app"), app));
+window.addEventListener("load", () => start("app", app));
 ```
 
 ### @thi.ng/rstream integration
