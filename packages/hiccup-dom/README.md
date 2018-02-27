@@ -78,6 +78,10 @@ If you're interested in using this, please also consider the
 packages to integrate app state handling, event streams & reactive value
 subscriptions. More examples are forthcoming...
 
+## Status
+
+This project is currently still in BETA. The overall "API" is stable, but there's still further work planned on optimization and generalization beyond the standard browser DOM use cases (see #4). Furthermore, the project has been used for several projects in production since 2016.
+
 ## Installation
 
 ```
@@ -95,6 +99,12 @@ are supported in general. This project also has additional features (e.g. life
 cycle hooks), which aren't needed for the static serialization use cases of
 hiccup. Both experiments started in early 2016, but have somewhat evolved
 independently and require some conceptional synchronization.
+
+### Dataflow graph SVG components
+
+This is a preview of the upcoming [@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) package:
+
+[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live demo](demo.thi.ng/umbrella/estuary/)
 
 ### Todo list
 
@@ -154,7 +164,7 @@ const app = (() => {
 })();
 
 // start update loop (RAF)
-window.addEventListener("load", () => start(document.getElementById("app"), app));
+window.addEventListener("load", () => start("app", app));
 ```
 
 ### @thi.ng/rstream integration
