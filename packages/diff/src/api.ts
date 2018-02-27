@@ -1,23 +1,19 @@
-export interface DiffLogPair extends Array<any> {
+import { IObjectOf } from "@thi.ng/api/api";
+
+export interface DiffLogEntry<T> extends Array<any> {
     [0]: number;
-    [1]: any;
+    [1]: number;
+    [2]: T;
 }
 
-export interface DiffLogEntry extends Array<any> {
-    [0]: number;
-    [1]: DiffLogPair;
-}
+export type DiffKeyMap<T> = IObjectOf<T>;
 
-export interface DiffKeyMap {
-    [id: number]: any;
-}
-
-export interface ArrayDiff {
+export interface ArrayDiff<T> {
     distance: number;
-    adds: DiffKeyMap;
-    dels: DiffKeyMap;
-    const: DiffKeyMap;
-    linear: DiffLogEntry[];
+    adds: DiffKeyMap<T>;
+    dels: DiffKeyMap<T>;
+    const: DiffKeyMap<T>;
+    linear: DiffLogEntry<T>[];
 }
 
 export interface ObjectDiff {

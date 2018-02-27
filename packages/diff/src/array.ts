@@ -1,4 +1,4 @@
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv as _equiv } from "@thi.ng/api/equiv";
 
 import { ArrayDiff } from "./api";
 
@@ -6,14 +6,14 @@ import { ArrayDiff } from "./api";
  * Based on "An O(NP) Sequence Comparison Algorithm""
  * by Wu, Manber, Myers and Miller
  *
- * http://www.itu.dk/stud/speciale/bepjea/xwebtex/litt/an-onp-sequence-comparison-algorithm.pdf
- * https://github.com/cubicdaiya/onp
+ * - http://www.itu.dk/stud/speciale/bepjea/xwebtex/litt/an-onp-sequence-comparison-algorithm.pdf
+ * - https://github.com/cubicdaiya/onp
  *
  * Various optimizations, fixes & refactorings.
- * Uses `equiv` for equality checks.
+ * By default uses `@thi.ng/api/equiv` for equality checks.
  */
-export function diffArray(_a, _b) {
-    const state = <ArrayDiff>{
+export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv) {
+    const state = <ArrayDiff<T>>{
         distance: 0,
         adds: {},
         dels: {},
@@ -26,6 +26,7 @@ export function diffArray(_a, _b) {
     const reverse = _a.length >= _b.length;
     const adds = state[reverse ? "dels" : "adds"];
     const dels = state[reverse ? "adds" : "dels"];
+    const linear = state.linear;
     const aID = reverse ? -1 : 1;
     const dID = reverse ? 1 : -1;
     let a, b, na, nb;
@@ -51,8 +52,14 @@ export function diffArray(_a, _b) {
 
     function snake(k, p, pp) {
         const koff = k + offset;
-        const r = path[koff + ((p > pp) ? -1 : 1)];
-        let y = p > pp ? p : pp;
+        let r, y;
+        if (p > pp) {
+            r = path[koff - 1];
+            y = p;
+        } else {
+            r = path[koff + 1];
+            y = pp;
+        }
         let x = y - k;
         while (x < na && y < nb && equiv(a[x], b[y])) {
             x++;
@@ -89,15 +96,15 @@ export function diffArray(_a, _b) {
             const d = e[1] - e[0];
             if (d > py - px) {
                 adds[py] = v = b[py];
-                state.linear.push([aID, [py, v]]);
+                linear.push([aID, py, v]);
                 py++;
             } else if (d < py - px) {
                 dels[px] = v = a[px];
-                state.linear.push([dID, [px, v]]);
+                linear.push([dID, px, v]);
                 px++;
             } else {
                 state.const[px] = v = a[px];
-                state.linear.push([0, [px, v]]);
+                linear.push([0, px, v]);
                 px++;
                 py++;
             }
