@@ -13,9 +13,9 @@ const hex6 = tx.hex(6);
  *
  * @param id
  */
-const box = (id: number) => [
+const box = (index: number, id: number) => [
     (id & 1) ? "div" : "box",
-    { style: { background: "#" + hex6((id & 0x1ff) << 15 | id << 10 | id) } },
+    { key: index, style: { background: "#" + hex6((id & 0x1ff) << 15 | id << 10 | id) } },
     hex4(id & 0xffff)
 ];
 
@@ -99,8 +99,9 @@ const app = () => {
         let j = (++i) & 0x1ff;
         return ["div",
             ["div#stats", fps, menu],
-            tx.transduce(tx.map(box), tx.push(), <any>["grid"], tx.range(j, j + num))];
+            ["grid", ...tx.iterator(tx.mapIndexed(box), tx.range(j, j + num))]
+        ];
     };
 };
 
-start(document.getElementById("app"), app());
+start(document.getElementById("app"), app(), false);
