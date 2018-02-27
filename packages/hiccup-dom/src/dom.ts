@@ -121,7 +121,7 @@ export function updateValueAttrib(el: HTMLInputElement, v: any) {
     el.value = v;
 }
 
-export function removeAttribs(el: Element, attribs: any[]) {
+export function removeAttribs(el: Element, attribs: string[]) {
     for (let i = attribs.length - 1; i >= 0; i--) {
         el.removeAttribute(attribs[i]);
     }
