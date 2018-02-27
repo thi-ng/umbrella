@@ -78,6 +78,10 @@ If you're interested in using this, please also consider the
 packages to integrate app state handling, event streams & reactive value
 subscriptions. More examples are forthcoming...
 
+## Status
+
+This project is currently still in BETA. The overall "API" is stable, but there's still further work planned on optimization and generalization beyond the standard browser DOM use cases (see #4). Furthermore, the project has been used for several projects in production since 2016.
+
 ## Installation
 
 ```
