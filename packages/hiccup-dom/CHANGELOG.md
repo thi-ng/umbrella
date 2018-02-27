@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-dom@1.0.7...@thi.ng/hiccup-dom@1.1.0) (2018-02-27)
+
+
+### Features
+
+* **hiccup-dom:** fix [#11](https://github.com/thi-ng/umbrella/issues/11), update normalizeTree/normalizeElement ([f5b6675](https://github.com/thi-ng/umbrella/commit/f5b6675))
+* **hiccup-dom:** start(), add optional spans arg ([8a070ff](https://github.com/thi-ng/umbrella/commit/8a070ff))
+
+
+
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-dom@1.0.6...@thi.ng/hiccup-dom@1.0.7) (2018-02-26)
 
