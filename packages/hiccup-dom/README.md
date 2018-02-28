@@ -23,32 +23,34 @@ Benefits:
 - Only ~10KB minified
 
 ```typescript
-import { serialize } from "@thi.ng/hiccup";
-import { start } from "@thi.ng/hiccup-dom";
+import * as hiccup from "@thi.ng/hiccup";
+import * as hdom from "@thi.ng/hiccup-dom";
 
 // stateless component w/ params
 const greeter = (name) => ["h1.title", "hello ", name];
 
 // component w/ local state
-const counter = () => {
-    let i = 0;
+const counter = (i = 0) => {
     return () => ["button", { onclick: () => (i++) }, `clicks: ${i}`];
 };
 
 const app = () => {
-    // instantiation
-    const counters = [counter(), counter()];
     // root component is just a static array
-    return ["div#app", [greeter, "world"], ...counters];
+    // instantiate counters w/ different start offsets
+    return ["div#app", [greeter, "world"], counter(), counter(100)];
 };
 
-// browser only (see diagram below)
-start(document.body, app());
+// start update loop (browser only, see diagram below)
+hdom.start(document.body, app());
 
-// browser or server side serialization
-// (note: does not emit event attributes w/ functions as values)
-serialize(app);
-// <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 0</button></div>
+// alternatively apply DOM tree only once
+// (stateful components won't update though)
+hdom.createDOM(document.body, hdom.normalizeTree(app()));
+
+// alternatively browser or server side HTML serialization
+// (note: does not emit attributes w/ functions as values, i.e. the button "onclick" attribs)
+console.log(hiccup.serialize(app()));
+// <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 100</button></div>
 ```
 
 [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/) | [standalone example](../../examples/hdom-basics)
