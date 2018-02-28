@@ -111,11 +111,11 @@ function diffAttributes(el: Element, prev: any, curr: any) {
     removeAttribs(el, delta.dels);
     for (edits = delta.edits, i = edits.length - 1; i >= 0; i--) {
         e = edits[i];
-        setAttrib(el, e[0], e[1]);
+        setAttrib(el, e[0], e[1], curr);
     }
     for (edits = delta.adds, i = edits.length - 1; i >= 0; i--) {
         e = edits[i];
-        setAttrib(el, e, curr[e]);
+        setAttrib(el, e, curr[e], curr);
     }
 }
 

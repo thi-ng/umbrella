@@ -70,32 +70,55 @@ export function cloneWithNewAttribs(el: Element, attribs: any) {
 }
 
 export function setAttribs(el: Element, attribs: any) {
-    const keys = Object.keys(attribs);
-    for (let i = keys.length - 1; i >= 0; i--) {
-        const k = keys[i];
-        setAttrib(el, k, attribs[k]);
+    for (let k in attribs) {
+        setAttrib(el, k, attribs[k], attribs);
     }
     return el;
 }
 
-export function setAttrib(el: Element, k: string, v: any) {
-    if (v !== undefined && v !== false) {
-        switch (k) {
+/**
+ * Sets a single attribute on given element. If attrib name is NOT
+ * an event name and its value is a function, it is called with
+ * given `attribs` object (usually the full attrib object passed
+ * to `setAttribs`) and the function's return value is used as attrib
+ * value.
+ *
+ * Special rules apply for certain attributes:
+ *
+ * - "style": see `setStyle()`
+ * - "value": see `updateValueAttrib()`
+ * - attrib IDs starting with "on" are treated as event listeners
+ *
+ * If the given (or computed) attrib value is `false` or `undefined`
+ * the attrib is removed from the element.
+ *
+ * @param el
+ * @param id
+ * @param val
+ * @param attribs
+ */
+export function setAttrib(el: Element, id: string, val: any, attribs?: any) {
+    const isListener = id.indexOf("on") === 0;
+    if (!isListener && isFunction(val)) {
+        val = val(attribs);
+    }
+    if (val !== undefined && val !== false) {
+        switch (id) {
             case "style":
-                setStyle(el, v);
+                setStyle(el, val);
                 break;
             case "value":
-                updateValueAttrib(<HTMLInputElement>el, v);
+                updateValueAttrib(<HTMLInputElement>el, val);
                 break;
             default:
-                if (k.indexOf("on") === 0) {
-                    el.addEventListener(k.substr(2), v);
+                if (isListener) {
+                    el.addEventListener(id.substr(2), val);
                 } else {
-                    el.setAttribute(k, v);
+                    el.setAttribute(id, val);
                 }
         }
     } else {
-        el.removeAttribute(k);
+        el.removeAttribute(id);
     }
     return el;
 }
@@ -114,11 +137,10 @@ export function updateValueAttrib(el: HTMLInputElement, v: any) {
                 const off = v.length - (e.value.length - e.selectionStart);
                 e.value = v;
                 e.selectionStart = e.selectionEnd = off;
-                return;
             }
         default:
+            el.value = v;
     }
-    el.value = v;
 }
 
 export function removeAttribs(el: Element, attribs: string[]) {
