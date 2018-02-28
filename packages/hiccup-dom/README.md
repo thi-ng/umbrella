@@ -106,7 +106,7 @@ independently and require some conceptional synchronization.
 
 This is a preview of the upcoming [@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) package:
 
-[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live demo](demo.thi.ng/umbrella/estuary/)
+[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live demo](http://demo.thi.ng/umbrella/estuary/)
 
 ### Todo list
 
