@@ -1,7 +1,7 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
 
-import { SwapFn } from "./api";
+import { Path, SwapFn } from "./api";
 
 function compS(k, f) {
     return (s, v) => ({ ...s, [k]: f((s || {})[k], v) });
@@ -27,7 +27,7 @@ function compG(k, f) {
  *
  * @param path
  */
-export function toPath(path: PropertyKey | PropertyKey[]) {
+export function toPath(path: Path) {
     return isArray(path) ? path : isString(path) ? path.length > 0 ? path.split(".") : [] : path != null ? [path] : [];
 }
 
@@ -60,7 +60,7 @@ export function toPath(path: PropertyKey | PropertyKey[]) {
  *
  * @param path
  */
-export function getter(path: PropertyKey | PropertyKey[]) {
+export function getter(path: Path) {
     const ks = toPath(path);
     let [a, b, c, d] = ks;
     switch (ks.length) {
@@ -134,7 +134,7 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  *
  * @param path
  */
-export function setter(path: PropertyKey | PropertyKey[]) {
+export function setter(path: Path) {
     const ks = toPath(path);
     // (s, v) => ({ ...s, [k]: f((s || {})[k], v) });
     let [a, b, c, d] = ks;
@@ -170,7 +170,7 @@ export function setter(path: PropertyKey | PropertyKey[]) {
  * @param state
  * @param path
  */
-export function getIn(state: any, path: PropertyKey | PropertyKey[]) {
+export function getIn(state: any, path: Path) {
     return getter(path)(state);
 }
 
@@ -185,7 +185,7 @@ export function getIn(state: any, path: PropertyKey | PropertyKey[]) {
  * @param state
  * @param path
  */
-export function setIn(state: any, path: PropertyKey | PropertyKey[], val: any) {
+export function setIn(state: any, path: Path, val: any) {
     return setter(path)(state, val);
 }
 
@@ -204,7 +204,7 @@ export function setIn(state: any, path: PropertyKey | PropertyKey[], val: any) {
  * @param state
  * @param path
  */
-export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: SwapFn<any>, ...args: any[]) {
+export function updateIn(state: any, path: Path, fn: SwapFn<any>, ...args: any[]) {
     args.unshift(getIn(state, path));
     return setter(path)(state, fn.apply(null, args));
 }
@@ -223,7 +223,7 @@ export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: Swap
  * @param state
  * @param path
  */
-export function deleteIn(state: any, path: PropertyKey | PropertyKey[]) {
+export function deleteIn(state: any, path: Path) {
     const ks = [...toPath(path)];
     if (ks.length > 0) {
         const k = ks.pop();
