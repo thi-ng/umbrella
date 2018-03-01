@@ -5,7 +5,11 @@
 ## About
 
 Clojure inspired mutable wrappers for (usually) immutable values, with support
-for watches, cursors (direct access to nested values), undo/redo history.
+for watches, cursors (direct access to nested values), derived view
+subscriptions and undo/redo history. Together these types act as building
+blocks for various application state handling patterns, specifically aimed
+(though not exclusively) at the concept of using a nested, immutable,
+centralized atom as single source of truth within an application.
 
 ## Installation
 
@@ -23,6 +27,12 @@ directory.
 
 ### Atom
 
+An `Atom` is a mutable wrapper for immutable values. The wrapped value can be
+obtained via `deref()`, replaced via `reset()` and updated using `swap()`. An
+atom too supports the concept of watches, essentially `onchange` event handlers
+which are called from `reset`/`swap` and receive both the old and new atom
+values.
+
 ```typescript
 import * as atom from "@thi.ng/atom";
 
@@ -36,9 +46,17 @@ a.deref();
 a.addWatch("foo", (id, prev, curr) => console.log(`${id}: ${prev} -> ${curr}`));
 // true
 
-a.swap((val)=> val + 1);
+// example update function
+const add = (x, y) => x + y;
+
+// apply given function to current value
+// (incl. any additional arguments passed to swap)
+// this is the same as:
+// a.reset(adder(a.deref(), 1))
+a.swap(add, 1);
 // foo: 23 -> 24
 
+// reset atom's value
 a.reset(42);
 // foo: 24 -> 42
 ```
@@ -46,8 +64,9 @@ a.reset(42);
 ### Cursor
 
 Cursors provide direct & immutable access to a nested value within a structured
-atom. The path to the desired value must be provided when the cursor is
-created. The path is then compiled into a [getter and setter](./src/path.ts) to
+atom. The path to the desired value must be provided when the cursor is created
+and cannot be changed later. The path is then compiled into a [getter and
+setter](#getters--setters) to
 allow cursors to be used like atoms and update the parent state in an immutable
 manner (i.e. producing an optimized copy with structural sharing of the
 original (as much as possible)) - see further details below.
@@ -108,12 +127,144 @@ main.deref()
 // { a: { b: { c: 24 }, d: { e: 42 } }, f: 66 }
 ```
 
-### Undo history
+### Derived views
+
+Whereas cursors provide read/write access to nested key paths within a state atom, there are many situations when one only requires read access and the ability to (optionally) produce transformed versions of such a value. The `View` type provides exactly this functionality:
 
 ```typescript
-// the History can be used with & behaves like an Atom or Cursor
-// but creates snapshots of current state before applying new state
-// by default history has length of 100 steps, but is configurable
+db = new atom.Atom({a: 1, b: {c: 2}});
+
+// create a view for a's value
+viewA = db.addView("a");
+
+// create a view for c's value w/ transformer
+viewC = db.addView("b.c", (x) => x * 10);
+
+viewA.deref()
+// 1
+
+viewC.deref()
+// 20
+
+// update the atom
+db.swap((state) => atom.setIn(state, "b.c", 3))
+
+// views can indicate if their value has changed
+// (will be reset to `false` after each deref)
+
+// here viewA hasn't changed (we only updated `c`)
+viewA.changed()
+// false
+viewC.changed()
+// true
+
+// the transformer function is only executed once per value change
+viewC.deref()
+// 30
+
+// just returns current cached transformed value
+viewC.deref()
+// 30
+
+// discard views
+viewA.release()
+viewC.release()
+```
+
+Atoms & views are useful tools for keeping state outside UI components. Here's
+an example of a tiny
+[@thi.ng/hiccup-dom](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-dom)
+web app, demonstrating how to use derived views to switch the UI for different
+application states / modules.
+
+Note: The constrained nature of this example doesn't really do justice to the powerful nature of the approach. Also stylistically, in a larger app we'd want to avoid the use of global variables (apart from `db`) as done here...
+
+This example is also available in standalone form:
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/login-form) | [Live demo](http://demo.thi.ng/umbrella/login-form/)
+
+```typescript
+import { Atom, setIn } from "@thi.ng/atom";
+import { start } from "@thi.ng/hiccup-dom";
+
+// central immutable app state
+const db = new Atom({ state: "login" });
+
+// define views for different state values
+const appState = db.addView<string>("state");
+const error = db.addView<string>("error");
+// specify a view transformer for the username value
+const user = db.addView<string>(
+    "user.name",
+    (x) => x ? x.charAt(0).toUpperCase() + x.substr(1) : null
+);
+
+// state update functions
+const setValue = (path, val) => db.swap((state) => setIn(state, path, val));
+const setState = (s) => setValue(appState.path, s);
+const setError = (err) => setValue(error.path, err);
+const setUser = (e) => setValue(user.path, e.target.value);
+const loginUser = () => {
+    if (user.deref() && user.deref().toLowerCase() === "admin") {
+        setError(null);
+        setState("main");
+    } else {
+        setError("sorry, wrong username (try 'admin')");
+    }
+};
+const logoutUser = () => {
+    setValue(user.path, null);
+    setState("logout");
+};
+
+// components for different app states
+// note how the value views are used here
+const uiViews = {
+    // dummy login form
+    login: () =>
+        ["div#login",
+            ["h1", "Login"],
+            error.deref() ? ["div.error", error.deref()] : undefined,
+            ["input", { type: "text", onchange: setUser }],
+            ["button", { onclick: loginUser }, "Login"]
+        ],
+    logout: () =>
+        ["div#logout",
+            ["h1", "Good bye"],
+            "You've been logged out. ",
+            ["a",
+                { href: "#", onclick: () => setState("login") },
+                "Log back in?"
+            ]
+        ],
+    main: () =>
+        ["div#main",
+            ["h1", `Welcome, ${user.deref()}!`],
+            ["div", "Your current app state:"],
+            ["div",
+                ["textarea",
+                    { cols: 40, rows: 10 },
+                    JSON.stringify(db.deref(), null, 2)]],
+            ["button", { onclick: logoutUser }, "Logout"]
+        ]
+};
+
+// root component simply delegates to stored uiViews
+// based on current `appState` value
+const app = () =>
+    uiViews[appState.deref()] ||
+    ["div", ["h1", `No component for state: ${appState.deref()}`]];
+
+start(document.body, app);
+```
+
+### Undo history
+
+The `History` type can be used with & behaves like an Atom or Cursor, but
+creates snapshots of the current state before applying the new state. By
+default history has length of 100 steps, but this is configurable.
+
+```typescript
 db = new atom.History(new atom.Atom({a: 1}))
 db.deref()
 // {a: 1}
@@ -149,13 +300,13 @@ db.canRedo()
 
 The `getter()` and `setter()` functions transform a path like `a.b.c` into a
 function operating directly at the value the path points to in nested object.
-For getters, this essentially compiles to `val = obj.a.b.c`.
+For getters, this essentially compiles to `val = obj.a.b.c`, with the important difference that the function returns `undefined` if any intermediate values along the lookup path are undefined (and doesn't throw an error).
 
 The resulting setter function too accepts a single object to operate on and
-when called, **immutably** replaces the value at the given path, i.e. produces
-a selective deep copy of obj up until given path. If any intermediate key is
-not present in the given object, it creates a plain empty object for that
-missing key and descends further along the path.
+when called, **immutably** replaces the value at the given path, i.e. it
+produces a selective deep copy of obj up until given path. If any intermediate
+key is not present in the given object, it creates a plain empty object for
+that missing key and descends further along the path.
 
 ```typescript
 s = setter("a.b.c");
