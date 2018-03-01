@@ -28,11 +28,14 @@ function compG(k, f) {
  * @param path
  */
 export function toPath(path: PropertyKey | PropertyKey[]) {
-    return isArray(path) ? path : isString(path) ? path.split(".") : [path];
+    return isArray(path) ? path : isString(path) ? path.length > 0 ? path.split(".") : [] : path != null ? [path] : [];
 }
 
 /**
  * Composes a getter function for given nested lookup path.
+ * Optimized fast execution paths are provided for path lengths
+ * less than 5.
+ *
  * If `path` is given as string, it will be split using `.`.
  * Returns function which accepts single object and
  * when called, returns value at given path.
@@ -40,8 +43,8 @@ export function toPath(path: PropertyKey | PropertyKey[]) {
  * If any intermediate key is not present in the given obj,
  * descent stops and the function returns `undefined`.
  *
- * If `path` is an empty array, the returned getter will simply
- * return the given state arg (identity function).
+ * If `path` is an empty string or array, the returned getter
+ * will simply return the given state arg (identity function).
  *
  * Also see: `getIn()`
  *
@@ -83,6 +86,9 @@ export function getter(path: PropertyKey | PropertyKey[]) {
 
 /**
  * Composes a setter function for given nested lookup path.
+ * Optimized fast execution paths are provided for path lengths
+ * less than 5.
+ *
  * If `path` is given as string, it will be split using `.`.
  * Returns function which accepts single object and
  * when called, **immutably** updates value at given path,
@@ -91,8 +97,8 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  * If any intermediate key is not present in the given obj,
  * creates a plain empty object for that key and descends further.
  *
- * If `path` is an empty array, the returned setter will simply
- * return the new value.
+ * If `path` is an empty string or array, the returned setter
+ * will simply return the new value.
  *
  * Also see: `setIn()`, `updateIn()`, `deleteIn()`
  *
@@ -130,15 +136,27 @@ export function getter(path: PropertyKey | PropertyKey[]) {
  */
 export function setter(path: PropertyKey | PropertyKey[]) {
     const ks = toPath(path);
-    if (ks.length > 0) {
-        const kl = ks[ks.length - 1];
-        let f = (s, v) => ({ ...(s || {}), [kl]: v });
-        for (let i = ks.length - 2; i >= 0; i--) {
-            f = compS(ks[i], f);
-        }
-        return f;
+    // (s, v) => ({ ...s, [k]: f((s || {})[k], v) });
+    let [a, b, c, d] = ks;
+    switch (ks.length) {
+        case 0:
+            return (_, v) => v;
+        case 1:
+            return (s, v) => ({ ...s, [a]: v });
+        case 2:
+            return (s, v) => ({ ...s, [a]: { ...s[a], [b]: v } });
+        case 3:
+            return (s, v) => ({ ...s, [a]: { ...s[a], [b]: { ...s[b], [c]: v } } });
+        case 4:
+            return (s, v) => ({ ...s, [a]: { ...s[a], [b]: { ...s[b], [c]: { ...s[c], [d]: v } } } });
+        default:
+            const kl = ks[ks.length - 1];
+            let f = (s, v) => ({ ...(s || {}), [kl]: v });
+            for (let i = ks.length - 2; i >= 0; i--) {
+                f = compS(ks[i], f);
+            }
+            return f;
     }
-    return (_, v) => v;
 }
 
 /**
@@ -195,7 +213,7 @@ export function updateIn(state: any, path: PropertyKey | PropertyKey[], fn: Swap
  * Uses `updateIn()` and returns updated state with key for given path removed.
  * Does not modify original state.
  *
- * Returns `undefined` if `path` is an empty array.
+ * Returns `undefined` if `path` is an empty string or array.
  *
  * ```
  * deleteIn({a:{b:{c: 23}}}, "a.b.c");
