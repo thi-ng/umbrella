@@ -55,7 +55,7 @@ const uiViews = {
     main: () =>
         ["div#main",
             ["h1", `Welcome, ${user.deref()}!`],
-            ["div", "Your current app state:"],
+            ["div", "Current app state:"],
             ["div",
                 ["textarea",
                     { cols: 40, rows: 10 },
@@ -64,10 +64,20 @@ const uiViews = {
         ]
 };
 
-// root component simply delegates to stored uiViews
-// based on current `appState` value
+// finally define another derived view including a transformer
+// which maps the current app state value to its correct UI component
+// (incl. a fallback for illegal app states)
+const currView = db.addView(
+    "state",
+    (state) =>
+        uiViews[state] ||
+        ["div", ["h1", `No component for state: ${appState.deref()}`]]
+);
+
+// root component simply returns the
 const app = () =>
-    uiViews[appState.deref()] ||
-    ["div", ["h1", `No component for state: ${appState.deref()}`]];
+    ["div#app",
+        currView.deref(),
+        ["footer", "Made with @thi.ng/atom and @thi.ng/hiccup-dom"]];
 
 start(document.body, app);
