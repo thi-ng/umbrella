@@ -8,7 +8,7 @@ describe("cursor w/ path", function () {
     let src;
 
     beforeEach(() => {
-        src = { a: { b: { c: 23 }, d: { e: 42 } }, f: 66 };
+        src = { a: { b: { c: 23, g: { h: 88 } }, d: { e: 42 } }, f: 66 };
         a = new Atom(src);
     });
 
@@ -29,8 +29,8 @@ describe("cursor w/ path", function () {
     });
 
     it("can be deref'd (path array)", () => {
-        c = new Cursor(a, ["a", "b", "c"]);
-        assert.equal(c.deref(), src.a.b.c);
+        c = new Cursor(a, ["a", "b", "g", "h"]);
+        assert.equal(c.deref(), src.a.b.g.h);
     });
 
     it("doesn't fail w/ invalid path", () => {
