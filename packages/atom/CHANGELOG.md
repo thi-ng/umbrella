@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.7.0...@thi.ng/atom@0.7.1) (2018-03-01)
+
+
+### Bug Fixes
+
+* **atom:** re-export api.ts ([3e55a05](https://github.com/thi-ng/umbrella/commit/3e55a05))
+
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.6.1...@thi.ng/atom@0.7.0) (2018-03-01)
 
