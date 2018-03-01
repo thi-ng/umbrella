@@ -32,6 +32,8 @@ export interface IView<T> extends
     IID<string>,
     IRelease {
 
+    readonly path: PropertyKey[];
+
     view(): T;
     changed(): boolean;
 };
