@@ -2,6 +2,8 @@ import * as api from "@thi.ng/api/api";
 
 export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
+export type ViewTransform<A, B> = (x: A) => B;
+
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,
     api.IWatch<T> {
