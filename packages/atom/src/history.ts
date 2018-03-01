@@ -1,7 +1,8 @@
 import { Predicate2, Watch } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 
-import { IAtom, SwapFn } from "./api";
+import { IAtom, SwapFn, IView, Path, ViewTransform } from "./api";
+import { View } from "./view";
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors.
@@ -156,5 +157,9 @@ export class History<T> implements
      */
     notifyWatches(oldState: T, newState: T) {
         return this.state.notifyWatches(oldState, newState);
+    }
+
+    addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
+        return new View<V>(this, path, tx);
     }
 }

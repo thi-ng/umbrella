@@ -1,5 +1,6 @@
 import * as assert from "assert";
 
+import { IView } from "../src/api";
 import { Atom } from "../src/atom";
 import { Cursor } from "../src/cursor";
 import { View } from "../src/view";
@@ -8,10 +9,29 @@ import { setIn, updateIn } from "../src/path";
 describe("subscription", () => {
 
     let a: Atom<any>;
-    let s: View<number, number>;
+    let s: IView<number>;
 
     beforeEach(() => {
         a = new Atom({ a: 1, b: { c: 2, d: 3 }, e: 4 });
+    });
+
+    it("can be created from atom", () => {
+        s = a.addView("e");
+        assert(s instanceof View);
+        assert.equal(s.deref(), 4);
+        s = a.addView("e", (x) => x * 10);
+        assert(s instanceof View);
+        assert.equal(s.deref(), 40);
+    });
+
+    it("can be created from cursor", () => {
+        let c = new Cursor(a, "b");
+        s = c.addView("d");
+        assert(s instanceof View);
+        assert.equal(s.deref(), 3);
+        s = c.addView("c", (x: number) => x * 10);
+        assert(s instanceof View);
+        assert.equal(s.deref(), 20);
     });
 
     it("can be deref'd", () => {

@@ -1,7 +1,8 @@
 import { IEquiv, Watch } from "@thi.ng/api/api";
 import { IWatch } from "@thi.ng/api/mixins/iwatch";
 
-import { IAtom, SwapFn } from "./api";
+import { IAtom, IView, Path, SwapFn, ViewTransform } from "./api";
+import { View } from "./view";
 
 /**
  * Mutable wrapper for an (usually) immutable value.
@@ -56,4 +57,8 @@ export class Atom<T> implements
     // mixin stub
     /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) { }
+
+    addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
+        return new View<V>(this, path, tx);
+    }
 }

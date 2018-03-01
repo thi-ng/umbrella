@@ -5,9 +5,10 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { isSymbol } from "@thi.ng/checks/is-symbol";
 
-import { IAtom, SwapFn } from "./api";
+import { IAtom, SwapFn, IView, Path, ViewTransform } from "./api";
 import { Atom } from "./atom";
 import { getter, setter } from "./path";
+import { View } from "./view";
 
 export class Cursor<T> implements
     IAtom<T>,
@@ -89,5 +90,9 @@ export class Cursor<T> implements
     /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) {
         return this.local.notifyWatches(oldState, newState);
+    }
+
+    addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
+        return new View<V>(this, path, tx);
     }
 }
