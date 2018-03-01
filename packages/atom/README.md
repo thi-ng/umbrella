@@ -249,17 +249,17 @@ const uiViews = {
         ]
 };
 
-// finally define another derived view including a transformer
-// which maps the current app state value to its correct UI component
-// (incl. a fallback for illegal app states)
+// finally define another derived view for the app state value
+// including a transformer, which maps the current app state value
+// to its correct UI component (incl. a fallback for illegal app states)
 const currView = db.addView(
-    "state",
+    appState.path,
     (state) =>
         uiViews[state] ||
-        ["div", ["h1", `No component for state: ${appState.deref()}`]]
+        ["div", ["h1", `No component for state: ${state}`]]
 );
 
-// root component simply returns the
+// app root component
 const app = () =>
     ["div#app",
         currView.deref(),
