@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.6.1...@thi.ng/atom@0.7.0) (2018-03-01)
+
+
+### Features
+
+* **atom:** add IView, IViewable, impl for Atom, Cursor, History ([9ad83b2](https://github.com/thi-ng/umbrella/commit/9ad83b2))
+* **atom:** add View type to create derrived views/value subscriptions ([8c0c621](https://github.com/thi-ng/umbrella/commit/8c0c621))
+
+
+### Performance Improvements
+
+* **atom:** add optimized getters for path len < 5 ([ed23376](https://github.com/thi-ng/umbrella/commit/ed23376))
+* **atom:** add optimized setter() for path len < 5, fix toPath() ([55c6a7d](https://github.com/thi-ng/umbrella/commit/55c6a7d))
+
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.6.0...@thi.ng/atom@0.6.1) (2018-02-26)
 
