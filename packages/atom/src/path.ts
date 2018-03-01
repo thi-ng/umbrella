@@ -11,7 +11,23 @@ function compG(k, f) {
     return (s) => s ? f(s[k]) : undefined;
 }
 
-function toPath(path: PropertyKey | PropertyKey[]) {
+/**
+ * Converts the given key path to canonical form (array).
+ *
+ * ```
+ * toPath("a.b.c");
+ * // ["a", "b", "c"]
+ *
+ * toPath(0)
+ * // [0]
+ *
+ * toPath(["a", "b", "c"])
+ * // ["a", "b", "c"]
+ * ```
+ *
+ * @param path
+ */
+export function toPath(path: PropertyKey | PropertyKey[]) {
     return isArray(path) ? path : isString(path) ? path.split(".") : [path];
 }
 
@@ -43,15 +59,26 @@ function toPath(path: PropertyKey | PropertyKey[]) {
  */
 export function getter(path: PropertyKey | PropertyKey[]) {
     const ks = toPath(path);
-    if (ks.length > 0) {
-        const kl = ks[ks.length - 1];
-        let f = (s) => s ? s[kl] : undefined;
-        for (let i = ks.length - 2; i >= 0; i--) {
-            f = compG(ks[i], f);
-        }
-        return f;
+    let [a, b, c, d] = ks;
+    switch (ks.length) {
+        case 0:
+            return (s) => s;
+        case 1:
+            return (s) => s ? s[a] : undefined;
+        case 2:
+            return (s) => s ? (s = s[a]) ? s[b] : undefined : undefined;
+        case 3:
+            return (s) => s ? (s = s[a]) ? (s = s[b]) ? s[c] : undefined : undefined : undefined;
+        case 4:
+            return (s) => s ? (s = s[a]) ? (s = s[b]) ? (s = s[c]) ? s[d] : undefined : undefined : undefined : undefined;
+        default:
+            const kl = ks[ks.length - 1];
+            let f = (s) => s ? s[kl] : undefined;
+            for (let i = ks.length - 2; i >= 0; i--) {
+                f = compG(ks[i], f);
+            }
+            return f;
     }
-    return (s) => s;
 }
 
 /**
