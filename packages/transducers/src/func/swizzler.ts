@@ -10,8 +10,8 @@
  * swizzler([1, 1, 3, 3])([1, 2, 3, 4]) // [ 2, 2, 4, 4 ]
  * swizzler([2, 0])([1, 2, 3])          // [ 3, 1 ]
  * ```
- * Even though, any object can be used as input, the returned
- * values will always be in array form.
+ * Even though, any object can be used as input to the generated
+ * function, the returned values will always be in array form.
  *
  * ```
  * swizzler(["a", "c", "b"])({a: 1, b: 2, c: 3}) // [ 1, 3, 2 ]
@@ -19,7 +19,7 @@
  *
  * @param order indices
  */
-export function swizzler<T>(order: PropertyKey[]): (x: T) => any[] {
+export function swizzler<T>(order: string | PropertyKey[]): (x: T) => any[] {
     const [a, b, c, d, e, f, g, h] = order;
     switch (order.length) {
         case 0:
