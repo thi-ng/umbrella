@@ -1,17 +1,22 @@
 import { range } from "./range";
-import { repeatedly } from "./repeatedly";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isString } from "@thi.ng/checks/is-string";
 
 /**
  * Iterator yielding the Cartesian Product of the given iterables.
- * All iterables MUST be finite!
+ * All iterables MUST be finite! If any of the given iterables is
+ * empty the iterator yields no values.
  *
  * ```
  * [...permutations(range(3), "ab")]
  * // [ ['a', 0], ['a', 1], ['a', 2],
  * //   ['b', 0], ['b', 1], ['b', 2] ]
  *
- * [...iterator(map((x) => x.join("")), permutations("ab", "-", tx.range(3)))]
+ * [...iterator(map((x: any[]) => x.join("")), permutations("ab", "-", tx.range(3)))]
  * // ['a-0', 'a-1', 'a-2', 'b-0', 'b-1', 'b-2']
+ *
+ * [...permutations([], "", range(0))]
+ * // []
  * ```
  *
  * @param src
@@ -22,8 +27,11 @@ export function permutations<A, B, C>(a: Iterable<A>, b: Iterable<B>, c: Iterabl
 export function permutations<A, B, C, D>(a: Iterable<A>, b: Iterable<B>, c: Iterable<C>, d: Iterable<D>): IterableIterator<[A, B, C, D]>;
 export function* permutations(...src: Iterable<any>[]): IterableIterator<any[]> {
     const n = src.length - 1;
+    if (n < 0) {
+        return;
+    }
     const step = new Array(n + 1).fill(0);
-    const realized = src.map((s) => [...s]);
+    const realized = src.map((s: any) => isArray(s) || isString(s) ? s : [...s]);
     const total = realized.reduce((acc, x) => acc * x.length, 1);
     for (let i = 0; i < total; i++) {
         const tuple = [];
@@ -58,6 +66,14 @@ export function* permutations(...src: Iterable<any>[]): IterableIterator<any[]> 
  * @param n
  * @param m
  */
-export function permutationsN(n: number, m = n): IterableIterator<number[]> {
-    return permutations.apply(null, [...repeatedly(() => range(m), n)]);
+export function permutationsN(n: number, m = n, offsets?: number[]): IterableIterator<number[]> {
+    if (offsets && offsets.length < n) {
+        throw new Error("not sufficient offsets given");
+    }
+    const seqs = [];
+    while (--n >= 0) {
+        const o = offsets ? offsets[n] : 0;
+        seqs[n] = range(o, o + m);
+    }
+    return permutations.apply(null, seqs);
 }
