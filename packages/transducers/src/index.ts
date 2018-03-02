@@ -108,6 +108,7 @@ export * from "./iter/cycle";
 export * from "./iter/iterate";
 export * from "./iter/keys";
 export * from "./iter/pairs";
+export * from "./iter/permutations";
 export * from "./iter/range";
 export * from "./iter/range2d";
 export * from "./iter/range3d";
