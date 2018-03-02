@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.5.0...@thi.ng/transducers@1.5.1) (2018-03-02)
+
+
+### Bug Fixes
+
+* **transducers:** flattenWith() ([3d8aa32](https://github.com/thi-ng/umbrella/commit/3d8aa32))
+
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.4.0...@thi.ng/transducers@1.5.0) (2018-02-26)
 
