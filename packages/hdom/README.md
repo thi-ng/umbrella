@@ -17,7 +17,7 @@ Benefits:
 - No pre-processing / pre-compilation steps
 - No string parsing / interpolation steps
 - Less verbose than HTML, resulting in smaller file sizes
-- Static components can be distributed as JSON (or [dynamically compose components, based on JSON data](../../examples/json-components))
+- Static components can be distributed as JSON (or [dynamically compose components, based on JSON data](https://github.com/thi-ng/umbrella/tree/master/examples/json-components))
 - Supports SVG, arbitrary elements, attributes, events
 - CSS conversion from JS objects
 - Suitable for server side rendering (by passing the same data structure to @thi.ng/hiccup's `serialize()`)
@@ -55,7 +55,7 @@ console.log(hiccup.serialize(app()));
 // <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 100</button></div>
 ```
 
-[Live demo](http://demo.thi.ng/umbrella/hdom/basics/) | [standalone example](../../examples/hdom-basics)
+[Live demo](http://demo.thi.ng/umbrella/hdom-basics/) | [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
 
 No template engine & no precompilation steps needed, just use the full
 expressiveness of ES6/TypeScript to define your DOM tree. The additional
@@ -68,7 +68,7 @@ difference between the old and new DOM trees (both nested JS arrays).
 Components can be defined as static arrays, closures or objects with life cycle
 hooks (init, render, release).
 
-![hdom dataflow](../../assets/hdom-dataflow.svg)
+![hdom dataflow](https://github.com/thi-ng/umbrella/tree/master/assets/hdom-dataflow.svg)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
@@ -84,7 +84,7 @@ subscriptions. More examples are forthcoming...
 
 ## Status
 
-This project is currently still in BETA. The overall "API" is stable, but there's still further work planned on optimization and generalization beyond the standard browser DOM use cases (see #4). Furthermore, the project has been used for several projects in production since 2016.
+This project is currently still in BETA. The overall "API" is stable, but there's still further work planned on optimization and generalization beyond the standard browser DOM use cases. Furthermore, the project has been used for several projects in production since 2016.
 
 ## Installation
 
@@ -114,7 +114,7 @@ This is a preview of the upcoming [@thi.ng/estuary](https://github.com/thi-ng/um
 
 A fully documented todo list app with undo / redo feature is here:
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live demo](http://demo.thi.ng/umbrella/hdom/todo-list/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live demo](http://demo.thi.ng/umbrella/todo-list/)
 
 ### Cellular automata
 
@@ -122,17 +122,17 @@ A fully documented todo list app with undo / redo feature is here:
 
 ### SVG particles
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live demo](http://demo.thi.ng/umbrella/hdom/svg-particles/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live demo](http://demo.thi.ng/umbrella/svg-particles/)
 
 ### JSON based components
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live demo](http://demo.thi.ng/umbrella/hdom/json-components/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live demo](http://demo.thi.ng/umbrella/json-components/)
 
 ### Basic usage patterns
 
 The code below is also available as standalone project in: [/examples/dashboard](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard)
 
-[Live demo here](http://demo.thi.ng/umbrella/hdom/dashboard/)
+[Live demo here](http://demo.thi.ng/umbrella/dashboard/)
 
 ```typescript
 import { start } from "@thi.ng/hdom";
@@ -179,7 +179,7 @@ TODO example forthcoming...
 
 A stress test benchmark is here: [/examples/benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
 
-[Live demo here](http://demo.thi.ng/umbrella/hdom/benchmark/)
+[Live demo here](http://demo.thi.ng/umbrella/hdom-benchmark/)
 
 Based on [user feedback collected via
 Twitter](https://twitter.com/toxi/status/959246871339454464), performance
