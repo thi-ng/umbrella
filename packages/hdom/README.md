@@ -68,7 +68,7 @@ difference between the old and new DOM trees (both nested JS arrays).
 Components can be defined as static arrays, closures or objects with life cycle
 hooks (init, render, release).
 
-![hdom dataflow](https://github.com/thi-ng/umbrella/tree/master/assets/hdom-dataflow.svg)
+![hdom dataflow](../../assets/hdom-dataflow.svg)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
