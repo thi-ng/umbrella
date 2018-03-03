@@ -28,19 +28,19 @@ import * as hdc from "@thi.ng/hdom-components";
 
 ### Canvas
 
-- [Canvas types](./src/canvas.ts)
+- [Canvas types](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/canvas.ts)
 
 ### Form elements
 
-- [Dropdown](./src/dropdown.ts)
+- [Dropdown](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/dropdown.ts)
 
 ### Links
 
-- [Link types](./src/link.ts)
+- [Link types](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/link.ts)
 
 ### SVG
 
-- [SVG elements](./src/svg.ts)
+- [SVG elements](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/svg.ts)
 
 ## Authors
 

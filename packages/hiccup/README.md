@@ -15,7 +15,7 @@ ES6 to directly define fully data-driven, purely functional and easily
 
 This library is suitable for static website generation, server side rendering
 etc. For interactive use cases, please see companion package
-[@thi.ng/hiccup-dom](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-dom).
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
 ### Features
 

@@ -23,7 +23,7 @@ A complete minimal webapp example is in the
 [/examples/todo-list](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
 directory.
 
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
+[Live demo here](http://demo.thi.ng/umbrella/todo-list/)
 
 ### Atom
 
@@ -173,7 +173,7 @@ viewC.release()
 
 Atoms & views are useful tools for keeping state outside UI components. Here's
 an example of a tiny
-[@thi.ng/hiccup-dom](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-dom)
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 web app, demonstrating how to use derived views to switch the UI for different
 application states / modules.
 
@@ -185,7 +185,7 @@ This example is also available in standalone form:
 
 ```typescript
 import { Atom, setIn } from "@thi.ng/atom";
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 
 // central immutable app state
 const db = new Atom({ state: "login" });
@@ -263,7 +263,7 @@ const currView = db.addView(
 const app = () =>
     ["div#app",
         currView.deref(),
-        ["footer", "Made with @thi.ng/atom and @thi.ng/hiccup-dom"]];
+        ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
 
 start(document.body, app);
 ```
