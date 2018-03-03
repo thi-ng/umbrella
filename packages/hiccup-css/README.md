@@ -26,16 +26,16 @@ css(["#foo",
 
 ```css
 #foo h1 small {
-    color:#999;
+    color: #999;
 }
 #foo h1 {
-    font-size:2em;
+    font-size: 2em;
 }
-#foo h2 .title, #foo h3 .title {
-    font-weight:700;
+#foo h2.title, #foo h3.title {
+    font-weight: 700;
 }
 #foo {
-    background:#eee;
+    background: #eee;
 }
 ```
 

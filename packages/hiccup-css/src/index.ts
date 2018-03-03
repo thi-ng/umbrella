@@ -10,17 +10,18 @@ import { map } from "@thi.ng/transducers/xform/map";
 export interface Format {
     rules: string;
     ruleSep: string;
+    valSep: string;
     decls: string;
     declsStart: string;
     declEnd: string;
     indent: string;
 }
 
-const NO_SPACES = ":[";
+const NO_SPACES = ".:[";
 
 export const FORMATS: IObjectOf<Format> = {
-    min: { rules: "", ruleSep: ",", decls: "", declsStart: "{", declEnd: "}", indent: "" },
-    pretty: { rules: "\n", ruleSep: ", ", decls: "\n", declsStart: " {\n", declEnd: "\n}", indent: "    " },
+    min: { rules: "", ruleSep: ",", valSep: "", decls: "", declsStart: "{", declEnd: "}", indent: "" },
+    pretty: { rules: "\n", ruleSep: ", ", valSep: " ", decls: "\n", declsStart: " {\n", declEnd: "\n}", indent: "    " },
 };
 
 const xfSel = ((a, b) => (x) => a(b(x)))(
@@ -61,7 +62,7 @@ function format(rules: any, fmt: Format) {
     const acc = [];
     for (let r in rules) {
         if (rules.hasOwnProperty(r)) {
-            acc.push(`${fmt.indent}${r}:${rules[r]};`);
+            acc.push(`${fmt.indent}${r}:${fmt.valSep}${rules[r]};`);
         }
     }
     return acc.join(fmt.decls);
