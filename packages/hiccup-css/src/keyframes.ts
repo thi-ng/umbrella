@@ -13,11 +13,11 @@ export function at_keyframes(id: string, ...args: any[]) {
         acc.push(`${outer}@keyframes ${id}${opts.format.declStart}`);
         for (let s in stops) {
             if (stops.hasOwnProperty(s)) {
-                acc.push(
-                    inner + s + opts.format.declStart
-                    + formatDecls(stops[s], opts)
-                    + inner + opts.format.declEnd
-                );
+                acc.push([
+                    inner, s, opts.format.declStart,
+                    formatDecls(stops[s], opts),
+                    inner, opts.format.declEnd
+                ].join(""));
             }
         }
         opts.depth--;
