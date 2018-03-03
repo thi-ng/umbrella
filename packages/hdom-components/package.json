@@ -1,5 +1,5 @@
 {
-    "name": "@thi.ng/hiccup-dom-components",
+    "name": "@thi.ng/hdom-components",
     "version": "0.2.2",
     "description": "TODO",
     "main": "./index.js",
