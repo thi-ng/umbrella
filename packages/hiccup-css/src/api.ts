@@ -15,5 +15,12 @@ export interface CSSOpts {
     depth: number;
 }
 
+export const DEFAULT_VENDORS = [
+    "-moz-",
+    "-ms-",
+    "-o-",
+    "-webkit-"
+];
+
 export const COMPACT: Format = { rules: "", ruleSep: ",", valSep: "", decls: "", declStart: "{", declEnd: "}", indent: "" };
 export const PRETTY: Format = { rules: "\n", ruleSep: ", ", valSep: " ", decls: "\n", declStart: " {\n", declEnd: "}\n", indent: "    " };

@@ -7,7 +7,7 @@ import { str } from "@thi.ng/transducers/rfn/str";
 import { flatten } from "@thi.ng/transducers/xform/flatten";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { CSSOpts, COMPACT } from "./api";
+import { CSSOpts, COMPACT, DEFAULT_VENDORS } from "./api";
 import { indent } from "./utils";
 
 const NO_SPACES = ".:[";
@@ -18,7 +18,7 @@ const xfSel = ((a, b) => (x) => a(b(x)))(
 );
 
 export function css(rules: any, opts?: Partial<CSSOpts>) {
-    opts = { format: COMPACT, autoprefix: new Set(), vendors: [], depth: 0, ...opts };
+    opts = { format: COMPACT, autoprefix: new Set(), vendors: DEFAULT_VENDORS, depth: 0, ...opts };
     if (isArray(opts.autoprefix)) {
         opts.autoprefix = new Set(opts.autoprefix);
     }
@@ -71,7 +71,7 @@ export function formatDecls(rules: any, opts: CSSOpts) {
             }
             if ((<Set<string>>opts.autoprefix).has(r)) {
                 for (let v of opts.vendors) {
-                    acc.push(`${space}${v}-${r}:${f.valSep}${val};`);
+                    acc.push(`${space}${v}${r}:${f.valSep}${val};`);
                 }
             } else {
                 acc.push(`${space}${r}:${f.valSep}${val};`);
