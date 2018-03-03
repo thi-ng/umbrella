@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 import { isReduced } from "../reduced";
 
 export function flattenWith<T>(fn: (x: T) => Iterable<T>): Transducer<T | Iterable<T>, T> {

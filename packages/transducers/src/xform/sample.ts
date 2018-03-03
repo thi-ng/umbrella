@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 
 export function sample<T>(prob: number): Transducer<T, T> {
     return (rfn: Reducer<any, T>) => {

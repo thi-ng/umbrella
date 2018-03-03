@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 import { isReduced } from "../reduced";
 
 export function interpose<A, B>(sep: B | (() => B)): Transducer<A, A | B> {

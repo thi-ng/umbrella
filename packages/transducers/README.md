@@ -18,19 +18,19 @@ Lightweight transducer implementations for ES6 / TypeScript (~24KB minified, ful
 
 ## About
 
-This library provides altogether ~90 transducers, reducers and sequence
+This library provides altogether 90+ transducers, reducers and sequence
 generators (iterators) for composing data transformation pipelines.
 
 The overall concept and many of the core functions offered here are directly
 inspired by the original Clojure implementation by Rich Hickey, though the
 implementation does differ (also in contrast to some other JS based
 implementations) and dozens of less common, but generally highly useful operators
-have been added, with at least a couple dozen more to come.
+have been added. See full list below.
 
-Please see the
+The
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 & [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
-partner modules for related functionality, supplementing features of this
+partner modules provide related functionality, supplementing features of this
 library and depending on it.
 
 Since 0.8.0 this project largely supersedes the
@@ -611,6 +611,8 @@ reducer and optional initial accumulator/result.
 
 #### `mapcat<A, B>(fn: (x: A) => Iterable<B>): Transducer<A, B>`
 
+#### `mapDeep(spec: TransformSpec): Transducer<any, any>`
+
 #### `mapIndexed<A, B>(fn: (i: number, x: A) => B): Transducer<A, B>`
 
 #### `mapKeys(keys: IObjectOf<(x: any) => any>, copy?: boolean): Transducer<any, any>`
@@ -628,6 +630,8 @@ reducer and optional initial accumulator/result.
 #### `noop<T>(): Transducer<T, T>`
 
 #### `padLast<T>(n: number, fill: T): Transducer<T, T>`
+
+#### `page<T>(page: number, pageLen = 10): Transducer<T, T>`
 
 #### `partition<T>(size: number, step?: number, all?: boolean): Transducer<T, T[]>`
 
@@ -717,13 +721,19 @@ reducer and optional initial accumulator/result.
 
 #### `some<T>(pred?: Predicate<T>): Reducer<boolean, T>`
 
+#### `str(sep = ""): Reducer<string, any>`
+
 ### Generators / Iterators
 
 #### `choices<T>(choices: T[], weights?: number[])`
 
+#### `concat<T>(...xs: Iterable<T>[]): IterableIterator<T>`
+
 #### `cycle<T>(input: Iterable<T>): IterableIterator<T>`
 
 #### `iterate<T>(fn: (x: T) => T, seed: T): IterableIterator<T>`
+
+#### `keys(x: any): IterableIterator<string>`
 
 #### `pairs(x: any): IterableIterator<[string, any]>`
 
@@ -740,6 +750,8 @@ reducer and optional initial accumulator/result.
 #### `reverse<T>(input: Iterable<T>): IterableIterator<any>`
 
 #### `tuples(...src: Iterable<any>[]): IterableIterator<any[]>`
+
+#### `vals<T>(x: IObjectOf<T>): IterableIterator<T>`
 
 ## Authors
 

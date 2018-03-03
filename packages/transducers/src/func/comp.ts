@@ -1,4 +1,4 @@
-import { Transducer, Reducer } from "../api";
+import { Transducer } from "../api";
 
 export function comp<A, B>(a: Transducer<A, B>): Transducer<A, B>;
 export function comp<A, B, C>(a: Transducer<A, B>, b: Transducer<B, C>): Transducer<A, C>;
@@ -40,8 +40,4 @@ export function comp(...fns: ((x: any) => any)[]) {
             // TODO TS2.7.* complains about args here?
             return fns.length === 10 ? ff : (<any>comp)(ff, ...fns.slice(10));
     }
-}
-
-export function compR(rfn: Reducer<any, any>, fn: (acc, x) => any) {
-    return <Reducer<any, any>>[rfn[0], rfn[1], fn];
 }

@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 
 /**
  * Stateful transducer. Ignores the actual input values, but

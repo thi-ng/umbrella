@@ -87,6 +87,7 @@ export * from "./xform/utf8";
 
 export * from "./func/binary-search";
 export * from "./func/comp";
+export * from "./func/compr";
 export * from "./func/constantly";
 export * from "./func/deep-transform";
 export * from "./func/delay";

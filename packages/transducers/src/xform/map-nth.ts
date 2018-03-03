@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 
 export function mapNth<A, B>(n: number, fn: (x: A) => B): Transducer<A, B>;
 export function mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>;

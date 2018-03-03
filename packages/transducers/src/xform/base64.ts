@@ -1,5 +1,5 @@
 import { Transducer, Reducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 import { isReduced, reduced } from "../reduced";
 
 const B64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

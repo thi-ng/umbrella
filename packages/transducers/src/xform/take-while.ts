@@ -1,6 +1,6 @@
 import { Predicate } from "@thi.ng/api/api";
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 import { reduced } from "../reduced";
 
 export function takeWhile<T>(pred: Predicate<T>): Transducer<T, T> {

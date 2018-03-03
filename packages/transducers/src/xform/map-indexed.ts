@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 
 export function mapIndexed<A, B>(fn: (i: number, x: A) => B): Transducer<A, B> {
     return (rfn: Reducer<any, B>) => {

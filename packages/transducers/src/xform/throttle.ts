@@ -1,7 +1,7 @@
 import { StatefulPredicate } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 
 /**
  * Similar to `filter`, but works with possibly stateful predicates

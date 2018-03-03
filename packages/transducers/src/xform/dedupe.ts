@@ -1,7 +1,7 @@
 import { Predicate2 } from "@thi.ng/api/api";
 
 import { Reducer, Transducer, SEMAPHORE } from "../api";
-import { compR } from "../func/comp";
+import { compR } from "../func/compr";
 
 export function dedupe<T>(equiv?: Predicate2<T>): Transducer<T, T> {
     return (rfn: Reducer<any, T>) => {
