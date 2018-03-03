@@ -10,7 +10,7 @@ import { normalizeTree } from "./normalize";
  *
  * Important: The parent element given is assumed to have NO
  * children at the time when `start()` is called. Since
- * hiccup-dom does NOT track the real DOM, the resulting
+ * hdom does NOT track the real DOM, the resulting
  * changes will result in potentially undefined behavior
  * if the parent element wasn't empty.
  *

@@ -2,6 +2,6 @@
 
 // import * as hdom from "../src/index";
 
-describe("hiccup-dom", function () {
+describe("hdom", function () {
     it("tests pending");
 });

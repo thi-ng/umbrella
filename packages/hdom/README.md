@@ -1,6 +1,8 @@
-# @thi.ng/hiccup-dom
+# @thi.ng/hdom
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-dom.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-dom)
+[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
+
+**As of 2018-03-03 this package is now called @thi.ng/hdom, formerly @thi.ng/hiccup-dom**
 
 ## About
 
@@ -24,7 +26,7 @@ Benefits:
 
 ```typescript
 import * as hiccup from "@thi.ng/hiccup";
-import * as hdom from "@thi.ng/hiccup-dom";
+import * as hdom from "@thi.ng/hdom";
 
 // stateless component w/ params
 const greeter = (name) => ["h1.title", "hello ", name];
@@ -53,7 +55,7 @@ console.log(hiccup.serialize(app()));
 // <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 100</button></div>
 ```
 
-[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/basics/) | [standalone example](../../examples/hdom-basics)
+[Live demo](http://demo.thi.ng/umbrella/hdom/basics/) | [standalone example](../../examples/hdom-basics)
 
 No template engine & no precompilation steps needed, just use the full
 expressiveness of ES6/TypeScript to define your DOM tree. The additional
@@ -87,7 +89,7 @@ This project is currently still in BETA. The overall "API" is stable, but there'
 ## Installation
 
 ```
-yarn add @thi.ng/hiccup-dom
+yarn add @thi.ng/hdom
 ```
 
 ## Usage examples
@@ -112,7 +114,7 @@ This is a preview of the upcoming [@thi.ng/estuary](https://github.com/thi-ng/um
 
 A fully documented todo list app with undo / redo feature is here:
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live demo](http://demo.thi.ng/umbrella/hdom/todo-list/)
 
 ### Cellular automata
 
@@ -120,20 +122,20 @@ A fully documented todo list app with undo / redo feature is here:
 
 ### SVG particles
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/svg-particles/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live demo](http://demo.thi.ng/umbrella/hdom/svg-particles/)
 
 ### JSON based components
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live demo](http://demo.thi.ng/umbrella/hiccup-dom/json-components/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live demo](http://demo.thi.ng/umbrella/hdom/json-components/)
 
 ### Basic usage patterns
 
 The code below is also available as standalone project in: [/examples/dashboard](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard)
 
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/dashboard/)
+[Live demo here](http://demo.thi.ng/umbrella/hdom/dashboard/)
 
 ```typescript
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 
 // static component function to create styled box
 const box = (prefix, body) =>
@@ -177,7 +179,7 @@ TODO example forthcoming...
 
 A stress test benchmark is here: [/examples/benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
 
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/benchmark/)
+[Live demo here](http://demo.thi.ng/umbrella/hdom/benchmark/)
 
 Based on [user feedback collected via
 Twitter](https://twitter.com/toxi/status/959246871339454464), performance
