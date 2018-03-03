@@ -1,6 +1,6 @@
 import * as assert from "assert";
 
-import { css, FORMATS } from "../src";
+import { css, PRETTY } from "../src";
 
 const rules = {
     a: { color: "red" },
@@ -59,8 +59,8 @@ describe("hiccup-css", () => {
                         ["div", {}],
                         ["[attr]",
                             ["span", rules.a]]]],
-                FORMATS.pretty),
-            "#id h1 {\n\n}\n#id h2 div, #id h3 div {\n\n}\n#id h2[attr] span, #id h3[attr] span {\n    color:red;\n}"
+                { format: PRETTY }),
+            "#id h1 {\n\n}\n\n#id h2 div, #id h3 div {\n\n}\n\n#id h2[attr] span, #id h3[attr] span {\n    color: red;\n}\n"
         );
     });
 });
