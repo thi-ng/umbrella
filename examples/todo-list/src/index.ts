@@ -11,7 +11,7 @@
 
 import { IObjectOf } from "@thi.ng/api/api";
 import * as atom from "@thi.ng/atom";
-import { start } from "@thi.ng/hiccup-dom/start";
+import { start } from "@thi.ng/hdom/start";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { map } from "@thi.ng/transducers/xform/map";
@@ -78,7 +78,7 @@ const toolbar = () =>
 const header =
     ["h1", "My tasks",
         ["small", "made with \u2764 ",
-            ["a", { href: "https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-dom" }, "@thi.ng/hiccup-dom"]]];
+            ["a", { href: "https://github.com/thi-ng/umbrella/tree/master/packages/hdom" }, "@thi.ng/hdom"]]];
 
 // kick off UI w/ root component function
 start(document.getElementById("app"), () => ["div", header, toolbar, taskList]);

@@ -1,5 +1,5 @@
-import { start } from "@thi.ng/hiccup-dom";
-import { canvasWebGL } from "@thi.ng/hiccup-dom-components/canvas";
+import { start } from "@thi.ng/hdom";
+import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
 
 // canvas init hook
 const initGL = (_: WebGLRenderingContext) => {

@@ -1,8 +1,6 @@
-# @thi.ng/hiccup-dom dashboard example
+# @thi.ng/hdom dashboard example
 
-![screenshot](http://demo.thi.ng/umbrella/hiccup-dom/dashboard/out.gif)
-
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/dashboard/)
+[Live demo here](http://demo.thi.ng/umbrella/dashboard/)
 
 ```
 git clone https://github.com/thi-ng/umbrella.git

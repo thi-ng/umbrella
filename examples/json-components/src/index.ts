@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 import { TransformSubSpec } from "@thi.ng/transducers/api";
 import { deepTransform } from "@thi.ng/transducers/func/deep-transform";
 

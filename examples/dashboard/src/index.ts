@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 
 // static component function to create styled box
 const box = (prefix, body) =>

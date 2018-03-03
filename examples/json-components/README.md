@@ -1,6 +1,6 @@
 # json-components
 
-[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/json-components/)
+[Live demo](http://demo.thi.ng/umbrella/json-components/)
 
 ```
 git clone https://github.com/thi-ng/umbrella.git

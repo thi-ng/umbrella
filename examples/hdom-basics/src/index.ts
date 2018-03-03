@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 
 // stateless component w/ params
 const greeter = (name) => ["h1.title", "hello ", name];

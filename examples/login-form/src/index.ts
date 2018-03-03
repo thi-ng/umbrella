@@ -1,6 +1,6 @@
 import { Atom } from "@thi.ng/atom/atom";
 import { setIn } from "@thi.ng/atom/path";
-import { start } from "@thi.ng/hiccup-dom/start";
+import { start } from "@thi.ng/hdom/start";
 
 // central immutable app state
 const db = new Atom({ state: "login" });
@@ -78,6 +78,6 @@ const currView = db.addView(
 const app = () =>
     ["div#app",
         currView.deref(),
-        ["footer", "Made with @thi.ng/atom and @thi.ng/hiccup-dom"]];
+        ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
 
 start(document.body, app);

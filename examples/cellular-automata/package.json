@@ -1,5 +1,5 @@
 {
-    "name": "game-of-life",
+    "name": "cellular-automata",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -17,8 +17,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^2.0.3",
-        "@thi.ng/hiccup-dom": "^1.1.0",
-        "@thi.ng/hiccup-dom-components": "^0.2.0",
-        "@thi.ng/transducers": "^1.5.0"
+        "@thi.ng/hdom": "^2.0.0",
+        "@thi.ng/hdom-components": "^1.0.0",
+        "@thi.ng/transducers": "^1.6.1"
     }
 }

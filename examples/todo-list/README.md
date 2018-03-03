@@ -1,6 +1,6 @@
-# @thi.ng/hiccup-dom todo list example
+# @thi.ng/hdom todo list example
 
-[Live demo here](http://demo.thi.ng/umbrella/hiccup-dom/todo-list/)
+[Live demo here](http://demo.thi.ng/umbrella/todo-list/)
 
 ```
 git clone https://github.com/thi-ng/umbrella.git

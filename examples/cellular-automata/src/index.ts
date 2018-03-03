@@ -1,5 +1,5 @@
-import { start } from "@thi.ng/hiccup-dom";
-import { dropdown, DropDownOption } from "@thi.ng/hiccup-dom-components/dropdown";
+import { start } from "@thi.ng/hdom";
+import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
 
 import { transduce } from "@thi.ng/transducers/transduce";
 import { step } from "@thi.ng/transducers/step";

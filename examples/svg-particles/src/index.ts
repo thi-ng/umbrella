@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 import { hex } from "@thi.ng/transducers/func/hex";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 

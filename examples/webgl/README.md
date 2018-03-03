@@ -1,6 +1,6 @@
 # webgl
 
-[Live demo](http://demo.thi.ng/umbrella/hiccup-dom/webgl/)
+[Live demo](http://demo.thi.ng/umbrella/webgl/)
 
 ```
 git clone https://github.com/thi-ng/umbrella.git

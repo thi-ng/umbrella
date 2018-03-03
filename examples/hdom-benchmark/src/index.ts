@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hiccup-dom";
+import { start } from "@thi.ng/hdom";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { Stream } from "@thi.ng/rstream/stream";
 import * as tx from "@thi.ng/transducers";
