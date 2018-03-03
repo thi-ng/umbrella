@@ -1,3 +1,5 @@
+export type RuleFn = (acc: string[], opts: CSSOpts) => string[];
+
 export interface Format {
     rules: string;
     ruleSep: string;
@@ -10,6 +12,7 @@ export interface Format {
 
 export interface CSSOpts {
     format: Format;
+    fns: any;
     autoprefix: string[] | Set<string>;
     vendors: string[];
     depth: number;

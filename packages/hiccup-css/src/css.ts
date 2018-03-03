@@ -18,7 +18,14 @@ const xfSel = ((a, b) => (x) => a(b(x)))(
 );
 
 export function css(rules: any, opts?: Partial<CSSOpts>) {
-    opts = { format: COMPACT, autoprefix: new Set(), vendors: DEFAULT_VENDORS, depth: 0, ...opts };
+    opts = {
+        format: COMPACT,
+        autoprefix: new Set(),
+        vendors: DEFAULT_VENDORS,
+        fns: {},
+        depth: 0,
+        ...opts
+    };
     if (isArray(opts.autoprefix)) {
         opts.autoprefix = new Set(opts.autoprefix);
     }
@@ -36,16 +43,20 @@ export function css(rules: any, opts?: Partial<CSSOpts>) {
 export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) {
     const n = rules.length;
     const sel: string[] = [];
-    let curr: any;
+    let curr: any, isFn;
     for (let i = 0; i < n; i++) {
         const r = rules[i];
         if (isArray(r)) {
             _css(acc, makeSelector(parent, sel), r, opts);
-        } else if (isFunction(r)) {
+        } else if ((isFn = isFunction(r)) || opts.fns[r]) {
             if (parent.length === 0) {
-                r(acc, opts);
-            } else {
+                return opts.fns[r] ?
+                    opts.fns[r].apply(null, rules.slice(i + 1))(acc, opts) :
+                    r(acc, opts);
+            } else if (isFn) {
                 sel.push(r());
+            } else {
+                throw new Error(`quoted fn ('${r}') only allowed @ root level`);
             }
         } else if (isPlainObject(r)) {
             curr = Object.assign(curr || {}, r);
@@ -61,6 +72,7 @@ export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) 
 
 export function formatDecls(rules: any, opts: CSSOpts) {
     const f = opts.format;
+    const prefixes = <Set<string>>opts.autoprefix;
     const space = indent(opts, opts.depth + 1);
     const acc = [];
     for (let r in rules) {
@@ -69,7 +81,10 @@ export function formatDecls(rules: any, opts: CSSOpts) {
             if (isFunction(val)) {
                 val = val(rules);
             }
-            if ((<Set<string>>opts.autoprefix).has(r)) {
+            if (isArray(val)) {
+                val = val.map((v) => isArray(v) ? v.join(" ") : v).join(f.ruleSep);
+            }
+            if (prefixes.has(r)) {
                 for (let v of opts.vendors) {
                     acc.push(`${space}${v}${r}:${f.valSep}${val};`);
                 }

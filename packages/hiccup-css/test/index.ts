@@ -5,6 +5,7 @@ import { css, PRETTY } from "../src";
 const rules = {
     a: { color: "red" },
     b: { border: 0 },
+    f: { foo: (rules) => rules.bar, bar: 1 }
 };
 
 describe("hiccup-css", () => {
@@ -13,6 +14,7 @@ describe("hiccup-css", () => {
         assert.equal(css("a"), undefined);
         assert.equal(css({}), "");
         assert.equal(css(rules.a), "color:red;");
+        assert.equal(css(rules.f), "foo:1;bar:1;");
     });
 
     it("simple", () => {
@@ -54,13 +56,13 @@ describe("hiccup-css", () => {
         assert.equal(
             css(
                 ["#id",
-                    ["h1", {}, {}],
+                    ["h1", rules.a, rules.b],
                     ["h2", "h3",
-                        ["div", {}],
+                        ["div", rules.b],
                         ["[attr]",
                             ["span", rules.a]]]],
                 { format: PRETTY }),
-            "#id h1 {\n\n}\n\n#id h2 div, #id h3 div {\n\n}\n\n#id h2[attr] span, #id h3[attr] span {\n    color: red;\n}\n"
+            "#id h1 {\n    color: red;\n    border: 0;\n}\n\n#id h2 div, #id h3 div {\n    border: 0;\n}\n\n#id h2[attr] span, #id h3[attr] span {\n    color: red;\n}\n"
         );
     });
 });
