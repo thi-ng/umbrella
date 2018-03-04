@@ -1,4 +1,8 @@
+import { IObjectOf } from "@thi.ng/api/api";
+
 export type RuleFn = (acc: string[], opts: CSSOpts) => string[];
+
+export type Conditional = string | IObjectOf<boolean | number | string>;
 
 export interface Format {
     rules: string;
