@@ -13,7 +13,7 @@ the new issue template and use issue labels to tag your issue.
 
 When running into code troubles, please try to include a minimal reproducible example.
 If the example is too large for including in the issue, please create a gist or repo
-and add link to it.
+and add a link to it.
 
 ## Documentation, examples & advocacy
 
@@ -37,7 +37,7 @@ many of the projects are meant to be integrated with other 3rd party projects, I
 on the lookout for similar small demos showcasing these integrations
 (e.g. w/ React, WebGL, SVG etc.)
 
-The repo contains a generator bash script to create a new example project skeleon in the
+The repo contains a generator bash script to create a new example project skeleton in the
 repo's `/examples` dir. Use it like below (and make sure the name is not already taken):
 
 ```
@@ -49,8 +49,9 @@ cd examples/my-example
 
 (Note 1: the package versions used by this generator MIGHT be occasionally out-of-date)
 
-(Note 2: **If you've cloned the repo and build all packages, DO NOT run `yarn install`
-in the example dir. `yarn dev` will work without and re-use the built packages in the project root**)
+(Note 2: **If you've cloned the repo and built all packages, DO NOT run `yarn install`
+in the example dir. `yarn dev` will work without and re-use the built packages
+(irrespective of their version) in the project root**)
 
 If you choose to add a new example this way (and not elsewhere on the interweb),
 please also read the next section...
@@ -80,8 +81,8 @@ git checkout -b feature/my-feature develop
 ```
 
 I'm in the process of switching to the git-flow branching model for this repo and all
-new development should be done on feature branches based off current `develop` branch.
-PR's submitted against master branch MIGHT be refused.
+new development should be done on feature branches based off the current `develop` branch.
+PR's submitted directly against the `master` branch MIGHT be refused in the future.
 
 ### Commit your changes
 
@@ -172,7 +173,7 @@ it's necessary.
 
 ### 4 spaces
 
-Sorry tab folk.
+Sorry tab folk :)
 
 ### Misc
 
