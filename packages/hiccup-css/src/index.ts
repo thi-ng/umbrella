@@ -1,5 +1,6 @@
 export * from "./api";
 export * from "./attribs";
+export * from "./comment";
 export * from "./conditional";
 export * from "./css";
 export * from "./import";
@@ -8,3 +9,4 @@ export * from "./media";
 export * from "./namespace";
 export * from "./quoted-functions";
 export * from "./supports";
+export * from "./units";

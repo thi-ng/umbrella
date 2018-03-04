@@ -8,6 +8,7 @@ export interface Format {
     declStart: string;
     declEnd: string;
     indent: string;
+    comments: boolean;
 }
 
 export interface CSSOpts {
@@ -25,5 +26,24 @@ export const DEFAULT_VENDORS = [
     "-webkit-"
 ];
 
-export const COMPACT: Format = { rules: "", ruleSep: ",", valSep: "", decls: "", declStart: "{", declEnd: "}", indent: "" };
-export const PRETTY: Format = { rules: "\n", ruleSep: ", ", valSep: " ", decls: "\n", declStart: " {\n", declEnd: "}\n", indent: "    " };
+export const COMPACT: Format = {
+    rules: "",
+    ruleSep: ",",
+    valSep: "",
+    decls: "",
+    declStart: "{",
+    declEnd: "}",
+    indent: "",
+    comments: false,
+};
+
+export const PRETTY: Format = {
+    rules: "\n",
+    ruleSep: ", ",
+    valSep: " ",
+    decls: "\n",
+    declStart: " {\n",
+    declEnd: "}\n",
+    indent: "    ",
+    comments: true,
+};

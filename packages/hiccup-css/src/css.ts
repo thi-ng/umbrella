@@ -1,6 +1,8 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { permutations } from "@thi.ng/transducers/iter/permutations";
 import { str } from "@thi.ng/transducers/rfn/str";
@@ -10,7 +12,7 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { CSSOpts, COMPACT, DEFAULT_VENDORS } from "./api";
 import { indent } from "./utils";
 
-const NO_SPACES = ".:[";
+const NO_SPACES = ":[";
 
 const xfSel = ((a, b) => (x) => a(b(x)))(
     flatten(),
@@ -48,15 +50,17 @@ export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) 
         const r = rules[i];
         if (isArray(r)) {
             _css(acc, makeSelector(parent, sel), r, opts);
+        } else if (isIterable(r) && !isString(r)) {
+            _css(acc, makeSelector(parent, sel), [...r], opts);
         } else if ((isFn = isFunction(r)) || opts.fns[r]) {
-            if (parent.length === 0) {
+            if (i === 0) {
                 return opts.fns[r] ?
                     opts.fns[r].apply(null, rules.slice(i + 1))(acc, opts) :
                     r(acc, opts);
             } else if (isFn) {
                 sel.push(r());
             } else {
-                throw new Error(`quoted fn ('${r}') only allowed @ root level`);
+                throw new Error(`quoted fn ('${r}') only allowed at head position`);
             }
         } else if (isPlainObject(r)) {
             curr = Object.assign(curr || {}, r);
@@ -103,14 +107,16 @@ function makeSelector(parent: any[], curr: any[]) {
 function formatRule(parent: any[], sel: any[], curr: any, opts: CSSOpts) {
     const f = opts.format;
     const space = indent(opts);
-    return space
-        + transduce(
+    return [
+        space,
+        transduce(
             map((sel: any[]) => transduce(xfSel, str(), isArray(sel) ? sel : [sel]).trim()),
             str(f.ruleSep),
-            makeSelector(parent, sel))
-        + f.declStart
-        + formatDecls(curr, opts)
-        + space
-        + f.declEnd;
+            makeSelector(parent, sel)),
+        f.declStart,
+        formatDecls(curr, opts),
+        space,
+        f.declEnd
+    ].join("");
 }
 
