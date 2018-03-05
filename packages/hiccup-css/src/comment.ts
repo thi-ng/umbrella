@@ -1,5 +1,5 @@
 import { RuleFn } from "./api";
-import { indent } from "./utils";
+import { indent } from "./impl";
 
 export function comment(body: string, force = false): RuleFn {
     return (acc, opts) => {

@@ -1,7 +1,6 @@
 import { CSSOpts, RuleFn } from "./api";
-import { formatDecls } from "./css";
+import { formatDecls, indent } from "./impl";
 import { percent } from "./units";
-import { indent } from "./utils";
 
 /**
  * Rule function for `@keyframes`. If a single declaration object is given,
