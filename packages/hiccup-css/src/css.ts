@@ -49,19 +49,21 @@ export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) 
     const n = rules.length;
     const sel: string[] = [];
     let curr: any, isFn;
-    for (let i = 0; i < n; i++) {
-        const r = rules[i];
+
+    function process(i, r) {
         if (isArray(r)) {
             _css(acc, makeSelector(parent, sel), r, opts);
         } else if (isIterable(r) && !isString(r)) {
             _css(acc, makeSelector(parent, sel), [...r], opts);
         } else if ((isFn = isFunction(r)) || opts.fns[r]) {
             if (i === 0) {
-                return opts.fns[r] ?
-                    opts.fns[r].apply(null, rules.slice(i + 1))(acc, opts) :
-                    r(acc, opts);
+                if (opts.fns[r]) {
+                    opts.fns[r].apply(null, rules.slice(i + 1))(acc, opts);
+                    return true;
+                }
+                r(acc, opts);
             } else if (isFn) {
-                sel.push(r());
+                process(i, r());
             } else {
                 throw new Error(`quoted fn ('${r}') only allowed at head position`);
             }
@@ -69,6 +71,12 @@ export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) 
             curr = Object.assign(curr || {}, r);
         } else if (r != null) {
             sel.push(r);
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (process(i, rules[i])) {
+            return acc;
         }
     }
     if (curr) {
@@ -95,9 +103,8 @@ export function formatDecls(rules: any, opts: CSSOpts) {
                 for (let v of opts.vendors) {
                     acc.push(`${space}${v}${r}:${f.valSep}${val};`);
                 }
-            } else {
-                acc.push(`${space}${r}:${f.valSep}${val};`);
             }
+            acc.push(`${space}${r}:${f.valSep}${val};`);
         }
     }
     return acc.join(f.decls) + f.decls;
