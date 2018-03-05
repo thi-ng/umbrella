@@ -1,10 +1,10 @@
-# multiple-states
+# devcards
 
-[Live demo](http://demo.thi.ng/umbrella/multiple-states/)
+[Live demo](http://demo.thi.ng/umbrella/devcards/)
 
 ```
 git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/multiple-states
+cd umbrella/examples/devcards
 yarn install
 ```
 Then
