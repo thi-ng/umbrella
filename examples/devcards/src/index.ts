@@ -9,7 +9,7 @@ type CardFn = (state: IAtom<any>) => any;
 let CARD_ID = 1;
 
 /**
- * Inspired by Bruce Haumann's Devcards project:
+ * Inspired by Bruce Hauman's Devcards project:
  * https://github.com/bhauman/devcards/
  *
  * This function takes a component initializer function, an optional
