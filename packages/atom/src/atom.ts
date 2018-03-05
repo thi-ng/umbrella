@@ -2,6 +2,7 @@ import { IEquiv, Watch } from "@thi.ng/api/api";
 import { IWatch } from "@thi.ng/api/mixins/iwatch";
 
 import { IAtom, IView, Path, SwapFn, ViewTransform } from "./api";
+import { setIn, updateIn } from "./path";
 import { View } from "./view";
 
 /**
@@ -31,6 +32,13 @@ export class Atom<T> implements
         const old = this.value;
         this.value = val;
         this.notifyWatches(old, val);
+        return val;
+    }
+
+    resetIn<V>(path: Path, val: V) {
+        const old = this.value;
+        this.value = setIn(this.value, path, val);
+        this.notifyWatches(old, this.value);
         return this.value;
     }
 
@@ -38,6 +46,13 @@ export class Atom<T> implements
         const old = this.value;
         args.unshift(old);
         this.value = fn.apply(null, args);
+        this.notifyWatches(old, this.value);
+        return this.value;
+    }
+
+    swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
+        const old = this.value;
+        this.value = updateIn(this.value, path, fn, ...args);
         this.notifyWatches(old, this.value);
         return this.value;
     }
