@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/hiccup-css",
     "version": "0.0.1",
-    "description": "CSS as nested data structures",
+    "description": "CSS from nested JS data structures",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
