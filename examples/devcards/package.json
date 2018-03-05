@@ -1,0 +1,25 @@
+{
+    "name": "multiple-states",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && webpack",
+        "clean": "rm -rf bundle.*",
+        "dev": "open index.html && webpack -w",
+        "debdev": "see index.html && webpack -w"
+    },
+    "devDependencies": {
+        "ts-loader": "^3.3.1",
+        "typescript": "^2.7.1",
+        "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^2.0.3",
+        "@thi.ng/atom": "^0.7.3",
+        "@thi.ng/hdom": "^2.0.0",
+        "@thi.ng/rstream": "^1.0.8",
+        "@thi.ng/transducers": "^1.6.1"
+    }
+}
