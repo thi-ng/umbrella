@@ -31,6 +31,9 @@ export function css(rules: any, opts?: Partial<CSSOpts>) {
     if (isArray(opts.autoprefix)) {
         opts.autoprefix = new Set(opts.autoprefix);
     }
+    if (isIterable(rules) && !isString(rules)) {
+        rules = [...rules];
+    }
     if (isArray(rules)) {
         return _css([], [], rules, <CSSOpts>opts).join(opts.format.rules);
     }
@@ -64,7 +67,7 @@ export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) 
             }
         } else if (isPlainObject(r)) {
             curr = Object.assign(curr || {}, r);
-        } else {
+        } else if (r != null) {
             sel.push(r);
         }
     }
