@@ -75,8 +75,16 @@ export class Cursor<T> implements
         return this.local.reset(val);
     }
 
+    resetIn<V>(path: Path, val: V) {
+        return this.local.resetIn(path, val);
+    }
+
     swap(fn: SwapFn<T>, ...args: any[]): T {
-        return this.local.swap.apply(this.local, [fn, ...args]);
+        return this.local.swap(fn, ...args);
+    }
+
+    swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
+        return this.local.swapIn(path, fn, ...args);
     }
 
     addWatch(id: string, fn: Watch<T>) {

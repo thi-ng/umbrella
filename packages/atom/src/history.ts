@@ -2,6 +2,7 @@ import { Predicate2, Watch } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 
 import { IAtom, SwapFn, IView, Path, ViewTransform } from "./api";
+import { getIn, setIn, updateIn } from "./path";
 import { View } from "./view";
 
 /**
@@ -91,6 +92,15 @@ export class History<T> implements
         return val;
     }
 
+    resetIn<V>(path: Path, val: V): T {
+        const prev = this.state.deref();
+        const prevV = getIn(prev, path);
+        const curr = setIn(prev, path, val);
+        this.changed(prevV, getIn(curr, path)) && this.record(prev);
+        this.state.reset(curr);
+        return curr;
+    }
+
     /**
      * `IAtom.swap()` implementation. Delegates to wrapped atom/cursor,
      * but too applies `changed` predicate to determine if there was a
@@ -99,7 +109,11 @@ export class History<T> implements
      * @param val
      */
     swap(fn: SwapFn<T>, ...args: any[]): T {
-        return this.reset(fn.apply(null, [this.state.deref(), ...args]));
+        return this.reset(fn(this.state.deref(), ...args));
+    }
+
+    swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
+        return this.reset(updateIn(this.state.deref(), path, fn, ...args));
     }
 
     /**

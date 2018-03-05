@@ -21,10 +21,12 @@ export interface IAtom<T> extends
 
 export interface IReset<T> {
     reset(val: T): T;
+    resetIn<V>(path: Path, val: V): T;
 }
 
 export interface ISwap<T> {
     swap(fn: SwapFn<T>, ...args: any[]): T;
+    swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]): T;
 }
 
 export interface IView<T> extends
