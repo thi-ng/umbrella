@@ -32,6 +32,12 @@ functions, iterators.
 - Unit formatting wrappers (no conversions yet)
 - Customizable formatting (2 defaults for compact & pretty printing)
 
+## Use cases
+
+- Same as LESS / SASS etc., but enables full use of ES6 to define style rules
+- CSS framework & theme generators
+- Dynamic CSS generation for components
+
 The overall approach of using S-expressions was inspired by these Clojure projects:
 
 - [hiccup](https://github.com/weavejester/hiccup)
@@ -43,11 +49,24 @@ The overall approach of using S-expressions was inspired by these Clojure projec
 yarn add @thi.ng/hiccup-css
 ```
 
-## Usage examples
+## API & usage examples
 
 ```typescript
 import * as css from "@thi.ng/hiccup-css";
 ```
+
+### `css(rules: any, opts?: CSSOpts)`
+
+This is the main function exposed by this module. It accepts a JS data
+structure (array, object, iterator or function) and returns a CSS string. The
+optional `opts` arg is used to control formatting, auto-prefixing and other
+conversion options. See
+[api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css/src/api.ts)
+for reference.
+
+By default the generated CSS uses the `css.COMPACT` format, causing "minimized"
+outputs. Pretty printing is supported via the `css.PRETTY` format preset, see
+examples further below.
 
 ### Property formatting only
 
@@ -367,10 +386,10 @@ Also see the section on [Quoted functions](#quoted-functions) below...
 #### Functions in scope head position
 
 If a function is given as arg to `css()` or is in the head position (first
-element) of a rule scope, the function is considered a higher-order function
-and the returned function is called with an empty result accumulator array and the
-`CSSOpts` object passed to `css()`. This form is mainly used by the various
-`at_*()` functions provided (e.g. `at_media()` example above).
+element) of a rule scope, the function is expected to produce output directly
+and is called with an empty result accumulator array and the `CSSOpts` object
+passed to `css()`. This form is mainly used by the various `at_*()` functions
+provided (e.g. `at_media()` example above).
 
 ```typescript
 css.css(at_import("foo.css", "screen"));
@@ -380,25 +399,14 @@ css.css(at_import("foo.css", "screen"));
 The following example illustrates the head position placement, using the
 `comment()` function to emit CSS comments.
 
-**IMPORTANT:** any other items given in the same scope *after* the function
-will be ignored.
-
 ```typescript
 css.css([
     // comments are usually omitted with the default format (css.COMPACT)
     // pass `true` as 2nd arg to force inclusion
-    [css.comment("generated, please don't edit", true)],
-    // the following `div` rule is in its own scope, so okay
+    css.comment("generated, please don't edit", true),
     ["div", { margin: 0 }]
 ]);
-// "/* generated, don't edit */div{margin:0;}"
-
-css.css([
-    css.comment("generated, please don't edit", true),
-    // here the `div` rule is part of the same scope and will be omitted
-    ["div", { margin: 0 }]
-])
-// "/* generated, don't edit */"
+// "/*generated, don't edit*/div{margin:0;}"
 ```
 
 #### Functions in other positions
@@ -420,6 +428,8 @@ functions is provided:
 The quoted function name is looked up in a dictionary and if found, called with
 all remaining elements in the same array. I.e. `["@import", "foo.css"]` will be
 the same result as `at_import("foo.css")`.
+
+**IMPORTANT:** Quoted functions are only supported in the head position of a scope.
 
 ```typescript
 const styles = [
