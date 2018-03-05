@@ -75,8 +75,8 @@ describe("hiccup-css", () => {
             "@import url(foo.css);"
         );
         assert.equal(
-            css([at_import("foo.css"), /* will be ignored */["div", {}]]),
-            "@import url(foo.css);"
+            css([at_import("foo.css"), ["div", {}]]),
+            "@import url(foo.css);div{}"
         );
         assert.equal(
             css([[at_import("foo.css")], ["div", {}]]),
