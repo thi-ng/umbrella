@@ -14,6 +14,8 @@ import { indent } from "./utils";
 
 const NO_SPACES = ":[";
 
+const EMPTY = new Set<string>();
+
 const xfSel = ((a, b) => (x) => a(b(x)))(
     flatten(),
     map((x: string) => NO_SPACES.indexOf(x.charAt(0)) >= 0 ? x : " " + x)
@@ -22,12 +24,14 @@ const xfSel = ((a, b) => (x) => a(b(x)))(
 export function css(rules: any, opts?: Partial<CSSOpts>) {
     opts = {
         format: COMPACT,
-        autoprefix: new Set(),
         vendors: DEFAULT_VENDORS,
         fns: {},
         depth: 0,
         ...opts
     };
+    if (isPlainObject(rules)) {
+        return formatDecls(rules, <CSSOpts>opts);
+    }
     if (isArray(opts.autoprefix)) {
         opts.autoprefix = new Set(opts.autoprefix);
     }
@@ -39,9 +43,6 @@ export function css(rules: any, opts?: Partial<CSSOpts>) {
     }
     if (isFunction(rules)) {
         return rules([], opts).join(opts.format.rules);
-    }
-    if (isPlainObject(rules)) {
-        return formatDecls(rules, <CSSOpts>opts);
     }
 }
 
@@ -87,7 +88,7 @@ export function _css(acc: string[], parent: any[], rules: any[], opts: CSSOpts) 
 
 export function formatDecls(rules: any, opts: CSSOpts) {
     const f = opts.format;
-    const prefixes = <Set<string>>opts.autoprefix;
+    const prefixes = <Set<string>>(opts.autoprefix || EMPTY);
     const space = indent(opts, opts.depth + 1);
     const acc = [];
     for (let r in rules) {
@@ -129,4 +130,3 @@ function formatRule(parent: any[], sel: any[], curr: any, opts: CSSOpts) {
         f.declEnd
     ].join("");
 }
-
