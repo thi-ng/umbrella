@@ -7,12 +7,13 @@ export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
 export type ViewTransform<T> = (x: any) => T;
 
-export type InterceptorFn = (state: any, e: Event) => any;
-export type InterceptorPredicate = (state: any, e: Event) => boolean;
+export type InterceptorFn = (state: any, e: Event, fx?: any) => any;
+export type InterceptorPredicate = (state: any, e: Event, fx?: any) => boolean;
 
 export type SideEffect = (x: any) => void;
-export type EventDef = Interceptor | Interceptor[] | InterceptorFn | InterceptorFn[];
-export type EffectDef = [SideEffect, number];
+export type EventDef = Interceptor | InterceptorFn | (Interceptor | InterceptorFn)[];
+export type EffectDef = SideEffect | [SideEffect, number];
+export type EffectPriority = [string, number];
 
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,
