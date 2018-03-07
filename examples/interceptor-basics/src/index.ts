@@ -27,7 +27,7 @@ const events: IObjectOf<EventDef> = {
         (_, [__, path]) => ({ [FX_DISPACH_NOW]: ["updateVal", [path, -1]] })
     ],
 
-    // this event handler injects the trace interceptor from above
+    // this event handler injects the trace interceptor
     // to log the event each time it's triggered
     updateVal: [
         trace,
@@ -38,6 +38,8 @@ const events: IObjectOf<EventDef> = {
     // triggers "addCounter" side effect with config options for the new counter
     addCounter: (state) => ({
         [FX_DISPACH_NOW]: ["updateVal", ["nextID", 1]],
+        // the "addCounter" side effect is defined further below
+        // here we simply prepare some configuration data for the new counter
         "addCounter": {
             id: state.nextID,
             start: ~~(Math.random() * 100),
@@ -57,7 +59,7 @@ const effects: IObjectOf<EffectDef> = {
 // components
 
 // counter component function
-// calls to this function will be triggered via "addCounter" event and its side effect
+// calls to this function will be triggered via the "addCounter" event and its side effect
 // (see further below)
 const counter = (bus: EventBus, path: Path, start = 0, color: string) => {
     const view = bus.state.addView(path);
@@ -71,12 +73,16 @@ const counter = (bus: EventBus, path: Path, start = 0, color: string) => {
                 ["button", { onclick: () => bus.dispatch(["inc", view.path]) }, "+"]]];
 }
 
-// our main app
+// main app
 const app = () => {
     // setup central state atom
     const db = new Atom({});
     // connect event bus to state and configure with above handlers/effects
     const bus = new EventBus(db, events, effects);
+
+    // add derived view for updating JSON state trace
+    // (only executed when state changes)
+    const json = db.addView([], (state) => JSON.stringify(state, null, 2));
 
     // an array to store counter component instances
     const counters = [];
@@ -98,7 +104,7 @@ const app = () => {
         ["div",
             ["button#addcounter", { onclick: () => bus.dispatch(["addCounter"]) }, "add counter"],
             ["div.buttons", ...counters],
-            ["pre", JSON.stringify(db.deref(), null, 2)]];
+            ["pre", json.deref()]];
 
     return () => {
         // here we do an optional fail fast check, a useful & energy saving
