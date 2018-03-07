@@ -260,8 +260,4 @@ export class EventBus {
             }
         }
     }
-
-    protected insertPriority(p: api.EffectPriority) {
-
-    }
 }
