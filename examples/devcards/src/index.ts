@@ -9,7 +9,7 @@ type CardFn = (state: IAtom<any>) => any;
 let CARD_ID = 1;
 
 /**
- * Inspired by Bruce Haumann's Devcards project:
+ * Inspired by Bruce Hauman's Devcards project:
  * https://github.com/bhauman/devcards/
  *
  * This function takes a component initializer function, an optional
@@ -111,14 +111,39 @@ function bmi(state: IAtom<any>) {
             state.resetIn("bmi", weight / (height * height));
         }
     };
+
+    // define BMI thresholds
+    const thresh: [number, string, string][] = [
+        [10, "underweight", "#cf3"],
+        [18.5, "normal", "#7f0"],
+        [25, "overweight", "#f90"],
+        [30, "obese", "#f00"]
+    ];
+
     // derived view of bmi value to translate it into english
     const bmiClass = state.addView(
         "bmi",
         (bmi: number) =>
-            bmi < 18.5 ? "underweight" :
-                bmi < 25 ? "normal" :
-                    bmi < 30 ? "overweight" : "obese"
+            bmi > thresh[3][0] ? thresh[3][1] :
+                bmi > thresh[2][0] ? thresh[2][1] :
+                    bmi > thresh[1][0] ? thresh[1][1] : thresh[0][1]
     );
+
+    // another derived view to create SVG visualization
+    const bmiScale = (x) => (x - 10) / 30 * 100 + "%";
+    const bmiViz = state.addView(
+        "bmi",
+        (bmi: number) =>
+            ["div",
+                ["svg",
+                    { width: "100%", height: 30, style: { "font-size": "10px" } },
+                    ...thresh.map(([t, _, col]) =>
+                        ["rect", { x: bmiScale(t), y: 0, width: "100%", height: 30, fill: col }]),
+                    ...thresh.map(([t, label]) =>
+                        ["text", { x: bmiScale(t + 0.5), y: 12 }, label]),
+                    ["circle", { cx: bmiScale(bmi), cy: 20, r: 5 }]]]
+    );
+
     // define slider components
     // note how each uses a cursor to their respective
     // target values in the app state
@@ -133,7 +158,7 @@ function bmi(state: IAtom<any>) {
     const weight = slider(
         new Cursor(state, "weight"),
         {
-            min: 10, max: 200,
+            min: 10, max: 150,
             label: (v) => `Weight: ${~~v}kg`,
             onchange: () => calc()
         }
@@ -150,7 +175,7 @@ function bmi(state: IAtom<any>) {
     // perform initial calculation
     calc();
 
-    return () => ["div", height, weight, bmi];
+    return () => ["div", height, weight, bmi, ["div", bmiViz.deref()]];
 }
 
 /**
@@ -172,8 +197,8 @@ const db = new Atom({ card1: { weight: 75, height: 194 } });
 defcard(bmi, new Cursor(db, "card1"), "BMI calculator (shared)");
 defcard(bmi, new Cursor(db, "card2"));
 
-defcard(() => {
+defcard((state) => {
     // just some random task to populate another part of the app state
-    setInterval(() => db.resetIn("stats.now", new Date().toISOString()), 1000);
+    setInterval(() => state.resetIn("stats.now", new Date().toISOString()), 1000);
     return ["div", "The full shared state:"];
 }, db);

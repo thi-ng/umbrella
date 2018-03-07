@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.7.3...@thi.ng/atom@0.8.0) (2018-03-05)
+
+
+### Features
+
+* **atom:** update IAtom, add resetIn() & swapIn() impls ([a7e61a4](https://github.com/thi-ng/umbrella/commit/a7e61a4))
+
+
+
+
 <a name="0.7.3"></a>
 ## [0.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.7.2...@thi.ng/atom@0.7.3) (2018-03-03)
 
