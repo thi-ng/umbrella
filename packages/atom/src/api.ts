@@ -7,6 +7,13 @@ export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
 export type ViewTransform<T> = (x: any) => T;
 
+export type InterceptorFn = (state: any, e: Event) => any;
+export type InterceptorPredicate = (state: any, e: Event) => boolean;
+
+export type SideEffect = (x: any) => void;
+export type EventDef = Interceptor | Interceptor[] | InterceptorFn | InterceptorFn[];
+export type EffectDef = [SideEffect, number];
+
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,
     api.IWatch<T> {
@@ -43,3 +50,18 @@ export interface IView<T> extends
 export interface IViewable {
     addView<T>(path: Path, tx?: ViewTransform<T>): IView<T>;
 }
+
+export interface Event extends Array<any> {
+    [0]: string;
+    [1]?: any;
+}
+
+export interface Interceptor {
+    pre?: InterceptorFn;
+    post?: InterceptorFn;
+}
+
+export const FX_STATE = "state";
+export const FX_DISPACH_NOW = "dispatch-now";
+export const FX_DISPATCH = "dispatch";
+export const FX_CANCEL = "cancel";
