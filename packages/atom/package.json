@@ -26,7 +26,8 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.0.3"
+        "@thi.ng/api": "^2.0.3",
+        "@thi.ng/dcons": "0.1.13"
     },
     "keywords": [
         "cursor",
