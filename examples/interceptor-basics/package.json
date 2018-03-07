@@ -1,0 +1,23 @@
+{
+    "name": "interceptor-basics",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && webpack",
+        "clean": "rm -rf bundle.*",
+        "dev": "open index.html && webpack -w",
+        "debdev": "see index.html && webpack -w"
+    },
+    "devDependencies": {
+        "ts-loader": "^3.5.0",
+        "typescript": "^2.7.2",
+        "webpack": "^3.11.0"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^2.0.3",
+        "@thi.ng/atom": "^0.8.0",
+        "@thi.ng/hdom": "^2.1.0"
+    }
+}
