@@ -19,11 +19,11 @@ const events: IObjectOf<EventDef> = {
     // note how we also inject the predicate interceptors here to ensure
     // counter values will be always be in the range between 0 .. 100
     inc: [
-        ensureLessThan(100, () => console.warn("eek, reached max")),
+        ensureLessThan(100, null, () => console.warn("eek, reached max")),
         (_, [__, path]) => ({ [FX_DISPACH_NOW]: ["updateVal", [path, 1]] })
     ],
     dec: [
-        ensureGreaterThan(0, () => console.warn("eek, reached min")),
+        ensureGreaterThan(0, null, () => console.warn("eek, reached min")),
         (_, [__, path]) => ({ [FX_DISPACH_NOW]: ["updateVal", [path, -1]] })
     ],
 
