@@ -1,5 +1,5 @@
-import { Event, InterceptorFn, InterceptorPredicate, FX_CANCEL, Path } from "./api";
-import { getIn } from "./path";
+import { FX_CANCEL, FX_STATE, Event, InterceptorFn, InterceptorPredicate, Path } from "./api";
+import { getIn, setIn, updateIn } from "./path";
 
 /**
  * Debug interceptor to log the current event to the console.
@@ -18,12 +18,27 @@ export function trace(_, e) {
  * the error interceptor's result, which is merged into the result of
  * this interceptor.
  *
+ * The error interceptor can return any number of other side effects and
+ * so be used to dispatch alternative events instead, for example:
+ *
+ * ```
+ * // this interceptor will cause cancellation of current event
+ * // and trigger an "error" event instead
+ * ensurePred(
+ *   // a dummy predicate which always fails
+ *   () => false
+ *   // error interceptor fn
+ *   () => ({[FX_DISPATCH_NOW]: ["error", "reason"]})
+ * )
+ * ```
+ *
  * Note: For this interceptor to work as expected, it needs to be provided
  * BEFORE the main handler in the interceptor list for a given event, i.e.
  *
  * ```
  * [
  *    ensurePred((state, e) => false),
+ *    // actual event handler
  *    (state, e) => console.log("no one never calls me")
  * ]
  * ```
@@ -40,9 +55,10 @@ export function ensurePred(pred: InterceptorPredicate, err?: InterceptorFn): Int
 }
 
 /**
- * Specialization of `ensurePred()` to ensure a state value is less than given max.
- * The optional `path` fn is used to extract or produce the path for the state
- * value to be validated. If omitted, the event's payload item is interpreted as
+ * Specialization of `ensurePred()` to ensure a state value is less than
+ * given max at the time when the event is being processed. The optional
+ * `path` fnis used to extract or produce the path for the state value to
+ * be validated. If omitted, the event's payload item is interpreted as
  * the value path.
  *
  * For example, without a provided `path` function and for an event
@@ -59,11 +75,38 @@ export function ensureLessThan(max: number, path?: (e: Event) => Path, err?: Int
 }
 
 /**
- * Specialization of `ensurePred()` to ensure a state value is greater than given min.
- * See `ensureLessThan()` for further details.
+ * Specialization of `ensurePred()` to ensure a state value is greater than
+ * given min. See `ensureLessThan()` for further details.
  *
  * @param path path extractor
  */
 export function ensureGreaterThan(min: number, path?: (e: Event) => Path, err?: InterceptorFn) {
     return ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) > min, err);
+}
+
+/**
+ * Higher-order interceptor. Returns new interceptor to set state value at
+ * provided path. This allows for dedicated events to set state values more
+ * concisely, e.g. given this event definition:
+ *
+ * ```
+ * setFoo: valueSetter("foo.bar")
+ * ```
+ *
+ * ...the `setFoo` event then can be triggered like so to update the state
+ * value at `foo.bar`:
+ *
+ * ```
+ * bus.dispatch(["foo", 23])
+ * ```
+ *
+ * @param path
+ * @param tx
+ */
+export function valueSetter<T>(path: Path, tx?: (x: T) => T): InterceptorFn {
+    return (state, [_, val]) => ({ [FX_STATE]: setIn(state, path, tx ? tx(val) : val) });
+}
+
+export function valueUpdater<T>(path: Path, fn: (x: T, ...args: any[]) => T): InterceptorFn {
+    return (state, [_, ...args]) => ({ [FX_STATE]: updateIn(state, path, fn, ...args) });
 }
