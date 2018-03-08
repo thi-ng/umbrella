@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.9.2...@thi.ng/atom@0.10.0) (2018-03-08)
+
+
+### Features
+
+* **atom:** add async dispatch effect, update event bus & api types ([56866e0](https://github.com/thi-ng/umbrella/commit/56866e0))
+
+
+
+
 <a name="0.9.2"></a>
 ## [0.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.9.1...@thi.ng/atom@0.9.2) (2018-03-08)
 
