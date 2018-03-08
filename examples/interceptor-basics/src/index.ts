@@ -1,12 +1,11 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { Path } from "@thi.ng/atom/api";
+import { EffectDef, EventDef, FX_DISPATCH_NOW, FX_STATE, IDispatch, Path } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";
+import { EventBus } from "@thi.ng/atom/event-bus";
+import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/atom/interceptors";
 import { updateIn, setIn } from "@thi.ng/atom/path";
 import { start } from "@thi.ng/hdom/start";
 
-import { EffectDef, EventDef, FX_DISPACH_NOW, FX_STATE } from "@thi.ng/atom/api";
-import { EventBus } from "@thi.ng/atom/event-bus";
-import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/atom/interceptors";
 
 ///////////////////////////////////////////////////////////////////////
 // event handler definitions
@@ -20,11 +19,11 @@ const events: IObjectOf<EventDef> = {
     // counter values will be always be in the range between 0 .. 100
     inc: [
         ensureLessThan(100, null, () => console.warn("eek, reached max")),
-        (_, [__, path]) => ({ [FX_DISPACH_NOW]: ["updateVal", [path, 1]] })
+        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: ["updateVal", [path, 1]] })
     ],
     dec: [
         ensureGreaterThan(0, null, () => console.warn("eek, reached min")),
-        (_, [__, path]) => ({ [FX_DISPACH_NOW]: ["updateVal", [path, -1]] })
+        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: ["updateVal", [path, -1]] })
     ],
 
     // this event handler injects the trace interceptor
@@ -37,7 +36,7 @@ const events: IObjectOf<EventDef> = {
     // this handler increments the `nextID` state value and
     // triggers "addCounter" side effect with config options for the new counter
     addCounter: (state) => ({
-        [FX_DISPACH_NOW]: ["updateVal", ["nextID", 1]],
+        [FX_DISPATCH_NOW]: ["updateVal", ["nextID", 1]],
         // the "addCounter" side effect is defined further below
         // here we simply prepare some configuration data for the new counter
         "addCounter": {
@@ -61,7 +60,7 @@ const effects: IObjectOf<EffectDef> = {
 // counter component function
 // calls to this function will be triggered via the "addCounter" event and its side effect
 // (see further below)
-const counter = (bus: EventBus, path: Path, start = 0, color: string) => {
+const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
     const view = bus.state.addView(path);
     bus.dispatch(["init", [path, start]]);
     return () =>
@@ -92,7 +91,7 @@ const app = () => {
     // here we define the "addCounter" side effect, responsible for
     // creating a new `counter()` component
     bus.addEffect("addCounter",
-        ({ id, color, start }) =>
+        ({ id, color, start }, bus) =>
             counters.push(counter(bus, `counters.${id}`, start, color)));
 
     // this not just initializes the given state value
