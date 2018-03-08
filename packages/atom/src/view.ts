@@ -5,7 +5,7 @@ import { getter, toPath } from "./path";
 export class View<T> implements
     IView<T> {
 
-    static NEXT_ID = 0;
+    protected static NEXT_ID = 0;
 
     readonly id: string;
 
@@ -55,9 +55,9 @@ export class View<T> implements
      * value change, returns result of this sub's transformer or else
      * the cached value.
      *
-     * **Important:** Use this function only if the view's transformer
-     * is stateless or else might cause undefined/inconsistent
-     * behavior when calling deref() subsequently.
+     * **Important:** Use this function only if the view has none or
+     * or a stateless transformer. Else might cause undefined/inconsistent
+     * behavior when calling `view()` or `deref()` subsequently.
      */
     view() {
         return this.isDirty ? this.tx(this.unprocessed) : this.state;
