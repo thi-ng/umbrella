@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.9.2"></a>
+## [0.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.9.1...@thi.ng/atom@0.9.2) (2018-03-08)
+
+
+### Bug Fixes
+
+* **atom:** add EventBus to module re-exports, minor cleanup ([9e5239b](https://github.com/thi-ng/umbrella/commit/9e5239b))
+
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.9.0...@thi.ng/atom@0.9.1) (2018-03-07)
 
