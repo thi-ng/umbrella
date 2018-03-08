@@ -1,45 +1,56 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { EffectDef, EventDef, FX_DISPATCH_NOW, FX_STATE, IDispatch, Path } from "@thi.ng/atom/api";
+import { EffectDef, EventDef, IDispatch, Path } from "@thi.ng/atom/api";
+import { EV_SET_VALUE, EV_UPDATE_VALUE, FX_DISPATCH_NOW } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";
 import { EventBus } from "@thi.ng/atom/event-bus";
 import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/atom/interceptors";
-import { updateIn, setIn } from "@thi.ng/atom/path";
 import { start } from "@thi.ng/hdom/start";
 
-
 ///////////////////////////////////////////////////////////////////////
-// event handler definitions
+// event name and handler definitions
+
+// best practice tip:
+// define event & effect names as consts or enums and
+// avoid hardcoded strings for easier refactoring
+// additionally/alternatively define dispatch functions
+const EV_INC = "inc-counter";
+const EV_DEC = "dec-counter";
+const EV_ADD_COUNTER = "add-counter";
+const EV_ADD_VALUE = "add-value";
+
+const FX_ADD_COUNTER = "add-counter";
 
 const events: IObjectOf<EventDef> = {
-    // generic handler to set state value at given path
-    init: (state, [_, [path, val]]) => ({ [FX_STATE]: setIn(state, path, val) }),
-
-    // these event handlers delegate to "updateVal" in same processing frame (using FX_DISPATCH_NOW)
+    // these event handlers delegate to "updateVal" in same
+    // processing frame (using FX_DISPATCH_NOW)
     // note how we also inject the predicate interceptors here to ensure
     // counter values will be always be in the range between 0 .. 100
-    inc: [
+    [EV_INC]: [
         ensureLessThan(100, null, () => console.warn("eek, reached max")),
-        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: ["updateVal", [path, 1]] })
+        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, 1]] })
     ],
-    dec: [
+    [EV_DEC]: [
         ensureGreaterThan(0, null, () => console.warn("eek, reached min")),
-        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: ["updateVal", [path, -1]] })
+        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, -1]] })
     ],
 
-    // this event handler injects the trace interceptor
-    // to log the event each time it's triggered
-    updateVal: [
+    // similar to the EV_INIT handler above, here we just delegate to the
+    // the built-in EV_UPDATE_VALUE handler to update a given path value.
+    // Additionally, we inject the `trace` interceptor to log the event
+    // each time it's triggered
+    [EV_ADD_VALUE]: [
         trace,
-        (state, [_, [path, y]]) => ({ [FX_STATE]: updateIn(state, path, (x) => x + y) })
+        (_, [__, [path, y]]) =>
+            ({ [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x) => x + y]] })
     ],
 
     // this handler increments the `nextID` state value and
-    // triggers "addCounter" side effect with config options for the new counter
-    addCounter: (state) => ({
-        [FX_DISPATCH_NOW]: ["updateVal", ["nextID", 1]],
-        // the "addCounter" side effect is defined further below
+    // triggers FX_ADD_COUNTER side effect with config options for the new counter
+    [EV_ADD_COUNTER]: (state) => ({
+        [FX_DISPATCH_NOW]: [EV_ADD_VALUE, ["nextID", 1]],
+        // the FX_ADD_COUNTER side effect is defined further below
         // here we simply prepare some configuration data for the new counter
-        "addCounter": {
+        [FX_ADD_COUNTER]: {
             id: state.nextID,
             start: ~~(Math.random() * 100),
             color: ["gold", "orange", "springgreen", "yellow", "cyan"][~~(Math.random() * 5)]
@@ -57,52 +68,53 @@ const effects: IObjectOf<EffectDef> = {
 ///////////////////////////////////////////////////////////////////////
 // components
 
+const button = (bus, event, label, id?) =>
+    ["button", { id, onclick: () => bus.dispatch(event) }, label];
+
 // counter component function
 // calls to this function will be triggered via the "addCounter" event and its side effect
 // (see further below)
 const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
     const view = bus.state.addView(path);
-    bus.dispatch(["init", [path, start]]);
-    return () =>
-        ["div.counter",
-            { style: { background: color } },
-            view.deref() || 0,
-            ["div",
-                ["button", { onclick: () => bus.dispatch(["dec", view.path]) }, "-"],
-                ["button", { onclick: () => bus.dispatch(["inc", view.path]) }, "+"]]];
+    bus.dispatch([EV_SET_VALUE, [path, start]]);
+    return ["div.counter",
+        { style: { background: color } },
+        () => view.deref() || 0,
+        ["div",
+            button(bus, [EV_DEC, view.path], "-"),
+            button(bus, [EV_INC, view.path], "+")]];
 }
 
 // main app
 const app = () => {
-    // setup central state atom
-    const db = new Atom({});
-    // connect event bus to state and configure with above handlers/effects
-    const bus = new EventBus(db, events, effects);
-
-    // add derived view for updating JSON state trace
-    // (only executed when state changes)
-    const json = db.addView([], (state) => JSON.stringify(state, null, 2));
-
     // an array to store counter component instances
+    // (only using component local state for KISS reasons)
     const counters = [];
+
+    // create event bus with app state atom and configure with above handlers/effects
+    const bus = new EventBus(new Atom({}), events, effects);
 
     // in addition to externally defined event handlers & side effects
     // each type can also be added & remove dynamically
-    // here we define the "addCounter" side effect, responsible for
+    // here we define the FX_ADD_COUNTER side effect, responsible for
     // creating a new `counter()` component
-    bus.addEffect("addCounter",
+    bus.addEffect(FX_ADD_COUNTER,
         ({ id, color, start }, bus) =>
-            counters.push(counter(bus, `counters.${id}`, start, color)));
+            counters.push(counter(bus, ["counters", id], start, color)));
+
+    // add derived view subscription for updating JSON state trace
+    // (only executed when state changes)
+    const json = bus.state.addView([], (state) => JSON.stringify(state, null, 2));
 
     // this not just initializes the given state value
-    // the changed state will also trigger re-rendering (see returned function below)
-    bus.dispatch(["init", ["nextID", 0]]);
+    // the changed state will also trigger the 1st DOM rendering (see returned function below)
+    bus.dispatch([EV_SET_VALUE, ["nextID", 0]]);
 
     // our actual root component function passed to hdom
     const root = () =>
         ["div",
-            ["button#addcounter", { onclick: () => bus.dispatch(["addCounter"]) }, "add counter"],
-            ["div.buttons", ...counters],
+            button(bus, [EV_ADD_COUNTER], "add counter", "addcounter"),
+            ["div", ...counters],
             ["pre", json.deref()]];
 
     return () => {
