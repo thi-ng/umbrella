@@ -34,6 +34,7 @@ export class EventBus implements
 
     protected eventQueue: api.Event[];
     protected currQueue: api.Event[];
+    protected currCtx: api.InterceptorContext;
 
     protected handlers: IObjectOf<api.Interceptor[]>;
     protected effects: IObjectOf<api.SideEffect>;
@@ -45,6 +46,7 @@ export class EventBus implements
         this.effects = {};
         this.eventQueue = [];
         this.priorities = [];
+        this.currQueue = this.currCtx = null;
         this.addBuiltIns();
         if (handlers) {
             this.addHandlers(handlers);
@@ -192,6 +194,10 @@ export class EventBus implements
         }
     }
 
+    context() {
+        return this.currCtx;
+    }
+
     /**
      * Adds given event to event queue to be processed
      * by `processQueue()` later on.
@@ -231,11 +237,11 @@ export class EventBus implements
             const prev = this.state.deref();
             this.currQueue = [...this.eventQueue];
             this.eventQueue.length = 0;
-            let fx = { [api.FX_STATE]: prev };
+            let fx = this.currCtx = { [api.FX_STATE]: prev };
             for (let e of this.currQueue) {
                 this.processEvent(fx, e);
             }
-            this.currQueue = null;
+            this.currQueue = this.currCtx = null;
             this.processEffects(fx);
             return this.state.deref() !== prev;
         }
@@ -243,13 +249,13 @@ export class EventBus implements
     }
 
     /**
-     * Processes a single event using the configured handler/interceptor chain.
-     * Logs warning message and skips processing if no handler
-     * is available for the event.
+     * Processes a single event using its configured handler/interceptor
+     * chain. Logs warning message and skips processing if no handler
+     * is available for the event type.
      *
-     * This function processes the array of interceptors in bi-directional
-     * order. First any `pre` interceptors are processed in
-     * forward order. Then `post` interceptors are processed in reverse.
+     * The array of interceptors is processed in bi-directional order.
+     * First any `pre` interceptors are processed in forward order.
+     * Then `post` interceptors are processed in reverse.
      *
      * Each interceptor can return a result object of side effects,
      * which are being merged and collected for `processEffects()`.
@@ -259,10 +265,10 @@ export class EventBus implements
      * multiple invocations of the same effect type per frame. If no
      * side effects are requested, an interceptor can return `undefined`.
      *
-     * Processing of the current event stops immediatedly, if an
-     * interceptor includes the `FX_CANCEL` side effect. However, the
-     * results interceptors (incl. the one which cancelled) are kept and
-     * processed further as usual.
+     * Processing of the current event stops immediatedly, if an interceptor
+     * sets the `FX_CANCEL` side effect key to `true`. However, the results
+     * of any previous interceptors (incl. the one which cancelled) are kept
+     * and processed further as usual.
      *
      * @param fx
      * @param e
@@ -278,7 +284,7 @@ export class EventBus implements
         for (let i = 0; i <= n && !fx[api.FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
-                this.mergeEffects(fx, icep.pre(fx[api.FX_STATE], e, fx, this));
+                this.mergeEffects(fx, icep.pre(fx[api.FX_STATE], e, this));
             }
             hasPost = hasPost || !!icep.post;
         }
@@ -288,7 +294,7 @@ export class EventBus implements
         for (let i = n; i >= 0 && !fx[api.FX_CANCEL]; i--) {
             const icep = iceps[i];
             if (icep.post) {
-                this.mergeEffects(fx, icep.post(fx[api.FX_STATE], e, fx, this));
+                this.mergeEffects(fx, icep.post(fx[api.FX_STATE], e, this));
             }
         }
     }
@@ -322,14 +328,17 @@ export class EventBus implements
      * Merges the new side effects returned from an interceptor
      * into the internal effect accumulator.
      *
-     * Special handling applies for the `FX_STATE`, `FX_CANCEL`
-     * and `FX_DISPATCH_NOW` effects.
+     * Any events assigned to the `FX_DISPATCH_NOW` effect key are
+     * immediately added to the currently active event batch.
      *
      * If an interceptor wishes to cause multiple invocations of
      * a single side effect type (e.g. dispatch multiple other events),
-     * it MUST return an array of these values. The only exception
-     * to this is the FX_STATE effect, which for obvious reasons
-     * can only accept a single value.
+     * it MUST return an array of these values. The only exceptions
+     * to this are the following effects, which for obvious reasons
+     * can only accept a single value:
+     *
+     * - `FX_CANCEL`
+     * - `FX_STATE`
      *
      * Note that because of this support (of multiple values),
      * the value of a single side effect SHOULD NOT be a nested array

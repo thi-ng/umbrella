@@ -7,7 +7,7 @@ export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
 export type ViewTransform<T> = (x: any) => T;
 
-export type InterceptorFn = (state: any, e: Event, fx?: InterceptorContext, bus?: IDispatch) => InterceptorContext | void;
+export type InterceptorFn = (state: any, e: Event, bus?: IDispatch) => InterceptorContext | void;
 export type InterceptorPredicate = (state: any, e: Event, fx?: any) => boolean;
 
 export type SideEffect = (x: any, bus?: IDispatch) => any;
