@@ -16,7 +16,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/hdom": "^2.0.0",
-        "@thi.ng/hdom-components": "^1.0.0"
+        "@thi.ng/hdom": "^2.1.1",
+        "@thi.ng/hdom-components": "^1.0.1"
     }
 }
