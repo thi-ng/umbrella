@@ -16,11 +16,14 @@ export type EffectDef = SideEffect | [SideEffect, number];
 export type AsyncEffectDef = [string, any, string, string];
 export type EffectPriority = [string, number];
 
-export const FX_STATE = "state";
-export const FX_DISPATCH = "dispatch";
-export const FX_DISPATCH_ASYNC = "dispatch-async";
-export const FX_DISPATCH_NOW = "dispatch-now";
-export const FX_CANCEL = "cancel";
+export const EV_SET_VALUE = "--set-value";
+export const EV_UPDATE_VALUE = "--update-value";
+
+export const FX_STATE = "--state";
+export const FX_DISPATCH = "--dispatch";
+export const FX_DISPATCH_ASYNC = "--dispatch-async";
+export const FX_DISPATCH_NOW = "--dispatch-now";
+export const FX_CANCEL = "--cancel";
 
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,

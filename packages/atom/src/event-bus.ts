@@ -4,6 +4,7 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isPromise } from "@thi.ng/checks/is-promise";
 
 import * as api from "./api";
+import { setIn, updateIn } from "./path";
 
 /**
  * Batched event processor for using composable interceptors for event handling
@@ -44,6 +45,56 @@ export class EventBus implements
         this.effects = {};
         this.eventQueue = [];
         this.priorities = [];
+        this.addBuiltIns();
+        if (handlers) {
+            this.addHandlers(handlers);
+        }
+        if (effects) {
+            this.addEffects(effects);
+        }
+    }
+
+    /**
+     * Add built-in event & side effect handlers:
+     *
+     * ### Handlers
+     *
+     * #### `EV_SET_VALUE`
+     *
+     * Resets state path to provided value. See `setIn()`.
+     *
+     * Example event definition:
+     * ```
+     * [EV_SET_VALUE, ["path.to.value", val]]
+     * ```
+     *
+     * #### `EV_UPDATE_VALUE`
+     *
+     * Updates a state path's value with provided function and
+     * optional extra arguments. See `updateIn()`.
+     *
+     * Example event definition:
+     * ```
+     * [EV_UPDATE_VALUE, ["path.to.value", (x, y) => x + y, 1]]
+     * ```
+     *
+     * ### Side effects
+     *
+     * #### FX_DISPATCH
+     * #### FX_DISPATCH_ASYNC
+     * #### FX_STATE
+     *
+     */
+    addBuiltIns(): any {
+        // handlers
+        this.addHandler(api.EV_SET_VALUE,
+            (state, [_, [path, val]]) =>
+                ({ [api.FX_STATE]: setIn(state, path, val) }));
+        this.addHandler(api.EV_UPDATE_VALUE,
+            (state, [_, [path, fn, ...args]]) =>
+                ({ [api.FX_STATE]: updateIn(state, path, fn, ...args) }));
+
+        // effects
         this.addEffect(api.FX_STATE, (x) => this.state.reset(x), -1000);
         this.addEffect(api.FX_DISPATCH, (e) => this.dispatch(e), -999);
         this.addEffect(api.FX_DISPATCH_ASYNC,
@@ -63,12 +114,6 @@ export class EventBus implements
             },
             -999
         );
-        if (handlers) {
-            this.addHandlers(handlers);
-        }
-        if (effects) {
-            this.addEffects(effects);
-        }
     }
 
     addHandler(id: string, spec: api.EventDef) {
@@ -76,6 +121,10 @@ export class EventBus implements
             (<any>spec).map((i) => isFunction(i) ? { pre: i } : i) :
             isFunction(spec) ? [{ pre: spec }] : [spec];
         if (iceps.length > 0) {
+            if (this.handlers[id]) {
+                this.removeHandler(id);
+                console.warn(`overriding handler for ID: ${id}`);
+            }
             this.handlers[id] = iceps;
         } else {
             throw new Error(`no handlers in spec for ID: ${id}`);
@@ -89,6 +138,10 @@ export class EventBus implements
     }
 
     addEffect(id: string, fx: api.SideEffect, priority = 1) {
+        if (this.effects[id]) {
+            this.removeEffect(id);
+            console.warn(`overriding effect for ID: ${id}`);
+        }
         this.effects[id] = fx;
         const p: api.EffectPriority = [id, priority];
         const priors = this.priorities;
@@ -178,7 +231,7 @@ export class EventBus implements
             const prev = this.state.deref();
             this.currQueue = [...this.eventQueue];
             this.eventQueue.length = 0;
-            let fx = { state: prev };
+            let fx = { [api.FX_STATE]: prev };
             for (let e of this.currQueue) {
                 this.processEvent(fx, e);
             }
@@ -225,7 +278,7 @@ export class EventBus implements
         for (let i = 0; i <= n && !fx[api.FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
-                this.mergeEffects(fx, icep.pre(fx.state, e, fx, this));
+                this.mergeEffects(fx, icep.pre(fx[api.FX_STATE], e, fx, this));
             }
             hasPost = hasPost || !!icep.post;
         }
@@ -235,7 +288,7 @@ export class EventBus implements
         for (let i = n; i >= 0 && !fx[api.FX_CANCEL]; i--) {
             const icep = iceps[i];
             if (icep.post) {
-                this.mergeEffects(fx, icep.post(fx.state, e, fx, this));
+                this.mergeEffects(fx, icep.post(fx[api.FX_STATE], e, fx, this));
             }
         }
     }
