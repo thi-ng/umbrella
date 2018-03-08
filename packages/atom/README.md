@@ -4,12 +4,22 @@
 
 ## About
 
-Clojure inspired mutable wrappers for (usually) immutable values, with support
-for watches, cursors (direct access to nested values), derived view
-subscriptions and undo/redo history. Together these types act as building
-blocks for various application state handling patterns, specifically aimed
-(though not exclusively) at the concept of using a nested, immutable,
-centralized atom as single source of truth within an application.
+Clojure inspired mutable wrappers for (usually) immutable values, with infrastructure support for:
+
+- watches
+- derived view subscriptions
+- cursors (direct R/W access to nested values)
+- undo/redo history
+- composable interceptor & side effect based event handling
+
+Together these types act as building blocks for various application state
+handling patterns, specifically aimed (though not exclusively) at the concept
+of using a nested, immutable, centralized atom as single source of truth within
+an application.
+
+### Status
+
+Stable, used in production and in active development.
 
 ## Installation
 
@@ -19,11 +29,9 @@ yarn add @thi.ng/atom
 
 ## Usage examples
 
-A complete minimal webapp example is in the
-[/examples/todo-list](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
-directory.
-
-[Live demo here](http://demo.thi.ng/umbrella/todo-list/)
+Several projects in the
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples/)
+directory make heavy use of this library.
 
 ### Atom
 
@@ -177,7 +185,12 @@ an example of a tiny
 web app, demonstrating how to use derived views to switch the UI for different
 application states / modules.
 
-Note: The constrained nature of this example doesn't really do justice to the powerful nature of the approach. Also stylistically, in a larger app we'd want to avoid the use of global variables (apart from `db`) as done here...
+Note: The constrained nature of this next example doesn't really do justice to
+the powerful nature of the approach. Also stylistically, in a larger app we'd
+want to avoid the use of global variables (apart from `db`) as done here...
+
+For a more advanced / realworld usage pattern, check the event handling section
+and examples further below.
 
 This example is also available in standalone form:
 
@@ -310,7 +323,9 @@ db.canRedo()
 
 The `getter()` and `setter()` functions transform a path like `a.b.c` into a
 function operating directly at the value the path points to in nested object.
-For getters, this essentially compiles to `val = obj.a.b.c`, with the important difference that the function returns `undefined` if any intermediate values along the lookup path are undefined (and doesn't throw an error).
+For getters, this essentially compiles to `val = obj.a.b.c`, with the important
+difference that the function returns `undefined` if any intermediate values
+along the lookup path are undefined (and doesn't throw an error).
 
 The resulting setter function too accepts a single object to operate on and
 when called, **immutably** replaces the value at the given path, i.e. it
@@ -377,6 +392,13 @@ a.x === b.x // true
 a.x.y === b.x.y // true
 a.u === b.u; // true
 ```
+
+### Event bus, interceptors, side effects
+
+Description forthcoming, please check fully commented examples for now:
+
+- [/examples/interceptor-basics](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
+- [/examples/async-effect](https://github.com/thi-ng/umbrella/tree/master/examples/async-effect)
 
 ## Authors
 

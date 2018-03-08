@@ -7,24 +7,31 @@ export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
 export type ViewTransform<T> = (x: any) => T;
 
-export type InterceptorFn = (state: any, e: Event, fx?: any) => any;
+export type InterceptorFn = (state: any, e: Event, fx?: InterceptorContext, bus?: IDispatch) => InterceptorContext | void;
 export type InterceptorPredicate = (state: any, e: Event, fx?: any) => boolean;
 
-export type SideEffect = (x: any) => void;
+export type SideEffect = (x: any, bus?: IDispatch) => any;
 export type EventDef = Interceptor | InterceptorFn | (Interceptor | InterceptorFn)[];
 export type EffectDef = SideEffect | [SideEffect, number];
+export type AsyncEffectDef = [string, any, string, string];
 export type EffectPriority = [string, number];
+
+export const FX_STATE = "state";
+export const FX_DISPATCH = "dispatch";
+export const FX_DISPATCH_ASYNC = "dispatch-async";
+export const FX_DISPATCH_NOW = "dispatch-now";
+export const FX_CANCEL = "cancel";
 
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,
-    api.IWatch<T> {
+    api.IWatch<T>,
+    IViewable {
 }
 
 export interface IAtom<T> extends
     ReadonlyAtom<T>,
     IReset<T>,
-    ISwap<T>,
-    IViewable {
+    ISwap<T> {
 }
 
 export interface IReset<T> {
@@ -52,6 +59,12 @@ export interface IViewable {
     addView<T>(path: Path, tx?: ViewTransform<T>): IView<T>;
 }
 
+export interface IDispatch {
+    readonly state: ReadonlyAtom<any>;
+    dispatch(event: Event);
+    dispatchNow(event: Event);
+}
+
 export interface Event extends Array<any> {
     [0]: string;
     [1]?: any;
@@ -62,7 +75,11 @@ export interface Interceptor {
     post?: InterceptorFn;
 }
 
-export const FX_STATE = "state";
-export const FX_DISPACH_NOW = "dispatch-now";
-export const FX_DISPATCH = "dispatch";
-export const FX_CANCEL = "cancel";
+export interface InterceptorContext {
+    [FX_STATE]?: any;
+    [FX_CANCEL]?: boolean;
+    [FX_DISPATCH]?: Event | Event[];
+    [FX_DISPATCH_NOW]?: Event | Event[];
+    [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
+    [id: string]: any;
+}
