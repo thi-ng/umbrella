@@ -31,7 +31,7 @@ export function trace(_, e) {
  * @param pred predicate applied to given state & event
  * @param err interceptor triggered on predicate failure
  */
-export function ensurePred(pred: InterceptorPredicate, err?: InterceptorFn) {
+export function ensurePred(pred: InterceptorPredicate, err?: InterceptorFn): InterceptorFn {
     return (state, e, fx) => {
         if (!pred(state, e, fx)) {
             return { [FX_CANCEL]: true, ...(err ? err(state, e, fx) : null) };

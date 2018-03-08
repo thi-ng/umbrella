@@ -1,6 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { isPromise } from "@thi.ng/checks/is-promise";
 
 import * as api from "./api";
 
@@ -24,17 +25,18 @@ import * as api from "./api";
  * - side effect collection (multiple side effects for same effect type per frame)
  * - side effect priorities (to better control execution order)
  * - dynamic addition/removal of handlers & effects
- *
  */
-export class EventBus {
+export class EventBus implements
+    api.IDispatch {
 
-    state: api.IAtom<any>;
-    eventQueue: api.Event[];
-    currQueue: api.Event[];
+    readonly state: api.IAtom<any>;
 
-    handlers: IObjectOf<api.Interceptor[]>;
-    effects: IObjectOf<api.SideEffect>;
-    priorities: api.EffectPriority[];
+    protected eventQueue: api.Event[];
+    protected currQueue: api.Event[];
+
+    protected handlers: IObjectOf<api.Interceptor[]>;
+    protected effects: IObjectOf<api.SideEffect>;
+    protected priorities: api.EffectPriority[];
 
     constructor(state: api.IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
         this.state = state;
@@ -44,6 +46,23 @@ export class EventBus {
         this.priorities = [];
         this.addEffect(api.FX_STATE, (x) => this.state.reset(x), -1000);
         this.addEffect(api.FX_DISPATCH, (e) => this.dispatch(e), -999);
+        this.addEffect(api.FX_DISPATCH_ASYNC,
+            ([id, arg, success, err]) => {
+                const fx = this.effects[id];
+                if (fx) {
+                    const p = fx(arg, this);
+                    if (isPromise(p)) {
+                        p.then((res) => this.dispatch([success, res]))
+                            .catch((e) => this.dispatch([err, e]));
+                    } else {
+                        console.warn("async effect did not return Promise");
+                    }
+                } else {
+                    console.warn(`skipping invalid async effect: ${id}`);
+                }
+            },
+            -999
+        );
         if (handlers) {
             this.addHandlers(handlers);
         }
@@ -206,7 +225,7 @@ export class EventBus {
         for (let i = 0; i <= n && !fx[api.FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
-                this.mergeEffects(fx, icep.pre(fx.state, e, fx));
+                this.mergeEffects(fx, icep.pre(fx.state, e, fx, this));
             }
             hasPost = hasPost || !!icep.post;
         }
@@ -216,7 +235,7 @@ export class EventBus {
         for (let i = n; i >= 0 && !fx[api.FX_CANCEL]; i--) {
             const icep = iceps[i];
             if (icep.post) {
-                this.mergeEffects(fx, icep.post(fx.state, e, fx));
+                this.mergeEffects(fx, icep.post(fx.state, e, fx, this));
             }
         }
     }
@@ -237,26 +256,71 @@ export class EventBus {
                 const fn = effects[id];
                 if (id !== api.FX_STATE) {
                     for (let v of val) {
-                        fn(v);
+                        fn(v, this);
                     }
                 } else {
-                    fn(val);
+                    fn(val, this);
                 }
             }
         }
     }
 
+    /**
+     * Merges the new side effects returned from an interceptor
+     * into the internal effect accumulator.
+     *
+     * Special handling applies for the `FX_STATE`, `FX_CANCEL`
+     * and `FX_DISPATCH_NOW` effects.
+     *
+     * If an interceptor wishes to cause multiple invocations of
+     * a single side effect type (e.g. dispatch multiple other events),
+     * it MUST return an array of these values. The only exception
+     * to this is the FX_STATE effect, which for obvious reasons
+     * can only accept a single value.
+     *
+     * Note that because of this support (of multiple values),
+     * the value of a single side effect SHOULD NOT be a nested array
+     * itself, or rather not its first item.
+     *
+     * For example:
+     *
+     * ```
+     * // interceptor result map to dispatch a single event
+     * { [FX_DISPATCH]: ["foo", "bar"]}
+     *
+     * // result map format to dispatch multiple events
+     * { [FX_DISPATCH]: [ ["foo", "bar"], ["baz", "beep"] ]}
+     * ```
+     *
+     * @param fx
+     * @param ret
+     */
     protected mergeEffects(fx: any, ret: any) {
         if (!ret) {
             return;
         }
         for (let k in ret) {
+            const v = ret[k];
             if (k === api.FX_STATE || k === api.FX_CANCEL) {
-                fx[k] = ret[k];
-            } else if (k === api.FX_DISPACH_NOW) {
-                this.dispatchNow(ret[k]);
+                fx[k] = v;
+            } else if (k === api.FX_DISPATCH_NOW) {
+                if (isArray(v[0])) {
+                    for (let e of v) {
+                        this.dispatchNow(e);
+                    }
+                } else {
+                    this.dispatchNow(v);
+                }
             } else {
-                fx[k] ? fx[k].push(ret[k]) : (fx[k] = [ret[k]]);
+                if (fx[k]) {
+                    if (isArray(v[0])) {
+                        Array.prototype.push.apply(fx[k], v);
+                    } else {
+                        fx[k].push(v)
+                    }
+                } else {
+                    fx[k] = [v];
+                }
             }
         }
     }
