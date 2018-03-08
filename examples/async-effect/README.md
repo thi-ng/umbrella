@@ -6,15 +6,14 @@
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/async-effect
 yarn install
-```
-Then
-
-```
-# For Mac
-yarn dev
-
-# For Debian, Ubuntu, Etc.
-yarn debdev
+yarn build
 ```
 
-Once webpack has completed building, refresh your browser...
+Unlike other examples, this one requires a local webserver to function, for example:
+
+```
+python -m SimpleHTTPServer
+```
+
+Ps. You can also run the demo without server, but this only good for testing
+the error event handling :)
