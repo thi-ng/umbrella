@@ -1,7 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { EventDef, EffectDef } from "@thi.ng/atom/api";
 import { FX_DISPATCH_ASYNC, FX_DISPATCH_NOW } from "@thi.ng/atom/api";
-import { Atom } from "@thi.ng/atom/atom";
 import { EventBus } from "@thi.ng/atom/event-bus";
 import { valueSetter } from "@thi.ng/atom/interceptors";
 import { start } from "@thi.ng/hdom/start";
@@ -66,7 +65,7 @@ const effects: IObjectOf<EffectDef> = {
 
 // main app component
 const app = () => {
-    const bus = new EventBus(new Atom<any>({}), events, effects);
+    const bus = new EventBus(null, events, effects);
 
     // kick off JSON request
     bus.dispatch([EV_LOAD_JSON, "foo.json"]);
@@ -74,7 +73,7 @@ const app = () => {
     // root component function
     return () => {
         if (bus.processQueue()) {
-            const { json, status } = bus.state.deref();
+            const { json, status } = bus.deref();
             return ["div",
                 ["p#status", { class: status[0] }, `status: ${status[1]}`],
                 ["pre", json]

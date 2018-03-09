@@ -1,7 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { EffectDef, EventDef, IDispatch, Path } from "@thi.ng/atom/api";
+import { EffectDef, EventDef, Path, IDispatch } from "@thi.ng/atom/api";
 import { EV_SET_VALUE, EV_UPDATE_VALUE, FX_DISPATCH_NOW } from "@thi.ng/atom/api";
-import { Atom } from "@thi.ng/atom/atom";
 import { EventBus } from "@thi.ng/atom/event-bus";
 import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/atom/interceptors";
 import { start } from "@thi.ng/hdom/start";
@@ -92,7 +91,7 @@ const app = () => {
     const counters = [];
 
     // create event bus with app state atom and configure with above handlers/effects
-    const bus = new EventBus(new Atom({}), events, effects);
+    const bus = new EventBus(null, events, effects);
 
     // in addition to externally defined event handlers & side effects
     // each type can also be added & remove dynamically
