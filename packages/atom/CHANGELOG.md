@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.11.0...@thi.ng/atom@0.12.0) (2018-03-09)
+
+
+### Bug Fixes
+
+* **atom:** add interceptors to re-exports ([59085e0](https://github.com/thi-ng/umbrella/commit/59085e0))
+
+
+### Features
+
+* **atom:** add IRelease impls ([9b3d91e](https://github.com/thi-ng/umbrella/commit/9b3d91e))
+* **atom:** add/extract StatelessEventBus ([3fae249](https://github.com/thi-ng/umbrella/commit/3fae249))
+* **atom:** update EventBus ctor, add deref() ([667691c](https://github.com/thi-ng/umbrella/commit/667691c))
+
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.10.0...@thi.ng/atom@0.11.0) (2018-03-09)
 

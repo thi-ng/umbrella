@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log",
-    "version": "0.5.31",
+    "version": "0.5.32",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,7 +26,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^1.0.14"
+        "@thi.ng/rstream": "^1.0.15"
     },
     "keywords": [
         "ES6",
