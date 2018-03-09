@@ -1,9 +1,10 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf, IDeref } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPromise } from "@thi.ng/checks/is-promise";
 
 import * as api from "./api";
+import { Atom } from "./atom";
 import { setIn, updateIn } from "./path";
 
 const FX_CANCEL = api.FX_CANCEL;
@@ -45,10 +46,11 @@ const FX_STATE = api.FX_STATE;
  * - supports event cancellation
  * - side effect collection (multiple side effects for same effect type
  *   per frame)
- * - side effect priorities (to better control execution order)
+ * - side effect priorities (to control execution order)
  * - dynamic addition/removal of handlers & effects
  */
 export class EventBus implements
+    IDeref<any>,
     api.IDispatch {
 
     readonly state: api.IAtom<any>;
@@ -61,8 +63,20 @@ export class EventBus implements
     protected effects: IObjectOf<api.SideEffect>;
     protected priorities: api.EffectPriority[];
 
-    constructor(state: api.IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
-        this.state = state;
+    /**
+     * Creates a new event bus instance with given parent state, handler
+     * and effect definitions (all optional). If no state is given,
+     * automatically creates an `Atom` with empty state object.
+     *
+     * In addition to the user provided handlers & effects, a number of
+     * built-ins are added automatically. See `addBuiltIns()`.
+     *
+     * @param state
+     * @param handlers
+     * @param effects
+     */
+    constructor(state?: api.IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
+        this.state = state || new Atom({});
         this.handlers = {};
         this.effects = {};
         this.eventQueue = [];
@@ -74,6 +88,14 @@ export class EventBus implements
         if (effects) {
             this.addEffects(effects);
         }
+    }
+
+    /**
+     * Returns value of internal state. Shorthand for:
+     * `bus.state.deref()`
+     */
+    deref() {
+        return this.state.deref();
     }
 
     /**
