@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.10.0...@thi.ng/atom@0.11.0) (2018-03-09)
+
+
+### Features
+
+* **atom:** add default handlers, add/rename event/fx const values, add checks ([1fd43d7](https://github.com/thi-ng/umbrella/commit/1fd43d7))
+* **atom:** add valueSetter/Updater() interceptors ([359c4f5](https://github.com/thi-ng/umbrella/commit/359c4f5))
+
+
+
+
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.9.2...@thi.ng/atom@0.10.0) (2018-03-08)
 
