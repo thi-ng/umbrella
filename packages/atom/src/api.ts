@@ -27,6 +27,7 @@ export const FX_CANCEL = "--cancel";
 
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,
+    api.IRelease,
     api.IWatch<T>,
     IViewable {
 }

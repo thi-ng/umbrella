@@ -64,7 +64,7 @@ export class Cursor<T> implements
     }
 
     release() {
-        this.local.removeWatch(this.id);
+        this.local.release();
         this.parent.removeWatch(this.id);
         delete this.local;
         delete this.parent;

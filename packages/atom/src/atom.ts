@@ -15,6 +15,7 @@ export class Atom<T> implements
     IEquiv {
 
     protected value: T;
+    protected _watches: any;
 
     constructor(val?: T) {
         this.value = val;
@@ -75,5 +76,11 @@ export class Atom<T> implements
 
     addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
         return new View<V>(this, path, tx);
+    }
+
+    release() {
+        delete this._watches;
+        delete this.value;
+        return true;
     }
 }

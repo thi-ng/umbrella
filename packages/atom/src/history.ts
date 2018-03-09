@@ -180,4 +180,10 @@ export class History<T> implements
     addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
         return new View<V>(this, path, tx);
     }
+
+    release() {
+        this.state.release();
+        delete this.state;
+        return true;
+    }
 }
