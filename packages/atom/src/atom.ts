@@ -6,8 +6,8 @@ import { setIn, updateIn } from "./path";
 import { View } from "./view";
 
 /**
- * Mutable wrapper for an (usually) immutable value.
- * Support for watches.
+ * Mutable wrapper for an (usually) immutable value. Support for
+ * watches.
  */
 @IWatch
 export class Atom<T> implements

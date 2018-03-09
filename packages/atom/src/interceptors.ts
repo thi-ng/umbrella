@@ -9,14 +9,14 @@ export function trace(_, e) {
 }
 
 /**
- * Higher-order interceptor for validation purposes.
- * Takes a predicate function and an optional interceptor function,
- * which will only be called if the predicate fails for a given event.
- * By default the `FX_CANCEL` side effect is triggered if the predicate
- * failed, thus ensuring the actual event handler for the failed event
- * will not be executed anymore. However, this can be overridden using
- * the error interceptor's result, which is merged into the result of
- * this interceptor.
+ * Higher-order interceptor for validation purposes. Takes a predicate
+ * function and an optional interceptor function, which will only be
+ * called if the predicate fails for a given event. By default the
+ * `FX_CANCEL` side effect is triggered if the predicate failed, thus
+ * ensuring the actual event handler for the failed event will not be
+ * executed anymore. However, this can be overridden using the error
+ * interceptor's result, which is merged into the result of this
+ * interceptor.
  *
  * The error interceptor can return any number of other side effects and
  * so be used to dispatch alternative events instead, for example:
@@ -32,8 +32,9 @@ export function trace(_, e) {
  * )
  * ```
  *
- * Note: For this interceptor to work as expected, it needs to be provided
- * BEFORE the main handler in the interceptor list for a given event, i.e.
+ * Note: For this interceptor to work as expected, it needs to be
+ * provided BEFORE the main handler in the interceptor list for a given
+ * event, i.e.
  *
  * ```
  * [
@@ -85,19 +86,19 @@ export function ensureGreaterThan(min: number, path?: (e: Event) => Path, err?: 
 }
 
 /**
- * Higher-order interceptor. Returns new interceptor to set state value at
- * provided path. This allows for dedicated events to set state values more
- * concisely, e.g. given this event definition:
+ * Higher-order interceptor. Returns new interceptor to set state value
+ * at provided path. This allows for dedicated events to set state
+ * values more concisely, e.g. given this event definition:
  *
  * ```
  * setFoo: valueSetter("foo.bar")
  * ```
  *
- * ...the `setFoo` event then can be triggered like so to update the state
- * value at `foo.bar`:
+ * ...the `setFoo` event then can be triggered like so to update the
+ * state value at `foo.bar`:
  *
  * ```
- * bus.dispatch(["foo", 23])
+ * bus.dispatch(["setFoo", 23])
  * ```
  *
  * @param path
@@ -107,6 +108,27 @@ export function valueSetter<T>(path: Path, tx?: (x: T) => T): InterceptorFn {
     return (state, [_, val]) => ({ [FX_STATE]: setIn(state, path, tx ? tx(val) : val) });
 }
 
+/**
+ * Higher-order interceptor. Returns new interceptor to update state
+ * value at provided path with given function. This allows for dedicated
+ * events to update state values more concisely, e.g. given this event
+ * definition:
+ *
+ * ```
+ * incFoo: valueUpdater("foo.bar", (x, y) => x + y)
+ * ```
+ *
+ * ...the `incFoo` event then can be triggered like so to update the
+ * state value at `foo.bar` (where `1` is the extra arg provided to the
+ * update fn:
+ *
+ * ```
+ * bus.dispatch(["incFoo", 1]) // results in value = value + 1
+ * ```
+ *
+ * @param path
+ * @param fn
+ */
 export function valueUpdater<T>(path: Path, fn: (x: T, ...args: any[]) => T): InterceptorFn {
     return (state, [_, ...args]) => ({ [FX_STATE]: updateIn(state, path, fn, ...args) });
 }

@@ -32,19 +32,18 @@ export function toPath(path: Path) {
 }
 
 /**
- * Composes a getter function for given nested lookup path.
- * Optimized fast execution paths are provided for path lengths
- * less than 5.
+ * Composes a getter function for given nested lookup path. Optimized
+ * fast execution paths are provided for path lengths less than 5.
  *
- * If `path` is given as string, it will be split using `.`.
- * Returns function which accepts single object and
- * when called, returns value at given path.
+ * If `path` is given as string, it will be split using `.`. Returns
+ * function which accepts single object and when called, returns value
+ * at given path.
  *
- * If any intermediate key is not present in the given obj,
- * descent stops and the function returns `undefined`.
+ * If any intermediate key is not present in the given obj, descent
+ * stops and the function returns `undefined`.
  *
- * If `path` is an empty string or array, the returned getter
- * will simply return the given state arg (identity function).
+ * If `path` is an empty string or array, the returned getter will
+ * simply return the given state arg (identity function).
  *
  * Also see: `getIn()`
  *
@@ -85,20 +84,19 @@ export function getter(path: Path) {
 }
 
 /**
- * Composes a setter function for given nested lookup path.
- * Optimized fast execution paths are provided for path lengths
- * less than 5.
+ * Composes a setter function for given nested lookup path. Optimized
+ * fast execution paths are provided for path lengths less than 5.
  *
- * If `path` is given as string, it will be split using `.`.
- * Returns function which accepts single object and
- * when called, **immutably** updates value at given path,
- * i.e. produces a partial deep copy of obj up until given path.
+ * If `path` is given as string, it will be split using `.`. Returns
+ * function which accepts single object and when called, **immutably**
+ * updates value at given path, i.e. produces a partial deep copy of obj
+ * up until given path.
  *
- * If any intermediate key is not present in the given obj,
- * creates a plain empty object for that key and descends further.
+ * If any intermediate key is not present in the given obj, creates a
+ * plain empty object for that key and descends further.
  *
- * If `path` is an empty string or array, the returned setter
- * will simply return the new value.
+ * If `path` is an empty string or array, the returned setter will
+ * simply return the new value.
  *
  * Also see: `setIn()`, `updateIn()`, `deleteIn()`
  *
@@ -117,9 +115,9 @@ export function getter(path: Path) {
  * // { a: { b: { c: 24 } } }
  * ```
  *
- * Only keys in the path will be modied, all other keys present
- * in the given object retain their original values to provide
- * efficient structural sharing / re-use.
+ * Only keys in the path will be modied, all other keys present in the
+ * given object retain their original values to provide efficient
+ * structural sharing / re-use.
  *
  * ```
  * s = setter("a.b.c");
@@ -210,8 +208,8 @@ export function updateIn(state: any, path: Path, fn: SwapFn<any>, ...args: any[]
 }
 
 /**
- * Uses `updateIn()` and returns updated state with key for given path removed.
- * Does not modify original state.
+ * Uses `updateIn()` and returns updated state with key for given path
+ * removed. Does not modify original state.
  *
  * Returns `undefined` if `path` is an empty string or array.
  *

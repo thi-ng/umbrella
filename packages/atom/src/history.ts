@@ -6,11 +6,11 @@ import { getIn, setIn, updateIn } from "./path";
 import { View } from "./view";
 
 /**
- * Undo/redo history stack wrapper for atoms and cursors.
- * Implements `IAtom` interface and so can be used directly in place
- * and delegates to wrapped atom/cursor. Value changes are only
- * recorded in history if `changed` predicate returns truthy value,
- * or else by calling `record()` directly.
+ * Undo/redo history stack wrapper for atoms and cursors. Implements
+ * `IAtom` interface and so can be used directly in place and delegates
+ * to wrapped atom/cursor. Value changes are only recorded in history if
+ * `changed` predicate returns truthy value, or else by calling
+ * `record()` directly.
  */
 export class History<T> implements
     IAtom<T> {
@@ -118,12 +118,13 @@ export class History<T> implements
 
     /**
      * Records given state in history. This method is only needed when
-     * manually managing snapshots, i.e. when applying multiple swaps
-     * on the wrapped atom directly, but not wanting to create an
-     * history entry for each change. **DO NOT call this explicitly if
-     * using `History.reset()` / `History.swap()`**.
+     * manually managing snapshots, i.e. when applying multiple swaps on
+     * the wrapped atom directly, but not wanting to create an history
+     * entry for each change. **DO NOT call this explicitly if using
+     * `History.reset()` / `History.swap()`**.
      *
-     * If no `state` is given, uses the wrapped atom's current state value.
+     * If no `state` is given, uses the wrapped atom's current state
+     * value.
      *
      * @param state
      */
@@ -131,8 +132,8 @@ export class History<T> implements
         if (this.history.length >= this.maxLen) {
             this.history.shift();
         }
-        // check for arg given and not if `state == null`
-        // we want to allow null/undefined as possible values
+        // check for arg given and not if `state == null` we want to
+        // allow null/undefined as possible values
         this.history.push(arguments.length > 0 ? state : this.state.deref());
         this.future.length = 0;
     }
@@ -145,7 +146,8 @@ export class History<T> implements
     }
 
     /**
-     * `IWatch.addWatch()` implementation. Delegates to wrapped atom/cursor.
+     * `IWatch.addWatch()` implementation. Delegates to wrapped
+     * atom/cursor.
      *
      * @param id
      * @param fn
@@ -155,7 +157,8 @@ export class History<T> implements
     }
 
     /**
-     * `IWatch.removeWatch()` implementation. Delegates to wrapped atom/cursor.
+     * `IWatch.removeWatch()` implementation. Delegates to wrapped
+     * atom/cursor.
      *
      * @param id
      */
@@ -164,7 +167,8 @@ export class History<T> implements
     }
 
     /**
-     * `IWatch.notifyWatches()` implementation. Delegates to wrapped atom/cursor.
+     * `IWatch.notifyWatches()` implementation. Delegates to wrapped
+     * atom/cursor.
      *
      * @param oldState
      * @param newState
