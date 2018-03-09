@@ -20,26 +20,40 @@ const FX_STATE = api.FX_STATE;
  * and can be any data.
  *
  * Events are processed by registered handlers which transform each
- * event into a number of side effects to be executed later. This
- * separation ensures event handlers themselves are pure functions and
- * too leads to more efficient reuse of side effecting operations. The
+ * event into a number of side effect descriptions to be executed later.
+ * This separation ensures event handlers themselves are pure functions
+ * and leads to more efficient reuse of side effecting operations. The
  * pure data nature until the last stage of processing (the application
- * side effects) also means event flow can be much easier inspected and
- * debugged.
+ * side effects) too means that event flow can be much easier inspected
+ * and debugged.
  *
- * In this model an event handler itself is an array of objects with
- * `pre` and/or `post` keys and functions attached to each key. These
- * functions are called interceptors, since each intercepts the
- * processing of an event and can contribute their own side effects. The
- * outcome of this setup is a more aspect-oriented, composable approach
- * to event handling and allows to inject common, re-usable behaviors
- * for multiple event types (logging, validation, undo/redo triggers
- * etc.)
+ * In this model a single event handler itself is an array of objects
+ * with `pre` and/or `post` keys and functions attached to each key.
+ * These functions are called interceptors, since each intercepts the
+ * processing of an event and can contribute their own side effects.
+ * Each event's interceptor chain is processed bi-directionally (`pre`
+ * in forward, `post` in reverse order) and the effects returned from
+ * each interceptor are merged/collected. The outcome of this setup is a
+ * more aspect-oriented, composable approach to event handling and
+ * allows to inject common, re-usable behaviors for multiple event types
+ * (logging, validation, undo/redo triggers etc.).
+ *
+ * Side effects are only processed after all event handlers have run.
+ * Furthermore, their order of execution can be configured with optional
+ * priorities.
+ *
+ * See for further details:
+ *
+ * - `processQueue()`
+ * - `processEvent()`
+ * - `processEffects()`
+ * - `mergeEffects()`
  *
  * The overall approach of this type of event processing is heavily
  * based on the pattern initially pioneered by @Day8/re-frame, with the
  * following differences:
  *
+ * - stateless (see `StatefulEventBus` for alternative)
  * - standalone implementation (no assumptions about surrounding
  *   context/framework)
  * - manual trigger of event queue processing
@@ -49,11 +63,10 @@ const FX_STATE = api.FX_STATE;
  * - side effect priorities (to control execution order)
  * - dynamic addition/removal of handlers & effects
  */
-export class EventBus implements
-    IDeref<any>,
+export class StatelessEventBus implements
     api.IDispatch {
 
-    readonly state: api.IAtom<any>;
+    state: any;
 
     protected eventQueue: api.Event[];
     protected currQueue: api.Event[];
@@ -71,12 +84,10 @@ export class EventBus implements
      * In addition to the user provided handlers & effects, a number of
      * built-ins are added automatically. See `addBuiltIns()`.
      *
-     * @param state
      * @param handlers
      * @param effects
      */
-    constructor(state?: api.IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
-        this.state = state || new Atom({});
+    constructor(handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
         this.handlers = {};
         this.effects = {};
         this.eventQueue = [];
@@ -91,55 +102,19 @@ export class EventBus implements
     }
 
     /**
-     * Returns value of internal state. Shorthand for:
-     * `bus.state.deref()`
-     */
-    deref() {
-        return this.state.deref();
-    }
-
-    /**
-     * Add built-in event & side effect handlers:
+     * Adds built-in event & side effect handlers:
      *
      * ### Handlers
      *
-     * #### `EV_SET_VALUE`
-     *
-     * Resets state path to provided value. See `setIn()`.
-     *
-     * Example event definition:
-     * ```
-     * [EV_SET_VALUE, ["path.to.value", val]]
-     * ```
-     *
-     * #### `EV_UPDATE_VALUE`
-     *
-     * Updates a state path's value with provided function and optional
-     * extra arguments. See `updateIn()`.
-     *
-     * Example event definition:
-     * ```
-     * [EV_UPDATE_VALUE, ["path.to.value", (x, y) => x + y, 1]]
-     * ```
+     * none
      *
      * ### Side effects
      *
      * #### `FX_DISPATCH`
      * #### `FX_DISPATCH_ASYNC`
-     * #### `FX_STATE`
      *
      */
     addBuiltIns(): any {
-        // handlers
-        this.addHandler(api.EV_SET_VALUE,
-            (state, [_, [path, val]]) =>
-                ({ [FX_STATE]: setIn(state, path, val) }));
-        this.addHandler(api.EV_UPDATE_VALUE,
-            (state, [_, [path, fn, ...args]]) =>
-                ({ [FX_STATE]: updateIn(state, path, fn, ...args) }));
-
-        // effects
-        this.addEffect(FX_STATE, (x) => this.state.reset(x), -1000);
         this.addEffect(api.FX_DISPATCH, (e) => this.dispatch(e), -999);
         this.addEffect(api.FX_DISPATCH_ASYNC,
             ([id, arg, success, err]) => {
@@ -264,24 +239,30 @@ export class EventBus implements
 
     /**
      * Triggers processing of current event queue and returns `true` if
-     * the any of the processed events caused a state change.
+     * any events have been processed.
      *
      * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
      * the new event will be added to the currently processed batch and
      * therefore executed in the same frame. Also see `dispatchNow()`.
+     *
+     * An optional `ctx` (context) object can be provided, which is used
+     * to collect any side effect definitions during processing. This
+     * can be useful for debugging, inspection or post-processing
+     * purposes.
+     *
+     * @param ctx
      */
-    processQueue() {
+    processQueue(ctx?: api.InterceptorContext) {
         if (this.eventQueue.length > 0) {
-            const prev = this.state.deref();
             this.currQueue = [...this.eventQueue];
             this.eventQueue.length = 0;
-            const fx = this.currCtx = { [FX_STATE]: prev };
+            ctx = this.currCtx = ctx || {};
             for (let e of this.currQueue) {
-                this.processEvent(fx, e);
+                this.processEvent(ctx, e);
             }
             this.currQueue = this.currCtx = undefined;
-            this.processEffects(fx);
-            return this.state.deref() !== prev;
+            this.processEffects(ctx);
+            return true;
         }
         return false;
     }
@@ -311,7 +292,7 @@ export class EventBus implements
      * @param fx
      * @param e
      */
-    protected processEvent(fx: api.InterceptorContext, e: api.Event) {
+    protected processEvent(ctx: api.InterceptorContext, e: api.Event) {
         const iceps = this.handlers[e[0]];
         if (!iceps) {
             console.warn(`missing handler for event type: ${e[0]}`);
@@ -319,20 +300,20 @@ export class EventBus implements
         }
         const n = iceps.length - 1;
         let hasPost = false;
-        for (let i = 0; i <= n && !fx[FX_CANCEL]; i++) {
+        for (let i = 0; i <= n && !ctx[FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
-                this.mergeEffects(fx, icep.pre(fx[FX_STATE], e, this));
+                this.mergeEffects(ctx, icep.pre(ctx[FX_STATE], e, this));
             }
             hasPost = hasPost || !!icep.post;
         }
         if (!hasPost) {
             return;
         }
-        for (let i = n; i >= 0 && !fx[FX_CANCEL]; i--) {
+        for (let i = n; i >= 0 && !ctx[FX_CANCEL]; i--) {
             const icep = iceps[i];
             if (icep.post) {
-                this.mergeEffects(fx, icep.post(fx[FX_STATE], e, this));
+                this.mergeEffects(ctx, icep.post(ctx[FX_STATE], e, this));
             }
         }
     }
@@ -343,11 +324,11 @@ export class EventBus implements
      *
      * @param fx
      */
-    protected processEffects(fx: api.InterceptorContext) {
+    protected processEffects(ctx: api.InterceptorContext) {
         const effects = this.effects;
         for (let p of this.priorities) {
             const id = p[0];
-            const val = fx[id];
+            const val = ctx[id];
             if (val !== undefined) {
                 const fn = effects[id];
                 if (id !== FX_STATE) {
@@ -372,14 +353,17 @@ export class EventBus implements
      * single side effect type (e.g. dispatch multiple other events), it
      * MUST return an array of these values. The only exceptions to this
      * are the following effects, which for obvious reasons can only
-     * accept a single value:
+     * accept a single value.
+     *
+     * **Note:** the `FX_STATE` effect is not actually used here, but is
+     * supported to avoid code duplication in `StatefulEventBus`.
      *
      * - `FX_CANCEL`
      * - `FX_STATE`
      *
-     * Note that because of this support (of multiple values), the value
-     * of a single side effect MUST NOT be a nested array itself, or
-     * rather not its first item.
+     * Because of this support (multiple values), the value of a single
+     * side effect MUST NOT be a nested array itself, or rather its
+     * first item can't be an array.
      *
      * For example:
      *
@@ -394,14 +378,14 @@ export class EventBus implements
      * @param fx
      * @param ret
      */
-    protected mergeEffects(fx: api.InterceptorContext, ret: any) {
+    protected mergeEffects(ctx: api.InterceptorContext, ret: any) {
         if (!ret) {
             return;
         }
         for (let k in ret) {
             const v = ret[k];
             if (k === FX_STATE || k === FX_CANCEL) {
-                fx[k] = v;
+                ctx[k] = v;
             } else if (k === FX_DISPATCH_NOW) {
                 if (isArray(v[0])) {
                     for (let e of v) {
@@ -411,16 +395,125 @@ export class EventBus implements
                     this.dispatchNow(v);
                 }
             } else {
-                if (fx[k]) {
+                if (ctx[k]) {
                     if (isArray(v[0])) {
-                        Array.prototype.push.apply(fx[k], v);
+                        Array.prototype.push.apply(ctx[k], v);
                     } else {
-                        fx[k].push(v)
+                        ctx[k].push(v)
                     }
                 } else {
-                    fx[k] = [v];
+                    ctx[k] = [v];
                 }
             }
         }
+    }
+}
+
+/**
+ * Stateful version of `StatelessEventBus`. Wraps an `IAtom` state
+ * container (Atom/Cursor) and provides additional pre-defined event
+ * handlers and side effects to manipulate wrapped state. Prefer this
+ * as the default implementation for most use cases.
+ */
+export class EventBus extends StatelessEventBus implements
+    IDeref<any>,
+    api.IDispatch {
+
+    readonly state: api.IAtom<any>;
+
+    /**
+     * Creates a new event bus instance with given parent state, handler
+     * and effect definitions (all optional). If no state is given,
+     * automatically creates an `Atom` with empty state object.
+     *
+     * In addition to the user provided handlers & effects, a number of
+     * built-ins are added automatically. See `addBuiltIns()`.
+     *
+     * @param state
+     * @param handlers
+     * @param effects
+     */
+    constructor(state?: api.IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
+        super(handlers, effects);
+        this.state = state || new Atom({});
+    }
+
+    /**
+     * Returns value of internal state. Shorthand for:
+     * `bus.state.deref()`
+     */
+    deref() {
+        return this.state.deref();
+    }
+
+    /**
+     * Adds same built-in event & side effect handlers as in
+     * `EventBus.addBuiltIns()` with the following additions:
+     *
+     * ### Handlers
+     *
+     * #### `EV_SET_VALUE`
+     *
+     * Resets state path to provided value. See `setIn()`.
+     *
+     * Example event definition:
+     * ```
+     * [EV_SET_VALUE, ["path.to.value", val]]
+     * ```
+     *
+     * #### `EV_UPDATE_VALUE`
+     *
+     * Updates a state path's value with provided function and optional
+     * extra arguments. See `updateIn()`.
+     *
+     * Example event definition:
+     * ```
+     * [EV_UPDATE_VALUE, ["path.to.value", (x, y) => x + y, 1]]
+     * ```
+     *
+     * ### Side effects
+     *
+     * #### `FX_STATE`
+     *
+     * Resets state atom to provided value (only a single update per
+     * processing frame)
+     *
+     */
+    addBuiltIns(): any {
+        super.addBuiltIns();
+        // handlers
+        this.addHandler(api.EV_SET_VALUE,
+            (state, [_, [path, val]]) =>
+                ({ [FX_STATE]: setIn(state, path, val) }));
+        this.addHandler(api.EV_UPDATE_VALUE,
+            (state, [_, [path, fn, ...args]]) =>
+                ({ [FX_STATE]: updateIn(state, path, fn, ...args) }));
+
+        // effects
+        this.addEffect(FX_STATE, (x) => this.state.reset(x), -1000);
+    }
+
+    /**
+     * Triggers processing of current event queue and returns `true` if
+     * the any of the processed events caused a state change.
+     *
+     * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
+     * the new event will be added to the currently processed batch and
+     * therefore executed in the same frame. Also see `dispatchNow()`.
+     */
+    processQueue() {
+        if (this.eventQueue.length > 0) {
+            const prev = this.state.deref();
+            this.currQueue = [...this.eventQueue];
+            this.eventQueue.length = 0;
+            const ctx = this.currCtx = { [FX_STATE]: prev };
+            for (let e of this.currQueue) {
+                this.processEvent(ctx, e);
+            }
+            this.currQueue = this.currCtx = undefined;
+            this.processEffects(ctx);
+            return this.state.deref() !== prev;
+        }
+        return false;
     }
 }
