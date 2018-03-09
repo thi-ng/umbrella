@@ -6,24 +6,45 @@ import { isPromise } from "@thi.ng/checks/is-promise";
 import * as api from "./api";
 import { setIn, updateIn } from "./path";
 
+const FX_CANCEL = api.FX_CANCEL;
+const FX_DISPATCH_NOW = api.FX_DISPATCH_NOW;
+const FX_STATE = api.FX_STATE;
+
 /**
- * Batched event processor for using composable interceptors for event handling
- * and side effects to execute the result of handled events.
+ * Batched event processor for using composable interceptors for event
+ * handling and side effects to execute the result of handled events.
  *
- * In this model an event handler is an array of objects with `pre` and/or `post`
- * keys and functions attached to each key. These functions are called interceptors,
- * since each intercepts the processing of an event and can contribute their
- * own side effects. The outcome of this setup is a more aspect-oriented, composable
- * approach to event handling and allows to inject common, re-usable behaviors
- * for multiple event types (tracing, validation, undo/redo triggers etc.)
+ * Events processed by this class are simple 2-element tuples/arrays of
+ * this form: `["event-id", payload?]`, where the `payload` is optional
+ * and can be any data.
  *
- * The overall approach of this type of event processing is heavily based on the
- * pattern initially pioneered by @Day8/re-frame, with the following differences:
+ * Events are processed by registered handlers which transform each
+ * event into a number of side effects to be executed later. This
+ * separation ensures event handlers themselves are pure functions and
+ * too leads to more efficient reuse of side effecting operations. The
+ * pure data nature until the last stage of processing (the application
+ * side effects) also means event flow can be much easier inspected and
+ * debugged.
  *
- * - standalone implementation (no assumptions about surrounding context/framework)
+ * In this model an event handler itself is an array of objects with
+ * `pre` and/or `post` keys and functions attached to each key. These
+ * functions are called interceptors, since each intercepts the
+ * processing of an event and can contribute their own side effects. The
+ * outcome of this setup is a more aspect-oriented, composable approach
+ * to event handling and allows to inject common, re-usable behaviors
+ * for multiple event types (logging, validation, undo/redo triggers
+ * etc.)
+ *
+ * The overall approach of this type of event processing is heavily
+ * based on the pattern initially pioneered by @Day8/re-frame, with the
+ * following differences:
+ *
+ * - standalone implementation (no assumptions about surrounding
+ *   context/framework)
  * - manual trigger of event queue processing
  * - supports event cancellation
- * - side effect collection (multiple side effects for same effect type per frame)
+ * - side effect collection (multiple side effects for same effect type
+ *   per frame)
  * - side effect priorities (to better control execution order)
  * - dynamic addition/removal of handlers & effects
  */
@@ -46,7 +67,6 @@ export class EventBus implements
         this.effects = {};
         this.eventQueue = [];
         this.priorities = [];
-        this.currQueue = this.currCtx = null;
         this.addBuiltIns();
         if (handlers) {
             this.addHandlers(handlers);
@@ -72,8 +92,8 @@ export class EventBus implements
      *
      * #### `EV_UPDATE_VALUE`
      *
-     * Updates a state path's value with provided function and
-     * optional extra arguments. See `updateIn()`.
+     * Updates a state path's value with provided function and optional
+     * extra arguments. See `updateIn()`.
      *
      * Example event definition:
      * ```
@@ -82,22 +102,22 @@ export class EventBus implements
      *
      * ### Side effects
      *
-     * #### FX_DISPATCH
-     * #### FX_DISPATCH_ASYNC
-     * #### FX_STATE
+     * #### `FX_DISPATCH`
+     * #### `FX_DISPATCH_ASYNC`
+     * #### `FX_STATE`
      *
      */
     addBuiltIns(): any {
         // handlers
         this.addHandler(api.EV_SET_VALUE,
             (state, [_, [path, val]]) =>
-                ({ [api.FX_STATE]: setIn(state, path, val) }));
+                ({ [FX_STATE]: setIn(state, path, val) }));
         this.addHandler(api.EV_UPDATE_VALUE,
             (state, [_, [path, fn, ...args]]) =>
-                ({ [api.FX_STATE]: updateIn(state, path, fn, ...args) }));
+                ({ [FX_STATE]: updateIn(state, path, fn, ...args) }));
 
         // effects
-        this.addEffect(api.FX_STATE, (x) => this.state.reset(x), -1000);
+        this.addEffect(FX_STATE, (x) => this.state.reset(x), -1000);
         this.addEffect(api.FX_DISPATCH, (e) => this.dispatch(e), -999);
         this.addEffect(api.FX_DISPATCH_ASYNC,
             ([id, arg, success, err]) => {
@@ -199,8 +219,8 @@ export class EventBus implements
     }
 
     /**
-     * Adds given event to event queue to be processed
-     * by `processQueue()` later on.
+     * Adds given event to event queue to be processed by
+     * `processQueue()` later on.
      *
      * @param e
      */
@@ -209,12 +229,10 @@ export class EventBus implements
     }
 
     /**
-     * Adds given event to whatever is the current
-     * event queue. If triggered via the `FX_DISPATCH_NOW`
-     * side effect the event will still be executed
-     * in the currently active batch. If called from
-     * elsewhere, the result is the same as calling
-     * `dispatch()`.
+     * Adds given event to whatever is the current event queue. If
+     * triggered via the `FX_DISPATCH_NOW` side effect the event will
+     * still be executed in the currently active batch. If called from
+     * elsewhere, the result is the same as calling `dispatch()`.
      *
      * @param e
      */
@@ -223,25 +241,23 @@ export class EventBus implements
     }
 
     /**
-     * Triggers processing of current event queue and
-     * returns `true` if the any of the processed events
-     * caused a state change.
+     * Triggers processing of current event queue and returns `true` if
+     * the any of the processed events caused a state change.
      *
-     * If an event handler triggers the `FX_DISPATCH_NOW`
-     * side effect, the new event will be added to the
-     * currently processed batch and therefore executed
-     * in the same frame. Also see `dispatchNow()`.
+     * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
+     * the new event will be added to the currently processed batch and
+     * therefore executed in the same frame. Also see `dispatchNow()`.
      */
     processQueue() {
         if (this.eventQueue.length > 0) {
             const prev = this.state.deref();
             this.currQueue = [...this.eventQueue];
             this.eventQueue.length = 0;
-            let fx = this.currCtx = { [api.FX_STATE]: prev };
+            const fx = this.currCtx = { [FX_STATE]: prev };
             for (let e of this.currQueue) {
                 this.processEvent(fx, e);
             }
-            this.currQueue = this.currCtx = null;
+            this.currQueue = this.currCtx = undefined;
             this.processEffects(fx);
             return this.state.deref() !== prev;
         }
@@ -250,30 +266,30 @@ export class EventBus implements
 
     /**
      * Processes a single event using its configured handler/interceptor
-     * chain. Logs warning message and skips processing if no handler
-     * is available for the event type.
+     * chain. Logs warning message and skips processing if no handler is
+     * available for the event type.
      *
      * The array of interceptors is processed in bi-directional order.
-     * First any `pre` interceptors are processed in forward order.
-     * Then `post` interceptors are processed in reverse.
+     * First any `pre` interceptors are processed in forward order. Then
+     * `post` interceptors are processed in reverse.
      *
      * Each interceptor can return a result object of side effects,
      * which are being merged and collected for `processEffects()`.
      *
-     * Any interceptor can trigger zero or more known side effects,
-     * each (side effect) will be collected in an array to support
-     * multiple invocations of the same effect type per frame. If no
-     * side effects are requested, an interceptor can return `undefined`.
+     * Any interceptor can trigger zero or more known side effects, each
+     * (side effect) will be collected in an array to support multiple
+     * invocations of the same effect type per frame. If no side effects
+     * are requested, an interceptor can return `undefined`.
      *
-     * Processing of the current event stops immediatedly, if an interceptor
-     * sets the `FX_CANCEL` side effect key to `true`. However, the results
-     * of any previous interceptors (incl. the one which cancelled) are kept
-     * and processed further as usual.
+     * Processing of the current event stops immediatedly, if an
+     * interceptor sets the `FX_CANCEL` side effect key to `true`.
+     * However, the results of any previous interceptors (incl. the one
+     * which cancelled) are kept and processed further as usual.
      *
      * @param fx
      * @param e
      */
-    protected processEvent(fx: any, e: api.Event) {
+    protected processEvent(fx: api.InterceptorContext, e: api.Event) {
         const iceps = this.handlers[e[0]];
         if (!iceps) {
             console.warn(`missing handler for event type: ${e[0]}`);
@@ -281,39 +297,38 @@ export class EventBus implements
         }
         const n = iceps.length - 1;
         let hasPost = false;
-        for (let i = 0; i <= n && !fx[api.FX_CANCEL]; i++) {
+        for (let i = 0; i <= n && !fx[FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
-                this.mergeEffects(fx, icep.pre(fx[api.FX_STATE], e, this));
+                this.mergeEffects(fx, icep.pre(fx[FX_STATE], e, this));
             }
             hasPost = hasPost || !!icep.post;
         }
         if (!hasPost) {
             return;
         }
-        for (let i = n; i >= 0 && !fx[api.FX_CANCEL]; i--) {
+        for (let i = n; i >= 0 && !fx[FX_CANCEL]; i--) {
             const icep = iceps[i];
             if (icep.post) {
-                this.mergeEffects(fx, icep.post(fx[api.FX_STATE], e, this));
+                this.mergeEffects(fx, icep.post(fx[FX_STATE], e, this));
             }
         }
     }
 
     /**
-     * Takes a collection of side effects generated during
-     * event processing and applies them in order of configured
-     * priorities.
+     * Takes a collection of side effects generated during event
+     * processing and applies them in order of configured priorities.
      *
      * @param fx
      */
-    protected processEffects(fx: any) {
+    protected processEffects(fx: api.InterceptorContext) {
         const effects = this.effects;
         for (let p of this.priorities) {
             const id = p[0];
             const val = fx[id];
             if (val !== undefined) {
                 const fn = effects[id];
-                if (id !== api.FX_STATE) {
+                if (id !== FX_STATE) {
                     for (let v of val) {
                         fn(v, this);
                     }
@@ -325,24 +340,24 @@ export class EventBus implements
     }
 
     /**
-     * Merges the new side effects returned from an interceptor
-     * into the internal effect accumulator.
+     * Merges the new side effects returned from an interceptor into the
+     * internal effect accumulator.
      *
      * Any events assigned to the `FX_DISPATCH_NOW` effect key are
      * immediately added to the currently active event batch.
      *
-     * If an interceptor wishes to cause multiple invocations of
-     * a single side effect type (e.g. dispatch multiple other events),
-     * it MUST return an array of these values. The only exceptions
-     * to this are the following effects, which for obvious reasons
-     * can only accept a single value:
+     * If an interceptor wishes to cause multiple invocations of a
+     * single side effect type (e.g. dispatch multiple other events), it
+     * MUST return an array of these values. The only exceptions to this
+     * are the following effects, which for obvious reasons can only
+     * accept a single value:
      *
      * - `FX_CANCEL`
      * - `FX_STATE`
      *
-     * Note that because of this support (of multiple values),
-     * the value of a single side effect SHOULD NOT be a nested array
-     * itself, or rather not its first item.
+     * Note that because of this support (of multiple values), the value
+     * of a single side effect MUST NOT be a nested array itself, or
+     * rather not its first item.
      *
      * For example:
      *
@@ -357,15 +372,15 @@ export class EventBus implements
      * @param fx
      * @param ret
      */
-    protected mergeEffects(fx: any, ret: any) {
+    protected mergeEffects(fx: api.InterceptorContext, ret: any) {
         if (!ret) {
             return;
         }
         for (let k in ret) {
             const v = ret[k];
-            if (k === api.FX_STATE || k === api.FX_CANCEL) {
+            if (k === FX_STATE || k === FX_CANCEL) {
                 fx[k] = v;
-            } else if (k === api.FX_DISPATCH_NOW) {
+            } else if (k === FX_DISPATCH_NOW) {
                 if (isArray(v[0])) {
                     for (let e of v) {
                         this.dispatchNow(e);
