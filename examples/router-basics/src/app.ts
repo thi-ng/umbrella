@@ -1,21 +1,36 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { IView } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";
 import { EventBus } from "@thi.ng/atom/event-bus";
 import { start } from "@thi.ng/hdom";
 import { EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 import { HTMLRouter } from "@thi.ng/router/history";
 
-import { AppConfig, ViewSpec } from "./api";
+import { AppConfig, ViewSpec, AppViews } from "./api";
 import { isArray } from "util";
 
+/**
+ * Generic base app skeleton. You can use this as basis for your own
+ * apps, see `index.ts` for concrete extension.
+ *
+ * The app does not much more than:
+ *
+ * - initializing state, event bus, router
+ * - add ROUTE_TO event & effect handlers
+ * - attach derived views
+ * - define root component wrapper to look up real component based on
+ *   current route
+ * - start hdom render & event bus loop
+ */
 export abstract class App {
+
+    static readonly EV_ROUTE_TO = "route-to";
+    static readonly FX_ROUTE_TO = "route-to";
 
     config: AppConfig;
     state: Atom<any>;
     bus: EventBus;
     router: HTMLRouter;
-    views: IObjectOf<IView<any>>;
+    views: AppViews;
 
     constructor(config: AppConfig) {
         this.config = config;
@@ -26,7 +41,15 @@ export abstract class App {
             EVENT_ROUTE_CHANGED,
             (e) => this.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
         );
-        this.views = {};
+        this.bus.addHandler(
+            App.EV_ROUTE_TO,
+            (_, [__, route]) => ({ [App.FX_ROUTE_TO]: route })
+        );
+        this.bus.addEffect(
+            App.FX_ROUTE_TO,
+            ([id, params]) => this.router.routeTo(this.router.format(id, params))
+        );
+        this.views = <AppViews>{};
         this.addViews(this.config.views);
         this.addViews({
             route: "route",
@@ -34,7 +57,7 @@ export abstract class App {
                 "route.id",
                 (id) =>
                     (this.config.components[id] ||
-                        (() => ["div", `missing component for route: ${id}`]))(this)
+                        (() => ["div", `missing component for route: ${id}`]))(this, this.config.ui)
             ]
         });
     }

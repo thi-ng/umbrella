@@ -1,35 +1,40 @@
 import { App } from "../app";
-import { EV_LOAD_USER, EV_SET_STATUS, ROUTE_USER_LIST, UI } from "../config";
-import { link } from "./route-link";
+import { EV_LOAD_USER, EV_SET_STATUS, StatusType } from "../config";
+
+import { status } from "./status";
 
 /**
- * Single user profile page. Trigger JSON I/O request if user data has
- * not been loaded yet.
+ * Single user profile page. Triggers JSON I/O request on init if user
+ * data has not been loaded yet.
  *
  * @param app
  */
-export function userProfile(app: App) {
+export function userProfile(app: App, ui: any) {
     const id = app.views.route.deref().params.id;
     if (!app.views.users.deref()[id]) {
         app.bus.dispatch([EV_LOAD_USER, id]);
     } else {
-        app.bus.dispatch([EV_SET_STATUS, ["idle", "loaded from cache"]]);
+        app.bus.dispatch([
+            EV_SET_STATUS,
+            [StatusType.INFO, "loaded from cache"]
+        ]);
     }
     return ["div",
-        [userDetails, app, id],
-        ["p", link(app, ROUTE_USER_LIST, null, UI.button, "Show all users")],
-        [status, app]
+        [status, app, ui.status],
+        [userCard, app, ui.card, id]
     ];
 }
 
-function userDetails(app: App, id: number) {
+// based on: http://tachyons.io/components/cards/profile-card/index.html
+function userCard(app: App, ui: any, id: number) {
     const user = app.views.users.deref()[id];
     return user ?
-        ["h1", user.name, ["small", UI.subtitle, ` (${user.job})`]] :
-        ["h1", `User #${id}`];
-}
-
-function status(app: App) {
-    const status = app.views.status.deref() || [];
-    return ["p", UI.status[status[0]], `${status[1]}`];
+        ["div", ui.container,
+            ["img", { ...ui.thumb, src: user.img }],
+            ["h3", ui.title, user.name],
+            user.job,
+            ["hr", ui.sep],
+            ["p", ui.body, user.desc]
+        ] :
+        undefined;
 }

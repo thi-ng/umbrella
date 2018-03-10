@@ -1,5 +1,3 @@
-import { Route } from "@thi.ng/router/api";
-
 import { App } from "../app";
 
 /**
@@ -12,14 +10,16 @@ import { App } from "../app";
  * @param attribs
  * @param body
  */
-export function link(app: App, route: Route, params: any, attribs: any, body: any) {
-    const href = app.router.format(route.id, params);
+export function appLink(app: App, id: PropertyKey, params: any, attribs: any, body: any) {
     return ["a",
         {
+            class: "link black",
+            href: "#",
             ...attribs,
-            href,
-            onclick: (e) => (e.preventDefault(), app.router.routeTo(href)),
+            onclick: (e) => {
+                e.preventDefault();
+                app.bus.dispatch([App.EV_ROUTE_TO, [id, params]]);
+            }
         },
-        body
-    ];
+        body];
 }
