@@ -35,6 +35,7 @@ All packages are:
 | [`@thi.ng/hiccup-css`](./packages/hiccup-css) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css) | [changelog](./packages/hiccup-css/CHANGELOG.md) |
 | [`@thi.ng/iterators`](./packages/iterators) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md) |
 | [`@thi.ng/rle-pack`](./packages/rle-pack) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack) | [changelog](./packages/rle-pack/CHANGELOG.md) |
+| [`@thi.ng/router`](./packages/router) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router) | [changelog](./packages/router/CHANGELOG.md) |
 | [`@thi.ng/rstream`](./packages/rstream) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream) | [changelog](./packages/rstream/CHANGELOG.md) |
 | [`@thi.ng/rstream-csp`](./packages/rstream-csp) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp) | [changelog](./packages/rstream-csp/CHANGELOG.md) |
 | [`@thi.ng/rstream-log`](./packages/rstream-log) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log) | [changelog](./packages/rstream-log/CHANGELOG.md) |
