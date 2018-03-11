@@ -1,5 +1,8 @@
+import { IView } from "@thi.ng/atom/api";
+
 import { App } from "../app";
-import { EV_LOAD_USER_LIST, EV_SET_STATUS, ROUTE_USER_PROFILE, StatusType } from "../config";
+import { StatusType } from "../api";
+import { EV_LOAD_USER_LIST, EV_SET_STATUS, ROUTE_USER_PROFILE } from "../config";
 
 import { appLink } from "./link";
 import { status } from "./status";
@@ -17,17 +20,34 @@ export function allUsers(app: App, ui: any) {
         app.bus.dispatch([EV_SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]]);
     }
     return ["div",
-        [status, app, ui.status],
-        [userList, app, ui.userlist]
+        [status, ui.status, app.views.status],
+        [userList, app, ui.userlist, app.views.users]
     ];
 }
 
-function userList(app: App, ui: any) {
-    const users = app.views.users.deref();
-    const all = users.all;
-    return all && ["section", ui.root, all.map(user(app, ui, users))];
+/**
+ * The actual user list component.
+ *
+ * @param app
+ * @param ui
+ * @param view
+ */
+function userList(app: App, ui: any, view: IView<any>) {
+    const users = view.deref();
+    return users.all &&
+        ["section", ui.root, users.all.map(user(app, ui, users))];
 }
 
+/**
+ * Single user component (used as list items)
+ *
+ * Based on:
+ * http://tachyons.io/components/lists/follower-notifications/index.html
+ *
+ * @param app
+ * @param ui
+ * @param users
+ */
 function user(app: App, ui: any, users: any) {
     return (u) =>
         ["article", ui.container,
@@ -38,6 +58,8 @@ function user(app: App, ui: any, users: any) {
                     appLink(app, ROUTE_USER_PROFILE.id, { id: u.id }, null, u.name)],
                 ["h2", ui.subtitle, `@${u.alias}`]
             ],
-            ["div", ui.meta, users[u.id] ? "cached" : undefined]
+            users[u.id] ?
+                ["div", ui.meta, "cached"] :
+                undefined
         ];
 }

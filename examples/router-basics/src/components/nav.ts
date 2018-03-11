@@ -5,9 +5,9 @@ import { appLink } from "./link";
 
 /**
  * Main nav component with hardcoded routes.
- * 
+ *
  * @param app
- * @param ui 
+ * @param ui
  */
 export function nav(app: App, ui: any) {
     return ["nav",

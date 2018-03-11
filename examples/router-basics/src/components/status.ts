@@ -1,12 +1,12 @@
-import { App } from "../app";
+import { IView } from "@thi.ng/atom/api";
 
 /**
  * Status line component
- * 
+ *
  * @param app
- * @param ui 
+ * @param ui
  */
-export function status(app: App, ui: any) {
-    const [type, msg] = app.views.status.deref();
+export function status(ui: any, view: IView<any>) {
+    const [type, msg] = view.deref();
     return ["p", ui[type], msg];
 }

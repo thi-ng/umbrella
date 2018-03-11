@@ -2,7 +2,7 @@ import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE } from "@thi.ng
 import { valueSetter, valueUpdater, trace } from "@thi.ng/atom/interceptors";
 import { Route, EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 
-import { AppConfig } from "./api";
+import { AppConfig, StatusType } from "./api";
 
 import { home } from "./components/home";
 import { allUsers } from "./components/all-users";
@@ -68,14 +68,6 @@ export const EV_TOGGLE_DEBUG = "toggle-debug";
 
 const FX_JSON = "load-json";
 const FX_DELAY = "delay";
-
-// status types
-export enum StatusType {
-    DONE,
-    INFO,
-    SUCCESS,
-    ERROR
-}
 
 // main App configuration
 export const CONFIG: AppConfig = {
@@ -209,7 +201,7 @@ export const CONFIG: AppConfig = {
 
     // initial app state
     initialState: {
-        status: [StatusType.INFO, "OK"],
+        status: [StatusType.INFO, "running"],
         users: {},
         route: {},
         debug: 1,
@@ -221,7 +213,7 @@ export const CONFIG: AppConfig = {
     // docs here:
     // https://github.com/thi-ng/umbrella/tree/master/packages/atom#derived-views
     views: {
-        jsonState: ["", (state) => `// App state:\n\n${JSON.stringify(state, null, 2)}`],
+        json: ["", (state) => JSON.stringify(state, null, 2)],
         users: ["users", (users) => users || {}],
         status: "status",
         debug: "debug",
@@ -229,6 +221,8 @@ export const CONFIG: AppConfig = {
 
     // component CSS class config using tachyons-css
     // these attribs are being passed to all/most components
+    // with a bit more thought this can still be simplified a lot more
+    // and repetitions minimized...
 
     // looks at first somewhat cryptic, but it's a great/powerful system
     // http://tachyons.io/
@@ -238,7 +232,6 @@ export const CONFIG: AppConfig = {
             content: [{ class: "w-90-ns ma2" }, { class: "w-50-ns ma2" }],
             debug: [{ class: "w-10-ns ma2 close" }, { class: "w-50-ns ma2 open" }],
         },
-        button: { class: "pa2 bn bg-navy white link" },
         code: { class: "ma0 ml4 pa2 f7 bg-light-gray code overflow-x-hidden" },
         bodyCopy: { class: "center measure-narrow measure-ns tc lh-copy black-70" },
         bodyLink: { class: "link dim black" },

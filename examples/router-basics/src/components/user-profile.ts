@@ -1,5 +1,6 @@
 import { App } from "../app";
-import { EV_LOAD_USER, EV_SET_STATUS, StatusType } from "../config";
+import { StatusType } from "../api";
+import { EV_LOAD_USER, EV_SET_STATUS } from "../config";
 
 import { status } from "./status";
 
@@ -20,7 +21,7 @@ export function userProfile(app: App, ui: any) {
         ]);
     }
     return ["div",
-        [status, app, ui.status],
+        [status, ui.status, app.views.status],
         [userCard, app, ui.card, id]
     ];
 }

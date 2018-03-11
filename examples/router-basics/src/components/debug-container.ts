@@ -1,5 +1,6 @@
 import { App } from "../app";
 import { EV_TOGGLE_DEBUG } from "../config";
+import { IView } from "@thi.ng/atom/api";
 
 /**
  * Collapsable component showing stringified app state.
@@ -7,15 +8,17 @@ import { EV_TOGGLE_DEBUG } from "../config";
  * @param app
  * @param ui
  * @param debug
+ * @param json
  */
-export function debugContainer(app: App, ui: any, debug: number) {
+export function debugContainer(app: App, ui: any, debug: number, json: IView<any>) {
     return ["div#debug", ui.column.debug[debug],
         ["a.toggle",
             {
                 href: "#",
                 onclick: (e) => (e.preventDefault(), app.bus.dispatch([EV_TOGGLE_DEBUG]))
             },
-            debug ? "close \u25bc" : "open \u25b2"],
-        ["pre", ui.code, app.views.jsonState.deref()]
+            debug ? "close \u25bc" : "open \u25b2"
+        ],
+        ["pre", ui.code, json.deref()]
     ];
 }
