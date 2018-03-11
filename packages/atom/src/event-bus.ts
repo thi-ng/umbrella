@@ -375,6 +375,9 @@ export class StatelessEventBus implements
      * { [FX_DISPATCH]: [ ["foo", "bar"], ["baz", "beep"] ]}
      * ```
      *
+     * Any `null` / `undefined` values directly assigned to a side effect
+     * are ignored and will not trigger the effect.
+     *
      * @param fx
      * @param ret
      */
@@ -384,6 +387,9 @@ export class StatelessEventBus implements
         }
         for (let k in ret) {
             const v = ret[k];
+            if (v == null) {
+                continue;
+            }
             if (k === FX_STATE || k === FX_CANCEL) {
                 ctx[k] = v;
             } else if (k === FX_DISPATCH_NOW) {
