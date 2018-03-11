@@ -395,10 +395,18 @@ a.u === b.u; // true
 
 ### Event bus, interceptors, side effects
 
-Description forthcoming, please check fully commented examples for now:
+Description forthcoming. Please check the detailed commented source code and examples for now:
 
-- [/examples/interceptor-basics](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
-- [/examples/async-effect](https://github.com/thi-ng/umbrella/tree/master/examples/async-effect)
+- [/src/event-bus.ts](https://github.com/thi-ng/umbrella/tree/master/packages/atom/src/event-bus.ts)
+
+Introductory:
+
+- [/examples/interceptor-basics](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [live demo](http://demo.thi.ng/umbrella/interceptor-basics)
+- [/examples/async-effect](https://github.com/thi-ng/umbrella/tree/master/examples/async-effect) | [live demo](http://demo.thi.ng/umbrella/async-effect)
+
+Advanced:
+
+- [/examples/router-basics](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [live demo](http://demo.thi.ng/umbrella/router-basics)
 
 ## Authors
 

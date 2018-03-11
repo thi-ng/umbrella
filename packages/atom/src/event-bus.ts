@@ -53,11 +53,11 @@ const FX_STATE = api.FX_STATE;
  * based on the pattern initially pioneered by @Day8/re-frame, with the
  * following differences:
  *
- * - stateless (see `StatefulEventBus` for alternative)
+ * - stateless (see `EventBus` for the more common stateful alternative)
  * - standalone implementation (no assumptions about surrounding
  *   context/framework)
- * - manual trigger of event queue processing
- * - supports event cancellation
+ * - manual control over event queue processing
+ * - supports event cancellation (via FX_CANCEL side effect)
  * - side effect collection (multiple side effects for same effect type
  *   per frame)
  * - side effect priorities (to control execution order)
@@ -77,9 +77,8 @@ export class StatelessEventBus implements
     protected priorities: api.EffectPriority[];
 
     /**
-     * Creates a new event bus instance with given parent state, handler
-     * and effect definitions (all optional). If no state is given,
-     * automatically creates an `Atom` with empty state object.
+     * Creates a new event bus instance with given handler and effect
+     * definitions (all optional).
      *
      * In addition to the user provided handlers & effects, a number of
      * built-ins are added automatically. See `addBuiltIns()`.
@@ -106,7 +105,7 @@ export class StatelessEventBus implements
      *
      * ### Handlers
      *
-     * none
+     * currently none
      *
      * ### Side effects
      *
@@ -211,6 +210,10 @@ export class StatelessEventBus implements
         }
     }
 
+    /**
+     * If called during event processing, returns current side effect
+     * accumulator / interceptor context. Otherwise returns nothing.
+     */
     context() {
         return this.currCtx;
     }
@@ -355,8 +358,9 @@ export class StatelessEventBus implements
      * are the following effects, which for obvious reasons can only
      * accept a single value.
      *
-     * **Note:** the `FX_STATE` effect is not actually used here, but is
-     * supported to avoid code duplication in `StatefulEventBus`.
+     * **Note:** the `FX_STATE` effect is not actually defined by this
+     * class here, but is supported to avoid code duplication in
+     * `StatefulEventBus`.
      *
      * - `FX_CANCEL`
      * - `FX_STATE`
@@ -375,8 +379,8 @@ export class StatelessEventBus implements
      * { [FX_DISPATCH]: [ ["foo", "bar"], ["baz", "beep"] ]}
      * ```
      *
-     * Any `null` / `undefined` values directly assigned to a side effect
-     * are ignored and will not trigger the effect.
+     * Any `null` / `undefined` values directly assigned to a side
+     * effect are ignored and will not trigger the effect.
      *
      * @param fx
      * @param ret
@@ -454,7 +458,7 @@ export class EventBus extends StatelessEventBus implements
 
     /**
      * Adds same built-in event & side effect handlers as in
-     * `EventBus.addBuiltIns()` with the following additions:
+     * `StatelessEventBus.addBuiltIns()` with the following additions:
      *
      * ### Handlers
      *
