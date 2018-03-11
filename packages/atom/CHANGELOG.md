@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.12.1"></a>
+## [0.12.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.12.0...@thi.ng/atom@0.12.1) (2018-03-11)
+
+
+### Bug Fixes
+
+* **atom:** ignore side fx with null values ([0ca0bf3](https://github.com/thi-ng/umbrella/commit/0ca0bf3))
+
+
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.11.0...@thi.ng/atom@0.12.0) (2018-03-09)
 
