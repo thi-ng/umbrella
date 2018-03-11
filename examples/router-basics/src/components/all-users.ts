@@ -14,7 +14,7 @@ export function allUsers(app: App, ui: any) {
     if (!app.views.users.deref().all) {
         app.bus.dispatch([EV_LOAD_USER_LIST]);
     } else {
-        app.bus.dispatch([EV_SET_STATUS, [StatusType.INFO, "loaded from cache"]]);
+        app.bus.dispatch([EV_SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]]);
     }
     return ["div",
         [status, app, ui.status],

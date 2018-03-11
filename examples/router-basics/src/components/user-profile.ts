@@ -16,7 +16,7 @@ export function userProfile(app: App, ui: any) {
     } else {
         app.bus.dispatch([
             EV_SET_STATUS,
-            [StatusType.INFO, "loaded from cache"]
+            [StatusType.SUCCESS, "loaded from cache", true]
         ]);
     }
     return ["div",

@@ -1,6 +1,5 @@
-import { FX_STATE, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW } from "@thi.ng/atom/api";
-import { valueSetter, valueUpdater } from "@thi.ng/atom/interceptors";
-import { setIn } from "@thi.ng/atom/path";
+import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE } from "@thi.ng/atom/api";
+import { valueSetter, valueUpdater, trace } from "@thi.ng/atom/interceptors";
 import { Route, EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 
 import { AppConfig } from "./api";
@@ -9,10 +8,15 @@ import { home } from "./components/home";
 import { allUsers } from "./components/all-users";
 import { userProfile } from "./components/user-profile";
 import { contact } from "./components/contact";
+import { App } from "./app";
 
 // route definitions:
+// routes are 1st class objects and used directly throughout the app
+// without ever referring to their specific string representation
+
 // the `match` arrays specify the individual route elements
 // docs here:
+// https://github.com/thi-ng/umbrella/blob/master/packages/router/
 // https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts#L31
 
 export const ROUTE_HOME: Route = {
@@ -31,7 +35,9 @@ export const ROUTE_USER_LIST: Route = {
 };
 
 // this is a parametric route w/ parameter coercion & validation
-// if validation fails, the route will not be matched
+// if coercion or validation fails, the route will not be matched
+// if no other route matches, the configured default route will
+// be used (see full router config further below)
 
 export const ROUTE_USER_PROFILE: Route = {
     id: "user-profile",
@@ -50,14 +56,15 @@ export const ROUTE_USER_PROFILE: Route = {
 export const EV_DONE = "done";
 export const EV_ERROR = "error";
 export const EV_LOAD_USER = "load-user";
+export const EV_LOAD_USER_ERROR = "load-user-error"
 export const EV_LOAD_USER_LIST = "load-users";
 export const EV_RECEIVE_USER = "receive-user";
 export const EV_RECEIVE_USERS = "receive-users";
 export const EV_SET_STATUS = "set-status";
 export const EV_TOGGLE_DEBUG = "toggle-debug";
 
-// side effect IDs (don't / shouldn't need to be exported, other parts
-// of the app should only use events)
+// side effect IDs (these don't / shouldn't need to be exported. other
+// parts of the app should only use events)
 
 const FX_JSON = "load-json";
 const FX_DELAY = "delay";
@@ -90,9 +97,17 @@ export const CONFIG: AppConfig = {
         ]
     },
 
-    // event handlers
-    // docs here:
+    // event handlers events are queued and batch processed in app's RAF
+    // renderloop event handlers can be single functions, interceptor
+    // objects with `pre`/`post` keys or arrays of either.
+
+    // the event handlers' only task is to transform the event into a
+    // number of side effects. event handlers should be pure functions
+    // and only side effect functions execute any "real" work.
+
+    // see EventBus docs here:
     // https://github.com/thi-ng/umbrella/blob/master/packages/atom/src/event-bus.ts#L14
+
     events: {
         // sets status to "done"
         [EV_DONE]: () => ({
@@ -100,43 +115,63 @@ export const CONFIG: AppConfig = {
         }),
 
         // sets status to thrown error's message
-        // then triggers EV_DONE after 1sec
         [EV_ERROR]: (_, [__, err]) => ({
             [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.ERROR, err.message]],
-            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000], EV_DONE, EV_ERROR],
         }),
 
         // triggers loading of JSON for single user, sets status
         [EV_LOAD_USER]: (_, [__, id]) => ({
             [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.INFO, `loading user data...`]],
-            [FX_DISPATCH_ASYNC]: [FX_JSON, `user-${id}.json`, EV_RECEIVE_USER, EV_ERROR]
+            [FX_DISPATCH_ASYNC]: [FX_JSON, `assets/user-${id}.json`, EV_RECEIVE_USER, EV_LOAD_USER_ERROR]
         }),
 
         // triggered after successful IO
         // stores received user data under `users.{id}`, sets status
-        // then calls EV_DONE after 1sec
-        [EV_RECEIVE_USER]: (state, [__, json]) => ({
-            [FX_STATE]: setIn(state, ["users", json.id], json),
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded"]],
-            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000], EV_DONE, EV_ERROR],
+        // note: we assign multiple value/events as array to the FX_DISPATCH_NOW side effect
+        [EV_RECEIVE_USER]: (_, [__, json]) => ({
+            [FX_DISPATCH_NOW]: [
+                <Event>[EV_SET_VALUE, [["users", json.id], json]],
+                <Event>[EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded", true]]
+            ],
         }),
 
+        // error event for user profile IO requests (i.e. in this demo for user ID 3)
+        // set status, then redirects to /users after 1sec
+        [EV_LOAD_USER_ERROR]: (_, [__, err]) => ({
+            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.ERROR, err.message]],
+            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, [ROUTE_USER_LIST.id]], App.EV_ROUTE_TO, EV_ERROR],
+        }),
+
+        // triggers loading of JSON summary of all users, sets status
         [EV_LOAD_USER_LIST]: () => ({
             [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.INFO, `loading user data...`]],
-            [FX_DISPATCH_ASYNC]: [FX_JSON, `users.json`, EV_RECEIVE_USERS, EV_ERROR]
+            [FX_DISPATCH_ASYNC]: [FX_JSON, `assets/users.json`, EV_RECEIVE_USERS, EV_ERROR]
         }),
 
-        [EV_RECEIVE_USERS]: (state, [__, json]) => ({
-            [FX_STATE]: setIn(state, "users.all", json),
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded"]],
-            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000], EV_DONE, EV_ERROR],
+        // triggered after successful IO
+        // note: we assign multiple value/events as array to the FX_DISPATCH_NOW side effect
+        [EV_RECEIVE_USERS]: (_, [__, json]) => ({
+            [FX_DISPATCH_NOW]: [
+                <Event>[EV_SET_VALUE, ["users.all", json]],
+                <Event>[EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded", true]]
+            ],
         }),
 
         // stores current route details
         [EVENT_ROUTE_CHANGED]: valueSetter("route"),
 
-        // stores status (a 2-tuple of `[status-type, message]`)
-        [EV_SET_STATUS]: valueSetter("status"),
+        // stores status (a tuple of `[type, message, done?]`) in app state
+        // if status type != DONE & `done` == true, also triggers delayed EV_DONE
+        // Note: we inject the `trace` interceptor to log the event to the console
+        [EV_SET_STATUS]: [
+            trace,
+            (_, [__, status]) => ({
+                [FX_DISPATCH_NOW]: [EV_SET_VALUE, ["status", status]],
+                [FX_DISPATCH_ASYNC]: (status[0] !== StatusType.DONE && status[2]) ?
+                    [FX_DELAY, [1000], EV_DONE, EV_ERROR] :
+                    undefined
+            })
+        ],
 
         // toggles debug state flag on/off
         [EV_TOGGLE_DEBUG]: valueUpdater("debug", (x: number) => x ^ 1)
@@ -193,6 +228,9 @@ export const CONFIG: AppConfig = {
     },
 
     // component CSS class config using tachyons-css
+    // these attribs are being passed to all/most components
+
+    // looks at first somewhat cryptic, but it's a great/powerful system
     // http://tachyons.io/
     ui: {
         root: { class: "flex-ns sans-serif ma0" },
@@ -205,10 +243,10 @@ export const CONFIG: AppConfig = {
         bodyCopy: { class: "center measure-narrow measure-ns tc lh-copy black-70" },
         bodyLink: { class: "link dim black" },
         status: {
-            [StatusType.DONE]: { class: "pa2 bg-light-yellow gold tc fadeout" },
-            [StatusType.INFO]: { class: "pa2 bg-light-yellow gold tc" },
-            [StatusType.SUCCESS]: { class: "pa2 bg-light-green green tc" },
-            [StatusType.ERROR]: { class: "pa2 bg-light-red dark-red tc" },
+            [StatusType.DONE]: { class: "pa2 bg-light-yellow gold tc fadeout bg-animate" },
+            [StatusType.INFO]: { class: "pa2 bg-light-yellow gold tc bg-animate" },
+            [StatusType.SUCCESS]: { class: "pa2 bg-light-green green tc bg-animate" },
+            [StatusType.ERROR]: { class: "pa2 bg-light-red dark-red tc bg-animate" },
         },
         card: {
             container: { class: "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc" },
