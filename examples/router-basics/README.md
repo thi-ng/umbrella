@@ -15,7 +15,21 @@ Unlike other examples, this one requires a local webserver to function, for exam
 python -m SimpleHTTPServer
 ```
 
-## Notes
+## About
 
-It is by design that loading of user #3 ("Emilia Fox") is failing. This
-is to demonstrate error handling behavior...
+This is the most advanced example in this repo thus far and deals with:
+
+- App & component configuration
+- Pure ES6 UI components
+- Central app state handling
+- Derived views
+- SPA routing, route definitions & validation options
+- Composable events, interceptors, side effects
+- Async side effects
+- Dynamic JSON content loading / transformation
+- Component styling with [Tachyons CSS](http://tachyons.io/)
+
+
+Btw. It is by design that loading of [user
+#3](http://localhost:8000/#/users/3) ("Emilia Fox") is failing. This is
+to demonstrate error handling behavior...
