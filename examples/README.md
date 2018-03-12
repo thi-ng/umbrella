@@ -2,12 +2,12 @@
 
 This directory contains a growing number of standalone example projects, including live online versions, build instructions and commented source code.
 
-If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch using issue tracker, email or twitter!
+If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch via PR, issue tracker, email or twitter!
 
 | # | Name | Description | Packages of interest | Difficulty |
 | ---: | --- | --- | --- | --- |
 | 1 | [async-effect](./async-effect) | Async side effect handling (JSON I/O) | atom, hdom | intermediate |
-| 2 | [cellular-automata](./cellular-automata) | Transducer based, customizable 2D cellular automata | hdom, hdom-components, | transducers |  basic |
+| 2 | [cellular-automata](./cellular-automata) | Transducer based, customizable 2D cellular automata | hdom, hdom-components, transducers |  basic |
 | 3 | [dashboard](./cellular-automata) | Barebones components w/ local state | hdom, hdom-components, transducers | basic |
 | 4 | [devcards](./devcards) | multiple app instances with/without shared state | atom, hdom, hdom-components | intermediate |
 | 5 | [hdom-basics](./hdom-basics) | hello world | hdom, hiccup | basic |
