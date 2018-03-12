@@ -25,6 +25,7 @@ export function home(_: App, ui: any) {
                     ["a", { ...ui.bodyLink, href: "http://tachyons.io/" }, "Tachyons CSS"]],
             ]],
         ["p",
-            "Please see the related blog post and the commented source code for more details."]
+            "Please see the related blog post and the commented source code for more details."],
+        ["p", "(total app file size: 13.6KB)"]
     ];
 }
