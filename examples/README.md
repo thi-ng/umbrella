@@ -17,5 +17,5 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 9 | [login-form](./login-form) | basic SPA without router | atom, hdom | intermediate |
 | 10 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, router | advanced |
 | 11 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
-| 11 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
-| 11 | [webgl](./webgl) | Canvas component handling | hdom, hdom-components | basic |
+| 12 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
+| 13 | [webgl](./webgl) | Canvas component handling | hdom, hdom-components | basic |
