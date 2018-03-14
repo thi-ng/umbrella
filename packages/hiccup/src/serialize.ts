@@ -1,3 +1,4 @@
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
@@ -131,6 +132,9 @@ const _serialize = (tree: any, esc: boolean) => {
     }
     if (isFunction(tree)) {
         return _serialize(tree(), esc);
+    }
+    if (implementsFunction(tree, "deref")) {
+        return _serialize(tree.deref(), esc);
     }
     if (iter(tree)) {
         return _serializeIter(tree, esc);
