@@ -18,6 +18,6 @@
     "dependencies": {
         "@thi.ng/api": "^2.0.4",
         "@thi.ng/atom": "^0.10.0",
-        "@thi.ng/hdom": "^2.1.1"
+        "@thi.ng/hdom": "^2.2.0"
     }
 }
