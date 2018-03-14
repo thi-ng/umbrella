@@ -167,8 +167,9 @@ const normalize = (tag: any[]) => {
     }
     if (tag.length > 1) {
         let i = 1;
-        if (isPlainObject(tag[1])) {
-            Object.assign(attribs, tag[1]);
+        const att = tag[1];
+        if (isPlainObject(att) && !implementsFunction(att, "deref")) {
+            Object.assign(attribs, att);
             i++;
         }
         if (isPlainObject(attribs.style)) {
