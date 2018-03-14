@@ -48,7 +48,7 @@ function defcard(card: CardFn, state?: IAtom<any>, title?: string, parent?: stri
     const root = card(state);
 
     // kick off hdom renderloop
-    start(parent, () => ["div.card", ["h3", title], ["div.body", root, ["pre", json.deref()]]]);
+    start(parent, () => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]]);
 }
 
 /**
@@ -175,7 +175,7 @@ function bmi(state: IAtom<any>) {
     // perform initial calculation
     calc();
 
-    return () => ["div", height, weight, bmi, ["div", bmiViz.deref()]];
+    return () => ["div", height, weight, bmi, ["div", bmiViz]];
 }
 
 /**

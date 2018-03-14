@@ -39,7 +39,7 @@ const uiViews = {
     login: () =>
         ["div#login",
             ["h1", "Login"],
-            error.deref() ? ["div.error", error.deref()] : undefined,
+            error.deref() ? ["div.error", error] : undefined,
             ["input", { type: "text", onchange: setUser }],
             ["button", { onclick: loginUser }, "Login"]
         ],
@@ -77,7 +77,7 @@ const currView = db.addView(
 // app root component
 const app = () =>
     ["div#app",
-        currView.deref(),
+        currView,
         ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
 
 start(document.body, app);

@@ -16,7 +16,7 @@ class DemoApp extends App {
         return ["div", ui.root,
             ["div", ui.column.content[debug],
                 [nav, this, ui.nav],
-                this.views.routeComponent.deref()],
+                this.views.routeComponent],
             [debugContainer, this, ui, debug, this.views.json],
         ];
     }

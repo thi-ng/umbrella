@@ -65,6 +65,7 @@ const effects: IObjectOf<EffectDef> = {
 
 // main app component
 const app = () => {
+    // create event bus with empty state (null arg)
     const bus = new EventBus(null, events, effects);
 
     // kick off JSON request
@@ -73,6 +74,7 @@ const app = () => {
     // root component function
     return () => {
         if (bus.processQueue()) {
+            // the event bus' state can be obtained via `deref()`
             const { json, status } = bus.deref();
             return ["div",
                 ["p#status", { class: status[0] }, `status: ${status[1]}`],

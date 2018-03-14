@@ -9,7 +9,7 @@ import { TAG_REGEXP } from "@thi.ng/hiccup/api";
 export function normalizeElement(spec: any[], keys: boolean) {
     let match, id, clazz, attribs;
     let tag = spec[0];
-    let hasAttribs = isPlainObject(spec[1]);
+    let hasAttribs = isPlainObject(spec[1]) && !implementsFunction(spec[1], "deref");
     if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
         throw new Error(`${tag} is not a valid tag name`);
     }
@@ -103,6 +103,9 @@ export function normalizeTree(el: any, path = [0], keys = true, span = true) {
     }
     if (isFunction(el)) {
         return normalizeTree(el(), path, keys, span);
+    }
+    if (implementsFunction(el, "deref")) {
+        return normalizeTree(el.deref(), path.slice(), keys, span);
     }
     return span ?
         ["span", keys ? { key: path.join("-") } : {}, el.toString()] :

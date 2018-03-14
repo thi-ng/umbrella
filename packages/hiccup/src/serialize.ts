@@ -1,3 +1,4 @@
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
@@ -132,6 +133,9 @@ const _serialize = (tree: any, esc: boolean) => {
     if (isFunction(tree)) {
         return _serialize(tree(), esc);
     }
+    if (implementsFunction(tree, "deref")) {
+        return _serialize(tree.deref(), esc);
+    }
     if (iter(tree)) {
         return _serializeIter(tree, esc);
     }
@@ -163,8 +167,9 @@ const normalize = (tag: any[]) => {
     }
     if (tag.length > 1) {
         let i = 1;
-        if (isPlainObject(tag[1])) {
-            Object.assign(attribs, tag[1]);
+        const att = tag[1];
+        if (isPlainObject(att) && !implementsFunction(att, "deref")) {
+            Object.assign(attribs, att);
             i++;
         }
         if (isPlainObject(attribs.style)) {

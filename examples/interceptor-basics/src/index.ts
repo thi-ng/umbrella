@@ -114,7 +114,7 @@ const app = () => {
         ["div",
             button(bus, [EV_ADD_COUNTER], "add counter", "addcounter"),
             ["div", ...counters],
-            ["pre", json.deref()]];
+            ["pre", json]];
 
     return () => {
         // here we do an optional fail fast check, a useful & energy saving
