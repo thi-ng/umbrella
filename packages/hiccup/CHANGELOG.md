@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.1.3...@thi.ng/hiccup@1.2.0) (2018-03-14)
+
+
+### Features
+
+* **hiccup:** add auto deref() support ([0d2c16f](https://github.com/thi-ng/umbrella/commit/0d2c16f))
+* **hiccup:** support fn values in style objects ([93343d6](https://github.com/thi-ng/umbrella/commit/93343d6))
+
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.1.2...@thi.ng/hiccup@1.1.3) (2018-03-08)
 
