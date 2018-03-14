@@ -104,6 +104,9 @@ export function normalizeTree(el: any, path = [0], keys = true, span = true) {
     if (isFunction(el)) {
         return normalizeTree(el(), path, keys, span);
     }
+    if (implementsFunction(el, "deref")) {
+        return normalizeTree(el.deref(), path.slice(), keys, span);
+    }
     return span ?
         ["span", keys ? { key: path.join("-") } : {}, el.toString()] :
         el.toString();
