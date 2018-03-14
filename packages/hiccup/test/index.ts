@@ -1,4 +1,5 @@
 import * as assert from "assert";
+import { Atom } from "@thi.ng/atom";
 
 import { serialize } from "../src/index";
 
@@ -218,4 +219,27 @@ describe("serialize", () => {
         `<ul><li>a</li><li>b</li></ul>`
     );
 
+    check(
+        "deref toplevel",
+        new Atom(["a"]),
+        `<a></a>`
+    );
+
+    check(
+        "deref child",
+        ["a", new Atom(["b"])],
+        `<a><b></b></a>`
+    );
+
+    check(
+        "deref fn result",
+        ["a", () => new Atom(["b"])],
+        `<a><b></b></a>`
+    );
+
+    check(
+        "style fn attribs",
+        ["div", { style: { a: (x) => x.b, b: 2 } }],
+        `<div style="a:2;b:2;"></div>`
+    );
 });
