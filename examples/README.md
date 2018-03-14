@@ -13,7 +13,7 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 5 | [hdom-basics](./hdom-basics) | hello world | hdom, hiccup | basic |
 | 6 | [hdom-benchmark](./hdom-benchmark) | hdom rendering perf / stress test, canvas FPS counter | hdom, rstream, transducers | intermediate |
 | 7 | [interceptor-basics](./hdom-benchmark) | event handling w/ interceptors and side effects | atom, hdom | intermediate |
-| 8| [json-components](./json-components) | JSON->component transformation, live editor | hdom, transducers | intermediate |
+| 8 | [json-components](./json-components) | JSON->component transformation, live editor | hdom, transducers | intermediate |
 | 9 | [login-form](./login-form) | basic SPA without router | atom, hdom | intermediate |
 | 10 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, router | advanced |
 | 11 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
