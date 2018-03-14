@@ -19,6 +19,6 @@ export function debugContainer(app: App, ui: any, debug: number, json: IView<any
             },
             debug ? "close \u25bc" : "open \u25b2"
         ],
-        ["pre", ui.code, json.deref()]
+        ["pre", ui.code, json]
     ];
 }
