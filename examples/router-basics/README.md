@@ -6,18 +6,17 @@
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/router-basics
 yarn install
-yarn build
+yarn start
 ```
 
-Unlike other examples, this one requires a local webserver to function, for example:
-
-```
-python -m SimpleHTTPServer
-```
+Installs all dependencies, runs `webpack-dev-server` and opens the app in your browser.
 
 ## About
 
-This is the most advanced example in this repo thus far and deals with:
+This example is based on the
+[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
+template and is the most advanced example in this repo thus far.
+Features covered:
 
 - App & component configuration
 - Pure ES6 UI components
@@ -29,7 +28,16 @@ This is the most advanced example in this repo thus far and deals with:
 - Dynamic JSON content loading / transformation
 - Component styling with [Tachyons CSS](http://tachyons.io/)
 
+### Production build
 
-Btw. It is by design that loading of [user
-#3](http://localhost:8000/#/users/3) ("Emilia Fox") is failing. This is
-to demonstrate error handling behavior...
+```
+yarn build
+```
+
+Builds a minified version of the app and places it in `/public` directory.
+
+## Authors
+
+- Karsten Schmidt
+
+&copy; 2018

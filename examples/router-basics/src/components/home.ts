@@ -1,3 +1,4 @@
+import { UIAttribs } from "../api";
 import { App } from "../app";
 
 /**
@@ -5,7 +6,7 @@ import { App } from "../app";
  *
  * @param app
  */
-export function home(_: App, ui: any) {
+export function home(_: App, ui: UIAttribs) {
     return ["div", ui.bodyCopy,
         ["p",
             "This is an example application to demonstrate common usage patterns for creating lightweight web apps with the ",
@@ -26,6 +27,6 @@ export function home(_: App, ui: any) {
             ]],
         ["p",
             "Please see the related blog post and the commented source code for more details."],
-        ["p", "(total app file size: 13.6KB)"]
+        ["p", "(total app file size: 11.2KB)"]
     ];
 }

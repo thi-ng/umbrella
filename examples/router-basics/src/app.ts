@@ -1,56 +1,60 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { Atom } from "@thi.ng/atom/atom";
 import { EventBus } from "@thi.ng/atom/event-bus";
+import { valueSetter } from "@thi.ng/atom/interceptors";
+import { isArray } from "@thi.ng/checks/is-array";
 import { start } from "@thi.ng/hdom";
 import { EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 import { HTMLRouter } from "@thi.ng/router/history";
 
 import { AppConfig, ViewSpec, AppViews } from "./api";
-import { isArray } from "util";
+
+import { nav } from "./components/nav";
+import { debugContainer } from "./components/debug-container";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own
- * apps, see `index.ts` for concrete extension.
+ * apps.
  *
- * The app does not much more than:
+ * As is the app does not much more than:
  *
- * - initializing state, event bus, router
- * - add ROUTE_TO event & effect handlers
+ * - initialize state, event bus, router (if not disabled)
  * - attach derived views
+ * - add ROUTE_TO event & effect handlers
  * - define root component wrapper to look up real component based on
  *   current route
- * - start hdom render & event bus loop
+ * - start router, hdom render & event bus loop
  */
-export abstract class App {
+export class App {
 
     static readonly EV_ROUTE_TO = "route-to";
     static readonly FX_ROUTE_TO = "route-to";
 
     config: AppConfig;
     state: Atom<any>;
+    views: AppViews;
     bus: EventBus;
     router: HTMLRouter;
-    views: AppViews;
 
     constructor(config: AppConfig) {
         this.config = config;
         this.state = new Atom(config.initialState || {});
+        this.views = <AppViews>{};
+        this.addViews(this.config.views);
         this.bus = new EventBus(this.state, config.events, config.effects);
         this.router = new HTMLRouter(config.router);
         this.router.addListener(
             EVENT_ROUTE_CHANGED,
             (e) => this.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
         );
-        this.bus.addHandler(
-            App.EV_ROUTE_TO,
-            (_, [__, route]) => ({ [App.FX_ROUTE_TO]: route })
-        );
+        this.bus.addHandlers({
+            [EVENT_ROUTE_CHANGED]: valueSetter("route"),
+            [App.EV_ROUTE_TO]: (_, [__, route]) => ({ [App.FX_ROUTE_TO]: route })
+        });
         this.bus.addEffect(
             App.FX_ROUTE_TO,
             ([id, params]) => this.router.routeTo(this.router.format(id, params))
         );
-        this.views = <AppViews>{};
-        this.addViews(this.config.views);
         this.addViews({
             route: "route",
             routeComponent: [
@@ -63,7 +67,24 @@ export abstract class App {
     }
 
     /**
-     * Starts router and kicks of hdom render loop, including batched
+     * Initializes given derived view specs and attaches them to app
+     * state atom.
+     *
+     * @param specs
+     */
+    addViews(specs: IObjectOf<ViewSpec>) {
+        for (let id in specs) {
+            const spec = specs[id];
+            if (isArray(spec)) {
+                this.views[id] = this.state.addView(spec[0], spec[1]);
+            } else {
+                this.views[id] = this.state.addView(spec);
+            }
+        }
+    }
+
+    /**
+     * Starts router and kicks off hdom render loop, including batched
      * event processing and fast fail check if DOM updates are necessary
      * (assumes ALL state is held in the app state atom. So if there
      * weren't any events causing a state change since last frame,
@@ -79,18 +100,17 @@ export abstract class App {
     }
 
     /**
-     * User provided function to return app's root component.
+     * User provided root component function defined
+     * by current route and the derived view defined above.
      */
-    abstract rootComponent(): any;
-
-    addViews(specs: IObjectOf<ViewSpec>) {
-        for (let id in specs) {
-            const spec = specs[id];
-            if (isArray(spec)) {
-                this.views[id] = this.state.addView(spec[0], spec[1]);
-            } else {
-                this.views[id] = this.state.addView(spec);
-            }
-        }
+    rootComponent(): any {
+        const debug = this.views.debug.deref();
+        const ui = this.config.ui;
+        return ["div", ui.root,
+            ["div", ui.column.content[debug],
+                [nav, this, ui.nav],
+                this.views.routeComponent],
+            [debugContainer, this, ui, debug, this.views.json],
+        ];
     }
 }

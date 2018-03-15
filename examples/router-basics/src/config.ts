@@ -227,20 +227,8 @@ export const CONFIG: AppConfig = {
     // looks at first somewhat cryptic, but it's a great/powerful system
     // http://tachyons.io/
     ui: {
-        root: { class: "flex-ns sans-serif ma0" },
-        column: {
-            content: [{ class: "w-90-ns ma2" }, { class: "w-50-ns ma2" }],
-            debug: [{ class: "w-10-ns ma2 close" }, { class: "w-50-ns ma2 open" }],
-        },
-        code: { class: "ma0 ml4 pa2 f7 bg-light-gray code overflow-x-hidden" },
         bodyCopy: { class: "center measure-narrow measure-ns tc lh-copy black-70" },
         bodyLink: { class: "link dim black" },
-        status: {
-            [StatusType.DONE]: { class: "pa2 bg-light-yellow gold tc fadeout bg-animate" },
-            [StatusType.INFO]: { class: "pa2 bg-light-yellow gold tc bg-animate" },
-            [StatusType.SUCCESS]: { class: "pa2 bg-light-green green tc bg-animate" },
-            [StatusType.ERROR]: { class: "pa2 bg-light-red dark-red tc bg-animate" },
-        },
         card: {
             container: { class: "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc" },
             thumb: { class: "br-100 h3 w3 dib" },
@@ -248,15 +236,10 @@ export const CONFIG: AppConfig = {
             sep: { class: "mt3 mw3 bb bw1 b--black-10" },
             body: { class: "lh-copy measure center f6 black-70" }
         },
-        userlist: {
-            root: { class: "measure center" },
-            container: { class: "dt w-100 bb b--black-05 pb2 mt2" },
-            thumbWrapper: { class: "dtc w2 w3-ns v-mid" },
-            thumb: { class: "ba b--black-10 db br-100 w2 w3-ns h2 h3-ns" },
-            body: { class: "dtc v-mid pl3" },
-            title: { class: "f6 f5-ns fw6 lh-title black mv0" },
-            subtitle: { class: "f6 fw4 mt0 mb0 black-60" },
-            meta: { class: "dtc tr v-mid black-60 f7" }
+        code: { class: "ma0 ml4 pa2 f7 bg-light-gray code overflow-x-hidden" },
+        column: {
+            content: [{ class: "w-90-ns ma2" }, { class: "w-50-ns ma2" }],
+            debug: [{ class: "w-10-ns ma2 close" }, { class: "w-50-ns ma2 open" }],
         },
         contact: {
             link: { class: "db pb2 link dim black" }
@@ -264,8 +247,25 @@ export const CONFIG: AppConfig = {
         nav: {
             inner: { class: "tc pb3" },
             title: { class: "black f1 lh-title tc db mb2 mb2-ns" },
-            link: { class: "link dim gray f6 f5-ns dib mr3" },
-            linkLast: { class: "link dim gray f6 f5-ns dib" }
-        }
+            link: { class: "pointer link dim gray f6 f5-ns dib mr3" },
+            linkLast: { class: "pointer link dim gray f6 f5-ns dib" }
+        },
+        root: { class: "flex-ns sans-serif ma0" },
+        status: {
+            [StatusType.DONE]: { class: "pa2 bg-light-yellow gold tc fadeout bg-animate" },
+            [StatusType.INFO]: { class: "pa2 bg-light-yellow gold tc bg-animate" },
+            [StatusType.SUCCESS]: { class: "pa2 bg-light-green green tc bg-animate" },
+            [StatusType.ERROR]: { class: "pa2 bg-light-red dark-red tc bg-animate" },
+        },
+        userlist: {
+            root: { class: "measure center" },
+            container: { class: "dt w-100 bb b--black-05 pb2 mt2" },
+            thumbWrapper: { class: "dtc w2 w3-ns v-mid" },
+            thumb: { class: "ba b--black-10 db br-100 w2 w3-ns h2 h3-ns" },
+            body: { class: "dtc v-mid pl3" },
+            title: { class: "pointer f6 f5-ns fw6 lh-title black mv0" },
+            subtitle: { class: "f6 fw4 mt0 mb0 black-60" },
+            meta: { class: "dtc tr v-mid black-60 f7" }
+        },
     }
 };

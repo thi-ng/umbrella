@@ -1,17 +1,20 @@
+const path = require("path");
+
 module.exports = {
     entry: "./src/index.ts",
     output: {
-        path: __dirname,
+        path: path.resolve(__dirname, "public"),
         filename: "bundle.js"
     },
     resolve: {
         extensions: [".ts", ".js"]
     },
     module: {
-        loaders: [{ test: /\.ts$/, loader: "ts-loader" }]
+        rules: [
+            { test: /\.ts$/, use: "ts-loader" }
+        ]
     },
-    node: {
-        process: false,
-        setImmediate: false
+    devServer: {
+        contentBase: "public"
     }
 };

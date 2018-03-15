@@ -4,7 +4,7 @@ import { App } from "../app";
 import { StatusType } from "../api";
 import { EV_LOAD_USER_LIST, EV_SET_STATUS, ROUTE_USER_PROFILE } from "../config";
 
-import { appLink } from "./link";
+import { routeLink } from "./route-link";
 import { status } from "./status";
 
 /**
@@ -55,7 +55,7 @@ function user(app: App, ui: any, users: any) {
                 ["img", { ...ui.thumb, src: u.img }]],
             ["div", ui.body,
                 ["h1", ui.title,
-                    appLink(app, ROUTE_USER_PROFILE.id, { id: u.id }, null, u.name)],
+                    routeLink(app, ROUTE_USER_PROFILE.id, { id: u.id }, null, u.name)],
                 ["h2", ui.subtitle, `@${u.alias}`]
             ],
             users[u.id] ?

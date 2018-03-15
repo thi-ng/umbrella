@@ -1,6 +1,7 @@
+import { IView } from "@thi.ng/atom/api";
+
 import { App } from "../app";
 import { EV_TOGGLE_DEBUG } from "../config";
-import { IView } from "@thi.ng/atom/api";
 
 /**
  * Collapsable component showing stringified app state.
