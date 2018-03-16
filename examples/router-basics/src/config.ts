@@ -1,6 +1,6 @@
-import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE } from "@thi.ng/atom/api";
+import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE, FX_DELAY } from "@thi.ng/atom/api";
 import { valueSetter, valueUpdater, trace } from "@thi.ng/atom/interceptors";
-import { Route, EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
+import { Route, RouteMatch, EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 
 import { AppConfig, StatusType } from "./api";
 
@@ -67,7 +67,6 @@ export const EV_TOGGLE_DEBUG = "toggle-debug";
 // parts of the app should only use events)
 
 const FX_JSON = "load-json";
-const FX_DELAY = "delay";
 
 // main App configuration
 export const CONFIG: AppConfig = {
@@ -150,7 +149,7 @@ export const CONFIG: AppConfig = {
         }),
 
         // stores current route details
-        [EVENT_ROUTE_CHANGED]: valueSetter("route"),
+        [EVENT_ROUTE_CHANGED]: valueSetter<RouteMatch>("route"),
 
         // stores status (a tuple of `[type, message, done?]`) in app state
         // if status type != DONE & `done` == true, also triggers delayed EV_DONE
@@ -166,7 +165,7 @@ export const CONFIG: AppConfig = {
         ],
 
         // toggles debug state flag on/off
-        [EV_TOGGLE_DEBUG]: valueUpdater("debug", (x: number) => x ^ 1)
+        [EV_TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1)
     },
 
     // side effects
@@ -178,12 +177,7 @@ export const CONFIG: AppConfig = {
                     throw new Error(resp.statusText);
                 }
                 return resp.json();
-            }),
-
-        // resolves promise with `body` after `x` millis
-        // (`body` is the payload passed to success event)
-        [FX_DELAY]: ([x, body]) =>
-            new Promise((res) => setTimeout(() => res(body), x))
+            })
     },
 
     // mapping route IDs to their respective UI component functions

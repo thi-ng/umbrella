@@ -10,13 +10,13 @@
         "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
     },
     "dependencies": {
-        "@thi.ng/atom": "^0.12.1",
+        "@thi.ng/atom": "^0.13.0",
         "@thi.ng/hdom": "^2.2.0",
         "@thi.ng/router": "^0.1.0"
     },
     "devDependencies": {
-        "typescript": "^2.7.2",
         "ts-loader": "^4.0.1",
+        "typescript": "^2.7.2",
         "webpack": "^4.1.1",
         "webpack-cli": "^2.0.12",
         "webpack-dev-server": "^3.1.1"
