@@ -16,14 +16,35 @@ export type EffectDef = SideEffect | [SideEffect, number];
 export type AsyncEffectDef = [string, any, string, string];
 export type EffectPriority = [string, number];
 
+// Built-in event ID constants
+
 export const EV_SET_VALUE = "--set-value";
 export const EV_UPDATE_VALUE = "--update-value";
 
-export const FX_STATE = "--state";
+// Built-in side effect ID constants
+
+export const FX_CANCEL = "--cancel";
 export const FX_DISPATCH = "--dispatch";
 export const FX_DISPATCH_ASYNC = "--dispatch-async";
 export const FX_DISPATCH_NOW = "--dispatch-now";
-export const FX_CANCEL = "--cancel";
+export const FX_DELAY = "--delay";
+export const FX_FETCH = "--fetch";
+export const FX_STATE = "--state";
+
+/**
+ * Currently unused
+ */
+export const FX_REDO_RESTORE = "--redo-restore";
+
+/**
+ * Currently unused
+ */
+export const FX_UNDO_STORE = "--undo-store";
+
+/**
+ * Currently unused
+ */
+export const FX_UNDO_RESTORE = "--undo-restore";
 
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,

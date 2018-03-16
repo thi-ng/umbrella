@@ -101,37 +101,98 @@ export class StatelessEventBus implements
     }
 
     /**
-     * Adds built-in event & side effect handlers:
+     * Adds built-in event & side effect handlers. Also see additional
+     * built-ins defined by the stateful `EventBus` extension of this
+     * class, as well as comments for these class methods:
+     *
+     * - `mergeEffects()`
+     * - `processEvent()`
      *
      * ### Handlers
      *
-     * currently none
+     * currently none...
      *
      * ### Side effects
      *
+     * #### `FX_CANCEL`
+     *
+     * If assigned `true`, cancels processing of current event, though
+     * still applies any side effects already accumulated.
+     *
      * #### `FX_DISPATCH`
+     *
+     * Dispatches assigned events to be processed in next frame.
+     *
      * #### `FX_DISPATCH_ASYNC`
      *
+     * Async wrapper for promise based side effects.
+     *
+     * #### `FX_DISPATCH_NOW`
+     *
+     * Dispatches assigned events as part of currently processed event
+     * queue (no delay).
+     *
+     * #### `FX_DELAY`
+     *
+     * Async side effect. Only to be used in conjunction with
+     * `FX_DISPATCH_ASYNC`. Triggers given event after `x` milliseconds.
+     *
+     * ```
+     * // this triggers `[EV_SUCCESS, "ok"]` event after 1000 ms
+     * { [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, "ok"], EV_SUCCESS, EV_ERROR] }
+     * ```
+     *
+     * #### `FX_FETCH`
+     *
+     * Async side effect. Only to be used in conjunction with
+     * `FX_DISPATCH_ASYNC`. Performs `fetch()` HTTP request and triggers
+     * success with received response, or if there was an error with
+     * response's `statusText`. The error event is only triggered if the
+     * fetched response's `ok` field is non-truthy.
+     *
+     * - https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
+     * - https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText
+     *
+     * ```
+     * // fetches "foo.json" and then dispatches EV_SUCCESS or EV_ERROR event
+     * { [FX_DISPATCH_ASYNC]: [FX_FETCH, "foo.json", EV_SUCCESS, EV_ERROR] }
+     * ```
      */
     addBuiltIns(): any {
-        this.addEffect(api.FX_DISPATCH, (e) => this.dispatch(e), -999);
-        this.addEffect(api.FX_DISPATCH_ASYNC,
-            ([id, arg, success, err]) => {
-                const fx = this.effects[id];
-                if (fx) {
-                    const p = fx(arg, this);
-                    if (isPromise(p)) {
-                        p.then((res) => this.dispatch([success, res]))
-                            .catch((e) => this.dispatch([err, e]));
+        this.addEffects({
+
+            [api.FX_DISPATCH]:
+                [(e) => this.dispatch(e), -999],
+
+            [api.FX_DISPATCH_ASYNC]:
+                [([id, arg, success, err]) => {
+                    const fx = this.effects[id];
+                    if (fx) {
+                        const p = fx(arg, this);
+                        if (isPromise(p)) {
+                            p.then((res) => this.dispatch([success, res]))
+                                .catch((e) => this.dispatch([err, e]));
+                        } else {
+                            console.warn("async effect did not return Promise");
+                        }
                     } else {
-                        console.warn("async effect did not return Promise");
+                        console.warn(`skipping invalid async effect: ${id}`);
                     }
-                } else {
-                    console.warn(`skipping invalid async effect: ${id}`);
-                }
-            },
-            -999
-        );
+                }, -999],
+
+            [api.FX_DELAY]:
+                [([x, body]) => new Promise((res) => setTimeout(() => res(body), x)),
+                    1000],
+
+            [api.FX_FETCH]:
+                [(req) =>
+                    fetch(req).then((resp) => {
+                        if (!resp.ok) {
+                            throw new Error(resp.statusText);
+                        }
+                        return resp;
+                    }), 1000]
+        });
     }
 
     addHandler(id: string, spec: api.EventDef) {
