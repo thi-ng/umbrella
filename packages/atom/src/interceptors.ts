@@ -9,6 +9,16 @@ export function trace(_, e) {
 }
 
 /**
+ * Higher-order interceptor. Return interceptor which unpacks payload
+ * from event and assigns it as is to given side effect ID.
+ *
+ * @param id side effect ID
+ */
+export function forwardSideFx(id: string) {
+    return (_, [__, body]) => ({ [id]: body });
+}
+
+/**
  * Higher-order interceptor for validation purposes. Takes a predicate
  * function and an optional interceptor function, which will only be
  * called if the predicate fails for a given event. By default the
