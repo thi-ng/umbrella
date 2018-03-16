@@ -20,6 +20,18 @@ Generic router for browser & non-browser based applications with support for:
 yarn add @thi.ng/router
 ```
 
+**New since 2018-03-15: You can now create a preconfigured app skeleton
+using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
+[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project generator:**
+
+```
+yarn create hdom-app my-app
+
+cd my-app
+yarn install
+yarn start
+```
+
 ## Usage examples
 
 A complete, full commented demo app is here:

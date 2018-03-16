@@ -92,6 +92,18 @@ This project is currently still in BETA. The overall "API" is stable, but there'
 yarn add @thi.ng/hdom
 ```
 
+**New since 2018-03-15: You can now create a preconfigured app skeleton
+using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
+[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project generator:**
+
+```
+yarn create hdom-app my-app
+
+cd my-app
+yarn install
+yarn start
+```
+
 ## Usage examples
 
 Even though the overall approach should be obvious from the code examples
