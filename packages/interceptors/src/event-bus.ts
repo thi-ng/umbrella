@@ -1,11 +1,12 @@
 import { IObjectOf, IDeref } from "@thi.ng/api/api";
+import { IAtom } from "@thi.ng/atom/api";
+import { Atom } from "@thi.ng/atom/atom";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPromise } from "@thi.ng/checks/is-promise";
+import { setIn, updateIn } from "@thi.ng/paths";
 
 import * as api from "./api";
-import { Atom } from "./atom";
-import { setIn, updateIn } from "./path";
 
 const FX_CANCEL = api.FX_CANCEL;
 const FX_DISPATCH_NOW = api.FX_DISPATCH_NOW;
@@ -490,7 +491,7 @@ export class EventBus extends StatelessEventBus implements
     IDeref<any>,
     api.IDispatch {
 
-    readonly state: api.IAtom<any>;
+    readonly state: IAtom<any>;
 
     /**
      * Creates a new event bus instance with given parent state, handler
@@ -504,7 +505,7 @@ export class EventBus extends StatelessEventBus implements
      * @param handlers
      * @param effects
      */
-    constructor(state?: api.IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
+    constructor(state?: IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
         super(handlers, effects);
         this.state = state || new Atom({});
     }

@@ -10,7 +10,6 @@ Clojure inspired mutable wrappers for (usually) immutable values, with infrastru
 - derived view subscriptions
 - cursors (direct R/W access to nested values)
 - undo/redo history
-- composable interceptor & side effect based event handling
 
 Together these types act as building blocks for various application state
 handling patterns, specifically aimed (though not exclusively) at the concept
@@ -20,6 +19,13 @@ an application.
 ### Status
 
 Stable, used in production and in active development.
+
+**Note: On 2018-03-17 this package was split to remain more
+focused. Path based getters/setters have been moved into the new
+[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths) package.
+Likewise, all interceptor based event handling functionality now lives in the
+[@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
+package.**
 
 ## Installation
 
@@ -83,17 +89,20 @@ a.reset(42);
 
 ### Cursor
 
-Cursors provide direct & immutable access to a nested value within a structured
-atom. The path to the desired value must be provided when the cursor is created
-and cannot be changed later. The path is then compiled into a [getter and
-setter](#getters--setters) to
-allow cursors to be used like atoms and update the parent state in an immutable
-manner (i.e. producing an optimized copy with structural sharing of the
-original (as much as possible)) - see further details below.
+Cursors provide direct & immutable access to a nested value within a
+structured atom. The path to the desired value must be provided when the
+cursor is created and cannot be changed later. The path is then compiled
+into a [getter and
+setter](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+to allow cursors to be used like atoms and update the parent state in an
+immutable manner (i.e. producing an optimized copy with structural
+sharing of the original (as much as possible)) - see further details
+below.
 
-**It's important to remember** that cursors also cause their parent state (atom or
-another cursor) to reflect their updated local state. I.e. any change to a
-cursor's value propagates up the hierarchy of parent states.
+**It's important to remember** that cursors also cause their parent
+state (atom or another cursor) to reflect their updated local state.
+I.e. any change to a cursor's value propagates up the hierarchy of
+parent states.
 
 ```typescript
 a = new atom.Atom({a: {b: {c: 1}}})
@@ -201,8 +210,11 @@ Note: The constrained nature of this next example doesn't really do justice to
 the powerful nature of the approach. Also stylistically, in a larger app we'd
 want to avoid the use of global variables (apart from `db`) as done here...
 
-For a more advanced / realworld usage pattern, check the event handling section
-and examples further below.
+For a more advanced / realworld usage pattern, check the related [event
+handling
+package](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
+and bundled
+[examples](https://github.com/thi-ng/umbrella/tree/master/examples/).
 
 This example is also available in standalone form:
 
@@ -330,95 +342,6 @@ db.redo()
 db.canRedo()
 // false
 ```
-
-### Getters & setters
-
-The `getter()` and `setter()` functions transform a path like `a.b.c` into a
-function operating directly at the value the path points to in nested object.
-For getters, this essentially compiles to `val = obj.a.b.c`, with the important
-difference that the function returns `undefined` if any intermediate values
-along the lookup path are undefined (and doesn't throw an error).
-
-The resulting setter function too accepts a single object to operate on and
-when called, **immutably** replaces the value at the given path, i.e. it
-produces a selective deep copy of obj up until given path. If any intermediate
-key is not present in the given object, it creates a plain empty object for
-that missing key and descends further along the path.
-
-```typescript
-s = setter("a.b.c");
-// or
-s = setter(["a","b","c"]);
-
-s({a: {b: {c: 23}}}, 24)
-// {a: {b: {c: 24}}}
-
-s({x: 23}, 24)
-// { x: 23, a: { b: { c: 24 } } }
-
-s(null, 24)
-// { a: { b: { c: 24 } } }
-```
-
-In addition to these higher-order functions, the module also provides
-immediate-use wrappers: `getIn()`, `setIn()`, `updateIn()` and `deleteIn()`.
-These functions are using `getter` / `setter` internally, so have same
-behaviors.
-
-```typescript
-state = {a: {b: {c: 23}}};
-
-getIn(state, "a.b.c")
-// 23
-
-setIn(state, "a.b.c", 24)
-// {a: {b: {c: 24}}}
-
-// apply given function to path value
-updateIn(state, "a.b.c", x => x + 1)
-// {a: {b: {c: 24}}}
-
-// immutably remove path key
-deleteIn(state, "a.b.c.")
-// {a: {b: {}}}
-```
-
-Only keys in the path will be modified, all other keys present in the given
-object retain their original values to provide efficient structural sharing /
-re-use. This is the same *behavior* as in Clojure's immutable maps or those
-provided by ImmutableJS (albeit those implementation are completely different -
-they're using trees, we're using the ES6 spread op and recursive functional
-composition to produce the setter/updater).
-
-```typescript
-s = setter("a.b.c");
-
-// original
-a = { x: { y: { z: 1 } }, u: { v: 2 } };
-// updated version
-b = s(a, 3);
-// { x: { y: { z: 1 } }, u: { v: 2 }, a: { b: { c: 3 } } }
-
-// verify anything under keys `x` & `u` is still identical
-a.x === b.x // true
-a.x.y === b.x.y // true
-a.u === b.u; // true
-```
-
-### Event bus, interceptors, side effects
-
-Description forthcoming. Please check the detailed commented source code and examples for now:
-
-- [/src/event-bus.ts](https://github.com/thi-ng/umbrella/tree/master/packages/atom/src/event-bus.ts)
-
-Introductory:
-
-- [/examples/interceptor-basics](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [live demo](http://demo.thi.ng/umbrella/interceptor-basics)
-- [/examples/async-effect](https://github.com/thi-ng/umbrella/tree/master/examples/async-effect) | [live demo](http://demo.thi.ng/umbrella/async-effect)
-
-Advanced:
-
-- [/examples/router-basics](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [live demo](http://demo.thi.ng/umbrella/router-basics)
 
 ## Authors
 

@@ -1,7 +1,9 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
 
-import { Path, SwapFn } from "./api";
+export type Path = PropertyKey | PropertyKey[];
+
+export type UpdateFn<T> = (curr: T, ...args: any[]) => T;
 
 function compS(k, f) {
     return (s, v) => ({ ...s, [k]: f((s || {})[k], v) });
@@ -202,7 +204,7 @@ export function setIn(state: any, path: Path, val: any) {
  * @param state
  * @param path
  */
-export function updateIn(state: any, path: Path, fn: SwapFn<any>, ...args: any[]) {
+export function updateIn(state: any, path: Path, fn: UpdateFn<any>, ...args: any[]) {
     args.unshift(getIn(state, path));
     return setter(path)(state, fn.apply(null, args));
 }

@@ -1,50 +1,10 @@
 import * as api from "@thi.ng/api/api";
 import { IDeref, IID, IRelease } from "@thi.ng/api/api";
-
-export type Path = PropertyKey | PropertyKey[];
+import { Path } from "@thi.ng/paths";
 
 export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
 export type ViewTransform<T> = (x: any) => T;
-
-export type InterceptorFn = (state: any, e: Event, bus?: IDispatch) => InterceptorContext | void;
-export type InterceptorPredicate = (state: any, e: Event, fx?: any) => boolean;
-
-export type SideEffect = (x: any, bus?: IDispatch) => any;
-export type EventDef = Interceptor | InterceptorFn | (Interceptor | InterceptorFn)[];
-export type EffectDef = SideEffect | [SideEffect, number];
-export type AsyncEffectDef = [string, any, string, string];
-export type EffectPriority = [string, number];
-
-// Built-in event ID constants
-
-export const EV_SET_VALUE = "--set-value";
-export const EV_UPDATE_VALUE = "--update-value";
-
-// Built-in side effect ID constants
-
-export const FX_CANCEL = "--cancel";
-export const FX_DISPATCH = "--dispatch";
-export const FX_DISPATCH_ASYNC = "--dispatch-async";
-export const FX_DISPATCH_NOW = "--dispatch-now";
-export const FX_DELAY = "--delay";
-export const FX_FETCH = "--fetch";
-export const FX_STATE = "--state";
-
-/**
- * Currently unused
- */
-export const FX_REDO_RESTORE = "--redo-restore";
-
-/**
- * Currently unused
- */
-export const FX_UNDO_STORE = "--undo-store";
-
-/**
- * Currently unused
- */
-export const FX_UNDO_RESTORE = "--undo-restore";
 
 export interface ReadonlyAtom<T> extends
     api.IDeref<T>,
@@ -82,29 +42,4 @@ export interface IView<T> extends
 
 export interface IViewable {
     addView<T>(path: Path, tx?: ViewTransform<T>): IView<T>;
-}
-
-export interface IDispatch {
-    readonly state: ReadonlyAtom<any>;
-    dispatch(event: Event);
-    dispatchNow(event: Event);
-}
-
-export interface Event extends Array<any> {
-    [0]: string;
-    [1]?: any;
-}
-
-export interface Interceptor {
-    pre?: InterceptorFn;
-    post?: InterceptorFn;
-}
-
-export interface InterceptorContext {
-    [FX_STATE]?: any;
-    [FX_CANCEL]?: boolean;
-    [FX_DISPATCH]?: Event | Event[];
-    [FX_DISPATCH_NOW]?: Event | Event[];
-    [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
-    [id: string]: any;
 }
