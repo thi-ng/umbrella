@@ -26,7 +26,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/atom": "^0.13.0",
+        "@thi.ng/atom": "^1.0.0",
         "@thi.ng/transducers": "^1.6.2"
     },
     "keywords": [
