@@ -1,0 +1,42 @@
+{
+    "name": "@thi.ng/paths",
+    "version": "1.0.0",
+    "description": "immutable, optimized path-based object accessors",
+    "main": "./index.js",
+    "typings": "./index.d.ts",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn run clean && tsc --declaration",
+        "clean": "rm -rf *.js *.d.ts build doc",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn run build && yarn publish --access public",
+        "test": "rm -rf build && tsc -p test && mocha build/test/*.js"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.48",
+        "@types/node": "^9.4.6",
+        "mocha": "^5.0.0",
+        "ts-loader": "^3.5.0",
+        "typedoc": "^0.10.0",
+        "typescript": "^2.7.2",
+        "webpack": "^3.11.0"
+    },
+    "dependencies": {
+        "@thi.ng/checks": "^1.3.0"
+    },
+    "keywords": [
+        "data structure",
+        "ES6",
+        "getter",
+        "nested",
+        "object",
+        "path",
+        "setter",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
+}
