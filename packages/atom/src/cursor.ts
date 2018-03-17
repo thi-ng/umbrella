@@ -4,10 +4,10 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { isSymbol } from "@thi.ng/checks/is-symbol";
+import { Path, getter, setter } from "@thi.ng/paths";
 
-import { IAtom, SwapFn, IView, Path, ViewTransform } from "./api";
+import { IAtom, SwapFn, IView, ViewTransform } from "./api";
 import { Atom } from "./atom";
-import { getter, setter } from "./path";
 import { View } from "./view";
 
 export class Cursor<T> implements

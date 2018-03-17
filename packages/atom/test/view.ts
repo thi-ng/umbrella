@@ -1,10 +1,11 @@
 import * as assert from "assert";
 
+import { setIn, updateIn } from "@thi.ng/paths";
+
 import { IView } from "../src/api";
 import { Atom } from "../src/atom";
 import { Cursor } from "../src/cursor";
 import { View } from "../src/view";
-import { setIn, updateIn } from "../src/path";
 
 describe("subscription", () => {
 

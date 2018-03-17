@@ -1,6 +1,7 @@
 import { equiv as _equiv } from "@thi.ng/api/equiv";
-import { IView, Path, ReadonlyAtom, ViewTransform } from "./api";
-import { getter, toPath } from "./path";
+import { Path, getter, toPath } from "@thi.ng/paths";
+
+import { IView, ReadonlyAtom, ViewTransform } from "./api";
 
 /**
  * This class implements readonly access to a deeply nested value with
