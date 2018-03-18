@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/interceptors",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Interceptor based event, side effect & immutable state handling",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,7 +24,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/atom": "^1.0.3",
+        "@thi.ng/atom": "^1.1.0",
         "@thi.ng/paths": "^1.1.1"
     },
     "keywords": [

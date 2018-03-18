@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/atom",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "Mutable wrapper for immutable values",
     "main": "./index.js",
     "typings": "./index.d.ts",

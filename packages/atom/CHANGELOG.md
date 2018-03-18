@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.0.3...@thi.ng/atom@1.1.0) (2018-03-18)
+
+
+### Features
+
+* **atom:** add optional support for eager views, update tests/readme ([c0ec274](https://github.com/thi-ng/umbrella/commit/c0ec274))
+
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.0.2...@thi.ng/atom@1.0.3) (2018-03-18)
 
