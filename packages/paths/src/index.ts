@@ -143,11 +143,11 @@ export function setter(path: Path) {
         case 1:
             return (s, v) => ({ ...s, [a]: v });
         case 2:
-            return (s, v) => ({ ...s, [a]: { ...s[a], [b]: v } });
+            return (s, v) => ({ ...(s = s || {}), [a]: { ...s[a], [b]: v } });
         case 3:
-            return (s, v) => ({ ...s, [a]: { ...(s = s[a]), [b]: { ...s[b], [c]: v } } });
+            return (s, v) => ({ ...(s = s || {}), [a]: { ...(s = s[a] || {}), [b]: { ...s[b], [c]: v } } });
         case 4:
-            return (s, v) => ({ ...s, [a]: { ...(s = s[a]), [b]: { ...(s = s[b]), [c]: { ...s[c], [d]: v } } } });
+            return (s, v) => ({ ...(s = s || {}), [a]: { ...(s = s[a] || {}), [b]: { ...(s = s[b] || {}), [c]: { ...s[c], [d]: v } } } });
         default:
             const kl = ks[ks.length - 1];
             let f = (s, v) => ({ ...(s || {}), [kl]: v });
