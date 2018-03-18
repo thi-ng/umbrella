@@ -16,9 +16,9 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.0.4",
-        "@thi.ng/hdom": "^2.2.0",
-        "@thi.ng/hdom-components": "^1.0.4",
-        "@thi.ng/transducers": "^1.6.2"
+        "@thi.ng/api": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/transducers": "latest"
     }
 }

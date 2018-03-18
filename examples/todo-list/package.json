@@ -16,9 +16,9 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/atom": "^1.0.1",
-        "@thi.ng/hdom": "^2.2.0",
-        "@thi.ng/paths": "^1.0.0",
-        "@thi.ng/transducers": "^1.6.2"
+        "@thi.ng/atom": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/paths": "latest",
+        "@thi.ng/transducers": "latest"
     }
 }
