@@ -1,5 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { EventDef, EffectDef, ViewTransform, IView } from "@thi.ng/atom/api";
+import { ViewTransform, IView } from "@thi.ng/atom/api";
+import { EventDef, EffectDef } from "@thi.ng/interceptors/api";
 import { HTMLRouterConfig, RouteMatch } from "@thi.ng/router/api";
 
 import { App } from "./app";

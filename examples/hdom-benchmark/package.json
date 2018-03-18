@@ -18,7 +18,7 @@
     "dependencies": {
         "@thi.ng/api": "^2.0.4",
         "@thi.ng/hdom": "^2.2.0",
-        "@thi.ng/rstream": "^1.0.13",
+        "@thi.ng/rstream": "^1.0.18",
         "@thi.ng/transducers": "^1.6.2"
     }
 }

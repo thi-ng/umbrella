@@ -10,7 +10,8 @@
         "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
     },
     "dependencies": {
-        "@thi.ng/atom": "^0.13.0",
+        "@thi.ng/atom": "^1.0.1",
+        "@thi.ng/interceptors": "^1.0.1",
         "@thi.ng/hdom": "^2.2.0",
         "@thi.ng/router": "^0.1.0"
     },

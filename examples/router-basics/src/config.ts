@@ -1,5 +1,5 @@
-import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE, FX_DELAY } from "@thi.ng/atom/api";
-import { valueSetter, valueUpdater, trace } from "@thi.ng/atom/interceptors";
+import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE, FX_DELAY } from "@thi.ng/interceptors/api";
+import { valueSetter, valueUpdater, trace } from "@thi.ng/interceptors/interceptors";
 import { Route, RouteMatch, EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 
 import { AppConfig, StatusType } from "./api";

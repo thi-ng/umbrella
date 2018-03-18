@@ -1,9 +1,10 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { EffectDef, EventDef, Path, IDispatch } from "@thi.ng/atom/api";
-import { EV_SET_VALUE, EV_UPDATE_VALUE, FX_DISPATCH_NOW } from "@thi.ng/atom/api";
-import { EventBus } from "@thi.ng/atom/event-bus";
-import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/atom/interceptors";
+import { EffectDef, EventDef, IDispatch } from "@thi.ng/interceptors/api";
+import { EV_SET_VALUE, EV_UPDATE_VALUE, FX_DISPATCH_NOW } from "@thi.ng/interceptors/api";
+import { EventBus } from "@thi.ng/interceptors/event-bus";
+import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/interceptors/interceptors";
 import { start } from "@thi.ng/hdom/start";
+import { Path } from "@thi.ng/paths";
 
 ///////////////////////////////////////////////////////////////////////
 // event name and handler definitions

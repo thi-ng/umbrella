@@ -1,4 +1,4 @@
-import { Event } from "@thi.ng/atom/api";
+import { Event } from "@thi.ng/interceptors/api";
 
 import { App } from "../app";
 
