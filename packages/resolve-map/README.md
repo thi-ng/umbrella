@@ -21,7 +21,7 @@ supported.
 See
 [source](https://github.com/thi-ng/umbrella/tree/master/packages/resolve-map/src/index.ts#L8)
 &
-[tests](https://github.com/thi-ng/umbrella/tree/master/packages/resolve-map/tests/index.ts)
+[tests](https://github.com/thi-ng/umbrella/tree/master/packages/resolve-map/test/index.ts)
 for further details.
 
 ## Installation
