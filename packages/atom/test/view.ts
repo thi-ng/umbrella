@@ -7,7 +7,7 @@ import { Atom } from "../src/atom";
 import { Cursor } from "../src/cursor";
 import { View } from "../src/view";
 
-describe("subscription", () => {
+describe("view", () => {
 
     let a: Atom<any>;
     let s: IView<number>;
@@ -76,5 +76,26 @@ describe("subscription", () => {
         assert.equal(s.deref(), undefined);
         assert(!s.changed(), "changed #2");
         assert.equal(s.deref(), undefined);
+    });
+
+    it("is lazy by default", () => {
+        let x;
+        s = a.addView("b.c", (y) => (x = y, y * 10));
+        assert.equal(x, undefined);
+        assert.equal(s.deref(), 20);
+        assert.equal(x, 2);
+        x = undefined;
+        assert.equal(s.deref(), 20);
+        assert.equal(x, undefined);
+    });
+
+    it("can be eager", () => {
+        let x;
+        s = a.addView("b.c", (y) => (x = y, y * 10), false);
+        assert.equal(x, 2);
+        assert.equal(s.deref(), 20);
+        x = undefined;
+        assert.equal(s.deref(), 20);
+        assert.equal(x, undefined);
     });
 });

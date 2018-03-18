@@ -13,6 +13,17 @@ import { IView, ReadonlyAtom, ViewTransform } from "./api";
  * transformer is only applied once per value change and its result
  * cached until the next change.
  *
+ * If the optional `lazy` is true (default), the transformer will only
+ * be executed with the first `deref()` after each value change. If
+ * `lazy` is false, the transformer function will be executed
+ * immediately after a value change occurred and so can be used like a
+ * watch which only triggers if there was an actual value change (in
+ * contrast to normal watches, which execute with each update,
+ * regardless of value change).
+ *
+ * Related, the actual value change predicate can be customized. If not
+ * given, the default `@thi.ng/api/equiv` will be used.
+ *
  * ```
  * a = new Atom({a: {b: 1}});
  * v = a.addView("a.b", (x) => x * 10);
@@ -47,35 +58,57 @@ export class View<T> implements
     protected tx: ViewTransform<T>;
     protected unprocessed: any;
     protected isDirty: boolean;
+    protected isLazy: boolean;
 
-    constructor(parent: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, equiv = _equiv) {
+    constructor(parent: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, lazy = true, equiv = _equiv) {
         this.parent = parent;
         this.id = `view-${View.NEXT_ID++}`;
         this.tx = tx || ((x: any) => x);
         this.path = toPath(path);
         this.isDirty = true;
+        this.isLazy = lazy;
         const lookup = getter(this.path);
         const state = this.parent.deref();
         this.unprocessed = state ? lookup(state) : undefined;
+        if (!lazy) {
+            this.state = this.tx(this.unprocessed);
+            this.unprocessed = undefined;
+        }
         parent.addWatch(this.id, (_, prev, curr) => {
             const pval: T = prev ? lookup(prev) : prev;
             const val: T = curr ? lookup(curr) : curr;
             if (!equiv(val, pval)) {
-                this.unprocessed = val;
+                if (lazy) {
+                    this.unprocessed = val;
+                } else {
+                    this.state = this.tx(val);
+                }
                 this.isDirty = true;
             }
         });
     }
 
+    /**
+     * Returns view's value. If the view has a transformer, the
+     * transformed value is returned. The transformer is only run once
+     * per value change. See class comments about difference between
+     * lazy/eager behaviors.
+     */
     deref() {
         if (this.isDirty) {
-            this.state = this.tx(this.unprocessed);
-            this.unprocessed = undefined;
+            if (this.isLazy) {
+                this.state = this.tx(this.unprocessed);
+                this.unprocessed = undefined;
+            }
             this.isDirty = false;
         }
         return this.state;
     }
 
+    /**
+     * Returns true, if the view's value has changed since last
+     * `deref()`.
+     */
     changed() {
         return this.isDirty;
     }
@@ -91,11 +124,18 @@ export class View<T> implements
      * behavior when calling `view()` or `deref()` subsequently.
      */
     view() {
-        return this.isDirty ? this.tx(this.unprocessed) : this.state;
+        return this.isDirty && this.isLazy ? this.tx(this.unprocessed) : this.state;
     }
 
+    /**
+     * Disconnects this view from parent state, marks itself
+     * dirty/changed and sets its unprocessed raw value to `undefined`.
+     */
     release() {
         this.unprocessed = undefined;
+        if (!this.isLazy) {
+            this.state = this.tx(undefined);
+        }
         this.isDirty = true;
         return this.parent.removeWatch(this.id);
     }

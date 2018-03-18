@@ -74,8 +74,8 @@ export class Atom<T> implements
     /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) { }
 
-    addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
-        return new View<V>(this, path, tx);
+    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
+        return new View<V>(this, path, tx, lazy);
     }
 
     release() {

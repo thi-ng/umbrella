@@ -41,5 +41,5 @@ export interface IView<T> extends
 };
 
 export interface IViewable {
-    addView<T>(path: Path, tx?: ViewTransform<T>): IView<T>;
+    addView<T>(path: Path, tx?: ViewTransform<T>, lazy?: boolean): IView<T>;
 }

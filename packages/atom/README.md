@@ -200,6 +200,41 @@ viewA.release()
 viewC.release()
 ```
 
+Since v1.1.0 views can also be configured to be eager, instead of the
+"lazy" default behavior. If the optional `lazy` arg is true (default),
+the view's transformer will only be executed with the first `deref()`
+after each value change. If `lazy` is false, the transformer function
+will be executed immediately after a value change occurred and so can be
+used like a selective watch which only triggers if there was an actual
+value change (in contrast to normal watches, which execute with each
+update, regardless of value change).
+
+Related, the actual value change predicate can be customized. If not
+given, the default `@thi.ng/api/equiv` will be used.
+
+```typescript
+let x;
+let a = new Atom({value: 1})
+
+// create an eager view by passing `false` as last arg
+view = a.addView("value", (y) => (x = y, y * 10), false);
+
+// check `x` to verify that transformer already has run
+x === 1
+// true
+
+// reset x
+x = null
+
+// verify transformed value
+view.deref() === 10
+// true
+
+// verify transformer hasn't rerun because of deref()
+x === null
+// true
+```
+
 Atoms & views are useful tools for keeping state outside UI components. Here's
 an example of a tiny
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)

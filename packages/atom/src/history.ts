@@ -177,8 +177,8 @@ export class History<T> implements
         return this.state.notifyWatches(oldState, newState);
     }
 
-    addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
-        return new View<V>(this, path, tx);
+    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
+        return new View<V>(this, path, tx, lazy);
     }
 
     release() {

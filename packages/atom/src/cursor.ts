@@ -100,7 +100,7 @@ export class Cursor<T> implements
         return this.local.notifyWatches(oldState, newState);
     }
 
-    addView<V>(path: Path, tx?: ViewTransform<V>): IView<V> {
-        return new View<V>(this, path, tx);
+    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
+        return new View<V>(this, path, tx, lazy);
     }
 }
