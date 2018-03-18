@@ -136,7 +136,6 @@ export function getter(path: Path) {
  */
 export function setter(path: Path) {
     const ks = toPath(path);
-    // (s, v) => ({ ...s, [k]: f((s || {})[k], v) });
     let [a, b, c, d] = ks;
     switch (ks.length) {
         case 0:
@@ -146,9 +145,9 @@ export function setter(path: Path) {
         case 2:
             return (s, v) => ({ ...s, [a]: { ...s[a], [b]: v } });
         case 3:
-            return (s, v) => ({ ...s, [a]: { ...s[a], [b]: { ...s[b], [c]: v } } });
+            return (s, v) => ({ ...s, [a]: { ...(s = s[a]), [b]: { ...s[b], [c]: v } } });
         case 4:
-            return (s, v) => ({ ...s, [a]: { ...s[a], [b]: { ...s[b], [c]: { ...s[c], [d]: v } } } });
+            return (s, v) => ({ ...s, [a]: { ...(s = s[a]), [b]: { ...(s = s[b]), [c]: { ...s[c], [d]: v } } } });
         default:
             const kl = ks[ks.length - 1];
             let f = (s, v) => ({ ...(s || {}), [kl]: v });
