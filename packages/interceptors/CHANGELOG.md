@@ -10,3 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 **Note:** Version bump only for package @thi.ng/interceptors
+
+
+
+
+<a name="1.0.0"></a>
+# 1.0.0 (2018-03-17)
+
+
+### Documentation
+
+* **interceptors:** add/extract @thi.ng/interceptors package from @th.ng/atom ([195a6ff](https://github.com/thi-ng/umbrella/commit/195a6ff))

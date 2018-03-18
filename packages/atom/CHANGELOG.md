@@ -11,6 +11,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @thi.ng/atom
 
+<a name="1.0.0"></a>
+# 1.0.0 (2018-03-17)
+
+
+### Documentation
+
+* **atom:** extract @thi.ng/paths & @thi.ng/interceptors functionality ([1273efb](https://github.com/thi-ng/umbrella/commit/1273efb))
+
+
+### BREAKING CHANGES
+
+* **atom:** extract @thi.ng/paths & @thi.ng/interceptors functionality
+
+
+
+
 <a name="0.13.0"></a>
 # [0.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@0.12.1...@thi.ng/atom@0.13.0) (2018-03-16)
 
