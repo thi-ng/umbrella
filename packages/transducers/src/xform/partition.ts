@@ -19,7 +19,7 @@ export function partition<T>(...args: any[]): Transducer<T, T[]> {
         return [
             init,
             (acc) => {
-                if (buf.length && (all || buf.length === size)) {
+                if (all && buf.length > 0) {
                     acc = reduce(acc, buf);
                     buf = [];
                 }
