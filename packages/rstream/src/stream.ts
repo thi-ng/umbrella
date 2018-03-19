@@ -2,6 +2,7 @@ import { Transducer } from "@thi.ng/transducers/api";
 
 import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
 import { Subscription } from "./subscription";
+import { isString } from "util";
 
 export class Stream<T> extends Subscription<T, T>
     implements IStream<T> {
@@ -12,7 +13,28 @@ export class Stream<T> extends Subscription<T, T>
 
     protected _cancel: StreamCancel;
 
-    constructor(src?: StreamSource<T>, id?: string) {
+    constructor();
+    constructor(id: string);
+    constructor(src: StreamSource<T>);
+    constructor(src: StreamSource<T>, id: string);
+    constructor(...args: any[]) {
+        let src, id;
+        switch (args.length) {
+            case 0:
+                break;
+            case 1:
+                if (isString(args[0])) {
+                    id = args[0];
+                } else {
+                    src = args[0];
+                }
+                break;
+            case 2:
+                [src, id] = args;
+                break;
+            default:
+                throw new Error(`illegal arity: ${args.length}`);
+        }
         super(null, null, null, id || `stream-${Stream.NEXT_ID++}`);
         this.src = src;
     }
