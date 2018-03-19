@@ -66,7 +66,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         let srcIDs = new Set<string>();
         let xform: Transducer<any, any> = comp(
             partitionSync<A>(srcIDs, (x) => x[0], opts.reset !== false, opts.all !== false),
-            mapVals((x) => x[1])
+            mapVals((x) => x[1], false)
         );
         if (opts.xform) {
             xform = comp(xform, opts.xform);
@@ -132,10 +132,6 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             return true;
         }
         return false;
-    }
-
-    done() {
-        super.done();
     }
 
     protected markDone(src: ISubscribable<A>) {
