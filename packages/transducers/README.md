@@ -605,7 +605,7 @@ reducer and optional initial accumulator/result.
 
 #### `keep<T>(f?: ((x: T) => any)): Transducer<T, T>`
 
-#### `labeled<L, T>(id: L): Transducer<T, [L, T]>`
+#### `labeled<L, T>(id: L | ((x: T) => L)): Transducer<T, [L, T]>`
 
 #### `map<A, B>(fn: (x: A) => B): Transducer<A, B>`
 
@@ -613,7 +613,7 @@ reducer and optional initial accumulator/result.
 
 #### `mapDeep(spec: TransformSpec): Transducer<any, any>`
 
-#### `mapIndexed<A, B>(fn: (i: number, x: A) => B): Transducer<A, B>`
+#### `mapIndexed<A, B>(fn: (i: number, x: A) => B, offset = 0): Transducer<A, B>`
 
 #### `mapKeys(keys: IObjectOf<(x: any) => any>, copy?: boolean): Transducer<any, any>`
 
@@ -640,6 +640,8 @@ reducer and optional initial accumulator/result.
 #### `partitionOf<T>(sizes: number[]): Transducer<T, T[]>`
 
 #### `partitionSort<A, B>(n: number, key?: ((x: A) => B), cmp?: Comparator<B>): Transducer<A, A>`
+
+#### `partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, keyfn: (x: T) => PropertyKey, reset = true, all = true): Transducer<T, IObjectOf<T>>`
 
 #### `pluck<A, B>(key: PropertyKey): Transducer<A, B>`
 

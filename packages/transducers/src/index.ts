@@ -66,6 +66,7 @@ export * from "./xform/page";
 export * from "./xform/partition-by";
 export * from "./xform/partition-of";
 export * from "./xform/partition-sort";
+export * from "./xform/partition-sync";
 export * from "./xform/partition";
 export * from "./xform/pluck";
 export * from "./xform/rename";
