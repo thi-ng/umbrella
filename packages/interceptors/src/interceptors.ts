@@ -59,9 +59,9 @@ export function forwardSideFx(id: string) {
  * @param err interceptor triggered on predicate failure
  */
 export function ensurePred(pred: InterceptorPredicate, err?: InterceptorFn): InterceptorFn {
-    return (state, e, fx) => {
-        if (!pred(state, e, fx)) {
-            return { [FX_CANCEL]: true, ...(err ? err(state, e, fx) : null) };
+    return (state, e, bus) => {
+        if (!pred(state, e, bus)) {
+            return { [FX_CANCEL]: true, ...(err ? err(state, e, bus) : null) };
         }
     };
 }
