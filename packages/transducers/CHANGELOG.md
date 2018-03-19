@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.6.2...@thi.ng/transducers@1.7.0) (2018-03-19)
+
+
+### Features
+
+* **transducers:** add mapVals() xform ([abc195a](https://github.com/thi-ng/umbrella/commit/abc195a))
+* **transducers:** add partitionSync() xform ([bebd118](https://github.com/thi-ng/umbrella/commit/bebd118))
+
+
+
+
 <a name="1.6.2"></a>
 ## [1.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.6.1...@thi.ng/transducers@1.6.2) (2018-03-08)
 
