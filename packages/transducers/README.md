@@ -619,6 +619,9 @@ reducer and optional initial accumulator/result.
 
 #### `mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>`
 
+#### `mapVals<A, B>(fn: (v: A) => B, copy = true): Transducer<IObjectOf<A>, IObjectOf<B>>`
+
+
 #### `movingAverage(n: number): Transducer<number, number>`
 
 #### `movingMedian<A, B>(n: number, key?: ((x: A) => B), cmp?: Comparator<B>): Transducer<A, A>`
