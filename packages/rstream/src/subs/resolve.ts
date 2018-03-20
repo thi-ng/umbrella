@@ -29,7 +29,6 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     done() {
         if (this.parent.getState() === State.DONE && this.outstanding === 0) {
             super.done();
-            delete this.outstanding;
         }
     }
 }
