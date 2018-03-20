@@ -5,8 +5,10 @@ import { push } from "@thi.ng/transducers/rfn/push";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 
 import { DEBUG, ISubscribable, ISubscriber, State } from "./api";
+import { IDeref } from "@thi.ng/api/api";
 
 export class Subscription<A, B> implements
+    IDeref<B>,
     ISubscriber<A>,
     ISubscribable<B> {
 
@@ -32,6 +34,10 @@ export class Subscription<A, B> implements
         if (xform) {
             this.xform = xform(push());
         }
+    }
+
+    deref() {
+        return this.last !== SEMAPHORE ? this.last : undefined;
     }
 
     getState() {
