@@ -9,7 +9,7 @@ import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 
 export interface StreamSyncOpts<A, B> extends IID<string> {
-    src: Iterable<ISubscribable<A>>;
+    src: ISubscribable<A>[];
     xform: Transducer<IObjectOf<A>, B>;
     reset: boolean;
     all: boolean;
@@ -34,7 +34,7 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * stream ID. Only the last value received from each input is passed on.
  *
  * ```
- * sync = StreamSync({src: [a=new Stream("a"), b=new Stream("b")]});
+ * sync = new StreamSync({src: [a=new Stream("a"), b=new Stream("b")]});
  * sync.subscribe(trace());
  *
  * a.next(1);
@@ -66,7 +66,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         let srcIDs = new Set<string>();
         let xform: Transducer<any, any> = comp(
             partitionSync<A>(srcIDs, (x) => x[0], opts.reset !== false, opts.all !== false),
-            mapVals((x) => x[1], false)
+            mapVals((x) => x[1])
         );
         if (opts.xform) {
             xform = comp(xform, opts.xform);
@@ -95,7 +95,11 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         );
     }
 
-    addAll(src: Iterable<ISubscribable<A>>) {
+    addAll(src: ISubscribable<A>[]) {
+        // pre-add all source ids for partitionSync
+        for (let s of src) {
+            this.sourceIDs.add(s.id);
+        }
         for (let s of src) {
             this.add(s);
         }
@@ -110,7 +114,11 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         }
     }
 
-    removeAll(src: Iterable<ISubscribable<A>>) {
+    removeAll(src: ISubscribable<A>[]) {
+        // pre-remove all source ids for partitionSync
+        for (let s of src) {
+            this.sourceIDs.delete(s.id);
+        }
         for (let s of src) {
             this.remove(s);
         }

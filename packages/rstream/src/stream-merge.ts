@@ -5,7 +5,7 @@ import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 
 export interface StreamMergeOpts<A, B> extends IID<string> {
-    src: Iterable<ISubscribable<A>>;
+    src: ISubscribable<A>[];
     xform: Transducer<A, B>;
     close: boolean;
 }
@@ -48,7 +48,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
             }));
     }
 
-    addAll(src: Iterable<ISubscribable<A>>) {
+    addAll(src: ISubscribable<A>[]) {
         for (let s of src) {
             this.add(s);
         }
@@ -62,7 +62,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         }
     }
 
-    removeAll(src: Iterable<ISubscribable<A>>) {
+    removeAll(src: ISubscribable<A>[]) {
         for (let s of src) {
             this.remove(s);
         }
