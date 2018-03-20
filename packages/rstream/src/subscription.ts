@@ -1,6 +1,6 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
+import { Reducer, Transducer, SEMAPHORE } from "@thi.ng/transducers/api";
 import { push } from "@thi.ng/transducers/rfn/push";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 
@@ -19,9 +19,12 @@ export class Subscription<A, B> implements
     protected xform: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
+    protected last: any;
+
     constructor(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
         this.parent = parent;
         this.id = id || `sub-${Subscription.NEXT_ID++}`;
+        this.last = SEMAPHORE;
         this.subs = new Set();
         if (sub) {
             this.subs.add(<ISubscriber<B>>sub);
@@ -67,6 +70,9 @@ export class Subscription<A, B> implements
         } else {
             sub = new Subscription(sub, xform, this, id);
         }
+        if (this.last !== SEMAPHORE) {
+            sub.next(this.last);
+        }
         return <Subscription<B, B>>this.addWrapped(sub);
     }
 
@@ -83,6 +89,7 @@ export class Subscription<A, B> implements
             if (this.parent) {
                 const res = this.parent.unsubscribe(this);
                 this.state = State.DONE;
+                delete this.last;
                 delete this.parent;
                 return res;
             }
@@ -167,6 +174,7 @@ export class Subscription<A, B> implements
     }
 
     protected dispatch(x: B) {
+        this.last = x;
         for (let s of this.subs) {
             try {
                 s.next && s.next(x);
