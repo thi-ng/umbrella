@@ -37,7 +37,13 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         this.sources.set(
             src,
             src.subscribe({
-                next: (x) => this.next(x),
+                next: (x) => {
+                    if (x instanceof Subscription) {
+                        this.add(x);
+                    } else {
+                        this.next(x);
+                    }
+                },
                 done: () => this.markDone(src)
             }));
     }
