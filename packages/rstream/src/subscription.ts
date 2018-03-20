@@ -81,23 +81,27 @@ export class Subscription<A, B> implements
     unsubscribe(sub?: Subscription<B, any>) {
         if (!sub) {
             if (this.parent) {
-                return this.parent.unsubscribe(this);
+                const res = this.parent.unsubscribe(this);
+                this.state = State.DONE;
+                delete this.parent;
+                return res;
             }
-            return true;
+            return false;
         }
         if (this.subs) {
             DEBUG && console.log(this.id, "unsub", sub.id);
             if (this.subs.has(sub)) {
                 this.subs.delete(sub);
+                if (!this.subs.size) {
+                    this.unsubscribe();
+                }
                 return true;
             }
-            return false;
         }
-        return true;
+        return false;
     }
 
     next(x: A) {
-        // this.ensureState();
         if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[2]([], x);
@@ -129,8 +133,7 @@ export class Subscription<A, B> implements
             for (let s of [...this.subs]) {
                 s.done && s.done();
             }
-            this.parent && this.parent.unsubscribe(this);
-            delete this.parent;
+            this.unsubscribe();
             delete this.subs;
             delete this.xform;
             DEBUG && console.log(this.id, "done");
