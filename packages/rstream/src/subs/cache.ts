@@ -3,6 +3,11 @@ import { Transducer } from "@thi.ng/transducers/api";
 
 import { Subscription } from "../subscription";
 
+/**
+ * Deprecated since v1.1.0. Subscriptions now store last received value
+ * and new subs will receive the last value stored in parent as their
+ * first value (if there is one).
+ */
 export class Cache<T> extends Subscription<any, T> implements
     IDeref<T> {
 
