@@ -122,11 +122,11 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                 s.unsubscribe();
             }
             this.state = State.DONE;
-            delete this.sources;
+            this.sources.clear();
             return true;
         }
         if (super.unsubscribe(sub)) {
-            if (!this.subs.length) {
+            if (!this.subs.size) {
                 return this.unsubscribe();
             }
             return true;

@@ -15,15 +15,16 @@ export class Subscription<A, B> implements
     id: string;
 
     protected parent: ISubscribable<A>;
-    protected subs: ISubscriber<B>[] = [];
+    protected subs: Set<ISubscriber<B>>;
     protected xform: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
     constructor(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
         this.parent = parent;
         this.id = id || `sub-${Subscription.NEXT_ID++}`;
+        this.subs = new Set();
         if (sub) {
-            this.subs.push(<ISubscriber<B>>sub);
+            this.subs.add(<ISubscriber<B>>sub);
         }
         if (xform) {
             this.xform = xform(push());
@@ -86,9 +87,8 @@ export class Subscription<A, B> implements
         }
         if (this.subs) {
             DEBUG && console.log(this.id, "unsub", sub.id);
-            const idx = this.subs.indexOf(sub);
-            if (idx >= 0) {
-                this.subs.splice(idx, 1);
+            if (this.subs.has(sub)) {
+                this.subs.delete(sub);
                 return true;
             }
             return false;
@@ -97,19 +97,21 @@ export class Subscription<A, B> implements
     }
 
     next(x: A) {
-        this.ensureState();
-        if (this.xform) {
-            const acc = this.xform[2]([], x);
-            const uacc = unreduced(acc);
-            const n = uacc.length;
-            for (let i = 0; i < n; i++) {
-                this.dispatch(uacc[i]);
+        // this.ensureState();
+        if (this.state < State.DONE) {
+            if (this.xform) {
+                const acc = this.xform[2]([], x);
+                const uacc = unreduced(acc);
+                const n = uacc.length;
+                for (let i = 0; i < n; i++) {
+                    this.dispatch(uacc[i]);
+                }
+                if (isReduced(acc)) {
+                    this.done();
+                }
+            } else {
+                this.dispatch(<any>x);
             }
-            if (isReduced(acc)) {
-                this.done();
-            }
-        } else {
-            this.dispatch(<any>x);
         }
     }
 
@@ -138,7 +140,7 @@ export class Subscription<A, B> implements
     error(e: any) {
         this.state = State.ERROR;
         let notified = false;
-        if (this.subs && this.subs.length) {
+        if (this.subs && this.subs.size) {
             for (let s of [...this.subs]) {
                 if (s.error) {
                     s.error(e);
@@ -156,15 +158,13 @@ export class Subscription<A, B> implements
     }
 
     protected addWrapped(wrapped: Subscription<any, any>) {
-        this.subs.push(wrapped);
+        this.subs.add(wrapped);
         this.state = State.ACTIVE;
         return wrapped;
     }
 
     protected dispatch(x: B) {
-        let subs = this.subs;
-        for (let i = 0, n = subs.length; i < n; i++) {
-            const s = subs[i];
+        for (let s of this.subs) {
             try {
                 s.next && s.next(x);
             } catch (e) {
