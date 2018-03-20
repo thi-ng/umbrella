@@ -2,30 +2,87 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 
-Lightweight reactive multi-tap streams and transducer based transformation
-pipeline constructs, written in TypeScript.
+Lightweight reactive multi-tap streams and transducer based
+transformation pipeline constructs, written in TypeScript.
 
-# About
+## About
 
-This library provides & uses three key building blocks for reactive programming:
+This library provides & uses three key building blocks for reactive
+programming:
 
-- **Stream sources**: event targets, iterables, timers, promises, watches, workers, CSP channels, custom...
-- **Subscriptions**: chained stream processors, each subscribable itself
-- **Transducers**: stream transformers, individually or as part of a single subscription, see [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+- **Stream sources**: event targets, iterables, timers, promises,
+  watches, workers, CSP channels, custom...
+- **Subscriptions**: chained stream processors, each subscribable
+  (one-to-many) itself
+- **Transducers**: stream transformers, either as individual
+  subscription or to transform values for a single subscription. See
+  [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+  for 90+ composable operators.
+- **Recursive teardown**: Whenever possible, any unsubscription
+  initiates cleanup and propagates to parent(s).
 
-Using these building blocks, a growing number of high-level operations are provided too:
+Using these building blocks, a growing number of high-level operations
+are provided too:
 
-- stream merging
-- pubsub
-- sidechain partitioning (emits chunks from source, controlled by sidechain stream)
-- sidechain toggle (toggles source based on signals from sidechain)
+### Stream creation helpers
+
+- [fromAtom()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/atom.ts) - streams from value changes in atoms/cursors
+- [fromChannel()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-csp) - CSP channel to stream conversion
+- [fromEvent()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/event.ts) - DOM events
+- [fromInterval()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/interval.ts) - interval based counters
+- [fromIterable()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/iterable.ts) - arrays, iterators / generators
+- [fromPromise()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/promise.ts) - single value stream from promis
+- [fromPromises()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/promises.ts) - results from multiple promise
+- [fromRAF()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/raf.ts) - requestAnimationFrame() counter (w/ node fallback)
+- [fromView()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/view.ts) - derived view changes (see @thi.ng/atom)
+- [fromWorker()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/worker.ts) - messages received from worker
+- [manual / custom](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream.ts) - anything else
+
+### Stream merging
+
+- [merge](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts) - unsorted merge from multiple inputs (dynamic add/remove)
+- [sync](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts) - synchronized merge and labeled tuple objects
+
+### Useful subscription handlers
+
+- [bisect](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - split via predicate
+- [postWorker](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts) - send values to workers (incl. optional worker instantiation)
+- [resolve](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
+- [sidechainPartition](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts) - emits chunks from source, controlled by sidechain stream
+- [sidechainToggle](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-toggle.ts) - toggles source based on signals from sidechain
+- [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
+- [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
 
 Furthermore, the
 [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log)
-package provides an extensible multi-level, multi-target logging solution based
-on this library.
+package provides an extensible multi-level, multi-target logging
+solution based on this library.
 
-TODO
+## Conceptual differences to RxJS
+
+- Streams are not the same as Observables: I.e. stream sources are NOT
+  (often just cannot) re-run for each new sub added. Only the first sub
+  is guaranteed to receive **all** values. Subs added at a later time
+  MIGHT not receive earlier emitted values, only the most recent emitted
+  and any future ones)
+- Every subscription supports any number of subscribers
+- Every unsubscription recursively triggers upstream unsubscriptions
+  (provided a parent has no other active child subscriptions)
+- Every subscription can have its own transducer transforming
+  incoming values (possibly into multiple new ones)
+- Transducers can create streams themselves (only for `merge()` /
+  `sync()`)
+- Transducers can cause early stream termination and subsequent unwinding
+- Values can be manually injected into the stream pipeline / graph at
+  any point
+- Every Stream is a subscription
+- Unhandled errors in user subscriptions will move subscription into
+  error state and cause unsubscription from parent
+- *Much* smaller API surface since most common & custom operations can
+  be solved via transducers, so less need to provide specialized
+  functions (map / filter etc.)
+- IMHO less confusing naming / terminology (only streams (producers) &
+  subscriptions (consumers))
 
 ## Installation
 
@@ -92,6 +149,14 @@ new rs.StreamMerge({
 // ...
 ```
 
+### Dataflow graph example
+
+TODO see [test](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/test/stream-sync.ts) for now...
+
+```typescript
+
+```
+
 ### Central app state atom with reactive undo / redo
 
 ```typescript
@@ -109,8 +174,8 @@ const mode = new atom.Cursor(app, "ui.mode");
 rs.fromAtom(theme).subscribe(rs.trace("theme:"));
 // with transducer
 rs.fromAtom(mode).subscribe(rs.trace("mode:"), tx.map(mode => mode ? "advanced" : "basic"));
-// another one for an hitherto unknown value in app state
-rs.fromAtom(new atom.Cursor(app, "session.user")).subscribe(rs.trace("user:"));
+// another one for an hitherto unknown value in app state (via derived view)
+rs.fromView(app, "session.user").subscribe(rs.trace("user:"));
 
 // attach history only to `ui` branch
 // undo/redo will not record/change other keys in the atom
