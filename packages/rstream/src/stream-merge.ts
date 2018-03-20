@@ -70,20 +70,13 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     unsubscribe(sub?: Subscription<B, any>) {
         if (!sub) {
-            for (let s of this.sources.keys()) {
+            for (let s of this.sources.values()) {
                 s.unsubscribe();
             }
             this.state = State.DONE;
             this.sources.clear();
-            return true;
         }
-        if (super.unsubscribe(sub)) {
-            if (!this.subs.size) {
-                return this.unsubscribe();
-            }
-            return true;
-        }
-        return false;
+        return super.unsubscribe(sub);
     }
 
     protected markDone(src: ISubscribable<A>) {

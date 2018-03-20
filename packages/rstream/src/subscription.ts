@@ -84,19 +84,28 @@ export class Subscription<A, B> implements
         return wrapped;
     }
 
+    /**
+     * If called without arg, removes this subscription from parent (if
+     * any), cleans up internal state and goes into DONE state. If
+     * called with arg, removes the sub from internal pool and if no
+     * other subs are remaining also cleans up itself and goes into DONE
+     * state.
+     *
+     * @param sub
+     */
     unsubscribe(sub?: Subscription<B, any>) {
+        DEBUG && console.log(this.id, "unsub start", sub ? sub.id : "self");
         if (!sub) {
+            let res = true;
             if (this.parent) {
-                const res = this.parent.unsubscribe(this);
-                this.state = State.DONE;
-                delete this.last;
-                delete this.parent;
-                return res;
+                res = this.parent.unsubscribe(this);
             }
-            return false;
+            this.state = State.DONE;
+            this.cleanup();
+            return res;
         }
         if (this.subs) {
-            DEBUG && console.log(this.id, "unsub", sub.id);
+            DEBUG && console.log(this.id, "unsub child", sub.id);
             if (this.subs.has(sub)) {
                 this.subs.delete(sub);
                 if (!this.subs.size) {
@@ -127,6 +136,7 @@ export class Subscription<A, B> implements
     }
 
     done() {
+        DEBUG && console.log(this.id, "done start");
         if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[1]([]);
@@ -141,8 +151,6 @@ export class Subscription<A, B> implements
                 s.done && s.done();
             }
             this.unsubscribe();
-            delete this.subs;
-            delete this.xform;
             DEBUG && console.log(this.id, "done");
         }
     }
@@ -163,6 +171,7 @@ export class Subscription<A, B> implements
             if (this.parent) {
                 DEBUG && console.log(this.id, "unsubscribing...");
                 this.unsubscribe();
+                this.state = State.ERROR;
             }
         }
     }
@@ -174,6 +183,7 @@ export class Subscription<A, B> implements
     }
 
     protected dispatch(x: B) {
+        DEBUG && console.log(this.id, "dispatch", x);
         this.last = x;
         for (let s of this.subs) {
             try {
@@ -188,5 +198,13 @@ export class Subscription<A, B> implements
         if (this.state >= State.DONE) {
             throw new Error(`operation not allowed in ${State[this.state]} state`);
         }
+    }
+
+    protected cleanup() {
+        DEBUG && console.log(this.id, "cleanup");
+        this.subs.clear();
+        delete this.parent;
+        delete this.xform;
+        delete this.last;
     }
 }

@@ -87,7 +87,13 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             src,
             src.subscribe(
                 {
-                    next: (x) => this.next(x),
+                    next: (x) => {
+                        if (x instanceof Subscription) {
+                            this.add(x);
+                        } else {
+                            this.next(x);
+                        }
+                    },
                     done: () => this.markDone(src)
                 },
                 labeled<string, A>(src.id)
@@ -126,20 +132,14 @@ export class StreamSync<A, B> extends Subscription<A, B> {
 
     unsubscribe(sub?: Subscription<B, any>) {
         if (!sub) {
-            for (let s of this.sources.keys()) {
+            for (let s of this.sources.values()) {
                 s.unsubscribe();
             }
             this.state = State.DONE;
             this.sources.clear();
-            return true;
+            this.sourceIDs.clear();
         }
-        if (super.unsubscribe(sub)) {
-            if (!this.subs.size) {
-                return this.unsubscribe();
-            }
-            return true;
-        }
-        return false;
+        return super.unsubscribe(sub);
     }
 
     protected markDone(src: ISubscribable<A>) {

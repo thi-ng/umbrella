@@ -52,8 +52,8 @@ export class Stream<T> extends Subscription<T, T>
 
     unsubscribe(sub?: Subscription<T, any>) {
         const res = super.unsubscribe(sub);
-        if (res && (!this.subs || !this.subs.size)) {
-            this.done();
+        if (res && (!sub || (!this.subs || !this.subs.size))) {
+            this.cancel();
         }
         return res;
     }
