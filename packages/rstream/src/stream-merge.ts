@@ -86,3 +86,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         }
     }
 }
+
+export function merge<A, B>(opts: Partial<StreamMergeOpts<A, B>>) {
+    return new StreamMerge(opts);
+}

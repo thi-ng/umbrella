@@ -149,3 +149,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         }
     }
 }
+
+export function sync<A, B>(opts: Partial<StreamSyncOpts<A, B>>) {
+    return new StreamSync(opts);
+}
