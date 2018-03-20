@@ -11,6 +11,7 @@ export * from "./from/iterable";
 export * from "./from/promise";
 export * from "./from/promises";
 export * from "./from/raf";
+export * from "./from/view";
 export * from "./from/worker";
 
 export * from "./subs/bisect";
