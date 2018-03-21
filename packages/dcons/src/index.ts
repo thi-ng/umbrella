@@ -1,4 +1,5 @@
 import * as api from "@thi.ng/api/api";
+import { illegalArgs, illegalState } from "@thi.ng/api/error";
 import { compare } from "@thi.ng/api/compare";
 import { equiv } from "@thi.ng/api/equiv";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
@@ -124,7 +125,7 @@ export class DCons<T> implements
 
     public insertBefore(cell: ConsCell<T>, value: T): DCons<T> {
         if (!cell) {
-            throw new Error("cell is undefined");
+            illegalArgs("cell is undefined");
         }
         const newCell = <ConsCell<T>>{ value, next: cell, prev: cell.prev };
         if (cell.prev) {
@@ -139,7 +140,7 @@ export class DCons<T> implements
 
     public insertAfter(cell: ConsCell<T>, value: T): DCons<T> {
         if (!cell) {
-            throw new Error("cell is undefined");
+            illegalArgs("cell is undefined");
         }
         const newCell = <ConsCell<T>>{ value, next: cell.next, prev: cell };
         if (cell.next) {
@@ -224,7 +225,7 @@ export class DCons<T> implements
         let a = from < 0 ? from + this._length : from;
         let b = to < 0 ? to + this._length : to;
         if (a < 0 || b < 0) {
-            throw new Error("invalid indices: ${from} / ${to}")
+            illegalArgs("invalid indices: ${from} / ${to}")
         }
         const res = new DCons<T>();
         let cell = this.nthCell(a);
@@ -316,7 +317,7 @@ export class DCons<T> implements
             }
             this._length--;
         } else {
-            throw new Error("can't pop, empty");
+            illegalState("can't pop, empty");
         }
         return this;
     }
@@ -348,7 +349,7 @@ export class DCons<T> implements
     public setNth(n: number, v: T) {
         const cell = this.nthCell(n);
         if (!cell) {
-            throw new Error(`index out of bounds: ${n}`);
+            illegalArgs(`index out of bounds: ${n}`);
         }
         cell.value = v;
         return this;
