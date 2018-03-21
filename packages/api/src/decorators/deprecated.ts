@@ -1,3 +1,5 @@
+import { illegalArgs } from "../error";
+
 /**
  * Method property decorator factory. Augments original method with
  * deprecation message (via console), shown when method is invoked.
@@ -11,7 +13,7 @@ export function deprecated(msg?: string, log = console.log): MethodDecorator {
         const signature = `${target.constructor.name}#${prop}`;
         const fn = descriptor.value;
         if (typeof fn !== "function") {
-            throw new Error(`${signature} is not a function`);
+            illegalArgs(`${signature} is not a function`);
         }
         descriptor.value = function () {
             log(`DEPRECATED ${signature}: ${msg || "will be removed soon"}`);
