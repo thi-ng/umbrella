@@ -27,6 +27,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
+        "@thi.ng/api": "^2.0.4",
         "@thi.ng/checks": "^1.3.0"
     },
     "keywords": [
