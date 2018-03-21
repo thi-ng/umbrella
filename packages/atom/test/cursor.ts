@@ -1,7 +1,10 @@
 import * as assert from "assert";
-import { Atom, Cursor } from "../src/index";
+import { getIn } from "@thi.ng/paths";
 
-describe("cursor w/ path", function () {
+import { Atom, Cursor } from "../src/index";
+import { isNumber } from "@thi.ng/checks/is-number";
+
+describe("cursor", function () {
 
     let a: Atom<any>;
     let c: Cursor<any>;
@@ -42,10 +45,39 @@ describe("cursor w/ path", function () {
         assert.strictEqual(c.deref(), undefined);
     });
 
-    it("can be deref'd w/ getter", () => {
+    it("works with get/set", () => {
         c = new Cursor(a, (s) => s.a.b, (s, x) => ({ ...s, a: { ...s.a, b: x } }));
         assert.strictEqual(c.deref(), src.a.b);
+        c.reset(42);
+        assert.equal(c.deref(), 42);
+        assert.equal(c.deref(), getIn(a.deref(), "a.b"));
     });
+
+    it("works with get/set opts", () => {
+        c = new Cursor({
+            parent: a,
+            path: [
+                (s) => s.a.b,
+                (s, x) => ({ ...s, a: { ...s.a, b: x } })
+            ]
+        });
+        assert.strictEqual(c.deref(), src.a.b);
+        c.reset(42);
+        assert.equal(c.deref(), 42);
+        assert.equal(c.deref(), getIn(a.deref(), "a.b"));
+    });
+
+    it("can be validated", () => {
+        c = new Cursor({
+            parent: a,
+            path: "a.b.c",
+            validate: isNumber,
+        });
+        assert.equal(c.reset(42), 42);
+        assert.equal(c.reset("a"), 42);
+        assert.equal(c.reset(null), 42);
+        assert.throws(() => new Cursor({ parent: a, path: "x", validate: isNumber }));
+    })
 
     it("can be swapped'd (a.b.c)", () => {
         c = new Cursor(a, "a.b.c");
