@@ -1,12 +1,14 @@
+import { illegalArgs } from "@thi.ng/api/error";
+
 import { consume } from "./consume";
 import { iterator } from "./iterator";
 
 export function* partition<T>(n: number, step: number, input: Iterable<T>, all = false) {
     if (n < 1) {
-        throw new Error(`invalid partition size: ${n}`);
+        illegalArgs(`invalid partition size: ${n}`);
     }
     if (step < 1) {
-        throw new Error(`invalid step size: ${step}`);
+        illegalArgs(`invalid step size: ${step}`);
     }
     let iter = iterator(input);
     let chunk: T[] = [];
