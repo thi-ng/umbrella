@@ -1,3 +1,5 @@
+import { illegalArgs } from "@thi.ng/api/error";
+
 import { BitInputStream } from "./input";
 
 const DEFAULT_BUF_SIZE = 0x10;
@@ -28,7 +30,7 @@ export class BitOutputStream {
 
     public seek(pos: number): BitOutputStream {
         if (pos < this.start || pos >= this.buffer.length << 3) {
-            throw new Error(`seek pos out of bounds: ${pos}`);
+            illegalArgs(`seek pos out of bounds: ${pos}`);
         }
         this.pos = pos >>> 3;
         this.bit = 8 - (pos & 0x7);

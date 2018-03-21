@@ -1,3 +1,5 @@
+import { illegalState, illegalArgs } from "@thi.ng/api/error";
+
 const U32 = Math.pow(2, 32);
 
 export class BitInputStream {
@@ -39,7 +41,7 @@ export class BitInputStream {
 
     public seek(pos: number): BitInputStream {
         if (pos < this.start || pos >= this.limit) {
-            throw new Error(`seek pos out of bounds: ${pos}`);
+            illegalArgs(`seek pos out of bounds: ${pos}`);
         }
         this.pos = pos >>> 3;
         this.bit = 8 - (pos & 0x7);
@@ -116,7 +118,7 @@ export class BitInputStream {
 
     protected checkLimit(requested: number) {
         if (this.bitPos + requested > this.limit) {
-            throw new Error(`attempt to read past EOF`);
+            illegalState(`can't read past EOF`);
         }
     }
 }
