@@ -1,6 +1,8 @@
+import { illegalArgs } from "@thi.ng/api/error";
+
 export function ensureIterable(x: any): IterableIterator<any> {
     if (!(x != null && x[Symbol.iterator])) {
-        throw new Error(`value is not iterable: ${x}`);
+        illegalArgs(`value is not iterable: ${x}`);
     }
     return x;
 }

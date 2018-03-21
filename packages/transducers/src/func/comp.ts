@@ -1,3 +1,4 @@
+import { illegalArity } from "@thi.ng/api/error";
 import { Transducer } from "../api";
 
 export function comp<A, B>(a: Transducer<A, B>): Transducer<A, B>;
@@ -15,7 +16,7 @@ export function comp(...fns: ((x: any) => any)[]) {
     let [a, b, c, d, e, f, g, h, i, j] = fns;
     switch (fns.length) {
         case 0:
-            throw new Error("no fn args given");
+            illegalArity(0);
         case 1:
             return a;
         case 2:
