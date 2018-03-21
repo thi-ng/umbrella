@@ -1,4 +1,5 @@
 import { Predicate } from "@thi.ng/api/api";
+import { illegalArity } from "@thi.ng/api/error";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { DCons } from "@thi.ng/dcons";
 import { Reducer, Transducer } from "@thi.ng/transducers/api";
@@ -99,7 +100,7 @@ export class Channel<T> implements
                 close = args[2];
                 break;
             default:
-                throw new Error(`invalid arity ${args.length}`);
+                illegalArity(args.length);
         }
         const chan = new Channel<T>(tx);
         chan.into(args[0], close);
@@ -300,7 +301,7 @@ export class Channel<T> implements
                 [id, buf, tx, err] = args;
                 break;
             default:
-                throw new Error(`invalid arity ${args.length}`);
+                illegalArity(args.length);
         }
         this.id = id || `chan-${Channel.NEXT_ID++}`;
         buf = buf || 1;

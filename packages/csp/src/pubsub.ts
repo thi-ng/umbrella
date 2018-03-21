@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+import { illegalArity } from "@thi.ng/api/error";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import { IWriteableChannel, TopicFn } from "./api";
@@ -27,7 +28,7 @@ export class PubSub<T> implements
                 this.fn = args[0];
                 break;
             default:
-                throw new Error(`illegal arity: ${args.length}`);
+                illegalArity(args.length);
         }
         this.topics = {};
         this.process();
