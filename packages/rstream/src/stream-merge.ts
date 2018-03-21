@@ -5,7 +5,7 @@ import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 
 export interface StreamMergeOpts<A, B> extends IID<string> {
-    src: Iterable<ISubscribable<A>>;
+    src: ISubscribable<A>[];
     xform: Transducer<A, B>;
     close: boolean;
 }
@@ -19,15 +19,13 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  */
 export class StreamMerge<A, B> extends Subscription<A, B> {
 
-    sources: ISubscribable<A>[];
-    wrappedSources: Subscription<A, any>[];
+    sources: Map<ISubscribable<A>, Subscription<A, any>>;
     autoClose: boolean;
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};
         super(null, opts.xform, null, opts.id || `streammerge-${Subscription.NEXT_ID++}`);
-        this.sources = [];
-        this.wrappedSources = [];
+        this.sources = new Map();
         this.autoClose = opts.close !== false;
         if (opts.src) {
             this.addAll(opts.src);
@@ -36,30 +34,35 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     add(src: ISubscribable<A>) {
         this.ensureState();
-        this.wrappedSources.push(
+        this.sources.set(
+            src,
             src.subscribe({
-                next: (x) => this.next(x),
+                next: (x) => {
+                    if (x instanceof Subscription) {
+                        this.add(x);
+                    } else {
+                        this.next(x);
+                    }
+                },
                 done: () => this.markDone(src)
             }));
-        this.sources.push(src);
     }
 
-    addAll(src: Iterable<ISubscribable<A>>) {
+    addAll(src: ISubscribable<A>[]) {
         for (let s of src) {
             this.add(s);
         }
     }
 
     remove(src: ISubscribable<A>) {
-        const idx = this.sources.indexOf(src);
-        if (idx >= 0) {
-            this.sources.splice(idx, 1);
-            const sub = this.wrappedSources.splice(idx, 1)[0];
+        const sub = this.sources.get(src);
+        if (sub) {
+            this.sources.delete(src);
             sub.unsubscribe();
         }
     }
 
-    removeAll(src: Iterable<ISubscribable<A>>) {
+    removeAll(src: ISubscribable<A>[]) {
         for (let s of src) {
             this.remove(s);
         }
@@ -67,32 +70,23 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     unsubscribe(sub?: Subscription<B, any>) {
         if (!sub) {
-            for (let s of this.wrappedSources) {
+            for (let s of this.sources.values()) {
                 s.unsubscribe();
             }
             this.state = State.DONE;
-            delete this.sources;
-            delete this.wrappedSources;
-            return true;
+            this.sources.clear();
         }
-        if (super.unsubscribe(sub)) {
-            if (!this.subs.length) {
-                return this.unsubscribe();
-            }
-            return true;
-        }
-        return false;
-    }
-
-    done() {
-        super.done();
-        delete this.wrappedSources;
+        return super.unsubscribe(sub);
     }
 
     protected markDone(src: ISubscribable<A>) {
         this.remove(src);
-        if (this.autoClose && !this.sources.length) {
+        if (this.autoClose && !this.sources.size) {
             this.done();
         }
     }
+}
+
+export function merge<A, B>(opts: Partial<StreamMergeOpts<A, B>>) {
+    return new StreamMerge(opts);
 }

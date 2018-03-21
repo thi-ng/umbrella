@@ -61,7 +61,8 @@ describe("fromPromise()", () => {
         });
         setTimeout(() => {
             assert(called, "not called");
-            assert.throws(() => src.next(Promise.resolve()), "no next() allowed");
+            // TODO remove, next() doesn't throw error anymore if already in done or error state
+            // assert.throws(() => src.next(Promise.resolve()), "no next() allowed");
             src.done();
             assert.equal(src.getState(), rs.State.ERROR, "src not ERROR");
             done();

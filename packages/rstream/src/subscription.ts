@@ -1,12 +1,14 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
+import { Reducer, Transducer, SEMAPHORE } from "@thi.ng/transducers/api";
 import { push } from "@thi.ng/transducers/rfn/push";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 
 import { DEBUG, ISubscribable, ISubscriber, State } from "./api";
+import { IDeref } from "@thi.ng/api/api";
 
 export class Subscription<A, B> implements
+    IDeref<B>,
     ISubscriber<A>,
     ISubscribable<B> {
 
@@ -15,19 +17,27 @@ export class Subscription<A, B> implements
     id: string;
 
     protected parent: ISubscribable<A>;
-    protected subs: ISubscriber<B>[] = [];
+    protected subs: Set<ISubscriber<B>>;
     protected xform: Reducer<B[], A>;
     protected state: State = State.IDLE;
+
+    protected last: any;
 
     constructor(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
         this.parent = parent;
         this.id = id || `sub-${Subscription.NEXT_ID++}`;
+        this.last = SEMAPHORE;
+        this.subs = new Set();
         if (sub) {
-            this.subs.push(<ISubscriber<B>>sub);
+            this.subs.add(<ISubscriber<B>>sub);
         }
         if (xform) {
             this.xform = xform(push());
         }
+    }
+
+    deref() {
+        return this.last !== SEMAPHORE ? this.last : undefined;
     }
 
     getState() {
@@ -66,6 +76,9 @@ export class Subscription<A, B> implements
         } else {
             sub = new Subscription(sub, xform, this, id);
         }
+        if (this.last !== SEMAPHORE) {
+            sub.next(this.last);
+        }
         return <Subscription<B, B>>this.addWrapped(sub);
     }
 
@@ -77,43 +90,59 @@ export class Subscription<A, B> implements
         return wrapped;
     }
 
+    /**
+     * If called without arg, removes this subscription from parent (if
+     * any), cleans up internal state and goes into DONE state. If
+     * called with arg, removes the sub from internal pool and if no
+     * other subs are remaining also cleans up itself and goes into DONE
+     * state.
+     *
+     * @param sub
+     */
     unsubscribe(sub?: Subscription<B, any>) {
+        DEBUG && console.log(this.id, "unsub start", sub ? sub.id : "self");
         if (!sub) {
+            let res = true;
             if (this.parent) {
-                return this.parent.unsubscribe(this);
+                res = this.parent.unsubscribe(this);
             }
-            return true;
+            this.state = State.DONE;
+            this.cleanup();
+            return res;
         }
         if (this.subs) {
-            DEBUG && console.log(this.id, "unsub", sub.id);
-            const idx = this.subs.indexOf(sub);
-            if (idx >= 0) {
-                this.subs.splice(idx, 1);
+            DEBUG && console.log(this.id, "unsub child", sub.id);
+            if (this.subs.has(sub)) {
+                this.subs.delete(sub);
+                if (!this.subs.size) {
+                    this.unsubscribe();
+                }
                 return true;
             }
-            return false;
         }
-        return true;
+        return false;
     }
 
     next(x: A) {
-        this.ensureState();
-        if (this.xform) {
-            const acc = this.xform[2]([], x);
-            const uacc = unreduced(acc);
-            const n = uacc.length;
-            for (let i = 0; i < n; i++) {
-                this.dispatch(uacc[i]);
+        if (this.state < State.DONE) {
+            if (this.xform) {
+                const acc = this.xform[2]([], x);
+                const uacc = unreduced(acc);
+                const n = uacc.length;
+                for (let i = 0; i < n; i++) {
+                    this.dispatch(uacc[i]);
+                }
+                if (isReduced(acc)) {
+                    this.done();
+                }
+            } else {
+                this.dispatch(<any>x);
             }
-            if (isReduced(acc)) {
-                this.done();
-            }
-        } else {
-            this.dispatch(<any>x);
         }
     }
 
     done() {
+        DEBUG && console.log(this.id, "done start");
         if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[1]([]);
@@ -127,10 +156,7 @@ export class Subscription<A, B> implements
             for (let s of [...this.subs]) {
                 s.done && s.done();
             }
-            this.parent && this.parent.unsubscribe(this);
-            delete this.parent;
-            delete this.subs;
-            delete this.xform;
+            this.unsubscribe();
             DEBUG && console.log(this.id, "done");
         }
     }
@@ -138,7 +164,7 @@ export class Subscription<A, B> implements
     error(e: any) {
         this.state = State.ERROR;
         let notified = false;
-        if (this.subs && this.subs.length) {
+        if (this.subs && this.subs.size) {
             for (let s of [...this.subs]) {
                 if (s.error) {
                     s.error(e);
@@ -151,20 +177,21 @@ export class Subscription<A, B> implements
             if (this.parent) {
                 DEBUG && console.log(this.id, "unsubscribing...");
                 this.unsubscribe();
+                this.state = State.ERROR;
             }
         }
     }
 
     protected addWrapped(wrapped: Subscription<any, any>) {
-        this.subs.push(wrapped);
+        this.subs.add(wrapped);
         this.state = State.ACTIVE;
         return wrapped;
     }
 
     protected dispatch(x: B) {
-        let subs = this.subs;
-        for (let i = 0, n = subs.length; i < n; i++) {
-            const s = subs[i];
+        DEBUG && console.log(this.id, "dispatch", x);
+        this.last = x;
+        for (let s of this.subs) {
             try {
                 s.next && s.next(x);
             } catch (e) {
@@ -177,5 +204,13 @@ export class Subscription<A, B> implements
         if (this.state >= State.DONE) {
             throw new Error(`operation not allowed in ${State[this.state]} state`);
         }
+    }
+
+    protected cleanup() {
+        DEBUG && console.log(this.id, "cleanup");
+        this.subs.clear();
+        delete this.parent;
+        delete this.xform;
+        delete this.last;
     }
 }

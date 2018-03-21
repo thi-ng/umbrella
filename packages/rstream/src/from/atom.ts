@@ -3,14 +3,16 @@ import { ReadonlyAtom } from "@thi.ng/atom/api";
 import { Stream } from "../stream";
 
 /**
- * Yields stream of value changes in given atom / cursor.
- * Attaches watch to atom and checks for value changes with given `changed`
- * predicate (`!==` by default). If the predicate returns truthy result,
- * the atom change is emitted on the stream.
- * If `emitFirst` is true (default), also emits atom's current value
- * when first subscriber attaches to stream.
+ * Yields stream of value changes in given atom / cursor. Attaches watch
+ * to atom and checks for value changes with given `changed` predicate
+ * (`!==` by default). If the predicate returns truthy result, the new
+ * value is emitted on the stream. If `emitFirst` is true (default),
+ * also emits atom's current value when first subscriber attaches to
+ * stream.
  *
- * See: @thi.ng/atom
+ * See:
+ * - fromView()
+ * - @thi.ng/atom
  *
  * ```
  * db = new Atom({a: 23, b: 88});

@@ -2,6 +2,7 @@ import { Transducer } from "@thi.ng/transducers/api";
 
 import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
 import { Subscription } from "./subscription";
+import { isString } from "util";
 
 export class Stream<T> extends Subscription<T, T>
     implements IStream<T> {
@@ -12,7 +13,28 @@ export class Stream<T> extends Subscription<T, T>
 
     protected _cancel: StreamCancel;
 
-    constructor(src?: StreamSource<T>, id?: string) {
+    constructor();
+    constructor(id: string);
+    constructor(src: StreamSource<T>);
+    constructor(src: StreamSource<T>, id: string);
+    constructor(...args: any[]) {
+        let src, id;
+        switch (args.length) {
+            case 0:
+                break;
+            case 1:
+                if (isString(args[0])) {
+                    id = args[0];
+                } else {
+                    src = args[0];
+                }
+                break;
+            case 2:
+                [src, id] = args;
+                break;
+            default:
+                throw new Error(`illegal arity: ${args.length}`);
+        }
         super(null, null, null, id || `stream-${Stream.NEXT_ID++}`);
         this.src = src;
     }
@@ -22,7 +44,7 @@ export class Stream<T> extends Subscription<T, T>
     subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>
     subscribe(...args: any[]) {
         const wrapped = super.subscribe.apply(this, args);
-        if (this.subs.length === 1) {
+        if (this.subs.size === 1) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
         }
         return wrapped;
@@ -30,8 +52,8 @@ export class Stream<T> extends Subscription<T, T>
 
     unsubscribe(sub?: Subscription<T, any>) {
         const res = super.unsubscribe(sub);
-        if (res && (!this.subs || !this.subs.length)) {
-            this.done();
+        if (res && (!sub || (!this.subs || !this.subs.size))) {
+            this.cancel();
         }
         return res;
     }

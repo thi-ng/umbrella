@@ -4,10 +4,16 @@ import * as rs from "../src/index";
 
 describe("SidechainToggle", () => {
 
+
+    let src, side, buf;
+
+    beforeEach(() => {
+        src = new rs.Stream();
+        side = new rs.Stream();
+        buf = [];
+    });
+
     let check = (initial, pred, expect, done) => {
-        let src = new rs.Stream();
-        let side = new rs.Stream();
-        let buf = [];
         src.subscribe(rs.sidechainToggle(side, initial, pred))
             .subscribe({
                 next(x) {
@@ -40,4 +46,13 @@ describe("SidechainToggle", () => {
         check(true, (x) => x === 0, [1, 2], done);
     });
 
+    it("unsubscribe chain (from child)", () => {
+        const part = src.subscribe(rs.sidechainToggle(side));
+        const sub = part.subscribe({});
+        sub.unsubscribe();
+        assert.equal(src.getState(), rs.State.DONE);
+        assert.equal(side.getState(), rs.State.DONE);
+        assert.equal(part.getState(), rs.State.DONE);
+        assert.equal(sub.getState(), rs.State.DONE);
+    });
 });
