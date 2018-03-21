@@ -43,7 +43,7 @@ are provided too:
 - [merge](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts) - unsorted merge from multiple inputs (dynamic add/remove)
 - [sync](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts) - synchronized merge and labeled tuple objects
 
-### Useful subscription handlers
+### Useful subscription ops
 
 - [bisect](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - split via predicate
 - [postWorker](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts) - send values to workers (incl. optional worker instantiation)
@@ -53,6 +53,12 @@ are provided too:
 - [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
 
+### Miscellaneous
+
+- Subscriptions implement @thi.ng/api's `IDeref` interface and therefore
+  can be used directly in UI components based on
+  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
+
 Furthermore, the
 [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log)
 package provides an extensible multi-level, multi-target logging
@@ -60,12 +66,15 @@ solution based on this library.
 
 ## Conceptual differences to RxJS
 
+(No value judgements implied - there's room for both approaches!)
+
 - Streams are not the same as Observables: I.e. stream sources are NOT
   (often just cannot) re-run for each new sub added. Only the first sub
   is guaranteed to receive **all** values. Subs added at a later time
-  MIGHT not receive earlier emitted values, only the most recent emitted
-  and any future ones)
-- Every subscription supports any number of subscribers
+  MIGHT not receive earlier emitted values, but only the most recent
+  emitted and any future values)
+- Every subscription supports any number of subscribers, which can be
+  added/removed at any time
 - Every unsubscription recursively triggers upstream unsubscriptions
   (provided a parent has no other active child subscriptions)
 - Every subscription can have its own transducer transforming
@@ -75,12 +84,14 @@ solution based on this library.
 - Transducers can cause early stream termination and subsequent unwinding
 - Values can be manually injected into the stream pipeline / graph at
   any point
-- Every Stream is a subscription
-- Unhandled errors in user subscriptions will move subscription into
-  error state and cause unsubscription from parent
+- Every Stream also is a subscription
+- Unhandled errors in subscriptions will move subscription into error
+  state and cause unsubscription from parent (if any). Unhandled errors
+  in stream sources will cancel the stream.
 - *Much* smaller API surface since most common & custom operations can
-  be solved via transducers, so less need to provide specialized
-  functions (map / filter etc.)
+  be solved via available transducers. Therefore less need to provide
+  specialized functions (map / filter etc.) and more flexibility in
+  terms of composing new operations.
 - IMHO less confusing naming / terminology (only streams (producers) &
   subscriptions (consumers))
 
@@ -151,10 +162,72 @@ new rs.StreamMerge({
 
 ### Dataflow graph example
 
-TODO see [test](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/test/stream-sync.ts) for now...
+This example uses [synchronized stream merging](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts#L19) to implement a dataflow graph whose leaf inputs (and their changes) are sourced from a central immutable [atom](https://github.com/thi-ng/umbrella/tree/master/packages/).
 
 ```typescript
+import { Atom } from "@thi.ng/atom/atom";
+import { map } from "@thi.ng/transducers";
+import * as rs from "@thi.ng/rstream";
 
+// create mutable/watchable container for graph inputs
+const graph = new Atom<any>({
+    a1: { ports: { a: 1, b: 2 } },
+    a2: { ports: { b: 10 } },
+    a3: { ports: { c: 0 } },
+});
+
+// create a synchronized stream merge from given inputs
+const adder = (src) =>
+    rs.sync({
+        src,
+        // define transducer for merged tuple objects
+        // summing all values in each tuple
+        // (i.e. the values from the input streams)
+        xform: map((ports) => {
+            let sum = 0;
+            for (let p in ports) {
+                sum += ports[p];
+            }
+            return sum;
+        }),
+        // reset=false will only synchronize *all* inputs for the
+        // very 1st merged tuple, then emit updated ones when *any*
+        // input has changed with other input values in the tuple
+        // remaining the same
+        reset: false
+    });
+
+// define first dataflow node
+// `fromView()` creates a stream of value changes
+// for given value path in the above atom
+const a1 = adder([
+    rs.fromView(graph, "a1.ports.a"),
+    rs.fromView(graph, "a1.ports.b"),
+]);
+
+// this node computes sum of:
+// - prev node
+// - view of a2.ports.b value in atom
+// - for fun, another external stream (iterable)
+const a2 = adder([
+    a1,
+    rs.fromView(graph, "a2.ports.b"),
+    rs.fromIterable([0, 1, 2]),
+]);
+
+// last node computes sum of the other 2 nodes
+const a3 = adder([a1, a2]);
+
+// add a console.log sub to see results
+a3.subscribe(rs.trace("result:"));
+// result: 16
+// result: 17
+// result: 18
+
+// value update in atom triggers recomputation
+// of impacted graph nodes (and only those!)
+setTimeout(() => graph.resetIn("a2.ports.b", 100), 100);
+// result: 108
 ```
 
 ### Central app state atom with reactive undo / redo
