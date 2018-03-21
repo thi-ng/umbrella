@@ -22,8 +22,8 @@ export class BasicRouter implements
     }
 
     // mixin
-    public addListener(_: string, __: Listener, ___?: any) { }
-    public removeListener(_: string, __: Listener, ___?: any) { }
+    public addListener(_: string, __: Listener, ___?: any) { return false; }
+    public removeListener(_: string, __: Listener, ___?: any) { return false; }
     public notify(_: Event) { }
 
     start() {
