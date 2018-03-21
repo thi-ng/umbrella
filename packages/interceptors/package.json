@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/interceptors",
     "version": "1.0.5",
-    "description": "Interceptor based event, side effect & immutable state handling",
+    "description": "Interceptor based event bus, side effect & immutable state handling",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -24,6 +24,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
+        "@thi.ng/api": "^2.0.4",
         "@thi.ng/atom": "^1.1.0",
         "@thi.ng/paths": "^1.1.1"
     },

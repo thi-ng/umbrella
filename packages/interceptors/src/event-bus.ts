@@ -1,4 +1,5 @@
 import { IObjectOf, IDeref } from "@thi.ng/api/api";
+import { illegalArgs } from "@thi.ng/api/error";
 import { IAtom } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";
 import { isArray } from "@thi.ng/checks/is-array";
@@ -207,7 +208,7 @@ export class StatelessEventBus implements
             }
             this.handlers[id] = iceps;
         } else {
-            throw new Error(`no handlers in spec for ID: ${id}`);
+            illegalArgs(`no handlers in spec for ID: ${id}`);
         }
     }
 
