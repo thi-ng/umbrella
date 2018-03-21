@@ -1,4 +1,5 @@
 import { IEquiv, Watch, Predicate } from "@thi.ng/api/api";
+import { illegalState } from "@thi.ng/api/error";
 import { IWatch } from "@thi.ng/api/mixins/iwatch";
 import { Path, setIn, updateIn } from "@thi.ng/paths";
 
@@ -20,7 +21,7 @@ export class Atom<T> implements
 
     constructor(val?: T, valid?: Predicate<T>) {
         if (valid && !valid(val)) {
-            throw new Error("initial state did not validate");
+            illegalState("initial state value did not validate");
         }
         this.value = val;
         this.valid = valid;

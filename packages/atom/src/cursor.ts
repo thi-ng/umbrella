@@ -1,4 +1,5 @@
 import { IID, IRelease, Watch } from "@thi.ng/api/api";
+import { illegalArity, illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { Path, getter, setter } from "@thi.ng/paths";
@@ -65,7 +66,7 @@ export class Cursor<T> implements
                         update = setter(<Path>opts.path);
                     }
                 } else {
-                    throw new Error("missing path config");
+                    illegalArgs("missing path config");
                 }
                 break;
             case 2:
@@ -77,13 +78,13 @@ export class Cursor<T> implements
                 [parent, lookup, update] = args;
                 break;
             default:
-                throw new Error(`illegal arity: ${args.length}`);
+                illegalArity(args.length);
         }
         this.parent = parent;
         this.id = id || `cursor-${Cursor.NEXT_ID++}`;
         this.selfUpdate = false;
         if (!lookup || !update) {
-            throw new Error("illegal args");
+            illegalArgs();
         }
         this.local = new Atom<T>(lookup(parent.deref()), validate);
         this.local.addWatch(this.id, (_, prev, curr) => {
