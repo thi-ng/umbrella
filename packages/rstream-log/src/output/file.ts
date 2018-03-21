@@ -1,3 +1,4 @@
+import { unsupported } from "@thi.ng/api/error";
 import { isNode } from "@thi.ng/checks/is-node";
 import { ISubscriber } from "@thi.ng/rstream/api";
 
@@ -14,5 +15,5 @@ export function writeFile(path: string): ISubscriber<string> {
             }
         };
     }
-    throw new Error("only available in NodeJS");
+    unsupported("only available in NodeJS");
 }

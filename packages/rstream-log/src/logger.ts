@@ -1,3 +1,4 @@
+import { illegalArity } from "@thi.ng/api/error";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { StreamMerge } from "@thi.ng/rstream/stream-merge";
 import { Subscription } from "@thi.ng/rstream/subscription";
@@ -29,7 +30,7 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements
                 src = [...src];
                 break;
             default:
-                throw new Error(`illegal arity: ${args.length}`);
+                illegalArity(args.length);
         }
         id = id || `logger-${Subscription.NEXT_ID++}`;
         super({ src, id, close: false });
