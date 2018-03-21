@@ -1,5 +1,3 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { StreamMerge } from "@thi.ng/rstream/stream-merge";
 import { Subscription } from "@thi.ng/rstream/subscription";
@@ -16,15 +14,24 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements
     constructor(id: string, level: Level);
     constructor(id: string, sources: Iterable<ISubscribable<LogEntry>>, level?: Level);
     constructor(...args: any[]) {
-        let id = args[0] || `logger-${Subscription.NEXT_ID++}`;
+        let id;
         let level = Level.FINE;
         let src;
-        if (isNumber(args[1])) {
-            level = args[1];
-        } else {
-            src = args[1];
-            level = args[2] !== undefined ? args[2] : level;
+        switch (args.length) {
+            case 0:
+            case 1:
+                break;
+            case 2:
+                [id, level] = args;
+                break;
+            case 3:
+                [id, src, level] = args;
+                src = [...src];
+                break;
+            default:
+                throw new Error(`illegal arity: ${args.length}`);
         }
+        id = id || `logger-${Subscription.NEXT_ID++}`;
         super({ src, id, close: false });
         this.level = level;
     }
