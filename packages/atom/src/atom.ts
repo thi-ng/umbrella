@@ -1,4 +1,4 @@
-import { IEquiv, Watch } from "@thi.ng/api/api";
+import { IEquiv, Watch, Predicate } from "@thi.ng/api/api";
 import { IWatch } from "@thi.ng/api/mixins/iwatch";
 import { Path, setIn, updateIn } from "@thi.ng/paths";
 
@@ -15,10 +15,15 @@ export class Atom<T> implements
     IEquiv {
 
     protected value: T;
+    protected valid: Predicate<T>;
     protected _watches: any;
 
-    constructor(val?: T) {
+    constructor(val?: T, valid?: Predicate<T>) {
+        if (valid && !valid(val)) {
+            throw new Error("initial state did not validate");
+        }
         this.value = val;
+        this.valid = valid;
     }
 
     deref() {
@@ -31,31 +36,24 @@ export class Atom<T> implements
 
     reset(val: T) {
         const old = this.value;
+        if (this.valid && !this.valid(val)) {
+            return old;
+        }
         this.value = val;
         this.notifyWatches(old, val);
         return val;
     }
 
     resetIn<V>(path: Path, val: V) {
-        const old = this.value;
-        this.value = setIn(this.value, path, val);
-        this.notifyWatches(old, this.value);
-        return this.value;
+        return this.reset(setIn(this.value, path, val));
     }
 
     swap(fn: SwapFn<T>, ...args: any[]) {
-        const old = this.value;
-        args.unshift(old);
-        this.value = fn.apply(null, args);
-        this.notifyWatches(old, this.value);
-        return this.value;
+        return this.reset(fn.apply(null, [this.value, ...args]));
     }
 
     swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
-        const old = this.value;
-        this.value = updateIn(this.value, path, fn, ...args);
-        this.notifyWatches(old, this.value);
-        return this.value;
+        return this.reset(updateIn(this.value, path, fn, ...args));
     }
 
     // mixin stub
