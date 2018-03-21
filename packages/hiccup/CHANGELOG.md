@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.2.5...@thi.ng/hiccup@1.3.0) (2018-03-21)
+
+
+### Features
+
+* **hiccup:** update error handling, add [@thi](https://github.com/thi).ng/api dep ([a3238ab](https://github.com/thi-ng/umbrella/commit/a3238ab))
+
+
+
+
 <a name="1.2.5"></a>
 ## [1.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.2.4...@thi.ng/hiccup@1.2.5) (2018-03-18)
 

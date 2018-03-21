@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.4...@thi.ng/api@2.1.0) (2018-03-21)
+
+
+### Features
+
+* **api:** add error types & ctor fns ([4d3785f](https://github.com/thi-ng/umbrella/commit/4d3785f))
+
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.3...@thi.ng/api@2.0.4) (2018-03-08)
 

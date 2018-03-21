@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dcons",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "description": "Comprehensive doubly linked list structure w/ iterator support",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,7 +26,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.0.4"
+        "@thi.ng/api": "^2.1.0"
     },
     "keywords": [
         "datastructure",

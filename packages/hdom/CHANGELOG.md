@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@2.2.5...@thi.ng/hdom@2.3.0) (2018-03-21)
+
+
+### Features
+
+* **hdom:** update error handling, add [@thi](https://github.com/thi).ng/api dep ([f5173f1](https://github.com/thi-ng/umbrella/commit/f5173f1))
+
+
+
+
 <a name="2.2.5"></a>
 ## [2.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@2.2.4...@thi.ng/hdom@2.2.5) (2018-03-18)
 

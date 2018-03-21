@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.1.0...@thi.ng/atom@1.2.0) (2018-03-21)
+
+
+### Features
+
+* **atom:** add CursorOpts and cursor validation, update ctor, add tests ([3b1d563](https://github.com/thi-ng/umbrella/commit/3b1d563))
+* **atom:** add optional validation predicate for Atom, add tests ([bae1647](https://github.com/thi-ng/umbrella/commit/bae1647))
+* **atom:** consider parent validators in History update fns ([d93940a](https://github.com/thi-ng/umbrella/commit/d93940a))
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.0.3...@thi.ng/atom@1.1.0) (2018-03-18)
 
