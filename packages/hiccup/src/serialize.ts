@@ -1,3 +1,4 @@
+import { illegalArgs } from "@thi.ng/api/error";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isFunction } from "@thi.ng/checks/is-function";
@@ -113,7 +114,7 @@ const _serialize = (tree: any, esc: boolean) => {
             }
             if (body) {
                 if (VOID_TAGS[tag]) {
-                    throw new Error(`No body allowed in tag: ${tag}`);
+                    illegalArgs(`No body allowed in tag: ${tag}`);
                 }
                 res += ">";
                 for (let i = 0, n = body.length; i < n; i++) {
@@ -128,7 +129,7 @@ const _serialize = (tree: any, esc: boolean) => {
         if (iter(tree)) {
             return _serializeIter(tree, esc);
         }
-        throw new Error(`invalid tree node: ${tree}`);
+        illegalArgs(`invalid tree node: ${tree}`);
     }
     if (isFunction(tree)) {
         return _serialize(tree(), esc);
@@ -154,7 +155,7 @@ const normalize = (tag: any[]) => {
     let el = tag[0], match, id, clazz;
     const attribs: any = {};
     if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
-        throw new Error(`"${el}" is not a valid tag name`);
+        illegalArgs(`"${el}" is not a valid tag name`);
     }
     el = match[1];
     id = match[2];

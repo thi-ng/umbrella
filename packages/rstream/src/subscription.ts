@@ -1,3 +1,4 @@
+import { illegalArity, illegalState } from "@thi.ng/api/error";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { Reducer, Transducer, SEMAPHORE } from "@thi.ng/transducers/api";
@@ -69,7 +70,7 @@ export class Subscription<A, B> implements
                 [sub, xform, id] = args;
                 break;
             default:
-                throw new Error(`illegal arity: ${args.length}`);
+                illegalArity(args.length);
         }
         if (implementsFunction(sub, "subscribe")) {
             sub.parent = this;
@@ -202,7 +203,7 @@ export class Subscription<A, B> implements
 
     protected ensureState() {
         if (this.state >= State.DONE) {
-            throw new Error(`operation not allowed in ${State[this.state]} state`);
+            illegalState(`operation not allowed in ${State[this.state]} state`);
         }
     }
 

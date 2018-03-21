@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import { Atom } from "../src/index";
+import { isNumber } from "@thi.ng/checks/is-number";
 
 describe("atom", function () {
 
@@ -44,4 +45,13 @@ describe("atom", function () {
         a.swap((x) => x + 1);
     });
 
+    it("can be validated", () => {
+        assert.throws(() => new Atom("", isNumber));
+        a = new Atom(1, isNumber);
+        assert.equal(a.reset(2), 2);
+        assert.equal(a.reset("3"), 2);
+        assert.equal(a.reset(null), 2);
+        assert.equal(a.swap((x) => "3"), 2);
+        assert.equal(a.swap((x) => null), 2);
+    });
 });

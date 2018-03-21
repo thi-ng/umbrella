@@ -1,3 +1,4 @@
+import { illegalArity } from "@thi.ng/api/error";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
@@ -33,7 +34,7 @@ export class Stream<T> extends Subscription<T, T>
                 [src, id] = args;
                 break;
             default:
-                throw new Error(`illegal arity: ${args.length}`);
+                illegalArity(args.length);
         }
         super(null, null, null, id || `stream-${Stream.NEXT_ID++}`);
         this.src = src;

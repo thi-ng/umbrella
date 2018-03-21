@@ -26,6 +26,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
+        "@thi.ng/api": "^2.0.4",
         "@thi.ng/diff": "^1.0.1",
         "@thi.ng/hiccup": "^1.2.5",
         "@thi.ng/iterators": "^4.0.7"

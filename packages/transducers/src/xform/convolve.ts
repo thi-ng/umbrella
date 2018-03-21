@@ -1,3 +1,5 @@
+import { illegalArity } from "@thi.ng/api/error";
+
 import { ConvolutionKernel2D, Transducer } from "../api";
 import { transduce } from "../transduce";
 import { range2d } from "../iter/range2d";
@@ -41,7 +43,7 @@ export function convolve2d(src: number[], width: number, height: number, ...args
             kernel = buildKernel2d.apply(null, args);
             break;
         default:
-            throw new Error(`illegal arity: ${args.length + 3}`);
+            illegalArity(args.length + 3);
     }
     return map(
         ([x, y]) =>

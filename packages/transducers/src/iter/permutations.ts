@@ -1,6 +1,8 @@
-import { range } from "./range";
+import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
+
+import { range } from "./range";
 
 /**
  * Iterator yielding the Cartesian Product of the given iterables.
@@ -68,7 +70,7 @@ export function* permutations(...src: Iterable<any>[]): IterableIterator<any[]> 
  */
 export function permutationsN(n: number, m = n, offsets?: number[]): IterableIterator<number[]> {
     if (offsets && offsets.length < n) {
-        throw new Error("not sufficient offsets given");
+        illegalArgs(`insufficient offsets, got ${offsets.length}, but needed ${n}`);
     }
     const seqs = [];
     while (--n >= 0) {

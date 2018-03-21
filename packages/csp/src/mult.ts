@@ -1,3 +1,4 @@
+import { illegalArity } from "@thi.ng/api/error";
 import { DCons } from "@thi.ng/dcons";
 import { Transducer } from "@thi.ng/transducers/api";
 
@@ -36,7 +37,7 @@ export class Mult<T> implements
                 id = "mult" + Mult.nextID++;
                 break;
             default:
-                throw new Error(`illegal arity: ${args.length}`);
+                illegalArity(args.length);
         }
         if (src instanceof Channel) {
             this.src = src;

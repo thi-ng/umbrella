@@ -81,14 +81,17 @@ export class History<T> implements
     /**
      * `IAtom.reset()` implementation. Delegates to wrapped atom/cursor,
      * but too applies `changed` predicate to determine if there was a
-     * change and previous value should be recorded.
+     * change and if the previous value should be recorded.
      *
      * @param val
      */
     reset(val: T) {
         const prev = this.state.deref();
-        this.changed(prev, val) && this.record(prev);
         this.state.reset(val);
+        const changed = this.changed(prev, this.state.deref());
+        if (changed) {
+            this.record(prev);
+        }
         return val;
     }
 
@@ -96,15 +99,15 @@ export class History<T> implements
         const prev = this.state.deref();
         const prevV = getIn(prev, path);
         const curr = setIn(prev, path, val);
-        this.changed(prevV, getIn(curr, path)) && this.record(prev);
         this.state.reset(curr);
+        this.changed(prevV, getIn(curr, path)) && this.record(prev);
         return curr;
     }
 
     /**
      * `IAtom.swap()` implementation. Delegates to wrapped atom/cursor,
      * but too applies `changed` predicate to determine if there was a
-     * change and previous value should be recorded.
+     * change and if the previous value should be recorded.
      *
      * @param val
      */
@@ -113,7 +116,12 @@ export class History<T> implements
     }
 
     swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
-        return this.reset(updateIn(this.state.deref(), path, fn, ...args));
+        const prev = this.state.deref();
+        const prevV = getIn(prev, path);
+        const curr = updateIn(this.state.deref(), path, fn, ...args);
+        this.state.reset(curr);
+        this.changed(prevV, getIn(curr, path)) && this.record(prev);
+        return curr;
     }
 
     /**

@@ -1,3 +1,4 @@
+import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isIterable } from "@thi.ng/checks/is-iterable";
@@ -42,7 +43,7 @@ export function expand(acc: string[], parent: any[], rules: any[], opts: CSSOpts
             } else if (isFn) {
                 process(i, r());
             } else {
-                throw new Error(`quoted fn ('${r}') only allowed at head position`);
+                illegalArgs(`quoted fn ('${r}') only allowed at head position`);
             }
         } else if (isPlainObject(r)) {
             curr = Object.assign(curr || {}, r);

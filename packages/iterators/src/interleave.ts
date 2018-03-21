@@ -1,3 +1,5 @@
+import { illegalArity } from "@thi.ng/api/error";
+
 import { cycle } from "./cycle";
 import { map } from "./map";
 import { iterator } from "./iterator";
@@ -5,7 +7,7 @@ import { iterator } from "./iterator";
 export function* interleave(...inputs: Iterable<any>[]) {
     let n = inputs.length;
     if (n === 0) {
-        throw new Error(`no inputs given`);
+        illegalArity(0);
     }
     let iter = cycle(map(iterator, inputs));
     let chunk = [];

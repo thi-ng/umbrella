@@ -1,3 +1,5 @@
+import { illegalArity } from "@thi.ng/api/error";
+
 import { Reducer, Transducer } from "./api";
 import { reduce } from "./reduce";
 import { map } from "./xform/map";
@@ -18,7 +20,7 @@ export function transduce(...args: any[]): any {
         case 2:
             return map((x: Iterable<any>) => transduce(args[0], args[1], x));
         default:
-            throw new Error(`illegal arity ${args.length}`);
+            illegalArity(args.length);
     }
     const _rfn: Reducer<any, any> = args[0](args[1]);
     return reduce(_rfn, acc, xs);

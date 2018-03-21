@@ -1,3 +1,5 @@
+import { illegalArity } from "@thi.ng/api/error";
+
 export function fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) {
     let [cta, ctb, ctc] = ctors;
     switch (ctors.length) {
@@ -32,6 +34,6 @@ export function fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) {
                 return fn.apply(null, args);
             };
         default:
-            throw new Error("unsupported arity");
+            illegalArity(ctors.length);
     }
 }

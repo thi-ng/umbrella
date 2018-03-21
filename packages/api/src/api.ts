@@ -127,7 +127,7 @@ export interface IEnable {
      * @param opts optional implementation specific arg
      */
     enable(opts?: any);
-    toggle?();
+    toggle?(): boolean;
 }
 
 export interface IEquiv {
@@ -170,9 +170,9 @@ export type Listener = (e: Event) => void;
  * Also see `@INotify` decorator mixin
  */
 export interface INotify {
-    addListener(id: string, fn: Listener, scope?: any);
-    removeListener(id: string, fn: Listener, scope?: any);
-    notify(event: Event);
+    addListener(id: string, fn: Listener, scope?: any): boolean;
+    removeListener(id: string, fn: Listener, scope?: any): boolean;
+    notify(event: Event): void;
 }
 
 /**
@@ -293,5 +293,5 @@ export type Watch<T> = (id: string, oldState: T, newState: T) => void;
 export interface IWatch<T> {
     addWatch(id: string, fn: Watch<T>): boolean;
     removeWatch(id: string): boolean;
-    notifyWatches(oldState: T, newState: T);
+    notifyWatches(oldState: T, newState: T): void;
 }

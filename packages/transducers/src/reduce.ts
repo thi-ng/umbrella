@@ -1,3 +1,5 @@
+import { illegalArity } from "@thi.ng/api/error";
+
 import { Reducer } from "./api";
 import { isReduced, unreduced } from "./reduced";
 
@@ -14,7 +16,7 @@ export function reduce<A, B>(...args: any[]): A {
             xs = args[1];
             break;
         default:
-            throw new Error(`illegal arity ${args.length}`);
+            illegalArity(args.length);
     }
     const [init, complete, reduce] = args[0];
     acc = acc == null ? init() : acc;

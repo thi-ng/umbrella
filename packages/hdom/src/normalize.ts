@@ -1,3 +1,4 @@
+import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isFunction } from "@thi.ng/checks/is-function";
@@ -11,7 +12,7 @@ export function normalizeElement(spec: any[], keys: boolean) {
     let tag = spec[0];
     let hasAttribs = isPlainObject(spec[1]) && !implementsFunction(spec[1], "deref");
     if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
-        throw new Error(`${tag} is not a valid tag name`);
+        illegalArgs(`${tag} is not a valid tag name`);
     }
     // return orig if already normalized and satifies key requirement
     if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
