@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.0.22...@thi.ng/rstream@1.1.0) (2018-03-21)
+
+
+### Bug Fixes
+
+* **rstream:** bisect() add downstream impl checks, add tests ([2ad2f48](https://github.com/thi-ng/umbrella/commit/2ad2f48))
+
+
+### Features
+
+* **rstream:** add fromView(), update fromAtom() docs, update re-exports ([41bb385](https://github.com/thi-ng/umbrella/commit/41bb385))
+* **rstream:** add IDeref impl for Subscription ([907d599](https://github.com/thi-ng/umbrella/commit/907d599))
+* **rstream:** add merge()/sync() ctor wrappers ([1fee7d5](https://github.com/thi-ng/umbrella/commit/1fee7d5))
+* **rstream:** add StreamSync ([791a993](https://github.com/thi-ng/umbrella/commit/791a993))
+* **rstream:** add transduce(), update re-exports ([eec56de](https://github.com/thi-ng/umbrella/commit/eec56de))
+* **rstream:** fix [#6](https://github.com/thi-ng/umbrella/issues/6) update StreamMerge to support transduced input streams ([8026409](https://github.com/thi-ng/umbrella/commit/8026409))
+* **rstream:** Subscription stores last value and passes to new subs ([6b87bca](https://github.com/thi-ng/umbrella/commit/6b87bca))
+* **rstream:** update Sidechain*.next(), add unsubscribe() ([d18a115](https://github.com/thi-ng/umbrella/commit/d18a115))
+* **rstream:** update Subscription.unsubscribe() ([01a751e](https://github.com/thi-ng/umbrella/commit/01a751e))
+
+
+
+
 <a name="1.0.22"></a>
 ## [1.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.0.21...@thi.ng/rstream@1.0.22) (2018-03-19)
 
