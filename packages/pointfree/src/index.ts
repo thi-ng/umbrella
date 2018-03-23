@@ -76,7 +76,7 @@ const $stackFn = (f: StackProc) =>
 
 /**
  * Takes a result tuple returned by `run()` and unwraps one or more
- * items from result stack. If no `n` is given, default to single value
+ * items from result stack. If no `n` is given, defaults to single value
  * (TOS) and returns it as is. Returns an array for all other `n`.
  *
  * @param param0
