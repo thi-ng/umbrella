@@ -9,10 +9,20 @@ export type Stack = any[];
 export type StackEnv = any;
 export type StackFn = (stack: Stack, env?: StackEnv) => void;
 export type StackProgram = StackFn[];
+export type StackProc = StackFn | StackProgram;
 export type Trap = (e: Error, stack: Stack, program: StackProgram, i: number) => boolean;
 
-export const run = (stack: Stack, program: StackProgram, env: StackEnv = {}, onerror?: Trap) => {
+/**
+ * Executes program with given initial stack and optional environment.
+ *
+ * @param stack
+ * @param prog
+ * @param env
+ * @param onerror
+ */
+export const run = (stack: Stack, prog: StackProc, env: StackEnv = {}, onerror?: Trap) => {
     stack = stack || [];
+    const program = isArray(prog) ? prog : [prog];
     for (let i = 0, n = program.length; i < n; i++) {
         try {
             program[i](stack, env);
@@ -28,7 +38,7 @@ export const run = (stack: Stack, program: StackProgram, env: StackEnv = {}, one
     return [true, stack, env];
 };
 
-export const $ = DEBUG ?
+const $ = DEBUG ?
     (stack: Stack, n: number) => {
         if (stack.length < n) {
             illegalState(`stack underflow`);
@@ -36,7 +46,7 @@ export const $ = DEBUG ?
     } :
     () => { };
 
-export const $n = DEBUG ?
+const $n = DEBUG ?
     (m: number, n: number) => {
         if (m < n) {
             illegalState(`stack underflow`);
@@ -44,7 +54,7 @@ export const $n = DEBUG ?
     } :
     () => { };
 
-export const ensureStackFn = (f: StackFn | StackProgram) =>
+const $stackFn = (f: StackProc) =>
     isArray(f) ? word(f) : f;
 
 /**
@@ -54,7 +64,7 @@ export const ensureStackFn = (f: StackFn | StackProgram) =>
 *
 * @param op
 */
-export const op1 = (op: (x) => any) => {
+const op1 = (op: (x) => any) => {
     return (stack: Stack) => {
         const n = stack.length - 1;
         $n(n, 0);
@@ -70,14 +80,14 @@ export const op1 = (op: (x) => any) => {
  *
  * @param op
  */
-export const op2 = (op: (b, a) => any) => {
+const op2 = (op: (b, a) => any) => {
     return (stack: Stack) => {
         $(stack, 2);
         stack.push(op(stack.pop(), stack.pop()));
     }
 };
 
-export const tos = (stack: Stack) => stack[stack.length - 1];
+const tos = (stack: Stack) => stack[stack.length - 1];
 
 /**
  * Pushes current stack size on stack.
@@ -86,6 +96,8 @@ export const tos = (stack: Stack) => stack[stack.length - 1];
  * @param stack
  */
 export const depth = (stack: Stack) => stack.push(stack.length);
+
+export const nop = () => { };
 
 /**
  * ( ... x -- ... stack[x] )
@@ -120,6 +132,22 @@ export const drop2 = (stack: Stack) => {
 };
 
 /**
+ * If TOS is truthy then drop it:
+ *
+ * ( x -- )
+ *
+ * Else, no effect:
+ *
+ * ( x -- x )
+ */
+export const dropIf = (stack: Stack) => {
+    $(stack, 1);
+    if (tos(stack)) {
+        stack.length--;
+    }
+};
+
+/**
  * Higher order word.
  *
  * ( -- ...args )
@@ -132,6 +160,8 @@ export const push = (...args: any[]) => {
 
 /**
  * Pushes current env onto stack.
+ *
+ * ( -- env )
  *
  * @param stack
  * @param env
@@ -331,6 +361,13 @@ export const dec = (stack: Stack) => {
 };
 
 /**
+ * ( x -- -x )
+ *
+ * @param stack
+ */
+export const neg = op1((x) => -x);
+
+/**
  * Higher order word. Takes a StackProgram and returns it as StackFn to
  * be used like any word. Unknown stack effect.
  *
@@ -354,17 +391,18 @@ export const word = (prog: StackProgram, env?: StackEnv) =>
  * branches, respectively. When executed, pops TOS and runs only one of
  * the branches depending if TOS was truthy or not.
  *
+ * Note: Unlike JS `if() {...} else {...}` constructs, the actual
+ * conditional is NOT part of this word.
+ *
  * ( x -- ? )
  *
  * @param _then
  * @param _else
  */
-export const cond = (_then: StackFn | StackProgram, _else: StackFn | StackProgram) => {
-    _then = ensureStackFn(_then);
-    _else = ensureStackFn(_else);
+export const cond = (_then: StackProc, _else: StackProc = []) => {
     return (stack: Stack, env: StackEnv) => {
         $(stack, 1);
-        (stack.pop() ? <StackFn>_then : <StackFn>_else)(stack, env);
+        $stackFn(stack.pop() ? _then : _else)(stack, env);
     };
 };
 
@@ -375,20 +413,24 @@ export const cond = (_then: StackFn | StackProgram, _else: StackFn | StackProgra
  * specified and no other cases matched, run `default` program. In all
  * other cases throws an error.
  *
+ * Important: The default case has the original TOS re-added to the
+ * stack before execution.
+ *
  * @param cases
  */
-export const condM = (cases: IObjectOf<StackFn | StackProgram>) =>
+export const condM = (cases: IObjectOf<StackProc>) =>
     (stack: Stack, env: StackEnv) => {
         $(stack, 1);
         const tos = stack.pop();
         for (let k in cases) {
             if (tos == k) {
-                ensureStackFn(cases[k])(stack, env);
+                $stackFn(cases[k])(stack, env);
                 return;
             }
         }
         if (cases.default) {
-            ensureStackFn(cases.default)(stack, env);
+            stack.push(tos);
+            $stackFn(cases.default)(stack, env);
             return;
         }
         illegalState(`no matching case for: ${tos}`);
@@ -410,9 +452,9 @@ export const condM = (cases: IObjectOf<StackFn | StackProgram>) =>
  * @param test
  * @param body
  */
-export const loop = (test: StackFn | StackProgram, body: StackFn | StackProgram) => {
-    const _test = ensureStackFn(test);
-    const _body = ensureStackFn(body);
+export const loop = (test: StackProc, body: StackProc) => {
+    const _test = $stackFn(test);
+    const _body = $stackFn(body);
     return (stack: Stack, env: StackEnv) => {
         while (true) {
             dup(stack);
@@ -607,3 +649,8 @@ export const storeKey = (key: PropertyKey) =>
         $(stack, 1);
         env[key] = stack.pop();
     };
+
+export {
+    op1 as map,
+    op2 as map2
+}
