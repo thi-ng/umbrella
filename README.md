@@ -7,7 +7,7 @@ Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
 data / transformation oriented packages and building blocks reactive
 applications, components (not just UI related), dataflow.
 
-All packages:
+All/most packages:
 
 - have detailed, individual README files w/ small usage examples
 - versioned independently
@@ -45,6 +45,7 @@ difficulties, many combining functionality from several packages) in the
 | [`@thi.ng/interceptors`](./packages/interceptors) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors) | [changelog](./packages/interceptors/CHANGELOG.md) |
 | [`@thi.ng/iterators`](./packages/iterators) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md) |
 | [`@thi.ng/paths`](./packages/paths) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths) | [changelog](./packages/paths/CHANGELOG.md) |
+| [`@thi.ng/pointfree`](./packages/pointfree) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree) | [changelog](./packages/pointfree/CHANGELOG.md) |
 | [`@thi.ng/rle-pack`](./packages/rle-pack) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack) | [changelog](./packages/rle-pack/CHANGELOG.md) |
 | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) |
 | [`@thi.ng/router`](./packages/router) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router) | [changelog](./packages/router/CHANGELOG.md) |
