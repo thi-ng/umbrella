@@ -242,9 +242,11 @@ pf.run([3], pf.loop(pf.isPos, [pf.dup, pf.print, pf.dec]))
 
 The `map()`, `map2()`, `mapN()` higher order words can be used to transform stack items in place using vanilla JS functions:
 
-- `map(f)` - map TOS
-- `map2(f)` - pops top 2 stack items, pushes result back on stack
-- `mapN(f)` - map stack item @ TOS - n (see stack effects further below)
+- `map(f)` - replaces TOS with result of given function.
+- `map2(f)` - takes top 2 values from stack, calls function and writes
+  back result. The arg order is (TOS, TOS-1)
+- `mapN(f)` - pops TOS and uses it as index to transform stack item @
+  `stack[TOS]` w/ given transformation fn.
 
 ```typescript
 // full stack transformation
@@ -296,10 +298,10 @@ at word construction time and return a pre-configured stack function.
 | `dupIf` | If TOS is truthy: `( x -- x x )` |
 | `map(fn)` | `( x -- f(x) )` |
 | `map2(fn)` | `( x y -- f(x,y) )` |
-| `mapN(fn)` | `( n -- f(stack[-n]) )` |
+| `mapN(fn)` | `( n -- )`, and `stack[n]) = f(stack[n])` |
 | `nip` | `( x y -- y )` |
 | `over` | `( x y -- x y x )` |
-| `pick` | `( x -- stack[x] )` |
+| `pick` | `( n -- stack[n] )` |
 | `push(...args)` | `( -- ...args )` |
 | `rot` | `( x y z -- y z x )` |
 | `invrot` | `( x y z -- z x y )` |
@@ -330,7 +332,7 @@ at word construction time and return a pre-configured stack function.
 | `lsr` | `( x y -- x>>y )` |
 | `lsru` | `( x y -- x>>>y )` |
 | `bitAnd` | `( x y -- x&y )` |
-| `bitOr` | `( x y -- x|y )` |
+| `bitOr` | `( x y -- x\|y )` |
 | `bitXor` | `( x y -- x^y )` |
 | `bitNot` | `( x -- ~x )` |
 
@@ -342,7 +344,7 @@ at word construction time and return a pre-configured stack function.
 | `equiv` | `( x y -- equiv(x,y) )` |
 | `neq` | `( x y -- x!==y )` |
 | `and` | `( x y -- x&&y )` |
-| `or` | `( x y -- x||y )` |
+| `or` | `( x y -- x\|\|y )` |
 | `not` | `( x -- !x )` |
 | `lt` | `( x y -- x<y )` |
 | `gt` | `( x y -- x>y )` |
@@ -411,11 +413,32 @@ If the optional `env` is given, uses a shallow copy of that environment
 runtime. This is useful in conjunction with `pushEnv` and `store` or
 `storeKey` to save results of sub procedures in the main env.
 
+#### `wordU(prog: StackProgram, env?: StackEnv, n = 1)`
+
+Like `word()`, but uses `runU()` for execution and returns `n` unwrapped values from result stack.
+
+#### `unwrap(res: RunResult)`
+
+Takes a result tuple returned by `run()` and unwraps one or more items
+from result stack. If no n is given, defaults to single value (TOS) and
+returns it as is. Returns an array for all other n.
+
 #### `exec`
 
 Executes TOS as stack function and places result back on stack. Useful
 for dynamic function dispatch (e.g. based on conditionals or config
 loaded from env).
+
+#### `execQ`
+
+Pops TOS and executes it as stack program. TOS MUST be an array of
+values/words, i.e. an quotation).
+
+#### `collect`
+
+Pops TOS (a number) and then forms a tuple of the top `n` remaining
+stack values and pushes it as new TOS. The original collected stack
+values are removed from stack.
 
 ## Authors
 
