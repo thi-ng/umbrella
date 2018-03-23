@@ -2,13 +2,14 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { illegalState } from "@thi.ng/api/error";
 import { equiv as _equiv } from "@thi.ng/api/equiv";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
 
 const DEBUG = true;
 
 export type Stack = any[];
 export type StackEnv = any;
 export type StackFn = (stack: Stack, env?: StackEnv) => void;
-export type StackProgram = StackFn[];
+export type StackProgram = any[];
 export type StackProc = StackFn | StackProgram;
 export type Trap = (e: Error, stack: Stack, program: StackProgram, i: number) => boolean;
 export type RunResult = [boolean, Stack, StackEnv];
@@ -26,7 +27,12 @@ export const run = (stack: Stack, prog: StackProc, env: StackEnv = {}, onerror?:
     const program = isArray(prog) ? prog : [prog];
     for (let i = 0, n = program.length; i < n; i++) {
         try {
-            program[i](stack, env);
+            const p = program[i];
+            if (isFunction(p)) {
+                p(stack, env);
+            } else {
+                stack.push(p);
+            }
         } catch (e) {
             if (!onerror || !onerror(e, stack, program, i)) {
                 console.error(`${e.message} @ word #${i}`);
@@ -121,21 +127,29 @@ const tos = (stack: Stack) => stack[stack.length - 1];
  */
 export const depth = (stack: Stack) => stack.push(stack.length);
 
+/**
+ * Utility word w/ no stack nor side effect.
+ */
 export const nop = () => { };
 
 /**
+ * Uses TOS as index to look up a deeper stack value, then places it as
+ * new TOS.
+ *
  * ( ... x -- ... stack[x] )
  *
  * @param stack
  */
 export const pick = (stack: Stack) => {
-    $(stack, 1);
-    const n = stack.pop();
-    $(stack, n + 1);
-    stack.push(stack[stack.length - 1 - n]);
+    let n = stack.length - 1;
+    $n(n, 0);
+    $n(n -= stack.pop() + 1, 0);
+    stack.push(stack[n]);
 };
 
 /**
+ * Removes TOS from stack.
+ *
  * ( x -- )
  *
  * @param stack
@@ -146,6 +160,8 @@ export const drop = (stack: Stack) => {
 };
 
 /**
+ * Removes top 2 vals from stack.
+ *
  * ( x y -- )
  *
  * @param stack
@@ -191,6 +207,8 @@ export const push = (...args: any[]) => (stack: Stack) => stack.push(...args);
 export const pushEnv = (stack: Stack, env: StackEnv) => stack.push(env);
 
 /**
+ * Duplicates TOS on stack.
+ *
  * ( x -- x x )
  *
  * @param stack
@@ -201,6 +219,8 @@ export const dup = (stack: Stack) => {
 };
 
 /**
+ * Duplicates top 2 vals on stack.
+ *
  * ( x y -- x y x y )
  *
  * @param stack
@@ -653,7 +673,7 @@ export const gt = op2((b, a) => a > b);
 export const lteq = op2((b, a) => a <= b);
 
 /**
- * ( x y -- x=>y )
+ * ( x y -- x>=y )
  *
  * @param stack
  */
@@ -735,7 +755,7 @@ export const storeAt = (stack: Stack) => {
  * Loads value for `key` from env and pushes it on stack.
  *
  * ( key -- env[key] )
- * 
+ *
  * @param stack
  * @param env
  */
@@ -795,10 +815,25 @@ export const mapN = (op: (x) => any) =>
     (stack: Stack) => {
         let n = stack.length - 1;
         $n(n, 0);
-        n -= stack.pop() + 1;
-        $n(n, 0);
+        $n(n -= stack.pop() + 1, 0);
         stack[n] = op(stack[n]);
     };
+
+/**
+ * Pops TOS (a number) and then forms a tuple of the top `n` remaining
+ * values and pushes it as new TOS. The original collected stack values
+ * are removed from stack.
+ *
+ * ( ... n --- ... [...] )
+ *
+ * @param stack
+ */
+export const collect = (stack: Stack) => {
+    let n = stack.length - 1, m;
+    $n(n, 0);
+    $n(n -= (m = stack.pop()), 0);
+    stack.push(stack.splice(n, m));
+};
 
 export {
     op1 as map,

@@ -5,7 +5,7 @@
 ## About
 
 [Pointfree](https://en.wikipedia.org/wiki/Concatenative_programming_language),
-functional composition via lightweight (1.8KB gzipped) Forth style stack
+functional composition via lightweight (2KB gzipped) Forth style stack
 execution engine using vanilla JS functions as words and arbitrary stack
 values (incl. other stack functions / words). Supports nested execution
 environments, quotations, stack mapping and currently includes 60+ stack
@@ -31,13 +31,13 @@ intermediate values from/to the stack and stack programs can have any number of 
 
 ALPHA
 
-- [ ] support literal numbers, strings, arrays, objects in program
+- [x] support literal numbers, strings, arrays, objects in program
 - [ ] execution context wrapper for stack(s), env, error traps
 - [ ] env stack & more env accessors
 - [ ] more string, array & object words
 - [ ] full stack consumer /  transformer
 - [ ] transducer wrapper
-- [ ] more (useful) examples
+- [x] more (useful) examples
 - [ ] string definitions / program parsing
 
 ## Installation
@@ -71,7 +71,7 @@ env]`.
 
 Alternatively, we can use `runU()` to return an unwrapped section of the result stack. We use this for some of the examples below.
 
-A stack program consists of an array of functions with this signature:
+A stack program consists of an array of any values and functions with this signature:
 
 ```
 type Stack = any[];
@@ -79,7 +79,9 @@ type StackEnv = any;
 type StackFn = (stack: Stack, env?: StackEnv) => void;
 ```
 
-Each program function can arbitrarily modify both the stack and/or environment.`
+Each program function can arbitrarily modify both the stack and/or environment.
+
+Any non-function value in the program is placed on the stack as is.
 
 ```typescript
 import * as pf from "@thi.ng/pointfree";
@@ -137,7 +139,7 @@ pow2([-10])
 
 // compute magnitude of 2d vector
 // ( x y -- mag )
-const mag2 = pf.word([
+const mag2 = pf.wordU([
     pow2,    // ( x y -- x y^2 )
     pf.swap, // ( x y^2 -- y^2 x )
     pow2,    // ( y^2 x -- y^2 x^2 )
@@ -145,27 +147,43 @@ const mag2 = pf.word([
     pf.sqrt
 ]);
 
-mag2([-10, 10])[1];
-// [ 14.142135623730951 ]
+mag2([-10, 10])
+// 14.142135623730951
 ```
 
 ### Quotations
 
-Quoatations are programs stored on the stack and enable a form of
-dynamic meta programming. Quotations are executed via `execQ`. This
-example uses a quoted form of above `pow2` word:
+Quoatations are programs (arrays) stored on the stack itself and enable
+a form of dynamic meta programming. Quotations are executed via `execQ`.
+This example uses a quoted form of above `pow2` word:
 
 ```typescript
 pf.runU([10], [
     // push quotation on stack
-    pf.push([pf.dup, pf.mul])
+    [pf.dup, pf.mul],
     // execute
     pf.execQ,
-    // output result
-    pf.print
 ]);
 // 100
 ```
+
+```typescript
+// a quotation is just an array of values/words
+// this function is a quotation generator
+const tupleQ = (n) => [n, pf.collect];
+// predefine fixed size tuples
+const pair = tupleQ(2);
+const triple = tupleQ(3);
+// define word which takes an id & tuple quotation
+// when executed first builds tuple on stack
+// then stores it under `id` in current environment
+const storeTuple = (id, tuple) => pf.word([tuple, pf.execQ, id, pf.store]);
+
+// transform stack into tuples, stored in env
+pf.run([1,2,3,4,5], [storeTuple("a", pair), storeTuple("b", triple)])[2];
+// { a: [ 4, 5 ], b: [ 1, 2, 3 ] }
+```
+
 
 ### Conditionals
 
@@ -186,24 +204,27 @@ abs([42])
 
 ```typescript
 // `condM` is similar to JS `switch() { case ... }`
-const classify = pf.condM({
-    0: pf.push("zero"),
-    1: pf.push("one"),
-    default: [
-        pf.dup,
-        pf.isPos,
-        pf.cond(pf.push("many"), pf.push("invalid"))
-    ]
-});
+const classify = (x) =>
+    pf.runU([x],
+        pf.condM({
+            0: ["zero"],
+            1: ["one"],
+            default: [
+                pf.dup,
+                pf.isPos,
+                pf.cond(["many"], ["invalid"])
+            ]
+        })
+    );
 
-classify([0])[1]
-// [ "zero" ]
-classify([1])[1]
-// [ "one" ]
-classify([100])[1]
-// [ "many" ]
-classify([-100])[1]
-// [ "invalid" ]
+classify(0);
+// "zero"
+classify(1);
+// "one"
+classify(100);
+// "many"
+classify(-1);
+// "invalid"
 ```
 
 ### Loops
@@ -226,17 +247,21 @@ The `map()`, `map2()`, `mapN()` higher order words can be used to transform stac
 - `mapN(f)` - map stack item @ TOS - n (see stack effects further below)
 
 ```typescript
+// full stack transformation
 pf.run(
-    // data items, num items
-    [10,20,30,40, 4],
+    // data items
+    [10,20,30,40],
     [
+        // push stack depth (i.e. number of items) on stack
+        pf.depth,
+        // define loop construct
         pf.loop(
             // test predicate
             pf.isPos,
             [
                 // duplicate counter
                 pf.dup,
-                // map item @ TOS - curr counter
+                // map item @ stack[TOS - counter]
                 pf.mapN(x => x * 10),
                 // decrease counter
                 pf.dec
@@ -245,23 +270,6 @@ pf.run(
         pf.drop
     ]);
 // [ true, [ 100, 200, 300, 400 ], {} ]
-```
-
-### Environment as accumulator
-
-```typescript
-makeIDObject = (k) => pf.word([
-    // this inner word uses a blank environment
-    // to create new objects of `{id: <TOS>}
-    pf.word([pf.push("id"), pf.store, pf.pushEnv], {}),
-    // push given key `k` on stack
-    pf.push(k),
-    // store env returned from inner word under `k` in curr env
-    pf.store
-]);
-// transform stack into result object
-pf.run([1, 2], [makeIDObject("a"), makeIDObject("b")])[2]
-// { a: { id: 2 }, b: { id: 1 } }
 ```
 
 TODO more examples forthcoming
@@ -278,6 +286,8 @@ at word construction time and return a pre-configured stack function.
 
 | Word | Stack effect |
 | --- | --- |
+| `collect` | `( n -- [...] )` |
+| `depth` | `( -- stack.length )` |
 | `drop` | `( x -- )` |
 | `drop2` | `( x y -- )` |
 | `dropIf` | If TOS is truthy: `( x -- )` |
@@ -296,7 +306,6 @@ at word construction time and return a pre-configured stack function.
 | `swap` | `( x y -- y x )` |
 | `swap2` | `( a b c d -- c d a b )` |
 | `tuck` | `( x y -- y x y )` |
-| `depth` | `( -- stack.length )` |
 
 ### Dynamic execution
 
