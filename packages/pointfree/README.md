@@ -8,8 +8,8 @@
 functional composition via lightweight (1.8KB gzipped) Forth style stack
 execution engine using vanilla JS functions as words and arbitrary stack
 values (incl. other stack functions / words). Supports nested execution
-environments and currently includes approx. 50 stack operators,
-conditionals, looping constructs, math & logic ops etc.
+environments, quotations, stack mapping and currently includes 60+ stack
+operators, conditionals, looping constructs, math, binary & logic ops etc.
 
 Originally, this project started out as precursor of the [Charlie Forth
 VM/REPL](http://forth.thi.ng) (JS) and
@@ -64,7 +64,12 @@ has on the stack structure.
 
 #### `run(stack: Stack, program: StackProgram, env?: StackEnv, onerror?: Trap)`
 
-`run()` takes an initial stack, a pointfree stack program and optional environment (an arbitrary object), executes program and then returns tuple of: `[status, stack, env]`
+`run()` is the main function of this library. It takes an initial stack,
+a pointfree stack program and optional environment (an arbitrary
+object), executes program and then returns tuple of: `[status, stack,
+env]`.
+
+Alternatively, we can use `runU()` to return an unwrapped section of the result stack. We use this for some of the examples below.
 
 A stack program consists of an array of functions with this signature:
 
@@ -94,6 +99,10 @@ pf.run(
 
 ### Custom word definitions
 
+Custom words can be defined via the `word()` and `wordU()` functions. The latter uses `runU()` to execute the word and returns unwrapped value(s) from result.
+
+*Important*: Unwrapped words CANNOT be used as part of larger stack programs. Their use case is purely for standalone application.
+
 ```typescript
 // define new word to compute multiply-add:
 // ( x y z -- x*y+z )
@@ -102,9 +111,20 @@ const madd = pf.word([pf.invrot, pf.mul, pf.add]);
 // compute 3 * 5 + 10
 madd([3, 5, 10]);
 // [ true, [25], {}]
+
+// unwrapped version
+const maddU = pf.wordU([pf.invrot, pf.mul, pf.add]);
+
+// compute 3 * 5 + 10
+maddU([3, 5, 10]);
+// 25
 ```
 
-### Vanilla JS words
+### Factoring
+
+Factoring is a crucial aspect of developing programs in concatenative
+languages. The general idea is to decompose a larger solution into
+smaller re-usable words.
 
 ```typescript
 // compute square of x
@@ -112,7 +132,7 @@ madd([3, 5, 10]);
 const pow2 = pf.word([pf.dup, pf.mul]);
 
 // test word with given stack
-pow2([10])
+pow2([-10])
 // [true, [100], {}]
 
 // compute magnitude of 2d vector
@@ -122,11 +142,29 @@ const mag2 = pf.word([
     pf.swap, // ( x y^2 -- y^2 x )
     pow2,    // ( y^2 x -- y^2 x^2 )
     pf.add,  // ( y^2 x^2 -- sum )
-    pf.map((x)=> Math.sqrt(x))
+    pf.sqrt
 ]);
 
 mag2([-10, 10])[1];
 // [ 14.142135623730951 ]
+```
+
+### Quotations
+
+Quoatations are programs stored on the stack and enable a form of
+dynamic meta programming. Quotations are executed via `execQ`. This
+example uses a quoted form of above `pow2` word:
+
+```typescript
+pf.runU([10], [
+    // push quotation on stack
+    pf.push([pf.dup, pf.mul])
+    // execute
+    pf.execQ,
+    // output result
+    pf.print
+]);
+// 100
 ```
 
 ### Conditionals
@@ -135,13 +173,15 @@ See `cond` documentation further below...
 
 ```typescript
 // negate TOS item ONLY if negative, else do nothing
-const abs = pf.word([pf.dup, pf.isNeg, pf.cond(pf.neg)]);
+const abs = pf.wordU([pf.dup, pf.isNeg, pf.cond(pf.neg)]);
 
-abs([-42], abs)[1]
-// [ 42 ]
+// test w/ negative inputs
+abs([-42])
+// 42
 
-abs([42], abs)[1]
-// [ 42 ]
+// test w/ positive inputs
+abs([42])
+// 42
 ```
 
 ```typescript
@@ -170,21 +210,53 @@ classify([-100])[1]
 
 ```typescript
 // print countdown from 3
-pf.run([3], [pf.loop(pf.isPos, [pf.dup, pf.print, pf.dec])])
+pf.run([3], pf.loop(pf.isPos, [pf.dup, pf.print, pf.dec]))
 // 3
 // 2
 // 1
 // [ true, [ 0 ], undefined ]
 ```
 
-### Environment accumulator
+### In-place stack value transformation
+
+The `map()`, `map2()`, `mapN()` higher order words can be used to transform stack items in place using vanilla JS functions:
+
+- `map(f)` - map TOS
+- `map2(f)` - pops top 2 stack items, pushes result back on stack
+- `mapN(f)` - map stack item @ TOS - n (see stack effects further below)
+
+```typescript
+pf.run(
+    // data items, num items
+    [10,20,30,40, 4],
+    [
+        pf.loop(
+            // test predicate
+            pf.isPos,
+            [
+                // duplicate counter
+                pf.dup,
+                // map item @ TOS - curr counter
+                pf.mapN(x => x * 10),
+                // decrease counter
+                pf.dec
+            ]),
+        // remove counter from stack
+        pf.drop
+    ]);
+// [ true, [ 100, 200, 300, 400 ], {} ]
+```
+
+### Environment as accumulator
 
 ```typescript
 makeIDObject = (k) => pf.word([
     // this inner word uses a blank environment
     // to create new objects of `{id: <TOS>}
     pf.word([pf.push("id"), pf.store, pf.pushEnv], {}),
+    // push given key `k` on stack
     pf.push(k),
+    // store env returned from inner word under `k` in curr env
     pf.store
 ]);
 // transform stack into result object
@@ -214,6 +286,7 @@ at word construction time and return a pre-configured stack function.
 | `dupIf` | If TOS is truthy: `( x -- x x )` |
 | `map(fn)` | `( x -- f(x) )` |
 | `map2(fn)` | `( x y -- f(x,y) )` |
+| `mapN(fn)` | `( n -- f(stack[-n]) )` |
 | `nip` | `( x y -- y )` |
 | `over` | `( x y -- x y x )` |
 | `pick` | `( x -- stack[x] )` |
@@ -224,6 +297,13 @@ at word construction time and return a pre-configured stack function.
 | `swap2` | `( a b c d -- c d a b )` |
 | `tuck` | `( x y -- y x y )` |
 | `depth` | `( -- stack.length )` |
+
+### Dynamic execution
+
+| Word | Stack effect |
+| --- | --- |
+| `exec` | ` ( w -- ? )` |
+| `execQ` | ` ( q -- ? )` |
 
 ### Math
 
@@ -237,6 +317,13 @@ at word construction time and return a pre-configured stack function.
 | `inc` | `( x -- x+1 )` |
 | `dec` | `( x -- x-1 )` |
 | `neg` | `( x -- -x )` |
+| `lsl` | `( x y -- x<<y )` |
+| `lsr` | `( x y -- x>>y )` |
+| `lsru` | `( x y -- x>>>y )` |
+| `bitAnd` | `( x y -- x&y )` |
+| `bitOr` | `( x y -- x|y )` |
+| `bitXor` | `( x y -- x^y )` |
+| `bitNot` | `( x -- ~x )` |
 
 ### Logic
 
@@ -267,10 +354,12 @@ at word construction time and return a pre-configured stack function.
 | `storeKey(k)` | `( x -- )` |
 | `pushEnv` | `( -- env )` |
 
-### Misc
+### Arrays, objects, strings
 
 | Word | Stack effect |
 | --- | --- |
+| `at` | `( obj k -- obj[k] )` |
+| `storeAt` | `( val obj k -- )` |
 | `length` | `( x -- x.length )` |
 | `print` | `( x -- )` |
 
