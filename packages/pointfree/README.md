@@ -103,8 +103,6 @@ pf.run(
 
 Custom words can be defined via the `word()` and `wordU()` functions. The latter uses `runU()` to execute the word and returns unwrapped value(s) from result.
 
-*Important*: Unwrapped words CANNOT be used as part of larger stack programs. Their use case is purely for standalone application.
-
 ```typescript
 // define new word to compute multiply-add:
 // ( x y z -- x*y+z )
@@ -126,7 +124,7 @@ maddU([3, 5, 10]);
 
 Factoring is a crucial aspect of developing programs in concatenative
 languages. The general idea is to decompose a larger solution into
-smaller re-usable words.
+smaller re-usable words and/or quotations.
 
 ```typescript
 // compute square of x
@@ -154,8 +152,10 @@ mag2([-10, 10])
 ### Quotations
 
 Quoatations are programs (arrays) stored on the stack itself and enable
-a form of dynamic meta programming. Quotations are executed via `execQ`.
-This example uses a quoted form of above `pow2` word:
+a form of dynamic meta programming. Quoations also can be used like
+Lambdas in functional programming, though they're not Closures.
+Quotations are executed via `execQ`. This example uses a quoted form of
+above `pow2` word:
 
 ```typescript
 pf.runU([10], [
@@ -167,6 +167,9 @@ pf.runU([10], [
 // 100
 ```
 
+Since quoatation are just arrays, we can use the ES6 spread operator to
+resolve them in a larger word/program (a form of inlining code).
+
 ```typescript
 // a quotation is just an array of values/words
 // this function is a quotation generator
@@ -174,16 +177,26 @@ const tupleQ = (n) => [n, pf.collect];
 // predefine fixed size tuples
 const pair = tupleQ(2);
 const triple = tupleQ(3);
-// define word which takes an id & tuple quotation
+
+// define quotation which takes an id and when executed
+// stores TOS under id in current environment
+const storeQ = (id) => [id, pf.store]
+
+// define word which combines tupleQ & storeQ using inlining
 // when executed first builds tuple on stack
 // then stores it under `id` in current environment
-const storeTuple = (id, tuple) => pf.word([tuple, pf.execQ, id, pf.store]);
+const storeTuple = (id, tuple) => pf.word([...tuple, ...storeQ(id)]);
+// alternatively we could write:
+pf.word([tuple, pf.execQ, storeQ(id), pf.execQ]);
 
 // transform stack into tuples, stored in env
 pf.run([1,2,3,4,5], [storeTuple("a", pair), storeTuple("b", triple)])[2];
 // { a: [ 4, 5 ], b: [ 1, 2, 3 ] }
-```
 
+// same again without quotations
+pf.run([1,2,3,4,5], [2, pf.collect, "a", pf.store, 3, pf.collect, "b", pf.store])[2]
+// { a: [ 4, 5 ], b: [ 1, 2, 3 ] }
+```
 
 ### Conditionals
 
@@ -371,6 +384,7 @@ at word construction time and return a pre-configured stack function.
 | --- | --- |
 | `at` | `( obj k -- obj[k] )` |
 | `storeAt` | `( val obj k -- )` |
+| `append` | `( val arr -- )` |
 | `length` | `( x -- x.length )` |
 | `print` | `( x -- )` |
 
@@ -403,7 +417,7 @@ executes body. Repeats while test is truthy.
 
 ### Word creation and indirect execution
 
-#### `word(prog: StackProgram, env?: StackEnv)`
+#### `word(prog: StackProgram, env?: StackEnv, mergeEnv = false)`
 
 Higher order word. Takes a StackProgram and returns it as StackFn to be
 used like any other word.
@@ -413,7 +427,7 @@ If the optional `env` is given, uses a shallow copy of that environment
 runtime. This is useful in conjunction with `pushEnv` and `store` or
 `storeKey` to save results of sub procedures in the main env.
 
-#### `wordU(prog: StackProgram, env?: StackEnv, n = 1)`
+#### `wordU(prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = false)`
 
 Like `word()`, but uses `runU()` for execution and returns `n` unwrapped values from result stack.
 
@@ -432,7 +446,7 @@ loaded from env).
 #### `execQ`
 
 Pops TOS and executes it as stack program. TOS MUST be an array of
-values/words, i.e. an quotation).
+values/words, i.e. a quotation).
 
 #### `collect`
 

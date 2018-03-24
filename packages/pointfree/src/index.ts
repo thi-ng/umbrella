@@ -4,7 +4,7 @@ import { equiv as _equiv } from "@thi.ng/api/equiv";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 
-const DEBUG = true;
+const SAFE = true;
 
 export type Stack = any[];
 export type StackEnv = any;
@@ -55,20 +55,12 @@ export const run = (stack: Stack, prog: StackProc, env: StackEnv = {}, onerror?:
 export const runU = (stack: Stack, prog: StackProc, n = 1, env: StackEnv = {}, onerror?: Trap) =>
     unwrap(run(stack, prog, env, onerror), n);
 
-const $ = DEBUG ?
-    (stack: Stack, n: number) => {
-        if (stack.length < n) {
-            illegalState(`stack underflow`);
-        }
-    } :
+const $n = SAFE ?
+    (m: number, n: number) => (m < n) && illegalState(`stack underflow`) :
     () => { };
 
-const $n = DEBUG ?
-    (m: number, n: number) => {
-        if (m < n) {
-            illegalState(`stack underflow`);
-        }
-    } :
+const $ = SAFE ?
+    (stack: Stack, n: number) => $n(stack.length, n) :
     () => { };
 
 const $stackFn = (f: StackProc) =>
@@ -484,23 +476,25 @@ export const neg = op1((x) => -x);
  * be used like any word. Unknown stack effect.
  *
  * If the optional `env` is given, uses a shallow copy of that
- * environment (one per invocation) instead of the main one passed by
- * `run()` at runtime. This is useful in conjunction with `pushEnv()`
- * and `store()` or `storeKey()` to save results of sub procedures in
- * the main env.
+ * environment (one per invocation) instead of the current one passed by
+ * `run()` at runtime. If `mergeEnv` is true, the user provided env will
+ * be merged with the current env (also shallow copies). This is useful in
+ * conjunction with `pushEnv()` and `store()` or `storeKey()` to save
+ * results of sub procedures in the main env.
  *
  * ( ? -- ? )
  *
  * @param prog
  * @param env
+ * @param mergeEnv
  */
-export const word = (prog: StackProgram, env?: StackEnv) =>
+export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = false) =>
     (stack: Stack, _env: StackEnv) =>
-        run(stack, prog, env ? { ...env } : _env);
+        run(stack, prog, env ? mergeEnv ? { ..._env, ...env } : { ...env } : _env);
 
-export const wordU = (prog: StackProgram, env?: StackEnv, n = 1) =>
+export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = false) =>
     (stack: Stack, _env: StackEnv) =>
-        runU(stack, prog, n, env ? { ...env } : _env);
+        runU(stack, prog, n, env ? mergeEnv ? { ..._env, ...env } : { ...env } : _env);
 
 /**
  * Higher order word. Takes two stack programs: truthy and falsey
@@ -597,8 +591,8 @@ export const exec = (stack: Stack, env: StackEnv) => {
 };
 
 /**
- * Pops TOS and executes it as stack program. TOS MUST be an array of
- * words, i.e. an quotation).
+ * Pops TOS and executes it as stack program. TOS MUST be a valid
+ * StackProgram (array of values/words, i.e. a quotation).
  *
  * ( x -- ? )
  *
@@ -752,6 +746,20 @@ export const storeAt = (stack: Stack) => {
 };
 
 /**
+ * Pushes `val` into array @ TOS.
+ *
+ * ( val arr -- )
+ *
+ * @param stack
+ */
+export const append = (stack: Stack) => {
+    const n = stack.length - 2;
+    $n(n, 0);
+    stack[n + 1].push(stack[n]);
+    stack.length = n;
+};
+
+/**
  * Loads value for `key` from env and pushes it on stack.
  *
  * ( key -- env[key] )
@@ -834,6 +842,25 @@ export const collect = (stack: Stack) => {
     $n(n -= (m = stack.pop()), 0);
     stack.push(stack.splice(n, m));
 };
+
+/**
+ * Higher order helper word to `collect()` tuples of pre-defined size
+ * `n`. The size can be given as number or a stack function producing a
+ * number.
+ *
+ * ( ... -- [...])
+ *
+ * @param n
+ */
+export const tuple = (n: number | StackFn) => word([n, collect]);
+
+/**
+ * Higher order helper word to convert a TOS tuple/array into a string
+ * using `Array.join()` with given `sep`arator.
+ *
+ * @param sep
+ */
+export const join = (sep = "") => op1((x) => x.join(sep));
 
 export {
     op1 as map,
