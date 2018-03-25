@@ -1,11 +1,12 @@
 import * as assert from "assert";
 import * as pf from "../src/index";
+import { RunResult } from "../src/api";
 
 describe("pointfree", () => {
 
     it("unwrap", () => {
-        const res: pf.RunResult = [true, [1, 2, 3], {}];
-        assert.equal(pf.unwrap(<any>[, []]), undefined);
+        const res: RunResult = [[[1, 2, 3], {}], true];
+        assert.equal(pf.unwrap([[[], {}], true]), undefined);
         assert.equal(pf.unwrap(res), 3);
         assert.deepEqual(pf.unwrap(res, 2), [2, 3]);
         assert.deepEqual(pf.unwrap(res, 3), [1, 2, 3]);
@@ -14,7 +15,7 @@ describe("pointfree", () => {
 
     it("condM", () => {
         const classify = (x) =>
-            pf.runU([x],
+            pf.runU([[x], {}],
                 pf.condM({
                     0: ["zero"],
                     1: ["one"],
