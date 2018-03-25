@@ -11,6 +11,12 @@ values (incl. other stack functions / words). Supports nested execution
 environments, quotations, stack mapping and currently includes 60+ stack
 operators, conditionals, looping constructs, math, binary & logic ops etc.
 
+For a great overview & history of this type of this type of programming,
+please see John Purdy's talk @ Stanford Computer Systems Colloquium
+Seminar 2017:
+
+- [Concatenative Programming: From Ivory to Metal](https://www.youtube.com/watch?v=_IgqJr8jG8M)
+
 Originally, this project started out as precursor of the [Charlie Forth
 VM/REPL](http://forth.thi.ng) (JS) and
 [@thi.ng/synstack](http://thi.ng/synstack) (C11), but has since been
@@ -25,7 +31,8 @@ related to
 however the pointfree method and stack as communication medium between
 different sub-processes *can* be more powerful, since each sub-process
 ("words" in Forth-speak) can consume or produce any number of
-intermediate values from/to the stack and stack programs can have any number of nested [conditionals](#control-flow).
+intermediate values from/to the stack and stack programs can have any
+number of nested [conditionals](#control-flow).
 
 ## Status
 
@@ -34,7 +41,7 @@ ALPHA
 - [x] support literal numbers, strings, arrays, objects in program
 - [ ] execution context wrapper for stack(s), env, error traps
 - [ ] env stack & more env accessors
-- [ ] more string, array & object words
+- [x] more string, array & object words
 - [ ] full stack consumer /  transformer
 - [ ] transducer wrapper
 - [x] more (useful) examples
@@ -69,17 +76,21 @@ a pointfree stack program and optional environment (an arbitrary
 object), executes program and then returns tuple of: `[status, stack,
 env]`.
 
-Alternatively, we can use `runU()` to return an unwrapped section of the result stack. We use this for some of the examples below.
+Alternatively, we can use `runU()` to return an unwrapped section of the
+result stack. We use this for some of the examples below.
 
 A stack program consists of an array of any values and functions with this signature:
 
 ```
 type Stack = any[];
 type StackEnv = any;
-type StackFn = (stack: Stack, env?: StackEnv) => void;
+type StackFn = (stack: Stack, env?: StackEnv) => Stack;
 ```
 
-Each program function can arbitrarily modify both the stack and/or environment.
+Each program function ("words") can arbitrarily modify both the stack
+and/or environment and return a stack (usually the same instance as
+passed in but could also produce a new one). Most words are pure
+functions, but they don't have to be.
 
 Any non-function value in the program is placed on the stack as is.
 
@@ -96,12 +107,21 @@ pf.run(
         pf.add,  // ( 10 1 5 -- 10 6 )
         pf.mul,  // ( 10 6 -- 60 )
     ])
-// [ true, [6], {}]
+// [ true, [ 60 ], {}]
+
+// this is the same as this functional composition:
+pf.mul(pf.add(pf.add([10, 1, 2, 3])))
+// [ 60 ]
 ```
 
 ### Custom word definitions
 
-Custom words can be defined via the `word()` and `wordU()` functions. The latter uses `runU()` to execute the word and returns unwrapped value(s) from result.
+Custom words can be defined via the `word()` and `wordU()` functions.
+The latter uses `runU()` to execute the word and returns unwrapped
+value(s) from result tuple.
+
+*Important*: Unwrapped words CANNOT be used as part of larger stack
+programs. Their use case is purely for standalone application.
 
 ```typescript
 // define new word to compute multiply-add:
@@ -124,7 +144,7 @@ maddU([3, 5, 10]);
 
 Factoring is a crucial aspect of developing programs in concatenative
 languages. The general idea is to decompose a larger solution into
-smaller re-usable words and/or quotations.
+smaller re-usable units, words, quotations.
 
 ```typescript
 // compute square of x
@@ -153,9 +173,9 @@ mag2([-10, 10])
 
 Quoatations are programs (arrays) stored on the stack itself and enable
 a form of dynamic meta programming. Quoations also can be used like
-Lambdas in functional programming, though they're not Closures.
-Quotations are executed via `execQ`. This example uses a quoted form of
-above `pow2` word:
+Lambdas/anonymous functions in functional programming, though they're
+not Closures. Quotations are executed via `execQ`. This example uses a
+quoted form of above `pow2` word:
 
 ```typescript
 pf.runU([10], [
@@ -168,7 +188,7 @@ pf.runU([10], [
 ```
 
 Since quoatation are just arrays, we can use the ES6 spread operator to
-resolve them in a larger word/program (a form of inlining code).
+resolve them in a larger word/program (i.e. as a form of inlining code).
 
 ```typescript
 // a quotation is just an array of values/words
@@ -429,7 +449,8 @@ runtime. This is useful in conjunction with `pushEnv` and `store` or
 
 #### `wordU(prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = false)`
 
-Like `word()`, but uses `runU()` for execution and returns `n` unwrapped values from result stack.
+Like `word()`, but uses `runU()` for execution and returns `n` unwrapped
+values from result stack.
 
 #### `unwrap(res: RunResult)`
 
