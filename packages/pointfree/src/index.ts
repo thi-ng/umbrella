@@ -8,7 +8,7 @@ const SAFE = true;
 
 export type Stack = any[];
 export type StackEnv = any;
-export type StackFn = (stack: Stack, env?: StackEnv) => void;
+export type StackFn = (stack: Stack, env?: StackEnv) => Stack;
 export type StackProgram = any[];
 export type StackProc = StackFn | StackProgram;
 export type Trap = (e: Error, stack: Stack, program: StackProgram, i: number) => boolean;
@@ -66,6 +66,8 @@ const $ = SAFE ?
 const $stackFn = (f: StackProc) =>
     isArray(f) ? word(f) : f;
 
+const tos = (stack: Stack) => stack[stack.length - 1];
+
 /**
  * Takes a result tuple returned by `run()` and unwraps one or more
  * items from result stack. If no `n` is given, defaults to single value
@@ -91,6 +93,7 @@ const op1 = (op: (x) => any) => {
         const n = stack.length - 1;
         $n(n, 0);
         stack[n] = op(stack[n]);
+        return stack;
     }
 };
 
@@ -107,9 +110,8 @@ const op2 = (op: (b, a) => any) =>
         const n = stack.length - 2;
         $n(n, 0);
         stack[n] = op(stack.pop(), stack[n]);
+        return stack;
     };
-
-const tos = (stack: Stack) => stack[stack.length - 1];
 
 /**
  * Pushes current stack size on stack.
@@ -117,12 +119,13 @@ const tos = (stack: Stack) => stack[stack.length - 1];
  * ( -- n )
  * @param stack
  */
-export const depth = (stack: Stack) => stack.push(stack.length);
+export const depth = (stack: Stack) =>
+    (stack.push(stack.length), stack);
 
 /**
  * Utility word w/ no stack nor side effect.
  */
-export const nop = () => { };
+export const nop = (stack: Stack) => stack;
 
 /**
  * Uses TOS as index to look up a deeper stack value, then places it as
@@ -137,6 +140,7 @@ export const pick = (stack: Stack) => {
     $n(n, 0);
     $n(n -= stack.pop() + 1, 0);
     stack.push(stack[n]);
+    return stack;
 };
 
 /**
@@ -146,10 +150,8 @@ export const pick = (stack: Stack) => {
  *
  * @param stack
  */
-export const drop = (stack: Stack) => {
-    $(stack, 1);
-    stack.length--;
-};
+export const drop = (stack: Stack) =>
+    ($(stack, 1), stack.length-- , stack);
 
 /**
  * Removes top 2 vals from stack.
@@ -158,10 +160,8 @@ export const drop = (stack: Stack) => {
  *
  * @param stack
  */
-export const drop2 = (stack: Stack) => {
-    $(stack, 2);
-    stack.length -= 2;
-};
+export const drop2 = (stack: Stack) =>
+    ($(stack, 2), stack.length -= 2, stack);
 
 /**
  * If TOS is truthy then drop it:
@@ -172,12 +172,8 @@ export const drop2 = (stack: Stack) => {
  *
  * ( x -- x )
  */
-export const dropIf = (stack: Stack) => {
-    $(stack, 1);
-    if (tos(stack)) {
-        stack.length--;
-    }
-};
+export const dropIf = (stack: Stack) =>
+    ($(stack, 1), tos(stack) && stack.length-- , stack);
 
 /**
  * Higher order word.
@@ -186,7 +182,8 @@ export const dropIf = (stack: Stack) => {
  *
  * @param args
  */
-export const push = (...args: any[]) => (stack: Stack) => stack.push(...args);
+export const push = (...args: any[]) =>
+    (stack: Stack) => (stack.push(...args), stack);
 
 /**
  * Pushes current env onto stack.
@@ -196,7 +193,8 @@ export const push = (...args: any[]) => (stack: Stack) => stack.push(...args);
  * @param stack
  * @param env
  */
-export const pushEnv = (stack: Stack, env: StackEnv) => stack.push(env);
+export const pushEnv = (stack: Stack, env: StackEnv) =>
+    (stack.push(env), stack);
 
 /**
  * Duplicates TOS on stack.
@@ -205,10 +203,8 @@ export const pushEnv = (stack: Stack, env: StackEnv) => stack.push(env);
  *
  * @param stack
  */
-export const dup = (stack: Stack) => {
-    $(stack, 1);
-    stack.push(tos(stack));
-};
+export const dup = (stack: Stack) =>
+    ($(stack, 1), stack.push(tos(stack)), stack);
 
 /**
  * Duplicates top 2 vals on stack.
@@ -218,9 +214,10 @@ export const dup = (stack: Stack) => {
  * @param stack
  */
 export const dup2 = (stack: Stack) => {
-    $(stack, 2);
-    stack.push(stack[stack.length - 2]);
-    stack.push(stack[stack.length - 2]);
+    let n = stack.length - 2;
+    $n(n, 0);
+    stack.push(stack[n], stack[n + 1]);
+    return stack;
 };
 
 /**
@@ -237,9 +234,8 @@ export const dup2 = (stack: Stack) => {
 export const dupIf = (stack: Stack) => {
     $(stack, 1);
     const x = tos(stack);
-    if (x) {
-        stack.push(x);
-    }
+    x && stack.push(x);
+    return stack;
 };
 
 /**
@@ -255,6 +251,7 @@ export const swap = (stack: Stack) => {
     const a = stack[n - 1];
     stack[n - 1] = stack[n];
     stack[n] = a;
+    return stack;
 };
 
 /**
@@ -273,6 +270,7 @@ export const swap2 = (stack: Stack) => {
     stack[n] = stack[n - 2];
     stack[n - 3] = c;
     stack[n - 2] = d;
+    return stack;
 };
 
 /**
@@ -286,6 +284,7 @@ export const nip = (stack: Stack) => {
     const n = stack.length - 2;
     $n(n, 0);
     stack[n] = stack.pop();
+    return stack;
 };
 
 /**
@@ -299,6 +298,7 @@ export const tuck = (stack: Stack) => {
     $(stack, 2);
     const a = stack.pop();
     stack.push(a, stack.pop(), a);
+    return stack;
 };
 
 /**
@@ -315,6 +315,7 @@ export const rot = (stack: Stack) => {
     stack[n - 2] = stack[n - 1];
     stack[n - 1] = stack[n];
     stack[n] = c;
+    return stack;
 };
 
 /**
@@ -331,6 +332,7 @@ export const invrot = (stack: Stack) => {
     stack[n] = stack[n - 1];
     stack[n - 1] = stack[n - 2];
     stack[n - 2] = c;
+    return stack;
 };
 
 /**
@@ -344,6 +346,7 @@ export const over = (stack: Stack) => {
     const n = stack.length - 2;
     $n(n, 0);
     stack.push(stack[n]);
+    return stack;
 }
 
 /**
@@ -449,20 +452,16 @@ export const lsru = op2((b, a) => a >>> b);
  *
  * @param stack
  */
-export const inc = (stack: Stack) => {
-    $(stack, 1);
-    stack[stack.length - 1]++;
-};
+export const inc = (stack: Stack) =>
+    ($(stack, 1), stack[stack.length - 1]++ , stack);
 
 /**
  * ( x -- x-1 )
  *
  * @param stack
  */
-export const dec = (stack: Stack) => {
-    $(stack, 1);
-    stack[stack.length - 1]--;
-};
+export const dec = (stack: Stack) =>
+    ($(stack, 1), stack[stack.length - 1]-- , stack);
 
 /**
  * ( x -- -x )
@@ -490,7 +489,7 @@ export const neg = op1((x) => -x);
  */
 export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = false) =>
     (stack: Stack, _env: StackEnv) =>
-        run(stack, prog, env ? mergeEnv ? { ..._env, ...env } : { ...env } : _env);
+        run(stack, prog, env ? mergeEnv ? { ..._env, ...env } : { ...env } : _env)[1];
 
 export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = false) =>
     (stack: Stack, _env: StackEnv) =>
@@ -512,7 +511,7 @@ export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = fals
 export const cond = (_then: StackProc, _else: StackProc = []) => {
     return (stack: Stack, env: StackEnv) => {
         $(stack, 1);
-        $stackFn(stack.pop() ? _then : _else)(stack, env);
+        return $stackFn(stack.pop() ? _then : _else)(stack, env);
     };
 };
 
@@ -534,16 +533,14 @@ export const condM = (cases: IObjectOf<StackProc>) =>
         const tos = stack.pop();
         for (let k in cases) {
             if (tos == k) {
-                $stackFn(cases[k])(stack, env);
-                return;
+                return $stackFn(cases[k])(stack, env);
             }
         }
-        if (cases.default) {
-            stack.push(tos);
-            $stackFn(cases.default)(stack, env);
-            return;
+        if (!cases.default) {
+            illegalState(`no matching case for: ${tos}`);
         }
-        illegalState(`no matching case for: ${tos}`);
+        stack.push(tos);
+        return $stackFn(cases.default)(stack, env);
     };
 
 /**
@@ -571,7 +568,7 @@ export const loop = (test: StackProc, body: StackProc) => {
             _test(stack, env);
             $(stack, 1);
             if (!stack.pop()) {
-                break;
+                return stack;
             }
             _body(stack, env);
         }
@@ -585,10 +582,8 @@ export const loop = (test: StackProc, body: StackProc) => {
  *
  * @param stack
  */
-export const exec = (stack: Stack, env: StackEnv) => {
-    $(stack, 1);
-    stack.pop()(stack, env);
-};
+export const exec = (stack: Stack, env: StackEnv) =>
+    ($(stack, 1), stack.pop()(stack, env));
 
 /**
  * Pops TOS and executes it as stack program. TOS MUST be a valid
@@ -598,10 +593,8 @@ export const exec = (stack: Stack, env: StackEnv) => {
  *
  * @param stack
  */
-export const execQ = (stack: Stack, env: StackEnv) => {
-    $(stack, 1);
-    run(stack, stack.pop(), env);
-};
+export const execQ = (stack: Stack, env: StackEnv) =>
+    ($(stack, 1), run(stack, stack.pop(), env)[1]);
 
 /**
  * ( x y -- x===y )
@@ -717,10 +710,8 @@ export const length = op1((x) => x.length);
  *
  * @param stack
  */
-export const print = (stack: Stack) => {
-    $(stack, 1);
-    console.log(stack.pop());
-};
+export const print = (stack: Stack) =>
+    ($(stack, 1), console.log(stack.pop()), stack);
 
 /**
  * Reads key/index from object/array.
@@ -743,21 +734,61 @@ export const storeAt = (stack: Stack) => {
     $n(n, 0);
     stack[n + 1][stack[n + 2]] = stack[n];
     stack.length = n;
+    return stack;
 };
 
 /**
- * Pushes `val` into array @ TOS.
- *
- * ( val arr -- )
+ * Pushes new empty array on stack.
  *
  * @param stack
  */
-export const append = (stack: Stack) => {
+export const list = (stack: Stack) =>
+    (stack.push([]), stack);
+
+/**
+ * Pushes `val` on the LHS of array.
+ *
+ * ( val arr -- arr )
+ *
+ * @param stack
+ */
+export const pushl = (stack: Stack) => {
+    $(stack, 2);
+    const a = stack.pop();
+    a.unshift(stack.pop());
+    stack.push(a);
+    return stack;
+};
+
+/**
+ * Pushes `val` on the RHS of array.
+ *
+ * ( arr val -- arr )
+ *
+ * @param stack
+ */
+export const pushr = (stack: Stack) => {
     const n = stack.length - 2;
     $n(n, 0);
-    stack[n + 1].push(stack[n]);
-    stack.length = n;
+    stack[n].push(stack[n + 1]);
+    stack.length--;
+    return stack;
 };
+
+/**
+ * Removes RHS from array as new TOS.
+ *
+ * ( arr -- arr arr[-1] )
+ *
+ * @param stack
+ */
+export const popr = (stack: Stack) =>
+    (stack.push(stack[stack.length - 1].pop()), stack);
+
+const pullq = [popr, swap];
+export const pull = word(pullq);
+export const pull2 = word([...pullq, ...pullq]);
+export const pull3 = word([...pullq, ...pullq, ...pullq]);
 
 /**
  * Loads value for `key` from env and pushes it on stack.
@@ -767,10 +798,8 @@ export const append = (stack: Stack) => {
  * @param stack
  * @param env
  */
-export const load = (stack: Stack, env: any) => {
-    $(stack, 1);
-    stack.push(env[stack.pop()]);
-};
+export const load = (stack: Stack, env: any) =>
+    ($(stack, 1), stack.push(env[stack.pop()]), stack);
 
 /**
  * Stores `val` under `key` in env.
@@ -780,10 +809,8 @@ export const load = (stack: Stack, env: any) => {
  * @param stack
  * @param env
  */
-export const store = (stack: Stack, env: any) => {
-    $(stack, 2);
-    env[stack.pop()] = stack.pop();
-};
+export const store = (stack: Stack, env: any) =>
+    ($(stack, 2), env[stack.pop()] = stack.pop(), stack);
 
 /**
  * Higher order word. Similar to `load`, but always uses given
@@ -794,7 +821,7 @@ export const store = (stack: Stack, env: any) => {
  * @param env
  */
 export const loadKey = (key: PropertyKey) =>
-    (stack: Stack, env: any) => stack.push(env[key]);
+    (stack: Stack, env: any) => (stack.push(env[key]), stack);
 
 /**
  * Higher order word. Similar to `store`, but always uses given
@@ -806,10 +833,8 @@ export const loadKey = (key: PropertyKey) =>
  * @param env
  */
 export const storeKey = (key: PropertyKey) =>
-    (stack: Stack, env: any) => {
-        $(stack, 1);
-        env[key] = stack.pop();
-    };
+    (stack: Stack, env: any) =>
+        ($(stack, 1), env[key] = stack.pop(), stack);
 
 /**
  * Higher order word. Pops TOS and uses it as index to transform stack
@@ -825,6 +850,7 @@ export const mapN = (op: (x) => any) =>
         $n(n, 0);
         $n(n -= stack.pop() + 1, 0);
         stack[n] = op(stack[n]);
+        return stack;
     };
 
 /**
@@ -841,6 +867,7 @@ export const collect = (stack: Stack) => {
     $n(n, 0);
     $n(n -= (m = stack.pop()), 0);
     stack.push(stack.splice(n, m));
+    return stack;
 };
 
 /**
