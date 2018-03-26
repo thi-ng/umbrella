@@ -4,6 +4,12 @@ import { StackContext } from "../src/api";
 
 describe("pointfree", () => {
 
+    it("depth", () => {
+        assert.deepEqual(pf.depth([[]])[0], [0]);
+        assert.deepEqual(pf.depth([[10]])[0], [10, 1]);
+        assert.deepEqual(pf.depth([[10, 20]])[0], [10, 20, 2]);
+    });
+
     it("push", () => {
         assert.deepEqual(pf.push()([[]])[0], []);
         assert.deepEqual(pf.push(1)([[]])[0], [1]);
@@ -408,6 +414,13 @@ describe("pointfree", () => {
         assert.deepEqual(pf.tuple(2)([[1, 2]])[0], [[1, 2]]);
     });
 
+    it("length", () => {
+        assert.throws(() => pf.length([[]]));
+        assert.deepEqual(pf.length([[[10]]])[0], [1]);
+        assert.deepEqual(pf.length([[[10, 20]]])[0], [2]);
+        assert.deepEqual(pf.length([["a"]])[0], [1]);
+    });
+
     it("join", () => {
         assert.throws(() => pf.join()([[]]));
         assert.deepEqual(pf.join()([[["a", 1]]])[0], ["a1"]);
@@ -497,21 +510,42 @@ describe("pointfree", () => {
     });
 
     it("condM", () => {
-        const classify = (x) =>
-            pf.runU([[x], {}],
-                pf.condM({
-                    0: ["zero"],
-                    1: ["one"],
-                    default: [
-                        pf.dup,
-                        pf.isPos,
-                        pf.cond(["many"], ["invalid"])
-                    ]
-                }));
+        let classify = (x) =>
+            pf.condM({
+                0: ["zero"],
+                1: ["one"],
+                default: [
+                    pf.isPos,
+                    pf.cond(["many"], ["invalid"])
+                ]
+            })([[x]])[0];
 
         assert.equal(classify(0), "zero");
         assert.equal(classify(1), "one");
         assert.equal(classify(100), "many");
         assert.equal(classify(-1), "invalid");
+        assert.throws(() => pf.condM({})([[0]]));
+    });
+
+    it("word", () => {
+        assert.deepEqual(pf.word([pf.dup, pf.mul])([[2]])[0], [4]);
+        assert.deepEqual(pf.word([pf.pushEnv], { a: 1 })([[0]])[0], [0, { a: 1 }]);
+        assert.deepEqual(pf.word([pf.pushEnv], { a: 1 }, true)([[0], { b: 2 }])[0], [0, { a: 1, b: 2 }]);
+        assert.deepEqual(pf.word([pf.add, pf.mul])([[1, 2, 3]])[0], [5]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add])([[1, 2, 3, 4]])[0], [15]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul])([[1, 2, 3, 4, 5]])[0], [29]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add])([[1, 2, 3, 4, 5, 6]])[0], [95]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])([[1, 2, 3, 4, 5, 6, 7]])[0], [209]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])([[1, 2, 3, 4, 5, 6, 7, 8]])[0], [767]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])([[1, 2, 3, 4, 5, 6, 7, 8, 9]])[0], [1889]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]])[0], [7679]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]])[0], [20789]);
+        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]])[0], [92159]);
+    });
+
+    it("wordU", () => {
+        assert.deepEqual(pf.wordU([pf.dup, pf.mul])([[2]]), 4);
+        assert.deepEqual(pf.wordU([pf.pushEnv], 1, { a: 1 })([[]]), { a: 1 });
+        assert.deepEqual(pf.wordU([pf.pushEnv], 1, { a: 1 }, true)([[], { b: 2 }]), { a: 1, b: 2 });
     });
 });

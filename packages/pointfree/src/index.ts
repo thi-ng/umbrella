@@ -659,9 +659,9 @@ export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = fals
     const w: StackFn = compile(prog);
     return env ?
         mergeEnv ?
-            (ctx: StackContext) => unwrap([w([ctx[0], { ...ctx[1], ...env }]), true], n) :
-            (ctx: StackContext) => unwrap([w([ctx[0], { ...env }]), true], n) :
-        (ctx: StackContext) => unwrap([w(ctx), true], n);
+            (ctx: StackContext) => unwrap(w([ctx[0], { ...ctx[1], ...env }]), n) :
+            (ctx: StackContext) => unwrap(w([ctx[0], { ...env }]), n) :
+        (ctx: StackContext) => unwrap(w(ctx), n);
 };
 
 /**
@@ -757,7 +757,7 @@ export const loop = (test: StackProc, body: StackProc) => {
     return (ctx: StackContext) => {
         while (true) {
             dup(ctx);
-            _test(ctx);
+            ctx = _test(ctx);
             $(ctx, 1);
             if (!ctx[0].pop()) {
                 return ctx;
