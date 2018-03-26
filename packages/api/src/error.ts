@@ -31,7 +31,7 @@ export function illegalArgs(msg?: any) {
 }
 
 export function illegalState(msg?: any) {
-    throw new IllegalArgumentError(msg);
+    throw new IllegalStateError(msg);
 }
 
 export function unsupported(msg?: any) {
