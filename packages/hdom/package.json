@@ -20,6 +20,7 @@
         "@types/mocha": "^2.2.48",
         "@types/node": "^9.4.6",
         "mocha": "^5.0.0",
+        "nyc": "^11.4.1",
         "ts-loader": "^3.5.0",
         "typedoc": "^0.10.0",
         "typescript": "^2.7.2",
