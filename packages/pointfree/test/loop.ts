@@ -54,15 +54,15 @@ const makeids = (i: number, j: number, sep: string, id1: StackFn = pf.nop, id2 =
 
 // helper word which looks up TOS in given string/array/object, i.e. to
 // transform a number into another value (e.g. string)
-const idgen = (ids) => pf.map((x) => ids[x]);
+const idgen = (ids) => pf.maptos((x) => ids[x]);
 
-console.log(pf.runU(grid(4, 4)));
-console.log(pf.runU(makeids(4, 4, "", idgen("abcd"))));
-console.log(pf.runU(makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), pf.nop)));
+console.log(pf.runu(grid(4, 4)));
+console.log(pf.runu(makeids(4, 4, "", idgen("abcd"))));
+console.log(pf.runu(makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), pf.nop)));
 
 console.log(
-    pf.runU([
+    pf.runu([
         makeids(4, 4, "", idgen("abcd")),
-        pf.map(id => pf.runU(makeids(4, 4, "/", idgen(id)))),
-        pf.map(id => pf.runU(makeids(4, 4, "-", idgen(id))))
+        pf.maptos(id => pf.runu(makeids(4, 4, "/", idgen(id)))),
+        pf.maptos(id => pf.runu(makeids(4, 4, "-", idgen(id))))
     ]));

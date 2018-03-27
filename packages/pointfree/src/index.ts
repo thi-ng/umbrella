@@ -43,7 +43,7 @@ export const run = (prog: StackProc, ctx: StackContext = [[], [], {}]): StackCon
  * @param ctx
  * @param n
  */
-export const runU = (prog: StackProc, ctx?: StackContext, n = 1) =>
+export const runu = (prog: StackProc, ctx?: StackContext, n = 1) =>
     unwrap(run(prog, ctx), n);
 
 /**
@@ -125,7 +125,7 @@ const op2 = (op: (b, a) => any) =>
     };
 
 export {
-    op1 as map,
+    op1 as maptos,
     op2 as map2
 }
 
@@ -231,7 +231,7 @@ export const drop2 = (ctx: StackContext) =>
  *
  * ( x -- x )
  */
-export const dropIf = (ctx: StackContext) =>
+export const dropif = (ctx: StackContext) =>
     ($(ctx[0], 1), tos(ctx[0]) && ctx[0].length-- , ctx);
 
 /**
@@ -280,14 +280,14 @@ export const dup2 = (ctx: StackContext) => {
  *
  * @param ctx
  */
-export const dupIf = (ctx: StackContext) => {
+export const dupif = (ctx: StackContext) => {
     $(ctx[0], 1);
     const x = tos(ctx[0]);
     x && ctx[0].push(x);
     return ctx;
 };
 
-const _swap = (i) => (ctx: StackContext) => {
+const _swap = (i: number) => (ctx: StackContext) => {
     const stack = ctx[i];
     const n = stack.length - 2;
     $n(n, 0);
@@ -297,7 +297,7 @@ const _swap = (i) => (ctx: StackContext) => {
     return ctx;
 };
 
-const _swap2 = (i) => (ctx: StackContext) => {
+const _swap2 = (i: number) => (ctx: StackContext) => {
     const stack = ctx[i];
     let n = stack.length - 1;
     $n(n, 3);
@@ -411,14 +411,14 @@ export const over = (ctx: StackContext) => {
 }
 
 /**
- * Higher order word. Pops TOS and uses it as index to transform d-stack
- * item @ `stack[TOS]` w/ given transformation.
+ * Higher order word. Pops TOS and uses it as index `n` to transform d-stack
+ * item @ `stack[-n]` w/ given transformation.
  *
  * ( x -- )
  *
  * @param op
  */
-export const mapN = (f: (x) => any) =>
+export const mapnth = (f: (x) => any) =>
     (ctx: StackContext) => {
         const stack = ctx[0];
         let n = stack.length - 1;
@@ -606,28 +606,28 @@ export const sqrt = op1(Math.sqrt);
  *
  * @param ctx
  */
-export const bitAnd = op2((b, a) => a & b);
+export const bitand = op2((b, a) => a & b);
 
 /**
  * ( x y -- x|y )
  *
  * @param ctx
  */
-export const bitOr = op2((b, a) => a | b);
+export const bitor = op2((b, a) => a | b);
 
 /**
  * ( x y -- x^y )
  *
  * @param ctx
  */
-export const bitXor = op2((b, a) => a ^ b);
+export const bitxor = op2((b, a) => a ^ b);
 
 /**
  * ( x -- ~x )
  *
  * @param ctx
  */
-export const bitNot = op1((x) => ~x);
+export const bitnot = op1((x) => ~x);
 
 /**
  * ( x y -- x<<y )
@@ -727,28 +727,28 @@ export const gteq = op2((b, a) => a >= b);
  *
  * @param ctx
  */
-export const isZero = op1((x) => x === 0);
+export const iszero = op1((x) => x === 0);
 
 /**
  * ( x -- x>0 )
  *
  * @param ctx
  */
-export const isPos = op1((x) => x > 0);
+export const ispos = op1((x) => x > 0);
 
 /**
  * ( x -- x<0 )
  *
  * @param ctx
  */
-export const isNeg = op1((x) => x < 0);
+export const isneg = op1((x) => x < 0);
 
 /**
  * ( x -- x==null )
  *
  * @param ctx
  */
-export const isNull = op1((x) => x == null);
+export const isnull = op1((x) => x == null);
 
 //////////////////// Dynamic words & quotations  ////////////////////
 
@@ -760,7 +760,7 @@ export const isNull = op1((x) => x == null);
  * environment (one per invocation) instead of the current one passed by
  * `run()` at runtime. If `mergeEnv` is true, the user provided env will
  * be merged with the current env (also shallow copies). This is useful in
- * conjunction with `pushEnv()` and `store()` or `storeKey()` to save
+ * conjunction with `pushenv()` and `store()` or `storekey()` to save
  * results of sub procedures in the main env.
  *
  * ( ? -- ? )
@@ -805,7 +805,7 @@ export const exec = (ctx: StackContext) =>
  *
  * @param ctx
  */
-export const execQ = (ctx: StackContext) =>
+export const execq = (ctx: StackContext) =>
     ($(ctx[0], 1), run(ctx[0].pop(), ctx));
 
 //////////////////// Conditionals  ////////////////////
@@ -839,7 +839,7 @@ export const cond = (_then: StackProc, _else: StackProc = nop) =>
  *
  * @param cases
  */
-export const condM = (cases: IObjectOf<StackProc>) =>
+export const cases = (cases: IObjectOf<StackProc>) =>
     (ctx: StackContext) => {
         $(ctx[0], 1);
         const stack = ctx[0];
@@ -864,7 +864,7 @@ export const condM = (cases: IObjectOf<StackProc>) =>
  * ( -- ? )
  *
  * ```
- * run([loop([dup, isPos], [dup, print, dec])], [[3]])
+ * run([loop([dup, ispos], [dup, print, dec])], [[3]])
  * // 3
  * // 2
  * // 1
@@ -904,16 +904,16 @@ export const loop = (test: StackProc, body: StackProc) => {
  * ```
  * // using array literal within word definition
  * foo = pf.word([ [], 1, pf.pushr ])
- * pf.runU(null, foo)
+ * pf.runu(null, foo)
  * // [ 1 ]
- * pf.runU(null, foo)
+ * pf.runu(null, foo)
  * // [ 1, 1 ] // wrong!
  *
  * // using `list` instead
  * bar = pf.word([ pf.list, 1, pf.pushr ])
- * pf.runU(null, bar)
+ * pf.runu(null, bar)
  * // [ 1 ]
- * pf.runU(null, bar)
+ * pf.runu(null, bar)
  * // [ 1 ] // correct!
  * ```
  *
@@ -1103,7 +1103,7 @@ export const at = op2((b, a) => a[b]);
  *
  * @param ctx
  */
-export const storeAt = (ctx: StackContext) => {
+export const storeat = (ctx: StackContext) => {
     const stack = ctx[0];
     const n = stack.length - 3;
     $n(n, 0);
@@ -1122,7 +1122,7 @@ export const storeAt = (ctx: StackContext) => {
  * @param ctx
  * @param env
  */
-export const pushEnv = (ctx: StackContext) =>
+export const pushenv = (ctx: StackContext) =>
     (ctx[0].push(ctx[2]), ctx);
 
 /**
@@ -1156,7 +1156,7 @@ export const store = (ctx: StackContext) =>
  * @param ctx
  * @param env
  */
-export const loadKey = (key: PropertyKey) =>
+export const loadkey = (key: PropertyKey) =>
     (ctx: StackContext) => (ctx[0].push(ctx[2][key]), ctx);
 
 /**
@@ -1169,7 +1169,7 @@ export const loadKey = (key: PropertyKey) =>
  * @param ctx
  * @param env
  */
-export const storeKey = (key: PropertyKey) =>
+export const storekey = (key: PropertyKey) =>
     (ctx: StackContext) =>
         ($(ctx[0], 1), ctx[2][key] = ctx[0].pop(), ctx);
 
