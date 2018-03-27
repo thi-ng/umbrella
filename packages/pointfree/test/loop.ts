@@ -15,8 +15,8 @@ import { StackProgram, StackFn } from "../src/api";
  */
 const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
     pf.word([0,
-        pf.loop([i, pf.lt], [0,
-            pf.loop([j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
+        pf.loop([pf.dup, i, pf.lt], [0,
+            pf.loop([pf.dup, j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
             pf.drop,
             pf.inc]),
         pf.drop
@@ -37,10 +37,6 @@ const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
 const grid = (i, j, body: StackProgram = [pf.tuple(2)]) =>
     pf.word([loop2(i, j, [...body, pf.invrot]), pf.tuple(i * j)]);
 
-// helper word which looks up TOS in given string/array/object, i.e. to
-// transform a number into another value (e.g. string)
-const idgen = (ids) => pf.map((x) => ids[x]);
-
 /**
  * Special version of `grid` which transforms `i,j` pairs into strings
  * using user provided mapping array/object/string. Different mappings
@@ -56,13 +52,17 @@ const idgen = (ids) => pf.map((x) => ids[x]);
 const makeids = (i: number, j: number, sep: string, id1: StackFn = pf.nop, id2 = id1) =>
     grid(i, j, [id2, pf.swap, id1, pf.swap, pf.tuple(2), pf.join(sep)]);
 
-console.log(pf.runU(null, grid(4, 4)));
-console.log(pf.runU(null, makeids(4, 4, "", idgen("abcd"))));
-console.log(pf.runU(null, makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]))));
+// helper word which looks up TOS in given string/array/object, i.e. to
+// transform a number into another value (e.g. string)
+const idgen = (ids) => pf.map((x) => ids[x]);
 
-console.log(pf.runU(null,
-    [
+console.log(pf.runU(grid(4, 4)));
+console.log(pf.runU(makeids(4, 4, "", idgen("abcd"))));
+console.log(pf.runU(makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), pf.nop)));
+
+console.log(
+    pf.runU([
         makeids(4, 4, "", idgen("abcd")),
-        pf.map(id => pf.runU(null, makeids(4, 4, "-", idgen(id)))),
-        pf.map(id => pf.runU(null, makeids(4, 4, "-", idgen(id))))
+        pf.map(id => pf.runU(makeids(4, 4, "/", idgen(id)))),
+        pf.map(id => pf.runU(makeids(4, 4, "-", idgen(id))))
     ]));

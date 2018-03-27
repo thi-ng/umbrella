@@ -6,5 +6,6 @@ export type StackProc = StackFn | StackProgram;
 
 export interface StackContext extends Array<any> {
     [0]: Stack;
-    [1]?: StackEnv;
+    [1]: Stack;
+    [2]: StackEnv;
 }
