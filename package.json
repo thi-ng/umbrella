@@ -4,6 +4,7 @@
         "packages/*"
     ],
     "devDependencies": {
+        "benchmark": "^2.1.4",
         "lerna": "^2.9.0",
         "nyc": "^11.4.1",
         "tslint": "^5.9.1",
