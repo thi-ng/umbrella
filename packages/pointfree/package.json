@@ -31,11 +31,13 @@
     "keywords": [
         "composition",
         "concatenative",
+        "DSL",
         "ES6",
         "Forth",
         "functional",
         "pipeline",
         "stack",
+        "data transformation",
         "typescript"
     ],
     "publishConfig": {
