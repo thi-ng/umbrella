@@ -36,19 +36,30 @@ export const run = (prog: StackProc, ctx: StackContext = [[], [], {}]): StackCon
 };
 
 /**
- * Like `run()`, but returns unwrapped result. Short version for:
- * `unwrap(run(),n)`
+ * Like `run()`, but returns unwrapped result. Syntax sugar for:
+ * `unwrap(run(...),n)`
  *
  * @param prog
  * @param ctx
  * @param n
  */
-export const runu = (prog: StackProc, ctx?: StackContext, n = 1) =>
+export const runU = (prog: StackProc, ctx?: StackContext, n = 1) =>
     unwrap(run(prog, ctx), n);
 
 /**
- * Creates a new StackContext tuple from given optional d-stack and
- * environment only (no r-stack arg, always empty).
+ * Like `run()`, but returns result environment. Syntax sugar for:
+ * `run(...)[2]`
+ *
+ * @param prog
+ * @param ctx
+ * @param n
+ */
+export const runE = (prog: StackProc, ctx?: StackContext) =>
+    run(prog, ctx)[2];
+
+/**
+ * Creates a new StackContext tuple from given d-stack and/or
+ * environment only (the r-stack is always initialized empty).
  *
  * @param stack initial d-stack
  * @param env initial environment
@@ -130,15 +141,17 @@ export {
 }
 
 /**
- * Similar to `op2`, but for array operators. Mutates first array in
- * place. Use `dupl` prior to the op to create a shallow copy.
+ * Similar to `op2`, but for array operators. Either `a` or `b` can be a
+ * non-array value, but not both. Creates new array of result values.
+ * The result will have the same length as the shortest arg (if `a` and
+ * `b` have different lengths).
  *
  * - ( a b -- a ), if `a` is an array
  * - ( a b -- b ), if `a` is not an array
  *
  * @param f
  */
-export const op2l = (f: (b, a) => any) =>
+export const op2v = (f: (b, a) => any) =>
     (ctx: StackContext): StackContext => {
         $(ctx[0], 2);
         const stack = ctx[0];
@@ -147,24 +160,28 @@ export const op2l = (f: (b, a) => any) =>
         const a = stack[n];
         const isa = isArray(a);
         const isb = isArray(b);
+        let c: any[];
         if (isa && isb) {
-            for (let i = a.length - 1; i >= 0; i--) {
-                a[i] = f(b[i], a[i]);
+            c = new Array(Math.min(a.length, b.length));
+            for (let i = c.length - 1; i >= 0; i--) {
+                c[i] = f(b[i], a[i]);
             }
         } else {
             if (isb && !isa) {
-                for (let i = b.length - 1; i >= 0; i--) {
-                    b[i] = f(b[i], a);
+                c = new Array(b.length);
+                for (let i = c.length - 1; i >= 0; i--) {
+                    c[i] = f(b[i], a);
                 }
-                stack[n] = b;
             } else if (isa && !isb) {
-                for (let i = a.length - 1; i >= 0; i--) {
-                    a[i] = f(b, a[i]);
+                c = new Array(a.length);
+                for (let i = c.length - 1; i >= 0; i--) {
+                    c[i] = f(b, a[i]);
                 }
             } else {
                 illegalArgs("at least one arg must be an array");
             }
         }
+        stack[n] = c;
         return ctx;
     };
 
@@ -187,7 +204,7 @@ export const dsp = (ctx: StackContext) =>
 
 /**
  * Uses TOS as index to look up a deeper d-stack value, then places it
- * as new TOS.
+ * as new TOS. Throws error if stack depth is < `x`.
  *
  * ( ... x -- ... stack[x] )
  *
@@ -345,7 +362,7 @@ export const nip = (ctx: StackContext) => {
 };
 
 /**
- * Inserts copy of TOS as TOS-2 on d-stack.
+ * Inserts copy of TOS @ TOS-2 in d-stack.
  *
  * ( x y -- y x y )
  *
@@ -409,24 +426,6 @@ export const over = (ctx: StackContext) => {
     stack.push(stack[n]);
     return ctx;
 }
-
-/**
- * Higher order word. Pops TOS and uses it as index `n` to transform d-stack
- * item @ `stack[-n]` w/ given transformation.
- *
- * ( x -- )
- *
- * @param op
- */
-export const mapnth = (f: (x) => any) =>
-    (ctx: StackContext) => {
-        const stack = ctx[0];
-        let n = stack.length - 1;
-        $n(n, 0);
-        $n(n -= stack.pop() + 1, 0);
-        stack[n] = f(stack[n]);
-        return ctx;
-    };
 
 //////////////////// R-Stack ops ////////////////////
 
@@ -599,6 +598,20 @@ export const pow = op2((b, a) => Math.pow(a, b));
  */
 export const sqrt = op1(Math.sqrt);
 
+/**
+ * ( x -- bool )
+ *
+ * @param ctx
+ */
+export const even = op1((x) => !(x & 1));
+
+/**
+ * ( x -- bool )
+ *
+ * @param ctx
+ */
+export const odd = op1((x) => !!(x & 1));
+
 //////////////////// Binary ops ////////////////////
 
 /**
@@ -758,10 +771,13 @@ export const isnull = op1((x) => x == null);
  *
  * If the optional `env` is given, uses a shallow copy of that
  * environment (one per invocation) instead of the current one passed by
- * `run()` at runtime. If `mergeEnv` is true, the user provided env will
- * be merged with the current env (also shallow copies). This is useful in
- * conjunction with `pushenv()` and `store()` or `storekey()` to save
- * results of sub procedures in the main env.
+ * `run()` at runtime. If `mergeEnv` is true (default), the user
+ * provided env will be merged with the current env (also shallow
+ * copies). This is useful in conjunction with `pushenv()` and `store()`
+ * or `storekey()` to save results of sub procedures in the main env.
+ *
+ * Note: The provided (or merged) env is only active within the
+ * execution scope of the word.
  *
  * ( ? -- ? )
  *
@@ -769,16 +785,28 @@ export const isnull = op1((x) => x == null);
  * @param env
  * @param mergeEnv
  */
-export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = false) => {
+export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
     const w: StackFn = compile(prog);
     return env ?
         mergeEnv ?
-            (ctx: StackContext) => w([ctx[0], ctx[1], { ...ctx[2], ...env }]) :
-            (ctx: StackContext) => w([ctx[0], ctx[1], { ...env }]) :
+            (ctx: StackContext) => (w([ctx[0], ctx[1], { ...ctx[2], ...env }]), ctx) :
+            (ctx: StackContext) => (w([ctx[0], ctx[1], { ...env }]), ctx) :
         w;
 };
 
-export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = false) => {
+/**
+ * Like `word()`, but automatically calls `unwrap()` on result context
+ * to produced unwrapped value/tuple.
+ *
+ * **Importatant:** Words defined with this function CANNOT be used as
+ * part of a larger stack program, only for standalone use.
+ *
+ * @param prog
+ * @param n
+ * @param env
+ * @param mergeEnv
+ */
+export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true) => {
     const w: StackFn = compile(prog);
     return env ?
         mergeEnv ?
@@ -903,17 +931,17 @@ export const loop = (test: StackProc, body: StackProc) => {
  *
  * ```
  * // using array literal within word definition
- * foo = pf.word([ [], 1, pf.pushr ])
- * pf.runu(null, foo)
+ * foo = pf.word([ [], 1, pf.pushl ])
+ * pf.runU(foo)
  * // [ 1 ]
- * pf.runu(null, foo)
+ * pf.runU(foo)
  * // [ 1, 1 ] // wrong!
  *
  * // using `list` instead
- * bar = pf.word([ pf.list, 1, pf.pushr ])
- * pf.runu(null, bar)
+ * bar = pf.word([ pf.list, 1, pf.pushl ])
+ * pf.runU(bar)
  * // [ 1 ]
- * pf.runu(null, bar)
+ * pf.runU(bar)
  * // [ 1 ] // correct!
  * ```
  *
@@ -941,20 +969,6 @@ export const pushl = (ctx: StackContext) => {
 };
 
 /**
- * ( a b arr -- arr )
- * @param ctx
- */
-export const pushl2 = (ctx: StackContext) => {
-    $(ctx[0], 3);
-    const stack = ctx[0];
-    const a: any[] = stack.pop();
-    a.unshift(stack.pop());
-    a.unshift(stack.pop());
-    stack.push(a);
-    return ctx;
-};
-
-/**
  * Pushes `val` on the RHS of array.
  *
  * ( arr val -- arr )
@@ -972,6 +986,7 @@ export const pushr = (ctx: StackContext) => {
 
 /**
  * Removes RHS from array as new TOS on d-stack.
+ * Throws error is `arr` is empty.
  *
  * ( arr -- arr arr[-1] )
  *
@@ -992,17 +1007,19 @@ export const pull2 = word([pull, pull]);
 export const pull3 = word([pull2, pull]);
 export const pull4 = word([pull2, pull2]);
 
-export const ladd = op2l((b, a) => a + b);
-export const lsub = op2l((b, a) => a - b);
-export const lmul = op2l((b, a) => a * b);
-export const ldiv = op2l((b, a) => a / b);
+export const vadd = op2v((b, a) => a + b);
+export const vsub = op2v((b, a) => a - b);
+export const vmul = op2v((b, a) => a * b);
+export const vdiv = op2v((b, a) => a / b);
 
 /**
- * ( list x -- [...] [...] )
+ * Splits vector / array at given index `x`.
+ *
+ * ( arr x -- [...] [...] )
  *
  * @param ctx
  */
-export const lsplit = (ctx: StackContext) => {
+export const split = (ctx: StackContext) => {
     const stack = ctx[0];
     const n = stack.length - 2;
     $n(n, 0);
@@ -1012,6 +1029,13 @@ export const lsplit = (ctx: StackContext) => {
     return ctx;
 };
 
+/**
+ * Concatenates two arrays on d-stack:
+ *
+ * ( arr1 arr2 -- arr )
+ *
+ * @param ctx
+ */
 export const cat = (ctx: StackContext) => {
     const stack = ctx[0];
     const n = stack.length - 2;
@@ -1021,25 +1045,123 @@ export const cat = (ctx: StackContext) => {
 };
 
 /**
- * ( list init q -- res )
+ * Generic array transformer.
  *
- * For each iteration the stack effect should be:
+ * ( arr q -- ? )
  *
- * ( acc x -- q(acc,x) )
+ * Pops both args from d-stack, then executes quotation for each array
+ * item (each pushed on d-stack prior to calling quotation). Can produce
+ * any number of results and therefore also be used as filter, mapcat,
+ * reduce...
+ *
+ * ```
+ * // each item times 10
+ * run([[1, 2, 3, 4], [10, mul], mapl])
+ * // [ [ 10, 20, 30, 40 ], [], {} ]
+ * ```
+ *
+ * Use for filtering:
+ *
+ * ```
+ * // drop even numbers, duplicate odd ones
+ * run([[1, 2, 3, 4], [dup, even, cond(drop, dup)], mapl])
+ * // [ [ 1, 1, 3, 3 ], [], {} ]
+ * ```
+ *
+ * Reduction:
+ *
+ * ```
+ * // the `0` is the initial reduction result
+ * runU([0, [1, 2, 3, 4], [add], mapl])
+ * // 10
+ * ```
+ *
+ * **Important**: `mapl` does not produce a result array. However,
+ * there're several options to collect results as array, e.g.
+ *
+ * Use `mapll()` to transform:
+ *
+ * ```
+ * runU([[1, 2, 3, 4], [10, mul], mapll])
+ * // [ 10, 20, 30, 40]
+ * ```
+ *
+ * Collecting results as array is a form of reduction, so we can use
+ * `list` to produce an initial new array and `pushr` to push each new
+ * interim value into the result:
+ *
+ * ```
+ * runU([list, [1, 2, 3, 4], [10, mul, pushr], mapl])
+ * // [ 10, 20, 30, 40 ]
+ * ```
+ *
+ * If the array size is known & not changed by transformation:
+ *
+ * ```
+ * runU([[1, 2, 3, 4], [10, mul], mapl, 4, collect])
+ * // [ 10, 20, 30, 40 ]
+ * ```
+ *
+ * @param ctx
  */
-export const foldl = (ctx: StackContext) => {
-    $(ctx[0], 3);
+export const mapl = (ctx: StackContext) => {
+    $(ctx[0], 2);
     const stack = ctx[0];
     const w = $stackFn(stack.pop());
-    const init = stack.pop();
     const list = stack.pop();
-    stack.push(init);
-    for (let i = 0, n = list.length; i < n; i++) {
+    const n = list.length;
+    for (let i = 0; i < n; i++) {
         ctx[0].push(list[i]);
         ctx = w(ctx);
     }
     return ctx;
 };
+
+/**
+ * Similar to `mapl()`, but produces new array of transformed values.
+ *
+ * ( arr q -- arr )
+ *
+ * ```
+ * runU([[1, 2, 3, 4], [10, mul], mapll])
+ * // [ 10, 20, 30, 40]
+ * ```
+ *
+ * Filter / mapcat:
+ *
+ * ```
+ * // drop even numbers, duplicate odd ones
+ * run([[1, 2, 3, 4], [dup, even, cond(drop, dup)], mapll])
+ * // [ [ [ 1, 1, 3, 3 ] ], [], {} ]
+ * ```
+ *
+ * @param ctx
+ */
+export const mapll = (ctx: StackContext) => {
+    $(ctx[0], 2);
+    let stack = ctx[0];
+    const w = $stackFn(stack.pop());
+    const list = stack.pop();
+    const n = list.length;
+    let r = 0;
+    for (let i = 0; i < n; i++) {
+        let m = stack.length;
+        stack.push(list[i]);
+        ctx = w(ctx);
+        stack = ctx[0];
+        r += stack.length - m;
+    }
+    stack.push(stack.splice(stack.length - r, r));
+    return ctx;
+};
+
+/**
+ * Convenience wrapper for `mapl` to provide an alternative stack layout
+ * for reduction purposes:
+ *
+ * ( arr q init -- reduction )
+ */
+export const foldl = word([invrot, mapl]);
 
 /**
  * Pops TOS (a number) and then forms a tuple of the top `n` remaining
