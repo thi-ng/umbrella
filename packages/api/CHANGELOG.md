@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.0...@thi.ng/api@2.1.1) (2018-03-28)
+
+
+### Bug Fixes
+
+* **api:** illegalState() creates IllegalStateError ([2b7e99b](https://github.com/thi-ng/umbrella/commit/2b7e99b))
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.4...@thi.ng/api@2.1.0) (2018-03-21)
 

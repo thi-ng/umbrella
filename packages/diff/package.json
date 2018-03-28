@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/diff",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,7 +24,7 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.1.0"
+        "@thi.ng/api": "^2.1.1"
     },
     "keywords": [
         "array",
