@@ -1,10 +1,10 @@
-import { illegalArity } from "@thi.ng/api/error";
 import { StackFn } from "./api";
 
 /**
  * Similar to (and ported from @thi.ng/transducers/func/comp), but uses
  * inverted composition order (right-to-left).
  */
+export function comp(): StackFn;
 export function comp(a: StackFn): StackFn;
 export function comp(a: StackFn, b: StackFn): StackFn;
 export function comp(a: StackFn, b: StackFn, c: StackFn): StackFn;
@@ -20,7 +20,7 @@ export function comp(...fns: ((x: any) => any)[]) {
     let [a, b, c, d, e, f, g, h, i, j] = fns;
     switch (fns.length) {
         case 0:
-            illegalArity(0);
+            return (x) => x;
         case 1:
             return a;
         case 2:
