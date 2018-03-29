@@ -43,6 +43,17 @@ export const rect = (p: ArrayLike<number>, width = 1, height = 1, attr?) =>
         }, attr)
     ];
 
+export const line = (a: ArrayLike<number>, b: ArrayLike<number>, attr?) =>
+    [
+        "line",
+        Object.assign({
+            x1: ff(a[0]),
+            y1: ff(a[1]),
+            x2: ff(b[0]),
+            y2: ff(b[1]),
+        }, attr)
+    ];
+
 export const polyline = (points: ArrayLike<number>[], attr?) =>
     [
         "polyline",
