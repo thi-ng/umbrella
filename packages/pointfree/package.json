@@ -31,6 +31,7 @@
     "keywords": [
         "composition",
         "concatenative",
+        "dataflow",
         "DSL",
         "ES6",
         "Forth",

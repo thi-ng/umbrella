@@ -287,6 +287,21 @@ export const dup2 = (ctx: StackContext) => {
 };
 
 /**
+ * Duplicates top 3 vals on d-stack.
+ *
+ * ( x y -- x y x y )
+ *
+ * @param ctx
+ */
+export const dup3 = (ctx: StackContext) => {
+    const stack = ctx[0];
+    let n = stack.length - 3;
+    $n(n, 0);
+    stack.push(stack[n], stack[n + 1], stack[n + 2]);
+    return ctx;
+};
+
+/**
  * If TOS is truthy then push copy of it on d-stack:
  *
  * ( x -- x x )
@@ -844,25 +859,110 @@ export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true
 };
 
 /**
- * Executes TOS as stack function and places result back on d-stack.
+ * Executes TOS as stack function and places result back on d-stack. TOS
+ * MUST be a valid word or quotation.
  *
  * ( x -- x() )
  *
  * @param ctx
  */
 export const exec = (ctx: StackContext) =>
-    ($(ctx[0], 1), ctx[0].pop()(ctx));
+    ($(ctx[0], 1), $stackFn(ctx[0].pop())(ctx));
+
+//////////////////// Dataflow combinators  ////////////////////
 
 /**
- * Pops TOS and executes it as stack program. TOS MUST be a valid
- * StackProgram (array of values/words, i.e. a quotation).
+ * Removes `x` from d-stack, calls `q` and restores `x` to the top of
+ * the d-stack after quotation is finished.
  *
- * ( x -- ? )
+ * ( x q -- x )
+ *
+ * Same behavior as: `[swap, movdr, exec, movrd]`, only the current
+ * implementation doesn't use r-stack.
  *
  * @param ctx
  */
-export const execq = (ctx: StackContext) =>
-    ($(ctx[0], 1), run(ctx[0].pop(), ctx));
+export const dip = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 2);
+    const q = stack.pop();
+    const x = stack.pop();
+    ctx = $stackFn(q)(ctx);
+    ctx[0].push(x);
+    return ctx;
+};
+
+/**
+ * Removes `x y` from d-stack, calls `q` and restores removed vals
+ * to the top of the d-stack after quotation is finished.
+ *
+ * ( x y q -- x y )
+ */
+export const dip2 = word([swap, [dip], dip]);
+
+/**
+ * Removes `x y z` from d-stack, calls `q` and restores removed
+ * vals to the top of the d-stack after quotation is finished.
+ *
+ * ( x y z q -- x y z )
+ */
+export const dip3 = word([swap, [dip2], dip]);
+
+/**
+ * Removes `x y z w` from d-stack, calls `q` and restores removed
+ * vals to the top of the d-stack after quotation is finished.
+ *
+ * ( x y z w q -- x y z w )
+ */
+export const dip4 = word([swap, [dip3], dip]);
+
+/**
+ * Calls a quotation with a value on the d-stack, restoring the value
+ * after quotation finished.
+ *
+ * ( x q -- .. x )
+ */
+export const keep = word([over, [exec], dip]);
+
+/**
+ * Call a quotation with two values on the stack, restoring the values
+ * after quotation finished.
+ *
+ * ( x y q -- .. x y )
+ */
+export const keep2 = word([[dup2], dip, dip2]);
+
+/**
+ * Call a quotation with two values on the stack, restoring the values
+ * after quotation finished.
+ *
+ * ( x y z q -- .. x y z )
+ */
+export const keep3 = word([[dup3], dip, dip3]);
+
+/**
+ * First applies `p` to the value `x`, then applies `q` to the same
+ * value.
+ *
+ * ( x p q -- pres qres )
+ */
+export const bi = word([[keep], dip, exec]);
+
+/**
+ * First applies `p` to the two input values `x y`, then applies `q` to
+ * the same values.
+ *
+ * ( x y p q -- pres qres )
+ */
+export const bi2 = word([[keep2], dip, exec]);
+
+/**
+ * First applies `p` to the three input values `x y z`, then applies `q`
+ * to the same values.
+ *
+ * ( x y z p q -- pres qres )
+ */
+export const bi3 = word([[keep3], dip, exec]);
 
 //////////////////// Conditionals  ////////////////////
 
@@ -874,7 +974,7 @@ export const execq = (ctx: StackContext) =>
  * Note: Unlike JS `if() {...} else {...}` constructs, the actual
  * conditional is NOT part of this word.
  *
- * ( x -- ? )
+ * ( bool -- ? )
  *
  * @param _then
  * @param _else
@@ -882,6 +982,23 @@ export const execq = (ctx: StackContext) =>
 export const cond = (_then: StackProc, _else: StackProc = nop) =>
     (ctx: StackContext) =>
         ($(ctx[0], 1), $stackFn(ctx[0].pop() ? _then : _else)(ctx));
+
+/**
+ * Non-HOF version of `cond`, expects `test` result and both branches on
+ * d-stack. Executes `thenq` word/quotation if `test` is truthy, else
+ * runs `elseq`.
+ *
+ * ( test thenq elseq -- ? )
+ *
+ * @param ctx
+ */
+export const condq = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 3);
+    const _else = stack.pop();
+    const _then = stack.pop();
+    return $stackFn(stack.pop() ? _then : _else)(ctx);
+};
 
 /**
  * Higher order word. Takes an object of stack programs with keys in the
@@ -914,8 +1031,8 @@ export const cases = (cases: IObjectOf<StackProc>) =>
 //////////////////// Loop constructs  ////////////////////
 
 /**
- * Takes a `test` and `body` stack program. Applies test to
- * copy of TOS and executes body. Repeats while test is truthy.
+ * Higher order word. Takes a `test` and `body` stack program. Applies
+ * test to copy of TOS and executes body. Repeats while test is truthy.
  *
  * ( -- ? )
  *
@@ -945,11 +1062,26 @@ export const loop = (test: StackProc, body: StackProc) => {
 };
 
 /**
- * Pops TOS and executes given `body` word/quotation `n` times. In each
- * iteration pushes current counter on d-stack prior to executing body.
+ * Non-HOF version of `loop`. Expects test and body quotations/words on
+ * d-stack.
+ *
+ * ( testq bodyq -- ? )
+ *
+ * @param ctx
+ */
+export const loopq = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 2);
+    const body = stack.pop();
+    return loop(stack.pop(), body)(ctx);
+};
+
+/**
+ * Executes given `body` word/quotation `n` times. In each iteration
+ * pushes current counter on d-stack prior to executing body.
  *
  * ```
- * pf.run([3, pf.dotimes("i=", pf.swap, pf.add, pf.print)])
+ * pf.run([3, ["i=", pf.swap, pf.add, pf.print], pf.dotimes])
  * // i=0
  * // i=1
  * // i=2
@@ -959,28 +1091,27 @@ export const loop = (test: StackProc, body: StackProc) => {
  *
  * ```
  * // range gen
- * pf.run([3, pf.dotimes()])
+ * pf.run([3, [], pf.dotimes])
  * [ [ 0, 1, 2 ], [], {} ]
  *
- * // range gen (as array)
- * pf.runU([3, pf.cpdr, pf.dotimes(), pf.movrd, pf.collect])
+ * // range gen (collect results as array)
+ * pf.runU([3, pf.cpdr, [], pf.dotimes, pf.movrd, pf.collect])
  * // [ 0, 1, 2 ]
  * ```
  *
- * ( n -- ? )
+ * ( n body -- ? )
  *
  * @param body
  */
-export const dotimes = (body: StackProc = []) => {
-    const w = $stackFn(body);
-    return (ctx: StackContext) => {
-        $(ctx[0], 1);
-        for (let i = 0, n = ctx[0].pop(); i < n; i++) {
-            ctx[0].push(i);
-            ctx = w(ctx);
-        }
-        return ctx;
-    };
+export const dotimes = (ctx: StackContext) => {
+    let stack = ctx[0];
+    $(stack, 2);
+    const w = $stackFn(stack.pop());
+    for (let i = 0, n = stack.pop(); i < n; i++) {
+        ctx[0].push(i);
+        ctx = w(ctx);
+    }
+    return ctx;
 };
 
 //////////////////// Array / list ops  ////////////////////

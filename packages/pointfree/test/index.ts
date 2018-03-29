@@ -513,11 +513,11 @@ describe("pointfree", () => {
         assert.deepEqual(pf.exec($([1, 2, pf.add]))[0], [3]);
     });
 
-    it("execq", () => {
-        assert.throws(() => pf.execq($()));
-        assert.throws(() => pf.execq($([[pf.add]])));
-        assert.throws(() => pf.execq($([[1, pf.add]])));
-        assert.deepEqual(pf.execq($([[1, 2, pf.add]]))[0], [3]);
+    it("exec (quot)", () => {
+        assert.throws(() => pf.exec($()));
+        assert.throws(() => pf.exec($([[pf.add]])));
+        assert.throws(() => pf.exec($([[1, pf.add]])));
+        assert.deepEqual(pf.exec($([[1, 2, pf.add]]))[0], [3]);
     });
 
     it("cond", () => {
@@ -574,5 +574,49 @@ describe("pointfree", () => {
     it("bindkeys", () => {
         assert.throws(() => pf.run([1, ["a", "b"], {}, pf.bindkeys]));
         assert.deepEqual(pf.run([1, 2, 3, ["a", "b", "c"], {}, pf.bindkeys]), [[{ a: 1, b: 2, c: 3 }], [], {}]);
+    });
+
+    it("dip", () => {
+        assert.deepEqual(pf.run([1, [10], pf.dip])[0], [10, 1]);
+        assert.deepEqual(pf.run([1, 2, [10, pf.add], pf.dip])[0], [11, 2]);
+    });
+
+    it("dip2", () => {
+        assert.deepEqual(pf.run([1, 2, [10], pf.dip2])[0], [10, 1, 2]);
+        assert.deepEqual(pf.run([1, 2, 3, [10, pf.add], pf.dip2])[0], [11, 2, 3]);
+    });
+
+    it("dip3", () => {
+        assert.deepEqual(pf.run([1, 2, 3, [10], pf.dip3])[0], [10, 1, 2, 3]);
+        assert.deepEqual(pf.run([1, 2, 3, 4, [10, pf.add], pf.dip3])[0], [11, 2, 3, 4]);
+    });
+
+    it("dip4", () => {
+        assert.deepEqual(pf.run([1, 2, 3, 4, [10], pf.dip4])[0], [10, 1, 2, 3, 4]);
+        assert.deepEqual(pf.run([1, 2, 3, 4, 5, [10, pf.add], pf.dip4])[0], [11, 2, 3, 4, 5]);
+    });
+
+    it("keep", () => {
+        assert.deepEqual(pf.run([1, [10, pf.add], pf.keep])[0], [11, 1]);
+    });
+
+    it("keep2", () => {
+        assert.deepEqual(pf.run([1, 2, [pf.add], pf.keep2])[0], [3, 1, 2]);
+    });
+
+    it("keep3", () => {
+        assert.deepEqual(pf.run([1, 2, 3, [pf.add, pf.add], pf.keep3])[0], [6, 1, 2, 3]);
+    });
+
+    it("bi", () => {
+        assert.deepEqual(pf.run([2, [10, pf.add], [10, pf.mul], pf.bi])[0], [12, 20]);
+    });
+
+    it("bi2", () => {
+        assert.deepEqual(pf.run([2, 10, [pf.add], [pf.mul], pf.bi2])[0], [12, 20]);
+    });
+
+    it("bi3", () => {
+        assert.deepEqual(pf.run([2, 10, 100, [pf.add, pf.add], [pf.mul, pf.mul], pf.bi3])[0], [112, 2000]);
     });
 });
