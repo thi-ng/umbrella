@@ -401,9 +401,15 @@ const map_mul10 = pf.word([[10, pf.mul], pf.mapll, pf.unwrap]);
 map_mul10([[[1, 2, 3, 4]]]);
 // [ 10, 20, 30, 40 ]
 
+// the above case can also be solved more easily via vector math words
+pf.runU([[1, 2, 3, 4], 10, pf.vmul]);
+// [ 10, 20, 30, 40 ]
+pf.runU([[1, 2, 3, 4], [10, 20, 30, 40], pf.vmul]);
+// [ 10, 40, 90, 160 ]
 
 // drop even numbers, duplicate odd ones
-pf.runU([[1, 2, 3, 4], [pf.dup, pf.even, pf.cond(pf.drop, pf.dup)], pf.mapll])
+// here showing nested quotations
+pf.runU([[1, 2, 3, 4], [pf.dup, pf.even, [pf.drop], [pf.dup], pf.condq], pf.mapll])
 // [ 1, 1, 3, 3 ]
 
 // reduction example (using `mapl`)
@@ -412,7 +418,7 @@ pf.runU([0, [1, 2, 3, 4], [pf.add], pf.mapl])
 // 10
 
 // using `foldl` allows a different (better) argument order
-// for reduction purposes
+// for reduction purposes (uses `mapl` internally)
 // ( arr q init -- reduction )
 pf.runU([[1, 2, 3, 4], [pf.add], 0, pf.foldl])
 // 10
@@ -504,14 +510,16 @@ as test produces a truthy result. There's also `loopq` which reads its arguments
 ```typescript
 // print countdown from 3
 pf.run(
-    pf.loop(
+    [
         // test
         [pf.dup, pf.ispos], // ( x -- x bool )
         // loop body
-        ["counter: ", pf.over, pf.add, pf.print, pf.dec] // ( x -- x-1 )
-    ),
+        ["counter: ", pf.over, pf.add, pf.print, pf.dec], // ( x -- x-1 )
+        pf.loopq
+    ],
     // initial stack context
-    [[3]]);
+    [[3]]
+);
 // counter: 3
 // counter: 2
 // counter: 1
@@ -523,13 +531,14 @@ counter based iterations. Like `loopq` it's not an higher-order word and
 works with a body quotation, which is executed `n` times.
 
 ```typescript
-pf.run([3, ["i=", pf.swap, pf.add, pf.print], pf.dotimes])
-// i=0
-// i=1
-// i=2
+pf.run([3, ["counter: ", pf.swap, pf.add, pf.print], pf.dotimes])
+// counter: 0
+// counter: 1
+// counter: 2
 ```
 
-Both `loop` and `dotimes` can be used to create more complex/custom looping constructs:
+`loop`/`loopq` and `dotimes` can be used to create more complex/custom
+looping constructs:
 
 ```typescript
 // 2D range/grid loop
@@ -542,11 +551,11 @@ Both `loop` and `dotimes` can be used to create more complex/custom looping cons
 const loop2 = pf.word([
     pf.maptos(pf.word), // first compile body
     pf.movdr,           // move body move to r-stack
-    pf.dotimes([
+    [
         pf.over,
-        pf.dotimes([pf.over, pf.cprd, pf.exec]),
+        [pf.over, pf.cprd, pf.exec], pf.dotimes,
         pf.drop,
-    ]),
+    ], pf.dotimes,
     pf.drop,            // cleanup both stacks
     pf.rdrop,
 ]);
