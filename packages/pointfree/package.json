@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "description": "Pointfree functional composition / Forth style stack execution engine",
     "main": "./index.js",
     "typings": "./index.d.ts",
