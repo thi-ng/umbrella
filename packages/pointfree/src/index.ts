@@ -510,6 +510,23 @@ export const rswap = _swap(1);
  */
 export const rswap2 = _swap2(1);
 
+/**
+ * Like `inc`, but applies to r-stack TOS.
+ *
+ * @param ctx
+ */
+export const rinc = (ctx: StackContext) =>
+    ($(ctx[1], 1), ctx[1][ctx[1].length - 1]++ , ctx);
+
+/**
+ * Like `dec`, but applies to r-stack TOS.
+ *
+ * @param ctx
+ */
+export const rdec = (ctx: StackContext) =>
+    ($(ctx[1], 1), ctx[1][ctx[1].length - 1]-- , ctx);
+
+
 //////////////////// Math ops ////////////////////
 
 /**
@@ -597,6 +614,17 @@ export const pow = op2((b, a) => Math.pow(a, b));
  * @param ctx
  */
 export const sqrt = op1(Math.sqrt);
+
+export const log = op1(Math.log);
+
+export const sin = op1(Math.sin);
+
+export const cos = op1(Math.cos);
+
+export const atan2 = op2(Math.atan2);
+
+export const rand = (ctx: StackContext) =>
+    (ctx[0].push(Math.random()), ctx);
 
 /**
  * ( x -- bool )
@@ -916,6 +944,44 @@ export const loop = (test: StackProc, body: StackProc) => {
     }
 };
 
+/**
+ * Pops TOS and executes given `body` word/quotation `n` times. In each
+ * iteration pushes current counter on d-stack prior to executing body.
+ *
+ * ```
+ * pf.run([3, pf.dotimes("i=", pf.swap, pf.add, pf.print)])
+ * // i=0
+ * // i=1
+ * // i=2
+ * ```
+ *
+ * With empty body acts as finite range generator 0 .. n:
+ *
+ * ```
+ * // range gen
+ * pf.run([3, pf.dotimes()])
+ * [ [ 0, 1, 2 ], [], {} ]
+ *
+ * // range gen (as array)
+ * pf.runU([3, pf.cpdr, pf.dotimes(), pf.movrd, pf.collect])
+ * // [ 0, 1, 2 ]
+ * ```
+ *
+ * ( n -- ? )
+ *
+ * @param body
+ */
+export const dotimes = (body: StackProc = []) => {
+    const w = $stackFn(body);
+    return (ctx: StackContext) => {
+        $(ctx[0], 1);
+        for (let i = 0, n = ctx[0].pop(); i < n; i++) {
+            ctx[0].push(i);
+            ctx = w(ctx);
+        }
+        return ctx;
+    };
+};
 
 //////////////////// Array / list ops  ////////////////////
 
@@ -951,6 +1017,17 @@ export const loop = (test: StackProc, body: StackProc) => {
  */
 export const list = (ctx: StackContext) =>
     (ctx[0].push([]), ctx);
+
+/**
+ * Pushes new empty JS object on d-stack.
+ * Same reasoning as for `list`.
+ *
+ * ( -- {} )
+ *
+ * @param ctx
+ */
+export const obj = (ctx: StackContext) =>
+    (ctx[0].push({}), ctx);
 
 /**
  * Pushes `val` on the LHS of array.
@@ -1192,6 +1269,10 @@ export const collect = (ctx: StackContext) => {
  */
 export const tuple = (n: number | StackFn) => word([n, collect]);
 
+export const vec2 = tuple(2);
+export const vec3 = tuple(3);
+export const vec4 = tuple(4);
+
 /**
  * Higher order helper word to convert a TOS tuple/array into a string
  * using `Array.join()` with given `sep`arator.
@@ -1231,6 +1312,36 @@ export const storeat = (ctx: StackContext) => {
     $n(n, 0);
     stack[n + 1][stack[n + 2]] = stack[n];
     stack.length = n;
+    return ctx;
+};
+
+//////////////////// Objects  ////////////////////
+
+/**
+ * Takes an array of keys and target object, then pops & binds deeper
+ * stack values to respective keys in object. Pushes result object back
+ * on stack at the end. Throws error if there're less stack values than
+ * keys in given array.
+ *
+ * ```
+ * runU([1,2,3, ["a","b","c"], {}, bindkeys])
+ * // { c: 3, b: 2, a: 1 }
+ * ```
+ *
+ * (v1 v2 .. [k1 k2 ..] obj -- obj )
+ *
+ * @param ctx
+ */
+export const bindkeys = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 2);
+    const obj = stack.pop();
+    const keys = stack.pop();
+    $(stack, keys.length);
+    for (let i = keys.length - 1; i >= 0; i--) {
+        obj[keys[i]] = stack.pop();
+    }
+    stack.push(obj);
     return ctx;
 };
 
@@ -1313,3 +1424,6 @@ export const printds = (ctx: StackContext) =>
 
 export const printrs = (ctx: StackContext) =>
     (console.log(ctx[1]), ctx);
+
+export * from "./api";
+export * from "./comp";
