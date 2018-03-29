@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@1.0.9...@thi.ng/hdom-components@1.1.0) (2018-03-29)
+
+
+### Features
+
+* **hdom-components:** add svg line() ([6cbacec](https://github.com/thi-ng/umbrella/commit/6cbacec))
+
+
+
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@1.0.8...@thi.ng/hdom-components@1.0.9) (2018-03-28)
 

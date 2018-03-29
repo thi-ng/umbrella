@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-components",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",

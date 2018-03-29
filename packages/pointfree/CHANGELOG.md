@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.3.0...@thi.ng/pointfree@0.4.0) (2018-03-29)
+
+
+### Features
+
+* **pointfree:** add new words, constructs, aliases, fix re-exports ([943b4f9](https://github.com/thi-ng/umbrella/commit/943b4f9))
+
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.2.1...@thi.ng/pointfree@0.3.0) (2018-03-28)
 
