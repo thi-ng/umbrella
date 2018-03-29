@@ -26,15 +26,15 @@ cat << EOF > $MODULE/package.json
         "debdev": "see index.html && webpack -w"
     },
     "devDependencies": {
-        "ts-loader": "^3.3.1",
-        "typescript": "^2.7.1",
-        "webpack": "^3.10.0"
+        "ts-loader": "^3.5.0",
+        "typescript": "^2.7.2",
+        "webpack": "^3.11.0"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.0.3",
-        "@thi.ng/hdom": "^2.0.0",
-        "@thi.ng/rstream": "^1.0.0",
-        "@thi.ng/transducers": "^1.6.1"
+        "@thi.ng/api": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest"
     }
 }
 EOF

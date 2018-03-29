@@ -37,9 +37,10 @@ cat << EOF > $MODULE/package.json
     "scripts": {
         "build": "yarn run clean && tsc --declaration",
         "clean": "rm -rf *.js *.d.ts build doc",
+        "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn run build && yarn publish --access public",
-        "test": "rm -rf build && tsc -p test && mocha build/test/*.js"
+        "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.48",
