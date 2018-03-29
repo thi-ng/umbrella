@@ -619,4 +619,64 @@ describe("pointfree", () => {
     it("bi3", () => {
         assert.deepEqual(pf.run([2, 10, 100, [pf.add, pf.add], [pf.mul, pf.mul], pf.bi3])[0], [112, 2000]);
     });
+
+    it("tri", () => {
+        assert.deepEqual(pf.run([10, [pf.dec], [pf.dup, pf.mul], [pf.inc], pf.tri])[0], [9, 100, 11]);
+    });
+
+    it("tri2", () => {
+        assert.deepEqual(pf.run([10, 20, [pf.add], [pf.mul], [pf.sub], pf.tri2])[0], [30, 200, -10]);
+    });
+
+    it("tri3", () => {
+        assert.deepEqual(pf.run([10, 20, 30, [pf.add, pf.add], [pf.mul, pf.mul], [pf.sub, pf.sub], pf.tri3])[0], [60, 6000, 20]);
+    });
+
+    it("bis", () => {
+        assert.deepEqual(pf.run([10, 20, [pf.inc], [pf.dec], pf.bis])[0], [11, 19]);
+    });
+
+    it("bis2", () => {
+        assert.deepEqual(pf.run([10, 20, 30, 40, [pf.add], [pf.sub], pf.bis2])[0], [30, -10]);
+    });
+
+    it("tris", () => {
+        assert.deepEqual(pf.run([10, 20, 30, [pf.inc], [pf.dup, pf.mul], [pf.dec], pf.tris])[0], [11, 400, 29]);
+    });
+
+    it("tris2", () => {
+        assert.deepEqual(pf.run([10, 20, 30, 40, 50, 60, [pf.add], [pf.mul], [pf.sub], pf.tris2])[0], [30, 1200, -10]);
+    });
+
+    it("bia", () => {
+        assert.deepEqual(pf.run([10, 20, [pf.inc], pf.bia])[0], [11, 21]);
+    });
+
+    it("bia2", () => {
+        assert.deepEqual(pf.run([10, 20, 30, 40, [pf.add], pf.bia2])[0], [30, 70]);
+    });
+
+    it("tria", () => {
+        assert.deepEqual(pf.run([10, 20, 30, [pf.inc], pf.tria])[0], [11, 21, 31]);
+    });
+
+    it("tria2", () => {
+        assert.deepEqual(pf.run([10, 20, 30, 40, 50, 60, [pf.add], pf.tria2])[0], [30, 70, 110]);
+    });
+
+    it("both", () => {
+        assert.deepEqual(pf.run([10, 20, [pf.even], pf.both])[0], [true]);
+        assert.deepEqual(pf.run([11, 20, [pf.even], pf.both])[0], [false]);
+        assert.deepEqual(pf.run([10, 21, [pf.even], pf.both])[0], [false]);
+        assert.deepEqual(pf.run([11, 21, [pf.even], pf.both])[0], [false]);
+    });
+
+    it("either", () => {
+        assert.deepEqual(pf.run([10, 20, [pf.even], pf.either])[0], [true]);
+        assert.deepEqual(pf.run([11, 20, [pf.even], pf.either])[0], [true]);
+        assert.deepEqual(pf.run([10, 21, [pf.even], pf.either])[0], [true]);
+        assert.deepEqual(pf.run([11, 21, [pf.even], pf.either])[0], [false]);
+    });
+
+
 });

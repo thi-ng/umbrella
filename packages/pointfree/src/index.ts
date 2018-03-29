@@ -99,6 +99,69 @@ export const unwrap = ([stack]: StackContext, n = 1) =>
         tos(stack) :
         stack.slice(Math.max(0, stack.length - n));
 
+//////////////////// Dynamic words & quotations  ////////////////////
+
+/**
+ * Higher order word. Takes a StackProgram and returns it as StackFn to
+ * be used like any word. Unknown stack effect.
+ *
+ * If the optional `env` is given, uses a shallow copy of that
+ * environment (one per invocation) instead of the current one passed by
+ * `run()` at runtime. If `mergeEnv` is true (default), the user
+ * provided env will be merged with the current env (also shallow
+ * copies). This is useful in conjunction with `pushenv()` and `store()`
+ * or `storekey()` to save results of sub procedures in the main env.
+ *
+ * Note: The provided (or merged) env is only active within the
+ * execution scope of the word.
+ *
+ * ( ? -- ? )
+ *
+ * @param prog
+ * @param env
+ * @param mergeEnv
+ */
+export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
+    const w: StackFn = compile(prog);
+    return env ?
+        mergeEnv ?
+            (ctx: StackContext) => (w([ctx[0], ctx[1], { ...ctx[2], ...env }]), ctx) :
+            (ctx: StackContext) => (w([ctx[0], ctx[1], { ...env }]), ctx) :
+        w;
+};
+
+/**
+ * Like `word()`, but automatically calls `unwrap()` on result context
+ * to produced unwrapped value/tuple.
+ *
+ * **Importatant:** Words defined with this function CANNOT be used as
+ * part of a larger stack program, only for standalone use.
+ *
+ * @param prog
+ * @param n
+ * @param env
+ * @param mergeEnv
+ */
+export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true) => {
+    const w: StackFn = compile(prog);
+    return env ?
+        mergeEnv ?
+            (ctx: StackContext) => unwrap(w([ctx[0], ctx[1], { ...ctx[2], ...env }]), n) :
+            (ctx: StackContext) => unwrap(w([ctx[0], ctx[1], { ...env }]), n) :
+        (ctx: StackContext) => unwrap(w(ctx), n);
+};
+
+/**
+ * Executes TOS as stack function and places result back on d-stack. TOS
+ * MUST be a valid word or quotation.
+ *
+ * ( x -- x() )
+ *
+ * @param ctx
+ */
+export const exec = (ctx: StackContext) =>
+    ($(ctx[0], 1), $stackFn(ctx[0].pop())(ctx));
+
 //////////////////// Operator generators ////////////////////
 
 /**
@@ -573,6 +636,13 @@ export const sub = op2((b, a) => a - b);
 export const div = op2((b, a) => a / b);
 
 /**
+ * ( x -- 1/x )
+ *
+ * @param ctx
+ */
+export const oneover = word([1, swap, div]);
+
+/**
  * ( x y -- x%y )
  *
  * @param ctx
@@ -806,70 +876,10 @@ export const isneg = op1((x) => x < 0);
  */
 export const isnull = op1((x) => x == null);
 
-//////////////////// Dynamic words & quotations  ////////////////////
-
-/**
- * Higher order word. Takes a StackProgram and returns it as StackFn to
- * be used like any word. Unknown stack effect.
- *
- * If the optional `env` is given, uses a shallow copy of that
- * environment (one per invocation) instead of the current one passed by
- * `run()` at runtime. If `mergeEnv` is true (default), the user
- * provided env will be merged with the current env (also shallow
- * copies). This is useful in conjunction with `pushenv()` and `store()`
- * or `storekey()` to save results of sub procedures in the main env.
- *
- * Note: The provided (or merged) env is only active within the
- * execution scope of the word.
- *
- * ( ? -- ? )
- *
- * @param prog
- * @param env
- * @param mergeEnv
- */
-export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
-    const w: StackFn = compile(prog);
-    return env ?
-        mergeEnv ?
-            (ctx: StackContext) => (w([ctx[0], ctx[1], { ...ctx[2], ...env }]), ctx) :
-            (ctx: StackContext) => (w([ctx[0], ctx[1], { ...env }]), ctx) :
-        w;
-};
-
-/**
- * Like `word()`, but automatically calls `unwrap()` on result context
- * to produced unwrapped value/tuple.
- *
- * **Importatant:** Words defined with this function CANNOT be used as
- * part of a larger stack program, only for standalone use.
- *
- * @param prog
- * @param n
- * @param env
- * @param mergeEnv
- */
-export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true) => {
-    const w: StackFn = compile(prog);
-    return env ?
-        mergeEnv ?
-            (ctx: StackContext) => unwrap(w([ctx[0], ctx[1], { ...ctx[2], ...env }]), n) :
-            (ctx: StackContext) => unwrap(w([ctx[0], ctx[1], { ...env }]), n) :
-        (ctx: StackContext) => unwrap(w(ctx), n);
-};
-
-/**
- * Executes TOS as stack function and places result back on d-stack. TOS
- * MUST be a valid word or quotation.
- *
- * ( x -- x() )
- *
- * @param ctx
- */
-export const exec = (ctx: StackContext) =>
-    ($(ctx[0], 1), $stackFn(ctx[0].pop())(ctx));
-
 //////////////////// Dataflow combinators  ////////////////////
+
+// these combinators have been ported from Factor:
+// http://docs.factorcode.org:8080/content/article-dataflow-combinators.html
 
 /**
  * Removes `x` from d-stack, calls `q` and restores `x` to the top of
@@ -878,7 +888,7 @@ export const exec = (ctx: StackContext) =>
  * ( x q -- x )
  *
  * Same behavior as: `[swap, movdr, exec, movrd]`, only the current
- * implementation doesn't use r-stack.
+ * implementation doesn't use r-stack and stashes `x` off stack.
  *
  * @param ctx
  */
@@ -944,7 +954,7 @@ export const keep3 = word([[dup3], dip, dip3]);
  * First applies `p` to the value `x`, then applies `q` to the same
  * value.
  *
- * ( x p q -- pres qres )
+ * ( x p q -- px qx )
  */
 export const bi = word([[keep], dip, exec]);
 
@@ -952,7 +962,7 @@ export const bi = word([[keep], dip, exec]);
  * First applies `p` to the two input values `x y`, then applies `q` to
  * the same values.
  *
- * ( x y p q -- pres qres )
+ * ( x y p q -- pxy qxy )
  */
 export const bi2 = word([[keep2], dip, exec]);
 
@@ -960,9 +970,106 @@ export const bi2 = word([[keep2], dip, exec]);
  * First applies `p` to the three input values `x y z`, then applies `q`
  * to the same values.
  *
- * ( x y z p q -- pres qres )
+ * ( x y z p q -- pxyz qxyz )
  */
 export const bi3 = word([[keep3], dip, exec]);
+
+/**
+ * Applies `p` to `x`, then `q` to `x`, and finally `r` to `x`
+ *
+ * ( x p q r -- px qx rx )
+ */
+export const tri = word([[[keep], dip, keep], dip, exec]);
+
+/**
+ * Applies `p` to the two input values `x y`, then same with `q`, and
+ * finally with `r`.
+ *
+ * ( x y p q r -- pxy qxy rxy )
+ */
+export const tri2 = word([[[keep2], dip, keep2], dip, exec]);
+
+/**
+ * Applies `p` to the three input values `x y z`, then same with `q`,
+ * and finally with `r`.
+ *
+ * ( x y z p q r -- pxyz qxyz rxyz )
+ */
+export const tri3 = word([[[keep3], dip, keep3], dip, exec]);
+
+/**
+ * Applies `p` to `x`, then applies `q` to `y`.
+ *
+ * ( x y p q -- px qy )
+ */
+export const bis = word([[dip], dip, exec]);
+
+/**
+ * Applies `p` to `a b`, then applies `q` to `c d`.
+ *
+ * ( a b c d p q -- pab qcd )
+ */
+export const bis2 = word([[dip2], dip, exec]);
+
+/**
+ * Applies `p` to `x`, then `q` to `y`, and finally `r` to `z`.
+ *
+ * ( x y z p q r -- )
+ */
+export const tris = word([[[dip2], dip, dip], dip, exec]);
+
+/**
+ * Applies `p` to `u v`, then `q` to `w x`, and finally `r` to `y z`.
+ *
+ * ( u v w x y z p q r -- puv qwx ryz )
+ */
+export const tris2 = word([[dip4], dip2, bis2]);
+
+/**
+ * Applies the quotation `q` to `x`, then to `y`.
+ *
+ * ( x y q -- qx qy )
+ */
+export const bia = word([dup, bis]);
+
+/**
+ * Applies the quotation `q` to `x y`, then to `z w`.
+ *
+ * ( x y z w q -- qxy qzw )
+ */
+export const bia2 = word([dup, bis2]);
+
+/**
+ * Applies the `q` to `x`, then to `y`, and finally to `z`.
+ *
+ * ( x y z q -- qx qy qz )
+ */
+export const tria = word([dup, dup, tris]);
+
+/**
+ * Applies the quotation to `u v`, then to `w x`, and then to `y z`.
+ *
+ * ( u v w x y z q -- quv qwx qyz )
+ */
+export const tria2 = word([dup, dup, tris2]);
+
+/**
+ * Applies `q` individually to both input vals `x y` and combines
+ * results with `and`. The final result will be true if both interim
+ * results were truthy.
+ *
+ * ( x y q -- qx && qy )
+ */
+export const both = word([bia, and]);
+
+/**
+ * Applies `q` individually to both input vals `x y` and combines results with `or`.
+ * The final result will be true if at least one of the interim results
+ * was truthy.
+ *
+ * ( x y q -- qx || qy )
+ */
+export const either = word([bia, or]);
 
 //////////////////// Conditionals  ////////////////////
 
