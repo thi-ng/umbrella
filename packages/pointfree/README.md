@@ -45,7 +45,7 @@ inspired DSL:
 - dual stack (main & stash/scratch space)
 - nested execution environments (scopes)
 - arbitrary stack values
-- quotations (static or dynamically generated programs stored on stack)
+- nested quotations (static or dynamically generated programs stored on stack)
 - includes ~85 stack operators:
     - conditionals
     - looping constructs
@@ -172,7 +172,10 @@ tuple and can arbitrarily modify both its stacks and/or environment and
 returns the updated context (usually the same instance as passed in, but
 could also produce a new one). Any side effects are allowed.
 
-A `StackProgram` is an array of stack functions and non-function values. The latter are replaced by calls to `push` which pushes the given value on the stack as is. Therefore, a stack program like: `[1, 2, pf.add]` compiles to:
+A `StackProgram` is an array of stack functions and non-function values.
+The latter are replaced by calls to `push` which pushes the given value
+on the stack as is. Therefore, a stack program like: `[1, 2, pf.add]`
+compiles to:
 
 ```
 pf.add(pf.push(2)(pf.push(1)(<initial context>)))
@@ -190,7 +193,8 @@ approach to document the effect a word has on the stack structure.
 The items in front of the `--` describe the relevant state of the stack
 before the execution of a word (the args expected/consumed by the word).
 The part after the `--` is the state of the stack after execution (the
-results). If no args are given on the LHS, the word consumes no args. If no args are given on the RHS, no result values are produced.
+results). If no args are given on the LHS, the word consumes no args. If
+no args are given on the RHS, no result values are produced.
 
 (Note: **TOS** = Top Of Stack)
 
@@ -284,7 +288,8 @@ A `StackProgram` residing as data on the stack is called a quotation.
 Quoatations enable a form of dynamic meta programming and are used by
 several built-in words. Quoations are used like lambdas / anonymous
 functions in traditional functional programming, though **they're not
-closures**. Quotations are executed via `execq`.
+closures** nor do they need to be complete. Quotations can be nested and
+are executed via `execq`.
 
 This example uses a quoted form of the above `pow2` word:
 
@@ -370,9 +375,16 @@ pf.runE(
 
 ### Array transformations
 
-The DSL includes several array transforming words and constructs, incl. array/vector math ops, splitting, deconstructing, push/pull (both LHS/RHS) and the `mapl` & `mapll` words, both of which act as generalization for `map`, `filter`, `mapcat` and `reduce`. The only difference between `mapl` and `mapll` is that the former does **not** produce a result array (only flat results pushed on stack), whereas `mapll` always produces a new array.
+The DSL includes several array transforming words and constructs, incl.
+array/vector math ops, splitting, deconstructing, push/pull (both
+LHS/RHS) and the `mapl` & `mapll` words, both of which act as
+generalization for `map`, `filter`, `mapcat` and `reduce`. The only
+difference between `mapl` and `mapll` is that the former does **not**
+produce a result array (only flat results pushed on stack), whereas
+`mapll` always produces a new array.
 
-`mapl` takes an array and a quotation. Loops over array, pushes each value on the stack and applies quotation for each.
+`mapl` takes an array and a quotation. Loops over array, pushes each
+value on the stack and applies quotation for each.
 
 ```typescript
 // multiply each array item * 10
@@ -394,6 +406,20 @@ pf.runU([[1, 2, 3, 4], [pf.add], 0, pf.foldl])
 // 10
 ```
 
+#### Bind stack values to object keys
+
+`bindkeys` takes an array of keys and target object, then pops & binds
+deeper stack values to their respective keys in object. Pushes result
+object back on stack at the end. Throws error if there're less stack
+values than keys in given array.
+
+```typescript
+runU([1,2,3, ["a","b","c"], {}, bindkeys])
+// { c: 3, b: 2, a: 1 }
+```
+
+#### Combine array transform op with other stack values
+
 ```typescript
 // helper word to extract a 8bit range from a 32bit int
 // ( x s -- x (x>>s)&0xff )
@@ -411,7 +437,6 @@ const extractByte = pf.word([
 const splitBytes = pf.word([[24, 16, 8, 0], [extractByte, pf.swap], pf.mapl, pf.drop]);
 
 // decompose the number 0xdecafbad into 4 bytes
-// the array defines the bitshift offsets for each byte
 splitBytes([[0xdecafbad]]);
 // [ [ 222, 202, 251, 173 ] ]
 // in hex: [ [ 0xde, 0xca, 0xfb, 0xad ] ]
@@ -480,6 +505,16 @@ pf.run(
 // [ [ 0 ] ]
 ```
 
+Alternatively, the `dotimes` construct is more suitable for simple
+counter based iterations:
+
+```typescript
+pf.run([3, pf.dotimes(["i=", pf.swap, pf.add, pf.print])])
+// i=0
+// i=1
+// i=2
+```
+
 ### In-place stack value transformation
 
 The `maptos()`, `map2()` higher order words can be used to transform
@@ -496,7 +531,10 @@ stack items in place using vanilla JS functions:
 
 ### R-stack usage
 
-The second stack ("R-stack") is useful to store interim processing state without having to resort to complex stack shuffling ops. There're several words available for moving data between main ("D-stack") and the r-stack and to manipulate the structure of the R-stack itself.
+The second stack ("R-stack") is useful to store interim processing state
+without having to resort to complex stack shuffling ops. There're
+several words available for moving data between main ("D-stack") and the
+r-stack and to manipulate the structure of the R-stack itself.
 
 ```typescript
 // this example partitions the main stack into triples
@@ -546,13 +584,13 @@ pf.runU([
 // [ [ 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
 ```
 
-
 TODO more examples forthcoming
 
 ## Core vocabulary
 
 By default, each word checks for stack underflow and throws an error if
-there are insufficient values on the stack. These checks can be disabled by calling `pf.safeMode(false)`.
+there are insufficient values on the stack. These checks can be disabled
+by calling `pf.safeMode(false)`.
 
 Note: Some of the words are higher-order functions, accepting arguments
 at word construction time and return a pre-configured stack function.
@@ -617,8 +655,13 @@ at word construction time and return a pre-configured stack function.
 | `odd` | `( x -- bool )` | true, if `x` is odd |
 | `min` | `( x y -- min(x, y) )` |
 | `max` | `( x y -- max(x, y) )` |
+| `log` | `( x -- log(x) )` |
 | `pow` | `( x y -- pow(x, y) )` |
+| `rand` | `( -- Math.random() )` |
 | `sqrt` | `( x -- sqrt(x) )` |
+| `sin` | `( x -- sin(x) )` |
+| `cos` | `( x -- cos(x) )` |
+| `atan2` | `( x y -- atan2(y, x) )` |
 | `lsl` | `( x y -- x<<y )` |
 | `lsr` | `( x y -- x>>y )` |
 | `lsru` | `( x y -- x>>>y )` |
@@ -661,12 +704,14 @@ at word construction time and return a pre-configured stack function.
 | Word | Stack effect | Description |
 | --- | --- | --- |
 | `at` | `( obj k -- obj[k] )` | `obj` can be array/obj/string |
+| `bindkeys` | `(v1 v2 .. [k1 k2 ..] obj -- obj )` | bind key/value pairs in `obj` |
 | `collect` | `( ... n -- [...] )` | tuple of top `n` vals |
 | `foldl` | `( arr q init -- x )` | like `mapl`, but w/ `init` val for reduction |
 | `length` | `( x -- x.length )` | length of arraylike |
+| `list` | `( -- [] )` | create new empty array |
 | `mapl` | `( arr q -- ? )` | transform array w/ quotation (no explicit result array) |
 | `mapll` | `( arr q -- ? )` | transform array w/ quotation |
-| `storeAt` | `( val obj k -- )` | `obj` can be array/obj |
+| `obj` | `( -- {} )` | create new empty object |
 | `pushl` | `( x arr -- arr )` | push `x` on LHS of array |
 | `pushr` | `( arr x -- arr )` | push `x` on RHS of array |
 | `popr` | `( arr -- arr arr[-1] )` | extract RHS of array as new TOS |
@@ -675,19 +720,24 @@ at word construction time and return a pre-configured stack function.
 | `pull3` | `( arr -- x y z arr )` | short for: `[pull2, pull]` |
 | `pull4` | `( arr -- a b c d arr )` | short for: `[pull2, pull2]` |
 | `split` | `( arr x -- [...] [...] )` | split array at index `x` |
+| `storeat` | `( val obj k -- )` | `obj` can be array/obj |
 | `tuple(n)` | `( ... -- [...] )` | HOF, like `collect`, but w/ predefined size |
+| `vec2` | `( x y -- [x, y] )` | same as `tuple(2)` |
+| `vec3` | `( x y z -- [x, y, z] )` | same as `tuple(3)` |
+| `vec4` | `( x y z w -- [x, y, z, w] )` | same as `tuple(4)` |
 | `vadd` | `( a b -- c )` | add 2 arrays (or array + scalar) |
 | `vsub` | `( a b -- c )` | subtract 2 arrays (or array + scalar) |
 | `vmul` | `( a b -- c )` | multiply 2 arrays (or array + scalar) |
 | `vdiv` | `( a b -- c )` | divide 2 arrays (or array + scalar) |
 | `op2v(f)` | `( a b -- c )` | HOF word gen, e.g. `vadd` is based on |
+
 ### I/O
 
 | Word | Stack effect | Description |
 | --- | --- | --- |
 | `print` | `( x -- )` | `console.log(x)` |
 | `printds` | `( -- )` | print out D-stack |
-| `printrs` | `( -- )` | print out R-stack
+| `printrs` | `( -- )` | print out R-stack |
 
 ### Control flow
 
@@ -715,6 +765,12 @@ the stack before execution.
 
 Takes a `test` and `body` stack program. Applies test to TOS and
 executes body. Repeats while test is truthy.
+
+#### `dotimes(body: StackProc = [])`
+
+Pops TOS and executes given `body` word/quotation `n` times. In each
+iteration pushes current counter on d-stack prior to executing body.
+With empty body acts as finite range generator 0 .. n.
 
 ### Word creation and execution
 

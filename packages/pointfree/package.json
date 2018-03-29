@@ -36,6 +36,7 @@
         "Forth",
         "functional",
         "pipeline",
+        "pointfree",
         "stack",
         "data transformation",
         "typescript"
