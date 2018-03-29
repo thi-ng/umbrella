@@ -20,7 +20,7 @@
 - [Core vocabulary](#core-vocabulary)
     - [D-Stack modification](#d-stack-modification)
     - [R-Stack modification](#r-stack-modification)
-    - [Dynamic execution](#dynamic-execution)
+    - [Word & quotation execution / combinators](#word--quotation-execution--combinators)
     - [Primitive math](#primitive-math)
     - [Logic](#logic)
     - [Environment](#environment)
@@ -36,7 +36,7 @@
 ## About
 
 [Pointfree](https://en.wikipedia.org/wiki/Concatenative_programming_language)
-functional composition via lightweight (3KB gzipped), stack-based
+functional composition via lightweight (~3KB gzipped), stack-based
 [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
 inspired DSL:
 
@@ -46,9 +46,10 @@ inspired DSL:
 - nested execution environments (scopes)
 - arbitrary stack values
 - nested quotations (static or dynamically generated programs stored on stack)
-- includes ~85 stack operators:
+- includes ~95 stack operators:
     - conditionals
     - looping constructs
+    - dataflow combinators (`dip`, `keep`, `bi` etc.)
     - array / tuple ops
     - math, binary & logic ops
     - currying quotations
@@ -285,11 +286,12 @@ mag2([[-10, 10]])
 ### Quotations
 
 A `StackProgram` residing as data on the stack is called a quotation.
-Quoatations enable a form of dynamic meta programming and are used by
-several built-in words. Quoations are used like lambdas / anonymous
-functions in traditional functional programming, though **they're not
-closures** nor do they need to be complete. Quotations can be nested and
-are executed via `execq`.
+Quotations enable a form of dynamic meta programming and are used by
+several built-in words and combinators. Quoations are used like lambdas
+/ anonymous functions in traditional functional programming, are
+executed in the current environment, but needn't be complete units of
+execution. Quotations can be nested, composed and are executed via
+`exec`.
 
 This example uses a quoted form of the above `pow2` word:
 
@@ -299,7 +301,7 @@ pf.runU(
         // push quotation on stack
         [pf.dup, pf.mul],
         // execute
-        pf.execq,
+        pf.exec,
     ],
     // initial (partial) stack context
     [[10]]
@@ -309,14 +311,17 @@ pf.runU(
 
 #### Currying & composing quotations
 
-Since quoatations are just arrays, we can treat them as data. E.g. The
+Since quoatations are just arrays, we can treat them as data, i.e. **the
 functional composition of two quotations is the same as concatenating
-two arrays:
+two arrays**:
 
 ```
+const add10 = [10, pf.add];
+const mul10 = [10, pf.mul];
+
 // `cat` is used to concatenate arrays
 // the result quotation computes: `(x+10)*10`
-pf.runU([ [10, pf.add], [10, pf.mul], pf.cat, pf.execq], [[1]])
+pf.runU([ add10, mul10, pf.cat, pf.exec ], [[1]])
 // 110
 ```
 
@@ -327,7 +332,7 @@ prepend (or `pushr` to append) arguments to a given quotation (array).
 
 ```typescript
 // build & execute curried quotation
-pf.run([10, [pf.add], pf.pushl, pf.execq], [[13]]);
+pf.run([10, [pf.add], pf.pushl, pf.exec], [[13]]);
 // 23
 ```
 
@@ -346,14 +351,14 @@ const triple = tupleQ(3);
 // when executed stores TOS under `id` key in current environment
 const storeQ = (id) => [id, pf.store]
 
-// define word which inlines given quotation and `storeQ`
+// define word which inlines both the given quotation and `storeQ`
 // when executed first runs quotation
 // then stores result in current environment object
 const storeID = (id, quot) => pf.word([...quot, ...storeQ(id)]);
 
 // alternatively we could write:
 const storeID = (id, quot) =>
-    pf.word([quot, pf.execq, storeQ(id), pf.execq]);
+    pf.word([quot, pf.exec, storeQ(id), pf.exec]);
 
 // transform stack into tuples, stored in env
 // `runE()` only returns the result environment
@@ -364,7 +369,7 @@ pf.runE(
 );
 // { a: [ 4, 5 ], b: [ 1, 2, 3 ] }
 
-// same again without quotations
+// same again without any quotations
 pf.runE(
     [2, pf.collect, "a", pf.store, 3, pf.collect, "b", pf.store],
     // stack context tuple [DS, RS, ENV]
@@ -391,6 +396,12 @@ value on the stack and applies quotation for each.
 pf.runU([[1, 2, 3, 4], [10, pf.mul], pf.mapll]);
 // [ 10, 20, 30, 40 ]
 
+// same packaged as standalone function
+const map_mul10 = pf.word([[10, pf.mul], pf.mapll, pf.unwrap]);
+map_mul10([[[1, 2, 3, 4]]]);
+// [ 10, 20, 30, 40 ]
+
+
 // drop even numbers, duplicate odd ones
 pf.runU([[1, 2, 3, 4], [pf.dup, pf.even, pf.cond(pf.drop, pf.dup)], pf.mapll])
 // [ 1, 1, 3, 3 ]
@@ -402,6 +413,7 @@ pf.runU([0, [1, 2, 3, 4], [pf.add], pf.mapl])
 
 // using `foldl` allows a different (better) argument order
 // for reduction purposes
+// ( arr q init -- reduction )
 pf.runU([[1, 2, 3, 4], [pf.add], 0, pf.foldl])
 // 10
 ```
@@ -410,25 +422,26 @@ pf.runU([[1, 2, 3, 4], [pf.add], 0, pf.foldl])
 
 `bindkeys` takes an array of keys and target object, then pops & binds
 deeper stack values to their respective keys in object. Pushes result
-object back on stack at the end. Throws error if there're less stack
-values than keys in given array.
+object back on stack at the end. Throws error if there're less remaining
+stack values than keys in given array.
 
 ```typescript
-runU([1,2,3, ["a","b","c"], {}, bindkeys])
+runU([1, 2, 3, ["a","b","c"], {}, bindkeys])
 // { c: 3, b: 2, a: 1 }
 ```
 
-#### Combine array transform op with other stack values
+#### Combine array transform op with deeper stack values
 
 ```typescript
 // helper word to extract a 8bit range from a 32bit int
-// ( x s -- x (x>>s)&0xff )
+// `x` is the orig number, `s` bit shift amount
+// ( x s -- x byte )
 const extractByte = pf.word([
     pf.over,  // ( x s x )
     pf.swap,  // ( x x s )
     pf.lsru,  // ( x x>>>s )
     0xff,     // ( x x>>>s 0xff )
-    pf.bitand // ( x (x>>s)&0xff )
+    pf.bitand // ( x (x>>>s)&0xff )
 ]);
 
 // decompose a number into 4 bytes
@@ -486,7 +499,7 @@ classify(-1);
 ### Loops
 
 `loop` takes two quotations (a test and a body). Executes body as long
-as test produces a truthy result.
+as test produces a truthy result. There's also `loopq` which reads its arguments (same as `loop`) from the stack.
 
 ```typescript
 // print countdown from 3
@@ -506,13 +519,53 @@ pf.run(
 ```
 
 Alternatively, the `dotimes` construct is more suitable for simple
-counter based iterations:
+counter based iterations. Like `loopq` it's not an higher-order word and
+works with a body quotation, which is executed `n` times.
 
 ```typescript
-pf.run([3, pf.dotimes(["i=", pf.swap, pf.add, pf.print])])
+pf.run([3, ["i=", pf.swap, pf.add, pf.print], pf.dotimes])
 // i=0
 // i=1
 // i=2
+```
+
+Both `loop` and `dotimes` can be used to create more complex/custom looping constructs:
+
+```typescript
+// 2D range/grid loop
+//
+// (cols rows body -- ? )
+//
+// iterates over `rows` as outer and `cols` as inner loop
+// executes body quotation with this stack effect
+// ( x y -- )
+const loop2 = pf.word([
+    pf.maptos(pf.word), // first compile body
+    pf.movdr,           // move body move to r-stack
+    pf.dotimes([
+        pf.over,
+        pf.dotimes([pf.over, pf.cprd, pf.exec]),
+        pf.drop,
+    ]),
+    pf.drop,            // cleanup both stacks
+    pf.rdrop,
+]);
+
+pf.run([2, 3, [pf.vec2, pf.print], loop2]);
+// [ 0, 0 ]
+// [ 1, 0 ]
+// [ 0, 1 ]
+// [ 1, 1 ]
+// [ 0, 2 ]
+// [ 1, 2 ]
+// [ [], [], {} ]
+
+// To keep/collect the grid coordinates for future use
+// use `vec2` and `invrot` to rotate them 2 places down the stack
+// the last 2 words `dsp, collect` are used to group
+// all stack items into a single tuple
+pf.runU([2, 3, [pf.vec2, pf.invrot], loop2, pf.dsp, pf.collect]);
+// [ [ 0, 0 ], [ 1, 0 ], [ 0, 1 ], [ 1, 1 ], [ 0, 2 ], [ 1, 2 ] ]
 ```
 
 ### In-place stack value transformation
@@ -601,11 +654,12 @@ at word construction time and return a pre-configured stack function.
 | --- | --- | --- |
 | `drop` | `( x -- )` | remove TOS |
 | `drop2` | `( x y -- )` | remove top 2 vals |
-| `dropIf` | `( x -- ? )` | remove only if TOS truthy |
+| `dropif` | `( x -- ? )` | remove only if TOS truthy |
 | `dsp` | `( -- stack.length )` | push d-stack depth |
 | `dup` | `( x -- x x )` | duplicate TOS |
 | `dup2` | `( x y -- x y x y )` | duplicate top 2 vals |
-| `dupIf` | `( x -- x x? )` | dup only if TOS truthy |
+| `dup3` | `( x y z -- x y z x y z )` | duplicate top 3 vals |
+| `dupif` | `( x -- x x? )` | dup only if TOS truthy |
 | `maptos(fn)` | `( x -- f(x) )` | transform TOS w/ `f` |
 | `map2(fn)` | `( x y -- f(y, x) )` | reduce top 2 vals with `f`, single result |
 | `nip` | `( x y -- y )` | remove `x` from stack |
@@ -632,12 +686,21 @@ at word construction time and return a pre-configured stack function.
 | `cpdr` | `( x -- x )` (d-stack effect) | copy d-stack TOS on r-stack |
 | `cprd` | `( -- x )` (d-stack effect) | copy r-stack TOS on d-stack |
 
-### Dynamic execution
+### Word & quotation execution / combinators
 
 | Word | Stack effect | Description |
 | --- | --- | --- |
-| `exec` | ` ( w -- ? )` | call TOS as (compiled) word w/ curr ctx |
-| `execq` | ` ( q -- ? )` | execute TOS as quotation w/ curr ctx|
+| `exec` | `( w -- ? )` | call TOS as (compiled) word w/ curr ctx |
+| `dip` | `( x q -- .. x )` | |
+| `dip2` | `( x y q -- .. x y )` | |
+| `dip3` | `( x y z q -- .. x y z )` | |
+| `dip4` | `( x y z w q -- .. x y z w )` | |
+| `keep` | `( x q -- .. x )` | |
+| `keep2` | `( x y q -- .. x y )` | |
+| `keep3` | `( x y z q -- .. x y z )` | |
+| `bi` | `( x p q -- pres qres )` | |
+| `bi2` | `( x y p q -- pres qres )` | |
+| `bi3` | `( x y z p q -- pres qres )` | |
 
 ### Primitive math
 
@@ -750,6 +813,16 @@ depending if TOS was truthy or not.
 Note: Unlike JS `if() {...} else {...}` constructs, the actual
 conditional is **not** part of this word (only the branches are).
 
+#### `condq`
+
+Non-HOF version of `cond`, expects `test` result and both branches on
+d-stack. Executes `thenq` word/quotation if `test` is truthy, else runs
+`elseq`.
+
+```
+( test thenq elseq -- ? )
+```
+
 #### `cases(cases: IObjectOf<StackFn | StackProgram>)`
 
 Higher order word. Essentially like JS `switch`. Takes an object of
@@ -766,11 +839,25 @@ the stack before execution.
 Takes a `test` and `body` stack program. Applies test to TOS and
 executes body. Repeats while test is truthy.
 
-#### `dotimes(body: StackProc = [])`
+#### `loopq`
 
-Pops TOS and executes given `body` word/quotation `n` times. In each
-iteration pushes current counter on d-stack prior to executing body.
-With empty body acts as finite range generator 0 .. n.
+Non-HOF version of `loop`. Expects test result and body quotation/word
+on d-stack.
+
+```
+( testq bodyq -- ? )
+```
+
+#### `dotimes`
+
+```
+( n body -- ? )
+```
+
+Pops `n` and `body` from d-stack and executes given `body` word /
+quotation `n` times. In each iteration pushes current counter on d-stack
+prior to executing body. With empty body acts as finite range generator
+0 .. n.
 
 ### Word creation and execution
 

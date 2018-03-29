@@ -1062,8 +1062,8 @@ export const loop = (test: StackProc, body: StackProc) => {
 };
 
 /**
- * Non-HOF version of `loop`. Expects test and body quotations/words on
- * d-stack.
+ * Non-HOF version of `loop`. Expects test result and body quotation /
+ * word on d-stack.
  *
  * ( testq bodyq -- ? )
  *
