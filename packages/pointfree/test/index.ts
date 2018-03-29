@@ -570,4 +570,9 @@ describe("pointfree", () => {
         assert.deepEqual(pf.wordU([pf.pushenv], 1, { a: 1 })($()), { a: 1 });
         assert.deepEqual(pf.wordU([pf.pushenv], 1, { a: 1 }, true)([[], [], { b: 2 }]), { a: 1, b: 2 });
     });
+
+    it("bindkeys", () => {
+        assert.throws(() => pf.run([1, ["a", "b"], {}, pf.bindkeys]));
+        assert.deepEqual(pf.run([1, 2, 3, ["a", "b", "c"], {}, pf.bindkeys]), [[{ a: 1, b: 2, c: 3 }], [], {}]);
+    });
 });
