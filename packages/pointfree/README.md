@@ -12,6 +12,7 @@
     - [Custom word definitions](#custom-word-definitions)
     - [Factoring](#factoring)
     - [Quotations](#quotations)
+    - [Dataflow combinators](#dataflow-combinators)
     - [Array transformations](#array-transformations)
     - [Conditionals](#conditionals)
     - [Loops](#loops)
@@ -36,25 +37,26 @@
 ## About
 
 [Pointfree](https://en.wikipedia.org/wiki/Concatenative_programming_language)
-functional composition via lightweight (~3KB gzipped), stack-based
-[Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
-inspired DSL:
+functional composition via lightweight (~3KB gzipped), stack-based DSL:
 
+- powerful, concise syntax
 - words implemented as tiny vanilla JS functions (easily extensible)
 - optimized pre-composition/compilation of custom user defined words (see [comp.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/comp.ts))
 - dual stack (main & stash/scratch space)
 - nested execution environments (scopes)
 - arbitrary stack values
 - nested quotations (static or dynamically generated programs stored on stack)
-- includes ~95 stack operators:
+- includes 100+ operators:
     - conditionals
     - looping constructs
-    - dataflow combinators (`dip`, `keep`, `bi` etc.)
+    - 20+ dataflow / quotation combinators (`dip`, `keep`, `bi` etc.)
     - array / tuple ops
     - math, binary & logic ops
     - currying quotations
     - higher order combinators
     - environment manipulation etc.
+- stack comments & documentation for most ops/words
+- [over 330 test cases](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/test/index.ts)
 
 For a great overview & history of this type of this type of programming,
 please see:
@@ -72,8 +74,8 @@ VM/REPL](http://forth.thi.ng) (JS) and
 refactored to be more generally useful as environment for building data
 processing pipelines in a [pointfree / concatenative programming
 style](https://en.wikipedia.org/wiki/Concatenative_programming_language)
-rather than acting as fullblown VM. Some words and operations have been
-influenced by [Factor](http://factorcode.org) and
+rather than acting as fullblown VM. Some words and concepts have been
+ported from [Factor](http://factorcode.org) and
 [Popr](https://github.com/HackerFoo/poprc).
 
 ### A brief comparison
@@ -82,8 +84,8 @@ influenced by [Factor](http://factorcode.org) and
 
 ```typescript
 // define word to compute dot product of two vectors
-const dotp = pf.word([pf.vmul, [pf.add], 0, pf.mapl]);
-// another word to normalize a vector (re-uses `dotp`)
+const dotp = pf.word([pf.vmul, [pf.add], 0, pf.foldl]);
+// another word to normalize a vector (uses `dotp`)
 const normalize = pf.word([pf.dup, pf.dup, dotp, pf.sqrt, pf.vdiv]);
 
 // `word(...)` creates a functional composition of given body
@@ -91,10 +93,10 @@ const normalize = pf.word([pf.dup, pf.dup, dotp, pf.sqrt, pf.vdiv]);
 // i.e. normalize = vdiv(sqrt(dotp(dup(dup(ctx)))));
 
 // `unwrap` retrieves a value/section of the result stack
-unwrap(dotp([[ [1, 2, 3], [4, 5, 6] ]]))
+pf.unwrap(dotp([[ [1, 2, 3], [4, 5, 6] ]]))
 // 32
 
-unwrap(normalize([[ [10, -10, 0] ]]))
+pf.unwrap(normalize([[ [10, -10, 0] ]]))
 // [ 0.7071067811865475, -0.7071067811865475, 0 ]
 ```
 
@@ -131,12 +133,13 @@ however the pointfree method and use of a stack as sole communication
 medium between different sub-processes **can** be more flexible, since
 each function ("word" in Concatenative-programming-speak) can consume or
 produce any number of intermediate values from/on the stack.
-Furthermore, on-stack quotations can be used for dynamic programming
-approaches and conditionals can be used to cause non-linear controlflow.
+Furthermore, on-stack quotations and dataflow combinators can be used
+for dynamic programming approaches and conditionals can be used to cause
+non-linear controlflow.
 
 ## Status
 
-BETA - in active development
+ALPHA - in active development, API still undergoing major changes
 
 ## Installation
 
@@ -168,10 +171,10 @@ The `StackContext` tuple consists of:
   space for internal data
 - **env** - arbitrary data object defining the current environment
 
-Each program function ("word") accepts a `StackContext`
-tuple and can arbitrarily modify both its stacks and/or environment and
-returns the updated context (usually the same instance as passed in, but
-could also produce a new one). Any side effects are allowed.
+Each program function ("word") accepts a `StackContext` tuple and can
+arbitrarily modify both its stacks and/or environment and must return
+the updated context (usually the same instance as passed in, but could
+also produce a new one). Any side effects are allowed.
 
 A `StackProgram` is an array of stack functions and non-function values.
 The latter are replaced by calls to `push` which pushes the given value
@@ -258,7 +261,8 @@ maddU([3, 5, 10]);
 
 Factoring is a crucial aspect of developing programs in concatenative
 languages. The general idea is to decompose a larger solution into
-smaller re-usable units, words, quotations.
+smaller re-usable units, words, quotations. These often extremely small
+words can be much easier tested and reused.
 
 ```typescript
 // compute square of x
@@ -266,17 +270,17 @@ smaller re-usable units, words, quotations.
 const pow2 = pf.word([pf.dup, pf.mul]);
 
 // test word with given (partial) stack context
-pow2([[-10]])
-// [ [ 100 ] ]
+pf.unwrap(pow2([[-10]]))
+// 100
 
 // compute magnitude of 2d vector (using `pow2`)
 // ( x y -- mag )
 const mag2 = pf.wordU([
-    pow2,    // ( x y -- x y^2 )
-    pf.swap, // ( x y^2 -- y^2 x )
-    pow2,    // ( y^2 x -- y^2 x^2 )
-    pf.add,  // ( y^2 x^2 -- sum )
-    pf.sqrt
+    // `bia` is a combinator,
+    // which applies quotation to both inputs
+    [pow2], pf.bia, // ( x*x y*y )
+    pf.add,         // ( x*x+y*y )
+    pf.sqrt         // ( sqrt(x*x+y*y) )
 ]);
 
 mag2([[-10, 10]])
@@ -329,6 +333,8 @@ As with [partial
 application](https://en.wikipedia.org/wiki/Partial_application) in
 functional programming, we can "curry" quotations and use `pushl` to
 prepend (or `pushr` to append) arguments to a given quotation (array).
+Also see [the section about combinators](#dataflow-combinators) for more
+advanced options.
 
 ```typescript
 // build & execute curried quotation
@@ -343,40 +349,115 @@ in a larger word/program (i.e. as a form of inlining code).
 // a quotation is just an array of values/words
 // this function is a quotation generator
 const tupleQ = (n) => [n, pf.collect];
-// predefine fixed size tuples
-const pair = tupleQ(2);
-const triple = tupleQ(3);
-
 // define another quotation which takes an id and
 // when executed stores TOS under `id` key in current environment
 const storeQ = (id) => [id, pf.store]
 
-// define word which inlines both the given quotation and `storeQ`
-// when executed first runs quotation
-// then stores result in current environment object
-const storeID = (id, quot) => pf.word([...quot, ...storeQ(id)]);
-
-// alternatively we could write:
-const storeID = (id, quot) =>
-    pf.word([quot, pf.exec, storeQ(id), pf.exec]);
+// define word which inlines both `tupleQ` and `storeQ`
+const storeID = (id, size) => pf.word([...tupleQ(size), ...storeQ(id)]);
 
 // transform stack into tuples, stored in env
 // `runE()` only returns the result environment
 pf.runE(
-    [storeID("a", pair), storeID("b", triple)],
-    // (`ctx()` completes a partial definition)
+    [storeID("a", 2), storeID("b", 3)],
+    // (`ctx()` creates a complete StackContext tuple)
     pf.ctx([1, 2, 3, 4, 5])
 );
 // { a: [ 4, 5 ], b: [ 1, 2, 3 ] }
-
-// same again without any quotations
-pf.runE(
-    [2, pf.collect, "a", pf.store, 3, pf.collect, "b", pf.store],
-    // stack context tuple [DS, RS, ENV]
-    [[1, 2, 3, 4, 5], [], {}]
-);
-// { a: [ 4, 5 ], b: [ 1, 2, 3 ] }
 ```
+
+### Dataflow combinators
+
+Combinators are higher-order constructs, enabling powerful data
+processing patterns, e.g. applying multiple quotations to single or
+multiple values, preserving/excluding stack values during processing etc.
+
+Most of these combinators have been ported from the
+[Factor](http://docs.factorcode.org:8080/content/article-dataflow-combinators.html)
+language.
+
+Btw. the number suffixes indicate the number of values or quotations each combinator deals with... not all versions are shown here.
+
+#### `dip / dip2 / dip3 / dip4`
+
+Removes one or more stack values before applying quotation, then restores them again after. Most other combinators are internally built on `dip` and/or `keep`.
+
+```ts
+// remove `20` before executing quot, then restores after
+// with the effect of apply qout to 2nd topmost value (here: 10)
+pf.run([10, 20, [pf.inc], pf.dip])[0]
+// [11, 20]
+
+// dip2 removes & restores 2 values
+pf.run([1, 2, 3, [10, pf.add], pf.dip2])[0]
+// [11, 2, 3]
+```
+
+#### `keep / keep2 / keep3`
+
+Calls a quotation with a value on the d-stack, restoring the value after
+quotation finished.
+
+```ts
+// here `add` would normally consume two stack values
+// but `keep2` restores them again after the quot has run
+pf.run([1, 2, [pf.add], pf.keep2])[0]
+// [3, 1, 2]
+```
+
+#### `bi / bi2 / bi3 / tri / tri2 / tri3`
+
+`bi` takes one value and two quotations. Applies first quot to the value, then applies second quot to the same value.
+
+```ts
+pf.run([2, [10, pf.add], [10, pf.mul], pf.bi])[0]
+// [12, 20]
+
+// `bi3` takes 3 stack values and 2 quots (hence "bi")
+pf.run([2, 10, 100, [pf.add, pf.add], [pf.mul, pf.mul], pf.bi3])[0]
+// [112, 2000]
+```
+
+`tri` takes 3 quotations, else same as `bi`:
+
+```ts
+pf.run([10, [pf.dec], [pf.dup, pf.mul], [pf.inc], pf.tri])[0]
+// [9, 100, 11]
+```
+
+#### `bis / bis2 / tris / tris2`
+
+`bis` applies first quot `p` to `x`, then applies 2nd quot `q` to `y`.
+
+( x y p q -- px qy )
+
+```ts
+pf.run([10, 20, [pf.inc], [pf.dec], pf.bis])[0]
+// [11, 19]
+
+// bis2 expects quotations to take 2 args
+// computes: 10+20 and 30-40
+pf.run([10, 20, 30, 40, [pf.add], [pf.sub], pf.bis2])[0]
+// [30, -10]
+```
+
+#### `bia / bia2 / tria / tria2`
+
+Applies the quotation `q` to `x`, then to `y`.
+
+( x y q -- qx qy )
+
+```ts
+pf.run([10, 20, [pf.inc], pf.bia])[0]
+// [11, 21]
+
+// tria2 takes 6 values and applies quot 3x pairwise
+// i.e. 10+20, 30+40, 50+60
+pf.run([10, 20, 30, 40, 50, 60, [pf.add], pf.tria2])[0]
+// [30, 70, 110]
+```
+
+See [tests](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/test/index.ts#L579) for more examples...
 
 ### Array transformations
 
@@ -402,13 +483,16 @@ map_mul10([[[1, 2, 3, 4]]]);
 // [ 10, 20, 30, 40 ]
 
 // the above case can also be solved more easily via vector math words
+// multiply vector * scalar
 pf.runU([[1, 2, 3, 4], 10, pf.vmul]);
 // [ 10, 20, 30, 40 ]
+
+// multiply vector * vector
 pf.runU([[1, 2, 3, 4], [10, 20, 30, 40], pf.vmul]);
 // [ 10, 40, 90, 160 ]
 
 // drop even numbers, duplicate odd ones
-// here showing nested quotations
+// here using nested quotations (`condq` is explained further below)
 pf.runU([[1, 2, 3, 4], [pf.dup, pf.even, [pf.drop], [pf.dup], pf.condq], pf.mapll])
 // [ 1, 1, 3, 3 ]
 
