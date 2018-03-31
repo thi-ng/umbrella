@@ -78,7 +78,7 @@ const env = ffi(
     {
         // ( svgdom -- svgstring )
         "serialize": maptos(serialize),
-        // ( filename body -- )
+        // ( body filename -- )
         "write-file": (ctx) => {
             const stack = ctx[0];
             ensureStack(stack, 2);
