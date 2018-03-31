@@ -1135,6 +1135,12 @@ export const cases = (cases: IObjectOf<StackProc>) =>
         illegalState(`no matching case for: ${tos}`);
     };
 
+export const casesq = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 2);
+    return cases(stack.pop())(ctx);
+};
+
 //////////////////// Loop constructs  ////////////////////
 
 /**
