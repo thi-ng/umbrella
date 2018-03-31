@@ -30,7 +30,9 @@ This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrell
 
 ## About
 
-Experimental, small DSL with compact [Forth]() style syntax for
+Experimental, small DSL with compact
+[Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
+style syntax for
 [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree):
 
 - [PegJS](https://pegjs.org/) based
@@ -257,7 +259,8 @@ The symbol `T` evaluates as `true` and `F` as `false`.
 
 ### Quotations (Arrays)
 
-Arrays can be contain any valid data literal or symbol and can be arbitrarily nested. Commas optional.
+Arrays can be contain any valid data literal or symbol and can be
+arbitrarily nested. Commas optional.
 
 `["result: " [2, 3, *] exec +]`
 
