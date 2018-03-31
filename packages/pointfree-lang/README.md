@@ -60,8 +60,6 @@ import * as pf from "@thi.ng/pointfree-lang";
 ## Usage examples
 
 ```ts
-import * as pf from "../src";
-
 // DSL source code (syntax described further below)
 
 const src = `
@@ -131,9 +129,13 @@ env.height = 480;
 // now actually call the `hairx` word with args pulled from env
 // words prefixed w/ `@` are variable lookups
 pf.run(`@mouseX @mouseY @width @height hairx`, env);
+// draw line: 100,0 -> 100,480
+// draw line: 0,200 -> 640,200
 
 // or call precompiled word/function directly w/ given initial stack
 pf.runWord("hairx", env, [100, 200, 640, 480]);
+// draw line: 100,0 -> 100,480
+// draw line: 0,200 -> 640,200
 ```
 
 ## Language & Syntax

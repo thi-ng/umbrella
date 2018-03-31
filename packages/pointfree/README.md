@@ -2,6 +2,8 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 
+This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
@@ -37,9 +39,16 @@
 ## About
 
 [Pointfree](https://en.wikipedia.org/wiki/Concatenative_programming_language)
-functional composition via lightweight (~3KB gzipped), stack-based DSL:
+functional composition via lightweight (~3KB gzipped), stack-based embedded DSL.
 
-- powerful, concise syntax
+This module implements the language's core components in vanilla ES6 and
+is perfectly usable like that. **The related [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang)
+module defines an actual language with a powerful and more concise
+syntax around this module and might be better suited for some use
+cases.**
+
+Current features:
+
 - words implemented as tiny vanilla JS functions (easily extensible)
 - optimized pre-composition/compilation of custom user defined words (see [comp.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/comp.ts))
 - dual stack (main & stash/scratch space)
