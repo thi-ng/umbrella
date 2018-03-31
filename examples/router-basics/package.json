@@ -16,10 +16,10 @@
         "@thi.ng/router": "latest"
     },
     "devDependencies": {
-        "ts-loader": "^4.0.1",
-        "typescript": "^2.7.2",
-        "webpack": "^4.1.1",
-        "webpack-cli": "^2.0.12",
+        "ts-loader": "^4.1.0",
+        "typescript": "^2.8.1",
+        "webpack": "^4.4.1",
+        "webpack-cli": "^2.0.13",
         "webpack-dev-server": "^3.1.1"
     }
 }

@@ -5,15 +5,15 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && webpack",
-        "clean": "rm -rf bundle.*",
-        "dev": "open index.html && webpack -w",
-        "debdev": "see index.html && webpack -w"
+        "build": "webpack --mode production",
+        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
     },
     "devDependencies": {
-        "ts-loader": "^3.5.0",
-        "typescript": "^2.7.2",
-        "webpack": "^3.11.0"
+        "ts-loader": "^4.1.0",
+        "typescript": "^2.8.1",
+        "webpack": "^4.4.1",
+        "webpack-cli": "^2.0.13",
+        "webpack-dev-server": "^3.1.1"
     },
     "dependencies": {
         "@thi.ng/api": "latest",

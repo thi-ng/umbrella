@@ -5,17 +5,21 @@
     ],
     "devDependencies": {
         "benchmark": "^2.1.4",
-        "lerna": "^2.9.0",
-        "nyc": "^11.4.1",
+        "lerna": "^2.9.1",
+        "nyc": "^11.6.0",
         "tslint": "^5.9.1",
-        "typescript": "^2.7.2"
+        "typescript": "^2.8.1",
+        "ts-loader": "^4.1.0",
+        "webpack": "^4.4.1",
+        "webpack-cli": "^2.0.13",
+        "webpack-dev-server": "^3.1.1"
     },
     "scripts": {
         "build": "yarn install && lerna bootstrap && lerna run build --sort",
         "cover": "lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
         "doc": "lerna run doc",
-        "examples": "ex=\"examples/*\"; for e in $ex; do (cd $e && yarn build); done",
+        "examples": "ex=\"examples/*\"; for e in $ex; do (cd $e && yarn install && yarn build); done",
         "pub": "lerna publish && yarn depgraph && yarn doc && scripts/upload-docs",
         "test": "yarn build && lerna run test"
     }
