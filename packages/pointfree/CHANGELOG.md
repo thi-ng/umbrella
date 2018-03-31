@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.6.0...@thi.ng/pointfree@0.6.1) (2018-03-31)
+
+
+### Bug Fixes
+
+* **pointfree:** reexport ensureStack fns ([a0bf781](https://github.com/thi-ng/umbrella/commit/a0bf781))
+
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.5.0...@thi.ng/pointfree@0.6.0) (2018-03-31)
 
