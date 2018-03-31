@@ -20,6 +20,9 @@ const src = `
 
 const drawLine = (ctx) => {
     const stack = ctx[0];
+    // minimum stack depth guard
+    pf.ensureStack(stack, 2);
+    // pop top 2 values
     const [x2, y2] = stack.pop();
     const [x1, y1] = stack.pop();
     console.log(`draw line: ${x1},${y1} -> ${x2},${y2}`);

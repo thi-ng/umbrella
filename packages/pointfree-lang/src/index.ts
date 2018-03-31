@@ -172,30 +172,45 @@ const deferedPair = (res: any, k, v) => {
         (ctx: pf.StackContext) => (res[k] = resolveVar(v.id, ctx), ctx);
 };
 
+export const ensureEnv = (env?: pf.StackEnv) => {
+    env = env || {};
+    if (!env.__words) {
+        env.__words = {};
+    }
+    return env;
+};
+
 export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
-    let ctx = pf.ctx(stack, { __words: {}, ...env });
+    let ctx = pf.ctx(stack, ensureEnv(env));
     for (let node of parse(src)) {
         ctx = visit(node, ctx);
     }
     return ctx;
 };
 
-export const runU = (src: string, env?: pf.StackEnv, stack: pf.Stack = [], n = 1) =>
+export const runU = (src: string, env?: pf.StackEnv, stack?: pf.Stack, n = 1) =>
     pf.unwrap(run(src, env, stack), n);
 
-export const runE = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) =>
+export const runE = (src: string, env?: pf.StackEnv, stack?: pf.Stack) =>
     run(src, env, stack)[2];
 
 export const runWord = (id: string, env?: pf.StackEnv, stack: pf.Stack = []) =>
-    env.__words[id](pf.ctx(stack, env));
+    env.__words[id](pf.ctx(stack, ensureEnv(env)));
 
 export const runWordU = (id: string, env?: pf.StackEnv, stack: pf.Stack = [], n = 1) =>
-    pf.unwrap(env.__words[id](pf.ctx(stack, env)), n);
+    pf.unwrap(env.__words[id](pf.ctx(stack, ensureEnv(env))), n);
 
 export const runWordE = (id: string, env?: pf.StackEnv, stack: pf.Stack = []) =>
-    env.__words[id](pf.ctx(stack, env))[2];
+    env.__words[id](pf.ctx(stack, ensureEnv(env)))[2];
 
 export const ffi = (env: any, words: IObjectOf<pf.StackFn>) => {
+    env = ensureEnv(env);
     env.__words = { ...env.__words, ...words };
     return env;
 };
+
+export {
+    ensureStack,
+    ensureStackN,
+    unwrap,
+} from "@thi.ng/pointfree";

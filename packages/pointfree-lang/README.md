@@ -4,7 +4,7 @@
 
 This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
+<!-- TOC depthFrom:2 depthTo:4 -->
 
 - [About](#about)
 - [Status](#status)
@@ -14,6 +14,7 @@ This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrell
     - [Comments](#comments)
     - [Identifiers](#identifiers)
     - [Word definitions](#word-definitions)
+        - [Hyperstatic words](#hyperstatic-words)
     - [Boolean](#boolean)
     - [Numbers](#numbers)
     - [Strings](#strings)
@@ -30,17 +31,19 @@ This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrell
 
 ## About
 
-Experimental, small DSL with compact
+Experimental language layer with compact
 [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
-style syntax for
-[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree):
+style syntax for the
+[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree),
+an ES6 embedded DSL for concatenative programming:
 
 - [PegJS](https://pegjs.org/) based
   [grammar](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang/src/grammar.pegjs)
   & parser
 - untyped, interpreted, but with AOT compilation of user defined words
-- support for custom / externally defined vocabularies (word sets)
-- lexically scoped variables
+- hyperstatic word definitions
+- support for custom / externally defined vocabularies (word sets / JS functions)
+- scoped variables (stored in environment object)
 - nested quotations (code as data)
 - array & object literals (optionally w/ computed properties)
 - all other features of @thi.ng/pointfree (combinators, array/vector ops etc.)
@@ -89,6 +92,9 @@ const src = `
 
 const drawLine = (ctx) => {
     const stack = ctx[0];
+    // minimum stack depth guard
+    pf.ensureStack(stack, 2);
+    // pop top 2 values
     const [x2, y2] = stack.pop();
     const [x1, y1] = stack.pop();
     console.log(`draw line: ${x1},${y1} -> ${x2},${y2}`);
@@ -160,7 +166,8 @@ drastically. In @thi.ng/pointfree (and therefore also in this DSL layer):
 - the DSL has syntax sugar for variable value lookups & assignments
 - the DSL allows nested quotations & object literals, optionally with
   lazily resolved computed properties and/or values
-- all symbols are separated by whitespace (like in Clojure, commas are considered whitespace too)
+- all symbols are separated by whitespace (like in Clojure, commas are
+  considered whitespace too)
 
 ### Comments
 
@@ -188,8 +195,9 @@ ______   ____ |__| _____/  |__/ ____\______   ____   ____
 
 ### Identifiers
 
-Word identifiers can contain any alhpanumeric character and these additional ones: `*?$%&/|~<>=._+-`.
-Digits are not allowed as first char.
+Word identifiers can contain any alhpanumeric character and these
+additional ones: `*?$%&/|~<>=._+-`. Digits are not allowed as first
+char.
 
 All 100+ built-in words defined by
 [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree)
@@ -234,6 +242,34 @@ As in Forth, new words can be defined using the `: name ... ;` form.
 
 ```
 : square ( x -- x*x ) dup * ;
+
+10 square .
+```
+
+Will result in `100`.
+
+#### Hyperstatic words
+
+Unlike [variables](#variables), words are defined in a
+[hyper-static](http://wiki.c2.com/?HyperStaticGlobalEnvironment)
+environment, meaning new versions of existing words can be defined,
+however any other word (incl. the new version of same word) which uses
+the earlier version will continue to do so. By implication, this too
+means that attempting to use undefined words inside a word definition
+will fail, even if they'd be defined later on.
+
+```ts
+pf.run(`
+: foo "foo1" ;
+: bar foo "bar" + ;
+
+( redefine foo, incl. use of existing version )
+: foo foo "foo2" + ;
+
+( use words )
+foo bar
+`)[0];
+// [ 'foo1foo2', 'foo1bar' ]
 ```
 
 There're no formatting rules enforced (yet, but under consideration).
@@ -283,12 +319,17 @@ pf.runU(`@a @b +`, {a: 10, b: 20});
 // 30
 ```
 
-Storing a stack value in a variable is done via the `!` suffix:
+Storing a stack value in a variable (in the the current environment) is
+done via the `!` suffix:
 
 ```ts
 pf.runE(`1 2 + a!`)
 // {a: 3}
 ```
+
+Furthermore, readonly variables can be defined via words. In this case
+no prefix must be used and these kind of variables are
+[hyperstatic](#hyperstatic-words).
 
 TODO add info about scoping and resolution in words / quotations...
 

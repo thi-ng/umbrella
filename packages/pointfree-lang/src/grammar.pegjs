@@ -28,7 +28,7 @@ Root
 
 Expr
     = _ expr:(
-    	Word
+        Word
         / Quot
         / LitQuote
         / Var
@@ -39,8 +39,8 @@ Expr
     ) _ { return ast(expr); }
 
 Word
-	= ":" __ id:Sym body:Expr+ ";" {
-    	return { type: NodeType.WORD, id: id.id, body};
+    = ":" __ id:Sym body:Expr+ ";" {
+        return { type: NodeType.WORD, id: id.id, body};
     }
 
 Quot
@@ -59,18 +59,18 @@ Map
     }
 
 MapPair
-	= k:MapKey v:MapVal { return [ k, v ]; }
+    = k:MapKey v:MapVal { return [ k, v ]; }
 
 MapKey
-	= k:(String / Sym / Number / VarDeref) ":" { return k; }
+    = k:(String / Sym / Number / VarDeref) ":" { return k; }
 
 MapVal
     = _ val:(
-    	Atom
-    	/ Quot
-	    / LitQuote
-    	/ VarDeref
-	    / Map
+        Atom
+        / Quot
+        / LitQuote
+        / VarDeref
+        / Map
 //    	/ Set
     ) _ { return val; }
 
@@ -105,20 +105,20 @@ SymRest
     / SymChars
 
 SymChars
-	= [*?$%&/\|~<>=._+\-]
+    = [*?$%&/\|~<>=._+\-]
 
 Var
     = VarDeref
     / VarStore
 
 VarDeref
-	= "@" id:Sym {
-    	return {type: NodeType.VAR_DEREF, id: id.id}
+    = "@" id:Sym {
+        return {type: NodeType.VAR_DEREF, id: id.id}
     }
 
 VarStore
-	= id:Sym "!" {
-    	return {type: NodeType.VAR_STORE, id: id.id}
+    = id:Sym "!" {
+        return {type: NodeType.VAR_STORE, id: id.id}
     }
 
 LitQuote
@@ -129,7 +129,7 @@ LitQuote
 Comment
     = "("+ body:$(!")" .)* ")" {
         return body.indexOf("--") > 0 ?
-        	{ type: NodeType.STACK_COMMENT,
+            { type: NodeType.STACK_COMMENT,
               body: body.split("--").map(x => x.trim().split(" "))
             } :
             { type: NodeType.COMMENT, body: body.trim()};
@@ -157,10 +157,10 @@ Hex
     }
 
 Int
-	= Sign? Uint
+    = Sign? Uint
 
 Uint
-	= Digit+
+    = Digit+
 
 Decimal
     = Int ("." Uint?)? ("e" Int)? {
