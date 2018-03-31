@@ -34,7 +34,7 @@ Experimental, small DSL with compact [Forth]() style syntax for
 [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree):
 
 - [PegJS](https://pegjs.org/) based
-  [grammar](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/grammar.pegjs)
+  [grammar](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang/src/grammar.pegjs)
   & parser
 - untyped, interpreted, but with AOT compilation of user defined words
 - support for custom / externally defined vocabularies (word sets)
