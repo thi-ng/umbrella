@@ -15,7 +15,8 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 7 | [interceptor-basics](./hdom-benchmark) | event handling w/ interceptors and side effects | atom, hdom | intermediate |
 | 8 | [json-components](./json-components) | JSON->component transformation, live editor | hdom, transducers | intermediate |
 | 9 | [login-form](./login-form) | basic SPA without router | atom, hdom | intermediate |
-| 10 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, router | advanced |
-| 11 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
-| 12 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
-| 13 | [webgl](./webgl) | Canvas component handling | hdom, hdom-components | basic |
+| 10 | [pointfree-svg](./pointfree-svg) | generate SVG using pointfree DSL | hiccup, hdom-components, pointfree-lang | intermediate |
+| 11 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, router | advanced |
+| 12 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
+| 13 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
+| 14 | [webgl](./webgl) | Canvas component handling | hdom, hdom-components | basic |
