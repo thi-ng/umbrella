@@ -8,10 +8,11 @@ module.exports = {
         extensions: [".ts", ".js"]
     },
     module: {
-        loaders: [{ test: /\.ts$/, loader: "ts-loader" }]
+        rules: [
+            { test: /\.ts$/, use: "ts-loader" }
+        ]
     },
-    node: {
-        process: false,
-        setImmediate: false,
+    devServer: {
+        contentBase: "."
     }
 };
