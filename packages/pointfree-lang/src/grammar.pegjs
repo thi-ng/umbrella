@@ -54,7 +54,7 @@ Set
     }
 
 Map
-    = "{" body:MapPair* "}" {
+    = "{" _ body:MapPair* "}" {
         return { type: NodeType.MAP, body };
     }
 
