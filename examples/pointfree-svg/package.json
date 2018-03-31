@@ -1,0 +1,17 @@
+{
+    "name": "pointfree-svg",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc && node index.js",
+        "clean": "rm -rf *.js"
+    },
+    "dependencies": {
+        "@thi.ng/hiccup": "latest",
+        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/pointfree": "latest",
+        "@thi.ng/pointfree-lang": "latest"
+    }
+}
