@@ -64,6 +64,13 @@ import * as pf from "@thi.ng/pointfree-lang";
 
 ## Usage examples
 
+[A complete
+example](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg/)
+generating the below SVG graphic is located in the `/examples`
+directory.
+
+![generated example output](../../examples/pointfree-svg/output.svg)
+
 ```ts
 // DSL source code (syntax described further below)
 
