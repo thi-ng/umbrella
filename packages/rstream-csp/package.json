@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/rstream-csp",
     "version": "0.1.41",
-    "description": "TODO",
+    "description": "@thi.ng/csp bridge module for @thi.ng/rstream",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pointfree-lang",
     "version": "0.1.2",
-    "description": "TODO",
+    "description": "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -39,6 +39,7 @@
         "grammar",
         "PEG",
         "pointfree",
+        "syntax",
         "typescript"
     ],
     "publishConfig": {
