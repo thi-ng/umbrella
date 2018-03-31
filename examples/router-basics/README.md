@@ -15,7 +15,7 @@ Installs all dependencies, runs `webpack-dev-server` and opens the app in your b
 
 This example is based on the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
-template and is the most advanced example in this repo thus far.
+template and is one the most advanced example in this repo thus far.
 Features covered:
 
 - App & component configuration
