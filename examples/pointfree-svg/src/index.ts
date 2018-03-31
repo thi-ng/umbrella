@@ -5,37 +5,29 @@ import { serialize } from "@thi.ng/hiccup";
 import { ensureStack, maptos } from "@thi.ng/pointfree";
 import { ffi, run } from "@thi.ng/pointfree-lang";
 
-/**
- * Graphics library / helper words
- */
+// rudimentary generic graphics lib & helper words
 const libsrc = `
 ( helper words for forming 2D vectors )
 : xy ( x y -- [x y] ) vec2 ;
 : yx ( x y -- [y x] ) swap vec2 ;
 
 ( appends a hiccup shape element to @shapes array )
-: addshape ( s -- )
-  @shapes pushl drop ;
+: addshape ( s -- ) @shapes pushl drop ;
 
 ( creates hiccup element with 2 args & shape type )
-: shape2 ( a b type -- )
-  -rot vec3 addshape;
+: shape2 ( a b type -- ) -rot vec3 addshape;
 
 ( transforms 2 points into a svg line )
-: line ( a b -- )
-@svg.line shape2 ;
+: line ( a b -- ) @svg.line shape2 ;
 
 ( transforms point and radius into a svg circle )
-: circle ( p r -- )
-  @svg.circle shape2 ;
+: circle ( p r -- ) @svg.circle shape2 ;
 
 ( creates a horizontal line )
-: hline ( y width -- )
-over 0 yx -rot yx line ;
+: hline ( y width -- ) over 0 yx -rot yx line ;
 
 ( creates a vertical line )
-: vline ( x height -- )
-  over 0 xy -rot xy line ;
+: vline ( x height -- ) over 0 xy -rot xy line ;
 
 (
     2D grid loop construct
@@ -46,12 +38,10 @@ over 0 yx -rot yx line ;
   drop rdrop ;
 `;
 
-/**
- * User code to generate SVG graphic and write as file
- * The whole block has this stack effect:
- *
- * ( filename res -- )
- */
+// user code to generate SVG graphic and write out as file
+// the whole block has this stack effect:
+//
+// ( filename res -- )
 const usersrc = `
 ( creates grid of lines with given grid res )
 : grid ( res -- )
@@ -76,14 +66,19 @@ serialize swap write-file
 
 // initialize environment and pre-compile library source
 const env = ffi(
+    // predefined variables
     {
         "svg.line": svg.line,
         "svg.circle": svg.circle,
         "svg.svgdoc": svg.svgdoc,
         shapes: [],
     },
+    // foreign function interface (FFI)
+    // custom words usable by the DSL
     {
+        // ( svgdom -- svgstring )
         "serialize": maptos(serialize),
+        // ( filename body -- )
         "write-file": (ctx) => {
             const stack = ctx[0];
             ensureStack(stack, 2);
@@ -91,6 +86,7 @@ const env = ffi(
             return ctx;
         }
     });
+// compile lib (resulting words are stored in env)
 run(libsrc, env);
 
 // compile & execute user code with given stack params
