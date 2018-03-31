@@ -20,5 +20,5 @@ The generated SVG file will be written in this example's directory...
 ```
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/pointfree-svg
-yarn start
+yarn build
 ```
