@@ -75,6 +75,11 @@ const $ = SAFE ?
     (stack: Stack, n: number) => $n(stack.length, n) :
     () => { };
 
+export {
+    $ as ensureStack,
+    $n as ensureStackN
+}
+
 const $stackFn = (f: StackProc) =>
     isArray(f) ? word(f) : f;
 
