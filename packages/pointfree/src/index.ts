@@ -1563,16 +1563,17 @@ export const at = op2((b, a) => a[b]);
 /**
  * Writes `val` at key/index in object/array.
  *
- * ( val obj k -- )
+ * ( val obj k -- obj )
  *
  * @param ctx
  */
-export const storeat = (ctx: StackContext) => {
+export const setat = (ctx: StackContext) => {
     const stack = ctx[0];
     const n = stack.length - 3;
     $n(n, 0);
     stack[n + 1][stack[n + 2]] = stack[n];
-    stack.length = n;
+    stack[n] = stack[n + 1];
+    stack.length -= 2;
     return ctx;
 };
 

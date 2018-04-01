@@ -457,16 +457,16 @@ describe("pointfree", () => {
         assert.deepEqual(pf.at($([{ id: 42 }, "id"]))[0], [42]);
     });
 
-    it("storeat", () => {
-        assert.throws(() => pf.storeat($([1, 2])));
+    it("setat", () => {
+        assert.throws(() => pf.setat($([1, 2])));
         let a: any = [10, 20];
-        assert.deepEqual(pf.storeat($([30, a, 0]))[0], []);
+        assert.deepEqual(pf.setat($([30, a, 0]))[0], [a]);
         assert.deepEqual(a, [30, 20]);
         a = [10, 20];
-        assert.deepEqual(pf.storeat($([30, a, 3]))[0], []);
+        assert.deepEqual(pf.setat($([30, a, 3]))[0], [a]);
         assert.deepEqual(a, [10, 20, , 30]);
         a = {};
-        assert.deepEqual(pf.storeat($([30, a, "a"]))[0], []);
+        assert.deepEqual(pf.setat($([30, a, "a"]))[0], [a]);
         assert.deepEqual(a, { a: 30 });
     });
 

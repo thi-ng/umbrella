@@ -890,7 +890,7 @@ at word construction time and return a pre-configured stack function.
 | `pull3` | `( arr -- x y z arr )` | short for: `[pull2, pull]` |
 | `pull4` | `( arr -- a b c d arr )` | short for: `[pull2, pull2]` |
 | `split` | `( arr x -- [...] [...] )` | split array at index `x` |
-| `storeat` | `( val obj k -- )` | `obj` can be array/obj |
+| `setat` | `( val obj k -- obj )` | `obj` can be array/obj |
 | `tuple(n)` | `( ... -- [...] )` | HOF, like `collect`, but w/ predefined size |
 | `vec2` | `( x y -- [x, y] )` | same as `tuple(2)` |
 | `vec3` | `( x y z -- [x, y, z] )` | same as `tuple(3)` |
