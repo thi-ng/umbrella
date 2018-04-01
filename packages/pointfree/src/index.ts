@@ -3,6 +3,7 @@ import { illegalState, illegalArgs } from "@thi.ng/api/error";
 import { equiv as _equiv } from "@thi.ng/api/equiv";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 
 import { StackContext, StackProc, StackEnv, StackProgram, StackFn, Stack } from "./api";
 import { comp } from "./comp";
@@ -1538,6 +1539,17 @@ export const join = (sep = "") => op1((x) => x.join(sep));
  * @param ctx
  */
 export const length = op1((x) => x.length);
+
+/**
+ * Replaces TOS with its shallow copy. MUST be an array or plain object.
+ *
+ * ( x -- copy )
+ */
+export const copy = op1((x) =>
+    isArray(x) ?
+        [...x] :
+        isPlainObject(x) ? { ...x } :
+            illegalArgs(`can't copy type ${typeof x}`));
 
 /**
  * Reads key/index from object/array.
