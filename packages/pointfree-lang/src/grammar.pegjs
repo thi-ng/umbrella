@@ -6,30 +6,35 @@
     // NodeType[NodeType["WORD"] = 2] = "WORD";
     // NodeType[NodeType["QUOT"] = 3] = "QUOT";
     // NodeType[NodeType["VAR_DEREF"] = 4] = "VAR_DEREF";
-    // NodeType[NodeType["VAR_STORE"] = 5] = "VAR_STORE";
-    // NodeType[NodeType["NIL"] = 6] = "NIL";
-    // NodeType[NodeType["NUMBER"] = 7] = "NUMBER";
-    // NodeType[NodeType["BOOLEAN"] = 8] = "BOOLEAN";
-    // NodeType[NodeType["STRING"] = 9] = "STRING";
-    // NodeType[NodeType["MAP"] = 10] = "MAP";
-    // NodeType[NodeType["SET"] = 11] = "SET";
-    // NodeType[NodeType["COMMENT"] = 12] = "COMMENT";
-    // NodeType[NodeType["STACK_COMMENT"] = 13] = "STACK_COMMENT";
+    // NodeType[NodeType["VAR_DEREF_IMM"] = 5] = "VAR_DEREF_IMM";
+    // NodeType[NodeType["VAR_STORE"] = 6] = "VAR_STORE";
+    // NodeType[NodeType["NIL"] = 7] = "NIL";
+    // NodeType[NodeType["NUMBER"] = 8] = "NUMBER";
+    // NodeType[NodeType["BOOLEAN"] = 9] = "BOOLEAN";
+    // NodeType[NodeType["STRING"] = 10] = "STRING";
+    // NodeType[NodeType["MAP"] = 11] = "MAP";
+    // NodeType[NodeType["SET"] = 12] = "SET";
+    // NodeType[NodeType["COMMENT"] = 13] = "COMMENT";
+    // NodeType[NodeType["STACK_COMMENT"] = 14] = "STACK_COMMENT";
 
     const ast = (node) => {
-        // const loc = location().start;
-        // node.loc = [loc.offset, loc.line, loc.column];
+        const loc = location().start;
+        node.loc = [loc.line, loc.column];
         return node;
     };
 }
 
 Root
-    = exrp:Expr*
+    = expr:Expr*
 
 Expr
+    = _ expr:( Word / NonWordExpr ) _ {
+        return ast(expr);
+    }
+
+NonWordExpr
     = _ expr:(
-        Word
-        / Quot
+        Quot
         / LitQuote
         / Var
         / Comment
@@ -39,17 +44,17 @@ Expr
     ) _ { return ast(expr); }
 
 Word
-    = ":" __ id:Sym body:Expr+ ";" {
+    = ":" __ id:Sym body:NonWordExpr+ ";" {
         return { type: NodeType.WORD, id: id.id, body};
     }
 
 Quot
-    = "[" body:Expr* "]" {
+    = "[" body:NonWordExpr* "]" {
         return { type: NodeType.QUOT, body };
     }
 
 Set
-    = "#{" body:Expr* "}" {
+    = "#{" body:NonWordExpr* "}" {
         return { type: NodeType.SET, body };
     }
 
@@ -62,13 +67,20 @@ MapPair
     = k:MapKey v:MapVal { return [ k, v ]; }
 
 MapKey
-    = k:(String / Sym / Number / VarDeref) ":" { return k; }
+    = k:(
+        String
+        / Sym
+        / Number
+        / VarDerefImmediate
+        / VarDeref
+    ) ":" { return k; }
 
 MapVal
     = _ val:(
         Atom
         / Quot
         / LitQuote
+        / VarDerefImmediate
         / VarDeref
         / Map
 //    	/ Set
@@ -108,8 +120,14 @@ SymChars
     = [*?$%&/\|~<>=._+\-]
 
 Var
-    = VarDeref
+    = VarDerefImmediate
+    / VarDeref
     / VarStore
+
+VarDerefImmediate
+    = "@@" id:Sym {
+        return {type: NodeType.VAR_DEREF_IMM, id: id.id}
+    }
 
 VarDeref
     = "@" id:Sym {
@@ -122,7 +140,7 @@ VarStore
     }
 
 LitQuote
-    = "'" body:Expr {
+    = "'" body:NonWordExpr {
         return {type: NodeType.QUOT, body: [body]};
     }
 
