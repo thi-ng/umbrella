@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iterators",
-    "version": "4.1.1",
+    "version": "4.1.2",
     "description": "clojure.core inspired, composable ES6 iterators & generators",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,8 +24,8 @@
         "typescript": "^2.8.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.1.1",
-        "@thi.ng/dcons": "^0.1.16"
+        "@thi.ng/api": "^2.1.2",
+        "@thi.ng/dcons": "^0.1.17"
     },
     "keywords": [
         "clojure",
