@@ -2,7 +2,13 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 
-Lightweight transducer implementations for ES6 / TypeScript (~24KB minified, full lib).
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
+Lightweight transducer implementations for ES6 / TypeScript (~24KB
+minified, full lib).
 
 ## TOC
 
@@ -21,23 +27,24 @@ Lightweight transducer implementations for ES6 / TypeScript (~24KB minified, ful
 This library provides altogether 90+ transducers, reducers and sequence
 generators (iterators) for composing data transformation pipelines.
 
-The overall concept and many of the core functions offered here are directly
-inspired by the original Clojure implementation by Rich Hickey, though the
-implementation does differ (also in contrast to some other JS based
-implementations) and dozens of less common, but generally highly useful operators
-have been added. See full list below.
+The overall concept and many of the core functions offered here are
+directly inspired by the original Clojure implementation by Rich Hickey,
+though the implementation does differ (also in contrast to some other JS
+based implementations) and dozens of less common, but generally highly
+useful operators have been added. See full list below.
 
 The
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-& [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
-partner modules provide related functionality, supplementing features of this
-library and depending on it.
+&
+[@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+partner modules provide related functionality, supplementing features of
+this library and depending on it.
 
 Since 0.8.0 this project largely supersedes the
 [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
-library for most use cases and offers are more powerful API and potentially
-faster execution of composed transformations (due to lack of ES generator
-overheads).
+library for most use cases and offers are more powerful API and
+potentially faster execution of composed transformations (due to lack of
+ES generator overheads).
 
 ## Installation
 
@@ -48,10 +55,11 @@ yarn add @thi.ng/transducers
 ## Usage examples
 
 **There're several standalone example projects using this library in the
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples) directory.**
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory.**
 
-Almost all functions can be imported selectively, but for development purposes
-full module re-exports are defined.
+Almost all functions can be imported selectively, but for development
+purposes full module re-exports are defined.
 
 ```typescript
 // full import
@@ -154,9 +162,9 @@ tx.reduce(
 
 ### Multiplexing / parallel transducer application
 
-`multiplex` and `multiplexObj` can be used to transform values in parallel
-using the provided transducers (which can be composed as usual) and results in
-a tuple or keyed object.
+`multiplex` and `multiplexObj` can be used to transform values in
+parallel using the provided transducers (which can be composed as usual)
+and results in a tuple or keyed object.
 
 ```typescript
 tx.transduce(
@@ -250,8 +258,9 @@ tx.transduce(
 
 ### Stream parsing / structuring
 
-The `struct` transducer is simply a composition of: `partitionOf -> partition -> rename -> mapKeys`.
-[See code here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/struct.ts).
+The `struct` transducer is simply a composition of: `partitionOf ->
+partition -> rename -> mapKeys`. [See code
+here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/struct.ts).
 
 ```typescript
 // Higher-order transducer to convert linear input into structured objects
@@ -333,8 +342,9 @@ tx.transduce(tx.comp(tx.scan(tx.count), tx.scan(tx.pushCopy)), tx.push(), [1,1,1
 
 ### Streaming hexdump
 
-This is a higher-order transducer, purely composed from other transducers.
-[See code here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts).
+This is a higher-order transducer, purely composed from other
+transducers. [See code
+here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts).
 
 ```typescript
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
@@ -417,9 +427,9 @@ tx.transduce(tx.take(1000), tx.frequencies(), tx.choices("abcd", [1, 0.5, 0.25, 
 
 ## API
 
-_Documentation is slowly forthcoming in the form of doc comments (incl. code
-examples) for a growing number the functions listed below. Please see source
-code for now._
+_Documentation is slowly forthcoming in the form of doc comments (incl.
+code examples) for a growing number the functions listed below. Please
+see source code for now._
 
 ### Types
 
@@ -428,12 +438,14 @@ Apart from type aliases, the only real types defined are:
 #### Reducer
 
 Reducers are the core building blocks of transducers. Unlike other
-implementations using OOP approaches, a `Reducer` in this lib is a simple
-3-element array of functions, each addressing a separate processing step.
+implementations using OOP approaches, a `Reducer` in this lib is a
+simple 3-element array of functions, each addressing a separate
+processing step.
 
-Since v0.6.0 the bundled reducers are all wrapped in functions to provide a
-uniform API (and some of them can be preconfigured and/or are stateful
-closures). However, it's fine to define stateless reducers as constant arrays.
+Since v0.6.0 the bundled reducers are all wrapped in functions to
+provide a uniform API (and some of them can be preconfigured and/or are
+stateful closures). However, it's fine to define stateless reducers as
+constant arrays.
 
 ```typescript
 interface Reducer<A, B> extends Array<any> {
@@ -465,8 +477,8 @@ const push: Reducer<any[], any> = [
 ];
 ```
 
-`partition`, `partitionBy`, `streamSort`, `streamShuffle` are (examples of)
-transducers making use of their 1-arity completing function.
+`partition`, `partitionBy`, `streamSort`, `streamShuffle` are (examples
+of) transducers making use of their 1-arity completing function.
 
 #### Reduced
 
@@ -478,9 +490,9 @@ class Reduced<T> implements IDeref<T> {
 }
 ```
 
-Simple type wrapper to identify early termination of a reducer. Does not modify
-wrapped value by injecting magic properties. Instances can be created via
-`reduced(x)` and handled via these helper functions:
+Simple type wrapper to identify early termination of a reducer. Does not
+modify wrapped value by injecting magic properties. Instances can be
+created via `reduced(x)` and handled via these helper functions:
 
 #### `reduced(x: any): any`
 
@@ -496,9 +508,9 @@ From Rich Hickey's original definition:
 
 > A transducer is a transformation from one reducing function to another
 
-As shown in the examples above, transducers can be dynamically composed (using
-`comp()`) to form arbitrary data transformation pipelines without causing large
-overheads for intermediate collections.
+As shown in the examples above, transducers can be dynamically composed
+(using `comp()`) to form arbitrary data transformation pipelines without
+causing large overheads for intermediate collections.
 
 ```typescript
 type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
@@ -537,9 +549,9 @@ function dedupe<T>(): Transducer<T, T> {
 
 #### `comp(f1, f2, ...)`
 
-Returns new transducer composed from given transducers. Data flow is from left
-to right. Offers fast paths for up to 10 args. If more are given, composition
-is done dynamically via for loop.
+Returns new transducer composed from given transducers. Data flow is
+from left to right. Offers fast paths for up to 10 args. If more are
+given, composition is done dynamically via for loop.
 
 #### `compR(rfn: Reducer<any, any>, fn: (acc, x) => any): Reducer<any, any>`
 
@@ -547,17 +559,18 @@ Helper function to compose reducers.
 
 #### `iterator<A, B>(tx: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B>`
 
-Similar to `transduce()`, but emits results as ES6 iterator (and hence doesn't
-use a reduction function).
+Similar to `transduce()`, but emits results as ES6 iterator (and hence
+doesn't use a reduction function).
 
 #### `reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A`
 
-Reduces iterable using given reducer and optional initial accumulator/result.
+Reduces iterable using given reducer and optional initial
+accumulator/result.
 
 #### `transduce<A, B, C>(tx: Transducer<A, B>, rfn: Reducer<C, B>, acc: C, xs: Iterable<A>): C`
 
-Transforms iterable using given transducer and combines results with given
-reducer and optional initial accumulator/result.
+Transforms iterable using given transducer and combines results with
+given reducer and optional initial accumulator/result.
 
 ### Transducers
 
@@ -620,7 +633,6 @@ reducer and optional initial accumulator/result.
 #### `mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>`
 
 #### `mapVals<A, B>(fn: (v: A) => B, copy = true): Transducer<IObjectOf<A>, IObjectOf<B>>`
-
 
 #### `movingAverage(n: number): Transducer<number, number>`
 

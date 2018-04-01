@@ -2,7 +2,8 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 
-This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
@@ -42,7 +43,8 @@ This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrell
 functional composition via lightweight (~3KB gzipped), stack-based embedded DSL.
 
 This module implements the language's core components in vanilla ES6 and
-is perfectly usable like that. **The related [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang)
+is perfectly usable like that. **The related
+[@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang)
 module defines an actual language with a powerful and more concise
 syntax around this module and might be better suited for some use
 cases.**
@@ -50,7 +52,9 @@ cases.**
 Current features:
 
 - words implemented as tiny vanilla JS functions (easily extensible)
-- optimized pre-composition/compilation of custom user defined words (see [comp.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/comp.ts))
+- optimized pre-composition/compilation of custom user defined words
+  (see
+  [comp.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/comp.ts))
 - dual stack (main & stash/scratch space)
 - nested execution environments (scopes)
 - arbitrary stack values
@@ -385,11 +389,14 @@ Most of these combinators have been ported from the
 [Factor](http://docs.factorcode.org:8080/content/article-dataflow-combinators.html)
 language.
 
-Btw. the number suffixes indicate the number of values or quotations each combinator deals with... not all versions are shown here.
+Btw. the number suffixes indicate the number of values or quotations
+each combinator deals with... not all versions are shown here.
 
 #### `dip / dip2 / dip3 / dip4`
 
-Removes one or more stack values before applying quotation, then restores them again after. Most other combinators are internally built on `dip` and/or `keep`.
+Removes one or more stack values before applying quotation, then
+restores them again after. Most other combinators are internally built
+on `dip` and/or `keep`.
 
 ```ts
 // remove `20` before executing quot, then restores after
@@ -416,7 +423,8 @@ pf.run([1, 2, [pf.add], pf.keep2])[0]
 
 #### `bi / bi2 / bi3 / tri / tri2 / tri3`
 
-`bi` takes one value and two quotations. Applies first quot to the value, then applies second quot to the same value.
+`bi` takes one value and two quotations. Applies first quot to the
+value, then applies second quot to the same value.
 
 ```ts
 pf.run([2, [10, pf.add], [10, pf.mul], pf.bi])[0]
@@ -598,7 +606,8 @@ classify(-1);
 ### Loops
 
 `loop` takes two quotations (a test and a body). Executes body as long
-as test produces a truthy result. There's also `loopq` which reads its arguments (same as `loop`) from the stack.
+as test produces a truthy result. There's also `loopq` which reads its
+arguments (same as `loop`) from the stack.
 
 ```typescript
 // print countdown from 3
@@ -679,10 +688,6 @@ stack items in place using vanilla JS functions:
 - `map2(f)` - takes top 2 values from stack, calls function and writes
   back result. The arg order is (TOS, TOS-1) - this is how all primitive
   math ops are implemented
-
-```typescript
-
-```
 
 ### R-stack usage
 

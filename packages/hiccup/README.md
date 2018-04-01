@@ -2,19 +2,23 @@
 
 [![npm](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 
-## Overview
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
 
 Lightweight HTML/SVG/XML serialization of plain, nested data structures,
 iterables & closures. Inspired by
 [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript.
 
-Forget all the custom toy DSLs for templating and instead use the full power of
-ES6 to directly define fully data-driven, purely functional and easily
-*composable* components for static serialization to HTML & friends.
+Forget all the custom toy DSLs for templating and instead use the full
+power of ES6 to directly define fully data-driven, purely functional and
+easily *composable* components for static serialization to HTML &
+friends.
 
-This library is suitable for static website generation, server side rendering
-etc. For interactive use cases, please see companion package
+This library is suitable for static website generation, server side
+rendering etc. For interactive use cases, please see companion package
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
 ### Features
@@ -32,22 +36,24 @@ serialization time. Examples below...
 
 ### No special sauce needed (or wanted)
 
-Using only vanilla language features simplifies the development, composability,
-reusability and testing of components. Furthermore, no custom template parser
-is required and you're only restricted by the expressiveness of the language /
-environment, not by your template engine.
+Using only vanilla language features simplifies the development,
+composability, reusability and testing of components. Furthermore, no
+custom template parser is required and you're only restricted by the
+expressiveness of the language / environment, not by your template
+engine.
 
-Components can be defined as simple functions returning arrays or loaded via JSON/JSONP.
+Components can be defined as simple functions returning arrays or loaded
+via JSON/JSONP.
 
 ### What is Hiccup?
 
-For many years, [Hiccup](https://github.com/weavejester/hiccup) has been the
-de-facto standard to encode HTML/XML datastructures in Clojure. This library
-brings & extends this convention into ES6. A valid Hiccup tree is any flat
-(though, usually nested) array of the following possible structures. Any
-functions embedded in the tree are expected to return values of the same
-structure. Please see [examples](#examples) & [API](#api) further
-explanations...
+For many years, [Hiccup](https://github.com/weavejester/hiccup) has been
+the de-facto standard to encode HTML/XML datastructures in Clojure. This
+library brings & extends this convention into ES6. A valid Hiccup tree
+is any flat (though, usually nested) array of the following possible
+structures. Any functions embedded in the tree are expected to return
+values of the same structure. Please see [examples](#examples) &
+[API](#api) further explanations...
 
 ```js
 ["tag", ...]
@@ -88,12 +94,13 @@ h.serialize(
 
 ### Attributes
 
-Arbitrary attributes can be supplied via an optional 2nd array element. `style`
-attributes can be given as CSS string or as an object. Boolean attributes are
-serialized in HTML5 syntax (i.e. present or not, but no values).
+Arbitrary attributes can be supplied via an optional 2nd array element.
+`style` attributes can be given as CSS string or as an object. Boolean
+attributes are serialized in HTML5 syntax (i.e. present or not, but no
+values).
 
-If the 2nd array element is not a plain object, it's treated as normal child
-node (see previous example).
+If the 2nd array element is not a plain object, it's treated as normal
+child node (see previous example).
 
 ```js
 h.serialize(
@@ -113,12 +120,13 @@ h.serialize(
 <div class="notice" selected style="background:#ff0;border:3px solid black">WARNING</div>
 ```
 
-If an attribute specifies a function as value, the function is called with the
-entire attribute object as argument. This allows for the dynamic generation of
-attribute values, based on existing ones. The result MUST be a string.
+If an attribute specifies a function as value, the function is called
+with the entire attribute object as argument. This allows for the
+dynamic generation of attribute values, based on existing ones. The
+result MUST be a string.
 
-**BREAKING CHANGE since 1.0.0:** Function values for event attributes (any
-attrib name starting with "on") WILL BE OMITTED from output.
+**BREAKING CHANGE since 1.0.0:** Function values for event attributes
+(any attrib name starting with "on") WILL BE OMITTED from output.
 
 ```js
 ["div#foo", { bar: (attribs) => attribs.id + "-bar" }]
@@ -313,12 +321,12 @@ The library exposes these two functions:
 
 ### serialize(tree, escape = false): string
 
-Recursively normalizes and then serializes given tree as HTML/SVG/XML string.
-If `escape` is true, HTML entity replacement is applied to all element body &
-attribute values.
+Recursively normalizes and then serializes given tree as HTML/SVG/XML
+string. If `escape` is true, HTML entity replacement is applied to all
+element body & attribute values.
 
-Any embedded component functions are expanded with their results.
-A normalized element has one of these shapes:
+Any embedded component functions are expanded with their results. A
+normalized element has one of these shapes:
 
 ```js
 // no body
@@ -337,22 +345,23 @@ Tags can be defined in "Zencoding" convention, i.e.
 ["div#foo.bar.baz", "hi"] => <div id="foo" class="bar baz">hi</div>
 ```
 
-**Note:** It's an error to specify IDs and/or classes in Zencoding convention
-**and** in a supplied attribute object. However, either of these are valid:
+**Note:** It's an error to specify IDs and/or classes in Zencoding
+convention **and** in a supplied attribute object. However, either of
+these are valid:
 
 ```js
 ["div#foo", { class: "bar" }] // <div id="foo" class="bar"></div>
 ["div.foo", { id: "bar" }] // <div id="bar" class="foo"></div>
 ```
 
-The presence of the attributes object is optional.
-If the 2nd array index is **not** a plain object, it'll be treated
-as normal child of the current tree node.
+The presence of the attributes object is optional. If the 2nd array
+index is **not** a plain object, it'll be treated as normal child of the
+current tree node.
 
-Any `null` or `undefined` values (other than in head position)
-will be removed, unless a function is in head position.
-In this case all other elements of that array are passed as
-arguments when that function is called.
+Any `null` or `undefined` values (other than in head position) will be
+removed, unless a function is in head position. In this case all other
+elements of that array are passed as arguments when that function is
+called.
 
 ```js
 const myfunc = (a, b, c) => ["div", {id: a, class: c}, b];
@@ -368,16 +377,16 @@ Will result in:
 ```
 
 The function's return value MUST be a valid new tree (or `undefined`).
-Functions located in other positions are called without args
-and can return any (serializable) value (i.e. new trees, strings,
-numbers, iterables or any type with a suitable `.toString()`
-implementation).
+Functions located in other positions are called without args and can
+return any (serializable) value (i.e. new trees, strings, numbers,
+iterables or any type with a suitable `.toString()` implementation).
 
 ### escape(str: string): string
 
-Helper function. Applies HTML entity replacement on given string.
-If `serialize()` is called with `true` as 2nd argument, entity encoding
-is done automatically ([list of entities considered](https://github.com/thi-ng/hiccup/blob/master/src/index.ts#L14)).
+Helper function. Applies HTML entity replacement on given string. If
+`serialize()` is called with `true` as 2nd argument, entity encoding is
+done automatically ([list of entities
+considered](https://github.com/thi-ng/umbrella/blob/master/packages/hiccup/src/index.ts#L14)).
 
 # Authors
 - Karsten Schmidt

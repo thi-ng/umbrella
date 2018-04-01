@@ -1,9 +1,14 @@
 # @thi.ng/rle-pack
 
-## Overview
+[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)
 
-Binary run-length encoding packer/unpacker w/ flexible repeat bit widths.
-Written in TypeScript, distributed in ES6.
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
+Binary run-length encoding packer/unpacker w/ flexible repeat bit
+widths. Written in TypeScript, distributed in ES6.
 
 Encoding format:
 

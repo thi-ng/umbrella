@@ -2,17 +2,23 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components)
 
-**As of 2018-03-03 this package is now called @thi.ng/hdom-components, formerly @thi.ng/hiccup-dom-components**
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+**As of 2018-03-03 this package is now called @thi.ng/hdom-components,
+formerly @thi.ng/hiccup-dom-components**
 
 ## About
 
-A growing collection of unstyled, re-usable & customizable components for use
-with
+A growing collection of unstyled, re-usable & customizable components
+for use with
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 &
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
 
-**Status:** Pre-alpha
+## Status
+
+ALPHA
 
 ## Installation
 

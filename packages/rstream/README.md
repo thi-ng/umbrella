@@ -2,6 +2,11 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
 Lightweight reactive multi-tap streams and transducer based
 transformation pipeline constructs, written in TypeScript.
 
@@ -162,7 +167,11 @@ new rs.StreamMerge({
 
 ### Dataflow graph example
 
-This example uses [synchronized stream merging](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts#L19) to implement a dataflow graph whose leaf inputs (and their changes) are sourced from a central immutable [atom](https://github.com/thi-ng/umbrella/tree/master/packages/).
+This example uses [synchronized stream
+merging](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts#L19)
+to implement a dataflow graph whose leaf inputs (and their changes) are
+sourced from a central immutable
+[atom](https://github.com/thi-ng/umbrella/tree/master/packages/).
 
 ```typescript
 import { Atom } from "@thi.ng/atom/atom";

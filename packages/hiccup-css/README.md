@@ -2,12 +2,15 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 Following a similar pattern as the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-package, this library generates CSS from plain nested arrays / data structures,
-functions, iterators.
+package, this library generates CSS from plain nested arrays / data
+structures, functions, iterators.
 
 ## Features
 
@@ -15,7 +18,8 @@ functions, iterators.
 - Uses JS object to define selector properties
   - Multiple objects per scope are combined automatically
 - Supports nested selectors and computes their cartesian products
-- Configurable auto-prefixed properties & vendor prefixes (disabled by default)
+- Configurable auto-prefixed properties & vendor prefixes (disabled by
+  default)
 - Automatically consumes embedded iterators
 - Supports embeded functions, either:
   - to define entire selector branches/scopes
@@ -38,7 +42,8 @@ functions, iterators.
 - CSS framework & theme generators
 - Dynamic CSS generation for components
 
-The overall approach of using S-expressions was inspired by these Clojure projects:
+The overall approach of using S-expressions was inspired by these
+Clojure projects:
 
 - [hiccup](https://github.com/weavejester/hiccup)
 - [garden](https://github.com/noprompt/garden)
@@ -58,15 +63,15 @@ import * as css from "@thi.ng/hiccup-css";
 ### `css(rules: any, opts?: CSSOpts)`
 
 This is the main function exposed by this module. It accepts a JS data
-structure (array, object, iterator or function) and returns a CSS string. The
-optional `opts` arg is used to control formatting, auto-prefixing and other
-conversion options. See
+structure (array, object, iterator or function) and returns a CSS
+string. The optional `opts` arg is used to control formatting,
+auto-prefixing and other conversion options. See
 [api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css/src/api.ts)
 for reference.
 
-By default the generated CSS uses the `css.COMPACT` format, causing "minimized"
-outputs. Pretty printing is supported via the `css.PRETTY` format preset, see
-examples further below.
+By default the generated CSS uses the `css.COMPACT` format, causing
+"minimized" outputs. Pretty printing is supported via the `css.PRETTY`
+format preset, see examples further below.
 
 ### Property formatting only
 
@@ -204,10 +209,10 @@ css.css(
 
 ### Nested selectors
 
-Selector nesting can be easily done via array nesting. Each new nesting level
-defines a child scope of the current selector. The actual CSS selectors are
-computed using the cartesian product of any selectors in the current scope and
-their previously defined parents:
+Selector nesting can be easily done via array nesting. Each new nesting
+level defines a child scope of the current selector. The actual CSS
+selectors are computed using the cartesian product of any selectors in
+the current scope and their previously defined parents:
 
 ```typescript
 css.css(
@@ -245,8 +250,8 @@ header, footer {
 
 ### Auto-prefixed properties
 
-(Currently, only prefixed properties are supported. Auto-prefixing based on
-property values is planned, but currently low priority.)
+(Currently, only prefixed properties are supported. Auto-prefixing based
+on property values is planned, but currently low priority.)
 
 ```typescript
 css.css(
@@ -268,11 +273,11 @@ div {
 ### Media queries
 
 Media queries (optionally nested) are supported via the `at_media()` and
-`at_supports()` functions, both taking an object (or string) of conditionals
-and a body which will be based to `css()`.
+`at_supports()` functions, both taking an object (or string) of
+conditionals and a body which will be based to `css()`.
 
-The key-value pairs of the conditional object are interpreted as follows and
-ALWAYS combined using `and`:
+The key-value pairs of the conditional object are interpreted as follows
+and ALWAYS combined using `and`:
 
 | Key/Value pair | Result |
 | --- | --- |
@@ -380,16 +385,17 @@ css.css(
 
 ### General function handling
 
-**Functions are handled differently based on their position in the rule tree.**
-Also see the section on [Quoted functions](#quoted-functions) below...
+**Functions are handled differently based on their position in the rule
+tree.** Also see the section on [Quoted functions](#quoted-functions)
+below...
 
 #### Functions in scope head position
 
-If a function is given as arg to `css()` or is in the head position (first
-element) of a rule scope, the function is expected to produce output directly
-and is called with an empty result accumulator array and the `CSSOpts` object
-passed to `css()`. This form is mainly used by the various `at_*()` functions
-provided (e.g. `at_media()` example above).
+If a function is given as arg to `css()` or is in the head position
+(first element) of a rule scope, the function is expected to produce
+output directly and is called with an empty result accumulator array and
+the `CSSOpts` object passed to `css()`. This form is mainly used by the
+various `at_*()` functions provided (e.g. `at_media()` example above).
 
 ```typescript
 css.css(at_import("foo.css", "screen"));
@@ -411,25 +417,27 @@ css.css([
 
 #### Functions in other positions
 
-If a function is located anywhere else in a rule scope array (2nd index or
-later), it will be called without arguments and the return value used in its
-place. Any returned functions will be eval'd recursively in the same manner.
+If a function is located anywhere else in a rule scope array (2nd index
+or later), it will be called without arguments and the return value used
+in its place. Any returned functions will be eval'd recursively in the
+same manner.
 
 ### Quoted functions
 
-One of this project's use cases is to support stylesheets defined as JSON.
-Since functions cannot be used there, an optional mechanism to map strings to
-functions is provided:
+One of this project's use cases is to support stylesheets defined as
+JSON. Since functions cannot be used there, an optional mechanism to map
+strings to functions is provided:
 
 ```
 ["function-name", ...args]
 ```
 
-The quoted function name is looked up in a dictionary and if found, called with
-all remaining elements in the same array. I.e. `["@import", "foo.css"]` will be
-the same result as `at_import("foo.css")`.
+The quoted function name is looked up in a dictionary and if found,
+called with all remaining elements in the same array. I.e. `["@import",
+"foo.css"]` will be the same result as `at_import("foo.css")`.
 
-**IMPORTANT:** Quoted functions are only supported in the head position of a scope.
+**IMPORTANT:** Quoted functions are only supported in the head position
+of a scope.
 
 ```typescript
 const styles = [

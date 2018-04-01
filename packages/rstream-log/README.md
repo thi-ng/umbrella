@@ -2,8 +2,14 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
 Extensible, multi-level & multi-hierarchy logging based on
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)s, transformable via
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)s,
+transformable via
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
 ## Installation

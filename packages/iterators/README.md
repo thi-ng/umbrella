@@ -2,14 +2,16 @@
 
 ![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iterators.svg)
 
-## Overview
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-Collection of ~50 composable, iterator-centric data processing functions,
-largely implemented as ES6 iterators / generators, inspired by
-[clojure.core](http://clojure.github.io/clojure/clojure.core-api.html) API.
-Written in TypeScript.
+## About
 
-See [changelog](https://github.com/thi-ng/iterators/blob/master/CHANGELOG.md) for recent updates.
+Collection of ~50 composable, iterator-centric data processing
+functions, largely implemented as ES6 iterators / generators, inspired
+by
+[clojure.core](http://clojure.github.io/clojure/clojure.core-api.html)
+API. Written in TypeScript.
 
 ## Installation
 
@@ -17,9 +19,9 @@ See [changelog](https://github.com/thi-ng/iterators/blob/master/CHANGELOG.md) fo
 yarn add @thi.ng/iterators
 ```
 
-All functions are defined as sub-modules and re-exported to allow the full
-library to be imported if desired. Sub-module file names use *Kebab case*,
-whereas function names are in *Camel case*.
+All functions are defined as sub-modules and re-exported to allow the
+full library to be imported if desired. Sub-module file names use *Kebab
+case*, whereas function names are in *Camel case*.
 
 ```js
 // import all
@@ -53,12 +55,12 @@ Yields iterator of all but the last value of input.
 
 ### `cached<T>(input: Iterable<T>) => CachedIterableIterator<T>`
 
-Consumes and **lazily** caches values of a **finite** input and returns a
-no-arg function, which when called return new iterator. These iterator
-instances always start from the beginning of the cache and allows for separate
-states and sharing of cached results among arbitrary number of iterators. The
-original input is only consumed when attempting to read beyond current cache
-boundary.
+Consumes and **lazily** caches values of a **finite** input and returns
+a no-arg function, which when called return new iterator. These iterator
+instances always start from the beginning of the cache and allows for
+separate states and sharing of cached results among arbitrary number of
+iterators. The original input is only consumed when attempting to read
+beyond current cache boundary.
 
 ```js
 c = ti.cached(ti.range(10));
@@ -99,9 +101,9 @@ ti.zip(
 
 ### `concat<T>(...inputs: Iterable<T>[]) => IterableIterator<T>`
 
-Produces iterator yielding **lazy** concatenation of given iterables. For
-practical purposes none but the last input should be infinite. Any `null` or
-`undefined` input arguments are skipped in the output.
+Produces iterator yielding **lazy** concatenation of given iterables.
+For practical purposes none but the last input should be infinite. Any
+`null` or `undefined` input arguments are skipped in the output.
 
 ```js
 [... ti.concat([1, 2, 3], [10, 20, 30], [100, 200, 300])]
@@ -113,8 +115,8 @@ practical purposes none but the last input should be infinite. Any `null` or
 
 ### `constantly<T>(x: T) => (...args: any[]) => T`
 
-Helper function returning a new fn which takes any number of args and always
-returns `x`.
+Helper function returning a new fn which takes any number of args and
+always returns `x`.
 
 ```js
 // define an iterable of unknown size
@@ -150,8 +152,9 @@ side effects) and optionally only up to the given number of steps.
 
 ### `cycle<T>(input: Iterable<T>) => IterableIterator<T>`
 
-Produces iterator which **lazily** caches & **infinitely** repeats sequence of input.
-**Important:** Input MUST be finite, use `take` to truncate input or output if necessary.
+Produces iterator which **lazily** caches & **infinitely** repeats
+sequence of input. **Important:** Input MUST be finite, use `take` to
+truncate input or output if necessary.
 
 ```js
 [... ti.take(10, ti.cycle(ti.range(3)))]
@@ -183,8 +186,8 @@ var eq = (a, b) => a.a === b.a;
 
 ### `dense<T>(input: Iterable<T>) => IterableIterator<T>`
 
-Yields iterator of all non-`null` and non-`undefined` values of input (e.g. a
-sparse array).
+Yields iterator of all non-`null` and non-`undefined` values of input
+(e.g. a sparse array).
 
 ```js
 var a = []
@@ -222,9 +225,9 @@ Produces iterator which drops every `n`th item from input.
 
 ### `dropWhile<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
-Consumes input and calls `pred` for each item.
-Discards all items whilst `pred` returns `true`, then returns remaining
-(possibly exhausted) iterator.
+Consumes input and calls `pred` for each item. Discards all items whilst
+`pred` returns `true`, then returns remaining (possibly exhausted)
+iterator.
 
 ```js
 [... ti.dropWhile((x) => x < 5, ti.range(10))]
@@ -233,11 +236,12 @@ Discards all items whilst `pred` returns `true`, then returns remaining
 
 ### `every<T>(pred: (x: T) => boolean, input: Iterable<T>) => boolean`
 
-Consumes input and calls `pred` for each item. When `pred` returns not `true`,
-process stops and returns `false` itself. When all items pass the predicate,
-the function returns `true`.
+Consumes input and calls `pred` for each item. When `pred` returns not
+`true`, process stops and returns `false` itself. When all items pass
+the predicate, the function returns `true`.
 
-If input is empty/exhausted prior to execution, `every` will return `false`.
+If input is empty/exhausted prior to execution, `every` will return
+`false`.
 
 ```js
 var nums = ti.iterator([2, 4, 6, 8, 10]);
@@ -259,8 +263,8 @@ ti.every((x) => true, [])
 
 ### `filter<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
-Consumes input and calls `pred` for each item.
-Yields iterator of items for which `pred` returned `true`.
+Consumes input and calls `pred` for each item. Yields iterator of items
+for which `pred` returned `true`.
 
 ```js
 var multOf3 = (x) => (x % 3) === 0;
@@ -270,9 +274,10 @@ var multOf3 = (x) => (x % 3) === 0;
 
 ### `flatten(input: Iterable<any>, flatObjects = true) => IterableIterator<any>`
 
-Produces iterator which recursively flattens input (using `flattenWith`).
-**Important:** Recursion only applies to iterable types (excluding strings) and
-objects (enabled by default, using `objectIterator`, see below).
+Produces iterator which recursively flattens input (using
+`flattenWith`). **Important:** Recursion only applies to iterable types
+(excluding strings) and objects (enabled by default, using
+`objectIterator`, see below).
 
 ```js
 [... ti.flatten([1, [2, 3], [4, [5, ["abc"]]]])]
@@ -288,11 +293,12 @@ objects (enabled by default, using `objectIterator`, see below).
 
 ### `flattenWith(tx: (x: any) => any, input: Iterable<any>) => IterableIterator<any>`
 
-Produces iterator which selectively & recursively flattens input. The first arg
-`tx` is a transformation fn called for each non-`null/undefined` value taken
-from the input. It's used to check and possibly obtain an iteratable value for
-further flattening. **The transformer must return `undefined` if the value can't
-or shouldn't be flattened**. If a value is returned it MUST be iterable.
+Produces iterator which selectively & recursively flattens input. The
+first arg `tx` is a transformation fn called for each
+non-`null/undefined` value taken from the input. It's used to check and
+possibly obtain an iteratable value for further flattening. **The
+transformer must return `undefined` if the value can't or shouldn't be
+flattened**. If a value is returned it MUST be iterable.
 
 The default transformer used by `flatten` is:
 
@@ -311,14 +317,14 @@ let tx = x => typeof x == "string" ? ti.map(x => x.charCodeAt(0), x) : ti.maybeI
 
 ### `fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) => (...args: any[]) => any`
 
-Takes a function `fn` and up to 3 `ctor` functions. Produces a new function
-that calls `fn`, replacing a `null` or `undefined` arg with the value obtained
-by calling its related positional `ctor` fn (e.g. the first ctor is used to
-supply first arg, etc.).
+Takes a function `fn` and up to 3 `ctor` functions. Produces a new
+function that calls `fn`, replacing a `null` or `undefined` arg with the
+value obtained by calling its related positional `ctor` fn (e.g. the
+first ctor is used to supply first arg, etc.).
 
-The function `fn` can take any number of arguments, however only the first 3
-are being potentially patched, how many depends on the number of `ctor` fns
-supplied.
+The function `fn` can take any number of arguments, however only the
+first 3 are being potentially patched, how many depends on the number of
+`ctor` fns supplied.
 
 ```js
 hello = (greet, name) => `${greet}, ${name}!`;
@@ -354,20 +360,21 @@ ti.reduce(updateWith(adder), {}, "abracadabra");
 
 ### `fork<T>(input: Iterable<T>, cacheLimit = 16) => () => IterableIterator<T>`
 
-Similar to `cached`, this function allows multiple consumers of a single input,
-however is only using a sliding window of N cached values (`cached` stores the
-entire input).
+Similar to `cached`, this function allows multiple consumers of a single
+input, however is only using a sliding window of N cached values
+(`cached` stores the entire input).
 
-`fork` returns a no-arg function, which returns a new forked iterator when
-called. There's no limit to the number of active forks.
+`fork` returns a no-arg function, which returns a new forked iterator
+when called. There's no limit to the number of active forks.
 
-**Important:** The use case for `fork` is synchronized consumption at similar
-speeds (up to `cacheLimit` divergence). The cache is shared by *all* forks. If
-one of the forks consumes the input faster than the given `cacheLimit`, the
-other forks will lose intermediate values. If in doubt, increase the cache
-limit to a higher value (default 16). The cache uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons) to avoid unnecessary copying during window
-sliding.
+**Important:** The use case for `fork` is synchronized consumption at
+similar speeds (up to `cacheLimit` divergence). The cache is shared by
+*all* forks. If one of the forks consumes the input faster than the
+given `cacheLimit`, the other forks will lose intermediate values. If in
+doubt, increase the cache limit to a higher value (default 16). The
+cache uses
+[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+to avoid unnecessary copying during window sliding.
 
 ```js
 // stream of random numbers, as sliding partitions of 5 values
@@ -400,11 +407,11 @@ for(let part of raw) {
 
 ### `frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]>`
 
-Consumes input, applies `key` fn (if given) to each item and yields iterator of
-2-element tuples, each `[key, freq]` (where `freq` is the number of times the
-item occurred). **Important:** The input MUST be finite. Implementation uses
-`JSON.stringify` to determine key equality. If no `key` fn is given, the
-original values will be used as key.
+Consumes input, applies `key` fn (if given) to each item and yields
+iterator of 2-element tuples, each `[key, freq]` (where `freq` is the
+number of times the item occurred). **Important:** The input MUST be
+finite. Implementation uses `JSON.stringify` to determine key equality.
+If no `key` fn is given, the original values will be used as key.
 
 ```js
 // without key fn
@@ -425,10 +432,9 @@ var isLetter = (x) => /[a-z]/i.test(x);
 
 ### `groupBy<T>(key: (v) => any, input: Iterable<T>) => { [id: string]: T[] }`
 
-Consumes input, applies `key` fn to each item and returns object of items
-grouped by result of `key` fn.
-**Important:** The input MUST be finite.
-Implementation uses `JSON.stringify` to determine key equality.
+Consumes input, applies `key` fn to each item and returns object of
+items grouped by result of `key` fn. **Important:** The input MUST be
+finite. Implementation uses `JSON.stringify` to determine key equality.
 
 ```js
 // group into multiples of 2
@@ -474,8 +480,9 @@ Yields iterator producing `[index, value]` pairs of input.
 
 ### `interleave(...inputs: Iterable<any>[]) => IterableIterator<any>`
 
-Takes an arbitrary number of iterators and yields iterator of interleaved items from each input.
-Terminates as soon as one of the inputs is exhausted.
+Takes an arbitrary number of iterators and yields iterator of
+interleaved items from each input. Terminates as soon as one of the
+inputs is exhausted.
 
 ```js
 [... ti.interleave(ti.range(), ti.range(100, 200), ti.range(200, 205))]
@@ -484,7 +491,8 @@ Terminates as soon as one of the inputs is exhausted.
 
 ### `interpose(x: any, input: Iterable<any>) => IterableIterator<any>`
 
-Produces an iterator which injects `x` inbetween each item from input `iter`.
+Produces an iterator which injects `x` inbetween each item from input
+`iter`.
 
 ```js
 [... ti.interpose("/", ti.range(5))]
@@ -493,7 +501,8 @@ Produces an iterator which injects `x` inbetween each item from input `iter`.
 
 ### `iterate<T>(fn: (x: T) => T, seed: T) => IterableIterator<T>`
 
-Produces an iterator of the infinite results of iteratively applying `fn` to `seed`.
+Produces an iterator of the infinite results of iteratively applying
+`fn` to `seed`.
 
 **Important:** Use `take` to truncate sequence.
 
@@ -504,15 +513,15 @@ Produces an iterator of the infinite results of iteratively applying `fn` to `se
 
 ### `iterator<T>(x: Iterable<T>) => Iterator<T>`
 
-Syntax sugar. Returns `x[Symbol.iterator]()`.
-Most functions in this module call this automatically for each input.
+Syntax sugar. Returns `x[Symbol.iterator]()`. Most functions in this
+module call this automatically for each input.
 
 ### `juxt<T>(...fns: ((x: T) => any)[]) => (x: T) => any[]`
 
-Takes arbitrary number of functions and returns new function,
-which takes single argument `x` and produces array of result
-values of applying each input function to `x`
-(juxtoposition of the given transformation functions).
+Takes arbitrary number of functions and returns new function, which
+takes single argument `x` and produces array of result values of
+applying each input function to `x` (juxtoposition of the given
+transformation functions).
 
 ```js
 var kernel = ti.juxt(
@@ -544,10 +553,11 @@ ti.last(ti.take(10, ti.range()))
 
 ### `map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) => IterableIterator<T>`
 
-Consumes an arbitrary number of iterators and applies `fn` to each of their values.
-Produces iterator of results. Iteration stops as soon as one of the inputs is exhausted.
-The mapping `fn` should accept as many arguments as there are inputs to `map`.
-Provides a fast path for single input mapping.
+Consumes an arbitrary number of iterators and applies `fn` to each of
+their values. Produces iterator of results. Iteration stops as soon as
+one of the inputs is exhausted. The mapping `fn` should accept as many
+arguments as there are inputs to `map`. Provides a fast path for single
+input mapping.
 
 ```js
 [... ti.map((x)=> x*10, ti.range(10))]
@@ -559,10 +569,9 @@ Provides a fast path for single input mapping.
 ### `mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]) => IterableIterator<T>`
 
 Like `map`, but expects mapping fn to return an iterable result and
-produces iterator which yields the flat concatenation of results
-(only the first level of nesting is removed).
-`null` or `undefined` values returned by the mapping fn are skipped
-in the output.
+produces iterator which yields the flat concatenation of results (only
+the first level of nesting is removed). `null` or `undefined` values
+returned by the mapping fn are skipped in the output.
 
 ```js
 [... ti.mapcat((x) => ti.repeat(x, 3), "hello")]
@@ -588,12 +597,13 @@ argument to mapping fn.
 
 ### `maybeIterator(x: any) => any`
 
-Helper function, returning arg's iterator (if present) or else `undefined`.
+Helper function, returning arg's iterator (if present) or else
+`undefined`.
 
 ### `maybeObjectIterator(x: any) => any`
 
-Helper function, checks if `x` is object-like (but no generator) and returns
-`objectIterator(x)` or else `undefined`.
+Helper function, checks if `x` is object-like (but no generator) and
+returns `objectIterator(x)` or else `undefined`.
 
 ### `objectIterator(x: any) => IterableIterator<any[]>`
 
@@ -607,10 +617,10 @@ Produces iterator of an object"s key/value pairs.
 ### `partition<T>(n: number, step: number, input: Iterable<T>, all = false) => IterableIterator<T[]>`
 
 Produces iterator of fixed size partitions/chunks of input values.
-Produces overlapping partitions, if `step` < partition size `n`.
-Unless the optional `all` flag is enabled, returns only completely filled
-partitions. If `all = true`, the last partition
-produced may have less than `n` items (though never empty).
+Produces overlapping partitions, if `step` < partition size `n`. Unless
+the optional `all` flag is enabled, returns only completely filled
+partitions. If `all = true`, the last partition produced may have less
+than `n` items (though never empty).
 
 ```js
 [... ti.partition(3, 3, ti.range(10))]
@@ -629,8 +639,8 @@ produced may have less than `n` items (though never empty).
 
 ### `partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) => IterableIterator<T[]>`
 
-Produces iterator of partitions/chunks of input values. Applies `fn` to each item
-and starts new partition each time `fn` returns new result.
+Produces iterator of partitions/chunks of input values. Applies `fn` to
+each item and starts new partition each time `fn` returns new result.
 
 ```js
 [... ti.partitionBy((x) => x / 5 | 0, ti.range(11))]
@@ -639,8 +649,8 @@ and starts new partition each time `fn` returns new result.
 
 ### `randomSample<T>(prob: number, input: Iterable<T>) => IterableIterator<T>`
 
-Produces iterator which consumes input and yields values with given probability
-(0 .. 1 range).
+Produces iterator which consumes input and yields values with given
+probability (0 .. 1 range).
 
 ```js
 [... ti.randomSample(0.1, ti.range(100))]
@@ -649,7 +659,8 @@ Produces iterator which consumes input and yields values with given probability
 
 ### `range(from?: number, to?: number, step?: number) => IterableIterator<number>`
 
-Produces iterator of monotonically increasing or decreasing values with optional `step` value.
+Produces iterator of monotonically increasing or decreasing values with
+optional `step` value.
 
 - If called without arguments, produces values from 0 .. +∞.
 - If called with 1 arg: 0 ... n (exclusive)
@@ -679,11 +690,10 @@ If `from` > `to` and no `step` is given, a `step` of `-1` is used.
 
 ### `reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) => B`
 
-Consumes and reduces input using reduction function `rfn`,
-then returns reduced result value. `rfn` can abort reduction
-process by returning a value wrapped using `reduced(x)`.
-If this is done, then this value is unwrapped and returned
-as final result.
+Consumes and reduces input using reduction function `rfn`, then returns
+reduced result value. `rfn` can abort reduction process by returning a
+value wrapped using `reduced(x)`. If this is done, then this value is
+unwrapped and returned as final result.
 
 If input is empty, returns initial `acc`umulator arg.
 
@@ -698,10 +708,12 @@ ti.reduce((acc, x) => { return acc += x, acc >= 15 ? ti.reduced(acc) : acc }, 0,
 
 ### `reductions<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) => IterableIterator<B[]>`
 
-Like `reduce`, but yields an iterator of all intermediate reduction results.
-Always yields at least initial `acc`umulator arg, even if input is empty.
+Like `reduce`, but yields an iterator of all intermediate reduction
+results. Always yields at least initial `acc`umulator arg, even if input
+is empty.
 
-Thus, the result is the equivalent of an *exclusive* [scan operation](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch39.html)
+Thus, the result is the equivalent of an *exclusive* [scan
+operation](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch39.html)
 (with the exception of possible early bail out via `reduced`).
 
 ```js
@@ -715,9 +727,8 @@ Thus, the result is the equivalent of an *exclusive* [scan operation](http://htt
 
 ### `reduced<T>(x: T) => ReducedValue<T>`
 
-For use inside reduction functions only.
-Wraps result in marker type to cause early termination of reduction
-(see example above).
+For use inside reduction functions only. Wraps result in marker type to
+cause early termination of reduction (see example above).
 
 ### `repeat<T>(x: T, n?: number) => IterableIterator<T>`
 
@@ -734,8 +745,8 @@ If `n` is given, produces only that many values.
 
 ### `repeatedly<T>(fn: () => T, n?: number) => IterableIterator<T>`
 
-Produces an iterator of infinite (by default) results of calling the no-arg `fn` repeatedly.
-If `n` is given, produces only that many values.
+Produces an iterator of infinite (by default) results of calling the
+no-arg `fn` repeatedly. If `n` is given, produces only that many values.
 
 ```js
 [... ti.take(3, ti.repeatedly(() => Math.random()))]
@@ -747,9 +758,9 @@ If `n` is given, produces only that many values.
 
 ### `reverse<T>(input: Iterable<T>) => IterableIterator<T>`
 
-Yields iterator **lazily** producing reverse result order of input (**must be
-finite**). If input is not already array-like (strings are for this purpose),
-the function first consumes & caches input as array.
+Yields iterator **lazily** producing reverse result order of input
+(**must be finite**). If input is not already array-like (strings are
+for this purpose), the function first consumes & caches input as array.
 
 ```js
 [...ti.reverse([1, 2, 3])]
@@ -764,9 +775,9 @@ the function first consumes & caches input as array.
 
 ### `some<T>(pred: (x: T) => boolean, input: Iterable<T>) => T`
 
-Consumes iterator and calls `pred` for each item.
-When `pred` returns `true`, process stops and returns this first successful item.
-When none of the items pass the predicate, the function returns `undefined`.
+Consumes iterator and calls `pred` for each item. When `pred` returns
+`true`, process stops and returns this first successful item. When none
+of the items pass the predicate, the function returns `undefined`.
 
 ```js
 var nums = ti.iterator([1, 2, 3]);
@@ -785,8 +796,8 @@ nums.next()
 
 ### `take<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
-Produces iterator of the first `n` values of input
-(or less than `n`, if input is too short...)
+Produces iterator of the first `n` values of input (or less than `n`, if
+input is too short...)
 
 ```js
 [... ti.take(3, ti.range())]
@@ -804,12 +815,12 @@ Produces an iterator only yielding every `n`th item from input.
 
 ### `takeWhile<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
-Produces iterator which calls `pred` for each item of input and terminates as
-soon as `pred` returns `false`.
+Produces iterator which calls `pred` for each item of input and
+terminates as soon as `pred` returns `false`.
 
 **Important:** Due to lack of look-ahead in the ES6 iterator API, the
-value failing the given `pred` will be lost when working with the original
-iterator *after* `takeWhile`.
+value failing the given `pred` will be lost when working with the
+original iterator *after* `takeWhile`.
 
 ```js
 var input = ti.range(10);
@@ -822,8 +833,8 @@ var input = ti.range(10);
 
 ### `takeLast<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
-Consumes input and produces iterator of the last `n` values of input (or less
-than `n`, if input is too short...)
+Consumes input and produces iterator of the last `n` values of input (or
+less than `n`, if input is too short...)
 
 **Important:** Never attempt to use with infinite inputs!
 
@@ -837,10 +848,10 @@ than `n`, if input is too short...)
 
 ### `walk(fn: (x: any) => void, input: Iterable<any>, postOrder = false) => void`
 
-Recursively walks input and applies `fn` to each element (for in-place editing
-or side effects). Only iterable values and objects (but not strings) are
-traversed further. Traversal is pre-order by default, but can be changed to
-post-order via last arg.
+Recursively walks input and applies `fn` to each element (for in-place
+editing or side effects). Only iterable values and objects (but not
+strings) are traversed further. Traversal is pre-order by default, but
+can be changed to post-order via last arg.
 
 ```js
 // dummy SVG document
@@ -880,9 +891,10 @@ doc.content[1]
 
 ### `walkIterator(input: Iterable<any>, postOrder = false) => IterableIterator<any>`
 
-Yields an iterator performing either pre-order (default) or post-order 
-[traversal](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order) of input.
-Only iterable values and objects (but not strings) are traversed further.
+Yields an iterator performing either pre-order (default) or post-order
+[traversal](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order) of
+input. Only iterable values and objects (but not strings) are traversed
+further.
 
 ```js
 // pre-order traversal
@@ -918,10 +930,10 @@ Only iterable values and objects (but not strings) are traversed further.
 
 ### `zip(keys: Iterable<any>, vals: Iterable<any>, target?: any) => any`
 
-Takes an iterator of keys and iterator of values, pairwise combines items
-from each input and associates them as key-value mappings in a given target
-object (if `target` is missing, returns new object).
-Stops as soon as either input is exhausted.
+Takes an iterator of keys and iterator of values, pairwise combines
+items from each input and associates them as key-value mappings in a
+given target object (if `target` is missing, returns new object). Stops
+as soon as either input is exhausted.
 
 ```js
 ti.zip("abcdef", ti.range())
@@ -948,4 +960,4 @@ ti.zip(ti.map((x)=> x.id, langs), langs)
 
 # License
 
-&copy; 2017 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017-2018 Karsten Schmidt // Apache Software License 2.0

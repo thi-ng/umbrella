@@ -2,6 +2,11 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
 Comprehensive doubly linked list structure with:
 
 - ES6 iterator support

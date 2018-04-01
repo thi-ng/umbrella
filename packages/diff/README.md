@@ -2,9 +2,12 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
-TODO...
+Array (sequential) & object (associative) Diff implementations.
 
 ## Installation
 

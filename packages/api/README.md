@@ -2,7 +2,19 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)
 
-Generic, common interfaces, types, decorators and mixins for thi.ng TypeScript projects (and others).
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
+This package is implicitly used by most other projects in this
+repository. It defines:
+
+- 30+ generic, common interfaces & types
+- class & method decorators
+- mixins
+- error types
+- comparison & equivalence checks
 
 ## Installation
 

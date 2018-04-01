@@ -2,15 +2,18 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 DAG resolution of vanilla objects & arrays with internally linked
 values.
 
 It's common practice to use nested JS objects for configuration
-purposes. Frequently some values in the object are copies or
-derivatives of other values, which can lead to mistakes during
-refactoring and/or duplication of effort.
+purposes. Frequently some values in the object are copies or derivatives
+of other values, which can lead to mistakes during refactoring and/or
+duplication of effort.
 
 To avoid these issues, this library provides the ability to define
 single sources of truth, create references (links) to these values and a

@@ -2,11 +2,14 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 Adapter bridge between async [CSP
-channels](https://github.com/thi-ng/umbrella/tree/master/packages/csp) and
-synchronous stream subscriptions/transformations of
+channels](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+and synchronous stream subscriptions/transformations of
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
 
 ## Installation

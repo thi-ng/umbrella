@@ -2,28 +2,33 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
-Clojure inspired mutable wrappers for (usually) immutable values, with infrastructure support for:
+Clojure inspired mutable wrappers for (usually) immutable values, with
+infrastructure support for:
 
 - watches
 - derived view subscriptions
 - cursors (direct R/W access to nested values)
 - undo/redo history
 
-Together these types act as building blocks for various application state
-handling patterns, specifically aimed (though not exclusively) at the concept
-of using a nested, immutable, centralized atom as single source of truth within
-an application.
+Together these types act as building blocks for various application
+state handling patterns, specifically aimed (though not exclusively) at
+the concept of using a nested, immutable, centralized atom as single
+source of truth within an application.
 
 ### Status
 
 Stable, used in production and in active development.
 
-**Note: On 2018-03-17 this package was split to remain more
-focused. Path based getters/setters have been moved into the new
-[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths) package.
-Likewise, all interceptor based event handling functionality now lives in the
+**Note: On 2018-03-17 this package was split to remain more focused.
+Path based getters/setters have been moved into the new
+[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+package. Likewise, all interceptor based event handling functionality
+now lives in the
 [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
 package.**
 
@@ -35,7 +40,8 @@ yarn add @thi.ng/atom
 
 **New since 2018-03-15: You can now create a preconfigured app skeleton
 using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
-[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project generator:**
+[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
+generator:**
 
 ```
 yarn create hdom-app my-app
@@ -53,11 +59,11 @@ directory make heavy use of this library.
 
 ### Atom
 
-An `Atom` is a mutable wrapper for immutable values. The wrapped value can be
-obtained via `deref()`, replaced via `reset()` and updated using `swap()`. An
-atom too supports the concept of watches, essentially `onchange` event handlers
-which are called from `reset`/`swap` and receive both the old and new atom
-values.
+An `Atom` is a mutable wrapper for immutable values. The wrapped value
+can be obtained via `deref()`, replaced via `reset()` and updated using
+`swap()`. An atom too supports the concept of watches, essentially
+`onchange` event handlers which are called from `reset`/`swap` and
+receive both the old and new atom values.
 
 ```typescript
 import * as atom from "@thi.ng/atom";
@@ -120,9 +126,9 @@ a.deref();
 // { a: { b: { c: 2 } } }
 ```
 
-For that reason, it's recommended to design the overall data layout rather wide
-than deep (my personal limit is 3-4 levels) to minimize the length of the
-propagation chain and maximize structural sharing.
+For that reason, it's recommended to design the overall data layout
+rather wide than deep (my personal limit is 3-4 levels) to minimize the
+length of the propagation chain and maximize structural sharing.
 
 ```typescript
 // main state
@@ -158,7 +164,10 @@ main.deref()
 
 ### Derived views
 
-Whereas cursors provide read/write access to nested key paths within a state atom, there are many situations when one only requires read access and the ability to (optionally) produce transformed versions of such a value. The `View` type provides exactly this functionality:
+Whereas cursors provide read/write access to nested key paths within a
+state atom, there are many situations when one only requires read access
+and the ability to (optionally) produce transformed versions of such a
+value. The `View` type provides exactly this functionality:
 
 ```typescript
 db = new atom.Atom({a: 1, b: {c: 2}});
@@ -235,15 +244,16 @@ x === null
 // true
 ```
 
-Atoms & views are useful tools for keeping state outside UI components. Here's
-an example of a tiny
+Atoms & views are useful tools for keeping state outside UI components.
+Here's an example of a tiny
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-web app, demonstrating how to use derived views to switch the UI for different
-application states / modules.
+web app, demonstrating how to use derived views to switch the UI for
+different application states / modules.
 
-Note: The constrained nature of this next example doesn't really do justice to
-the powerful nature of the approach. Also stylistically, in a larger app we'd
-want to avoid the use of global variables (apart from `db`) as done here...
+Note: The constrained nature of this next example doesn't really do
+justice to the powerful nature of the approach. Also stylistically, in a
+larger app we'd want to avoid the use of global variables (apart from
+`db`) as done here...
 
 For a more advanced / realworld usage pattern, check the related [event
 handling
@@ -342,9 +352,10 @@ start(document.body, app);
 
 ### Undo history
 
-The `History` type can be used with & behaves like an Atom or Cursor, but
-creates snapshots of the current state before applying the new state. By
-default history has length of 100 steps, but this is configurable.
+The `History` type can be used with & behaves like an Atom or Cursor,
+but creates snapshots of the current state before applying the new
+state. By default history has length of 100 steps, but this is
+configurable.
 
 ```typescript
 db = new atom.History(new atom.Atom({a: 1}))

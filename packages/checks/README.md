@@ -1,6 +1,12 @@
 # @thi.ng/checks
 
-Single-function sub-modules for type, feature & value checks.
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+## About
+
+This package provides ~50 single-function sub-modules for type, feature
+& value checks.
 
 ## Installation
 

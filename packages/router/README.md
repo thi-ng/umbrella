@@ -2,13 +2,19 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
-Generic router for browser & non-browser based applications with support for:
+Generic router for browser & non-browser based applications with support
+for:
 
 - Declarative route definitions
-- Parametric routes, each param with optional value coercion & validation
-- Route authentication handler to enable/disable routes based on other state factors
+- Parametric routes, each param with optional value coercion &
+  validation
+- Route authentication handler to enable/disable routes based on other
+  state factors
 - Fallback route
 - Enforced initial route (optional)
 - Route formatting (with params)
@@ -22,7 +28,8 @@ yarn add @thi.ng/router
 
 **New since 2018-03-15: You can now create a preconfigured app skeleton
 using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
-[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project generator:**
+[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
+generator:**
 
 ```
 yarn create hdom-app my-app
@@ -136,4 +143,4 @@ See [further comments in source code](https://github.com/thi-ng/umbrella/blob/ma
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2014-2018 Karsten Schmidt // Apache Software License 2.0

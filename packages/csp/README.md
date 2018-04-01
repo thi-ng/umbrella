@@ -2,9 +2,16 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
 
-Lightweight ES6-promise based CSP implementation written in TypeScript (18KB minified, full lib).
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-- `Channel` with/without buffering and/or [transducers](https://github.com/thi-ng/transducers)
+## About
+
+Lightweight ES6-promise based CSP implementation written in TypeScript
+(18KB minified, full lib).
+
+- `Channel` with/without buffering and/or
+  [transducers](https://github.com/thi-ng/umbrella/blob/master/packages/transducers)
   - optional channel IDs
   - choice of buffer behaviors (fixed, sliding, dropping)
   - channel selection

@@ -2,18 +2,23 @@
 
 [![npm](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 
-## Overview
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-C-style struct, union and bitfield read/write views of ArrayBuffers. Written in
-TypeScript, distributed as ES6.
+## About
+
+C-style struct, union and bitfield read/write views of ArrayBuffers.
+Written in TypeScript, distributed as ES6.
 
 Features:
 
 - construct memory mapped JS objects based on given typedef specs
 - nested structs & unions
 - packed bitfields (signed / unsigned)
-- auto-alignment of fields to respective word boundaries (can be disabled)
-- configurable endianess (bitfields currently assume network order / big endian)
+- auto-alignment of fields to respective word boundaries (can be
+  disabled)
+- configurable endianess (bitfields currently assume network order / big
+  endian)
 - no runtime dependencies, works in node & browser
 - small: 2.35KB minified, 1.14KB gzipped
 
@@ -31,13 +36,14 @@ yarn add @thi.ng/unionstruct
 let {struct, union, sizeOf} = require("@thi.ng/unionstruct");
 ```
 
-C-style union types define alternate views of the same data. For example this C
-snippet below defines such a type, of which the first 32-bits can be accessed
-either via individual bitfields or as combined value. Fields in this union type
-can be accessed like `x.flags` (combined) or `x.state.cache` (only bits 9-11 of
-`x.flags`). Since all views share the same memory, value changes of one
-view are reflected in all others too (of course updating bitfields only modifies
-a field's allocated bit range).
+C-style union types define alternate views of the same data. For example
+this C snippet below defines such a type, of which the first 32-bits can
+be accessed either via individual bitfields or as combined value. Fields
+in this union type can be accessed like `x.flags` (combined) or
+`x.state.cache` (only bits 9-11 of `x.flags`). Since all views share the
+same memory, value changes of one view are reflected in all others too
+(of course updating bitfields only modifies a field's allocated bit
+range).
 
 ```c
 // C
@@ -112,18 +118,19 @@ header.state.tag          // 12345
 
 ### union(spec: Field[], buf?: ArrayBuffer, offset = 0, align = true, littleEndian = false) => any
 
-Takes an array of field specs (as in example above) and optional ArrayBuffer,
-offset etc. If no buffer is given, constructs a new one with minimum size
-required by this field spec. Returns an object with enumerable field accessors
-and the following additional keys (largely for introspection purposes):
+Takes an array of field specs (as in example above) and optional
+ArrayBuffer, offset etc. If no buffer is given, constructs a new one
+with minimum size required by this field spec. Returns an object with
+enumerable field accessors and the following additional keys (largely
+for introspection purposes):
 
 - `__buffer` - backing ArrayBuffer instance
 - `__offsets` - **bit offset** in buffer for each field
 - `__spec` - original field spec array provided
 - `__size` - computed **bit size** of whole type
 
-All top-level fields in a union share the same start address.
-Also see note about [alignment](#alignment) below.
+All top-level fields in a union share the same start address. Also see
+note about [alignment](#alignment) below.
 
 ### struct(spec: Field[], buf?: ArrayBuffer, offset = 0, align = true, littleEndian = false) => any
 
@@ -145,12 +152,12 @@ sizeOf([["a", "u32", 14], ["b", "u32", 6], ["c","u8"]], true);
 ```
 ### Alignment
 
-For unions, if `align` is enabled (default), the entire type's offset will be
-aligned to the largest required width. E.g. If any of the top-level fields is
-of type `f64`, alignment will be to 8-byte boundaries. If the union contains
-nested types, they will be checked recursively and aligned to largest type
-found (for structs only the first field has an impact on whole struct
-alignment).
+For unions, if `align` is enabled (default), the entire type's offset
+will be aligned to the largest required width. E.g. If any of the
+top-level fields is of type `f64`, alignment will be to 8-byte
+boundaries. If the union contains nested types, they will be checked
+recursively and aligned to largest type found (for structs only the
+first field has an impact on whole struct alignment).
 
 | Type      | Alignment |
 |-----------|----------:|
@@ -163,13 +170,13 @@ alignment).
 ### Bitfields
 
 Bitfields can only use integer types and support both signed / unsigned
-flavors. Successive bitfields are densely packed (no alignment in between). The
-max. width of a single field is 32 bits, but an arbitrary number of successive
-bitfields can be defined.
+flavors. Successive bitfields are densely packed (no alignment in
+between). The max. width of a single field is 32 bits, but an arbitrary
+number of successive bitfields can be defined.
 
-If `align` is enabled and the last bitfield in a group does not end at a word
-boundary, the field will be padded invisibly, based on its type (has no impact
-on size of last field).
+If `align` is enabled and the last bitfield in a group does not end at a
+word boundary, the field will be padded invisibly, based on its type
+(has no impact on size of last field).
 
 ```js
 bitfields = struct([
@@ -189,9 +196,11 @@ bitfields.__offsets
 
 ## Typescript specifics
 
-The library defines a `FieldType` type alias and `Field` interface to allow for
-type checking of field specs (details [here](https://github.com/thi-ng/unionstruct/blob/master/src/index.ts)).
-These are exposed in the `index.d.ts` file, bundled in the release version.
+The library defines a `FieldType` type alias and `Field` interface to
+allow for type checking of field specs (details
+[here](https://github.com/thi-ng/umbrella/blob/master/packages/unionstruct/src/index.ts)).
+These are exposed in the `index.d.ts` file, bundled in the release
+version.
 
 # Authors
 
