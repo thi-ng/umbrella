@@ -77,10 +77,10 @@ MapVal
 
 Atom
     = String
-    / Sym
     / Number
     / Boolean
     / Nil
+    / Sym
 
 Nil
     = "nil" {
