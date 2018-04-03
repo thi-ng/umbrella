@@ -6,6 +6,7 @@ export interface ASTNode {
     body: any;
     loc: [number, number];
     id?: string;
+    locals: string[];
 }
 
 export interface VisitorState {
@@ -50,11 +51,11 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "v*": pf.vmul,
     "v/": pf.vdiv,
     "=": pf.eq,
-    "!=": pf.gteq,
+    "not=": pf.neq,
     "<=": pf.lteq,
     ">=": pf.gteq,
-    "<": pf.lteq,
-    ">": pf.gteq,
+    "<": pf.lt,
+    ">": pf.gt,
     "pos?": pf.ispos,
     "neg?": pf.isneg,
     "nil?": pf.isnull,

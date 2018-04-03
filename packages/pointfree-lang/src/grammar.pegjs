@@ -41,9 +41,17 @@ NonWordExpr
     ) _ { return ast(expr); }
 
 Word
-    = ":" __ id:Sym body:NonWordExpr+ ";" {
-        return { type: NodeType.WORD, id: id.id, body};
+    = ":" __ id:Sym locals:LocalVars? body:NonWordExpr+ ";" {
+        return { type: NodeType.WORD, id: id.id, locals, body};
     }
+
+LocalVars
+	= _ "^{" body:SymList+ "}" {
+    	return body;
+    }
+
+SymList
+	= _ id:Sym _ { return id.id; }
 
 Array
     = "[" body:NonWordExpr* "]" {
@@ -93,18 +101,12 @@ Boolean
     }
 
 Sym
-    = id:$(SymV1) {
+    = id:$((Alpha / SymChars) (AlphaNum / SymChars)*) {
         return {type: NodeType.SYM, id};
     }
 
-SymV1
-    = (Alpha / SymChars) (AlphaNum / SymChars / [.])*
-
-SymV2
-    = Digit (AlphaNum / SymChars)+
-
 SymChars
-    = [*?$%&/\|~<>=_+\-]
+    = [*?$%&/\|~<>=_.+\-]
 
 Var
     = VarDeref
