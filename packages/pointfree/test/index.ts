@@ -473,7 +473,7 @@ describe("pointfree", () => {
     it("load", () => {
         assert.throws(() => pf.load($()));
         assert.deepEqual(pf.load([["a"], [], { a: 1 }])[0], [1]);
-        assert.deepEqual(pf.load([["b"], [], { a: 1 }])[0], [undefined]);
+        assert.throws(() => pf.load([["b"], [], { a: 1 }]));
     });
 
     it("store", () => {
@@ -484,7 +484,7 @@ describe("pointfree", () => {
 
     it("loadkey", () => {
         assert.deepEqual(pf.loadkey("a")([[0], [], { a: 1 }])[0], [0, 1]);
-        assert.deepEqual(pf.loadkey("b")([[0], [], { a: 1 }])[0], [0, undefined]);
+        assert.throws(() => pf.loadkey("a")(pf.ctx()));
     });
 
     it("storekey", () => {
