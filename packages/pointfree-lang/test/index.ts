@@ -9,12 +9,41 @@ describe("pointfree-lang", () => {
         assert.deepEqual(run(`'nil dup`)[0], [[null], [null]]);
     });
 
+    it("number (hex)", () => {
+        assert.deepEqual(run(`0x1 0xa 0xff 0xdecafbad`)[0], [1, 10, 255, 0xdecafbad]);
+    });
+
+    it("number (decimal)", () => {
+        assert.deepEqual(run(`0 -1 +2`)[0], [0, -1, 2]);
+        assert.deepEqual(run(`-123. +12.3`)[0], [-123, 12.3]);
+        assert.deepEqual(run(`-123e4`)[0], [-1230000]);
+        assert.deepEqual(run(`+1.23e-2`)[0], [0.0123]);
+        assert.deepEqual(run(`+1.23e-2 0.0123 =`)[0], [true]);
+    });
+
     it("litquote", () => {
         assert.deepEqual(runU(`'nil`), [null]);
         assert.deepEqual(runU(`'+`), [pf.add]);
         assert.deepEqual(run(`1 '1`)[0], [1, [1]]);
         assert.deepEqual(run(`1 2 '+`)[0], [1, 2, [pf.add]]);
         assert.deepEqual(run(`1 2 '+ exec`)[0], [3]);
+    });
+
+    it("var deref (quote)", () => {
+        assert.deepEqual(runU(`[@a [@a {@a: @a} {@a: [@a]}]]`, { a: 1 }), [1, [1, { 1: 1 }, { 1: [1] }]]);
+    });
+
+    it("var deref (litquote)", () => {
+        assert.deepEqual(runU(`'@a`, { a: 1 }), [1]);
+        assert.deepEqual(runU(`'[@a]`, { a: 1 }), [[1]]);
+        assert.deepEqual(runU(`''@a`, { a: 1 }), [[1]]);
+    });
+
+    it("var deref (word)", () => {
+        assert.deepEqual(runU(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo`, { a: 1 }), [1, [1, { 1: 1 }, { 1: [1] }]]);
+        assert.deepEqual(
+            run(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo 2 a! foo`, { a: 1 })[0],
+            [[1, [1, { 1: 1 }, { 1: [1] }]], [2, [2, { 2: 2 }, { 2: [2] }]]]);
     });
 
     // setDebug(true);

@@ -52,12 +52,12 @@ const usersrc = `
     only creates circles for grid cells where x <= y
 )
 : circlegrid ( res -- )
-  dup [dup2 lteq [xy 10 v* 3 circle] [drop2] if] loop2 ;
+  dup [dup2 <= [xy 10 v* 3 circle] [drop2] if] loop2 ;
 
 grid circlegrid
 
 ( create SVG root element in hiccup format )
-@svg.svgdoc [{width: 200, height: 200, stroke: "#f04", fill: "none"}] pushl
+[@@svg.svgdoc {width: 200, height: 200, stroke: "#f04", fill: "none"}]
 ( concat with generated shapes )
 @shapes cat
 ( serialize hiccup format to SVG and write to disk )

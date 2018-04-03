@@ -4,75 +4,84 @@
     // const NodeType = {};
     // NodeType[NodeType["SYM"] = 1] = "SYM";
     // NodeType[NodeType["WORD"] = 2] = "WORD";
-    // NodeType[NodeType["QUOT"] = 3] = "QUOT";
-    // NodeType[NodeType["VAR_DEREF"] = 4] = "VAR_DEREF";
-    // NodeType[NodeType["VAR_STORE"] = 5] = "VAR_STORE";
-    // NodeType[NodeType["NIL"] = 6] = "NIL";
-    // NodeType[NodeType["NUMBER"] = 7] = "NUMBER";
-    // NodeType[NodeType["BOOLEAN"] = 8] = "BOOLEAN";
-    // NodeType[NodeType["STRING"] = 9] = "STRING";
-    // NodeType[NodeType["MAP"] = 10] = "MAP";
-    // NodeType[NodeType["SET"] = 11] = "SET";
-    // NodeType[NodeType["COMMENT"] = 12] = "COMMENT";
-    // NodeType[NodeType["STACK_COMMENT"] = 13] = "STACK_COMMENT";
+    // NodeType[NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
+    // NodeType[NodeType["VAR_STORE"] = 4] = "VAR_STORE";
+    // NodeType[NodeType["NIL"] = 5] = "NIL";
+    // NodeType[NodeType["NUMBER"] = 6] = "NUMBER";
+    // NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
+    // NodeType[NodeType["STRING"] = 8] = "STRING";
+    // NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
+    // NodeType[NodeType["OBJ"] = 10] = "OBJ";
+    // NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
+    // NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
 
     const ast = (node) => {
-        // const loc = location().start;
-        // node.loc = [loc.offset, loc.line, loc.column];
+        const loc = location().start;
+        node.loc = [loc.line, loc.column];
         return node;
     };
 }
 
 Root
-    = exrp:Expr*
+    = expr:Expr*
 
 Expr
+    = _ expr:( Word / NonWordExpr ) _ {
+        return ast(expr);
+    }
+
+NonWordExpr
     = _ expr:(
-        Word
-        / Quot
-        / LitQuote
+        LitQuote
         / Var
         / Comment
+        / Array
+        / Obj
         / Atom
-        / Map
-//      / Set
     ) _ { return ast(expr); }
 
 Word
-    = ":" __ id:Sym body:Expr+ ";" {
-        return { type: NodeType.WORD, id: id.id, body};
+    = ":" __ id:Sym locals:LocalVars? body:NonWordExpr+ ";" {
+        return { type: NodeType.WORD, id: id.id, locals, body};
     }
 
-Quot
-    = "[" body:Expr* "]" {
-        return { type: NodeType.QUOT, body };
+LocalVars
+	= _ "^{" body:SymList+ "}" {
+    	return body;
     }
 
-Set
-    = "#{" body:Expr* "}" {
-        return { type: NodeType.SET, body };
+SymList
+	= _ id:Sym _ { return id.id; }
+
+Array
+    = "[" body:NonWordExpr* "]" {
+        return { type: NodeType.ARRAY, body };
     }
 
-Map
-    = "{" _ body:MapPair* "}" {
-        return { type: NodeType.MAP, body };
+Obj
+    = "{" _ body:ObjPair* "}" {
+        return { type: NodeType.OBJ, body };
     }
 
-MapPair
-    = k:MapKey v:MapVal { return [ k, v ]; }
+ObjPair
+    = k:ObjKey v:ObjVal { return [ k, v ]; }
 
-MapKey
-    = k:(String / Sym / Number / VarDeref) ":" { return k; }
+ObjKey
+    = k:(
+        String
+        / Number
+        / VarDeref
+        / Sym
+    ) ":" { return ast(k); }
 
-MapVal
+ObjVal
     = _ val:(
         Atom
-        / Quot
         / LitQuote
         / VarDeref
-        / Map
-//    	/ Set
-    ) _ { return val; }
+        / Array
+        / Obj
+    ) _ { return ast(val); }
 
 Atom
     = String
@@ -92,20 +101,12 @@ Boolean
     }
 
 Sym
-    = id:$(SymInit SymRest*) {
+    = id:$((Alpha / SymChars) (AlphaNum / SymChars)*) {
         return {type: NodeType.SYM, id};
     }
 
-SymInit
-    = Alpha
-    / SymChars
-
-SymRest
-    = AlphaNum
-    / SymChars
-
 SymChars
-    = [*?$%&/\|~<>=._+\-]
+    = [*?$%&/\|~<>=_.+\-]
 
 Var
     = VarDeref
@@ -122,17 +123,21 @@ VarStore
     }
 
 LitQuote
-    = "'" body:Expr {
-        return {type: NodeType.QUOT, body: [body]};
+    = "'" body:NonWordExpr {
+        return {type: NodeType.ARRAY, body: [body]};
     }
 
 Comment
     = "("+ body:$(!")" .)* ")" {
         return body.indexOf("--") > 0 ?
-            { type: NodeType.STACK_COMMENT,
-              body: body.split("--").map(x => x.trim().split(" "))
+            {
+                type: NodeType.STACK_COMMENT,
+                body: body.split("--").map(x => x.trim())
             } :
-            { type: NodeType.COMMENT, body: body.trim()};
+            {
+                type: NodeType.COMMENT,
+                body: body.trim()
+            };
     }
 
 String
@@ -151,6 +156,7 @@ Binary
     = "0b" n:$[01]+ {
         return {type: NodeType.NUMBER, radix: 2, body: parseInt(n, 2)};
     }
+
 Hex
     = "0x" n:$[0-9a-fA-F]+ {
         return {type: NodeType.NUMBER, radix: 16, body: parseInt(n, 16)};

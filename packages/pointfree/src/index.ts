@@ -706,14 +706,81 @@ export const pow = op2((b, a) => Math.pow(a, b));
  */
 export const sqrt = op1(Math.sqrt);
 
+/**
+ * ( x -- exp(x) )
+ *
+ * @param ctx
+ */
+export const exp = op1(Math.exp);
+
+/**
+ * ( x -- log(x) )
+ *
+ * @param ctx
+ */
 export const log = op1(Math.log);
 
+/**
+ * ( x -- sin(x) )
+ *
+ * @param ctx
+ */
 export const sin = op1(Math.sin);
 
+/**
+ * ( x -- cos(x) )
+ *
+ * @param ctx
+ */
 export const cos = op1(Math.cos);
 
+/**
+ * ( x -- tan(x) )
+ *
+ * @param ctx
+ */
+export const tan = op1(Math.tan);
+
+/**
+ * ( x -- tanh(x) )
+ *
+ * @param ctx
+ */
+export const tanh = op1(Math.tanh);
+
+/**
+ * ( x -- floor(x) )
+ *
+ * @param ctx
+ */
+export const floor = op1(Math.floor);
+
+/**
+ * ( x -- ceil(x) )
+ *
+ * @param ctx
+ */
+export const ceil = op1(Math.ceil);
+
+/**
+ * ( x y -- sqrt(x*x+y*y) )
+ *
+ * @param ctx
+ */
+export const hypot = op2(Math.hypot);
+
+/**
+ * ( x y -- atan2(y,x) )
+ *
+ * @param ctx
+ */
 export const atan2 = op2(Math.atan2);
 
+/**
+ * ( -- Math.random() )
+ *
+ * @param ctx
+ */
 export const rand = (ctx: StackContext) =>
     (ctx[0].push(Math.random()), ctx);
 
@@ -1621,15 +1688,22 @@ export const pushenv = (ctx: StackContext) =>
     (ctx[0].push(ctx[2]), ctx);
 
 /**
- * Loads value for `key` from env and pushes it on d-stack.
+ * Loads value for `key` from current env and pushes it on d-stack.
+ * Throws error if var doesn't exist.
  *
  * ( key -- env[key] )
  *
  * @param ctx
  * @param env
  */
-export const load = (ctx: StackContext) =>
-    ($(ctx[0], 1), ctx[0].push(ctx[2][ctx[0].pop()]), ctx);
+export const load = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 1);
+    const id = stack.pop();
+    !ctx[2].hasOwnProperty(id) && illegalArgs(`unknown var: ${id}`);
+    stack.push(ctx[2][id]);
+    return ctx;
+};
 
 /**
  * Stores `val` under `key` in env.
@@ -1644,20 +1718,24 @@ export const store = (ctx: StackContext) =>
 
 /**
  * Higher order word. Similar to `load`, but always uses given
- * preconfigured `key` instead of reading it from d-stack at runtime (also
- * slightly faster).
+ * preconfigured `key` instead of reading it from d-stack at runtime
+ * (also slightly faster). Throws error if var doesn't exist.
  *
  * ( -- env[key] )
  * @param ctx
  * @param env
  */
 export const loadkey = (key: PropertyKey) =>
-    (ctx: StackContext) => (ctx[0].push(ctx[2][key]), ctx);
+    (ctx: StackContext) => {
+        !ctx[2].hasOwnProperty(key) && illegalArgs(`unknown var: ${key}`);
+        ctx[0].push(ctx[2][key]);
+        return ctx;
+    };
 
 /**
  * Higher order word. Similar to `store`, but always uses given
- * preconfigure `key` instead of reading it from d-stack at runtime (also
- * slightly faster).
+ * preconfigure `key` instead of reading it from d-stack at runtime
+ * (also slightly faster).
  *
  * ( val -- )
  *
