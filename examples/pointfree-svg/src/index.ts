@@ -57,7 +57,7 @@ const usersrc = `
 grid circlegrid
 
 ( create SVG root element in hiccup format )
-[@@svg.svgdoc {width: 200, height: 200, stroke: "#f04", fill: "none"}]
+[@svg.svgdoc {width: 200, height: 200, stroke: "#f04", fill: "none"}]
 ( concat with generated shapes )
 @shapes cat
 ( serialize hiccup format to SVG and write to disk )
