@@ -24,7 +24,7 @@ export enum NodeType {
     BOOLEAN,
     STRING,
     ARRAY,
-    MAP,
+    OBJ,
 
     COMMENT,
     STACK_COMMENT,

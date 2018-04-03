@@ -11,7 +11,7 @@
     // NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
     // NodeType[NodeType["STRING"] = 8] = "STRING";
     // NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
-    // NodeType[NodeType["MAP"] = 10] = "MAP";
+    // NodeType[NodeType["OBJ"] = 10] = "OBJ";
     // NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
     // NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
 
@@ -36,7 +36,7 @@ NonWordExpr
         / Var
         / Comment
         / Array
-        / Map
+        / Obj
         / Atom
     ) _ { return ast(expr); }
 
@@ -50,15 +50,15 @@ Array
         return { type: NodeType.ARRAY, body };
     }
 
-Map
-    = "{" _ body:MapPair* "}" {
-        return { type: NodeType.MAP, body };
+Obj
+    = "{" _ body:ObjPair* "}" {
+        return { type: NodeType.OBJ, body };
     }
 
-MapPair
-    = k:MapKey v:MapVal { return [ k, v ]; }
+ObjPair
+    = k:ObjKey v:ObjVal { return [ k, v ]; }
 
-MapKey
+ObjKey
     = k:(
         String
         / Number
@@ -66,13 +66,13 @@ MapKey
         / Sym
     ) ":" { return ast(k); }
 
-MapVal
+ObjVal
     = _ val:(
         Atom
         / LitQuote
         / VarDeref
         / Array
-        / Map
+        / Obj
     ) _ { return ast(val); }
 
 Atom

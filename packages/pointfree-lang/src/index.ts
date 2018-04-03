@@ -5,7 +5,7 @@ import * as pf from "@thi.ng/pointfree";
 import { ASTNode, NodeType, ALIASES, VisitorState } from "./api";
 import { parse, SyntaxError } from "./parser";
 
-let DEBUG = true;
+let DEBUG = false;
 
 export const setDebug = (state: boolean) => DEBUG = state;
 
@@ -49,6 +49,13 @@ const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
     return ctx[2][id];
 };
 
+/**
+ * Resolves given node's value. Used by `resolveArray` & `resolveObject`
+ * to process internal values (and in the latter case also their keys).
+ *
+ * @param node
+ * @param ctx
+ */
 const resolveNode = (node: ASTNode, ctx: pf.StackContext) => {
     switch (node.type) {
         case NodeType.SYM:
@@ -59,13 +66,19 @@ const resolveNode = (node: ASTNode, ctx: pf.StackContext) => {
             return pf.storekey(node.id);
         case NodeType.ARRAY:
             return resolveArray(node, ctx);
-        case NodeType.MAP:
-            return resolveMap(node, ctx);
+        case NodeType.OBJ:
+            return resolveObject(node, ctx);
         default:
             return node.body;
     }
 };
 
+/**
+ * Constructs an array literal (quotation) from given AST node.
+ *
+ * @param node
+ * @param ctx
+ */
 const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
     const res = [];
     for (let n of node.body) {
@@ -74,7 +87,13 @@ const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
     return res;
 };
 
-const resolveMap = (node: ASTNode, ctx: pf.StackContext) => {
+/**
+ * Constructs object literal from given AST node.
+ *
+ * @param node
+ * @param ctx
+ */
+const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
     const res = {};
     for (let [k, v] of node.body) {
         res[k.type === NodeType.SYM ? k.id : resolveNode(k, ctx)] = resolveNode(v, ctx);
@@ -82,6 +101,13 @@ const resolveMap = (node: ASTNode, ctx: pf.StackContext) => {
     return res;
 };
 
+/**
+ * Main AST node visitor dispatcher.
+ *
+ * @param node
+ * @param ctx
+ * @param state
+ */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     DEBUG && console.log("visit", NodeType[node.type], node, ctx[0].toString());
     switch (node.type) {
@@ -95,8 +121,8 @@ const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
             return ctx;
         case NodeType.ARRAY:
             return visitArray(node, ctx, state);
-        case NodeType.MAP:
-            return visitMap(node, ctx, state);
+        case NodeType.OBJ:
+            return visitObject(node, ctx, state);
         case NodeType.VAR_DEREF:
             return visitDeref(node, ctx, state);
         case NodeType.VAR_STORE:
@@ -109,6 +135,15 @@ const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     return ctx;
 };
 
+/**
+ * SYM visitor. Looks up symbol (word name) and if `state.word` is true,
+ * pushes word on (temp) stack (created by `visitWord`), else executes
+ * word. Throws error if unknown word.
+ *
+ * @param node
+ * @param ctx
+ * @param state
+ */
 const visitSym = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     const w = resolveSym(node, ctx);
     if (state.word) {
@@ -119,8 +154,17 @@ const visitSym = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     }
 };
 
+/**
+ * VAR_DEREF visitor. If `state.word` is true, pushes `loadkey(id)` on
+ * (temp) stack (created by `visitWord`), else attempts to resolve var
+ * and pushes its value on stack. Throws error if unknown var.
+ *
+ * @param node
+ * @param ctx
+ * @param state
+ */
 const visitDeref = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
-    if (state.word && node.type === NodeType.VAR_DEREF) {
+    if (state.word) {
         ctx[0].push(pf.loadkey(node.id));
     } else {
         ctx[0].push(resolveVar(node, ctx));
@@ -128,6 +172,15 @@ const visitDeref = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) =>
     return ctx;
 };
 
+/**
+ * VAR_STORE visitor. If `state.word` is true, pushes `storekey(id)` on
+ * (temp) stack (created by `visitWord`), else pushes var name on stack
+ * and calls `store` to save value in env.
+ *
+ * @param node
+ * @param ctx
+ * @param state
+ */
 const visitStore = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     const id = node.id;
     if (state.word) {
@@ -140,6 +193,11 @@ const visitStore = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) =>
 };
 
 /**
+ * WORD visitor to create new word definition. Sets `state.word` to
+ * true, builds temp stack context and calls `visit()` for all child
+ * nodes. Then calls `word()` to compile function and stores it in
+ * `env.__words` object.
+ *
  * @param node
  * @param ctx
  * @param state
@@ -160,6 +218,15 @@ const visitWord = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => 
     return ctx;
 }
 
+/**
+ * ARRAY visitor for arrays/quotations. If `state.word` is true, pushes
+ * call to `resolveArray` on temp word stack, else calls `resolveArray`
+ * and pushes result on stack.
+ *
+ * @param node
+ * @param ctx
+ * @param state
+ */
 const visitArray = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     if (state.word) {
         ctx[0].push((_ctx) => (_ctx[0].push(resolveArray(node, _ctx)), _ctx));
@@ -169,11 +236,20 @@ const visitArray = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) =>
     return ctx;
 };
 
-const visitMap = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+/**
+ * OBJ visitor for object literals. If `state.word` is true, pushes call
+ * to `resolveObject` on temp word stack, else calls `resolveObject` and
+ * pushes result on stack.
+ *
+ * @param node
+ * @param ctx
+ * @param state
+ */
+const visitObject = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     if (state.word) {
-        ctx[0].push((_ctx) => (_ctx[0].push(resolveMap(node, _ctx)), _ctx));
+        ctx[0].push((_ctx) => (_ctx[0].push(resolveObject(node, _ctx)), _ctx));
     } else {
-        ctx[0].push(resolveMap(node, ctx));
+        ctx[0].push(resolveObject(node, ctx));
     }
     return ctx;
 };
