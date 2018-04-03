@@ -4,18 +4,16 @@
     // const NodeType = {};
     // NodeType[NodeType["SYM"] = 1] = "SYM";
     // NodeType[NodeType["WORD"] = 2] = "WORD";
-    // NodeType[NodeType["QUOT"] = 3] = "QUOT";
-    // NodeType[NodeType["VAR_DEREF"] = 4] = "VAR_DEREF";
-    // NodeType[NodeType["VAR_DEREF_IMM"] = 5] = "VAR_DEREF_IMM";
-    // NodeType[NodeType["VAR_STORE"] = 6] = "VAR_STORE";
-    // NodeType[NodeType["NIL"] = 7] = "NIL";
-    // NodeType[NodeType["NUMBER"] = 8] = "NUMBER";
-    // NodeType[NodeType["BOOLEAN"] = 9] = "BOOLEAN";
-    // NodeType[NodeType["STRING"] = 10] = "STRING";
-    // NodeType[NodeType["MAP"] = 11] = "MAP";
-    // NodeType[NodeType["SET"] = 12] = "SET";
-    // NodeType[NodeType["COMMENT"] = 13] = "COMMENT";
-    // NodeType[NodeType["STACK_COMMENT"] = 14] = "STACK_COMMENT";
+    // NodeType[NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
+    // NodeType[NodeType["VAR_STORE"] = 4] = "VAR_STORE";
+    // NodeType[NodeType["NIL"] = 5] = "NIL";
+    // NodeType[NodeType["NUMBER"] = 6] = "NUMBER";
+    // NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
+    // NodeType[NodeType["STRING"] = 8] = "STRING";
+    // NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
+    // NodeType[NodeType["MAP"] = 10] = "MAP";
+    // NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
+    // NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
 
     const ast = (node) => {
         const loc = location().start;
@@ -34,13 +32,12 @@ Expr
 
 NonWordExpr
     = _ expr:(
-        Quot
-        / LitQuote
+        LitQuote
         / Var
         / Comment
-        / Atom
+        / Array
         / Map
-//      / Set
+        / Atom
     ) _ { return ast(expr); }
 
 Word
@@ -48,14 +45,9 @@ Word
         return { type: NodeType.WORD, id: id.id, body};
     }
 
-Quot
+Array
     = "[" body:NonWordExpr* "]" {
-        return { type: NodeType.QUOT, body };
-    }
-
-Set
-    = "#{" body:NonWordExpr* "}" {
-        return { type: NodeType.SET, body };
+        return { type: NodeType.ARRAY, body };
     }
 
 Map
@@ -69,29 +61,26 @@ MapPair
 MapKey
     = k:(
         String
-        / Sym
         / Number
-        / VarDerefImmediate
         / VarDeref
-    ) ":" { return k; }
+        / Sym
+    ) ":" { return ast(k); }
 
 MapVal
     = _ val:(
         Atom
-        / Quot
         / LitQuote
-        / VarDerefImmediate
         / VarDeref
+        / Array
         / Map
-//    	/ Set
-    ) _ { return val; }
+    ) _ { return ast(val); }
 
 Atom
     = String
+    / Sym
     / Number
     / Boolean
     / Nil
-    / Sym
 
 Nil
     = "nil" {
@@ -104,30 +93,22 @@ Boolean
     }
 
 Sym
-    = id:$(SymInit SymRest*) {
+    = id:$(SymV1) {
         return {type: NodeType.SYM, id};
     }
 
-SymInit
-    = Alpha
-    / SymChars
+SymV1
+    = (Alpha / SymChars) (AlphaNum / SymChars / [.])*
 
-SymRest
-    = AlphaNum
-    / SymChars
+SymV2
+    = Digit (AlphaNum / SymChars)+
 
 SymChars
-    = [*?$%&/\|~<>=._+\-]
+    = [*?$%&/\|~<>=_+\-]
 
 Var
-    = VarDerefImmediate
-    / VarDeref
+    = VarDeref
     / VarStore
-
-VarDerefImmediate
-    = "@@" id:Sym {
-        return {type: NodeType.VAR_DEREF_IMM, id: id.id}
-    }
 
 VarDeref
     = "@" id:Sym {
@@ -141,16 +122,20 @@ VarStore
 
 LitQuote
     = "'" body:NonWordExpr {
-        return {type: NodeType.QUOT, body: [body]};
+        return {type: NodeType.ARRAY, body: [body]};
     }
 
 Comment
     = "("+ body:$(!")" .)* ")" {
         return body.indexOf("--") > 0 ?
-            { type: NodeType.STACK_COMMENT,
-              body: body.split("--").map(x => x.trim().split(" "))
+            {
+                type: NodeType.STACK_COMMENT,
+                body: body.split("--").map(x => x.trim())
             } :
-            { type: NodeType.COMMENT, body: body.trim()};
+            {
+                type: NodeType.COMMENT,
+                body: body.trim()
+            };
     }
 
 String
@@ -169,6 +154,7 @@ Binary
     = "0b" n:$[01]+ {
         return {type: NodeType.NUMBER, radix: 2, body: parseInt(n, 2)};
     }
+
 Hex
     = "0x" n:$[0-9a-fA-F]+ {
         return {type: NodeType.NUMBER, radix: 16, body: parseInt(n, 16)};

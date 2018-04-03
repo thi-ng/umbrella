@@ -9,25 +9,22 @@ export interface ASTNode {
 }
 
 export interface VisitorState {
-    quote: boolean;
     word: boolean;
 }
 
 export enum NodeType {
     SYM = 1,
     WORD,
-    QUOT,
 
     VAR_DEREF,
-    VAR_DEREF_IMM,
     VAR_STORE,
 
     NIL,
     NUMBER,
     BOOLEAN,
     STRING,
+    ARRAY,
     MAP,
-    SET,
 
     COMMENT,
     STACK_COMMENT,
@@ -48,8 +45,6 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "-": pf.sub,
     "*": pf.mul,
     "/": pf.div,
-    "1+": pf.inc,
-    "1-": pf.dec,
     "v+": pf.vadd,
     "v-": pf.vsub,
     "v*": pf.vmul,
@@ -64,6 +59,8 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "neg?": pf.isneg,
     "nil?": pf.isnull,
     "zero?": pf.iszero,
+    "pi": pf.push(Math.PI),
+    "tau": pf.push(2 * Math.PI),
     ".": pf.print,
     ".s": pf.printds,
     ".r": pf.printrs,
