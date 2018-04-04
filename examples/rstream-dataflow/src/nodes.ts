@@ -32,13 +32,15 @@ export const initGraph = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>): IObjec
 
 /**
  * Transforms a single NodeSpec into a lookup function for `resolveMap`
- * (which is called from `initGraph`). When that called is called,
+ * (which is called from `initGraph`). When that function is called,
  * recursively resolves all specified input streams and calls this
  * spec's `fn` to produce a new stream from these inputs. If the spec
  * includes the optional `out` key, it also executes the provided
  * function, or if the value is a string, adds a subscription to this
  * node's result stream which then updates the provide state atom at the
  * path defined by `out`. Returns an ISubscribable.
+ *
+ * See `api.ts` for further details and possible spec variations.
  *
  * @param spec
  */
@@ -92,6 +94,7 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
 
 /**
  * Addition node. Supports any number of inputs.
+ * Currently unused, but illustrates use of `node` HOF.
  */
 export const add = node(
     map((ports: IObjectOf<number>) => {
@@ -104,6 +107,7 @@ export const add = node(
 
 /**
  * Multiplication node. Supports any number of inputs.
+ * Currently unused, but illustrates use of `node` HOF.
  */
 export const mul = node(
     map((ports: IObjectOf<number>) => {
@@ -116,11 +120,13 @@ export const mul = node(
 
 /**
  * Substraction node. 2 inputs.
+ * Currently unused, but illustrates use of `node` HOF.
  */
 export const sub = node(map((ports: IObjectOf<number>) => ports.a - ports.b), 2);
 
 /**
  * Division node. 2 inputs.
+ * Currently unused, but illustrates use of `node` HOF.
  */
 export const div = node(map((ports: IObjectOf<number>) => ports.a / ports.b), 2);
 
@@ -129,7 +135,7 @@ export const div = node(map((ports: IObjectOf<number>) => ports.a / ports.b), 2)
  * allowed.
  */
 export const extract = (path: Path) =>
-    (src: ISubscribable<number>[]) => {
+    (src: ISubscribable<any>[]) => {
         if (src.length !== 1) {
             illegalArgs(`too many inputs, only needed 1`);
         }
