@@ -1,0 +1,25 @@
+digraph g {
+
+    rankdir=LR;
+    node[fontname=Inconsolata,fontsize=9,fontcolor=white,style=filled,color=black];
+    edge[fontname=Inconsolata,fontsize=9,arrowsize=0.66];
+
+    mousedown -> gestures;
+    mousemove -> gestures;
+    mouseup -> gestures;
+    touchstart -> gestures;
+    touchmove -> gestures;
+    touchend -> gestures;
+
+    gestures -> mpos[label=extract];
+    gestures -> clickpos[label=extract];
+
+    mpos -> dist;
+    clickpos -> dist;
+
+    clickpos -> color[label="pick random"];
+
+    clickpos -> circle;
+    dist -> circle;
+    color -> circle;
+}
