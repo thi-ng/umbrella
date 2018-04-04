@@ -13,6 +13,7 @@ import { isTransferable } from "../src/is-transferable";
 import { isTypedArray } from "../src/is-typedarray";
 
 describe("checks", function () {
+
     it("existsAndNotNull", () => {
         assert(existsAndNotNull([]), "empty array");
         assert(existsAndNotNull(new Uint8Array(1)), "typedarray");
@@ -23,6 +24,7 @@ describe("checks", function () {
         assert(!existsAndNotNull(null), "null");
         assert(!existsAndNotNull(undefined), "null");
     });
+
     it("isArray", () => {
         assert(isArray([]), "empty array");
         assert(!isArray(new Uint8Array(1)), "typedarray");
@@ -32,6 +34,7 @@ describe("checks", function () {
         assert(!isArray(null), "null");
         assert(!isArray(undefined), "null");
     });
+
     it("isTypedArray", () => {
         assert(isTypedArray(new Uint8Array(1)), "u8");
         assert(isTypedArray(new Uint8ClampedArray(1)), "u8c");
@@ -49,6 +52,7 @@ describe("checks", function () {
         assert(!isTypedArray(null), "null");
         assert(!isTypedArray(undefined), "null");
     });
+
     it("isArrayLike", () => {
         assert(isArrayLike([]), "empty array");
         assert(isArrayLike(new Uint8Array(1)), "typedarray");
@@ -59,18 +63,26 @@ describe("checks", function () {
         assert(!isArrayLike(null), "null");
         assert(!isArrayLike(undefined), "null");
     });
+
     it("isObject", () => {
+        function Foo() { };
         assert(isObject([]), "empty array");
         assert(isObject(new Uint8Array(1)), "typedarray");
         assert(isObject({}), "obj");
+        assert(isObject(new Foo()), "class");
+        assert(!isObject(Foo), "fn");
         assert(!isObject("[]"), "string");
         assert(!isObject(0), "zero");
         assert(!isObject(null), "null");
         assert(!isObject(undefined), "null");
     });
+
     it("isPlainObject", () => {
+        function Foo() { };
         assert(isPlainObject({}), "obj");
         assert(isPlainObject(new Object()), "obj ctor");
+        assert(!isPlainObject(Foo), "fn");
+        assert(!isPlainObject(new Foo()), "class");
         assert(!isPlainObject([]), "empty array");
         assert(!isPlainObject(new Uint8Array(1)), "typedarray");
         assert(!isPlainObject("[]"), "string");
@@ -78,6 +90,7 @@ describe("checks", function () {
         assert(!isPlainObject(null), "null");
         assert(!isPlainObject(undefined), "null");
     });
+
     it("isString", () => {
         assert(isString(""), "empty string");
         assert(isString("a"), "empty string");
@@ -88,6 +101,7 @@ describe("checks", function () {
         assert(!isString(null), "null");
         assert(!isString(undefined), "null");
     });
+
     it("isFunction", () => {
         assert(isFunction((_) => null), "fn");
         assert(isFunction(Uint8Array), "ctor");
@@ -100,6 +114,7 @@ describe("checks", function () {
         assert(!isFunction(null), "null");
         assert(!isFunction(undefined), "undefined");
     });
+
     it("implementsFunction", () => {
         assert(implementsFunction({ a: () => true }, "a"), "obj");
         assert(implementsFunction([], Symbol.iterator), "arr iterator");
@@ -108,6 +123,7 @@ describe("checks", function () {
         assert(!implementsFunction(null, Symbol.iterator), "null");
         assert(!implementsFunction(undefined, Symbol.iterator), "undefined");
     });
+
     it("isSymbol", () => {
         assert(isSymbol(Symbol.iterator), "iterator");
         assert(!isSymbol("iterator"), "string");
@@ -115,6 +131,7 @@ describe("checks", function () {
         assert(!isFunction(null), "null");
         assert(!isFunction(undefined), "undefined");
     });
+
     it("isTransferable", () => {
         assert(isTransferable(new ArrayBuffer(4)), "arraybuffer");
         assert(!isTransferable(new Uint8Array(4)), "typedarray");
@@ -124,4 +141,5 @@ describe("checks", function () {
         assert(!isTransferable(null), "null");
         assert(!isTransferable(undefined), "undefined");
     });
+
 });
