@@ -79,15 +79,16 @@ const graph = initGraph(db, {
 
     // produces a new random color for each new drag gesture (and
     // therefore each new circle will have a potentially different
-    // color)
+    // color). transformation is done using a composed transducer which
+    // first dedupes click pos values and emits a new random color each
+    // time clickpos is redefined (remember, clickpos is only defined
+    // during drag gestures)
     color: {
         fn: ([click]) =>
             click.subscribe(
                 comp(
                     dedupe(equiv),
-                    map((x) => x && colors.next().value)
-                )
-            ),
+                    map((x) => x && colors.next().value))),
         ins: [{ stream: "clickpos" }],
         out: "color"
     }
