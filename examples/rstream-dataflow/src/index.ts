@@ -7,7 +7,7 @@ import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { gestureStream } from "./gesture-stream";
-import { extract, initNodes, node } from "./nodes";
+import { extract, initGraph, node } from "./nodes";
 import { circle } from "./circle";
 
 // infinite iterator of randomized circle colors (Tachyons CSS class names)
@@ -26,11 +26,11 @@ const db = new Atom<any>({});
 const gestures = gestureStream(document.getElementById("app"));
 
 // dataflow graph definition. each key in this object represents a node
-// in the graph and its value is a `NodeSpec`. the `initNodes` function
+// in the graph and its value is a `NodeSpec`. the `initGraph` function
 // transforms these specs into a DAG (directed acyclic graph) of
 // @thi.ng/rstream types, so each "node" is actually implemented as a
 // stream of some kind...
-const graph = initNodes(db, {
+const graph = initGraph(db, {
 
     // extracts current mouse/touch position
     mpos: {
@@ -50,14 +50,14 @@ const graph = initNodes(db, {
     // computes distance between `clickpos` and `mpos`
     // (only defined during drag gestures)
     dist: {
-        fn: node(map(({ mpos, clickpos }) =>
-            mpos && clickpos &&
-            Math.hypot(mpos[0] - clickpos[0], mpos[1] - clickpos[1]) | 0)),
+        fn: node(map(({ curr, click }) =>
+            curr && click &&
+            Math.hypot(curr[0] - click[0], curr[1] - click[1]) | 0)),
         ins: [
-            { stream: "mpos", id: "mpos" },
-            { stream: "clickpos", id: "clickpos" },
+            { stream: "mpos", id: "curr" },
+            { stream: "clickpos", id: "click" },
         ],
-        out: "dist",
+        out: "dist"
     },
 
     // combines `clickpos`, `dist` and `color` streams to produce a
@@ -65,13 +65,13 @@ const graph = initNodes(db, {
     // the resulting stream is then directly included in this app's root
     // component below...
     circle: {
-        fn: node(map(({ clickpos, dist, color }) =>
-            clickpos && dist && color ?
-                circle(color, clickpos[0], clickpos[1], dist * 2) :
+        fn: node(map(({ click, radius, color }) =>
+            click && radius && color ?
+                circle(color, click[0], click[1], radius * 2) :
                 undefined)),
         ins: [
-            { stream: "clickpos" },
-            { stream: "dist", id: "dist" },
+            { stream: "clickpos", id: "click" },
+            { stream: "dist", id: "radius" },
             { stream: "color", id: "color" },
         ],
         out: "circle"
@@ -89,7 +89,7 @@ const graph = initNodes(db, {
                 )
             ),
         ins: [{ stream: "clickpos" }],
-        out: "color",
+        out: "color"
     }
 });
 
@@ -99,8 +99,8 @@ start("app", () =>
         ["pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
             JSON.stringify(db.deref(), null, 2)],
         // note: direct embedding of result stream below. this works
-        // since @thi.ng/rstream subscriptions implement the
+        // since all @thi.ng/rstream subscriptions implement the
         // @thi.ng/api/IDeref interface (like several other types, e.g.
         // @thi.ng/atom's Atom, Cursor, View etc.)
-        graph.circle,
+        graph.circle
     ]);

@@ -24,3 +24,5 @@ above dataflow graph in a declarative manner:
 - [@thi.ng/resolve-map]() - DAG-based object resolution
 - [@thi.ng/rstream]() - reactive stream constructs
 - [@thi.ng/transducers]() - data transformations (here used for stream transforms)
+
+Please see detailed comments in the source code for further explanations.

@@ -23,7 +23,7 @@ import { NodeSpec } from "./api";
  * @param state
  * @param nodes
  */
-export const initNodes = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>) => {
+export const initGraph = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>): IObjectOf<ISubscribable<any>> => {
     for (let k in nodes) {
         (<any>nodes)[k] = nodeFromSpec(state, nodes[k]);
     }
@@ -32,7 +32,7 @@ export const initNodes = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>) => {
 
 /**
  * Transforms a single NodeSpec into a lookup function for `resolveMap`
- * (which is called from `initNodes`). When that called is called,
+ * (which is called from `initGraph`). When that called is called,
  * recursively resolves all specified input streams and calls this
  * spec's `fn` to produce a new stream from these inputs. If the spec
  * includes the optional `out` key, it also executes the provided
@@ -56,10 +56,9 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
             illegalArgs(`invalid node spec`);
         }
         if (i.xform) {
-            s = s.subscribe(i.xform);
-        }
-        if (i.id) {
-            s.id = i.id;
+            s = s.subscribe(i.xform, i.id);
+        } else if (i.id) {
+            s = s.subscribe({}, i.id);
         }
         src.push(s);
     }
