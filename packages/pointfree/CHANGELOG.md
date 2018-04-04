@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.0...@thi.ng/pointfree@0.7.1) (2018-04-04)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/pointfree
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.6.2...@thi.ng/pointfree@0.7.0) (2018-04-03)
 
