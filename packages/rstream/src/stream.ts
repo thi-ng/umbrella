@@ -1,9 +1,9 @@
 import { illegalArity } from "@thi.ng/api/error";
+import { isString } from "@thi.ng/checks/is-string";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
 import { Subscription } from "./subscription";
-import { isString } from "util";
 
 export class Stream<T> extends Subscription<T, T>
     implements IStream<T> {
