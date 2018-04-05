@@ -85,12 +85,20 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
  * @param arity
  */
 export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
-    (src: ISubscribable<number>[]) => {
+    (src: ISubscribable<any>[]) => {
         if (arity !== undefined && src.length !== arity) {
             illegalArgs(`wrong number of inputs: got ${src.length}, but needed ${arity}`);
         }
         return sync({ src, xform, reset: false });
     };
+
+/**
+ * Syntax sugar / helper fn for nodes using only single input.
+ *
+ * @param xform
+ */
+export const node1 = (xform: Transducer<any, any>) =>
+    ([src]: ISubscribable<any>[]) => src.subscribe(xform);
 
 /**
  * Addition node. Supports any number of inputs.
@@ -135,13 +143,6 @@ export const sub = node(map((ports: IObjectOf<number>) => ports.a - ports.b), 2)
 export const div = node(map((ports: IObjectOf<number>) => ports.a / ports.b), 2);
 
 /**
- * Nested value extraction node. Higher order function. Only 1 input
- * allowed.
+ * Nested value extraction node. Higher order function. Only 1 input.
  */
-export const extract = (path: Path) =>
-    (src: ISubscribable<any>[]) => {
-        if (src.length !== 1) {
-            illegalArgs(`too many inputs, only needed 1`);
-        }
-        return src[0].subscribe(map((x) => getIn(x, path)));
-    };
+export const extract = (path: Path) => node1(map((x) => getIn(x, path)));

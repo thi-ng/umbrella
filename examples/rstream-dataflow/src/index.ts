@@ -9,7 +9,7 @@ import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { gestureStream } from "./gesture-stream";
-import { extract, initGraph, node, mul } from "./nodes";
+import { extract, initGraph, node, node1, mul } from "./nodes";
 import { circle } from "./circle";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)
@@ -66,8 +66,9 @@ const graph = initGraph(db, {
     // extracts & computes length of `delta` vector in gesture tuple
     // i.e. the distance between `clickpos` and current `mpos`
     // (`delta` is only defined during drag gestures)
+    // `node1` is a helper function for nodes using only a single input
     dist: {
-        fn: ([g]) => g.subscribe(map((gesture) => {
+        fn: node1(map((gesture) => {
             const delta = getIn(gesture, [1, 2]);
             return delta && Math.hypot.apply(null, delta) | 0;
         })),
@@ -80,6 +81,8 @@ const graph = initGraph(db, {
     // the resulting stream is then directly included in this app's root
     // component below... all inputs are locally renamed using the
     // stated input `id`s
+    // `node` is a helper function to create a `StreamSync` based node
+    // with multiple inputs
     circle: {
         fn: node(map(({ click, radius, color }) =>
             click && radius && color ?
@@ -100,19 +103,15 @@ const graph = initGraph(db, {
     // time clickpos is redefined (remember, clickpos is only defined
     // during drag gestures)
     color: {
-        fn: ([click]) =>
-            click.subscribe(
-                comp(
-                    dedupe(equiv),
-                    map((x) => x && colors.next().value))),
+        fn: node1(comp(dedupe(equiv), map((x) => x && colors.next().value))),
         ins: [{ stream: "clickpos" }],
         out: "color"
     },
 
-    // transforms a RAF event stream (frame counter @ 60fps)
-    // into a sine wave with 0.8 ... 1.0 interval
+    // transforms a `requestAnimationFrame` event stream (frame counter @ 60fps)
+    // into a sine wave with 0.6 .. 1.0 interval
     sine: {
-        fn: ([src]) => src.subscribe(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
+        fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
         ins: [{ stream: () => fromRAF() }],
         out: "sin"
     },
