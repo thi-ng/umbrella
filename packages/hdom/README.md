@@ -94,9 +94,10 @@ subscriptions. More examples are forthcoming...
 ## Status
 
 This project is currently still in BETA. The overall "API" is stable,
-but there's still further work planned on optimization and
-generalization beyond the standard browser DOM use cases. Furthermore,
-the project has been used for several projects in production since 2016.
+but there's still work planned on further optimization (see
+[benchmark](#benchmark)) and generalization beyond the standard browser
+DOM use cases. Furthermore, the project has been used for several
+projects in production since 2016.
 
 ## Installation
 
@@ -119,16 +120,22 @@ yarn start
 
 ## Usage examples
 
+**Most of the
+[examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+included in the umbrella repo are using this package in one way or
+another. Please check them out to learn more. Each is heavily commented,
+incl. best practice notes.**
+
 Even though the overall approach should be obvious from the code
 examples below, it's recommended to first study the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 reference. It's also important to point out, that this project
 **currently** has some differences as to how some attribute and
-iterables are treated and/or are supported in general. This project also
-has additional features (e.g. life cycle hooks), which aren't needed for
-the static serialization use cases of hiccup. Both experiments started
-in early 2016, but have somewhat evolved independently and require some
-conceptional synchronization.
+iterables are treated and/or are supported in general. Furthermore, this
+project has additional features (e.g. life cycle hooks), which aren't
+needed for the static serialization use cases of @thi.ng/hiccup. Both
+projects started in early 2016, but have somewhat evolved independently
+and require some conceptional synchronization.
 
 ### Dataflow graph SVG components
 
@@ -137,6 +144,22 @@ This is a preview of the upcoming
 package:
 
 [Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live demo](http://demo.thi.ng/umbrella/estuary/)
+
+### SPA with router and event bus
+
+One of the more advanced demos, combining functionality of several other @thi.ng packages.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [Live demo](http://demo.thi.ng/umbrella/router-basics/)
+
+### Multiple apps with & without shared state
+
+Devcards style BMI calculator(s) with basic SVG viz.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards) | [Live demo](http://demo.thi.ng/umbrella/devcards/)
+
+### Interceptor based event handling
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [Live demo](http://demo.thi.ng/umbrella/interceptor-basics/)
 
 ### Todo list
 
@@ -155,6 +178,12 @@ A fully documented todo list app with undo / redo feature is here:
 ### JSON based components
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live demo](http://demo.thi.ng/umbrella/json-components/)
+
+### @thi.ng/rstream dataflow graph
+
+A small, interactive dataflow graph example:
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) | [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
 
 ### Basic usage patterns
 
@@ -199,24 +228,20 @@ const app = (() => {
 window.addEventListener("load", () => start("app", app));
 ```
 
-### @thi.ng/rstream integration
-
-TODO example forthcoming...
-
 ### Benchmark
 
 A stress test benchmark is here:
 [/examples/benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
 
-[Live demo here](http://demo.thi.ng/umbrella/hdom-benchmark/)
+[Live version](http://demo.thi.ng/umbrella/hdom-benchmark/)
 
 Based on [user feedback collected via
 Twitter](https://twitter.com/toxi/status/959246871339454464),
 performance should be more than acceptable for even quite demanding UIs.
-In the 192/256 cells configurations this stress test causes approx.
-600/800 DOM every single frame, something very unlikely for a typical
+In the 192/256 cells configurations **this stress test causes approx.
+600/800 DOM every single frame**, something very unlikely for a typical
 web app. In Chrome 64 on a MBP2016 this still runs at a pretty stable
-30fps (50 frame SMA).
+60fps (192 cells) 30fps (256 cells). Both using the 50 frame [SMA](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average).
 
 ## Authors
 
