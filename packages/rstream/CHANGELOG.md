@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.2.3...@thi.ng/rstream@1.2.4) (2018-04-05)
+
+
+### Bug Fixes
+
+* **rstream:** correct wrong isString() import ([48310a6](https://github.com/thi-ng/umbrella/commit/48310a6))
+
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.2.2...@thi.ng/rstream@1.2.3) (2018-04-04)
 
