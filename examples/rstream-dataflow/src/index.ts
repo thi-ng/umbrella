@@ -9,6 +9,7 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { gestureStream } from "./gesture-stream";
 import { extract, initGraph, node } from "./nodes";
 import { circle } from "./circle";
+import { getIn } from "@thi.ng/paths";
 
 // infinite iterator of randomized circle colors (Tachyons CSS class names)
 const colors = choices([
@@ -20,7 +21,8 @@ const colors = choices([
 // debugging/stringifying state)
 const db = new Atom<any>({});
 
-// combined mouse & touch event stream this stream produces tuples of:
+// combined mouse & touch event stream
+// this stream produces tuples of:
 // [eventtype, [pos, clickpos, delta]]
 // Note: only single touches are supported, no multitouch!
 const gestures = gestureStream(document.getElementById("app"));
@@ -30,16 +32,23 @@ const gestures = gestureStream(document.getElementById("app"));
 // transforms these specs into a DAG (directed acyclic graph) of
 // @thi.ng/rstream types, so each "node" is actually implemented as a
 // stream of some kind...
+// the strings assigned to `out` values represent keys/paths in the
+// above `db` state atom and are used to store current stream values.
+// they're not necessary, but used here to capture and display the
+// current internal state of the graph and is useful for debugging /
+// backup etc.
 const graph = initGraph(db, {
 
-    // extracts current mouse/touch position
+    // extracts current mouse/touch position from gesture tuple
+    // the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
     mpos: {
         fn: extract([1, 0]),
         ins: [{ stream: () => gestures }],
         out: "mpos"
     },
 
-    // extracts last click position
+    // extracts last click position from gesture tuple
+    // the `[1, 1]` is the lookup path, i.e. `gesture[1][1]`
     // (only defined during drag gestures)
     clickpos: {
         fn: extract([1, 1]),
@@ -47,23 +56,23 @@ const graph = initGraph(db, {
         out: "clickpos"
     },
 
-    // computes distance between `clickpos` and `mpos`
-    // (only defined during drag gestures)
+    // extracts & computes length of `delta` vector in gesture tuple
+    // i.e. the distance between `clickpos` and current `mpos`
+    // (`delta` is only defined during drag gestures)
     dist: {
-        fn: node(map(({ curr, click }) =>
-            curr && click &&
-            Math.hypot(curr[0] - click[0], curr[1] - click[1]) | 0)),
-        ins: [
-            { stream: "mpos", id: "curr" },
-            { stream: "clickpos", id: "click" },
-        ],
+        fn: ([g]) => g.subscribe(map((gesture) => {
+            const delta = getIn(gesture, [1, 2]);
+            return delta && Math.hypot.apply(null, delta) | 0;
+        })),
+        ins: [{ stream: () => gestures }],
         out: "dist"
     },
 
     // combines `clickpos`, `dist` and `color` streams to produce a
-    // @thi.ng/hdom UI component (a circle around clickpos).
+    // stream of @thi.ng/hdom UI components (a circle around clickpos).
     // the resulting stream is then directly included in this app's root
-    // component below...
+    // component below... all inputs are locally renamed using the
+    // stated input `id`s
     circle: {
         fn: node(map(({ click, radius, color }) =>
             click && radius && color ?

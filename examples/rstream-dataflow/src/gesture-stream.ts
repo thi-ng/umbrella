@@ -58,14 +58,18 @@ export function gestureStream(el: Element) {
                 evt = e;
             }
             const body = [[evt.clientX | 0, evt.clientY | 0]];
-            if (type == GestureType.START) {
-                isDown = true;
-                clickPos = body[0];
-            } else if (type == GestureType.END) {
-                isDown = false;
-                clickPos = null;
-            } else if (isDown) {
-                body.push(clickPos, [body[0][0] - clickPos[0], body[0][1] - clickPos[1]]);
+            switch (type) {
+                case GestureType.START:
+                    isDown = true;
+                    clickPos = body[0];
+                    break;
+                case GestureType.END:
+                    isDown = false;
+                    clickPos = null;
+                    break;
+                case GestureType.DRAG:
+                    body.push(clickPos, [body[0][0] - clickPos[0], body[0][1] - clickPos[1]]);
+                default:
             }
             return [type, body];
         })
