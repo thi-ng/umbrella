@@ -108,6 +108,22 @@ yarn add @thi.ng/rstream
 
 ## Usage examples
 
+There're several examples using this package in the `/examples`
+directory of this repo:
+
+### Declarative dataflow graph
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+| [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+
+### @thi.ng/hdom benchmark
+
+The FPS counter canvas component used in this benchmark is driven by
+this package and based on the barebones version shown below.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
+| [Live version](http://demo.thi.ng/umbrella/hdom-benchmark/)
+
 ### Basic usage patterns
 
 ```typescript
