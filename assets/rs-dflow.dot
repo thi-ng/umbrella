@@ -13,13 +13,24 @@ digraph g {
 
     gestures -> mpos[label=extract];
     gestures -> clickpos[label=extract];
-
-    mpos -> dist;
-    clickpos -> dist;
+    gestures -> dist[label=extract];
 
     clickpos -> color[label="pick random"];
 
     clickpos -> circle;
-    dist -> circle;
+    radius -> circle;
     color -> circle;
+
+    RAF -> sine[label="frame counter"];
+
+    sine -> radius;
+    dist -> radius;
+
+    mousedown[color="#666666"];
+    mousemove[color="#666666"];
+    mouseup[color="#666666"];
+    touchstart[color="#666666"];
+    touchmove[color="#666666"];
+    touchend[color="#666666"];
+    RAF[color="#666666"];
 }

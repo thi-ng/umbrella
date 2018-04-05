@@ -98,11 +98,13 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
  */
 export const add = node(
     map((ports: IObjectOf<number>) => {
-        let sum = 0;
+        let acc = 0;
+        let v;
         for (let p in ports) {
-            sum += ports[p];
+            if ((v = ports[p]) == null) return;
+            acc += v;
         }
-        return sum;
+        return acc;
     }));
 
 /**
@@ -111,11 +113,13 @@ export const add = node(
  */
 export const mul = node(
     map((ports: IObjectOf<number>) => {
-        let sum = 1;
+        let acc = 1;
+        let v;
         for (let p in ports) {
-            sum *= ports[p];
+            if ((v = ports[p]) == null) return;
+            acc *= v;
         }
-        return sum;
+        return acc;
     }));
 
 /**

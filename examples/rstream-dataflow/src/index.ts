@@ -1,24 +1,26 @@
 import { equiv } from "@thi.ng/api/equiv";
 import { Atom } from "@thi.ng/atom/atom";
 import { start } from "@thi.ng/hdom";
+import { getIn } from "@thi.ng/paths";
+import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { choices } from "@thi.ng/transducers/iter/choices";
 import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { gestureStream } from "./gesture-stream";
-import { extract, initGraph, node } from "./nodes";
+import { extract, initGraph, node, mul } from "./nodes";
 import { circle } from "./circle";
-import { getIn } from "@thi.ng/paths";
 
-// infinite iterator of randomized circle colors (Tachyons CSS class names)
+// infinite iterator of randomized colors (Tachyons CSS class names)
+// used by `color` graph node below
 const colors = choices([
     "bg-red", "bg-blue", "bg-gold", "bg-light-green",
     "bg-pink", "bg-light-purple", "bg-orange", "bg-gray"
 ]);
 
 // atom for storing dataflow results (optional, here only for
-// debugging/stringifying state)
+// debugging/stringifying graph state)
 const db = new Atom<any>({});
 
 // combined mouse & touch event stream
@@ -32,6 +34,11 @@ const gestures = gestureStream(document.getElementById("app"));
 // transforms these specs into a DAG (directed acyclic graph) of
 // @thi.ng/rstream types, so each "node" is actually implemented as a
 // stream of some kind...
+
+// the lexical order of node specs is irrelevant, but since the graph is
+// a DAG, no cyclic dependencies between nodes are allowed (and would
+// result in a stack overflow during node resolution)
+
 // the strings assigned to `out` values represent keys/paths in the
 // above `db` state atom and are used to store current stream values.
 // they're not necessary, but used here to capture and display the
@@ -80,7 +87,7 @@ const graph = initGraph(db, {
                 undefined)),
         ins: [
             { stream: "clickpos", id: "click" },
-            { stream: "dist", id: "radius" },
+            { stream: "radius", id: "radius" },
             { stream: "color", id: "color" },
         ],
         out: "circle"
@@ -100,6 +107,22 @@ const graph = initGraph(db, {
                     map((x) => x && colors.next().value))),
         ins: [{ stream: "clickpos" }],
         out: "color"
+    },
+
+    // transforms a RAF event stream (frame counter @ 60fps)
+    // into a sine wave with 0.8 ... 1.0 interval
+    sine: {
+        fn: ([src]) => src.subscribe(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
+        ins: [{ stream: () => fromRAF() }],
+        out: "sin"
+    },
+
+    // multiplies `dist` and `sine` streams to produce an animated
+    // radius value for `circle`
+    radius: {
+        fn: mul,
+        ins: [{ stream: "sine" }, { stream: "dist" }],
+        out: "radius"
     }
 });
 
