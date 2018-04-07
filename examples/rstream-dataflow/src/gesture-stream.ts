@@ -1,3 +1,4 @@
+import { Event } from "@thi.ng/interceptors/api";
 import { fromEvent } from "@thi.ng/rstream/from/event";
 import { merge } from "@thi.ng/rstream/stream-merge";
 import { map } from "@thi.ng/transducers/xform/map";
@@ -7,6 +8,11 @@ export enum GestureType {
     MOVE,
     DRAG,
     END
+}
+
+export interface GestureEvent extends Event {
+    [0]: GestureType;
+    [1]: number[][];
 }
 
 /**
@@ -71,7 +77,7 @@ export function gestureStream(el: Element) {
                     body.push(clickPos, [body[0][0] - clickPos[0], body[0][1] - clickPos[1]]);
                 default:
             }
-            return [type, body];
+            return <GestureEvent>[type, body];
         })
     });
 }
