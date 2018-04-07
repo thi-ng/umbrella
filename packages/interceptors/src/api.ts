@@ -40,7 +40,7 @@ export const FX_UNDO_STORE = "--undo-store";
 export const FX_UNDO_RESTORE = "--undo-restore";
 
 export interface Event extends Array<any> {
-    [0]: string;
+    [0]: PropertyKey;
     [1]?: any;
 }
 
