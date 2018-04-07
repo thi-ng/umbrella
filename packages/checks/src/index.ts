@@ -3,6 +3,7 @@ export * from "./exists";
 export * from "./has-crypto";
 export * from "./has-max-length";
 export * from "./has-min-length";
+export * from "./has-performance";
 export * from "./has-wasm";
 export * from "./has-webgl";
 export * from "./has-websocket";
