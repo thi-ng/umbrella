@@ -1,11 +1,21 @@
 import { start } from "@thi.ng/hdom";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { Stream } from "@thi.ng/rstream/stream";
-import * as tx from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { hex } from "@thi.ng/transducers/func/hex";
+import { range } from "@thi.ng/transducers/iter/range";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { benchmark } from "@thi.ng/transducers/xform/benchmark";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { movingAverage } from "@thi.ng/transducers/xform/moving-average";
+import { partition } from "@thi.ng/transducers/xform/partition";
 
 // pre-defined hex formatters
-const hex4 = tx.hex(4);
-const hex6 = tx.hex(6);
+const hex4 = hex(4);
+const hex6 = hex(6);
 
 /**
  * Single box component. Uses given id to switch between using
@@ -26,9 +36,9 @@ const box = (index: number, id: number) => [
  * @param items drop down options `[value, label]`
  */
 const dropdown = (onchange: (e: Event) => void, items: [any, any][]) =>
-    tx.transduce(
-        tx.map(([value, label]) => <any>["option", { value }, label]),
-        tx.push(),
+    transduce(
+        map(([value, label]) => <any>["option", { value }, label]),
+        push(),
         ["select", { onchange }],
         items
     );
@@ -66,11 +76,11 @@ const fpsCounter = (src: Stream<any>, width = 100, height = 30, period = 50, col
             }
         },
         // stream transducer to compute the windowed moving avarage
-        tx.comp(
-            tx.benchmark(),
-            tx.movingAverage(period),
-            tx.map(x => 1000 / x),
-            tx.partition(width, 1, true)
+        comp(
+            benchmark(),
+            movingAverage(period),
+            map((x) => 1000 / x),
+            partition(width, 1, true)
         )
     );
     return [{
@@ -99,9 +109,9 @@ const app = () => {
         let j = (++i) & 0x1ff;
         return ["div",
             ["div#stats", fps, menu],
-            ["grid", ...tx.iterator(tx.mapIndexed(box), tx.range(j, j + num))]
+            ["grid", iterator(mapIndexed(box), range(j, j + num))]
         ];
     };
 };
 
-start(document.getElementById("app"), app(), false);
+start(document.getElementById("app"), app(), null, false);
