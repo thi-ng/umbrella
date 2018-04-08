@@ -82,40 +82,40 @@ const NO_SPANS = {
  *
  * Additionally, unless `keys` is set to false, an unique `key`
  * attribute is created for each node in the tree. This attribute is
- * used by `diffElement` to figure out if a changed node can be just
- * patched or will need to be replaced/removed. The `key` values are
- * defined by the `path` array arg.
+ * used by `diffElement` to determine if a changed node can be patched
+ * or will need to be replaced/removed. The `key` values are defined by
+ * the `path` array arg.
  *
  * For normal usage only the first 2 args should be specified and the
  * rest kept at their defaults.
  *
  * See `normalizeElement` for further details about canonical form.
  *
- * @param el
+ * @param tree
  * @param ctx
  * @param path
  * @param keys
  * @param span
  */
-export function normalizeTree(el: any, ctx: any, path = [0], keys = true, span = true) {
-    if (el == null) {
+export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, span = true) {
+    if (tree == null) {
         return;
     }
-    if (isArray(el)) {
-        if (el.length === 0) {
+    if (isArray(tree)) {
+        if (tree.length === 0) {
             return;
         }
-        const tag = el[0];
+        const tag = tree[0];
         let norm, nattribs;
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
         if (isFunction(tag)) {
-            return normalizeTree(tag.apply(null, [ctx, ...el.slice(1)]), ctx, path.slice(), keys, span);
+            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, path.slice(), keys, span);
         }
         // component object w/ life cycle methods
         // (render() is the only required hook)
         if (implementsFunction(tag, "render")) {
-            const args = [ctx, ...el.slice(1)];
+            const args = [ctx, ...tree.slice(1)];
             norm = normalizeTree(tag.render.apply(null, args), ctx, path.slice(), keys, span);
             if (norm !== undefined) {
                 nattribs = norm[1];
@@ -128,7 +128,7 @@ export function normalizeTree(el: any, ctx: any, path = [0], keys = true, span =
             }
             return norm;
         }
-        norm = normalizeElement(el, keys);
+        norm = normalizeElement(tree, keys);
         nattribs = norm[1];
         if (keys && nattribs.key === undefined) {
             nattribs.key = path.join("-");
@@ -162,13 +162,13 @@ export function normalizeTree(el: any, ctx: any, path = [0], keys = true, span =
         }
         return norm;
     }
-    if (isFunction(el)) {
-        return normalizeTree(el(ctx), ctx, path, keys, span);
+    if (isFunction(tree)) {
+        return normalizeTree(tree(ctx), ctx, path, keys, span);
     }
-    if (implementsFunction(el, "deref")) {
-        return normalizeTree(el.deref(), ctx, path.slice(), keys, span);
+    if (implementsFunction(tree, "deref")) {
+        return normalizeTree(tree.deref(), ctx, path.slice(), keys, span);
     }
     return span ?
-        ["span", keys ? { key: path.join("-") } : {}, el.toString()] :
-        el.toString();
+        ["span", keys ? { key: path.join("-") } : {}, tree.toString()] :
+        tree.toString();
 }

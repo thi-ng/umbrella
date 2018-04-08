@@ -8,8 +8,27 @@ import { createDOM, removeAttribs, setAttrib, removeChild } from "./dom";
 const diffArray = diff.diffArray;
 const diffObject = diff.diffObject;
 
-export function diffElement(parent: Element, prev: any, curr: any) {
-    _diffElement(parent, prev, curr, 0);
+/**
+ * Takes a DOM root element and two hiccup trees, `prev` and `curr`.
+ * Recursively computes diff between both trees and applies any
+ * necessary changes to reflect `curr` tree in real DOM.
+ *
+ * For newly added components, calls `init` with created DOM element
+ * (plus user provided context and any other args) for any components
+ * with `init` life cycle method. Likewise, calls `release` on
+ * components with `release` method when the DOM element is removed.
+ *
+ * Important: The actual DOM element given is assumed to exactly
+ * represent the state of the `prev` tree. Since this function does NOT
+ * track the real DOM at all, the resulting changes will result in
+ * potentially undefined behavior if there're discrepancies.
+ *
+ * @param root
+ * @param prev previous tree
+ * @param curr current tree
+ */
+export function diffElement(root: Element, prev: any, curr: any) {
+    _diffElement(root, prev, curr, 0);
 }
 
 function _diffElement(parent: Element, prev: any, curr: any, child: number) {

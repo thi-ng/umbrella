@@ -11,27 +11,7 @@ import { normalizeTree } from "./normalize";
  * The optional `context` arg can be used for passing global config data
  * or state down into the hiccup component tree. Any embedded component
  * function in the tree will receive this context object as first
- * argument, as will life cycle methods in component objects:
- *
- * ```
- * const link = (ctx, evt, ...body) =>
- *   ["a",
- *     {...ctx.ui.link, onclick: () => ctx.app.dispatch(evt) },
- *     body];
- *
- * const foo = {
- *   init: (ctx, el) => { ... },
- *   render: (ctx, ...args) => ["section", ctx.ui.foo, args.map(x => [link, x])],
- *   release: (ctx) => { ... }
- * };
- *
- * const ctx = {
- *   app: ...
- *   ui: { link: ..., foo: ...},
- * };
- *
- * start("app", foo, ctx)
- * ```
+ * argument, as will life cycle methods in component objects.
  *
  * **Selective updates**: No updates will be applied if the given hiccup
  * tree is `undefined` or `null` or a root component function returns no

@@ -10,10 +10,10 @@ import { map } from "@thi.ng/iterators/map";
  * Creates an actual DOM tree from given hiccup component and `parent`
  * element. Calls `init` with created element (user provided context and
  * other args) for any components with `init` lifecycle method. Returns
- * created root element(s), usually only one, but an array of elements
- * if the provided tree is an iterable. Creates DOM text node for
- * non-component values. Returns `parent` if tree is `null` or
- * `undefined`.
+ * created root element(s) - usually only a single one, but can be an
+ * array of elements, if the provided tree is an iterable. Creates DOM
+ * text nodes for non-component values. Returns `parent` if tree is
+ * `null` or `undefined`.
  *
  * @param parent
  * @param tag
