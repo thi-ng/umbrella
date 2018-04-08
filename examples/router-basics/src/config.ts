@@ -143,7 +143,7 @@ export const CONFIG: AppConfig = {
         // note: we assign multiple value/events as array to the FX_DISPATCH_NOW side effect
         [EV_RECEIVE_USERS]: (_, [__, json]) => ({
             [FX_DISPATCH_NOW]: [
-                <Event>[EV_SET_VALUE, ["users.all", json]],
+                <Event>[EV_SET_VALUE, ["userlist", json]],
                 <Event>[EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded", true]]
             ],
         }),
@@ -197,6 +197,7 @@ export const CONFIG: AppConfig = {
     initialState: {
         status: [StatusType.INFO, "running"],
         users: {},
+        userlist: [],
         route: {},
         debug: 1,
     },
@@ -209,6 +210,7 @@ export const CONFIG: AppConfig = {
     views: {
         json: ["", (state) => JSON.stringify(state, null, 2)],
         users: ["users", (users) => users || {}],
+        userlist: "userlist",
         status: "status",
         debug: "debug",
     },
@@ -238,6 +240,7 @@ export const CONFIG: AppConfig = {
         contact: {
             link: { class: "db pb2 link dim black" }
         },
+        debugToggle: { class: "toggle pointer" },
         nav: {
             inner: { class: "tc pb3" },
             title: { class: "black f1 lh-title tc db mb2 mb2-ns" },

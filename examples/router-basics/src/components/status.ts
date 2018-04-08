@@ -1,12 +1,11 @@
-import { IView } from "@thi.ng/atom/api";
+import { AppContext } from "../api";
 
 /**
  * Status line component
  *
- * @param app
- * @param ui
+ * @param ctx injected context object
  */
-export function status(ui: any, view: IView<any>) {
-    const [type, msg] = view.deref();
-    return ["p", ui[type], msg];
+export function status(ctx: AppContext) {
+    const [type, msg] = ctx.views.status.deref();
+    return ["p", ctx.ui.status[type], msg];
 }

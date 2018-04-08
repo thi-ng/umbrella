@@ -1,5 +1,4 @@
-import { App } from "../app";
-import { StatusType } from "../api";
+import { StatusType, AppContext } from "../api";
 import { EV_LOAD_USER, EV_SET_STATUS } from "../config";
 
 import { status } from "./status";
@@ -8,27 +7,21 @@ import { status } from "./status";
  * Single user profile page. Triggers JSON I/O request on init if user
  * data has not been loaded yet.
  *
- * @param app
+ * @param ctx injected context object
  */
-export function userProfile(app: App, ui: any) {
-    const id = app.views.route.deref().params.id;
-    if (!app.views.users.deref()[id]) {
-        app.bus.dispatch([EV_LOAD_USER, id]);
-    } else {
-        app.bus.dispatch([
-            EV_SET_STATUS,
-            [StatusType.SUCCESS, "loaded from cache", true]
-        ]);
-    }
-    return ["div",
-        [status, ui.status, app.views.status],
-        [userCard, app, ui.card, id]
-    ];
+export function userProfile(ctx: AppContext) {
+    const id = ctx.views.route.deref().params.id;
+    ctx.bus.dispatch(
+        ctx.views.users.deref()[id] ?
+            [EV_SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]] :
+            [EV_LOAD_USER, id]);
+    return ["div", [status], [userCard, id]];
 }
 
 // based on: http://tachyons.io/components/cards/profile-card/index.html
-function userCard(app: App, ui: any, id: number) {
-    const user = app.views.users.deref()[id];
+function userCard(ctx: AppContext, id: number) {
+    const user = ctx.views.users.deref()[id];
+    const ui = ctx.ui.card;
     return user ?
         ["div", ui.container,
             ["img", { ...ui.thumb, src: user.img }],
