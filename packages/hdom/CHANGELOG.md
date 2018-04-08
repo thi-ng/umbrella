@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@2.3.3...@thi.ng/hdom@3.0.0) (2018-04-08)
+
+
+### Features
+
+* **hdom:** fix [#13](https://github.com/thi-ng/umbrella/issues/13), add support for user context and pass to components ([70cfe06](https://github.com/thi-ng/umbrella/commit/70cfe06))
+
+
+### BREAKING CHANGES
+
+* **hdom:** component functions & lifecycle hooks now receive user
+context object as their first arg. All components accepting arguments must
+be updated, but can potentially be simplified at the same time.
+
+
+
+
 <a name="2.3.3"></a>
 ## [2.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@2.3.2...@thi.ng/hdom@2.3.3) (2018-04-04)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.3...@thi.ng/api@2.2.0) (2018-04-08)
+
+
+### Features
+
+* **api:** add bench() & timed() utils ([d310345](https://github.com/thi-ng/umbrella/commit/d310345))
+
+
+
+
 <a name="2.1.3"></a>
 ## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.2...@thi.ng/api@2.1.3) (2018-04-04)
 

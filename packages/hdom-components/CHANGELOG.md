@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@1.1.2...@thi.ng/hdom-components@2.0.0) (2018-04-08)
+
+
+### Code Refactoring
+
+* **hdom-components:** remove svg, update canvas (hdom context support) ([86d1f0d](https://github.com/thi-ng/umbrella/commit/86d1f0d))
+* **hdom-components:** update dropdown components ([0873832](https://github.com/thi-ng/umbrella/commit/0873832))
+
+
+### Features
+
+* **hdom-components:** update canvas handlers, add webgl2 version ([7c88a3f](https://github.com/thi-ng/umbrella/commit/7c88a3f))
+
+
+### BREAKING CHANGES
+
+* **hdom-components:** add hdom context arg as first arg to `dropdown` and
+`groupedDropdown`
+* **hdom-components:** canvas user handlers passed as object and taking
+different / more args
+* **hdom-components:** SVG functionality has been moved to new
+@thi.ng/hiccup-svg package. Canvas component user fns have new args
+
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@1.1.1...@thi.ng/hdom-components@1.1.2) (2018-04-04)
 
