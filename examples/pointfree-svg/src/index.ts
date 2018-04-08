@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-import * as svg from "@thi.ng/hdom-components/svg";
+import * as svg from "@thi.ng/hiccup-svg";
 import { serialize } from "@thi.ng/hiccup";
 import { ensureStack, maptos } from "@thi.ng/pointfree";
 import { ffi, run } from "@thi.ng/pointfree-lang";
