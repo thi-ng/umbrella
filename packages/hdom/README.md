@@ -5,7 +5,7 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 -->
+<!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
     - [Component tree translation](#component-tree-translation)
@@ -14,10 +14,6 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Usage](#usage)
-        - [`start(parent: Element | string, tree: any, ctx?: any, path?: number[], keys?: boolean, span?: boolean): () => boolean`](#startparent-element--string-tree-any-ctx-any-path-number-keys-boolean-span-boolean---boolean)
-        - [`normalizeTree(tree: any, ctx?: any): any`](#normalizetreetree-any-ctx-any-any)
-        - [`diffElement(parent: Element, prev: any, curr: any): void`](#diffelementparent-element-prev-any-curr-any-void)
-        - [`createDOM(parent: Element, tag: any, insert?: number): any`](#createdomparent-element-tag-any-insert-number-any)
 - [Example projects](#example-projects)
     - [Dataflow graph SVG components](#dataflow-graph-svg-components)
     - [SPA with router and event bus](#spa-with-router-and-event-bus)
@@ -203,7 +199,7 @@ tree is kept around until the root function returns a tree again, which
 then is diffed and applied against the previous tree kept as usual. Any
 number of frames may be skipped this way.
 
-Important: The parent element given is assumed to have NO children at
+**Important:** The parent element given is assumed to have NO children at
 the time when `start()` is called. Since hdom does NOT track the real
 DOM, the resulting changes will result in potentially undefined behavior
 if the parent element wasn't empty.
@@ -249,10 +245,10 @@ user provided context and any other args) for any components with `init`
 life cycle method. Likewise, calls `release` on components with
 `release` method when the DOM element is removed.
 
-Important: The actual DOM element given is assumed to exactly represent
-the state of the `prev` tree. Since this function does NOT track the
-real DOM at all, the resulting changes will result in potentially
-undefined behavior if there're discrepancies.
+**Important:** The actual DOM element/subtree given is assumed to
+exactly represent the state of the `prev` tree. Since this function does
+NOT track the real DOM at all, the resulting changes will result in
+potentially undefined behavior if there're discrepancies.
 
 #### `createDOM(parent: Element, tag: any, insert?: number): any`
 
