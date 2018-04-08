@@ -1,9 +1,9 @@
 import { IObjectOf } from "@thi.ng/api/api";
 
 export interface ILifecycle {
-    init?(el: Element, ...args: any[]);
-    render(...args: any[]): any;
-    release?(...args: any[]);
+    init?(el: Element, ctx: any, ...args: any[]);
+    render(ctx: any, ...args: any[]): any;
+    release?(ctx: any, ...args: any[]);
 }
 
 export interface ComponentAttribs {

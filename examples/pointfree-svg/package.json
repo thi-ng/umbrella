@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@thi.ng/hiccup": "latest",
-        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/pointfree": "latest",
         "@thi.ng/pointfree-lang": "latest"
     }

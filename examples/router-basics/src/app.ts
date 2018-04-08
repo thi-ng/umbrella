@@ -7,7 +7,7 @@ import { start } from "@thi.ng/hdom";
 import { EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 import { HTMLRouter } from "@thi.ng/router/history";
 
-import { AppConfig, ViewSpec, AppViews } from "./api";
+import { AppConfig, ViewSpec, AppViews, AppContext } from "./api";
 
 import { nav } from "./components/nav";
 import { debugContainer } from "./components/debug-container";
@@ -31,27 +31,29 @@ export class App {
     static readonly FX_ROUTE_TO = "route-to";
 
     config: AppConfig;
+    ctx: AppContext;
     state: Atom<any>;
-    views: AppViews;
-    bus: EventBus;
     router: HTMLRouter;
 
     constructor(config: AppConfig) {
         this.config = config;
         this.state = new Atom(config.initialState || {});
-        this.views = <AppViews>{};
+        this.ctx = {
+            bus: new EventBus(this.state, config.events, config.effects),
+            views: <AppViews>{},
+            ui: config.ui
+        };
         this.addViews(this.config.views);
-        this.bus = new EventBus(this.state, config.events, config.effects);
         this.router = new HTMLRouter(config.router);
         this.router.addListener(
             EVENT_ROUTE_CHANGED,
-            (e) => this.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
+            (e) => this.ctx.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
         );
-        this.bus.addHandlers({
+        this.ctx.bus.addHandlers({
             [EVENT_ROUTE_CHANGED]: valueSetter("route"),
             [App.EV_ROUTE_TO]: (_, [__, route]) => ({ [App.FX_ROUTE_TO]: route })
         });
-        this.bus.addEffect(
+        this.ctx.bus.addEffect(
             App.FX_ROUTE_TO,
             ([id, params]) => this.router.routeTo(this.router.format(id, params))
         );
@@ -61,7 +63,7 @@ export class App {
                 "route.id",
                 (id) =>
                     (this.config.components[id] ||
-                        (() => ["div", `missing component for route: ${id}`]))(this, this.config.ui)
+                        (() => ["div", `missing component for route: ${id}`]))(this.ctx, this.config.ui)
             ]
         });
     }
@@ -76,9 +78,9 @@ export class App {
         for (let id in specs) {
             const spec = specs[id];
             if (isArray(spec)) {
-                this.views[id] = this.state.addView(spec[0], spec[1]);
+                this.ctx.views[id] = this.state.addView(spec[0], spec[1]);
             } else {
-                this.views[id] = this.state.addView(spec);
+                this.ctx.views[id] = this.state.addView(spec);
             }
         }
     }
@@ -93,10 +95,10 @@ export class App {
     start() {
         this.router.start();
         start(this.config.domRoot, () => {
-            if (this.bus.processQueue()) {
+            if (this.ctx.bus.processQueue()) {
                 return this.rootComponent();
             }
-        });
+        }, this.ctx);
     }
 
     /**
@@ -104,13 +106,13 @@ export class App {
      * by current route and the derived view defined above.
      */
     rootComponent(): any {
-        const debug = this.views.debug.deref();
-        const ui = this.config.ui;
+        const debug = this.ctx.views.debug.deref();
+        const ui = this.ctx.ui;
         return ["div", ui.root,
             ["div", ui.column.content[debug],
-                [nav, this, ui.nav],
-                this.views.routeComponent],
-            [debugContainer, this, ui, debug, this.views.json],
+                nav,
+                this.ctx.views.routeComponent],
+            [debugContainer, debug, this.ctx.views.json],
         ];
     }
 }

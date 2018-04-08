@@ -31,4 +31,4 @@ const app = (() => {
 })();
 
 // start update loop (RAF)
-start(document.getElementById("app"), app);
+start("app", app);

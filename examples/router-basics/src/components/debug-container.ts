@@ -1,25 +1,18 @@
-import { IView } from "@thi.ng/atom/api";
-
-import { App } from "../app";
+import { AppContext } from "../api";
 import { EV_TOGGLE_DEBUG } from "../config";
+import { eventLink } from "./event-link";
 
 /**
  * Collapsable component showing stringified app state.
  *
- * @param app
- * @param ui
+ * @param ctx injected context object
  * @param debug
  * @param json
  */
-export function debugContainer(app: App, ui: any, debug: number, json: IView<any>) {
-    return ["div#debug", ui.column.debug[debug],
-        ["a.toggle",
-            {
-                href: "#",
-                onclick: (e) => (e.preventDefault(), app.bus.dispatch([EV_TOGGLE_DEBUG]))
-            },
-            debug ? "close \u25bc" : "open \u25b2"
-        ],
-        ["pre", ui.code, json]
+export function debugContainer(ctx: AppContext, debug: any, json: string) {
+    return ["div#debug", ctx.ui.column.debug[debug],
+        [eventLink, [EV_TOGGLE_DEBUG], ctx.ui.debugToggle,
+            debug ? "close \u25bc" : "open \u25b2"],
+        ["pre", ctx.ui.code, json]
     ];
 }

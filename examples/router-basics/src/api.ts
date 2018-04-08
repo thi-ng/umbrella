@@ -3,7 +3,7 @@ import { ViewTransform, IView } from "@thi.ng/atom/api";
 import { EventDef, EffectDef } from "@thi.ng/interceptors/api";
 import { HTMLRouterConfig, RouteMatch } from "@thi.ng/router/api";
 
-import { App } from "./app";
+import { EventBus } from "@thi.ng/interceptors/event-bus";
 
 // general types defined for the base app
 
@@ -11,7 +11,7 @@ import { App } from "./app";
  * Function signature for main app components.
  * I.e. components representing different app states linked to router.
  */
-export type AppComponent = (app: App, ui: UIAttribs) => any;
+export type AppComponent = (ctx: AppContext, ...args: any[]) => any;
 
 /**
  * Derived view configurations.
@@ -30,16 +30,27 @@ export interface AppConfig {
     initialState: any;
     router: HTMLRouterConfig;
     ui: UIAttribs;
-    views: IObjectOf<ViewSpec>;
+    views: Partial<Record<keyof AppViews, ViewSpec>>;
 }
 
 /**
- * Base structure of derived views exposed by the base app.
+ * Derived views exposed by the app.
  * Add more declarations here as needed.
  */
-export interface AppViews extends IObjectOf<IView<any>> {
+export interface AppViews extends Record<keyof AppViews, IView<any>> {
     route: IView<RouteMatch>;
     routeComponent: IView<any>;
+    users: IView<IObjectOf<User>>;
+    userlist: IView<User[]>;
+    status: IView<Status>;
+    debug: IView<number>;
+    json: IView<string>;
+}
+
+export interface AppContext {
+    bus: EventBus;
+    views: AppViews;
+    ui: UIAttribs;
 }
 
 /**
@@ -56,6 +67,7 @@ export interface UIAttribs {
     code: any;
     column: any;
     contact: any;
+    debugToggle: any;
     nav: any;
     root: any;
     status: any;
@@ -63,6 +75,15 @@ export interface UIAttribs {
 }
 
 /// demo app related types
+
+export interface User {
+    id: number;
+    name: string;
+    job: string;
+    img: string;
+    desc: string;
+    alias: string;
+}
 
 /**
  * Types for status line component
@@ -72,4 +93,9 @@ export enum StatusType {
     INFO,
     SUCCESS,
     ERROR
+}
+
+export interface Status extends Array<any> {
+    [0]: StatusType;
+    [1]: string;
 }

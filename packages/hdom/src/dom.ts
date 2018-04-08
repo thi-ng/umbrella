@@ -6,26 +6,39 @@ import { SVG_TAGS, SVG_NS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
 import { map } from "@thi.ng/iterators/map";
 
-export function createDOM(parent: Element, tag: any, opts?: any, insert?: number) {
+/**
+ * Creates an actual DOM tree from given hiccup component and `parent`
+ * element. Calls `init` with created element (user provided context and
+ * other args) for any components with `init` lifecycle method. Returns
+ * created root element(s), usually only one, but an array of elements
+ * if the provided tree is an iterable. Creates DOM text node for
+ * non-component values. Returns `parent` if tree is `null` or
+ * `undefined`.
+ *
+ * @param parent
+ * @param tag
+ * @param insert
+ */
+export function createDOM(parent: Element, tag: any, insert?: number) {
     if (isArray(tag)) {
-        if (isFunction(tag[0])) {
-            return createDOM(parent, tag[0].apply(null, tag.slice(1), opts));
+        const t = tag[0];
+        if (isFunction(t)) {
+            return createDOM(parent, t.apply(null, tag.slice(1)));
         }
-        const el = createElement(parent, tag[0], tag[1], insert);
+        const el = createElement(parent, t, tag[1], insert);
         if ((<any>tag).__init) {
-            const args = [el, ...((<any>tag).__args)]; // Safari https://bugs.webkit.org/show_bug.cgi?format=multiple&id=162003
-            (<any>tag).__init.apply(tag, args);
+            (<any>tag).__init.apply(tag, [el, ...(<any>tag).__args]);
         }
         if (tag[2]) {
             const n = tag.length;
             for (let i = 2; i < n; i++) {
-                createDOM(el, tag[i], opts);
+                createDOM(el, tag[i]);
             }
         }
         return el;
     }
     if (!isString(tag) && isIterable(tag)) {
-        return [...(map((x) => createDOM(parent, x, opts), tag))];
+        return [...(map((x) => createDOM(parent, x), tag))];
     }
     if (tag == null) {
         return parent;

@@ -34,7 +34,7 @@ import * as hdc from "@thi.ng/hdom-components";
 
 ### Canvas
 
-- [Canvas types](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/canvas.ts)
+- [Canvas types](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/canvas.ts) (WebGL & Canvas2D)
 
 ### Form elements
 
@@ -43,10 +43,6 @@ import * as hdc from "@thi.ng/hdom-components";
 ### Links
 
 - [Link types](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/link.ts)
-
-### SVG
-
-- [SVG elements](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/svg.ts)
 
 ## Authors
 

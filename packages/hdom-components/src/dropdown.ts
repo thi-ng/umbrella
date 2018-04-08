@@ -1,6 +1,6 @@
 export interface DropDownOption extends Array<any> {
     [0]: string | number;
-    [1]: string;
+    [1]: string | number;
     [2]?: boolean
 };
 
@@ -19,18 +19,18 @@ export const option = ([value, label, disabled]: DropDownOption, sel: string | n
 export const optgroup = (attribs: any, options: DropDownOption[], sel?: string | number) =>
     [
         "optgroup",
-        (attribs.label = attribs.label || "--", attribs),
+        { ...attribs, label: attribs.label || "--" },
         ...options.map((o) => option(o, sel))
     ];
 
-export const dropdown = (attribs: any, options: DropDownOption[], sel?: string | number) =>
+export const dropdown = (_: any, attribs: any, options: DropDownOption[], sel?: string | number) =>
     [
         "select",
         attribs,
         ...options.map((o) => option(o, sel))
     ];
 
-export const groupedDropdown = (attribs: any, groups: DropDownOptionGroup[], sel?: string | number) =>
+export const groupedDropdown = (_: any, attribs: any, groups: DropDownOptionGroup[], sel?: string | number) =>
     [
         "select",
         attribs,

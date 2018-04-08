@@ -19,19 +19,20 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
     }
     const edits = delta.linear;
     const el = parent.children[child];
-    if (edits[0][0] !== 0 || prev[1].key !== curr[1].key || hasChangedEvents(prev[1], curr[1])) {
+    let i, j, k, eq, e, status, idx, val;
+    if (edits[0][0] !== 0 || (i = prev[1]).key !== (j = curr[1]).key || hasChangedEvents(i, j)) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
         removeChild(parent, child);
-        createDOM(parent, curr, undefined, child);
+        createDOM(parent, curr, child);
         return;
     }
-    if (prev.__release && prev.__release !== curr.__release) {
+    if ((i = prev.__release) && i !== curr.__release) {
         releaseDeep(prev);
     }
-    if (curr.__init && prev.__init !== curr.__init) {
+    if ((i = curr.__init) && i != prev.__init) {
         // DEBUG && console.log("call __init", curr);
-        curr.__init.apply(curr, [el, ...(curr.__args)]);
+        i.apply(curr, [el, ...(curr.__args)]);
     }
     if (edits[1][0] !== 0) {
         diffAttributes(el, prev[1], curr[1]);
@@ -39,13 +40,12 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
     const equivKeys = extractEquivElements(edits);
     const n = edits.length;
     const noff = prev.length - 1;
-    const offsets = [];
-    let i, j, k, eq;
+    const offsets = new Array(noff + 1);
     for (i = noff; i >= 2; i--) {
         offsets[i] = i - 2;
     }
     for (i = 2; i < n; i++) {
-        const e = edits[i], status = e[0], idx = e[1], val = e[2];
+        e = edits[i], status = e[0], val = e[2];
         // DEBUG && console.log(`edit: o:[${offsets.toString()}] i:${idx} s:${status}`, val);
         if (status === -1) {
             if (isArray(val)) {
@@ -56,6 +56,7 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
                     // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
                     _diffElement(el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
+                    idx = e[1];
                     // DEBUG && console.log("remove @", offsets[idx], val);
                     releaseDeep(val);
                     removeChild(el, offsets[idx]);
@@ -72,8 +73,9 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
             } else if (isArray(val)) {
                 k = val[1].key;
                 if (k === undefined || (k && equivKeys[k][0] === undefined)) {
+                    idx = e[1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
-                    createDOM(el, val, undefined, offsets[idx]);
+                    createDOM(el, val, offsets[idx]);
                     for (j = noff; j >= idx; j--) {
                         offsets[j]++;
                     }
@@ -120,14 +122,15 @@ function diffAttributes(el: Element, prev: any, curr: any) {
 }
 
 function extractEquivElements(edits: diff.DiffLogEntry<any>[]) {
-    let k;
+    let k, v, e, ek;
     const equiv = {};
     for (let i = edits.length - 1; i >= 0; i--) {
-        const e = edits[i];
-        const v = e[2];
+        e = edits[i];
+        v = e[2];
         if (isArray(v) && (k = v[1].key) !== undefined) {
-            equiv[k] = equiv[k] || [, ,];
-            equiv[k][e[0] + 1] = e[1];
+            ek = equiv[k];
+            !ek && (equiv[k] = ek = [, ,]);
+            ek[e[0] + 1] = e[1];
         }
     }
     return equiv;

@@ -82,4 +82,4 @@ const header =
             ["a", { href: "https://github.com/thi-ng/umbrella/tree/master/packages/hdom" }, "@thi.ng/hdom"]]];
 
 // kick off UI w/ root component function
-start(document.getElementById("app"), () => ["div", header, toolbar, taskList]);
+start("app", () => ["div", header, toolbar, taskList]);
