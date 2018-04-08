@@ -121,7 +121,7 @@ start("app", () => {
         ["div",
             ["button", { onclick: () => randomizeRules() }, "randomize rules"],
             ["button", { onclick: () => randomizeGrid() }, "reset grid"],
-            dropdown({ onchange: (e) => applyRules(e.target.value) }, presets, location.hash.substr(1))
+            [dropdown, { onchange: (e) => applyRules(e.target.value) }, presets, location.hash.substr(1)]
         ],
         ["pre", format(grid = convolve(grid, rules, W, H), W)]
     ];
