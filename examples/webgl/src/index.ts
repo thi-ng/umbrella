@@ -2,14 +2,14 @@ import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
 
 // canvas init hook
-const initGL = (_: WebGLRenderingContext) => {
+const initGL = (_: HTMLCanvasElement, __: WebGLRenderingContext) => {
     // GL context initialization steps
     // ...
 };
 
 // canvas render hook closure
 const updateGL = (offset, freq) =>
-    (gl: WebGLRenderingContext, frame) => {
+    (_: HTMLCanvasElement, gl: WebGLRenderingContext, __, frame: number) => {
         const f = offset + frame * freq;
         const red = Math.sin(f) * 0.5 + 0.5;
         const green = Math.sin(f + Math.PI * 1 / 3) * 0.5 + 0.5;
