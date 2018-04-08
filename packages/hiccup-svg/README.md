@@ -26,6 +26,17 @@ yarn add @thi.ng/hiccup-svg
 
 ```typescript
 import * as svg from "@thi.ng/hiccup-svg";
+import { serialize } from "@thi.ng/hiccup";
+import * as fs from "fs";
+
+fs.writeFileSync("hello.svg",
+    serialize(
+        svg.svgdoc({width: 100, height: 100},
+            svg.defs(svg.linearGradient("grad", 0, 0, 0, 1, [[0, "red"], [1, "blue"]])),
+            svg.circle([50, 50], 50, {fill: "url(#grad)"}),
+            svg.text("Hello", [50, 55], { fill: "white", "text-anchor": "middle"})
+        )
+    ));
 ```
 
 ## Authors
