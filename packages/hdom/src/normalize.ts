@@ -70,7 +70,7 @@ const NO_SPANS = {
  *
  * - resolving Emmet-style tags (e.g. from `div#id.foo.bar`)
  * - evaluating embedded functions and replacing them with their result
- * - calling `render` lifecycle method on component objects and using
+ * - calling `render` life cycle method on component objects and using
  *   result
  * - consuming iterables and normalizing results
  * - calling `deref()` on elements implementing `IDeref` interface and
