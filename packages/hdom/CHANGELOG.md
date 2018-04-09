@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.0...@thi.ng/hdom@3.0.1) (2018-04-09)
+
+
+### Performance Improvements
+
+* **hdom:** intern imported checks, update normalizeTree(), add docs, fix tests ([2a91e30](https://github.com/thi-ng/umbrella/commit/2a91e30))
+
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@2.3.3...@thi.ng/hdom@3.0.0) (2018-04-08)
 
