@@ -1,11 +1,18 @@
 import { illegalArgs } from "@thi.ng/api/error";
-import { isArray } from "@thi.ng/checks/is-array";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isIterable } from "@thi.ng/checks/is-iterable";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { isString } from "@thi.ng/checks/is-string";
+import * as isa from "@thi.ng/checks/is-array";
+import * as impf from "@thi.ng/checks/implements-function";
+import * as isf from "@thi.ng/checks/is-function";
+import * as isi from "@thi.ng/checks/is-iterable";
+import * as iso from "@thi.ng/checks/is-plain-object";
+import * as iss from "@thi.ng/checks/is-string";
 import { TAG_REGEXP } from "@thi.ng/hiccup/api";
+
+const isArray = isa.isArray;
+const isFunction = isf.isFunction;
+const implementsFunction = impf.implementsFunction;
+const isIterable = isi.isIterable
+const isPlainObject = iso.isPlainObject;
+const isString = iss.isString;
 
 /**
  * Expands single hiccup element/component into its canonical form:
@@ -36,7 +43,7 @@ export function normalizeElement(spec: any[], keys: boolean) {
     if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
         illegalArgs(`${tag} is not a valid tag name`);
     }
-    // return orig if already normalized and satifies key requirement
+    // return orig if already normalized and satisfies key requirement
     if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
         return spec;
     }
@@ -86,6 +93,13 @@ const NO_SPANS = {
  * or will need to be replaced/removed. The `key` values are defined by
  * the `path` array arg.
  *
+ * In terms of life cycle methods: `render` should ALWAYS return an
+ * array or another function, else the component's `init` or `release`
+ * fns will NOT be able to be called. E.g. If the return value of
+ * `render` evaluates as a string or number, the return value should be
+ * wrapped as `["span", "foo"]`. If no `init` or `release` are used,
+ * this requirement is relaxed.
+ *
  * For normal usage only the first 2 args should be specified and the
  * rest kept at their defaults.
  *
@@ -110,21 +124,17 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
         if (isFunction(tag)) {
-            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, path.slice(), keys, span);
+            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, path, keys, span);
         }
         // component object w/ life cycle methods
         // (render() is the only required hook)
         if (implementsFunction(tag, "render")) {
             const args = [ctx, ...tree.slice(1)];
-            norm = normalizeTree(tag.render.apply(null, args), ctx, path.slice(), keys, span);
-            if (norm !== undefined) {
-                nattribs = norm[1];
-                if (keys && nattribs.key === undefined) {
-                    nattribs.key = path.join("-");
-                }
-                norm.__init = tag.init;
-                norm.__release = tag.release;
-                norm.__args = args;
+            norm = normalizeTree(tag.render.apply(null, args), ctx, path, keys, span);
+            if (isArray(norm)) {
+                (<any>norm).__init = tag.init;
+                (<any>norm).__release = tag.release;
+                (<any>norm).__args = args;
             }
             return norm;
         }
@@ -166,7 +176,7 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
         return normalizeTree(tree(ctx), ctx, path, keys, span);
     }
     if (implementsFunction(tree, "deref")) {
-        return normalizeTree(tree.deref(), ctx, path.slice(), keys, span);
+        return normalizeTree(tree.deref(), ctx, path, keys, span);
     }
     return span ?
         ["span", keys ? { key: path.join("-") } : {}, tree.toString()] :

@@ -1,15 +1,20 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isIterable } from "@thi.ng/checks/is-iterable";
-import { isString } from "@thi.ng/checks/is-string";
+import * as isa from "@thi.ng/checks/is-array";
+import * as isf from "@thi.ng/checks/is-function";
+import * as isi from "@thi.ng/checks/is-iterable";
+import * as iss from "@thi.ng/checks/is-string";
 import { SVG_TAGS, SVG_NS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
 import { map } from "@thi.ng/iterators/map";
 
+const isArray = isa.isArray;
+const isFunction = isf.isFunction;
+const isIterable = isi.isIterable
+const isString = iss.isString;
+
 /**
  * Creates an actual DOM tree from given hiccup component and `parent`
  * element. Calls `init` with created element (user provided context and
- * other args) for any components with `init` lifecycle method. Returns
+ * other args) for any components with `init` life cycle method. Returns
  * created root element(s) - usually only a single one, but can be an
  * array of elements, if the provided tree is an iterable. Creates DOM
  * text nodes for non-component values. Returns `parent` if tree is

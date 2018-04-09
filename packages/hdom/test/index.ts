@@ -5,8 +5,8 @@ import { map } from "@thi.ng/iterators/map";
 import { range } from "@thi.ng/iterators/range";
 import { normalizeTree } from "../src/normalize";
 
-function _check(a, b) {
-    assert.deepEqual(normalizeTree(a, [], false, false), b);
+function _check(a, b, ctx = null) {
+    assert.deepEqual(normalizeTree(a, ctx, [], false, false), b);
 }
 
 function check(id, a, b) {
@@ -76,7 +76,7 @@ describe("hdom", () => {
 
     check(
         "tag fn w/ args",
-        [(id, body) => ["div#" + id, body], "foo", "bar"],
+        [(_, id, body) => ["div#" + id, body], "foo", "bar"],
         ["div", { id: "foo" }, "bar"]
     );
 
@@ -110,12 +110,19 @@ describe("hdom", () => {
         ["a", {}, ["b", {}]]
     );
 
-    it("lifecycle", () => {
-        const res: any = ["div", {}];
+    it("life cycle", () => {
+        let res: any = ["div", {}];
         res.__init = res.__release = undefined;
-        res.__args = [];
+        res.__args = [null];
         assert.deepEqual(
-            normalizeTree([{ render: () => ["div"] }], [], false, false),
+            normalizeTree([{ render: () => ["div"] }], null, [], false, false),
+            res
+        );
+        res = ["div", { key: "0" }];
+        res.__init = res.__release = undefined;
+        res.__args = [null];
+        assert.deepEqual(
+            normalizeTree([{ render: () => ["div"] }], null, [0], true, false),
             res
         );
     });
