@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-svg",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "SVG element functions for @thi.ng/hiccup & @thi.ng/hdom",
     "main": "./index.js",
     "typings": "./index.d.ts",
