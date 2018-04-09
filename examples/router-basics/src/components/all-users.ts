@@ -1,5 +1,6 @@
 import { AppContext, StatusType, User } from "../api";
-import { EV_LOAD_USER_LIST, EV_SET_STATUS, ROUTE_USER_PROFILE } from "../config";
+import { LOAD_USER_LIST, SET_STATUS } from "../events";
+import { USER_PROFILE } from "../routes";
 
 import { routeLink } from "./route-link";
 import { status } from "./status";
@@ -13,8 +14,8 @@ import { status } from "./status";
 export function allUsers(ctx: AppContext) {
     ctx.bus.dispatch(
         ctx.views.userlist.deref().length ?
-            [EV_SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]] :
-            [EV_LOAD_USER_LIST]
+            [SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]] :
+            [LOAD_USER_LIST]
     );
     return ["div", status, userList];
 }
@@ -49,7 +50,7 @@ function user(ctx: AppContext, user: User, cached: boolean) {
             ["img", { ...ui.thumb, src: user.img }]],
         ["div", ui.body,
             ["h1", ui.title,
-                [routeLink, ROUTE_USER_PROFILE.id, { id: user.id }, null, user.name]],
+                [routeLink, USER_PROFILE.id, { id: user.id }, null, user.name]],
             ["h2", ui.subtitle, `@${user.alias}`]],
         cached ?
             ["div", ui.meta, "cached"] :

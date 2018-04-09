@@ -8,6 +8,8 @@ import { EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
 import { HTMLRouter } from "@thi.ng/router/history";
 
 import { AppConfig, ViewSpec, AppViews, AppContext } from "./api";
+import * as ev from "./events";
+import * as fx from "./effects";
 
 import { nav } from "./components/nav";
 import { debugContainer } from "./components/debug-container";
@@ -26,9 +28,6 @@ import { debugContainer } from "./components/debug-container";
  * - start router, hdom render & event bus loop
  */
 export class App {
-
-    static readonly EV_ROUTE_TO = "route-to";
-    static readonly FX_ROUTE_TO = "route-to";
 
     config: AppConfig;
     ctx: AppContext;
@@ -51,10 +50,10 @@ export class App {
         );
         this.ctx.bus.addHandlers({
             [EVENT_ROUTE_CHANGED]: valueSetter("route"),
-            [App.EV_ROUTE_TO]: (_, [__, route]) => ({ [App.FX_ROUTE_TO]: route })
+            [ev.ROUTE_TO]: (_, [__, route]) => ({ [ev.ROUTE_TO]: route })
         });
         this.ctx.bus.addEffect(
-            App.FX_ROUTE_TO,
+            fx.ROUTE_TO,
             ([id, params]) => this.router.routeTo(this.router.format(id, params))
         );
         this.addViews({
@@ -63,7 +62,7 @@ export class App {
                 "route.id",
                 (id) =>
                     (this.config.components[id] ||
-                        (() => ["div", `missing component for route: ${id}`]))(this.ctx, this.config.ui)
+                        (() => ["div", `missing component for route: ${id}`]))(this.ctx)
             ]
         });
     }
@@ -75,12 +74,13 @@ export class App {
      * @param specs
      */
     addViews(specs: IObjectOf<ViewSpec>) {
+        const views = this.ctx.views;
         for (let id in specs) {
             const spec = specs[id];
             if (isArray(spec)) {
-                this.ctx.views[id] = this.state.addView(spec[0], spec[1]);
+                views[id] = this.state.addView(spec[0], spec[1]);
             } else {
-                this.ctx.views[id] = this.state.addView(spec);
+                views[id] = this.state.addView(spec);
             }
         }
     }

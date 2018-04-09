@@ -1,10 +1,10 @@
 import { AppContext } from "../api";
-import { ROUTE_USER_LIST, ROUTE_HOME, ROUTE_CONTACT } from "../config";
+import { USER_LIST, HOME, CONTACT } from "../routes";
 
 import { routeLink } from "./route-link";
 
 /**
- * Main nav component with hardcoded routes.
+ * Main nav component with hard coded routes.
  *
  * @param ctx injected context object
  */
@@ -13,9 +13,9 @@ export function nav(ctx: AppContext) {
     return ["nav",
         ["h1", ui.title, "Demo app"],
         ["div", ui.inner,
-            [routeLink, ROUTE_HOME.id, null, ui.link, "Home"],
-            [routeLink, ROUTE_USER_LIST.id, null, ui.link, "Users"],
-            [routeLink, ROUTE_CONTACT.id, null, ui.linkLast, "Contact"],
+            [routeLink, HOME.id, null, ui.link, "Home"],
+            [routeLink, USER_LIST.id, null, ui.link, "Users"],
+            [routeLink, CONTACT.id, null, ui.linkLast, "Contact"],
         ]
     ];
 }

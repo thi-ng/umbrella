@@ -1,5 +1,5 @@
 import { StatusType, AppContext } from "../api";
-import { EV_LOAD_USER, EV_SET_STATUS } from "../config";
+import { LOAD_USER, SET_STATUS } from "../events";
 
 import { status } from "./status";
 
@@ -13,8 +13,8 @@ export function userProfile(ctx: AppContext) {
     const id = ctx.views.route.deref().params.id;
     ctx.bus.dispatch(
         ctx.views.users.deref()[id] ?
-            [EV_SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]] :
-            [EV_LOAD_USER, id]);
+            [SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]] :
+            [LOAD_USER, id]);
     return ["div", [status], [userCard, id]];
 }
 

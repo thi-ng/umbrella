@@ -1,72 +1,15 @@
 import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE, FX_DELAY } from "@thi.ng/interceptors/api";
-import { valueSetter, valueUpdater, trace } from "@thi.ng/interceptors/interceptors";
-import { Route, RouteMatch, EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
+import { valueUpdater, trace } from "@thi.ng/interceptors/interceptors";
 
 import { AppConfig, StatusType } from "./api";
+import * as ev from "./events";
+import * as fx from "./effects";
+import * as routes from "./routes";
 
 import { home } from "./components/home";
 import { allUsers } from "./components/all-users";
 import { userProfile } from "./components/user-profile";
 import { contact } from "./components/contact";
-import { App } from "./app";
-
-// route definitions:
-// routes are 1st class objects and used directly throughout the app
-// without ever referring to their specific string representation
-
-// the `match` arrays specify the individual route elements
-// docs here:
-// https://github.com/thi-ng/umbrella/blob/master/packages/router/
-// https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts#L31
-
-export const ROUTE_HOME: Route = {
-    id: "home",
-    match: ["home"]
-};
-
-export const ROUTE_CONTACT: Route = {
-    id: "contact",
-    match: ["contact"]
-};
-
-export const ROUTE_USER_LIST: Route = {
-    id: "user-list",
-    match: ["users"],
-};
-
-// this is a parametric route w/ parameter coercion & validation
-// if coercion or validation fails, the route will not be matched
-// if no other route matches, the configured default route will
-// be used (see full router config further below)
-
-export const ROUTE_USER_PROFILE: Route = {
-    id: "user-profile",
-    match: ["users", "?id"],
-    validate: {
-        id: {
-            coerce: (x) => parseInt(x),
-            check: (x) => x > 0 && x < 100
-        }
-    }
-};
-
-// best practice tip: define event & effect names as consts or enums and
-// avoid hardcoded strings for more safety and easier refactoring
-
-export const EV_DONE = "done";
-export const EV_ERROR = "error";
-export const EV_LOAD_USER = "load-user";
-export const EV_LOAD_USER_ERROR = "load-user-error"
-export const EV_LOAD_USER_LIST = "load-users";
-export const EV_RECEIVE_USER = "receive-user";
-export const EV_RECEIVE_USERS = "receive-users";
-export const EV_SET_STATUS = "set-status";
-export const EV_TOGGLE_DEBUG = "toggle-debug";
-
-// side effect IDs (these don't / shouldn't need to be exported. other
-// parts of the app should only use events)
-
-const FX_JSON = "load-json";
 
 // main App configuration
 export const CONFIG: AppConfig = {
@@ -77,19 +20,19 @@ export const CONFIG: AppConfig = {
         // use URI hash for routes (KISS)
         useFragment: true,
         // route ID if no other matches (MUST be non-parametric!)
-        defaultRouteID: ROUTE_HOME.id,
+        defaultRouteID: routes.HOME.id,
         // IMPORTANT: rules with common prefixes MUST be specified in
         // order of highest precision / longest path
         routes: [
-            ROUTE_HOME,
-            ROUTE_CONTACT,
-            ROUTE_USER_PROFILE,
-            ROUTE_USER_LIST,
+            routes.HOME,
+            routes.CONTACT,
+            routes.USER_PROFILE,
+            routes.USER_LIST,
         ]
     },
 
     // event handlers events are queued and batch processed in app's RAF
-    // renderloop event handlers can be single functions, interceptor
+    // render loop event handlers can be single functions, interceptor
     // objects with `pre`/`post` keys or arrays of either.
 
     // the event handlers' only task is to transform the event into a
@@ -101,77 +44,74 @@ export const CONFIG: AppConfig = {
 
     events: {
         // sets status to "done"
-        [EV_DONE]: () => ({
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.DONE, "done"]]
+        [ev.DONE]: () => ({
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.DONE, "done"]]
         }),
 
         // sets status to thrown error's message
-        [EV_ERROR]: (_, [__, err]) => ({
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.ERROR, err.message]],
+        [ev.ERROR]: (_, [__, err]) => ({
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]],
         }),
 
         // triggers loading of JSON for single user, sets status
-        [EV_LOAD_USER]: (_, [__, id]) => ({
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.INFO, `loading user data...`]],
-            [FX_DISPATCH_ASYNC]: [FX_JSON, `assets/user-${id}.json`, EV_RECEIVE_USER, EV_LOAD_USER_ERROR]
+        [ev.LOAD_USER]: (_, [__, id]) => ({
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.INFO, `loading user data...`]],
+            [FX_DISPATCH_ASYNC]: [fx.JSON, `assets/user-${id}.json`, ev.RECEIVE_USER, ev.LOAD_USER_ERROR]
         }),
 
         // triggered after successful IO
         // stores received user data under `users.{id}`, sets status
         // note: we assign multiple value/events as array to the FX_DISPATCH_NOW side effect
-        [EV_RECEIVE_USER]: (_, [__, json]) => ({
+        [ev.RECEIVE_USER]: (_, [__, json]) => ({
             [FX_DISPATCH_NOW]: [
                 <Event>[EV_SET_VALUE, [["users", json.id], json]],
-                <Event>[EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded", true]]
+                <Event>[ev.SET_STATUS, [StatusType.SUCCESS, "JSON successfully loaded", true]]
             ],
         }),
 
         // error event for user profile IO requests (i.e. in this demo for user ID 3)
         // set status, then redirects to /users after 1sec
-        [EV_LOAD_USER_ERROR]: (_, [__, err]) => ({
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.ERROR, err.message]],
-            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, [ROUTE_USER_LIST.id]], App.EV_ROUTE_TO, EV_ERROR],
+        [ev.LOAD_USER_ERROR]: (_, [__, err]) => ({
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]],
+            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, [routes.USER_LIST.id]], ev.ROUTE_TO, ev.ERROR],
         }),
 
         // triggers loading of JSON summary of all users, sets status
-        [EV_LOAD_USER_LIST]: () => ({
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, [StatusType.INFO, `loading user data...`]],
-            [FX_DISPATCH_ASYNC]: [FX_JSON, `assets/users.json`, EV_RECEIVE_USERS, EV_ERROR]
+        [ev.LOAD_USER_LIST]: () => ({
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.INFO, `loading user data...`]],
+            [FX_DISPATCH_ASYNC]: [fx.JSON, `assets/users.json`, ev.RECEIVE_USERS, ev.ERROR]
         }),
 
         // triggered after successful IO
         // note: we assign multiple value/events as array to the FX_DISPATCH_NOW side effect
-        [EV_RECEIVE_USERS]: (_, [__, json]) => ({
+        [ev.RECEIVE_USERS]: (_, [__, json]) => ({
             [FX_DISPATCH_NOW]: [
                 <Event>[EV_SET_VALUE, ["userlist", json]],
-                <Event>[EV_SET_STATUS, [StatusType.SUCCESS, "JSON succesfully loaded", true]]
+                <Event>[ev.SET_STATUS, [StatusType.SUCCESS, "JSON successfully loaded", true]]
             ],
         }),
-
-        // stores current route details
-        [EVENT_ROUTE_CHANGED]: valueSetter<RouteMatch>("route"),
 
         // stores status (a tuple of `[type, message, done?]`) in app state
         // if status type != DONE & `done` == true, also triggers delayed EV_DONE
         // Note: we inject the `trace` interceptor to log the event to the console
-        [EV_SET_STATUS]: [
+        [ev.SET_STATUS]: [
             trace,
             (_, [__, status]) => ({
                 [FX_DISPATCH_NOW]: [EV_SET_VALUE, ["status", status]],
                 [FX_DISPATCH_ASYNC]: (status[0] !== StatusType.DONE && status[2]) ?
-                    [FX_DELAY, [1000], EV_DONE, EV_ERROR] :
+                    [FX_DELAY, [1000], ev.DONE, ev.ERROR] :
                     undefined
             })
         ],
 
         // toggles debug state flag on/off
-        [EV_TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1)
+        [ev.TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1)
     },
 
     // side effects
     effects: {
         // generic JSON loader via fetch()
-        [FX_JSON]: (req) =>
+        [fx.JSON]: (req) =>
             fetch(req).then((resp) => {
                 if (!resp.ok) {
                     throw new Error(resp.statusText);
@@ -184,10 +124,10 @@ export const CONFIG: AppConfig = {
     // those functions are called automatically by the app's root component
     // base on the currently active route
     components: {
-        [ROUTE_HOME.id]: home,
-        [ROUTE_CONTACT.id]: contact,
-        [ROUTE_USER_LIST.id]: allUsers,
-        [ROUTE_USER_PROFILE.id]: userProfile,
+        [routes.HOME.id]: home,
+        [routes.CONTACT.id]: contact,
+        [routes.USER_LIST.id]: allUsers,
+        [routes.USER_PROFILE.id]: userProfile,
     },
 
     // DOM root element (or ID)
