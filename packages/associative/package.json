@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/associative",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Alternative Set & Map data type implementations with customizable equality semantics & supporting operations",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -28,9 +28,16 @@
         "@thi.ng/dcons": "^0.1.19"
     },
     "keywords": [
+        "data structures",
+        "difference",
+        "equality",
         "ES6",
-        "sets",
-        "typescript"
+        "intersection",
+        "join",
+        "map",
+        "set",
+        "typescript",
+        "union"
     ],
     "publishConfig": {
         "access": "public"
