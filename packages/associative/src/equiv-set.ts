@@ -58,6 +58,12 @@ export class EquivSet<T> extends Set<T> implements
         this._vals.clear();
     }
 
+    first() {
+        if (this.size) {
+            return this._vals.head.value;
+        }
+    }
+
     add(x: T) {
         !this.has(x) && this._vals.push(x);
         return this;
