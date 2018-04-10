@@ -24,7 +24,9 @@
         "typescript": "^2.8.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.2.0"
+        "@thi.ng/api": "^2.2.0",
+        "@thi.ng/associative": "^0.0.1",
+        "@thi.ng/iterators": "^4.1.4"
     },
     "keywords": [
         "ES6",
