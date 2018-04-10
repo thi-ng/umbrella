@@ -13,13 +13,14 @@ export interface ConsCell<T> {
 export class DCons<T> implements
     api.ICompare<DCons<T>>,
     api.ICopy<DCons<T>>,
+    api.IEmpty<DCons<T>>,
     api.IEquiv,
     api.ILength,
     api.IRelease,
     api.IStack<T, DCons<T>> {
 
-    public head: ConsCell<T>;
-    public tail: ConsCell<T>;
+    head: ConsCell<T>;
+    tail: ConsCell<T>;
     protected _length: number = 0;
 
     constructor(src?: Iterable<T>) {
@@ -28,15 +29,23 @@ export class DCons<T> implements
         }
     }
 
-    public get length() {
+    get length() {
         return this._length;
     }
 
-    public copy() {
-        return new DCons(this);
+    copy() {
+        return new DCons<T>(this);
     }
 
-    public release() {
+    empty() {
+        return new DCons<T>();
+    }
+
+    clear() {
+        this.release();
+    }
+
+    release() {
         let cell = this.head, next;
         while (cell) {
             next = cell.next;
@@ -51,7 +60,7 @@ export class DCons<T> implements
         return true;
     }
 
-    public compare(o: DCons<T>) {
+    compare(o: DCons<T>) {
         if (this._length < o._length) {
             return -1;
         } else if (this._length > o._length) {
@@ -69,7 +78,7 @@ export class DCons<T> implements
         }
     }
 
-    public equiv(o: any) {
+    equiv(o: any) {
         if ((o instanceof DCons || isArrayLike(o)) && this._length === o.length) {
             let cell = this.head;
             for (let x of <any>o) {
@@ -83,7 +92,7 @@ export class DCons<T> implements
         return false;
     }
 
-    public *[Symbol.iterator]() {
+    *[Symbol.iterator]() {
         let cell = this.head;
         while (cell) {
             yield cell.value;
@@ -91,13 +100,13 @@ export class DCons<T> implements
         }
     }
 
-    public *cycle() {
+    *cycle() {
         while (true) {
             yield* this;
         }
     }
 
-    public drop() {
+    drop() {
         const cell = this.head;
         if (cell) {
             this.head = cell.next;
@@ -111,7 +120,7 @@ export class DCons<T> implements
         }
     }
 
-    public cons(value: T): DCons<T> {
+    cons(value: T): DCons<T> {
         const cell = <ConsCell<T>>{ value, next: this.head };
         if (this.head) {
             this.head.prev = cell;
@@ -123,7 +132,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public insertBefore(cell: ConsCell<T>, value: T): DCons<T> {
+    insertBefore(cell: ConsCell<T>, value: T): DCons<T> {
         if (!cell) {
             illegalArgs("cell is undefined");
         }
@@ -138,7 +147,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public insertAfter(cell: ConsCell<T>, value: T): DCons<T> {
+    insertAfter(cell: ConsCell<T>, value: T): DCons<T> {
         if (!cell) {
             illegalArgs("cell is undefined");
         }
@@ -153,7 +162,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public insertBeforeNth(n: number, x: T) {
+    insertBeforeNth(n: number, x: T) {
         if (n < 0) {
             n += this._length;
         }
@@ -164,7 +173,7 @@ export class DCons<T> implements
         }
     }
 
-    public insertAfterNth(n: number, x: T) {
+    insertAfterNth(n: number, x: T) {
         if (n < 0) {
             n += this._length;
         }
@@ -175,7 +184,7 @@ export class DCons<T> implements
         }
     }
 
-    public insertSorted(value: T, cmp?: api.Comparator<T>) {
+    insertSorted(value: T, cmp?: api.Comparator<T>) {
         cmp = cmp || compare;
         let cell = this.head;
         while (cell) {
@@ -187,7 +196,7 @@ export class DCons<T> implements
         return this.push(value);
     }
 
-    public find(value: T) {
+    find(value: T) {
         let cell = this.head;
         while (cell) {
             if (cell.value === value) {
@@ -197,7 +206,7 @@ export class DCons<T> implements
         }
     }
 
-    public findWith(fn: api.Predicate<T>) {
+    findWith(fn: api.Predicate<T>) {
         let cell = this.head;
         while (cell) {
             if (fn(cell.value)) {
@@ -207,7 +216,7 @@ export class DCons<T> implements
         }
     }
 
-    public concat(...slices: Iterable<T>[]) {
+    concat(...slices: Iterable<T>[]) {
         const res = this.copy();
         for (let slice of slices) {
             res.into(slice);
@@ -215,13 +224,13 @@ export class DCons<T> implements
         return res;
     }
 
-    public into(src: Iterable<T>) {
+    into(src: Iterable<T>) {
         for (let x of src) {
             this.push(x);
         }
     }
 
-    public slice(from = 0, to = this.length) {
+    slice(from = 0, to = this.length) {
         let a = from < 0 ? from + this._length : from;
         let b = to < 0 ? to + this._length : to;
         if (a < 0 || b < 0) {
@@ -236,7 +245,7 @@ export class DCons<T> implements
         return res;
     }
 
-    public splice(at: ConsCell<T> | number, del = 0, insert?: Iterable<T>): DCons<T> {
+    splice(at: ConsCell<T> | number, del = 0, insert?: Iterable<T>): DCons<T> {
         let cell: ConsCell<T>;
         if (typeof at === "number") {
             if (at < 0) {
@@ -270,7 +279,7 @@ export class DCons<T> implements
         return res;
     }
 
-    public remove(cell: ConsCell<T>) {
+    remove(cell: ConsCell<T>) {
         if (cell.prev) {
             cell.prev.next = cell.next;
         } else {
@@ -285,7 +294,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public swap(a: ConsCell<T>, b: ConsCell<T>): DCons<T> {
+    swap(a: ConsCell<T>, b: ConsCell<T>): DCons<T> {
         if (a !== b) {
             const t = a.value;
             a.value = b.value;
@@ -294,7 +303,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public push(value: T): DCons<T> {
+    push(value: T): DCons<T> {
         if (this.tail) {
             const cell = <ConsCell<T>>{ value, prev: this.tail };
             this.tail.next = cell;
@@ -306,7 +315,7 @@ export class DCons<T> implements
         }
     }
 
-    public pop(): DCons<T> {
+    pop(): DCons<T> {
         const cell = this.tail;
         if (cell) {
             this.tail = cell.prev;
@@ -322,15 +331,15 @@ export class DCons<T> implements
         return this;
     }
 
-    public first() {
+    first() {
         return this.head ? this.head.value : undefined;
     }
 
-    public peek() {
+    peek() {
         return this.tail ? this.tail.value : undefined;
     }
 
-    public setHead(v: T) {
+    setHead(v: T) {
         if (this.head) {
             this.head.value = v;
             return this;
@@ -338,7 +347,7 @@ export class DCons<T> implements
         return this.cons(v);
     }
 
-    public setTail(v: T) {
+    setTail(v: T) {
         if (this.tail) {
             this.tail.value = v;
             return this;
@@ -346,7 +355,7 @@ export class DCons<T> implements
         return this.push(v);
     }
 
-    public setNth(n: number, v: T) {
+    setNth(n: number, v: T) {
         const cell = this.nthCell(n);
         if (!cell) {
             illegalArgs(`index out of bounds: ${n}`);
@@ -355,12 +364,12 @@ export class DCons<T> implements
         return this;
     }
 
-    public nth(n: number, notFound?: T) {
+    nth(n: number, notFound?: T) {
         const cell = this.nthCell(n);
         return cell ? cell.value : notFound;
     }
 
-    public nthCell(n: number) {
+    nthCell(n: number) {
         if (n < 0) {
             n += this._length;
         }
@@ -382,7 +391,7 @@ export class DCons<T> implements
         return cell;
     }
 
-    public rotateLeft() {
+    rotateLeft() {
         switch (this._length) {
             case 0:
             case 1:
@@ -394,7 +403,7 @@ export class DCons<T> implements
         }
     }
 
-    public rotateRight() {
+    rotateRight() {
         switch (this._length) {
             case 0:
             case 1:
@@ -407,7 +416,7 @@ export class DCons<T> implements
         }
     }
 
-    public map<R>(fn: (x: T) => R) {
+    map<R>(fn: (x: T) => R) {
         const res = new DCons<R>();
         let cell = this.head;
         while (cell) {
@@ -417,7 +426,7 @@ export class DCons<T> implements
         return res;
     }
 
-    public filter(pred: api.Predicate<T>) {
+    filter(pred: api.Predicate<T>) {
         const res = new DCons<T>();
         let cell = this.head;
         while (cell) {
@@ -427,7 +436,7 @@ export class DCons<T> implements
         return res;
     }
 
-    public reduce<R>(rfn: (acc: R, x: T) => R, initial: R) {
+    reduce<R>(rfn: (acc: R, x: T) => R, initial: R) {
         let acc: R = initial;
         let cell = this.head;
         while (cell) {
@@ -438,7 +447,7 @@ export class DCons<T> implements
         return acc;
     }
 
-    public shuffle() {
+    shuffle() {
         let n = this._length;
         let cell = this.tail;
         while (n > 0) {
@@ -450,7 +459,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public reverse() {
+    reverse() {
         let head = this.head;
         let tail = this.tail;
         let n = (this._length >>> 1) + (this._length & 1);
@@ -465,7 +474,7 @@ export class DCons<T> implements
         return this;
     }
 
-    public toString() {
+    toString() {
         let res: any = [];
         let cell = this.head;
         while (cell) {
@@ -477,7 +486,7 @@ export class DCons<T> implements
         return res.join(", ");
     }
 
-    public toJSON() {
+    toJSON() {
         return [...this];
     }
 }

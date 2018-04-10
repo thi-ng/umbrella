@@ -1,10 +1,12 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isString } from "@thi.ng/checks/is-string";
+import * as isa from "@thi.ng/checks/is-array";
+import * as iss from "@thi.ng/checks/is-string";
 import * as diff from "@thi.ng/diff";
 
 // import { DEBUG } from "./api";
 import { createDOM, removeAttribs, setAttrib, removeChild } from "./dom";
 
+const isArray = isa.isArray;
+const isString = iss.isString;
 const diffArray = diff.diffArray;
 const diffObject = diff.diffObject;
 

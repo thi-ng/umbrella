@@ -1,22 +1,21 @@
 {
-    "name": "@thi.ng/hdom",
-    "version": "3.0.1",
-    "description": "Lightweight vanilla ES6 UI component & virtual DOM system",
+    "name": "@thi.ng/associative",
+    "version": "0.0.1",
+    "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rm -rf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn run clean && tsc --declaration",
+        "clean": "rm -rf *.js *.d.ts build doc",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public",
+        "pub": "yarn run build && yarn publish --access public",
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^1.2.4",
         "@types/mocha": "^5.0.0",
         "@types/node": "^9.6.1",
         "mocha": "^5.0.5",
@@ -25,20 +24,12 @@
         "typescript": "^2.8.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.2.0",
-        "@thi.ng/diff": "^1.0.6",
-        "@thi.ng/hiccup": "^1.3.4",
-        "@thi.ng/iterators": "^4.1.4"
+        "@thi.ng/api": "^2.1.0"
     },
     "keywords": [
-        "browser",
-        "components",
-        "DOM",
         "ES6",
-        "reactive",
-        "typescript",
-        "ui",
-        "vdom"
+        "sets",
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"
