@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/dgraph",
     "version": "0.0.3",
-    "description": "TODO",
+    "description": "Type-agnostic directed acyclic graph (DAG) & graph operations",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -29,7 +29,11 @@
         "@thi.ng/iterators": "^4.1.4"
     },
     "keywords": [
+        "data structure",
+        "dependencies",
+        "DAG",
         "ES6",
+        "graph",
         "typescript"
     ],
     "publishConfig": {
