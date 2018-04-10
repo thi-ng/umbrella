@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@0.1.19...@thi.ng/dcons@0.2.0) (2018-04-10)
+
+
+### Features
+
+* **dcons:** add IEmpty impl, minor refactoring ([10c089a](https://github.com/thi-ng/umbrella/commit/10c089a))
+
+
+
+
 <a name="0.1.19"></a>
 ## [0.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@0.1.18...@thi.ng/dcons@0.1.19) (2018-04-08)
 

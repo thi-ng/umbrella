@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dcons",
-    "version": "0.1.19",
+    "version": "0.2.0",
     "description": "Comprehensive doubly linked list structure w/ iterator support",
     "main": "./index.js",
     "typings": "./index.d.ts",
