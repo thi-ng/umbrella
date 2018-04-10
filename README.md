@@ -32,11 +32,13 @@ difficulties, many combining functionality from several packages) in the
 | Projects | Version | |
 |----|----|----|
 | [`@thi.ng/api`](./packages/api) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api) | [changelog](./packages/api/CHANGELOG.md) |
+| [`@thi.ng/associative`](./packages/associative) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative) | [changelog](./packages/associative/CHANGELOG.md) |
 | [`@thi.ng/atom`](./packages/atom) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom) | [changelog](./packages/atom/CHANGELOG.md) |
 | [`@thi.ng/bitstream`](./packages/bitstream) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream) | [changelog](./packages/bitstream/CHANGELOG.md) |
 | [`@thi.ng/checks`](./packages/checks) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks) | [changelog](./packages/checks/CHANGELOG.md) |
 | [`@thi.ng/csp`](./packages/csp) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp) | [changelog](./packages/csp/CHANGELOG.md) |
 | [`@thi.ng/dcons`](./packages/dcons) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons) | [changelog](./packages/dcons/CHANGELOG.md) |
+| [`@thi.ng/dgraph`](./packages/dgraph) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph) | [changelog](./packages/dgraph/CHANGELOG.md) |
 | [`@thi.ng/diff`](./packages/diff) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff) | [changelog](./packages/diff/CHANGELOG.md) |
 | [`@thi.ng/hdom`](./packages/hdom) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom) | [changelog](./packages/hdom/CHANGELOG.md) |
 | [`@thi.ng/hdom-components`](./packages/hdom-components) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components) | [changelog](./packages/hdom-components/CHANGELOG.md) |
