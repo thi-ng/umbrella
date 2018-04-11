@@ -572,6 +572,14 @@ accumulator/result.
 Transforms iterable using given transducer and combines results with
 given reducer and optional initial accumulator/result.
 
+#### `run<A, B>(tx: Transducer<A, B>, fx: (x: B) => void, xs: Iterable<A>)`
+
+Transforms iterable with given transducer and optional side effect
+without any reduction step. If `fx` is given it will be called with
+every value produced by the transducer. If `fx` is *not* given, the
+transducer is assumed to include at least one `sideEffect()` step
+itself. Returns nothing.
+
 ### Transducers
 
 #### `base64Decode(): Transducer<string, number>`

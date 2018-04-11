@@ -2,6 +2,7 @@ export * from "./api";
 export * from "./iterator";
 export * from "./reduce";
 export * from "./reduced";
+export * from "./run";
 export * from "./step";
 export * from "./transduce";
 
