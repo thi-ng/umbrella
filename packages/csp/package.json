@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/csp",
-    "version": "0.3.26",
+    "version": "0.3.27",
     "description": "ES6 promise based CSP implementation",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@thi.ng/dcons": "^0.2.0",
-        "@thi.ng/transducers": "^1.7.5"
+        "@thi.ng/transducers": "^1.8.0"
     },
     "keywords": [
         "async",

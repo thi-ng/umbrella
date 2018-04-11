@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.5...@thi.ng/transducers@1.8.0) (2018-04-11)
+
+
+### Features
+
+* **transducers:** add run() for executing side effects only, update readme ([52c7508](https://github.com/thi-ng/umbrella/commit/52c7508))
+
+
+
+
 <a name="1.7.5"></a>
 ## [1.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.4...@thi.ng/transducers@1.7.5) (2018-04-08)
 
