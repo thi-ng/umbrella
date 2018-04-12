@@ -4,6 +4,17 @@ import { equiv } from "@thi.ng/api/equiv";
 import { SEMAPHORE, Pair } from "./api";
 import { EquivSet } from "./equiv-set";
 
+interface EqMapProps<K, V> {
+    keys: EquivSet<K>;
+    map: Map<K, V>;
+}
+
+export interface EqMapOpts<K> {
+    equiv: Predicate2<K>;
+}
+
+const __private = new WeakMap<EquivMap<any, any>, EqMapProps<any, any>>();
+
 export class EquivMap<K, V> extends Map<K, V> implements
     Iterable<Pair<K, V>>,
     ICopy<EquivMap<K, V>>,
@@ -20,16 +31,11 @@ export class EquivMap<K, V> extends Map<K, V> implements
         return m;
     }
 
-    protected _keys: EquivSet<K>;
-    protected _map: Map<K, V>;
-
     constructor(pairs?: Iterable<Pair<K, V>>, eq: Predicate2<K> = equiv) {
         super();
-        this._keys = new EquivSet<K>(null, eq);
-        this._map = new Map<K, V>();
-        Object.defineProperties(this, {
-            _keys: { enumerable: false },
-            _map: { enumerable: false }
+        __private.set(this, {
+            keys: new EquivSet<K>(null, eq),
+            map: new Map<K, V>(),
         });
         if (pairs) {
             this.into(pairs);
@@ -45,22 +51,26 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     get size() {
-        return this._keys.size;
+        return __private.get(this).keys.size;
     }
 
     clear() {
-        this._keys.clear();
-        this._map.clear();
+        const $this = __private.get(this);
+        $this.keys.clear();
+        $this.map.clear();
     }
 
     empty() {
-        return new EquivMap<K, V>(null, (<any>this._keys)._equiv);
+        return new EquivMap<K, V>(null, __private.get(this).keys.getOpts().equiv);
     }
 
     copy() {
-        const m = new EquivMap<K, V>(null, (<any>this._keys)._equiv);
-        m._keys = this._keys.copy();
-        m._map = new Map<K, V>(this._map);
+        const $this = __private.get(this);
+        const m = new EquivMap<K, V>();
+        __private.set(m, {
+            keys: $this.keys.copy(),
+            map: new Map<K, V>($this.map)
+        });
         return m;
     }
 
@@ -74,8 +84,8 @@ export class EquivMap<K, V> extends Map<K, V> implements
         if (this.size !== o.size) {
             return false;
         }
-        for (let k of this._map.keys()) {
-            if (!equiv(o.get(k), this._map.get(k))) {
+        for (let k of __private.get(this).map.keys()) {
+            if (!equiv(o.get(k), __private.get(this).map.get(k))) {
                 return false;
             }
         }
@@ -83,10 +93,11 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     delete(key: K) {
-        key = this._keys.get(key, SEMAPHORE);
+        const $this = __private.get(this);
+        key = $this.keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
-            this._map.delete(key);
-            this._keys.delete(key);
+            $this.map.delete(key);
+            $this.keys.delete(key);
             return true;
         }
         return false;
@@ -100,30 +111,32 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     forEach(fn: (val: V, key: K, map: Map<K, V>) => void, thisArg?: any) {
-        for (let pair of this._map) {
+        for (let pair of __private.get(this).map) {
             fn.call(thisArg, pair[1], pair[0], this);
         }
     }
 
     get(key: K, notFound?: any) {
-        key = this._keys.get(key, SEMAPHORE);
+        const $this = __private.get(this);
+        key = $this.keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
-            return this._map.get(key);
+            return $this.map.get(key);
         }
         return notFound;
     }
 
     has(key: K) {
-        return this._keys.has(key);
+        return __private.get(this).keys.has(key);
     }
 
     set(key: K, value: V) {
-        const k = this._keys.get(key, SEMAPHORE);
+        const $this = __private.get(this);
+        const k = $this.keys.get(key, SEMAPHORE);
         if (k !== <any>SEMAPHORE) {
-            this._map.set(k, value);
+            $this.map.set(k, value);
         } else {
-            this._keys.add(key);
-            this._map.set(key, value);
+            $this.keys.add(key);
+            $this.map.set(key, value);
         }
         return this;
     }
@@ -136,14 +149,18 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     entries() {
-        return this._map.entries();
+        return __private.get(this).map.entries();
     }
 
     keys() {
-        return this._map.keys();
+        return __private.get(this).map.keys();
     }
 
     values() {
-        return this._map.values();
+        return __private.get(this).map.values();
+    }
+
+    getOpts(): EqMapOpts<K> {
+        return __private.get(this).keys.getOpts();
     }
 }

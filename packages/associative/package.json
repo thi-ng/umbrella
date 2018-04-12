@@ -37,6 +37,9 @@
         "join",
         "map",
         "set",
+        "skiplist",
+        "sorted map",
+        "sorted set",
         "typescript",
         "union"
     ],

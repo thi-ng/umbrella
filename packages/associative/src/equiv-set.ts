@@ -1,7 +1,18 @@
 import { ICopy, IEmpty, IEquiv, Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { DCons } from "@thi.ng/dcons";
-import { SEMAPHORE } from "./api";
+import { SEMAPHORE, Pair } from "./api";
+
+interface EqSetProps<T> {
+    vals: DCons<T>;
+    equiv: Predicate2<T>;
+}
+
+export interface EqSetOpts<T> {
+    equiv: Predicate2<T>;
+}
+
+const __private = new WeakMap<EquivSet<any>, EqSetProps<any>>();
 
 /**
  * An alternative set implementation to the native ES6 Set type. Uses
@@ -18,22 +29,14 @@ export class EquivSet<T> extends Set<T> implements
     IEmpty<EquivSet<T>>,
     IEquiv {
 
-    protected _vals: DCons<T>;
-    protected _equiv: Predicate2<T>;
-
     constructor(vals?: Iterable<T>, eq: Predicate2<T> = equiv) {
         super();
-        this._equiv = eq;
-        this._vals = new DCons<T>();
-        Object.defineProperties(this, {
-            _vals: { enumerable: false },
-            _equiv: { enumerable: false }
-        });
+        __private.set(this, { equiv: eq, vals: new DCons<T>() });
         vals && this.into(vals);
     }
 
     *[Symbol.iterator]() {
-        yield* this._vals;
+        yield* __private.get(this).vals;
     }
 
     get [Symbol.species]() {
@@ -41,31 +44,32 @@ export class EquivSet<T> extends Set<T> implements
     }
 
     get size() {
-        return this._vals.length;
+        return __private.get(this).vals.length;
     }
 
     copy() {
-        const s = new EquivSet<T>(null, this._equiv);
-        s._vals = this._vals.copy();
+        const $this = __private.get(this);
+        const s = new EquivSet<T>(null, $this.equiv);
+        __private.get(s).vals = $this.vals.copy();
         return s;
     }
 
     empty() {
-        return new EquivSet<T>(null, this._equiv);
+        return new EquivSet<T>(null, __private.get(this).equiv);
     }
 
     clear() {
-        this._vals.clear();
+        __private.get(this).vals.clear();
     }
 
     first() {
         if (this.size) {
-            return this._vals.head.value;
+            return __private.get(this).vals.head.value;
         }
     }
 
     add(x: T) {
-        !this.has(x) && this._vals.push(x);
+        !this.has(x) && __private.get(this).vals.push(x);
         return this;
     }
 
@@ -88,8 +92,9 @@ export class EquivSet<T> extends Set<T> implements
      * @param notFound
      */
     get(x: T, notFound?: any) {
-        const eq = this._equiv;
-        let i = this._vals.head;
+        const $this = __private.get(this);
+        const eq = $this.equiv;
+        let i = $this.vals.head;
         while (i) {
             if (eq(i.value, x)) {
                 return i.value;
@@ -100,11 +105,12 @@ export class EquivSet<T> extends Set<T> implements
     }
 
     delete(x: T) {
-        const eq = this._equiv;
-        let i = this._vals.head;
+        const $this = __private.get(this)
+        const eq = $this.equiv;
+        let i = $this.vals.head;
         while (i) {
             if (eq(i.value, x)) {
-                this._vals.splice(i, 1);
+                $this.vals.splice(i, 1);
                 return true;
             }
             i = i.next;
@@ -129,7 +135,7 @@ export class EquivSet<T> extends Set<T> implements
         if (this.size !== o.size) {
             return false;
         }
-        let i = this._vals.head;
+        let i = __private.get(this).vals.head;
         while (i) {
             if (!o.has(i.value)) {
                 return false;
@@ -140,24 +146,28 @@ export class EquivSet<T> extends Set<T> implements
     }
 
     forEach(fn: (val: T, val2: T, set: Set<T>) => void, thisArg?: any) {
-        let i = this._vals.head;
+        let i = __private.get(this).vals.head;
         while (i) {
             fn.call(thisArg, i.value, i.value, this);
             i = i.next;
         }
     }
 
-    *entries(): IterableIterator<[T, T]> {
-        for (let v of this._vals) {
+    *entries(): IterableIterator<Pair<T, T>> {
+        for (let v of __private.get(this).vals) {
             yield [v, v];
         }
     }
 
     *keys() {
-        yield* this._vals;
+        yield* __private.get(this).vals;
     }
 
     *values() {
-        yield* this._vals;
+        yield* this.keys();
+    }
+
+    getOpts(): EqSetOpts<T> {
+        return { equiv: __private.get(this).equiv };
     }
 }
