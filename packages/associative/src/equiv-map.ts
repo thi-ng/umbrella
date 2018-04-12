@@ -1,11 +1,11 @@
 import { ICopy, IEmpty, IEquiv, IObjectOf, Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 
-import { SEMAPHORE } from "./api";
+import { SEMAPHORE, Pair } from "./api";
 import { EquivSet } from "./equiv-set";
 
 export class EquivMap<K, V> extends Map<K, V> implements
-    Iterable<[K, V]>,
+    Iterable<Pair<K, V>>,
     ICopy<EquivMap<K, V>>,
     IEmpty<EquivMap<K, V>>,
     IEquiv {
@@ -23,7 +23,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
     protected _keys: EquivSet<K>;
     protected _map: Map<K, V>;
 
-    constructor(pairs?: Iterable<[K, V]>, eq: Predicate2<K> = equiv) {
+    constructor(pairs?: Iterable<Pair<K, V>>, eq: Predicate2<K> = equiv) {
         super();
         this._keys = new EquivSet<K>(null, eq);
         this._map = new Map<K, V>();
@@ -128,7 +128,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
         return this;
     }
 
-    into(pairs: Iterable<[K, V]>) {
+    into(pairs: Iterable<Pair<K, V>>) {
         for (let p of pairs) {
             this.set(p[0], p[1]);
         }
@@ -140,7 +140,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     keys() {
-        return this._keys.keys();
+        return this._map.keys();
     }
 
     values() {

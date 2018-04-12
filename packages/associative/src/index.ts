@@ -1,5 +1,6 @@
 export * from "./equiv-map";
 export * from "./equiv-set";
+export * from "./sorted-map";
 
 export * from "./difference";
 export * from "./intersection";
