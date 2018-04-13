@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.1.5...@thi.ng/interceptors@1.2.0) (2018-04-13)
+
+
+### Features
+
+* **interceptors:** add ensureStateRange() & ensureParamRange() iceps ([86883e3](https://github.com/thi-ng/umbrella/commit/86883e3))
+
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.1.4...@thi.ng/interceptors@1.1.5) (2018-04-13)
 
