@@ -1,4 +1,4 @@
-import { EquivMap } from "./equiv-map";
+import { ArrayMap } from "./array-map";
 import { selectKeysObj } from "./select-keys";
 
 /**
@@ -7,7 +7,7 @@ import { selectKeysObj } from "./select-keys";
  * @param ks keys used for indexing
  */
 export function indexed(records: Set<any>, ks: PropertyKey[]) {
-    const res = new EquivMap<any, Set<any>>();
+    const res = new ArrayMap<any, Set<any>>();
     let m, ik, rv;
     for (m of records) {
         ik = selectKeysObj(m, ks);

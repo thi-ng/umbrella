@@ -1,6 +1,6 @@
 import * as assert from "assert";
 
-import { EquivSet } from "../src/equiv-set";
+import { ArraySet } from "../src/array-set";
 import { union } from "../src/union";
 
 describe("union", () => {
@@ -12,9 +12,9 @@ describe("union", () => {
     });
 
     it("equiv (numbers)", () => {
-        const a = new EquivSet([1, 2, 3, 4]);
-        const b = new EquivSet([3, 4, 5, 6]);
-        assert.deepEqual(union(a, b), new EquivSet([1, 2, 3, 4, 5, 6]));
+        const a = new ArraySet([1, 2, 3, 4]);
+        const b = new ArraySet([3, 4, 5, 6]);
+        assert.deepEqual(union(a, b), new ArraySet([1, 2, 3, 4, 5, 6]));
     });
 
     it("native (obj)", () => {
@@ -28,11 +28,11 @@ describe("union", () => {
     });
 
     it("equiv (obj)", () => {
-        const a = new EquivSet([{ a: 1 }, { a: 2 }]);
-        const b = new EquivSet([{ a: 2 }, { a: 3 }]);
+        const a = new ArraySet([{ a: 1 }, { a: 2 }]);
+        const b = new ArraySet([{ a: 2 }, { a: 3 }]);
         const u = union(a, b);
         assert.equal(u.size, 3);
-        assert.deepEqual(u, new EquivSet([{ a: 1 }, { a: 2 }, { a: 3 }]));
+        assert.deepEqual(u, new ArraySet([{ a: 1 }, { a: 2 }, { a: 3 }]));
         assert.notStrictEqual(u, a);
         assert.notStrictEqual(u, b);
     });

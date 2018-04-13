@@ -1,11 +1,9 @@
 import { ICopy, IEmpty, IEquiv, ICompare } from "@thi.ng/api/api";
 import { map } from "@thi.ng/iterators/map";
 
-import { Pair } from "./api";
-import { SortedMap, SortedMapOpts } from "./sorted-map";
+import { Pair, SortedSetOpts } from "./api";
+import { SortedMap } from "./sorted-map";
 import { compare } from "@thi.ng/api/compare";
-
-export type SortedSetOpts<T> = SortedMapOpts<T>;
 
 const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
 
@@ -144,7 +142,7 @@ export class SortedSet<T> extends Set<T> implements
         return __private.get(this).get(value, notFound);
     }
 
-    getOpts() {
+    getOpts(): SortedSetOpts<T> {
         return __private.get(this).getOpts();
     }
 }

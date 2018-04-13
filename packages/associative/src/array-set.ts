@@ -1,18 +1,15 @@
 import { ICopy, IEmpty, IEquiv, Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { DCons } from "@thi.ng/dcons";
-import { SEMAPHORE, Pair } from "./api";
 
-interface EqSetProps<T> {
+import { ArraySetOpts, Pair, SEMAPHORE } from "./api";
+
+interface SetProps<T> {
     vals: DCons<T>;
     equiv: Predicate2<T>;
 }
 
-export interface EqSetOpts<T> {
-    equiv: Predicate2<T>;
-}
-
-const __private = new WeakMap<EquivSet<any>, EqSetProps<any>>();
+const __private = new WeakMap<ArraySet<any>, SetProps<any>>();
 
 /**
  * An alternative set implementation to the native ES6 Set type. Uses
@@ -23,10 +20,10 @@ const __private = new WeakMap<EquivSet<any>, EqSetProps<any>>();
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.
  */
-export class EquivSet<T> extends Set<T> implements
+export class ArraySet<T> extends Set<T> implements
     Iterable<T>,
-    ICopy<EquivSet<T>>,
-    IEmpty<EquivSet<T>>,
+    ICopy<ArraySet<T>>,
+    IEmpty<ArraySet<T>>,
     IEquiv {
 
     constructor(vals?: Iterable<T>, eq: Predicate2<T> = equiv) {
@@ -40,7 +37,7 @@ export class EquivSet<T> extends Set<T> implements
     }
 
     get [Symbol.species]() {
-        return EquivSet;
+        return ArraySet;
     }
 
     get size() {
@@ -49,13 +46,13 @@ export class EquivSet<T> extends Set<T> implements
 
     copy() {
         const $this = __private.get(this);
-        const s = new EquivSet<T>(null, $this.equiv);
+        const s = new ArraySet<T>(null, $this.equiv);
         __private.get(s).vals = $this.vals.copy();
         return s;
     }
 
     empty() {
-        return new EquivSet<T>(null, __private.get(this).equiv);
+        return new ArraySet<T>(null, __private.get(this).equiv);
     }
 
     clear() {
@@ -167,7 +164,7 @@ export class EquivSet<T> extends Set<T> implements
         yield* this.keys();
     }
 
-    getOpts(): EqSetOpts<T> {
+    getOpts(): ArraySetOpts<T> {
         return { equiv: __private.get(this).equiv };
     }
 }

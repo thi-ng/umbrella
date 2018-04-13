@@ -5,47 +5,11 @@ import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { map } from "@thi.ng/iterators/map";
 
-import { Pair, SEMAPHORE } from "./api";
+import { Pair, SEMAPHORE, SortedMapOpts } from "./api";
 
 // stores private properties for all instances
 // http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
 const __private = new WeakMap<SortedMap<any, any>, SortedMapProps>();
-
-/**
- * SortedMapOpts implementation config settings.
- */
-export interface SortedMapOpts<K> {
-    /**
-     * Key equivalence predicate. MUST return truthy result if given
-     * keys are considered equal.
-     *
-     * Default: `@thi.ng/api/equiv`
-     */
-    equiv: Predicate2<K>;
-    /**
-     * Key comparison function. Must follow standard comparator contract
-     * and return:
-     * - negative if `a < b`
-     * - positive if `a > b`
-     * - `0` if `a == b`
-     *
-     * Note: The `SortedMap` implementation only uses `<` comparisons.
-     *
-     * Default: `@thi.ng/api/compare`
-     */
-    compare: Comparator<K>;
-    /**
-     * Initial capacity before resizing (doubling) occurs.
-     * This value will be rounded up to next pow2.
-     * Default: 16
-     */
-    capacity: number;
-    /**
-     * Probability for a value to exist in any express lane.
-     * Default: `1 / Math.E`
-     */
-    probability: number;
-}
 
 interface SortedMapProps {
     head: any[];

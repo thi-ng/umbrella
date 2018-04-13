@@ -1,6 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
 
-import { EquivSet } from "./equiv-set";
+import { ArraySet } from "./array-set";
 import { intersection } from "./intersection";
 import { indexed } from "./indexed";
 import { invertObj } from "./invert";
@@ -24,7 +24,7 @@ export function join<A, B>(xrel: Set<A>, yrel: Set<B>) {
             s = xrel;
         }
         const idx = indexed(r, ks);
-        const res = new EquivSet<any>();
+        const res = new ArraySet<any>();
         for (let x of s) {
             const found = idx.get(selectKeysObj(x, ks));
             if (found) {
@@ -53,7 +53,7 @@ export function joinWith<A, B>(xrel: Set<A>, yrel: Set<B>, km: IObjectOf<Propert
         }
         const idx = indexed(r, objValues(k));
         const ks = Object.keys(k);
-        const res = new EquivSet<any>();
+        const res = new ArraySet<any>();
         for (let x of s) {
             const found = idx.get(renameKeysObj(selectKeysObj(x, ks), k));
             if (found) {

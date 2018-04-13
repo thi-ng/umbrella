@@ -1,28 +1,24 @@
 import { ICopy, IEmpty, IEquiv, IObjectOf, Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 
-import { SEMAPHORE, Pair } from "./api";
-import { EquivSet } from "./equiv-set";
+import { ArrayMapOpts, Pair, SEMAPHORE } from "./api";
+import { ArraySet } from "./array-set";
 
-interface EqMapProps<K, V> {
-    keys: EquivSet<K>;
+interface MapProps<K, V> {
+    keys: ArraySet<K>;
     map: Map<K, V>;
 }
 
-export interface EqMapOpts<K> {
-    equiv: Predicate2<K>;
-}
+const __private = new WeakMap<ArrayMap<any, any>, MapProps<any, any>>();
 
-const __private = new WeakMap<EquivMap<any, any>, EqMapProps<any, any>>();
-
-export class EquivMap<K, V> extends Map<K, V> implements
+export class ArrayMap<K, V> extends Map<K, V> implements
     Iterable<Pair<K, V>>,
-    ICopy<EquivMap<K, V>>,
-    IEmpty<EquivMap<K, V>>,
+    ICopy<ArrayMap<K, V>>,
+    IEmpty<ArrayMap<K, V>>,
     IEquiv {
 
-    static fromObject<T>(obj: IObjectOf<T>): EquivMap<PropertyKey, T> {
-        const m = new EquivMap<PropertyKey, T>();
+    static fromObject<T>(obj: IObjectOf<T>): ArrayMap<PropertyKey, T> {
+        const m = new ArrayMap<PropertyKey, T>();
         for (let k in obj) {
             if (obj.hasOwnProperty(k)) {
                 m.set(k, obj[k]);
@@ -34,7 +30,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
     constructor(pairs?: Iterable<Pair<K, V>>, eq: Predicate2<K> = equiv) {
         super();
         __private.set(this, {
-            keys: new EquivSet<K>(null, eq),
+            keys: new ArraySet<K>(null, eq),
             map: new Map<K, V>(),
         });
         if (pairs) {
@@ -47,7 +43,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     get [Symbol.species]() {
-        return EquivMap;
+        return ArrayMap;
     }
 
     get size() {
@@ -61,12 +57,12 @@ export class EquivMap<K, V> extends Map<K, V> implements
     }
 
     empty() {
-        return new EquivMap<K, V>(null, __private.get(this).keys.getOpts().equiv);
+        return new ArrayMap<K, V>(null, __private.get(this).keys.getOpts().equiv);
     }
 
     copy() {
         const $this = __private.get(this);
-        const m = new EquivMap<K, V>();
+        const m = new ArrayMap<K, V>();
         __private.set(m, {
             keys: $this.keys.copy(),
             map: new Map<K, V>($this.map)
@@ -160,7 +156,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
         return __private.get(this).map.values();
     }
 
-    getOpts(): EqMapOpts<K> {
+    getOpts(): ArrayMapOpts<K> {
         return __private.get(this).keys.getOpts();
     }
 }
