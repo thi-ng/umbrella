@@ -69,31 +69,75 @@ export function ensurePred(pred: InterceptorPredicate, err?: InterceptorFn): Int
 /**
  * Specialization of `ensurePred()` to ensure a state value is less than
  * given max at the time when the event is being processed. The optional
- * `path` fnis used to extract or produce the path for the state value to
- * be validated. If omitted, the event's payload item is interpreted as
- * the value path.
+ * `path` fn is used to extract or produce the path for the state value
+ * to be validated. If omitted, the event's payload item is interpreted
+ * as the value path.
  *
- * For example, without a provided `path` function and for an event
- * of this form: `["event-id", "foo.bar"]`, the term `"foo.bar"` would be
+ * For example, without a provided `path` function and for an event of
+ * this form: `["event-id", "foo.bar"]`, the term `"foo.bar"` would be
  * interpreted as path.
  *
- * If the event has this shape: `["event-id", ["foo.bar", 23]]`, we must provide
- * `(e) => e[1][0]` as path function to extract `"foo.bar"` from the event.
+ * If the event has this shape: `["event-id", ["foo.bar", 23]]`, we must
+ * provide `(e) => e[1][0]` as path function to extract `"foo.bar"` from
+ * the event.
  *
+ * @param max
  * @param path path extractor
+ * @param err error interceptor
  */
-export function ensureLessThan(max: number, path?: (e: Event) => Path, err?: InterceptorFn) {
+export function ensureStateLessThan(max: number, path?: (e: Event) => Path, err?: InterceptorFn) {
     return ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) < max, err);
 }
 
 /**
- * Specialization of `ensurePred()` to ensure a state value is greater than
- * given min. See `ensureLessThan()` for further details.
+ * Specialization of `ensurePred()` to ensure a state value is greater
+ * than given min. See `ensureStateLessThan()` for further details.
  *
+ * @param min
  * @param path path extractor
+ * @param err error interceptor
  */
-export function ensureGreaterThan(min: number, path?: (e: Event) => Path, err?: InterceptorFn) {
+export function ensureStateGreaterThan(min: number, path?: (e: Event) => Path, err?: InterceptorFn) {
     return ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) > min, err);
+}
+
+/**
+ * Specialization of `ensurePred()` to ensure a state value is within
+ * given `min` / `max` closed interval. See `ensureStateLessThan()` for
+ * further details.
+ *
+ * @param min
+ * @param max
+ * @param path path extractor
+ * @param err error interceptor
+ */
+export function ensureStateRange(min: number, max: number, path?: (e: Event) => Path, err?: InterceptorFn) {
+    return ensurePred((state, e) => {
+        const x = getIn(state, path ? path(e) : e[1]);
+        return x >= min && x <= max;
+    }, err);
+}
+
+/**
+ * Specialization of `ensurePred()` to ensure an event's payload value
+ * is within given `min` / `max` closed interval. By default, assumes
+ * event format like: `[event-id, value]`. However if `value` is given,
+ * the provided function can be used to extract the value to be
+ * validated from any event. If the value is outside the given interval,
+ * triggers `FX_CANCEL` side effect and if `err` is given, the error
+ * interceptor can return any number of other side effects and so be
+ * used to dispatch alternative events instead.
+ *
+ * @param min
+ * @param max
+ * @param value event value extractor
+ * @param err error interceptor
+ */
+export function ensureParamRange(min: number, max: number, value?: (e: Event) => number, err?: InterceptorFn) {
+    return ensurePred((_, e) => {
+        const x = value ? value(e) : e[1];
+        return x >= min && x <= max;
+    }, err);
 }
 
 /**
