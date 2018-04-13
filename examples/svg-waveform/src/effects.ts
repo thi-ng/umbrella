@@ -6,4 +6,4 @@
 /**
  * Effect description
  */
-export const FOO = "foo";
+// export const FOO = "foo";

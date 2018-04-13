@@ -1,9 +1,10 @@
 import { svgdoc } from "@thi.ng/hiccup-svg/doc";
+import { defs } from "@thi.ng/hiccup-svg/defs";
+import { linearGradient } from "@thi.ng/hiccup-svg/gradients";
 import { polyline } from "@thi.ng/hiccup-svg/polyline";
 import { map } from "@thi.ng/iterators/map";
 import { range } from "@thi.ng/iterators/range";
 import { reduce } from "@thi.ng/iterators/reduce";
-
 import { AppContext } from "../api";
 
 const TAU = Math.PI * 2;
@@ -15,15 +16,28 @@ export interface WaveformOpts {
     harmonics: number;
     hstep: number;
     res: number;
-    osc: number;
+    fill1: string;
+    fill2: string;
+    stroke: string;
 }
 
+/**
+ * Additive synthesis and waveform visualization as SVG
+ *
+ * @param opts
+ */
 export function waveform(ctx: AppContext, opts: WaveformOpts) {
     const phase = opts.phase * Math.PI / 180;
     const amp = opts.amp * 50;
     const fscale = 1 / opts.res * TAU * opts.freq;
     return svgdoc(
-        { class: "w-100 h-100", viewBox: `0 -5 ${opts.res} 10` },
+        { ...ctx.ui.waveform, viewBox: `0 -5 ${opts.res} 10` },
+        defs(
+            linearGradient(
+                "grad", 0, 0, 0, 1,
+                [[0, opts.fill2], [0.5, opts.fill1], [1, opts.fill2]]
+            )
+        ),
         polyline(
             [
                 [0, 0],
@@ -33,7 +47,7 @@ export function waveform(ctx: AppContext, opts: WaveformOpts) {
                 ),
                 [opts.res, 0]
             ],
-            ctx.ui.wave,
+            { stroke: opts.stroke, fill: "url(#grad)", "stoke-linejoin": "round" }
         )
     );
 }

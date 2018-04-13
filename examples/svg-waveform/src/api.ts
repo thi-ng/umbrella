@@ -51,7 +51,7 @@ export interface UIAttribs {
     slider: { root: any, range: any, number: any };
     root: any;
     sidebar: any;
-    wave: any;
+    waveform: any;
 }
 
 /**

@@ -1,9 +1,11 @@
 import { valueSetter, ensureParamRange } from "@thi.ng/interceptors/interceptors"
 import { AppConfig } from "./api";
-import * as ev from "./events";
+// import * as ev from "./events";
 // import * as fx from "./effects";
 
 import { main } from "./components/main";
+
+import { SLIDERS } from "./sliders";
 
 // main App configuration
 export const CONFIG: AppConfig = {
@@ -18,12 +20,23 @@ export const CONFIG: AppConfig = {
 
     // Docs here:
     // https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/event-bus.ts#L14
+
     events: {
-        [ev.SET_AMP]: [ensureParamRange(0, 4), valueSetter("amp")],
-        [ev.SET_FREQ]: [ensureParamRange(0, 10), valueSetter("freq")],
-        [ev.SET_PHASE]: [ensureParamRange(0, 360), valueSetter("phase")],
-        [ev.SET_HARMONICS]: [ensureParamRange(1, 20), valueSetter("harmonics")],
-        [ev.SET_HSTEP]: [ensureParamRange(1, 3), valueSetter("hstep")],
+        // generate event handlers from imported slider definitions
+        // the same defs are used in the main root component (main.ts) to generate
+        // their respective UI components
+        // each of these handlers is dynamically composed of 2 interceptors:
+        // the first to validate the event param, the second to update the app state
+        // the state update will only be executed if validation
+        // succeeds, else the event is canceled
+        ...SLIDERS.reduce(
+            (events, spec) => {
+                events[spec.event] = [
+                    ensureParamRange(spec.min, spec.max),
+                    valueSetter(spec.view)
+                ];
+                return events;
+            }, {})
     },
 
     // custom side effects
@@ -39,11 +52,11 @@ export const CONFIG: AppConfig = {
 
     // initial app state
     initialState: {
-        amp: 2,
-        freq: 2,
-        phase: 0,
+        amp: 2.5,
+        freq: 3,
         harmonics: 20,
         hstep: 2,
+        phase: 0,
     },
 
     // derived view declarations
@@ -51,6 +64,7 @@ export const CONFIG: AppConfig = {
     // a state path or `[path, transformer]` tuple
     // docs here:
     // https://github.com/thi-ng/umbrella/tree/master/packages/atom#derived-views
+    // also see `app.ts` for view initialization
     views: {
         amp: "amp",
         freq: "freq",
@@ -59,17 +73,18 @@ export const CONFIG: AppConfig = {
         hstep: "hstep",
     },
 
-    // component CSS class config using http://tachyons.io/
-    // these attribs are being passed to all/most components
+    // component CSS class config using http://tachyons.io/ these
+    // attribs are made available to all components and allow for easy
+    // re-skinning of the whole app
     ui: {
         slider: {
-            root: { class: "f7 ttu mb3" },
+            root: { class: "ttu mb3" },
             range: { class: "w-100" },
             number: { class: "fr w3 tr ttu bn bg-transparent" },
         },
-        link: { class: "pointer link blue" },
+        link: { class: "pointer link dim black b" },
         root: { class: "vw-100 vh-100 flex" },
-        sidebar: { class: "bg-light-gray pa2 w5" },
-        wave: { stroke: "#f04", fill: "#f04", "stroke-linejoin": "round" }
+        sidebar: { class: "bg-light-gray pa2 pt3 w5 f7" },
+        waveform: { class: "w-100 h-100" }
     }
 };

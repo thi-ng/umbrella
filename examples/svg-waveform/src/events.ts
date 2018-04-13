@@ -3,9 +3,6 @@
 // also see pre-defined event handlers & interceptors in @thi.ng/atom:
 // https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/api.ts#L14
 
-/**
- * Event description
- */
 export const SET_AMP = "set-amp";
 export const SET_FREQ = "set-freq";
 export const SET_PHASE = "set-phase";
