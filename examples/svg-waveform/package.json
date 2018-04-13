@@ -1,0 +1,27 @@
+{
+    "name": "svg-waveform",
+    "version": "0.0.1",
+    "description": "TODO",
+    "repository": "https://github.com/[your-gh-username]/rs-icep",
+    "author": "TODO",
+    "license": "MIT",
+    "scripts": {
+        "build": "webpack --mode production",
+        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+    },
+    "dependencies": {
+        "@thi.ng/atom": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/interceptors": "latest",
+        "@thi.ng/iterators": "latest"
+    },
+    "devDependencies": {
+        "@types/node": "^9.6.2",
+        "typescript": "^2.8.1",
+        "ts-loader": "^4.1.0",
+        "webpack": "^4.5.0",
+        "webpack-cli": "^2.0.14",
+        "webpack-dev-server": "^3.1.1"
+    }
+}
