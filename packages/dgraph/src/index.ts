@@ -1,8 +1,8 @@
 import { ICopy } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { illegalArgs } from "@thi.ng/api/error";
-import { EquivMap } from "@thi.ng/associative/equiv-map";
-import { EquivSet } from "@thi.ng/associative/equiv-set";
+import { ArrayMap } from "@thi.ng/associative/array-map";
+import { ArraySet } from "@thi.ng/associative/array-set";
 import { union } from "@thi.ng/associative/union";
 import { filter } from "@thi.ng/iterators/filter";
 import { reduce } from "@thi.ng/iterators/reduce";
@@ -11,12 +11,12 @@ export class DGraph<T> implements
     Iterable<T>,
     ICopy<DGraph<T>> {
 
-    dependencies: EquivMap<T, EquivSet<T>>;
-    dependents: EquivMap<T, EquivSet<T>>;
+    dependencies: ArrayMap<T, ArraySet<T>>;
+    dependents: ArrayMap<T, ArraySet<T>>;
 
     constructor() {
-        this.dependencies = new EquivMap<T, EquivSet<T>>();
-        this.dependents = new EquivMap<T, EquivSet<T>>();
+        this.dependencies = new ArrayMap<T, ArraySet<T>>();
+        this.dependents = new ArrayMap<T, ArraySet<T>>();
     }
 
     *[Symbol.iterator]() {
@@ -42,10 +42,10 @@ export class DGraph<T> implements
         if (equiv(node, dep) || this.depends(dep, node)) {
             illegalArgs(`Circular dependency between: ${node} & ${dep}`);
         }
-        let d: EquivSet<T> = this.dependencies.get(node);
-        this.dependencies.set(node, d ? d.add(dep) : new EquivSet<T>([dep]));
+        let d: ArraySet<T> = this.dependencies.get(node);
+        this.dependencies.set(node, d ? d.add(dep) : new ArraySet<T>([dep]));
         d = this.dependents.get(dep);
-        this.dependents.set(dep, d ? d.add(node) : new EquivSet<T>([node]));
+        this.dependents.set(dep, d ? d.add(node) : new ArraySet<T>([node]));
         return this;
     }
 
@@ -75,11 +75,11 @@ export class DGraph<T> implements
     }
 
     immediateDependencies(x: T): Set<T> {
-        return this.dependencies.get(x) || new EquivSet<T>();
+        return this.dependencies.get(x) || new ArraySet<T>();
     }
 
     immediateDependents(x: T): Set<T> {
-        return this.dependents.get(x) || new EquivSet<T>();
+        return this.dependents.get(x) || new ArraySet<T>();
     }
 
     isLeaf(x: T) {
@@ -92,8 +92,8 @@ export class DGraph<T> implements
 
     nodes(): Set<T> {
         return union(
-            new EquivSet<T>(this.dependencies.keys()),
-            new EquivSet<T>(this.dependents.keys()),
+            new ArraySet<T>(this.dependencies.keys()),
+            new ArraySet<T>(this.dependents.keys()),
         );
     }
 
@@ -108,14 +108,14 @@ export class DGraph<T> implements
     sort() {
         const sorted: T[] = [];
         const g = this.copy();
-        let queue = new EquivSet(filter((node: T) => g.isLeaf(node), g.nodes()));
+        let queue = new ArraySet(filter((node: T) => g.isLeaf(node), g.nodes()));
         while (true) {
             if (!queue.size) {
                 return sorted.reverse();
             }
             const node = queue.first();
             queue.delete(node);
-            for (let d of (<EquivSet<T>>g.immediateDependencies(node)).copy()) {
+            for (let d of (<ArraySet<T>>g.immediateDependencies(node)).copy()) {
                 g.removeEdge(node, d);
                 if (g.isLeaf(d)) {
                     queue.add(d);
@@ -127,14 +127,14 @@ export class DGraph<T> implements
     }
 }
 
-function transitive<T>(nodes: EquivMap<T, EquivSet<T>>, x: T): EquivSet<T> {
-    const deps: EquivSet<T> = nodes.get(x);
+function transitive<T>(nodes: ArrayMap<T, ArraySet<T>>, x: T): ArraySet<T> {
+    const deps: ArraySet<T> = nodes.get(x);
     if (deps) {
         return reduce(
-            (acc, k: T) => <EquivSet<T>>union(acc, transitive(nodes, k)),
+            (acc, k: T) => <ArraySet<T>>union(acc, transitive(nodes, k)),
             deps,
             deps
         );
     }
-    return new EquivSet<T>();
+    return new ArraySet<T>();
 }
