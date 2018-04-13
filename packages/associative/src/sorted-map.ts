@@ -44,7 +44,7 @@ const makeNode = (level: number, key?, value?) => {
  *
  * William Pugh (creator of this data structure) description:
  *
- * "Skip lists are a probabilistic data structures that have the same
+ * "Skip lists are probabilistic data structures that have the same
  * asymptotic expected time bounds as balanced trees, are simpler,
  * faster and use less space."
  *
@@ -100,15 +100,15 @@ export class SortedMap<K, V> extends Map<K, V> implements
     }
 
     clear() {
-        this.init(null, { ...this.getOpts(), capacity: SortedMap.DEFAULT_CAP });
+        this.init(null, { ...this.opts(), capacity: SortedMap.DEFAULT_CAP });
     }
 
     empty(): SortedMap<K, V> {
-        return new SortedMap<K, V>(null, { ...this.getOpts(), capacity: SortedMap.DEFAULT_CAP });
+        return new SortedMap<K, V>(null, { ...this.opts(), capacity: SortedMap.DEFAULT_CAP });
     }
 
     copy(): SortedMap<K, V> {
-        return new SortedMap<K, V>(this, this.getOpts());
+        return new SortedMap<K, V>(this, this.opts());
     }
 
     compare(o: Map<K, V>) {
@@ -300,7 +300,7 @@ export class SortedMap<K, V> extends Map<K, V> implements
         return values;
     }
 
-    getOpts(growFactor = 1): SortedMapOpts<K> {
+    opts(growFactor = 1): SortedMapOpts<K> {
         const $this = __private.get(this);
         return {
             capacity: $this.cap * growFactor,
@@ -316,7 +316,7 @@ export class SortedMap<K, V> extends Map<K, V> implements
     protected grow() {
         const tmp = new SortedMap(
             this.entries(),
-            this.getOpts(2));
+            this.opts(2));
         __private.set(this, __private.get(tmp));
         __private.delete(tmp);
     }

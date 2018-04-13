@@ -1,5 +1,6 @@
-export * from "./array-map";
 export * from "./array-set";
+export * from "./equiv-map";
+export * from "./ll-set";
 export * from "./sorted-map";
 export * from "./sorted-set";
 

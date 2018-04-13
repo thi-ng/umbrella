@@ -4,21 +4,24 @@
 
 ## About
 
-This package provided alternative Set & Map data type implementations
-with customizable equality semantics, as well as common operations
-working with these types:
+This package provides alternative `Set` & `Map` data type
+implementations with customizable equality semantics, as well as common
+operations working with these types:
 
-- Array based `ArrayMap` & `ArraySet` and
+- Array based `ArraySet`, Linked List based `LLSet`,
   [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap`
-  & `SortedSet` implement the full ES6 Map/Set APIs and additional
-  features
+  & `SortedSet` and customizable `EquivMap` implement the full ES6
+  Map/Set APIs and additional features:
     - range query iterators (via `entries()`, `keys()`, `values()`)
       (sorted types only)
     - `ICopy`, `IEmpty` & `IEquiv` implementations
     - `ICompare` implementation for sorted types
-    - multiple value addition/deletion via `into()` and `disj()`
-    - configurable key equality & comparison
+    - multiple value additions / updates / deletions via `into()`,
+      `dissoc()` (maps) and `disj()` (sets)
+    - configurable key equality & comparison (incl. default
+      implementations)
     - getters w/ optional "not-found" default value
+    - `fromObject()` converters (for maps only)
 - Polymorphic set operations (union, intersection, difference) - works
   with both native and custom Sets and retains their types
 - Natural & selective
@@ -42,11 +45,14 @@ kept immutable (even if technically they're not).
 ### Comparison with ES6 native types
 
 ```ts
-// two objects w/ equal values
+// first two objects w/ equal values
 a = [1, 2];
 b = [1, 2];
+```
 
-// using native implementations
+Using native implementations
+
+```ts
 set = new Set();
 set.add(a);
 set.has(b);
@@ -72,9 +78,22 @@ set.has(b);
 set.has({a: 1});
 // true
 
-map = new assoc.ArrayMap();
+set = new assoc.LLSet();
+set.add(a);
+set.add({a: 1});
+// LLSet { [ 1, 2 ], { a: 1 } }
+set.has(b);
+// true
+set.has({a: 1});
+// true
+
+// by default EquivMap uses ArraySet for its canonical keys
+map = new assoc.EquivMap();
+
+// with custom implementation
+map = new assoc.EquivMap(null, { keys: assoc.ArraySet });
 map.set(a, "foo");
-ArrayMap { [ 1, 2 ] => 'foo' }
+// EquivMap { [ 1, 2 ] => 'foo' }
 map.get(b);
 // "foo"
 
@@ -101,31 +120,40 @@ yarn add @thi.ng/associative
 
 ## Types
 
-### ArrayMap
+### IEquivSet
 
-This `Map` implementation uses a native ES6 `Map` as backing storage for
-key-value pairs and additional `ArraySet` for canonical keys. By default
-it too uses
-[@thi.ng/api/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/equiv.ts)
-for equivalence checking of keys.
+All `Set` implementations in this package implement the
+[IEquivSet](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/api.ts#L7)
+interface, an extension of the native ES6 Set API.
 
 ### ArraySet
 
-This `Set` implementation uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
-as backing storage for values and by default uses
+Simple array based `Set` implementation which by default uses
 [@thi.ng/api/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/equiv.ts)
-for equivalence checking.
+for value equivalence checking.
+
+### LLSet
+
+Similar to `ArraySet`, but uses
+[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons) linked list
+as backing storage for values.
+
+### EquivMap
+
+This `Map` implementation uses a native ES6 `Map` as backing storage for
+its key-value pairs and an additional `IEquivSet` implementation for
+canonical keys. By default uses `ArraySet` for this purpose.
 
 ### SortedMap
 
-This class is an alternative implementation of the ES6 Map API using a
-Skip list as backing store and supports configurable key equality and
-sorting semantics.
+Alternative implementation of the ES6 Map API using a Skip list as
+backing store and support for configurable key equality and sorting
+semantics. Like with sets, uses @thi.ng/api/equiv & @thi.ng/api/compare
+by default.
 
-William Pugh (creator of this data structure) description:
+William Pugh's (creator of this data structure) description:
 
-> "Skip lists are a probabilistic data structures that have the same
+> "Skip lists are probabilistic data structures that have the same
 asymptotic expected time bounds as balanced trees, are simpler, faster
 and use less space."
 
@@ -143,7 +171,8 @@ map = new assoc.SortedMap([
 ]);
 // SortedMap { 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 }
 
-// forward w/ given start key
+// forward selection w/ given start key
+// also works with `keys()` and `values()`
 [...map.entries("c")]
 // [ [ 'c', 3 ], [ 'd', 4 ] ]
 
@@ -151,7 +180,11 @@ map = new assoc.SortedMap([
 [...map.entries("cc")]
 // [ [ 'd', 4 ] ]
 
-// reverse
+// reverse order
+[...map.entries(undefined, true)]
+// [ [ 'd', 4 ], [ 'c', 3 ], [ 'b', 2 ], [ 'a', 1 ] ]
+
+// reverse order from start key
 [...map.entries("c", true)]
 // [ [ 'c', 3 ], [ 'b', 2 ], [ 'a', 1 ] ]
 ```

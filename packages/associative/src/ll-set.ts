@@ -1,30 +1,31 @@
 import { Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
+import { DCons } from "@thi.ng/dcons";
 
 import { EquivSetOpts, IEquivSet, Pair, SEMAPHORE } from "./api";
 
 interface SetProps<T> {
-    vals: T[];
+    vals: DCons<T>;
     equiv: Predicate2<T>;
 }
 
-const __private = new WeakMap<ArraySet<any>, SetProps<any>>();
+const __private = new WeakMap<LLSet<any>, SetProps<any>>();
 
 /**
- * An alternative set implementation to the native ES6 Set type. Uses
- * customizable equality/equivalence predicate and so is more useful
- * when dealing with structured data. Implements full API of native Set
- * and by the default uses `@thi.ng/api/equiv` for equivalence checking.
+ * Similar to `ArraySet`, this class is an alternative implementation of
+ * the native ES6 Set API using a @thi.ng/dcons linked list as backing
+ * store and a customizable value equality / equivalence predicate. By
+ * the default uses `@thi.ng/api/equiv` for equivalence checking.
  *
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.
  */
-export class ArraySet<T> extends Set<T> implements
+export class LLSet<T> extends Set<T> implements
     IEquivSet<T> {
 
     constructor(vals?: Iterable<T>, opts: Partial<EquivSetOpts<T>> = {}) {
         super();
-        __private.set(this, { equiv: opts.equiv || equiv, vals: [] });
+        __private.set(this, { equiv: opts.equiv || equiv, vals: new DCons<T>() });
         vals && this.into(vals);
     }
 
@@ -33,7 +34,7 @@ export class ArraySet<T> extends Set<T> implements
     }
 
     get [Symbol.species]() {
-        return ArraySet;
+        return LLSet;
     }
 
     get size() {
@@ -41,22 +42,23 @@ export class ArraySet<T> extends Set<T> implements
     }
 
     copy() {
-        const s = new ArraySet<T>(null, this.opts());
-        __private.get(s).vals = [...__private.get(this).vals];
+        const $this = __private.get(this);
+        const s = new LLSet<T>(null, this.opts());
+        __private.get(s).vals = $this.vals.copy();
         return s;
     }
 
     empty() {
-        return new ArraySet<T>(null, this.opts());
+        return new LLSet<T>(null, this.opts());
     }
 
     clear() {
-        __private.get(this).vals.length = 0;
+        __private.get(this).vals.clear();
     }
 
     first() {
         if (this.size) {
-            return __private.get(this).vals[0];
+            return __private.get(this).vals.head.value;
         }
     }
 
@@ -86,11 +88,12 @@ export class ArraySet<T> extends Set<T> implements
     get(x: T, notFound?: any) {
         const $this = __private.get(this);
         const eq = $this.equiv;
-        const vals = $this.vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
-            if (eq(vals[i], x)) {
-                return vals[i];
+        let i = $this.vals.head;
+        while (i) {
+            if (eq(i.value, x)) {
+                return i.value;
             }
+            i = i.next;
         }
         return notFound;
     }
@@ -98,12 +101,13 @@ export class ArraySet<T> extends Set<T> implements
     delete(x: T) {
         const $this = __private.get(this)
         const eq = $this.equiv;
-        const vals = $this.vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
-            if (eq(vals[i], x)) {
-                vals.splice(i, 1);
+        let i = $this.vals.head;
+        while (i) {
+            if (eq(i.value, x)) {
+                $this.vals.splice(i, 1);
                 return true;
             }
+            i = i.next;
         }
         return false;
     }
@@ -125,20 +129,21 @@ export class ArraySet<T> extends Set<T> implements
         if (this.size !== o.size) {
             return false;
         }
-        const vals = __private.get(this).vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
-            if (!o.has(vals[i])) {
+        let i = __private.get(this).vals.head;
+        while (i) {
+            if (!o.has(i.value)) {
                 return false;
             }
+            i = i.next;
         }
         return true;
     }
 
     forEach(fn: (val: T, val2: T, set: Set<T>) => void, thisArg?: any) {
-        const vals = __private.get(this).vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
-            const v = vals[i];
-            fn.call(thisArg, v, v, this);
+        let i = __private.get(this).vals.head;
+        while (i) {
+            fn.call(thisArg, i.value, i.value, this);
+            i = i.next;
         }
     }
 

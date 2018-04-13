@@ -1,7 +1,7 @@
-import { ICopy, IEmpty, IEquiv, ICompare } from "@thi.ng/api/api";
+import { ICompare } from "@thi.ng/api/api";
 import { map } from "@thi.ng/iterators/map";
 
-import { Pair, SortedSetOpts } from "./api";
+import { Pair, SortedSetOpts, IEquivSet } from "./api";
 import { SortedMap } from "./sorted-map";
 import { compare } from "@thi.ng/api/compare";
 
@@ -23,10 +23,8 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * same resizing characteristics.
  */
 export class SortedSet<T> extends Set<T> implements
-    ICopy<SortedSet<T>>,
-    ICompare<Set<T>>,
-    IEmpty<SortedSet<T>>,
-    IEquiv {
+    IEquivSet<T>,
+    ICompare<Set<T>> {
 
     /**
      * Creates new instance with optional given values and/or
@@ -57,11 +55,11 @@ export class SortedSet<T> extends Set<T> implements
     }
 
     copy(): SortedSet<T> {
-        return new SortedSet<T>(this.keys(), this.getOpts());
+        return new SortedSet<T>(this.keys(), this.opts());
     }
 
     empty() {
-        return new SortedSet<T>(null, { ...this.getOpts(), capacity: SortedMap.DEFAULT_CAP });
+        return new SortedSet<T>(null, { ...this.opts(), capacity: SortedMap.DEFAULT_CAP });
     }
 
     compare(o: Set<T>) {
@@ -115,6 +113,13 @@ export class SortedSet<T> extends Set<T> implements
         return this;
     }
 
+    into(xs: Iterable<T>) {
+        for (let x of xs) {
+            this.add(x);
+        }
+        return this;
+    }
+
     clear(): void {
         __private.get(this).clear();
     }
@@ -126,6 +131,13 @@ export class SortedSet<T> extends Set<T> implements
 
     delete(value: T): boolean {
         return __private.get(this).delete(value);
+    }
+
+    disj(xs: Iterable<T>) {
+        for (let x of xs) {
+            this.delete(x);
+        }
+        return this;
     }
 
     forEach(fn: (val: T, val2: T, set: Set<T>) => void, thisArg?: any): void {
@@ -142,7 +154,7 @@ export class SortedSet<T> extends Set<T> implements
         return __private.get(this).get(value, notFound);
     }
 
-    getOpts(): SortedSetOpts<T> {
-        return __private.get(this).getOpts();
+    opts(): SortedSetOpts<T> {
+        return __private.get(this).opts();
     }
 }
