@@ -9,7 +9,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn run clean && tsc --declaration",
-        "clean": "rm -rf *.js *.d.ts .nyc_output build doc",
+        "clean": "rm -rf *.js *.d.ts .nyc_output build coverage doc",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn run build && yarn publish --access public",
