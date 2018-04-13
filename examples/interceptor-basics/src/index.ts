@@ -2,7 +2,7 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { EffectDef, EventDef, IDispatch } from "@thi.ng/interceptors/api";
 import { EV_SET_VALUE, EV_UPDATE_VALUE, FX_DISPATCH_NOW } from "@thi.ng/interceptors/api";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { ensureLessThan, ensureGreaterThan, trace } from "@thi.ng/interceptors/interceptors";
+import { ensureStateLessThan, ensureStateGreaterThan, trace } from "@thi.ng/interceptors/interceptors";
 import { start } from "@thi.ng/hdom/start";
 import { Path } from "@thi.ng/paths";
 
@@ -26,11 +26,11 @@ const events: IObjectOf<EventDef> = {
     // note how we also inject the predicate interceptors here to ensure
     // counter values will be always be in the range between 0 .. 100
     [EV_INC]: [
-        ensureLessThan(100, null, () => console.warn("eek, reached max")),
+        ensureStateLessThan(100, null, () => console.warn("eek, reached max")),
         (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, 1]] })
     ],
     [EV_DEC]: [
-        ensureGreaterThan(0, null, () => console.warn("eek, reached min")),
+        ensureStateGreaterThan(0, null, () => console.warn("eek, reached min")),
         (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, -1]] })
     ],
 
