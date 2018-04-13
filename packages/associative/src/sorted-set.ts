@@ -90,8 +90,8 @@ export class SortedSet<T> extends Set<T> implements
         if (this.size !== o.size) {
             return false;
         }
-        for (let x of this) {
-            if (!o.has(x)) {
+        for (let k of this.keys()) {
+            if (!o.has(k)) {
                 return false;
             }
         }

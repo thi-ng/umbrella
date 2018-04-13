@@ -80,8 +80,8 @@ export class ArrayMap<K, V> extends Map<K, V> implements
         if (this.size !== o.size) {
             return false;
         }
-        for (let k of __private.get(this).map.keys()) {
-            if (!equiv(o.get(k), __private.get(this).map.get(k))) {
+        for (let p of __private.get(this).map.entries()) {
+            if (!equiv(o.get(p[0]), p[1])) {
                 return false;
             }
         }

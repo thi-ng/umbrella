@@ -140,8 +140,8 @@ export class SortedMap<K, V> extends Map<K, V> implements
         if (this.size !== o.size) {
             return false;
         }
-        for (let x of this) {
-            if (!equiv(x[1], o.get(x[0]))) {
+        for (let p of this.entries()) {
+            if (!equiv(o.get(p[0]), p[1])) {
                 return false;
             }
         }
