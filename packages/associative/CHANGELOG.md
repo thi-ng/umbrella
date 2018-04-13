@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.3.0...@thi.ng/associative@0.4.0) (2018-04-13)
+
+
+### Features
+
+* **associative:** add renameKeysMap ([bfabe80](https://github.com/thi-ng/umbrella/commit/bfabe80))
+
+
+### Performance Improvements
+
+* **associative:** update equiv() impls ([d1178ac](https://github.com/thi-ng/umbrella/commit/d1178ac))
+
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.2.0...@thi.ng/associative@0.3.0) (2018-04-13)
 
