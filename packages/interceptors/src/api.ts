@@ -3,7 +3,7 @@ import { ReadonlyAtom } from "@thi.ng/atom/api";
 export type InterceptorFn = (state: any, e: Event, bus?: IDispatch, ctx?: InterceptorContext) => InterceptorContext | void;
 export type InterceptorPredicate = (state: any, e: Event, bus?: IDispatch, ctx?: InterceptorContext) => boolean;
 
-export type SideEffect = (x: any, bus?: IDispatch) => any;
+export type SideEffect = (x: any, bus?: IDispatch, ctx?: InterceptorContext) => any;
 export type EventDef = Interceptor | InterceptorFn | (Interceptor | InterceptorFn)[];
 export type EffectDef = SideEffect | [SideEffect, number];
 export type AsyncEffectDef = [string, any, string, string];

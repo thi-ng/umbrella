@@ -399,10 +399,10 @@ export class StatelessEventBus implements
                 const fn = effects[id];
                 if (id !== FX_STATE) {
                     for (let v of val) {
-                        fn(v, this);
+                        fn(v, this, ctx);
                     }
                 } else {
-                    fn(val, this);
+                    fn(val, this, ctx);
                 }
             }
         }
