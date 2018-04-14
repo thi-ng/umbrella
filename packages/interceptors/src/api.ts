@@ -27,17 +27,17 @@ export const FX_STATE = "--state";
 /**
  * Currently unused
  */
-export const FX_REDO_RESTORE = "--redo-restore";
+export const FX_REDO = "--redo";
+
+/**
+ * Currently unused
+ */
+export const FX_UNDO = "--undo";
 
 /**
  * Currently unused
  */
 export const FX_UNDO_STORE = "--undo-store";
-
-/**
- * Currently unused
- */
-export const FX_UNDO_RESTORE = "--undo-restore";
 
 export interface Event extends Array<any> {
     [0]: PropertyKey;
@@ -61,5 +61,8 @@ export interface InterceptorContext {
     [FX_DISPATCH]?: Event | Event[];
     [FX_DISPATCH_NOW]?: Event | Event[];
     [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
+    [FX_UNDO_STORE]?: string | string[];
+    [FX_UNDO]?: string | string[];
+    [FX_REDO]?: string | string[];
     [id: string]: any;
 }

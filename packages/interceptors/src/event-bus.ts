@@ -551,6 +551,22 @@ export class EventBus extends StatelessEventBus implements
      * Resets state atom to provided value (only a single update per
      * processing frame)
      *
+     * #### `FX_UNDO`
+     *
+     * Calls `ctx[fxarg].undo()` where `fxarg` is the value assigned to
+     * the `FX_UNDO` side effect by an event handler, e.g.
+     *
+     * ```
+     * // example event handler
+     * // assumes that `ctx.history` is a @thi.ng/atom/History instance or similar
+     * (state, e, bus, ctx) => ({ [FX_UNDO]: "history" })
+     * ```
+     *
+     * #### `FX_REDO`
+     *
+     * Similar to `FX_UNDO`, but calls `ctx[fxarg].redo()` where `fxarg`
+     * is the value assigned to the `FX_REDO` side effect by an event
+     * handler.
      */
     addBuiltIns(): any {
         super.addBuiltIns();
@@ -563,7 +579,11 @@ export class EventBus extends StatelessEventBus implements
                 ({ [FX_STATE]: updateIn(state, path, fn, ...args) }));
 
         // effects
-        this.addEffect(FX_STATE, (x) => this.state.reset(x), -1000);
+        this.addEffects({
+            [FX_STATE]: [(x) => this.state.reset(x), -1000],
+            [api.FX_UNDO]: [(x, _, ctx) => ctx[x].undo(), -1000],
+            [api.FX_REDO]: [(x, _, ctx) => ctx[x].redo(), -1000],
+        });
     }
 
     /**
