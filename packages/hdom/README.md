@@ -19,6 +19,7 @@ This project is part of the
 - [Example projects](#example-projects)
     - [Dataflow graph SVG components](#dataflow-graph-svg-components)
     - [SPA with router and event bus](#spa-with-router-and-event-bus)
+    - [Additive waveform synthesis & SVG visualization](#additive-waveform-synthesis--svg-visualization)
     - [Multiple apps with & without shared state](#multiple-apps-with--without-shared-state)
     - [Interceptor based event handling](#interceptor-based-event-handling)
     - [Todo list](#todo-list)
@@ -427,6 +428,8 @@ included in this repo are using this package in one way or another.
 Please check them out to learn more. Each is heavily commented, incl.
 best practice notes.
 
+Non-exhaustive list:
+
 ### Dataflow graph SVG components
 
 This is a preview of the upcoming
@@ -442,6 +445,10 @@ more advanced demos, combining functionality of several other @thi.ng
 packages.
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [Live version](http://demo.thi.ng/umbrella/router-basics/)
+
+### Additive waveform synthesis & SVG visualization
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) | [Live version](http://demo.thi.ng/umbrella/svg-waveform/)
 
 ### Multiple apps with & without shared state
 
