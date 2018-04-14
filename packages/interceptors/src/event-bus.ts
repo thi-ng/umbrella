@@ -350,12 +350,12 @@ export class StatelessEventBus implements
      * invocations of the same effect type per frame. If no side effects
      * are requested, an interceptor can return `undefined`.
      *
-     * Processing of the current event stops immediatedly, if an
+     * Processing of the current event stops immediately, if an
      * interceptor sets the `FX_CANCEL` side effect key to `true`.
      * However, the results of any previous interceptors (incl. the one
      * which cancelled) are kept and processed further as usual.
      *
-     * @param fx
+     * @param ctx
      * @param e
      */
     protected processEvent(ctx: api.InterceptorContext, e: api.Event) {
@@ -369,7 +369,7 @@ export class StatelessEventBus implements
         for (let i = 0; i <= n && !ctx[FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
-                this.mergeEffects(ctx, icep.pre(ctx[FX_STATE], e, this));
+                this.mergeEffects(ctx, icep.pre(ctx[FX_STATE], e, this, ctx));
             }
             hasPost = hasPost || !!icep.post;
         }
@@ -379,7 +379,7 @@ export class StatelessEventBus implements
         for (let i = n; i >= 0 && !ctx[FX_CANCEL]; i--) {
             const icep = iceps[i];
             if (icep.post) {
-                this.mergeEffects(ctx, icep.post(ctx[FX_STATE], e, this));
+                this.mergeEffects(ctx, icep.post(ctx[FX_STATE], e, this, ctx));
             }
         }
     }
@@ -388,7 +388,7 @@ export class StatelessEventBus implements
      * Takes a collection of side effects generated during event
      * processing and applies them in order of configured priorities.
      *
-     * @param fx
+     * @param ctx
      */
     protected processEffects(ctx: api.InterceptorContext) {
         const effects = this.effects;
@@ -573,13 +573,18 @@ export class EventBus extends StatelessEventBus implements
      * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
      * the new event will be added to the currently processed batch and
      * therefore executed in the same frame. Also see `dispatchNow()`.
+     *
+     * If the optional `ctx` arg is provided it will be merged into the
+     * `InterceptorContext` object passed to each interceptor. Since the
+     * merged object is also used to collect triggered side effects,
+     * care must be taken that there're no key name clashes.
      */
-    processQueue() {
+    processQueue(ctx?: api.InterceptorContext) {
         if (this.eventQueue.length > 0) {
             const prev = this.state.deref();
             this.currQueue = [...this.eventQueue];
             this.eventQueue.length = 0;
-            const ctx = this.currCtx = { [FX_STATE]: prev };
+            ctx = this.currCtx = { ...ctx, [FX_STATE]: prev };
             for (let e of this.currQueue) {
                 this.processEvent(ctx, e);
             }
