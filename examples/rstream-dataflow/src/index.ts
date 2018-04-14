@@ -3,12 +3,12 @@ import { Atom } from "@thi.ng/atom/atom";
 import { start } from "@thi.ng/hdom";
 import { getIn } from "@thi.ng/paths";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
+import { gestureStream } from "@thi.ng/rstream-gestures";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { choices } from "@thi.ng/transducers/iter/choices";
 import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { gestureStream } from "./gesture-stream";
 import { extract, initGraph, node, node1, mul } from "./nodes";
 import { circle } from "./circle";
 
@@ -49,7 +49,7 @@ const graph = initGraph(db, {
     // extracts current mouse/touch position from gesture tuple
     // the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
     mpos: {
-        fn: extract([1, 0]),
+        fn: extract([1, "pos"]),
         ins: [{ stream: () => gestures }],
         out: "mpos"
     },
@@ -58,7 +58,7 @@ const graph = initGraph(db, {
     // the `[1, 1]` is the lookup path, i.e. `gesture[1][1]`
     // (only defined during drag gestures)
     clickpos: {
-        fn: extract([1, 1]),
+        fn: extract([1, "click"]),
         ins: [{ stream: () => gestures }],
         out: "clickpos"
     },
@@ -69,7 +69,7 @@ const graph = initGraph(db, {
     // `node1` is a helper function for nodes using only a single input
     dist: {
         fn: node1(map((gesture) => {
-            const delta = getIn(gesture, [1, 2]);
+            const delta = getIn(gesture, [1, "delta"]);
             return delta && Math.hypot.apply(null, delta) | 0;
         })),
         ins: [{ stream: () => gestures }],
