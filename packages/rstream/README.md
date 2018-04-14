@@ -64,10 +64,11 @@ are provided too:
   can be used directly in UI components based on
   [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
-Furthermore, the
-[@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log)
-package provides an extensible multi-level, multi-target logging
-solution based on this library.
+### Supporting packages
+
+- [@thi.ng/rstream-csp](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-csp) - CSP channel to stream adapter
+- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures) - unified mouse, single-touch & wheel event stream
+- [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log) - extensible multi-level, multi-target structured logging
 
 ## Conceptual differences to RxJS
 

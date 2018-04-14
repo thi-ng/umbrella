@@ -17,7 +17,7 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 9 | [login-form](./login-form) | basic SPA without router | atom, hdom | intermediate |
 | 10 | [pointfree-svg](./pointfree-svg) | generate SVG using pointfree DSL | hiccup, hdom-components, pointfree-lang | intermediate |
 | 11 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, interceptors, router | advanced |
-| 12 | [rstream-dataflow](./rstream-dataflow) | dataflow graph execution | atom, hdom, resolve-map, rstream, transducers | intermediate |
+| 12 | [rstream-dataflow](./rstream-dataflow) | dataflow graph execution | atom, hdom, resolve-map, rstream, rstream-gestures, transducers | intermediate |
 | 13 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
 | 13 | [svg-waveform](./svg-waveform) | hdom SVG generation / synthesis | hdom, hiccup-svg, interceptors, iterators | intermediate |
 | 14 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
