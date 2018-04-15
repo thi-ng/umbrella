@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/rstream-gestures",
     "version": "0.1.1",
-    "description": "TODO",
+    "description": "Unified mouse, mouse wheel & single-touch event stream abstraction",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
