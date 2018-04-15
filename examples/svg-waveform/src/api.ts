@@ -47,6 +47,9 @@ export interface AppViews extends Record<keyof AppViews, IView<any>> {
  * component functions.
  */
 export interface UIAttribs {
+    button: any;
+    buttongroup: any;
+    footer: any;
     link: any;
     slider: { root: any, range: any, number: any };
     root: any;

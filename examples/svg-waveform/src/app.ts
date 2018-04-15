@@ -1,10 +1,12 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { Atom } from "@thi.ng/atom/atom";
+import { History } from "@thi.ng/atom/history";
 import { isArray } from "@thi.ng/checks/is-array";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
 
 import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
+import * as ev from "./events";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own
@@ -22,10 +24,12 @@ export class App {
     config: AppConfig;
     ctx: AppContext;
     state: Atom<any>;
+    history: History<any>;
 
     constructor(config: AppConfig) {
         this.config = config;
         this.state = new Atom(config.initialState || {});
+        this.history = new History(this.state, 1000);
         this.ctx = {
             bus: new EventBus(this.state, config.events, config.effects),
             views: <AppViews>{},
@@ -69,7 +73,7 @@ export class App {
         start(
             this.config.domRoot,
             () => {
-                if (this.ctx.bus.processQueue() || firstFrame) {
+                if (this.ctx.bus.processQueue({ history: this.history }) || firstFrame) {
                     firstFrame = false;
                     return root();
                 }
@@ -83,6 +87,20 @@ export class App {
      * Automatically called from `start()`
      */
     init() {
+        // initialize key event handlers for undo/redo
+        document.addEventListener("keypress", (e) => {
+            // e.preventDefault();
+            if (e.ctrlKey) {
+                if (e.key === "z") {
+                    this.ctx.bus.dispatch([ev.UNDO]);
+                } else if (e.key === "y") {
+                    this.ctx.bus.dispatch([ev.REDO]);
+                }
+            }
+        });
         // ...add init tasks here
+
+        // record snapshot of initial state
+        this.history.record();
     }
 }

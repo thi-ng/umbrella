@@ -1,16 +1,23 @@
 import { AppContext } from "../api";
+import * as ev from "../events";
 
+import { buttonGroup } from "./button-group";
+import { link } from "./link";
 import { slider, SliderOpts } from "./slider";
 
 export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
     const sliders = specs.map((s) => slider(ctx, s));
     return ["div", ctx.ui.sidebar,
+        ["h2.mt0", "Additive synthesis"],
         ...sliders,
-        ["div.absolute.bottom-1",
-            ["a", { ...ctx.ui.link, href: "https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform" }, "Source"],
+        [buttonGroup,
+            [[ev.UNDO], "undo"],
+            [[ev.REDO], "redo"]],
+        ["div", ctx.ui.footer,
+            [link, "https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform", "Source"],
             ["br"],
             "Made with ",
-            ["a", { ...ctx.ui.link, href: "https://github.com/thi-ng/umbrella/tree/master/packages/hdom" }, "@thi.ng/hdom"]
+            [link, "https://github.com/thi-ng/umbrella/tree/master/packages/hdom", "@thi.ng/hdom"]
         ]
     ];
 }

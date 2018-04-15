@@ -1,4 +1,4 @@
-import { valueSetter, ensureParamRange } from "@thi.ng/interceptors/interceptors"
+import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors/interceptors"
 import { AppConfig } from "./api";
 // import * as ev from "./events";
 // import * as fx from "./effects";
@@ -25,14 +25,17 @@ export const CONFIG: AppConfig = {
         // generate event handlers from imported slider definitions
         // the same defs are used in the main root component (main.ts) to generate
         // their respective UI components
-        // each of these handlers is dynamically composed of 2 interceptors:
-        // the first to validate the event param, the second to update the app state
-        // the state update will only be executed if validation
-        // succeeds, else the event is canceled
+        // each of these handlers is dynamically composed of 3 interceptors:
+        // 1) validate the event param
+        // 2) record undo history snapshot
+        // 3) update param in app state
+        // the last 2 steps are only be executed if validation succeeded
+        // else the event is canceled
         ...SLIDERS.reduce(
             (events, spec) => {
                 events[spec.event] = [
                     ensureParamRange(spec.min, spec.max),
+                    snapshot(),
                     valueSetter(spec.view)
                 ];
                 return events;
@@ -77,14 +80,17 @@ export const CONFIG: AppConfig = {
     // attribs are made available to all components and allow for easy
     // re-skinning of the whole app
     ui: {
-        slider: {
-            root: { class: "ttu mb3" },
-            range: { class: "w-100" },
-            number: { class: "fr w3 tr ttu bn bg-transparent" },
-        },
+        button: { class: "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight" },
+        buttongroup: { class: "flex" },
+        footer: { class: "absolute bottom-1" },
         link: { class: "pointer link dim black b" },
         root: { class: "vw-100 vh-100 flex" },
         sidebar: { class: "bg-light-gray pa2 pt3 w5 f7" },
+        slider: {
+            root: { class: "mb3 ttu b tracked-tight" },
+            range: { class: "w-100" },
+            number: { class: "fr w3 tr ttu bn bg-transparent" },
+        },
         waveform: { class: "w-100 h-100" }
     }
 };
