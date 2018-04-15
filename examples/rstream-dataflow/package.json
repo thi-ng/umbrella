@@ -20,9 +20,9 @@
         "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/paths": "latest",
-        "@thi.ng/resolve-map": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/rstream-gestures": "latest",
+        "@thi.ng/rstream-graph": "latest",
         "@thi.ng/transducers": "latest"
     }
 }

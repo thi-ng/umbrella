@@ -2,16 +2,15 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/api/error";
 import { IAtom } from "@thi.ng/atom/api";
 import { isString } from "@thi.ng/checks/is-string";
-import { Path, getIn } from "@thi.ng/paths";
 import { resolveMap } from "@thi.ng/resolve-map";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromView } from "@thi.ng/rstream/from/view";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { map } from "@thi.ng/transducers/xform/map";
+import { sync, StreamSync } from "@thi.ng/rstream/stream-sync";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import { NodeSpec } from "./api";
+import { Subscription } from "../../rstream/subscription";
 
 /**
  * Dataflow graph initialization function. Takes an object of
@@ -85,7 +84,7 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
  * @param arity
  */
 export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
-    (src: ISubscribable<any>[]) => {
+    (src: ISubscribable<any>[]): StreamSync<any, any> => {
         if (arity !== undefined && src.length !== arity) {
             illegalArgs(`wrong number of inputs: got ${src.length}, but needed ${arity}`);
         }
@@ -98,51 +97,4 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
  * @param xform
  */
 export const node1 = (xform: Transducer<any, any>) =>
-    ([src]: ISubscribable<any>[]) => src.subscribe(xform);
-
-/**
- * Addition node. Supports any number of inputs.
- * Currently unused, but illustrates use of `node` HOF.
- */
-export const add = node(
-    map((ports: IObjectOf<number>) => {
-        let acc = 0;
-        let v;
-        for (let p in ports) {
-            if ((v = ports[p]) == null) return;
-            acc += v;
-        }
-        return acc;
-    }));
-
-/**
- * Multiplication node. Supports any number of inputs.
- * Currently unused, but illustrates use of `node` HOF.
- */
-export const mul = node(
-    map((ports: IObjectOf<number>) => {
-        let acc = 1;
-        let v;
-        for (let p in ports) {
-            if ((v = ports[p]) == null) return;
-            acc *= v;
-        }
-        return acc;
-    }));
-
-/**
- * Substraction node. 2 inputs.
- * Currently unused, but illustrates use of `node` HOF.
- */
-export const sub = node(map((ports: IObjectOf<number>) => ports.a - ports.b), 2);
-
-/**
- * Division node. 2 inputs.
- * Currently unused, but illustrates use of `node` HOF.
- */
-export const div = node(map((ports: IObjectOf<number>) => ports.a / ports.b), 2);
-
-/**
- * Nested value extraction node. Higher order function. Only 1 input.
- */
-export const extract = (path: Path) => node1(map((x) => getIn(x, path)));
+    ([src]: ISubscribable<any>[]): Subscription<any, any> => src.subscribe(xform);
