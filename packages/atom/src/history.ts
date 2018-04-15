@@ -2,7 +2,7 @@ import { Predicate2, Watch } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { Path, getIn, setIn, updateIn } from "@thi.ng/paths";
 
-import { IAtom, SwapFn, IView, ViewTransform } from "./api";
+import { IAtom, IHistory, IView, SwapFn, ViewTransform } from "./api";
 import { View } from "./view";
 
 /**
@@ -13,7 +13,7 @@ import { View } from "./view";
  * `record()` directly.
  */
 export class History<T> implements
-    IAtom<T> {
+    IHistory<T> {
 
     state: IAtom<T>;
     maxLen: number;
@@ -137,12 +137,21 @@ export class History<T> implements
      * @param state
      */
     record(state?: T) {
-        if (this.history.length >= this.maxLen) {
-            this.history.shift();
+        const history = this.history;
+        const n = history.length;
+        if (n >= this.maxLen) {
+            history.shift();
         }
         // check for arg given and not if `state == null` we want to
         // allow null/undefined as possible values
-        this.history.push(arguments.length > 0 ? state : this.state.deref());
+        if (!arguments.length) {
+            state = this.state.deref();
+            if (!n || this.changed(history[n - 1], state)) {
+                history.push(state);
+            }
+        } else {
+            history.push(state);
+        }
         this.future.length = 0;
     }
 

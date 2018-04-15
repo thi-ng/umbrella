@@ -49,3 +49,14 @@ export interface CursorOpts<T> {
     validate?: api.Predicate<T>;
     id?: string;
 }
+
+export interface IHistory<T> extends IAtom<T> {
+    canUndo(): boolean;
+    canRedo(): boolean;
+
+    undo(): T;
+    redo(): T;
+    clear(): void;
+
+    record(): void;
+}
