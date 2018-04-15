@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.5"></a>
+## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.4...@thi.ng/hdom@3.0.5) (2018-04-15)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/hdom
+
 <a name="3.0.4"></a>
 ## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.3...@thi.ng/hdom@3.0.4) (2018-04-14)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.2.5...@thi.ng/atom@1.3.0) (2018-04-15)
+
+
+### Features
+
+* **atom:** update History.record(), add IHistory interface ([cf42260](https://github.com/thi-ng/umbrella/commit/cf42260))
+
+
+
+
 <a name="1.2.5"></a>
 ## [1.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.2.4...@thi.ng/atom@1.2.5) (2018-04-13)
 

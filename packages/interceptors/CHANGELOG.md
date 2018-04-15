@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.2.0...@thi.ng/interceptors@1.3.0) (2018-04-15)
+
+
+### Features
+
+* **interceptors:** add default FX_UNDO/REDO side fx ([a102eb7](https://github.com/thi-ng/umbrella/commit/a102eb7))
+* **interceptors:** add undo/redo handlers/fx & snapshot() interceptor ([3c92f7e](https://github.com/thi-ng/umbrella/commit/3c92f7e))
+* **interceptors:** update processQueue(), expose full ctx to handlers ([183af61](https://github.com/thi-ng/umbrella/commit/183af61))
+
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.1.5...@thi.ng/interceptors@1.2.0) (2018-04-13)
 
