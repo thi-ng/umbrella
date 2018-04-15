@@ -25,19 +25,32 @@ export const FX_FETCH = "--fetch";
 export const FX_STATE = "--state";
 
 /**
- * Currently unused
+ * Event ID to trigger redo action.
+ * See `EventBus.addBuiltIns()` for further details.
+ * Also see `snapshot()` interceptor docs.
  */
-export const FX_REDO = "--redo";
+export const EV_REDO = "--redo";
 
 /**
- * Currently unused
+ * Event ID to trigger undo action.
+ * See `EventBus.addBuiltIns()` for further details.
+ * Also see `snapshot()` interceptor docs.
  */
-export const FX_UNDO = "--undo";
+export const EV_UNDO = "--undo";
 
 /**
- * Currently unused
+ * Side effect ID to execute redo action.
+ * See `EventBus.addBuiltIns()` for further details.
+ * Also see `snapshot()` interceptor docs.
  */
-export const FX_UNDO_STORE = "--undo-store";
+export const FX_REDO = EV_REDO;
+
+/**
+ * Side effect ID to execute undo action.
+ * See `EventBus.addBuiltIns()` for further details.
+ * Also see `snapshot()` interceptor docs.
+ */
+export const FX_UNDO = EV_UNDO;
 
 export interface Event extends Array<any> {
     [0]: PropertyKey;
@@ -61,7 +74,6 @@ export interface InterceptorContext {
     [FX_DISPATCH]?: Event | Event[];
     [FX_DISPATCH_NOW]?: Event | Event[];
     [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
-    [FX_UNDO_STORE]?: string | string[];
     [FX_UNDO]?: string | string[];
     [FX_REDO]?: string | string[];
     [id: string]: any;

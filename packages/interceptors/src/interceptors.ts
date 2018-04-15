@@ -10,13 +10,45 @@ export function trace(_, e) {
 }
 
 /**
- * Higher-order interceptor. Return interceptor which unpacks payload
+ * Higher-order interceptor. Returns interceptor which unpacks payload
  * from event and assigns it as is to given side effect ID.
  *
- * @param id side effect ID
+ * @param fxID side effect ID
  */
-export function forwardSideFx(id: string) {
-    return (_, [__, body]) => ({ [id]: body });
+export function forwardSideFx(fxID: string): InterceptorFn {
+    return (_, [__, body]) => ({ [fxID]: body });
+}
+
+/**
+ * Higher-order interceptor. Returns interceptor which calls
+ * `ctx[id].record()`, where `ctx` is the currently active
+ * `InterceptorContext` passed to all event handlers and `ctx[id]` is
+ * assumed to be a @thi.ng/atom `History` instance, passed to
+ * `processQueue()`. The default ID for the history instance is
+ * `"history"`.
+ *
+ * Example usage:
+ *
+ * ```
+ * state = new Atom({});
+ * history = new History(state);
+ * bus = new EventBus(state);
+ * // register event handler
+ * // each time the `foo` event is triggered, a snapshot of
+ * // current app state is recorded first
+ * bus.addHandlers({
+ *  foo: [snapshot(), valueSetter("foo")]
+ *  undo: [forwardSideFx(FX_UNDO)]
+ * });
+ * ...
+ * // pass history instance via interceptor context to handlers
+ * bus.processQueue({ history });
+ * ```
+ *
+ * @param id
+ */
+export function snapshot(id = "history"): InterceptorFn {
+    return (_, __, ___, ctx) => (ctx[id].record());
 }
 
 /**

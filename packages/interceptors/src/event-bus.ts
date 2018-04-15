@@ -19,7 +19,7 @@ const FX_STATE = api.FX_STATE;
  *
  * Events processed by this class are simple 2-element tuples/arrays of
  * this form: `["event-id", payload?]`, where the `payload` is optional
- * and can be any data.
+ * and can be of any type.
  *
  * Events are processed by registered handlers which transform each
  * event into a number of side effect descriptions to be executed later.
@@ -83,7 +83,8 @@ export class StatelessEventBus implements
      * definitions (all optional).
      *
      * In addition to the user provided handlers & effects, a number of
-     * built-ins are added automatically. See `addBuiltIns()`.
+     * built-ins are added automatically. See `addBuiltIns()`. User
+     * handlers can override built-ins.
      *
      * @param handlers
      * @param effects
@@ -500,7 +501,8 @@ export class EventBus extends StatelessEventBus implements
      * automatically creates an `Atom` with empty state object.
      *
      * In addition to the user provided handlers & effects, a number of
-     * built-ins are added automatically. See `addBuiltIns()`.
+     * built-ins are added automatically. See `addBuiltIns()`. User
+     * handlers can override built-ins.
      *
      * @param state
      * @param handlers
@@ -521,7 +523,7 @@ export class EventBus extends StatelessEventBus implements
 
     /**
      * Adds same built-in event & side effect handlers as in
-     * `StatelessEventBus.addBuiltIns()` with the following additions:
+     * `StatelessEventBus.addBuiltIns()` and the following additions:
      *
      * ### Handlers
      *
@@ -543,6 +545,16 @@ export class EventBus extends StatelessEventBus implements
      * ```
      * [EV_UPDATE_VALUE, ["path.to.value", (x, y) => x + y, 1]]
      * ```
+     *
+     * #### `EV_UNDO`
+     *
+     * Triggers `FX_UNDO` side effect with context key `"history"`. See
+     * side effect description below.
+     *
+     * #### `EV_REDO`
+     *
+     * Triggers `FX_REDO` side effect with context key `"history"`. See
+     * side effect description below.
      *
      * ### Side effects
      *
@@ -571,18 +583,20 @@ export class EventBus extends StatelessEventBus implements
     addBuiltIns(): any {
         super.addBuiltIns();
         // handlers
-        this.addHandler(api.EV_SET_VALUE,
-            (state, [_, [path, val]]) =>
-                ({ [FX_STATE]: setIn(state, path, val) }));
-        this.addHandler(api.EV_UPDATE_VALUE,
-            (state, [_, [path, fn, ...args]]) =>
-                ({ [FX_STATE]: updateIn(state, path, fn, ...args) }));
+        this.addHandlers({
+            [api.EV_SET_VALUE]: (state, [_, [path, val]]) =>
+                ({ [FX_STATE]: setIn(state, path, val) }),
+            [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) =>
+                ({ [FX_STATE]: updateIn(state, path, fn, ...args) }),
+            [api.EV_UNDO]: () => ({ [api.FX_UNDO]: "history" }),
+            [api.EV_REDO]: () => ({ [api.FX_REDO]: "history" }),
+        });
 
         // effects
         this.addEffects({
-            [FX_STATE]: [(x) => this.state.reset(x), -1000],
-            [api.FX_UNDO]: [(x, _, ctx) => ctx[x].undo(), -1000],
-            [api.FX_REDO]: [(x, _, ctx) => ctx[x].redo(), -1000],
+            [FX_STATE]: [(state) => this.state.reset(state), -1000],
+            [api.FX_UNDO]: [(id, _, ctx) => ctx[id].undo(), -1001],
+            [api.FX_REDO]: [(id, _, ctx) => ctx[id].redo(), -1001],
         });
     }
 
@@ -598,6 +612,15 @@ export class EventBus extends StatelessEventBus implements
      * `InterceptorContext` object passed to each interceptor. Since the
      * merged object is also used to collect triggered side effects,
      * care must be taken that there're no key name clashes.
+     *
+     * In order to use the built-in `EV_UNDO`, `EV_REDO` events and
+     * their related side effects, users MUST provide a
+     * @thi.ng/atom History (or compatible undo history instance) via
+     * the `ctx` arg, e.g.
+     *
+     * ```
+     * bus.processQueue({ history });
+     * ```
      */
     processQueue(ctx?: api.InterceptorContext) {
         if (this.eventQueue.length > 0) {
