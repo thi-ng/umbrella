@@ -1,9 +1,7 @@
-const path = require("path");
-
 module.exports = {
     entry: "./src/index.ts",
     output: {
-        path: path.resolve(__dirname, "public"),
+        path: __dirname,
         filename: "bundle.js"
     },
     resolve: {
@@ -15,6 +13,6 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: "public"
+        contentBase: "."
     }
 };
