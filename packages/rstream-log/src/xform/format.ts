@@ -1,7 +1,7 @@
 import { Transducer } from "@thi.ng/transducers/api";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { BodyFormat, DateFormat, LogEntryObj, Level, LogEntry } from "./api";
+import { BodyFormat, DateFormat, LogEntryObj, Level, LogEntry } from "../api";
 
 export function formatString(dtFmt?: DateFormat, bodyFmt?: BodyFormat): Transducer<LogEntry, string> {
     dtFmt = dtFmt || ((dt) => new Date(dt).toISOString());
