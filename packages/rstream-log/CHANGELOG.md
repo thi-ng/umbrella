@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@0.6.9...@thi.ng/rstream-log@1.0.0) (2018-04-15)
+
+
+### Code Refactoring
+
+* **rstream-log:** update package structure & readme example ([e6c75b4](https://github.com/thi-ng/umbrella/commit/e6c75b4))
+
+
+### BREAKING CHANGES
+
+* **rstream-log:** update package structure
+
+- rename src/transform => src/xform
+- move src/format.ts => src/xform/format.ts
+
+
+
+
 <a name="0.6.9"></a>
 ## [0.6.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@0.6.8...@thi.ng/rstream-log@0.6.9) (2018-04-15)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.2.9...@thi.ng/rstream@1.3.0) (2018-04-15)
+
+
+### Features
+
+* **rstream:** add Subscription.transform() ([2164ddf](https://github.com/thi-ng/umbrella/commit/2164ddf))
+
+
+
+
 <a name="1.2.9"></a>
 ## [1.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.2.8...@thi.ng/rstream@1.2.9) (2018-04-15)
 
