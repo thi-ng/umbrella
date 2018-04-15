@@ -38,9 +38,11 @@ export function forwardSideFx(fxID: string): InterceptorFn {
  * // current app state is recorded first
  * bus.addHandlers({
  *  foo: [snapshot(), valueSetter("foo")]
- *  undo: [forwardSideFx(FX_UNDO)]
  * });
  * ...
+ * // trigger event
+ * bus.dispatch(["foo", 23]);
+ *
  * // pass history instance via interceptor context to handlers
  * bus.processQueue({ history });
  * ```

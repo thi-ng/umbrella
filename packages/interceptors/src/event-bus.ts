@@ -2,6 +2,7 @@ import { IObjectOf, IDeref } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/api/error";
 import { IAtom } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPromise } from "@thi.ng/checks/is-promise";
@@ -548,37 +549,30 @@ export class EventBus extends StatelessEventBus implements
      *
      * #### `EV_UNDO`
      *
-     * Triggers `FX_UNDO` side effect with context key `"history"`. See
-     * side effect description below.
+     * Calls `ctx[id].undo()` and uses return value as new state.
+     * Assumes `ctx[id]` is a @thi.ng/atom `History` instance, provided
+     * via e.g. `processQueue({ history })`. The event can be triggered
+     * with or without ID. By default `"history"` is used as default key
+     * to lookup the `History` instance.
+     *
+     * ```
+     * // using default ID
+     * bus.dispatch([EV_UNDO]);
+     *
+     * // using custom ID
+     * bus.dispatch([EV_UNDO, "custom"]);
+     * ```
      *
      * #### `EV_REDO`
      *
-     * Triggers `FX_REDO` side effect with context key `"history"`. See
-     * side effect description below.
+     * Similar to `EV_UNDO`, but causes state redo.
      *
      * ### Side effects
      *
      * #### `FX_STATE`
      *
      * Resets state atom to provided value (only a single update per
-     * processing frame)
-     *
-     * #### `FX_UNDO`
-     *
-     * Calls `ctx[fxarg].undo()` where `fxarg` is the value assigned to
-     * the `FX_UNDO` side effect by an event handler, e.g.
-     *
-     * ```
-     * // example event handler
-     * // assumes that `ctx.history` is a @thi.ng/atom/History instance or similar
-     * (state, e, bus, ctx) => ({ [FX_UNDO]: "history" })
-     * ```
-     *
-     * #### `FX_REDO`
-     *
-     * Similar to `FX_UNDO`, but calls `ctx[fxarg].redo()` where `fxarg`
-     * is the value assigned to the `FX_REDO` side effect by an event
-     * handler.
+     * processing frame).
      */
     addBuiltIns(): any {
         super.addBuiltIns();
@@ -588,15 +582,25 @@ export class EventBus extends StatelessEventBus implements
                 ({ [FX_STATE]: setIn(state, path, val) }),
             [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) =>
                 ({ [FX_STATE]: updateIn(state, path, fn, ...args) }),
-            [api.EV_UNDO]: () => ({ [api.FX_UNDO]: "history" }),
-            [api.EV_REDO]: () => ({ [api.FX_REDO]: "history" }),
+            [api.EV_UNDO]: (_, [__, id = "history"], ___, ctx) => {
+                if (implementsFunction(ctx[id], "undo")) {
+                    return { [FX_STATE]: ctx[id].undo() }
+                } else {
+                    console.warn("no history in context");
+                }
+            },
+            [api.EV_REDO]: (_, [__, id = "history"], ___, ctx) => {
+                if (implementsFunction(ctx[id], "redo")) {
+                    return { [FX_STATE]: ctx[id].redo() }
+                } else {
+                    console.warn("no history in context");
+                }
+            }
         });
 
         // effects
         this.addEffects({
             [FX_STATE]: [(state) => this.state.reset(state), -1000],
-            [api.FX_UNDO]: [(id, _, ctx) => ctx[id].undo(), -1001],
-            [api.FX_REDO]: [(id, _, ctx) => ctx[id].redo(), -1001],
         });
     }
 
@@ -613,10 +617,9 @@ export class EventBus extends StatelessEventBus implements
      * merged object is also used to collect triggered side effects,
      * care must be taken that there're no key name clashes.
      *
-     * In order to use the built-in `EV_UNDO`, `EV_REDO` events and
-     * their related side effects, users MUST provide a
-     * @thi.ng/atom History (or compatible undo history instance) via
-     * the `ctx` arg, e.g.
+     * In order to use the built-in `EV_UNDO`, `EV_REDO` events, users
+     * MUST provide a @thi.ng/atom History (or compatible undo history
+     * instance) via the `ctx` arg, e.g.
      *
      * ```
      * bus.processQueue({ history });

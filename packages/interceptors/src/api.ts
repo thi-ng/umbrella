@@ -38,20 +38,6 @@ export const EV_REDO = "--redo";
  */
 export const EV_UNDO = "--undo";
 
-/**
- * Side effect ID to execute redo action.
- * See `EventBus.addBuiltIns()` for further details.
- * Also see `snapshot()` interceptor docs.
- */
-export const FX_REDO = EV_REDO;
-
-/**
- * Side effect ID to execute undo action.
- * See `EventBus.addBuiltIns()` for further details.
- * Also see `snapshot()` interceptor docs.
- */
-export const FX_UNDO = EV_UNDO;
-
 export interface Event extends Array<any> {
     [0]: PropertyKey;
     [1]?: any;
@@ -74,7 +60,5 @@ export interface InterceptorContext {
     [FX_DISPATCH]?: Event | Event[];
     [FX_DISPATCH_NOW]?: Event | Event[];
     [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
-    [FX_UNDO]?: string | string[];
-    [FX_REDO]?: string | string[];
     [id: string]: any;
 }
