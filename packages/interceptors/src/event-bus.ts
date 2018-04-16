@@ -582,16 +582,18 @@ export class EventBus extends StatelessEventBus implements
                 ({ [FX_STATE]: setIn(state, path, val) }),
             [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) =>
                 ({ [FX_STATE]: updateIn(state, path, fn, ...args) }),
-            [api.EV_UNDO]: (_, [__, id = "history"], ___, ctx) => {
+            [api.EV_UNDO]: (_, [__, id = "history"], bus, ctx) => {
                 if (implementsFunction(ctx[id], "undo")) {
-                    return { [FX_STATE]: ctx[id].undo() }
+                    ctx[id].undo();
+                    return { [FX_STATE]: bus.state.deref() };
                 } else {
                     console.warn("no history in context");
                 }
             },
-            [api.EV_REDO]: (_, [__, id = "history"], ___, ctx) => {
+            [api.EV_REDO]: (_, [__, id = "history"], bus, ctx) => {
                 if (implementsFunction(ctx[id], "redo")) {
-                    return { [FX_STATE]: ctx[id].redo() }
+                    ctx[id].redo();
+                    return { [FX_STATE]: bus.state.deref() };
                 } else {
                     console.warn("no history in context");
                 }
