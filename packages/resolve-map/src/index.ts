@@ -1,8 +1,10 @@
-import { Path, getIn, toPath } from "@thi.ng/paths";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
+import { getIn, mutIn, toPath } from "@thi.ng/paths";
+
+const SEMAPHORE = Symbol("SEMAPHORE");
 
 /**
  * Visits all key-value pairs in depth-first order for given object and
@@ -45,46 +47,45 @@ import { isString } from "@thi.ng/checks/is-string";
  * @param obj
  * @param root
  */
-export function resolveMap(obj: any, root?: any) {
+export const resolveMap = (obj: any, root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
+    root = root || obj;
     for (let k in obj) {
-        obj[k] = _resolve(k, obj, root);
+        _resolve(root, [...path, k], resolved);
     }
+    // console.log("resolved:::", resolved);
     return obj;
 }
 
-/**
- * Same as `resolveMap`, but for arrays.
- *
- * @param arr
- * @param root
- */
-export function resolveArray(arr: any[], root?: any) {
-    for (let i = 0, n = arr.length; i < n; i++) {
-        arr[i] = _resolve(i, arr, root);
+export const resolveArray = (arr: any[], root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
+    root = root || arr;
+    for (let k = 0, n = arr.length; k < n; k++) {
+        _resolve(root, [...path, k], resolved);
     }
     return arr;
 }
 
-function _resolve(k: Path, obj: any, root?: any, makeAbs = false) {
-    root = root || obj;
-    const v = getIn(obj, k);
-    if (isString(v) && v.indexOf("->") === 0) {
-        if (v.charAt(2) === "/") {
-            return _resolve(v.substr(3), root, root);
-        } else {
-            if (makeAbs) {
-                const path = toPath(k);
-                return _resolve([...path.slice(0, path.length - 1), ...toPath(v.substr(2))], root);
+const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
+    let v = getIn(root, path), rv = SEMAPHORE;
+    const pp = path.join(".");
+    if (!resolved[pp]) {
+        if (isString(v) && v.indexOf("->") === 0) {
+            if (v.charAt(2) === "/") {
+                rv = _resolve(root, toPath(v.substr(3)), resolved);
+            } else {
+                rv = _resolve(root, [...path.slice(0, path.length - 1), ...toPath(v.substr(2))], resolved);
             }
-            return _resolve(v.substr(2), obj, root);
+        } else if (isPlainObject(v)) {
+            resolveMap(v, root, path, resolved);
+        } else if (isArray(v)) {
+            resolveArray(v, root, path, resolved);
+        } else if (isFunction(v)) {
+            rv = v((p) => _resolve(root, toPath(p), resolved));
         }
-    } else if (isPlainObject(v)) {
-        return resolveMap(v, root);
-    } else if (isArray(v)) {
-        return resolveArray(v, root);
-    } else if (isFunction(v)) {
-        return v((x) => _resolve(x, root, root, true));
-    } else {
-        return v;
+        if (rv !== SEMAPHORE) {
+            mutIn(root, path, rv);
+            v = rv;
+        }
+        resolved[pp] = true;
     }
+    return v;
 }
