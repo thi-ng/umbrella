@@ -3,7 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.2.0"></a>
+      <a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.2.0...@thi.ng/resolve-map@1.0.0) (2018-04-16)
+
+
+### Features
+
+* **resolve-map:** support relative parent refs, update tests/readme ([a379d12](https://github.com/thi-ng/umbrella/commit/a379d12))
+
+
+### BREAKING CHANGES
+
+* **resolve-map:** lookup paths passed to the provided `resolve()` fn
+inside function values are now relative by default (previously only
+absolute paths were allowed)
+
+- remove `resolveArray()` from module exports
+(use `resolveMap()` instead)
+- add absPath() to compute absolute path
+- add support for "../" ancestor access
+
+
+
+
+      <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.7...@thi.ng/resolve-map@0.2.0) (2018-04-16)
 
 

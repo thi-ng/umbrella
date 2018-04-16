@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@0.1.3...@thi.ng/rstream-graph@0.2.0) (2018-04-16)
+
+
+### Features
+
+* **rstream-graph:** add addNode()/removeNode() ([5ddb19c](https://github.com/thi-ng/umbrella/commit/5ddb19c))
+
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@0.1.2...@thi.ng/rstream-graph@0.1.3) (2018-04-16)
 

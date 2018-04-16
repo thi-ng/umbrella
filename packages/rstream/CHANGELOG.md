@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.3.1...@thi.ng/rstream@1.4.0) (2018-04-16)
+
+
+### Features
+
+* **rstream:** add StreamMerge/Sync.removeID() & removeAllIDs() ([8bcc287](https://github.com/thi-ng/umbrella/commit/8bcc287))
+
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.3.0...@thi.ng/rstream@1.3.1) (2018-04-16)
 
