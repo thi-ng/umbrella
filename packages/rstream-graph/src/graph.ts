@@ -74,6 +74,17 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
     return node;
 };
 
+export const addNode = (graph: IObjectOf<ISubscribable<any>>, state: IAtom<any>, id: string, spec: NodeSpec) =>
+    graph[id] = nodeFromSpec(state, spec)((nodeID) => graph[nodeID]);
+
+export const removeNode = (graph: IObjectOf<ISubscribable<any>>, id: string) => {
+    if (graph[id]) {
+        graph[id].unsubscribe();
+        delete graph[id];
+        return true;
+    }
+};
+
 /**
  * Higher order node / stream creator. Takes a transducer and optional
  * arity (number of required input streams). The returned function takes
