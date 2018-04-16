@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@0.1.1...@thi.ng/rstream-graph@0.1.2) (2018-04-16)
+
+
+### Bug Fixes
+
+* **rstream-graph:** create null sub for ID renaming ([56d919c](https://github.com/thi-ng/umbrella/commit/56d919c))
+
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@0.1.0...@thi.ng/rstream-graph@0.1.1) (2018-04-15)
 
