@@ -59,7 +59,7 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
         if (i.xform) {
             s = s.subscribe(i.xform, i.id);
         } else if (i.id) {
-            s = s.subscribe({}, i.id);
+            s = s.subscribe(null, i.id);
         }
         src.push(s);
     }
