@@ -31,6 +31,13 @@ describe("resolve-map", () => {
         );
     });
 
+    it("rel parent refs", () => {
+        assert.deepEqual(
+            resolveMap({ a: { b: { c: "->../c.d", d: "->c", e: "->/c.d" }, c: { d: 1 } }, c: { d: 10 } }),
+            { a: { b: { c: 1, d: 1, e: 10 }, c: { d: 1 } }, c: { d: 10 } }
+        );
+    })
+
     it("cycles", () => {
         assert.throws(() => resolveMap({ a: "->a" }));
         assert.throws(() => resolveMap({ a: { b: "->b" } }));
@@ -50,4 +57,13 @@ describe("resolve-map", () => {
         assert.strictEqual(res.b.d, res.e);
         assert.strictEqual(res.e(), 1);
     });
+
+    it("function resolves only once", () => {
+        let n = 0;
+        assert.deepEqual(
+            resolveMap({ a: (x) => x("b.c"), b: { c: "->d", d: "->/e" }, e: () => (n++ , 1) }),
+            { a: 1, b: { c: 1, d: 1 }, e: 1 }
+        );
+        assert.equal(n, 1);
+    })
 });

@@ -1,3 +1,4 @@
+import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -16,9 +17,10 @@ const SEMAPHORE = Symbol("SEMAPHORE");
  * Reference values are special strings representing lookup paths of
  * other values in the object and are prefixed with `->` for relative
  * refs or `->/` for absolute refs. Relative refs are resolved from
- * currently visited object and only support child access (no
- * ancestors). Absolute refs are resolved from root level (the original
- * object passed to this function).
+ * currently visited object and support "../" prefixes to access parent
+ * levels. Absolute refs are always resolved from the root level (the
+ * original object passed to this function). Invalid lookup paths will
+ * throw an error.
  *
  * ```
  * resolveMap({a: 1, b: {c: "->d", d: "->/a"} })
@@ -26,37 +28,53 @@ const SEMAPHORE = Symbol("SEMAPHORE");
  * ```
  *
  * If a value is a function, it is called with a single arg `resolve`, a
- * function which accepts an *absolute* path to look up other values.
- * The return value of the (value) function is used as final value for
- * that key. This mechanism can be used to compute derived values of
- * other values stored in the object.
+ * function which accepts a path (WITHOUT `->` prefix) to look up other
+ * values. The return value of the user provided function is used as
+ * final value for that key. This mechanism can be used to compute
+ * derived values of other values stored in the object. Function values
+ * will always be called only once. Therefore, in order to associate a
+ * function as value to a key, it needs to be wrapped with an additional
+ * function, as shown for the `e` key in the example below.
  *
  * ```
- * // the value of `a` is derived from 1st array element in `b.d`
- * resolveMap({
- *   a: (resolve) => resolve("b.c") * 10,
- *   b: { c: "->d.0", d: [2, 3] }
+ * // `a` is derived from 1st array element in `b.d`
+ * // `b.c` is looked up from `b.d[0]`
+ * // `b.d[1]` is derived from calling `e(2)`
+ * // `e` is a wrapped function
+ * res = resolveMap({
+ *   a: (resolve) => resolve("b.c") * 100,
+ *   b: { c: "->d.0", d: [2, (resolve) => resolve("../../e")(2) ] },
+ *   e: () => (x) => x * 10,
  * })
- * // { a: 20, b: { c: 2, d: [ 2, 3 ] } }
+ * // { a: 200, b: { c: 2, d: [ 2, 20 ] }, e: [Function] }
+ *
+ * res.e(2);
+ * // 20
  * ```
  *
- * The function mutates the original object and returns it. User code
- * should never provide the optional `root` arg (only used for internal
- * recursion purposes).
+ * `resolveMap` mutates the original object and returns it. User code
+ * should NEVER provide any of the optional args (these are only used
+ * for internal recursion purposes).
  *
  * @param obj
- * @param root
  */
 export const resolveMap = (obj: any, root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
     root = root || obj;
     for (let k in obj) {
         _resolve(root, [...path, k], resolved);
     }
-    // console.log("resolved:::", resolved);
     return obj;
 }
 
-export const resolveArray = (arr: any[], root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
+/**
+ * Like `resolveMap`, but for arrays.
+ *
+ * @param arr
+ * @param root
+ * @param path
+ * @param resolved
+ */
+const resolveArray = (arr: any[], root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
         _resolve(root, [...path, k], resolved);
@@ -69,17 +87,13 @@ const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
     const pp = path.join(".");
     if (!resolved[pp]) {
         if (isString(v) && v.indexOf("->") === 0) {
-            if (v.charAt(2) === "/") {
-                rv = _resolve(root, toPath(v.substr(3)), resolved);
-            } else {
-                rv = _resolve(root, [...path.slice(0, path.length - 1), ...toPath(v.substr(2))], resolved);
-            }
+            rv = _resolve(root, absPath(path, v), resolved);
         } else if (isPlainObject(v)) {
             resolveMap(v, root, path, resolved);
         } else if (isArray(v)) {
             resolveArray(v, root, path, resolved);
         } else if (isFunction(v)) {
-            rv = v((p) => _resolve(root, toPath(p), resolved));
+            rv = v((p: string) => _resolve(root, absPath(path, p, 0), resolved));
         }
         if (rv !== SEMAPHORE) {
             mutIn(root, path, rv);
@@ -88,4 +102,22 @@ const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
         resolved[pp] = true;
     }
     return v;
+}
+
+const absPath = (curr: PropertyKey[], q: string, idx = 2): PropertyKey[] => {
+    if (q.charAt(idx) === "/") {
+        return toPath(q.substr(idx + 1));
+    }
+    curr = curr.slice(0, curr.length - 1);
+    const sub = q.substr(idx).split("/");
+    for (let i = 0, n = sub.length; i < n; i++) {
+        if (sub[i] === "..") {
+            !curr.length && illegalArgs(`invalid lookup path`);
+            curr.pop();
+        } else {
+            return curr.concat(toPath(sub[i]));
+        }
+    }
+    !curr.length && illegalArgs(`invalid lookup path`);
+    return curr;
 }
