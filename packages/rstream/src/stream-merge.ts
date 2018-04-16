@@ -59,13 +59,34 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         if (sub) {
             this.sources.delete(src);
             sub.unsubscribe();
+            return true;
         }
+        return false;
+    }
+
+    removeID(id: string) {
+        for (let s of this.sources) {
+            if (s[0].id === id) {
+                return this.remove(s[0]);
+            }
+        }
+        return false;
     }
 
     removeAll(src: ISubscribable<A>[]) {
+        let ok = true;
         for (let s of src) {
-            this.remove(s);
+            ok = this.remove(s) && ok;
         }
+        return ok;
+    }
+
+    removeAllIDs(ids: string[]) {
+        let ok = true;
+        for (let id of ids) {
+            ok = this.removeID(id) && ok;
+        }
+        return ok;
     }
 
     unsubscribe(sub?: Subscription<B, any>) {
