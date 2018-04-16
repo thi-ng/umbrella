@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.1.6...@thi.ng/paths@1.2.0) (2018-04-16)
+
+
+### Features
+
+* **paths:** add mutator() & mutIn() ([4c1bd85](https://github.com/thi-ng/umbrella/commit/4c1bd85))
+
+
+
+
 <a name="1.1.6"></a>
 ## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.1.5...@thi.ng/paths@1.1.6) (2018-04-13)
 

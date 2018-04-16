@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.7...@thi.ng/resolve-map@0.2.0) (2018-04-16)
+
+
+### Features
+
+* **resolve-map:** resolve each ref only once, re-use resolved results ([6992e82](https://github.com/thi-ng/umbrella/commit/6992e82))
+
+
+
+
 <a name="0.1.7"></a>
 ## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.6...@thi.ng/resolve-map@0.1.7) (2018-04-13)
 
