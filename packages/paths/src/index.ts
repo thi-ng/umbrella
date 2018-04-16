@@ -229,3 +229,61 @@ export function deleteIn(state: any, path: Path) {
         return updateIn(state, ks, (x) => { x = { ...x }; delete x[k]; return x; });
     }
 }
+
+/**
+ * Higher-order function, similar to `setter()`. Returns function which
+ * when called mutates given object/array at given path location and
+ * bails if any intermediate path values are non-indexable (only the
+ * very last path element can be missing in the actual object
+ * structure). If successful, returns original (mutated) object, else
+ * `undefined`. This function provides optimized versions for path
+ * lengths <= 4.
+ *
+ * @param path
+ */
+export function mutator(path: Path) {
+    const ks = toPath(path);
+    let [a, b, c, d] = ks;
+    switch (ks.length) {
+        case 0:
+            return (_, x) => x;
+        case 1:
+            return (s, x) => s ? (s[a] = x, s) : undefined;
+        case 2:
+            return (s, x) => { let t; return s ? (t = s[a]) ? (t[b] = x, s) : undefined : undefined };
+        case 3:
+            return (s, x) => { let t; return s ? (t = s[a]) ? (t = t[b]) ? (t[c] = x, s) : undefined : undefined : undefined };
+        case 4:
+            return (s, x) => { let t; return s ? (t = s[a]) ? (t = t[b]) ? (t = t[c]) ? (t[d] = x, s) : undefined : undefined : undefined : undefined };
+        default:
+            return (s, x) => {
+                let t = s;
+                const n = ks.length - 1;
+                for (let k = 0; k < n; k++) {
+                    if (!(t = t[ks[k]])) return;
+                }
+                t[ks[n]] = x;
+                return s;
+            }
+    }
+}
+
+/**
+ * Immediate use mutator, i.e. same as: `mutator(path)(state, val)`.
+ *
+ * ```
+ * mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
+ * // { a: { b: [ 10, 23 ] } }
+ *
+ * // fails (see `mutator` docs)
+ * mutIn({}, "a.b.c", 23);
+ * // undefined
+ * ```
+ *
+ * @param state
+ * @param path
+ * @param val
+ */
+export function mutIn(state: any, path: Path, val: any) {
+    return mutator(path)(state, val);
+}
