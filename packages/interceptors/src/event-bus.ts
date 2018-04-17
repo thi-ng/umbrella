@@ -201,7 +201,7 @@ export class StatelessEventBus implements
 
     addHandler(id: string, spec: api.EventDef) {
         const iceps = isArray(spec) ?
-            (<any>spec).map((i) => isFunction(i) ? { pre: i } : i) :
+            (<any>spec).map(asInterceptor) :
             isFunction(spec) ? [{ pre: spec }] : [spec];
         if (iceps.length > 0) {
             if (this.handlers[id]) {
@@ -244,6 +244,25 @@ export class StatelessEventBus implements
                 this.addEffect(id, fx[0], fx[1]);
             } else {
                 this.addEffect(id, fx);
+            }
+        }
+    }
+
+    /**
+     * Prepends given interceptors (or interceptor functions) to
+     * selected handlers. If no handler IDs are given, applies
+     * instrumentation to all currently registered handlers.
+     *
+     * @param inject
+     * @param ids
+     */
+    instrumentWith(inject: (api.Interceptor | api.InterceptorFn)[], ids?: string[]) {
+        const iceps = inject.map(asInterceptor);
+        const handlers = this.handlers;
+        for (let id of ids || Object.keys(handlers)) {
+            const h = handlers[id];
+            if (h) {
+                handlers[id] = iceps.concat(h);
             }
         }
     }
@@ -644,4 +663,8 @@ export class EventBus extends StatelessEventBus implements
         }
         return false;
     }
+}
+
+function asInterceptor(i: api.Interceptor | api.InterceptorFn) {
+    return isFunction(i) ? { pre: i } : i;
 }
