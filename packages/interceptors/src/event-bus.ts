@@ -464,7 +464,7 @@ export class StatelessEventBus implements
             } else if (k === FX_DISPATCH_NOW) {
                 if (isArray(v[0])) {
                     for (let e of v) {
-                        this.dispatchNow(e);
+                        e && this.dispatchNow(e);
                     }
                 } else {
                     this.dispatchNow(v);
@@ -472,7 +472,9 @@ export class StatelessEventBus implements
             } else {
                 if (ctx[k]) {
                     if (isArray(v[0])) {
-                        Array.prototype.push.apply(ctx[k], v);
+                        for (let e of v) {
+                            e !== undefined && ctx[k].push(e);
+                        }
                     } else {
                         ctx[k].push(v)
                     }
