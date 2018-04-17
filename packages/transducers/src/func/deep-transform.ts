@@ -63,7 +63,7 @@ import { TransformSpec } from "../api";
  *
  * @param spec transformation spec
  */
-export function deepTransform(spec: TransformSpec): (x) => any {
+export function deepTransform(spec: TransformSpec): (x: any) => any {
     if (isFunction(spec)) {
         return <any>spec;
     }
