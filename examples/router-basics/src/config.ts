@@ -1,5 +1,5 @@
 import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE, FX_DELAY } from "@thi.ng/interceptors/api";
-import { valueUpdater, trace } from "@thi.ng/interceptors/interceptors";
+import { valueUpdater } from "@thi.ng/interceptors/interceptors";
 
 import { AppConfig, StatusType } from "./api";
 import * as ev from "./events";
@@ -94,15 +94,13 @@ export const CONFIG: AppConfig = {
         // stores status (a tuple of `[type, message, done?]`) in app state
         // if status type != DONE & `done` == true, also triggers delayed EV_DONE
         // Note: we inject the `trace` interceptor to log the event to the console
-        [ev.SET_STATUS]: [
-            trace,
+        [ev.SET_STATUS]:
             (_, [__, status]) => ({
                 [FX_DISPATCH_NOW]: [EV_SET_VALUE, ["status", status]],
                 [FX_DISPATCH_ASYNC]: (status[0] !== StatusType.DONE && status[2]) ?
                     [FX_DELAY, [1000], ev.DONE, ev.ERROR] :
                     undefined
-            })
-        ],
+            }),
 
         // toggles debug state flag on/off
         [ev.TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1)
