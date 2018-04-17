@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.3.3...@thi.ng/interceptors@1.4.0) (2018-04-17)
+
+
+### Features
+
+* **interceptors:** add event handler instrumentation ([1a6ac54](https://github.com/thi-ng/umbrella/commit/1a6ac54))
+
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.3.2...@thi.ng/interceptors@1.3.3) (2018-04-17)
 
