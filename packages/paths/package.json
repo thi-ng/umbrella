@@ -24,6 +24,7 @@
         "typescript": "^2.8.1"
     },
     "dependencies": {
+        "@thi.ng/api": "^2.2.0",
         "@thi.ng/checks": "^1.4.0"
     },
     "keywords": [

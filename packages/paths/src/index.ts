@@ -1,3 +1,4 @@
+import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
 
@@ -189,6 +190,31 @@ export function setIn(state: any, path: Path, val: any) {
 }
 
 /**
+ * Like `setIn()`, but takes any number of path-value pairs and applies
+ * them in sequence by calling `setIn()` for each. Any key paths missing
+ * in the data structure will be created. Does *not* mutate original
+ * (instead use `mutInMany()` for this purpose).
+ *
+ * ```
+ * setInMany({}, "a.b", 10, "x.y.z", 20)
+ * // { a: { b: 10 }, x: { y: { z: 20 } } }
+ * ```
+ *
+ * @param state
+ * @param pairs
+ */
+export function setInMany(state: any, ...pairs: any[]) {
+    const n = pairs.length;
+    if ((n & 1)) {
+        illegalArgs(`require an even number of args (got ${pairs.length})`);
+    }
+    for (let i = 0; i < n; i += 2) {
+        state = setIn(state, pairs[i], pairs[i + 1]);
+    }
+    return state;
+}
+
+/**
  * Similar to `setIn()`, but applies given function to current path
  * value (incl. any additional/optional arguments passed to `updateIn`)
  * and uses result as new value. Does not modify original state (unless
@@ -286,4 +312,28 @@ export function mutator(path: Path) {
  */
 export function mutIn(state: any, path: Path, val: any) {
     return mutator(path)(state, val);
+}
+
+/**
+ * Like `mutIn()`, but takes any number of path-value pairs and applies
+ * them in sequence. All key paths must already be present in the given
+ * data structure until their penultimate key.
+ *
+ * ```
+ * mutInMany({a: {b: 1}, x: {y: {z: 2}}}, "a.b", 10, "x.y.z", 20)
+ * // { a: { b: 10 }, x: { y: { z: 20 } } }
+ * ```
+ *
+ * @param state
+ * @param pairs
+ */
+export function mutInMany(state: any, ...pairs: any[]) {
+    const n = pairs.length;
+    if ((n & 1)) {
+        illegalArgs(`require an even number of args (got ${pairs.length})`);
+    }
+    for (let i = 0; i < n && state; i += 2) {
+        state = mutIn(state, pairs[i], pairs[i + 1]);
+    }
+    return state;
 }
