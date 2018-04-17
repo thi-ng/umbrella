@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.3.2...@thi.ng/interceptors@1.3.3) (2018-04-17)
+
+
+### Bug Fixes
+
+* **interceptors:** filter out undefined sidefx vals ([d7ff997](https://github.com/thi-ng/umbrella/commit/d7ff997))
+
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.3.1...@thi.ng/interceptors@1.3.2) (2018-04-16)
 
