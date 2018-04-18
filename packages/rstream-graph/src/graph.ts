@@ -7,10 +7,10 @@ import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromView } from "@thi.ng/rstream/from/view";
 import { sync, StreamSync } from "@thi.ng/rstream/stream-sync";
+import { Subscription } from "@thi.ng/rstream/subscription";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import { NodeSpec } from "./api";
-import { Subscription } from "../../rstream/subscription";
 
 /**
  * Dataflow graph initialization function. Takes an object of
