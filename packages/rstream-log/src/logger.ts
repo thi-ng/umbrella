@@ -20,7 +20,9 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements
         let src;
         switch (args.length) {
             case 0:
+                break;
             case 1:
+                id = args[0];
                 break;
             case 2:
                 [id, level] = args;
