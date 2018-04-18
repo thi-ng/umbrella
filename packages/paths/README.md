@@ -7,8 +7,8 @@ This project is part of the
 
 ## About
 
-This library provides immutable, optimized path-based accessors for
-vanilla JS objects.
+This library provides immutable and mutable, optimized path-based
+accessors for vanilla JS objects.
 
 ## Installation
 
@@ -95,6 +95,30 @@ b = s(a, 3);
 a.x === b.x // true
 a.x.y === b.x.y // true
 a.u === b.u; // true
+```
+
+### Mutable setter
+
+`mutator()` is the mutable alternative to `setter()`. It returns a
+function, which when called, mutates given object / array at given path
+location and bails if any intermediate path values are non-indexable
+(only the very last path element can be missing in the actual object
+structure). If successful, returns original (mutated) object, else
+`undefined`. This function too provides optimized versions for path
+lengths <= 4.
+
+As with `setIn`, `mutIn` is the immediate use mutator, i.e. the same as:
+`mutator(path)(state, val)`.
+
+```ts
+mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
+// or
+mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23);
+// { a: { b: [ 10, 23 ] } }
+
+// fails (because of missing path structure in target object)
+mutIn({}, "a.b.c", 23);
+// undefined
 ```
 
 ## Authors
