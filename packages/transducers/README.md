@@ -638,7 +638,7 @@ itself. Returns nothing.
 
 #### `mapKeys(keys: IObjectOf<(x: any) => any>, copy?: boolean): Transducer<any, any>`
 
-#### `mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>`
+#### `mapNth<A, B>(n: number, offset?: number, fn: (x: A) => B): Transducer<A, A | B>`
 
 #### `mapVals<A, B>(fn: (v: A) => B, copy = true): Transducer<IObjectOf<A>, IObjectOf<B>>`
 

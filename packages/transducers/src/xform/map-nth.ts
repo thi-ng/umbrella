@@ -1,9 +1,9 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 
-export function mapNth<A, B>(n: number, fn: (x: A) => B): Transducer<A, B>;
-export function mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, B>;
-export function mapNth<A, B>(...args: any[]): Transducer<A, B> {
+export function mapNth<A, B>(n: number, fn: (x: A) => B): Transducer<A, A | B>;
+export function mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, A | B>;
+export function mapNth<A, B>(...args: any[]): Transducer<A, A | B> {
     let n = args[0] - 1, offset, fn;
     if (typeof args[1] === "number") {
         offset = args[1];
@@ -12,7 +12,7 @@ export function mapNth<A, B>(...args: any[]): Transducer<A, B> {
         fn = args[1];
         offset = 0;
     }
-    return (rfn: Reducer<any, B>) => {
+    return (rfn: Reducer<any, A | B>) => {
         const r = rfn[2];
         let skip = 0, off = offset;
         return compR(rfn,
