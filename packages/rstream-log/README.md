@@ -21,7 +21,7 @@ yarn add @thi.ng/rstream-log
 ## Usage examples
 
 ```typescript
-import * as log from "@thi.ng/rstream-logger";
+import * as log from "@thi.ng/rstream-log";
 
 const logger = new log.Logger("main");
 // or with min level
