@@ -17,7 +17,9 @@ export function maxLevel(level: Level): Transducer<LogEntry, LogEntry> {
 }
 
 export function matchID(id: string | RegExp): Transducer<LogEntry, LogEntry> {
-    return isString(id) ?
-        filter((l) => l[1] === id) :
-        filter((l) => id.test(l[1]));
+    return filter(
+        isString(id) ?
+            (l) => l[1] === id :
+            (l) => id.test(l[1])
+    );
 }
