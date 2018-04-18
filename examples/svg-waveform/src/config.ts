@@ -81,7 +81,7 @@ export const CONFIG: AppConfig = {
     // re-skinning of the whole app
     ui: {
         button: { class: "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight" },
-        buttongroup: { class: "flex" },
+        buttongroup: { class: "flex mb2" },
         footer: { class: "absolute bottom-1" },
         link: { class: "pointer link dim black b" },
         root: { class: "vw-100 vh-100 flex" },
