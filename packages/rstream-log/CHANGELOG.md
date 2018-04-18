@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.3...@thi.ng/rstream-log@1.0.4) (2018-04-18)
+
+
+### Bug Fixes
+
+* **rstream-log:** ID handling in Logger ctor ([3087776](https://github.com/thi-ng/umbrella/commit/3087776))
+
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.2...@thi.ng/rstream-log@1.0.3) (2018-04-17)
 
