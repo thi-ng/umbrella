@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.0...@thi.ng/transducers@1.8.1) (2018-04-18)
+
+
+### Bug Fixes
+
+* **transducers:** add generics for compR(), fix types in mapNth() ([3b7c9d9](https://github.com/thi-ng/umbrella/commit/3b7c9d9))
+* **transducers:** Provide argument types for compR() and deepTransform() ([de89f00](https://github.com/thi-ng/umbrella/commit/de89f00))
+
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.5...@thi.ng/transducers@1.8.0) (2018-04-11)
 
