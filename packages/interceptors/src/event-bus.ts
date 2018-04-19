@@ -622,7 +622,7 @@ export class EventBus extends StatelessEventBus implements
                 ({ [FX_STATE]: setIn(state, path, val) }),
             [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) =>
                 ({ [FX_STATE]: updateIn(state, path, fn, ...args) }),
-            [api.EV_TOGGLE_VALUE]: (state, [_, [path]]) =>
+            [api.EV_TOGGLE_VALUE]: (state, [_, path]) =>
                 ({ [FX_STATE]: updateIn(state, path, (x) => !x) }),
             [api.EV_UNDO]: undoHandler("undo"),
             [api.EV_REDO]: undoHandler("redo"),
