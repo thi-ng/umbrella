@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.4.1...@thi.ng/interceptors@1.5.0) (2018-04-19)
+
+
+### Features
+
+* **interceptors:** add EV_TOGGLE_VALUE handler, update EV_UNDO/REDO ([87e3b48](https://github.com/thi-ng/umbrella/commit/87e3b48))
+
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.4.0...@thi.ng/interceptors@1.4.1) (2018-04-17)
 
