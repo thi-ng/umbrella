@@ -568,25 +568,44 @@ export class EventBus extends StatelessEventBus implements
      * [EV_UPDATE_VALUE, ["path.to.value", (x, y) => x + y, 1]]
      * ```
      *
+     * #### `EV_TOGGLE_VALUE`
+     *
+     * Negates a boolean state value at given path.
+     *
+     * Example event definition:
+     * ```
+     * [EV_TOGGLE_VALUE, "path.to.value"]
+     * ```
+     *
      * #### `EV_UNDO`
      *
      * Calls `ctx[id].undo()` and uses return value as new state.
      * Assumes `ctx[id]` is a @thi.ng/atom `History` instance, provided
      * via e.g. `processQueue({ history })`. The event can be triggered
      * with or without ID. By default `"history"` is used as default key
-     * to lookup the `History` instance.
+     * to lookup the `History` instance. Furthermore, an additional
+     * event can be triggered based on if a previous state has been
+     * restored or not (basically, if the undo was successful). This is
+     * useful for resetting/re-initializing stateful resources after a
+     * successful undo action or to notify the user that no more undo's
+     * are possible. The new event will be processed in the same frame
+     * and has access to the (possibly) restored state. The event
+     * structure for these options is shown below:
      *
      * ```
      * // using default ID
      * bus.dispatch([EV_UNDO]);
      *
-     * // using custom ID
-     * bus.dispatch([EV_UNDO, "custom"]);
+     * // using custom history ID
+     * bus.dispatch([EV_UNDO, ["custom"]]);
+     *
+     * // using custom ID and dispatch another event after undo
+     * bus.dispatch([EV_UNDO, ["custom", ["ev-undo-success"], ["ev-undo-fail"]]]);
      * ```
      *
      * #### `EV_REDO`
      *
-     * Similar to `EV_UNDO`, but causes state redo.
+     * Similar to `EV_UNDO`, but for redo actions.
      *
      * ### Side effects
      *
@@ -603,22 +622,10 @@ export class EventBus extends StatelessEventBus implements
                 ({ [FX_STATE]: setIn(state, path, val) }),
             [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) =>
                 ({ [FX_STATE]: updateIn(state, path, fn, ...args) }),
-            [api.EV_UNDO]: (_, [__, id = "history"], bus, ctx) => {
-                if (implementsFunction(ctx[id], "undo")) {
-                    ctx[id].undo();
-                    return { [FX_STATE]: bus.state.deref() };
-                } else {
-                    console.warn("no history in context");
-                }
-            },
-            [api.EV_REDO]: (_, [__, id = "history"], bus, ctx) => {
-                if (implementsFunction(ctx[id], "redo")) {
-                    ctx[id].redo();
-                    return { [FX_STATE]: bus.state.deref() };
-                } else {
-                    console.warn("no history in context");
-                }
-            }
+            [api.EV_TOGGLE_VALUE]: (state, [_, [path]]) =>
+                ({ [FX_STATE]: updateIn(state, path, (x) => !x) }),
+            [api.EV_UNDO]: undoHandler("undo"),
+            [api.EV_REDO]: undoHandler("redo"),
         });
 
         // effects
@@ -665,6 +672,22 @@ export class EventBus extends StatelessEventBus implements
     }
 }
 
-function asInterceptor(i: api.Interceptor | api.InterceptorFn) {
-    return isFunction(i) ? { pre: i } : i;
-}
+const asInterceptor = (i: api.Interceptor | api.InterceptorFn) =>
+    isFunction(i) ? { pre: i } : i;
+
+const undoHandler = (action: string) =>
+    (_, [__, ev], bus, ctx) => {
+        let id = ev ? ev[0] : "history";
+        if (implementsFunction(ctx[id], action)) {
+            const ok = ctx[id][action]();
+            return {
+                [FX_STATE]: bus.state.deref(),
+                [FX_DISPATCH_NOW]: ev ?
+                    ok !== undefined ? ev[1] : ev[2] :
+                    undefined,
+            };
+        } else {
+            console.warn("no history in context");
+        }
+    };
+

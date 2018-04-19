@@ -13,6 +13,7 @@ export type EffectPriority = [string, number];
 
 export const EV_SET_VALUE = "--set-value";
 export const EV_UPDATE_VALUE = "--update-value";
+export const EV_TOGGLE_VALUE = "--toggle-value";
 
 // Built-in side effect ID constants
 
