@@ -59,6 +59,10 @@ structures (arrays, objects, closures, iterators), based on
 - Fairly fast (see benchmark example below)
 - Only ~4.4KB gzipped
 
+In addition to the descriptions in this file, [further information and
+examples are available in the
+wiki](https://github.com/thi-ng/umbrella/wiki/hdom-recipes).
+
 ```typescript
 import * as hdom from "@thi.ng/hdom";
 
