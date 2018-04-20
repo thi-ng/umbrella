@@ -43,13 +43,13 @@ export class EquivMap<K, V> extends Map<K, V> implements
      * @param pairs
      * @param opts
      */
-    constructor(pairs?: Iterable<Pair<K, V>>, opts?: EquivMapOpts<K>) {
+    constructor(pairs?: Iterable<Pair<K, V>>, opts?: Partial<EquivMapOpts<K>>) {
         super();
-        opts = Object.assign(<EquivMapOpts<K>>{ equiv, keys: ArraySet }, opts);
+        const _opts: EquivMapOpts<K> = Object.assign({ equiv, keys: ArraySet }, opts);
         __private.set(this, {
-            keys: new (opts.keys)(null, { equiv: opts.equiv }),
+            keys: new (_opts.keys)(null, { equiv: _opts.equiv }),
             map: new Map<K, V>(),
-            opts
+            opts: _opts
         });
         if (pairs) {
             this.into(pairs);
