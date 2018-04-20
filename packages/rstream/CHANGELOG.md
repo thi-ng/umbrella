@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.4.3...@thi.ng/rstream@1.5.0) (2018-04-20)
+
+
+### Features
+
+* **rstream:** add PubSub, add ISubscribableSubscriber, remove cache() ([27a098d](https://github.com/thi-ng/umbrella/commit/27a098d))
+* **rstream:** allow arbitrary PubSub topic vals, add [@thi](https://github.com/thi).ng/associative dep ([ba10907](https://github.com/thi-ng/umbrella/commit/ba10907))
+
+
+
+
 <a name="1.4.3"></a>
 ## [1.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.4.2...@thi.ng/rstream@1.4.3) (2018-04-19)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.4.1...@thi.ng/associative@0.4.2) (2018-04-20)
+
+
+### Bug Fixes
+
+* **associative:** allow partial options arg for EquivMap ctor ([bb11ddf](https://github.com/thi-ng/umbrella/commit/bb11ddf))
+
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.4.0...@thi.ng/associative@0.4.1) (2018-04-16)
 
