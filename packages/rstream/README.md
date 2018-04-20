@@ -48,9 +48,13 @@ are provided too:
 - [merge](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts) - unsorted merge from multiple inputs (dynamic add/remove)
 - [sync](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts) - synchronized merge and labeled tuple objects
 
-### Useful subscription ops
+### Stream splitting
 
 - [bisect](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - split via predicate
+- [pubsub](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/pubsub.ts) - topic based splitting
+
+### Useful subscription ops
+
 - [postWorker](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts) - send values to workers (incl. optional worker instantiation)
 - [resolve](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
 - [sidechainPartition](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts) - emits chunks from source, controlled by sidechain stream
@@ -115,6 +119,8 @@ directory of this repo:
 
 ### Declarative dataflow graph
 
+This demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package.
+
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
 | [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
 
@@ -164,8 +170,12 @@ setTimeout(()=> raf.done(), 10000);
 
 ### Stream merging
 
+See
+[@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
+for a related, but more highlevel approach.
+
 ```typescript
-new rs.StreamMerge({
+rs.merge({
     src: [
         rs.fromEvent(document, "mousemove"),
         rs.fromEvent(document, "mousedown"),
@@ -181,6 +191,23 @@ new rs.StreamMerge({
 // ["mouseup", [473, 198]]
 // ["mousemove", [485, 204]]
 // ...
+```
+
+### PubSub
+
+```ts
+import { mapIndexed } from "@thi.ng/transducers";
+
+pub = rs.pubsub({ topic: (x) => x[0], xform: mapIndexed((i,x) => [x, i]) });
+pub.subscribeTopic("e", rs.trace("topic E:"));
+pub.subscribeTopic("o", rs.trace("topic O:"));
+
+rs.fromIterable("hello world").subscribe(pub);
+// topic E: [ 'e', 1 ]
+// topic O: [ 'o', 4 ]
+// topic O: [ 'o', 7 ]
+// topic E: done
+// topic O: done
 ```
 
 ### Dataflow graph example
