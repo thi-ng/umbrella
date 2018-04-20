@@ -2,7 +2,6 @@ import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 
 import * as rs from "../src/index";
-import { Subscription } from "../src/index";
 
 describe("bisect", () => {
     let src: rs.Stream<number>;
@@ -29,11 +28,11 @@ describe("bisect", () => {
 
     it("subs", (done) => {
         const odds = [], evens = [];
-        const subo = new Subscription<number, number>(
+        const subo = new rs.Subscription<number, number>(
             { next(x) { odds.push(x) }, done() { doneCount++; } },
             tx.map<number, number>(x => x * 10)
         );
-        const sube = new Subscription<number, number>(
+        const sube = new rs.Subscription<number, number>(
             { next(x) { evens.push(x) }, done() { doneCount++; } },
             tx.map<number, number>(x => x * 100)
         );

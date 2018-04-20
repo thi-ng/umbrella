@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./pubsub";
 export * from "./stream";
 export * from "./stream-merge";
 export * from "./stream-sync";
@@ -15,7 +16,6 @@ export * from "./from/view";
 export * from "./from/worker";
 
 export * from "./subs/bisect";
-export * from "./subs/cache";
 export * from "./subs/post-worker";
 export * from "./subs/resolve";
 export * from "./subs/sidechain-partition";

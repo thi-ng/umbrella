@@ -29,6 +29,11 @@ export interface ISubscribable<T> extends IID<string> {
     getState(): State;
 }
 
+export interface ISubscribableSubscriber<T> extends
+    ISubscriber<T>,
+    ISubscribable<any> {
+}
+
 export interface IStream<T> extends ISubscriber<T> {
     cancel: StreamCancel;
 }
