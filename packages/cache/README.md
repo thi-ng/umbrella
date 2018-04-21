@@ -4,7 +4,7 @@
 
 ## About
 
-In-memory cache implementations different expunge strategies. This
+In-memory cache implementations with different eviction strategies. This
 package is still in early development and currently the only strategies
 available are:
 
@@ -30,7 +30,7 @@ yarn add @thi.ng/cache
 import * as cache from "@thi.ng/cache";
 
 // caches can be configured with maxLen, maxSize and sizing functions (see below)
-const lru = new cache.LRUCache<string, number>({ maxLen: 3 });
+const lru = new cache.LRUCache<string, number>({ maxlen: 3 });
 lru.set("foo", 23);
 lru.set("bar", 42);
 lru.set("baz", 66);
@@ -71,18 +71,21 @@ lru.getSet("boo", () => Promise.resolve(123)).then(console.log);
 // here we multiply value size by 8 since JS numbers are doubles by default
 // also provide a release hook for demo purposes
 lru = new cache.LRUCache<string, number[]>({
-    maxSize: 32,
+    maxsize: 32,
     ksize: (k) => k.length,
     vsize: (v) => v.length * 8,
-    release: (k, v) => console.log("release", k, v);
+    release: (k, v) => console.log("release", k, v)
 });
 
 lru.set("a", [1.0, 2.0]);
 lru.size
 // 17
 
-lru.set("b", [3.0, 4.0]);
-// 17 ("a" has been expunged due to max size constraint)
+lru.set("b", [3.0, 4.0, 5.0]);
+// release a [1, 2] (eviction due to maxsize constraint)
+
+lru.size
+// 25
 
 [...lru.keys()]
 // [ 'b' ]
