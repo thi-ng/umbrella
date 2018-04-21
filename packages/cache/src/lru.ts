@@ -1,41 +1,27 @@
-import { equiv } from "@thi.ng/api/equiv";
 import { DCons, ConsCell } from "@thi.ng/dcons";
 import { map } from "@thi.ng/iterators/map";
 
-import { ICache, CacheOpts, CacheEntry } from "./api";
-
-export interface LRUEntry<K, V> extends CacheEntry<K, V> {
-    t: number;
-}
+import { ICache, CacheEntry, CacheOpts } from "./api";
 
 export class LRUCache<K, V> implements ICache<K, V> {
 
-    protected items: DCons<LRUEntry<K, V>>;
-    protected _equiv: (a: K, b: K) => boolean;
-    protected _release: (k: K, v: V) => void;
-    protected ksize: (k: K) => number;
-    protected vsize: (v: V) => number;
-
+    protected map: Map<K, ConsCell<CacheEntry<K, V>>>;
+    protected items: DCons<CacheEntry<K, V>>;
+    protected opts: CacheOpts<K, V>;
     protected _size: number;
-    protected maxsize: number;
-    protected maxlen: number;
 
     constructor(pairs?: Iterable<[K, V]>, opts?: Partial<CacheOpts<K, V>>) {
-        opts = Object.assign({
+        const _opts = <CacheOpts<K, V>>Object.assign({
             maxlen: Number.POSITIVE_INFINITY,
             maxsize: Number.POSITIVE_INFINITY,
-            equiv: equiv,
+            map: () => new Map<K, any>(),
             ksize: () => 0,
             vsize: () => 0,
         }, opts);
-        this.items = new DCons<LRUEntry<K, V>>();
+        this.map = _opts.map();
+        this.items = new DCons<CacheEntry<K, V>>();
         this._size = 0;
-        this._equiv = opts.equiv;
-        this.ksize = opts.ksize;
-        this.vsize = opts.vsize;
-        this._release = opts.release;
-        this.maxsize = opts.maxsize;
-        this.maxlen = opts.maxlen;
+        this.opts = _opts;
         if (pairs) {
             this.into(pairs);
         }
@@ -53,8 +39,8 @@ export class LRUCache<K, V> implements ICache<K, V> {
         return this.entries();
     }
 
-    *entries(): IterableIterator<Readonly<CacheEntry<K, V>>> {
-        yield* this.items;
+    *entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
+        yield* map((e) => [e.k, e], this.items);
     }
 
     *keys(): IterableIterator<Readonly<K>> {
@@ -68,23 +54,22 @@ export class LRUCache<K, V> implements ICache<K, V> {
     copy(): ICache<K, V> {
         const c = this.empty();
         c.items = this.items.copy();
+        let cell = c.items.head;
+        while (cell) {
+            c.map.set(cell.value.k, cell);
+            cell = cell.next;
+        }
         return c;
     }
 
     empty(): LRUCache<K, V> {
-        return new LRUCache<K, V>(null, {
-            maxlen: this.maxlen,
-            maxsize: this.maxsize,
-            equiv: this._equiv,
-            release: this._release,
-            ksize: this.ksize,
-            vsize: this.vsize,
-        });
+        return new LRUCache<K, V>(null, this.opts);
     }
 
     release() {
-        const release = this._release;
         this._size = 0;
+        this.map.clear();
+        const release = this.opts.release;
         if (release) {
             let e;
             while (e = this.items.drop()) {
@@ -96,11 +81,11 @@ export class LRUCache<K, V> implements ICache<K, V> {
     }
 
     has(key: K): boolean {
-        return !!this.find(key);
+        return this.map.has(key);
     }
 
     get(key: K, notFound?: V): V {
-        const e = this.find(key);
+        const e = this.map.get(key);
         if (!e) {
             return notFound;
         }
@@ -108,16 +93,25 @@ export class LRUCache<K, V> implements ICache<K, V> {
     }
 
     set(key: K, value: V) {
-        this.delete(key);
-        const size = this.ksize(key) + this.vsize(value);
+        const size = this.opts.ksize(key) + this.opts.vsize(value);
+        const e = this.map.get(key);
+        if (e) {
+            this._size -= e.value.s;
+        }
         this._size += size;
         if (this.ensureSize()) {
-            this.items.push({
-                k: key,
-                v: value,
-                s: size,
-                t: Date.now(),
-            });
+            if (e) {
+                e.value.v = value;
+                e.value.s = size;
+                this.items.asTail(e);
+            } else {
+                this.items.push({
+                    k: key,
+                    v: value,
+                    s: size,
+                });
+                this.map.set(key, this.items.tail);
+            }
         }
         return value;
     }
@@ -130,7 +124,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
     }
 
     getSet(key: K, retrieve: () => Promise<V>): Promise<V> {
-        const e = this.find(key);
+        const e = this.map.get(key);
         if (e) {
             return Promise.resolve(this.resetEntry(e));
         }
@@ -138,33 +132,31 @@ export class LRUCache<K, V> implements ICache<K, V> {
     }
 
     delete(key: K): boolean {
-        const e = this.find(key);
+        const e = this.map.get(key);
         if (e) {
-            this.items.splice(e, 1);
+            this.map.delete(key);
+            this.items.remove(e);
             this._size -= e.value.s;
             return true;
         }
         return false;
     }
 
-    protected find(key: K): ConsCell<LRUEntry<K, V>> {
-        const eq = this._equiv;
-        return this.items.findWith((x) => eq(x.k, key));
-    }
-
-    protected resetEntry(e: ConsCell<LRUEntry<K, V>>) {
-        e.value.t = Date.now();
-        this.items.splice(e, 1).push(e.value);
+    protected resetEntry(e: ConsCell<CacheEntry<K, V>>) {
+        this.items.asTail(e);
         return e.value.v;
     }
 
     protected ensureSize() {
-        const release = this._release;
-        while (this._size > this.maxsize || this.length >= this.maxlen) {
+        const release = this.opts.release;
+        const maxs = this.opts.maxsize;
+        const maxl = this.opts.maxlen;
+        while (this._size > maxs || this.length >= maxl) {
             const e = this.items.drop();
             if (!e) {
                 return false;
             }
+            this.map.delete(e.k);
             release && release(e.k, e.v);
             this._size -= e.s;
         }
