@@ -10,6 +10,7 @@ This package is still in early development and currently the only
 strategies available are:
 
 - **LRU**: Least Recently Used
+- **TLRU**: Time-aware Least Recently Used
 - **MRU**: Most Recently Used
 
 ### Features
@@ -127,6 +128,34 @@ lru.size
 
 [...lru.keys()]
 // [ 'b' ]
+```
+
+### TLRU
+
+Time-aware LRU cache. Extends LRU strategy with TTL (time-to-live)
+values associated with each entry. `has()` will only return `true` and
+`get()` only returns a cached value if its TTL hasn't yet expired. When
+adding a new value to the cache, first removes expired entries and if
+there's still not sufficient space removes entries in LRU order. `set()`
+takes an optional entry specific `ttl` arg. If not given, uses the cache
+instance's default (provided via ctor option arg). If no instance TTL is
+given, TTL defaults to 1 hour.
+
+```ts
+// same opts as LRUCache, but here with custom TTL period (in ms)
+tlru = new cache.TLRUCache(null, { ttl: 10000 });
+
+// with item specific TTL (500ms)
+tlru.set("foo", 42, 500)
+```
+
+### MRU
+
+Similar to LRU, but removes most recently accessed items first. [Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies#Most_recently_used_(MRU))
+
+```ts
+// same opts as LRUCache
+mru = new cache.MRUCache();
 ```
 
 ## Authors
