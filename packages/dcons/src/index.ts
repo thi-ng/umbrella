@@ -474,6 +474,32 @@ export class DCons<T> implements
         return this;
     }
 
+    asHead(cell: ConsCell<T>) {
+        if (cell === this.head) {
+            return this;
+        }
+        this.remove(cell);
+        this.head.prev = cell;
+        cell.next = this.head;
+        cell.prev = undefined;
+        this.head = cell;
+        this._length++;
+        return this;
+    }
+
+    asTail(cell: ConsCell<T>) {
+        if (cell === this.tail) {
+            return this;
+        }
+        this.remove(cell);
+        this.tail.next = cell;
+        cell.prev = this.tail;
+        cell.next = undefined;
+        this.tail = cell;
+        this._length++;
+        return this;
+    }
+
     toString() {
         let res: any = [];
         let cell = this.head;
