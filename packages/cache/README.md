@@ -4,13 +4,19 @@
 
 ## About
 
-In-memory cache implementations with ES6 Map-like API and different
-expunge strategies. Supports any types for both keys & values.
-
-This package is still in early development and currently the only
-strategies available are:
+In-memory cache implementations different expunge strategies. This
+package is still in early development and currently the only strategies
+available are:
 
 - **LRU**: Least Recently Used
+
+### Features
+
+- ES6 Map-like API (with minor differences)
+- Supports any types for both keys & values
+- Customizable cache limits (no. of items / actual size)
+- Customizable key equality checks (@thi.ng/api/equiv by default)
+- Optional item release callbacks (to clean up resources when value is expunged)
 
 ## Installation
 
@@ -45,26 +51,38 @@ lru.get("foo");
 [...lru.values()]
 // [ 42, 66, 23 ]
 
-// caches have a getSet() method to obtain & store a new value if its key is not known
-// this process is asynchronous
-lru.getSet("boo", ()=> Promise.resolve(999)).then(console.log);
+// remove from cache
+lru.delete("foo");
+// true
+
+// caches have a getSet() method to obtain & store a new value
+// if its key is not known. this process is asynchronous
+lru.getSet("boo", () => Promise.resolve(999)).then(console.log);
 // 999
 
-// the given fn is only called if there's a cache miss (not the case here)
-lru.getSet("boo", ()=> Promise.resolve(123)).then(console.log);
+// the given retrieval fn is only called if there's a cache miss
+// (not the case here). `getSet()` always returns a promise
+lru.getSet("boo", () => Promise.resolve(123)).then(console.log);
 // 999
 
-// caches can be limited by actual size rather than number of items
-// the meaning of `size` is user-defined
-// sizing fns are provided for both keys & values
+// caches can be limited by actual size instead of (or in addition to)
+// number of items. the meaning of `size` is user-defined.
+// sizing fns can be provided for both keys & values (both default to 0)
 // here we multiply value size by 8 since JS numbers are doubles by default
-lru = new cache.LRUCache<string,number[]>({ maxSize: 32, ksize: (k)=>k.length, vsize: (v) => v.length * 8})
+// also provide a release hook for demo purposes
+lru = new cache.LRUCache<string, number[]>({
+    maxSize: 32,
+    ksize: (k) => k.length,
+    vsize: (v) => v.length * 8,
+    release: (k, v) => console.log("release", k, v);
+});
+
 lru.set("a", [1.0, 2.0]);
 lru.size
 // 17
 
 lru.set("b", [3.0, 4.0]);
-// 17 ("a" has been expunged due to max size)
+// 17 ("a" has been expunged due to max size constraint)
 
 [...lru.keys()]
 // [ 'b' ]

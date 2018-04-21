@@ -1,10 +1,11 @@
-import { ICopy, IEmpty, ILength } from "@thi.ng/api/api";
+import { ICopy, IEmpty, ILength, Predicate2, IRelease } from "@thi.ng/api/api";
 
 export interface ICache<K, V> extends
-    Iterable<CacheEntry<K, V>>,
+    Iterable<Readonly<CacheEntry<K, V>>>,
     ICopy<ICache<K, V>>,
     IEmpty<ICache<K, V>>,
-    ILength {
+    ILength,
+    IRelease {
 
     readonly size: number;
 
@@ -13,13 +14,19 @@ export interface ICache<K, V> extends
     set(key: K, val: V): V;
     getSet(key: K, fn: () => Promise<V>): Promise<V>;
     delete(key: K): boolean;
+
+    entries(): IterableIterator<Readonly<CacheEntry<K, V>>>;
+    keys(): IterableIterator<Readonly<K>>;
+    values(): IterableIterator<Readonly<V>>;
 }
 
 export interface CacheOpts<K, V> {
     ksize: (k: K) => number;
     vsize: (v: V) => number;
-    maxLen: number;
-    maxSize: number;
+    release: (k: K, v: V) => void;
+    equiv: Predicate2<K>;
+    maxlen: number;
+    maxsize: number;
 }
 
 export interface CacheEntry<K, V> {
