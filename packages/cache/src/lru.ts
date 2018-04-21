@@ -111,13 +111,14 @@ export class LRUCache<K, V> implements ICache<K, V> {
         this.delete(key);
         const size = this.ksize(key) + this.vsize(value);
         this._size += size;
-        this.ensureSize();
-        this.items.push({
-            k: key,
-            v: value,
-            s: size,
-            t: Date.now(),
-        });
+        if (this.ensureSize()) {
+            this.items.push({
+                k: key,
+                v: value,
+                s: size,
+                t: Date.now(),
+            });
+        }
         return value;
     }
 
