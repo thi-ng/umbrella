@@ -4,11 +4,13 @@
 
 ## About
 
-In-memory cache implementations with different eviction strategies. This
-package is still in early development and currently the only strategies
-available are:
+In-memory cache implementations with different [eviction
+strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
+This package is still in early development and currently the only
+strategies available are:
 
 - **LRU**: Least Recently Used
+- **MRU**: Most Recently Used
 
 ### Features
 
@@ -26,11 +28,47 @@ yarn add @thi.ng/cache
 
 ## Usage examples
 
+All caches support at least the following options (all optional):
+
+```ts
+interface CacheOpts<K, V> {
+    /**
+     * Key size calculation
+     */
+    ksize: (k: K) => number;
+    /**
+     * Value size calculation
+     */
+    vsize: (v: V) => number;
+    /**
+     * Eviction callback to clean up resources
+     */
+    release: (k: K, v: V) => void;
+    /**
+     * Factory for ES6 Map compatible instance
+     * to index cache entries
+     */
+    map: () => Map<K, any>;
+    /**
+     * Max number of items in cache (default: ∞)
+     */
+    maxlen: number;
+    /**
+     * Max cache size (computed via `ksize` & `vsize`) (default: ∞)
+     */
+    maxsize: number;
+}
+```
+
+### LRU
+
+Removes least recently used items if a new item is added, but would not satisfy cache limit. Every time a cached item is accessed, it's recency is updated.
+
 ```typescript
 import * as cache from "@thi.ng/cache";
 
 // caches can be configured with maxLen, maxSize and sizing functions (see below)
-const lru = new cache.LRUCache<string, number>({ maxlen: 3 });
+const lru = new cache.LRUCache<string, number>(null, { maxlen: 3 });
 lru.set("foo", 23);
 lru.set("bar", 42);
 lru.set("baz", 66);
@@ -42,10 +80,12 @@ lru.get("foo");
 // 23
 
 // caches are fully iterable
+// largely intended for inspection, does not update recency
+// btw. "foo" appears last since most recently accessed
 [...lru]
-// [ { k: 'bar', v: 42, s: 0, t: 1524263352848 },
-//   { k: 'baz', v: 66, s: 0, t: 1524263353254 },
-//   { k: 'foo', v: 23, s: 0, t: 1524263362677 } ]
+// [ { k: 'bar', v: 42, s: 0 },
+//   { k: 'baz', v: 66, s: 0 },
+//   { k: 'foo', v: 23, s: 0 } ]
 [...lru.keys()]
 // [ 'bar', 'baz', 'foo' ]
 [...lru.values()]
@@ -65,25 +105,23 @@ lru.getSet("boo", () => Promise.resolve(999)).then(console.log);
 lru.getSet("boo", () => Promise.resolve(123)).then(console.log);
 // 999
 
-// caches can be limited by actual size instead of (or in addition to)
+// caches can be limited by size instead of (or in addition to)
 // number of items. the meaning of `size` is user-defined.
 // sizing fns can be provided for both keys & values (both default to 0)
 // here we multiply value size by 8 since JS numbers are doubles by default
-// also provide a release hook for demo purposes
-lru = new cache.LRUCache<string, number[]>({
-    maxsize: 32,
-    ksize: (k) => k.length,
-    vsize: (v) => v.length * 8,
-    release: (k, v) => console.log("release", k, v)
-});
+// we also provide a release hook for demo purposes
 
-lru.set("a", [1.0, 2.0]);
-lru.size
-// 17
-
-lru.set("b", [3.0, 4.0, 5.0]);
-// release a [1, 2] (eviction due to maxsize constraint)
-
+// the first arg is an iterable of KV pairs to store (just as for Map)
+lru = new cache.LRUCache<string, number[]>(
+    [ ["a", [1.0, 2.0]], ["b", [3.0, 4.0, 5.0]] ],
+    {
+        maxsize: 32,
+        ksize: (k) => k.length,
+        vsize: (v) => v.length * 8,
+        release: (k, v) => console.log("release", k, v)
+    }
+);
+// release a [1, 2] ("a" is evicted due to maxsize constraint)
 lru.size
 // 25
 

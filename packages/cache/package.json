@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/cache",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "In-memory cache implementations with ES6 Map-like API and different eviction strategies",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
