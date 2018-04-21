@@ -84,7 +84,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
         return this.map.has(key);
     }
 
-    get(key: K, notFound?: V): V {
+    get(key: K, notFound?: any) {
         const e = this.map.get(key);
         if (!e) {
             return notFound;
@@ -134,9 +134,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
     delete(key: K): boolean {
         const e = this.map.get(key);
         if (e) {
-            this.map.delete(key);
-            this.items.remove(e);
-            this._size -= e.value.s;
+            this.removeEntry(e);
             return true;
         }
         return false;
@@ -161,5 +159,13 @@ export class LRUCache<K, V> implements ICache<K, V> {
             this._size -= e.s;
         }
         return true;
+    }
+
+    protected removeEntry(e: ConsCell<CacheEntry<K, V>>) {
+        const ee = e.value;
+        this.map.delete(ee.k);
+        this.items.remove(e);
+        this.opts.release && this.opts.release(ee.k, ee.v);
+        this._size -= ee.s;
     }
 }
