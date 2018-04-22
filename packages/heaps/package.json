@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/heaps",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Generic binary heap & d-ary heap implementations with customizable ordering",
     "main": "./index.js",
     "typings": "./index.d.ts",
