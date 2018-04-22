@@ -28,10 +28,6 @@ export class Heap<T> implements
         return idx > 0 ? (idx - 1) >> 1 : -1;
     }
 
-    static siblingIndex(idx: number) {
-        return idx > 0 ? idx + 1 - ((idx & 1) << 1) : -1;
-    }
-
     static childIndex(idx: number) {
         return idx >= 0 ? (idx << 1) + 1 : -1;
     }
@@ -94,13 +90,12 @@ export class Heap<T> implements
         return res;
     }
 
-    pushPop(val: T) {
-        const vals = this.values;
+    pushPop(val: T, vals = this.values) {
         const head = vals[0];
         if (vals.length > 0 && this.compare(head, val) < 0) {
             vals[0] = val;
             val = head;
-            this.percolateDown(0);
+            this.percolateDown(0, vals);
         }
         return val;
     }
@@ -119,18 +114,55 @@ export class Heap<T> implements
         return res;
     }
 
-    heapify() {
-        for (var i = (this.values.length - 1) >> 1; i >= 0; i--) {
-            this.percolateDown(i);
+    heapify(vals = this.values) {
+        for (var i = (vals.length - 1) >> 1; i >= 0; i--) {
+            this.percolateDown(i, vals);
         }
     }
 
-    *sorted() {
-        const h = this.copy();
-        let x: T;
-        while ((x = h.pop()) !== undefined) {
-            yield x;
+    /**
+     * Returns the largest `n` values (or less) in heap, based on
+     * comparator ordering.
+     *
+     * @param n
+     */
+    max(n = this.values.length) {
+        const vals = this.values;
+        const cmp = this.compare;
+        const res = vals.slice(0, n);
+        if (!n) {
+            return res;
         }
+        this.heapify(res);
+        for (let m = vals.length; n < m; n++) {
+            this.pushPop(vals[n], res);
+        }
+        return res.sort((a, b) => cmp(b, a));
+    }
+
+    /**
+     * Returns the smallest `n` values (or less) in heap, based on
+     * comparator ordering.
+     *
+     * @param n
+     */
+    min(n = this.values.length) {
+        const vals = this.values;
+        const cmp = this.compare;
+        const res = vals.slice(0, n).sort(cmp);
+        if (!n) {
+            return res;
+        }
+        let x = res[n - 1], y;
+        for (let i = n, m = vals.length; i < m; i++) {
+            y = vals[i];
+            if (cmp(y, x) < 0) {
+                res.splice(binarySearch(res, y, 0, n, cmp), 0, y);
+                res.pop();
+                x = res[n - 1];
+            }
+        }
+        return res;
     }
 
     parent(n: number) {
@@ -155,8 +187,7 @@ export class Heap<T> implements
         return vals.slice(Heap.parentIndex(vals.length - 1) + 1);
     }
 
-    protected percolateUp(i: number) {
-        const vals = this.values;
+    protected percolateUp(i: number, vals = this.values) {
         const node = vals[i];
         const cmp = this.compare;
         while (i > 0) {
@@ -171,8 +202,7 @@ export class Heap<T> implements
         }
     }
 
-    protected percolateDown(i: number) {
-        const vals = this.values;
+    protected percolateDown(i: number, vals = this.values) {
         const n = vals.length;
         const node = vals[i];
         const cmp = this.compare;
@@ -192,4 +222,17 @@ export class Heap<T> implements
         }
         vals[i] = node;
     }
+}
+
+function binarySearch<T>(vals: T[], x: T, lo: number, hi: number, cmp: Comparator<T>) {
+    let m;
+    while (lo < hi) {
+        m = (lo + hi) >>> 1;
+        if (cmp(x, vals[m]) < 0) {
+            hi = m;
+        } else {
+            lo = m + 1;
+        }
+    }
+    return lo;
 }

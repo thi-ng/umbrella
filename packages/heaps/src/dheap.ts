@@ -25,17 +25,6 @@ export class DHeap<T> extends Heap<T> {
     }
 
     /**
-     * If `d=2` return index of other sibling. For all other `d`
-     * there're no unique solutions so always returns -1.
-     *
-     * @param idx
-     * @param d
-     */
-    static siblingIndex(idx: number, d = 4) {
-        return d === 2 ? Heap.siblingIndex(idx) : -1;
-    }
-
-    /**
      * Returns index of 1st child or -1 if `idx < 0`.
      *
      * @param idx
@@ -76,14 +65,13 @@ export class DHeap<T> extends Heap<T> {
         return vals.slice(DHeap.parentIndex(vals.length - 1, this.d) + 1);
     }
 
-    heapify() {
-        for (var i = ((this.values.length - 1) / this.d) | 0; i >= 0; i--) {
-            this.percolateDown(i);
+    heapify(vals = this.values) {
+        for (var i = ((vals.length - 1) / this.d) | 0; i >= 0; i--) {
+            this.percolateDown(i, vals);
         }
     }
 
-    protected percolateUp(i: number) {
-        const vals = this.values;
+    protected percolateUp(i: number, vals = this.values) {
         const node = vals[i];
         const d = this.d;
         const cmp = this.compare;
@@ -99,8 +87,7 @@ export class DHeap<T> extends Heap<T> {
         }
     }
 
-    protected percolateDown(i: number) {
-        const vals = this.values;
+    protected percolateDown(i: number, vals = this.values) {
         const n = vals.length;
         const d = this.d;
         const node = vals[i];
