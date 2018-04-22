@@ -79,7 +79,6 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
     }
 
     protected ensureSize() {
-        const release = this.opts.release;
         const maxs = this.opts.maxsize;
         const maxl = this.opts.maxlen;
         const now = Date.now();
