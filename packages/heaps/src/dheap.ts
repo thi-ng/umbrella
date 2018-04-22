@@ -2,6 +2,7 @@ import { compare } from "@thi.ng/api/compare";
 
 import { DHeapOpts } from "./api";
 import { Heap } from "./heap";
+import { ICopy, IEmpty } from "@thi.ng/api/api";
 
 /**
  * Generic d-ary heap / priority queue with configurable arity (default
@@ -12,7 +13,9 @@ import { Heap } from "./heap";
  *
  * https://en.wikipedia.org/wiki/D-ary_heap
  */
-export class DHeap<T> extends Heap<T> {
+export class DHeap<T> extends Heap<T> implements
+    ICopy<DHeap<T>>,
+    IEmpty<DHeap<T>> {
 
     /**
      * Returns index of parent node or -1 if `idx < 1`.
@@ -43,6 +46,14 @@ export class DHeap<T> extends Heap<T> {
         if (values) {
             this.into(values);
         }
+    }
+
+    copy() {
+        return <DHeap<T>>super.copy();
+    }
+
+    empty() {
+        return new DHeap<T>(null, { compare: this.compare, d: this.d });
     }
 
     parent(n: number) {
