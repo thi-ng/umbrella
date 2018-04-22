@@ -78,6 +78,17 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
         return value;
     }
 
+    prune() {
+        const now = Date.now();
+        let cell = this.items.head;
+        while (cell) {
+            if (cell.value.t < now) {
+                this.removeEntry(cell);
+            }
+            cell = cell.next;
+        }
+    }
+
     protected ensureSize() {
         const maxs = this.opts.maxsize;
         const maxl = this.opts.maxlen;
@@ -89,11 +100,6 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
             }
             cell = cell.next;
         }
-        cell = this.items.head;
-        while (cell && (this._size > maxs || this.length >= maxl)) {
-            this.removeEntry(cell);
-            cell = cell.next;
-        }
-        return true;
+        return super.ensureSize();
     }
 }
