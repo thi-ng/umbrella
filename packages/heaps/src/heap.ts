@@ -45,7 +45,7 @@ export class Heap<T> implements
     }
 
     *[Symbol.iterator]() {
-        yield* this.values;
+        yield* this.min();
     }
 
     get length() {
