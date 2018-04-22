@@ -86,10 +86,10 @@ export class LRUCache<K, V> implements ICache<K, V> {
 
     get(key: K, notFound?: any) {
         const e = this.map.get(key);
-        if (!e) {
-            return notFound;
+        if (e) {
+            return this.resetEntry(e);
         }
-        return this.resetEntry(e);
+        return notFound;
     }
 
     set(key: K, value: V) {

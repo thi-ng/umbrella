@@ -44,7 +44,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
         const e = this.map.get(key);
         if (e) {
             if (e.value.t >= Date.now()) {
-                return e.value.v;
+                return this.resetEntry(e);
             }
             this.removeEntry(e);
         }

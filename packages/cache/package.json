@@ -29,7 +29,14 @@
         "@thi.ng/iterators": "^4.1.6"
     },
     "keywords": [
+        "cache",
+        "data structure",
         "ES6",
+        "LRU",
+        "Map",
+        "MRU",
+        "TLRU",
+        "TTL",
         "typescript"
     ],
     "publishConfig": {
