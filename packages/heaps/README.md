@@ -19,19 +19,26 @@ yarn add @thi.ng/heaps
 ```typescript
 import { Heap, DHeap } from "@thi.ng/heaps";
 
+// with initial values, custom comparator and heap arity
 const h = new DHeap(
     [5, 2, 10, 15, 18, 23, 22, -1],
-    { compare: (a,b) => b - a, d: 4 }
+    {
+        compare: (a,b) => b - a,
+        d: 4
+    }
 );
+
 h.pop();
 // 23
 h.pop();
 // 22
 
+// insert new value unless it's a new root
+// else pop and return current root
 h.pushPop(16)
 // 18
-h.pop();
-// 16
+
+h.push(24);
 ```
 
 ## Authors

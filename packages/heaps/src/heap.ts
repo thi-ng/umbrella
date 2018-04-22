@@ -24,6 +24,18 @@ export class Heap<T> implements
     IEmpty<Heap<T>>,
     ILength {
 
+    static parentIndex(idx: number) {
+        return idx > 0 ? (idx - 1) >> 1 : -1;
+    }
+
+    static siblingIndex(idx: number) {
+        return idx > 0 ? idx + 1 - ((idx & 1) << 1) : -1;
+    }
+
+    static childIndex(idx: number) {
+        return idx >= 0 ? (idx << 1) + 1 : -1;
+    }
+
     protected values: T[];
     protected compare: Comparator<T>;
 
@@ -50,6 +62,10 @@ export class Heap<T> implements
         return h;
     }
 
+    clear() {
+        this.values.length = 0;
+    }
+
     empty() {
         return new Heap<T>(null, { compare: this.compare });
     }
@@ -60,7 +76,8 @@ export class Heap<T> implements
 
     push(val: T) {
         this.values.push(val);
-        return this.propagateDown(0, this.values.length - 1);
+        this.percolateUp(this.values.length - 1);
+        return this;
     }
 
     pop() {
@@ -70,7 +87,7 @@ export class Heap<T> implements
         if (vals.length > 0) {
             res = vals[0];
             vals[0] = tail;
-            this.propagateUp(0);
+            this.percolateDown(0);
         } else {
             res = tail;
         }
@@ -83,7 +100,7 @@ export class Heap<T> implements
         if (vals.length > 0 && this.compare(head, val) < 0) {
             vals[0] = val;
             val = head;
-            this.propagateUp(0);
+            this.percolateDown(0);
         }
         return val;
     }
@@ -92,50 +109,87 @@ export class Heap<T> implements
         for (let v of vals) {
             this.push(v);
         }
+        return this;
     }
 
     replaceHead(val: T) {
         const res = this.values[0];
         this.values[0] = val;
-        this.propagateUp(0);
+        this.percolateDown(0);
         return res;
     }
 
-    protected propagateDown(from: number, to: number) {
-        const vals = this.values;
-        const newVal = vals[to];
-        const cmp = this.compare;
-        while (to > from) {
-            const p = (to - 1) >> 1;
-            const parent = vals[p];
-            if (cmp(newVal, parent) < 0) {
-                vals[to] = parent;
-                to = p;
-                continue;
-            }
-            break;
+    heapify() {
+        for (var i = (this.values.length - 1) >> 1; i >= 0; i--) {
+            this.percolateDown(i);
         }
-        return vals[to] = newVal;
     }
 
-    protected propagateUp(pos: number, to?: number) {
-        if (to === 0) { return; }
+    *sorted() {
+        const h = this.copy();
+        let x: T;
+        while ((x = h.pop()) !== undefined) {
+            yield x;
+        }
+    }
+
+    parent(n: number) {
+        n = Heap.parentIndex(n);
+        return n >= 0 ? this.values[n] : undefined;
+    }
+
+    children(n: number) {
+        n = Heap.childIndex(n);
         const vals = this.values;
-        const newVal = vals[pos];
-        const from = pos;
+        const m = vals.length;
+        if (n >= m) return;
+        if (n === m - 1) return [vals[n]];
+        return [vals[n], vals[n + 1]];
+    }
+
+    leaves() {
+        const vals = this.values;
+        if (!vals.length) {
+            return []
+        }
+        return vals.slice(Heap.parentIndex(vals.length - 1) + 1);
+    }
+
+    protected percolateUp(i: number) {
+        const vals = this.values;
+        const node = vals[i];
         const cmp = this.compare;
-        to = to || vals.length - 1;
-        let child = (pos << 1) + 1;
-        while (child <= to) {
+        while (i > 0) {
+            const pi = (i - 1) >> 1;
+            const parent = vals[pi];
+            if (cmp(node, parent) >= 0) {
+                break;
+            }
+            vals[pi] = node;
+            vals[i] = parent;
+            i = pi;
+        }
+    }
+
+    protected percolateDown(i: number) {
+        const vals = this.values;
+        const n = vals.length;
+        const node = vals[i];
+        const cmp = this.compare;
+        let child = (i << 1) + 1;
+        while (child < n) {
             const next = child + 1;
-            if (next <= to && cmp(vals[child], vals[next]) >= 0) {
+            if (next < n && cmp(vals[child], vals[next]) >= 0) {
                 child = next;
             }
-            vals[pos] = vals[child];
-            pos = child;
-            child = (pos << 1) + 1;
+            if (cmp(vals[child], node) < 0) {
+                vals[i] = vals[child];
+            } else {
+                break;
+            }
+            i = child;
+            child = (i << 1) + 1;
         }
-        vals[pos] = newVal;
-        this.propagateDown(from, pos);
+        vals[i] = node;
     }
 }
