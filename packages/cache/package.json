@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/cache",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "In-memory cache implementations with ES6 Map-like API and different eviction strategies",
     "main": "./index.js",
     "typings": "./index.d.ts",
