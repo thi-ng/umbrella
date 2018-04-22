@@ -27,7 +27,12 @@
         "@thi.ng/api": "^2.2.0"
     },
     "keywords": [
+        "data structure",
+        "d-heap",
         "ES6",
+        "heap",
+        "priority queue",
+        "sort",
         "typescript"
     ],
     "publishConfig": {
