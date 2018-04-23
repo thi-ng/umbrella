@@ -1,5 +1,4 @@
 import { equiv } from "@thi.ng/api/equiv";
-// import { SortedMap } from "@thi.ng/associative/sorted-map";
 import { intersection } from "@thi.ng/associative/intersection";
 import { Stream, trace, Subscription, sync } from "@thi.ng/rstream";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
@@ -60,15 +59,9 @@ export class FactGraph {
     }
 
     addQuery(id: string, [s, p, o]: Pattern) {
-        const qs: Subscription<any, Set<number>> = s != null ?
-            this.streamS.transform(indexSel(s), "s") :
-            this.streamAll.subscribe(null, "s");
-        const qp: Subscription<any, Set<number>> = p != null ?
-            this.streamP.transform(indexSel(p), "p") :
-            this.streamAll.subscribe(null, "p");
-        const qo: Subscription<any, Set<number>> = o != null ?
-            this.streamO.transform(indexSel(o), "o") :
-            this.streamAll.subscribe(null, "o");
+        const qs: Subscription<any, Set<number>> = this.getIndexSelection(this.streamS, s, "s");
+        const qp: Subscription<any, Set<number>> = this.getIndexSelection(this.streamP, p, "p");
+        const qo: Subscription<any, Set<number>> = this.getIndexSelection(this.streamO, o, "o");
         const results = sync<Set<number>, Set<Fact>>({
             id,
             src: [qs, qp, qo],
@@ -110,6 +103,12 @@ export class FactGraph {
             }
         }
         return -1;
+    }
+
+    protected getIndexSelection(stream: Stream<Edit>, key: any, id: string): Subscription<any, Set<number>> {
+        return key != null ?
+            stream.transform(indexSel(key), id) :
+            this.streamAll.subscribe(null, id);
     }
 }
 
