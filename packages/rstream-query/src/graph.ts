@@ -6,7 +6,7 @@ import { Transducer, Reducer } from "@thi.ng/transducers/api";
 import { compR } from "@thi.ng/transducers/func/compr";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { Fact, Pattern, EditOp, Edit } from "./api";
+import { Fact, Pattern, Edit } from "./api";
 
 export class FactGraph {
 
@@ -17,10 +17,6 @@ export class FactGraph {
     indexP: Map<any, Set<number>>;
     indexO: Map<any, Set<number>>;
     allIDs: Set<number>;
-
-    indexSelS: Map<any, Subscription<Edit, Set<number>>>;
-    indexSelP: Map<any, Subscription<Edit, Set<number>>>;
-    indexSelO: Map<any, Subscription<Edit, Set<number>>>;
 
     streamAll: Stream<Set<number>>;
     streamS: Stream<Edit>;
@@ -44,22 +40,22 @@ export class FactGraph {
         let p = this.indexP.get(f[1]);
         let o = this.indexO.get(f[2]);
         if (this.findInIndices(s, p, o, f) !== -1) return this;
-        s || (s = new Set<number>());
-        p || (p = new Set<number>());
-        o || (o = new Set<number>());
         const id = FactGraph.NEXT_ID++;
+        const is = s || new Set<number>();
+        const ip = p || new Set<number>();
+        const io = o || new Set<number>();
         this.facts[id] = f;
-        s.add(id);
-        p.add(id);
-        o.add(id);
+        is.add(id);
+        ip.add(id);
+        io.add(id);
         this.allIDs.add(id);
-        this.indexS.set(f[0], s);
-        this.indexP.set(f[1], p);
-        this.indexO.set(f[2], o);
+        !s && this.indexS.set(f[0], is);
+        !p && this.indexP.set(f[1], ip);
+        !o && this.indexO.set(f[2], io);
         this.streamAll.next(this.allIDs);
-        this.streamS.next({ op: EditOp.ADD, key: f[0], id });
-        this.streamP.next({ op: EditOp.ADD, key: f[1], id });
-        this.streamO.next({ op: EditOp.ADD, key: f[2], id });
+        this.streamS.next({ index: is, key: f[0] });
+        this.streamP.next({ index: ip, key: f[1] });
+        this.streamO.next({ index: io, key: f[2] });
         return this;
     }
 
@@ -86,12 +82,17 @@ export class FactGraph {
                 }
             )
         });
-        for (let id = this.facts.length - 1; id >= 0; id--) {
-            const f = this.facts[id];
-            qs.next(s != null ? { op: EditOp.ADD, key: f[0], id } : this.allIDs);
-            qp.next(p != null ? { op: EditOp.ADD, key: f[1], id } : this.allIDs);
-            qo.next(o != null ? { op: EditOp.ADD, key: f[2], id } : this.allIDs);
-        }
+        const submit = (index: Map<any, Set<number>>, stream: Subscription<any, Set<number>>, key: any) => {
+            if (key != null) {
+                const ids = index.get(key);
+                ids && stream.next({ index: ids, key: s });
+            } else {
+                stream.next(this.allIDs);
+            }
+        };
+        submit(this.indexS, qs, s);
+        submit(this.indexP, qp, p);
+        submit(this.indexO, qo, o);
         return results.subscribe(trace(`${id}: `));
     }
 
@@ -112,28 +113,18 @@ export class FactGraph {
     }
 }
 
-export function indexSel(key: any): Transducer<Edit, Set<number>> {
-    return (rfn: Reducer<any, Set<number>>) => {
+export const indexSel = (key: any): Transducer<Edit, Set<number>> =>
+    (rfn: Reducer<any, Set<number>>) => {
         const r = rfn[2];
-        const sel = new Set<number>();
         return compR(rfn,
             (acc, e) => {
-                if (key == null || equiv(e.key, key)) {
-                    switch (e.op) {
-                        case EditOp.ADD:
-                            sel.add(e.id);
-                            return r(acc, sel);
-                        case EditOp.DELETE:
-                            sel.delete(e.id);
-                        case EditOp.UPDATE:
-                            return r(acc, sel);
-                        default:
-                    }
+                if (equiv(e.key, key)) {
+                    return r(acc, e.index);
                 }
                 return acc;
-            });
+            }
+        );
     };
-}
 
 export const g = new FactGraph();
 g.addFact(["mia", "loves", "toxi"]);

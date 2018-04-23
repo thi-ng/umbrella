@@ -15,7 +15,6 @@ export enum EditOp {
 }
 
 export interface Edit {
-    op: EditOp;
+    index: Set<number>;
     key: any;
-    id: number;
 }
