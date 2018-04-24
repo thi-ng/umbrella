@@ -88,15 +88,17 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             src.subscribe(
                 {
                     next: (x) => {
-                        if (x instanceof Subscription) {
-                            this.add(x);
+                        if (x[1] instanceof Subscription) {
+                            this.add(x[1]);
                         } else {
                             this.next(x);
                         }
                     },
-                    done: () => this.markDone(src)
+                    done: () => this.markDone(src),
+                    __owner: this
                 },
-                labeled<string, A>(src.id)
+                labeled<string, A>(src.id),
+                `in-${src.id}`
             )
         );
     }

@@ -36,16 +36,21 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         this.ensureState();
         this.sources.set(
             src,
-            src.subscribe({
-                next: (x) => {
-                    if (x instanceof Subscription) {
-                        this.add(x);
-                    } else {
-                        this.next(x);
-                    }
+            src.subscribe(
+                {
+                    next: (x) => {
+                        if (x instanceof Subscription) {
+                            this.add(x);
+                        } else {
+                            this.next(x);
+                        }
+                    },
+                    done: () => this.markDone(src),
+                    __owner: this
                 },
-                done: () => this.markDone(src)
-            }));
+                `in-${src.id}`
+            )
+        );
     }
 
     addAll(src: ISubscribable<A>[]) {
