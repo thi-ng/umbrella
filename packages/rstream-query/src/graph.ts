@@ -1,5 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
+import { illegalArgs } from "@thi.ng/api/error";
 import { intersection } from "@thi.ng/associative/intersection";
 import { Stream, Subscription, sync } from "@thi.ng/rstream";
 import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
@@ -8,6 +9,8 @@ import { compR } from "@thi.ng/transducers/func/compr";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { DEBUG, Edit, Fact, FactIds, Pattern } from "./api";
+import { qvarResolver } from "./pattern";
+import { isQVar } from "./qvar";
 
 export class FactGraph implements
     IToDot {
@@ -49,6 +52,15 @@ export class FactGraph implements
         };
     }
 
+    has(f: Fact) {
+        return this.findInIndices(
+            this.indexS.get(f[0]),
+            this.indexP.get(f[1]),
+            this.indexO.get(f[2]),
+            f
+        ) !== -1;
+    }
+
     addFact(f: Fact) {
         let s = this.indexS.get(f[0]);
         let p = this.indexP.get(f[1]);
@@ -73,29 +85,93 @@ export class FactGraph implements
         return this;
     }
 
-    addPatternQuery(id: string, [s, p, o]: Pattern): Subscription<FactIds, FactIds> {
+    /**
+     * Creates a new query subscription from given SPO pattern. Any
+     * `null` values in the pattern act as wildcard selectors and any
+     * other value as filter for the given fact component. E.g. the
+     * pattern `[null, "type", "person"]` matches all facts which have
+     * `"type"` as predicate and `"person"` as object. Likewise the
+     * pattern `[null, null, null]` matches ALL facts in the graph.
+     *
+     * By default, the returned rstream subscription emits sets of
+     * matched facts. If only the raw fact IDs are wanted, set
+     * `emitFacts` arg to `false`.
+     *
+     * @param id
+     * @param param1
+     */
+    addPatternQuery(id: string, [s, p, o]: Pattern, emitFacts = true): Subscription<FactIds, FactIds | Set<Fact>> {
+        let results: Subscription<any, FactIds | Set<Fact>>;
         if (s == null && p == null && o == null) {
-            return this.streamAll;
+            results = this.streamAll;
+        } else {
+            const qs = this.getIndexSelection(this.streamS, s, "s");
+            const qp = this.getIndexSelection(this.streamP, p, "p");
+            const qo = this.getIndexSelection(this.streamO, o, "o");
+            results = sync<FactIds, FactIds>({
+                id,
+                src: [qs, qp, qo],
+                xform: map(({ s, p, o }) => intersection(intersection(s, p), o)),
+                reset: true,
+            });
+            const submit = (index: Map<any, Set<number>>, stream: Subscription<any, Set<number>>, key: any) => {
+                if (key != null) {
+                    const ids = index.get(key);
+                    ids && stream.next({ index: ids, key });
+                }
+            };
+            submit(this.indexS, qs, s);
+            submit(this.indexP, qp, p);
+            submit(this.indexO, qo, o);
         }
-        const qs = this.getIndexSelection(this.streamS, s, "s");
-        const qp = this.getIndexSelection(this.streamP, p, "p");
-        const qo = this.getIndexSelection(this.streamO, o, "o");
-        const results = sync<FactIds, FactIds>({
-            id,
-            src: [qs, qp, qo],
-            xform: map(({ s, p, o }) => intersection(intersection(s, p), o)),
-            reset: true,
-        });
-        const submit = (index: Map<any, Set<number>>, stream: Subscription<any, Set<number>>, key: any) => {
-            if (key != null) {
-                const ids = index.get(key);
-                ids && stream.next({ index: ids, key });
-            }
-        };
-        submit(this.indexS, qs, s);
-        submit(this.indexP, qp, p);
-        submit(this.indexO, qo, o);
-        return results;
+        return emitFacts ?
+            results.transform(asFacts(this)) :
+            results;
+    }
+
+    /**
+     * Creates a new parametric query using given pattern with at least
+     * 1 query variable. Query vars are strings with `?` prefix. The
+     * rest of the string is considered the variable name.
+     *
+     * ```
+     * g.addParamQuery("id", ["?a", "friend", "?b"]);
+     * ```
+     *
+     * Internally, the query pattern is translated into a basic param
+     * query with an additional result transformation to resolve the
+     * stated query variable solutions. Returns a rstream subscription
+     * emitting arrays of solution objects like:
+     *
+     * ```
+     * [{a: "asterix", b: "obelix"}, {a: "romeo", b: "julia"}]
+     * ```
+     *
+     * @param id
+     * @param param1
+     */
+    addParamQuery(id: string, [s, p, o]: Pattern) {
+        const vs = isQVar(s);
+        const vp = isQVar(p);
+        const vo = isQVar(o);
+        const resolve = qvarResolver(vs, vp, vo, s, p, o);
+        if (!resolve) {
+            illegalArgs("at least 1 query variable is required in pattern");
+        }
+        const query = <Subscription<any, Set<Fact>>>this.addPatternQuery(
+            id + "-raw",
+            [vs ? null : s, vp ? null : p, vo ? null : o],
+        );
+        return query.transform(
+            map((facts: Set<Fact>) => {
+                const res = [];
+                for (let f of facts) {
+                    res.push(resolve(f));
+                }
+                return res;
+            }),
+            id
+        );
     }
 
     toDot(opts?: Partial<DotOpts>) {

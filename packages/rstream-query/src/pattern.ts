@@ -1,7 +1,7 @@
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 
-import { Pattern } from "./api";
-import { isQVar, autoQVar } from "./qvar";
+import { Fact, Pattern } from "./api";
+import { isQVar, autoQVar, qvarName } from "./qvar";
 
 export const patternVarCount = (p: Pattern) => {
     let n = 0;
@@ -42,3 +42,43 @@ export const resolvePathPattern = ([s, p, o], maxd = p.length) => {
 
 export const sortPatterns = (patterns: Pattern[]) =>
     patterns.sort((a, b) => patternVarCount(a) - patternVarCount(b));
+
+/**
+ * Returns an optimized query variable solution extractor function based
+ * on given pattern type. `vs`, `vp`, `vo` are flags to indicate if `s`,
+ * `p` and/or `o` pattern items are query variables. The returned fn
+ * will be optimized to 1 of the 8 possible case and accepts a single
+ * fact to extract the respective variables from.
+ *
+ * @param vs
+ * @param vp
+ * @param vo
+ * @param s
+ * @param p
+ * @param o
+ */
+export const qvarResolver = (vs: boolean, vp: boolean, vo: boolean, s, p, o) => {
+    const type = ((<any>vs) << 2) | ((<any>vp) << 1) | (<any>vo);
+    let ss: any = vs && qvarName(s);
+    let pp: any = vp && qvarName(p);
+    let oo: any = vo && qvarName(o);
+    switch (type) {
+        case 0:
+        default:
+            return;
+        case 1:
+            return (f: Fact) => ({ [oo]: f[2] });
+        case 2:
+            return (f: Fact) => ({ [pp]: f[1] });
+        case 3:
+            return (f: Fact) => ({ [pp]: f[1], [oo]: f[2] });
+        case 4:
+            return (f: Fact) => ({ [ss]: f[0] });
+        case 5:
+            return (f: Fact) => ({ [ss]: f[0], [oo]: f[2] });
+        case 6:
+            return (f: Fact) => ({ [ss]: f[0], [pp]: f[1] });
+        case 7:
+            return (f: Fact) => ({ [ss]: f[0], [pp]: f[1], [oo]: f[2] });
+    }
+};

@@ -1,8 +1,4 @@
-export interface Pattern extends Array<any> {
-    [0]: any;
-    [1]: any;
-    [2]: any;
-}
+export type Pattern = [any, any, any];
 
 export type Fact = Pattern;
 
@@ -21,4 +17,4 @@ export interface Edit {
     key: any;
 }
 
-export let DEBUG = true;
+export let DEBUG = false;
