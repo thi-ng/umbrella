@@ -51,7 +51,7 @@ cat << EOF > $MODULE/package.json
         "typescript": "^2.8.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.1.0"
+        "@thi.ng/api": "^2.2.0"
     },
     "keywords": [
         "ES6",
@@ -109,6 +109,9 @@ cat << EOF > $MODULE/README.md
 # @thi.ng/$1
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/$1.svg)](https://www.npmjs.com/package/@thi.ng/$1)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 ## About
 
