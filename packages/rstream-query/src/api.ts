@@ -6,6 +6,8 @@ export interface Pattern extends Array<any> {
 
 export type Fact = Pattern;
 
+export type FactIds = Set<number>
+
 export const CHOICES = Symbol("CHOICES");
 
 export enum EditOp {
@@ -18,3 +20,5 @@ export interface Edit {
     index: Set<number>;
     key: any;
 }
+
+export let DEBUG = true;

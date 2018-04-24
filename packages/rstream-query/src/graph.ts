@@ -1,23 +1,26 @@
 import { equiv } from "@thi.ng/api/equiv";
 import { intersection } from "@thi.ng/associative/intersection";
-import { Stream, trace, Subscription, sync } from "@thi.ng/rstream";
+import { Stream, Subscription, sync } from "@thi.ng/rstream";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
 import { compR } from "@thi.ng/transducers/func/compr";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { Fact, Pattern, Edit } from "./api";
+import { DEBUG, Edit, Fact, FactIds, Pattern } from "./api";
+import { IObjectOf } from "@thi.ng/api/api";
 
 export class FactGraph {
 
     static NEXT_ID = 0;
 
     facts: Fact[];
-    indexS: Map<any, Set<number>>;
-    indexP: Map<any, Set<number>>;
-    indexO: Map<any, Set<number>>;
-    allIDs: Set<number>;
+    indexS: Map<any, FactIds>;
+    indexP: Map<any, FactIds>;
+    indexO: Map<any, FactIds>;
+    indexSelections: IObjectOf<Map<any, Subscription<Edit, FactIds>>>;
+    allSelections: IObjectOf<Subscription<FactIds, FactIds>>;
+    allIDs: FactIds;
 
-    streamAll: Stream<Set<number>>;
+    streamAll: Stream<FactIds>;
     streamS: Stream<Edit>;
     streamP: Stream<Edit>;
     streamO: Stream<Edit>;
@@ -27,11 +30,21 @@ export class FactGraph {
         this.indexS = new Map();
         this.indexP = new Map();
         this.indexO = new Map();
+        this.indexSelections = {
+            "s": new Map(),
+            "p": new Map(),
+            "o": new Map()
+        };
         this.streamS = new Stream("S");
         this.streamP = new Stream("P");
         this.streamO = new Stream("O");
         this.streamAll = new Stream("ALL");
         this.allIDs = new Set<number>();
+        this.allSelections = {
+            "s": this.streamAll.subscribe(null, "s"),
+            "p": this.streamAll.subscribe(null, "p"),
+            "o": this.streamAll.subscribe(null, "o")
+        };
     }
 
     addFact(f: Fact) {
@@ -58,44 +71,37 @@ export class FactGraph {
         return this;
     }
 
-    addQuery(id: string, [s, p, o]: Pattern) {
-        const qs: Subscription<any, Set<number>> = this.getIndexSelection(this.streamS, s, "s");
-        const qp: Subscription<any, Set<number>> = this.getIndexSelection(this.streamP, p, "p");
-        const qo: Subscription<any, Set<number>> = this.getIndexSelection(this.streamO, o, "o");
-        const results = sync<Set<number>, Set<Fact>>({
+    addPatternQuery(id: string, [s, p, o]: Pattern): Subscription<FactIds, FactIds> {
+        if (s == null && p == null && o == null) {
+            return this.streamAll;
+        }
+        const qs = this.getIndexSelection(this.streamS, s, "s");
+        const qp = this.getIndexSelection(this.streamP, p, "p");
+        const qo = this.getIndexSelection(this.streamO, o, "o");
+        const results = sync<FactIds, FactIds>({
             id,
             src: [qs, qp, qo],
-            xform: map(
-                ({ s, p, o }) => {
-                    const res = new Set<Fact>();
-                    for (let id of intersection(intersection(s, p), o)) {
-                        res.add(this.facts[id])
-                    }
-                    return res;
-                }
-            )
+            xform: map(({ s, p, o }) => intersection(intersection(s, p), o)),
+            reset: true,
         });
         const submit = (index: Map<any, Set<number>>, stream: Subscription<any, Set<number>>, key: any) => {
             if (key != null) {
                 const ids = index.get(key);
-                ids && stream.next({ index: ids, key: s });
-            } else {
-                stream.next(this.allIDs);
+                ids && stream.next({ index: ids, key });
             }
         };
         submit(this.indexS, qs, s);
         submit(this.indexP, qp, p);
         submit(this.indexO, qo, o);
-        return results.subscribe(trace(`${id}: `));
+        return results;
     }
 
-    findInIndices(s: Set<number>, p: Set<number>, o: Set<number>, f: Fact) {
+    protected findInIndices(s: FactIds, p: FactIds, o: FactIds, f: Fact) {
         if (s && p && o) {
             const facts = this.facts;
             const index = s.size < p.size ?
                 s.size < o.size ? s : p.size < o.size ? p : o :
                 p.size < o.size ? p : s.size < o.size ? s : o;
-            console.log("smallest index", index, s, p, o);
             for (let id of index) {
                 if (equiv(facts[id], f)) {
                     return id;
@@ -105,18 +111,24 @@ export class FactGraph {
         return -1;
     }
 
-    protected getIndexSelection(stream: Stream<Edit>, key: any, id: string): Subscription<any, Set<number>> {
-        return key != null ?
-            stream.transform(indexSel(key), id) :
-            this.streamAll.subscribe(null, id);
+    protected getIndexSelection(stream: Stream<Edit>, key: any, id: string): Subscription<any, FactIds> {
+        if (key != null) {
+            let sel = this.indexSelections[id].get(key);
+            if (!sel) {
+                this.indexSelections[id].set(key, sel = stream.transform(indexSel(key), id));
+            }
+            return sel;
+        }
+        return this.allSelections[id];
     }
 }
 
-export const indexSel = (key: any): Transducer<Edit, Set<number>> =>
-    (rfn: Reducer<any, Set<number>>) => {
+export const indexSel = (key: any): Transducer<Edit, FactIds> =>
+    (rfn: Reducer<any, FactIds>) => {
         const r = rfn[2];
         return compR(rfn,
             (acc, e) => {
+                DEBUG && console.log("index sel", e.key, key);
                 if (equiv(e.key, key)) {
                     return r(acc, e.index);
                 }
@@ -125,12 +137,10 @@ export const indexSel = (key: any): Transducer<Edit, Set<number>> =>
         );
     };
 
-export const g = new FactGraph();
-g.addFact(["mia", "loves", "toxi"]);
-g.addFact(["mia", "loves", "ned"]);
-g.addFact(["mia", "age", 42]);
-g.addFact(["toxi", "age", 42]);
-g.addFact(["mia", "loves", "noah"]);
-export const q1 = g.addQuery("mia", ["mia", null, null]);
-export const q2 = g.addQuery("loves", [null, "loves", null]);
-export const q3 = g.addQuery("all", [null, null, null]);
+export const asFacts = (graph: FactGraph) =>
+    map<FactIds, Set<Fact>>(
+        (ids) => {
+            const res = new Set<Fact>();
+            for (let id of ids) res.add(graph.facts[id]);
+            return res;
+        });

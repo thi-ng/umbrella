@@ -27,6 +27,7 @@
         "@thi.ng/api": "^2.2.0",
         "@thi.ng/associative": "^0.4.3",
         "@thi.ng/rstream": "^1.5.1",
+        "@thi.ng/rstream-dot": "^0.0.1",
         "@thi.ng/transducers": "^1.8.1"
     },
     "keywords": [
