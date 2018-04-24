@@ -58,7 +58,7 @@ const graph = initGraph(db, {
     // the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
     mpos: {
         fn: extract([1, "pos"]),
-        ins: [{ stream: () => gestures }],
+        ins: { src: { stream: () => gestures } },
         out: "mpos"
     },
 
@@ -67,7 +67,7 @@ const graph = initGraph(db, {
     // (only defined during drag gestures)
     clickpos: {
         fn: extract([1, "click"]),
-        ins: [{ stream: () => gestures }],
+        ins: { src: { stream: () => gestures } },
         out: "clickpos"
     },
 
@@ -82,7 +82,7 @@ const graph = initGraph(db, {
                 return delta && Math.hypot.apply(null, delta) | 0;
             }
         )),
-        ins: [{ stream: () => gestures }],
+        ins: { src: { stream: () => gestures } },
         out: "dist"
     },
 
@@ -100,11 +100,11 @@ const graph = initGraph(db, {
                     circle(color, click[0], click[1], radius * 2) :
                     undefined
         )),
-        ins: [
-            { stream: "clickpos", id: "click" },
-            { stream: "radius", id: "radius" },
-            { stream: "color", id: "color" },
-        ],
+        ins: {
+            click: { stream: "clickpos" },
+            radius: { stream: "radius" },
+            color: { stream: "color" },
+        },
         out: "circle"
     },
 
@@ -119,7 +119,7 @@ const graph = initGraph(db, {
             dedupe(equiv),
             map((x) => x && colors.next().value)
         )),
-        ins: [{ stream: "clickpos" }],
+        ins: { src: { stream: "clickpos" } },
         out: "color"
     },
 
@@ -127,7 +127,7 @@ const graph = initGraph(db, {
     // into a sine wave with 0.6 .. 1.0 interval
     sine: {
         fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
-        ins: [{ stream: () => raf }],
+        ins: { src: { stream: () => raf } },
         out: "sin"
     },
 
@@ -135,7 +135,10 @@ const graph = initGraph(db, {
     // radius value for `circle`
     radius: {
         fn: mul,
-        ins: [{ stream: "sine" }, { stream: "dist" }],
+        ins: {
+            a: { stream: "sine" },
+            b: { stream: "dist" }
+        },
         out: "radius"
     }
 });
