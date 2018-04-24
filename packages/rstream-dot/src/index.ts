@@ -53,26 +53,29 @@ const dotNode = (s: Node, opts: DotOpts) => {
     return res + "];"
 };
 
-export const walk = (sub: Subscription<any, any>, state: WalkState) => {
-    if (state.subs.get(sub)) return state;
-    const id = state.id;
-    const desc = { id, label: sub.id || "<noid>", type: getNodeType(sub) };
-    state.subs.set(sub, desc);
-    state.id++;
-    const children = (<any>sub).subs ||
-        ((<any>sub).__owner ?
-            [(<any>sub).__owner] :
-            undefined);
-    if (children) {
-        for (let s of children) {
-            walk(s, state);
-            state.rels.push([desc, state.subs.get(s)]);
+export const walk = (subs: Subscription<any, any>[], state?: WalkState) => {
+    state || (state = { id: 0, subs: new Map(), rels: [] });
+    for (let sub of subs) {
+        if (state.subs.get(sub)) return state;
+        const id = state.id;
+        const desc = { id, label: sub.id || "<noid>", type: getNodeType(sub) };
+        state.subs.set(sub, desc);
+        state.id++;
+        const children = (<any>sub).subs ||
+            ((<any>sub).__owner ?
+                [(<any>sub).__owner] :
+                undefined);
+        if (children) {
+            for (let s of children) {
+                walk([s], state);
+                state.rels.push([desc, state.subs.get(s)]);
+            }
         }
     }
     return state;
 }
 
-export const toDot = (state: WalkState, opts: Partial<DotOpts>) => {
+export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
     opts = Object.assign({
         font: "Inconsolata",
         fontsize: 11,
