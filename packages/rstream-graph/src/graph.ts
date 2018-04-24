@@ -10,7 +10,7 @@ import { sync, StreamSync } from "@thi.ng/rstream/stream-sync";
 import { Subscription } from "@thi.ng/rstream/subscription";
 import { Transducer } from "@thi.ng/transducers/api";
 
-import { NodeSpec } from "./api";
+import { NodeSpec, NodeFactory } from "./api";
 
 /**
  * Dataflow graph initialization function. Takes an object of
@@ -23,8 +23,8 @@ import { NodeSpec } from "./api";
  * @param nodes
  */
 export const initGraph = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>): IObjectOf<ISubscribable<any>> => {
-    for (let k in nodes) {
-        (<any>nodes)[k] = nodeFromSpec(state, nodes[k]);
+    for (let id in nodes) {
+        (<any>nodes)[id] = nodeFromSpec(state, nodes[id], id);
     }
     return resolveMap(nodes);
 };
@@ -43,7 +43,7 @@ export const initGraph = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>): IObjec
  *
  * @param spec
  */
-const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
+const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve) => {
     const src: ISubscribable<any>[] = [];
     for (let i of spec.ins) {
         let s;
@@ -63,10 +63,10 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
         }
         src.push(s);
     }
-    const node = spec.fn(src);
+    const node = spec.fn(src, id);
     if (spec.out) {
         if (isString(spec.out)) {
-            ((path) => node.subscribe({ next: (x) => state.resetIn(path, x) }))(spec.out);
+            ((path) => node.subscribe({ next: (x) => state.resetIn(path, x) }, `out-${id}`))(spec.out);
         } else {
             spec.out(node);
         }
@@ -75,7 +75,7 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec) => (resolve) => {
 };
 
 export const addNode = (graph: IObjectOf<ISubscribable<any>>, state: IAtom<any>, id: string, spec: NodeSpec) =>
-    graph[id] = nodeFromSpec(state, spec)((nodeID) => graph[nodeID]);
+    graph[id] = nodeFromSpec(state, spec, id)((nodeID) => graph[nodeID]);
 
 export const removeNode = (graph: IObjectOf<ISubscribable<any>>, id: string) => {
     if (graph[id]) {
@@ -94,12 +94,12 @@ export const removeNode = (graph: IObjectOf<ISubscribable<any>>, id: string) => 
  * @param xform
  * @param arity
  */
-export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
-    (src: ISubscribable<any>[]): StreamSync<any, any> => {
+export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number): NodeFactory<any> =>
+    (src: ISubscribable<any>[], id: string): StreamSync<any, any> => {
         if (arity !== undefined && src.length !== arity) {
             illegalArgs(`wrong number of inputs: got ${src.length}, but needed ${arity}`);
         }
-        return sync({ src, xform, reset: false });
+        return sync({ src, xform, reset: false, id });
     };
 
 /**
@@ -107,5 +107,5 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number) =>
  *
  * @param xform
  */
-export const node1 = (xform: Transducer<any, any>) =>
-    ([src]: ISubscribable<any>[]): Subscription<any, any> => src.subscribe(xform);
+export const node1 = (xform: Transducer<any, any>): NodeFactory<any> =>
+    ([src]: ISubscribable<any>[], id: string): Subscription<any, any> => src.subscribe(xform, id);

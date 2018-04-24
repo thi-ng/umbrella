@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { MultiInputNodeFn } from "../api";
+import { NodeFactory } from "../api";
 import { node } from "../graph";
 
 /**
@@ -9,7 +9,7 @@ import { node } from "../graph";
  *
  * Inputs: any
  */
-export const add: MultiInputNodeFn<number> = node(
+export const add: NodeFactory<number> = node(
     map((ports: IObjectOf<number>) => {
         let acc = 0;
         let v;
@@ -25,7 +25,7 @@ export const add: MultiInputNodeFn<number> = node(
  *
  * Inputs: any
  */
-export const mul: MultiInputNodeFn<number> = node(
+export const mul: NodeFactory<number> = node(
     map((ports: IObjectOf<number>) => {
         let acc = 1;
         let v;
@@ -41,7 +41,7 @@ export const mul: MultiInputNodeFn<number> = node(
  *
  * Inputs: 2
  */
-export const sub: MultiInputNodeFn<number> =
+export const sub: NodeFactory<number> =
     node(map((ports: IObjectOf<number>) => ports.a - ports.b), 2);
 
 /**
@@ -49,5 +49,5 @@ export const sub: MultiInputNodeFn<number> =
  *
  * Inputs: 2
  */
-export const div: MultiInputNodeFn<number> =
+export const div: NodeFactory<number> =
     node(map((ports: IObjectOf<number>) => ports.a / ports.b), 2);

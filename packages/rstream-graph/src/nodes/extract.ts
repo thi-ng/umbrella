@@ -1,7 +1,7 @@
 import { Path, getIn } from "@thi.ng/paths";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { MultiInputNodeFn } from "../api";
+import { NodeFactory } from "../api";
 import { node1 } from "../graph";
 
 /**
@@ -9,5 +9,5 @@ import { node1 } from "../graph";
  *
  * Inputs: 1
  */
-export const extract = (path: Path): MultiInputNodeFn<any> =>
+export const extract = (path: Path): NodeFactory<any> =>
     node1(map((x) => getIn(x, path)));

@@ -2,7 +2,7 @@ import { ISubscribable } from "@thi.ng/rstream/api";
 import { Transducer } from "@thi.ng/transducers/api";
 import { IObjectOf } from "@thi.ng/api/api";
 
-export type MultiInputNodeFn<T> = (src: ISubscribable<any>[]) => ISubscribable<T>;
+export type NodeFactory<T> = (src: ISubscribable<any>[], id: string) => ISubscribable<T>;
 
 /**
  * A dataflow graph spec is simply an object where keys are node names
@@ -22,7 +22,7 @@ export type GraphSpec = IObjectOf<NodeSpec>;
  * See `initGraph` and `nodeFromSpec` for more details (in /src/nodes.ts)
  */
 export interface NodeSpec {
-    fn: (src: ISubscribable<any>[]) => ISubscribable<any>;
+    fn: NodeFactory<any>;
     ins: NodeInput[];
     out?: NodeOutput;
 }
