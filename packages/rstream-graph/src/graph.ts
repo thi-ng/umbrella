@@ -89,25 +89,16 @@ export const removeNode = (graph: IObjectOf<ISubscribable<any>>, id: string) => 
 /**
  * Higher order node / stream creator. Takes a transducer and (optional)
  * required input stream IDs. The returned function takes an object of
- * input streams and returns a new
- * @thi.ng/rstream/StreamSync instance. The returned function will throw
- * an error if `inputIDs` is given and the object of inputs does contain
- * all of them.
+ * input streams and returns a new `StreamSync` instance. The returned
+ * function will throw an error if `inputIDs` is given and the object of
+ * inputs does not contain all of them.
  *
  * @param xform
  * @param inputIDs
  */
 export const node = (xform: Transducer<IObjectOf<any>, any>, inputIDs?: string[]): NodeFactory<any> =>
     (src: IObjectOf<ISubscribable<any>>, id: string): StreamSync<any, any> => {
-        if (inputIDs !== undefined) {
-            const missing: string[] = [];
-            for (let i of inputIDs) {
-                !src[i] && missing.push(i);
-            }
-            if (missing.length) {
-                illegalArgs(`node "${id}": missing inputs: ${missing.join(", ")}`);
-            }
-        }
+        ensureInputs(src, inputIDs, id);
         return sync({ src, xform, reset: false, id });
     };
 
@@ -120,7 +111,26 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, inputIDs?: string[]
  */
 export const node1 = (xform: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
     (src: IObjectOf<ISubscribable<any>>, id: string): Subscription<any, any> => {
-        const input = src[inputID];
-        !input && illegalArgs(`node "${id}": missing input: ${inputID}`);
-        return input.subscribe(xform, id);
+        ensureInputs(src, [inputID], id);
+        return src[inputID].subscribe(xform, id);
     };
+
+/**
+ * Helper function to verify given object of inputs has required input IDs.
+ * Throws error if validation fails.
+ *
+ * @param src
+ * @param inputIDs
+ * @param nodeID
+ */
+export const ensureInputs = (src: IObjectOf<ISubscribable<any>>, inputIDs: string[], nodeID: string) => {
+    if (inputIDs !== undefined) {
+        const missing: string[] = [];
+        for (let i of inputIDs) {
+            !src[i] && missing.push(i);
+        }
+        if (missing.length) {
+            illegalArgs(`node "${nodeID}": missing input(s): ${missing.join(", ")}`);
+        }
+    }
+};

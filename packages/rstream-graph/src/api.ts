@@ -18,8 +18,13 @@ export type GraphSpec = IObjectOf<NodeSpec>;
  * combine the inputs and produce values for the node's result stream.
  *
  * The `fn` function is responsible to produce such a stream construct.
+ * The keys used to specify inputs in the `ins` object are dictated by
+ * the actual node `fn` used. Most node functions with multiple inputs
+ * are implemented as `StreamSync` instances and the input IDs are used
+ * to locally rename input streams within the `StreamSync` container.
  *
- * See `initGraph` and `nodeFromSpec` for more details (in /src/nodes.ts)
+ * See `initGraph` and `nodeFromSpec` for more details (in
+ * /src/nodes.ts)
  */
 export interface NodeSpec {
     fn: NodeFactory<any>;
@@ -67,11 +72,6 @@ export interface NodeSpec {
  *
  * If the optional `xform` is given, a subscription with the transducer
  * is added to the input and then used as input instead.
- *
- * If the optional `id` is specified, a dummy subscription with the ID
- * is added to the input and used as input instead. This allows for
- * local renaming of inputs and is needed for some ops (e.g.
- * `StreamSync` based nodes).
  */
 export interface NodeInput {
     id?: string;
