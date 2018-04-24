@@ -1,3 +1,4 @@
+import { IID } from "@thi.ng/api/api";
 import { fromEvent } from "@thi.ng/rstream/from/event";
 import { merge, StreamMerge } from "@thi.ng/rstream/stream-merge";
 import { map } from "@thi.ng/transducers/xform/map";
@@ -22,7 +23,7 @@ export interface GestureEvent {
     [1]: GestureInfo;
 }
 
-export interface GestureStreamOpts {
+export interface GestureStreamOpts extends IID<string> {
     zoom: number;
     minZoom: number;
     maxZoom: number;
@@ -53,16 +54,18 @@ export interface GestureStreamOpts {
  * @param el
  * @param opts
  */
-export function gestureStream(el: Element, opts?: GestureStreamOpts): StreamMerge<any, GestureEvent> {
+export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
     let isDown = false,
         clickPos: number[];
     opts = Object.assign({
+        id: "gestures",
         zoom: 1,
         minZoom: 0.25,
         maxZoom: 4,
     }, opts);
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     return merge({
+        id: opts.id,
         src: [
             "mousedown", "mousemove", "mouseup",
             "touchstart", "touchmove", "touchend", "touchcancel",
