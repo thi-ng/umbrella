@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/rstream-dot",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
