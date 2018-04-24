@@ -144,7 +144,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             for (let s of <ISubscribable<A>[]>src) {
                 this.sourceIDs.add(s.id);
             }
-            for (let s of src) {
+            for (let s of <ISubscribable<A>[]>src) {
                 this.add(s);
             }
         }
