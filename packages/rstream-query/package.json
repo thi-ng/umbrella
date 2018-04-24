@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/rstream-query",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "@thi.ng/rstream based triple store & reactive query engine",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",

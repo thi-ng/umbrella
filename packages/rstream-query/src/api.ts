@@ -1,8 +1,8 @@
 export type Pattern = [any, any, any];
 
-export type Fact = Pattern;
+export type Triple = Pattern;
 
-export type FactIds = Set<number>
+export type TripleIds = Set<number>
 
 export const CHOICES = Symbol("CHOICES");
 

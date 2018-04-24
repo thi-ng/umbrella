@@ -1,6 +1,6 @@
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 
-import { Fact, Pattern } from "./api";
+import { Triple, Pattern } from "./api";
 import { isQVar, autoQVar, qvarName } from "./qvar";
 
 export const patternVarCount = (p: Pattern) => {
@@ -67,18 +67,18 @@ export const qvarResolver = (vs: boolean, vp: boolean, vo: boolean, s, p, o) => 
         default:
             return;
         case 1:
-            return (f: Fact) => ({ [oo]: f[2] });
+            return (f: Triple) => ({ [oo]: f[2] });
         case 2:
-            return (f: Fact) => ({ [pp]: f[1] });
+            return (f: Triple) => ({ [pp]: f[1] });
         case 3:
-            return (f: Fact) => ({ [pp]: f[1], [oo]: f[2] });
+            return (f: Triple) => ({ [pp]: f[1], [oo]: f[2] });
         case 4:
-            return (f: Fact) => ({ [ss]: f[0] });
+            return (f: Triple) => ({ [ss]: f[0] });
         case 5:
-            return (f: Fact) => ({ [ss]: f[0], [oo]: f[2] });
+            return (f: Triple) => ({ [ss]: f[0], [oo]: f[2] });
         case 6:
-            return (f: Fact) => ({ [ss]: f[0], [pp]: f[1] });
+            return (f: Triple) => ({ [ss]: f[0], [pp]: f[1] });
         case 7:
-            return (f: Fact) => ({ [ss]: f[0], [pp]: f[1], [oo]: f[2] });
+            return (f: Triple) => ({ [ss]: f[0], [pp]: f[1], [oo]: f[2] });
     }
 };
