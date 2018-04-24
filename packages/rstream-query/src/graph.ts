@@ -1,14 +1,16 @@
+import { IObjectOf } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { intersection } from "@thi.ng/associative/intersection";
 import { Stream, Subscription, sync } from "@thi.ng/rstream";
+import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
 import { compR } from "@thi.ng/transducers/func/compr";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { DEBUG, Edit, Fact, FactIds, Pattern } from "./api";
-import { IObjectOf } from "@thi.ng/api/api";
 
-export class FactGraph {
+export class FactGraph implements
+    IToDot {
 
     static NEXT_ID = 0;
 
@@ -94,6 +96,10 @@ export class FactGraph {
         submit(this.indexP, qp, p);
         submit(this.indexO, qo, o);
         return results;
+    }
+
+    toDot(opts?: Partial<DotOpts>) {
+        return toDot(walk([this.streamS, this.streamP, this.streamO, this.streamAll]), opts);
     }
 
     protected findInIndices(s: FactIds, p: FactIds, o: FactIds, f: Fact) {
