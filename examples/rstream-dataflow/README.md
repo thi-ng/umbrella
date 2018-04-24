@@ -16,7 +16,9 @@ Installs all dependencies, runs `webpack-dev-server` and opens the app in your b
 ![dataflow graph](../../assets/rs-dflow.png)
 
 This example combines the following packages to create & execute the
-above dataflow graph in a declarative manner:
+above dataflow graph in a declarative manner. The diagram generation
+itself is part of the example and handled via the @thi.ng/rstream-dot
+package.
 
 - [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom) - state container
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) - UI component rendering
