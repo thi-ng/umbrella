@@ -2,6 +2,9 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 Type agnostic binary heap & d-ary heap implementations with customizable

@@ -2,6 +2,9 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 In-memory cache implementations with different [eviction

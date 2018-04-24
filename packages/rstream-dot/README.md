@@ -2,6 +2,9 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies.

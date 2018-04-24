@@ -2,6 +2,9 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
 ## About
 
 Unified mouse, mouse wheel & single-touch event stream abstraction.
