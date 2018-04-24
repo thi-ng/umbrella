@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.1.9...@thi.ng/rstream-gestures@0.2.0) (2018-04-24)
+
+
+### Features
+
+* **rstream-gestures:** allows partial opts, add ID option ([3408c13](https://github.com/thi-ng/umbrella/commit/3408c13))
+
+
+
+
 <a name="0.1.9"></a>
 ## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.1.8...@thi.ng/rstream-gestures@0.1.9) (2018-04-22)
 

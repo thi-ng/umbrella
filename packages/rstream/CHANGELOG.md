@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.5.1...@thi.ng/rstream@1.6.0) (2018-04-24)
+
+
+### Features
+
+* **rstream:** add owner meta data & IDs for merge/sync inputs ([33f55b3](https://github.com/thi-ng/umbrella/commit/33f55b3))
+
+
+### Performance Improvements
+
+* **rstream:** support (re)named StreamSync inputs ([b392817](https://github.com/thi-ng/umbrella/commit/b392817))
+
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.5.0...@thi.ng/rstream@1.5.1) (2018-04-22)
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@0.2.6...@thi.ng/rstream-graph@1.0.0) (2018-04-24)
+
+
+### Code Refactoring
+
+* **rstream-graph:** update node input specs & node factories ([d564e10](https://github.com/thi-ng/umbrella/commit/d564e10))
+
+
+### Features
+
+* **rstream-graph:** add IDs for all generated nodes, rename factory type ([0153903](https://github.com/thi-ng/umbrella/commit/0153903))
+
+
+### BREAKING CHANGES
+
+* **rstream-graph:** node inputs now specified as object, node factory function
+signature change
+
+- input spec keys now used as input IDs
+- NodeFactory now accepts object of input stream (not array)
+- update node() & node1(), add support for required input IDs
+- update all existing node impls
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@0.2.5...@thi.ng/rstream-graph@0.2.6) (2018-04-22)
 
