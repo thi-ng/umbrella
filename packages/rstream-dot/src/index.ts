@@ -1,32 +1,10 @@
-import { Subscription, StreamSync, StreamMerge, Stream } from "@thi.ng/rstream";
+import { ISubscribable, StreamSync, StreamMerge, Stream } from "@thi.ng/rstream";
 
-export type NodeType =
-    "default" |
-    "noid" |
-    "stream" |
-    "streammerge" |
-    "streamsync";
+import { DotOpts, Node, WalkState } from "./api";
 
-export interface Node {
-    id: number;
-    label: string;
-    type: string;
-}
+export * from "./api";
 
-export interface WalkState {
-    subs: Map<Subscription<any, any>, Node>;
-    rels: Node[][];
-    id: number;
-}
-
-export interface DotOpts {
-    font: string;
-    fontsize: string;
-    text: string;
-    color: Record<NodeType, string>;
-}
-
-const getNodeType = (sub: Subscription<any, any>) => {
+const getNodeType = (sub: ISubscribable<any>) => {
     if (sub instanceof Stream) {
         return "Stream";
     }
@@ -53,12 +31,20 @@ const dotNode = (s: Node, opts: DotOpts) => {
     return res + "];"
 };
 
-export const walk = (subs: Subscription<any, any>[], state?: WalkState) => {
+const dotEdge = (a: Node, b: Node, _: DotOpts) => {
+    let res = `s${a.id} -> s${b.id}`;
+    if (b.xform) {
+        res += `[label="xform"]`;
+    }
+    return res + ";"
+};
+
+export const walk = (subs: ISubscribable<any>[], state?: WalkState) => {
     state || (state = { id: 0, subs: new Map(), rels: [] });
     for (let sub of subs) {
         if (state.subs.get(sub)) return state;
         const id = state.id;
-        const desc = { id, label: sub.id || "<noid>", type: getNodeType(sub) };
+        const desc: Node = { id, label: sub.id || "<noid>", type: getNodeType(sub), xform: !!(<any>sub).xform };
         state.subs.set(sub, desc);
         state.id++;
         const children = (<any>sub).subs ||
@@ -66,9 +52,9 @@ export const walk = (subs: Subscription<any, any>[], state?: WalkState) => {
                 [(<any>sub).__owner] :
                 undefined);
         if (children) {
-            for (let s of children) {
-                walk([s], state);
-                state.rels.push([desc, state.subs.get(s)]);
+            walk(children, state);
+            for (let c of children) {
+                state.rels.push([desc, state.subs.get(c)]);
             }
         }
     }
@@ -77,6 +63,7 @@ export const walk = (subs: Subscription<any, any>[], state?: WalkState) => {
 
 export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
     opts = Object.assign({
+        dir: "LR",
         font: "Inconsolata",
         fontsize: 11,
         text: "white",
@@ -90,9 +77,11 @@ export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
     }, opts);
     return [
         "digraph g {",
+        `rankdir=${opts.dir};`,
         `node[fontname=${opts.font},fontsize=${opts.fontsize},style=filled,fontcolor=${opts.text}];`,
+        `edge[fontname=${opts.font},fontsize=${opts.fontsize}];`,
         ...[...state.subs.values()].map((n) => dotNode(n, <DotOpts>opts)),
-        ...state.rels.map(([a, b]) => `s${a.id} -> s${b.id};`),
+        ...state.rels.map((r) => dotEdge(r[0], r[1], <DotOpts>opts)),
         "}"
     ].join("\n");
 };
