@@ -35,19 +35,19 @@ const graph = rsg.initGraph(state, {
     // from values in the state atom
     add: {
         fn: rsg.add,
-        ins: [
-            { path: "a" },
-            { path: "b" }
-        ],
+        ins: {
+            a: { path: "a" },
+            b: { path: "b" }
+        },
     },
     // this node receives values from the `add` node
     // and the given iterable
     mul: {
         fn: rsg.mul,
-        ins: [
-            { stream: "add" },
-            { stream: () => rs.fromIterable([10, 20, 30]) }
-        ],
+        ins: {
+            a: { stream: "add" },
+            b: { stream: () => rs.fromIterable([10, 20, 30]) }
+        },
     }
 });
 
