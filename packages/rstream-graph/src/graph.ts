@@ -44,24 +44,25 @@ export const initGraph = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>): IObjec
  * @param spec
  */
 const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve) => {
-    const src: ISubscribable<any>[] = [];
-    for (let i of spec.ins) {
+    const src: IObjectOf<ISubscribable<any>> = {};
+    for (let id in spec.ins) {
         let s;
+        const i = spec.ins[id];
         if (i.path) {
             s = fromView(state, i.path);
         } else if (i.stream) {
-            s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
+            s = isString(i.stream) ?
+                resolve(i.stream) :
+                (<any>i).stream(resolve);
         } else if (i.const) {
             s = fromIterableSync([i.const]);
         } else {
             illegalArgs(`invalid node spec`);
         }
         if (i.xform) {
-            s = s.subscribe(i.xform, i.id);
-        } else if (i.id) {
-            s = s.subscribe(null, i.id);
+            s = s.subscribe(i.xform, id);
         }
-        src.push(s);
+        src[id] = s;
     }
     const node = spec.fn(src, id);
     if (spec.out) {
@@ -86,26 +87,40 @@ export const removeNode = (graph: IObjectOf<ISubscribable<any>>, id: string) => 
 };
 
 /**
- * Higher order node / stream creator. Takes a transducer and optional
- * arity (number of required input streams). The returned function takes
- * an array of input streams and returns a new
- * @thi.ng/rstream/StreamSync instance.
+ * Higher order node / stream creator. Takes a transducer and (optional)
+ * required input stream IDs. The returned function takes an object of
+ * input streams and returns a new
+ * @thi.ng/rstream/StreamSync instance. The returned function will throw
+ * an error if `inputIDs` is given and the object of inputs does contain
+ * all of them.
  *
  * @param xform
- * @param arity
+ * @param inputIDs
  */
-export const node = (xform: Transducer<IObjectOf<any>, any>, arity?: number): NodeFactory<any> =>
-    (src: ISubscribable<any>[], id: string): StreamSync<any, any> => {
-        if (arity !== undefined && src.length !== arity) {
-            illegalArgs(`wrong number of inputs: got ${src.length}, but needed ${arity}`);
+export const node = (xform: Transducer<IObjectOf<any>, any>, inputIDs?: string[]): NodeFactory<any> =>
+    (src: IObjectOf<ISubscribable<any>>, id: string): StreamSync<any, any> => {
+        if (inputIDs !== undefined) {
+            const missing: string[] = [];
+            for (let i of inputIDs) {
+                !src[i] && missing.push(i);
+            }
+            if (missing.length) {
+                illegalArgs(`node "${id}": missing inputs: ${missing.join(", ")}`);
+            }
         }
         return sync({ src, xform, reset: false, id });
     };
 
 /**
- * Syntax sugar / helper fn for nodes using only single input.
+ * Similar to `node()`, but optimized for nodes using only a single
+ * input. Uses "src" as default input ID.
  *
  * @param xform
+ * @param inputID
  */
-export const node1 = (xform: Transducer<any, any>): NodeFactory<any> =>
-    ([src]: ISubscribable<any>[], id: string): Subscription<any, any> => src.subscribe(xform, id);
+export const node1 = (xform: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
+    (src: IObjectOf<ISubscribable<any>>, id: string): Subscription<any, any> => {
+        const input = src[inputID];
+        !input && illegalArgs(`node "${id}": missing input: ${inputID}`);
+        return input.subscribe(xform, id);
+    };

@@ -9,5 +9,5 @@ import { node1 } from "../graph";
  *
  * Inputs: 1
  */
-export const extract = (path: Path): NodeFactory<any> =>
-    node1(map((x) => getIn(x, path)));
+export const extract = (path: Path, inputID?: string): NodeFactory<any> =>
+    node1(map((x) => getIn(x, path)), inputID);
