@@ -23,6 +23,7 @@ above dataflow graph in a declarative manner:
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths) - nested value accessors
 - [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/master/packages/resolve-map) - DAG-based object resolution
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - reactive stream constructs
+- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot) - GraphViz DOT output of graph topology
 - [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures) - unified mouse & single-touch event stream
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) - data transformations (here used for stream transforms)
 

@@ -21,6 +21,7 @@
         "@thi.ng/hdom": "latest",
         "@thi.ng/paths": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/rstream-dot": "latest",
         "@thi.ng/rstream-gestures": "latest",
         "@thi.ng/rstream-graph": "latest",
         "@thi.ng/transducers": "latest"

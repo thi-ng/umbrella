@@ -3,6 +3,7 @@ import { Atom } from "@thi.ng/atom/atom";
 import { start } from "@thi.ng/hdom";
 import { getIn } from "@thi.ng/paths";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
+import { walk, toDot } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { initGraph, node, node1 } from "@thi.ng/rstream-graph/graph";
 import { extract } from "@thi.ng/rstream-graph/nodes/extract";
@@ -30,6 +31,11 @@ const db = new Atom<any>({});
 // [eventtype, [pos, clickpos, delta]]
 // Note: only single touches are supported, no multitouch!
 const gestures = gestureStream(document.getElementById("app"));
+
+// requestAnimationFrame() based counter stream. this is consumed by the
+// "sine" graph node below, but predefined here for visualization
+// purposes (see end of file)
+const raf = fromRAF();
 
 // dataflow graph definition. each key in this object represents a node
 // in the graph and its value is a `NodeSpec`. the `initGraph` function
@@ -70,10 +76,12 @@ const graph = initGraph(db, {
     // (`delta` is only defined during drag gestures)
     // `node1` is a helper function for nodes using only a single input
     dist: {
-        fn: node1(map((gesture) => {
-            const delta = getIn(gesture, [1, "delta"]);
-            return delta && Math.hypot.apply(null, delta) | 0;
-        })),
+        fn: node1(map(
+            (gesture) => {
+                const delta = getIn(gesture, [1, "delta"]);
+                return delta && Math.hypot.apply(null, delta) | 0;
+            }
+        )),
         ins: [{ stream: () => gestures }],
         out: "dist"
     },
@@ -86,10 +94,12 @@ const graph = initGraph(db, {
     // `node` is a helper function to create a `StreamSync` based node
     // with multiple inputs
     circle: {
-        fn: node(map(({ click, radius, color }) =>
-            click && radius && color ?
-                circle(color, click[0], click[1], radius * 2) :
-                undefined)),
+        fn: node(map(
+            ({ click, radius, color }) =>
+                click && radius && color ?
+                    circle(color, click[0], click[1], radius * 2) :
+                    undefined
+        )),
         ins: [
             { stream: "clickpos", id: "click" },
             { stream: "radius", id: "radius" },
@@ -105,7 +115,10 @@ const graph = initGraph(db, {
     // time clickpos is redefined (remember, clickpos is only defined
     // during drag gestures)
     color: {
-        fn: node1(comp(dedupe(equiv), map((x) => x && colors.next().value))),
+        fn: node1(comp(
+            dedupe(equiv),
+            map((x) => x && colors.next().value)
+        )),
         ins: [{ stream: "clickpos" }],
         out: "color"
     },
@@ -114,7 +127,7 @@ const graph = initGraph(db, {
     // into a sine wave with 0.6 .. 1.0 interval
     sine: {
         fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
-        ins: [{ stream: () => fromRAF() }],
+        ins: [{ stream: () => raf }],
         out: "sin"
     },
 
@@ -138,3 +151,11 @@ start("app", () =>
         // @thi.ng/atom's Atom, Cursor, View etc.)
         graph.circle
     ]);
+
+// create a GraphViz DOT file of the entire dataflow graph
+// copy the output from the console into a new text file and then run:
+// `dot -Tsvg -o graph.svg graph.dot`
+//
+// see for more info:
+// https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot
+console.log(toDot(walk([gestures, raf])));
