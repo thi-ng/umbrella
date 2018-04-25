@@ -49,20 +49,33 @@ export class TripleStore implements
         this.allIDs = new Set<number>();
         this.NEXT_ID = 0;
         if (triples) {
-            this.addTriples(triples);
+            this.into(triples);
         }
     }
 
-    has(f: Triple) {
-        return this.findInIndices(
-            this.indexS.get(f[0]),
-            this.indexP.get(f[1]),
-            this.indexO.get(f[2]),
-            f
-        ) !== -1;
+    *[Symbol.iterator](): IterableIterator<Triple> {
+        for (let t of this.triples) {
+            if (t) {
+                yield t;
+            }
+        }
     }
 
-    addTriple(t: Triple) {
+    has(t: Triple) {
+        return this.get(t) !== undefined;
+    }
+
+    get(t: Triple, notFound?: any) {
+        const id = this.findInIndices(
+            this.indexS.get(t[0]),
+            this.indexP.get(t[1]),
+            this.indexO.get(t[2]),
+            t
+        );
+        return id !== -1 ? this.triples[id] : notFound;
+    }
+
+    add(t: Triple) {
         let s = this.indexS.get(t[0]);
         let p = this.indexP.get(t[1]);
         let o = this.indexO.get(t[2]);
@@ -86,15 +99,15 @@ export class TripleStore implements
         return true;
     }
 
-    addTriples(triples: Iterable<Triple>) {
+    into(triples: Iterable<Triple>) {
         let ok = true;
         for (let f of triples) {
-            ok = this.addTriple(f) && ok;
+            ok = this.add(f) && ok;
         }
         return ok;
     }
 
-    removeTriple(t: Triple) {
+    delete(t: Triple) {
         let s = this.indexS.get(t[0]);
         let p = this.indexP.get(t[1]);
         let o = this.indexO.get(t[2]);
