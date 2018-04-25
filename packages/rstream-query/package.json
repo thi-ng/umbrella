@@ -31,7 +31,14 @@
         "@thi.ng/transducers": "^1.8.1"
     },
     "keywords": [
+        "dataflow",
         "ES6",
+        "query engine",
+        "reactive",
+        "stream",
+        "subscription",
+        "triples",
+        "triplestore",
         "typescript"
     ],
     "publishConfig": {

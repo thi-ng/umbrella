@@ -29,8 +29,16 @@
         "@thi.ng/transducers": "^1.8.1"
     },
     "keywords": [
+        "conversion",
+        "dataflow",
+        "DAG",
         "ES6",
-        "typescript"
+        "graph",
+        "graphviz",
+        "stream",
+        "topology",
+        "typescript",
+        "visualization"
     ],
     "publishConfig": {
         "access": "public"
