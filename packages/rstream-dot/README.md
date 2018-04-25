@@ -7,7 +7,9 @@ This project is part of the
 
 ## About
 
-Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies.
+Graphviz DOT conversion of
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+dataflow graph topologies.
 
 ## Installation
 
@@ -23,15 +25,15 @@ import * as rsd from "@thi.ng/rstream-dot";
 import * as rs from "@thi.ng/rstream";
 import * as tx from "@thi.ng/transducers";
 
+// create dummy dataflow
 a = rs.fromIterable([1,2,3]);
 b = rs.fromIterable([10, 20, 30]);
-
-a.transform(tx.map((x)=> x*10), "x10");
-
-rs.merge({src: [a,b]}).subscribe(rs.trace());
+a.transform(tx.map((x) => x * 10), "x10");
+rs.merge({src: [a, b]}).subscribe(rs.trace());
 
 // now capture the topology by walking the graph from its root(s)
-console.log(rsd.toDot(rsd.walk([a,b])));
+// and convert the result to GraphViz DOT format
+console.log(rsd.toDot(rsd.walk([a, b])));
 
 // digraph g {
 // rankdir=LR;

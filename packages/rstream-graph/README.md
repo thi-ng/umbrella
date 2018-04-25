@@ -21,6 +21,13 @@ yarn add @thi.ng/rstream-graph
 
 ## Usage examples
 
+A small, fully commented project can be found in the `/examples` folder:
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
+[Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+
+More basic:
+
 ```typescript
 import { Atom } from "@thi.ng/atom";
 import * as rs from "@thi.ng/rstream";
@@ -64,6 +71,8 @@ graph.mul.subscribe({
 state.resetIn("a", 10);
 // result: 360
 ```
+
+Please documentation in the source code for further details.
 
 ## Authors
 

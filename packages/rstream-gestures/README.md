@@ -30,8 +30,13 @@ yarn add @thi.ng/rstream-gestures
 
 ## Usage examples
 
+A small, fully commented project can be found in the `/examples` folder:
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
+[Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+
 ```typescript
-import * as rsg from "@thi.ng/rstream-gestures";
+import { gestureStream } from "@thi.ng/rstream-gestures";
 ```
 
 ## Authors

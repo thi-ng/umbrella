@@ -84,7 +84,7 @@ final subscriptions to output them to the console (using `trace`, see
 above).
 
 Btw. The diagram has been generated using
-[@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
 and can be recreated by calling `store.toDot()` (for the above example)
 
 (Many) more features forthcoming...
