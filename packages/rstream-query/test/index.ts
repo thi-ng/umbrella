@@ -70,37 +70,37 @@ describe("rstream-query", () => {
     it("param query (S)", () => {
         const res = [];
         store.addParamQuery("q", ["a", "?p", "?o"]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[{ p: "type", o: "foo" }, { p: "value", o: 0 }]]);
+        assert.deepEqual(res, [new Set([{ p: "type", o: "foo" }, { p: "value", o: 0 }])]);
     });
 
     it("param query (P)", () => {
         const res = [];
         store.addParamQuery("q", ["?s", "type", "?o"]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[{ s: "a", o: "foo" }, { s: "b", o: "bar" }, { s: "c", o: "baz" }]]);
+        assert.deepEqual(res, [new Set([{ s: "a", o: "foo" }, { s: "b", o: "bar" }, { s: "c", o: "baz" }])]);
     });
 
     it("param query (O)", () => {
         const res = [];
         store.addParamQuery("q", ["?s", "?p", "a"]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[{ s: "c", p: "friend" }]]);
+        assert.deepEqual(res, [new Set([{ s: "c", p: "friend" }])]);
     });
 
     it("param query (SP)", () => {
         const res = [];
         store.addParamQuery("q", ["a", "value", "?o"]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[{ o: 0 }]]);
+        assert.deepEqual(res, [new Set([{ o: 0 }])]);
     });
 
     it("param query (PO)", () => {
         const res = [];
         store.addParamQuery("q", ["?s", "value", 0]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[{ s: "a" }]]);
+        assert.deepEqual(res, [new Set([{ s: "a" }])]);
     });
 
     it("param query (SO)", () => {
         const res = [];
         store.addParamQuery("q", ["b", "?p", "bar"]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[{ p: "type" }]]);
+        assert.deepEqual(res, [new Set([{ p: "type" }])]);
     });
 
     it("param query (SPO)", () => {
@@ -110,13 +110,13 @@ describe("rstream-query", () => {
     it("param query (all)", () => {
         const res = [];
         store.addParamQuery("q", ["?s", "?p", "?o"]).subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [[
+        assert.deepEqual(res, [new Set([
             { s: "a", p: "type", o: "foo" },
             { s: "b", p: "type", o: "bar" },
             { s: "c", p: "type", o: "baz" },
             { s: "a", p: "value", o: 0 },
             { s: "b", p: "value", o: 1 },
             { s: "c", p: "friend", o: "a" },
-        ]]);
+        ])]);
     });
 });

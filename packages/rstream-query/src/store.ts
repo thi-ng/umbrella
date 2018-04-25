@@ -2,13 +2,16 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { illegalArgs } from "@thi.ng/api/error";
 import { intersection } from "@thi.ng/associative/intersection";
+import { join } from "@thi.ng/associative";
 import { Stream, Subscription, sync } from "@thi.ng/rstream";
 import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
+import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
+import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { DEBUG, Edit, Triple, TripleIds, Pattern } from "./api";
+import { DEBUG, Edit, Triple, TripleIds, Pattern, Solutions, Triples } from "./api";
 import { qvarResolver } from "./pattern";
 import { isQVar } from "./qvar";
 
@@ -111,8 +114,8 @@ export class TripleStore implements
      * @param id
      * @param param1
      */
-    addPatternQuery(id: string, [s, p, o]: Pattern, emitTriples = true): Subscription<TripleIds, TripleIds | Set<Triple>> {
-        let results: Subscription<any, TripleIds | Set<Triple>>;
+    addPatternQuery(id: string, [s, p, o]: Pattern, emitTriples = true): Subscription<TripleIds, TripleIds | Triples> {
+        let results: Subscription<any, TripleIds | Triples>;
         if (s == null && p == null && o == null) {
             results = this.streamAll;
         } else {
@@ -161,7 +164,7 @@ export class TripleStore implements
      * @param id
      * @param param1
      */
-    addParamQuery(id: string, [s, p, o]: Pattern) {
+    addParamQuery(id: string, [s, p, o]: Pattern): Subscription<Triples, Solutions> {
         const vs = isQVar(s);
         const vp = isQVar(p);
         const vo = isQVar(o);
@@ -175,14 +178,31 @@ export class TripleStore implements
         );
         return query.transform(
             map((triples: Set<Triple>) => {
-                const res = [];
+                const res = new Set<any>();
                 for (let f of triples) {
-                    res.push(resolve(f));
+                    res.add(resolve(f));
                 }
                 return res;
             }),
             id
         );
+    }
+
+    /**
+     * Returns a rstream subscription computing the natural join of the
+     * given input query results. The subscription only produces results
+     * if there's at least 1 joined result.
+     *
+     * @param id
+     * @param a
+     * @param b
+     */
+    addQueryJoin(id: string, a: Subscription<any, Solutions>, b: Subscription<any, Solutions>): Subscription<Solutions, Solutions> {
+        return sync<Solutions, Solutions>({
+            id,
+            src: { a, b },
+            xform: comp(map(({ a, b }) => join(a, b)), filter((x) => x.size > 0))
+        });
     }
 
     toDot(opts?: Partial<DotOpts>) {
