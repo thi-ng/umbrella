@@ -6,9 +6,7 @@ import { join } from "@thi.ng/associative";
 import { Stream, Subscription, sync } from "@thi.ng/rstream";
 import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
-import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { DEBUG, Edit, Triple, TripleIds, Pattern, Solutions, Triples } from "./api";
@@ -18,14 +16,14 @@ import { isQVar } from "./qvar";
 export class TripleStore implements
     IToDot {
 
-    static NEXT_ID = 0;
+    NEXT_ID: number;
+    freeIDs: number[];
 
     triples: Triple[];
     indexS: Map<any, TripleIds>;
     indexP: Map<any, TripleIds>;
     indexO: Map<any, TripleIds>;
     indexSelections: IObjectOf<Map<any, Subscription<Edit, TripleIds>>>;
-    allSelections: IObjectOf<Subscription<TripleIds, TripleIds>>;
     allIDs: TripleIds;
 
     streamAll: Stream<TripleIds>;
@@ -35,6 +33,7 @@ export class TripleStore implements
 
     constructor(triples?: Iterable<Triple>) {
         this.triples = [];
+        this.freeIDs = [];
         this.indexS = new Map();
         this.indexP = new Map();
         this.indexO = new Map();
@@ -48,11 +47,7 @@ export class TripleStore implements
         this.streamO = new Stream("O");
         this.streamAll = new Stream("ALL");
         this.allIDs = new Set<number>();
-        this.allSelections = {
-            "s": this.streamAll.subscribe(null, "s"),
-            "p": this.streamAll.subscribe(null, "p"),
-            "o": this.streamAll.subscribe(null, "o")
-        };
+        this.NEXT_ID = 0;
         if (triples) {
             this.addTriples(triples);
         }
@@ -72,7 +67,7 @@ export class TripleStore implements
         let p = this.indexP.get(t[1]);
         let o = this.indexO.get(t[2]);
         if (this.findInIndices(s, p, o, t) !== -1) return false;
-        const id = TripleStore.NEXT_ID++;
+        const id = this.nextID();
         const is = s || new Set<number>();
         const ip = p || new Set<number>();
         const io = o || new Set<number>();
@@ -97,6 +92,28 @@ export class TripleStore implements
             ok = this.addTriple(f) && ok;
         }
         return ok;
+    }
+
+    removeTriple(t: Triple) {
+        let s = this.indexS.get(t[0]);
+        let p = this.indexP.get(t[1]);
+        let o = this.indexO.get(t[2]);
+        const id = this.findInIndices(s, p, o, t);
+        if (id === -1) return false;
+        s.delete(id);
+        !s.size && this.indexS.delete(t[0]);
+        p.delete(id);
+        !p.size && this.indexP.delete(t[1]);
+        o.delete(id);
+        !o.size && this.indexO.delete(t[2]);
+        this.allIDs.delete(id);
+        delete this.triples[id];
+        this.freeIDs.push(id);
+        this.streamAll.next(this.allIDs);
+        this.streamS.next({ index: s, key: t[0] });
+        this.streamP.next({ index: p, key: t[1] });
+        this.streamO.next({ index: o, key: t[2] });
+        return true;
     }
 
     /**
@@ -124,11 +141,11 @@ export class TripleStore implements
             const qo = this.getIndexSelection(this.streamO, o, "o");
             results = sync<TripleIds, TripleIds>({
                 id,
-                src: [qs, qp, qo],
+                src: { s: qs, p: qp, o: qo },
                 xform: map(({ s, p, o }) => intersection(intersection(s, p), o)),
                 reset: true,
             });
-            const submit = (index: Map<any, Set<number>>, stream: Subscription<any, Set<number>>, key: any) => {
+            const submit = (index: Map<any, TripleIds>, stream: Subscription<Edit, TripleIds>, key: any) => {
                 if (key != null) {
                     const ids = index.get(key);
                     ids && stream.next({ index: ids, key });
@@ -172,7 +189,7 @@ export class TripleStore implements
         if (!resolve) {
             illegalArgs("at least 1 query variable is required in pattern");
         }
-        const query = <Subscription<any, Set<Triple>>>this.addPatternQuery(
+        const query = <Subscription<TripleIds, Triples>>this.addPatternQuery(
             id + "-raw",
             [vs ? null : s, vp ? null : p, vo ? null : o],
         );
@@ -190,8 +207,7 @@ export class TripleStore implements
 
     /**
      * Returns a rstream subscription computing the natural join of the
-     * given input query results. The subscription only produces results
-     * if there's at least 1 joined result.
+     * given input query results.
      *
      * @param id
      * @param a
@@ -201,12 +217,19 @@ export class TripleStore implements
         return sync<Solutions, Solutions>({
             id,
             src: { a, b },
-            xform: comp(map(({ a, b }) => join(a, b)), filter((x) => x.size > 0))
+            xform: map(({ a, b }) => join(a, b))
         });
     }
 
     toDot(opts?: Partial<DotOpts>) {
         return toDot(walk([this.streamS, this.streamP, this.streamO, this.streamAll]), opts);
+    }
+
+    protected nextID() {
+        if (this.freeIDs.length) {
+            return this.freeIDs.pop();
+        }
+        return this.NEXT_ID++;
     }
 
     protected findInIndices(s: TripleIds, p: TripleIds, o: TripleIds, f: Triple) {
@@ -225,14 +248,14 @@ export class TripleStore implements
     }
 
     protected getIndexSelection(stream: Stream<Edit>, key: any, id: string): Subscription<any, TripleIds> {
-        if (key != null) {
-            let sel = this.indexSelections[id].get(key);
-            if (!sel) {
-                this.indexSelections[id].set(key, sel = stream.transform(indexSel(key), id));
-            }
-            return sel;
+        if (key == null) {
+            return this.streamAll;
         }
-        return this.allSelections[id];
+        let sel = this.indexSelections[id].get(key);
+        if (!sel) {
+            this.indexSelections[id].set(key, sel = stream.transform(indexSel(key), id));
+        }
+        return sel;
     }
 }
 

@@ -15,7 +15,6 @@ describe("rstream-query", () => {
     let store: TripleStore;
 
     beforeEach(() => {
-        TripleStore.NEXT_ID = 0;
         store = new TripleStore(triples);
     });
 
