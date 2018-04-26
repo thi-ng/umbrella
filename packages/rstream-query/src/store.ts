@@ -178,12 +178,36 @@ export class TripleStore implements
                 const qs = this.getIndexSelection(this.streamS, s, "s");
                 const qp = this.getIndexSelection(this.streamP, p, "p");
                 const qo = this.getIndexSelection(this.streamO, o, "o");
-                results = sync<TripleIds, TripleIds>({
-                    id,
-                    src: { s: qs, p: qp, o: qo },
-                    xform: comp(map(({ s, p, o }) => intersection(intersection(s, p), o)), dedupe(equiv)),
-                    reset: true,
-                });
+                // optimize cases with 2 null terms (only needs single intersection w/ streamAll)
+                if (s == null && p == null) {
+                    results = sync<TripleIds, TripleIds>({
+                        id,
+                        src: { a: qo, b: qs },
+                        xform: comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv)),
+                        reset: true,
+                    });
+                } else if (s == null && o == null) {
+                    results = sync<TripleIds, TripleIds>({
+                        id,
+                        src: { a: qp, b: qs },
+                        xform: comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv)),
+                        reset: true,
+                    });
+                } else if (p == null && o == null) {
+                    results = sync<TripleIds, TripleIds>({
+                        id,
+                        src: { a: qs, b: qp },
+                        xform: comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv)),
+                        reset: true,
+                    });
+                } else {
+                    results = sync<TripleIds, TripleIds>({
+                        id,
+                        src: { s: qs, p: qp, o: qo },
+                        xform: comp(map(({ s, p, o }) => intersection(intersection(s, p), o)), dedupe(equiv)),
+                        reset: true,
+                    });
+                }
                 this.queries.set(key, <ISubscribable<TripleIds>>results);
                 submit(this.indexS, qs, s);
                 submit(this.indexP, qp, p);
@@ -442,12 +466,15 @@ const limitSolutions = (n: number) =>
 
 const bindVars = (bindings: IObjectOf<BindFn>) =>
     map((sol: Solutions) => {
+        const res: Solutions = new Set();
         for (let s of sol) {
+            s = { ...s };
+            res.add(s);
             for (let b in bindings) {
                 s[b] = bindings[b](s);
             }
         }
-        return sol;
+        return res;
     });
 
 const isWhereQuery = (q: SubQuerySpec): q is WhereQuerySpec => !!(<any>q).where;
