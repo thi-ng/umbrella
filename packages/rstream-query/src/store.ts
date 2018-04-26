@@ -2,27 +2,40 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { illegalArgs } from "@thi.ng/api/error";
 import { intersection } from "@thi.ng/associative/intersection";
-import { Stream, Subscription, sync } from "@thi.ng/rstream";
+import { join } from "@thi.ng/associative";
+import { ISubscribable } from "@thi.ng/rstream/api";
+import { Stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/stream-sync";
+import { Subscription } from "@thi.ng/rstream/subscription";
 import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { keySelector } from "@thi.ng/transducers/func/key-selector";
+import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
+import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 
-import { DEBUG, Edit, Triple, TripleIds, Pattern } from "./api";
-import { qvarResolver } from "./pattern";
-import { isQVar } from "./qvar";
+import { DEBUG, Edit, Triple, TripleIds, Pattern, Solutions, Triples, PathPattern, QuerySolution, QuerySpec, SubQuerySpec, WhereQuerySpec, PathQuerySpec, BindFn } from "./api";
+import { resolvePathPattern, patternVars } from "./pattern";
+import { isQVar, qvarResolver } from "./qvar";
 
 export class TripleStore implements
+    Iterable<Triple>,
     IToDot {
 
-    static NEXT_ID = 0;
+    NEXT_ID: number;
+    freeIDs: number[];
 
     triples: Triple[];
     indexS: Map<any, TripleIds>;
     indexP: Map<any, TripleIds>;
     indexO: Map<any, TripleIds>;
     indexSelections: IObjectOf<Map<any, Subscription<Edit, TripleIds>>>;
-    allSelections: IObjectOf<Subscription<TripleIds, TripleIds>>;
+    queries: Map<string, ISubscribable<TripleIds>>;
     allIDs: TripleIds;
 
     streamAll: Stream<TripleIds>;
@@ -32,6 +45,8 @@ export class TripleStore implements
 
     constructor(triples?: Iterable<Triple>) {
         this.triples = [];
+        this.freeIDs = [];
+        this.queries = new Map();
         this.indexS = new Map();
         this.indexP = new Map();
         this.indexO = new Map();
@@ -45,31 +60,40 @@ export class TripleStore implements
         this.streamO = new Stream("O");
         this.streamAll = new Stream("ALL");
         this.allIDs = new Set<number>();
-        this.allSelections = {
-            "s": this.streamAll.subscribe(null, "s"),
-            "p": this.streamAll.subscribe(null, "p"),
-            "o": this.streamAll.subscribe(null, "o")
-        };
+        this.NEXT_ID = 0;
         if (triples) {
-            this.addTriples(triples);
+            this.into(triples);
         }
     }
 
-    has(f: Triple) {
-        return this.findInIndices(
-            this.indexS.get(f[0]),
-            this.indexP.get(f[1]),
-            this.indexO.get(f[2]),
-            f
-        ) !== -1;
+    *[Symbol.iterator](): IterableIterator<Triple> {
+        for (let t of this.triples) {
+            if (t) {
+                yield t;
+            }
+        }
     }
 
-    addTriple(t: Triple) {
+    has(t: Triple) {
+        return this.get(t) !== undefined;
+    }
+
+    get(t: Triple, notFound?: any) {
+        const id = this.findTriple(
+            this.indexS.get(t[0]),
+            this.indexP.get(t[1]),
+            this.indexO.get(t[2]),
+            t
+        );
+        return id !== -1 ? this.triples[id] : notFound;
+    }
+
+    add(t: Triple) {
         let s = this.indexS.get(t[0]);
         let p = this.indexP.get(t[1]);
         let o = this.indexO.get(t[2]);
-        if (this.findInIndices(s, p, o, t) !== -1) return false;
-        const id = TripleStore.NEXT_ID++;
+        if (this.findTriple(s, p, o, t) !== -1) return false;
+        const id = this.nextID();
         const is = s || new Set<number>();
         const ip = p || new Set<number>();
         const io = o || new Set<number>();
@@ -81,19 +105,49 @@ export class TripleStore implements
         !s && this.indexS.set(t[0], is);
         !p && this.indexP.set(t[1], ip);
         !o && this.indexO.set(t[2], io);
-        this.streamAll.next(this.allIDs);
-        this.streamS.next({ index: is, key: t[0] });
-        this.streamP.next({ index: ip, key: t[1] });
-        this.streamO.next({ index: io, key: t[2] });
+        this.broadcastTriple(is, ip, io, t);
         return true;
     }
 
-    addTriples(triples: Iterable<Triple>) {
+    into(triples: Iterable<Triple>) {
         let ok = true;
         for (let f of triples) {
-            ok = this.addTriple(f) && ok;
+            ok = this.add(f) && ok;
         }
         return ok;
+    }
+
+    delete(t: Triple) {
+        let s = this.indexS.get(t[0]);
+        let p = this.indexP.get(t[1]);
+        let o = this.indexO.get(t[2]);
+        const id = this.findTriple(s, p, o, t);
+        if (id === -1) return false;
+        s.delete(id);
+        !s.size && this.indexS.delete(t[0]);
+        p.delete(id);
+        !p.size && this.indexP.delete(t[1]);
+        o.delete(id);
+        !o.size && this.indexO.delete(t[2]);
+        this.allIDs.delete(id);
+        delete this.triples[id];
+        this.freeIDs.push(id);
+        this.broadcastTriple(s, p, o, t);
+        return true;
+    }
+
+    /**
+     * Replaces triple `a` with `b`, *iff* `a` is actually in the store.
+     * Else does nothing.
+     *
+     * @param a
+     * @param b
+     */
+    replace(a: Triple, b: Triple) {
+        if (this.delete(a)) {
+            return this.add(b);
+        }
+        return false;
     }
 
     /**
@@ -111,32 +165,33 @@ export class TripleStore implements
      * @param id
      * @param param1
      */
-    addPatternQuery(id: string, [s, p, o]: Pattern, emitTriples = true): Subscription<TripleIds, TripleIds | Set<Triple>> {
-        let results: Subscription<any, TripleIds | Set<Triple>>;
+    addPatternQuery(pattern: Pattern, id?: string): ISubscribable<Triples>;
+    addPatternQuery(pattern: Pattern, id?: string, emitTriples?: boolean): ISubscribable<TripleIds | Triples>;
+    addPatternQuery(pattern: Pattern, id?: string, emitTriples = true) {
+        let results: ISubscribable<TripleIds | Triples>;
+        const [s, p, o] = pattern;
         if (s == null && p == null && o == null) {
             results = this.streamAll;
         } else {
-            const qs = this.getIndexSelection(this.streamS, s, "s");
-            const qp = this.getIndexSelection(this.streamP, p, "p");
-            const qo = this.getIndexSelection(this.streamO, o, "o");
-            results = sync<TripleIds, TripleIds>({
-                id,
-                src: [qs, qp, qo],
-                xform: map(({ s, p, o }) => intersection(intersection(s, p), o)),
-                reset: true,
-            });
-            const submit = (index: Map<any, Set<number>>, stream: Subscription<any, Set<number>>, key: any) => {
-                if (key != null) {
-                    const ids = index.get(key);
-                    ids && stream.next({ index: ids, key });
-                }
-            };
-            submit(this.indexS, qs, s);
-            submit(this.indexP, qp, p);
-            submit(this.indexO, qo, o);
+            const key = JSON.stringify(pattern);
+            if (!(results = this.queries.get(key))) {
+                const qs = this.getIndexSelection(this.streamS, s, "s");
+                const qp = this.getIndexSelection(this.streamP, p, "p");
+                const qo = this.getIndexSelection(this.streamO, o, "o");
+                results = sync<TripleIds, TripleIds>({
+                    id,
+                    src: { s: qs, p: qp, o: qo },
+                    xform: comp(map(({ s, p, o }) => intersection(intersection(s, p), o)), dedupe(equiv)),
+                    reset: true,
+                });
+                this.queries.set(key, <ISubscribable<TripleIds>>results);
+                submit(this.indexS, qs, s);
+                submit(this.indexP, qp, p);
+                submit(this.indexO, qo, o);
+            }
         }
         return emitTriples ?
-            results.transform(asTriples(this)) :
+            results.subscribe(asTriples(this)) :
             results;
     }
 
@@ -146,7 +201,7 @@ export class TripleStore implements
      * rest of the string is considered the variable name.
      *
      * ```
-     * g.addParamQuery("id", ["?a", "friend", "?b"]);
+     * g.addParamQuery(["?a", "friend", "?b"]);
      * ```
      *
      * Internally, the query pattern is translated into a basic param
@@ -161,7 +216,7 @@ export class TripleStore implements
      * @param id
      * @param param1
      */
-    addParamQuery(id: string, [s, p, o]: Pattern) {
+    addParamQuery([s, p, o]: Pattern, id?: string): QuerySolution {
         const vs = isQVar(s);
         const vp = isQVar(p);
         const vo = isQVar(o);
@@ -169,27 +224,133 @@ export class TripleStore implements
         if (!resolve) {
             illegalArgs("at least 1 query variable is required in pattern");
         }
-        const query = <Subscription<any, Set<Triple>>>this.addPatternQuery(
-            id + "-raw",
+        id || (id = `query-${Subscription.NEXT_ID++}`);
+        const query = <Subscription<TripleIds, Triples>>this.addPatternQuery(
             [vs ? null : s, vp ? null : p, vo ? null : o],
+            id + "-raw"
         );
         return query.transform(
-            map((triples: Set<Triple>) => {
-                const res = [];
+            map((triples) => {
+                const res = new Set<any>();
                 for (let f of triples) {
-                    res.push(resolve(f));
+                    res.add(resolve(f));
                 }
                 return res;
             }),
+            dedupe(equiv),
             id
         );
     }
 
-    toDot(opts?: Partial<DotOpts>) {
-        return toDot(walk([this.streamS, this.streamP, this.streamO, this.streamAll]), opts);
+    addParamQueries(patterns: Iterable<Pattern>) {
+        return iterator(
+            map<Pattern, QuerySolution>((q) => this.addParamQuery(q)),
+            patterns
+        );
     }
 
-    protected findInIndices(s: TripleIds, p: TripleIds, o: TripleIds, f: Triple) {
+    /**
+     * Converts the given path pattern into a number of sub-queries and
+     * return a rstream subscription of re-joined result solutions. If
+     * `maxLen` is given and greater than the number of actual path
+     * predicates, the predicates are repeated.
+     *
+     * @param path
+     * @param maxDepth
+     * @param id
+     */
+    addPathQuery(path: PathPattern, len = path[1].length, id?: string): QuerySolution {
+        return this.addMultiJoin(
+            this.addParamQueries(resolvePathPattern(path, len)[0]),
+            patternVars(path),
+            id
+        );
+    }
+
+    /**
+     * Like `addMultiJoin()`, but optimized for only two input queries.
+     * Returns a rstream subscription computing the natural join of the
+     * given input query results.
+     *
+     * @param id
+     * @param a
+     * @param b
+     */
+    addJoin(a: QuerySolution, b: QuerySolution, id?: string): QuerySolution {
+        return sync<Solutions, Solutions>({
+            id,
+            src: { a, b },
+            xform: comp(map(({ a, b }) => join(a, b)), dedupe(equiv)),
+            reset: false,
+        });
+    }
+
+    addMultiJoin(queries: Iterable<QuerySolution>, keepVars?: Iterable<string>, id?: string): QuerySolution {
+        const src = transduce(
+            mapIndexed<QuerySolution, [string, QuerySolution]>((i, q) => [String(i), q]),
+            assocObj(),
+            queries
+        );
+        let xforms: Transducer<any, any>[] = [joinSolutions(Object.keys(src).length), dedupe(equiv)];
+        keepVars && (xforms.push(filterSolutions(keepVars)));
+        return sync({ id, src, xform: <Transducer<any, any>>comp.apply(null, xforms), reset: false });
+    }
+
+    /**
+     * Compiles given query spec into a number of sub-queries and result
+     * transformations. Returns rstream subscription of final result
+     * sets. See `QuerySpec` docs for further details.
+     *
+     * @param spec
+     */
+    addQueryFromSpec(spec: QuerySpec): QuerySolution {
+        let query: QuerySolution;
+        let curr: QuerySolution;
+        for (let q of spec.q) {
+            if (isWhereQuery(q)) {
+                curr = this.addMultiJoin(this.addParamQueries(q.where));
+                query && (curr = this.addJoin(query, curr));
+            } else if (isPathQuery(q)) {
+                curr = this.addPathQuery(q.path);
+                query && (curr = this.addJoin(query, curr));
+            }
+            query = curr;
+        }
+        let xforms: Transducer<any, any>[] = [];
+        if (spec.limit) {
+            xforms.push(limitSolutions(spec.limit));
+        }
+        if (spec.bind) {
+            xforms.push(bindVars(spec.bind));
+        }
+        if (spec.select) {
+            xforms.push(filterSolutions(spec.select));
+        }
+        if (xforms.length) {
+            query = <ISubscribable<any>>query.subscribe(comp.apply(null, xforms));
+        }
+        return query;
+    }
+
+    toDot(opts?: Partial<DotOpts>) {
+        return toDot(walk([this.streamS, this.streamP, this.streamO, this.streamAll], opts), opts);
+    }
+
+    protected nextID() {
+        if (this.freeIDs.length) {
+            return this.freeIDs.pop();
+        }
+        return this.NEXT_ID++;
+    }
+
+    private broadcastTriple(s: TripleIds, p: TripleIds, o: TripleIds, t: Triple) {
+        this.streamAll.next(this.allIDs);
+        this.streamS.next({ index: s, key: t[0] });
+        this.streamP.next({ index: p, key: t[1] });
+        this.streamO.next({ index: o, key: t[2] });
+    }
+
+    protected findTriple(s: TripleIds, p: TripleIds, o: TripleIds, f: Triple) {
         if (s && p && o) {
             const triples = this.triples;
             const index = s.size < p.size ?
@@ -205,18 +366,25 @@ export class TripleStore implements
     }
 
     protected getIndexSelection(stream: Stream<Edit>, key: any, id: string): Subscription<any, TripleIds> {
-        if (key != null) {
-            let sel = this.indexSelections[id].get(key);
-            if (!sel) {
-                this.indexSelections[id].set(key, sel = stream.transform(indexSel(key), id));
-            }
-            return sel;
+        if (key == null) {
+            return this.streamAll;
         }
-        return this.allSelections[id];
+        let sel = this.indexSelections[id].get(key);
+        if (!sel) {
+            this.indexSelections[id].set(key, sel = stream.transform(indexSel(key), id));
+        }
+        return sel;
     }
 }
 
-export const indexSel = (key: any): Transducer<Edit, TripleIds> =>
+const submit = (index: Map<any, TripleIds>, stream: Subscription<Edit, TripleIds>, key: any) => {
+    if (key != null) {
+        const ids = index.get(key);
+        ids && stream.next({ index: ids, key });
+    }
+};
+
+const indexSel = (key: any): Transducer<Edit, TripleIds> =>
     (rfn: Reducer<any, TripleIds>) => {
         const r = rfn[2];
         return compR(rfn,
@@ -230,10 +398,57 @@ export const indexSel = (key: any): Transducer<Edit, TripleIds> =>
         );
     };
 
-export const asTriples = (graph: TripleStore) =>
+const asTriples = (graph: TripleStore) =>
     map<TripleIds, Set<Triple>>(
         (ids) => {
             const res = new Set<Triple>();
             for (let id of ids) res.add(graph.triples[id]);
             return res;
         });
+
+const joinSolutions = (n: number) =>
+    map<IObjectOf<Solutions>, Solutions>((src) => {
+        let res: Solutions = src[0];
+        for (let i = 1; i < n && res.size; i++) {
+            res = join(res, src[i]);
+        }
+        return res;
+    });
+
+const filterSolutions = (qvars: Iterable<string>) => {
+    const filterVars = keySelector([...qvars]);
+    return map((sol: Solutions) => {
+        const res: Solutions = new Set();
+        for (let s of sol) {
+            res.add(filterVars(s));
+        }
+        return res;
+    });
+};
+
+const limitSolutions = (n: number) =>
+    map((sol: Solutions) => {
+        if (sol.size <= n) {
+            return sol;
+        }
+        const res: Solutions = new Set();
+        let m = n;
+        for (let s of sol) {
+            res.add(s);
+            if (--m <= 0) break;
+        }
+        return res;
+    });
+
+const bindVars = (bindings: IObjectOf<BindFn>) =>
+    map((sol: Solutions) => {
+        for (let s of sol) {
+            for (let b in bindings) {
+                s[b] = bindings[b](s);
+            }
+        }
+        return sol;
+    });
+
+const isWhereQuery = (q: SubQuerySpec): q is WhereQuerySpec => !!(<any>q).where;
+const isPathQuery = (q: SubQuerySpec): q is PathQuerySpec => !!(<any>q).path;

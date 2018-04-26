@@ -89,4 +89,30 @@ describe("equiv", () => {
         assert(!equiv(new A(1), 2));
     });
 
+    it("set", () => {
+        const a = new Set([1, 2, 3]);
+        assert(equiv(a, a));
+        assert(equiv(a, new Set([3, 2, 1])));
+        assert(equiv(new Set([{ a: 1 }, new Set([{ b: 2 }, [3]])]), new Set([new Set([[3], { b: 2 }]), { a: 1 }])));
+        assert(!equiv(a, new Set([3, 2, 0])));
+        assert(!equiv(a, [3, 2, 0]));
+        assert(!equiv(a, new Map([[3, 3], [2, 2], [1, 1]])));
+        assert(!equiv(a, null));
+        assert(!equiv(null, a));
+    });
+
+    it("date", () => {
+        const a = new Date(123456);
+        assert(equiv(a, a));
+        assert(equiv(a, new Date(123456)));
+        assert(!equiv(a, new Date(123)));
+    });
+
+    it("regexp", () => {
+        const a = /(\w+)/g;
+        assert(equiv(a, a));
+        assert(equiv(a, /(\w+)/g));
+        assert(!equiv(a, /(\w+)/));
+        assert(!equiv(a, /(\w*)/g));
+    });
 });

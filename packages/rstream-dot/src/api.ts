@@ -16,6 +16,7 @@ export interface Node {
     label: string;
     type: string;
     xform: boolean;
+    body: string;
 }
 
 export interface WalkState {
@@ -25,6 +26,7 @@ export interface WalkState {
 }
 
 export interface DotOpts {
+    values: boolean;
     dir: string;
     font: string;
     fontsize: string;
