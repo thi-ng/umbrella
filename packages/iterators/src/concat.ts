@@ -1,5 +1,5 @@
-import { iterator } from "./iterator";
 import { ensureIterable } from "./ensure";
+import { iterator } from "./iterator";
 
 export function* concat<T>(...inputs: Iterable<T>[]) {
     let iter = iterator(inputs);

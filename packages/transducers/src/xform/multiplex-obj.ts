@@ -2,7 +2,6 @@ import { IObjectOf } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
 import { comp } from "../func/comp";
-
 import { multiplex } from "./multiplex";
 import { rename } from "./rename";
 

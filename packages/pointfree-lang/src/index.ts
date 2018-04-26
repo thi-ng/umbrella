@@ -2,7 +2,12 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs, illegalState } from "@thi.ng/api/error";
 import * as pf from "@thi.ng/pointfree";
 
-import { ASTNode, NodeType, ALIASES, VisitorState } from "./api";
+import {
+    ALIASES,
+    ASTNode,
+    NodeType,
+    VisitorState
+} from "./api";
 import { parse, SyntaxError } from "./parser";
 
 let DEBUG = false;

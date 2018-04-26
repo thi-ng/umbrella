@@ -1,8 +1,8 @@
+import { ICopy, IEmpty } from "@thi.ng/api/api";
 import { compare } from "@thi.ng/api/compare";
 
 import { DHeapOpts } from "./api";
 import { Heap } from "./heap";
-import { ICopy, IEmpty } from "@thi.ng/api/api";
 
 /**
  * Generic d-ary heap / priority queue with configurable arity (default

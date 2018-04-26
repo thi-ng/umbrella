@@ -1,7 +1,7 @@
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 
-import { Pattern, PathPattern } from "./api";
-import { isQVar, autoQVar, qvarName } from "./qvar";
+import { PathPattern, Pattern } from "./api";
+import { autoQVar, isQVar, qvarName } from "./qvar";
 
 export const patternVarCount = (p: Pattern) => {
     let n = 0;

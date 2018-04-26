@@ -1,8 +1,9 @@
+import { Predicate2 } from "@thi.ng/api/api";
 import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom/api";
 import { View } from "@thi.ng/atom/view";
-import { Stream } from "../stream";
 import { Path } from "@thi.ng/paths";
-import { Predicate2 } from "@thi.ng/api/api";
+
+import { Stream } from "../stream";
 
 /**
  * Similar to `fromAtom()`, but creates an eager derived view for a

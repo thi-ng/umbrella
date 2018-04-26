@@ -1,4 +1,5 @@
 import { illegalArity } from "@thi.ng/api/error";
+
 import { Transducer } from "../api";
 
 export function comp<A, B>(a: Transducer<A, B>): Transducer<A, B>;

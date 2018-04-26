@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+
 import { Transducer } from "../api";
 import { map } from "./map";
 

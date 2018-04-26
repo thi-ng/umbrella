@@ -1,14 +1,19 @@
-import { illegalArity, illegalState } from "@thi.ng/api/error";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isString } from "@thi.ng/checks/is-string";
-import { Reducer, Transducer, SEMAPHORE } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
-
-import { DEBUG, ISubscribable, ISubscriber, State } from "./api";
 import { IDeref } from "@thi.ng/api/api";
+import { illegalArity, illegalState } from "@thi.ng/api/error";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isString } from "@thi.ng/checks/is-string";
+import { Reducer, SEMAPHORE, Transducer } from "@thi.ng/transducers/api";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
+import { push } from "@thi.ng/transducers/rfn/push";
+
+import {
+    DEBUG,
+    ISubscribable,
+    ISubscriber,
+    State
+} from "./api";
 
 export class Subscription<A, B> implements
     IDeref<B>,

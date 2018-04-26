@@ -3,14 +3,19 @@ import { illegalArity } from "@thi.ng/api/error";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { DCons } from "@thi.ng/dcons";
 import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import { cycle } from "@thi.ng/transducers/iter/cycle";
 import { range } from "@thi.ng/transducers/iter/range";
+import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import { delayed } from "@thi.ng/transducers/xform/delayed";
 
-import { ChannelItem, ErrorHandler, IBuffer, IReadWriteableChannel, State } from "./api";
+import {
+    ChannelItem,
+    ErrorHandler,
+    IBuffer,
+    IReadWriteableChannel,
+    State
+} from "./api";
 import { FixedBuffer } from "./buffer";
-
 import { shuffle } from "./utils/shuffle";
 
 export class Channel<T> implements

@@ -1,4 +1,4 @@
-import { Path, getIn } from "@thi.ng/paths";
+import { getIn, Path } from "@thi.ng/paths";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { NodeFactory } from "../api";

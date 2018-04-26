@@ -1,9 +1,14 @@
-import { IEquiv, Watch, Predicate } from "@thi.ng/api/api";
+import { IEquiv, Predicate, Watch } from "@thi.ng/api/api";
 import { illegalState } from "@thi.ng/api/error";
 import { IWatch } from "@thi.ng/api/mixins/iwatch";
 import { Path, setIn, updateIn } from "@thi.ng/paths";
 
-import { IAtom, IView, SwapFn, ViewTransform } from "./api";
+import {
+    IAtom,
+    IView,
+    SwapFn,
+    ViewTransform
+} from "./api";
 import { View } from "./view";
 
 /**

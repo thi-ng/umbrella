@@ -1,7 +1,6 @@
 import { Transducer } from "../api";
-import { map } from "./map";
-
 import { delay } from "../func/delay";
+import { map } from "./map";
 
 /**
  * Yields transducer which wraps incoming values in promises, which

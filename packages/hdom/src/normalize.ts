@@ -1,6 +1,6 @@
 import { illegalArgs } from "@thi.ng/api/error";
-import * as isa from "@thi.ng/checks/is-array";
 import * as impf from "@thi.ng/checks/implements-function";
+import * as isa from "@thi.ng/checks/is-array";
 import * as isf from "@thi.ng/checks/is-function";
 import * as isi from "@thi.ng/checks/is-iterable";
 import * as iso from "@thi.ng/checks/is-plain-object";

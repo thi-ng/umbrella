@@ -1,4 +1,5 @@
 import { Predicate } from "@thi.ng/api/api";
+
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 

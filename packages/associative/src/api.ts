@@ -1,4 +1,10 @@
-import { Comparator, ICopy, IEmpty, IEquiv, Predicate2 } from "@thi.ng/api/api";
+import {
+    Comparator,
+    ICopy,
+    IEmpty,
+    IEquiv,
+    Predicate2
+} from "@thi.ng/api/api";
 
 export type Pair<K, V> = [K, V];
 

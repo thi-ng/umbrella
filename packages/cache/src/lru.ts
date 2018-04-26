@@ -1,7 +1,7 @@
-import { DCons, ConsCell } from "@thi.ng/dcons";
+import { ConsCell, DCons } from "@thi.ng/dcons";
 import { map } from "@thi.ng/iterators/map";
 
-import { ICache, CacheEntry, CacheOpts } from "./api";
+import { CacheEntry, CacheOpts, ICache } from "./api";
 
 export class LRUCache<K, V> implements ICache<K, V> {
 

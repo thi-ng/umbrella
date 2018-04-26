@@ -1,6 +1,6 @@
+import { ensureIterable } from "./ensure";
 import { iterator } from "./iterator";
 import { take } from "./take";
-import { ensureIterable } from "./ensure";
 
 export function* dropNth<T>(n: number, input: Iterable<T>) {
     let iter = ensureIterable(iterator(input));

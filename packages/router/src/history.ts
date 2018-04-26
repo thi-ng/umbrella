@@ -1,8 +1,8 @@
-import { illegalArity } from "@thi.ng/api/error";
 import { equiv } from "@thi.ng/api/equiv";
+import { illegalArity } from "@thi.ng/api/error";
 import { isString } from "@thi.ng/checks/is-string";
 
-import { HTMLRouterConfig, RouterConfig, RouteMatch } from "./api";
+import { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
 import { BasicRouter } from "./basic";
 
 export class HTMLRouter extends BasicRouter {

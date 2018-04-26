@@ -1,4 +1,4 @@
-import { Transducer, SEMAPHORE } from "../api";
+import { SEMAPHORE, Transducer } from "../api";
 import { isReduced } from "../reduced";
 
 export function partitionBy<T>(fn: (x?: T) => any, stateful = false): Transducer<T, T[]> {

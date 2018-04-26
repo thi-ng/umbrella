@@ -1,6 +1,17 @@
-import { Path, getIn, setIn, updateIn } from "@thi.ng/paths";
+import {
+    getIn,
+    Path,
+    setIn,
+    updateIn
+} from "@thi.ng/paths";
 
-import { FX_CANCEL, FX_STATE, Event, InterceptorFn, InterceptorPredicate } from "./api";
+import {
+    Event,
+    FX_CANCEL,
+    FX_STATE,
+    InterceptorFn,
+    InterceptorPredicate
+} from "./api";
 
 /**
  * Debug interceptor to log the current event to the console.

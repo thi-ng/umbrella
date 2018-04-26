@@ -1,11 +1,18 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { illegalState, illegalArgs } from "@thi.ng/api/error";
 import { equiv as _equiv } from "@thi.ng/api/equiv";
+import { illegalArgs, illegalState } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 
-import { StackContext, StackProc, StackEnv, StackProgram, StackFn, Stack } from "./api";
+import {
+    Stack,
+    StackContext,
+    StackEnv,
+    StackFn,
+    StackProc,
+    StackProgram
+} from "./api";
 import { comp } from "./comp";
 
 let SAFE = true;

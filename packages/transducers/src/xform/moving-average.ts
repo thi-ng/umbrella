@@ -1,9 +1,7 @@
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { reduce } from "../reduce";
-
 import { mean } from "../rfn/mean";
-
 import { map } from "./map";
 import { partition } from "./partition";
 

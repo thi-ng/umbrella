@@ -1,4 +1,5 @@
 import { illegalArity } from "@thi.ng/api/error";
+
 import { range } from "./range";
 
 export function range2d(toX: number, toY: number): IterableIterator<[number, number]>;

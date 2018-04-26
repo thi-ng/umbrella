@@ -1,5 +1,5 @@
-import { ReducedValue } from "./reduce";
 import { iterator } from "./iterator";
+import { ReducedValue } from "./reduce";
 
 export function* reductions<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) {
     let iter = iterator(input);

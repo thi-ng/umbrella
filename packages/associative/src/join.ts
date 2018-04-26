@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 
-import { intersection } from "./intersection";
 import { indexed } from "./indexed";
+import { intersection } from "./intersection";
 import { invertObj } from "./invert";
 import { mergeObj } from "./merge";
 import { renameKeysObj } from "./rename-keys";

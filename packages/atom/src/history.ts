@@ -1,8 +1,19 @@
 import { Predicate2, Watch } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
-import { Path, getIn, setIn, updateIn } from "@thi.ng/paths";
+import {
+    getIn,
+    Path,
+    setIn,
+    updateIn
+} from "@thi.ng/paths";
 
-import { IAtom, IHistory, IView, SwapFn, ViewTransform } from "./api";
+import {
+    IAtom,
+    IHistory,
+    IView,
+    SwapFn,
+    ViewTransform
+} from "./api";
 import { View } from "./view";
 
 /**

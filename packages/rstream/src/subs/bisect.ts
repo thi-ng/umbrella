@@ -1,4 +1,5 @@
 import { Predicate } from "@thi.ng/api/api";
+
 import { ISubscriber } from "../api";
 import { Subscription } from "../subscription";
 

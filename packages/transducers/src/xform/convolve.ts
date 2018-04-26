@@ -1,12 +1,10 @@
 import { illegalArity } from "@thi.ng/api/error";
 
 import { ConvolutionKernel2D, Transducer } from "../api";
-import { transduce } from "../transduce";
 import { range2d } from "../iter/range2d";
 import { tuples } from "../iter/tuples";
-
 import { add } from "../rfn/add";
-
+import { transduce } from "../transduce";
 import { map } from "./map";
 
 export function buildKernel2d(weights: Iterable<number>, w: number, h: number): ConvolutionKernel2D {

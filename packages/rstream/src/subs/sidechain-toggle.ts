@@ -1,7 +1,8 @@
 import { Predicate } from "@thi.ng/api/api";
+
 import { ISubscribable } from "../api";
-import { Stream } from "../stream";
 import { Subscription } from "../index";
+import { Stream } from "../stream";
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
 

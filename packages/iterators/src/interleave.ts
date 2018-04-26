@@ -1,8 +1,8 @@
 import { illegalArity } from "@thi.ng/api/error";
 
 import { cycle } from "./cycle";
-import { map } from "./map";
 import { iterator } from "./iterator";
+import { map } from "./map";
 
 export function* interleave(...inputs: Iterable<any>[]) {
     let n = inputs.length;

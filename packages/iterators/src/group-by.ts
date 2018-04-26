@@ -15,5 +15,3 @@ export function groupBy<T>(key: (v) => any, input: Iterable<T>): { [id: string]:
     }
     return groups;
 }
-
-// export const foo = groupBy((x)=>x.toUpperCase(), "AbRaCadaBra")[0];

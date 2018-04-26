@@ -1,7 +1,7 @@
 import { illegalArgs } from "@thi.ng/api/error";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 
 import { TAG_REGEXP, VOID_TAGS } from "./api";

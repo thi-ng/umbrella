@@ -4,7 +4,6 @@ import { compare } from "@thi.ng/api/compare";
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { identity } from "../func/identity";
-
 import { map } from "./map";
 import { partition } from "./partition";
 

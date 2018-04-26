@@ -1,10 +1,16 @@
 import { IID, IRelease, Watch } from "@thi.ng/api/api";
-import { illegalArity, illegalArgs } from "@thi.ng/api/error";
+import { illegalArgs, illegalArity } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
-import { Path, getter, setter } from "@thi.ng/paths";
+import { getter, Path, setter } from "@thi.ng/paths";
 
-import { IAtom, SwapFn, IView, ViewTransform, CursorOpts } from "./api";
+import {
+    CursorOpts,
+    IAtom,
+    IView,
+    SwapFn,
+    ViewTransform
+} from "./api";
 import { Atom } from "./atom";
 import { View } from "./view";
 

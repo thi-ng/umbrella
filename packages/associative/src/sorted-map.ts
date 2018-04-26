@@ -1,4 +1,12 @@
-import { Predicate2, Comparator, IObjectOf, ICompare, ICopy, IEmpty, IEquiv } from "@thi.ng/api/api";
+import {
+    Comparator,
+    ICompare,
+    ICopy,
+    IEmpty,
+    IEquiv,
+    IObjectOf,
+    Predicate2
+} from "@thi.ng/api/api";
 import { compare } from "@thi.ng/api/compare";
 import { equiv } from "@thi.ng/api/equiv";
 import { illegalArgs } from "@thi.ng/api/error";

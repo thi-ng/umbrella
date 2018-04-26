@@ -1,8 +1,8 @@
-import { IID, IDeref } from "@thi.ng/api/api";
+import { IDeref, IID } from "@thi.ng/api/api";
 import { Transducer } from "@thi.ng/transducers/api";
 
-import { Subscription } from "./subscription";
 import { Stream } from "./stream";
+import { Subscription } from "./subscription";
 
 export enum State {
     IDLE,

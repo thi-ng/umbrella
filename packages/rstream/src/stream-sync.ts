@@ -1,4 +1,4 @@
-import { IObjectOf, IID } from "@thi.ng/api/api";
+import { IID, IObjectOf } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";

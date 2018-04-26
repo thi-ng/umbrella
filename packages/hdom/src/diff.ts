@@ -2,8 +2,14 @@ import * as isa from "@thi.ng/checks/is-array";
 import * as iss from "@thi.ng/checks/is-string";
 import * as diff from "@thi.ng/diff";
 
+import {
+    createDOM,
+    removeAttribs,
+    removeChild,
+    setAttrib
+} from "./dom";
+
 // import { DEBUG } from "./api";
-import { createDOM, removeAttribs, setAttrib, removeChild } from "./dom";
 
 const isArray = isa.isArray;
 const isString = iss.isString;

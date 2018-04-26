@@ -1,6 +1,6 @@
+import { IObjectOf } from "@thi.ng/api/api";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { Transducer } from "@thi.ng/transducers/api";
-import { IObjectOf } from "@thi.ng/api/api";
 
 export type NodeFactory<T> = (src: IObjectOf<ISubscribable<any>>, id: string) => ISubscribable<T>;
 

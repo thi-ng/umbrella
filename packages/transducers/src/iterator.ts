@@ -1,6 +1,5 @@
 import { Reducer, Transducer } from "./api";
 import { isReduced, unreduced } from "./reduced";
-
 import { push } from "./rfn/push";
 
 export function* iterator<A, B>(tx: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B> {

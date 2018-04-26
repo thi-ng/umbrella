@@ -1,10 +1,20 @@
-import { Event, INotify, IObjectOf, Listener } from "@thi.ng/api/api";
-import { illegalArity, illegalArgs } from "@thi.ng/api/error";
+import {
+    Event,
+    INotify,
+    IObjectOf,
+    Listener
+} from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
+import { illegalArgs, illegalArity } from "@thi.ng/api/error";
 import * as mixin from "@thi.ng/api/mixins/inotify";
 import { isString } from "@thi.ng/checks/is-string";
 
-import { RouterConfig, RouteMatch, Route, RouteParamValidator } from "./api";
+import {
+    Route,
+    RouteMatch,
+    RouteParamValidator,
+    RouterConfig
+} from "./api";
 import { EVENT_ROUTE_CHANGED } from "./api";
 
 @mixin.INotify

@@ -1,4 +1,4 @@
-import { IObjectOf, IDeref } from "@thi.ng/api/api";
+import { IDeref, IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/api/error";
 import { IAtom } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";

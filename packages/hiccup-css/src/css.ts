@@ -4,7 +4,7 @@ import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 
-import { CSSOpts, COMPACT, DEFAULT_VENDORS } from "./api";
+import { COMPACT, CSSOpts, DEFAULT_VENDORS } from "./api";
 import { expand, formatDecls } from "./impl";
 
 export function css(rules: any, opts?: Partial<CSSOpts>) {

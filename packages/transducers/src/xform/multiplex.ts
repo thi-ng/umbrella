@@ -1,7 +1,6 @@
 import { Transducer } from "../api";
-import { step } from "../step";
 import { juxt } from "../func/juxt";
-
+import { step } from "../step";
 import { map } from "./map";
 
 /**

@@ -1,5 +1,5 @@
-import { map } from "./map";
 import { ensureIterable } from "./ensure";
+import { map } from "./map";
 
 export function* mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]): IterableIterator<T> {
     (inputs as any[]).unshift(fn);

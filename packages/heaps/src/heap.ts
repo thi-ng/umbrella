@@ -1,4 +1,9 @@
-import { ICopy, ILength, IEmpty, Comparator } from "@thi.ng/api/api";
+import {
+    Comparator,
+    ICopy,
+    IEmpty,
+    ILength
+} from "@thi.ng/api/api";
 import { compare } from "@thi.ng/api/compare";
 
 import { HeapOpts } from "./api";

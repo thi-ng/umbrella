@@ -4,10 +4,10 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
-import { transduce } from "@thi.ng/transducers/transduce";
 import { permutations } from "@thi.ng/transducers/iter/permutations";
 import { repeat } from "@thi.ng/transducers/iter/repeat";
 import { str } from "@thi.ng/transducers/rfn/str";
+import { transduce } from "@thi.ng/transducers/transduce";
 import { flatten } from "@thi.ng/transducers/xform/flatten";
 import { map } from "@thi.ng/transducers/xform/map";
 

@@ -1,6 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { Reducer } from "../api";
 
+import { Reducer } from "../api";
 import { groupByObj } from "./group-by-obj";
 import { push } from "./push";
 

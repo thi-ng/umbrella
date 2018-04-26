@@ -1,7 +1,12 @@
 import { Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 
-import { EquivSetOpts, IEquivSet, Pair, SEMAPHORE } from "./api";
+import {
+    EquivSetOpts,
+    IEquivSet,
+    Pair,
+    SEMAPHORE
+} from "./api";
 
 interface SetProps<T> {
     vals: T[];

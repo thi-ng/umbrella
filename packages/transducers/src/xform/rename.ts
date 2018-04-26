@@ -1,10 +1,9 @@
 import { IObjectOf } from "@thi.ng/api/api";
+
 import { Reducer, Transducer } from "../api";
 import { comp } from "../func/comp";
-import { transduce } from "../transduce";
-
 import { renamer } from "../func/renamer";
-
+import { transduce } from "../transduce";
 import { filter } from "./filter";
 import { map } from "./map";
 

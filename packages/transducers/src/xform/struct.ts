@@ -1,8 +1,8 @@
 import { StructField, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { mapKeys } from "./map-keys";
-import { partitionOf } from "./partition-of";
 import { partition } from "./partition";
+import { partitionOf } from "./partition-of";
 import { rename } from "./rename";
 
 /**

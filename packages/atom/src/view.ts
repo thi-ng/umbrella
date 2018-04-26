@@ -1,5 +1,5 @@
 import { equiv as _equiv } from "@thi.ng/api/equiv";
-import { Path, getter, toPath } from "@thi.ng/paths";
+import { getter, Path, toPath } from "@thi.ng/paths";
 
 import { IView, ReadonlyAtom, ViewTransform } from "./api";
 

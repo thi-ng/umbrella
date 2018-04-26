@@ -3,12 +3,17 @@ import { equiv } from "@thi.ng/api/equiv";
 import { illegalArgs } from "@thi.ng/api/error";
 import { join } from "@thi.ng/associative";
 import { intersection } from "@thi.ng/associative/intersection";
-import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
+import {
+    DotOpts,
+    IToDot,
+    toDot,
+    walk
+} from "@thi.ng/rstream-dot";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { Subscription } from "@thi.ng/rstream/subscription";
-import { Transducer, Reducer } from "@thi.ng/transducers/api";
+import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
 import { keySelector } from "@thi.ng/transducers/func/key-selector";
@@ -19,8 +24,23 @@ import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 
-import { DEBUG, Edit, Triple, TripleIds, Pattern, Solutions, Triples, PathPattern, QuerySolution, QuerySpec, SubQuerySpec, WhereQuerySpec, PathQuerySpec, BindFn } from "./api";
-import { resolvePathPattern, patternVars } from "./pattern";
+import {
+    BindFn,
+    DEBUG,
+    Edit,
+    PathPattern,
+    PathQuerySpec,
+    Pattern,
+    QuerySolution,
+    QuerySpec,
+    Solutions,
+    SubQuerySpec,
+    Triple,
+    TripleIds,
+    Triples,
+    WhereQuerySpec
+} from "./api";
+import { patternVars, resolvePathPattern } from "./pattern";
 import { isQVar, qvarResolver } from "./qvar";
 
 export class TripleStore implements

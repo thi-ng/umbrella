@@ -1,5 +1,6 @@
 import { Predicate2 } from "@thi.ng/api/api";
 import { ReadonlyAtom } from "@thi.ng/atom/api";
+
 import { Stream } from "../stream";
 
 /**

@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+
 import { Reduced } from "./reduced";
 
 export type Fn<A, B> = (x: A) => B;

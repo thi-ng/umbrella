@@ -1,6 +1,6 @@
 import { Transducer } from "./api";
-import { push } from "./rfn/push";
 import { isReduced } from "./reduced";
+import { push } from "./rfn/push";
 
 /**
  * Single-step transducer execution wrapper.

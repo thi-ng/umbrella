@@ -1,4 +1,9 @@
-import { ICopy, IEmpty, ILength, IRelease } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEmpty,
+    ILength,
+    IRelease
+} from "@thi.ng/api/api";
 
 export interface ICache<K, V> extends
     Iterable<Readonly<[K, CacheEntry<K, V>]>>,

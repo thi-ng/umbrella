@@ -1,7 +1,6 @@
 import { Reducer, Transducer } from "../api";
-import { isReduced } from "../reduced";
-
 import { shuffleN } from "../func/shuffle";
+import { isReduced } from "../reduced";
 
 export function streamShuffle<T>(n: number, maxSwaps = n): Transducer<T, T> {
     return ([init, complete, reduce]: Reducer<any, T>) => {
