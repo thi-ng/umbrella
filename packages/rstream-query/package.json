@@ -32,9 +32,12 @@
     },
     "keywords": [
         "dataflow",
+        "datalog",
         "ES6",
+        "graph",
         "query engine",
         "reactive",
+        "semantic web",
         "stream",
         "subscription",
         "triples",

@@ -7,17 +7,18 @@ This project is part of the
 
 ## About
 
-@thi.ng/rstream based [triple
-store](https://en.wikipedia.org/wiki/Triplestore) & reactive query
-engine with high re-use ratio of sub-query results. Inserted triples /
-facts are broadcast to multiple indexing streams and any query
-subscriptions attached to them. This enables push-based, auto-updating
-query results, which are changing each time upstream transformations &
-filters have been triggered (due to updates to the set of triples /
-facts).
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+based [triple store](https://en.wikipedia.org/wiki/Triplestore) &
+reactive query engine with declarative query specs related to
+[Datalog](https://en.wikipedia.org/wiki/Datalog) /
+[SPARQL](https://en.wikipedia.org/wiki/SPARQL). Inserted triples / facts
+are broadcast to multiple indexing streams and any query subscriptions
+attached to them. This enables push-based, auto-updating query results,
+which are changing each time upstream transformations & filters have
+been triggered.
 
-Triples are 3-tuples of `[subject, predicate, object]`. Unlike with
-traditional
+[Triples](https://en.wikipedia.org/wiki/Semantic_triple) are 3-tuples of
+`[subject, predicate, object]`. Unlike with traditional
 [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework)
 triple stores, any JS data types can be used as subject, predicate or
 object (though support for such must be explicitly enabled & this
@@ -25,11 +26,16 @@ feature is currently WIP).
 
 ### Current features
 
-- Entirely based on stream abstractions provided by @thi.ng/rstream
-- All data transformations done using @thi.ng/tranducers
-- Dynamic dataflow graph construction via high-level methods
+- Dynamic & declarative dataflow graph construction via high-level data
+  specs and/or functions
+- Entirely based on stream abstractions provided by
+  [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- All data transformations done using dynamically composed
+  [tranducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- Query optimizations
 - Extensive re-use of existing sub-query results (via subscriptions)
-- Auto-updating query results
+- Interim result de-duplication / dataflow gates
+- Push-based, auto-updating query results
 
 ### Status
 
@@ -47,10 +53,11 @@ yarn add @thi.ng/rstream-query
 ## Usage examples
 
 ```typescript
-import { TripleStore } from "@thi.ng/rstream-query";
+import { trace } from "@thi.ng/rstream";
+import { TripleStore } from "../src";
 
-store = new TripleStore();
-store.addTriples([
+// create store with initial set of triples / facts
+const store = new TripleStore([
     ["london", "type", "city"],
     ["london", "part-of", "uk"],
     ["portland", "type", "city"],
@@ -61,31 +68,83 @@ store.addTriples([
     ["uk", "type", "country"],
 ]);
 
-// find all subjects with type = country
-store.addParamQuery("countries", ["?country", "type", "country"]).subscribe(trace("country results:"));
+// compile the below query spec into a dataflow graph
+// pattern items prefixed w/ "?" are query variables
 
-// find all relations for subject "london"
-store.addParamQuery("london", ["london", "?p", "?o"]).subscribe(trace("london results:"));
+// this query matches the following relationships
+// using all currently known triples in the store
 
-// country results: [ { country: 'usa' }, { country: 'uk' } ]
-// london results: [ { p: 'type', o: 'city' }, { p: 'part-of', o: 'uk' } ]
+// currently only "where" and "path" sub-queries are possible
+// in the near future, more query types will be supported
+// (e.g. optional relationships, filters etc.)
+store.addQueryFromSpec({
+    q: [
+        {
+            // all "where" subqueries are joined (logical AND)
+            where: [
+                // match any subject of type "city"
+                ["?city", "type", "city"],
+                // match each ?city var's "part-of" relationships (if any)
+                ["?city", "part-of", "?country"],
+                // matched ?country var must have type = "country"
+                ["?country", "type", "country"]
+            ]
+        }
+    ],
+    // `bind` is an (optional) query post-processor and
+    // allows injection of new variables into the result set
+    // here we create a new var "answer" whose values are derived from
+    // the other two query vars
+    bind: {
+        answer: (res) => `${res.city} is located in ${res.country}`
+    },
+    // another post-processing step, only keeps "answer" var in results
+    select: ["answer"]
+}).subscribe(trace("results"))
+// results Set {
+//   { answer: 'london is located in uk' },
+//   { answer: 'portland is located in usa' } }
+
+// helper fn to insert new city relationship to the store
+const addCity = (name, country) =>
+    store.into([
+        [name, "type", "city"],
+        [name, "part-of", country],
+        [country, "type", "country"],
+    ]);
+
+addCity("berlin", "germany");
+// results Set {
+//     { answer: 'london is located in uk' },
+//     { answer: 'portland is located in usa' },
+//     { answer: 'berlin is located in germany' } }
+
+addCity("paris", "france");
+// results Set {
+//     { answer: 'london is located in uk' },
+//     { answer: 'portland is located in usa' },
+//     { answer: 'berlin is located in germany' },
+//     { answer: 'paris is located in france' } }
 ```
 
-After setting up the above 2 queries, the dataflow topology then looks as follows:
+After setting up the above query and its internal transformations, the
+generated dataflow topology then looks as follows:
 
 ![graphviz output](../../assets/rs-query1.svg)
 
-The blue nodes are `TripleStore`-internal index stream sources, which
-emit changes when new triples are added. The red nodes are basic pattern
-queries, responsible for joining the individual (S)ubject, (P)redicate
-and (O)bject sub-queries. The results of these are then further
-transformed to bind result values to query variables, as well as the
-final subscriptions to output them to the console (using `trace`, see
-above).
+* The blue nodes are `TripleStore`-internal index stream sources,
+  emitting changes when new triples are added
+* The left set of red nodes are the sub-queries of the above `where`
+  clause, responsible for joining the individual (S)ubject, (P)redicate
+  and (O)bject sub-queries.
+* The results of these are then further joined (right red node) &
+  transformed to produce the final solution set and post-process it
 
 Btw. The diagram has been generated using
 [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
 and can be recreated by calling `store.toDot()` (for the above example)
+
+The source code for the above example is [here](./test/example.ts)
 
 (Many) more features forthcoming...
 
