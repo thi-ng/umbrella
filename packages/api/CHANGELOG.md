@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.2.0...@thi.ng/api@2.3.0) (2018-04-26)
+
+
+### Features
+
+* **api:** support more types in equiv(), add tests ([2ac8bff](https://github.com/thi-ng/umbrella/commit/2ac8bff))
+
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.3...@thi.ng/api@2.2.0) (2018-04-08)
 

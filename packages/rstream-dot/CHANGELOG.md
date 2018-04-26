@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.1.2...@thi.ng/rstream-dot@0.2.0) (2018-04-26)
+
+
+### Features
+
+* **rstream-dot:** add option to include stream values in diag ([d057d95](https://github.com/thi-ng/umbrella/commit/d057d95))
+
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.1.1...@thi.ng/rstream-dot@0.1.2) (2018-04-25)
 
