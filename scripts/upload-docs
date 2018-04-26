@@ -1,6 +1,10 @@
 #!/bin/sh
 
-readonly modules="packages/*"
+if [ $# == 1 ]; then
+    modules="packages/$1/"
+else
+    modules="packages/*/"
+fi
 
 for m in $modules; do
     name=$(echo $m | cut -d '/' -f 2)
