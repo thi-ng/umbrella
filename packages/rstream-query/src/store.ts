@@ -1,20 +1,20 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/api/equiv";
 import { illegalArgs } from "@thi.ng/api/error";
-import { intersection } from "@thi.ng/associative/intersection";
 import { join } from "@thi.ng/associative";
+import { intersection } from "@thi.ng/associative/intersection";
+import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { Subscription } from "@thi.ng/rstream/subscription";
-import { toDot, walk, DotOpts, IToDot } from "@thi.ng/rstream-dot";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { keySelector } from "@thi.ng/transducers/func/key-selector";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
+import { keySelector } from "@thi.ng/transducers/func/key-selector";
+import { iterator } from "@thi.ng/transducers/iterator";
 import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { transduce } from "@thi.ng/transducers/transduce";
 import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
@@ -178,36 +178,20 @@ export class TripleStore implements
                 const qs = this.getIndexSelection(this.streamS, s, "s");
                 const qp = this.getIndexSelection(this.streamP, p, "p");
                 const qo = this.getIndexSelection(this.streamO, o, "o");
+                let src: IObjectOf<Subscription<any, TripleIds>>;
+                let xform = intersect2;
                 // optimize cases with 2 null terms (only needs single intersection w/ streamAll)
                 if (s == null && p == null) {
-                    results = sync<TripleIds, TripleIds>({
-                        id,
-                        src: { a: qo, b: qs },
-                        xform: comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv)),
-                        reset: true,
-                    });
+                    src = { a: qo, b: qs };
                 } else if (s == null && o == null) {
-                    results = sync<TripleIds, TripleIds>({
-                        id,
-                        src: { a: qp, b: qs },
-                        xform: comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv)),
-                        reset: true,
-                    });
+                    src = { a: qp, b: qs };
                 } else if (p == null && o == null) {
-                    results = sync<TripleIds, TripleIds>({
-                        id,
-                        src: { a: qs, b: qp },
-                        xform: comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv)),
-                        reset: true,
-                    });
+                    src = { a: qs, b: qp };
                 } else {
-                    results = sync<TripleIds, TripleIds>({
-                        id,
-                        src: { s: qs, p: qp, o: qo },
-                        xform: comp(map(({ s, p, o }) => intersection(intersection(s, p), o)), dedupe(equiv)),
-                        reset: true,
-                    });
+                    src = { s: qs, p: qp, o: qo };
+                    xform = intersect3;
                 }
+                results = sync<TripleIds, TripleIds>({ id, src, xform, reset: true });
                 this.queries.set(key, <ISubscribable<TripleIds>>results);
                 submit(this.indexS, qs, s);
                 submit(this.indexP, qp, p);
@@ -263,13 +247,6 @@ export class TripleStore implements
             }),
             dedupe(equiv),
             id
-        );
-    }
-
-    addParamQueries(patterns: Iterable<Pattern>) {
-        return iterator(
-            map<Pattern, QuerySolution>((q) => this.addParamQuery(q)),
-            patterns
         );
     }
 
@@ -399,6 +376,13 @@ export class TripleStore implements
         }
         return sel;
     }
+
+    protected addParamQueries(patterns: Iterable<Pattern>) {
+        return iterator(
+            map<Pattern, QuerySolution>((q) => this.addParamQuery(q)),
+            patterns
+        );
+    }
 }
 
 const submit = (index: Map<any, TripleIds>, stream: Subscription<Edit, TripleIds>, key: any) => {
@@ -407,6 +391,12 @@ const submit = (index: Map<any, TripleIds>, stream: Subscription<Edit, TripleIds
         ids && stream.next({ index: ids, key });
     }
 };
+
+const intersect2: Transducer<IObjectOf<TripleIds>, TripleIds> =
+    comp(map(({ a, b }) => intersection(a, b)), dedupe(equiv));
+
+const intersect3: Transducer<IObjectOf<TripleIds>, TripleIds> =
+    comp(map(({ s, p, o }) => intersection(intersection(s, p), o)), dedupe(equiv));
 
 const indexSel = (key: any): Transducer<Edit, TripleIds> =>
     (rfn: Reducer<any, TripleIds>) => {
