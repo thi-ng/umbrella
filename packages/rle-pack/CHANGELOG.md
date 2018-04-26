@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.15"></a>
+## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@0.2.14...@thi.ng/rle-pack@0.2.15) (2018-04-26)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rle-pack
+
 <a name="0.2.14"></a>
 ## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@0.2.13...@thi.ng/rle-pack@0.2.14) (2018-04-26)
 

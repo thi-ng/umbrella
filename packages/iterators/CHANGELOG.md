@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.8"></a>
+## [4.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@4.1.7...@thi.ng/iterators@4.1.8) (2018-04-26)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/iterators
+
 <a name="4.1.7"></a>
 ## [4.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@4.1.6...@thi.ng/iterators@4.1.7) (2018-04-26)
 
