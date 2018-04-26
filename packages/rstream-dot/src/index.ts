@@ -17,18 +17,21 @@ const getNodeType = (sub: ISubscribable<any>) => {
 }
 
 const dotNode = (s: Node, opts: DotOpts) => {
-    let res = `s${s.id}[label=`;
+    let res = `s${s.id}[label="`;
     if (s.type) {
-        res += `"${s.label}\\n(${s.type})"`;
+        res += `${s.label}\\n(${s.type})`;
     } else {
-        res += `"${s.label}"`;
+        res += `${s.label}`;
     }
-    res += ", color=";
+    if (s.body !== undefined) {
+        res += `\\n${s.body.replace(/"/g, `'`).replace(/\n/g, "\\n")}`;
+    }
+    res += `", color="`;
     res += (s.type && opts.color[s.type.toLowerCase()]) ||
         (s.label === "<noid>" ?
             opts.color.noid :
             opts.color.default);
-    return res + "];"
+    return res + `"];`
 };
 
 const dotEdge = (a: Node, b: Node, _: DotOpts) => {
@@ -39,12 +42,19 @@ const dotEdge = (a: Node, b: Node, _: DotOpts) => {
     return res + ";"
 };
 
-export const walk = (subs: ISubscribable<any>[], state?: WalkState) => {
+export const walk = (subs: ISubscribable<any>[], opts?: Partial<DotOpts>, state?: WalkState) => {
+    opts || (opts = {});
     state || (state = { id: 0, subs: new Map(), rels: [] });
     for (let sub of subs) {
         if (state.subs.get(sub)) return state;
         const id = state.id;
-        const desc: Node = { id, label: sub.id || "<noid>", type: getNodeType(sub), xform: !!(<any>sub).xform };
+        const desc: Node = {
+            id,
+            label: sub.id || "<noid>",
+            type: getNodeType(sub),
+            xform: !!(<any>sub).xform,
+            body: opts.values && sub.deref ? JSON.stringify(sub.deref()) : undefined
+        };
         state.subs.set(sub, desc);
         state.id++;
         const children = (<any>sub).subs ||
@@ -52,7 +62,7 @@ export const walk = (subs: ISubscribable<any>[], state?: WalkState) => {
                 [(<any>sub).__owner] :
                 undefined);
         if (children) {
-            walk(children, state);
+            walk(children, opts, state);
             for (let c of children) {
                 state.rels.push([desc, state.subs.get(c)]);
             }
