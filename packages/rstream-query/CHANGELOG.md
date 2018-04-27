@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@0.2.2...@thi.ng/rstream-query@0.3.0) (2018-04-27)
+
+
+### Features
+
+* **rstream-query:** add obj->triple converter, update readme & example ([6f95bcb](https://github.com/thi-ng/umbrella/commit/6f95bcb))
+
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@0.2.1...@thi.ng/rstream-query@0.2.2) (2018-04-26)
 
