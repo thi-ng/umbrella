@@ -325,6 +325,17 @@ export class StatelessEventBus implements
     }
 
     /**
+     * Dispatches given event after `delay` milliseconds
+     * (by default 17).
+     *
+     * @param e
+     * @param delay
+     */
+    dispatchLater(e: api.Event, delay = 17) {
+        setTimeout(() => this.dispatch(e), delay);
+    }
+
+    /**
      * Triggers processing of current event queue and returns `true` if
      * any events have been processed.
      *

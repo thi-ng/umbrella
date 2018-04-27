@@ -48,6 +48,7 @@ export interface IDispatch {
     readonly state: ReadonlyAtom<any>;
     dispatch(event: Event);
     dispatchNow(event: Event);
+    dispatchLater(event: Event, delay?: number);
 }
 
 export interface Interceptor {
