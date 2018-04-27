@@ -1,0 +1,28 @@
+{
+    "name": "rstream-grid",
+    "version": "0.0.1",
+    "description": "TODO",
+    "repository": "https://github.com/[your-gh-username]/rs-undo",
+    "author": "TODO",
+    "license": "MIT",
+    "scripts": {
+        "build": "webpack --mode production --display-reasons --display-modules",
+        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+    },
+    "dependencies": {
+        "@thi.ng/atom": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/interceptors": "latest",
+        "@thi.ng/rstream-graph": "latest",
+        "@thi.ng/transducers": "latest"
+    },
+    "devDependencies": {
+        "@types/node": "^9.6.2",
+        "typescript": "^2.8.1",
+        "ts-loader": "^4.2.0",
+        "webpack": "^4.5.0",
+        "webpack-cli": "^2.0.14",
+        "webpack-dev-server": "^3.1.3"
+    }
+}
