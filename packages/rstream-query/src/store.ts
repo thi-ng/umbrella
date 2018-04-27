@@ -219,7 +219,7 @@ export class TripleStore implements
             }
         }
         return emitTriples ?
-            results.subscribe(asTriples(this)) :
+            results.subscribe(resultTriples(this)) :
             results;
     }
 
@@ -432,7 +432,7 @@ const indexSel = (key: any): Transducer<Edit, TripleIds> =>
         );
     };
 
-const asTriples = (graph: TripleStore) =>
+const resultTriples = (graph: TripleStore) =>
     map<TripleIds, Set<Triple>>(
         (ids) => {
             const res = new Set<Triple>();

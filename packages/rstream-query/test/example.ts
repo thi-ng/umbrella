@@ -1,7 +1,7 @@
 import { trace } from "@thi.ng/rstream";
-import { TripleStore } from "../src";
+import * as q from "../src";
 
-const store = new TripleStore([
+const store = new q.TripleStore([
     ["london", "type", "city"],
     ["london", "part-of", "uk"],
     ["portland", "type", "city"],
@@ -11,6 +11,21 @@ const store = new TripleStore([
     ["usa", "type", "country"],
     ["uk", "type", "country"],
 ]);
+
+// alternatively, convert an object into a sequence of triples
+// const store = new q.TripleStore(q.asTriples({
+//     london: {
+//         type: "city",
+//         partOf: "uk"
+//     },
+//     portland: {
+//         type: "city",
+//         partOf: ["oregon", "usa"]
+//     },
+//     oregon: { type: "state" },
+//     uk: { type: "country" },
+//     usa: { type: "country" },
+// }));
 
 // compile the below query spec into a dataflow graph
 // pattern items prefixed w/ "?" are query variables
@@ -28,7 +43,7 @@ store.addQueryFromSpec({
                 // first match any subject of type "city"
                 ["?city", "type", "city"],
                 // then a city's "part-of" relationships (if any)
-                ["?city", "part-of", "?country"],
+                ["?city", "partOf", "?country"],
                 // the matched ?country must have type = "country"
                 ["?country", "type", "country"]
             ]
@@ -52,7 +67,7 @@ store.addQueryFromSpec({
 const addCity = (name, country) =>
     store.into([
         [name, "type", "city"],
-        [name, "part-of", country],
+        [name, "partOf", country],
         [country, "type", "country"],
     ]);
 

@@ -53,30 +53,47 @@ yarn add @thi.ng/rstream-query
 ## Usage examples
 
 ```typescript
+import { TripleStore, asTriples } from "@thi.ng/rstream-query";
 import { trace } from "@thi.ng/rstream";
-import { TripleStore } from "../src";
 
 // create store with initial set of triples / facts
 const store = new TripleStore([
     ["london", "type", "city"],
     ["london", "part-of", "uk"],
     ["portland", "type", "city"],
-    ["portland", "part-of", "oregon"],
-    ["portland", "part-of", "usa"],
+    ["portland", "partOf", "oregon"],
+    ["portland", "partOf", "usa"],
     ["oregon", "type", "state"],
     ["usa", "type", "country"],
     ["uk", "type", "country"],
 ]);
+
+// alternatively, convert an object into a sequence of triples
+const store = new TripleStore(asTriples({
+    london: {
+        type: "city",
+        partOf: "uk"
+    },
+    portland: {
+        type: "city",
+        partOf: ["oregon", "usa"]
+    },
+    oregon: { type: "state" },
+    uk: { type: "country" },
+    usa: { type: "country" },
+});
 
 // compile the below query spec into a dataflow graph
 // pattern items prefixed w/ "?" are query variables
 
 // this query matches the following relationships
 // using all currently known triples in the store
+// when matching triples are added or removed, the query
+// result updates automatically...
 
-// currently only "where" and "path" sub-queries are possible
+// currently only "where" and bounded "path" sub-queries are possible
 // in the near future, more query types will be supported
-// (e.g. optional relationships, filters etc.)
+// (e.g. optional relationships, pre/post filters etc.)
 store.addQueryFromSpec({
     q: [
         {
@@ -85,7 +102,7 @@ store.addQueryFromSpec({
                 // match any subject of type "city"
                 ["?city", "type", "city"],
                 // match each ?city var's "part-of" relationships (if any)
-                ["?city", "part-of", "?country"],
+                ["?city", "partOf", "?country"],
                 // matched ?country var must have type = "country"
                 ["?country", "type", "country"]
             ]
@@ -100,7 +117,8 @@ store.addQueryFromSpec({
     },
     // another post-processing step, only keeps "answer" var in results
     select: ["answer"]
-}).subscribe(trace("results"))
+})
+.subscribe(trace("results"))
 // results Set {
 //   { answer: 'london is located in uk' },
 //   { answer: 'portland is located in usa' } }
@@ -109,7 +127,7 @@ store.addQueryFromSpec({
 const addCity = (name, country) =>
     store.into([
         [name, "type", "city"],
-        [name, "part-of", country],
+        [name, "partOf", country],
         [country, "type", "country"],
     ]);
 
