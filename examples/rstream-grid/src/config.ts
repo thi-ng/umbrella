@@ -109,7 +109,7 @@ export const CONFIG: AppConfig = {
         link: { class: "pointer link dim white b" },
         root: { class: "vw-100 vh-100 flex" },
         sidebar: {
-            root: { class: "bg-near-black pa2 pt3 w5 f7" },
+            root: { class: `bg-near-black pa2 pt3 w5 f7 ${FG_COL}` },
             title: { class: `mt0 ${FG_COL}` },
         },
         slider: {

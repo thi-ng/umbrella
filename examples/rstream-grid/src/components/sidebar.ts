@@ -8,7 +8,7 @@ import { slider, SliderOpts } from "./slider";
 export const sidebar = (ctx: AppContext, ...specs: SliderOpts[]) => {
     const sliders = specs.map((s) => slider(ctx, s));
     return ["div", ctx.ui.sidebar.root,
-        ["h2", ctx.ui.sidebar.title, "SVG Grid"],
+        ["h3", ctx.ui.sidebar.title, "@thi.ng/rstream grid"],
         ...sliders,
         [buttonGroup,
             [[ev.UNDO], "undo"],
@@ -17,8 +17,12 @@ export const sidebar = (ctx: AppContext, ...specs: SliderOpts[]) => {
             [[ev.SAVE_SVG], "download svg"]],
         [buttonGroup,
             [[ev.SAVE_ANIM], "download anim"]],
+        ["div",
+            "Undo / Redo can also be triggered via ",
+            ["code", "Ctrl+Z"], " / ", ["code", "Ctrl+Y"],
+            ". The last 1000 edits are stored."],
         ["div", ctx.ui.footer,
-            [link, "https://github.com/thi-ng/umbrella/tree/master/examples/rs-undo", "Source"],
+            [link, "https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid", "Source"],
             ["br"],
             "Made with ",
             [link, "https://github.com/thi-ng/umbrella/", "@thi.ng/umbrella"]]
