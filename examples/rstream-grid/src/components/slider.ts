@@ -40,7 +40,7 @@ export const slider = (ctx: AppContext, opts: SliderOpts) => {
                     type: "range",
                     value: ctx.views[opts.view].deref(),
                 }],
-            ["div", opts.label,
+            ["div", ui.label, opts.label,
                 ["input", {
                     ...ui.number,
                     ...opts,

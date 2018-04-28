@@ -13,6 +13,7 @@ import * as paths from "./paths";
 import { SLIDERS } from "./sliders";
 
 const FG_COL = "light-silver";
+const LINK_COL = "white";
 
 // main App configuration
 export const CONFIG: AppConfig = {
@@ -28,19 +29,19 @@ export const CONFIG: AppConfig = {
     // Docs here:
     // https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/event-bus.ts#L14
     events: {
+        // generate slider event handlers. each uses the `snapshot()`
+        // interceptor to record a snapshot of the current app state
+        // before applying new slider value
         ...SLIDERS.reduce(
-            (events, spec) => {
-                events[spec.event] = [
+            (events, spec) =>
+                (events[spec.event] = [
                     snapshot(),
                     valueSetter(spec.path)
-                ];
-                return events;
-            }, {}),
+                ], events),
+            {}),
         [ev.UPDATE_SVG]: [valueSetter(paths.SVG)],
         [ev.SAVE_SVG]: (state) => ({ [fx.SAVE_SVG]: getIn(state, paths.SVG) }),
-        [ev.SAVE_ANIM]: () => ({
-            [fx.SAVE_ANIM]: true
-        })
+        [ev.SAVE_ANIM]: () => ({ [fx.SAVE_ANIM]: true })
     },
 
     // custom side effects
@@ -50,24 +51,19 @@ export const CONFIG: AppConfig = {
         // finally triggers download to local disk
         [fx.SAVE_SVG]: (src) => {
             src = src.slice();
-            src[1] = {
-                ...src[1],
-                width: 1000,
-                height: 1000,
-            };
+            src[1] = { ...src[1], width: 1000, height: 1000 };
             download(`grid-${Date.now()}.svg`, serialize(src));
         },
-        // triggers download of 18 svg files, each with a different rotation
-        // in the 0-90 degrees interval
-        [fx.SAVE_ANIM]: (_, bus) => {
+        // triggers download of 18 svg files (each delayed by 1sec),
+        // each with a different rotation in the 0-90 degrees interval
+        [fx.SAVE_ANIM]: (_, bus) =>
             fromIterable(range(0, 90, 5), 1000)
                 .subscribe({
                     next: (x) => {
                         bus.dispatch([ev.SET_THETA, x]);
                         bus.dispatchLater([ev.SAVE_SVG]);
                     }
-                });
-        }
+                })
     },
 
     rootComponent: main,
@@ -103,10 +99,10 @@ export const CONFIG: AppConfig = {
     // these attribs are being passed to all component functions
     // as part of the AppContext object
     ui: {
-        button: { class: `pointer bg-${FG_COL} hover-bg-white bg-animate black pa2 mr1 w-100 ttu b tracked-tight` },
+        button: { class: `pointer bg-${FG_COL} hover-bg-${LINK_COL} bg-animate black pa2 mr1 w-100 ttu b tracked-tight` },
         buttongroup: { class: "flex mb1" },
         footer: { class: "absolute bottom-1" },
-        link: { class: "pointer link dim white b" },
+        link: { class: `pointer link dim ${LINK_COL} b` },
         root: { class: "vw-100 vh-100 flex" },
         sidebar: {
             root: { class: `bg-near-black pa2 pt3 w5 f7 ${FG_COL}` },
@@ -115,6 +111,7 @@ export const CONFIG: AppConfig = {
         slider: {
             root: { class: `mb3 ttu b tracked-tight ${FG_COL}` },
             range: { class: "w-100" },
+            label: { class: "pl2" },
             number: { class: `fr w3 tr ttu bn bg-transparent ${FG_COL}` },
         },
     }
