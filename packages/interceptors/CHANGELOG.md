@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.6.0...@thi.ng/interceptors@1.6.1) (2018-04-28)
+
+
+### Bug Fixes
+
+* **interceptors:** multiple sidefx value assignment ([c4d8851](https://github.com/thi-ng/umbrella/commit/c4d8851))
+
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.5.3...@thi.ng/interceptors@1.6.0) (2018-04-27)
 
