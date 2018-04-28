@@ -500,16 +500,13 @@ export class StatelessEventBus implements
                     this.dispatchNow(v);
                 }
             } else {
-                if (ctx[k]) {
-                    if (isArray(v[0])) {
-                        for (let e of v) {
-                            e !== undefined && ctx[k].push(e);
-                        }
-                    } else {
-                        ctx[k].push(v)
+                ctx[k] || (ctx[k] = []);
+                if (isArray(v[0])) {
+                    for (let e of v) {
+                        e !== undefined && ctx[k].push(e);
                     }
                 } else {
-                    ctx[k] = [v];
+                    ctx[k].push(v)
                 }
             }
         }
