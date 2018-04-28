@@ -18,7 +18,8 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 10 | [pointfree-svg](./pointfree-svg) | generate SVG using pointfree DSL | hiccup, hdom-components, pointfree-lang | intermediate |
 | 11 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, interceptors, router | advanced |
 | 12 | [rstream-dataflow](./rstream-dataflow) | dataflow graph | atom, hdom, rstream, rstream-gestures, rstream-graph, transducers | intermediate |
-| 13 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
-| 13 | [svg-waveform](./svg-waveform) | hdom SVG generation / undo history | atom, hdom, hiccup-svg, interceptors, iterators | intermediate |
-| 14 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
-| 15 | [webgl](./webgl) | Canvas component handling | hdom, hdom-components | basic |
+| 13 | [rstream-grid](./rstream-grid) | dataflow graph svg gen | atom, hdom, hiccup-svg, interceptors, rstream-graph, transducers | advanced |
+| 14 | [svg-particles](./svg-particles) | hdom SVG generation / animation | hdom, transducers | basic |
+| 15 | [svg-waveform](./svg-waveform) | hdom SVG generation / undo history | atom, hdom, hiccup-svg, interceptors, iterators | intermediate |
+| 16 | [todo-list](./todo-list) | Canonical Todo list with undo/redo | atom, hdom, transducers | intermediate |
+| 17 | [webgl](./webgl) | Canvas component handling | hdom, hdom-components | basic |
