@@ -5,16 +5,13 @@ import { start } from "@thi.ng/hdom";
 // (not used here, see `hdom-context-basics` example for details)
 const greeter = (_, name) => ["h1.title", "hello ", name];
 
-// component w/ local state
+// counter component w/ local state
 const counter = (i = 0) => {
-    return () => ["button", { onclick: () => (i++) }, `clicks: ${i}`];
+    const attribs = { onclick: () => (i++) };
+    return () => ["button", attribs, `clicks: ${i}`];
 };
 
-const app = () => {
-    // initialization steps
-    // ...
-    // root component is just a static array
-    return ["div#app", [greeter, "world"], counter(), counter(100)];
-};
+// root component is a simple array
+const app = ["div#app", [greeter, "world"], counter(), counter(100)];
 
-start(document.body, app());
+start(document.body, app);
