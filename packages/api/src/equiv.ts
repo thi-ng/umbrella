@@ -32,8 +32,11 @@ export function equiv(a, b): boolean {
     if (isArrayLike(a) && isArrayLike(b)) {
         return equivArrayLike(a, b);
     }
-    if ((isSet(a) && isSet(b)) || (isMap(a) && isMap(b))) {
-        return equivSetLike(a, b);
+    if (isSet(a) && isSet(b)) {
+        return equivSet(a, b);
+    }
+    if (isMap(a) && isMap(b)) {
+        return equivMap(a, b);
     }
     if (isDate(a) && isDate(b)) {
         return a.getTime() === b.getTime();
@@ -53,22 +56,24 @@ function equivArrayLike(a: ArrayLike<any>, b: ArrayLike<any>) {
     return l < 0;
 }
 
-function equivSetLike(a: Set<any>, b: Set<any>) {
+function equivSet(a: Set<any>, b: Set<any>) {
+    if (a.size !== b.size) return false;
+    return equiv([...a.keys()].sort(), [...b.keys()].sort());
+}
+
+function equivMap(a: Map<any, any>, b: Map<any, any>) {
     if (a.size !== b.size) return false;
     return equiv([...a].sort(), [...b].sort());
 }
 
 function equivObject(a, b) {
-    const keys = new Set(Object.keys(a).concat(Object.keys(b)));
-    for (let k of keys) {
-        if (a.hasOwnProperty(k)) {
-            if (b.hasOwnProperty(k)) {
-                if (equiv(a[k], b[k])) {
-                    continue;
-                }
-            }
+    const ka = Object.keys(a);
+    if (ka.length !== Object.keys(b).length) return false;
+    for (let i = ka.length, k; --i >= 0;) {
+        k = ka[i];
+        if (!b.hasOwnProperty(k) || !equiv(a[k], b[k])) {
+            return false;
         }
-        return false;
     }
     return true;
 }

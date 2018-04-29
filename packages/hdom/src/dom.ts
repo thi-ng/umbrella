@@ -161,9 +161,14 @@ export function updateValueAttrib(el: HTMLInputElement, v: any) {
     }
 }
 
-export function removeAttribs(el: Element, attribs: string[]) {
-    for (let i = attribs.length - 1; i >= 0; i--) {
-        el.removeAttribute(attribs[i]);
+export function removeAttribs(el: Element, attribs: string[], prev: any) {
+    for (let i = attribs.length; --i >= 0;) {
+        const a = attribs[i];
+        if (a.indexOf("on") === 0) {
+            el.removeEventListener(a.substr(2), prev[a]);
+        } else {
+            el.removeAttribute(a);
+        }
     }
 }
 
