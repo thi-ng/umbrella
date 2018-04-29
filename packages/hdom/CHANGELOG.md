@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.12"></a>
+## [3.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.11...@thi.ng/hdom@3.0.12) (2018-04-29)
+
+
+### Performance Improvements
+
+* **hdom:** update event handling in diffAttributes() ([31ec3af](https://github.com/thi-ng/umbrella/commit/31ec3af))
+
+
+
+
 <a name="3.0.11"></a>
 ## [3.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.10...@thi.ng/hdom@3.0.11) (2018-04-26)
 

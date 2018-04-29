@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.1"></a>
+## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.0...@thi.ng/api@2.3.1) (2018-04-29)
+
+
+### Performance Improvements
+
+* **api:** major speedup equivObject(), update equivSet() ([7fdf172](https://github.com/thi-ng/umbrella/commit/7fdf172))
+
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.2.0...@thi.ng/api@2.3.0) (2018-04-26)
 

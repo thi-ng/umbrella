@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.0...@thi.ng/checks@1.5.1) (2018-04-29)
+
+
+### Bug Fixes
+
+* **checks:** exclude functions in isArrayLike() ([ac60404](https://github.com/thi-ng/umbrella/commit/ac60404))
+* **checks:** return type isMap() ([76920f7](https://github.com/thi-ng/umbrella/commit/76920f7))
+
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.4.0...@thi.ng/checks@1.5.0) (2018-04-26)
 
