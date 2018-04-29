@@ -1,3 +1,3 @@
 export function isArrayLike(x: any): x is ArrayLike<any> {
-    return Array.isArray(x) || (x != null && x.length !== undefined);
+    return (x != null && typeof x !== "function" && x.length !== undefined);
 }

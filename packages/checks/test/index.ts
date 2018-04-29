@@ -62,6 +62,7 @@ describe("checks", function () {
         assert(!isArrayLike(0), "zero");
         assert(!isArrayLike(null), "null");
         assert(!isArrayLike(undefined), "null");
+        assert(!isArrayLike((x, y) => x + y), "null");
     });
 
     it("isObject", () => {
