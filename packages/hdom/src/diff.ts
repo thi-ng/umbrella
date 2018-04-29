@@ -9,8 +9,6 @@ import {
     setAttrib
 } from "./dom";
 
-// import { DEBUG } from "./api";
-
 const isArray = isa.isArray;
 const isString = iss.isString;
 const diffArray = diff.diffArray;
@@ -47,7 +45,7 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
     const edits = delta.linear;
     const el = parent.children[child];
     let i, j, k, eq, e, status, idx, val;
-    if (edits[0][0] !== 0 || (i = prev[1]).key !== (j = curr[1]).key || hasChangedEvents(i, j)) {
+    if (edits[0][0] !== 0 || (i = prev[1]).key !== (j = curr[1]).key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
         removeChild(parent, child);
@@ -119,30 +117,25 @@ function releaseDeep(tag: any) {
             (<any>tag).__release.apply(tag, (<any>tag).__args);
             delete (<any>tag).__release;
         }
-        for (let i = tag.length - 1; i >= 2; i--) {
+        for (let i = tag.length; --i >= 2;) {
             releaseDeep(tag[i]);
         }
     }
 }
 
-function hasChangedEvents(prev: any, curr: any) {
-    for (let k in curr) {
-        if (k.indexOf("on") === 0 && prev[k] !== curr[k]) {
-            return true;
-        }
-    }
-    return false;
-}
-
 function diffAttributes(el: Element, prev: any, curr: any) {
     let i, e, edits;
     const delta = diffObject(prev, curr);
-    removeAttribs(el, delta.dels);
-    for (edits = delta.edits, i = edits.length - 1; i >= 0; i--) {
+    removeAttribs(el, delta.dels, prev);
+    for (edits = delta.edits, i = edits.length; --i >= 0;) {
         e = edits[i];
-        setAttrib(el, e[0], e[1], curr);
+        const a = e[0];
+        if (a.indexOf("on") === 0) {
+            el.removeEventListener(a.substr(2), prev[a]);
+        }
+        setAttrib(el, a, e[1], curr);
     }
-    for (edits = delta.adds, i = edits.length - 1; i >= 0; i--) {
+    for (edits = delta.adds, i = edits.length; --i >= 0;) {
         e = edits[i];
         setAttrib(el, e, curr[e], curr);
     }
@@ -151,7 +144,7 @@ function diffAttributes(el: Element, prev: any, curr: any) {
 function extractEquivElements(edits: diff.DiffLogEntry<any>[]) {
     let k, v, e, ek;
     const equiv = {};
-    for (let i = edits.length - 1; i >= 0; i--) {
+    for (let i = edits.length; --i >= 0;) {
         e = edits[i];
         v = e[2];
         if (isArray(v) && (k = v[1].key) !== undefined) {
