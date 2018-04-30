@@ -12,7 +12,7 @@ import { ArrayDiff } from "./api";
  * Various optimizations, fixes & refactorings.
  * By default uses `@thi.ng/api/equiv` for equality checks.
  */
-export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv) {
+export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = false) {
     const state = <ArrayDiff<T>>{
         distance: 0,
         adds: {},
@@ -24,11 +24,6 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv) {
         return state;
     }
     const reverse = _a.length >= _b.length;
-    const adds = state[reverse ? "dels" : "adds"];
-    const dels = state[reverse ? "adds" : "dels"];
-    const linear = state.linear;
-    const aID = reverse ? -1 : 1;
-    const dID = reverse ? 1 : -1;
     let a, b, na, nb;
 
     if (reverse) {
@@ -89,20 +84,44 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv) {
         r = pp[2];
     }
 
-    for (let i = epc.length - 1, px = 0, py = 0; i >= 0; i--) {
+    if (linearOnly) {
+        buildLinearLog<T>(epc, state, a, b, reverse);
+    } else {
+        buildFullLog<T>(epc, state, a, b, reverse);
+    }
+    return state;
+}
+
+function buildFullLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reverse: boolean) {
+    const linear = state.linear;
+    let adds, dels, aID, dID;
+    if (reverse) {
+        adds = state.dels;
+        dels = state.adds;
+        aID = -1;
+        dID = 1;
+    } else {
+        adds = state.adds;
+        dels = state.dels;
+        aID = 1;
+        dID = -1;
+    }
+    for (let i = epc.length, px = 0, py = 0; --i >= 0;) {
         const e = epc[i];
         let v;
         while (px < e[0] || py < e[1]) {
-            const d = e[1] - e[0];
-            if (d > py - px) {
+            const d = e[1] - e[0], dp = py - px;
+            if (d > dp) {
                 adds[py] = v = b[py];
                 linear.push([aID, py, v]);
                 py++;
-            } else if (d < py - px) {
+            }
+            else if (d < dp) {
                 dels[px] = v = a[px];
                 linear.push([dID, px, v]);
                 px++;
-            } else {
+            }
+            else {
                 state.const[px] = v = a[px];
                 linear.push([0, px, v]);
                 px++;
@@ -110,5 +129,29 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv) {
             }
         }
     }
-    return state;
+}
+
+function buildLinearLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reverse: boolean) {
+    const linear = state.linear;
+    const aID = reverse ? -1 : 1;
+    const dID = reverse ? 1 : -1;
+    for (let i = epc.length, px = 0, py = 0; --i >= 0;) {
+        const e = epc[i];
+        while (px < e[0] || py < e[1]) {
+            const d = e[1] - e[0], dp = py - px;
+            if (d > dp) {
+                linear.push([aID, py, b[py]]);
+                py++;
+            }
+            else if (d < dp) {
+                linear.push([dID, px, a[px]]);
+                px++;
+            }
+            else {
+                linear.push([0, px, a[px]]);
+                px++;
+                py++;
+            }
+        }
+    }
 }
