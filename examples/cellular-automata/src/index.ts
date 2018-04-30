@@ -110,18 +110,23 @@ const ruleBoxes = (prefix, i, rstride = 9) =>
             .map((rule, j) => checkbox(rule, (e) => setRule(i, j, e.target.checked))),
     ];
 
+const isPreset = (id) => presets.findIndex((x) => x[0] === id) !== -1;
+
 // Use Conway CA default state rules [[dead], [alive]] if no preset present in hash
 applyRules(location.hash.length > 18 ? location.hash.substr(1) : presets[1][0]);
 
 // define & start main app component
 start("app", () => {
+    const id = location.hash.substr(1);
     return ["div",
         ruleBoxes("birth", 0),
         ruleBoxes("survive", 1),
         ["div",
             ["button", { onclick: () => randomizeRules() }, "randomize rules"],
             ["button", { onclick: () => randomizeGrid() }, "reset grid"],
-            [dropdown, { onchange: (e) => applyRules(e.target.value) }, presets, location.hash.substr(1)]
+            [dropdown, { onchange: (e) => applyRules(e.target.value) },
+                presets,
+                isPreset(id) ? id : ""]
         ],
         ["pre", format(grid = convolve(grid, rules, W, H), W)]
     ];
