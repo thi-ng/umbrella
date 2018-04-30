@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.10"></a>
+## [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.0.9...@thi.ng/diff@1.0.10) (2018-04-30)
+
+
+### Performance Improvements
+
+* **diff:** add option to only build linear edit log ([431527a](https://github.com/thi-ng/umbrella/commit/431527a))
+
+
+
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.0.8...@thi.ng/diff@1.0.9) (2018-04-29)
 

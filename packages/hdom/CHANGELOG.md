@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.13"></a>
+## [3.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.12...@thi.ng/hdom@3.0.13) (2018-04-30)
+
+
+### Performance Improvements
+
+* **hdom:** only build linear diff edit log ([7a543a5](https://github.com/thi-ng/umbrella/commit/7a543a5))
+
+
+
+
 <a name="3.0.12"></a>
 ## [3.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.11...@thi.ng/hdom@3.0.12) (2018-04-29)
 
