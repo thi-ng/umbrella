@@ -1,3 +1,4 @@
+import { equiv } from "@thi.ng/api/equiv";
 import * as isa from "@thi.ng/checks/is-array";
 import * as iss from "@thi.ng/checks/is-string";
 import * as diff from "@thi.ng/diff";
@@ -38,7 +39,7 @@ export function diffElement(root: Element, prev: any, curr: any) {
 }
 
 function _diffElement(parent: Element, prev: any, curr: any, child: number) {
-    const delta = diffArray(prev, curr);
+    const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance === 0) {
         return;
     }
