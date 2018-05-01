@@ -11,6 +11,6 @@ for m in $modules; do
     echo "processing $name..."
     gzip -f $m/bundle.js
     echo "uploading $m..."
-    aws s3 cp $m/bundle.js.gz s3://demo.thi.ng/umbrella/$name/bundle.js --profile toxi-s3 --acl public-read --content-type application/javascript --content-encoding gzip
+    aws s3 cp $m/bundle.js.gz s3://demo.thi.ng/umbrella/$name/bundle.js --profile toxi-s3 --acl public-read --content-type "application/javascript; charset=utf-8" --content-encoding gzip
     aws s3 cp $m/index.html s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read
 done
