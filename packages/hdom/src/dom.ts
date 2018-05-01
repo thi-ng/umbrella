@@ -136,7 +136,7 @@ export function setAttrib(el: Element, id: string, val: any, attribs?: any) {
                 }
         }
     } else {
-        el.removeAttribute(id);
+        el[id] ? (el[id] = null) : el.removeAttribute(id);
     }
     return el;
 }
@@ -167,7 +167,7 @@ export function removeAttribs(el: Element, attribs: string[], prev: any) {
         if (a.indexOf("on") === 0) {
             el.removeEventListener(a.substr(2), prev[a]);
         } else {
-            el.removeAttribute(a);
+            el[a] ? (el[a] = null) : el.removeAttribute(a);
         }
     }
 }
