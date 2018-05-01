@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^1.5.1",
+        "@thi.ng/iterators": "^4.1.9",
         "@types/webgl2": "^0.0.3"
     },
     "keywords": [
