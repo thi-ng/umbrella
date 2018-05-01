@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.14"></a>
+## [3.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.13...@thi.ng/hdom@3.0.14) (2018-05-01)
+
+
+### Bug Fixes
+
+* **hdom:** boolean attrib reset/removal ([a93cb98](https://github.com/thi-ng/umbrella/commit/a93cb98))
+
+
+
+
 <a name="3.0.13"></a>
 ## [3.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.12...@thi.ng/hdom@3.0.13) (2018-04-30)
 
