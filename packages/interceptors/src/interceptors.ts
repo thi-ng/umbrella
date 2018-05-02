@@ -4,14 +4,16 @@ import {
     setIn,
     updateIn
 } from "@thi.ng/paths";
-
 import {
     Event,
     FX_CANCEL,
+    FX_DISPATCH,
+    FX_DISPATCH_NOW,
     FX_STATE,
     InterceptorFn,
     InterceptorPredicate
 } from "./api";
+
 
 /**
  * Debug interceptor to log the current event to the console.
@@ -29,6 +31,24 @@ export function trace(_, e) {
 export function forwardSideFx(fxID: string): InterceptorFn {
     return (_, [__, body]) => ({ [fxID]: body });
 }
+
+/**
+ * Higher-order interceptor. Returns interceptor which assigns given
+ * event to `FX_DISPATCH` side effect.
+ *
+ * @param event
+ */
+export const dispatch = (event: Event): InterceptorFn =>
+    () => ({ [FX_DISPATCH]: event });
+
+/**
+ * Higher-order interceptor. Returns interceptor which assigns given
+ * event to `FX_DISPATCH_NOW` side effect.
+ *
+ * @param event
+ */
+export const dispatchNow = (event: Event): InterceptorFn =>
+    () => ({ [FX_DISPATCH_NOW]: event });
 
 /**
  * Higher-order interceptor. Returns interceptor which calls
