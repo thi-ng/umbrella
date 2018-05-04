@@ -1,33 +1,32 @@
 import { IObjectOf } from "@thi.ng/api/api";
 
-export enum NodeShape {
-    BOX,
-    CIRCLE,
-    DIAMOND,
-    DOUBLE_CIRCLE,
-    DOUBLE_OCTAGON,
-    EGG,
-    ELLIPSE,
-    HEXAGON,
-    HOUSE,
-    INV_HOUSE,
-    INV_TRAPEZIUM,
-    INV_TRIANGLE,
-    M_CIRCLE,
-    M_DIAMOND,
-    M_RECORD,
-    M_SQUARE,
-    NONE,
-    OCTAGON,
-    PARALLELOGRAM,
-    PLAINTEXT,
-    POINT,
-    POLYGON,
-    RECORD,
-    TRAPEZIUM,
-    TRIANGLE,
-    TRIPLE_OCTAGON,
-}
+export type NodeShape =
+    "box" |
+    "circle" |
+    "diamond" |
+    "doublecircle" |
+    "doubleoctagon" |
+    "egg" |
+    "ellipse" |
+    "hexagon" |
+    "house" |
+    "invhouse" |
+    "invtrapezium" |
+    "invtriangle" |
+    "Mcircle" |
+    "Mdiamond" |
+    "Mrecord" |
+    "Msquare" |
+    "none" |
+    "octagon" |
+    "parallelogram" |
+    "plaintext" |
+    "point" |
+    "polygon" |
+    "record" |
+    "trapezium" |
+    "triangle" |
+    "triple_octagon";
 
 export type Color = string | number[];
 
@@ -102,8 +101,8 @@ export interface EdgeAttribs {
 }
 
 export interface Edge extends Partial<EdgeAttribs> {
-    src: string;
-    dest: string;
-    srcPort?: string;
-    destPort?: string;
+    src: PropertyKey;
+    dest: PropertyKey;
+    srcPort?: PropertyKey;
+    destPort?: PropertyKey;
 }

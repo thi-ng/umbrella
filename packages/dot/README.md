@@ -8,10 +8,10 @@ This project is part of the
 ## About
 
 [Graphviz](http://www.graphviz.org/) DOM abstraction as vanilla JS
-objects & serialization to DOT format. Provides several [interfaces and
-enums](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/api.ts)
+objects & serialization to DOT format. Provides several
+[interfaces](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/api.ts)
 covering a large subset of GraphViz options and
-[functions]((https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/serialize.ts)
+[functions](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/serialize.ts)
 to serialize whole graphs (incl. subgraphs), nodes or edges. Supports
 both directed and undirected graphs.
 
@@ -29,6 +29,9 @@ yarn add @thi.ng/dot
 
 ![example graph](../../assets/dot-example.png)
 
+The source code of this example is also available in
+[/test/example.ts](https://github.com/thi-ng/umbrella/tree/master/packages/dot/test/example.ts).
+
 ```typescript
 import * as dot from "@thi.ng/dot";
 
@@ -42,7 +45,7 @@ const terminal = {
 // with input and output port declarations
 const operator = {
     fillcolor: "yellow",
-    shape: dot.NodeShape.M_RECORD,
+    shape: "Mrecord",
     ins: { 0: "a", 1: "b" },
     outs: { "out": "out" }
 };
@@ -72,10 +75,11 @@ dot.serializeGraph({
         }
     },
     // graph nodes (the keys are used as node IDs)
+    // use spread operator to inject style presets
     nodes: {
         x:   { ...terminal, label: "x (12)" },
         y:   { ...terminal, label: "y (23)" },
-        res: { ...terminal, label: "res (8050)", peripheries: 2 },
+        res: { ...terminal, label: "result (8050)", peripheries: 2 },
         op1: { ...operator, fillcolor: "green", label: "op1\n(+)" },
         op2: { ...operator, label: "op2\n(*)" },
     },

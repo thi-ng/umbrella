@@ -1,20 +1,12 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 
-import { Graph, NodeShape, Node, Edge, GraphAttribs } from "./api";
-
-const shapeIDs: IObjectOf<string> = {
-    [NodeShape.DOUBLE_CIRCLE]: "doublecircle",
-    [NodeShape.DOUBLE_OCTAGON]: "doubleoctagon",
-    [NodeShape.INV_HOUSE]: "invhouse",
-    [NodeShape.INV_TRAPEZIUM]: "invtrapezium",
-    [NodeShape.INV_TRIANGLE]: "invtriangle",
-    [NodeShape.M_CIRCLE]: "Mcircle",
-    [NodeShape.M_DIAMOND]: "Mdiamond",
-    [NodeShape.M_RECORD]: "Mrecord",
-    [NodeShape.M_SQUARE]: "Msquare",
-    [NodeShape.TRIPLE_OCTAGON]: "tripleoctagon",
-};
+import {
+    Edge,
+    Graph,
+    GraphAttribs,
+    Node
+} from "./api";
 
 const wrapQ = (x) => `"${x}"`;
 
@@ -22,7 +14,7 @@ const escape = (x: any) =>
     String(x).replace(/\"/g, `\\"`)
         .replace(/\n/g, "\\n");
 
-export const formatGraphAttribs = (attribs: Partial<GraphAttribs>, acc: string[]) => {
+const formatGraphAttribs = (attribs: Partial<GraphAttribs>, acc: string[]) => {
     for (let a in attribs) {
         let v = attribs[a];
         switch (a) {
@@ -46,7 +38,7 @@ export const formatGraphAttribs = (attribs: Partial<GraphAttribs>, acc: string[]
     return acc;
 };
 
-export const formatAttribs = (attribs: Partial<Node | Edge>) => {
+const formatAttribs = (attribs: Partial<Node | Edge>) => {
     const acc: string[] = [];
     for (let a in attribs) {
         let v = attribs[a];
@@ -63,9 +55,6 @@ export const formatAttribs = (attribs: Partial<Node | Edge>) => {
                 break;
             case "url":
                 a = "URL";
-                break;
-            case "shape":
-                v = shapeIDs[v] || NodeShape[v].toLowerCase();
                 break;
             case "ins":
             case "outs":
@@ -89,7 +78,7 @@ const formatPorts = (ports: IObjectOf<string>) => {
     return `{ ${acc.join(" | ")} }`;
 };
 
-export const formatPortLabel = (node: Partial<Node>, label: string) => {
+const formatPortLabel = (node: Partial<Node>, label: string) => {
     const acc: string[] = [];
     node.ins && acc.push(formatPorts(node.ins));
     acc.push(escape(label));
