@@ -1,3 +1,4 @@
+export * from "./button";
 export * from "./canvas";
 export * from "./dropdown";
 export * from "./link";
