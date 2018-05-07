@@ -1,6 +1,7 @@
 # 2. Component configuration
 
-Date: 2018-05-04
+- **Date:** 2018-05-04
+- **Revised:** 2018-05-07
 
 ## Status
 
@@ -77,7 +78,9 @@ accepted as varargs and NOT as part of the options object.
 
 #### Example component
 
-The following example button component demonstates these approaches:
+The following example button component demonstates these approaches.
+Btw. It's the actual implementation of the [hdom-components button
+component](../src/button.ts).
 
 ```ts
 // button.ts
@@ -202,7 +205,7 @@ export const button = rawButton({
 });
 ```
 
-### Usage
+### Usage & composition
 
 User code just needs to import pre-configured components and can further
 customize them, e.g. to create an icon button (here using [Font
@@ -213,14 +216,22 @@ Awesome](https://fontawesome.com)).
 import { start } from "@thi.ng/hdom";
 import { button, primaryButton } from "./themed-button";
 
+// derive icon buttons only accepting custom event handler arg
+const confirmButton = (_, onclick) =>
+    [primaryButton, { onclick }, ["i.fas.fa-check.mr2"], "Confirm"];
+
+const cancelButton = (_, onclick) =>
+    [button, { onclick }, ["i.fas.fa-times.mr2"], "Cancel"];
+
 start("app",
     ["div",
         [primaryButton, { onclick: () => alert("bt1") }, "bt1"],
         [primaryButton, { onclick: () => alert("bt3"), disabled: true }, "bt2"],
         [button, { onclick: () => alert("bt3") }, "bt3"],
         [button, { onclick: () => alert("bt4"), disabled: true }, "bt4"],
-        // icon button
-        [primaryButton, {}, ["i.fas.fa-check.mr2"], "Confirm"]
+        // icon buttons
+        [confirmButton, () => alert("confirm")],
+        [cancelButton, () => alert("cancel")],
     ]
 );
 ```
