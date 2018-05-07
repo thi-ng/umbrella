@@ -1,5 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { button } from "./button";
+import { appLink } from "./link";
 
 export interface NotificationOpts {
     /**
@@ -56,15 +56,12 @@ export interface NotificationArgs {
  * @param opts
  */
 export const notification = (opts?: Partial<NotificationOpts>) => {
-    const closeBt = opts.close && button({
-        attribs: opts.attribsClose
-    });
     return (_, args: Partial<NotificationArgs>, body: any) =>
         ["div",
             { ...opts.attribs, ...args.attribs },
             opts.icon,
             body,
-            args.onclose && closeBt ?
-                [closeBt, { onclick: args.onclose }, opts.close] :
+            opts.close && args.onclose ?
+                [appLink, opts.attribsClose, args.onclose, opts.close] :
                 undefined];
 };

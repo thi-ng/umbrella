@@ -3,11 +3,11 @@ import { isString } from "@thi.ng/checks/is-string";
 export const link = (attribs: any, body: any) =>
     ["a", isString(attribs) ? { href: attribs } : attribs, body];
 
-export const appLink = (attribs: any, body: any, onclick: (e: Event) => void) =>
-    link(
+export const appLink = (_, attribs: any, onclick: EventListener, body: any) =>
+    ["a",
         {
-            ...attribs,
             href: "#",
-            onclick: (e) => { e.preventDefault(); onclick(e); }
+            onclick: (e) => { e.preventDefault(); onclick(e); },
+            ...attribs,
         },
-        body);
+        body];
