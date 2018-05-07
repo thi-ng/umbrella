@@ -1,3 +1,5 @@
+import { IObjectOf } from "@thi.ng/api/api";
+
 export interface ButtonOpts {
     /**
      * Element name to use for enabled buttons.
@@ -28,42 +30,48 @@ export interface ButtonOpts {
     preventDefault: boolean;
 }
 
+export interface ButtonArgs {
+    attribs: IObjectOf<any>;
+    onclick: EventListener;
+    disabled: boolean;
+}
+
 /**
  * Higher order function to create a new stateless button component,
  * pre-configured via user supplied options. The returned component
  * function accepts the following arguments:
  *
  * - hdom context object (unused)
- * - extra attribute object
- * - onclick event listener
- * - body content
- * - disabled flag (default: false)
+ * - partial `ButtonArgs` object (extra attribs, onclick, disabled)
+ * - body content (varargs)
  *
- * The `attribs` provided as arg are merged with the default options
- * provided to HOF. The `disabled` arg decides which button version
- * to create.
+ * Any `attribs` provided as arg via `ButtonArgs` are merged with the
+ * default options provided to the HOF. The `disabled` arg decides which
+ * button version to create. The button can have any number of body
+ * elements (e.g. icon and label), given as varargs.
  */
-export const button = (opts: Partial<ButtonOpts>) => {
+export const button = (opts?: Partial<ButtonOpts>) => {
     // init with defaults
     opts = {
         tag: "a",
         tagDisabled: "span",
         preventDefault: true,
+        attribs: {},
         ...opts
     };
-    // return component function as closure
-    return (_: any, attribs: any, onclick: EventListener, body: any, disabled?: boolean) =>
-        disabled ?
+    !opts.attribs.role && (opts.attribs.role = "button");
+    return (_: any, args: Partial<ButtonArgs>, ...body: any[]) =>
+        args.disabled ?
             [opts.tagDisabled, {
                 ...opts.attribsDisabled,
-                ...attribs,
+                ...args.attribs,
                 disabled: true,
-            }, body] :
+            }, ...body] :
             [opts.tag, {
                 ...opts.attribs,
-                ...attribs,
+                ...args.attribs,
                 onclick: opts.preventDefault ?
-                    (e) => (e.preventDefault(), onclick(e)) :
-                    onclick
-            }, body];
+                    (e) => (e.preventDefault(), args.onclick(e)) :
+                    args.onclick
+            }, ...body];
 };
