@@ -1,9 +1,3 @@
-export interface CanvasOpts {
-    width: number;
-    height: number;
-    [id: string]: any;
-}
-
 /**
  * User provided canvas life cycle methods. These differ from the usual
  * @thi.ng/hdom life cycle methods and are always passed at least the
