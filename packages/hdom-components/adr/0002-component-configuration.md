@@ -66,8 +66,23 @@ JSDoc comments. Likewise the HOF component function MUST be documented,
 specifically to explain which runtime arguments are expected/accepted by
 the returned function.
 
+#### Runtime argument handling
+
+If there are more than 2 runtime args and / or the majority of them is
+optional, the returned component function SHOULD accept those args as
+options object.
+
+If the component can take child elements as arguments, these SHOULD be
+accepted as varargs and NOT as part of the options object.
+
+#### Example component
+
+The following example button component demonstates these approaches:
+
 ```ts
 // button.ts
+import { IObjectOf } from "@thi.ng/api/api";
+
 export interface ButtonOpts {
     /**
      * Element name to use for enabled buttons.
@@ -98,44 +113,50 @@ export interface ButtonOpts {
     preventDefault: boolean;
 }
 
+export interface ButtonArgs {
+    attribs: IObjectOf<any>;
+    onclick: EventListener;
+    disabled: boolean;
+}
+
 /**
  * Higher order function to create a new stateless button component,
  * pre-configured via user supplied options. The returned component
  * function accepts the following arguments:
  *
  * - hdom context object (unused)
- * - extra attribute object
- * - onclick event listener
- * - body content
- * - disabled flag (default: false)
+ * - partial `ButtonArgs` object (extra attribs, onclick, disabled)
+ * - body content (varargs)
  *
- * The `attribs` provided as arg are merged with the default options
- * provided to HOF. The `disabled` arg decides which button version
- * to create.
+ * Any `attribs` provided as arg via `ButtonArgs` are merged with the
+ * default options provided to the HOF. The `disabled` arg decides which
+ * button version to create. The button can have any number of body
+ * elements (e.g. icon and label), given as varargs.
  */
-export const button = (opts: Partial<ButtonOpts>) => {
+export const button = (opts?: Partial<ButtonOpts>) => {
     // init with defaults
     opts = {
         tag: "a",
         tagDisabled: "span",
         preventDefault: true,
+        attribs: {},
         ...opts
     };
-    // return component function as closure
-    return (_, attribs, onclick, body, disabled) =>
-        disabled ?
+    !opts.attribs.role && (opts.attribs.role = "button");
+    return (_: any, args: Partial<ButtonArgs>, ...body: any[]) =>
+        args.disabled ?
             [opts.tagDisabled, {
                 ...opts.attribsDisabled,
-                ...attribs,
+                ...args.attribs,
                 disabled: true,
-            }, body] :
+            }, ...body] :
             [opts.tag, {
                 ...opts.attribs,
-                ...attribs,
+                ...args.attribs,
                 onclick: opts.preventDefault ?
-                    (e) => (e.preventDefault(), onclick(e)) :
-                    onclick
-            }, body];
+                    (e) => (e.preventDefault(), args.onclick(e)) :
+                    args.onclick
+            }, ...body];
 };
 ```
 
@@ -144,8 +165,8 @@ export const button = (opts: Partial<ButtonOpts>) => {
 To use the raw component, instantiate it via supplied options. Since the
 component is stateless, the same instance can be used multiple times
 from user code. Furthermore, this approach enables the publication of
-dedicated packages providing pre-defined, themed components, which are
-ready to use without further pre-configuration.
+dedicated packages, providing pre-defined, themed components, ready to
+use without further pre-configuration.
 
 In this example, we use [Tachyons](https://tachyons.io) CSS classes to
 provide themed versions of the above raw button component. However, a
@@ -162,26 +183,30 @@ import { button as rawButton } from "./button";
 // here using Tachyons CSS classes as example
 export const primaryButton = rawButton({
     attribs: {
-        class: "dib pa2 mb2 mr2 br2 link bg-blue hover-bg-black bg-animate white",
-        role: "button",
+        class: "dib ph3 pv2 mb2 mr2 br-pill link bg-blue hover-bg-black bg-animate white",
         href: "#"
     },
     attribsDisabled: {
-        class: "dib pa2 mb2 mr2 br2 bg-gray pa2 white"
+        class: "dib ph3 pv2 mb2 mr2 br-pill bg-gray white"
     }
 });
 
 export const button = rawButton({
     attribs: {
-        class: "dib pa2 mb2 mr2 link dim br2 ba blue",
-        role: "button",
+        class: "dib ph3 pv2 mb2 mr2 link dim br2 ba blue",
         href: "#",
     },
     attribsDisabled: {
-        class: "dib pa2 mb2 mr2 br2 ba gray"
+        class: "dib ph3 pv2 mb2 mr2 br2 ba gray"
     }
 });
 ```
+
+### Usage
+
+User code just needs to import pre-configured components and can further
+customize them, e.g. to create an icon button (here using [Font
+Awesome](https://fontawesome.com)).
 
 ```ts
 // user.ts
@@ -190,10 +215,12 @@ import { button, primaryButton } from "./themed-button";
 
 start("app",
     ["div",
-        [primaryButton, {}, ()=> alert("bt1"), "bt1"],
-        [primaryButton, {}, ()=> alert("bt3"), "bt2", true],
-        [button, {}, ()=> alert("bt3"), "bt3"],
-        [button, {}, ()=> alert("bt4"), "bt4", true]
+        [primaryButton, { onclick: () => alert("bt1") }, "bt1"],
+        [primaryButton, { onclick: () => alert("bt3"), disabled: true }, "bt2"],
+        [button, { onclick: () => alert("bt3") }, "bt3"],
+        [button, { onclick: () => alert("bt4"), disabled: true }, "bt4"],
+        // icon button
+        [primaryButton, {}, ["i.fas.fa-check.mr2"], "Confirm"]
     ]
 );
 ```
