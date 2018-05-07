@@ -5,7 +5,7 @@
  * @param m
  * @param maps
  */
-export function mergeMaps<K, V>(m: Map<K, V>, ...maps: Map<K, V>[]) {
+export function mergeMap<K, V>(m: Map<K, V>, ...maps: Map<K, V>[]) {
     for (let mm of maps) {
         for (let p of mm) {
             m.set(p[0], p[1]);
