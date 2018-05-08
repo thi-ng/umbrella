@@ -36,6 +36,8 @@ export interface ButtonArgs {
     disabled: boolean;
 }
 
+export type Button = (_: any, args: Partial<ButtonArgs>, ...body: any[]) => any;
+
 /**
  * Higher order function to create a new stateless button component,
  * pre-configured via user supplied options. The returned component
@@ -50,7 +52,7 @@ export interface ButtonArgs {
  * button version to create. The button can have any number of body
  * elements (e.g. icon and label), given as varargs.
  */
-export const button = (opts?: Partial<ButtonOpts>) => {
+export const button = (opts?: Partial<ButtonOpts>): Button => {
     // init with defaults
     opts = {
         tag: "a",
