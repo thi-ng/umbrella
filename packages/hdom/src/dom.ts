@@ -128,6 +128,10 @@ export function setAttrib(el: Element, id: string, val: any, attribs?: any) {
             case "value":
                 updateValueAttrib(<HTMLInputElement>el, val);
                 break;
+            case "checked":
+                // TODO add more native attribs?
+                el[id] = val;
+                break;
             default:
                 if (isListener) {
                     el.addEventListener(id.substr(2), val);
@@ -136,7 +140,7 @@ export function setAttrib(el: Element, id: string, val: any, attribs?: any) {
                 }
         }
     } else {
-        el[id] ? (el[id] = null) : el.removeAttribute(id);
+        el[id] != null ? (el[id] = null) : el.removeAttribute(id);
     }
     return el;
 }
