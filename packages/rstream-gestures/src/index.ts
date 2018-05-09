@@ -24,9 +24,22 @@ export interface GestureEvent {
 }
 
 export interface GestureStreamOpts extends IID<string> {
+    /**
+     * Initial zoom value. Default: 1
+     */
     zoom: number;
+    /**
+     * Min zoom value. Default: 0.25
+     */
     minZoom: number;
+    /**
+     * Max zoom value. Default: 4
+     */
     maxZoom: number;
+    /**
+     * Scaling factor for zoom changes. Default: 1
+     */
+    smooth: number;
 }
 
 /**
@@ -57,11 +70,12 @@ export interface GestureStreamOpts extends IID<string> {
 export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
     let isDown = false,
         clickPos: number[];
-    opts = Object.assign({
+    opts = Object.assign(<GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
         minZoom: 0.25,
         maxZoom: 4,
+        smooth: 1
     }, opts);
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     return merge({
@@ -108,7 +122,7 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
                     body.delta = [pos[0] - clickPos[0], pos[1] - clickPos[1]];
                     break;
                 case GestureType.ZOOM:
-                    body.zoom = zoom = Math.min(Math.max(zoom + (<WheelEvent>e).deltaY, opts.minZoom), opts.maxZoom);
+                    body.zoom = zoom = Math.min(Math.max(zoom + (<WheelEvent>e).deltaY * opts.smooth, opts.minZoom), opts.maxZoom);
                     break;
                 default:
             }
