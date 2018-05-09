@@ -41,6 +41,7 @@ difficulties, many combining functionality from several packages) in the
 | [`@thi.ng/dcons`](./packages/dcons) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons) | [changelog](./packages/dcons/CHANGELOG.md) |
 | [`@thi.ng/dgraph`](./packages/dgraph) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph) | [changelog](./packages/dgraph/CHANGELOG.md) |
 | [`@thi.ng/diff`](./packages/diff) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff) | [changelog](./packages/diff/CHANGELOG.md) |
+| [`@thi.ng/dot`](./packages/dot) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot) | [changelog](./packages/dot/CHANGELOG.md) |
 | [`@thi.ng/hdom`](./packages/hdom) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom) | [changelog](./packages/hdom/CHANGELOG.md) |
 | [`@thi.ng/hdom-components`](./packages/hdom-components) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components) | [changelog](./packages/hdom-components/CHANGELOG.md) |
 | [`@thi.ng/heaps`](./packages/heaps) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps) | [changelog](./packages/heaps/CHANGELOG.md) |
