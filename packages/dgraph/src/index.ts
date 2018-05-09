@@ -97,6 +97,14 @@ export class DGraph<T> implements
         );
     }
 
+    leaves(): IterableIterator<T> {
+        return filter((node: T) => this.isLeaf(node), this.nodes());
+    }
+
+    roots(): IterableIterator<T> {
+        return filter((node: T) => this.isRoot(node), this.nodes());
+    }
+
     transitiveDependencies(x: T) {
         return transitive(this.dependencies, x);
     }
@@ -108,14 +116,14 @@ export class DGraph<T> implements
     sort() {
         const sorted: T[] = [];
         const g = this.copy();
-        let queue = new LLSet(filter((node: T) => g.isLeaf(node), g.nodes()));
+        let queue = new LLSet(g.leaves());
         while (true) {
             if (!queue.size) {
                 return sorted.reverse();
             }
             const node = queue.first();
             queue.delete(node);
-            for (let d of (<LLSet<T>>g.immediateDependencies(node)).copy()) {
+            for (let d of [...g.immediateDependencies(node)]) {
                 g.removeEdge(node, d);
                 if (g.isLeaf(d)) {
                     queue.add(d);
