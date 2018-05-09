@@ -3,9 +3,9 @@ import { selectKeysObj } from "./select-keys";
 import { empty } from "./utils";
 
 /**
- * Takes a set of objects and array of indexing keys. Calls
- * `selectKeysObj` on each set value and used returned objects as new
- * keys to group original values. Returns a map of sets.
+ * Takes an iterable of plain objects and array of indexing keys. Calls
+ * `selectKeysObj` on each value and uses returned objects as new keys
+ * to group original values. Returns a new `EquivMap` of sets.
  *
  * ```
  * indexed(
@@ -17,19 +17,17 @@ import { empty } from "./utils";
  * //   { a: 1, b: 2 } => Set { { a: 1, b: 2 } } }
  * ```
  *
- * @param records set of objects to index
+ * @param records objects to index
  * @param ks keys used for indexing
  */
-export function indexed<T>(records: Set<T>, ks: PropertyKey[]) {
+export function indexed<T>(records: Iterable<T>, ks: PropertyKey[]) {
     const res = new EquivMap<any, Set<T>>();
-    let m, ik, rv;
-    for (m of records) {
-        ik = selectKeysObj(m, ks);
+    let x, ik, rv;
+    for (x of records) {
+        ik = selectKeysObj(x, ks);
         rv = res.get(ik);
-        if (!rv) {
-            res.set(ik, rv = empty(records, Set));
-        }
-        rv.add(m);
+        !rv && res.set(ik, rv = empty(records, Set));
+        rv.add(x);
     }
     return res;
 }

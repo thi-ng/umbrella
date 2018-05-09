@@ -1,26 +1,28 @@
+import { IObjectOf } from "@thi.ng/api/api";
+
 /**
- * Merges all given maps in left-to-right order into `m`.
- * Returns `m`.
+ * Merges all given maps in left-to-right order into `dest`.
+ * Returns `dest`.
  *
- * @param m
- * @param maps
+ * @param dest
+ * @param xs
  */
-export function mergeMap<K, V>(m: Map<K, V>, ...maps: Map<K, V>[]) {
-    for (let mm of maps) {
-        for (let p of mm) {
-            m.set(p[0], p[1]);
+export function mergeMap<K, V>(dest: Map<K, V>, ...xs: Map<K, V>[]) {
+    for (let x of xs) {
+        for (let pair of x) {
+            dest.set(pair[0], pair[1]);
         }
     }
-    return m;
+    return dest;
 }
 
 /**
- * Merges all given objects in left-to-right order into `m`.
- * Returns `m`.
+ * Merges all given objects in left-to-right order into `dest`.
+ * Returns `dest`.
  *
- * @param m
- * @param maps
+ * @param dest
+ * @param xs
  */
-export function mergeObj(m, ...maps: any[]) {
-    return Object.assign(m, ...maps);
+export function mergeObj<T>(dest: IObjectOf<T>, ...xs: IObjectOf<T>[]): IObjectOf<T> {
+    return Object.assign(dest, ...xs);
 }
