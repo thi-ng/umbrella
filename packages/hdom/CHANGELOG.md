@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.15"></a>
+## [3.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.14...@thi.ng/hdom@3.0.15) (2018-05-09)
+
+
+### Bug Fixes
+
+* **hdom:** native boolean attrib handling (e.g. "checked") ([68ea086](https://github.com/thi-ng/umbrella/commit/68ea086))
+
+
+
+
 <a name="3.0.14"></a>
 ## [3.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.13...@thi.ng/hdom@3.0.14) (2018-05-01)
 

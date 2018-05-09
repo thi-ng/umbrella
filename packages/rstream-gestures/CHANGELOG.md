@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.2.5...@thi.ng/rstream-gestures@0.3.0) (2018-05-09)
+
+
+### Features
+
+* **rstream-gestures:** add zoom smooth config option, update readme ([053c8c6](https://github.com/thi-ng/umbrella/commit/053c8c6))
+
+
+
+
 <a name="0.2.5"></a>
 ## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.2.4...@thi.ng/rstream-gestures@0.2.5) (2018-04-29)
 

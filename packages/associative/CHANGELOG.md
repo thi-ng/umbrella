@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.4.6...@thi.ng/associative@0.5.0) (2018-05-09)
+
+
+### Features
+
+* **associative:** add mapKeysObj() / mapKeysMap() ([a9574a0](https://github.com/thi-ng/umbrella/commit/a9574a0))
+* **associative:** add new functions, update arg & return types ([5991be6](https://github.com/thi-ng/umbrella/commit/5991be6))
+
+
+
+
 <a name="0.4.6"></a>
 ## [0.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.4.5...@thi.ng/associative@0.4.6) (2018-04-29)
 

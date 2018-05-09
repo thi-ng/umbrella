@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.0.3...@thi.ng/hdom-components@2.1.0) (2018-05-09)
+
+
+### Features
+
+* **hdom-components:** add button component ([cef3c6a](https://github.com/thi-ng/umbrella/commit/cef3c6a))
+* **hdom-components:** add buttonGroup ([c0950d6](https://github.com/thi-ng/umbrella/commit/c0950d6))
+* **hdom-components:** add notification component ([a11803c](https://github.com/thi-ng/umbrella/commit/a11803c))
+* **hdom-components:** add pager component, add [@thi](https://github.com/thi).ng/iterators dep ([efb288d](https://github.com/thi-ng/umbrella/commit/efb288d))
+* **hdom-components:** add title component ([f9a2daf](https://github.com/thi-ng/umbrella/commit/f9a2daf))
+
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.0.2...@thi.ng/hdom-components@2.0.3) (2018-04-29)
 
