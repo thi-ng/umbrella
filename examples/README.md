@@ -8,14 +8,14 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | ---: | --- | --- | --- | --- |
 | 1 | [async-effect](./async-effect) | Async side effect handling (JSON I/O) | atom, hdom, interceptors | intermediate |
 | 2 | [cellular-automata](./cellular-automata) | Transducer based, customizable 2D cellular automata | hdom, hdom-components, transducers |  basic |
-| 3 | [dashboard](./cellular-automata) | Barebones components w/ local state | hdom, hdom-components, transducers | basic |
-| 4 | [devcards](./devcards) | multiple app instances with/without shared state | atom, hdom, hdom-components | intermediate |
+| 3 | [dashboard](./cellular-automata) | Barebones components w/ local state | hdom, transducers | basic |
+| 4 | [devcards](./devcards) | multiple app instances with/without shared state | atom, hdom | intermediate |
 | 5 | [hdom-basics](./hdom-basics) | hello world | hdom, hiccup | basic |
 | 6 | [hdom-benchmark](./hdom-benchmark) | hdom rendering perf / stress test, canvas FPS counter | hdom, rstream, transducers | intermediate |
 | 7 | [interceptor-basics](./hdom-benchmark) | event handling w/ interceptors and side effects | atom, hdom, interceptors | intermediate |
 | 8 | [json-components](./json-components) | JSON->component transformation, live editor | hdom, transducers | intermediate |
 | 9 | [login-form](./login-form) | basic SPA without router | atom, hdom | intermediate |
-| 10 | [pointfree-svg](./pointfree-svg) | generate SVG using pointfree DSL | hiccup, hdom-components, pointfree-lang | intermediate |
+| 10 | [pointfree-svg](./pointfree-svg) | generate SVG using pointfree DSL | hiccup, hiccup-svg, pointfree-lang | intermediate |
 | 11 | [router-basics](./router-basics) | complete mini SPA | atom, hdom, interceptors, router | advanced |
 | 12 | [rstream-dataflow](./rstream-dataflow) | dataflow graph | atom, hdom, rstream, rstream-gestures, rstream-graph, transducers | intermediate |
 | 13 | [rstream-grid](./rstream-grid) | dataflow graph svg gen | atom, hdom, hiccup-svg, interceptors, rstream-graph, transducers | advanced |

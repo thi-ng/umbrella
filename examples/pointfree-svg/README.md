@@ -3,7 +3,7 @@
 This is a non-interactive demo combining the following packages to generate the SVG graphic below:
 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree)
 - [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang)
 

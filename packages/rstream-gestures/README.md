@@ -35,8 +35,35 @@ A small, fully commented project can be found in the `/examples` folder:
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
 [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
 
+### Basic usage
+
 ```typescript
-import { gestureStream } from "@thi.ng/rstream-gestures";
+import { GestureType, gestureStream } from "@thi.ng/rstream-gestures";
+import { trace } from "@thi.ng/rstream";
+import { comp, dedupe, filter, map } from "@thi.ng/transducers";
+
+// create event stream with custom option
+const gestures = gestureStream(document.body, { smooth: 0.5 });
+
+// subscription logging zoom value changes
+gestures.subscribe(
+    // trace is simply logging received values to console
+    trace("zoom"),
+    // composed transducer, `dedupe` ensures only changed values are received
+    comp(
+        map(([_, {zoom}]) => zoom),
+        dedupe()
+    )
+);
+
+// another subscription computing & logging drag gesture distance
+gestures.subscribe(
+    trace("distance"),
+    comp(
+        filter(([type]) => type === GestureType.DRAG),
+        map(([_, {delta}]) => Math.hypot(...delta))
+    )
+);
 ```
 
 ## Authors

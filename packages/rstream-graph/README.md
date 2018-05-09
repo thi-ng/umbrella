@@ -8,10 +8,11 @@ This project is part of the
 ## About
 
 Declarative, reactive dataflow graph construction using
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-&
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream),
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom) and [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 primitives.
+
+Stream subscription types act as graph nodes and attached transducers as graph edges, transforming data for downstream consumers / nodes. Theoretically, allows cycles and is not restricted to DAG topologies, but care must be taken to avoid CPU hogging (user's responsibility).
 
 ## Installation
 
@@ -21,10 +22,14 @@ yarn add @thi.ng/rstream-graph
 
 ## Usage examples
 
-A small, fully commented project can be found in the `/examples` folder:
+Small(ish), fully commented projects can be found in the `/examples` folder:
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
-[Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+* **Dataflow circles** -
+  [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow),
+  [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+* **SVG grid gen** -
+  [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow),
+  [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
 
 More basic:
 
@@ -68,7 +73,7 @@ graph.mul.subscribe({
 // result: 90
 
 // changes in subscribed atom values flow through the graph
-state.resetIn("a", 10);
+setTimeout(() => state.resetIn("a", 10), 1000);
 // result: 360
 ```
 

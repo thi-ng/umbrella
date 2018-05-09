@@ -119,6 +119,13 @@ yarn add @thi.ng/rstream
 There're several examples using this package in the `/examples`
 directory of this repo:
 
+### SVG grid gen
+
+Interactive demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package to compute a SVG grid.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+| [Live version](http://demo.thi.ng/umbrella/rstream-grid)
+
 ### Declarative dataflow graph
 
 This demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package.
