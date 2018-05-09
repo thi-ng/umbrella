@@ -3,7 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="1.0.5"></a>
+      <a name="2.0.0"></a>
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.5...@thi.ng/resolve-map@2.0.0) (2018-05-09)
+
+
+### Code Refactoring
+
+* **resolve-map:** fix [#21](https://github.com/thi-ng/umbrella/issues/21) ([5d2a3fe](https://github.com/thi-ng/umbrella/commit/5d2a3fe))
+
+
+### BREAKING CHANGES
+
+* **resolve-map:** update lookup path prefix & separators
+
+- lookup paths now are prefixed with `@` instead of `->`
+- all path segments must be separated by `/`
+- update readme & tests
+
+
+
+
+      <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.4...@thi.ng/resolve-map@1.0.5) (2018-05-09)
 
 
@@ -11,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @thi.ng/resolve-map
 
-  <a name="1.0.4"></a>
+<a name="1.0.4"></a>
 ## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.3...@thi.ng/resolve-map@1.0.4) (2018-04-29)
 
 

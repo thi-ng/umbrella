@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dgraph",
-    "version": "0.1.10",
+    "version": "0.2.0",
     "description": "Type-agnostic directed acyclic graph (DAG) & graph operations",
     "main": "./index.js",
     "typings": "./index.d.ts",

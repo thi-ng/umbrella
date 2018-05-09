@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.1.10...@thi.ng/dgraph@0.2.0) (2018-05-09)
+
+
+### Features
+
+* **dgraph:** add leaves() & roots() iterators, update sort() ([68ca46d](https://github.com/thi-ng/umbrella/commit/68ca46d))
+
+
+
+
 <a name="0.1.10"></a>
 ## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.1.9...@thi.ng/dgraph@0.1.10) (2018-05-09)
 
