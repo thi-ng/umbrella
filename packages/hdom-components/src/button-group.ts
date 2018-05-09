@@ -52,6 +52,8 @@ export interface ButtonGroupItem extends Array<any> {
     [id: number]: any;
 }
 
+export type ButtonGroup = (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) => any;
+
 /**
  * Higher order function to create a new stateless button group
  * component, pre-configured via user supplied options. The returned
@@ -69,7 +71,7 @@ export interface ButtonGroupItem extends Array<any> {
  *
  * @param opts
  */
-export const buttonGroup = (opts: ButtonGroupOpts) =>
+export const buttonGroup = (opts: ButtonGroupOpts): ButtonGroup =>
     (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) =>
         ["div", { ...opts.attribs, ...args.attribs }, ...groupBody(opts, args.disabled, buttons)];
 
