@@ -3,7 +3,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
-import { getIn, mutIn, toPath } from "@thi.ng/paths";
+import { getIn, mutIn } from "@thi.ng/paths";
 
 const SEMAPHORE = Symbol("SEMAPHORE");
 
@@ -84,9 +84,9 @@ const resolveArray = (arr: any[], root?: any, path: PropertyKey[] = [], resolved
 
 const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
     let v = getIn(root, path), rv = SEMAPHORE;
-    const pp = path.join(".");
+    const pp = path.join("/");
     if (!resolved[pp]) {
-        if (isString(v) && v.indexOf("->") === 0) {
+        if (isString(v) && v.charAt(0) === "@") {
             rv = _resolve(root, absPath(path, v), resolved);
         } else if (isPlainObject(v)) {
             resolveMap(v, root, path, resolved);
@@ -104,9 +104,9 @@ const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
     return v;
 }
 
-const absPath = (curr: PropertyKey[], q: string, idx = 2): PropertyKey[] => {
+const absPath = (curr: PropertyKey[], q: string, idx = 1): PropertyKey[] => {
     if (q.charAt(idx) === "/") {
-        return toPath(q.substr(idx + 1));
+        return q.substr(idx + 1).split("/");
     }
     curr = curr.slice(0, curr.length - 1);
     const sub = q.substr(idx).split("/");
@@ -115,7 +115,7 @@ const absPath = (curr: PropertyKey[], q: string, idx = 2): PropertyKey[] => {
             !curr.length && illegalArgs(`invalid lookup path`);
             curr.pop();
         } else {
-            return curr.concat(toPath(sub[i]));
+            return curr.concat(sub.slice(i));
         }
     }
     !curr.length && illegalArgs(`invalid lookup path`);
