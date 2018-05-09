@@ -44,13 +44,21 @@ export class App {
         };
         this.addViews(this.config.views);
         this.router = new HTMLRouter(config.router);
+        // connect router to event bus so that routing events are processed
+        // as part of the normal batched event processing loop
         this.router.addListener(
             EVENT_ROUTE_CHANGED,
             (e) => this.ctx.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
         );
+        // whenever the route has changed, record its details in the app
+        // state. likewise, when the user or a component triggers a the
+        // `ROUTE_TO` event we assign the target route details to a side
+        // effect which will cause a change in the router, which then in
+        // turn triggers the `EVENT_ROUTE_CHANGED`, completing the
+        // circle
         this.ctx.bus.addHandlers({
             [EVENT_ROUTE_CHANGED]: valueSetter("route"),
-            [ev.ROUTE_TO]: (_, [__, route]) => ({ [ev.ROUTE_TO]: route })
+            [ev.ROUTE_TO]: (_, [__, route]) => ({ [fx.ROUTE_TO]: route })
         });
         this.ctx.bus.addEffect(
             fx.ROUTE_TO,
