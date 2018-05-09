@@ -117,7 +117,7 @@ const darkTheme = {
     }
 };
 
-const ctx = { theme: lightTheme };
+const ctx = { theme: darkTheme };
 
 const toggleTheme = () => {
     ctx.theme = ctx.theme === lightTheme ? darkTheme : lightTheme;
