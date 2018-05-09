@@ -7,6 +7,8 @@
 
 WIP
 
+Amended by [3. Component configuration via context](0003-component-configuration-via-context.md)
+
 ## Context
 
 The components provided by this package SHOULD primarily be designed
