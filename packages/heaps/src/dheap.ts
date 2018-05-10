@@ -1,5 +1,5 @@
 import { ICopy, IEmpty } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/api/compare";
+import { compare } from "@thi.ng/compare";
 
 import { DHeapOpts } from "./api";
 import { Heap } from "./heap";
@@ -7,7 +7,7 @@ import { Heap } from "./heap";
 /**
  * Generic d-ary heap / priority queue with configurable arity (default
  * = 4) and ordering via user-supplied comparator. By default,
- * implements min-heap ordering and uses @thi.ng/api/compare. The arity
+ * implements min-heap ordering and uses @thi.ng/compare. The arity
  * `d` must be >= 2. If `d=2`, the default binary `Heap` implementation
  * will be faster.
  *

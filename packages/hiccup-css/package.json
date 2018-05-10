@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^2.3.2",
+        "@thi.ng/checks": "^1.5.2",
+        "@thi.ng/errors": "^0.0.1",
         "@thi.ng/transducers": "^1.8.5"
     },
     "keywords": [

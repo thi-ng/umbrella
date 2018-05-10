@@ -1,9 +1,10 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { equiv as _equiv } from "@thi.ng/api/equiv";
-import { illegalArgs, illegalState } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { equiv as _equiv } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 
 import {
     Stack,

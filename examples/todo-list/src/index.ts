@@ -2,8 +2,8 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { Atom, Cursor, History } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom/start";
 import { setIn, updateIn } from "@thi.ng/paths";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
+import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/xform/map";
 
 interface Task {

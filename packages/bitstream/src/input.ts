@@ -1,4 +1,4 @@
-import { illegalArgs, illegalState } from "@thi.ng/api/error";
+import { illegalArgs, illegalState } from "@thi.ng/errors";
 
 const U32 = Math.pow(2, 32);
 

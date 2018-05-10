@@ -1,15 +1,20 @@
-import { Event, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW, EV_SET_VALUE, FX_DELAY } from "@thi.ng/interceptors/api";
+import {
+    EV_SET_VALUE,
+    Event,
+    FX_DELAY,
+    FX_DISPATCH_ASYNC,
+    FX_DISPATCH_NOW
+} from "@thi.ng/interceptors/api";
 import { valueUpdater } from "@thi.ng/interceptors/interceptors";
 
 import { AppConfig, StatusType } from "./api";
-import * as ev from "./events";
-import * as fx from "./effects";
-import * as routes from "./routes";
-
-import { home } from "./components/home";
 import { allUsers } from "./components/all-users";
-import { userProfile } from "./components/user-profile";
 import { contact } from "./components/contact";
+import { home } from "./components/home";
+import { userProfile } from "./components/user-profile";
+import * as fx from "./effects";
+import * as ev from "./events";
+import * as routes from "./routes";
 
 // main App configuration
 export const CONFIG: AppConfig = {

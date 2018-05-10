@@ -1,6 +1,6 @@
 import { Predicate2 } from "@thi.ng/api/api";
-import { unsupported } from "@thi.ng/api/error";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import { DEBUG, ISubscriber } from "./api";
@@ -35,7 +35,7 @@ export interface PubSubOpts<A, B> {
  * returned topic. The actual topic (return value from `topic` fn) can
  * be of any type, apart from `undefined`. Complex topics (e.g objects /
  * arrays) are allowed and they're matched with registered topics using
- * @thi.ng/api/equiv by default (but customizable via `equiv` option).
+ * @thi.ng/equiv by default (but customizable via `equiv` option).
  * Each topic can have any number of subscribers.
  *
  * If a transducer is specified for the `PubSub`, it is always applied

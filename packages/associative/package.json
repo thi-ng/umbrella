@@ -25,7 +25,11 @@
     },
     "dependencies": {
         "@thi.ng/api": "^2.3.2",
+        "@thi.ng/checks": "^1.5.2",
+        "@thi.ng/compare": "^0.0.1",
         "@thi.ng/dcons": "^0.3.4",
+        "@thi.ng/equiv": "^0.0.1",
+        "@thi.ng/errors": "^0.0.1",
         "@thi.ng/iterators": "^4.1.10"
     },
     "keywords": [

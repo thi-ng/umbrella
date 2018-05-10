@@ -10,7 +10,7 @@ import { Stream } from "../stream";
  * nested value in atom / cursor and yields stream of its value changes.
  * Views are readonly versions of Cursors and more lightweight. The view
  * checks for value changes with given `equiv` predicate
- * (`@thi.ng/api/equiv` by default). If the predicate returns a falsy
+ * (`@thi.ng/equiv` by default). If the predicate returns a falsy
  * result, the new value is emitted on the stream. The first value
  * emitted is always the (possibly transformed) current value at the
  * stream's start time (i.e. when the first subscriber attaches).

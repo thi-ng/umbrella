@@ -35,7 +35,7 @@ export interface EquivSetOpts<T> {
      * Key equivalence predicate. MUST return truthy result if given
      * keys are considered equal.
      *
-     * Default: `@thi.ng/api/equiv`
+     * Default: `@thi.ng/equiv`
      */
     equiv: Predicate2<T>;
 }
@@ -57,7 +57,7 @@ export interface SortedMapOpts<K> extends EquivSetOpts<K> {
      *
      * Note: The `SortedMap` implementation only uses `<` comparisons.
      *
-     * Default: `@thi.ng/api/compare`
+     * Default: `@thi.ng/compare`
      */
     compare: Comparator<K>;
     /**

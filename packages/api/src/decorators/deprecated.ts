@@ -1,4 +1,4 @@
-import { illegalArgs } from "../error";
+import { illegalArgs } from "@thi.ng/errors";
 
 /**
  * Method property decorator factory. Augments original method with

@@ -5,7 +5,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isRegExp } from "@thi.ng/checks/is-regexp";
 import { isSet } from "@thi.ng/checks/is-set";
 
-export function equiv(a, b): boolean {
+export const equiv = (a, b): boolean => {
     if (a === b) {
         return true;
     }
@@ -46,27 +46,25 @@ export function equiv(a, b): boolean {
     }
     // NaN
     return (a !== a && b !== b);
-}
+};
 
-function equivArrayLike(a: ArrayLike<any>, b: ArrayLike<any>) {
+const equivArrayLike = (a: ArrayLike<any>, b: ArrayLike<any>) => {
     let l = a.length;
     if (b.length === l) {
         while (--l >= 0 && equiv(a[l], b[l]));
     }
     return l < 0;
-}
+};
 
-function equivSet(a: Set<any>, b: Set<any>) {
-    if (a.size !== b.size) return false;
-    return equiv([...a.keys()].sort(), [...b.keys()].sort());
-}
+const equivSet = (a: Set<any>, b: Set<any>) =>
+    (a.size === b.size) &&
+    equiv([...a.keys()].sort(), [...b.keys()].sort());
 
-function equivMap(a: Map<any, any>, b: Map<any, any>) {
-    if (a.size !== b.size) return false;
-    return equiv([...a].sort(), [...b].sort());
-}
+const equivMap = (a: Map<any, any>, b: Map<any, any>) =>
+    (a.size === b.size) &&
+    equiv([...a].sort(), [...b].sort());
 
-function equivObject(a, b) {
+const equivObject = (a: any, b: any) => {
     const ka = Object.keys(a);
     if (ka.length !== Object.keys(b).length) return false;
     for (let i = ka.length, k; --i >= 0;) {
@@ -76,4 +74,4 @@ function equivObject(a, b) {
         }
     }
     return true;
-}
+};

@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/api/error";
+import { illegalArity } from "@thi.ng/errors";
 
 export function fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) {
     let [cta, ctb, ctc] = ctors;

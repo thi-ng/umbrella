@@ -1,5 +1,5 @@
 import { Predicate2 } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 
 import {
     EquivSetOpts,
@@ -19,7 +19,7 @@ const __private = new WeakMap<ArraySet<any>, SetProps<any>>();
  * An alternative set implementation to the native ES6 Set type. Uses
  * customizable equality/equivalence predicate and so is more useful
  * when dealing with structured data. Implements full API of native Set
- * and by the default uses `@thi.ng/api/equiv` for equivalence checking.
+ * and by the default uses `@thi.ng/equiv` for equivalence checking.
  *
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.

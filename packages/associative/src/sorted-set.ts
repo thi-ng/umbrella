@@ -1,5 +1,5 @@
 import { ICompare } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/api/compare";
+import { compare } from "@thi.ng/compare";
 import { map } from "@thi.ng/iterators/map";
 
 import { IEquivSet, Pair, SortedSetOpts } from "./api";

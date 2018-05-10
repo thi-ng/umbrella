@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/api/error";
+import { illegalArgs } from "@thi.ng/errors";
 
 import { BitInputStream } from "./input";
 

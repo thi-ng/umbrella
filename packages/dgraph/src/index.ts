@@ -1,6 +1,6 @@
 import { ICopy } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
-import { illegalArgs } from "@thi.ng/api/error";
+import { equiv } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
 import { LLSet } from "@thi.ng/associative/ll-set";
 import { union } from "@thi.ng/associative/union";

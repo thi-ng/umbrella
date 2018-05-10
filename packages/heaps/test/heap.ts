@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { Heap } from "../src/index";
-import { compare } from "@thi.ng/api/compare";
+import { compare } from "@thi.ng/compare";
 
 describe("Heap", () => {
 

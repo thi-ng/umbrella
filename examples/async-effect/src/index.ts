@@ -1,6 +1,11 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { start } from "@thi.ng/hdom/start";
-import { EventDef, EffectDef, FX_DISPATCH_ASYNC, FX_DISPATCH_NOW } from "@thi.ng/interceptors/api";
+import {
+    EffectDef,
+    EventDef,
+    FX_DISPATCH_ASYNC,
+    FX_DISPATCH_NOW
+} from "@thi.ng/interceptors/api";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
 import { valueSetter } from "@thi.ng/interceptors/interceptors";
 

@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/api/error";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";

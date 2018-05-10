@@ -4,7 +4,7 @@ import {
     IEquiv,
     IObjectOf
 } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 
 import {
     EquivMapOpts,
@@ -47,7 +47,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
     /**
      * Creates a new instance with optional initial key-value pairs and
      * provided options. If no `opts` are given, uses `ArraySet` for
-     * storing canonical keys and `@thi.ng/api/equiv` for checking key
+     * storing canonical keys and `@thi.ng/equiv` for checking key
      * equivalence.
      *
      * @param pairs

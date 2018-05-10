@@ -1,9 +1,9 @@
-import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { permutations } from "@thi.ng/transducers/iter/permutations";
 import { repeat } from "@thi.ng/transducers/iter/repeat";
 import { str } from "@thi.ng/transducers/rfn/str";

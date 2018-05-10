@@ -1,16 +1,15 @@
 import { start } from "@thi.ng/hdom";
 import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
-
-import { transduce } from "@thi.ng/transducers/transduce";
-import { step } from "@thi.ng/transducers/step";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { lookup2d } from "@thi.ng/transducers/func/lookup";
 import { range2d } from "@thi.ng/transducers/iter/range2d";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { push } from "@thi.ng/transducers/rfn/push";
 import { str } from "@thi.ng/transducers/rfn/str";
+import { step } from "@thi.ng/transducers/step";
+import { transduce } from "@thi.ng/transducers/transduce";
 import { bits } from "@thi.ng/transducers/xform/bits";
-import { convolve2d, buildKernel2d } from "@thi.ng/transducers/xform/convolve";
+import { buildKernel2d, convolve2d } from "@thi.ng/transducers/xform/convolve";
 import { map } from "@thi.ng/transducers/xform/map";
 import { multiplex } from "@thi.ng/transducers/xform/multiplex";
 import { partition } from "@thi.ng/transducers/xform/partition";

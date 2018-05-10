@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/api/error";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
 import { ConvolutionKernel2D, Transducer } from "../api";
 import { range2d } from "../iter/range2d";

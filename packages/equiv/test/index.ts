@@ -1,6 +1,6 @@
 import * as assert from "assert";
 
-import { equiv } from "../src/equiv";
+import { equiv } from "../src/";
 
 describe("equiv", () => {
 
