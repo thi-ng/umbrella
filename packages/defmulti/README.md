@@ -19,6 +19,8 @@ yarn add @thi.ng/defmulti
 
 ## Usage examples
 
+### defmulti
+
 `defmulti` returns a new multi-dispatch function using the provided
 dispatcher function. The dispatcher can take any number of arguments and
 must produce a dispatch value (string, number or symbol) used to lookup
@@ -53,7 +55,11 @@ visit([{a: 1, b: ["foo", "bar", null, 42]}])
 // bar
 ```
 
-### Dynamic dispatch: Simple S-expression interpreter
+See
+[/test/index.ts](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti/test/index.ts)
+for a variation of this example.
+
+#### Dynamic dispatch: Simple S-expression interpreter
 
 ```ts
 const exec = defmulti((x)=> Array.isArray(x) ? x[0] : typeof x);
@@ -67,7 +73,7 @@ exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]);
 // 66
 ```
 
-### True multiple arg dispatch
+#### True multiple arg dispatch
 
 ```ts
 // interest rate calculator based on account type & balance thresholds
@@ -91,6 +97,32 @@ apr({type: "savings", balance: 10000});
 // 250
 apr({type: "isa", balance: 10000});
 // Error: invalid account type: isa
+```
+
+### defmultiN
+
+Returns a multi-dispatch function which delegates to one of the provided
+implementations, based on the arity (number of args) when the function
+is called. Internally uses `defmulti`, so new arities can be dynamically
+added (or removed) at a later time. `defmultiN` also registers a
+`DEFAULT` implementation which simply throws an `IllegalArityError` when
+invoked.
+
+```ts
+const foo = defmultiN({
+  0: () => "zero",
+  1: (x) => `one: ${x}`,
+  3: (x, y, z) => `three: ${x}, ${y}, ${z}`
+});
+
+foo();
+// zero
+foo(23);
+// one: 23
+foo(1, 2, 3);
+// three: 1, 2, 3
+foo(1, 2);
+// Error: illegal arity: 2
 ```
 
 ## Authors

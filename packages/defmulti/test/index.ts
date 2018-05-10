@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { DEFAULT, defmulti } from "../src/index";
+import { DEFAULT, defmulti, defmultiN } from "../src/index";
 
 describe("defmulti", () => {
     it("flatten", () => {
@@ -46,5 +46,18 @@ describe("defmulti", () => {
         assert.equal(~~apr({ type: "savings", balance: 10000 }), 250);
         assert.equal(~~apr({ type: "savings", balance: 100000 }), 3500);
         assert.throws(() => apr({ type: "isa", balance: 10000 }));
+    });
+
+    it("defmultiN", () => {
+        const foo = defmultiN({
+            0: () => "zero",
+            1: (x) => `one: ${x}`,
+            3: (x, y, z) => `three: ${x}, ${y}, ${z}`
+        });
+
+        assert.equal(foo(), "zero");
+        assert.equal(foo(23), "one: 23");
+        assert.equal(foo(1, 2, 3), "three: 1, 2, 3");
+        assert.throws(() => foo(1, 2));
     });
 });
