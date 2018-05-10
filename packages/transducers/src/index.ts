@@ -111,6 +111,7 @@ export * from "./iter/concat";
 export * from "./iter/cycle";
 export * from "./iter/iterate";
 export * from "./iter/keys";
+export * from "./iter/norm-range";
 export * from "./iter/pairs";
 export * from "./iter/permutations";
 export * from "./iter/range";
