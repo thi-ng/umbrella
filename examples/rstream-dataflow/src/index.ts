@@ -1,4 +1,4 @@
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 import { Atom } from "@thi.ng/atom/atom";
 import { start } from "@thi.ng/hdom";
 import { getIn } from "@thi.ng/paths";
