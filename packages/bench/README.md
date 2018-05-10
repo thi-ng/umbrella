@@ -7,7 +7,11 @@ This project is part of the
 
 ## About
 
-TODO...
+Basic, non-precise benchmarking helpers.
+
+This feature was previously part of the
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+package.
 
 ## Installation
 
@@ -18,7 +22,7 @@ yarn add @thi.ng/bench
 ## Usage examples
 
 ```typescript
-import * as bench from "@thi.ng/bench";
+import { timed, bench } from "@thi.ng/bench";
 ```
 
 ## Authors

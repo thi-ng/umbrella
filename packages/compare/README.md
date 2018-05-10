@@ -7,7 +7,12 @@ This project is part of the
 
 ## About
 
-TODO...
+General purpose comparator with optional delegation for types
+implementing the `@thi.ng/api/ICompare` interface.
+
+This feature was previously part of the
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+package.
 
 ## Installation
 
@@ -18,7 +23,23 @@ yarn add @thi.ng/compare
 ## Usage examples
 
 ```typescript
-import * as compare from "@thi.ng/compare";
+import { compare } from "@thi.ng/compare";
+
+class Foo {
+
+    x: number;
+
+    constructor(x: number) {
+        this.x = x;
+    }
+
+    compare(o: Foo) {
+        return compare(this.x, o.x);
+    }
+}
+
+compare(new Foo(1), new Foo(2));
+// -1
 ```
 
 ## Authors

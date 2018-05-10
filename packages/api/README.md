@@ -13,8 +13,6 @@ repository. It defines:
 - 30+ generic, common interfaces & types
 - class & method decorators
 - mixins
-- error types
-- comparison & equivalence checks
 
 ## Installation
 
