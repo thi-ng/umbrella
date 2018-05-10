@@ -4,6 +4,6 @@ export class UnsupportedOperationError extends Error {
     }
 }
 
-export function unsupported(msg?: any) {
+export function unsupported(msg?: any): never {
     throw new UnsupportedOperationError(msg);
 }
