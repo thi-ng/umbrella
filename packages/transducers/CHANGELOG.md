@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.6...@thi.ng/transducers@1.9.0) (2018-05-10)
+
+
+### Features
+
+* **transducers:** add normRange() iterator ([55f29b8](https://github.com/thi-ng/umbrella/commit/55f29b8))
+
+
+
+
 <a name="1.8.6"></a>
 ## [1.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.5...@thi.ng/transducers@1.8.6) (2018-05-10)
 
