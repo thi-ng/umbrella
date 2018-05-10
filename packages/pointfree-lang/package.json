@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree-lang",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "description": "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,9 +26,9 @@
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^3.0.0",
-        "@thi.ng/errors": "^0.1.0",
-        "@thi.ng/pointfree": "^0.7.8"
+        "@thi.ng/api": "^3.0.1",
+        "@thi.ng/errors": "^0.1.1",
+        "@thi.ng/pointfree": "^0.7.9"
     },
     "keywords": [
         "concatenative",
