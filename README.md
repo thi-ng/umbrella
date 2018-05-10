@@ -41,6 +41,7 @@ difficulties, many combining functionality from several packages) in the
 | [`@thi.ng/compare`](./packages/compare) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare) | [changelog](./packages/compare/CHANGELOG.md) |
 | [`@thi.ng/csp`](./packages/csp) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp) | [changelog](./packages/csp/CHANGELOG.md) |
 | [`@thi.ng/dcons`](./packages/dcons) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons) | [changelog](./packages/dcons/CHANGELOG.md) |
+| [`@thi.ng/defmulti`](./packages/defmulti) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti) | [changelog](./packages/defmulti/CHANGELOG.md) |
 | [`@thi.ng/dgraph`](./packages/dgraph) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph) | [changelog](./packages/dgraph/CHANGELOG.md) |
 | [`@thi.ng/diff`](./packages/diff) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff) | [changelog](./packages/diff/CHANGELOG.md) |
 | [`@thi.ng/dot`](./packages/dot) | [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot) | [changelog](./packages/dot/CHANGELOG.md) |
