@@ -1,9 +1,9 @@
-import * as fs from "fs";
-
-import * as svg from "@thi.ng/hiccup-svg";
 import { serialize } from "@thi.ng/hiccup";
+import * as svg from "@thi.ng/hiccup-svg";
 import { ensureStack, maptos } from "@thi.ng/pointfree";
 import { ffi, run } from "@thi.ng/pointfree-lang";
+
+import * as fs from "fs";
 
 // rudimentary generic graphics lib & helper words
 const libsrc = `

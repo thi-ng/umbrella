@@ -1,4 +1,4 @@
-import { EV_UNDO, EV_REDO } from "@thi.ng/interceptors/api";
+import { EV_REDO, EV_UNDO } from "@thi.ng/interceptors/api";
 
 // best practice tip: define event & effect names as consts or enums
 // and avoid hardcoded strings for more safety and easier refactoring
