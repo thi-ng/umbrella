@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup",
-    "version": "1.3.13",
+    "version": "1.3.14",
     "description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -16,7 +16,7 @@
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^1.3.7",
+        "@thi.ng/atom": "^1.3.8",
         "@types/mocha": "^5.2.0",
         "@types/node": "^10.0.6",
         "mocha": "^5.1.1",
@@ -26,7 +26,7 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^1.5.2",
-        "@thi.ng/errors": "^0.0.1"
+        "@thi.ng/errors": "^0.1.0"
     },
     "keywords": [
         "clojure",

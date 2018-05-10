@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/heaps",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "Generic binary heap & d-ary heap implementations with customizable ordering",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,8 +24,8 @@
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.3.2",
-        "@thi.ng/compare": "^0.0.1"
+        "@thi.ng/api": "^3.0.0",
+        "@thi.ng/compare": "^0.1.0"
     },
     "keywords": [
         "data structure",

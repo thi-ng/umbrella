@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dot",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,7 +24,7 @@
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.3.2",
+        "@thi.ng/api": "^3.0.0",
         "@thi.ng/checks": "^1.5.2"
     },
     "keywords": [

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.2...@thi.ng/api@3.0.0) (2018-05-10)
+
+
+### Code Refactoring
+
+* **api:** remove obsolete files from package ([f051ca3](https://github.com/thi-ng/umbrella/commit/f051ca3))
+
+
+### BREAKING CHANGES
+
+* **api:** @thi.ng/api now only contains type declarations,
+decorators and mixins. All other features have been moved
+to new dedicated packages:
+
+- @thi.ng/bench
+- @thi.ng/compare
+- @thi.ng/equiv
+- @thi.ng/errors
+
+
+
+
 <a name="2.3.2"></a>
 ## [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.1...@thi.ng/api@2.3.2) (2018-05-09)
 
