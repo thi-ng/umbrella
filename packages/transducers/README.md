@@ -760,6 +760,8 @@ itself. Returns nothing.
 
 #### `keys(x: any): IterableIterator<string>`
 
+#### `normRange(n?: number): IterableIterator<number>`
+
 #### `pairs(x: any): IterableIterator<[string, any]>`
 
 #### `range(from?: number, to?: number, step?: number): IterableIterator<number>`
