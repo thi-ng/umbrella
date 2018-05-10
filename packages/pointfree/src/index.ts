@@ -77,7 +77,7 @@ export const ctx = (stack: Stack = [], env: StackEnv = {}): StackContext =>
     [stack, [], env];
 
 const $n = SAFE ?
-    (m: number, n: number) => (m < n) && illegalState(`stack underflow`) :
+    (m: number, n: number) => (m < n) && <any>illegalState(`stack underflow`) :
     () => { };
 
 const $ = SAFE ?
