@@ -4,14 +4,14 @@ import {
     IEmpty,
     ILength
 } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/api/compare";
+import { compare } from "@thi.ng/compare";
 
 import { HeapOpts } from "./api";
 
 /**
  * Generic binary heap / priority queue with customizable ordering via
  * user-supplied comparator. By default, implements min-heap ordering
- * and uses @thi.ng/api/compare.
+ * and uses @thi.ng/compare.
  *
  * ```
  * h = new Heap([20, 5, 10]);

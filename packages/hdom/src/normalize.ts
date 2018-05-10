@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/api/error";
+import { illegalArgs } from "@thi.ng/errors";
 import * as impf from "@thi.ng/checks/implements-function";
 import * as isa from "@thi.ng/checks/is-array";
 import * as isf from "@thi.ng/checks/is-function";

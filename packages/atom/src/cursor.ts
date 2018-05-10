@@ -1,7 +1,8 @@
 import { IID, IRelease, Watch } from "@thi.ng/api/api";
-import { illegalArgs, illegalArity } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { getter, Path, setter } from "@thi.ng/paths";
 
 import {
@@ -13,6 +14,7 @@ import {
 } from "./api";
 import { Atom } from "./atom";
 import { View } from "./view";
+
 
 /**
  * A cursor provides read/write access to a path location within a

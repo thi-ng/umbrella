@@ -1,4 +1,4 @@
-import { equiv as _equiv } from "@thi.ng/api/equiv";
+import { equiv as _equiv } from "@thi.ng/equiv";
 
 import { ArrayDiff } from "./api";
 
@@ -10,7 +10,7 @@ import { ArrayDiff } from "./api";
  * - https://github.com/cubicdaiya/onp
  *
  * Various optimizations, fixes & refactorings.
- * By default uses `@thi.ng/api/equiv` for equality checks.
+ * By default uses `@thi.ng/equiv` for equality checks.
  */
 export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = false) {
     const state = <ArrayDiff<T>>{

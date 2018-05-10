@@ -1,4 +1,4 @@
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 import * as isa from "@thi.ng/checks/is-array";
 import * as iss from "@thi.ng/checks/is-string";
 import * as diff from "@thi.ng/diff";

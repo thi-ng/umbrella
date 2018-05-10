@@ -1,5 +1,5 @@
 import { Predicate2, Watch } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 import {
     getIn,
     Path,

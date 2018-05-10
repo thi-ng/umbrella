@@ -25,7 +25,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^2.3.2",
-        "@thi.ng/dcons": "^0.3.4"
+        "@thi.ng/dcons": "^0.3.4",
+        "@thi.ng/errors": "^0.0.1"
     },
     "keywords": [
         "clojure",

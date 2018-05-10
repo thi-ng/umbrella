@@ -1,7 +1,8 @@
 import * as api from "@thi.ng/api/api";
-import { compare } from "@thi.ng/api/compare";
-import { equiv } from "@thi.ng/api/equiv";
-import { illegalArgs, illegalState } from "@thi.ng/api/error";
+import { compare } from "@thi.ng/compare";
+import { equiv } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 
 export interface ConsCell<T> {

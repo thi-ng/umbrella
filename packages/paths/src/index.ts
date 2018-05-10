@@ -1,6 +1,6 @@
-import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 export type Path = PropertyKey | PropertyKey[];
 

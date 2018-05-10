@@ -1,5 +1,5 @@
-import { unsupported } from "@thi.ng/api/error";
 import { isNode } from "@thi.ng/checks/is-node";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import { ISubscriber } from "@thi.ng/rstream/api";
 
 export function writeFile(path: string): ISubscriber<string> {

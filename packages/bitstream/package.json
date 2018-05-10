@@ -16,7 +16,7 @@
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "dependencies": {
-        "@thi.ng/api": "^2.3.2"
+        "@thi.ng/errors": "^0.0.1"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.0",

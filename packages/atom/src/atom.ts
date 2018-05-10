@@ -1,6 +1,6 @@
 import { IEquiv, Predicate, Watch } from "@thi.ng/api/api";
-import { illegalState } from "@thi.ng/api/error";
 import { IWatch } from "@thi.ng/api/mixins/iwatch";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import { Path, setIn, updateIn } from "@thi.ng/paths";
 
 import {

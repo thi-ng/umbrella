@@ -1,8 +1,8 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
-import { illegalArgs } from "@thi.ng/api/error";
 import { join } from "@thi.ng/associative";
 import { intersection } from "@thi.ng/associative/intersection";
+import { equiv } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
     DotOpts,
     IToDot,

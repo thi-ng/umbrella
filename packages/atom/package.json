@@ -11,7 +11,7 @@
         "build": "yarn clean && tsc --declaration",
         "clean": "rm -rf *.js *.d.ts .nyc_output build coverage doc",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public",
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
@@ -25,6 +25,9 @@
     },
     "dependencies": {
         "@thi.ng/api": "^2.3.2",
+        "@thi.ng/checks": "^1.5.2",
+        "@thi.ng/equiv": "^0.0.1",
+        "@thi.ng/errors": "^0.0.1",
         "@thi.ng/paths": "^1.3.4"
     },
     "keywords": [

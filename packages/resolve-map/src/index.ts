@@ -1,8 +1,8 @@
-import { illegalArgs } from "@thi.ng/api/error";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { getIn, mutIn } from "@thi.ng/paths";
 
 const SEMAPHORE = Symbol("SEMAPHORE");

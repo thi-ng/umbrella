@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/api/error";
 import { IAtom } from "@thi.ng/atom/api";
 import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { resolveMap } from "@thi.ng/resolve-map";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/from/iterable";

@@ -1,5 +1,5 @@
 import { Predicate } from "@thi.ng/api/api";
-import { illegalArity } from "@thi.ng/api/error";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { DCons } from "@thi.ng/dcons";
 import { Reducer, Transducer } from "@thi.ng/transducers/api";

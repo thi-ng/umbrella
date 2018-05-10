@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/api/error";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
 import { Reducer, Transducer } from "./api";
 import { reduce } from "./reduce";

@@ -1,4 +1,4 @@
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 
 import { ObjectDiff } from "./api";
 

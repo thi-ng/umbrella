@@ -1,5 +1,5 @@
-import { illegalArity } from "@thi.ng/api/error";
 import { isString } from "@thi.ng/checks/is-string";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { Transducer } from "@thi.ng/transducers/api";
 
 import {

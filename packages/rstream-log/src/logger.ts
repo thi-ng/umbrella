@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/api/error";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { StreamMerge } from "@thi.ng/rstream/stream-merge";
 import { Subscription } from "@thi.ng/rstream/subscription";

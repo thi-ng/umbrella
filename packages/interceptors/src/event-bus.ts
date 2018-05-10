@@ -1,11 +1,11 @@
 import { IDeref, IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/api/error";
 import { IAtom } from "@thi.ng/atom/api";
 import { Atom } from "@thi.ng/atom/atom";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPromise } from "@thi.ng/checks/is-promise";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { setIn, updateIn } from "@thi.ng/paths";
 
 import * as api from "./api";

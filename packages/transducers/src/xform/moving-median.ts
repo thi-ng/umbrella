@@ -1,5 +1,5 @@
 import { Comparator } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/api/compare";
+import { compare } from "@thi.ng/compare";
 
 import { Transducer } from "../api";
 import { comp } from "../func/comp";

@@ -1,5 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs, illegalState } from "@thi.ng/api/error";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import * as pf from "@thi.ng/pointfree";
 
 import {

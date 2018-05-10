@@ -1,5 +1,5 @@
 import { Predicate2 } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/api/equiv";
+import { equiv } from "@thi.ng/equiv";
 import { DCons } from "@thi.ng/dcons";
 
 import {
@@ -20,7 +20,7 @@ const __private = new WeakMap<LLSet<any>, SetProps<any>>();
  * Similar to `ArraySet`, this class is an alternative implementation of
  * the native ES6 Set API using a @thi.ng/dcons linked list as backing
  * store and a customizable value equality / equivalence predicate. By
- * the default uses `@thi.ng/api/equiv` for equivalence checking.
+ * the default uses `@thi.ng/equiv` for equivalence checking.
  *
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.

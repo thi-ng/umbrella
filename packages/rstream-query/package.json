@@ -26,6 +26,9 @@
     "dependencies": {
         "@thi.ng/api": "^2.3.2",
         "@thi.ng/associative": "^0.5.0",
+        "@thi.ng/checks": "^1.5.2",
+        "@thi.ng/equiv": "^0.0.1",
+        "@thi.ng/errors": "^0.0.1",
         "@thi.ng/rstream": "^1.6.5",
         "@thi.ng/rstream-dot": "^0.2.3",
         "@thi.ng/transducers": "^1.8.5"
