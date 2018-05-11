@@ -73,9 +73,7 @@ difficulties, many combining functionality from several packages) in the
 
 ## Dependency graph
 
-(This graph is updated automatically after each version update)
-
-![internal dependencies](./assets/deps.png)
+(The graph has been temporarily removed to save repo space)
 
 ## Building
 
