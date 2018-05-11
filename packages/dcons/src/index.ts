@@ -316,28 +316,25 @@ export class DCons<T> implements
         }
     }
 
-    pop(): DCons<T> {
+    pop() {
         const cell = this.tail;
-        if (cell) {
-            this.tail = cell.prev;
-            if (this.tail) {
-                delete this.tail.next;
-            } else {
-                delete this.head;
-            }
-            this._length--;
+        !cell && illegalState("can't pop, empty");
+        this.tail = cell.prev;
+        if (this.tail) {
+            delete this.tail.next;
         } else {
-            illegalState("can't pop, empty");
+            delete this.head;
         }
-        return this;
+        this._length--;
+        return cell.value;
     }
 
     first() {
-        return this.head ? this.head.value : undefined;
+        return this.head && this.head.value;
     }
 
     peek() {
-        return this.tail ? this.tail.value : undefined;
+        return this.tail && this.tail.value;
     }
 
     setHead(v: T) {
@@ -358,9 +355,7 @@ export class DCons<T> implements
 
     setNth(n: number, v: T) {
         const cell = this.nthCell(n);
-        if (!cell) {
-            illegalArgs(`index out of bounds: ${n}`);
-        }
+        !cell && illegalArgs(`index out of bounds: ${n}`);
         cell.value = v;
         return this;
     }
@@ -413,7 +408,8 @@ export class DCons<T> implements
                 return this.swap(this.head, this.tail);
             default:
                 const x = this.peek();
-                return this.pop().cons(x);
+                this.pop()
+                return this.cons(x);
         }
     }
 
