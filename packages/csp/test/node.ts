@@ -38,7 +38,7 @@ export interface NodeSpec extends IID<string> {
 };
 
 export class Node implements
-    IEnable,
+    IEnable<string>,
     IID<string> {
 
     static hasRequiredInputs(n: Node) {
