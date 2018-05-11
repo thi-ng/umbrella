@@ -9,7 +9,9 @@ This project is part of the
 
 Dynamically extensible [multiple
 dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch) via user
-supplied dispatch function, with minimal overhead.
+supplied dispatch function, with minimal overhead. Provides generics for
+type checking up to 8 args, but generally works with any number of
+arguments.
 
 ## Installation
 
@@ -22,11 +24,17 @@ yarn add @thi.ng/defmulti
 ### defmulti
 
 `defmulti` returns a new multi-dispatch function using the provided
-dispatcher function. The dispatcher can take any number of arguments and
-must produce a dispatch value (string, number or symbol) used to lookup
-an implementation. If found, the impl is called with the same args. If
-no matching implementation is available, attempts to dispatch to
-`DEFAULT` impl. If none is registered, an error is thrown.
+dispatcher function. The dispatcher acts as a mapping function, can take
+any number of arguments and must produce a dispatch value (string,
+number or symbol) used to lookup an implementation. If found, the impl
+is called with the same args. If no matching implementation is
+available, attempts to dispatch to `DEFAULT` impl. If none is
+registered, an error is thrown.
+
+`defmulti` provides generics for type checking up to 8 args (plus the
+return type) and the generics will also apply to all implementations. If
+more than 8 args are required, `defmulti` will fall back to an untyped
+varargs solution.
 
 Implementations for different dispatch values can be added and removed
 dynamically by calling `.add(id, fn)` or `.remove(id)` on the returned
@@ -35,7 +43,7 @@ function.
 ```typescript
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
 
-const visit = defmulti((x) => Object.prototype.toString.call(x));
+const visit = defmulti<any, void>((x) => Object.prototype.toString.call(x));
 
 // register implementations for different dispatch types
 // each dispatch value can only be registered once
@@ -62,7 +70,7 @@ for a variation of this example.
 #### Dynamic dispatch: Simple S-expression interpreter
 
 ```ts
-const exec = defmulti((x)=> Array.isArray(x) ? x[0] : typeof x);
+const exec = defmulti((x) => Array.isArray(x) ? x[0] : typeof x);
 exec.add("+", ([_, ...args]) => args.reduce((acc, n) => acc + exec(n), 0));
 exec.add("*", ([_, ...args]) => args.reduce((acc, n) => acc * exec(n), 1));
 exec.add("number", (x) => x);
@@ -78,15 +86,16 @@ exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]);
 ```ts
 // interest rate calculator based on account type & balance thresholds
 const apr = defmulti(
-    ({type, balance}) => `${type}-${balance < 1e4 ? "low" : balance < 5e4 ? "med" : "high"}`
+    ({type, balance}) =>
+        `${type}-${balance < 1e4 ? "low" : balance < 5e4 ? "med" : "high"}`
 );
 
-apr.add("current-low",  ({balance}) => balance * 0.005);
-apr.add("current-med",  ({balance}) => balance * 0.01);
-apr.add("current-high", ({balance}) => balance * 0.01);
-apr.add("savings-low",  ({balance}) => balance * 0.01);
-apr.add("savings-med",  ({balance}) => balance * 0.025);
-apr.add("savings-high", ({balance}) => balance * 0.035);
+apr.add("current-low",  ({ balance }) => balance * 0.005);
+apr.add("current-med",  ({ balance }) => balance * 0.01);
+apr.add("current-high", ({ balance }) => balance * 0.01);
+apr.add("savings-low",  ({ balance }) => balance * 0.01);
+apr.add("savings-med",  ({ balance }) => balance * 0.025);
+apr.add("savings-high", ({ balance }) => balance * 0.035);
 apr.add(DEFAULT, (x) => { throw new Error(`invalid account type: ${x.type}`)});
 
 apr({type: "current", balance: 5000});
@@ -108,8 +117,11 @@ added (or removed) at a later time. `defmultiN` also registers a
 `DEFAULT` implementation which simply throws an `IllegalArityError` when
 invoked.
 
+**Note:** Unlike `defmulti` no argument type checking is supported,
+however you can specify the return type for the generated function.
+
 ```ts
-const foo = defmultiN({
+const foo = defmultiN<string>({
   0: () => "zero",
   1: (x) => `one: ${x}`,
   3: (x, y, z) => `three: ${x}, ${y}, ${z}`
