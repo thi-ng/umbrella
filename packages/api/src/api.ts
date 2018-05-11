@@ -1,7 +1,58 @@
+export const DEFAULT_EPS = 1e-6;
+
+export const EVENT_ALL = "*";
+export const EVENT_ENABLE = "enable";
+export const EVENT_DISABLE = "disable";
+
+/**
+ * Generic 2-element comparator function type alias. Must follow this
+ * contract and return:
+ *
+ * - negative if `a < b`
+ * - zero if `a == b`
+ * - positive if `a > b`
+ */
+export type Comparator<T> = (a: T, b: T) => number;
+
+/**
+ * Event listener.
+ */
+export type Listener = (e: Event) => void;
+
+/**
+ * Lookup path for nested data structures.
+ */
+export type Path = PropertyKey | PropertyKey[];
+
+/**
+ * Predicate function mapping given value to true/false.
+ */
+export type Predicate<T> = (a: T) => boolean;
+
+/**
+ * Predicate function mapping given args to true/false.
+ */
+export type Predicate2<T> = (a: T, b: T) => boolean;
+
+/**
+ * Higher order `Predicate` builder. Possibly stateful.
+ */
+export type StatefulPredicate<T> = () => Predicate<T>;
+
+/**
+ * Higher order `Predicate2` builder. Possibly stateful.
+ */
+export type StatefulPredicate2<T> = () => Predicate2<T>;
+
+/**
+ * Observer function for `IWatch` implementations.
+ */
+export type Watch<T> = (id: string, oldState: T, newState: T) => void;
+
 /**
  * @param K key type
  * @param V value type
- * @param T imlementation type
+ * @param T implementation type
  */
 export interface IAssociative<K, V, T> {
     assoc(key: K, val: V): T;
@@ -10,15 +61,18 @@ export interface IAssociative<K, V, T> {
     updateIn(key: K[], f: (v: V) => V): T;
 }
 
-export interface IBind {
+/**
+ * Generic resource binding methods.
+ */
+export interface IBind<T> {
     /**
      * @returns true, if successful
      */
-    bind(opt?: any): boolean;
+    bind(opt: T): boolean;
     /**
      * @returns true, if successful
      */
-    unbind(opt?: any): boolean;
+    unbind(opt: T): boolean;
 }
 
 /**
@@ -26,8 +80,8 @@ export interface IBind {
  */
 export interface IBuffered<T> {
     /**
-     * An implementation's publically accessible backing array / ArrayBuffer
-     * (usually a typed array instance).
+     * An implementation's publicly accessible backing array /
+     * ArrayBuffer (usually a typed array instance).
      */
     buffer: T;
     /**
@@ -50,18 +104,8 @@ export interface ICompare<T> {
 }
 
 /**
- * Generic 2-element comparator function type alias.
- * Must follow this contract and return:
- *
- * - negative if `a < b`
- * - zero if `a == b`
- * - positive if `a > b`
- */
-export type Comparator<T> = (a: T, b: T) => number;
-
-/**
- * Generic interface for collection types to check if a given value
- * is part of the collection.
+ * Generic interface for collection types to check if a given value is
+ * part of the collection.
  */
 export interface IContains<T> {
     /**
@@ -77,8 +121,8 @@ export interface IContains<T> {
  */
 export interface ICopy<T> {
     /**
-     * Returns a copy of this instance.
-     * Shallow or deep copies are implementation specific.
+     * Returns a copy of this instance. Shallow or deep copies are
+     * implementation specific.
      */
     copy(): T;
 }
@@ -106,41 +150,40 @@ export interface IDissoc<K, V, T> extends IAssociative<K, V, T> {
 
 export interface IEmpty<T> {
     /**
-     * Returns an empty collection of same type (and possibly same config).
+     * Returns an empty collection of same type (and possibly same
+     * config).
      */
     empty(): T;
 }
 
 /**
- * Interface to provide enabled/disabled functionality.
- * Also see `@IEnable` decorator mixin
+ * Interface to provide enabled/disabled functionality. Also see
+ * `@IEnable` decorator mixin
  */
-export interface IEnable {
+export interface IEnable<T> {
     isEnabled(): boolean;
     /**
      * Disables this entity.
      * @param opts optional implementation specific arg
      */
-    disable(opts?: any);
+    disable(opts: T);
     /**
      * Enables this entity.
      * @param opts optional implementation specific arg
      */
-    enable(opts?: any);
+    enable(opts: T);
     toggle?(): boolean;
 }
 
 export interface IEquiv {
     /**
-     * Returns `true` if this *value* is equivalent to `o`.
-     * Also see `ICompare.compare` and `IHash.hash`.
+     * Returns `true` if this *value* is equivalent to `o`. Also see
+     * `ICompare.compare` and `IHash.hash`.
      *
      * @param  o
      */
     equiv(o: any): boolean;
 }
-
-export const DEFAULT_EPS = 1e-6;
 
 export interface IEqualsDelta<T> {
     /**
@@ -159,15 +202,9 @@ export interface Event extends IID<PropertyKey> {
     value?: any;
 }
 
-export const EVENT_ALL = "*";
-export const EVENT_ENABLE = "enable";
-export const EVENT_DISABLE = "disable";
-
-export type Listener = (e: Event) => void;
-
 /**
- * Interface to provide event emitter functionality.
- * Also see `@INotify` decorator mixin
+ * Interface to provide event emitter functionality. Also see `@INotify`
+ * decorator mixin
  */
 export interface INotify {
     addListener(id: string, fn: Listener, scope?: any): boolean;
@@ -180,8 +217,8 @@ export interface INotify {
  * @param V value type
  */
 export interface IGet<K, V> {
-    get(key: K, notfound?: any): V;
-    getIn(key: K[], notfound?: any): V;
+    get(key: K, notfound?: V): V;
+    getIn(key: K[], notfound?: V): V;
 }
 
 /**
@@ -189,38 +226,53 @@ export interface IGet<K, V> {
  */
 export interface IHash<T> {
     /**
-     * Returns a value's hash code.
-     * The contract of this function is: If
-     * `IEquiv.equiv` returns `true` two values,
-     * their hash codes MUST also be equal.
+     * Returns a value's hash code. The contract of this function is: If
+     * `IEquiv.equiv` returns `true` for two values, their hash codes
+     * MUST also be equal.
      */
     hash(): T;
 }
 
+/**
+ * `id` property declaration.
+ */
 export interface IID<T> {
     readonly id: T;
 }
 
+/**
+ * Interface for collection types which can be accessed via numeric
+ * index.
+ */
 export interface IIndexed<T> {
-    nth(i: number): T;
+    nth(i: number, notfound: T): T;
 }
 
 /**
- * Interface for collections to obtain their element count.
+ * Interface for collection types supporting addition of multiple
+ * values.
+ */
+export interface IInto<T> {
+    into(coll: Iterable<T>): this;
+}
+
+/**
+ * `length` property declaration for collections to obtain their element
+ * count.
  */
 export interface ILength {
     readonly length: number;
 }
 
 /**
- * Generic interface for types supporting metadata.
- * Implementations MUST exclude metadata from any comparisons,
- * equality checks & hashing.
+ * Generic interface for types supporting metadata. Implementations MUST
+ * exclude metadata from any comparisons, equality checks & hashing.
  */
 export interface IMeta<T> {
-    __meta: any;
+    meta(): any;
     /**
-     * Returns a copy of the original value with given metadata attached.
+     * Returns a copy of the original value with given metadata
+     * attached.
      *
      * @param  meta
      */
@@ -234,33 +286,50 @@ export interface IObjectOf<T> {
     [id: string]: T;
 }
 
-export type Predicate<T> = (a: T) => boolean;
-export type Predicate2<T> = (a: T, b: T) => boolean;
-
-export type StatefulPredicate<T> = () => Predicate<T>;
-export type StatefulPredicate2<T> = () => Predicate2<T>;
-
+/**
+ * Interface for types supported the release of internal resources.
+ */
 export interface IRelease {
     release(opt?: any): boolean;
 }
 
 /**
- * Generic interface for set collection types.
+ * Generic interface for MUTABLE set collection types.
+ *
+ * @param T value type
+ */
+export interface ISet<T> extends IInto<T> {
+    /**
+     * Conjoins/adds value `x` to set and returns true if `x` has been
+     * added.
+     *
+     * @param x
+     */
+    conj(x: T): boolean;
+    /**
+     * Disjoins/removes value `x` from set and returns true if `x` has
+     * been removed.
+     *
+     * @param x
+     */
+    disj(x: T): boolean;
+}
+
+/**
+ * Generic interface for IMMUTABLE set collection types.
  *
  * @param V value type
- * @param T return or container type
+ * @param T implementation type
  */
-export interface ISet<V, T> {
+export interface IImmutableSet<V, T> extends IInto<V> {
     /**
-     * Conjoins/adds value `x` to set and returns updated set
-     * (possibly mutable operation).
+     * Conjoins/adds value `x` to set and returns updated set.
      *
      * @param x
      */
     conj(x: V): T;
     /**
-     * Disjoins/removes value `x` from set and returns updated set
-     * (possibly mutable operation).
+     * Disjoins/removes value `x` from set and returns updated set.
      *
      * @param x
      */
@@ -268,8 +337,8 @@ export interface ISet<V, T> {
 }
 
 /**
- * Generic interface for sequential collections implementing stack
- * functionality.
+ * Generic interface for MUTABLE sequential collections implementing
+ * stack functionality.
  *
  * @param V value type
  * @param T return/container type
@@ -280,16 +349,35 @@ export interface IStack<V, T> {
      */
     peek(): V;
     /**
+     * Removes top-of-stack item and returns it.
+     */
+    pop(): V;
+    push(x: V): T;
+}
+
+/**
+ * Generic interface for IMMUTABLE sequential collections implementing
+ * stack functionality.
+ *
+ * @param V value type
+ * @param T return/container type
+ */
+export interface IImmutableStack<V, T> {
+    /**
+     * Returns top-of-stack item.
+     */
+    peek(): V;
+    /**
      * Returns collection w/ top-of-stack item removed.
-     * It's implementation specific if this operation is
-     * mutable or not.
      */
     pop(): T;
     push(x: V): T;
 }
 
-export type Watch<T> = (id: string, oldState: T, newState: T) => void;
-
+/**
+ * Interface for types offering observers of internal value changes.
+ * Also see `@IWatch` decorator mixin.
+ */
 export interface IWatch<T> {
     addWatch(id: string, fn: Watch<T>): boolean;
     removeWatch(id: string): boolean;

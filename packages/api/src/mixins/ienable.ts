@@ -7,7 +7,7 @@ import { mixin } from "../mixin";
  * interface, `enable()` and `disable()` will automatically emit the
  * respective events.
  */
-export const IEnable = mixin(<api.IEnable>{
+export const IEnable = mixin(<api.IEnable<any>>{
 
     _enabled: true,
 
