@@ -15,6 +15,14 @@ Interceptor based event, side effect & immutable state handling.
 yarn add @thi.ng/interceptors
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+
 ## Usage examples
 
 ```typescript

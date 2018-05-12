@@ -22,6 +22,10 @@ but has been extracted to remain more focused.
 yarn add @thi.ng/hiccup-svg
 ```
 
+## Dependencies
+
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+
 ## Usage examples
 
 ```typescript

@@ -17,6 +17,11 @@ ordering and fanout / tree arity (in case of `DHeap`). Both `Heap` and
 yarn add @thi.ng/heaps
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
+
 ## Usage examples
 
 ```typescript

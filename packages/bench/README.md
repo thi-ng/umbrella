@@ -19,6 +19,10 @@ package.
 yarn add @thi.ng/bench
 ```
 
+## Dependencies
+
+None
+
 ## Usage examples
 
 ```typescript

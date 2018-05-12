@@ -17,6 +17,10 @@ dataflow graph topologies.
 yarn add @thi.ng/rstream-dot
 ```
 
+## Dependencies
+
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+
 ## Usage examples
 
 ```typescript

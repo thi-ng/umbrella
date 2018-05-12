@@ -25,6 +25,11 @@ details.
 yarn add @thi.ng/dot
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+
 ## Usage examples
 
 ![example graph](../../assets/dot-example.png)

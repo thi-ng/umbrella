@@ -32,6 +32,14 @@ Comprehensive doubly linked list structure with:
 yarn add @thi.ng/dcons
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 ## Usage
 
 ```js

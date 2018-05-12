@@ -20,6 +20,16 @@ Stream subscription types act as graph nodes and attached transducers as graph e
 yarn add @thi.ng/rstream-graph
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+- [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/master/packages/resolve-map)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
 ## Usage examples
 
 Small(ish), fully commented projects can be found in the `/examples` folder:

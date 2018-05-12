@@ -46,6 +46,10 @@ The following is only used for repeated values:
 yarn add @thi.ng/rle-pack
 ```
 
+## Dependencies
+
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream)
+
 ## API
 
 ```js

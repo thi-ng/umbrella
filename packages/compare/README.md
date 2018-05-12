@@ -20,6 +20,10 @@ package.
 yarn add @thi.ng/compare
 ```
 
+## Dependencies
+
+None
+
 ## Usage examples
 
 ```typescript

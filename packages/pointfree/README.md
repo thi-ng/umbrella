@@ -11,6 +11,7 @@ This project is part of the
     - [A brief comparison](#a-brief-comparison)
 - [Status](#status)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage](#usage)
     - [Custom word definitions](#custom-word-definitions)
     - [Factoring](#factoring)
@@ -159,6 +160,13 @@ ALPHA - in active development, API still undergoing major changes
 ```
 yarn add @thi.ng/pointfree
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage
 

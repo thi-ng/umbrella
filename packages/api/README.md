@@ -20,6 +20,10 @@ repository. It defines:
 yarn add @thi.ng/api
 ```
 
+## Dependencies
+
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 # Authors
 
 - Karsten Schmidt

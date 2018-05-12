@@ -21,6 +21,14 @@ maps & sets as backend.
 yarn add @thi.ng/dgraph
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
+
 ## Usage examples
 
 ```typescript

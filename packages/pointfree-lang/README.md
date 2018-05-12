@@ -9,6 +9,7 @@ This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrell
 - [About](#about)
 - [Status](#status)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Language & Syntax](#language--syntax)
     - [Comments](#comments)
@@ -63,6 +64,12 @@ yarn add @thi.ng/pointfree-lang
 ```typescript
 import * as pf from "@thi.ng/pointfree-lang";
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree)
 
 ## Usage examples
 

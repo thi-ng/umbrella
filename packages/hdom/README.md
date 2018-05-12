@@ -13,6 +13,7 @@ This project is part of the
     - [Reusable components](#reusable-components)
 - [Status](#status)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage](#usage)
     - [User context injection](#user-context-injection)
     - [Component objects & life cycle methods](#component-objects--life-cycle-methods)
@@ -170,6 +171,15 @@ cd my-app
 yarn install
 yarn start
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+- [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
 
 ## Usage
 

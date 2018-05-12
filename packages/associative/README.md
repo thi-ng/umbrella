@@ -121,6 +121,16 @@ map.get([3,4], "n/a");
 yarn add @thi.ng/associative
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
+
 ## Types
 
 ### IEquivSet

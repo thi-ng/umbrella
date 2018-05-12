@@ -14,6 +14,10 @@ This package provides ~50 single-function sub-modules for type, feature
 yarn add @thi.ng/checks
 ```
 
+## Dependencies
+
+None
+
 ## Usage
 
 ```js

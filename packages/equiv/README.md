@@ -27,6 +27,10 @@ package.
 yarn add @thi.ng/equiv
 ```
 
+## Dependencies
+
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+
 ## Usage examples
 
 ```typescript

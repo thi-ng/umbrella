@@ -52,6 +52,13 @@ ES generator overheads).
 yarn add @thi.ng/transducers
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 ## Usage examples
 
 **There're several standalone example projects using this library in the

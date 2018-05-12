@@ -30,6 +30,10 @@ Currently does not support array fields (incl. strings).
 yarn add @thi.ng/unionstruct
 ```
 
+## Dependencies
+
+None
+
 ## API
 
 ```js

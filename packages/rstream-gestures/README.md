@@ -28,6 +28,12 @@ interval (provided via options object).
 yarn add @thi.ng/rstream-gestures
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
 ## Usage examples
 
 A small, fully commented project can be found in the `/examples` folder:

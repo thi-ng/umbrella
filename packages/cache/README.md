@@ -30,6 +30,12 @@ strategies available are:
 yarn add @thi.ng/cache
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
+
 ## Usage examples
 
 All caches support at least the following options (all optional):

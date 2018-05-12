@@ -30,6 +30,12 @@ import * as ti from "@thi.ng/iterators";
 import { partitionBy } from "@thi.ng/iterators/partition-by";
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 ## API
 
 In alphabetical order:

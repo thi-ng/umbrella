@@ -114,6 +114,16 @@ are provided too:
 yarn add @thi.ng/rstream
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
 ## Usage examples
 
 There're several examples using this package in the `/examples`

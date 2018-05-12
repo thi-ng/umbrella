@@ -15,6 +15,11 @@ Array (sequential) & object (associative) Diff implementations.
 yarn add @thi.ng/diff
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+
 ## Usage examples
 
 ```typescript

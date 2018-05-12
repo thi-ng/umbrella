@@ -16,6 +16,11 @@ accessors for vanilla JS objects.
 yarn add @thi.ng/paths
 ```
 
+## Dependencies
+
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 ## Usage
 
 ```

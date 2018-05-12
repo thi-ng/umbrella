@@ -79,6 +79,12 @@ res.e(2);
 yarn add @thi.ng/resolve-map
 ```
 
+## Dependencies
+
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+
 ## Usage examples
 
 ```typescript

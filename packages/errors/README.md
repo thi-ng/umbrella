@@ -19,6 +19,10 @@ package.
 yarn add @thi.ng/errors
 ```
 
+## Dependencies
+
+None
+
 ## Usage examples
 
 ```typescript

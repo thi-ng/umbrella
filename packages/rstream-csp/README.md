@@ -18,6 +18,11 @@ and synchronous stream subscriptions/transformations of
 yarn add @thi.ng/rstream-csp
 ```
 
+## Dependencies
+
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+
 ## Usage examples
 
 ```typescript

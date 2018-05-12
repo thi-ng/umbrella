@@ -16,6 +16,10 @@ TypeScript, distributed in ES6.
 yarn add @thi.ng/bitstream
 ```
 
+## Dependencies
+
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 ## API
 
 ```js

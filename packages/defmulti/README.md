@@ -23,6 +23,11 @@ arguments. Why "only" 8?
 yarn add @thi.ng/defmulti
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
 ## Usage examples
 
 ### defmulti

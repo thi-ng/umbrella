@@ -39,9 +39,10 @@ feature is currently WIP).
 
 ### Status
 
-This project is currently still in early development and intended as a
-continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
-this time built on the streaming primitives provided by
+ALPHA - This project is currently still in early development and
+intended as a continuation of the Clojure based
+[thi.ng/fabric](http://thi.ng/fabric), this time built on the streaming
+primitives provided by
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
 
 ## Installation
@@ -49,6 +50,17 @@ this time built on the streaming primitives provided by
 ```
 yarn add @thi.ng/rstream-query
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
