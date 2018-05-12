@@ -11,7 +11,11 @@ Dynamically extensible [multiple
 dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch) via user
 supplied dispatch function, with minimal overhead. Provides generics for
 type checking up to 8 args, but generally works with any number of
-arguments.
+arguments. Why "only" 8?
+
+> "If you have a procedure with ten parameters, you probably missed some."
+>
+> -- Alan Perlis
 
 ## Installation
 
@@ -61,6 +65,7 @@ visit([{a: 1, b: ["foo", "bar", null, 42]}])
 // b
 // foo
 // bar
+// 42
 ```
 
 See
