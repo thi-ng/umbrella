@@ -18,6 +18,8 @@ This project is part of the
     - [User context injection](#user-context-injection)
     - [Component objects & life cycle methods](#component-objects--life-cycle-methods)
 - [Example projects](#example-projects)
+    - [Interactive SVG grid generator](#interactive-svg-grid-generator)
+    - [Interactive additive waveform visualization](#interactive-additive-waveform-visualization)
     - [Dataflow graph SVG components](#dataflow-graph-svg-components)
     - [SPA with router and event bus](#spa-with-router-and-event-bus)
     - [Additive waveform synthesis & SVG visualization](#additive-waveform-synthesis--svg-visualization)
@@ -37,23 +39,25 @@ This project is part of the
 
 ## About
 
-Lightweight reactive DOM components using only vanilla JS data
-structures (arrays, objects, closures, iterators), based on
+Lightweight reactive DOM components & VDOM implementation using only
+vanilla JS data structures (arrays, objects with life cycle functions,
+closures, iterators), based on
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
 
-- Use the full expressiveness of ES6/TypeScript to define, annotate &
+- Use the full expressiveness of ES6 / TypeScript to define, annotate &
   document components
 - Clean, functional component composition and reuse
 - No pre-processing / pre-compilation steps
-- Supports SVG, arbitrary elements, attributes, events
-- Less verbose than HTML/JSX, resulting in smaller file sizes
+- [Supports SVG](https://github.com/thi-ng/umbrella/treeSupports SVG),
+  arbitrary elements, attributes, events
+- Less verbose than HTML / JSX, resulting in smaller file sizes
 - Static components can be distributed as JSON (or [transform JSON
   into components](https://github.com/thi-ng/umbrella/tree/master/examples/json-components))
 - Optional user context injection (an arbitrary object passed to all
   component functions)
 - auto-deref of embedded value wrappers which implement the
-  `@thi.ng/api/IDeref` interface (e.g. atoms, cursors, derived views,
-  streams etc.)
+  [@thi.ng/api/IDeref](https://github.com/thi-ng/umbrella/tree/master/packages/api/api)
+  interface (e.g. atoms, cursors, derived views, streams etc.)
 - CSS conversion from JS objects for `style` attribs
 - Suitable for server side rendering (by passing the same data structure
   to @thi.ng/hiccup's `serialize()`)
@@ -63,6 +67,10 @@ structures (arrays, objects, closures, iterators), based on
 In addition to the descriptions in this file, [further information and
 examples are available in the
 wiki](https://github.com/thi-ng/umbrella/wiki/hdom-recipes).
+
+Also see the [work-in-progress
+ADRs](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/adr/)
+for component configuration.
 
 ```typescript
 import * as hdom from "@thi.ng/hdom";
@@ -89,7 +97,8 @@ hdom.start(document.body, app());
 hdom.createDOM(document.body, hdom.normalizeTree(app()));
 ```
 
-[Live demo](http://demo.thi.ng/umbrella/hdom-basics/) | [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
+[Live demo](http://demo.thi.ng/umbrella/hdom-basics/) |
+[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
 
 Alternatively, use the same component function for browser or server
 side HTML serialization (Note: does not emit attributes w/ functions as
@@ -187,34 +196,32 @@ Even though the overall approach should be obvious from the code
 examples in this document, it's recommended to first study the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 reference to learn about the basics of the approach and syntax used.
-Compared to @thi.ng/hiccup, this project has additional features (e.g.
-life cycle hooks), which aren't needed for the static serialization use
-cases of @thi.ng/hiccup. Both projects started in early 2016, but have
-somewhat evolved independently.
+Both projects started in early 2016, have somewhat evolved
+independently, however should be considered complementary.
 
 #### `start(parent: Element | string, tree: any, ctx?: any, path?: number[], keys?: boolean, span?: boolean): () => boolean`
 
 Main user function of this package. For most use cases, this function
-should be the only one required. It takes a parent DOM element (or ID),
-hiccup tree (array, function or component object w/ life cycle methods)
-and an optional arbitrary context object. Starts RAF update loop, in
-each iteration first normalizing given tree, then computing diff to
-previous frame's tree and applying any changes to the real DOM. The
-optional `context` arg can be used for passing global config data or
-state down into the hiccup component tree. Any embedded component
-function in the tree will receive this context object as first argument,
-as will life cycle methods in component objects. See [context
+should be the only one required in user code. It takes a parent DOM
+element (or ID), hiccup tree (array, function or component object w/
+life cycle methods) and an optional arbitrary context object. Starts RAF
+update loop, in each iteration first normalizing given tree, then
+computing diff to previous frame's tree and applying any changes to the
+real DOM. The optional `context` arg can be used for passing global
+config data or state down into the hiccup component tree. Any embedded
+component function in the tree will receive this context object as first
+argument, as will life cycle methods in component objects. See [context
 description](#user-context) further below.
 
 **Selective updates**: No updates will be applied if the given hiccup
 tree is `undefined` or `null` or a root component function returns no
-value. This way a given root function can do some state handling of its
-own and implement fail-fast checks to determine no DOM updates are
-necessary, saving effort re-creating a new hiccup tree and request
-skipping DOM updates via this function. In this case, the previous DOM
-tree is kept around until the root function returns a tree again, which
-then is diffed and applied against the previous tree kept as usual. Any
-number of frames may be skipped this way.
+value. This way a given root component function can do some state
+handling of its own and implement fail-fast checks to determine no DOM
+updates are necessary, saving effort re-creating a new hiccup tree and
+request skipping DOM updates via this function. In this case, the
+previous DOM tree is kept around until the root function returns a tree
+again, which then is diffed and applied against the previous tree kept
+as usual. Any number of frames may be skipped this way.
 
 **Important:** The parent element given is assumed to have NO children at
 the time when `start()` is called. Since hdom does NOT track the real
@@ -281,10 +288,10 @@ for non-component values. Returns `parent` if tree is `null` or
 
 Since v3.0.0 hdom offers support for an arbitrary "context" object
 passed to `start()`, and then automatically injected as argument to
-**all** component function calls anywhere in the tree. This avoids
+**all** embedded component functions anywhere in the tree. This avoids
 having to manually pass down configuration data into each sub-component
-and so can simplify certain use cases, e.g. event dispatch, style
-information, global state etc.
+and so can simplify certain use cases, e.g. event dispatch, style /
+theme information, global state etc.
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -358,7 +365,8 @@ interface ILifecycle {
 
     /**
      * Returns the hdom tree of this component.
-     * Note: Always will be called first (prior to `init`/`release`).
+     * Note: Always will be called first (prior to `init`/`release`)
+     * to obtain the actual component definition used for diffing.
      * Therefore might have to include checks if any local state
      * has already been initialized via `init`. This is the only
      * mandatory method which MUST be implemented.
@@ -380,7 +388,7 @@ interface ILifecycle {
 ```
 
 When the component is first used the order of execution is: `render` ->
-`init`. The `release` method is called when the component has been
+`init`. The `release` method is only called when the component has been
 removed / replaced (basically if it's not present in the new tree
 anymore). `release` should NOT manually call `release` on any children,
 since that's already handled by `diffElement()`.
@@ -443,6 +451,16 @@ Please check them out to learn more. Each is heavily commented, incl.
 best practice notes.
 
 Non-exhaustive list:
+
+### Interactive SVG grid generator
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
+[Live version](http://demo.thi.ng/umbrella/rstream-grid/)
+
+### Interactive additive waveform visualization
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) |
+[Live version](http://demo.thi.ng/umbrella/svg-waveform/)
 
 ### Dataflow graph SVG components
 
