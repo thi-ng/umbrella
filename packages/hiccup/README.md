@@ -55,19 +55,24 @@ structures. Any functions embedded in the tree are expected to return
 values of the same structure. Please see [examples](#examples) &
 [API](#api) further explanations...
 
-```js
+```ts
 ["tag", ...]
 ["tag#id.class1.class2", ...]
 ["tag", {other: "attrib", ...}, ...]
 ["tag", {...}, "body", 23, function, [...]]
 [function, arg1, arg2, ...]
-[iterable]
+[{render: (ctx,...) => [...]}, args...]
+iterable
 ```
 
 ## Installation
 
 ```
 yarn add @thi.ng/hiccup
+```
+
+```ts
+import { serialize } from "@thi.ng/hiccup";
 ```
 
 ## Dependencies
@@ -77,18 +82,14 @@ yarn add @thi.ng/hiccup
 
 ## Examples
 
-```js
-h = require("@thi.ng/hiccup");
-```
-
 ### Tags with Zencoding expansion
 
 Tag names support
 [Zencoding/Emmet](https://docs.emmet.io/abbreviations/syntax/#id-and-class)
 style ID & class attribute expansion:
 
-```js
-h.serialize(
+```ts
+serialize(
     ["div#yo.hello.world", "Look ma, ", ["strong", "no magic!"]]
 );
 ```
@@ -107,8 +108,8 @@ values).
 If the 2nd array element is not a plain object, it's treated as normal
 child node (see previous example).
 
-```js
-h.serialize(
+```ts
+serialize(
     ["div.notice",
         {
             selected: true,
@@ -133,7 +134,7 @@ result MUST be a string.
 **BREAKING CHANGE since 1.0.0:** Function values for event attributes
 (any attrib name starting with "on") WILL BE OMITTED from output.
 
-```js
+```ts
 ["div#foo", { bar: (attribs) => attribs.id + "-bar" }]
 ```
 
@@ -141,7 +142,7 @@ result MUST be a string.
 <div id="foo" bar="foo-bar"></div>
 ```
 
-```js
+```ts
 ["div#foo", { onclick: () => alert("foo") }, "click me!"]
 ```
 
@@ -149,7 +150,7 @@ result MUST be a string.
 <div id="foo">click me!</div>
 ```
 
-```js
+```ts
 ["div#foo", { onclick: "alert('foo')" }, "click me!"]
 ```
 
@@ -159,10 +160,10 @@ result MUST be a string.
 
 ### Simple components
 
-```js
+```ts
 const thumb = (src) => ["img.thumb", { src, alt: "thumbnail" }];
 
-h.serialize(
+serialize(
     ["div.gallery", ["foo.jpg", "bar.jpg", "baz.jpg"].map(thumb)]
 );
 ```
@@ -177,11 +178,13 @@ h.serialize(
 
 ### SVG generation, generators & lazy composition
 
-```js
+```ts
 const fs = require("fs");
 
 // creates an unstyled SVG circle element
-const circle = (x, y, r) => ["circle", { cx: x | 0, cy: y | 0, r: r | 0 }];
+// we ignore the first arg (an auto-injected context arg)
+// context handling is described further below
+const circle = (_, x, y, r) => ["circle", { cx: x | 0, cy: y | 0, r: r | 0 }];
 
 // note how this next component lazily composes `circle`.
 // This form delays evaluation of the `circle` component
@@ -202,12 +205,14 @@ function* repeatedly(n, fn) {
 
 // generate 100 random circles and write serialized SVG to file
 // `randomCircle` is wrapped
+import { SVG_NS } from "@thi.ng/hiccup";
+
 const doc = [
-    "svg", { xmlns: h.SVG_NS, width: 1000, height: 1000 },
+    "svg", { xmlns: SVG_NS, width: 1000, height: 1000 },
         ["g", { fill: "none", stroke: "red" },
             repeatedly(100, randomCircle)]];
 
-fs.writeFileSync("circles.svg", h.serialize(doc));
+fs.writeFileSync("circles.svg", serialize(doc));
 ```
 
 ```xml
@@ -224,7 +229,7 @@ fs.writeFileSync("circles.svg", h.serialize(doc));
 
 ### Data-driven component composition
 
-```js
+```ts
 // data
 const glossary = {
     foo: "widely used placeholder name in computing",
@@ -233,15 +238,15 @@ const glossary = {
     toxi: "author of this fine library",
 };
 
+// mapping function to produce single definition list item (pair of <dt>/<dd> tags)
+const dlItem = (index, key) => [["dt", key], ["dd", index[key]]];
+
 // Helper function: takes a function `f` and object `items`,
 // executes fn for each key (sorted) in object and returns array of results
 const objectList = (f, items) => Object.keys(items).sort().map((k)=> f(items, k));
 
-// single definition list item component (returns pair of <dt>/<dd> tags)
-const dlItem = (index, key) => [["dt", key], ["dd", index[key]]];
-
 // full definition list component
-const dlList = (attribs, items) => ["dl", attribs, [objectList, dlItem, items]];
+const dlList = (_, attribs, items) => ["dl", attribs, objectList(dlItem, items)];
 
 // finally the complete widget
 const widget = [
@@ -250,7 +255,7 @@ const widget = [
         [dlList, { id: "glossary" }, glossary]];
 
 // the 2nd arg `true` enforces HTML entity encoding (off by default)
-h.serialize(widget, true);
+serialize(widget, null, true);
 ```
 
 ```html
@@ -271,13 +276,13 @@ h.serialize(widget, true);
 
 ### Stateful component
 
-```js
+```ts
 // stateful component to create hierarchically
 // indexed & referencable section headlines:
 // e.g. "sec-1.1.2.3"
 const indexer = (prefix = "sec") => {
     let counts = new Array(6).fill(0);
-    return (level, title) => {
+    return (_, level, title) => {
         counts[level - 1]++;
         counts.fill(0, level);
         return [
@@ -301,7 +306,7 @@ const TOC = [
 // create new indexer instance
 const section = indexer();
 
-h.serialize([
+serialize([
     "div.toc",
     TOC.map(([level, title]) => [section, level, title])
 ]);
@@ -326,14 +331,14 @@ The library exposes these two functions:
 
 ### serialize(tree, escape = false): string
 
-Recursively normalizes and then serializes given tree as HTML/SVG/XML
-string. If `escape` is true, HTML entity replacement is applied to all
-element body & attribute values.
+Recursively normalizes and then serializes given tree as HTML / SVG /
+XML string. If `escape` is true, HTML entity replacement is applied to
+all element body & attribute values.
 
 Any embedded component functions are expanded with their results. A
 normalized element has one of these shapes:
 
-```js
+```ts
 // no body
 ["div", {attribs...}]
 
@@ -354,7 +359,7 @@ Tags can be defined in "Zencoding" convention, i.e.
 convention **and** in a supplied attribute object. However, either of
 these are valid:
 
-```js
+```ts
 ["div#foo", { class: "bar" }] // <div id="foo" class="bar"></div>
 ["div.foo", { id: "bar" }] // <div id="bar" class="foo"></div>
 ```
@@ -368,8 +373,8 @@ removed, unless a function is in head position. In this case all other
 elements of that array are passed as arguments when that function is
 called.
 
-```js
-const myfunc = (a, b, c) => ["div", {id: a, class: c}, b];
+```ts
+const myfunc = (_, a, b, c) => ["div", {id: a, class: c}, b];
 
 serialize([myfunc, "foo", null, "bar"])
 ```
