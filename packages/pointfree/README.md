@@ -334,6 +334,25 @@ pf.runU(
 // 100
 ```
 
+#### Quotations as vanilla JS function calls
+
+Quoations can be used to define (or dynamically construct) JS function
+calls. For that a quotation needs to take the form of an
+[S-expression](https://en.wikipedia.org/wiki/S-expression), i.e. the
+first element of the quotation is the actual function to be called and
+all other values in the quotation are passed as arguments. The result of
+the function call is placed back on the stack.
+
+```ts
+pf.runU(
+    [
+        [(a,b) => a + b, 1, 2],
+        pf.execjs
+    ]
+);
+// 3
+```
+
 #### Currying & composing quotations
 
 Since quoatations are just arrays, we can treat them as data, i.e. **the
