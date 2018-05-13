@@ -16,6 +16,21 @@ This package's functionality was formerly part of
 [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom),
 but has been extracted to remain more focused.
 
+### Important
+
+The functions provided here do produce valid hiccup elements, but
+since none of them make use of (or support) the global hiccup / hdom
+context object, they can ONLY be invoked directly, i.e. they MUST be
+called like:
+
+```ts
+// correct (direct invocation)
+svg.svg(svg.circle([0, 0], 100, { fill: "red" }));
+
+// incorrect / unsupported (lazy evaluation)
+[svg.svg, [svg.circle, [0, 0], 100, { fill: "red" }]]
+```
+
 ## Installation
 
 ```
