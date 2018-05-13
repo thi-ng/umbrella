@@ -5,10 +5,34 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+<!-- TOC depthFrom:2 depthTo:3 -->
+
+- [About](#about)
+    - [Features](#features)
+    - [Use cases](#use-cases)
+    - [No special sauce needed (or wanted)](#no-special-sauce-needed-or-wanted)
+    - [What is Hiccup?](#what-is-hiccup)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Examples](#examples)
+    - [Tags with Zencoding expansion](#tags-with-zencoding-expansion)
+    - [Attributes](#attributes)
+    - [Simple components](#simple-components)
+    - [User context injection](#user-context-injection)
+    - [SVG generation, generators & lazy composition](#svg-generation-generators--lazy-composition)
+    - [Data-driven component composition](#data-driven-component-composition)
+    - [Stateful component](#stateful-component)
+    - [Component objects](#component-objects)
+- [API](#api)
+    - [serialize(tree: any, ctx?: any, escape = false): string](#serializetree-any-ctx-any-escape--false-string)
+    - [escape(str: string): string](#escapestr-string-string)
+
+<!-- /TOC -->
+
 ## About
 
-Lightweight HTML/SVG/XML serialization of plain, nested data structures,
-iterables & closures. Inspired by
+Lightweight HTML / SVG / XML serialization of plain, nested data
+structures, iterables & closures. Inspired by
 [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript.
 
@@ -26,13 +50,20 @@ rendering etc. For interactive use cases, please see companion package
 - Only uses arrays, functions, ES6 iterables / iterators / generators
 - Eager & lazy component composition using embedded functions / closures
 - Support for self-closing tags (incl. validation), boolean attributes
-- Dynamic element attribute value generation via functions
+- Arbitrary user context object injection for component functions
+- Dynamic element attribute value generation via function values
 - CSS formatting of `style` attribute objects
 - Optional HTML entity encoding
 - Small (2.2KB minified) & fast
 
 *) Lazy composition here means that functions are only executed at
 serialization time. Examples below...
+
+### Use cases
+
+- Serverside rendering
+- Static site, feed generation
+- SVG asset generation
 
 ### No special sauce needed (or wanted)
 
@@ -61,7 +92,7 @@ values of the same structure. Please see [examples](#examples) &
 ["tag", {other: "attrib", ...}, ...]
 ["tag", {...}, "body", 23, function, [...]]
 [function, arg1, arg2, ...]
-[{render: (ctx,...) => [...]}, args...]
+[{render: (ctx, ...args) => [...]}, args...]
 iterable
 ```
 
@@ -131,8 +162,8 @@ with the entire attribute object as argument. This allows for the
 dynamic generation of attribute values, based on existing ones. The
 result MUST be a string.
 
-**BREAKING CHANGE since 1.0.0:** Function values for event attributes
-(any attrib name starting with "on") WILL BE OMITTED from output.
+**Function values for event attributes (any attrib name starting with
+"on") WILL BE OMITTED from output.**
 
 ```ts
 ["div#foo", { bar: (attribs) => attribs.id + "-bar" }]
@@ -174,6 +205,66 @@ serialize(
     <img class="thumb" src="bar.jpg" alt="thumbnail"/>
     <img class="thumb" src="baz.jpg" alt="thumbnail"/>
 </div>
+```
+
+### User context injection
+
+Every component function will receive an arbitrary user defined context
+object as first argument. This context object is passed to `serialize()`
+and is then auto-injected for every component function call.
+
+The context object should contain any global component configuration,
+e.g. for theming purposes.
+
+```ts
+const header = (ctx, body) =>
+    ["h1", ctx.theme.title, body];
+
+const section = (ctx, title, ...body) =>
+    ["section", ctx.theme.section, [header, title], ...body];
+
+// theme definition (here using Tachyons CSS classes,
+// but could be any attributes)
+const theme = {
+    section: { class: "bg-black moon-gray bt b--dark-gray mt3" },
+    title: { class: "white f3" }
+};
+
+serialize(
+    [section, "Hello world", "Easy theming"],
+    { theme }
+);
+// <section class="bg-black moon-gray bt b--dark-gray mt3"><h1 class="white f3">Hello world</h1>Easy theming</section>
+```
+
+**Note:** Of course the context is ONLY auto-injected for lazily
+embedded component functions (as shown above), i.e. if the functions are
+wrapped in arrays and only called during serialization. If you call a
+component function directly, you MUST pass the context (or `null`) as
+first arg yourself. Likewise, if a component function doesn't make use
+of the context you can either:
+
+```ts
+// skip the context arg and require direct invocation
+const div = (attribs, body) => ["div", attribs, body];
+
+serialize(div({id: "foo"}, "bar"));
+// <div id="foo">bar</div>
+```
+
+Or...
+
+```ts
+// ignore the first arg (context) and support both direct & indirect calls
+const div = (_, attribs, body) => ["div", attribs, body];
+
+// direct invocation of div (pass `null` as context)
+serialize(div(null, {id: "foo"}, "bar"));
+// <div id="foo">bar</div>
+
+// lazy invocation of div
+serialize([div, {id: "foo"}, "bar"]);
+// <div id="foo">bar</div>
 ```
 
 ### SVG generation, generators & lazy composition
@@ -325,71 +416,94 @@ serialize([
 </div>
 ```
 
+### Component objects
+
+The sibling library
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+supports components with basic life cycle methods (init, render,
+release). In order to support serialization of hdom component trees,
+hiccup too supports such components since version 2.0.0. However, for
+static serialization only the `render` method is of interest and others
+are ignored.
+
+```ts
+const component = {
+    render: (ctx, title, ...body) => ["section", ["h1", title], ...body]
+};
+
+serialize([component, "Hello world", "Body"]);
+```
+
 ## API
 
 The library exposes these two functions:
 
-### serialize(tree, escape = false): string
+### serialize(tree: any, ctx?: any, escape = false): string
 
-Recursively normalizes and then serializes given tree as HTML / SVG /
-XML string. If `escape` is true, HTML entity replacement is applied to
-all element body & attribute values.
-
-Any embedded component functions are expanded with their results. A
-normalized element has one of these shapes:
+Recursively normalizes and serializes given tree as HTML/SVG/XML string.
+Expands any embedded component functions with their results. Each node
+of the input tree can have one of the following input forms:
 
 ```ts
-// no body
-["div", {attribs...}]
-
-// with body
-["div", {...}, "a", "b", ...]
-
-// iterable of normalized elements
-[iteratable]
+["tag", ...]
+["tag#id.class1.class2", ...]
+["tag", {other: "attrib"}, ...]
+["tag", {...}, "body", function, ...]
+[function, arg1, arg2, ...]
+[{render: (ctx,...) => [...]}, args...]
+iterable
 ```
 
-Tags can be defined in "Zencoding" convention, i.e.
-
-```
-["div#foo.bar.baz", "hi"] => <div id="foo" class="bar baz">hi</div>
-```
-
-**Note:** It's an error to specify IDs and/or classes in Zencoding
-convention **and** in a supplied attribute object. However, either of
-these are valid:
+Tags can be defined in "Zencoding" convention, e.g.
 
 ```ts
-["div#foo", { class: "bar" }] // <div id="foo" class="bar"></div>
-["div.foo", { id: "bar" }] // <div id="bar" class="foo"></div>
+["div#foo.bar.baz", "hi"]
+// <div id="foo" class="bar baz">hi</div>
 ```
 
-The presence of the attributes object is optional. If the 2nd array
-index is **not** a plain object, it'll be treated as normal child of the
-current tree node.
-
-Any `null` or `undefined` values (other than in head position) will be
-removed, unless a function is in head position. In this case all other
-elements of that array are passed as arguments when that function is
-called.
+The presence of the attributes object (2nd array index) is optional. Any
+attribute values, incl. functions are allowed. If the latter, the
+function is called with the full attribs object as argument and the
+return value is used for the attribute. This allows for the dynamic
+creation of attrib values based on other attribs. The only exception to
+this are event attributes, i.e. attribute names starting with "on".
 
 ```ts
-const myfunc = (_, a, b, c) => ["div", {id: a, class: c}, b];
-
-serialize([myfunc, "foo", null, "bar"])
+["div#foo", { bar: (attribs) => attribs.id + "-bar" }]
+// <div id="foo" bar="foo-bar"></div>
 ```
 
-Will result in:
+The `style` attribute can ONLY be defined as string or object.
 
-```html
-<!-- the `null` element has been ignored during serialization -->
-<div id="foo" class="bar"></div>
+```ts
+["div", {style: {color: "red", background: "#000"}}]
+// <div style="color:red;background:#000;"></div>
 ```
 
-The function's return value MUST be a valid new tree (or `undefined`).
-Functions located in other positions are called without args and can
-return any (serializable) value (i.e. new trees, strings, numbers,
-iterables or any type with a suitable `.toString()` implementation).
+Boolean attribs are serialized in HTML5 syntax (present or not). null or
+empty string attrib values are ignored.
+
+Any `null` or `undefined` array values (other than in head position) will be
+removed, unless a function is in head position.
+
+A function in head position of a node acts as a mechanism for component
+composition & delayed execution. The function will only be executed at
+serialization time. In this case the optional global context object and
+all other elements of that node / array are passed as arguments when
+that function is called. The return value the function MUST be a valid
+new tree (or undefined).
+
+```ts
+const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
+
+serialize([foo, "id", "body"], {foo: {class: "black"}})
+// <div id="id" class="black">body</div>
+```
+
+Functions located in other positions are called ONLY with the global
+context arg and can return any (serializable) value (i.e. new trees,
+strings, numbers, iterables or any type with a suitable .toString()
+implementation).
 
 ### escape(str: string): string
 
