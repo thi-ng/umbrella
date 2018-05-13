@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.3.16...@thi.ng/hiccup@2.0.0) (2018-05-13)
+
+
+### Code Refactoring
+
+* **hiccup:** fix [#19](https://github.com/thi-ng/umbrella/issues/19), add support for context object ([feca566](https://github.com/thi-ng/umbrella/commit/feca566))
+
+
+### Performance Improvements
+
+* **hiccup:** update css() ([b1cb7d9](https://github.com/thi-ng/umbrella/commit/b1cb7d9))
+
+
+### BREAKING CHANGES
+
+* **hiccup:** component functions now take a global context object as
+first argument (like w/ @thi.ng/hdom)
+
+- update serialize() to accept & pass optional context
+- add support for component objects
+- add/update tests
+
+
+
+
 <a name="1.3.16"></a>
 ## [1.3.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@1.3.15...@thi.ng/hiccup@1.3.16) (2018-05-12)
 

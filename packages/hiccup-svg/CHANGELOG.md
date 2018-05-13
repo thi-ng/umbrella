@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@0.2.13...@thi.ng/hiccup-svg@1.0.0) (2018-05-13)
+
+
+### Code Refactoring
+
+* **hiccup-svg:** rename svgdoc => svg ([396faec](https://github.com/thi-ng/umbrella/commit/396faec))
+
+
+### Documentation
+
+* **hiccup-svg:** resolve [#19](https://github.com/thi-ng/umbrella/issues/19), update readme, add invocation notes ([dc77540](https://github.com/thi-ng/umbrella/commit/dc77540))
+
+
+### BREAKING CHANGES
+
+* **hiccup-svg:** technically identical to previous version, however
+due to breaking changes and new context support in @thi.ng/hiccup,
+SVG functions MUST be invoked directly now and do not support lazy
+evaluation anymore. see notice in readme.
+* **hiccup-svg:** rename svgdoc => svg
+
+
+
+
 <a name="0.2.13"></a>
 ## [0.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@0.2.12...@thi.ng/hiccup-svg@0.2.13) (2018-05-12)
 

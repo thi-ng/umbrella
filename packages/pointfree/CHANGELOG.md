@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.10...@thi.ng/pointfree@0.8.0) (2018-05-13)
+
+
+### Features
+
+* **pointfree:** add execjs for host calls, update readme ([373701b](https://github.com/thi-ng/umbrella/commit/373701b))
+
+
+
+
 <a name="0.7.10"></a>
 ## [0.7.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.9...@thi.ng/pointfree@0.7.10) (2018-05-12)
 

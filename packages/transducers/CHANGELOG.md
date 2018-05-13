@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.9.4"></a>
+## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.3...@thi.ng/transducers@1.9.4) (2018-05-13)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/transducers
+
 <a name="1.9.3"></a>
 ## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.2...@thi.ng/transducers@1.9.3) (2018-05-12)
 
