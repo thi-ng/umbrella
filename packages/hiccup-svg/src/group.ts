@@ -1,1 +1,2 @@
-export const group = (attr, ...body) => ["g", attr, ...body];
+export const group = (attr, ...body) =>
+    ["g", attr, ...body];
