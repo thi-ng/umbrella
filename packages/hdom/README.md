@@ -8,6 +8,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Minimal example](#minimal-example)
     - [Component tree translation](#component-tree-translation)
     - [Event & state handling options](#event--state-handling-options)
     - [Reusable components](#reusable-components)
@@ -48,7 +49,8 @@ closures, iterators), based on
   document components
 - Clean, functional component composition and reuse
 - No pre-processing / pre-compilation steps
-- [Supports SVG](https://github.com/thi-ng/umbrella/treeSupports SVG),
+- [Supports
+  SVG](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg),
   arbitrary elements, attributes, events
 - Less verbose than HTML / JSX, resulting in smaller file sizes
 - Static components can be distributed as JSON (or [transform JSON
@@ -72,11 +74,15 @@ Also see the [work-in-progress
 ADRs](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/adr/)
 for component configuration.
 
+### Minimal example
+
 ```typescript
 import * as hdom from "@thi.ng/hdom";
 
 // stateless component w/ params
-const greeter = (name) => ["h1.title", "hello ", name];
+// the first arg is an auto-injected context object
+// (not used here, see `hdom-context-basics` example for details)
+const greeter = (_, name) => ["h1.title", "hello ", name];
 
 // component w/ local state
 const counter = (i = 0) => {
@@ -84,8 +90,9 @@ const counter = (i = 0) => {
 };
 
 const app = () => {
+    // initialization steps
+    // ...
     // root component is just a static array
-    // instantiate counters w/ different start offsets
     return ["div#app", [greeter, "world"], counter(), counter(100)];
 };
 
