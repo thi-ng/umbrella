@@ -13,5 +13,8 @@
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/pointfree": "latest",
         "@thi.ng/pointfree-lang": "latest"
+    },
+    "devDependencies": {
+        "typescript": "^2.8.3"
     }
 }
