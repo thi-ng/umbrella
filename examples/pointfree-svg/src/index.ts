@@ -15,7 +15,7 @@ const libsrc = `
 : addshape ( s -- ) @shapes pushl drop ;
 
 ( creates hiccup element with 2 args & shape type )
-: shape2 ( a b type -- ) -rot vec3 addshape;
+: shape2 ( a b type -- ) -rot vec3 execjs addshape;
 
 ( transforms 2 points into a svg line )
 : line ( a b -- ) @svg.line shape2 ;
@@ -57,9 +57,17 @@ const usersrc = `
 grid circlegrid
 
 ( create SVG root element in hiccup format )
-[@svg.svgdoc {width: 200, height: 200, stroke: "#f04", fill: "none"}]
-( concat with generated shapes )
+[@svg.svg {width: 200, height: 200, stroke: "#f04", fill: "none"}]
+
+( concat generated shapes )
 @shapes cat
+
+(
+    execute entire quotation as JS function,
+    i.e call @svg.svg with all remaining values in quot / array
+)
+execjs
+
 ( serialize hiccup format to SVG and write to disk )
 serialize swap write-file
 `;
@@ -70,7 +78,7 @@ const env = ffi(
     {
         "svg.line": svg.line,
         "svg.circle": svg.circle,
-        "svg.svgdoc": svg.svgdoc,
+        "svg.svg": svg.svg,
         shapes: [],
     },
     // foreign function interface (FFI)

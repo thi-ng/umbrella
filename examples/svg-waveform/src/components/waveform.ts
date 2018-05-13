@@ -1,4 +1,4 @@
-import { svgdoc } from "@thi.ng/hiccup-svg/doc";
+import { svg } from "@thi.ng/hiccup-svg/svg";
 import { defs } from "@thi.ng/hiccup-svg/defs";
 import { linearGradient } from "@thi.ng/hiccup-svg/gradients";
 import { polyline } from "@thi.ng/hiccup-svg/polyline";
@@ -31,7 +31,7 @@ export function waveform(ctx: AppContext, opts: WaveformOpts) {
     const phase = opts.phase * Math.PI / 180;
     const amp = opts.amp * 50;
     const fscale = 1 / opts.res * TAU * opts.freq;
-    return svgdoc(
+    return svg(
         { ...ctx.ui.waveform, viewBox: `0 -5 ${opts.res} 10` },
         defs(
             linearGradient(

@@ -8,9 +8,10 @@ import { TAG_REGEXP, VOID_TAGS } from "./api";
 import { css } from "./css";
 
 /**
- * Recursively normalizes and serializes given tree as HTML/SVG/XML string.
- * Expands any embedded component functions with their results. Each node of the
- * input tree can have one of the following input forms:
+ * Recursively normalizes and serializes given tree as HTML/SVG/XML
+ * string. Expands any embedded component functions with their results.
+ * Each node of the input tree can have one of the following input
+ * forms:
  *
  * ```js
  * ["tag", ...]
@@ -18,7 +19,8 @@ import { css } from "./css";
  * ["tag", {other: "attrib"}, ...]
  * ["tag", {...}, "body", function, ...]
  * [function, arg1, arg2, ...]
- * [iterable]
+ * [{render: (ctx,...) => [...]}, args...]
+ * iterable
  * ```
  *
  * Tags can be defined in "Zencoding" convention, e.g.
@@ -28,10 +30,12 @@ import { css } from "./css";
  * ```
  *
  * The presence of the attributes object (2nd array index) is optional.
- * Any attribute values, incl. functions are allowed. If the latter,
- * the function is called with the full attribs object as argument and
- * MUST return a string. This allows for the dynamic creation of attrib
- * values based on other attribs.
+ * Any attribute values, incl. functions are allowed. If the latter, the
+ * function is called with the full attribs object as argument and the
+ * return value is used for the attribute. This allows for the dynamic
+ * creation of attrib values based on other attribs. The only exception
+ * to this are event attributes, i.e. attribute names starting with
+ * "on".
  *
  * ```js
  * ["div#foo", {bar: (attribs) => attribs.id + "-bar"}]
@@ -51,30 +55,31 @@ import { css } from "./css";
  * Any `null` or `undefined` array values (other than in head position)
  * will be removed, unless a function is in head position.
  *
- * A function in head position of a node acts as composition & delayed
- * execution mechanism and the function will only be executed at
- * serialization time. In this case all other elements of that node /
- * array are passed as arguments when that function is called.
- * The return value the function MUST be a valid new tree
- * (or `undefined`).
+ * A function in head position of a node acts as a mechanism for
+ * component composition & delayed execution. The function will only be
+ * executed at serialization time. In this case the optional global
+ * context object and all other elements of that node / array are passed
+ * as arguments when that function is called. The return value the
+ * function MUST be a valid new tree (or `undefined`).
  *
  * ```js
- * const foo = (a, b) => ["div#" + a, b];
+ * const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
  *
- * [foo, "id", "body"] // <div id="id">body</div>
+ * serialize([foo, "id", "body"], {foo: {class: "black"}})
+ * // <div id="id" class="black">body</div>
  * ```
  *
- * Functions located in other positions are called **without** args
- * and can return any (serializable) value (i.e. new trees, strings,
- * numbers, iterables or any type with a suitable `.toString()`
+ * Functions located in other positions are called ONLY with the global
+ * context arg and can return any (serializable) value (i.e. new trees,
+ * strings, numbers, iterables or any type with a suitable `.toString()`
  * implementation).
  *
  * @param tree elements / component tree
  * @param escape auto-escape entities
  */
-export const serialize = (tree: any[], escape = false) => _serialize(tree, escape);
+export const serialize = (tree: any[], ctx?: any, escape = false) => _serialize(tree, ctx, escape);
 
-const _serialize = (tree: any, esc: boolean) => {
+const _serialize = (tree: any, ctx: any, esc: boolean) => {
     if (tree == null) {
         return "";
     }
@@ -84,7 +89,10 @@ const _serialize = (tree: any, esc: boolean) => {
         }
         let tag = tree[0];
         if (isFunction(tag)) {
-            return _serialize(tag.apply(null, tree.slice(1)), esc);
+            return _serialize(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, esc);
+        }
+        if (implementsFunction(tag, "render")) {
+            return _serialize(tag.render.apply(null, [ctx, ...tree.slice(1)]), ctx, esc);
         }
         if (isString(tag)) {
             tree = normalize(tree);
@@ -118,7 +126,7 @@ const _serialize = (tree: any, esc: boolean) => {
                 }
                 res += ">";
                 for (let i = 0, n = body.length; i < n; i++) {
-                    res += _serialize(body[i], esc);
+                    res += _serialize(body[i], ctx, esc);
                 }
                 return res += `</${tag}>`;
             } else if (!VOID_TAGS[tag]) {
@@ -127,26 +135,26 @@ const _serialize = (tree: any, esc: boolean) => {
             return res += "/>";
         }
         if (iter(tree)) {
-            return _serializeIter(tree, esc);
+            return _serializeIter(tree, ctx, esc);
         }
         illegalArgs(`invalid tree node: ${tree}`);
     }
     if (isFunction(tree)) {
-        return _serialize(tree(), esc);
+        return _serialize(tree(ctx), ctx, esc);
     }
     if (implementsFunction(tree, "deref")) {
-        return _serialize(tree.deref(), esc);
+        return _serialize(tree.deref(), ctx, esc);
     }
     if (iter(tree)) {
-        return _serializeIter(tree, esc);
+        return _serializeIter(tree, ctx, esc);
     }
     return esc ? escape(tree.toString()) : tree;
 };
 
-const _serializeIter = (iter: Iterable<any>, esc: boolean) => {
+const _serializeIter = (iter: Iterable<any>, ctx: any, esc: boolean) => {
     const res = [];
     for (let i of iter) {
-        res.push(_serialize(i, esc));
+        res.push(_serialize(i, ctx, esc));
     }
     return res.join("");
 }

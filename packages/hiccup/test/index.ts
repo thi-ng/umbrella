@@ -108,6 +108,12 @@ describe("serialize", () => {
     );
 
     check(
+        "attr fn (derived)",
+        ["div", { foo: (attribs) => `${attribs.x}px`, x: 42 }],
+        `<div foo="42px" x="42"></div>`
+    );
+
+    check(
         "attr fn (null)",
         ["div", { foo: () => null }],
         `<div></div>`
@@ -169,7 +175,7 @@ describe("serialize", () => {
 
     check(
         "comp fn args",
-        [(id, body) => ["div#" + id, body], "foo", "bar"],
+        [(_, id, body) => ["div#" + id, body], "foo", "bar"],
         `<div id="foo">bar</div>`
     );
 
@@ -181,13 +187,13 @@ describe("serialize", () => {
 
     check(
         "comp fn in body w/ args",
-        ["div", [(id, body) => ["div#" + id, body], "foo", "bar"], "bar2"],
+        ["div", [(_, id, body) => ["div#" + id, body], "foo", "bar"], "bar2"],
         `<div><div id="foo">bar</div>bar2</div>`
     );
 
     check(
         "comp fn in body apply",
-        ["div", [([id, body]) => ["div#" + id, body], ["foo", "bar"]], "bar2"],
+        ["div", [(_, [id, body]) => ["div#" + id, body], ["foo", "bar"]], "bar2"],
         `<div><div id="foo">bar</div>bar2</div>`
     );
 
@@ -200,9 +206,9 @@ describe("serialize", () => {
     it("components nested", () => {
         const dlItem = ([def, desc]) => [["dt", def], ["dd", desc]];
         const ulItem = (i) => ["li", i];
-        const list = (f, items) => items.map(f);
-        const dlList = (attribs, items) => ["dl", attribs, [list, dlItem, items]];
-        const ulList = (attribs, items) => ["ul", attribs, [list, ulItem, items]];
+        const list = (_, f, items) => items.map(f);
+        const dlList = (_, attribs, items) => ["dl", attribs, [list, dlItem, items]];
+        const ulList = (_, attribs, items) => ["ul", attribs, [list, ulItem, items]];
 
         const items = [["a", "foo"], ["b", "bar"]];
 
@@ -213,9 +219,18 @@ describe("serialize", () => {
         _check(widget2, `<ul id="foo"><li>foo</li><li>bar</li></ul>`);
     });
 
+    it("comp object", () => {
+        const foo = (ctx, body) => ["div", ctx.foo, body];
+        const bar = { render: (_, id) => [foo, id] };
+        assert.equal(
+            serialize(["section", [bar, "a"], [bar, "b"]], { foo: { class: "foo" } }),
+            `<section><div class="foo">a</div><div class="foo">b</div></section>`
+        );
+    });
+
     check(
         "iterators",
-        ["ul", [(items) => items.map((i) => ["li", i]), ["a", "b"]]],
+        ["ul", [(_, items) => items.map((i) => ["li", i]), ["a", "b"]]],
         `<ul><li>a</li><li>b</li></ul>`
     );
 

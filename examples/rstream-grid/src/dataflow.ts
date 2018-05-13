@@ -1,4 +1,4 @@
-import { svgdoc } from "@thi.ng/hiccup-svg/doc";
+import { svg } from "@thi.ng/hiccup-svg/svg";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { rect } from "@thi.ng/hiccup-svg/rect";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
@@ -80,7 +80,7 @@ const rotate = node(map(
  */
 const createSVG = node(map(
     ({ shapes, cols, rows, stroke }) =>
-        svgdoc(
+        svg(
             {
                 class: "w-100 h-100",
                 preserveAspectRatio: "xMidYMid",

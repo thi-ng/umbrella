@@ -176,6 +176,25 @@ export const wordU = (prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true
 export const exec = (ctx: StackContext) =>
     ($(ctx[0], 1), $stackFn(ctx[0].pop())(ctx));
 
+//////////////////// JS host calls ////////////////////
+
+/**
+ * Expects TOS to be a quotation with a vanilla JS function as first
+ * element. Calls fn with all remaining items in quot as arguments and
+ * pushes result back on d-stack (even if fn returned `undefined`).
+ *
+ * ( [f ...] -- f(...) )
+ *
+ * @param ctx
+ */
+export const execjs = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 1);
+    const [fn, ...args] = stack.pop();
+    stack.push(fn(...args));
+    return ctx;
+};
+
 //////////////////// Operator generators ////////////////////
 
 /**
