@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.21"></a>
+## [3.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.20...@thi.ng/hdom@3.0.21) (2018-05-14)
+
+
+### Bug Fixes
+
+* **hdom:** component obj lifecycle method thisArg handling ([ade96f8](https://github.com/thi-ng/umbrella/commit/ade96f8))
+
+
+
+
 <a name="3.0.20"></a>
 ## [3.0.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.19...@thi.ng/hdom@3.0.20) (2018-05-14)
 

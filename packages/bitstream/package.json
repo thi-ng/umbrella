@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bitstream",
-    "version": "0.4.11",
+    "version": "0.4.12",
     "description": "ES6 iterator based read/write bit streams & support for variable word widths",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -16,7 +16,7 @@
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "dependencies": {
-        "@thi.ng/errors": "^0.1.2"
+        "@thi.ng/errors": "^0.1.3"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.0",

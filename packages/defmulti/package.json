@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/defmulti",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Dynamically extensible multiple dispatch via user supplied dispatch function.",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,8 +24,8 @@
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.0.1",
-        "@thi.ng/errors": "^0.1.2"
+        "@thi.ng/api": "^4.0.2",
+        "@thi.ng/errors": "^0.1.3"
     },
     "keywords": [
         "ES6",
