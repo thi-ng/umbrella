@@ -95,8 +95,11 @@ export interface IBuffered<T> {
  */
 export interface ICompare<T> {
     /**
-     * Compares this value with given value `x`.
-     * Must follow same contract as `Comparator`.
+     * Compares this value with given value `x`. MUST follow same
+     * contract as `Comparator`. MUST return 0 if the type also
+     * implements `IEquiv` and `equiv` returns true for same `x`.
+     *
+     * Also see `IHash`.
      *
      * @param x
      */
@@ -159,6 +162,8 @@ export interface IEmpty<T> {
 /**
  * Interface to provide enabled/disabled functionality. Also see
  * `@IEnable` decorator mixin
+ *
+ * @param T type for enable/disable option arg
  */
 export interface IEnable<T> {
     isEnabled(): boolean;
@@ -185,6 +190,9 @@ export interface IEquiv {
     equiv(o: any): boolean;
 }
 
+/**
+ * @param T value type
+ */
 export interface IEqualsDelta<T> {
     /**
      * Returns `true` if this value equals `o` with optional allowance
