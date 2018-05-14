@@ -7,7 +7,7 @@ This project is part of the
 
 ## About
 
-Deep equivalence checking for any data types. Supports:
+Extensible deep equivalence checking for any data types. Supports:
 
 - JS primitives
 - arrays

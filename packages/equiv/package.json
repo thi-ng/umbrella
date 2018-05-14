@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/equiv",
     "version": "0.1.1",
-    "description": "TODO",
+    "description": "Extensible deep equivalence checking for any data types",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -27,6 +27,8 @@
         "@thi.ng/checks": "^1.5.3"
     },
     "keywords": [
+        "deep",
+        "equality",
         "ES6",
         "typescript"
     ],

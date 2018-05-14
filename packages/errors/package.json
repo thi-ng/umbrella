@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/errors",
     "version": "0.1.2",
-    "description": "TODO",
+    "description": "Custom error types and helper fns.",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -24,6 +24,7 @@
         "typescript": "^2.8.3"
     },
     "keywords": [
+        "error",
         "ES6",
         "typescript"
     ],
