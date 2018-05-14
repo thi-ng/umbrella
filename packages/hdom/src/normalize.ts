@@ -130,8 +130,9 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
         // (render() is the only required hook)
         if (implementsFunction(tag, "render")) {
             const args = [ctx, ...tree.slice(1)];
-            norm = normalizeTree(tag.render.apply(null, args), ctx, path, keys, span);
+            norm = normalizeTree(tag.render.apply(tag, args), ctx, path, keys, span);
             if (isArray(norm)) {
+                (<any>norm).__this = tag;
                 (<any>norm).__init = tag.init;
                 (<any>norm).__release = tag.release;
                 (<any>norm).__args = args;

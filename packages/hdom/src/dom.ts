@@ -32,7 +32,7 @@ export function createDOM(parent: Element, tag: any, insert?: number) {
         }
         const el = createElement(parent, t, tag[1], insert);
         if ((<any>tag).__init) {
-            (<any>tag).__init.apply(tag, [el, ...(<any>tag).__args]);
+            (<any>tag).__init.apply((<any>tag).__this, [el, ...(<any>tag).__args]);
         }
         if (tag[2]) {
             const n = tag.length;
