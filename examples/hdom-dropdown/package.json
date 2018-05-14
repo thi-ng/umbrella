@@ -1,0 +1,25 @@
+{
+    "name": "hdom-dropdown",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "webpack --mode production --display-reasons --display-modules",
+        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+    },
+    "devDependencies": {
+        "ts-loader": "^4.3.0",
+        "typescript": "^2.8.3",
+        "webpack": "^4.8.1",
+        "webpack-cli": "^2.1.3",
+        "webpack-dev-server": "^3.1.4"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/interceptors": "latest",
+        "@thi.ng/paths": "latest"
+    }
+}
