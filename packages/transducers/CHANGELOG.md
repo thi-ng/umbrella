@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.4...@thi.ng/transducers@1.10.0) (2018-05-14)
+
+
+### Features
+
+* **transducers:** add filterFuzzy() xform ([2bebba2](https://github.com/thi-ng/umbrella/commit/2bebba2))
+* **transducers:** add wrap*() iterators ([306625d](https://github.com/thi-ng/umbrella/commit/306625d))
+
+
+
+
 <a name="1.9.4"></a>
 ## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.3...@thi.ng/transducers@1.9.4) (2018-05-13)
 

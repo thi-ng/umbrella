@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="2.0.3"></a>
+      <a name="2.0.4"></a>
+## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.3...@thi.ng/resolve-map@2.0.4) (2018-05-14)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/resolve-map
+
+      <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.2...@thi.ng/resolve-map@2.0.3) (2018-05-13)
 
 
@@ -11,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @thi.ng/resolve-map
 
-  <a name="2.0.2"></a>
+<a name="2.0.2"></a>
 ## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.1...@thi.ng/resolve-map@2.0.2) (2018-05-10)
 
 
