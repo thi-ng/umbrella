@@ -92,7 +92,7 @@ yarn add @thi.ng/resolve-map
 ### Statistical analysis
 
 In this example we construct a graph to compute a number of statistical
-properties of some numeric input array. The graph is a plain object of
+properties for some numeric input array. The graph is a plain object of
 possibly dependent functions, which can be specified in any order. Each
 function accepts a "resolver" function as argument (`$`) to look up and
 execute other computations. Each computation is only executed once.
@@ -114,6 +114,8 @@ const stats = {
     min: ($) => tx.reduce(tx.min(), $("src")),
     // computes sequence max val
     max: ($) => tx.reduce(tx.max(), $("src")),
+    // sorted copy
+    sorted: ($) => [...$("src")].sort((a, b) => a - b),
     // standard deviation
     sd: ($)=> {
         const src = $("src");
@@ -122,22 +124,37 @@ const stats = {
             tx.transduce(tx.map((x) => Math.pow(x - mean, 2)), tx.add(), src) /
             (src.length - 1)
         );
+    },
+    // compute 10th - 90th percentiles
+    percentiles: ($) => {
+        const sorted = $("sorted");
+        return tx.transduce(
+            tx.map((x) => sorted[Math.floor(x / 100 * sorted.length)]),
+            tx.push(),
+            tx.range(10, 100, 5)
+        );
     }
 };
 
 // inject some source data to analyze
-// Note: we wrap the data as function to avoid `resolveMap` attempting
-// to resolve each array item
-// Note 2: If the `stats` graph is meant to be re-usable in the future
-// you MUST use the spread operator to create a shallow copy.
-// this is because `resolveMap` mutates the given object
+
+// Note: we wrap the data as function to avoid `resolveMap`
+// attempting to resolve each array item as well. this is
+// purely for performance reasons and would also work without
+// wrapping.
+
+// Note 2: If the `stats` graph is meant to be re-usable in
+// the future you MUST use the spread operator to create a
+// shallow copy, because `resolveMap` mutates the given object
 resolveMap({...stats, src: () => [ 1, 6, 7, 2, 4, 11, -3 ]})
 // {
 //     mean: 4,
 //     range: 14,
 //     min: -3,
 //     max: 11,
+//     sorted: [ -3, 1, 2, 4, 6, 7, 11 ],
 //     sd: 4.546060565661952,
+//     percentiles: [ -3, 1, 2, 2, 4, 6, 6, 7, 11 ],
 //     src: [ 1, 6, 7, 2, 4, 11, -3 ]
 // }
 ```
