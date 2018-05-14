@@ -114,6 +114,29 @@ f(4) // undefined
 f = tx.step(take)
 ```
 
+### Fuzzy search
+
+```ts
+[...tx.iterator(tx.filterFuzzy("ho"), ["hello", "hallo", "hey", "heyoka"])]
+// ["hello", "hallo", "heyoka"]
+[...tx.iterator(tx.filterFuzzy("hlo"), ["hello", "hallo", "hey", "heyoka"])]
+// ["hello", "hallo"]
+
+// works with any array-like values & supports custom key extractors
+[...tx.iterator(
+    tx.filterFuzzy([1, 3], (x) => x.tags),
+    [
+        { tags: [1, 2, 3] },
+        { tags: [1, 3, 4] },
+        { tags: [4, 5, 6] },
+        { tags: [1, 3, 6] }
+    ]
+)]
+// [ { tags: [ 1, 2, 3 ] },
+//   { tags: [ 1, 3, 4 ] },
+//   { tags: [ 1, 3, 6 ] } ]
+```
+
 ### Histogram generation & result grouping
 
 ```typescript
