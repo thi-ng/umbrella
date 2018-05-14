@@ -46,8 +46,8 @@ export interface Event extends Array<any> {
 
 export interface IDispatch {
     readonly state: ReadonlyAtom<any>;
-    dispatch(event: Event);
-    dispatchNow(event: Event);
+    dispatch(...event: Event[]);
+    dispatchNow(...event: Event[]);
     dispatchLater(event: Event, delay?: number);
 }
 

@@ -303,30 +303,36 @@ export class StatelessEventBus implements
     }
 
     /**
-     * Adds given event to event queue to be processed by
-     * `processQueue()` later on.
+     * Adds given events to event queue to be processed by
+     * `processQueue()` later on. It's the user's responsibility to call
+     * that latter function repeatedly in a timely manner, preferably
+     * via `requestAnimationFrame()` or similar.
      *
      * @param e
      */
-    dispatch(e: api.Event) {
-        this.eventQueue.push(e);
+    dispatch(...e: api.Event[]) {
+        this.eventQueue.push(...e);
     }
 
     /**
-     * Adds given event to whatever is the current event queue. If
-     * triggered via the `FX_DISPATCH_NOW` side effect the event will
-     * still be executed in the currently active batch. If called from
-     * elsewhere, the result is the same as calling `dispatch()`.
+     * Adds given events to whatever is the current event queue. If
+     * triggered via the `FX_DISPATCH_NOW` side effect from an event
+     * handler / interceptor, the event will still be executed in the
+     * currently active batch / frame. If called from elsewhere, the
+     * result is the same as calling `dispatch()`.
      *
      * @param e
      */
-    dispatchNow(e: api.Event) {
-        (this.currQueue || this.eventQueue).push(e);
+    dispatchNow(...e: api.Event[]) {
+        (this.currQueue || this.eventQueue).push(...e);
     }
 
     /**
-     * Dispatches given event after `delay` milliseconds
-     * (by default 17).
+     * Dispatches given event after `delay` milliseconds (by default
+     * 17). Note: Since events are only processed by calling
+     * `processQueue()`, it's the user's responsibility to call that
+     * latter function repeatedly in a timely manner, preferably via
+     * `requestAnimationFrame()` or similar.
      *
      * @param e
      * @param delay
