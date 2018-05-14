@@ -8,7 +8,9 @@ This project is part of the
 ## About
 
 DAG resolution of vanilla objects & arrays with internally linked
-values.
+values. This is useful for expressing complex configurations with
+derived values or computing interrelated values without having to
+specify the order of computations.
 
 It's common practice to use nested JS objects for configuration
 purposes. Frequently some values in the object are copies or derivatives
@@ -16,7 +18,7 @@ of other values, which can lead to mistakes during refactoring and / or
 duplication of effort.
 
 To avoid these issues, this library provides the ability to define
-single sources of truth, create references (links) to these values and a
+single sources of truth, create references (links) to these values and
 provide a resolution mechanism to recursively expand their real values
 and / or compute derived values. Both absolute & relative references are
 supported.
@@ -86,6 +88,61 @@ yarn add @thi.ng/resolve-map
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
 
 ## Usage examples
+
+### Statistical analysis
+
+In this example we construct a graph to compute a number of statistical
+properties of some numeric input array. The graph is a plain object of
+possibly dependent functions, which can be specified in any order. Each
+function accepts a "resolver" function as argument (`$`) to look up and
+execute other computations. Each computation is only executed once.
+
+```ts
+import { resolveMap } from "@thi.ng/resolve-map";
+import * as tx from "@thi.ng/transducers";
+
+// define object of interrelated computations
+// the `$` arg passed to each fn is the resolver
+// the `src` key is still missing here and will be
+// provided later
+const stats = {
+    // sequence average
+    mean: ($) => tx.reduce(tx.mean(), $("src")),
+    // sequence range
+    range: ($) => $("max") - $("min"),
+    // computes sequence min val
+    min: ($) => tx.reduce(tx.min(), $("src")),
+    // computes sequence max val
+    max: ($) => tx.reduce(tx.max(), $("src")),
+    // standard deviation
+    sd: ($)=> {
+        const src = $("src");
+        const mean = $("mean");
+        return Math.sqrt(
+            tx.transduce(tx.map((x) => Math.pow(x - mean, 2)), tx.add(), src) /
+            (src.length - 1)
+        );
+    }
+};
+
+// inject some source data to analyze
+// Note: we wrap the data as function to avoid `resolveMap` attempting
+// to resolve each array item
+// Note 2: If the `stats` graph is meant to be re-usable in the future
+// you MUST use the spread operator to create a shallow copy.
+// this is because `resolveMap` mutates the given object
+resolveMap({...stats, src: () => [ 1, 6, 7, 2, 4, 11, -3 ]})
+// {
+//     mean: 4,
+//     range: 14,
+//     min: -3,
+//     max: 11,
+//     sd: 4.546060565661952,
+//     src: [ 1, 6, 7, 2, 4, 11, -3 ]
+// }
+```
+
+### Theme configuration
 
 ```typescript
 import { resolveMap } from "@thi.ng/resolve-map";
