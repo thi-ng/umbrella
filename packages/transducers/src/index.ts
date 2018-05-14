@@ -124,6 +124,4 @@ export * from "./iter/repeatedly";
 export * from "./iter/reverse";
 export * from "./iter/tuples";
 export * from "./iter/vals";
-export * from "./iter/wrap-both";
-export * from "./iter/wrap-left";
-export * from "./iter/wrap-right";
+export * from "./iter/wrap";

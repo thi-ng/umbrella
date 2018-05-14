@@ -813,11 +813,7 @@ itself. Returns nothing.
 
 #### `vals<T>(x: IObjectOf<T>): IterableIterator<T>`
 
-#### `wrapBoth<T>(src: T[], n?: number): IterableIterator<T>`
-
-#### `wrapLeft<T>(src: T[], n?: number): IterableIterator<T>`
-
-#### `wrapRight<T>(src: T[], n?: number): IterableIterator<T>`
+#### `wrap<T>(src: T[], n = 1, left = true, right = true): IterableIterator<T>`
 
 ## Authors
 
