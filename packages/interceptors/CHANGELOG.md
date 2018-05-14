@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.7.4...@thi.ng/interceptors@1.8.0) (2018-05-14)
+
+
+### Features
+
+* **interceptors:** update dispatch() / dispatchNow() ([5e72970](https://github.com/thi-ng/umbrella/commit/5e72970))
+
+
+
+
 <a name="1.7.4"></a>
 ## [1.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.7.3...@thi.ng/interceptors@1.7.4) (2018-05-13)
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/interceptors",
-    "version": "1.7.4",
+    "version": "1.8.0",
     "description": "Interceptor based event bus, side effect & immutable state handling",
     "main": "./index.js",
     "typings": "./index.d.ts",
