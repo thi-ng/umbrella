@@ -7,8 +7,8 @@ This project is part of the
 
 ## About
 
-Lightweight transducer implementations for ES6 / TypeScript (~24KB
-minified, full lib).
+Lightweight transducer and supporting generators / iterator
+implementations for ES6 / TypeScript (~8.4KB gzipped, full lib).
 
 ## TOC
 
@@ -24,14 +24,15 @@ minified, full lib).
 
 ## About
 
-This library provides altogether 90+ transducers, reducers and sequence
-generators (iterators) for composing data transformation pipelines.
+This library provides altogether 130+ transducers, reducers, sequence
+generators (iterators) and other supporting functions for composing data
+transformation pipelines.
 
 The overall concept and many of the core functions offered here are
 directly inspired by the original Clojure implementation by Rich Hickey,
-though the implementation does differ (also in contrast to some other JS
-based implementations) and dozens of less common, but generally highly
-useful operators have been added. See full list below.
+though the implementation does heavily differ (also in contrast to some
+other JS based implementations) and dozens of less common, but generally
+highly useful operators have been added. See full list below.
 
 The
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
@@ -617,6 +618,8 @@ itself. Returns nothing.
 
 #### `filter<T>(pred: Predicate<T>): Transducer<T, T>`
 
+#### `filterFuzzy<A, B>(query: ArrayLike<B>, key?: (x: A) => ArrayLike<B>, eq?: Predicate2<any>): Transducer<A, A>`
+
 #### `flatten<T>(): Transducer<T | Iterable<T>, T>`
 
 #### `flattenWith<T>(fn: (x: T) => Iterable<T>): Transducer<T | Iterable<T>, T>`
@@ -786,6 +789,12 @@ itself. Returns nothing.
 #### `tuples(...src: Iterable<any>[]): IterableIterator<any[]>`
 
 #### `vals<T>(x: IObjectOf<T>): IterableIterator<T>`
+
+#### `wrapBoth<T>(src: T[], n?: number): IterableIterator<T>`
+
+#### `wrapLeft<T>(src: T[], n?: number): IterableIterator<T>`
+
+#### `wrapRight<T>(src: T[], n?: number): IterableIterator<T>`
 
 ## Authors
 

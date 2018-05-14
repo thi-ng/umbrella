@@ -27,6 +27,7 @@
         "@thi.ng/api": "^4.0.1",
         "@thi.ng/checks": "^1.5.3",
         "@thi.ng/compare": "^0.1.1",
+        "@thi.ng/equiv": "^0.1.1",
         "@thi.ng/errors": "^0.1.2"
     },
     "keywords": [
