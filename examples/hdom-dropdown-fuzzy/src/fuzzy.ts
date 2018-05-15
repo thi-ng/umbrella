@@ -27,12 +27,12 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
     return () => {
         const state = { ...opts.state.deref() };
         const filter = opts.filter.deref().toLowerCase();
-        if (filter) {
+        if (filter && state.open) {
             state.items = [
                 ...iterator(
                     comp(
                         filterFuzzy(filter, (x: DropdownItem) => x[1].toLowerCase()),
-                        map(highlightMatches(filter, ctx.theme.fuzzy))
+                        map(([id, x]) => <DropdownItem>[id, highlightMatches(x, filter, ctx.theme.fuzzy)])
                     ),
                     state.items)
             ];
@@ -47,21 +47,19 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
     };
 };
 
-const highlightMatches = (filter: string, attribs: any) => {
+const highlightMatches = (x: string, filter: string, attribs: any) => {
     filter = filter.toLowerCase();
-    return ([id, x]: DropdownItem) => {
-        const res: any[] = [];
-        let prev = -1;
-        for (let i = 0, j = 0, n = x.length - 1, m = filter.length; i <= n && j < m; i++) {
-            const c = x.charAt(i);
-            if (c.toLowerCase() == filter.charAt(j)) {
-                i - prev > 1 && res.push(x.substring(prev + 1, i));
-                res.push(["span", attribs, c]);
-                prev = i;
-                j++;
-            }
+    const res: any[] = [];
+    let prev = -1, n = x.length - 1, m = filter.length;
+    for (let i = 0, j = 0; i <= n && j < m; i++) {
+        const c = x.charAt(i);
+        if (c.toLowerCase() === filter.charAt(j)) {
+            i - prev > 1 && res.push(x.substring(prev + 1, i));
+            res.push(["span", attribs, c]);
+            prev = i;
+            j++;
         }
-        res.push(x.substr(prev + 1));
-        return <DropdownItem>[id, res];
-    };
-}
+    }
+    prev < n && res.push(x.substr(prev + 1));
+    return res;
+};
