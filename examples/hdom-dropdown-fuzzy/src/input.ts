@@ -1,6 +1,6 @@
 import { Path } from "@thi.ng/api/api";
-import { getIn } from "@thi.ng/paths";
 import { IView } from "@thi.ng/atom/api";
+import { getIn } from "@thi.ng/paths";
 
 export interface InputArgs {
     state: IView<any>;

@@ -1,5 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { ReadonlyAtom } from "@thi.ng/atom/api";
+import { isString } from "@thi.ng/checks";
 import { appLink } from "@thi.ng/hdom-components/link";
 import { EV_SET_VALUE, EV_TOGGLE_VALUE } from "@thi.ng/interceptors/api";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
@@ -18,6 +19,7 @@ export interface DropdownArgs {
     attribs: IObjectOf<any>;
     hoverLabel: any;
     openLabel: any;
+    noItems: any;
     onmouseover: EventListener;
     onmouseleave: EventListener;
 }
@@ -26,8 +28,10 @@ export interface DropdownState {
     open: boolean;
     hover: boolean;
     selected: any;
-    items: [any, any][];
+    items: DropdownItem[];
 }
+
+export type DropdownItem = [any, any];
 
 export interface DropdownTheme {
     root: IObjectOf<any>;
@@ -35,6 +39,7 @@ export interface DropdownTheme {
     bodyClosed: IObjectOf<any>;
     item: IObjectOf<any>;
     itemSelected: IObjectOf<any>;
+    itemDisabled: IObjectOf<any>;
 }
 
 export function dropdown(themeCtxPath: Path) {
@@ -49,9 +54,17 @@ export function dropdown(themeCtxPath: Path) {
             ["div", ui.root,
                 [appLink, { ...hattribs, ...ui.itemSelected }, opts.ontoggle, opts.openLabel || opts.hoverLabel],
                 ["div", ui.bodyOpen,
-                    state.items.map(
-                        (x) => appLink(null, x[0] === state.selected ? ui.itemSelected : ui.item, opts.onchange(x[0]), x[1])
-                    )]] :
+                    state.items.length ?
+                        state.items.map(
+                            (x) =>
+                                ["a",
+                                    {
+                                        ...x[0] === state.selected ? ui.itemSelected : ui.item,
+                                        onclick: opts.onchange(x[0]),
+                                    },
+                                    ...(isString(x[1]) ? [x[1]] : x[1])]
+                        ) :
+                        ["span", ui.itemDisabled, opts.noItems]]] :
             ["div", ui.root,
                 [appLink, { ...hattribs, ...ui.item }, opts.ontoggle,
                     state.hover ?
