@@ -111,18 +111,21 @@ describe("hdom", () => {
     );
 
     it("life cycle", () => {
+        let src: any = { render: () => ["div"] };
         let res: any = ["div", {}];
+        res.__this = src;
         res.__init = res.__release = undefined;
         res.__args = [null];
         assert.deepEqual(
-            normalizeTree([{ render: () => ["div"] }], null, [], false, false),
+            normalizeTree([src], null, [], false, false),
             res
         );
         res = ["div", { key: "0" }];
+        res.__this = src;
         res.__init = res.__release = undefined;
         res.__args = [null];
         assert.deepEqual(
-            normalizeTree([{ render: () => ["div"] }], null, [0], true, false),
+            normalizeTree([src], null, [0], true, false),
             res
         );
     });
