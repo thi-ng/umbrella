@@ -56,10 +56,6 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
     if ((i = prev.__release) && i !== curr.__release) {
         releaseDeep(prev);
     }
-    if ((i = curr.__init) && i != prev.__init) {
-        // DEBUG && console.log("call __init", curr);
-        i.apply(curr, [el, ...(curr.__args)]);
-    }
     if (edits[1][0] !== 0) {
         diffAttributes(el, prev[1], curr[1]);
     }
@@ -108,6 +104,10 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
                 }
             }
         }
+    }
+    if ((i = curr.__init) && i != prev.__init) {
+        // DEBUG && console.log("call __init", curr);
+        i.apply(curr, [el, ...(curr.__args)]);
     }
 }
 
