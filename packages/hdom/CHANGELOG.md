@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.23"></a>
+## [3.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.22...@thi.ng/hdom@3.0.23) (2018-05-15)
+
+
+### Bug Fixes
+
+* **hdom:** delay init() lifecycle call to ensure children are available ([2482b16](https://github.com/thi-ng/umbrella/commit/2482b16))
+
+
+
+
 <a name="3.0.22"></a>
 ## [3.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.21...@thi.ng/hdom@3.0.22) (2018-05-14)
 
