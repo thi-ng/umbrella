@@ -2,6 +2,7 @@
 
 [![Travis status](https://api.travis-ci.org/thi-ng/umbrella.svg?branch=master)](https://travis-ci.org/thi-ng/umbrella)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org/)
+[![Discord chat](https://img.shields.io/discord/445761008837984256.svg)](https://discord.gg/JhYcmBw)
 
 Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
 data / transformation oriented packages and building blocks reactive
