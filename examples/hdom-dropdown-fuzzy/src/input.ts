@@ -10,34 +10,41 @@ export interface InputArgs {
     oninput: EventListener;
     oncancel: EventListener;
     onconfirm: EventListener;
+    onblur: EventListener;
 }
 
 export function cancelableInput(themeCtxPath: Path) {
-    return (_, args: InputArgs) => [{
-        init: (el) => el.focus(),
-        render: (ctx) =>
-            ["input",
-                {
-                    ...getIn(ctx, themeCtxPath),
-                    ...args.attribs,
-                    type: "text",
-                    oninput: args.oninput,
-                    onkeydown: (e: KeyboardEvent) => {
-                        switch (e.key) {
-                            case "Escape":
-                                args.oncancel && args.oncancel(e);
-                                (<HTMLElement>e.target).blur();
-                                break;
-                            case "Enter":
-                                args.onconfirm && args.onconfirm(e);
-                                (<HTMLInputElement>e.target).blur();
-                                break;
-                            default:
-                        }
+    return {
+        init: (el: HTMLElement) => (<HTMLElement>el.firstChild).focus(),
+        render: (ctx, args: InputArgs) =>
+            ["span.relative",
+                ["input",
+                    {
+                        ...getIn(ctx, themeCtxPath),
+                        ...args.attribs,
+                        type: "text",
+                        oninput: args.oninput,
+                        onblur: args.onblur,
+                        onkeydown: (e: KeyboardEvent) => {
+                            switch (e.key) {
+                                case "Escape":
+                                    args.oncancel && args.oncancel(e);
+                                    (<HTMLElement>e.target).blur();
+                                    break;
+                                case "Enter":
+                                    // case "Tab":
+                                    args.onconfirm && args.onconfirm(e);
+                                    (<HTMLInputElement>e.target).blur();
+                                    break;
+                                default:
+                            }
+                        },
+                        placeholder: args.placeholder,
+                        value: args.state
                     },
-                    placeholder: args.placeholder,
-                    value: args.state
-                }
+                ],
+                ["i.absolute.fas.fa-times-circle.gray.f7",
+                    { style: { right: "0.5rem", top: "0.25rem" } }]
             ]
-    }];
+    };
 }

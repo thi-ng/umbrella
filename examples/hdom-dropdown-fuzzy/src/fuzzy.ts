@@ -17,12 +17,13 @@ export interface FuzzyArgs {
 }
 
 export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
+    const close = () => ctx.bus.dispatch([EV_SET_VALUE, [opts.state.path + ".open", false]]);
     const filterInput = [opts.input, {
         state: opts.filter.deref(),
         placeholder: opts.placeholder,
         oninput: (e) => ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, e.target.value]]),
-        oncancel: () => ctx.bus.dispatch([EV_SET_VALUE, [opts.state.path + ".open", false]]),
-        onconfirm: () => ctx.bus.dispatch([EV_SET_VALUE, [opts.state.path + ".open", false]])
+        oncancel: close,
+        onconfirm: close,
     }];
     return () => {
         const state = { ...opts.state.deref() };
@@ -32,7 +33,11 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
                 ...iterator(
                     comp(
                         filterFuzzy(filter, (x: DropdownItem) => x[1].toLowerCase()),
-                        map(([id, x]) => <DropdownItem>[id, highlightMatches(x, filter, ctx.theme.fuzzy)])
+                        map(([id, x]) =>
+                            <DropdownItem>[
+                                id,
+                                highlightMatches((y) => ["span", ctx.theme.fuzzy, y], x, filter)
+                            ])
                     ),
                     state.items)
             ];
@@ -47,15 +52,14 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
     };
 };
 
-const highlightMatches = (x: string, filter: string, attribs: any) => {
-    filter = filter.toLowerCase();
+const highlightMatches = (fn: (x: string) => any, x: string, filter: string) => {
     const res: any[] = [];
     let prev = -1, n = x.length - 1, m = filter.length;
     for (let i = 0, j = 0; i <= n && j < m; i++) {
         const c = x.charAt(i);
         if (c.toLowerCase() === filter.charAt(j)) {
             i - prev > 1 && res.push(x.substring(prev + 1, i));
-            res.push(["span", attribs, c]);
+            res.push(fn(c));
             prev = i;
             j++;
         }

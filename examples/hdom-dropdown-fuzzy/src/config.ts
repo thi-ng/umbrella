@@ -212,7 +212,7 @@ export const theme = {
         class: "fl w-100 w-50-ns w-33-l pa2"
     },
     input: {
-        class: "bg-transparent w-100 ba"
+        class: "bg-transparent w-100 bn pa2"
     },
     dd: {
         root: { class: "" },

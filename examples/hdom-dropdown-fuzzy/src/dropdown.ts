@@ -51,7 +51,7 @@ export function dropdown(themeCtxPath: Path) {
             onmouseleave: opts.onmouseleave,
         };
         return state.open ?
-            ["div", ui.root,
+            ["div", { ...ui.root, onkeydown: (e) => console.log(e) },
                 [appLink, { ...hattribs, ...ui.itemSelected }, opts.ontoggle, opts.openLabel || opts.hoverLabel],
                 ["div", ui.bodyOpen,
                     state.items.length ?
@@ -60,6 +60,7 @@ export function dropdown(themeCtxPath: Path) {
                                 ["a",
                                     {
                                         ...x[0] === state.selected ? ui.itemSelected : ui.item,
+                                        href: "#",
                                         onclick: opts.onchange(x[0]),
                                     },
                                     ...(isString(x[1]) ? [x[1]] : x[1])]
