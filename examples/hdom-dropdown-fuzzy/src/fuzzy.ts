@@ -22,6 +22,7 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
         state: opts.filter.deref(),
         placeholder: opts.placeholder,
         oninput: (e) => ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, e.target.value]]),
+        onclear: () => ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, ""]]),
         oncancel: close,
         onconfirm: close,
     }];

@@ -10,12 +10,14 @@ export interface InputArgs {
     oninput: EventListener;
     oncancel: EventListener;
     onconfirm: EventListener;
+    onclear: EventListener;
     onblur: EventListener;
 }
 
 export function cancelableInput(themeCtxPath: Path) {
+    let input;
     return {
-        init: (el: HTMLElement) => (<HTMLElement>el.firstChild).focus(),
+        init: (el: HTMLElement) => (input = <HTMLElement>el.firstChild).focus(),
         render: (ctx, args: InputArgs) =>
             ["span.relative",
                 ["input",
@@ -43,8 +45,19 @@ export function cancelableInput(themeCtxPath: Path) {
                         value: args.state
                     },
                 ],
-                ["i.absolute.fas.fa-times-circle.gray.f7",
-                    { style: { right: "0.5rem", top: "0.25rem" } }]
+                args.onclear ?
+                    ["a",
+                        {
+                            href: "#",
+                            onclick: (e) => {
+                                e.stopPropagation();
+                                input.focus();
+                                args.onclear(e);
+                            }
+                        },
+                        ["i.absolute.fas.fa-times-circle.gray.f7",
+                            { style: { right: "0.5rem", top: "0.25rem" } }]] :
+                    undefined
             ]
     };
 }
