@@ -57,9 +57,10 @@ export class Subscription<A, B> implements
      * Creates new child subscription with given subscriber and/or
      * transducer and optional subscription ID.
      */
-    subscribe(sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>
+    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>;
+    subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
     subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
-    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>
+    subscribe(sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
     subscribe(...args: any[]) {
         this.ensureState();
         let sub, xform, id;

@@ -46,9 +46,10 @@ export class Stream<T> extends Subscription<T, T>
         this.src = src;
     }
 
-    subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>
+    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
+    subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>
+    subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
     subscribe(...args: any[]) {
         const wrapped = super.subscribe.apply(this, args);
         if (this.subs.size === 1) {
