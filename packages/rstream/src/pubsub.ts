@@ -51,7 +51,7 @@ export interface PubSubOpts<A, B> {
  */
 export class PubSub<A, B> extends Subscription<A, B> {
 
-    topicfn: (x: B) => PropertyKey;
+    topicfn: (x: B) => any;
     topics: EquivMap<any, Subscription<B, B>>;
 
     constructor(opts?: PubSubOpts<A, B>) {
@@ -82,6 +82,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 
     subscribeTopic<C>(topicID: any, tx: Transducer<B, C>, id?: string): Subscription<B, C>;
+    // subscribeTopic<S extends Subscription<B, C>, C>(topicID: any, sub: S): S;
     subscribeTopic<C>(topicID: any, sub: Subscription<B, C>): Subscription<B, C>;
     subscribeTopic(topicID: any, sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
     subscribeTopic(topicID: any, sub: any, id?: string): Subscription<any, any> {
@@ -109,7 +110,6 @@ export class PubSub<A, B> extends Subscription<A, B> {
             return super.unsubscribe();
         }
         unsupported();
-        return false;
     }
 
     done() {
