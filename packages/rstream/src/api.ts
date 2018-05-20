@@ -25,8 +25,10 @@ export interface ISubscribable<T> extends
     IDeref<T>,
     IID<string> {
 
-    subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
     subscribe<C>(sub: Partial<ISubscriber<T>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
+    // subscribe<S extends Subscription<T, C>, C>(sub: S): S;
+    subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
+    subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
     subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
     unsubscribe(sub?: Partial<ISubscriber<T>>): boolean;
     getState(): State;
