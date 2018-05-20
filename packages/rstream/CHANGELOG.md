@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.6.14...@thi.ng/rstream@1.7.0) (2018-05-20)
+
+
+### Bug Fixes
+
+* **rstream:** minor update PubSub topic fn return type ([cbc600e](https://github.com/thi-ng/umbrella/commit/cbc600e))
+
+
+### Features
+
+* **rstream:** re-implement bisect() using PubSub, update tests ([846aaf9](https://github.com/thi-ng/umbrella/commit/846aaf9))
+* **rstream:** update resolve(), update subscribe() overrides ([23fdd39](https://github.com/thi-ng/umbrella/commit/23fdd39))
+
+
+
+
 <a name="1.6.14"></a>
 ## [1.6.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.6.13...@thi.ng/rstream@1.6.14) (2018-05-14)
 
