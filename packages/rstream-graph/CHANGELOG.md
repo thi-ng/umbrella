@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@1.0.17...@thi.ng/rstream-graph@1.1.0) (2018-05-21)
+
+
+### Features
+
+* **rstream-graph:** update types, initGraph(), node1(), add tests ([0818498](https://github.com/thi-ng/umbrella/commit/0818498))
+
+
+
+
 <a name="1.0.17"></a>
 ## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@1.0.16...@thi.ng/rstream-graph@1.0.17) (2018-05-20)
 
