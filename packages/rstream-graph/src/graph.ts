@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { IAtom } from "@thi.ng/atom/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { resolveMap } from "@thi.ng/resolve-map";
@@ -26,7 +26,7 @@ import { GraphSpec, NodeFactory, NodeSpec } from "./api";
 export const initGraph = (state: IAtom<any>, nodes: GraphSpec): IObjectOf<ISubscribable<any>> => {
     for (let id in nodes) {
         const n = nodes[id];
-        if (!implementsFunction(n, "subscribe")) {
+        if (isPlainObject(n)) {
             (<any>nodes)[id] = nodeFromSpec(state, <NodeSpec>nodes[id], id);
         }
     }

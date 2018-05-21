@@ -3,14 +3,23 @@ import { Path } from "@thi.ng/paths";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { Transducer } from "@thi.ng/transducers/api";
 
+/**
+ * A function which constructs and returns an `ISubscribable` using
+ * given object of inputs and node ID. See `node()` and `node1()`.
+ */
 export type NodeFactory<T> = (src: IObjectOf<ISubscribable<any>>, id: string) => ISubscribable<T>;
 
 /**
  * A dataflow graph spec is simply an object where keys are node names
- * and their values are either `ISubscribable`s or NodeSpec's, defining
- * inputs and the operation to be applied to produce a result stream.
+ * and their values are either pre-existing @thi.ng/rstream
+ * `ISubscribable`s, functions returning `ISubscribable`s or
+ * `NodeSpec`s, defining inputs and the operation to be applied to
+ * produce a result stream.
  */
-export type GraphSpec = IObjectOf<ISubscribable<any> | NodeSpec>;
+export type GraphSpec = IObjectOf<
+    NodeSpec |
+    ISubscribable<any> |
+    ((resolve: (path: string) => any) => ISubscribable<any>)>;
 
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
