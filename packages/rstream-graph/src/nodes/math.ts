@@ -39,7 +39,7 @@ export const mul: NodeFactory<number> = node(
 /**
  * Subtraction node.
  *
- * Inputs: 2
+ * Inputs: `a`, `b`
  */
 export const sub: NodeFactory<number> =
     node(map((ports: IObjectOf<number>) => ports.a - ports.b), ["a", "b"]);
@@ -47,7 +47,7 @@ export const sub: NodeFactory<number> =
 /**
  * Division node.
  *
- * Inputs: 2
+ * Inputs: `a`, `b`
  */
 export const div: NodeFactory<number> =
     node(map((ports: IObjectOf<number>) => ports.a / ports.b), ["a", "b"]);

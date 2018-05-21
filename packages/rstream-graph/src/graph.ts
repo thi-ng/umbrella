@@ -1,5 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { IAtom } from "@thi.ng/atom/api";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { resolveMap } from "@thi.ng/resolve-map";
@@ -7,10 +9,9 @@ import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromView } from "@thi.ng/rstream/from/view";
 import { StreamSync, sync } from "@thi.ng/rstream/stream-sync";
-import { Subscription } from "@thi.ng/rstream/subscription";
 import { Transducer } from "@thi.ng/transducers/api";
 
-import { NodeFactory, NodeSpec } from "./api";
+import { GraphSpec, NodeFactory, NodeSpec } from "./api";
 
 /**
  * Dataflow graph initialization function. Takes an object of
@@ -22,9 +23,12 @@ import { NodeFactory, NodeSpec } from "./api";
  * @param state
  * @param nodes
  */
-export const initGraph = (state: IAtom<any>, nodes: IObjectOf<NodeSpec>): IObjectOf<ISubscribable<any>> => {
+export const initGraph = (state: IAtom<any>, nodes: GraphSpec): IObjectOf<ISubscribable<any>> => {
     for (let id in nodes) {
-        (<any>nodes)[id] = nodeFromSpec(state, nodes[id], id);
+        const n = nodes[id];
+        if (!implementsFunction(n, "subscribe")) {
+            (<any>nodes)[id] = nodeFromSpec(state, <NodeSpec>nodes[id], id);
+        }
     }
     return resolveMap(nodes);
 };
@@ -51,13 +55,11 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve
         if (i.path) {
             s = fromView(state, i.path);
         } else if (i.stream) {
-            s = isString(i.stream) ?
-                resolve(i.stream) :
-                (<any>i).stream(resolve);
+            s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
         } else if (i.const) {
-            s = fromIterableSync([i.const]);
+            s = fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const]);
         } else {
-            illegalArgs(`invalid node spec`);
+            illegalArgs(`invalid node input: ${id}`);
         }
         if (i.xform) {
             s = s.subscribe(i.xform, id);
@@ -66,10 +68,12 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve
     }
     const node = spec.fn(src, id);
     if (spec.out) {
-        if (isString(spec.out)) {
-            ((path) => node.subscribe({ next: (x) => state.resetIn(path, x) }, `out-${id}`))(spec.out);
-        } else {
+        if (isFunction(spec.out)) {
             spec.out(node);
+        } else {
+            ((path) => node.subscribe({
+                next: (x) => state.resetIn(path, x)
+            }, `out-${id}`))(spec.out);
         }
     }
     return node;
@@ -109,10 +113,10 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, inputIDs?: string[]
  * @param xform
  * @param inputID
  */
-export const node1 = (xform: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
-    (src: IObjectOf<ISubscribable<any>>, id: string): Subscription<any, any> => {
+export const node1 = (xform?: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
+    (src: IObjectOf<ISubscribable<any>>, id: string): ISubscribable<any> => {
         ensureInputs(src, [inputID], id);
-        return src[inputID].subscribe(xform, id);
+        return xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe(null, id);
     };
 
 /**

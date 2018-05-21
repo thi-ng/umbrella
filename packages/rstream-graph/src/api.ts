@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+import { Path } from "@thi.ng/paths";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { Transducer } from "@thi.ng/transducers/api";
 
@@ -6,10 +7,10 @@ export type NodeFactory<T> = (src: IObjectOf<ISubscribable<any>>, id: string) =>
 
 /**
  * A dataflow graph spec is simply an object where keys are node names
- * and their values are NodeSpec's, defining inputs and the operation to
- * be applied to produce a result stream.
+ * and their values are either `ISubscribable`s or NodeSpec's, defining
+ * inputs and the operation to be applied to produce a result stream.
  */
-export type GraphSpec = IObjectOf<NodeSpec>;
+export type GraphSpec = IObjectOf<ISubscribable<any> | NodeSpec>;
 
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
@@ -41,18 +42,22 @@ export interface NodeSpec {
  *
  * ```
  * { path: "nested.src.path" }
+ * { path: ["nested", "src", "path"] }
  * ```
  *
- * 2) Reference another node in the GraphSpec object:
+ * 2) Reference path to another node in the GraphSpec object. See
+ *    `@thi.ng/resolve-map` for details.
  *
  * ```
- * { stream: "node-id" }
+ * { stream: "/path/to/node-id" } // absolute
+ * { stream: "../../path/to/node-id" } // relative
+ * { stream: "node-id" } // sibling
  * ```
  *
  * 3) Reference another node indirectly. The passed in `resolve`
  *    function can be used to lookup other nodes, e.g. the following
  *    spec looks up node "src" and adds a transformed subscription,
- *    which is then used as input for current node
+ *    which is then used as input for current node.
  *
  * ```
  * { stream: (resolve) => resolve("src").subscribe(map(x => x * 10)) }
@@ -68,6 +73,7 @@ export interface NodeSpec {
  *
  * ```
  * { const: 1 }
+ * { const: () => 1 }
  * ```
  *
  * If the optional `xform` is given, a subscription with the transducer
@@ -75,10 +81,10 @@ export interface NodeSpec {
  */
 export interface NodeInput {
     id?: string;
-    path?: string;
+    path?: Path;
     stream?: string | ((resolve) => ISubscribable<any>);
-    const?: any;
+    const?: any | ((resolve) => any);
     xform?: Transducer<any, any>;
 }
 
-export type NodeOutput = string | ((node: ISubscribable<any>) => void);
+export type NodeOutput = Path | ((node: ISubscribable<any>) => void);
