@@ -50,7 +50,10 @@ export interface CursorOpts<T> {
     id?: string;
 }
 
-export interface IHistory<T> extends IAtom<T> {
+export interface IHistory<T> extends
+    IAtom<T>,
+    api.INotify {
+
     canUndo(): boolean;
     canRedo(): boolean;
 
