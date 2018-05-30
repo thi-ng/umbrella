@@ -1,4 +1,5 @@
-import { Predicate2, Watch } from "@thi.ng/api/api";
+import { Event, Predicate2, Watch } from "@thi.ng/api/api";
+import * as mixin from "@thi.ng/api/mixins/inotify";
 import { equiv } from "@thi.ng/equiv";
 import {
     getIn,
@@ -21,10 +22,17 @@ import { View } from "./view";
  * `IAtom` interface and so can be used directly in place and delegates
  * to wrapped atom/cursor. Value changes are only recorded in history if
  * `changed` predicate returns truthy value, or else by calling
- * `record()` directly.
+ * `record()` directly. This class too implements the @thi.ng/api
+ * `INotify` interface to support event listeners for `undo()`, `redo()`
+ * and `record()`.
  */
+@mixin.INotify
 export class History<T> implements
     IHistory<T> {
+
+    static readonly EVENT_UNDO = "undo";
+    static readonly EVENT_REDO = "redo";
+    static readonly EVENT_RECORD = "record";
 
     state: IAtom<T>;
     maxLen: number;
@@ -67,11 +75,21 @@ export class History<T> implements
      * switch, first records the atom's current value into the future
      * stack (to enable `redo()` feature). Returns `undefined` if
      * there's no history.
+     *
+     * If undo was possible, the `History.EVENT_UNDO` event is emitted
+     * after the restoration with both the `prev` and `curr` (restored)
+     * states provided as event value (and object with these two keys).
+     * This allows for additional state handling to be executed, e.g.
+     * application of the "Command pattern". See `addListener()` for
+     * registering event listeners.
      */
     undo() {
         if (this.history.length) {
-            this.future.push(this.state.deref());
-            return this.state.reset(this.history.pop());
+            const prev = this.state.deref();
+            this.future.push(prev);
+            const curr = this.state.reset(this.history.pop());
+            this.notify({ id: History.EVENT_UNDO, value: { prev, curr } });
+            return curr;
         }
     }
 
@@ -81,11 +99,21 @@ export class History<T> implements
      * switch, first records the atom's current value into the history
      * stack (to enable `undo()` feature). Returns `undefined` if
      * there's no future (so sad!).
+     *
+     * If redo was possible, the `History.EVENT_REDO` event is emitted
+     * after the restoration with both the `prev` and `curr` (restored)
+     * states provided as event value (and object with these two keys).
+     * This allows for additional state handling to be executed, e.g.
+     * application of the "Command pattern". See `addListener()` for
+     * registering event listeners.
      */
     redo() {
         if (this.future.length) {
-            this.history.push(this.state.deref());
-            return this.state.reset(this.future.pop());
+            const prev = this.state.deref();
+            this.history.push(prev);
+            const curr = this.state.reset(this.future.pop());
+            this.notify({ id: History.EVENT_REDO, value: { prev, curr } });
+            return curr;
         }
     }
 
@@ -140,30 +168,34 @@ export class History<T> implements
      * manually managing snapshots, i.e. when applying multiple swaps on
      * the wrapped atom directly, but not wanting to create an history
      * entry for each change. **DO NOT call this explicitly if using
-     * `History.reset()` / `History.swap()`**.
+     * `History.reset()` / `History.swap()` etc.**
      *
      * If no `state` is given, uses the wrapped atom's current state
-     * value.
+     * value (user code SHOULD always call without arg).
+     *
+     * If recording succeeded, the `History.EVENT_RECORD` event is
+     * emitted with the recorded state provided as event value.
      *
      * @param state
      */
     record(state?: T) {
         const history = this.history;
         const n = history.length;
-        if (n >= this.maxLen) {
-            history.shift();
-        }
+        let ok = true;
         // check for arg given and not if `state == null` we want to
         // allow null/undefined as possible values
         if (!arguments.length) {
             state = this.state.deref();
-            if (!n || this.changed(history[n - 1], state)) {
-                history.push(state);
-            }
-        } else {
-            history.push(state);
+            ok = (!n || this.changed(history[n - 1], state));
         }
-        this.future.length = 0;
+        if (ok) {
+            if (n >= this.maxLen) {
+                history.shift();
+            }
+            history.push(state);
+            this.notify({ id: History.EVENT_RECORD, value: state });
+            this.future.length = 0;
+        }
     }
 
     /**
@@ -213,5 +245,16 @@ export class History<T> implements
         this.state.release();
         delete this.state;
         return true;
+    }
+
+    addListener(id: string, fn: (e: Event) => void, scope?: any): boolean {
+        return false;
+    }
+
+    removeListener(id: string, fn: (e: Event) => void, scope?: any): boolean {
+        return false;
+    }
+
+    notify(event: Event): void {
     }
 }
