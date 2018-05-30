@@ -77,17 +77,19 @@ export class History<T> implements
      * there's no history.
      *
      * If undo was possible, the `History.EVENT_UNDO` event is emitted
-     * after the restoration with the restored state provided as event
-     * value. This allows for additional state handling to be executed,
-     * e.g. application of the Command pattern. See `addListener()` for
+     * after the restoration with both the `prev` and `curr` (restored)
+     * states provided as event value (and object with these two keys).
+     * This allows for additional state handling to be executed, e.g.
+     * application of the "Command pattern". See `addListener()` for
      * registering event listeners.
      */
     undo() {
         if (this.history.length) {
-            this.future.push(this.state.deref());
-            const res = this.state.reset(this.history.pop());
-            this.notify({ id: History.EVENT_UNDO, value: res });
-            return res;
+            const prev = this.state.deref();
+            this.future.push(prev);
+            const curr = this.state.reset(this.history.pop());
+            this.notify({ id: History.EVENT_UNDO, value: { prev, curr } });
+            return curr;
         }
     }
 
@@ -99,17 +101,19 @@ export class History<T> implements
      * there's no future (so sad!).
      *
      * If redo was possible, the `History.EVENT_REDO` event is emitted
-     * after the restoration with the restored state provided as event
-     * value. This allows for additional state handling to be executed,
-     * e.g. application of the Command pattern. See `addListener()` for
+     * after the restoration with both the `prev` and `curr` (restored)
+     * states provided as event value (and object with these two keys).
+     * This allows for additional state handling to be executed, e.g.
+     * application of the "Command pattern". See `addListener()` for
      * registering event listeners.
      */
     redo() {
         if (this.future.length) {
-            this.history.push(this.state.deref());
-            const res = this.state.reset(this.future.pop());
-            this.notify({ id: History.EVENT_REDO, value: res });
-            return res;
+            const prev = this.state.deref();
+            this.history.push(prev);
+            const curr = this.state.reset(this.future.pop());
+            this.notify({ id: History.EVENT_REDO, value: { prev, curr } });
+            return curr;
         }
     }
 
@@ -164,10 +168,10 @@ export class History<T> implements
      * manually managing snapshots, i.e. when applying multiple swaps on
      * the wrapped atom directly, but not wanting to create an history
      * entry for each change. **DO NOT call this explicitly if using
-     * `History.reset()` / `History.swap()`**.
+     * `History.reset()` / `History.swap()` etc.**
      *
      * If no `state` is given, uses the wrapped atom's current state
-     * value.
+     * value (user code SHOULD always call without arg).
      *
      * If recording succeeded, the `History.EVENT_RECORD` event is
      * emitted with the recorded state provided as event value.
@@ -177,22 +181,21 @@ export class History<T> implements
     record(state?: T) {
         const history = this.history;
         const n = history.length;
-        if (n >= this.maxLen) {
-            history.shift();
-        }
+        let ok = true;
         // check for arg given and not if `state == null` we want to
         // allow null/undefined as possible values
         if (!arguments.length) {
             state = this.state.deref();
-            if (!n || this.changed(history[n - 1], state)) {
-                history.push(state);
-                this.notify({ id: History.EVENT_RECORD, value: state });
+            ok = (!n || this.changed(history[n - 1], state));
+        }
+        if (ok) {
+            if (n >= this.maxLen) {
+                history.shift();
             }
-        } else {
             history.push(state);
             this.notify({ id: History.EVENT_RECORD, value: state });
+            this.future.length = 0;
         }
-        this.future.length = 0;
     }
 
     /**
