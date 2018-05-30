@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.3.13...@thi.ng/atom@1.4.0) (2018-05-30)
+
+
+### Features
+
+* **atom:** add INotify impl for History ([9422598](https://github.com/thi-ng/umbrella/commit/9422598))
+* **atom:** provide prev/curr states to history event listeners ([7ac6227](https://github.com/thi-ng/umbrella/commit/7ac6227))
+
+
+
+
 <a name="1.3.13"></a>
 ## [1.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@1.3.12...@thi.ng/atom@1.3.13) (2018-05-14)
 
