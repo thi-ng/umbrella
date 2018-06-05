@@ -16,6 +16,7 @@
         "webpack-dev-server": "^3.1.4"
     },
     "scripts": {
+        "bootstrap": "lerna bootstrap",
         "build": "yarn install && lerna -v && lerna bootstrap && lerna run build --sort",
         "cover": "lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
