@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@1.1.2...@thi.ng/rstream-graph@2.0.0) (2018-06-06)
+
+
+### Features
+
+* **rstream-graph:** add full/optional support for multiple node outputs ([f2e0df2](https://github.com/thi-ng/umbrella/commit/f2e0df2))
+* **rstream-graph:** update NodeOutput, support multiple handlers ([be21c4c](https://github.com/thi-ng/umbrella/commit/be21c4c))
+
+
+### BREAKING CHANGES
+
+* **rstream-graph:** update NodeSpec format & graph initialization
+
+- add new types/interfaces
+- non-destructive initGraph() behavior
+- update & refactor nodeFromSpec()
+- update addNode/removeNode()
+- update tests & docs
+
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@1.1.1...@thi.ng/rstream-graph@1.1.2) (2018-05-30)
 
