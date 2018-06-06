@@ -7,6 +7,8 @@ import { getIn, mutIn } from "@thi.ng/paths";
 
 const SEMAPHORE = Symbol("SEMAPHORE");
 
+export type LookupPath = PropertyKey[];
+
 /**
  * Visits all key-value pairs in depth-first order for given object or
  * array, expands any reference values, mutates the original object and
@@ -63,13 +65,13 @@ const SEMAPHORE = Symbol("SEMAPHORE");
  *
  * @param obj
  */
-export const resolveMap = (obj: any, root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
+export const resolveMap = (obj: any, root?: any, path: LookupPath = [], resolved: any = {}) => {
     root = root || obj;
     for (let k in obj) {
         _resolve(root, [...path, k], resolved);
     }
     return obj;
-}
+};
 
 /**
  * Like `resolveMap`, but for arrays.
@@ -79,15 +81,15 @@ export const resolveMap = (obj: any, root?: any, path: PropertyKey[] = [], resol
  * @param path
  * @param resolved
  */
-const resolveArray = (arr: any[], root?: any, path: PropertyKey[] = [], resolved: any = {}) => {
+const resolveArray = (arr: any[], root?: any, path: LookupPath = [], resolved: any = {}) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
         _resolve(root, [...path, k], resolved);
     }
     return arr;
-}
+};
 
-const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
+const _resolve = (root: any, path: LookupPath, resolved: any) => {
     let v = getIn(root, path), rv = SEMAPHORE;
     const pp = path.join("/");
     if (!resolved[pp]) {
@@ -107,9 +109,17 @@ const _resolve = (root: any, path: PropertyKey[], resolved: any) => {
         resolved[pp] = true;
     }
     return v;
-}
+};
 
-const absPath = (curr: PropertyKey[], q: string, idx = 1): PropertyKey[] => {
+/**
+ * Takes the path for the current key and a lookup path string. Converts
+ * the possibly relative lookup path into its absolute form.
+ *
+ * @param curr
+ * @param q
+ * @param idx
+ */
+export const absPath = (curr: LookupPath, q: string, idx = 1): PropertyKey[] => {
     if (q.charAt(idx) === "/") {
         return q.substr(idx + 1).split("/");
     }
@@ -125,4 +135,4 @@ const absPath = (curr: PropertyKey[], q: string, idx = 1): PropertyKey[] => {
     }
     !curr.length && illegalArgs(`invalid lookup path`);
     return curr;
-}
+};
