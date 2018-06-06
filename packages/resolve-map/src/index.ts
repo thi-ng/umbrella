@@ -93,15 +93,16 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
     let rv = SEMAPHORE;
     let v = getIn(root, path);
     const pp = path.join("/");
+    console.log("resolve", pp, resolved[pp]);
     if (!resolved[pp]) {
-        if (isString(v) && v.charAt(0) === "@") {
-            rv = _resolve(root, absPath(path, v), resolved);
-        } else if (isPlainObject(v)) {
+        if (isPlainObject(v)) {
             resolveMap(v, root, path, resolved);
         } else if (isArray(v)) {
             _resolveArray(v, root, path, resolved);
+        } else if (isString(v) && v.charAt(0) === "@") {
+            rv = _resolvePath(root, absPath(path, v), resolved);
         } else if (isFunction(v)) {
-            rv = v((p: string) => _resolveDeep(root, absPath(path, p, 0), resolved));
+            rv = v((p: string) => _resolvePath(root, absPath(path, p, 0), resolved));
         }
         if (rv !== SEMAPHORE) {
             mutIn(root, path, rv);
@@ -113,12 +114,16 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
 };
 
 /**
- * Repeatedly calls `_resolve` stepwise descending along given path.
- * This is to ensure resolution of deep values created by functions at
- * parent tree levels. E.g. given:
+ * If the value at given path is still unresolved, repeatedly calls
+ * `_resolve` by stepwise descending along given path and returns final
+ * value. This is to ensure full resolution of deeper values created by
+ * functions at intermediate tree levels. If the path is already marked
+ * as resolved, returns its value.
+ *
+ * E.g. given:
  *
  * ```
- * {a: () => ({b: {c: 1}}), d: ($) => $("/a/b/c") }
+ * {a: () => ({b: {c: 1}}), d: "@/a/b/c" }
  * =>
  * { a: { b: { c: 1 } }, d: 1 }
  * ```
@@ -127,7 +132,10 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
  * @param path
  * @param resolved
  */
-const _resolveDeep = (root: any, path: LookupPath, resolved: any) => {
+const _resolvePath = (root: any, path: LookupPath, resolved: any) => {
+    if (resolved[path.join("/")]) {
+        return getIn(root, path);
+    }
     let v;
     for (let i = 1, n = path.length; i <= n; i++) {
         v = _resolve(root, path.slice(0, i), resolved);
@@ -140,23 +148,23 @@ const _resolveDeep = (root: any, path: LookupPath, resolved: any) => {
  * the possibly relative lookup path into its absolute form.
  *
  * @param curr
- * @param q
+ * @param path
  * @param idx
  */
-export const absPath = (curr: LookupPath, q: string, idx = 1): PropertyKey[] => {
-    if (q.charAt(idx) === "/") {
-        return q.substr(idx + 1).split("/");
+export const absPath = (curr: LookupPath, path: string, idx = 1): PropertyKey[] => {
+    if (path.charAt(idx) === "/") {
+        return path.substr(idx + 1).split("/");
     }
     curr = curr.slice(0, curr.length - 1);
-    const sub = q.substr(idx).split("/");
+    const sub = path.substr(idx).split("/");
     for (let i = 0, n = sub.length; i < n; i++) {
         if (sub[i] === "..") {
-            !curr.length && illegalArgs(`invalid lookup path`);
+            !curr.length && illegalArgs(`invalid lookup path: ${path}`);
             curr.pop();
         } else {
             return curr.concat(sub.slice(i));
         }
     }
-    !curr.length && illegalArgs(`invalid lookup path`);
+    !curr.length && illegalArgs(`invalid lookup path: ${path}`);
     return curr;
 };
