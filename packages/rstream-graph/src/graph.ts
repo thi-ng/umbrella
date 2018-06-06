@@ -4,107 +4,185 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { resolveMap } from "@thi.ng/resolve-map";
+import { getIn } from "@thi.ng/paths";
+import { absPath, resolveMap } from "@thi.ng/resolve-map";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromView } from "@thi.ng/rstream/from/view";
 import { StreamSync, sync } from "@thi.ng/rstream/stream-sync";
 import { Transducer } from "@thi.ng/transducers/api";
 
-import { GraphSpec, NodeFactory, NodeSpec, NodeOutput } from "./api";
+import {
+    Graph,
+    GraphSpec,
+    NodeFactory,
+    NodeInputs,
+    NodeInputSpec,
+    NodeOutputs,
+    NodeOutputSpec,
+    NodeSpec
+} from "./api";
 
 /**
- * Dataflow graph initialization function. Takes an object of
- * NodeSpec's, calls `nodeFromSpec` for each and then recursively
- * resolves references via `@thi.ng/resolve-map/resolveMap`. Returns
- * updated graph object (mutates in-place, original specs are replaced
- * by stream constructs).
+ * Dataflow graph initialization function. Takes a state Atom (or `null`
+ * if not needed) and an object of `NodeSpec` values or functions
+ * returning `Node` objects. Calls `nodeFromSpec` for each spec and then
+ * recursively resolves references via thi.ng/resolve-map `resolveMap`.
+ * Returns new initialized graph object of `Node` objects and
+ * `@thi.ng/rstream` stream constructs. Does NOT mutate original
+ * `GraphSpec` object.
  *
  * @param state
- * @param nodes
+ * @param spec
  */
-export const initGraph = (state: IAtom<any>, nodes: GraphSpec): IObjectOf<ISubscribable<any>> => {
-    for (let id in nodes) {
-        const n = nodes[id];
-        if (isPlainObject(n)) {
-            (<any>nodes)[id] = nodeFromSpec(state, <NodeSpec>nodes[id], id);
+export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
+    const res: Graph = {}
+    for (let id in spec) {
+        const n = spec[id];
+        if (isNodeSpec(n)) {
+            res[id] = <any>nodeFromSpec(state, <NodeSpec>spec[id], id);
+        } else {
+            res[id] = <any>n;
         }
     }
-    return resolveMap(nodes);
+    return resolveMap(res);
 };
 
+const isNodeSpec = (x: any): x is NodeSpec =>
+    isPlainObject(x) && isFunction((<any>x).fn);
+
 /**
- * Transforms a single NodeSpec into a lookup function for `resolveMap`
- * (which is called from `initGraph`). When that function is called,
- * recursively resolves all specified input streams and calls this
- * spec's `fn` to produce a new stream from these inputs. If the spec
- * includes the optional `out` key, it also executes the provided
- * function, or if the value is a string, adds a subscription to this
- * node's result stream which then updates the provide state atom at the
- * path defined by `out`. Returns an ISubscribable.
+ * Transforms a single `NodeSpec` into a lookup function for
+ * `resolveMap` (which is called from `initGraph`). When that function
+ * is called, recursively resolves all specified input streams and calls
+ * this spec's `fn` to produce a new stream from these inputs.
+ *
+ * If the spec includes the optional `outs` keys, it also creates the
+ * subscriptions for each of the given output keys, which then can be
+ * used as inputs by other nodes. Each value in the `outs` subspec can
+ * be a function or state path (string/number/array, see thi.ng/paths).
+ * Functions are called with this node's constructed stream/subscribable
+ * and the output id and must return a new `ISubscribable`. For path
+ * values a subscription is added to this node's result stream which
+ * then updates the provided state atom at the path given.
+ *
+ * Non-function output specs subs assume the raw node output value is an
+ * object from which the different output keys are being extracted.
+ * The special `*` output key can be used to handle the entire node
+ * output value.
+ *
+ * ```
+ * out: {
+ *   // fn output spec
+ *   // creates new sub which uses `pick` transducer to
+ *   // select key `a` from main node output
+ *   a: (node, id) => node.subscribe({}, pick(id)),
+ *
+ *   // yields sub of `b` key's values extracted from main output
+ *   // and also stores them at given path in state atom
+ *   b: "foo.b"
+ *
+ *   // yields sub with same value as main node output and
+ *   // stores vals in state atom at given path
+ *   "*": "foo.main"
+ * }
+ * ```
  *
  * See `api.ts` for further details and possible spec variations.
  *
+ * @param state
  * @param spec
+ * @param id
  */
 const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve) => {
-    const src: IObjectOf<ISubscribable<any>> = {};
-    for (let id in spec.ins) {
+    const ins = prepareNodeInputs(spec.ins, state, resolve);
+    const node = spec.fn(ins, id);
+    const outs = prepareNodeOutputs(spec.outs, node, state, id);
+    return { ins, node, outs };
+};
+
+const prepareNodeInputs = (ins: IObjectOf<NodeInputSpec>, state: IAtom<any>, resolve: (x: string) => any) => {
+    const res: NodeInputs = {};
+    if (!ins) return res;
+    for (let id in ins) {
         let s;
-        const i = spec.ins[id];
+        const i = ins[id];
         if (i.path) {
             s = fromView(state, i.path);
-        } else if (i.stream) {
+        }
+        else if (i.stream) {
             s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
-        } else if (i.const) {
+        }
+        else if (i.const) {
             s = fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const]);
-        } else {
+        }
+        else {
             illegalArgs(`invalid node input: ${id}`);
         }
         if (i.xform) {
             s = s.subscribe(i.xform, id);
         }
-        src[id] = s;
+        res[id] = s;
     }
-    const node = spec.fn(src, id);
-    prepareNodeOutputs(spec.out, node, state, id);
-    return node;
-};
+    return res;
+}
 
-const prepareNodeOutputs = (out: NodeOutput, node: ISubscribable<any>, state: IAtom<any>, id: string) => {
-    if (out) {
-        if (isFunction(out)) {
-            out(node);
-        }
-        else if (isPlainObject(out)) {
-            for (let oid in out) {
-                const o = out[oid];
-                if (isFunction(o)) {
-                    o(node);
-                } else {
-                    ((path, oid) => node.subscribe({
-                        next: (x) => state.resetIn(path, x[oid])
-                    }, `out-${id}-${oid}`))(o, oid);
-                }
-            }
-        }
-        else {
-            ((path) => node.subscribe({
+const prepareNodeOutputs = (outs: IObjectOf<NodeOutputSpec>, node: ISubscribable<any>, state: IAtom<any>, nodeID: string) => {
+    const res: NodeOutputs = {};
+    if (!outs) return res;
+    for (let id in outs) {
+        const o = outs[id];
+        if (isFunction(o)) {
+            res[id] = o(node, id);
+        } else if (id == "*") {
+            res[id] = ((path) => node.subscribe({
                 next: (x) => state.resetIn(path, x)
-            }, `out-${id}`))(out);
+            }, `out-${nodeID}`))(o);
+        } else {
+            res[id] = ((path, id) => node.subscribe({
+                next: (x) => state.resetIn(path, x[id])
+            }, `out-${nodeID}-${id}`))(o, id);
         }
     }
+    return res;
 };
 
-export const addNode = (graph: IObjectOf<ISubscribable<any>>, state: IAtom<any>, id: string, spec: NodeSpec) =>
-    graph[id] = nodeFromSpec(state, spec, id)((nodeID) => graph[nodeID]);
-
-export const removeNode = (graph: IObjectOf<ISubscribable<any>>, id: string) => {
+/**
+ * Compiles given `NodeSpec` and adds it to graph. Returns compiled
+ * `Node` object for the given spec. Throws error if the graph already
+ * contains a node with given `id`.
+ *
+ * @param graph
+ * @param state
+ * @param id
+ * @param spec
+ */
+export const addNode = (graph: Graph, state: IAtom<any>, id: string, spec: NodeSpec) => {
     if (graph[id]) {
-        graph[id].unsubscribe();
+        illegalArgs(`graph already contains a node with ID: ${id}`);
+    }
+    graph[id] = nodeFromSpec(state, spec, id)((path) => getIn(graph, absPath([id], path)));
+}
+
+/**
+ * Calls `.unsubscribe()` on given node and all of its outputs, then
+ * removes it from graph. Returns `false` if no node exists for given
+ * `id`.
+ *
+ * @param graph
+ * @param id
+ */
+export const removeNode = (graph: Graph, id: string) => {
+    const node = graph[id];
+    if (node) {
+        node.node.unsubscribe();
+        for (let id in node.outs) {
+            node.outs[id].unsubscribe();
+        }
         delete graph[id];
         return true;
     }
+    return false;
 };
 
 /**
@@ -133,7 +211,9 @@ export const node = (xform: Transducer<IObjectOf<any>, any>, inputIDs?: string[]
 export const node1 = (xform?: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
     (src: IObjectOf<ISubscribable<any>>, id: string): ISubscribable<any> => {
         ensureInputs(src, [inputID], id);
-        return xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe(null, id);
+        return xform ?
+            src[inputID].subscribe(xform, id) :
+            src[inputID].subscribe(null, id);
     };
 
 /**

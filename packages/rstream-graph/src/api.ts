@@ -7,7 +7,17 @@ import { Transducer } from "@thi.ng/transducers/api";
  * A function which constructs and returns an `ISubscribable` using
  * given object of inputs and node ID. See `node()` and `node1()`.
  */
-export type NodeFactory<T> = (src: IObjectOf<ISubscribable<any>>, id: string) => ISubscribable<T>;
+export type NodeFactory<T> = (src: NodeInputs, id: string) => ISubscribable<T>;
+
+export type NodeInputs = IObjectOf<ISubscribable<any>>;
+export type NodeOutputs = IObjectOf<ISubscribable<any>>;
+export type Graph = IObjectOf<Node>;
+
+export interface Node {
+    ins: NodeInputs;
+    outs: NodeOutputs;
+    node: ISubscribable<any>;
+}
 
 /**
  * A dataflow graph spec is simply an object where keys are node names
@@ -18,8 +28,8 @@ export type NodeFactory<T> = (src: IObjectOf<ISubscribable<any>>, id: string) =>
  */
 export type GraphSpec = IObjectOf<
     NodeSpec |
-    ISubscribable<any> |
-    ((resolve: (path: string) => any) => ISubscribable<any>)>;
+    Node |
+    ((resolve: (path: string) => any) => Node)>;
 
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
@@ -33,13 +43,13 @@ export type GraphSpec = IObjectOf<
  * are implemented as `StreamSync` instances and the input IDs are used
  * to locally rename input streams within the `StreamSync` container.
  *
- * See `initGraph` and `nodeFromSpec` for more details (in
- * /src/nodes.ts)
+ * Alo see `initGraph` and `nodeFromSpec` (in /src/nodes.ts) for more
+ * details how these specs are compiled into stream constructs.
  */
 export interface NodeSpec {
     fn: NodeFactory<any>;
-    ins: IObjectOf<NodeInput>;
-    out?: NodeOutput;
+    ins: IObjectOf<NodeInputSpec>;
+    outs?: IObjectOf<NodeOutputSpec>;
 }
 
 /**
@@ -88,7 +98,7 @@ export interface NodeSpec {
  * If the optional `xform` is given, a subscription with the transducer
  * is added to the input and then used as input instead.
  */
-export interface NodeInput {
+export interface NodeInputSpec {
     id?: string;
     path?: Path;
     stream?: string | ((resolve) => ISubscribable<any>);
@@ -96,7 +106,6 @@ export interface NodeInput {
     xform?: Transducer<any, any>;
 }
 
-export type NodeOutput =
-    Path |
-    ((node: ISubscribable<any>) => void) |
-    IObjectOf<Path | ((node: ISubscribable<any>) => void)>;
+export type NodeOutputSpec = Path | NodeOutputFn;
+
+export type NodeOutputFn = (node: ISubscribable<any>, id: PropertyKey) => ISubscribable<any>;
