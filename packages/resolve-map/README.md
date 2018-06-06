@@ -47,22 +47,43 @@ resolveMap({a: 1, b: {c: "@d", d: "@/a"} })
 // { a: 1, b: { c: 1, d: 1 } }
 ```
 
-If a value is a function, it is called with a single arg `resolve`, a
-function which accepts a path (**without `@` prefix**) to look up other
-values. The return value of the user provided function is used as final
-value for that key. This mechanism can be used to compute derived values
-of other values stored anywhere in the root object. **Function values
-will always be called only once.** Therefore, in order to associate a
-function as value to a key, it needs to be wrapped with an additional
-function, as shown for the `e` key in the example below. Similarly, if
-an actual string value should happen to start with `@`, it needs to be
-wrapped in a function (see `f` key below).
+If a value is a function, it is called using two possible conventions:
+
+1) If the user function uses ES6 object destructuring for its first
+   argument, the given object keys are resolved prior to calling the
+   function and the resolved values provided as first argument and a
+   general `resolve` function as second argument.
+2) If no de-structure form is found in the function's arguments, the
+   function is only called with `resolve` as argument.
+
+**Important:** Since ES6 var names can't contain special characters,
+destructured keys are ALWAYS looked up as siblings of the currently
+processed value.
+
+```ts
+// `c` uses ES6 destructuring form to look up `a` & `b` values
+{a: 1, b: 2, c: ({a,b}) => a + b }
+=>
+// { a: 1, b: 2, c: 3 }
+```
+
+The single arg `resolve` function accepts a path (**without `@`
+prefix**) to look up any other values in the object. The return value of
+the user provided function is used as final value for that key in the
+object. This mechanism can be used to compute derived values of other
+values stored anywhere in the root object. **Function values will always
+be called only once.** Therefore, in order to associate a function as
+final value to a key, it MUST be wrapped with an additional function, as
+shown for the `e` key in the example below. Similarly, if an actual
+string value should happen to start with `@`, it needs to be wrapped in
+a function (see `f` key below).
 
 ```ts
 // `a` is derived from 1st array element in `b.d`
 // `b.c` is looked up from `b.d[0]`
 // `b.d[1]` is derived from calling `e(2)`
 // `e` is a wrapped function
+// `f` is wrapped to ignore `@` prefix
 res = resolveMap({
   a: (resolve) => resolve("b/c") * 100,
   b: { c: "@d/0", d: [2, (resolve) => resolve("../../e")(2) ] },
@@ -107,27 +128,22 @@ import * as tx from "@thi.ng/transducers";
 // provided later
 const stats = {
     // sequence average
-    mean: ($) => tx.reduce(tx.mean(), $("src")),
+    mean: ({src}) => tx.reduce(tx.mean(), src),
     // sequence range
-    range: ($) => $("max") - $("min"),
+    range: ({min,max}) => max - min,
     // computes sequence min val
-    min: ($) => tx.reduce(tx.min(), $("src")),
+    min: ({src}) => tx.reduce(tx.min(), src),
     // computes sequence max val
-    max: ($) => tx.reduce(tx.max(), $("src")),
+    max: ({src}) => tx.reduce(tx.max(), src),
     // sorted copy
-    sorted: ($) => [...$("src")].sort((a, b) => a - b),
+    sorted: ({src}) => [...src].sort((a, b) => a - b),
     // standard deviation
-    sd: ($)=> {
-        const src = $("src");
-        const mean = $("mean");
-        return Math.sqrt(
+    sd: ({src, mean})=>
+        Math.sqrt(
             tx.transduce(tx.map((x) => Math.pow(x - mean, 2)), tx.add(), src) /
-            (src.length - 1)
-        );
-    },
+            (src.length - 1)),
     // compute 10th - 90th percentiles
-    percentiles: ($) => {
-        const sorted = $("sorted");
+    percentiles: ({sorted}) => {
         return tx.transduce(
             tx.map((x) => sorted[Math.floor(x / 100 * sorted.length)]),
             tx.push(),

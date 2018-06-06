@@ -1,4 +1,6 @@
+import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
+
 import { resolveMap } from "../src/index";
 
 describe("resolve-map", () => {
@@ -65,5 +67,34 @@ describe("resolve-map", () => {
             { a: 1, b: { c: 1, d: 1 }, e: 1 }
         );
         assert.equal(n, 1);
-    })
+    });
+
+    it("destructure", () => {
+        const stats = {
+            // sequence average
+            mean: ({ src }) => tx.reduce(tx.mean(), src),
+            // sequence range
+            range: ({ min, max }) => max - min,
+            // computes sequence min val
+            min: ({ src }) => tx.reduce(tx.min(), src),
+            // computes sequence max val
+            max: ({ src }) => tx.reduce(tx.max(), src),
+            // sorted copy
+            sorted: ({ src }) => [...src].sort((a, b) => a - b),
+            // standard deviation
+            sd: ({ src, mean }) =>
+                Math.sqrt(
+                    tx.transduce(tx.map((x: number) => Math.pow(x - mean, 2)), tx.add(), src) /
+                    (src.length - 1)),
+            // compute 10th - 90th percentiles
+            percentiles: ({ sorted }) => {
+                return tx.transduce(
+                    tx.map((x: number) => sorted[Math.floor(x / 100 * sorted.length)]),
+                    tx.push(),
+                    tx.range(10, 100, 5)
+                );
+            }
+        };
+        console.log(resolveMap({ ...stats, src: () => [1, 6, 7, 2, 4, 11, -3] }));
+    });
 });

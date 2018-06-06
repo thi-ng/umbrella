@@ -7,6 +7,10 @@ import { getIn, mutIn } from "@thi.ng/paths";
 
 const SEMAPHORE = Symbol("SEMAPHORE");
 
+const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,]+)\}/
+
+export type ResolveFn = (path: string) => any;
+
 export type LookupPath = PropertyKey[];
 
 /**
@@ -30,13 +34,35 @@ export type LookupPath = PropertyKey[];
  * // { a: 1, b: { c: 1, d: 1 } }
  * ```
  *
- * If a value is a function, it is called with a single arg `resolve`, a
- * function which accepts a path (**without `@` prefix**) to look up
- * other values. The return value of the user provided function is used
- * as final value for that key. This mechanism can be used to compute
+ * If a value is a function, it is called using two possible
+ * conventions:
+ *
+ * 1) If the user function uses ES6 object destructuring for its first
+ *    argument, the given object keys are resolved prior to calling the
+ *    function and the resolved values provided as first argument and a
+ *    general `resolve` function as second argument.
+ * 2) If no de-structure form is found in the function's arguments, the
+ *    function is only called with `resolve` as argument.
+ *
+ * **Important:** Since ES6 var names can't contain special characters,
+ * destructured keys are ALWAYS looked up as siblings of the currently
+ * processed value.
+ *
+ * ```
+ * // `c` uses ES6 destructuring form to look up `a` & `b` values
+ * {a: 1, b: 2, c: ({a,b}) => a + b }
+ * =>
+ * // { a: 1, b: 2, c: 3 }
+ * ```
+ *
+ * The single arg `resolve` function accepts a path (**without `@`
+ * prefix**) to look up any other values in the object.
+ *
+ * The return value of the user provided function is used as final value
+ * for that key in the object. This mechanism can be used to compute
  * derived values of other values stored anywhere in the root object.
  * **Function values will always be called only once.** Therefore, in
- * order to associate a function as value to a key, it needs to be
+ * order to associate a function as final value to a key, it MUST be
  * wrapped with an additional function, as shown for the `e` key in the
  * example below. Similarly, if an actual string value should happen to
  * start with `@`, it needs to be wrapped in a function (see `f` key
@@ -93,8 +119,10 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
     let rv = SEMAPHORE;
     let v = getIn(root, path);
     const pp = path.join("/");
-    console.log("resolve", pp, resolved[pp]);
     if (!resolved[pp]) {
+        if (pp.length > 1) {
+            resolved[path.slice(0, path.length - 1).join("/")] = true;
+        }
         if (isPlainObject(v)) {
             resolveMap(v, root, path, resolved);
         } else if (isArray(v)) {
@@ -102,7 +130,7 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
         } else if (isString(v) && v.charAt(0) === "@") {
             rv = _resolvePath(root, absPath(path, v), resolved);
         } else if (isFunction(v)) {
-            rv = v((p: string) => _resolvePath(root, absPath(path, p, 0), resolved));
+            rv = _resolveFunction(v, (p: string) => _resolvePath(root, absPath(path, p, 0), resolved));
         }
         if (rv !== SEMAPHORE) {
             mutIn(root, path, rv);
@@ -111,6 +139,31 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
         resolved[pp] = true;
     }
     return v;
+};
+
+/**
+ * Resolution helper for function values. Checks if the user function
+ * uses ES6 object destructuring for its first argument and if so
+ * resolves the given keys before calling the function and provides
+ * their values as first arg. If no de-structure form is found, calls
+ * function only with `resolve` as argument.
+ *
+ * See `resolveMap` comments for further details.
+ *
+ * @param fn
+ * @param resolve
+ */
+const _resolveFunction = (fn: (x: any, r?: ResolveFn) => any, resolve: ResolveFn) => {
+    const match = RE_ARGS.exec(fn.toString());
+    if (match) {
+        const args = {};
+        for (let k of match[2].replace(/\s/g, "").split(/,/g)) {
+            args[k] = resolve(k);
+        }
+        return fn(args, resolve);
+    } else {
+        return fn(resolve);
+    }
 };
 
 /**
