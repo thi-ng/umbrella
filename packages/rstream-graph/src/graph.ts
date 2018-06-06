@@ -15,6 +15,7 @@ import { Transducer } from "@thi.ng/transducers/api";
 import {
     Graph,
     GraphSpec,
+    Node,
     NodeFactory,
     NodeInputs,
     NodeInputSpec,
@@ -67,15 +68,15 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * then updates the provided state atom at the path given.
  *
  * Non-function output specs subs assume the raw node output value is an
- * object from which the different output keys are being extracted.
- * The special `*` output key can be used to handle the entire node
- * output value.
+ * object from which the different output keys are being extracted. The
+ * special `*` output key can be used to handle the entire node output
+ * value. This is useful/required for non-object node result values.
  *
  * ```
  * out: {
  *   // fn output spec
  *   // creates new sub which uses `pick` transducer to
- *   // select key `a` from main node output
+ *   // select key `a` from main node output (assumed to be object)
  *   a: (node, id) => node.subscribe({}, pick(id)),
  *
  *   // yields sub of `b` key's values extracted from main output
@@ -94,12 +95,13 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * @param spec
  * @param id
  */
-const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve) => {
-    const ins = prepareNodeInputs(spec.ins, state, resolve);
-    const node = spec.fn(ins, id);
-    const outs = prepareNodeOutputs(spec.outs, node, state, id);
-    return { ins, node, outs };
-};
+const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) =>
+    (resolve) => {
+        const ins = prepareNodeInputs(spec.ins, state, resolve);
+        const node = spec.fn(ins, id);
+        const outs = prepareNodeOutputs(spec.outs, node, state, id);
+        return { ins, node, outs };
+    };
 
 const prepareNodeInputs = (ins: IObjectOf<NodeInputSpec>, state: IAtom<any>, resolve: (x: string) => any) => {
     const res: NodeInputs = {};
@@ -157,11 +159,13 @@ const prepareNodeOutputs = (outs: IObjectOf<NodeOutputSpec>, node: ISubscribable
  * @param id
  * @param spec
  */
-export const addNode = (graph: Graph, state: IAtom<any>, id: string, spec: NodeSpec) => {
+export const addNode = (graph: Graph, state: IAtom<any>, id: string, spec: NodeSpec): Node => {
     if (graph[id]) {
         illegalArgs(`graph already contains a node with ID: ${id}`);
     }
-    graph[id] = nodeFromSpec(state, spec, id)((path) => getIn(graph, absPath([id], path)));
+    return graph[id] = nodeFromSpec(state, spec, id)(
+        (path) => getIn(graph, absPath([id], path))
+    );
 }
 
 /**
