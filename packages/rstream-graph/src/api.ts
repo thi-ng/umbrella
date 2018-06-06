@@ -23,8 +23,8 @@ export interface Node {
  * A dataflow graph spec is simply an object where keys are node names
  * and their values are either pre-existing @thi.ng/rstream
  * `ISubscribable`s, functions returning `ISubscribable`s or
- * `NodeSpec`s, defining inputs and the operation to be applied to
- * produce a result stream.
+ * `NodeSpec`s, defining a node's inputs, outputs and the operation to
+ * be applied to produce one or more result streams.
  */
 export type GraphSpec = IObjectOf<
     NodeSpec |
@@ -33,15 +33,17 @@ export type GraphSpec = IObjectOf<
 
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
- * are actually streams (or just generally any form of @thi.ng/rstream
- * subscription), usually with an associated transducer to transform /
- * combine the inputs and produce values for the node's result stream.
+ * are actually streams / qsubscriptions (or just generally any form of
+ * @thi.ng/rstream `ISubscribable`), usually with an associated
+ * transducer to transform / combine the inputs and produce values for
+ * the node's result stream.
  *
- * The `fn` function is responsible to produce such a stream construct.
- * The keys used to specify inputs in the `ins` object are dictated by
- * the actual node `fn` used. Most node functions with multiple inputs
- * are implemented as `StreamSync` instances and the input IDs are used
- * to locally rename input streams within the `StreamSync` container.
+ * The `fn` function is responsible to produce such a stream transformer
+ * construct. The keys used to specify inputs in the `ins` object are
+ * dictated by the actual node `fn` used. Most node functions with
+ * multiple inputs are implemented as `StreamSync` instances and the
+ * input IDs are used to locally rename input streams within the
+ * `StreamSync` container.
  *
  * Alo see `initGraph` and `nodeFromSpec` (in /src/nodes.ts) for more
  * details how these specs are compiled into stream constructs.
@@ -64,22 +66,23 @@ export interface NodeSpec {
  * { path: ["nested", "src", "path"] }
  * ```
  *
- * 2) Reference path to another node in the GraphSpec object. See
- *    `@thi.ng/resolve-map` for details.
+ * 2) Reference path to another node's output in the GraphSpec object.
+ *    See `@thi.ng/resolve-map` for details.
  *
  * ```
- * { stream: "/path/to/node-id" } // absolute
- * { stream: "../../path/to/node-id" } // relative
- * { stream: "node-id" } // sibling
+ * { stream: "/node-id/node" } // main node output
+ * { stream: "/node-id/outs/foo" } // specific output
  * ```
  *
  * 3) Reference another node indirectly. The passed in `resolve`
- *    function can be used to lookup other nodes, e.g. the following
- *    spec looks up node "src" and adds a transformed subscription,
- *    which is then used as input for current node.
+ *    function can be used to lookup other nodes, with the same logic as
+ *    above. E.g. the following spec looks up the main output of node
+ *    "abc" and adds a transformed subscription, which is then used as
+ *    input for current node.
  *
  * ```
- * { stream: (resolve) => resolve("src").subscribe(map(x => x * 10)) }
+ * { stream: (resolve) =>
+ *     resolve("/abc/node").subscribe(map(x => x * 10)) }
  * ```
  *
  * 4) Provide an external input stream:
@@ -95,8 +98,8 @@ export interface NodeSpec {
  * { const: () => 1 }
  * ```
  *
- * If the optional `xform` is given, a subscription with the transducer
- * is added to the input and then used as input instead.
+ * If the optional `xform` is given, a subscription with the given
+ * transducer is added to the input and then used as input instead.
  */
 export interface NodeInputSpec {
     id?: string;

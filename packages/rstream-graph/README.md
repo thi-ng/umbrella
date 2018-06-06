@@ -12,7 +12,10 @@ Declarative, reactive dataflow graph construction using
 [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom) and [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 primitives.
 
-Stream subscription types act as graph nodes and attached transducers as graph edges, transforming data for downstream consumers / nodes. Theoretically, allows cycles and is not restricted to DAG topologies, but care must be taken to avoid CPU hogging (user's responsibility).
+Stream subscription types act as graph nodes and attached transducers as
+graph edges, transforming data for downstream consumers / nodes.
+Theoretically, allows cycles and is not restricted to DAG topologies,
+but care must be taken to avoid CPU hogging (user's responsibility).
 
 ## Installation
 
@@ -67,7 +70,7 @@ const graph = rsg.initGraph(state, {
     mul: {
         fn: rsg.mul,
         ins: {
-            a: { stream: "add" },
+            a: { stream: "/add/node" },
             b: { stream: () => rs.fromIterable([10, 20, 30]) }
         },
     }
@@ -87,7 +90,8 @@ setTimeout(() => state.resetIn("a", 10), 1000);
 // result: 360
 ```
 
-Please documentation in the source code for further details.
+Please see documentation in the source code & test cases for further
+details.
 
 ## Authors
 
