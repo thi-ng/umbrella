@@ -32,22 +32,24 @@ export function initDataflow(bus: EventBus) {
         rotation: {
             fn: rotate,
             ins: {
-                shapes: { stream: "grid" },
+                shapes: { stream: "/grid/node" },
                 theta: { path: paths.THETA },
             },
         },
         svg: {
             fn: createSVG,
             ins: {
-                shapes: { stream: "rotation" },
+                shapes: { stream: "/rotation/node" },
                 cols: { path: paths.COLS },
                 rows: { path: paths.ROWS },
                 stroke: { path: paths.STROKE },
             },
             // dispatch SVG result doc as event
-            out: (node) => node.subscribe({
-                next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg])
-            })
+            outs: {
+                "*": (node) => node.subscribe({
+                    next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg])
+                })
+            }
         }
     });
     return graph;

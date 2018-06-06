@@ -59,7 +59,7 @@ const graph = initGraph(db, {
     mpos: {
         fn: extract([1, "pos"]),
         ins: { src: { stream: () => gestures } },
-        out: "mpos"
+        outs: { "*": "mpos" }
     },
 
     // extracts last click position from gesture tuple
@@ -68,7 +68,7 @@ const graph = initGraph(db, {
     clickpos: {
         fn: extract([1, "click"]),
         ins: { src: { stream: () => gestures } },
-        out: "clickpos"
+        outs: { "*": "clickpos" }
     },
 
     // extracts & computes length of `delta` vector in gesture tuple
@@ -83,7 +83,7 @@ const graph = initGraph(db, {
             }
         )),
         ins: { src: { stream: () => gestures } },
-        out: "dist"
+        outs: { "*": "dist" }
     },
 
     // combines `clickpos`, `dist` and `color` streams to produce a
@@ -101,11 +101,11 @@ const graph = initGraph(db, {
                     undefined
         )),
         ins: {
-            click: { stream: "clickpos" },
-            radius: { stream: "radius" },
-            color: { stream: "color" },
+            click: { stream: "/clickpos/node" },
+            radius: { stream: "/radius/node" },
+            color: { stream: "/color/node" },
         },
-        out: "circle"
+        outs: { "*": "circle" }
     },
 
     // produces a new random color for each new drag gesture (and
@@ -119,8 +119,8 @@ const graph = initGraph(db, {
             dedupe(equiv),
             map((x) => x && colors.next().value)
         )),
-        ins: { src: { stream: "clickpos" } },
-        out: "color"
+        ins: { src: { stream: "/clickpos/node" } },
+        outs: { "*": "color" }
     },
 
     // transforms a `requestAnimationFrame` event stream (frame counter @ 60fps)
@@ -128,7 +128,7 @@ const graph = initGraph(db, {
     sine: {
         fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
         ins: { src: { stream: () => raf } },
-        out: "sin"
+        outs: { "*": "sin" }
     },
 
     // multiplies `dist` and `sine` streams to produce an animated
@@ -136,10 +136,10 @@ const graph = initGraph(db, {
     radius: {
         fn: mul,
         ins: {
-            a: { stream: "sine" },
-            b: { stream: "dist" }
+            a: { stream: "/sine/node" },
+            b: { stream: "/dist/node" }
         },
-        out: "radius"
+        outs: { "*": "radius" }
     }
 });
 
@@ -152,7 +152,7 @@ start("app", () =>
         // since all @thi.ng/rstream subscriptions implement the
         // @thi.ng/api/IDeref interface (like several other types, e.g.
         // @thi.ng/atom's Atom, Cursor, View etc.)
-        graph.circle
+        graph.circle.node
     ]);
 
 // create a GraphViz DOT file of the entire dataflow graph
