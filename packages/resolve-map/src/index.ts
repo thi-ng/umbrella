@@ -81,7 +81,7 @@ export const resolveMap = (obj: any, root?: any, path: LookupPath = [], resolved
  * @param path
  * @param resolved
  */
-const resolveArray = (arr: any[], root?: any, path: LookupPath = [], resolved: any = {}) => {
+const _resolveArray = (arr: any[], root?: any, path: LookupPath = [], resolved: any = {}) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
         _resolve(root, [...path, k], resolved);
@@ -90,7 +90,8 @@ const resolveArray = (arr: any[], root?: any, path: LookupPath = [], resolved: a
 };
 
 const _resolve = (root: any, path: LookupPath, resolved: any) => {
-    let v = getIn(root, path), rv = SEMAPHORE;
+    let rv = SEMAPHORE;
+    let v = getIn(root, path);
     const pp = path.join("/");
     if (!resolved[pp]) {
         if (isString(v) && v.charAt(0) === "@") {
@@ -98,15 +99,38 @@ const _resolve = (root: any, path: LookupPath, resolved: any) => {
         } else if (isPlainObject(v)) {
             resolveMap(v, root, path, resolved);
         } else if (isArray(v)) {
-            resolveArray(v, root, path, resolved);
+            _resolveArray(v, root, path, resolved);
         } else if (isFunction(v)) {
-            rv = v((p: string) => _resolve(root, absPath(path, p, 0), resolved));
+            rv = v((p: string) => _resolveDeep(root, absPath(path, p, 0), resolved));
         }
         if (rv !== SEMAPHORE) {
             mutIn(root, path, rv);
             v = rv;
         }
         resolved[pp] = true;
+    }
+    return v;
+};
+
+/**
+ * Repeatedly calls `_resolve` stepwise descending along given path.
+ * This is to ensure resolution of deep values created by functions at
+ * parent tree levels. E.g. given:
+ *
+ * ```
+ * {a: () => ({b: {c: 1}}), d: ($) => $("/a/b/c") }
+ * =>
+ * { a: { b: { c: 1 } }, d: 1 }
+ * ```
+ *
+ * @param root
+ * @param path
+ * @param resolved
+ */
+const _resolveDeep = (root: any, path: LookupPath, resolved: any) => {
+    let v;
+    for (let i = 1, n = path.length; i <= n; i++) {
+        v = _resolve(root, path.slice(0, i), resolved);
     }
     return v;
 };
