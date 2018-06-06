@@ -11,7 +11,7 @@ import { fromView } from "@thi.ng/rstream/from/view";
 import { StreamSync, sync } from "@thi.ng/rstream/stream-sync";
 import { Transducer } from "@thi.ng/transducers/api";
 
-import { GraphSpec, NodeFactory, NodeSpec } from "./api";
+import { GraphSpec, NodeFactory, NodeSpec, NodeOutput } from "./api";
 
 /**
  * Dataflow graph initialization function. Takes an object of
@@ -67,16 +67,33 @@ const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (resolve
         src[id] = s;
     }
     const node = spec.fn(src, id);
-    if (spec.out) {
-        if (isFunction(spec.out)) {
-            spec.out(node);
-        } else {
+    prepareNodeOutputs(spec.out, node, state, id);
+    return node;
+};
+
+const prepareNodeOutputs = (out: NodeOutput, node: ISubscribable<any>, state: IAtom<any>, id: string) => {
+    if (out) {
+        if (isFunction(out)) {
+            out(node);
+        }
+        else if (isPlainObject(out)) {
+            for (let oid in out) {
+                const o = out[oid];
+                if (isFunction(o)) {
+                    o(node);
+                } else {
+                    ((path, oid) => node.subscribe({
+                        next: (x) => state.resetIn(path, x[oid])
+                    }, `out-${id}-${oid}`))(o, oid);
+                }
+            }
+        }
+        else {
             ((path) => node.subscribe({
                 next: (x) => state.resetIn(path, x)
-            }, `out-${id}`))(spec.out);
+            }, `out-${id}`))(out);
         }
     }
-    return node;
 };
 
 export const addNode = (graph: IObjectOf<ISubscribable<any>>, state: IAtom<any>, id: string, spec: NodeSpec) =>

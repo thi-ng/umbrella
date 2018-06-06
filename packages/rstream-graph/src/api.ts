@@ -96,4 +96,7 @@ export interface NodeInput {
     xform?: Transducer<any, any>;
 }
 
-export type NodeOutput = Path | ((node: ISubscribable<any>) => void);
+export type NodeOutput =
+    Path |
+    ((node: ISubscribable<any>) => void) |
+    IObjectOf<Path | ((node: ISubscribable<any>) => void)>;
