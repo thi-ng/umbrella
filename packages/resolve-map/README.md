@@ -12,6 +12,8 @@ values. This is useful for expressing complex configurations with
 derived values or computing interrelated values without having to
 specify the order of computations.
 
+**TL;DR go check out [the examples](#usage-examples)**
+
 It's common practice to use nested JS objects for configuration
 purposes. Frequently some values in the object are copies or derivatives
 of other values, which can lead to mistakes during refactoring and / or
