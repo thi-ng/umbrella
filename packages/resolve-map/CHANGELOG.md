@@ -3,7 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-      <a name="2.0.6"></a>
+  <a name="3.0.0"></a>
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.6...@thi.ng/resolve-map@3.0.0) (2018-06-07)
+
+
+### Features
+
+* **resolve-map:** add cycle detection, fix edge cases ([e61c3b5](https://github.com/thi-ng/umbrella/commit/e61c3b5))
+* **resolve-map:** add ES6 destructuring shorthands for function vals ([57f1ed5](https://github.com/thi-ng/umbrella/commit/57f1ed5))
+
+
+### BREAKING CHANGES
+
+* **resolve-map:** `resolveMap()` renamed to `resolve()`, update docs
+
+
+
+
+  <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.5...@thi.ng/resolve-map@2.0.6) (2018-06-06)
 
 
@@ -15,7 +32,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-      <a name="2.0.5"></a>
+<a name="2.0.5"></a>
 ## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.4...@thi.ng/resolve-map@2.0.5) (2018-05-14)
 
 

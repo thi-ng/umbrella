@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@2.0.0...@thi.ng/rstream-graph@2.0.1) (2018-06-07)
+
+
+### Bug Fixes
+
+* **rstream-graph:** rename `resolveMap` => `resolve` due to upstream changes ([0fc2305](https://github.com/thi-ng/umbrella/commit/0fc2305))
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@1.1.2...@thi.ng/rstream-graph@2.0.0) (2018-06-06)
 
