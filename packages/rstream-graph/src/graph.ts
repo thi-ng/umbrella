@@ -5,7 +5,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { getIn } from "@thi.ng/paths";
-import { absPath, resolveMap } from "@thi.ng/resolve-map";
+import { absPath, resolve } from "@thi.ng/resolve-map";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromView } from "@thi.ng/rstream/from/view";
@@ -28,7 +28,7 @@ import {
  * Dataflow graph initialization function. Takes a state Atom (or `null`
  * if not needed) and an object of `NodeSpec` values or functions
  * returning `Node` objects. Calls `nodeFromSpec` for each spec and then
- * recursively resolves references via thi.ng/resolve-map `resolveMap`.
+ * recursively resolves references via thi.ng/resolve-map `resolve`.
  * Returns new initialized graph object of `Node` objects and
  * `@thi.ng/rstream` stream constructs. Does NOT mutate original
  * `GraphSpec` object.
@@ -46,17 +46,17 @@ export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
             res[id] = <any>n;
         }
     }
-    return resolveMap(res);
+    return resolve(res);
 };
 
 const isNodeSpec = (x: any): x is NodeSpec =>
     isPlainObject(x) && isFunction((<any>x).fn);
 
 /**
- * Transforms a single `NodeSpec` into a lookup function for
- * `resolveMap` (which is called from `initGraph`). When that function
- * is called, recursively resolves all specified input streams and calls
- * this spec's `fn` to produce a new stream from these inputs.
+ * Transforms a single `NodeSpec` into a lookup function for `resolve`
+ * (which is called from `initGraph`). When that function is called,
+ * recursively resolves all specified input streams and calls this
+ * spec's `fn` to produce a new stream from these inputs.
  *
  * If the spec includes the optional `outs` keys, it also creates the
  * subscriptions for each of the given output keys, which then can be
