@@ -159,7 +159,7 @@ const stats = {
 
 // inject some source data to analyze
 
-// Note: we wrap the data as function to avoid `resolveMap`
+// Note: we wrap the data as function to avoid `resolve`
 // attempting to resolve each array item as well. this is
 // purely for performance reasons and would also work without
 // wrapping.
