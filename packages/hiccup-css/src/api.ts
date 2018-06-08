@@ -62,6 +62,10 @@ export interface CSSOpts {
      * Current tree depth. Internal use only. Ignore.
      */
     depth: number;
+    /**
+     * Optional scoping suffix for CSS classes
+     */
+    scope: string;
 }
 
 export const DEFAULT_VENDORS = [
