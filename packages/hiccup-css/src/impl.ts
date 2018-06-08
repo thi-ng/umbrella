@@ -4,6 +4,8 @@ import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { Transducer } from "@thi.ng/transducers/api";
+import { comp } from "@thi.ng/transducers/func/comp";
 import { permutations } from "@thi.ng/transducers/iter/permutations";
 import { repeat } from "@thi.ng/transducers/iter/repeat";
 import { str } from "@thi.ng/transducers/rfn/str";
@@ -17,11 +19,13 @@ const EMPTY = new Set<string>();
 
 const NO_SPACES = ":[";
 
-// like tx.comp(), but avoiding import to save space
-const xfSel = ((a, b) => (x) => a(b(x)))(
+const xfSel = comp(
     flatten(),
     map((x: string) => NO_SPACES.indexOf(x.charAt(0)) >= 0 ? x : " " + x)
 );
+
+const withScope = (xf: Transducer<any, any>, scope: string) =>
+    comp(xf, map((x) => isString(x) && x.indexOf(" .") == 0 ? x + scope : x));
 
 export function expand(acc: string[], parent: any[], rules: any[], opts: CSSOpts) {
     const n = rules.length;
@@ -34,7 +38,7 @@ export function expand(acc: string[], parent: any[], rules: any[], opts: CSSOpts
         } else if (isIterable(r) && !isString(r)) {
             expand(acc, makeSelector(parent, sel), [...r], opts);
         } else if ((isFn = isFunction(r)) || opts.fns[r]) {
-            if (i === 0) {
+            if (!parent.length) {
                 if (opts.fns[r]) {
                     opts.fns[r].apply(null, rules.slice(i + 1))(acc, opts);
                     return true;
@@ -64,16 +68,19 @@ export function expand(acc: string[], parent: any[], rules: any[], opts: CSSOpts
 }
 
 function makeSelector(parent: any[], curr: any[]) {
-    return parent.length ? [...permutations(parent, curr)] : curr;
+    return parent.length ?
+        [...permutations(parent, curr)] :
+        curr;
 }
 
 function formatRule(parent: any[], sel: any[], curr: any, opts: CSSOpts) {
     const f = opts.format;
     const space = indent(opts);
+    const xf = opts.scope ? withScope(xfSel, opts.scope) : xfSel;
     return [
         space,
         transduce(
-            map((sel: any[]) => transduce(xfSel, str(), isArray(sel) ? sel : [sel]).trim()),
+            map((sel: any[]) => transduce(xf, str(), isArray(sel) ? sel : [sel]).trim()),
             str(f.ruleSep),
             makeSelector(parent, sel)),
         f.declStart,
