@@ -4,6 +4,7 @@ export * from "./comment";
 export * from "./conditional";
 export * from "./css";
 export * from "./import";
+export * from "./inject";
 export * from "./keyframes";
 export * from "./media";
 export * from "./namespace";
