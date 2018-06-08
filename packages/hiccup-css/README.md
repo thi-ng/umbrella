@@ -18,10 +18,12 @@ structures, functions, iterators.
 - Uses JS object to define selector properties
   - Multiple objects per scope are combined automatically
 - Supports nested selectors and computes their cartesian products
+- Optional CSS class scoping
+- DOM stylesheet injection
 - Configurable auto-prefixed properties & vendor prefixes (disabled by
   default)
 - Automatically consumes embedded iterators
-- Supports embeded functions, either:
+- Supports embedded functions, either:
   - to define entire selector branches/scopes
   - to produce single selector items
   - to produce property values
@@ -158,7 +160,7 @@ css.css(
 }
 ```
 
-### Iterator support
+### Iterators & CSS class scoping
 
 ```typescript
 import * as tx from "@thi.ng/transducers";
@@ -176,40 +178,41 @@ css.css(
         tx.mapcat(tx.juxt(prop(".w", "width"), prop(".h", "height"))),
         tx.range(25, 101, 25)
     ),
-    { format: css.PRETTY }
+    // supply a scope ID (suffix) for all class names
+    { format: css.PRETTY, scope: "_xyz" }
 );
 ```
 
 ```css
-.w25 {
+.w25_xyz {
     width: 25%;
 }
 
-.h25 {
+.h25_xyz {
     height: 25%;
 }
 
-.w50 {
+.w50_xyz {
     width: 50%;
 }
 
-.h50 {
+.h50_xyz {
     height: 50%;
 }
 
-.w75 {
+.w75_xyz {
     width: 75%;
 }
 
-.h75 {
+.h75_xyz {
     height: 75%;
 }
 
-.w100 {
+.w100_xyz {
     width: 100%;
 }
 
-.h100 {
+.h100_xyz {
     height: 100%;
 }
 ```
@@ -388,6 +391,18 @@ css.css(
     }
 
 }
+```
+
+### DOM stylesheet injection
+
+CSS strings can be installed into the DOM `<head>` element via `injectStyleSheet()`:
+
+```ts
+css.injectStyleSheet(
+    css.css([
+        "body", { background: "#000", color: "#fff" }
+    ])
+);
 ```
 
 ### General function handling
