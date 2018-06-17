@@ -47,6 +47,7 @@ export interface ParseState extends FSMState {
     name: string;
     val: string;
     quote: string;
+    phase: number;
 }
 
 enum State {
@@ -63,6 +64,9 @@ enum State {
     MAYBE_INSTRUCTION,
     COMMENT,
     COMMENT_BODY,
+    DOCTYPE,
+    PROC_DECL,
+    PROC_END,
 }
 
 export const PARSER: FSMStateMap<ParseState, string, Event> = {
@@ -89,6 +93,10 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
             s.attribs = {};
         } else if (x === "!") {
             s.state = State.MAYBE_INSTRUCTION;
+        } else if (x === "?") {
+            s.state = State.PROC_DECL;
+            s.phase = 0;
+            s.body = "";
         } else {
             unexpected(x);
         }
@@ -135,10 +143,11 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
         if (x === ">") {
             s.state = State.WAIT;
             const n = s.scope.length;
+            const res = { tag: s.tag, attribs: s.attribs };
             if (n > 0) {
-                s.scope[n - 1].children.push({ tag: s.tag, attribs: s.attribs });
+                s.scope[n - 1].children.push(res);
             }
-            return { id: "elem", value: { tag: s.tag, attribs: s.attribs } };
+            return { id: "elem", value: res };
         } else {
             unexpected(x);
         }
@@ -146,9 +155,11 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
 
     [State.ELEM_BODY]: (s: ParseState, x: string) => {
         if (x === "<") {
-            const res = s.body.length > 0 ?
-                { id: "body", value: s.body } :
-                undefined;
+            let res;
+            if (s.body.length > 0) {
+                s.scope[s.scope.length - 1].body = s.body;
+                res = { id: "body", value: { tag: s.tag, body: s.body } }
+            }
             s.state = State.MAYBE_ELEM;
             s.tag = "";
             return res;
@@ -170,6 +181,8 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
             return res;
         } else if (x === "/") {
             s.state = State.ELEM_SINGLE;
+        } else if (s.tag === "xml" && x === "?") {
+            s.state = State.PROC_END;
         } else if (!isWS(x)) {
             unexpected(x);
         }
@@ -206,6 +219,10 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
     [State.MAYBE_INSTRUCTION]: (s: ParseState, x: string) => {
         if (x === "-") {
             s.state = State.COMMENT;
+        } else if (x === "D") {
+            s.state = State.DOCTYPE;
+            s.phase = 1;
+            s.body = "";
         } else {
             unexpected(x);
         }
@@ -233,4 +250,40 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
         }
     },
 
-}
+    [State.DOCTYPE]: (s: ParseState, x: string) => {
+        if (s.phase < 8) {
+            if (x === "DOCTYPE "[s.phase]) {
+                s.phase++;
+            } else {
+                unexpected(x);
+            }
+        } else if (x === ">") {
+            s.state = State.WAIT;
+            return { id: "doctype", value: s.body.trim() };
+        } else {
+            s.body += x;
+        }
+    },
+
+    [State.PROC_DECL]: (s: ParseState, x: string) => {
+        if (x === "xml "[s.phase]) {
+            s.phase++;
+            if (s.phase == 4) {
+                s.state = State.MAYBE_ATTRIB;
+                s.tag = "xml";
+                s.attribs = {};
+            }
+        } else {
+            unexpected(x);
+        }
+    },
+
+    [State.PROC_END]: (s: ParseState, x: string) => {
+        if (x === ">") {
+            s.state = State.WAIT;
+            return { id: "proc", value: { tag: s.tag, attribs: s.attribs } };
+        } else {
+            unexpected(x);
+        }
+    },
+};
