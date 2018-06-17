@@ -1,43 +1,8 @@
-import { Event, IObjectOf } from "@thi.ng/api";
-import { Transducer, Reducer } from "@thi.ng/transducers/api";
-import { ensureReduced } from "@thi.ng/transducers/reduced";
+import { Event } from "@thi.ng/api";
+import * as fsm from "@thi.ng/transducers-fsm";
+import { Transducer } from "@thi.ng/transducers/api";
 
-export interface FSMState {
-    state: PropertyKey;
-}
-
-export type FSMStateMap<T extends FSMState, A, B> = IObjectOf<FSMHandler<T, A, B>>;
-export type FSMHandler<T extends FSMState, A, B> = (state: T, input: A) => B | void;
-
-export interface FSMOpts<T extends FSMState, A, B> {
-    states: FSMStateMap<T, A, B>;
-    terminate: PropertyKey;
-    init: () => T;
-}
-
-export function fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B>): Transducer<A, B> {
-    return (rfn: Reducer<any, B>) => {
-        const states = opts.states;
-        const state = opts.init();
-        const r = rfn[2];
-        return [
-            rfn[0],
-            (acc) => rfn[1](acc),
-            (acc, x) => {
-                // console.log(x, State[state.state], state);
-                const res = states[<any>state.state](state, x);
-                if (res) {
-                    acc = r(acc, res);
-                    if (state.state == opts.terminate) {
-                        return ensureReduced(acc);
-                    }
-                }
-                return acc;
-            }];
-    }
-}
-
-export interface ParseState extends FSMState {
+export interface ParseState extends fsm.FSMState {
     pos: number;
     scope: any[];
     tag: string;
@@ -69,6 +34,17 @@ enum State {
     PROC_END,
 }
 
+export const parse = (): Transducer<string, Event> =>
+    fsm.fsm({
+        states: PARSER,
+        init: () => (<ParseState>{
+            state: State.WAIT,
+            scope: [],
+            pos: 0
+        }),
+        terminate: State.ERROR
+    });
+
 const isWS = (x: string) =>
     x == " " || x == "\t" || x == "\n" || x == "\r";
 
@@ -85,19 +61,7 @@ const unexpected = (s: ParseState, x: string) => {
     return { id: "error", value: `unexpected char: '${x}' @ pos: ${s.pos}` };
 };
 
-export function parse() {
-    return fsm({
-        states: PARSER,
-        init: () => (<ParseState>{
-            state: State.WAIT,
-            scope: [],
-            pos: 0
-        }),
-        terminate: State.ERROR
-    });
-}
-
-export const PARSER: FSMStateMap<ParseState, string, Event> = {
+const PARSER: fsm.FSMStateMap<ParseState, string, Event> = {
     [State.ERROR]: () => {
     },
 

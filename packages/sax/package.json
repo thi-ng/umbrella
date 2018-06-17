@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/sax",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Transducer-based, SAX-like, non-validating, speedy & tiny XML parser",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -25,11 +25,17 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.0.3",
-        "@thi.ng/transducers": "^1.10.2"
+        "@thi.ng/transducers": "^1.10.2",
+        "@thi.ng/transducers-fsm": "^0.0.1"
     },
     "keywords": [
         "ES6",
-        "typescript"
+        "FSM",
+        "parser",
+        "SAX",
+        "transducers",
+        "typescript",
+        "XML"
     ],
     "publishConfig": {
         "access": "public"
