@@ -1,5 +1,6 @@
 import { Event, IObjectOf } from "@thi.ng/api";
 import { Transducer, Reducer } from "@thi.ng/transducers/api";
+import { ensureReduced } from "@thi.ng/transducers/reduced";
 
 export interface FSMState {
     state: PropertyKey;
@@ -8,9 +9,16 @@ export interface FSMState {
 export type FSMStateMap<T extends FSMState, A, B> = IObjectOf<FSMHandler<T, A, B>>;
 export type FSMHandler<T extends FSMState, A, B> = (state: T, input: A) => B | void;
 
-export function fsm<T extends FSMState, A, B>(states: FSMStateMap<T, A, B>, initial: () => T): Transducer<A, B> {
+export interface FSMOpts<T extends FSMState, A, B> {
+    states: FSMStateMap<T, A, B>;
+    terminate: PropertyKey;
+    init: () => T;
+}
+
+export function fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B>): Transducer<A, B> {
     return (rfn: Reducer<any, B>) => {
-        let state = initial();
+        const states = opts.states;
+        const state = opts.init();
         const r = rfn[2];
         return [
             rfn[0],
@@ -20,26 +28,17 @@ export function fsm<T extends FSMState, A, B>(states: FSMStateMap<T, A, B>, init
                 const res = states[<any>state.state](state, x);
                 if (res) {
                     acc = r(acc, res);
+                    if (state.state == opts.terminate) {
+                        return ensureReduced(acc);
+                    }
                 }
                 return acc;
             }];
     }
 }
 
-const isWS = (x: string) =>
-    x == " " || x == "\t" || x == "\n" || x == "\r";
-
-const isTagChar = (x: string) =>
-    (x >= "A" && x <= "Z") ||
-    (x >= "a" && x <= "z") ||
-    (x >= "0" && x <= "9") ||
-    x == "-" ||
-    x == "_" ||
-    x == ":";
-
-const unexpected = (x) => { throw new Error(`unexpected char: ${x}`); };
-
 export interface ParseState extends FSMState {
+    pos: number;
     scope: any[];
     tag: string;
     body: string;
@@ -52,6 +51,7 @@ export interface ParseState extends FSMState {
 
 enum State {
     WAIT,
+    ERROR,
     MAYBE_ELEM,
     ELEM_START,
     ELEM_END,
@@ -69,21 +69,54 @@ enum State {
     PROC_END,
 }
 
+const isWS = (x: string) =>
+    x == " " || x == "\t" || x == "\n" || x == "\r";
+
+const isTagChar = (x: string) =>
+    (x >= "A" && x <= "Z") ||
+    (x >= "a" && x <= "z") ||
+    (x >= "0" && x <= "9") ||
+    x == "-" ||
+    x == "_" ||
+    x == ":";
+
+const unexpected = (s: ParseState, x: string) => {
+    s.state = State.ERROR;
+    return { id: "error", value: `unexpected char: '${x}' @ pos: ${s.pos}` };
+};
+
+export function parse() {
+    return fsm({
+        states: PARSER,
+        init: () => (<ParseState>{
+            state: State.WAIT,
+            scope: [],
+            pos: 0
+        }),
+        terminate: State.ERROR
+    });
+}
+
 export const PARSER: FSMStateMap<ParseState, string, Event> = {
+    [State.ERROR]: () => {
+    },
+
     [State.WAIT]: (s: ParseState, x: string) => {
+        s.pos++;
         if (!isWS(x)) {
             if (x === "<") {
                 s.state = State.MAYBE_ELEM;
             } else {
-                unexpected(x);
+                return unexpected(s, x);
             }
         }
     },
 
     [State.MAYBE_ELEM]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === "/") {
             if (s.scope.length == 0) {
-                unexpected(x);
+                return unexpected(s, x);
             }
             s.state = State.ELEM_END;
             s.tag = "";
@@ -98,11 +131,12 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
             s.phase = 0;
             s.body = "";
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.ELEM_START]: (s: ParseState, x: string) => {
+        s.pos++;
         if (isTagChar(x)) {
             s.tag += x;
         } else if (isWS(x)) {
@@ -116,11 +150,12 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
         } else if (x === "/") {
             s.state = State.ELEM_SINGLE;
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.ELEM_END]: (s: ParseState, x: string) => {
+        s.pos++;
         if (isTagChar(x)) {
             s.tag += x;
         } else if (x === ">") {
@@ -140,6 +175,7 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
     },
 
     [State.ELEM_SINGLE]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === ">") {
             s.state = State.WAIT;
             const n = s.scope.length;
@@ -149,11 +185,12 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
             }
             return { id: "elem", value: res };
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.ELEM_BODY]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === "<") {
             let res;
             if (s.body.length > 0) {
@@ -169,6 +206,7 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
     },
 
     [State.MAYBE_ATTRIB]: (s: ParseState, x: string) => {
+        s.pos++;
         if (isTagChar(x)) {
             s.state = State.ATTRIB_NAME;
             s.name = x;
@@ -184,30 +222,33 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
         } else if (s.tag === "xml" && x === "?") {
             s.state = State.PROC_END;
         } else if (!isWS(x)) {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.ATTRIB_NAME]: (s: ParseState, x: string) => {
+        s.pos++;
         if (isTagChar(x)) {
             s.name += x;
         } else if (x === "=") {
             s.state = State.ATTRIB_VAL_START;
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.ATTRIB_VAL_START]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === "\"" || x === "'") {
             s.state = State.ATTRIB_VALUE;
             s.quote = x;
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.ATTRIB_VALUE]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === s.quote) {
             s.attribs[s.name] = s.val;
             s.state = State.MAYBE_ATTRIB;
@@ -217,6 +258,7 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
     },
 
     [State.MAYBE_INSTRUCTION]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === "-") {
             s.state = State.COMMENT;
         } else if (x === "D") {
@@ -224,24 +266,26 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
             s.phase = 1;
             s.body = "";
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.COMMENT]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === "-") {
             s.state = State.COMMENT_BODY;
             s.body = "";
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.COMMENT_BODY]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === ">") {
             const n = s.body.length;
             if (s.body.substr(n - 2) !== "--") {
-                unexpected(x);
+                return unexpected(s, x);
             }
             s.state = State.WAIT;
             return { id: "comment", value: s.body.substr(0, n - 2) };
@@ -251,11 +295,12 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
     },
 
     [State.DOCTYPE]: (s: ParseState, x: string) => {
+        s.pos++;
         if (s.phase < 8) {
             if (x === "DOCTYPE "[s.phase]) {
                 s.phase++;
             } else {
-                unexpected(x);
+                return unexpected(s, x);
             }
         } else if (x === ">") {
             s.state = State.WAIT;
@@ -266,6 +311,7 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
     },
 
     [State.PROC_DECL]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === "xml "[s.phase]) {
             s.phase++;
             if (s.phase == 4) {
@@ -274,16 +320,17 @@ export const PARSER: FSMStateMap<ParseState, string, Event> = {
                 s.attribs = {};
             }
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 
     [State.PROC_END]: (s: ParseState, x: string) => {
+        s.pos++;
         if (x === ">") {
             s.state = State.WAIT;
             return { id: "proc", value: { tag: s.tag, attribs: s.attribs } };
         } else {
-            unexpected(x);
+            return unexpected(s, x);
         }
     },
 };
