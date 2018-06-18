@@ -34,12 +34,12 @@ though the implementation does heavily differ (also in contrast to some
 other JS based implementations) and dozens of less common, but generally
 highly useful operators have been added. See full list below.
 
-The
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-&
-[@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
-partner modules provide related functionality, supplementing features of
-this library and depending on it.
+### Related functionality / packages
+
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax)
+- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm)
 
 Since 0.8.0 this project largely supersedes the
 [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
