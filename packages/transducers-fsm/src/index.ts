@@ -17,6 +17,79 @@ export interface FSMOpts<T extends FSMState, A, B> {
     init: () => T;
 }
 
+/**
+ * Finite State Machine transducer. Takes an FSM configuration object
+ * and returns a transducer, which processes inputs using the provided
+ * state handler functions.
+ *
+ * Before processing the first input, the FSM state is initialized by
+ * calling the user provided `init()` function, which MUST return a
+ * state object with at least a `state` key, whose value is used for
+ * dynamic (i.e. stateful) dispatch during input processing. This state
+ * object is passed with each input value to the current state handler,
+ * which is expected to mutate this object, e.g. to cause state changes
+ * based on given inputs.
+ *
+ * Any values (apart from `undefined`) returned by a state handler are
+ * passed on to the next reducer in the chain and so can be used to emit
+ * results for downstream processing. If a state handler returns nothing
+ * (or `undefined`), further downstream processing of the current input
+ * is skipped.
+ *
+ * Regardless of return value, if a state handler has changed the state
+ * ID to the configured `terminal` state, processing is terminated (by
+ * calling `ensureReduced()`) and no further inputs will be consumed.
+ *
+ * ```
+ * testFSM = {
+ *     states: {
+ *         skip: (state, x) => {
+ *             if (x < 20) {
+ *                 if (++state.count > 5) {
+ *                     state.state = "take";
+ *                     state.count = 1;
+ *                     return x;
+ *                 }
+ *             } else {
+ *                 state.state = "done";
+ *             }
+ *         },
+ *         take: (state, x) => {
+ *             if (x < 20) {
+ *                 if (++state.count > 5) {
+ *                     state.state = "skip";
+ *                     state.count = 1;
+ *                 } else {
+ *                     return x;
+ *                 }
+ *             } else {
+ *                 state.state = "done";
+ *             }
+ *         },
+ *         done: () => { },
+ *     },
+ *     terminal: "done",
+ *     init: () => ({ state: "skip", count: 0 })
+ * }
+ *
+ * [...tx.iterator(fsm.fsm(testFSM), tx.range(100))]
+ * // [ 5, 6, 7, 8, 9, 15, 16, 17, 18, 19 ]
+ *
+ * // as part of composed transducers...
+ * 
+ * [...tx.iterator(
+ *   tx.comp(tx.takeNth(2), fsm.fsm(testFSM)),
+ *   tx.range(100))]
+ * // [ 10, 12, 14, 16, 18 ]
+ *
+ * [...tx.iterator(
+ *   tx.comp(fsm.fsm(testFSM), tx.map((x) => x * 10)),
+ *   tx.range(100))]
+ * // [ 50, 60, 70, 80, 90, 150, 160, 170, 180, 190 ]
+ * ```
+ *
+ * @param opts
+ */
 export function fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B>): Transducer<A, B> {
     return (rfn: Reducer<any, B>) => {
         const states = opts.states;
@@ -24,13 +97,12 @@ export function fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B>): Transduce
         const r = rfn[2];
         return compR(rfn,
             (acc, x) => {
-                // console.log(x, State[state.state], state);
                 const res = states[<any>state.state](state, x);
-                if (res) {
-                    acc = r(acc, res);
-                    if (state.state == opts.terminate) {
-                        return ensureReduced(acc);
-                    }
+                if (res !== undefined) {
+                    acc = r(acc, <B>res);
+                }
+                if (state.state === opts.terminate) {
+                    return ensureReduced(acc);
                 }
                 return acc;
             });
