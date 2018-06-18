@@ -29,6 +29,9 @@
     },
     "keywords": [
         "ES6",
+        "finite state machine",
+        "FSM",
+        "transducers",
         "typescript"
     ],
     "publishConfig": {
