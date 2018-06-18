@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/dot",
     "version": "0.1.6",
-    "description": "TODO",
+    "description": "Graphviz DOM abstraction as vanilla JS objects & serialization to DOT format",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": "https://github.com/thi-ng/umbrella",
