@@ -43,42 +43,50 @@ src=`<?xml version="1.0" encoding="utf-8"?>
 
 doc = [...tx.iterator(sax.parse(), src)]
 
-// [ { id: 'proc', value: { tag: 'xml', attribs: { version: '1.0', encoding: 'utf-8' } } },
-//   { id: 'doctype', value: 'foo bar' },
-//   { id: 'elem', value: { tag: 'a', attribs: {} } },
-//   { id: 'body', value: { tag: 'a', body: '\n    ' } },
-//   { id: 'elem', value: { tag: 'b1', attribs: {} } },
-//   { id: 'body', value: { tag: 'b1', body: '\n        ' } },
-//   { id: 'elem', value: { tag: 'c', attribs: { x: '23', y: '42' } } },
-//   { id: 'body', value: { tag: 'c', body: 'ccc\n            ' } },
-//   { id: 'elem', value: { tag: 'd', attribs: {} } },
-//   { id: 'body', value: { tag: 'd', body: 'dd' } },
-//   { id: 'end',
-//     value: { tag: 'd', attribs: {}, children: [], body: 'dd' } },
-//   { id: 'end',
-//     value:
-//      { tag: 'c',
-//        attribs: { x: '23', y: '42' },
-//        children: [ { tag: 'd', attribs: {}, children: [], body: 'dd' } ],
-//        body: 'ccc\n            ' } },
-//   { id: 'end',
-//     value:
-//      { tag: 'b1', attribs: {}, children: [Array], body: '\n        ' } },
-//   { id: 'elem', value: { tag: 'b2', attribs: [Object] } },
-//   { id: 'end',
-//     value: { tag: 'a', attribs: {}, children: [Array], body: '\n    ' } } ]
+// [ { type: 0,
+//     tag: 'xml',
+//     attribs: { version: '1.0', encoding: 'utf-8' } },
+//   { type: 1, body: 'foo bar' },
+//   { type: 3, tag: 'a', attribs: {} },
+//   { type: 5, tag: 'a', body: '\n    ' },
+//   { type: 3, tag: 'b1', attribs: {} },
+//   { type: 5, tag: 'b1', body: '\n        ' },
+//   { type: 3, tag: 'c', attribs: { x: '23', y: '42' } },
+//   { type: 5, tag: 'c', body: 'ccc\n            ' },
+//   { type: 3, tag: 'd', attribs: {} },
+//   { type: 5, tag: 'd', body: 'dd' },
+//   { type: 4, tag: 'd', attribs: {}, children: [], body: 'dd' },
+//   { type: 4,
+//     tag: 'c',
+//     attribs: { x: '23', y: '42' },
+//     children: [ { tag: 'd', attribs: {}, children: [], body: 'dd' } ],
+//     body: 'ccc\n            ' },
+//   { type: 4,
+//     tag: 'b1',
+//     attribs: {},
+//     children: [ [Object] ],
+//     body: '\n        ' },
+//   { type: 4, tag: 'b2', attribs: { foo: 'bar' } },
+//   { type: 4,
+//     tag: 'a',
+//     attribs: {},
+//     children: [ [Object], [Object] ],
+//     body: '\n    ' } ]
 ```
 
 ## Emitted result type IDs
 
-| ID        | Description                                   |
-|-----------|-----------------------------------------------|
-| `body`    | Element text body                             |
-| `doctype` | Doctype declaration                           |
-| `elem`    | Element start incl. attributes                |
-| `end`     | Element end incl. attributes, body & children |
-| `proc`    | Processing instruction incl. attribs          |
-| `error`   | Parse error incl. description                 |
+The `type` key in each emitted result object is a TypeScript enum with the following values:
+
+| ID | Enum              | Description                                   |
+|----|-------------------|-----------------------------------------------|
+| 0  | `Type.PROC`       | Processing instruction incl. attribs          |
+| 1  | `Type.DOCTYPE`    | Doctype declaration  body                     |
+| 2  | `Type.COMMENT`    | Comment body                                  |
+| 3  | `Type.ELEM_START` | Element start incl. attributes                |
+| 4  | `Type.ELEM_END`   | Element end incl. attributes, body & children |
+| 5  | `Type.ELEM_BODY`  | Element text body                             |
+| 6  | `Type.ERROR`      | Parse error description                       |
 
 ## Authors
 
