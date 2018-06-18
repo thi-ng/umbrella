@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/checks",
-    "version": "1.5.3",
+    "version": "1.5.4",
     "description": "Single-function sub-modules for type, feature & value checks",
     "main": "./index.js",
     "typings": "./index.d.ts",

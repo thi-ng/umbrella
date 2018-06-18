@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-css",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "CSS from nested JS data structures",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -25,9 +25,9 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.0.3",
-        "@thi.ng/checks": "^1.5.3",
+        "@thi.ng/checks": "^1.5.4",
         "@thi.ng/errors": "^0.1.3",
-        "@thi.ng/transducers": "^1.10.2"
+        "@thi.ng/transducers": "^1.10.3"
     },
     "keywords": [
         "clojure",

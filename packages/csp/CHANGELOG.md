@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.43"></a>
+## [0.3.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.42...@thi.ng/csp@0.3.43) (2018-06-18)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/csp
+
 <a name="0.3.42"></a>
 ## [0.3.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.41...@thi.ng/csp@0.3.42) (2018-05-14)
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.0.3...@thi.ng/hiccup@2.0.4) (2018-06-18)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/hiccup
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.0.2...@thi.ng/hiccup@2.0.3) (2018-05-30)
 
