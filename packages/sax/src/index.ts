@@ -59,6 +59,8 @@ enum State {
     DOCTYPE,
     PROC_DECL,
     PROC_END,
+    // H_CHAR,
+    // U_CHAR,
 }
 
 const ENTITIES = {
@@ -70,6 +72,18 @@ const ENTITIES = {
 };
 
 const ENTITY_RE = new RegExp(`(${Object.keys(ENTITIES).join("|")})`, "g");
+
+const ESCAPE_SEQS = {
+    "n": "\n",
+    "r": "\r",
+    "t": "\t",
+    "v": "\v",
+    "f": "\f",
+    "b": "\b",
+    "\"": "\"",
+    "'": "'",
+    "\\": "\\"
+};
 
 export const parse = (opts: Partial<ParseOpts> = {}): Transducer<string, ParseEvent> =>
     fsm.fsm({
@@ -83,21 +97,31 @@ export const parse = (opts: Partial<ParseOpts> = {}): Transducer<string, ParseEv
         terminate: State.ERROR
     });
 
-const isWS = (x: string) =>
-    x == " " || x == "\t" || x == "\n" || x == "\r";
+const isWS = (x: string) => {
+    const c = x.charCodeAt(0);
+    return c === 0x20 ||
+        c === 0x09 ||
+        c === 0x0a ||
+        c === 0x0d;
+};
 
-const isTagChar = (x: string) =>
-    (x >= "A" && x <= "Z") ||
-    (x >= "a" && x <= "z") ||
-    (x >= "0" && x <= "9") ||
-    x == "-" ||
-    x == "_" ||
-    x == ":";
+const isTagChar = (x: string) => {
+    const c = x.charCodeAt(0);
+    return (c >= 0x41 && c <= 0x5a) || // A-Z
+        (c >= 0x61 && c <= 0x7a) || // a-z
+        (c >= 0x30 && c <= 0x39) || // 0-9
+        c == 0x2d || // -
+        c == 0x5f || // _
+        c == 0x3a;   // :
+};
 
 const error = (s: ParseState, body: string) => {
     s.state = State.ERROR;
     return { type: Type.ERROR, body };
 };
+
+const illegalEscape = (s: ParseState, ch: string) =>
+    error(s, `illegal escape sequence: \\${ch} @ pos ${s.pos - 1}`);
 
 const unexpected = (s: ParseState, x: string) =>
     error(s, `unexpected char: '${x}' @ pos ${s.pos}`);
@@ -150,11 +174,10 @@ const PARSER: fsm.FSMStateMap<ParseState, string, ParseEvent> = {
         } else if (isWS(ch)) {
             state.state = State.MAYBE_ATTRIB;
         } else if (ch === ">") {
-            const res = { type: Type.ELEM_START, tag: state.tag, attribs: state.attribs };
             state.state = State.ELEM_BODY;
             state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
             state.body = "";
-            return res;
+            return { type: Type.ELEM_START, tag: state.tag, attribs: state.attribs };
         } else if (ch === "/") {
             state.state = State.ELEM_SINGLE;
         } else {
@@ -167,12 +190,12 @@ const PARSER: fsm.FSMStateMap<ParseState, string, ParseEvent> = {
         if (isTagChar(ch)) {
             state.tag += ch;
         } else if (ch === ">") {
-            const n = state.scope.length;
-            if (n > 0 && state.tag === state.scope[n - 1].tag) {
-                const res = state.scope[n - 1];
-                state.scope.pop();
+            const scope = state.scope;
+            const n = scope.length;
+            if (n > 0 && state.tag === scope[n - 1].tag) {
+                const res = scope.pop();
                 if (n > 1) {
-                    state.scope[n - 2].children.push(res);
+                    scope[n - 2].children.push(res);
                 }
                 state.state = State.WAIT;
                 return { type: Type.ELEM_END, ...res };
@@ -199,19 +222,29 @@ const PARSER: fsm.FSMStateMap<ParseState, string, ParseEvent> = {
 
     [State.ELEM_BODY]: (state, ch) => {
         state.pos++;
+        let b = state.body;
         if (ch === "<") {
             let res;
-            if (state.body.length > 0) {
+            if (b.length > 0) {
                 if (state.opts.entities) {
-                    state.body = replaceEntities(state.body);
+                    b = replaceEntities(b);
                 }
-                state.scope[state.scope.length - 1].body = state.body;
-                res = { type: Type.ELEM_BODY, tag: state.tag, body: state.body };
+                state.scope[state.scope.length - 1].body = b;
+                res = { type: Type.ELEM_BODY, tag: state.tag, body: b };
             }
             state.state = State.MAYBE_ELEM;
             state.tag = "";
             return res;
         } else {
+            if (b.charAt(b.length - 1) === "\\") {
+                const e = ESCAPE_SEQS[ch];
+                if (e !== undefined) {
+                    state.body = b.substr(0, b.length - 1) + e;
+                    return;
+                } else {
+                    return illegalEscape(state, ch);
+                }
+            }
             state.body += ch;
         }
     },
@@ -231,11 +264,10 @@ const PARSER: fsm.FSMStateMap<ParseState, string, ParseEvent> = {
                 }
             } else {
                 if (ch === ">") {
-                    const res = { type: Type.ELEM_START, tag: state.tag, attribs: state.attribs };
                     state.state = State.ELEM_BODY;
                     state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
                     state.body = "";
-                    return res;
+                    return { type: Type.ELEM_START, tag: state.tag, attribs: state.attribs };
                 } else if (ch === "/") {
                     state.state = State.ELEM_SINGLE;
                 } else if (!isWS(ch)) {
@@ -268,15 +300,25 @@ const PARSER: fsm.FSMStateMap<ParseState, string, ParseEvent> = {
 
     [State.ATTRIB_VALUE]: (state, ch) => {
         state.pos++;
-        if (ch === state.quote) {
-            if (state.opts.entities) {
-                state.val = replaceEntities(state.val);
+        let v = state.val;
+        if (v.charAt(v.length - 1) == "\\") {
+            const e = ESCAPE_SEQS[ch];
+            if (e !== undefined) {
+                state.val = v.substr(0, v.length - 1) + e;
+                return;
+            } else {
+                return illegalEscape(state, ch);
             }
-            state.attribs[state.name] = state.val;
-            state.state = State.MAYBE_ATTRIB;
-        } else {
-            state.val += ch;
         }
+        if (ch !== state.quote) {
+            state.val += ch;
+            return;
+        }
+        if (state.opts.entities) {
+            v = replaceEntities(v);
+        }
+        state.attribs[state.name] = v;
+        state.state = State.MAYBE_ATTRIB;
     },
 
     [State.MAYBE_INSTRUCTION]: (state, ch) => {
