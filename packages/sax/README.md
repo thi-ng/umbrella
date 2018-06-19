@@ -24,6 +24,11 @@ transform element / attribute values.
 yarn add @thi.ng/sax
 ```
 
+## Dependencies
+
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm)
+
 ## Usage examples
 
 ```ts
@@ -72,6 +77,55 @@ doc = [...tx.iterator(sax.parse(), src)]
 //     attribs: {},
 //     children: [ [Object], [Object] ],
 //     body: '\n    ' } ]
+```
+
+### Result post-processing
+
+As mentioned earlier, the transducer nature of this parser allows for
+its easy integration into larger transformation pipelines. The next
+example parses an SVG file, then extracts and selectively applies
+transformations to only the `<circle>` elements in the first group
+(`<g>`) element.
+
+```ts
+svg=`
+<?xml version="1.0"?>
+<svg version="1.1" height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+    <g fill="yellow">
+        <circle cx="50.00" cy="150.00" r="50.00" />
+        <circle cx="250.00" cy="150.00" r="50.00" />
+        <circle cx="150.00" cy="150.00" fill="rgba(0,255,255,0.25)" r="100.00" stroke="#ff0000" />
+        <rect x="80" y="80" width="140" height="140" fill="none" stroke="black" />
+    </g>
+    <g fill="none" stroke="black">
+        <circle cx="150.00" cy="150.00" r="50.00" />
+        <circle cx="150.00" cy="150.00" r="25.00" />
+    </g>
+</svg>`;
+
+[...tx.iterator(
+    tx.comp(
+        // transform into parse events
+        sax.parse(),
+        // match 1st group end
+        tx.matchFirst((e) => e.type == sax.Type.ELEM_END && e.tag == "g"),
+        // extract group's children
+        tx.mapcat((e) => e.children),
+        // select circles only
+        tx.filter((e) => e.tag == "circle"),
+        // transform attributes
+        tx.map((e)=> [e.tag, {
+            ...e.attribs,
+            cx: parseFloat(e.attribs.cy),
+            cy: parseFloat(e.attribs.cy),
+            r: parseFloat(e.attribs.r),
+        }])
+    ),
+    svg
+)]
+// [ [ 'circle', { cx: 150, cy: 150, r: 50 } ],
+//   [ 'circle', { cx: 150, cy: 150, r: 50 } ],
+//   [ 'circle', { cx: 150, cy: 150, fill: 'rgba(0,255,255,0.25)', r: 100, stroke: '#ff0000' } ] ]
 ```
 
 ## Emitted result type IDs
