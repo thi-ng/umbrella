@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.1.1...@thi.ng/sax@0.2.0) (2018-06-19)
+
+
+### Features
+
+* **sax:** add support for escape seqs, minor optimizations ([e824b6b](https://github.com/thi-ng/umbrella/commit/e824b6b))
+
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.1.0...@thi.ng/sax@0.1.1) (2018-06-18)
 
