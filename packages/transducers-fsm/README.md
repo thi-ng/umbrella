@@ -32,7 +32,7 @@ provided here.
 
 ### 3-state FSM
 
-The following simple example defines a FSM with 3 states:
+The following example defines a simple FSM with 3 states:
 
 - `skip`
 - `take`
@@ -42,8 +42,8 @@ The FSM always starts in the `skip` state.
 
 The FSM alternates between skipping or consuming (passing through) 5
 inputs as long as each input is < 20. Once an input is >= 20, the FSM
-switches into the `done` state, which has been declared as a "terminal"
-state and once entered will terminate processing (also see API
+switches into the `done` state, which has been declared as a *terminal*
+state and once entered will cause processing to terminate (also see API
 description further below).
 
 ```ts
@@ -54,7 +54,7 @@ const testFSM = fsm.fsm({
     init: () => ({ state: "skip", count: 0 }),
 
     // terminal state ID
-    terminal: "done",
+    terminate: "done",
 
     // individual state handlers
     states: {
@@ -114,27 +114,29 @@ const testFSM = fsm.fsm({
 
 ## API
 
-### `fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B>): Transducer<A, B>`
+### `fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B>`
 
-The `fsm()` function takes an FSM configuration object and returns a
-transducer, which processes inputs using the provided state handler
-functions.
+Finite State Machine transducer. Takes an FSM configuration object and
+returns a transducer, which processes inputs using the provided state
+handler functions, which in turn can produce any number of outputs per
+consumed input.
 
 Before processing the first input, the FSM state is initialized by
 calling the user provided `init()` function, which MUST return a state
-object with at least a `state` key, whose value is used for dynamic (i.e.
-stateful) dispatch during input processing. This state object is passed
-with each input value to the current state handler, which is expected to
-mutate this object, e.g. to cause state changes based on given inputs.
+object with at least a `state` key, whose value is used for dynamic
+(i.e. stateful) dispatch during input processing. This state object is
+passed with each input value to the current state handler, which is
+expected to mutate this object, e.g. to cause state changes based on
+given inputs.
 
-Any values (apart from `undefined`) returned by a state handler are
-passed on to the next reducer in the chain and so can be used to emit
-results for downstream processing. If a state handler returns nothing
-(or `undefined`), further downstream processing of the current input is
-skipped.
+If a state handler needs to "emit" results for downstream processing, it
+can return an array of values. Any such values are passed on
+(individually, not as array) to the next reducer in the chain. If a
+state handler returns `null` or `undefined`, further downstream
+processing of the current input is skipped.
 
-Regardless of return value, if a state handler has changed the state ID
-to the configured `terminal` state, processing is terminated (by calling
+Regardless of return value, if a state handler has caused a state change
+to the configured `terminate` state, processing is terminated (by calling
 `ensureReduced()`) and no further inputs will be consumed.
 
 ## Authors
