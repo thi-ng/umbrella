@@ -8,7 +8,7 @@ This project is part of the
 ## About
 
 Lightweight transducer and supporting generators / iterator
-implementations for ES6 / TypeScript (~8.4KB gzipped, full lib).
+implementations for ES6 / TypeScript (~8.5KB gzipped, full lib).
 
 ## TOC
 
@@ -38,6 +38,8 @@ highly useful operators have been added. See full list below.
 
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
+- [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log)
 - [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax)
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm)
 
@@ -674,6 +676,10 @@ itself. Returns nothing.
 #### `mapNth<A, B>(n: number, offset?: number, fn: (x: A) => B): Transducer<A, A | B>`
 
 #### `mapVals<A, B>(fn: (v: A) => B, copy = true): Transducer<IObjectOf<A>, IObjectOf<B>>`
+
+#### `matchFirst<T>(pred: Predicate<T>): Transducer<T, T>`
+
+#### `matchLast<T>(pred: Predicate<T>): Transducer<T, T>`
 
 #### `movingAverage(n: number): Transducer<number, number>`
 

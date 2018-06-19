@@ -59,6 +59,8 @@ export * from "./xform/map-nth";
 export * from "./xform/map-vals";
 export * from "./xform/map";
 export * from "./xform/mapcat";
+export * from "./xform/match-first";
+export * from "./xform/match-last";
 export * from "./xform/moving-average";
 export * from "./xform/moving-median";
 export * from "./xform/multiplex";
