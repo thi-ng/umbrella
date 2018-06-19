@@ -19,6 +19,10 @@ transformation pipeline.
 yarn add @thi.ng/transducers-fsm
 ```
 
+## Dependencies
+
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
 ## Usage examples
 
 For a real world example, the

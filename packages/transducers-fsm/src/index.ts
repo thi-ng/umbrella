@@ -76,7 +76,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  * // [ 5, 6, 7, 8, 9, 15, 16, 17, 18, 19 ]
  *
  * // as part of composed transducers...
- * 
+ *
  * [...tx.iterator(
  *   tx.comp(tx.takeNth(2), fsm.fsm(testFSM)),
  *   tx.range(100))]
