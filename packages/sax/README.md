@@ -9,14 +9,16 @@ This project is part of the
 
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)-based,
 [SAX](https://en.wikipedia.org/wiki/Simple_API_for_XML)-like,
-non-validating, speedy & tiny XML parser (1.4KB gzipped).
+non-validating, [configurable](#parser-options), speedy & tiny XML
+parser (~1.8KB gzipped).
 
 Unlike the classic event-driven approach of SAX, this parser is
-implemented as a transducer function transforming an XML input into a
+implemented as a transducer function, transforming an XML input into a
 stream of SAX-event-like objects. Being a transducer, the parser can be
 used in novel ways as part of a larger processing pipeline and can be
 composed with other pre or post-processing steps, e.g. to filter or
-transform element / attribute values.
+transform element / attribute values or only do partial parsing with
+early termination based on some condition.
 
 ## Installation
 
@@ -37,6 +39,7 @@ import * as tx from "@thi.ng/transducers";
 
 src=`<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE foo bar>
+<!-- comment -->
 <a>
     <b1>
         <c x="23" y="42">ccc
@@ -48,44 +51,53 @@ src=`<?xml version="1.0" encoding="utf-8"?>
 
 doc = [...tx.iterator(sax.parse(), src)]
 
+// (see description of `type` values further below)
+
 // [ { type: 0,
 //     tag: 'xml',
 //     attribs: { version: '1.0', encoding: 'utf-8' } },
 //   { type: 1, body: 'foo bar' },
-//   { type: 3, tag: 'a', attribs: {} },
-//   { type: 5, tag: 'a', body: '\n    ' },
-//   { type: 3, tag: 'b1', attribs: {} },
-//   { type: 5, tag: 'b1', body: '\n        ' },
-//   { type: 3, tag: 'c', attribs: { x: '23', y: '42' } },
-//   { type: 5, tag: 'c', body: 'ccc\n            ' },
-//   { type: 3, tag: 'd', attribs: {} },
-//   { type: 5, tag: 'd', body: 'dd' },
-//   { type: 4, tag: 'd', attribs: {}, children: [], body: 'dd' },
-//   { type: 4,
+//   { type: 2, body: ' comment ' },
+//   { type: 4, tag: 'a', attribs: {} },
+//   { type: 6, tag: 'a', body: '\n    ' },
+//   { type: 4, tag: 'b1', attribs: {} },
+//   { type: 6, tag: 'b1', body: '\n        ' },
+//   { type: 4, tag: 'c', attribs: { x: '23', y: '42' } },
+//   { type: 6, tag: 'c', body: 'ccc\n            ' },
+//   { type: 4, tag: 'd', attribs: {} },
+//   { type: 6, tag: 'd', body: 'dd' },
+//   { type: 5, tag: 'd', attribs: {}, children: [], body: 'dd' },
+//   { type: 5,
 //     tag: 'c',
 //     attribs: { x: '23', y: '42' },
-//     children: [ { tag: 'd', attribs: {}, children: [], body: 'dd' } ],
+//     children: [ [Object] ],
 //     body: 'ccc\n            ' },
-//   { type: 4,
+//   { type: 5,
 //     tag: 'b1',
 //     attribs: {},
 //     children: [ [Object] ],
 //     body: '\n        ' },
 //   { type: 4, tag: 'b2', attribs: { foo: 'bar' } },
-//   { type: 4,
+//   { type: 5, tag: 'b2', attribs: { foo: 'bar' } },
+//   { type: 5,
 //     tag: 'a',
 //     attribs: {},
 //     children: [ [Object], [Object] ],
 //     body: '\n    ' } ]
 ```
 
-### Result post-processing
+### Partial parsing & result post-processing
 
 As mentioned earlier, the transducer nature of this parser allows for
 its easy integration into larger transformation pipelines. The next
 example parses an SVG file, then extracts and selectively applies
 transformations to only the `<circle>` elements in the first group
 (`<g>`) element.
+
+Given the composed transducer below, parsing stops immediately after the
+first `<g>` element is complete. This is because the `matchFirst()`
+transducer will cause early termination once that element has been
+processed.
 
 ```ts
 svg=`
@@ -105,8 +117,8 @@ svg=`
 
 [...tx.iterator(
     tx.comp(
-        // transform into parse events
-        sax.parse(),
+        // transform into parse events (see parser options below)
+        sax.parse({ children: true }),
         // match 1st group end
         tx.matchFirst((e) => e.type == sax.Type.ELEM_END && e.tag == "g"),
         // extract group's children
@@ -118,7 +130,7 @@ svg=`
             ...e.attribs,
             cx: parseFloat(e.attribs.cy),
             cy: parseFloat(e.attribs.cy),
-            r: parseFloat(e.attribs.r),
+            r:  parseFloat(e.attribs.r),
         }])
     ),
     svg
@@ -126,6 +138,22 @@ svg=`
 // [ [ 'circle', { cx: 150, cy: 150, r: 50 } ],
 //   [ 'circle', { cx: 150, cy: 150, r: 50 } ],
 //   [ 'circle', { cx: 150, cy: 150, fill: 'rgba(0,255,255,0.25)', r: 100, stroke: '#ff0000' } ] ]
+```
+
+### Error handling
+
+If the parser encounters a syntax error, an error event value incl. a
+description and input position will be produced (but no JS error will be
+thrown) and the entire transducer pipeline stopped.
+
+```ts
+[...tx.iterator(sax.parse(), `a`)]
+// [ { type: 7, body: 'unexpected char: \'a\' @ pos 1' } ]
+
+[...tx.iterator(sax.parse(), `<a><b></c></a>`)]
+// [ { type: 4, tag: 'a', attribs: {} },
+//   { type: 4, tag: 'b', attribs: {} },
+//   { type: 7, body: 'unmatched tag: c @ pos 7' } ]
 ```
 
 ## Emitted result type IDs
@@ -137,10 +165,19 @@ The `type` key in each emitted result object is a TypeScript enum with the follo
 | 0  | `Type.PROC`       | Processing instruction incl. attribs          |
 | 1  | `Type.DOCTYPE`    | Doctype declaration  body                     |
 | 2  | `Type.COMMENT`    | Comment body                                  |
-| 3  | `Type.ELEM_START` | Element start incl. attributes                |
-| 4  | `Type.ELEM_END`   | Element end incl. attributes, body & children |
-| 5  | `Type.ELEM_BODY`  | Element text body                             |
-| 6  | `Type.ERROR`      | Parse error description                       |
+| 3  | `Type.CDATA`      | CDATA content                                 |
+| 4  | `Type.ELEM_START` | Element start incl. attributes                |
+| 5  | `Type.ELEM_END`   | Element end incl. attributes, body & children |
+| 6  | `Type.ELEM_BODY`  | Element text body                             |
+| 7  | `Type.ERROR`      | Parse error description                       |
+
+## Parser options
+
+| Option     | Type      | Default | Description                                                                                                                                                  |
+|------------|-----------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `children` | `boolean` | `true`  | If `true`, recursively includes children elements in `ELEM_END` events. For very large documents, this should be disabled to save (or even fit into) memory. |
+| `entities` | `boolean` | `false` | If `true`, unescape standard XML entities in body text and attrib values.                                                                                    |
+| `trim`     | `boolean` | `false` | If `true`, trims element body, comments and CDATA content. If the remaining string is empty, no event will be generated for this value.                      |
 
 ## Authors
 
