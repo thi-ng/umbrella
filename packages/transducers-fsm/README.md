@@ -64,7 +64,7 @@ const testFSM = fsm.fsm({
                 if (++state.count > 5) {
                     state.state = "take";
                     state.count = 1;
-                    return x;
+                    return [x];
                 }
             } else {
                 state.state = "done";
@@ -78,7 +78,7 @@ const testFSM = fsm.fsm({
                     state.state = "skip";
                     state.count = 1;
                 } else {
-                    return x;
+                    return [x];
                 }
             } else {
                 state.state = "done";
