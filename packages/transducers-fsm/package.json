@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-fsm",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Transducer-based Finite State Machine transformer",
     "main": "./index.js",
     "typings": "./index.d.ts",
