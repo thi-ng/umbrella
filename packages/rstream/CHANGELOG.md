@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.7.3...@thi.ng/rstream@1.8.0) (2018-06-21)
+
+
+### Features
+
+* **rstream:** option to avoid auto-closing `fromInterval()`, add docs ([cc5b736](https://github.com/thi-ng/umbrella/commit/cc5b736))
+
+
+
+
 <a name="1.7.3"></a>
 ## [1.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.7.2...@thi.ng/rstream@1.7.3) (2018-06-19)
 
