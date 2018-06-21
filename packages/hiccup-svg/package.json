@@ -4,7 +4,11 @@
     "description": "SVG element functions for @thi.ng/hiccup & @thi.ng/hdom",
     "main": "./index.js",
     "typings": "./index.d.ts",
-    "repository": "https://github.com/thi-ng/umbrella",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
