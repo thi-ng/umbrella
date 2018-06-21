@@ -227,7 +227,7 @@ value change (in contrast to normal watches, which execute with each
 update, regardless of value change).
 
 Related, the actual value change predicate can be customized. If not
-given, the default `@thi.ng/api/equiv` will be used.
+given, the default `@thi.ng/equiv` will be used.
 
 ```typescript
 let x;

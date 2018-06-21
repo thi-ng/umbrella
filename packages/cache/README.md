@@ -21,7 +21,7 @@ strategies available are:
 - ES6 Map-like API (with minor differences)
 - Supports any types for both keys & values
 - Customizable cache limits (no. of items / actual size)
-- Customizable key equality checks (@thi.ng/api/equiv by default)
+- Customizable key equality checks (@thi.ng/equiv by default)
 - Optional item release callbacks (to clean up resources when value is expunged)
 
 ## Installation
@@ -34,6 +34,7 @@ yarn add @thi.ng/cache
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
 
 ## Usage examples

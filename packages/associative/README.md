@@ -142,7 +142,7 @@ interface, an extension of the native ES6 Set API.
 ### ArraySet
 
 Simple array based `Set` implementation which by default uses
-[@thi.ng/api/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/equiv.ts)
+[@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv/src/index.ts)
 for value equivalence checking.
 
 ### LLSet
@@ -161,8 +161,8 @@ canonical keys. By default uses `ArraySet` for this purpose.
 
 Alternative implementation of the ES6 Map API using a Skip list as
 backing store and support for configurable key equality and sorting
-semantics. Like with sets, uses @thi.ng/api/equiv & @thi.ng/api/compare
-by default.
+semantics. Like with sets, uses @thi.ng/equiv & @thi.ng/compare by
+default.
 
 William Pugh's (creator of this data structure) description:
 
