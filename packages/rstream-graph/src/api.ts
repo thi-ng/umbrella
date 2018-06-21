@@ -21,10 +21,9 @@ export interface Node {
 
 /**
  * A dataflow graph spec is simply an object where keys are node names
- * and their values are either pre-existing @thi.ng/rstream
- * `ISubscribable`s, functions returning `ISubscribable`s or
- * `NodeSpec`s, defining a node's inputs, outputs and the operation to
- * be applied to produce one or more result streams.
+ * and their values are `NodeSpec`s, defining a node's inputs, outputs
+ * and the operation to be applied to produce one or more result
+ * streams.
  */
 export type GraphSpec = IObjectOf<
     NodeSpec |
@@ -33,15 +32,15 @@ export type GraphSpec = IObjectOf<
 
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
- * are actually streams / qsubscriptions (or just generally any form of
- * @thi.ng/rstream `ISubscribable`), usually with an associated
- * transducer to transform / combine the inputs and produce values for
- * the node's result stream.
+ * are actually just wrappers of streams / subscriptions (or generally
+ * any form of thi.ng/rstream `ISubscribable`), usually with an
+ * associated transducer to transform / combine the inputs and produce
+ * values for the node's result stream.
  *
  * The `fn` function is responsible to produce such a stream transformer
  * construct. The keys used to specify inputs in the `ins` object are
  * dictated by the actual node `fn` used. Most node functions with
- * multiple inputs are implemented as `StreamSync` instances and the
+ * multiple inputs will be implemented as `StreamSync` instances and the
  * input IDs are used to locally rename input streams within the
  * `StreamSync` container.
  *

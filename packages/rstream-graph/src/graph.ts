@@ -116,7 +116,7 @@ const prepareNodeInputs = (ins: IObjectOf<NodeInputSpec>, state: IAtom<any>, res
             s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
         }
         else if (i.const) {
-            s = fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const]);
+            s = fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const], false);
         }
         else {
             illegalArgs(`invalid node input: ${id}`);
@@ -187,6 +187,18 @@ export const removeNode = (graph: Graph, id: string) => {
         return true;
     }
     return false;
+};
+
+/**
+ * Calls `.unsubscribe()` on all nodes in the graph, causing all related
+ * streams & subscriptions to terminate.
+ *
+ * @param graph
+ */
+export const stop = (graph: Graph) => {
+    for (let id in graph) {
+        graph[id].node.unsubscribe();
+    }
 };
 
 /**
