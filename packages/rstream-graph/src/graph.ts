@@ -11,6 +11,7 @@ import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromView } from "@thi.ng/rstream/from/view";
 import { StreamSync, sync } from "@thi.ng/rstream/stream-sync";
 import { Transducer } from "@thi.ng/transducers/api";
+import { map } from "@thi.ng/transducers/xform/map";
 
 import {
     Graph,
@@ -141,9 +142,13 @@ const prepareNodeOutputs = (outs: IObjectOf<NodeOutputSpec>, node: ISubscribable
                 next: (x) => state.resetIn(path, x)
             }, `out-${nodeID}`))(o);
         } else {
-            res[id] = ((path, id) => node.subscribe({
-                next: (x) => state.resetIn(path, x[id])
-            }, `out-${nodeID}-${id}`))(o, id);
+            res[id] = ((path, id) => node.subscribe(
+                {
+                    next: (x) => state.resetIn(path, x)
+                },
+                map((x) => x != null ? x[id] : x),
+                `out-${nodeID}-${id}`)
+            )(o, id);
         }
     }
     return res;
