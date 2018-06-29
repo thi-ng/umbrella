@@ -21,6 +21,7 @@ export function transduce<A, B, C>(src: Subscription<any, A>, tx: Transducer<A, 
                 resolve(acc);
             },
             error(e) {
+                sub.unsubscribe();
                 reject(e);
             }
         }, tx);
