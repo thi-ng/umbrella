@@ -34,7 +34,7 @@ export class SortedSet<T> extends Set<T> implements
      * @param values
      * @param opts
      */
-    constructor(values?: Iterable<T>, opts?: SortedSetOpts<T>) {
+    constructor(values?: Iterable<T>, opts?: Partial<SortedSetOpts<T>>) {
         super();
         __private.set(this, new SortedMap<T, T>(
             values ? map((x) => [x, x], values) : null,
@@ -124,7 +124,7 @@ export class SortedSet<T> extends Set<T> implements
         __private.get(this).clear();
     }
 
-    first() {
+    first(): T {
         const first = __private.get(this).first();
         return first ? first[0] : undefined;
     }
