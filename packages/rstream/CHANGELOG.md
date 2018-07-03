@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.8.0...@thi.ng/rstream@1.8.1) (2018-07-03)
+
+
+### Bug Fixes
+
+* **rstream:** unsubscribe on error in transduce() ([8c7d937](https://github.com/thi-ng/umbrella/commit/8c7d937))
+
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.7.3...@thi.ng/rstream@1.8.0) (2018-06-21)
 

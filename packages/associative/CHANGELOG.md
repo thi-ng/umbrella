@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.9"></a>
+## [0.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.5.8...@thi.ng/associative@0.5.9) (2018-07-03)
+
+
+### Bug Fixes
+
+* **associative:** minor SortedSet fixes ([33f0d19](https://github.com/thi-ng/umbrella/commit/33f0d19))
+
+
+
+
 <a name="0.5.8"></a>
 ## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.5.7...@thi.ng/associative@0.5.8) (2018-06-21)
 
