@@ -1,20 +1,20 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { ensureArray } from "../func/ensure-array";
 
 /**
- * Yields iterator producing input in reverse order.
- * Important: Input MUST be finite. Unless an
+ * Yields iterator which consumes input and yield its values in reverse
+ * order. Important: Input MUST be finite.
+ *
  * ```
  * [...tx.reverse("hello world")]
  * // [ "d", "l", "r", "o", "w", " ", "o", "l", "l", "e", "h" ]
  * ```
+ *
  * @param input
  */
 export function* reverse<T>(input: Iterable<T>): IterableIterator<T> {
-    if (!isArrayLike(input)) {
-        input = [...input];
-    }
-    let n = (<any>input).length;
+    const _input = ensureArray(input);
+    let n = _input.length;
     while (--n >= 0) {
-        yield input[n];
+        yield _input[n];
     }
 }
