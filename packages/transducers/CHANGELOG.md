@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.12.0"></a>
+# [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.11.1...@thi.ng/transducers@1.12.0) (2018-07-03)
+
+
+### Features
+
+* **transducers:** add ensureArray(), refactor reverse() ([677c7cc](https://github.com/thi-ng/umbrella/commit/677c7cc))
+
+
+
+
 <a name="1.11.1"></a>
 ## [1.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.11.0...@thi.ng/transducers@1.11.1) (2018-06-21)
 
