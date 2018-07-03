@@ -63,13 +63,13 @@ describe("rstream-graph", () => {
         graph.mul.node.subscribe({ next: (x) => acc.push(x) });
         setTimeout(() => {
             state.resetIn("a", 10);
-            console.log(graph);
+            // console.log(graph);
             assert.deepEqual(acc, [600, 1200, 1800, 7200]);
             assert.deepEqual(
                 state.deref(),
                 { a: 10, b: 2, foo: { baz: 7200 }, res: { x: 7200, x2: 14400 }, res2: { x: 7200 } }
             );
             done();
-        }, 10);
+        }, 30);
     });
 });
