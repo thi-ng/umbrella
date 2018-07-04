@@ -35,6 +35,8 @@ export function toPath(path: Path) {
 /**
  * Composes a getter function for given nested lookup path. Optimized
  * fast execution paths are provided for path lengths less than 5.
+ * Supports any `[]`-indexable data structure (arrays, objects,
+ * strings).
  *
  * If `path` is given as string, it will be split using `.`. Returns
  * function which accepts single object and when called, returns value
@@ -85,8 +87,12 @@ export function getter(path: Path) {
 }
 
 /**
- * Composes a setter function for given nested lookup path. Optimized
- * fast execution paths are provided for path lengths less than 5.
+ * Composes a setter function for given nested update path. Optimized
+ * fast execution paths are provided for path lengths less up to 4.
+ * Supports both arrays and objects and creates intermediate shallow
+ * copies at each level of the path. Thus provides structural sharing
+ * with the original data for any branches not being updated by the
+ * setter.
  *
  * If `path` is given as string, it will be split using `.`. Returns
  * function which accepts single object and when called, **immutably**
