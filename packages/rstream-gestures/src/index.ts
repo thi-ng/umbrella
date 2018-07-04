@@ -25,6 +25,16 @@ export interface GestureEvent {
 
 export interface GestureStreamOpts extends IID<string> {
     /**
+     * Event listener options (see standard `addEventListener()`)
+     * Default: false
+     */
+    eventOpts: boolean | AddEventListenerOptions;
+    /**
+     * If `true`, calls `preventDefault()` for each event.
+     * Default: true
+     */
+    preventDefault: boolean;
+    /**
      * Initial zoom value. Default: 1
      */
     zoom: number;
@@ -58,9 +68,12 @@ export interface GestureStreamOpts extends IID<string> {
  * events. The value will be constrained to `minZoom` ... `maxZoom`
  * interval (provided via options object).
  *
- * Note: For touch events `preventDefault()` is called automatically.
- * Since Chrome 56 (other browsers too), this means the event target
- * element cannot be `document.body` anymore.
+ * Note: If using `preventDefault` and attaching the event stream to
+ * `document.body`, the following event listener options SHOULD be used:
+ *
+ * ```
+ * eventOpts: { passive: false }
+ * ```
  *
  * See: https://www.chromestatus.com/features/5093566007214080
  *
@@ -75,7 +88,9 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
         zoom: 1,
         minZoom: 0.25,
         maxZoom: 4,
-        smooth: 1
+        smooth: 1,
+        eventOpts: { capture: true },
+        preventDefault: true,
     }, opts);
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     return merge({
@@ -84,12 +99,11 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
             "mousedown", "mousemove", "mouseup",
             "touchstart", "touchmove", "touchend", "touchcancel",
             "wheel"
-        ].map((e) => fromEvent(el, e)),
-
+        ].map((e) => fromEvent(el, e, opts.eventOpts)),
         xform: map((e: MouseEvent | TouchEvent | WheelEvent) => {
             let evt, type;
+            opts.preventDefault && e.preventDefault();
             if (e instanceof TouchEvent) {
-                e.preventDefault();
                 type = {
                     "touchstart": GestureType.START,
                     "touchmove": GestureType.DRAG,
