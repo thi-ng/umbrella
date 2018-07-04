@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.8.2...@thi.ng/rstream@1.9.0) (2018-07-04)
+
+
+### Features
+
+* **rstream:** add support for event listener opts in `fromEvent()` ([d5ac264](https://github.com/thi-ng/umbrella/commit/d5ac264))
+
+
+
+
 <a name="1.8.2"></a>
 ## [1.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.8.1...@thi.ng/rstream@1.8.2) (2018-07-03)
 
