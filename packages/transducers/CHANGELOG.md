@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.12.2"></a>
+## [1.12.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.1...@thi.ng/transducers@1.12.2) (2018-07-09)
+
+
+### Bug Fixes
+
+* **transducers:** revert mean() from regression introduced in 095e6ef ([03543ee](https://github.com/thi-ng/umbrella/commit/03543ee))
+
+
+
+
 <a name="1.12.1"></a>
 ## [1.12.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.0...@thi.ng/transducers@1.12.1) (2018-07-09)
 

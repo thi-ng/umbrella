@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.9.3"></a>
+## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.9.2...@thi.ng/rstream@1.9.3) (2018-07-09)
+
+
+### Bug Fixes
+
+* **rstream:** Fix potential reference error in transduce() ([7f2d5dd](https://github.com/thi-ng/umbrella/commit/7f2d5dd))
+
+
+
+
 <a name="1.9.2"></a>
 ## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.9.1...@thi.ng/rstream@1.9.2) (2018-07-09)
 
