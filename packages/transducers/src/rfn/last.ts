@@ -1,9 +1,6 @@
 import { Reducer } from "../api";
+import { reducer } from "../reduce";
 
 export function last<T>(): Reducer<T, T> {
-    return [
-        () => undefined,
-        (acc) => acc,
-        (_, x) => x,
-    ];
+    return reducer(() => undefined, (_, x) => x);
 }

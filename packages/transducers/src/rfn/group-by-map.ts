@@ -2,11 +2,11 @@ import { Reducer } from "../api";
 
 import { identity } from "../func/identity";
 import { push } from "./push";
+import { reducer } from "../reduce";
 
 export function groupByMap<A, B, C>(key: ((x: A) => B) = <any>identity, rfn: Reducer<C, A> = <any>push()): Reducer<Map<B, C>, A> {
-    return [
+    return reducer(
         () => new Map(),
-        (acc) => acc,
         (acc, x) => {
             const k = key(x);
             return acc.set(k,
@@ -14,5 +14,5 @@ export function groupByMap<A, B, C>(key: ((x: A) => B) = <any>identity, rfn: Red
                     <C>rfn[2](acc.get(k), x) :
                     <C>rfn[2](rfn[0](), x));
         }
-    ];
+    );
 }

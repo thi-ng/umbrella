@@ -1,9 +1,6 @@
 import { Reducer } from "../api";
+import { reducer } from "../reduce";
 
 export function mul(): Reducer<number, number> {
-    return [
-        () => 1,
-        (acc) => acc,
-        (acc, x) => acc * x,
-    ];
+    return reducer(() => 1, (acc, x) => acc * x);
 }

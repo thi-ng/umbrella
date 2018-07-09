@@ -1,9 +1,6 @@
 import { Reducer } from "../api";
+import { reducer } from "../reduce";
 
 export function add(): Reducer<number, number> {
-    return [
-        () => 0,
-        (acc) => acc,
-        (acc, x) => acc + x,
-    ];
+    return reducer(() => 0, (acc, x) => acc + x);
 }
