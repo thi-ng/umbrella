@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.4.1...@thi.ng/rstream-gestures@0.4.2) (2018-07-09)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.4.0...@thi.ng/rstream-gestures@0.4.1) (2018-07-04)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.3.16...@thi.ng/rstream-gestures@0.4.0) (2018-07-04)
+
+
+### Features
+
+* **rstream-gestures:** add event & preventDefault opts, update docs ([de17340](https://github.com/thi-ng/umbrella/commit/de17340))
+
+
+
+
+<a name="0.3.16"></a>
+## [0.3.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.3.15...@thi.ng/rstream-gestures@0.3.16) (2018-07-03)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+<a name="0.3.15"></a>
+## [0.3.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.3.14...@thi.ng/rstream-gestures@0.3.15) (2018-07-03)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
 <a name="0.3.14"></a>
 ## [0.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.3.13...@thi.ng/rstream-gestures@0.3.14) (2018-06-21)
 

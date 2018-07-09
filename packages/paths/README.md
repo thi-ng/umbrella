@@ -8,7 +8,8 @@ This project is part of the
 ## About
 
 This library provides immutable and mutable, optimized path-based
-accessors for vanilla JS objects.
+accessors for nested, vanilla JS objects & arrays with structural
+sharing.
 
 ## Installation
 
@@ -27,19 +28,19 @@ yarn add @thi.ng/paths
 import * as paths from "@thi.ng/paths";
 ```
 
-The `getter()` and `setter()` functions transform a path like `a.b.c`
-into a function operating directly at the value the path points to in
-nested object. For getters, this essentially compiles to `val =
+The `getter()` and `setter()` functions compile a lookup path like
+`a.b.c` into a function operating directly at the value the path points
+to in nested object. For getters, this essentially compiles to `val =
 obj.a.b.c`, with the important difference that the function returns
 `undefined` if any intermediate values along the lookup path are
 undefined (and doesn't throw an error).
 
-The resulting setter function too accepts a single object to operate on
-and when called, **immutably** replaces the value at the given path,
-i.e. it produces a selective deep copy of obj up until given path. If
-any intermediate key is not present in the given object, it creates a
-plain empty object for that missing key and descends further along the
-path.
+The resulting setter function too accepts a single object (or array) to
+operate on and when called, **immutably** replaces the value at the
+given path, i.e. it produces a selective deep copy of obj up until given
+path. If any intermediate key is not present in the given object, it
+creates a plain empty object for that missing key and descends further
+along the path.
 
 ```typescript
 s = setter("a.b.c");
@@ -79,13 +80,15 @@ deleteIn(state, "a.b.c.")
 // {a: {b: {}}}
 ```
 
+### Structural sharing
+
 Only keys in the path will be updated, all other keys present in the
 given object retain their original/identical values to provide efficient
 structural sharing / re-use. This is the same *behavior* as in Clojure's
 immutable maps or those provided by ImmutableJS (albeit those
 implementation are completely different - they're using trees, we're
-using the ES6 spread op and recursive functional composition to produce
-the setter/updater).
+using the ES6 spread op (for objects, `slice()` for arrays) and dynamic
+functional composition to produce the setter/updater).
 
 ```typescript
 s = setter("a.b.c");

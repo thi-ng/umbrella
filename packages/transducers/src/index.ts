@@ -97,6 +97,7 @@ export * from "./func/compr";
 export * from "./func/constantly";
 export * from "./func/deep-transform";
 export * from "./func/delay";
+export * from "./func/ensure-array";
 export * from "./func/ensure-iterable";
 export * from "./func/even";
 export * from "./func/fuzzy-match";

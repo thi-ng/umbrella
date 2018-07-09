@@ -1,7 +1,7 @@
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
 import { Reducer } from "./api";
-import { isReduced, unreduced } from "./reduced";
+import { isReduced, unreduced, Reduced } from "./reduced";
 
 export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A;
 export function reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A;
@@ -28,4 +28,16 @@ export function reduce<A, B>(...args: any[]): A {
         }
     }
     return unreduced(complete(acc));
+}
+
+/**
+ * Convenience helper for building a full `Reducer` using the identity
+ * function (i.e. `(x) => x`) as completion step (true for 90% of all
+ * bundled transducers).
+ *
+ * @param init init step of reducer
+ * @param rfn reduction step of reducer
+ */
+export function reducer<A, B>(init: () => A, rfn: (acc: A, x: B) => A | Reduced<A>) {
+    return <Reducer<A, B>>[init, (acc) => acc, rfn];
 }

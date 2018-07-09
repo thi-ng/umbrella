@@ -93,6 +93,48 @@ describe("paths", () => {
         );
     });
 
+    it("setIn (len = 5)", () => {
+        assert.deepEqual(
+            setIn({ a: { b: { c: { d: { e: 23 } } } } }, "a.b.c.d.e", 24),
+            { a: { b: { c: { d: { e: 24 } } } } }
+        );
+        assert.deepEqual(
+            setIn({ a: { b: { c: 23 } } }, "a.b.d.e.f", 24),
+            { a: { b: { c: 23, d: { e: { f: 24 } } } } }
+        );
+        assert.deepEqual(
+            setIn({ x: 23 }, "a.b.c.d.e", 24),
+            { x: 23, a: { b: { c: { d: { e: 24 } } } } }
+        );
+        assert.deepEqual(
+            setIn(null, "a.b.c.d.e", 24),
+            { a: { b: { c: { d: { e: 24 } } } } }
+        );
+    });
+
+    it("setIn arr", () => {
+        assert.deepEqual(
+            setIn([1, 2], 0, 10),
+            [10, 2]
+        );
+        assert.deepEqual(
+            setIn([[1, 2], 3], [0, 1], 10),
+            [[1, 10], 3]
+        );
+        assert.deepEqual(
+            setIn([[1, 2, 3], 4], [0, 1, 2], 10),
+            [[1, { 2: 10 }, 3], 4]
+        );
+        assert.deepEqual(
+            setIn([[1, 2, 3], 4], [0, 1, 2, "a"], 10),
+            [[1, { 2: { a: 10 } }, 3], 4]
+        );
+        assert.deepEqual(
+            setIn([[1, 2, 3], 4], [0, 1, 2, "a", "b"], 10),
+            [[1, { 2: { a: { b: 10 } } }, 3], 4]
+        );
+    });
+
     it("immutable", () => {
         const a = { x: { y: { z: 1 } }, u: { v: 2 } };
         const b = setIn(a, "a.b.c", 3);

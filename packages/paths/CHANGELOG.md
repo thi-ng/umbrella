@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.3.10...@thi.ng/paths@1.4.0) (2018-07-04)
+
+
+### Features
+
+* **paths:** update setter() to support arrays, optimize (~2.5x faster) ([3d9d620](https://github.com/thi-ng/umbrella/commit/3d9d620))
+
+
+
+
 <a name="1.3.10"></a>
 ## [1.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.3.9...@thi.ng/paths@1.3.10) (2018-06-21)
 

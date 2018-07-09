@@ -1,9 +1,6 @@
 import { Reducer } from "../api";
+import { reducer } from "../reduce";
 
 export function pushCopy<T>(): Reducer<T[], T> {
-    return [
-        () => [],
-        (acc) => acc,
-        (acc, x) => ((acc = acc.slice()).push(x), acc)
-    ];
+    return reducer(() => [], (acc, x) => ((acc = acc.slice()).push(x), acc));
 }

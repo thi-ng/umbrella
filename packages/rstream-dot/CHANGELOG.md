@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.22"></a>
+## [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.21...@thi.ng/rstream-dot@0.2.22) (2018-07-09)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-dot
+
+<a name="0.2.21"></a>
+## [0.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.20...@thi.ng/rstream-dot@0.2.21) (2018-07-04)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-dot
+
+<a name="0.2.20"></a>
+## [0.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.19...@thi.ng/rstream-dot@0.2.20) (2018-07-04)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-dot
+
+<a name="0.2.19"></a>
+## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.18...@thi.ng/rstream-dot@0.2.19) (2018-07-03)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-dot
+
+<a name="0.2.18"></a>
+## [0.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.17...@thi.ng/rstream-dot@0.2.18) (2018-07-03)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-dot
+
 <a name="0.2.17"></a>
 ## [0.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.16...@thi.ng/rstream-dot@0.2.17) (2018-06-21)
 

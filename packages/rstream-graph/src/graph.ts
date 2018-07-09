@@ -171,7 +171,7 @@ export const addNode = (graph: Graph, state: IAtom<any>, id: string, spec: NodeS
     return graph[id] = nodeFromSpec(state, spec, id)(
         (path) => getIn(graph, absPath([id], path))
     );
-}
+};
 
 /**
  * Calls `.unsubscribe()` on given node and all of its outputs, then

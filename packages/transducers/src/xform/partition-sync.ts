@@ -37,7 +37,7 @@ import { Reducer, Transducer } from "../api";
  *
  * ```
  * // passing `false` to disable tuple reset
- * [...tx.iterator(tx.partitionSync(["a", "b"], (x) => x[0], false), src)]
+ * [...iterator(partitionSync(["a", "b"], (x) => x[0], false), src)]
  * // [ { a: ["a", 2], b: ["b", 10] },
  * //   { a: ["a", 2], b: ["b", 11] },
  * //   { a: ["a", 3], b: ["b", 11] } ]
