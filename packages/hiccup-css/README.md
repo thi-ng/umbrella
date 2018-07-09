@@ -5,6 +5,37 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+<!-- TOC -->
+
+- [@thi.ng/hiccup-css](#thinghiccup-css)
+    - [About](#about)
+    - [Features](#features)
+    - [Use cases](#use-cases)
+    - [Installation](#installation)
+    - [Dependencies](#dependencies)
+    - [API & usage examples](#api--usage-examples)
+        - [`css(rules: any, opts?: CSSOpts)`](#cssrules-any-opts-cssopts)
+        - [Property formatting only](#property-formatting-only)
+        - [Basic selectors](#basic-selectors)
+        - [Property object merging & re-use](#property-object-merging--re-use)
+        - [Iterators & CSS class scoping](#iterators--css-class-scoping)
+        - [Nested selectors](#nested-selectors)
+        - [Pseudo-classes](#pseudo-classes)
+        - [Attribute selectors](#attribute-selectors)
+        - [Auto-prefixed properties](#auto-prefixed-properties)
+        - [Media queries](#media-queries)
+        - [Keyframes](#keyframes)
+        - [DOM stylesheet injection](#dom-stylesheet-injection)
+        - [General function handling](#general-function-handling)
+            - [Functions in scope head position](#functions-in-scope-head-position)
+            - [Functions in other positions](#functions-in-other-positions)
+        - [Quoted functions](#quoted-functions)
+    - [Future plans](#future-plans)
+    - [Authors](#authors)
+    - [License](#license)
+
+<!-- /TOC -->
+
 ## About
 
 Following a similar pattern as the
@@ -257,6 +288,38 @@ header, footer {
     font-size: 1.25rem;
 }
 ```
+
+### Pseudo-classes
+
+Pseudo-classes follow the same pattern as other nested selectors shown above:
+
+```ts
+css.css(
+    ["p", ["a", [":link", {color: "red"}], [":visited", {border: 0}]]],
+    { format: css.PRETTY }
+);
+```
+
+```css
+p a:link {
+    color:red;
+}
+
+p a:visited {
+    border: 0;
+}
+```
+
+### Attribute selectors
+
+| hiccup-css selector function           | CSS       |
+|----------------------------------------|-----------|
+| `withAttrib(id)`                       | `[id]`    |
+| `attribEq(id, x, caseSensitve?)`       | `[id=x]`  |
+| `attribContains(id, x, caseSensitve?)` | `[id~=x]` |
+| `attribPrefix(id, x, caseSensitve?)`   | `[id^=x]` |
+| `attribSuffix(id, x, caseSensitve?)`   | `[id$=x]` |
+| `attribMatches(id, x, caseSensitve?)`  | `[id*=x]` |
 
 ### Auto-prefixed properties
 
