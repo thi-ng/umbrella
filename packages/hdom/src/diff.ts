@@ -15,6 +15,8 @@ const isString = iss.isString;
 const diffArray = diff.diffArray;
 const diffObject = diff.diffObject;
 
+const SEMAPHORE = Symbol("SEMAPHORE");
+
 /**
  * Takes a DOM root element and two hiccup trees, `prev` and `curr`.
  * Recursively computes diff between both trees and applies any
@@ -128,17 +130,29 @@ function diffAttributes(el: Element, prev: any, curr: any) {
     let i, e, edits;
     const delta = diffObject(prev, curr);
     removeAttribs(el, delta.dels, prev);
+    let value = SEMAPHORE;
     for (edits = delta.edits, i = edits.length; --i >= 0;) {
         e = edits[i];
         const a = e[0];
         if (a.indexOf("on") === 0) {
             el.removeEventListener(a.substr(2), prev[a]);
         }
-        setAttrib(el, a, e[1], curr);
+        if (a !== "value") {
+            setAttrib(el, a, e[1], curr);
+        } else {
+            value = e[1];
+        }
     }
     for (edits = delta.adds, i = edits.length; --i >= 0;) {
         e = edits[i];
-        setAttrib(el, e, curr[e], curr);
+        if (e !== "value") {
+            setAttrib(el, e, curr[e], curr);
+        } else {
+            value = curr[e];
+        }
+    }
+    if (value !== SEMAPHORE) {
+        setAttrib(el, "value", value, curr);
     }
 }
 
