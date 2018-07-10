@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-css",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "CSS from nested JS data structures",
     "main": "./index.js",
     "typings": "./index.d.ts",
