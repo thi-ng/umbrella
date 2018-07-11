@@ -1,8 +1,8 @@
 import {
     getIn,
     Path,
-    setIn,
-    updateIn
+    setter,
+    updater
 } from "@thi.ng/paths";
 import {
     Event,
@@ -225,7 +225,8 @@ export function ensureParamRange(min: number, max: number, value?: (e: Event) =>
  * @param tx
  */
 export function valueSetter<T>(path: Path, tx?: (x: T) => T): InterceptorFn {
-    return (state, [_, val]) => ({ [FX_STATE]: setIn(state, path, tx ? tx(val) : val) });
+    const $ = setter(path);
+    return (state, [_, val]) => ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
 }
 
 /**
@@ -250,5 +251,6 @@ export function valueSetter<T>(path: Path, tx?: (x: T) => T): InterceptorFn {
  * @param fn
  */
 export function valueUpdater<T>(path: Path, fn: (x: T, ...args: any[]) => T): InterceptorFn {
-    return (state, [_, ...args]) => ({ [FX_STATE]: updateIn(state, path, fn, ...args) });
+    const $ = updater(path, fn);
+    return (state, [_, ...args]) => ({ [FX_STATE]: $(state, ...args) });
 }
