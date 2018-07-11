@@ -20,6 +20,10 @@ composed with other pre or post-processing steps, e.g. to filter or
 transform element / attribute values or only do partial parsing with
 early termination based on some condition.
 
+Additionally, since by default the parser emits any children as part of
+"element end" events, it can be used like a tree-walking DOM parser as
+well (see SVG parsing example further below). The choice is yours!
+
 ## Installation
 
 ```
@@ -92,7 +96,9 @@ As mentioned earlier, the transducer nature of this parser allows for
 its easy integration into larger transformation pipelines. The next
 example parses an SVG file, then extracts and selectively applies
 transformations to only the `<circle>` elements in the first group
-(`<g>`) element.
+(`<g>`) element. Btw. The transformed elements can be serialized back
+into SVG syntax using
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)...
 
 Given the composed transducer below, parsing stops immediately after the
 first `<g>` element is complete. This is because the `matchFirst()`
@@ -128,16 +134,99 @@ svg=`
         // transform attributes
         tx.map((e)=> [e.tag, {
             ...e.attribs,
-            cx: parseFloat(e.attribs.cy),
+            cx: parseFloat(e.attribs.cx),
             cy: parseFloat(e.attribs.cy),
             r:  parseFloat(e.attribs.r),
         }])
     ),
     svg
 )]
-// [ [ 'circle', { cx: 150, cy: 150, r: 50 } ],
-//   [ 'circle', { cx: 150, cy: 150, r: 50 } ],
+// [ [ 'circle', { cx: 50, cy: 150, r: 50 } ],
+//   [ 'circle', { cx: 250, cy: 150, r: 50 } ],
 //   [ 'circle', { cx: 150, cy: 150, fill: 'rgba(0,255,255,0.25)', r: 100, stroke: '#ff0000' } ] ]
+```
+
+### DOM-style tree parsing using `defmulti`
+
+```ts
+import { defmulti, DEFAULT } from "@thi.ng/defmulti";
+
+// coerces given attribute IDs into numeric values and
+// keeps all other attribs
+const numericAttribs = (e, ...ids: string[]) =>
+    ids.reduce(
+        (acc, id) => (acc[id] = parseFloat(e.attribs[id]), acc),
+        { ...e.attribs }
+    );
+
+// returns iterator of parsed & filtered children of given element
+// (iterator is used to avoid extraneous copying at call sites)
+const parsedChildren = (e) =>
+    tx.iterator(
+        tx.comp(
+            tx.map(parseElement),
+            tx.filter((e)=> !!e),
+        ),
+        e.children
+    );
+
+// define multiple dispatch function, based on element tag name
+const parseElement = defmulti((e) => e.tag);
+
+// tag specific implementations
+parseElement.add("circle", (e) =>
+    [e.tag, numericAttribs(e, "cx", "cy", "r")]);
+
+parseElement.add("rect", (e) =>
+    [e.tag, numericAttribs(e, "x", "y", "width", "height")]);
+
+parseElement.add("g", (e) =>
+    [e.tag, e.attribs, ...parsedChildren(e)]);
+
+parseElement.add("svg", (e) =>
+    [e.tag, numericAttribs(e, "width", "height"), ...parsedChildren(e)]);
+
+// implementation for unhandled elements
+parseElement.add(DEFAULT, () => null);
+
+// using the same SVG source as in previous example:
+// the `last()` reducer just returns the ultimate value
+// which in this case is the SVG root element's ELEM_END parse event
+// this also contains all children (by default)
+parseElement(tx.transduce(sax.parse(), tx.last(), svg));
+
+// ["svg",
+//     {
+//         version: "1.1",
+//         height: 300,
+//         width: 300,
+//         xmlns: "http://www.w3.org/2000/svg"
+//     },
+//     ["g",
+//         { fill: "yellow" },
+//         ["circle", { cx: 50, cy: 150, r: 50 }],
+//         ["circle", { cx: 250, cy: 150, r: 50 }],
+//         ["circle",
+//             {
+//                 cx: 150,
+//                 cy: 150,
+//                 fill: "rgba(0,255,255,0.25)",
+//                 r: 100,
+//                 stroke: "#ff0000"
+//             }],
+//         ["rect",
+//             {
+//                 x: 80,
+//                 y: 80,
+//                 width: 140,
+//                 height: 140,
+//                 fill: "none",
+//                 stroke: "black"
+//             }]],
+//     ["g",
+//         { fill: "none", stroke: "black" },
+//         ["circle", { cx: 150, cy: 150, r: 50 }],
+//         ["circle", { cx: 150, cy: 150, r: 25 }]]]
 ```
 
 ### Error handling
