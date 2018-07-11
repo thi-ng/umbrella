@@ -28,11 +28,11 @@ yarn add @thi.ng/paths
 import * as paths from "@thi.ng/paths";
 ```
 
-The `getter()` and `setter()` functions compile a lookup path like
-`a.b.c` into a function operating directly at the value the path points
-to in nested object. For getters, this essentially compiles to `val =
-obj.a.b.c`, with the important difference that the function returns
-`undefined` if any intermediate values along the lookup path are
+The `getter()`, `setter()` and `updater()` functions compile a lookup
+path like `a.b.c` into a function operating directly at the value the
+path points to in nested object. For getters, this essentially compiles
+to `val = obj.a.b.c`, with the important difference that the function
+returns `undefined` if any intermediate values along the lookup path are
 undefined (and doesn't throw an error).
 
 The resulting setter function too accepts a single object (or array) to
@@ -55,6 +55,25 @@ s({x: 23}, 24)
 
 s(null, 24)
 // { a: { b: { c: 24 } } }
+```
+
+Nested value updaters follow a similar pattern, but also take a user
+supplied function to apply to the existing value (incl. any other
+arguments passed):
+
+```ts
+inc = updater("a.b", (x) => x != null ? x + 1 : 1);
+
+inc({a: {b: 10}});
+// { a: { b: 11 } }
+inc({});
+// { a: { b: 1 } }
+
+// with additional arguments
+add = updater("a.b", (x, n) => x + n);
+
+add({a: {b: 10}}, 13);
+// { a: { b: 23 } }
 ```
 
 In addition to these higher-order functions, the module also provides

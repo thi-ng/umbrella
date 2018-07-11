@@ -139,7 +139,7 @@ export function getter(path: Path) {
  *
  * @param path
  */
-export function setter(path: Path) {
+export function setter(path: Path): (s: any, v: any) => any {
     const ks = toPath(path);
     let [a, b, c, d] = ks;
     switch (ks.length) {
@@ -218,6 +218,31 @@ export function setInMany(state: any, ...pairs: any[]) {
 }
 
 /**
+ * Similar to `setter()`, returns a function to update values at given
+ * `path` using provided update `fn`. The returned function accepts a
+ * single object / array and applies `fn` to current path value (incl.
+ * any additional/optional arguments passed) and uses result as new
+ * value. Does not modify original state (unless given function does so
+ * itself).
+ *
+ * ```
+ * add = updater("a.b", (x, n) => x + n);
+ *
+ * add({a: {b: 10}}, 13);
+ * // { a: { b: 23 } }
+ * ```
+ *
+ * @param path
+ * @param fn
+ */
+export function updater(path: Path, fn: UpdateFn<any>) {
+    const g = getter(path);
+    const s = setter(path);
+    return (state: any, ...args: any[]) =>
+        s(state, fn.apply(null, (args.unshift(g(state)), args)));
+};
+
+/**
  * Similar to `setIn()`, but applies given function to current path
  * value (incl. any additional/optional arguments passed to `updateIn`)
  * and uses result as new value. Does not modify original state (unless
@@ -233,8 +258,7 @@ export function setInMany(state: any, ...pairs: any[]) {
  * @param path
  */
 export function updateIn(state: any, path: Path, fn: UpdateFn<any>, ...args: any[]) {
-    args.unshift(getIn(state, path));
-    return setter(path)(state, fn.apply(null, args));
+    return setter(path)(state, fn.apply(null, (args.unshift(getter(path)(state)), args)));
 }
 
 /**
