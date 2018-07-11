@@ -98,7 +98,7 @@ example parses an SVG file, then extracts and selectively applies
 transformations to only the `<circle>` elements in the first group
 (`<g>`) element. Btw. The transformed elements can be serialized back
 into SVG syntax using
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)...
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)...
 
 Given the composed transducer below, parsing stops immediately after the
 first `<g>` element is complete. This is because the `matchFirst()`
