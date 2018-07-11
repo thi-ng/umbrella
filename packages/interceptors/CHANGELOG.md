@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.8.7"></a>
+## [1.8.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.8.6...@thi.ng/interceptors@1.8.7) (2018-07-11)
+
+
+### Performance Improvements
+
+* **interceptors:** update valueSetter()/valueUpdater() ([73c7b8a](https://github.com/thi-ng/umbrella/commit/73c7b8a))
+
+
+
+
 <a name="1.8.6"></a>
 ## [1.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.8.5...@thi.ng/interceptors@1.8.6) (2018-07-04)
 
