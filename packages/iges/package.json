@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iges",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed",
     "main": "./index.js",
     "typings": "./index.d.ts",
