@@ -42,6 +42,16 @@ const $STR = (x: any) => (x != null ? (x = x.toString(), `${x.length}H${x}`) : "
 const $SEQ = padl(7, " ");
 const $BODY = padr(72, " ");
 const $PBODY = padr(64, " ");
+const $DATE = (d: Date) =>
+    $STR([
+        d.getUTCFullYear(),
+        $Z2(d.getUTCMonth() + 1),
+        $Z2(d.getUTCDate()),
+        ".",
+        $Z2(d.getUTCHours()),
+        $Z2(d.getUTCMinutes()),
+        $Z2(d.getUTCSeconds())
+    ].join(""));
 
 export const newDocument = (g?: Partial<GlobalParams>): IGESDocument => {
     const globals = <GlobalParams>{ ...DEFAULT_GLOBALS, ...g };
@@ -49,6 +59,9 @@ export const newDocument = (g?: Partial<GlobalParams>): IGESDocument => {
     const $PARAM = defmulti<any[], string>((x) => x[1]);
     $PARAM.add(Type.INT, (x) => x[0].toString());
     $PARAM.add(Type.FLOAT, (x) => $FF(x[0]));
+    $PARAM.add(Type.STR, (x) => x[0]);
+    $PARAM.add(Type.HSTR, (x) => $STR(x[0]));
+    $PARAM.add(Type.DATE, (x) => $DATE(x[0]));
 
     return {
         globals,
@@ -63,21 +76,12 @@ export const newDocument = (g?: Partial<GlobalParams>): IGESDocument => {
         },
         $FF,
         $PARAM,
-        $DATE: (d: Date) => $STR([
-            d.getUTCFullYear(),
-            $Z2(d.getUTCMonth() + 1),
-            $Z2(d.getUTCDate()),
-            ".",
-            $Z2(d.getUTCHours()),
-            $Z2(d.getUTCMinutes()),
-            $Z2(d.getUTCSeconds())
-        ].join(""))
     };
 };
 
 export const serialize = (doc: IGESDocument) => [
-    formatSection(doc, doc.start, "S", "", ""),
-    formatGlobals(doc),
+    ...formatStart(doc),
+    ...formatGlobals(doc),
     ...doc.dict,
     ...doc.param,
     formatTerminate(doc)
@@ -86,46 +90,52 @@ export const serialize = (doc: IGESDocument) => [
 const formatLine = (body: string, type: string, i: number) =>
     `${$BODY(body)}${type}${$SEQ(i + 1)}`;
 
-const formatSection = (doc: IGESDocument, items: any[], type: string, d1 = "", d2 = "") => {
-    const res = [...iterator(
-        mapIndexed(
-            (i, x) => formatLine(x + (i < items.length - 1 ? d1 : d2), type, i)
-        ),
-        items
-    )];
-    doc.offsets[type] += res.length;
-    return res.join("\n");
+const formatStart = (doc: IGESDocument) => {
+    const res = transduce(
+        mapIndexed((i, x: string) => formatLine(x, "S", i)),
+        push(),
+        doc.start
+    );
+    doc.offsets.S += res.length;
+    return res;
 };
 
 const formatGlobals = (doc: IGESDocument) => {
     const g = doc.globals;
-    return formatSection(doc, [
-        $STR(g.delimParam),
-        $STR(g.delimRecord),
-        $STR(g.senderProductID),
-        $STR(g.fileName),
-        $STR(g.generator),
-        $STR(g.generatorVersion),
-        g.intBits,
-        g.singleMaxPow,
-        g.singleDigits,
-        g.doubleMaxPow,
-        g.doubleDigits,
-        $STR(g.receiverProductID),
-        doc.$FF(g.modelScale),
-        g.units,
-        $STR(Unit[g.units]),
-        g.numLineWeights,
-        doc.$FF(g.maxLineWeight),
-        doc.$DATE(g.created || new Date()),
-        doc.$FF(1 / Math.pow(10, g.precision)),
-        g.maxCoord ? doc.$FF(g.maxCoord) : "",
-        $STR(g.author),
-        $STR(g.authorOrg),
-        g.specVersion,
-        g.draftVersion,
-        doc.$DATE(g.modified || new Date()),
-    ], "G", g.delimParam, g.delimRecord);
+    const res = formatParams(
+        doc,
+        [
+            [g.delimParam, Type.HSTR],
+            [g.delimRecord, Type.HSTR],
+            [g.senderProductID, Type.HSTR],
+            [g.fileName, Type.HSTR],
+            [g.generator, Type.HSTR],
+            [g.generatorVersion, Type.HSTR],
+            [g.intBits, Type.INT],
+            [g.singleMaxPow, Type.INT],
+            [g.singleDigits, Type.INT],
+            [g.doubleMaxPow, Type.INT],
+            [g.doubleDigits, Type.INT],
+            [g.receiverProductID, Type.HSTR],
+            [g.modelScale, Type.FLOAT],
+            [g.units, Type.INT],
+            [Unit[g.units], Type.HSTR],
+            [g.numLineWeights, Type.INT],
+            [g.maxLineWeight, Type.FLOAT],
+            [g.created || new Date(), Type.DATE],
+            [1 / Math.pow(10, g.precision), Type.FLOAT],
+            [g.maxCoord || 1000, Type.FLOAT],
+            [g.author, Type.HSTR],
+            [g.authorOrg, Type.HSTR],
+            [g.specVersion, Type.INT],
+            [g.draftVersion, Type.INT],
+            [g.modified || new Date(), Type.DATE],
+        ],
+        (body, i) => `${$BODY(body)}G${$SEQ(i + 1)}`,
+        72
+    );
+    doc.offsets.G += res.length;
+    return res;
 };
 
 const formatTerminate = (doc: IGESDocument) =>
@@ -176,9 +186,11 @@ const formatDictEntry = (e: DictEntry) =>
         ]
     );
 
-const formatParams = (doc: IGESDocument, params: Param[]) => {
-    const did = doc.offsets.D + 1;
-    const pid = doc.offsets.P;
+const formatParam = (did: number, pid: number) =>
+    (body: string, i: number) =>
+        `${$PBODY(body)} ${$Z7(did + 1)}P${$SEQ(i + pid)}`;
+
+const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string, i: number) => string, bodyWidth = 64) => {
     const lines = transduce(
         comp(
             map(doc.$PARAM),
@@ -187,7 +199,7 @@ const formatParams = (doc: IGESDocument, params: Param[]) => {
                 let flag = false;
                 return (p) => {
                     w += p.length + 1;
-                    if (w >= 64) {
+                    if (w >= bodyWidth) {
                         flag = !flag;
                         w = p.length + 1;
                     }
@@ -200,11 +212,11 @@ const formatParams = (doc: IGESDocument, params: Param[]) => {
         params);
     const n = lines.length - 1;
     return lines.map(
-        (l, i) => {
+        (line, i) => {
             const d = i < n ?
                 doc.globals.delimParam :
                 doc.globals.delimRecord;
-            return `${$PBODY(l + d)} ${$Z7(did)}P${$SEQ(i + pid)}`;
+            return fmtBody(line + d, i);
         }
     );
 };
@@ -215,18 +227,22 @@ const formatParams = (doc: IGESDocument, params: Param[]) => {
 export const addPolyline2d = (doc: IGESDocument, pts: number[][], closed = false) => {
     const did = doc.offsets.D;
     const pid = doc.offsets.P;
-    const params = formatParams(doc, [
-        [106, Type.INT],
-        [1, Type.INT],
-        [pts.length + (closed ? 1 : 0), Type.INT],
-        [0, Type.FLOAT],
-        ...iterator(
-            mapcat<number[], Param>(
-                ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]]
-            ),
-            closed ? wrap(pts, 1, false, true) : pts
-        )
-    ]);
+    const params = formatParams(
+        doc,
+        [
+            [106, Type.INT],
+            [1, Type.INT],
+            [pts.length + (closed ? 1 : 0), Type.INT],
+            [0, Type.FLOAT],
+            ...iterator(
+                mapcat<number[], Param>(
+                    ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]]
+                ),
+                closed ? wrap(pts, 1, false, true) : pts
+            )
+        ],
+        formatParam(did, pid)
+    );
     doc.offsets.P += params.length;
     doc.offsets.D += 2;
     doc.dict.push(...formatDictEntry(<DictEntry>{

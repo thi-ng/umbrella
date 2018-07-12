@@ -15,6 +15,8 @@ export enum Type {
     INT,
     FLOAT,
     STR,
+    HSTR,
+    DATE,
     POINTER
 }
 
@@ -154,7 +156,6 @@ export interface IGESDocument {
         D: number;
     };
     $FF: (x: number) => string;
-    $DATE: (d: Date) => string;
     $PARAM: (p: any[]) => string;
 }
 
