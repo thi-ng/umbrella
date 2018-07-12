@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/iges",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -29,10 +29,16 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.0.4",
+        "@thi.ng/defmulti": "0.3.5",
         "@thi.ng/transducers": "^1.12.2"
     },
     "keywords": [
+        "CAD",
         "ES6",
+        "export",
+        "IGES",
+        "geometry",
+        "serialization",
         "typescript"
     ],
     "publishConfig": {
