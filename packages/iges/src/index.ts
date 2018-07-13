@@ -6,11 +6,11 @@ import {
     mapcat,
     mapIndexed,
     partition,
+    push,
     str,
     transduce,
-    wrap,
-    partitionBy,
-    push
+    wordWrap,
+    wrap
 } from "@thi.ng/transducers";
 
 import {
@@ -19,9 +19,9 @@ import {
     EntityStatus,
     GlobalParams,
     IGESDocument,
+    Param,
     Type,
-    Unit,
-    Param
+    Unit
 } from "./api";
 
 const padl = (n: number, ch: string) => {
@@ -195,18 +195,7 @@ const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string
     const lines = transduce(
         comp(
             map(doc.$PARAM),
-            partitionBy(() => {
-                let w = 0;
-                let flag = false;
-                return (p) => {
-                    w += p.length + 1;
-                    if (w >= bodyWidth) {
-                        flag = !flag;
-                        w = p.length + 1;
-                    }
-                    return flag;
-                };
-            }, true),
+            wordWrap(bodyWidth, 1, true),
             map((p) => p.join(doc.globals.delimParam)),
         ),
         push(),
