@@ -28,7 +28,7 @@ Comprehensive doubly linked list structure with:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/dcons
 ```
 
@@ -42,7 +42,7 @@ yarn add @thi.ng/dcons
 
 ## Usage
 
-```js
+```ts
 // ES5
 DCons = require("@thi.ng/dcons").DCons;
 
@@ -52,7 +52,7 @@ import { DCons } from "@thi.ng/dcons";
 
 ## API
 
-```js
+```ts
 list = new DCons([1, 2, 3]);
 list.length
 [...list]
@@ -107,10 +107,10 @@ list.length
 
 TODO...
 
-# Authors
+## Authors
 
 - Karsten Schmidt
 
-# License
+## License
 
 &copy; 2017-2018 Karsten Schmidt // Apache Software License 2.0

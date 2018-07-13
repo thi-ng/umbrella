@@ -14,7 +14,7 @@ and synchronous stream subscriptions/transformations of
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream-csp
 ```
 
@@ -25,7 +25,7 @@ yarn add @thi.ng/rstream-csp
 
 ## Usage examples
 
-```typescript
+```ts
 import * as rs from "@thi.ng/rstream";
 import * as tx from "@thi.ng/transducers";
 import { fromChannel } from "@thi.ng/rstream-csp";

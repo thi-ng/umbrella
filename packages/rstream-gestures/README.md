@@ -24,7 +24,7 @@ interval (provided via options object).
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream-gestures
 ```
 
@@ -43,7 +43,7 @@ A small, fully commented project can be found in the `/examples` folder:
 
 ### Basic usage
 
-```typescript
+```ts
 import { GestureType, gestureStream } from "@thi.ng/rstream-gestures";
 import { trace } from "@thi.ng/rstream";
 import { comp, dedupe, filter, map } from "@thi.ng/transducers";

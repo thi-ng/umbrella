@@ -42,7 +42,7 @@ The following is only used for repeated values:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rle-pack
 ```
 
@@ -52,11 +52,11 @@ yarn add @thi.ng/rle-pack
 
 ## API
 
-```js
+```ts
 let rle = require("@thi.ng/rle-pack");
 ```
 
-```js
+```ts
 // prepare dummy data
 src = new Uint8Array(1024);
 src.set([1,1,1,1,1,2,2,2,2,3,3,3,4,4,5,4,4,3,3,3,2,2,2,2,1,1,1,1,1], 512);
@@ -72,10 +72,10 @@ packed.length
 dest = rle.decodeBytes(packed);
 ```
 
-# Authors
+## Authors
 
 - Karsten Schmidt
 
-# License
+## License
 
 &copy; 2017 Karsten Schmidt // Apache Software License 2.0

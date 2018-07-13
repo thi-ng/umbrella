@@ -33,7 +33,7 @@ svg.svg(svg.circle([0, 0], 100, { fill: "red" }));
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/hiccup-svg
 ```
 
@@ -43,7 +43,7 @@ yarn add @thi.ng/hiccup-svg
 
 ## Usage examples
 
-```typescript
+```ts
 import * as svg from "@thi.ng/hiccup-svg";
 import { serialize } from "@thi.ng/hiccup";
 import * as fs from "fs";

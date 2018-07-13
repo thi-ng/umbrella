@@ -57,11 +57,11 @@ ALPHA
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/pointfree-lang
 ```
 
-```typescript
+```ts
 import * as pf from "@thi.ng/pointfree-lang";
 ```
 
@@ -503,7 +503,6 @@ pf.runU(src, {bingo: 42}, [42]);
 pf.runU(src, {bingo: 42}, [43]);
 // nope
 ```
-
 
 ## Ideas / Todos
 

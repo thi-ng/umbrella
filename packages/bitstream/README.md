@@ -12,7 +12,7 @@ TypeScript, distributed in ES6.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/bitstream
 ```
 
@@ -22,7 +22,7 @@ yarn add @thi.ng/bitstream
 
 ## API
 
-```js
+```ts
 import * as bits from "@thi.ng/bitstream";
 ```
 
@@ -44,7 +44,7 @@ but JS can only represent integers (w/o loss of precision) up to
 `2^53-1`. If you're willing to accept lossy precision for larger values,
 technically the max. supported word width is 64 bits.
 
-```js
+```ts
 out = new bits.BitOutputStream();
 // write 3-bit number (only the lowest 3 bits are used, here 0x05)
 out.write(0xf5, 3);
@@ -84,7 +84,7 @@ bitfields.
 Using `input.seek(pos)`, the read position can be repositioned within
 stream limits.
 
-```js
+```ts
 // get input from output stream...
 // (for reference, the ^ indicate the start of each bit field)
 [...out.reader()].join("")
@@ -123,10 +123,10 @@ input.read(7)
 In addition to the generic `read()` method, there's also the slightly
 faster `readBit()` for reading single bits.
 
-# Authors
+## Authors
 
 - Karsten Schmidt
 
-# License
+## License
 
 &copy; 2016-2018 Karsten Schmidt // Apache Software License 2.0

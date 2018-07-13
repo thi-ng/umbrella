@@ -34,7 +34,7 @@ package.**
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/atom
 ```
 
@@ -43,7 +43,7 @@ using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
 generator:**
 
-```
+```bash
 yarn create hdom-app my-app
 
 cd my-app
@@ -73,7 +73,7 @@ can be obtained via `deref()`, replaced via `reset()` and updated using
 `onchange` event handlers which are called from `reset`/`swap` and
 receive both the old and new atom values.
 
-```typescript
+```ts
 import * as atom from "@thi.ng/atom";
 
 const a = new atom.Atom(23);
@@ -118,7 +118,7 @@ state (atom or another cursor) to reflect their updated local state.
 I.e. any change to a cursor's value propagates up the hierarchy of
 parent states.
 
-```typescript
+```ts
 a = new atom.Atom({a: {b: {c: 1}}})
 // cursor to `b` value
 b=new atom.Cursor(a, "a.b")
@@ -138,7 +138,7 @@ For that reason, it's recommended to design the overall data layout
 rather wide than deep (my personal limit is 3-4 levels) to minimize the
 length of the propagation chain and maximize structural sharing.
 
-```typescript
+```ts
 // main state
 main = new atom.Atom({ a: { b: { c: 23 }, d: { e: 42 } }, f: 66 });
 
@@ -177,7 +177,7 @@ state atom, there are many situations when one only requires read access
 and the ability to (optionally) produce transformed versions of such a
 value. The `View` type provides exactly this functionality:
 
-```typescript
+```ts
 db = new atom.Atom({a: 1, b: {c: 2}});
 
 // create a view for a's value
@@ -229,7 +229,7 @@ update, regardless of value change).
 Related, the actual value change predicate can be customized. If not
 given, the default `@thi.ng/equiv` will be used.
 
-```typescript
+```ts
 let x;
 let a = new Atom({value: 1})
 
@@ -273,7 +273,7 @@ This example is also available in standalone form:
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/login-form) | [Live demo](http://demo.thi.ng/umbrella/login-form/)
 
-```typescript
+```ts
 import { Atom, setIn } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 
@@ -365,7 +365,7 @@ but creates snapshots of the current state before applying the new
 state. By default history has length of 100 steps, but this is
 configurable.
 
-```typescript
+```ts
 db = new atom.History(new atom.Atom({a: 1}))
 db.deref()
 // {a: 1}

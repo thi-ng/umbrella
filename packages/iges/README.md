@@ -15,13 +15,13 @@ Houdini, Fusion 360)
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/iges
 ```
 
 ## Usage examples
 
-```typescript
+```ts
 import * as iges from "@thi.ng/iges";
 
 const doc = iges.newDocument({

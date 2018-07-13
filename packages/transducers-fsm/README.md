@@ -15,7 +15,7 @@ transformation pipeline.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/transducers-fsm
 ```
 

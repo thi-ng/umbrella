@@ -26,7 +26,7 @@ well (see SVG parsing example further below). The choice is yours!
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/sax
 ```
 

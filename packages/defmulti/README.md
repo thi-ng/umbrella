@@ -19,7 +19,7 @@ arguments. Why "only" 8?
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/defmulti
 ```
 
@@ -49,7 +49,7 @@ Implementations for different dispatch values can be added and removed
 dynamically by calling `.add(id, fn)` or `.remove(id)` on the returned
 function.
 
-```typescript
+```ts
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
 
 const visit = defmulti<any, void>((x) => Object.prototype.toString.call(x));

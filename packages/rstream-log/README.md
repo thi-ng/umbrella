@@ -14,7 +14,7 @@ transformable via
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream-log
 ```
 
@@ -28,7 +28,7 @@ yarn add @thi.ng/rstream-log
 
 ## Usage examples
 
-```typescript
+```ts
 import * as log from "@thi.ng/rstream-log";
 
 const logger = new log.Logger("main");

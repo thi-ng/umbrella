@@ -10,8 +10,6 @@ This project is part of the
 Lightweight reactive multi-tap streams and transducer based
 transformation pipeline constructs, written in TypeScript.
 
-## About
-
 This library provides & uses three key building blocks for reactive
 programming:
 
@@ -110,7 +108,7 @@ are provided too:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream
 ```
 
@@ -153,14 +151,14 @@ this package and based on the barebones version shown below.
 
 ### Basic usage patterns
 
-```typescript
+```ts
 import * as rs from "@thi.ng/rstream";
 import * as tx from "@thi.ng/transducers";
 ```
 
 ### FPS counter
 
-```typescript
+```ts
 // requestAnimationFrame() event stream (counter)
 // (in Node falls back to `fromInterval(16)`)
 const raf = rs.fromRAF();
@@ -187,13 +185,13 @@ raf.subscribe(rs.trace());
 setTimeout(()=> raf.done(), 10000);
 ```
 
-### Stream merging
+### StreamMerge
 
 See
 [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
 for a related, but more highlevel approach.
 
-```typescript
+```ts
 rs.merge({
     src: [
         rs.fromEvent(document, "mousemove"),
@@ -237,7 +235,7 @@ to implement a dataflow graph whose leaf inputs (and their changes) are
 sourced from a central immutable
 [atom](https://github.com/thi-ng/umbrella/tree/master/packages/).
 
-```typescript
+```ts
 import { Atom } from "@thi.ng/atom/atom";
 import { map } from "@thi.ng/transducers";
 import * as rs from "@thi.ng/rstream";
@@ -305,7 +303,7 @@ setTimeout(() => graph.resetIn("a2.ports.b", 100), 100);
 
 ### Central app state atom with reactive undo / redo
 
-```typescript
+```ts
 import * as atom from "@thi.ng/atom";
 import * as tx from "@thi.ng/transducers";
 

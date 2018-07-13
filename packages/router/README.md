@@ -22,7 +22,7 @@ for:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/router
 ```
 
@@ -31,7 +31,7 @@ using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
 generator:**
 
-```
+```bash
 yarn create hdom-app my-app
 
 cd my-app
@@ -52,7 +52,7 @@ A complete, full commented demo app is here:
 
 [Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) | [Live demo](http://demo.thi.ng/umbrella/router-basics/)
 
-```typescript
+```ts
 import * as r from "@thi.ng/router";
 
 // router configuration

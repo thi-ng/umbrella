@@ -16,7 +16,7 @@ package.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/compare
 ```
 
@@ -26,7 +26,7 @@ None
 
 ## Usage examples
 
-```typescript
+```ts
 import { ICompare } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 

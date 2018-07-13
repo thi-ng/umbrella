@@ -96,7 +96,7 @@ ported from [Factor](http://factorcode.org) and
 
 (details explained further below)
 
-```typescript
+```ts
 // define word to compute dot product of two vectors
 const dotp = pf.word([pf.vmul, [pf.add], 0, pf.foldl]);
 // another word to normalize a vector (uses `dotp`)
@@ -116,7 +116,7 @@ pf.unwrap(normalize([[ [10, -10, 0] ]]))
 
 The same in standard imperative style:
 
-```typescript
+```ts
 function dotp(a, b) {
     let sum = 0;
     for(let i = 0; i < a.length; i++) {
@@ -157,7 +157,7 @@ ALPHA - in active development, API still undergoing major changes
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/pointfree
 ```
 
@@ -170,13 +170,13 @@ yarn add @thi.ng/pointfree
 
 ## Usage
 
-```typescript
+```ts
 import * as pf from "@thi.ng/pointfree";
 ```
 
 The main type aliases used by this DSL are:
 
-```typescript
+```ts
 type Stack = any[]
 type StackEnv = any
 type StackFn = (ctx: StackContext) => StackContext
@@ -234,7 +234,7 @@ Alternatively, we can use `runU()` to return an unwrapped value or
 section of the result stack. This is merely syntax sugar and we use this
 for some of the examples below.
 
-```typescript
+```ts
 // calculate (1 + 2 + 3) * 10
 pf.run(
     // a pointfree stack program w/ stack effects
@@ -261,7 +261,7 @@ value(s) from result context.
 **Important**: Unwrapped words **cannot** be used as part of larger
 stack programs. Their use case is purely standalone application.
 
-```typescript
+```ts
 // define new word to compute multiply-add:
 // ( x y z -- x*y+z )
 const madd = pf.word([pf.invrot, pf.mul, pf.add]);
@@ -285,7 +285,7 @@ languages. The general idea is to decompose a larger solution into
 smaller re-usable units, words, quotations. These often extremely small
 words can be much easier tested and reused.
 
-```typescript
+```ts
 // compute square of x
 // ( x -- x*x )
 const pow2 = pf.word([pf.dup, pf.mul]);
@@ -320,7 +320,7 @@ execution. Quotations can be nested, composed and are executed via
 
 This example uses a quoted form of the above `pow2` word:
 
-```typescript
+```ts
 pf.runU(
     [
         // push quotation on stack
@@ -376,7 +376,7 @@ prepend (or `pushr` to append) arguments to a given quotation (array).
 Also see [the section about combinators](#dataflow-combinators) for more
 advanced options.
 
-```typescript
+```ts
 // build & execute curried quotation
 pf.run([10, [pf.add], pf.pushl, pf.exec], [[13]]);
 // 23
@@ -385,7 +385,7 @@ pf.run([10, [pf.add], pf.pushl, pf.exec], [[13]]);
 Furthermore, the ES6 spread operator can be used to dissolve a quotation
 in a larger word/program (i.e. as a form of inlining code).
 
-```typescript
+```ts
 // a quotation is just an array of values/words
 // this function is a quotation generator
 const tupleQ = (n) => [n, pf.collect];
@@ -516,7 +516,7 @@ produce a result array (only flat results pushed on stack), whereas
 `mapl` takes an array and a quotation. Loops over array, pushes each
 value on the stack and applies quotation for each.
 
-```typescript
+```ts
 // multiply each array item * 10
 pf.runU([[1, 2, 3, 4], [10, pf.mul], pf.mapll]);
 // [ 10, 20, 30, 40 ]
@@ -559,14 +559,14 @@ deeper stack values to their respective keys in object. Pushes result
 object back on stack at the end. Throws error if there're less remaining
 stack values than keys in given array.
 
-```typescript
+```ts
 runU([1, 2, 3, ["a","b","c"], {}, bindkeys])
 // { c: 3, b: 2, a: 1 }
 ```
 
 #### Combine array transform op with deeper stack values
 
-```typescript
+```ts
 // helper word to extract a 8bit range from a 32bit int
 // `x` is the orig number, `s` bit shift amount
 // ( x s -- x byte )
@@ -593,7 +593,7 @@ splitBytes([[0xdecafbad]]);
 
 See `cond` documentation further below...
 
-```typescript
+```ts
 // negate TOS item ONLY if negative, else do nothing
 const abs = pf.wordU([pf.dup, pf.isneg, pf.cond(pf.neg)]);
 
@@ -606,7 +606,7 @@ abs([42])
 // 42
 ```
 
-```typescript
+```ts
 // `cases()` is similar to JS `switch() { case ... }`
 const classify = (x) =>
     pf.unwrap(
@@ -636,7 +636,7 @@ classify(-1);
 as test produces a truthy result. There's also `loopq` which reads its
 arguments (same as `loop`) from the stack.
 
-```typescript
+```ts
 // print countdown from 3
 pf.run(
     [
@@ -659,7 +659,7 @@ Alternatively, the `dotimes` construct is more suitable for simple
 counter based iterations. Like `loopq` it's not an higher-order word and
 works with a body quotation, which is executed `n` times.
 
-```typescript
+```ts
 pf.run([3, ["counter: ", pf.swap, pf.add, pf.print], pf.dotimes])
 // counter: 0
 // counter: 1
@@ -669,7 +669,7 @@ pf.run([3, ["counter: ", pf.swap, pf.add, pf.print], pf.dotimes])
 `loop`/`loopq` and `dotimes` can be used to create more complex/custom
 looping constructs:
 
-```typescript
+```ts
 // 2D range/grid loop
 //
 // (cols rows body -- ? )
@@ -723,7 +723,7 @@ without having to resort to complex stack shuffling ops. There're
 several words available for moving data between main ("D-stack") and the
 r-stack and to manipulate the structure of the R-stack itself.
 
-```typescript
+```ts
 // this example partitions the main stack into triples
 
 // helper word to check if there're values on d-stack

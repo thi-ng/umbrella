@@ -21,7 +21,7 @@ details.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/dot
 ```
 
@@ -37,7 +37,7 @@ yarn add @thi.ng/dot
 The source code of this example is also available in
 [/test/example.ts](https://github.com/thi-ng/umbrella/tree/master/packages/dot/test/example.ts).
 
-```typescript
+```ts
 import * as dot from "@thi.ng/dot";
 
 // node type style presets

@@ -17,7 +17,7 @@ maps & sets as backend.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/dgraph
 ```
 
@@ -31,7 +31,7 @@ yarn add @thi.ng/dgraph
 
 ## Usage examples
 
-```typescript
+```ts
 import { DGraph } from "@thi.ng/dgraph";
 
 g = new DGraph();

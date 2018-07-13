@@ -15,7 +15,7 @@ package.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/bench
 ```
 
@@ -25,7 +25,7 @@ None
 
 ## Usage examples
 
-```typescript
+```ts
 import { timed, bench } from "@thi.ng/bench";
 ```
 

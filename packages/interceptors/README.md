@@ -11,7 +11,7 @@ Interceptor based event, side effect & immutable state handling.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/interceptors
 ```
 
@@ -25,7 +25,7 @@ yarn add @thi.ng/interceptors
 
 ## Usage examples
 
-```typescript
+```ts
 import * as interceptors from "@thi.ng/interceptors";
 ```
 

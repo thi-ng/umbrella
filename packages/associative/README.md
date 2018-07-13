@@ -117,7 +117,7 @@ map.get([3,4], "n/a");
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/associative
 ```
 
@@ -175,7 +175,6 @@ Data structure description:
 - ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf
 - https://en.wikipedia.org/wiki/Skip_list
 
-
 #### Ranged queries
 
 ```ts
@@ -210,7 +209,7 @@ equality and comparison semantics and additional functionality:
 - range queries (via `entries`, `keys`, `values`)
 - multiple value addition/deletion via `into()` and `disj()`
 
-Furthermore, this class implements the `ICopy`, IEmpty`, `ICompare` and
+Furthermore, this class implements the `ICopy`, `IEmpty`, `ICompare` and
 `IEquiv` interfaces defined by `@thi.ng/api`. The latter two allow
 instances to be used as keys themselves in other data types defined in
 this (and other) package(s).

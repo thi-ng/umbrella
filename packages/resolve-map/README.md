@@ -106,7 +106,7 @@ res.e(2);
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/resolve-map
 ```
 
@@ -184,7 +184,7 @@ resolve({...stats, src: () => [ 1, 6, 7, 2, 4, 11, -3 ]})
 
 ### Theme configuration
 
-```typescript
+```ts
 import { resolve } from "@thi.ng/resolve-map";
 
 resolve({

@@ -26,6 +26,8 @@ This project is part of the
 - [API](#api)
     - [serialize(tree: any, ctx?: any, escape = false): string](#serializetree-any-ctx-any-escape--false-string)
     - [escape(str: string): string](#escapestr-string-string)
+- [Authors](#authors)
+- [License](#license)
 
 <!-- /TOC -->
 
@@ -98,7 +100,7 @@ iterable
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/hiccup
 ```
 
@@ -512,9 +514,10 @@ Helper function. Applies HTML entity replacement on given string. If
 done automatically ([list of entities
 considered](https://github.com/thi-ng/umbrella/blob/master/packages/hiccup/src/index.ts#L14)).
 
-# Authors
+## Authors
+
 - Karsten Schmidt
 
-# License
+## License
 
 &copy; 2016-2018 Karsten Schmidt // Apache Software License 2.0

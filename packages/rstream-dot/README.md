@@ -13,7 +13,7 @@ dataflow graph topologies.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream-dot
 ```
 
@@ -23,7 +23,7 @@ yarn add @thi.ng/rstream-dot
 
 ## Usage examples
 
-```typescript
+```ts
 import * as rsd from "@thi.ng/rstream-dot";
 
 import * as rs from "@thi.ng/rstream";
@@ -67,7 +67,7 @@ console.log(rsd.toDot(rsd.walk([a, b])));
 
 Copy output to file `graph.dot` and then run:
 
-```
+```bash
 dot -Tsvg -o graph.svg graph.dot
 ```
 

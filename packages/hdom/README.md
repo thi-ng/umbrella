@@ -76,7 +76,7 @@ for component configuration.
 
 ### Minimal example
 
-```typescript
+```ts
 import * as hdom from "@thi.ng/hdom";
 
 // stateless component w/ params
@@ -168,10 +168,9 @@ generalizing the approach beyond standard browser DOM use cases (planned
 for v4.0.0). The project has been used for several projects in
 production since 2016.
 
-
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/hdom
 ```
 
@@ -180,7 +179,7 @@ Use the customizable
 generator to create a pre-configured app skeleton using @thi.ng/atom,
 @thi.ng/hdom, @thi.ng/interceptors & @thi.ng/router:
 
-```
+```bash
 yarn create hdom-app my-app
 
 cd my-app

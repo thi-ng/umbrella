@@ -5,24 +5,22 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+<!-- TOC depthFrom:2 depthTo:2 -->
+
+- [About](#about)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
+<!-- /TOC -->
+
 ## About
 
 Lightweight transducer and supporting generators / iterator
 implementations for ES6 / TypeScript (~8.5KB gzipped, full lib).
-
-## TOC
-
-- [Installation](#installation)
-- [Usage examples](#usage-examples)
-- [API](#api)
-  - [Types](#types)
-  - [Transformations](#transformations)
-  - [Transducers](#transducers)
-  - [Reducers](#reducers)
-  - [Generators & iterators](#generators--iterators)
-- [License](#license)
-
-## About
 
 This library provides altogether 130+ transducers, reducers, sequence
 generators (iterators) and other supporting functions for composing data
@@ -51,7 +49,7 @@ ES generator overheads).
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/transducers
 ```
 
@@ -71,7 +69,7 @@ directory.**
 Almost all functions can be imported selectively, but for development
 purposes full module re-exports are defined.
 
-```typescript
+```ts
 // full import
 import * as tx from "@thi.ng/transducers";
 
@@ -83,7 +81,7 @@ import { map } from "@thi.ng/transducers/xforms/map";
 
 ### Basic usage patterns
 
-```typescript
+```ts
 // compose transducer
 xform = tx.comp(
     tx.filter(x => (x & 1) > 0), // odd numbers only
@@ -141,7 +139,7 @@ f = tx.step(take)
 
 ### Histogram generation & result grouping
 
-```typescript
+```ts
 // use the `frequencies` reducer to create
 // a map counting occurrence of each value
 tx.transduce(tx.map(x => x.toUpperCase()), tx.frequencies(), "hello world")
@@ -174,7 +172,7 @@ tx.reduce(
 
 ### Pagination
 
-```typescript
+```ts
 // extract only items for given page id & page length
 [...tx.iterator(tx.page(0, 5), tx.range(12))]
 // [ 0, 1, 2, 3, 4 ]
@@ -199,7 +197,7 @@ tx.reduce(
 parallel using the provided transducers (which can be composed as usual)
 and results in a tuple or keyed object.
 
-```typescript
+```ts
 tx.transduce(
     tx.multiplex(
         tx.map(x => x.charAt(0)),
@@ -227,7 +225,7 @@ tx.transduce(
 
 ### Moving average using sliding window
 
-```typescript
+```ts
 // use nested reduce to compute window averages
 tx.transduce(
     tx.comp(
@@ -250,7 +248,7 @@ tx.transduce(
 
 ### Benchmark function execution time
 
-```typescript
+```ts
 // function to test
 fn = () => { for(i=0; i<1e6; i++) let x =Math.cos(i); return x; };
 
@@ -265,7 +263,7 @@ tx.transduce(
 
 ### Apply inspectors to debug transducer pipeline
 
-```typescript
+```ts
 // alternatively, use tx.sideEffect() for any side fx
 tx.transduce(
     tx.comp(
@@ -295,7 +293,7 @@ The `struct` transducer is simply a composition of: `partitionOf ->
 partition -> rename -> mapKeys`. [See code
 here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/struct.ts).
 
-```typescript
+```ts
 // Higher-order transducer to convert linear input into structured objects
 // using given field specs and ordering. A single field spec is an array of
 // 2 or 3 items: `[name, size, transform?]`. If `transform` is given, it will
@@ -316,7 +314,7 @@ here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xf
 
 ### CSV parsing
 
-```typescript
+```ts
 tx.transduce(
     tx.comp(
         // split into rows
@@ -336,7 +334,7 @@ tx.transduce(
 
 ### Early termination
 
-```typescript
+```ts
 // result is realized after max. 7 values, irrespective of nesting
 tx.transduce(
     tx.comp(tx.flatten(), tx.take(7)),
@@ -348,7 +346,7 @@ tx.transduce(
 
 ### Scan operator
 
-```typescript
+```ts
 // this transducer uses 2 scans (a scan = inner reducer per item)
 // 1) counts incoming values
 // 2) forms an array of the current counter value `x` & repeated `x` times
@@ -379,7 +377,7 @@ This is a higher-order transducer, purely composed from other
 transducers. [See code
 here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts).
 
-```typescript
+```ts
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
 
 [...iterator(hexDump(8, 0x400), src)]
@@ -390,7 +388,7 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 
 ### Bitstream
 
-```typescript
+```ts
 [...tx.iterator(tx.bits(8), [ 0xf0, 0xaa ])]
 // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
 
@@ -414,7 +412,7 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 
 ### Base64 & UTF-8 en/decoding
 
-```typescript
+```ts
 // add offset (0x80) to allow negative values to be encoded
 // (URL safe result can be produced via opt arg to `base64Encode`)
 enc = tx.transduce(
@@ -450,7 +448,7 @@ tx.transduce(tx.comp(tx.base64Decode(), tx.utf8Decode()), tx.str(), buf)
 
 ### Weighted random choices
 
-```typescript
+```ts
 tx.transduce(tx.take(10), tx.push(), tx.choices("abcd", [1, 0.5, 0.25, 0.125]))
 // [ 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'c', 'd', 'b' ]
 
@@ -480,7 +478,7 @@ provide a uniform API (and some of them can be preconfigured and/or are
 stateful closures). However, it's fine to define stateless reducers as
 constant arrays.
 
-```typescript
+```ts
 interface Reducer<A, B> extends Array<any> {
     /**
      * Initialization, e.g. to provide a suitable accumulator value,
@@ -515,7 +513,7 @@ of) transducers making use of their 1-arity completing function.
 
 #### Reduced
 
-```typescript
+```ts
 class Reduced<T> implements IDeref<T> {
     protected value: T;
     constructor(val: T);
@@ -545,7 +543,7 @@ As shown in the examples above, transducers can be dynamically composed
 (using `comp()`) to form arbitrary data transformation pipelines without
 causing large overheads for intermediate collections.
 
-```typescript
+```ts
 type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
 
 // concrete example of stateless transducer (expanded for clarity)

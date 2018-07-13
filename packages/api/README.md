@@ -16,7 +16,7 @@ repository. It defines:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/api
 ```
 
@@ -24,7 +24,7 @@ yarn add @thi.ng/api
 
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
-# Authors
+## Authors
 
 - Karsten Schmidt
 

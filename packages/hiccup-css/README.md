@@ -83,7 +83,7 @@ Clojure projects:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/hiccup-css
 ```
 
@@ -96,7 +96,7 @@ yarn add @thi.ng/hiccup-css
 
 ## API & usage examples
 
-```typescript
+```ts
 import * as css from "@thi.ng/hiccup-css";
 ```
 
@@ -117,7 +117,7 @@ format preset, see examples further below.
 
 This feature is only intended for setting an element's `.style` attrib:
 
-```typescript
+```ts
 css.css({
     position: "absolute",
     border: 0,
@@ -135,7 +135,7 @@ css.css({
 
 ### Basic selectors
 
-```typescript
+```ts
 css.css(
     [
         ["html", "body", { margin: 0, padding: 0 }],
@@ -163,7 +163,7 @@ div.title {
 
 ### Property object merging & re-use
 
-```typescript
+```ts
 // re-usable property snippets
 const border = { border: "1px solid black" };
 const red = { color: "red" };
@@ -193,7 +193,7 @@ css.css(
 
 ### Iterators & CSS class scoping
 
-```typescript
+```ts
 import * as tx from "@thi.ng/transducers";
 
 // single rule generator
@@ -255,7 +255,7 @@ level defines a child scope of the current selector. The actual CSS
 selectors are computed using the cartesian product of any selectors in
 the current scope and their previously defined parents:
 
-```typescript
+```ts
 css.css(
     ["header", "footer", { "font-size": css.rem(1.25) },
         ["nav", { background: "#000", color: "#666" },
@@ -326,7 +326,7 @@ p a:visited {
 (Currently, only prefixed properties are supported. Auto-prefixing based
 on property values is planned, but currently low priority.)
 
-```typescript
+```ts
 css.css(
     ["div", {"border-radius": "4px"}],
     { autoprefix: ["border-radius"], format: css.PRETTY }
@@ -359,7 +359,7 @@ and ALWAYS combined using `and`:
 | `print: false` | `not print` |
 | `print: "only"` | `only print` |
 
-```typescript
+```ts
 css.css(
     css.at_media(
         { screen: true, "min-width": css.rem(10) },
@@ -397,7 +397,7 @@ css.css(
 
 ### Keyframes
 
-```typescript
+```ts
 css.css(
     css.at_keyframes("fadein", { opacity: 0 }, { opacity: 1 }),
     { format: css.PRETTY }
@@ -418,7 +418,7 @@ css.css(
 }
 ```
 
-```typescript
+```ts
 css.css(
     css.at_keyframes(
         "fadein",
@@ -482,7 +482,7 @@ output directly and is called with an empty result accumulator array and
 the `CSSOpts` object passed to `css()`. This form is mainly used by the
 various `at_*()` functions provided (e.g. `at_media()` example above).
 
-```typescript
+```ts
 css.css(at_import("foo.css", "screen"));
 // "@import url(foo.css) screen;"
 ```
@@ -490,7 +490,7 @@ css.css(at_import("foo.css", "screen"));
 The following example illustrates the head position placement, using the
 `comment()` function to emit CSS comments.
 
-```typescript
+```ts
 css.css([
     // comments are usually omitted with the default format (css.COMPACT)
     // pass `true` as 2nd arg to force inclusion
@@ -524,7 +524,7 @@ called with all remaining elements in the same array. I.e. `["@import",
 **IMPORTANT:** Quoted functions are only supported in the head position
 of a scope.
 
-```typescript
+```ts
 const styles = [
     ["@comment", " CSS from JSON"],
     ["@import", "print.css", "print"],

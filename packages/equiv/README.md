@@ -23,7 +23,7 @@ package.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/equiv
 ```
 
@@ -33,7 +33,7 @@ yarn add @thi.ng/equiv
 
 ## Usage examples
 
-```typescript
+```ts
 import { equiv } from "@thi.ng/equiv";
 
 equiv({a: {b: [1, 2]}}, {a: {b: [1, 2]}});

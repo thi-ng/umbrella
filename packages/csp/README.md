@@ -28,7 +28,7 @@ Lightweight ES6-promise based CSP implementation written in TypeScript
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/csp
 ```
 
@@ -44,7 +44,7 @@ yarn add @thi.ng/csp
 
 ### File loading & word frequency analysis
 
-```js
+```ts
 import { Channel } from "@thi.ng/csp";
 import * as tx from "@thi.ng/transducers";
 
@@ -129,7 +129,7 @@ paths.into(["src/channel.ts", "src/mult.ts", "src/pubsub.ts"]);
 
 ### Channel merging
 
-```js
+```ts
 Channel.merge([
     Channel.range(0, 3),
     Channel.range(10, 15),
@@ -170,7 +170,7 @@ Channel.mergeTuples([
 
 ### PubSub
 
-```js
+```ts
 // define a channel publisher with transducer and topic function applied to each item
 // the input channel receives names and transforms them into indexable objects
 const pub = new PubSub(

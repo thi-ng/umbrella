@@ -10,7 +10,7 @@ This package provides ~50 single-function sub-modules for type, feature
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/checks
 ```
 
@@ -20,7 +20,7 @@ None
 
 ## Usage
 
-```js
+```ts
 // full import
 import * as checks from "@thi.ng/checks";
 
@@ -28,7 +28,7 @@ import * as checks from "@thi.ng/checks";
 import { isFunction } from "@thi.ng/checks/is-function";
 ```
 
-# Authors
+## Authors
 
 - Karsten Schmidt
 

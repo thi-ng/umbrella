@@ -13,7 +13,7 @@ sharing.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/paths
 ```
 
@@ -24,7 +24,7 @@ yarn add @thi.ng/paths
 
 ## Usage
 
-```
+```ts
 import * as paths from "@thi.ng/paths";
 ```
 
@@ -42,7 +42,7 @@ path. If any intermediate key is not present in the given object, it
 creates a plain empty object for that missing key and descends further
 along the path.
 
-```typescript
+```ts
 s = setter("a.b.c");
 // or
 s = setter(["a","b","c"]);
@@ -81,7 +81,7 @@ immediate-use wrappers: `getIn()`, `setIn()`, `updateIn()` and
 `deleteIn()`. These functions are using `getter` / `setter` internally,
 so have same behaviors.
 
-```typescript
+```ts
 state = {a: {b: {c: 23}}};
 
 getIn(state, "a.b.c")
@@ -109,7 +109,7 @@ implementation are completely different - they're using trees, we're
 using the ES6 spread op (for objects, `slice()` for arrays) and dynamic
 functional composition to produce the setter/updater).
 
-```typescript
+```ts
 s = setter("a.b.c");
 
 // original

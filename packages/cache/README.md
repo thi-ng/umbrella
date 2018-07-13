@@ -26,7 +26,7 @@ strategies available are:
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/cache
 ```
 
@@ -75,7 +75,7 @@ interface CacheOpts<K, V> {
 
 Removes least recently used items if a new item is added, but would not satisfy cache limit. Every time a cached item is accessed, it's recency is updated.
 
-```typescript
+```ts
 import * as cache from "@thi.ng/cache";
 
 // caches can be configured with maxLen, maxSize and sizing functions (see below)

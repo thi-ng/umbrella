@@ -15,7 +15,7 @@ API. Written in TypeScript.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/iterators
 ```
 
@@ -23,7 +23,7 @@ All functions are defined as sub-modules and re-exported to allow the
 full library to be imported if desired. Sub-module file names use *Kebab
 case*, whereas function names are in *Camel case*.
 
-```js
+```ts
 // import all
 import * as ti from "@thi.ng/iterators";
 // single function (ES6 / TS)
@@ -44,7 +44,7 @@ In alphabetical order:
 
 Yields iterator of all but the last value of input.
 
-```js
+```ts
 [...ti.butLast([])]
 // []
 [...ti.butLast([1])]
@@ -68,7 +68,7 @@ separate states and sharing of cached results among arbitrary number of
 iterators. The original input is only consumed when attempting to read
 beyond current cache boundary.
 
-```js
+```ts
 c = ti.cached(ti.range(10));
 a = c();
 b = c();
@@ -111,7 +111,7 @@ Produces iterator yielding **lazy** concatenation of given iterables.
 For practical purposes none but the last input should be infinite. Any
 `null` or `undefined` input arguments are skipped in the output.
 
-```js
+```ts
 [... ti.concat([1, 2, 3], [10, 20, 30], [100, 200, 300])]
 // [ 1, 2, 3, 10, 20, 30, 100, 200, 300 ]
 
@@ -124,7 +124,7 @@ For practical purposes none but the last input should be infinite. Any
 Helper function returning a new fn which takes any number of args and
 always returns `x`.
 
-```js
+```ts
 // define an iterable of unknown size
 iter = ti.takeWhile(x => x < 0.98, ti.repeatedly(()=> Math.random()));
 
@@ -162,7 +162,7 @@ Produces iterator which **lazily** caches & **infinitely** repeats
 sequence of input. **Important:** Input MUST be finite, use `take` to
 truncate input or output if necessary.
 
-```js
+```ts
 [... ti.take(10, ti.cycle(ti.range(3)))]
 // [0, 1, 2, 0, 1, 2, 0, 1, 2, 0]
 ```
@@ -172,7 +172,7 @@ truncate input or output if necessary.
 Produces iterator which discards successive duplicate values from input.
 **Important:** Uses `===` for equality checks.
 
-```js
+```ts
 [... ti.dedupe([1, 2, 2, 3, 4, 4, 4, 3])]
 // [1, 2, 3, 4, 3]
 ```
@@ -182,7 +182,7 @@ Produces iterator which discards successive duplicate values from input.
 Like `dedupe`, but uses given function `equiv` to determine equivalence
 of successive values.
 
-```js
+```ts
 var coll = [{ a: 1 }, { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 2 }, { a: 3 }];
 var eq = (a, b) => a.a === b.a;
 
@@ -195,7 +195,7 @@ var eq = (a, b) => a.a === b.a;
 Yields iterator of all non-`null` and non-`undefined` values of input
 (e.g. a sparse array).
 
-```js
+```ts
 var a = []
 a[10] = 1;
 a[20] = 2;
@@ -209,7 +209,7 @@ a[20] = 2;
 Consumes & discards up to `n` items from input and returns remaining
 (possibly exhausted) iterator.
 
-```js
+```ts
 [... ti.drop(5, ti.range(10))]
 // [5, 6, 7, 8, 9]
 [... ti.drop(5, ti.range(3))]
@@ -222,7 +222,7 @@ Consumes & discards up to `n` items from input and returns remaining
 
 Produces iterator which drops every `n`th item from input.
 
-```js
+```ts
 [... ti.dropNth(2, ti.range(10))]
 // [0, 2, 4, 6, 8]
 [... ti.dropNth(3, ti.range(10))]
@@ -235,7 +235,7 @@ Consumes input and calls `pred` for each item. Discards all items whilst
 `pred` returns `true`, then returns remaining (possibly exhausted)
 iterator.
 
-```js
+```ts
 [... ti.dropWhile((x) => x < 5, ti.range(10))]
 // [5, 6, 7, 8, 9]
 ```
@@ -249,7 +249,7 @@ the predicate, the function returns `true`.
 If input is empty/exhausted prior to execution, `every` will return
 `false`.
 
-```js
+```ts
 var nums = ti.iterator([2, 4, 6, 8, 10]);
 
 ti.every((x) => (x % 2) === 0, nums);
@@ -272,7 +272,7 @@ ti.every((x) => true, [])
 Consumes input and calls `pred` for each item. Yields iterator of items
 for which `pred` returned `true`.
 
-```js
+```ts
 var multOf3 = (x) => (x % 3) === 0;
 [... ti.filter(multOf3, ti.range(10))];
 // [ 0, 3, 6, 9 ]
@@ -285,7 +285,7 @@ Produces iterator which recursively flattens input (using
 (excluding strings) and objects (enabled by default, using
 `objectIterator`, see below).
 
-```js
+```ts
 [... ti.flatten([1, [2, 3], [4, [5, ["abc"]]]])]
 // [ 1, 2, 3, 4, 5, "abc" ]
 
@@ -308,7 +308,7 @@ flattened**. If a value is returned it MUST be iterable.
 
 The default transformer used by `flatten` is:
 
-```js
+```ts
 let defaultTx = x =>
     (typeof x !== "string" && (maybeIterator(x) || maybeObjectIterator(x))) ||
     undefined;
@@ -332,7 +332,7 @@ The function `fn` can take any number of arguments, however only the
 first 3 are being potentially patched, how many depends on the number of
 `ctor` fns supplied.
 
-```js
+```ts
 hello = (greet, name) => `${greet}, ${name}!`;
 
 helloEN = ti.fnil(hello, () => "Hi", () => "user");
@@ -382,7 +382,7 @@ cache uses
 [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
 to avoid unnecessary copying during window sliding.
 
-```js
+```ts
 // stream of random numbers, as sliding partitions of 5 values
 src = ti.partition(5, 1, ti.repeatedly(()=> (Math.random() * 100) | 0, 10));
 
@@ -419,7 +419,7 @@ number of times the item occurred). **Important:** The input MUST be
 finite. Implementation uses `JSON.stringify` to determine key equality.
 If no `key` fn is given, the original values will be used as key.
 
-```js
+```ts
 // without key fn
 [... ti.frequencies([[1,2], [2,3], [1,2], [2,4]])]
 // [ [[1, 2], 2],
@@ -442,7 +442,7 @@ Consumes input, applies `key` fn to each item and returns object of
 items grouped by result of `key` fn. **Important:** The input MUST be
 finite. Implementation uses `JSON.stringify` to determine key equality.
 
-```js
+```ts
 // group into multiples of 2
 groupBy((x) => x & ~1, [1, 2, 3, 4, 5, 9, 3])
 // { '0': [ 1 ], '2': [ 2, 3, 3 ], '4': [ 4, 5 ], '8': [ 9 ] }
@@ -459,7 +459,7 @@ groupBy((x) => x.toUpperCase(), "AbRaCadaBra")
 
 Helper function. Simply returns its argument.
 
-```js
+```ts
 ti.identity() // undefined
 ti.identity(null) // null
 ti.identity(42) // 42
@@ -479,7 +479,7 @@ ti.every(ti.fnil(ti.identity, () => true), tests);
 
 Yields iterator producing `[index, value]` pairs of input.
 
-```js
+```ts
 [...ti.indexed("hello")]
 // [ [ 0, "h" ], [ 1, "e" ], [ 2, "l" ], [ 3, "l" ], [ 4, "o" ] ]
 ```
@@ -490,7 +490,7 @@ Takes an arbitrary number of iterators and yields iterator of
 interleaved items from each input. Terminates as soon as one of the
 inputs is exhausted.
 
-```js
+```ts
 [... ti.interleave(ti.range(), ti.range(100, 200), ti.range(200, 205))]
 // [ 0, 100, 200, 1, 101, 201, 2, 102, 202, 3, 103, 203, 4, 104, 204 ]
 ```
@@ -500,7 +500,7 @@ inputs is exhausted.
 Produces an iterator which injects `x` inbetween each item from input
 `iter`.
 
-```js
+```ts
 [... ti.interpose("/", ti.range(5))]
 // [ 0, "/", 1, "/", 2, "/", 3, "/", 4 ]
 ```
@@ -512,7 +512,7 @@ Produces an iterator of the infinite results of iteratively applying
 
 **Important:** Use `take` to truncate sequence.
 
-```js
+```ts
 [... ti.take(10, ti.iterate((x) => x * 2, 1))]
 // [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 ]
 ```
@@ -529,7 +529,7 @@ takes single argument `x` and produces array of result values of
 applying each input function to `x` (juxtoposition of the given
 transformation functions).
 
-```js
+```ts
 var kernel = ti.juxt(
     (x) => x - 1,
     (x) => x,
@@ -548,7 +548,7 @@ Consumes a **finite** iterator and returns last item.
 
 **Important:** Never attempt to use with an infinite input!
 
-```js
+```ts
 ti.last(ti.range(10))
 // 9
 
@@ -565,13 +565,14 @@ one of the inputs is exhausted. The mapping `fn` should accept as many
 arguments as there are inputs to `map`. Provides a fast path for single
 input mapping.
 
-```js
+```ts
 [... ti.map((x)=> x*10, ti.range(10))]
 // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 
 [... ti.map((x, y, z) => [x, y, z], ti.range(5), ti.range(0, 100, 10), ti.range(0, 1000, 100))]
 // [ [0, 0, 0], [1, 10, 100], [2, 20, 200], [3, 30, 300], [4, 40, 400] ]
 ```
+
 ### `mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]) => IterableIterator<T>`
 
 Like `map`, but expects mapping fn to return an iterable result and
@@ -579,7 +580,7 @@ produces iterator which yields the flat concatenation of results (only
 the first level of nesting is removed). `null` or `undefined` values
 returned by the mapping fn are skipped in the output.
 
-```js
+```ts
 [... ti.mapcat((x) => ti.repeat(x, 3), "hello")]
 // [ "h", "h", "h", "e", "e", "e", "l", "l", "l", "l", "l", "l", "o", "o", "o" ]
 
@@ -592,7 +593,7 @@ returned by the mapping fn are skipped in the output.
 Like `map`, but too passes a monotonically increasing `index` as first
 argument to mapping fn.
 
-```js
+```ts
 [... ti.mapIndexed((i, a, b) => [i, a, b], "hello", "there")]
 // [ [0, "h", "t"],
 //   [1, "e", "h"],
@@ -615,7 +616,7 @@ returns `objectIterator(x)` or else `undefined`.
 
 Produces iterator of an object"s key/value pairs.
 
-```js
+```ts
 [... ti.objectIterator({a: 23, b: 42, c: [1, 2, 3]})]
 // [ ["a", 23], ["b", 42], ["c", [1, 2, 3]] ]
 ```
@@ -628,7 +629,7 @@ the optional `all` flag is enabled, returns only completely filled
 partitions. If `all = true`, the last partition produced may have less
 than `n` items (though never empty).
 
-```js
+```ts
 [... ti.partition(3, 3, ti.range(10))]
 // [ [0, 1, 2], [3, 4, 5], [6, 7, 8] ]
 
@@ -648,7 +649,7 @@ than `n` items (though never empty).
 Produces iterator of partitions/chunks of input values. Applies `fn` to
 each item and starts new partition each time `fn` returns new result.
 
-```js
+```ts
 [... ti.partitionBy((x) => x / 5 | 0, ti.range(11))]
 // [ [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10] ]
 ```
@@ -658,7 +659,7 @@ each item and starts new partition each time `fn` returns new result.
 Produces iterator which consumes input and yields values with given
 probability (0 .. 1 range).
 
-```js
+```ts
 [... ti.randomSample(0.1, ti.range(100))]
 // [ 10, 13, 16, 21, 22, 24, 32, 35, 37, 81, 93 ]
 ```
@@ -674,7 +675,7 @@ optional `step` value.
 
 If `from` > `to` and no `step` is given, a `step` of `-1` is used.
 
-```js
+```ts
 [... ti.take(5, ti.range())]
 // [0, 1, 2, 3, 4]
 
@@ -703,7 +704,7 @@ unwrapped and returned as final result.
 
 If input is empty, returns initial `acc`umulator arg.
 
-```js
+```ts
 ti.reduce((acc, x) => acc + x, 0, ti.range(10))
 // 45
 
@@ -722,7 +723,7 @@ Thus, the result is the equivalent of an *exclusive* [scan
 operation](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch39.html)
 (with the exception of possible early bail out via `reduced`).
 
-```js
+```ts
 [... ti.reductions((acc, x) => acc + x, 0, ti.range(10))]
 // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
 
@@ -741,7 +742,7 @@ cause early termination of reduction (see example above).
 Produces an iterator of infinite (by default) repetitions of value `x`.
 If `n` is given, produces only that many values.
 
-```js
+```ts
 [... ti.take(5, ti.repeat(42))]
 // [42, 42, 42, 42, 42]
 
@@ -754,7 +755,7 @@ If `n` is given, produces only that many values.
 Produces an iterator of infinite (by default) results of calling the
 no-arg `fn` repeatedly. If `n` is given, produces only that many values.
 
-```js
+```ts
 [... ti.take(3, ti.repeatedly(() => Math.random()))]
 // [ 0.9620186971807614, 0.8191901643942394, 0.5964328949163533 ]
 
@@ -768,7 +769,7 @@ Yields iterator **lazily** producing reverse result order of input
 (**must be finite**). If input is not already array-like (strings are
 for this purpose), the function first consumes & caches input as array.
 
-```js
+```ts
 [...ti.reverse([1, 2, 3])]
 // [3, 2, 1]
 
@@ -785,7 +786,7 @@ Consumes iterator and calls `pred` for each item. When `pred` returns
 `true`, process stops and returns this first successful item. When none
 of the items pass the predicate, the function returns `undefined`.
 
-```js
+```ts
 var nums = ti.iterator([1, 2, 3]);
 
 ti.some((x) => (x % 2) === 0, nums);
@@ -805,7 +806,7 @@ nums.next()
 Produces iterator of the first `n` values of input (or less than `n`, if
 input is too short...)
 
-```js
+```ts
 [... ti.take(3, ti.range())]
 // [ 0, 1, 2 ]
 ```
@@ -814,7 +815,7 @@ input is too short...)
 
 Produces an iterator only yielding every `n`th item from input.
 
-```js
+```ts
 [... ti.takeNth(3, ti.range(10))]
 // [ 0, 3, 6, 9 ]
 ```
@@ -828,13 +829,13 @@ terminates as soon as `pred` returns `false`.
 value failing the given `pred` will be lost when working with the
 original iterator *after* `takeWhile`.
 
-```js
+```ts
 var input = ti.range(10);
 [... ti.takeWhile((x)=> x < 5, input)]
 // [ 0, 1, 2, 3, 4 ]
 [... input]
 // note: `5` is missing (the value which failed takeWhile)
-// [ 6, 7, 8, 9 ] 
+// [ 6, 7, 8, 9 ]
 ```
 
 ### `takeLast<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
@@ -844,7 +845,7 @@ less than `n`, if input is too short...)
 
 **Important:** Never attempt to use with infinite inputs!
 
-```js
+```ts
 [... ti.takeLast(5, ti.range(1000))]
 // [ 995, 996, 997, 998, 999 ]
 
@@ -859,7 +860,7 @@ editing or side effects). Only iterable values and objects (but not
 strings) are traversed further. Traversal is pre-order by default, but
 can be changed to post-order via last arg.
 
-```js
+```ts
 // dummy SVG document
 let doc = {
     tag: "svg",
@@ -902,7 +903,7 @@ Yields an iterator performing either pre-order (default) or post-order
 input. Only iterable values and objects (but not strings) are traversed
 further.
 
-```js
+```ts
 // pre-order traversal
 [...ti.map(JSON.stringify, ti.walkIterator([[[1, [2]], [3, [4]]], [5]], false))]
 // [ "[[[1,[2]],[3,[4]]],[5]]",
@@ -941,7 +942,7 @@ items from each input and associates them as key-value mappings in a
 given target object (if `target` is missing, returns new object). Stops
 as soon as either input is exhausted.
 
-```js
+```ts
 ti.zip("abcdef", ti.range())
 // { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5 }
 
@@ -960,10 +961,10 @@ ti.zip(ti.map((x)=> x.id, langs), langs)
 //   ts: { id: "ts", name: "TypeScript" } }
 ```
 
-# Authors
+## Authors
 
 - Karsten Schmidt
 
-# License
+## License
 
 &copy; 2017-2018 Karsten Schmidt // Apache Software License 2.0

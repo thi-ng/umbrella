@@ -11,7 +11,7 @@ Array (sequential) & object (associative) Diff implementations.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/diff
 ```
 
@@ -22,7 +22,7 @@ yarn add @thi.ng/diff
 
 ## Usage examples
 
-```typescript
+```ts
 import * as diff from "@thi.ng/diff";
 
 ```

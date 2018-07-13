@@ -13,7 +13,7 @@ ordering and fanout / tree arity (in case of `DHeap`). Both `Heap` and
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/heaps
 ```
 
@@ -24,7 +24,7 @@ yarn add @thi.ng/heaps
 
 ## Usage examples
 
-```typescript
+```ts
 import { Heap, DHeap } from "@thi.ng/heaps";
 
 // with initial values, custom comparator and heap arity

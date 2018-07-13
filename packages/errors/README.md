@@ -15,7 +15,7 @@ package.
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/errors
 ```
 
@@ -25,7 +25,7 @@ None
 
 ## Usage examples
 
-```typescript
+```ts
 import * as err from "@thi.ng/errors";
 
 err.illegalArity(3)

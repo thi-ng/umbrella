@@ -47,7 +47,7 @@ primitives provided by
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream-query
 ```
 
@@ -64,7 +64,7 @@ yarn add @thi.ng/rstream-query
 
 ## Usage examples
 
-```typescript
+```ts
 import { TripleStore, asTriples } from "@thi.ng/rstream-query";
 import { trace } from "@thi.ng/rstream";
 
@@ -162,12 +162,12 @@ generated dataflow topology then looks as follows:
 
 ![graphviz output](../../assets/rs-query1.svg)
 
-* The blue nodes are `TripleStore`-internal index stream sources,
+- The blue nodes are `TripleStore`-internal index stream sources,
   emitting changes when new triples are added
-* The left set of red nodes are the sub-queries of the above `where`
+- The left set of red nodes are the sub-queries of the above `where`
   clause, responsible for joining the individual (S)ubject, (P)redicate
   and (O)bject sub-queries.
-* The results of these are then further joined (right red node) &
+- The results of these are then further joined (right red node) &
   transformed to produce the final solution set and post-process it
 
 Btw. The diagram has been generated using

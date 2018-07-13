@@ -27,7 +27,7 @@ ALPHA
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/hdom-components
 ```
 
@@ -39,7 +39,7 @@ yarn add @thi.ng/hdom-components
 
 ## Usage examples
 
-```typescript
+```ts
 import * as hdc from "@thi.ng/hdom-components";
 ```
 

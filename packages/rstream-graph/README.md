@@ -23,7 +23,7 @@ these).
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/rstream-graph
 ```
 
@@ -50,7 +50,7 @@ Small(ish), fully commented projects can be found in the `/examples` folder:
 
 More basic:
 
-```typescript
+```ts
 import { Atom } from "@thi.ng/atom";
 import * as rs from "@thi.ng/rstream";
 import * as rsg from "@thi.ng/rstream-graph";
