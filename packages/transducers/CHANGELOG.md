@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.13.0"></a>
+# [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.2...@thi.ng/transducers@1.13.0) (2018-07-13)
+
+
+### Features
+
+* **transducers:** add wordWrap() xform ([81223dc](https://github.com/thi-ng/umbrella/commit/81223dc))
+
+
+
+
 <a name="1.12.2"></a>
 ## [1.12.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.1...@thi.ng/transducers@1.12.2) (2018-07-09)
 
