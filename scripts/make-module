@@ -55,7 +55,7 @@ cat << EOF > $MODULE/package.json
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.0.3"
+        "@thi.ng/api": "^4.0.4"
     },
     "keywords": [
         "ES6",
@@ -117,19 +117,23 @@ cat << EOF > $MODULE/README.md
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+<!-- TOC depthFrom:2 depthTo:3 -->
+
+<!-- /TOC -->
+
 ## About
 
 TODO...
 
 ## Installation
 
-\`\`\`
+\`\`\`bash
 yarn add @thi.ng/$1
 \`\`\`
 
 ## Usage examples
 
-\`\`\`typescript
+\`\`\`ts
 import * as $1 from "@thi.ng/$1";
 \`\`\`
 
