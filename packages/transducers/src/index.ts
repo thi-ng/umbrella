@@ -90,6 +90,7 @@ export * from "./xform/take";
 export * from "./xform/throttle";
 export * from "./xform/throttle-time";
 export * from "./xform/utf8";
+export * from "./xform/word-wrap";
 
 export * from "./func/binary-search";
 export * from "./func/comp";
