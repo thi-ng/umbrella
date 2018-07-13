@@ -103,14 +103,14 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
         xform: map((e: MouseEvent | TouchEvent | WheelEvent) => {
             let evt, type;
             opts.preventDefault && e.preventDefault();
-            if (e instanceof TouchEvent) {
+            if ((<TouchEvent>e).touches) {
                 type = {
                     "touchstart": GestureType.START,
                     "touchmove": GestureType.DRAG,
                     "touchend": GestureType.END,
                     "touchcancel": GestureType.END
                 }[e.type];
-                evt = e.changedTouches[0];
+                evt = (<TouchEvent>e).changedTouches[0];
             } else {
                 type = {
                     "mousedown": GestureType.START,
