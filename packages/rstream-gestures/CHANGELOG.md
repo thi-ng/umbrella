@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.6"></a>
+## [0.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.4.5...@thi.ng/rstream-gestures@0.4.6) (2018-07-13)
+
+
+### Bug Fixes
+
+* **rstream-gestures:** touchevent check in safari ([ee48a94](https://github.com/thi-ng/umbrella/commit/ee48a94))
+
+
+
+
 <a name="0.4.5"></a>
 ## [0.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.4.4...@thi.ng/rstream-gestures@0.4.5) (2018-07-13)
 
