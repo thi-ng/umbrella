@@ -31,7 +31,7 @@
         "@thi.ng/api": "^4.0.4",
         "@thi.ng/checks": "^1.5.5",
         "@thi.ng/iterators": "^4.1.18",
-        "@types/webgl2": "^0.0.3"
+        "@types/webgl2": "^0.0.4"
     },
     "keywords": [
         "ES6",
