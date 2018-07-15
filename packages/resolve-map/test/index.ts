@@ -73,7 +73,7 @@ describe("resolve-map", () => {
     it("destructure", () => {
         const stats = {
             // sequence average
-            mean: ({ src }) => tx.reduce(tx.mean(), src),
+            mean: ({ src: a }) => tx.reduce(tx.mean(), a),
             // sequence range
             range: ({ min, max }) => max - min,
             // computes sequence min val
