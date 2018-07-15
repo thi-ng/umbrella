@@ -76,6 +76,7 @@ const TIME_TICKS = {
 };
 
 // constructs request URL from given inputs
+// API docs: https://min-api.cryptocompare.com/
 const API_URL = (market, symbol, period) =>
     `https://min-api.cryptocompare.com/data/histo${TIMEFRAMES[period].toLowerCase()}?fsym=${symbol.substr(0, 3)}&tsym=${symbol.substr(3)}&limit=168&aggregate=1&e=${market}`;
 

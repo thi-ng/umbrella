@@ -2,6 +2,8 @@
 
 [Live demo](http://demo.thi.ng/umbrella/crypto-chart/)
 
+![chart](../../assets/crypto-chart.png)
+
 This example demonstrates how to use
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 &
