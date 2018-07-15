@@ -16,6 +16,12 @@ constructs) and the entire app largely relies on various stream
 combinators & transformers. Furthermore, this approach only triggers UI
 updates / diffs when there were any relevant upstream value changes.
 
+The diagram below shows a schematic of the dataflow graph used:
+
+![dataflow](../../assets/crypto-dflow.svg)
+
+## Building
+
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/crypto-chart
