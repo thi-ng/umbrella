@@ -254,6 +254,7 @@ sync({
                 chart,
                 ["div.fixed",
                     { style: { top: `10px`, right: `${MARGIN_X}px` } },
+                    ["a.mr3", { href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/" }, "Source code"],
                     symbol,
                     period
                 ]

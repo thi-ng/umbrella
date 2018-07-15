@@ -1,6 +1,6 @@
 # crypto-chart
 
-[Live demo](http://demo.thi.ng/umbrella/crypto-chart/)
+[Live demo](https://s3.amazonaws.com/demo.thi.ng/umbrella/crypto-chart/index.html)
 
 ![chart](../../assets/crypto-chart.png)
 
@@ -16,7 +16,7 @@ constructs) and the entire app largely relies on various stream
 combinators & transformers. Furthermore, this approach only triggers UI
 updates / diffs when there were any relevant upstream value changes.
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/crypto-chart
 yarn install
