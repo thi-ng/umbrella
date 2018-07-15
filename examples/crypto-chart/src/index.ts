@@ -1,38 +1,33 @@
-import { diffElement, normalizeTree } from "@thi.ng/hdom";
-import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
-import {
-    group,
-    line,
-    polyline,
-    rect,
-    svg,
-    text
-} from "@thi.ng/hiccup-svg";
+import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import { diffElement } from "@thi.ng/hdom/diff";
+import { normalizeTree } from "@thi.ng/hdom/normalize";
+import { group } from "@thi.ng/hiccup-svg/group";
+import { line } from "@thi.ng/hiccup-svg/line";
+import { polyline } from "@thi.ng/hiccup-svg/polyline";
+import { rect } from "@thi.ng/hiccup-svg/rect";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import { text } from "@thi.ng/hiccup-svg/text";
 import { resolve } from "@thi.ng/resolve-map";
-import {
-    comp,
-    filter,
-    iterator,
-    map,
-    mapcat,
-    mapIndexed,
-    max,
-    min,
-    movingAverage,
-    pairs,
-    pluck,
-    push,
-    range,
-    reducer,
-    scan,
-    transduce
-} from "@thi.ng/transducers";
-import {
-    fromEvent,
-    resolve as resolvePromise,
-    Stream,
-    sync,
-} from "@thi.ng/rstream";
+import { fromEvent } from "@thi.ng/rstream/from/event";
+import { Stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/stream-sync";
+import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { pairs } from "@thi.ng/transducers/iter/pairs";
+import { range } from "@thi.ng/transducers/iter/range";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { reducer } from "@thi.ng/transducers/reduce";
+import { max } from "@thi.ng/transducers/rfn/max";
+import { min } from "@thi.ng/transducers/rfn/min";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { filter } from "@thi.ng/transducers/xform/filter";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { movingAverage } from "@thi.ng/transducers/xform/moving-average";
+import { pluck } from "@thi.ng/transducers/xform/pluck";
+import { scan } from "@thi.ng/transducers/xform/scan";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle
@@ -63,16 +58,46 @@ const MARGIN_X = 60;
 const MARGIN_Y = 50;
 const DAY = 60 * 60 * 24;
 
-const PRICE_TICKS = {
-    1: 25,
-    60: 50,
-    1440: 250
-};
-
 const TIME_TICKS = {
     1: 15 * 60,
     60: DAY,
     1440: DAY * 7
+};
+
+// UI theme presets
+const THEMES = {
+    light: {
+        id: "light",
+        bg: "white",
+        body: "black",
+        chart: {
+            axis: "#000",
+            price: "#333",
+            bull: "#6c0",
+            bear: "#f04",
+            sma12: "#00f",
+            sma24: "#07f",
+            sma50: "#0ff",
+            gridMajor: "#666",
+            gridMinor: "#ccc",
+        }
+    },
+    dark: {
+        id: "dark",
+        bg: "black",
+        body: "white",
+        chart: {
+            axis: "#eee",
+            price: "#09f",
+            bull: "#6c0",
+            bear: "#f04",
+            sma12: "#ff0",
+            sma24: "#f70",
+            sma50: "#f07",
+            gridMajor: "#666",
+            gridMinor: "#333",
+        }
+    },
 };
 
 // constructs request URL from given inputs
@@ -89,7 +114,6 @@ const fit = (x, a, b, c, d) => c + (d - c) * clamp((x - a) / (b - a), 0, 1);
 
 const fmtTime = (t: number) => {
     const d = new Date(t * 1000);
-    console.log(d);
     return `${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()}`;
 };
 
@@ -100,6 +124,7 @@ const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 const market = new Stream();
 const symbol = new Stream();
 const period = new Stream();
+const theme = new Stream().transform(map((id: string) => THEMES[id]));
 const error = new Stream();
 
 // I/O error handler
@@ -136,75 +161,86 @@ const data = sync({
     );
 
 // this stream combinator (re)computes the SVG chart
+// updates whenever data, theme or window size has changed
 const chart = sync({
     src: {
         data,
+        theme,
         window: fromEvent(window, "resize").transform(
             map(() => [window.innerWidth, window.innerHeight])
         )
     },
     reset: false,
-    xform: map(({ data, window }) => {
+    xform: map(({ data, window, theme }) => {
         let [width, height] = window;
         const ohlc = data.ohlc;
         const w = (width - MARGIN_X) / ohlc.length;
         const by = height - MARGIN_Y;
+
         const mapX = (x: number) => fit(x, 0, ohlc.length, MARGIN_X, width - MARGIN_X);
         const mapY = (y: number) => fit(y, data.min, data.max, by, MARGIN_Y);
+        const sma = (data: number[], smaPeriod: number, col: string) =>
+            polyline(data.map((y, x) => [mapX(x + smaPeriod + 0.5), mapY(y)]), { stroke: col, fill: "none" });
+
+        // use preset time precisions based on current chart period
         const tickX = TIME_TICKS[data.period];
-        const tickY = PRICE_TICKS[data.period];
+        // price resolution estimation based on actual OHLC interval
+        const tickY = Math.pow(10, Math.floor(Math.log(Math.round(data.max - data.min)) / Math.log(10))) / 2;
+        const lastPrice = ohlc[ohlc.length - 1].close;
+        const closeY = mapY(lastPrice);
+        // inline definition of SVG chart
         return svg(
             { width, height, "font-family": "Arial", "font-size": "10px" },
-            group({ stroke: "black", fill: "black", "text-anchor": "end" },
+            // XY axes incl. tick markers & labels
+            group({ stroke: theme.chart.axis, fill: theme.chart.axis, "text-anchor": "end" },
                 line([MARGIN_X, MARGIN_Y], [MARGIN_X, by]),
                 line([MARGIN_X, by], [width - MARGIN_X, by]),
+                // Y axis ticks
                 ...iterator(
                     mapcat((price: number) => {
                         const y = mapY(price);
                         return [
                             line([MARGIN_X - 10, y], [MARGIN_X, y]),
-                            line([MARGIN_X, y], [width - MARGIN_X, y], { stroke: (price % 100 < 1) ? "#666" : "#ccc", "stroke-dasharray": 2 }),
+                            line([MARGIN_X, y], [width - MARGIN_X, y], {
+                                stroke: (price % 100 < 1) ?
+                                    theme.chart.gridMajor :
+                                    theme.chart.gridMinor,
+                                "stroke-dasharray": 2
+                            }),
                             text(price.toFixed(2), [MARGIN_X - 15, y + 4], { stroke: "none" })
                         ];
                     }),
                     range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)
                 ),
+                // X axis ticks
                 ...iterator(
                     mapcat((t: number) => {
                         const x = fit(t, data.tbounds[0], data.tbounds[1], MARGIN_X + w / 2, width - MARGIN_X - w / 2);
                         return [
                             line([x, by], [x, by + 10]),
-                            line([x, MARGIN_Y], [x, by], { stroke: "#ccc", "stroke-dasharray": 2 }),
+                            line([x, MARGIN_Y], [x, by], { stroke: theme.chart.gridMinor, "stroke-dasharray": 2 }),
                             text(fmtTime(t), [x, by + 20], { stroke: "none", "text-anchor": "middle" })
                         ];
                     }),
                     range(Math.ceil(data.tbounds[0] / tickX) * tickX, data.tbounds[1], tickX)
                 ),
-
             ),
-            polyline(
-                data.sma12.map((y, x) => [mapX(x + 12.5), mapY(y)]),
-                { stroke: "#00f", fill: "none" }
-            ),
-            polyline(
-                data.sma24.map((y, x) => [mapX(x + 24.5), mapY(y)]),
-                { stroke: "#07f", fill: "none" }
-            ),
-            polyline(
-                data.sma50.map((y, x) => [mapX(x + 50.5), mapY(y)]),
-                { stroke: "#0ff", fill: "none" }
-            ),
+            // moving averages
+            sma(data.sma12, 12, theme.chart.sma12),
+            sma(data.sma24, 24, theme.chart.sma24),
+            sma(data.sma50, 50, theme.chart.sma50),
+            // candles
             ...iterator(
                 mapIndexed((i, candle: any) => {
                     const isBullish = candle.open < candle.close;
                     let y, h;
                     let col;
                     if (isBullish) {
-                        col = "#6c0";
+                        col = theme.chart.bull;
                         y = mapY(candle.close);
                         h = mapY(candle.open) - y;
                     } else {
-                        col = "#f04";
+                        col = theme.chart.bear;
                         y = mapY(candle.open);
                         h = mapY(candle.close) - y;
                     }
@@ -214,7 +250,10 @@ const chart = sync({
                     );
                 }),
                 ohlc
-            )
+            ),
+            // price line
+            line([MARGIN_X, closeY], [width - MARGIN_X, closeY], { stroke: theme.chart.price }),
+            text(lastPrice.toFixed(2), [width - MARGIN_X + 5, closeY + 4], { fill: theme.chart.price }),
         )
     })
 });
@@ -223,6 +262,7 @@ const chart = sync({
 sync({
     src: {
         chart,
+        theme,
         // transform symbol stream into dropdown component
         symbol: symbol.transform(
             map((x: string) =>
@@ -239,9 +279,19 @@ sync({
             map((x: string) =>
                 dropdown(
                     null,
-                    { class: "w4", onchange: emitOnStream(period) },
+                    { class: "w4 mr3", onchange: emitOnStream(period) },
                     [...pairs(TIMEFRAMES)],
                     String(x)
+                )
+            )
+        ),
+        themeSel: theme.transform(
+            map((sel) =>
+                dropdown(
+                    null,
+                    { class: "w4", onchange: emitOnStream(theme) },
+                    Object.keys(THEMES).map((k) => <DropDownOption>[k, k + " theme"]),
+                    sel.id
                 )
             )
         )
@@ -249,14 +299,21 @@ sync({
     reset: false,
     xform: comp(
         // combines all inputs into a single root component
-        map(({ chart, symbol, period }) =>
-            ["div.sans-serif",
+        map(({ theme, themeSel, chart, symbol, period }) =>
+            ["div",
+                { class: `sans-serif bg-${theme.bg} ${theme.body}` },
                 chart,
-                ["div.fixed",
+                ["div.fixed.f7",
                     { style: { top: `10px`, right: `${MARGIN_X}px` } },
-                    ["a.mr3", { href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/" }, "Source code"],
+                    "Made with @thi.ng/umbrella / ",
+                    ["a",
+                        {
+                            class: `mr3 b link ${theme.body}`,
+                            href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
+                        }, "Source code"],
                     symbol,
-                    period
+                    period,
+                    themeSel,
                 ]
             ]
         ),
@@ -278,4 +335,6 @@ sync({
 market.next("CCCAGG");
 symbol.next("BTCUSD");
 period.next(60);
+theme.next("dark");
+
 window.dispatchEvent(new CustomEvent("resize"));
