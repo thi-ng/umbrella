@@ -10,9 +10,11 @@ import { svg } from "@thi.ng/hiccup-svg/svg";
 import { text } from "@thi.ng/hiccup-svg/text";
 import { resolve } from "@thi.ng/resolve-map";
 import { fromEvent } from "@thi.ng/rstream/from/event";
+import { fromInterval } from "@thi.ng/rstream/from/interval";
 import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
+import { trace } from "@thi.ng/rstream/subs/trace";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { range } from "@thi.ng/transducers/iter/range";
@@ -142,6 +144,7 @@ const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 const market = new Stream();
 const symbol = new Stream();
 const period = new Stream();
+const refresh = fromInterval(60000).subscribe(trace("refresh"));
 const theme = new Stream().transform(map((id: string) => THEMES[id]));
 const error = new Stream();
 
@@ -151,7 +154,7 @@ error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
 // this stream combinator performs API requests to obtain OHLC data
 // and if successful computes a number of statistics
 const data = sync({
-    src: { market, symbol, period },
+    src: { market, symbol, period, refresh },
     reset: false,
     xform: map((inst) =>
         fetch(API_URL(inst.market, inst.symbol, inst.period))
@@ -330,8 +333,12 @@ sync({
                 chart,
                 ["div.fixed.f7",
                     { style: { top: `10px`, right: `${MARGIN_X}px` } },
-                    ["span.dn.dib-l.mr2",
-                        "Made with @thi.ng/umbrella"],
+                    ["a",
+                        {
+                            class: `dn dib-l mr3 b link ${theme.body}`,
+                            href: "https://min-api.cryptocompare.com/"
+                        },
+                        "Data by cyptocompare.com"],
                     ["a",
                         {
                             class: `mr3 b link ${theme.body}`,
