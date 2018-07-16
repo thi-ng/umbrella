@@ -1,4 +1,5 @@
 import { diffElement, normalizeTree } from "@thi.ng/hdom";
+import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
@@ -36,7 +37,7 @@ const ctx = {
  * @param root root hdom component stream
  * @param ctx user context object
  */
-const domUpdate = (parent, root, ctx) => {
+const domUpdate = (parent: HTMLElement, root: ISubscribable<any>, ctx: any) => {
     return root
         // use RAF stream as side chain trigger to
         // force DOM updates to execute during RAF
@@ -44,6 +45,7 @@ const domUpdate = (parent, root, ctx) => {
         // transform atom value changes using transducers
         .transform(
             // first normalize/expand hdom component tree
+            // only use very last received value
             map((curr: any[]) => normalizeTree(curr[curr.length - 1], ctx)),
             // then perform diff & selective DOM update
             scan<any, any>(
@@ -62,18 +64,16 @@ const domUpdate = (parent, root, ctx) => {
  * @param onclick event handler
  * @param body button body
  */
-const button = (ctx, onclick, body) =>
+const button = (ctx: any, onclick: EventListener, body: any) =>
     ["button", { ...ctx.ui.button, onclick }, body];
 
 /**
  * Specialized button component for counters.
  *
  * @param _ hdom user context (unused)
- * @param stream target stream
- * @param val current click value
- * @param step counter step value
+ * @param stream counter stream
  */
-const clickButton = (_, stream) =>
+const clickButton = (_, stream: Subscription<boolean, number>) =>
     [button, () => stream.next(true), stream.deref()];
 
 /**
@@ -82,7 +82,7 @@ const clickButton = (_, stream) =>
  * @param _ hdom user context (unused)
  * @param counters streams to reset
  */
-const resetButton = (_, counters) =>
+const resetButton = (_, counters: Subscription<boolean, number>[]) =>
     [button, () => counters.forEach((c) => c.next(false)), "reset"];
 
 /**
@@ -93,7 +93,7 @@ const resetButton = (_, counters) =>
  * @param start
  * @param step
  */
-const counter = (start, step) => {
+const counter = (start: number, step: number) => {
     const s = new Subscription<boolean, number>(
         null,
         // the `scan` transducer is used to provide counter functionality
@@ -112,7 +112,7 @@ const counter = (start, step) => {
  *
  * @param initial initial counter configs
  */
-const app = (ctx, initial: number[][]) => {
+const app = (ctx: any, initial: number[][]) => {
     const counters = initial.map(([start, step]) => counter(start, step));
     return sync({
         src: counters.map((c) => c.transform(map(() => [clickButton, c]))),
