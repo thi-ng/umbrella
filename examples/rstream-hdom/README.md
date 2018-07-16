@@ -4,11 +4,9 @@
 
 This example shows how
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-can be used to reactively trigger
+constructs can be used for state handling and reactively trigger
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-updates only when the [central app state
-atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom/README.md#atom)
-has changed.
+updates only when any of the UI related streams have value changes.
 
 ```
 git clone https://github.com/thi-ng/umbrella.git

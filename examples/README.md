@@ -21,7 +21,7 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 13 | [router-basics](./router-basics)             | Complete mini SPA                                   | atom, hdom, interceptors, router                                  | advanced     |
 | 14 | [rstream-dataflow](./rstream-dataflow)       | Dataflow graph                                      | atom, hdom, rstream, rstream-gestures, rstream-graph, transducers | intermediate |
 | 15 | [rstream-grid](./rstream-grid)               | Dataflow graph SVG grid                             | atom, hdom, hiccup-svg, interceptors, rstream-graph, transducers  | advanced     |
-| 16 | [rstream-hdom](./rstream-hdom)               | rstream based UI updates                            | hdom, rstream, transducers                                        | intermediate |
+| 16 | [rstream-hdom](./rstream-hdom)               | rstream based UI updates & state handling           | hdom, rstream, transducers                                        | intermediate |
 | 17 | [svg-particles](./svg-particles)             | hdom SVG generation / animation                     | hdom, transducers                                                 | basic        |
 | 18 | [svg-waveform](./svg-waveform)               | hdom SVG generation / undo history                  | atom, hdom, hiccup-svg, interceptors, iterators                   | intermediate |
 | 19 | [todo-list](./todo-list)                     | Canonical Todo list with undo/redo                  | atom, hdom, transducers                                           | intermediate |

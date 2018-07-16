@@ -1,43 +1,63 @@
-import { Atom } from "@thi.ng/atom";
 import { diffElement, normalizeTree } from "@thi.ng/hdom";
-import { fromRAF, fromView, sidechainPartition } from "@thi.ng/rstream";
-import { reducer, scan } from "@thi.ng/transducers";
+import { fromRAF } from "@thi.ng/rstream/from/raf";
+import { sync } from "@thi.ng/rstream/stream-sync";
+import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
+import { Subscription } from "@thi.ng/rstream/subscription";
+import { vals } from "@thi.ng/transducers/iter/vals";
+import { reducer } from "@thi.ng/transducers/reduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { scan } from "@thi.ng/transducers/xform/scan";
+
+// example user context object
+// here only used to provide style / theme config using
+// Tachyons CSS classes
+const ctx = {
+    ui: {
+        root: {
+            class: "pa2"
+        },
+        button: {
+            class: "w4 h2 bg-black white bn br2 mr2 pointer"
+        }
+    }
+};
 
 /**
- * Reactively triggers DOM update whenever state atom embedded in given
- * user context object has value changes (the context object is assumed
- * to have a `state` key holding the atom). Additionally, a RAF side
- * chain stream is used to synchronize DOM updates to be processed
- * during RAF.
+ * Takes a `parent` DOM element, a stream of `root` component values and
+ * an arbitrary user context object which will be implicitly passed to
+ * all component functions embedded in the root component. Subscribes to
+ * `root` stream & performs DOM updates using incoming values (i.e. UI
+ * components). Additionally, a RAF side chain stream is used to
+ * synchronize DOM updates to be processed during RAF.
  *
  * Returns stream of hdom trees.
  *
  * @param parent root DOM element
- * @param root root hdom component
+ * @param root root hdom component stream
  * @param ctx user context object
  */
 const domUpdate = (parent, root, ctx) => {
-    return fromView(ctx.state, "")
+    return root
         // use RAF stream as side chain trigger to
         // force DOM updates to execute during RAF
         .subscribe(sidechainPartition(fromRAF()))
         // transform atom value changes using transducers
         .transform(
+            // first normalize/expand hdom component tree
+            map((curr: any[]) => normalizeTree(curr[curr.length - 1], ctx)),
+            // then perform diff & selective DOM update
             scan<any, any>(
                 reducer(
                     () => [],
-                    (prev, curr) => {
-                        curr = normalizeTree(root, ctx);
-                        diffElement(parent, prev, curr);
-                        return curr;
-                    }
+                    (prev, curr) => (diffElement(parent, prev, curr), curr)
                 )
             )
         );
 };
 
 /**
- * Generic button
+ * Generic button component.
+ *
  * @param ctx hdom user context
  * @param onclick event handler
  * @param body button body
@@ -46,41 +66,75 @@ const button = (ctx, onclick, body) =>
     ["button", { ...ctx.ui.button, onclick }, body];
 
 /**
- * Specialized button for counters.
+ * Specialized button component for counters.
  *
- * @param ctx hdom user context
- * @param idx index in `clicks` array
- * @param val current click val
+ * @param _ hdom user context (unused)
+ * @param stream target stream
+ * @param val current click value
+ * @param step counter step value
  */
-const clickButton = (ctx, idx, val) =>
-    [button, () => ctx.state.swapIn(["clicks", idx], (n: number) => n + 1), `clicks: ${val}`];
+const clickButton = (_, stream) =>
+    [button, () => stream.next(true), stream.deref()];
 
 /**
- * Root component function
+ * Specialized button to reset all counters.
  *
- * @param ctx
+ * @param _ hdom user context (unused)
+ * @param counters streams to reset
  */
-const root = (ctx) =>
-    ["div",
-        ctx.state.deref().clicks.map((x, i) => [clickButton, i, x]),
-        [button, () => ctx.state.resetIn("clicks", [0, 0, 0]), "reset"]
-    ];
+const resetButton = (_, counters) =>
+    [button, () => counters.forEach((c) => c.next(false)), "reset"];
 
-// example user context w/ embedded app state atom
-const ctx = {
-    state: new Atom({ clicks: [0, 0, 0] }),
-    ui: {
-        button: {
-            style: {
-                background: "yellow",
-                margin: "0.5rem",
-                padding: "0.5rem"
-            }
-        }
-    }
+/**
+ * Creates a stream of counter values. Each time `true` is written to
+ * the stream, the counter increases by given step value. If false is
+ * written, the counter resets to the `start` value.
+ *
+ * @param start
+ * @param step
+ */
+const counter = (start, step) => {
+    const s = new Subscription<boolean, number>(
+        null,
+        // the `scan` transducer is used to provide counter functionality
+        // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
+        scan(reducer(() => start, (x, y) => y ? x + step : start))
+    );
+    s.next(false);
+    return s;
 };
 
-// start app
-domUpdate(document.getElementById("app"), root, ctx)
-    // attach debug subscription
-    .subscribe({ next(tree) { console.log("DOM updated", tree); } });
+/**
+ * Root component stream factory. Accepts array of initial counter
+ * values and their step values, creates streams for each and returns a
+ * StreamSync instance, which merges and converts these streams into a
+ * single component.
+ *
+ * @param initial initial counter configs
+ */
+const app = (ctx, initial: number[][]) => {
+    const counters = initial.map(([start, step]) => counter(start, step));
+    return sync({
+        src: counters.map((c) => c.transform(map(() => [clickButton, c]))),
+        xform: map(
+            // build the app's actual root component
+            (buttons) => ["div", ctx.ui.root, ...vals(buttons), [resetButton, counters]]
+        ),
+        // this config ensures that only at the very beginning *all*
+        // inputs must have delivered a value (i.e. stream
+        // synchronization) before this stream itself delivers a value.
+        // however, by stating `reset: false` any subsequent changes to
+        // any of the inputs will not be synchronized
+        // see here for further details:
+        // https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/stream-sync.ts#L21
+        // https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/partition-sync.ts#L7
+        reset: false,
+    });
+};
+
+// start app & DOM updates
+domUpdate(
+    document.getElementById("app"),
+    app(ctx, [[10, 1], [20, 5], [30, 10]]),
+    ctx
+);
