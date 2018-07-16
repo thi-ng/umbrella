@@ -4,6 +4,8 @@
 
 ![chart](../../assets/crypto-chart.png)
 
+Price data provided by [cryptocompare.com](https://min-api.cryptocompare.com/).
+
 This example demonstrates how to use
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 &
