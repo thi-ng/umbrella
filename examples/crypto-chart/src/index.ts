@@ -3,6 +3,7 @@ import { diffElement } from "@thi.ng/hdom/diff";
 import { normalizeTree } from "@thi.ng/hdom/normalize";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { line } from "@thi.ng/hiccup-svg/line";
+import { polygon } from "@thi.ng/hiccup-svg/polygon";
 import { polyline } from "@thi.ng/hiccup-svg/polyline";
 import { rect } from "@thi.ng/hiccup-svg/rect";
 import { svg } from "@thi.ng/hiccup-svg/svg";
@@ -61,7 +62,22 @@ const DAY = 60 * 60 * 24;
 const TIME_TICKS = {
     1: 15 * 60,
     60: DAY,
-    1440: DAY * 7
+    1440: DAY * 14
+};
+
+const TIME_FORMATS = {
+    1: (t: number) => {
+        const d = new Date(t * 1000);
+        return `${Z2(d.getUTCHours())}:${Z2(d.getUTCMinutes())}`;
+    },
+    60: (t: number) => {
+        const d = new Date(t * 1000);
+        return `${d.getUTCFullYear()}-${Z2(d.getUTCMonth() + 1)}-${Z2(d.getUTCDate())}`;
+    },
+    1440: (t: number) => {
+        const d = new Date(t * 1000);
+        return `${d.getUTCFullYear()}-${Z2(d.getUTCMonth() + 1)}-${Z2(d.getUTCDate())}`;
+    }
 };
 
 // UI theme presets
@@ -72,7 +88,8 @@ const THEMES = {
         body: "black",
         chart: {
             axis: "#000",
-            price: "#333",
+            price: "#006",
+            pricelabel: "#fff",
             bull: "#6c0",
             bear: "#f04",
             sma12: "#00f",
@@ -89,6 +106,7 @@ const THEMES = {
         chart: {
             axis: "#eee",
             price: "#09f",
+            pricelabel: "#fff",
             bull: "#6c0",
             bear: "#f04",
             sma12: "#ff0",
@@ -111,11 +129,11 @@ const API_URL = (market, symbol, period) =>
 // helper functions
 const clamp = (x: number, min: number, max: number) => x < min ? min : x > max ? max : x;
 const fit = (x, a, b, c, d) => c + (d - c) * clamp((x - a) / (b - a), 0, 1);
-
-const fmtTime = (t: number) => {
-    const d = new Date(t * 1000);
-    return `${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()}`;
+const padl = (n: number, ch: string) => {
+    const buf = new Array(n).fill(ch).join("");
+    return (x: any) => (x = x.toString(), x.length < n ? buf.substr(x.length) + x : x);
 };
+const Z2 = padl(2, "0");
 
 const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 
@@ -184,9 +202,11 @@ const chart = sync({
 
         // use preset time precisions based on current chart period
         const tickX = TIME_TICKS[data.period];
+        const fmtTime: (t: number) => string = TIME_FORMATS[data.period];
         // price resolution estimation based on actual OHLC interval
         const tickY = Math.pow(10, Math.floor(Math.log(Math.round(data.max - data.min)) / Math.log(10))) / 2;
         const lastPrice = ohlc[ohlc.length - 1].close;
+        const closeX = width - MARGIN_X;
         const closeY = mapY(lastPrice);
         // inline definition of SVG chart
         return svg(
@@ -252,8 +272,13 @@ const chart = sync({
                 ohlc
             ),
             // price line
-            line([MARGIN_X, closeY], [width - MARGIN_X, closeY], { stroke: theme.chart.price }),
-            text(lastPrice.toFixed(2), [width - MARGIN_X + 5, closeY + 4], { fill: theme.chart.price }),
+            line([MARGIN_X, closeY], [closeX, closeY], { stroke: theme.chart.price }),
+            // tag
+            polygon(
+                [[closeX, closeY], [closeX + 10, closeY - 8], [width, closeY - 8], [width, closeY + 8], [closeX + 10, closeY + 8]],
+                { fill: theme.chart.price }
+            ),
+            text(lastPrice.toFixed(2), [closeX + 12, closeY + 4], { fill: theme.chart.pricelabel }),
         )
     })
 });
@@ -305,7 +330,8 @@ sync({
                 chart,
                 ["div.fixed.f7",
                     { style: { top: `10px`, right: `${MARGIN_X}px` } },
-                    "Made with @thi.ng/umbrella / ",
+                    ["span.dn.dib-l.mr2",
+                        "Made with @thi.ng/umbrella"],
                     ["a",
                         {
                             class: `mr3 b link ${theme.body}`,
