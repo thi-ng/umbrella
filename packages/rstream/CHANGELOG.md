@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.9.6"></a>
+## [1.9.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.9.5...@thi.ng/rstream@1.9.6) (2018-07-16)
+
+
+### Bug Fixes
+
+* **rstream:** emit first value immediately in fromInterval() ([9be2018](https://github.com/thi-ng/umbrella/commit/9be2018))
+
+
+
+
 <a name="1.9.5"></a>
 ## [1.9.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.9.4...@thi.ng/rstream@1.9.5) (2018-07-13)
 
