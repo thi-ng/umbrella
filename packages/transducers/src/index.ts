@@ -113,6 +113,7 @@ export * from "./func/renamer";
 export * from "./func/swizzler";
 export * from "./func/weighted-random";
 
+export * from "./iter/as-iterable";
 export * from "./iter/choices";
 export * from "./iter/concat";
 export * from "./iter/cycle";
