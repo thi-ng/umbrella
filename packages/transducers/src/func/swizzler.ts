@@ -1,17 +1,18 @@
 /**
- * Returns optimized function to select, repeat, reshape and/or
- * reorder array/object values in the specified index order.
- * The returned function can be used directly or as mapping
- * function for the `map` transducer. Fast paths for up to 8
- * indices are provided, before loop based approach is used.
+ * Returns optimized function to select, repeat, reshape and / or
+ * reorder array/object values in the specified index order. The
+ * returned function can be used directly or as mapping function for the
+ * `map` transducer. Fast paths for up to 8 indices are provided, before
+ * loop based approach is used.
  *
  * ```
  * swizzler([0, 0, 0])([1, 2, 3, 4])    // [ 1, 1, 1 ]
  * swizzler([1, 1, 3, 3])([1, 2, 3, 4]) // [ 2, 2, 4, 4 ]
  * swizzler([2, 0])([1, 2, 3])          // [ 3, 1 ]
  * ```
- * Even though, any object can be used as input to the generated
- * function, the returned values will always be in array form.
+ *
+ * Even though, objects can be used as input to the generated function,
+ * the returned values will always be in array form.
  *
  * ```
  * swizzler(["a", "c", "b"])({a: 1, b: 2, c: 3}) // [ 1, 3, 2 ]
