@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.14.0"></a>
+# [1.14.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.13.0...@thi.ng/transducers@1.14.0) (2018-07-19)
+
+
+### Features
+
+* **transducer:** add asIterable() helper ([ccc37c6](https://github.com/thi-ng/umbrella/commit/ccc37c6))
+* **transducers:** add juxtR() for multiplexed reductions from same src ([9b07d12](https://github.com/thi-ng/umbrella/commit/9b07d12))
+* **transducers:** allow key arrays for rename(), simplify call sites ([092154c](https://github.com/thi-ng/umbrella/commit/092154c))
+
+
+### Performance Improvements
+
+* **transducers:** update movingAverage() xform, add docs ([9874ace](https://github.com/thi-ng/umbrella/commit/9874ace))
+
+
+
+
 <a name="1.13.0"></a>
 # [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.2...@thi.ng/transducers@1.13.0) (2018-07-13)
 
