@@ -4,7 +4,7 @@ import { partition } from "@thi.ng/transducers/xform/partition";
 import { map } from "@thi.ng/transducers/xform/map";
 
 /**
- * Computes min/max values for sliding window.
+ * Computes Donchian channel, i.e. min/max values for sliding window.
  *
  * https://en.wikipedia.org/wiki/Donchian_channel
  *
