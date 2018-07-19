@@ -51,13 +51,16 @@ export const TIMEFRAMES = {
 
 // supported symbol pairs
 const SYMBOL_PAIRS: DropDownOption[] = [
+    ["ADAUSD", "ADA-USD"],
     ["BTCUSD", "BTC-USD"],
     ["ETHUSD", "ETH-USD"],
     ["LTCUSD", "LTC-USD"],
+    ["XLMUSD", "XLM-USD"],
+    ["XMRUSD", "XMR-USD"],
 ];
 
 // chart settings
-const MARGIN_X = 60;
+const MARGIN_X = 80;
 const MARGIN_Y = 50;
 const DAY = 60 * 60 * 24;
 
@@ -94,9 +97,10 @@ const THEMES = {
             pricelabel: "#fff",
             bull: "#6c0",
             bear: "#f04",
-            sma12: "#00f",
-            sma24: "#07f",
-            sma50: "#0ff",
+            sma12: "#f90",
+            sma24: "#0ff",
+            sma50: "#06f",
+            sma72: "#00f",
             gridMajor: "#666",
             gridMinor: "#ccc",
         }
@@ -107,13 +111,14 @@ const THEMES = {
         body: "white",
         chart: {
             axis: "#eee",
-            price: "#09f",
+            price: "#f0f",
             pricelabel: "#fff",
-            bull: "#6c0",
-            bear: "#f04",
+            bull: "#0c4",
+            bear: "#f02",
             sma12: "#ff0",
-            sma24: "#f70",
-            sma50: "#f07",
+            sma24: "#0ff",
+            sma50: "#06f",
+            sma72: "#00f",
             gridMajor: "#666",
             gridMinor: "#333",
         }
@@ -144,12 +149,14 @@ const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 const market = new Stream();
 const symbol = new Stream();
 const period = new Stream();
-const refresh = fromInterval(60000).subscribe(trace("refresh"));
 const theme = new Stream().transform(map((id: string) => THEMES[id]));
 const error = new Stream();
 
 // I/O error handler
 error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
+
+// data refresh trigger (once per minute)
+const refresh = fromInterval(60000).subscribe(trace("refresh"));
 
 // this stream combinator performs API requests to obtain OHLC data
 // and if successful computes a number of statistics
@@ -175,9 +182,11 @@ const data = sync({
             min: ({ ohlc }) => transduce(pluck("low"), min(), ohlc),
             max: ({ ohlc }) => transduce(pluck("high"), max(), ohlc),
             tbounds: ({ ohlc }) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
-            sma12: ({ ohlc }) => transduce(comp(pluck("close"), movingAverage(12)), push(), ohlc),
-            sma24: ({ ohlc }) => transduce(comp(pluck("close"), movingAverage(24)), push(), ohlc),
-            sma50: ({ ohlc }) => transduce(comp(pluck("close"), movingAverage(50)), push(), ohlc)
+            sma: ({ ohlc }) => transduce(
+                map((period: number) => [period, transduce(comp(pluck("close"), movingAverage(period)), push(), ohlc)]),
+                push(),
+                [12, 24, 50, 72]
+            ),
         }))
     );
 
@@ -195,19 +204,26 @@ const chart = sync({
     xform: map(({ data, window, theme }) => {
         let [width, height] = window;
         const ohlc = data.ohlc;
-        const w = (width - MARGIN_X) / ohlc.length;
+        const w = Math.max(3, (width - 2 * MARGIN_X) / ohlc.length);
         const by = height - MARGIN_Y;
 
         const mapX = (x: number) => fit(x, 0, ohlc.length, MARGIN_X, width - MARGIN_X);
         const mapY = (y: number) => fit(y, data.min, data.max, by, MARGIN_Y);
+        // helper fn for plotting moving averages
         const sma = (data: number[], smaPeriod: number, col: string) =>
-            polyline(data.map((y, x) => [mapX(x + smaPeriod + 0.5), mapY(y)]), { stroke: col, fill: "none" });
+            polyline(
+                data.map((y, x) => [mapX(x + smaPeriod + 0.5), mapY(y)]),
+                { stroke: col, fill: "none" }
+            );
 
         // use preset time precisions based on current chart period
         const tickX = TIME_TICKS[data.period];
         const fmtTime: (t: number) => string = TIME_FORMATS[data.period];
         // price resolution estimation based on actual OHLC interval
-        const tickY = Math.pow(10, Math.floor(Math.log(Math.round(data.max - data.min)) / Math.log(10))) / 2;
+        let tickY = Math.pow(10, Math.floor(Math.log(data.max - data.min) / Math.log(10))) / 2;
+        while (tickY < (data.max - data.min) / 20) {
+            tickY *= 2;
+        }
         const lastPrice = ohlc[ohlc.length - 1].close;
         const closeX = width - MARGIN_X;
         const closeY = mapY(lastPrice);
@@ -230,7 +246,7 @@ const chart = sync({
                                     theme.chart.gridMinor,
                                 "stroke-dasharray": 2
                             }),
-                            text(price.toFixed(2), [MARGIN_X - 15, y + 4], { stroke: "none" })
+                            text(price.toFixed(4), [MARGIN_X - 15, y + 4], { stroke: "none" })
                         ];
                     }),
                     range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)
@@ -249,9 +265,10 @@ const chart = sync({
                 ),
             ),
             // moving averages
-            sma(data.sma12, 12, theme.chart.sma12),
-            sma(data.sma24, 24, theme.chart.sma24),
-            sma(data.sma50, 50, theme.chart.sma50),
+            ...iterator(
+                map(([period, vals]) => sma(vals, period, theme.chart[`sma${period}`])),
+                data.sma
+            ),
             // candles
             ...iterator(
                 mapIndexed((i, candle: any) => {
@@ -281,7 +298,7 @@ const chart = sync({
                 [[closeX, closeY], [closeX + 10, closeY - 8], [width, closeY - 8], [width, closeY + 8], [closeX + 10, closeY + 8]],
                 { fill: theme.chart.price }
             ),
-            text(lastPrice.toFixed(2), [closeX + 12, closeY + 4], { fill: theme.chart.pricelabel }),
+            text(lastPrice.toFixed(4), [closeX + 12, closeY + 4], { fill: theme.chart.pricelabel }),
         )
     })
 });
@@ -296,7 +313,7 @@ sync({
             map((x: string) =>
                 dropdown(
                     null,
-                    { class: "w4 mr3", onchange: emitOnStream(symbol) },
+                    { class: "w3 w4-ns mr2", onchange: emitOnStream(symbol) },
                     SYMBOL_PAIRS,
                     x
                 )
@@ -307,7 +324,7 @@ sync({
             map((x: string) =>
                 dropdown(
                     null,
-                    { class: "w4 mr3", onchange: emitOnStream(period) },
+                    { class: "w3 w4-ns mr2", onchange: emitOnStream(period) },
                     [...pairs(TIMEFRAMES)],
                     String(x)
                 )
@@ -317,8 +334,8 @@ sync({
             map((sel) =>
                 dropdown(
                     null,
-                    { class: "w4", onchange: emitOnStream(theme) },
-                    Object.keys(THEMES).map((k) => <DropDownOption>[k, k + " theme"]),
+                    { class: "w3 w4-ns", onchange: emitOnStream(theme) },
+                    Object.keys(THEMES).map((k) => <DropDownOption>[k, k]),
                     sel.id
                 )
             )
@@ -333,17 +350,19 @@ sync({
                 chart,
                 ["div.fixed.f7",
                     { style: { top: `10px`, right: `${MARGIN_X}px` } },
-                    ["a",
-                        {
-                            class: `dn dib-l mr3 b link ${theme.body}`,
-                            href: "https://min-api.cryptocompare.com/"
-                        },
-                        "Data by cyptocompare.com"],
-                    ["a",
-                        {
-                            class: `mr3 b link ${theme.body}`,
-                            href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
-                        }, "Source code"],
+                    ["span.dn.dib-l",
+                        ["a",
+                            {
+                                class: `mr3 b link ${theme.body}`,
+                                href: "https://min-api.cryptocompare.com/"
+                            },
+                            "Data by cyptocompare.com"],
+                        ["a",
+                            {
+                                class: `mr3 b link ${theme.body}`,
+                                href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
+                            }, "Source code"]
+                    ],
                     symbol,
                     period,
                     themeSel,
