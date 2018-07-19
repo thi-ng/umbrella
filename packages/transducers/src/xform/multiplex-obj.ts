@@ -9,6 +9,6 @@ export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn?: 
     const ks = Object.keys(xforms);
     return comp(
         multiplex.apply(null, ks.map((k) => xforms[k])),
-        rename(ks.reduce((acc, k, i) => (acc[k] = i, acc), {}), rfn)
+        rename(ks, rfn)
     );
 }

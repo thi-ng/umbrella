@@ -105,6 +105,7 @@ export * from "./func/fuzzy-match";
 export * from "./func/hex";
 export * from "./func/identity";
 export * from "./func/juxt";
+export * from "./func/juxtr";
 export * from "./func/key-selector";
 export * from "./func/lookup";
 export * from "./func/odd";
@@ -112,6 +113,7 @@ export * from "./func/renamer";
 export * from "./func/swizzler";
 export * from "./func/weighted-random";
 
+export * from "./iter/as-iterable";
 export * from "./iter/choices";
 export * from "./iter/concat";
 export * from "./iter/cycle";

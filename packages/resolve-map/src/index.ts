@@ -7,7 +7,7 @@ import { getIn, mutIn } from "@thi.ng/paths";
 
 const SEMAPHORE = Symbol("SEMAPHORE");
 
-const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,]+)\}/
+const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,:]+)\}/
 
 export type ResolveFn = (path: string) => any;
 
@@ -212,6 +212,7 @@ const resolveFunction = (fn: (x: any, r?: ResolveFn) => any, resolve: ResolveFn,
         const args = match[2]
             .replace(/\s/g, "")
             .split(/,/g)
+            .map((k) => k.split(":")[0])
             .reduce((acc, k) => (acc[k] = resolve(k), acc), {});
         res = fn(args, resolve);
     } else {

@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="3.0.4"></a>
+      <a name="3.0.5"></a>
+## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.4...@thi.ng/resolve-map@3.0.5) (2018-07-15)
+
+
+### Bug Fixes
+
+* **resolve-map:** add support for alt ES6 destructure form `{a: b}` ([2482945](https://github.com/thi-ng/umbrella/commit/2482945))
+
+
+
+
+      <a name="3.0.4"></a>
 ## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.3...@thi.ng/resolve-map@3.0.4) (2018-07-11)
 
 
@@ -11,7 +22,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @thi.ng/resolve-map
 
-  <a name="3.0.3"></a>
+<a name="3.0.3"></a>
 ## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.2...@thi.ng/resolve-map@3.0.3) (2018-07-04)
 
 
