@@ -5,11 +5,6 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-## About
-
-Lightweight transducer and supporting generators / iterator
-implementations for ES6 / TypeScript (~8.5KB gzipped, full lib).
-
 ## TOC
 
 - [Installation](#installation)
@@ -51,7 +46,7 @@ ES generator overheads).
 
 ## Installation
 
-```
+```bash
 yarn add @thi.ng/transducers
 ```
 
@@ -762,6 +757,8 @@ itself. Returns nothing.
 #### `groupByMap<A, B, C>(key: (x: A) => B, rfn?: Reducer<C, A>): Reducer<Map<B, C>, A>`
 
 #### `groupByObj<A, C>(key: (x: A) => PropertyKey, rfn?: Reducer<C, A>, init?: () => IObjectOf<C>): Reducer<IObjectOf<C>, A>`
+
+#### `juxtR(...reducers: Reducer<any, any>): Reducer<any,any>`
 
 #### `last(): last<T>(): Reducer<T, T>`
 
