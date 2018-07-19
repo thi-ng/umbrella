@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "@thi.ng/dcons": "^1.0.5",
+        "@thi.ng/errors": "^0.1.4",
         "@thi.ng/transducers": "^1.14.0"
     },
     "keywords": [
