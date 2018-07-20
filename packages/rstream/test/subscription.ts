@@ -36,6 +36,7 @@ describe("Subscription", () => {
         setTimeout(() => {
             assert.deepEqual(buf, [1]);
             assert.equal(src.getState(), rs.State.DONE);
+            assert.equal((<any>src).subs.length, 0);
             assert(!called);
             done();
         }, 30);

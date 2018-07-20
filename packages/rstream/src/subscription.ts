@@ -26,7 +26,7 @@ export class Subscription<A, B> implements
     id: string;
 
     protected parent: ISubscribable<A>;
-    protected subs: Set<ISubscriber<B>>;
+    protected subs: ISubscriber<B>[];
     protected xform: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
@@ -36,9 +36,9 @@ export class Subscription<A, B> implements
         this.parent = parent;
         this.id = id || `sub-${Subscription.NEXT_ID++}`;
         this.last = SEMAPHORE;
-        this.subs = new Set();
+        this.subs = [];
         if (sub) {
-            this.subs.add(<ISubscriber<B>>sub);
+            this.subs.push(<ISubscriber<B>>sub);
         }
         if (xform) {
             this.xform = xform(push());
@@ -154,9 +154,10 @@ export class Subscription<A, B> implements
         }
         if (this.subs) {
             DEBUG && console.log(this.id, "unsub child", sub.id);
-            if (this.subs.has(sub)) {
-                this.subs.delete(sub);
-                if (!this.subs.size) {
+            const idx = this.subs.indexOf(sub);
+            if (idx >= 0) {
+                this.subs.splice(idx, 1);
+                if (!this.subs.length) {
                     this.unsubscribe();
                 }
                 return true;
@@ -206,8 +207,8 @@ export class Subscription<A, B> implements
     error(e: any) {
         this.state = State.ERROR;
         let notified = false;
-        if (this.subs && this.subs.size) {
-            for (let s of [...this.subs]) {
+        if (this.subs && this.subs.length) {
+            for (let s of this.subs.slice()) {
                 if (s.error) {
                     s.error(e);
                     notified = true;
@@ -225,7 +226,7 @@ export class Subscription<A, B> implements
     }
 
     protected addWrapped(wrapped: Subscription<any, any>) {
-        this.subs.add(wrapped);
+        this.subs.push(wrapped);
         this.state = State.ACTIVE;
         return wrapped;
     }
@@ -233,11 +234,23 @@ export class Subscription<A, B> implements
     protected dispatch(x: B) {
         DEBUG && console.log(this.id, "dispatch", x);
         this.last = x;
-        for (let s of this.subs) {
+        const subs = this.subs;
+        let s: ISubscriber<B>;
+        if (subs.length == 1) {
+            s = subs[0];
             try {
                 s.next && s.next(x);
             } catch (e) {
                 s.error ? s.error(e) : this.error(e);
+            }
+        } else {
+            for (let i = subs.length - 1; i >= 0; i--) {
+                s = subs[i];
+                try {
+                    s.next && s.next(x);
+                } catch (e) {
+                    s.error ? s.error(e) : this.error(e);
+                }
             }
         }
     }
@@ -250,7 +263,7 @@ export class Subscription<A, B> implements
 
     protected cleanup() {
         DEBUG && console.log(this.id, "cleanup");
-        this.subs.clear();
+        this.subs.length = 0;
         delete this.parent;
         delete this.xform;
         delete this.last;

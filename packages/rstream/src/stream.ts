@@ -53,7 +53,7 @@ export class Stream<T> extends Subscription<T, T>
     subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
     subscribe(...args: any[]) {
         const wrapped = super.subscribe.apply(this, args);
-        if (this.subs.size === 1) {
+        if (this.subs.length === 1) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
         }
         return wrapped;
@@ -61,7 +61,7 @@ export class Stream<T> extends Subscription<T, T>
 
     unsubscribe(sub?: Subscription<T, any>) {
         const res = super.unsubscribe(sub);
-        if (res && (!sub || (!this.subs || !this.subs.size))) {
+        if (res && (!sub || (!this.subs || !this.subs.length))) {
             this.cancel();
         }
         return res;

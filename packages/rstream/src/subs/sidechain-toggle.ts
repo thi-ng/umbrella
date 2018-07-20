@@ -28,7 +28,7 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
 
     unsubscribe(sub?: Subscription<any, any>) {
         const res = super.unsubscribe(sub);
-        if (!sub || !this.subs.size) {
+        if (!sub || !this.subs.length) {
             this.sideSub.unsubscribe();
         }
         return res;
