@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.9.7...@thi.ng/rstream@1.10.0) (2018-07-20)
+
+
+### Features
+
+* **rstream:** Add a timeout() subscription ([aa55973](https://github.com/thi-ng/umbrella/commit/aa55973))
+* **rstream:** add reset option for timeout() ([cd751fb](https://github.com/thi-ng/umbrella/commit/cd751fb))
+
+
+### Performance Improvements
+
+* **rstream:** optimize dispatch if only single child ([a59c5c9](https://github.com/thi-ng/umbrella/commit/a59c5c9))
+
+
+
+
 <a name="1.9.7"></a>
 ## [1.9.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.9.6...@thi.ng/rstream@1.9.7) (2018-07-19)
 
