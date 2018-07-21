@@ -22,6 +22,7 @@
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/resolve-map": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-stats": "latest"
     }
 }

@@ -15,6 +15,7 @@ import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
 import { trace } from "@thi.ng/rstream/subs/trace";
+import { wma } from "@thi.ng/transducers-stats/wma";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { range } from "@thi.ng/transducers/iter/range";
@@ -28,7 +29,6 @@ import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { movingAverage } from "@thi.ng/transducers/xform/moving-average";
 import { pluck } from "@thi.ng/transducers/xform/pluck";
 import { scan } from "@thi.ng/transducers/xform/scan";
 
@@ -183,7 +183,7 @@ const data = sync({
             max: ({ ohlc }) => transduce(pluck("high"), max(), ohlc),
             tbounds: ({ ohlc }) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
             sma: ({ ohlc }) => transduce(
-                map((period: number) => [period, transduce(comp(pluck("close"), movingAverage(period)), push(), ohlc)]),
+                map((period: number) => [period, transduce(comp(pluck("close"), wma(period)), push(), ohlc)]),
                 push(),
                 [12, 24, 50, 72]
             ),
@@ -210,9 +210,9 @@ const chart = sync({
         const mapX = (x: number) => fit(x, 0, ohlc.length, MARGIN_X, width - MARGIN_X);
         const mapY = (y: number) => fit(y, data.min, data.max, by, MARGIN_Y);
         // helper fn for plotting moving averages
-        const sma = (data: number[], smaPeriod: number, col: string) =>
+        const sma = (vals: number[], col: string) =>
             polyline(
-                data.map((y, x) => [mapX(x + smaPeriod + 0.5), mapY(y)]),
+                vals.map((y, x) => [mapX(x + (ohlc.length - vals.length) + 0.5), mapY(y)]),
                 { stroke: col, fill: "none" }
             );
 
@@ -266,7 +266,7 @@ const chart = sync({
             ),
             // moving averages
             ...iterator(
-                map(([period, vals]) => sma(vals, period, theme.chart[`sma${period}`])),
+                map(([period, vals]) => sma(vals, theme.chart[`sma${period}`])),
                 data.sma
             ),
             // candles
