@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/range-coder",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Binary data range encoder / decoder",
     "main": "./index.js",
     "typings": "./index.d.ts",
