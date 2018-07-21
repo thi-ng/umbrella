@@ -36,6 +36,7 @@ statistical analysis and replaces the older
 - [RSI (Relative Strength Index)](./src/rsi.ts)
 - [SD (Standard Deviation)](./src/sd.ts)
 - [SMA (Simple Moving Average)](./src/sma.ts)
+- [Stochastic oscillator](./src/stochastic.ts)
 - [TRIX (Triple smoothed EMA)](./src/trix.ts)
 - [WMA (Weighted Moving Average)](./src/wma.ts)
 

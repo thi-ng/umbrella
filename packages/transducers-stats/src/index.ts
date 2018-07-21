@@ -7,8 +7,10 @@ export * from "./roc";
 export * from "./rsi";
 export * from "./sd";
 export * from "./sma";
+export * from "./stochastic";
 export * from "./trix";
 export * from "./wma";
 
+export * from "./bounds";
 export * from "./dot";
 export * from "./mse";
