@@ -2,6 +2,7 @@ export * from "./bollinger";
 export * from "./donchian";
 export * from "./ema";
 export * from "./hma";
+export * from "./macd";
 export * from "./momentum";
 export * from "./roc";
 export * from "./rsi";
