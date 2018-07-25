@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@0.2.0...@thi.ng/transducers-stats@0.3.0) (2018-07-25)
+
+
+### Features
+
+* **transducers-stats:** add BollingerBand value interface ([c97cb75](https://github.com/thi-ng/umbrella/commit/c97cb75))
+* **transducers-stats:** add MACD (fixes [#31](https://github.com/thi-ng/umbrella/issues/31)) ([b92aaa5](https://github.com/thi-ng/umbrella/commit/b92aaa5))
+
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@0.1.0...@thi.ng/transducers-stats@0.2.0) (2018-07-21)
 
