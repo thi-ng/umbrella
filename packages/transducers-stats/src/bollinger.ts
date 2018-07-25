@@ -8,18 +8,24 @@ import { partition } from "@thi.ng/transducers/xform/partition";
 import { mse } from "./mse";
 import { sma } from "./sma";
 
+export interface BollingerBand {
+    min: number;
+    max: number;
+    mean: number;
+    pb: number;
+}
+
 /**
  * Computes Bollinger bands using sliding window.
  *
  * https://en.wikipedia.org/wiki/Bollinger_Bands
  *
  * Note: the number of results will be `period-1` less than the
- * number of processed inputs and no outputs will be produced if there
- * were less than `period` input values.
+ * number of processed inputs.
  *
  * @param period
  */
-export function bollinger(period = 20, sd = 2): Transducer<number, any> {
+export function bollinger(period = 20, sd = 2): Transducer<number, BollingerBand> {
     return comp(
         multiplex(partition(period, 1), sma(period)),
         drop(period - 1),

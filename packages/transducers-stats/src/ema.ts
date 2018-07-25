@@ -6,8 +6,7 @@ import { compR } from "@thi.ng/transducers/func/compr";
  * https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
  *
  * Note: the number of results will be `period-1` less than the number
- * of processed inputs and no outputs will be produced if there were
- * less than `period` input values.
+ * of processed inputs.
  *
  * @param period
  */

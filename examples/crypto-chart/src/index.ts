@@ -15,6 +15,10 @@ import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
 import { trace } from "@thi.ng/rstream/subs/trace";
+import { ema } from "@thi.ng/transducers-stats/ema";
+import { hma } from "@thi.ng/transducers-stats/hma";
+import { sma } from "@thi.ng/transducers-stats/sma";
+import { wma } from "@thi.ng/transducers-stats/wma";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { range } from "@thi.ng/transducers/iter/range";
@@ -28,7 +32,6 @@ import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { movingAverage } from "@thi.ng/transducers/xform/moving-average";
 import { pluck } from "@thi.ng/transducers/xform/pluck";
 import { scan } from "@thi.ng/transducers/xform/scan";
 
@@ -59,9 +62,16 @@ const SYMBOL_PAIRS: DropDownOption[] = [
     ["XMRUSD", "XMR-USD"],
 ];
 
+const MA_MODES = {
+    ema: { fn: ema, label: "Exponential" },
+    hma: { fn: hma, label: "Hull" },
+    sma: { fn: sma, label: "Simple" },
+    wma: { fn: wma, label: "Weighted" },
+};
+
 // chart settings
 const MARGIN_X = 80;
-const MARGIN_Y = 50;
+const MARGIN_Y = 60;
 const DAY = 60 * 60 * 24;
 
 const TIME_TICKS = {
@@ -89,6 +99,7 @@ const TIME_FORMATS = {
 const THEMES = {
     light: {
         id: "light",
+        label: "Light",
         bg: "white",
         body: "black",
         chart: {
@@ -107,6 +118,7 @@ const THEMES = {
     },
     dark: {
         id: "dark",
+        label: "Dark",
         bg: "black",
         body: "white",
         chart: {
@@ -144,13 +156,24 @@ const Z2 = padl(2, "0");
 
 const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 
+const menu = (stream, title, items) =>
+    map((x: any) =>
+        dropdown(
+            null,
+            { class: "w-100", onchange: emitOnStream(stream) },
+            [[, title, true], ...items],
+            String(x)
+        )
+    );
+
 // stream definitions
 
-const market = new Stream();
-const symbol = new Stream();
-const period = new Stream();
-const theme = new Stream().transform(map((id: string) => THEMES[id]));
-const error = new Stream();
+const market = new Stream<string>();
+const symbol = new Stream<string>();
+const period = new Stream<number>();
+const avgMode = new Stream<string>();
+const theme = new Stream<string>().transform(map((id) => THEMES[id]));
+const error = new Stream<any>();
 
 // I/O error handler
 error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
@@ -159,8 +182,7 @@ error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
 const refresh = fromInterval(60000).subscribe(trace("refresh"));
 
 // this stream combinator performs API requests to obtain OHLC data
-// and if successful computes a number of statistics
-const data = sync({
+const response = sync({
     src: { market, symbol, period, refresh },
     reset: false,
     xform: map((inst) =>
@@ -171,24 +193,39 @@ const data = sync({
             )
             .then((json) => ({ ...inst, ohlc: json ? json.Data : null }))
     )
-})
-    .subscribe(resolvePromise({ fail: (e) => error.next(e.message) }))
-    .transform(
-        // bail if stream value has no OHLC data
-        filter((x) => !!x.ohlc),
+}).subscribe(
+    resolvePromise({ fail: (e) => error.next(e.message) })
+);
+
+// this stream combinator computes a number of statistics on incoming OHLC data
+// including calculation of moving averages (based on current mode selection)
+const data = sync({
+    src: {
+        response,
+        avg: avgMode.transform(map((id: string) => MA_MODES[id].fn)),
+    },
+    xform: comp(
+        // bail if response value has no OHLC data
+        filter(({ response }) => !!response.ohlc),
         // use @thi.ng/resolve-map to compute bounds & moving averages
-        map((inst: any) => resolve({
-            ...inst,
+        map(({ response, avg }: any) => resolve({
+            ...response,
             min: ({ ohlc }) => transduce(pluck("low"), min(), ohlc),
             max: ({ ohlc }) => transduce(pluck("high"), max(), ohlc),
             tbounds: ({ ohlc }) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
-            sma: ({ ohlc }) => transduce(
-                map((period: number) => [period, transduce(comp(pluck("close"), movingAverage(period)), push(), ohlc)]),
-                push(),
-                [12, 24, 50, 72]
-            ),
+            sma: ({ ohlc }) =>
+                transduce(
+                    map((period: number) => [
+                        period,
+                        transduce(comp(pluck("close"), avg(period)), push(), ohlc)
+                    ]),
+                    push(),
+                    [12, 24, 50, 72]
+                ),
         }))
-    );
+    ),
+    reset: false,
+});
 
 // this stream combinator (re)computes the SVG chart
 // updates whenever data, theme or window size has changed
@@ -210,9 +247,9 @@ const chart = sync({
         const mapX = (x: number) => fit(x, 0, ohlc.length, MARGIN_X, width - MARGIN_X);
         const mapY = (y: number) => fit(y, data.min, data.max, by, MARGIN_Y);
         // helper fn for plotting moving averages
-        const sma = (data: number[], smaPeriod: number, col: string) =>
+        const sma = (vals: number[], col: string) =>
             polyline(
-                data.map((y, x) => [mapX(x + smaPeriod + 0.5), mapY(y)]),
+                vals.map((y, x) => [mapX(x + (ohlc.length - vals.length) + 0.5), mapY(y)]),
                 { stroke: col, fill: "none" }
             );
 
@@ -266,7 +303,7 @@ const chart = sync({
             ),
             // moving averages
             ...iterator(
-                map(([period, vals]) => sma(vals, period, theme.chart[`sma${period}`])),
+                map(([period, vals]) => sma(vals, theme.chart[`sma${period}`])),
                 data.sma
             ),
             // candles
@@ -293,7 +330,7 @@ const chart = sync({
             ),
             // price line
             line([MARGIN_X, closeY], [closeX, closeY], { stroke: theme.chart.price }),
-            // tag
+            // closing price tag
             polygon(
                 [[closeX, closeY], [closeX + 10, closeY - 8], [width, closeY - 8], [width, closeY + 8], [closeX + 10, closeY + 8]],
                 { fill: theme.chart.price }
@@ -308,64 +345,67 @@ sync({
     src: {
         chart,
         theme,
-        // transform symbol stream into dropdown component
-        symbol: symbol.transform(
-            map((x: string) =>
-                dropdown(
-                    null,
-                    { class: "w3 w4-ns mr2", onchange: emitOnStream(symbol) },
-                    SYMBOL_PAIRS,
-                    x
-                )
-            )
-        ),
-        // transform period stream into dropdown component
-        period: period.transform(
-            map((x: string) =>
-                dropdown(
-                    null,
-                    { class: "w3 w4-ns mr2", onchange: emitOnStream(period) },
-                    [...pairs(TIMEFRAMES)],
-                    String(x)
-                )
+        // the following input streams are each transformed
+        // into a dropdown component
+        symbol: symbol.transform(menu(symbol, "Symbol pair", SYMBOL_PAIRS)),
+        period: period.transform(menu(period, "Time frame", [...pairs(TIMEFRAMES)])),
+        avg: avgMode.transform(
+            menu(avgMode, "Moving average",
+                [...iterator(
+                    map(([id, mode]) => <DropDownOption>[id, mode.label]),
+                    pairs(MA_MODES))]
             )
         ),
         themeSel: theme.transform(
-            map((sel) =>
-                dropdown(
-                    null,
-                    { class: "w3 w4-ns", onchange: emitOnStream(theme) },
-                    Object.keys(THEMES).map((k) => <DropDownOption>[k, k]),
-                    sel.id
-                )
+            map((x) => x.id),
+            menu(theme, "Theme",
+                [...iterator(
+                    map(([id, theme]) => <DropDownOption>[id, theme.label]),
+                    pairs(THEMES))]
             )
         )
     },
     reset: false,
     xform: comp(
         // combines all inputs into a single root component
-        map(({ theme, themeSel, chart, symbol, period }) =>
+        map(({ theme, themeSel, chart, symbol, period, avg }) =>
             ["div",
-                { class: `sans-serif bg-${theme.bg} ${theme.body}` },
+                { class: `sans-serif f7 bg-${theme.bg} ${theme.body}` },
                 chart,
-                ["div.fixed.f7",
-                    { style: { top: `10px`, right: `${MARGIN_X}px` } },
-                    ["span.dn.dib-l",
-                        ["a",
-                            {
-                                class: `mr3 b link ${theme.body}`,
-                                href: "https://min-api.cryptocompare.com/"
-                            },
-                            "Data by cyptocompare.com"],
-                        ["a",
-                            {
-                                class: `mr3 b link ${theme.body}`,
-                                href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
-                            }, "Source code"]
-                    ],
-                    symbol,
-                    period,
-                    themeSel,
+                ["div.fixed",
+                    {
+                        style: {
+                            top: `1rem`,
+                            right: `${MARGIN_X}px`,
+                            width: `calc(100vw - 2 * ${MARGIN_X}px)`
+                        }
+                    },
+                    ["div.flex",
+                        ...iterator(
+                            map((x) => ["div.w-25.ph2", x]),
+                            [symbol, period, avg, themeSel]
+                        ),
+                    ]
+                ],
+                ["div.fixed.tc",
+                    {
+                        style: {
+                            bottom: `1rem`,
+                            left: `${MARGIN_X}px`,
+                            width: `calc(100vw - 2 * ${MARGIN_X}px)`
+                        }
+                    },
+                    ["a",
+                        {
+                            class: `mr3 b link ${theme.body}`,
+                            href: "https://min-api.cryptocompare.com/"
+                        },
+                        "Data by cyptocompare.com"],
+                    ["a",
+                        {
+                            class: `mr3 b link ${theme.body}`,
+                            href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
+                        }, "Source code"]
                 ]
             ]
         ),
@@ -387,6 +427,7 @@ sync({
 market.next("CCCAGG");
 symbol.next("BTCUSD");
 period.next(60);
+avgMode.next("wma");
 theme.next("dark");
 
 window.dispatchEvent(new CustomEvent("resize"));

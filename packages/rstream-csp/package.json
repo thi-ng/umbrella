@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-csp",
-    "version": "0.1.89",
+    "version": "0.1.90",
     "description": "@thi.ng/csp bridge module for @thi.ng/rstream",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -28,8 +28,8 @@
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/csp": "^0.3.51",
-        "@thi.ng/rstream": "^1.10.0"
+        "@thi.ng/csp": "^0.3.52",
+        "@thi.ng/rstream": "^1.10.1"
     },
     "keywords": [
         "bridge",
