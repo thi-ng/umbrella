@@ -85,10 +85,10 @@ export const add3n = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a);
 
 export const sub3n = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] -= n, a);
+    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a);
 
 export const mul3n = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] *= n, a);
+    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a);
 
 export const div3n = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a);

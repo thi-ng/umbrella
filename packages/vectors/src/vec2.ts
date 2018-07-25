@@ -53,10 +53,10 @@ export const add2n = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a);
 
 export const sub2n = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a);
+    (a[ia] -= n, a[ia + sa] -= n, a);
 
 export const mul2n = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a);
+    (a[ia] *= n, a[ia + sa] *= n, a);
 
 export const div2n = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a);

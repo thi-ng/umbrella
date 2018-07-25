@@ -97,10 +97,10 @@ export const add4n = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a[ia + 3 * sa] += n, a);
 
 export const sub4n = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] -= n, a[ia + 3 * sa] -= n, a);
+    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a[ia + 3 * sa] -= n, a);
 
 export const mul4n = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] *= n, a[ia + 3 * sa] *= n, a);
+    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a[ia + 3 * sa] *= n, a);
 
 export const div4n = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a[ia + 3 * sa] /= n, a);
