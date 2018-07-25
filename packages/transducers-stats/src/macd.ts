@@ -6,15 +6,15 @@ import { ema } from "./ema";
 
 export interface MACD {
     /**
-     * MACD signal: `ema(fast) - ema(slow)`
+     * Main MACD value: `ema(fast) - ema(slow)`
+     */
+    macd: number;
+    /**
+     * Smoothed MACD, i.e. EMA(smooth) of `macd` value
      */
     signal: number;
     /**
-     * Smoothed MACD signal, i.e. EMA of `signal` value
-     */
-    smooth: number;
-    /**
-     * Divergence (histogram), i.e. `signal - smooth`
+     * Divergence (histogram), i.e. `macd - signal`
      */
     div: number;
     /**
@@ -52,10 +52,10 @@ export const macd = (fast = 12, slow = 26, smooth = 9): Transducer<number, MACD>
                 const fast = <number>maFast(x);
                 const slow = <number>maSlow(x);
                 if (slow == null) return acc;
-                const signal = fast - slow;
-                const smooth = <number>maSmooth(signal);
-                if (smooth == null) return acc;
-                return reduce(acc, { signal, smooth, div: signal - smooth, fast, slow });
+                const macd = fast - slow;
+                const signal = <number>maSmooth(macd);
+                if (signal == null) return acc;
+                return reduce(acc, { macd, signal, div: macd - signal, fast, slow });
             }
         );
     };
