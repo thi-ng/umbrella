@@ -10,8 +10,7 @@ import { sma } from "./sma";
  * https://en.wikipedia.org/wiki/Relative_strength_index
  *
  * Note: the number of results will be `period` less than the
- * number of processed inputs and no outputs will be produced if there
- * were less than `period` input values.
+ * number of processed inputs.
  *
  * @param period
  */

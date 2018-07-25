@@ -31,6 +31,7 @@ statistical analysis and replaces the older
 - [Donchian Channel](./src/donchian.ts)
 - [EMA (Exponential Moving Average)](./src/ema.ts)
 - [HMA (Hull Moving Average)](./src/hma.ts)
+- [MACD (Moving Average Convergence/Divergence)](./src/macd.ts)
 - [Momentum](./src/momentum.ts)
 - [ROC (Rate of change)](./src/roc.ts)
 - [RSI (Relative Strength Index)](./src/rsi.ts)

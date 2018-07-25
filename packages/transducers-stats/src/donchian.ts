@@ -11,8 +11,7 @@ import { bounds } from "./bounds";
  * https://en.wikipedia.org/wiki/Donchian_channel
  *
  * Note: the number of results will be `period-1` less than the
- * number of processed inputs and no outputs will be produced if there
- * were less than `period` input values.
+ * number of processed inputs.
  *
  * @param period
  */
