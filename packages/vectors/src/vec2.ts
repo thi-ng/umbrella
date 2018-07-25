@@ -13,182 +13,206 @@ import {
 export const ZERO2 = Object.freeze([0, 0]);
 export const ONE2 = Object.freeze([1, 1]);
 
-export const get2 = (a: ReadonlyVec, ia = 0, stridea = 1) =>
-    [a[ia], a[ia + stridea]];
+export const op2 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) =>
+    (a[ia] = fn(a[ia]), a[ia + sa] = fn(a[ia + sa]), a);
 
-export const set2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] = b[ib], a[ia + stridea] = b[ib + strideb], a);
+export const op22 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] = fn(a[ia], b[ib]),
+    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
+    a
+);
 
-export const set2n = (a: Vec, n: number, ia = 0, stridea = 1) =>
-    (a[ia] = n, a[ia + stridea] = n, a);
+export const get2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
+    [a[ia], a[ia + sa]];
 
-export const set2s = (a: Vec, x: number, y: number, ia = 0, stridea = 1) =>
-    (a[ia] = x, a[ia + stridea] = y, a);
+export const set2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] = b[ib], a[ia + sa] = b[ib + sb], a);
 
-export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    eqDelta(a[ia], b[ib], eps) && eqDelta(a[ia + stridea], b[ib + strideb], eps);
+export const set2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+    (a[ia] = n, a[ia + sa] = n, a);
 
-export const add2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] += b[ib], a[ia + stridea] += b[ib + strideb], a);
+export const set2s = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
+    (a[ia] = x, a[ia + sa] = y, a);
 
-export const mul2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] *= b[ib], a[ia + stridea] *= b[ib + strideb], a);
+export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    eqDelta(a[ia], b[ib], eps) && eqDelta(a[ia + sa], b[ib + sb], eps);
 
-export const sub2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] -= b[ib], a[ia + stridea] -= b[ib + strideb], a);
+export const add2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] += b[ib], a[ia + sa] += b[ib + sb], a);
 
-export const div2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] /= b[ib], a[ia + stridea] /= b[ib + strideb], a);
+export const mul2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] *= b[ib], a[ia + sa] *= b[ib + sb], a);
 
-export const add2n = (a: Vec, n: number, ia = 0, stridea = 1) =>
-    (a[ia] += n, a[ia + stridea] += n, a);
+export const sub2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] -= b[ib], a[ia + sa] -= b[ib + sb], a);
 
-export const sub2n = (a: Vec, n: number, ia = 0, stridea = 1) =>
-    (a[ia] *= n, a[ia + stridea] *= n, a);
+export const div2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] /= b[ib], a[ia + sa] /= b[ib + sb], a);
 
-export const mul2n = (a: Vec, n: number, ia = 0, stridea = 1) =>
-    (a[ia] -= n, a[ia + stridea] -= n, a);
+export const add2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+    (a[ia] += n, a[ia + sa] += n, a);
 
-export const div2n = (a: Vec, n: number, ia = 0, stridea = 1) =>
-    (a[ia] /= n, a[ia + stridea] /= n, a);
+export const sub2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+    (a[ia] *= n, a[ia + sa] *= n, a);
 
-export const neg2 = (a: Vec, ia = 0, stridea = 1) =>
-    mul2n(a, -1, ia, stridea);
+export const mul2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+    (a[ia] -= n, a[ia + sa] -= n, a);
 
-export const op2 = (fn: (x: number) => number, a: Vec, ia = 0, stridea = 1) =>
-    (a[ia] = fn(a[ia]), a[ia + stridea] = fn(a[ia + stridea]), a);
+export const div2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+    (a[ia] /= n, a[ia + sa] /= n, a);
 
-export const abs2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.abs, a, ia, stridea);
-export const sign2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.sign, a, ia, stridea);
-export const floor2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.floor, a, ia, stridea);
-export const ceil2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.ceil, a, ia, stridea);
-export const sin2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.sin, a, ia, stridea);
-export const cos2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.cos, a, ia, stridea);
-export const sqrt2 = (a: Vec, ia = 0, stridea = 1) =>
-    op2(Math.sqrt, a, ia, stridea);
+export const neg2 = (a: Vec, ia = 0, sa = 1) =>
+    mul2n(a, -1, ia, sa);
 
-export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) => (
+export const abs2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.abs, a, ia, sa);
+
+export const sign2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.sign, a, ia, sa);
+
+export const floor2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.floor, a, ia, sa);
+
+export const ceil2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.ceil, a, ia, sa);
+
+export const sin2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.sin, a, ia, sa);
+
+export const cos2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.cos, a, ia, sa);
+
+export const sqrt2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(Math.sqrt, a, ia, sa);
+
+export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] = Math.pow(a[ia], b[ib]),
-    a[ia + stridea] = Math.pow(a[ia + stridea], b[ib + strideb]),
+    a[ia + sa] = Math.pow(a[ia + sa], b[ib + sb]),
     a
 );
 
-export const pow2n = (a: Vec, n: number, ia = 0, stridea = 1) => (
+export const pow2n = (a: Vec, n: number, ia = 0, sa = 1) => (
     a[ia] = Math.pow(a[ia], n),
-    a[ia + stridea] = Math.pow(a[ia + stridea], n),
+    a[ia + sa] = Math.pow(a[ia + sa], n),
     a
 );
 
-export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, stridea = 1, strideb = 1, stridec = 1) =>
-    (a[ia] += b[ib] * c[ic], a[ia + stridea] += b[ib + strideb] * c[ic + stridec], a);
+export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+    (a[ia] += b[ib] * c[ic], a[ia + sa] += b[ib + sb] * c[ic + sc], a);
 
-export const madd2n = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] += b[ib] * c, a[ia + stridea] += b[ib + strideb] * c, a);
+export const madd2n = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] += b[ib] * c, a[ia + sa] += b[ib + sb] * c, a);
 
-export const dot2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    a[ia] * b[ib] + a[ia + stridea] * b[ib + strideb];
+export const dot2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    a[ia] * b[ib] + a[ia + sa] * b[ib + sb];
 
-export const cross2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    a[ia] * b[ib + strideb] - a[ia + stridea] * b[ib];
+export const cross2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    a[ia] * b[ib + sb] - a[ia + sa] * b[ib];
 
-export const mix2 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, stridea = 1, strideb = 1, stridet = 1) =>
-    (a[ia] += (b[ib] - a[ia]) * t[it], a[ia + stridea] += (b[ib + strideb] - a[ia + stridea]) * t[it + stridet], a);
+export const mix2 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
+    a[ia] += (b[ib] - a[ia]) * t[it],
+    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
+    a
+);
 
-export const mix2n = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] += (b[ib] - a[ia]) * t, a[ia + stridea] += (b[ib + strideb] - a[ia + stridea]) * t, a);
+export const mix2n = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] += (b[ib] - a[ia]) * t,
+    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
+    a
+);
 
-export const min2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] = Math.min(a[ia], b[ib]), a[ia + stridea] = Math.min(a[ia + stridea], b[ib + strideb]), a);
+export const min2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    op22(Math.min, a, b, ia, ib, sa, sb);
 
-export const max2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    (a[ia] = Math.max(a[ia], b[ib]), a[ia + stridea] = Math.max(a[ia + stridea], b[ib + strideb]), a);
+export const max2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    op22(Math.max, a, b, ia, ib, sa, sb);
 
-export const clamp2 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, stridea = 1, stridemin = 1, stridemax = 1) =>
-    max2(min2(a, max, ia, imax, stridea, stridemax), min, ia, imin, stridea, stridemin);
+export const clamp2 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
+    max2(min2(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
 
-export const step2 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, stridea = 1, stridee = 1) =>
-    (a[ia] = step(e[ie], a[ia]), a[ia + stridea] = step(e[ie + stridee], a[ia + stridea]), a);
+export const step2 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, sa = 1, stridee = 1) =>
+    (a[ia] = step(e[ie], a[ia]), a[ia + sa] = step(e[ie + stridee], a[ia + sa]), a);
 
-export const smoothStep2 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, stridea = 1, stridee1 = 1, stridee2 = 1) => (
+export const smoothStep2 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, sa = 1, se1 = 1, se2 = 1) => (
     a[ia] = smoothStep(e1[ie1], e2[ie2], a[ia]),
-    a[ia + stridea] = smoothStep(e1[ie1 + stridee1], e2[ie2 + stridee2], a[ia + stridea]),
+    a[ia + sa] = smoothStep(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
     a
 );
 
-export const mag2sq = (a: ReadonlyVec, ia = 0, stridea = 1) => {
-    const x = a[ia], y = a[ia + stridea];
+export const mag2sq = (a: ReadonlyVec, ia = 0, sa = 1) => {
+    const x = a[ia], y = a[ia + sa];
     return x * x + y * y;
 };
 
-export const mag2 = (a: ReadonlyVec, ia = 0, stridea = 1) =>
-    Math.sqrt(mag2sq(a, ia, stridea));
+export const mag2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
+    Math.sqrt(mag2sq(a, ia, sa));
 
-export const dist2sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) => {
+export const dist2sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const x = a[ia] - b[ib];
-    const y = a[ia + stridea] - b[ib + strideb];
+    const y = a[ia + sa] - b[ib + sb];
     return x * x + y * y;
 };
 
-export const dist2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    Math.sqrt(dist2sq(a, b, ia, ib, stridea, strideb));
+export const dist2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    Math.sqrt(dist2sq(a, b, ia, ib, sa, sb));
 
-export const distManhattan2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) => {
-    return Math.abs(a[ia] - b[ib]) + Math.abs(a[ia + stridea] - b[ib + strideb])
+export const distManhattan2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    return Math.abs(a[ia] - b[ib]) + Math.abs(a[ia + sa] - b[ib + sb])
 };
 
-export const distChebyshev2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) => {
-    return Math.max(Math.abs(a[ia] - b[ib]), Math.abs(a[ia + stridea] - b[ib + strideb]))
+export const distChebyshev2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    return Math.max(Math.abs(a[ia] - b[ib]), Math.abs(a[ia + sa] - b[ib + sb]))
 };
 
-export const normalize2 = (a: Vec, n = 1, ia = 0, stridea = 1) => {
-    const m = mag2(a, ia, stridea);
-    m >= EPS && mul2n(a, n / m, ia, stridea);
+export const normalize2 = (a: Vec, n = 1, ia = 0, sa = 1) => {
+    const m = mag2(a, ia, sa);
+    m >= EPS && mul2n(a, n / m, ia, sa);
     return a;
 };
 
-export const limit2 = (a: Vec, n: number, ia = 0, stridea = 1) => {
-    const m = mag2(a, ia, stridea);
-    m >= n && mul2n(a, n / m, ia, stridea);
+export const limit2 = (a: Vec, n: number, ia = 0, sa = 1) => {
+    const m = mag2(a, ia, sa);
+    m >= n && mul2n(a, n / m, ia, sa);
     return a;
 };
 
-export const reflect2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, stridea = 1, strideb = 1) =>
-    madd2n(a, b, -2 * dot2(a, b, ia, ib, stridea, strideb), ia, ib, stridea, strideb);
+export const reflect2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    madd2n(a, b, -2 * dot2(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
 
-export const rotate2 = (a: Vec, theta: number, ia = 0, stridea = 1) => {
+export const rotate2 = (a: Vec, theta: number, ia = 0, sa = 1) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
     const x = a[ia];
-    const y = a[ia + stridea];
-    return set2s(a, x * c - y * s, x * s + y * c, ia, stridea);
+    const y = a[ia + sa];
+    return set2s(a, x * c - y * s, x * s + y * c, ia, sa);
 };
 
-export const heading2 = (a: ReadonlyVec, ia = 0, stridea = 1) =>
-    atan2Abs(a[ia + stridea], a[ia]);
+export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
+    atan2Abs(a[ia + sa], a[ia]);
 
-export const toPolar = (a: Vec, ia = 0, stridea = 1) => {
-    const x = a[ia], y = a[ia + stridea];
-    return set2s(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, stridea);
+export const toPolar = (a: Vec, ia = 0, sa = 1) => {
+    const x = a[ia], y = a[ia + sa];
+    return set2s(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, sa);
 };
 
-export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO2, ia = 0, ib = 0, stridea = 1, strideb = 1) => {
-    const r = a[ia], theta = a[ia + stridea];
-    return set2s(a, r * Math.cos(theta) + b[ib], r * Math.sin(theta) + b[ib + strideb], ia, stridea);
+export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO2, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const r = a[ia], theta = a[ia + sa];
+    return set2s(
+        a,
+        r * Math.cos(theta) + b[ib],
+        r * Math.sin(theta) + b[ib + sb],
+        ia, sa
+    );
 };
 
-export const minor2 = (a: Vec, ia = 0, stridea = 1) =>
-    min2id(Math.abs(a[ia]), Math.abs(a[ia + stridea]));
+export const minor2 = (a: Vec, ia = 0, sa = 1) =>
+    min2id(Math.abs(a[ia]), Math.abs(a[ia + sa]));
 
-export const major2 = (a: Vec, ia = 0, stridea = 1) =>
-    max2id(Math.abs(a[ia]), Math.abs(a[ia + stridea]));
+export const major2 = (a: Vec, ia = 0, sa = 1) =>
+    max2id(Math.abs(a[ia]), Math.abs(a[ia + sa]));
 
-export const vec2 = (x = 0, y = 0) => new Vec2([x, y]);
+export const vec2 = (x = 0, y = 0) =>
+    new Vec2([x, y]);
 
 export class Vec2 implements
     ICopy<Vec2>,
@@ -230,8 +254,8 @@ export class Vec2 implements
     }
 
     *[Symbol.iterator]() {
-        yield this.buf[this.index];
-        yield this.buf[this.index + this.stride];
+        yield this.x;
+        yield this.y;
     }
 
     get x() {

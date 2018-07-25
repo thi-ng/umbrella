@@ -12,4 +12,4 @@ export type TypedArray =
 export type Vec = number[] | TypedArray;
 export type ReadonlyVec = ArrayLike<number>;
 
-export type VecOp = (a: Vec, b: ReadonlyVec, ia: number, ib: number, stridea: number, strideb: number) => Vec;
+export type VecOp = (a: Vec, b: ReadonlyVec, ia: number, ib: number, sa: number, sb: number) => Vec;
