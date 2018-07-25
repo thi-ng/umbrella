@@ -4,11 +4,12 @@ import {
     atan2Abs,
     EPS,
     eqDelta,
+    max3id,
+    min3id,
     smoothStep,
     step
 } from "./math";
 import { heading2, rotate2 } from "./vec2";
-
 
 export const ZERO3 = Object.freeze([0, 0, 0]);
 export const ONE3 = Object.freeze([1, 1, 1]);
@@ -268,6 +269,12 @@ export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, str
     return set3s(a, r * ct * cp + b[ib], r * ct * sp + b[ib + strideb], r * st + b[ib + 2 * strideb], ia, stridea);
 };
 
+export const minor3 = (a: Vec, ia = 0, stridea = 1) =>
+    min3id(Math.abs(a[ia]), Math.abs(a[ia + stridea]), Math.abs(a[ia + 2 * stridea]));
+
+export const major3 = (a: Vec, ia = 0, stridea = 1) =>
+    max3id(Math.abs(a[ia]), Math.abs(a[ia + stridea]), Math.abs(a[ia + 2 * stridea]));
+
 export const vec3 = (x = 0, y = 0, z = 0) => new Vec3([x, y, z]);
 
 export class Vec3 implements
@@ -485,6 +492,14 @@ export class Vec3 implements
     clamp(min: Readonly<Vec3>, max: Readonly<Vec3>) {
         clamp3(this.buf, min.buf, max.buf, this.index, min.index, max.index, this.stride, min.stride, max.stride);
         return this;
+    }
+
+    minorAxis() {
+        return minor3(this.buf, this.index, this.stride);
+    }
+
+    majorAxis() {
+        return major3(this.buf, this.index, this.stride);
     }
 
     step(e: Readonly<Vec3>) {

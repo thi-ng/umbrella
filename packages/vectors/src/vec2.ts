@@ -4,6 +4,8 @@ import {
     atan2Abs,
     EPS,
     eqDelta,
+    max2id,
+    min2id,
     smoothStep,
     step
 } from "./math";
@@ -179,6 +181,12 @@ export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO2, ia = 0, ib = 0, str
     const r = a[ia], theta = a[ia + stridea];
     return set2s(a, r * Math.cos(theta) + b[ib], r * Math.sin(theta) + b[ib + strideb], ia, stridea);
 };
+
+export const minor2 = (a: Vec, ia = 0, stridea = 1) =>
+    min2id(Math.abs(a[ia]), Math.abs(a[ia + stridea]));
+
+export const major2 = (a: Vec, ia = 0, stridea = 1) =>
+    max2id(Math.abs(a[ia]), Math.abs(a[ia + stridea]));
 
 export const vec2 = (x = 0, y = 0) => new Vec2([x, y]);
 
@@ -388,6 +396,14 @@ export class Vec2 implements
     clamp(min: Readonly<Vec2>, max: Readonly<Vec2>) {
         clamp2(this.buf, min.buf, max.buf, this.index, min.index, max.index, this.stride, min.stride, max.stride);
         return this;
+    }
+
+    minorAxis() {
+        return minor2(this.buf, this.index, this.stride);
+    }
+
+    majorAxis() {
+        return major2(this.buf, this.index, this.stride);
     }
 
     step(e: Readonly<Vec2>) {

@@ -14,16 +14,6 @@ export const atan2Abs = (y: number, x: number) => {
 };
 
 /**
- * Clamps value `x` to given closed interval.
- *
- * @param x value to clamp
- * @param min lower bound
- * @param max upper bound
- */
-export const clamp = (x: number, min: number, max: number) =>
-    x < min ? min : x > max ? max : x;
-
-/**
  * Converts angle to degrees.
  *
  * @param x angle in radians
@@ -87,6 +77,48 @@ export const smoothStep = (edge: number, edge2: number, x: number) => {
     const t = clamp((x - edge) / (edge2 - edge), 0, 1);
     return (3 - 2 * t) * t * t;
 };
+
+export const min2id = (a, b) => a <= b ? 0 : 1;
+
+export const min3id = (a, b, c) =>
+    (a <= b) ?
+        (a <= c ? 0 : 2) :
+        (b <= c ? 1 : 2);
+
+export const min4id = (a, b, c, d) =>
+    a <= b ?
+        (a <= c ?
+            (a <= d ? 0 : 3) :
+            (c <= d ? 2 : 3)) :
+        (b <= c ?
+            (b <= d ? 1 : 3) :
+            (c <= d ? 2 : 3));
+
+export const max2id = (a, b) => a >= b ? 0 : 1;
+
+export const max3id = (a, b, c) =>
+    (a >= b) ?
+        (a >= c ? 0 : 2) :
+        (b >= c ? 1 : 2);
+
+export const max4id = (a, b, c, d) =>
+    a >= b ?
+        (a >= c ?
+            (a >= d ? 0 : 3) :
+            (c >= d ? 2 : 3)) :
+        (b >= c ?
+            (b >= d ? 1 : 3) :
+            (c >= d ? 2 : 3));
+
+/**
+ * Clamps value `x` to given closed interval.
+ *
+ * @param x value to clamp
+ * @param min lower bound
+ * @param max upper bound
+ */
+export const clamp = (x: number, min: number, max: number) =>
+    x < min ? min : x > max ? max : x;
 
 export const fit = (x: number, a: number, b: number, c: number, d: number) =>
     c + (d - c) * (x - a) / (b - a);
