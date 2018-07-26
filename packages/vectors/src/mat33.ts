@@ -165,7 +165,7 @@ export const invert33 = (m: Mat, i = 0) => {
     const d21 = m21 * m10 - m11 * m20;
     let det = m00 * d01 + m01 * d11 + m02 * d21;
     if (!det) {
-        return null;
+        return;
     }
     det = 1.0 / det;
     return set33s(

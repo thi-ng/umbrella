@@ -1,5 +1,13 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
+import { rad } from "./math";
+import {
+    cross3,
+    dot3,
+    get3,
+    normalize3,
+    sub3
+} from "./vec3";
 import { dot4, set4s } from "./vec4";
 
 export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
@@ -126,6 +134,66 @@ export const translation44s = (m: Mat, x: number, y: number, z: number, i = 0) =
         i
     );
 
+export const frustum = (m: Mat, left: number, right: number, bottom: number, top: number, near: number, far: number, i = 0) => {
+    const dx = 1 / (right - left);
+    const dy = 1 / (top - bottom);
+    const dz = 1 / (far - near);
+    return set44s(m || [],
+        near * 2 * dx, 0, 0, 0,
+        0, near * 2 * dy, 0, 0,
+        (right + left) * dx, (top + bottom) * dy, -(far + near) * dz, -1,
+        0, 0, -(far * near * 2) * dz, 0,
+        i
+    );
+};
+
+export const frustumBounds = (fovy: number, aspect: number, near: number, far: number) => {
+    const top = near * Math.tan(rad(fovy) / 2);
+    const right = top * aspect;
+    return {
+        left: -right,
+        right,
+        bottom: -top,
+        top,
+        near,
+        far
+    };
+};
+
+export const perspective = (m: Mat, fov: number, aspect: number, near: number, far: number, i = 0) => {
+    const f = frustumBounds(fov, aspect, near, far);
+    return frustum(m || [], f.left, f.right, f.bottom, f.top, f.near, f.far, i);
+};
+
+export const ortho = (m: Mat, left: number, right: number, bottom: number, top: number, near: number, far: number, i = 0) => {
+    const dx = 1 / (right - left);
+    const dy = 1 / (top - bottom);
+    const dz = 1 / (far - near);
+    return set44s(m || [],
+        2 * dx, 0, 0, 0,
+        0, 2 * dy, 0, 0,
+        0, 0, -2 * dz, 0,
+        -(left + right) * dx, -(top + bottom) * dy, -(far + near) * dz, 1,
+        i
+    );
+};
+
+export const lookAt = (m: Mat, eye: Vec, target: Vec, up: Vec, im = 0, ie = 0, it = 0, iu = 0, se = 1, st = 1, su = 1) => {
+    eye = get3(eye, ie, se);
+    target = get3(target, it, st);
+    up = get3(up, iu, su);
+    const z = normalize3(sub3([...eye], target));
+    const x = normalize3(cross3(up, z));
+    const y = normalize3(cross3([...z], x));
+    return set44s(m || [],
+        x[0], y[0], z[0], 0,
+        x[1], y[1], z[1], 0,
+        x[2], y[2], z[2], 0,
+        -dot3(eye, x), -dot3(eye, y), -dot3(eye, z), 1,
+        im
+    );
+}
+
 export const mul44 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) =>
     set44s(
         a,
@@ -237,7 +305,7 @@ export const invert44 = (m: Mat, i = 0) => {
     const d11 = d[11];
     let det = (d00 * d11 - d01 * d10 + d02 * d09 + d03 * d08 - d04 * d07 + d05 * d06);
     if (!det) {
-        return null;
+        return;
     }
     det = 1.0 / det;
     return set44s(
@@ -271,3 +339,33 @@ export const transpose44 = (m: Mat, i = 0) =>
         m[i + 3], m[i + 7], m[i + 11], m[i + 15],
         i
     );
+
+export const normal44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
+    const m00 = b[ib];
+    const m01 = b[ib + 1];
+    const m02 = b[ib + 2];
+    const m10 = b[ib + 4];
+    const m11 = b[ib + 5];
+    const m12 = b[ib + 6];
+    const m20 = b[ib + 8];
+    const m21 = b[ib + 9];
+    const m22 = b[ib + 10];
+    const d01 = m22 * m11 - m12 * m21;
+    const d11 = -m22 * m10 + m12 * m20;
+    const d21 = m21 * m10 - m11 * m20;
+    let det = m00 * d01 + m01 * d11 + m02 * d21;
+    if (!det) {
+        return;
+    }
+    det = 1.0 / det;
+    a[ia] = d01 * det;
+    a[ia + 1] = d11 * det;
+    a[ia + 2] = d21 * det;
+    a[ia + 3] = (-m22 * m01 + m02 * m21) * det;
+    a[ia + 4] = (m22 * m00 - m02 * m20) * det;
+    a[ia + 5] = (-m21 * m00 + m01 * m20) * det;
+    a[ia + 6] = (m12 * m01 - m02 * m11) * det;
+    a[ia + 7] = (-m12 * m00 + m02 * m10) * det;
+    a[ia + 8] = (m11 * m00 - m01 * m10) * det;
+    return a;
+};

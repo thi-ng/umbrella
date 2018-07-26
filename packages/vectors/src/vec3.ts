@@ -155,6 +155,12 @@ export const cross3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =
     return a;
 };
 
+export const orthoNormal3 = (a: Vec, b: Vec, c: Vec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+    cross3(
+        sub3(get3(c, ic, sc), a, 0, ia, 1, sa),
+        sub3(get3(b, ib, sb), a, 0, ia, 1, sa)
+    );
+
 export const mix3 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
     a[ia] += (b[ib] - a[ia]) * t[it],
     a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
@@ -309,6 +315,10 @@ export class Vec3 implements
             start += estride;
         }
         return res;
+    }
+
+    static orthoNormal3(a: Readonly<Vec3>, b: Readonly<Vec3>, c: Readonly<Vec3>) {
+        return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.index, b.index, c.index, a.stride, b.stride, c.stride));
     }
 
     static ZERO = Object.freeze(new Vec3(<number[]>ZERO3));
@@ -527,6 +537,10 @@ export class Vec3 implements
     cross(v: Readonly<Vec3>) {
         cross3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
         return this;
+    }
+
+    orthoNormal(v: Readonly<Vec3>) {
+        return this.cross(v).normalize();
     }
 
     mag() {

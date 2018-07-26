@@ -127,7 +127,7 @@ export const invert23 = (m: Mat, i = 0) => {
     const m21 = m[i + 5];
     let det = m00 * m11 - m01 * m10;
     if (!det) {
-        return null;
+        return;
     }
     det = 1.0 / det;
     return set23s(
