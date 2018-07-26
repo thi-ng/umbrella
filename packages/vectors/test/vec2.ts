@@ -34,4 +34,9 @@ describe("vec2", () => {
     it("subn", () => opn(v.sub2n, -9, -8));
     it("muln", () => opn(v.mul2n, 10, 20));
     it("divn", () => opn(v.div2n, 0.1, 0.2));
+
+    it("eqdelta", () => {
+        assert(v.eqDelta2([0, 1.001, 0, 1.999, 0], [1, 2], 0.01, 1, 0, 2, 1));
+        assert(!v.eqDelta2([0, 1.001, 0, 1.989, 0], [1, 2], 0.01, 1, 0, 2, 1));
+    });
 });
