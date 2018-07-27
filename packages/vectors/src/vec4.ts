@@ -265,7 +265,8 @@ export class Vec4 implements
      * backing array and stride settings: The `cstride` is the step size
      * between individual XYZ vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
-     * different storage approaches, including SOA, AOS, etc.
+     * different storage approaches, incl. SOA, AOS, striped /
+     * interleaved etc.
      *
      * @param buf backing array
      * @param n num vectors
@@ -286,13 +287,13 @@ export class Vec4 implements
     static ONE = Object.freeze(new Vec4(<number[]>ONE4));
 
     buf: Vec;
-    index: number;
-    stride: number;
+    i: number;
+    s: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;
-        this.index = index;
-        this.stride = stride;
+        this.i = index;
+        this.s = stride;
     }
 
     *[Symbol.iterator]() {
@@ -303,247 +304,247 @@ export class Vec4 implements
     }
 
     get x() {
-        return this.buf[this.index];
+        return this.buf[this.i];
     }
 
     set x(x: number) {
-        this.buf[this.index] = x;
+        this.buf[this.i] = x;
     }
 
     get y() {
-        return this.buf[this.index + this.stride];
+        return this.buf[this.i + this.s];
     }
 
     set y(y: number) {
-        this.buf[this.index + this.stride] = y;
+        this.buf[this.i + this.s] = y;
     }
 
     get z() {
-        return this.buf[this.index + 2 * this.stride];
+        return this.buf[this.i + 2 * this.s];
     }
 
     set z(z: number) {
-        this.buf[this.index + 2 * this.stride] = z;
+        this.buf[this.i + 2 * this.s] = z;
     }
 
     get w() {
-        return this.buf[this.index + 3 * this.stride];
+        return this.buf[this.i + 3 * this.s];
     }
 
     set w(w: number) {
-        this.buf[this.index + 3 * this.stride] = w;
+        this.buf[this.i + 3 * this.s] = w;
     }
 
     copy() {
-        return new Vec4(get4(this.buf, this.index, this.stride));
+        return new Vec4(get4(this.buf, this.i, this.s));
     }
 
     eqDelta(v: Readonly<Vec4>, eps = EPS) {
-        return eqDelta4(this.buf, v.buf, eps, this.index, v.index, this.stride, v.stride);
+        return eqDelta4(this.buf, v.buf, eps, this.i, v.i, this.s, v.s);
     }
 
     set(v: Readonly<Vec4>) {
-        set4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        set4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     setN(n: number) {
-        set4n(this.buf, n, this.index, this.stride);
+        set4n(this.buf, n, this.i, this.s);
         return this;
     }
 
     setS(x: number, y: number, z: number, w: number) {
-        set4s(this.buf, x, y, z, w, this.index, this.stride);
+        set4s(this.buf, x, y, z, w, this.i, this.s);
         return this;
     }
 
     add(v: Readonly<Vec4>) {
-        add4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        add4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     sub(v: Readonly<Vec4>) {
-        sub4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        sub4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     mul(v: Readonly<Vec4>) {
-        mul4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        mul4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     div(v: Readonly<Vec4>) {
-        div4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        div4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     addN(n: number) {
-        add4n(this.buf, n, this.index, this.stride);
+        add4n(this.buf, n, this.i, this.s);
         return this;
     }
 
     subN(n: number) {
-        sub4n(this.buf, n, this.index, this.stride);
+        sub4n(this.buf, n, this.i, this.s);
         return this;
     }
 
     mulN(n: number) {
-        mul4n(this.buf, n, this.index, this.stride);
+        mul4n(this.buf, n, this.i, this.s);
         return this;
     }
 
     divN(n: number) {
-        div4n(this.buf, n, this.index, this.stride);
+        div4n(this.buf, n, this.i, this.s);
         return this;
     }
 
     neg() {
-        mul4n(this.buf, -1, this.index, this.stride);
+        mul4n(this.buf, -1, this.i, this.s);
         return this;
     }
 
     abs() {
-        abs4(this.buf, this.index, this.stride);
+        abs4(this.buf, this.i, this.s);
         return this;
     }
 
     sign() {
-        sign4(this.buf, this.index, this.stride);
+        sign4(this.buf, this.i, this.s);
         return this;
     }
 
     floor() {
-        floor4(this.buf, this.index, this.stride);
+        floor4(this.buf, this.i, this.s);
         return this;
     }
 
     ceil() {
-        ceil4(this.buf, this.index, this.stride);
+        ceil4(this.buf, this.i, this.s);
         return this;
     }
 
     sqrt() {
-        sqrt4(this.buf, this.index, this.stride);
+        sqrt4(this.buf, this.i, this.s);
         return this;
     }
 
     pow(v: Readonly<Vec4>) {
-        pow4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        pow4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     powN(n: number) {
-        pow4n(this.buf, n, this.index, this.stride);
+        pow4n(this.buf, n, this.i, this.s);
         return this;
     }
 
     sin() {
-        sin4(this.buf, this.index, this.stride);
+        sin4(this.buf, this.i, this.s);
         return this;
     }
 
     cos() {
-        cos4(this.buf, this.index, this.stride);
+        cos4(this.buf, this.i, this.s);
         return this;
     }
 
     madd(b: Readonly<Vec4>, c: Readonly<Vec4>) {
-        madd4(this.buf, b.buf, c.buf, this.index, b.index, c.index, this.stride, b.stride, c.stride);
+        madd4(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
     }
 
     maddN(b: Readonly<Vec4>, n: number) {
-        madd4n(this.buf, b.buf, n, this.index, b.index, this.stride, b.stride);
+        madd4n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
     mix(b: Readonly<Vec4>, c: Readonly<Vec4>) {
-        mix4(this.buf, b.buf, c.buf, this.index, b.index, c.index, this.stride, b.stride, c.stride);
+        mix4(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
     }
 
     mixN(b: Readonly<Vec4>, n: number) {
-        mix4n(this.buf, b.buf, n, this.index, b.index, this.stride, b.stride);
+        mix4n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
     min(v: Readonly<Vec4>) {
-        min4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        min4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     max(v: Readonly<Vec4>) {
-        max4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        max4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     clamp(min: Readonly<Vec4>, max: Readonly<Vec4>) {
-        clamp4(this.buf, min.buf, max.buf, this.index, min.index, max.index, this.stride, min.stride, max.stride);
+        clamp4(this.buf, min.buf, max.buf, this.i, min.i, max.i, this.s, min.s, max.s);
         return this;
     }
 
     minorAxis() {
-        return minor4(this.buf, this.index, this.stride);
+        return minor4(this.buf, this.i, this.s);
     }
 
     majorAxis() {
-        return major4(this.buf, this.index, this.stride);
+        return major4(this.buf, this.i, this.s);
     }
 
     step(e: Readonly<Vec4>) {
-        step4(this.buf, e.buf, this.index, e.index, this.stride, e.stride);
+        step4(this.buf, e.buf, this.i, e.i, this.s, e.s);
         return this;
     }
 
     smoothStep(e1: Readonly<Vec4>, e2: Readonly<Vec4>) {
-        smoothStep4(this.buf, e1.buf, e2.buf, this.index, e1.index, e2.index, this.stride, e1.stride, e2.stride);
+        smoothStep4(this.buf, e1.buf, e2.buf, this.i, e1.i, e2.i, this.s, e1.s, e2.s);
         return this;
     }
 
     dot(v: Readonly<Vec4>) {
-        return dot4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return dot4(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     mag() {
-        return mag4(this.buf, this.index, this.stride);
+        return mag4(this.buf, this.i, this.s);
     }
 
     magSq() {
-        return mag4sq(this.buf, this.index, this.stride);
+        return mag4sq(this.buf, this.i, this.s);
     }
 
     dist(v: Readonly<Vec4>) {
-        return dist4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return dist4(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distSq(v: Readonly<Vec4>) {
-        return dist4sq(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return dist4sq(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distManhattan(v: Readonly<Vec4>) {
-        return distManhattan4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return distManhattan4(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distChebyshev(v: Readonly<Vec4>) {
-        return distChebyshev4(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return distChebyshev4(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     normalize(n = 1) {
-        normalize4(this.buf, n, this.index, this.stride);
+        normalize4(this.buf, n, this.i, this.s);
         return this;
     }
 
     limit(n: number) {
-        limit4(this.buf, n, this.index, this.stride);
+        limit4(this.buf, n, this.i, this.s);
         return this;
     }
 
     reflect(n: Readonly<Vec4>) {
-        reflect4(this.buf, n.buf, this.index, n.index, this.stride, n.stride);
+        reflect4(this.buf, n.buf, this.i, n.i, this.s, n.s);
         return this;
     }
 
     toString() {
-        return `[${this.buf[this.index]}, ${this.buf[this.index + this.stride]}, ${this.buf[this.index + 2 * this.stride]}, ${this.buf[this.index + 3 * this.stride]}]`;
+        return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}, ${this.buf[this.i + 3 * this.s]}]`;
     }
 }

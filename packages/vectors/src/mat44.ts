@@ -1,14 +1,18 @@
+import { ICopy } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
+import { Mat33 } from "./mat33";
 import { rad } from "./math";
 import {
     cross3,
     dot3,
     get3,
     normalize3,
-    sub3
+    set3,
+    sub3,
+    Vec3
 } from "./vec3";
-import { dot4, set4s } from "./vec4";
+import { dot4, set4s, Vec4 } from "./vec4";
 
 export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
@@ -115,7 +119,7 @@ export const scale44s = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
         i
     );
 
-export const scaleWithCenter44 = (m: Mat, sx: number, sy: number, sz: number, p: Vec, im = 0, iv = 0, sv = 1) =>
+export const scaleWithCenter44 = (m: Mat, p: Vec, sx: number, sy: number, sz: number, im = 0, iv = 0, sv = 1) =>
     concat44(
         translation44v(m || [], p, im, iv, sv), im,
         scale44s([], sx, sy, sz),
@@ -222,6 +226,15 @@ export const concat44 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
             mul44(acc, <ReadonlyMat>x[0], ia, <number>x[1]) :
             mul44(acc, <ReadonlyMat>x, ia),
         a
+    );
+
+export const mulV344 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
+    set4s(
+        v,
+        dot3(m, v, im, iv, 4, sv) + m[12],
+        dot3(m, v, im + 1, iv, 4, sv) + m[13],
+        dot3(m, v, im + 2, iv, 4, sv) + m[14],
+        iv, sv
     );
 
 export const mulV44 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
@@ -369,3 +382,133 @@ export const normal44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
     a[ia + 8] = (m11 * m00 - m01 * m10) * det;
     return a;
 };
+
+export const mat44to33 = (m33: Mat, m44: Mat, ia = 0, ib = 0) => (
+    set3(m33, m44, ia, ib),
+    set3(m33, m44, ia + 3, ib + 4),
+    set3(m33, m44, ia + 6, ib + 8),
+    m33
+);
+
+export class Mat44 implements
+    ICopy<Mat44> {
+
+    static rotationX(theta: number) {
+        return new Mat44(rotationX44([], theta));
+    }
+
+    static rotationY(theta: number) {
+        return new Mat44(rotationY44([], theta));
+    }
+
+    static rotationZ(theta: number) {
+        return new Mat44(rotationZ44([], theta));
+    }
+
+    static scale(v: Vec3): Mat44;
+    static scale(n: number): Mat44;
+    static scale(x: number, y: number, z: number): Mat44;
+    static scale(x: any, y = x, z = x) {
+        return new Mat44(
+            x instanceof Vec3 ?
+                scale44v([], x.buf, 0, x.i) :
+                scale44s([], x, y, z)
+        );
+    }
+
+    static scaleWithCenter(p: Vec3, sx: number, sy = sx, sz = sy) {
+        return new Mat44(scaleWithCenter44([], p.buf, sx, sy, sz, p.i, p.s));
+    }
+
+    static translation(v: Vec3): Mat44;
+    static translation(x: number, y: number, z: number): Mat44;
+    static translation(x: any, y?: any, z?: any) {
+        return new Mat44(
+            x instanceof Vec3 ?
+                translation44v([], x.buf, 0, x.i) :
+                translation44s([], x, y, z)
+        );
+    }
+
+    static concat(m: Mat44, ...xs: Readonly<Mat44>[]) {
+        concat44.apply(null, [m.buf, m.i, ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])]);
+        return m;
+    }
+
+    buf: Mat;
+    i: number;
+
+    constructor(buf: Mat, i = 0) {
+        this.buf = buf;
+        this.i = i;
+    }
+
+    copy() {
+        return new Mat44(set44([], this.buf, 0, this.i));
+    }
+
+    identity() {
+        identity44(this.buf, this.i);
+        return this;
+    }
+
+    set(m: Readonly<Mat44>) {
+        set44(this.buf, m.buf, this.i, m.i);
+        return this;
+    }
+
+    setS(m00: number, m01: number, m02: number, m03: number,
+        m10: number, m11: number, m12: number, m13: number,
+        m20: number, m21: number, m22: number, m23: number,
+        m30: number, m31: number, m32: number, m33: number) {
+        set44s(this.buf, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33, this.i);
+        return this;
+    }
+
+    mul(m: Readonly<Mat44>) {
+        mul44(this.buf, m.buf, this.i, m.i);
+        return this;
+    }
+
+    mulV3(v: Vec3) {
+        mulV344(this.buf, v.buf, this.i, v.i);
+        return v;
+    }
+
+    mulV(v: Vec4) {
+        mulV44(this.buf, v.buf, this.i, v.i);
+        return v;
+    }
+
+    determinant() {
+        return det44(this.buf, this.i);
+    }
+
+    invert() {
+        invert44(this.buf, this.i);
+        return this;
+    }
+
+    transpose() {
+        transpose44(this.buf, this.i);
+        return this;
+    }
+
+    normalMat(m?: Mat33) {
+        !m && (m = new Mat33([]));
+        normal44(m.buf, this.buf, m.i, this.i);
+        return m;
+    }
+
+    toMat33(m?: Mat33) {
+        !m && (m = new Mat33([]));
+        mat44to33(m.buf, this.buf, m.i, this.i);
+        return m;
+    }
+
+    toString() {
+        const b = this.buf;
+        const i = this.i;
+        return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}\n${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}\n${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}\n${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
+    }
+}

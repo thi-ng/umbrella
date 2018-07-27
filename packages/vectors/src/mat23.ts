@@ -1,6 +1,14 @@
+import { ICopy } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
-import { cross2, dot2, set2s } from "./vec2";
+import {
+    cross2,
+    dot2,
+    set2,
+    set2s,
+    Vec2
+} from "./vec2";
+import { set3s } from "./vec3";
 
 export const set23 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
@@ -46,7 +54,7 @@ export const rotation23 = (m: Mat, theta: number, i = 0) => {
     return set23s(m || [], c, s, -s, c, 0, 0, i);
 };
 
-export const rotationAroundPoint23 = (m: Mat, theta: number, p: Vec, im = 0, iv = 0, sv = 1) =>
+export const rotationAroundPoint23 = (m: Mat, p: Vec, theta: number, im = 0, iv = 0, sv = 1) =>
     concat23(
         translation23v(m || [], p, im, iv, sv), im,
         rotation23([], theta),
@@ -62,7 +70,7 @@ export const scale23n = (m: Mat, n: number, i = 0) =>
 export const scale23s = (m: Mat, sx: number, sy: number, i = 0) =>
     set23s(m || [], sx, 0, 0, sy, 0, 0, i);
 
-export const scaleWithCenter23 = (m: Mat, sx: number, sy: number, p: Vec, im = 0, iv = 0, sv = 1) =>
+export const scaleWithCenter23 = (m: Mat, p: Vec, sx: number, sy: number, im = 0, iv = 0, sv = 1) =>
     concat23(
         translation23v(m || [], p, im, iv, sv), im,
         scale23s([], sx, sy),
@@ -140,4 +148,122 @@ export const invert23 = (m: Mat, i = 0) => {
         (m01 * m20 - m00 * m21) * det,
         i
     );
+}
+
+export const mat23to33 = (m33: Mat, m23: Mat, ia = 0, ib = 0) => (
+    set2(m33, m23, ia, ib),
+    set2(m33, m23, ia + 3, ib + 2),
+    set2(m33, m23, ia + 6, ib + 4),
+    set3s(m33, 0, 0, 1, ia + 2, 3),
+    m33
+);
+
+export class Mat23 implements
+    ICopy<Mat23> {
+
+    static rotation(theta: number) {
+        return new Mat23(rotation23([], theta));
+    }
+
+    static rotationAroundPoint(p: Vec2, theta: number) {
+        return new Mat23(rotationAroundPoint23([], p.buf, theta, 0, p.i, p.s));
+    }
+
+    static scale(v: Vec2): Mat23;
+    static scale(n: number): Mat23;
+    static scale(x: number, y: number): Mat23;
+    static scale(x: any, y = x) {
+        return new Mat23(
+            x instanceof Vec2 ?
+                scale23v([], x.buf, 0, x.i, x.s) :
+                scale23s([], x, y)
+        );
+    }
+
+    static scaleWithCenter(p: Vec2, sx: number, sy = sx) {
+        return new Mat23(scaleWithCenter23([], p.buf, sx, sy, p.i, p.s));
+    }
+
+    static translation(v: Vec2): Mat23;
+    static translation(x: number, y: number): Mat23;
+    static translation(x: any, y?: any) {
+        return new Mat23(
+            x instanceof Vec2 ?
+                translation23v([], x.buf, 0, x.i) :
+                translation23s([], x, y)
+        );
+    }
+
+    static skewX(x: number) {
+        return new Mat23(skewX23([], x));
+    }
+
+    static skewY(y: number) {
+        return new Mat23(skewY23([], y));
+    }
+
+    static shearX(theta: number) {
+        return new Mat23(shearX23([], theta));
+    }
+
+    static shearY(theta: number) {
+        return new Mat23(shearY23([], theta));
+    }
+
+    static concat(m: Mat23, ...xs: Readonly<Mat23>[]) {
+        concat23.apply(null, [m.buf, m.i, ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])]);
+        return m;
+    }
+
+    buf: Mat;
+    i: number;
+
+    constructor(buf: Mat, i = 0) {
+        this.buf = buf;
+        this.i = i;
+    }
+
+    copy() {
+        return new Mat23(set23([], this.buf, 0, this.i));
+    }
+
+    identity() {
+        identity23(this.buf, this.i);
+        return this;
+    }
+
+    set(m: Readonly<Mat23>) {
+        set23(this.buf, m.buf, this.i, m.i);
+        return this;
+    }
+
+    setS(m00: number, m01: number, m10: number, m11: number, m20: number, m21: number) {
+        set23s(this.buf, m00, m01, m10, m11, m20, m21, this.i);
+        return this;
+    }
+
+    mul(m: Readonly<Mat23>) {
+        mul23(this.buf, m.buf, this.i, m.i);
+        return this;
+    }
+
+    mulV(v: Vec2) {
+        mulV23(this.buf, v.buf, this.i, v.i);
+        return v;
+    }
+
+    determinant() {
+        return det23(this.buf, this.i);
+    }
+
+    invert() {
+        invert23(this.buf, this.i);
+        return this;
+    }
+
+    toString() {
+        const b = this.buf;
+        const i = this.i;
+        return `${b[i]} ${b[i + 2]} ${b[i + 4]}\n${b[i + 1]} ${b[i + 3]} ${b[i + 5]}`;
+    }
 }

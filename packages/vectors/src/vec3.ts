@@ -300,7 +300,8 @@ export class Vec3 implements
      * backing array and stride settings: The `cstride` is the step size
      * between individual XYZ vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
-     * different storage approaches, including SOA, AOS, etc.
+     * different storage approaches, incl. SOA, AOS, striped /
+     * interleaved etc.
      *
      * @param buf backing array
      * @param n num vectors
@@ -318,20 +319,20 @@ export class Vec3 implements
     }
 
     static orthoNormal3(a: Readonly<Vec3>, b: Readonly<Vec3>, c: Readonly<Vec3>) {
-        return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.index, b.index, c.index, a.stride, b.stride, c.stride));
+        return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.i, b.i, c.i, a.s, b.s, c.s));
     }
 
     static ZERO = Object.freeze(new Vec3(<number[]>ZERO3));
     static ONE = Object.freeze(new Vec3(<number[]>ONE3));
 
     buf: Vec;
-    index: number;
-    stride: number;
+    i: number;
+    s: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;
-        this.index = index;
-        this.stride = stride;
+        this.i = index;
+        this.s = stride;
     }
 
     *[Symbol.iterator]() {
@@ -341,201 +342,201 @@ export class Vec3 implements
     }
 
     get x() {
-        return this.buf[this.index];
+        return this.buf[this.i];
     }
 
     set x(x: number) {
-        this.buf[this.index] = x;
+        this.buf[this.i] = x;
     }
 
     get y() {
-        return this.buf[this.index + this.stride];
+        return this.buf[this.i + this.s];
     }
 
     set y(y: number) {
-        this.buf[this.index + this.stride] = y;
+        this.buf[this.i + this.s] = y;
     }
 
     get z() {
-        return this.buf[this.index + 2 * this.stride];
+        return this.buf[this.i + 2 * this.s];
     }
 
     set z(z: number) {
-        this.buf[this.index + 2 * this.stride] = z;
+        this.buf[this.i + 2 * this.s] = z;
     }
 
     copy() {
-        return new Vec3(get3(this.buf, this.index, this.stride));
+        return new Vec3(get3(this.buf, this.i, this.s));
     }
 
     eqDelta(v: Readonly<Vec3>, eps = EPS) {
-        return eqDelta3(this.buf, v.buf, eps, this.index, v.index, this.stride, v.stride);
+        return eqDelta3(this.buf, v.buf, eps, this.i, v.i, this.s, v.s);
     }
 
     set(v: Readonly<Vec3>) {
-        set3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        set3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     setN(n: number) {
-        set3n(this.buf, n, this.index, this.stride);
+        set3n(this.buf, n, this.i, this.s);
         return this;
     }
 
     setS(x: number, y: number, z: number) {
-        set3s(this.buf, x, y, z, this.index, this.stride);
+        set3s(this.buf, x, y, z, this.i, this.s);
         return this;
     }
 
     add(v: Readonly<Vec3>) {
-        add3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        add3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     sub(v: Readonly<Vec3>) {
-        sub3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        sub3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     mul(v: Readonly<Vec3>) {
-        mul3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        mul3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     div(v: Readonly<Vec3>) {
-        div3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        div3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     addN(n: number) {
-        add3n(this.buf, n, this.index, this.stride);
+        add3n(this.buf, n, this.i, this.s);
         return this;
     }
 
     subN(n: number) {
-        sub3n(this.buf, n, this.index, this.stride);
+        sub3n(this.buf, n, this.i, this.s);
         return this;
     }
 
     mulN(n: number) {
-        mul3n(this.buf, n, this.index, this.stride);
+        mul3n(this.buf, n, this.i, this.s);
         return this;
     }
 
     divN(n: number) {
-        div3n(this.buf, n, this.index, this.stride);
+        div3n(this.buf, n, this.i, this.s);
         return this;
     }
 
     neg() {
-        mul3n(this.buf, -1, this.index, this.stride);
+        mul3n(this.buf, -1, this.i, this.s);
         return this;
     }
 
     abs() {
-        abs3(this.buf, this.index, this.stride);
+        abs3(this.buf, this.i, this.s);
         return this;
     }
 
     sign() {
-        sign3(this.buf, this.index, this.stride);
+        sign3(this.buf, this.i, this.s);
         return this;
     }
 
     floor() {
-        floor3(this.buf, this.index, this.stride);
+        floor3(this.buf, this.i, this.s);
         return this;
     }
 
     ceil() {
-        ceil3(this.buf, this.index, this.stride);
+        ceil3(this.buf, this.i, this.s);
         return this;
     }
 
     sqrt() {
-        sqrt3(this.buf, this.index, this.stride);
+        sqrt3(this.buf, this.i, this.s);
         return this;
     }
 
     pow(v: Readonly<Vec3>) {
-        pow3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        pow3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     powN(n: number) {
-        pow3n(this.buf, n, this.index, this.stride);
+        pow3n(this.buf, n, this.i, this.s);
         return this;
     }
 
     sin() {
-        sin3(this.buf, this.index, this.stride);
+        sin3(this.buf, this.i, this.s);
         return this;
     }
 
     cos() {
-        cos3(this.buf, this.index, this.stride);
+        cos3(this.buf, this.i, this.s);
         return this;
     }
 
     madd(b: Readonly<Vec3>, c: Readonly<Vec3>) {
-        madd3(this.buf, b.buf, c.buf, this.index, b.index, c.index, this.stride, b.stride, c.stride);
+        madd3(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
     }
 
     maddN(b: Readonly<Vec3>, n: number) {
-        madd3n(this.buf, b.buf, n, this.index, b.index, this.stride, b.stride);
+        madd3n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
     mix(b: Readonly<Vec3>, c: Readonly<Vec3>) {
-        mix3(this.buf, b.buf, c.buf, this.index, b.index, c.index, this.stride, b.stride, c.stride);
+        mix3(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
     }
 
     mixN(b: Readonly<Vec3>, n: number) {
-        mix3n(this.buf, b.buf, n, this.index, b.index, this.stride, b.stride);
+        mix3n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
     min(v: Readonly<Vec3>) {
-        min3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        min3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     max(v: Readonly<Vec3>) {
-        max3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        max3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
     clamp(min: Readonly<Vec3>, max: Readonly<Vec3>) {
-        clamp3(this.buf, min.buf, max.buf, this.index, min.index, max.index, this.stride, min.stride, max.stride);
+        clamp3(this.buf, min.buf, max.buf, this.i, min.i, max.i, this.s, min.s, max.s);
         return this;
     }
 
     minorAxis() {
-        return minor3(this.buf, this.index, this.stride);
+        return minor3(this.buf, this.i, this.s);
     }
 
     majorAxis() {
-        return major3(this.buf, this.index, this.stride);
+        return major3(this.buf, this.i, this.s);
     }
 
     step(e: Readonly<Vec3>) {
-        step3(this.buf, e.buf, this.index, e.index, this.stride, e.stride);
+        step3(this.buf, e.buf, this.i, e.i, this.s, e.s);
         return this;
     }
 
     smoothStep(e1: Readonly<Vec3>, e2: Readonly<Vec3>) {
-        smoothStep3(this.buf, e1.buf, e2.buf, this.index, e1.index, e2.index, this.stride, e1.stride, e2.stride);
+        smoothStep3(this.buf, e1.buf, e2.buf, this.i, e1.i, e2.i, this.s, e1.s, e2.s);
         return this;
     }
 
     dot(v: Readonly<Vec3>) {
-        return dot3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return dot3(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     cross(v: Readonly<Vec3>) {
-        cross3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        cross3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
     }
 
@@ -544,82 +545,82 @@ export class Vec3 implements
     }
 
     mag() {
-        return mag3(this.buf, this.index, this.stride);
+        return mag3(this.buf, this.i, this.s);
     }
 
     magSq() {
-        return mag3sq(this.buf, this.index, this.stride);
+        return mag3sq(this.buf, this.i, this.s);
     }
 
     dist(v: Readonly<Vec3>) {
-        return dist3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return dist3(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distSq(v: Readonly<Vec3>) {
-        return dist3sq(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return dist3sq(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distManhattan(v: Readonly<Vec3>) {
-        return distManhattan3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return distManhattan3(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distChebyshev(v: Readonly<Vec3>) {
-        return distChebyshev3(this.buf, v.buf, this.index, v.index, this.stride, v.stride);
+        return distChebyshev3(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     normalize(n = 1) {
-        normalize3(this.buf, n, this.index, this.stride);
+        normalize3(this.buf, n, this.i, this.s);
         return this;
     }
 
     limit(n: number) {
-        limit3(this.buf, n, this.index, this.stride);
+        limit3(this.buf, n, this.i, this.s);
         return this;
     }
 
     reflect(n: Readonly<Vec3>) {
-        reflect3(this.buf, n.buf, this.index, n.index, this.stride, n.stride);
+        reflect3(this.buf, n.buf, this.i, n.i, this.s, n.s);
         return this;
     }
 
     rotateX(theta: number) {
-        rotate3x(this.buf, theta, this.index, this.stride);
+        rotate3x(this.buf, theta, this.i, this.s);
         return this;
     }
 
     rotateY(theta: number) {
-        rotate3y(this.buf, theta, this.index, this.stride);
+        rotate3y(this.buf, theta, this.i, this.s);
         return this;
     }
 
     rotateZ(theta: number) {
-        rotate3z(this.buf, theta, this.index, this.stride);
+        rotate3z(this.buf, theta, this.i, this.s);
         return this;
     }
 
     headingXY() {
-        return heading3xy(this.buf, this.index, this.stride);
+        return heading3xy(this.buf, this.i, this.s);
     }
 
     headingXZ() {
-        return heading3xz(this.buf, this.index, this.stride);
+        return heading3xz(this.buf, this.i, this.s);
     }
 
     headingYZ() {
-        return heading3yz(this.buf, this.index, this.stride);
+        return heading3yz(this.buf, this.i, this.s);
     }
 
     toSpherical() {
-        toSpherical(this.buf, this.index, this.stride);
+        toSpherical(this.buf, this.i, this.s);
         return this;
     }
 
     toCartesian(o: Readonly<Vec3> = Vec3.ZERO) {
-        toCartesian3(this.buf, o.buf, this.index, o.index, this.stride, o.stride);
+        toCartesian3(this.buf, o.buf, this.i, o.i, this.s, o.s);
         return this;
     }
 
     toString() {
-        return `[${this.buf[this.index]}, ${this.buf[this.index + this.stride]}, ${this.buf[this.index + 2 * this.stride]}]`;
+        return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}]`;
     }
 }

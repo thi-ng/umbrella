@@ -28,7 +28,8 @@
         "typescript": "^2.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.0.5"
+        "@thi.ng/api": "^4.0.5",
+        "@thi.ng/checks": "^1.5.6"
     },
     "keywords": [
         "ES6",

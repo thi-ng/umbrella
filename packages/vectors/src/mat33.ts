@@ -1,6 +1,8 @@
+import { ICopy } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
-import { dot3, set3s } from "./vec3";
+import { dot3, set3s, Vec3, set3 } from "./vec3";
+import { set4s } from "./vec4";
 
 export const set33 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
@@ -191,3 +193,101 @@ export const transpose33 = (m: Mat, i = 0) =>
         m[i + 2], m[i + 5], m[i + 8],
         i
     );
+
+export const mat33to44 = (m44: Mat, m33: Mat, ia = 0, ib = 0) => (
+    set3(m44, m33, ia, ib),
+    set3(m44, m33, ia + 4, ib + 3),
+    set3(m44, m33, ia + 8, ib + 6),
+    set3s(m44, 0, 0, 0, ia + 12),
+    set4s(m44, 0, 0, 0, 1, ia + 3, 4),
+    m44
+);
+
+export class Mat33 implements
+    ICopy<Mat33> {
+
+    static rotationX(theta: number) {
+        return new Mat33(rotationX33([], theta));
+    }
+
+    static rotationY(theta: number) {
+        return new Mat33(rotationY33([], theta));
+    }
+
+    static rotationZ(theta: number) {
+        return new Mat33(rotationZ33([], theta));
+    }
+
+    static scale(v: Vec3): Mat33;
+    static scale(n: number): Mat33;
+    static scale(x: number, y: number, z: number): Mat33;
+    static scale(x: any, y = x, z = x) {
+        return new Mat33(
+            x instanceof Vec3 ?
+                scale33v([], x.buf, 0, x.i) :
+                scale33s([], x, y, z)
+        );
+    }
+
+    static concat(m: Mat33, ...xs: Readonly<Mat33>[]) {
+        concat33.apply(null, [m.buf, m.i, ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])]);
+        return m;
+    }
+
+    buf: Mat;
+    i: number;
+
+    constructor(buf: Mat, i = 0) {
+        this.buf = buf;
+        this.i = i;
+    }
+
+    copy() {
+        return new Mat33(set33([], this.buf, 0, this.i));
+    }
+
+    identity() {
+        identity33(this.buf, this.i);
+        return this;
+    }
+
+    set(m: Readonly<Mat33>) {
+        set33(this.buf, m.buf, this.i, m.i);
+        return this;
+    }
+
+    setS(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number) {
+        set33s(this.buf, m00, m01, m02, m10, m11, m12, m20, m21, m22, this.i);
+        return this;
+    }
+
+    mul(m: Readonly<Mat33>) {
+        mul33(this.buf, m.buf, this.i, m.i);
+        return this;
+    }
+
+    mulV(v: Vec3) {
+        mulV33(this.buf, v.buf, this.i, v.i);
+        return v;
+    }
+
+    determinant() {
+        return det33(this.buf, this.i);
+    }
+
+    invert() {
+        invert33(this.buf, this.i);
+        return this;
+    }
+
+    transpose() {
+        transpose33(this.buf, this.i);
+        return this;
+    }
+
+    toString() {
+        const b = this.buf;
+        const i = this.i;
+        return `${b[i]} ${b[i + 3]} ${b[i + 6]}\n${b[i + 1]} ${b[i + 4]} ${b[i + 7]}\n${b[i + 2]} ${b[i + 5]} ${b[i + 8]}`;
+    }
+}
