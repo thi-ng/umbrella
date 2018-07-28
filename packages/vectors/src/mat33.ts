@@ -1,7 +1,14 @@
-import { ICopy } from "@thi.ng/api/api";
+import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
-import { dot3, set3s, Vec3, set3 } from "./vec3";
+import { eqDeltaN } from "./common";
+import { EPS } from "./math";
+import {
+    dot3,
+    set3,
+    set3s,
+    Vec3
+} from "./vec3";
 import { set4s } from "./vec4";
 
 export const set33 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
@@ -204,7 +211,8 @@ export const mat33to44 = (m44: Mat, m33: Mat, ia = 0, ib = 0) => (
 );
 
 export class Mat33 implements
-    ICopy<Mat33> {
+    ICopy<Mat33>,
+    IEqualsDelta<Mat33> {
 
     static rotationX(theta: number) {
         return new Mat33(rotationX33([], theta));
@@ -246,6 +254,10 @@ export class Mat33 implements
         return new Mat33(set33([], this.buf, 0, this.i));
     }
 
+    eqDelta(m: Mat33, eps = EPS) {
+        return eqDeltaN(this.buf, m.buf, 9, eps, this.i, m.i);
+    }
+
     identity() {
         identity33(this.buf, this.i);
         return this;
@@ -267,7 +279,7 @@ export class Mat33 implements
     }
 
     mulV(v: Vec3) {
-        mulV33(this.buf, v.buf, this.i, v.i);
+        mulV33(this.buf, v.buf, this.i, v.i, v.s);
         return v;
     }
 

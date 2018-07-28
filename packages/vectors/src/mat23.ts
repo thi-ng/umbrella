@@ -1,14 +1,14 @@
-import { ICopy } from "@thi.ng/api/api";
+import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
+import { eqDeltaN } from "./common";
+import { EPS } from "./math";
 import {
     cross2,
     dot2,
-    set2,
     set2s,
     Vec2
 } from "./vec2";
-import { set3s } from "./vec3";
 
 export const set23 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
@@ -150,16 +150,9 @@ export const invert23 = (m: Mat, i = 0) => {
     );
 }
 
-export const mat23to33 = (m33: Mat, m23: Mat, ia = 0, ib = 0) => (
-    set2(m33, m23, ia, ib),
-    set2(m33, m23, ia + 3, ib + 2),
-    set2(m33, m23, ia + 6, ib + 4),
-    set3s(m33, 0, 0, 1, ia + 2, 3),
-    m33
-);
-
 export class Mat23 implements
-    ICopy<Mat23> {
+    ICopy<Mat23>,
+    IEqualsDelta<Mat23> {
 
     static rotation(theta: number) {
         return new Mat23(rotation23([], theta));
@@ -227,6 +220,10 @@ export class Mat23 implements
         return new Mat23(set23([], this.buf, 0, this.i));
     }
 
+    eqDelta(m: Mat23, eps = EPS) {
+        return eqDeltaN(this.buf, m.buf, 6, eps, this.i, m.i);
+    }
+
     identity() {
         identity23(this.buf, this.i);
         return this;
@@ -248,7 +245,7 @@ export class Mat23 implements
     }
 
     mulV(v: Vec2) {
-        mulV23(this.buf, v.buf, this.i, v.i);
+        mulV23(this.buf, v.buf, this.i, v.i, v.s);
         return v;
     }
 

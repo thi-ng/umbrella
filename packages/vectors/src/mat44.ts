@@ -1,31 +1,27 @@
-import { ICopy } from "@thi.ng/api/api";
+import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
+import { eqDeltaN } from "./common";
 import { Mat33 } from "./mat33";
-import { rad } from "./math";
+import { EPS, rad } from "./math";
 import {
     cross3,
     dot3,
     get3,
     normalize3,
     set3,
+    set3s,
     sub3,
     Vec3
 } from "./vec3";
 import { dot4, set4s, Vec4 } from "./vec4";
 
-export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
-    a[ia] = b[ib],
-    a[ia + 1] = b[ib + 1],
-    a[ia + 2] = b[ib + 2],
-    a[ia + 3] = b[ib + 3],
-    a[ia + 4] = b[ib + 4],
-    a[ia + 5] = b[ib + 5],
-    a[ia + 6] = b[ib + 6],
-    a[ia + 7] = b[ib + 7],
-    a[ia + 8] = b[ib + 8],
-    a
-);
+export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
+    for (let i = 0; i < 16; i++) {
+        a[ia + i] = b[ib + i];
+    }
+    return a;
+};
 
 /**
  * ```
@@ -229,7 +225,7 @@ export const concat44 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
     );
 
 export const mulV344 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
-    set4s(
+    set3s(
         v,
         dot3(m, v, im, iv, 4, sv) + m[12],
         dot3(m, v, im + 1, iv, 4, sv) + m[13],
@@ -391,7 +387,8 @@ export const mat44to33 = (m33: Mat, m44: Mat, ia = 0, ib = 0) => (
 );
 
 export class Mat44 implements
-    ICopy<Mat44> {
+    ICopy<Mat44>,
+    IEqualsDelta<Mat44> {
 
     static rotationX(theta: number) {
         return new Mat44(rotationX44([], theta));
@@ -447,6 +444,10 @@ export class Mat44 implements
         return new Mat44(set44([], this.buf, 0, this.i));
     }
 
+    eqDelta(m: Mat44, eps = EPS) {
+        return eqDeltaN(this.buf, m.buf, 16, eps, this.i, m.i);
+    }
+
     identity() {
         identity44(this.buf, this.i);
         return this;
@@ -471,12 +472,12 @@ export class Mat44 implements
     }
 
     mulV3(v: Vec3) {
-        mulV344(this.buf, v.buf, this.i, v.i);
+        mulV344(this.buf, v.buf, this.i, v.i, v.s);
         return v;
     }
 
     mulV(v: Vec4) {
-        mulV44(this.buf, v.buf, this.i, v.i);
+        mulV44(this.buf, v.buf, this.i, v.i, v.s);
         return v;
     }
 
