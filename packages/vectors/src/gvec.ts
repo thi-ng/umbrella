@@ -9,74 +9,74 @@ import {
     step1
 } from "./math";
 
-export const opg1 = (fn: (x: number) => number, a: Vec, n: number, i = 0, s = 1) => {
-    while (--n >= 0) {
-        a[i + n * s] = fn(a[i + n * s]);
+export const opg1 = (fn: (x: number) => number, a: Vec, num = a.length, i = 0, s = 1) => {
+    while (--num >= 0) {
+        a[i + num * s] = fn(a[i + num * s]);
     }
     return a;
 };
 
-export const opg2 = (fn: (x: number, y: number) => number, a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    while (--n >= 0) {
-        a[ia + n * sa] = fn(a[ia + n * sa], b[ib + n * sb]);
+export const opg2 = (fn: (x: number, y: number) => number, a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    while (--num >= 0) {
+        a[ia + num * sa] = fn(a[ia + num * sa], b[ib + num * sb]);
     }
     return a;
 };
 
-export const opg3 = (fn: (x: number, y: number, z: number) => number, a: Vec, b: ReadonlyVec, c: ReadonlyVec, n: number, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => {
-    while (--n >= 0) {
-        a[ia + n * sa] = fn(a[ia + n * sa], b[ib + n * sb], c[ic + n * sc]);
+export const opg3 = (fn: (x: number, y: number, z: number) => number, a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => {
+    while (--num >= 0) {
+        a[ia + num * sa] = fn(a[ia + num * sa], b[ib + num * sb], c[ic + num * sc]);
     }
     return a;
 };
 
-export const get = (a: ReadonlyVec, n: number, i = 0, s = 1) => {
-    const res = [];
-    for (; n > 0; n-- , i += s) {
-        res.push(a[i]);
+export const get = (a: ReadonlyVec, num = a.length, i = 0, s = 1) => {
+    const res = new (<any>(a.constructor))(num);
+    for (let j = 0; j < num; j++ , i += s) {
+        res[j] = a[i];
     }
     return res;
 };
 
-export const set = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const set = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
     while (--num >= 0) {
         a[ia + num * sa] = b[ib + num * sb];
     }
     return a;
 };
 
-export const setN = (a: Vec, n: number, num: number, ia = 0, sa = 1) => {
+export const setN = (a: Vec, n: number, num = a.length, ia = 0, sa = 1) => {
     while (--num >= 0) {
-        a[ia + n * sa] = n;
+        a[ia + num * sa] = n;
     }
     return a;
 };
 
-export const add = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const add = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x + y, a, b, num, ia, ib, sa, sb);
 
-export const sub = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const sub = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x - y, a, b, num, ia, ib, sa, sb);
 
-export const mul = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const mul = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x * y, a, b, num, ia, ib, sa, sb);
 
-export const div = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const div = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x / y, a, b, num, ia, ib, sa, sb);
 
-export const addN = (a: Vec, n: number, num: number, i = 0, s = 1) =>
+export const addN = (a: Vec, n: number, num = a.length, i = 0, s = 1) =>
     opg1((x) => x + n, a, num, i, s);
 
-export const subN = (a: Vec, n: number, num: number, i = 0, s = 1) =>
+export const subN = (a: Vec, n: number, num = a.length, i = 0, s = 1) =>
     opg1((x) => x - n, a, num, i, s);
 
-export const mulN = (a: Vec, n: number, num: number, i = 0, s = 1) =>
+export const mulN = (a: Vec, n: number, num = a.length, i = 0, s = 1) =>
     opg1((x) => x * n, a, num, i, s);
 
-export const divN = (a: Vec, n: number, num: number, i = 0, s = 1) =>
+export const divN = (a: Vec, n: number, num = a.length, i = 0, s = 1) =>
     opg1((x) => x / n, a, num, i, s);
 
-export const dot = (a: ReadonlyVec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const dot = (a: ReadonlyVec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let res = 0;
     while (--num >= 0) {
         res += a[ia + num * sa] * b[ib + num * sb];
@@ -84,25 +84,25 @@ export const dot = (a: ReadonlyVec, b: ReadonlyVec, num: number, ia = 0, ib = 0,
     return res;
 };
 
-export const madd = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num: number, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+export const madd = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3((x, y, z) => x + y * z, a, b, c, num, ia, ib, ic, sa, sb, sc);
 
-export const maddN = (a: Vec, b: ReadonlyVec, n: number, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const maddN = (a: Vec, b: ReadonlyVec, n: number, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x + y * n, a, b, num, ia, ib, sa, sb);
 
-export const mix = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num: number, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+export const mix = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3((x, y, z) => x + (y - x) * z, a, b, c, num, ia, ib, ic, sa, sb, sc);
 
-export const mixN = (a: Vec, b: ReadonlyVec, n: number, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const mixN = (a: Vec, b: ReadonlyVec, n: number, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x + (y - x) * n, a, b, num, ia, ib, sa, sb);
 
-export const magSq = (a: ReadonlyVec, num: number, i = 0, s = 1) =>
+export const magSq = (a: ReadonlyVec, num = a.length, i = 0, s = 1) =>
     dot(a, a, num, i, i, s, s);
 
-export const mag = (a: ReadonlyVec, num: number, i = 0, s = 1) =>
+export const mag = (a: ReadonlyVec, num = a.length, i = 0, s = 1) =>
     Math.sqrt(magSq(a, num, i, s));
 
-export const distSq = (a: ReadonlyVec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const distSq = (a: ReadonlyVec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let res = 0;
     while (--num >= 0) {
         res += Math.pow(a[ia + num * sa] - b[ib + num * sb], 2);
@@ -110,58 +110,58 @@ export const distSq = (a: ReadonlyVec, b: ReadonlyVec, num: number, ia = 0, ib =
     return res;
 };
 
-export const dist = (a: ReadonlyVec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const dist = (a: ReadonlyVec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     Math.sqrt(distSq(a, b, num, ia, ib, sa, sb));
 
-export const normalize = (a: Vec, num: number, len: number, i = 0, s = 1) => {
+export const normalize = (a: Vec, num = a.length, len = 1, i = 0, s = 1) => {
     const m = mag(a, num, i, s);
     m >= EPS && mulN(a, len / m, num, i, s);
     return a;
 };
 
-export const neg = (a: Vec, num: number, i = 0, s = 1) =>
+export const neg = (a: Vec, num = a.length, i = 0, s = 1) =>
     mulN(a, -1, num, i, s);
 
-export const abs = (a: Vec, num: number, i = 0, s = 1) =>
+export const abs = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.abs, a, num, i, s);
 
-export const sign = (a: Vec, num: number, eps = EPS, i = 0, s = 1) =>
+export const sign = (a: Vec, num = a.length, eps = EPS, i = 0, s = 1) =>
     opg1((x) => sign1(x, eps), a, num, i, s);
 
-export const floor = (a: Vec, num: number, i = 0, s = 1) =>
+export const floor = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.floor, a, num, i, s);
 
-export const ceil = (a: Vec, num: number, i = 0, s = 1) =>
+export const ceil = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.ceil, a, num, i, s);
 
-export const sin = (a: Vec, num: number, i = 0, s = 1) =>
+export const sin = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.sin, a, num, i, s);
 
-export const cos = (a: Vec, num: number, i = 0, s = 1) =>
+export const cos = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.cos, a, num, i, s);
 
-export const sqrt = (a: Vec, num: number, i = 0, s = 1) =>
+export const sqrt = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.sqrt, a, num, i, s);
 
-export const pow = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const pow = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2(Math.pow, a, b, num, ia, ib, sa, sb);
 
-export const powN = (a: Vec, n: number, num: number, i = 0, s = 1) =>
+export const powN = (a: Vec, n: number, num = a.length, i = 0, s = 1) =>
     opg1((x) => Math.pow(x, n), a, num, i, s);
 
-export const min = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const min = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2(Math.min, a, b, num, ia, ib, sa, sb);
 
-export const max = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const max = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2(Math.max, a, b, num, ia, ib, sa, sb);
 
-export const clamp = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num: number, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+export const clamp = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3(clamp1, a, b, c, num, ia, ib, ic, sa, sb, sc);
 
-export const step = (a: Vec, b: ReadonlyVec, num: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const step = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, e) => step1(e, x), a, b, num, ia, ib, sa, sb);
 
-export const smoothStep = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num: number, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+export const smoothStep = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3((x, e1, e2) => smoothStep1(e1, e2, x), a, b, c, num, ia, ib, ic, sa, sb, sc);
 
 export class GVec implements
