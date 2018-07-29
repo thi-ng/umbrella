@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/vectors",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Vector algebra for fixed & variable sizes, memory mapped, flexible layouts",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -33,7 +33,12 @@
     },
     "keywords": [
         "ES6",
-        "typescript"
+        "matrix",
+        "memory mapped",
+        "typescript",
+        "webgl",
+        "wasm",
+        "vector algebra"
     ],
     "publishConfig": {
         "access": "public"
