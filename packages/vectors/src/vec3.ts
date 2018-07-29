@@ -298,10 +298,10 @@ export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa 
     );
 };
 
-export const minor3 = (a: Vec, ia = 0, sa = 1) =>
+export const minorAxis3 = (a: Vec, ia = 0, sa = 1) =>
     min3id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]));
 
-export const major3 = (a: Vec, ia = 0, sa = 1) =>
+export const majorAxis3 = (a: Vec, ia = 0, sa = 1) =>
     max3id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]));
 
 export const vec3 = (x = 0, y = 0, z = 0) =>
@@ -535,11 +535,11 @@ export class Vec3 implements
     }
 
     minorAxis() {
-        return minor3(this.buf, this.i, this.s);
+        return minorAxis3(this.buf, this.i, this.s);
     }
 
     majorAxis() {
-        return major3(this.buf, this.i, this.s);
+        return majorAxis3(this.buf, this.i, this.s);
     }
 
     step(e: Readonly<Vec3>) {

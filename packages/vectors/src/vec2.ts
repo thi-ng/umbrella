@@ -203,7 +203,7 @@ export const rotate2 = (a: Vec, theta: number, ia = 0, sa = 1) => {
 export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     atan2Abs(a[ia + sa], a[ia]);
 
-export const toPolar = (a: Vec, ia = 0, sa = 1) => {
+export const toPolar2 = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia], y = a[ia + sa];
     return setS2(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, sa);
 };
@@ -218,10 +218,10 @@ export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO2, ia = 0, ib = 0, sa 
     );
 };
 
-export const minor2 = (a: Vec, ia = 0, sa = 1) =>
+export const minorAxis2 = (a: Vec, ia = 0, sa = 1) =>
     min2id(Math.abs(a[ia]), Math.abs(a[ia + sa]));
 
-export const major2 = (a: Vec, ia = 0, sa = 1) =>
+export const majorAxis2 = (a: Vec, ia = 0, sa = 1) =>
     max2id(Math.abs(a[ia]), Math.abs(a[ia + sa]));
 
 export const vec2 = (x = 0, y = 0) =>
@@ -442,11 +442,11 @@ export class Vec2 implements
     }
 
     minorAxis() {
-        return minor2(this.buf, this.i, this.s);
+        return minorAxis2(this.buf, this.i, this.s);
     }
 
     majorAxis() {
-        return major2(this.buf, this.i, this.s);
+        return majorAxis2(this.buf, this.i, this.s);
     }
 
     step(e: Readonly<Vec2>) {
@@ -516,7 +516,7 @@ export class Vec2 implements
     }
 
     toPolar() {
-        toPolar(this.buf, this.i, this.s);
+        toPolar2(this.buf, this.i, this.s);
         return this;
     }
 

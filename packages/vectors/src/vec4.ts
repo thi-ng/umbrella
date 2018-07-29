@@ -267,10 +267,10 @@ export const limit4 = (a: Vec, n: number, ia = 0, sa = 1) => {
 export const reflect4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     maddN4(a, b, -2 * dot4(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
 
-export const minor4 = (a: Vec, ia = 0, sa = 1) =>
+export const minorAxis4 = (a: Vec, ia = 0, sa = 1) =>
     min4id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]), Math.abs(a[ia + 3 * sa]));
 
-export const major4 = (a: Vec, ia = 0, sa = 1) =>
+export const majorAxis4 = (a: Vec, ia = 0, sa = 1) =>
     max4id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]), Math.abs(a[ia + 3 * sa]));
 
 export const vec4 = (x = 0, y = 0, z = 0, w = 0) =>
@@ -509,11 +509,11 @@ export class Vec4 implements
     }
 
     minorAxis() {
-        return minor4(this.buf, this.i, this.s);
+        return minorAxis4(this.buf, this.i, this.s);
     }
 
     majorAxis() {
-        return major4(this.buf, this.i, this.s);
+        return majorAxis4(this.buf, this.i, this.s);
     }
 
     step(e: Readonly<Vec4>) {
