@@ -29,8 +29,13 @@ export const op32 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVe
     a
 );
 
-export const get3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    [a[ia], a[ia + sa], a[ia + 2 * sa]];
+export const get3 = (a: ReadonlyVec, ia = 0, sa = 1) => {
+    const res = new (<any>(a.constructor))(3);
+    res[0] = a[ia];
+    res[1] = a[ia + sa];
+    res[2] = a[ia + 2 * sa];
+    return res;
+};
 
 export const set3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] = b[ib],

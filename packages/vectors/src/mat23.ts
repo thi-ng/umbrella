@@ -10,6 +10,9 @@ import {
     Vec2
 } from "./vec2";
 
+export const get23 = (a: Mat, i = 0) =>
+    set23(new (<any>(a.constructor))(6), a, 0, i);
+
 export const set23 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
     a[ia + 1] = b[ib + 1],
@@ -217,7 +220,7 @@ export class Mat23 implements
     }
 
     copy() {
-        return new Mat23(set23([], this.buf, 0, this.i));
+        return new Mat23(get23(this.buf, this.i));
     }
 
     eqDelta(m: Mat23, eps = EPS) {

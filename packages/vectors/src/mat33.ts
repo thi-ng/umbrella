@@ -11,6 +11,9 @@ import {
 } from "./vec3";
 import { setS4 } from "./vec4";
 
+export const get33 = (a: Mat, i = 0) =>
+    set33(new (<any>(a.constructor))(9), a, 0, i);
+
 export const set33 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
     a[ia + 1] = b[ib + 1],
@@ -251,7 +254,7 @@ export class Mat33 implements
     }
 
     copy() {
-        return new Mat33(set33([], this.buf, 0, this.i));
+        return new Mat33(get33(this.buf, this.i));
     }
 
     eqDelta(m: Mat33, eps = EPS) {

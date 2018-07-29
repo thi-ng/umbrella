@@ -16,6 +16,9 @@ import {
 } from "./vec3";
 import { dot4, setS4, Vec4 } from "./vec4";
 
+export const get44 = (a: Mat, i = 0) =>
+    set44(new (<any>(a.constructor))(16), a, 0, i);
+
 export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
     for (let i = 0; i < 16; i++) {
         a[ia + i] = b[ib + i];
@@ -441,7 +444,7 @@ export class Mat44 implements
     }
 
     copy() {
-        return new Mat44(set44([], this.buf, 0, this.i));
+        return new Mat44(get44(this.buf, this.i));
     }
 
     eqDelta(m: Mat44, eps = EPS) {
