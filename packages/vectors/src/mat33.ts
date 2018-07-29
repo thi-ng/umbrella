@@ -1,15 +1,15 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
-import { eqDeltaN } from "./common";
+import { eqDelta } from "./common";
 import { EPS } from "./math";
 import {
     dot3,
     set3,
-    set3s,
+    setS3,
     Vec3
 } from "./vec3";
-import { set4s } from "./vec4";
+import { setS4 } from "./vec4";
 
 export const set33 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
@@ -43,7 +43,7 @@ export const set33 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
  * @param m22
  * @param i
  */
-export const set33s = (m: Mat, m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number, i = 0) => (
+export const setS33 = (m: Mat, m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number, i = 0) => (
     m[i] = m00,
     m[i + 1] = m01,
     m[i + 2] = m02,
@@ -57,7 +57,7 @@ export const set33s = (m: Mat, m00: number, m01: number, m02: number, m10: numbe
 );
 
 export const identity33 = (m?: Mat, i = 0) =>
-    set33s(m || [],
+    setS33(m || [],
         1, 0, 0,
         0, 1, 0,
         0, 0, 1,
@@ -67,7 +67,7 @@ export const identity33 = (m?: Mat, i = 0) =>
 export const rotationX33 = (m: Mat, theta: number, i = 0) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
-    return set33s(m || [],
+    return setS33(m || [],
         1, 0, 0,
         0, c, s,
         0, -s, c,
@@ -78,7 +78,7 @@ export const rotationX33 = (m: Mat, theta: number, i = 0) => {
 export const rotationY33 = (m: Mat, theta: number, i = 0) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
-    return set33s(m || [],
+    return setS33(m || [],
         c, 0, -s,
         0, 1, 0,
         s, 0, c,
@@ -89,7 +89,7 @@ export const rotationY33 = (m: Mat, theta: number, i = 0) => {
 export const rotationZ33 = (m: Mat, theta: number, i = 0) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
-    return set33s(m || [],
+    return setS33(m || [],
         c, s, 0,
         -s, c, 0,
         0, 0, 1,
@@ -97,14 +97,14 @@ export const rotationZ33 = (m: Mat, theta: number, i = 0) => {
     );
 };
 
-export const scale33v = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
-    scale33s(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
+export const scaleV33 = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
+    scaleS33(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
 
-export const scale33n = (m: Mat, n: number, i = 0) =>
-    scale33s(m, n, n, n, i);
+export const scaleN33 = (m: Mat, n: number, i = 0) =>
+    scaleS33(m, n, n, n, i);
 
-export const scale33s = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
-    set33s(m || [],
+export const scaleS33 = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
+    setS33(m || [],
         sx, 0, 0,
         0, sy, 0,
         0, 0, sz,
@@ -112,7 +112,7 @@ export const scale33s = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
     );
 
 export const mul33 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) =>
-    set33s(
+    setS33(
         a,
         dot3(a, b, ia, ib, 3),
         dot3(a, b, ia + 1, ib, 3),
@@ -135,7 +135,7 @@ export const concat33 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
     );
 
 export const mulV33 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
-    set3s(
+    setS3(
         v,
         dot3(m, v, im, iv, 3, sv),
         dot3(m, v, im + 1, iv, 3, sv),
@@ -177,7 +177,7 @@ export const invert33 = (m: Mat, i = 0) => {
         return;
     }
     det = 1.0 / det;
-    return set33s(
+    return setS33(
         m,
         d01 * det,
         (-m22 * m01 + m02 * m21) * det,
@@ -193,7 +193,7 @@ export const invert33 = (m: Mat, i = 0) => {
 }
 
 export const transpose33 = (m: Mat, i = 0) =>
-    set33s(
+    setS33(
         m,
         m[i], m[i + 3], m[i + 6],
         m[i + 1], m[i + 4], m[i + 7],
@@ -205,8 +205,8 @@ export const mat33to44 = (m44: Mat, m33: Mat, ia = 0, ib = 0) => (
     set3(m44, m33, ia, ib),
     set3(m44, m33, ia + 4, ib + 3),
     set3(m44, m33, ia + 8, ib + 6),
-    set3s(m44, 0, 0, 0, ia + 12),
-    set4s(m44, 0, 0, 0, 1, ia + 3, 4),
+    setS3(m44, 0, 0, 0, ia + 12),
+    setS4(m44, 0, 0, 0, 1, ia + 3, 4),
     m44
 );
 
@@ -232,8 +232,8 @@ export class Mat33 implements
     static scale(x: any, y = x, z = x) {
         return new Mat33(
             x instanceof Vec3 ?
-                scale33v([], x.buf, 0, x.i) :
-                scale33s([], x, y, z)
+                scaleV33([], x.buf, 0, x.i) :
+                scaleS33([], x, y, z)
         );
     }
 
@@ -255,7 +255,7 @@ export class Mat33 implements
     }
 
     eqDelta(m: Mat33, eps = EPS) {
-        return eqDeltaN(this.buf, m.buf, 9, eps, this.i, m.i);
+        return eqDelta(this.buf, m.buf, 9, eps, this.i, m.i);
     }
 
     identity() {
@@ -269,7 +269,7 @@ export class Mat33 implements
     }
 
     setS(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number) {
-        set33s(this.buf, m00, m01, m02, m10, m11, m12, m20, m21, m22, this.i);
+        setS33(this.buf, m00, m01, m02, m10, m11, m12, m20, m21, m22, this.i);
         return this;
     }
 

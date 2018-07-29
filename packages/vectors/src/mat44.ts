@@ -1,7 +1,7 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { Mat, ReadonlyMat, Vec } from "./api";
-import { eqDeltaN } from "./common";
+import { eqDelta } from "./common";
 import { Mat33 } from "./mat33";
 import { EPS, rad } from "./math";
 import {
@@ -10,11 +10,11 @@ import {
     get3,
     normalize3,
     set3,
-    set3s,
+    setS3,
     sub3,
     Vec3
 } from "./vec3";
-import { dot4, set4s, Vec4 } from "./vec4";
+import { dot4, setS4, Vec4 } from "./vec4";
 
 export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
     for (let i = 0; i < 16; i++) {
@@ -31,7 +31,7 @@ export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
  * m03 m13 m23 m33
  * ```
  */
-export const set44s = (m: Mat, m00: number, m01: number, m02: number, m03: number,
+export const setS44 = (m: Mat, m00: number, m01: number, m02: number, m03: number,
     m10: number, m11: number, m12: number, m13: number,
     m20: number, m21: number, m22: number, m23: number,
     m30: number, m31: number, m32: number, m33: number,
@@ -56,7 +56,7 @@ export const set44s = (m: Mat, m00: number, m01: number, m02: number, m03: numbe
     );
 
 export const identity44 = (m?: Mat, i = 0) =>
-    set44s(m || [],
+    setS44(m || [],
         1, 0, 0, 0,
         0, 1, 0, 0,
         0, 0, 1, 0,
@@ -67,7 +67,7 @@ export const identity44 = (m?: Mat, i = 0) =>
 export const rotationX44 = (m: Mat, theta: number, i = 0) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
-    return set44s(m || [],
+    return setS44(m || [],
         1, 0, 0, 0,
         0, c, s, 0,
         0, -s, c, 0,
@@ -79,7 +79,7 @@ export const rotationX44 = (m: Mat, theta: number, i = 0) => {
 export const rotationY44 = (m: Mat, theta: number, i = 0) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
-    return set44s(m || [],
+    return setS44(m || [],
         c, 0, -s, 0,
         0, 1, 0, 0,
         s, 0, c, 0,
@@ -91,7 +91,7 @@ export const rotationY44 = (m: Mat, theta: number, i = 0) => {
 export const rotationZ44 = (m: Mat, theta: number, i = 0) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
-    return set44s(m || [],
+    return setS44(m || [],
         c, s, 0, 0,
         -s, c, 0, 0,
         0, 0, 1, 0,
@@ -100,14 +100,14 @@ export const rotationZ44 = (m: Mat, theta: number, i = 0) => {
     );
 };
 
-export const scale44v = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
-    scale44s(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
+export const scaleV44 = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
+    scaleS44(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
 
-export const scale44n = (m: Mat, n: number, i = 0) =>
-    scale44s(m, n, n, n, i);
+export const scaleN44 = (m: Mat, n: number, i = 0) =>
+    scaleS44(m, n, n, n, i);
 
-export const scale44s = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
-    set44s(m || [],
+export const scaleS44 = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
+    setS44(m || [],
         sx, 0, 0, 0,
         0, sy, 0, 0,
         0, 0, sz, 0,
@@ -117,16 +117,16 @@ export const scale44s = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
 
 export const scaleWithCenter44 = (m: Mat, p: Vec, sx: number, sy: number, sz: number, im = 0, iv = 0, sv = 1) =>
     concat44(
-        translation44v(m || [], p, im, iv, sv), im,
-        scale44s([], sx, sy, sz),
-        translation44s([], -p[iv], -p[iv + sv], -p[iv + 2 * sv])
+        translationV44(m || [], p, im, iv, sv), im,
+        scaleS44([], sx, sy, sz),
+        translationS44([], -p[iv], -p[iv + sv], -p[iv + 2 * sv])
     );
 
-export const translation44v = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
-    translation44s(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
+export const translationV44 = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
+    translationS44(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
 
-export const translation44s = (m: Mat, x: number, y: number, z: number, i = 0) =>
-    set44s(m || [],
+export const translationS44 = (m: Mat, x: number, y: number, z: number, i = 0) =>
+    setS44(m || [],
         1, 0, 0, 0,
         0, 1, 0, 0,
         0, 0, 1, 0,
@@ -138,7 +138,7 @@ export const frustum = (m: Mat, left: number, right: number, bottom: number, top
     const dx = 1 / (right - left);
     const dy = 1 / (top - bottom);
     const dz = 1 / (far - near);
-    return set44s(m || [],
+    return setS44(m || [],
         near * 2 * dx, 0, 0, 0,
         0, near * 2 * dy, 0, 0,
         (right + left) * dx, (top + bottom) * dy, -(far + near) * dz, -1,
@@ -169,7 +169,7 @@ export const ortho = (m: Mat, left: number, right: number, bottom: number, top: 
     const dx = 1 / (right - left);
     const dy = 1 / (top - bottom);
     const dz = 1 / (far - near);
-    return set44s(m || [],
+    return setS44(m || [],
         2 * dx, 0, 0, 0,
         0, 2 * dy, 0, 0,
         0, 0, -2 * dz, 0,
@@ -185,7 +185,7 @@ export const lookAt = (m: Mat, eye: Vec, target: Vec, up: Vec, im = 0, ie = 0, i
     const z = normalize3(sub3([...eye], target));
     const x = normalize3(cross3(up, z));
     const y = normalize3(cross3([...z], x));
-    return set44s(m || [],
+    return setS44(m || [],
         x[0], y[0], z[0], 0,
         x[1], y[1], z[1], 0,
         x[2], y[2], z[2], 0,
@@ -195,7 +195,7 @@ export const lookAt = (m: Mat, eye: Vec, target: Vec, up: Vec, im = 0, ie = 0, i
 }
 
 export const mul44 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) =>
-    set44s(
+    setS44(
         a,
         dot4(a, b, ia, ib, 4),
         dot4(a, b, ia + 1, ib, 4),
@@ -225,7 +225,7 @@ export const concat44 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
     );
 
 export const mulV344 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
-    set3s(
+    setS3(
         v,
         dot3(m, v, im, iv, 4, sv) + m[12],
         dot3(m, v, im + 1, iv, 4, sv) + m[13],
@@ -234,7 +234,7 @@ export const mulV344 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
     );
 
 export const mulV44 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
-    set4s(
+    setS4(
         v,
         dot4(m, v, im, iv, 4, sv),
         dot4(m, v, im + 1, iv, 4, sv),
@@ -243,7 +243,7 @@ export const mulV44 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
         iv, sv
     );
 
-export const detCoeffs44 = (m: ReadonlyMat, i = 0) => {
+const detCoeffs44 = (m: ReadonlyMat, i = 0) => {
     const m00 = m[i];
     const m01 = m[i + 1];
     const m02 = m[i + 2];
@@ -317,7 +317,7 @@ export const invert44 = (m: Mat, i = 0) => {
         return;
     }
     det = 1.0 / det;
-    return set44s(
+    return setS44(
         m,
         (m11 * d11 - m12 * d10 + m13 * d09) * det,
         (-m01 * d11 + m02 * d10 - m03 * d09) * det,
@@ -340,7 +340,7 @@ export const invert44 = (m: Mat, i = 0) => {
 }
 
 export const transpose44 = (m: Mat, i = 0) =>
-    set44s(
+    setS44(
         m,
         m[i], m[i + 4], m[i + 8], m[i + 12],
         m[i + 1], m[i + 5], m[i + 9], m[i + 13],
@@ -408,8 +408,8 @@ export class Mat44 implements
     static scale(x: any, y = x, z = x) {
         return new Mat44(
             x instanceof Vec3 ?
-                scale44v([], x.buf, 0, x.i) :
-                scale44s([], x, y, z)
+                scaleV44([], x.buf, 0, x.i) :
+                scaleS44([], x, y, z)
         );
     }
 
@@ -422,8 +422,8 @@ export class Mat44 implements
     static translation(x: any, y?: any, z?: any) {
         return new Mat44(
             x instanceof Vec3 ?
-                translation44v([], x.buf, 0, x.i) :
-                translation44s([], x, y, z)
+                translationV44([], x.buf, 0, x.i) :
+                translationS44([], x, y, z)
         );
     }
 
@@ -445,7 +445,7 @@ export class Mat44 implements
     }
 
     eqDelta(m: Mat44, eps = EPS) {
-        return eqDeltaN(this.buf, m.buf, 16, eps, this.i, m.i);
+        return eqDelta(this.buf, m.buf, 16, eps, this.i, m.i);
     }
 
     identity() {
@@ -462,7 +462,7 @@ export class Mat44 implements
         m10: number, m11: number, m12: number, m13: number,
         m20: number, m21: number, m22: number, m23: number,
         m30: number, m31: number, m32: number, m33: number) {
-        set44s(this.buf, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33, this.i);
+        setS44(this.buf, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33, this.i);
         return this;
     }
 

@@ -1,13 +1,13 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { ReadonlyVec, Vec } from "./api";
+import { ReadonlyVec, Vec, IVec } from "./api";
 import {
     atan2Abs,
     EPS,
-    eqDelta,
+    eqDelta1,
     max2id,
     min2id,
-    smoothStep,
-    step
+    smoothStep1,
+    step1
 } from "./math";
 
 export const ZERO2 = Object.freeze([0, 0]);
@@ -28,14 +28,23 @@ export const get2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
 export const set2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     (a[ia] = b[ib], a[ia + sa] = b[ib + sb], a);
 
-export const set2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const setN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] = n, a[ia + sa] = n, a);
 
-export const set2s = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
+export const setS2 = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a);
 
+export const swizzle2 = (a: Vec, b: Vec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const xx = b[ib + x * sb];
+    const yy = b[ib + y * sb];
+    a[ia] = xx;
+    a[ia + sa] = yy;
+    return a;
+};
+
 export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    eqDelta(a[ia], b[ib], eps) && eqDelta(a[ia + sa], b[ib + sb], eps);
+    eqDelta1(a[ia], b[ib], eps) &&
+    eqDelta1(a[ia + sa], b[ib + sb], eps);
 
 export const add2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     (a[ia] += b[ib], a[ia + sa] += b[ib + sb], a);
@@ -49,20 +58,20 @@ export const sub2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
 export const div2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     (a[ia] /= b[ib], a[ia + sa] /= b[ib + sb], a);
 
-export const add2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const addN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a);
 
-export const sub2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const subN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] -= n, a[ia + sa] -= n, a);
 
-export const mul2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const mulN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] *= n, a[ia + sa] *= n, a);
 
-export const div2n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const divN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a);
 
 export const neg2 = (a: Vec, ia = 0, sa = 1) =>
-    mul2n(a, -1, ia, sa);
+    mulN2(a, -1, ia, sa);
 
 export const abs2 = (a: Vec, ia = 0, sa = 1) =>
     op2(Math.abs, a, ia, sa);
@@ -91,7 +100,7 @@ export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
-export const pow2n = (a: Vec, n: number, ia = 0, sa = 1) => (
+export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) => (
     a[ia] = Math.pow(a[ia], n),
     a[ia + sa] = Math.pow(a[ia + sa], n),
     a
@@ -100,7 +109,7 @@ export const pow2n = (a: Vec, n: number, ia = 0, sa = 1) => (
 export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     (a[ia] += b[ib] * c[ic], a[ia + sa] += b[ib + sb] * c[ic + sc], a);
 
-export const madd2n = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+export const maddN2 = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
     (a[ia] += b[ib] * c, a[ia + sa] += b[ib + sb] * c, a);
 
 export const dot2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
@@ -115,7 +124,7 @@ export const mix2 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it 
     a
 );
 
-export const mix2n = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+export const mixN2 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += (b[ib] - a[ia]) * t,
     a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
     a
@@ -131,30 +140,30 @@ export const clamp2 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin 
     max2(min2(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
 
 export const step2 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, sa = 1, stridee = 1) =>
-    (a[ia] = step(e[ie], a[ia]), a[ia + sa] = step(e[ie + stridee], a[ia + sa]), a);
+    (a[ia] = step1(e[ie], a[ia]), a[ia + sa] = step1(e[ie + stridee], a[ia + sa]), a);
 
 export const smoothStep2 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, sa = 1, se1 = 1, se2 = 1) => (
-    a[ia] = smoothStep(e1[ie1], e2[ie2], a[ia]),
-    a[ia + sa] = smoothStep(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
+    a[ia] = smoothStep1(e1[ie1], e2[ie2], a[ia]),
+    a[ia + sa] = smoothStep1(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
     a
 );
 
-export const mag2sq = (a: ReadonlyVec, ia = 0, sa = 1) => {
+export const magSq2 = (a: ReadonlyVec, ia = 0, sa = 1) => {
     const x = a[ia], y = a[ia + sa];
     return x * x + y * y;
 };
 
 export const mag2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    Math.sqrt(mag2sq(a, ia, sa));
+    Math.sqrt(magSq2(a, ia, sa));
 
-export const dist2sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const distSq2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const x = a[ia] - b[ib];
     const y = a[ia + sa] - b[ib + sb];
     return x * x + y * y;
 };
 
 export const dist2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    Math.sqrt(dist2sq(a, b, ia, ib, sa, sb));
+    Math.sqrt(distSq2(a, b, ia, ib, sa, sb));
 
 export const distManhattan2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     return Math.abs(a[ia] - b[ib]) + Math.abs(a[ia + sa] - b[ib + sb])
@@ -166,25 +175,25 @@ export const distChebyshev2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, s
 
 export const normalize2 = (a: Vec, n = 1, ia = 0, sa = 1) => {
     const m = mag2(a, ia, sa);
-    m >= EPS && mul2n(a, n / m, ia, sa);
+    m >= EPS && mulN2(a, n / m, ia, sa);
     return a;
 };
 
 export const limit2 = (a: Vec, n: number, ia = 0, sa = 1) => {
     const m = mag2(a, ia, sa);
-    m >= n && mul2n(a, n / m, ia, sa);
+    m >= n && mulN2(a, n / m, ia, sa);
     return a;
 };
 
 export const reflect2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    madd2n(a, b, -2 * dot2(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
+    maddN2(a, b, -2 * dot2(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
 
 export const rotate2 = (a: Vec, theta: number, ia = 0, sa = 1) => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
     const x = a[ia];
     const y = a[ia + sa];
-    return set2s(a, x * c - y * s, x * s + y * c, ia, sa);
+    return setS2(a, x * c - y * s, x * s + y * c, ia, sa);
 };
 
 export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
@@ -192,12 +201,12 @@ export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
 
 export const toPolar = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia], y = a[ia + sa];
-    return set2s(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, sa);
+    return setS2(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, sa);
 };
 
 export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO2, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const r = a[ia], theta = a[ia + sa];
-    return set2s(
+    return setS2(
         a,
         r * Math.cos(theta) + b[ib],
         r * Math.sin(theta) + b[ib + sb],
@@ -289,12 +298,17 @@ export class Vec2 implements
     }
 
     setN(n: number) {
-        set2n(this.buf, n, this.i, this.s);
+        setN2(this.buf, n, this.i, this.s);
         return this;
     }
 
     setS(x: number, y: number) {
-        set2s(this.buf, x, y, this.i, this.s);
+        setS2(this.buf, x, y, this.i, this.s);
+        return this;
+    }
+
+    swizzle(v: IVec, x: number, y: number) {
+        swizzle2(this.buf, v.buf, x, y, this.i, v.i, this.s, v.s);
         return this;
     }
 
@@ -319,27 +333,27 @@ export class Vec2 implements
     }
 
     addN(n: number) {
-        add2n(this.buf, n, this.i, this.s);
+        addN2(this.buf, n, this.i, this.s);
         return this;
     }
 
     subN(n: number) {
-        sub2n(this.buf, n, this.i, this.s);
+        subN2(this.buf, n, this.i, this.s);
         return this;
     }
 
     mulN(n: number) {
-        mul2n(this.buf, n, this.i, this.s);
+        mulN2(this.buf, n, this.i, this.s);
         return this;
     }
 
     divN(n: number) {
-        div2n(this.buf, n, this.i, this.s);
+        divN2(this.buf, n, this.i, this.s);
         return this;
     }
 
     neg() {
-        mul2n(this.buf, -1, this.i, this.s);
+        mulN2(this.buf, -1, this.i, this.s);
         return this;
     }
 
@@ -374,7 +388,7 @@ export class Vec2 implements
     }
 
     powN(n: number) {
-        pow2n(this.buf, n, this.i, this.s);
+        powN2(this.buf, n, this.i, this.s);
         return this;
     }
 
@@ -394,7 +408,7 @@ export class Vec2 implements
     }
 
     maddN(b: Readonly<Vec2>, n: number) {
-        madd2n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        maddN2(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
@@ -404,7 +418,7 @@ export class Vec2 implements
     }
 
     mixN(b: Readonly<Vec2>, n: number) {
-        mix2n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        mixN2(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
@@ -454,7 +468,7 @@ export class Vec2 implements
     }
 
     magSq() {
-        return mag2sq(this.buf, this.i, this.s);
+        return magSq2(this.buf, this.i, this.s);
     }
 
     dist(v: Readonly<Vec2>) {
@@ -462,7 +476,7 @@ export class Vec2 implements
     }
 
     distSq(v: Readonly<Vec2>) {
-        return dist2sq(this.buf, v.buf, this.i, v.i, this.s, v.s);
+        return distSq2(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distManhattan(v: Readonly<Vec2>) {
@@ -473,13 +487,13 @@ export class Vec2 implements
         return distChebyshev2(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
-    normalize(n = 1) {
-        normalize2(this.buf, n, this.i, this.s);
+    normalize(len = 1) {
+        normalize2(this.buf, len, this.i, this.s);
         return this;
     }
 
-    limit(n: number) {
-        limit2(this.buf, n, this.i, this.s);
+    limit(len: number) {
+        limit2(this.buf, len, this.i, this.s);
         return this;
     }
 

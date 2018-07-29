@@ -16,3 +16,9 @@ export type Mat = number[] | TypedArray;
 export type ReadonlyMat = ArrayLike<number>;
 
 export type VecOp = (a: Vec, b: ReadonlyVec, ia: number, ib: number, sa: number, sb: number) => Vec;
+
+export interface IVec {
+    buf: Vec;
+    i: number;
+    s: number;
+}

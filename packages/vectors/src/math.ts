@@ -8,6 +8,9 @@ export const RAD2DEG = 180 / PI;
 
 export let EPS = 1e-6;
 
+export const absDiff = (x: number, y: number) =>
+    Math.abs(x - y);
+
 export const atan2Abs = (y: number, x: number) => {
     const theta = Math.atan2(y, x);
     return theta < 0 ? TAU + theta : theta;
@@ -34,7 +37,7 @@ export const rad = (x: number) => x * DEG2RAD;
  * @param b right value
  * @param eps epsilon / tolerance
  */
-export const eqDelta = (a: number, b: number, eps = EPS) => {
+export const eqDelta1 = (a: number, b: number, eps = EPS) => {
     const d = a - b;
     return (d * d) <= (eps * eps);
 };
@@ -45,16 +48,7 @@ export const eqDelta = (a: number, b: number, eps = EPS) => {
  * @param a
  * @param b
  */
-export const fmod = (a: number, b: number) => a - b * Math.floor(a / b);
-
-/**
- * Linear interpolation: `a + (b - a) * t`.
- *
- * @param a start value
- * @param b end value
- * @param t interpolation factor (0.0 .. 1.0)
- */
-export const mix = (a: number, b: number, t = 0.5) => a + (b - a) * t;
+export const fmod1 = (a: number, b: number) => a - b * Math.floor(a / b);
 
 /**
  * Step/threshold function.
@@ -63,7 +57,7 @@ export const mix = (a: number, b: number, t = 0.5) => a + (b - a) * t;
  * @param x test value
  * @returns 0, if `x < e`, else 1
  */
-export const step = (edge: number, x: number) => x < edge ? 0 : 1;
+export const step1 = (edge: number, x: number) => x < edge ? 0 : 1;
 
 /**
  * GLSL-style smoothStep threshold function.
@@ -73,8 +67,8 @@ export const step = (edge: number, x: number) => x < edge ? 0 : 1;
  * @param x test value
  * @returns 0, if `x < edge1`, 1 if `x > edge2`, else sigmoid interpolation
  */
-export const smoothStep = (edge: number, edge2: number, x: number) => {
-    const t = clamp((x - edge) / (edge2 - edge), 0, 1);
+export const smoothStep1 = (edge: number, edge2: number, x: number) => {
+    const t = clamp1((x - edge) / (edge2 - edge), 0, 1);
     return (3 - 2 * t) * t * t;
 };
 
@@ -117,22 +111,22 @@ export const max4id = (a, b, c, d) =>
  * @param min lower bound
  * @param max upper bound
  */
-export const clamp = (x: number, min: number, max: number) =>
+export const clamp1 = (x: number, min: number, max: number) =>
     x < min ? min : x > max ? max : x;
 
-export const fit = (x: number, a: number, b: number, c: number, d: number) =>
+export const fit1 = (x: number, a: number, b: number, c: number, d: number) =>
     c + (d - c) * (x - a) / (b - a);
 
-export const fitClamped = (x: number, a: number, b: number, c: number, d: number) =>
-    c + (d - c) * clamp((x - a) / (b - a), 0, 1);
+export const fitClamped1 = (x: number, a: number, b: number, c: number, d: number) =>
+    c + (d - c) * clamp1((x - a) / (b - a), 0, 1);
 
-export const sign = (x: number, eps = EPS) =>
+export const sign1 = (x: number, eps = EPS) =>
     x > eps ? 1 : x < -eps ? -1 : 0;
 
-export const trunc = (x: number) =>
+export const trunc1 = (x: number) =>
     x < 0 ? Math.ceil(x) : Math.floor(x);
 
-export const roundTo = (x: number, prec = 1) =>
+export const roundTo1 = (x: number, prec = 1) =>
     Math.round(x / prec) * prec;
 
 /**

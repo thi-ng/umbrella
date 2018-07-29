@@ -1,12 +1,12 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { ReadonlyVec, Vec } from "./api";
+import { ReadonlyVec, Vec, IVec } from "./api";
 import {
     EPS,
-    eqDelta,
+    eqDelta1,
     max4id,
     min4id,
-    smoothStep,
-    step
+    smoothStep1,
+    step1
 } from "./math";
 
 export const ZERO4 = Object.freeze([0, 0, 0, 0]);
@@ -39,7 +39,7 @@ export const set4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
-export const set4n = (a: Vec, n: number, ia = 0, sa = 1) => (
+export const setN4 = (a: Vec, n: number, ia = 0, sa = 1) => (
     a[ia] = n,
     a[ia + sa] = n,
     a[ia + 2 * sa] = n,
@@ -47,7 +47,7 @@ export const set4n = (a: Vec, n: number, ia = 0, sa = 1) => (
     a
 );
 
-export const set4s = (a: Vec, x: number, y: number, z: number, w: number, ia = 0, sa = 1) => (
+export const setS4 = (a: Vec, x: number, y: number, z: number, w: number, ia = 0, sa = 1) => (
     a[ia] = x,
     a[ia + sa] = y,
     a[ia + 2 * sa] = z,
@@ -55,11 +55,23 @@ export const set4s = (a: Vec, x: number, y: number, z: number, w: number, ia = 0
     a
 );
 
+export const swizzle4 = (a: Vec, b: Vec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const xx = b[ib + x * sb];
+    const yy = b[ib + y * sb];
+    const zz = b[ib + z * sb];
+    const ww = b[ib + w * sb];
+    a[ia] = xx;
+    a[ia + sa] = yy;
+    a[ia + 2 * sa] = zz;
+    a[ia + 3 * sa] = ww;
+    return a;
+};
+
 export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    eqDelta(a[ia], b[ib], eps) &&
-    eqDelta(a[ia + sa], b[ib + sb], eps) &&
-    eqDelta(a[ia + 2 * sa], b[ib + 2 * sb], eps) &&
-    eqDelta(a[ia + 3 * sa], b[ib + 3 * sb], eps);
+    eqDelta1(a[ia], b[ib], eps) &&
+    eqDelta1(a[ia + sa], b[ib + sb], eps) &&
+    eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps) &&
+    eqDelta1(a[ia + 3 * sa], b[ib + 3 * sb], eps);
 
 export const add4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += b[ib],
@@ -93,20 +105,20 @@ export const div4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
-export const add4n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const addN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a[ia + 3 * sa] += n, a);
 
-export const sub4n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const subN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a[ia + 3 * sa] -= n, a);
 
-export const mul4n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const mulN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a[ia + 3 * sa] *= n, a);
 
-export const div4n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const divN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a[ia + 3 * sa] /= n, a);
 
 export const neg4 = (a: Vec, ia = 0, sa = 1) =>
-    mul4n(a, -1, ia, sa);
+    mulN4(a, -1, ia, sa);
 
 export const abs4 = (a: Vec, ia = 0, sa = 1) =>
     op4(Math.abs, a, ia, sa);
@@ -132,20 +144,22 @@ export const sqrt4 = (a: Vec, ia = 0, sa = 1) =>
 export const pow4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op42(Math.pow, a, b, ia, ib, sa, sb);
 
-export const pow4n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const powN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op4((x) => Math.pow(x, n), a, ia, sa);
 
 export const madd4 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
     a[ia] += b[ib] * c[ic],
     a[ia + sa] += b[ib + sb] * c[ic + sc],
     a[ia + 2 * sa] += b[ib + 2 * sb] * c[ic + 2 * sc],
+    a[ia + 3 * sa] += b[ib + 3 * sb] * c[ic + 3 * sc],
     a
 );
 
-export const madd4n = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+export const maddN4 = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += b[ib] * c,
     a[ia + sa] += b[ib + sb] * c,
     a[ia + 2 * sa] += b[ib + 2 * sb] * c,
+    a[ia + 3 * sa] += b[ib + 3 * sb] * c,
     a
 );
 
@@ -163,7 +177,7 @@ export const mix4 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it 
     a
 );
 
-export const mix4n = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+export const mixN4 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += (b[ib] - a[ia]) * t,
     a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
     a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t,
@@ -181,22 +195,22 @@ export const clamp4 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin 
     max4(min4(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
 
 export const step4 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, sa = 1, se = 1) => (
-    a[ia] = step(e[ie], a[ia]),
-    a[ia + sa] = step(e[ie + se], a[ia + sa]),
-    a[ia + 2 * sa] = step(e[ie + 2 * se], a[ia + 2 * sa]),
-    a[ia + 3 * sa] = step(e[ie + 3 * se], a[ia + 3 * sa]),
+    a[ia] = step1(e[ie], a[ia]),
+    a[ia + sa] = step1(e[ie + se], a[ia + sa]),
+    a[ia + 2 * sa] = step1(e[ie + 2 * se], a[ia + 2 * sa]),
+    a[ia + 3 * sa] = step1(e[ie + 3 * se], a[ia + 3 * sa]),
     a
 );
 
 export const smoothStep4 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, sa = 1, se1 = 1, se2 = 1) => (
-    a[ia] = smoothStep(e1[ie1], e2[ie2], a[ia]),
-    a[ia + sa] = smoothStep(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
-    a[ia + 2 * sa] = smoothStep(e1[ie1 + 2 * se1], e2[ie2 + 2 * se2], a[ia + 2 * sa]),
-    a[ia + 3 * sa] = smoothStep(e1[ie1 + 3 * se1], e2[ie2 + 2 * se2], a[ia + 3 * sa]),
+    a[ia] = smoothStep1(e1[ie1], e2[ie2], a[ia]),
+    a[ia + sa] = smoothStep1(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
+    a[ia + 2 * sa] = smoothStep1(e1[ie1 + 2 * se1], e2[ie2 + 2 * se2], a[ia + 2 * sa]),
+    a[ia + 3 * sa] = smoothStep1(e1[ie1 + 3 * se1], e2[ie2 + 2 * se2], a[ia + 3 * sa]),
     a
 );
 
-export const mag4sq = (a: ReadonlyVec, ia = 0, sa = 1) => {
+export const magSq4 = (a: ReadonlyVec, ia = 0, sa = 1) => {
     const x = a[ia];
     const y = a[ia + sa];
     const z = a[ia + 2 * sa];
@@ -205,9 +219,9 @@ export const mag4sq = (a: ReadonlyVec, ia = 0, sa = 1) => {
 };
 
 export const mag4 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    Math.sqrt(mag4sq(a, ia, sa));
+    Math.sqrt(magSq4(a, ia, sa));
 
-export const dist4sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const distSq4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const x = a[ia] - b[ib];
     const y = a[ia + sa] - b[ib + sb];
     const z = a[ia + 2 * sa] - b[ib + 2 * sb];
@@ -216,7 +230,7 @@ export const dist4sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, 
 };
 
 export const dist4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    Math.sqrt(dist4sq(a, b, ia, ib, sa, sb));
+    Math.sqrt(distSq4(a, b, ia, ib, sa, sb));
 
 export const distManhattan4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     Math.abs(a[ia] - b[ib]) +
@@ -234,18 +248,18 @@ export const distChebyshev4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, s
 
 export const normalize4 = (a: Vec, n = 1, ia = 0, sa = 1) => {
     const m = mag4(a, ia, sa);
-    m >= EPS && mul4n(a, n / m, ia, sa);
+    m >= EPS && mulN4(a, n / m, ia, sa);
     return a;
 };
 
 export const limit4 = (a: Vec, n: number, ia = 0, sa = 1) => {
     const m = mag4(a, ia, sa);
-    m >= n && mul4n(a, n / m, ia, sa);
+    m >= n && mulN4(a, n / m, ia, sa);
     return a;
 };
 
 export const reflect4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    madd4n(a, b, -2 * dot4(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
+    maddN4(a, b, -2 * dot4(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
 
 export const minor4 = (a: Vec, ia = 0, sa = 1) =>
     min4id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]), Math.abs(a[ia + 3 * sa]));
@@ -349,12 +363,17 @@ export class Vec4 implements
     }
 
     setN(n: number) {
-        set4n(this.buf, n, this.i, this.s);
+        setN4(this.buf, n, this.i, this.s);
         return this;
     }
 
     setS(x: number, y: number, z: number, w: number) {
-        set4s(this.buf, x, y, z, w, this.i, this.s);
+        setS4(this.buf, x, y, z, w, this.i, this.s);
+        return this;
+    }
+
+    swizzle(v: IVec, x: number, y: number, z: number, w: number) {
+        swizzle4(this.buf, v.buf, x, y, z, w, this.i, v.i, this.s, v.s);
         return this;
     }
 
@@ -379,27 +398,27 @@ export class Vec4 implements
     }
 
     addN(n: number) {
-        add4n(this.buf, n, this.i, this.s);
+        addN4(this.buf, n, this.i, this.s);
         return this;
     }
 
     subN(n: number) {
-        sub4n(this.buf, n, this.i, this.s);
+        subN4(this.buf, n, this.i, this.s);
         return this;
     }
 
     mulN(n: number) {
-        mul4n(this.buf, n, this.i, this.s);
+        mulN4(this.buf, n, this.i, this.s);
         return this;
     }
 
     divN(n: number) {
-        div4n(this.buf, n, this.i, this.s);
+        divN4(this.buf, n, this.i, this.s);
         return this;
     }
 
     neg() {
-        mul4n(this.buf, -1, this.i, this.s);
+        mulN4(this.buf, -1, this.i, this.s);
         return this;
     }
 
@@ -434,7 +453,7 @@ export class Vec4 implements
     }
 
     powN(n: number) {
-        pow4n(this.buf, n, this.i, this.s);
+        powN4(this.buf, n, this.i, this.s);
         return this;
     }
 
@@ -454,7 +473,7 @@ export class Vec4 implements
     }
 
     maddN(b: Readonly<Vec4>, n: number) {
-        madd4n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        maddN4(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
@@ -464,7 +483,7 @@ export class Vec4 implements
     }
 
     mixN(b: Readonly<Vec4>, n: number) {
-        mix4n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        mixN4(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
@@ -510,7 +529,7 @@ export class Vec4 implements
     }
 
     magSq() {
-        return mag4sq(this.buf, this.i, this.s);
+        return magSq4(this.buf, this.i, this.s);
     }
 
     dist(v: Readonly<Vec4>) {
@@ -518,7 +537,7 @@ export class Vec4 implements
     }
 
     distSq(v: Readonly<Vec4>) {
-        return dist4sq(this.buf, v.buf, this.i, v.i, this.s, v.s);
+        return distSq4(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distManhattan(v: Readonly<Vec4>) {
@@ -529,13 +548,13 @@ export class Vec4 implements
         return distChebyshev4(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
-    normalize(n = 1) {
-        normalize4(this.buf, n, this.i, this.s);
+    normalize(len = 1) {
+        normalize4(this.buf, len, this.i, this.s);
         return this;
     }
 
-    limit(n: number) {
-        limit4(this.buf, n, this.i, this.s);
+    limit(len: number) {
+        limit4(this.buf, len, this.i, this.s);
         return this;
     }
 

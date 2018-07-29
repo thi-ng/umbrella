@@ -1,5 +1,5 @@
 import { ReadonlyVec, Vec, VecOp } from "./api";
-import { EPS, eqDelta } from "./math";
+import { EPS, eqDelta1 } from "./math";
 
 export const x = (v: ReadonlyVec, i = 0, _?) => v[i];
 export const y = (v: ReadonlyVec, i = 0, s = 1) => v[i + s];
@@ -43,9 +43,9 @@ export const sliceOpN = (fn: VecOp, a: Vec, b: ReadonlyVec, n: number, ia: numbe
     return a;
 };
 
-export const eqDeltaN = (a: Vec, b: Vec, n: number, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const eqDelta = (a: Vec, b: Vec, n: number, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
     for (; --n >= 0; ia += sa, ib += sb) {
-        if (!eqDelta(a[ia], b[ib], eps)) {
+        if (!eqDelta1(a[ia], b[ib], eps)) {
             return false;
         }
     }

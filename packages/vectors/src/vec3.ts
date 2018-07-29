@@ -1,13 +1,14 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { ReadonlyVec, Vec } from "./api";
+import { IVec, ReadonlyVec, Vec } from "./api";
 import {
     atan2Abs,
     EPS,
-    eqDelta,
+    eqDelta1,
     max3id,
     min3id,
-    smoothStep,
-    step
+    sign1,
+    smoothStep1,
+    step1
 } from "./math";
 import { heading2, rotate2 } from "./vec2";
 
@@ -38,20 +39,30 @@ export const set3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
-export const set3n = (a: Vec, n: number, ia = 0, sa = 1) => (
+export const setN3 = (a: Vec, n: number, ia = 0, sa = 1) => (
     a[ia] = n,
     a[ia + sa] = n,
     a[ia + 2 * sa] = n,
     a
 );
 
-export const set3s = (a: Vec, x: number, y: number, z: number, ia = 0, sa = 1) =>
+export const setS3 = (a: Vec, x: number, y: number, z: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a[ia + 2 * sa] = z, a);
 
+export const swizzle3 = (a: Vec, b: Vec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const xx = b[ib + x * sb];
+    const yy = b[ib + y * sb];
+    const zz = b[ib + z * sb];
+    a[ia] = xx;
+    a[ia + sa] = yy;
+    a[ia + 2 * sa] = zz;
+    return a;
+};
+
 export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    eqDelta(a[ia], b[ib], eps) &&
-    eqDelta(a[ia + sa], b[ib + sb], eps) &&
-    eqDelta(a[ia + 2 * sa], b[ib + 2 * sb], eps);
+    eqDelta1(a[ia], b[ib], eps) &&
+    eqDelta1(a[ia + sa], b[ib + sb], eps) &&
+    eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
 
 export const add3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += b[ib],
@@ -81,26 +92,26 @@ export const div3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
-export const add3n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const addN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a);
 
-export const sub3n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const subN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a);
 
-export const mul3n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const mulN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a);
 
-export const div3n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const divN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a);
 
 export const neg3 = (a: Vec, ia = 0, sa = 1) =>
-    mul3n(a, -1, ia, sa);
+    mulN3(a, -1, ia, sa);
 
 export const abs3 = (a: Vec, ia = 0, sa = 1) =>
     op3(Math.abs, a, ia, sa);
 
-export const sign3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.sign, a, ia, sa);
+export const sign3 = (a: Vec, eps = EPS, ia = 0, sa = 1) =>
+    op3((x) => sign1(x, eps), a, ia, sa);
 
 export const floor3 = (a: Vec, ia = 0, sa = 1) =>
     op3(Math.floor, a, ia, sa);
@@ -120,7 +131,7 @@ export const sqrt3 = (a: Vec, ia = 0, sa = 1) =>
 export const pow3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op32(Math.pow, a, b, ia, ib, sa, sb);
 
-export const pow3n = (a: Vec, n: number, ia = 0, sa = 1) =>
+export const powN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op3((x) => Math.pow(x, n), a, ia, sa);
 
 export const madd3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
@@ -130,7 +141,7 @@ export const madd3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic
     a
 );
 
-export const madd3n = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+export const maddN3 = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += b[ib] * c,
     a[ia + sa] += b[ib + sb] * c,
     a[ia + 2 * sa] += b[ib + 2 * sb] * c,
@@ -168,7 +179,7 @@ export const mix3 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it 
     a
 );
 
-export const mix3n = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+export const mixN3 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] += (b[ib] - a[ia]) * t,
     a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
     a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t,
@@ -185,20 +196,20 @@ export const clamp3 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin 
     max3(min3(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
 
 export const step3 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, sa = 1, se = 1) => (
-    a[ia] = step(e[ie], a[ia]),
-    a[ia + sa] = step(e[ie + se], a[ia + sa]),
-    a[ia + 2 * sa] = step(e[ie + 2 * se], a[ia + 2 * sa]),
+    a[ia] = step1(e[ie], a[ia]),
+    a[ia + sa] = step1(e[ie + se], a[ia + sa]),
+    a[ia + 2 * sa] = step1(e[ie + 2 * se], a[ia + 2 * sa]),
     a
 );
 
 export const smoothStep3 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, sa = 1, se1 = 1, se2 = 1) => (
-    a[ia] = smoothStep(e1[ie1], e2[ie2], a[ia]),
-    a[ia + sa] = smoothStep(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
-    a[ia + 2 * sa] = smoothStep(e1[ie1 + 2 * se1], e2[ie2 + 2 * se2], a[ia + 2 * sa]),
+    a[ia] = smoothStep1(e1[ie1], e2[ie2], a[ia]),
+    a[ia + sa] = smoothStep1(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
+    a[ia + 2 * sa] = smoothStep1(e1[ie1 + 2 * se1], e2[ie2 + 2 * se2], a[ia + 2 * sa]),
     a
 );
 
-export const mag3sq = (a: ReadonlyVec, ia = 0, sa = 1) => {
+export const magSq3 = (a: ReadonlyVec, ia = 0, sa = 1) => {
     const x = a[ia];
     const y = a[ia + sa];
     const z = a[ia + 2 * sa];
@@ -206,9 +217,9 @@ export const mag3sq = (a: ReadonlyVec, ia = 0, sa = 1) => {
 };
 
 export const mag3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    Math.sqrt(mag3sq(a, ia, sa));
+    Math.sqrt(magSq3(a, ia, sa));
 
-export const dist3sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const distSq3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const x = a[ia] - b[ib];
     const y = a[ia + sa] - b[ib + sb];
     const z = a[ia + 2 * sa] - b[ib + 2 * sb];
@@ -216,7 +227,7 @@ export const dist3sq = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, 
 };
 
 export const dist3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    Math.sqrt(dist3sq(a, b, ia, ib, sa, sb));
+    Math.sqrt(distSq3(a, b, ia, ib, sa, sb));
 
 export const distManhattan3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     Math.abs(a[ia] - b[ib]) +
@@ -232,41 +243,41 @@ export const distChebyshev3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, s
 
 export const normalize3 = (a: Vec, n = 1, ia = 0, sa = 1) => {
     const m = mag3(a, ia, sa);
-    m >= EPS && mul3n(a, n / m, ia, sa);
+    m >= EPS && mulN3(a, n / m, ia, sa);
     return a;
 };
 
 export const limit3 = (a: Vec, n: number, ia = 0, sa = 1) => {
     const m = mag3(a, ia, sa);
-    m >= n && mul3n(a, n / m, ia, sa);
+    m >= n && mulN3(a, n / m, ia, sa);
     return a;
 };
 
 export const reflect3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    madd3n(a, b, -2 * dot3(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
+    maddN3(a, b, -2 * dot3(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
 
-export const rotate3x = (a: Vec, theta: number, ia = 0, sa = 1) =>
+export const rotateX3 = (a: Vec, theta: number, ia = 0, sa = 1) =>
     rotate2(a, theta, ia + sa, sa);
 
-export const rotate3y = (a: Vec, theta: number, ia = 0, sa = 1) =>
+export const rotateY3 = (a: Vec, theta: number, ia = 0, sa = 1) =>
     rotate2(a, theta, ia + 2 * sa, -2 * sa);
 
-export const rotate3z = rotate2;
+export const rotateZ3 = rotate2;
 
-export const heading3xy = heading2;
+export const headingXY3 = heading2;
 
-export const heading3xz = (a: ReadonlyVec, ia = 0, sa = 1) =>
+export const headingXZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     atan2Abs(a[ia + 2 * sa], a[ia]);
 
-export const heading3yz = (a: ReadonlyVec, ia = 0, sa = 1) =>
+export const headingYZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     atan2Abs(a[ia + 2 * sa], a[ia + sa]);
 
-export const toSpherical = (a: Vec, ia = 0, sa = 1) => {
+export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia];
     const y = a[ia + sa];
     const z = a[ia + 2 * sa];
     const r = Math.sqrt(x * x + y * y + z * z);
-    return set3s(a, r, Math.asin(z / r), atan2Abs(y, x), ia, sa);
+    return setS3(a, r, Math.asin(z / r), atan2Abs(y, x), ia, sa);
 };
 
 export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa = 1, sb = 1) => {
@@ -274,7 +285,7 @@ export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa 
     const theta = a[ia + sa];
     const phi = a[ia + 2 * sa];
     const ct = Math.cos(theta);
-    return set3s(a,
+    return setS3(a,
         r * ct * Math.cos(phi) + b[ib],
         r * ct * Math.sin(phi) + b[ib + sb],
         r * Math.sin(theta) + b[ib + 2 * sb],
@@ -379,12 +390,17 @@ export class Vec3 implements
     }
 
     setN(n: number) {
-        set3n(this.buf, n, this.i, this.s);
+        setN3(this.buf, n, this.i, this.s);
         return this;
     }
 
     setS(x: number, y: number, z: number) {
-        set3s(this.buf, x, y, z, this.i, this.s);
+        setS3(this.buf, x, y, z, this.i, this.s);
+        return this;
+    }
+
+    swizzle(v: IVec, x: number, y: number, z: number) {
+        swizzle3(this.buf, v.buf, x, y, z, this.i, v.i, this.s, v.s);
         return this;
     }
 
@@ -409,27 +425,27 @@ export class Vec3 implements
     }
 
     addN(n: number) {
-        add3n(this.buf, n, this.i, this.s);
+        addN3(this.buf, n, this.i, this.s);
         return this;
     }
 
     subN(n: number) {
-        sub3n(this.buf, n, this.i, this.s);
+        subN3(this.buf, n, this.i, this.s);
         return this;
     }
 
     mulN(n: number) {
-        mul3n(this.buf, n, this.i, this.s);
+        mulN3(this.buf, n, this.i, this.s);
         return this;
     }
 
     divN(n: number) {
-        div3n(this.buf, n, this.i, this.s);
+        divN3(this.buf, n, this.i, this.s);
         return this;
     }
 
     neg() {
-        mul3n(this.buf, -1, this.i, this.s);
+        mulN3(this.buf, -1, this.i, this.s);
         return this;
     }
 
@@ -464,7 +480,7 @@ export class Vec3 implements
     }
 
     powN(n: number) {
-        pow3n(this.buf, n, this.i, this.s);
+        powN3(this.buf, n, this.i, this.s);
         return this;
     }
 
@@ -484,7 +500,7 @@ export class Vec3 implements
     }
 
     maddN(b: Readonly<Vec3>, n: number) {
-        madd3n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        maddN3(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
@@ -494,7 +510,7 @@ export class Vec3 implements
     }
 
     mixN(b: Readonly<Vec3>, n: number) {
-        mix3n(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        mixN3(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 
@@ -549,7 +565,7 @@ export class Vec3 implements
     }
 
     magSq() {
-        return mag3sq(this.buf, this.i, this.s);
+        return magSq3(this.buf, this.i, this.s);
     }
 
     dist(v: Readonly<Vec3>) {
@@ -557,7 +573,7 @@ export class Vec3 implements
     }
 
     distSq(v: Readonly<Vec3>) {
-        return dist3sq(this.buf, v.buf, this.i, v.i, this.s, v.s);
+        return distSq3(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     distManhattan(v: Readonly<Vec3>) {
@@ -568,13 +584,13 @@ export class Vec3 implements
         return distChebyshev3(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
-    normalize(n = 1) {
-        normalize3(this.buf, n, this.i, this.s);
+    normalize(len = 1) {
+        normalize3(this.buf, len, this.i, this.s);
         return this;
     }
 
-    limit(n: number) {
-        limit3(this.buf, n, this.i, this.s);
+    limit(len: number) {
+        limit3(this.buf, len, this.i, this.s);
         return this;
     }
 
@@ -584,34 +600,34 @@ export class Vec3 implements
     }
 
     rotateX(theta: number) {
-        rotate3x(this.buf, theta, this.i, this.s);
+        rotateX3(this.buf, theta, this.i, this.s);
         return this;
     }
 
     rotateY(theta: number) {
-        rotate3y(this.buf, theta, this.i, this.s);
+        rotateY3(this.buf, theta, this.i, this.s);
         return this;
     }
 
     rotateZ(theta: number) {
-        rotate3z(this.buf, theta, this.i, this.s);
+        rotateZ3(this.buf, theta, this.i, this.s);
         return this;
     }
 
     headingXY() {
-        return heading3xy(this.buf, this.i, this.s);
+        return headingXY3(this.buf, this.i, this.s);
     }
 
     headingXZ() {
-        return heading3xz(this.buf, this.i, this.s);
+        return headingXZ3(this.buf, this.i, this.s);
     }
 
     headingYZ() {
-        return heading3yz(this.buf, this.i, this.s);
+        return headingYZ3(this.buf, this.i, this.s);
     }
 
     toSpherical() {
-        toSpherical(this.buf, this.i, this.s);
+        toSpherical3(this.buf, this.i, this.s);
         return this;
     }
 
