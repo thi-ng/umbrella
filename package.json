@@ -4,6 +4,7 @@
         "packages/*"
     ],
     "devDependencies": {
+        "babel-minify": "^0.4.3",
         "benchmark": "^2.1.4",
         "lerna": "^2.11.0",
         "mocha": "^5.1.1",
