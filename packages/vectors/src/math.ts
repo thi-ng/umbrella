@@ -39,7 +39,7 @@ export const rad = (x: number) => x * DEG2RAD;
  */
 export const eqDelta1 = (a: number, b: number, eps = EPS) => {
     const d = a - b;
-    return (d * d) <= (eps * eps);
+    return (d < 0 ? -d : d) <= eps;
 };
 
 /**
