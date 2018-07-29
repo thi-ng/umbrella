@@ -8,8 +8,7 @@ import { compR } from "@thi.ng/transducers/func/compr";
  * linked list as sliding window buffer.
  *
  * Note: the number of results will be `period-1` less than the number
- * of processed inputs and no outputs will be produced if there were
- * less than `period` input values.
+ * of processed inputs.
  *
  * @param period
  */
