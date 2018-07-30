@@ -28,14 +28,8 @@ export const op42 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVe
     a
 );
 
-export const get4 = (a: ReadonlyVec, ia = 0, sa = 1) => {
-    const res = new (<any>(a.constructor))(4);
-    res[0] = a[ia];
-    res[1] = a[ia + sa];
-    res[2] = a[ia + 2 * sa];
-    res[3] = a[ia + 3 * sa];
-    return res;
-};
+export const get4 = (a: ReadonlyVec, ia = 0, sa = 1) =>
+    set4(new (<any>(a.constructor))(4), a, 0, ia, 1, sa);
 
 export const set4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] = b[ib],
