@@ -1,8 +1,8 @@
 import { Predicate } from "@thi.ng/api/api";
 
 import { ISubscribable, State } from "../api";
-import { Subscription } from "../index";
 import { Stream } from "../stream";
+import { Subscription } from "../subscription";
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
 
