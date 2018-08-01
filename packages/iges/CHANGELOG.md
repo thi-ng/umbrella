@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.1.4...@thi.ng/iges@0.2.0) (2018-08-01)
+
+
+### Features
+
+* **iges:** add PolylineMode enum, update addPolyline2d() ([f7a084a](https://github.com/thi-ng/umbrella/commit/f7a084a))
+
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.1.3...@thi.ng/iges@0.1.4) (2018-07-25)
 
