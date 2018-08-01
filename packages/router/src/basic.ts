@@ -123,7 +123,7 @@ export class BasicRouter implements
                     .map((x) => x.charAt(0) === "?" ? ((x = params[x.substr(1)]) != null ? x : "NULL") : x)
                     .join(this.config.separator);
         } else {
-            illegalArgs(`invalid route ID: ${match.id}`);
+            illegalArgs(`invalid route ID: ${match.id.toString()}`);
         }
     }
 
