@@ -2,8 +2,8 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { IView, ViewTransform } from "@thi.ng/atom/api";
 import { EffectDef, EventDef, InterceptorContext } from "@thi.ng/interceptors/api";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { TripleStore } from "@thi.ng/rstream-query/store";
 import { QuerySpec } from "@thi.ng/rstream-query/api";
+import { TripleStore } from "@thi.ng/rstream-query/store";
 
 /**
  * Function signature for main app components.

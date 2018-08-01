@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { Atom } from "@thi.ng/atom/atom";
 import { isArray } from "@thi.ng/checks/is-array";
-import { start } from "@thi.ng/hdom";
+import { start } from "@thi.ng/hdom/start";
 import { EV_SET_VALUE } from "@thi.ng/interceptors/api";
 import { EventBus } from "@thi.ng/interceptors/event-bus";
 import { TripleStore } from "@thi.ng/rstream-query/store";
