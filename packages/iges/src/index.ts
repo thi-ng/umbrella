@@ -215,7 +215,7 @@ const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string
 // type table: page 38 (67)
 
 // sec 4.7, page 77 (106)
-export const addPolyline2d = (doc: IGESDocument, pts: number[][], form: PolylineMode) => {
+export const addPolyline2d = (doc: IGESDocument, pts: number[][], form = PolylineMode.OPEN) => {
     const did = doc.offsets.D;
     const pid = doc.offsets.P;
     const params = formatParams(
