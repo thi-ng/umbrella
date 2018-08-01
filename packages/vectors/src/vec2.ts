@@ -1,5 +1,5 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { ReadonlyVec, Vec, IVec } from "./api";
+import { IVec, ReadonlyVec, Vec } from "./api";
 import {
     atan2Abs,
     EPS,
@@ -225,7 +225,8 @@ export const vec2 = (x = 0, y = 0) =>
 
 export class Vec2 implements
     ICopy<Vec2>,
-    IEqualsDelta<Vec2> {
+    IEqualsDelta<Vec2>,
+    IVec {
 
     /**
      * Returns array of memory mapped `Vec2` instances using given

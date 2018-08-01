@@ -15,6 +15,6 @@
         "@thi.ng/pointfree-lang": "latest"
     },
     "devDependencies": {
-        "typescript": "^2.8.3"
+        "typescript": "^3.0.1"
     }
 }

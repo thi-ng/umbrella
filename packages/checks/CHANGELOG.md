@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.7"></a>
+## [1.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.6...@thi.ng/checks@1.5.7) (2018-08-01)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/checks
+
 <a name="1.5.6"></a>
 ## [1.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.5...@thi.ng/checks@1.5.6) (2018-07-20)
 

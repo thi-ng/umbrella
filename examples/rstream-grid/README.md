@@ -2,7 +2,7 @@
 
 ## About
 
-[Live demo](http://demo.thi.ng/umbrella/rstream-grid/)
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/)
 
 Interactive SVG grid pattern creator with undo, local file download and
 implemented as rstream dataflow graph, combined with interceptor event &
@@ -23,7 +23,7 @@ template.
 
 ### Development
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella/
 cd umbrella/examples/rstream-grid
 yarn install
@@ -35,7 +35,7 @@ in your browser.
 
 ### Production
 
-```
+```bash
 yarn build
 ```
 

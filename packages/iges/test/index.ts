@@ -26,7 +26,7 @@ describe("iges", () => {
             [0, 0],
             [100, 100],
             [100, 0]
-        ], false);
+        ]);
 
         assert.equal(
             iges.serialize(doc),

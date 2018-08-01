@@ -2,7 +2,7 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
-export const DEFAULT = Symbol("DEFAULT");
+export const DEFAULT: unique symbol = Symbol();
 
 export type DispatchFn = (...args) => PropertyKey;
 export type DispatchFn1<A> = (a: A) => PropertyKey;
@@ -101,17 +101,17 @@ export function defmulti<T>(f: any): MultiFn<T> {
     let impls: IObjectOf<Implementation<T>> = {};
     let fn: any = (...args) => {
         const id = f(...args);
-        const g = impls[id] || impls[DEFAULT];
-        return g ? g(...args) : illegalArgs(`missing implementation for: "${id}"`);
+        const g = impls[id] || impls[<any>DEFAULT];
+        return g ? g(...args) : illegalArgs(`missing implementation for: "${id.toString()}"`);
     };
     fn.add = (id: PropertyKey, g: Implementation<T>) => {
-        if (impls[id]) return false;
-        impls[id] = g;
+        if (impls[<any>id]) return false;
+        impls[<any>id] = g;
         return true;
     };
     fn.remove = (id: PropertyKey) => {
-        if (!impls[id]) return false;
-        delete impls[id];
+        if (!impls[<any>id]) return false;
+        delete impls[<any>id];
         return true;
     };
     return fn;

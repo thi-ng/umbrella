@@ -87,6 +87,12 @@ export enum StatusHierarchy {
     USE_PROP
 }
 
+export enum PolylineMode {
+    OPEN,
+    CLOSED,
+    FILLED
+}
+
 // spec page 24 (53)
 export interface DictEntry {
     type: number;

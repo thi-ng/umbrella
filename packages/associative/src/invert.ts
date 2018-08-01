@@ -35,7 +35,7 @@ export function invertMap<K, V>(src: Map<K, V>) {
 export function invertObj(src: IObjectOf<PropertyKey>) {
     const dest: IObjectOf<PropertyKey> = {};
     for (let k in src) {
-        dest[src[k]] = k;
+        dest[<any>src[k]] = k;
     }
     return dest;
 }

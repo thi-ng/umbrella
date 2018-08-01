@@ -46,7 +46,7 @@ iges.addPolyline2d(doc, [
     [0, 0],
     [100, 100],
     [100, 0]
-], false);
+]);
 
 console.log(iges.serialize(doc));
 ```

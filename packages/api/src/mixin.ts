@@ -24,7 +24,7 @@ export function mixin(behaviour: any, sharedBehaviour = {}) {
                     writable: true,
                 });
             } else {
-                console.log(`not patching: ${clazz.name}.${key}`);
+                console.log(`not patching: ${clazz.name}.${key.toString()}`);
             }
         }
         Object.defineProperty(clazz.prototype, typeTag, { value: true });

@@ -50,7 +50,7 @@ yarn start
 
 A complete, full commented demo app is here:
 
-[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) | [Live demo](http://demo.thi.ng/umbrella/router-basics/)
+[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) | [Live demo](https://demo.thi.ng/umbrella/router-basics/)
 
 ```ts
 import * as r from "@thi.ng/router";

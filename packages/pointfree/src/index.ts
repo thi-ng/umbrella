@@ -1754,7 +1754,7 @@ export const store = (ctx: StackContext) =>
  */
 export const loadkey = (key: PropertyKey) =>
     (ctx: StackContext) => {
-        !ctx[2].hasOwnProperty(key) && illegalArgs(`unknown var: ${key}`);
+        !ctx[2].hasOwnProperty(key) && illegalArgs(`unknown var: ${key.toString()}`);
         ctx[0].push(ctx[2][key]);
         return ctx;
     };

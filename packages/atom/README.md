@@ -271,7 +271,7 @@ and bundled
 
 This example is also available in standalone form:
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/login-form) | [Live demo](http://demo.thi.ng/umbrella/login-form/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
 
 ```ts
 import { Atom, setIn } from "@thi.ng/atom";

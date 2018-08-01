@@ -104,7 +104,7 @@ hdom.start(document.body, app());
 hdom.createDOM(document.body, hdom.normalizeTree(app()));
 ```
 
-[Live demo](http://demo.thi.ng/umbrella/hdom-basics/) |
+[Live demo](https://demo.thi.ng/umbrella/hdom-basics/) |
 [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
 
 Alternatively, use the same component function for browser or server
@@ -461,12 +461,12 @@ Non-exhaustive list:
 ### Interactive SVG grid generator
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
-[Live version](http://demo.thi.ng/umbrella/rstream-grid/)
+[Live version](https://demo.thi.ng/umbrella/rstream-grid/)
 
 ### Interactive additive waveform visualization
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) |
-[Live version](http://demo.thi.ng/umbrella/svg-waveform/)
+[Live version](https://demo.thi.ng/umbrella/svg-waveform/)
 
 ### Dataflow graph SVG components
 
@@ -474,7 +474,7 @@ This is a preview of the upcoming
 [@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
 package:
 
-[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live version](http://demo.thi.ng/umbrella/estuary/)
+[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live version](https://demo.thi.ng/umbrella/estuary/)
 
 ### SPA with router and event bus
 
@@ -482,58 +482,58 @@ Based on the `create-hdom-app` project scaffolding, this is one of the
 more advanced demos, combining functionality of several other @thi.ng
 packages.
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [Live version](http://demo.thi.ng/umbrella/router-basics/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [Live version](https://demo.thi.ng/umbrella/router-basics/)
 
 ### Additive waveform synthesis & SVG visualization
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) | [Live version](http://demo.thi.ng/umbrella/svg-waveform/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) | [Live version](https://demo.thi.ng/umbrella/svg-waveform/)
 
 ### Multiple apps with & without shared state
 
 Devcards style BMI calculator(s) with basic SVG viz.
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards) | [Live version](http://demo.thi.ng/umbrella/devcards/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards) | [Live version](https://demo.thi.ng/umbrella/devcards/)
 
 ### Interceptor based event handling
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [Live version](http://demo.thi.ng/umbrella/interceptor-basics/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [Live version](https://demo.thi.ng/umbrella/interceptor-basics/)
 
 ### Todo list
 
 A fully documented, obligatory todo list app with undo / redo.
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live version](http://demo.thi.ng/umbrella/todo-list/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live version](https://demo.thi.ng/umbrella/todo-list/)
 
 ### Cellular automata
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata) | [Live version](http://demo.thi.ng/umbrella/cellular-automata/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata) | [Live version](https://demo.thi.ng/umbrella/cellular-automata/)
 
 ### SVG particles
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live version](http://demo.thi.ng/umbrella/svg-particles/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live version](https://demo.thi.ng/umbrella/svg-particles/)
 
 ### JSON based components
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live version](http://demo.thi.ng/umbrella/json-components/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live version](https://demo.thi.ng/umbrella/json-components/)
 
 ### @thi.ng/rstream dataflow graph
 
 A small, interactive dataflow graph example:
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) | [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) | [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
 
 ### Basic usage patterns
 
 The code below is also available as standalone project in: [/examples/dashboard](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard) | [Live version](http://demo.thi.ng/umbrella/dashboard/)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard) | [Live version](https://demo.thi.ng/umbrella/dashboard/)
 
 ### Benchmark
 
 A stress test benchmark is here:
 [/examples/benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
 
-[Live version](http://demo.thi.ng/umbrella/hdom-benchmark/)
+[Live version](https://demo.thi.ng/umbrella/hdom-benchmark/)
 
 Based on [user feedback collected via
 Twitter](https://twitter.com/toxi/status/959246871339454464),

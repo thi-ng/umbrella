@@ -1,8 +1,8 @@
 # hdom-dropdown
 
-[Live demo](http://demo.thi.ng/umbrella/hdom-dropdown/)
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown/)
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/hdom-dropdown
 yarn install

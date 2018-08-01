@@ -30,7 +30,7 @@ export function selectKeysObj<T>(src: IObjectOf<T>, ks: Iterable<PropertyKey>): 
     const dest: IObjectOf<T> = {};
     for (let k of ks) {
         if (src.hasOwnProperty(k)) {
-            dest[k] = src[k];
+            dest[<any>k] = src[<any>k];
         }
     }
     return dest;

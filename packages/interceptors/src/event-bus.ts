@@ -397,9 +397,9 @@ export class StatelessEventBus implements
      * @param e
      */
     protected processEvent(ctx: api.InterceptorContext, e: api.Event) {
-        const iceps = this.handlers[e[0]];
+        const iceps = this.handlers[<any>e[0]];
         if (!iceps) {
-            console.warn(`missing handler for event type: ${e[0]}`);
+            console.warn(`missing handler for event type: ${e[0].toString()}`);
             return;
         }
         const n = iceps.length - 1;

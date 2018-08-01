@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iterators",
-    "version": "4.1.19",
+    "version": "4.1.20",
     "description": "clojure.core inspired, composable ES6 iterators & generators",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -20,17 +20,17 @@
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "devDependencies": {
-        "@types/mocha": "^5.2.0",
-        "@types/node": "^10.0.6",
-        "mocha": "^5.1.1",
-        "nyc": "^11.7.1",
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^10.5.5",
+        "mocha": "^5.2.0",
+        "nyc": "^12.0.2",
         "typedoc": "^0.11.1",
-        "typescript": "^2.8.3"
+        "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.0.5",
-        "@thi.ng/dcons": "^1.0.6",
-        "@thi.ng/errors": "^0.1.5"
+        "@thi.ng/api": "^4.0.6",
+        "@thi.ng/dcons": "^1.0.7",
+        "@thi.ng/errors": "^0.1.6"
     },
     "keywords": [
         "clojure",
