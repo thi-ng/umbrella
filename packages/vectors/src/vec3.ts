@@ -304,7 +304,8 @@ export const vec3 = (x = 0, y = 0, z = 0) =>
 
 export class Vec3 implements
     ICopy<Vec3>,
-    IEqualsDelta<Vec3> {
+    IEqualsDelta<Vec3>,
+    IVec {
 
     /**
      * Returns array of memory mapped `Vec3` instances using given

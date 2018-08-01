@@ -1,5 +1,5 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { ReadonlyVec, Vec } from "./api";
+import { IVec, ReadonlyVec, Vec } from "./api";
 import { eqDelta } from "./common";
 import {
     clamp1,
@@ -161,7 +161,8 @@ export const smoothStep = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.lengt
 
 export class GVec implements
     ICopy<GVec>,
-    IEqualsDelta<GVec> {
+    IEqualsDelta<GVec>,
+    IVec {
 
     buf: Vec;
     n: number;
