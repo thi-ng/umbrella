@@ -1,8 +1,8 @@
 # webgl
 
-[Live demo](http://demo.thi.ng/umbrella/webgl/)
+[Live demo](https://demo.thi.ng/umbrella/webgl/)
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/webgl
 yarn install

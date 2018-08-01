@@ -17,7 +17,7 @@ easily extend the language.
 
 The generated SVG file will be written in this example's directory...
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/pointfree-svg
 yarn build

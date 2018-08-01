@@ -10,7 +10,7 @@ This project is part of the
 Unified mouse, mouse wheel & single-touch event stream abstraction.
 Stream emits tuples of:
 
-```
+```ts
 [type, {pos, click?, delta?, zoom}]
 ```
 
@@ -39,7 +39,7 @@ yarn add @thi.ng/rstream-gestures
 A small, fully commented project can be found in the `/examples` folder:
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
-[Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+[Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
 
 ### Basic usage
 

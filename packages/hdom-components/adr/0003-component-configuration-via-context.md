@@ -18,7 +18,7 @@ whereas the previous solution ignored the context object entirely.
 
 A live demo of the code discussed here is available at:
 
-[demo.thi.ng/umbrella/hdom-theme-adr-0003](http://demo.thi.ng/umbrella/hdom-theme-adr-0003)
+[demo.thi.ng/umbrella/hdom-theme-adr-0003](https://demo.thi.ng/umbrella/hdom-theme-adr-0003)
 
 ## Decision
 

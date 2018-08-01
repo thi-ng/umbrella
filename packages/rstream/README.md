@@ -132,14 +132,14 @@ directory of this repo:
 Interactive demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package to compute a SVG grid.
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
-| [Live version](http://demo.thi.ng/umbrella/rstream-grid)
+| [Live version](https://demo.thi.ng/umbrella/rstream-grid)
 
 ### Declarative dataflow graph
 
 This demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package.
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
-| [Live version](http://demo.thi.ng/umbrella/rstream-dataflow)
+| [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
 
 ### @thi.ng/hdom benchmark
 
@@ -147,7 +147,7 @@ The FPS counter canvas component used in this benchmark is driven by
 this package and based on the barebones version shown below.
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
-| [Live version](http://demo.thi.ng/umbrella/hdom-benchmark/)
+| [Live version](https://demo.thi.ng/umbrella/hdom-benchmark/)
 
 ### Basic usage patterns
 
