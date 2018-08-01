@@ -1,0 +1,24 @@
+{
+    "name": "triple-query",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "webpack --mode production --display-reasons --display-modules",
+        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+    },
+    "devDependencies": {
+        "ts-loader": "^4.4.2",
+        "typescript": "^3.0.1",
+        "webpack": "^4.16.3",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.5"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/rstream-query": "latest",
+        "@thi.ng/transducers": "latest"
+    }
+}
