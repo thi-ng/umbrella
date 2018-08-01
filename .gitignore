@@ -4,6 +4,7 @@ coverage
 build
 dev
 doc
+docs/site
 .DS_Store
 bundle.*
 *.html
