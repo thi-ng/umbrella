@@ -4,7 +4,7 @@
 Interactive, additive waveform synthesis (no audio) and SVG waveform
 visualization.
 
-[Live demo](http://demo.thi.ng/umbrella/svg-waveform/)
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/)
 
 ## Building
 
@@ -14,7 +14,7 @@ template.
 
 ### Development
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella/
 cd umbrella/examples/svg-waveform
 yarn install
@@ -26,7 +26,7 @@ in your browser.
 
 ### Production
 
-```
+```bash
 yarn build
 ```
 
