@@ -24,11 +24,11 @@ cat << EOF > $MODULE/package.json
         "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
     },
     "devDependencies": {
-        "ts-loader": "^4.3.0",
-        "typescript": "^2.8.3",
-        "webpack": "^4.8.1",
-        "webpack-cli": "^2.1.3",
-        "webpack-dev-server": "^3.1.4"
+        "ts-loader": "^4.4.2",
+        "typescript": "^3.0.1",
+        "webpack": "^4.16.3",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.5"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
@@ -86,7 +86,7 @@ cat << EOF > $MODULE/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>$1</title>
@@ -107,7 +107,7 @@ cat << EOF > $MODULE/README.md
 
 [Live demo](http://demo.thi.ng/umbrella/$1/)
 
-\`\`\`
+\`\`\`bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/$1
 yarn install
