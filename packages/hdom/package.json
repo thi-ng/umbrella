@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "3.0.31",
+    "version": "3.0.32",
     "description": "Lightweight vanilla ES6 UI component & virtual DOM system",
     "main": "./index.js",
     "typings": "./index.d.ts",
