@@ -1,11 +1,8 @@
-import {
-    ISubscribable,
-    Stream,
-    StreamMerge,
-    StreamSync
-} from "@thi.ng/rstream";
-
 import { DotOpts, Node, WalkState } from "./api";
+import { ISubscribable } from "@thi.ng/rstream/api";
+import { Stream } from "@thi.ng/rstream/stream";
+import { StreamMerge } from "@thi.ng/rstream/stream-merge";
+import { StreamSync } from "@thi.ng/rstream/stream-sync";
 
 export * from "./api";
 
