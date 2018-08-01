@@ -1,6 +1,6 @@
-import { AppConfig, AppInterceptorContext } from "./api";
+import { AppConfig } from "./api";
 import { main } from "./components/main";
-import { EVENTS, EFFECTS } from "./handlers";
+import { EFFECTS, EVENTS } from "./handlers";
 
 // main App configuration
 export const CONFIG: AppConfig = {

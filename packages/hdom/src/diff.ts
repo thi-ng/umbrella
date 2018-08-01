@@ -1,8 +1,9 @@
-import { equiv } from "@thi.ng/equiv";
 import * as isa from "@thi.ng/checks/is-array";
 import * as iss from "@thi.ng/checks/is-string";
-import * as diff from "@thi.ng/diff";
-
+import { DiffLogEntry } from "@thi.ng/diff/api";
+import { diffArray } from "@thi.ng/diff/array";
+import { diffObject } from "@thi.ng/diff/object";
+import { equiv } from "@thi.ng/equiv";
 import {
     createDOM,
     removeAttribs,
@@ -12,10 +13,8 @@ import {
 
 const isArray = isa.isArray;
 const isString = iss.isString;
-const diffArray = diff.diffArray;
-const diffObject = diff.diffObject;
 
-const SEMAPHORE = Symbol("SEMAPHORE");
+const SEMAPHORE = Symbol();
 
 /**
  * Takes a DOM root element and two hiccup trees, `prev` and `curr`.
@@ -156,7 +155,7 @@ function diffAttributes(el: Element, prev: any, curr: any) {
     }
 }
 
-function extractEquivElements(edits: diff.DiffLogEntry<any>[]) {
+function extractEquivElements(edits: DiffLogEntry<any>[]) {
     let k, v, e, ek;
     const equiv = {};
     for (let i = edits.length; --i >= 0;) {

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log",
-    "version": "1.0.42",
+    "version": "1.0.43",
     "description": "Structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -31,7 +31,7 @@
         "@thi.ng/api": "^4.0.6",
         "@thi.ng/checks": "^1.5.7",
         "@thi.ng/errors": "^0.1.6",
-        "@thi.ng/rstream": "^1.10.2",
+        "@thi.ng/rstream": "^1.10.3",
         "@thi.ng/transducers": "^1.14.3"
     },
     "keywords": [

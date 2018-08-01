@@ -1,10 +1,10 @@
-import { illegalArgs } from "@thi.ng/errors";
 import * as impf from "@thi.ng/checks/implements-function";
 import * as isa from "@thi.ng/checks/is-array";
 import * as isf from "@thi.ng/checks/is-function";
 import * as isi from "@thi.ng/checks/is-iterable";
 import * as iso from "@thi.ng/checks/is-plain-object";
 import * as iss from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { TAG_REGEXP } from "@thi.ng/hiccup/api";
 
 const isArray = isa.isArray;

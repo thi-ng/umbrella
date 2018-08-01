@@ -34,5 +34,5 @@ import { fromPromise } from "./promise";
  * @param promises
  */
 export function fromPromises<T>(promises: Iterable<Promise<T>>): Subscription<T[], T> {
-    return fromPromise(Promise.all(promises)).subscribe(mapcat((x: T[]) => x));
+    return fromPromise(Promise.all(promises)).transform(mapcat((x: T[]) => x));
 }
