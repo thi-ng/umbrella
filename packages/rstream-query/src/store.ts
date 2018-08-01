@@ -1,6 +1,6 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { join } from "@thi.ng/associative";
 import { intersection } from "@thi.ng/associative/intersection";
+import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
