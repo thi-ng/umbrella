@@ -4,7 +4,9 @@ import { deepTransform } from "../func/deep-transform";
 import { map } from "./map";
 
 /**
- * Same as `map(deepTransform(spec))`
+ * Transducer. Same as `map(deepTransform(spec))`
+ *
+ * See `deepTransform()` for details.
  *
  * @param spec
  */

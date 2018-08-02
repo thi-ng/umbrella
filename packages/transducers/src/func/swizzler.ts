@@ -3,7 +3,7 @@
  * reorder array/object values in the specified index order. The
  * returned function can be used directly or as mapping function for the
  * `map` transducer. Fast paths for up to 8 indices are provided, before
- * loop based approach is used.
+ * a loop based approach is used.
  *
  * ```
  * swizzler([0, 0, 0])([1, 2, 3, 4])    // [ 1, 1, 1 ]

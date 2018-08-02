@@ -29,4 +29,4 @@ export interface TransformSpec extends Array<any> {
     [1]?: TransformSubSpec;
 }
 
-export const SEMAPHORE = Symbol("SEMAPHORE");
+export const SEMAPHORE = Symbol();

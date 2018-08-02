@@ -10,7 +10,7 @@ import { Comparator } from "@thi.ng/api/api";
  * @param key
  * @param cmp
  * @param x
- * @returns index of `x`, else `-(index+1)` if item could not be found
+ * @returns index of `x`, else `-index` if item could not be found
  */
 export function binarySearch<A, B>(arr: ArrayLike<A>, key: (x: A) => B, cmp: Comparator<B>, x: A) {
     const kx = key(x);
@@ -27,5 +27,5 @@ export function binarySearch<A, B>(arr: ArrayLike<A>, key: (x: A) => B, cmp: Com
             return mid;
         }
     }
-    return -(low + 1);
+    return -low;
 }

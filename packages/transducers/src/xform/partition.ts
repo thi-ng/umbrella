@@ -1,5 +1,32 @@
 import { Reducer, Transducer } from "../api";
 
+/**
+ * Transducer to create overlapping and non-overlapping sliding windows
+ * of inputs. Window size and progress speed can be configured via
+ * `size` and `step`. By default only full / complete partitions are
+ * emitted. However, if `all` is true, the last partition is allowed to
+ * be incomplete / partially filled only.
+ *
+ * ```
+ * [...iterator(partition(3), range(10))]
+ * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
+ *
+ * [...iterator(partition(3, true), range(10))]
+ * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 9 ] ]
+ *
+ * [...iterator(partition(3, 1), range(10))]
+ * // [ [ 0, 1, 2 ],
+ * //   [ 1, 2, 3 ],
+ * //   [ 2, 3, 4 ],
+ * //   [ 3, 4, 5 ],
+ * //   [ 4, 5, 6 ],
+ * //   [ 5, 6, 7 ],
+ * //   [ 6, 7, 8 ],
+ * //   [ 7, 8, 9 ] ]
+ * ```
+ *
+ * @param size
+ */
 export function partition<T>(size: number): Transducer<T, T[]>;
 export function partition<T>(size: number, all: boolean): Transducer<T, T[]>;
 export function partition<T>(size: number, step: number): Transducer<T, T[]>

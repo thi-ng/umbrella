@@ -11,6 +11,9 @@ import { compR } from "../func/compr";
  * of processed inputs and no outputs will be produced if there were
  * less than `period` input values.
  *
+ * Also see the @thi.ng/transducers-stats package for more optimized and
+ * alternative MAs.
+ *
  * @param period
  */
 export function movingAverage(period: number): Transducer<number, number> {

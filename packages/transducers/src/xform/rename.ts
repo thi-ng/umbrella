@@ -15,12 +15,13 @@ export function rename<A, B>(kmap: IObjectOf<PropertyKey> | Array<PropertyKey>, 
     if (rfn) {
         const ks = Object.keys(kmap);
         return map(
-            (y) =>
-                transduce(
-                    comp(
-                        map((k: PropertyKey) => [k, y[kmap[k]]]),
-                        filter(x => x[1] !== undefined)),
-                    rfn, ks)
+            (y) => transduce(
+                comp(
+                    map((k: PropertyKey) => [k, y[kmap[k]]]),
+                    filter(x => x[1] !== undefined)
+                ),
+                rfn, ks
+            )
         );
     } else {
         return map(renamer(<IObjectOf<PropertyKey>>kmap));

@@ -2,6 +2,12 @@ import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { isReduced } from "../reduced";
 
+/**
+ * Transducer which decodes a byte input sequence into UTF-8 characters.
+ * Also see `utf8Encode()` for reverse transformation.
+ *
+ * TODO refactor using @thi.ng/transducers-fsm
+ */
 export function utf8Decode(): Transducer<number, string> {
     return (rfn: Reducer<any, string>) => {
         const r = rfn[2];
@@ -58,6 +64,22 @@ export function utf8Decode(): Transducer<number, string> {
     };
 }
 
+/**
+ * Transducer which encodes UTF-8 characters into a byte sequence.
+ *
+ * Also see `utf8Decode()` for reverse transformation.
+ *
+ * ```
+ * transduce(
+ *   comp(utf8Encode(), hexDump(8)),
+ *   str("\n"),
+ *   "¡Hola niña! 😀"
+ * )
+ * // 00000000 | c2 a1 48 6f 6c 61 20 6e | ..Hola n
+ * // 00000008 | 69 c3 b1 61 21 20 f0 9f | i..a! ..
+ * // 00000010 | 98 80 00 00 00 00 00 00 | ........
+ * ```
+ */
 export function utf8Encode(): Transducer<string, number> {
     return (rfn: Reducer<any, number>) => {
         const r = rfn[2];
@@ -116,10 +138,7 @@ export function utf8Encode(): Transducer<string, number> {
     };
 }
 
-function codePoint(x) {
-    if (x < 0x10000) {
-        return String.fromCharCode(x);
-    }
-    x -= 0x10000;
-    return String.fromCharCode(0xd800 | (x >> 10), 0xdc00 | (x & 0x3ff));
-}
+const codePoint = (x) =>
+    x < 0x10000 ?
+        String.fromCharCode(x) :
+        (x -= 0x10000, String.fromCharCode(0xd800 | (x >> 10), 0xdc00 | (x & 0x3ff)));

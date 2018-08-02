@@ -7,16 +7,18 @@ import { map } from "./map";
  * Yields a new transducer which applies given transducers in parallel
  * (using `juxt()` & `step()`) and produces tuples of results.
  *
+ * Tip: Use `noop()` transducer for lanes which should retain the
+ * original input values.
+ *
  * ```
- * transduce(
+ * [...iterator(
  *   multiplex(
  *     map(x => x.charAt(0)),
  *     map(x => x.toUpperCase()),
  *     map(x => x.length)
  *   ),
- *   push(),
  *   ["Alice", "Bob", "Charlie", "Andy"]
- * )
+ * )]
  * // [ [ "A", "ALICE", 5 ], [ "B", "BOB", 3 ], [ "C", "CHARLIE", 7 ] ]
  * ```
  *

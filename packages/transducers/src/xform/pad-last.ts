@@ -35,10 +35,9 @@ export function padLast<T>(n: number, fill: T): Transducer<T, T> {
         return [
             init,
             (acc) => {
-                let rem = (m % n);
+                let rem = m % n;
                 if (rem > 0) {
-                    rem = n - rem;
-                    while (rem-- > 0 && !isReduced(acc)) {
+                    while (++rem <= n && !isReduced(acc)) {
                         acc = reduce(acc, fill);
                     }
                 }
