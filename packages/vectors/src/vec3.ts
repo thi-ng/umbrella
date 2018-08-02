@@ -20,9 +20,9 @@ import {
 } from "./math";
 import {
     heading2,
-    mag2,
     rotate2,
-    setS2
+    toCartesian2,
+    toPolar2
 } from "./vec2";
 
 export const ZERO3 = Object.freeze([0, 0, 0]);
@@ -311,12 +311,12 @@ export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa 
     );
 };
 
-export const toCylindrical3 = (a: Vec, i = 0, s = 1) =>
-    setS2(a, mag2(a, i, s), heading2(a, i, s), i, s);
+export const toCylindrical3 = toPolar2;
 
-export const fromCylindrical3 = (a: Vec, i = 0, s = 1) => {
-    const phi = a[i + s];
-    return setS2(a, a[i] * Math.cos(phi), a[i] * Math.sin(phi), i, s);
+export const fromCylindrical3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    toCartesian2(a, b, ia, ib, sa, sb);
+    a[ia + 2 * sa] += b[ib + 2 * sb];
+    return a;
 };
 
 export const minorAxis3 = (a: Vec, ia = 0, sa = 1) =>
@@ -678,6 +678,16 @@ export class Vec3 implements
 
     toCartesian(o: Readonly<Vec3> = Vec3.ZERO) {
         toCartesian3(this.buf, o.buf, this.i, o.i, this.s, o.s);
+        return this;
+    }
+
+    toCylindrical() {
+        toCylindrical3(this.buf, this.i, this.s);
+        return this;
+    }
+
+    fromCylindrical(o: Readonly<Vec3> = Vec3.ZERO) {
+        fromCylindrical3(this.buf, o.buf, this.i, o.i, this.s, o.s);
         return this;
     }
 
