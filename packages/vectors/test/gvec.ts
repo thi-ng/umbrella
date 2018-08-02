@@ -72,7 +72,11 @@ describe("gvec", () => {
     });
 
     it("iterator", () => {
-        assert.deepEqual([...new v.GVec([1, 2, 3])], [1, 2, 3]);
+        assert.deepEqual([...v.gvec(1, 2, 3)], [1, 2, 3]);
         assert.deepEqual([...new v.GVec([0, 1, 0, 2, 0, 3], 3, 1, 2)], [1, 2, 3]);
+    });
+
+    it("length", () => {
+        assert.deepEqual(v.gvec(1, 2, 3).length, 3);
     });
 });

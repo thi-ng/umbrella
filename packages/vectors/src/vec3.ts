@@ -1,5 +1,13 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEqualsDelta,
+    IEquiv,
+    ILength
+} from "@thi.ng/api/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+
 import { IVec, ReadonlyVec, Vec } from "./api";
+import { declareIndices } from "./common";
 import {
     atan2Abs,
     EPS,
@@ -10,7 +18,12 @@ import {
     smoothStep1,
     step1
 } from "./math";
-import { heading2, rotate2 } from "./vec2";
+import {
+    heading2,
+    mag2,
+    rotate2,
+    setS2
+} from "./vec2";
 
 export const ZERO3 = Object.freeze([0, 0, 0]);
 export const ONE3 = Object.freeze([1, 1, 1]);
@@ -58,6 +71,11 @@ export const swizzle3 = (a: Vec, b: Vec, x: number, y: number, z: number, ia = 0
     a[ia + 2 * sa] = zz;
     return a;
 };
+
+export const equiv3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    a[ia] === b[ib] &&
+    a[ia + sa] === b[ib + sb] &&
+    a[ia + 2 * sa] === b[ib + 2 * sb];
 
 export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
     eqDelta1(a[ia], b[ib], eps) &&
@@ -305,6 +323,9 @@ export const vec3 = (x = 0, y = 0, z = 0) =>
 export class Vec3 implements
     ICopy<Vec3>,
     IEqualsDelta<Vec3>,
+    IEquiv,
+    ILength,
+    Iterable<number>,
     IVec {
 
     /**
@@ -340,6 +361,9 @@ export class Vec3 implements
     buf: Vec;
     i: number;
     s: number;
+    [0]: number;
+    [1]: number;
+    [2]: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;
@@ -351,6 +375,10 @@ export class Vec3 implements
         yield this.x;
         yield this.y;
         yield this.z;
+    }
+
+    get length() {
+        return 3;
     }
 
     get x() {
@@ -379,6 +407,14 @@ export class Vec3 implements
 
     copy() {
         return new Vec3(get3(this.buf, this.i, this.s));
+    }
+
+    equiv(v: any) {
+        return v instanceof Vec3 ?
+            equiv3(this.buf, v.buf, this.i, v.i, this.s, v.s) :
+            isArrayLike(v) && v.length === 3 ?
+                equiv3(this.buf, v, this.i, 0, this.s, 1) :
+                false;
     }
 
     eqDelta(v: Readonly<Vec3>, eps = EPS) {
@@ -641,3 +677,5 @@ export class Vec3 implements
         return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}]`;
     }
 }
+
+declareIndices(Vec3.prototype, [0, 1, 2]);

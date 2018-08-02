@@ -74,3 +74,12 @@ export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia
     }
     return true;
 };
+
+export const declareIndices = (proto: any, indices: number[]) =>
+    indices.forEach((i) => {
+        Object.defineProperty(proto, i, {
+            get: function () { return this.buf[this.i + i * this.s]; },
+            set: function (n: number) { this.buf[this.i + i * this.s] = n; },
+            enumerable: true,
+        });
+    });

@@ -57,9 +57,47 @@ describe("vec2", () => {
         );
     });
 
+    it("equiv", () => {
+        const buf = [1, 2, 1, 0, 2, 0]
+        assert(v.equiv2(buf, buf, 0, 2, 1, 2));
+        assert(!v.equiv2(buf, buf, 0, 2));
+        assert(new v.Vec2(buf).equiv(buf.slice(0, 2)));
+        assert(new v.Vec2(buf).equiv(new v.Vec2(buf, 2, 2)));
+        assert(!new v.Vec2(buf).equiv(new v.Vec2(buf, 2, 1)));
+    });
 
     it("eqdelta", () => {
         assert(v.eqDelta2([0, 1.001, 0, 1.999, 0], [1, 2], 0.01, 1, 0, 2, 1));
         assert(!v.eqDelta2([0, 1.001, 0, 1.989, 0], [1, 2], 0.01, 1, 0, 2, 1));
+    });
+
+    it("iterator", () => {
+        assert.deepEqual([...new v.Vec2([1, 2])], [1, 2]);
+        assert.deepEqual([...new v.Vec2([0, 1, 0, 2], 1, 2)], [1, 2]);
+    });
+
+    it("arraylike", () => {
+        const buf = [0, 1, 0, 2];
+        const a = new v.Vec2(buf, 1, 2);
+        assert.equal(a.length, 2);
+        assert.equal(a[0], 1);
+        assert.equal(a[1], 2);
+        a[0] = 10;
+        a[1] = 20;
+        assert.equal(a[0], 10);
+        assert.equal(a[1], 20);
+        assert.deepEqual(a.buf, [0, 10, 0, 20]);
+    });
+
+    it("prop access", () => {
+        const buf = [0, 1, 0, 2];
+        const a = new v.Vec2(buf, 1, 2);
+        assert.equal(a.x, 1);
+        assert.equal(a.y, 2);
+        a.x = 10;
+        a.y = 20;
+        assert.equal(a.x, 10);
+        assert.equal(a.y, 20);
+        assert.deepEqual(a.buf, [0, 10, 0, 20]);
     });
 });

@@ -1,4 +1,4 @@
-import { ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api/api";
+import { ICopy, IEqualsDelta, IEquiv, ILength } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
@@ -162,10 +162,14 @@ export const step = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa 
 export const smoothStep = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3((x, e1, e2) => smoothStep1(e1, e2, x), a, b, c, num, ia, ib, ic, sa, sb, sc);
 
+export const gvec = (...coords: number[]) =>
+    new GVec(coords, coords.length);
+
 export class GVec implements
     ICopy<GVec>,
     IEqualsDelta<GVec>,
     IEquiv,
+    ILength,
     Iterable<number>,
     IVec {
 
@@ -185,6 +189,10 @@ export class GVec implements
         for (let i = this.i, n = this.n; n > 0; n-- , i += this.s) {
             yield this.buf[i];
         }
+    }
+
+    get length() {
+        return this.n;
     }
 
     copy() {
