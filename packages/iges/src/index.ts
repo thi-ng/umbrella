@@ -25,6 +25,9 @@ import {
     Unit
 } from "./api";
 
+const LINEWIDTH_GLOBALS = 72;
+const LINEWIDTH_PARAMS = 64;
+
 const padl = (n: number, ch: string) => {
     const buf = new Array(n).fill(ch).join("");
     return (x: any) => (x = x.toString(), x.length < n ? buf.substr(x.length) + x : x);
@@ -134,7 +137,7 @@ const formatGlobals = (doc: IGESDocument) => {
             [g.modified || new Date(), Type.DATE],
         ],
         (body, i) => `${$BODY(body)}G${$SEQ(i + 1)}`,
-        72
+        LINEWIDTH_GLOBALS
     );
     doc.offsets.G += res.length;
     return res;
@@ -192,7 +195,11 @@ const formatParam = (did: number, pid: number) =>
     (body: string, i: number) =>
         `${$PBODY(body)} ${$Z7(did + 1)}P${$SEQ(i + pid)}`;
 
-const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string, i: number) => string, bodyWidth = 64) => {
+const formatParams = (
+    doc: IGESDocument,
+    params: Param[],
+    fmtBody: (body: string, i: number) => string,
+    bodyWidth = LINEWIDTH_PARAMS) => {
     const lines = transduce(
         comp(
             map(doc.$PARAM),
@@ -215,7 +222,7 @@ const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string
 // type table: page 38 (67)
 
 // sec 4.7, page 77 (106)
-export const addPolyline2d = (doc: IGESDocument, pts: number[][], form = PolylineMode.OPEN) => {
+export const addPolyline2d = (doc: IGESDocument, pts: ArrayLike<number>[], form = PolylineMode.OPEN) => {
     const did = doc.offsets.D;
     const pid = doc.offsets.P;
     const params = formatParams(
@@ -249,7 +256,7 @@ export const addPolyline2d = (doc: IGESDocument, pts: number[][], form = Polylin
     return doc;
 };
 
-export const addPolygon2d = (doc: IGESDocument, pts: number[][]) =>
+export const addPolygon2d = (doc: IGESDocument, pts: ArrayLike<number>[]) =>
     addPolyline2d(doc, pts, PolylineMode.FILLED);
 
 // sec 4.23, page 123 (type 126)
