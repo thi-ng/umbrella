@@ -1,5 +1,13 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEqualsDelta,
+    IEquiv,
+    ILength
+} from "@thi.ng/api/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+
 import { IVec, ReadonlyVec, Vec } from "./api";
+import { declareIndices } from "./common";
 import {
     EPS,
     eqDelta1,
@@ -66,6 +74,12 @@ export const swizzle4 = (a: Vec, b: Vec, x: number, y: number, z: number, w: num
     a[ia + 3 * sa] = ww;
     return a;
 };
+
+export const equiv4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    a[ia] === b[ib] &&
+    a[ia + sa] === b[ib + sb] &&
+    a[ia + 2 * sa] === b[ib + 2 * sb] &&
+    a[ia + 3 * sa] === b[ib + 3 * sb];
 
 export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
     eqDelta1(a[ia], b[ib], eps) &&
@@ -273,6 +287,9 @@ export const vec4 = (x = 0, y = 0, z = 0, w = 0) =>
 export class Vec4 implements
     ICopy<Vec4>,
     IEqualsDelta<Vec4>,
+    IEquiv,
+    ILength,
+    Iterable<number>,
     IVec {
 
     /**
@@ -304,6 +321,10 @@ export class Vec4 implements
     buf: Vec;
     i: number;
     s: number;
+    [0]: number;
+    [1]: number;
+    [2]: number;
+    [3]: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;
@@ -316,6 +337,10 @@ export class Vec4 implements
         yield this.y;
         yield this.z;
         yield this.w;
+    }
+
+    get length() {
+        return 4;
     }
 
     get x() {
@@ -352,6 +377,14 @@ export class Vec4 implements
 
     copy() {
         return new Vec4(get4(this.buf, this.i, this.s));
+    }
+
+    equiv(v: any) {
+        return v instanceof Vec4 ?
+            equiv4(this.buf, v.buf, this.i, v.i, this.s, v.s) :
+            isArrayLike(v) && v.length === 4 ?
+                equiv4(this.buf, v, this.i, 0, this.s, 1) :
+                false;
     }
 
     eqDelta(v: Readonly<Vec4>, eps = EPS) {
@@ -568,3 +601,5 @@ export class Vec4 implements
         return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}, ${this.buf[this.i + 3 * this.s]}]`;
     }
 }
+
+declareIndices(Vec4.prototype, [0, 1, 2, 3]);

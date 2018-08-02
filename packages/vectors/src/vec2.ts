@@ -1,5 +1,13 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEqualsDelta,
+    IEquiv,
+    ILength
+} from "@thi.ng/api/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+
 import { IVec, ReadonlyVec, Vec } from "./api";
+import { declareIndices } from "./common";
 import {
     atan2Abs,
     EPS,
@@ -41,6 +49,10 @@ export const swizzle2 = (a: Vec, b: Vec, x: number, y: number, ia = 0, ib = 0, s
     a[ia + sa] = yy;
     return a;
 };
+
+export const equiv2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    a[ia] === b[ib] &&
+    a[ia + sa] === b[ib + sb];
 
 export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
     eqDelta1(a[ia], b[ib], eps) &&
@@ -226,6 +238,9 @@ export const vec2 = (x = 0, y = 0) =>
 export class Vec2 implements
     ICopy<Vec2>,
     IEqualsDelta<Vec2>,
+    IEquiv,
+    ILength,
+    Iterable<number>,
     IVec {
 
     /**
@@ -257,6 +272,8 @@ export class Vec2 implements
     buf: Vec;
     i: number;
     s: number;
+    [0]: number;
+    [1]: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;
@@ -267,6 +284,10 @@ export class Vec2 implements
     *[Symbol.iterator]() {
         yield this.x;
         yield this.y;
+    }
+
+    get length() {
+        return 2;
     }
 
     get x() {
@@ -287,6 +308,14 @@ export class Vec2 implements
 
     copy() {
         return new Vec2(get2(this.buf, this.i, this.s));
+    }
+
+    equiv(v: any) {
+        return v instanceof Vec2 ?
+            equiv2(this.buf, v.buf, this.i, v.i, this.s, v.s) :
+            isArrayLike(v) && v.length === 2 ?
+                equiv2(this.buf, v, this.i, 0, this.s, 1) :
+                false;
     }
 
     eqDelta(v: Readonly<Vec2>, eps = EPS) {
@@ -526,3 +555,5 @@ export class Vec2 implements
         return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}]`;
     }
 }
+
+declareIndices(Vec2.prototype, [0, 1]);

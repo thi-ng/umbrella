@@ -1,6 +1,9 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
+import { ICopy, IEqualsDelta, IEquiv, ILength } from "@thi.ng/api/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+
 import { IVec, ReadonlyVec, Vec } from "./api";
-import { eqDelta } from "./common";
+import { eqDelta, equiv } from "./common";
 import {
     clamp1,
     EPS,
@@ -159,9 +162,15 @@ export const step = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa 
 export const smoothStep = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3((x, e1, e2) => smoothStep1(e1, e2, x), a, b, c, num, ia, ib, ic, sa, sb, sc);
 
+export const gvec = (...coords: number[]) =>
+    new GVec(coords, coords.length);
+
 export class GVec implements
     ICopy<GVec>,
     IEqualsDelta<GVec>,
+    IEquiv,
+    ILength,
+    Iterable<number>,
     IVec {
 
     buf: Vec;
@@ -176,8 +185,26 @@ export class GVec implements
         this.s = s;
     }
 
+    *[Symbol.iterator]() {
+        for (let i = this.i, n = this.n; n > 0; n-- , i += this.s) {
+            yield this.buf[i];
+        }
+    }
+
+    get length() {
+        return this.n;
+    }
+
     copy() {
         return new GVec(get(this.buf, this.n, this.i, this.s), this.n);
+    }
+
+    equiv(v: any) {
+        return v instanceof GVec && v.n === this.n ?
+            equiv(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s) :
+            isArrayLike(v) && v.length === this.n ?
+                equiv(this.buf, v, this.n, this.i, 0, this.s, 1) :
+                false;
     }
 
     eqDelta(v: GVec, eps = EPS) {
@@ -185,6 +212,7 @@ export class GVec implements
     }
 
     set(v: GVec) {
+        this.ensureSize(v);
         set(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
@@ -195,21 +223,25 @@ export class GVec implements
     }
 
     add(v: GVec) {
+        this.ensureSize(v);
         add(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
     sub(v: GVec) {
+        this.ensureSize(v);
         sub(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
     mul(v: GVec) {
+        this.ensureSize(v);
         mul(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
     div(v: GVec) {
+        this.ensureSize(v);
         div(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
@@ -235,22 +267,28 @@ export class GVec implements
     }
 
     madd(b: Readonly<GVec>, c: Readonly<GVec>) {
+        this.ensureSize(b);
+        this.ensureSize(c);
         madd(this.buf, b.buf, c.buf, this.n, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
     }
 
-    maddN(b: Readonly<GVec>, n: number) {
-        maddN(this.buf, b.buf, n, this.n, this.i, b.i, this.s, b.s);
+    maddN(v: Readonly<GVec>, n: number) {
+        this.ensureSize(v);
+        maddN(this.buf, v.buf, n, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
     mix(b: Readonly<GVec>, c: Readonly<GVec>) {
+        this.ensureSize(b);
+        this.ensureSize(c);
         mix(this.buf, b.buf, c.buf, this.n, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
     }
 
-    mixN(b: Readonly<GVec>, n: number) {
-        mixN(this.buf, b.buf, n, this.n, this.i, b.i, this.s, b.s);
+    mixN(v: Readonly<GVec>, n: number) {
+        this.ensureSize(v);
+        mixN(this.buf, v.buf, n, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
@@ -268,6 +306,7 @@ export class GVec implements
     }
 
     dot(v: GVec) {
+        this.ensureSize(v);
         return dot(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
     }
 
@@ -307,6 +346,7 @@ export class GVec implements
     }
 
     pow(v: GVec) {
+        this.ensureSize(v);
         pow(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
@@ -317,31 +357,42 @@ export class GVec implements
     }
 
     min(v: Readonly<GVec>) {
+        this.ensureSize(v);
         min(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
     max(v: Readonly<GVec>) {
+        this.ensureSize(v);
         max(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
     clamp(min: Readonly<GVec>, max: Readonly<GVec>) {
+        this.ensureSize(min);
+        this.ensureSize(max);
         clamp(this.buf, min.buf, max.buf, this.n, this.i, min.i, max.i, this.s, min.s, max.s);
         return this;
     }
 
     step(e: Readonly<GVec>) {
+        this.ensureSize(e);
         step(this.buf, e.buf, this.n, this.i, e.i, this.s, e.s);
         return this;
     }
 
     smoothStep(e1: Readonly<GVec>, e2: Readonly<GVec>) {
+        this.ensureSize(e1);
+        this.ensureSize(e2);
         smoothStep(this.buf, e1.buf, e2.buf, this.n, this.i, e1.i, e2.i, this.s, e1.s, e2.s);
         return this;
     }
 
     toString() {
         return `[${get(this.buf, this.n, this.i, this.s).join(", ")}]`;
+    }
+
+    protected ensureSize(v: Readonly<GVec>) {
+        this.n !== v.n && illegalArgs(`vector size: ${v.n} (needed ${this.n})`);
     }
 }

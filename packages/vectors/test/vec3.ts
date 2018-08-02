@@ -57,8 +57,55 @@ describe("vec3", () => {
         );
     });
 
+    it("equiv", () => {
+        const buf = [1, 2, 3, 0, 1, 0, 2, 0, 3]
+        assert(v.equiv3(buf, buf, 0, 4, 1, 2));
+        assert(!v.equiv3(buf, buf, 0, 4));
+        assert(new v.Vec3(buf).equiv(buf.slice(0, 3)));
+        assert(new v.Vec3(buf).equiv(new v.Vec3(buf, 4, 2)));
+        assert(!new v.Vec3(buf).equiv(new v.Vec3(buf, 4, 1)));
+    });
+
     it("eqdelta", () => {
         assert(v.eqDelta3([0, 1.001, 0, 1.999, 0, 3.0099], [1, 2, 3], 0.01, 1, 0, 2, 1));
         assert(!v.eqDelta3([0, 1.001, 0, 1.999, 0, 3.02], [1, 2, 3], 0.01, 1, 0, 2, 1));
+        assert(new v.Vec3([0, 1.001, 0, 1.999, 0, 3.0099], 1, 2).eqDelta(v.vec3(1, 2, 3), 0.01));
+        assert(!new v.Vec3([0, 1.001, 0, 1.999, 0, 3.02], 1, 2).eqDelta(v.vec3(1, 2, 3), 0.01));
+    });
+
+    it("iterator", () => {
+        assert.deepEqual([...new v.Vec3([1, 2, 3])], [1, 2, 3]);
+        assert.deepEqual([...new v.Vec3([0, 1, 0, 2, 0, 3], 1, 2)], [1, 2, 3]);
+    });
+
+    it("arraylike", () => {
+        const buf = [0, 1, 0, 2, 0, 3];
+        const a = new v.Vec3(buf, 1, 2);
+        assert.equal(a.length, 3);
+        assert.equal(a[0], 1);
+        assert.equal(a[1], 2);
+        assert.equal(a[2], 3);
+        a[0] = 10;
+        a[1] = 20;
+        a[2] = 30;
+        assert.equal(a[0], 10);
+        assert.equal(a[1], 20);
+        assert.equal(a[2], 30);
+        assert.deepEqual(a.buf, [0, 10, 0, 20, 0, 30]);
+    });
+
+    it("prop access", () => {
+        const buf = [0, 1, 0, 2, 0, 3];
+        const a = new v.Vec3(buf, 1, 2);
+        assert.equal(a.x, 1);
+        assert.equal(a.y, 2);
+        assert.equal(a.z, 3);
+        a.x = 10;
+        a.y = 20;
+        a.z = 30;
+        assert.equal(a.x, 10);
+        assert.equal(a.y, 20);
+        assert.equal(a.z, 30);
+        assert.deepEqual(a.buf, [0, 10, 0, 20, 0, 30]);
     });
 });

@@ -57,8 +57,59 @@ describe("vec4", () => {
         );
     });
 
+    it("equiv", () => {
+        const buf = [1, 2, 3, 4, 1, 0, 2, 0, 3, 0, 4]
+        assert(v.equiv4(buf, buf, 0, 4, 1, 2));
+        assert(!v.equiv4(buf, buf, 0, 4));
+        assert(new v.Vec4(buf).equiv(buf.slice(0, 4)));
+        assert(new v.Vec4(buf).equiv(new v.Vec4(buf, 4, 2)));
+        assert(!new v.Vec4(buf).equiv(new v.Vec4(buf, 4, 1)));
+    });
+
     it("eqdelta", () => {
         assert(v.eqDelta4([0, 1.001, 0, 1.999, 0, 3.0099, 0, 3.991], [1, 2, 3, 4], 0.01, 1, 0, 2, 1));
         assert(!v.eqDelta4([0, 1.001, 0, 1.999, 0, 3.02, 0, 4], [1, 2, 3, 4], 0.01, 1, 0, 2, 1));
+    });
+
+    it("iterator", () => {
+        assert.deepEqual([...new v.Vec4([1, 2, 3, 4])], [1, 2, 3, 4]);
+        assert.deepEqual([...new v.Vec4([0, 1, 0, 2, 0, 3, 0, 4], 1, 2)], [1, 2, 3, 4]);
+    });
+
+    it("arraylike", () => {
+        const buf = [0, 1, 0, 2, 0, 3, 0, 4];
+        const a = new v.Vec4(buf, 1, 2);
+        assert.equal(a.length, 4);
+        assert.equal(a[0], 1);
+        assert.equal(a[1], 2);
+        assert.equal(a[2], 3);
+        assert.equal(a[3], 4);
+        a[0] = 10;
+        a[1] = 20;
+        a[2] = 30;
+        a[3] = 40;
+        assert.equal(a[0], 10);
+        assert.equal(a[1], 20);
+        assert.equal(a[2], 30);
+        assert.equal(a[3], 40);
+        assert.deepEqual(a.buf, [0, 10, 0, 20, 0, 30, 0, 40]);
+    });
+
+    it("prop access", () => {
+        const buf = [0, 1, 0, 2, 0, 3, 0, 4];
+        const a = new v.Vec4(buf, 1, 2);
+        assert.equal(a.x, 1);
+        assert.equal(a.y, 2);
+        assert.equal(a.z, 3);
+        assert.equal(a.w, 4);
+        a.x = 10;
+        a.y = 20;
+        a.z = 30;
+        a.w = 40;
+        assert.equal(a.x, 10);
+        assert.equal(a.y, 20);
+        assert.equal(a.z, 30);
+        assert.equal(a.w, 40);
+        assert.deepEqual(a.buf, [0, 10, 0, 20, 0, 30, 0, 40]);
     });
 });

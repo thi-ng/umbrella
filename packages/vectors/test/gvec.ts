@@ -57,8 +57,26 @@ describe("gvec", () => {
         );
     });
 
+    it("equiv", () => {
+        const buf = [1, 2, 3, 4, 1, 0, 2, 0, 3, 0, 4];
+        assert(v.equiv(buf, buf, 4, 0, 4, 1, 2));
+        assert(!v.equiv(buf, buf, 4, 0, 4));
+        assert(new v.GVec(buf, 4).equiv(buf.slice(0, 4)));
+        assert(new v.GVec(buf, 4).equiv(new v.GVec(buf, 4, 4, 2)));
+        assert(!new v.GVec(buf, 4).equiv(new v.GVec(buf, 4, 4, 1)));
+    });
+
     it("eqdelta", () => {
         assert(v.eqDelta([0, 1.001, 0, 1.999, 0, 3.0099, 0, 3.991], [1, 2, 3, 4], 4, 0.01, 1, 0, 2, 1));
         assert(!v.eqDelta([0, 1.001, 0, 1.999, 0, 3.02, 0, 4], [1, 2, 3, 4], 4, 0.01, 1, 0, 2, 1));
+    });
+
+    it("iterator", () => {
+        assert.deepEqual([...v.gvec(1, 2, 3)], [1, 2, 3]);
+        assert.deepEqual([...new v.GVec([0, 1, 0, 2, 0, 3], 3, 1, 2)], [1, 2, 3]);
+    });
+
+    it("length", () => {
+        assert.deepEqual(v.gvec(1, 2, 3).length, 3);
     });
 });
