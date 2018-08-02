@@ -43,10 +43,22 @@ import { scan } from "@thi.ng/transducers/xform/scan";
 // furthermore, this approach only triggers UI updates/diffs when there
 // were any relevant upstream value changes.
 
+interface OHLC {
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    time: number;
+}
+
+interface MarketResponse {
+    ohlc: OHLC[];
+}
+
 // constant definitions
 
 // supported chart (and API) timeframes
-export const TIMEFRAMES = {
+const TIMEFRAMES = {
     1: "Minute",
     60: "Hour",
     1440: "Day",
@@ -210,10 +222,10 @@ const data = sync({
         // use @thi.ng/resolve-map to compute bounds & moving averages
         map(({ response, avg }: any) => resolve({
             ...response,
-            min: ({ ohlc }) => transduce(pluck("low"), min(), ohlc),
-            max: ({ ohlc }) => transduce(pluck("high"), max(), ohlc),
-            tbounds: ({ ohlc }) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
-            sma: ({ ohlc }) =>
+            min: ({ ohlc }: MarketResponse) => transduce(pluck("low"), min(), ohlc),
+            max: ({ ohlc }: MarketResponse) => transduce(pluck("high"), max(), ohlc),
+            tbounds: ({ ohlc }: MarketResponse) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
+            sma: ({ ohlc }: MarketResponse) =>
                 transduce(
                     map((period: number) => [
                         period,
@@ -240,7 +252,7 @@ const chart = sync({
     reset: false,
     xform: map(({ data, window, theme }) => {
         let [width, height] = window;
-        const ohlc = data.ohlc;
+        const ohlc: OHLC[] = data.ohlc;
         const w = Math.max(3, (width - 2 * MARGIN_X) / ohlc.length);
         const by = height - MARGIN_Y;
 
@@ -308,7 +320,7 @@ const chart = sync({
             ),
             // candles
             ...iterator(
-                mapIndexed((i, candle: any) => {
+                mapIndexed((i, candle: OHLC) => {
                     const isBullish = candle.open < candle.close;
                     let y, h;
                     let col;
