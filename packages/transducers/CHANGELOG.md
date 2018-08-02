@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.15.0"></a>
+# [1.15.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.3...@thi.ng/transducers@1.15.0) (2018-08-02)
+
+
+### Features
+
+* **transducers:** add peek() helper fn ([e50fd10](https://github.com/thi-ng/umbrella/commit/e50fd10))
+
+
+
+
 <a name="1.14.3"></a>
 ## [1.14.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.2...@thi.ng/transducers@1.14.3) (2018-08-01)
 

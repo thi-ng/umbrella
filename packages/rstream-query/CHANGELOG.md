@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.31"></a>
+## [0.3.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@0.3.30...@thi.ng/rstream-query@0.3.31) (2018-08-02)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-query
+
 <a name="0.3.30"></a>
 ## [0.3.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@0.3.29...@thi.ng/rstream-query@0.3.30) (2018-08-01)
 

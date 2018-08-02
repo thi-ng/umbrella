@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.13"></a>
+## [0.4.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.4.12...@thi.ng/rstream-gestures@0.4.13) (2018-08-02)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
 <a name="0.4.12"></a>
 ## [0.4.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.4.11...@thi.ng/rstream-gestures@0.4.12) (2018-08-01)
 
