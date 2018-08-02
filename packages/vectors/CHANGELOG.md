@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.3...@thi.ng/vectors@0.2.0) (2018-08-02)
+
+
+### Features
+
+* **vectors:** add gvec size checks, add IEquiv & Iterable impls ([2a13f28](https://github.com/thi-ng/umbrella/commit/2a13f28))
+* **vectors:** add toCylindrical3() / fromCylindrical3() ([74f939c](https://github.com/thi-ng/umbrella/commit/74f939c))
+* **vectors:** make Vec2/3/4 array-like, add IEquiv impls, add tests ([3039a35](https://github.com/thi-ng/umbrella/commit/3039a35))
+
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.2...@thi.ng/vectors@0.1.3) (2018-08-01)
 
