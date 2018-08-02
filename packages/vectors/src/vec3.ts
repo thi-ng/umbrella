@@ -311,6 +311,14 @@ export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa 
     );
 };
 
+export const toCylindrical3 = (a: Vec, i = 0, s = 1) =>
+    setS2(a, mag2(a, i, s), heading2(a, i, s), i, s);
+
+export const fromCylindrical3 = (a: Vec, i = 0, s = 1) => {
+    const phi = a[i + s];
+    return setS2(a, a[i] * Math.cos(phi), a[i] * Math.sin(phi), i, s);
+};
+
 export const minorAxis3 = (a: Vec, ia = 0, sa = 1) =>
     min3id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]));
 
