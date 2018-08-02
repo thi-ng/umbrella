@@ -1,7 +1,7 @@
 import { ReadonlyVec, Vec, VecOp } from "./api";
 import { EPS, eqDelta1 } from "./math";
 
-export const x = (v: ReadonlyVec, i = 0, _?) => v[i];
+export const x = (v: ReadonlyVec, i = 0, _?: number) => v[i];
 export const y = (v: ReadonlyVec, i = 0, s = 1) => v[i + s];
 export const z = (v: ReadonlyVec, i = 0, s = 1) => v[i + 2 * s];
 export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
@@ -32,8 +32,8 @@ export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
  * @param esa element stride `a`
  */
 export const transformVectors1 = (fn: VecOp, a: Vec, b: ReadonlyVec, num: number, ia: number, ib: number, csa: number, csb: number, esa: number) => {
-    for (let i = ia; num > 0; num-- , i += esa) {
-        fn(a, b, i, ib, csa, csb);
+    for (; num > 0; num-- , ia += esa) {
+        fn(a, b, ia, ib, csa, csb);
     }
     return a;
 };
@@ -51,15 +51,23 @@ export const transformVectors1 = (fn: VecOp, a: Vec, b: ReadonlyVec, num: number
  * @param esb
  */
 export const transformVectors2 = (fn: VecOp, a: Vec, b: ReadonlyVec, n: number, ia: number, ib: number, csa: number, csb: number, esa: number, esb: number) => {
-    for (let i = ia, j = ib; n > 0; n-- , i += esa, j += esb) {
-        fn(a, b, i, j, csa, csb);
+    for (; n > 0; n-- , ia += esa, ib += esb) {
+        fn(a, b, ia, ib, csa, csb);
     }
     return a;
 };
 
-export const eqDelta = (a: Vec, b: Vec, n: number, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    if (a === b) return true;
-    for (; --n >= 0; ia += sa, ib += sb) {
+export const equiv = (a: ReadonlyVec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    for (; n > 0; n-- , ia += sa, ib += sb) {
+        if (a[ia] !== b[ib]) {
+            return false;
+        }
+    }
+    return true;
+};
+
+export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    for (; n > 0; n-- , ia += sa, ib += sb) {
         if (!eqDelta1(a[ia], b[ib], eps)) {
             return false;
         }
