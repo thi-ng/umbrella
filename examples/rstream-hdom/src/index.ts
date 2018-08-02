@@ -1,9 +1,10 @@
-import { diffElement, normalizeTree } from "@thi.ng/hdom";
 import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
 import { Subscription } from "@thi.ng/rstream/subscription";
+import { updateUI } from "@thi.ng/transducers-hdom";
+import { peek } from "@thi.ng/transducers/func/peek";
 import { vals } from "@thi.ng/transducers/iter/vals";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { map } from "@thi.ng/transducers/xform/map";
@@ -27,9 +28,15 @@ const ctx = {
  * Takes a `parent` DOM element, a stream of `root` component values and
  * an arbitrary user context object which will be implicitly passed to
  * all component functions embedded in the root component. Subscribes to
- * `root` stream & performs DOM updates using incoming values (i.e. UI
- * components). Additionally, a RAF side chain stream is used to
- * synchronize DOM updates to be processed during RAF.
+ * `root` stream & performs DOM diffs / updates using incoming values
+ * (i.e. UI components). Additionally, a RAF side chain stream is used
+ * here to synchronize DOM updates to be processed during RAF.
+ *
+ * Without RAF synchronization, the following would be sufficient:
+ *
+ * ```
+ * root.transform(updateUI(parent, ctx))
+ * ```
  *
  * Returns stream of hdom trees.
  *
@@ -37,25 +44,13 @@ const ctx = {
  * @param root root hdom component stream
  * @param ctx user context object
  */
-const domUpdate = (parent: HTMLElement, root: ISubscribable<any>, ctx: any) => {
-    return root
-        // use RAF stream as side chain trigger to
-        // force DOM updates to execute during RAF
-        .subscribe(sidechainPartition(fromRAF()))
-        // transform atom value changes using transducers
-        .transform(
-            // first normalize/expand hdom component tree
-            // only use very last received value
-            map((curr: any[]) => normalizeTree(curr[curr.length - 1], ctx)),
-            // then perform diff & selective DOM update
-            scan<any, any>(
-                reducer(
-                    () => [],
-                    (prev, curr) => (diffElement(parent, prev, curr), curr)
-                )
-            )
-        );
-};
+const domUpdate = (parent: HTMLElement, root: ISubscribable<any>, ctx?: any) =>
+    root.subscribe(
+        sidechainPartition(fromRAF()),
+    ).transform(
+        map(peek),
+        updateUI(parent, ctx)
+    );
 
 /**
  * Generic button component.
