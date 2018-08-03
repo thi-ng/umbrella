@@ -302,7 +302,6 @@ export class TripleStore implements
             id,
             src: { a, b },
             xform: comp(map(({ a, b }) => join(a, b)), dedupe(equiv)),
-            reset: false,
         });
     }
 
@@ -314,7 +313,7 @@ export class TripleStore implements
         );
         let xforms: Transducer<any, any>[] = [joinSolutions(Object.keys(src).length), dedupe(equiv)];
         keepVars && (xforms.push(filterSolutions(keepVars)));
-        return sync({ id, src, xform: <Transducer<any, any>>comp.apply(null, xforms), reset: false });
+        return sync({ id, src, xform: <Transducer<any, any>>comp.apply(null, xforms) });
     }
 
     /**
