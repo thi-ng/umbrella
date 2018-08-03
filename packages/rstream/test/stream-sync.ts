@@ -27,25 +27,23 @@ describe("StreamSync", () => {
             a1: { ins: { a: 1, b: 2 } },
             a2: { ins: { b: 10 } },
         });
-        const a1 = new rs.StreamSync({
+        const a1 = rs.sync({
             src: [
                 a = rs.fromView(db, "a1.ins.a"),
                 b = rs.fromView(db, "a1.ins.b"),
             ],
             xform: adder(),
-            reset: false
         });
         const a1res = a1.subscribe({
             next(x) { a1buf = x; },
             done() { a1done = true; }
         });
-        const a2 = new rs.StreamSync({
+        const a2 = rs.sync({
             src: [
                 a1,
                 c = rs.fromView(db, "a2.ins.b"),
             ],
             xform: adder(),
-            reset: false
         });
         const res = a2.subscribe({
             next(x) { a2buf = x; },
