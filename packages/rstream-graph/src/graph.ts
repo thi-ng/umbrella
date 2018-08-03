@@ -219,7 +219,7 @@ export const stop = (graph: Graph) => {
 export const node = (xform: Transducer<IObjectOf<any>, any>, inputIDs?: string[]): NodeFactory<any> =>
     (src: IObjectOf<ISubscribable<any>>, id: string): StreamSync<any, any> => {
         ensureInputs(src, inputIDs, id);
-        return sync({ src, xform, reset: false, id });
+        return sync({ src, xform, id });
     };
 
 /**
