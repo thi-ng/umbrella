@@ -196,7 +196,6 @@ const refresh = fromInterval(60000).subscribe(trace("refresh"));
 // this stream combinator performs API requests to obtain OHLC data
 const response = sync({
     src: { market, symbol, period, refresh },
-    reset: false,
     xform: map((inst) =>
         fetch(API_URL(inst.market, inst.symbol, inst.period))
             .then(
@@ -235,8 +234,7 @@ const data = sync({
                     [12, 24, 50, 72]
                 ),
         }))
-    ),
-    reset: false,
+    )
 });
 
 // this stream combinator (re)computes the SVG chart
@@ -249,7 +247,6 @@ const chart = sync({
             map(() => [window.innerWidth, window.innerHeight])
         )
     },
-    reset: false,
     xform: map(({ data, window, theme }) => {
         let [width, height] = window;
         const ohlc: OHLC[] = data.ohlc;
@@ -377,7 +374,6 @@ sync({
             )
         )
     },
-    reset: false,
     xform: comp(
         // combines all inputs into a single root component
         map(({ theme, themeSel, chart, symbol, period, avg }) =>

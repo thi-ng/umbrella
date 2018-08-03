@@ -35,7 +35,7 @@ sync({
         ticks: fromInterval(1000),
         clicks: clickStream,
     },
-    // only synchronize at first
+    // only synchronize at first (default)
     reset: false,
 }).transform(
     // transform into hdom component

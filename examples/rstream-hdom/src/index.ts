@@ -118,9 +118,9 @@ const app = (ctx: any, initial: number[][]) => {
         // this config ensures that only at the very beginning *all*
         // inputs must have delivered a value (i.e. stream
         // synchronization) before this stream itself delivers a value.
-        // however, by stating `reset: false` any subsequent changes to
-        // any of the inputs will not be synchronized
-        // see here for further details:
+        // however, by stating `reset: false` (actually the default) any
+        // subsequent changes to any of the inputs will not be
+        // synchronized see here for further details:
         // https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/stream-sync.ts#L21
         // https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/partition-sync.ts#L7
         reset: false,
