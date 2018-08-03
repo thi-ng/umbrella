@@ -16,6 +16,28 @@ import {
     State
 } from "./api";
 
+/**
+ * Creates a new `Subscription` instance, the fundamental datatype &
+ * building block provided by this package. Subscriptions can be:
+ *
+ * - linked into directed graphs (not necessarily DAGs),
+ * - transformed using transducers (incl. early termination)
+ * - have any number of subscribers
+ * - recursively unsubscribe themselves from parent if no subscribers
+ *   remain
+ * - implement @thi.ng/api `IDeref` interface
+ * - will go into a non-recoverable error state if NONE of the
+ *   subscribers has an error handler itself
+ *
+ * @param sub
+ * @param xform
+ * @param parent
+ * @param id
+ */
+export function subscription<A, B>(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
+    return new Subscription(sub, xform, parent, id);
+}
+
 export class Subscription<A, B> implements
     IDeref<B>,
     ISubscriber<A>,
