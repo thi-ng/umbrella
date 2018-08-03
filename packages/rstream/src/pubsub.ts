@@ -131,6 +131,11 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 }
 
+/**
+ * Creates a new `PubSub` instance. See class docs for further details.
+ *
+ * @param opts
+ */
 export function pubsub<A, B>(opts: PubSubOpts<A, B>) {
     return new PubSub(opts);
 }

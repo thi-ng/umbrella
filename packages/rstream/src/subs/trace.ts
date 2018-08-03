@@ -1,5 +1,11 @@
 import { ISubscriber } from "../api";
 
+/**
+ * Helper subscriber for inspection / debugging purposes. Simply logs
+ * received values to console, optionally with given `prefix`.
+ *
+ * @param prefix
+ */
 export function trace(prefix?: any): ISubscriber<any> {
     return {
         next(x) {

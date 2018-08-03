@@ -5,18 +5,53 @@ import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 
 export interface StreamMergeOpts<A, B> extends IID<string> {
+    /**
+     * Input sources.
+     */
     src: ISubscribable<A>[];
+    /**
+     * Optional transducer applied to each input value.
+     */
     xform: Transducer<A, B>;
+    /**
+     * If true (default), the `StreamMerge` closes once all inputs are
+     * exhausted. Set to false to keep the instance alive, regardless of
+     * inputs.
+     */
     close: boolean;
 }
 
 /**
- * Subscription type consuming inputs from multiple inputs and passing
- * received values on to any subscribers. Input streams can be added and
- * removed dynamically. By default, the StreamMerge calls `done()` when
- * the last active input is done, but this behavior can be overridden via
- * the `close` constructor option (set to `false`).
+ * Returns a new `StreamMerge` instance, a subscription type consuming
+ * inputs from multiple inputs and passing received values on to any
+ * subscribers. Input streams can be added and removed dynamically. By
+ * default, `StreamMerge` calls `done()` when the last active input is
+ * done, but this behavior can be overridden via the `close` constructor
+ * option (set to `false`).
+ *
+ * ```
+ * merge({
+ *   src: [
+ *     fromIterable([1,2,3], 10),
+ *     fromIterable([10,20,30], 21),
+ *     fromIterable([100,200,300], 7),
+ *   ]
+ * }).subscribe(trace());
+ * // 100
+ * // 1
+ * // 200
+ * // 10
+ * // 2
+ * // 300
+ * // 3
+ * // 20
+ * // 30
+ * ```
  */
+export function merge<A, B>(opts?: Partial<StreamMergeOpts<A, B>>) {
+    return new StreamMerge(opts);
+}
+
 export class StreamMerge<A, B> extends Subscription<A, B> {
 
     sources: Map<ISubscribable<A>, Subscription<A, any>>;
@@ -111,8 +146,4 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
             this.done();
         }
     }
-}
-
-export function merge<A, B>(opts: Partial<StreamMergeOpts<A, B>>) {
-    return new StreamMerge(opts);
 }

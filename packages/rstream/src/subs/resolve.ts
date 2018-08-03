@@ -4,7 +4,34 @@ import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
 
 export interface ResolverOpts extends IID<string> {
+    /**
+     * Error handler for failed promises.
+     */
     fail: (e: any) => void;
+}
+
+/**
+ * Creates a new subscription which receives promises, buffers them and
+ * then passes their resolved values downstream. If the optional `fail`
+ * handler is provided, it'll be called with the error of each failed
+ * promise. If none is provided, the sub's `error()` handler is called,
+ * which then stops the sub from receiving further values.
+ *
+ * ```
+ * fromIterable([1, 2, 3], 100)
+ *   .transform(tx.delayed(1000))
+ *   .subscribe(resolve())
+ *   .subscribe(trace("result"))
+ * // result 1
+ * // result 2
+ * // result 3
+ * // result done
+ * ```
+ *
+ * @param opts
+ */
+export function resolve<T>(opts?: Partial<ResolverOpts>) {
+    return new Resolver<T>(opts);
 }
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
@@ -39,8 +66,4 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
             super.done();
         }
     }
-}
-
-export function resolve<T>(opts?: Partial<ResolverOpts>) {
-    return new Resolver<T>(opts);
 }

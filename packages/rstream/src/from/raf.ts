@@ -4,14 +4,13 @@ import { Stream } from "../stream";
 import { fromInterval } from "./interval";
 
 /**
- * Yields a stream of monotonically increasing counter,
- * triggered by a `requestAnimationFrame()` loop.
- * Only available in browser environments. In NodeJS,
- * this function falls back to `fromInterval(16)`, yielding
- * a similar (approximately 60fps) stream.
+ * Yields a stream of monotonically increasing counter, triggered by a
+ * `requestAnimationFrame()` loop (only available in browser
+ * environments). In NodeJS, this function falls back to
+ * `fromInterval(16)`, yielding a similar (approximately 60fps) stream.
  *
- * Subscribers to this stream will be processed during
- * that same loop iteration.
+ * Subscribers to this stream will be processed during that same loop
+ * iteration.
  */
 export function fromRAF() {
     return isNode() ?

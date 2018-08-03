@@ -4,6 +4,34 @@ import { ISubscribable, State } from "../api";
 import { Stream } from "../stream";
 import { Subscription } from "../subscription";
 
+/**
+ * Buffers values from `src` until side chain fires, then emits buffer
+ * (unless empty) and repeats process until either input is done. By
+ * default, the value read from the side chain is ignored, however the
+ * optional predicate can be used to only trigger for specific values /
+ * conditions.
+ *
+ * ```
+ * // merge various event streams
+ * events = merge([
+ *     fromEvent(document,"mousemove"),
+ *     fromEvent(document,"mousedown"),
+ *     fromEvent(document,"mouseup")
+ * ]);
+ *
+ * // queue event processing to only execute during the
+ * // requestAnimationFrame cycle (RAF)
+ * events.subscribe(sidechainPartition(fromRAF())).subscribe(trace())
+ * ```
+ *
+ * @param side
+ * @param pred
+ * @param id
+ */
+export function sidechainPartition<A, B>(side: ISubscribable<B>, pred?: Predicate<B>, id?: string): Subscription<A, A[]> {
+    return new SidechainPartition<A, B>(side, pred, id);
+}
+
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
 
     sideSub: Subscription<B, B>;
@@ -49,32 +77,4 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
         this.sideSub.unsubscribe();
         super.done();
     }
-}
-
-/**
- * Buffers values from `src` until side chain fires, then emits buffer
- * (unless empty) and repeats process until either input is done.
- * By default, the value read from the side chain is ignored, however
- * the optional predicate can be used to only trigger for specific
- * values / conditions.
- *
- * ```
- * // merge various event streams
- * events = merge([
- *     fromEvent(document,"mousemove"),
- *     fromEvent(document,"mousedown"),
- *     fromEvent(document,"mouseup")
- * ]);
- *
- * // queue event processing to only execute during the
- * // requestAnimationFrame cycle (RAF)
- * events.subscribe(sidechainPartition(fromRAF())).subscribe(trace())
- * ```
- *
- * @param side
- * @param pred
- * @param id
- */
-export function sidechainPartition<A, B>(side: ISubscribable<B>, pred?: Predicate<B>, id?: string): Subscription<A, A[]> {
-    return new SidechainPartition<A, B>(side, pred, id);
 }
