@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.10.4...@thi.ng/rstream@1.11.0) (2018-08-03)
+
+
+### Features
+
+* **rstream:** add stream() & subscription() factories, add/update docs ([e97aac0](https://github.com/thi-ng/umbrella/commit/e97aac0))
+* **rstream:** update StreamSync to use `reset: false` by default, update docs ([55499cc](https://github.com/thi-ng/umbrella/commit/55499cc))
+
+
+
+
 <a name="1.10.4"></a>
 ## [1.10.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.10.3...@thi.ng/rstream@1.10.4) (2018-08-02)
 

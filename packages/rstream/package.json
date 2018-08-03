@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream",
-    "version": "1.10.4",
+    "version": "1.11.0",
     "description": "Reactive multi-tap streams, dataflow & transformation pipeline constructs",
     "main": "./index.js",
     "typings": "./index.d.ts",
