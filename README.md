@@ -8,14 +8,14 @@ Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
 data / transformation oriented packages and building blocks for reactive
 applications, dataflow graphs, components (not just UI related).
 
-Most packages:
+All / most packages:
 
 - have detailed, individual README files w/ small usage examples
-- versioned independently
-- distributed as ES6 (CommonJS modules) with doc comments (incl. example
-  code snippets), bundled TypeScript typings & changelogs
-- highly modular with largely only a few closely related functions /
-  single class per file to help w/ tree shaking
+- are versioned independently
+- distributed in ES6 syntax (as CommonJS modules) with doc comments
+  (incl. example code snippets), bundled TypeScript typings & changelogs
+- highly modular with largely only a few closely related functions or
+  single function / class per file to help w/ tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only @thi.ng internal runtime dependencies
 - declare public interfaces, enums & types in an `src/api.ts` file
@@ -23,9 +23,9 @@ Most packages:
 - auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
 - licensed under Apache Software License 2.0
 
-There's a steadily growing number of standalone examples (different
-difficulties, many combining functionality from several packages) in the
-[examples](./examples) directory.
+There's a steadily growing number (20+) of standalone examples
+(different difficulties, many combining functionality from several
+packages) in the [examples](./examples) directory.
 
 ## Projects
 
@@ -73,6 +73,7 @@ difficulties, many combining functionality from several packages) in the
 | [`@thi.ng/sax`](./packages/sax)                             | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                             | [changelog](./packages/sax/CHANGELOG.md)               | SAX-like XML parser / transducer              |
 | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations               |
 | [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)     | [changelog](./packages/transducers-fsm/CHANGELOG.md)   | Finite State Machine                          |
+| [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)   | [changelog](./packages/transducers-hdom/CHANGELOG.md)  | Transducer based hdom UI updates              |
 | [`@thi.ng/transducers-stats`](./packages/transducers-stats) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats) | [changelog](./packages/transducers-stats/CHANGELOG.md) | Technical / statistical analysis              |
 | [`@thi.ng/unionstruct`](./packages/unionstruct)             | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)             | [changelog](./packages/unionstruct/CHANGELOG.md)       | Wrapper for C-like structs / unions           |
 | [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           | Memory-mapped vector & matrix operations      |
