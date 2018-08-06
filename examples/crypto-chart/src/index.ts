@@ -11,7 +11,7 @@ import { text } from "@thi.ng/hiccup-svg/text";
 import { resolve } from "@thi.ng/resolve-map";
 import { fromEvent } from "@thi.ng/rstream/from/event";
 import { fromInterval } from "@thi.ng/rstream/from/interval";
-import { Stream } from "@thi.ng/rstream/stream";
+import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
 import { trace } from "@thi.ng/rstream/subs/trace";
@@ -180,12 +180,12 @@ const menu = (stream, title, items) =>
 
 // stream definitions
 
-const market = new Stream<string>();
-const symbol = new Stream<string>();
-const period = new Stream<number>();
-const avgMode = new Stream<string>();
-const theme = new Stream<string>().transform(map((id) => THEMES[id]));
-const error = new Stream<any>();
+const market = stream<string>();
+const symbol = stream<string>();
+const period = stream<number>();
+const avgMode = stream<string>();
+const theme = stream<string>().transform(map((id) => THEMES[id]));
+const error = stream<any>();
 
 // I/O error handler
 error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });

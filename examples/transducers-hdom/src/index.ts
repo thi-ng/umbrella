@@ -1,5 +1,5 @@
 import { fromInterval } from "@thi.ng/rstream/from/interval";
-import { Stream } from "@thi.ng/rstream/stream";
+import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { updateUI } from "@thi.ng/transducers-hdom";
 import { count } from "@thi.ng/transducers/rfn/count";
@@ -24,7 +24,7 @@ const app = ({ ticks, clicks }) =>
     ];
 
 // click stream (click counter)
-const clickStream = new Stream().transform(scan(count(-1)));
+const clickStream = stream().transform(scan(count(-1)));
 
 // stream combinator
 // waits until all inputs have produced at least one value,

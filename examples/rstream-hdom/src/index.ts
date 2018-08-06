@@ -2,7 +2,7 @@ import { ISubscribable } from "@thi.ng/rstream/api";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
-import { Subscription } from "@thi.ng/rstream/subscription";
+import { Subscription, subscription } from "@thi.ng/rstream/subscription";
 import { updateUI } from "@thi.ng/transducers-hdom";
 import { peek } from "@thi.ng/transducers/func/peek";
 import { vals } from "@thi.ng/transducers/iter/vals";
@@ -45,12 +45,12 @@ const ctx = {
  * @param ctx user context object
  */
 const domUpdate = (parent: HTMLElement, root: ISubscribable<any>, ctx?: any) =>
-    root.subscribe(
-        sidechainPartition(fromRAF()),
-    ).transform(
-        map(peek),
-        updateUI(parent, ctx)
-    );
+    root
+        .subscribe(sidechainPartition(fromRAF()))
+        .transform(
+            map(peek),
+            updateUI(parent, ctx)
+        );
 
 /**
  * Generic button component.
@@ -89,7 +89,7 @@ const resetButton = (_, counters: Subscription<boolean, number>[]) =>
  * @param step
  */
 const counter = (start: number, step: number) => {
-    const s = new Subscription<boolean, number>(
+    const s = subscription<boolean, number>(
         null,
         // the `scan` transducer is used to provide counter functionality
         // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
