@@ -46,8 +46,8 @@ import { Subscription } from "./subscription";
  * @param id
  * @param src
  */
-export function stream(): Stream<any>;
-export function stream(id: string): Stream<any>;
+export function stream<T>(): Stream<T>;
+export function stream<T>(id: string): Stream<T>;
 export function stream<T>(src: StreamSource<T>);
 export function stream<T>(src: StreamSource<T>, id: string);
 export function stream(src?, id?) {
