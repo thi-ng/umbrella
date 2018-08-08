@@ -8,7 +8,5 @@ import { Stringer } from "./api";
  * @param len number of fractional digits
  * @kind function
  */
-export const float = memoizeJ(
-    (prec: number): Stringer<number> =>
-        (x: number) => x.toFixed(prec)
-);
+export const float: (prec: number) => Stringer<number> =
+    memoizeJ((prec) => (x: number) => x.toFixed(prec));
