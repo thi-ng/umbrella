@@ -2,6 +2,7 @@ import { Predicate } from "@thi.ng/api";
 
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
+import { iterator } from "../iterator";
 import { filter } from "./filter";
 import { take } from "./take";
 
@@ -17,6 +18,10 @@ import { take } from "./take";
  *
  * @param pred predicate function
  */
-export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T> {
-    return comp(filter(pred), take(1));
+export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T>;
+export function matchFirst<T>(pred: Predicate<T>, src: Iterable<T>): IterableIterator<T>;
+export function matchFirst<T>(pred: Predicate<T>, src?: Iterable<T>): any {
+    return src ?
+        iterator(matchFirst(pred), src) :
+        comp(filter(pred), take(1));
 }

@@ -1,11 +1,17 @@
 import { Comparator } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/compare";
+import { compare as cmp } from "@thi.ng/compare";
 
-import { Transducer } from "../api";
+import { Fn, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { identity } from "../func/identity";
+import { $iter } from "../iterator";
 import { mapcat } from "./mapcat";
 import { partition } from "./partition";
+
+export interface PartitionSortOpts<A, B> {
+    key: Fn<A, B>;
+    compare: Comparator<B>;
+}
 
 /**
  * Transducer. Composition of `partition` and `mapcat` which yields a
@@ -15,12 +21,11 @@ import { partition } from "./partition";
  * value and change sorting behavior.
  *
  * ```
- * [...iterator(partitionSort(4), [5,9,2,6,4,1,3,8,7,0])]
+ * [...partitionSort(4, [5,9,2,6,4,1,3,8,7,0])]
  * // [ 2, 5, 6, 9, 1, 3, 4, 8, 0, 7 ]
  *
  * // with key fn and custom comparator
- * [...iterator(
- *   partitionSort(3, (x) => x.val, (a, b) => b - a),
+ * [...partitionSort(3, (x) => x.val, (a, b) => b - a,
  *   [
  *     { id: "a", val: 5 },
  *     { id: "b", val: 7 },
@@ -34,9 +39,21 @@ import { partition } from "./partition";
  * @param key sort key lookup
  * @param cmp comparator
  */
-export function partitionSort<A, B>(n: number, key: ((x: A) => B) = <any>identity, cmp: Comparator<B> = compare): Transducer<A, A> {
+export function partitionSort<A, B>(n: number, opts?: Partial<PartitionSortOpts<A, B>>): Transducer<A, A>;
+export function partitionSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
+export function partitionSort<A, B>(n: number, opts: Partial<PartitionSortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function partitionSort<A, B>(...args: any[]): any {
+    const iter = $iter(partitionSort, args);
+    if (iter) {
+        return iter;
+    }
+    const { key, compare } = <PartitionSortOpts<A, B>>{
+        key: <any>identity,
+        compare: cmp,
+        ...args[1]
+    };
     return comp(
-        partition(n, true),
-        mapcat((chunk: A[]) => chunk.sort((a, b) => cmp(key(a), key(b))))
+        partition(args[0], true),
+        mapcat((window: A[]) => window.slice().sort((a, b) => compare(key(a), key(b))))
     );
 }

@@ -1,4 +1,5 @@
 import { Transducer } from "../api";
+import { iterator } from "../iterator";
 import { throttle } from "./throttle";
 
 /**
@@ -6,13 +7,18 @@ import { throttle } from "./throttle";
  * source.
  *
  * ```
- * [...iterator(takeNth(3), range(10))]
+ * [...takeNth(3, range(10))]
  * // [ 0, 3, 6, 9 ]
  * ```
  *
  * @param n
  */
-export function takeNth<T>(n: number): Transducer<T, T> {
+export function takeNth<T>(n: number): Transducer<T, T>;
+export function takeNth<T>(n: number, src: Iterable<T>): IterableIterator<T>;
+export function takeNth<T>(n: number, src?: Iterable<T>): any {
+    if (src) {
+        return iterator(takeNth(n), src);
+    }
     n = Math.max(0, n - 1);
     return throttle(
         () => {

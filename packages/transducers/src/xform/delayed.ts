@@ -6,7 +6,8 @@ import { map } from "./map";
  * Yields transducer which wraps incoming values in promises, which
  * resolve after specified delay time (in ms).
  *
- * **Only to be used in async contexts and NOT with `transduce` directly.**
+ * **Only to be used in async contexts and NOT with `transduce`
+ * directly.**
  *
  * @param t
  */

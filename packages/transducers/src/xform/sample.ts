@@ -1,5 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
+import { iterator } from "../iterator";
 
 /**
  * Transducer which only yields values with given `prob` probability
@@ -12,11 +13,16 @@ import { compR } from "../func/compr";
  * ```
  *
  * @param prob
+ * @param src
  */
-export function sample<T>(prob: number): Transducer<T, T> {
-    return (rfn: Reducer<any, T>) => {
-        const r = rfn[2];
-        return compR(rfn,
-            (acc, x) => Math.random() < prob ? r(acc, x) : acc);
-    }
+export function sample<T>(prob: number): Transducer<T, T>;
+export function sample<T>(prob: number, src: Iterable<T>): IterableIterator<T>;
+export function sample<T>(prob: number, src?: Iterable<T>): any {
+    return src ?
+        iterator(sample(prob), src) :
+        (rfn: Reducer<any, T>) => {
+            const r = rfn[2];
+            return compR(rfn,
+                (acc, x: T) => Math.random() < prob ? r(acc, x) : acc);
+        }
 }

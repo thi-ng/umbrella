@@ -1,23 +1,23 @@
-import * as tx from "../src";
+import { flatten, range } from "../src";
 
 import * as assert from "assert";
 
 describe("flatten", () => {
     it("empty arrays", () => {
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), []), []);
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), [[], []]), []);
+        assert.deepEqual([...flatten([])], []);
+        assert.deepEqual([...flatten([[], []])], []);
     });
     it("arrays", () => {
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), [undefined]), [undefined]);
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), [[undefined], null]), [undefined, null]);
+        assert.deepEqual([...flatten([undefined])], [undefined]);
+        assert.deepEqual([...flatten([[undefined], null])], [undefined, null]);
     });
     it("strings", () => {
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), ["", "a"]), ["", "a"]);
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), [[], ["a"], ""]), ["a", ""]);
+        assert.deepEqual([...flatten(["", "a"])], ["", "a"]);
+        assert.deepEqual([...flatten([[], ["a"], ""])], ["a", ""]);
     });
     it("iterators", () => {
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), tx.range(0)), []);
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), [tx.range(0)]), []);
-        assert.deepEqual(tx.transduce(tx.flatten(), tx.push(), [tx.range(2), tx.range(0)]), [0, 1]);
+        assert.deepEqual([...flatten(range(0))], []);
+        assert.deepEqual([...flatten([range(0)])], []);
+        assert.deepEqual([...flatten([range(2), range(0)])], [0, 1]);
     })
 });

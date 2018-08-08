@@ -1,4 +1,5 @@
 import { Transducer } from "../api";
+import { iterator } from "../iterator";
 import { partitionBy } from "./partition-by";
 
 /**
@@ -6,7 +7,7 @@ import { partitionBy } from "./partition-by";
  * chunks. The last partition emitted is allowed to be incomplete.
  *
  * ```
- * [...iterator(partitionOf([3,2,4]), range(20))]
+ * [...partitionOf([3,2,4], range(20))]
  * // [ [ 0, 1, 2 ],
  * //   [ 3, 4 ],
  * //   [ 5, 6, 7, 8 ],
@@ -18,16 +19,20 @@ import { partitionBy } from "./partition-by";
  *
  * @param sizes
  */
-export function partitionOf<T>(sizes: number[]): Transducer<T, T[]> {
-    return partitionBy(
-        () => {
-            let i = 0, j = 0;
-            return () => {
-                if (i++ === sizes[j]) {
-                    i = 1;
-                    j = (j + 1) % sizes.length;
-                }
-                return j;
-            };
-        }, true);
+export function partitionOf<T>(sizes: number[]): Transducer<T, T[]>;
+export function partitionOf<T>(sizes: number[], src: Iterable<T>): IterableIterator<T[]>;
+export function partitionOf<T>(sizes: number[], src?: Iterable<T>): any {
+    return src ?
+        iterator(partitionOf(sizes), src) :
+        partitionBy(
+            () => {
+                let i = 0, j = 0;
+                return () => {
+                    if (i++ === sizes[j]) {
+                        i = 1;
+                        j = (j + 1) % sizes.length;
+                    }
+                    return j;
+                };
+            }, true);
 }
