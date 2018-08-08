@@ -6,10 +6,12 @@ export type Fn<A, B> = (x: A) => B;
 
 export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
 
+export type ReductionFn<A, B> = (acc: A, x: B) => A | Reduced<A>;
+
 export interface Reducer<A, B> extends Array<any> {
     [0]: () => A;
     [1]: (acc: A) => A;
-    [2]: (acc: A, x: B) => A | Reduced<A>;
+    [2]: ReductionFn<A, B>;
 };
 
 export interface StructField extends Array<any> {
