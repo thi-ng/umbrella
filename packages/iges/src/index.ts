@@ -193,7 +193,7 @@ const formatParams = (
     const lines = transduce(
         comp(
             map(doc.$PARAM),
-            wordWrap(bodyWidth, 1, true),
+            wordWrap(bodyWidth, { delim: 1, always: true }),
             map((p) => p.join(doc.globals.delimParam)),
         ),
         push(),
