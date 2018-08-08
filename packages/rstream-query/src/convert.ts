@@ -2,7 +2,6 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { concat } from "@thi.ng/transducers/iter/concat";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 
 let NEXT_ID = 0;
@@ -15,11 +14,11 @@ const mapBNode = (s: any, p: any, o: any) => {
 const mapSubject = (subject: any) =>
     ([p, o]) => {
         if (isArray(o)) {
-            return iterator(
-                mapcat((o) =>
+            return mapcat(
+                (o) =>
                     isPlainObject(o) ?
                         mapBNode(subject, p, o) :
-                        [[subject, p, o]]),
+                        [[subject, p, o]],
                 o);
         } else if (isPlainObject(o)) {
             return mapBNode(subject, p, o);
@@ -77,10 +76,9 @@ const mapSubject = (subject: any) =>
  * @param subject internal use only, do not specify!
  */
 export const asTriples = (obj: any, subject?: any) =>
-    iterator(
-        mapcat(
-            subject === undefined ?
-                ([s, v]: any) => iterator(mapcat(mapSubject(s)), <any>pairs(v)) :
-                mapSubject(subject)
-        ),
-        pairs(obj));
+    mapcat(
+        subject === undefined ?
+            ([s, v]: any) => mapcat(mapSubject(s), <any>pairs(v)) :
+            mapSubject(subject),
+        pairs(obj)
+    );
