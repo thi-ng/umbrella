@@ -47,7 +47,6 @@ export * from "./xform/flatten-with";
 export * from "./xform/flatten";
 export * from "./xform/hex-dump";
 export * from "./xform/indexed";
-export * from "./xform/inspect";
 export * from "./xform/interleave";
 export * from "./xform/interpose";
 export * from "./xform/keep";
@@ -90,6 +89,7 @@ export * from "./xform/take-while";
 export * from "./xform/take";
 export * from "./xform/throttle";
 export * from "./xform/throttle-time";
+export * from "./xform/trace";
 export * from "./xform/utf8";
 export * from "./xform/word-wrap";
 
