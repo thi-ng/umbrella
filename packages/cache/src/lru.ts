@@ -1,5 +1,5 @@
 import { ConsCell, DCons } from "@thi.ng/dcons";
-import { map } from "@thi.ng/iterators/map";
+import { map } from "@thi.ng/transducers/xform/map";
 
 import { CacheEntry, CacheOpts, ICache } from "./api";
 
@@ -40,7 +40,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
     }
 
     *entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
-        yield* map((e) => [e.k, e], this.items);
+        yield* map((e) => <[K, CacheEntry<K, V>]>[e.k, e], this.items);
     }
 
     *keys(): IterableIterator<Readonly<K>> {
