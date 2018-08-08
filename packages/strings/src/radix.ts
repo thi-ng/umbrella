@@ -4,18 +4,20 @@ import { Stringer } from "./api";
 import { repeat } from "./repeat";
 
 /**
- * Returns a `Stringer` which formats given numbers to `radix` and `len`.
+ * Returns a `Stringer` which formats given numbers to `radix`, `len`
+ * and with optional prefix (not included in `len`).
  *
  * @param radix
  * @param len
+ * @param prefix
  */
-export const radix: (radix: number, len: number) => Stringer<number> =
+export const radix: (radix: number, len: number, prefix?: string) => Stringer<number> =
     memoizeJ(
-        (radix: number, n: number) => {
+        (radix: number, n: number, prefix = "") => {
             const buf = repeat("0", n);
             return (x: any) => {
                 x = (x >>> 0).toString(radix);
-                return x.length < n ? buf.substr(x.length) + x : x;
+                return prefix + (x.length < n ? buf.substr(x.length) + x : x);
             };
         }
     );
