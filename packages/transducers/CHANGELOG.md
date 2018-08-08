@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.16.0"></a>
+# [1.16.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.15.0...@thi.ng/transducers@1.16.0) (2018-08-08)
+
+
+### Features
+
+* **transducers:** add partitionBits() xform & tests ([a5e2c28](https://github.com/thi-ng/umbrella/commit/a5e2c28))
+
+
+
+
 <a name="1.15.0"></a>
 # [1.15.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.3...@thi.ng/transducers@1.15.0) (2018-08-02)
 
