@@ -14,7 +14,7 @@
         "@thi.ng/hdom": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/interceptors": "latest",
-        "@thi.ng/iterators": "latest"
+        "@thi.ng/transducers": "latest"
     },
     "devDependencies": {
         "@types/node": "^9.6.2",

@@ -1,5 +1,4 @@
 import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 
@@ -16,10 +15,11 @@ export const queryResults = (_: AppContext, title: string, results: Set<any>) =>
             [table,
                 ["10%", ...repeat(`${(90 / keys.length) | 0}%`, keys.length)],
                 ["id", ...keys],
-                iterator(
-                    mapIndexed((i, x) => [i + 1, ...iterator(map((k: string) => x[k]), keys)]),
+                mapIndexed(
+                    (i, x) => [i + 1, ...map((k: string) => x[k], keys)],
                     results
-                )]
+                )
+            ]
         ];
     }
 };

@@ -33,7 +33,7 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
             state.items = [
                 ...iterator(
                     comp(
-                        filterFuzzy(filter, (x: DropdownItem) => x[1].toLowerCase()),
+                        filterFuzzy(filter, { key: (x: DropdownItem) => x[1].toLowerCase() }),
                         map(([id, x]) =>
                             <DropdownItem>[
                                 id,

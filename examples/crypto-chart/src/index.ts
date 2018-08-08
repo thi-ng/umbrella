@@ -23,7 +23,6 @@ import { wma } from "@thi.ng/transducers-stats/wma";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { range } from "@thi.ng/transducers/iter/range";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { max } from "@thi.ng/transducers/rfn/max";
 import { min } from "@thi.ng/transducers/rfn/min";
@@ -278,8 +277,8 @@ const chart = sync({
                 line([MARGIN_X, MARGIN_Y], [MARGIN_X, by]),
                 line([MARGIN_X, by], [width - MARGIN_X, by]),
                 // Y axis ticks
-                ...iterator(
-                    mapcat((price: number) => {
+                mapcat(
+                    (price: number) => {
                         const y = mapY(price);
                         return [
                             line([MARGIN_X - 10, y], [MARGIN_X, y]),
@@ -291,30 +290,27 @@ const chart = sync({
                             }),
                             text(price.toFixed(4), [MARGIN_X - 15, y + 4], { stroke: "none" })
                         ];
-                    }),
+                    },
                     range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)
                 ),
                 // X axis ticks
-                ...iterator(
-                    mapcat((t: number) => {
+                mapcat(
+                    (t: number) => {
                         const x = fit(t, data.tbounds[0], data.tbounds[1], MARGIN_X + w / 2, width - MARGIN_X - w / 2);
                         return [
                             line([x, by], [x, by + 10]),
                             line([x, MARGIN_Y], [x, by], { stroke: theme.chart.gridMinor, "stroke-dasharray": 2 }),
                             text(fmtTime(t), [x, by + 20], { stroke: "none", "text-anchor": "middle" })
                         ];
-                    }),
+                    },
                     range(Math.ceil(data.tbounds[0] / tickX) * tickX, data.tbounds[1], tickX)
                 ),
             ),
             // moving averages
-            ...iterator(
-                map(([period, vals]) => sma(vals, theme.chart[`sma${period}`])),
-                data.sma
-            ),
+            map(([period, vals]) => sma(vals, theme.chart[`sma${period}`]), data.sma),
             // candles
-            ...iterator(
-                mapIndexed((i, candle: OHLC) => {
+            mapIndexed(
+                (i, candle: OHLC) => {
                     const isBullish = candle.open < candle.close;
                     let y, h;
                     let col;
@@ -331,7 +327,7 @@ const chart = sync({
                         line([mapX(i + 0.5), mapY(candle.low)], [mapX(i + 0.5), mapY(candle.high)]),
                         rect([mapX(i) + 1, y], w - 2, h),
                     );
-                }),
+                },
                 ohlc
             ),
             // price line
@@ -357,17 +353,13 @@ sync({
         period: period.transform(menu(period, "Time frame", [...pairs(TIMEFRAMES)])),
         avg: avgMode.transform(
             menu(avgMode, "Moving average",
-                [...iterator(
-                    map(([id, mode]) => <DropDownOption>[id, mode.label]),
-                    pairs(MA_MODES))]
+                [...map(([id, mode]) => <DropDownOption>[id, mode.label], pairs(MA_MODES))]
             )
         ),
         themeSel: theme.transform(
             map((x) => x.id),
             menu(theme, "Theme",
-                [...iterator(
-                    map(([id, theme]) => <DropDownOption>[id, theme.label]),
-                    pairs(THEMES))]
+                [...map(([id, theme]) => <DropDownOption>[id, theme.label], pairs(THEMES))]
             )
         )
     },
@@ -386,10 +378,7 @@ sync({
                         }
                     },
                     ["div.flex",
-                        ...iterator(
-                            map((x) => ["div.w-25.ph2", x]),
-                            [symbol, period, avg, themeSel]
-                        ),
+                        ...map((x) => ["div.w-25.ph2", x], [symbol, period, avg, themeSel]),
                     ]
                 ],
                 ["div.fixed.tc",

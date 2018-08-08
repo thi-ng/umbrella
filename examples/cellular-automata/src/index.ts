@@ -72,7 +72,7 @@ const randomizeRules = () => {
 export const convolve = (src: number[], rules: number[], width: number, height: number, rstride = 9, wrap = true) =>
     transduce(
         comp(
-            multiplex(convolve2d(src, width, height, kernel, wrap), map(lookup2d(src, width))),
+            multiplex(convolve2d({ src, width, height, kernel, wrap }), map(lookup2d(src, width))),
             map(lookup2d(rules, rstride))
         ),
         push(),

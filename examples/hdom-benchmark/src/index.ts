@@ -5,7 +5,6 @@ import { Stream } from "@thi.ng/rstream/stream";
 import { radix } from "@thi.ng/strings/radix";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { range } from "@thi.ng/transducers/iter/range";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { benchmark } from "@thi.ng/transducers/xform/benchmark";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
@@ -94,7 +93,7 @@ const app = () => {
         let j = (++i) & 0x1ff;
         return ["div",
             ["div#stats", fps, menu],
-            ["grid", iterator(mapIndexed(box), range(j, j + num))]
+            ["grid", mapIndexed(box, range(j, j + num))]
         ];
     };
 };
