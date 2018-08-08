@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { Comparator, IObjectOf } from "@thi.ng/api/api";
 
 import { Reduced } from "./reduced";
 
@@ -14,21 +14,24 @@ export interface Reducer<A, B> extends Array<any> {
     [2]: ReductionFn<A, B>;
 };
 
-export interface StructField extends Array<any> {
-    [0]: string;
-    [1]: number;
-    [2]?: Fn<any[], any>;
-}
-
-export type ConvolutionKernel1D = [number, number][];
-export type ConvolutionKernel2D = [number, [number, number]][];
-export type ConvolutionKernel3D = [number, [number, number, number]][];
-
 export type TransformFn = (x: any) => any;
 export type TransformSubSpec = IObjectOf<TransformSpec | TransformFn>;
 export interface TransformSpec extends Array<any> {
     [0]: TransformFn;
     [1]?: TransformSubSpec;
+}
+
+export interface SortOpts<A, B> {
+    /**
+     * Sort key lookup function.
+     * Default: `identity`
+     */
+    key: Fn<A, B>;
+    /**
+     * Comparator.
+     * Default: `thi.ng/compare/compare`
+     */
+    compare: Comparator<B>;
 }
 
 export const SEMAPHORE = Symbol();

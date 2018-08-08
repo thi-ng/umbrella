@@ -1,17 +1,10 @@
-import { Comparator } from "@thi.ng/api/api";
 import { compare as cmp } from "@thi.ng/compare";
-
-import { Fn, Transducer } from "../api";
+import { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { identity } from "../func/identity";
 import { $iter } from "../iterator";
 import { map } from "./map";
 import { partition } from "./partition";
-
-export interface MovingMedianOpts<A, B> {
-    key: Fn<A, B>;
-    compare: Comparator<B>;
-}
 
 /**
  * Transducer. Similar to `movingAverage()`, but yields median of
@@ -23,15 +16,15 @@ export interface MovingMedianOpts<A, B> {
  * @param opts
  * @param src
  */
-export function movingMedian<A, B>(n: number, opts?: Partial<MovingMedianOpts<A, B>>): Transducer<A, A>;
+export function movingMedian<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
 export function movingMedian<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-export function movingMedian<A, B>(n: number, opts: Partial<MovingMedianOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function movingMedian<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
 export function movingMedian<A, B>(...args: any[]): any {
     const iter = $iter(movingMedian, args);
     if (iter) {
         return iter;
     }
-    const { key, compare } = <MovingMedianOpts<A, B>>{
+    const { key, compare } = <SortOpts<A, B>>{
         key: <any>identity,
         compare: cmp,
         ...args[1]

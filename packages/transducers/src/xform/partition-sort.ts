@@ -1,17 +1,11 @@
-import { Comparator } from "@thi.ng/api/api";
 import { compare as cmp } from "@thi.ng/compare";
 
-import { Fn, Transducer } from "../api";
+import { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { identity } from "../func/identity";
 import { $iter } from "../iterator";
 import { mapcat } from "./mapcat";
 import { partition } from "./partition";
-
-export interface PartitionSortOpts<A, B> {
-    key: Fn<A, B>;
-    compare: Comparator<B>;
-}
 
 /**
  * Transducer. Composition of `partition` and `mapcat` which yields a
@@ -39,15 +33,15 @@ export interface PartitionSortOpts<A, B> {
  * @param key sort key lookup
  * @param cmp comparator
  */
-export function partitionSort<A, B>(n: number, opts?: Partial<PartitionSortOpts<A, B>>): Transducer<A, A>;
+export function partitionSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
 export function partitionSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-export function partitionSort<A, B>(n: number, opts: Partial<PartitionSortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function partitionSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
 export function partitionSort<A, B>(...args: any[]): any {
     const iter = $iter(partitionSort, args);
     if (iter) {
         return iter;
     }
-    const { key, compare } = <PartitionSortOpts<A, B>>{
+    const { key, compare } = <SortOpts<A, B>>{
         key: <any>identity,
         compare: cmp,
         ...args[1]

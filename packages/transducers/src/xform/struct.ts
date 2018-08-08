@@ -1,10 +1,16 @@
-import { StructField, Transducer } from "../api";
+import { Fn, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { mapKeys } from "./map-keys";
 import { partition } from "./partition";
 import { partitionOf } from "./partition-of";
 import { rename } from "./rename";
+
+export interface StructField extends Array<any> {
+    [0]: string;
+    [1]: number;
+    [2]?: Fn<any[], any>;
+}
 
 /**
  * Higher-order transducer to converts linear input into structured objects
