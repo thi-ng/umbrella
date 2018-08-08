@@ -1,3 +1,4 @@
+import { IObjectOf } from "@thi.ng/api/api";
 import { Fn1, Fn2, Fn3, Fn4, FnAny } from "./api";
 
 /**
@@ -12,16 +13,16 @@ import { Fn1, Fn2, Fn3, Fn4, FnAny } from "./api";
  * @param fn
  * @param cache
  */
-export function memoizeJ<A, B>(fn: Fn1<A, B>): Fn1<A, B>;
-export function memoizeJ<A, B, C>(fn: Fn2<A, B, C>): Fn2<A, B, C>;
-export function memoizeJ<A, B, C, D>(fn: Fn3<A, B, C, D>): Fn3<A, B, C, D>;
-export function memoizeJ<A, B, C, D, E>(fn: Fn4<A, B, C, D, E>): Fn4<A, B, C, D, E>;
-export function memoizeJ(fn: FnAny): (...args: any[]) => any {
-    const cache: any = {};
+export function memoizeJ<A, B>(fn: Fn1<A, B>, cache?: IObjectOf<B>): Fn1<A, B>;
+export function memoizeJ<A, B, C>(fn: Fn2<A, B, C>, cache?: IObjectOf<C>): Fn2<A, B, C>;
+export function memoizeJ<A, B, C, D>(fn: Fn3<A, B, C, D>, cache?: IObjectOf<D>): Fn3<A, B, C, D>;
+export function memoizeJ<A, B, C, D, E>(fn: Fn4<A, B, C, D, E>, cache?: IObjectOf<E>): Fn4<A, B, C, D, E>;
+export function memoizeJ(fn: FnAny, cache?: IObjectOf<any>): FnAny {
+    !cache && (cache = {});
     return (...args: any[]) => {
         const key = JSON.stringify(args);
         if (key !== undefined) {
-            return Object.hasOwnProperty(key) ?
+            return key in cache ?
                 cache[key] :
                 (cache[key] = fn.apply(null, args));
         }
