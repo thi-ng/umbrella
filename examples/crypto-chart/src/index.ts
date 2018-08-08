@@ -15,6 +15,7 @@ import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
 import { trace } from "@thi.ng/rstream/subs/trace";
+import { padLeft } from "@thi.ng/strings/pad-left";
 import { ema } from "@thi.ng/transducers-stats/ema";
 import { hma } from "@thi.ng/transducers-stats/hma";
 import { sma } from "@thi.ng/transducers-stats/sma";
@@ -160,11 +161,7 @@ const API_URL = (market, symbol, period) =>
 // helper functions
 const clamp = (x: number, min: number, max: number) => x < min ? min : x > max ? max : x;
 const fit = (x, a, b, c, d) => c + (d - c) * clamp((x - a) / (b - a), 0, 1);
-const padl = (n: number, ch: string) => {
-    const buf = new Array(n).fill(ch).join("");
-    return (x: any) => (x = x.toString(), x.length < n ? buf.substr(x.length) + x : x);
-};
-const Z2 = padl(2, "0");
+const Z2 = padLeft(2, "0");
 
 const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 
