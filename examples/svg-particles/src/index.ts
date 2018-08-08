@@ -1,10 +1,10 @@
 import { start } from "@thi.ng/hdom";
-import { hex } from "@thi.ng/transducers/func/hex";
+import { radix } from "@thi.ng/strings/radix";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
-const hex6 = hex(6);
+const hex6 = radix(16, 6);
 
 const updateParticle = (p, v) => {
     let x = p.cx + v[0];

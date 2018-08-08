@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@thi.ng/hdom": "latest",
+        "@thi.ng/strings": "latest",
         "@thi.ng/transducers": "latest"
     }
 }
