@@ -1,7 +1,8 @@
+import { U8, U32 } from "@thi.ng/strings/radix";
+
 import { Transducer } from "../api";
 
 import { comp } from "../func/comp";
-import { hex } from "../func/hex";
 import { juxt } from "../func/juxt";
 
 import { map } from "./map";
@@ -29,7 +30,7 @@ import { partition } from "./partition";
 export function hexDump(cols = 16, addr = 0): Transducer<number, string> {
     return comp(
         padLast(cols, 0),
-        map(juxt(hex(), (x) => x > 31 && x < 128 ? String.fromCharCode(x) : ".")),
+        map(juxt(U8, (x) => x > 31 && x < 128 ? String.fromCharCode(x) : ".")),
         partition(cols, true),
         map(
             juxt(
@@ -37,6 +38,6 @@ export function hexDump(cols = 16, addr = 0): Transducer<number, string> {
                 (x) => x.map(y => y[1]).join("")
             )
         ),
-        mapIndexed((i, [h, a]) => `${hex(8)(addr + i * cols)} | ${h} | ${a}`)
+        mapIndexed((i, [h, a]) => `${U32(addr + i * cols)} | ${h} | ${a}`)
     );
 }

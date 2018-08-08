@@ -32,7 +32,8 @@
         "@thi.ng/checks": "^1.5.7",
         "@thi.ng/compare": "^0.1.6",
         "@thi.ng/equiv": "^0.1.7",
-        "@thi.ng/errors": "^0.1.6"
+        "@thi.ng/errors": "^0.1.6",
+        "@thi.ng/strings": "^0.1.1"
     },
     "keywords": [
         "ES6",
