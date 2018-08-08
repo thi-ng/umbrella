@@ -1,4 +1,7 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { float } from "@thi.ng/strings/float";
+import { padLeft } from "@thi.ng/strings/pad-left";
+import { padRight } from "@thi.ng/strings/pad-right";
 import {
     comp,
     iterator,
@@ -12,7 +15,6 @@ import {
     wordWrap,
     wrap
 } from "@thi.ng/transducers";
-
 import {
     DEFAULT_GLOBALS,
     DictEntry,
@@ -28,25 +30,13 @@ import {
 const LINEWIDTH_GLOBALS = 72;
 const LINEWIDTH_PARAMS = 64;
 
-const padl = (n: number, ch: string) => {
-    const buf = new Array(n).fill(ch).join("");
-    return (x: any) => (x = x.toString(), x.length < n ? buf.substr(x.length) + x : x);
-};
-
-const padr = (n: number, ch: string) => {
-    const buf = new Array(n).fill(ch).join("");
-    return (x: any) => (x = x.toString(), x.length < n ? x + buf.substr(x.length) : x);
-};
-
-const ff = (prec = 3) => (x: number) => x.toFixed(prec);
-
-const $Z2 = padl(2, "0");
-const $Z7 = padl(7, "0");
-const $F8 = padl(8, " ");
+const $Z2 = padLeft(2, "0");
+const $Z7 = padLeft(7, "0");
+const $F8 = padLeft(8, " ");
 const $STR = (x: any) => (x != null ? (x = x.toString(), `${x.length}H${x}`) : "");
-const $SEQ = padl(7, " ");
-const $BODY = padr(72, " ");
-const $PBODY = padr(64, " ");
+const $SEQ = padLeft(7, " ");
+const $BODY = padRight(72, " ");
+const $PBODY = padRight(64, " ");
 const $DATE = (d: Date) =>
     $STR([
         d.getUTCFullYear(),
@@ -60,7 +50,7 @@ const $DATE = (d: Date) =>
 
 export const newDocument = (g?: Partial<GlobalParams>, start?: string[]): IGESDocument => {
     const globals = <GlobalParams>{ ...DEFAULT_GLOBALS, ...g };
-    const $FF = ff(globals.precision);
+    const $FF = float(globals.precision);
     const $PARAM = defmulti<any[], string>((x) => x[1]);
     $PARAM.add(Type.INT, (x) => x[0].toString());
     $PARAM.add(Type.FLOAT, (x) => $FF(x[0]));

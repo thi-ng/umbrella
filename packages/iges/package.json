@@ -30,6 +30,7 @@
     "dependencies": {
         "@thi.ng/api": "^4.0.6",
         "@thi.ng/defmulti": "^0.3.7",
+        "@thi.ng/strings": "^0.0.1",
         "@thi.ng/transducers": "^1.15.0"
     },
     "keywords": [
