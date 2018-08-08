@@ -11,7 +11,7 @@ import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { isArray } from "@thi.ng/checks/is-array";
-import { map } from "@thi.ng/iterators/map";
+import { map } from "@thi.ng/transducers/xform/map";
 
 import { Pair, SEMAPHORE, SortedMapOpts } from "./api";
 

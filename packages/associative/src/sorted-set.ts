@@ -1,6 +1,6 @@
 import { ICompare } from "@thi.ng/api/api";
 import { compare } from "@thi.ng/compare";
-import { map } from "@thi.ng/iterators/map";
+import { map } from "@thi.ng/transducers/xform/map";
 
 import { IEquivSet, Pair, SortedSetOpts } from "./api";
 import { SortedMap } from "./sorted-map";
@@ -37,7 +37,7 @@ export class SortedSet<T> extends Set<T> implements
     constructor(values?: Iterable<T>, opts?: Partial<SortedSetOpts<T>>) {
         super();
         __private.set(this, new SortedMap<T, T>(
-            values ? map((x) => [x, x], values) : null,
+            values ? map((x) => <Pair<T, T>>[x, x], values) : null,
             opts
         ));
     }
