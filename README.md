@@ -4,9 +4,16 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org/)
 [![Discord chat](https://img.shields.io/discord/445761008837984256.svg)](https://discord.gg/JhYcmBw)
 
-Mono-repository for thi.ng TypeScript/ES6 projects, a collection of largely
-data / transformation oriented packages and building blocks for reactive
-applications, dataflow graphs, components (not just UI related).
+Mono-repository for thi.ng TypeScript/ES6 projects, a collection of
+largely data transformation oriented packages and building blocks for
+functional programming, reactive applications, dataflow graphs /
+pipelines, components (not just UI related), all with a keen eye on
+simplicity & minimalism without sacrificing flexibility.
+
+**This project is NOT a framework**, provides no one-size-fits-all
+approach and instead encourages a mix & match philosophy for various key
+aspects of (web) application design. Most customization points only
+expect certain interfaces rather than concrete implementations.
 
 All / most packages:
 
@@ -18,6 +25,7 @@ All / most packages:
   single function / class per file to help w/ tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only @thi.ng internal runtime dependencies
+- have been used in production
 - declare public interfaces, enums & types in an `src/api.ts` file
   (larger packages only)
 - auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
@@ -56,6 +64,7 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/iges`](./packages/iges)                           | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                           | [changelog](./packages/iges/CHANGELOG.md)              | IGES format geometry serialization            |
 | [`@thi.ng/interceptors`](./packages/interceptors)           | [![version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)           | [changelog](./packages/interceptors/CHANGELOG.md)      | Composable event handlers & processor         |
 | [`@thi.ng/iterators`](./packages/iterators)                 | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)                 | [changelog](./packages/iterators/CHANGELOG.md)         | ES6 generators / iterators                    |
+| [`@thi.ng/memoize`](./packages/memoize)                     | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)                     | [changelog](./packages/memoize/CHANGELOG.md)           | Function memoization w/ customizable caching  |
 | [`@thi.ng/paths`](./packages/paths)                         | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)                         | [changelog](./packages/paths/CHANGELOG.md)             | Immutable nested object accessors             |
 | [`@thi.ng/pointfree`](./packages/pointfree)                 | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)                 | [changelog](./packages/pointfree/CHANGELOG.md)         | stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang)       | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)       | [changelog](./packages/pointfree-lang/CHANGELOG.md)    | Forth-like syntax layer for @thi.ng/pointfree |
@@ -71,6 +80,7 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/rstream-log`](./packages/rstream-log)             | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)             | [changelog](./packages/rstream-log/CHANGELOG.md)       | Hierarchical structured data logging          |
 | [`@thi.ng/rstream-query`](./packages/rstream-query)         | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)         | [changelog](./packages/rstream-query/CHANGELOG.md)     | Triple store & query engine                   |
 | [`@thi.ng/sax`](./packages/sax)                             | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                             | [changelog](./packages/sax/CHANGELOG.md)               | SAX-like XML parser / transducer              |
+| [`@thi.ng/strings`](./packages/strings)                     | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                     | [changelog](./packages/strings/CHANGELOG.md)           | Higher-order string formatting utils          |
 | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations               |
 | [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)     | [changelog](./packages/transducers-fsm/CHANGELOG.md)   | Finite State Machine                          |
 | [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)   | [changelog](./packages/transducers-hdom/CHANGELOG.md)  | Transducer based hdom UI updates              |
