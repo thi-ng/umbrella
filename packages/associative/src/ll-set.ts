@@ -1,13 +1,8 @@
-import { Predicate2 } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/equiv";
+import { Pair, Predicate2, SEMAPHORE } from "@thi.ng/api/api";
 import { DCons } from "@thi.ng/dcons";
+import { equiv } from "@thi.ng/equiv";
 
-import {
-    EquivSetOpts,
-    IEquivSet,
-    Pair,
-    SEMAPHORE
-} from "./api";
+import { EquivSetOpts, IEquivSet } from "./api";
 
 interface SetProps<T> {
     vals: DCons<T>;

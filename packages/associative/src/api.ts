@@ -6,10 +6,6 @@ import {
     Predicate2
 } from "@thi.ng/api/api";
 
-export type Pair<K, V> = [K, V];
-
-export const SEMAPHORE = Symbol("SEMAPHORE");
-
 export interface IEquivSet<T> extends
     Set<T>,
     ICopy<IEquivSet<T>>,

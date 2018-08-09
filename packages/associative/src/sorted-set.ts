@@ -1,8 +1,8 @@
-import { ICompare } from "@thi.ng/api/api";
+import { ICompare, Pair, } from "@thi.ng/api/api";
 import { compare } from "@thi.ng/compare";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { IEquivSet, Pair, SortedSetOpts } from "./api";
+import { IEquivSet, SortedSetOpts } from "./api";
 import { SortedMap } from "./sorted-map";
 
 const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();

@@ -2,16 +2,13 @@ import {
     ICopy,
     IEmpty,
     IEquiv,
-    IObjectOf
+    IObjectOf,
+    Pair,
+    SEMAPHORE
 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/equiv";
 
-import {
-    EquivMapOpts,
-    IEquivSet,
-    Pair,
-    SEMAPHORE
-} from "./api";
+import { EquivMapOpts, IEquivSet } from "./api";
 import { ArraySet } from "./array-set";
 
 interface MapProps<K, V> {

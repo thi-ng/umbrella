@@ -5,15 +5,17 @@ import {
     IEmpty,
     IEquiv,
     IObjectOf,
-    Predicate2
+    Pair,
+    Predicate2,
+    SEMAPHORE
 } from "@thi.ng/api/api";
+import { isArray } from "@thi.ng/checks/is-array";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { isArray } from "@thi.ng/checks/is-array";
 import { map } from "@thi.ng/transducers/xform/map";
 
-import { Pair, SEMAPHORE, SortedMapOpts } from "./api";
+import { SortedMapOpts } from "./api";
 
 // stores private properties for all instances
 // http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
