@@ -1,3 +1,4 @@
+import { Stringer } from "@thi.ng/strings/api";
 import { radix } from "@thi.ng/strings/radix";
 
 /**
@@ -6,4 +7,5 @@ import { radix } from "@thi.ng/strings/radix";
  * @param digits
  * @param prefix
  */
-export const hex = (digits = 2, prefix = ""): (x: number) => string => radix(16, digits, prefix);
+export const hex = (digits = 2, prefix = ""): Stringer<number> =>
+    radix(16, digits, prefix);

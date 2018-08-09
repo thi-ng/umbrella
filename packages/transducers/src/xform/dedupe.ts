@@ -1,6 +1,6 @@
-import { Predicate2 } from "@thi.ng/api/api";
+import { Predicate2, SEMAPHORE } from "@thi.ng/api/api";
 
-import { Reducer, SEMAPHORE, Transducer } from "../api";
+import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 

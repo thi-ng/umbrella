@@ -1,6 +1,6 @@
-import { Predicate2 } from "@thi.ng/api/api";
+import { Fn, Predicate2 } from "@thi.ng/api/api";
 
-import { Fn, Transducer } from "../api";
+import { Transducer } from "../api";
 import { fuzzyMatch } from "../func/fuzzy-match";
 import { $iter } from "../iterator";
 import { filter } from "./filter";

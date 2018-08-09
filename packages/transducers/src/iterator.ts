@@ -1,6 +1,7 @@
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 
-import { Reducer, SEMAPHORE, Transducer } from "./api";
+import { Reducer, Transducer } from "./api";
 import { isReduced, unreduced } from "./reduced";
 import { push } from "./rfn/push";
 

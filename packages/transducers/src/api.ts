@@ -1,8 +1,6 @@
-import { Comparator, IObjectOf } from "@thi.ng/api/api";
+import { Comparator, Fn, IObjectOf } from "@thi.ng/api/api";
 
 import { Reduced } from "./reduced";
-
-export type Fn<A, B> = (x: A) => B;
 
 export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
 
@@ -33,5 +31,3 @@ export interface SortOpts<A, B> {
      */
     compare: Comparator<B>;
 }
-
-export const SEMAPHORE = Symbol();

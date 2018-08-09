@@ -54,8 +54,8 @@ export function hexDump(...args: any[]): any {
         partition(cols, true),
         map(
             juxt(
-                (x) => x.map((y) => y[0]).join(" "),
-                (x) => x.map((y) => y[1]).join("")
+                (x: string[][]) => x.map((y) => y[0]).join(" "),
+                (x: string[][]) => x.map((y) => y[1]).join("")
             )
         ),
         mapIndexed((i, [h, a]) => `${U32(address + i * cols)} | ${h} | ${a}`)

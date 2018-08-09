@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { Fn, IObjectOf } from "@thi.ng/api/api";
 
 import { Transducer } from "../api";
 import { $iter } from "../iterator";
@@ -26,9 +26,9 @@ import { map } from "./map";
  * @param copy if true (default), creates a shallow copy of each incoming value
  * @param src
  */
-export function mapKeys(keys: IObjectOf<(x: any) => any>, copy?: boolean): Transducer<any, any>;
-export function mapKeys(keys: IObjectOf<(x: any) => any>, src: Iterable<any>): IterableIterator<any>;
-export function mapKeys(keys: IObjectOf<(x: any) => any>, copy: boolean, src: Iterable<any>): IterableIterator<any>;
+export function mapKeys(keys: IObjectOf<Fn<any, any>>, copy?: boolean): Transducer<any, any>;
+export function mapKeys(keys: IObjectOf<Fn<any, any>>, src: Iterable<any>): IterableIterator<any>;
+export function mapKeys(keys: IObjectOf<Fn<any, any>>, copy: boolean, src: Iterable<any>): IterableIterator<any>;
 export function mapKeys(...args: any[]): any {
     const iter = $iter(mapKeys, args);
     if (iter) {

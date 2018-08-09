@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { Fn, IObjectOf } from "@thi.ng/api/api";
 
-import { Fn, Transducer } from "../api";
+import { Transducer } from "../api";
 import { $iter } from "../iterator";
 import { map } from "./map";
 

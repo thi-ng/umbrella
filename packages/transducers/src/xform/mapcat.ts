@@ -1,4 +1,6 @@
-import { Fn, Transducer } from "../api";
+import { Fn } from "@thi.ng/api/api";
+
+import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { cat } from "./cat";
