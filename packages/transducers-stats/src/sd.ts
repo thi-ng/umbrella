@@ -7,6 +7,7 @@ import { partition } from "@thi.ng/transducers/xform/partition";
 
 import { mse } from "./mse";
 import { sma } from "./sma";
+import { $iter } from "@thi.ng/transducers/iterator";
 
 /**
  * Moving standard deviation, calculates mean square error to SMA and
@@ -18,11 +19,22 @@ import { sma } from "./sma";
  * of processed inputs.
  *
  * @param period
+ * @param scale
+ * @param src
  */
-export function sd(period = 20, scale = 1): Transducer<number, any> {
+export function sd(period?: number, scale?: number): Transducer<number, number>;
+export function sd(src: Iterable<number>): IterableIterator<number>;
+export function sd(period: number, scale: number, src: Iterable<number>): IterableIterator<number>;
+export function sd(...args: any[]): any {
+    const iter = $iter(sd, args);
+    if (iter) {
+        return iter;
+    }
+    const period: number = args[0] || 20;
+    const scale: number = args[1] || 1;
     return comp(
         multiplex(partition(period, 1), sma(period)),
         drop(period - 1),
-        map(([window, mean]) => Math.sqrt(mse(window, mean) / period) * scale)
+        map(([window, mean]: [number[], number]) => Math.sqrt(mse(window, mean) / period) * scale)
     );
 };
