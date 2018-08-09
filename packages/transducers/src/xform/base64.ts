@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { $iter, iterator } from "../iterator";
+import { $iter, iterator, iterator1 } from "../iterator";
 import { isReduced, reduced } from "../reduced";
 
 const B64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -14,7 +14,7 @@ export function base64Decode(): Transducer<string, number>;
 export function base64Decode(src: string): IterableIterator<number>;
 export function base64Decode(src?: string): any {
     return src ?
-        iterator(base64Decode(), src) :
+        iterator1(base64Decode(), src) :
         (rfn: Reducer<any, number>) => {
             const r = rfn[2];
             let bc = 0, bs = 0;
@@ -61,7 +61,7 @@ export function base64Encode(opts: Partial<Base64EncodeOpts>): Transducer<number
 export function base64Encode(src: Iterable<number>): IterableIterator<string>;
 export function base64Encode(opts: Partial<Base64EncodeOpts>, src: Iterable<number>): IterableIterator<string>;
 export function base64Encode(...args: any[]): any {
-    return $iter(base64Encode, args) ||
+    return $iter(base64Encode, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, string>) => {
             let state = 0;
             let b: number;

@@ -1,6 +1,6 @@
 import { Transducer } from "../api";
 import { swizzler } from "../func/swizzler";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 import { map } from "./map";
 
 /**
@@ -27,6 +27,6 @@ export function swizzle<T>(order: PropertyKey[]): Transducer<T, any[]>;
 export function swizzle<T>(order: PropertyKey[], src: Iterable<any>): IterableIterator<any[]>;
 export function swizzle(order: PropertyKey[], src?: Iterable<any>): any {
     return src ?
-        iterator(swizzle(order), src) :
+        iterator1(swizzle(order), src) :
         map(swizzler(order));
 }

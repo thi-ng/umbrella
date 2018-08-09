@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 
 /**
  * Transducer to create overlapping and non-overlapping sliding windows
@@ -37,7 +37,7 @@ export function partition<T>(size: number, all: boolean, src: Iterable<T>): Iter
 export function partition<T>(size: number, step: number, src: Iterable<T>): IterableIterator<T[]>;
 export function partition<T>(size: number, step: number, all: boolean, src: Iterable<T>): IterableIterator<T[]>;
 export function partition<T>(...args: any[]): any {
-    const iter = $iter(partition, args);
+    const iter = $iter(partition, args, iterator);
     if (iter) {
         return iter;
     }

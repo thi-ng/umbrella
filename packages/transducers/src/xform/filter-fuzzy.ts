@@ -18,7 +18,7 @@ export interface FilterFuzzyOpts<A, B> {
  * @thi.ng/equiv by default.
  *
  * ```
- * [...iterator(filterFuzzy({query: "ho"}), ["hello", "hallo", "hey", "heyoka"])]
+ * [...filterFuzzy({query: "ho"}, ["hello", "hallo", "hey", "heyoka"])]
  * // ["hello", "hallo", "heyoka"]
  * ```
  *

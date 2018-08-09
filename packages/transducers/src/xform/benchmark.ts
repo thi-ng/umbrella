@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 
 /**
  * Stateful transducer. Ignores the actual input values, but
@@ -21,7 +21,7 @@ export function benchmark(): Transducer<any, number>;
 export function benchmark(src: Iterable<any>): IterableIterator<number>;
 export function benchmark(src?: Iterable<any>): any {
     return src ?
-        iterator(benchmark(), src) :
+        iterator1(benchmark(), src) :
         (rfn: Reducer<any, number>) => {
             const r = rfn[2];
             let prev = Date.now();

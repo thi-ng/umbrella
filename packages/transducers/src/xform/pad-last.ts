@@ -11,19 +11,19 @@ import { isReduced } from "../reduced";
  * is empty, since length 0 is always a multiple.
  *
  * ```
- * [...iterator(padLast(8, 0), [1, 2, 3, 4, 5])]
+ * [...padLast(8, 0, [1, 2, 3, 4, 5])]
  * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  *
- * [...iterator(padLast(8, 0), [1])]
+ * [...padLast(8, 0, [1])]
  * // [ 1, 0, 0, 0, 0, 0, 0, 0 ]
  *
- * [...iterator(padLast(8, 0), [])]
+ * [...padLast(8, 0, [])]
  * // []
  *
- * [...iterator(padLast(2, 0), [1, 2, 3])]
+ * [...padLast(2, 0, [1, 2, 3])]
  * // [ 1, 2, 3, 0 ]
  *
- * [...iterator(padLast(2, 0), [1, 2, 3, 4])]
+ * [...padLast(2, 0, [1, 2, 3, 4])]
  * // [ 1, 2, 3, 4 ]
  * ```
  *

@@ -1,5 +1,5 @@
 import { Transducer } from "../api";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 import { map } from "./map";
 
 /**
@@ -7,7 +7,7 @@ import { map } from "./map";
  * sequence of these values.
  *
  * ```
- * [...iterator(pluck("id"), [{id: 1}, {id: 2}, {}])]
+ * [...pluck("id", [{id: 1}, {id: 2}, {}])]
  * // [ 1, 2, undefined ]
  * ```
  *
@@ -17,6 +17,6 @@ export function pluck<A, B>(key: PropertyKey): Transducer<A, B>;
 export function pluck<A, B>(key: PropertyKey, src: Iterable<A>): IterableIterator<B>;
 export function pluck<A>(key: PropertyKey, src?: Iterable<A>): any {
     return src ?
-        iterator(pluck(key), src) :
+        iterator1(pluck(key), src) :
         map((x: A) => x[key]);
 }

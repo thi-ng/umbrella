@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { iterator } from "../iterator";
+import { iterator, iterator1 } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -11,7 +11,7 @@ export function utf8Decode(): Transducer<number, string>;
 export function utf8Decode(src: Iterable<number>): string;
 export function utf8Decode(src?: Iterable<number>): any {
     return src ?
-        [...iterator(utf8Decode(), src)].join("") :
+        [...iterator1(utf8Decode(), src)].join("") :
         (rfn: Reducer<any, string>) => {
             const r = rfn[2];
             let state = 0, u0, u1, u2, u3, u4;

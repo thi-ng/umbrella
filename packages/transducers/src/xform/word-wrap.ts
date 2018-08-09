@@ -1,5 +1,5 @@
 import { Transducer } from "../api";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { partitionBy } from "./partition-by";
 
 export interface WordWrapOpts {
@@ -24,7 +24,7 @@ export function wordWrap(lineLength: number, opts?: Partial<WordWrapOpts>): Tran
 export function wordWrap(lineLength: number, src: Iterable<string>): IterableIterator<string[]>;
 export function wordWrap(lineLength: number, opts: Partial<WordWrapOpts>, src: Iterable<string>): IterableIterator<string[]>;
 export function wordWrap(...args: any[]): any {
-    const iter = $iter(wordWrap, args);
+    const iter = $iter(wordWrap, args, iterator);
     if (iter) {
         return iter;
     }

@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { shuffleN } from "../func/shuffle";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -21,7 +21,7 @@ export function streamShuffle<T>(n: number, maxSwaps?: number): Transducer<T, T>
 export function streamShuffle<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function streamShuffle<T>(n: number, maxSwaps: number, src: Iterable<T>): IterableIterator<T>;
 export function streamShuffle<T>(...args: any[]): any {
-    return $iter(streamShuffle, args) ||
+    return $iter(streamShuffle, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, T>) => {
             const n: number = args[0];
             const maxSwaps: number = args[1] || n;

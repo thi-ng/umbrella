@@ -3,7 +3,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 
 import { Reducer, Transducer } from "../api";
 import { identity } from "../func/identity";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 
 export interface PartitionSyncOpts<T> {
     key: (x: T) => PropertyKey;
@@ -75,7 +75,7 @@ export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts?: 
 export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
 export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts: Partial<PartitionSyncOpts<T>>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
 export function partitionSync<T>(...args: any[]): any {
-    return $iter(partitionSync, args) ||
+    return $iter(partitionSync, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
             let curr = {};
             let first = true;

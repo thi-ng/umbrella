@@ -3,7 +3,7 @@ import { compare as cmp } from "@thi.ng/compare";
 import { Reducer, SortOpts, Transducer } from "../api";
 import { binarySearch } from "../func/binary-search";
 import { identity } from "../func/identity";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -24,7 +24,7 @@ export function streamSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Tra
 export function streamSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
 export function streamSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
 export function streamSort<A, B>(...args: any[]): any {
-    const iter = $iter(streamSort, args);
+    const iter = $iter(streamSort, args, iterator);
     if (iter) {
         return iter;
     }

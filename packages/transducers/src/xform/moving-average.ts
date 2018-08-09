@@ -2,7 +2,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 
 /**
  * Computes the Simple Moving Average of given period.
@@ -22,7 +22,7 @@ export function movingAverage(period: number): Transducer<number, number>;
 export function movingAverage(period: number, src: Iterable<number>): IterableIterator<number>;
 export function movingAverage(period: number, src?: Iterable<number>): any {
     return src ?
-        iterator(movingAverage(period), src) :
+        iterator1(movingAverage(period), src) :
         (rfn: Reducer<any, number>) => {
             period |= 0;
             period < 2 && illegalArgs("period must be >= 2");

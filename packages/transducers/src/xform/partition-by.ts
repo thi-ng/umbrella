@@ -1,5 +1,5 @@
 import { Fn, SEMAPHORE, Transducer } from "../api";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -8,7 +8,7 @@ import { isReduced } from "../reduced";
  * happens yields chunk of buffered values.
  *
  * ```
- * [...iterator(partitionBy((x) => x & 1), [1, 2, 4, 6, 3, 5, 8, 4])]
+ * [...partitionBy((x) => x & 1, [1, 2, 4, 6, 3, 5, 8, 4])]
  * // [ [ 1 ], [ 2, 4, 6 ], [ 3, 5 ], [ 8, 4 ] ]
  * ```
  *
@@ -19,7 +19,7 @@ export function partitionBy<T>(fn: Fn<T, any> | (() => Fn<T, any>), stateful?: b
 export function partitionBy<T>(fn: Fn<T, any> | (() => Fn<T, any>), src: Iterable<T>): IterableIterator<T[]>;
 export function partitionBy<T>(fn: Fn<T, any> | (() => Fn<T, any>), stateful: boolean, src: Iterable<T>): IterableIterator<T[]>;
 export function partitionBy<T>(...args: any[]): any {
-    return $iter(partitionBy, args) ||
+    return $iter(partitionBy, args, iterator) ||
         (([init, complete, reduce]) => {
             const fn: Fn<T, any> | (() => Fn<T, any>) = args[0];
             const f = args[1] === true ? (<() => Fn<T, any>>fn)() : fn;

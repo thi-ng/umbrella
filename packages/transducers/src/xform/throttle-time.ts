@@ -1,5 +1,5 @@
 import { Transducer } from "../api";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
 
 /**
@@ -16,7 +16,7 @@ export function throttleTime<T>(delay: number): Transducer<T, T>;
 export function throttleTime<T>(delay: number, src: Iterable<T>): IterableIterator<T>;
 export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
     return src ?
-        iterator(throttleTime(delay), src) :
+        iterator1(throttleTime(delay), src) :
         throttle<T>(
             () => {
                 let last = 0;

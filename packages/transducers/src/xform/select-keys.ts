@@ -1,6 +1,6 @@
 import { Transducer } from "../api";
 import { keySelector } from "../func/key-selector";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 import { map } from "./map";
 
 /**
@@ -29,6 +29,6 @@ export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any>;
 export function selectKeys<T>(keys: PropertyKey[], src: Iterable<T>): IterableIterator<any>;
 export function selectKeys<T>(keys: PropertyKey[], src?: Iterable<T>): any {
     return src ?
-        iterator(selectKeys(keys), src) :
+        iterator1(selectKeys(keys), src) :
         map(keySelector(keys));
 }

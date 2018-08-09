@@ -1,5 +1,5 @@
 import { Reducer, Transducer } from "../api";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -12,7 +12,7 @@ export function partitionBits(destSize: number, srcSize?: number): Transducer<nu
 export function partitionBits(destSize: number, src: Iterable<number>): IterableIterator<number>;
 export function partitionBits(destSize: number, srcSize: number, src: Iterable<number>): IterableIterator<number>;
 export function partitionBits(...args: any[]): any {
-    return $iter(partitionBits, args) ||
+    return $iter(partitionBits, args, iterator) ||
         ((rfn: Reducer<any, number>) => {
             const destSize = args[0];
             const srcSize = args[1] || 8;

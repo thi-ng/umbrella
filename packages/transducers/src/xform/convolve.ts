@@ -3,7 +3,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Transducer } from "../api";
 import { range2d } from "../iter/range2d";
 import { tuples } from "../iter/tuples";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 import { add } from "../rfn/add";
 import { transduce } from "../transduce";
 import { map } from "./map";
@@ -54,7 +54,7 @@ export function convolve2d(opts: Convolution2DOpts): Transducer<number[], number
 export function convolve2d(opts: Convolution2DOpts, src: Iterable<number[]>): IterableIterator<number>;
 export function convolve2d(opts: Convolution2DOpts, _src?: Iterable<number[]>): any {
     if (_src) {
-        return iterator(convolve2d(opts), _src);
+        return iterator1(convolve2d(opts), _src);
     }
     const { src, width, height } = opts;
     const wrap = opts.wrap !== false;

@@ -3,7 +3,7 @@ import { compare as cmp } from "@thi.ng/compare";
 import { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { identity } from "../func/identity";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { mapcat } from "./mapcat";
 import { partition } from "./partition";
 
@@ -37,7 +37,7 @@ export function partitionSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): 
 export function partitionSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
 export function partitionSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
 export function partitionSort<A, B>(...args: any[]): any {
-    const iter = $iter(partitionSort, args);
+    const iter = $iter(partitionSort, args, iterator);
     if (iter) {
         return iter;
     }

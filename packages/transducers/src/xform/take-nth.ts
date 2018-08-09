@@ -1,5 +1,5 @@
 import { Transducer } from "../api";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
 
 /**
@@ -17,7 +17,7 @@ export function takeNth<T>(n: number): Transducer<T, T>;
 export function takeNth<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function takeNth<T>(n: number, src?: Iterable<T>): any {
     if (src) {
-        return iterator(takeNth(n), src);
+        return iterator1(takeNth(n), src);
     }
     n = Math.max(0, n - 1);
     return throttle(

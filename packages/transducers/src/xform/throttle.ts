@@ -2,7 +2,7 @@ import { StatefulPredicate } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { iterator } from "../iterator";
+import { iterator1 } from "../iterator";
 
 /**
  * Similar to `filter`, but works with possibly stateful predicates
@@ -24,7 +24,7 @@ export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T>;
 export function throttle<T>(pred: StatefulPredicate<T>, src: Iterable<T>): IterableIterator<T>;
 export function throttle<T>(pred: StatefulPredicate<T>, src?: Iterable<T>): any {
     return src ?
-        iterator(throttle(pred), src) :
+        iterator1(throttle(pred), src) :
         (rfn: Reducer<any, T>) => {
             const r = rfn[2];
             const _pred = pred();

@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -9,7 +9,7 @@ import { isReduced } from "../reduced";
  * lowest `wordSize` bits of each value are used (max 32).
  *
  * ```
- * [...iterator(bits(8), [0xf0, 0xaa])]
+ * [...bits(8, [0xf0, 0xaa])]
  * // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
  * [...iterator(comp(bits(8), partition(4)), [0xf0, 0xaa])]
  * // [ [ 1, 1, 1, 1 ], [ 0, 0, 0, 0 ], [ 1, 0, 1, 0 ], [ 1, 0, 1, 0 ] ]
@@ -23,7 +23,7 @@ export function bits(src: Iterable<number>): IterableIterator<number>;
 export function bits(size: number, src: Iterable<number>): IterableIterator<number>;
 export function bits(size: number, msb: boolean, src: Iterable<number>): IterableIterator<number>;
 export function bits(...args: any[]): any {
-    return $iter(bits, args) ||
+    return $iter(bits, args, iterator) ||
         ((rfn: Reducer<any, number>) => {
             const reduce = rfn[2];
             const size = (args[0] || 8) - 1;
