@@ -4,7 +4,6 @@ import * as isi from "@thi.ng/checks/is-iterable";
 import * as iss from "@thi.ng/checks/is-string";
 import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
-import { map } from "@thi.ng/iterators/map";
 
 const isArray = isa.isArray;
 const isFunction = isf.isFunction;
@@ -43,7 +42,11 @@ export function createDOM(parent: Element, tag: any, insert?: number) {
         return el;
     }
     if (!isString(tag) && isIterable(tag)) {
-        return [...(map((x) => createDOM(parent, x), tag))];
+        const res = [];
+        for (let t of tag) {
+            res.push(createDOM(parent, t));
+        }
+        return res;
     }
     if (tag == null) {
         return parent;
