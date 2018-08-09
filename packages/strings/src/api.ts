@@ -1,1 +1,1 @@
-export type Stringer<T> = (x: T) => string;
+export type Stringer<T> = (x: T, ...xs: any[]) => string;
