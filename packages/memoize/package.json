@@ -20,8 +20,6 @@
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "devDependencies": {
-        "@thi.ng/associative": "^0.5.11",
-        "@thi.ng/cache": "^0.2.15",
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.5.5",
         "mocha": "^5.2.0",
