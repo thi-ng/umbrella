@@ -1,4 +1,4 @@
-import { comp as _comp } from "@thi.ng/compose";
+import { comp as _comp } from "@thi.ng/compose/comp";
 
 import { Transducer } from "../api";
 
