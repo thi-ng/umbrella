@@ -28,7 +28,8 @@ export function* iterator<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): Itera
 }
 
 /**
- * Optimized version of `iterator()` for transducers which are guaranteed to:
+ * Optimized version of `iterator()` for transducers which are
+ * guaranteed to:
  *
  * 1) Only produce none or a single result per input
  * 2) Do not require a `completion` reduction step

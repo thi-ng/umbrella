@@ -12,6 +12,10 @@ export interface Reducer<A, B> extends Array<any> {
     [2]: ReductionFn<A, B>;
 };
 
+export interface IReducible<A, B> {
+    $reduce(rfn: ReductionFn<A, B>, acc: A): A | Reduced<A>;
+}
+
 export type TransformFn = (x: any) => any;
 export type TransformSubSpec = IObjectOf<TransformSpec | TransformFn>;
 export interface TransformSpec extends Array<any> {
