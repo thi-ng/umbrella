@@ -1,9 +1,21 @@
-import * as api from "@thi.ng/api/api";
+import {
+    Comparator,
+    ICompare,
+    ICopy,
+    IEmpty,
+    IEquiv,
+    ILength,
+    IRelease,
+    IStack,
+    Predicate
+} from "@thi.ng/api/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { IReducible, ReductionFn } from "@thi.ng/transducers/api";
+import { isReduced } from "@thi.ng/transducers/reduced";
 
 export interface ConsCell<T> {
     value: T;
@@ -12,13 +24,14 @@ export interface ConsCell<T> {
 }
 
 export class DCons<T> implements
-    api.ICompare<DCons<T>>,
-    api.ICopy<DCons<T>>,
-    api.IEmpty<DCons<T>>,
-    api.IEquiv,
-    api.ILength,
-    api.IRelease,
-    api.IStack<T, DCons<T>> {
+    ICompare<DCons<T>>,
+    ICopy<DCons<T>>,
+    IEmpty<DCons<T>>,
+    IEquiv,
+    ILength,
+    IReducible<any, T>,
+    IRelease,
+    IStack<T, DCons<T>> {
 
     head: ConsCell<T>;
     tail: ConsCell<T>;
@@ -107,6 +120,15 @@ export class DCons<T> implements
         }
     }
 
+    $reduce(rfn: ReductionFn<any, T>, acc: any) {
+        let cell = this.head;
+        while (cell && !isReduced(acc)) {
+            acc = rfn(acc, cell.value);
+            cell = cell.next;
+        }
+        return acc;
+    }
+
     drop() {
         const cell = this.head;
         if (cell) {
@@ -185,7 +207,7 @@ export class DCons<T> implements
         }
     }
 
-    insertSorted(value: T, cmp?: api.Comparator<T>) {
+    insertSorted(value: T, cmp?: Comparator<T>) {
         cmp = cmp || compare;
         let cell = this.head;
         while (cell) {
@@ -207,7 +229,7 @@ export class DCons<T> implements
         }
     }
 
-    findWith(fn: api.Predicate<T>) {
+    findWith(fn: Predicate<T>) {
         let cell = this.head;
         while (cell) {
             if (fn(cell.value)) {
@@ -423,7 +445,7 @@ export class DCons<T> implements
         return res;
     }
 
-    filter(pred: api.Predicate<T>) {
+    filter(pred: Predicate<T>) {
         const res = new DCons<T>();
         let cell = this.head;
         while (cell) {
