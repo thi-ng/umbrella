@@ -5,13 +5,37 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:2 -->
+<!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+    - [Basic usage patterns](#basic-usage-patterns)
+    - [Fuzzy search](#fuzzy-search)
+    - [Histogram generation & result grouping](#histogram-generation--result-grouping)
+    - [Pagination](#pagination)
+    - [Multiplexing / parallel transducer application](#multiplexing--parallel-transducer-application)
+    - [Moving average using sliding window](#moving-average-using-sliding-window)
+    - [Benchmark function execution time](#benchmark-function-execution-time)
+    - [Apply inspectors to debug transducer pipeline](#apply-inspectors-to-debug-transducer-pipeline)
+    - [Stream parsing / structuring](#stream-parsing--structuring)
+    - [CSV parsing](#csv-parsing)
+    - [Early termination](#early-termination)
+    - [Scan operator](#scan-operator)
+    - [Streaming hexdump](#streaming-hexdump)
+    - [Bitstream](#bitstream)
+    - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
+    - [Weighted random choices](#weighted-random-choices)
 - [API](#api)
+    - [Types](#types)
+    - [IReducible](#ireducible)
+    - [Transducer](#transducer)
+    - [Transformations](#transformations)
+    - [Transducers](#transducers)
+    - [Generators / Iterators](#generators--iterators)
+    - [Reducers](#reducers)
 - [Authors](#authors)
 - [License](#license)
 
@@ -69,13 +93,20 @@ Almost all functions can be imported selectively, but for development
 purposes full module re-exports are defined.
 
 ```ts
-// full import
+// full import (not recommended for browser use)
 import * as tx from "@thi.ng/transducers";
 
-// selective
+// selective / single function imports
 import { transduce } from "@thi.ng/transducers/transduce";
+
+// all transducers are under the /xform import path
+import { map } from "@thi.ng/transducers/xform/map";
+
+// all reducers are under the /rfn import path
 import { push } from "@thi.ng/transducers/rfn/push";
-import { map } from "@thi.ng/transducers/xforms/map";
+
+// all iterators are under the /iter import path
+import { range } from "@thi.ng/transducers/iter/range";
 ```
 
 ### Basic usage patterns
@@ -83,16 +114,16 @@ import { map } from "@thi.ng/transducers/xforms/map";
 ```ts
 // compose transducer
 xform = tx.comp(
-    tx.filter(x => (x & 1) > 0), // odd numbers only
+    tx.filter((x) => (x & 1) > 0), // odd numbers only
     tx.distinct(),               // distinct numbers only
-    tx.map(x=> x * 3)            // times 3
+    tx.map((x) => x * 3)            // times 3
 );
 
-// collect as array (tx.push)
+// collect into array (tx.push)
 tx.transduce(xform, tx.push(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // [ 3, 9, 15 ]
 
-// re-use same xform, but collect as set (tx.conj)
+// re-use same xform, but collect into ES6 Set
 tx.transduce(xform, tx.conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // Set { 3, 9, 15 }
 
@@ -100,6 +131,11 @@ tx.transduce(xform, tx.conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // no reduction, only transformations
 [...tx.iterator(xform, [1, 2, 3, 4, 5])]
 // [ 3, 9, 15]
+
+// alternatively provide an input iterable and
+// use xform as transforming iterator
+[...tx.filter((x) => /[A-Z]/.test(x), "Hello World!")].join("")
+// "HW"
 
 // single step execution
 // returns undefined if transducer returned no result for this input
@@ -532,6 +568,20 @@ created via `reduced(x)` and handled via these helper functions:
 
 #### `unreduced(x: any): any`
 
+### IReducible
+
+By default `reduce()` consumes inputs via the standard ES6 `Iterable`
+interface, i.e. using a `for..of..` loop. Array-like inputs are consumed
+via a traditional for-loop and custom optimized iterations can be
+provided via implementations of the `IReducible` interface in the source
+collection type. Examples can be found here:
+
+- [DCons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons/src/index.ts#L123)
+- [SortedMap](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/index.ts#L261)
+
+**Note:** The `IReducible` interface is only used by `reduce()`,
+`transduce()` and `run()`.
+
 ### Transducer
 
 From Rich Hickey's original definition:
@@ -611,6 +661,19 @@ transducer is assumed to include at least one `sideEffect()` step
 itself. Returns nothing.
 
 ### Transducers
+
+All of these functions can be used and composed as transducers. Most also
+accept an input iterable and then directly yield a transforming iterator, e.g.
+
+```ts
+// as transducer
+tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
+// [ 0, 10, 20, 30 ]
+
+// as transforming iterator
+[...tx.map((x) => x*10, tx.range(4))]
+// [ 0, 10, 20, 30 ]
+```
 
 - [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/xform/base64.ts)
 - [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/xform/base64.ts)
