@@ -13,6 +13,8 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { IReducible, ReductionFn } from "@thi.ng/transducers/api";
+import { isReduced } from "@thi.ng/transducers/reduced";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import { SortedMapOpts } from "./api";
@@ -69,7 +71,8 @@ export class SortedMap<K, V> extends Map<K, V> implements
     ICopy<SortedMap<K, V>>,
     ICompare<Map<K, V>>,
     IEmpty<SortedMap<K, V>>,
-    IEquiv {
+    IEquiv,
+    IReducible<any, Pair<K, V>> {
 
     static fromObject<T>(obj: IObjectOf<T>): SortedMap<PropertyKey, T> {
         const m = new SortedMap<PropertyKey, T>(null, { capacity: Object.keys(obj).length });
@@ -253,6 +256,16 @@ export class SortedMap<K, V> extends Map<K, V> implements
             this.set(p[0], p[1]);
         }
         return this;
+    }
+
+    $reduce(rfn: ReductionFn<any, Pair<K, V>>, acc: any) {
+        const $this = __private.get(this);
+        let node = $this.head[NEXT];
+        while (node[KEY] !== undefined && !isReduced(acc)) {
+            acc = rfn(acc, [node[KEY], node[VAL]]);
+            node = node[NEXT];
+        }
+        return acc;
     }
 
     *entries(key?: K, reverse = false): IterableIterator<Pair<K, V>> {
