@@ -7,8 +7,8 @@ This project is part of the
 
 ## About
 
-Binary run-length encoding packer/unpacker w/ flexible repeat bit
-widths. Written in TypeScript, distributed in ES6.
+Binary run-length encoding packer/unpacker w/ support for flexible input
+word sizes and repeat bit widths.
 
 Encoding format:
 
@@ -17,12 +17,14 @@ Encoding format:
 Then per value:
 
 - 1 bit - encoding flag (1 = RLE encoded, 0 = single occurrence)
-- 8 bits - value
+- n bits - value
 
 The following is only used for repeated values:
 
 - 2 bits - repeat class
 - 3/4/8/16 bits - repeat count - 1 (if > 0x10000 then split into chunks...)
+
+Brief overview for 8-bit word size (default):
 
 | Repeats | Original (bits) | RLE (bits) | Saving (bits) | Ratio    |
 |---------|-----------------|------------|---------------|----------|
@@ -61,15 +63,15 @@ let rle = require("@thi.ng/rle-pack");
 src = new Uint8Array(1024);
 src.set([1,1,1,1,1,2,2,2,2,3,3,3,4,4,5,4,4,3,3,3,2,2,2,2,1,1,1,1,1], 512);
 
-// pack data
-packed = rle.encodeBytes(src);
-// Uint8Array [0,0,4,0,128,96,63,240,18,64,135,3,20,16,32,88,32,96,98,129,14,2,72,6,3,196]
+// pack data (word size = 3 bits, i.e. value range 0 - 7)
+packed = rle.encodeBytes(src, src.length, 3);
+// Uint8Array [0, 0, 4, 0, 140, 7, 254, 73, 67, 177, 96, 87, 3, 98, 161, 201, 35, 1, 226]
 
 packed.length
-// 26 => 2.5% of original
+// 19 => 1.85% of original
 
 // unpack
-dest = rle.decodeBytes(packed);
+unpacked = rle.decodeBytes(packed, 3);
 ```
 
 ## Authors

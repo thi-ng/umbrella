@@ -11,21 +11,21 @@ const RLE_SIZES = [3, 4, 8, 16];
  * @param wordSize in bits, MUST be <= 8
  */
 export function encodeBytes(src: Iterable<number>, num: number, wordSize = 8) {
-    const stream = new BitOutputStream(num * wordSize / 8).write(num, 32);
+    const stream = new BitOutputStream(Math.ceil(num * wordSize / 8)).write(num, 32);
     const n1 = num - 1;
     let val;
     let tail = true;
-    let n = -1;
-    let i = 0, t;
+    let n = 0;
+    let i = 0;
     const write = () => {
         stream.write(n > 0 ? 1 : 0, 1);
         stream.write(val, wordSize);
         if (n > 0) {
-            t = (n < 0x8) ? 0 : (n < 0x10) ? 1 : (n < 0x100) ? 2 : 3;
+            const t = (n < 0x8) ? 0 : (n < 0x10) ? 1 : (n < 0x100) ? 2 : 3;
             stream.write(t, 2);
             stream.write(n, RLE_SIZES[t]);
+            n = 0;
         }
-        n = 0;
     };
     for (let x of src) {
         if (val === undefined) {
@@ -67,3 +67,4 @@ export function decodeBytes(src: Uint8Array, wordSize = 8) {
     }
     return out;
 }
+
