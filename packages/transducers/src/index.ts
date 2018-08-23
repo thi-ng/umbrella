@@ -12,6 +12,7 @@ export * from "./rfn/assoc-obj";
 export * from "./rfn/conj";
 export * from "./rfn/count";
 export * from "./rfn/every";
+export * from "./rfn/fill";
 export * from "./rfn/frequencies";
 export * from "./rfn/group-binary";
 export * from "./rfn/group-by-map";
