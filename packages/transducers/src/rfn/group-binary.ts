@@ -11,16 +11,17 @@ function branchPred<T>(key: (x: T) => number, b: number, l: PropertyKey, r: Prop
 /**
  * Creates a bottom-up, unbalanced binary tree of desired depth and
  * choice of data structures. Any value can be indexed, as long as a
- * numeric representation (key) can be obtained. This mapping is produced
- * by the supplied `key` function. IMPORTANT: the returned values
- * MUST be unsigned and less than the provided bit length (i.e. 2^`bits`).
+ * numeric representation (key) can be obtained. This numeric key is
+ * produced by the supplied `key` function. IMPORTANT: the returned
+ * values MUST be unsigned and less than the provided bit length (i.e.
+ * `0 .. (2^bits) - 1` range).
  *
  * By default the tree is constructed using plain objects for branches,
  * with left branches stored as "l" and right ones as "r". The original
- * values are stored at the lowest tree level using a customizable nested
- * reducer. By default leaves are collected in arrays (using the `push()`
- * reducer), but any suitable reducer can be used (e.g. `conj()` to
- * collect values into sets).
+ * values are stored at the lowest tree level using a customizable
+ * nested reducer. By default leaves are collected in arrays (using the
+ * `push()` reducer), but any suitable reducer can be used (e.g.
+ * `conj()` to collect values into sets).
  *
  * Index by lowest 4-bits of ID value:
  *
@@ -72,7 +73,8 @@ function branchPred<T>(key: (x: T) => number, b: number, l: PropertyKey, r: Prop
  *
  * @param bits index range (always from 0)
  * @param key key function
- * @param branch function to create a new branch container (object or array)
+ * @param branch function to create a new branch container (object or
+ * array)
  * @param leaf reducer for leaf collection
  * @param left key for storing left branches (e.g. `0` for arrays)
  * @param right key for storing right branches (e.g. `1` for arrays)
@@ -81,17 +83,17 @@ export function groupBinary<T>(
     bits: number,
     key: (x: T) => number,
     branch?: () => IObjectOf<T[]>,
-    leaf: Reducer<any, T> = push(),
+    leaf?: Reducer<any, T>,
     left: PropertyKey = "l",
     right: PropertyKey = "r") {
 
-    let rfn: Reducer<any, T> = groupByObj(
-        branchPred(key, 1, left, right),
-        leaf,
-        branch
-    );
+    const init = branch || (() => ({}));
+    let rfn: Reducer<any, T> = groupByObj({
+        key: branchPred(key, 1, left, right),
+        group: leaf || push(),
+    });
     for (let i = 2, maxIndex = 1 << bits; i < maxIndex; i <<= 1) {
-        rfn = groupByObj(branchPred(key, i, left, right), rfn, branch);
+        rfn = groupByObj({ key: branchPred(key, i, left, right), group: [init, rfn[1], rfn[2]] });
     }
-    return rfn;
+    return [init, rfn[1], rfn[2]];
 }

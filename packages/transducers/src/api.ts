@@ -35,3 +35,8 @@ export interface SortOpts<A, B> {
      */
     compare: Comparator<B>;
 }
+
+export interface GroupByOpts<SRC, KEY, GROUP> {
+    key: Fn<SRC, KEY>;
+    group: Reducer<GROUP, SRC>;
+}
