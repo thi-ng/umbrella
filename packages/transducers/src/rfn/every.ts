@@ -1,7 +1,7 @@
 import { Predicate } from "@thi.ng/api/api";
 
 import { Reducer } from "../api";
-import { reducer } from "../reduce";
+import { $$reduce, reducer } from "../reduce";
 import { reduced } from "../reduced";
 
 /**
@@ -19,7 +19,15 @@ import { reduced } from "../reduced";
  *
  * @param pred
  */
-export function every<T>(pred?: Predicate<T>): Reducer<boolean, T> {
+export function every<T>(pred?: Predicate<T>): Reducer<boolean, T>;
+export function every<T>(xs: Iterable<T>): boolean;
+export function every<T>(pred: Predicate<T>, xs: Iterable<T>): boolean;
+export function every(...args: any[]): any {
+    const res = $$reduce(every, args);
+    if (res !== undefined) {
+        return res;
+    }
+    const pred = args[0];
     return reducer(
         () => true,
         pred ?

@@ -11,6 +11,7 @@ export * from "./rfn/assoc-map";
 export * from "./rfn/assoc-obj";
 export * from "./rfn/conj";
 export * from "./rfn/count";
+export * from "./rfn/div";
 export * from "./rfn/every";
 export * from "./rfn/fill";
 export * from "./rfn/frequencies";
@@ -29,6 +30,7 @@ export * from "./rfn/push";
 export * from "./rfn/reductions";
 export * from "./rfn/some";
 export * from "./rfn/str";
+export * from "./rfn/sub";
 
 export * from "./xform/base64";
 export * from "./xform/benchmark";

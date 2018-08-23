@@ -1,9 +1,10 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isIterable } from "@thi.ng/checks/is-iterable";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
-import { Reducer, IReducible } from "./api";
-import { isReduced, unreduced, Reduced } from "./reduced";
+import { IReducible, Reducer } from "./api";
+import { isReduced, Reduced, unreduced } from "./reduced";
 
 export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A;
 export function reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A;
@@ -57,3 +58,12 @@ export function reduce<A, B>(...args: any[]): A {
 export function reducer<A, B>(init: () => A, rfn: (acc: A, x: B) => A | Reduced<A>) {
     return <Reducer<A, B>>[init, (acc) => acc, rfn];
 }
+
+export const $$reduce = (rfn: (...args: any[]) => Reducer<any, any>, args: any[]) => {
+    const n = args.length - 1;
+    return isIterable(args[n]) ?
+        args.length > 1 ?
+            reduce(rfn.apply(null, args.slice(0, n)), args[n]) :
+            reduce(rfn(), args[0]) :
+        undefined;
+};

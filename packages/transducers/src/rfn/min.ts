@@ -1,6 +1,10 @@
 import { Reducer } from "../api";
-import { reducer } from "../reduce";
+import { reduce, reducer } from "../reduce";
 
-export function min(): Reducer<number, number> {
-    return reducer(() => Number.POSITIVE_INFINITY, (acc, x) => Math.min(acc, x));
+export function min(): Reducer<number, number>;
+export function min(xs: Iterable<number>): number;
+export function min(xs?: Iterable<number>): any {
+    return xs ?
+        reduce(min(), xs) :
+        reducer(() => Number.POSITIVE_INFINITY, (acc, x: number) => Math.min(acc, x));
 }

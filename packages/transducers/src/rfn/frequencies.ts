@@ -1,8 +1,16 @@
+import { Fn } from "@thi.ng/api/api";
+
 import { Reducer } from "../api";
 import { identity } from "../func/identity";
+import { $$reduce } from "../reduce";
 import { count } from "./count";
 import { groupByMap } from "./group-by-map";
 
-export function frequencies<A, B>(key: ((x: A) => B) = <any>identity): Reducer<Map<B, number>, A> {
-    return groupByMap(key, count());
+export function frequencies<A>(): Reducer<Map<A, number>, A>;
+export function frequencies<A>(xs: Iterable<A>): Map<A, number>;
+export function frequencies<A, B>(key: Fn<A, B>): Reducer<Map<B, number>, A>;
+export function frequencies<A, B>(key: Fn<A, B>, xs: Iterable<A>): Map<B, number>;
+export function frequencies(...args: any[]): any {
+    return $$reduce(frequencies, args) ||
+        groupByMap({ key: args[0] || identity, group: count() });
 }
