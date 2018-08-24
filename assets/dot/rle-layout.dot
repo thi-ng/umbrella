@@ -1,0 +1,31 @@
+digraph g {
+    fontname=Inconsolata;
+    rankdir=LR;
+    node[shape=square,width=1.5,fontname=Inconsolata];
+
+    subgraph cluster0 {
+        label="header";
+        style="filled";
+        bgcolor="#eeeeee";
+        num[label="num values\n(32 bits)"];
+        wordsize[label="word size\n(5 bits)"];
+        rlesizes[label="RLE sizes\n(4x4 bits)"];
+    }
+
+    subgraph cluster1 {
+        label="each value";
+        bgcolor="#cccccc";
+        flag[label="RLE flag\n(1 bit)"];
+        val[label="value\n(word size)"];
+
+        subgraph cluster1b {
+            bgcolor="#aaaaaa";
+            label="repeats only";
+            repeatid[label="repeat ID\n(2 bits)"];
+            repeat[label="repeats\n(varying)"];
+        }
+    }
+
+    num -> wordsize -> rlesizes -> flag -> val -> repeatid -> repeat;
+
+}
