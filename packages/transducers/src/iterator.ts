@@ -40,9 +40,12 @@ export function* iterator<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): Itera
 export function* iterator1<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B> {
     const reduce = (<Reducer<B, A>>xform([null, null, (acc, x) => (acc = x)]))[2];
     for (let x of xs) {
-        const y = reduce(<any>SEMAPHORE, x);
+        let y = reduce(<any>SEMAPHORE, x);
         if (isReduced(y)) {
-            yield unreduced(y.deref());
+            y = unreduced(y.deref());
+            if (<any>y !== SEMAPHORE) {
+                yield <B>y;
+            }
             return;
         }
         if (<any>y !== SEMAPHORE) {
