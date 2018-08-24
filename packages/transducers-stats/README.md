@@ -25,6 +25,12 @@ for [technical
 statistical analysis and replaces the older
 [@thi.ng/indicators](https://github.com/thi-ng/indicators) package.
 
+The transducers provided here accept an optional input iterable, which
+allows them them to be used directly instead of having to wrap their
+call in one of the transducer execution functions (i.e. `transduce()`,
+`iterator()`). If executed this way, the functions will return a
+transforming ES6 iterator (generator) instead of a transducer.
+
 ## Supported indicators
 
 - [Bollinger Bands](./src/bollinger.ts)
@@ -53,12 +59,16 @@ For some realworld use, please see the [crypto
 chart](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
 example.
 
+![screenshot](https://github.com/thi-ng/umbrella/tree/master/assets/crypto-chart.png)
+
 ```ts
 import * as tx from "@thi.ng/transducers";
 import * as stats from "@thi.ng/transducers-stats";
 
 // Simple moving average (SMA) (sliding window size 5)
-[...tx.iterator(stats.sma(5), [1,2,3,4,5,10,11,12,13,14,9,8,7,6,5])]
+// if an input is given (as is the case here), then returns
+// a transforming iterator instead of transducer
+[...stats.sma(5, [1,2,3,4,5,10,11,12,13,14,9,8,7,6,5])]
 // [ 3, 4.8, 6.6, 8.4, 10.2, 12, 11.8, 11.2, 10.2, 8.8, 7 ]
 
 // compute multiple stats at once
