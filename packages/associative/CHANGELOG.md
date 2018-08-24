@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.5.11...@thi.ng/associative@0.6.0) (2018-08-24)
+
+
+### Features
+
+* **associative:** add IReducible impls for SortedMap & SortedSet ([f14f7ce](https://github.com/thi-ng/umbrella/commit/f14f7ce))
+
+
+
+
 <a name="0.5.11"></a>
 ## [0.5.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.5.10...@thi.ng/associative@0.5.11) (2018-08-01)
 

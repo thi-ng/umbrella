@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rle-pack",
-    "version": "0.2.24",
+    "version": "1.0.0",
     "description": "Binary run-length encoding packer w/ flexible repeat bit widths",
     "main": "./index.js",
     "typings": "./index.d.ts",

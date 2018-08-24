@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.16.0...@thi.ng/transducers@2.0.0) (2018-08-24)
+
+
+### Bug Fixes
+
+* **transducers:** arg handling in rename() ([7a5be21](https://github.com/thi-ng/umbrella/commit/7a5be21))
+* **transducers:** copy&paste error (push) ([832e57f](https://github.com/thi-ng/umbrella/commit/832e57f))
+* **transducers:** hex type decl ([723da5b](https://github.com/thi-ng/umbrella/commit/723da5b))
+* **transducers:** iterator1() final reduced value handling ([d861bdd](https://github.com/thi-ng/umbrella/commit/d861bdd))
+
+
+### Code Refactoring
+
+* **transducers:** rename inspect() => trace() ([e713704](https://github.com/thi-ng/umbrella/commit/e713704))
+
+
+### Features
+
+* **transducers:** add fill() & fillN() reducers ([0bd860e](https://github.com/thi-ng/umbrella/commit/0bd860e))
+* **transducers:** add GroupByOpts interface, update groupBy* reducers ([2c3a114](https://github.com/thi-ng/umbrella/commit/2c3a114))
+* **transducers:** update all reducers to accept opt iterables ([89b4ad5](https://github.com/thi-ng/umbrella/commit/89b4ad5))
+* **transducers:** update all xforms to also work as iterator ([bae8a1d](https://github.com/thi-ng/umbrella/commit/bae8a1d))
+* **transducers:** update base64Encode() to return string if input given ([599f2b6](https://github.com/thi-ng/umbrella/commit/599f2b6))
+
+
+### Performance Improvements
+
+* **transducers:** add IReducible, update reduce() ([9d83255](https://github.com/thi-ng/umbrella/commit/9d83255))
+* **transducers:** add iterator1(), update various xforms ([ab662d8](https://github.com/thi-ng/umbrella/commit/ab662d8))
+
+
+### BREAKING CHANGES
+
+* **transducers:** groupByMap() & groupByObj() args now given as
+options object
+* **transducers:** replace some xform args with options objects, impacted are:
+
+- convolve2d()
+- filterFuzzy()
+- hexDump()
+- movingMedian()
+- partitionSort()
+- partitionSync()
+- streamSort()
+- wordWrap()
+* **transducers:** rename inspect() => trace()
+
+
+
+
 <a name="1.16.0"></a>
 # [1.16.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.15.0...@thi.ng/transducers@1.16.0) (2018-08-08)
 

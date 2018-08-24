@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "3.0.32",
+    "version": "3.0.33",
     "description": "Lightweight vanilla ES6 UI component & virtual DOM system",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -20,7 +20,7 @@
         "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^1.4.6",
+        "@thi.ng/atom": "^1.4.7",
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.5.5",
         "mocha": "^5.2.0",
@@ -29,11 +29,11 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.0.6",
+        "@thi.ng/api": "^4.1.0",
         "@thi.ng/checks": "^1.5.7",
-        "@thi.ng/diff": "^1.0.21",
+        "@thi.ng/diff": "^1.0.22",
         "@thi.ng/equiv": "^0.1.7",
-        "@thi.ng/hiccup": "^2.0.9"
+        "@thi.ng/hiccup": "^2.0.10"
     },
     "keywords": [
         "browser",

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@0.2.24...@thi.ng/rle-pack@1.0.0) (2018-08-24)
+
+
+### Bug Fixes
+
+* **rle-pack:** fix initial repeat counts in encodeBytes(), update readme ([8565edb](https://github.com/thi-ng/umbrella/commit/8565edb))
+
+
+### Features
+
+* **rle-pack:** add support for custom input word sizes ([fd8e761](https://github.com/thi-ng/umbrella/commit/fd8e761))
+* **rle-pack:** further update data format (non-repeats) ([4041521](https://github.com/thi-ng/umbrella/commit/4041521))
+* **rle-pack:** update data format, custom repeat sizes, rename fns ([694a253](https://github.com/thi-ng/umbrella/commit/694a253))
+
+
+### BREAKING CHANGES
+
+* **rle-pack:** new API and encoding format, see readme
+for details
+
+
+
+
 <a name="0.2.24"></a>
 ## [0.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@0.2.23...@thi.ng/rle-pack@0.2.24) (2018-08-01)
 

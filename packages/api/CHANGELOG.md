@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.6...@thi.ng/api@4.1.0) (2018-08-24)
+
+
+### Features
+
+* **api:** add new/move type aliases into api.ts ([cf30ba2](https://github.com/thi-ng/umbrella/commit/cf30ba2))
+* **api:** add NumericArray and TypedArray types ([519394b](https://github.com/thi-ng/umbrella/commit/519394b))
+
+
+
+
 <a name="4.0.6"></a>
 ## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.5...@thi.ng/api@4.0.6) (2018-08-01)
 
