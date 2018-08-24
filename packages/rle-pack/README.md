@@ -17,7 +17,7 @@ will be encoded using additional RLE chunks...
 
 ### Encoding format
 
-![data layout](https://github.com/thi-ng/umbrella/tree/master/packages/assets/rle-layout.png)
+![data layout](../../assets/rle-layout.png)
 
 - 32 bits - original number of words
 - 5 bits - word size
