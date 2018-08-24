@@ -1,5 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
+import { $iter } from "../iterator";
 
 /**
  * Transducer. Similar to `map`, but given `fn` takes two arguments:
@@ -18,11 +19,16 @@ import { compR } from "../func/compr";
  * @param fn transformation function
  * @param offset initial index
  */
-export function mapIndexed<A, B>(fn: (i: number, x: A) => B, offset = 0): Transducer<A, B> {
-    return (rfn: Reducer<any, B>) => {
-        const r = rfn[2];
-        let i = offset;
-        return compR(rfn,
-            (acc, x: A) => r(acc, fn(i++, x)));
-    };
+export function mapIndexed<A, B>(fn: (i: number, x: A) => B, offset?: number): Transducer<A, B>;
+export function mapIndexed<A, B>(fn: (i: number, x: A) => B, src: Iterable<A>): IterableIterator<B>;
+export function mapIndexed<A, B>(fn: (i: number, x: A) => B, offset: number, src: Iterable<A>): IterableIterator<B>;
+export function mapIndexed<A, B>(...args: any[]): any {
+    return $iter(mapIndexed, args) ||
+        ((rfn: Reducer<any, B>) => {
+            const r = rfn[2];
+            const fn: (i: number, x: A) => B = args[0];
+            let i: number = args[1] || 0;
+            return compR(rfn,
+                (acc, x: A) => r(acc, fn(i++, x)));
+        });
 }

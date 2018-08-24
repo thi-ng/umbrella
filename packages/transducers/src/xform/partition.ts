@@ -1,4 +1,5 @@
 import { Reducer, Transducer } from "../api";
+import { $iter, iterator } from "../iterator";
 
 /**
  * Transducer to create overlapping and non-overlapping sliding windows
@@ -8,13 +9,13 @@ import { Reducer, Transducer } from "../api";
  * be incomplete / partially filled only.
  *
  * ```
- * [...iterator(partition(3), range(10))]
+ * [...partition(3, range(10))]
  * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
  *
- * [...iterator(partition(3, true), range(10))]
+ * [...partition(3, true, range(10))]
  * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 9 ] ]
  *
- * [...iterator(partition(3, 1), range(10))]
+ * [...partition(3, 1, range(10))]
  * // [ [ 0, 1, 2 ],
  * //   [ 1, 2, 3 ],
  * //   [ 2, 3, 4 ],
@@ -29,9 +30,17 @@ import { Reducer, Transducer } from "../api";
  */
 export function partition<T>(size: number): Transducer<T, T[]>;
 export function partition<T>(size: number, all: boolean): Transducer<T, T[]>;
-export function partition<T>(size: number, step: number): Transducer<T, T[]>
-export function partition<T>(size: number, step: number, all: boolean): Transducer<T, T[]>
-export function partition<T>(...args: any[]): Transducer<T, T[]> {
+export function partition<T>(size: number, step: number): Transducer<T, T[]>;
+export function partition<T>(size: number, step: number, all: boolean): Transducer<T, T[]>;
+export function partition<T>(size: number, src: Iterable<T>): IterableIterator<T[]>;
+export function partition<T>(size: number, all: boolean, src: Iterable<T>): IterableIterator<T[]>;
+export function partition<T>(size: number, step: number, src: Iterable<T>): IterableIterator<T[]>;
+export function partition<T>(size: number, step: number, all: boolean, src: Iterable<T>): IterableIterator<T[]>;
+export function partition<T>(...args: any[]): any {
+    const iter = $iter(partition, args, iterator);
+    if (iter) {
+        return iter;
+    }
     let size = args[0], all, step;
     if (typeof args[1] == "number") {
         step = args[1];

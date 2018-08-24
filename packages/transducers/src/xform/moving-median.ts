@@ -1,9 +1,8 @@
-import { Comparator } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/compare";
-
-import { Transducer } from "../api";
+import { compare as cmp } from "@thi.ng/compare";
+import { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { identity } from "../func/identity";
+import { $iter } from "../iterator";
 import { map } from "./map";
 import { partition } from "./partition";
 
@@ -14,10 +13,26 @@ import { partition } from "./partition";
  * value and change sorting behavior.
  *
  * @param n window size
- * @param key sort key lookup
- * @param cmp comparator
+ * @param opts
+ * @param src
  */
-export function movingMedian<A, B>(n: number, key: ((x: A) => B) = <any>identity, cmp: Comparator<B> = compare): Transducer<A, A> {
+export function movingMedian<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
+export function movingMedian<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
+export function movingMedian<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function movingMedian<A, B>(...args: any[]): any {
+    const iter = $iter(movingMedian, args);
+    if (iter) {
+        return iter;
+    }
+    const { key, compare } = <SortOpts<A, B>>{
+        key: <any>identity,
+        compare: cmp,
+        ...args[1]
+    };
+    const n = args[0];
     const m = n >> 1;
-    return comp(partition(n, 1, true), map((window) => [...window].sort((a, b) => cmp(key(a), key(b)))[m]));
+    return comp(
+        partition(n, 1, true),
+        map((window: A[]) => window.slice().sort((a, b) => compare(key(a), key(b)))[m])
+    );
 }

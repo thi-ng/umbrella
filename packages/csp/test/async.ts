@@ -1,5 +1,4 @@
 import * as tx from "@thi.ng/transducers";
-import { identity } from "@thi.ng/transducers/func/identity";
 
 import { Channel, PubSub } from "../src";
 
@@ -85,7 +84,7 @@ async function transducers() {
     ch.into([1, 2, 2, 2, 1, 5, 3, 3]);
     await ch.consume();
     const src = [5, 2, 8, 10, 20, 15, 12, 18, 27, 78, 35, 16, 2, 99, 123, 42]
-    ch = Channel.from<number>(src, <any>tx.delayed(100)).pipe(tx.streamSort(8, identity));
+    ch = Channel.from<number>(src, <any>tx.delayed(100)).pipe(tx.streamSort(8));
     await ch.consume();
 
 }

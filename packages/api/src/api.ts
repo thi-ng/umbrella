@@ -4,6 +4,8 @@ export const EVENT_ALL = "*";
 export const EVENT_ENABLE = "enable";
 export const EVENT_DISABLE = "disable";
 
+export const SEMAPHORE = Symbol();
+
 /**
  * Generic 2-element comparator function type alias. Must follow this
  * contract and return:
@@ -15,14 +17,31 @@ export const EVENT_DISABLE = "disable";
 export type Comparator<T> = (a: T, b: T) => number;
 
 /**
+ * A single arg function from A => B.
+ */
+export type Fn<A, B> = (x: A) => B;
+
+/**
+ * A vararg arg function to type T.
+ */
+export type FnAny<T> = (...xs: any[]) => T;
+
+/**
  * Event listener.
  */
 export type Listener = (e: Event) => void;
+
+export type NumericArray = number[] | TypedArray;
 
 /**
  * Lookup path for nested data structures.
  */
 export type Path = PropertyKey | PropertyKey[];
+
+/**
+ * A key-value pair / tuple.
+ */
+export type Pair<K, V> = [K, V];
 
 /**
  * Predicate function mapping given value to true/false.
@@ -43,6 +62,17 @@ export type StatefulPredicate<T> = () => Predicate<T>;
  * Higher order `Predicate2` builder. Possibly stateful.
  */
 export type StatefulPredicate2<T> = () => Predicate2<T>;
+
+export type TypedArray =
+    Float32Array |
+    Float64Array |
+    Int8Array |
+    Int16Array |
+    Int32Array |
+    Uint8Array |
+    Uint8ClampedArray |
+    Uint16Array |
+    Uint32Array;
 
 /**
  * Observer function for `IWatch` implementations.

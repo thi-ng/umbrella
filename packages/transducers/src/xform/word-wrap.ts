@@ -1,27 +1,46 @@
 import { Transducer } from "../api";
+import { $iter, iterator } from "../iterator";
 import { partitionBy } from "./partition-by";
+
+export interface WordWrapOpts {
+    delim: number;
+    always: boolean;
+}
 
 /**
  * Returns transducer partitioning words into variable sized arrays
  * based on given `lineLength` (default 80). The optional `delim` and
- * `alwaysDelim` args can be used to adjust the length and usage of
- * delimiters between each word. If `alwaysDelim` is true, the delimiter
+ * `always` args can be used to adjust the length and usage of
+ * delimiters between each word. If `always` is true, the delimiter
  * length is added to each word, even near line endings. If false
  * (default), the last word on each line can still fit even if there's
  * no space for the delimiter.
  *
  * @param lineLength
- * @param delim
- * @param alwaysDelim
+ * @param opts
+ * @param src
  */
-export function wordWrap(lineLength = 80, delim = 1, alwaysDelim = false): Transducer<string, string[]> {
+export function wordWrap(lineLength: number, opts?: Partial<WordWrapOpts>): Transducer<string, string[]>;
+export function wordWrap(lineLength: number, src: Iterable<string>): IterableIterator<string[]>;
+export function wordWrap(lineLength: number, opts: Partial<WordWrapOpts>, src: Iterable<string>): IterableIterator<string[]>;
+export function wordWrap(...args: any[]): any {
+    const iter = $iter(wordWrap, args, iterator);
+    if (iter) {
+        return iter;
+    }
+    const lineLength = args[0];
+    const { delim, always } = <WordWrapOpts>{
+        delim: 1,
+        always: true,
+        ...args[1]
+    };
     return partitionBy(
         () => {
             let n = 0;
             let flag = false;
             return (w: string) => {
                 n += w.length + delim;
-                if (n > lineLength + (alwaysDelim ? 0 : delim)) {
+                if (n > lineLength + (always ? 0 : delim)) {
                     flag = !flag;
                     n = w.length + delim;
                 }

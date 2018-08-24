@@ -2,6 +2,7 @@ import { Predicate } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
+import { $iter } from "../iterator";
 import { reduced } from "../reduced";
 
 /**
@@ -11,17 +12,23 @@ import { reduced } from "../reduced";
  * `reduced()` value).
  *
  * ```
- * [...iterator(takeWhile((x) => x < 5), range(10))]
+ * [...takeWhile((x) => x < 5, range(10))]
  * // [ 0, 1, 2, 3, 4 ]
  * ```
  *
- * @param n
+ * @param pred
+ * @param src
  */
-export function takeWhile<T>(pred: Predicate<T>): Transducer<T, T> {
-    return (rfn: Reducer<any, T>) => {
-        const r = rfn[2];
-        let ok = true;
-        return compR(rfn,
-            (acc, x) => (ok = ok && pred(x)) ? r(acc, x) : reduced(acc));
-    };
+export function takeWhile<T>(pred?: Predicate<T>): Transducer<T, T>;
+export function takeWhile<T>(src: Iterable<T>): IterableIterator<T>;
+export function takeWhile<T>(pred: Predicate<T>, src: Iterable<T>): IterableIterator<T>;
+export function takeWhile<T>(...args: any[]): any {
+    return $iter(takeWhile, args) ||
+        ((rfn: Reducer<any, T>) => {
+            const r = rfn[2];
+            const pred = args[0];
+            let ok = true;
+            return compR(rfn,
+                (acc, x: T) => (ok = ok && pred(x)) ? r(acc, x) : reduced(acc));
+        });
 }

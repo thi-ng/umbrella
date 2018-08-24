@@ -1,6 +1,6 @@
 import { Transducer } from "../api";
 import { keySelector } from "../func/key-selector";
-
+import { iterator1 } from "../iterator";
 import { map } from "./map";
 
 /**
@@ -11,8 +11,8 @@ import { map } from "./map";
  * Note: For single key extraction `pluck()` is a faster alternative.
  *
  * ```
- * [...iterator(
- *   selectKeys(["id", "age"]),
+ * [...selectKeys(
+ *   ["id", "age"],
  *   [
  *     {id: 1, age: 23, name: "alice"},
  *     {id: 2, age: 42, name: "bob"},
@@ -23,7 +23,12 @@ import { map } from "./map";
  * ```
  *
  * @param keys
+ * @param src
  */
-export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any> {
-    return map(keySelector(keys));
+export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any>;
+export function selectKeys<T>(keys: PropertyKey[], src: Iterable<T>): IterableIterator<any>;
+export function selectKeys<T>(keys: PropertyKey[], src?: Iterable<T>): any {
+    return src ?
+        iterator1(selectKeys(keys), src) :
+        map(keySelector(keys));
 }

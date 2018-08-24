@@ -1,6 +1,7 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { compR } from "@thi.ng/transducers/func/compr";
+import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
  * https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
@@ -10,7 +11,12 @@ import { compR } from "@thi.ng/transducers/func/compr";
  *
  * @param period
  */
-export function ema(period: number): Transducer<number, number> {
+export function ema(period: number): Transducer<number, number>;
+export function ema(period: number, src: Iterable<number>): IterableIterator<number>;
+export function ema(period: number, src?: Iterable<number>): any {
+    if (src) {
+        return iterator1(ema(period), src);
+    }
     period |= 0;
     period < 2 && illegalArgs("period must be >= 2");
     const k = 2 / (period + 1);
@@ -21,7 +27,7 @@ export function ema(period: number): Transducer<number, number> {
         let ema: number;
         return compR(
             rfn,
-            (acc, x) => {
+            (acc, x: number) => {
                 if (ema != null) {
                     ema += (x - ema) * k;
                     return rfn[2](acc, ema);

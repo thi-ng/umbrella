@@ -33,8 +33,7 @@
         "@thi.ng/checks": "^1.5.7",
         "@thi.ng/diff": "^1.0.21",
         "@thi.ng/equiv": "^0.1.7",
-        "@thi.ng/hiccup": "^2.0.9",
-        "@thi.ng/iterators": "^4.1.20"
+        "@thi.ng/hiccup": "^2.0.9"
     },
     "keywords": [
         "browser",

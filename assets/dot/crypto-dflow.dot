@@ -1,0 +1,30 @@
+digraph g {
+    rankdir=LR;
+    node[fontname=Inconsolata,fontsize=11];
+    edge[fontname=Inconsolata,fontsize=9];
+
+    rank=same {
+        symbol -> response;
+        period -> response;
+        avgmode;
+    }
+    market -> response;
+    refresh -> response[label="every 60 secs"];
+
+    response -> data;
+    avgmode -> data;
+
+    data -> chart;
+    window -> chart[style=dashed, label="resize"];
+    theme -> chart;
+
+    symbol -> ui;
+    period -> ui;
+    chart -> ui;
+    theme -> ui;
+
+    ui -> symbol[style=dashed, label="user"];
+    ui -> period[style=dashed, label="user"];
+    ui -> theme[style=dashed, label="user"];
+    ui -> avgmode[style=dashed, label="user"];
+}

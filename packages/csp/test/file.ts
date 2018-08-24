@@ -34,7 +34,7 @@ const counter = results
 // words with < 20 occurrences
 const sorted = results.tap(
     tx.comp(
-        tx.streamSort(500, x => x[1]),
+        tx.streamSort(500, { key: x => x[1] }),
         tx.dropWhile(x => x[1] < 20)
     )
 );

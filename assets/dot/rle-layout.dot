@@ -1,0 +1,46 @@
+digraph g {
+    fontname=Inconsolata;
+    rankdir=LR;
+    node[shape=square,width=1.75,fontname=Inconsolata];
+
+    subgraph cluster0 {
+        label="Header";
+        style="filled";
+        bgcolor="#eeeeee";
+        num[label="num values\n(32 bits)"];
+        wordsize[label="word size - 1\n(5 bits)"];
+        rlesizes[label="RLE sizes - 1\n(4x4 bits)"];
+    }
+
+    subgraph cluster1 {
+        label="Data";
+        bgcolor="#cccccc";
+        flag[label="RLE flag\n(1 bit)"];
+
+        subgraph cluster1a {
+            bgcolor="#aaaaaa";
+            label="Non-repeat chunks";
+            chunksizeid[label="size ID\n(2 bits)"];
+            chunksize[label="chunk size - 1\n(variable)"];
+            chunkval1[label="chunk val #1\n(word size)"];
+            chunkvaln[label="chunk val #n\n(word size)"];
+        }
+
+        subgraph cluster1b {
+            bgcolor="#aaaaaa";
+            label="RLE values only";
+            repeatid[label="repeat ID\n(2 bits)"];
+            rle[label="run length - 1\n(variable)"];
+            val[label="value\n(word size)"];
+        }
+    }
+
+    num -> wordsize -> rlesizes -> flag;
+    flag -> chunksizeid; //[label="0"];
+    chunksizeid -> chunksize -> chunkval1;
+    chunkval1 -> chunkvaln[style=dotted];
+
+    flag -> repeatid; //[label="1"];
+    repeatid -> rle -> val;
+
+}

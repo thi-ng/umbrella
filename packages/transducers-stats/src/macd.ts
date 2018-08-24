@@ -1,5 +1,6 @@
 import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { compR } from "@thi.ng/transducers/func/compr";
+import { $iter } from "@thi.ng/transducers/iterator";
 import { step } from "@thi.ng/transducers/step";
 
 import { ema } from "./ema";
@@ -40,22 +41,27 @@ export interface MACD {
  * @param slow slow EMA period
  * @param smooth signal smoothing EMA period
  */
-export const macd = (fast = 12, slow = 26, smooth = 9): Transducer<number, MACD> =>
-    (rfn: Reducer<any, MACD>) => {
-        const reduce = rfn[2];
-        const maFast = step(ema(fast));
-        const maSlow = step(ema(slow));
-        const maSmooth = step(ema(smooth));
-        return compR(
-            rfn,
-            (acc, x) => {
-                const fast = <number>maFast(x);
-                const slow = <number>maSlow(x);
-                if (slow == null) return acc;
-                const macd = fast - slow;
-                const signal = <number>maSmooth(macd);
-                if (signal == null) return acc;
-                return reduce(acc, { macd, signal, div: macd - signal, fast, slow });
-            }
-        );
-    };
+export function macd(fast?: number, slow?: number, smooth?: number): Transducer<number, MACD>;
+export function macd(src: Iterable<number>): IterableIterator<MACD>;
+export function macd(fast: number, slow: number, smooth: number, src: Iterable<number>): IterableIterator<MACD>;
+export function macd(...args: any[]): any {
+    return $iter(macd, args) ||
+        ((rfn: Reducer<any, MACD>) => {
+            const reduce = rfn[2];
+            const maFast = step(ema(args[0] || 12));
+            const maSlow = step(ema(args[1] || 26));
+            const maSmooth = step(ema(args[2] || 9));
+            return compR(
+                rfn,
+                (acc, x: number) => {
+                    const fast = <number>maFast(x);
+                    const slow = <number>maSlow(x);
+                    if (slow == null) return acc;
+                    const macd = fast - slow;
+                    const signal = <number>maSmooth(macd);
+                    if (signal == null) return acc;
+                    return reduce(acc, { macd, signal, div: macd - signal, fast, slow });
+                }
+            );
+        });
+}

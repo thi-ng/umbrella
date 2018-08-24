@@ -1,3 +1,4 @@
+import { SEMAPHORE } from "@thi.ng/api/api";
 import * as isa from "@thi.ng/checks/is-array";
 import * as iss from "@thi.ng/checks/is-string";
 import { DiffLogEntry } from "@thi.ng/diff/api";
@@ -13,8 +14,6 @@ import {
 
 const isArray = isa.isArray;
 const isString = iss.isString;
-
-const SEMAPHORE = Symbol();
 
 /**
  * Takes a DOM root element and two hiccup trees, `prev` and `curr`.

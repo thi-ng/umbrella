@@ -7,38 +7,31 @@ This project is part of the
 
 ## About
 
-Binary run-length encoding packer/unpacker w/ flexible repeat bit
-widths. Written in TypeScript, distributed in ES6.
+Binary run-length encoding packer/unpacker w/ support for customizable
+input word sizes (1 - 32 bits) and repeat count (run-length) bit sizes
+(1 - 16 bits). The encoder uses 4 different repeat group sizes
+(thresholds) to minimize the number of bits used to store the run
+lengths. The range of supported run lengths is 16 bits (i.e. 65536
+repetitions). If a value is repeated more often than that, the remainder
+will be encoded using additional RLE chunks...
 
-Encoding format:
+### Encoding format
 
-- 32 bits - original size in bytes (header)
+![data layout](https://github.com/thi-ng/umbrella/tree/master/packages/assets/rle-layout.png)
+
+- 32 bits - original number of words
+- 5 bits - word size
+- 16 bits - 4x RLE repeat group / chunk sizes (in bits)
+
+The default group sizes are: 3, 4, 8, 16, i.e. 8, 16, 256, 65536 repetitions
 
 Then per value:
 
 - 1 bit - encoding flag (1 = RLE encoded, 0 = single occurrence)
-- 8 bits - value
-
-The following is only used for repeated values:
-
-- 2 bits - repeat class
-- 3/4/8/16 bits - repeat count - 1 (if > 0x10000 then split into chunks...)
-
-| Repeats | Original (bits) | RLE (bits) | Saving (bits) | Ratio    |
-|---------|-----------------|------------|---------------|----------|
-| 1       | 8               | 1+8        | -1            | 1.125    |
-| 2       | 16              | 1+8+2+3    | 2             | 0.875    |
-| 3       | 24              | 1+8+2+3    | 10            | 0.583    |
-| 4       | 32              | 1+8+2+3    | 18            | 0.438    |
-| 8       | 64              | 1+8+2+3    | 50            | 0.219    |
-| 9       | 72              | 1+8+2+4    | 57            | 0.208    |
-| 16      | 128             | 1+8+2+4    | 113           | 0.117    |
-| 17      | 136             | 1+8+2+8    | 117           | 0.14     |
-| 256     | 2048            | 1+8+2+8    | 2029          | 0.0093   |
-| 257     | 2056            | 1+8+2+16   | 2029          | 0.013    |
-| 512     | 4096            | 1+8+2+16   | 4069          | 0.0066   |
-| 1024    | 8192            | 1+8+2+16   | 8165          | 0.0033   |
-| 65536   | 524288          | 1+8+2+16   | 524261        | 0.000051 |
+- 2 bits - repeat or chunk class ID
+- m bits - repeat count or chunk size (if greater than max group size
+  then split into chunks...)
+- n bits - value(s)
 
 ## Installation
 
@@ -62,14 +55,18 @@ src = new Uint8Array(1024);
 src.set([1,1,1,1,1,2,2,2,2,3,3,3,4,4,5,4,4,3,3,3,2,2,2,2,1,1,1,1,1], 512);
 
 // pack data
-packed = rle.encodeBytes(src);
-// Uint8Array [0,0,4,0,128,96,63,240,18,64,135,3,20,16,32,88,32,96,98,129,14,2,72,6,3,196]
-
+packed = rle.encode(src, src.length);
 packed.length
-// 26 => 2.5% of original
+// 30 => 2.93% of original
+
+// pack with custom word size (3 bits, i.e. our value range is only 0-7)
+// and use custom repeat group sizes suitable for our data
+alt = rle.encode(src, src.length, 3, [1, 2, 3, 9]);
+alt.length
+// 20 => 1.95% of original, 66% of default config
 
 // unpack
-dest = rle.decodeBytes(packed);
+unpacked = new Uint8Array(rle.decode(alt));
 ```
 
 ## Authors
@@ -78,4 +75,4 @@ dest = rle.decodeBytes(packed);
 
 ## License
 
-&copy; 2017 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2018 Karsten Schmidt // Apache Software License 2.0

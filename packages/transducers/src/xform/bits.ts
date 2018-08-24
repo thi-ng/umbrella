@@ -1,5 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -8,7 +9,7 @@ import { isReduced } from "../reduced";
  * lowest `wordSize` bits of each value are used (max 32).
  *
  * ```
- * [...iterator(bits(8), [0xf0, 0xaa])]
+ * [...bits(8, [0xf0, 0xaa])]
  * // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
  * [...iterator(comp(bits(8), partition(4)), [0xf0, 0xaa])]
  * // [ [ 1, 1, 1, 1 ], [ 0, 0, 0, 0 ], [ 1, 0, 1, 0 ], [ 1, 0, 1, 0 ] ]
@@ -17,28 +18,29 @@ import { isReduced } from "../reduced";
  * @param wordSize
  * @param msbFirst
  */
-export function bits(wordSize = 8, msbFirst = true): Transducer<number, number> {
-    return (rfn: Reducer<any, number>) => {
-        const r = rfn[2];
-        return compR(rfn,
-            msbFirst ?
-                (acc, x: number) => {
-                    for (let i = wordSize - 1; i >= 0; i--) {
-                        acc = r(acc, (x >>> i) & 1);
-                        if (isReduced(acc)) {
-                            break;
+export function bits(size?: number, msb?: boolean): Transducer<number, number>;
+export function bits(src: Iterable<number>): IterableIterator<number>;
+export function bits(size: number, src: Iterable<number>): IterableIterator<number>;
+export function bits(size: number, msb: boolean, src: Iterable<number>): IterableIterator<number>;
+export function bits(...args: any[]): any {
+    return $iter(bits, args, iterator) ||
+        ((rfn: Reducer<any, number>) => {
+            const reduce = rfn[2];
+            const size = (args[0] || 8) - 1;
+            const msb = args[1] !== false;
+            return compR(rfn,
+                msb ?
+                    (acc, x: number) => {
+                        for (let i = size; i >= 0 && !isReduced(acc); i--) {
+                            acc = reduce(acc, (x >>> i) & 1);
                         }
-                    }
-                    return acc;
-                } :
-                (acc, x: number) => {
-                    for (let i = 0; i < wordSize; i++) {
-                        acc = r(acc, (x >>> i) & 1);
-                        if (isReduced(acc)) {
-                            break;
+                        return acc;
+                    } :
+                    (acc, x: number) => {
+                        for (let i = 0; i <= size && !isReduced(acc); i++) {
+                            acc = reduce(acc, (x >>> i) & 1);
                         }
-                    }
-                    return acc;
-                });
-    };
+                        return acc;
+                    });
+        });
 }

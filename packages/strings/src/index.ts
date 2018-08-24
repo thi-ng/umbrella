@@ -10,3 +10,5 @@ export * from "./percent";
 export * from "./radix";
 export * from "./repeat";
 export * from "./truncate";
+export * from "./truncate-left";
+export * from "./wrap";

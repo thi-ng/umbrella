@@ -1,11 +1,11 @@
 import { ICopy } from "@thi.ng/api/api";
-import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
 import { LLSet } from "@thi.ng/associative/ll-set";
 import { union } from "@thi.ng/associative/union";
-import { filter } from "@thi.ng/iterators/filter";
-import { reduce } from "@thi.ng/iterators/reduce";
+import { equiv } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { reduce, reducer } from "@thi.ng/transducers/reduce";
+import { filter } from "@thi.ng/transducers/xform/filter";
 
 export class DGraph<T> implements
     Iterable<T>,
@@ -139,7 +139,7 @@ function transitive<T>(nodes: EquivMap<T, LLSet<T>>, x: T): LLSet<T> {
     const deps: LLSet<T> = nodes.get(x);
     if (deps) {
         return reduce(
-            (acc, k: T) => <LLSet<T>>union(acc, transitive(nodes, k)),
+            reducer(null, (acc, k: T) => <LLSet<T>>union(acc, transitive(nodes, k))),
             deps,
             deps
         );

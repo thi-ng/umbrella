@@ -2,6 +2,7 @@ import { IObjectOf } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
 import { comp } from "../func/comp";
+import { $iter } from "../iterator";
 import { multiplex } from "./multiplex";
 import { rename } from "./rename";
 
@@ -10,12 +11,12 @@ import { rename } from "./rename";
  * object of transducers and produces a result object for each input.
  *
  * ```
- * [...iterator(
- *   multiplexObj({
+ * [...multiplexObj(
+ *   {
  *     initial: map(x => x.charAt(0)),
  *     upper:   map(x => x.toUpperCase()),
  *     length:  map(x => x.length)
- *   }),
+ *   },
  *   ["Alice", "Bob", "Charlie", "Andy"]
  * )]
  * // [ { length: 5, upper: 'ALICE', initial: 'A' },
@@ -26,8 +27,17 @@ import { rename } from "./rename";
  *
  * @param xforms object of transducers
  * @param rfn
+ * @param src
  */
-export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn?: Reducer<B, [PropertyKey, any]>): Transducer<A, B> {
+export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn?: Reducer<B, [PropertyKey, any]>): Transducer<A, B>;
+export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, src: Iterable<A>): IterableIterator<B>;
+export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn: Reducer<B, [PropertyKey, any]>, src: Iterable<A>): IterableIterator<B>;
+export function multiplexObj(...args: any[]): any {
+    const iter = $iter(multiplexObj, args);
+    if (iter) {
+        return iter;
+    }
+    const [xforms, rfn] = args;
     const ks = Object.keys(xforms);
     return comp(
         multiplex.apply(null, ks.map((k) => xforms[k])),

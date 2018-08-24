@@ -22,8 +22,31 @@ export const radix: (radix: number, len: number, prefix?: string) => Stringer<nu
         }
     );
 
+/**
+ * 8bit binary conversion preset.
+ */
 export const B8 = radix(2, 8);
+
+/**
+ * 8bit hex conversion preset.
+ * Assumes unsigned inputs.
+ */
 export const U8 = radix(16, 2);
+
+/**
+ * 16bit hex conversion preset.
+ * Assumes unsigned inputs.
+ */
 export const U16 = radix(16, 4);
+
+/**
+ * 32bit hex conversion preset.
+ * Assumes unsigned inputs.
+ */
 export const U32 = radix(16, 8);
+
+/**
+ * 64bit hex conversion preset (2x 32bit ints)
+ * Assumes unsigned inputs.
+ */
 export const U64 = (hi: number, lo: number) => U32(hi) + U32(lo);

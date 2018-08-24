@@ -2,6 +2,7 @@ import { StatefulPredicate } from "@thi.ng/api/api";
 
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
+import { iterator1 } from "../iterator";
 
 /**
  * Similar to `filter`, but works with possibly stateful predicates
@@ -17,12 +18,17 @@ import { compR } from "../func/compr";
  * Also see: `throttleTime()`.
  *
  * @param pred
+ * @param src
  */
-export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T> {
-    return (rfn: Reducer<any, T>) => {
-        const r = rfn[2];
-        const _pred = pred();
-        return compR(rfn,
-            (acc, x) => _pred(x) ? r(acc, x) : acc);
-    };
+export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T>;
+export function throttle<T>(pred: StatefulPredicate<T>, src: Iterable<T>): IterableIterator<T>;
+export function throttle<T>(pred: StatefulPredicate<T>, src?: Iterable<T>): any {
+    return src ?
+        iterator1(throttle(pred), src) :
+        (rfn: Reducer<any, T>) => {
+            const r = rfn[2];
+            const _pred = pred();
+            return compR(rfn,
+                (acc, x: T) => _pred(x) ? r(acc, x) : acc);
+        };
 }

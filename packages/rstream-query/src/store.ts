@@ -17,7 +17,6 @@ import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
 import { keySelector } from "@thi.ng/transducers/func/key-selector";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { dedupe } from "@thi.ng/transducers/xform/dedupe";
@@ -397,8 +396,8 @@ export class TripleStore implements
     }
 
     protected addParamQueries(patterns: Iterable<Pattern>) {
-        return iterator(
-            map<Pattern, QuerySolution>((q) => this.addParamQuery(q)),
+        return map<Pattern, QuerySolution>(
+            (q) => this.addParamQuery(q),
             patterns
         );
     }

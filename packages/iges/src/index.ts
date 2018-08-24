@@ -2,19 +2,15 @@ import { defmulti } from "@thi.ng/defmulti";
 import { float } from "@thi.ng/strings/float";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { padRight } from "@thi.ng/strings/pad-right";
-import {
-    comp,
-    iterator,
-    map,
-    mapcat,
-    mapIndexed,
-    partition,
-    push,
-    str,
-    transduce,
-    wordWrap,
-    wrap
-} from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { wrap } from "@thi.ng/transducers/iter/wrap";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { partition } from "@thi.ng/transducers/xform/partition";
+import { wordWrap } from "@thi.ng/transducers/xform/word-wrap";
 import {
     DEFAULT_GLOBALS,
     DictEntry,
@@ -86,11 +82,7 @@ const formatLine = (body: string, type: string, i: number) =>
     `${$BODY(body)}${type}${$SEQ(i + 1)}`;
 
 const formatStart = (doc: IGESDocument) => {
-    const res = transduce(
-        mapIndexed((i, x: string) => formatLine(x, "S", i)),
-        push(),
-        doc.start
-    );
+    const res = [...mapIndexed((i, x: string) => formatLine(x, "S", i), doc.start)];
     doc.offsets.S += res.length;
     return res;
 };
@@ -140,15 +132,12 @@ const formatTerminate = (doc: IGESDocument) =>
     );
 
 const formatStatus = (s: EntityStatus) =>
-    transduce(
-        map($Z2),
-        str(""),
-        [
-            s.blank || 0,
-            s.subord || 0,
-            s.usage || 0,
-            s.hierarchy || 0
-        ]);
+    [
+        s.blank || 0,
+        s.subord || 0,
+        s.usage || 0,
+        s.hierarchy || 0
+    ].map($Z2).join("");
 
 const formatDictEntry = (e: DictEntry) =>
     transduce(
@@ -193,7 +182,7 @@ const formatParams = (
     const lines = transduce(
         comp(
             map(doc.$PARAM),
-            wordWrap(bodyWidth, 1, true),
+            wordWrap(bodyWidth, { delim: 1, always: true }),
             map((p) => p.join(doc.globals.delimParam)),
         ),
         push(),
@@ -222,12 +211,10 @@ export const addPolyline2d = (doc: IGESDocument, pts: ArrayLike<number>[], form 
             [1, Type.INT],
             [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT],
             [0, Type.FLOAT],
-            ...iterator(
-                mapcat<number[], Param>(
-                    ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]]
-                ),
+            ...mapcat<number[], Param>(
+                ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]],
                 form === PolylineMode.CLOSED ?
-                    wrap(pts, 1, false, true) :
+                    <any>wrap(pts, 1, false, true) :
                     pts
             )
         ],

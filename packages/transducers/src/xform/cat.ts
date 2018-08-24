@@ -2,6 +2,9 @@ import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { isReduced } from "../reduced";
 
+/**
+ * Transducer to concatenate iterable values.
+ */
 export function cat<T>(): Transducer<Iterable<T>, T> {
     return (rfn: Reducer<any, T>) => {
         const r = rfn[2];

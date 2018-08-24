@@ -1,8 +1,9 @@
-import { ICompare } from "@thi.ng/api/api";
+import { ICompare, Pair, } from "@thi.ng/api/api";
 import { compare } from "@thi.ng/compare";
-import { map } from "@thi.ng/iterators/map";
+import { IReducible, ReductionFn } from "@thi.ng/transducers/api";
+import { map } from "@thi.ng/transducers/xform/map";
 
-import { IEquivSet, Pair, SortedSetOpts } from "./api";
+import { IEquivSet, SortedSetOpts } from "./api";
 import { SortedMap } from "./sorted-map";
 
 const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
@@ -24,7 +25,8 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  */
 export class SortedSet<T> extends Set<T> implements
     IEquivSet<T>,
-    ICompare<Set<T>> {
+    ICompare<Set<T>>,
+    IReducible<any, T> {
 
     /**
      * Creates new instance with optional given values and/or
@@ -37,7 +39,7 @@ export class SortedSet<T> extends Set<T> implements
     constructor(values?: Iterable<T>, opts?: Partial<SortedSetOpts<T>>) {
         super();
         __private.set(this, new SortedMap<T, T>(
-            values ? map((x) => [x, x], values) : null,
+            values ? map((x) => <Pair<T, T>>[x, x], values) : null,
             opts
         ));
     }
@@ -94,6 +96,10 @@ export class SortedSet<T> extends Set<T> implements
             }
         }
         return true;
+    }
+
+    $reduce(rfn: ReductionFn<any, T>, acc: any) {
+        return __private.get(this).$reduce((_acc, x) => rfn(_acc, x[0]), acc);
     }
 
     entries(): IterableIterator<Pair<T, T>> {

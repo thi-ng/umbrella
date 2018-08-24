@@ -1,5 +1,7 @@
 import { Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";
+import { iterator1 } from "@thi.ng/transducers/iterator";
+
 import { ema } from "./ema";
 import { roc } from "./roc";
 
@@ -11,11 +13,15 @@ import { roc } from "./roc";
  *
  * @param period
  */
-export function trix(period: number): Transducer<number, number> {
-    return comp(
-        ema(period),
-        ema(period),
-        ema(period),
-        roc(1),
-    );
+export function trix(period: number): Transducer<number, number>;
+export function trix(period: number, src: Iterable<number>): IterableIterator<number>;
+export function trix(period: number, src?: Iterable<number>): any {
+    return src ?
+        iterator1(trix(period), src) :
+        comp(
+            ema(period),
+            ema(period),
+            ema(period),
+            roc(1),
+        );
 };

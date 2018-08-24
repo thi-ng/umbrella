@@ -1,9 +1,9 @@
-import { Comparator } from "@thi.ng/api/api";
-import { compare } from "@thi.ng/compare";
+import { compare as cmp } from "@thi.ng/compare";
 
-import { Reducer, Transducer } from "../api";
+import { Reducer, SortOpts, Transducer } from "../api";
 import { binarySearch } from "../func/binary-search";
 import { identity } from "../func/identity";
+import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -12,7 +12,7 @@ import { isReduced } from "../reduced";
  * `partitionSort()`.
  *
  * ```
- * [...iterator(streamSort(4), [5,9,2,6,4,1,3,8,7,0])]
+ * [...streamSort(4, [5,9,2,6,4,1,3,8,7,0])]
  * // [ 2, 4, 1, 3, 5, 6, 0, 7, 8, 9 ]
  * ```
  *
@@ -20,7 +20,20 @@ import { isReduced } from "../reduced";
  * @param key
  * @param cmp
  */
-export function streamSort<A, B>(n: number, key: ((x: A) => B) = <any>identity, cmp: Comparator<B> = compare): Transducer<A, A> {
+export function streamSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
+export function streamSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
+export function streamSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function streamSort<A, B>(...args: any[]): any {
+    const iter = $iter(streamSort, args, iterator);
+    if (iter) {
+        return iter;
+    }
+    const { key, compare } = <SortOpts<A, B>>{
+        key: <any>identity,
+        compare: cmp,
+        ...args[1]
+    };
+    const n = args[0];
     return ([init, complete, reduce]: Reducer<any, A>) => {
         const buf: A[] = [];
         return [
@@ -32,7 +45,7 @@ export function streamSort<A, B>(n: number, key: ((x: A) => B) = <any>identity, 
                 return complete(acc);
             },
             (acc, x) => {
-                const idx = binarySearch(buf, key, cmp, x);
+                const idx = binarySearch(buf, key, compare, x);
                 buf.splice(Math.abs(idx), 0, x);
                 if (buf.length === n) {
                     acc = reduce(acc, buf.shift());

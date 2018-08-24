@@ -1,10 +1,10 @@
-import { IDeref } from "@thi.ng/api/api";
+import { IDeref, SEMAPHORE } from "@thi.ng/api/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import { Reducer, SEMAPHORE, Transducer } from "@thi.ng/transducers/api";
+import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import { push } from "@thi.ng/transducers/rfn/push";

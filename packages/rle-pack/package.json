@@ -29,7 +29,8 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^0.4.15"
+        "@thi.ng/bitstream": "^0.4.15",
+        "@thi.ng/errors": "^0.1.6"
     },
     "keywords": [
         "binary",

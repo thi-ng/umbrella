@@ -1,8 +1,14 @@
-import { Predicate2 } from "@thi.ng/api/api";
+import { Fn, Predicate2 } from "@thi.ng/api/api";
 
 import { Transducer } from "../api";
 import { fuzzyMatch } from "../func/fuzzy-match";
+import { $iter } from "../iterator";
 import { filter } from "./filter";
+
+export interface FilterFuzzyOpts<A, B> {
+    key: Fn<A, ArrayLike<B>>;
+    equiv: Predicate2<any>;
+}
 
 /**
  * Returns transducer which calls `fuzzyMatch()` for each value and
@@ -12,18 +18,24 @@ import { filter } from "./filter";
  * @thi.ng/equiv by default.
  *
  * ```
- * [...iterator(filterFuzzy("ho"), ["hello", "hallo", "hey", "heyoka"])]
+ * [...filterFuzzy({query: "ho"}, ["hello", "hallo", "hey", "heyoka"])]
  * // ["hello", "hallo", "heyoka"]
  * ```
  *
- * @param query
- * @param key
- * @param eq
+ * @param opts
+ * @param src
  */
-export function filterFuzzy<A, B>(query: ArrayLike<B>, key?: (x: A) => ArrayLike<B>, eq?: Predicate2<any>): Transducer<A, A> {
+export function filterFuzzy<A, B>(query: ArrayLike<B>, opts?: Partial<FilterFuzzyOpts<A, B>>): Transducer<A, A>;
+export function filterFuzzy<A, B>(query: ArrayLike<B>, src: Iterable<A>): IterableIterator<A>;
+export function filterFuzzy<A, B>(query: ArrayLike<B>, opts: Partial<FilterFuzzyOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function filterFuzzy<A, B>(...args: any[]): any {
+    const iter = args.length > 1 && $iter(filterFuzzy, args);
+    if (iter) {
+        return iter;
+    }
+    const query: ArrayLike<B> = args[0];
+    const { key, equiv } = <FilterFuzzyOpts<A, B>>(args[1] || {});
     return filter(
-        key ?
-            (x: A) => fuzzyMatch(key(x), query, eq) :
-            (x: A) => fuzzyMatch(<any>x, query, eq)
+        (x: A) => fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
     );
 }

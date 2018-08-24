@@ -1,9 +1,17 @@
 import { Reducer } from "../api";
-import { reducer } from "../reduce";
+import { $$reduce, reducer } from "../reduce";
 
 /**
- * Reducer to compute sum of values.
+ * Reducer to compute sum of values with given `init` value.
  */
-export function add(): Reducer<number, number> {
-    return reducer(() => 0, (acc, x) => acc + x);
+export function add(init?: number): Reducer<number, number>;
+export function add(xs: Iterable<number>): number;
+export function add(init: number, xs: Iterable<number>): number;
+export function add(...args: any[]): any {
+    const res = $$reduce(add, args);
+    if (res !== undefined) {
+        return res;
+    }
+    const init = args[0] || 0;
+    return reducer(() => init, (acc, x: number) => acc + x);
 }

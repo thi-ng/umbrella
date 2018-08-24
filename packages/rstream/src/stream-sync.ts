@@ -112,7 +112,11 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     constructor(opts: Partial<StreamSyncOpts<A, B>>) {
         let srcIDs = new Set<string>();
         let xform: Transducer<any, any> = comp(
-            partitionSync<A>(srcIDs, (x) => x[0], opts.reset === true, opts.all !== false),
+            partitionSync<A>(srcIDs, {
+                key: (x) => x[0],
+                reset: opts.reset === true,
+                all: opts.all !== false
+            }),
             mapVals((x) => x[1])
         );
         if (opts.xform) {

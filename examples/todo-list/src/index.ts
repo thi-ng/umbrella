@@ -3,7 +3,6 @@ import { Atom, Cursor, History } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom/start";
 import { setIn, updateIn } from "@thi.ng/paths";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/xform/map";
 
 interface Task {
@@ -20,7 +19,7 @@ const nextID = new Cursor<number>(db, "nextID");
 // create derived view of tasks transformed into components
 const items = db.addView(
     "tasks",
-    (tasks) => [...iterator(map(([id, t]) => taskItem(id, t)), pairs(tasks))]
+    (tasks) => [...map(([id, t]) => taskItem(id, t), pairs<Task>(tasks))]
 );
 
 // state updaters

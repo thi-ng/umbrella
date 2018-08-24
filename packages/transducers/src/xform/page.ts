@@ -1,5 +1,6 @@
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
+import { $iter } from "../iterator";
 import { drop } from "./drop";
 import { take } from "./take";
 
@@ -11,22 +12,26 @@ import { take } from "./take";
  * any heavy processing steps.
  *
  * ```
- * [...iterator(page(0, 5), range(12))]
+ * [...page(0, 5, range(12))]
  * // [ 0, 1, 2, 3, 4 ]
  *
- * [...iterator(page(1, 5), range(12))]
+ * [...page(1, 5, range(12))]
  * // [ 5, 6, 7, 8, 9 ]
  *
- * [...iterator(page(2, 5), range(12))]
+ * [...page(2, 5, range(12))]
  * // [ 10, 11 ]
  *
- * [...iterator(page(3, 5), range(12))]
+ * [...page(3, 5, range(12))]
  * // []
  * ```
  *
  * @param page
  * @param pageLen
  */
-export function page<T>(page: number, pageLen = 10): Transducer<T, T> {
-    return comp(drop(page * pageLen), take(pageLen));
+export function page<T>(page: number, pageLen?: number): Transducer<T, T>;
+export function page<T>(page: number, src: Iterable<T>): IterableIterator<T>;
+export function page<T>(page: number, pageLen: number, src: Iterable<T>): IterableIterator<T>;
+export function page(...args: any[]): any {
+    return $iter(page, args) ||
+        comp(drop(args[0] * (args[1] || 10)), take(args[1] || 10));
 }

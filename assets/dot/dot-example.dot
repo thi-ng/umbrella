@@ -1,0 +1,21 @@
+digraph g {
+rankdir="LR";
+fontname="Inconsolata";
+fontsize="9";
+fontcolor="gray";
+label="Generated with @thi.ng/dot";
+labeljust="l";
+labelloc="b";
+node[style="filled", fontname="Inconsolata", fontsize="11"];
+edge[arrowsize="0.75", fontname="Inconsolata", fontsize="9"];
+"x"[color="black", fontcolor="white", label="x (12)"];
+"y"[color="black", fontcolor="white", label="y (23)"];
+"res"[color="black", fontcolor="white", label="res (8050)", peripheries="2"];
+"op1"[fillcolor="green", shape="Mrecord", label="{ <0> a | <1> b } | op1\n(+) | { <out> out }"];
+"op2"[fillcolor="yellow", shape="Mrecord", label="{ <0> a | <1> b } | op2\n(*) | { <out> out }"];
+"x" -> "op1":"1";
+"y" -> "op1":"0";
+"y" -> "op2":"0"[label="xform", color="blue"];
+"op1":"out" -> "op2":"1";
+"op2":"out" -> "res";
+}
