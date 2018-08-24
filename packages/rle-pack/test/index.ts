@@ -1,18 +1,18 @@
 import * as assert from "assert";
 import { encode, decode } from "../src/index";
 
-const src = new Uint8Array(1024);
-src.set([1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1], 512);
+const src1k = new Uint8Array(1024);
+src1k.set([1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1], 512);
 
 describe("rle-pack", () => {
     it("3bit", () => {
-        let packed = encode(src, src.length, 3);
-        assert.deepEqual(packed, [0, 0, 4, 0, 25, 27, 252, 96, 63, 242, 74, 29, 139, 2, 184, 27, 21, 14, 73, 24, 15, 16]);
+        let packed = encode(src1k, src1k.length, 3);
+        assert.deepEqual(packed, [0, 0, 4, 0, 17, 27, 255, 1, 255, 18, 24, 212, 78, 24, 5, 134, 68, 227, 82, 30, 3, 196, 0]);
         let dest = decode(packed);
-        assert.deepEqual(dest, src);
-        packed = encode(src, src.length, 3, [1, 2, 4, 9]);
-        assert.deepEqual(packed, [0, 0, 4, 0, 24, 9, 196, 127, 249, 146, 158, 219, 10, 225, 182, 167, 153, 35, 241, 0]);
+        assert.deepEqual(dest, src1k);
+        packed = encode(src1k, src1k.length, 3, [1, 2, 4, 9]);
+        assert.deepEqual(packed, [0, 0, 4, 0, 16, 9, 199, 255, 140, 134, 234, 206, 96, 89, 150, 119, 89, 15, 241, 0]);
         dest = decode(packed);
-        assert.deepEqual(dest, src);
+        assert.deepEqual(dest, src1k);
     });
 });
