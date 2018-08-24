@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree-lang",
-    "version": "0.2.18",
+    "version": "0.2.19",
     "description": "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL",
     "main": "./index.js",
     "typings": "./index.d.ts",

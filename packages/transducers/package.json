@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Lightweight transducer implementations for ES6 / TypeScript",
     "main": "./index.js",
     "typings": "./index.d.ts",
