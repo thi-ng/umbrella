@@ -5,7 +5,8 @@ import { reducer, $$reduce } from "../reduce";
 
 /**
  * Reducer which starts filling array with results from given `start`
- * index (default: 0).
+ * index (default: 0). Use `fillN()` for typed array targets (same impl,
+ * but provides correct result type).
  *
  * @param start
  */

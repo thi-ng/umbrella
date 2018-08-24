@@ -53,6 +53,14 @@ though the implementation does heavily differ (also in contrast to some
 other JS based implementations) and dozens of less common, but generally
 highly useful operators have been added. See full list below.
 
+Furthermore, since v2.0.0 most transducers & reducers provided here
+accept an optional input iterable, which allows them them to be used
+directly instead of having to wrap their call in one of the execution
+functions (i.e. `transduce()`, `reduce()`, `iterator()`, `run()`). If
+executed this way, transducer functions will return a transforming ES6
+iterator (generator) and reducing functions will return a reduced result
+of the given input iterable.
+
 ### Related packages
 
 #### Extended functionality
@@ -768,28 +776,31 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 
 ### Reducers
 
-- [add](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/add)
-- [assocMap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/assoc-map)
-- [assocObj](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/assoc-obj)
-- [conj](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/conj)
-- [count](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/count)
-- [every](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/every)
-- [frequencies](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/frequencies)
-- [groupBinary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/group-binary)
-- [groupByMap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/group-by-map)
-- [groupByObj](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/group-by-obj)
-- [last](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/last)
-- [maxCompare](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/max-compare)
-- [max](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/max)
-- [mean](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/mean)
-- [minCompare](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/min-compare)
-- [min](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/min)
-- [mul](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/mul)
-- [pushCopy](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/push-copy)
-- [push](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/push)
-- [reductions](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/reductions)
-- [some](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/some)
-- [str](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/str)
+- [add](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/add)
+- [assocMap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/assoc-map)
+- [assocObj](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/assoc-obj)
+- [conj](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/conj)
+- [count](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/count)
+- [div](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/div)
+- [every](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/every)
+- [fill](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/fill)
+- [frequencies](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/frequencies)
+- [groupBinary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/group-binary)
+- [groupByMap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/group-by-map)
+- [groupByObj](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/group-by-obj)
+- [last](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/last)
+- [maxCompare](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/max-compare)
+- [max](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/max)
+- [mean](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/mean)
+- [minCompare](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/min-compare)
+- [min](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/min)
+- [mul](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/mul)
+- [pushCopy](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/push-copy)
+- [push](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/push)
+- [reductions](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/reductions)
+- [some](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/some)
+- [str](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/str)
+- [sub](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/sub)
 
 ## Authors
 
