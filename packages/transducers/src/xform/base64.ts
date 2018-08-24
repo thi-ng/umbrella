@@ -58,71 +58,74 @@ export interface Base64EncodeOpts {
  */
 export function base64Encode(): Transducer<number, string>;
 export function base64Encode(opts: Partial<Base64EncodeOpts>): Transducer<number, string>;
-export function base64Encode(src: Iterable<number>): IterableIterator<string>;
-export function base64Encode(opts: Partial<Base64EncodeOpts>, src: Iterable<number>): IterableIterator<string>;
+export function base64Encode(src: Iterable<number>): string;
+export function base64Encode(opts: Partial<Base64EncodeOpts>, src: Iterable<number>): string;
 export function base64Encode(...args: any[]): any {
-    return $iter(base64Encode, args, iterator) ||
-        (([init, complete, reduce]: Reducer<any, string>) => {
-            let state = 0;
-            let b: number;
-            const opts = { safe: false, buffer: 1024, ...args[0] };
-            const chars = opts.safe ? B64_SAFE : B64_CHARS;
-            const buf: string[] = [];
-            return [
-                init,
-                (acc) => {
-                    switch (state) {
-                        case 1:
-                            buf.push(
-                                chars[b >> 18 & 0x3f],
-                                chars[b >> 12 & 0x3f],
-                                "=",
-                                "="
-                            );
-                            break;
-                        case 2:
-                            buf.push(
-                                chars[b >> 18 & 0x3f],
-                                chars[b >> 12 & 0x3f],
-                                chars[b >> 6 & 0x3f],
-                                "="
-                            );
-                            break;
-                        default:
-                    }
-                    while (buf.length && !isReduced(acc)) {
-                        acc = reduce(acc, buf.shift());
-                    }
-                    return complete(acc);
-                },
-                (acc, x) => {
-                    switch (state) {
-                        case 0:
-                            state = 1;
-                            b = x << 16;
-                            break;
-                        case 1:
-                            state = 2;
-                            b += x << 8;
-                            break;
-                        default:
-                            state = 0;
-                            b += x;
-                            buf.push(
-                                chars[b >> 18 & 0x3f],
-                                chars[b >> 12 & 0x3f],
-                                chars[b >> 6 & 0x3f],
-                                chars[b & 0x3f]
-                            );
-                            if (buf.length >= opts.buffer) {
-                                for (let i = 0, n = buf.length; i < n && !isReduced(acc); i++) {
-                                    acc = reduce(acc, buf[i]);
-                                }
-                                buf.length = 0;
-                            }
-                    }
-                    return acc;
+    const iter = $iter(base64Encode, args, iterator);
+    if (iter) {
+        return [...iter].join("");
+    }
+    return (([init, complete, reduce]: Reducer<any, string>) => {
+        let state = 0;
+        let b: number;
+        const opts = { safe: false, buffer: 1024, ...args[0] };
+        const chars = opts.safe ? B64_SAFE : B64_CHARS;
+        const buf: string[] = [];
+        return [
+            init,
+            (acc) => {
+                switch (state) {
+                    case 1:
+                        buf.push(
+                            chars[b >> 18 & 0x3f],
+                            chars[b >> 12 & 0x3f],
+                            "=",
+                            "="
+                        );
+                        break;
+                    case 2:
+                        buf.push(
+                            chars[b >> 18 & 0x3f],
+                            chars[b >> 12 & 0x3f],
+                            chars[b >> 6 & 0x3f],
+                            "="
+                        );
+                        break;
+                    default:
                 }
-            ];
-        });
+                while (buf.length && !isReduced(acc)) {
+                    acc = reduce(acc, buf.shift());
+                }
+                return complete(acc);
+            },
+            (acc, x) => {
+                switch (state) {
+                    case 0:
+                        state = 1;
+                        b = x << 16;
+                        break;
+                    case 1:
+                        state = 2;
+                        b += x << 8;
+                        break;
+                    default:
+                        state = 0;
+                        b += x;
+                        buf.push(
+                            chars[b >> 18 & 0x3f],
+                            chars[b >> 12 & 0x3f],
+                            chars[b >> 6 & 0x3f],
+                            chars[b & 0x3f]
+                        );
+                        if (buf.length >= opts.buffer) {
+                            for (let i = 0, n = buf.length; i < n && !isReduced(acc); i++) {
+                                acc = reduce(acc, buf[i]);
+                            }
+                            buf.length = 0;
+                        }
+                }
+                return acc;
+            }
+        ];
+    });
 }
