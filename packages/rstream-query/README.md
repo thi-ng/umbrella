@@ -160,7 +160,7 @@ addCity("paris", "france");
 After setting up the above query and its internal transformations, the
 generated dataflow topology then looks as follows:
 
-![graphviz output](../../assets/rs-query1.svg)
+![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rs-query1.svg)
 
 - The blue nodes are `TripleStore`-internal index stream sources,
   emitting changes when new triples are added
@@ -174,7 +174,8 @@ Btw. The diagram has been generated using
 [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
 and can be recreated by calling `store.toDot()` (for the above example)
 
-The source code for the above example is [here](./test/example.ts)
+The source code for the above example is
+[here](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query/test/example.ts)
 
 (Many) more features forthcoming...
 

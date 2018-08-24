@@ -11,7 +11,7 @@ Bare-bones IGES 5.3 serializer for (currently only) polygonal geometry,
 both open & closed, for use in various CAD applications (e.g. Rhino,
 Houdini, Fusion 360)
 
-![houdini](../../assets/iges.png)
+![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/iges.png)
 
 ## Installation
 

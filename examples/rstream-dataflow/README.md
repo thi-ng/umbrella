@@ -13,7 +13,7 @@ Installs all dependencies, runs `webpack-dev-server` and opens the app in your b
 
 ## About
 
-![dataflow graph](../../assets/rs-dflow.png)
+![dataflow graph](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rs-dflow.png)
 
 This example combines the following packages to create & execute the
 above dataflow graph in a declarative manner. The diagram generation

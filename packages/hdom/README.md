@@ -132,7 +132,7 @@ JS arrays). Components can be defined as static arrays, closures or
 objects with [life cycle methods](#lifecycle-methods) (init, render,
 release).
 
-![hdom dataflow](../../assets/hdom-dataflow.svg)
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
