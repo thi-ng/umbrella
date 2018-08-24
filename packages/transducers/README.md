@@ -123,8 +123,8 @@ import { range } from "@thi.ng/transducers/iter/range";
 // compose transducer
 xform = tx.comp(
     tx.filter((x) => (x & 1) > 0), // odd numbers only
-    tx.distinct(),               // distinct numbers only
-    tx.map((x) => x * 3)            // times 3
+    tx.distinct(),                 // distinct numbers only
+    tx.map((x) => x * 3)           // times 3
 );
 
 // collect into array (tx.push)
@@ -142,8 +142,8 @@ tx.transduce(xform, tx.conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 
 // alternatively provide an input iterable and
 // use xform as transforming iterator
-[...tx.filter((x) => /[A-Z]/.test(x), "Hello World!")].join("")
-// "HW"
+[...tx.filter((x) => /[A-Z]/.test(x), "Hello World!")]
+// ["H", "W"]
 
 // single step execution
 // returns undefined if transducer returned no result for this input
@@ -160,24 +160,23 @@ f = tx.step(take)
 ### Fuzzy search
 
 ```ts
-[...tx.iterator(tx.filterFuzzy("ho"), ["hello", "hallo", "hey", "heyoka"])]
+[...tx.filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
 // ["hello", "hallo", "heyoka"]
-[...tx.iterator(tx.filterFuzzy("hlo"), ["hello", "hallo", "hey", "heyoka"])]
+[...tx.filterFuzzy("hlo", ["hello", "hallo", "hey", "heyoka"])]
 // ["hello", "hallo"]
 
 // works with any array-like values & supports custom key extractors
-[...tx.iterator(
-    tx.filterFuzzy([1, 3], (x) => x.tags),
+[...tx.filterFuzzy(
+    [1, 3],
+    { key: (x) => x.tags },
     [
         { tags: [1, 2, 3] },
-        { tags: [1, 3, 4] },
+        { tags: [2, 3, 4] },
         { tags: [4, 5, 6] },
         { tags: [1, 3, 6] }
     ]
 )]
-// [ { tags: [ 1, 2, 3 ] },
-//   { tags: [ 1, 3, 4 ] },
-//   { tags: [ 1, 3, 6 ] } ]
+// [ { tags: [ 1, 2, 3 ] }, { tags: [ 1, 3, 6 ] } ]
 ```
 
 ### Histogram generation & result grouping
@@ -192,16 +191,20 @@ tx.transduce(tx.map(x => x.toUpperCase()), tx.frequencies(), "hello world")
 tx.reduce(tx.frequencies(), [1, 1, 1, 2, 3, 4, 4])
 // Map { 1 => 3, 2 => 1, 3 => 1, 4 => 2 }
 
+// direct reduction if input is given
+tx.frequencies([1, 1, 1, 2, 3, 4, 4])
+// Map { 1 => 3, 2 => 1, 3 => 1, 4 => 2 }
+
 // with optional key function, here to bin by word length
-tx.reduce(
-    tx.frequencies(x => x.length),
+tx.frequencies(
+    x => x.length,
     "my camel is collapsing and needs some water".split(" ")
 )
 // Map { 2 => 2, 5 => 3, 10 => 1, 3 => 1, 4 => 1 }
 
-// actual grouping
-tx.reduce(
-    tx.groupByMap(x => x.length),
+// actual grouping (here: by word length)
+tx.groupByMap(
+    { key: x => x.length },
     "my camel is collapsing and needs some water".split(" ")
 )
 // Map {
@@ -217,7 +220,7 @@ tx.reduce(
 
 ```ts
 // extract only items for given page id & page length
-[...tx.iterator(tx.page(0, 5), tx.range(12))]
+[...tx.page(0, 5, tx.range(12))]
 // [ 0, 1, 2, 3, 4 ]
 
 // when composing with other transducers
@@ -230,7 +233,8 @@ tx.reduce(
 [...tx.iterator(tx.comp(tx.page(2, 5), tx.padLast(5, "n/a")), tx.range(12))]
 // [ 10, 11, 'n/a', 'n/a', 'n/a' ]
 
-[...tx.iterator(tx.page(3, 5), rtx.ange(12))]
+// no values produced for invalid pages
+[...tx.page(3, 5, tx.range(12))]
 // []
 ```
 
@@ -277,15 +281,12 @@ tx.transduce(
     ),
     tx.push(),
     [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10]
-);
+)
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
 
 // this combined transducer is also directly
 // available as: `tx.movingAverage(n)`
-tx.transduce(
-    tx.movingAverage(5),
-    [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10]
-);
+[...tx.movingAverage(5, [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10])]
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
 ```
 
@@ -293,13 +294,13 @@ tx.transduce(
 
 ```ts
 // function to test
-fn = () => { for(i=0; i<1e6; i++) let x =Math.cos(i); return x; };
+fn = () => { let x; for(i=0; i<1e6; i++) { x = Math.cos(i); } return x; };
 
 // compute the mean of 100 runs
 tx.transduce(
-    tx.comp(tx.benchmark(), tx.take(100)),
+    tx.benchmark(),
     tx.mean(),
-    tx.repeatedly(fn)
+    tx.repeatedly(fn, 100)
 );
 // 1.93 (milliseconds)
 ```
@@ -310,15 +311,14 @@ tx.transduce(
 // alternatively, use tx.sideEffect() for any side fx
 tx.transduce(
     tx.comp(
-        tx.inspect("orig"),
+        tx.trace("orig"),
         tx.map(x => x + 1),
-        tx.inspect("mapped"),
+        tx.trace("mapped"),
         tx.filter(x => (x & 1) > 0)
     ),
     tx.push(),
     [1, 2, 3, 4]
 );
-
 // orig 1
 // mapped 2
 // orig 2
@@ -342,9 +342,10 @@ here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xf
 // 2 or 3 items: `[name, size, transform?]`. If `transform` is given, it will
 // be used to produce the final value for this field. In the example below,
 // it is used to unwrap the ID field values, e.g. from `[0] => 0`
-[...tx.iterator(
-    tx.struct([["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]]),
-    [0, 100, 200, -1, 0, 1, 0.5, 0, 1, 1, 0, 0, 5, 4, 0, 0, 1, 1]) ]
+[...tx.struct(
+    [["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]],
+    [0, 100, 200, -1, 0, 1, 0.5, 0, 1, 1, 0, 0, 5, 4, 0, 0, 1, 1]
+)]
 // [ { color: [ 1, 0.5, 0, 1 ],
 //     vel: [ -1, 0 ],
 //     pos: [ 100, 200 ],
@@ -401,16 +402,16 @@ xform = tx.comp(
     tx.scan(tx.count()),
     tx.map(x => [...tx.repeat(x,x)]),
     tx.scan(tx.pushCopy())
-);
+)
 
-tx.transduce(xform, tx.push(), [1, 1, 1, 1]);
+[...tx.iterator(xform, [1, 1, 1, 1])]
 // [ [ [ 1 ] ],
 //   [ [ 1 ], [ 2, 2 ] ],
 //   [ [ 1 ], [ 2, 2 ], [ 3, 3, 3 ] ],
 //   [ [ 1 ], [ 2, 2 ], [ 3, 3, 3 ], [ 4, 4, 4, 4 ] ] ]
 
 // more simple & similar to previous, but without the 2nd xform step
-tx.transduce(tx.comp(tx.scan(tx.count), tx.scan(tx.pushCopy)), tx.push(), [1,1,1,1])
+tx.transduce(tx.comp(tx.scan(tx.count()), tx.scan(tx.pushCopy())), tx.push(), [1,1,1,1])
 // [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 1, 2, 3, 4 ] ]
 ```
 
@@ -423,7 +424,7 @@ here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xf
 ```ts
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
 
-[...iterator(hexDump(8, 0x400), src)]
+[...tx.iterator(tx.hexDump({ cols: 8, address: 0x400 }), src)]
 // [ '00000400 | 41 42 43 44 45 46 47 48 | ABCDEFGH',
 //   '00000408 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
 //   '00000410 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
@@ -432,7 +433,7 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 ### Bitstream
 
 ```ts
-[...tx.iterator(tx.bits(8), [ 0xf0, 0xaa ])]
+[...tx.bits(8, [0xf0, 0xaa])]
 // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
 
 [...tx.iterator(
@@ -455,9 +456,12 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 
 ### Base64 & UTF-8 en/decoding
 
+Unlike JS default `btoa()` / `atob()` functions which operate on
+strings, these transducers convert byte values to base64 and back.
+
 ```ts
-// add offset (0x80) to allow negative values to be encoded
-// (URL safe result can be produced via opt arg to `base64Encode`)
+// here we first add an offset (0x80) to allow negative values to be encoded
+// (URL safe results can be produced via opt arg to `base64Encode`)
 enc = tx.transduce(
     tx.comp(
         tx.map(x => x + 0x80),
@@ -481,18 +485,18 @@ enc = tx.transduce(
 buf = tx.transduce(
     tx.comp(tx.utf8Encode(), tx.base64Encode()),
     tx.str(),
-    "beer (🍺) or hot beverage (☕︎)"
+    "beer (🍺) or hot beverage (☕️)"
 );
 // "YmVlciAo8J+Nuikgb3IgaG90IGJldmVyYWdlICjimJXvuI4p"
 
 tx.transduce(tx.comp(tx.base64Decode(), tx.utf8Decode()), tx.str(), buf)
-// "beer (🍺) or hot beverage (☕︎)"
+// "beer (🍺) or hot beverage (☕️)"
 ```
 
 ### Weighted random choices
 
 ```ts
-tx.transduce(tx.take(10), tx.push(), tx.choices("abcd", [1, 0.5, 0.25, 0.125]))
+[...tx.take(10, tx.choices("abcd", [1, 0.5, 0.25, 0.125]))]
 // [ 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'c', 'd', 'b' ]
 
 tx.transduce(tx.take(1000), tx.frequencies(), tx.choices("abcd", [1, 0.5, 0.25, 0.125]))
@@ -670,8 +674,9 @@ itself. Returns nothing.
 
 ### Transducers
 
-All of these functions can be used and composed as transducers. Most also
-accept an input iterable and then directly yield a transforming iterator, e.g.
+All of the following functions can be used and composed as transducers.
+With a few exceptions, most also accept an input iterable and then
+directly yield a transforming iterator, e.g.
 
 ```ts
 // as transducer
@@ -751,7 +756,6 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 
 ### Generators / Iterators
 
-- [asIterable](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/asIterable.ts)
 - [choices](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/choices.ts)
 - [concat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/concat.ts)
 - [cycle](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/cycle.ts)
@@ -775,6 +779,10 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [wrap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/iter/wrap.ts)
 
 ### Reducers
+
+As with transducer functions, reducer functions can also given an
+optional input iterable. If done so, the function will consume the input
+and return a reduced result (as if it would be called via `reduce()`).
 
 - [add](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/add)
 - [assocMap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/rfn/assoc-map)
