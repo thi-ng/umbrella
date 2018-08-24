@@ -10,16 +10,15 @@ import { filter } from "./filter";
 import { map } from "./map";
 
 export function rename<A, B>(kmap: IObjectOf<PropertyKey> | Array<PropertyKey>, rfn?: Reducer<B, [PropertyKey, A]>): Transducer<A[], B>;
-export function rename<A, B>(kmap: IObjectOf<PropertyKey> | Array<PropertyKey>, src: Iterable<A[]>): IterableIterator<B>;
 export function rename<A, B>(kmap: IObjectOf<PropertyKey> | Array<PropertyKey>, rfn: Reducer<B, [PropertyKey, A]>, src: Iterable<A[]>): IterableIterator<B>;
 export function rename(...args: any[]): any {
-    const iter = $iter(rename, args);
+    const iter = args.length > 2 && $iter(rename, args);
     if (iter) {
         return iter;
     }
-    let kmap;
-    if (isArray(args[0])) {
-        kmap = args[0].reduce((acc, k, i) => (acc[k] = i, acc), {});
+    let kmap = args[0];
+    if (isArray(kmap)) {
+        kmap = kmap.reduce((acc, k, i) => (acc[k] = i, acc), {});
     }
     if (args[1]) {
         const ks = Object.keys(kmap);
