@@ -1,11 +1,8 @@
 import { TLRUCache } from "@thi.ng/cache";
 import * as express from "express";
 
-import { header } from "./components/header";
-import { repoTable } from "./components/repo-table";
 import { ctx } from "./config";
-import { repoCommits } from "./git";
-import { html } from "./html";
+import { buildRepoTableHTML } from "./common";
 
 // building the repo commit table takes quite some time
 // therefore we cache results in a cache with 1h expiry time
@@ -19,14 +16,7 @@ app.get('/', (_, res) => {
     // (re)create if missing...
     cache.getSet(
         ctx.repo.path,
-        async () =>
-            html({
-                ctx,
-                body: [
-                    [header, ctx.repo.name],
-                    [repoTable, repoCommits(ctx.repo.path)]
-                ]
-            })
+        async () => buildRepoTableHTML()
     ).then((doc) => res.send(doc));
 });
 

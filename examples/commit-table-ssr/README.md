@@ -24,12 +24,16 @@ to cache the rendered HTML. Reloading the page will show the difference.
 To use another local repo on your hard drive, [update the settings
 here](./src/config.ts#L24).
 
+## Building & running
+
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/commit-table-ssr
 yarn install
 yarn dev
 ```
+
+Then open http://localhost:3000 in your browser.
 
 To build the static version run:
 
