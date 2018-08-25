@@ -39,16 +39,16 @@ export class LRUCache<K, V> implements ICache<K, V> {
         return this.entries();
     }
 
-    *entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
-        yield* map((e) => <[K, CacheEntry<K, V>]>[e.k, e], this.items);
+    entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
+        return map((e) => <[K, CacheEntry<K, V>]>[e.k, e], this.items);
     }
 
-    *keys(): IterableIterator<Readonly<K>> {
-        yield* map((e) => e.k, this.items);
+    keys(): IterableIterator<Readonly<K>> {
+        return map((e) => e.k, this.items);
     }
 
-    *values(): IterableIterator<Readonly<V>> {
-        yield* map((e) => e.v, this.items);
+    values(): IterableIterator<Readonly<V>> {
+        return map((e) => e.v, this.items);
     }
 
     copy(): ICache<K, V> {
