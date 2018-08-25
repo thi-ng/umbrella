@@ -63,7 +63,7 @@ export const repoCommits = (repoPath: string) =>
         comp(
             map(gitLog),
             mapcat((x: string) => x.split("\n")),
-            partitionBy((x) => x.indexOf("Merge ") !== -1 ? 2 : x.length > 0 ? 1 : 0),
+            partitionBy((x) => x.indexOf("~~Merge ") !== -1 ? 2 : x.length > 0 ? 1 : 0),
             filter((x) => x[0].length > 0),
             multiplex(
                 map(parseLog),
