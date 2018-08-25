@@ -61,15 +61,23 @@ const parseStats = ([_, stats]: string[]): Partial<Commit> =>
 export const repoCommits = (repoPath: string) =>
     iterator(
         comp(
+            // get raw log
             map(gitLog),
+            // split into lines
             mapcat((x: string) => x.split("\n")),
+            // group related lines:
+            // normal commits have 2 lines + 1 empty
+            // merge commits have only 1 line
             partitionBy((x) => x.indexOf("~~Merge ") !== -1 ? 2 : x.length > 0 ? 1 : 0),
+            // remove empty lines
             filter((x) => x[0].length > 0),
+            // parse commit details
             multiplex(
                 map(parseLog),
                 map(parseStats)
             ),
+            // combine
             map(([log, stats]) => <Commit>{ ...log, ...stats })
         ),
-        repoPath
+        [repoPath]
     );
