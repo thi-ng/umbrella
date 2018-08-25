@@ -1,6 +1,5 @@
 import { iterator, map, multiplex, comp, partitionBy, mapIndexed, repeat } from "@thi.ng/transducers";
 import { AppContext, Commit } from "../api";
-import { formatDate } from "../utils";
 import { table } from "./table";
 import { commitLink } from "./commit-link";
 
@@ -11,7 +10,7 @@ export const repoTable = (_: AppContext, commits: Iterable<Commit>) =>
         iterator(
             comp(
                 multiplex(
-                    map((x: Commit) => formatDate(x.date)),
+                    map((x: Commit) => x.date.substr(0, 10)),
                     map((x: Commit) => x.author),
                     map((x: Commit) => [commitLink, x.sha, x.msg]),
                     map((x: Commit) => x.files),
