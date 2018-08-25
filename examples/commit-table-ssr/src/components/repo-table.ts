@@ -3,6 +3,13 @@ import { AppContext, Commit } from "../api";
 import { table } from "./table";
 import { commitLink } from "./commit-link";
 
+/**
+ * Git commit log table component. Consumes iterable of `Commit` objects
+ * and transforms each into a table row.
+ *
+ * @param _
+ * @param commits
+ */
 export const repoTable = (_: AppContext, commits: Iterable<Commit>) =>
     [table,
         ["15%", "15%", "55%", "5%", "5%", "5%"],
@@ -28,4 +35,4 @@ export const repoTable = (_: AppContext, commits: Iterable<Commit>) =>
             ),
             commits
         )
-    ]
+    ];

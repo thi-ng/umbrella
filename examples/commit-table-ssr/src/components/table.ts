@@ -11,7 +11,38 @@ const thead = (ctx: AppContext, head: Iterable<any>) =>
 const row = (ctx: AppContext, attribs: any, body: Iterable<any>) =>
     ["tr", { ...ctx.ui.table.row, ...attribs }, ...body];
 
-export const table = (ctx: AppContext, layout: any[], head: Iterable<any>, body: Iterable<Iterable<any>>) =>
+/**
+ * Generic HTML table component w/ column layout support & intermediate
+ * headers. The `body` iterable MUST contain groups of rows, each group
+ * with an optional new header row:
+ *
+ * ```
+ * [table,
+ *   // column layout
+ *   ["25%", "25%", "50%"],
+ *   // global header
+ *   ["Price","Item","Description"],
+ *   // body
+ *   [
+ *     // row group #1 w/o header
+ *     [null, [
+ *         [10.99, "Yaki Udon", "noodle dish"],
+ *         [4.99, "Asahi", "beer"],
+ *     ]],
+ *     // row group #2 w/ header
+ *     [["Subtotal", "VAT", "Total"], [
+ *         [15.98, "20%", 19.18]
+ *     ]]
+ *   ]
+ * ]
+ * ```
+ *
+ * @param ctx
+ * @param layout column sizes
+ * @param head header cell values
+ * @param body row chunks
+ */
+export const table = (ctx: AppContext, layout: (string | number)[], head: Iterable<any>, body: Iterable<Iterable<any>>) =>
     ["table", ctx.ui.table.root,
         map((x) => ["col", { style: { width: x } }], layout || []),
         [thead, head],

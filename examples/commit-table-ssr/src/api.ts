@@ -40,6 +40,9 @@ export interface Repo {
     url: string;
 }
 
+/**
+ * Data structure of a single commit.
+ */
 export interface Commit {
     sha: string;
     date: string;

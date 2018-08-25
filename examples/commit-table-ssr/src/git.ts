@@ -5,7 +5,6 @@ import {
     iterator,
     map,
     mapcat,
-    multiplex,
     partitionBy,
     transduce,
     tuples
@@ -72,12 +71,10 @@ export const repoCommits = (repoPath: string) =>
             // remove empty lines
             filter((x) => x[0].length > 0),
             // parse commit details
-            multiplex(
-                map(parseLog),
-                map(parseStats)
-            ),
-            // combine
-            map(([log, stats]) => <Commit>{ ...log, ...stats })
+            map((commit) => <Commit>{
+                ...parseLog(commit),
+                ...parseStats(commit)
+            })
         ),
         [repoPath]
     );
