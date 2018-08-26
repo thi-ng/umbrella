@@ -67,7 +67,13 @@ export const repoCommits = (repoPath: string) =>
             // group related lines:
             // normal commits have 2 lines + 1 empty
             // merge commits have only 1 line
-            partitionBy((x) => x.indexOf("~~Merge ") !== -1 ? Math.random() : x.length > 0 ? 1 : 0),
+            // pick a random number for merge commits
+            // in case there're successive ones
+            partitionBy(
+                (x) => x.indexOf("~~Merge ") !== -1 ?
+                    Math.random() :
+                    x.length > 0 ? 1 : 0
+            ),
             // remove empty lines
             filter((x) => x[0].length > 0),
             // parse commit details

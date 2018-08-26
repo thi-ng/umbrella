@@ -35,7 +35,7 @@ app.get("/", (_, res) => {
 
 // route for the client to retrieve the commit log as JSON
 app.get("/commits", (_, res) => {
-    // retrieve rendered html from cache or
+    // retrieve raw commit log from cache or
     // (re)create if missing...
     rawCache.getSet(
         ctx.repo.path,
@@ -48,6 +48,8 @@ app.get("/commits", (_, res) => {
 // route for server-side rendering
 // uses both caches
 app.get("/ssr", (_, res) => {
+    // retrieve rendered html from cache or
+    // (re)create if missing...
     htmlCache.getSet(
         ctx.repo.path,
         async () => buildRepoTableHTML(

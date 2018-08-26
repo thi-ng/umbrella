@@ -120,7 +120,7 @@ sync({
     );
 
 // manual kick off is needed here, since the above stream sync construct
-// will only execute once all of its inputs have delivered a value
+// will only execute once all of its inputs have delivered a value.
 // the other input `commits` is triggered automatically because it's
 // tied to a timer
 search.next("");
