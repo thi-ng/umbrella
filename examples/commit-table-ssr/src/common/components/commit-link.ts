@@ -10,4 +10,4 @@ import { link } from "./link";
  * @param body
  */
 export const commitLink = (ctx: AppContext, sha: string, body: string) =>
-    [link, `${ctx.repo.url}/commit/${sha}`, body];
+    [link, { ...ctx.ui.link, href: `${ctx.repo.url}/commit/${sha}` }, body];

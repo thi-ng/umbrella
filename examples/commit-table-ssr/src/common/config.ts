@@ -31,8 +31,8 @@ export const ctx: AppContext = {
         body: { class: "sans-serif vh-100" },
         link: { class: "link blue hover-light-blue" },
         header: {
-            root: { class: "bg-dark-gray white pa3 ma0 w-100 tc" },
-            title: { class: "ma0 pa0 fw1" }
+            root: { class: "bg-dark-gray white pa3 ma0 w-100" },
+            title: { class: "tc ma0 pa0 fw1" }
         },
         table: {
             root: {
@@ -45,6 +45,12 @@ export const ctx: AppContext = {
             },
             row: { class: "striped--light-gray" },
             cell: { class: "pv1 pv2-ns ph2 ph3-ns" }
-        }
+        },
+        stats: {
+            root: { class: "flex items-center pa2 bg-light-green dark-gray f7" },
+            col: { class: "w-33" },
+            link: { class: "link dark-gray" }
+        },
+        search: { class: "pa1 mh2" }
     }
 };

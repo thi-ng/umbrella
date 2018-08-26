@@ -1,8 +1,9 @@
-import { serialize } from "@thi.ng/hiccup";
 import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
+import { serialize } from "@thi.ng/hiccup";
 import { map } from "@thi.ng/transducers/xform/map";
-import { HTMLDoc } from "./api";
-import { DEFAULT_DOC } from "./config";
+
+import { AppContext, HTMLDoc } from "../common/api";
+import { DEFAULT_DOC } from "../common/config";
 
 /**
  * Takes a `HTMLDoc` object and serializes it into an HTML5 string. The
@@ -23,13 +24,16 @@ export const html = (doc: HTMLDoc) => {
         ["html", { lang: doc.lang || "en" },
             ["head",
                 map((meta) => ["meta", meta], doc.head.meta),
-                ["title", doc.head.title],
+                map((s) => script(null, s), doc.head.scripts),
                 map((link) => ["link", link], doc.head.links),
-                map((script) => ["script", script], doc.head.scripts),
                 map((css) => ["style", css], doc.head.styles),
+                ["title", doc.head.title],
             ],
             ["body", doc.ctx.ui.body, ...doc.body]
         ],
         doc.ctx
     )}`;
 };
+
+export const script = (_: AppContext, script: { src: string, type?: string }) =>
+    ["script", { type: "text/javascript", ...script }];

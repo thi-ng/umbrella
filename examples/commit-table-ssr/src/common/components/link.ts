@@ -7,5 +7,5 @@ import { AppContext } from "../api";
  * @param href
  * @param body
  */
-export const link = (ctx: AppContext, href: string, body: string) =>
-    ["a", { ...ctx.ui.link, href }, body];
+export const link = (_: AppContext, attribs: any, body: string) =>
+    ["a", attribs, body];

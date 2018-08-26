@@ -16,7 +16,7 @@ export interface HTMLHead {
     title: string;
     meta: any[];
     links: { rel: string, href: string }[];
-    scripts: { src: string, [id: string]: string }[];
+    scripts: { src: string, type?: string }[];
     styles: string[];
 }
 
@@ -31,6 +31,8 @@ export interface AppContext {
         link: any;
         header: any;
         table: any;
+        stats: any;
+        search: any;
     }
 }
 

@@ -1,7 +1,13 @@
-import { iterator, map, comp, partitionBy, mapIndexed, repeat } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { repeat } from "@thi.ng/transducers/iter/repeat";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { partitionBy } from "@thi.ng/transducers/xform/partition-by";
+
 import { AppContext, Commit } from "../api";
-import { table } from "./table";
 import { commitLink } from "./commit-link";
+import { table } from "./table";
 
 /**
  * Git commit log table component. Consumes iterable of `Commit` objects

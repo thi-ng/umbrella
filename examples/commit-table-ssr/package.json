@@ -5,8 +5,10 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "tsc && node static.js",
-        "dev": "tsc && node index.js"
+        "build-static": "tsc && node build/server/static.js",
+        "build-client": "webpack --mode production --display-reasons --display-modules",
+        "dev": "tsc && node build/server/index.js",
+        "dev-client": "yarn build-client && yarn dev"
     },
     "devDependencies": {
         "ts-loader": "^4.4.2",
@@ -17,6 +19,11 @@
     },
     "dependencies": {
         "express": "^4.16.3",
+        "@thi.ng/associative": "latest",
+        "@thi.ng/cache": "latest",
+        "@thi.ng/hiccup": "latest",
+        "@thi.ng/resolve-map": "latest",
+        "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
         "@types/express": "^4.16.0"
     }

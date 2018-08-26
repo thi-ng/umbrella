@@ -12,7 +12,7 @@ import {
 import { execSync } from "child_process";
 import { resolve } from "path";
 
-import { Commit } from "./api";
+import { Commit } from "../common/api";
 
 /**
  * Calls out to git to retrieve raw log string.
@@ -67,7 +67,7 @@ export const repoCommits = (repoPath: string) =>
             // group related lines:
             // normal commits have 2 lines + 1 empty
             // merge commits have only 1 line
-            partitionBy((x) => x.indexOf("~~Merge ") !== -1 ? 2 : x.length > 0 ? 1 : 0),
+            partitionBy((x) => x.indexOf("~~Merge ") !== -1 ? Math.random() : x.length > 0 ? 1 : 0),
             // remove empty lines
             filter((x) => x[0].length > 0),
             // parse commit details
