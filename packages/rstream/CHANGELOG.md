@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.11.6"></a>
+## [1.11.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.11.5...@thi.ng/rstream@1.11.6) (2018-08-27)
+
+
+### Bug Fixes
+
+* **rstream:** Fix unbound this in method call expression ([34a97b4](https://github.com/thi-ng/umbrella/commit/34a97b4))
+
+
+
+
 <a name="1.11.5"></a>
 ## [1.11.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.11.4...@thi.ng/rstream@1.11.5) (2018-08-27)
 
