@@ -47,6 +47,24 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * // 20
  * // 30
  * ```
+ *
+ * Use the `labeled()` transducer for each input to create a stream of
+ * labeled values and track their provenance:
+ *
+ * ```
+ * merge({
+ *     src: [
+ *         fromIterable([1,2,3]).transform(labeled("a")),
+ *         fromIterable([10,20,30]).transform(labeled("b")),
+ *     ]
+ * }).subscribe(trace());
+ * // ["a", 1]
+ * // ["b", 10]
+ * // ["a", 2]
+ * // ["b", 20]
+ * // ["a", 3]
+ * // ["b", 30]
+ * ```
  */
 export function merge<A, B>(opts?: Partial<StreamMergeOpts<A, B>>) {
     return new StreamMerge(opts);
