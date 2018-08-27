@@ -48,7 +48,8 @@ export const eqDelta1 = (a: number, b: number, eps = EPS) => {
  * @param a
  * @param b
  */
-export const fmod1 = (a: number, b: number) => a - b * Math.floor(a / b);
+export const fmod1 = (a: number, b: number) =>
+    a - b * Math.floor(a / b);
 
 /**
  * Step/threshold function.
@@ -57,7 +58,8 @@ export const fmod1 = (a: number, b: number) => a - b * Math.floor(a / b);
  * @param x test value
  * @returns 0, if `x < e`, else 1
  */
-export const step1 = (edge: number, x: number) => x < edge ? 0 : 1;
+export const step1 = (edge: number, x: number) =>
+    x < edge ? 0 : 1;
 
 /**
  * GLSL-style smoothStep threshold function.
@@ -72,7 +74,8 @@ export const smoothStep1 = (edge: number, edge2: number, x: number) => {
     return (3 - 2 * t) * t * t;
 };
 
-export const min2id = (a, b) => a <= b ? 0 : 1;
+export const min2id = (a, b) =>
+    a <= b ? 0 : 1;
 
 export const min3id = (a, b, c) =>
     (a <= b) ?
@@ -88,7 +91,8 @@ export const min4id = (a, b, c, d) =>
             (b <= d ? 1 : 3) :
             (c <= d ? 2 : 3));
 
-export const max2id = (a, b) => a >= b ? 0 : 1;
+export const max2id = (a, b) =>
+    a >= b ? 0 : 1;
 
 export const max3id = (a, b, c) =>
     (a >= b) ?
@@ -113,6 +117,9 @@ export const max4id = (a, b, c, d) =>
  */
 export const clamp1 = (x: number, min: number, max: number) =>
     x < min ? min : x > max ? max : x;
+
+export const mix1 = (a: number, b: number, t: number) =>
+    a + (b - a) * t;
 
 export const fit1 = (x: number, a: number, b: number, c: number, d: number) =>
     c + (d - c) * (x - a) / (b - a);
