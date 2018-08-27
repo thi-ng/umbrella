@@ -1,23 +1,28 @@
+export type CanvasContext =
+    CanvasRenderingContext2D |
+    WebGLRenderingContext |
+    WebGL2RenderingContext;
+
 /**
  * User provided canvas life cycle methods. These differ from the usual
  * @thi.ng/hdom life cycle methods and are always passed at least the
  * canvas DOM element, canvas context and hdom user context. Not all
  * handlers need to be implemented.
  */
-export interface CanvasHandlers<T> {
+export interface CanvasHandlers<T extends CanvasContext> {
     /**
      * user init handler (called only once when canvas first)
      */
-    init: (el: HTMLCanvasElement, gl: T, hctx?: any, ...args: any[]) => void;
+    init: (el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]) => void;
     /**
      * update handler (called for each hdom update iteration)
      */
-    update: (el: HTMLCanvasElement, gl: T, hctx?: any, time?: number, frame?: number, ...args: any[]) => void;
+    update: (el: HTMLCanvasElement, ctx: T, hctx?: any, time?: number, frame?: number, ...args: any[]) => void;
     /**
      * release handler (called only once when canvas element is removed
      * from DOM)
      */
-    release: (el: HTMLCanvasElement, gl: T, hctx?: any, ...args: any[]) => void;
+    release: (el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]) => void;
 }
 
 /**
@@ -35,6 +40,7 @@ const _canvas = (type, { init, update, release }: Partial<CanvasHandlers<any>>, 
     return {
         init(_el: HTMLCanvasElement, hctx: any, ...args: any[]) {
             el = _el;
+            adaptDPI(el, el.width, el.height);
             ctx = el.getContext(type, opts);
             time = Date.now();
             init && init(el, ctx, hctx, ...args);
@@ -98,3 +104,23 @@ export const canvas2D = (
     handlers: Partial<CanvasHandlers<CanvasRenderingContext2D>>,
     opts?: Canvas2DContextAttributes) =>
     _canvas("2d", handlers, opts);
+
+/**
+ * Sets the canvas size to given `width` & `height` and adjusts style to
+ * compensate for HDPI devices. Note: For 2D canvases, this will
+ * automatically clear any prior canvas content.
+ *
+ * @param canvas
+ * @param width uncompensated pixel width
+ * @param height uncompensated pixel height
+ */
+export const adaptDPI = (canvas: HTMLCanvasElement, width: number, height: number) => {
+    const dpr = window.devicePixelRatio || 1;
+    if (dpr != 1) {
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+    }
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    return dpr;
+};
