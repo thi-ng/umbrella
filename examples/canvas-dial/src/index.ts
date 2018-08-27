@@ -1,46 +1,60 @@
-import { fromRAF } from "@thi.ng/rstream/from/raf";
+import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { percent } from "@thi.ng/strings/percent";
 import { updateUI } from "@thi.ng/transducers-hdom";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { map } from "@thi.ng/transducers/xform/map";
-// import { stream } from "@thi.ng/rstream/stream";
 
 import { dial } from "./dial";
 
+// hdom context & app state object
 export const ctx = {
-    //     state: new Atom<any>({
-    //         bass: 0
-    //     })
+    // streams to hold dial values
+    streams: {
+        a: stream<number>(),
+        b: stream<number>(),
+        c: stream<number>(),
+    },
+    // component styling
     ui: {
         root: { class: "vh-100 flex justify-center items-center" },
-        dial: { width: 100, height: 100, class: "mh1" },
+        dial: { width: 100, height: 100, class: "ma1" },
     }
 };
 
-const sine = (freq: number) =>
-    map((x: number) => 0.5 + 0.5 * Math.sin(x * freq));
-
+/**
+ * This HOF (higher-order function) returns a mapping function which
+ * receives a tuple of object of all current stream values and returns a
+ * hdom root component. It will be used by the `sync()` construct
+ * further below.
+ *
+ * The dial components used here are HOFs themselves and therefore must
+ * be pre-initialized before use.
+ */
 const app = () => {
     const dialA = dial({
         r1: 0.5,
         color: { from: [0, 0], to: [1, 1], stops: [[0, "#075"], [1, "#6f9"]] },
         font: "20px Menlo",
-        label: (x) => percent(0)(x)
+        label: (x) => percent(0)(x),
+        onchange: (x) => ctx.streams.a.next(x)
     });
     const dialB = dial({
         r1: 0.66,
-        base: 0,
-        color: { from: [0, 0], to: [1, 0], stops: [[0, "#f60"], [1, "#ff0"]] },
+        base: -Math.PI / 2,
+        gap: Math.PI / 2,
+        color: { from: [0, 0], to: [1, 0.75], stops: [[0, "#00f"], [0.5, "#f60"], [1, "#ff0"]] },
         font: "20px Menlo",
-        label: (x) => percent(0)(x)
+        label: (x) => percent(1)(x),
+        onchange: (x) => ctx.streams.b.next(x)
     });
     const dialC = dial({
         r1: 0.75,
-        spread: Math.PI,
-        color: { from: [0, 0], to: [1, 0], stops: [[0, "#407"], [1, "#03f"]] },
+        gap: Math.PI,
+        color: { from: [0, 0], to: [1, 0], stops: [[0, "#407"], [1, "#09f"]] },
         font: "20px Menlo",
-        label: (x) => percent(0)(x),
+        label: (x) => percent(2)(x),
+        onchange: (x) => ctx.streams.c.next(x)
     });
     return ({ a, b, c }) =>
         ["div", ctx.ui.root,
@@ -50,14 +64,13 @@ const app = () => {
         ];
 };
 
+// stream combinator & reactive DOM update
 sync({
-    src: {
-        a: fromRAF().transform(sine(0.1)),
-        b: fromRAF().transform(sine(0.07)),
-        c: fromRAF().transform(sine(0.04)),
-    },
-    xform: comp(
-        map(app()),
-        updateUI("app")
-    )
+    src: ctx.streams,
+    xform: comp(map(app()), updateUI("app"))
 });
+
+// seed dials with initial values
+ctx.streams.a.next(0.66);
+ctx.streams.b.next(1);
+ctx.streams.c.next(0.75);

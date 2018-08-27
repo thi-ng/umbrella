@@ -2,7 +2,8 @@
 
 [Live demo](http://demo.thi.ng/umbrella/canvas-dial/)
 
-Canvas-based dial widget / component. WIP - Interactive version forthcoming.
+Customizable canvas-based radial dial component with mouse & touch
+support.
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
