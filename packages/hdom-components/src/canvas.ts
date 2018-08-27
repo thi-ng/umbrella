@@ -44,6 +44,7 @@ const _canvas = (type, { init, update, release }: Partial<CanvasHandlers<any>>, 
             ctx = el.getContext(type, opts);
             time = Date.now();
             init && init(el, ctx, hctx, ...args);
+            update && update(el, ctx, hctx, time, frame++, ...args);
         },
         render(hctx: any, ...args: any[]) {
             ctx && update && update(el, ctx, hctx, Date.now() - time, frame++, ...args);
