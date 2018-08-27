@@ -57,7 +57,14 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                     DEBUG && console.log(`resolved value in ${State[this.state]} state (${x})`);
                 }
             },
-            (e) => (this.fail || this.error)(e)
+            (e) => {
+                if (this.fail) {
+                    this.fail(e);
+                }
+                else {
+                    this.error(e);
+                }
+            }
         );
     }
 
