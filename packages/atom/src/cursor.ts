@@ -112,6 +112,14 @@ export class Cursor<T> implements
         });
     }
 
+    get value() {
+        return this.deref();
+    }
+
+    set value(val: T) {
+        this.reset(val);
+    }
+
     deref() {
         return this.local.deref();
     }
