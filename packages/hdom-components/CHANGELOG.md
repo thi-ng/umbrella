@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.1.13...@thi.ng/hdom-components@2.2.0) (2018-08-27)
+
+
+### Bug Fixes
+
+* **hdom-components:** call canvas update from init() ([b25edbe](https://github.com/thi-ng/umbrella/commit/b25edbe))
+
+
+### Features
+
+* **hdom-components:** add HDPI adaptation helper for canvas comps ([135d6f1](https://github.com/thi-ng/umbrella/commit/135d6f1))
+
+
+
+
 <a name="2.1.13"></a>
 ## [2.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.1.12...@thi.ng/hdom-components@2.1.13) (2018-08-24)
 
