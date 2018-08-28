@@ -18,7 +18,7 @@ export const ctx = {
     // component styling
     ui: {
         root: { class: "vh-100 flex justify-center items-center" },
-        dial: { width: 100, height: 100, class: "ma1" },
+        dial: { width: 100, height: 100, class: "pointer ma1" },
     }
 };
 
