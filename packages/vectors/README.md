@@ -85,62 +85,66 @@ zero-copy vector operations on sections of larger buffers. The default
 start index is 0, default stride 1. See examples below and
 [tests](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/test/).
 
-| Operation                       | Generic      | 2D               | 3D                 | 4D               |
-|---------------------------------|--------------|------------------|--------------------|------------------|
-| Get vector (dense copy)         | `get`        | `get2`           | `get3`             | `get4`           |
-| Set vector components (vector)  | `set`        | `set2`           | `set3`             | `set4`           |
-| Set vector components (uniform) | `setN`       | `setN2`          | `setN3`            | `setN4`          |
-| Set vector components (scalars) |              | `setS2`          | `setS3`            | `setS4`          |
-| Swizzle vector components       |              | `swizzle2`       | `swizzle3`         | `swizzle4`       |
-| Equality (w/ epsilon)           | `eqDelta`    | `eqDelta2`       | `eqDelta3`         | `eqDelta4`       |
-| Vector addition                 | `add`        | `add2`           | `add3`             | `add4`           |
-| Vector subtraction              | `sub`        | `sub2`           | `sub3`             | `sub4`           |
-| Vector multiplication           | `mul`        | `mul2`           | `mul3`             | `mul4`           |
-| Vector division                 | `div`        | `div2`           | `div3`             | `div4`           |
-| Uniform scalar addition         | `addN`       | `addN2`          | `addN3`            | `addN4`          |
-| Uniform scalar subtraction      | `subN`       | `subN2`          | `subN3`            | `subN4`          |
-| Uniform scalar multiply         | `mulN`       | `mulN2`          | `mulN3`            | `mulN4`          |
-| Uniform scalar multiply         | `divN`       | `divN2`          | `divN3`            | `divN4`          |
-| Vector negation                 | `neg`        | `neg2`           | `neg3`             | `neg4`           |
-| Multiply-add vectors            | `madd`       | `madd2`          | `madd3`            | `madd4`          |
-| Multiply-add scalar             | `maddN`      | `maddN2`         | `maddN3`           | `maddN4`         |
-| Linear interpolation (vector)   | `mix`        | `mix2`           | `mix3`             | `mix4`           |
-| Linear interpolation (uniform)  | `mixN`       | `mixN2`          | `mixN3`            | `mixN4`          |
-| Dot product                     | `dot`        | `dot2`           | `dot3`             | `dot4`           |
-| Cross product                   |              | `cross2`         | `cross3`           |                  |
-| Magnitude                       | `mag`        | `mag2`           | `mag3`             | `mag4`           |
-| Magnitude (squared)             | `magSq`      | `magSq2`         | `magSq3`           | `magSq4`         |
-| Normalize (w/ opt length)       | `normalize`  | `normalize2`     | `normalize3`       | `normalize4`     |
-| Limit to length                 |              | `limit2`         | `limit3`           | `limit4`         |
-| Distance                        | `dist`       | `dist2`          | `dist3`            | `dist4`          |
-| Distance (squared)              | `distSq`     | `distSq2`        | `distSq3`          | `distSq4`        |
-| Manhattan distance              |              | `distManhattan2` | `distManhattan3`   | `distManhattan4` |
-| Chebyshev distance              |              | `distChebyshev2` | `distChebyshev3`   | `distChebyshev4` |
-| Reflection                      |              | `reflect2`       | `reflect3`         | `reflect4`       |
-| RotationX                       |              |                  | `rotateX3`         |                  |
-| RotationY                       |              |                  | `rotateY3`         |                  |
-| RotationZ                       |              | `rotate2`        | `rotateZ3`         |                  |
-| Heading XY                      |              | `heading2`       | `headingXY3`       |                  |
-| Heading XZ                      |              |                  | `headingXZ3`       |                  |
-| Heading YZ                      |              |                  | `headingYZ3`       |                  |
-| Cartesian -> Polar              |              | `toPolar2`       | `toSpherical3`     |                  |
-| Polar -> Cartesian              |              | `toCartesian2`   | `toCartesian3`     |                  |
-| Cartesian -> Cylindrical        |              |                  | `toCylindrical3`   |                  |
-| Cylindrical -> Cartesian        |              |                  | `fromCylindrical3` |                  |
-| Minor axis                      |              | `minorAxis2`     | `minorAxis3`       | `minorAxis4`     |
-| Major axis                      |              | `majorAxis2`     | `majorAxis3`       | `majorAxis4`     |
-| Minimum                         | `min`        | `min2`           | `min3`             | `min4`           |
-| Maximum                         | `max`        | `max2`           | `max3`             | `max4`           |
-| Range clamping                  | `clamp`      | `clamp2`         | `clamp3`           | `clamp4`         |
-| Step (like GLSL)                | `step`       | `step2`          | `step3`            | `step4`          |
-| SmoothStep (like GLSL)          | `smoothStep` | `smoothStep2`    | `smoothStep3`      | `smoothStep4`    |
-| Absolute value                  | `abs`        | `abs2`           | `abs3`             | `abs4`           |
-| Sign (w/ opt epsilon)           | `sign`       | `sign2`          | `sign3`            | `sign4`          |
-| Round down                      | `floor`      | `floor2`         | `floor3`           | `floor4`         |
-| Round up                        | `ceil`       | `ceil2`          | `ceil3`            | `ceil4`          |
-| Square root                     | `sqrt`       | `sqrt2`          | `sqrt3`            | `sqrt4`          |
-| Power (vector)                  | `pow`        | `pow2`           | `pow3`             | `pow4`           |
-| Power (uniform)                 | `powN`       | `powN2`          | `powN3`            | `powN4`          |
+| Operation                       | Generic      | 2D                   | 3D                  | 4D               |
+|---------------------------------|--------------|----------------------|---------------------|------------------|
+| Get vector (dense copy)         | `get`        | `get2`               | `get3`              | `get4`           |
+| Set vector components (vector)  | `set`        | `set2`               | `set3`              | `set4`           |
+| Set vector components (uniform) | `setN`       | `setN2`              | `setN3`             | `setN4`          |
+| Set vector components (scalars) |              | `setS2`              | `setS3`             | `setS4`          |
+| Swizzle vector components       |              | `swizzle2`           | `swizzle3`          | `swizzle4`       |
+| Equality (w/ epsilon)           | `eqDelta`    | `eqDelta2`           | `eqDelta3`          | `eqDelta4`       |
+| Vector addition                 | `add`        | `add2`               | `add3`              | `add4`           |
+| Vector subtraction              | `sub`        | `sub2`               | `sub3`              | `sub4`           |
+| Vector multiplication           | `mul`        | `mul2`               | `mul3`              | `mul4`           |
+| Vector division                 | `div`        | `div2`               | `div3`              | `div4`           |
+| Uniform scalar addition         | `addN`       | `addN2`              | `addN3`             | `addN4`          |
+| Uniform scalar subtraction      | `subN`       | `subN2`              | `subN3`             | `subN4`          |
+| Uniform scalar multiply         | `mulN`       | `mulN2`              | `mulN3`             | `mulN4`          |
+| Uniform scalar multiply         | `divN`       | `divN2`              | `divN3`             | `divN4`          |
+| Vector negation                 | `neg`        | `neg2`               | `neg3`              | `neg4`           |
+| Multiply-add vectors            | `madd`       | `madd2`              | `madd3`             | `madd4`          |
+| Multiply-add scalar             | `maddN`      | `maddN2`             | `maddN3`            | `maddN4`         |
+| Linear interpolation (vector)   | `mix`        | `mix2`               | `mix3`              | `mix4`           |
+| Linear interpolation (uniform)  | `mixN`       | `mixN2`              | `mixN3`             | `mixN4`          |
+| Dot product                     | `dot`        | `dot2`               | `dot3`              | `dot4`           |
+| Cross product                   |              | `cross2`             | `cross3`            |                  |
+| Magnitude                       | `mag`        | `mag2`               | `mag3`              | `mag4`           |
+| Magnitude (squared)             | `magSq`      | `magSq2`             | `magSq3`            | `magSq4`         |
+| Normalize (w/ opt length)       | `normalize`  | `normalize2`         | `normalize3`        | `normalize4`     |
+| Limit to length                 |              | `limit2`             | `limit3`            | `limit4`         |
+| Distance                        | `dist`       | `dist2`              | `dist3`             | `dist4`          |
+| Distance (squared)              | `distSq`     | `distSq2`            | `distSq3`           | `distSq4`        |
+| Manhattan distance              |              | `distManhattan2`     | `distManhattan3`    | `distManhattan4` |
+| Chebyshev distance              |              | `distChebyshev2`     | `distChebyshev3`    | `distChebyshev4` |
+| Reflection                      |              | `reflect2`           | `reflect3`          | `reflect4`       |
+| RotationX                       |              |                      | `rotateX3`          |                  |
+| RotationY                       |              |                      | `rotateY3`          |                  |
+| RotationZ                       |              | `rotate2`            | `rotateZ3`          |                  |
+| Rotation around point           |              | `rotateAroundPoint2` |                     |                  |
+| Rotation around axis            |              |                      | `rotateAroundAxis3` |                  |
+| Heading XY                      |              | `heading2`           | `headingXY3`        |                  |
+| Heading XZ                      |              |                      | `headingXZ3`        |                  |
+| Heading YZ                      |              |                      | `headingYZ3`        |                  |
+| Angle between vectors           |              | `angleBetween2`      | `angleBetween3`     |                  |
+| Bisector angle                  |              | `bisect2`            |                     |                  |
+| Cartesian -> Polar              |              | `toPolar2`           | `toSpherical3`      |                  |
+| Polar -> Cartesian              |              | `toCartesian2`       | `toCartesian3`      |                  |
+| Cartesian -> Cylindrical        |              |                      | `toCylindrical3`    |                  |
+| Cylindrical -> Cartesian        |              |                      | `fromCylindrical3`  |                  |
+| Minor axis                      |              | `minorAxis2`         | `minorAxis3`        | `minorAxis4`     |
+| Major axis                      |              | `majorAxis2`         | `majorAxis3`        | `majorAxis4`     |
+| Minimum                         | `min`        | `min2`               | `min3`              | `min4`           |
+| Maximum                         | `max`        | `max2`               | `max3`              | `max4`           |
+| Range clamping                  | `clamp`      | `clamp2`             | `clamp3`            | `clamp4`         |
+| Step (like GLSL)                | `step`       | `step2`              | `step3`             | `step4`          |
+| SmoothStep (like GLSL)          | `smoothStep` | `smoothStep2`        | `smoothStep3`       | `smoothStep4`    |
+| Absolute value                  | `abs`        | `abs2`               | `abs3`              | `abs4`           |
+| Sign (w/ opt epsilon)           | `sign`       | `sign2`              | `sign3`             | `sign4`          |
+| Round down                      | `floor`      | `floor2`             | `floor3`            | `floor4`         |
+| Round up                        | `ceil`       | `ceil2`              | `ceil3`             | `ceil4`          |
+| Square root                     | `sqrt`       | `sqrt2`              | `sqrt3`             | `sqrt4`          |
+| Power (vector)                  | `pow`        | `pow2`               | `pow3`              | `pow4`           |
+| Power (uniform)                 | `powN`       | `powN2`              | `powN3`             | `powN4`          |
 
 ### Matrices
 
