@@ -272,6 +272,8 @@ export class Vec2 implements
     buf: Vec;
     i: number;
     s: number;
+    x: number;
+    y: number;
     [0]: number;
     [1]: number;
 
@@ -282,28 +284,15 @@ export class Vec2 implements
     }
 
     *[Symbol.iterator]() {
-        yield this.x;
-        yield this.y;
+        yield* this.array();
+    }
+
+    array() {
+        return get2(this.buf, this.i, this.s);
     }
 
     get length() {
         return 2;
-    }
-
-    get x() {
-        return this.buf[this.i];
-    }
-
-    set x(x: number) {
-        this.buf[this.i] = x;
-    }
-
-    get y() {
-        return this.buf[this.i + this.s];
-    }
-
-    set y(y: number) {
-        this.buf[this.i + this.s] = y;
     }
 
     copy() {

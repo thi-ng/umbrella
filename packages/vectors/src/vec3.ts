@@ -369,6 +369,9 @@ export class Vec3 implements
     buf: Vec;
     i: number;
     s: number;
+    x: number;
+    y: number;
+    z: number;
     [0]: number;
     [1]: number;
     [2]: number;
@@ -380,37 +383,15 @@ export class Vec3 implements
     }
 
     *[Symbol.iterator]() {
-        yield this.x;
-        yield this.y;
-        yield this.z;
+        yield* this.array();
+    }
+
+    array() {
+        return get3(this.buf, this.i, this.s);
     }
 
     get length() {
         return 3;
-    }
-
-    get x() {
-        return this.buf[this.i];
-    }
-
-    set x(x: number) {
-        this.buf[this.i] = x;
-    }
-
-    get y() {
-        return this.buf[this.i + this.s];
-    }
-
-    set y(y: number) {
-        this.buf[this.i + this.s] = y;
-    }
-
-    get z() {
-        return this.buf[this.i + 2 * this.s];
-    }
-
-    set z(z: number) {
-        this.buf[this.i + 2 * this.s] = z;
     }
 
     copy() {

@@ -75,11 +75,19 @@ export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia
     return true;
 };
 
-export const declareIndices = (proto: any, indices: number[]) =>
+export const declareIndices = (proto: any, indices: number[]) => {
+    const get = (i: number) => function () { return this.buf[this.i + i * this.s]; };
+    const set = (i: number) => function (n: number) { this.buf[this.i + i * this.s] = n; };
     indices.forEach((i) => {
         Object.defineProperty(proto, i, {
-            get: function () { return this.buf[this.i + i * this.s]; },
-            set: function (n: number) { this.buf[this.i + i * this.s] = n; },
+            get: get(i),
+            set: set(i),
+            enumerable: true,
+        });
+        Object.defineProperty(proto, "xyzw"[i], {
+            get: get(i),
+            set: set(i),
             enumerable: true,
         });
     });
+};
