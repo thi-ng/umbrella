@@ -20,7 +20,7 @@ export class Atom<T> implements
     IAtom<T>,
     IEquiv {
 
-    protected value: T;
+    protected _value: T;
     protected valid: Predicate<T>;
     protected _watches: any;
 
@@ -28,12 +28,20 @@ export class Atom<T> implements
         if (valid && !valid(val)) {
             illegalState("initial state value did not validate");
         }
-        this.value = val;
+        this._value = val;
         this.valid = valid;
     }
 
+    get value() {
+        return this._value;
+    }
+
+    set value(val: T) {
+        this.reset(val);
+    }
+
     deref() {
-        return this.value;
+        return this._value;
     }
 
     equiv(o: any) {
@@ -41,25 +49,25 @@ export class Atom<T> implements
     }
 
     reset(val: T) {
-        const old = this.value;
+        const old = this._value;
         if (this.valid && !this.valid(val)) {
             return old;
         }
-        this.value = val;
+        this._value = val;
         this.notifyWatches(old, val);
         return val;
     }
 
     resetIn<V>(path: Path, val: V) {
-        return this.reset(setIn(this.value, path, val));
+        return this.reset(setIn(this._value, path, val));
     }
 
     swap(fn: SwapFn<T>, ...args: any[]) {
-        return this.reset(fn.apply(null, [this.value, ...args]));
+        return this.reset(fn.apply(null, [this._value, ...args]));
     }
 
     swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
-        return this.reset(updateIn(this.value, path, fn, ...args));
+        return this.reset(updateIn(this._value, path, fn, ...args));
     }
 
     // mixin stub
@@ -84,7 +92,7 @@ export class Atom<T> implements
 
     release() {
         delete this._watches;
-        delete this.value;
+        delete this._value;
         return true;
     }
 }

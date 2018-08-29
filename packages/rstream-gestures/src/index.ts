@@ -50,6 +50,17 @@ export interface GestureStreamOpts extends IID<string> {
      * Scaling factor for zoom changes. Default: 1
      */
     smooth: number;
+    /**
+     * Local coordinate flag. If true (default), the elements position
+     * offset is subtracted.
+     */
+    local: boolean;
+    /**
+     * If true (default: false), all positions and delta values are
+     * scaled by `window.devicePixelRatio`. Note: Only enable if `local`
+     * is true.
+     */
+    scale: boolean;
 }
 
 /**
@@ -80,7 +91,7 @@ export interface GestureStreamOpts extends IID<string> {
  * @param el
  * @param opts
  */
-export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
+export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
     let isDown = false,
         clickPos: number[];
     opts = Object.assign(<GestureStreamOpts>{
@@ -91,8 +102,11 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
         smooth: 1,
         eventOpts: { capture: true },
         preventDefault: true,
+        local: true,
+        scale: false,
     }, opts);
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
+    const dpr = window.devicePixelRatio || 1;
     return merge({
         id: opts.id,
         src: [
@@ -120,12 +134,18 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
                 }[e.type];
                 evt = e;
             }
-            const pos = [evt.clientX | 0, evt.clientY | 0];
+            const pos = opts.local ?
+                [(evt.clientX - el.offsetLeft) | 0, (evt.clientY - el.offsetTop) | 0] :
+                [evt.clientX | 0, evt.clientY | 0];
+            if (opts.scale) {
+                pos[0] *= dpr;
+                pos[1] *= dpr;
+            }
             const body = <GestureInfo>{ pos, zoom };
             switch (type) {
                 case GestureType.START:
                     isDown = true;
-                    clickPos = pos;
+                    clickPos = [...pos];
                     break;
                 case GestureType.END:
                     isDown = false;

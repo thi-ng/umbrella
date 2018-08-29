@@ -88,6 +88,10 @@ export class View<T> implements
         });
     }
 
+    get value() {
+        return this.deref();
+    }
+
     /**
      * Returns view's value. If the view has a transformer, the
      * transformed value is returned. The transformer is only run once

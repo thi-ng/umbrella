@@ -53,6 +53,14 @@ export class History<T> implements
         this.clear();
     }
 
+    get value() {
+        return this.deref();
+    }
+
+    set value(val: T) {
+        this.reset(val);
+    }
+
     canUndo() {
         return this.history.length > 0;
     }

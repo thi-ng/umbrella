@@ -12,8 +12,10 @@ import {
     atan2Abs,
     EPS,
     eqDelta1,
+    HALF_PI,
     max2id,
     min2id,
+    PI,
     smoothStep1,
     step1
 } from "./math";
@@ -208,8 +210,31 @@ export const rotate2 = (a: Vec, theta: number, ia = 0, sa = 1) => {
     return setS2(a, x * c - y * s, x * s + y * c, ia, sa);
 };
 
+export const rotateAroundPoint2 = (a: Vec, b: Vec, theta: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const x = a[ia] - b[ib];
+    const y = a[ia + sa] - b[ib + sb];
+    const s = Math.sin(theta);
+    const c = Math.cos(theta);
+    return setS2(
+        a,
+        x * c - y * s + b[ib],
+        x * s + y * c + b[ib + sb],
+        ia, sa
+    );
+};
+
 export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     atan2Abs(a[ia + sa], a[ia]);
+
+export const angleBetween2 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false, ia = 0, ib = 0, sa = 1, sb = 1): number =>
+    normalize ?
+        angleBetween2(get2(a, ia, sa), get2(b, ib, sb)) :
+        Math.acos(dot2(a, b, ia, ib, sa, sb));
+
+export const bisect2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const theta = (heading2(a, ia, sa) + heading2(b, ib, sb)) / 2;
+    return theta <= HALF_PI ? theta : PI - theta;
+}
 
 export const toPolar2 = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia], y = a[ia + sa];
@@ -526,8 +551,21 @@ export class Vec2 implements
         return this;
     }
 
+    rotateAroundPoint(v: Readonly<Vec2>, theta: number) {
+        rotateAroundPoint2(this.buf, v.buf, theta, this.i, v.i, this.s, v.s);
+        return this;
+    }
+
     heading() {
         return heading2(this.buf, this.i, this.s);
+    }
+
+    angleBetween(v: Readonly<Vec2>, normalize = false) {
+        return angleBetween2(this.buf, v.buf, normalize, this.i, v.i, this.s, v.s);
+    }
+
+    bisect(v: Readonly<Vec2>) {
+        return bisect2(this.buf, v.buf, this.i, v.i, this.s, v.s);
     }
 
     toPolar() {

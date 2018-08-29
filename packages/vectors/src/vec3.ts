@@ -282,6 +282,33 @@ export const rotateY3 = (a: Vec, theta: number, ia = 0, sa = 1) =>
 
 export const rotateZ3 = rotate2;
 
+export const rotateAroundAxis3 = (v: Vec, axis: Vec, theta: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const x = v[ia];
+    const y = v[ia + sa];
+    const z = v[ia + 2 * sa];
+    const ax = axis[ib];
+    const ay = axis[ib + sb];
+    const az = axis[ib + 2 * sb];
+    const ux = ax * x;
+    const uy = ax * y;
+    const uz = ax * z;
+    const vx = ay * x;
+    const vy = ay * y;
+    const vz = ay * z;
+    const wx = az * x;
+    const wy = az * y;
+    const wz = az * z;
+    const uvw = ux + vy + wz;
+    const s = Math.sin(theta);
+    const c = Math.cos(theta);
+    return setS3(v,
+        (ax * uvw + (x * (ay * ay + az * az) - ax * (vy + wz)) * c + (-wy + vz) * s),
+        (ay * uvw + (y * (ax * ax + az * az) - ay * (ux + wz)) * c + (wx - uz) * s),
+        (az * uvw + (z * (ax * ax + ay * ay) - az * (ux + vy)) * c + (-vx + uy) * s),
+        ia, sa
+    );
+}
+
 export const headingXY3 = heading2;
 
 export const headingXZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
@@ -289,6 +316,11 @@ export const headingXZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
 
 export const headingYZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     atan2Abs(a[ia + 2 * sa], a[ia + sa]);
+
+export const angleBetween3 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false, ia = 0, ib = 0, sa = 1, sb = 1): number =>
+    normalize ?
+        angleBetween3(get3(a, ia, sa), get3(b, ib, sb)) :
+        Math.acos(dot3(a, b, ia, ib, sa, sb));
 
 export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia];
@@ -640,6 +672,11 @@ export class Vec3 implements
         return this;
     }
 
+    rotateAroundAxis(axis: Vec3, theta: number) {
+        rotateAroundAxis3(this.buf, axis.buf, theta, this.i, axis.i, this.s, axis.s);
+        return this;
+    }
+
     headingXY() {
         return headingXY3(this.buf, this.i, this.s);
     }
@@ -650,6 +687,10 @@ export class Vec3 implements
 
     headingYZ() {
         return headingYZ3(this.buf, this.i, this.s);
+    }
+
+    angleBetween(v: Readonly<Vec3>, normalize = false) {
+        return angleBetween3(this.buf, v.buf, normalize, this.i, v.i, this.s, v.s);
     }
 
     toSpherical() {
