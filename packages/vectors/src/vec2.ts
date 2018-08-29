@@ -6,7 +6,15 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 
-import { IVec, ReadonlyVec, Vec } from "./api";
+import {
+    IVec,
+    MAX4,
+    MIN4,
+    ONE4,
+    ReadonlyVec,
+    Vec,
+    ZERO4
+} from "./api";
 import { declareIndices } from "./common";
 import {
     atan2Abs,
@@ -19,9 +27,6 @@ import {
     smoothStep1,
     step1
 } from "./math";
-
-export const ZERO2 = Object.freeze([0, 0]);
-export const ONE2 = Object.freeze([1, 1]);
 
 export const op2 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) =>
     (a[ia] = fn(a[ia]), a[ia + sa] = fn(a[ia + sa]), a);
@@ -241,7 +246,7 @@ export const toPolar2 = (a: Vec, ia = 0, sa = 1) => {
     return setS2(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, sa);
 };
 
-export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO2, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO4, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const r = a[ia], theta = a[ia + sa];
     return setS2(
         a,
@@ -291,8 +296,10 @@ export class Vec2 implements
         return res;
     }
 
-    static ZERO = Object.freeze(new Vec2(<number[]>ZERO2));
-    static ONE = Object.freeze(new Vec2(<number[]>ONE2));
+    static readonly ZERO = Object.freeze(new Vec2(<number[]>ZERO4));
+    static readonly ONE = Object.freeze(new Vec2(<number[]>ONE4));
+    static readonly MIN = Object.freeze(new Vec2(<number[]>MIN4));
+    static readonly MAX = Object.freeze(new Vec2(<number[]>MAX4));
 
     buf: Vec;
     i: number;
@@ -580,6 +587,10 @@ export class Vec2 implements
 
     toString() {
         return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}]`;
+    }
+
+    toJSON() {
+        return this.array();
     }
 }
 

@@ -6,7 +6,15 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 
-import { IVec, ReadonlyVec, Vec } from "./api";
+import {
+    IVec,
+    MAX4,
+    MIN4,
+    ONE4,
+    ReadonlyVec,
+    Vec,
+    ZERO4
+} from "./api";
 import { declareIndices } from "./common";
 import {
     atan2Abs,
@@ -24,9 +32,6 @@ import {
     toCartesian2,
     toPolar2
 } from "./vec2";
-
-export const ZERO3 = Object.freeze([0, 0, 0]);
-export const ONE3 = Object.freeze([1, 1, 1]);
 
 export const op3 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) => (
     a[ia] = fn(a[ia]),
@@ -330,7 +335,7 @@ export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
     return setS3(a, r, Math.asin(z / r), atan2Abs(y, x), ia, sa);
 };
 
-export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO4, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const r = a[ia];
     const theta = a[ia + sa];
     const phi = a[ia + 2 * sa];
@@ -345,7 +350,7 @@ export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa 
 
 export const toCylindrical3 = toPolar2;
 
-export const fromCylindrical3 = (a: Vec, b: ReadonlyVec = ZERO3, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const fromCylindrical3 = (a: Vec, b: ReadonlyVec = ZERO4, ia = 0, ib = 0, sa = 1, sb = 1) => {
     toCartesian2(a, b, ia, ib, sa, sb);
     a[ia + 2 * sa] += b[ib + 2 * sb];
     return a;
@@ -395,8 +400,10 @@ export class Vec3 implements
         return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.i, b.i, c.i, a.s, b.s, c.s));
     }
 
-    static ZERO = Object.freeze(new Vec3(<number[]>ZERO3));
-    static ONE = Object.freeze(new Vec3(<number[]>ONE3));
+    static readonly ZERO = Object.freeze(new Vec3(<number[]>ZERO4));
+    static readonly ONE = Object.freeze(new Vec3(<number[]>ONE4));
+    static readonly MIN = Object.freeze(new Vec3(<number[]>MIN4));
+    static readonly MAX = Object.freeze(new Vec3(<number[]>MAX4));
 
     buf: Vec;
     i: number;
@@ -715,6 +722,10 @@ export class Vec3 implements
 
     toString() {
         return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}]`;
+    }
+
+    toJSON() {
+        return this.array();
     }
 }
 

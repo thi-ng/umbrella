@@ -196,7 +196,7 @@ export class GVec implements
     }
 
     copy() {
-        return new GVec(get(this.buf, this.n, this.i, this.s), this.n);
+        return new GVec(get(this.buf, this.n, this.i, this.s));
     }
 
     equiv(v: any) {
@@ -390,6 +390,10 @@ export class GVec implements
 
     toString() {
         return `[${get(this.buf, this.n, this.i, this.s).join(", ")}]`;
+    }
+
+    toJSON() {
+        return get(this.buf, this.n, this.i, this.s);
     }
 
     protected ensureSize(v: Readonly<GVec>) {

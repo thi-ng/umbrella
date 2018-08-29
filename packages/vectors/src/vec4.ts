@@ -6,7 +6,15 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 
-import { IVec, ReadonlyVec, Vec } from "./api";
+import {
+    IVec,
+    MAX4,
+    MIN4,
+    ONE4,
+    ReadonlyVec,
+    Vec,
+    ZERO4
+} from "./api";
 import { declareIndices } from "./common";
 import {
     EPS,
@@ -16,9 +24,6 @@ import {
     smoothStep1,
     step1
 } from "./math";
-
-export const ZERO4 = Object.freeze([0, 0, 0, 0]);
-export const ONE4 = Object.freeze([1, 1, 1, 1]);
 
 export const op4 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) => (
     a[ia] = fn(a[ia]),
@@ -315,8 +320,10 @@ export class Vec4 implements
         return res;
     }
 
-    static ZERO = Object.freeze(new Vec4(<number[]>ZERO4));
-    static ONE = Object.freeze(new Vec4(<number[]>ONE4));
+    static readonly ZERO = Object.freeze(new Vec4(<number[]>ZERO4));
+    static readonly ONE = Object.freeze(new Vec4(<number[]>ONE4));
+    static readonly MIN = Object.freeze(new Vec4(<number[]>MIN4));
+    static readonly MAX = Object.freeze(new Vec4(<number[]>MAX4));
 
     buf: Vec;
     i: number;
@@ -572,6 +579,10 @@ export class Vec4 implements
 
     toString() {
         return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}, ${this.buf[this.i + 3 * this.s]}]`;
+    }
+
+    toJSON() {
+        return this.array();
     }
 }
 

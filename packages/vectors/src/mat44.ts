@@ -438,8 +438,8 @@ export class Mat44 implements
     buf: Mat;
     i: number;
 
-    constructor(buf: Mat, i = 0) {
-        this.buf = buf;
+    constructor(buf?: Mat, i = 0) {
+        this.buf = buf || (new Array(16).fill(0));
         this.i = i;
     }
 
@@ -514,5 +514,9 @@ export class Mat44 implements
         const b = this.buf;
         const i = this.i;
         return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}\n${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}\n${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}\n${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
+    }
+
+    toJSON() {
+        return get44(this.buf, this.i);
     }
 }

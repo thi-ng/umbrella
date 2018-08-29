@@ -214,8 +214,8 @@ export class Mat23 implements
     buf: Mat;
     i: number;
 
-    constructor(buf: Mat, i = 0) {
-        this.buf = buf;
+    constructor(buf?: Mat, i = 0) {
+        this.buf = buf || (new Array(6).fill(0));
         this.i = i;
     }
 
@@ -265,5 +265,9 @@ export class Mat23 implements
         const b = this.buf;
         const i = this.i;
         return `${b[i]} ${b[i + 2]} ${b[i + 4]}\n${b[i + 1]} ${b[i + 3]} ${b[i + 5]}`;
+    }
+
+    toJSON() {
+        return get23(this.buf, this.i);
     }
 }
