@@ -46,7 +46,8 @@ All of the vector operations listed below are also available via class
 wrappers of strided buffer views. These vector classes (`Vec2/3/4`) are
 array-like themselves and provide array index and `.x`, `.y`, `.z`, `.w`
 property accessors (including `.length`). The `GVec` class wrapper only
-provides `.length` read access. All classes are also iterable.
+provides `.length` read access and element access via `getAt()` and
+`setAt()`. All classes are iterable.
 
 ```ts
 buf = [0, 1, 0, 2, 0, 3];
@@ -92,6 +93,7 @@ start index is 0, default stride 1. See examples below and
 | Set vector components (uniform) | `setN`       | `setN2`              | `setN3`             | `setN4`          |
 | Set vector components (scalars) |              | `setS2`              | `setS3`             | `setS4`          |
 | Swizzle vector components       |              | `swizzle2`           | `swizzle3`          | `swizzle4`       |
+| Swap vectors                    |              | `swap2`              | `swap3`             | `swap4`          |
 | Equality (w/ epsilon)           | `eqDelta`    | `eqDelta2`           | `eqDelta3`          | `eqDelta4`       |
 | Vector addition                 | `add`        | `add2`               | `add3`              | `add4`           |
 | Vector subtraction              | `sub`        | `sub2`               | `sub3`              | `sub4`           |
