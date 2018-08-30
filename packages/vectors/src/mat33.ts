@@ -137,7 +137,7 @@ export const concat33 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
         a
     );
 
-export const mulV33 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
+export const mulV33 = (v: Vec, m: ReadonlyMat, iv = 0, im = 0, sv = 1) =>
     setS3(
         v,
         dot3(m, v, im, iv, 3, sv),
@@ -282,7 +282,7 @@ export class Mat33 implements
     }
 
     mulV(v: Vec3) {
-        mulV33(this.buf, v.buf, this.i, v.i, v.s);
+        mulV33(v.buf, this.buf, v.i, this.i, v.s);
         return v;
     }
 

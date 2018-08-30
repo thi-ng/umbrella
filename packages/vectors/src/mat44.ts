@@ -227,7 +227,7 @@ export const concat44 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
         a
     );
 
-export const mulV344 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
+export const mulV344 = (v: Vec, m: ReadonlyMat, iv = 0, im = 0, sv = 1) =>
     setS3(
         v,
         dot3(m, v, im, iv, 4, sv) + m[12],
@@ -236,7 +236,7 @@ export const mulV344 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
         iv, sv
     );
 
-export const mulV44 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
+export const mulV44 = (v: Vec, m: ReadonlyMat, iv = 0, im = 0, sv = 1) =>
     setS4(
         v,
         dot4(m, v, im, iv, 4, sv),
@@ -475,12 +475,12 @@ export class Mat44 implements
     }
 
     mulV3(v: Vec3) {
-        mulV344(this.buf, v.buf, this.i, v.i, v.s);
+        mulV344(v.buf, this.buf, v.i, this.i, v.s);
         return v;
     }
 
     mulV(v: Vec4) {
-        mulV44(this.buf, v.buf, this.i, v.i, v.s);
+        mulV44(v.buf, this.buf, v.i, this.i, v.s);
         return v;
     }
 

@@ -118,7 +118,7 @@ export const concat23 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat,
         a
     );
 
-export const mulV23 = (m: ReadonlyMat, v: Vec, im = 0, iv = 0, sv = 1) =>
+export const mulV23 = (v: Vec, m: ReadonlyMat, iv = 0, im = 0, sv = 1) =>
     setS2(
         v,
         dot2(m, v, im, iv, 2, sv) + m[im + 4],
@@ -248,7 +248,7 @@ export class Mat23 implements
     }
 
     mulV(v: Vec2) {
-        mulV23(this.buf, v.buf, this.i, v.i, v.s);
+        mulV23(v.buf, this.buf, v.i, this.i, v.s);
         return v;
     }
 
