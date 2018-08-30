@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/resolve-map",
-    "version": "3.0.8",
+    "version": "3.0.9",
     "description": "DAG resolution of vanilla objects & arrays with internally linked values",
     "main": "./index.js",
     "typings": "./index.d.ts",

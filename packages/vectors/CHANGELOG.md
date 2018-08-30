@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.4.0...@thi.ng/vectors@0.5.0) (2018-08-30)
+
+
+### Features
+
+* **vectors:** consolidate vector consts, add toJSON() impls ([bdb5d37](https://github.com/thi-ng/umbrella/commit/bdb5d37))
+* **vectors:** update types, update GVec, add maths fns, swap impls ([d5cec94](https://github.com/thi-ng/umbrella/commit/d5cec94))
+
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.3.0...@thi.ng/vectors@0.4.0) (2018-08-28)
 
