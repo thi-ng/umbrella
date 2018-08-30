@@ -17,9 +17,10 @@ import {
 } from "./api";
 import { declareIndices } from "./common";
 import {
-    atan2Abs,
+    atan2Abs1,
     EPS,
     eqDelta1,
+    fract1,
     HALF_PI,
     max2id,
     min2id,
@@ -49,11 +50,18 @@ export const setN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
 export const setS2 = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a);
 
-export const swizzle2 = (a: Vec, b: Vec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const swizzle2 = (a: Vec, b: ReadonlyVec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const xx = b[ib + x * sb];
     const yy = b[ib + y * sb];
     a[ia] = xx;
     a[ia + sa] = yy;
+    return a;
+};
+
+export const swap2 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
+    ia += sa; ib += sb;
+    t = a[ia]; a[ia] = b[ib]; b[ib] = t;
     return a;
 };
 
@@ -103,6 +111,9 @@ export const floor2 = (a: Vec, ia = 0, sa = 1) =>
 
 export const ceil2 = (a: Vec, ia = 0, sa = 1) =>
     op2(Math.ceil, a, ia, sa);
+
+export const fract2 = (a: Vec, ia = 0, sa = 1) =>
+    op2(fract1, a, ia, sa);
 
 export const sin2 = (a: Vec, ia = 0, sa = 1) =>
     op2(Math.sin, a, ia, sa);
@@ -229,7 +240,7 @@ export const rotateAroundPoint2 = (a: Vec, b: Vec, theta: number, ia = 0, ib = 0
 };
 
 export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    atan2Abs(a[ia + sa], a[ia]);
+    atan2Abs1(a[ia + sa], a[ia]);
 
 export const angleBetween2 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false, ia = 0, ib = 0, sa = 1, sb = 1): number =>
     normalize ?
@@ -243,7 +254,7 @@ export const bisect2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, 
 
 export const toPolar2 = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia], y = a[ia + sa];
-    return setS2(a, Math.sqrt(x * x + y * y), atan2Abs(y, x), ia, sa);
+    return setS2(a, Math.sqrt(x * x + y * y), atan2Abs1(y, x), ia, sa);
 };
 
 export const toCartesian2 = (a: Vec, b: ReadonlyVec = ZERO4, ia = 0, ib = 0, sa = 1, sb = 1) => {
@@ -363,6 +374,11 @@ export class Vec2 implements
         return this;
     }
 
+    swap(v: Vec2) {
+        swap2(this.buf, v.buf, this.i, v.i, this.s, v.s);
+        return this;
+    }
+
     add(v: Readonly<Vec2>) {
         add2(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
@@ -425,6 +441,11 @@ export class Vec2 implements
 
     ceil() {
         ceil2(this.buf, this.i, this.s);
+        return this;
+    }
+
+    fract() {
+        fract2(this.buf, this.i, this.s);
         return this;
     }
 

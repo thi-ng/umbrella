@@ -8,10 +8,10 @@ export const RAD2DEG = 180 / PI;
 
 export let EPS = 1e-6;
 
-export const absDiff = (x: number, y: number) =>
+export const absDiff1 = (x: number, y: number) =>
     Math.abs(x - y);
 
-export const atan2Abs = (y: number, x: number) => {
+export const atan2Abs1 = (y: number, x: number) => {
     const theta = Math.atan2(y, x);
     return theta < 0 ? TAU + theta : theta;
 };
@@ -74,6 +74,14 @@ export const smoothStep1 = (edge: number, edge2: number, x: number) => {
     return (3 - 2 * t) * t * t;
 };
 
+export const expStep1 = (x: number, k: number, n: number) =>
+    Math.exp(-k * Math.pow(x, n));
+
+export const gain1 = (x: number, k: number) =>
+    x < 0.5 ?
+        0.5 * Math.pow(2 * x, k) :
+        1 - 0.5 * Math.pow(2 - 2 * x, k);
+
 export const min2id = (a, b) =>
     a <= b ? 0 : 1;
 
@@ -108,18 +116,27 @@ export const max4id = (a, b, c, d) =>
             (b >= d ? 1 : 3) :
             (c >= d ? 2 : 3));
 
+export const smin1 = (a: number, b: number, k: number) =>
+    -Math.log(Math.exp(-k * a) + Math.exp(-k * b)) / k;
+
+export const smax1 = (a: number, b: number, k: number) =>
+    Math.log(Math.exp(a) + Math.exp(b)) / k;
+
 /**
- * Clamps value `x` to given closed interval.
- *
- * @param x value to clamp
- * @param min lower bound
- * @param max upper bound
- */
+* Clamps value `x` to given closed interval.
+*
+* @param x value to clamp
+* @param min lower bound
+* @param max upper bound
+*/
 export const clamp1 = (x: number, min: number, max: number) =>
     x < min ? min : x > max ? max : x;
 
 export const mix1 = (a: number, b: number, t: number) =>
     a + (b - a) * t;
+
+export const norm1 = (x: number, a: number, b: number) =>
+    (x - a) / (b - a);
 
 export const fit1 = (x: number, a: number, b: number, c: number, d: number) =>
     c + (d - c) * (x - a) / (b - a);
@@ -129,6 +146,9 @@ export const fitClamped1 = (x: number, a: number, b: number, c: number, d: numbe
 
 export const sign1 = (x: number, eps = EPS) =>
     x > eps ? 1 : x < -eps ? -1 : 0;
+
+export const fract1 = (x: number) =>
+    x - Math.floor(x);
 
 export const trunc1 = (x: number) =>
     x < 0 ? Math.ceil(x) : Math.floor(x);
@@ -143,7 +163,7 @@ export const roundTo1 = (x: number, prec = 1) =>
  * @param min
  * @param max
  */
-export const inRange = (x: number, min: number, max: number) =>
+export const inRange1 = (x: number, min: number, max: number) =>
     x >= min && x <= max;
 
 /**
@@ -153,5 +173,8 @@ export const inRange = (x: number, min: number, max: number) =>
  * @param min
  * @param max
  */
-export const inOpenRange = (x: number, min: number, max: number) =>
+export const inOpenRange1 = (x: number, min: number, max: number) =>
     x > min && x < max;
+
+export const hash1 = (x: number) =>
+    fract1(Math.sin(x) * 758.5453);

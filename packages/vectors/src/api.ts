@@ -6,10 +6,31 @@ export type ReadonlyVec = ArrayLike<number>;
 export type Mat = NumericArray;
 export type ReadonlyMat = ArrayLike<number>;
 
-export type VecOp = (a: Vec, b: ReadonlyVec, ia: number, ib: number, sa: number, sb: number) => Vec;
+/**
+ * A vector operation involving only a single vector. The vector might
+ * be modified.
+ */
+export type VecOp1<T> = (v: Vec, i: number, s?: number) => T;
+
+/**
+ * A vector operation involving two vectors. The first vector might be
+ * modified.
+ */
+export type VecOp2<T> = (a: Vec, b: ReadonlyVec, ia: number, ib: number, sa?: number, sb?: number) => T;
+
+/**
+ * A readonly vector operation involving only a single vector.
+ */
+export type ReadonlyVecOp1<T> = (v: ReadonlyVec, i: number, s?: number) => T;
+
+/**
+ * A readonly vector operation involving two vectors.
+ */
+export type ReadonlyVecOp2<T> = (a: ReadonlyVec, b: ReadonlyVec, ia: number, ib: number, sa?: number, sb?: number) => T;
 
 export interface IVec {
     buf: Vec;
+    length: number;
     i: number;
     s: number;
 }

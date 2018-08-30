@@ -1,4 +1,9 @@
-import { ICopy, IEqualsDelta, IEquiv, ILength } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEqualsDelta,
+    IEquiv,
+    ILength
+} from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
@@ -7,6 +12,7 @@ import { eqDelta, equiv } from "./common";
 import {
     clamp1,
     EPS,
+    fract1,
     sign1,
     smoothStep1,
     step1
@@ -132,6 +138,9 @@ export const floor = (a: Vec, num = a.length, i = 0, s = 1) =>
 export const ceil = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.ceil, a, num, i, s);
 
+export const fract = (a: Vec, num = a.length, i = 0, s = 1) =>
+    opg1(fract1, a, num, i, s);
+
 export const sin = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.sin, a, num, i, s);
 
@@ -193,6 +202,16 @@ export class GVec implements
 
     get length() {
         return this.n;
+    }
+
+    getAt(i: number, safe = true) {
+        safe && this.ensureIndex(i);
+        return this.buf[this.i + i * this.s];
+    }
+
+    setAt(i: number, x: number, safe = true) {
+        safe && this.ensureIndex(i);
+        this.buf[this.i + i * this.s] = x;
     }
 
     copy() {
@@ -325,6 +344,11 @@ export class GVec implements
         return this;
     }
 
+    fract() {
+        fract(this.buf, this.n, this.i, this.s);
+        return this;
+    }
+
     floor() {
         floor(this.buf, this.n, this.i, this.s);
         return this;
@@ -398,5 +422,9 @@ export class GVec implements
 
     protected ensureSize(v: Readonly<GVec>) {
         this.n !== v.n && illegalArgs(`vector size: ${v.n} (needed ${this.n})`);
+    }
+
+    protected ensureIndex(i: number) {
+        (i < 0 && i >= this.n) && illegalArgs(`index out of bounds: ${i}`);
     }
 }

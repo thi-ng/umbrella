@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec, VecOp } from "./api";
+import { ReadonlyVec, Vec, VecOp2 } from "./api";
 import { EPS, eqDelta1 } from "./math";
 
 export const x = (v: ReadonlyVec, i = 0, _?: number) => v[i];
@@ -31,7 +31,7 @@ export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
  * @param csb component stride `b`
  * @param esa element stride `a`
  */
-export const transformVectors1 = (fn: VecOp, a: Vec, b: ReadonlyVec, num: number, ia: number, ib: number, csa: number, csb: number, esa: number) => {
+export const transformVectors1 = (fn: VecOp2<any>, a: Vec, b: ReadonlyVec, num: number, ia: number, ib: number, csa: number, csb: number, esa: number) => {
     for (; num > 0; num-- , ia += esa) {
         fn(a, b, ia, ib, csa, csb);
     }
@@ -50,7 +50,7 @@ export const transformVectors1 = (fn: VecOp, a: Vec, b: ReadonlyVec, num: number
  * @param esa
  * @param esb
  */
-export const transformVectors2 = (fn: VecOp, a: Vec, b: ReadonlyVec, n: number, ia: number, ib: number, csa: number, csb: number, esa: number, esb: number) => {
+export const transformVectors2 = (fn: VecOp2<any>, a: Vec, b: ReadonlyVec, n: number, ia: number, ib: number, csa: number, csb: number, esa: number, esb: number) => {
     for (; n > 0; n-- , ia += esa, ib += esb) {
         fn(a, b, ia, ib, csa, csb);
     }

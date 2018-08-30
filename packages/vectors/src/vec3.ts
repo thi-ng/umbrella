@@ -17,9 +17,10 @@ import {
 } from "./api";
 import { declareIndices } from "./common";
 import {
-    atan2Abs,
+    atan2Abs1,
     EPS,
     eqDelta1,
+    fract1,
     max3id,
     min3id,
     sign1,
@@ -67,13 +68,22 @@ export const setN3 = (a: Vec, n: number, ia = 0, sa = 1) => (
 export const setS3 = (a: Vec, x: number, y: number, z: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a[ia + 2 * sa] = z, a);
 
-export const swizzle3 = (a: Vec, b: Vec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const swizzle3 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const xx = b[ib + x * sb];
     const yy = b[ib + y * sb];
     const zz = b[ib + z * sb];
     a[ia] = xx;
     a[ia + sa] = yy;
     a[ia + 2 * sa] = zz;
+    return a;
+};
+
+export const swap3 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
+    ia += sa; ib += sb;
+    t = a[ia]; a[ia] = b[ib]; b[ib] = t;
+    ia += sa; ib += sb;
+    t = a[ia]; a[ia] = b[ib]; b[ib] = t;
     return a;
 };
 
@@ -141,6 +151,9 @@ export const floor3 = (a: Vec, ia = 0, sa = 1) =>
 
 export const ceil3 = (a: Vec, ia = 0, sa = 1) =>
     op3(Math.ceil, a, ia, sa);
+
+export const fract3 = (a: Vec, ia = 0, sa = 1) =>
+    op3(fract1, a, ia, sa);
 
 export const sin3 = (a: Vec, ia = 0, sa = 1) =>
     op3(Math.sin, a, ia, sa);
@@ -317,10 +330,10 @@ export const rotateAroundAxis3 = (v: Vec, axis: Vec, theta: number, ia = 0, ib =
 export const headingXY3 = heading2;
 
 export const headingXZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    atan2Abs(a[ia + 2 * sa], a[ia]);
+    atan2Abs1(a[ia + 2 * sa], a[ia]);
 
 export const headingYZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    atan2Abs(a[ia + 2 * sa], a[ia + sa]);
+    atan2Abs1(a[ia + 2 * sa], a[ia + sa]);
 
 export const angleBetween3 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false, ia = 0, ib = 0, sa = 1, sb = 1): number =>
     normalize ?
@@ -332,7 +345,7 @@ export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
     const y = a[ia + sa];
     const z = a[ia + 2 * sa];
     const r = Math.sqrt(x * x + y * y + z * z);
-    return setS3(a, r, Math.asin(z / r), atan2Abs(y, x), ia, sa);
+    return setS3(a, r, Math.asin(z / r), atan2Abs1(y, x), ia, sa);
 };
 
 export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO4, ia = 0, ib = 0, sa = 1, sb = 1) => {
@@ -469,6 +482,11 @@ export class Vec3 implements
         return this;
     }
 
+    swap(v: Vec3) {
+        swap3(this.buf, v.buf, this.i, v.i, this.s, v.s);
+        return this;
+    }
+
     add(v: Readonly<Vec3>) {
         add3(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
@@ -531,6 +549,11 @@ export class Vec3 implements
 
     ceil() {
         ceil3(this.buf, this.i, this.s);
+        return this;
+    }
+
+    fract() {
+        fract3(this.buf, this.i, this.s);
         return this;
     }
 

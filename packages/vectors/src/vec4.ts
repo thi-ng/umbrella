@@ -19,6 +19,7 @@ import { declareIndices } from "./common";
 import {
     EPS,
     eqDelta1,
+    fract1,
     max4id,
     min4id,
     smoothStep1,
@@ -68,7 +69,7 @@ export const setS4 = (a: Vec, x: number, y: number, z: number, w: number, ia = 0
     a
 );
 
-export const swizzle4 = (a: Vec, b: Vec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+export const swizzle4 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
     const xx = b[ib + x * sb];
     const yy = b[ib + y * sb];
     const zz = b[ib + z * sb];
@@ -77,6 +78,17 @@ export const swizzle4 = (a: Vec, b: Vec, x: number, y: number, z: number, w: num
     a[ia + sa] = yy;
     a[ia + 2 * sa] = zz;
     a[ia + 3 * sa] = ww;
+    return a;
+};
+
+export const swap4 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
+    ia += sa; ib += sb;
+    t = a[ia]; a[ia] = b[ib]; b[ib] = t;
+    ia += sa; ib += sb;
+    t = a[ia]; a[ia] = b[ib]; b[ib] = t;
+    ia += sa; ib += sb;
+    t = a[ia]; a[ia] = b[ib]; b[ib] = t;
     return a;
 };
 
@@ -150,6 +162,9 @@ export const floor4 = (a: Vec, ia = 0, sa = 1) =>
 
 export const ceil4 = (a: Vec, ia = 0, sa = 1) =>
     op4(Math.ceil, a, ia, sa);
+
+export const fract4 = (a: Vec, ia = 0, sa = 1) =>
+    op4(fract1, a, ia, sa);
 
 export const sin4 = (a: Vec, ia = 0, sa = 1) =>
     op4(Math.sin, a, ia, sa);
@@ -391,6 +406,11 @@ export class Vec4 implements
         return this;
     }
 
+    swap(v: Vec4) {
+        swap4(this.buf, v.buf, this.i, v.i, this.s, v.s);
+        return this;
+    }
+
     add(v: Readonly<Vec4>) {
         add4(this.buf, v.buf, this.i, v.i, this.s, v.s);
         return this;
@@ -453,6 +473,11 @@ export class Vec4 implements
 
     ceil() {
         ceil4(this.buf, this.i, this.s);
+        return this;
+    }
+
+    fract() {
+        fract4(this.buf, this.i, this.s);
         return this;
     }
 
