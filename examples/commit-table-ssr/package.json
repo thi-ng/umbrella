@@ -25,6 +25,7 @@
         "@thi.ng/resolve-map": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-hdom": "latest",
         "@types/express": "^4.16.0"
     }
 }
