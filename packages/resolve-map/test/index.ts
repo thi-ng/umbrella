@@ -73,13 +73,13 @@ describe("resolve-map", () => {
     it("destructure", () => {
         const stats = {
             // sequence average
-            mean: ({ src: a }) => tx.reduce(tx.mean(), a),
+            mean: ({ src: a }) => tx.mean(a),
             // sequence range
             range: ({ min, max }) => max - min,
             // computes sequence min val
-            min: ({ src }) => tx.reduce(tx.min(), src),
+            min: ({ src }) => tx.min(src),
             // computes sequence max val
-            max: ({ src }) => tx.reduce(tx.max(), src),
+            max: ({ src }) => tx.max(src),
             // sorted copy
             sorted: ({ src }) => [...src].sort((a, b) => a - b),
             // standard deviation
