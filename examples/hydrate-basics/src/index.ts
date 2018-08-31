@@ -1,6 +1,6 @@
 import { Atom } from "@thi.ng/atom";
-import { serialize } from "@thi.ng/hiccup";
-import { start } from "@thi.ng/hdom";
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { start } from "@thi.ng/hdom/start";
 import { canvas2D } from "@thi.ng/hdom-components/canvas";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
 
@@ -81,4 +81,4 @@ document.getElementById("app").innerHTML = html;
 console.log(html);
 
 // ..then start hdom update loop w/ hydrate enabled
-start(app(), { parent: "app", hydrate: true, ctx: state });
+start(app(), { hydrate: true, ctx: state });
