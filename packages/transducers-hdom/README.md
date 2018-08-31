@@ -17,7 +17,7 @@ This project is part of the
 
 ## About
 
-This package provides a single `updateUI` function, a side-effecting &
+This package provides a single `updateDOM` function, a side-effecting &
 stateful transducer which receives
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 component trees, diffs each against the previous value and applies any
@@ -25,14 +25,23 @@ required changes to the browser DOM, starting at given root element. By
 default, incoming values are first normalized using @thi.ng/hdom's
 `normalizeTree()` function.
 
+If the `hydrate` option is given, the first received tree is only used
+to inject event listeners and initialize components with lifecycle
+`init()` methods and expects an otherwise identical pre-existing DOM.
+All succeeding trees are diffed then as usual.
+
 This transducer is primarily intended for
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)-based
-dataflow graphs, where this transducer can be used as final leaf
-subscription / transformer to reflect UI changes back to the user,
-without using the standard RAF update loop used by @thi.ng/hdom by
-default. In this setup, UI updates will only be performed if the stream
-this transducer is attached to receives new values (i.e. hdom component
-trees).
+dataflow graphs, where it can be used as final leaf subscription /
+stream transformer to reflect UI changes back to the user, without using
+the usual RAF update loop used by @thi.ng/hdom by default. In this
+setup, DOM updates will only be performed if the stream this transducer
+is attached to receives new values (i.e. hdom component trees).
+
+Please also see the following hdom references for further details:
+
+- [start()](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/start.ts)
+- [HDOMOpts](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts#L19)
 
 ## Installation
 
