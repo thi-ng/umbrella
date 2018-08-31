@@ -222,7 +222,7 @@ export class GVec implements
         return v instanceof GVec && v.n === this.n ?
             equiv(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s) :
             isArrayLike(v) && v.length === this.n ?
-                equiv(this.buf, v, this.n, this.i, 0, this.s, 1) :
+                equiv(this.buf, <any>v, this.n, this.i, 0, this.s, 1) :
                 false;
     }
 

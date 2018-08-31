@@ -378,7 +378,7 @@ export class Vec4 implements
         return v instanceof Vec4 ?
             equiv4(this.buf, v.buf, this.i, v.i, this.s, v.s) :
             isArrayLike(v) && v.length === 4 ?
-                equiv4(this.buf, v, this.i, 0, this.s, 1) :
+                equiv4(this.buf, <any>v, this.i, 0, this.s, 1) :
                 false;
     }
 

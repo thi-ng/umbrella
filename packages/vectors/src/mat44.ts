@@ -1,6 +1,6 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { Mat, ReadonlyMat, Vec } from "./api";
+import { Mat, ReadonlyMat, Vec, ReadonlyVec } from "./api";
 import { eqDelta } from "./common";
 import { Mat33 } from "./mat33";
 import { EPS, rad } from "./math";
@@ -17,9 +17,9 @@ import {
 import { dot4, setS4, Vec4 } from "./vec4";
 
 export const get44 = (a: Mat, i = 0) =>
-    set44(new (<any>(a.constructor))(16), a, 0, i);
+    a.slice(i, i + 16);
 
-export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
+export const set44 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) => {
     for (let i = 0; i < 16; i++) {
         a[ia + i] = b[ib + i];
     }
@@ -34,7 +34,9 @@ export const set44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
  * m03 m13 m23 m33
  * ```
  */
-export const setS44 = (m: Mat, m00: number, m01: number, m02: number, m03: number,
+export const setS44 = (
+    m: Mat,
+    m00: number, m01: number, m02: number, m03: number,
     m10: number, m11: number, m12: number, m13: number,
     m20: number, m21: number, m22: number, m23: number,
     m30: number, m31: number, m32: number, m33: number,
@@ -103,7 +105,7 @@ export const rotationZ44 = (m: Mat, theta: number, i = 0) => {
     );
 };
 
-export const scaleV44 = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
+export const scaleV44 = (m: Mat, v: ReadonlyVec, i = 0, iv = 0, sv = 1) =>
     scaleS44(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
 
 export const scaleN44 = (m: Mat, n: number, i = 0) =>
@@ -118,14 +120,14 @@ export const scaleS44 = (m: Mat, sx: number, sy: number, sz: number, i = 0) =>
         i
     );
 
-export const scaleWithCenter44 = (m: Mat, p: Vec, sx: number, sy: number, sz: number, im = 0, iv = 0, sv = 1) =>
+export const scaleWithCenter44 = (m: Mat, p: ReadonlyVec, sx: number, sy: number, sz: number, im = 0, iv = 0, sv = 1) =>
     concat44(
         translationV44(m || [], p, im, iv, sv), im,
         scaleS44([], sx, sy, sz),
         translationS44([], -p[iv], -p[iv + sv], -p[iv + 2 * sv])
     );
 
-export const translationV44 = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
+export const translationV44 = (m: Mat, v: ReadonlyVec, i = 0, iv = 0, sv = 1) =>
     translationS44(m, v[iv], v[iv + sv], v[iv + 2 * sv], i);
 
 export const translationS44 = (m: Mat, x: number, y: number, z: number, i = 0) =>
@@ -181,18 +183,15 @@ export const ortho = (m: Mat, left: number, right: number, bottom: number, top: 
     );
 };
 
-export const lookAt = (m: Mat, eye: Vec, target: Vec, up: Vec, im = 0, ie = 0, it = 0, iu = 0, se = 1, st = 1, su = 1) => {
-    eye = get3(eye, ie, se);
-    target = get3(target, it, st);
-    up = get3(up, iu, su);
-    const z = normalize3(sub3([...eye], target));
-    const x = normalize3(cross3(up, z));
+export const lookAt = (m: Mat, eye: ReadonlyVec, target: ReadonlyVec, up: ReadonlyVec, im = 0, ie = 0, it = 0, iu = 0, se = 1, st = 1, su = 1) => {
+    const z = normalize3(sub3(get3(eye, ie, se), get3(target, it, st)));
+    const x = normalize3(cross3(get3(up, iu, su), z));
     const y = normalize3(cross3([...z], x));
     return setS44(m || [],
         x[0], y[0], z[0], 0,
         x[1], y[1], z[1], 0,
         x[2], y[2], z[2], 0,
-        -dot3(eye, x), -dot3(eye, y), -dot3(eye, z), 1,
+        -dot3(eye, x, ie, 0, se), -dot3(eye, y, ie, 0, se), -dot3(eye, z, ie, 0, se), 1,
         im
     );
 }
@@ -279,7 +278,7 @@ const detCoeffs44 = (m: ReadonlyMat, i = 0) => {
     ];
 };
 
-export const det44 = (m: Mat, i = 0) => {
+export const det44 = (m: ReadonlyMat, i = 0) => {
     const d = detCoeffs44(m, i);
     return d[0] * d[11] - d[1] * d[10] + d[2] * d[9] +
         d[3] * d[8] - d[4] * d[7] + d[5] * d[6];
@@ -352,7 +351,7 @@ export const transpose44 = (m: Mat, i = 0) =>
         i
     );
 
-export const normal44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
+export const normal44 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) => {
     const m00 = b[ib];
     const m01 = b[ib + 1];
     const m02 = b[ib + 2];
@@ -382,7 +381,7 @@ export const normal44 = (a: Mat, b: Mat, ia = 0, ib = 0) => {
     return a;
 };
 
-export const mat44to33 = (m33: Mat, m44: Mat, ia = 0, ib = 0) => (
+export const mat44to33 = (m33: Mat, m44: ReadonlyMat, ia = 0, ib = 0) => (
     set3(m33, m44, ia, ib),
     set3(m33, m44, ia + 3, ib + 4),
     set3(m33, m44, ia + 6, ib + 8),
@@ -405,7 +404,7 @@ export class Mat44 implements
         return new Mat44(rotationZ44([], theta));
     }
 
-    static scale(v: Vec3): Mat44;
+    static scale(v: Readonly<Vec3>): Mat44;
     static scale(n: number): Mat44;
     static scale(x: number, y: number, z: number): Mat44;
     static scale(x: any, y = x, z = x) {
@@ -416,11 +415,11 @@ export class Mat44 implements
         );
     }
 
-    static scaleWithCenter(p: Vec3, sx: number, sy = sx, sz = sy) {
+    static scaleWithCenter(p: Readonly<Vec3>, sx: number, sy = sx, sz = sy) {
         return new Mat44(scaleWithCenter44([], p.buf, sx, sy, sz, p.i, p.s));
     }
 
-    static translation(v: Vec3): Mat44;
+    static translation(v: Readonly<Vec3>): Mat44;
     static translation(x: number, y: number, z: number): Mat44;
     static translation(x: any, y?: any, z?: any) {
         return new Mat44(
@@ -428,6 +427,27 @@ export class Mat44 implements
                 translationV44([], x.buf, 0, x.i) :
                 translationS44([], x, y, z)
         );
+    }
+
+    static perspective(fov: number, aspect: number, near: number, far: number) {
+        return new Mat44(perspective([], fov, aspect, near, far));
+    }
+
+    static ortho(left: number, right: number, bottom: number, top: number, near: number, far: number) {
+        return new Mat44(ortho([], left, right, bottom, top, near, far));
+    }
+
+    static frustum(left: number, right: number, bottom: number, top: number, near: number, far: number) {
+        return new Mat44(frustum([], left, right, bottom, top, near, far));
+    }
+
+    static lookAt(eye: Readonly<Vec3>, target: Readonly<Vec3>, up: Readonly<Vec3>) {
+        return new Mat44(lookAt(
+            [],
+            eye.buf, target.buf, up.buf,
+            0, eye.i, target.i, up.i,
+            eye.s, target.s, up.s
+        ));
     }
 
     static concat(m: Mat44, ...xs: Readonly<Mat44>[]) {
@@ -511,8 +531,8 @@ export class Mat44 implements
     }
 
     toString() {
-        const b = this.buf;
         const i = this.i;
+        const b = [...this.buf.slice(i, i+16)].map((x)=>x.toFixed(4));
         return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}\n${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}\n${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}\n${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
     }
 

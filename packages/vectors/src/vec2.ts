@@ -346,7 +346,7 @@ export class Vec2 implements
         return v instanceof Vec2 ?
             equiv2(this.buf, v.buf, this.i, v.i, this.s, v.s) :
             isArrayLike(v) && v.length === 2 ?
-                equiv2(this.buf, v, this.i, 0, this.s, 1) :
+                equiv2(this.buf, <any>v, this.i, 0, this.s, 1) :
                 false;
     }
 

@@ -1,6 +1,6 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { Mat, ReadonlyMat, Vec } from "./api";
+import { Mat, ReadonlyMat, Vec, ReadonlyVec } from "./api";
 import { eqDelta } from "./common";
 import { EPS } from "./math";
 import {
@@ -11,9 +11,9 @@ import {
 } from "./vec2";
 
 export const get23 = (a: Mat, i = 0) =>
-    set23(new (<any>(a.constructor))(6), a, 0, i);
+    a.slice(i, i + 6);
 
-export const set23 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
+export const set23 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) => (
     a[ia] = b[ib],
     a[ia + 1] = b[ib + 1],
     a[ia + 2] = b[ib + 2],
@@ -38,15 +38,20 @@ export const set23 = (a: Mat, b: Mat, ia = 0, ib = 0) => (
  * @param m21
  * @param i
  */
-export const setS23 = (m: Mat, m00: number, m01: number, m10: number, m11: number, m20: number, m21: number, i = 0) => (
-    m[i] = m00,
-    m[i + 1] = m01,
-    m[i + 2] = m10,
-    m[i + 3] = m11,
-    m[i + 4] = m20,
-    m[i + 5] = m21,
-    m
-);
+export const setS23 = (
+    m: Mat,
+    m00: number, m01: number,
+    m10: number, m11: number,
+    m20: number, m21: number,
+    i = 0) => (
+        m[i] = m00,
+        m[i + 1] = m01,
+        m[i + 2] = m10,
+        m[i + 3] = m11,
+        m[i + 4] = m20,
+        m[i + 5] = m21,
+        m
+    );
 
 export const identity23 = (m?: Mat, i = 0) =>
     setS23(m || [], 1, 0, 0, 1, 0, 0, i);
@@ -57,7 +62,7 @@ export const rotation23 = (m: Mat, theta: number, i = 0) => {
     return setS23(m || [], c, s, -s, c, 0, 0, i);
 };
 
-export const rotationAroundPoint23 = (m: Mat, p: Vec, theta: number, im = 0, iv = 0, sv = 1) =>
+export const rotationAroundPoint23 = (m: Mat, p: ReadonlyVec, theta: number, im = 0, iv = 0, sv = 1) =>
     concat23(
         translationV23(m || [], p, im, iv, sv), im,
         rotation23([], theta),
@@ -73,14 +78,14 @@ export const scaleN23 = (m: Mat, n: number, i = 0) =>
 export const scaleS23 = (m: Mat, sx: number, sy: number, i = 0) =>
     setS23(m || [], sx, 0, 0, sy, 0, 0, i);
 
-export const scaleWithCenter23 = (m: Mat, p: Vec, sx: number, sy: number, im = 0, iv = 0, sv = 1) =>
+export const scaleWithCenter23 = (m: Mat, p: ReadonlyVec, sx: number, sy: number, im = 0, iv = 0, sv = 1) =>
     concat23(
         translationV23(m || [], p, im, iv, sv), im,
         scaleS23([], sx, sy),
         translationS23([], -p[iv], -p[iv + sv])
     );
 
-export const translationV23 = (m: Mat, v: Vec, i = 0, iv = 0, sv = 1) =>
+export const translationV23 = (m: Mat, v: ReadonlyVec, i = 0, iv = 0, sv = 1) =>
     translationS23(m, v[iv], v[iv + sv], i);
 
 export const translationS23 = (m: Mat, x: number, y: number, i = 0) =>
@@ -161,7 +166,7 @@ export class Mat23 implements
         return new Mat23(rotation23([], theta));
     }
 
-    static rotationAroundPoint(p: Vec2, theta: number) {
+    static rotationAroundPoint(p: Readonly<Vec2>, theta: number) {
         return new Mat23(rotationAroundPoint23([], p.buf, theta, 0, p.i, p.s));
     }
 
@@ -176,11 +181,11 @@ export class Mat23 implements
         );
     }
 
-    static scaleWithCenter(p: Vec2, sx: number, sy = sx) {
+    static scaleWithCenter(p: Readonly<Vec2>, sx: number, sy = sx) {
         return new Mat23(scaleWithCenter23([], p.buf, sx, sy, p.i, p.s));
     }
 
-    static translation(v: Vec2): Mat23;
+    static translation(v: Readonly<Vec2>): Mat23;
     static translation(x: number, y: number): Mat23;
     static translation(x: any, y?: any) {
         return new Mat23(

@@ -454,7 +454,7 @@ export class Vec3 implements
         return v instanceof Vec3 ?
             equiv3(this.buf, v.buf, this.i, v.i, this.s, v.s) :
             isArrayLike(v) && v.length === 3 ?
-                equiv3(this.buf, v, this.i, 0, this.s, 1) :
+                equiv3(this.buf, <any>v, this.i, 0, this.s, 1) :
                 false;
     }
 

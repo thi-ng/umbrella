@@ -1,10 +1,10 @@
 import { NumericArray } from "@thi.ng/api/api";
 
 export type Vec = NumericArray;
-export type ReadonlyVec = ArrayLike<number>;
+export type ReadonlyVec = ArrayLike<number> & Iterable<number>;
 
 export type Mat = NumericArray;
-export type ReadonlyMat = ArrayLike<number>;
+export type ReadonlyMat = ArrayLike<number> & Iterable<number>;
 
 /**
  * A vector operation involving only a single vector. The vector might
