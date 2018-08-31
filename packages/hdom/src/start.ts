@@ -42,14 +42,15 @@ import { hydrateDOM } from "@thi.ng/hdom/src/dom";
  * @param tree hiccup DOM tree
  * @param opts options
  */
-export const start = (tree: any, opts: HDOMOpts) => {
+export const start = (tree: any, opts?: Partial<HDOMOpts>) => {
+    opts = { root: "app", span: true, ...opts };
     let prev = [];
     let isActive = true;
     let hydrate = opts.hydrate;
     const spans = opts.span !== false;
-    const root = isString(opts.parent) ?
-        document.getElementById(opts.parent) :
-        opts.parent;
+    const root = isString(opts.root) ?
+        document.getElementById(opts.root) :
+        opts.root;
     function update() {
         if (isActive) {
             const curr = normalizeTree(tree, opts.ctx, [0], true, spans);

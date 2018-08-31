@@ -20,7 +20,7 @@ export interface HDOMOpts {
     /**
      * Root element or ID
      */
-    parent: Element | string;
+    root: Element | string;
     /**
      * Arbitrary user context object
      */
