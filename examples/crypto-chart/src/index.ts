@@ -1,6 +1,4 @@
 import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
-import { diffElement } from "@thi.ng/hdom/diff";
-import { normalizeTree } from "@thi.ng/hdom/normalize";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { line } from "@thi.ng/hiccup-svg/line";
 import { polygon } from "@thi.ng/hiccup-svg/polygon";
@@ -16,6 +14,7 @@ import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
 import { trace } from "@thi.ng/rstream/subs/trace";
 import { padLeft } from "@thi.ng/strings/pad-left";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 import { ema } from "@thi.ng/transducers-stats/ema";
 import { hma } from "@thi.ng/transducers-stats/hma";
 import { sma } from "@thi.ng/transducers-stats/sma";
@@ -23,7 +22,6 @@ import { wma } from "@thi.ng/transducers-stats/wma";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { range } from "@thi.ng/transducers/iter/range";
-import { reducer } from "@thi.ng/transducers/reduce";
 import { max } from "@thi.ng/transducers/rfn/max";
 import { min } from "@thi.ng/transducers/rfn/min";
 import { push } from "@thi.ng/transducers/rfn/push";
@@ -33,7 +31,6 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { pluck } from "@thi.ng/transducers/xform/pluck";
-import { scan } from "@thi.ng/transducers/xform/scan";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle
@@ -404,16 +401,7 @@ sync({
             ]
         ),
         // perform hdom update / diffing
-        scan<any, any>(
-            reducer(
-                () => [],
-                (prev, curr) => {
-                    curr = normalizeTree(curr, {});
-                    diffElement(document.getElementById("app"), prev, curr);
-                    return curr;
-                }
-            )
-        )
+        updateDOM()
     )
 });
 
