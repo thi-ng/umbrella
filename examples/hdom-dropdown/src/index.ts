@@ -11,7 +11,7 @@ bus.instrumentWith([trace]);
 
 const dd = dropdown("theme.dd");
 
-start("app",
+start(
     (ctx) => {
         bus.processQueue();
         return ["div", ctx.theme.root,
@@ -29,4 +29,5 @@ start("app",
                 }]],
         ];
     },
-    { bus, theme });
+    { ctx: { bus, theme } }
+);

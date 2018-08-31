@@ -144,16 +144,18 @@ const graph = initGraph(db, {
 });
 
 // start @thi.ng/hdom update loop
-start("app", () =>
-    ["div",
-        ["pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
-            JSON.stringify(db.deref(), null, 2)],
-        // note: direct embedding of result stream below. this works
-        // since all @thi.ng/rstream subscriptions implement the
-        // @thi.ng/api/IDeref interface (like several other types, e.g.
-        // @thi.ng/atom's Atom, Cursor, View etc.)
-        graph.circle.node
-    ]);
+start(
+    () =>
+        ["div",
+            ["pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
+                JSON.stringify(db.deref(), null, 2)],
+            // note: direct embedding of result stream below. this works
+            // since all @thi.ng/rstream subscriptions implement the
+            // @thi.ng/api/IDeref interface (like several other types, e.g.
+            // @thi.ng/atom's Atom, Cursor, View etc.)
+            graph.circle.node
+        ]
+);
 
 // create a GraphViz DOT file of the entire dataflow graph
 // copy the output from the console into a new text file and then run:

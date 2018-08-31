@@ -83,4 +83,4 @@ const app = () => {
 };
 
 // kick off UI w/ root component function
-start("app", app());
+start(app());

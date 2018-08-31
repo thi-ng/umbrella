@@ -110,11 +110,14 @@ export class App {
      */
     start() {
         this.router.start();
-        start(this.config.domRoot, () => {
-            if (this.ctx.bus.processQueue()) {
-                return this.rootComponent();
-            }
-        }, this.ctx);
+        start(
+            () => {
+                if (this.ctx.bus.processQueue()) {
+                    return this.rootComponent();
+                }
+            },
+            { root: this.config.domRoot, ctx: this.ctx }
+        );
     }
 
     /**

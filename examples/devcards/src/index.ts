@@ -48,7 +48,7 @@ function defcard(card: CardFn, state?: IAtom<any>, title?: string, parent?: stri
     const root = card(state);
 
     // kick off hdom renderloop
-    start(parent, () => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]]);
+    start(() => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]], { root: parent });
 }
 
 /**

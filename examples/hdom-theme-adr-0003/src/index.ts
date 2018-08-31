@@ -144,4 +144,4 @@ const app = (ctx) =>
         ["p", [link, "https://github.com/thi-ng/umbrella/blob/develop/examples/hdom-theme-adr-0003", "Source"]]
     ];
 
-start("app", app, ctx);
+start(app, { ctx });

@@ -82,14 +82,13 @@ export class App {
         const root = this.config.rootComponent(this.ctx);
         let firstFrame = true;
         start(
-            this.config.domRoot,
             () => {
                 if (this.ctx.bus.processQueue({ history: this.history }) || firstFrame) {
                     firstFrame = false;
                     return root();
                 }
             },
-            this.ctx
+            { root: this.config.domRoot, ctx: this.ctx }
         );
     }
 

@@ -40,4 +40,4 @@ const app = () => {
     return ["svg", { width, height }, particles];
 };
 
-start(document.body, app);
+start(app);

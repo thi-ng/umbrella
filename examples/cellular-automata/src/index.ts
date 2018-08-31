@@ -115,18 +115,20 @@ const isPreset = (id) => presets.findIndex((x) => x[0] === id) !== -1;
 applyRules(location.hash.length > 18 ? location.hash.substr(1) : presets[1][0]);
 
 // define & start main app component
-start("app", () => {
-    const id = location.hash.substr(1);
-    return ["div",
-        ruleBoxes("birth", 0),
-        ruleBoxes("survive", 1),
-        ["div",
-            ["button", { onclick: () => randomizeRules() }, "randomize rules"],
-            ["button", { onclick: () => randomizeGrid() }, "reset grid"],
-            [dropdown, { onchange: (e) => applyRules(e.target.value) },
-                presets,
-                isPreset(id) ? id : ""]
-        ],
-        ["pre", format(grid = convolve(grid, rules, W, H), W)]
-    ];
-});
+start(
+    () => {
+        const id = location.hash.substr(1);
+        return ["div",
+            ruleBoxes("birth", 0),
+            ruleBoxes("survive", 1),
+            ["div",
+                ["button", { onclick: () => randomizeRules() }, "randomize rules"],
+                ["button", { onclick: () => randomizeGrid() }, "reset grid"],
+                [dropdown, { onchange: (e) => applyRules(e.target.value) },
+                    presets,
+                    isPreset(id) ? id : ""]
+            ],
+            ["pre", format(grid = convolve(grid, rules, W, H), W)]
+        ];
+    }
+);

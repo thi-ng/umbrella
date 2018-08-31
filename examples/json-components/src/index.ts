@@ -95,7 +95,6 @@ const editor = (() => {
 
 // start UI
 start(
-    document.getElementById("app"),
     () =>
         ["div#container",
             ["div", editor],

@@ -98,4 +98,4 @@ const app = () => {
     };
 };
 
-start("app", app(), null, false);
+start(app(), { span: false });

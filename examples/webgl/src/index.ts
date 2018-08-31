@@ -41,4 +41,4 @@ const app = () => {
         [c3, attribs, 400, 0.05]];
 };
 
-start("app", app());
+start(app());

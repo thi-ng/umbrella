@@ -88,4 +88,4 @@ const app = () => {
     }
 };
 
-start("app", app());
+start(app());

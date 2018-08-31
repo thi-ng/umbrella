@@ -134,4 +134,4 @@ const app = () => {
 };
 
 // kick off hdom render loop
-start("app", app());
+start(app());

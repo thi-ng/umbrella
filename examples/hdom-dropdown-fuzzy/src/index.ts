@@ -23,7 +23,7 @@ const ctx = {
 const dd = dropdown("theme.dd");
 const input = cancelableInput("theme.input");
 
-start("app",
+start(
     (ctx) => {
         ctx.bus.processQueue();
         return ["div", ctx.theme.root,
@@ -39,6 +39,7 @@ start("app",
             ],
         ];
     },
-    ctx);
+    { ctx }
+);
 
 // window["ctx"] = ctx;

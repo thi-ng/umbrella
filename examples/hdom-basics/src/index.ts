@@ -18,7 +18,7 @@ const app = () => {
 };
 
 // start update loop (browser only, see diagram below)
-hdom.start(document.body, app());
+hdom.start(app());
 
 // alternatively apply DOM tree only once
 // (stateful components won't update though)

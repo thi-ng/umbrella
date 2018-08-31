@@ -76,8 +76,8 @@ const currView = db.addView(
 
 // app root component
 const app = () =>
-    ["div#app",
+    ["div",
         currView,
         ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
 
-start(document.body, app);
+start(app);
