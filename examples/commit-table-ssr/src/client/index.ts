@@ -3,7 +3,7 @@ import { fromInterval } from "@thi.ng/rstream/from/interval";
 import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
-import { updateUI } from "@thi.ng/transducers-hdom";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 import { add } from "@thi.ng/transducers/rfn/add";
 import { conj } from "@thi.ng/transducers/rfn/conj";
 import { transduce } from "@thi.ng/transducers/transduce";
@@ -116,7 +116,7 @@ sync({
         // apply root component
         map(app),
         // apply hdom tree to real DOM
-        updateUI("app", ctx)
+        updateDOM({ ctx })
     );
 
 // manual kick off is needed here, since the above stream sync construct

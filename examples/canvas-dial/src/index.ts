@@ -1,7 +1,7 @@
 import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { percent } from "@thi.ng/strings/percent";
-import { updateUI } from "@thi.ng/transducers-hdom";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { map } from "@thi.ng/transducers/xform/map";
 
@@ -67,7 +67,7 @@ const app = () => {
 // stream combinator & reactive DOM update
 sync({
     src: ctx.streams,
-    xform: comp(map(app()), updateUI("app"))
+    xform: comp(map(app()), updateDOM())
 });
 
 // seed dials with initial values

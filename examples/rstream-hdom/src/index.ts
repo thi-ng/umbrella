@@ -3,7 +3,7 @@ import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
 import { Subscription, subscription } from "@thi.ng/rstream/subscription";
-import { updateUI } from "@thi.ng/transducers-hdom";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 import { peek } from "@thi.ng/transducers/func/peek";
 import { vals } from "@thi.ng/transducers/iter/vals";
 import { reducer } from "@thi.ng/transducers/reduce";
@@ -25,31 +25,33 @@ const ctx = {
 };
 
 /**
- * Takes a `parent` DOM element, a stream of `root` component values and
- * an arbitrary user context object which will be implicitly passed to
- * all component functions embedded in the root component. Subscribes to
- * `root` stream & performs DOM diffs / updates using incoming values
- * (i.e. UI components). Additionally, a RAF side chain stream is used
- * here to synchronize DOM updates to be processed during RAF.
+ * Takes a `root` DOM element, a stream of `tree` component values and
+ * an (optional) arbitrary user context object which will be implicitly
+ * passed to all component functions embedded in the root component.
+ * Subscribes to `root` stream & performs DOM diffs / updates using
+ * incoming values (i.e. UI components). Additionally, a RAF side chain
+ * stream is used here to synchronize DOM update requests to be only
+ * processed during RAF. If multiple updates are triggered per frame,
+ * this also ensures that the DOM is only updated once per frame.
  *
  * Without RAF synchronization, the following would be sufficient:
  *
  * ```
- * root.transform(updateUI(parent, ctx))
+ * root.transform(updateDOM({root, ctx}))
  * ```
  *
  * Returns stream of hdom trees.
  *
- * @param parent root DOM element
- * @param root root hdom component stream
+ * @param root root DOM element
+ * @param tree hdom component stream
  * @param ctx user context object
  */
-const domUpdate = (parent: HTMLElement, root: ISubscribable<any>, ctx?: any) =>
-    root
+const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
+    tree
         .subscribe(sidechainPartition(fromRAF()))
         .transform(
             map(peek),
-            updateUI(parent, ctx)
+            updateDOM({ root, ctx })
         );
 
 /**

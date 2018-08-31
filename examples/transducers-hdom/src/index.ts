@@ -1,7 +1,7 @@
 import { fromInterval } from "@thi.ng/rstream/from/interval";
 import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
-import { updateUI } from "@thi.ng/transducers-hdom";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 import { count } from "@thi.ng/transducers/rfn/count";
 import { map } from "@thi.ng/transducers/xform/map";
 import { scan } from "@thi.ng/transducers/xform/scan";
@@ -41,7 +41,7 @@ sync({
     // transform into hdom component
     map(app),
     // apply hdom tree to real DOM
-    updateUI("app")
+    updateDOM()
 );
 
 // kick off
