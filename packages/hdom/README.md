@@ -8,7 +8,8 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
-    - [Minimal example](#minimal-example)
+    - [Minimal example #1: Local state, RAF update](#minimal-example-1-local-state-raf-update)
+    - [Minimal example #2 (reactive state & transducer update)](#minimal-example-2-reactive-state--transducer-update)
     - [Component tree translation](#component-tree-translation)
     - [Event & state handling options](#event--state-handling-options)
     - [Reusable components](#reusable-components)
@@ -19,6 +20,7 @@ This project is part of the
     - [User context injection](#user-context-injection)
     - [Component objects & life cycle methods](#component-objects--life-cycle-methods)
 - [Example projects](#example-projects)
+    - [Realtime crypto chart](#realtime-crypto-chart)
     - [Interactive SVG grid generator](#interactive-svg-grid-generator)
     - [Interactive additive waveform visualization](#interactive-additive-waveform-visualization)
     - [Dataflow graph SVG components](#dataflow-graph-svg-components)
@@ -27,11 +29,7 @@ This project is part of the
     - [Multiple apps with & without shared state](#multiple-apps-with--without-shared-state)
     - [Interceptor based event handling](#interceptor-based-event-handling)
     - [Todo list](#todo-list)
-    - [Cellular automata](#cellular-automata)
     - [SVG particles](#svg-particles)
-    - [JSON based components](#json-based-components)
-    - [@thi.ng/rstream dataflow graph](#thingrstream-dataflow-graph)
-    - [Basic usage patterns](#basic-usage-patterns)
     - [Benchmark](#benchmark)
 - [Authors](#authors)
 - [License](#license)
@@ -40,7 +38,7 @@ This project is part of the
 
 ## About
 
-Lightweight reactive DOM components & VDOM implementation using only
+Lightweight reactive DOM components & VDOM-ish implementation using only
 vanilla JS data structures (arrays, objects with life cycle functions,
 closures, iterators), based on
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
@@ -52,19 +50,23 @@ closures, iterators), based on
 - [Supports
   SVG](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg),
   arbitrary elements, attributes, events
+- Suitable for server side rendering (by passing the same data structure
+  to @thi.ng/hiccup's `serialize()`) and then "hydrating" listeners and
+  components with life cycle methods
 - Less verbose than HTML / JSX, resulting in smaller file sizes
 - Static components can be distributed as JSON (or [transform JSON
   into components](https://github.com/thi-ng/umbrella/tree/master/examples/json-components))
 - Optional user context injection (an arbitrary object passed to all
   component functions)
-- auto-deref of embedded value wrappers which implement the
+- CSS conversion from JS objects for `style` attribs
+- Auto-deref of embedded value wrappers which implement the
   [@thi.ng/api/IDeref](https://github.com/thi-ng/umbrella/tree/master/packages/api/api)
   interface (e.g. atoms, cursors, derived views, streams etc.)
-- CSS conversion from JS objects for `style` attribs
-- Suitable for server side rendering (by passing the same data structure
-  to @thi.ng/hiccup's `serialize()`)
 - Fairly fast (see benchmark example below)
-- Only ~4.4KB gzipped
+- Only ~5KB gzipped
+
+hdom is *very* flexible and supports different workflows and means to
+update a DOM...
 
 In addition to the descriptions in this file, [further information and
 examples are available in the
@@ -74,7 +76,7 @@ Also see the [work-in-progress
 ADRs](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/adr/)
 for component configuration.
 
-### Minimal example
+### Minimal example #1: Local state, RAF update
 
 ```ts
 import * as hdom from "@thi.ng/hdom";
@@ -97,7 +99,7 @@ const app = () => {
 };
 
 // start update loop (browser only, see diagram below)
-hdom.start(document.body, app());
+hdom.start(app(), { root: document.body });
 
 // alternatively apply DOM tree only once
 // (stateful components won't update though)
@@ -118,11 +120,52 @@ console.log(serialize(app()));
 // <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 100</button></div>
 ```
 
-No template engine & no pre-compilation steps needed, just use the full
-expressiveness of ES6/TypeScript to define your DOM tree. Using
-TypeScript gives the additional benefit of making UI components strongly
-typed, and since they're just normal functions, can use generics,
-overrides, varargs etc.
+### Minimal example #2 (reactive state & transducer update)
+
+This example uses the
+[@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
+support library to perform reactive DOM updates (instead of regular
+diffing via RAF).
+
+```ts
+import * as rs from "@thi.ng/rstream/stream";
+import * as tx from "@thi.ng/rstream/transducers";
+import { updateDOM } from "@thi.ng/rstream/transducers-hdom";
+
+// root component function
+const app = ({ ticks, clicks }) =>
+    ["div",
+        `${ticks} ticks & `,
+        ["a",
+            { href: "#", onclick: () => clickStream.next(0)},
+            `${clicks} clicks`]
+    ];
+
+// click stream (click counter)
+const clickStream = rs.stream().transform(tx.scan(tx.count(-1)));
+
+// stream combinator
+// waits until all inputs have produced at least one value,
+// then updates whenever any input has changed
+sync({
+    // streams to synchronize
+    src: {
+        ticks: rs.fromInterval(1000),
+        clicks: clickStream,
+    },
+}).transform(
+    // transform tuple into hdom component
+    tx.map(app),
+    // apply hdom tree to real DOM
+    updateDOM({ root: document.body })
+);
+
+// kick off
+clickStream.next(0);
+```
+
+[Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) |
+[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
 
 ### Component tree translation
 
@@ -164,9 +207,8 @@ provided by these packages:
 ## Status
 
 The overall "API" is stable, but there's further work planned on
-generalizing the approach beyond standard browser DOM use cases (planned
-for v4.0.0). The project has been used for several projects in
-production since 2016.
+generalizing the approach beyond standard browser DOM use cases. The
+project has been used for several projects in production since 2016.
 
 ## Installation
 
@@ -194,7 +236,6 @@ yarn start
 - [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-- [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
 
 ## Usage
 
@@ -205,7 +246,7 @@ reference to learn about the basics of the approach and syntax used.
 Both projects started in early 2016, have somewhat evolved
 independently, however should be considered complementary.
 
-#### `start(parent: Element | string, tree: any, ctx?: any, path?: number[], keys?: boolean, span?: boolean): () => boolean`
+#### `start(tree: any, opts?: Partial<HDOMOpts>): () => any`
 
 Main user function of this package. For most use cases, this function
 should be the only one required in user code. It takes a parent DOM
@@ -229,10 +270,14 @@ previous DOM tree is kept around until the root function returns a tree
 again, which then is diffed and applied against the previous tree kept
 as usual. Any number of frames may be skipped this way.
 
-**Important:** The parent element given is assumed to have NO children at
-the time when `start()` is called. Since hdom does NOT track the real
-DOM, the resulting changes will result in potentially undefined behavior
-if the parent element wasn't empty.
+**Important:** Unless the `hydrate` option is enabled, the parent
+element given is assumed to have NO children at the time when `start()`
+is called. Since hdom does NOT track the real DOM, the resulting changes
+will result in potentially undefined behavior if the parent element
+wasn't empty. Likewise, if `hydrate` is enabled, it is assumed that an
+equivalent DOM (minus listeners) already exists (i.e. generated via SSR)
+when `start()` is called. Any other discrepancies between the
+pre-existing DOM and the hdom trees will cause undefined behavior.
 
 Returns a function, which when called, immediately cancels the update
 loop.
@@ -289,6 +334,14 @@ created root element(s) - usually only a single one, but can be an array
 of elements, if the provided tree is an iterable. Creates DOM text nodes
 for non-component values. Returns `parent` if tree is `null` or
 `undefined`.
+
+#### `hydrateDOM(parent: Element, tag: any)`
+
+Takes a DOM root element and normalized hdom tree, then walks tree and
+initializes any event listeners and components with lifecycle init
+methods. Assumes that an equivalent DOM (minus listeners) already exists
+(e.g. generated via SSR) when called. Any other discrepancies between
+the pre-existing DOM and the hdom tree will cause undefined behavior.
 
 ### User context injection
 
@@ -349,7 +402,7 @@ const root = [
 ];
 
 // start hdom update loop
-start("app", root, ctx);
+start(root, { ctx });
 ```
 
 ### Component objects & life cycle methods
@@ -421,8 +474,8 @@ const canvas = () => {
 // usage scenario #1: static component
 // inline initialization is okay here...
 start(
-    document.body,
-    [canvas(), { width: 100, height: 100 }, "Hello world"]
+    [canvas(), { width: 100, height: 100 }, "Hello world"],
+    { root: document.body }
 );
 
 
@@ -445,18 +498,23 @@ const app = () => {
     ];
 };
 
-start(document.body, app());
+start(app(), { root: document.body });
 ```
 
 ## Example projects
 
-Most of the
+Most of the 25
 [examples](https://github.com/thi-ng/umbrella/tree/master/examples)
 included in this repo are using this package in one way or another.
 Please check them out to learn more. Each is heavily commented, incl.
 best practice notes.
 
 Non-exhaustive list:
+
+### Realtime crypto chart
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
+[Live version](https://demo.thi.ng/umbrella/crypto-chart/)
 
 ### Interactive SVG grid generator
 
@@ -504,29 +562,9 @@ A fully documented, obligatory todo list app with undo / redo.
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live version](https://demo.thi.ng/umbrella/todo-list/)
 
-### Cellular automata
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata) | [Live version](https://demo.thi.ng/umbrella/cellular-automata/)
-
 ### SVG particles
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live version](https://demo.thi.ng/umbrella/svg-particles/)
-
-### JSON based components
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/json-components) | [Live version](https://demo.thi.ng/umbrella/json-components/)
-
-### @thi.ng/rstream dataflow graph
-
-A small, interactive dataflow graph example:
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) | [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
-
-### Basic usage patterns
-
-The code below is also available as standalone project in: [/examples/dashboard](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/dashboard) | [Live version](https://demo.thi.ng/umbrella/dashboard/)
 
 ### Benchmark
 
@@ -540,8 +578,8 @@ Twitter](https://twitter.com/toxi/status/959246871339454464),
 performance should be more than acceptable for even quite demanding UIs.
 In the 192 / 256 cells configurations **this stress test causes approx.
 600 / 800 DOM every single frame**, very unlikely for a typical web app.
-In Chrome 64 on a MBP2016 this still runs at a stable 60fps (192 cells)
-/ 32fps (256 cells). Both FPS readings based the 50 frame
+In Chrome 68 on a MBP2016 this still runs at a stable 60fps (192 cells)
+/ 37fps (256 cells). Both FPS readings based the 50 frame
 [SMA](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average).
 
 ## Authors

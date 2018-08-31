@@ -54,6 +54,18 @@ export const createDOM = (parent: Element, tag: any, insert?: number) => {
     return createTextElement(parent, tag);
 };
 
+/**
+ * Takes a DOM root element and normalized hdom tree, then walks tree
+ * and initializes any event listeners and components with lifecycle
+ * `init` methods. Assumes that an equivalent DOM (minus listeners)
+ * already exists (e.g. generated via SSR) when called. Any other
+ * discrepancies between the pre-existing DOM and the hdom tree will
+ * cause undefined behavior.
+ *
+ * @param parent
+ * @param tree
+ * @param i
+ */
 export const hydrateDOM = (parent: Element, tree: any, i = 0) => {
     if (isArray(tree)) {
         const el = parent.children[i];
