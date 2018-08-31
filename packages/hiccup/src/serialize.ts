@@ -1,10 +1,10 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
-import { TAG_REGEXP, VOID_TAGS } from "./api";
+import { NO_SPANS, TAG_REGEXP, VOID_TAGS } from "./api";
 import { css } from "./css";
 import { escape } from "./escape";
 
@@ -141,6 +141,7 @@ const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: bool
                     illegalArgs(`No body allowed in tag: ${tag}`);
                 }
                 res += ">";
+                span = span && !NO_SPANS[tag];
                 for (let i = 0, n = body.length; i < n; i++) {
                     res += _serialize(body[i], ctx, esc, span, keys, [...path, i]);
                 }

@@ -21,4 +21,10 @@ export const ENTITIES = {
     "'": "&apos;",
 };
 
+export const NO_SPANS = {
+    option: 1,
+    text: 1,
+    textarea: 1,
+};
+
 export const ENTITY_RE = new RegExp(`[${Object.keys(ENTITIES)}]`, "g");
