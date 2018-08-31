@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.35...@thi.ng/hdom@4.0.0) (2018-08-31)
+
+
+### Features
+
+* **hdom:** add DOM hydration support (SSR), update start() ([#39](https://github.com/thi-ng/umbrella/issues/39)) ([9f8010d](https://github.com/thi-ng/umbrella/commit/9f8010d))
+* **hdom:** update HDOMOpts & start() ([5e74a9c](https://github.com/thi-ng/umbrella/commit/5e74a9c))
+
+
+### BREAKING CHANGES
+
+* **hdom:** start() args now as options object
+
+
+
+
 <a name="3.0.35"></a>
 ## [3.0.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@3.0.34...@thi.ng/hdom@3.0.35) (2018-08-27)
 

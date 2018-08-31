@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.0.11...@thi.ng/hiccup@2.1.0) (2018-08-31)
+
+
+### Bug Fixes
+
+* **hiccup:** disable spans for certain element types ([1b97a25](https://github.com/thi-ng/umbrella/commit/1b97a25))
+* **hiccup:** serialize() args ([1e8b4ef](https://github.com/thi-ng/umbrella/commit/1e8b4ef))
+
+
+### Features
+
+* **hiccup:** add optional support for spans & auto keying ([#39](https://github.com/thi-ng/umbrella/issues/39)) ([1b0deb2](https://github.com/thi-ng/umbrella/commit/1b0deb2))
+
+
+
+
 <a name="2.0.11"></a>
 ## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.0.10...@thi.ng/hiccup@2.0.11) (2018-08-27)
 

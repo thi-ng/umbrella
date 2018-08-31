@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@0.1.5...@thi.ng/transducers-hdom@1.0.0) (2018-08-31)
+
+
+### Features
+
+* **transducers-hdom:** add DOM hydration support, rename ([#39](https://github.com/thi-ng/umbrella/issues/39)) ([0f39694](https://github.com/thi-ng/umbrella/commit/0f39694))
+
+
+### BREAKING CHANGES
+
+* **transducers-hdom:** rename transducer: `updateUI` => `updateDOM`, new API
+
+
+
+
 <a name="0.1.5"></a>
 ## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@0.1.4...@thi.ng/transducers-hdom@0.1.5) (2018-08-27)
 
