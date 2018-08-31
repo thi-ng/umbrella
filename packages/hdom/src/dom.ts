@@ -23,7 +23,7 @@ const isString = iss.isString;
  * @param tag
  * @param insert
  */
-export function createDOM(parent: Element, tag: any, insert?: number) {
+export const createDOM = (parent: Element, tag: any, insert?: number) => {
     if (isArray(tag)) {
         const t = tag[0];
         if (isFunction(t)) {
@@ -52,9 +52,35 @@ export function createDOM(parent: Element, tag: any, insert?: number) {
         return parent;
     }
     return createTextElement(parent, tag);
-}
+};
 
-export function createElement(parent: Element, tag: string, attribs?: any, insert?: number) {
+export const hydrateDOM = (parent: Element, tree: any, i = 0) => {
+    if (isArray(tree)) {
+        const el = parent.children[i];
+        if (isFunction(tree[0])) {
+            return hydrateDOM(parent, tree[0].apply(null, tree.slice(1)), i);
+        }
+        if ((<any>tree).__init) {
+            (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
+        }
+        const attr = tree[1];
+        for (let a in attr) {
+            if (a.indexOf("on") === 0) {
+                el.addEventListener(a.substr(2), attr[a]);
+            }
+        }
+        for (let n = tree.length, i = 2; i < n; i++) {
+            hydrateDOM(el, tree[i], i - 2);
+        }
+    } else if (!isString(tree) && isIterable(tree)) {
+        for (let t of tree) {
+            hydrateDOM(parent, t, i);
+            i++;
+        }
+    }
+};
+
+export const createElement = (parent: Element, tag: string, attribs?: any, insert?: number) => {
     const el = SVG_TAGS[tag] ?
         document.createElementNS(SVG_NS, tag) :
         document.createElement(tag);
@@ -69,9 +95,9 @@ export function createElement(parent: Element, tag: string, attribs?: any, inser
         setAttribs(el, attribs);
     }
     return el;
-}
+};
 
-export function createTextElement(parent: Element, content: string, insert?: number) {
+export const createTextElement = (parent: Element, content: string, insert?: number) => {
     const el = document.createTextNode(content);
     if (parent) {
         if (insert === undefined) {
@@ -81,21 +107,21 @@ export function createTextElement(parent: Element, content: string, insert?: num
         }
     }
     return el;
-}
+};
 
-export function cloneWithNewAttribs(el: Element, attribs: any) {
+export const cloneWithNewAttribs = (el: Element, attribs: any) => {
     const res = <Element>el.cloneNode(true);
     setAttribs(res, attribs);
     el.parentNode.replaceChild(res, el);
     return res;
-}
+};
 
-export function setAttribs(el: Element, attribs: any) {
+export const setAttribs = (el: Element, attribs: any) => {
     for (let k in attribs) {
         setAttrib(el, k, attribs[k], attribs);
     }
     return el;
-}
+};
 
 /**
  * Sets a single attribute on given element. If attrib name is NOT
@@ -118,7 +144,7 @@ export function setAttribs(el: Element, attribs: any) {
  * @param val
  * @param attribs
  */
-export function setAttrib(el: Element, id: string, val: any, attribs?: any) {
+export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
     const isListener = id.indexOf("on") === 0;
     if (!isListener && isFunction(val)) {
         val = val(attribs);
@@ -146,9 +172,9 @@ export function setAttrib(el: Element, id: string, val: any, attribs?: any) {
         el[id] != null ? (el[id] = null) : el.removeAttribute(id);
     }
     return el;
-}
+};
 
-export function updateValueAttrib(el: HTMLInputElement, v: any) {
+export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
     switch (el.type) {
         case "text":
         case "textarea":
@@ -166,9 +192,9 @@ export function updateValueAttrib(el: HTMLInputElement, v: any) {
         default:
             el.value = v;
     }
-}
+};
 
-export function removeAttribs(el: Element, attribs: string[], prev: any) {
+export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
     for (let i = attribs.length; --i >= 0;) {
         const a = attribs[i];
         if (a.indexOf("on") === 0) {
@@ -177,20 +203,17 @@ export function removeAttribs(el: Element, attribs: string[], prev: any) {
             el[a] ? (el[a] = null) : el.removeAttribute(a);
         }
     }
-}
+};
 
-export function setStyle(el: Element, styles: any) {
-    el.setAttribute("style", css(styles));
-    return el;
-}
+export const setStyle = (el: Element, styles: any) =>
+    (el.setAttribute("style", css(styles)), el);
 
-export function clearDOM(el: Element) {
+export const clearDOM = (el: Element) =>
     el.innerHTML = "";
-}
 
-export function removeChild(parent: Element, childIdx: number) {
+export const removeChild = (parent: Element, childIdx: number) => {
     const n = parent.children[childIdx];
     if (n !== undefined) {
         n.remove();
     }
-}
+};

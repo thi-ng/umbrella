@@ -1,6 +1,9 @@
 import { isString } from "@thi.ng/checks/is-string";
+
+import { HDOMOpts } from "./api";
 import { diffElement } from "./diff";
 import { normalizeTree } from "./normalize";
+import { hydrateDOM } from "@thi.ng/hdom/src/dom";
 
 /**
  * Takes a parent DOM element (or ID), hiccup tree (array, function or
@@ -23,30 +26,40 @@ import { normalizeTree } from "./normalize";
  * which then is diffed and applied against the previous tree kept as
  * usual. Any number of frames may be skipped this way.
  *
- * Important: The parent element given is assumed to have NO children at
- * the time when `start()` is called. Since hdom does NOT track the real
- * DOM, the resulting changes will result in potentially undefined
- * behavior if the parent element wasn't empty.
+ * **Important:** Unless the `hydrate` option is enabled, the parent
+ * element given is assumed to have NO children at the time when
+ * `start()` is called. Since hdom does NOT track the real DOM, the
+ * resulting changes will result in potentially undefined behavior if
+ * the parent element wasn't empty. Likewise, if `hydrate` is enabled,
+ * it is assumed that an equivalent DOM (minus listeners) already exists
+ * (i.e. generated via SSR) when `start()` is called. Any other
+ * discrepancies between the pre-existing DOM and the hdom trees will
+ * cause undefined behavior.
  *
  * Returns a function, which when called, immediately cancels the update
  * loop.
  *
- * @param parent root element or ID
  * @param tree hiccup DOM tree
- * @param ctx arbitrary user context object
- * @param spans true (default), if text should be wrapped in `<span>`
+ * @param opts options
  */
-export function start(parent: Element | string, tree: any, ctx?: any, spans = true) {
+export const start = (tree: any, opts: HDOMOpts) => {
     let prev = [];
     let isActive = true;
-    parent = isString(parent) ?
-        document.getElementById(parent) :
-        parent;
+    let hydrate = opts.hydrate;
+    const spans = opts.span !== false;
+    const root = isString(opts.parent) ?
+        document.getElementById(opts.parent) :
+        opts.parent;
     function update() {
         if (isActive) {
-            const curr = normalizeTree(tree, ctx, [0], true, spans);
+            const curr = normalizeTree(tree, opts.ctx, [0], true, spans);
             if (curr != null) {
-                diffElement(<Element>parent, prev, curr);
+                if (hydrate) {
+                    hydrateDOM(root, curr);
+                    hydrate = false;
+                } else {
+                    diffElement(root, prev, curr);
+                }
                 prev = curr;
             }
             // check again in case one of the components called cancel
@@ -55,4 +68,4 @@ export function start(parent: Element | string, tree: any, ctx?: any, spans = tr
     }
     requestAnimationFrame(update);
     return () => (isActive = false);
-}
+};

@@ -34,11 +34,10 @@ const isString = iss.isString;
  * @param prev previous tree
  * @param curr current tree
  */
-export function diffElement(root: Element, prev: any, curr: any) {
+export const diffElement = (root: Element, prev: any, curr: any) =>
     _diffElement(root, prev, curr, 0);
-}
 
-function _diffElement(parent: Element, prev: any, curr: any, child: number) {
+const _diffElement = (parent: Element, prev: any, curr: any, child: number) => {
     const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance === 0) {
         return;
@@ -109,9 +108,9 @@ function _diffElement(parent: Element, prev: any, curr: any, child: number) {
         // DEBUG && console.log("call __init", curr);
         i.apply(curr, [el, ...(curr.__args)]);
     }
-}
+};
 
-function releaseDeep(tag: any) {
+const releaseDeep = (tag: any) => {
     if (isArray(tag)) {
         if ((<any>tag).__release) {
             // DEBUG && console.log("call __release", tag);
@@ -122,9 +121,9 @@ function releaseDeep(tag: any) {
             releaseDeep(tag[i]);
         }
     }
-}
+};
 
-function diffAttributes(el: Element, prev: any, curr: any) {
+const diffAttributes = (el: Element, prev: any, curr: any) => {
     let i, e, edits;
     const delta = diffObject(prev, curr);
     removeAttribs(el, delta.dels, prev);
@@ -152,9 +151,9 @@ function diffAttributes(el: Element, prev: any, curr: any) {
     if (value !== SEMAPHORE) {
         setAttrib(el, "value", value, curr);
     }
-}
+};
 
-function extractEquivElements(edits: DiffLogEntry<any>[]) {
+const extractEquivElements = (edits: DiffLogEntry<any>[]) => {
     let k, v, e, ek;
     const equiv = {};
     for (let i = edits.length; --i >= 0;) {
@@ -167,4 +166,4 @@ function extractEquivElements(edits: DiffLogEntry<any>[]) {
         }
     }
     return equiv;
-}
+};

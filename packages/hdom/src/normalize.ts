@@ -5,7 +5,7 @@ import * as isi from "@thi.ng/checks/is-iterable";
 import * as iso from "@thi.ng/checks/is-plain-object";
 import * as iss from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { TAG_REGEXP } from "@thi.ng/hiccup/api";
+import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup/api";
 
 const isArray = isa.isArray;
 const isFunction = isf.isFunction;
@@ -38,7 +38,7 @@ const isString = iss.isString;
  * @param spec
  * @param keys
  */
-export function normalizeElement(spec: any[], keys: boolean) {
+export const normalizeElement = (spec: any[], keys: boolean) => {
     let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
     if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
         illegalArgs(`${tag} is not a valid tag name`);
@@ -62,12 +62,6 @@ export function normalizeElement(spec: any[], keys: boolean) {
         }
     }
     return [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
-}
-
-const NO_SPANS = {
-    option: 1,
-    text: 1,
-    textarea: 1,
 };
 
 /**
@@ -111,7 +105,7 @@ const NO_SPANS = {
  * @param keys
  * @param span
  */
-export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, span = true) {
+export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, span = true) => {
     if (tree == null) {
         return;
     }
@@ -182,4 +176,4 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
     return span ?
         ["span", keys ? { key: path.join("-") } : {}, tree.toString()] :
         tree.toString();
-}
+};
