@@ -43,21 +43,21 @@ import { hydrateDOM } from "@thi.ng/hdom/src/dom";
  * @param opts options
  */
 export const start = (tree: any, opts?: Partial<HDOMOpts>) => {
-    opts = { root: "app", span: true, ...opts };
+    opts = { root: "app", span: true, normalize: true, ...opts };
     let prev = [];
     let isActive = true;
-    let hydrate = opts.hydrate;
-    const spans = opts.span !== false;
     const root = isString(opts.root) ?
         document.getElementById(opts.root) :
         opts.root;
-    function update() {
+    const update = () => {
         if (isActive) {
-            const curr = normalizeTree(tree, opts.ctx, [0], true, spans);
+            const curr = opts.normalize ?
+                normalizeTree(tree, opts.ctx, [0], true, opts.span) :
+                tree;
             if (curr != null) {
-                if (hydrate) {
+                if (opts.hydrate) {
                     hydrateDOM(root, curr);
-                    hydrate = false;
+                    opts.hydrate = false;
                 } else {
                     diffElement(root, prev, curr);
                 }
@@ -66,7 +66,7 @@ export const start = (tree: any, opts?: Partial<HDOMOpts>) => {
             // check again in case one of the components called cancel
             isActive && requestAnimationFrame(update);
         }
-    }
+    };
     requestAnimationFrame(update);
     return () => (isActive = false);
 };

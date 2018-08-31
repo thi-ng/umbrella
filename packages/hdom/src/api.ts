@@ -18,11 +18,12 @@ export interface ComponentAttribs {
 
 export interface HDOMOpts {
     /**
-     * Root element or ID
+     * Root element or ID (default: "app").
      */
     root: Element | string;
     /**
-     * Arbitrary user context object
+     * Arbitrary user context object, passed to all component functions
+     * embedded in the tree.
      */
     ctx?: any;
     /**
@@ -40,6 +41,12 @@ export interface HDOMOpts {
      * undefined behavior.
      */
     hydrate?: boolean;
+    /**
+     * If true (default), the hdom component tree will be first
+     * normalized before diffing (using `normalizeTree()`). Unless you
+     * know what you're doing, it's best to leave this enabled.
+     */
+    normalize?: boolean;
 }
 
 export const DEBUG = false;
