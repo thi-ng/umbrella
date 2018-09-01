@@ -2,8 +2,8 @@ import { isString } from "@thi.ng/checks/is-string";
 
 import { HDOMOpts } from "./api";
 import { diffElement } from "./diff";
+import { hydrateDOM } from "./dom";
 import { normalizeTree } from "./normalize";
-import { hydrateDOM } from "@thi.ng/hdom/src/dom";
 
 /**
  * Takes a parent DOM element (or ID), hiccup tree (array, function or
