@@ -424,9 +424,7 @@ export class Vec3 implements
     x: number;
     y: number;
     z: number;
-    [0]: number;
-    [1]: number;
-    [2]: number;
+    [id: number]: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;

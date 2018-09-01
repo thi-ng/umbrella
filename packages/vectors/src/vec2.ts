@@ -317,8 +317,7 @@ export class Vec2 implements
     s: number;
     x: number;
     y: number;
-    [0]: number;
-    [1]: number;
+    [id: number]: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;

@@ -347,10 +347,7 @@ export class Vec4 implements
     y: number;
     z: number;
     w: number;
-    [0]: number;
-    [1]: number;
-    [2]: number;
-    [3]: number;
+    [id: number]: number;
 
     constructor(buf: Vec, index = 0, stride = 1) {
         this.buf = buf;
