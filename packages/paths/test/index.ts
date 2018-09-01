@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { setIn } from "../src/index";
+import { exists, setIn } from "../src/index";
 
 describe("paths", () => {
     it("setIn (len = 0)", () => {
@@ -150,4 +150,21 @@ describe("paths", () => {
         assert(a.x.y === b.x.y);
         assert(a.u === b.u);
     });
+
+    it("exists", () => {
+        const a = { a: { b: null } };
+        const b = { x: { y: { z: [1, 2, { u: 3, v: undefined }] } } };
+        assert(!exists(null, "x.y.z"), "x.y.z");
+        assert(!exists(0, "x.y.z"), "x.y.z");
+        assert(exists("", "length"), "length");
+        assert(exists(a, "a.b"), "a.b");
+        assert(!exists(a, "a.b.c"), "a.b.c");
+        assert(exists(b, "x"), "x");
+        assert(exists(b, "x.y.z"), "x.y.z");
+        assert(exists(b, "x.y.z.2.u"), "x.y.z.2.u");
+        assert(exists(b, "x.y.z.2.v"), "x.y.z.2.v");
+        assert(!exists(b, "x.y.z.3"), "x.y.z.3");
+        assert(!exists(b, "x.y.z.3.u"), "x.y.z.3.u");
+        assert(!exists(b, "x.z.y.2.u"), "x.z.y.2.u");
+    })
 });

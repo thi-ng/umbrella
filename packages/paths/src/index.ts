@@ -33,6 +33,33 @@ export function toPath(path: Path) {
 }
 
 /**
+ * Takes an arbitrary object and lookup path. Descends into object along
+ * path and returns true if the full path exists (even if final leaf
+ * value is `null` or `undefined`). Checks are performed using
+ * `hasOwnProperty()`.
+ *
+ * @param obj
+ * @param path
+ */
+export const exists = (obj: any, path: Path) => {
+    if (obj == null) {
+        return false;
+    }
+    path = toPath(path);
+    for (let n = path.length - 1, i = 0; i <= n; i++) {
+        const k = path[i];
+        if (!obj.hasOwnProperty(k)) {
+            return false;
+        }
+        obj = obj[k];
+        if (obj == null && i < n) {
+            return false;
+        }
+    }
+    return true;
+};
+
+/**
  * Composes a getter function for given nested lookup path. Optimized
  * fast execution paths are provided for path lengths less than 5.
  * Supports any `[]`-indexable data structure (arrays, objects,
