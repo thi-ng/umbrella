@@ -9,6 +9,7 @@ This project is part of the
 
 - [About](#about)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Authors](#authors)
 - [License](#license)
@@ -28,6 +29,11 @@ Functional composition helpers:
 ```bash
 yarn add @thi.ng/compose
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage examples
 

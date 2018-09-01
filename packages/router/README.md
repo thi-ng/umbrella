@@ -50,7 +50,8 @@ yarn start
 
 A complete, full commented demo app is here:
 
-[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) | [Live demo](https://demo.thi.ng/umbrella/router-basics/)
+[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) |
+[Live demo](https://demo.thi.ng/umbrella/router-basics/)
 
 ```ts
 import * as r from "@thi.ng/router";
@@ -142,7 +143,8 @@ router.addListener(r.EV_ROUTE_CHANGED, console.log);
 router.start();
 ```
 
-See [further comments in source code](https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts)
+See [further comments in source
+code](https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts)
 
 ## Authors
 

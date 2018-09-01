@@ -11,13 +11,20 @@ Bare-bones IGES 5.3 serializer for (currently only) polygonal geometry,
 both open & closed, for use in various CAD applications (e.g. Rhino,
 Houdini, Fusion 360)
 
-![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/iges.png)
+![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/iges.png)
 
 ## Installation
 
 ```bash
 yarn add @thi.ng/iges
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 

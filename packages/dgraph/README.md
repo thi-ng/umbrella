@@ -27,7 +27,7 @@ yarn add @thi.ng/dgraph
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/master/packages/iterators)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 

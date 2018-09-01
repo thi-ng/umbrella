@@ -9,6 +9,7 @@ This project is part of the
 
 - [About](#about)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Authors](#authors)
 - [License](#license)
@@ -25,6 +26,10 @@ functions, some memoized. WIP / Alpha.
 ```bash
 yarn add @thi.ng/strings
 ```
+
+## Dependencies
+
+- [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/master/packages/memoize)
 
 ## Usage examples
 

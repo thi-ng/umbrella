@@ -10,6 +10,7 @@ This project is part of the
 - [About](#about)
 - [Supported indicators](#supported-indicators)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Authors](#authors)
 - [License](#license)
@@ -53,13 +54,19 @@ transforming ES6 iterator (generator) instead of a transducer.
 yarn add @thi.ng/transducers-stats
 ```
 
+## Dependencies
+
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
 ## Usage examples
 
 For some realworld use, please see the [crypto
 chart](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
 example.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/crypto-chart.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/crypto-chart.png)
 
 ```ts
 import * as tx from "@thi.ng/transducers";

@@ -11,6 +11,7 @@ This project is part of the
     - [Vectors](#vectors)
     - [Matrices](#matrices)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
     - [Basics](#basics)
     - [Vector classes & interleaved vectors in large buffer](#vector-classes--interleaved-vectors-in-large-buffer)
@@ -193,6 +194,12 @@ non-suffixed naming.**
 ```bash
 yarn add @thi.ng/vectors
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage examples
 

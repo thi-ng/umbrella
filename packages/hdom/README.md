@@ -10,6 +10,18 @@ This project is part of the
 - [About](#about)
     - [Minimal example #1: Local state, RAF update](#minimal-example-1-local-state-raf-update)
     - [Minimal example #2 (reactive state & transducer update)](#minimal-example-2-reactive-state--transducer-update)
+- [Example projects](#example-projects)
+    - [Realtime crypto candle chart](#realtime-crypto-candle-chart)
+    - [Git commit log table](#git-commit-log-table)
+    - [Interactive SVG grid generator](#interactive-svg-grid-generator)
+    - [Interactive additive waveform visualization & SVG visualization](#interactive-additive-waveform-visualization--svg-visualization)
+    - [Dataflow graph SVG components](#dataflow-graph-svg-components)
+    - [Canvas based radial dial input widget](#canvas-based-radial-dial-input-widget)
+    - [SPA with router and event bus](#spa-with-router-and-event-bus)
+    - [Multiple apps with & without shared state](#multiple-apps-with--without-shared-state)
+    - [Interceptor based event handling](#interceptor-based-event-handling)
+    - [Todo list (w/ undo/redo)](#todo-list-w-undoredo)
+    - [SVG particles](#svg-particles)
     - [Component tree translation](#component-tree-translation)
     - [Event & state handling options](#event--state-handling-options)
     - [Reusable components](#reusable-components)
@@ -19,17 +31,6 @@ This project is part of the
 - [Usage](#usage)
     - [User context injection](#user-context-injection)
     - [Component objects & life cycle methods](#component-objects--life-cycle-methods)
-- [Example projects](#example-projects)
-    - [Realtime crypto chart](#realtime-crypto-chart)
-    - [Interactive SVG grid generator](#interactive-svg-grid-generator)
-    - [Interactive additive waveform visualization](#interactive-additive-waveform-visualization)
-    - [Dataflow graph SVG components](#dataflow-graph-svg-components)
-    - [SPA with router and event bus](#spa-with-router-and-event-bus)
-    - [Additive waveform synthesis & SVG visualization](#additive-waveform-synthesis--svg-visualization)
-    - [Multiple apps with & without shared state](#multiple-apps-with--without-shared-state)
-    - [Interceptor based event handling](#interceptor-based-event-handling)
-    - [Todo list](#todo-list)
-    - [SVG particles](#svg-particles)
     - [Benchmark](#benchmark)
 - [Authors](#authors)
 - [License](#license)
@@ -42,6 +43,8 @@ Lightweight reactive DOM components & VDOM-ish implementation using only
 vanilla JS data structures (arrays, objects with life cycle functions,
 closures, iterators), based on
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
+hdom is *very* flexible and supports many different workflows and means
+to perform DOM updates...
 
 - Use the full expressiveness of ES6 / TypeScript to define, annotate &
   document components
@@ -58,15 +61,14 @@ closures, iterators), based on
   into components](https://github.com/thi-ng/umbrella/tree/master/examples/json-components))
 - Optional user context injection (an arbitrary object passed to all
   component functions)
-- CSS conversion from JS objects for `style` attribs
+- CSS conversion from JS objects for `style` attribs (for full
+  hiccup-based CSS-in-JS generation also see:
+  [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css))
 - Auto-deref of embedded value wrappers which implement the
-  [@thi.ng/api/IDeref](https://github.com/thi-ng/umbrella/tree/master/packages/api/api)
+  [`IDeref`](https://github.com/thi-ng/umbrella/tree/master/packages/api/api)
   interface (e.g. atoms, cursors, derived views, streams etc.)
 - Fairly fast (see benchmark example below)
 - Only ~5KB gzipped
-
-hdom is *very* flexible and supports different workflows and means to
-update a DOM...
 
 In addition to the descriptions in this file, [further information and
 examples are available in the
@@ -147,7 +149,7 @@ const clickStream = rs.stream().transform(tx.scan(tx.count(-1)));
 // stream combinator
 // waits until all inputs have produced at least one value,
 // then updates whenever any input has changed
-sync({
+rs.sync({
     // streams to synchronize
     src: {
         ticks: rs.fromInterval(1000),
@@ -167,6 +169,93 @@ clickStream.next(0);
 [Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) |
 [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
 
+## Example projects
+
+Most of the 25
+[examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+included in this repo are using this package in one way or another.
+Please check them out to learn more. Each is heavily commented, incl.
+best practice notes.
+
+Non-exhaustive list:
+
+### Realtime crypto candle chart
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/crypto-chart.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
+[Live version](https://demo.thi.ng/umbrella/crypto-chart/)
+
+### Git commit log table
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/commit-table-ssr.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr) |
+[Live version](https://demo.thi.ng/umbrella/commit-table-ssr/)
+
+### Interactive SVG grid generator
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/rstream-grid.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
+[Live version](https://demo.thi.ng/umbrella/rstream-grid/)
+
+### Interactive additive waveform visualization & SVG visualization
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/svg-waveform.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) |
+[Live version](https://demo.thi.ng/umbrella/svg-waveform/)
+
+### Dataflow graph SVG components
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/estuary.png)
+
+This is a preview of the WIP
+[@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
+package:
+
+[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
+| [Live version](https://demo.thi.ng/umbrella/estuary/)
+
+### Canvas based radial dial input widget
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/canvas-dial.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial) |
+[Live version](https://demo.thi.ng/umbrella/canvas-dial/)
+
+### SPA with router and event bus
+
+Based on the `create-hdom-app` project scaffolding, this is one of the
+more advanced demos, combining functionality of several other @thi.ng
+packages.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+| [Live version](https://demo.thi.ng/umbrella/router-basics/)
+
+### Multiple apps with & without shared state
+
+Devcards style BMI calculator(s) with basic SVG viz.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards)
+| [Live version](https://demo.thi.ng/umbrella/devcards/)
+
+### Interceptor based event handling
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
+| [Live version](https://demo.thi.ng/umbrella/interceptor-basics/)
+
+### Todo list (w/ undo/redo)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
+| [Live version](https://demo.thi.ng/umbrella/todo-list/)
+
+### SVG particles
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles)
+| [Live version](https://demo.thi.ng/umbrella/svg-particles/)
+
 ### Component tree translation
 
 The actual DOM update is based on the minimal edit set of the recursive
@@ -174,6 +263,9 @@ difference between the old and new DOM trees (both expressed as nested
 JS arrays). Components can be defined as static arrays, closures or
 objects with [life cycle methods](#lifecycle-methods) (init, render,
 release).
+
+**Note: hdom uses a RAF render loop only by default, but is absolutely
+no way tied to this.**
 
 ![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-dataflow.png)
 
@@ -500,71 +592,6 @@ const app = () => {
 
 start(app(), { root: document.body });
 ```
-
-## Example projects
-
-Most of the 25
-[examples](https://github.com/thi-ng/umbrella/tree/master/examples)
-included in this repo are using this package in one way or another.
-Please check them out to learn more. Each is heavily commented, incl.
-best practice notes.
-
-Non-exhaustive list:
-
-### Realtime crypto chart
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
-[Live version](https://demo.thi.ng/umbrella/crypto-chart/)
-
-### Interactive SVG grid generator
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
-[Live version](https://demo.thi.ng/umbrella/rstream-grid/)
-
-### Interactive additive waveform visualization
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) |
-[Live version](https://demo.thi.ng/umbrella/svg-waveform/)
-
-### Dataflow graph SVG components
-
-This is a preview of the upcoming
-[@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
-package:
-
-[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary) | [Live version](https://demo.thi.ng/umbrella/estuary/)
-
-### SPA with router and event bus
-
-Based on the `create-hdom-app` project scaffolding, this is one of the
-more advanced demos, combining functionality of several other @thi.ng
-packages.
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics) | [Live version](https://demo.thi.ng/umbrella/router-basics/)
-
-### Additive waveform synthesis & SVG visualization
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) | [Live version](https://demo.thi.ng/umbrella/svg-waveform/)
-
-### Multiple apps with & without shared state
-
-Devcards style BMI calculator(s) with basic SVG viz.
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards) | [Live version](https://demo.thi.ng/umbrella/devcards/)
-
-### Interceptor based event handling
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [Live version](https://demo.thi.ng/umbrella/interceptor-basics/)
-
-### Todo list
-
-A fully documented, obligatory todo list app with undo / redo.
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list) | [Live version](https://demo.thi.ng/umbrella/todo-list/)
-
-### SVG particles
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-particles) | [Live version](https://demo.thi.ng/umbrella/svg-particles/)
 
 ### Benchmark
 

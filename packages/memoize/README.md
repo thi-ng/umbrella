@@ -37,6 +37,10 @@ based on different strategies. See doc strings for further details.
 yarn add @thi.ng/memoize
 ```
 
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+
 ## Usage examples
 
 ```ts

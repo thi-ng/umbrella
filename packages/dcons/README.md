@@ -39,6 +39,7 @@ yarn add @thi.ng/dcons
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage
 

@@ -2,7 +2,7 @@
 
 [Live demo](https://s3.amazonaws.com/demo.thi.ng/umbrella/crypto-chart/index.html)
 
-![chart](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/crypto-chart.png)
+![chart](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/crypto-chart.png)
 
 Price data provided by [cryptocompare.com](https://min-api.cryptocompare.com/).
 

@@ -49,6 +49,12 @@ Please also see the following hdom references for further details:
 yarn add @thi.ng/transducers-hdom
 ```
 
+## Dependencies
+
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
 ## Usage examples
 
 The below example is also available in the
@@ -60,7 +66,7 @@ directory.
 ```ts
 import * as rs from "@thi.ng/rstream";
 import * as tx from "@thi.ng/transducers";
-import { updateUI } from "@thi.ng/transducers-hdom";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // root component function
 const app = ({ ticks, clicks }) =>
@@ -85,7 +91,7 @@ rs.sync({
     // transform into hdom component
     tx.map(app),
     // apply as DOM
-    updateUI(document.body)
+    updateDOM({ root: document.body })
 );
 
 // kick off

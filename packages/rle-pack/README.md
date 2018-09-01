@@ -42,6 +42,7 @@ yarn add @thi.ng/rle-pack
 ## Dependencies
 
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## API
 
