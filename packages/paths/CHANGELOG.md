@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.5.2...@thi.ng/paths@1.6.0) (2018-09-01)
+
+
+### Features
+
+* **paths:** add exists() path checker & tests ([f018353](https://github.com/thi-ng/umbrella/commit/f018353))
+
+
+
+
 <a name="1.5.2"></a>
 ## [1.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.5.1...@thi.ng/paths@1.5.2) (2018-08-01)
 

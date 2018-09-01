@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.3"></a>
+## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@4.0.2...@thi.ng/hdom@4.0.3) (2018-09-01)
+
+
+### Bug Fixes
+
+* **hdom:** fix local import ([e66a492](https://github.com/thi-ng/umbrella/commit/e66a492))
+
+
+
+
 <a name="4.0.2"></a>
 ## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@4.0.1...@thi.ng/hdom@4.0.2) (2018-09-01)
 
