@@ -209,7 +209,7 @@ Non-exhaustive list:
 
 ### Dataflow graph SVG components
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/estuary.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/estuary.jpg)
 
 This is a preview of the WIP
 [@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
