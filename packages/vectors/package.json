@@ -29,7 +29,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.1.0",
-        "@thi.ng/checks": "^1.5.7"
+        "@thi.ng/checks": "^1.5.7",
+        "@thi.ng/errors": "^0.1.6"
     },
     "keywords": [
         "ES6",
