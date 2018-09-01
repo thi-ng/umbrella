@@ -4,7 +4,7 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { getIn, mutIn } from "@thi.ng/paths";
+import { exists, getIn, mutIn } from "@thi.ng/paths";
 
 const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,:]+)\}/
 
@@ -145,7 +145,7 @@ const _resolve = (root: any, path: LookupPath, resolved: any, stack: string[]) =
             res = _resolve(root, absPath(path, v), resolved, stack);
         } else if (isFunction(v)) {
             res = resolveFunction(v, (p: string) => _resolve(root, absPath(path, p, 0), resolved, stack), pathID, resolved);
-        } else if (v === undefined) {
+        } else if (!exists(root, path)) {
             v = resolvePath(root, path, resolved, stack);
         }
         if (res !== SEMAPHORE) {

@@ -43,7 +43,6 @@ describe("resolve-map", () => {
     it("cycles", () => {
         assert.throws(() => resolve({ a: "@a" }));
         assert.throws(() => resolve({ a: { b: "@b" } }));
-        // console.log(resolve({ a: { b: "@/a" } }));
         assert.throws(() => resolve({ a: { b: "@/a" } }));
         assert.throws(() => resolve({ a: { b: "@/a/b" } }));
         assert.throws(() => resolve({ a: "@b", b: "@a" }));
@@ -68,6 +67,13 @@ describe("resolve-map", () => {
             { a: 1, b: { c: 1, d: 1 }, e: 1 }
         );
         assert.equal(n, 1);
+    });
+
+    it("deep resolve of yet unknown refs", () => {
+        assert.deepEqual(
+            resolve({ a: "@b/c/d", b: ($) => ({ c: { d: { e: $("/x") } } }), x: 1 }),
+            { a: { e: 1 }, b: { c: { d: { e: 1 } } }, x: 1 }
+        );
     });
 
     it("destructure", () => {
