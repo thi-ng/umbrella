@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/memoize",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Function memoization with configurable caches",
     "main": "./index.js",
     "typings": "./index.d.ts",
