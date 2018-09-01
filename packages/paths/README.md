@@ -148,6 +148,21 @@ mutIn({}, "a.b.c", 23);
 // undefined
 ```
 
+### Path checking
+
+The `exists()` function takes an arbitrary object and lookup path.
+Descends into object along path and returns true if the full path exists
+(even if final leaf value is `null` or `undefined`). Checks are
+performed using `hasOwnProperty()`.
+
+```ts
+exists({ a: { b: { c: [null] } } }, "a.b.c.0");
+// true
+
+exists({ a: { b: { c: [null] } } }, "a.b.c.1");
+// false
+```
+
 ## Authors
 
 - Karsten Schmidt

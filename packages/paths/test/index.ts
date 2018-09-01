@@ -1,7 +1,18 @@
 import * as assert from "assert";
-import { exists, setIn } from "../src/index";
+import { exists, getIn, setIn } from "../src/index";
 
 describe("paths", () => {
+    it("getIn", () => {
+        const src: any = { a: { b: { c: [23, { d: 42 }] } } };
+        assert.deepStrictEqual(getIn(src, "a"), src.a);
+        assert.deepStrictEqual(getIn(src, "a.b"), src.a.b);
+        assert.deepStrictEqual(getIn(src, "a.b.c"), src.a.b.c);
+        assert.deepStrictEqual(getIn(src, "a.b.c.d"), undefined);
+        assert.deepStrictEqual(getIn(src, "a.b.c.0"), 23);
+        assert.deepStrictEqual(getIn(src, "a.b.c.1"), src.a.b.c[1]);
+        assert.deepStrictEqual(getIn(src, "a.b.c.1.d"), src.a.b.c[1].d);
+    });
+
     it("setIn (len = 0)", () => {
         assert.deepEqual(
             setIn({ a: { b: { c: 23 } } }, "", 1),
