@@ -8,10 +8,11 @@
  * ```
  *
  * @param n number of steps
+ * @param inclLast include last value (i.e. `1.0`)
  */
-export function* normRange(n: number) {
+export function* normRange(n: number, inclLast = true) {
     if (n > 0) {
-        for (let i = 0; i <= n; i++) {
+        for (let i = 0, m = inclLast ? n + 1 : n; i < m; i++) {
             yield i / n;
         }
     }
