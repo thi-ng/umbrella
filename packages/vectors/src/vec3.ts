@@ -409,6 +409,14 @@ export class Vec3 implements
         return res;
     }
 
+    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec3>>, start = 0, cstride = 1, estride = 2) {
+        for (let v of src) {
+            set3(buf, v.buf, start, v.i, cstride, v.s);
+            start += estride;
+        }
+        return buf;
+    }
+
     static orthoNormal3(a: Readonly<Vec3>, b: Readonly<Vec3>, c: Readonly<Vec3>) {
         return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.i, b.i, c.i, a.s, b.s, c.s));
     }

@@ -182,6 +182,23 @@ export class GVec implements
     Iterable<number>,
     IVec {
 
+    static mapBuffer(buf: Vec, numV: number, length: number, start = 0, cstride = 1, estride = length) {
+        const res: GVec[] = [];
+        while (--numV >= 0) {
+            res.push(new GVec(buf, length, start, cstride));
+            start += estride;
+        }
+        return res;
+    }
+
+    static intoBuffer(buf: Vec, src: Iterable<Readonly<GVec>>, start: number, cstride: number, estride: number) {
+        for (let v of src) {
+            set(buf, v.buf, v.n, start, v.i, cstride, v.s);
+            start += estride;
+        }
+        return buf;
+    }
+
     buf: Vec;
     n: number;
     i: number;

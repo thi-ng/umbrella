@@ -335,6 +335,14 @@ export class Vec4 implements
         return res;
     }
 
+    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec4>>, start = 0, cstride = 1, estride = 2) {
+        for (let v of src) {
+            set4(buf, v.buf, start, v.i, cstride, v.s);
+            start += estride;
+        }
+        return buf;
+    }
+
     static readonly ZERO = Object.freeze(new Vec4(<number[]>ZERO4));
     static readonly ONE = Object.freeze(new Vec4(<number[]>ONE4));
     static readonly MIN = Object.freeze(new Vec4(<number[]>MIN4));
