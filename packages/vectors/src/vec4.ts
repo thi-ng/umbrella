@@ -190,11 +190,27 @@ export const madd4 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic
     a
 );
 
-export const maddN4 = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib] * c,
-    a[ia + sa] += b[ib + sb] * c,
-    a[ia + 2 * sa] += b[ib + 2 * sb] * c,
-    a[ia + 3 * sa] += b[ib + 3 * sb] * c,
+export const maddN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] += b[ib] * n,
+    a[ia + sa] += b[ib + sb] * n,
+    a[ia + 2 * sa] += b[ib + 2 * sb] * n,
+    a[ia + 3 * sa] += b[ib + 3 * sb] * n,
+    a
+);
+
+export const msub4 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
+    a[ia] -= b[ib] * c[ic],
+    a[ia + sa] -= b[ib + sb] * c[ic + sc],
+    a[ia + 2 * sa] -= b[ib + 2 * sb] * c[ic + 2 * sc],
+    a[ia + 3 * sa] -= b[ib + 3 * sb] * c[ic + 3 * sc],
+    a
+);
+
+export const msubN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] -= b[ib] * n,
+    a[ia + sa] -= b[ib + sb] * n,
+    a[ia + 2 * sa] -= b[ib + 2 * sb] * n,
+    a[ia + 3 * sa] -= b[ib + 3 * sb] * n,
     a
 );
 
@@ -212,11 +228,11 @@ export const mix4 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it 
     a
 );
 
-export const mixN4 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t,
-    a[ia + 3 * sa] += (b[ib + 3 * sb] - a[ia + 3 * sa]) * t,
+export const mixN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] += (b[ib] - a[ia]) * n,
+    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
+    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
+    a[ia + 3 * sa] += (b[ib + 3 * sb] - a[ia + 3 * sa]) * n,
     a
 );
 
@@ -306,6 +322,14 @@ export const limit4 = (a: Vec, n: number, ia = 0, sa = 1) => {
 
 export const reflect4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     maddN4(a, b, -2 * dot4(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
+
+export const refract4 = (a: Vec, b: ReadonlyVec, eta: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const d = dot4(a, b, ia, ib, sa, sb);
+    const k = 1 - eta * eta * (1 - d * d);
+    return k < 0 ?
+        setN4(a, 0, ia, sa) :
+        msubN4(mulN4(a, eta, ia, sa), b, eta * d + Math.sqrt(k), ia, ib, sa, sb);
+};
 
 export const minorAxis4 = (a: Vec, ia = 0, sa = 1) =>
     min4id(Math.abs(a[ia]), Math.abs(a[ia + sa]), Math.abs(a[ia + 2 * sa]), Math.abs(a[ia + 3 * sa]));
@@ -626,6 +650,11 @@ export class Vec4 implements
 
     reflect(n: Readonly<Vec4>) {
         reflect4(this.buf, n.buf, this.i, n.i, this.s, n.s);
+        return this;
+    }
+
+    refract(n: Readonly<Vec4>, eta: number) {
+        refract4(this.buf, n.buf, eta, this.i, n.i, this.s, n.s);
         return this;
     }
 

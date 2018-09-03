@@ -140,8 +140,14 @@ export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) => (
 export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     (a[ia] += b[ib] * c[ic], a[ia + sa] += b[ib + sb] * c[ic + sc], a);
 
-export const maddN2 = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] += b[ib] * c, a[ia + sa] += b[ib + sb] * c, a);
+export const maddN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] += b[ib] * n, a[ia + sa] += b[ib + sb] * n, a);
+
+export const msub2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+    (a[ia] -= b[ib] * c[ic], a[ia + sa] -= b[ib + sb] * c[ic + sc], a);
+
+export const msubN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    (a[ia] -= b[ib] * n, a[ia + sa] -= b[ib + sb] * n, a);
 
 export const dot2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] + a[ia + sa] * b[ib + sb];
@@ -155,9 +161,9 @@ export const mix2 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it 
     a
 );
 
-export const mixN2 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
+export const mixN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] += (b[ib] - a[ia]) * n,
+    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
     a
 );
 
@@ -227,6 +233,28 @@ export const limit2 = (a: Vec, n: number, ia = 0, sa = 1) => {
 
 export const reflect2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     maddN2(a, b, -2 * dot2(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
+
+export const refract2 = (a: Vec, b: ReadonlyVec, eta: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const d = dot2(a, b, ia, ib, sa, sb);
+    const k = 1 - eta * eta * (1 - d * d);
+    return k < 0 ?
+        setN2(a, 0, ia, sa) :
+        msubN2(mulN2(a, eta, ia, sa), b, eta * d + Math.sqrt(k), ia, ib, sa, sb);
+};
+
+export const perpendicularLeft2 = (a: Vec, ia = 0, sa = 1) => {
+    const x = a[ia];
+    a[ia] = -a[ia + sa];
+    a[ia + sa] = x;
+    return a;
+};
+
+export const perpendicularRight2 = (a: Vec, ia = 0, sa = 1) => {
+    const x = -a[ia];
+    a[ia] = a[ia + sa];
+    a[ia + sa] = x;
+    return a;
+};
 
 export const rotate2 = (a: Vec, theta: number, ia = 0, sa = 1) => {
     const s = Math.sin(theta);
@@ -601,6 +629,11 @@ export class Vec2 implements
         return this;
     }
 
+    refract(n: Readonly<Vec2>, eta: number) {
+        refract2(this.buf, n.buf, eta, this.i, n.i, this.s, n.s);
+        return this;
+    }
+
     rotate(theta: number) {
         rotate2(this.buf, theta, this.i, this.s);
         return this;
@@ -621,6 +654,16 @@ export class Vec2 implements
 
     bisect(v: Readonly<Vec2>) {
         return bisect2(this.buf, v.buf, this.i, v.i, this.s, v.s);
+    }
+
+    perpendicularLeft() {
+        perpendicularLeft2(this.buf, this.i, this.s);
+        return this;
+    }
+
+    perpendicularRight() {
+        perpendicularRight2(this.buf, this.i, this.s);
+        return this;
     }
 
     toPolar() {

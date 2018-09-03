@@ -178,10 +178,24 @@ export const madd3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic
     a
 );
 
-export const maddN3 = (a: Vec, b: ReadonlyVec, c: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib] * c,
-    a[ia + sa] += b[ib + sb] * c,
-    a[ia + 2 * sa] += b[ib + 2 * sb] * c,
+export const maddN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] += b[ib] * n,
+    a[ia + sa] += b[ib + sb] * n,
+    a[ia + 2 * sa] += b[ib + 2 * sb] * n,
+    a
+);
+
+export const msub3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
+    a[ia] -= b[ib] * c[ic],
+    a[ia + sa] -= b[ib + sb] * c[ic + sc],
+    a[ia + 2 * sa] -= b[ib + 2 * sb] * c[ic + 2 * sc],
+    a
+);
+
+export const msubN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] -= b[ib] * n,
+    a[ia + sa] -= b[ib + sb] * n,
+    a[ia + 2 * sa] -= b[ib + 2 * sb] * n,
     a
 );
 
@@ -216,10 +230,10 @@ export const mix3 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it 
     a
 );
 
-export const mixN3 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t,
+export const mixN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
+    a[ia] += (b[ib] - a[ia]) * n,
+    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
+    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
     a
 );
 
@@ -302,6 +316,14 @@ export const limit3 = (a: Vec, n: number, ia = 0, sa = 1) => {
 
 export const reflect3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     maddN3(a, b, -2 * dot3(a, b, ia, ib, sa, sb), ia, ib, sa, sb);
+
+export const refract3 = (a: Vec, b: ReadonlyVec, eta: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    const d = dot3(a, b, ia, ib, sa, sb);
+    const k = 1 - eta * eta * (1 - d * d);
+    return k < 0 ?
+        setN3(a, 0, ia, sa) :
+        msubN3(mulN3(a, eta, ia, sa), b, eta * d + Math.sqrt(k), ia, ib, sa, sb);
+};
 
 export const rotateX3 = (a: Vec, theta: number, ia = 0, sa = 1) =>
     rotate2(a, theta, ia + sa, sa);
@@ -711,6 +733,11 @@ export class Vec3 implements
 
     reflect(n: Readonly<Vec3>) {
         reflect3(this.buf, n.buf, this.i, n.i, this.s, n.s);
+        return this;
+    }
+
+    refract(n: Readonly<Vec3>, eta: number) {
+        refract3(this.buf, n.buf, eta, this.i, n.i, this.s, n.s);
         return this;
     }
 
