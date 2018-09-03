@@ -7,9 +7,9 @@ export const z = (v: ReadonlyVec, i = 0, s = 1) => v[i + 2 * s];
 export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
 
 /**
- * Applies vector op `fn` to all raw vectors in array `a`, using raw
- * vector `b` as 2nd argument for each iteration. Assumes `fn` writes
- * results back into `a` and no copying is performed.
+ * Applies vector op `fn` to all raw vectors in array `a`, using the
+ * same raw vector `b` as 2nd argument for each iteration. Assumes `fn`
+ * writes results back into `a` and no other copying is performed.
  *
  * ```
  * transformVectors1(
@@ -22,7 +22,7 @@ export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
  * ```
  *
  * @param fn op
- * @param a array to process
+ * @param a vector array to process
  * @param b vector operand
  * @param num num elements
  * @param ia start index `a`
@@ -31,7 +31,11 @@ export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
  * @param csb component stride `b`
  * @param esa element stride `a`
  */
-export const transformVectors1 = (fn: VecOp2<any>, a: Vec, b: ReadonlyVec, num: number, ia: number, ib: number, csa: number, csb: number, esa: number) => {
+export const transformVectors1 = (
+    fn: VecOp2<any>, a: Vec, b: ReadonlyVec, num: number,
+    ia: number, ib: number,
+    csa: number, csb: number,
+    esa: number) => {
     for (; num > 0; num-- , ia += esa) {
         fn(a, b, ia, ib, csa, csb);
     }
@@ -39,6 +43,10 @@ export const transformVectors1 = (fn: VecOp2<any>, a: Vec, b: ReadonlyVec, num: 
 };
 
 /**
+ * Similar to `transformVectors1` but also traverses vector `b` array,
+ * i.e. applies `fn` to 1st vector of `a` and `b`, then to 2nd `a` and
+ * `b` etc.
+ *
  * @param fn
  * @param a
  * @param b
@@ -50,13 +58,29 @@ export const transformVectors1 = (fn: VecOp2<any>, a: Vec, b: ReadonlyVec, num: 
  * @param esa
  * @param esb
  */
-export const transformVectors2 = (fn: VecOp2<any>, a: Vec, b: ReadonlyVec, n: number, ia: number, ib: number, csa: number, csb: number, esa: number, esb: number) => {
+export const transformVectors2 = (
+    fn: VecOp2<any>, a: Vec, b: ReadonlyVec, n: number,
+    ia: number, ib: number,
+    csa: number, csb: number,
+    esa: number, esb: number) => {
     for (; n > 0; n-- , ia += esa, ib += esb) {
         fn(a, b, ia, ib, csa, csb);
     }
     return a;
 };
 
+/**
+ * Takes 2 vectors `a` and `b`, their offsets and strides, returns true
+ * if the first `n` elements are equal.
+ *
+ * @param a
+ * @param b
+ * @param n
+ * @param ia
+ * @param ib
+ * @param sa
+ * @param sb
+ */
 export const equiv = (a: ReadonlyVec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
     for (; n > 0; n-- , ia += sa, ib += sb) {
         if (a[ia] !== b[ib]) {
@@ -66,6 +90,19 @@ export const equiv = (a: ReadonlyVec, b: ReadonlyVec, n: number, ia = 0, ib = 0,
     return true;
 };
 
+/**
+ * Similar to `equiv()`, but takes tolerance `eps` into account for
+ * equality checks.
+ *
+ * @param a first vector
+ * @param b second vector
+ * @param n number of elements
+ * @param eps tolerance
+ * @param ia start index a
+ * @param ib start index b
+ * @param sa stride a
+ * @param sb stride b
+ */
 export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
     for (; n > 0; n-- , ia += sa, ib += sb) {
         if (!eqDelta1(a[ia], b[ib], eps)) {
@@ -75,6 +112,12 @@ export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia
     return true;
 };
 
+/**
+ * Helper function to create property accessors for Vec2/3/4.
+ *
+ * @param proto
+ * @param indices
+ */
 export const declareIndices = (proto: any, indices: number[]) => {
     const get = (i: number) => function () { return this.buf[this.i + i * this.s]; };
     const set = (i: number) => function (n: number) { this.buf[this.i + i * this.s] = n; };
