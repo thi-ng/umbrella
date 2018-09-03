@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.11.9"></a>
+## [1.11.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.11.8...@thi.ng/rstream@1.11.9) (2018-09-03)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/rstream
+
 <a name="1.11.8"></a>
 ## [1.11.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.11.7...@thi.ng/rstream@1.11.8) (2018-09-01)
 

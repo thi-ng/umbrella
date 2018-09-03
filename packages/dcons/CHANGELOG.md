@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@1.1.2...@thi.ng/dcons@1.1.3) (2018-09-03)
+
+
+
+
+**Note:** Version bump only for package @thi.ng/dcons
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@1.1.1...@thi.ng/dcons@1.1.2) (2018-09-01)
 

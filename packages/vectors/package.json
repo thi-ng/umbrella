@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "0.5.3",
+    "version": "0.6.0",
     "description": "Vector algebra for fixed & variable sizes, memory mapped, flexible layouts",
     "main": "./index.js",
     "typings": "./index.d.ts",
