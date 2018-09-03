@@ -162,6 +162,10 @@ export class Mat23 implements
     ICopy<Mat23>,
     IEqualsDelta<Mat23> {
 
+    static identity() {
+        return new Mat23(identity23());
+    }
+
     static rotation(theta: number) {
         return new Mat23(rotation23([], theta));
     }
@@ -211,9 +215,11 @@ export class Mat23 implements
         return new Mat23(shearY23([], theta));
     }
 
-    static concat(m: Mat23, ...xs: Readonly<Mat23>[]) {
-        concat23.apply(null, [m.buf, m.i, ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])]);
-        return m;
+    static concat(m: Readonly<Mat23>, ...xs: Readonly<Mat23>[]) {
+        return new Mat23(concat23.apply(null, [
+            get23(m.buf, m.i), 0,
+            ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])])
+        );
     }
 
     buf: Mat;
@@ -267,8 +273,8 @@ export class Mat23 implements
     }
 
     toString() {
-        const b = this.buf;
         const i = this.i;
+        const b = [...this.buf.slice(i, i + 6)].map((x) => x.toFixed(4));
         return `${b[i]} ${b[i + 2]} ${b[i + 4]}\n${b[i + 1]} ${b[i + 3]} ${b[i + 5]}`;
     }
 

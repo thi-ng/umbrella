@@ -392,6 +392,10 @@ export class Mat44 implements
     ICopy<Mat44>,
     IEqualsDelta<Mat44> {
 
+    static identity() {
+        return new Mat44(identity44());
+    }
+
     static rotationX(theta: number) {
         return new Mat44(rotationX44([], theta));
     }
@@ -450,9 +454,11 @@ export class Mat44 implements
         ));
     }
 
-    static concat(m: Mat44, ...xs: Readonly<Mat44>[]) {
-        concat44.apply(null, [m.buf, m.i, ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])]);
-        return m;
+    static concat(m: Readonly<Mat44>, ...xs: Readonly<Mat44>[]) {
+        return new Mat44(concat44.apply(null, [
+            get44(m.buf, m.i), 0,
+            ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])])
+        );
     }
 
     buf: Mat;
@@ -485,7 +491,14 @@ export class Mat44 implements
         m10: number, m11: number, m12: number, m13: number,
         m20: number, m21: number, m22: number, m23: number,
         m30: number, m31: number, m32: number, m33: number) {
-        setS44(this.buf, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33, this.i);
+        setS44(
+            this.buf,
+            m00, m01, m02, m03,
+            m10, m11, m12, m13,
+            m20, m21, m22, m23,
+            m30, m31, m32, m33,
+            this.i
+        );
         return this;
     }
 
@@ -532,8 +545,11 @@ export class Mat44 implements
 
     toString() {
         const i = this.i;
-        const b = [...this.buf.slice(i, i+16)].map((x)=>x.toFixed(4));
-        return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}\n${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}\n${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}\n${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
+        const b = [...this.buf.slice(i, i + 16)].map((x) => x.toFixed(4));
+        return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}
+${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}
+${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}
+${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
     }
 
     toJSON() {

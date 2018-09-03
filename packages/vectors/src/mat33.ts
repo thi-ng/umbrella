@@ -222,6 +222,10 @@ export class Mat33 implements
     ICopy<Mat33>,
     IEqualsDelta<Mat33> {
 
+    static identity() {
+        return new Mat33(identity33());
+    }
+
     static rotationX(theta: number) {
         return new Mat33(rotationX33([], theta));
     }
@@ -245,9 +249,11 @@ export class Mat33 implements
         );
     }
 
-    static concat(m: Mat33, ...xs: Readonly<Mat33>[]) {
-        concat33.apply(null, [m.buf, m.i, ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])]);
-        return m;
+    static concat(m: Readonly<Mat33>, ...xs: Readonly<Mat33>[]) {
+        return new Mat33(concat33.apply(null, [
+            get33(m.buf, m.i), 0,
+            ...<[ReadonlyMat, number][]>xs.map((x) => [x.buf, x.i])])
+        );
     }
 
     buf: Mat;
@@ -308,9 +314,11 @@ export class Mat33 implements
     }
 
     toString() {
-        const b = this.buf;
         const i = this.i;
-        return `${b[i]} ${b[i + 3]} ${b[i + 6]}\n${b[i + 1]} ${b[i + 4]} ${b[i + 7]}\n${b[i + 2]} ${b[i + 5]} ${b[i + 8]}`;
+        const b = [...this.buf.slice(i, i + 9)].map((x) => x.toFixed(4));
+        return `${b[i]} ${b[i + 3]} ${b[i + 6]}
+${b[i + 1]} ${b[i + 4]} ${b[i + 7]}
+${b[i + 2]} ${b[i + 5]} ${b[i + 8]}`;
     }
 
     toJSON() {
