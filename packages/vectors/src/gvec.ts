@@ -243,11 +243,11 @@ export class GVec implements
                 false;
     }
 
-    eqDelta(v: GVec, eps = EPS) {
+    eqDelta(v: Readonly<GVec>, eps = EPS) {
         return this.n === v.n && eqDelta(this.buf, v.buf, this.n, eps, this.i, v.i, this.s, v.s);
     }
 
-    set(v: GVec) {
+    set(v: Readonly<GVec>) {
         this.ensureSize(v);
         set(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
@@ -258,25 +258,25 @@ export class GVec implements
         return this;
     }
 
-    add(v: GVec) {
+    add(v: Readonly<GVec>) {
         this.ensureSize(v);
         add(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
-    sub(v: GVec) {
+    sub(v: Readonly<GVec>) {
         this.ensureSize(v);
         sub(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
-    mul(v: GVec) {
+    mul(v: Readonly<GVec>) {
         this.ensureSize(v);
         mul(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
-    div(v: GVec) {
+    div(v: Readonly<GVec>) {
         this.ensureSize(v);
         div(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
@@ -341,7 +341,7 @@ export class GVec implements
         return this;
     }
 
-    dot(v: GVec) {
+    dot(v: Readonly<GVec>) {
         this.ensureSize(v);
         return dot(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
     }
@@ -386,7 +386,7 @@ export class GVec implements
         return this;
     }
 
-    pow(v: GVec) {
+    pow(v: Readonly<GVec>) {
         this.ensureSize(v);
         pow(this.buf, v.buf, this.n, this.i, v.i, this.s, v.s);
         return this;
