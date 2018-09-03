@@ -337,7 +337,7 @@ export const headingYZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
 
 export const angleBetween3 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false, ia = 0, ib = 0, sa = 1, sb = 1): number =>
     normalize ?
-        angleBetween3(get3(a, ia, sa), get3(b, ib, sb)) :
+        angleBetween3(normalize3(get3(a, ia, sa)), normalize3(get3(b, ib, sb))) :
         Math.acos(dot3(a, b, ia, ib, sa, sb));
 
 export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
@@ -345,7 +345,7 @@ export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
     const y = a[ia + sa];
     const z = a[ia + 2 * sa];
     const r = Math.sqrt(x * x + y * y + z * z);
-    return setS3(a, r, Math.asin(z / r), atan2Abs1(y, x), ia, sa);
+    return setS3(a, r, Math.asin(z / r), Math.atan2(y, x), ia, sa);
 };
 
 export const toCartesian3 = (a: Vec, b: ReadonlyVec = ZERO4, ia = 0, ib = 0, sa = 1, sb = 1) => {
