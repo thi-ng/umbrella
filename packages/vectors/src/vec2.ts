@@ -24,6 +24,7 @@ import {
     HALF_PI,
     max2id,
     min2id,
+    mixBilinear1,
     PI,
     smoothStep1,
     step1
@@ -159,6 +160,15 @@ export const mixN2 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1,
     a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t,
     a
 );
+
+export const mixBilinear2 = (
+    a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
+    ia = 0, ib = 0, ic = 0, id = 0,
+    sa = 1, sb = 1, sc = 1, sd = 1) => (
+        a[ia] = mixBilinear1(a[ia], b[ib], c[ic], d[id], u, v),
+        a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
+        a
+    );
 
 export const min2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op22(Math.min, a, b, ia, ib, sa, sb);
@@ -313,6 +323,16 @@ export class Vec2 implements
             start += estride;
         }
         return buf;
+    }
+
+    static mixBilinear(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, d: Readonly<Vec2>, u: number, v: number) {
+        return new Vec2(
+            mixBilinear2(
+                get2(a.buf, a.i, a.s), b.buf, c.buf, d.buf, u, v,
+                0, b.i, c.i, d.i,
+                1, b.s, c.s, d.s,
+            )
+        );
     }
 
     static readonly ZERO = Object.freeze(new Vec2(<number[]>ZERO4));

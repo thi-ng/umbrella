@@ -135,6 +135,25 @@ export const clamp1 = (x: number, min: number, max: number) =>
 export const mix1 = (a: number, b: number, t: number) =>
     a + (b - a) * t;
 
+/**
+ * ```
+ * c    d
+ * +----+
+ * |    |
+ * +----+
+ * a    b
+ * ```
+ *
+ * @param a BL value
+ * @param b BR value
+ * @param c TL value
+ * @param d TR value
+ * @param u 1st interpolation factor
+ * @param v 2nd interpolation factor
+ */
+export const mixBilinear1 = (a: number, b: number, c: number, d: number, u: number, v: number) =>
+    mix1(mix1(a, b, u), mix1(c, d, u), v);
+
 export const norm1 = (x: number, a: number, b: number) =>
     (x - a) / (b - a);
 

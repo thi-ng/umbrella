@@ -22,6 +22,7 @@ import {
     fract1,
     max4id,
     min4id,
+    mixBilinear1,
     smoothStep1,
     step1
 } from "./math";
@@ -219,6 +220,17 @@ export const mixN4 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1,
     a
 );
 
+export const mixBilinear4 = (
+    a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
+    ia = 0, ib = 0, ic = 0, id = 0,
+    sa = 1, sb = 1, sc = 1, sd = 1) => (
+        a[ia] = mixBilinear1(a[ia], b[ib], c[ic], d[id], u, v),
+        a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
+        a[ia + 2 * sa] = mixBilinear1(a[ia + 2 * sa], b[ib + 2 * sb], c[ic + 2 * sc], d[id + 2 * sd], u, v),
+        a[ia + 3 * sa] = mixBilinear1(a[ia + 3 * sa], b[ib + 3 * sb], c[ic + 3 * sc], d[id + 3 * sd], u, v),
+        a
+    );
+
 export const min4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op42(Math.min, a, b, ia, ib, sa, sb);
 
@@ -341,6 +353,16 @@ export class Vec4 implements
             start += estride;
         }
         return buf;
+    }
+
+    static mixBilinear(a: Readonly<Vec4>, b: Readonly<Vec4>, c: Readonly<Vec4>, d: Readonly<Vec4>, u: number, v: number) {
+        return new Vec4(
+            mixBilinear4(
+                get4(a.buf, a.i, a.s), b.buf, c.buf, d.buf, u, v,
+                0, b.i, c.i, d.i,
+                1, b.s, c.s, d.s
+            )
+        );
     }
 
     static readonly ZERO = Object.freeze(new Vec4(<number[]>ZERO4));

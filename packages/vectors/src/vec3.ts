@@ -23,6 +23,7 @@ import {
     fract1,
     max3id,
     min3id,
+    mixBilinear1,
     sign1,
     smoothStep1,
     step1
@@ -222,6 +223,16 @@ export const mixN3 = (a: Vec, b: ReadonlyVec, t: number, ia = 0, ib = 0, sa = 1,
     a
 );
 
+export const mixBilinear3 = (
+    a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
+    ia = 0, ib = 0, ic = 0, id = 0,
+    sa = 1, sb = 1, sc = 1, sd = 1) => (
+        a[ia] = mixBilinear1(a[ia], b[ib], c[ic], d[id], u, v),
+        a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
+        a[ia + 2 * sa] = mixBilinear1(a[ia + 2 * sa], b[ib + 2 * sb], c[ic + 2 * sc], d[id + 2 * sd], u, v),
+        a
+    );
+
 export const min3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op32(Math.min, a, b, ia, ib, sa, sb);
 
@@ -415,6 +426,16 @@ export class Vec3 implements
             start += estride;
         }
         return buf;
+    }
+
+    static mixBilinear(a: Readonly<Vec3>, b: Readonly<Vec3>, c: Readonly<Vec3>, d: Readonly<Vec3>, u: number, v: number) {
+        return new Vec3(
+            mixBilinear3(
+                get3(a.buf, a.i, a.s), b.buf, c.buf, d.buf, u, v,
+                0, b.i, c.i, d.i,
+                1, b.s, c.s, d.s
+            )
+        );
     }
 
     static orthoNormal3(a: Readonly<Vec3>, b: Readonly<Vec3>, c: Readonly<Vec3>) {
