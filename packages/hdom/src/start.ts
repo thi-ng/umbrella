@@ -6,15 +6,15 @@ import { hydrateDOM } from "./dom";
 import { normalizeTree } from "./normalize";
 
 /**
- * Takes a parent DOM element (or ID), hiccup tree (array, function or
- * component object w/ lifecycle methods) and an optional context
- * object. Starts RAF update loop, computing diff to previous frame's
- * tree and applying any changes to the real DOM.
- *
- * The optional `context` arg can be used for passing global config data
- * or state down into the hiccup component tree. Any embedded component
- * function in the tree will receive this context object as first
- * argument, as will life cycle methods in component objects.
+ * Takes an hiccup tree (array, function or component object w/ life
+ * cycle methods) and an optional object of DOM update options. Starts
+ * RAF update loop, in each iteration first normalizing given tree, then
+ * computing diff to previous frame's tree and applying any changes to
+ * the real DOM. The `ctx` option can be used for passing arbitrary
+ * config data or state down into the hiccup component tree. Any
+ * embedded component function in the tree will receive this context
+ * object as first argument, as will life cycle methods in component
+ * objects.
  *
  * **Selective updates**: No updates will be applied if the given hiccup
  * tree is `undefined` or `null` or a root component function returns no

@@ -341,16 +341,18 @@ independently, however should be considered complementary.
 #### `start(tree: any, opts?: Partial<HDOMOpts>): () => any`
 
 Main user function of this package. For most use cases, this function
-should be the only one required in user code. It takes a parent DOM
-element (or ID), hiccup tree (array, function or component object w/
-life cycle methods) and an optional arbitrary context object. Starts RAF
-update loop, in each iteration first normalizing given tree, then
-computing diff to previous frame's tree and applying any changes to the
-real DOM. The optional `context` arg can be used for passing global
-config data or state down into the hiccup component tree. Any embedded
-component function in the tree will receive this context object as first
-argument, as will life cycle methods in component objects. See [context
-description](#user-context) further below.
+should be the only one required in user code. It takes an hiccup tree
+(array, function or component object w/ life cycle methods) and an
+optional object of [DOM update
+options](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts#L19)
+(also see below). Starts RAF update loop, in each iteration first
+normalizing given tree, then computing diff to previous frame's tree and
+applying any changes to the real DOM. The `ctx` option can be used for
+passing arbitrary config data or state down into the hiccup component
+tree. Any embedded component function in the tree will receive this
+context object as first argument, as will life cycle methods in
+component objects. See [context description](#user-context) further
+below.
 
 **Selective updates**: No updates will be applied if the given hiccup
 tree is `undefined` or `null` or a root component function returns no
@@ -371,8 +373,51 @@ equivalent DOM (minus listeners) already exists (i.e. generated via SSR)
 when `start()` is called. Any other discrepancies between the
 pre-existing DOM and the hdom trees will cause undefined behavior.
 
-Returns a function, which when called, immediately cancels the update
-loop.
+`start` returns a function, which when called, immediately cancels the
+update loop.
+
+#### `HDOMOpts` config options
+
+Config options object passed to hdom's `start()` or
+[@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)'s
+`updateDOM()`:
+
+```ts
+interface HDOMOpts {
+    /**
+     * Root element or ID (default: "app").
+     */
+    root?: Element | string;
+    /**
+     * Arbitrary user context object, passed to all component functions
+     * embedded in the tree.
+     */
+    ctx?: any;
+    /**
+     * If true (default), all text content will be wrapped in `<span>`
+     * elements. Spans will never be created inside <option>, <textarea>
+     * or <text> elements.
+     */
+    span?: boolean;
+    /**
+     * If true (default false), the first frame will only be used to
+     * inject event listeners, using the `hydrateDOM()` function.
+     *
+     * *Important:* Enabling this option assumes that an equivalent DOM
+     * (minus event listeners) already exists (e.g. generated via SSR /
+     * hiccup's `serialize()`) when hdom's `start()` function is called.
+     * Any other discrepancies between the pre-existing DOM and the hdom
+     * trees will cause undefined behavior.
+     */
+    hydrate?: boolean;
+    /**
+     * If true (default), the hdom component tree will be first
+     * normalized before diffing (using `normalizeTree()`). Unless you
+     * know what you're doing, it's best to leave this enabled.
+     */
+    normalize?: boolean;
+}
+```
 
 #### `normalizeTree(tree: any, ctx?: any): any`
 

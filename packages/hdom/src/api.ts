@@ -27,18 +27,20 @@ export interface HDOMOpts {
      */
     ctx?: any;
     /**
-     * If true (default), text content will be wrapped in `<span>`
+     * If true (default), all text content will be wrapped in `<span>`
+     * elements. Spans will never be created inside <option>, <textarea>
+     * or <text> elements.
      */
     span?: boolean;
     /**
      * If true (default false), the first frame will only be used to
-     * inject event listeners.
+     * inject event listeners, using the `hydrateDOM()` function.
      *
      * *Important:* Enabling this option assumes that an equivalent DOM
-     * (minus listeners) already exists (i.e. generated via SSR) when
-     * hdom's `start()` function is called. Any other discrepancies
-     * between the pre-existing DOM and the hdom trees will cause
-     * undefined behavior.
+     * (minus event listeners) already exists (e.g. generated via SSR /
+     * hiccup's `serialize()`) when hdom's `start()` function is called.
+     * Any other discrepancies between the pre-existing DOM and the hdom
+     * trees will cause undefined behavior.
      */
     hydrate?: boolean;
     /**
