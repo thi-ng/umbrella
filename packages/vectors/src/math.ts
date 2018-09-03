@@ -82,15 +82,15 @@ export const gain1 = (x: number, k: number) =>
         0.5 * Math.pow(2 * x, k) :
         1 - 0.5 * Math.pow(2 - 2 * x, k);
 
-export const min2id = (a, b) =>
+export const min2id = (a: number, b: number) =>
     a <= b ? 0 : 1;
 
-export const min3id = (a, b, c) =>
+export const min3id = (a: number, b: number, c: number) =>
     (a <= b) ?
         (a <= c ? 0 : 2) :
         (b <= c ? 1 : 2);
 
-export const min4id = (a, b, c, d) =>
+export const min4id = (a: number, b: number, c: number, d: number) =>
     a <= b ?
         (a <= c ?
             (a <= d ? 0 : 3) :
@@ -99,15 +99,15 @@ export const min4id = (a, b, c, d) =>
             (b <= d ? 1 : 3) :
             (c <= d ? 2 : 3));
 
-export const max2id = (a, b) =>
+export const max2id = (a: number, b: number) =>
     a >= b ? 0 : 1;
 
-export const max3id = (a, b, c) =>
+export const max3id = (a: number, b: number, c: number) =>
     (a >= b) ?
         (a >= c ? 0 : 2) :
         (b >= c ? 1 : 2);
 
-export const max4id = (a, b, c, d) =>
+export const max4id = (a: number, b: number, c: number, d: number) =>
     a >= b ?
         (a >= c ?
             (a >= d ? 0 : 3) :
