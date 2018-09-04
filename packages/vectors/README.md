@@ -94,6 +94,8 @@ Naming conventions (suffixes):
   vector components, e.g. `setN3([], 0) => [0, 0, 0]`
 - `S` = scalar: args are individual scalar values,
   e.g. `setS3([], 10, 20, 30) => [10, 20, 30]`
+- `o` = output: operation writes to separate output vector (1st arg), e.g.
+  `add2o([], [1,2], [10, 20])`
 
 | Operation                       | Generic      | 2D                    | 3D                  | 4D               |
 |---------------------------------|--------------|-----------------------|---------------------|------------------|
@@ -105,18 +107,28 @@ Naming conventions (suffixes):
 | Swap vectors                    |              | `swap2`               | `swap3`             | `swap4`          |
 | Equality (w/ epsilon)           | `eqDelta`    | `eqDelta2`            | `eqDelta3`          | `eqDelta4`       |
 | Vector addition                 | `add`        | `add2`                | `add3`              | `add4`           |
+|                                 |              | `add2o`               | `add3o`             | `add4o`          |
 | Vector subtraction              | `sub`        | `sub2`                | `sub3`              | `sub4`           |
+|                                 |              | `sub2o`               | `sub3o`             | `sub4o`          |
 | Vector multiplication           | `mul`        | `mul2`                | `mul3`              | `mul4`           |
+|                                 |              | `mul2o`               | `mul3o`             | `mul4o`          |
 | Vector division                 | `div`        | `div2`                | `div3`              | `div4`           |
+|                                 |              | `div2o`               | `div3o`             | `div4o`          |
 | Uniform scalar addition         | `addN`       | `addN2`               | `addN3`             | `addN4`          |
+|                                 |              | `addN2o`              | `addN3o`            | `addN4o`         |
 | Uniform scalar subtraction      | `subN`       | `subN2`               | `subN3`             | `subN4`          |
+|                                 |              | `subN2o`              | `subN3o`            | `subN4o`         |
 | Uniform scalar multiply         | `mulN`       | `mulN2`               | `mulN3`             | `mulN4`          |
+|                                 |              | `mulN2o`              | `mulN3o`            | `mulN4o`         |
 | Uniform scalar multiply         | `divN`       | `divN2`               | `divN3`             | `divN4`          |
+|                                 |              | `divN2o`              | `divN3o`            | `divN4o`         |
 | Vector negation                 | `neg`        | `neg2`                | `neg3`              | `neg4`           |
 | Multiply-add vectors            | `madd`       | `madd2`               | `madd3`             | `madd4`          |
 | Multiply-add scalar             | `maddN`      | `maddN2`              | `maddN3`            | `maddN4`         |
 | Linear interpolation (vector)   | `mix`        | `mix2`                | `mix3`              | `mix4`           |
+|                                 |              | `mix2o`               | `mix3o`             | `mix4o`          |
 | Linear interpolation (uniform)  | `mixN`       | `mixN2`               | `mixN3`             | `mixN4`          |
+|                                 |              | `mixN2o`              | `mixN3o`            | `mixN4o`         |
 | Bilinear interpolation*         |              | `mixBilinear2`        | `mixBilinear3`      | `mixBilinear4`   |
 | Dot product                     | `dot`        | `dot2`                | `dot3`              | `dot4`           |
 | Cross product                   |              | `cross2`              | `cross3`            |                  |

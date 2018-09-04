@@ -137,7 +137,7 @@ export const div4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
-export const add4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+export const add4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
     out[io] = a[ia] + b[ib],
     out[io + so] = a[ia + sa] + b[ib + sb],
     out[io + 2 * so] = a[ia + 2 * sa] + b[ib + 2 * sb],
@@ -145,7 +145,7 @@ export const add4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0
     out
 );
 
-export const sub4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+export const sub4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
     out[io] = a[ia] - b[ib],
     out[io + so] = a[ia + sa] - b[ib + sb],
     out[io + 2 * so] = a[ia + 2 * sa] - b[ib + 2 * sb],
@@ -153,7 +153,7 @@ export const sub4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0
     out
 );
 
-export const mul4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+export const mul4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
     out[io] = a[ia] * b[ib],
     out[io + so] = a[ia + sa] * b[ib + sb],
     out[io + 2 * so] = a[ia + 2 * sa] * b[ib + 2 * sb],
@@ -161,7 +161,7 @@ export const mul4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0
     out
 );
 
-export const div4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+export const div4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
     out[io] = a[ia] / b[ib],
     out[io + so] = a[ia + sa] / b[ib + sb],
     out[io + 2 * so] = a[ia + 2 * sa] / b[ib + 2 * sb],
@@ -181,7 +181,7 @@ export const mulN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
 export const divN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a[ia + 3 * sa] /= n, a);
 
-export const addN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+export const addN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
     out[io] = a[ia] + n,
     out[io + so] = a[ia + sa] + n,
     out[io + 2 * so] = a[ia + 2 * sa] + n,
@@ -189,7 +189,7 @@ export const addN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so
     out
 );
 
-export const subN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+export const subN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
     out[io] = a[ia] - n,
     out[io + so] = a[ia + sa] - n,
     out[io + 2 * so] = a[ia + 2 * sa] - n,
@@ -197,7 +197,7 @@ export const subN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so
     out
 );
 
-export const mulN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+export const mulN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
     out[io] = a[ia] * n,
     out[io + so] = a[ia + sa] * n,
     out[io + 2 * so] = a[ia + 2 * sa] * n,
@@ -205,7 +205,7 @@ export const mulN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so
     out
 );
 
-export const divN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+export const divN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
     out[io] = a[ia] / n,
     out[io + so] = a[ia + sa] / n,
     out[io + 2 * so] = a[ia + 2 * sa] / n,
@@ -300,7 +300,7 @@ export const mixN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1,
     a
 );
 
-export const mix4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
+export const mix4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
     out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
     out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
     out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
@@ -308,7 +308,7 @@ export const mix4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec
     out
 );
 
-export const mixN4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+export const mixN4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
     out[io] = a[ia] + (b[ib] - a[ia]) * n,
     out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
     out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
@@ -471,61 +471,61 @@ export class Vec4 implements
 
     static add(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
-        add4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        add4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
     static sub(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
-        sub4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        sub4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
     static mul(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
-        mul4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        mul4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
     static div(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
-        div4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        div4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
     static addN(a: Readonly<Vec4>, n: number, out?: Vec4) {
         !out && (out = new Vec4([]));
-        addN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        addN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
         return out;
     }
 
     static subN(a: Readonly<Vec4>, n: number, out?: Vec4) {
         !out && (out = new Vec4([]));
-        subN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        subN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
         return out;
     }
 
     static mulN(a: Readonly<Vec4>, n: number, out?: Vec4) {
         !out && (out = new Vec4([]));
-        mulN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        mulN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
         return out;
     }
 
     static divN(a: Readonly<Vec4>, n: number, out?: Vec4) {
         !out && (out = new Vec4([]));
-        divN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        divN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
         return out;
     }
 
     static mix(a: Readonly<Vec4>, b: Readonly<Vec4>, t: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
-        mix4new(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
+        mix4o(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
         return out;
     }
 
     static mixN(a: Readonly<Vec4>, b: Readonly<Vec4>, t: number, out?: Vec4) {
         !out && (out = new Vec4([]));
-        mixN4new(out.buf, a.buf, b.buf, t, out.i, a.i, b.i, out.s, a.s, b.s);
+        mixN4o(out.buf, a.buf, b.buf, t, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
