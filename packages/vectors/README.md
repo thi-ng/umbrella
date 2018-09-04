@@ -88,6 +88,13 @@ zero-copy vector operations on sections of larger buffers. The default
 start index is 0, default stride 1. See examples below and
 [tests](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/test/).
 
+Naming conventions (suffixes):
+
+- `N` = uniform: 2nd or 3rd arg is a scalar which will be used for all
+  vector components, e.g. `setN3([], 0) => [0, 0, 0]`
+- `S` = scalar: args are individual scalar values,
+  e.g. `setS3([], 10, 20, 30) => [10, 20, 30]`
+
 | Operation                       | Generic      | 2D                    | 3D                  | 4D               |
 |---------------------------------|--------------|-----------------------|---------------------|------------------|
 | Get vector (dense copy)         | `get`        | `get2`                | `get3`              | `get4`           |
