@@ -18,3 +18,4 @@ bundle.*
 *.d.ts
 *.bak*
 *.zip
+/.gtm/
