@@ -126,6 +126,34 @@ export const div3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
+export const add3new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] + b[ib],
+    out[io + so] = a[ia + sa] + b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] + b[ib + 2 * sb],
+    out
+);
+
+export const sub3new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] - b[ib],
+    out[io + so] = a[ia + sa] - b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] - b[ib + 2 * sb],
+    out
+);
+
+export const mul3new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] * b[ib],
+    out[io + so] = a[ia + sa] * b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] * b[ib + 2 * sb],
+    out
+);
+
+export const div3new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] / b[ib],
+    out[io + so] = a[ia + sa] / b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] / b[ib + 2 * sb],
+    out
+);
+
 export const addN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a);
 
@@ -137,6 +165,34 @@ export const mulN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
 
 export const divN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a);
+
+export const addN3new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] + n,
+    out[io + so] = a[ia + sa] + n,
+    out[io + 2 * so] = a[ia + 2 * sa] + n,
+    out
+);
+
+export const subN3new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] - n,
+    out[io + so] = a[ia + sa] - n,
+    out[io + 2 * so] = a[ia + 2 * sa] - n,
+    out
+);
+
+export const mulN3new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] * n,
+    out[io + so] = a[ia + sa] * n,
+    out[io + 2 * so] = a[ia + 2 * sa] * n,
+    out
+);
+
+export const divN3new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] / n,
+    out[io + so] = a[ia + sa] / n,
+    out[io + 2 * so] = a[ia + 2 * sa] / n,
+    out
+);
 
 export const neg3 = (a: Vec, ia = 0, sa = 1) =>
     mulN3(a, -1, ia, sa);
@@ -235,6 +291,20 @@ export const mixN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1,
     a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
     a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
     a
+);
+
+export const mix3new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
+    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
+    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
+    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
+    out
+);
+
+export const mixN3new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] + (b[ib] - a[ia]) * n,
+    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
+    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
+    out
 );
 
 export const mixBilinear3 = (
@@ -462,6 +532,66 @@ export class Vec3 implements
 
     static orthoNormal3(a: Readonly<Vec3>, b: Readonly<Vec3>, c: Readonly<Vec3>) {
         return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.i, b.i, c.i, a.s, b.s, c.s));
+    }
+
+    static add(a: Readonly<Vec3>, b: Readonly<Vec3>, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        add3new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static sub(a: Readonly<Vec3>, b: Readonly<Vec3>, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        sub3new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static mul(a: Readonly<Vec3>, b: Readonly<Vec3>, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        mul3new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static div(a: Readonly<Vec3>, b: Readonly<Vec3>, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        div3new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static addN(a: Readonly<Vec3>, n: number, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        addN3new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static subN(a: Readonly<Vec3>, n: number, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        subN3new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static mulN(a: Readonly<Vec3>, n: number, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        mulN3new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static divN(a: Readonly<Vec3>, n: number, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        divN3new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static mix(a: Readonly<Vec3>, b: Readonly<Vec3>, t: Readonly<Vec3>, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        mix3new(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
+        return out;
+    }
+
+    static mixN(a: Readonly<Vec3>, b: Readonly<Vec3>, t: number, out?: Vec3) {
+        !out && (out = new Vec3([]));
+        mixN3new(out.buf, a.buf, b.buf, t, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
     }
 
     static readonly ZERO = Object.freeze(new Vec3(<number[]>ZERO4));

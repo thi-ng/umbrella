@@ -137,6 +137,38 @@ export const div4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => 
     a
 );
 
+export const add4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] + b[ib],
+    out[io + so] = a[ia + sa] + b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] + b[ib + 2 * sb],
+    out[io + 3 * so] = a[ia + 3 * sa] + b[ib + 3 * sb],
+    out
+);
+
+export const sub4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] - b[ib],
+    out[io + so] = a[ia + sa] - b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] - b[ib + 2 * sb],
+    out[io + 3 * so] = a[ia + 3 * sa] - b[ib + 3 * sb],
+    out
+);
+
+export const mul4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] * b[ib],
+    out[io + so] = a[ia + sa] * b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] * b[ib + 2 * sb],
+    out[io + 3 * so] = a[ia + 3 * sa] * b[ib + 3 * sb],
+    out
+);
+
+export const div4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] / b[ib],
+    out[io + so] = a[ia + sa] / b[ib + sb],
+    out[io + 2 * so] = a[ia + 2 * sa] / b[ib + 2 * sb],
+    out[io + 3 * so] = a[ia + 3 * sa] / b[ib + 3 * sb],
+    out
+);
+
 export const addN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a[ia + 3 * sa] += n, a);
 
@@ -148,6 +180,38 @@ export const mulN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
 
 export const divN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
     (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a[ia + 3 * sa] /= n, a);
+
+export const addN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] + n,
+    out[io + so] = a[ia + sa] + n,
+    out[io + 2 * so] = a[ia + 2 * sa] + n,
+    out[io + 3 * so] = a[ia + 3 * sa] + n,
+    out
+);
+
+export const subN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] - n,
+    out[io + so] = a[ia + sa] - n,
+    out[io + 2 * so] = a[ia + 2 * sa] - n,
+    out[io + 3 * so] = a[ia + 3 * sa] - n,
+    out
+);
+
+export const mulN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] * n,
+    out[io + so] = a[ia + sa] * n,
+    out[io + 2 * so] = a[ia + 2 * sa] * n,
+    out[io + 3 * so] = a[ia + 3 * sa] * n,
+    out
+);
+
+export const divN4new = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
+    out[io] = a[ia] / n,
+    out[io + so] = a[ia + sa] / n,
+    out[io + 2 * so] = a[ia + 2 * sa] / n,
+    out[io + 3 * so] = a[ia + 3 * sa] / n,
+    out
+);
 
 export const neg4 = (a: Vec, ia = 0, sa = 1) =>
     mulN4(a, -1, ia, sa);
@@ -234,6 +298,22 @@ export const mixN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1,
     a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
     a[ia + 3 * sa] += (b[ib + 3 * sb] - a[ia + 3 * sa]) * n,
     a
+);
+
+export const mix4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
+    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
+    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
+    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
+    out[io + 3 * so] = a[ia + 3 * sa] + (b[ib + 3 * sb] - a[ia + 3 * sa]) * t[it + 3 * st],
+    out
+);
+
+export const mixN4new = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
+    out[io] = a[ia] + (b[ib] - a[ia]) * n,
+    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
+    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
+    out[io + 3 * so] = a[ia + 3 * sa] + (b[ib + 3 * sb] - a[ia + 3 * sa]) * n,
+    out
 );
 
 export const mixBilinear4 = (
@@ -387,6 +467,66 @@ export class Vec4 implements
                 1, b.s, c.s, d.s
             )
         );
+    }
+
+    static add(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        add4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static sub(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        sub4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static mul(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mul4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static div(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        div4new(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
+    }
+
+    static addN(a: Readonly<Vec4>, n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        addN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static subN(a: Readonly<Vec4>, n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        subN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static mulN(a: Readonly<Vec4>, n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mulN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static divN(a: Readonly<Vec4>, n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        divN4new(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
+        return out;
+    }
+
+    static mix(a: Readonly<Vec4>, b: Readonly<Vec4>, t: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mix4new(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
+        return out;
+    }
+
+    static mixN(a: Readonly<Vec4>, b: Readonly<Vec4>, t: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mixN4new(out.buf, a.buf, b.buf, t, out.i, a.i, b.i, out.s, a.s, b.s);
+        return out;
     }
 
     static readonly ZERO = Object.freeze(new Vec4(<number[]>ZERO4));
