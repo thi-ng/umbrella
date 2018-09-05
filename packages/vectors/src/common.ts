@@ -1,10 +1,10 @@
-import { ReadonlyVec, Vec, VecOp2 } from "./api";
+import { ReadonlyVec, Vec, VecOp2, VecOp2o, ReadonlyVecOp1 } from "./api";
 import { EPS, eqDelta1 } from "./math";
 
-export const x = (v: ReadonlyVec, i = 0, _?: number) => v[i];
-export const y = (v: ReadonlyVec, i = 0, s = 1) => v[i + s];
-export const z = (v: ReadonlyVec, i = 0, s = 1) => v[i + 2 * s];
-export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
+export const x: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0) => v[i];
+export const y: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + s];
+export const z: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + 2 * s];
+export const w: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
 
 /**
  * Applies vector op `fn` to all raw vectors in array `a`, using the
@@ -25,21 +25,51 @@ export const w = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
  * @param a vector array to process
  * @param b vector operand
  * @param num num elements
+ * @param esa element stride `a`
  * @param ia start index `a`
  * @param ib start index `b`
  * @param csa component stride `a`
  * @param csb component stride `b`
- * @param esa element stride `a`
  */
 export const transformVectors1 = (
     fn: VecOp2<any>, a: Vec, b: ReadonlyVec, num: number,
-    ia: number, ib: number,
-    csa: number, csb: number,
-    esa: number) => {
+    esa: number,
+    ia = 0, ib = 0,
+    csa = 1, csb = 1) => {
     for (; num > 0; num-- , ia += esa) {
         fn(a, b, ia, ib, csa, csb);
     }
     return a;
+};
+
+/**
+ * Similar to `transformVectors1`, but for ops which don't modify `a` or
+ * `b` and instead write result into given `out` vector, which is then
+ * also returned.
+ *
+ * @param fn
+ * @param out
+ * @param a
+ * @param b
+ * @param num
+ * @param eso
+ * @param esa
+ * @param io
+ * @param ia
+ * @param ib
+ * @param cso
+ * @param csa
+ * @param csb
+ */
+export const transformVectors1o = (
+    fn: VecOp2o<any>, out: Vec, a: ReadonlyVec, b: ReadonlyVec, num: number,
+    eso: number, esa: number,
+    io = 0, ia = 0, ib = 0,
+    cso = 1, csa = 1, csb = 1) => {
+    for (; num > 0; num-- , io += eso, ia += esa) {
+        fn(out, a, b, io, ia, ib, cso, csa, csb);
+    }
+    return out;
 };
 
 /**
@@ -51,22 +81,53 @@ export const transformVectors1 = (
  * @param a
  * @param b
  * @param n
+ * @param esa
+ * @param esb
  * @param ia
  * @param ib
  * @param csa
  * @param csb
- * @param esa
- * @param esb
  */
 export const transformVectors2 = (
     fn: VecOp2<any>, a: Vec, b: ReadonlyVec, n: number,
-    ia: number, ib: number,
-    csa: number, csb: number,
-    esa: number, esb: number) => {
+    esa: number, esb: number,
+    ia = 0, ib = 0,
+    csa = 1, csb = 1) => {
     for (; n > 0; n-- , ia += esa, ib += esb) {
         fn(a, b, ia, ib, csa, csb);
     }
     return a;
+};
+
+/**
+ * Similar to `transformVectors2`, but for ops which don't modify `a` or
+ * `b` and instead write result into given `out` vector, which is then
+ * also returned.
+ *
+ * @param fn
+ * @param out
+ * @param a
+ * @param b
+ * @param n
+ * @param eso
+ * @param esa
+ * @param esb
+ * @param io
+ * @param ia
+ * @param ib
+ * @param cso
+ * @param csa
+ * @param csb
+ */
+export const transformVectors2o = (
+    fn: VecOp2o<any>, out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number,
+    eso: number, esa: number, esb: number,
+    io = 0, ia = 0, ib = 0,
+    cso = 1, csa = 1, csb = 1) => {
+    for (; n > 0; n-- , io += eso, ia += esa, ib += esb) {
+        fn(out, a, b, io, ia, ib, cso, csa, csb);
+    }
+    return out;
 };
 
 /**
