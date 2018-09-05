@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.6.0...@thi.ng/vectors@1.0.0) (2018-09-05)
+
+
+### Features
+
+* **vectors:** add immutable vec2/3/4 ops ([a3c0407](https://github.com/thi-ng/umbrella/commit/a3c0407))
+* **vectors:** add/update transformVectors*(), update types ([2eec700](https://github.com/thi-ng/umbrella/commit/2eec700))
+
+
+### BREAKING CHANGES
+
+* **vectors:** update transformVectors1/2() arg order
+
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.5.3...@thi.ng/vectors@0.6.0) (2018-09-03)
 
