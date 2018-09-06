@@ -1,3 +1,4 @@
+export type Fn0<T> = () => T;
 export type Fn1<A, B> = (a: A) => B;
 export type Fn2<A, B, C> = (a: A, b: B) => C;
 export type Fn3<A, B, C, D> = (a: A, b: B, c: C) => D;
