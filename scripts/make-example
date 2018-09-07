@@ -20,21 +20,25 @@ cat << EOF > $MODULE/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "webpack --mode production --display-reasons --display-modules",
-        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+        "build": "parcel build index.html -d out --no-source-maps --no-cache --detailed-report"
+        "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "ts-loader": "^4.4.2",
-        "typescript": "^3.0.1",
-        "webpack": "^4.16.3",
-        "webpack-cli": "^3.1.0",
-        "webpack-dev-server": "^3.1.5"
+        "parcel-bundler": "^1.9.7",
+        "terser": "^3.8.2",
+        "typescript": "^3.0.1"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/hdom": "latest",
+        "@thi.ng/atom": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers-hdom": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
     }
 }
 EOF
@@ -44,7 +48,8 @@ cat << EOF > $MODULE/tsconfig.json
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "."
+        "outDir": ".",
+        "target": "es6"
     },
     "include": [
         "./src/**/*.ts"
@@ -52,30 +57,10 @@ cat << EOF > $MODULE/tsconfig.json
 }
 EOF
 
-echo "writing webpack.config.js..."
-cat << EOF > $MODULE/webpack.config.js
-module.exports = {
-    entry: "./src/index.ts",
-    output: {
-        path: __dirname,
-        filename: "bundle.js"
-    },
-    resolve: {
-        extensions: [".ts", ".js"]
-    },
-    module: {
-        rules: [
-            { test: /\.ts$/, use: "ts-loader" }
-        ]
-    },
-    devServer: {
-        contentBase: "."
-    }
-};
-EOF
-
 echo "writing .gitignore..."
 cat << EOF > $MODULE/.gitignore
+.cache
+out
 node_modules
 yarn.lock
 *.js
@@ -96,7 +81,7 @@ cat << EOF > $MODULE/index.html
 </head>
 <body>
     <div id="app"></div>
-    <script type="text/javascript" src="bundle.js"></script>
+    <script type="text/javascript" src="./src/index.ts"></script>
 </body>
 </html>
 EOF
