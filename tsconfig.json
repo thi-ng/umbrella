@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "ES6",
+        "target": "es6",
         "experimentalDecorators": true,
         "noUnusedParameters": true,
         "noUnusedLocals": true
