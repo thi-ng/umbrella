@@ -1,4 +1,4 @@
-// edit this file after launching the webpack-dev-server (`yarn start`)
+// edit this file after launching the dev server (`yarn start`)
 // to see hot module replacement in action:
 // the `state.launched` and `state.seed` values should remain constant
 // when this module is being replaced via HMR

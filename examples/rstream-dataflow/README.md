@@ -9,7 +9,8 @@ yarn install
 yarn start
 ```
 
-Installs all dependencies, runs `webpack-dev-server` and opens the app in your browser.
+Installs all dependencies, runs `parcel serve` and opens the app in your
+browser.
 
 ## About
 

@@ -6,8 +6,8 @@
     "author": "Karsten Schmidt",
     "license": "MIT",
     "scripts": {
-        "build": "webpack --mode production --display-reasons --display-modules",
-        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+        "build": "parcel build index.html -d out --no-source-maps --no-cache --detailed-report",
+        "start": "parcel index.html -p 8080 --open"
     },
     "dependencies": {
         "@thi.ng/atom": "latest",
@@ -19,10 +19,14 @@
     },
     "devDependencies": {
         "@types/node": "^9.6.2",
-        "typescript": "^3.0.1",
-        "ts-loader": "^4.4.2",
-        "webpack": "^4.16.3",
-        "webpack-cli": "^3.1.0",
-        "webpack-dev-server": "^3.1.5"
+        "parcel-bundler": "^1.9.7",
+        "terser": "^3.8.2",
+        "typescript": "^3.0.1"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
     }
 }

@@ -1,17 +1,12 @@
 {
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES6",
-        "outDir": "build",
-        "experimentalDecorators": true,
+        "outDir": ".",
+        "target": "es6",
         "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "sourceMap": true,
+        "noUnusedLocals": true
     },
     "include": [
         "./src/**/*.ts"
-    ],
-    "exclude": [
-        "./**/node_modules"
     ]
 }

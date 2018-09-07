@@ -4,7 +4,7 @@
 
 Minimal example demonstrating the combined usage of @thi.ng/memoize's
 [`defonce`](https://github.com/thi-ng/umbrella/tree/master/packages/memoize/src/defonce.ts)
-and webpack's [Hot Module Replacement API](https://webpack.js.org/api/hot-module-replacement/).
+and parcel's [Hot Module Replacement API](https://parceljs.org/hmr.html).
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git

@@ -2,6 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": ".",
+        "target": "es6",
         "noUnusedLocals": false,
     },
     "include": [

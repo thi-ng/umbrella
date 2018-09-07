@@ -1,1 +1,5 @@
+.cache
+out
+node_modules
 yarn.lock
+*.js

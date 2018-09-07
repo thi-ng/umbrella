@@ -17,7 +17,7 @@ const ui = sync({
 // and hdom differential DOM updater
 ui.transform(map(app), updateDOM());
 
-// webpack HMR handling
+// HMR handling
 const hot = (<any>module).hot;
 if (hot) {
     // terminate existing UI stream before applying updated module
