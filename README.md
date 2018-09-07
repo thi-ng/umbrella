@@ -98,12 +98,24 @@ yarn build
 
 ### Building example projects
 
+The below `yarn examples` command assumes you have the
+[parcel](https://parceljs.org) bundler &
+[terser](https://github.com/fabiosantoscode/terser) minifier globally
+installed, if not then please first run:
+
+```bash
+yarn global add parcel-bundler terser
+```
+
 ```bash
 # build all examples (from project root)
 yarn examples
 
+# build a single example (production mode)
+scripts/build-examples example-name
+
 # in example dir
-yarn dev
+yarn build
 ```
 
 ### Testing
