@@ -1,16 +1,19 @@
 #!/bin/sh
 
 if [ $# == 1 ]; then
-    modules="examples/$1/"
+    modules="examples/$1"
 else
-    modules="examples/*/"
+    modules="examples/*"
 fi
 
 for m in $modules; do
-    name=$(echo $m | cut -d '/' -f 2)
-    echo "processing $name..."
-    gzip -f $m/bundle.js
-    echo "uploading $m..."
-    aws s3 cp $m/bundle.js.gz s3://demo.thi.ng/umbrella/$name/bundle.js --profile toxi-s3 --acl public-read --content-type "application/javascript; charset=utf-8" --content-encoding gzip
-    aws s3 cp $m/index.html s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read
+    if [ -d "$m" ] && [ ! -e "$m/.skip" ]; then
+        name=$(echo $m | cut -d '/' -f 2)
+        src=$(ls $m/out/*.js.gz | cut -d '/' -f 4)
+        len=${#src}
+        src="${src:0:len-3}"
+        echo "uploading $m ($src)..."
+        aws s3 cp $m/out/*.js.gz s3://demo.thi.ng/umbrella/$name/$src --profile toxi-s3 --acl public-read --content-type "application/javascript; charset=utf-8" --content-encoding gzip
+        aws s3 cp $m/out/index.html s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read
+    fi
 done
