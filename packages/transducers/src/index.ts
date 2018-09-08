@@ -94,6 +94,7 @@ export * from "./xform/throttle";
 export * from "./xform/throttle-time";
 export * from "./xform/trace";
 export * from "./xform/utf8";
+export * from "./xform/window";
 export * from "./xform/word-wrap";
 
 export * from "./func/binary-search";
