@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.30"></a>
+## [2.1.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@2.1.29...@thi.ng/rstream-graph@2.1.30) (2018-09-08)
+
+**Note:** Version bump only for package @thi.ng/rstream-graph
+
+
+
+
+
 <a name="2.1.29"></a>
 ## [2.1.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@2.1.28...@thi.ng/rstream-graph@2.1.29) (2018-09-06)
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.12.0"></a>
+# [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.11.10...@thi.ng/rstream@1.12.0) (2018-09-08)
+
+
+### Features
+
+* **rstream:** add merge-only mode for StreamSync, update docs ([162aa2d](https://github.com/thi-ng/umbrella/commit/162aa2d))
+
+
+
+
+
 <a name="1.11.10"></a>
 ## [1.11.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.11.9...@thi.ng/rstream@1.11.10) (2018-09-06)
 

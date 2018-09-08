@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.4...@thi.ng/transducers@2.1.0) (2018-09-08)
+
+
+### Features
+
+* **transducers:** add window() xform ([2f0f3d4](https://github.com/thi-ng/umbrella/commit/2f0f3d4))
+* **transducers:** rename window() => slidingWindow(), update readme ([1f22867](https://github.com/thi-ng/umbrella/commit/1f22867))
+* **transducers:** update partitionSync() xform & PartitionSyncOpts ([d8fdc01](https://github.com/thi-ng/umbrella/commit/d8fdc01))
+
+
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.3...@thi.ng/transducers@2.0.4) (2018-09-06)
 
