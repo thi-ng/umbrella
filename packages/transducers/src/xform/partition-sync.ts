@@ -7,6 +7,7 @@ import { $iter, iterator } from "../iterator";
 
 export interface PartitionSyncOpts<T> {
     key: (x: T) => PropertyKey;
+    mergeOnly: boolean;
     reset: boolean;
     all: boolean;
 }
@@ -80,8 +81,9 @@ export function partitionSync<T>(...args: any[]): any {
             let curr = {};
             let first = true;
             const currKeys = new Set<PropertyKey>();
-            const { key, reset, all } = <PartitionSyncOpts<T>>{
+            const { key, mergeOnly, reset, all } = <PartitionSyncOpts<T>>{
                 key: <any>identity,
+                mergeOnly: false,
                 reset: true,
                 all: true,
                 ...args[1]
@@ -103,7 +105,7 @@ export function partitionSync<T>(...args: any[]): any {
                     if (ks.has(k)) {
                         curr[k] = x;
                         currKeys.add(k);
-                        if (currKeys.size >= ks.size) {
+                        if (mergeOnly || currKeys.size >= ks.size) {
                             acc = reduce(acc, curr);
                             first = false;
                             if (reset) {
