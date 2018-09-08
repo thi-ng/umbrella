@@ -20,11 +20,11 @@ import { $iter } from "../iterator";
  * @param partial
  * @param src
  */
-export function window<T>(size: number, partial?: boolean): Transducer<T, T[]>;
-export function window<T>(size: number, src: Iterable<T>): IterableIterator<T[]>;
-export function window<T>(size: number, partial: boolean, src: Iterable<T>): IterableIterator<T[]>;
-export function window<T>(...args: any[]): any {
-    const iter = $iter(window, args);
+export function slidingWindow<T>(size: number, partial?: boolean): Transducer<T, T[]>;
+export function slidingWindow<T>(size: number, src: Iterable<T>): IterableIterator<T[]>;
+export function slidingWindow<T>(size: number, partial: boolean, src: Iterable<T>): IterableIterator<T[]>;
+export function slidingWindow<T>(...args: any[]): any {
+    const iter = $iter(slidingWindow, args);
     if (iter) {
         return iter;
     }

@@ -82,6 +82,7 @@ export * from "./xform/sample";
 export * from "./xform/scan";
 export * from "./xform/select-keys";
 export * from "./xform/side-effect";
+export * from "./xform/sliding-window";
 export * from "./xform/stream-shuffle";
 export * from "./xform/stream-sort";
 export * from "./xform/struct";
@@ -94,7 +95,6 @@ export * from "./xform/throttle";
 export * from "./xform/throttle-time";
 export * from "./xform/trace";
 export * from "./xform/utf8";
-export * from "./xform/window";
 export * from "./xform/word-wrap";
 
 export * from "./func/binary-search";
