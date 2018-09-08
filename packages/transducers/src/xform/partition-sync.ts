@@ -16,14 +16,21 @@ export interface PartitionSyncOpts<T> {
  * This transducer is intended for synchronization and provenance
  * tracking of possibly previously merged inputs. It partitions the
  * input into labeled tuple objects with the object keys obtained from
- * the user provided `keyfn`. A new result is only produced once values
- * from **all** given labeled sources have been consumed. Only labels
- * contained in the provided key set are allowed, others are skipped.
- * The tuples will contain the most recent consumed value from each
- * labeled input. In dataflow scenarios this can be used to ensure a
- * subsequent operation consuming these tuples has all necessary inputs,
- * regardless of the individual rates of change of each original
- * (pre-merge) input.
+ * the user provided `keyfn` (which is applied to each input value).
+ *
+ * By default, a new result is only produced once values from **all**
+ * given labeled sources have been received. Only labels contained in
+ * the provided key set are allowed, others are skipped. The tuples will
+ * contain the most recent consumed value from each labeled input. In
+ * dataflow scenarios this can be used to ensure a subsequent operation
+ * consuming these tuples has all necessary inputs, regardless of the
+ * individual rates of change of each original (pre-merge) input.
+ *
+ * If the `mergeOnly` option is set to true (default: false), **no**
+ * synchronization (waiting) of inputs is applied and potentially
+ * partially populated tuple objects will be emitted for each received
+ * input value, however as with the default behavior, tuples will retain
+ * the most recent consumed value from other inputs.
  *
  * ```
  * src = [
