@@ -74,4 +74,61 @@ describe("StreamSync", () => {
         assert(!a1done);
         assert(!a2done);
     });
+
+    it("mergeOnly", (done) => {
+        const src = {
+            a: rs.stream(),
+            b: rs.stream(),
+            c: rs.stream()
+        };
+        const res = [];
+        const sync = rs.sync({ src, mergeOnly: true })
+            .subscribe({
+                next: (x) => res.push(x),
+                done: () => {
+                    assert.deepEqual(
+                        res,
+                        [{ c: 1 }, { c: 1, b: 2 }, { c: 1, b: 2, a: 3 }, { c: 1, b: 2, a: 4 }]
+                    );
+                    done();
+                }
+            });
+
+        src.c.next(1);
+        src.b.next(2);
+        src.a.next(3);
+        src.a.next(4);
+        sync.done();
+    });
+
+    it("mergeOnly (w/ required keys)", (done) => {
+        const src = {
+            a: rs.stream(),
+            b: rs.stream(),
+            c: rs.stream()
+        };
+        const res = [];
+        const sync = rs.sync({
+            src,
+            mergeOnly: true
+        }).transform(
+            // ensure `a` & `b` are present
+            tx.filter((tuple: any) => tuple.a != null && tuple.b != null)
+        ).subscribe({
+            next: (x) => res.push(x),
+            done: () => {
+                assert.deepEqual(
+                    res,
+                    [{ c: 1, b: 2, a: 3 }, { c: 1, b: 2, a: 4 }]
+                );
+                done();
+            }
+        });
+
+        src.c.next(1);
+        src.b.next(2);
+        src.a.next(3);
+        src.a.next(4);
+        sync.done();
+    });
 });
