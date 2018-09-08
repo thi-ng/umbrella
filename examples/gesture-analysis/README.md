@@ -7,6 +7,9 @@ Mouse / touch gesture processing, analysis and SVG visualization, using
 constructs and
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
+**Note: Currently only really works on desktop until I figured out a way
+to better attach touch events...**
+
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/gesture-analysis
