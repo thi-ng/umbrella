@@ -21,9 +21,17 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
      */
     xform: Transducer<IObjectOf<A>, B>;
     /**
-     * If true, StreamSync waits for new values from *all*
-     * inputs before a new tuple is produced. If false (default),
-     * synchronization only happens for the very first tuple.
+     * If true (default: false) *no* input synchronization (waiting for
+     * values) is applied and `StreamSync` will emit potentially
+     * partially populated tuple objects for each received input value.
+     * However, as with the default behavior, tuples will retain the
+     * most recent consumed value from other inputs.
+     */
+    mergeOnly: boolean;
+    /**
+     * If true, StreamSync waits for new values from *all* inputs before
+     * a new tuple is produced. If false (default), that synchronization
+     * only happens for the very first tuple.
      */
     reset: boolean;
     /**
@@ -114,6 +122,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         let xform: Transducer<any, any> = comp(
             partitionSync<A>(srcIDs, {
                 key: (x) => x[0],
+                mergeOnly: opts.mergeOnly === true,
                 reset: opts.reset === true,
                 all: opts.all !== false
             }),
