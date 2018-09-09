@@ -1,5 +1,8 @@
 # @thi.ng/checks
 
+[![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/checks.svg)
+
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 

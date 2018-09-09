@@ -1,6 +1,7 @@
 # @thi.ng/dot
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dot.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

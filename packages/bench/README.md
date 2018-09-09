@@ -1,6 +1,7 @@
 # @thi.ng/bench
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bench.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

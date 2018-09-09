@@ -1,6 +1,7 @@
 # @thi.ng/pointfree-lang
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
 
 This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 

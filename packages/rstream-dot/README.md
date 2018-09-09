@@ -1,6 +1,7 @@
 # @thi.ng/rstream-dot
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rsteam-dot.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
