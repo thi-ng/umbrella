@@ -1,7 +1,15 @@
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
-export const polyline = (ctx: CanvasRenderingContext2D, pts: ReadonlyVec[], attribs: any = {}) => {
+// const test =
+//     ["canvas", { __diff: false, __normalize: false },
+//         ["g", { transform: [1, 0, 0, 1, 100, 200] },
+//             ["circle", { stroke: "blue", }, [0, 0], 100],
+//             ["polyline", { stroke: "red", weight: 2 }, [[0, 0], [100, 0]]]
+//         ]
+//     ];
+
+export const polyline = (ctx: CanvasRenderingContext2D, attribs: any, pts: ReadonlyVec[]) => {
     if (pts.length < 2) return;
     if (attribs.stroke) {
         if (attribs.stroke === "none") return;
@@ -18,7 +26,7 @@ export const polyline = (ctx: CanvasRenderingContext2D, pts: ReadonlyVec[], attr
     endShape(ctx, attribs);
 };
 
-export const polygon = (ctx: CanvasRenderingContext2D, pts: ReadonlyVec[], attribs: any = {}) => {
+export const polygon = (ctx: CanvasRenderingContext2D, attribs: any, pts: ReadonlyVec[]) => {
     if (pts.length < 2) return;
     let p: ReadonlyVec = pts[0];
     beginShape(ctx, attribs);
@@ -32,14 +40,14 @@ export const polygon = (ctx: CanvasRenderingContext2D, pts: ReadonlyVec[], attri
     endShape(ctx, attribs);
 };
 
-export const circle = (ctx: CanvasRenderingContext2D, pos: ReadonlyVec, r: number, attribs: any = {}) => {
+export const circle = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, r: number) => {
     beginShape(ctx, attribs);
     ctx.beginPath();
     ctx.arc(pos[0], pos[1], r, 0, TAU);
     endShape(ctx, attribs);
 };
 
-export const rect = (ctx: CanvasRenderingContext2D, pos: ReadonlyVec, w: number, h: number, attribs: any = {}) => {
+export const rect = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, w: number, h: number) => {
     beginShape(ctx, attribs);
     if (attribs.fill && attribs.fill !== "none") {
         ctx.fillRect(pos[0], pos[1], w, h);
