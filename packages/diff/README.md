@@ -1,6 +1,7 @@
 # @thi.ng/diff
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/diff.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

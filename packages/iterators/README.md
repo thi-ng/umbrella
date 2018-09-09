@@ -1,6 +1,7 @@
 # @thi.ng/iterators
 
-![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iterators.svg)
+![npm version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iterators.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

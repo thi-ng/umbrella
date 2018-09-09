@@ -4,7 +4,13 @@ readonly MODULE="packages/$1"
 readonly AUTHOR="Karsten Schmidt"
 readonly EMAIL="k+npm@thi.ng"
 
-echo "generating module: $MODULE"
+IFS='-' read -r -a parts <<< "$1"
+
+for i in "${parts[@]}"; do
+    INITIAL="$INITIAL${i:0:1}"
+done
+
+echo "generating module: $MODULE ($INITIAL)"
 mkdir -p $MODULE
 
 echo "creating /src & /test folders..."
@@ -16,7 +22,7 @@ cp packages/api/LICENSE $MODULE/
 echo "writing test skeleton..."
 cat << EOF > $MODULE/test/index.ts
 // import * as assert from "assert";
-// import * as $1 from "../src/index";
+// import * as $INITIAL from "../src/index";
 
 describe("$1", () => {
     it("tests pending");
@@ -113,6 +119,7 @@ cat << EOF > $MODULE/README.md
 # @thi.ng/$1
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/$1.svg)](https://www.npmjs.com/package/@thi.ng/$1)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/$1.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -131,10 +138,14 @@ TODO...
 yarn add @thi.ng/$1
 \`\`\`
 
+## Dependencies
+
+- TODO...
+
 ## Usage examples
 
 \`\`\`ts
-import * as $1 from "@thi.ng/$1";
+import * as $INITIAL from "@thi.ng/$1";
 \`\`\`
 
 ## Authors

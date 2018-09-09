@@ -1,6 +1,7 @@
 # @thi.ng/memoize
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/memoize.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -9,6 +10,7 @@ This project is part of the
 
 - [About](#about)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
     - [Optimized version for single arg functions](#optimized-version-for-single-arg-functions)
     - [Arbitrary args](#arbitrary-args)

@@ -1,6 +1,7 @@
 # @thi.ng/hiccup-css
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

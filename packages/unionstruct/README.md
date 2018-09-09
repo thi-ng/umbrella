@@ -1,6 +1,7 @@
 # @thi.ng/union-struct
 
 [![npm](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

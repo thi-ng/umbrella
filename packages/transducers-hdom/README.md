@@ -1,6 +1,7 @@
 # @thi.ng/transducers-hdom
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-hdom.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

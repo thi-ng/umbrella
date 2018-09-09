@@ -1,6 +1,7 @@
 # @thi.ng/iges
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iges.svg)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
