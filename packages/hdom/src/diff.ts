@@ -38,6 +38,12 @@ export const diffElement = (root: Element, prev: any, curr: any) =>
     _diffElement(root, prev, curr, 0);
 
 const _diffElement = (parent: Element, prev: any, curr: any, child: number) => {
+    if (curr[1].__diff === false) {
+        releaseDeep(prev);
+        removeChild(parent, child);
+        createDOM(parent, curr, child);
+        return;
+    }
     const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance === 0) {
         return;
