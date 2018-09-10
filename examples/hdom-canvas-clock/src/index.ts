@@ -2,6 +2,7 @@ import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { range } from "@thi.ng/transducers/iter/range";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { map } from "@thi.ng/transducers/xform/map";
 import { HALF_PI, TAU } from "@thi.ng/vectors/math";
 import { toCartesian2 } from "@thi.ng/vectors/vec2";
 
@@ -10,7 +11,7 @@ const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const tick = (i: number, r1: number, r2: number, color: string) => {
     const theta = i / 12 * TAU - HALF_PI;
     return [
-        ["polyline", { stroke: color }, [toCartesian2([r1, theta]), toCartesian2([r2, theta])]],
+        ["line", { stroke: color }, toCartesian2([r1, theta]), toCartesian2([r2, theta])],
         (i % 3) == 0 ?
             ["text", { fill: color, align: "center", baseLine: "middle" },
                 toCartesian2([r1 - 10, theta]), i > 0 ? i : 12] :
@@ -37,7 +38,7 @@ const cancel = start(() => {
             // but are NOT real DOM elements. they will be processed by
             // the canvas component's branch-local hdom update
             // operations and translated into canvas drawing commands
-            ["g", { transform: [1, 0, 0, 1, 100, 100] },
+            ["g", { translate: [100, 100] },
                 // rim
                 ["circle", { stroke: "black" }, [0, 0], 99],
                 // hour tick marks
@@ -46,9 +47,9 @@ const cancel = start(() => {
                 ["rect", { stroke: "black" }, [40, -8], 30, 16],
                 ["text", { fill: "black" }, [55, 0], WEEKDAYS[now.getDay()]],
                 // hands
-                hand(5, 80, sec, "red"),
-                hand(5, 90, min, "black"),
                 hand(5, 60, hour, "black"),
+                hand(5, 90, min, "black"),
+                hand(5, 80, sec, "red"),
                 ["circle", { fill: "black" }, [0, 0], 5]
             ]],
         ["a.link",
