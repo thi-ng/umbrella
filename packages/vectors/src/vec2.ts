@@ -15,7 +15,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices } from "./common";
+import { declareIndices, $iter } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -477,8 +477,8 @@ export class Vec2 implements
         this.s = stride;
     }
 
-    *[Symbol.iterator]() {
-        yield* this.array();
+    [Symbol.iterator]() {
+        return $iter(this.buf, 2, this.i, this.s);
     }
 
     array() {
@@ -781,4 +781,4 @@ export class Vec2 implements
     }
 }
 
-declareIndices(Vec2.prototype, [0, 1]);
+declareIndices(Vec2.prototype, ["x", "y"]);
