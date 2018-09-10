@@ -6,7 +6,7 @@ import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import { equiv } from "@thi.ng/equiv";
 
-import { HDOMOps } from "./api";
+import { HDOMImplementation } from "./api";
 import {
     createDOM,
     getChild,
@@ -21,7 +21,7 @@ const isArray = isa.isArray;
 const isString = iss.isString;
 const max = Math.max;
 
-const DEFAULT_OPS: HDOMOps<any> = {
+const DEFAULT_IMPL: HDOMImplementation<any> = {
     createTree: createDOM,
     getChild,
     replaceChild,
@@ -49,17 +49,17 @@ const DEFAULT_OPS: HDOMOps<any> = {
  * @param root
  * @param prev previous tree
  * @param curr current tree
- * @param ops hdom implementation
+ * @param impl hdom implementation
  */
 export const diffElement = <T>(
     root: T,
     prev: any[],
     curr: any[],
-    ops: HDOMOps<T> = DEFAULT_OPS) =>
-    _diffElement(ops, root, prev, curr, 0);
+    impl: HDOMImplementation<T> = DEFAULT_IMPL) =>
+    _diffElement(impl, root, prev, curr, 0);
 
 const _diffElement = <T>(
-    ops: HDOMOps<T>,
+    impl: HDOMImplementation<T>,
     parent: T,
     prev: any[],
     curr: any[],
@@ -67,7 +67,7 @@ const _diffElement = <T>(
 
     if (curr[1].__diff === false) {
         releaseDeep(prev);
-        ops.replaceChild(parent, child, curr);
+        impl.replaceChild(parent, child, curr);
         return;
     }
     // TODO use optimized equiv?
@@ -76,7 +76,7 @@ const _diffElement = <T>(
         return;
     }
     const edits = delta.linear;
-    const el = ops.getChild(parent, child);
+    const el = impl.getChild(parent, child);
     let i: number;
     let j: number;
     let idx: number;
@@ -88,14 +88,14 @@ const _diffElement = <T>(
     if (edits[0][0] !== 0 || prev[1].key !== curr[1].key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
-        ops.replaceChild(parent, child, curr);
+        impl.replaceChild(parent, child, curr);
         return;
     }
     if ((val = (<any>prev).__release) && val !== (<any>curr).__release) {
         releaseDeep(prev);
     }
     if (edits[1][0] !== 0) {
-        diffAttributes(ops, el, prev[1], curr[1]);
+        diffAttributes(impl, el, prev[1], curr[1]);
     }
     const equivKeys = extractEquivElements(edits);
     const numEdits = edits.length;
@@ -119,30 +119,30 @@ const _diffElement = <T>(
                     eq = equivKeys[k];
                     k = eq[0];
                     // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
-                    _diffElement(ops, el, prev[k], curr[eq[2]], offsets[k]);
+                    _diffElement(impl, el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
                     idx = e[1];
                     // DEBUG && console.log("remove @", offsets[idx], val);
                     releaseDeep(val);
-                    ops.removeChild(el, offsets[idx]);
+                    impl.removeChild(el, offsets[idx]);
                     for (j = prevLength; j >= idx; j--) {
                         offsets[j] = max(offsets[j] - 1, 0);
                     }
                 }
             } else if (isString(val)) {
-                ops.setContent(el, "");
+                impl.setContent(el, "");
             }
 
             // element added/inserted?
         } else if (status === 1) {
             if (isString(val)) {
-                ops.setContent(el, val);
+                impl.setContent(el, val);
             } else if (isArray(val)) {
                 k = val[1].key;
                 if (k === undefined || (k && equivKeys[k][0] === undefined)) {
                     idx = e[1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
-                    ops.createTree(el, val, offsets[idx]);
+                    impl.createTree(el, val, offsets[idx]);
                     for (j = prevLength; j >= idx; j--) {
                         offsets[j]++;
                     }
@@ -157,19 +157,19 @@ const _diffElement = <T>(
     }
 };
 
-const diffAttributes = <T>(ops: HDOMOps<T>, el: T, prev: any, curr: any) => {
+const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
     let i, e, edits;
     const delta = diffObject(prev, curr);
-    ops.removeAttribs(el, delta.dels, prev);
+    impl.removeAttribs(el, delta.dels, prev);
     let value = SEMAPHORE;
     for (edits = delta.edits, i = edits.length; --i >= 0;) {
         e = edits[i];
         const a = e[0];
         if (a.indexOf("on") === 0) {
-            ops.removeAttribs(el, [a], prev);
+            impl.removeAttribs(el, [a], prev);
         }
         if (a !== "value") {
-            ops.setAttrib(el, a, e[1], curr);
+            impl.setAttrib(el, a, e[1], curr);
         } else {
             value = e[1];
         }
@@ -177,13 +177,13 @@ const diffAttributes = <T>(ops: HDOMOps<T>, el: T, prev: any, curr: any) => {
     for (edits = delta.adds, i = edits.length; --i >= 0;) {
         e = edits[i];
         if (e !== "value") {
-            ops.setAttrib(el, e, curr[e], curr);
+            impl.setAttrib(el, e, curr[e], curr);
         } else {
             value = curr[e];
         }
     }
     if (value !== SEMAPHORE) {
-        ops.setAttrib(el, "value", value, curr);
+        impl.setAttrib(el, "value", value, curr);
     }
 };
 
