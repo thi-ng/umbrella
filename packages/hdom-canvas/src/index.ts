@@ -1,10 +1,10 @@
-import { HDOMOps } from "@thi.ng/hdom/api";
+import { HDOMImplementation } from "@thi.ng/hdom/api";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
 export const canvas = (_, attribs, ...shapes: any[]) =>
     ["canvas", attribs,
-        ["g", { __normalize: false, __diff: false, __ops: OPS },
+        ["g", { __normalize: false, __diff: false, __impl: IMPL },
             ...shapes]];
 
 export const createTree = (element: HTMLCanvasElement, tree: any) => {
@@ -133,7 +133,7 @@ const endShape = (ctx: CanvasRenderingContext2D, attribs: any) => {
     }
 };
 
-export const OPS: HDOMOps<any> = {
+export const IMPL: HDOMImplementation<any> = {
     createTree,
     getChild: null,
     removeChild: null,
