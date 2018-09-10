@@ -1,19 +1,35 @@
-import { SEMAPHORE } from "@thi.ng/api/api";
+import { IObjectOf, SEMAPHORE } from "@thi.ng/api/api";
 import * as isa from "@thi.ng/checks/is-array";
 import * as iss from "@thi.ng/checks/is-string";
 import { DiffLogEntry } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import { equiv } from "@thi.ng/equiv";
+
+import { HDOMOps } from "./api";
 import {
     createDOM,
+    getChild,
     removeAttribs,
     removeChild,
-    setAttrib
+    replaceChild,
+    setAttrib,
+    setContent,
 } from "./dom";
 
 const isArray = isa.isArray;
 const isString = iss.isString;
+const max = Math.max;
+
+const DEFAULT_OPS: HDOMOps<any> = {
+    createTree: createDOM,
+    getChild,
+    replaceChild,
+    removeChild,
+    setContent,
+    removeAttribs,
+    setAttrib,
+};
 
 /**
  * Takes a DOM root element and two hiccup trees, `prev` and `curr`.
@@ -33,47 +49,69 @@ const isString = iss.isString;
  * @param root
  * @param prev previous tree
  * @param curr current tree
+ * @param ops hdom implementation
  */
-export const diffElement = (root: Element, prev: any, curr: any) =>
-    _diffElement(root, prev, curr, 0);
+export const diffElement = <T>(
+    root: T,
+    prev: any[],
+    curr: any[],
+    ops: HDOMOps<T> = DEFAULT_OPS) =>
+    _diffElement(ops, root, prev, curr, 0);
 
-const _diffElement = (parent: Element, prev: any, curr: any, child: number) => {
+const _diffElement = <T>(
+    ops: HDOMOps<T>,
+    parent: T,
+    prev: any[],
+    curr: any[],
+    child: number) => {
+
     if (curr[1].__diff === false) {
         releaseDeep(prev);
-        removeChild(parent, child);
-        createDOM(parent, curr, child);
+        ops.replaceChild(parent, child, curr);
         return;
     }
+    // TODO use optimized equiv?
     const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance === 0) {
         return;
     }
     const edits = delta.linear;
-    const el = parent.children[child];
-    let i, j, k, eq, e, status, idx, val;
-    if (edits[0][0] !== 0 || (i = prev[1]).key !== (j = curr[1]).key) {
+    const el = ops.getChild(parent, child);
+    let i: number;
+    let j: number;
+    let idx: number;
+    let k: string;
+    let eq: any[];
+    let e: DiffLogEntry<any>;
+    let status: number;
+    let val: any;
+    if (edits[0][0] !== 0 || prev[1].key !== curr[1].key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
-        removeChild(parent, child);
-        createDOM(parent, curr, child);
+        ops.replaceChild(parent, child, curr);
         return;
     }
-    if ((i = prev.__release) && i !== curr.__release) {
+    if ((val = (<any>prev).__release) && val !== (<any>curr).__release) {
         releaseDeep(prev);
     }
     if (edits[1][0] !== 0) {
-        diffAttributes(el, prev[1], curr[1]);
+        diffAttributes(ops, el, prev[1], curr[1]);
     }
     const equivKeys = extractEquivElements(edits);
-    const n = edits.length;
-    const noff = prev.length - 1;
-    const offsets = new Array(noff + 1);
-    for (i = noff; i >= 2; i--) {
+    const numEdits = edits.length;
+    const prevLength = prev.length - 1;
+    const offsets = new Array(prevLength + 1);
+    for (i = prevLength; i >= 2; i--) {
         offsets[i] = i - 2;
     }
-    for (i = 2; i < n; i++) {
-        e = edits[i], status = e[0], val = e[2];
+    for (i = 2; i < numEdits; i++) {
+        e = edits[i];
+        status = e[0];
+        val = e[2];
+
         // DEBUG && console.log(`edit: o:[${offsets.toString()}] i:${idx} s:${status}`, val);
+
+        // element removed?
         if (status === -1) {
             if (isArray(val)) {
                 k = val[1].key;
@@ -81,38 +119,71 @@ const _diffElement = (parent: Element, prev: any, curr: any, child: number) => {
                     eq = equivKeys[k];
                     k = eq[0];
                     // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
-                    _diffElement(el, prev[k], curr[eq[2]], offsets[k]);
+                    _diffElement(ops, el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
                     idx = e[1];
                     // DEBUG && console.log("remove @", offsets[idx], val);
                     releaseDeep(val);
-                    removeChild(el, offsets[idx]);
-                    for (j = noff; j >= idx; j--) {
-                        offsets[j] = Math.max(offsets[j] - 1, 0);
+                    ops.removeChild(el, offsets[idx]);
+                    for (j = prevLength; j >= idx; j--) {
+                        offsets[j] = max(offsets[j] - 1, 0);
                     }
                 }
             } else if (isString(val)) {
-                el.textContent = "";
+                ops.setContent(el, "");
             }
+
+            // element added/inserted?
         } else if (status === 1) {
             if (isString(val)) {
-                el.textContent = val;
+                ops.setContent(el, val);
             } else if (isArray(val)) {
                 k = val[1].key;
                 if (k === undefined || (k && equivKeys[k][0] === undefined)) {
                     idx = e[1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
-                    createDOM(el, val, offsets[idx]);
-                    for (j = noff; j >= idx; j--) {
+                    ops.createTree(el, val, offsets[idx]);
+                    for (j = prevLength; j >= idx; j--) {
                         offsets[j]++;
                     }
                 }
             }
         }
     }
-    if ((i = curr.__init) && i != prev.__init) {
+    // call __init after all children have been added/updated
+    if ((val = (<any>curr).__init) && val != (<any>prev).__init) {
         // DEBUG && console.log("call __init", curr);
-        i.apply(curr, [el, ...(curr.__args)]);
+        val.apply(curr, [el, ...((<any>curr).__args)]);
+    }
+};
+
+const diffAttributes = <T>(ops: HDOMOps<T>, el: T, prev: any, curr: any) => {
+    let i, e, edits;
+    const delta = diffObject(prev, curr);
+    ops.removeAttribs(el, delta.dels, prev);
+    let value = SEMAPHORE;
+    for (edits = delta.edits, i = edits.length; --i >= 0;) {
+        e = edits[i];
+        const a = e[0];
+        if (a.indexOf("on") === 0) {
+            ops.removeAttribs(el, [a], prev);
+        }
+        if (a !== "value") {
+            ops.setAttrib(el, a, e[1], curr);
+        } else {
+            value = e[1];
+        }
+    }
+    for (edits = delta.adds, i = edits.length; --i >= 0;) {
+        e = edits[i];
+        if (e !== "value") {
+            ops.setAttrib(el, e, curr[e], curr);
+        } else {
+            value = curr[e];
+        }
+    }
+    if (value !== SEMAPHORE) {
+        ops.setAttrib(el, "value", value, curr);
     }
 };
 
@@ -129,43 +200,16 @@ const releaseDeep = (tag: any) => {
     }
 };
 
-const diffAttributes = (el: Element, prev: any, curr: any) => {
-    let i, e, edits;
-    const delta = diffObject(prev, curr);
-    removeAttribs(el, delta.dels, prev);
-    let value = SEMAPHORE;
-    for (edits = delta.edits, i = edits.length; --i >= 0;) {
-        e = edits[i];
-        const a = e[0];
-        if (a.indexOf("on") === 0) {
-            el.removeEventListener(a.substr(2), prev[a]);
-        }
-        if (a !== "value") {
-            setAttrib(el, a, e[1], curr);
-        } else {
-            value = e[1];
-        }
-    }
-    for (edits = delta.adds, i = edits.length; --i >= 0;) {
-        e = edits[i];
-        if (e !== "value") {
-            setAttrib(el, e, curr[e], curr);
-        } else {
-            value = curr[e];
-        }
-    }
-    if (value !== SEMAPHORE) {
-        setAttrib(el, "value", value, curr);
-    }
-};
-
 const extractEquivElements = (edits: DiffLogEntry<any>[]) => {
-    let k, v, e, ek;
-    const equiv = {};
+    let k: string;
+    let val: any;
+    let e: DiffLogEntry<any>;
+    let ek: any[];
+    const equiv: IObjectOf<any[]> = {};
     for (let i = edits.length; --i >= 0;) {
         e = edits[i];
-        v = e[2];
-        if (isArray(v) && (k = v[1].key) !== undefined) {
+        val = e[2];
+        if (isArray(val) && (k = val[1].key) !== undefined) {
             ek = equiv[k];
             !ek && (equiv[k] = ek = [, ,]);
             ek[e[0] + 1] = e[1];

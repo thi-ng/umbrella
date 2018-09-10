@@ -51,4 +51,19 @@ export interface HDOMOpts {
     normalize?: boolean;
 }
 
+/**
+ * This interface defines the underlying DOM update operations used by
+ * `diffElement()`. See `DEFAULT_OPS` (diff.ts) for the default
+ * implementations.
+ */
+export interface HDOMOps<T> {
+    createTree(element: T, tree: any, insert?: number): T | T[];
+    getChild(element: T, child: number): T;
+    removeChild(element: T, child: number);
+    replaceChild(element: T, child: number, newTree: any);
+    setAttrib(element: T, id: string, value: any, attribs?: any);
+    removeAttribs(element: T, attribs: string[], prevAttribs: any);
+    setContent(element: T, value: any);
+}
+
 export const DEBUG = false;
