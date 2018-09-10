@@ -928,7 +928,9 @@ export class Vec3 implements
     }
 
     toString() {
-        return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}]`;
+        const i = this.i;
+        const s = this.s;
+        return `[${this.buf[i]}, ${this.buf[i + s]}, ${this.buf[i + 2 * s]}]`;
     }
 
     toJSON() {
