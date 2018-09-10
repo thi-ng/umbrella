@@ -1,10 +1,22 @@
-import { ReadonlyVec, Vec, VecOp2, VecOp2o, ReadonlyVecOp1 } from "./api";
+import {
+    ReadonlyVec,
+    ReadonlyVecOp1,
+    Vec,
+    VecOp2,
+    VecOp2o
+} from "./api";
 import { EPS, eqDelta1 } from "./math";
 
 export const x: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0) => v[i];
 export const y: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + s];
 export const z: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + 2 * s];
 export const w: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + 3 * s];
+
+export function* $iter(buf: Vec, n: number, i = 0, s = 1) {
+    for (; n > 0; n-- , i += s) {
+        yield buf[i];
+    }
+}
 
 /**
  * Applies vector op `fn` to all raw vectors in array `a`, using the
@@ -174,21 +186,22 @@ export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia
 };
 
 /**
- * Helper function to create property accessors for Vec2/3/4.
+ * Helper function to create vector/matrix index & property accessors.
  *
  * @param proto
  * @param indices
+ * @param props
  */
-export const declareIndices = (proto: any, indices: number[]) => {
-    const get = (i: number) => function () { return this.buf[this.i + i * this.s]; };
-    const set = (i: number) => function (n: number) { this.buf[this.i + i * this.s] = n; };
-    indices.forEach((i) => {
+export const declareIndices = (proto: any, props: string[]) => {
+    const get = (i: number) => function () { return this.buf[this.i + i * (this.s || 1)]; };
+    const set = (i: number) => function (n: number) { this.buf[this.i + i * (this.s || 1)] = n; };
+    props.forEach((id, i) => {
         Object.defineProperty(proto, i, {
             get: get(i),
             set: set(i),
             enumerable: true,
         });
-        Object.defineProperty(proto, "xyzw"[i], {
+        Object.defineProperty(proto, id, {
             get: get(i),
             set: set(i),
             enumerable: true,

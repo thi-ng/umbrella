@@ -1,7 +1,13 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { Mat, ReadonlyMat, Vec, ReadonlyVec } from "./api";
-import { eqDelta } from "./common";
+
+import {
+    Mat,
+    ReadonlyMat,
+    ReadonlyVec,
+    Vec
+} from "./api";
+import { $iter, declareIndices, eqDelta } from "./common";
 import { Mat33 } from "./mat33";
 import { EPS, rad } from "./math";
 import {
@@ -463,10 +469,35 @@ export class Mat44 implements
 
     buf: Mat;
     i: number;
+    m00: number;
+    m01: number;
+    m02: number;
+    m03: number;
+    m10: number;
+    m11: number;
+    m12: number;
+    m13: number;
+    m20: number;
+    m21: number;
+    m22: number;
+    m23: number;
+    m30: number;
+    m31: number;
+    m32: number;
+    m33: number;
+    [id: number]: number;
 
     constructor(buf?: Mat, i = 0) {
         this.buf = buf || (new Array(16).fill(0));
         this.i = i;
+    }
+
+    [Symbol.iterator]() {
+        return $iter(this.buf, 16, this.i);
+    }
+
+    get length() {
+        return 16;
     }
 
     copy() {
@@ -556,3 +587,13 @@ ${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
         return get44(this.buf, this.i);
     }
 }
+
+declareIndices(
+    Mat44.prototype,
+    [
+        "m00", "m01", "m02", "m03",
+        "m10", "m11", "m12", "m13",
+        "m20", "m21", "m22", "m23",
+        "m30", "m31", "m32", "m33"
+    ]
+);

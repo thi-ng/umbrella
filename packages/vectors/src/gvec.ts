@@ -8,7 +8,7 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 import { IVec, ReadonlyVec, Vec } from "./api";
-import { eqDelta, equiv } from "./common";
+import { $iter, eqDelta, equiv } from "./common";
 import {
     clamp1,
     EPS,
@@ -211,10 +211,8 @@ export class GVec implements
         this.s = s;
     }
 
-    *[Symbol.iterator]() {
-        for (let i = this.i, n = this.n; n > 0; n-- , i += this.s) {
-            yield this.buf[i];
-        }
+    [Symbol.iterator]() {
+        return $iter(this.buf, this.n, this.i, this.s);
     }
 
     get length() {
