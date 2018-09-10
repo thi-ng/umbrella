@@ -40,7 +40,7 @@ export const opg3 = (fn: (x: number, y: number, z: number) => number, a: Vec, b:
 };
 
 export const get = (a: ReadonlyVec, num = a.length, i = 0, s = 1) =>
-    set(new (<any>(a.constructor))(num), a, 0, i, 1, s);
+    set(new (<any>(a.constructor))(num), a, num, 0, i, 1, s);
 
 export const set = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
     while (--num >= 0) {
