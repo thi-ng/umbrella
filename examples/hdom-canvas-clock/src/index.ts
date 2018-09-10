@@ -24,7 +24,7 @@ const hand = (r1: number, r2: number, theta: number, fill: string, eps = 0.5) =>
         [[r1, theta - eps], [r2, theta], [r1, theta + eps]].map((p) => toCartesian2(p))];
 };
 
-start(() => {
+const cancel = start(() => {
     const now = new Date();
     const t = now.getTime() / 1000 - now.getTimezoneOffset() * 60;
     const sec = (t % 60) / 60;
@@ -56,9 +56,7 @@ start(() => {
             "Source code"]];
 });
 
-// const hot = (<any>module).hot;
-// if (hot) {
-//     hot.dispose(() => {
-//         cancel();
-//     });
-// }
+const hot = (<any>module).hot;
+if (hot) {
+    hot.dispose(cancel);
+}
