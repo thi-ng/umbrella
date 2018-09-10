@@ -4,7 +4,7 @@ import * as isi from "@thi.ng/checks/is-iterable";
 import * as iss from "@thi.ng/checks/is-string";
 import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
-import { HDOMOps } from "./api";
+import { HDOMImplementation } from "./api";
 
 const isArray = isa.isArray;
 const isFunction = isf.isFunction;
@@ -31,8 +31,8 @@ export const createDOM = (parent: Element, tag: any, insert?: number) => {
             return createDOM(parent, t.apply(null, tag.slice(1)));
         }
         const attribs = tag[1];
-        if (attribs.__ops) {
-            return (<HDOMOps<any>>attribs.__ops).createTree(parent, tag, insert);
+        if (attribs.__impl) {
+            return (<HDOMImplementation<any>>attribs.__impl).createTree(parent, tag, insert);
         }
         const el = createElement(parent, t, attribs, insert);
         if ((<any>tag).__init) {
