@@ -575,12 +575,11 @@ export class Mat44 implements
     }
 
     toString() {
-        const i = this.i;
-        const b = [...this.buf.slice(i, i + 16)].map((x) => x.toFixed(4));
-        return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}
-${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}
-${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}
-${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
+        const b = (<number[]>get44(this.buf, this.i)).map((x) => x.toFixed(4));
+        return `${b[0]} ${b[4]} ${b[8]} ${b[12]}
+${b[1]} ${b[5]} ${b[9]} ${b[13]}
+${b[2]} ${b[6]} ${b[10]} ${b[14]}
+${b[3]} ${b[7]} ${b[11]} ${b[15]}`;
     }
 
     toJSON() {

@@ -294,9 +294,8 @@ export class Mat23 implements
     }
 
     toString() {
-        const i = this.i;
-        const b = [...this.buf.slice(i, i + 6)].map((x) => x.toFixed(4));
-        return `${b[i]} ${b[i + 2]} ${b[i + 4]}\n${b[i + 1]} ${b[i + 3]} ${b[i + 5]}`;
+        const b = (<number[]>get23(this.buf, this.i)).map((x) => x.toFixed(4));
+        return `${b[0]} ${b[2]} ${b[4]}\n${b[1]} ${b[3]} ${b[5]}`;
     }
 
     toJSON() {

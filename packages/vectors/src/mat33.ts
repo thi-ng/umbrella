@@ -338,11 +338,10 @@ export class Mat33 implements
     }
 
     toString() {
-        const i = this.i;
-        const b = [...this.buf.slice(i, i + 9)].map((x) => x.toFixed(4));
-        return `${b[i]} ${b[i + 3]} ${b[i + 6]}
-${b[i + 1]} ${b[i + 4]} ${b[i + 7]}
-${b[i + 2]} ${b[i + 5]} ${b[i + 8]}`;
+        const b = (<number[]>get33(this.buf, this.i)).map((x) => x.toFixed(4));
+        return `${b[0]} ${b[3]} ${b[6]}
+${b[1]} ${b[4]} ${b[7]}
+${b[2]} ${b[5]} ${b[8]}`;
     }
 
     toJSON() {
