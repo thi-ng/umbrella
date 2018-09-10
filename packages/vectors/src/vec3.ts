@@ -15,7 +15,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices } from "./common";
+import { declareIndices, $iter } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -613,8 +613,8 @@ export class Vec3 implements
         this.s = stride;
     }
 
-    *[Symbol.iterator]() {
-        yield* this.array();
+    [Symbol.iterator]() {
+        return $iter(this.buf, 3, this.i, this.s);
     }
 
     array() {
@@ -928,7 +928,9 @@ export class Vec3 implements
     }
 
     toString() {
-        return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}]`;
+        const i = this.i;
+        const s = this.s;
+        return `[${this.buf[i]}, ${this.buf[i + s]}, ${this.buf[i + 2 * s]}]`;
     }
 
     toJSON() {
@@ -936,4 +938,4 @@ export class Vec3 implements
     }
 }
 
-declareIndices(Vec3.prototype, [0, 1, 2]);
+declareIndices(Vec3.prototype, ["x", "y", "z"]);

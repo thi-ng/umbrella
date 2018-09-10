@@ -15,7 +15,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices } from "./common";
+import { declareIndices, $iter } from "./common";
 import {
     EPS,
     eqDelta1,
@@ -549,8 +549,8 @@ export class Vec4 implements
         this.s = stride;
     }
 
-    *[Symbol.iterator]() {
-        yield* this.array();
+    [Symbol.iterator]() {
+        return $iter(this.buf, 4, this.i, this.s);
     }
 
     array() {
@@ -799,7 +799,9 @@ export class Vec4 implements
     }
 
     toString() {
-        return `[${this.buf[this.i]}, ${this.buf[this.i + this.s]}, ${this.buf[this.i + 2 * this.s]}, ${this.buf[this.i + 3 * this.s]}]`;
+        const i = this.i;
+        const s = this.s;
+        return `[${this.buf[i]}, ${this.buf[i + s]}, ${this.buf[i + 2 * s]}, ${this.buf[i + 3 * s]}]`;
     }
 
     toJSON() {
@@ -807,4 +809,4 @@ export class Vec4 implements
     }
 }
 
-declareIndices(Vec4.prototype, [0, 1, 2, 3]);
+declareIndices(Vec4.prototype, ["x", "y", "z", "w"]);

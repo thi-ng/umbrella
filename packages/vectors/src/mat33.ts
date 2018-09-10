@@ -1,7 +1,13 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { Mat, ReadonlyMat, Vec, ReadonlyVec } from "./api";
-import { eqDelta } from "./common";
+
+import {
+    Mat,
+    ReadonlyMat,
+    ReadonlyVec,
+    Vec
+} from "./api";
+import { $iter, declareIndices, eqDelta } from "./common";
 import { EPS } from "./math";
 import {
     dot3,
@@ -258,10 +264,28 @@ export class Mat33 implements
 
     buf: Mat;
     i: number;
+    m00: number;
+    m01: number;
+    m02: number;
+    m10: number;
+    m11: number;
+    m12: number;
+    m20: number;
+    m21: number;
+    m22: number;
+    [id: number]: number;
 
     constructor(buf?: Mat, i = 0) {
         this.buf = buf || (new Array(9).fill(0));
         this.i = i;
+    }
+
+    [Symbol.iterator]() {
+        return $iter(this.buf, 9, this.i);
+    }
+
+    get length() {
+        return 9;
     }
 
     copy() {
@@ -314,14 +338,18 @@ export class Mat33 implements
     }
 
     toString() {
-        const i = this.i;
-        const b = [...this.buf.slice(i, i + 9)].map((x) => x.toFixed(4));
-        return `${b[i]} ${b[i + 3]} ${b[i + 6]}
-${b[i + 1]} ${b[i + 4]} ${b[i + 7]}
-${b[i + 2]} ${b[i + 5]} ${b[i + 8]}`;
+        const b = (<number[]>get33(this.buf, this.i)).map((x) => x.toFixed(4));
+        return `${b[0]} ${b[3]} ${b[6]}
+${b[1]} ${b[4]} ${b[7]}
+${b[2]} ${b[5]} ${b[8]}`;
     }
 
     toJSON() {
         return get33(this.buf, this.i);
     }
 }
+
+declareIndices(
+    Mat33.prototype,
+    ["m00", "m01", "m02", "m10", "m11", "m12", "m20", "m21", "m22"]
+);

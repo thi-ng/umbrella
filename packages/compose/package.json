@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compose",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Functional composition helpers",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -28,8 +28,8 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.1.0",
-        "@thi.ng/errors": "^0.1.6"
+        "@thi.ng/api": "^4.1.1",
+        "@thi.ng/errors": "^0.1.7"
     },
     "keywords": [
         "composition",

@@ -8,7 +8,7 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 import { IVec, ReadonlyVec, Vec } from "./api";
-import { eqDelta, equiv } from "./common";
+import { $iter, eqDelta, equiv } from "./common";
 import {
     clamp1,
     EPS,
@@ -40,7 +40,7 @@ export const opg3 = (fn: (x: number, y: number, z: number) => number, a: Vec, b:
 };
 
 export const get = (a: ReadonlyVec, num = a.length, i = 0, s = 1) =>
-    set(new (<any>(a.constructor))(num), a, 0, i, 1, s);
+    set(new (<any>(a.constructor))(num), a, num, 0, i, 1, s);
 
 export const set = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
     while (--num >= 0) {
@@ -211,10 +211,8 @@ export class GVec implements
         this.s = s;
     }
 
-    *[Symbol.iterator]() {
-        for (let i = this.i, n = this.n; n > 0; n-- , i += this.s) {
-            yield this.buf[i];
-        }
+    [Symbol.iterator]() {
+        return $iter(this.buf, this.n, this.i, this.s);
     }
 
     get length() {

@@ -14,6 +14,6 @@ for m in $modules; do
         src="${src:0:len-3}"
         echo "uploading $m ($src)..."
         aws s3 cp $m/out/*.js.gz s3://demo.thi.ng/umbrella/$name/$src --profile toxi-s3 --acl public-read --content-type "application/javascript; charset=utf-8" --content-encoding gzip
-        aws s3 cp $m/out/index.html s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read
+        aws s3 cp $m/out/index.html s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read --cache-control "max-age=900"
     fi
 done

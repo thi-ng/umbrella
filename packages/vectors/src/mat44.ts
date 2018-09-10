@@ -1,7 +1,13 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { Mat, ReadonlyMat, Vec, ReadonlyVec } from "./api";
-import { eqDelta } from "./common";
+
+import {
+    Mat,
+    ReadonlyMat,
+    ReadonlyVec,
+    Vec
+} from "./api";
+import { $iter, declareIndices, eqDelta } from "./common";
 import { Mat33 } from "./mat33";
 import { EPS, rad } from "./math";
 import {
@@ -463,10 +469,35 @@ export class Mat44 implements
 
     buf: Mat;
     i: number;
+    m00: number;
+    m01: number;
+    m02: number;
+    m03: number;
+    m10: number;
+    m11: number;
+    m12: number;
+    m13: number;
+    m20: number;
+    m21: number;
+    m22: number;
+    m23: number;
+    m30: number;
+    m31: number;
+    m32: number;
+    m33: number;
+    [id: number]: number;
 
     constructor(buf?: Mat, i = 0) {
         this.buf = buf || (new Array(16).fill(0));
         this.i = i;
+    }
+
+    [Symbol.iterator]() {
+        return $iter(this.buf, 16, this.i);
+    }
+
+    get length() {
+        return 16;
     }
 
     copy() {
@@ -544,15 +575,24 @@ export class Mat44 implements
     }
 
     toString() {
-        const i = this.i;
-        const b = [...this.buf.slice(i, i + 16)].map((x) => x.toFixed(4));
-        return `${b[i]} ${b[i + 4]} ${b[i + 8]} ${b[i + 12]}
-${b[i + 1]} ${b[i + 5]} ${b[i + 9]} ${b[i + 13]}
-${b[i + 2]} ${b[i + 6]} ${b[i + 10]} ${b[i + 14]}
-${b[i + 3]} ${b[i + 7]} ${b[i + 11]} ${b[i + 15]}`;
+        const b = (<number[]>get44(this.buf, this.i)).map((x) => x.toFixed(4));
+        return `${b[0]} ${b[4]} ${b[8]} ${b[12]}
+${b[1]} ${b[5]} ${b[9]} ${b[13]}
+${b[2]} ${b[6]} ${b[10]} ${b[14]}
+${b[3]} ${b[7]} ${b[11]} ${b[15]}`;
     }
 
     toJSON() {
         return get44(this.buf, this.i);
     }
 }
+
+declareIndices(
+    Mat44.prototype,
+    [
+        "m00", "m01", "m02", "m03",
+        "m10", "m11", "m12", "m13",
+        "m20", "m21", "m22", "m23",
+        "m30", "m31", "m32", "m33"
+    ]
+);
