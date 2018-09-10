@@ -135,6 +135,9 @@ export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, spa
         }
         norm = normalizeElement(tree, keys);
         nattribs = norm[1];
+        if (nattribs.__normalize === false) {
+            return norm;
+        }
         if (keys && nattribs.key === undefined) {
             nattribs.key = path.join("-");
         }

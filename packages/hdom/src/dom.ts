@@ -4,6 +4,7 @@ import * as isi from "@thi.ng/checks/is-iterable";
 import * as iss from "@thi.ng/checks/is-string";
 import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
+import { HDOMOps } from "./api";
 
 const isArray = isa.isArray;
 const isFunction = isf.isFunction;
@@ -29,7 +30,11 @@ export const createDOM = (parent: Element, tag: any, insert?: number) => {
         if (isFunction(t)) {
             return createDOM(parent, t.apply(null, tag.slice(1)));
         }
-        const el = createElement(parent, t, tag[1], insert);
+        const attribs = tag[1];
+        if (attribs.__ops) {
+            return (<HDOMOps<any>>attribs.__ops).createTree(parent, tag, insert);
+        }
+        const el = createElement(parent, t, attribs, insert);
         if ((<any>tag).__init) {
             (<any>tag).__init.apply((<any>tag).__this, [el, ...(<any>tag).__args]);
         }
@@ -70,7 +75,7 @@ export const hydrateDOM = (parent: Element, tree: any, i = 0) => {
     if (isArray(tree)) {
         const el = parent.children[i];
         if (isFunction(tree[0])) {
-            return hydrateDOM(parent, tree[0].apply(null, tree.slice(1)), i);
+            hydrateDOM(parent, tree[0].apply(null, tree.slice(1)), i);
         }
         if ((<any>tree).__init) {
             (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
@@ -121,12 +126,23 @@ export const createTextElement = (parent: Element, content: string, insert?: num
     return el;
 };
 
+export const getChild = (parent: Element, child: number) =>
+    parent.children[child];
+
+export const replaceChild = (parent: Element, child: number, tree: any) => {
+    removeChild(parent, child);
+    createDOM(parent, tree, child);
+};
+
 export const cloneWithNewAttribs = (el: Element, attribs: any) => {
     const res = <Element>el.cloneNode(true);
     setAttribs(res, attribs);
     el.parentNode.replaceChild(res, el);
     return res;
 };
+
+export const setContent = (el: Element, body: any) =>
+    el.textContent = body;
 
 export const setAttribs = (el: Element, attribs: any) => {
     for (let k in attribs) {
