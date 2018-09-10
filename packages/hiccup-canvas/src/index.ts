@@ -1,3 +1,4 @@
+import { HDOMOps } from "@thi.ng/hdom/api";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
@@ -8,6 +9,42 @@ import { TAU } from "@thi.ng/vectors/math";
 //             ["polyline", { stroke: "red", weight: 2 }, [[0, 0], [100, 0]]]
 //         ]
 //     ];
+
+export const canvas = (_, attribs, ...shapes: any[]) =>
+    ["canvas", attribs,
+        ["g", { __normalize: false, _diff: false, __ops: OPS },
+            ...shapes]];
+
+export const createTree = (element: HTMLCanvasElement, tree: any) => {
+    const ctx = element.getContext("2d");
+    ctx.clearRect(0, 0, element.width, element.height);
+    const shape = (tag) => {
+        const attribs = tag[1];
+        switch (tag[0]) {
+            case "g":
+                beginShape(ctx, attribs);
+                for (let i = 2, n = tag.length; i < n; i++) {
+                    shape(tag[i]);
+                }
+                endShape(ctx, attribs);
+            case "polyline":
+                polyline(ctx, attribs, tag[2]);
+                break;
+            case "polygon":
+                polygon(ctx, attribs, tag[2]);
+                break;
+            case "circle":
+                circle(ctx, attribs, tag[2], tag[3]);
+                break;
+            case "rect":
+                rect(ctx, attribs, tag[2], tag[3], tag[4]);
+                break;
+            default:
+        }
+    };
+    shape(tree);
+    return null;
+};
 
 export const polyline = (ctx: CanvasRenderingContext2D, attribs: any, pts: ReadonlyVec[]) => {
     if (pts.length < 2) return;
@@ -55,6 +92,9 @@ export const rect = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyV
     if (attribs.stroke && attribs.stroke !== "none") {
         ctx.strokeRect(pos[0], pos[1], w, h);
     }
+    if (attribs.transform) {
+        ctx.restore();
+    }
 };
 
 const beginShape = (ctx: CanvasRenderingContext2D, attribs: any) => {
@@ -77,4 +117,14 @@ const endShape = (ctx: CanvasRenderingContext2D, attribs: any) => {
     if (attribs.transform) {
         ctx.restore();
     }
+};
+
+export const OPS: HDOMOps<any> = {
+    createTree,
+    getChild: null,
+    removeChild: null,
+    replaceChild: null,
+    setAttrib: null,
+    removeAttribs: null,
+    setContent: null,
 };

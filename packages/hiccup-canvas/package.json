@@ -28,6 +28,7 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
+        "@thi.ng/hdom": "^4.0.4",
         "@thi.ng/vectors": "^1.0.0"
     },
     "keywords": [
