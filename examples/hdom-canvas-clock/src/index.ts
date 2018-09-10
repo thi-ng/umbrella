@@ -10,8 +10,7 @@ const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const tick = (i: number, r1: number, r2: number, color: string) => {
     const theta = i / 12 * TAU - HALF_PI;
     return [
-        ["polyline", { stroke: color },
-            [toCartesian2([r1, theta]), toCartesian2([r2, theta])]],
+        ["polyline", { stroke: color }, [toCartesian2([r1, theta]), toCartesian2([r2, theta])]],
         (i % 3) == 0 ?
             ["text", { fill: color, align: "center", baseLine: "middle" },
                 toCartesian2([r1 - 10, theta]), i > 0 ? i : 12] :
@@ -21,10 +20,8 @@ const tick = (i: number, r1: number, r2: number, color: string) => {
 
 const hand = (r1: number, r2: number, theta: number, fill: string, eps = 0.5) => {
     theta = theta * TAU - HALF_PI;
-    return ["polygon", { fill }, [
-        toCartesian2([r1, theta - eps]),
-        toCartesian2([r2, theta]),
-        toCartesian2([r1, theta + eps])]];
+    return ["polygon", { fill },
+        [[r1, theta - eps], [r2, theta], [r1, theta + eps]].map((p) => toCartesian2(p))];
 };
 
 start(() => {
@@ -38,8 +35,8 @@ start(() => {
         [canvas, { class: "ma2", width: 200, height: 200 },
             // these canvas-inner elements use SVG-like hiccup syntax,
             // but are NOT real DOM elements. they will be processed by
-            // the canvas component's branch-local hdom update operations
-            // and are translated into canvas drawing commands
+            // the canvas component's branch-local hdom update
+            // operations and translated into canvas drawing commands
             ["g", { transform: [1, 0, 0, 1, 100, 100] },
                 // rim
                 ["circle", { stroke: "black" }, [0, 0], 99],
