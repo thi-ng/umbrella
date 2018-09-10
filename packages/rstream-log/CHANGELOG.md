@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.57"></a>
+## [1.0.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.56...@thi.ng/rstream-log@1.0.57) (2018-09-10)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
 <a name="1.0.56"></a>
 ## [1.0.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.55...@thi.ng/rstream-log@1.0.56) (2018-09-08)
 

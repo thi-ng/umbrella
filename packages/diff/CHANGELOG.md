@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.23"></a>
+## [1.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.0.22...@thi.ng/diff@1.0.23) (2018-09-10)
+
+**Note:** Version bump only for package @thi.ng/diff
+
+
+
+
+
 <a name="1.0.22"></a>
 ## [1.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.0.21...@thi.ng/diff@1.0.22) (2018-08-24)
 
