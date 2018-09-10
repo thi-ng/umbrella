@@ -2,17 +2,9 @@ import { HDOMOps } from "@thi.ng/hdom/api";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
-// const test =
-//     ["canvas", { __diff: false, __normalize: false },
-//         ["g", { transform: [1, 0, 0, 1, 100, 200] },
-//             ["circle", { stroke: "blue", }, [0, 0], 100],
-//             ["polyline", { stroke: "red", weight: 2 }, [[0, 0], [100, 0]]]
-//         ]
-//     ];
-
 export const canvas = (_, attribs, ...shapes: any[]) =>
     ["canvas", attribs,
-        ["g", { __normalize: false, _diff: false, __ops: OPS },
+        ["g", { __normalize: false, __diff: false, __ops: OPS },
             ...shapes]];
 
 export const createTree = (element: HTMLCanvasElement, tree: any) => {
@@ -39,6 +31,9 @@ export const createTree = (element: HTMLCanvasElement, tree: any) => {
             case "rect":
                 rect(ctx, attribs, tag[2], tag[3], tag[4]);
                 break;
+            case "text":
+                text(ctx, attribs, tag[2], tag[3]);
+                break;
             default:
         }
     };
@@ -48,9 +43,10 @@ export const createTree = (element: HTMLCanvasElement, tree: any) => {
 
 export const polyline = (ctx: CanvasRenderingContext2D, attribs: any, pts: ReadonlyVec[]) => {
     if (pts.length < 2) return;
-    if (attribs.stroke) {
-        if (attribs.stroke === "none") return;
-        ctx.strokeStyle = attribs.stroke;
+    let v: any;
+    if ((v = attribs.stroke)) {
+        if (v === "none") return;
+        ctx.strokeStyle = v;
     }
     beginShape(ctx, attribs);
     let p: ReadonlyVec = pts[0];
@@ -86,15 +82,33 @@ export const circle = (ctx: CanvasRenderingContext2D, attribs: any, pos: Readonl
 
 export const rect = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, w: number, h: number) => {
     beginShape(ctx, attribs);
-    if (attribs.fill && attribs.fill !== "none") {
+    let v: any;
+    if ((v = attribs.fill) && v !== "none") {
+        ctx.fillStyle = v;
         ctx.fillRect(pos[0], pos[1], w, h);
     }
-    if (attribs.stroke && attribs.stroke !== "none") {
+    if ((v = attribs.stroke) && v !== "none") {
+        ctx.strokeStyle = v;
         ctx.strokeRect(pos[0], pos[1], w, h);
     }
-    if (attribs.transform) {
-        ctx.restore();
+    attribs.transform && ctx.restore();
+};
+
+export const text = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, body: any) => {
+    beginShape(ctx, attribs);
+    let v: any;
+    (v = attribs.font) && (ctx.font = v);
+    (v = attribs.align) && (ctx.textAlign = v);
+    (v = attribs.baseLine) && (ctx.textBaseline = v);
+    if (attribs.fill && attribs.fill !== "none") {
+        ctx.fillStyle = attribs.fill;
+        ctx.fillText(body.toString(), pos[0], pos[1]);
     }
+    if (attribs.stroke && attribs.stroke !== "none") {
+        ctx.strokeStyle = attribs.stroke;
+        ctx.strokeText(body.toString(), pos[0], pos[1]);
+    }
+    attribs.transform && ctx.restore();
 };
 
 const beginShape = (ctx: CanvasRenderingContext2D, attribs: any) => {

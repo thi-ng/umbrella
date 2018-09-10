@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/hiccup-canvas",
+    "name": "@thi.ng/hdom-canvas",
     "version": "0.0.1",
-    "description": "hiccup based, pure data scenegraph for canvas visualizations",
+    "description": "Declarative canvas scenegraph & visualization for @thi.ng/hdom",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -37,6 +37,7 @@
         "data driven",
         "drawing",
         "graphics",
+        "hdom",
         "hiccup",
         "scenegraph",
         "typescript"
