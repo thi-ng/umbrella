@@ -1,5 +1,9 @@
 import { IObjectOf } from "@thi.ng/api/api";
+import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { isString } from "@thi.ng/checks/is-string";
 import { HDOMImplementation } from "@thi.ng/hdom/api";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
@@ -66,46 +70,63 @@ export const drawTree = (element: HTMLCanvasElement, tree: any) => {
     ctx.clearRect(0, 0, element.width, element.height);
     const shape = (s: any, pstate: DrawState) => {
         if (!s) return;
-        const state = mergeState(ctx, pstate, s[1]);
-        const attribs = state ? state.attribs : pstate.attribs;
-        switch (s[0]) {
-            case "g":
-                for (let i = 2, n = s.length, __state = state || pstate; i < n; i++) {
-                    shape(s[i], __state);
-                }
-                break;
-            case "line":
-                line(ctx, attribs, s[2], s[3]);
-                break;
-            case "hline":
-                line(ctx, attribs, [0, s[2]], [element.width, s[2]]);
-                break;
-            case "vline":
-                line(ctx, attribs, [s[2], 0], [s[2], element.height]);
-                break;
-            case "polyline":
-                polyline(ctx, attribs, s[2]);
-                break;
-            case "polygon":
-                polygon(ctx, attribs, s[2]);
-                break;
-            case "rect":
-                rect(ctx, attribs, s[2], s[3], s[4]);
-                break;
-            case "circle":
-                arc(ctx, attribs, s[2], s[3]);
-                break;
-            case "arc":
-                arc(ctx, attribs, s[2], s[3], s[4], s[5]);
-                break;
-            case "text":
-                text(ctx, attribs, s[2], s[3]);
-                break;
-            case "img":
-                image(ctx, attribs, s[2], s[3]);
-            default:
+        if (isArray(s)) {
+            if (isFunction(s[0])) {
+                // FIXME where to get hdom ctx from?
+                return shape(s[0](null, ...s.slice(1)), pstate);
+            }
+            const state = mergeState(ctx, pstate, s[1]);
+            const attribs = state ? state.attribs : pstate.attribs;
+            switch (s[0]) {
+                case "g":
+                    for (let i = 2, n = s.length, __state = state || pstate; i < n; i++) {
+                        shape(s[i], __state);
+                    }
+                    break;
+                case "line":
+                    line(ctx, attribs, s[2], s[3]);
+                    break;
+                case "hline":
+                    line(ctx, attribs, [0, s[2]], [element.width, s[2]]);
+                    break;
+                case "vline":
+                    line(ctx, attribs, [s[2], 0], [s[2], element.height]);
+                    break;
+                case "polyline":
+                    polyline(ctx, attribs, s[2]);
+                    break;
+                case "polygon":
+                    polygon(ctx, attribs, s[2]);
+                    break;
+                case "path":
+                    path(ctx, attribs, s[2]);
+                    break;
+                case "rect":
+                    rect(ctx, attribs, s[2], s[3], s[4]);
+                    break;
+                case "circle":
+                    arc(ctx, attribs, s[2], s[3]);
+                    break;
+                case "arc":
+                    arc(ctx, attribs, s[2], s[3], s[4], s[5]);
+                    break;
+                case "text":
+                    text(ctx, attribs, s[2], s[3]);
+                    break;
+                case "img":
+                    image(ctx, attribs, s[2], s[3]);
+                default:
+            }
+            state && restoreState(ctx, pstate, state);
+            return;
+        } else if (isFunction(s)) {
+            return shape(s(element, ctx), pstate);
+        } else if (!isString(s) && isIterable(s)) {
+            for (let ss of s) {
+                shape(ss, pstate);
+            }
+            return;
         }
-        state && restoreState(ctx, pstate, state);
     };
     shape(tree, { attribs: {} });
     return null;
@@ -259,6 +280,78 @@ const polygon = (ctx: CanvasRenderingContext2D,
         ctx.lineTo(p[0], p[1]);
     }
     ctx.closePath();
+    endShape(ctx, attribs);
+};
+
+const path = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    segments: any[]) => {
+    ctx.beginPath();
+    let a: ReadonlyVec = [0, 0];
+    for (let s of segments) {
+        let b = s[1], c, d;
+        switch (s[0]) {
+            case "m":
+                b = [a[0] + b[0], a[1] + b[1]];
+            case "M":
+                ctx.moveTo(b[0], b[1]);
+                a = b;
+                break;
+            case "l":
+                b = [a[0] + b[0], a[1] + b[1]];
+            case "L":
+                ctx.lineTo(b[0], b[1]);
+                a = b;
+                break;
+            case "h":
+                b = [a[0] + b, a[1]];
+                ctx.lineTo(b[0], b[1]);
+                a = b;
+                break;
+            case "H":
+                b = [b, a[1]];
+                ctx.lineTo(b[0], b[1]);
+                a = b;
+                break;
+            case "v":
+                b = [a[0], a[1] + b];
+                ctx.lineTo(b[0], b[1]);
+                a = b;
+                break;
+            case "V":
+                b = [a[0], b];
+                ctx.lineTo(b[0], b[1]);
+                a = b;
+                break;
+            case "c":
+                c = s[2];
+                d = s[3];
+                d = [a[0] + d[0], a[1] + d[1]];
+                ctx.bezierCurveTo(a[0] + b[0], a[1] + b[1], a[0] + c[0], a[1] + c[1], d[0], d[1]);
+                a = d;
+                break;
+            case "C":
+                c = s[2];
+                d = s[3];
+                ctx.bezierCurveTo(b[0], b[1], c[0], c[1], d[0], d[1]);
+                a = d;
+                break;
+            case "q":
+                c = s[2];
+                c = [a[0] + c[0], a[1] + c[1]];
+                ctx.quadraticCurveTo(a[0] + b[0], a[1] + b[1], c[0], c[1]);
+                a = c;
+                break;
+            case "Q":
+                c = s[2];
+                ctx.quadraticCurveTo(b[0], b[1], c[0], c[1]);
+                a = c;
+                break;
+            case "z":
+            case "Z":
+                ctx.closePath();
+        }
+    }
     endShape(ctx, attribs);
 };
 
