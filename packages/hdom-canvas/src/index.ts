@@ -1,25 +1,78 @@
+import { IObjectOf } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { HDOMImplementation } from "@thi.ng/hdom/api";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
+
+interface DrawState {
+    attribs: IObjectOf<any>;
+    edits?: string[];
+    restore?: boolean;
+}
+
+const DEFAULTS = {
+    align: "left",
+    alpha: 1,
+    baseLine: "alphabetic",
+    cap: "butt",
+    comp: "source-over",
+    dash: [],
+    dashOffset: 0,
+    direction: "inherit",
+    fill: "#000",
+    filter: "none",
+    font: "10px sans-serif",
+    lineJoin: "miter",
+    miterLimit: 10,
+    shadowBlur: 0,
+    shadowColor: "rgba(0,0,0,0)",
+    shadowX: 0,
+    shadowY: 0,
+    smooth: true,
+    stroke: "#000",
+};
+
+const CTX_ATTRIBS = {
+    align: "textAlign",
+    alpha: "globalAlpha",
+    baseLine: "textBaseline",
+    cap: "lineCap",
+    clip: "clip",
+    comp: "globalCompositeOperation",
+    dash: "setLineDash",
+    dashOffset: "lineDashOffset",
+    direction: "direction",
+    fill: "fillStyle",
+    filter: "filter",
+    font: "font",
+    lineJoin: "lineJoin",
+    miterLimit: "miterLimit",
+    shadowBlur: "shadowBlur",
+    shadowColor: "shadowColor",
+    shadowX: "shadowOffsetX",
+    shadowY: "shadowOffsetY",
+    smooth: "imageSmoothingEnabled",
+    stroke: "strokeStyle",
+    weight: "lineWidth",
+};
 
 export const canvas = (_, attribs, ...shapes: any[]) =>
     ["canvas", attribs,
         ["g", { __normalize: false, __diff: false, __impl: IMPL },
             ...shapes]];
 
-export const createTree = (element: HTMLCanvasElement, tree: any) => {
+export const drawTree = (element: HTMLCanvasElement, tree: any) => {
     const ctx = element.getContext("2d");
     ctx.clearRect(0, 0, element.width, element.height);
-    const shape = (s: any[]) => {
-        const attribs = s[1];
+    const shape = (s: any, pstate: DrawState) => {
+        if (!s) return;
+        const state = mergeState(ctx, pstate, s[1]);
+        const attribs = state ? state.attribs : pstate.attribs;
         switch (s[0]) {
             case "g":
-                const restore = beginShape(ctx, attribs);
-                for (let i = 2, n = s.length; i < n; i++) {
-                    shape(s[i]);
+                for (let i = 2, n = s.length, __state = state || pstate; i < n; i++) {
+                    shape(s[i], __state);
                 }
-                endShape(ctx, attribs, restore);
                 break;
             case "line":
                 line(ctx, attribs, s[2], s[3]);
@@ -52,103 +105,90 @@ export const createTree = (element: HTMLCanvasElement, tree: any) => {
                 image(ctx, attribs, s[2], s[3]);
             default:
         }
+        state && restoreState(ctx, pstate, state);
     };
-    shape(tree);
+    shape(tree, { attribs: {} });
     return null;
 };
 
-
-export const line = (ctx: CanvasRenderingContext2D, attribs: any, a: ReadonlyVec, b: ReadonlyVec) => {
-    const restore = beginShape(ctx, attribs);
-    ctx.beginPath();
-    ctx.moveTo(a[0], a[1]);
-    ctx.lineTo(b[0], b[1]);
-    endShape(ctx, attribs, restore);
+export const IMPL: HDOMImplementation<any> = {
+    createTree: drawTree,
 };
 
-export const polyline = (ctx: CanvasRenderingContext2D, attribs: any, pts: ReadonlyVec[]) => {
-    if (pts.length < 2) return;
+const mergeState = (ctx: CanvasRenderingContext2D,
+    state: DrawState,
+    attribs: IObjectOf<any>) => {
+
+    let res: DrawState;
+    if (!attribs) return;
+    if (applyTransform(ctx, attribs)) {
+        res = {
+            attribs: { ...state.attribs },
+            edits: [],
+            restore: true
+        };
+    }
+    for (let id in attribs) {
+        const k = CTX_ATTRIBS[id];
+        if (k) {
+            const v = attribs[id];
+            if (v != null && state.attribs[id] !== v) {
+                if (!res) {
+                    res = {
+                        attribs: { ...state.attribs },
+                        edits: []
+                    };
+                }
+                res.attribs[id] = v;
+                res.edits.push(id);
+                setAttrib(ctx, id, k, v);
+            }
+        }
+    }
+    return res;
+};
+
+const restoreState = (ctx: CanvasRenderingContext2D,
+    prev: DrawState,
+    curr: DrawState) => {
+
+    if (curr.restore) {
+        ctx.restore();
+        return;
+    }
+    const edits = curr.edits;
+    if (edits) {
+        for (let attribs = prev.attribs, i = edits.length - 1; i >= 0; i--) {
+            const id = edits[i];
+            const v = attribs[id];
+            setAttrib(ctx, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);
+        }
+    }
+};
+
+const setAttrib = (ctx: CanvasRenderingContext2D,
+    id: string,
+    k: string,
+    val: any) => {
+
+    switch (id) {
+        case "dash":
+            ctx[k].call(ctx, val);
+            break;
+        case "clip":
+            break;
+        default:
+            ctx[k] = val;
+    }
+};
+
+const applyTransform = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
     let v: any;
-    if ((v = attribs.stroke)) {
-        if (v === "none") return;
-        ctx.strokeStyle = v;
-    }
-    const restore = beginShape(ctx, attribs);
-    let p: ReadonlyVec = pts[0];
-    ctx.beginPath();
-    ctx.moveTo(p[0], p[1]);
-    for (let i = 1, n = pts.length; i < n; i++) {
-        p = pts[i];
-        ctx.lineTo(p[0], p[1]);
-    }
-    endShape(ctx, attribs, restore);
-};
+    if ((v = attribs.transform) ||
+        attribs.translate ||
+        attribs.scale != null ||
+        attribs.rotate != null) {
 
-export const polygon = (ctx: CanvasRenderingContext2D, attribs: any, pts: ReadonlyVec[]) => {
-    if (pts.length < 2) return;
-    let p: ReadonlyVec = pts[0];
-    const restore = beginShape(ctx, attribs);
-    ctx.beginPath();
-    ctx.moveTo(p[0], p[1]);
-    for (let i = 1, n = pts.length; i < n; i++) {
-        p = pts[i];
-        ctx.lineTo(p[0], p[1]);
-    }
-    ctx.closePath();
-    endShape(ctx, attribs, restore);
-};
-
-export const arc = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, r: number, start = 0, end = TAU, antiCCW = false) => {
-    const restore = beginShape(ctx, attribs);
-    ctx.beginPath();
-    ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
-    endShape(ctx, attribs, restore);
-};
-
-export const rect = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, w: number, h: number) => {
-    const restore = beginShape(ctx, attribs);
-    let v: any;
-    if ((v = attribs.fill) && v !== "none") {
-        ctx.fillStyle = v;
-        ctx.fillRect(pos[0], pos[1], w, h);
-    }
-    if ((v = attribs.stroke) && v !== "none") {
-        ctx.strokeStyle = v;
-        ctx.strokeRect(pos[0], pos[1], w, h);
-    }
-    restore && ctx.restore();
-};
-
-export const text = (ctx: CanvasRenderingContext2D, attribs: any, pos: ReadonlyVec, body: any) => {
-    const restore = beginShape(ctx, attribs);
-    let v: any;
-    (v = attribs.font) && (ctx.font = v);
-    (v = attribs.align) && (ctx.textAlign = v);
-    (v = attribs.baseLine) && (ctx.textBaseline = v);
-    if (attribs.fill && attribs.fill !== "none") {
-        ctx.fillStyle = attribs.fill;
-        ctx.fillText(body.toString(), pos[0], pos[1]);
-    }
-    if (attribs.stroke && attribs.stroke !== "none") {
-        ctx.strokeStyle = attribs.stroke;
-        ctx.strokeText(body.toString(), pos[0], pos[1]);
-    }
-    restore && ctx.restore();
-};
-
-export const image = (
-    ctx: CanvasRenderingContext2D,
-    attribs: any,
-    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap,
-    pos: ReadonlyVec) => {
-    const restore = beginShape(ctx, attribs);
-    ctx.drawImage(img, pos[0], pos[1]);
-    restore && ctx.restore();
-};
-
-const beginShape = (ctx: CanvasRenderingContext2D, attribs: any) => {
-    let v: any;
-    if ((v = attribs.transform) || attribs.translate || attribs.scale != null || attribs.rotate != null) {
         ctx.save();
         if (v) {
             ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
@@ -162,25 +202,113 @@ const beginShape = (ctx: CanvasRenderingContext2D, attribs: any) => {
     return false;
 };
 
-const endShape = (ctx: CanvasRenderingContext2D, attribs: any, restore: boolean) => {
+const endShape = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
-        ctx.fillStyle = v;
         ctx.fill();
     }
     if ((v = attribs.stroke) && v !== "none") {
-        ctx.strokeStyle = v;
         ctx.stroke();
     }
-    restore && ctx.restore();
 };
 
-export const IMPL: HDOMImplementation<any> = {
-    createTree,
-    getChild: null,
-    removeChild: null,
-    replaceChild: null,
-    setAttrib: null,
-    removeAttribs: null,
-    setContent: null,
+const line = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    a: ReadonlyVec,
+    b: ReadonlyVec) => {
+
+    if (attribs.stroke === "none") {
+        return;
+    }
+    ctx.beginPath();
+    ctx.moveTo(a[0], a[1]);
+    ctx.lineTo(b[0], b[1]);
+    ctx.stroke();
+};
+
+const polyline = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    pts: ReadonlyVec[]) => {
+
+    if (pts.length < 2) return;
+    let v: any;
+    if ((v = attribs.stroke)) {
+        if (v === "none") return;
+        // ctx.strokeStyle = v;
+    }
+    let p: ReadonlyVec = pts[0];
+    ctx.beginPath();
+    ctx.moveTo(p[0], p[1]);
+    for (let i = 1, n = pts.length; i < n; i++) {
+        p = pts[i];
+        ctx.lineTo(p[0], p[1]);
+    }
+    ctx.stroke();
+};
+
+const polygon = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    pts: ReadonlyVec[]) => {
+
+    if (pts.length < 2) return;
+    let p: ReadonlyVec = pts[0];
+    ctx.beginPath();
+    ctx.moveTo(p[0], p[1]);
+    for (let i = 1, n = pts.length; i < n; i++) {
+        p = pts[i];
+        ctx.lineTo(p[0], p[1]);
+    }
+    ctx.closePath();
+    endShape(ctx, attribs);
+};
+
+const arc = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    pos: ReadonlyVec,
+    r: number,
+    start = 0,
+    end = TAU,
+    antiCCW = false) => {
+
+    ctx.beginPath();
+    ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
+    endShape(ctx, attribs);
+};
+
+const rect = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    pos: ReadonlyVec,
+    w: number,
+    h: number) => {
+
+    let v: any;
+    if ((v = attribs.fill) && v !== "none") {
+        ctx.fillRect(pos[0], pos[1], w, h);
+    }
+    if ((v = attribs.stroke) && v !== "none") {
+        ctx.strokeRect(pos[0], pos[1], w, h);
+    }
+};
+
+const text = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    pos: ReadonlyVec,
+    body: any) => {
+
+    let v: any;
+    if ((v = attribs.fill) && v !== "none") {
+        ctx.fillText(body.toString(), pos[0], pos[1]);
+    }
+    if ((v = attribs.stroke) && v !== "none") {
+        ctx.strokeText(body.toString(), pos[0], pos[1]);
+    }
+};
+
+const image = (
+    ctx: CanvasRenderingContext2D,
+    _: IObjectOf<any>,
+    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap,
+    pos: ReadonlyVec) => {
+
+    ctx.drawImage(img, pos[0], pos[1]);
 };

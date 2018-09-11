@@ -28,6 +28,7 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
+        "@thi.ng/api": "^4.1.1",
         "@thi.ng/checks": "^1.5.8",
         "@thi.ng/hdom": "^4.0.5",
         "@thi.ng/vectors": "^1.1.0"
