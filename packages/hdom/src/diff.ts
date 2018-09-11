@@ -5,8 +5,9 @@ import { DiffLogEntry } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import { equiv } from "@thi.ng/equiv";
-
 import { HDOMImplementation } from "./api";
+import { normalizeTree } from "./normalize";
+
 import {
     createDOM,
     getChild,
@@ -23,6 +24,7 @@ const max = Math.max;
 
 const DEFAULT_IMPL: HDOMImplementation<any> = {
     createTree: createDOM,
+    normalizeTree,
     getChild,
     replaceChild,
     removeChild,

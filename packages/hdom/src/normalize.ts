@@ -113,8 +113,12 @@ export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, spa
         if (tree.length === 0) {
             return;
         }
+        let norm, nattribs = tree[1], impl;
+        // if available, use branch-local normalize implementation
+        if (nattribs && (impl = nattribs.__impl) && (impl = impl.normalizeTree)) {
+            return impl(tree, ctx, path, keys, span);
+        }
         const tag = tree[0];
-        let norm, nattribs;
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
         if (isFunction(tag)) {
