@@ -10,6 +10,7 @@ import { TAU } from "@thi.ng/vectors/math";
 
 interface DrawState {
     attribs: IObjectOf<any>;
+    grads?: IObjectOf<CanvasGradient>;
     edits?: string[];
     restore?: boolean;
 }
@@ -114,6 +115,12 @@ export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: 
                     walk(shape[i], __state);
                 }
                 break;
+            case "linearGradient":
+                defLinearGradient(ctx, pstate, shape[1], ...shape.slice(2));
+                break;
+            case "radialGradient":
+                defRadialGradient(ctx, pstate, shape[1], ...shape.slice(2));
+                break;
             case "line":
                 line(ctx, attribs, shape[2], shape[3]);
                 break;
@@ -201,6 +208,7 @@ const mergeState = (ctx: CanvasRenderingContext2D,
     if (applyTransform(ctx, attribs)) {
         res = {
             attribs: { ...state.attribs },
+            grads: { ...state.grads },
             edits: [],
             restore: true
         };
@@ -213,12 +221,13 @@ const mergeState = (ctx: CanvasRenderingContext2D,
                 if (!res) {
                     res = {
                         attribs: { ...state.attribs },
+                        grads: { ...state.grads },
                         edits: []
                     };
                 }
                 res.attribs[id] = v;
                 res.edits.push(id);
-                setAttrib(ctx, id, k, v);
+                setAttrib(ctx, state, id, k, v);
             }
         }
     }
@@ -238,17 +247,22 @@ const restoreState = (ctx: CanvasRenderingContext2D,
         for (let attribs = prev.attribs, i = edits.length - 1; i >= 0; i--) {
             const id = edits[i];
             const v = attribs[id];
-            setAttrib(ctx, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);
+            setAttrib(ctx, prev, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);
         }
     }
 };
 
 const setAttrib = (ctx: CanvasRenderingContext2D,
+    state: DrawState,
     id: string,
     k: string,
     val: any) => {
 
     switch (id) {
+        case "fill":
+        case "stroke":
+            ctx[k] = val[0] == "$" ? state.grads[val.substr(1)] : val;
+            break;
         case "dash":
             ctx[k].call(ctx, val);
             break;
@@ -287,6 +301,24 @@ const endShape = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
     if ((v = attribs.stroke) && v !== "none") {
         ctx.stroke();
     }
+};
+
+const defLinearGradient = (ctx: CanvasRenderingContext2D, state: DrawState, { id, from, to }: any, ...stops: any[][]) => {
+    const g = ctx.createLinearGradient(from[0], from[1], to[0], to[1]);
+    for (let s of stops) {
+        g.addColorStop(s[0], s[1]);
+    }
+    !state.grads && (state.grads = {});
+    state.grads[id] = g;
+};
+
+const defRadialGradient = (ctx: CanvasRenderingContext2D, state: DrawState, { id, from, to, r1, r2 }: any, ...stops: any[][]) => {
+    const g = ctx.createRadialGradient(from[0], from[1], r1, to[0], to[1], r2);
+    for (let s of stops) {
+        g.addColorStop(s[0], s[1]);
+    }
+    !state.grads && (state.grads = {});
+    state.grads[id] = g;
 };
 
 const line = (ctx: CanvasRenderingContext2D,
