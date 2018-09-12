@@ -58,22 +58,21 @@ const TESTS = {
                     stroke: "#00f",
                     align: "center",
                     baseLine: "middle",
-                    font: "48px Menlo"
+                    font: "48px Menlo",
+                    __normalize: false
                 },
                 ...map((i) => ["rect", {}, [i, i], 300 - 2 * i, 300 - 2 * i, r], range(10, 50, 5)),
-                ["text", {},
-                    [150, 150], Math.round(r)]
+                ["text", {}, [150, 150], Math.round(r)]
             ];
         },
 
     "linear gradient":
-        () =>
-            ["g", {},
-                ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] }, [0, "#fc0"], [1, "#0ef"]],
-                ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 0] }, [0, "#700"], [0.5, "#d0f"], [1, "#fff"]],
-                ["circle", { fill: "$grad1" }, [150, 150], 140],
-                ["rect", { fill: "$grad2" }, [0, 250], 300, 50]
-            ],
+        () => [
+            ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] }, [0, "#fc0"], [1, "#0ef"]],
+            ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 0] }, [0, "#700"], [0.5, "#d0f"], [1, "#fff"]],
+            ["circle", { fill: "$grad1" }, [150, 150], 140],
+            ["rect", { fill: "$grad2" }, [0, 250], 300, 50]
+        ],
 
     "radial gradient":
         () => {
@@ -81,9 +80,11 @@ const TESTS = {
             const x = 50 * Math.sin(t * 0.5);
             const y = 20 * Math.sin(t * 0.3);
             const spos = [110, 120];
-            return ["g", {},
-                ["radialGradient", { id: "bg", from: [150 + x, 280], to: [150, 300], r1: 300, r2: 100 }, [1, "#af0"], [0.8, "#efe"], [0.5, "#0ef"], [0, "#07f"]],
-                ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 }, [0, "#fff"], [1, "rgba(255,255,192,0)"]],
+            return [
+                ["radialGradient", { id: "bg", from: [150 + x, 280], to: [150, 300], r1: 300, r2: 100 },
+                    [0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]],
+                ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
+                    [0, "#fff"], [1, "rgba(255,255,192,0)"]],
                 ["circle", { fill: "$bg" }, [150, 150 + y], 130],
                 ["circle", { fill: "$sun" }, spos, 50],
             ];
