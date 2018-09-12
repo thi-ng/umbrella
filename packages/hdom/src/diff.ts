@@ -191,6 +191,9 @@ const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: 
 
 const releaseDeep = (tag: any) => {
     if (isArray(tag)) {
+        if (tag[1] && tag[1].__release === false) {
+            return;
+        }
         if ((<any>tag).__release) {
             // DEBUG && console.log("call __release", tag);
             (<any>tag).__release.apply(tag, (<any>tag).__args);
