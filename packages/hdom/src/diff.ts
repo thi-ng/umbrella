@@ -5,38 +5,17 @@ import { DiffLogEntry } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import { equiv } from "@thi.ng/equiv";
-import { HDOMImplementation } from "./api";
-import { normalizeTree } from "./normalize";
-
-import {
-    createDOM,
-    getChild,
-    removeAttribs,
-    removeChild,
-    replaceChild,
-    setAttrib,
-    setContent,
-} from "./dom";
+import { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa.isArray;
 const isString = iss.isString;
 const max = Math.max;
 
-const DEFAULT_IMPL: HDOMImplementation<any> = {
-    createTree: createDOM,
-    normalizeTree,
-    getChild,
-    replaceChild,
-    removeChild,
-    setContent,
-    removeAttribs,
-    setAttrib,
-};
-
 /**
- * Takes a DOM root element and two hiccup trees, `prev` and `curr`.
- * Recursively computes diff between both trees and applies any
- * necessary changes to reflect `curr` tree in real DOM.
+ * Takes a DOM root element and two normalized hiccup trees, `prev` and
+ * `curr`. Recursively computes diff between both trees and applies any
+ * necessary changes to reflect `curr` tree in target (browser DOM by
+ * default).
  *
  * For newly added components, calls `init` with created DOM element
  * (plus user provided context and any other args) for any components
@@ -48,19 +27,15 @@ const DEFAULT_IMPL: HDOMImplementation<any> = {
  * track the real DOM at all, the resulting changes will result in
  * potentially undefined behavior if there're discrepancies.
  *
- * @param root
+ * @param opts
+ * @param impl hdom implementation
+ * @param parent
  * @param prev previous tree
  * @param curr current tree
- * @param impl hdom implementation
+ * @param child child index
  */
-export const diffElement = <T>(
-    root: T,
-    prev: any[],
-    curr: any[],
-    impl: HDOMImplementation<T> = DEFAULT_IMPL) =>
-    _diffElement(impl, root, prev, curr, 0);
-
-const _diffElement = <T>(
+export const diffTree = <T>(
+    opts: Partial<HDOMOpts>,
     impl: HDOMImplementation<T>,
     parent: T,
     prev: any[],
@@ -69,7 +44,7 @@ const _diffElement = <T>(
 
     if (curr[1].__diff === false) {
         releaseDeep(prev);
-        impl.replaceChild(parent, child, curr);
+        impl.replaceChild(opts, parent, child, curr);
         return;
     }
     // TODO use optimized equiv?
@@ -90,7 +65,7 @@ const _diffElement = <T>(
     if (edits[0][0] !== 0 || prev[1].key !== curr[1].key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
-        impl.replaceChild(parent, child, curr);
+        impl.replaceChild(opts, parent, child, curr);
         return;
     }
     if ((val = (<any>prev).__release) && val !== (<any>curr).__release) {
@@ -121,7 +96,7 @@ const _diffElement = <T>(
                     eq = equivKeys[k];
                     k = eq[0];
                     // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
-                    _diffElement(impl, el, prev[k], curr[eq[2]], offsets[k]);
+                    diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
                     idx = e[1];
                     // DEBUG && console.log("remove @", offsets[idx], val);
@@ -144,7 +119,7 @@ const _diffElement = <T>(
                 if (k === undefined || (k && equivKeys[k][0] === undefined)) {
                     idx = e[1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
-                    impl.createTree(el, val, offsets[idx]);
+                    impl.createTree(opts, el, val, offsets[idx]);
                     for (j = prevLength; j >= idx; j--) {
                         offsets[j]++;
                     }

@@ -6,6 +6,7 @@ import * as iso from "@thi.ng/checks/is-plain-object";
 import * as iss from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup/api";
+import { HDOMOpts } from "./api";
 
 const isArray = isa.isArray;
 const isFunction = isf.isFunction;
@@ -66,7 +67,7 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
 
 /**
  * Calling this function is a prerequisite before passing a component
- * tree to `diffElement`. Recursively expands given hiccup component
+ * tree to `diffTree`. Recursively expands given hiccup component
  * tree into its canonical form by:
  *
  * - resolving Emmet-style tags (e.g. from `div#id.foo.bar`)
@@ -83,7 +84,7 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
  *
  * Additionally, unless `keys` is set to false, an unique `key`
  * attribute is created for each node in the tree. This attribute is
- * used by `diffElement` to determine if a changed node can be patched
+ * used by `diffTree` to determine if a changed node can be patched
  * or will need to be replaced/removed. The `key` values are defined by
  * the `path` array arg.
  *
@@ -100,12 +101,12 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
  * See `normalizeElement` for further details about canonical form.
  *
  * @param tree
- * @param ctx
- * @param path
- * @param keys
- * @param span
+ * @param opts
  */
-export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, span = true) => {
+export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
+    _normalizeTree(tree, opts, opts.ctx, [0], opts.keys !== false, opts.span !== false);
+
+const _normalizeTree = (tree: any, opts: Partial<HDOMOpts>, ctx: any, path: number[], keys: boolean, span: boolean) => {
     if (tree == null) {
         return;
     }
@@ -116,19 +117,19 @@ export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, spa
         let norm, nattribs = tree[1], impl;
         // if available, use branch-local normalize implementation
         if (nattribs && (impl = nattribs.__impl) && (impl = impl.normalizeTree)) {
-            return impl(tree, ctx, path, keys, span);
+            return impl(opts, tree);
         }
         const tag = tree[0];
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
         if (isFunction(tag)) {
-            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, path, keys, span);
+            return _normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), opts, ctx, path, keys, span);
         }
         // component object w/ life cycle methods
         // (render() is the only required hook)
         if (implementsFunction(tag, "render")) {
             const args = [ctx, ...tree.slice(1)];
-            norm = normalizeTree(tag.render.apply(tag, args), ctx, path, keys, span);
+            norm = _normalizeTree(tag.render.apply(tag, args), opts, ctx, path, keys, span);
             if (isArray(norm)) {
                 (<any>norm).__this = tag;
                 (<any>norm).__init = tag.init;
@@ -155,14 +156,14 @@ export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, spa
                     const isarray = isArray(el);
                     if ((isarray && isArray(el[0])) || (!isarray && !isString(el) && isIterable(el))) {
                         for (let c of el) {
-                            c = normalizeTree(c, ctx, path.concat(k), keys, span);
+                            c = _normalizeTree(c, opts, ctx, path.concat(k), keys, span);
                             if (c !== undefined) {
                                 res[j++] = c;
                             }
                             k++;
                         }
                     } else {
-                        el = normalizeTree(el, ctx, path.concat(k), keys, span);
+                        el = _normalizeTree(el, opts, ctx, path.concat(k), keys, span);
                         if (el !== undefined) {
                             res[j++] = el;
                         }
@@ -175,10 +176,10 @@ export const normalizeTree = (tree: any, ctx?: any, path = [0], keys = true, spa
         return norm;
     }
     if (isFunction(tree)) {
-        return normalizeTree(tree(ctx), ctx, path, keys, span);
+        return _normalizeTree(tree(ctx), opts, ctx, path, keys, span);
     }
     if (implementsFunction(tree, "deref")) {
-        return normalizeTree(tree.deref(), ctx, path, keys, span);
+        return _normalizeTree(tree.deref(), opts, ctx, path, keys, span);
     }
     return span ?
         ["span", keys ? { key: path.join("-") } : {}, tree.toString()] :
