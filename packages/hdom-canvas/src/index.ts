@@ -60,9 +60,40 @@ const CTX_ATTRIBS = {
     weight: "lineWidth",
 };
 
+/**
+ * Special HTML5 canvas component which injects branch-local hdom
+ * implementation for virtual SVG-like shape components/elements, which
+ * are translated into canvas draw commands.
+ *
+ * Shape components are expressed in standard hiccup syntax, however
+ * with the following restrictions:
+ *
+ * - component objects with life cycle methods are only partially
+ *   supported (i.e. only `render` is used)
+ * - currently no event listeners can be assigned to shapes (ignored),
+ *   though this is planned for a future version
+ *
+ * All embedded component functions receive the user context object just
+ * like normal hdom components.
+ *
+ * For best performance, it's recommended to ensure all resulting shapes
+ * elements are provided in already normalized hiccup format (i.e.
+ * `[tag, {attribs}, ...]`). That way the `__normalize: false` control
+ * attribute can be added either to the canvas component itself (or to
+ * individual shapes / groups), and if present, will disable
+ * normalization of all children.
+ *
+ * @param _ hdom user context
+ * @param attribs canvas attribs
+ * @param shapes shape components
+ */
 export const canvas = (_, attribs, ...shapes: any[]) =>
-    ["canvas", { __diff: false, __release: false, ...attribs },
-        ["g", { __impl: IMPL }, ...shapes]];
+    ["canvas", attribs,
+        ["g", {
+            __release: false,
+            __diff: false,
+            __impl: IMPL
+        }, ...shapes]];
 
 export const drawTree = (canvas: HTMLCanvasElement, tree: any) => {
     const ctx = canvas.getContext("2d");
