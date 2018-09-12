@@ -1,14 +1,14 @@
 import * as isa from "@thi.ng/checks/is-array";
 import * as isf from "@thi.ng/checks/is-function";
-import * as isi from "@thi.ng/checks/is-iterable";
+import * as isi from "@thi.ng/checks/is-not-string-iterable";
 import * as iss from "@thi.ng/checks/is-string";
 import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
-import { HDOMImplementation } from "./api";
+import { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa.isArray;
 const isFunction = isf.isFunction;
-const isIterable = isi.isIterable
+const isNotStringAndIterable = isi.isNotStringAndIterable
 const isString = iss.isString;
 
 /**
@@ -21,42 +21,43 @@ const isString = iss.isString;
  * `null` or `undefined`.
  *
  * @param parent
- * @param tag
+ * @param tree
  * @param insert
  */
-export const createDOM = (parent: Element, tag: any, insert?: number) => {
-    if (isArray(tag)) {
-        const t = tag[0];
-        if (isFunction(t)) {
-            return createDOM(parent, t.apply(null, tag.slice(1)));
+export const createDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, insert?: number) => {
+    if (isArray(tree)) {
+        const tag = tree[0];
+        if (isFunction(tag)) {
+            return createDOM(opts, parent, tag.apply(null, [opts.ctx, ...tree.slice(1)]), insert);
         }
-        const attribs = tag[1];
+        const attribs = tree[1];
         if (attribs.__impl) {
-            return (<HDOMImplementation<any>>attribs.__impl).createTree(parent, tag, insert);
+            return (<HDOMImplementation<any>>attribs.__impl).createTree(opts, parent, tree, insert);
         }
-        const el = createElement(parent, t, attribs, insert);
-        if ((<any>tag).__init) {
-            (<any>tag).__init.apply((<any>tag).__this, [el, ...(<any>tag).__args]);
+        const el = createElement(parent, tag, attribs, insert);
+        if ((<any>tree).__init) {
+            // TODO hdom ctx?
+            (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
         }
-        if (tag[2]) {
-            const n = tag.length;
+        if (tree.length > 2) {
+            const n = tree.length;
             for (let i = 2; i < n; i++) {
-                createDOM(el, tag[i]);
+                createDOM(opts, el, tree[i]);
             }
         }
         return el;
     }
-    if (!isString(tag) && isIterable(tag)) {
+    if (isNotStringAndIterable(tree)) {
         const res = [];
-        for (let t of tag) {
-            res.push(createDOM(parent, t));
+        for (let t of tree) {
+            res.push(createDOM(opts, parent, t));
         }
         return res;
     }
-    if (tag == null) {
+    if (tree == null) {
         return parent;
     }
-    return createTextElement(parent, tag);
+    return createTextElement(parent, tree);
 };
 
 /**
@@ -71,13 +72,18 @@ export const createDOM = (parent: Element, tag: any, insert?: number) => {
  * @param tree
  * @param i
  */
-export const hydrateDOM = (parent: Element, tree: any, i = 0) => {
+export const hydrateDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, i = 0) => {
     if (isArray(tree)) {
         const el = parent.children[i];
         if (isFunction(tree[0])) {
-            hydrateDOM(parent, tree[0].apply(null, tree.slice(1)), i);
+            hydrateDOM(opts, parent, tree[0].apply(null, [opts.ctx, ...tree.slice(1)]), i);
+        }
+        const attribs = tree[1];
+        if (attribs.__impl) {
+            return (<HDOMImplementation<any>>attribs.__impl).hydrateTree(opts, parent, tree, i);
         }
         if ((<any>tree).__init) {
+            // TODO hdom ctx?
             (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
         }
         const attr = tree[1];
@@ -87,11 +93,11 @@ export const hydrateDOM = (parent: Element, tree: any, i = 0) => {
             }
         }
         for (let n = tree.length, i = 2; i < n; i++) {
-            hydrateDOM(el, tree[i], i - 2);
+            hydrateDOM(opts, el, tree[i], i - 2);
         }
-    } else if (!isString(tree) && isIterable(tree)) {
+    } else if (!isNotStringAndIterable(tree)) {
         for (let t of tree) {
-            hydrateDOM(parent, t, i);
+            hydrateDOM(opts, parent, t, i);
             i++;
         }
     }
@@ -102,7 +108,7 @@ export const createElement = (parent: Element, tag: string, attribs?: any, inser
         document.createElementNS(SVG_NS, tag) :
         document.createElement(tag);
     if (parent) {
-        if (insert === undefined) {
+        if (insert == null) {
             parent.appendChild(el);
         } else {
             parent.insertBefore(el, parent.children[insert]);
@@ -129,9 +135,9 @@ export const createTextElement = (parent: Element, content: string, insert?: num
 export const getChild = (parent: Element, child: number) =>
     parent.children[child];
 
-export const replaceChild = (parent: Element, child: number, tree: any) => {
+export const replaceChild = (opts: Partial<HDOMOpts>, parent: Element, child: number, tree: any) => {
     removeChild(parent, child);
-    createDOM(parent, tree, child);
+    createDOM(opts, parent, tree, child);
 };
 
 export const cloneWithNewAttribs = (el: Element, attribs: any) => {
