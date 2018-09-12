@@ -61,79 +61,102 @@ const CTX_ATTRIBS = {
 };
 
 export const canvas = (_, attribs, ...shapes: any[]) =>
-    ["canvas", attribs,
-        ["g", { __normalize: false, __diff: false, __impl: IMPL },
-            ...shapes]];
+    ["canvas", { __diff: false, __release: false, ...attribs },
+        ["g", { __impl: IMPL }, ...shapes]];
 
-export const drawTree = (element: HTMLCanvasElement, tree: any) => {
-    const ctx = element.getContext("2d");
-    ctx.clearRect(0, 0, element.width, element.height);
-    const shape = (s: any, pstate: DrawState) => {
-        if (!s) return;
-        if (isArray(s)) {
-            if (isFunction(s[0])) {
-                // FIXME where to get hdom ctx from?
-                return shape(s[0](null, ...s.slice(1)), pstate);
-            }
-            const state = mergeState(ctx, pstate, s[1]);
-            const attribs = state ? state.attribs : pstate.attribs;
-            switch (s[0]) {
-                case "g":
-                    for (let i = 2, n = s.length, __state = state || pstate; i < n; i++) {
-                        shape(s[i], __state);
-                    }
-                    break;
-                case "line":
-                    line(ctx, attribs, s[2], s[3]);
-                    break;
-                case "hline":
-                    line(ctx, attribs, [0, s[2]], [element.width, s[2]]);
-                    break;
-                case "vline":
-                    line(ctx, attribs, [s[2], 0], [s[2], element.height]);
-                    break;
-                case "polyline":
-                    polyline(ctx, attribs, s[2]);
-                    break;
-                case "polygon":
-                    polygon(ctx, attribs, s[2]);
-                    break;
-                case "path":
-                    path(ctx, attribs, s[2]);
-                    break;
-                case "rect":
-                    rect(ctx, attribs, s[2], s[3], s[4]);
-                    break;
-                case "circle":
-                    arc(ctx, attribs, s[2], s[3]);
-                    break;
-                case "arc":
-                    arc(ctx, attribs, s[2], s[3], s[4], s[5]);
-                    break;
-                case "text":
-                    text(ctx, attribs, s[2], s[3]);
-                    break;
-                case "img":
-                    image(ctx, attribs, s[2], s[3]);
-                default:
-            }
-            state && restoreState(ctx, pstate, state);
-            return;
-        } else if (isFunction(s)) {
-            return shape(s(element, ctx), pstate);
-        } else if (!isString(s) && isIterable(s)) {
-            for (let ss of s) {
-                shape(ss, pstate);
+export const drawTree = (canvas: HTMLCanvasElement, tree: any) => {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const walk = (shape: any, pstate: DrawState) => {
+        if (!shape) return;
+        if (isArray(shape[0])) {
+            for (let s of shape) {
+                walk(s, pstate);
             }
             return;
         }
+        const state = mergeState(ctx, pstate, shape[1]);
+        const attribs = state ? state.attribs : pstate.attribs;
+        switch (shape[0]) {
+            case "g":
+                for (let i = 2, n = shape.length, __state = state || pstate; i < n; i++) {
+                    walk(shape[i], __state);
+                }
+                break;
+            case "line":
+                line(ctx, attribs, shape[2], shape[3]);
+                break;
+            case "hline":
+                line(ctx, attribs, [0, shape[2]], [canvas.width, shape[2]]);
+                break;
+            case "vline":
+                line(ctx, attribs, [shape[2], 0], [shape[2], canvas.height]);
+                break;
+            case "polyline":
+                polyline(ctx, attribs, shape[2]);
+                break;
+            case "polygon":
+                polygon(ctx, attribs, shape[2]);
+                break;
+            case "path":
+                path(ctx, attribs, shape[2]);
+                break;
+            case "rect":
+                rect(ctx, attribs, shape[2], shape[3], shape[4]);
+                break;
+            case "circle":
+                arc(ctx, attribs, shape[2], shape[3]);
+                break;
+            case "arc":
+                arc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+                break;
+            case "text":
+                text(ctx, attribs, shape[2], shape[3]);
+                break;
+            case "img":
+                image(ctx, attribs, shape[2], shape[3]);
+            default:
+        }
+        state && restoreState(ctx, pstate, state);
     };
-    shape(tree, { attribs: {} });
+    walk(tree, { attribs: {} });
     return null;
+};
+
+export const normalizeTree = (tree: any, ctx?: any) => {
+    if (isArray(tree)) {
+        const tag = tree[0];
+        if (isFunction(tag)) {
+            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx);
+        }
+        if (isString(tag)) {
+            const attribs = tree[1];
+            if (attribs && attribs.__normalize === false) {
+                return tree;
+            }
+            const res = [tree[0], attribs]
+            for (let i = 2, n = tree.length; i < n; i++) {
+                const n = normalizeTree(tree[i], ctx);
+                n != null && res.push(n);
+            }
+            return res;
+        }
+    } else if (isFunction(tree)) {
+        return normalizeTree(tree(ctx), ctx);
+    } else if (!isString(tree) && isIterable(tree)) {
+        const res = [];
+        for (let t of tree) {
+            const n = normalizeTree(t, ctx);
+            n != null && res.push(n);
+        }
+        return res;
+    }
+    return tree;
 };
 
 export const IMPL: HDOMImplementation<any> = {
     createTree: drawTree,
+    normalizeTree,
 };
 
 const mergeState = (ctx: CanvasRenderingContext2D,
