@@ -2,9 +2,9 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isFunction } from "@thi.ng/checks/is-function";
-import { isIterable } from "@thi.ng/checks/is-iterable";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isString } from "@thi.ng/checks/is-string";
-import { HDOMImplementation } from "@thi.ng/hdom/api";
+import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
@@ -80,10 +80,10 @@ const CTX_ATTRIBS = {
  * elements are provided in already normalized hiccup format (i.e.
  * `[tag, {attribs}, ...]`). That way the `__normalize: false` control
  * attribute can be added either to the canvas component itself (or to
- * individual shapes / groups), and if present, will disable
- * normalization of all children.
+ * individual shapes / groups), and if present, will skip normalization
+ * of all children.
  *
- * @param _ hdom user context
+ * @param _ hdom user context (ignored)
  * @param attribs canvas attribs
  * @param shapes shape components
  */
@@ -95,10 +95,10 @@ export const canvas = (_, attribs, ...shapes: any[]) =>
             __impl: IMPL
         }, ...shapes]];
 
-export const drawTree = (canvas: HTMLCanvasElement, tree: any) => {
+export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const walk = (shape: any, pstate: DrawState) => {
+    const walk = (shape: any[], pstate: DrawState) => {
         if (!shape) return;
         if (isArray(shape[0])) {
             for (let s of shape) {
@@ -154,11 +154,11 @@ export const drawTree = (canvas: HTMLCanvasElement, tree: any) => {
     return null;
 };
 
-export const normalizeTree = (tree: any, ctx?: any) => {
+export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
     if (isArray(tree)) {
         const tag = tree[0];
         if (isFunction(tag)) {
-            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx);
+            return normalizeTree(opts, tag.apply(null, [opts.ctx, ...tree.slice(1)]));
         }
         if (isString(tag)) {
             const attribs = tree[1];
@@ -167,17 +167,17 @@ export const normalizeTree = (tree: any, ctx?: any) => {
             }
             const res = [tree[0], attribs]
             for (let i = 2, n = tree.length; i < n; i++) {
-                const n = normalizeTree(tree[i], ctx);
+                const n = normalizeTree(opts, tree[i]);
                 n != null && res.push(n);
             }
             return res;
         }
     } else if (isFunction(tree)) {
-        return normalizeTree(tree(ctx), ctx);
-    } else if (!isString(tree) && isIterable(tree)) {
+        return normalizeTree(opts, tree(opts.ctx));
+    } else if (isNotStringAndIterable(tree)) {
         const res = [];
         for (let t of tree) {
-            const n = normalizeTree(t, ctx);
+            const n = normalizeTree(opts, t);
             n != null && res.push(n);
         }
         return res;
@@ -188,6 +188,8 @@ export const normalizeTree = (tree: any, ctx?: any) => {
 export const IMPL: HDOMImplementation<any> = {
     createTree: drawTree,
     normalizeTree,
+    hydrateTree: () => { },
+    diffTree: () => { },
 };
 
 const mergeState = (ctx: CanvasRenderingContext2D,
