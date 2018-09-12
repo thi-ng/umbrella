@@ -5,8 +5,9 @@ import { DiffLogEntry } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import { equiv } from "@thi.ng/equiv";
-
 import { HDOMImplementation } from "./api";
+import { normalizeTree } from "./normalize";
+
 import {
     createDOM,
     getChild,
@@ -23,6 +24,7 @@ const max = Math.max;
 
 const DEFAULT_IMPL: HDOMImplementation<any> = {
     createTree: createDOM,
+    normalizeTree,
     getChild,
     replaceChild,
     removeChild,
@@ -189,6 +191,9 @@ const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: 
 
 const releaseDeep = (tag: any) => {
     if (isArray(tag)) {
+        if (tag[1] && tag[1].__release === false) {
+            return;
+        }
         if ((<any>tag).__release) {
             // DEBUG && console.log("call __release", tag);
             (<any>tag).__release.apply(tag, (<any>tag).__args);

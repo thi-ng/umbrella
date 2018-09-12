@@ -27,6 +27,12 @@ export interface HDOMOpts {
      */
     ctx?: any;
     /**
+     * If true (default), each elements will receive an auto-generated
+     * `key` attribute (unless one already exists).
+     */
+    // FIXME add/create NormalizeOpts?
+    // keys?: boolean;
+    /**
      * If true (default), all text content will be wrapped in `<span>`
      * elements. Spans will never be created inside <option>, <textarea>
      * or <text> elements.
@@ -66,6 +72,23 @@ export interface HDOMOpts {
  * custom operations.
  */
 export interface HDOMImplementation<T> {
+    /**
+     * Normalizes given hdom tree, expands Emmet-style tags, embedded
+     * iterables, component functions, component objects with life cycle
+     * methods and injects `key` attributes for `diffElement()` to later
+     * identify changes in nesting order. During normalization any
+     * embedded component functions are called with the given (optional)
+     * user `ctx` object as first argument. For further details of the
+     * default implementation, please see `normalizeTree()` in
+     * `normalize.ts`.
+     *
+     * @param tree
+     * @param ctx
+     * @param path
+     * @param keys
+     * @param span
+     */
+    normalizeTree(tree: any, ctx?: any, path?: number[], keys?: boolean, span?: boolean): any[];
     /**
      * Realizes the given hdom tree in the target below the `parent`
      * node, e.g. in the case of the browser DOM, creates all required
