@@ -133,7 +133,7 @@ export const drawTree = (canvas: HTMLCanvasElement, tree: any) => {
                 path(ctx, attribs, shape[2]);
                 break;
             case "rect":
-                rect(ctx, attribs, shape[2], shape[3], shape[4]);
+                rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
                 break;
             case "circle":
                 arc(ctx, attribs, shape[2], shape[3]);
@@ -426,9 +426,21 @@ const rect = (ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pos: ReadonlyVec,
     w: number,
-    h: number) => {
+    h: number,
+    r = 0) => {
 
     let v: any;
+    if (r > 0) {
+        r = Math.min(Math.min(w, h) / 2, r);
+        w -= 2 * r;
+        h -= 2 * r;
+        return path(ctx, attribs, [
+            ["M", [pos[0] + r, pos[1]]], ["h", w], ["q", [r, 0], [r, r]],
+            ["v", h], ["q", [0, r], [-r, r]],
+            ["h", -w], ["q", [-r, 0], [-r, -r]],
+            ["v", -h], ["q", [0, -r], [r, -r]]]
+        );
+    }
     if ((v = attribs.fill) && v !== "none") {
         ctx.fillRect(pos[0], pos[1], w, h);
     }
