@@ -46,7 +46,13 @@ const cancel = start(() => {
             //
             // see here for a list of all supported attribs:
             // https://github.com/thi-ng/umbrella/blob/feature/hdom-canvas/packages/hdom-canvas/src/index.ts#L35
-            ["g", { translate: [100, 100], stroke: "black", fill: "none", align: "center", baseLine: "middle" },
+            ["g",
+                {
+                    translate: [100, 100],
+                    stroke: "black", fill: "none",
+                    align: "center", baseLine: "middle",
+                    __normalize: false
+                },
                 // rim
                 ["circle", {}, [0, 0], 99],
                 ["text", { font: "24px Menlo" }, [0, -33], "thi.ng"],
