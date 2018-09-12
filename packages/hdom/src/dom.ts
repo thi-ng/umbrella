@@ -95,7 +95,7 @@ export const hydrateDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, 
         for (let n = tree.length, i = 2; i < n; i++) {
             hydrateDOM(opts, el, tree[i], i - 2);
         }
-    } else if (!isNotStringAndIterable(tree)) {
+    } else if (isNotStringAndIterable(tree)) {
         for (let t of tree) {
             hydrateDOM(opts, parent, t, i);
             i++;
