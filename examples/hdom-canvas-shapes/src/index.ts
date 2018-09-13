@@ -4,7 +4,6 @@ import { stream } from "@thi.ng/rstream/stream";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-// import { peek } from "@thi.ng/transducers/func/peek";
 import { range } from "@thi.ng/transducers/iter/range";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { benchmark } from "@thi.ng/transducers/xform/benchmark";
@@ -59,7 +58,7 @@ const TESTS = {
         }
     },
 
-    "points (1k)": {
+    "points 1k": {
         attribs: {},
         body: () =>
             ["points",
@@ -71,7 +70,7 @@ const TESTS = {
                 [...repeatedly(randpos, 1000)]],
     },
 
-    "points (10k)": {
+    "points 10k": {
         attribs: {},
         body: () =>
             ["points",
@@ -83,7 +82,7 @@ const TESTS = {
                 [...repeatedly(randpos, 10000)]],
     },
 
-    "points (50k)": {
+    "points 50k": {
         attribs: {},
         body: () =>
             ["points",
@@ -178,15 +177,21 @@ const choices = (_, id) =>
     [dropdown,
         {
             class: "w4 ma2",
-            onchange: (e) => sel.next(e.target.value)
+            onchange: (e) => {
+                window.location.hash = e.target.value.replace(" ", "-");
+                sel.next(e.target.value);
+            }
         },
         Object.keys(TESTS).map((k) => [k, k]),
         id];
 
 
 const sel = stream<string>();
-sel.next("shape morph");
-// sel.next(peek(Object.keys(TESTS)));
+sel.next(
+    window.location.hash.length > 1 ?
+        window.location.hash.substr(1).replace("-", " ") :
+        "shape morph"
+);
 
 const main = sync({
     src: { id: sel, time: fromRAF() }
