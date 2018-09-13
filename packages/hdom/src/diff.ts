@@ -137,7 +137,7 @@ export const diffTree = <T>(
 
 const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
     let i, e, edits;
-    const delta = diffObject(prev, curr);
+    const delta = diffObject(prev, curr, equiv);
     impl.removeAttribs(el, delta.dels, prev);
     let value = SEMAPHORE;
     for (edits = delta.edits, i = edits.length; --i >= 0;) {
@@ -201,7 +201,7 @@ const extractEquivElements = (edits: DiffLogEntry<any>[]) => {
 
 const OBJP = Object.getPrototypeOf({});
 
-const equiv = (a, b): boolean => {
+const equiv = (a: any, b: any): boolean => {
     let proto;
     if (a === b) {
         return true;
@@ -225,11 +225,9 @@ const equiv = (a, b): boolean => {
     }
     if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
         (proto = Object.getPrototypeOf(b), proto == null || proto === OBJP)) {
-        // if (a["__diff"] === false || b["__diff"] === false) {
-        if ((<any>a).__diff === false || (<any>b).__diff === false) {
-            return false;
-        }
-        return equivObject(a, b, equiv);
+        return ((<any>a).__diff !== false && (<any>b).__diff !== false) ?
+            equivObject(a, b, equiv) :
+            false;
     }
     if (typeof a !== "function" && a.length !== undefined &&
         typeof b !== "function" && b.length !== undefined) {
