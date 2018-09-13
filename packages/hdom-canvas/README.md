@@ -55,7 +55,10 @@ yarn add @thi.ng/hdom-canvas
 
 ## Usage examples
 
-Please see the [hdom-canvas-clock]() example for reference.
+Please see these example projects for reference:
+
+- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock)
+- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes)
 
 ```ts
 import { start } from "@thi.ng/hdom";
