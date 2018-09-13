@@ -152,21 +152,23 @@ const TESTS = {
         body: (() => {
             const img = new Image();
             img.src = logo;
-            const pos = [...repeatedly(randpos, 10)];
-            const vel = [...repeatedly(() => randdir(4), 10)];
             const w = 300 - 64;
-            return () =>
-                pos.map((p, i) => {
-                    let x = p[0] + vel[i][0];
-                    let y = p[1] + vel[i][1];
-                    (x < 0) && (x *= -1, vel[i][0] *= -1);
-                    (y < 0) && (y *= -1, vel[i][1] *= -1);
-                    (x > w) && (x = w - (x - w), vel[i][0] *= -1);
-                    (y > w) && (y = w - (y - w), vel[i][1] *= -1);
+            const ball = () => {
+                const p = randpos();
+                const v = randdir(4);
+                return () => {
+                    let x = p[0] + v[0];
+                    let y = p[1] + v[1];
+                    (x < 0) && (x *= -1, v[0] *= -1);
+                    (y < 0) && (y *= -1, v[1] *= -1);
+                    (x > w) && (x = w - (x - w), v[0] *= -1);
+                    (y > w) && (y = w - (y - w), v[1] *= -1);
                     p[0] = x;
                     p[1] = y;
                     return ["img", {}, img, [...p]];
-                });
+                };
+            };
+            return ["g", {}, ...repeatedly(ball, 10)];
         })()
     }
 };
