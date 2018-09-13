@@ -6,7 +6,7 @@ import { range } from "@thi.ng/iterators/range";
 import { normalizeTree } from "../src/normalize";
 
 function _check(a, b, ctx = null) {
-    assert.deepEqual(normalizeTree(a, ctx, [], false, false), b);
+    assert.deepEqual(normalizeTree({ ctx, keys: false, span: false }, a), b);
 }
 
 function check(id, a, b) {
@@ -111,21 +111,21 @@ describe("hdom", () => {
     );
 
     it("life cycle", () => {
-        let src: any = { render: () => ["div"] };
-        let res: any = ["div", {}];
+        let src: any = { render: () => ["div", "foo"] };
+        let res: any = ["div", {}, ["span", {}, "foo"]];
         res.__this = src;
         res.__init = res.__release = undefined;
         res.__args = [null];
         assert.deepEqual(
-            normalizeTree([src], null, [], false, false),
+            normalizeTree({ keys: false }, [src]),
             res
         );
-        res = ["div", { key: "0" }];
+        res = ["div", { key: "0" }, ["span", { key: "0-0" }, "foo"]];
         res.__this = src;
         res.__init = res.__release = undefined;
         res.__args = [null];
         assert.deepEqual(
-            normalizeTree([src], null, [0], true, false),
+            normalizeTree({}, [src]),
             res
         );
     });

@@ -4,11 +4,12 @@ import * as iss from "@thi.ng/checks/is-string";
 import { DiffLogEntry } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
-import { equiv } from "@thi.ng/equiv";
+import { equivArrayLike, equivObject, equivMap, equivSet } from "@thi.ng/equiv";
 import { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa.isArray;
 const isString = iss.isString;
+
 const max = Math.max;
 
 /**
@@ -136,7 +137,7 @@ export const diffTree = <T>(
 
 const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
     let i, e, edits;
-    const delta = diffObject(prev, curr);
+    const delta = diffObject(prev, curr, equiv);
     impl.removeAttribs(el, delta.dels, prev);
     let value = SEMAPHORE;
     for (edits = delta.edits, i = edits.length; --i >= 0;) {
@@ -196,4 +197,54 @@ const extractEquivElements = (edits: DiffLogEntry<any>[]) => {
         }
     }
     return equiv;
+};
+
+const OBJP = Object.getPrototypeOf({});
+
+const equiv = (a: any, b: any): boolean => {
+    let proto;
+    if (a === b) {
+        return true;
+    }
+    if (a != null) {
+        if (typeof a.equiv === "function") {
+            return a.equiv(b);
+        }
+    } else {
+        return a == b;
+    }
+    if (b != null) {
+        if (typeof b.equiv === "function") {
+            return b.equiv(a);
+        }
+    } else {
+        return a == b;
+    }
+    if (typeof a === "string" || typeof b === "string") {
+        return false;
+    }
+    if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
+        (proto = Object.getPrototypeOf(b), proto == null || proto === OBJP)) {
+        return ((<any>a).__diff !== false && (<any>b).__diff !== false) ?
+            equivObject(a, b, equiv) :
+            false;
+    }
+    if (typeof a !== "function" && a.length !== undefined &&
+        typeof b !== "function" && b.length !== undefined) {
+        return equivArrayLike(a, b, equiv);
+    }
+    if (a instanceof Set && b instanceof Set) {
+        return equivSet(a, b, equiv);
+    }
+    if (a instanceof Map && b instanceof Map) {
+        return equivMap(a, b, equiv);
+    }
+    if (a instanceof Date && b instanceof Date) {
+        return a.getTime() === b.getTime();
+    }
+    if (a instanceof RegExp && b instanceof RegExp) {
+        return a.toString() === b.toString();
+    }
+    // NaN
+    return (a !== a && b !== b);
 };

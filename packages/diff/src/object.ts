@@ -2,21 +2,20 @@ import { equiv } from "@thi.ng/equiv";
 
 import { ObjectDiff } from "./api";
 
-export function diffObject(a: any, b: any) {
+export function diffObject(a: any, b: any, _equiv = equiv) {
     const adds = [];
     const dels = [];
     const edits = [];
-    const keys = new Set(Object.keys(a).concat(Object.keys(b)));
     const state = <ObjectDiff>{ distance: 0, adds, dels, edits };
     if (a === b) {
         return state;
     }
-    for (let k of keys) {
+    for (let k of new Set(Object.keys(a).concat(Object.keys(b)))) {
         const va = a[k];
         const vb = b[k];
         const hasA = va !== undefined;
         if (hasA && vb !== undefined) {
-            if (!equiv(va, vb)) {
+            if (!_equiv(va, vb)) {
                 edits.push([k, vb]);
                 state.distance++;
             }
