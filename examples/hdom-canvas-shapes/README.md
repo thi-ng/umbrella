@@ -13,6 +13,8 @@ are translated into canvas API draw calls. Shapes can be grouped and any
 attributes defined on group nodes will be inherited by all children
 (same as in SVG).
 
+See the [@thi.ng/hdom-canvas readme](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas) for further details.
+
 Related examples:
 
 - [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock)
