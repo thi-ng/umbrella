@@ -14,42 +14,82 @@ import { map } from "@thi.ng/transducers/xform/map";
 // each test is a standalone component (only one used at a time)
 const TESTS = {
 
-    "dash offset":
-        () => ["path",
-            {
-                fill: "blue", stroke: "#000", weight: 3,
-                dash: [4, 8], dashOffset: (Date.now() * 0.01) % 12
-            },
-            [["M", [10, 10]], ["Q", [150, 150], [150, 290]], ["Q", [150, 150], [290, 10]], ["Q", [150, 150], [10, 10]]]],
+    "dash offset": {
+        attribs: {},
+        body: () =>
+            ["path",
+                {
+                    fill: "blue", stroke: "#000", weight: 3,
+                    dash: [4, 8], dashOffset: (Date.now() * 0.01) % 12
+                },
+                [
+                    ["M", [10, 10]], ["Q", [150, 150], [150, 290]],
+                    ["Q", [150, 150], [290, 10]], ["Q", [150, 150], [10, 10]]
+                ]
+            ]
+    },
 
-    "shape morph":
-        () => {
+    "shape morph": {
+        attribs: { clear: false },
+        body: () => {
             const t = Date.now() * 0.01;
-            const a = 10 + 140 * (Math.sin(t * 0.25) * 0.5 + 0.5);
+            const a = 10 + 140 * (Math.sin(t * 0.33) * 0.5 + 0.5);
             return ["path",
                 {
-                    fill: "red", stroke: "#000", weight: 3,
+                    fill: "rgba(255,255,255,0.05)", stroke: "#000",
+                    weight: 3,
+                    miterLimit: 1,
                     dash: [20, 20], dashOffset: (t * 5) % 40,
                     translate: [150, 150],
-                    rotate: (t * 0.1) % (2 * Math.PI)
+                    rotate: (t * 0.05) % (2 * Math.PI)
                 },
-                [["M", [-100, -100]], ["Q", [-a, 0], [0, 100]], ["Q", [a, 0], [100, -100]], ["Q", [0, -a], [-100, -100]]]];
-        },
+                [
+                    ["M", [-100, -100]], ["Q", [-a, 0], [0, 100]],
+                    ["Q", [a, 0], [100, -100]], ["Q", [0, -a], [-100, -100]]
+                ]
+            ];
+        }
+    },
 
-    "noise (1k)":
-        () => ["g", { __normalize: false, fill: "#000", stroke: "none" },
-            ...repeatedly(() => ["rect", null, [Math.random() * 300, Math.random() * 300], 2, 2], 1000)],
+    "points (1k)": {
+        attribs: {},
+        body: () =>
+            ["points",
+                {
+                    fill: "#000", stroke: "none", size: 4,
+                    translate: [150, 150],
+                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
+                },
+                [...repeatedly(() => [Math.random() * 300 - 150, Math.random() * 300 - 150], 1000)]],
+    },
 
-    "noise (10k)":
-        () => ["g", { __normalize: false, fill: "#000", stroke: "none" },
-            ...repeatedly(() => ["rect", null, [Math.random() * 300, Math.random() * 300], 2, 2], 10000)],
+    "points (10k)": {
+        attribs: {},
+        body: () =>
+            ["points",
+                {
+                    fill: "#000", stroke: "none",
+                    translate: [150, 150],
+                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
+                },
+                [...repeatedly(() => [Math.random() * 300 - 150, Math.random() * 300 - 150], 10000)]],
+    },
 
-    "noise (50k)":
-        () => ["g", { __normalize: false, fill: "#000", stroke: "none" },
-            ...repeatedly(() => ["rect", null, [Math.random() * 300, Math.random() * 300], 2, 2], 50000)],
+    "points (50k)": {
+        attribs: {},
+        body: () =>
+            ["points",
+                {
+                    fill: "#000", stroke: "none",
+                    translate: [150, 150],
+                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
+                },
+                [...repeatedly(() => [Math.random() * 300 - 150, Math.random() * 300 - 150], 50000)]],
+    },
 
-    "rounded rects":
-        () => {
+    "rounded rects": {
+        attribs: {},
+        body: () => {
             const t = Date.now() * 0.01;
             const r = 100 * (Math.sin(t * 0.5) * 0.5 + 0.5);
             return ["g",
@@ -61,34 +101,43 @@ const TESTS = {
                     font: "48px Menlo",
                     __normalize: false
                 },
-                ...map((i) => ["rect", {}, [i, i], 300 - 2 * i, 300 - 2 * i, r], range(10, 50, 5)),
+                ...map((i) => ["rect", null, [i, i], 300 - 2 * i, 300 - 2 * i, r], range(10, 50, 5)),
                 ["text", {}, [150, 150], Math.round(r)]
             ];
-        },
+        }
+    },
 
-    "linear gradient":
-        () => [
-            ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] }, [0, "#fc0"], [1, "#0ef"]],
-            ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 0] }, [0, "#700"], [0.5, "#d0f"], [1, "#fff"]],
-            ["circle", { fill: "$grad1" }, [150, 150], 140],
-            ["rect", { fill: "$grad2" }, [0, 250], 300, 50]
-        ],
+    "linear gradient": {
+        attribs: {},
+        body: () =>
+            [
+                ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] },
+                    [[0, "#fc0"], [1, "#0ef"]]],
+                ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 150 + 150 * Math.sin(Date.now() * 0.005)] },
+                    [[0, "#700"], [0.5, "#d0f"], [1, "#fff"]]],
+                ["circle", { fill: "$grad1" }, [150, 150], 140],
+                ["rect", { fill: "$grad2" }, [125, 0], 50, 300],
+                ["rect", { fill: "$grad2" }, [0, 125], 300, 50]
+            ],
+    },
 
-    "radial gradient":
-        () => {
+    "radial gradient": {
+        attribs: {},
+        body: () => {
             const t = Date.now() * 0.01;
-            const x = 50 * Math.sin(t * 0.5);
-            const y = 20 * Math.sin(t * 0.3);
+            const x = 150 + 50 * Math.sin(t * 0.5);
+            const y = 150 + 20 * Math.sin(t * 0.3);
             const spos = [110, 120];
             return [
-                ["radialGradient", { id: "bg", from: [150 + x, 280], to: [150, 300], r1: 300, r2: 100 },
-                    [0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]],
+                ["radialGradient", { id: "bg", from: [x, 280], to: [150, 300], r1: 300, r2: 100 },
+                    [[0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]]],
                 ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
-                    [0, "#fff"], [1, "rgba(255,255,192,0)"]],
-                ["circle", { fill: "$bg" }, [150, 150 + y], 130],
+                    [[0, "#fff"], [1, "rgba(255,255,192,0)"]]],
+                ["circle", { fill: "$bg" }, [150, y], 130],
                 ["circle", { fill: "$sun" }, spos, 50],
             ];
         }
+    }
 };
 
 // test case selection dropdown
@@ -103,7 +152,8 @@ const choices = (_, id) =>
 
 
 const sel = stream<string>();
-sel.next(peek(Object.keys(TESTS)));
+sel.next("shape morph");
+// sel.next(peek(Object.keys(TESTS)));
 
 const main = sync({
     src: { id: sel, time: fromRAF() }
@@ -112,7 +162,7 @@ main.transform(
     map(({ id }) =>
         ["div.vh-100.flex.flex-column.justify-center.items-center.code.f7",
             [choices, id],
-            [canvas, { class: "ma2", width: 300, height: 300 }, TESTS[id]],
+            [canvas, { class: "ma2", width: 300, height: 300, ...TESTS[id].attribs }, TESTS[id].body],
             ["a.link",
                 { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes" },
                 "Source code"]
