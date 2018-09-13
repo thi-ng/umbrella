@@ -93,72 +93,17 @@ export const canvas = (_, attribs, ...shapes: any[]) =>
         ["g", {
             __release: false,
             __diff: false,
-            __impl: IMPL
+            __impl: IMPL,
+            clear: attribs.clear
         }, ...shapes]];
 
 export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
     const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const walk = (shape: any[], pstate: DrawState) => {
-        if (!shape) return;
-        if (isArray(shape[0])) {
-            for (let s of shape) {
-                walk(s, pstate);
-            }
-            return;
-        }
-        const state = mergeState(ctx, pstate, shape[1]);
-        const attribs = state ? state.attribs : pstate.attribs;
-        switch (shape[0]) {
-            case "g":
-                for (let i = 2, n = shape.length, __state = state || pstate; i < n; i++) {
-                    walk(shape[i], __state);
-                }
-                break;
-            case "linearGradient":
-                defLinearGradient(ctx, pstate, shape[1], ...shape.slice(2));
-                break;
-            case "radialGradient":
-                defRadialGradient(ctx, pstate, shape[1], ...shape.slice(2));
-                break;
-            case "line":
-                line(ctx, attribs, shape[2], shape[3]);
-                break;
-            case "hline":
-                line(ctx, attribs, [0, shape[2]], [canvas.width, shape[2]]);
-                break;
-            case "vline":
-                line(ctx, attribs, [shape[2], 0], [shape[2], canvas.height]);
-                break;
-            case "polyline":
-                polyline(ctx, attribs, shape[2]);
-                break;
-            case "polygon":
-                polygon(ctx, attribs, shape[2]);
-                break;
-            case "path":
-                path(ctx, attribs, shape[2]);
-                break;
-            case "rect":
-                rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
-                break;
-            case "circle":
-                arc(ctx, attribs, shape[2], shape[3]);
-                break;
-            case "arc":
-                arc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
-                break;
-            case "text":
-                text(ctx, attribs, shape[2], shape[3]);
-                break;
-            case "img":
-                image(ctx, attribs, shape[2], shape[3]);
-            default:
-        }
-        state && restoreState(ctx, pstate, state);
-    };
-    walk(tree, { attribs: {} });
-    return null;
+    const attribs = tree[1];
+    if (attribs && attribs.clear !== false) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    walk(ctx, tree, { attribs: {} });
 };
 
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
@@ -197,6 +142,68 @@ export const IMPL: HDOMImplementation<any> = {
     normalizeTree,
     hydrateTree: () => { },
     diffTree: () => { },
+};
+
+const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {
+    if (!shape) return;
+    if (isArray(shape[0])) {
+        for (let s of shape) {
+            walk(ctx, s, pstate);
+        }
+        return;
+    }
+    const state = mergeState(ctx, pstate, shape[1]);
+    const attribs = state ? state.attribs : pstate.attribs;
+    switch (shape[0]) {
+        case "g":
+            for (let i = 2, n = shape.length, __state = state || pstate; i < n; i++) {
+                walk(ctx, shape[i], __state);
+            }
+            break;
+        case "linearGradient":
+            defLinearGradient(ctx, pstate, shape[1], shape[2]);
+            break;
+        case "radialGradient":
+            defRadialGradient(ctx, pstate, shape[1], shape[2]);
+            break;
+        case "points":
+            points(ctx, attribs, shape[1], shape[2]);
+            break;
+        case "line":
+            line(ctx, attribs, shape[2], shape[3]);
+            break;
+        case "hline":
+            line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
+            break;
+        case "vline":
+            line(ctx, attribs, [shape[2], -1e6], [shape[2], 1e6]);
+            break;
+        case "polyline":
+            polyline(ctx, attribs, shape[2]);
+            break;
+        case "polygon":
+            polygon(ctx, attribs, shape[2]);
+            break;
+        case "path":
+            path(ctx, attribs, shape[2]);
+            break;
+        case "rect":
+            rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+            break;
+        case "circle":
+            arc(ctx, attribs, shape[2], shape[3]);
+            break;
+        case "arc":
+            arc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+            break;
+        case "text":
+            text(ctx, attribs, shape[2], shape[3]);
+            break;
+        case "img":
+            image(ctx, attribs, shape[2], shape[3]);
+        default:
+    }
+    state && restoreState(ctx, pstate, state);
 };
 
 const mergeState = (ctx: CanvasRenderingContext2D,
@@ -303,7 +310,11 @@ const endShape = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
     }
 };
 
-const defLinearGradient = (ctx: CanvasRenderingContext2D, state: DrawState, { id, from, to }: any, ...stops: any[][]) => {
+const defLinearGradient = (ctx: CanvasRenderingContext2D,
+    state: DrawState,
+    { id, from, to }: any,
+    stops: any[][]) => {
+
     const g = ctx.createLinearGradient(from[0], from[1], to[0], to[1]);
     for (let s of stops) {
         g.addColorStop(s[0], s[1]);
@@ -312,7 +323,11 @@ const defLinearGradient = (ctx: CanvasRenderingContext2D, state: DrawState, { id
     state.grads[id] = g;
 };
 
-const defRadialGradient = (ctx: CanvasRenderingContext2D, state: DrawState, { id, from, to, r1, r2 }: any, ...stops: any[][]) => {
+const defRadialGradient = (ctx: CanvasRenderingContext2D,
+    state: DrawState,
+    { id, from, to, r1, r2 }: any,
+    stops: any[][]) => {
+
     const g = ctx.createRadialGradient(from[0], from[1], r1, to[0], to[1], r2);
     for (let s of stops) {
         g.addColorStop(s[0], s[1]);
@@ -326,9 +341,7 @@ const line = (ctx: CanvasRenderingContext2D,
     a: ReadonlyVec,
     b: ReadonlyVec) => {
 
-    if (attribs.stroke === "none") {
-        return;
-    }
+    if (attribs.stroke === "none") return;
     ctx.beginPath();
     ctx.moveTo(a[0], a[1]);
     ctx.lineTo(b[0], b[1]);
@@ -339,12 +352,7 @@ const polyline = (ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pts: ReadonlyVec[]) => {
 
-    if (pts.length < 2) return;
-    let v: any;
-    if ((v = attribs.stroke)) {
-        if (v === "none") return;
-        // ctx.strokeStyle = v;
-    }
+    if (pts.length < 2 || attribs.stroke == "none") return;
     let p: ReadonlyVec = pts[0];
     ctx.beginPath();
     ctx.moveTo(p[0], p[1]);
@@ -374,23 +382,28 @@ const polygon = (ctx: CanvasRenderingContext2D,
 const path = (ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     segments: any[]) => {
+
     ctx.beginPath();
     let a: ReadonlyVec = [0, 0];
-    for (let s of segments) {
+    for (let i = 0, n = segments.length; i < n; i++) {
+        const s = segments[i];
         let b = s[1], c, d;
         switch (s[0]) {
+            // move to
             case "m":
                 b = [a[0] + b[0], a[1] + b[1]];
             case "M":
                 ctx.moveTo(b[0], b[1]);
                 a = b;
                 break;
+            // line to
             case "l":
                 b = [a[0] + b[0], a[1] + b[1]];
             case "L":
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
+            // horizontal line
             case "h":
                 b = [a[0] + b, a[1]];
                 ctx.lineTo(b[0], b[1]);
@@ -401,6 +414,7 @@ const path = (ctx: CanvasRenderingContext2D,
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
+            // vertical line
             case "v":
                 b = [a[0], a[1] + b];
                 ctx.lineTo(b[0], b[1]);
@@ -411,30 +425,67 @@ const path = (ctx: CanvasRenderingContext2D,
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
+            // cubic / bezier curve to
             case "c":
                 c = s[2];
                 d = s[3];
                 d = [a[0] + d[0], a[1] + d[1]];
-                ctx.bezierCurveTo(a[0] + b[0], a[1] + b[1], a[0] + c[0], a[1] + c[1], d[0], d[1]);
+                ctx.bezierCurveTo(
+                    a[0] + b[0], a[1] + b[1],
+                    a[0] + c[0], a[1] + c[1],
+                    d[0], d[1]
+                );
                 a = d;
                 break;
             case "C":
                 c = s[2];
                 d = s[3];
-                ctx.bezierCurveTo(b[0], b[1], c[0], c[1], d[0], d[1]);
+                ctx.bezierCurveTo(
+                    b[0], b[1],
+                    c[0], c[1],
+                    d[0], d[1]
+                );
                 a = d;
                 break;
+            // quadratic curve to
             case "q":
                 c = s[2];
                 c = [a[0] + c[0], a[1] + c[1]];
-                ctx.quadraticCurveTo(a[0] + b[0], a[1] + b[1], c[0], c[1]);
+                ctx.quadraticCurveTo(
+                    a[0] + b[0], a[1] + b[1],
+                    c[0], c[1]
+                );
                 a = c;
                 break;
             case "Q":
                 c = s[2];
-                ctx.quadraticCurveTo(b[0], b[1], c[0], c[1]);
+                ctx.quadraticCurveTo(
+                    b[0], b[1],
+                    c[0], c[1]
+                );
                 a = c;
                 break;
+            // arc to
+            case "a":
+                c = s[2];
+                c = [a[0] + c[0], a[1] + c[1]];
+                ctx.arcTo(
+                    a[0] + b[0], a[1] + b[1],
+                    c[0], c[1],
+                    s[3]
+                );
+                a = c;
+                break;
+            case "A":
+                c = s[2];
+                ctx.arcTo(
+                    b[0], b[1],
+                    c[0], c[1],
+                    s[3]
+                );
+                a = c;
+                break;
+            // close path
             case "z":
             case "Z":
                 ctx.closePath();
@@ -469,10 +520,11 @@ const rect = (ctx: CanvasRenderingContext2D,
         w -= 2 * r;
         h -= 2 * r;
         return path(ctx, attribs, [
-            ["M", [pos[0] + r, pos[1]]], ["h", w], ["q", [r, 0], [r, r]],
-            ["v", h], ["q", [0, r], [-r, r]],
-            ["h", -w], ["q", [-r, 0], [-r, -r]],
-            ["v", -h], ["q", [0, -r], [r, -r]]]
+            ["M", [pos[0] + r, pos[1]]],
+            ["h", w], ["a", [r, 0], [r, r], r],
+            ["v", h], ["a", [0, r], [-r, r], r],
+            ["h", -w], ["a", [-r, 0], [-r, -r], r],
+            ["v", -h], ["a", [0, -r], [r, -r], r]]
         );
     }
     if ((v = attribs.fill) && v !== "none") {
@@ -480,6 +532,27 @@ const rect = (ctx: CanvasRenderingContext2D,
     }
     if ((v = attribs.stroke) && v !== "none") {
         ctx.strokeRect(pos[0], pos[1], w, h);
+    }
+};
+
+const points = (ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    opts: IObjectOf<any>,
+    pts: ReadonlyVec[]) => {
+
+    const s = (opts && opts.size) || 1;
+    let v: any;
+    if ((v = attribs.fill) && v !== "none") {
+        for (let i = pts.length - 1; i >= 0; i--) {
+            const p = pts[i];
+            ctx.fillRect(p[0], p[1], s, s);
+        }
+    }
+    if ((v = attribs.stroke) && v !== "none") {
+        for (let i = pts.length - 1; i >= 0; i--) {
+            const p = pts[i];
+            ctx.strokeRect(p[0], p[1], s, s);
+        }
     }
 };
 
