@@ -1,14 +1,22 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { stream } from "@thi.ng/rstream";
+import { stream } from "@thi.ng/rstream/stream";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { peek } from "@thi.ng/transducers/func/peek";
+// import { peek } from "@thi.ng/transducers/func/peek";
 import { range } from "@thi.ng/transducers/iter/range";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { benchmark } from "@thi.ng/transducers/xform/benchmark";
 import { map } from "@thi.ng/transducers/xform/map";
+
+import logo from "../assets/logo-64.png"; // ignore error, resolved by parcel
+
+const randpos = () =>
+    [Math.random() * 300 - 150, Math.random() * 300 - 150];
+
+const randdir = (n = 1) =>
+    [Math.random() * n * 2 - n, Math.random() * n * 2 - n];
 
 // various tests for different shapes & canvas drawing options
 // each test is a standalone component (only one used at a time)
@@ -60,7 +68,7 @@ const TESTS = {
                     translate: [150, 150],
                     scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
                 },
-                [...repeatedly(() => [Math.random() * 300 - 150, Math.random() * 300 - 150], 1000)]],
+                [...repeatedly(randpos, 1000)]],
     },
 
     "points (10k)": {
@@ -72,7 +80,7 @@ const TESTS = {
                     translate: [150, 150],
                     scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
                 },
-                [...repeatedly(() => [Math.random() * 300 - 150, Math.random() * 300 - 150], 10000)]],
+                [...repeatedly(randpos, 10000)]],
     },
 
     "points (50k)": {
@@ -84,7 +92,7 @@ const TESTS = {
                     translate: [150, 150],
                     scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
                 },
-                [...repeatedly(() => [Math.random() * 300 - 150, Math.random() * 300 - 150], 50000)]],
+                [...repeatedly(randpos, 50000)]],
     },
 
     "rounded rects": {
@@ -137,6 +145,29 @@ const TESTS = {
                 ["circle", { fill: "$sun" }, spos, 50],
             ];
         }
+    },
+
+    "image": {
+        attribs: {},
+        body: (() => {
+            const img = new Image();
+            img.src = logo;
+            const pos = [...repeatedly(randpos, 10)];
+            const vel = [...repeatedly(() => randdir(4), 10)];
+            const w = 300 - 64;
+            return () =>
+                pos.map((p, i) => {
+                    let x = p[0] + vel[i][0];
+                    let y = p[1] + vel[i][1];
+                    (x < 0) && (x *= -1, vel[i][0] *= -1);
+                    (y < 0) && (y *= -1, vel[i][1] *= -1);
+                    (x > w) && (x = w - (x - w), vel[i][0] *= -1);
+                    (y > w) && (y = w - (y - w), vel[i][1] *= -1);
+                    p[0] = x;
+                    p[1] = y;
+                    return ["img", {}, img, [...p]];
+                });
+        })()
     }
 };
 
