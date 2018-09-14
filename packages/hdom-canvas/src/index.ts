@@ -576,8 +576,8 @@ const text = (ctx: CanvasRenderingContext2D,
 const image = (
     ctx: CanvasRenderingContext2D,
     _: IObjectOf<any>,
-    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap,
-    pos: ReadonlyVec) => {
+    pos: ReadonlyVec,
+    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap) => {
 
     ctx.drawImage(img, pos[0], pos[1]);
 };
