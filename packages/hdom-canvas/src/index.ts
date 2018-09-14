@@ -546,15 +546,33 @@ const points = (ctx: CanvasRenderingContext2D,
     const s = (opts && opts.size) || 1;
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
-        for (let i = pts.length - 1; i >= 0; i--) {
-            const p = pts[i];
-            ctx.fillRect(p[0], p[1], s, s);
+        if (opts.shape === "circle") {
+            for (let i = pts.length - 1; i >= 0; i--) {
+                const p = pts[i];
+                ctx.beginPath();
+                ctx.arc(p[0], p[1], s, 0, TAU);
+                ctx.fill();
+            }
+        } else {
+            for (let i = pts.length - 1; i >= 0; i--) {
+                const p = pts[i];
+                ctx.fillRect(p[0], p[1], s, s);
+            }
         }
     }
     if ((v = attribs.stroke) && v !== "none") {
-        for (let i = pts.length - 1; i >= 0; i--) {
-            const p = pts[i];
-            ctx.strokeRect(p[0], p[1], s, s);
+        if (opts.shape === "circle") {
+            for (let i = pts.length - 1; i >= 0; i--) {
+                const p = pts[i];
+                ctx.beginPath();
+                ctx.arc(p[0], p[1], s, 0, TAU);
+                ctx.stroke();
+            }
+        } else {
+            for (let i = pts.length - 1; i >= 0; i--) {
+                const p = pts[i];
+                ctx.strokeRect(p[0], p[1], s, s);
+            }
         }
     }
 };
