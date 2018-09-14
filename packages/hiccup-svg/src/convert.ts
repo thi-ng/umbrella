@@ -121,7 +121,7 @@ export const convertTree = (tree: any[]): any[] => {
         case "img":
             return image(tree[2], tree[3].src, attribs);
         case "points":
-            return points(tree[2], attribs);
+            return points(tree[2], attribs.shape, attribs);
         default:
             return tree;
     }
