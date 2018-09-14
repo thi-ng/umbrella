@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isFunction } from "@thi.ng/checks/is-function";
@@ -126,6 +127,10 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
         }
     } else if (isFunction(tree)) {
         return normalizeTree(opts, tree(opts.ctx));
+    } else if (implementsFunction(tree, "toHiccup")) {
+        return normalizeTree(opts, tree.toHiccup(opts.ctx));
+    } else if (implementsFunction(tree, "deref")) {
+        return normalizeTree(opts, tree.deref());
     } else if (isNotStringAndIterable(tree)) {
         const res = [];
         for (let t of tree) {
