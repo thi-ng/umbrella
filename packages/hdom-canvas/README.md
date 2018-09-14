@@ -164,33 +164,28 @@ relative to the end point of the previous segment.
 ### Image
 
 ```ts
-["img", attribs, img, [x, y]]
+["img", attribs, [x, y], img]
 ```
 
 `img` MUST be an HTML image element, canvas or video element.
 
 ### Gradients
 
-Gradients MUST be defined at the root level of the scene tree or within
-a root-level `defs` group and always prior to any shapes using them. Use
-the `$` prefix to refer to a gradient in a `fill` or `stroke` attribute,
-e.g. `{stroke: "$foo" }`
+Gradients MUST be defined within a root-level `defs` group, which itself
+MUST be given prior to any other shapes. Use the `$` prefix to refer to
+a gradient in a `fill` or `stroke` attribute, e.g. `{stroke: "$foo" }`
 
 ```ts
 ["linearGradient",
     {id: "foo", from: [x1,y1], to: [x2, y2]},
-    [offset1, color1],
-    [offset2, color2],
-    ...
+    [[offset1, color1], [offset2, color2], ...]
 ]
 ```
 
 ```ts
 ["radialGradient",
     {id: "foo", from: [x1,y1], to: [x2, y2], r1: r1, r2: r2 },
-    [offset1, color1],
-    [offset2, color2],
-    ...
+    [[offset1, color1], [offset2, color2], ...]
 ]
 ```
 
