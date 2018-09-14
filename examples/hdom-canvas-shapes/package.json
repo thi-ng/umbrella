@@ -15,7 +15,11 @@
     },
     "dependencies": {
         "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/hiccup": "latest",
+        "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [
