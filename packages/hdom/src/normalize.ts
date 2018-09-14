@@ -178,6 +178,9 @@ const _normalizeTree = (tree: any, opts: Partial<HDOMOpts>, ctx: any, path: numb
     if (isFunction(tree)) {
         return _normalizeTree(tree(ctx), opts, ctx, path, keys, span);
     }
+    if (implementsFunction(tree, "toHiccup")) {
+        return _normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span);
+    }
     if (implementsFunction(tree, "deref")) {
         return _normalizeTree(tree.deref(), opts, ctx, path, keys, span);
     }
