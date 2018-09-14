@@ -13,6 +13,16 @@ import { polygon } from "./polygon";
 import { roundedRect } from "./rect";
 import { text } from "./text";
 
+const ATTRIB_ALIASES = {
+    "alpha": "opacity",
+    "dash": "stroke-dasharray",
+    "dashOffset": "stroke-dashoffset",
+    "lineCap": "stroke-linecap",
+    "lineJoin": "stroke-linejoin",
+    "miterLimit": "stroke-miterlimit",
+    "weight": "stroke-width",
+};
+
 const TEXT_ALIGN = {
     left: "start",
     right: "end",
@@ -121,37 +131,37 @@ const convertAttribs = (attribs: any) => {
     const res: any = convertTransforms(attribs);
     for (let id in attribs) {
         const v = attribs[id];
-        switch (id) {
-            case "fill":
-            case "stroke":
-                res[id] = v[0] === "$" ? `url(#${v.substr(1)})` : v;
-                break;
-            case "weight":
-                res["stroke-width"] = v;
-                break;
-            case "dash":
-                res["stroke-dasharray"] = v;
-                break;
-            case "dashOffset":
-                res["stroke-dashoffset"] = v;
-                break;
-            case "font": {
-                const i = v.indexOf(" ");
-                res["font-size"] = v.substr(0, i);
-                res["font-family"] = v.substr(i + 1);
-                break;
+        if (ATTRIB_ALIASES[id]) {
+            res[ATTRIB_ALIASES[id]] = v;
+        } else {
+            switch (id) {
+                case "fill":
+                case "stroke":
+                    res[id] = v[0] === "$" ? `url(#${v.substr(1)})` : v;
+                    break;
+                case "font": {
+                    const i = v.indexOf(" ");
+                    res["font-size"] = v.substr(0, i);
+                    res["font-family"] = v.substr(i + 1);
+                    break;
+                }
+                case "align":
+                    res["text-anchor"] = TEXT_ALIGN[v];
+                    break;
+                case "baseLine":
+                // no SVG support?
+                case "filter":
+                // TODO needs to be translated into <filter> def first
+                // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+                // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+                case "transform":
+                case "translate":
+                case "rotate":
+                case "scale":
+                    break;
+                default:
+                    res[id] = v;
             }
-            case "align":
-                res["text-anchor"] = TEXT_ALIGN[v];
-                break;
-            case "baseLine":
-            case "transform":
-            case "translate":
-            case "rotate":
-            case "scale":
-                break;
-            default:
-                res[id] = v;
         }
     }
     return res;
