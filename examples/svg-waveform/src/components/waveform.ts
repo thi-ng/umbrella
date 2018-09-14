@@ -35,8 +35,8 @@ export function waveform(ctx: AppContext, opts: WaveformOpts) {
         { ...ctx.ui.waveform, viewBox: `0 -5 ${opts.res} 10` },
         defs(
             linearGradient(
-                "grad", 0, 0, 0, 1,
-                [[0, opts.fill2], [0.5, opts.fill1], [1, opts.fill2]]
+                "grad", [0, 0], [0, 1],
+                [[0, opts.fill2], [0.5, opts.fill1], [1, opts.fill2]],
             )
         ),
         polyline(
