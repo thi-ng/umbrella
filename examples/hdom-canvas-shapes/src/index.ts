@@ -12,6 +12,7 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { serialize } from "@thi.ng/hiccup";
 import { convertTree } from "@thi.ng/hiccup-svg/convert";
 import { svg } from "@thi.ng/hiccup-svg/svg";
+import { circle2 } from "@thi.ng/geom/circle2";
 
 import logo from "../assets/logo-64.png"; // ignore error, resolved by parcel
 import { download } from "./download";
@@ -180,6 +181,22 @@ const TESTS = {
             const body = ["g", {}, ...repeatedly(ball, 10)];
             return () => body;
         })()
+    },
+
+    "geom circles": {
+        attribs: {},
+        body: () =>
+            ["g",
+                {
+                    translate: [150, 150],
+                    stroke: "#f07",
+                    weight: 1,
+                },
+                ...repeatedly(
+                    () => circle2([...randpos(), Math.random() * 50]).toPolygon(6),
+                    100
+                )
+            ]
     }
 };
 
