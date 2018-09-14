@@ -159,6 +159,9 @@ const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: bool
     if (isFunction(tree)) {
         return _serialize(tree(ctx), ctx, esc, span, keys, path);
     }
+    if (implementsFunction(tree, "toHiccup")) {
+        return _serialize(tree.toHiccup(ctx), ctx, esc, span, keys, path);
+    }
     if (implementsFunction(tree, "deref")) {
         return _serialize(tree.deref(), ctx, esc, span, keys, path);
     }
