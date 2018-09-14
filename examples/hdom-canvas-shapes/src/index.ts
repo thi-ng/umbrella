@@ -1,4 +1,4 @@
-import { canvas } from "@thi.ng/hdom-canvas";
+import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
 import { stream } from "@thi.ng/rstream/stream";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
@@ -6,10 +6,15 @@ import { sync } from "@thi.ng/rstream/stream-sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { range } from "@thi.ng/transducers/iter/range";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
-import { benchmark } from "@thi.ng/transducers/xform/benchmark";
 import { map } from "@thi.ng/transducers/xform/map";
 
+// for testing SVG conversion
+import { serialize } from "@thi.ng/hiccup";
+import { convertTree } from "@thi.ng/hiccup-svg/convert";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+
 import logo from "../assets/logo-64.png"; // ignore error, resolved by parcel
+import { download } from "./download";
 
 const randpos = () =>
     [Math.random() * 300 - 150, Math.random() * 300 - 150];
@@ -65,7 +70,8 @@ const TESTS = {
                 {
                     fill: "#000", stroke: "none", size: 4,
                     translate: [150, 150],
-                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
+                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005),
+                    shape: "circle"
                 },
                 [...repeatedly(randpos, 1000)]],
     },
@@ -118,10 +124,12 @@ const TESTS = {
         attribs: {},
         body: () =>
             [
-                ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] },
-                    [[0, "#fc0"], [1, "#0ef"]]],
-                ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 150 + 150 * Math.sin(Date.now() * 0.005)] },
-                    [[0, "#700"], [0.5, "#d0f"], [1, "#fff"]]],
+                ["defs", {},
+                    ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] },
+                        [[0, "#fc0"], [1, "#0ef"]]],
+                    ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 150 + 150 * Math.sin(Date.now() * 0.005)] },
+                        [[0, "#700"], [0.5, "#d0f"], [1, "#fff"]]]
+                ],
                 ["circle", { fill: "$grad1" }, [150, 150], 140],
                 ["rect", { fill: "$grad2" }, [125, 0], 50, 300],
                 ["rect", { fill: "$grad2" }, [0, 125], 300, 50]
@@ -136,10 +144,12 @@ const TESTS = {
             const y = 150 + 20 * Math.sin(t * 0.3);
             const spos = [110, 120];
             return [
-                ["radialGradient", { id: "bg", from: [x, 280], to: [150, 300], r1: 300, r2: 100 },
-                    [[0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]]],
-                ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
-                    [[0, "#fff"], [1, "rgba(255,255,192,0)"]]],
+                ["defs", {},
+                    ["radialGradient", { id: "bg", from: [x, 280], to: [150, 300], r1: 300, r2: 100 },
+                        [[0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]]],
+                    ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
+                        [[0, "#fff"], [1, "rgba(255,255,192,0)"]]]
+                ],
                 ["circle", { fill: "$bg" }, [150, y], 130],
                 ["circle", { fill: "$sun" }, spos, 50],
             ];
@@ -164,53 +174,81 @@ const TESTS = {
                     (y > w) && (y = w - (y - w), v[1] *= -1);
                     p[0] = x;
                     p[1] = y;
-                    return ["img", {}, img, [...p]];
+                    return ["img", {}, [...p], img];
                 };
             };
-            return ["g", {}, ...repeatedly(ball, 10)];
+            const body = ["g", {}, ...repeatedly(ball, 10)];
+            return () => body;
         })()
     }
 };
 
 // test case selection dropdown
-const choices = (_, id) =>
+const choices = (_, target, id) =>
     [dropdown,
         {
             class: "w4 ma2",
             onchange: (e) => {
                 window.location.hash = e.target.value.replace(" ", "-");
-                sel.next(e.target.value);
+                target.next(e.target.value);
             }
         },
         Object.keys(TESTS).map((k) => [k, k]),
         id];
 
+// event stream for triggering SVG conversion / export
+const trigger = stream<boolean>();
+// stream supplying current test ID
+const selection = stream<string>();
 
-const sel = stream<string>();
-sel.next(
+// stream combinator updating & normalizing selected test component tree
+// (one of the inputs is linked to RAF to trigger updates)
+const scene = sync({
+    src: {
+        id: selection,
+        time: fromRAF()
+    }
+}).transform(
+    map(({ id }) => ({ id, scene: normalizeTree({}, TESTS[id].body()) }))
+);
+
+// stream transformer to produce & update main user interface root component
+scene.transform(
+    map(({ id, scene }) =>
+        ["div.vh-100.flex.flex-column.justify-center.items-center.code.f7",
+            ["div",
+                [choices, selection, id],
+                ["button.ml2", { onclick: () => trigger.next(true) }, "export"]],
+            [canvas, { class: "ma2", width: 300, height: 300, ...TESTS[id].attribs }, scene],
+            ["a.link",
+                { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes" },
+                "Source code"]
+        ]
+    ),
+    updateDOM()
+);
+
+// stream combinator which triggers SVG conversion and file download
+// when both inputs have triggered (one of them being linked to the export button)
+sync({
+    src: { scene, trigger },
+    reset: true,
+    xform: map(({ scene }) =>
+        download(new Date().toISOString().replace(/[:.-]/g, "") + ".svg",
+            serialize(
+                svg({ width: 300, height: 300, stroke: "none", fill: "none" },
+                    convertTree(scene.scene)))))
+});
+
+// initial selection
+selection.next(
     window.location.hash.length > 1 ?
         window.location.hash.substr(1).replace("-", " ") :
         "shape morph"
 );
 
-const main = sync({
-    src: { id: sel, time: fromRAF() }
-})
-main.transform(
-    map(({ id }) =>
-        ["div.vh-100.flex.flex-column.justify-center.items-center.code.f7",
-            [choices, id],
-            [canvas, { class: "ma2", width: 300, height: 300, ...TESTS[id].attribs }, TESTS[id].body],
-            ["a.link",
-                { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes" },
-                "Source code"]
-        ]),
-    updateDOM(),
-    benchmark()
-);
-// main.subscribe({ next: console.log });
-
+// HMR handling
 const hot = (<any>module).hot;
 if (hot) {
-    hot.dispose(() => (main.done(), console.log(main)));
+    hot.dispose(() => scene.done());
 }
