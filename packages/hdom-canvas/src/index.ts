@@ -156,7 +156,10 @@ const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) =>
     const attribs = state ? state.attribs : pstate.attribs;
     switch (shape[0]) {
         case "g":
-            for (let i = 2, n = shape.length, __state = state || pstate; i < n; i++) {
+        case "defs":
+            for (let i = 2, n = shape.length,
+                __state = shape[0] === "g" ? state || pstate : pstate;
+                i < n; i++) {
                 walk(ctx, shape[i], __state);
             }
             break;
