@@ -19,7 +19,7 @@ export const points = (pts: Iterable<Vec2Like>, shape: string, attribs?: any): a
         href = shape;
     }
     for (let p of pts) {
-        group.push(["use", { href, x: ff(p[0]), y: ff(p[1]) }]);
+        group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
     }
     return group;
 };
