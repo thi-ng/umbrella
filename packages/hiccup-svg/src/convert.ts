@@ -1,6 +1,17 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { ff, points } from "./format";
+
+import { PathSegment } from "./api";
+import { circle } from "./circle";
+import { ff } from "./format";
+import { linearGradient, radialGradient } from "./gradients";
+import { image } from "./image";
+import { hline, line, vline } from "./line";
+import { path } from "./path";
+import { points } from "./points";
+import { polygon } from "./polygon";
+import { roundedRect } from "./rect";
+import { text } from "./text";
 
 const TEXT_ALIGN = {
     left: "start",
@@ -10,145 +21,99 @@ const TEXT_ALIGN = {
     end: "end",
 };
 
-export const convertTree = (s: any[]) => {
-    const type = s[0];
+/**
+ * Takes a normalized hiccup tree of hdom-canvas shape definitions and
+ * recursively converts it into an hiccup flavor which is ready for SVG
+ * serialization. This conversion also involves translation & reorg of
+ * various attributes. Returns new tree. The original remains untouched,
+ * as will any unrecognized tree/shape nodes.
+ *
+ * @param tree
+ */
+export const convertTree = (tree: any[]): any[] => {
+    const type = tree[0];
     if (isArray(type)) {
-        return s.map(convertTree);
+        return tree.map(convertTree);
     }
-    let attribs = convertAttribs(s[1]);
-    switch (s[0]) {
+    let attribs = convertAttribs(tree[1]);
+    switch (tree[0]) {
         case "svg":
         case "defs":
         case "g": {
             const res: any[] = [type, attribs];
-            for (let i = 2, n = s.length; i < n; i++) {
-                const c = convertTree(s[i]);
+            for (let i = 2, n = tree.length; i < n; i++) {
+                const c = convertTree(tree[i]);
                 c != null && res.push(c);
             }
             return res;
         }
         case "linearGradient":
-            return [type,
+            return linearGradient(
+                attribs.id,
+                attribs.from,
+                attribs.to,
+                tree[2],
                 {
-                    id: attribs.id,
-                    x1: ff(attribs.from[0]),
-                    y1: ff(attribs.from[1]),
-                    x2: ff(attribs.to[0]),
-                    y2: ff(attribs.to[1]),
                     gradientUnits: attribs.gradientUnits || "userSpaceOnUse",
                     gradientTransform: attribs.gradientTransform,
-                },
-                ...s[2].map(gradientStop)
-            ];
+                }
+            );
         case "radialGradient":
-            return [type,
+            return radialGradient(
+                attribs.id,
+                attribs.from,
+                attribs.to,
+                attribs.r1,
+                attribs.r2,
+                tree[2],
                 {
-                    id: attribs.id,
-                    fx: ff(attribs.from[0]),
-                    fy: ff(attribs.from[1]),
-                    cx: ff(attribs.to[0]),
-                    cy: ff(attribs.to[1]),
-                    fr: ff(attribs.r1),
-                    r: ff(attribs.r2),
                     gradientUnits: attribs.gradientUnits || "userSpaceOnUse",
                     gradientTransform: attribs.gradientTransform,
-                },
-                ...s[2].map(gradientStop)
-            ];
+                }
+            );
         case "circle":
-            return [type, {
-                ...attribs,
-                cx: ff(s[2][0]), cy: ff(s[2][1]),
-                r: ff(s[3])
-            }];
+            return circle(tree[2], tree[3], attribs);
         case "rect": {
-            attribs = {
-                ...attribs,
-                x: ff(s[2][0]), y: ff(s[2][1]),
-                width: ff(s[3]), height: ff(s[4]),
-            };
-            const r = s[5];
-            if (r != null) {
-                attribs.rx = attribs.ry = ff(r);
-            }
-            return [type, attribs];
+            const r = tree[5] || 0;
+            return roundedRect(tree[2], tree[3], tree[4], r, r, attribs);
         }
         case "line":
-            return [type, {
-                ...attribs,
-                x1: ff(s[2][0]), y1: ff(s[2][1]),
-                x2: ff(s[3][0]), y2: ff(s[3][1])
-            }];
+            return line(tree[2], tree[3], attribs);
         case "hline":
-            return [type, {
-                ...attribs,
-                x1: ff(-1e6), y1: ff(s[2][1]),
-                x2: ff(1e6), y2: ff(s[3][1])
-            }];
+            return hline(tree[2], attribs);
         case "vline":
-            return [type, {
-                ...attribs,
-                x1: ff(s[2][0]), y1: ff(-1e6),
-                x2: ff(s[3][0]), y2: ff(1e6)
-            }];
+            return vline(tree[2], attribs);
         case "polyline":
         case "polygon":
-            return [type, {
-                ...attribs,
-                points: points(s[2])
-            }];
+            return polygon(tree[2], attribs);
         case "path": {
-            let res = [];
-            for (let seg of s[2]) {
-                res.push(seg[0]);
+            let segments: PathSegment[] = [];
+            for (let seg of tree[2]) {
                 switch (seg[0].toLowerCase()) {
                     case "a":
-                        // TODO
+                        // TODO convert arc format
                         // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Elliptical_Arc_Curve
                         break;
                     case "s":
                     case "t":
-                        // TODO
+                        // TODO compute reflected control point
                         // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Cubic_B%C3%A9zier_Curve
                         // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Quadratic_B%C3%A9zier_Curve
                         break;
-                    case "h":
-                    case "v":
-                        res.push(ff(seg[1]));
-                    case "z":
-                        break;
                     default:
-                        res.push(points(seg.slice(1), ","));
+                        segments.push(seg);
                 }
             }
-            attribs.d = res.join("");
-            return [type, attribs];
+            return path(segments, attribs);
         }
-        case "text": {
-            return [type, {
-                ...attribs,
-                x: ff(s[2][0]),
-                y: ff(s[2][1])
-            }, s[3]];
-        }
-        case "img": {
-            return ["image", {
-                ...attribs,
-                "xlink:href": s[2].src,
-                x: ff(s[3][0]), y: ff(s[3][1]),
-            }];
-        }
-        case "points": {
-            const size = ff(attribs.size || 1);
-            const a = { width: size, height: size };
-            delete attribs.size;
-            const res = ["g", attribs];
-            for (let p of s[2]) {
-                res.push(["rect", { ...a, x: ff(p[0]), y: ff(p[1]) }]);
-            }
-            return res;
-        }
+        case "text":
+            return text(tree[2], tree[3], attribs);
+        case "img":
+            return image(tree[2], tree[3].src, attribs);
+        case "points":
+            return points(tree[2], attribs);
         default:
+            return tree;
     }
 };
 
@@ -215,6 +180,3 @@ const convertTransforms = (attribs: any) => {
     }
     return res;
 };
-
-const gradientStop = (s: [number, string]) =>
-    ["stop", { offset: s[0], "stop-color": s[1] }];
