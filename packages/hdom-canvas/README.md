@@ -14,6 +14,7 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [Supported shape types](#supported-shape-types)
     - [Group](#group)
+    - [Definition group](#definition-group)
     - [Circle](#circle)
     - [Rect](#rect)
     - [Line](#line)
@@ -21,6 +22,7 @@ This project is part of the
     - [Path](#path)
     - [Points](#points)
     - [Text](#text)
+    - [Image](#image)
     - [Gradients](#gradients)
 - [Attributes](#attributes)
 - [Coordinate transformations](#coordinate-transformations)
@@ -82,6 +84,14 @@ start(() => {
 
 Attributes defined at group level are inherited by child elements.
 
+### Definition group
+
+```ts
+["defs", {}, def1, def2, ...]
+```
+
+Special group / container for [gradient definitions](#gradients).
+
 ### Circle
 
 ```ts
@@ -91,10 +101,11 @@ Attributes defined at group level are inherited by child elements.
 ### Rect
 
 ```ts
-["rect", attribs, [x, y], w, h, r?]
+["rect", attribs, [x, y], w, h, radius?]
 ```
 
-If `r` is given, creates a rounded rectangle. `r` will be clamped to `Math.min(w, h)/2`.
+If `radius` is given, creates a rounded rectangle. `radius` will be
+clamped to `Math.min(w, h)/2`.
 
 ### Line
 
@@ -108,13 +119,13 @@ If `r` is given, creates a rounded rectangle. `r` will be clamped to `Math.min(w
 ["polyline", attribs, [[x1, y1], [x2, y2], [x3, y3]...]]
 ```
 
-Always non-filled (even if `fill` attrib given or inherited)
+Always non-filled (even if `fill` attrib is given or inherited)
 
 ```ts
 ["polygon", attribs, [[x1, y1], [x2, y2], [x3, y3]...]]
 ```
 
-Always closed, filled and/or stroked.
+Always closed, can be filled and/or stroked.
 
 ### Path
 
@@ -122,7 +133,10 @@ Always closed, filled and/or stroked.
 ["path", attribs, [seg1, seg2, ...]]
 ```
 
-Path segments are tuples of `[type, [x,y]...]`. The following segment types are supported and (as with SVG), absolute and relative versions can be used. Relative versions use lowercase letters.
+Path segments are tuples of `[type, [x,y]...]`. The following segment
+types are supported and (as with SVG), absolute and relative versions
+can be used. Relative versions use lowercase letters and are always
+relative to the end point of the previous segment.
 
 | Format                               | Description          |
 |--------------------------------------|----------------------|
@@ -147,9 +161,20 @@ Path segments are tuples of `[type, [x,y]...]`. The following segment types are 
 ["text", attribs, [x,y], "body..."]
 ```
 
+### Image
+
+```ts
+["img", attribs, img, [x, y]]
+```
+
+`img` MUST be an HTML image element, canvas or video element.
+
 ### Gradients
 
-Gradients MUST be defined at the root level of the scene tree and prior to shapes using them. Use the `$` prefix to refer to a gradient in a `fill` or `stroke` attribute, e.g. `{stroke: "$foo" }`
+Gradients MUST be defined at the root level of the scene tree or within
+a root-level `defs` group and always prior to any shapes using them. Use
+the `$` prefix to refer to a gradient in a `fill` or `stroke` attribute,
+e.g. `{stroke: "$foo" }`
 
 ```ts
 ["linearGradient",
@@ -199,7 +224,8 @@ Some attributes use different names than their actual names in the
 
 ## Coordinate transformations
 
-Coordinate system transformations can be achieved via the following attributes. Nested transformations are supported.
+Coordinate system transformations can be achieved via the following
+attributes. Nested transformations are supported.
 
 If using a combination of `translate`, `scale` and/or `rotate` attribs,
 the order of application is always TRS.
@@ -209,6 +235,10 @@ the order of application is always TRS.
 ```ts
 { transform: [xx, xy, yx, yy, ox, oy] }
 ```
+
+See [MDN
+docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform)
+for further details.
 
 ### Translation
 
