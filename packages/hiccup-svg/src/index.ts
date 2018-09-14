@@ -12,3 +12,4 @@ export * from "./svg";
 export * from "./text";
 
 export * from "./format";
+export * from "./convert";
