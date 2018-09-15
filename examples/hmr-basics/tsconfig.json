@@ -3,6 +3,7 @@
     "compilerOptions": {
         "outDir": ".",
         "target": "es6",
+        "sourceMap": true,
         "noUnusedLocals": false,
         "noUnusedParameters": false
     },

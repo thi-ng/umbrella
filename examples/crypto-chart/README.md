@@ -20,7 +20,7 @@ updates / diffs when there were any relevant upstream value changes.
 
 The diagram below shows a schematic of the dataflow graph used:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/crypto-dflow.svg)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/crypto-dflow.png)
 
 ## Building
 
