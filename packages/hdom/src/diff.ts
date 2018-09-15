@@ -43,12 +43,17 @@ export const diffTree = <T>(
     curr: any[],
     child: number) => {
 
-    if (curr[1].__diff === false) {
+    const attribs = curr[1];
+    // always replace element if __diff = false
+    if (attribs.__diff === false) {
         releaseDeep(prev);
         impl.replaceChild(opts, parent, child, curr);
         return;
     }
-    // TODO use optimized equiv?
+    // delegate to branch-local implementation
+    if (attribs.__impl) {
+        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    }
     const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance === 0) {
         return;
@@ -63,7 +68,7 @@ export const diffTree = <T>(
     let e: DiffLogEntry<any>;
     let status: number;
     let val: any;
-    if (edits[0][0] !== 0 || prev[1].key !== curr[1].key) {
+    if (edits[0][0] !== 0 || prev[1].key !== attribs.key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
         impl.replaceChild(opts, parent, child, curr);
