@@ -18,23 +18,37 @@ import {
     step1
 } from "./math";
 
+export const opg0 = (fn: () => number, a: Vec, num = a.length, i = 0, s = 1) => {
+    i += num * s;
+    while (i -= s, --num >= 0) {
+        a[i] = fn();
+    }
+    return a;
+};
+
 export const opg1 = (fn: (x: number) => number, a: Vec, num = a.length, i = 0, s = 1) => {
-    while (--num >= 0) {
-        a[i + num * s] = fn(a[i + num * s]);
+    i += num * s;
+    while (i -= s, --num >= 0) {
+        a[i] = fn(a[i]);
     }
     return a;
 };
 
 export const opg2 = (fn: (x: number, y: number) => number, a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    while (--num >= 0) {
-        a[ia + num * sa] = fn(a[ia + num * sa], b[ib + num * sb]);
+    ia += num * sa;
+    ib += num * sb;
+    while (ia -= sa, ib -= sb, --num >= 0) {
+        a[ia] = fn(a[ia], b[ib]);
     }
     return a;
 };
 
 export const opg3 = (fn: (x: number, y: number, z: number) => number, a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => {
-    while (--num >= 0) {
-        a[ia + num * sa] = fn(a[ia + num * sa], b[ib + num * sb], c[ic + num * sc]);
+    ia += num * sa;
+    ib += num * sb;
+    ic += num * sc;
+    while (ia -= sa, ib -= sb, ic -= sc, --num >= 0) {
+        a[ia] = fn(a[ia], b[ib], c[ic]);
     }
     return a;
 };
@@ -43,18 +57,32 @@ export const get = (a: ReadonlyVec, num = a.length, i = 0, s = 1) =>
     set(new (<any>(a.constructor))(num), a, num, 0, i, 1, s);
 
 export const set = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    while (--num >= 0) {
-        a[ia + num * sa] = b[ib + num * sb];
+    ia += num * sa;
+    ib += num * sb;
+    while (ia -= sa, ib -= sb, --num >= 0) {
+        a[ia] = b[ib];
     }
     return a;
 };
 
 export const setN = (a: Vec, n: number, num = a.length, ia = 0, sa = 1) => {
-    while (--num >= 0) {
-        a[ia + num * sa] = n;
+    ia += num * sa;
+    while (ia -= sa, --num >= 0) {
+        a[ia] = n;
     }
     return a;
 };
+
+export const randNorm = (a: Vec, n = 1, num = a.length, ia = 0, sa = 1) =>
+    randMinMax(a, -n, n, num, ia, sa);
+
+export const randMinMax = (a: Vec, min: number, max: number, num = a.length, ia = 0, sa = 1) => {
+    const d = max - min;
+    return opg0(() => min + d * Math.random(), a, num, ia, sa);
+};
+
+export const jitter = (a: Vec, n: number, num = a.length, ia = 0, sa = 1) =>
+    opg1((x) => x + Math.random() * 2 * n - n, a, num, ia, sa);
 
 export const add = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x + y, a, b, num, ia, ib, sa, sb);
@@ -199,6 +227,18 @@ export class GVec implements
         return buf;
     }
 
+    static of(size: number, n = 0) {
+        return new GVec(setN([], n, size));
+    }
+
+    static randNorm(size: number, n = 1) {
+        return new GVec(randNorm([], n, size));
+    }
+
+    static random(size: number, min: number, max: number) {
+        return new GVec(randMinMax([], min, max, size));
+    }
+
     buf: Vec;
     n: number;
     i: number;
@@ -253,6 +293,11 @@ export class GVec implements
 
     setN(n: number) {
         setN(this.buf, n, this.n, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter(this.buf, n, this.n, this.i, this.s);
         return this;
     }
 

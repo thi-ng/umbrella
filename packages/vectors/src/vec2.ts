@@ -5,7 +5,6 @@ import {
     ILength
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     IVec,
     MAX4,
@@ -15,7 +14,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices, $iter } from "./common";
+import { $iter, declareIndices } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -32,6 +31,18 @@ import {
 
 export const op2 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) =>
     (a[ia] = fn(a[ia]), a[ia + sa] = fn(a[ia + sa]), a);
+
+export const op20 = (fn: () => number, a: Vec, ia = 0, sa = 1) => (
+    a[ia] = fn(),
+    a[ia + sa] = fn(),
+    a
+);
+
+export const op21 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia = 0, sa = 1) => (
+    a[ia] = fn(a[ia], n),
+    a[ia + sa] = fn(a[ia + sa], n),
+    a
+);
 
 export const op22 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
     a[ia] = fn(a[ia], b[ib]),
@@ -51,13 +62,19 @@ export const setN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
 export const setS2 = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a);
 
-export const swizzle2 = (a: Vec, b: ReadonlyVec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    const xx = b[ib + x * sb];
-    const yy = b[ib + y * sb];
-    a[ia] = xx;
-    a[ia + sa] = yy;
-    return a;
+export const randNorm2 = (a: Vec, n = 1, ia = 0, sa = 1) =>
+    randMinMax2(a, -n, n, ia, sa);
+
+export const randMinMax2 = (a: Vec, min: number, max: number, ia = 0, sa = 1) => {
+    const d = max - min;
+    return op20(() => min + d * Math.random(), a, ia, sa);
 };
+
+export const jitter2 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op2((x) => x + Math.random() * 2 * n - n, a, ia, sa);
+
+export const swizzle2 = (a: Vec, b: ReadonlyVec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    setS2(a, b[ib + x * sb], b[ib + y * sb], ia, sa);
 
 export const swap2 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
@@ -149,17 +166,11 @@ export const cos2 = (a: Vec, ia = 0, sa = 1) =>
 export const sqrt2 = (a: Vec, ia = 0, sa = 1) =>
     op2(Math.sqrt, a, ia, sa);
 
-export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = Math.pow(a[ia], b[ib]),
-    a[ia + sa] = Math.pow(a[ia + sa], b[ib + sb]),
-    a
-);
+export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    op22(Math.pow, a, b, ia, ib, sa, sb);
 
-export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) => (
-    a[ia] = Math.pow(a[ia], n),
-    a[ia + sa] = Math.pow(a[ia + sa], n),
-    a
-);
+export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op21(Math.pow, a, n, ia, sa);
 
 export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     (a[ia] += b[ib] * c[ic], a[ia + sa] += b[ib + sb] * c[ic + sc], a);
@@ -399,6 +410,14 @@ export class Vec2 implements
         );
     }
 
+    static randNorm(n = 1) {
+        return new Vec2(randNorm2([], n));
+    }
+
+    static random(min: number, max: number) {
+        return new Vec2(randMinMax2([], min, max));
+    }
+
     static add(a: Readonly<Vec2>, b: Readonly<Vec2>, out?: Vec2) {
         !out && (out = new Vec2([]));
         add2o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
@@ -517,6 +536,11 @@ export class Vec2 implements
 
     setS(x: number, y: number) {
         setS2(this.buf, x, y, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter2(this.buf, n, this.i, this.s);
         return this;
     }
 

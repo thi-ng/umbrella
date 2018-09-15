@@ -5,7 +5,6 @@ import {
     ILength
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     IVec,
     MAX4,
@@ -15,7 +14,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices, $iter } from "./common";
+import { $iter, declareIndices } from "./common";
 import {
     EPS,
     eqDelta1,
@@ -32,6 +31,22 @@ export const op4 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) => (
     a[ia + sa] = fn(a[ia + sa]),
     a[ia + 2 * sa] = fn(a[ia + 2 * sa]),
     a[ia + 3 * sa] = fn(a[ia + 3 * sa]),
+    a
+);
+
+export const op40 = (fn: () => number, a: Vec, ia = 0, sa = 1) => (
+    a[ia] = fn(),
+    a[ia + sa] = fn(),
+    a[ia + 2 * sa] = fn(),
+    a[ia + 3 * sa] = fn(),
+    a
+);
+
+export const op41 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia = 0, sa = 1) => (
+    a[ia] = fn(a[ia], n),
+    a[ia + sa] = fn(a[ia + sa], n),
+    a[ia + 2 * sa] = fn(a[ia + 2 * sa], n),
+    a[ia + 3 * sa] = fn(a[ia + 3 * sa], n),
     a
 );
 
@@ -70,17 +85,19 @@ export const setS4 = (a: Vec, x: number, y: number, z: number, w: number, ia = 0
     a
 );
 
-export const swizzle4 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    const xx = b[ib + x * sb];
-    const yy = b[ib + y * sb];
-    const zz = b[ib + z * sb];
-    const ww = b[ib + w * sb];
-    a[ia] = xx;
-    a[ia + sa] = yy;
-    a[ia + 2 * sa] = zz;
-    a[ia + 3 * sa] = ww;
-    return a;
+export const randNorm4 = (a: Vec, n = 1, ia = 0, sa = 1) =>
+    randMinMax4(a, -n, n, ia, sa);
+
+export const randMinMax4 = (a: Vec, min: number, max: number, ia = 0, sa = 1) => {
+    const d = max - min;
+    return op40(() => min + d * Math.random(), a, ia, sa);
 };
+
+export const jitter4 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op4((x) => x + Math.random() * 2 * n - n, a, ia, sa);
+
+export const swizzle4 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    setS4(a, b[ib + x * sb], b[ib + y * sb], b[ib + z * sb], b[ib + w * sb], ia, sa);
 
 export const swap4 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
@@ -469,6 +486,14 @@ export class Vec4 implements
         );
     }
 
+    static randNorm(n = 1) {
+        return new Vec4(randNorm4([], n));
+    }
+
+    static random(min: number, max: number) {
+        return new Vec4(randMinMax4([], min, max));
+    }
+
     static add(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
         add4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
@@ -589,6 +614,11 @@ export class Vec4 implements
 
     setS(x: number, y: number, z: number, w: number) {
         setS4(this.buf, x, y, z, w, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter4(this.buf, n, this.i, this.s);
         return this;
     }
 

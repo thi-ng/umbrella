@@ -5,7 +5,6 @@ import {
     ILength
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     IVec,
     MAX4,
@@ -15,7 +14,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices, $iter } from "./common";
+import { $iter, declareIndices } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -39,6 +38,20 @@ export const op3 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) => (
     a[ia] = fn(a[ia]),
     a[ia + sa] = fn(a[ia + sa]),
     a[ia + 2 * sa] = fn(a[ia + 2 * sa]),
+    a
+);
+
+export const op30 = (fn: () => number, a: Vec, ia = 0, sa = 1) => (
+    a[ia] = fn(),
+    a[ia + sa] = fn(),
+    a[ia + 2 * sa] = fn(),
+    a
+);
+
+export const op31 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia = 0, sa = 1) => (
+    a[ia] = fn(a[ia], n),
+    a[ia + sa] = fn(a[ia + sa], n),
+    a[ia + 2 * sa] = fn(a[ia + 2 * sa], n),
     a
 );
 
@@ -69,15 +82,19 @@ export const setN3 = (a: Vec, n: number, ia = 0, sa = 1) => (
 export const setS3 = (a: Vec, x: number, y: number, z: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a[ia + 2 * sa] = z, a);
 
-export const swizzle3 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    const xx = b[ib + x * sb];
-    const yy = b[ib + y * sb];
-    const zz = b[ib + z * sb];
-    a[ia] = xx;
-    a[ia + sa] = yy;
-    a[ia + 2 * sa] = zz;
-    return a;
+export const randNorm3 = (a: Vec, n = 1, ia = 0, sa = 1) =>
+    randMinMax3(a, -n, n, ia, sa);
+
+export const randMinMax3 = (a: Vec, min: number, max: number, ia = 0, sa = 1) => {
+    const d = max - min;
+    return op30(() => min + d * Math.random(), a, ia, sa);
 };
+
+export const jitter3 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op3((x) => x + Math.random() * 2 * n - n, a, ia, sa);
+
+export const swizzle3 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    setS3(a, b[ib + x * sb], b[ib + y * sb], b[ib + z * sb], ia, sa);
 
 export const swap3 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
@@ -225,7 +242,7 @@ export const pow3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op32(Math.pow, a, b, ia, ib, sa, sb);
 
 export const powN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    op3((x) => Math.pow(x, n), a, ia, sa);
+    op31(Math.pow, a, n, ia, sa);
 
 export const madd3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
     a[ia] += b[ib] * c[ic],
@@ -534,6 +551,14 @@ export class Vec3 implements
         return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.i, b.i, c.i, a.s, b.s, c.s));
     }
 
+    static randNorm(n = 1) {
+        return new Vec3(randNorm3([], n));
+    }
+
+    static random(min: number, max: number) {
+        return new Vec3(randMinMax3([], min, max));
+    }
+
     static add(a: Readonly<Vec3>, b: Readonly<Vec3>, out?: Vec3) {
         !out && (out = new Vec3([]));
         add3o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
@@ -653,6 +678,11 @@ export class Vec3 implements
 
     setS(x: number, y: number, z: number) {
         setS3(this.buf, x, y, z, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter3(this.buf, n, this.i, this.s);
         return this;
     }
 
