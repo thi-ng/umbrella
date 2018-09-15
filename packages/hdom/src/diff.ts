@@ -206,6 +206,15 @@ const extractEquivElements = (edits: DiffLogEntry<any>[]) => {
 
 const OBJP = Object.getPrototypeOf({});
 
+/**
+ * Customized version @thi.ng/equiv which takes `__diff` attributes into
+ * account (at any nesting level). If an hdom element's attribute object
+ * contains `__diff: false`, the object will ALWAYS be considered
+ * unequal, even if all other attributes in the object are equivalent.
+ *
+ * @param a
+ * @param b
+ */
 const equiv = (a: any, b: any): boolean => {
     let proto;
     if (a === b) {
@@ -230,9 +239,8 @@ const equiv = (a: any, b: any): boolean => {
     }
     if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
         (proto = Object.getPrototypeOf(b), proto == null || proto === OBJP)) {
-        return ((<any>a).__diff !== false && (<any>b).__diff !== false) ?
-            equivObject(a, b, equiv) :
-            false;
+        return !((<any>a).__diff === false || (<any>b).__diff === false) &&
+            equivObject(a, b, equiv);
     }
     if (typeof a !== "function" && a.length !== undefined &&
         typeof b !== "function" && b.length !== undefined) {
