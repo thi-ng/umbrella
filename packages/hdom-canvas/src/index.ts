@@ -63,17 +63,28 @@ const CTX_ATTRIBS = {
 };
 
 /**
- * Special HTML5 canvas component which injects branch-local hdom
- * implementation for virtual SVG-like shape components/elements, which
- * are translated into canvas draw commands.
+ * Special HTML5 canvas component which injects a branch-local hdom
+ * implementation for virtual SVG-like shape components / elements.
+ * These elements are then translated into canvas draw commands during
+ * the hdom update process.
+ *
+ * The canvas component automatically adjusts its size for HDPI displays
+ * by adding CSS `width` & `height` properties and pre-scaling the
+ * drawing context accordingly before shapes are processed.
  *
  * Shape components are expressed in standard hiccup syntax, however
  * with the following restrictions:
  *
- * - component objects with life cycle methods are only partially
- *   supported (i.e. only `render` is used)
- * - currently no event listeners can be assigned to shapes (ignored),
- *   though this is planned for a future version
+ * - Shape component objects with life cycle methods are only partially
+ *   supported, i.e. only the `render` & `release` methods are used
+ *   (Note, for performance reasons `release` methods are ignored by
+ *   default. If your shape tree contains stateful components which use
+ *   the `release` life cycle method, you'll need to explicitly enable
+ *   the canvas component's `__release` attribute by setting it to
+ *   `true`).
+ * - Currently no event listeners can be assigned to shapes (ignored),
+ *   though this is planned for a future version. The canvas element
+ *   itself can of course have event handlers as usual.
  *
  * All embedded component functions receive the user context object just
  * like normal hdom components.
@@ -89,14 +100,29 @@ const CTX_ATTRIBS = {
  * @param attribs canvas attribs
  * @param shapes shape components
  */
-export const canvas = (_, attribs, ...shapes: any[]) =>
-    ["canvas", attribs,
-        ["g", {
-            __release: false,
-            __diff: false,
-            __impl: IMPL,
-            clear: attribs.clear
-        }, ...shapes]];
+export const canvas = {
+    init: (el: HTMLCanvasElement) => {
+        const dpr = window.devicePixelRatio || 1;
+        el.width *= dpr;
+        el.height *= dpr;
+    },
+    render: (_, attribs, ...body: any[]) => {
+        const dpr = window.devicePixelRatio || 1;
+        if (dpr !== 1) {
+            !attribs.style && (attribs.style = {});
+            attribs.style.width = `${attribs.width}px`;
+            attribs.style.height = `${attribs.height}px`;
+        }
+        return ["canvas", attribs,
+            ["g", {
+                __impl: IMPL,
+                __diff: false,
+                __release: attribs.__release === true,
+                scale: dpr !== 1 ? dpr : null,
+                clear: attribs.clear
+            }, ...body]]
+    },
+};
 
 export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
     const ctx = canvas.getContext("2d");
@@ -292,8 +318,8 @@ const applyTransform = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) 
     let v: any;
     if ((v = attribs.transform) ||
         attribs.translate ||
-        attribs.scale != null ||
-        attribs.rotate != null) {
+        attribs.scale ||
+        attribs.rotate) {
 
         ctx.save();
         if (v) {
