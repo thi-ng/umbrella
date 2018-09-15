@@ -145,7 +145,7 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
 export const IMPL: HDOMImplementation<any> = {
     createTree: drawTree,
     normalizeTree,
-    hydrateTree: () => { },
+    hydrateTree: () => console.warn("hydrate not-supported for hdom-canvas"),
     diffTree: () => { },
 };
 
