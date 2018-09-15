@@ -19,6 +19,10 @@ Related examples:
 
 - [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock)
 
+Dataflow diagram:
+
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/feature/hdom-canvas/assets/hdom-canvas-shapes.png)
+
 ## Building
 
 Because some of the packages used by this demo are still unreleased,
