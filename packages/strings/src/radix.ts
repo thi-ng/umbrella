@@ -40,6 +40,12 @@ export const U8 = radix(16, 2);
 export const U16 = radix(16, 4);
 
 /**
+ * 24bit hex conversion preset.
+ * Assumes unsigned inputs.
+ */
+export const U24 = radix(16, 6);
+
+/**
  * 32bit hex conversion preset.
  * Assumes unsigned inputs.
  */
