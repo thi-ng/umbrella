@@ -86,10 +86,9 @@ export const hydrateDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, 
             // TODO hdom ctx?
             (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
         }
-        const attr = tree[1];
-        for (let a in attr) {
+        for (let a in attribs) {
             if (a.indexOf("on") === 0) {
-                el.addEventListener(a.substr(2), attr[a]);
+                el.addEventListener(a.substr(2), attribs[a]);
             }
         }
         for (let n = tree.length, i = 2; i < n; i++) {
@@ -179,6 +178,7 @@ export const setAttribs = (el: Element, attribs: any) => {
  * @param attribs
  */
 export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
+    if (id.startsWith("__")) return;
     const isListener = id.indexOf("on") === 0;
     if (!isListener && isFunction(val)) {
         val = val(attribs);
