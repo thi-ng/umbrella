@@ -7,6 +7,7 @@ import { updateDOM } from "@thi.ng/transducers-hdom";
 import { range } from "@thi.ng/transducers/iter/range";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { map } from "@thi.ng/transducers/xform/map";
+import { U8 } from "@thi.ng/strings/radix";
 
 // for testing SVG conversion
 import { serialize } from "@thi.ng/hiccup";
@@ -22,6 +23,16 @@ const randpos = () =>
 
 const randdir = (n = 1) =>
     [Math.random() * n * 2 - n, Math.random() * n * 2 - n];
+
+const randcol = (r1, r2, g1, g2, b1, b2, a1 = 1, a2 = 1) => {
+    const r = (Math.random() * (r2 - r1) + r1) | 0;
+    const g = (Math.random() * (g2 - g1) + g1) | 0;
+    const b = (Math.random() * (b2 - b1) + b1) | 0;
+    const a = Math.random() * (a2 - a1) + a1;
+    return a < 1 ?
+        `rgba(${r},${g},${b},${a.toFixed(2)})` :
+        `#${U8(r)}${U8(g)}${U8(b)}`;
+}
 
 // various tests for different shapes & canvas drawing options
 // each test is a standalone component (only one used at a time)
@@ -157,7 +168,7 @@ const TESTS = {
         }
     },
 
-    "image": {
+    "image 1k": {
         attribs: {},
         body: (() => {
             const img = new Image();
@@ -178,25 +189,36 @@ const TESTS = {
                     return ["img", {}, [...p], img];
                 };
             };
-            const body = ["g", {}, ...repeatedly(ball, 10)];
+            const body = ["g", {}, ...repeatedly(ball, 1000)];
             return () => body;
         })()
     },
 
-    "geom circles": {
+    "geom circles 1k": {
         attribs: {},
-        body: () =>
-            ["g",
-                {
-                    translate: [150, 150],
-                    stroke: "#f07",
-                    weight: 1,
-                },
+        body: (() => {
+            const circles = [
                 ...repeatedly(
-                    () => circle2([...randpos(), Math.random() * 50]).toPolygon(6),
-                    100
+                    () =>
+                        circle2(
+                            [...randpos(), Math.random() * 25],
+                            { stroke: randcol(0, 64, 64, 224, 192, 256) }
+                        ),
+                    1000
                 )
-            ]
+            ];
+            return () => {
+                const t = Date.now() * 0.002;
+                circles.forEach((c, i) => (c.r = Math.sin(t + i * 0.01) * 10 + 12));
+                return ["g",
+                    {
+                        translate: [150, 150],
+                        weight: 1,
+                    },
+                    ...circles
+                ]
+            };
+        })()
     }
 };
 
@@ -206,7 +228,7 @@ const choices = (_, target, id) =>
         {
             class: "w4 ma2",
             onchange: (e) => {
-                window.location.hash = e.target.value.replace(" ", "-");
+                window.location.hash = e.target.value.replace(/\s/g, "-");
                 target.next(e.target.value);
             }
         },
@@ -260,7 +282,7 @@ sync({
 // initial selection
 selection.next(
     window.location.hash.length > 1 ?
-        window.location.hash.substr(1).replace("-", " ") :
+        window.location.hash.substr(1).replace(/-/g, " ") :
         "shape morph"
 );
 
