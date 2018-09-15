@@ -43,12 +43,17 @@ export const diffTree = <T>(
     curr: any[],
     child: number) => {
 
-    if (curr[1].__diff === false) {
+    const attribs = curr[1];
+    // always replace element if __diff = false
+    if (attribs.__diff === false) {
         releaseDeep(prev);
         impl.replaceChild(opts, parent, child, curr);
         return;
     }
-    // TODO use optimized equiv?
+    // delegate to branch-local implementation
+    if (attribs.__impl) {
+        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    }
     const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance === 0) {
         return;
@@ -63,7 +68,7 @@ export const diffTree = <T>(
     let e: DiffLogEntry<any>;
     let status: number;
     let val: any;
-    if (edits[0][0] !== 0 || prev[1].key !== curr[1].key) {
+    if (edits[0][0] !== 0 || prev[1].key !== attribs.key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseDeep(prev);
         impl.replaceChild(opts, parent, child, curr);
@@ -201,6 +206,15 @@ const extractEquivElements = (edits: DiffLogEntry<any>[]) => {
 
 const OBJP = Object.getPrototypeOf({});
 
+/**
+ * Customized version @thi.ng/equiv which takes `__diff` attributes into
+ * account (at any nesting level). If an hdom element's attribute object
+ * contains `__diff: false`, the object will ALWAYS be considered
+ * unequal, even if all other attributes in the object are equivalent.
+ *
+ * @param a
+ * @param b
+ */
 const equiv = (a: any, b: any): boolean => {
     let proto;
     if (a === b) {
@@ -225,9 +239,8 @@ const equiv = (a: any, b: any): boolean => {
     }
     if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
         (proto = Object.getPrototypeOf(b), proto == null || proto === OBJP)) {
-        return ((<any>a).__diff !== false && (<any>b).__diff !== false) ?
-            equivObject(a, b, equiv) :
-            false;
+        return !((<any>a).__diff === false || (<any>b).__diff === false) &&
+            equivObject(a, b, equiv);
     }
     if (typeof a !== "function" && a.length !== undefined &&
         typeof b !== "function" && b.length !== undefined) {

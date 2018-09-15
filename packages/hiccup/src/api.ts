@@ -22,6 +22,7 @@ export const ENTITIES = {
 };
 
 export const NO_SPANS = {
+    button: 1,
     option: 1,
     text: 1,
     textarea: 1,
