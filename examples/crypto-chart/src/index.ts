@@ -285,7 +285,7 @@ const chart = sync({
                                     theme.chart.gridMinor,
                                 "stroke-dasharray": 2
                             }),
-                            text(price.toFixed(4), [MARGIN_X - 15, y + 4], { stroke: "none" })
+                            text([MARGIN_X - 15, y + 4], price.toFixed(4), { stroke: "none" })
                         ];
                     },
                     range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)
@@ -297,7 +297,7 @@ const chart = sync({
                         return [
                             line([x, by], [x, by + 10]),
                             line([x, MARGIN_Y], [x, by], { stroke: theme.chart.gridMinor, "stroke-dasharray": 2 }),
-                            text(fmtTime(t), [x, by + 20], { stroke: "none", "text-anchor": "middle" })
+                            text([x, by + 20], fmtTime(t), { stroke: "none", "text-anchor": "middle" })
                         ];
                     },
                     range(Math.ceil(data.tbounds[0] / tickX) * tickX, data.tbounds[1], tickX)
@@ -334,7 +334,7 @@ const chart = sync({
                 [[closeX, closeY], [closeX + 10, closeY - 8], [width, closeY - 8], [width, closeY + 8], [closeX + 10, closeY + 8]],
                 { fill: theme.chart.price }
             ),
-            text(lastPrice.toFixed(4), [closeX + 12, closeY + 4], { fill: theme.chart.pricelabel }),
+            text([closeX + 12, closeY + 4], lastPrice.toFixed(4), { fill: theme.chart.pricelabel }),
         )
     })
 });
