@@ -15,6 +15,7 @@ This project is part of the
 - [How it works](#how-it-works)
     - [Restrictions & behavior controls](#restrictions--behavior-controls)
     - [HDPI support](#hdpi-support)
+- [SVG conversion](#svg-conversion)
 - [Supported shape types](#supported-shape-types)
     - [Group](#group)
     - [Definition group](#definition-group)
@@ -53,7 +54,7 @@ API draw calls during the hdom update process / cycle.
 
 ### Status
 
-ALPHA - in active development, possibly breaking changes ahead...
+BETA - in active development, possibly breaking changes ahead...
 
 ## Installation
 
@@ -63,8 +64,10 @@ yarn add @thi.ng/hdom-canvas
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
@@ -150,7 +153,59 @@ canvases simply set the `width` & `height` attribs to:
 ]
 ```
 
+## SVG conversion
+
+Even though the element names & syntax are *very similar* to SVG
+elements, for performance reasons all geometry data given to each shape
+remains un-stringified (only styling attributes are). However, the
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+package provides a `convertTree()` function which takes the arguably
+more "raw" shape format used by hdom-canvas and converts an entire shape
+tree into SVG compatible & serializable format. Note: the tree MUST
+first be normalized (if not already) using hdom-canvas'
+`normalizeTree()`.
+
+```ts
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { normalizeTree } from "@thi.ng/hdom-canvas";
+
+serialize(
+    svg({ width: 100, height: 100},
+        convertTree(
+            normalizeTree(
+                {}, // default normalization options
+                ["g",
+                    {
+                        fill: "red",
+                        stroke: "none",
+                        translate: [50, 50]
+                    },
+                    ["circle", {}, [0, 0], 25],
+                    ["polygon", { fill: "white" },
+                        [[-10,10],[10,10],[0,-10]]
+                    ]
+                ]
+            )
+        )
+    )
+);
+```
+
+```xml
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100">
+    <g transform="translate(50.00 50.00)" fill="red" stroke="none">
+        <circle cx="0.00" cy="0.00" r="25.00"/>
+        <polygon points="-10.00,10.00 10.00,10.00 0.00,-10.00" fill="white"/>
+    </g>
+</svg>
+```
+
 ## Supported shape types
+
+In the near future, factory functions for these shape types will be
+provided...
+
 
 ### Group
 

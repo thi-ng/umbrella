@@ -1,15 +1,10 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
-import { isString } from "@thi.ng/checks/is-string";
 import { diffArray } from "@thi.ng/diff/array";
 import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
 import { equiv, releaseTree } from "@thi.ng/hdom/diff";
-import { ReadonlyVec } from "@thi.ng/vectors/api";
-import { TAU } from "@thi.ng/vectors/math";
 
 interface DrawState {
     attribs: IObjectOf<any>;
@@ -17,6 +12,10 @@ interface DrawState {
     edits?: string[];
     restore?: boolean;
 }
+
+type ReadonlyVec = ArrayLike<number> & Iterable<number>;
+
+const TAU = Math.PI * 2;
 
 const DEFAULTS = {
     align: "left",
@@ -136,12 +135,15 @@ export const createTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree
 };
 
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
+    if (tree == null) {
+        return tree;
+    }
     if (isArray(tree)) {
         const tag = tree[0];
-        if (isFunction(tag)) {
+        if (typeof tag === "function") {
             return normalizeTree(opts, tag.apply(null, [opts.ctx, ...tree.slice(1)]));
         }
-        if (isString(tag)) {
+        if (typeof tag === "string") {
             const attribs = tree[1];
             if (attribs && attribs.__normalize === false) {
                 return tree;
@@ -153,11 +155,11 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
             }
             return res;
         }
-    } else if (isFunction(tree)) {
+    } else if (typeof tree === "function") {
         return normalizeTree(opts, tree(opts.ctx));
-    } else if (implementsFunction(tree, "toHiccup")) {
+    } else if (typeof tree.toHiccup === "function") {
         return normalizeTree(opts, tree.toHiccup(opts.ctx));
-    } else if (implementsFunction(tree, "deref")) {
+    } else if (typeof tree.deref === "function") {
         return normalizeTree(opts, tree.deref());
     } else if (isNotStringAndIterable(tree)) {
         const res = [];

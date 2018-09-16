@@ -1,5 +1,5 @@
 // import * as assert from "assert";
-// import * as hiccup-canvas from "../src/index";
+// import * as hc from "../src/index";
 
 describe("hiccup-canvas", () => {
     it("tests pending");
