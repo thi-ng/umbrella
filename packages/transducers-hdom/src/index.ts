@@ -1,8 +1,6 @@
 import { isString } from "@thi.ng/checks/is-string";
 import { HDOMOpts } from "@thi.ng/hdom/api";
-import { diffElement } from "@thi.ng/hdom/diff";
-import { hydrateDOM } from "@thi.ng/hdom/dom";
-import { normalizeTree } from "@thi.ng/hdom/normalize";
+import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
 import { Transducer } from "@thi.ng/transducers/api";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/xform/scan";
@@ -34,8 +32,8 @@ import { scan } from "@thi.ng/transducers/xform/scan";
  *
  * @param opts hdom options
  */
-export const updateDOM = (opts?: Partial<HDOMOpts>): Transducer<any, any[]> => {
-    opts = { root: "app", span: true, normalize: true, ...opts };
+export const updateDOM = (opts?: Partial<HDOMOpts>, impl = DEFAULT_IMPL): Transducer<any, any[]> => {
+    opts = { root: "app", ...opts };
     const root = isString(opts.root) ?
         document.getElementById(opts.root) :
         opts.root;
@@ -43,13 +41,13 @@ export const updateDOM = (opts?: Partial<HDOMOpts>): Transducer<any, any[]> => {
         reducer(
             () => [],
             (prev, curr) => {
-                opts.normalize && (curr = normalizeTree(curr, opts.ctx, [0], opts.span));
+                curr = impl.normalizeTree(opts, curr);
                 if (curr != null) {
                     if (opts.hydrate) {
-                        hydrateDOM(root, curr);
+                        impl.hydrateTree(opts, root, curr);
                         opts.hydrate = false;
                     } else {
-                        diffElement(root, prev, curr);
+                        impl.diffTree(opts, impl, root, prev, curr, 0);
                     }
                     return curr;
                 }

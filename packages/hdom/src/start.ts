@@ -1,9 +1,7 @@
 import { isString } from "@thi.ng/checks/is-string";
 
-import { HDOMOpts } from "./api";
-import { diffElement } from "./diff";
-import { hydrateDOM } from "./dom";
-import { normalizeTree } from "./normalize";
+import { HDOMImplementation, HDOMOpts } from "./api";
+import { DEFAULT_IMPL } from "./default";
 
 /**
  * Takes an hiccup tree (array, function or component object w/ life
@@ -41,9 +39,10 @@ import { normalizeTree } from "./normalize";
  *
  * @param tree hiccup DOM tree
  * @param opts options
+ * @param impl hdom target implementation
  */
-export const start = (tree: any, opts?: Partial<HDOMOpts>) => {
-    opts = { root: "app", span: true, normalize: true, ...opts };
+export const start = (tree: any, opts?: Partial<HDOMOpts>, impl: HDOMImplementation<any> = DEFAULT_IMPL) => {
+    opts = { root: "app", ...opts };
     let prev = [];
     let isActive = true;
     const root = isString(opts.root) ?
@@ -51,15 +50,13 @@ export const start = (tree: any, opts?: Partial<HDOMOpts>) => {
         opts.root;
     const update = () => {
         if (isActive) {
-            const curr = opts.normalize ?
-                normalizeTree(tree, opts.ctx, [0], true, opts.span) :
-                tree;
+            const curr = impl.normalizeTree(opts, tree);
             if (curr != null) {
                 if (opts.hydrate) {
-                    hydrateDOM(root, curr);
+                    impl.hydrateTree(opts, root, curr);
                     opts.hydrate = false;
                 } else {
-                    diffElement(root, prev, curr);
+                    impl.diffTree(opts, impl, root, prev, curr, 0);
                 }
                 prev = curr;
             }

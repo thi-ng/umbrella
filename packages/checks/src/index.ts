@@ -28,6 +28,7 @@ export * from "./is-mobile";
 export * from "./is-nan";
 export * from "./is-negative";
 export * from "./is-node";
+export * from "./is-not-string-iterable";
 export * from "./is-null";
 export * from "./is-number";
 export * from "./is-object";
