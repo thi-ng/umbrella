@@ -5,9 +5,9 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isString } from "@thi.ng/checks/is-string";
-import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
 import { diffArray } from "@thi.ng/diff/array";
-import { releaseDeep, equiv } from "@thi.ng/hdom/diff";
+import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
+import { equiv, releaseTree } from "@thi.ng/hdom/diff";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
@@ -105,6 +105,7 @@ const CTX_ATTRIBS = {
 export const canvas = (_, attribs, ...body: any[]) => {
     const cattribs = { ...attribs };
     delete cattribs.__diff;
+    delete cattribs.__normalize;
     const dpr = window.devicePixelRatio || 1;
     if (dpr !== 1) {
         !cattribs.style && (cattribs.style = {});
@@ -117,13 +118,14 @@ export const canvas = (_, attribs, ...body: any[]) => {
         ["g", {
             __impl: IMPL,
             __diff: attribs.__diff !== false,
+            __normalize: attribs.__normalize !== false,
             __release: attribs.__release === true,
             __clear: attribs.__clear,
             scale: dpr !== 1 ? dpr : null,
         }, ...body]]
 };
 
-export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
+export const createTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
     // console.log(Date.now(), "draw");
     const ctx = canvas.getContext("2d");
     const attribs = tree[1];
@@ -176,8 +178,8 @@ export const diffTree = (opts: Partial<HDOMOpts>,
     child: number) => {
     const attribs = curr[1];
     if (attribs.__diff === false) {
-        releaseDeep(prev);
-        return drawTree(opts, parent, curr);
+        releaseTree(prev);
+        return createTree(opts, parent, curr);
     }
     // delegate to branch-local implementation
     if (attribs.__impl && attribs.__impl !== IMPL) {
@@ -185,15 +187,15 @@ export const diffTree = (opts: Partial<HDOMOpts>,
     }
     const delta = diffArray(prev, curr, equiv, true);
     if (delta.distance > 0) {
-        return drawTree(opts, parent, curr);
+        return createTree(opts, parent, curr);
     }
 }
 
 export const IMPL: HDOMImplementation<any> = {
-    createTree: drawTree,
+    createTree,
     normalizeTree,
     diffTree,
-    hydrateTree: () => console.warn("hydrate not-supported for hdom-canvas"),
+    hydrateTree: () => { },
 };
 
 const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {
