@@ -1,15 +1,11 @@
 import * as isa from "@thi.ng/checks/is-array";
-import * as isf from "@thi.ng/checks/is-function";
 import * as isi from "@thi.ng/checks/is-not-string-iterable";
-import * as iss from "@thi.ng/checks/is-string";
 import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
 import { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa.isArray;
-const isFunction = isf.isFunction;
 const isNotStringAndIterable = isi.isNotStringAndIterable
-const isString = iss.isString;
 
 /**
  * Creates an actual DOM tree from given hiccup component and `parent`
@@ -27,7 +23,7 @@ const isString = iss.isString;
 export const createDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, insert?: number) => {
     if (isArray(tree)) {
         const tag = tree[0];
-        if (isFunction(tag)) {
+        if (typeof tag === "function") {
             return createDOM(opts, parent, tag.apply(null, [opts.ctx, ...tree.slice(1)]), insert);
         }
         const attribs = tree[1];
@@ -75,7 +71,7 @@ export const createDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, i
 export const hydrateDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, i = 0) => {
     if (isArray(tree)) {
         const el = parent.children[i];
-        if (isFunction(tree[0])) {
+        if (typeof tree[0] === "function") {
             hydrateDOM(opts, parent, tree[0].apply(null, [opts.ctx, ...tree.slice(1)]), i);
         }
         const attribs = tree[1];
@@ -180,7 +176,7 @@ export const setAttribs = (el: Element, attribs: any) => {
 export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
     if (id.startsWith("__")) return;
     const isListener = id.indexOf("on") === 0;
-    if (!isListener && isFunction(val)) {
+    if (!isListener && typeof val === "function") {
         val = val(attribs);
     }
     if (val !== undefined && val !== false) {
@@ -217,11 +213,11 @@ export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
         case "url":
         case "tel":
         case "search":
-            if (el.value !== undefined && isString(v)) {
-                const e = el as HTMLInputElement;
-                const off = v.length - (e.value.length - e.selectionStart);
-                e.value = v;
-                e.selectionStart = e.selectionEnd = off;
+            if (el.value !== undefined && typeof v === "string") {
+                const off = v.length - (el.value.length - el.selectionStart);
+                el.value = v;
+                el.selectionStart = el.selectionEnd = off;
+                break;
             }
         default:
             el.value = v;
