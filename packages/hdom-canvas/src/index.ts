@@ -6,6 +6,8 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isString } from "@thi.ng/checks/is-string";
 import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
+import { diffArray } from "@thi.ng/diff/array";
+import { releaseDeep, equiv } from "@thi.ng/hdom/diff";
 import { ReadonlyVec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 
@@ -100,34 +102,32 @@ const CTX_ATTRIBS = {
  * @param attribs canvas attribs
  * @param shapes shape components
  */
-export const canvas = {
-    init: (el: HTMLCanvasElement) => {
-        const dpr = window.devicePixelRatio || 1;
-        el.width *= dpr;
-        el.height *= dpr;
-    },
-    render: (_, attribs, ...body: any[]) => {
-        const dpr = window.devicePixelRatio || 1;
-        if (dpr !== 1) {
-            !attribs.style && (attribs.style = {});
-            attribs.style.width = `${attribs.width}px`;
-            attribs.style.height = `${attribs.height}px`;
-        }
-        return ["canvas", attribs,
-            ["g", {
-                __impl: IMPL,
-                __diff: false,
-                __release: attribs.__release === true,
-                scale: dpr !== 1 ? dpr : null,
-                clear: attribs.clear
-            }, ...body]]
-    },
+export const canvas = (_, attribs, ...body: any[]) => {
+    const cattribs = { ...attribs };
+    delete cattribs.__diff;
+    const dpr = window.devicePixelRatio || 1;
+    if (dpr !== 1) {
+        !cattribs.style && (cattribs.style = {});
+        cattribs.style.width = `${cattribs.width}px`;
+        cattribs.style.height = `${cattribs.height}px`;
+        cattribs.width *= dpr;
+        cattribs.height *= dpr;
+    }
+    return ["canvas", cattribs,
+        ["g", {
+            __impl: IMPL,
+            __diff: attribs.__diff !== false,
+            __release: attribs.__release === true,
+            __clear: attribs.__clear,
+            scale: dpr !== 1 ? dpr : null,
+        }, ...body]]
 };
 
 export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
+    // console.log(Date.now(), "draw");
     const ctx = canvas.getContext("2d");
     const attribs = tree[1];
-    if (attribs && attribs.clear !== false) {
+    if (attribs && attribs.__clear !== false) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
     walk(ctx, tree, { attribs: {} });
@@ -168,11 +168,32 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
     return tree;
 };
 
+export const diffTree = (opts: Partial<HDOMOpts>,
+    _: HDOMImplementation<any>,
+    parent: HTMLCanvasElement,
+    prev: any[],
+    curr: any[],
+    child: number) => {
+    const attribs = curr[1];
+    if (attribs.__diff === false) {
+        releaseDeep(prev);
+        return drawTree(opts, parent, curr);
+    }
+    // delegate to branch-local implementation
+    if (attribs.__impl && attribs.__impl !== IMPL) {
+        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    }
+    const delta = diffArray(prev, curr, equiv, true);
+    if (delta.distance > 0) {
+        return drawTree(opts, parent, curr);
+    }
+}
+
 export const IMPL: HDOMImplementation<any> = {
     createTree: drawTree,
     normalizeTree,
+    diffTree,
     hydrateTree: () => console.warn("hydrate not-supported for hdom-canvas"),
-    diffTree: () => { },
 };
 
 const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {

@@ -12,6 +12,9 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [How it works](#how-it-works)
+    - [Restrictions & behavior controls](#restrictions--behavior-controls)
+    - [HDPI support](#hdpi-support)
 - [Supported shape types](#supported-shape-types)
     - [Group](#group)
     - [Definition group](#definition-group)
@@ -39,6 +42,14 @@ This project is part of the
 
 Declarative canvas scenegraph & visualization for
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
+
+This package provides a [re-usable canvas
+component](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas/src/index.ts#L66),
+which accepts child nodes defining a scene tree of different shape types
+in standard
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+syntax/format (i.e. nested arrays) and then translates these into canvas
+API draw calls during the hdom update process / cycle.
 
 ### Status
 
@@ -74,6 +85,71 @@ start(() => {
 });
 ```
 
+## How it works
+
+The package provides a `canvas` component which uses the branch-local
+behavior implementation feature of
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+v5.0.0 to support virtual SVG-like shape elements / components. These
+are defined as part of the main UI component tree just like any other
+component, but are then translated into canvas API draw commands during
+the hdom update process. Any embedded shape component functions receive
+the user context object as first arg, just like normal hdom components.
+
+Shape components are expressed in standard hiccup syntax, however with
+the following...
+
+### Restrictions & behavior controls
+
+- Shape component objects with life cycle methods are only partially
+  supported, i.e. only the `render` & `release` methods are used.
+- For performance reasons `release` methods are disabled by default. If
+  your shape tree contains stateful components which use the `release`
+  life cycle method, you'll need to explicitly enable the canvas
+  component's `__release` control attribute by setting it to `true`.
+- Currently no event listeners can be assigned to shapes (ignored),
+  though this is planned for a future version. The canvas element itself
+  can of course have event handlers as usual.
+
+For best performance it's recommended to ensure all resulting shapes
+elements are provided in already normalized hiccup format, i.e.
+
+```ts
+[tag, {attribs}, ...] // or
+[tag, null, ...]
+```
+
+That way the `__normalize: false` control attribute can be added either
+to the canvas component itself (or to individual shapes / groups), and
+if present, will skip normalization of that element's children.
+
+Likewise, for animated scenes, the `__diff` control attribute should be
+set to `false` to skip unnecessary diffing and force redraws.
+
+To disable the automatic background clearing of the canvas, set the `__clear` attribute to `false`.
+
+```ts
+[canvas, { width: 100, height: 100, __clear: false }, ...]
+```
+
+### HDPI support
+
+The canvas component automatically adjusts its size for HDPI displays by
+adding CSS `width` & `height` properties and pre-scaling the drawing
+context accordingly before any shapes are processed. For fullscreen
+canvases simply set the `width` & `height` attribs to:
+
+```ts
+[canvas,
+    {
+        width: window.innerWidth,
+        height: window.innerHeight
+    },
+    // shapes
+    ...
+]
+```
+
 ## Supported shape types
 
 ### Group
@@ -90,12 +166,13 @@ Attributes defined at group level are inherited by child elements.
 ["defs", {}, def1, def2, ...]
 ```
 
-Special group / container for [gradient definitions](#gradients).
+Special group / container for [gradient definitions](#gradients). If
+used, should always come first in a scene tree.
 
 ### Circle
 
 ```ts
-["circle", attribs, [x, y], r]
+["circle", attribs, [x, y], radius]
 ```
 
 ### Rect
@@ -155,6 +232,11 @@ relative to the end point of the previous segment.
 ["points", attribs, [[x1,y1], [x2,y2],...]]
 ```
 
+The following shape specific attributes are used:
+
+- `shape`: `circle` or `rect` (default)
+- `size`: point size (radius for circles, width for rects) - default: 1
+
 ### Text
 
 ```ts
@@ -167,7 +249,7 @@ relative to the end point of the previous segment.
 ["img", attribs, [x, y], img]
 ```
 
-`img` MUST be an HTML image element, canvas or video element.
+`img` MUST be an HTML image, canvas or video element.
 
 ### Gradients
 
@@ -234,6 +316,14 @@ the order of application is always TRS.
 See [MDN
 docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform)
 for further details.
+
+Also see the [`Mat23` type in the
+@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/mat23.ts)
+package for creating different kinds of transformation matrices, e.g.
+
+```
+{ transform: Mat23.skewX(Math.PI / 12) }
+```
 
 ### Translation
 
