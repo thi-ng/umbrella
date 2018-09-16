@@ -199,21 +199,22 @@ const TESTS = {
 
     "static": {
         attribs: {},
-        desc: "static scene w/ skew matrix (single draw only)",
+        desc: "static scene (single draw) w/ skew matrix",
         body: (() => {
-            const body = ["g",
-                {
-                    transform: Mat23.concat(
-                        Mat23.translation(150, 150),
-                        Mat23.skewX(-Math.PI / 6)
-                    ),
-                },
-                ["rect", { fill: "#ff0" }, [-50, -50], 100, 100],
-                ["text",
-                    { fill: "#00f", font: "18px Menlo", align: "center", baseLine: "middle" },
-                    [0, 0], new Date().toISOString()
-                ]
-            ];
+            const body =
+                ["g",
+                    {
+                        transform: Mat23.concat(
+                            Mat23.translation(150, 150),
+                            Mat23.skewX(-Math.PI / 6)
+                        ),
+                    },
+                    ["rect", { fill: "#ff0" }, [-50, -50], 100, 100],
+                    ["text",
+                        { fill: "#00f", font: "18px Menlo", align: "center", baseLine: "middle" },
+                        [0, 0], new Date().toISOString()
+                    ]
+                ];
             return () => body;
         })()
     }
@@ -245,19 +246,28 @@ const scene = sync({
         time: fromRAF()
     }
 }).transform(
-    map(({ id }) => ({ id, scene: normalizeTree({}, TESTS[id].body()) }))
+    map(({ id }) => ({ id, shapes: normalizeTree({}, TESTS[id].body()) }))
 );
 
 // stream transformer to produce & update main user interface root component
 scene.transform(
-    map(({ id, scene }) =>
+    map(({ id, shapes }) =>
         ["div.vh-100.flex.flex-column.justify-center.items-center.code.f7",
             ["div",
                 [choices, selection, id],
                 ["button.ml2", { onclick: () => trigger.next(true) }, "convert & export"]],
 
             // hdom-canvas component w/ injected `scene` subtree
-            [canvas, { class: "ma2", width: 300, height: 300, ...TESTS[id].attribs }, scene],
+            // turn __normalize off because `scene` already contains normalized tree
+            [canvas,
+                {
+                    class: "ma2",
+                    width: 300,
+                    height: 300,
+                    __normalize: false,
+                    ...TESTS[id].attribs
+                },
+                shapes],
 
             ["div.ma2.tc", TESTS[id].desc],
             ["a.link",
@@ -274,10 +284,16 @@ sync({
     src: { scene, trigger },
     reset: true,
     xform: map(({ scene }) =>
-        download(new Date().toISOString().replace(/[:.-]/g, "") + ".svg",
+        download(
+            new Date().toISOString().replace(/[:.-]/g, "") + ".svg",
             serialize(
-                svg({ width: 300, height: 300, stroke: "none", fill: "none" },
-                    convertTree(scene.scene)))))
+                svg(
+                    { width: 300, height: 300, stroke: "none", fill: "none" },
+                    convertTree(scene.shapes)
+                )
+            )
+        )
+    )
 });
 
 // seed initial test selection
