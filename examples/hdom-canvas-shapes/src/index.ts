@@ -8,6 +8,7 @@ import { updateDOM } from "@thi.ng/transducers-hdom";
 import { range } from "@thi.ng/transducers/iter/range";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { map } from "@thi.ng/transducers/xform/map";
+import { Mat23 } from "@thi.ng/vectors/mat23";
 
 // for testing SVG conversion
 import { serialize } from "@thi.ng/hiccup";
@@ -48,7 +49,7 @@ const TESTS = {
     },
 
     "shape morph": {
-        attribs: { clear: false },
+        attribs: { __clear: false },
         desc: "Animated semi-transparent path, stroke dash pattern, transformed origin, non-clearing background",
         body: () => {
             const t = Date.now() * 0.01;
@@ -71,7 +72,7 @@ const TESTS = {
     },
 
     "points 1k": {
-        attribs: {},
+        attribs: { __diff: false },
         desc: "1,000 random circles",
         body: () =>
             ["points",
@@ -85,7 +86,7 @@ const TESTS = {
     },
 
     "points 10k": {
-        attribs: {},
+        attribs: { __diff: false },
         desc: "10,000 random rects",
         body: () =>
             ["points",
@@ -98,7 +99,7 @@ const TESTS = {
     },
 
     "points 50k": {
-        attribs: {},
+        attribs: { __diff: false },
         desc: "50,000 random rects",
         body: () =>
             ["points",
@@ -192,6 +193,27 @@ const TESTS = {
                 };
             };
             const body = ["g", {}, ...repeatedly(ball, 1000)];
+            return () => body;
+        })()
+    },
+
+    "static": {
+        attribs: {},
+        desc: "static scene w/ skew matrix (single draw only)",
+        body: (() => {
+            const body = ["g",
+                {
+                    transform: Mat23.concat(
+                        Mat23.translation(150, 150),
+                        Mat23.skewX(-Math.PI / 6)
+                    ),
+                },
+                ["rect", { fill: "#ff0" }, [-50, -50], 100, 100],
+                ["text",
+                    { fill: "#00f", font: "18px Menlo", align: "center", baseLine: "middle" },
+                    [0, 0], new Date().toISOString()
+                ]
+            ];
             return () => body;
         })()
     }

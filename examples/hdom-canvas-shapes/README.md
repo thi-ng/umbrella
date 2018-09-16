@@ -7,13 +7,21 @@ This example demonstrates different features of the upcoming
 package to declare canvas scenegraphs using the same hiccup syntax as
 the rest of the UI. These shape elements (children of the `canvas`
 component) are defined via a SVG-like approach (though not using
-stringified points) and, using the branch-local behavior feature of
+stringified geometry) and, using the new branch-local behavior feature
+of
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom),
 are translated into canvas API draw calls. Shapes can be grouped and any
 attributes defined on group nodes will be inherited by all children
 (same as in SVG).
 
-See the [@thi.ng/hdom-canvas readme](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas) for further details.
+Furthermore, this example acts as a test bed for
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hiccup-svg)'s
+`convertTree()` function to translate and then serialize these scene
+trees to downloadable SVG files.
+
+See the [@thi.ng/hdom-canvas
+readme](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas)
+for further details.
 
 Related examples:
 
