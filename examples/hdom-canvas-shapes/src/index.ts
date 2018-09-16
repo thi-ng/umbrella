@@ -1,4 +1,5 @@
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
+// import { canvas2D, adaptDPI } from "@thi.ng/hdom-components/canvas";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
 import { stream } from "@thi.ng/rstream/stream";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
@@ -16,8 +17,12 @@ import { svg } from "@thi.ng/hiccup-svg/svg";
 import logo from "../assets/logo-64.png"; // ignore error, resolved by parcel
 import { download } from "./download";
 
+// canvas size
+const W = 300;
+const W2 = W / 2;
+
 const randpos = () =>
-    [Math.random() * 300 - 150, Math.random() * 300 - 150];
+    [Math.random() * W - W2, Math.random() * W - W2];
 
 const randdir = (n = 1) =>
     [Math.random() * n * 2 - n, Math.random() * n * 2 - n];
@@ -28,6 +33,7 @@ const TESTS = {
 
     "dash offset": {
         attribs: {},
+        desc: "Simple path w/ animated stroke dash pattern",
         body: () =>
             ["path",
                 {
@@ -35,14 +41,15 @@ const TESTS = {
                     dash: [4, 8], dashOffset: (Date.now() * 0.01) % 12
                 },
                 [
-                    ["M", [10, 10]], ["Q", [150, 150], [150, 290]],
-                    ["Q", [150, 150], [290, 10]], ["Q", [150, 150], [10, 10]]
+                    ["M", [10, 10]], ["Q", [W2, W2], [W2, W - 10]],
+                    ["Q", [W2, W2], [W - 10, 10]], ["Q", [W2, W2], [10, 10]]
                 ]
             ]
     },
 
     "shape morph": {
         attribs: { clear: false },
+        desc: "Animated semi-transparent path, stroke dash pattern, transformed origin, non-clearing background",
         body: () => {
             const t = Date.now() * 0.01;
             const a = 10 + 140 * (Math.sin(t * 0.33) * 0.5 + 0.5);
@@ -52,7 +59,7 @@ const TESTS = {
                     weight: 3,
                     miterLimit: 1,
                     dash: [20, 20], dashOffset: (t * 5) % 40,
-                    translate: [150, 150],
+                    translate: [W2, W2],
                     rotate: (t * 0.05) % (2 * Math.PI)
                 },
                 [
@@ -65,11 +72,12 @@ const TESTS = {
 
     "points 1k": {
         attribs: {},
+        desc: "1,000 random circles",
         body: () =>
             ["points",
                 {
                     fill: "#000", stroke: "none", size: 4,
-                    translate: [150, 150],
+                    translate: [W2, W2],
                     scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005),
                     shape: "circle"
                 },
@@ -78,11 +86,12 @@ const TESTS = {
 
     "points 10k": {
         attribs: {},
+        desc: "10,000 random rects",
         body: () =>
             ["points",
                 {
                     fill: "#000", stroke: "none",
-                    translate: [150, 150],
+                    translate: [W2, W2],
                     scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
                 },
                 [...repeatedly(randpos, 10000)]],
@@ -90,11 +99,12 @@ const TESTS = {
 
     "points 50k": {
         attribs: {},
+        desc: "50,000 random rects",
         body: () =>
             ["points",
                 {
                     fill: "#000", stroke: "none",
-                    translate: [150, 150],
+                    translate: [W2, W2],
                     scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
                 },
                 [...repeatedly(randpos, 50000)]],
@@ -102,6 +112,7 @@ const TESTS = {
 
     "rounded rects": {
         attribs: {},
+        desc: "Rounded rects w/ animated corner radii",
         body: () => {
             const t = Date.now() * 0.01;
             const r = 100 * (Math.sin(t * 0.5) * 0.5 + 0.5);
@@ -114,54 +125,57 @@ const TESTS = {
                     font: "48px Menlo",
                     __normalize: false
                 },
-                ...map((i) => ["rect", null, [i, i], 300 - 2 * i, 300 - 2 * i, r], range(10, 50, 5)),
-                ["text", {}, [150, 150], Math.round(r)]
+                ...map((i) => ["rect", null, [i, i], W - 2 * i, W - 2 * i, r], range(10, 50, 5)),
+                ["text", {}, [W2, W2], Math.round(r)]
             ];
         }
     },
 
     "linear gradient": {
         attribs: {},
+        desc: "Animated linear gradients",
         body: () =>
             [
                 ["defs", {},
-                    ["linearGradient", { id: "grad1", from: [0, 0], to: [300, 300] },
+                    ["linearGradient", { id: "grad1", from: [0, 0], to: [W, W] },
                         [[0, "#fc0"], [1, "#0ef"]]],
-                    ["linearGradient", { id: "grad2", from: [0, 0], to: [300, 150 + 150 * Math.sin(Date.now() * 0.005)] },
+                    ["linearGradient", { id: "grad2", from: [0, 0], to: [W, W2 + W2 * Math.sin(Date.now() * 0.005)] },
                         [[0, "#700"], [0.5, "#d0f"], [1, "#fff"]]]
                 ],
-                ["circle", { fill: "$grad1" }, [150, 150], 140],
-                ["rect", { fill: "$grad2" }, [125, 0], 50, 300],
-                ["rect", { fill: "$grad2" }, [0, 125], 300, 50]
+                ["circle", { fill: "$grad1" }, [W2, W2], W2 - 10],
+                ["rect", { fill: "$grad2" }, [125, 0], 50, W],
+                ["rect", { fill: "$grad2" }, [0, 125], W, 50]
             ],
     },
 
     "radial gradient": {
         attribs: {},
+        desc: "Animated radial gradients (w/ alpha channel)",
         body: () => {
             const t = Date.now() * 0.01;
-            const x = 150 + 50 * Math.sin(t * 0.5);
-            const y = 150 + 20 * Math.sin(t * 0.3);
+            const x = W2 + 50 * Math.sin(t * 0.5);
+            const y = W2 + 20 * Math.sin(t * 0.3);
             const spos = [110, 120];
             return [
                 ["defs", {},
-                    ["radialGradient", { id: "bg", from: [x, 280], to: [150, 300], r1: 300, r2: 100 },
+                    ["radialGradient", { id: "bg", from: [x, W - 20], to: [W2, W], r1: W, r2: 100 },
                         [[0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]]],
                     ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
                         [[0, "#fff"], [1, "rgba(255,255,192,0)"]]]
                 ],
-                ["circle", { fill: "$bg" }, [150, y], 130],
+                ["circle", { fill: "$bg" }, [W2, y], W2 - 20],
                 ["circle", { fill: "$sun" }, spos, 50],
             ];
         }
     },
 
-    "image": {
+    "images 1k": {
         attribs: {},
+        desc: "1,000 stateful image sprite components",
         body: (() => {
             const img = new Image();
             img.src = logo;
-            const w = 300 - 64;
+            const w = W - 64;
             const ball = () => {
                 const p = randpos();
                 const v = randdir(4);
@@ -177,7 +191,7 @@ const TESTS = {
                     return ["img", {}, [...p], img];
                 };
             };
-            const body = ["g", {}, ...repeatedly(ball, 10)];
+            const body = ["g", {}, ...repeatedly(ball, 1000)];
             return () => body;
         })()
     }
@@ -189,7 +203,7 @@ const choices = (_, target, id) =>
         {
             class: "w4 ma2",
             onchange: (e) => {
-                window.location.hash = e.target.value.replace(" ", "-");
+                window.location.hash = e.target.value.replace(/\s/g, "-");
                 target.next(e.target.value);
             }
         },
@@ -218,8 +232,12 @@ scene.transform(
         ["div.vh-100.flex.flex-column.justify-center.items-center.code.f7",
             ["div",
                 [choices, selection, id],
-                ["button.ml2", { onclick: () => trigger.next(true) }, "export"]],
+                ["button.ml2", { onclick: () => trigger.next(true) }, "convert & export"]],
+
+            // hdom-canvas component w/ injected `scene` subtree
             [canvas, { class: "ma2", width: 300, height: 300, ...TESTS[id].attribs }, scene],
+
+            ["div.ma2.tc", TESTS[id].desc],
             ["a.link",
                 { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes" },
                 "Source code"]
@@ -240,14 +258,16 @@ sync({
                     convertTree(scene.scene)))))
 });
 
-// initial selection
+// seed initial test selection
 selection.next(
     window.location.hash.length > 1 ?
-        window.location.hash.substr(1).replace("-", " ") :
+        window.location.hash.substr(1).replace(/-/g, " ") :
         "shape morph"
 );
 
 // HMR handling
+// terminate `scene` rstream to avoid multiple running instances after HMR
+// (this will also terminate all attached child streams/subscriptions)
 const hot = (<any>module).hot;
 if (hot) {
     hot.dispose(() => scene.done());
