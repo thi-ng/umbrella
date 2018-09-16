@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "4.0.5",
-    "description": "Lightweight vanilla ES6 UI component & virtual DOM system",
+    "version": "5.0.0-alpha",
+    "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -30,16 +30,18 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.1.1",
-        "@thi.ng/checks": "^1.5.8",
-        "@thi.ng/diff": "^1.0.23",
-        "@thi.ng/equiv": "^0.1.8",
-        "@thi.ng/hiccup": "^2.1.2"
+        "@thi.ng/checks": "^1.5.9",
+        "@thi.ng/diff": "^1.1.0",
+        "@thi.ng/equiv": "^0.1.9",
+        "@thi.ng/hiccup": "^2.2.0"
     },
     "keywords": [
         "browser",
         "components",
+        "diff",
         "DOM",
         "ES6",
+        "IOC",
         "reactive",
         "typescript",
         "UI",
