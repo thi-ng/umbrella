@@ -140,7 +140,7 @@ export const diffTree = <T>(
     }
 };
 
-const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
+export const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
     let i, e, edits;
     const delta = diffObject(prev, curr, equiv);
     impl.removeAttribs(el, delta.dels, prev);
@@ -170,7 +170,7 @@ const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: 
     }
 };
 
-const releaseDeep = (tag: any) => {
+export const releaseDeep = (tag: any) => {
     if (isArray(tag)) {
         if (tag[1] && tag[1].__release === false) {
             return;
@@ -215,7 +215,7 @@ const OBJP = Object.getPrototypeOf({});
  * @param a
  * @param b
  */
-const equiv = (a: any, b: any): boolean => {
+export const equiv = (a: any, b: any): boolean => {
     let proto;
     if (a === b) {
         return true;
