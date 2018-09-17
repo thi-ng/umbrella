@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0-alpha.0"></a>
+# [2.0.0-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@2.0.0-alpha...@thi.ng/hiccup-svg@2.0.0-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/hiccup-svg
+
+
+
+
+
 <a name="1.0.14"></a>
 ## [1.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@1.0.13...@thi.ng/hiccup-svg@1.0.14) (2018-09-10)
 

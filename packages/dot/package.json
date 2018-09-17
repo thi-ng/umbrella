@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dot",
-    "version": "0.1.13",
+    "version": "0.1.14-alpha.0",
     "description": "Graphviz DOM abstraction as vanilla JS objects & serialization to DOT format",
     "main": "./index.js",
     "typings": "./index.d.ts",

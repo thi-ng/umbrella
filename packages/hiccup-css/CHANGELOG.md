@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.22-alpha.0"></a>
+## [0.2.22-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.21...@thi.ng/hiccup-css@0.2.22-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
 <a name="0.2.21"></a>
 ## [0.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.20...@thi.ng/hiccup-css@0.2.21) (2018-09-10)
 

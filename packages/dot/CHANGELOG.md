@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.14-alpha.0"></a>
+## [0.1.14-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@0.1.13...@thi.ng/dot@0.1.14-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/dot
+
+
+
+
+
 <a name="0.1.13"></a>
 ## [0.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@0.1.12...@thi.ng/dot@0.1.13) (2018-09-10)
 
