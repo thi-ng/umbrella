@@ -45,7 +45,7 @@ const cancel = start(() => {
             // applied in a nested manner...
             //
             // see here for a list of all supported attribs:
-            // https://github.com/thi-ng/umbrella/blob/feature/hdom-canvas/packages/hdom-canvas/src/index.ts#L35
+            // https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-canvas/src/index.ts#L35
             ["g",
                 {
                     translate: [100, 100],
@@ -71,7 +71,7 @@ const cancel = start(() => {
                 ]
             ]],
         ["a.link",
-            { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock" },
+            { href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock" },
             "Source code"]];
 });
 

@@ -3,12 +3,12 @@
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-clock/)
 
 Declarative canvas drawing using the upcoming
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas)
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
 package.
 
 Related examples:
 
-- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes)
+- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ## Building
 
