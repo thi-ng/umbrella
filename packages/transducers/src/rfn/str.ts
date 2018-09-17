@@ -10,6 +10,6 @@ export function str(sep?: string, xs?: Iterable<any>): any {
         [...xs].join(sep) :
         reducer<string, any>(
             () => "",
-            (acc, x) => (acc = first ? "" + x : acc + sep + x, first = false, acc),
+            (acc, x) => (acc = first ? acc + x : acc + sep + x, first = false, acc),
         );
 }
