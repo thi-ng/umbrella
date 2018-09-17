@@ -12,19 +12,16 @@ Related examples:
 
 ## Building
 
-Because some of the packages used by this demo are still unreleased,
-it's currently only possible to build from source...
+Note: Currently, some of the packages used by this demo are only
+available as pre-releases (e.g. `"@thi.ng/hdom": "^5.0.0-alpha"`).
 
 The example project also assumes that [Parcel](https://parceljs.org) is
 installed globally.
 
 ```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella
-git checkout feature/hdom-canvas
+git clone -b develop https://github.com/thi-ng/umbrella.git
+cd umbrella/examples/hdom-canvas-clock
 yarn install
-yarn build
-cd examples/hdom-canvas-clock
 yarn start
 ```
 
