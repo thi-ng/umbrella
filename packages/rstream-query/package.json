@@ -30,8 +30,8 @@
     "dependencies": {
         "@thi.ng/api": "^4.1.1",
         "@thi.ng/associative": "^0.6.6",
-        "@thi.ng/checks": "^1.5.8",
-        "@thi.ng/equiv": "^0.1.8",
+        "@thi.ng/checks": "^1.5.9",
+        "@thi.ng/equiv": "^0.1.9",
         "@thi.ng/errors": "^0.1.7",
         "@thi.ng/rstream": "^1.12.1",
         "@thi.ng/rstream-dot": "^0.2.45",

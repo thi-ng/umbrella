@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.1.1",
-        "@thi.ng/checks": "^1.5.8",
+        "@thi.ng/checks": "^1.5.9",
         "@thi.ng/errors": "^0.1.7",
         "@thi.ng/paths": "^1.6.1",
         "@thi.ng/resolve-map": "^3.0.11",

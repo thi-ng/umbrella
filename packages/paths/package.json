@@ -28,7 +28,7 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/checks": "^1.5.8",
+        "@thi.ng/checks": "^1.5.9",
         "@thi.ng/errors": "^0.1.7"
     },
     "keywords": [
