@@ -119,6 +119,7 @@ export const canvas = (_, attribs, ...body: any[]) => {
             __diff: attribs.__diff !== false,
             __normalize: attribs.__normalize !== false,
             __release: attribs.__release === true,
+            __serialize: false,
             __clear: attribs.__clear,
             scale: dpr !== 1 ? dpr : null,
         }, ...body]]
