@@ -101,28 +101,30 @@ const CTX_ATTRIBS = {
  * @param attribs canvas attribs
  * @param shapes shape components
  */
-export const canvas = (_, attribs, ...body: any[]) => {
-    const cattribs = { ...attribs };
-    delete cattribs.__diff;
-    delete cattribs.__normalize;
-    const dpr = window.devicePixelRatio || 1;
-    if (dpr !== 1) {
-        !cattribs.style && (cattribs.style = {});
-        cattribs.style.width = `${cattribs.width}px`;
-        cattribs.style.height = `${cattribs.height}px`;
-        cattribs.width *= dpr;
-        cattribs.height *= dpr;
+export const canvas = {
+    render: (_, attribs, ...body: any[]) => {
+        const cattribs = { ...attribs };
+        delete cattribs.__diff;
+        delete cattribs.__normalize;
+        const dpr = window.devicePixelRatio || 1;
+        if (dpr !== 1) {
+            !cattribs.style && (cattribs.style = {});
+            cattribs.style.width = `${cattribs.width}px`;
+            cattribs.style.height = `${cattribs.height}px`;
+            cattribs.width *= dpr;
+            cattribs.height *= dpr;
+        }
+        return ["canvas", cattribs,
+            ["g", {
+                __impl: IMPL,
+                __diff: attribs.__diff !== false,
+                __normalize: attribs.__normalize !== false,
+                __release: attribs.__release === true,
+                __serialize: false,
+                __clear: attribs.__clear,
+                scale: dpr !== 1 ? dpr : null,
+            }, ...body]]
     }
-    return ["canvas", cattribs,
-        ["g", {
-            __impl: IMPL,
-            __diff: attribs.__diff !== false,
-            __normalize: attribs.__normalize !== false,
-            __release: attribs.__release === true,
-            __serialize: false,
-            __clear: attribs.__clear,
-            scale: dpr !== 1 ? dpr : null,
-        }, ...body]]
 };
 
 export const createTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
