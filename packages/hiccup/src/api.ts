@@ -21,6 +21,8 @@ export const ENTITIES = {
     "'": "&apos;",
 };
 
+export const COMMENT = "__COMMENT__";
+
 export const NO_SPANS = {
     button: 1,
     option: 1,
