@@ -1,12 +1,17 @@
 import { IObjectOf, SEMAPHORE } from "@thi.ng/api/api";
-import * as isa from "@thi.ng/checks/is-array";
 import { DiffLogEntry } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
-import { equivArrayLike, equivObject, equivMap, equivSet } from "@thi.ng/equiv";
+import {
+    equiv as _equiv,
+    equivArrayLike,
+    equivMap,
+    equivObject,
+    equivSet
+} from "@thi.ng/equiv";
 import { HDOMImplementation, HDOMOpts } from "./api";
 
-const isArray = isa.isArray;
+const isArray = Array.isArray;
 const max = Math.max;
 
 // child index tracking template buffer
@@ -137,7 +142,7 @@ export const diffTree = <T>(
                 impl.setContent(el, val);
             } else if (isArray(val)) {
                 k = val[1].key;
-                if (k === undefined || (k && equivKeys[k][0] === undefined)) {
+                if (k === undefined || equivKeys[k][0] === undefined) {
                     idx = e[1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
                     impl.createTree(opts, el, val, offsets[idx]);
@@ -155,7 +160,7 @@ export const diffTree = <T>(
 };
 
 export const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
-    const delta = diffObject(prev, curr, equiv);
+    const delta = diffObject(prev, curr, _equiv);
     impl.removeAttribs(el, delta.dels, prev);
     let val = SEMAPHORE;
     let i, e, edits;
@@ -186,7 +191,8 @@ export const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any,
 
 export const releaseTree = (tag: any) => {
     if (isArray(tag)) {
-        if (tag[1] && tag[1].__release === false) {
+        let x: any;
+        if ((x = tag[1]) && x.__release === false) {
             return;
         }
         if ((<any>tag).__release) {
@@ -194,8 +200,8 @@ export const releaseTree = (tag: any) => {
             (<any>tag).__release.apply(tag, (<any>tag).__args);
             delete (<any>tag).__release;
         }
-        for (let i = tag.length; --i >= 2;) {
-            releaseTree(tag[i]);
+        for (x = tag.length; --x >= 2;) {
+            releaseTree(tag[x]);
         }
     }
 };
