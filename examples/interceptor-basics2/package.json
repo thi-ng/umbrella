@@ -1,5 +1,5 @@
 {
-    "name": "interceptor-basics",
+    "name": "interceptor-basics2",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -16,8 +16,7 @@
     "dependencies": {
         "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/hdom": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
