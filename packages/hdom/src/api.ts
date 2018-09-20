@@ -73,6 +73,11 @@ export interface HDOMOpts {
      * trees will cause undefined behavior.
      */
     hydrate?: boolean;
+
+    /**
+     * Allow further custom opts.
+     */
+    [id: string]: any;
 }
 
 /**
