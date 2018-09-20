@@ -48,41 +48,44 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
 
 
 /**
- * Similar to `StreamMerge` (`merge()`), but with extra synchronization
- * of inputs. Before emitting any new values, `StreamSync` collects
- * values until at least one has been received from *all* inputs. Once
- * that's the case, the collected values are sent as labeled tuple
- * object to downstream subscribers and the process repeats until all
- * inputs are exhausted. Any done inputs are automatically removed.
+ * Similar to `StreamMerge`, but with extra synchronization of inputs.
+ * Before emitting any new values, `StreamSync` collects values until at
+ * least one has been received from *all* inputs. Once that's the case,
+ * the collected values are sent as labeled tuple object to downstream
+ * subscribers. Each value in the emitted tuple objects is stored under
+ * their input stream's ID. Only the last value received from each input
+ * is passed on. After the initial tuple has been emitted, you can
+ * choose from two possible behaviors:
  *
- * In addition to the default mode of operation, i.e. waiting for new
- * values from *all* inputs before another tuple is produced, the
- * behavior for *all but the first tuple* can be changed to emit new
- * tuples as soon as a new value from any input has become available
- * (with other values in the tuple remaining). This behavior can be
- * achieved by setting the `reset` ctor option to `false`.
+ * 1) Any future change in any input will produce a new result tuple.
+ *    These tuples will retain the most recently read values from other
+ *    inputs. This behavior is the default and illustrated in the above
+ *    schematic.
+ * 2) If the `reset` option is `true`, every input will have to provide
+ *    at least one new value again until another result tuple is
+ *    produced.
  *
- * Each value in the emitted tuple objects is stored under their input
- * stream ID. Only the last value received from each input is passed on.
+ * Any done inputs are automatically removed. By default, `StreamSync`
+ * calls `done()` when the last active input is done, but this behavior
+ * can be overridden via the `close` constructor option (set to
+ * `false`).
  *
- * ```
- * s = sync({src: [a=new Stream("a"), b=new Stream("b")]});
- * s.subscribe(trace("result: "));
- *
+ * ```ts
+ * const a = rs.stream();
+ * const b = rs.stream();
+ * s = sync({ src: { a, b } }).subscribe(trace("result: "));
  * a.next(1);
  * b.next(2);
  * // result: { a: 1, b: 2 }
  * ```
  *
  * Input streams can be added and removed dynamically and the emitted
- * tuple size adjusts to the current number of inputs. By default,
- * `StreamSync` calls `done()` when the last active input is done, but
- * this behavior can be overridden via the `close` constructor option
- * (set to `false`).
+ * tuple size adjusts to the current number of inputs (the next time a
+ * value is received from any input).
  *
- * By default, the last emitted tuple is allowed to be incomplete (in
- * case the input closed). To only allow complete tuples, set the
- * optional `all` ctor option to `false`.
+ * If the `reset` option is enabled, the last emitted tuple is allowed
+ * to be incomplete, by default. To only allow complete tuples, also set
+ * the `all` option to `false`.
  *
  * The synchronization is done via the `partitionSync()` transducer from
  * the @thi.ng/transducers package. See this function's docs for further

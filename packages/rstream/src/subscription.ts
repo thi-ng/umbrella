@@ -18,16 +18,32 @@ import {
 
 /**
  * Creates a new `Subscription` instance, the fundamental datatype &
- * building block provided by this package. Subscriptions can be:
+ * building block provided by this package (`Stream`s are
+ * `Subscription`s too). Subscriptions can be:
  *
- * - linked into directed graphs (not necessarily DAGs),
+ * - linked into directed graphs (if async, not necessarily DAGs)
  * - transformed using transducers (incl. early termination)
- * - have any number of subscribers
- * - recursively unsubscribe themselves from parent if no subscribers
- *   remain
- * - implement @thi.ng/api `IDeref` interface
+ * - can have any number of subscribers (optionally each w/ their own
+ *   transducer)
+ * - recursively unsubscribe themselves from parent after their last
+ *   subscriber unsubscribed
  * - will go into a non-recoverable error state if NONE of the
  *   subscribers has an error handler itself
+ * - implement the @thi.ng/api `IDeref` interface
+ *
+ * ```
+ * // as reactive value mechanism (same as with stream() above)
+ * s = rs.subscription();
+ * s.subscribe(trace("s1"));
+ * s.subscribe(trace("s2"), tx.filter((x) => x > 25));
+ *
+ * // external trigger
+ * s.next(23);
+ * // s1 23
+ * s.next(42);
+ * // s1 42
+ * // s2 42
+ * ```
  *
  * @param sub
  * @param xform
