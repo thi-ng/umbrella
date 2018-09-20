@@ -45,19 +45,35 @@ are provided too:
 ### Stream merging
 
 - [merge](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts) - unsorted merge from multiple inputs (dynamic add/remove)
+
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-merge.png)
+
 - [sync](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts) - synchronized merge and labeled tuple objects
+
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-sync.png)
 
 ### Stream splitting
 
-- [bisect](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - split via predicate
 - [pubsub](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/pubsub.ts) - topic based splitting
+
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-pubsub.png)
+
+- [bisect](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - split via predicate
+
+### Side-chaining
+
+- [sidechainPartition](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts) - emits chunks from source, controlled by sidechain stream
+
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-sidechain-partition.png)
+
+- [sidechainToggle](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-toggle.ts) - toggles source based on signals from sidechain
+
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-sidechain-toggle.png)
 
 ### Useful subscription ops
 
 - [postWorker](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts) - send values to workers (incl. optional worker instantiation)
 - [resolve](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
-- [sidechainPartition](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts) - emits chunks from source, controlled by sidechain stream
-- [sidechainToggle](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-toggle.ts) - toggles source based on signals from sidechain
 - [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
 
