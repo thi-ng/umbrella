@@ -10,7 +10,8 @@ This project is part of the
 
 - [About](#about)
     - [Minimal example #1: Local state, RAF update](#minimal-example-1-local-state-raf-update)
-    - [Minimal example #2 (reactive state & transducer update)](#minimal-example-2-reactive-state--transducer-update)
+    - [Minimal example #2: Reactive state & transducer update](#minimal-example-2-reactive-state--transducer-update)
+    - [Minimal example #3: Branch-local behavior / canvas scenegraph](#minimal-example-3-branch-local-behavior--canvas-scenegraph)
 - [Example projects](#example-projects)
     - [Realtime crypto candle chart](#realtime-crypto-candle-chart)
     - [Git commit log table](#git-commit-log-table)
@@ -29,7 +30,10 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage](#usage)
+- [API & Usage](#api--usage)
+    - [start()](#start)
+    - [HDOMOpts config options](#hdomopts-config-options)
+    - [normalizeTree()](#normalizetree)
     - [User context injection](#user-context-injection)
     - [Component objects & life cycle methods](#component-objects--life-cycle-methods)
     - [Benchmark](#benchmark)
@@ -40,44 +44,38 @@ This project is part of the
 
 ## About
 
-Lightweight reactive DOM components & VDOM-ish implementation using only
-vanilla JS data structures (arrays, objects with life cycle functions,
-closures, iterators), based on
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
-hdom is *very* flexible and supports many different workflows and means
-to perform DOM updates...
+Extensible, abstract, hierarchical UI component tree definition syntax &
+differential tree updates using only vanilla JS data structures (arrays,
+iterators, closures, attribute objects or objects with life cycle
+functions, closures). By default targets the browser's native DOM, but
+supports other arbitrary target implementations in a branch-local
+manner, e.g. to [define scene graphs for a canvas
+element](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+as part of the normal UI tree.
 
-- Use the full expressiveness of ES6 / TypeScript to define, annotate &
-  document components
+Benefits:
+
+- Use the full expressiveness of ES6 / TypeScript to define user interfaces
 - Clean, functional component composition and reuse
-- No pre-processing / pre-compilation steps
-- [Supports
-  SVG](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg),
-  arbitrary elements, attributes, events
-- Suitable for server side rendering (by passing the same data structure
-  to @thi.ng/hiccup's `serialize()`) and then "hydrating" listeners and
-  components with life cycle methods
+- No source pre-processing, pre-compilation or string interpolation
 - Less verbose than HTML / JSX, resulting in smaller file sizes
-- Static components can be distributed as JSON (or [transform JSON
-  into components](https://github.com/thi-ng/umbrella/tree/master/examples/json-components))
+- Supports arbitrary elements (incl. SVG), attributes and events in
+  uniform, S-expression based syntax
+- Supports branch-local custom update behaviors & arbitrary (e.g.
+  non-DOM) target data structures to which tree diffs are applied to
+- Suitable for server-side rendering and then "hydrating" listeners and
+  components with life cycle methods on the client side
+- Static components (or component templates) can be distributed as JSON
 - Optional user context injection (an arbitrary object passed to all
-  component functions)
-- CSS conversion from JS objects for `style` attribs (for full
-  hiccup-based CSS-in-JS generation also see:
+  component functions embedded in the tree)
+- Default implementation supports CSS conversion from JS objects for
+  `style` attribs (also see:
   [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css))
-- Auto-deref of embedded value wrappers which implement the
-  [`IDeref`](https://github.com/thi-ng/umbrella/tree/master/packages/api/api)
-  interface (e.g. atoms, cursors, derived views, streams etc.)
-- Fairly fast (see benchmark example below)
-- Only ~5KB gzipped
-
-In addition to the descriptions in this file, [further information and
-examples are available in the
-wiki](https://github.com/thi-ng/umbrella/wiki/hdom-recipes).
-
-Also see the [work-in-progress
-ADRs](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/adr/)
-for component configuration.
+- Auto-expansion of embedded values / types which implement the [`IToHiccup`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L415) or
+  [`IDeref`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L166)
+  interfaces (e.g. [atoms, cursors, derived views](https://github.com/thi-ng/umbrella/tree/master/packages/atom), [streams](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) etc.)
+- Fast (see benchmark example below)
+- Only ~5.5KB gzipped
 
 ### Minimal example #1: Local state, RAF update
 
@@ -86,7 +84,7 @@ import * as hdom from "@thi.ng/hdom";
 
 // stateless component w/ params
 // the first arg is an auto-injected context object
-// (not used here, see `hdom-context-basics` example for details)
+// (not used here, details further below)
 const greeter = (_, name) => ["h1.title", "hello ", name];
 
 // component w/ local state
@@ -101,12 +99,11 @@ const app = () => {
     return ["div#app", [greeter, "world"], counter(), counter(100)];
 };
 
-// start update loop (browser only, see diagram below)
+// start RAF update & diff loop
 hdom.start(app(), { root: document.body });
 
-// alternatively apply DOM tree only once
-// (stateful components won't update though)
-hdom.createDOM(document.body, hdom.normalizeTree(app()));
+// alternatively create DOM tree only once
+hdom.createDOM({}, document.body, hdom.normalizeTree(app()));
 ```
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-basics/) |
@@ -123,17 +120,19 @@ console.log(serialize(app()));
 // <div id="app"><h1 class="title">hello world</h1><button>clicks: 0</button><button>clicks: 100</button></div>
 ```
 
-### Minimal example #2 (reactive state & transducer update)
+### Minimal example #2: Reactive state & transducer update
 
-This example uses the
+This example uses
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+for reactive state values and the
 [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
-support library to perform reactive DOM updates (instead of regular
+support library to perform push-based DOM updates (instead of regular
 diffing via RAF).
 
 ```ts
-import * as rs from "@thi.ng/rstream/stream";
-import * as tx from "@thi.ng/rstream/transducers";
+import { fromInterval, stream, sync } from "@thi.ng/rstream/stream";
 import { updateDOM } from "@thi.ng/rstream/transducers-hdom";
+import * as tx from "@thi.ng/rstream/transducers";
 
 // root component function
 const app = ({ ticks, clicks }) =>
@@ -144,16 +143,18 @@ const app = ({ ticks, clicks }) =>
             `${clicks} clicks`]
     ];
 
-// click stream (click counter)
-const clickStream = rs.stream().transform(tx.scan(tx.count(-1)));
+// transformed stream to count clicks
+const clickStream = stream().transform(tx.scan(tx.count(-1)));
+// seed
+clickStream.next(0);
 
 // stream combinator
 // waits until all inputs have produced at least one value,
-// then updates whenever any input has changed
-rs.sync({
-    // streams to synchronize
+// then updates whenever either input has changed
+sync({
+    // streams to combine & synchronize
     src: {
-        ticks: rs.fromInterval(1000),
+        ticks: fromInterval(1000),
         clicks: clickStream,
     },
 }).transform(
@@ -162,21 +163,47 @@ rs.sync({
     // apply hdom tree to real DOM
     updateDOM({ root: document.body })
 );
-
-// kick off
-clickStream.next(0);
 ```
 
 [Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) |
 [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
 
+### Minimal example #3: Branch-local behavior / canvas scenegraph
+
+This example uses the
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+component to support the inclusion of (virtual) shape elements as part
+of the normal HTML component tree. A description of the actual mechanism can be
+found further below and in the hdom-canvas readme.
+
+```ts
+import { start } from "@thi.ng/hdom";
+import { canvas } from "@thi.ng/hdom-canvas";
+
+start(() =>
+    // the hdom-canvas component injects a custom branch-local
+    // implementation of the `HDOMImplementation` interface
+    // so that one can define virtual child elements representing
+    // shapes which will not become DOM nodes, but are translated
+    // into canvas API draw calls
+    [canvas, { width: 300, height: 300 },
+        ["g", { stroke: "none", translate: [50, 50] },
+            ["circle", { fill: "red" },
+                [0, 0], 25 + 25 * Math.sin(Date.now() * 0.001)],
+            ["text", { fill: "#fff", align: "center", baseLine: "middle" },
+                [0, 0], "Hello"]
+        ]
+    ]
+);
+```
+
 ## Example projects
 
-Most of the 25
+Most of the approx. 30
 [examples](https://github.com/thi-ng/umbrella/tree/master/examples)
 included in this repo are using this package in one way or another.
 Please check them out to learn more. Each is heavily commented, incl.
-best practice notes.
+some best practice notes.
 
 Non-exhaustive list:
 
@@ -287,21 +314,24 @@ can be used in a mix & match manner:
 - [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
 - [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/master/packages/router)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures)
+- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
 
 ### Reusable components
 
 A currently small (but growing) number of reusable components are
 provided by these packages:
 
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
 - [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components)
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
 ## Status
 
-The overall "API" is stable, but there's further work planned on
-generalizing the approach beyond standard browser DOM use cases. The
-project has been used for several projects in production since 2016.
+Stable. The project has been used for several projects in production
+since early 2016.
 
 ## Installation
 
@@ -309,10 +339,12 @@ project has been used for several projects in production since 2016.
 yarn add @thi.ng/hdom
 ```
 
-Use the customizable
+You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
-generator to create a pre-configured app skeleton using @thi.ng/atom,
-@thi.ng/hdom, @thi.ng/interceptors & @thi.ng/router:
+generator to create one of several pre-configured app skeletons using
+@thi.ng/atom, @thi.ng/hdom, @thi.ng/interceptors & @thi.ng/router.
+Presets using @thi.ng/rstream for statehandling will be added in the
+near future.
 
 ```bash
 yarn create hdom-app my-app
@@ -330,16 +362,22 @@ yarn start
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 
-## Usage
+## API & Usage
 
-Even though the overall approach should be obvious from the code
-examples in this document, it's recommended to first study the
+Even though the overall approach should be obvious from the different
+code examples in this document, it's still recommended to also study the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-reference to learn about the basics of the approach and syntax used.
-Both projects started in early 2016, have somewhat evolved
-independently, however should be considered complementary.
+reference to learn about the various syntax options used to define
+components. Both projects started in early 2016 and have somewhat
+evolved independently, however should be considered complementary.
 
-#### `start(tree: any, opts?: Partial<HDOMOpts>): () => any`
+### start()
+
+Params:
+
+- `tree: any`
+- `opts?: Partial<HDOMOpts>`
+- `impl?: HDOMImplementation`
 
 Main user function of this package. For most use cases, this function
 should be the only one required in user code. It takes an hiccup tree
@@ -377,7 +415,7 @@ pre-existing DOM and the hdom trees will cause undefined behavior.
 `start` returns a function, which when called, immediately cancels the
 update loop.
 
-#### `HDOMOpts` config options
+### HDOMOpts config options
 
 Config options object passed to hdom's `start()` or
 [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)'s
@@ -420,7 +458,7 @@ interface HDOMOpts {
 }
 ```
 
-#### `normalizeTree(tree: any, ctx?: any): any`
+### normalizeTree()
 
 Calling this function is a prerequisite before passing a component tree
 to `diffElement`. Recursively expands given hiccup component tree into
