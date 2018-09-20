@@ -44,13 +44,96 @@ are provided too:
 
 ### Stream merging
 
-- [merge](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts) - unsorted merge from multiple inputs (dynamic add/remove)
+#### [merge()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts) - unsorted merge from multiple inputs (dynamic add/remove)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-merge.png)
 
-- [sync](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts) - synchronized merge and labeled tuple objects
+Returns a new `StreamMerge` instance, a subscription type consuming
+inputs from multiple inputs and passing received values on to any
+subscribers. Input streams can be added and removed dynamically. By
+default, `StreamMerge` calls `done()` when the last active input is
+done, but this behavior can be overridden via the `close` option (set it
+to `false`).
+
+```ts
+merge({
+  src: [
+    fromIterable([1,2,3], 10),
+    fromIterable([10,20,30], 21),
+    fromIterable([100,200,300], 7),
+  ]
+}).subscribe(trace());
+// 100
+// 1
+// 200
+// 10
+// 2
+// 300
+// 3
+// 20
+// 30
+```
+
+Use the `labeled()` transducer for each input to create a stream of
+labeled values and track their provenance:
+
+```ts
+merge({
+    src: [
+        fromIterable([1,2,3]).transform(labeled("a")),
+        fromIterable([10,20,30]).transform(labeled("b")),
+    ]
+}).subscribe(trace());
+// ["a", 1]
+// ["b", 10]
+// ["a", 2]
+// ["b", 20]
+// ["a", 3]
+// ["b", 30]
+```
+
+#### [sync()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts) - synchronized merge and labeled tuple objects
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-sync.png)
+
+Similar to `StreamMerge` above, but with extra synchronization of
+inputs. Before emitting any new values, `StreamSync` collects values
+until at least one has been received from *all* inputs. Once that's the
+case, the collected values are sent as labeled tuple object to
+downstream subscribers. Each value in the emitted tuple objects is
+stored under their input stream's ID. Only the last value received from
+each input is passed on. After the initial tuple has been emitted, you
+can choose from two possible behaviors:
+
+1) Any future change in any input will produce a new result tuple. These
+   tuples will retain the most recently read values from other inputs.
+   This behavior is the default and illustrated in the above schematic.
+2) If the `reset` option is `true`, every input will have to provide at
+   least one new value again until another result tuple is produced.
+
+Any done inputs are automatically removed. By default, `StreamSync`
+calls `done()` when the last active input is done, but this behavior can
+be overridden via the `close` constructor option (set to `false`).
+
+```ts
+s = sync({src: [a=new Stream("a"), b=new Stream("b")]});
+s.subscribe(trace("result: "));
+a.next(1);
+b.next(2);
+// result: { a: 1, b: 2 }
+```
+
+Input streams can be added and removed dynamically and the emitted tuple
+size adjusts to the current number of inputs (the next time a value is
+received).
+
+If the `reset` option is enabled, the last emitted tuple is allowed to
+be incomplete, by default. To only allow complete tuples, also set the
+`all` option to `false`.
+
+The synchronization is done via the `partitionSync()` transducer from
+the @thi.ng/transducers package. [See this function's docs for further
+details](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/partition-sync.ts).
 
 ### Stream splitting
 
@@ -58,17 +141,75 @@ are provided too:
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-pubsub.png)
 
-- [bisect](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - split via predicate
+Topic based stream splitter. Applies `topic` function to each
+received value and only forwards it to child subscriptions for
+returned topic. The actual topic (return value from `topic` fn) can
+be of any type, apart from `undefined`. Complex topics (e.g objects /
+arrays) are allowed and they're matched with registered topics using
+@thi.ng/equiv by default (but customizable via `equiv` option).
+Each topic can have any number of subscribers.
+
+If a transducer is specified for the `PubSub`, it is always applied
+prior to passing the input to the topic function. I.e. in this case
+the topic function will receive the transformed inputs.
+
+PubSub supports dynamic topic subscriptions and unsubscriptions via
+`subscribeTopic()` and `unsubscribeTopic()`. However, **the standard
+`subscribe()` / `unsubscribe()` methods are NOT supported** (since
+meaningless here) and will throw an error! `unsubscribe()` can only be
+called WITHOUT argument to unsubscribe the entire `PubSub` instance
+(incl. all topic subscriptions) from the parent stream.
+
+#### [bisect()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts) - splitting via predicate
 
 ### Side-chaining
 
-- [sidechainPartition](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts) - emits chunks from source, controlled by sidechain stream
+#### [sidechainPartition()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts) - chunks input, controlled by sidechain
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-sidechain-partition.png)
 
-- [sidechainToggle](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-toggle.ts) - toggles source based on signals from sidechain
+Buffers values from `src` until side chain fires, then emits buffer
+(unless empty) and repeats process until either input is done. By
+default, the value read from the side chain is ignored, however the
+optional predicate can be used to only trigger for specific values /
+conditions.
+
+```ts
+// merge various event streams
+merge([
+    fromEvent(document,"mousemove"),
+    fromEvent(document,"mousedown"),
+    fromEvent(document,"mouseup")
+])
+// queue event processing to only execute during the
+// requestAnimationFrame cycle (RAF)
+.subscribe(sidechainPartition(fromRAF()))
+.subscribe(trace())
+```
+
+#### [sidechainToggle()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-toggle.ts) - toggles input, controlled by sidechain
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream-sidechain-toggle.png)
+
+Filters values from input based on values received from side chain. By
+default, the value read from the side chain is ignored, however the
+optional predicate can be used to only trigger for specific
+values/conditions. Every time the predicate fn returns true, the filter
+will be toggled on/off. Whilst switched off, no input values will be
+forwarded.
+
+```ts
+// use slower interval stream to toggle main stream on/off
+fromInterval(500)
+  .subscribe(sidechainToggle(fromInterval(1000)))
+  .subscribe(trace());
+// 0
+// 3
+// 4
+// 7
+// 8
+...
+```
 
 ### Useful subscription ops
 
