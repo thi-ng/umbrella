@@ -19,6 +19,7 @@ This project is part of the
     - [Interactive SVG grid generator](#interactive-svg-grid-generator)
     - [Interactive additive waveform visualization](#interactive-additive-waveform-visualization)
     - [Dataflow graph SVG components](#dataflow-graph-svg-components)
+    - [Mouse gesture analysis](#mouse-gesture-analysis)
     - [Canvas based radial dial input widget](#canvas-based-radial-dial-input-widget)
     - [SPA with router and event bus](#spa-with-router-and-event-bus)
 - [How it works](#how-it-works)
@@ -81,6 +82,9 @@ Benefits:
 
 ### Minimal example #1: Local state, RAF update
 
+[Live demo](https://demo.thi.ng/umbrella/hdom-basics/) |
+[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
+
 ```ts
 import * as hdom from "@thi.ng/hdom";
 
@@ -108,9 +112,6 @@ hdom.start(app(), { root: document.body });
 hdom.createDOM({}, document.body, hdom.normalizeTree(app()));
 ```
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-basics/) |
-[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
-
 Alternatively, use the same component function for browser or server
 side HTML serialization (Note: does not emit attributes w/ functions as
 values, e.g. a button's `onclick` attrib).
@@ -130,6 +131,9 @@ for reactive state values and the
 [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
 support library to perform push-based DOM updates (instead of regular
 diffing via RAF).
+
+[Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) |
+[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
 
 ```ts
 import { fromInterval, stream, sync } from "@thi.ng/rstream/stream";
@@ -167,14 +171,14 @@ sync({
 );
 ```
 
-[Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) |
-[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
-
 ### Minimal example #3: Central app state & interceptors
 
 This example uses
 [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
 for event handling and to achieve selective DOM updates.
+
+[Live demo](http://demo.thi.ng/umbrella/interceptor-basics/) |
+[Source code](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
 
 ```ts
 import { Atom } from "@thi.ng/atom";
@@ -231,7 +235,6 @@ start(
 // kick off
 bus.dispatch(["init"]);
 ```
-[Live demo](http://demo.thi.ng/umbrella/interceptor-basics/) | [Source code](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
 
 ### Minimal example #4: Branch-local behavior / canvas scenegraph
 
@@ -240,6 +243,11 @@ This example uses the
 component to support the inclusion of (virtual) shape elements as part
 of the normal HTML component tree. A description of the actual mechanism can be
 found further below and in the hdom-canvas readme.
+
+Related hdom-canvas examples:
+
+- [Clock](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
+- [Shape & SVG conversion](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -314,6 +322,13 @@ package:
 [Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
 | [Live version](https://demo.thi.ng/umbrella/estuary/)
 
+### Mouse gesture analysis
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/gesture-analysis.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
+| [Live version](https://demo.thi.ng/umbrella/gesture-analysis)
+
 ### Canvas based radial dial input widget
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/canvas-dial.png)
@@ -339,7 +354,7 @@ release).
 **Note: hdom uses a RAF render loop only by default, but is absolutely
 no way tied to this.**
 
-![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-dataflow.png)
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
