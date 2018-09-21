@@ -71,8 +71,6 @@ export function stream(src?, id?) {
 export class Stream<T> extends Subscription<T, T>
     implements IStream<T> {
 
-    static NEXT_ID = 0;
-
     src: StreamSource<T>;
 
     protected _cancel: StreamCancel;
@@ -99,7 +97,7 @@ export class Stream<T> extends Subscription<T, T>
             default:
                 illegalArity(args.length);
         }
-        super(null, null, null, id || `stream-${Stream.NEXT_ID++}`);
+        super(null, null, null, id || `stream-${Subscription.NEXT_ID++}`);
         this.src = src;
     }
 

@@ -1,6 +1,7 @@
 import { isNode } from "@thi.ng/checks/is-node";
 
 import { Stream } from "../stream";
+import { Subscription } from "../subscription";
 import { fromInterval } from "./interval";
 
 /**
@@ -24,5 +25,5 @@ export function fromRAF() {
             };
             let id = requestAnimationFrame(loop);
             return () => (isActive = false, cancelAnimationFrame(id));
-        }, `raf-${Stream.NEXT_ID++}`);
+        }, `raf-${Subscription.NEXT_ID++}`);
 }

@@ -1,4 +1,5 @@
 import { Stream } from "../stream";
+import { Subscription } from "../subscription";
 
 /**
  * Creates a new stream of DOM events attached to given element / event
@@ -14,5 +15,5 @@ export function fromEvent(src: EventTarget, name: string, opts: boolean | AddEve
         let listener = (e) => stream.next(e);
         src.addEventListener(name, listener, opts);
         return () => src.removeEventListener(name, listener, opts);
-    }, `event-${name}-${Stream.NEXT_ID++}`);
+    }, `event-${name}-${Subscription.NEXT_ID++}`);
 }

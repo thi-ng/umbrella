@@ -40,8 +40,10 @@ import { Stream } from "../stream";
  * @param atom
  * @param path
  * @param tx
+ * @param equiv
+ * @param id
  */
-export function fromView<T>(atom: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, equiv?: Predicate2<any>): Stream<T> {
+export function fromView<T>(atom: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, equiv?: Predicate2<any>, id?: string): Stream<T> {
     return new Stream<T>((stream) => {
         let isActive = true;
         const view = new View<T>(
@@ -54,5 +56,5 @@ export function fromView<T>(atom: ReadonlyAtom<any>, path: Path, tx?: ViewTransf
             equiv
         );
         return () => (isActive = false, view.release());
-    });
+    }, id);
 }
