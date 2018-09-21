@@ -17,6 +17,11 @@ import { link } from "../common/components/link";
 import { repoTable } from "../common/components/repo-table";
 import { ctx } from "../common/config";
 
+const COMMITS_URL =
+    process.env.NODE_ENV === "production" ?
+        "./commits.json" :
+        "/commits";
+
 // UI root component
 const app = (state) =>
     ["div",
@@ -83,7 +88,7 @@ error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
 const commits = fromInterval(60 * 60 * 1000)
     // fetch commits from server
     .transform(
-        map(() => fetch("./commits").then(
+        map(() => fetch(COMMITS_URL).then(
             (res) => res.ok ? res.json() : error.next("error loading commits"),
             (e) => error.next(e.message)
         ))

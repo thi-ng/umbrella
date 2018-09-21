@@ -8,6 +8,17 @@ server-side rendering, static file generation and an extended
 interactive browser version of a git repo commit log. The server is a
 simple [express](https://expressjs.com/) app.
 
+There're 3 versions in this example:
+
+1) A server app which generates a static HTML version of the commit
+   table, performs caching and provides a route for retrieving
+   the commits as JSON. This server also includes the [Parcel
+   middleware](https://parceljs.org/api.html#middleware) to allow
+   editing the client without having to restart the server.
+2) A browser app which constructs the table client-side from the JSON
+   version of the commits
+3) A node app which generates a static HTML file
+
 All of the UI components used on the server side too work in the browser
 without change, though the browser version has additional functionality
 (i.e. interactive filtering of commits via user provided search filter).
@@ -35,10 +46,10 @@ See [/src/server/index.ts](./src/server/index.ts) for details...
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/commit-table-ssr
 yarn install
-yarn dev
+yarn start
 ```
 
-Then open http://localhost:3000/ssr in your browser.
+Then open http://localhost:8080/ssr in your browser.
 
 ### Browser version
 
@@ -47,8 +58,8 @@ The browser version uses the same UI components, but realizes them via
 
 In addition to the SSR version above, this version displays additional
 repo stats and allows for interactive filtering of the commits. The
-commits themselves are loaded as JSON and therefore also require the
-server app.
+commits themselves are loaded as JSON which are provided by the server
+app above.
 
 Furthermore, this version utilizes
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
@@ -58,11 +69,11 @@ various reactive stream constructs. Comments are included.
 See [/src/client/index.ts](./src/client/index.ts) for details...
 
 ```
-yarn dev-client
+yarn start
 ```
 
-Once you see a message that the server is running, open
-http://localhost:3000 in your browser.
+Once you see a message that the server is running and the client app has
+been built, open http://localhost:8080 in your browser.
 
 ### Static file generation
 
