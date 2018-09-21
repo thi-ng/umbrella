@@ -20,7 +20,7 @@ for e in $examples; do
             sed -i 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0}),\([^f]\)/(\1)/g' $src
             gzip -c $src > $src.gz
             ls -la $src*
-            sed -i 's/src="\//src=".\//g' $e/out/index.html
+            # sed -i 's/src="\//src=".\//g' $e/out/index.html
         else
             echo "skipping..."
         fi
