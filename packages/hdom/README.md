@@ -11,8 +11,19 @@ This project is part of the
 - [About](#about)
     - [Minimal example #1: Local state, RAF update](#minimal-example-1-local-state-raf-update)
     - [Minimal example #2: Reactive, push-based state & update](#minimal-example-2-reactive-push-based-state--update)
-    - [Minimal example #3: Central app state & interceptors](#minimal-example-3-central-app-state--interceptors)
-    - [Minimal example #4: Branch-local behavior / canvas scenegraph](#minimal-example-4-branch-local-behavior--canvas-scenegraph)
+    - [Minimal example #3: Immutable app state & interceptors](#minimal-example-3-immutable-app-state--interceptors)
+    - [Minimal example #4: Canvas scene tree / branch-local behavior](#minimal-example-4-canvas-scene-tree--branch-local-behavior)
+- [How it works](#how-it-works)
+    - [The hdom data flow](#the-hdom-data-flow)
+    - [Nested arrays](#nested-arrays)
+    - [Attribute objects](#attribute-objects)
+    - [Pure functions and/or closures](#pure-functions-andor-closures)
+    - [Iterators](#iterators)
+    - [Interface support](#interface-support)
+    - [Component objects with life cycle methods](#component-objects-with-life-cycle-methods)
+    - [Event & state handling options](#event--state-handling-options)
+    - [Reusable components](#reusable-components)
+- [Status](#status)
 - [Example projects](#example-projects)
     - [Realtime crypto candle chart](#realtime-crypto-candle-chart)
     - [Git commit log table](#git-commit-log-table)
@@ -22,10 +33,6 @@ This project is part of the
     - [Mouse gesture analysis](#mouse-gesture-analysis)
     - [Canvas based radial dial input widget](#canvas-based-radial-dial-input-widget)
     - [SPA with router and event bus](#spa-with-router-and-event-bus)
-- [How it works](#how-it-works)
-    - [Event & state handling options](#event--state-handling-options)
-    - [Reusable components](#reusable-components)
-- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API & Usage](#api--usage)
@@ -35,8 +42,7 @@ This project is part of the
     - [diffTree()](#difftree)
     - [createDOM()](#createdom)
     - [hydrateDOM()](#hydratedom)
-- [User context injection](#user-context-injection)
-    - [Component objects & life cycle methods](#component-objects--life-cycle-methods)
+- [User context](#user-context)
     - [Behavior control attributes](#behavior-control-attributes)
     - [Benchmark](#benchmark)
 - [Authors](#authors)
@@ -171,11 +177,12 @@ sync({
 );
 ```
 
-### Minimal example #3: Central app state & interceptors
+### Minimal example #3: Immutable app state & interceptors
 
 This example uses
 [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
-for event handling and to achieve selective DOM updates.
+for state & event handling and to skip DOM updates completely if not
+needed.
 
 [Live demo](http://demo.thi.ng/umbrella/interceptor-basics/) |
 [Source code](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
@@ -190,17 +197,19 @@ import * as icep from "@thi.ng/interceptors";
 const colors = choices(["cyan", "yellow", "magenta", "chartreuse"]);
 
 // central app state (initially empty)
-const db = new Atom({});
+const state = new Atom({});
 
-// event bus & event handlers
+// event bus & event handlers / interceptors
+// each handler produces a number of effects (incl. state updates)
 // see @thi.ng/interceptors for more details
-const bus = new icep.EventBus(db, {
+const bus = new icep.EventBus(state, {
     // initializes app state
     "init": () => ({
         [icep.FX_STATE]: { clicks: 0, color: "grey" }
     }),
     // composed event handler
-    // increments `clicks` state value and delegates to another event
+    // increments `clicks` state value and
+    // delegates to another event
     "inc-counter": [
         icep.valueUpdater("clicks", (x: number) => x + 1),
         icep.dispatchNow(["randomize-color"])
@@ -211,42 +220,45 @@ const bus = new icep.EventBus(db, {
     )
 });
 
+// start hdom update loop
 start(
     // this root component function will be executed via RAF.
     // it first processes events and then only returns an updated
     // component if there was a state update...
-    // if the function returns null, no DOM update will be performed
-    ({ bus, db }) => bus.processQueue() ?
+    // DOM update will be skipped if the function returned null
+    ({ bus, state }) => bus.processQueue() ?
         ["button",
             {
                 style: {
                     padding: "1rem",
-                    background: db.value.color
+                    background: state.value.color
                 },
                 onclick: () => bus.dispatch(["inc-counter"])
             },
-            `clicks: ${db.value.clicks}`] :
+            `clicks: ${state.value.clicks}`] :
         null,
     // hdom options incl.
     // arbitrary user context object passed to all components
-    { ctx: { db, bus } }
+    { ctx: { state, bus } }
 );
 
 // kick off
 bus.dispatch(["init"]);
 ```
 
-### Minimal example #4: Branch-local behavior / canvas scenegraph
+### Minimal example #4: Canvas scene tree / branch-local behavior
 
 This example uses the
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
-component to support the inclusion of (virtual) shape elements as part
-of the normal HTML component tree. A description of the actual mechanism can be
-found further below and in the hdom-canvas readme.
+component to support the inclusion of (virtual, non-DOM targets) shape
+elements as part of the normal HTML component tree. A description of the
+actual mechanism can be found further below and in the hdom-canvas
+readme.
 
-Related hdom-canvas examples:
+Related examples:
 
 - [Clock](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
+- [Functional doodling](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
 - [Shape & SVG conversion](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ```ts
@@ -272,6 +284,383 @@ start(() =>
     ]
 );
 ```
+
+## How it works
+
+### The hdom data flow
+
+The usual hdom update process is based on the creation of an up-to-date
+component tree, which is first normalized (expanded into a canonical
+format) and the used to compute minimal edit set of the recursive
+difference to previous DOM tree.
+
+**Important**:
+
+- hdom uses a RAF render loop only by default, but is in absolutely
+no way tied to this
+- hdom used the browser DOM only by default, but supports custom target
+  implementations, which can be defined on branch-local basis in the
+  tree
+- hdom NEVER tracks the real DOM, only its own trees (previous & current)
+- hdom can be used **without** diffing, i.e. for compact, one-off DOM
+  creation
+
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-dataflow.png)
+
+The syntax is inspired by Clojure's
+[Hiccup](https://github.com/weavejester/hiccup) and
+[Reagent](http://reagent-project.github.io/) projects, which themselves
+were influenced on [prior art by Phil
+Wadler](http://homepages.inf.ed.ac.uk/wadler/papers/next700/next700.pdf)
+at Edinburgh University who pioneered this approach in Lisp back in
+1999. hdom offers several additional features to these established
+approaches.
+
+hdom components are usually nested, vanilla ES6 data structures without
+any custom syntax, organized in an S-expression-like manner. This makes
+them very amenable to being constructed inline, composed, transformed or
+instrumented using the many ES6 language options available.
+
+### Nested arrays
+
+No matter what the initial supported input format was, all components /
+elements will eventually be transformed into a tree of nested arrays.
+See [`normalizeTree()`](#normalizetree) further down for details.
+
+The first element of each array is used as tag and if the 2nd
+element is a plain object, it will be used to define arbitrary
+attributes and event listeners for that element. All further elements
+are considered children of the current element.
+
+Emmet-style tags with ID and/or classes are supported.
+
+```ts
+["section#foo.bar.baz",
+    ["h3", { class: "title" }, "Hello world!"]]
+```
+
+Equivalent HTML:
+
+```html
+<section id="foo" class="bar baz">
+    <h3 class="title">Hello World!</h3>
+</section>
+```
+
+### Attribute objects
+
+Attributes objects are used to define arbitrary attributes, CSS
+properties and event listeners. The latter always have to be prefixed
+with `on` and their values always must be functions (naturally). CSS
+props are assigned to the `style` attribute, but given as JS object.
+
+```ts
+["a", {
+    href: "#",
+    onclick: (e) => (e.preventDefault(), alert("hi")),
+    style: {
+        background: "#000",
+        color: "#fff",
+        padding: "1rem",
+        margin: "0.25rem"
+    }
+}, "Say Hi"]
+```
+
+```html
+<!-- event handler not shown -->
+<a href="#" style="background:#000;color:#fff;padding:1rem;margin:0.25rem;">Say Hi</a>
+```
+
+Attribute values can be functions themselves and if so will be called
+with the entire attributes object as sole argument. Same goes for CSS
+property function values (which receive the entire `style` object). In
+both cases, this supports the creation of derived values based on other
+attribs:
+
+```ts
+const btAttribs = {
+    // event handler are always functions
+    onclick: (e)=> alert(e.target.id),
+    class: (attr) => `bt bt-${attr.id}`,
+    href: (attr) => `#${attr.id}`,
+};
+
+// reuse attribs object for different elements
+["div",
+    ["a#foo", btAttribs, "Foo"],
+    ["button#bar", btAttribs, "Bar"]]
+```
+
+```html
+<div>
+    <a id="foo" class="bt bt-foo" href="#foo">Foo</a>
+    <button id="bar" class="bt bt-bar" href="#bar">Bar</button>
+</div>
+```
+
+### Pure functions and/or closures
+
+```ts
+// inline definition
+["ul#users", ["alice", "bob", "charlie"].map((x) => ["li", x])]
+
+// reusable component
+const unorderedList = (_, attribs, ...items) =>
+    ["ul", attribs, ...items.map((x)=> ["li", x])];
+
+[unorderedList, { id: "users"}, "alice", "bob", "charlie"]
+```
+
+```html
+<ul id="users">
+    <li>alice</li>
+    <li>bob</li>
+    <li>charlie</li>
+</ul>
+```
+
+Functions used in the "tag" (head) position of an element array are
+treated as delayed execution mechanism and will only be called and
+recursively expanded during tree normalization with the remaining array
+elements passed as arguments. These component functions also receive an
+arbitrary [user context object](#user-context) (not used for these
+examples here) as additional first argument.
+
+```ts
+const iconButton = (_, icon, onclick, label) =>
+    ["a.bt", { onclick }, ["i", {class: `fas fa-${icon}`}], label];
+
+const alignButton = (_, type) =>
+    [iconButton, `align-${type}`, () => alert(type), type];
+
+["div",
+    { style: { padding: "1rem" } },
+    [alignButton, "left"],
+    [alignButton, "center"],
+    [alignButton, "right"]]
+```
+
+```html
+<!-- event handlers not shown -->
+<div style="padding:1rem;">
+    <a class="bt"><i class="fas fa-align-left"></i>left</a>
+    <a class="bt"><i class="fas fa-align-center"></i>center</a>
+    <a class="bt"><i class="fas fa-align-right"></i>right</a>
+</div>
+```
+
+Functions in other positions of an element array are also supported but
+only receive the optional user context object as attribute.
+
+```ts
+const now = () => new Date().toLocaleString();
+
+["footer", "Current date: ", now]
+```
+
+```html
+<footer>Current date: 9/22/2018, 1:46:41 PM</footer>
+```
+
+### Iterators
+
+ES6 iteratables are supported out of the box and their use is encouraged
+to avoid the unnecessary allocation of temporary objects caused by
+chained application of `Array.map()` to transform raw state values into
+components. However, since iterators can only be consumed once, please
+see [this issue
+comment](https://github.com/thi-ng/umbrella/issues/42#issuecomment-420094339)
+for potential pitfalls.
+
+Please see the
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+package, which provides 130+ functions to create, compose and work with
+iterator based pipelines.
+
+```ts
+import { map, range } from "@thi.ng/transducers";
+
+// map() returns an iterator
+["ul", map((i) => ["li", i + 1], range(3))]
+```
+
+```html
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+```
+
+### Interface support
+
+Any type implementing one of the
+[`IToHiccup`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L415)
+or
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L166)
+or interfaces will be auto-expanded during tree normalization.
+
+This currently includes the following types from other packages in this
+repo, but also any user defined custom types:
+
+- [atoms, cursors, derived
+  views](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+- [streams](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+
+```ts
+class Foo {
+    deref() {
+        return ["div.deref"];
+    }
+}
+
+// unlike `deref()`, the `toHiccup()` method
+// receives current user context as argument
+// (see section further below)
+class Bar {
+    toHiccup(ctx) {
+        return ["div.hiccup", ctx && ctx.foo, this.value];
+    }
+}
+
+["div", new Foo(), new Bar()]
+```
+
+```html
+<div>
+    <div class="deref"></div>
+    <div class="hiccup"></div>
+</div>
+```
+
+### Component objects with life cycle methods
+
+Most components can be succinctly expressed via the options discussed so
+far, though for some use cases we need to get a handle on the actual
+underlying DOM element and can only fully initialize the component once
+it's been mounted etc. For those cases components can be specified as
+classes or plain objects implementing the following interface:
+
+```ts
+interface ILifecycle {
+    /**
+     * Component init method. Called with the actual DOM element,
+     * hdom user context and any other args when the component is
+     * first used, but **after** `render()` has been called once already.
+     */
+    init?(el: Element, ctx: any, ...args: any[]);
+
+    /**
+     * Returns the hdom tree of this component.
+     * Note: Always will be called first (prior to `init`/`release`)
+     * to obtain the actual component definition used for diffing.
+     * Therefore might have to include checks if any local state
+     * has already been initialized via `init`. This is the only
+     * mandatory method which MUST be implemented.
+     *
+     * `render` is executed before `init` because `normalizeTree()`
+     * must obtain the component's hdom tree first before it can
+     * determine if an `init` is necessary. `init` itself will be
+     * called from `diffTree`, `createDOM` or `hydrateDOM()` in a later
+     * phase of processing.
+     */
+    render(ctx: any, ...args: any[]): any;
+
+    /**
+     * Called when the underlying DOM of this component is removed
+     * (or replaced). Intended for cleanup tasks.
+     */
+    release?(ctx: any, ...args: any[]);
+}
+```
+
+When the component is first used the order of execution is: `render` ->
+`init`. The `release` method is only called when the component has been
+removed / replaced (basically if it's not present in the new tree
+anymore). **The `release` implementation should NOT manually call
+`release()` on any children, since that's already handled by
+`diffTree()`.**
+
+The rest `...args` provided are sourced from the component call site as
+this simple example demonstrates:
+
+```ts
+// wrap in closure to allow multiple instances
+const canvas = () => {
+    return {
+        init: (el, ctx, { width, height }, msg, color = "red") => {
+            const c = el.getContext("2d");
+            c.fillStyle = color;
+            c.fillRect(0, 0, width, height);
+            c.fillStyle = "white";
+            c.textAlign = "center";
+            c.fillText(msg, width / 2, height / 2);
+        },
+        render: (ctx, attribs) => ["canvas", attribs],
+    };
+};
+
+// usage scenario #1: static component
+// inline initialization is okay here...
+start(
+    [canvas(), { width: 100, height: 100 }, "Hello world"],
+    { root: document.body }
+);
+
+
+// usage scenario #2: dynamic component
+// in this example, the root component itself is given as function,
+// which is evaluated each frame.
+// since `canvas()` is a higher order component it too produces
+// a new instance with each call. therefore the canvas instance(s)
+// need to be created beforehand
+const app = () => {
+    // pre-instantiate canvases
+    const c1 = canvas();
+    const c2 = canvas();
+    // return root component function
+    return () => ["div",
+        // use canvas instances
+        [c1, { width: 100, height: 100 }, "Hello world"],
+        [c2, { width: 100, height: 100 }, "Goodbye world", "blue"]
+    ];
+};
+
+start(app(), { root: document.body });
+```
+
+### Event & state handling options
+
+Since this package is purely dealing with the translation of component
+trees, any form of state / event handling or routing required by a full
+app is out of scope. These features are provided by the following
+packages and can be used in a mix & match manner. Since hdom components
+are just plain functions/arrays, **any** solution can be used in
+general.
+
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+- [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
+- [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/master/packages/router)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures)
+- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
+
+### Reusable components
+
+A currently small (but growing) number of reusable components are
+provided by these packages:
+
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+
+## Status
+
+Stable, in active development. The project has been used for several
+projects in production since early 2016.
 
 ## Example projects
 
@@ -343,57 +732,6 @@ Based on the `create-hdom-app` project scaffolding...
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
 | [Live version](https://demo.thi.ng/umbrella/router-basics/)
 
-## How it works
-
-The actual DOM update is based on the minimal edit set of the recursive
-difference between the old and new DOM trees (both expressed as nested
-JS arrays). Components can be defined as static arrays, closures or
-objects with [life cycle methods](#lifecycle-methods) (init, render,
-release).
-
-**Note: hdom uses a RAF render loop only by default, but is absolutely
-no way tied to this.**
-
-![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-dataflow.png)
-
-The syntax is inspired by Clojure's
-[Hiccup](https://github.com/weavejester/hiccup) and
-[Reagent](http://reagent-project.github.io/) projects, however the
-latter is a wrapper around React, whereas this library is standalone,
-more low-level & less opinionated.
-
-### Event & state handling options
-
-Since this package is purely dealing with the translation of component
-trees, any form of state / event handling or routing required by a full
-app is out of scope. These features are provided by the following
-packages and can be used in a mix & match manner. Since hdom components
-are just plain functions/arrays, **any** solution can be used in
-general.
-
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
-- [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
-- [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/master/packages/router)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures)
-- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
-
-### Reusable components
-
-A currently small (but growing) number of reusable components are
-provided by these packages:
-
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
-- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components)
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
-
-## Status
-
-Stable, in active development. The project has been used for several
-projects in production since early 2016.
-
 ## Installation
 
 ```bash
@@ -403,9 +741,9 @@ yarn add @thi.ng/hdom
 You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
 generator to create one of several pre-configured app skeletons using
-@thi.ng/atom, @thi.ng/hdom, @thi.ng/interceptors & @thi.ng/router.
-Presets using @thi.ng/rstream for state handling will be added in the
-near future.
+features from @thi.ng/atom, @thi.ng/hdom, @thi.ng/interceptors &
+@thi.ng/router. Presets using @thi.ng/rstream for reactive state
+handling will be added in the near future.
 
 ```bash
 yarn create hdom-app my-app
@@ -444,8 +782,11 @@ Main user function. For most use cases, this function should be the only
 one required in user code. It takes an hiccup tree (array, function or
 component object w/ life cycle methods) and an optional object of [DOM
 update
-options](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts#L19)
-(also see section below).
+options](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts#L44)
+(also see section below), as well as an optional `HDOMImplementation`.
+If the latter is not given, the `DEFAULT_IMPL` will be used, which
+targets the browser DOM. Unless you want to create your own custom
+implementation, this should never be changed.
 
 Starts RAF update loop, in each iteration first normalizing given tree,
 then computing diff to previous frame's tree and applying any changes to
@@ -567,14 +908,14 @@ methods. Assumes that an equivalent DOM (minus listeners) already exists
 (e.g. generated via SSR) when called. Any other discrepancies between
 the pre-existing DOM and the hdom tree will cause undefined behavior.
 
-## User context injection
+## User context
 
-Since v3.0.0 hdom offers support for an arbitrary "context" object
-passed to `start()`, and then automatically injected as argument to
-**all** embedded component functions anywhere in the tree. This avoids
-having to manually pass down configuration data into each sub-component
-and so can simplify certain use cases, e.g. event dispatch, style /
-theme information, global state etc.
+hdom offers support for an arbitrary "context" object passed to
+`start()`, which will be automatically injected as argument to **all**
+embedded component functions anywhere in the tree. This avoids having to
+manually pass down configuration data into each child component and so
+can simplify many use cases, e.g. event dispatch, style / theme
+information, global state etc.
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -619,125 +960,48 @@ const linkList = (ctx: AppContext, ...links: LinkSpec[]) =>
 
 // root component
 // i.e. creates list of of provided dummy event link specs
-const root = [
+const app = [
     linkList,
     [["handle-login"], "Login"],
     [["external-link", "http://thi.ng"], "thi.ng"],
 ];
 
-// start hdom update loop
-start(root, { ctx });
-```
-
-### Component objects & life cycle methods
-
-Most components can be succinctly expressed via vanilla JS functions,
-though for some use cases we need to get a handle on the actual
-underlying DOM element and can only fully initialize the component once
-it's been mounted etc. For those cases components can be specified as
-classes or plain objects implementing the following interface:
-
-```ts
-interface ILifecycle {
-    /**
-     * Component init method. Called with the actual DOM element,
-     * hdom user context and any other args when the component is
-     * first used, but **after** `render()` has been called once already.
-     */
-    init?(el: Element, ctx: any, ...args: any[]);
-
-    /**
-     * Returns the hdom tree of this component.
-     * Note: Always will be called first (prior to `init`/`release`)
-     * to obtain the actual component definition used for diffing.
-     * Therefore might have to include checks if any local state
-     * has already been initialized via `init`. This is the only
-     * mandatory method which MUST be implemented.
-     *
-     * `render` is executed before `init` because `normalizeTree()`
-     * must obtain the component's hdom tree first before it can
-     * determine if an `init` is necessary. `init` itself will be
-     * called from `diffElement` (or `createDOM`) in a later
-     * phase of processing.
-     */
-    render(ctx: any, ...args: any[]): any;
-
-    /**
-     * Called when the underlying DOM of this component is removed
-     * (or replaced). Intended for cleanup tasks.
-     */
-    release?(ctx: any, ...args: any[]);
-}
-```
-
-When the component is first used the order of execution is: `render` ->
-`init`. The `release` method is only called when the component has been
-removed / replaced (basically if it's not present in the new tree
-anymore). `release` should NOT manually call `release` on any children,
-since that's already handled by `diffElement()`.
-
-The rest `...args` provided are sourced from the component call site as
-this simple example demonstrates:
-
-```ts
-// wrap in closure to allow multiple instances
-const canvas = () => {
-    return {
-        init: (el, ctx, { width, height }, msg, color = "red") => {
-            const c = el.getContext("2d");
-            c.fillStyle = color;
-            c.fillRect(0, 0, width, height);
-            c.fillStyle = "white";
-            c.textAlign = "center";
-            c.fillText(msg, width / 2, height / 2);
-        },
-        render: (ctx, attribs) => ["canvas", attribs],
-    };
-};
-
-// usage scenario #1: static component
-// inline initialization is okay here...
-start(
-    [canvas(), { width: 100, height: 100 }, "Hello world"],
-    { root: document.body }
-);
-
-
-// usage scenario #2: dynamic component
-// in this example, the root component itself is given as function, which
-// is evaluated each frame
-// since `canvas()` is a higher order component it too produces a new instance
-// with each call. therefore the canvas instance(s) need to be created beforehand
-const app = () => {
-    // pre-instantiate canvases
-    let c1 = canvas();
-    let c2 = canvas();
-    // return root component function
-    return () => ["div",
-        // some dynamic other content
-        ["p", new Date().toString()],
-        // use canvas instances
-        [c1, { width: 100, height: 100 }, "Hello world"],
-        [c2, { width: 100, height: 100 }, "Goodbye world", "blue"]
-    ];
-};
-
-start(app(), { root: document.body });
+// start hdom update loop with `ctx` given as option
+start(app, { ctx });
 ```
 
 ### Behavior control attributes
 
-TODO
+The following special attributes can be added to elements to choose
+and/or control the branch-local behavior of the hdom implementation:
 
 #### __impl
 
+A custom implementation of the `HDOMImplementation` interface.
+Currently,
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+is the only example of a component using this feature.
+
 #### __diff
+
+If `false`, disables diffing of the current branch and replaces the old one with current.
 
 #### __normalize
 
+If `false`, the current element's children will not be normalized. Use
+this when you're sure that all children are already in canonical format
+(incl. `key` attributes). See `normalizeTree()` for details.
+
 #### __release
 
+If `false`, do not attempt to call `release()` lifecycle methods on this
+element or any of its children.
+
 #### __serialize
+
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+only. If `false`, this element and its children will not be serialized
+to XML syntax.
 
 ### Benchmark
 
@@ -752,7 +1016,7 @@ performance should be more than acceptable for even quite demanding UIs.
 In the 192 / 256 cells configurations **this stress test causes approx.
 600 / 800 DOM every single frame**, very unlikely for a typical web app.
 In Chrome 68 on a MBP2016 this still runs at a stable 60fps (192 cells)
-/ 37fps (256 cells). Both FPS readings based the 50 frame
+/ 35fps (256 cells). Both FPS readings are based the 50 frame
 [SMA](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average).
 
 ## Authors
