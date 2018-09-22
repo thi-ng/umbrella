@@ -9,7 +9,14 @@ mkdir -p $MODULE
 
 echo "creating /src folder..."
 mkdir -p $MODULE/src
-touch $MODULE/src/index.ts
+cat << EOF > $MODULE/src/index.ts
+import { } from "@thi.ng/hdom";
+
+if (process.env.NODE_ENV !== "production") {
+    const hot = (<any>module).hot;
+    hot && hot.dispose(() => {});
+}
+EOF
 
 echo "writing package.json..."
 cat << EOF > $MODULE/package.json
