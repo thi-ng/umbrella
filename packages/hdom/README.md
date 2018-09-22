@@ -185,7 +185,7 @@ for state & event handling and to skip DOM updates completely if not
 needed.
 
 [Live demo](http://demo.thi.ng/umbrella/interceptor-basics/) |
-[Source code](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
+[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
 
 ```ts
 import { Atom } from "@thi.ng/atom";
@@ -257,9 +257,9 @@ readme.
 
 Related examples:
 
-- [Clock](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
-- [Functional doodling](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
-- [Shape & SVG conversion](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
+- [Clock](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+- [Functional doodling](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
+- [Shape & SVG conversion](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -305,7 +305,7 @@ no way tied to this
 - hdom can be used **without** diffing, i.e. for compact, one-off DOM
   creation
 
-![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-dataflow.png)
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
@@ -713,7 +713,7 @@ package:
 
 ### Mouse gesture analysis
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/gesture-analysis.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/gesture-analysis.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
 | [Live version](https://demo.thi.ng/umbrella/gesture-analysis)
@@ -782,7 +782,7 @@ Main user function. For most use cases, this function should be the only
 one required in user code. It takes an hiccup tree (array, function or
 component object w/ life cycle methods) and an optional object of [DOM
 update
-options](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts#L44)
+options](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts#L44)
 (also see section below), as well as an optional `HDOMImplementation`.
 If the latter is not given, the `DEFAULT_IMPL` will be used, which
 targets the browser DOM. Unless you want to create your own custom

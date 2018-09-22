@@ -107,7 +107,7 @@ const app = (main) => {
             ],
             // back in normal DOM
             ["a.db.link",
-                { href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw" },
+                { href: "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw" },
                 "Source code"]
         ];
 };

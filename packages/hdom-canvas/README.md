@@ -45,7 +45,7 @@ Declarative canvas scenegraph & visualization for
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
 This package provides a [re-usable canvas
-component](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas/src/index.ts#L66),
+component](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas/src/index.ts#L66),
 which accepts child nodes defining a scene tree of different shape types
 in standard
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
@@ -73,8 +73,8 @@ yarn add @thi.ng/hdom-canvas
 
 Please see these example projects for reference:
 
-- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
-- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
+- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 
 ```ts
 import { start } from "@thi.ng/hdom";

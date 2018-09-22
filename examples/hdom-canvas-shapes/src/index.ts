@@ -271,7 +271,7 @@ scene.transform(
 
             ["div.ma2.tc", TESTS[id].desc],
             ["a.link",
-                { href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes" },
+                { href: "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes" },
                 "Source code"]
         ]
     ),

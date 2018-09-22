@@ -4,7 +4,7 @@
 
 SVG bar chart component & one-off rendering.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/svg-barchart.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/svg-barchart.png)
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
