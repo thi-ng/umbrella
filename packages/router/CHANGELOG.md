@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.24"></a>
+## [0.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@0.1.24-alpha.0...@thi.ng/router@0.1.24) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/router
+
+
+
+
+
 <a name="0.1.24-alpha.0"></a>
 ## [0.1.24-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@0.1.23...@thi.ng/router@0.1.24-alpha.0) (2018-09-17)
 

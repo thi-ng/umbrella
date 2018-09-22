@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.0-alpha.1...@thi.ng/hdom@5.0.0) (2018-09-22)
+
+
+### Features
+
+* **hdom:** add renderOnce() ([5ef9cf0](https://github.com/thi-ng/umbrella/commit/5ef9cf0))
+
+
+### Performance Improvements
+
+* **hdom:** minor updates ([de17db8](https://github.com/thi-ng/umbrella/commit/de17db8))
+
+
+
+
+
 <a name="5.0.0-alpha.1"></a>
 # [5.0.0-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.0-alpha.0...@thi.ng/hdom@5.0.0-alpha.1) (2018-09-17)
 

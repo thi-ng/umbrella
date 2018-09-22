@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.2.1-alpha.1...@thi.ng/hiccup@2.3.0) (2018-09-22)
+
+
+### Features
+
+* **hiccup:** add control attrib handling, add comment support ([363c241](https://github.com/thi-ng/umbrella/commit/363c241))
+
+
+
+
+
 <a name="2.2.1-alpha.1"></a>
 ## [2.2.1-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.2.1-alpha.0...@thi.ng/hiccup@2.2.1-alpha.1) (2018-09-17)
 
