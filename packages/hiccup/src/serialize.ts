@@ -222,8 +222,10 @@ const _serializeIter = (iter: Iterable<any>, ctx: any, esc: boolean, span: boole
 }
 
 const normalize = (tag: any[]) => {
-    let el = tag[0], match, id, clazz;
-    const attribs: any = {};
+    let el = tag[0];
+    let match, id, clazz;
+    const hasAttribs = isPlainObject(tag[1]);
+    const attribs: any = hasAttribs ? { ...tag[1] } : {};
     if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
         illegalArgs(`"${el}" is not a valid tag name`);
     }
@@ -234,19 +236,18 @@ const normalize = (tag: any[]) => {
         attribs.id = id;
     }
     if (clazz) {
-        attribs.class = clazz.replace(/\./g, " ");
+        clazz = clazz.replace(/\./g, " ");
+        if (attribs.class) {
+            attribs.class += " " + clazz;
+        } else {
+            attribs.class = clazz;
+        }
     }
     if (tag.length > 1) {
-        let i = 1;
-        const att = tag[1];
-        if (isPlainObject(att)) {
-            Object.assign(attribs, att);
-            i++;
-        }
         if (isPlainObject(attribs.style)) {
             attribs.style = css(attribs.style);
         }
-        tag = tag.slice(i).filter((x) => x != null);
+        tag = tag.slice(hasAttribs ? 2 : 1).filter((x) => x != null);
         if (tag.length > 0) {
             return [el, attribs, tag];
         }
