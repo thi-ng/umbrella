@@ -4,38 +4,39 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 <a name="5.0.0"></a>
-# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.0-alpha.1...@thi.ng/hdom@5.0.0) (2018-09-22)
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/525d90d5...@thi.ng/hdom@5.0.0) (2018-09-22)
 
 
 ### Features
 
+* **hdom:** generalize diffElement() ([#4](https://github.com/thi-ng/umbrella/issues/4)) ([525d90d](https://github.com/thi-ng/umbrella/commit/525d90d))
+* **hdom:** update normalizeTree, add to HDOMImplementation ([59bb19c](https://github.com/thi-ng/umbrella/commit/59bb19c))
+* **hdom:** reorg & extend HDOMImplementation ([1ac245f](https://github.com/thi-ng/umbrella/commit/1ac245f))
+* **hdom:** add `.toHiccup()` interface support ([54ba0ce](https://github.com/thi-ng/umbrella/commit/54ba0ce))
 * **hdom:** add renderOnce() ([5ef9cf0](https://github.com/thi-ng/umbrella/commit/5ef9cf0))
 
+### Bug fixes
+
+* **hdom:** minor fix (hydrateDOM) ([e4f780c](https://github.com/thi-ng/umbrella/commit/e4f780c))
+* **hdom:** exclude hdom control attribs in setAttrib() ([0592063](https://github.com/thi-ng/umbrella/commit/0592063))
+* **hdom:** delegate diffTree() to branch impl ([6c33901](https://github.com/thi-ng/umbrella/commit/6c33901))
 
 ### Performance Improvements
 
+* **hdom:** add opt `__release` attrib to disable releaseDeep() ([2e3fb66](https://github.com/thi-ng/umbrella/commit/2e3fb66))
+* **hdom:** update diffTree(), inline node type checks ([382c45c](https://github.com/thi-ng/umbrella/commit/382c45c))
 * **hdom:** minor updates ([de17db8](https://github.com/thi-ng/umbrella/commit/de17db8))
 
 
+### BREAKING CHANGES
 
+* **hdom:** new names & call signatures for:
 
-
-<a name="5.0.0-alpha.1"></a>
-# [5.0.0-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.0-alpha.0...@thi.ng/hdom@5.0.0-alpha.1) (2018-09-17)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-<a name="5.0.0-alpha.0"></a>
-# [5.0.0-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.0-alpha...@thi.ng/hdom@5.0.0-alpha.0) (2018-09-17)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
+    - normalizeTree
+    - diffElement => diffTree
+    - createDOM
+    - hydrateDOM
+    - replaceChild
 
 
 <a name="4.0.5"></a>
