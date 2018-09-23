@@ -61,26 +61,35 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
 
 /**
  * Calling this function is a prerequisite before passing a component
- * tree to `diffTree`. Recursively expands given hiccup component
- * tree into its canonical form by:
+ * tree to `diffTree()`. Recursively expands given hiccup component tree
+ * into its canonical form:
  *
- * - resolving Emmet-style tags (e.g. from `div#id.foo.bar`)
- * - evaluating embedded functions and replacing them with their result
- * - calling `render` life cycle method on component objects and using
+ * ```
+ * ["tag", { attribs }, ...body]
+ * ```
+ *
+ * - resolves Emmet-style tags (e.g. from `div#id.foo.bar`)
+ * - adds missing attribute objects (and `key` attribs)
+ * - merges Emmet-style classes with additional `class` attrib values
+ *   (if given), e.g. `["div.foo", { class: "bar" }]` => `["div", {
+ *   class: "bar foo" }]`
+ * - evaluates embedded functions and replaces them with their result
+ * - calls the `render` life cycle method on component objects and uses
  *   result
- * - consuming iterables and normalizing results
- * - calling `deref()` on elements implementing `IDeref` interface and
- *   using returned result
- * - calling `.toString()` on any other non-component value `x` and by
- *   default wrapping it in `["span", x]`. The only exceptions to this
- *   are: `option`, `textarea` and SVG `text` elements, for which spans
- *   are always skipped.
+ * - consumes iterables and normalizes their individual values
+ * - calls `deref()` on elements implementing the `IDeref` interface and
+ *   uses returned results
+ * - calls `toHiccup()` on elements implementing the `IToHiccup`
+ *   interface and uses returned results
+ * - calls `.toString()` on any other non-component value and by default
+ *   wraps it in `["span", x]`. The only exceptions to this are:
+ *   `button`, `option`, `textarea` and SVG `text` elements, for which
+ *   spans are never created.
  *
- * Additionally, unless `keys` is set to false, an unique `key`
- * attribute is created for each node in the tree. This attribute is
- * used by `diffTree` to determine if a changed node can be patched
- * or will need to be replaced/removed. The `key` values are defined by
- * the `path` array arg.
+ * Additionally, unless the `keys` option is explicitly set to false, an
+ * unique `key` attribute is created for each node in the tree. This
+ * attribute is used by `diffElement` to determine if a changed node can
+ * be patched or will need to be moved, replaced or removed.
  *
  * In terms of life cycle methods: `render` should ALWAYS return an
  * array or another function, else the component's `init` or `release`
@@ -88,9 +97,6 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
  * `render` evaluates as a string or number, the return value should be
  * wrapped as `["span", "foo"]`. If no `init` or `release` are used,
  * this requirement is relaxed.
- *
- * For normal usage only the first 2 args should be specified and the
- * rest kept at their defaults.
  *
  * See `normalizeElement` for further details about canonical form.
  *

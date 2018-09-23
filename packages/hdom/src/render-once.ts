@@ -1,11 +1,11 @@
-import { isString } from "@thi.ng/checks/is-string";
 import { HDOMImplementation, HDOMOpts } from "./api";
 import { DEFAULT_IMPL } from "./default";
+import { resolveRoot } from "./utils";
 
 /**
  * One-off hdom tree conversion & target DOM application. Takes same
  * options as `start()`, but performs no diffing and only creates or
- * hydrates target once. The given tree is first normalized and not
+ * hydrates target once. The given tree is first normalized and no
  * further action will be taken, if the normalized result is `null` or
  * `undefined`.
  *
@@ -15,9 +15,7 @@ import { DEFAULT_IMPL } from "./default";
  */
 export const renderOnce = (tree: any, opts?: Partial<HDOMOpts>, impl: HDOMImplementation<any> = DEFAULT_IMPL) => {
     opts = { root: "app", ...opts };
-    const root = isString(opts.root) ?
-        document.getElementById(opts.root) :
-        opts.root;
+    const root = resolveRoot(opts.root);
     tree = impl.normalizeTree(opts, tree);
     if (!tree) return;
     opts.hydrate ?

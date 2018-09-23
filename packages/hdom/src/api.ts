@@ -1,8 +1,40 @@
 import { IObjectOf } from "@thi.ng/api/api";
 
 export interface ILifecycle {
+    /**
+     * Component init method. Called with the actual DOM element,
+     * hdom user context and any other args when the component is
+     * first used, but **after** `render()` has been called once already.
+     */
     init?(el: Element, ctx: any, ...args: any[]);
+
+    /**
+     * Returns the hdom tree of this component.
+     * Note: Always will be called first (prior to `init`/`release`)
+     * to obtain the actual component definition used for diffing.
+     * Therefore might have to include checks if any local state
+     * has already been initialized via `init`. This is the only
+     * mandatory method which MUST be implemented.
+     *
+     * `render` is executed before `init` because `normalizeTree()`
+     * must obtain the component's hdom tree first before it can
+     * determine if an `init` is necessary. `init` itself will be
+     * called from `diffTree`, `createDOM` or `hydrateDOM()` in a later
+     * phase of processing.
+     *
+     * `render` should ALWAYS return an array or another function,
+     * else the component's `init` or `release` fns will NOT be able
+     * to be called later. E.g. If the return value of `render`
+     * evaluates as a string or number, the return value should be
+     * wrapped as `["span", "foo"]`. If no `init` or `release` are
+     * used, this requirement is relaxed.
+     */
     render(ctx: any, ...args: any[]): any;
+
+    /**
+     * Called when the underlying DOM of this component is removed
+     * (or replaced). Intended for cleanup tasks.
+     */
     release?(ctx: any, ...args: any[]);
 }
 
@@ -11,7 +43,7 @@ export interface HDOMBehaviorAttribs {
      * HDOM behavior control attribute. If true (default), the element
      * will be fully processed by `diffTree()`. If false, no diff will
      * be computed and the `replaceChild()` operation will be called in
-     * the currently active hdom target.
+     * the currently active hdom target implementation.
      */
     __diff?: boolean;
     /**
@@ -21,11 +53,16 @@ export interface HDOMBehaviorAttribs {
      */
     __impl?: HDOMImplementation<any>;
     /**
-     * HDOM behavior control attribute.
+     * HDOM behavior control attribute. If `false`, the current
+     * element's children will not be normalized. Use this when you're
+     * sure that all children are already in canonical format (incl.
+     * `key` attributes). See `normalizeTree()` for details.
      */
     __normalize?: boolean;
     /**
-     * HDOM behavior control attribute.
+     * HDOM behavior control attribute. If `false`, hdom will not
+     * attempt to call `release()` lifecycle methods on this element or
+     * any of its children.
      */
     __release?: boolean;
 }
