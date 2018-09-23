@@ -37,6 +37,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API & Usage](#api--usage)
     - [start()](#start)
+    - [renderOnce()](#renderonce)
     - [HDOMOpts config options](#hdomopts-config-options)
     - [normalizeTree()](#normalizetree)
     - [diffTree()](#difftree)
@@ -52,8 +53,8 @@ This project is part of the
 
 ## About
 
-Extensible, abstract, hierarchical UI component tree definition syntax &
-differential tree updates using only vanilla JS data structures (arrays,
+Lightweight UI component tree definition syntax, DOM creation and
+differential updates using only vanilla JS data structures (arrays,
 iterators, closures, attribute objects or objects with life cycle
 functions, closures). By default targets the browser's native DOM, but
 supports other arbitrary target implementations in a branch-local
@@ -66,7 +67,7 @@ Benefits:
 - Use the full expressiveness of ES6 / TypeScript to define user interfaces
 - No enforced opinion about state handling, very flexible
 - Clean, functional component composition & reuse
-- No source pre-processing, pre-compilation or string interpolation
+- No source pre-processing, transpiling or string interpolation
 - Less verbose than HTML / JSX, resulting in smaller file sizes
 - Supports arbitrary elements (incl. SVG), attributes and events in
   uniform, S-expression based syntax
@@ -74,9 +75,9 @@ Benefits:
   non-DOM) target data structures to which tree diffs are applied to
 - Suitable for server-side rendering and then "hydrating" listeners and
   components with life cycle methods on the client side
-- Static components (or component templates) can be distributed as JSON
-- Optional user context injection (an arbitrary object passed to all
-  component functions embedded in the tree)
+- Can use JSON for static components (or component templates)
+- Optional user context injection (an arbitrary object/value passed to
+  all component functions embedded in the tree)
 - Default implementation supports CSS conversion from JS objects for
   `style` attribs (also see:
   [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css))
@@ -96,7 +97,7 @@ import * as hdom from "@thi.ng/hdom";
 
 // stateless component w/ params
 // the first arg is an auto-injected context object
-// (not used here, details further below)
+// (not used here, see dedicated section in readme further below)
 const greeter = (_, name) => ["h1.title", "hello ", name];
 
 // component w/ local state
@@ -115,12 +116,12 @@ const app = () => {
 hdom.start(app(), { root: document.body });
 
 // alternatively create DOM tree only once
-hdom.createDOM({}, document.body, hdom.normalizeTree(app()));
+hdom.renderOnce(app(), { root: document.body });
 ```
 
-Alternatively, use the same component function for browser or server
-side HTML serialization (Note: does not emit attributes w/ functions as
-values, e.g. a button's `onclick` attrib).
+Alternatively, use the same component for browser or server side HTML
+serialization (Note: does not emit attributes w/ functions as values,
+e.g. a button's `onclick` attrib).
 
 ```ts
 import { serialize } from "@thi.ng/hiccup";
@@ -187,6 +188,9 @@ needed.
 [Live demo](http://demo.thi.ng/umbrella/interceptor-basics/) |
 [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
 
+[Live demo](http://demo.thi.ng/umbrella/interceptor-basics2/) |
+[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics2) (extended version)
+
 ```ts
 import { Atom } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
@@ -237,8 +241,8 @@ start(
             },
             `clicks: ${state.value.clicks}`] :
         null,
-    // hdom options incl.
-    // arbitrary user context object passed to all components
+    // hdom options, here including an arbitrary user context object
+    // passed to all components
     { ctx: { state, bus } }
 );
 
@@ -250,10 +254,11 @@ bus.dispatch(["init"]);
 
 This example uses the
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
-component to support the inclusion of (virtual, non-DOM targets) shape
+component to support the inclusion of (virtual / non-DOM targets) shape
 elements as part of the normal HTML component tree. A description of the
 actual mechanism can be found further below and in the hdom-canvas
-readme.
+readme. In short, all canvas child elements will be translated into
+canvas API draw calls.
 
 Related examples:
 
@@ -289,30 +294,33 @@ start(() =>
 
 ### The hdom data flow
 
-The usual hdom update process is based on the creation of an up-to-date
-component tree, which is first normalized (expanded into a canonical
-format) and the used to compute minimal edit set of the recursive
-difference to previous DOM tree.
+The usual hdom update process is as follows: First the your app creates
+an up-to-date UI component tree, which is then passed to hdom, will be
+normalized (expanded into a canonical format) and then used to compute
+minimal edit set of the recursive difference to previous DOM tree.
 
 **Important**:
 
-- hdom uses a RAF render loop only by default, but is in absolutely
-no way tied to this
-- hdom used the browser DOM only by default, but supports custom target
-  implementations, which can be defined on branch-local basis in the
+- hdom uses a RAF render loop only by default, but is in absolutely no
+  way tied to this (see
+  [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
+  for an alternative)
+- hdom uses the browser DOM only by default, but supports custom target
+  implementations, which can modify other target data structures. These
+  custom implementations can be triggered on branch-local basis in the
   tree
 - hdom NEVER tracks the real DOM, only its own trees (previous & current)
 - hdom can be used **without** diffing, i.e. for compact, one-off DOM
-  creation
+  creation (see [`renderOnce()`](#renderonce))
 
 ![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) projects, which themselves
-were influenced on [prior art by Phil
+were influenced by [prior art by Phil
 Wadler](http://homepages.inf.ed.ac.uk/wadler/papers/next700/next700.pdf)
-at Edinburgh University who pioneered this approach in Lisp back in
+at Edinburgh University, who pioneered this approach in Lisp back in
 1999. hdom offers several additional features to these established
 approaches.
 
@@ -349,10 +357,12 @@ Equivalent HTML:
 
 ### Attribute objects
 
-Attributes objects are used to define arbitrary attributes, CSS
-properties and event listeners. The latter always have to be prefixed
-with `on` and their values always must be functions (naturally). CSS
-props are assigned to the `style` attribute, but given as JS object.
+Attributes objects are optional, but if present always given as the 2nd
+element in an element array and are used to define arbitrary attributes,
+CSS properties and event listeners. The latter always have to be
+prefixed with `on` and their values always must be functions
+(naturally). CSS props are assigned to the `style` attribute, but given
+as JS object.
 
 ```ts
 ["a", {
@@ -372,16 +382,19 @@ props are assigned to the `style` attribute, but given as JS object.
 <a href="#" style="background:#000;color:#fff;padding:1rem;margin:0.25rem;">Say Hi</a>
 ```
 
-Attribute values can be functions themselves and if so will be called
-with the entire attributes object as sole argument. Same goes for CSS
-property function values (which receive the entire `style` object). In
-both cases, this supports the creation of derived values based on other
+With the exception of event listeners (which are always functions),
+others attribute values can be functions too and if so will be called
+with the entire attributes object as sole argument and their return
+value used as actual attribute value. Same goes for CSS property
+function values (which receive the entire `style` object). In both
+cases, this supports the creation of derived values based on other
 attribs:
 
 ```ts
 const btAttribs = {
-    // event handler are always functions
+    // event handlers are always standard listener functions
     onclick: (e)=> alert(e.target.id),
+    // these fns receive the entire attribs object
     class: (attr) => `bt bt-${attr.id}`,
     href: (attr) => `#${attr.id}`,
 };
@@ -473,10 +486,11 @@ see [this issue
 comment](https://github.com/thi-ng/umbrella/issues/42#issuecomment-420094339)
 for potential pitfalls.
 
-Please see the
+The
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-package, which provides 130+ functions to create, compose and work with
-iterator based pipelines.
+package provides 130+ functions to create, compose and work with
+iterator based pipelines. These are very powerful & handy for component
+construction as well!
 
 ```ts
 import { map, range } from "@thi.ng/transducers";
@@ -510,8 +524,12 @@ repo, but also any user defined custom types:
 
 ```ts
 class Foo {
+    constructor(val) {
+        this.value = val;
+    }
+
     deref() {
-        return ["div.deref"];
+        return ["div.deref", this.value];
     }
 }
 
@@ -519,18 +537,33 @@ class Foo {
 // receives current user context as argument
 // (see section further below)
 class Bar {
+    constructor(val) {
+        this.value = val;
+    }
+
     toHiccup(ctx) {
         return ["div.hiccup", ctx && ctx.foo, this.value];
     }
 }
 
-["div", new Foo(), new Bar()]
+// to demonstrate usage of the user context we're using
+// @thi.ng/hiccup's serialize() function here, which too
+// supports user context handling, but produces an HTML string
+serialize(
+    ["div", new Foo(23), new Bar(42)],
+    // global user context with theming rules
+    // here only use tachyons css classes, but could be anything...
+    {
+        foo: { class: "bg-lightest-blue navy pa2 ma0" }
+    }
+);
 ```
 
 ```html
 <div>
-    <div class="deref"></div>
-    <div class="hiccup"></div>
+    <div class="deref">23</div>
+    <!-- note: classes from ctx have been merged in here -->
+    <div class="bg-lightest-blue navy pa2 ma0 hiccup">42</div>
 </div>
 ```
 
@@ -564,6 +597,13 @@ interface ILifecycle {
      * determine if an `init` is necessary. `init` itself will be
      * called from `diffTree`, `createDOM` or `hydrateDOM()` in a later
      * phase of processing.
+     *
+     * `render` should ALWAYS return an array or another function,
+     * else the component's `init` or `release` fns will NOT be able
+     * to be called later. E.g. If the return value of `render`
+     * evaluates as a string or number, the return value should be
+     * wrapped as `["span", "foo"]`. If no `init` or `release` are
+     * used, this requirement is relaxed.
      */
     render(ctx: any, ...args: any[]): any;
 
@@ -577,12 +617,12 @@ interface ILifecycle {
 
 When the component is first used the order of execution is: `render` ->
 `init`. The `release` method is only called when the component has been
-removed / replaced (basically if it's not present in the new tree
+removed / replaced (basically, if it's not present in the new tree
 anymore). **The `release` implementation should NOT manually call
-`release()` on any children, since that's already handled by
+`release()` on any children, since that's already been handled by hdom's
 `diffTree()`.**
 
-The rest `...args` provided are sourced from the component call site as
+Any remaining arguments are sourced from the component call site as
 this simple example demonstrates:
 
 ```ts
@@ -605,29 +645,29 @@ const canvas = () => {
 // inline initialization is okay here...
 start(
     [canvas(), { width: 100, height: 100 }, "Hello world"],
-    { root: document.body }
 );
 
 
 // usage scenario #2: dynamic component
 // in this example, the root component itself is given as function,
 // which is evaluated each frame.
-// since `canvas()` is a higher order component it too produces
+// since `canvas()` is a higher order component it would produce
 // a new instance with each call. therefore the canvas instance(s)
-// need to be created beforehand
+// need to be created beforehand...
 const app = () => {
     // pre-instantiate canvases
     const c1 = canvas();
     const c2 = canvas();
-    // return root component function
-    return () => ["div",
-        // use canvas instances
-        [c1, { width: 100, height: 100 }, "Hello world"],
-        [c2, { width: 100, height: 100 }, "Goodbye world", "blue"]
-    ];
+    // return actual root component function
+    return () =>
+        ["div",
+            // use canvas instances
+            [c1, { width: 100, height: 100 }, "Hello world"],
+            [c2, { width: 100, height: 100 }, "Goodbye world", "blue"]
+        ];
 };
 
-start(app(), { root: document.body });
+start(app());
 ```
 
 ### Event & state handling options
@@ -822,9 +862,16 @@ pre-existing DOM and the hdom trees will cause undefined behavior.
 `start` returns a function, which when called, immediately cancels the
 update loop.
 
+### renderOnce()
+
+One-off hdom tree conversion & target DOM application. Takes same args
+as `start()`, but performs no diffing and only creates or hydrates
+target (DOM) once. The given tree is first normalized and no further
+action will be taken, if the normalized result is `null` or `undefined`.
+
 ### HDOMOpts config options
 
-Config options object passed to hdom's `start()` or
+Config options object passed to hdom's `start()`, `renderOnce()` or
 [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)'s
 `updateDOM()`:
 
@@ -856,6 +903,9 @@ its canonical form:
 
 - resolves Emmet-style tags (e.g. from `div#id.foo.bar`)
 - adds missing attribute objects (and `key` attribs)
+- merges Emmet-style classes with additional `class` attrib values (if
+  given), e.g. `["div.foo", { class: "bar" }]` => `["div", { class: "bar
+  foo" }]`
 - evaluates embedded functions and replaces them with their result
 - calls the `render` life cycle method on component objects and uses
   result
@@ -865,7 +915,7 @@ its canonical form:
 - calls `toHiccup()` on elements implementing the `IToHiccup` interface
   and uses returned results
 - calls `.toString()` on any other non-component value and by default
-  wrapps it in `["span", x]`. The only exceptions to this are: `button`,
+  wraps it in `["span", x]`. The only exceptions to this are: `button`,
   `option`, `textarea` and SVG `text` elements, for which spans are
   never created.
 
@@ -972,19 +1022,21 @@ start(app, { ctx });
 
 ### Behavior control attributes
 
-The following special attributes can be added to elements to choose
-and/or control the branch-local behavior of the hdom implementation:
+The following special attributes can be added to elements to control the
+branch-local behavior of the hdom implementation:
 
 #### __impl
 
-A custom implementation of the `HDOMImplementation` interface.
-Currently,
+If present, the element and all of its children will be processed by the
+given implementation of the `HDOMImplementation` interface. Currently,
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
 is the only example of a component using this feature.
 
 #### __diff
 
-If `false`, disables diffing of the current branch and replaces the old one with current.
+If true (default), the element will be fully processed by `diffTree()`.
+If false, no diff will be computed and the `replaceChild()` operation
+will be called in the currently active hdom target implementation.
 
 #### __normalize
 
@@ -994,14 +1046,14 @@ this when you're sure that all children are already in canonical format
 
 #### __release
 
-If `false`, do not attempt to call `release()` lifecycle methods on this
-element or any of its children.
+If `false`, hdom will not attempt to call `release()` lifecycle methods
+on this element or any of its children.
 
 #### __serialize
 
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-only. If `false`, this element and its children will not be serialized
-to XML syntax.
+only. If `false`, this element and its children will be omitted from the
+serialized output.
 
 ### Benchmark
 
