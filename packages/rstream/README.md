@@ -6,6 +6,30 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+<!-- TOC depthFrom:2 depthTo:3 -->
+
+- [About](#about)
+- [Support packages](#support-packages)
+- [Conceptual differences to RxJS](#conceptual-differences-to-rxjs)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+    - [Realtime crypto candle chart](#realtime-crypto-candle-chart)
+    - [Interactive SVG grid generator](#interactive-svg-grid-generator)
+    - [Mouse gesture analysis](#mouse-gesture-analysis)
+    - [Declarative dataflow graph](#declarative-dataflow-graph)
+    - [@thi.ng/hdom benchmark](#thinghdom-benchmark)
+- [API](#api)
+    - [Stream creation](#stream-creation)
+    - [Stream merging](#stream-merging)
+    - [Stream splitting](#stream-splitting)
+    - [Side-chaining](#side-chaining)
+    - [Other subscription ops](#other-subscription-ops)
+- [Authors](#authors)
+- [License](#license)
+
+<!-- /TOC -->
+
 ## About
 
 Lightweight reactive multi-tap streams and transducer based
@@ -25,8 +49,105 @@ programming:
 - **Recursive teardown**: Whenever possible, any unsubscription
   initiates cleanup and propagates to parent(s).
 
-Using these building blocks, a growing number of high-level operations
-are provided too:
+## Support packages
+
+- [@thi.ng/rstream-csp](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-csp) - CSP channel-to-stream adapter
+- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot) - GraphViz DOT conversion of rstream dataflow graph topologies
+- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures) - unified mouse, single-touch & wheel event stream
+- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) - declarative dataflow graph construction
+- [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log) - extensible multi-level, multi-target structured logging
+- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query) - triple store & query engine
+
+## Conceptual differences to RxJS
+
+(No value judgements implied - there's room for both approaches!)
+
+- Streams are not the same as Observables: I.e. stream sources are NOT
+  (often just cannot) re-run for each new sub added. Only the first sub
+  is guaranteed to receive **all** values. Subs added at a later time
+  MIGHT not receive earlier emitted values, but only the most recent
+  emitted and any future values)
+- Every subscription supports any number of subscribers, which can be
+  added/removed at any time
+- Every unsubscription recursively triggers upstream unsubscriptions
+  (provided a parent has no other active child subscriptions)
+- Every subscription can have its own transducer transforming
+  incoming values (possibly into multiple new ones)
+- Transducers can create streams themselves (only for `merge()` /
+  `sync()`)
+- Transducers can cause early stream termination and subsequent unwinding
+- Values can be manually injected into the stream pipeline / graph at
+  any point
+- Every Stream also is a subscription
+- Unhandled errors in subscriptions will move subscription into error
+  state and cause unsubscription from parent (if any). Unhandled errors
+  in stream sources will cancel the stream.
+- *Much* smaller API surface since most common & custom operations can
+  be solved via available transducers. Therefore less need to provide
+  specialized functions (map / filter etc.) and more flexibility in
+  terms of composing new operations.
+- IMHO less confusing naming / terminology (only streams (producers) &
+  subscriptions (consumers))
+
+## Installation
+
+```bash
+yarn add @thi.ng/rstream
+```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
+## Usage examples
+
+Several demos in this repo's [/examples]() directoy are using this package.
+
+A small selection:
+
+### Realtime crypto candle chart
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/crypto-chart.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
+[Live version](https://demo.thi.ng/umbrella/crypto-chart/)
+
+### Interactive SVG grid generator
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/rstream-grid.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
+[Live version](https://demo.thi.ng/umbrella/rstream-grid/)
+
+### Mouse gesture analysis
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/gesture-analysis.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
+| [Live version](https://demo.thi.ng/umbrella/gesture-analysis)
+
+### Declarative dataflow graph
+
+This demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+| [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
+
+### @thi.ng/hdom benchmark
+
+The FPS counter canvas component used in this benchmark is driven by
+this package.
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
+| [Live version](https://demo.thi.ng/umbrella/hdom-benchmark/)
+
+## API
 
 ### Stream creation
 
@@ -353,148 +474,6 @@ fromInterval(500)
 - [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
 
-## Support packages
-
-- [@thi.ng/rstream-csp](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-csp) - CSP channel-to-stream adapter
-- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot) - GraphViz DOT conversion of rstream dataflow graph topologies
-- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures) - unified mouse, single-touch & wheel event stream
-- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) - declarative dataflow graph construction
-- [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log) - extensible multi-level, multi-target structured logging
-- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query) - triple store & query engine
-
-## Conceptual differences to RxJS
-
-(No value judgements implied - there's room for both approaches!)
-
-- Streams are not the same as Observables: I.e. stream sources are NOT
-  (often just cannot) re-run for each new sub added. Only the first sub
-  is guaranteed to receive **all** values. Subs added at a later time
-  MIGHT not receive earlier emitted values, but only the most recent
-  emitted and any future values)
-- Every subscription supports any number of subscribers, which can be
-  added/removed at any time
-- Every unsubscription recursively triggers upstream unsubscriptions
-  (provided a parent has no other active child subscriptions)
-- Every subscription can have its own transducer transforming
-  incoming values (possibly into multiple new ones)
-- Transducers can create streams themselves (only for `merge()` /
-  `sync()`)
-- Transducers can cause early stream termination and subsequent unwinding
-- Values can be manually injected into the stream pipeline / graph at
-  any point
-- Every Stream also is a subscription
-- Unhandled errors in subscriptions will move subscription into error
-  state and cause unsubscription from parent (if any). Unhandled errors
-  in stream sources will cancel the stream.
-- *Much* smaller API surface since most common & custom operations can
-  be solved via available transducers. Therefore less need to provide
-  specialized functions (map / filter etc.) and more flexibility in
-  terms of composing new operations.
-- IMHO less confusing naming / terminology (only streams (producers) &
-  subscriptions (consumers))
-
-## Installation
-
-```bash
-yarn add @thi.ng/rstream
-```
-
-## Dependencies
-
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-
-## Usage examples
-
-Several demos in this repo's [/examples]() directoy are using this package.
-
-A small selection:
-
-### Realtime crypto candle chart
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/crypto-chart.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
-[Live version](https://demo.thi.ng/umbrella/crypto-chart/)
-
-### Interactive SVG grid generator
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/rstream-grid.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
-[Live version](https://demo.thi.ng/umbrella/rstream-grid/)
-
-### Mouse gesture analysis
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/gesture-analysis.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
-| [Live version](https://demo.thi.ng/umbrella/gesture-analysis)
-
-### Declarative dataflow graph
-
-This demo is utilizing the [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) support package.
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
-| [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
-
-### @thi.ng/hdom benchmark
-
-The FPS counter canvas component used in this benchmark is driven by
-this package.
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
-| [Live version](https://demo.thi.ng/umbrella/hdom-benchmark/)
-
-## Basic usage
-
-This example uses this package for reactive state values and
-[@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
-to achieve push-based DOM updates.
-
-[Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) |
-[standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
-
-```ts
-import { fromInterval, stream, sync } from "@thi.ng/rstream/stream";
-import { updateDOM } from "@thi.ng/rstream/transducers-hdom";
-import * as tx from "@thi.ng/rstream/transducers";
-
-// root component function
-const app = ({ ticks, clicks }) =>
-    ["div",
-        `${ticks} ticks & `,
-        ["a",
-            { href: "#", onclick: () => clickStream.next(0)},
-            `${clicks} clicks`]
-    ];
-
-// transformed stream to count clicks
-const clickStream = stream().transform(tx.scan(tx.count(-1)));
-// seed
-clickStream.next(0);
-
-// stream combinator
-// waits until all inputs have produced at least one value,
-// then updates whenever either input has changed
-sync({
-    // streams to combine & synchronize
-    src: {
-        ticks: fromInterval(1000),
-        clicks: clickStream,
-    },
-}).transform(
-    // transform tuple into hdom component
-    tx.map(app),
-    // apply hdom tree to real DOM
-    updateDOM({ root: document.body })
-);
-```
 
 ## Authors
 
