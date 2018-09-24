@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.3"></a>
+## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.2...@thi.ng/strings@0.4.3) (2018-09-24)
+
+
+### Bug Fixes
+
+* **strings:** rename number parsers ([8cbfb97](https://github.com/thi-ng/umbrella/commit/8cbfb97))
+
+
+
+
+
 <a name="0.4.2"></a>
 ## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.1...@thi.ng/strings@0.4.2) (2018-09-24)
 
