@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
+![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

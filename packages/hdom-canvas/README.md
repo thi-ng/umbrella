@@ -1,6 +1,8 @@
 # @thi.ng/hdom-canvas
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-canvas.svg)
+![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.

@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
+![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -294,17 +295,18 @@ start(() =>
 
 ### The hdom data flow
 
-The usual hdom update process is as follows: First the your app creates
+The usual hdom update process is as follows: First the user app creates
 an up-to-date UI component tree, which is then passed to hdom, will be
-normalized (expanded into a canonical format) and then used to compute
-minimal edit set of the recursive difference to previous DOM tree.
+normalized (expanded into a canonical format) and then used to
+recursively compute the minimal edit set of the difference to the
+previous DOM tree.
 
 **Important**:
 
 - hdom uses a RAF render loop only by default, but is in absolutely no
   way tied to this (see
   [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
-  for an alternative)
+  for a possible alternative)
 - hdom uses the browser DOM only by default, but supports custom target
   implementations, which can modify other target data structures. These
   custom implementations can be triggered on branch-local basis in the

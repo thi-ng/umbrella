@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/range-coder.svg)
+![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
