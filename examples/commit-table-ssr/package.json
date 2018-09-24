@@ -6,9 +6,9 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "prepare": "yarn clean && mkdir -p out && cp commits.json out",
+        "prep": "yarn clean && mkdir -p out && cp commits.json out",
         "build-static": "tsc && node build/server/static.js",
-        "build": "yarn prepare && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
+        "build": "yarn prep && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
         "start": "tsc && node build/server/index.js"
     },
     "devDependencies": {

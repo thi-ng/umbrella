@@ -1,6 +1,7 @@
 import { TLRUCache } from "@thi.ng/cache";
 import * as express from "express";
 import * as Bundler from "parcel-bundler";
+import * as fs from "fs";
 
 import { Commit } from "../common/api";
 import { ctx } from "../common/config";
@@ -13,12 +14,17 @@ import { repoCommits } from "./git";
 const rawCache = new TLRUCache<string, Commit[]>(null, { ttl: 60 * 60 * 1000 });
 const htmlCache = new TLRUCache<string, string>(null, { ttl: 60 * 60 * 1000 });
 
-// console.log("parcel:", Object.keys(parcel));
 const bundler = new Bundler("index.html", {
     outDir: "./out",
     outFile: "index.html",
     publicUrl: "/out",
 });
+
+const getCommits = async () => {
+    const commits = [...repoCommits(ctx.repo.path)];
+    fs.writeFileSync("commits.json", JSON.stringify(commits));
+    return commits;
+};
 
 const app = express();
 
@@ -34,7 +40,7 @@ app.get("/commits", (_, res) => {
     // (re)create if missing...
     rawCache.getSet(
         ctx.repo.path,
-        async () => [...repoCommits(ctx.repo.path)]
+        getCommits
     ).then(
         (commits) => res.type("json").send(commits)
     )
@@ -50,7 +56,7 @@ app.get("/ssr", (_, res) => {
         async () => buildRepoTableHTML(
             await rawCache.getSet(
                 ctx.repo.path,
-                async () => [...repoCommits(ctx.repo.path)]
+                getCommits
             )
         )
     ).then((doc) => res.send(doc))
