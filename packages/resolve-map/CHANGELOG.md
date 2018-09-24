@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.13"></a>
+## [3.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.12...@thi.ng/resolve-map@3.0.13) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/resolve-map
+
+
+
+
+
 <a name="3.0.12"></a>
 ## [3.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.12-alpha.0...@thi.ng/resolve-map@3.0.12) (2018-09-22)
 

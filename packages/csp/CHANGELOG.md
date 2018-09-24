@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.64"></a>
+## [0.3.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.63...@thi.ng/csp@0.3.64) (2018-09-24)
+
+
+### Performance Improvements
+
+* **csp:** `State` => const enum ([c3e8d68](https://github.com/thi-ng/umbrella/commit/c3e8d68))
+
+
+
+
+
 <a name="0.3.63"></a>
 ## [0.3.63](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.63-alpha.1...@thi.ng/csp@0.3.63) (2018-09-22)
 

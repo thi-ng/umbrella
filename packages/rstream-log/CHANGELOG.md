@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.60"></a>
+## [1.0.60](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.59...@thi.ng/rstream-log@1.0.60) (2018-09-24)
+
+
+### Performance Improvements
+
+* **rstream-log:** `Level` => const enum ([fc6a4d3](https://github.com/thi-ng/umbrella/commit/fc6a4d3))
+
+
+
+
+
 <a name="1.0.59"></a>
 ## [1.0.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.58...@thi.ng/rstream-log@1.0.59) (2018-09-23)
 

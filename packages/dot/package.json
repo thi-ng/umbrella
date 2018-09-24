@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dot",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "description": "Graphviz DOM abstraction as vanilla JS objects & serialization to DOT format",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -28,8 +28,8 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.0",
-        "@thi.ng/checks": "^1.5.10"
+        "@thi.ng/api": "^4.2.1",
+        "@thi.ng/checks": "^1.5.11"
     },
     "keywords": [
         "ES6",

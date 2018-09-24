@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.21...@thi.ng/sax@0.4.0) (2018-09-24)
+
+
+### Features
+
+* **sax:** update parse() to return iterator if input given (optional) ([665564c](https://github.com/thi-ng/umbrella/commit/665564c))
+
+
+
+
+
 <a name="0.3.21"></a>
 ## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.21-alpha.1...@thi.ng/sax@0.3.21) (2018-09-22)
 

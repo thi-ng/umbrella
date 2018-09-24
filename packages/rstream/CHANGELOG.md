@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.13.2"></a>
+## [1.13.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.1...@thi.ng/rstream@1.13.2) (2018-09-24)
+
+
+### Performance Improvements
+
+* **rstream:** `State` => const enum ([7ac83c6](https://github.com/thi-ng/umbrella/commit/7ac83c6))
+
+
+
+
+
 <a name="1.13.1"></a>
 ## [1.13.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.0...@thi.ng/rstream@1.13.1) (2018-09-23)
 

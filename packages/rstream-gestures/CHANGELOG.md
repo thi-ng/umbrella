@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.10"></a>
+## [0.5.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.9...@thi.ng/rstream-gestures@0.5.10) (2018-09-24)
+
+
+### Performance Improvements
+
+* **rstream-gestures:** `GestureType` => const enum ([8e4fc90](https://github.com/thi-ng/umbrella/commit/8e4fc90))
+
+
+
+
+
 <a name="0.5.9"></a>
 ## [0.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.8...@thi.ng/rstream-gestures@0.5.9) (2018-09-23)
 
