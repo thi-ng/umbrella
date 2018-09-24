@@ -10,6 +10,7 @@ import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import { push } from "@thi.ng/transducers/rfn/push";
 
 import {
+    __State,
     DEBUG,
     ISubscribable,
     ISubscriber,
@@ -295,7 +296,7 @@ export class Subscription<A, B> implements
 
     protected ensureState() {
         if (this.state >= State.DONE) {
-            illegalState(`operation not allowed in ${State[this.state]} state`);
+            illegalState(`operation not allowed in ${__State[this.state]} state`);
         }
     }
 
