@@ -37,3 +37,4 @@ If you want to [contribute](../CONTRIBUTING.md) an example, please get in touch 
 | 29 | [transducers-hdom](./transducers-hdom)       | Transducer & rstream based hdom UI updates               | hdom, rstream, transducers-hdom                                   | basic        |
 | 30 | [triple-query](./triple-query)               | Triple store query results & sortable table              | atom, hdom, hdom-components, rstream-query, transducers           | intermediate |
 | 31 | [webgl](./webgl)                             | Canvas component handling                                | hdom, hdom-components                                             | basic        |
+| 32 | [xml-converter](./xml-converter)             | XML/HTML/SVG to hiccup conversion as you type            | rstream, sax, transducers, transducers-hdom                       | basic        |
