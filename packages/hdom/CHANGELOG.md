@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.3"></a>
+## [5.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.2...@thi.ng/hdom@5.0.3) (2018-09-24)
+
+
+### Bug Fixes
+
+* **hdom:** add DEFAULT_IMPL to re-exports ([#47](https://github.com/thi-ng/umbrella/issues/47)) ([50fa649](https://github.com/thi-ng/umbrella/commit/50fa649))
+
+
+
+
+
 <a name="5.0.2"></a>
 ## [5.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.1...@thi.ng/hdom@5.0.2) (2018-09-24)
 
