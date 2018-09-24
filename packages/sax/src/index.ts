@@ -1,6 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
 import { Transducer } from "@thi.ng/transducers/api";
+import { $iter, iterator } from "@thi.ng/transducers/iterator";
 
 export interface ParseOpts {
     /**
@@ -88,7 +89,7 @@ interface ParseState extends FSMState {
     opts: Partial<ParseOpts>;
 }
 
-enum State {
+const enum State {
     WAIT,
     ERROR,
     MAYBE_ELEM,
@@ -135,12 +136,19 @@ const ESCAPE_SEQS = {
 
 /**
  * Returns XML parser transducer, optionally configured with given
- * options.
+ * options. If `src` is also given, returns an iterator instead.
  *
  * @param opts
  */
-export const parse = (opts?: Partial<ParseOpts>): Transducer<string, ParseEvent> =>
-    fsm({
+export function parse(opts?: Partial<ParseOpts>): Transducer<string, ParseEvent>;
+export function parse(src: string): IterableIterator<ParseEvent>;
+export function parse(opts: Partial<ParseOpts>, src: string): IterableIterator<ParseEvent>;
+export function parse(...args: any[]): any {
+    const iter = $iter(parse, args, iterator);
+    if (iter) {
+        return iter;
+    }
+    return fsm({
         states: PARSER,
         init: () => (<ParseState>{
             state: State.WAIT,
@@ -150,11 +158,12 @@ export const parse = (opts?: Partial<ParseOpts>): Transducer<string, ParseEvent>
                 children: true,
                 entities: false,
                 trim: false,
-                ...opts
+                ...args[0]
             },
         }),
         terminate: State.ERROR
     });
+}
 
 const isWS = (x: string) => {
     const c = x.charCodeAt(0);

@@ -56,9 +56,13 @@ src=`<?xml version="1.0" encoding="utf-8"?>
     <b2 foo="bar" />
 </a>`
 
+// sax.parse() returns a transducer
 doc = [...tx.iterator(sax.parse(), src)]
 
-// (see description of `type` values further below)
+// ...or returns iterator if input is given
+doc = [...sax.parse(src)]
+
+// (see description of `type` values and parse options further below)
 
 // [ { type: 0,
 //     tag: 'xml',
@@ -150,6 +154,10 @@ svg=`
 ```
 
 ### DOM-style tree parsing using `defmulti`
+
+This example shows how SVG can be parsed into
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+format.
 
 ```ts
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
