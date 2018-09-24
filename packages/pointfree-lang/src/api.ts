@@ -13,7 +13,7 @@ export interface VisitorState {
     word: boolean;
 }
 
-export enum NodeType {
+export const enum NodeType {
     SYM = 1,
     WORD,
 
@@ -30,6 +30,11 @@ export enum NodeType {
     COMMENT,
     STACK_COMMENT,
 };
+
+/**
+ * Reverse lookup for `NodeType` enums
+ */
+export const __NodeType = (<any>exports).NodeType;
 
 export const ALIASES: IObjectOf<pf.StackFn> = {
     "?drop": pf.dropif,

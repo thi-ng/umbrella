@@ -4,6 +4,7 @@ import { illegalState } from "@thi.ng/errors/illegal-state";
 import * as pf from "@thi.ng/pointfree";
 
 import {
+    __NodeType,
     ALIASES,
     ASTNode,
     NodeType,
@@ -186,7 +187,7 @@ const endvar = (id: string) => (ctx: pf.StackContext) => {
  * @param state
  */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
-    DEBUG && console.log("visit", NodeType[node.type], node, ctx[0].toString());
+    DEBUG && console.log("visit", __NodeType[node.type], node, ctx[0].toString());
     switch (node.type) {
         case NodeType.SYM:
             return visitSym(node, ctx, state);
