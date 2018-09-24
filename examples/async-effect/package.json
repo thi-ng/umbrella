@@ -6,9 +6,9 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "prepare": "yarn clean && mkdir -p out && cp foo.json out",
-        "build": "yarn prepare && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
-        "start": "yarn prepare && parcel index.html -p 8080 --open -d out"
+        "prep": "yarn clean && mkdir -p out && cp foo.json out",
+        "build": "yarn prep && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
+        "start": "yarn prep && parcel index.html -p 8080 --open -d out"
     },
     "devDependencies": {
         "parcel-bundler": "^1.9.7",
