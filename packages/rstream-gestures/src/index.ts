@@ -3,13 +3,18 @@ import { fromEvent } from "@thi.ng/rstream/from/event";
 import { merge, StreamMerge } from "@thi.ng/rstream/stream-merge";
 import { map } from "@thi.ng/transducers/xform/map";
 
-export enum GestureType {
+export const enum GestureType {
     START,
     MOVE,
     DRAG,
     END,
     ZOOM,
 }
+
+/**
+ * Reverse lookup for `GestureType` enums
+ */
+export const __GestureType = (<any>exports).GestureType;
 
 export interface GestureInfo {
     pos: number[];
