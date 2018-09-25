@@ -1,17 +1,16 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isBoolean } from "@thi.ng/checks/is-boolean";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { isString } from "@thi.ng/checks/is-string";
 import { stream, Stream } from "@thi.ng/rstream/stream";
-import { parse, Type } from "@thi.ng/sax";
-import { splice } from "@thi.ng/strings/splice";
+import {
+    parse,
+    ParseElement,
+    ParseEvent,
+    Type
+} from "@thi.ng/sax";
 import { maybeParseFloat } from "@thi.ng/strings/parse";
-import { repeat } from "@thi.ng/strings/repeat";
+import { splice } from "@thi.ng/strings/splice";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { identity } from "@thi.ng/transducers/func/identity";
-import { peek } from "@thi.ng/transducers/func/peek";
 import { pairs } from "@thi.ng/transducers/iter/pairs";
 import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
 import { last } from "@thi.ng/transducers/rfn/last";
@@ -20,8 +19,9 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 import { multiplex } from "@thi.ng/transducers/xform/multiplex";
+import { format, spaces } from "./format";
 
-// parses given XMLish string using @thi.ng/sax transducer into a tree
+// parses given XMLish string using @thi.ng/sax transducer into a
 // sequence of parse events. we only care about the final (or error)
 // event, which will be related to the final close tag and contains the
 // entire tree
@@ -49,7 +49,7 @@ const transformCSS = (css: string) =>
 // takes attrib key-value pair and attempts to coerce / transform its
 // value. returns updated pair.
 const parseAttrib = ([k, v]: string[]) =>
-    k === "style" ?
+    k === "style" && isString(v) ?
         [k, transformCSS(v)] :
         v === "true" ?
             [k, true] :
@@ -72,16 +72,17 @@ const transformTag = (tag: string, attribs: any) => {
         tag += "#" + attribs.id;
         delete attribs.id;
     }
-    if (attribs.class) {
-        tag += "." + attribs.class.replace(/\s+/g, ".");
+    if (isString(attribs.class)) {
+        const classes = attribs.class.replace(/\s+/g, ".");
+        classes.length && (tag += "." + classes);
         delete attribs.class;
     }
     return tag;
 };
 
 // recursively transforms entire parse tree
-const transformTree = (tree: any) => {
-    if (tree.type === Type.ERROR) {
+const transformTree = (tree: ParseEvent | ParseElement) => {
+    if ((<ParseEvent>tree).type === Type.ERROR) {
         return ["error", tree.body];
     }
     const attribs = transformAttribs(tree.attribs);
@@ -97,81 +98,6 @@ const transformTree = (tree: any) => {
     }
     return res;
 };
-
-// dispatch helper function for the `format` defmulti below
-const classify = (x: any) =>
-    isArray(x) ? "array" : isPlainObject(x) ? "obj" : DEFAULT;
-
-// wraps attrib name in quotes if needed
-const formatAttrib = (x: string) =>
-    /^[a-z]+$/i.test(x) ? x : `"${x}"`;
-
-// attrib or body value formatter
-const formatVal = (x: any, indent: number, istep: number) =>
-    isNumber(x) || isBoolean(x) ?
-        x :
-        isPlainObject(x) ?
-            format(x, "", indent + istep, istep) :
-            `"${x}"`;
-
-// attrib key-value pair formatter w/ indentation
-const formatPair = (x: any, k: string, indent: number, istep: number) =>
-    `${spaces(indent)}${formatAttrib(k)}: ${formatVal(x[k], indent, istep)}`;
-
-// memoized indentations
-const spaces = (n: number) => repeat(" ", n);
-
-// multiply dispatch function to format the transformed tree (hiccup
-// structure) into a more compact & legible format than produced by
-// standard: `JSON.stringify(tree, null, 4)`
-const format = defmulti<any, string, number, number, string>(classify);
-
-// implementation for array values
-format.add("array", (x, res, indent, istep) => {
-    const hasAttribs = isPlainObject(x[1]);
-    let attribs = hasAttribs ? Object.keys(x[1]) : [];
-    res += `${spaces(indent)}["${x[0]}"`;
-    if (hasAttribs) {
-        res += ", ";
-        res = format(x[1], res, indent + istep, istep);
-    }
-    // single line if none or only single child
-    // and if max. 1 CSS prop
-    if (x.length === (hasAttribs ? 3 : 2) &&
-        attribs.length < 2 &&
-        attribs[0] !== "style" &&
-        classify(peek(x)) === DEFAULT) {
-        return format(peek(x), res += ", ", 0, istep) + "]";
-    }
-    // default format if more children
-    for (let i = hasAttribs ? 2 : 1; i < x.length; i++) {
-        res += ",\n";
-        res = format(x[i], res, indent + istep, istep);
-    }
-    res += "]";
-    return res;
-});
-
-// implementation for object values (i.e. attributes in this case)
-format.add("obj", (x, res, indent, istep) => {
-    const keys = Object.keys(x);
-    if (keys.length === 1 &&
-        (keys[0] !== "style" || Object.keys(x.style).length == 1)) {
-        res += `{ ${formatPair(x, keys[0], 0, istep)} }`;
-    } else {
-        const outer = spaces(indent);
-        res += `\n${outer}{\n`;
-        for (let k in x) {
-            res += formatPair(x, k, indent + istep, istep) + ",\n";
-        }
-        res += outer + "}";
-    }
-    return res;
-});
-
-// implementation for other values
-format.add(DEFAULT, (x, res, indent, istep) =>
-    res += spaces(indent) + formatVal(x, indent, istep));
 
 // hdom UI root component receives tuple of xml & formatted hiccup
 // strings. defined as closure purely for demonstration purposes and to
@@ -226,7 +152,7 @@ src.transform(
         comp(
             map(parseXML),
             map(transformTree),
-            map((tree) => format(tree, "", 0, 4))
+            map((tree) => format({ indent: 0, tabSize: 4 }, tree, ""))
         )
     ),
     map(app(src)),
@@ -239,7 +165,7 @@ src.next(`<html lang="en">
         <title>foo</title>
     </head>
     <body class="foo bar">
-        <h1 style="color:red">
+        <h1 style="color:red;bg:blue">
             HTML &amp; Hiccup walk into a bar...
         </h1>
         <div id="app"></div>
