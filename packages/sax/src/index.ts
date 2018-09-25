@@ -27,7 +27,22 @@ export interface ParseOpts {
      * Default: false
      */
     trim: boolean;
+    /**
+     * If `true`, HTML5 boolean attributes are supported.
+     *
+     * Default: false
+     */
+    boolean: boolean;
+    /**
+     * If given, element names in this set are allowed to omit their
+     * closing `/`. E.g. `<link href="...">` vs `<link href="..."/>`
+     *
+     * Default: undefined (none allowed)
+     */
+    // voidTags: Set<string>; // TODO #48
 }
+
+export const VOID_TAGS = new Set("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
 
 export interface ParseElement {
     tag: string;
@@ -342,10 +357,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
                 }
             } else {
                 if (ch === ">") {
-                    state.state = State.ELEM_BODY;
-                    state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
-                    state.body = "";
-                    return [{ type: Type.ELEM_START, tag: state.tag, attribs: state.attribs }];
+                    return beginElementBody(state);
                 } else if (ch === "/") {
                     state.state = State.ELEM_SINGLE;
                 } else if (!isWS(ch)) {
@@ -361,6 +373,20 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             state.name += ch;
         } else if (ch === "=") {
             state.state = State.ATTRIB_VAL_START;
+        } else if (state.opts.boolean) {
+            if (ch === " ") {
+                state.attribs[state.name] = true;
+                state.state = State.MAYBE_ATTRIB;
+            } else if (ch === "/") {
+                state.attribs[state.name] = true;
+                state.state = State.ELEM_SINGLE;
+                return;
+            } else if (ch === ">") {
+                state.attribs[state.name] = true;
+                return beginElementBody(state);
+            } else {
+                return unexpected(state, ch);
+            }
         } else {
             return unexpected(state, ch);
         }
@@ -514,4 +540,11 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             return unexpected(state, ch);
         }
     },
+};
+
+const beginElementBody = (state: ParseState) => {
+    state.state = State.ELEM_BODY;
+    state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
+    state.body = "";
+    return [{ type: Type.ELEM_START, tag: state.tag, attribs: state.attribs }];
 };
