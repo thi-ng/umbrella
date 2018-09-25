@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.4.1...@thi.ng/sax@0.5.0) (2018-09-25)
+
+
+### Features
+
+* **sax:** add opt support for boolean attribs, add tests ([5119b67](https://github.com/thi-ng/umbrella/commit/5119b67))
+
+
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.4.0...@thi.ng/sax@0.4.1) (2018-09-24)
 
