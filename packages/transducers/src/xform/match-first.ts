@@ -14,12 +14,28 @@ import { take } from "./take";
  * ```
  *
  * Yields none or only the first value which passed the predicate check
- * and then causes early termination.
+ * and then causes early termination. If `src` input is given, returns
+ * first match found (or `undefined`). Also see `matchLast()`.
+ *
+ * ```
+ * matchFirst((x) => x >= 5, [3, 1, 4, 2, 6, 5])
+ * // 6
+ *
+ * transduce(
+ *   comp(
+ *     matchFirst((x) => x >= 5),
+ *     map((x) => x * 10)
+ *   ),
+ *   last(),
+ *   [3, 1, 4, 2, 6, 5]
+ * )
+ * // 60
+ * ```
  *
  * @param pred predicate function
  */
 export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T>;
-export function matchFirst<T>(pred: Predicate<T>, src: Iterable<T>): IterableIterator<T>;
+export function matchFirst<T>(pred: Predicate<T>, src: Iterable<T>): T | undefined;
 export function matchFirst<T>(pred: Predicate<T>, src?: Iterable<T>): any {
     return src ?
         [...iterator1(matchFirst(pred), src)][0] :
