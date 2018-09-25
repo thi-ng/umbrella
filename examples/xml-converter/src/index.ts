@@ -40,7 +40,7 @@ const transformCSS = (css: string) =>
     css.split(";").reduce(
         (acc, p) => {
             const [k, v] = p.split(":");
-            acc[k.trim()] = v.trim();
+            (v != null) && (acc[k.trim()] = parseAttrib([k, v.trim()])[1]);
             return acc;
         },
         {}
