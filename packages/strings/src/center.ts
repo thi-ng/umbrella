@@ -20,11 +20,11 @@ import { truncate } from "./truncate";
  * ```
  *
  * @param lineWidth target length
- * @param ch pad character(s)
+ * @param pad pad character(s)
  */
-export const center: (lineWidth: number, ch?: string | number) => Stringer<any> =
-    memoizeJ<number, string, Stringer<any>>((n, ch = " ") => {
-        const buf = repeat(ch, n);
+export const center: (lineWidth: number, pad?: string | number) => Stringer<any> =
+    memoizeJ<number, string, Stringer<any>>((n, pad = " ") => {
+        const buf = repeat(pad, n);
         return (x: any) => {
             if (x == null) return buf;
             x = x.toString();

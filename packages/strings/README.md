@@ -21,7 +21,7 @@ This project is part of the
 ## About
 
 Various higher-order, but low-level string formatting & utility
-functions, some memoized. WIP / Alpha.
+functions, some memoized. WIP / Alpha. Please sources for now.
 
 ## Installation
 

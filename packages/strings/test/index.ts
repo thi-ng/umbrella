@@ -13,7 +13,7 @@ describe("strings", () => {
         assert.strictEqual(str.padLeft(5), str.padLeft(5));
     });
 
-    it("padr", () => {
+    it("padRight", () => {
         assert.equal(str.padRight(4)(undefined), "    ");
         assert.equal(str.padRight(4, "0")(null), "0000");
         assert.equal(str.padRight(4)(1), "1   ");

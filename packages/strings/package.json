@@ -28,6 +28,7 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
+        "@thi.ng/errors": "^0.1.9",
         "@thi.ng/memoize": "^0.2.3"
     },
     "keywords": [
