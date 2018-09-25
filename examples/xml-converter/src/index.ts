@@ -16,7 +16,7 @@ import { multiplex } from "@thi.ng/transducers/xform/multiplex";
 const parseXML = (src: string) =>
     transduce(
         comp(
-            parse({ trim: true }),
+            parse({ trim: true, boolean: true }),
             filter((e) => e.type === Type.ELEM_END || e.type === Type.ERROR)
         ),
         last(),
@@ -107,6 +107,7 @@ src.next(`<html lang="en">
     </head>
     <body class="foo bar">
         <div id="app"></div>
+        <input disabled value="42"/>
     </body>
 </html>`);
 
@@ -114,22 +115,3 @@ if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
     hot && hot.dispose(() => src.done());
 }
-
-["html",
-    {
-        "lang": "en"
-    },
-    [
-        "head",
-        [
-            "title",
-            "foo"
-        ]
-    ],
-    [
-        "body.foo.bar",
-        [
-            "div#app"
-        ]
-    ]
-]
