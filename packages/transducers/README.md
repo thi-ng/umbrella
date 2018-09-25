@@ -56,7 +56,7 @@ other JS based implementations) and dozens of less common, but generally
 highly useful operators have been added. See full list below.
 
 Furthermore, since v2.0.0 most transducers & reducers provided here
-accept an optional input iterable, which allows them them to be used
+accept an optional input iterable, which allows them to be used
 directly instead of having to wrap their call in one of the execution
 functions (i.e. `transduce()`, `reduce()`, `iterator()`, `run()`). If
 executed this way, transducer functions will return a transforming ES6
