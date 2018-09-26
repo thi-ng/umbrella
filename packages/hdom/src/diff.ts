@@ -35,20 +35,7 @@ const buildIndex = (n: number) => {
 };
 
 /**
- * Takes a DOM root element and two normalized hiccup trees, `prev` and
- * `curr`. Recursively computes diff between both trees and applies any
- * necessary changes to reflect `curr` tree in target (browser DOM by
- * default).
- *
- * For newly added components, calls `init` with created DOM element
- * (plus user provided context and any other args) for any components
- * with `init` life cycle method. Likewise, calls `release` on
- * components with `release` method when the DOM element is removed.
- *
- * Important: The actual DOM element given is assumed to exactly
- * represent the state of the `prev` tree. Since this function does NOT
- * track the real DOM at all, the resulting changes will result in
- * potentially undefined behavior if there're discrepancies.
+ * See `HDOMImplementation` interface for further details.
  *
  * @param opts
  * @param impl hdom implementation
@@ -159,6 +146,15 @@ export const diffTree = <T>(
     }
 };
 
+/**
+ * Helper function for `diffTree()` to compute & apply the difference
+ * between a node's `prev` and `curr` attributes.
+ *
+ * @param impl
+ * @param el
+ * @param prev
+ * @param curr
+ */
 export const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
     const delta = diffObject(prev, curr, _equiv);
     impl.removeAttribs(el, delta.dels, prev);
@@ -189,6 +185,15 @@ export const diffAttributes = <T>(impl: HDOMImplementation<T>, el: T, prev: any,
     }
 };
 
+/**
+ * Recursively attempts to call the `release` lifecycle method on every
+ * element in given tree (branch), using depth-first descent. Each
+ * element is checked for the presence of the `__release` control
+ * attribute. If (and only if) it is set to `false`, further descent
+ * into that element's branch is skipped.
+ *
+ * @param tag
+ */
 export const releaseTree = (tag: any) => {
     if (isArray(tag)) {
         let x: any;

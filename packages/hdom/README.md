@@ -34,16 +34,18 @@ This project is part of the
     - [Mouse gesture analysis](#mouse-gesture-analysis)
     - [Canvas based radial dial input widget](#canvas-based-radial-dial-input-widget)
     - [SPA with router and event bus](#spa-with-router-and-event-bus)
+    - [XML/HTML to Hiccup syntax converter](#xmlhtml-to-hiccup-syntax-converter)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API & Usage](#api--usage)
     - [start()](#start)
     - [renderOnce()](#renderonce)
     - [HDOMOpts config options](#hdomopts-config-options)
+    - [HDOMImplementation interface](#hdomimplementation-interface)
     - [normalizeTree()](#normalizetree)
     - [diffTree()](#difftree)
-    - [createDOM()](#createdom)
-    - [hydrateDOM()](#hydratedom)
+    - [createTree()](#createtree)
+    - [hydrateTree()](#hydratetree)
 - [User context](#user-context)
     - [Behavior control attributes](#behavior-control-attributes)
     - [Benchmark](#benchmark)
@@ -480,7 +482,7 @@ const now = () => new Date().toLocaleString();
 
 ### Iterators
 
-ES6 iteratables are supported out of the box and their use is encouraged
+ES6 iterables are supported out of the box and their use is encouraged
 to avoid the unnecessary allocation of temporary objects caused by
 chained application of `Array.map()` to transform raw state values into
 components. However, since iterators can only be consumed once, please
@@ -774,6 +776,11 @@ Based on the `create-hdom-app` project scaffolding...
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
 | [Live version](https://demo.thi.ng/umbrella/router-basics/)
 
+### XML/HTML to Hiccup syntax converter
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/xml-converter)
+| [Live version](https://demo.thi.ng/umbrella/xml-converter/)
+
 ## Installation
 
 ```bash
@@ -866,7 +873,7 @@ update loop.
 
 ### renderOnce()
 
-One-off hdom tree conversion & target DOM application. Takes same args
+One-off hdom tree conversion & target / DOM application. Takes same args
 as `start()`, but performs no diffing and only creates or hydrates
 target (DOM) once. The given tree is first normalized and no further
 action will be taken, if the normalized result is `null` or `undefined`.
@@ -893,11 +900,35 @@ Config options object passed to hdom's `start()`, `renderOnce()` or
   other discrepancies between the pre-existing DOM and the hdom trees
   will cause undefined behavior.
 
+### HDOMImplementation interface
+
+The following functions are the core parts of the `HDOMImplementation`
+interface, the abstraction layer used by hdom to support different
+targets.
+
+- [interface definition](https://github.com/thi-ng/umbrella/blob/master/packages/hdom/src/api.ts#L127)
+- [default implementation](https://github.com/thi-ng/umbrella/blob/master/packages/hdom/src/default.ts)
+
 ### normalizeTree()
 
-Calling this function is a prerequisite before passing a component tree
-to `diffTree()`. Recursively expands given hiccup component tree into
-its canonical form:
+Normalizes given hdom tree, expands Emmet-style tags, embedded
+iterables, component functions, component objects with life cycle
+methods and injects `key` attributes for `diffTree()` to later identify
+changes in nesting order. During normalization any embedded component
+functions are called with the given (optional) user `ctx` object as
+first argument. For further details of the default implementation,
+please see `normalizeTree()` in `normalize.ts`.
+
+Implementations MUST check for the presence of the `__impl` control
+attribute on each branch. If given, the current implementation MUST
+delegate to the `normalizeTree()` method of the specified implementation
+and not descent into that branch further itself.
+
+Furthermore, if (and only if) an element has the `__normalize` control
+attrib set to `false`, the normalization of that element's children MUST
+be skipped. Calling this function is a prerequisite before passing a
+component tree to `diffTree()`. Recursively expands given hiccup
+component tree into its canonical form:
 
 ```ts
 ["tag", { attribs }, ...body]
@@ -923,42 +954,88 @@ its canonical form:
 
 Additionally, unless the `keys` option is explicitly set to false, an
 unique `key` attribute is created for each node in the tree. This
-attribute is used by `diffElement` to determine if a changed node can be
+attribute is used by `diffTree` to determine if a changed node can be
 patched or will need to be moved, replaced or removed.
+
+In terms of life cycle methods: `render` should ALWAYS return an array
+or another function, else the component's `init` or `release` fns will
+NOT be able to be called. E.g. If the return value of `render` evaluates
+as a string or number, it should be wrapped as `["span", "foo"]` or an
+equivalent wrapper node. If no `init` or `release` methods are used,
+this requirement is relaxed.
+
+See `normalizeElement` (normalize.ts) for further details about the
+canonical element form.
 
 ### diffTree()
 
-Takes a DOM root element and two hiccup trees, `prev` and `curr`.
-Recursively computes diff between both trees and applies any necessary
-changes to reflect `curr` tree in real DOM.
+Takes an `HDOMOpts` options object, an `HDOMImplementation` and two
+normalized hiccup trees, `prev` and `curr`. Recursively computes diff
+between both trees and applies any necessary changes to reflect `curr`
+tree, based on the differences to `prev`, in target (browser DOM when
+using the `DEFAULT_IMPL` implementation).
 
-For newly added components, calls `init` with created DOM element (plus
-user provided context and any other args) for any components with `init`
-life cycle method. Likewise, calls `release` on components with
-`release` method when the DOM element is removed.
+All target modification operations are delegated to the given
+implementation. `diffTree()` merely manages which elements or attributes
+need to be created, updated or removed and this NEVER involves any form
+of tracking of the actual underlying target data structure (e.g. the
+real browser DOM). hdom in general and `diffTree()` specifically are
+stateless. The only state available is that of the two trees given (prev
+/ curr).
 
-**Important:** The actual DOM element/subtree given is assumed to
-exactly represent the state of the `prev` tree. Since this function does
-NOT track the real DOM at all, the resulting changes will result in
-potentially undefined behavior if there're discrepancies.
+Implementations MUST check for the presence of the `__impl` control
+attribute on each branch. If given, the current implementation MUST
+delegate to the `diffTree()` method of the specified implementation and
+not descent into that branch further itself.
 
-### createDOM()
+Furthermore, if (and only if) an element has the `__diff` control
+attribute set to `false`, then:
 
-Creates an actual DOM tree from given hiccup component and `parent`
-element. Calls `init` with created element (user provided context and
-other args) for any components with `init` life cycle method. Returns
+1) Computing the difference between old & new branch MUST be skipped
+2) The implementation MUST recursively call any `release` life cycle
+   methods present anywhere in the current `prev` tree (branch). The
+   recursive release process itself is implemented by the exported
+   `releaseDeep()` function in `diff.ts`. Custom implementations are
+   encouraged to reuse this, since that function also takes care of
+   handling the `__release` attrib: if the attrib is present and set to
+   false, `releaseDeep()` will not descend into the branch any further.
+3) Call the current implementation's `replaceChild()` method to replace
+   the old element / branch with the new one.
+
+### createTree()
+
+Realizes the given hdom tree in the target below the `parent` node, e.g.
+in the case of the browser DOM, creates all required DOM elements
+encoded by the given hdom tree. If `parent` is null the result tree
+won't be attached to any parent. If `insert` is given, the new elements
+will be inserted at given child index.
+
+For any components with `init` life cycle methods, the implementation
+MUST call `init` with the created element, the user provided context
+(obtained from `opts`) and any other args. `createTree()` returns the
 created root element(s) - usually only a single one, but can be an array
-of elements, if the provided tree is an iterable. Creates DOM text nodes
-for non-component values. Returns `parent` if tree is `null` or
-`undefined`.
+of elements, if the provided tree is an iterable of multiple roots. The
+default implementation creates text nodes for non-component values.
+Returns `parent` if tree is `null` or `undefined`.
 
-### hydrateDOM()
+Implementations MUST check for the presence of the `__impl` control
+attribute on each branch. If given, the current implementation MUST
+delegate to the `createTree()` method of the specified implementation
+and not descent into that branch further itself.
 
-Takes a DOM root element and normalized hdom tree, then walks tree and
-initializes any event listeners and components with lifecycle init
-methods. Assumes that an equivalent DOM (minus listeners) already exists
-(e.g. generated via SSR) when called. Any other discrepancies between
-the pre-existing DOM and the hdom tree will cause undefined behavior.
+### hydrateTree()
+
+Takes a target root element and normalized hdom tree, then walks tree
+and initializes any event listeners and components with life cycle
+`init` methods. Assumes that an equivalent "DOM" (minus listeners)
+already exists when this function is called. Any other discrepancies
+between the pre-existing DOM and the hdom tree might cause undefined
+behavior.
+
+Implementations MUST check for the presence of the `__impl` control
+attribute on each branch. If given, the current implementation MUST
+delegate to the `hydrateTree()` method of the specified implementation
+and not descent into that branch further itself.
 
 ## User context
 
