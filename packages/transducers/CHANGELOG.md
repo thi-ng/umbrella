@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.6"></a>
+## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.5...@thi.ng/transducers@2.1.6) (2018-09-26)
+
+
+### Bug Fixes
+
+* **transducers:** fix matchLast(), fix & update return match*() types ([823d828](https://github.com/thi-ng/umbrella/commit/823d828))
+
+
+
+
+
 <a name="2.1.5"></a>
 ## [2.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.4...@thi.ng/transducers@2.1.5) (2018-09-25)
 
