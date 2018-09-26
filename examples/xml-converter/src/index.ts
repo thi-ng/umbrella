@@ -165,7 +165,7 @@ src.next(`<html lang="en">
         <title>foo</title>
     </head>
     <body class="foo bar">
-        <h1 style="color:red;bg:blue">
+        <h1 style="color:red">
             HTML &amp; Hiccup walk into a bar...
         </h1>
         <div id="app"></div>
