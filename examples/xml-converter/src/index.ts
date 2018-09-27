@@ -21,17 +21,17 @@ const inputs = {
 // configurable editor panel UI component
 // (uses Tachyons CSS classes for styling)
 const editPane = (_, title, attribs, value, extra?) =>
-    ["div",
+    ["div.w-50-ns.pa3",
         ["h3.ma0.mb2", ...title],
-        ["textarea.pa2.f7.code", { cols: 72, rows: 25, value, ...attribs }],
-        ["div", `${value.length} chars`],
+        ["textarea.w-100.pa2.bn.f7.code", { rows: 25, value, ...attribs }],
+        ["div.f7", `${value.length} chars`],
         extra];
 
 // configurable input UI component
 const input = (_, label, attribs) =>
     ["div.mb2",
-        ["label.dib.w5", { for: attribs.id }, label],
-        ["input.pa1", attribs]];
+        ["label.dib.w-100.w-25-l.pv2", { for: attribs.id }, label],
+        ["input.w-100.w-75-l.pa1.bg-light-silver.white.bn", attribs]];
 
 // combined transform options input components
 const transformOpts = (_, inputs) =>
@@ -63,11 +63,11 @@ const transformOpts = (_, inputs) =>
 // avoid component is using global vars
 const app = (inputs: any) =>
     ({ src, hiccup }) =>
-        ["div.flex",
+        ["div.flex-ns",
             [editPane,
-                ["XML/HTML source", ["small.fw1.ml2", "(must be well formed!)"]],
+                ["XML/HTML source", ["small.fw1.ml2.dn.dib-l", "(must be well formed!)"]],
                 {
-                    class: "mr2 bg-light-yellow",
+                    class: "bg-washed-green",
                     autofocus: true,
                     onkeydown: (e: KeyboardEvent) => {
                         // override tab to insert spaces at edit pos
@@ -85,7 +85,11 @@ const app = (inputs: any) =>
                 src],
             [editPane,
                 ["Transformed Hiccup / JSON"],
-                { disabled: true },
+                {
+                    class: hiccup.indexOf("error") < 0 ?
+                        "bg-light-gray" :
+                        "bg-washed-red"
+                },
                 hiccup,
                 [transformOpts, inputs]]];
 
