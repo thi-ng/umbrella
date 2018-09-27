@@ -1,166 +1,143 @@
-import { isString } from "@thi.ng/checks/is-string";
-import { stream, Stream } from "@thi.ng/rstream/stream";
-import {
-    parse,
-    ParseElement,
-    ParseEvent,
-    Type
-} from "@thi.ng/sax";
-import { maybeParseFloat } from "@thi.ng/strings/parse";
+import { stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/stream-sync";
 import { splice } from "@thi.ng/strings/splice";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { identity } from "@thi.ng/transducers/func/identity";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
-import { last } from "@thi.ng/transducers/rfn/last";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
-import { multiplex } from "@thi.ng/transducers/xform/multiplex";
-import { format, spaces } from "./format";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { convertXML } from "./convert";
+import { COMPACT_FORMAT, DEFAULT_FORMAT } from "./format";
+import { xformAsSet } from "./utils";
 
-// parses given XMLish string using @thi.ng/sax transducer into a
-// sequence of parse events. we only care about the final (or error)
-// event, which will be related to the final close tag and contains the
-// entire tree
-const parseXML = (src: string) =>
-    transduce(
-        comp(
-            parse({ trim: true, boolean: true, entities: true }),
-            filter((e) => e.type === Type.ELEM_END || e.type === Type.ERROR)
-        ),
-        last(),
-        src
-    );
-
-// transforms string of CSS properties into a plain object
-const transformCSS = (css: string) =>
-    css.split(";").reduce(
-        (acc, p) => {
-            const [k, v] = p.split(":");
-            (v != null) && (acc[k.trim()] = parseAttrib([k, v.trim()])[1]);
-            return acc;
-        },
-        {}
-    );
-
-// takes attrib key-value pair and attempts to coerce / transform its
-// value. returns updated pair.
-const parseAttrib = ([k, v]: string[]) =>
-    k === "style" && isString(v) ?
-        [k, transformCSS(v)] :
-        v === "true" ?
-            [k, true] :
-            v === "false" ?
-                [k, false] :
-                [k, maybeParseFloat(v, v)];
-
-// transforms an entire object of attributes
-const transformAttribs = (attribs: any) =>
-    transduce(
-        map(parseAttrib),
-        assocObj(),
-        attribs,
-        pairs<string>(attribs)
-    );
-
-// transforms element name by attempting to form Emmet-like tags
-const transformTag = (tag: string, attribs: any) => {
-    if (attribs.id) {
-        tag += "#" + attribs.id;
-        delete attribs.id;
-    }
-    if (isString(attribs.class)) {
-        const classes = attribs.class.replace(/\s+/g, ".");
-        classes.length && (tag += "." + classes);
-        delete attribs.class;
-    }
-    return tag;
+// input streams (reactive state values)
+const inputs = {
+    xml: stream<string>(),
+    prettyPrint: stream<boolean>(),
+    doubleQuote: stream<boolean>(),
+    trailingComma: stream<boolean>(),
+    removeAttribs: stream<string>(),
+    removeTags: stream<string>(),
 };
 
-// recursively transforms entire parse tree
-const transformTree = (tree: ParseEvent | ParseElement) => {
-    if ((<ParseEvent>tree).type === Type.ERROR) {
-        return ["error", tree.body];
-    }
-    const attribs = transformAttribs(tree.attribs);
-    const res: any[] = [transformTag(tree.tag, attribs)];
-    if (Object.keys(attribs).length) {
-        res.push(attribs);
-    }
-    if (tree.body) {
-        res.push(tree.body);
-    }
-    if (tree.children && tree.children.length) {
-        transduce(map(transformTree), push(), res, tree.children)
-    }
-    return res;
-};
+// configurable editor panel UI component
+// (uses Tachyons CSS classes for styling)
+const editPane = (_, title, attribs, value, extra?) =>
+    ["div",
+        ["h3.ma0.mb2", ...title],
+        ["textarea.pa2.f7.code", { cols: 72, rows: 25, value, ...attribs }],
+        ["div", `${value.length} chars`],
+        extra];
+
+// configurable input UI component
+const input = (_, label, attribs) =>
+    ["div.mb2",
+        ["label.dib.w5", { for: attribs.id }, label],
+        ["input.pa1", attribs]];
+
+// combined transform options input components
+const transformOpts = (_, inputs) =>
+    ["div",
+        ["h3", "Options"],
+        mapIndexed(
+            (i, [label, type, stream]) => {
+                let v = type === "checkbox" ? "checked" : "value";
+                return [input, label,
+                    {
+                        id: "opt" + i,
+                        type,
+                        [v]: stream.deref(),
+                        oninput: (e) => stream.next(e.target[v])
+                    }];
+            },
+            [
+                ["Remove tags", "text", inputs.removeTags],
+                ["Remove attributes", "text", inputs.removeAttribs],
+                ["Pretty print", "checkbox", inputs.prettyPrint],
+                ["Double quotes", "checkbox", inputs.doubleQuote],
+                ["Trailing commas", "checkbox", inputs.trailingComma],
+            ]
+        )
+    ];
 
 // hdom UI root component receives tuple of xml & formatted hiccup
 // strings. defined as closure purely for demonstration purposes and to
-// avoid app using global vars
-const app = (src: Stream<string>) =>
-    ([xml, hiccup]: string[]) =>
+// avoid component is using global vars
+const app = (inputs: any) =>
+    ({ src, hiccup }) =>
         ["div.flex",
-            ["div",
-                ["h3", "XML/HTML source",
-                    ["small.fw1.ml2", "(must be well formed!)"]],
-                ["textarea.mr2.f7.code.bg-light-yellow",
-                    {
-                        cols: 72,
-                        rows: 25,
-                        autofocus: true,
-                        onkeydown: (e: KeyboardEvent) => {
-                            // override tab to insert spaces at edit pos
-                            if (e.key === "Tab") {
-                                e.preventDefault();
-                                src.next(
-                                    splice(xml, spaces(4), (<any>e.target).selectionStart)
-                                );
-                            }
-                        },
-                        // emitting a new value to the stream will
-                        // re-trigger UI update
-                        oninput: (e) => src.next(e.target.value),
-                        value: xml
-                    }]
-            ],
-            ["div",
-                ["h3", "Parsed Hiccup / JSON"],
-                ["textarea.f7.code",
-                    {
-                        cols: 72,
-                        rows: 25,
-                        disabled: true,
-                        value: hiccup
+            [editPane,
+                ["XML/HTML source", ["small.fw1.ml2", "(must be well formed!)"]],
+                {
+                    class: "mr2 bg-light-yellow",
+                    autofocus: true,
+                    onkeydown: (e: KeyboardEvent) => {
+                        // override tab to insert spaces at edit pos
+                        if (e.key === "Tab") {
+                            e.preventDefault();
+                            inputs.xml.next(
+                                splice(src, "    ", (<HTMLTextAreaElement>e.target).selectionStart)
+                            );
+                        }
                     },
-                ]
-            ]
-        ];
+                    // emitting a new value to the stream will
+                    // re-trigger UI update
+                    oninput: (e) => inputs.xml.next(e.target.value),
+                },
+                src],
+            [editPane,
+                ["Transformed Hiccup / JSON"],
+                { disabled: true },
+                hiccup,
+                [transformOpts, inputs]]];
 
-// create a stream which transforms input values (xml strings) parses,
-// transforms and formats them and then forms a tuple of:
-// `[orig, formatted]` to pass to the root component function and
-// finally updates the DOM
-const src = stream<string>();
-src.transform(
-    multiplex(
-        map(identity),
-        comp(
-            map(parseXML),
-            map(transformTree),
-            map((tree) => format({ indent: 0, tabSize: 4 }, tree, ""))
-        )
-    ),
-    map(app(src)),
+// stream combinator to assemble formatter options
+const formatOpts = sync({
+    src: {
+        trailingComma: inputs.trailingComma,
+        doubleQuote: inputs.doubleQuote,
+        prettyPrint: inputs.prettyPrint,
+    },
+    xform: map(
+        (opts: any) => ({
+            ...(opts.prettyPrint ? DEFAULT_FORMAT : COMPACT_FORMAT),
+            trailingComma: opts.trailingComma,
+            quote: opts.doubleQuote ? `"` : `'`,
+        })
+    )
+});
+
+// stream combinator to assemble conversion options
+const opts = sync({
+    src: {
+        format: formatOpts,
+        removeAttribs: inputs.removeAttribs.transform(xformAsSet),
+        removeTags: inputs.removeTags.transform(xformAsSet),
+    }
+});
+
+// main stream combinator to create & update UI
+const main = sync({
+    src: {
+        opts,
+        src: inputs.xml
+    }
+}).transform(
+    map((state: any) => ({
+        ...state,
+        hiccup: convertXML(state.src, state.opts)
+    })),
+    map(app(inputs)),
     updateDOM()
 );
 
+// initial options
+inputs.removeTags.next("head");
+inputs.removeAttribs.next("id,class");
+inputs.trailingComma.next(true);
+inputs.doubleQuote.next(true);
+inputs.prettyPrint.next(true);
+
 // seed input and kick off UI/app
-src.next(`<html lang="en">
+inputs.xml.next(`<html lang="en">
     <head>
         <title>foo</title>
     </head>
@@ -176,5 +153,5 @@ src.next(`<html lang="en">
 // ParcelJS HMR handling
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
-    hot && hot.dispose(() => src.done());
+    hot && hot.dispose(() => main.done());
 }
