@@ -114,7 +114,7 @@ format.add("obj", (opts, res, x) => {
         res += "{" + opts.ws + formatPair({ ...opts, indent: 0 }, x, keys[0]) + opts.ws + "}";
     } else {
         const outer = spaces(opts.indent);
-        res += opts.prefix + opts.lineSep;
+        res += opts.prefix + "{" + opts.lineSep;
         for (let i = keys.length; --i >= 0;) {
             const k = keys[i];
             res += formatPair(
