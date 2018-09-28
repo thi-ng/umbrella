@@ -28,6 +28,7 @@ This project is part of the
 - [Example projects](#example-projects)
     - [Realtime crypto candle chart](#realtime-crypto-candle-chart)
     - [Git commit log table](#git-commit-log-table)
+    - [XML/HTML/SVG to Hiccup converter](#xmlhtmlsvg-to-hiccup-converter)
     - [Interactive SVG grid generator](#interactive-svg-grid-generator)
     - [Interactive additive waveform visualization](#interactive-additive-waveform-visualization)
     - [Dataflow graph SVG components](#dataflow-graph-svg-components)
@@ -729,6 +730,13 @@ Non-exhaustive list:
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr) |
 [Live version](https://demo.thi.ng/umbrella/commit-table-ssr/)
+
+### XML/HTML/SVG to Hiccup converter
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/xml-converter.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/xml-converter) |
+[Live version](https://demo.thi.ng/umbrella/xml-converter/)
 
 ### Interactive SVG grid generator
 
