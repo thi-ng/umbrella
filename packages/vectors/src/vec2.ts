@@ -14,13 +14,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import {
-    vbinop,
-    vbinopN,
-    vbinopO,
-    vbinopON,
-    vuniop
-} from "./codegen";
+import { defcommon } from "./codegen";
 import { $iter, declareIndices } from "./common";
 import {
     atan2Abs1,
@@ -98,33 +92,15 @@ export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia], b[ib], eps) &&
     eqDelta1(a[ia + sa], b[ib + sb], eps);
 
-export const add2 = vbinop(2, "+");
-export const sub2 = vbinop(2, "-");
-export const mul2 = vbinop(2, "*");
-export const div2 = vbinop(2, "/");
-
-export const add2o = vbinopO(2, "+");
-export const sub2o = vbinopO(2, "-");
-export const mul2o = vbinopO(2, "*");
-export const div2o = vbinopO(2, "/");
-
-export const addN2 = vbinopN(2, "+");
-export const subN2 = vbinopN(2, "-");
-export const mulN2 = vbinopN(2, "*");
-export const divN2 = vbinopN(2, "/");
-
-export const addN2o = vbinopON(2, "+");
-export const subN2o = vbinopON(2, "-");
-export const mulN2o = vbinopON(2, "*");
-export const divN2o = vbinopON(2, "/");
-
-export const abs2 = vuniop(2, "Math.abs");
-export const sign2 = vuniop(2, "Math.sign");
-export const floor2 = vuniop(2, "Math.floor");
-export const ceil2 = vuniop(2, "Math.ceil");
-export const sin2 = vuniop(2, "Math.sin");
-export const cos2 = vuniop(2, "Math.cos");
-export const sqrt2 = vuniop(2, "Math.sqrt");
+export const [
+    add2, sub2, mul2, div2,
+    add2o, sub2o, mul2o, div2o,
+    addN2, subN2, mulN2, divN2,
+    addN2o, subN2o, mulN2o, divN2o,
+    madd2, maddN2, msub2, msubN2,
+    abs2, sign2, floor2, ceil2, sin2, cos2, sqrt2,
+    mix2, mixN2, mix2o, mixN2o
+] = defcommon(2);
 
 export const neg2 = (a: Vec, ia = 0, sa = 1) =>
     mulN2(a, -1, ia, sa);
@@ -138,47 +114,11 @@ export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
 export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op21(Math.pow, a, n, ia, sa);
 
-export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
-    (a[ia] += b[ib] * c[ic], a[ia + sa] += b[ib + sb] * c[ic + sc], a);
-
-export const maddN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] += b[ib] * n, a[ia + sa] += b[ib + sb] * n, a);
-
-export const msub2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
-    (a[ia] -= b[ib] * c[ic], a[ia + sa] -= b[ib + sb] * c[ic + sc], a);
-
-export const msubN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] -= b[ib] * n, a[ia + sa] -= b[ib + sb] * n, a);
-
 export const dot2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] + a[ia + sa] * b[ib + sb];
 
 export const cross2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib + sb] - a[ia + sa] * b[ib];
-
-export const mix2 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t[it],
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
-    a
-);
-
-export const mixN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * n,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
-    a
-);
-
-export const mix2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
-    out
-);
-
-export const mixN2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * n,
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
-    out
-);
 
 export const mixBilinear2 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,

@@ -14,13 +14,7 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import {
-    vbinop,
-    vbinopN,
-    vbinopO,
-    vbinopON,
-    vuniop
-} from "./codegen";
+import { defcommon } from "./codegen";
 import { $iter, declareIndices } from "./common";
 import {
     atan2Abs1,
@@ -121,33 +115,15 @@ export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + sa], b[ib + sb], eps) &&
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
 
-export const add3 = vbinop(3, "+");
-export const sub3 = vbinop(3, "-");
-export const mul3 = vbinop(3, "*");
-export const div3 = vbinop(3, "/");
-
-export const add3o = vbinopO(3, "+");
-export const sub3o = vbinopO(3, "-");
-export const mul3o = vbinopO(3, "*");
-export const div3o = vbinopO(3, "/");
-
-export const addN3 = vbinopN(3, "+");
-export const subN3 = vbinopN(3, "-");
-export const mulN3 = vbinopN(3, "*");
-export const divN3 = vbinopN(3, "/");
-
-export const addN3o = vbinopON(3, "+");
-export const subN3o = vbinopON(3, "-");
-export const mulN3o = vbinopON(3, "*");
-export const divN3o = vbinopON(3, "/");
-
-export const abs3 = vuniop(3, "Math.abs");
-export const sign3 = vuniop(3, "Math.sign");
-export const floor3 = vuniop(3, "Math.floor");
-export const ceil3 = vuniop(3, "Math.ceil");
-export const sin3 = vuniop(3, "Math.sin");
-export const cos3 = vuniop(3, "Math.cos");
-export const sqrt3 = vuniop(3, "Math.sqrt");
+export const [
+    add3, sub3, mul3, div3,
+    add3o, sub3o, mul3o, div3o,
+    addN3, subN3, mulN3, divN3,
+    addN3o, subN3o, mulN3o, divN3o,
+    madd3, maddN3, msub3, msubN3,
+    abs3, sign3, floor3, ceil3, sin3, cos3, sqrt3,
+    mix3, mixN3, mix3o, mixN3o
+] = defcommon(3);
 
 export const neg3 = (a: Vec, ia = 0, sa = 1) =>
     mulN3(a, -1, ia, sa);
@@ -160,34 +136,6 @@ export const pow3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
 
 export const powN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op31(Math.pow, a, n, ia, sa);
-
-export const madd3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
-    a[ia] += b[ib] * c[ic],
-    a[ia + sa] += b[ib + sb] * c[ic + sc],
-    a[ia + 2 * sa] += b[ib + 2 * sb] * c[ic + 2 * sc],
-    a
-);
-
-export const maddN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib] * n,
-    a[ia + sa] += b[ib + sb] * n,
-    a[ia + 2 * sa] += b[ib + 2 * sb] * n,
-    a
-);
-
-export const msub3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
-    a[ia] -= b[ib] * c[ic],
-    a[ia + sa] -= b[ib + sb] * c[ic + sc],
-    a[ia + 2 * sa] -= b[ib + 2 * sb] * c[ic + 2 * sc],
-    a
-);
-
-export const msubN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] -= b[ib] * n,
-    a[ia + sa] -= b[ib + sb] * n,
-    a[ia + 2 * sa] -= b[ib + 2 * sb] * n,
-    a
-);
 
 export const dot3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] +
@@ -212,34 +160,6 @@ export const orthoNormal3 = (a: Vec, b: Vec, c: Vec, ia = 0, ib = 0, ic = 0, sa 
         sub3(get3(c, ic, sc), a, 0, ia, 1, sa),
         sub3(get3(b, ib, sb), a, 0, ia, 1, sa)
     );
-
-export const mix3 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t[it],
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
-    a
-);
-
-export const mixN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * n,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
-    a
-);
-
-export const mix3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
-    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
-    out
-);
-
-export const mixN3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * n,
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
-    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
-    out
-);
 
 export const mixBilinear3 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,

@@ -1,70 +1,157 @@
+import { comp } from "@thi.ng/transducers/func/comp";
+import { range } from "@thi.ng/transducers/iter/range";
+import { tuples } from "@thi.ng/transducers/iter/tuples";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { take } from "@thi.ng/transducers/xform/take";
 import {
+    CommonOps,
     Vec,
     VecOp1,
     VecOp2,
     VecOp2o,
+    VecOp3,
+    VecOp3o,
     VecOpN2,
-    VecOpN2o
+    VecOpN2o,
+    VecOpN3,
+    VecOpN3o
 } from "@thi.ng/vectors/src/api";
+
+/**
+ * HOF array index lookup gen to provide optimized versions of:
+ *
+ * ```
+ * lookup("a")(0) // a[ia]
+ * lookup("a")(1) // a[ia * sa]
+ * lookup("a")(2) // a[ia + 2 * sa]
+ * ```
+ *
+ * @param sym
+ */
+const lookup = (sym) =>
+    (i) => i > 1 ?
+        `${sym}[i${sym}+${i}*s${sym}]` :
+        i == 1 ? `${sym}[i${sym}+s${sym}]` :
+            `${sym}[i${sym}]`;
+
+/**
+ * Infinite iterator of index lookups for `sym`.
+ *
+ * @param sym
+ */
+const indices = (sym) => map(lookup(sym), range());
+
+/**
+ * Takes a vector size `dim`, a code template function and an array of
+ * symbol names participating in the template. For each symbol, creates
+ * iterator of index lookups, forms them into tuples and passes them to
+ * template to generate code. If the optional `ret` arg is not `null`
+ * (default `"a"`), appends a `return` statement to the result array,
+ * using `ret` as return value. Returns array
+ *
+ * @param dim
+ * @param tpl
+ * @param syms
+ * @param ret
+ */
+const assemble = (dim: number, tpl: (syms: string[]) => string, syms: string[], ret = "a") => {
+    const src = transduce(
+        comp(take(dim), map(tpl)),
+        push(),
+        tuples.apply(null, [...map(indices, syms)])
+    );
+    ret !== null && src.push(`return ${ret};`);
+    return src;
+};
 
 const compile = (args: string, src: string[]) =>
     new Function(args, src.join(""));
 
-const assemble = (fn: (op: string, i: number) => string, dim: number, op: string, ret = "a") => {
-    const src = [];
-    for (let i = 0; i < dim; i++) {
-        src.push(fn(op, i));
-    }
-    src.push(`return ${ret};`);
-    return src;
-}
+export const defop1 = (dim: number, op: string): VecOp1<Vec> =>
+    <any>compile(
+        "a,ia=0,sa=1",
+        assemble(dim, ([a]) => `${a}=${op}(${a});`, ["a"])
+    );
 
-const uniop = (op: string, i: number) =>
-    i > 1 ?
-        `a[ia+${i}*sa]=${op}(a[ia+${i}*sa]);` :
-        i == 1 ?
-            `a[ia+sa]=${op}(a[ia+sa]);` :
-            `a[ia]=${op}(a[ia]);`;
+export const defop2 = (dim: number, op: string): VecOp2<Vec> =>
+    <any>compile(
+        "a,b,ia=0,ib=0,sa=1,sb=1",
+        assemble(dim, ([a, b]) => `${a}${op}=${b};`, ["a", "b"])
+    );
 
-const binop = (op: string, i: number) =>
-    i > 1 ?
-        `a[ia+${i}*sa]${op}=b[ib+${i}*sb];` :
-        i == 1 ?
-            `a[ia+sa]${op}=b[ib+sb];` :
-            `a[ia]${op}=b[ib];`;
+export const defopN = (dim: number, op: string): VecOpN2<Vec> =>
+    <any>compile(
+        "a,n,ia=0,sa=1",
+        assemble(dim, ([a]) => `${a}${op}=n;`, ["a"])
+    );
 
-const binopN = (op: string, i: number) =>
-    i > 1 ?
-        `a[ia+${i}*sa]${op}=n;` :
-        i == 1 ?
-            `a[ia+sa]${op}=n;` :
-            `a[ia]${op}=n;`;
+export const defop2o = (dim: number, op: string): VecOp2o<Vec> =>
+    <any>compile(
+        "o,a,b,io=0,ia=0,ib=0,so=1,sa=1,sb=1",
+        assemble(dim, ([o, a, b]) => `${o}=${a}${op}${b};`, ["o", "a", "b"], "o")
+    );
 
-const binopO = (op: string, i: number) =>
-    i > 1 ?
-        `o[io+${i}*so]=a[ia+${i}*sa]${op}b[ib+${i}*sb];` :
-        i == 1 ?
-            `o[io+so]=a[ia+sa]${op}b[ib+sb];` :
-            `o[io]=a[ia]${op}b[ib];`;
+export const defopNo = (dim: number, op: string): VecOpN2o<Vec> =>
+    <any>compile(
+        "o,a,n,io=0,ia=0,so=1,sa=1",
+        assemble(dim, ([o, a]) => `${o}=${a}${op}n;`, ["o", "a"], "o")
+    );
 
-const binopON = (op: string, i: number) =>
-    i > 1 ?
-        `o[io+${i}*so]=a[ia+${i}*sa]${op}n;` :
-        i == 1 ?
-            `o[io+so]=a[ia+sa]${op}n;` :
-            `o[io]=a[ia]${op}n;`;
+export const defop3 = (dim: number, op1: string, op2: string): VecOp3<Vec> =>
+    <any>compile(
+        "a,b,c,ia=0,ib=0,ic=0,sa=1,sb=1,sc=1",
+        assemble(dim, ([a, b, c]) => `${a}${op1}=${b}${op2}${c};`, ["a", "b", "c"])
+    );
 
-export const vuniop = (dim: number, op: string): VecOp1<Vec> =>
-    <any>compile("a,ia=0,sa=1", assemble(uniop, dim, op));
+export const defopN3 = (dim: number, op1: string, op2: string): VecOpN3<Vec> =>
+    <any>compile(
+        "a,b,n,ia=0,ib=0,sa=1,sb=1",
+        assemble(dim, ([a, b]) => `${a}${op1}=${b}${op2}n;`, ["a", "b"])
+    );
 
-export const vbinop = (dim: number, op: string): VecOp2<Vec> =>
-    <any>compile("a,b,ia=0,ib=0,sa=1,sb=1", assemble(binop, dim, op));
+export const defmix = (dim: number): VecOp3<Vec> =>
+    <any>compile(
+        "a,b,c,ia=0,ib=0,ic=0,sa=1,sb=1,sc=1",
+        assemble(dim, ([a, b, c]) => `${a}+=(${b}-${a})*${c};`, ["a", "b", "c"])
+    );
 
-export const vbinopN = (dim: number, op: string): VecOpN2<Vec> =>
-    <any>compile("a,n,ia=0,sa=1", assemble(binopN, dim, op));
+export const defmixN = (dim: number): VecOpN3<Vec> =>
+    <any>compile(
+        "a,b,n,ia=0,ib=0,sa=1,sb=1",
+        assemble(dim, ([a, b]) => `${a}+=(${b}-${a})*n;`, ["a", "b"])
+    );
 
-export const vbinopO = (dim: number, op: string): VecOp2o<Vec> =>
-    <any>compile("o,a,b,io=0,ia=0,ib=0,so=1,sa=1,sb=1", assemble(binopO, dim, op, "o"));
+export const defmixo = (dim: number): VecOp3o<Vec> =>
+    <any>compile(
+        "o,a,b,c,io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1",
+        assemble(dim, ([o, a, b, c]) => `${o}=${a}+(${b}-${a})*${c};`, ["o", "a", "b", "c"], "o")
+    );
 
-export const vbinopON = (dim: number, op: string): VecOpN2o<Vec> =>
-    <any>compile("o,a,n,io=0,ia=0,so=1,sa=1", assemble(binopON, dim, op, "o"));
+export const defmixNo = (dim: number): VecOpN3o<Vec> =>
+    <any>compile(
+        "o,a,b,n,io=0,ia=0,ib=0,so=1,sa=1,sb=1",
+        assemble(dim, ([o, a, b]) => `${o}=${a}+(${b}-${a})*n;`, ["o", "a", "b"], "o")
+    );
+
+export const defcommon = (dim: number): CommonOps =>
+    <any>[
+        ...mapcat(
+            (f) => map((op) => f(dim, op), "+-*/"),
+            [defop2, defop2o, defopN, defopNo]
+        ),
+        ...mapcat(
+            ([op1, op2]) => [defop3(dim, op1, op2), defopN3(dim, op1, op2)],
+            [["+", "*"], ["-", "*"]]
+        ),
+        ...map(
+            (op) => defop1(dim, `Math.${op}`),
+            ["abs", "sign", "floor", "ceil", "sin", "cos", "sqrt"]
+        ),
+        defmix(dim),
+        defmixN(dim),
+        defmixo(dim),
+        defmixNo(dim),
+    ];
