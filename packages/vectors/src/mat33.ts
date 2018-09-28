@@ -1,13 +1,13 @@
 import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     Mat,
     ReadonlyMat,
     ReadonlyVec,
     Vec
 } from "./api";
-import { $iter, declareIndices, eqDelta } from "./common";
+import { declareIndices } from "./codegen";
+import { $iter, eqDelta } from "./common";
 import { EPS } from "./math";
 import {
     dot3,
