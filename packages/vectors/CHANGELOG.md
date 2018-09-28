@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.2.2...@thi.ng/vectors@1.3.0) (2018-09-28)
+
+
+### Features
+
+* **vectors:** add vector ops codegen, update basic vec2/3/4 ops ([#51](https://github.com/thi-ng/umbrella/issues/51)) ([b5ed254](https://github.com/thi-ng/umbrella/commit/b5ed254))
+
+
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.2.1...@thi.ng/vectors@1.2.2) (2018-09-24)
 
