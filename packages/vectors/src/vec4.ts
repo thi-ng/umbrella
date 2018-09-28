@@ -14,6 +14,12 @@ import {
     Vec,
     ZERO4
 } from "./api";
+import {
+    vbinop,
+    vbinopN,
+    vbinopO,
+    vbinopON
+} from "./codegen";
 import { $iter, declareIndices } from "./common";
 import {
     EPS,
@@ -122,113 +128,25 @@ export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps) &&
     eqDelta1(a[ia + 3 * sa], b[ib + 3 * sb], eps);
 
-export const add4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib],
-    a[ia + sa] += b[ib + sb],
-    a[ia + 2 * sa] += b[ib + 2 * sb],
-    a[ia + 3 * sa] += b[ib + 3 * sb],
-    a
-);
+export const add4 = vbinop(4, "+");
+export const sub4 = vbinop(4, "-");
+export const mul4 = vbinop(4, "*");
+export const div4 = vbinop(4, "/");
 
-export const mul4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] *= b[ib],
-    a[ia + sa] *= b[ib + sb],
-    a[ia + 2 * sa] *= b[ib + 2 * sb],
-    a[ia + 3 * sa] *= b[ib + 3 * sb],
-    a
-);
+export const add4o = vbinopO(4, "+");
+export const sub4o = vbinopO(4, "-");
+export const mul4o = vbinopO(4, "*");
+export const div4o = vbinopO(4, "/");
 
-export const sub4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] -= b[ib],
-    a[ia + sa] -= b[ib + sb],
-    a[ia + 2 * sa] -= b[ib + 2 * sb],
-    a[ia + 3 * sa] -= b[ib + 3 * sb],
-    a
-);
+export const addN4 = vbinopN(4, "+");
+export const subN4 = vbinopN(4, "-");
+export const mulN4 = vbinopN(4, "*");
+export const divN4 = vbinopN(4, "/");
 
-export const div4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] /= b[ib],
-    a[ia + sa] /= b[ib + sb],
-    a[ia + 2 * sa] /= b[ib + 2 * sb],
-    a[ia + 3 * sa] /= b[ib + 3 * sb],
-    a
-);
-
-export const add4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + b[ib],
-    out[io + so] = a[ia + sa] + b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] + b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] + b[ib + 3 * sb],
-    out
-);
-
-export const sub4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] - b[ib],
-    out[io + so] = a[ia + sa] - b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] - b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] - b[ib + 3 * sb],
-    out
-);
-
-export const mul4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] * b[ib],
-    out[io + so] = a[ia + sa] * b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] * b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] * b[ib + 3 * sb],
-    out
-);
-
-export const div4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] / b[ib],
-    out[io + so] = a[ia + sa] / b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] / b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] / b[ib + 3 * sb],
-    out
-);
-
-export const addN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a[ia + 3 * sa] += n, a);
-
-export const subN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a[ia + 3 * sa] -= n, a);
-
-export const mulN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a[ia + 3 * sa] *= n, a);
-
-export const divN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a[ia + 3 * sa] /= n, a);
-
-export const addN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] + n,
-    out[io + so] = a[ia + sa] + n,
-    out[io + 2 * so] = a[ia + 2 * sa] + n,
-    out[io + 3 * so] = a[ia + 3 * sa] + n,
-    out
-);
-
-export const subN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] - n,
-    out[io + so] = a[ia + sa] - n,
-    out[io + 2 * so] = a[ia + 2 * sa] - n,
-    out[io + 3 * so] = a[ia + 3 * sa] - n,
-    out
-);
-
-export const mulN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] * n,
-    out[io + so] = a[ia + sa] * n,
-    out[io + 2 * so] = a[ia + 2 * sa] * n,
-    out[io + 3 * so] = a[ia + 3 * sa] * n,
-    out
-);
-
-export const divN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] / n,
-    out[io + so] = a[ia + sa] / n,
-    out[io + 2 * so] = a[ia + 2 * sa] / n,
-    out[io + 3 * so] = a[ia + 3 * sa] / n,
-    out
-);
+export const addN4o = vbinopON(4, "+");
+export const subN4o = vbinopON(4, "-");
+export const mulN4o = vbinopON(4, "*");
+export const divN4o = vbinopON(4, "/");
 
 export const neg4 = (a: Vec, ia = 0, sa = 1) =>
     mulN4(a, -1, ia, sa);

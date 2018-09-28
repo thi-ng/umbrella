@@ -14,6 +14,12 @@ import {
     Vec,
     ZERO4
 } from "./api";
+import {
+    vbinop,
+    vbinopN,
+    vbinopO,
+    vbinopON
+} from "./codegen";
 import { $iter, declareIndices } from "./common";
 import {
     atan2Abs1,
@@ -91,53 +97,25 @@ export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia], b[ib], eps) &&
     eqDelta1(a[ia + sa], b[ib + sb], eps);
 
-export const add2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] += b[ib], a[ia + sa] += b[ib + sb], a);
+export const add2 = vbinop(2, "+");
+export const sub2 = vbinop(2, "-");
+export const mul2 = vbinop(2, "*");
+export const div2 = vbinop(2, "/");
 
-export const sub2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] -= b[ib], a[ia + sa] -= b[ib + sb], a);
+export const add2o = vbinopO(2, "+");
+export const sub2o = vbinopO(2, "-");
+export const mul2o = vbinopO(2, "*");
+export const div2o = vbinopO(2, "/");
 
-export const mul2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] *= b[ib], a[ia + sa] *= b[ib + sb], a);
+export const addN2 = vbinopN(2, "+");
+export const subN2 = vbinopN(2, "-");
+export const mulN2 = vbinopN(2, "*");
+export const divN2 = vbinopN(2, "/");
 
-export const div2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] /= b[ib], a[ia + sa] /= b[ib + sb], a);
-
-export const add2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] + b[ib], out[io + so] = a[ia + sa] + b[ib + sb], out);
-
-export const sub2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] - b[ib], out[io + so] = a[ia + sa] - b[ib + sb], out);
-
-export const mul2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] * b[ib], out[io + so] = a[ia + sa] * b[ib + sb], out);
-
-export const div2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] / b[ib], out[io + so] = a[ia + sa] / b[ib + sb], out);
-
-export const addN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] += n, a[ia + sa] += n, a);
-
-export const subN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a);
-
-export const mulN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a);
-
-export const divN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] /= n, a[ia + sa] /= n, a);
-
-export const addN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] + n, out[io + so] = a[ia + sa] + n, out);
-
-export const subN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] - n, out[io + so] = a[ia + sa] - n, out);
-
-export const mulN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] * n, out[io + so] = a[ia + sa] * n, out);
-
-export const divN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] / n, out[io + so] = a[ia + sa] / n, out);
+export const addN2o = vbinopON(2, "+");
+export const subN2o = vbinopON(2, "-");
+export const mulN2o = vbinopON(2, "*");
+export const divN2o = vbinopON(2, "/");
 
 export const neg2 = (a: Vec, ia = 0, sa = 1) =>
     mulN2(a, -1, ia, sa);
