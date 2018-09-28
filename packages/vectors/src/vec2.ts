@@ -14,8 +14,8 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { defcommon } from "./codegen";
-import { $iter, declareIndices } from "./common";
+import { declareIndices, defcommon } from "./codegen";
+import { $iter } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -45,20 +45,8 @@ export const op21 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia
     a
 );
 
-export const op22 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = fn(a[ia], b[ib]),
-    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
-    a
-);
-
 export const get2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     set2(new (<any>(a.constructor))(2), a, 0, ia, 1, sa);
-
-export const set2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] = b[ib], a[ia + sa] = b[ib + sb], a);
-
-export const setN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] = n, a[ia + sa] = n, a);
 
 export const setS2 = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a);
@@ -93,12 +81,14 @@ export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + sa], b[ib + sb], eps);
 
 export const [
+    set2, setN2,
     add2, sub2, mul2, div2,
     add2o, sub2o, mul2o, div2o,
     addN2, subN2, mulN2, divN2,
     addN2o, subN2o, mulN2o, divN2o,
     madd2, maddN2, msub2, msubN2,
     abs2, sign2, floor2, ceil2, sin2, cos2, sqrt2,
+    pow2, min2, max2,
     mix2, mixN2, mix2o, mixN2o
 ] = defcommon(2);
 
@@ -107,9 +97,6 @@ export const neg2 = (a: Vec, ia = 0, sa = 1) =>
 
 export const fract2 = (a: Vec, ia = 0, sa = 1) =>
     op2(fract1, a, ia, sa);
-
-export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op22(Math.pow, a, b, ia, ib, sa, sb);
 
 export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op21(Math.pow, a, n, ia, sa);
@@ -128,12 +115,6 @@ export const mixBilinear2 = (
         a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
         a
     );
-
-export const min2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op22(Math.min, a, b, ia, ib, sa, sb);
-
-export const max2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op22(Math.max, a, b, ia, ib, sa, sb);
 
 export const clamp2 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
     max2(min2(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);

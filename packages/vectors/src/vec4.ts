@@ -14,8 +14,8 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { defcommon } from "./codegen";
-import { $iter, declareIndices } from "./common";
+import { declareIndices, defcommon } from "./codegen";
+import { $iter } from "./common";
 import {
     EPS,
     eqDelta1,
@@ -51,32 +51,8 @@ export const op41 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia
     a
 );
 
-export const op42 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = fn(a[ia], b[ib]),
-    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
-    a[ia + 2 * sa] = fn(a[ia + 2 * sa], b[ib + 2 * sb]),
-    a[ia + 3 * sa] = fn(a[ia + 3 * sa], b[ib + 3 * sb]),
-    a
-);
-
 export const get4 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     set4(new (<any>(a.constructor))(4), a, 0, ia, 1, sa);
-
-export const set4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = b[ib],
-    a[ia + sa] = b[ib + sb],
-    a[ia + 2 * sa] = b[ib + 2 * sb],
-    a[ia + 3 * sa] = b[ib + 3 * sb],
-    a
-);
-
-export const setN4 = (a: Vec, n: number, ia = 0, sa = 1) => (
-    a[ia] = n,
-    a[ia + sa] = n,
-    a[ia + 2 * sa] = n,
-    a[ia + 3 * sa] = n,
-    a
-);
 
 export const setS4 = (a: Vec, x: number, y: number, z: number, w: number, ia = 0, sa = 1) => (
     a[ia] = x,
@@ -124,12 +100,14 @@ export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + 3 * sa], b[ib + 3 * sb], eps);
 
 export const [
+    set4, setN4,
     add4, sub4, mul4, div4,
     add4o, sub4o, mul4o, div4o,
     addN4, subN4, mulN4, divN4,
     addN4o, subN4o, mulN4o, divN4o,
     madd4, maddN4, msub4, msubN4,
     abs4, sign4, floor4, ceil4, sin4, cos4, sqrt4,
+    pow4, min4, max4,
     mix4, mixN4, mix4o, mixN4o
 ] = defcommon(4);
 
@@ -139,11 +117,8 @@ export const neg4 = (a: Vec, ia = 0, sa = 1) =>
 export const fract4 = (a: Vec, ia = 0, sa = 1) =>
     op4(fract1, a, ia, sa);
 
-export const pow4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op42(Math.pow, a, b, ia, ib, sa, sb);
-
 export const powN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    op4((x) => Math.pow(x, n), a, ia, sa);
+    op41(Math.pow, a, n, ia, sa);
 
 export const dot4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] +
@@ -161,12 +136,6 @@ export const mixBilinear4 = (
         a[ia + 3 * sa] = mixBilinear1(a[ia + 3 * sa], b[ib + 3 * sb], c[ic + 3 * sc], d[id + 3 * sd], u, v),
         a
     );
-
-export const min4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op42(Math.min, a, b, ia, ib, sa, sb);
-
-export const max4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op42(Math.max, a, b, ia, ib, sa, sb);
 
 export const clamp4 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
     max4(min4(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);

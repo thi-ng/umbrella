@@ -14,8 +14,8 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { defcommon } from "./codegen";
-import { $iter, declareIndices } from "./common";
+import { declareIndices, defcommon } from "./codegen";
+import { $iter } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -55,29 +55,8 @@ export const op31 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia
     a
 );
 
-export const op32 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = fn(a[ia], b[ib]),
-    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
-    a[ia + 2 * sa] = fn(a[ia + 2 * sa], b[ib + 2 * sb]),
-    a
-);
-
 export const get3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     set3(new (<any>(a.constructor))(3), a, 0, ia, 1, sa);
-
-export const set3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = b[ib],
-    a[ia + sa] = b[ib + sb],
-    a[ia + 2 * sa] = b[ib + 2 * sb],
-    a
-);
-
-export const setN3 = (a: Vec, n: number, ia = 0, sa = 1) => (
-    a[ia] = n,
-    a[ia + sa] = n,
-    a[ia + 2 * sa] = n,
-    a
-);
 
 export const setS3 = (a: Vec, x: number, y: number, z: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a[ia + 2 * sa] = z, a);
@@ -116,12 +95,14 @@ export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
 
 export const [
+    set3, setN3,
     add3, sub3, mul3, div3,
     add3o, sub3o, mul3o, div3o,
     addN3, subN3, mulN3, divN3,
     addN3o, subN3o, mulN3o, divN3o,
     madd3, maddN3, msub3, msubN3,
     abs3, sign3, floor3, ceil3, sin3, cos3, sqrt3,
+    pow3, min3, max3,
     mix3, mixN3, mix3o, mixN3o
 ] = defcommon(3);
 
@@ -130,9 +111,6 @@ export const neg3 = (a: Vec, ia = 0, sa = 1) =>
 
 export const fract3 = (a: Vec, ia = 0, sa = 1) =>
     op3(fract1, a, ia, sa);
-
-export const pow3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op32(Math.pow, a, b, ia, ib, sa, sb);
 
 export const powN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op31(Math.pow, a, n, ia, sa);
@@ -170,12 +148,6 @@ export const mixBilinear3 = (
         a[ia + 2 * sa] = mixBilinear1(a[ia + 2 * sa], b[ib + 2 * sb], c[ic + 2 * sc], d[id + 2 * sd], u, v),
         a
     );
-
-export const min3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op32(Math.min, a, b, ia, ib, sa, sb);
-
-export const max3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op32(Math.max, a, b, ia, ib, sa, sb);
 
 export const clamp3 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
     max3(min3(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);

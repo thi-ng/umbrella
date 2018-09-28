@@ -82,6 +82,12 @@ export const defop2 = (dim: number, op: string): VecOp2<Vec> =>
         assemble(dim, ([a, b]) => `${a}${op}=${b};`, ["a", "b"])
     );
 
+export const defopfn2 = (dim: number, fn: string): VecOp2<Vec> =>
+    <any>compile(
+        "a,b,ia=0,ib=0,sa=1,sb=1",
+        assemble(dim, ([a, b]) => `${a}=${fn}(${a},${b});`, ["a", "b"])
+    );
+
 export const defopN = (dim: number, op: string): VecOpN2<Vec> =>
     <any>compile(
         "a,n,ia=0,sa=1",
@@ -138,6 +144,9 @@ export const defmixNo = (dim: number): VecOpN3o<Vec> =>
 
 export const defcommon = (dim: number): CommonOps =>
     <any>[
+        defop2(dim, ""),
+        defopN(dim, ""),
+
         ...mapcat(
             (f) => map((op) => f(dim, op), "+-*/"),
             [defop2, defop2o, defopN, defopNo]
@@ -150,8 +159,36 @@ export const defcommon = (dim: number): CommonOps =>
             (op) => defop1(dim, `Math.${op}`),
             ["abs", "sign", "floor", "ceil", "sin", "cos", "sqrt"]
         ),
+        ...map(
+            (op) => defopfn2(dim, `Math.${op}`),
+            ["pow", "min", "max"]
+        ),
         defmix(dim),
         defmixN(dim),
         defmixo(dim),
         defmixNo(dim),
     ];
+
+/**
+ * Helper function to create vector/matrix index & property accessors.
+ *
+ * @param proto
+ * @param indices
+ * @param props
+ */
+export const declareIndices = (proto: any, props: string[]) => {
+    const get = (i: number) => function () { return this.buf[this.i + i * (this.s || 1)]; };
+    const set = (i: number) => function (n: number) { this.buf[this.i + i * (this.s || 1)] = n; };
+    props.forEach((id, i) => {
+        Object.defineProperty(proto, i, {
+            get: get(i),
+            set: set(i),
+            enumerable: true,
+        });
+        Object.defineProperty(proto, id, {
+            get: get(i),
+            set: set(i),
+            enumerable: true,
+        });
+    });
+};

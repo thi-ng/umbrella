@@ -88,6 +88,10 @@ export const ZERO4 = Object.freeze([0, 0, 0, 0]);
 
 export type CommonOps = [
 
+    // set, setN
+    VecOp2<Vec>,
+    VecOpN2<Vec>,
+
     // add, sub, mul, div
     VecOp2<Vec>,
     VecOp2<Vec>,
@@ -123,6 +127,11 @@ export type CommonOps = [
     VecOp1<Vec>,
     VecOp1<Vec>,
     VecOp1<Vec>,
+
+    // pow, min,max
+    VecOp2<Vec>,
+    VecOp2<Vec>,
+    VecOp2<Vec>,
 
     // mix, mixN, mixo, mixNo
     VecOp3<Vec>,
