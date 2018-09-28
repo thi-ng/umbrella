@@ -18,7 +18,8 @@ import {
     vbinop,
     vbinopN,
     vbinopO,
-    vbinopON
+    vbinopON,
+    vuniop
 } from "./codegen";
 import { $iter, declareIndices } from "./common";
 import {
@@ -148,32 +149,19 @@ export const subN4o = vbinopON(4, "-");
 export const mulN4o = vbinopON(4, "*");
 export const divN4o = vbinopON(4, "/");
 
+export const abs4 = vuniop(4, "Math.abs");
+export const sign4 = vuniop(4, "Math.sign");
+export const floor4 = vuniop(4, "Math.floor");
+export const ceil4 = vuniop(4, "Math.ceil");
+export const sin4 = vuniop(4, "Math.sin");
+export const cos4 = vuniop(4, "Math.cos");
+export const sqrt4 = vuniop(4, "Math.sqrt");
+
 export const neg4 = (a: Vec, ia = 0, sa = 1) =>
     mulN4(a, -1, ia, sa);
 
-export const abs4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.abs, a, ia, sa);
-
-export const sign4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.sign, a, ia, sa);
-
-export const floor4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.floor, a, ia, sa);
-
-export const ceil4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.ceil, a, ia, sa);
-
 export const fract4 = (a: Vec, ia = 0, sa = 1) =>
     op4(fract1, a, ia, sa);
-
-export const sin4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.sin, a, ia, sa);
-
-export const cos4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.cos, a, ia, sa);
-
-export const sqrt4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.sqrt, a, ia, sa);
 
 export const pow4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op42(Math.pow, a, b, ia, ib, sa, sb);

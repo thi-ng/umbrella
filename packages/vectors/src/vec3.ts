@@ -18,7 +18,8 @@ import {
     vbinop,
     vbinopN,
     vbinopO,
-    vbinopON
+    vbinopON,
+    vuniop
 } from "./codegen";
 import { $iter, declareIndices } from "./common";
 import {
@@ -29,7 +30,6 @@ import {
     max3id,
     min3id,
     mixBilinear1,
-    sign1,
     smoothStep1,
     step1
 } from "./math";
@@ -141,32 +141,19 @@ export const subN3o = vbinopON(3, "-");
 export const mulN3o = vbinopON(3, "*");
 export const divN3o = vbinopON(3, "/");
 
+export const abs3 = vuniop(3, "Math.abs");
+export const sign3 = vuniop(3, "Math.sign");
+export const floor3 = vuniop(3, "Math.floor");
+export const ceil3 = vuniop(3, "Math.ceil");
+export const sin3 = vuniop(3, "Math.sin");
+export const cos3 = vuniop(3, "Math.cos");
+export const sqrt3 = vuniop(3, "Math.sqrt");
+
 export const neg3 = (a: Vec, ia = 0, sa = 1) =>
     mulN3(a, -1, ia, sa);
 
-export const abs3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.abs, a, ia, sa);
-
-export const sign3 = (a: Vec, eps = EPS, ia = 0, sa = 1) =>
-    op3((x) => sign1(x, eps), a, ia, sa);
-
-export const floor3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.floor, a, ia, sa);
-
-export const ceil3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.ceil, a, ia, sa);
-
 export const fract3 = (a: Vec, ia = 0, sa = 1) =>
     op3(fract1, a, ia, sa);
-
-export const sin3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.sin, a, ia, sa);
-
-export const cos3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.cos, a, ia, sa);
-
-export const sqrt3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.sqrt, a, ia, sa);
 
 export const pow3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     op32(Math.pow, a, b, ia, ib, sa, sb);
