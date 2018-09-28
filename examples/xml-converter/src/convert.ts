@@ -108,6 +108,9 @@ const transformTag = (tag: string, attribs: any) => {
 
 // recursively transforms entire parse tree
 const transformTree = (tree: ParseEvent | ParseElement, opts: ConversionOpts) => {
+    if (tree == null) {
+        return "";
+    }
     if ((<ParseEvent>tree).type === Type.ERROR) {
         return ["error", tree.body];
     }

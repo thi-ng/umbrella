@@ -1,3 +1,4 @@
+import { splice } from "@thi.ng/strings/splice";
 import { map } from "@thi.ng/transducers/xform/map";
 
 export const asSet = (x: string) =>
@@ -5,3 +6,18 @@ export const asSet = (x: string) =>
 
 // helper transducer to convert a CSV string into an ES6 Set
 export const xformAsSet = map(asSet);
+
+// key event handler for textareas to override Tab key behavior and
+// insert spaces at cursor position instead of changing keyboard focus
+export const handleTab = (stream) =>
+    (e: KeyboardEvent) => {
+        // override tab to insert spaces at edit pos
+        if (e.key === "Tab") {
+            e.preventDefault();
+            stream.next(
+                splice((<any>e.target).value, "    ",
+                    (<HTMLTextAreaElement>e.target).selectionStart
+                )
+            );
+        }
+    };
