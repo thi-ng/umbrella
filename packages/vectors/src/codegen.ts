@@ -7,7 +7,6 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { take } from "@thi.ng/transducers/xform/take";
 import {
-    CommonOps,
     Vec,
     VecOp1,
     VecOp2,
@@ -18,7 +17,61 @@ import {
     VecOpN2o,
     VecOpN3,
     VecOpN3o
-} from "@thi.ng/vectors/src/api";
+} from "./api";
+
+type CommonOps = [
+
+    // set, setN
+    VecOp2<Vec>,
+    VecOpN2<Vec>,
+
+    // add, sub, mul, div
+    VecOp2<Vec>,
+    VecOp2<Vec>,
+    VecOp2<Vec>,
+    VecOp2<Vec>,
+
+    VecOp2o<Vec>,
+    VecOp2o<Vec>,
+    VecOp2o<Vec>,
+    VecOp2o<Vec>,
+
+    VecOpN2<Vec>,
+    VecOpN2<Vec>,
+    VecOpN2<Vec>,
+    VecOpN2<Vec>,
+
+    VecOpN2o<Vec>,
+    VecOpN2o<Vec>,
+    VecOpN2o<Vec>,
+    VecOpN2o<Vec>,
+
+    // madd / msub
+    VecOp3<Vec>,
+    VecOpN3<Vec>,
+    VecOp3<Vec>,
+    VecOpN3<Vec>,
+
+    // Math.*
+    VecOp1<Vec>,
+    VecOp1<Vec>,
+    VecOp1<Vec>,
+    VecOp1<Vec>,
+    VecOp1<Vec>,
+    VecOp1<Vec>,
+    VecOp1<Vec>,
+
+    // pow, min,max
+    VecOp2<Vec>,
+    VecOp2<Vec>,
+    VecOp2<Vec>,
+
+    // mix, mixN, mixo, mixNo
+    VecOp3<Vec>,
+    VecOpN3<Vec>,
+    VecOp3o<Vec>,
+    VecOpN3o<Vec>
+];
 
 /**
  * HOF array index lookup gen to provide optimized versions of:
