@@ -70,6 +70,10 @@ export type ReadonlyVecOp1<T> = (v: ReadonlyVec, i?: number, s?: number) => T;
  */
 export type ReadonlyVecOp2<T> = (a: ReadonlyVec, b: ReadonlyVec, ia?: number, ib?: number, sa?: number, sb?: number) => T;
 
+export type Vec2Coord = 0 | 1;
+export type Vec3Coord = 0 | 1 | 2;
+export type Vec4Coord = 0 | 1 | 2 | 3;
+
 export interface IVec {
     buf: Vec;
     length: number;

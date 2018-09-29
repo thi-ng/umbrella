@@ -1,4 +1,5 @@
 import {
+    ICompare,
     ICopy,
     IEqualsDelta,
     IEquiv,
@@ -22,6 +23,7 @@ import {
     ONE4,
     ReadonlyVec,
     Vec,
+    Vec2Coord,
     ZERO4
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
@@ -89,6 +91,23 @@ export const equiv2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, s
 export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
     eqDelta1(a[ia], b[ib], eps) &&
     eqDelta1(a[ia + sa], b[ib + sb], eps);
+
+export const compare2 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    o1: Vec2Coord, o2: Vec2Coord,
+    ia = 0, ib = 0, sa = 1, sb = 1): number => {
+
+    const ax = a[ia + o1 * sa];
+    const ay = a[ia + o2 * sa];
+    const bx = b[ib + o1 * sb];
+    const by = b[ib + o2 * sb];
+    return ax === bx ?
+        ay === by ?
+            0 :
+            ay < by ? -2 : 2 :
+        ax < bx ? -1 : 1;
+};
 
 export const [
     set2, setN2,
@@ -261,6 +280,7 @@ export const vec2 = (x = 0, y = 0) =>
 export class Vec2 implements
     IAngleBetween<Vec2>,
     ICopy<Vec2>,
+    ICompare<Vec2>,
     ICrossProduct<Vec2, number>,
     IDistance<Vec2>,
     IDotProduct<Vec2>,
@@ -385,6 +405,10 @@ export class Vec2 implements
         return out;
     }
 
+    static comparator(o1: Vec2Coord, o2: Vec2Coord) {
+        return (a: Readonly<Vec2>, b: Readonly<Vec2>) => a.compare(b, o1, o2);
+    }
+
     static readonly ZERO = Object.freeze(new Vec2(<number[]>ZERO4));
     static readonly ONE = Object.freeze(new Vec2(<number[]>ONE4));
     static readonly MIN = Object.freeze(new Vec2(<number[]>MIN4));
@@ -429,6 +453,10 @@ export class Vec2 implements
 
     eqDelta(v: Readonly<Vec2>, eps = EPS) {
         return eqDelta2(this.buf, v.buf, eps, this.i, v.i, this.s, v.s);
+    }
+
+    compare(v: Readonly<Vec2>, o1: Vec2Coord = 0, o2: Vec2Coord = 1) {
+        return compare2(this.buf, v.buf, o1, o2, this.i, v.i, this.s, v.s);
     }
 
     set(v: Readonly<Vec2>) {

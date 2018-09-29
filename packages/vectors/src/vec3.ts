@@ -1,4 +1,5 @@
 import {
+    ICompare,
     ICopy,
     IEqualsDelta,
     IEquiv,
@@ -22,7 +23,8 @@ import {
     ONE4,
     ReadonlyVec,
     Vec,
-    ZERO4
+    ZERO4,
+    Vec3Coord
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
 import { $iter } from "./common";
@@ -103,6 +105,27 @@ export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia], b[ib], eps) &&
     eqDelta1(a[ia + sa], b[ib + sb], eps) &&
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
+
+export const compare3 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    o1: Vec3Coord, o2: Vec3Coord, o3: Vec3Coord,
+    ia = 0, ib = 0, sa = 1, sb = 1): number => {
+
+    const ax = a[ia + o1 * sa];
+    const ay = a[ia + o2 * sa];
+    const az = a[ia + o3 * sa];
+    const bx = b[ib + o1 * sb];
+    const by = b[ib + o2 * sb];
+    const bz = b[ib + o3 * sb];
+    return ax === bx ?
+        ay === by ?
+            az === bz ?
+                0 :
+                az < bz ? -3 : 3 :
+            ay < by ? -2 : 2 :
+        ax < bx ? -1 : 1;
+};
 
 export const [
     set3, setN3,
@@ -320,6 +343,7 @@ export const vec3 = (x = 0, y = 0, z = 0) =>
 export class Vec3 implements
     IAngleBetween<Vec3>,
     ICopy<Vec3>,
+    ICompare<Vec3>,
     ICrossProduct<Vec3, Vec3>,
     IDistance<Vec3>,
     IDotProduct<Vec3>,
@@ -448,6 +472,10 @@ export class Vec3 implements
         return out;
     }
 
+    static comparator(o1: Vec3Coord, o2: Vec3Coord, o3: Vec3Coord) {
+        return (a: Readonly<Vec3>, b: Readonly<Vec3>) => a.compare(b, o1, o2, o3);
+    }
+
     static readonly ZERO = Object.freeze(new Vec3(<number[]>ZERO4));
     static readonly ONE = Object.freeze(new Vec3(<number[]>ONE4));
     static readonly MIN = Object.freeze(new Vec3(<number[]>MIN4));
@@ -493,6 +521,10 @@ export class Vec3 implements
 
     eqDelta(v: Readonly<Vec3>, eps = EPS) {
         return eqDelta3(this.buf, v.buf, eps, this.i, v.i, this.s, v.s);
+    }
+
+    compare(v: Readonly<Vec3>, o1: Vec3Coord = 0, o2: Vec3Coord = 1, o3: Vec3Coord = 2) {
+        return compare3(this.buf, v.buf, o1, o2, o3, this.i, v.i, this.s, v.s);
     }
 
     set(v: Readonly<Vec3>) {

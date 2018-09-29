@@ -1,4 +1,5 @@
 import {
+    ICompare,
     ICopy,
     IEqualsDelta,
     IEquiv,
@@ -19,6 +20,7 @@ import {
     ONE4,
     ReadonlyVec,
     Vec,
+    Vec4Coord,
     ZERO4
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
@@ -105,6 +107,31 @@ export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + sa], b[ib + sb], eps) &&
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps) &&
     eqDelta1(a[ia + 3 * sa], b[ib + 3 * sb], eps);
+
+export const compare4 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    o1: Vec4Coord, o2: Vec4Coord, o3: Vec4Coord, o4: Vec4Coord,
+    ia = 0, ib = 0, sa = 1, sb = 1): number => {
+
+    const ax = a[ia + o1 * sa];
+    const ay = a[ia + o2 * sa];
+    const az = a[ia + o3 * sa];
+    const aw = b[ia + o4 * sa];
+    const bx = b[ib + o1 * sb];
+    const by = b[ib + o2 * sb];
+    const bz = b[ib + o3 * sb];
+    const bw = b[ib + o4 * sb];
+    return ax === bx ?
+        ay === by ?
+            az === bz ?
+                aw === bw ?
+                    0 :
+                    aw < bw ? -4 : 4 :
+                az < bz ? -3 : 3 :
+            ay < by ? -2 : 2 :
+        ax < bx ? -1 : 1;
+};
 
 export const [
     set4, setN4,
@@ -233,6 +260,7 @@ export const vec4 = (x = 0, y = 0, z = 0, w = 0) =>
 
 export class Vec4 implements
     ICopy<Vec4>,
+    ICompare<Vec4>,
     IDistance<Vec4>,
     IDotProduct<Vec4>,
     IEqualsDelta<Vec4>,
@@ -355,6 +383,10 @@ export class Vec4 implements
         return out;
     }
 
+    static comparator(o1: Vec4Coord, o2: Vec4Coord, o3: Vec4Coord, o4: Vec4Coord) {
+        return (a: Readonly<Vec4>, b: Readonly<Vec4>) => a.compare(b, o1, o2, o3, o4);
+    }
+
     static readonly ZERO = Object.freeze(new Vec4(<number[]>ZERO4));
     static readonly ONE = Object.freeze(new Vec4(<number[]>ONE4));
     static readonly MIN = Object.freeze(new Vec4(<number[]>MIN4));
@@ -402,6 +434,11 @@ export class Vec4 implements
     eqDelta(v: Readonly<Vec4>, eps = EPS) {
         return eqDelta4(this.buf, v.buf, eps, this.i, v.i, this.s, v.s);
     }
+
+    compare(v: Readonly<Vec4>, o1: Vec4Coord = 0, o2: Vec4Coord = 1, o3: Vec4Coord = 2, o4: Vec4Coord = 3) {
+        return compare4(this.buf, v.buf, o1, o2, o3, o4, this.i, v.i, this.s, v.s);
+    }
+
 
     set(v: Readonly<Vec4>) {
         set4(this.buf, v.buf, this.i, v.i, this.s, v.s);
