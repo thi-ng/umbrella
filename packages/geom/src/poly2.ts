@@ -1,45 +1,45 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { Vec } from "@thi.ng/vectors/api";
-import { cross2, dist2, Vec2 } from "@thi.ng/vectors/vec2";
-
+import { Vec2 } from "@thi.ng/vectors/vec2";
+import { IArcLength, IArea } from "./api";
 import { arcLength, edges } from "./common";
 import { PointContainer2 } from "./container2";
 
-export class Polygon2 extends PointContainer2 {
+export class Polygon2 extends PointContainer2 implements
+    IArcLength,
+    IArea {
 
-    constructor(points: Vec, num?: number, attribs?: IObjectOf<any>, offset = 0, stride = 2) {
-        super(points, num, attribs, offset, stride);
+    constructor(points: Vec2[], attribs?: IObjectOf<any>) {
+        super(points, attribs);
     }
 
     edges() {
         return edges(this.vertices(), true);
     }
 
-    area() {
-        const s = this.stride;
-        const pts = this.buf;
+    area(unsigned = true) {
+        const pts = this.points;
         let res = 0;
-        for (let n = (this.length - 1) * s, i = this.offset + n, j = this.offset; n >= 0; i = j, j += s, n -= s) {
-            res += cross2(pts, pts, i, j);
+        for (let n = pts.length - 1, i = n, j = 0; n >= 0; i = j, j++ , n--) {
+            res += pts[i].cross(pts[j]);
         }
-        return res / 2;
+        res /= 2;
+        return unsigned ? res : Math.abs(res);
     }
 
-    circumference() {
-        return arcLength(dist2, this.buf, this.length, this.offset, this.stride, true);
+    arcLength() {
+        return arcLength(this.points, true);
     }
 
     centroid(c?: Vec2): Vec2 {
-        const s = this.stride;
-        const pts = this.buf;
+        const pts = this.points;
         let area = 0;
         let x = 0;
         let y = 0;
-        for (let n = (this.length - 1) * s, i = this.offset + n, j = this.offset; n >= 0; i = j, j += s, n -= s) {
-            const z = cross2(pts, pts, i, j);
+        for (let n = pts.length - 1, i = pts[n], j = pts[0], k = 0; k <= n; k++ , i = j, j = pts[k]) {
+            const z = i.cross(j);
             area += z;
-            x += (pts[i] + pts[j]) * z;
-            y += (pts[i + 1] + pts[j + 1]) * z;
+            x += (i.x + j.x) * z;
+            y += (i.y + j.y) * z;
         }
         area = 1 / (area * 3);
         x *= area;
@@ -48,12 +48,9 @@ export class Polygon2 extends PointContainer2 {
     }
 
     toHiccup() {
-        return ["polygon", this.attribs, this.vertices()];
+        return ["polygon", this.attribs || {}, this.vertices()];
     }
 }
 
-export const polygon2m = (points: Vec, num?: number, attribs?: IObjectOf<any>, offset?: number, stride?: number) =>
-    new Polygon2(points, num, attribs, offset, stride);
-
-export const polygon2 = (points: Iterable<Readonly<Vec2>>, attribs?: IObjectOf<any>) =>
-    new Polygon2(Vec2.intoBuffer([], points), null, attribs);
+export const polygon2 = (points: Vec2[], attribs?: IObjectOf<any>) =>
+    new Polygon2(points, attribs);

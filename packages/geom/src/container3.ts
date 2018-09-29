@@ -1,31 +1,18 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { Vec } from "@thi.ng/vectors/api";
-import { transformVectors1 } from "@thi.ng/vectors/common";
-import { Mat44, mulV344 } from "@thi.ng/vectors/mat44";
-import {
-    add3,
-    max3,
-    min3,
-    mul3,
-    set3,
-    swap3,
-    Vec3
-} from "@thi.ng/vectors/vec3";
+import { Mat44 } from "@thi.ng/vectors/mat44";
+import { Vec3, vec3 } from "@thi.ng/vectors/vec3";
+import { IBounds } from "./api";
 
-export class PointContainer3 {
+export class PointContainer3 implements
+    IBounds<Vec3[]> {
 
-    buf: Vec;
-    length: number;
-    offset: number;
-    stride: number;
+    points: Vec3[];
     attribs: IObjectOf<any>;
 
-    constructor(buf: Vec, num: number, offset = 0, stride = 2) {
-        this.buf = buf;
-        this.length = num;
-        this.offset = offset;
-        this.stride = stride;
+    constructor(pts: Vec3[], attribs?: IObjectOf<any>) {
+        this.points = pts;
+        this.attribs = attribs;
     }
 
     *[Symbol.iterator]() {
@@ -33,40 +20,45 @@ export class PointContainer3 {
     }
 
     vertices() {
-        return Vec3.mapBuffer(this.buf, this.length, this.offset, 1, this.stride);
-    }
-
-    get(i: number, safe = true) {
-        safe && this.ensureIndex(i);
-        return new Vec3(this.buf, this.offset + i * this.stride);
-    }
-
-    set(i: number, v: Readonly<Vec3>, safe = false) {
-        safe && this.ensureIndex(i);
-        set3(this.buf, v.buf, this.offset + i * this.stride, v.i, 1, v.s);
+        return this.points;
     }
 
     bounds() {
-        const s = this.stride;
-        const pts = this.buf;
+        const pts = this.points;
         const min = Vec3.MAX.copy();
         const max = Vec3.MIN.copy();
-        for (let n = this.length, i = this.offset; n > 0; n-- , i += s) {
-            min3(min.buf, pts, 0, i, 1, 1);
-            max3(max.buf, pts, 0, i, 1, 1);
+        for (let i = pts.length; --i >= 0;) {
+            const p = pts[i];
+            min.min(p);
+            max.max(p);
         }
         return [min, max];
     }
 
+    width() {
+        const b = this.bounds();
+        return b[1].x - b[0].x;
+    }
+
+    height() {
+        const b = this.bounds();
+        return b[1].y - b[0].y;
+    }
+
+    depth() {
+        const b = this.bounds();
+        return b[1].z - b[0].z;
+    }
+
     centroid(c?: Vec3): Vec3 {
-        !this.length && illegalArgs("no points available");
-        !c && (c = Vec3.ZERO.copy());
-        const s = this.stride;
-        const pts = this.buf;
-        for (let n = this.length, i = this.offset; n > 0; n-- , i += s) {
-            add3(c.buf, pts, c.i, i, c.s, 1);
+        const pts = this.points;
+        const num = pts.length;
+        !num && illegalArgs("no points available");
+        !c && (c = vec3());
+        for (let i = num; --i >= 0;) {
+            c.add(pts[i]);
         }
-        return c.divN(this.length);
+        return c.divN(num);
     }
 
     center(p?: Readonly<Vec3>) {
@@ -75,51 +67,30 @@ export class PointContainer3 {
     }
 
     flip() {
-        const s = this.stride;
-        for (let i = 0, j = (this.length - 1) * s; i < j; i += s, j -= s) {
-            swap3(this.buf, this.buf, i, j);
-        }
+        this.points.reverse();
     }
 
     scale(v: Readonly<Vec3>) {
-        transformVectors1(
-            mul3,
-            this.buf,
-            v.buf,
-            this.length,
-            this.offset,
-            v.i,
-            1,
-            v.s,
-            this.stride
-        );
+        const pts = this.points;
+        for (let i = pts.length; --i >= 0;) {
+            pts[i].mul(v);
+        }
         return this;
     }
 
-    translate(t: Readonly<Vec3>) {
-        transformVectors1(
-            add3,
-            this.buf,
-            t.buf,
-            this.length,
-            this.offset,
-            t.i,
-            1,
-            t.s,
-            this.stride
-        );
+    translate(v: Readonly<Vec3>) {
+        const pts = this.points;
+        for (let i = pts.length; --i >= 0;) {
+            pts[i].add(v);
+        }
         return this;
     }
 
     transform(mat: Readonly<Mat44>) {
-        const s = this.stride;
-        for (let n = this.length, i = this.offset; n > 0; n-- , i += s) {
-            mulV344(mat.buf, this.buf, mat.i, i, 1);
+        const pts = this.points;
+        for (let i = pts.length; --i >= 0;) {
+            mat.mulV3(pts[i]);
         }
         return this;
-    }
-
-    protected ensureIndex(i: number) {
-        (i < 0 && i >= this.length) && illegalArgs(`index out of bounds: ${i}`);
     }
 }

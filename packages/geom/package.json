@@ -28,9 +28,9 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.1.1",
-        "@thi.ng/transducers": "^2.1.1",
-        "@thi.ng/vectors": "^1.1.0"
+        "@thi.ng/api": "^4.2.1",
+        "@thi.ng/transducers": "^2.1.6",
+        "@thi.ng/vectors": "^1.3.0"
     },
     "keywords": [
         "ES6",
