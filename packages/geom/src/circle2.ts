@@ -1,11 +1,28 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf, IToHiccup } from "@thi.ng/api/api";
+import { IToPolygon2, IVertices, IBounds, ICentroid, IArcLength } from "@thi.ng/geom/src/api";
 import { normRange } from "@thi.ng/transducers/iter/norm-range";
 import { Vec } from "@thi.ng/vectors/api";
 import { mix1, PI, TAU } from "@thi.ng/vectors/math";
 import { setS2, toCartesian2, Vec2 } from "@thi.ng/vectors/vec2";
+import { circumCenter } from "./func/circumcenter";
 import { Polygon2 } from "./poly2";
 
-export class Circle2 {
+export class Circle2 implements
+    IArcLength,
+    IBounds<Vec2[]>,
+    ICentroid<Vec2>,
+    IToHiccup,
+    IToPolygon2,
+    IVertices<Vec2> {
+
+    static from3Points(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) {
+        const o = circumCenter(a, b, c);
+        if (o) {
+            return new Circle2(o, a.dist(o));
+        }
+    }
+
+    static DEFAULT_RES = 20;
 
     pos: Vec2;
     r: number;
@@ -42,7 +59,7 @@ export class Circle2 {
         return dest;
     }
 
-    vertices(res = 20) {
+    vertices(res = Circle2.DEFAULT_RES) {
         return Vec2.mapBuffer(this.verticesRaw(0, TAU, res, false), res);
     }
 
@@ -50,7 +67,7 @@ export class Circle2 {
         return PI * this.r * this.r;
     }
 
-    circumference() {
+    arcLength() {
         return TAU * this.r;
     }
 
@@ -61,7 +78,23 @@ export class Circle2 {
         ];
     }
 
-    toPolygon(res = 20) {
+    width() {
+        return this.r * 2;
+    }
+
+    height() {
+        return this.width();
+    }
+
+    depth() {
+        return 0;
+    }
+
+    centroid(c?: Vec2) {
+        return c ? c.set(this.pos) : this.pos;
+    }
+
+    toPolygon2(res = Circle2.DEFAULT_RES) {
         return new Polygon2(this.vertices(res));
     }
 

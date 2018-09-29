@@ -1,12 +1,15 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf, IToHiccup } from "@thi.ng/api/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
-import { IArcLength, IArea } from "./api";
-import { arcLength, edges } from "./common";
+import { IArcLength, IArea, IEdges } from "./api";
 import { PointContainer2 } from "./container2";
+import { arcLength } from "./func/arc-length";
+import { edges } from "./func/edges";
 
 export class Polygon2 extends PointContainer2 implements
     IArcLength,
-    IArea {
+    IArea,
+    IEdges<Vec2[]>,
+    IToHiccup {
 
     constructor(points: Vec2[], attribs?: IObjectOf<any>) {
         super(points, attribs);

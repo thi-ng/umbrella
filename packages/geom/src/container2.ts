@@ -2,10 +2,13 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Mat23 } from "@thi.ng/vectors/mat23";
 import { Vec2, vec2 } from "@thi.ng/vectors/vec2";
-import { IBounds } from "./api";
+import { IBounds, ICentroid, IVertices } from "./api";
+import { bounds } from "./func/bounds";
 
 export class PointContainer2 implements
-    IBounds<Vec2[]> {
+    IBounds<Vec2[]>,
+    ICentroid<Vec2>,
+    IVertices<Vec2> {
 
     points: Vec2[];
     attribs: IObjectOf<any>;
@@ -24,15 +27,7 @@ export class PointContainer2 implements
     }
 
     bounds() {
-        const pts = this.points;
-        const min = Vec2.MAX.copy();
-        const max = Vec2.MIN.copy();
-        for (let i = pts.length; --i >= 0;) {
-            const p = pts[i];
-            min.min(p);
-            max.max(p);
-        }
-        return [min, max];
+        return bounds(this.points, Vec2.MAX.copy(), Vec2.MIN.copy());
     }
 
     width() {
