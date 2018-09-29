@@ -6,6 +6,15 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import {
+    IAngleBetween,
+    ICrossProduct,
+    IDistance,
+    IDotProduct,
+    IMagnitude,
+    IMath,
+    IMix,
+    INormalize,
+    IPolar,
     IVec,
     MAX4,
     MIN4,
@@ -249,10 +258,19 @@ export const vec2 = (x = 0, y = 0) =>
     new Vec2([x, y]);
 
 export class Vec2 implements
+    IAngleBetween<Vec2>,
     ICopy<Vec2>,
+    ICrossProduct<Vec2, number>,
+    IDistance<Vec2>,
+    IDotProduct<Vec2>,
     IEqualsDelta<Vec2>,
     IEquiv,
     ILength,
+    IMagnitude,
+    IMath<Vec2>,
+    IMix<Vec2>,
+    INormalize<Vec2>,
+    IPolar<Vec2>,
     Iterable<number>,
     IVec {
 
@@ -543,6 +561,16 @@ export class Vec2 implements
 
     maddN(b: Readonly<Vec2>, n: number) {
         maddN2(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        return this;
+    }
+
+    msub(b: Readonly<Vec2>, c: Readonly<Vec2>) {
+        msub2(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
+        return this;
+    }
+
+    msubN(b: Readonly<Vec2>, n: number) {
+        msubN2(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
 

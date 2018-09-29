@@ -6,6 +6,15 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import {
+    IAngleBetween,
+    ICrossProduct,
+    IDistance,
+    IDotProduct,
+    IMagnitude,
+    IMath,
+    IMix,
+    INormalize,
+    IPolar,
     IVec,
     MAX4,
     MIN4,
@@ -269,7 +278,7 @@ export const angleBetween3 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false,
         angleBetween3(normalize3(get3(a, ia, sa)), normalize3(get3(b, ib, sb))) :
         Math.acos(dot3(a, b, ia, ib, sa, sb));
 
-export const toSpherical3 = (a: Vec, ia = 0, sa = 1) => {
+export const toPolar3 = (a: Vec, ia = 0, sa = 1) => {
     const x = a[ia];
     const y = a[ia + sa];
     const z = a[ia + 2 * sa];
@@ -308,10 +317,19 @@ export const vec3 = (x = 0, y = 0, z = 0) =>
     new Vec3([x, y, z]);
 
 export class Vec3 implements
+    IAngleBetween<Vec3>,
     ICopy<Vec3>,
+    ICrossProduct<Vec3, Vec3>,
+    IDistance<Vec3>,
+    IDotProduct<Vec3>,
     IEqualsDelta<Vec3>,
     IEquiv,
     ILength,
+    IMagnitude,
+    IMath<Vec3>,
+    IMix<Vec3>,
+    INormalize<Vec3>,
+    IPolar<Vec3>,
     Iterable<number>,
     IVec {
 
@@ -610,6 +628,16 @@ export class Vec3 implements
         return this;
     }
 
+    msub(b: Readonly<Vec3>, c: Readonly<Vec3>) {
+        msub3(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
+        return this;
+    }
+
+    msubN(b: Readonly<Vec3>, n: number) {
+        msubN3(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
+        return this;
+    }
+
     mix(b: Readonly<Vec3>, c: Readonly<Vec3>) {
         mix3(this.buf, b.buf, c.buf, this.i, b.i, c.i, this.s, b.s, c.s);
         return this;
@@ -746,8 +774,8 @@ export class Vec3 implements
         return angleBetween3(this.buf, v.buf, normalize, this.i, v.i, this.s, v.s);
     }
 
-    toSpherical() {
-        toSpherical3(this.buf, this.i, this.s);
+    toPolar() {
+        toPolar3(this.buf, this.i, this.s);
         return this;
     }
 

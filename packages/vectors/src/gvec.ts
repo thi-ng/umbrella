@@ -6,8 +6,16 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
-import { IVec, ReadonlyVec, Vec } from "./api";
+import {
+    IDotProduct,
+    IMagnitude,
+    IMath,
+    IMix,
+    INormalize,
+    IVec,
+    ReadonlyVec,
+    Vec
+} from "./api";
 import { $iter, eqDelta, equiv } from "./common";
 import {
     clamp1,
@@ -17,6 +25,7 @@ import {
     smoothStep1,
     step1
 } from "./math";
+
 
 export const opg0 = (fn: () => number, a: Vec, num = a.length, i = 0, s = 1) => {
     i += num * s;
@@ -122,6 +131,12 @@ export const madd = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia 
 export const maddN = (a: Vec, b: ReadonlyVec, n: number, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
     opg2((x, y) => x + y * n, a, b, num, ia, ib, sa, sb);
 
+export const msub = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
+    opg3((x, y, z) => x - y * z, a, b, c, num, ia, ib, ic, sa, sb, sc);
+
+export const msubN = (a: Vec, b: ReadonlyVec, n: number, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    opg2((x, y) => x + y * n, a, b, num, ia, ib, sa, sb);
+
 export const mix = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
     opg3((x, y, z) => x + (y - x) * z, a, b, c, num, ia, ib, ic, sa, sb, sc);
 
@@ -204,9 +219,14 @@ export const gvec = (...coords: number[]) =>
 
 export class GVec implements
     ICopy<GVec>,
+    IDotProduct<GVec>,
     IEqualsDelta<GVec>,
     IEquiv,
     ILength,
+    IMagnitude,
+    IMath<GVec>,
+    IMix<GVec>,
+    INormalize<GVec>,
     Iterable<number>,
     IVec {
 
@@ -355,6 +375,19 @@ export class GVec implements
     maddN(v: Readonly<GVec>, n: number) {
         this.ensureSize(v);
         maddN(this.buf, v.buf, n, this.n, this.i, v.i, this.s, v.s);
+        return this;
+    }
+
+    msub(b: Readonly<GVec>, c: Readonly<GVec>) {
+        this.ensureSize(b);
+        this.ensureSize(c);
+        msub(this.buf, b.buf, c.buf, this.n, this.i, b.i, c.i, this.s, b.s, c.s);
+        return this;
+    }
+
+    msubN(v: Readonly<GVec>, n: number) {
+        this.ensureSize(v);
+        msubN(this.buf, v.buf, n, this.n, this.i, v.i, this.s, v.s);
         return this;
     }
 
