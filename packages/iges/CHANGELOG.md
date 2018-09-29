@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.16"></a>
+## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.15...@thi.ng/iges@0.2.16) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
+<a name="0.2.15"></a>
+## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.14...@thi.ng/iges@0.2.15) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
+<a name="0.2.14"></a>
+## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.13...@thi.ng/iges@0.2.14) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
+<a name="0.2.13"></a>
+## [0.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.12...@thi.ng/iges@0.2.13) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
+<a name="0.2.12"></a>
+## [0.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.12-alpha.1...@thi.ng/iges@0.2.12) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
+<a name="0.2.12-alpha.1"></a>
+## [0.2.12-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.12-alpha.0...@thi.ng/iges@0.2.12-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
+<a name="0.2.12-alpha.0"></a>
+## [0.2.12-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.11...@thi.ng/iges@0.2.12-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
 <a name="0.2.11"></a>
 ## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.10...@thi.ng/iges@0.2.11) (2018-09-10)
 

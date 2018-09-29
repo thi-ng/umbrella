@@ -4,7 +4,8 @@
         "target": "es6",
         "experimentalDecorators": true,
         "noUnusedParameters": true,
-        "noUnusedLocals": true
+        "noUnusedLocals": true,
+        "preserveConstEnums": true
     },
     "exclude": [
         "./**/node_modules"

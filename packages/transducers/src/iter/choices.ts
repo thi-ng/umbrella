@@ -2,9 +2,9 @@ import { weightedRandom } from "../func/weighted-random";
 import { repeatedly } from "./repeatedly";
 
 /**
- * Returns an infinite iterator of random choices and their (optional) weights.
- * If `weights` are given, it must be the same size as `choices`. If omitted,
- * each choice will have same probability.
+ * Returns an infinite iterator of random choices and their (optional)
+ * weights. If `weights` is given, it must have at least the same size
+ * as `choices`. If omitted, each choice will have same probability.
  *
  * See: `weightedRandom()`
  *
@@ -16,7 +16,7 @@ import { repeatedly } from "./repeatedly";
  * @param choices
  * @param weights
  */
-export function choices<T>(choices: T[], weights?: number[]) {
+export function choices<T>(choices: ArrayLike<T> & Iterable<T>, weights?: ArrayLike<number> & Iterable<number>) {
     return repeatedly(
         weights ?
             weightedRandom(choices, weights) :

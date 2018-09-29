@@ -5,7 +5,6 @@ import {
     ILength
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     IVec,
     MAX4,
@@ -15,7 +14,8 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices, $iter } from "./common";
+import { declareIndices, defcommon } from "./codegen";
+import { $iter } from "./common";
 import {
     EPS,
     eqDelta1,
@@ -35,32 +35,24 @@ export const op4 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) => (
     a
 );
 
-export const op42 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = fn(a[ia], b[ib]),
-    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
-    a[ia + 2 * sa] = fn(a[ia + 2 * sa], b[ib + 2 * sb]),
-    a[ia + 3 * sa] = fn(a[ia + 3 * sa], b[ib + 3 * sb]),
+export const op40 = (fn: () => number, a: Vec, ia = 0, sa = 1) => (
+    a[ia] = fn(),
+    a[ia + sa] = fn(),
+    a[ia + 2 * sa] = fn(),
+    a[ia + 3 * sa] = fn(),
+    a
+);
+
+export const op41 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia = 0, sa = 1) => (
+    a[ia] = fn(a[ia], n),
+    a[ia + sa] = fn(a[ia + sa], n),
+    a[ia + 2 * sa] = fn(a[ia + 2 * sa], n),
+    a[ia + 3 * sa] = fn(a[ia + 3 * sa], n),
     a
 );
 
 export const get4 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     set4(new (<any>(a.constructor))(4), a, 0, ia, 1, sa);
-
-export const set4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = b[ib],
-    a[ia + sa] = b[ib + sb],
-    a[ia + 2 * sa] = b[ib + 2 * sb],
-    a[ia + 3 * sa] = b[ib + 3 * sb],
-    a
-);
-
-export const setN4 = (a: Vec, n: number, ia = 0, sa = 1) => (
-    a[ia] = n,
-    a[ia + sa] = n,
-    a[ia + 2 * sa] = n,
-    a[ia + 3 * sa] = n,
-    a
-);
 
 export const setS4 = (a: Vec, x: number, y: number, z: number, w: number, ia = 0, sa = 1) => (
     a[ia] = x,
@@ -70,17 +62,19 @@ export const setS4 = (a: Vec, x: number, y: number, z: number, w: number, ia = 0
     a
 );
 
-export const swizzle4 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    const xx = b[ib + x * sb];
-    const yy = b[ib + y * sb];
-    const zz = b[ib + z * sb];
-    const ww = b[ib + w * sb];
-    a[ia] = xx;
-    a[ia + sa] = yy;
-    a[ia + 2 * sa] = zz;
-    a[ia + 3 * sa] = ww;
-    return a;
+export const randNorm4 = (a: Vec, n = 1, ia = 0, sa = 1) =>
+    randMinMax4(a, -n, n, ia, sa);
+
+export const randMinMax4 = (a: Vec, min: number, max: number, ia = 0, sa = 1) => {
+    const d = max - min;
+    return op40(() => min + d * Math.random(), a, ia, sa);
 };
+
+export const jitter4 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op4((x) => x + Math.random() * 2 * n - n, a, ia, sa);
+
+export const swizzle4 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, w: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    setS4(a, b[ib + x * sb], b[ib + y * sb], b[ib + z * sb], b[ib + w * sb], ia, sa);
 
 export const swap4 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
@@ -105,216 +99,32 @@ export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps) &&
     eqDelta1(a[ia + 3 * sa], b[ib + 3 * sb], eps);
 
-export const add4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib],
-    a[ia + sa] += b[ib + sb],
-    a[ia + 2 * sa] += b[ib + 2 * sb],
-    a[ia + 3 * sa] += b[ib + 3 * sb],
-    a
-);
-
-export const mul4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] *= b[ib],
-    a[ia + sa] *= b[ib + sb],
-    a[ia + 2 * sa] *= b[ib + 2 * sb],
-    a[ia + 3 * sa] *= b[ib + 3 * sb],
-    a
-);
-
-export const sub4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] -= b[ib],
-    a[ia + sa] -= b[ib + sb],
-    a[ia + 2 * sa] -= b[ib + 2 * sb],
-    a[ia + 3 * sa] -= b[ib + 3 * sb],
-    a
-);
-
-export const div4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] /= b[ib],
-    a[ia + sa] /= b[ib + sb],
-    a[ia + 2 * sa] /= b[ib + 2 * sb],
-    a[ia + 3 * sa] /= b[ib + 3 * sb],
-    a
-);
-
-export const add4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + b[ib],
-    out[io + so] = a[ia + sa] + b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] + b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] + b[ib + 3 * sb],
-    out
-);
-
-export const sub4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] - b[ib],
-    out[io + so] = a[ia + sa] - b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] - b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] - b[ib + 3 * sb],
-    out
-);
-
-export const mul4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] * b[ib],
-    out[io + so] = a[ia + sa] * b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] * b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] * b[ib + 3 * sb],
-    out
-);
-
-export const div4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] / b[ib],
-    out[io + so] = a[ia + sa] / b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] / b[ib + 2 * sb],
-    out[io + 3 * so] = a[ia + 3 * sa] / b[ib + 3 * sb],
-    out
-);
-
-export const addN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a[ia + 3 * sa] += n, a);
-
-export const subN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a[ia + 3 * sa] -= n, a);
-
-export const mulN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a[ia + 3 * sa] *= n, a);
-
-export const divN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a[ia + 3 * sa] /= n, a);
-
-export const addN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] + n,
-    out[io + so] = a[ia + sa] + n,
-    out[io + 2 * so] = a[ia + 2 * sa] + n,
-    out[io + 3 * so] = a[ia + 3 * sa] + n,
-    out
-);
-
-export const subN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] - n,
-    out[io + so] = a[ia + sa] - n,
-    out[io + 2 * so] = a[ia + 2 * sa] - n,
-    out[io + 3 * so] = a[ia + 3 * sa] - n,
-    out
-);
-
-export const mulN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] * n,
-    out[io + so] = a[ia + sa] * n,
-    out[io + 2 * so] = a[ia + 2 * sa] * n,
-    out[io + 3 * so] = a[ia + 3 * sa] * n,
-    out
-);
-
-export const divN4o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] / n,
-    out[io + so] = a[ia + sa] / n,
-    out[io + 2 * so] = a[ia + 2 * sa] / n,
-    out[io + 3 * so] = a[ia + 3 * sa] / n,
-    out
-);
+export const [
+    set4, setN4,
+    add4, sub4, mul4, div4,
+    add4o, sub4o, mul4o, div4o,
+    addN4, subN4, mulN4, divN4,
+    addN4o, subN4o, mulN4o, divN4o,
+    madd4, maddN4, msub4, msubN4,
+    abs4, sign4, floor4, ceil4, sin4, cos4, sqrt4,
+    pow4, min4, max4,
+    mix4, mixN4, mix4o, mixN4o
+] = defcommon(4);
 
 export const neg4 = (a: Vec, ia = 0, sa = 1) =>
     mulN4(a, -1, ia, sa);
 
-export const abs4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.abs, a, ia, sa);
-
-export const sign4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.sign, a, ia, sa);
-
-export const floor4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.floor, a, ia, sa);
-
-export const ceil4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.ceil, a, ia, sa);
-
 export const fract4 = (a: Vec, ia = 0, sa = 1) =>
     op4(fract1, a, ia, sa);
 
-export const sin4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.sin, a, ia, sa);
-
-export const cos4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.cos, a, ia, sa);
-
-export const sqrt4 = (a: Vec, ia = 0, sa = 1) =>
-    op4(Math.sqrt, a, ia, sa);
-
-export const pow4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op42(Math.pow, a, b, ia, ib, sa, sb);
-
 export const powN4 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    op4((x) => Math.pow(x, n), a, ia, sa);
-
-export const madd4 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
-    a[ia] += b[ib] * c[ic],
-    a[ia + sa] += b[ib + sb] * c[ic + sc],
-    a[ia + 2 * sa] += b[ib + 2 * sb] * c[ic + 2 * sc],
-    a[ia + 3 * sa] += b[ib + 3 * sb] * c[ic + 3 * sc],
-    a
-);
-
-export const maddN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib] * n,
-    a[ia + sa] += b[ib + sb] * n,
-    a[ia + 2 * sa] += b[ib + 2 * sb] * n,
-    a[ia + 3 * sa] += b[ib + 3 * sb] * n,
-    a
-);
-
-export const msub4 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
-    a[ia] -= b[ib] * c[ic],
-    a[ia + sa] -= b[ib + sb] * c[ic + sc],
-    a[ia + 2 * sa] -= b[ib + 2 * sb] * c[ic + 2 * sc],
-    a[ia + 3 * sa] -= b[ib + 3 * sb] * c[ic + 3 * sc],
-    a
-);
-
-export const msubN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] -= b[ib] * n,
-    a[ia + sa] -= b[ib + sb] * n,
-    a[ia + 2 * sa] -= b[ib + 2 * sb] * n,
-    a[ia + 3 * sa] -= b[ib + 3 * sb] * n,
-    a
-);
+    op41(Math.pow, a, n, ia, sa);
 
 export const dot4 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] +
     a[ia + sa] * b[ib + sb] +
     a[ia + 2 * sa] * b[ib + 2 * sb] +
     a[ia + 3 * sa] * b[ib + 3 * sb];
-
-export const mix4 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t[it],
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
-    a[ia + 3 * sa] += (b[ib + 3 * sb] - a[ia + 3 * sa]) * t[it + 3 * st],
-    a
-);
-
-export const mixN4 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * n,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
-    a[ia + 3 * sa] += (b[ib + 3 * sb] - a[ia + 3 * sa]) * n,
-    a
-);
-
-export const mix4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
-    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
-    out[io + 3 * so] = a[ia + 3 * sa] + (b[ib + 3 * sb] - a[ia + 3 * sa]) * t[it + 3 * st],
-    out
-);
-
-export const mixN4o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * n,
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
-    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
-    out[io + 3 * so] = a[ia + 3 * sa] + (b[ib + 3 * sb] - a[ia + 3 * sa]) * n,
-    out
-);
 
 export const mixBilinear4 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
@@ -326,12 +136,6 @@ export const mixBilinear4 = (
         a[ia + 3 * sa] = mixBilinear1(a[ia + 3 * sa], b[ib + 3 * sb], c[ic + 3 * sc], d[id + 3 * sd], u, v),
         a
     );
-
-export const min4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op42(Math.min, a, b, ia, ib, sa, sb);
-
-export const max4 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op42(Math.max, a, b, ia, ib, sa, sb);
 
 export const clamp4 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
     max4(min4(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
@@ -469,6 +273,14 @@ export class Vec4 implements
         );
     }
 
+    static randNorm(n = 1) {
+        return new Vec4(randNorm4([], n));
+    }
+
+    static random(min: number, max: number) {
+        return new Vec4(randMinMax4([], min, max));
+    }
+
     static add(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
         add4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
@@ -589,6 +401,11 @@ export class Vec4 implements
 
     setS(x: number, y: number, z: number, w: number) {
         setS4(this.buf, x, y, z, w, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter4(this.buf, n, this.i, this.s);
         return this;
     }
 

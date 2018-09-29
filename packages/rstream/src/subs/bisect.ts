@@ -9,24 +9,35 @@ import { PubSub } from "../pubsub";
  * and falsy `b` values.
  *
  * ```
- * rs.fromIterable([1,2,3,4]).subscribe(
+ * rs.fromIterable([1, 2, 3, 4]).subscribe(
  *   rs.bisect(
- *     (x) => x & 1,
- *     { next: (x) => console.log("odd", x) }
- *     { next: (x) => console.log("even", x) },
+ *     (x) => !!(x & 1),
+ *     rs.trace("odd"),
+ *     rs.trace("even")
  *   )
  * );
+ * // odd 1
+ * // even 2
+ * // odd 3
+ * // even 4
+ * // odd done
+ * // even done
  * ```
  *
  * If `a` or `b` need to be subscribed to directly, then `a` / `b` MUST
- * be converted into a `Subscription` instance (if not already) and a
- * reference kept prior to calling `bisect()`.
+ * be first created as `Subscription` (if not already) and a reference
+ * kept prior to calling `bisect()`.
  *
  * ```
- * const odd = rs.subscription({ next: (x) => console.log("odd", x) });
- * const even = rs.subscription({ next: (x) => console.log("even", x) });
+ * const odd = rs.subscription();
+ * const even = rs.subscription();
+ * odd.subscribe(rs.trace("odd"));
+ * odd.subscribe(rs.trace("odd x10"), tx.map((x)=> x * 10));
+ * even.subscribe(rs.trace("even"));
  *
- * rs.fromIterable([1,2,3,4]).subscribe(rs.bisect((x) => x & 1, odd, even));
+ * rs.fromIterable([1, 2, 3, 4]).subscribe(
+ *     rs.bisect((x) => !!(x & 1), odd, even)
+ * );
  * ```
  *
  * @param pred predicate function

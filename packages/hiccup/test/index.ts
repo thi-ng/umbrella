@@ -46,7 +46,13 @@ describe("serialize", () => {
     check(
         "div w/ id, class & attrib",
         ["div#foo.bar.baz", { extra: 23 }, "foo"],
-        `<div id="foo" class="bar baz" extra="23">foo</div>`
+        `<div extra="23" id="foo" class="bar baz">foo</div>`
+    );
+
+    check(
+        "div w/ class merging",
+        ["div.foo", { class: "bar baz" }, "foo"],
+        `<div class="bar baz foo">foo</div>`
     );
 
     check(

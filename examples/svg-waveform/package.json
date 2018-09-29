@@ -6,7 +6,8 @@
     "author": "Karsten Schmidt",
     "license": "MIT",
     "scripts": {
-        "build": "parcel build index.html -d out --no-source-maps --no-cache --detailed-report",
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
         "start": "parcel index.html -p 8080 --open"
     },
     "dependencies": {

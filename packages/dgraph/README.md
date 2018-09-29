@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 ## About
 

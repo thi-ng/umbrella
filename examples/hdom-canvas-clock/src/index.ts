@@ -17,9 +17,9 @@ const tick = (i: number, r1: number, r2: number) => {
     ];
 };
 
-const hand = (r1: number, r2: number, theta: number, fill?: string, eps = 0.5) => {
+const hand = (r1: number, r2: number, theta: number, attribs = {}, eps = 0.5) => {
     theta = theta * TAU - HALF_PI;
-    return ["polygon", { fill },
+    return ["polygon", attribs,
         [[r1, theta - eps], [r2, theta], [r1, theta + eps]].map((p) => toCartesian2(p))];
 };
 
@@ -45,7 +45,7 @@ const cancel = start(() => {
             // applied in a nested manner...
             //
             // see here for a list of all supported attribs:
-            // https://github.com/thi-ng/umbrella/blob/feature/hdom-canvas/packages/hdom-canvas/src/index.ts#L35
+            // https://github.com/thi-ng/umbrella/blob/master/packages/hdom-canvas/src/index.ts#L35
             ["g",
                 {
                     translate: [100, 100],
@@ -60,18 +60,19 @@ const cancel = start(() => {
                 ["g", { fill: "black" },
                     ...mapcat((i) => tick(i, 90, 99), range(12)),
                     ["rect", { fill: "none" }, [40, -8], 30, 16],
-                    ["text", { stroke: "none" }, [55, 0], WEEKDAYS[now.getDay()]]
-                ],
+                    ["text", { stroke: "none" }, [55, 0], WEEKDAYS[now.getDay()]]],
                 // hands
                 ["g", { fill: "black", stroke: "none" },
                     hand(5, 60, hour),
                     hand(5, 90, min),
-                    hand(5, 80, sec, "red"),
-                    ["circle", {}, [0, 0], 5]
-                ]
-            ]],
+                    hand(5, 80, sec, {
+                        fill: "red",
+                        shadowX: 2, shadowY: 2, shadowBlur: 5,
+                        shadowColor: "rgba(0,0,0,0.4)"
+                    }),
+                    ["circle", {}, [0, 0], 5]]]],
         ["a.link",
-            { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock" },
+            { href: "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock" },
             "Source code"]];
 });
 

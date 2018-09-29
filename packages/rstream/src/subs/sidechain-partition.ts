@@ -1,7 +1,6 @@
 import { Predicate } from "@thi.ng/api/api";
 
 import { ISubscribable, State } from "../api";
-import { Stream } from "../stream";
 import { Subscription } from "../subscription";
 
 /**
@@ -38,7 +37,7 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
     buf: A[];
 
     constructor(side: ISubscribable<B>, pred?: Predicate<B>, id?: string) {
-        super(null, null, null, id || `sidepart-${Stream.NEXT_ID++}`);
+        super(null, null, null, id || `sidepart-${Subscription.NEXT_ID++}`);
         this.buf = [];
         const $this = this;
         pred = pred || (() => true);

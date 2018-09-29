@@ -1,5 +1,8 @@
 #!/bin/sh
 
+readonly target="s3://demo.thi.ng/umbrella"
+readonly opts="--profile toxi-s3 --acl public-read"
+
 if [ $# == 1 ]; then
     modules="examples/$1"
 else
@@ -9,12 +12,26 @@ fi
 for m in $modules; do
     if [ -d "$m" ] && [ ! -e "$m/.skip" ]; then
         name=$(echo $m | cut -d '/' -f 2)
+        dest="$target/$name"
         src=$(ls $m/out/*.js.gz | cut -d '/' -f 4)
         len=${#src}
         src="${src:0:len-3}"
+        echo "------------------------------"
         echo "uploading $m ($src)..."
-        aws s3 cp $m/out/*.png s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read
-        aws s3 cp $m/out/*.js.gz s3://demo.thi.ng/umbrella/$name/$src --profile toxi-s3 --acl public-read --content-type "application/javascript; charset=utf-8" --content-encoding gzip
-        aws s3 cp $m/out/index.html s3://demo.thi.ng/umbrella/$name/ --profile toxi-s3 --acl public-read --cache-control "max-age=900"
+        echo "------------------------------"
+        assets=$(find $m/out/ -name '*.png')
+        if [ ! -z $assets ]; then
+            aws s3 cp $m/out/*.png $dest/ $opts
+        fi
+        assets=$(find $m/out/ -name '*.json')
+        if [ ! -z $assets ]; then
+            for a in $assets; do
+                origname=$(basename -- "$a")
+                gzip $a
+                aws s3 cp $a.gz $dest/$origname $opts --content-type "application/json; charset=utf-8" --content-encoding gzip
+            done
+        fi
+        aws s3 cp $m/out/*.js.gz $dest/$src $opts --content-type "application/javascript; charset=utf-8" --content-encoding gzip
+        aws s3 cp $m/out/index.html $dest/ $opts --cache-control "max-age=900"
     fi
 done

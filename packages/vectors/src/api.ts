@@ -13,16 +13,52 @@ export type ReadonlyMat = ArrayLike<number> & Iterable<number>;
 export type VecOp1<T> = (v: Vec, i?: number, s?: number) => T;
 
 /**
- * A vector operation involving two vectors. The first vector might be
+ * A vector operation involving 2 vectors. The first vector might be
  * modified.
  */
 export type VecOp2<T> = (a: Vec, b: ReadonlyVec, ia?: number, ib?: number, sa?: number, sb?: number) => T;
 
 /**
- * A vector operation involving input readonly two vectors and writing
- * result to an output vector `out`.
+ * A vector operation involving a vector and a scalar. The vector might
+ * be modified.
+ */
+export type VecOpN2<T> = (a: Vec, n: number, ia?: number, sa?: number) => T;
+
+/**
+ * A vector operation involving 2 readonly vectors and storing result
+ * in output vector `out`.
  */
 export type VecOp2o<T> = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io?: number, ia?: number, ib?: number, so?: number, sa?: number, sb?: number) => T;
+
+/**
+ * A vector operation involving a readonly vector and a scalar,
+ * storing result in output vector `out`.
+ */
+export type VecOpN2o<T> = (out: Vec, a: ReadonlyVec, n: number, io?: number, ia?: number, so?: number, sa?: number) => T;
+
+/**
+ * A vector operation involving 3 vectors. The first vector might be
+ * modified.
+ */
+export type VecOp3<T> = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia?: number, ib?: number, ic?: number, sa?: number, sb?: number, sc?: number) => T;
+
+/**
+ * A vector operation involving 2 vectors and a scalar. The first
+ * vector might be modified.
+ */
+export type VecOpN3<T> = (a: Vec, b: ReadonlyVec, n: number, ia?: number, ib?: number, sa?: number, sb?: number) => T;
+
+/**
+ * A vector operation involving 3 readonly vectors and storing result in
+ * output vector `out`.
+ */
+export type VecOp3o<T> = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, io?: number, ia?: number, ib?: number, ic?: number, so?: number, sa?: number, sb?: number, sc?: number) => T;
+
+/**
+ * A vector operation involving 3 operands: 2 readonly vectors and a
+ * scalar, storing result in output vector `out`.
+ */
+export type VecOpN3o<T> = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io?: number, ia?: number, ib?: number, so?: number, sa?: number, sb?: number) => T;
 
 /**
  * A readonly vector operation involving only a single vector.

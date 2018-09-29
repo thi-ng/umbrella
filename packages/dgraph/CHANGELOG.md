@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.23"></a>
+## [0.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.22...@thi.ng/dgraph@0.2.23) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
+<a name="0.2.22"></a>
+## [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.21...@thi.ng/dgraph@0.2.22) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
+<a name="0.2.21"></a>
+## [0.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.20...@thi.ng/dgraph@0.2.21) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
+<a name="0.2.20"></a>
+## [0.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.19...@thi.ng/dgraph@0.2.20) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
+<a name="0.2.19"></a>
+## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.19-alpha.1...@thi.ng/dgraph@0.2.19) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
+<a name="0.2.19-alpha.1"></a>
+## [0.2.19-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.19-alpha.0...@thi.ng/dgraph@0.2.19-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
+<a name="0.2.19-alpha.0"></a>
+## [0.2.19-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.18...@thi.ng/dgraph@0.2.19-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
 <a name="0.2.18"></a>
 ## [0.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@0.2.17...@thi.ng/dgraph@0.2.18) (2018-09-10)
 

@@ -2,9 +2,9 @@ import { Transducer } from "@thi.ng/transducers/api";
 import { map } from "@thi.ng/transducers/xform/map";
 
 import {
+    __Level,
     BodyFormat,
     DateFormat,
-    Level,
     LogEntry,
     LogEntryObj
 } from "../api";
@@ -14,7 +14,7 @@ export function formatString(dtFmt?: DateFormat, bodyFmt?: BodyFormat): Transduc
     bodyFmt = bodyFmt || ((x) => x.toString());
     return map(
         ([level, id, time, ...body]) =>
-            `[${Level[level]}] [${id}] ${dtFmt(time)} ${bodyFmt(body)}`
+            `[${__Level[level]}] [${id}] ${dtFmt(time)} ${bodyFmt(body)}`
     );
 }
 
@@ -29,7 +29,7 @@ export function formatJSON(dtfmt?: (dt: number) => string): Transducer<LogEntry,
     return map(
         ([level, id, time, ...body]) =>
             JSON.stringify({
-                level: Level[level],
+                level: __Level[level],
                 id,
                 time: dtfmt(time),
                 body

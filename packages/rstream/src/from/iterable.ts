@@ -1,4 +1,5 @@
 import { Stream } from "../stream";
+import { Subscription } from "../subscription";
 
 /**
  * Creates a new `Stream` of given iterable which asynchronously calls
@@ -27,7 +28,7 @@ export function fromIterable<T>(src: Iterable<T>, delay = 0, close = true) {
             }, delay);
             return () => clearInterval(id);
         },
-        `iterable-${Stream.NEXT_ID++}`
+        `iterable-${Subscription.NEXT_ID++}`
     );
 }
 
@@ -50,6 +51,6 @@ export function fromIterableSync<T>(src: Iterable<T>, close = true) {
             close && stream.done();
             return null;
         },
-        `iterable-${Stream.NEXT_ID++}`
+        `iterable-${Subscription.NEXT_ID++}`
     );
 }

@@ -1,9 +1,9 @@
-export const parseInt = (x: string, defaultVal = 0, radix = 10) => {
+export const maybeParseInt = (x: string, defaultVal: any = 0, radix = 10) => {
     const n = parseInt(x, radix);
     return isNaN(n) ? defaultVal : n;
 };
 
-export const parseFloat = (x: string, defaultVal = 0) => {
+export const maybeParseFloat = (x: string, defaultVal: any = 0) => {
     const n = parseFloat(x);
     return isNaN(n) ? defaultVal : n;
 };

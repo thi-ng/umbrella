@@ -1,19 +1,19 @@
 {
-    const NodeType = require("./api").NodeType;
+    const __NodeType = require("./api").__NodeType;
 
-    // const NodeType = {};
-    // NodeType[NodeType["SYM"] = 1] = "SYM";
-    // NodeType[NodeType["WORD"] = 2] = "WORD";
-    // NodeType[NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
-    // NodeType[NodeType["VAR_STORE"] = 4] = "VAR_STORE";
-    // NodeType[NodeType["NIL"] = 5] = "NIL";
-    // NodeType[NodeType["NUMBER"] = 6] = "NUMBER";
-    // NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
-    // NodeType[NodeType["STRING"] = 8] = "STRING";
-    // NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
-    // NodeType[NodeType["OBJ"] = 10] = "OBJ";
-    // NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
-    // NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
+    // const __NodeType = {};
+    // __NodeType[__NodeType["SYM"] = 1] = "SYM";
+    // __NodeType[__NodeType["WORD"] = 2] = "WORD";
+    // __NodeType[__NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
+    // __NodeType[__NodeType["VAR_STORE"] = 4] = "VAR_STORE";
+    // __NodeType[__NodeType["NIL"] = 5] = "NIL";
+    // __NodeType[__NodeType["NUMBER"] = 6] = "NUMBER";
+    // __NodeType[__NodeType["BOOLEAN"] = 7] = "BOOLEAN";
+    // __NodeType[__NodeType["STRING"] = 8] = "STRING";
+    // __NodeType[__NodeType["ARRAY"] = 9] = "ARRAY";
+    // __NodeType[__NodeType["OBJ"] = 10] = "OBJ";
+    // __NodeType[__NodeType["COMMENT"] = 11] = "COMMENT";
+    // __NodeType[__NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
 
     const ast = (node) => {
         const loc = location().start;
@@ -42,7 +42,7 @@ NonWordExpr
 
 Word
     = ":" __ id:Sym locals:LocalVars? body:NonWordExpr+ ";" {
-        return { type: NodeType.WORD, id: id.id, locals, body};
+        return { type: __NodeType.WORD, id: id.id, locals, body};
     }
 
 LocalVars
@@ -55,12 +55,12 @@ SymList
 
 Array
     = "[" body:NonWordExpr* "]" {
-        return { type: NodeType.ARRAY, body };
+        return { type: __NodeType.ARRAY, body };
     }
 
 Obj
     = "{" _ body:ObjPair* "}" {
-        return { type: NodeType.OBJ, body };
+        return { type: __NodeType.OBJ, body };
     }
 
 ObjPair
@@ -92,17 +92,17 @@ Atom
 
 Nil
     = "nil" {
-        return {type: NodeType.NIL, body: null};
+        return {type: __NodeType.NIL, body: null};
     }
 
 Boolean
     = $("T" / "F") {
-        return {type: NodeType.BOOLEAN, body: text() == "T"};
+        return {type: __NodeType.BOOLEAN, body: text() == "T"};
     }
 
 Sym
     = id:$((Alpha / SymChars) (AlphaNum / SymChars)*) {
-        return {type: NodeType.SYM, id};
+        return {type: __NodeType.SYM, id};
     }
 
 SymChars
@@ -114,35 +114,35 @@ Var
 
 VarDeref
     = "@" id:Sym {
-        return {type: NodeType.VAR_DEREF, id: id.id}
+        return {type: __NodeType.VAR_DEREF, id: id.id}
     }
 
 VarStore
     = id:Sym "!" {
-        return {type: NodeType.VAR_STORE, id: id.id}
+        return {type: __NodeType.VAR_STORE, id: id.id}
     }
 
 LitQuote
     = "'" body:NonWordExpr {
-        return {type: NodeType.ARRAY, body: [body]};
+        return {type: __NodeType.ARRAY, body: [body]};
     }
 
 Comment
     = "("+ body:$(!")" .)* ")" {
         return body.indexOf("--") > 0 ?
             {
-                type: NodeType.STACK_COMMENT,
+                type: __NodeType.STACK_COMMENT,
                 body: body.split("--").map(x => x.trim())
             } :
             {
-                type: NodeType.COMMENT,
+                type: __NodeType.COMMENT,
                 body: body.trim()
             };
     }
 
 String
     = "\"" body:$(!"\"" .)* "\"" {
-        return {type: NodeType.STRING, body };
+        return {type: __NodeType.STRING, body };
     }
 
 Number
@@ -154,12 +154,12 @@ Sign = [-+]
 
 Binary
     = "0b" n:$[01]+ {
-        return {type: NodeType.NUMBER, radix: 2, body: parseInt(n, 2)};
+        return {type: __NodeType.NUMBER, radix: 2, body: parseInt(n, 2)};
     }
 
 Hex
     = "0x" n:$[0-9a-fA-F]+ {
-        return {type: NodeType.NUMBER, radix: 16, body: parseInt(n, 16)};
+        return {type: __NodeType.NUMBER, radix: 16, body: parseInt(n, 16)};
     }
 
 Int
@@ -170,7 +170,7 @@ Uint
 
 Decimal
     = Int ("." Uint?)? ("e" Int)? {
-        return {type: NodeType.NUMBER, body: parseFloat(text())};
+        return {type: __NodeType.NUMBER, body: parseFloat(text())};
     }
 
 AlphaNum

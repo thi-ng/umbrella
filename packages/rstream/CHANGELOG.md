@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.13.5"></a>
+## [1.13.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.4...@thi.ng/rstream@1.13.5) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
+<a name="1.13.4"></a>
+## [1.13.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.3...@thi.ng/rstream@1.13.4) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
+<a name="1.13.3"></a>
+## [1.13.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.2...@thi.ng/rstream@1.13.3) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
+<a name="1.13.2"></a>
+## [1.13.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.1...@thi.ng/rstream@1.13.2) (2018-09-24)
+
+
+### Performance Improvements
+
+* **rstream:** `State` => const enum ([7ac83c6](https://github.com/thi-ng/umbrella/commit/7ac83c6))
+
+
+
+
+
+<a name="1.13.1"></a>
+## [1.13.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.0...@thi.ng/rstream@1.13.1) (2018-09-23)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
+<a name="1.13.0"></a>
+# [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.12.2-alpha.2...@thi.ng/rstream@1.13.0) (2018-09-22)
+
+
+### Features
+
+* **rstream:** add trigger() generics ([288b68d](https://github.com/thi-ng/umbrella/commit/288b68d))
+* **rstream:** add trigger() utility stream ([929c6f4](https://github.com/thi-ng/umbrella/commit/929c6f4))
+
+
+
+
+
+<a name="1.12.2-alpha.2"></a>
+## [1.12.2-alpha.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.12.2-alpha.1...@thi.ng/rstream@1.12.2-alpha.2) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
+<a name="1.12.2-alpha.1"></a>
+## [1.12.2-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.12.2-alpha.0...@thi.ng/rstream@1.12.2-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
+<a name="1.12.2-alpha.0"></a>
+## [1.12.2-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.12.1...@thi.ng/rstream@1.12.2-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
 <a name="1.12.1"></a>
 ## [1.12.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.12.0...@thi.ng/rstream@1.12.1) (2018-09-10)
 

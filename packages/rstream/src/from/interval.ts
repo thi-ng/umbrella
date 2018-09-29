@@ -1,4 +1,5 @@
 import { Stream } from "../stream";
+import { Subscription } from "../subscription";
 
 /**
  * Returns a new `Stream` which emits a monotonically increasing counter
@@ -21,5 +22,5 @@ export function fromInterval(delay: number, count = Number.POSITIVE_INFINITY) {
             }
         }, delay);
         return () => clearInterval(id);
-    }, `interval-${Stream.NEXT_ID++}`);
+    }, `interval-${Subscription.NEXT_ID++}`);
 }

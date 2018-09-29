@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.28"></a>
+## [0.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.27...@thi.ng/cache@0.2.28) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
+<a name="0.2.27"></a>
+## [0.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.26...@thi.ng/cache@0.2.27) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
+<a name="0.2.26"></a>
+## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.25...@thi.ng/cache@0.2.26) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
+<a name="0.2.25"></a>
+## [0.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.24...@thi.ng/cache@0.2.25) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
+<a name="0.2.24"></a>
+## [0.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.24-alpha.1...@thi.ng/cache@0.2.24) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
+<a name="0.2.24-alpha.1"></a>
+## [0.2.24-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.24-alpha.0...@thi.ng/cache@0.2.24-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
+<a name="0.2.24-alpha.0"></a>
+## [0.2.24-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.23...@thi.ng/cache@0.2.24-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
 <a name="0.2.23"></a>
 ## [0.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.22...@thi.ng/cache@0.2.23) (2018-09-10)
 

@@ -5,7 +5,6 @@ import {
     ILength
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     IVec,
     MAX4,
@@ -15,7 +14,8 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices, $iter } from "./common";
+import { declareIndices, defcommon } from "./codegen";
+import { $iter } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -33,31 +33,37 @@ import {
 export const op2 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) =>
     (a[ia] = fn(a[ia]), a[ia + sa] = fn(a[ia + sa]), a);
 
-export const op22 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = fn(a[ia], b[ib]),
-    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
+export const op20 = (fn: () => number, a: Vec, ia = 0, sa = 1) => (
+    a[ia] = fn(),
+    a[ia + sa] = fn(),
+    a
+);
+
+export const op21 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia = 0, sa = 1) => (
+    a[ia] = fn(a[ia], n),
+    a[ia + sa] = fn(a[ia + sa], n),
     a
 );
 
 export const get2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     set2(new (<any>(a.constructor))(2), a, 0, ia, 1, sa);
 
-export const set2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] = b[ib], a[ia + sa] = b[ib + sb], a);
-
-export const setN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] = n, a[ia + sa] = n, a);
-
 export const setS2 = (a: Vec, x: number, y: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a);
 
-export const swizzle2 = (a: Vec, b: ReadonlyVec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    const xx = b[ib + x * sb];
-    const yy = b[ib + y * sb];
-    a[ia] = xx;
-    a[ia + sa] = yy;
-    return a;
+export const randNorm2 = (a: Vec, n = 1, ia = 0, sa = 1) =>
+    randMinMax2(a, -n, n, ia, sa);
+
+export const randMinMax2 = (a: Vec, min: number, max: number, ia = 0, sa = 1) => {
+    const d = max - min;
+    return op20(() => min + d * Math.random(), a, ia, sa);
 };
+
+export const jitter2 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op2((x) => x + Math.random() * 2 * n - n, a, ia, sa);
+
+export const swizzle2 = (a: Vec, b: ReadonlyVec, x: number, y: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    setS2(a, b[ib + x * sb], b[ib + y * sb], ia, sa);
 
 export const swap2 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
@@ -74,134 +80,32 @@ export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia], b[ib], eps) &&
     eqDelta1(a[ia + sa], b[ib + sb], eps);
 
-export const add2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] += b[ib], a[ia + sa] += b[ib + sb], a);
-
-export const sub2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] -= b[ib], a[ia + sa] -= b[ib + sb], a);
-
-export const mul2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] *= b[ib], a[ia + sa] *= b[ib + sb], a);
-
-export const div2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] /= b[ib], a[ia + sa] /= b[ib + sb], a);
-
-export const add2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] + b[ib], out[io + so] = a[ia + sa] + b[ib + sb], out);
-
-export const sub2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] - b[ib], out[io + so] = a[ia + sa] - b[ib + sb], out);
-
-export const mul2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] * b[ib], out[io + so] = a[ia + sa] * b[ib + sb], out);
-
-export const div2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) =>
-    (out[io] = a[ia] / b[ib], out[io + so] = a[ia + sa] / b[ib + sb], out);
-
-export const addN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] += n, a[ia + sa] += n, a);
-
-export const subN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a);
-
-export const mulN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a);
-
-export const divN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] /= n, a[ia + sa] /= n, a);
-
-export const addN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] + n, out[io + so] = a[ia + sa] + n, out);
-
-export const subN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] - n, out[io + so] = a[ia + sa] - n, out);
-
-export const mulN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] * n, out[io + so] = a[ia + sa] * n, out);
-
-export const divN2o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) =>
-    (out[io] = a[ia] / n, out[io + so] = a[ia + sa] / n, out);
+export const [
+    set2, setN2,
+    add2, sub2, mul2, div2,
+    add2o, sub2o, mul2o, div2o,
+    addN2, subN2, mulN2, divN2,
+    addN2o, subN2o, mulN2o, divN2o,
+    madd2, maddN2, msub2, msubN2,
+    abs2, sign2, floor2, ceil2, sin2, cos2, sqrt2,
+    pow2, min2, max2,
+    mix2, mixN2, mix2o, mixN2o
+] = defcommon(2);
 
 export const neg2 = (a: Vec, ia = 0, sa = 1) =>
     mulN2(a, -1, ia, sa);
 
-export const abs2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.abs, a, ia, sa);
-
-export const sign2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.sign, a, ia, sa);
-
-export const floor2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.floor, a, ia, sa);
-
-export const ceil2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.ceil, a, ia, sa);
-
 export const fract2 = (a: Vec, ia = 0, sa = 1) =>
     op2(fract1, a, ia, sa);
 
-export const sin2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.sin, a, ia, sa);
-
-export const cos2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.cos, a, ia, sa);
-
-export const sqrt2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(Math.sqrt, a, ia, sa);
-
-export const pow2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = Math.pow(a[ia], b[ib]),
-    a[ia + sa] = Math.pow(a[ia + sa], b[ib + sb]),
-    a
-);
-
-export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) => (
-    a[ia] = Math.pow(a[ia], n),
-    a[ia + sa] = Math.pow(a[ia + sa], n),
-    a
-);
-
-export const madd2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
-    (a[ia] += b[ib] * c[ic], a[ia + sa] += b[ib + sb] * c[ic + sc], a);
-
-export const maddN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] += b[ib] * n, a[ia + sa] += b[ib + sb] * n, a);
-
-export const msub2 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
-    (a[ia] -= b[ib] * c[ic], a[ia + sa] -= b[ib + sb] * c[ic + sc], a);
-
-export const msubN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    (a[ia] -= b[ib] * n, a[ia + sa] -= b[ib + sb] * n, a);
+export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op21(Math.pow, a, n, ia, sa);
 
 export const dot2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] + a[ia + sa] * b[ib + sb];
 
 export const cross2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib + sb] - a[ia + sa] * b[ib];
-
-export const mix2 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t[it],
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
-    a
-);
-
-export const mixN2 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * n,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
-    a
-);
-
-export const mix2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
-    out
-);
-
-export const mixN2o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * n,
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
-    out
-);
 
 export const mixBilinear2 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
@@ -211,12 +115,6 @@ export const mixBilinear2 = (
         a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
         a
     );
-
-export const min2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op22(Math.min, a, b, ia, ib, sa, sb);
-
-export const max2 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op22(Math.max, a, b, ia, ib, sa, sb);
 
 export const clamp2 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
     max2(min2(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
@@ -399,6 +297,14 @@ export class Vec2 implements
         );
     }
 
+    static randNorm(n = 1) {
+        return new Vec2(randNorm2([], n));
+    }
+
+    static random(min: number, max: number) {
+        return new Vec2(randMinMax2([], min, max));
+    }
+
     static add(a: Readonly<Vec2>, b: Readonly<Vec2>, out?: Vec2) {
         !out && (out = new Vec2([]));
         add2o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
@@ -517,6 +423,11 @@ export class Vec2 implements
 
     setS(x: number, y: number) {
         setS2(this.buf, x, y, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter2(this.buf, n, this.i, this.s);
         return this;
     }
 

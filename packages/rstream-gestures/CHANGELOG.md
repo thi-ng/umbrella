@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.13"></a>
+## [0.5.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.12...@thi.ng/rstream-gestures@0.5.13) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.12"></a>
+## [0.5.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.11...@thi.ng/rstream-gestures@0.5.12) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.11"></a>
+## [0.5.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.10...@thi.ng/rstream-gestures@0.5.11) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.10"></a>
+## [0.5.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.9...@thi.ng/rstream-gestures@0.5.10) (2018-09-24)
+
+
+### Performance Improvements
+
+* **rstream-gestures:** `GestureType` => const enum ([8e4fc90](https://github.com/thi-ng/umbrella/commit/8e4fc90))
+
+
+
+
+
+<a name="0.5.9"></a>
+## [0.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.8...@thi.ng/rstream-gestures@0.5.9) (2018-09-23)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.8"></a>
+## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.8-alpha.2...@thi.ng/rstream-gestures@0.5.8) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.8-alpha.2"></a>
+## [0.5.8-alpha.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.8-alpha.1...@thi.ng/rstream-gestures@0.5.8-alpha.2) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.8-alpha.1"></a>
+## [0.5.8-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.8-alpha.0...@thi.ng/rstream-gestures@0.5.8-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
+<a name="0.5.8-alpha.0"></a>
+## [0.5.8-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.7...@thi.ng/rstream-gestures@0.5.8-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
 <a name="0.5.7"></a>
 ## [0.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.6...@thi.ng/rstream-gestures@0.5.7) (2018-09-10)
 

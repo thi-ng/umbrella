@@ -121,7 +121,7 @@ export const convertTree = (tree: any[]): any[] => {
         case "img":
             return image(tree[2], tree[3].src, attribs);
         case "points":
-            return points(tree[2], attribs.shape, attribs);
+            return points(tree[2], attribs.shape, attribs.size, attribs);
         default:
             return tree;
     }
@@ -177,7 +177,7 @@ const convertTransforms = (attribs: any) => {
         attribs.rotate) {
 
         const tx: string[] = [];
-        (v = attribs.transform) && tx.push(`matrix(${v.map(ff).join(" ")})`);
+        (v = attribs.transform) && tx.push(`matrix(${[...v].map(ff).join(" ")})`);
         (v = attribs.translate) && tx.push(`translate(${ff(v[0])} ${ff(v[1])})`);
         (v = attribs.rotate) && tx.push(`rotate(${ff(v * 180 / Math.PI)})`);
         (v = attribs.scale) &&

@@ -3,6 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.5.0...@thi.ng/sax@0.5.1) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.4.1...@thi.ng/sax@0.5.0) (2018-09-25)
+
+
+### Features
+
+* **sax:** add opt support for boolean attribs, add tests ([5119b67](https://github.com/thi-ng/umbrella/commit/5119b67))
+
+
+
+
+
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.4.0...@thi.ng/sax@0.4.1) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.21...@thi.ng/sax@0.4.0) (2018-09-24)
+
+
+### Features
+
+* **sax:** update parse() to return iterator if input given (optional) ([665564c](https://github.com/thi-ng/umbrella/commit/665564c))
+
+
+
+
+
+<a name="0.3.21"></a>
+## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.21-alpha.1...@thi.ng/sax@0.3.21) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
+<a name="0.3.21-alpha.1"></a>
+## [0.3.21-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.21-alpha.0...@thi.ng/sax@0.3.21-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
+<a name="0.3.21-alpha.0"></a>
+## [0.3.21-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.20...@thi.ng/sax@0.3.21-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
 <a name="0.3.20"></a>
 ## [0.3.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.19...@thi.ng/sax@0.3.20) (2018-09-10)
 

@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.3...@thi.ng/strings@0.5.0) (2018-09-25)
+
+
+### Features
+
+* **strings:** add splice(), refactor repeat(), add tests ([0cce048](https://github.com/thi-ng/umbrella/commit/0cce048))
+
+
+
+
+
+<a name="0.4.3"></a>
+## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.2...@thi.ng/strings@0.4.3) (2018-09-24)
+
+
+### Bug Fixes
+
+* **strings:** rename number parsers ([8cbfb97](https://github.com/thi-ng/umbrella/commit/8cbfb97))
+
+
+
+
+
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.1...@thi.ng/strings@0.4.2) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/strings
+
+
+
+
+
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.0...@thi.ng/strings@0.4.1) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/strings
+
+
+
+
+
 <a name="0.3.3"></a>
 ## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.3.2...@thi.ng/strings@0.3.3) (2018-09-10)
 

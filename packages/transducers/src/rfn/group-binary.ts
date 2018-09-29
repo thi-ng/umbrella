@@ -85,7 +85,7 @@ export function groupBinary<T>(
     branch?: () => IObjectOf<T[]>,
     leaf?: Reducer<any, T>,
     left: PropertyKey = "l",
-    right: PropertyKey = "r") {
+    right: PropertyKey = "r"): Reducer<any, T> {
 
     const init = branch || (() => ({}));
     let rfn: Reducer<any, T> = groupByObj({

@@ -4,13 +4,18 @@ import { Transducer } from "@thi.ng/transducers/api";
 import { Stream } from "./stream";
 import { Subscription } from "./subscription";
 
-export enum State {
+export const enum State {
     IDLE,
     ACTIVE,
     DONE,
     ERROR,
     DISABLED, // TODO currently unused
 }
+
+/**
+ * Reverse lookup for `State` enums
+ */
+export const __State = (<any>exports).State;
 
 export type Fn<T> = (x: T) => void;
 

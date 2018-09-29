@@ -26,16 +26,17 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * inputs from multiple inputs and passing received values on to any
  * subscribers. Input streams can be added and removed dynamically. By
  * default, `StreamMerge` calls `done()` when the last active input is
- * done, but this behavior can be overridden via the `close` constructor
- * option (set to `false`).
+ * done, but this behavior can be overridden via the `close` option (set
+ * it to `false`).
  *
  * ```
  * merge({
- *   src: [
- *     fromIterable([1,2,3], 10),
- *     fromIterable([10,20,30], 21),
- *     fromIterable([100,200,300], 7),
- *   ]
+ *     // input streams w/ different frequencies
+ *     src: [
+ *         fromIterable([1, 2, 3], 10),
+ *         fromIterable([10, 20, 30], 21),
+ *         fromIterable([100, 200, 300], 7)
+ *     ]
  * }).subscribe(trace());
  * // 100
  * // 1
@@ -51,11 +52,11 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * Use the `labeled()` transducer for each input to create a stream of
  * labeled values and track their provenance:
  *
- * ```
+ * ```ts
  * merge({
  *     src: [
- *         fromIterable([1,2,3]).transform(labeled("a")),
- *         fromIterable([10,20,30]).transform(labeled("b")),
+ *         fromIterable([1, 2, 3]).transform(labeled("a")),
+ *         fromIterable([10, 20, 30]).transform(labeled("b")),
  *     ]
  * }).subscribe(trace());
  * // ["a", 1]

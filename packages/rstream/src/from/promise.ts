@@ -1,5 +1,6 @@
 import { State } from "../api";
 import { Stream } from "../stream";
+import { Subscription } from "../subscription";
 
 /**
  * Yields a single-value stream of the resolved promise and then
@@ -34,5 +35,5 @@ export function fromPromise<T>(src: Promise<T>) {
             (e) => stream.error(e)
         );
         return () => { canceled = true; };
-    }, `promise-${Stream.NEXT_ID++}`);
+    }, `promise-${Subscription.NEXT_ID++}`);
 }

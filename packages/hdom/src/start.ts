@@ -1,7 +1,6 @@
-import { isString } from "@thi.ng/checks/is-string";
-
 import { HDOMImplementation, HDOMOpts } from "./api";
 import { DEFAULT_IMPL } from "./default";
+import { resolveRoot } from "./utils";
 
 /**
  * Takes an hiccup tree (array, function or component object w/ life
@@ -45,9 +44,7 @@ export const start = (tree: any, opts?: Partial<HDOMOpts>, impl: HDOMImplementat
     opts = { root: "app", ...opts };
     let prev = [];
     let isActive = true;
-    const root = isString(opts.root) ?
-        document.getElementById(opts.root) :
-        opts.root;
+    const root = resolveRoot(opts.root);
     const update = () => {
         if (isActive) {
             const curr = impl.normalizeTree(opts, tree);

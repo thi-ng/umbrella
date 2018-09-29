@@ -46,6 +46,13 @@ describe("view", () => {
         assert.equal(s.deref(), 20);
     });
 
+    it("can read .value", () => {
+        assert.equal(new View(a, "b.c").value, 2);
+        assert.equal(a.addView("b.c").value, 2);
+        assert.equal(new View(new Cursor(a, "b"), "d").value, 3);
+        assert.equal(new Cursor(a, "b").addView("d").value, 3);
+    });
+
     it("reflects updates", () => {
         s = new View(a, "b.c", (x) => x * 10);
         assert(s.changed(), "not dirty");

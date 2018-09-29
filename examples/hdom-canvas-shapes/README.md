@@ -3,41 +3,47 @@
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-shapes/)
 
 This example demonstrates different features of the upcoming
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas)
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
 package to declare canvas scenegraphs using the same hiccup syntax as
 the rest of the UI. These shape elements (children of the `canvas`
 component) are defined via a SVG-like approach (though not using
-stringified points) and, using the branch-local behavior feature of
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom),
+stringified geometry) and, using the new branch-local behavior feature
+of
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom),
 are translated into canvas API draw calls. Shapes can be grouped and any
 attributes defined on group nodes will be inherited by all children
 (same as in SVG).
 
-See the [@thi.ng/hdom-canvas readme](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/packages/hdom-canvas) for further details.
+Furthermore, this example acts as a test bed for
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)'s
+`convertTree()` function to translate and then serialize these scene
+trees to downloadable SVG files.
+
+See the [@thi.ng/hdom-canvas
+readme](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+for further details.
 
 Related examples:
 
-- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock)
+- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+- [hdom-canvas-draw](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
 
 Dataflow diagram:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/feature/hdom-canvas/assets/hdom-canvas-shapes.png)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas-shapes.png)
 
 ## Building
 
-Because some of the packages used by this demo are still unreleased,
-it's currently only possible to build from source...
+Note: Currently, some of the packages used by this demo are only
+available as pre-releases (e.g. `"@thi.ng/hdom": "^5.0.0-alpha"`).
 
 The example project also assumes that [Parcel](https://parceljs.org) is
 installed globally.
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
-cd umbrella
-git checkout feature/hdom-canvas
+cd umbrella/examples/hdom-canvas-shapes
 yarn install
-yarn build
-cd examples/hdom-canvas-shapes
 yarn start
 ```
 

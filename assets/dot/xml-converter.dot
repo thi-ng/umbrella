@@ -1,0 +1,34 @@
+digraph g {
+    rankdir=LR;
+    node[fontname="Inconsolata", fontsize="11"];
+    edge[arrowsize="0.75", fontname="Inconsolata", fontsize="9"];
+
+    rank=same {
+        prettyPrint;
+        doubleQuote;
+        trailingComma;
+        removeTags;
+        removeAttribs;
+        xml;
+    }
+
+    prettyPrint -> formatOpts;
+    doubleQuote -> formatOpts;
+    trailingComma -> formatOpts;
+
+    removeTags -> opts;
+    removeAttribs -> opts;
+    formatOpts -> opts;
+
+    xml -> main;
+    opts -> main;
+
+    main -> app -> ui;
+
+    ui -> xml[label="user", style=dashed];
+    ui -> prettyPrint[label="user", style=dashed];
+    ui -> doubleQuote[label="user", style=dashed];
+    ui -> trailingComma[label="user", style=dashed];
+    ui -> removeTags[label="user", style=dashed];
+    ui -> removeAttribs[label="user", style=dashed];
+}

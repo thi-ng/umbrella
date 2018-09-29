@@ -1,13 +1,10 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
-import { isString } from "@thi.ng/checks/is-string";
+import { diffArray } from "@thi.ng/diff/array";
 import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
-import { ReadonlyVec } from "@thi.ng/vectors/api";
-import { TAU } from "@thi.ng/vectors/math";
+import { equiv, releaseTree } from "@thi.ng/hdom/diff";
 
 interface DrawState {
     attribs: IObjectOf<any>;
@@ -15,6 +12,10 @@ interface DrawState {
     edits?: string[];
     restore?: boolean;
 }
+
+type ReadonlyVec = ArrayLike<number> & Iterable<number>;
+
+const TAU = Math.PI * 2;
 
 const DEFAULTS = {
     align: "left",
@@ -63,17 +64,28 @@ const CTX_ATTRIBS = {
 };
 
 /**
- * Special HTML5 canvas component which injects branch-local hdom
- * implementation for virtual SVG-like shape components/elements, which
- * are translated into canvas draw commands.
+ * Special HTML5 canvas component which injects a branch-local hdom
+ * implementation for virtual SVG-like shape components / elements.
+ * These elements are then translated into canvas draw commands during
+ * the hdom update process.
+ *
+ * The canvas component automatically adjusts its size for HDPI displays
+ * by adding CSS `width` & `height` properties and pre-scaling the
+ * drawing context accordingly before shapes are processed.
  *
  * Shape components are expressed in standard hiccup syntax, however
  * with the following restrictions:
  *
- * - component objects with life cycle methods are only partially
- *   supported (i.e. only `render` is used)
- * - currently no event listeners can be assigned to shapes (ignored),
- *   though this is planned for a future version
+ * - Shape component objects with life cycle methods are only partially
+ *   supported, i.e. only the `render` & `release` methods are used
+ *   (Note, for performance reasons `release` methods are ignored by
+ *   default. If your shape tree contains stateful components which use
+ *   the `release` life cycle method, you'll need to explicitly enable
+ *   the canvas component's `__release` attribute by setting it to
+ *   `true`).
+ * - Currently no event listeners can be assigned to shapes (ignored),
+ *   though this is planned for a future version. The canvas element
+ *   itself can of course have event handlers as usual.
  *
  * All embedded component functions receive the user context object just
  * like normal hdom components.
@@ -89,31 +101,52 @@ const CTX_ATTRIBS = {
  * @param attribs canvas attribs
  * @param shapes shape components
  */
-export const canvas = (_, attribs, ...shapes: any[]) =>
-    ["canvas", attribs,
-        ["g", {
-            __release: false,
-            __diff: false,
-            __impl: IMPL,
-            clear: attribs.clear
-        }, ...shapes]];
+export const canvas = {
+    render: (_, attribs, ...body: any[]) => {
+        const cattribs = { ...attribs };
+        delete cattribs.__diff;
+        delete cattribs.__normalize;
+        const dpr = window.devicePixelRatio || 1;
+        if (dpr !== 1) {
+            !cattribs.style && (cattribs.style = {});
+            cattribs.style.width = `${cattribs.width}px`;
+            cattribs.style.height = `${cattribs.height}px`;
+            cattribs.width *= dpr;
+            cattribs.height *= dpr;
+        }
+        return ["canvas", cattribs,
+            ["g", {
+                __impl: IMPL,
+                __diff: attribs.__diff !== false,
+                __normalize: attribs.__normalize !== false,
+                __release: attribs.__release === true,
+                __serialize: false,
+                __clear: attribs.__clear,
+                scale: dpr !== 1 ? dpr : null,
+            }, ...body]]
+    }
+};
 
-export const drawTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
+export const createTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
+    // console.log(Date.now(), "draw");
     const ctx = canvas.getContext("2d");
     const attribs = tree[1];
-    if (attribs && attribs.clear !== false) {
+    if (attribs && attribs.__clear !== false) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
     walk(ctx, tree, { attribs: {} });
 };
 
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
+    if (tree == null) {
+        return tree;
+    }
     if (isArray(tree)) {
         const tag = tree[0];
-        if (isFunction(tag)) {
+        if (typeof tag === "function") {
             return normalizeTree(opts, tag.apply(null, [opts.ctx, ...tree.slice(1)]));
         }
-        if (isString(tag)) {
+        if (typeof tag === "string") {
             const attribs = tree[1];
             if (attribs && attribs.__normalize === false) {
                 return tree;
@@ -125,11 +158,11 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
             }
             return res;
         }
-    } else if (isFunction(tree)) {
+    } else if (typeof tree === "function") {
         return normalizeTree(opts, tree(opts.ctx));
-    } else if (implementsFunction(tree, "toHiccup")) {
+    } else if (typeof tree.toHiccup === "function") {
         return normalizeTree(opts, tree.toHiccup(opts.ctx));
-    } else if (implementsFunction(tree, "deref")) {
+    } else if (typeof tree.deref === "function") {
         return normalizeTree(opts, tree.deref());
     } else if (isNotStringAndIterable(tree)) {
         const res = [];
@@ -142,11 +175,32 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
     return tree;
 };
 
+export const diffTree = (opts: Partial<HDOMOpts>,
+    _: HDOMImplementation<any>,
+    parent: HTMLCanvasElement,
+    prev: any[],
+    curr: any[],
+    child: number) => {
+    const attribs = curr[1];
+    if (attribs.__diff === false) {
+        releaseTree(prev);
+        return createTree(opts, parent, curr);
+    }
+    // delegate to branch-local implementation
+    if (attribs.__impl && attribs.__impl !== IMPL) {
+        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    }
+    const delta = diffArray(prev, curr, equiv, true);
+    if (delta.distance > 0) {
+        return createTree(opts, parent, curr);
+    }
+}
+
 export const IMPL: HDOMImplementation<any> = {
-    createTree: drawTree,
+    createTree,
     normalizeTree,
+    diffTree,
     hydrateTree: () => { },
-    diffTree: () => { },
 };
 
 const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {
@@ -292,8 +346,8 @@ const applyTransform = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) 
     let v: any;
     if ((v = attribs.transform) ||
         attribs.translate ||
-        attribs.scale != null ||
-        attribs.rotate != null) {
+        attribs.scale ||
+        attribs.rotate) {
 
         ctx.save();
         if (v) {

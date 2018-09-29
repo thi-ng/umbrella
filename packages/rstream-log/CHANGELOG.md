@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.63"></a>
+## [1.0.63](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.62...@thi.ng/rstream-log@1.0.63) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.62"></a>
+## [1.0.62](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.61...@thi.ng/rstream-log@1.0.62) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.61"></a>
+## [1.0.61](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.60...@thi.ng/rstream-log@1.0.61) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.60"></a>
+## [1.0.60](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.59...@thi.ng/rstream-log@1.0.60) (2018-09-24)
+
+
+### Performance Improvements
+
+* **rstream-log:** `Level` => const enum ([fc6a4d3](https://github.com/thi-ng/umbrella/commit/fc6a4d3))
+
+
+
+
+
+<a name="1.0.59"></a>
+## [1.0.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.58...@thi.ng/rstream-log@1.0.59) (2018-09-23)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.58"></a>
+## [1.0.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.58-alpha.2...@thi.ng/rstream-log@1.0.58) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.58-alpha.2"></a>
+## [1.0.58-alpha.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.58-alpha.1...@thi.ng/rstream-log@1.0.58-alpha.2) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.58-alpha.1"></a>
+## [1.0.58-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.58-alpha.0...@thi.ng/rstream-log@1.0.58-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+<a name="1.0.58-alpha.0"></a>
+## [1.0.58-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.57...@thi.ng/rstream-log@1.0.58-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
 <a name="1.0.57"></a>
 ## [1.0.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.56...@thi.ng/rstream-log@1.0.57) (2018-09-10)
 

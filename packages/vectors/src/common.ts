@@ -184,27 +184,3 @@ export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia
     }
     return true;
 };
-
-/**
- * Helper function to create vector/matrix index & property accessors.
- *
- * @param proto
- * @param indices
- * @param props
- */
-export const declareIndices = (proto: any, props: string[]) => {
-    const get = (i: number) => function () { return this.buf[this.i + i * (this.s || 1)]; };
-    const set = (i: number) => function (n: number) { this.buf[this.i + i * (this.s || 1)] = n; };
-    props.forEach((id, i) => {
-        Object.defineProperty(proto, i, {
-            get: get(i),
-            set: set(i),
-            enumerable: true,
-        });
-        Object.defineProperty(proto, id, {
-            get: get(i),
-            set: set(i),
-            enumerable: true,
-        });
-    });
-};

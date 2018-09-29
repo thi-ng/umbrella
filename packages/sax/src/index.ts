@@ -1,6 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
 import { Transducer } from "@thi.ng/transducers/api";
+import { $iter, iterator } from "@thi.ng/transducers/iterator";
 
 export interface ParseOpts {
     /**
@@ -26,7 +27,22 @@ export interface ParseOpts {
      * Default: false
      */
     trim: boolean;
+    /**
+     * If `true`, HTML5 boolean attributes are supported.
+     *
+     * Default: false
+     */
+    boolean: boolean;
+    /**
+     * If given, element names in this set are allowed to omit their
+     * closing `/`. E.g. `<link href="...">` vs `<link href="..."/>`
+     *
+     * Default: undefined (none allowed)
+     */
+    // voidTags: Set<string>; // TODO #48
 }
+
+export const VOID_TAGS = new Set("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
 
 export interface ParseElement {
     tag: string;
@@ -88,7 +104,7 @@ interface ParseState extends FSMState {
     opts: Partial<ParseOpts>;
 }
 
-enum State {
+const enum State {
     WAIT,
     ERROR,
     MAYBE_ELEM,
@@ -135,12 +151,19 @@ const ESCAPE_SEQS = {
 
 /**
  * Returns XML parser transducer, optionally configured with given
- * options.
+ * options. If `src` is also given, returns an iterator instead.
  *
  * @param opts
  */
-export const parse = (opts?: Partial<ParseOpts>): Transducer<string, ParseEvent> =>
-    fsm({
+export function parse(opts?: Partial<ParseOpts>): Transducer<string, ParseEvent>;
+export function parse(src: string): IterableIterator<ParseEvent>;
+export function parse(opts: Partial<ParseOpts>, src: string): IterableIterator<ParseEvent>;
+export function parse(...args: any[]): any {
+    const iter = $iter(parse, args, iterator);
+    if (iter) {
+        return iter;
+    }
+    return fsm({
         states: PARSER,
         init: () => (<ParseState>{
             state: State.WAIT,
@@ -150,11 +173,12 @@ export const parse = (opts?: Partial<ParseOpts>): Transducer<string, ParseEvent>
                 children: true,
                 entities: false,
                 trim: false,
-                ...opts
+                ...args[0]
             },
         }),
         terminate: State.ERROR
     });
+}
 
 const isWS = (x: string) => {
     const c = x.charCodeAt(0);
@@ -333,10 +357,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
                 }
             } else {
                 if (ch === ">") {
-                    state.state = State.ELEM_BODY;
-                    state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
-                    state.body = "";
-                    return [{ type: Type.ELEM_START, tag: state.tag, attribs: state.attribs }];
+                    return beginElementBody(state);
                 } else if (ch === "/") {
                     state.state = State.ELEM_SINGLE;
                 } else if (!isWS(ch)) {
@@ -352,6 +373,20 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             state.name += ch;
         } else if (ch === "=") {
             state.state = State.ATTRIB_VAL_START;
+        } else if (state.opts.boolean) {
+            if (ch === " ") {
+                state.attribs[state.name] = true;
+                state.state = State.MAYBE_ATTRIB;
+            } else if (ch === "/") {
+                state.attribs[state.name] = true;
+                state.state = State.ELEM_SINGLE;
+                return;
+            } else if (ch === ">") {
+                state.attribs[state.name] = true;
+                return beginElementBody(state);
+            } else {
+                return unexpected(state, ch);
+            }
         } else {
             return unexpected(state, ch);
         }
@@ -505,4 +540,11 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             return unexpected(state, ch);
         }
     },
+};
+
+const beginElementBody = (state: ParseState) => {
+    state.state = State.ELEM_BODY;
+    state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
+    state.body = "";
+    return [{ type: Type.ELEM_START, tag: state.tag, attribs: state.attribs }];
 };

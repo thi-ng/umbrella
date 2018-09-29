@@ -1,0 +1,31 @@
+{
+    "name": "xml-converter",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "build-cli": "tsc -p tsconfig-cli.json",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.9.7",
+        "terser": "^3.8.2",
+        "typescript": "^3.0.1"
+    },
+    "dependencies": {
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/sax": "latest",
+        "@thi.ng/strings": "latest",
+        "@thi.ng/transducers-hdom": "latest",
+        "commander": "^2.18.0"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    }
+}

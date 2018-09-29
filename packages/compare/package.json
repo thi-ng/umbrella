@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compare",
-    "version": "0.1.7",
+    "version": "0.1.9",
     "description": "Comparator with optional delegation for types implementing @thi.ng/api/ICompare interface",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -24,7 +24,7 @@
         "@types/node": "^10.5.5",
         "mocha": "^5.2.0",
         "nyc": "^12.0.2",
-        "typedoc": "^0.11.1",
+        "typedoc": "^0.12.0",
         "typescript": "^3.0.1"
     },
     "keywords": [

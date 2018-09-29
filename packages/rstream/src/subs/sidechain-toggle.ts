@@ -1,7 +1,6 @@
 import { Predicate } from "@thi.ng/api/api";
 
 import { ISubscribable } from "../api";
-import { Stream } from "../stream";
 import { Subscription } from "../subscription";
 
 /**
@@ -40,7 +39,7 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
     isActive: boolean;
 
     constructor(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string) {
-        super(null, null, null, id || `sidetoggle-${Stream.NEXT_ID++}`);
+        super(null, null, null, id || `sidetoggle-${Subscription.NEXT_ID++}`);
         this.isActive = initial;
         const $this = this;
         pred = pred || (() => true);

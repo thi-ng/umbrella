@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.26"></a>
+## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.25...@thi.ng/hiccup-css@0.2.26) (2018-09-26)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
+<a name="0.2.25"></a>
+## [0.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.24...@thi.ng/hiccup-css@0.2.25) (2018-09-25)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
+<a name="0.2.24"></a>
+## [0.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.23...@thi.ng/hiccup-css@0.2.24) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
+<a name="0.2.23"></a>
+## [0.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.22...@thi.ng/hiccup-css@0.2.23) (2018-09-24)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
+<a name="0.2.22"></a>
+## [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.22-alpha.1...@thi.ng/hiccup-css@0.2.22) (2018-09-22)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
+<a name="0.2.22-alpha.1"></a>
+## [0.2.22-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.22-alpha.0...@thi.ng/hiccup-css@0.2.22-alpha.1) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
+<a name="0.2.22-alpha.0"></a>
+## [0.2.22-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.21...@thi.ng/hiccup-css@0.2.22-alpha.0) (2018-09-17)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
 <a name="0.2.21"></a>
 ## [0.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.20...@thi.ng/hiccup-css@0.2.21) (2018-09-10)
 

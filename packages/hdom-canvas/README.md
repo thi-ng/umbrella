@@ -1,6 +1,8 @@
 # @thi.ng/hdom-canvas
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-canvas.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -12,6 +14,10 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [How it works](#how-it-works)
+    - [Restrictions & behavior controls](#restrictions--behavior-controls)
+    - [HDPI support](#hdpi-support)
+- [SVG conversion](#svg-conversion)
 - [Supported shape types](#supported-shape-types)
     - [Group](#group)
     - [Definition group](#definition-group)
@@ -40,9 +46,17 @@ This project is part of the
 Declarative canvas scenegraph & visualization for
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
+This package provides a [re-usable canvas
+component](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas/src/index.ts#L66),
+which accepts child nodes defining a scene tree of different shape types
+in standard
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+syntax/format (i.e. nested arrays) and then translates these into canvas
+API draw calls during the hdom update process / cycle.
+
 ### Status
 
-ALPHA - in active development, possibly breaking changes ahead...
+BETA - in active development, possibly breaking changes ahead...
 
 ## Installation
 
@@ -52,15 +66,17 @@ yarn add @thi.ng/hdom-canvas
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
 Please see these example projects for reference:
 
-- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-clock)
-- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/feature/hdom-canvas/examples/hdom-canvas-shapes)
+- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -74,7 +90,124 @@ start(() => {
 });
 ```
 
+## How it works
+
+The package provides a `canvas` component which uses the branch-local
+behavior implementation feature of
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+v5.0.0 to support virtual SVG-like shape elements / components. These
+are defined as part of the main UI component tree just like any other
+component, but are then translated into canvas API draw commands during
+the hdom update process. Any embedded shape component functions receive
+the user context object as first arg, just like normal hdom components.
+
+Shape components are expressed in standard hiccup syntax, however with
+the following...
+
+### Restrictions & behavior controls
+
+- Shape component objects with life cycle methods are only partially
+  supported, i.e. only the `render` & `release` methods are used.
+- For performance reasons `release` methods are disabled by default. If
+  your shape tree contains stateful components which use the `release`
+  life cycle method, you'll need to explicitly enable the canvas
+  component's `__release` control attribute by setting it to `true`.
+- Currently no event listeners can be assigned to shapes (ignored),
+  though this is planned for a future version. The canvas element itself
+  can of course have event handlers as usual.
+
+For best performance it's recommended to ensure all resulting shapes
+elements are provided in already normalized hiccup format, i.e.
+
+```ts
+[tag, {attribs}, ...] // or
+[tag, null, ...]
+```
+
+That way the `__normalize: false` control attribute can be added either
+to the canvas component itself (or to individual shapes / groups), and
+if present, will skip normalization of that element's children.
+
+Likewise, for animated scenes, the `__diff` control attribute should be
+set to `false` to skip unnecessary diffing and force redraws.
+
+To disable the automatic background clearing of the canvas, set the `__clear` attribute to `false`.
+
+```ts
+[canvas, { width: 100, height: 100, __clear: false }, ...]
+```
+
+### HDPI support
+
+The canvas component automatically adjusts its size for HDPI displays by
+adding CSS `width` & `height` properties and pre-scaling the drawing
+context accordingly before any shapes are processed. For fullscreen
+canvases simply set the `width` & `height` attribs to:
+
+```ts
+[canvas,
+    {
+        width: window.innerWidth,
+        height: window.innerHeight
+    },
+    // shapes
+    ...
+]
+```
+
+## SVG conversion
+
+Even though the element names & syntax are *very similar* to SVG
+elements, for performance reasons all geometry data given to each shape
+remains un-stringified (only styling attributes are). However, the
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+package provides a `convertTree()` function which takes the arguably
+more "raw" shape format used by hdom-canvas and converts an entire shape
+tree into SVG compatible & serializable format. Note: the tree MUST
+first be normalized (if not already) using hdom-canvas'
+`normalizeTree()`.
+
+```ts
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { normalizeTree } from "@thi.ng/hdom-canvas";
+
+serialize(
+    svg({ width: 100, height: 100},
+        convertTree(
+            normalizeTree(
+                {}, // default normalization options
+                ["g",
+                    {
+                        fill: "red",
+                        stroke: "none",
+                        translate: [50, 50]
+                    },
+                    ["circle", {}, [0, 0], 25],
+                    ["polygon", { fill: "white" },
+                        [[-10,10],[10,10],[0,-10]]
+                    ]
+                ]
+            )
+        )
+    )
+);
+```
+
+```xml
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100">
+    <g transform="translate(50.00 50.00)" fill="red" stroke="none">
+        <circle cx="0.00" cy="0.00" r="25.00"/>
+        <polygon points="-10.00,10.00 10.00,10.00 0.00,-10.00" fill="white"/>
+    </g>
+</svg>
+```
+
 ## Supported shape types
+
+In the near future, factory functions for these shape types will be
+provided...
+
 
 ### Group
 
@@ -90,12 +223,13 @@ Attributes defined at group level are inherited by child elements.
 ["defs", {}, def1, def2, ...]
 ```
 
-Special group / container for [gradient definitions](#gradients).
+Special group / container for [gradient definitions](#gradients). If
+used, should always come first in a scene tree.
 
 ### Circle
 
 ```ts
-["circle", attribs, [x, y], r]
+["circle", attribs, [x, y], radius]
 ```
 
 ### Rect
@@ -155,6 +289,11 @@ relative to the end point of the previous segment.
 ["points", attribs, [[x1,y1], [x2,y2],...]]
 ```
 
+The following shape specific attributes are used:
+
+- `shape`: `circle` or `rect` (default)
+- `size`: point size (radius for circles, width for rects) - default: 1
+
 ### Text
 
 ```ts
@@ -167,7 +306,7 @@ relative to the end point of the previous segment.
 ["img", attribs, [x, y], img]
 ```
 
-`img` MUST be an HTML image element, canvas or video element.
+`img` MUST be an HTML image, canvas or video element.
 
 ### Gradients
 
@@ -234,6 +373,14 @@ the order of application is always TRS.
 See [MDN
 docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform)
 for further details.
+
+Also see the [`Mat23` type in the
+@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/mat23.ts)
+package for creating different kinds of transformation matrices, e.g.
+
+```
+{ transform: Mat23.skewX(Math.PI / 12) }
+```
 
 ### Translation
 

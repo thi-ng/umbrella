@@ -120,16 +120,35 @@ describe("sax", () => {
 
     it("errors", () => {
         assert.deepEqual(
-            [...tx.iterator(sax.parse(), "a")],
+            [...sax.parse("a")],
             [{ type: 7, body: "unexpected char: 'a' @ pos 1" }]
         );
         assert.deepEqual(
-            [...tx.iterator(sax.parse(), "<a><b></c></a>")],
+            [...sax.parse("<a><b></c></a>")],
             [
                 { type: 4, tag: "a", attribs: {} },
                 { type: 4, tag: "b", attribs: {} },
                 { type: 7, body: "unmatched tag: 'c' @ pos 7" }
             ]
         );
+    });
+
+    it("boolean attribs", () => {
+        assert.deepEqual(
+            [...sax.parse({ boolean: true }, `<foo a b="2" c></foo>`)],
+            [
+                { type: 4, tag: "foo", attribs: { a: true, b: "2", c: true } },
+                { type: 5, tag: "foo", attribs: { a: true, b: "2", c: true }, children: [] }
+            ],
+            "no slash"
+        )
+        assert.deepEqual(
+            [...sax.parse({ boolean: true }, `<foo a b="2" c/>`)],
+            [
+                { type: 4, tag: "foo", attribs: { a: true, b: "2", c: true } },
+                { type: 5, tag: "foo", attribs: { a: true, b: "2", c: true } }
+            ],
+            "with slash"
+        )
     });
 });

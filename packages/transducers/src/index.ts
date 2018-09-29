@@ -115,6 +115,7 @@ export * from "./func/key-selector";
 export * from "./func/lookup";
 export * from "./func/odd";
 export * from "./func/peek";
+export * from "./func/random-id";
 export * from "./func/renamer";
 export * from "./func/swizzler";
 export * from "./func/weighted-random";

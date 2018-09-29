@@ -1,19 +1,13 @@
-import * as impf from "@thi.ng/checks/implements-function";
 import * as isa from "@thi.ng/checks/is-array";
-import * as isf from "@thi.ng/checks/is-function";
-import * as isi from "@thi.ng/checks/is-iterable";
+import * as insi from "@thi.ng/checks/is-not-string-iterable";
 import * as iso from "@thi.ng/checks/is-plain-object";
-import * as iss from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup/api";
 import { HDOMOpts } from "./api";
 
 const isArray = isa.isArray;
-const isFunction = isf.isFunction;
-const implementsFunction = impf.implementsFunction;
-const isIterable = isi.isIterable
+const isNotStringAndIterable = insi.isNotStringAndIterable;
 const isPlainObject = iso.isPlainObject;
-const isString = iss.isString;
 
 /**
  * Expands single hiccup element/component into its canonical form:
@@ -41,7 +35,7 @@ const isString = iss.isString;
  */
 export const normalizeElement = (spec: any[], keys: boolean) => {
     let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
-    if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
+    if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
         illegalArgs(`${tag} is not a valid tag name`);
     }
     // return orig if already normalized and satisfies key requirement
@@ -66,42 +60,10 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
 };
 
 /**
- * Calling this function is a prerequisite before passing a component
- * tree to `diffTree`. Recursively expands given hiccup component
- * tree into its canonical form by:
+ * See `HDOMImplementation` interface for further details.
  *
- * - resolving Emmet-style tags (e.g. from `div#id.foo.bar`)
- * - evaluating embedded functions and replacing them with their result
- * - calling `render` life cycle method on component objects and using
- *   result
- * - consuming iterables and normalizing results
- * - calling `deref()` on elements implementing `IDeref` interface and
- *   using returned result
- * - calling `.toString()` on any other non-component value `x` and by
- *   default wrapping it in `["span", x]`. The only exceptions to this
- *   are: `option`, `textarea` and SVG `text` elements, for which spans
- *   are always skipped.
- *
- * Additionally, unless `keys` is set to false, an unique `key`
- * attribute is created for each node in the tree. This attribute is
- * used by `diffTree` to determine if a changed node can be patched
- * or will need to be replaced/removed. The `key` values are defined by
- * the `path` array arg.
- *
- * In terms of life cycle methods: `render` should ALWAYS return an
- * array or another function, else the component's `init` or `release`
- * fns will NOT be able to be called. E.g. If the return value of
- * `render` evaluates as a string or number, the return value should be
- * wrapped as `["span", "foo"]`. If no `init` or `release` are used,
- * this requirement is relaxed.
- *
- * For normal usage only the first 2 args should be specified and the
- * rest kept at their defaults.
- *
- * See `normalizeElement` for further details about canonical form.
- *
- * @param tree
  * @param opts
+ * @param tree
  */
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
     _normalizeTree(tree, opts, opts.ctx, [0], opts.keys !== false, opts.span !== false);
@@ -122,12 +84,12 @@ const _normalizeTree = (tree: any, opts: Partial<HDOMOpts>, ctx: any, path: numb
         const tag = tree[0];
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
-        if (isFunction(tag)) {
+        if (typeof tag === "function") {
             return _normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), opts, ctx, path, keys, span);
         }
         // component object w/ life cycle methods
         // (render() is the only required hook)
-        if (implementsFunction(tag, "render")) {
+        if (typeof tag.render === "function") {
             const args = [ctx, ...tree.slice(1)];
             norm = _normalizeTree(tag.render.apply(tag, args), opts, ctx, path, keys, span);
             if (isArray(norm)) {
@@ -154,7 +116,7 @@ const _normalizeTree = (tree: any, opts: Partial<HDOMOpts>, ctx: any, path: numb
                 let el = norm[i];
                 if (el != null) {
                     const isarray = isArray(el);
-                    if ((isarray && isArray(el[0])) || (!isarray && !isString(el) && isIterable(el))) {
+                    if ((isarray && isArray(el[0])) || (!isarray && isNotStringAndIterable(el))) {
                         for (let c of el) {
                             c = _normalizeTree(c, opts, ctx, path.concat(k), keys, span);
                             if (c !== undefined) {
@@ -175,13 +137,13 @@ const _normalizeTree = (tree: any, opts: Partial<HDOMOpts>, ctx: any, path: numb
         }
         return norm;
     }
-    if (isFunction(tree)) {
+    if (typeof tree === "function") {
         return _normalizeTree(tree(ctx), opts, ctx, path, keys, span);
     }
-    if (implementsFunction(tree, "toHiccup")) {
+    if (typeof tree.toHiccup === "function") {
         return _normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span);
     }
-    if (implementsFunction(tree, "deref")) {
+    if (typeof tree.deref === "function") {
         return _normalizeTree(tree.deref(), opts, ctx, path, keys, span);
     }
     return span ?

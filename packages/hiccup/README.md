@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -11,6 +12,7 @@ This project is part of the
 - [About](#about)
     - [Features](#features)
     - [Use cases](#use-cases)
+    - [Related packages](#related-packages)
     - [No special sauce needed (or wanted)](#no-special-sauce-needed-or-wanted)
     - [What is Hiccup?](#what-is-hiccup)
 - [Installation](#installation)
@@ -67,6 +69,13 @@ serialization time. Examples below...
 - Serverside rendering
 - Static site, feed generation
 - SVG asset generation
+- Shape trees for declarative canvas API drawing
+
+### Related packages
+
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
 ### No special sauce needed (or wanted)
 
@@ -271,6 +280,10 @@ serialize([div, {id: "foo"}, "bar"]);
 ```
 
 ### SVG generation, generators & lazy composition
+
+Also see
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+for related functionality.
 
 ```ts
 const fs = require("fs");

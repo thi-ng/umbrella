@@ -1,0 +1,16 @@
+digraph g {
+    rankdir=LR;
+    node[fontname=Inconsolata,fontsize=11];
+    edge[fontname=Inconsolata,fontsize=9];
+
+    selection -> scene;
+    fromRAF -> scene;
+
+    scene -> ui;
+    scene -> exporter;
+    trigger -> exporter;
+
+    exporter -> file[style=dashed,label="download"];
+    ui -> selection[style=dashed,label="onchange"];
+    ui -> trigger[style=dashed,label="onclick"];
+}

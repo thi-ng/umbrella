@@ -2,11 +2,16 @@ import { IID, ILength, IRelease } from "@thi.ng/api/api";
 
 import { Channel } from "./channel";
 
-export enum State {
+export const enum State {
     OPEN,
     CLOSED,
     DONE,
 }
+
+/**
+ * Reverse lookup for `State` enums
+ */
+export const __State = (<any>exports).State;
 
 export interface ChannelItem<T> {
     value: () => Promise<T>;

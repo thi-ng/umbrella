@@ -34,6 +34,7 @@ export interface IView<T> extends
     api.IRelease {
 
     readonly path: PropertyKey[];
+    readonly value: T;
 
     view(): T;
     changed(): boolean;

@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/equiv.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -17,6 +18,8 @@ Extensible deep equivalence checking for any data types. Supports:
 - Date
 - RegExp
 - types with `.equiv()` implementations
+  ([IEquiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L213)
+  interface)
 
 This feature was previously part of the
 [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

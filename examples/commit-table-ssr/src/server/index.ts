@@ -1,11 +1,12 @@
 import { TLRUCache } from "@thi.ng/cache";
 import * as express from "express";
+import * as Bundler from "parcel-bundler";
+import * as fs from "fs";
 
 import { Commit } from "../common/api";
 import { ctx } from "../common/config";
 import { buildRepoTableHTML } from "./build-table";
 import { repoCommits } from "./git";
-import { html, script } from "./html";
 
 // building the repo commit table takes quite some time
 // therefore we cache results with 1h expiry time
@@ -13,24 +14,24 @@ import { html, script } from "./html";
 const rawCache = new TLRUCache<string, Commit[]>(null, { ttl: 60 * 60 * 1000 });
 const htmlCache = new TLRUCache<string, string>(null, { ttl: 60 * 60 * 1000 });
 
+const bundler = new Bundler("index.html", {
+    outDir: "./out",
+    outFile: "index.html",
+    publicUrl: "/out",
+});
+
+const getCommits = async () => {
+    const commits = [...repoCommits(ctx.repo.path)];
+    fs.writeFileSync("commits.json", JSON.stringify(commits));
+    return commits;
+};
+
 const app = express();
 
-app.use(express.static("."));
-
 // route for browser version
-// here we simply return a barebone html doc
-// with a reference to the built client JS
+// here we simply redirect to the Parcel managed client version
 app.get("/", (_, res) => {
-    res.send(html({
-        ctx,
-        head: {
-            title: "commit-table-hdom",
-        },
-        body: [
-            ["div#app"],
-            [script, { src: "bundle.js" }]
-        ],
-    }));
+    res.redirect("/out/");
 });
 
 // route for the client to retrieve the commit log as JSON
@@ -39,7 +40,7 @@ app.get("/commits", (_, res) => {
     // (re)create if missing...
     rawCache.getSet(
         ctx.repo.path,
-        async () => [...repoCommits(ctx.repo.path)]
+        getCommits
     ).then(
         (commits) => res.type("json").send(commits)
     )
@@ -55,11 +56,14 @@ app.get("/ssr", (_, res) => {
         async () => buildRepoTableHTML(
             await rawCache.getSet(
                 ctx.repo.path,
-                async () => [...repoCommits(ctx.repo.path)]
+                getCommits
             )
         )
     ).then((doc) => res.send(doc))
 });
 
-console.log("starting server @ http://localhost:3000");
-app.listen(3000);
+app.use(express.static("."));
+app.use(bundler.middleware());
+
+console.log("starting server @ http://localhost:8080");
+app.listen(8080);

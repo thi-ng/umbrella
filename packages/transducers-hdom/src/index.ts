@@ -1,5 +1,5 @@
 import { isString } from "@thi.ng/checks/is-string";
-import { HDOMOpts } from "@thi.ng/hdom/api";
+import { HDOMOpts, HDOMImplementation } from "@thi.ng/hdom/api";
 import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
 import { Transducer } from "@thi.ng/transducers/api";
 import { reducer } from "@thi.ng/transducers/reduce";
@@ -32,7 +32,7 @@ import { scan } from "@thi.ng/transducers/xform/scan";
  *
  * @param opts hdom options
  */
-export const updateDOM = (opts?: Partial<HDOMOpts>, impl = DEFAULT_IMPL): Transducer<any, any[]> => {
+export const updateDOM = (opts?: Partial<HDOMOpts>, impl: HDOMImplementation<any> = DEFAULT_IMPL): Transducer<any, any[]> => {
     opts = { root: "app", ...opts };
     const root = isString(opts.root) ?
         document.getElementById(opts.root) :

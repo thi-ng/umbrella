@@ -5,7 +5,6 @@ import {
     ILength
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import {
     IVec,
     MAX4,
@@ -15,7 +14,8 @@ import {
     Vec,
     ZERO4
 } from "./api";
-import { declareIndices, $iter } from "./common";
+import { declareIndices, defcommon } from "./codegen";
+import { $iter } from "./common";
 import {
     atan2Abs1,
     EPS,
@@ -24,7 +24,6 @@ import {
     max3id,
     min3id,
     mixBilinear1,
-    sign1,
     smoothStep1,
     step1
 } from "./math";
@@ -42,42 +41,39 @@ export const op3 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) => (
     a
 );
 
-export const op32 = (fn: (a: number, b: number) => number, a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = fn(a[ia], b[ib]),
-    a[ia + sa] = fn(a[ia + sa], b[ib + sb]),
-    a[ia + 2 * sa] = fn(a[ia + 2 * sa], b[ib + 2 * sb]),
+export const op30 = (fn: () => number, a: Vec, ia = 0, sa = 1) => (
+    a[ia] = fn(),
+    a[ia + sa] = fn(),
+    a[ia + 2 * sa] = fn(),
+    a
+);
+
+export const op31 = (fn: (a: number, n: number) => number, a: Vec, n: number, ia = 0, sa = 1) => (
+    a[ia] = fn(a[ia], n),
+    a[ia + sa] = fn(a[ia + sa], n),
+    a[ia + 2 * sa] = fn(a[ia + 2 * sa], n),
     a
 );
 
 export const get3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     set3(new (<any>(a.constructor))(3), a, 0, ia, 1, sa);
 
-export const set3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] = b[ib],
-    a[ia + sa] = b[ib + sb],
-    a[ia + 2 * sa] = b[ib + 2 * sb],
-    a
-);
-
-export const setN3 = (a: Vec, n: number, ia = 0, sa = 1) => (
-    a[ia] = n,
-    a[ia + sa] = n,
-    a[ia + 2 * sa] = n,
-    a
-);
-
 export const setS3 = (a: Vec, x: number, y: number, z: number, ia = 0, sa = 1) =>
     (a[ia] = x, a[ia + sa] = y, a[ia + 2 * sa] = z, a);
 
-export const swizzle3 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) => {
-    const xx = b[ib + x * sb];
-    const yy = b[ib + y * sb];
-    const zz = b[ib + z * sb];
-    a[ia] = xx;
-    a[ia + sa] = yy;
-    a[ia + 2 * sa] = zz;
-    return a;
+export const randNorm3 = (a: Vec, n = 1, ia = 0, sa = 1) =>
+    randMinMax3(a, -n, n, ia, sa);
+
+export const randMinMax3 = (a: Vec, min: number, max: number, ia = 0, sa = 1) => {
+    const d = max - min;
+    return op30(() => min + d * Math.random(), a, ia, sa);
 };
+
+export const jitter3 = (a: Vec, n: number, ia = 0, sa = 1) =>
+    op3((x) => x + Math.random() * 2 * n - n, a, ia, sa);
+
+export const swizzle3 = (a: Vec, b: ReadonlyVec, x: number, y: number, z: number, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    setS3(a, b[ib + x * sb], b[ib + y * sb], b[ib + z * sb], ia, sa);
 
 export const swap3 = (a: Vec, b: Vec, ia = 0, ib = 0, sa = 1, sb = 1) => {
     let t = a[ia]; a[ia] = b[ib]; b[ib] = t;
@@ -98,162 +94,26 @@ export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + sa], b[ib + sb], eps) &&
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
 
-export const add3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib],
-    a[ia + sa] += b[ib + sb],
-    a[ia + 2 * sa] += b[ib + 2 * sb],
-    a
-);
-
-export const mul3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] *= b[ib],
-    a[ia + sa] *= b[ib + sb],
-    a[ia + 2 * sa] *= b[ib + 2 * sb],
-    a
-);
-
-export const sub3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] -= b[ib],
-    a[ia + sa] -= b[ib + sb],
-    a[ia + 2 * sa] -= b[ib + 2 * sb],
-    a
-);
-
-export const div3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] /= b[ib],
-    a[ia + sa] /= b[ib + sb],
-    a[ia + 2 * sa] /= b[ib + 2 * sb],
-    a
-);
-
-export const add3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + b[ib],
-    out[io + so] = a[ia + sa] + b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] + b[ib + 2 * sb],
-    out
-);
-
-export const sub3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] - b[ib],
-    out[io + so] = a[ia + sa] - b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] - b[ib + 2 * sb],
-    out
-);
-
-export const mul3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] * b[ib],
-    out[io + so] = a[ia + sa] * b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] * b[ib + 2 * sb],
-    out
-);
-
-export const div3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] / b[ib],
-    out[io + so] = a[ia + sa] / b[ib + sb],
-    out[io + 2 * so] = a[ia + 2 * sa] / b[ib + 2 * sb],
-    out
-);
-
-export const addN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] += n, a[ia + sa] += n, a[ia + 2 * sa] += n, a);
-
-export const subN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] -= n, a[ia + sa] -= n, a[ia + 2 * sa] -= n, a);
-
-export const mulN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] *= n, a[ia + sa] *= n, a[ia + 2 * sa] *= n, a);
-
-export const divN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    (a[ia] /= n, a[ia + sa] /= n, a[ia + 2 * sa] /= n, a);
-
-export const addN3o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] + n,
-    out[io + so] = a[ia + sa] + n,
-    out[io + 2 * so] = a[ia + 2 * sa] + n,
-    out
-);
-
-export const subN3o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] - n,
-    out[io + so] = a[ia + sa] - n,
-    out[io + 2 * so] = a[ia + 2 * sa] - n,
-    out
-);
-
-export const mulN3o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] * n,
-    out[io + so] = a[ia + sa] * n,
-    out[io + 2 * so] = a[ia + 2 * sa] * n,
-    out
-);
-
-export const divN3o = (out: Vec, a: ReadonlyVec, n: number, io = 0, ia = 0, so = 1, sa = 1) => (
-    out[io] = a[ia] / n,
-    out[io + so] = a[ia + sa] / n,
-    out[io + 2 * so] = a[ia + 2 * sa] / n,
-    out
-);
+export const [
+    set3, setN3,
+    add3, sub3, mul3, div3,
+    add3o, sub3o, mul3o, div3o,
+    addN3, subN3, mulN3, divN3,
+    addN3o, subN3o, mulN3o, divN3o,
+    madd3, maddN3, msub3, msubN3,
+    abs3, sign3, floor3, ceil3, sin3, cos3, sqrt3,
+    pow3, min3, max3,
+    mix3, mixN3, mix3o, mixN3o
+] = defcommon(3);
 
 export const neg3 = (a: Vec, ia = 0, sa = 1) =>
     mulN3(a, -1, ia, sa);
 
-export const abs3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.abs, a, ia, sa);
-
-export const sign3 = (a: Vec, eps = EPS, ia = 0, sa = 1) =>
-    op3((x) => sign1(x, eps), a, ia, sa);
-
-export const floor3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.floor, a, ia, sa);
-
-export const ceil3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.ceil, a, ia, sa);
-
 export const fract3 = (a: Vec, ia = 0, sa = 1) =>
     op3(fract1, a, ia, sa);
 
-export const sin3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.sin, a, ia, sa);
-
-export const cos3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.cos, a, ia, sa);
-
-export const sqrt3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(Math.sqrt, a, ia, sa);
-
-export const pow3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op32(Math.pow, a, b, ia, ib, sa, sb);
-
 export const powN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
-    op3((x) => Math.pow(x, n), a, ia, sa);
-
-export const madd3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
-    a[ia] += b[ib] * c[ic],
-    a[ia + sa] += b[ib + sb] * c[ic + sc],
-    a[ia + 2 * sa] += b[ib + 2 * sb] * c[ic + 2 * sc],
-    a
-);
-
-export const maddN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += b[ib] * n,
-    a[ia + sa] += b[ib + sb] * n,
-    a[ia + 2 * sa] += b[ib + 2 * sb] * n,
-    a
-);
-
-export const msub3 = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) => (
-    a[ia] -= b[ib] * c[ic],
-    a[ia + sa] -= b[ib + sb] * c[ic + sc],
-    a[ia + 2 * sa] -= b[ib + 2 * sb] * c[ic + 2 * sc],
-    a
-);
-
-export const msubN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] -= b[ib] * n,
-    a[ia + sa] -= b[ib + sb] * n,
-    a[ia + 2 * sa] -= b[ib + 2 * sb] * n,
-    a
-);
+    op31(Math.pow, a, n, ia, sa);
 
 export const dot3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     a[ia] * b[ib] +
@@ -279,34 +139,6 @@ export const orthoNormal3 = (a: Vec, b: Vec, c: Vec, ia = 0, ib = 0, ic = 0, sa 
         sub3(get3(b, ib, sb), a, 0, ia, 1, sa)
     );
 
-export const mix3 = (a: Vec, b: ReadonlyVec, t: ReadonlyVec, ia = 0, ib = 0, it = 0, sa = 1, sb = 1, st = 1) => (
-    a[ia] += (b[ib] - a[ia]) * t[it],
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * t[it + st],
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
-    a
-);
-
-export const mixN3 = (a: Vec, b: ReadonlyVec, n: number, ia = 0, ib = 0, sa = 1, sb = 1) => (
-    a[ia] += (b[ib] - a[ia]) * n,
-    a[ia + sa] += (b[ib + sb] - a[ia + sa]) * n,
-    a[ia + 2 * sa] += (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
-    a
-);
-
-export const mix3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: ReadonlyVec, io = 0, ia = 0, ib = 0, it = 0, so = 1, sa = 1, sb = 1, st = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * t[it],
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * t[it + st],
-    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * t[it + 2 * st],
-    out
-);
-
-export const mixN3o = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number, io = 0, ia = 0, ib = 0, so = 1, sa = 1, sb = 1) => (
-    out[io] = a[ia] + (b[ib] - a[ia]) * n,
-    out[io + so] = a[ia + sa] + (b[ib + sb] - a[ia + sa]) * n,
-    out[io + 2 * so] = a[ia + 2 * sa] + (b[ib + 2 * sb] - a[ia + 2 * sa]) * n,
-    out
-);
-
 export const mixBilinear3 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
     ia = 0, ib = 0, ic = 0, id = 0,
@@ -316,12 +148,6 @@ export const mixBilinear3 = (
         a[ia + 2 * sa] = mixBilinear1(a[ia + 2 * sa], b[ib + 2 * sb], c[ic + 2 * sc], d[id + 2 * sd], u, v),
         a
     );
-
-export const min3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op32(Math.min, a, b, ia, ib, sa, sb);
-
-export const max3 = (a: Vec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    op32(Math.max, a, b, ia, ib, sa, sb);
 
 export const clamp3 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin = 0, imax = 0, sa = 1, smin = 1, smax = 1) =>
     max3(min3(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
@@ -534,6 +360,14 @@ export class Vec3 implements
         return new Vec3(orthoNormal3(a.buf, b.buf, c.buf, a.i, b.i, c.i, a.s, b.s, c.s));
     }
 
+    static randNorm(n = 1) {
+        return new Vec3(randNorm3([], n));
+    }
+
+    static random(min: number, max: number) {
+        return new Vec3(randMinMax3([], min, max));
+    }
+
     static add(a: Readonly<Vec3>, b: Readonly<Vec3>, out?: Vec3) {
         !out && (out = new Vec3([]));
         add3o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
@@ -653,6 +487,11 @@ export class Vec3 implements
 
     setS(x: number, y: number, z: number) {
         setS3(this.buf, x, y, z, this.i, this.s);
+        return this;
+    }
+
+    jitter(n = 1) {
+        jitter3(this.buf, n, this.i, this.s);
         return this;
     }
 
