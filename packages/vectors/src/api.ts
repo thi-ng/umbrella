@@ -113,6 +113,11 @@ export interface IMath<T> {
     msubN(v: Readonly<T>, n: number): T;
 }
 
+export interface IMinMax<T> {
+    min(v: Readonly<T>): T;
+    max(v: Readonly<T>): T;
+}
+
 export interface IMix<T> {
     mix(v: Readonly<T>, t: Readonly<T>): T;
     mixN(v: Readonly<T>, t: number): T;
