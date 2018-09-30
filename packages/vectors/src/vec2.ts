@@ -24,6 +24,8 @@ import {
     ReadonlyVec,
     Vec,
     Vec2Coord,
+    X4,
+    Y4,
     ZERO4
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
@@ -243,9 +245,13 @@ export const rotateAroundPoint2 = (a: Vec, b: Vec, theta: number, ia = 0, ib = 0
 export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
     atan2Abs1(a[ia + sa], a[ia]);
 
+export const angleRatio2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
+    dot2(a, b, ia, ib, sa, sb) / (mag2(a, ia, sa) * mag2(b, ib, sb));
+
 export const angleBetween2 = (a: ReadonlyVec, b: ReadonlyVec, normalize = false, ia = 0, ib = 0, sa = 1, sb = 1): number =>
     normalize ?
-        angleBetween2(normalize2(get2(a, ia, sa)), normalize2(get2(b, ib, sb))) :
+        (a[ia] * b[ib + sb] < a[ia + sa] * b[ib] ? -1 : 1) *
+        Math.acos(angleRatio2(a, b, ia, ib, sa, sb)) :
         Math.acos(dot2(a, b, ia, ib, sa, sb));
 
 export const bisect2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) => {
@@ -327,6 +333,10 @@ export class Vec2 implements
         return buf;
     }
 
+    static swizzle(v: IVec, x: number, y: number) {
+        return new Vec2([]).swizzle(v, x, y);
+    }
+
     static mixBilinear(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, d: Readonly<Vec2>, u: number, v: number) {
         return new Vec2(
             mixBilinear2(
@@ -393,15 +403,39 @@ export class Vec2 implements
         return out;
     }
 
+    static madd(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, out?: Vec2) {
+        out = out ? out.set(a) : a.copy();
+        madd2(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    static maddN(a: Readonly<Vec2>, b: Readonly<Vec2>, n: number, out?: Vec2) {
+        out = out ? out.set(a) : a.copy();
+        maddN2(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
+    static msub(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, out?: Vec2) {
+        out = out ? out.set(a) : a.copy();
+        msub2(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    static msubN(a: Readonly<Vec2>, b: Readonly<Vec2>, n: number, out?: Vec2) {
+        out = out ? out.set(a) : a.copy();
+        msubN2(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
     static mix(a: Readonly<Vec2>, b: Readonly<Vec2>, t: Readonly<Vec2>, out?: Vec2) {
         !out && (out = new Vec2([]));
         mix2o(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
         return out;
     }
 
-    static mixN(a: Readonly<Vec2>, b: Readonly<Vec2>, t: number, out?: Vec2) {
+    static mixN(a: Readonly<Vec2>, b: Readonly<Vec2>, n = 0.5, out?: Vec2) {
         !out && (out = new Vec2([]));
-        mixN2o(out.buf, a.buf, b.buf, t, out.i, a.i, b.i, out.s, a.s, b.s);
+        mixN2o(out.buf, a.buf, b.buf, n, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
@@ -413,6 +447,8 @@ export class Vec2 implements
     static readonly ONE = Object.freeze(new Vec2(<number[]>ONE4));
     static readonly MIN = Object.freeze(new Vec2(<number[]>MIN4));
     static readonly MAX = Object.freeze(new Vec2(<number[]>MAX4));
+    static readonly X_AXIS = Object.freeze(new Vec2(<number[]>X4));
+    static readonly Y_AXIS = Object.freeze(new Vec2(<number[]>Y4));
 
     buf: Vec;
     i: number;
@@ -609,7 +645,7 @@ export class Vec2 implements
         return this;
     }
 
-    mixN(b: Readonly<Vec2>, n: number) {
+    mixN(b: Readonly<Vec2>, n = 0.5) {
         mixN2(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }

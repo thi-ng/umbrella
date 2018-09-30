@@ -400,7 +400,7 @@ export class GVec implements
         return this;
     }
 
-    mixN(v: Readonly<GVec>, n: number) {
+    mixN(v: Readonly<GVec>, n = 0.5) {
         this.ensureSize(v);
         mixN(this.buf, v.buf, n, this.n, this.i, v.i, this.s, v.s);
         return this;

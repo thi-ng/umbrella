@@ -158,3 +158,8 @@ export const MIN4 = Object.freeze([min, min, min, min]);
 export const MAX4 = Object.freeze([max, max, max, max]);
 export const ONE4 = Object.freeze([1, 1, 1, 1]);
 export const ZERO4 = Object.freeze([0, 0, 0, 0]);
+export const X4 = Object.freeze([1, 0, 0, 0]);
+export const Y4 = Object.freeze([0, 1, 0, 0]);
+export const Z4 = Object.freeze([0, 0, 1, 0]);
+export const W4 = Object.freeze([0, 0, 0, 1]);
+

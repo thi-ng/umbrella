@@ -21,6 +21,10 @@ import {
     ReadonlyVec,
     Vec,
     Vec4Coord,
+    W4,
+    X4,
+    Y4,
+    Z4,
     ZERO4
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
@@ -305,6 +309,10 @@ export class Vec4 implements
         return buf;
     }
 
+    static swizzle(v: IVec, x: number, y: number, z: number, w: number) {
+        return new Vec4([]).swizzle(v, x, y, z, w);
+    }
+
     static mixBilinear(a: Readonly<Vec4>, b: Readonly<Vec4>, c: Readonly<Vec4>, d: Readonly<Vec4>, u: number, v: number) {
         return new Vec4(
             mixBilinear4(
@@ -371,15 +379,39 @@ export class Vec4 implements
         return out;
     }
 
+    static madd(a: Readonly<Vec4>, b: Readonly<Vec4>, c: Readonly<Vec4>, out?: Vec4) {
+        out = out ? out.set(a) : a.copy();
+        madd4(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    static maddN(a: Readonly<Vec4>, b: Readonly<Vec4>, n: number, out?: Vec4) {
+        out = out ? out.set(a) : a.copy();
+        maddN4(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
+    static msub(a: Readonly<Vec4>, b: Readonly<Vec4>, c: Readonly<Vec4>, out?: Vec4) {
+        out = out ? out.set(a) : a.copy();
+        msub4(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    static msubN(a: Readonly<Vec4>, b: Readonly<Vec4>, n: number, out?: Vec4) {
+        out = out ? out.set(a) : a.copy();
+        msubN4(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
     static mix(a: Readonly<Vec4>, b: Readonly<Vec4>, t: Readonly<Vec4>, out?: Vec4) {
         !out && (out = new Vec4([]));
         mix4o(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
         return out;
     }
 
-    static mixN(a: Readonly<Vec4>, b: Readonly<Vec4>, t: number, out?: Vec4) {
+    static mixN(a: Readonly<Vec4>, b: Readonly<Vec4>, n = 0.5, out?: Vec4) {
         !out && (out = new Vec4([]));
-        mixN4o(out.buf, a.buf, b.buf, t, out.i, a.i, b.i, out.s, a.s, b.s);
+        mixN4o(out.buf, a.buf, b.buf, n, out.i, a.i, b.i, out.s, a.s, b.s);
         return out;
     }
 
@@ -391,7 +423,10 @@ export class Vec4 implements
     static readonly ONE = Object.freeze(new Vec4(<number[]>ONE4));
     static readonly MIN = Object.freeze(new Vec4(<number[]>MIN4));
     static readonly MAX = Object.freeze(new Vec4(<number[]>MAX4));
-
+    static readonly X_AXIS = Object.freeze(new Vec4(<number[]>X4));
+    static readonly Y_AXIS = Object.freeze(new Vec4(<number[]>Y4));
+    static readonly Z_AXIS = Object.freeze(new Vec4(<number[]>Z4));
+    static readonly W_AXIS = Object.freeze(new Vec4(<number[]>W4));
     buf: Vec;
     i: number;
     s: number;
@@ -590,7 +625,7 @@ export class Vec4 implements
         return this;
     }
 
-    mixN(b: Readonly<Vec4>, n: number) {
+    mixN(b: Readonly<Vec4>, n = 0.5) {
         mixN4(this.buf, b.buf, n, this.i, b.i, this.s, b.s);
         return this;
     }
