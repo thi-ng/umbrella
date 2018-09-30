@@ -15,6 +15,10 @@ export class Polygon2 extends PointContainer2 implements
         super(points, attribs);
     }
 
+    copy() {
+        return new Polygon2(this._copy(), { ...this.attribs });
+    }
+
     edges() {
         return edges(this.vertices(), true);
     }

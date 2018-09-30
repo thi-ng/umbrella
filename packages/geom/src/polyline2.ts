@@ -16,6 +16,10 @@ export class Polyline2 extends PointContainer2 implements
         super(points, attribs);
     }
 
+    copy() {
+        return new Polyline2(this._copy(), { ...this.attribs });
+    }
+
     edges() {
         return edges(this.vertices());
     }

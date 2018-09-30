@@ -1,7 +1,10 @@
 import { ICopy } from "@thi.ng/api/api";
-import { IDistance, IMix } from "@thi.ng/vectors/api";
+import { IDistance, IMix, Vec } from "@thi.ng/vectors/api";
 
-export type SampleableVector<T> = ICopy<T> & IDistance<T> & IMix<T>;
+export type SampleableVector<T> =
+    ICopy<T> &
+    IDistance<T> &
+    IMix<T>;
 
 export interface IArea {
     /**
@@ -47,8 +50,23 @@ export interface ICentroid<T> {
     centroid(c?: T): T;
 }
 
+export interface ICollate {
+    /**
+     * Collates all points into a single buffer and remaps existing
+     * vertices (by default). Points will written from given `start`
+     * index, using layout defined by `cstride` and `estride`.
+     *
+     * @param remap
+     * @param buf
+     * @param start
+     * @param cstride
+     * @param estride
+     */
+    collate(remap?: boolean, buf?: Vec, start?: number, cstride?: number, estride?: number): this;
+}
+
 export interface IEdges<T> {
-    edges(): Iterable<T>;
+    edges(opts?: any): Iterable<T>;
 }
 
 export interface IToPolygon2 {

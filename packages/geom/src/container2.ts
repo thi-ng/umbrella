@@ -2,12 +2,20 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Mat23 } from "@thi.ng/vectors/mat23";
 import { Vec2, vec2 } from "@thi.ng/vectors/vec2";
-import { IBounds, ICentroid, IVertices } from "./api";
+import {
+    IBounds,
+    ICentroid,
+    ICollate,
+    IVertices
+} from "./api";
 import { bounds } from "./func/bounds";
+import { convexHull2 } from "./func/convex-hull";
+import { Vec } from "@thi.ng/vectors/api";
 
 export class PointContainer2 implements
     IBounds<Vec2[]>,
     ICentroid<Vec2>,
+    ICollate,
     IVertices<Vec2> {
 
     points: Vec2[];
@@ -20,6 +28,23 @@ export class PointContainer2 implements
 
     *[Symbol.iterator]() {
         yield* this.vertices();
+    }
+
+    collate(remap = true, buf: Vec, start = 0, cstride = 1, estride = 2) {
+        if (!remap) {
+            this.points = this._copy();
+        } else {
+            const pts = this.points;
+            const n = pts.length;
+            buf = Vec2.intoBuffer(buf || new Array(start + n * estride).fill(0), pts, start, cstride, estride);
+            for (let i = 0; i < n; i++) {
+                const p = pts[i];
+                p.buf = buf;
+                p.i = start + i * estride;
+                p.s = cstride;
+            }
+        }
+        return this;
     }
 
     vertices() {
@@ -42,6 +67,10 @@ export class PointContainer2 implements
 
     depth() {
         return 0;
+    }
+
+    convextHull() {
+        return convexHull2(this.points);
     }
 
     centroid(c?: Vec2): Vec2 {
@@ -86,5 +115,9 @@ export class PointContainer2 implements
             mat.mulV(pts[i]);
         }
         return this;
+    }
+
+    protected _copy() {
+        return Vec2.mapBuffer(Vec2.intoBuffer([], this.points), this.points.length);
     }
 }
