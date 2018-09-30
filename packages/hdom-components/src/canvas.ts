@@ -3,6 +3,13 @@ export type CanvasContext =
     WebGLRenderingContext |
     WebGL2RenderingContext;
 
+interface Canvas2DContextAttributes {
+    alpha?: boolean;
+    storage?: boolean;
+    willReadFrequently?: boolean;
+    [attribute: string]: boolean | string | undefined;
+}
+
 /**
  * User provided canvas life cycle methods. These differ from the usual
  * @thi.ng/hdom life cycle methods and are always passed at least the
