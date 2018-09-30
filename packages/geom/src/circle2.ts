@@ -34,6 +34,10 @@ export class Circle2 implements
         this.attribs = attribs;
     }
 
+    copy() {
+        return new Circle2(this.pos.copy(), this.r, { ...this.attribs });
+    }
+
     verticesRaw(
         from: number,
         to: number,

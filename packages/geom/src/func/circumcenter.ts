@@ -1,23 +1,23 @@
 import { Vec2 } from "@thi.ng/vectors/vec2";
+import { EPS } from "@thi.ng/vectors/math";
 
-export const circumCenter = (a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) => {
-    let m1, m2, mx1, mx2, my1, my2, xc, yc;
-    const deltaAB = Math.abs(a.y - b.y),
-        deltaBC = Math.abs(b.y - c.y);
-
-    if (deltaAB < 1e-6 && deltaBC < 1e-6) {
+export const circumCenter = (a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, eps = EPS) => {
+    const deltaAB = Math.abs(a.y - b.y);
+    const deltaBC = Math.abs(b.y - c.y);
+    if (deltaAB < eps && deltaBC < eps) {
         return null;
     }
-    const ax = a.x, ay = a.y,
-        bx = b.x, by = b.y,
-        cx = c.x, cy = c.y;
-    if (deltaAB < 1e-6) {
+    const ax = a.x, ay = a.y;
+    const bx = b.x, by = b.y;
+    const cx = c.x, cy = c.y;
+    let m1, m2, mx1, mx2, my1, my2, xc, yc;
+    if (deltaAB < eps) {
         m2 = - (cx - bx) / (cy - by);
         mx2 = (bx + cx) / 2;
         my2 = (by + cy) / 2;
         xc = (bx + ax) / 2;
         yc = m2 * (xc - mx2) + my2;
-    } else if (deltaBC < 1e-6) {
+    } else if (deltaBC < eps) {
         m1 = - (bx - ax) / (by - ay);
         mx1 = (ax + bx) / 2;
         my1 = (ay + by) / 2;

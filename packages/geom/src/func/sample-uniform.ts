@@ -8,7 +8,7 @@ import { SampleableVector } from "../api";
  * @param step sample distance
  * @param pts
  */
-export const sampleUniform = <T extends SampleableVector<T>>(pts: T[], step: number) => {
+export const sampleUniform = <T extends SampleableVector<T>>(pts: ReadonlyArray<T>, step: number) => {
     if (!pts.length) return [];
     let prev = pts[0];
     const res: T[] = [prev];

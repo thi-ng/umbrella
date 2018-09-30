@@ -1,14 +1,14 @@
 import { IDistance } from "@thi.ng/vectors/api";
 
-export const arcLength = <T extends IDistance<T>>(pts: Readonly<T>[], closed = false) => {
+export const arcLength = <T extends IDistance<T>>(pts: ReadonlyArray<T>, closed = false) => {
     const num = pts.length;
     if (num < 2) return 0;
-    let i = pts[0];
-    let j = pts[1];
+    let p = pts[0];
+    let q = pts[1];
     let res = 0;
-    for (let k = 1; k < num; k++ , i = j, j = pts[k]) {
-        res += i.dist(j);
+    for (let i = 1; i < num; i++ , p = q, q = pts[i]) {
+        res += p.dist(q);
     }
-    closed && (res += i.dist(pts[0]));
+    closed && (res += p.dist(pts[0]));
     return res;
 };
