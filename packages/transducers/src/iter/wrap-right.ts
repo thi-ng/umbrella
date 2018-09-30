@@ -7,6 +7,6 @@ import { wrap } from "./wrap";
  * @param src
  * @param n
  */
-export function wrapRight<T>(src: T[], n = 1) {
+export function wrapRight<T>(src: Iterable<T>, n = 1) {
     return wrap(src, n, false, true);
 }

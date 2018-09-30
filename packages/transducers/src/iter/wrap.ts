@@ -1,4 +1,5 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { ensureArray } from "../func/ensure-array";
 
 /**
  * Yields iterator of `src` with the last `n` values of `src` prepended
@@ -11,17 +12,18 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  * @param left
  * @param right
  */
-export function* wrap<T>(src: T[], n = 1, left = true, right = true) {
-    (n < 0 || n > src.length) && illegalArgs(`wrong number of wrap items: got ${n} max: ${src.length}`);
+export function* wrap<T>(src: Iterable<T>, n = 1, left = true, right = true) {
+    const _src: T[] = ensureArray(src);
+    (n < 0 || n > _src.length) && illegalArgs(`wrong number of wrap items: got ${n}, but max: ${_src.length}`);
     if (left) {
-        for (let m = src.length, i = m - n; i < m; i++) {
-            yield src[i];
+        for (let m = _src.length, i = m - n; i < m; i++) {
+            yield _src[i];
         }
     }
-    yield* src;
+    yield* _src;
     if (right) {
         for (let i = 0; i < n; i++) {
-            yield src[i];
+            yield _src[i];
         }
     }
 }
