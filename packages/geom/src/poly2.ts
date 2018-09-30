@@ -55,7 +55,11 @@ export class Polygon2 extends PointContainer2 implements
     }
 
     toHiccup() {
-        return ["polygon", this.attribs || {}, this.vertices()];
+        return this._toHiccup("polygon");
+    }
+
+    toJSON() {
+        return this._toJSON("polygon2");
     }
 }
 

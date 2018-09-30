@@ -1,12 +1,18 @@
-import { TAU } from "@thi.ng/vectors/math";
-import { Vec2, setS2, mul2, rotate2, add2 } from "@thi.ng/vectors/vec2";
-import { IVertices, IEdges } from "./api";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { Vec } from "@thi.ng/vectors/api";
+import { TAU } from "@thi.ng/vectors/math";
+import {
+    add2,
+    rotate2,
+    setS2,
+    Vec2
+} from "@thi.ng/vectors/vec2";
+import { ArcSamplingOpts, IEdges, IVertices } from "./api";
 import { edges } from "./func/edges";
 
 export class Arc2 implements
     IEdges<Vec2[]>,
-    IVertices<Vec2> {
+    IVertices<Vec2, number | Partial<ArcSamplingOpts>> {
 
     static from2Points(
         a: Readonly<Vec2>,
@@ -65,24 +71,44 @@ export class Arc2 implements
         this.xl = xl;
     }
 
-    edges(num = Arc2.DEFAULT_RES) {
-        return edges(this.vertices(num));
+    edges(opts?: Partial<ArcSamplingOpts>) {
+        return edges(this.vertices(opts));
     }
 
-    vertices(num = Arc2.DEFAULT_RES) {
-        const res: Vec = new Array(num * 2);
+    vertices(opts?: number | Partial<ArcSamplingOpts>) {
+        opts = isNumber(opts) ?
+            { num: opts, includeLast: true } :
+            { num: Arc2.DEFAULT_RES, ...opts };
+        let num: number;
         const start = this.start;
-        const delta = (this.end - start) / (num - 1);
+        let delta = this.end - start;
+        num = opts.theta ?
+            Math.max(Math.ceil(1 + delta / opts.theta), 2) :
+            opts.num;
+        delta /= (num - 1);
+        opts.includeLast !== true && num--;
+        const pts: Vec = new Array(num * 2);
         const pos = this.pos;
-        const r = this.r;
+        const [rx, ry] = this.r;
         const axis = this.axis;
         for (let i = 0, j = 0; i < num; i++ , j += 2) {
             const t = start + i * delta;
-            setS2(res, Math.cos(t), Math.sin(t), j);
-            mul2(res, r.buf, j, r.i, 1, r.s);
-            rotate2(res, axis, j);
-            add2(res, pos.buf, j, pos.i, 1, pos.s);
+            setS2(pts, Math.cos(t) * rx, Math.sin(t) * ry, j);
+            rotate2(pts, axis, j);
+            add2(pts, pos.buf, j, pos.i, 1, pos.s);
         }
-        return Vec2.mapBuffer(res, num);
+        return Vec2.mapBuffer(pts, num);
+    }
+
+    toJSON() {
+        return {
+            type: "arc2",
+            pos: this.pos.toJSON(),
+            r: this.r.toJSON(),
+            start: this.start,
+            end: this.end,
+            xl: this.xl,
+            clockwise: this.clockwise
+        };
     }
 }

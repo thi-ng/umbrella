@@ -3,6 +3,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Mat23 } from "@thi.ng/vectors/mat23";
 import { Vec2, vec2 } from "@thi.ng/vectors/vec2";
 import {
+    CollateOpts,
     IBounds,
     ICentroid,
     ICollate,
@@ -10,13 +11,12 @@ import {
 } from "./api";
 import { bounds } from "./func/bounds";
 import { convexHull2 } from "./func/convex-hull";
-import { Vec } from "@thi.ng/vectors/api";
 
 export class PointContainer2 implements
     IBounds<Vec2[]>,
     ICentroid<Vec2>,
     ICollate,
-    IVertices<Vec2> {
+    IVertices<Vec2, void> {
 
     points: Vec2[];
     attribs: IObjectOf<any>;
@@ -30,21 +30,30 @@ export class PointContainer2 implements
         yield* this.vertices();
     }
 
-    collate(remap = true, buf: Vec, start = 0, cstride = 1, estride = 2) {
-        if (!remap) {
-            this.points = this._copy();
-        } else {
-            const pts = this.points;
-            const n = pts.length;
-            buf = Vec2.intoBuffer(buf || new Array(start + n * estride).fill(0), pts, start, cstride, estride);
-            for (let i = 0; i < n; i++) {
-                const p = pts[i];
-                p.buf = buf;
-                p.i = start + i * estride;
-                p.s = cstride;
-            }
+    collate(opts?: Partial<CollateOpts>) {
+        opts = {
+            start: 0,
+            cstride: 1,
+            estride: 2,
+            ...opts
+        };
+        const { start, cstride, estride } = opts;
+        const pts = this.points;
+        const n = pts.length;
+        const buf = Vec2.intoBuffer(
+            opts.buf || new Array(start + n * estride).fill(0),
+            pts,
+            start,
+            cstride,
+            estride
+        );
+        for (let i = 0; i < n; i++) {
+            const p = pts[i];
+            p.buf = buf;
+            p.i = start + i * estride;
+            p.s = cstride;
         }
-        return this;
+        return buf;
     }
 
     vertices() {
@@ -119,5 +128,17 @@ export class PointContainer2 implements
 
     protected _copy() {
         return Vec2.mapBuffer(Vec2.intoBuffer([], this.points), this.points.length);
+    }
+
+    protected _toJSON(type: string) {
+        return {
+            type,
+            attribs: this.attribs,
+            points: this.points.map((p) => p.toJSON())
+        };
+    }
+
+    protected _toHiccup(type: string) {
+        return [type, this.attribs, this.vertices()];
     }
 }

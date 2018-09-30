@@ -1,9 +1,9 @@
 import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { Vec } from "@thi.ng/vectors/api";
 import { Mat44 } from "@thi.ng/vectors/mat44";
 import { Vec3, vec3 } from "@thi.ng/vectors/vec3";
 import {
+    CollateOpts,
     IBounds,
     ICentroid,
     ICollate,
@@ -15,7 +15,7 @@ export class PointContainer3 implements
     IBounds<Vec3[]>,
     ICentroid<Vec3>,
     ICollate,
-    IVertices<Vec3> {
+    IVertices<Vec3, void> {
 
     points: Vec3[];
     attribs: IObjectOf<any>;
@@ -29,21 +29,30 @@ export class PointContainer3 implements
         yield* this.vertices();
     }
 
-    collate(remap = true, buf: Vec, start = 0, cstride = 1, estride = 3) {
-        if (!remap) {
-            this.points = this._copy();
-        } else {
-            const pts = this.points;
-            const n = pts.length;
-            buf = Vec3.intoBuffer(buf || new Array(start + n * estride).fill(0), pts, start, cstride, estride);
-            for (let i = 0; i < n; i++) {
-                const p = pts[i];
-                p.buf = buf;
-                p.i = start + i * estride;
-                p.s = cstride;
-            }
+    collate(opts?: Partial<CollateOpts>) {
+        opts = {
+            start: 0,
+            cstride: 1,
+            estride: 3,
+            ...opts
+        };
+        const { start, cstride, estride } = opts;
+        const pts = this.points;
+        const n = pts.length;
+        const buf = Vec3.intoBuffer(
+            opts.buf || new Array(start + n * estride).fill(0),
+            pts,
+            start,
+            cstride,
+            estride
+        );
+        for (let i = 0; i < n; i++) {
+            const p = pts[i];
+            p.buf = buf;
+            p.i = start + i * estride;
+            p.s = cstride;
         }
-        return this;
+        return buf;
     }
 
     vertices() {

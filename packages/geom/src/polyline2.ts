@@ -37,7 +37,11 @@ export class Polyline2 extends PointContainer2 implements
     }
 
     toHiccup() {
-        return ["polyline", this.attribs, this.vertices()];
+        return this._toHiccup("polyline");
+    }
+
+    toJSON() {
+        return this._toJSON("polyline2");
     }
 }
 
