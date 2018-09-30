@@ -38,7 +38,7 @@ export function* iterator<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): Itera
  * @param xs
  */
 export function* iterator1<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B> {
-    const reduce = (<Reducer<B, A>>xform([null, null, (acc, x) => (acc = x)]))[2];
+    const reduce = (<Reducer<B, A>>xform([null, null, (_, x) => x]))[2];
     for (let x of xs) {
         let y = reduce(<any>SEMAPHORE, x);
         if (isReduced(y)) {
