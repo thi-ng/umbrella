@@ -5,24 +5,24 @@ import { illegalArity } from "@thi.ng/errors/illegal-arity";
 export const DEFAULT: unique symbol = Symbol();
 
 export type DispatchFn = (...args) => PropertyKey;
-export type DispatchFn1<A> = (a: A) => PropertyKey;
-export type DispatchFn2<A, B> = (a: A, b: B) => PropertyKey;
-export type DispatchFn3<A, B, C> = (a: A, b: B, c: C) => PropertyKey;
-export type DispatchFn4<A, B, C, D> = (a: A, b: B, c: C, d: D) => PropertyKey;
-export type DispatchFn5<A, B, C, D, E> = (a: A, b: B, c: C, d: D, e: E) => PropertyKey;
-export type DispatchFn6<A, B, C, D, E, F> = (a: A, b: B, c: C, d: D, e: E, f: F) => PropertyKey;
-export type DispatchFn7<A, B, C, D, E, F, G> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => PropertyKey;
-export type DispatchFn8<A, B, C, D, E, F, G, H> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H) => PropertyKey;
+export type DispatchFn1<A> = (a: A, ...xs: any[]) => PropertyKey;
+export type DispatchFn2<A, B> = (a: A, b: B, ...xs: any[]) => PropertyKey;
+export type DispatchFn3<A, B, C> = (a: A, b: B, c: C, ...xs: any[]) => PropertyKey;
+export type DispatchFn4<A, B, C, D> = (a: A, b: B, c: C, d: D, ...xs: any[]) => PropertyKey;
+export type DispatchFn5<A, B, C, D, E> = (a: A, b: B, c: C, d: D, e: E, ...xs: any[]) => PropertyKey;
+export type DispatchFn6<A, B, C, D, E, F> = (a: A, b: B, c: C, d: D, e: E, f: F, ...xs: any[]) => PropertyKey;
+export type DispatchFn7<A, B, C, D, E, F, G> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...xs: any[]) => PropertyKey;
+export type DispatchFn8<A, B, C, D, E, F, G, H> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, ...xs: any[]) => PropertyKey;
 
 export type Implementation<T> = (...args: any[]) => T;
-export type Implementation1<A, T> = (a: A) => T;
-export type Implementation2<A, B, T> = (a: A, b: B) => T;
-export type Implementation3<A, B, C, T> = (a: A, b: B, c: C) => T;
-export type Implementation4<A, B, C, D, T> = (a: A, b: B, c: C, d: D) => T;
-export type Implementation5<A, B, C, D, E, T> = (a: A, b: B, c: C, d: D, e: E) => T;
-export type Implementation6<A, B, C, D, E, F, T> = (a: A, b: B, c: C, d: D, e: E, f: F) => T;
-export type Implementation7<A, B, C, D, E, F, G, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => T;
-export type Implementation8<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H) => T;
+export type Implementation1<A, T> = (a: A, ...xs: any[]) => T;
+export type Implementation2<A, B, T> = (a: A, b: B, ...xs: any[]) => T;
+export type Implementation3<A, B, C, T> = (a: A, b: B, c: C, ...xs: any[]) => T;
+export type Implementation4<A, B, C, D, T> = (a: A, b: B, c: C, d: D, ...xs: any[]) => T;
+export type Implementation5<A, B, C, D, E, T> = (a: A, b: B, c: C, d: D, e: E, ...xs: any[]) => T;
+export type Implementation6<A, B, C, D, E, F, T> = (a: A, b: B, c: C, d: D, e: E, f: F, ...xs: any[]) => T;
+export type Implementation7<A, B, C, D, E, F, G, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...xs: any[]) => T;
+export type Implementation8<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, ...xs: any[]) => T;
 
 export interface MultiFn<T> extends Implementation<T> {
     add: (id: PropertyKey, g: Implementation<T>) => boolean;
