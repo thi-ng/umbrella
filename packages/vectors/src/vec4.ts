@@ -112,6 +112,28 @@ export const eqDelta4 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps) &&
     eqDelta1(a[ia + 3 * sa], b[ib + 3 * sb], eps);
 
+export const eqDelta4buf = (a: ReadonlyVec, b: ReadonlyVec, num: number, eps = EPS, ia = 0, ib = 0, sca = 1, scb = 1, sea = 4, seb = 4) => {
+    while (--num >= 0) {
+        if (!eqDelta4(a, b, eps, ia + num * sea, ib + num * seb, sca, scb)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+export const eqDelta4array = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
+    const na = a.length;
+    if (b.length !== na) {
+        return false;
+    }
+    for (let i = 0; i < na; i++) {
+        if (!eqDelta4(a[i], b[i], eps)) {
+            return false;
+        }
+    }
+    return true;
+};
+
 export const compare4 = (
     a: ReadonlyVec,
     b: ReadonlyVec,
@@ -135,6 +157,14 @@ export const compare4 = (
                 az < bz ? -3 : 3 :
             ay < by ? -2 : 2 :
         ax < bx ? -1 : 1;
+};
+
+export const collate4 = (buf: Vec, src: Iterable<ReadonlyVec>, start = 0, cstride = 1, estride = 4) => {
+    for (let v of src) {
+        set4(buf, v, start, 0, cstride, 1);
+        start += estride;
+    }
+    return buf;
 };
 
 export const [
@@ -262,6 +292,9 @@ export const majorAxis4 = (a: Vec, ia = 0, sa = 1) =>
 export const vec4 = (x = 0, y = 0, z = 0, w = 0) =>
     new Vec4([x, y, z, w]);
 
+export const asVec4 = (x: ReadonlyVec) =>
+    x instanceof Vec4 ? x : new Vec4([x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]);
+
 export class Vec4 implements
     ICopy<Vec4>,
     ICompare<Vec4>,
@@ -281,7 +314,7 @@ export class Vec4 implements
     /**
      * Returns array of memory mapped `Vec4` instances using given
      * backing array and stride settings: The `cstride` is the step size
-     * between individual XYZ vector components. `estride` is the step
+     * between individual XYZW vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
      * different storage approaches, incl. SOA, AOS, striped /
      * interleaved etc.
@@ -292,7 +325,7 @@ export class Vec4 implements
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, n: number, start = 0, cstride = 1, estride = 4) {
+    static mapBuffer(buf: Vec, n = buf.length >> 2, start = 0, cstride = 1, estride = 4) {
         const res: Vec4[] = [];
         while (--n >= 0) {
             res.push(new Vec4(buf, start, cstride));
@@ -301,7 +334,21 @@ export class Vec4 implements
         return res;
     }
 
-    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec4>>, start = 0, cstride = 1, estride = 2) {
+    /**
+     * Merges given `src` iterable of `Vec4`s into single array `buf`.
+     * Vectors will be arranged according to given component and element
+     * strides, starting at `start` index. It's the user's
+     * responsibility to ensure the target buffer has sufficient
+     * capacity to hold the input vectors. See `Vec4.mapBuffer` for the
+     * reverse operation. Returns buffer.
+     *
+     * @param buf
+     * @param src
+     * @param start
+     * @param cstride
+     * @param estride
+     */
+    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec4>>, start = 0, cstride = 1, estride = 4) {
         for (let v of src) {
             set4(buf, v.buf, start, v.i, cstride, v.s);
             start += estride;
@@ -436,8 +483,8 @@ export class Vec4 implements
     w: number;
     [id: number]: number;
 
-    constructor(buf: Vec, index = 0, stride = 1) {
-        this.buf = buf;
+    constructor(buf?: Vec, index = 0, stride = 1) {
+        this.buf = buf || [0, 0, 0, 0];
         this.i = index;
         this.s = stride;
     }
@@ -473,7 +520,6 @@ export class Vec4 implements
     compare(v: Readonly<Vec4>, o1: Vec4Coord = 0, o2: Vec4Coord = 1, o3: Vec4Coord = 2, o4: Vec4Coord = 3) {
         return compare4(this.buf, v.buf, o1, o2, o3, o4, this.i, v.i, this.s, v.s);
     }
-
 
     set(v: Readonly<Vec4>) {
         set4(this.buf, v.buf, this.i, v.i, this.s, v.s);

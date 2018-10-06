@@ -94,6 +94,28 @@ export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia], b[ib], eps) &&
     eqDelta1(a[ia + sa], b[ib + sb], eps);
 
+export const eqDelta2buf = (a: ReadonlyVec, b: ReadonlyVec, num: number, eps = EPS, ia = 0, ib = 0, sca = 1, scb = 1, sea = 2, seb = 2) => {
+    while (--num >= 0) {
+        if (!eqDelta2(a, b, eps, ia + num * sea, ib + num * seb, sca, scb)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+export const eqDelta2array = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
+    const na = a.length;
+    if (b.length !== na) {
+        return false;
+    }
+    for (let i = 0; i < na; i++) {
+        if (!eqDelta2(a[i], b[i], eps)) {
+            return false;
+        }
+    }
+    return true;
+};
+
 export const compare2 = (
     a: ReadonlyVec,
     b: ReadonlyVec,
@@ -109,6 +131,14 @@ export const compare2 = (
             0 :
             ay < by ? -2 : 2 :
         ax < bx ? -1 : 1;
+};
+
+export const collate2 = (buf: Vec, src: Iterable<ReadonlyVec>, start = 0, cstride = 1, estride = 2) => {
+    for (let v of src) {
+        set2(buf, v, start, 0, cstride, 1);
+        start += estride;
+    }
+    return buf;
 };
 
 export const [
@@ -283,6 +313,9 @@ export const majorAxis2 = (a: Vec, ia = 0, sa = 1) =>
 export const vec2 = (x = 0, y = 0) =>
     new Vec2([x, y]);
 
+export const asVec2 = (x: ReadonlyVec) =>
+    x instanceof Vec2 ? x : new Vec2([x[0] || 0, x[1] || 0]);
+
 export class Vec2 implements
     IAngleBetween<Vec2>,
     ICopy<Vec2>,
@@ -305,7 +338,7 @@ export class Vec2 implements
     /**
      * Returns array of memory mapped `Vec2` instances using given
      * backing array and stride settings: The `cstride` is the step size
-     * between individual XYZ vector components. `estride` is the step
+     * between individual XY vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
      * different storage approaches, incl. SOA, AOS, striped /
      * interleaved etc.
@@ -316,7 +349,7 @@ export class Vec2 implements
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, n: number, start = 0, cstride = 1, estride = 2) {
+    static mapBuffer(buf: Vec, n: number = buf.length >> 1, start = 0, cstride = 1, estride = 2) {
         const res: Vec2[] = [];
         while (--n >= 0) {
             res.push(new Vec2(buf, start, cstride));
@@ -325,6 +358,20 @@ export class Vec2 implements
         return res;
     }
 
+    /**
+     * Merges given `src` iterable of `Vec2`s into single array `buf`.
+     * Vectors will be arranged according to given component and element
+     * strides, starting at `start` index. It's the user's
+     * responsibility to ensure the target buffer has sufficient
+     * capacity to hold the input vectors. See `Vec2.mapBuffer` for the
+     * reverse operation. Returns buffer.
+     *
+     * @param buf
+     * @param src
+     * @param start
+     * @param cstride
+     * @param estride
+     */
     static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec2>>, start = 0, cstride = 1, estride = 2) {
         for (let v of src) {
             set2(buf, v.buf, start, v.i, cstride, v.s);
@@ -457,8 +504,8 @@ export class Vec2 implements
     y: number;
     [id: number]: number;
 
-    constructor(buf: Vec, index = 0, stride = 1) {
-        this.buf = buf;
+    constructor(buf?: Vec, index = 0, stride = 1) {
+        this.buf = buf || [0, 0];
         this.i = index;
         this.s = stride;
     }

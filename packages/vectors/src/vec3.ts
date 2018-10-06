@@ -109,6 +109,28 @@ export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib =
     eqDelta1(a[ia + sa], b[ib + sb], eps) &&
     eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
 
+export const eqDelta3buf = (a: ReadonlyVec, b: ReadonlyVec, num: number, eps = EPS, ia = 0, ib = 0, sca = 1, scb = 1, sea = 3, seb = 3) => {
+    while (--num >= 0) {
+        if (!eqDelta3(a, b, eps, ia + num * sea, ib + num * seb, sca, scb)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+export const eqDelta3array = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
+    const na = a.length;
+    if (b.length !== na) {
+        return false;
+    }
+    for (let i = 0; i < na; i++) {
+        if (!eqDelta3(a[i], b[i], eps)) {
+            return false;
+        }
+    }
+    return true;
+};
+
 export const compare3 = (
     a: ReadonlyVec,
     b: ReadonlyVec,
@@ -128,6 +150,14 @@ export const compare3 = (
                 az < bz ? -3 : 3 :
             ay < by ? -2 : 2 :
         ax < bx ? -1 : 1;
+};
+
+export const collate3 = (buf: Vec, src: Iterable<ReadonlyVec>, start = 0, cstride = 1, estride = 3) => {
+    for (let v of src) {
+        set3(buf, v, start, 0, cstride, 1);
+        start += estride;
+    }
+    return buf;
 };
 
 export const [
@@ -347,6 +377,9 @@ export const majorAxis3 = (a: Vec, ia = 0, sa = 1) =>
 export const vec3 = (x = 0, y = 0, z = 0) =>
     new Vec3([x, y, z]);
 
+export const asVec3 = (x: ReadonlyVec) =>
+    x instanceof Vec3 ? x : new Vec3([x[0] || 0, x[1] || 0, x[2] || 0]);
+
 export class Vec3 implements
     IAngleBetween<Vec3>,
     ICopy<Vec3>,
@@ -380,7 +413,7 @@ export class Vec3 implements
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, n: number, start = 0, cstride = 1, estride = 3) {
+    static mapBuffer(buf: Vec, n = (buf.length / 3) | 0, start = 0, cstride = 1, estride = 3) {
         const res: Vec3[] = [];
         while (--n >= 0) {
             res.push(new Vec3(buf, start, cstride));
@@ -389,7 +422,21 @@ export class Vec3 implements
         return res;
     }
 
-    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec3>>, start = 0, cstride = 1, estride = 2) {
+    /**
+     * Merges given `src` iterable of `Vec3`s into single array `buf`.
+     * Vectors will be arranged according to given component and element
+     * strides, starting at `start` index. It's the user's
+     * responsibility to ensure the target buffer has sufficient
+     * capacity to hold the input vectors. See `Vec3.mapBuffer` for the
+     * reverse operation. Returns buffer.
+     *
+     * @param buf
+     * @param src
+     * @param start
+     * @param cstride
+     * @param estride
+     */
+    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec3>>, start = 0, cstride = 1, estride = 3) {
         for (let v of src) {
             set3(buf, v.buf, start, v.i, cstride, v.s);
             start += estride;
@@ -527,8 +574,8 @@ export class Vec3 implements
     z: number;
     [id: number]: number;
 
-    constructor(buf: Vec, index = 0, stride = 1) {
-        this.buf = buf;
+    constructor(buf?: Vec, index = 0, stride = 1) {
+        this.buf = buf || [0, 0, 0];
         this.i = index;
         this.s = stride;
     }

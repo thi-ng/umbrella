@@ -241,7 +241,7 @@ export class GVec implements
         return res;
     }
 
-    static intoBuffer(buf: Vec, src: Iterable<Readonly<GVec>>, start: number, cstride: number, estride: number) {
+    static intoBuffer(buf: Vec, src: Iterable<Readonly<GVec>>, start = 0, cstride: number, estride: number) {
         for (let v of src) {
             set(buf, v.buf, v.n, start, v.i, cstride, v.s);
             start += estride;

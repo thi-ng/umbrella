@@ -43,7 +43,7 @@ export const eqDelta1 = (a: number, b: number, eps = EPS) => {
 };
 
 /**
- * Returns `a - b * n`
+ * Returns `a - b * floor(a/b)`
  *
  * @param a
  * @param b

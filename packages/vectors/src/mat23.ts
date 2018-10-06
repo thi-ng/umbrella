@@ -239,7 +239,7 @@ export class Mat23 implements
     [id: number]: number;
 
     constructor(buf?: Mat, i = 0) {
-        this.buf = buf || (new Array(6).fill(0));
+        this.buf = buf || [0, 0, 0, 0, 0, 0];
         this.i = i;
     }
 

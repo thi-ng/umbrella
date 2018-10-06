@@ -276,7 +276,7 @@ export class Mat33 implements
     [id: number]: number;
 
     constructor(buf?: Mat, i = 0) {
-        this.buf = buf || (new Array(9).fill(0));
+        this.buf = buf || [0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.i = i;
     }
 
