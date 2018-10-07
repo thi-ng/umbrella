@@ -253,10 +253,10 @@ const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) =>
             rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
             break;
         case "circle":
-            arc(ctx, attribs, shape[2], shape[3]);
+            circularArc(ctx, attribs, shape[2], shape[3]);
             break;
         case "arc":
-            arc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+            circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
             break;
         case "text":
             text(ctx, attribs, shape[2], shape[3]);
@@ -556,7 +556,7 @@ const path = (ctx: CanvasRenderingContext2D,
     endShape(ctx, attribs);
 };
 
-const arc = (ctx: CanvasRenderingContext2D,
+const circularArc = (ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pos: ReadonlyVec,
     r: number,
