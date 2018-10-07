@@ -1,23 +1,10 @@
-import {
-    ICompare,
-    ICopy,
-    IEqualsDelta,
-    IEquiv,
-    ILength
-} from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import {
     IAngleBetween,
     ICrossProduct,
-    IDistance,
-    IDotProduct,
-    IMagnitude,
-    IMath,
-    IMinMax,
-    IMix,
-    INormalize,
     IPolar,
     IVec,
+    IVector,
     MAX4,
     MIN4,
     ONE4,
@@ -317,23 +304,10 @@ export const asVec2 = (x: ReadonlyVec) =>
     x instanceof Vec2 ? x : new Vec2([x[0] || 0, x[1] || 0]);
 
 export class Vec2 implements
+    IVector<Vec2>,
     IAngleBetween<Vec2>,
-    ICopy<Vec2>,
-    ICompare<Vec2>,
     ICrossProduct<Vec2, number>,
-    IDistance<Vec2>,
-    IDotProduct<Vec2>,
-    IEqualsDelta<Vec2>,
-    IEquiv,
-    ILength,
-    IMagnitude,
-    IMath<Vec2>,
-    IMinMax<Vec2>,
-    IMix<Vec2>,
-    INormalize<Vec2>,
-    IPolar<Vec2>,
-    Iterable<number>,
-    IVec {
+    IPolar<Vec2> {
 
     /**
      * Returns array of memory mapped `Vec2` instances using given
@@ -402,90 +376,6 @@ export class Vec2 implements
         return new Vec2(randMinMax2([], min, max));
     }
 
-    static add(a: Readonly<Vec2>, b: Readonly<Vec2>, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        add2o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static sub(a: Readonly<Vec2>, b: Readonly<Vec2>, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        sub2o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static mul(a: Readonly<Vec2>, b: Readonly<Vec2>, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        mul2o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static div(a: Readonly<Vec2>, b: Readonly<Vec2>, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        div2o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static addN(a: Readonly<Vec2>, n: number, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        addN2o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static subN(a: Readonly<Vec2>, n: number, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        subN2o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static mulN(a: Readonly<Vec2>, n: number, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        mulN2o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static divN(a: Readonly<Vec2>, n: number, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        divN2o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static madd(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, out?: Vec2) {
-        out = out ? out.set(a) : a.copy();
-        madd2(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
-        return out;
-    }
-
-    static maddN(a: Readonly<Vec2>, b: Readonly<Vec2>, n: number, out?: Vec2) {
-        out = out ? out.set(a) : a.copy();
-        maddN2(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
-        return out;
-    }
-
-    static msub(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, out?: Vec2) {
-        out = out ? out.set(a) : a.copy();
-        msub2(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
-        return out;
-    }
-
-    static msubN(a: Readonly<Vec2>, b: Readonly<Vec2>, n: number, out?: Vec2) {
-        out = out ? out.set(a) : a.copy();
-        msubN2(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
-        return out;
-    }
-
-    static mix(a: Readonly<Vec2>, b: Readonly<Vec2>, t: Readonly<Vec2>, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        mix2o(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
-        return out;
-    }
-
-    static mixN(a: Readonly<Vec2>, b: Readonly<Vec2>, n = 0.5, out?: Vec2) {
-        !out && (out = new Vec2([]));
-        mixN2o(out.buf, a.buf, b.buf, n, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
     static comparator(o1: Vec2Coord, o2: Vec2Coord) {
         return (a: Readonly<Vec2>, b: Readonly<Vec2>) => a.compare(b, o1, o2);
     }
@@ -524,6 +414,10 @@ export class Vec2 implements
 
     copy() {
         return new Vec2(get2(this.buf, this.i, this.s));
+    }
+
+    empty() {
+        return new Vec2();
     }
 
     equiv(v: any) {
@@ -610,6 +504,90 @@ export class Vec2 implements
     divN(n: number) {
         divN2(this.buf, n, this.i, this.s);
         return this;
+    }
+
+    addNew(b: Readonly<Vec2>, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        add2o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    subNew(b: Readonly<Vec2>, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        sub2o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    mulNew(b: Readonly<Vec2>, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        mul2o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    divNew(b: Readonly<Vec2>, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        div2o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    addNewN(n: number, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        addN2o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    subNewN(n: number, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        subN2o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    mulNewN(n: number, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        mulN2o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    divNewN(n: number, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        divN2o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    maddNew(b: Readonly<Vec2>, c: Readonly<Vec2>, out?: Vec2) {
+        out = out ? out.set(this) : this.copy();
+        madd2(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    maddNewN(b: Readonly<Vec2>, n: number, out?: Vec2) {
+        out = out ? out.set(this) : this.copy();
+        maddN2(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
+    msubNew(b: Readonly<Vec2>, c: Readonly<Vec2>, out?: Vec2) {
+        out = out ? out.set(this) : this.copy();
+        msub2(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    msubNewN(b: Readonly<Vec2>, n: number, out?: Vec2) {
+        out = out ? out.set(this) : this.copy();
+        msubN2(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
+    mixNew(b: Readonly<Vec2>, t: Readonly<Vec2>, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        mix2o(out.buf, this.buf, b.buf, t.buf, out.i, this.i, b.i, t.i, out.s, this.s, b.s, t.s);
+        return out;
+    }
+
+    mixNewN(b: Readonly<Vec2>, n = 0.5, out?: Vec2) {
+        !out && (out = new Vec2([]));
+        mixN2o(out.buf, this.buf, b.buf, n, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
     }
 
     neg() {

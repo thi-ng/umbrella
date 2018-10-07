@@ -1,20 +1,7 @@
-import {
-    ICompare,
-    ICopy,
-    IEqualsDelta,
-    IEquiv,
-    ILength
-} from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import {
-    IDistance,
-    IDotProduct,
-    IMagnitude,
-    IMath,
-    IMinMax,
-    IMix,
-    INormalize,
     IVec,
+    IVector,
     MAX4,
     MIN4,
     ONE4,
@@ -296,20 +283,7 @@ export const asVec4 = (x: ReadonlyVec) =>
     x instanceof Vec4 ? x : new Vec4([x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]);
 
 export class Vec4 implements
-    ICopy<Vec4>,
-    ICompare<Vec4>,
-    IDistance<Vec4>,
-    IDotProduct<Vec4>,
-    IEqualsDelta<Vec4>,
-    IEquiv,
-    ILength,
-    IMagnitude,
-    IMath<Vec4>,
-    IMinMax<Vec4>,
-    IMix<Vec4>,
-    INormalize<Vec4>,
-    Iterable<number>,
-    IVec {
+    IVector<Vec4> {
 
     /**
      * Returns array of memory mapped `Vec4` instances using given
@@ -378,90 +352,6 @@ export class Vec4 implements
         return new Vec4(randMinMax4([], min, max));
     }
 
-    static add(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        add4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static sub(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        sub4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static mul(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        mul4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static div(a: Readonly<Vec4>, b: Readonly<Vec4>, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        div4o(out.buf, a.buf, b.buf, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
-    static addN(a: Readonly<Vec4>, n: number, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        addN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static subN(a: Readonly<Vec4>, n: number, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        subN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static mulN(a: Readonly<Vec4>, n: number, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        mulN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static divN(a: Readonly<Vec4>, n: number, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        divN4o(out.buf, a.buf, n, out.i, a.i, out.s, a.s);
-        return out;
-    }
-
-    static madd(a: Readonly<Vec4>, b: Readonly<Vec4>, c: Readonly<Vec4>, out?: Vec4) {
-        out = out ? out.set(a) : a.copy();
-        madd4(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
-        return out;
-    }
-
-    static maddN(a: Readonly<Vec4>, b: Readonly<Vec4>, n: number, out?: Vec4) {
-        out = out ? out.set(a) : a.copy();
-        maddN4(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
-        return out;
-    }
-
-    static msub(a: Readonly<Vec4>, b: Readonly<Vec4>, c: Readonly<Vec4>, out?: Vec4) {
-        out = out ? out.set(a) : a.copy();
-        msub4(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
-        return out;
-    }
-
-    static msubN(a: Readonly<Vec4>, b: Readonly<Vec4>, n: number, out?: Vec4) {
-        out = out ? out.set(a) : a.copy();
-        msubN4(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
-        return out;
-    }
-
-    static mix(a: Readonly<Vec4>, b: Readonly<Vec4>, t: Readonly<Vec4>, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        mix4o(out.buf, a.buf, b.buf, t.buf, out.i, a.i, b.i, t.i, out.s, a.s, b.s, t.s);
-        return out;
-    }
-
-    static mixN(a: Readonly<Vec4>, b: Readonly<Vec4>, n = 0.5, out?: Vec4) {
-        !out && (out = new Vec4([]));
-        mixN4o(out.buf, a.buf, b.buf, n, out.i, a.i, b.i, out.s, a.s, b.s);
-        return out;
-    }
-
     static comparator(o1: Vec4Coord, o2: Vec4Coord, o3: Vec4Coord, o4: Vec4Coord) {
         return (a: Readonly<Vec4>, b: Readonly<Vec4>) => a.compare(b, o1, o2, o3, o4);
     }
@@ -503,6 +393,10 @@ export class Vec4 implements
 
     copy() {
         return new Vec4(get4(this.buf, this.i, this.s));
+    }
+
+    empty() {
+        return new Vec4();
     }
 
     equiv(v: any) {
@@ -589,6 +483,90 @@ export class Vec4 implements
     divN(n: number) {
         divN4(this.buf, n, this.i, this.s);
         return this;
+    }
+
+    addNew(b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        add4o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    subNew(b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        sub4o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    mulNew(b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mul4o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    divNew(b: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        div4o(out.buf, this.buf, b.buf, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
+    }
+
+    addNewN(n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        addN4o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    subNewN(n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        subN4o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    mulNewN(n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mulN4o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    divNewN(n: number, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        divN4o(out.buf, this.buf, n, out.i, this.i, out.s, this.s);
+        return out;
+    }
+
+    maddNew(b: Readonly<Vec4>, c: Readonly<Vec4>, out?: Vec4) {
+        out = out ? out.set(this) : this.copy();
+        madd4(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    maddNewN(b: Readonly<Vec4>, n: number, out?: Vec4) {
+        out = out ? out.set(this) : this.copy();
+        maddN4(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
+    msubNew(b: Readonly<Vec4>, c: Readonly<Vec4>, out?: Vec4) {
+        out = out ? out.set(this) : this.copy();
+        msub4(out.buf, b.buf, c.buf, out.i, b.i, c.i, out.s, b.s, c.s);
+        return out;
+    }
+
+    msubNewN(b: Readonly<Vec4>, n: number, out?: Vec4) {
+        out = out ? out.set(this) : this.copy();
+        msubN4(out.buf, b.buf, n, out.i, b.i, out.s, b.s);
+        return out;
+    }
+
+    mixNew(b: Readonly<Vec4>, t: Readonly<Vec4>, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mix4o(out.buf, this.buf, b.buf, t.buf, out.i, this.i, b.i, t.i, out.s, this.s, b.s, t.s);
+        return out;
+    }
+
+    mixNewN(b: Readonly<Vec4>, n = 0.5, out?: Vec4) {
+        !out && (out = new Vec4([]));
+        mixN4o(out.buf, this.buf, b.buf, n, out.i, this.i, b.i, out.s, this.s, b.s);
+        return out;
     }
 
     neg() {

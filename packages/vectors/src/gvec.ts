@@ -406,6 +406,62 @@ export class GVec implements
         return this;
     }
 
+    mixNew(b: Readonly<GVec>, c: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).mix(b, c);
+    }
+
+    mixNewN(v: Readonly<GVec>, n = 0.5, out?: GVec) {
+        return (out || this.copy()).mixN(v, n);
+    }
+
+    addNew(v: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).add(v);
+    }
+
+    subNew(v: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).sub(v);
+    }
+
+    mulNew(v: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).mul(v);
+    }
+
+    divNew(v: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).div(v);
+    }
+
+    addNewN(n: number, out?: GVec) {
+        return (out || this.copy()).addN(n);
+    }
+
+    subNewN(n: number, out?: GVec) {
+        return (out || this.copy()).subN(n);
+    }
+
+    mulNewN(n: number, out?: GVec) {
+        return (out || this.copy()).mulN(n);
+    }
+
+    divNewN(n: number, out?: GVec) {
+        return (out || this.copy()).divN(n);
+    }
+
+    maddNew(v: Readonly<GVec>, w: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).madd(v, w);
+    }
+
+    maddNewN(v: Readonly<GVec>, n: number, out?: GVec) {
+        return (out || this.copy()).maddN(v, n);
+    }
+
+    msubNew(v: Readonly<GVec>, w: Readonly<GVec>, out?: GVec) {
+        return (out || this.copy()).msub(v, w);
+    }
+
+    msubNewN(v: Readonly<GVec>, n: number, out?: GVec) {
+        return (out || this.copy()).msubN(v, n);
+    }
+
     magSq() {
         return magSq(this.buf, this.n, this.i, this.s);
     }

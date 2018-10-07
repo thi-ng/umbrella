@@ -1,4 +1,12 @@
-import { NumericArray } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEqualsDelta,
+    IEquiv,
+    NumericArray,
+    IEmpty,
+    ILength,
+    ICompare
+} from "@thi.ng/api/api";
 
 export type Vec = NumericArray;
 export type ReadonlyVec = ArrayLike<number> & Iterable<number>;
@@ -74,11 +82,30 @@ export type Vec2Coord = 0 | 1;
 export type Vec3Coord = 0 | 1 | 2;
 export type Vec4Coord = 0 | 1 | 2 | 3;
 
-export interface IVec {
+export interface IVec extends ILength {
     buf: Vec;
-    length: number;
     i: number;
     s: number;
+}
+
+export interface IVector<T> extends
+    Iterable<number>,
+    IVec,
+    ICopy<T>,
+    ICompare<T>,
+    IEmpty<T>,
+    IEquiv,
+    IEqualsDelta<T>,
+    IDistance<T>,
+    IDotProduct<T>,
+    IMagnitude,
+    IMath<T>,
+    IMinMax<T>,
+    IMix<T>,
+    INormalize<T> {
+
+    set(v: T): T;
+    setN(n: number): T;
 }
 
 export interface IAngleBetween<T> {
@@ -115,16 +142,31 @@ export interface IMath<T> {
     maddN(v: Readonly<T>, n: number): T;
     msub(v: Readonly<T>, w: Readonly<T>): T;
     msubN(v: Readonly<T>, n: number): T;
+    addNew(v: Readonly<T>, out?: T): T;
+    subNew(v: Readonly<T>, out?: T): T;
+    mulNew(v: Readonly<T>, out?: T): T;
+    divNew(v: Readonly<T>, out?: T): T;
+    addNewN(n: number, out?: T): T;
+    subNewN(n: number, out?: T): T;
+    mulNewN(n: number, out?: T): T;
+    divNewN(n: number, out?: T): T;
+    maddNew(v: Readonly<T>, w: Readonly<T>, out?: T): T;
+    maddNewN(v: Readonly<T>, n: number, out?: T): T;
+    msubNew(v: Readonly<T>, w: Readonly<T>, out?: T): T;
+    msubNewN(v: Readonly<T>, n: number, out?: T): T;
 }
 
 export interface IMinMax<T> {
     min(v: Readonly<T>): T;
     max(v: Readonly<T>): T;
+    clamp(min: Readonly<T>, max: Readonly<T>): T;
 }
 
 export interface IMix<T> {
     mix(v: Readonly<T>, t: Readonly<T>): T;
     mixN(v: Readonly<T>, t: number): T;
+    mixNew(v: Readonly<T>, t: Readonly<T>, out?: T): T;
+    mixNewN(v: Readonly<T>, t: number, out?: T): T;
 }
 
 export interface INormalize<T> {
