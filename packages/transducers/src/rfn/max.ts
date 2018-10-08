@@ -6,5 +6,5 @@ export function max(xs: Iterable<number>): number;
 export function max(xs?: Iterable<number>): any {
     return xs ?
         reduce(max(), xs) :
-        reducer(() => Number.NEGATIVE_INFINITY, (acc, x: number) => Math.max(acc, x));
+        reducer(() => -Infinity, (acc, x: number) => Math.max(acc, x));
 }

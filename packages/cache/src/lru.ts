@@ -12,8 +12,8 @@ export class LRUCache<K, V> implements ICache<K, V> {
 
     constructor(pairs?: Iterable<[K, V]>, opts?: Partial<CacheOpts<K, V>>) {
         const _opts = <CacheOpts<K, V>>Object.assign({
-            maxlen: Number.POSITIVE_INFINITY,
-            maxsize: Number.POSITIVE_INFINITY,
+            maxlen: Infinity,
+            maxsize: Infinity,
             map: () => new Map<K, any>(),
             ksize: () => 0,
             vsize: () => 0,

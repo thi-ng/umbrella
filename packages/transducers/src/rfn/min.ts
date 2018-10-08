@@ -6,5 +6,5 @@ export function min(xs: Iterable<number>): number;
 export function min(xs?: Iterable<number>): any {
     return xs ?
         reduce(min(), xs) :
-        reducer(() => Number.POSITIVE_INFINITY, (acc, x: number) => Math.min(acc, x));
+        reducer(() => Infinity, (acc, x: number) => Math.min(acc, x));
 }

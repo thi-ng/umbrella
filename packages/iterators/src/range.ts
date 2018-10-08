@@ -5,7 +5,7 @@ export function range(from: number, to: number, step: number): IterableIterator<
 export function* range(from?: number, to?: number, step?: number) {
     if (from === undefined) {
         from = 0;
-        to = Number.POSITIVE_INFINITY;
+        to = Infinity;
     } else if (to === undefined) {
         to = from;
         from = 0;

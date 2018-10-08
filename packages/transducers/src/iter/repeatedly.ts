@@ -1,4 +1,4 @@
-export function* repeatedly<T>(fn: () => T, n = Number.POSITIVE_INFINITY) {
+export function* repeatedly<T>(fn: () => T, n = Infinity) {
     while (n-- > 0) {
         yield fn();
     }

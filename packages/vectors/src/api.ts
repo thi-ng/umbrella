@@ -194,8 +194,8 @@ export interface IPolar<T> {
     toCartesian(offset?: Readonly<T>): T;
 }
 
-const min = Number.NEGATIVE_INFINITY;
-const max = Number.POSITIVE_INFINITY;
+const min = -Infinity;
+const max = Infinity;
 export const MIN4 = Object.freeze([min, min, min, min]);
 export const MAX4 = Object.freeze([max, max, max, max]);
 export const ONE4 = Object.freeze([1, 1, 1, 1]);

@@ -10,7 +10,7 @@ import { Subscription } from "../subscription";
  * @param delay
  * @param count
  */
-export function fromInterval(delay: number, count = Number.POSITIVE_INFINITY) {
+export function fromInterval(delay: number, count = Infinity) {
     return new Stream<number>((stream) => {
         let i = 0;
         stream.next(i++);
