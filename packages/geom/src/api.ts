@@ -1,10 +1,104 @@
-import { ICopy } from "@thi.ng/api/api";
-import { IDistance, IMix, Vec } from "@thi.ng/vectors/api";
+import { IObjectOf } from "@thi.ng/api/api";
+import { Vec, ReadonlyVec, IVector } from "@thi.ng/vectors/api";
+import { Vec2 } from "@thi.ng/vectors/vec2";
 
-export type SampleableVector<T> =
-    ICopy<T> &
-    IDistance<T> &
-    IMix<T>;
+export const DEFAULT_SAMPLES = 32;
+
+export type Attribs = IObjectOf<any>;
+
+export const enum LineIntersectionType {
+    PARALLEL,
+    COINCIDENT,
+    COINCIDENT_NO_INTERSECT,
+    INTERSECT,
+    INTERSECT_OUTSIDE,
+}
+
+export const enum SegmentType {
+    MOVE,
+    LINE,
+    POLYLINE,
+    ARC,
+    CUBIC,
+    QUADRATIC,
+    CLOSE,
+}
+
+export interface CollateOpts {
+    buf: Vec;
+    start: number;
+    cstride: number;
+    estride: number;
+}
+
+export interface LineIntersection<T> {
+    type: LineIntersectionType;
+    isec?: T;
+    det?: number;
+    alpha?: number;
+    beta?: number;
+}
+
+export interface PathSegment {
+    type: SegmentType;
+    point?: Vec2;
+    geo?: IBoundsRaw<Vec2> & IVertices<Vec2, any>;
+}
+
+export interface SamplingOpts {
+    /**
+     * Number of points to sample & return. Defaults to the implementing
+     * type's `DEFAULT_RES` if neither this nor `theta` option is given
+     * (see `ArcSamplingOpts`).
+     */
+    num: number;
+    /**
+     * Approximate desired distance between sampled result points. If
+     * given, takes priority over the `num` option, but the latter MIGHT
+     * be used as part of the sampling process (implementation
+     * specific). Note: For circles this value is interpreted as arc
+     * length, not cartesian distance (error will be proportional to the
+     * given value relative to the circle's radius).
+     */
+    dist: number;
+    /**
+     * Currently only used by these types:
+     *
+     * - Arc2
+     * - Circle2
+     *
+     * Defines the target angle between sampled points. If greater than
+     * the actual range of the arc, only the two end points will be
+     * returned at most. This option is used to derive a `num` value and
+     * takes priority if `num` is given as well.
+     *
+     * This option is useful to adapt the sampling based on angular
+     * resolution, rather than a fixed number of samples.
+     */
+    theta: number;
+    /**
+     * If `true`, the shape's end point will be included in the result
+     * array. The default setting for open geometries is `true`, for
+     * closed ones `false`. This option has no influence on any internal
+     * resolution calculation.
+     *
+     * For open geometry this option is useful to when re-sampling paths
+     * of consecutive segments, where the end points of each segment
+     * coincide with the start points of the next segment. For all but
+     * the last segment, this option should be `false` and so can be
+     * used to avoid duplicate vertices in the concatenated result.
+     *
+     * When sampling closed shapes, enabling this option will include an
+     * extra point (start), i.e. if the `num` option was given, results
+     * in `num+1` points.
+     */
+    last: boolean;
+}
+
+export interface SubdivKernel<T extends IVector<T>> {
+    fn: (pts: T[], i: number, nump: number) => T[];
+    size: number;
+}
 
 export interface IArea {
     /**
@@ -24,50 +118,18 @@ export interface IArcLength {
     arcLength(): number;
 }
 
-export interface ArcSamplingOpts {
+export interface IBoundsRaw<V> {
     /**
-     * Number of points to sample & return. Defaults to
-     * `Arc2.DEFAULT_RES` if neither this nor `theta` option is given.
+     * @return min / max points
      */
-    num: number;
-    /**
-     * Target angle between sampled points. If greater than the actual
-     * range of the arc, only the 2 end points will be returned. This
-     * option is used to derive a `num` value and will take priority if
-     * `num` is given as well.
-     *
-     * This option is useful to adapt the sampling based on actual angle
-     * range, rather than a fixed number of samples.
-     */
-    theta: number;
-    /**
-     * If `false` (default), the arc's end point will be omitted from
-     * the result array and if `num` option was given, results in
-     * `num-1` points. However, this option has no influence on the
-     * angular resolution calculation.
-     *
-     * This option is useful when building paths of consecutive
-     * segments, where the end point of one segment coincides with the
-     * start point of the next segment and so can be used to avoid
-     * duplicate vertices in the concatenated result.
-     */
-    includeLast: boolean;
+    boundsRaw(): [V, V];
 }
 
 export interface IBounds<T> {
+    /**
+     * Bounding shape
+     */
     bounds(): T;
-    /**
-     * Dimension along x-axis.
-     */
-    width(): number;
-    /**
-     * Dimension along y-axis.
-     */
-    height(): number;
-    /**
-     * Dimension along z-axis.
-     */
-    depth(): number;
 }
 
 export interface ICentroid<T> {
@@ -78,13 +140,6 @@ export interface ICentroid<T> {
      * @param c
      */
     centroid(c?: T): T;
-}
-
-export interface CollateOpts {
-    buf: Vec;
-    start: number;
-    cstride: number;
-    estride: number;
 }
 
 export interface ICollate {
@@ -102,11 +157,72 @@ export interface IEdges<T> {
     edges(opts?: any): Iterable<T>;
 }
 
-export interface IToPolygon2 {
+export interface IToPolygon<O> {
     // FIXME return type should be interface
-    toPolygon2(opts?: any): any;
+    toPolygon(opts?: O): any;
+}
+
+export interface ITransformable<M> {
+    transform(mat: M): this;
+}
+
+export interface IUnion<T> {
+    union(x: T): T;
 }
 
 export interface IVertices<T, O> {
     vertices(opts?: O): Iterable<T>;
 }
+
+export interface JsonShape {
+    type: string;
+    attribs?: Attribs;
+}
+
+export interface JsonArc2 extends JsonShape {
+    pos: Vec;
+    r: Vec;
+    axis: number;
+    start: number;
+    end: number;
+    xl: boolean;
+    clockwise: boolean;
+}
+
+export interface JsonCircle2 extends JsonShape {
+    pos: Vec;
+    r: number;
+}
+
+export interface JsonPolygon2 extends JsonShape {
+    pos: Vec;
+    points: Vec[];
+}
+
+export interface JsonPolyline2 extends JsonShape {
+    pos: Vec;
+    points: Vec[];
+}
+
+export interface JsonRect2 extends JsonShape {
+    pos: Vec;
+    size: Vec[];
+}
+
+export type HiccupArc2 =
+    ["arc", Attribs, ReadonlyVec, ReadonlyVec, number, number, number, boolean, boolean];
+
+export type HiccupCircle2 =
+    ["circle", Attribs, ReadonlyVec, number];
+
+export type HiccupLine2 =
+    ["line", Attribs, ReadonlyVec, ReadonlyVec];
+
+export type HiccupPolygon2 =
+    ["polygon", Attribs, number[] | number[][]];
+
+export type HiccupPolyline2 =
+    ["polyline", Attribs, number[] | number[][]];
+
+export type HiccupRect2 =
+    ["rect", Attribs, ReadonlyVec, number, number, number?];

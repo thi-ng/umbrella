@@ -5,14 +5,17 @@ import { Vec3, vec3 } from "@thi.ng/vectors/vec3";
 import {
     CollateOpts,
     IBounds,
+    IBoundsRaw,
     ICentroid,
     ICollate,
     IVertices
 } from "./api";
-import { bounds } from "./func/bounds";
+import { bounds } from "./internal/bounds";
+import { collateWith } from "./internal/collate";
 
 export class PointContainer3 implements
-    IBounds<Vec3[]>,
+    IBoundsRaw<Vec3>,
+    IBounds<Vec3[]>, // TODO
     ICentroid<Vec3>,
     ICollate,
     IVertices<Vec3, void> {
@@ -30,52 +33,19 @@ export class PointContainer3 implements
     }
 
     collate(opts?: Partial<CollateOpts>) {
-        opts = {
-            start: 0,
-            cstride: 1,
-            estride: 3,
-            ...opts
-        };
-        const { start, cstride, estride } = opts;
-        const pts = this.points;
-        const n = pts.length;
-        const buf = Vec3.intoBuffer(
-            opts.buf || new Array(start + n * estride).fill(0),
-            pts,
-            start,
-            cstride,
-            estride
-        );
-        for (let i = 0; i < n; i++) {
-            const p = pts[i];
-            p.buf = buf;
-            p.i = start + i * estride;
-            p.s = cstride;
-        }
-        return buf;
+        return collateWith(Vec3.intoBuffer, this.points, opts, 3);
     }
 
     vertices() {
         return this.points;
     }
 
-    bounds() {
+    boundsRaw() {
         return bounds(this.points, Vec3.MAX.copy(), Vec3.MIN.copy());
     }
 
-    width() {
-        const b = this.bounds();
-        return b[1].x - b[0].x;
-    }
-
-    height() {
-        const b = this.bounds();
-        return b[1].y - b[0].y;
-    }
-
-    depth() {
-        const b = this.bounds();
-        return b[1].z - b[0].z;
+    bounds() {
+        return this.boundsRaw();
     }
 
     centroid(c?: Vec3): Vec3 {
@@ -124,5 +94,13 @@ export class PointContainer3 implements
 
     protected _copy() {
         return Vec3.mapBuffer(Vec3.intoBuffer([], this.points), this.points.length);
+    }
+
+    protected _toJSON(type: string) {
+        return {
+            type,
+            attribs: this.attribs,
+            points: this.points.map((p) => p.toJSON())
+        };
     }
 }

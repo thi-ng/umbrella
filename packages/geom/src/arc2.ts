@@ -1,18 +1,70 @@
 import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { range } from "@thi.ng/transducers/iter/range";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { filter } from "@thi.ng/transducers/xform/filter";
+import { map } from "@thi.ng/transducers/xform/map";
 import { Vec } from "@thi.ng/vectors/api";
-import { TAU } from "@thi.ng/vectors/math";
+import {
+    HALF_PI,
+    inRange1,
+    mix1,
+    PI,
+    TAU
+} from "@thi.ng/vectors/math";
 import {
     add2,
+    asVec2,
     rotate2,
     setS2,
     Vec2
 } from "@thi.ng/vectors/vec2";
-import { ArcSamplingOpts, IEdges, IVertices } from "./api";
-import { edges } from "./func/edges";
+import {
+    Attribs,
+    DEFAULT_SAMPLES,
+    HiccupArc2,
+    IBounds,
+    IEdges,
+    IVertices,
+    JsonArc2,
+    SamplingOpts
+} from "./api";
+import { bounds } from "./internal/bounds";
+import { edges } from "./internal/edges";
+import { Rect2 } from "./rect2";
+import { Sampler } from "./sampler";
 
 export class Arc2 implements
+    IBounds<Rect2>,
     IEdges<Vec2[]>,
-    IVertices<Vec2, number | Partial<ArcSamplingOpts>> {
+    IVertices<Vec2, number | Partial<SamplingOpts>> {
+
+    static fromJSON(spec: JsonArc2) {
+        return new Arc2(
+            new Vec2(spec.pos),
+            new Vec2(spec.r),
+            spec.axis,
+            spec.start,
+            spec.end,
+            spec.xl,
+            spec.clockwise,
+            spec.attribs
+        );
+    }
+
+    static fromHiccup(spec: HiccupArc2) {
+        return new Arc2(
+            asVec2(spec[2]),
+            asVec2(spec[3]),
+            spec[4],
+            spec[5],
+            spec[6],
+            spec[7],
+            spec[8],
+            spec[1]
+        );
+    }
 
     static from2Points(
         a: Readonly<Vec2>,
@@ -25,7 +77,7 @@ export class Arc2 implements
         const r = radii.copy().abs();
         const co = Math.cos(axisTheta);
         const si = Math.sin(axisTheta);
-        const m = Vec2.sub(a, b).mulN(0.5);
+        const m = a.subNew(b).mulN(0.5);
         const p = new Vec2([co * m.x + si * m.y, -si * m.x + co * m.y]);
         const px2 = p.x * p.x;
         const py2 = p.y * p.y;
@@ -38,7 +90,7 @@ export class Arc2 implements
         const root = ((large === clockwise) ? -1 : 1) *
             Math.sqrt(Math.abs((rx2 * ry2 - rxpy - rypx)) / (rxpy + rypx));
         const tc = new Vec2([r.x * p.y / r.y, -r.y * p.x / r.x]).mulN(root);
-        const c = new Vec2([co * tc.x - si * tc.y, si * tc.x + co * tc.y]).add(Vec2.mixN(a, b));
+        const c = new Vec2([co * tc.x - si * tc.y, si * tc.x + co * tc.y]).add(a.mixNewN(b));
         const d1 = new Vec2([(p.x - tc.x) / r.x, (p.y - tc.y) / r.y]);
         const d2 = new Vec2([(-p.x - tc.x) / r.x, (-p.y - tc.y) / r.y]);
         const theta = Vec2.X_AXIS.angleBetween(d1, true);
@@ -51,8 +103,6 @@ export class Arc2 implements
         return new Arc2(c, r, axisTheta, theta, theta + delta, large, clockwise);
     }
 
-    static DEFAULT_RES = 20;
-
     pos: Vec2;
     r: Vec2;
     axis: number;
@@ -60,8 +110,18 @@ export class Arc2 implements
     end: number;
     xl: boolean;
     clockwise: boolean;
+    attribs: Attribs;
 
-    constructor(pos: Vec2, r: Vec2, axis: number, start: number, end: number, xl = false, clockwise = false) {
+    constructor(
+        pos: Vec2,
+        r: Vec2,
+        axis: number,
+        start: number,
+        end: number,
+        xl = false,
+        clockwise = false,
+        attribs?: Attribs) {
+
         this.pos = pos;
         this.r = r;
         this.axis = axis;
@@ -69,24 +129,75 @@ export class Arc2 implements
         this.end = end;
         this.clockwise = clockwise;
         this.xl = xl;
+        this.attribs = attribs;
     }
 
-    edges(opts?: Partial<ArcSamplingOpts>) {
+    copy() {
+        return new Arc2(
+            this.pos.copy(),
+            this.r.copy(),
+            this.axis,
+            this.start,
+            this.end,
+            this.xl,
+            this.clockwise,
+            { ...this.attribs }
+        );
+    }
+
+    boundsRaw() {
+        // https://stackoverflow.com/a/1336739/294515
+        const pts = transduce(
+            map<number, Vec2>(this.pointAtTheta.bind(this)),
+            push(),
+            [
+                this.start,
+                this.end,
+                // multiples of HALF_PI in arc range
+                ...filter(
+                    (t: number) => inRange1(t, this.start, this.end),
+                    range(-3 * PI, 3.01 * PI, HALF_PI)
+                )
+            ]
+        );
+        return bounds(pts, Vec2.MAX.copy(), Vec2.MIN.copy());
+    }
+
+    bounds() {
+        return Rect2.fromMinMax(...this.boundsRaw());
+    }
+
+    edges(opts?: number | Partial<SamplingOpts>) {
         return edges(this.vertices(opts));
     }
 
-    vertices(opts?: number | Partial<ArcSamplingOpts>) {
+    pointAt(t: number) {
+        return this.pointAtTheta(mix1(this.start, this.end, t));
+    }
+
+    pointAtTheta(theta: number) {
+        return new Vec2([Math.cos(theta), Math.sin(theta)])
+            .mul(this.r)
+            .rotate(this.axis)
+            .add(this.pos);
+    }
+
+    vertices(opts?: number | Partial<SamplingOpts>): Vec2[] {
+        if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
+            return new Sampler(this.vertices((<any>opts).num || DEFAULT_SAMPLES))
+                .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
+        }
         opts = isNumber(opts) ?
-            { num: opts, includeLast: true } :
-            { num: Arc2.DEFAULT_RES, ...opts };
+            { num: opts, last: true } :
+            { num: DEFAULT_SAMPLES, ...opts };
         let num: number;
         const start = this.start;
         let delta = this.end - start;
         num = opts.theta ?
-            Math.max(Math.ceil(1 + delta / opts.theta), 2) :
+            Math.round(delta / opts.theta) :
             opts.num;
-        delta /= (num - 1);
-        opts.includeLast !== true && num--;
+        delta /= num;
+        opts.last !== false && num++;
         const pts: Vec = new Array(num * 2);
         const pos = this.pos;
         const [rx, ry] = this.r;
@@ -100,15 +211,24 @@ export class Arc2 implements
         return Vec2.mapBuffer(pts, num);
     }
 
-    toJSON() {
+    toHiccup() {
+        return ["path", this.attribs, [
+            ["M", this.pointAtTheta(this.start)],
+            ["A", this.r, this.axis, this.xl, this.clockwise, this.pointAtTheta(this.end)]
+        ]];
+    }
+
+    toJSON(): JsonArc2 {
         return {
             type: "arc2",
             pos: this.pos.toJSON(),
             r: this.r.toJSON(),
             start: this.start,
             end: this.end,
+            axis: this.axis,
             xl: this.xl,
-            clockwise: this.clockwise
+            clockwise: this.clockwise,
+            attribs: this.attribs,
         };
     }
 }

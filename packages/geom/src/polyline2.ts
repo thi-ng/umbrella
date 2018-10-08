@@ -1,20 +1,26 @@
 import { IObjectOf, IToHiccup } from "@thi.ng/api/api";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Vec2 } from "@thi.ng/vectors/vec2";
-import { IArcLength, IArea, IEdges } from "./api";
+import {
+    IArcLength,
+    IArea,
+    IEdges,
+    IVertices,
+    SamplingOpts,
+    SubdivKernel
+} from "./api";
 import { PointContainer2 } from "./container2";
-import { arcLength } from "./func/arc-length";
-import { edges } from "./func/edges";
-import { sampleUniform } from "./func/sample-uniform";
+import { arcLength } from "./internal/arc-length";
+import { edges } from "./internal/edges";
+import { Sampler } from "./sampler";
+import { subdivideCurve } from "./subdiv-curve";
 
 export class Polyline2 extends PointContainer2 implements
     IArcLength,
     IArea,
     IEdges<Vec2[]>,
+    IVertices<Vec2, void | number | Partial<SamplingOpts>>,
     IToHiccup {
-
-    constructor(points: Vec2[], attribs?: IObjectOf<any>) {
-        super(points, attribs);
-    }
 
     copy() {
         return new Polyline2(this._copy(), { ...this.attribs });
@@ -32,8 +38,22 @@ export class Polyline2 extends PointContainer2 implements
         return arcLength(this.points);
     }
 
-    resample(dist: number) {
-        this.points = sampleUniform(this.points, dist);
+    subdivide(kernel: SubdivKernel<Vec2>, iter = 1) {
+        return new Polyline2(subdivideCurve(kernel, this.points, iter, false), { ...this.attribs });
+    }
+
+    vertices(opts?: number | Partial<SamplingOpts>) {
+        const sampler = new Sampler(this.points);
+        if (opts !== undefined) {
+            if (isPlainObject(opts)) {
+                return opts.dist ?
+                    sampler.sampleUniform(opts.dist, opts.last !== false) :
+                    sampler.sampleFixedNum(opts.num, opts.last !== false);
+            }
+            return sampler.sampleFixedNum(opts, true);
+        } else {
+            return this.points;
+        }
     }
 
     toHiccup() {

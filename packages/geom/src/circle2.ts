@@ -1,28 +1,51 @@
 import { IObjectOf, IToHiccup } from "@thi.ng/api/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Vec } from "@thi.ng/vectors/api";
-import { mix1, PI, TAU } from "@thi.ng/vectors/math";
-import { setS2, toCartesian2, Vec2 } from "@thi.ng/vectors/vec2";
+import { PI, TAU } from "@thi.ng/vectors/math";
 import {
-    ArcSamplingOpts,
+    asVec2,
+    setS2,
+    toCartesian2,
+    Vec2
+} from "@thi.ng/vectors/vec2";
+import {
+    DEFAULT_SAMPLES,
+    HiccupCircle2,
     IArcLength,
     IBounds,
+    IBoundsRaw,
     ICentroid,
-    IToPolygon2,
-    IVertices
+    IToPolygon,
+    IVertices,
+    JsonCircle2,
+    SamplingOpts
 } from "./api";
-import { circumCenter } from "./func/circumcenter";
-import { edges } from "./func/edges";
-import { Polygon2 } from "./poly2";
+import { circumCenter } from "./internal/circumcenter";
+import { edges } from "./internal/edges";
+import { Polygon2 } from "./polygon2";
+import { Rect2 } from "./rect2";
 
 export class Circle2 implements
     IArcLength,
-    IBounds<Vec2[]>,
+    IBoundsRaw<Vec2>,
+    IBounds<Rect2>,
     ICentroid<Vec2>,
     IToHiccup,
-    IToPolygon2,
-    IVertices<Vec2, number | Partial<ArcSamplingOpts>> {
+    IToPolygon<number | Partial<SamplingOpts>>,
+    IVertices<Vec2, number | Partial<SamplingOpts>> {
+
+    static fromJSON(spec: JsonCircle2) {
+        return new Circle2(
+            new Vec2(spec.pos),
+            spec.r,
+            spec.attribs
+        );
+    }
+
+    static fromHiccup(spec: HiccupCircle2) {
+        return new Circle2(asVec2(spec[2]), spec[3], spec[1]);
+    }
 
     static from3Points(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) {
         const o = circumCenter(a, b, c);
@@ -30,8 +53,6 @@ export class Circle2 implements
             return new Circle2(o, a.dist(o));
         }
     }
-
-    static DEFAULT_RES = 20;
 
     pos: Vec2;
     r: number;
@@ -47,45 +68,35 @@ export class Circle2 implements
         return new Circle2(this.pos.copy(), this.r, { ...this.attribs });
     }
 
-    edges(opts?: Partial<ArcSamplingOpts>) {
+    edges(opts?: Partial<SamplingOpts>) {
         return edges(this.vertices(opts));
     }
 
-    verticesRaw(
-        from: number,
-        to: number,
-        num: number,
-        inclLast: boolean,
-        dest: Vec = [],
-        destOffset = 0,
-        cstride = 1,
-        estride = 2
-    ) {
-
+    vertices(opts?: number | Partial<SamplingOpts>) {
+        let [num, last] = isNumber(opts) ?
+            [opts, false] :
+            [
+                opts.theta ?
+                    Math.floor(TAU / opts.theta) :
+                    opts.dist ?
+                        Math.floor(TAU / (opts.dist / this.r)) :
+                        opts.num || DEFAULT_SAMPLES,
+                opts.last === true
+            ];
+        const buf: Vec = [];
         const pos = this.pos.buf;
         const po = this.pos.i;
         const ps = this.pos.s;
         const r = this.r;
-        for (let t of normRange(inclLast ? num - 1 : num, inclLast)) {
+        const delta = TAU / num;
+        last && num++;
+        for (let i = 0; i < num; i++) {
             toCartesian2(
-                setS2(dest, r, mix1(from, to, t), destOffset, cstride),
-                pos, destOffset, po, cstride, ps
+                setS2(buf, r, i * delta, i * 2),
+                pos, i * 2, po, 1, ps
             );
-            destOffset += estride;
         }
-        return dest;
-    }
-
-    vertices(opts?: number | Partial<ArcSamplingOpts>) {
-        const [num, last] = isNumber(opts) ?
-            [opts, true] :
-            [
-                opts.theta ?
-                    Math.max(Math.ceil(1 + TAU / opts.theta), 2) :
-                    opts.num,
-                opts.includeLast === true
-            ];
-        return Vec2.mapBuffer(this.verticesRaw(0, TAU, num, last), num);
+        return Vec2.mapBuffer(buf, num);
     }
 
     area() {
@@ -96,35 +107,30 @@ export class Circle2 implements
         return TAU * this.r;
     }
 
-    bounds() {
+    boundsRaw(): [Vec2, Vec2] {
         return [
-            Vec2.subN(this.pos, this.r),
-            Vec2.addN(this.pos, this.r)
+            this.pos.subNewN(this.r),
+            this.pos.addNewN(this.r)
         ];
     }
 
-    width() {
-        return this.r * 2;
-    }
-
-    height() {
-        return this.width();
-    }
-
-    depth() {
-        return 0;
+    bounds(): Rect2 {
+        return new Rect2(
+            this.pos.subNewN(this.r),
+            new Vec2([this.r, this.r])
+        );
     }
 
     centroid(c?: Vec2) {
         return c ? c.set(this.pos) : this.pos;
     }
 
-    toPolygon2(opts?: Partial<ArcSamplingOpts>) {
+    toPolygon(opts?: number | Partial<SamplingOpts>) {
         return new Polygon2(this.vertices(opts));
     }
 
-    toHiccup() {
-        return ["circle", this.attribs, this.pos, this.r];
+    toHiccup(): HiccupCircle2 {
+        return ["circle", this.attribs || {}, this.pos, this.r];
     }
 
     toJSON() {
@@ -132,9 +138,36 @@ export class Circle2 implements
             type: "circle2",
             pos: this.pos.toJSON(),
             r: this.r,
+            attribs: this.attribs,
         };
     }
 }
 
-export const circle2 = (pos: Vec2, r = 1, attribs?: IObjectOf<any>) =>
-    new Circle2(pos, r, attribs);
+export function circle2(r: number, attribs?: IObjectOf<any>): Circle2;
+export function circle2(x: number, y: number, attribs?: IObjectOf<any>): Circle2;
+export function circle2(x: number, y: number, r: number, attribs?: IObjectOf<any>): Circle2;
+export function circle2(pos: Vec2, attribs?: IObjectOf<any>): Circle2;
+export function circle2(pos: Vec2, r: number, attribs?: IObjectOf<any>): Circle2;
+export function circle2(...args: any[]) {
+    let attribs;
+    let n = args.length - 1;
+    if (isPlainObject(args[n]) || args[n] == null) {
+        attribs = args[n];
+        n--;
+    }
+    if (args[0] instanceof Vec2) {
+        return new Circle2(
+            args[0],
+            n === 1 ? args[n] : 1,
+            attribs
+        );
+    }
+    if (n > 0) {
+        return new Circle2(
+            new Vec2([args[0], args[1]]),
+            n === 2 ? args[n] : 1,
+            attribs
+        );
+    }
+    return new Circle2(new Vec2([0, 0]), args[0], attribs);
+}

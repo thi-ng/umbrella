@@ -1,19 +1,23 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Mat23 } from "@thi.ng/vectors/mat23";
-import { Vec2, vec2 } from "@thi.ng/vectors/vec2";
+import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     CollateOpts,
     IBounds,
+    IBoundsRaw,
     ICentroid,
     ICollate,
     IVertices
 } from "./api";
-import { bounds } from "./func/bounds";
-import { convexHull2 } from "./func/convex-hull";
+import { bounds } from "./internal/bounds";
+import { centroid } from "./internal/centroid";
+import { collateWith } from "./internal/collate";
+import { convexHull } from "./internal/graham-scan";
+import { Rect2 } from "./rect2";
 
 export class PointContainer2 implements
-    IBounds<Vec2[]>,
+    IBoundsRaw<Vec2>,
+    IBounds<Rect2>,
     ICentroid<Vec2>,
     ICollate,
     IVertices<Vec2, void> {
@@ -31,66 +35,27 @@ export class PointContainer2 implements
     }
 
     collate(opts?: Partial<CollateOpts>) {
-        opts = {
-            start: 0,
-            cstride: 1,
-            estride: 2,
-            ...opts
-        };
-        const { start, cstride, estride } = opts;
-        const pts = this.points;
-        const n = pts.length;
-        const buf = Vec2.intoBuffer(
-            opts.buf || new Array(start + n * estride).fill(0),
-            pts,
-            start,
-            cstride,
-            estride
-        );
-        for (let i = 0; i < n; i++) {
-            const p = pts[i];
-            p.buf = buf;
-            p.i = start + i * estride;
-            p.s = cstride;
-        }
-        return buf;
+        return collateWith(Vec2.intoBuffer, this.points, opts, 2);
     }
 
     vertices() {
         return this.points;
     }
 
-    bounds() {
-        return bounds(this.points, Vec2.MAX.copy(), Vec2.MIN.copy());
+    boundsRaw() {
+        return bounds<Vec2>(this.points, Vec2.MAX.copy(), Vec2.MIN.copy());
     }
 
-    width() {
-        const b = this.bounds();
-        return b[1].x - b[0].x;
-    }
-
-    height() {
-        const b = this.bounds();
-        return b[1].y - b[0].y;
-    }
-
-    depth() {
-        return 0;
+    bounds(): Rect2 {
+        return Rect2.fromMinMax(...this.boundsRaw());
     }
 
     convextHull() {
-        return convexHull2(this.points);
+        return convexHull(this.points);
     }
 
-    centroid(c?: Vec2): Vec2 {
-        const pts = this.points;
-        const num = pts.length;
-        !num && illegalArgs("no points available");
-        !c && (c = vec2());
-        for (let i = num; --i >= 0;) {
-            c.add(pts[i]);
-        }
-        return c.divN(num);
+    centroid(c?: Vec2) {
+        return centroid(this.points, c || new Vec2());
     }
 
     center(origin?: Readonly<Vec2>) {
@@ -102,10 +67,26 @@ export class PointContainer2 implements
         this.points.reverse();
     }
 
+    rotate(theta: number) {
+        const pts = this.points;
+        for (let i = pts.length; --i >= 0;) {
+            pts[i].rotate(theta);
+        }
+        return this;
+    }
+
     scale(v: Readonly<Vec2>) {
         const pts = this.points;
         for (let i = pts.length; --i >= 0;) {
             pts[i].mul(v);
+        }
+        return this;
+    }
+
+    scaleN(n: number) {
+        const pts = this.points;
+        for (let i = pts.length; --i >= 0;) {
+            pts[i].mulN(n);
         }
         return this;
     }
@@ -126,8 +107,8 @@ export class PointContainer2 implements
         return this;
     }
 
-    protected _copy() {
-        return Vec2.mapBuffer(Vec2.intoBuffer([], this.points), this.points.length);
+    protected _copy(pts = this.points) {
+        return Vec2.mapBuffer(Vec2.intoBuffer([], pts), pts.length);
     }
 
     protected _toJSON(type: string) {
@@ -139,6 +120,6 @@ export class PointContainer2 implements
     }
 
     protected _toHiccup(type: string) {
-        return [type, this.attribs, this.vertices()];
+        return [type, this.attribs, this.points];
     }
 }

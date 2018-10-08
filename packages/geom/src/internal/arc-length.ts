@@ -1,6 +1,6 @@
-import { IDistance } from "@thi.ng/vectors/api";
+import { IVector } from "@thi.ng/vectors/api";
 
-export const arcLength = <T extends IDistance<T>>(pts: ReadonlyArray<T>, closed = false) => {
+export const arcLength = <T extends IVector<T>>(pts: ReadonlyArray<T>, closed = false) => {
     const num = pts.length;
     if (num < 2) return 0;
     let p = pts[0];

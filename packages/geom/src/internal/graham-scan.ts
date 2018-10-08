@@ -2,18 +2,19 @@ import { Vec2 } from "@thi.ng/vectors/vec2";
 import { corner } from "./corner";
 
 /**
- * Returns array of points defining the Convex Hull of `pts` using
- * Graham Scan method.
+ * Returns array of points defining the 2D Convex Hull of `pts` using
+ * the Graham Scan method.
  *
  * https://en.wikipedia.org/wiki/Graham_scan
  *
  * @param pts
  */
-export const convexHull2 = (pts: ReadonlyArray<Vec2>) => {
+export const convexHull = (pts: ReadonlyArray<Vec2>) => {
     const num = pts.length;
     const res: Vec2[] = [];
     let h = 0, i;
     pts = pts.slice().sort(Vec2.comparator(0, 1));
+
     const scan = (p: Vec2, thresh: number) => {
         while (h >= thresh && corner(res[h - 2], res[h - 1], p) >= 0) {
             res.pop();
@@ -21,6 +22,7 @@ export const convexHull2 = (pts: ReadonlyArray<Vec2>) => {
         }
         res[h++] = p;
     };
+
     for (i = 0; i < num; i++) {
         scan(pts[i], 2);
     }
@@ -32,4 +34,4 @@ export const convexHull2 = (pts: ReadonlyArray<Vec2>) => {
     }
     res.pop();
     return res;
-}
+};
