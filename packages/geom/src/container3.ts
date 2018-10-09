@@ -1,11 +1,12 @@
-import { IObjectOf } from "@thi.ng/api/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { Mat44 } from "@thi.ng/vectors/mat44";
 import { Vec3, vec3 } from "@thi.ng/vectors/vec3";
 import {
+    Attribs,
     CollateOpts,
     IBounds,
     IBoundsRaw,
+    ICenter,
     ICentroid,
     ICollate,
     IVertices
@@ -17,13 +18,14 @@ export class PointContainer3 implements
     IBoundsRaw<Vec3>,
     IBounds<Vec3[]>, // TODO
     ICentroid<Vec3>,
+    ICenter<Vec3>,
     ICollate,
     IVertices<Vec3, void> {
 
     points: Vec3[];
-    attribs: IObjectOf<any>;
+    attribs: Attribs;
 
-    constructor(pts: Vec3[], attribs?: IObjectOf<any>) {
+    constructor(pts: Vec3[], attribs?: Attribs) {
         this.points = pts;
         this.attribs = attribs;
     }

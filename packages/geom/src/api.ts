@@ -1,10 +1,13 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { Vec, ReadonlyVec, IVector } from "@thi.ng/vectors/api";
+import { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 
 export const DEFAULT_SAMPLES = 32;
 
 export type Attribs = IObjectOf<any>;
+
+export type Tessellator<T extends IVector<T>> =
+    (points: ReadonlyArray<T>) => T[][];
 
 export const enum LineIntersectionType {
     PARALLEL,
@@ -42,7 +45,7 @@ export interface LineIntersection<T> {
 export interface PathSegment {
     type: SegmentType;
     point?: Vec2;
-    geo?: IBoundsRaw<Vec2> & IVertices<Vec2, any>;
+    geo?: IBoundsRaw<Vec2> & IVertices<Vec2, any> & IHiccupPathSegment;
 }
 
 export interface SamplingOpts {
@@ -142,6 +145,18 @@ export interface ICentroid<T> {
     centroid(c?: T): T;
 }
 
+export interface ICenter<T> {
+    center(origin?: Readonly<T>): this;
+}
+
+export interface IClassifyPoint<T> {
+    classifyPoint(p: Readonly<T>): number;
+}
+
+export interface IPointInside<T> {
+    pointInside(p: Readonly<T>): boolean;
+}
+
 export interface ICollate {
     /**
      * Collates all points into a single buffer and remaps existing
@@ -155,6 +170,15 @@ export interface ICollate {
 
 export interface IEdges<T> {
     edges(opts?: any): Iterable<T>;
+}
+
+export interface IHiccupPathSegment {
+    toHiccupPathSegments(): any[];
+}
+
+export interface IPointMap<A, B> {
+    mapPoint(p: Readonly<A>, out?: B): B;
+    unmapPoint(p: Readonly<B>, out?: A): A;
 }
 
 export interface IToPolygon<O> {

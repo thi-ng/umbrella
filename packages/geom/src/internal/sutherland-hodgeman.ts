@@ -3,8 +3,9 @@ import { classify } from "./corner";
 import { intersectLines2 } from "./line-intersection";
 
 /**
- * Sutherland-Hodgeman convex polygon clipping.
- * Returns new array of clipped vertices.
+ * Extended version of Sutherland-Hodgeman convex polygon clipping
+ * supporting any convex boundary (not only rects). Returns new array of
+ * clipped vertices.
  *
  * https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm
  *

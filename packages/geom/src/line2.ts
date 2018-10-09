@@ -1,11 +1,13 @@
-import { PointContainer2 } from "./container2";
-import { Attribs, SamplingOpts, HiccupLine2 } from "./api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
-import { Sampler } from "./sampler";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { intersectLines2 } from "./internal/line-intersection";
-import { Vec } from "@thi.ng/vectors/api";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { Vec } from "@thi.ng/vectors/api";
+import { Vec2 } from "@thi.ng/vectors/vec2";
+import { Attribs, HiccupLine2, SamplingOpts } from "./api";
+import { PointContainer2 } from "./container2";
+import { liangBarsky2 } from "./internal/liang-barsky";
+import { intersectLines2 } from "./internal/line-intersection";
+import { Rect2 } from "./rect2";
+import { Sampler } from "./sampler";
 
 export class Line2 extends PointContainer2 {
 
@@ -51,8 +53,21 @@ export class Line2 extends PointContainer2 {
         return intersectLines2(this.points[0], this.points[1], l.points[0], l.points[1]);
     }
 
+    clipRect(bounds: [Vec2, Vec2] | Rect2) {
+        const res = bounds instanceof Rect2 ?
+            liangBarsky2(this.points[0], this.points[1], bounds.pos, bounds.pos.addNew(bounds.size)) :
+            liangBarsky2(this.points[0], this.points[1], bounds[0], bounds[1]);
+        if (res) {
+            return new Line2([res[0], res[1]], { ...this.attribs });
+        }
+    }
+
     toHiccup(): HiccupLine2 {
         return ["line", this.attribs || {}, this.points[0], this.points[1]];
+    }
+
+    toHiccupPathSegments() {
+        return [["L", this.points[1]]];
     }
 
     toJSON() {

@@ -4,7 +4,7 @@ import { IBounds, ICentroid, ITransformable } from "./api";
 import { collBounds } from "./internal/bounds";
 import { Rect2 } from "./rect2";
 
-const translateScale = (shape, c1, c2, smat) =>
+const translateScale = (shape: ITransformable<Mat23>, c1: Vec2, c2: Vec2, smat: Mat23) =>
     shape.transform(
         Mat23.concat(
             Mat23.translation(c1),

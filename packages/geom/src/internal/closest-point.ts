@@ -3,7 +3,7 @@ import { IVector } from "@thi.ng/vectors/api";
 export const closestPoint =
     <T extends IVector<T>>(p: T, pts: T[]) => {
 
-        let minD = Number.POSITIVE_INFINITY;
+        let minD = Infinity;
         let closest: T;
         for (let i = pts.length; --i >= 0;) {
             const d = pts[i].distSq(p);
@@ -39,12 +39,12 @@ export const closestPointSegment =
     };
 
 export const closestPointPolyline =
-    <T extends IVector<T>>(p: T, pts: T[], closed = false) => {
+    <T extends IVector<T>>(p: Readonly<T>, pts: ReadonlyArray<T>, closed = false) => {
 
         const closest = pts[0].empty();
         const tmp = closest.empty();
         const n = pts.length - 1;
-        let minD = Number.POSITIVE_INFINITY, i, j;
+        let minD = Infinity, i, j;
         if (closed) {
             i = n;
             j = 0;

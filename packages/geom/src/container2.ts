@@ -1,14 +1,16 @@
-import { IObjectOf } from "@thi.ng/api/api";
 import { Mat23 } from "@thi.ng/vectors/mat23";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
+    Attribs,
     CollateOpts,
     IBounds,
     IBoundsRaw,
+    ICenter,
     ICentroid,
     ICollate,
     IVertices
 } from "./api";
+import { fitIntoBounds2 } from "./fit";
 import { bounds } from "./internal/bounds";
 import { centroid } from "./internal/centroid";
 import { collateWith } from "./internal/collate";
@@ -19,13 +21,14 @@ export class PointContainer2 implements
     IBoundsRaw<Vec2>,
     IBounds<Rect2>,
     ICentroid<Vec2>,
+    ICenter<Vec2>,
     ICollate,
     IVertices<Vec2, void> {
 
     points: Vec2[];
-    attribs: IObjectOf<any>;
+    attribs: Attribs;
 
-    constructor(pts: Vec2[], attribs?: IObjectOf<any>) {
+    constructor(pts: Vec2[], attribs?: Attribs) {
         this.points = pts;
         this.attribs = attribs;
     }
@@ -65,6 +68,11 @@ export class PointContainer2 implements
 
     flip() {
         this.points.reverse();
+    }
+
+    fit(bounds: Rect2) {
+        fitIntoBounds2(this, bounds);
+        return this;
     }
 
     rotate(theta: number) {

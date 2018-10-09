@@ -4,6 +4,7 @@ import { peek } from "@thi.ng/transducers/func/peek";
 import { eqDelta1, rad } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
+    Attribs,
     IBounds,
     IBoundsRaw,
     IToPolygon,
@@ -18,6 +19,7 @@ import { Line2 } from "./line2";
 import { Polygon2 } from "./polygon2";
 import { Polyline2 } from "./polyline2";
 import { Rect2 } from "./rect2";
+import { simplifyPolyline } from "./internal/douglas–peucker";
 
 export class Path2 implements
     Iterable<PathSegment>,
@@ -28,9 +30,11 @@ export class Path2 implements
 
     segments: PathSegment[];
     closed: boolean;
+    attribs: Attribs;
 
-    constructor(segments?: PathSegment[]) {
+    constructor(segments?: PathSegment[], attribs?: Attribs) {
         this.segments = segments || [];
+        this.attribs = attribs;
         this.closed = false;
     }
 
@@ -59,20 +63,21 @@ export class Path2 implements
         return Rect2.fromMinMax(...this.boundsRaw());
     }
 
-    simplify(): Path2 {
+    simplify(eps = 0.01): Path2 {
         const res: PathSegment[] = [];
         const orig = this.segments;
         const n = orig.length;
-        let points, lastP;
+        let points: Vec2[];
+        let lastP: Vec2;
         for (let i = 0; i < n; i++) {
             const s = orig[i];
             if (s.type === SegmentType.LINE || s.type === SegmentType.POLYLINE) {
-                points = (points || []).concat(s.geo.vertices());
+                points = (points || []).concat(ensureArray(s.geo.vertices()));
                 lastP = peek(points);
             } else if (points) {
                 points.push(lastP);
                 res.push({
-                    geo: new Polyline2(points),
+                    geo: new Polyline2(simplifyPolyline(points, eps)),
                     type: SegmentType.POLYLINE,
                 });
                 points = null;
@@ -91,14 +96,6 @@ export class Path2 implements
         return this;
     }
 
-    toPolygon(opts?: number | Partial<SamplingOpts>) {
-        return new Polygon2(this.vertices(opts));
-    }
-
-    toPolyline(res = 10) {
-        return new Polyline2(this.vertices(res));
-    }
-
     vertices(opts?: number | Partial<SamplingOpts>) {
         const _opts = isNumber(opts) ? { num: opts } : opts;
         let verts: Vec2[] = [];
@@ -111,6 +108,31 @@ export class Path2 implements
             }
         }
         return verts;
+    }
+
+    toPolygon(opts?: number | Partial<SamplingOpts>) {
+        return new Polygon2(this.vertices(opts));
+    }
+
+    toPolyline(res = 10) {
+        return new Polyline2(this.vertices(res));
+    }
+
+    toHiccup() {
+        const dest: any[] = [];
+        const res: any[] = ["path", this.attribs || {}, dest];
+        const src = this.segments;
+        const n = src.length;
+        if (n > 1) {
+            dest.push(["M", src[0].point]);
+            for (let i = 1; i < n; i++) {
+                dest.push(...src[i].geo.toHiccupPathSegments());
+            }
+            if (this.closed) {
+                dest.push(["Z"]);
+            }
+        }
+        return res;
     }
 }
 

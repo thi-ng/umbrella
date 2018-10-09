@@ -1,8 +1,7 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { IDistance, IMix } from "@thi.ng/vectors/api";
 import { peek } from "@thi.ng/transducers/func/peek";
+import { IVector } from "@thi.ng/vectors/api";
 
-export class Sampler<T extends ICopy<T> & IEqualsDelta<T> & IDistance<T> & IMix<T>> {
+export class Sampler<T extends IVector<T>> {
 
     points: T[];
     index: number[];

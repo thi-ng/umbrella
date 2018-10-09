@@ -1,4 +1,4 @@
-import { IToHiccup } from "@thi.ng/api/api";
+import { ICopy, IToHiccup } from "@thi.ng/api/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Vec } from "@thi.ng/vectors/api";
@@ -9,22 +9,27 @@ import {
     IArcLength,
     IArea,
     IEdges,
+    IPointInside,
     SamplingOpts,
     SubdivKernel
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
 import { centerOfWeight, centroid } from "./internal/centroid";
+import { closestPointPolyline } from "./internal/closest-point";
 import { edges } from "./internal/edges";
+import { containsDelta } from "./internal/eq-delta";
 import { clipConvex } from "./internal/sutherland-hodgeman";
 import { Sampler } from "./sampler";
 import { subdivideCurve } from "./subdiv-curve";
-import { simplify } from "./internal/douglas–peucker";
+import { simplifyPolyline } from "./internal/douglas–peucker";
 
 export class Polygon2 extends PointContainer2 implements
     IArcLength,
     IArea,
+    ICopy<Polygon2>,
     IEdges<Vec2[]>,
+    IPointInside<Vec2>,
     IToHiccup {
 
     static fromHiccup([_, attribs, pts]: HiccupPolygon2) {
@@ -41,17 +46,17 @@ export class Polygon2 extends PointContainer2 implements
     }
 
     edges() {
-        return edges(this.vertices(), true);
+        return edges(this.points, true);
     }
 
-    area(unsigned = true) {
+    area(signed = true) {
         const pts = this.points;
         let res = 0;
         for (let n = pts.length - 1, i = n, j = 0; n >= 0; i = j, j++ , n--) {
             res += pts[i].cross(pts[j]);
         }
         res /= 2;
-        return unsigned ? res : Math.abs(res);
+        return signed ? res : Math.abs(res);
     }
 
     arcLength() {
@@ -62,19 +67,38 @@ export class Polygon2 extends PointContainer2 implements
         return centerOfWeight(this.points, c);
     }
 
+    closestPoint(p: Readonly<Vec2>) {
+        return closestPointPolyline(p, this.points, true);
+    }
+
+    pointInside(p: Readonly<Vec2>) {
+        const pts = this.points;
+        if (containsDelta(pts, p)) return true;
+        const px = p.x;
+        const py = p.y;
+        let inside = false;
+        for (let n = pts.length - 1, i = n, j = 0; j < n; i = j, j++) {
+            const [ax, ay] = pts[i];
+            const [bx, by] = pts[j];
+            (((by < py && ay >= py) || (ay < py && by >= py)) &&
+                ((py - by) / (ay - by) * (ax - bx) + bx) < px) &&
+                (inside = !inside);
+        }
+        return inside;
+    }
+
     simplify(eps: number) {
-        return new Polygon2(simplify(this.points, eps, true), { ...this.attribs });
+        return new Polygon2(simplifyPolyline(this.points, eps, true), { ...this.attribs });
     }
 
     vertices(opts?: number | Partial<SamplingOpts>) {
         const sampler = new Sampler(this.points, true);
         if (opts !== undefined) {
-            if (isPlainObject(opts)) {
-                return opts.dist ?
+            return isPlainObject(opts) ?
+                opts.dist ?
                     sampler.sampleUniform(opts.dist, opts.last) :
-                    sampler.sampleFixedNum(opts.num, opts.last);
-            }
-            return sampler.sampleFixedNum(opts, false);
+                    sampler.sampleFixedNum(opts.num, opts.last) :
+                sampler.sampleFixedNum(opts, false);
         } else {
             return this.points;
         }
@@ -112,14 +136,14 @@ export function polygon2(points, ...args: any[]) {
     if (isNumber(points[0])) {
         points = Vec2.mapBuffer(
             points,
-            args[1] || points.length / 2,
-            args[2] || 0,
-            args[3] || 1,
-            args[4] || 2
+            args[0] || points.length / 2,
+            args[1] || 0,
+            args[2] || 1,
+            args[3] || 2
         );
-        attribs = args[5];
+        attribs = args[4];
     } else {
-        attribs = args[1];
+        attribs = args[0];
     }
     return new Polygon2(points, attribs);
 }

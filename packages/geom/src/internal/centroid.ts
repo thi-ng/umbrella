@@ -2,9 +2,10 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { IVector } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 
-export const centroid = <T extends IVector<T>>(pts: T[], c: T) => {
+export const centroid = <T extends IVector<T>>(pts: ReadonlyArray<T>, c?: T) => {
     const num = pts.length;
     !num && illegalArgs("no points available");
+    !c && (c = pts[0].empty());
     for (let i = num; --i >= 0;) {
         c.add(pts[i]);
     }

@@ -1,7 +1,10 @@
-import { IObjectOf, IToHiccup } from "@thi.ng/api/api";
+import { ICopy, IToHiccup } from "@thi.ng/api/api";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
+    Attribs,
     IArcLength,
     IArea,
     IEdges,
@@ -11,6 +14,7 @@ import {
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
+import { closestPointPolyline } from "./internal/closest-point";
 import { edges } from "./internal/edges";
 import { Sampler } from "./sampler";
 import { subdivideCurve } from "./subdiv-curve";
@@ -18,6 +22,7 @@ import { subdivideCurve } from "./subdiv-curve";
 export class Polyline2 extends PointContainer2 implements
     IArcLength,
     IArea,
+    ICopy<Polyline2>,
     IEdges<Vec2[]>,
     IVertices<Vec2, void | number | Partial<SamplingOpts>>,
     IToHiccup {
@@ -27,7 +32,7 @@ export class Polyline2 extends PointContainer2 implements
     }
 
     edges() {
-        return edges(this.vertices());
+        return edges(this.points);
     }
 
     area() {
@@ -36,6 +41,10 @@ export class Polyline2 extends PointContainer2 implements
 
     arcLength() {
         return arcLength(this.points);
+    }
+
+    closestPoint(p: Readonly<Vec2>) {
+        return closestPointPolyline(p, this.points, false);
     }
 
     subdivide(kernel: SubdivKernel<Vec2>, iter = 1) {
@@ -60,10 +69,34 @@ export class Polyline2 extends PointContainer2 implements
         return this._toHiccup("polyline");
     }
 
+    toHiccupPathSegments() {
+        const res: any[] = [];
+        for (let pts = this.points, n = pts.length, i = 1; i < n; i++) {
+            res.push(["L", pts[i]]);
+        }
+        return res;
+    }
+
     toJSON() {
         return this._toJSON("polyline2");
     }
 }
 
-export const polyline2 = (points: Vec2[], attribs?: IObjectOf<any>) =>
-    new Polyline2(points, attribs);
+export function polyline2(points: Vec, num?: number, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Polyline2;
+export function polyline2(points: Vec2[], attribs?: Attribs): Polyline2;
+export function polyline2(points, ...args: any[]) {
+    let attribs;
+    if (isNumber(points[0])) {
+        points = Vec2.mapBuffer(
+            points,
+            args[0] || points.length / 2,
+            args[1] || 0,
+            args[2] || 1,
+            args[3] || 2
+        );
+        attribs = args[4];
+    } else {
+        attribs = args[0];
+    }
+    return new Polyline2(points, attribs);
+}

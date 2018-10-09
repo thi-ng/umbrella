@@ -1,8 +1,8 @@
-import { IObjectOf, IToHiccup } from "@thi.ng/api/api";
+import { IToHiccup } from "@thi.ng/api/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Vec } from "@thi.ng/vectors/api";
-import { PI, TAU } from "@thi.ng/vectors/math";
+import { PI, TAU, eqDelta1 } from "@thi.ng/vectors/math";
 import {
     asVec2,
     setS2,
@@ -10,6 +10,7 @@ import {
     Vec2
 } from "@thi.ng/vectors/vec2";
 import {
+    Attribs,
     DEFAULT_SAMPLES,
     HiccupCircle2,
     IArcLength,
@@ -19,7 +20,9 @@ import {
     IToPolygon,
     IVertices,
     JsonCircle2,
-    SamplingOpts
+    SamplingOpts,
+    IPointInside,
+    IClassifyPoint
 } from "./api";
 import { circumCenter } from "./internal/circumcenter";
 import { edges } from "./internal/edges";
@@ -31,6 +34,8 @@ export class Circle2 implements
     IBoundsRaw<Vec2>,
     IBounds<Rect2>,
     ICentroid<Vec2>,
+    IClassifyPoint<Vec2>,
+    IPointInside<Vec2>,
     IToHiccup,
     IToPolygon<number | Partial<SamplingOpts>>,
     IVertices<Vec2, number | Partial<SamplingOpts>> {
@@ -47,18 +52,21 @@ export class Circle2 implements
         return new Circle2(asVec2(spec[2]), spec[3], spec[1]);
     }
 
-    static from3Points(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) {
+    static from2Points(a: Readonly<Vec2>, b: Readonly<Vec2>, attribs?: Attribs) {
+        return new Circle2(a.mixNewN(b), a.dist(b) / 2, attribs);
+    }
+    static from3Points(a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, attribs?: Attribs) {
         const o = circumCenter(a, b, c);
         if (o) {
-            return new Circle2(o, a.dist(o));
+            return new Circle2(o, a.dist(o), attribs);
         }
     }
 
     pos: Vec2;
     r: number;
-    attribs: IObjectOf<any>;
+    attribs: Attribs;
 
-    constructor(pos: Vec2, r = 1, attribs?: IObjectOf<any>) {
+    constructor(pos: Vec2, r = 1, attribs?: Attribs) {
         this.pos = pos;
         this.r = r;
         this.attribs = attribs;
@@ -125,6 +133,16 @@ export class Circle2 implements
         return c ? c.set(this.pos) : this.pos;
     }
 
+    classifyPoint(p: Readonly<Vec2>) {
+        const d = p.distSq(this.pos);
+        const r = this.r * this.r;
+        return eqDelta1(d, r) ? 0 : d < r ? 1 : -1;
+    }
+
+    pointInside(p: Readonly<Vec2>) {
+        return this.classifyPoint(p) >= 0;
+    }
+
     toPolygon(opts?: number | Partial<SamplingOpts>) {
         return new Polygon2(this.vertices(opts));
     }
@@ -143,11 +161,11 @@ export class Circle2 implements
     }
 }
 
-export function circle2(r: number, attribs?: IObjectOf<any>): Circle2;
-export function circle2(x: number, y: number, attribs?: IObjectOf<any>): Circle2;
-export function circle2(x: number, y: number, r: number, attribs?: IObjectOf<any>): Circle2;
-export function circle2(pos: Vec2, attribs?: IObjectOf<any>): Circle2;
-export function circle2(pos: Vec2, r: number, attribs?: IObjectOf<any>): Circle2;
+export function circle2(r: number, attribs?: Attribs): Circle2;
+export function circle2(x: number, y: number, attribs?: Attribs): Circle2;
+export function circle2(x: number, y: number, r: number, attribs?: Attribs): Circle2;
+export function circle2(pos: Vec2, attribs?: Attribs): Circle2;
+export function circle2(pos: Vec2, r: number, attribs?: Attribs): Circle2;
 export function circle2(...args: any[]) {
     let attribs;
     let n = args.length - 1;

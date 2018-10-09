@@ -1,22 +1,34 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { ICopy } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
+    Attribs,
     CollateOpts,
+    IArcLength,
+    IArea,
     IBounds,
+    IBoundsRaw,
+    ICenter,
     ICentroid,
     ICollate,
-    IVertices,
-    IBoundsRaw
+    IPointInside,
+    IPointMap,
+    IVertices
 } from "./api";
 import { collateWith } from "./internal/collate";
 import { edges } from "./internal/edges";
 
 export class Rect2 implements
-    ICollate,
+    IArea,
+    IArcLength,
     IBoundsRaw<Vec2>,
     IBounds<Rect2>,
     ICentroid<Vec2>,
+    ICenter<Vec2>,
+    ICollate,
+    ICopy<Rect2>,
+    IPointInside<Vec2>,
+    IPointMap<Vec2, Vec2>,
     IVertices<Vec2, void> {
 
     static fromMinMax(min: Vec2, max: Vec2) {
@@ -25,7 +37,7 @@ export class Rect2 implements
 
     pos: Vec2;
     size: Vec2;
-    attribs: IObjectOf<any>;
+    attribs: Attribs;
 
     constructor(pos: Vec2, size: Vec2, attribs?: any) {
         this.pos = pos;
@@ -40,6 +52,14 @@ export class Rect2 implements
 
     collate(opts?: Partial<CollateOpts>) {
         return collateWith(Vec2.intoBuffer, [this.pos, this.size], opts, 2);
+    }
+
+    area() {
+        return this.size.x * this.size.y;
+    }
+
+    arcLength() {
+        return 2 * (this.size.x + this.size.y);
     }
 
     boundsRaw(): [Vec2, Vec2] {
@@ -60,11 +80,21 @@ export class Rect2 implements
         return this;
     }
 
-    mapPoint(p: Vec2, out?: Vec2) {
+    pointInside(p: Readonly<Vec2>) {
+        const px = p.x;
+        const py = p.y;
+        const x1 = this.pos.x;
+        const y1 = this.pos.y;
+        const x2 = x1 + this.size.x;
+        const y2 = y1 + this.size.y;
+        return px >= x1 && px <= x2 && py >= y1 && py <= y2;
+    }
+
+    mapPoint(p: Readonly<Vec2>, out?: Vec2) {
         return p.subNew(this.pos, out).div(this.size);
     }
 
-    unmapPoint(p: Vec2, out?: Vec2) {
+    unmapPoint(p: Readonly<Vec2>, out?: Vec2) {
         return (out ? out.set(this.pos) : this.pos.copy()).madd(this.size, p);
     }
 
@@ -116,12 +146,12 @@ export class Rect2 implements
     }
 }
 
-export function rect2(x: number, y: number, w: number, h: number, attribs?: IObjectOf<any>): Rect2;
-export function rect2(x: number, y: number, w: number, attribs?: IObjectOf<any>): Rect2;
-export function rect2(w: number, h: number, attribs?: IObjectOf<any>): Rect2;
-export function rect2(pos: Vec2, w: number, attribs?: IObjectOf<any>): Rect2;
-export function rect2(pos: Vec2, size: Vec2, attribs?: IObjectOf<any>): Rect2;
-export function rect2(w: number, attribs?: IObjectOf<any>): Rect2;
+export function rect2(x: number, y: number, w: number, h: number, attribs?: Attribs): Rect2;
+export function rect2(x: number, y: number, w: number, attribs?: Attribs): Rect2;
+export function rect2(w: number, h: number, attribs?: Attribs): Rect2;
+export function rect2(pos: Vec2, w: number, attribs?: Attribs): Rect2;
+export function rect2(pos: Vec2, size: Vec2, attribs?: Attribs): Rect2;
+export function rect2(w: number, attribs?: Attribs): Rect2;
 export function rect2(...args: any[]) {
     let attribs;
     let n = args.length - 1;

@@ -11,8 +11,12 @@ export * from "./line2";
 export * from "./path2";
 export * from "./polygon2";
 export * from "./polyline2";
+export * from "./quad2";
 export * from "./rect2";
 export * from "./sampler";
+export * from "./triangle2";
 
 export * from "./fit";
 export * from "./subdiv-curve";
+export * from "./tessellate";
+export * from "./warp";

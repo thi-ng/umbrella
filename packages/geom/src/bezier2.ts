@@ -2,15 +2,11 @@ import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { IMath } from "@thi.ng/vectors/api";
+import { clamp1 } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
-import {
-    DEFAULT_SAMPLES,
-    IVertices,
-    SamplingOpts
-} from "./api";
+import { DEFAULT_SAMPLES, IVertices, SamplingOpts } from "./api";
 import { PointContainer2 } from "./container2";
 import { Sampler } from "./sampler";
-import { clamp1 } from "@thi.ng/vectors/math";
 
 export const mixQuadratic1 = (a: number, b: number, c: number, t: number) => {
     const s = 1 - t;
@@ -144,12 +140,20 @@ export class Cubic2 extends PointContainer2 implements
     }
 
     toHiccup() {
+        return ["path", this.attribs,
+            [
+                ["M", this.points[0]],
+                ...this.toHiccupPathSegments()
+            ]
+        ];
+    }
+
+    toHiccupPathSegments() {
         const pts = this.points;
-        return ["path", this.attribs, [["M", pts[0]], ["C", pts[1], pts[2], pts[3]]]];
+        return [["C", pts[1], pts[2], pts[3]]];
     }
 }
 
-// https://github.com/uxebu/bonsai/blob/master/src/runner/path/curved_path.js
 export class Quadratic2 extends PointContainer2 implements
     IVertices<Vec2, number | Partial<SamplingOpts>> {
 
@@ -250,7 +254,16 @@ export class Quadratic2 extends PointContainer2 implements
     }
 
     toHiccup() {
+        return ["path", this.attribs,
+            [
+                ["M", this.points[0]],
+                ...this.toHiccupPathSegments()
+            ]
+        ];
+    }
+
+    toHiccupPathSegments() {
         const pts = this.points;
-        return ["path", this.attribs, [["M", pts[0]], ["Q", pts[1], pts[2]]]];
+        return [["Q", pts[1], pts[2]]];
     }
 }

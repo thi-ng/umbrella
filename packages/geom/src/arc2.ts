@@ -1,3 +1,4 @@
+import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { range } from "@thi.ng/transducers/iter/range";
@@ -25,6 +26,7 @@ import {
     DEFAULT_SAMPLES,
     HiccupArc2,
     IBounds,
+    IBoundsRaw,
     IEdges,
     IVertices,
     JsonArc2,
@@ -37,6 +39,8 @@ import { Sampler } from "./sampler";
 
 export class Arc2 implements
     IBounds<Rect2>,
+    IBoundsRaw<Vec2>,
+    ICopy<Arc2>,
     IEdges<Vec2[]>,
     IVertices<Vec2, number | Partial<SamplingOpts>> {
 
@@ -212,9 +216,21 @@ export class Arc2 implements
     }
 
     toHiccup() {
-        return ["path", this.attribs, [
-            ["M", this.pointAtTheta(this.start)],
-            ["A", this.r, this.axis, this.xl, this.clockwise, this.pointAtTheta(this.end)]
+        return ["path", this.attribs,
+            [
+                ["M", this.pointAtTheta(this.start)],
+                ...this.toHiccupPathSegments()
+            ]
+        ];
+    }
+
+    toHiccupPathSegments() {
+        return [["A",
+            this.r,
+            this.axis,
+            this.xl ? 1 : 0,
+            this.clockwise ? 1 : 0,
+            this.pointAtTheta(this.end)
         ]];
     }
 
