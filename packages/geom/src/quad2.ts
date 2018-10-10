@@ -1,16 +1,16 @@
 import { ICopy } from "@thi.ng/api";
 import { Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
-import { isNumber } from "util";
 import {
     Attribs,
     IArcLength,
     IArea,
-    IPointMap,
-    IEdges
+    IEdges,
+    IPointMap
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
+import { args4 } from "./internal/args";
 import { corner } from "./internal/corner";
 import { edges } from "./internal/edges";
 
@@ -61,22 +61,7 @@ export class Quad2 extends PointContainer2 implements
 export function quad2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Quad2;
 export function quad2(a: Vec2, b: Vec2, c: Vec2, d: Vec2, attribs?: Attribs): Quad2;
 export function quad2(points: Vec2[], attribs?: Attribs): Quad2;
-export function quad2(points, ...args: any[]) {
-    let attribs;
-    if (points instanceof Vec2) {
-        points = [points, args[0], args[1], args[2]];
-        attribs = args[3];
-    } else if (isNumber(points[0])) {
-        points = Vec2.mapBuffer(
-            points,
-            4,
-            args[0] || 0,
-            args[1] || 1,
-            args[2] || 2
-        );
-        attribs = args[3];
-    } else {
-        attribs = args[0];
-    }
+export function quad2(...args: any[]) {
+    const [points, attribs] = args4(args);
     return new Quad2(points, attribs);
 }

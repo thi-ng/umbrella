@@ -13,6 +13,7 @@ import { scan } from "@thi.ng/transducers/xform/scan";
 import { IVector } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import { Tessellator } from "./api";
+import { polygonArea } from "./internal/area";
 import { centroid } from "./internal/centroid";
 import { corner, pointInTriangle2 } from "./internal/corner";
 
@@ -32,10 +33,14 @@ const snip = (points: ReadonlyArray<Vec2>, u: number, v: number, w: number, n: n
     }
 };
 
-export const earCut = (points: ReadonlyArray<Vec2>, clockwise: boolean) => {
+export const earCut = (points: ReadonlyArray<Vec2>) => {
     const tris: Vec2[][] = [];
     let n = points.length;
-    const ids = [...clockwise ? range(n) : range(n - 1, -1, -1)];
+    const ids = [
+        ...(polygonArea(points) > 0 ?
+            range(n) :
+            range(n - 1, -1, -1))
+    ];
     let count = 2 * n - 1;
     let v = n - 1, u, w, t;
     while (count > 0 && n > 2) {

@@ -1,8 +1,15 @@
 import { ICopy, IToHiccup } from "@thi.ng/api/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { cycle } from "@thi.ng/transducers/iter/cycle";
+import { normRange } from "@thi.ng/transducers/iter/norm-range";
+import { tuples } from "@thi.ng/transducers/iter/tuples";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
 import { Vec } from "@thi.ng/vectors/api";
-import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
+import { TAU } from "@thi.ng/vectors/math";
+import { asVec2, toCartesian2, Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
     HiccupPolygon2,
@@ -15,6 +22,7 @@ import {
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
+import { polygonArea } from "./internal/area";
 import { centerOfWeight, centroid } from "./internal/centroid";
 import { closestPointPolyline } from "./internal/closest-point";
 import { edges } from "./internal/edges";
@@ -41,6 +49,16 @@ export class Polygon2 extends PointContainer2 implements
         );
     }
 
+    static star(r: number, n: number, profile: number[]) {
+        const total = n * profile.length;
+        const pts = transduce(
+            map(([i, p]) => new Vec2(toCartesian2([r * p, i * TAU]))),
+            push(),
+            tuples(normRange(total, false), cycle(profile))
+        );
+        return new Polygon2(pts);
+    }
+
     copy() {
         return new Polygon2(this._copy(), { ...this.attribs });
     }
@@ -50,13 +68,8 @@ export class Polygon2 extends PointContainer2 implements
     }
 
     area(signed = true) {
-        const pts = this.points;
-        let res = 0;
-        for (let n = pts.length - 1, i = n, j = 0; n >= 0; i = j, j++ , n--) {
-            res += pts[i].cross(pts[j]);
-        }
-        res /= 2;
-        return signed ? res : Math.abs(res);
+        const area = polygonArea(this.points);
+        return signed ? area : Math.abs(area);
     }
 
     arcLength() {

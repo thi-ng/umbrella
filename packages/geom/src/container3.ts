@@ -68,6 +68,7 @@ export class PointContainer3 implements
 
     flip() {
         this.points.reverse();
+        return this;
     }
 
     scale(v: Readonly<Vec3>) {

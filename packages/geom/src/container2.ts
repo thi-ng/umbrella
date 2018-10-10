@@ -68,6 +68,7 @@ export class PointContainer2 implements
 
     flip() {
         this.points.reverse();
+        return this;
     }
 
     fit(bounds: Rect2) {

@@ -1,11 +1,17 @@
 import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { IMath } from "@thi.ng/vectors/api";
+import { IMath, Vec } from "@thi.ng/vectors/api";
 import { clamp1 } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
-import { DEFAULT_SAMPLES, IVertices, SamplingOpts } from "./api";
+import {
+    Attribs,
+    DEFAULT_SAMPLES,
+    IVertices,
+    SamplingOpts
+} from "./api";
 import { PointContainer2 } from "./container2";
+import { args3, args4 } from "./internal/args";
 import { Sampler } from "./sampler";
 
 export const mixQuadratic1 = (a: number, b: number, c: number, t: number) => {
@@ -266,4 +272,20 @@ export class Quadratic2 extends PointContainer2 implements
         const pts = this.points;
         return [["Q", pts[1], pts[2]]];
     }
+}
+
+export function cubic2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Cubic2;
+export function cubic2(a: Vec2, b: Vec2, c: Vec2, d: Vec2, attribs?: Attribs): Cubic2;
+export function cubic2(points: Vec2[], attribs?: Attribs): Cubic2;
+export function cubic2(...args: any[]) {
+    const [points, attribs] = args4(args);
+    return new Cubic2(points, attribs);
+}
+
+export function quadratic2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Quadratic2;
+export function quadratic2(a: Vec2, b: Vec2, c: Vec2, attribs?: Attribs): Quadratic2;
+export function quadratic2(points: Vec2[], attribs?: Attribs): Quadratic2;
+export function quadratic2(...args: any[]) {
+    const [points, attribs] = args3(args);
+    return new Quadratic2(points, attribs);
 }
