@@ -40,3 +40,20 @@ export const args4 = (args: any[]) => {
     }
     return [points, attribs];
 };
+
+export const argsN = (args: any[]) => {
+    let points = args[0], attribs;
+    if (isNumber(points[0])) {
+        points = Vec2.mapBuffer(
+            points,
+            args[1] || points.length / 2,
+            args[2] || 0,
+            args[3] || 1,
+            args[4] || 2
+        );
+        attribs = args[5];
+    } else {
+        attribs = args[1];
+    }
+    return [points, attribs];
+};

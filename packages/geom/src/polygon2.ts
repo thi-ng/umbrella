@@ -17,12 +17,15 @@ import {
     IArea,
     IEdges,
     IPointInside,
+    ITessellateable,
     SamplingOpts,
-    SubdivKernel
+    SubdivKernel,
+    Tessellator
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
 import { polygonArea } from "./internal/area";
+import { argsN } from "./internal/args";
 import { centerOfWeight, centroid } from "./internal/centroid";
 import { closestPointPolyline } from "./internal/closest-point";
 import { edges } from "./internal/edges";
@@ -30,6 +33,7 @@ import { containsDelta } from "./internal/eq-delta";
 import { clipConvex } from "./internal/sutherland-hodgeman";
 import { Sampler } from "./sampler";
 import { subdivideCurve } from "./subdiv-curve";
+import { tessellate } from "./tessellate";
 import { simplifyPolyline } from "./internal/douglas–peucker";
 
 export class Polygon2 extends PointContainer2 implements
@@ -38,6 +42,7 @@ export class Polygon2 extends PointContainer2 implements
     ICopy<Polygon2>,
     IEdges<Vec2[]>,
     IPointInside<Vec2>,
+    ITessellateable<Vec2>,
     IToHiccup {
 
     static fromHiccup([_, attribs, pts]: HiccupPolygon2) {
@@ -133,6 +138,12 @@ export class Polygon2 extends PointContainer2 implements
         return new Polygon2(subdivideCurve(kernel, this.points, iter, true), { ...this.attribs });
     }
 
+    tessellate(tessel: Tessellator<Vec2>, iter?: number): Vec2[][];
+    tessellate(tessel: Iterable<Tessellator<Vec2>>): Vec2[][];
+    tessellate(...args: any[]) {
+        return tessellate.apply(null, [this.points, ...args]);
+    }
+
     toHiccup() {
         return this._toHiccup("polygon");
     }
@@ -144,19 +155,7 @@ export class Polygon2 extends PointContainer2 implements
 
 export function polygon2(points: Vec, num?: number, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Polygon2;
 export function polygon2(points: Vec2[], attribs?: Attribs): Polygon2;
-export function polygon2(points, ...args: any[]) {
-    let attribs;
-    if (isNumber(points[0])) {
-        points = Vec2.mapBuffer(
-            points,
-            args[0] || points.length / 2,
-            args[1] || 0,
-            args[2] || 1,
-            args[3] || 2
-        );
-        attribs = args[4];
-    } else {
-        attribs = args[0];
-    }
+export function polygon2(...args: any[]) {
+    const [points, attribs] = argsN(args);
     return new Polygon2(points, attribs);
 }

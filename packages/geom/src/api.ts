@@ -186,6 +186,11 @@ export interface IToPolygon<O> {
     toPolygon(opts?: O): any;
 }
 
+export interface ITessellateable<T extends IVector<T>> {
+    tessellate(tessel: Tessellator<T>, iter?: number): T[][];
+    tessellate(tessel: Iterable<Tessellator<T>>): T[][];
+}
+
 export interface ITransformable<M> {
     transform(mat: M): this;
 }

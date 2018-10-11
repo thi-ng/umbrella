@@ -6,20 +6,24 @@ import {
     IArcLength,
     IArea,
     IEdges,
-    IPointMap
+    IPointMap,
+    ITessellateable,
+    Tessellator
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
 import { args4 } from "./internal/args";
 import { corner } from "./internal/corner";
 import { edges } from "./internal/edges";
+import { tessellate } from "./tessellate";
 
 export class Quad2 extends PointContainer2 implements
     IArea,
     IArcLength,
     ICopy<Quad2>,
     IEdges<Vec2[]>,
-    IPointMap<Vec2, Vec2> {
+    IPointMap<Vec2, Vec2>,
+    ITessellateable<Vec2> {
 
     copy() {
         return new Quad2(this._copy(), { ...this.attribs });
@@ -47,6 +51,12 @@ export class Quad2 extends PointContainer2 implements
         const p = this.points;
         const res = Vec2.mixBilinear(p[0], p[1], p[3], p[2], q.x, q.y);
         return out ? out.set(res) : res;
+    }
+
+    tessellate(tessel: Tessellator<Vec2>, iter?: number): Vec2[][];
+    tessellate(tessel: Iterable<Tessellator<Vec2>>): Vec2[][];
+    tessellate(...args: any[]) {
+        return tessellate.apply(null, [this.points, ...args]);
     }
 
     toHiccup() {

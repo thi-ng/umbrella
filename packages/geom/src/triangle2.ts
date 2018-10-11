@@ -9,13 +9,16 @@ import {
     IArea,
     IClassifyPoint,
     IPointInside,
-    IPointMap
+    IPointMap,
+    ITessellateable,
+    Tessellator
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
 import { args3 } from "./internal/args";
 import { fromBarycentric, toBarycentric } from "./internal/barycentric";
 import { classifyPointInTriangle2, corner, pointInTriangle2 } from "./internal/corner";
+import { tessellate } from "./tessellate";
 
 export class Triangle2 extends PointContainer2 implements
     IArea,
@@ -23,7 +26,8 @@ export class Triangle2 extends PointContainer2 implements
     IClassifyPoint<Vec2>,
     ICopy<Triangle2>,
     IPointInside<Vec2>,
-    IPointMap<Vec2, Vec3> {
+    IPointMap<Vec2, Vec3>,
+    ITessellateable<Vec2> {
 
     static equilateral(a: Vec2, b: Vec2) {
         const dir = b.subNew(a);
@@ -63,6 +67,12 @@ export class Triangle2 extends PointContainer2 implements
     unmapPoint(p: Readonly<Vec3>, out?: Vec2): Vec2 {
         const [a, b, c] = this.points;
         return fromBarycentric(a, b, c, p, out);
+    }
+
+    tessellate(tessel: Tessellator<Vec2>, iter?: number): Vec2[][];
+    tessellate(tessel: Iterable<Tessellator<Vec2>>): Vec2[][];
+    tessellate(...args: any[]) {
+        return tessellate.apply(null, [this.points, ...args]);
     }
 
     toHiccup() {

@@ -1,5 +1,4 @@
 import { ICopy, IToHiccup } from "@thi.ng/api/api";
-import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
@@ -14,6 +13,7 @@ import {
 } from "./api";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
+import { argsN } from "./internal/args";
 import { closestPointPolyline } from "./internal/closest-point";
 import { edges } from "./internal/edges";
 import { Sampler } from "./sampler";
@@ -84,19 +84,7 @@ export class Polyline2 extends PointContainer2 implements
 
 export function polyline2(points: Vec, num?: number, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Polyline2;
 export function polyline2(points: Vec2[], attribs?: Attribs): Polyline2;
-export function polyline2(points, ...args: any[]) {
-    let attribs;
-    if (isNumber(points[0])) {
-        points = Vec2.mapBuffer(
-            points,
-            args[0] || points.length / 2,
-            args[1] || 0,
-            args[2] || 1,
-            args[3] || 2
-        );
-        attribs = args[4];
-    } else {
-        attribs = args[0];
-    }
+export function polyline2(...args: any[]) {
+    const [points, attribs] = argsN(args);
     return new Polyline2(points, attribs);
 }

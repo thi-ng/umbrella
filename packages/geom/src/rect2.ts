@@ -13,10 +13,13 @@ import {
     ICollate,
     IPointInside,
     IPointMap,
-    IVertices
+    ITessellateable,
+    IVertices,
+    Tessellator
 } from "./api";
 import { collateWith } from "./internal/collate";
 import { edges } from "./internal/edges";
+import { tessellate } from "./tessellate";
 
 export class Rect2 implements
     IArea,
@@ -29,6 +32,7 @@ export class Rect2 implements
     ICopy<Rect2>,
     IPointInside<Vec2>,
     IPointMap<Vec2, Vec2>,
+    ITessellateable<Vec2>,
     IVertices<Vec2, void> {
 
     static fromMinMax(min: Vec2, max: Vec2) {
@@ -96,6 +100,12 @@ export class Rect2 implements
 
     unmapPoint(p: Readonly<Vec2>, out?: Vec2) {
         return (out ? out.set(this.pos) : this.pos.copy()).madd(this.size, p);
+    }
+
+    tessellate(tessel: Tessellator<Vec2>, iter?: number): Vec2[][];
+    tessellate(tessel: Iterable<Tessellator<Vec2>>): Vec2[][];
+    tessellate(...args: any[]) {
+        return tessellate.apply(null, [this.vertices(), ...args]);
     }
 
     scale(v: Readonly<Vec2>) {

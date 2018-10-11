@@ -1,5 +1,7 @@
+import { isFunction } from "@thi.ng/checks/is-function";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { range } from "@thi.ng/transducers/iter/range";
+import { repeat } from "@thi.ng/transducers/iter/repeat";
 import { tuples } from "@thi.ng/transducers/iter/tuples";
 import { wrap } from "@thi.ng/transducers/iter/wrap";
 import { reducer } from "@thi.ng/transducers/reduce";
@@ -135,23 +137,27 @@ export const inset = (inset = 0.5, keepInterior = false) =>
         );
     };
 
-export const tessellate =
-    <T extends IVector<T>>(tessFns: Iterable<Tessellator<T>>, points: T[]) =>
-        transduce(
-            scan(
-                reducer(
-                    () => [points],
-                    (acc: T[][], fn: Tessellator<T>) =>
-                        transduce(
-                            mapcat(fn),
-                            push(),
-                            acc
-                        )
-                )
-            ),
-            last(),
-            tessFns
-        );
+export function tessellate<T extends IVector<T>>(points: T[], tessFn: Tessellator<T>, iter?: number): T[][];
+export function tessellate<T extends IVector<T>>(points: T[], tessFns: Iterable<Tessellator<T>>): T[][];
+export function tessellate<T extends IVector<T>>(...args): T[][] {
+    return transduce(
+        scan(
+            reducer(
+                () => [args[0]],
+                (acc: T[][], fn: Tessellator<T>) =>
+                    transduce(
+                        mapcat(fn),
+                        push(),
+                        acc
+                    )
+            )
+        ),
+        last(),
+        isFunction(args[1]) ?
+            repeat(args[1], args[2] || 1) :
+            args[1]
+    );
+}
 
 /*
 v=require("@thi.ng/vectors"); g=require("@thi.ng/geom"); h=require("@thi.ng/hiccup"); svg=require("@thi.ng/hiccup-svg"); s=require("@thi.ng/strings"); tx=require("@thi.ng/transducers"); fs=require("fs");
