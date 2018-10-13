@@ -286,7 +286,7 @@ start(() =>
             ["g", { stroke: "none", translate: [50, 50] },
                 ["circle", { fill: "red" },
                     [0, 0], 25 + 25 * Math.sin(Date.now() * 0.001)],
-                ["text", { fill: "#fff", align: "center", baseLine: "middle" },
+                ["text", { fill: "#fff", align: "center", baseline: "middle" },
                     [0, 0], "Hello"]
             ]
         ]

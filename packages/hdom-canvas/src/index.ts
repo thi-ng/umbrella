@@ -20,7 +20,7 @@ const TAU = Math.PI * 2;
 const DEFAULTS = {
     align: "left",
     alpha: 1,
-    baseLine: "alphabetic",
+    baseline: "alphabetic",
     cap: "butt",
     comp: "source-over",
     dash: [],
@@ -42,7 +42,7 @@ const DEFAULTS = {
 const CTX_ATTRIBS = {
     align: "textAlign",
     alpha: "globalAlpha",
-    baseLine: "textBaseline",
+    baseline: "textBaseline",
     clip: "clip",
     compose: "globalCompositeOperation",
     dash: "setLineDash",

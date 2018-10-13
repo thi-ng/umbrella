@@ -337,7 +337,7 @@ Some attributes use different names than their actual names in the
 |-------------|--------------------------|
 | align       | textAlign                |
 | alpha       | globalAlpha              |
-| baseLine    | textBaseline             |
+| baseline    | textBaseline             |
 | compose     | globalCompositeOperation |
 | dash        | setLineDash              |
 | dashOffset  | lineDashOffset           |
