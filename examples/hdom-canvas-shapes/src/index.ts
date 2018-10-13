@@ -122,7 +122,7 @@ const TESTS = {
                     weight: 1,
                     stroke: "#00f",
                     align: "center",
-                    baseLine: "middle",
+                    baseline: "middle",
                     font: "48px Menlo",
                     __normalize: false
                 },
@@ -211,7 +211,7 @@ const TESTS = {
                     },
                     ["rect", { fill: "#ff0" }, [-50, -50], 100, 100],
                     ["text",
-                        { fill: "#00f", font: "18px Menlo", align: "center", baseLine: "middle" },
+                        { fill: "#00f", font: "18px Menlo", align: "center", baseline: "middle" },
                         [0, 0], new Date().toISOString()
                     ]
                 ];

@@ -50,7 +50,7 @@ const cancel = start(() => {
                 {
                     translate: [100, 100],
                     stroke: "black", fill: "none",
-                    align: "center", baseLine: "middle",
+                    align: "center", baseline: "middle",
                     __normalize: false
                 },
                 // rim
