@@ -148,7 +148,7 @@ const convertAttribs = (attribs: any) => {
                 case "align":
                     res["text-anchor"] = TEXT_ALIGN[v];
                     break;
-                case "baseLine":
+                case "baseline":
                 // no SVG support?
                 case "filter":
                 // TODO needs to be translated into <filter> def first
