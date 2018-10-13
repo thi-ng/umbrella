@@ -1,7 +1,8 @@
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { Vec } from "@thi.ng/vectors/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
+import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
 import { Attribs, HiccupLine2, SamplingOpts } from "./api";
 import { PointContainer2 } from "./container2";
 import { liangBarsky2 } from "./internal/liang-barsky";
@@ -77,19 +78,19 @@ export class Line2 extends PointContainer2 {
 
 export function line2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Line2;
 export function line2(x1: number, y1: number, x2: number, y2: number, attribs?: Attribs): Line2;
-export function line2(a: Vec2, b: Vec2, attribs?: Attribs): Line2;
+export function line2(a: ReadonlyVec, b: ReadonlyVec, attribs?: Attribs): Line2;
 export function line2(...args: any[]) {
-    let attribs;
+    let points = args[0], attribs;
     let n = args.length - 1;
     if (isPlainObject(args[n]) || args[n] == null) {
         attribs = args[n];
         n--;
     }
-    if (isNumber(args[0])) {
+    if (isNumber(points)) {
         return new Line2(Vec2.mapBuffer(args.slice(0, 4), 2), attribs);
     }
-    if (args[0] instanceof Vec2) {
-        return new Line2([args[0], args[1]], attribs);
+    if (isArrayLike(points)) {
+        return new Line2([asVec2(<any>points), asVec2(args[1])], attribs);
     }
-    return new Line2(Vec2.mapBuffer(args[0], 2, args[1] || 0, args[2] || 1, args[3] || 2), attribs);
+    return new Line2(Vec2.mapBuffer(points, 2, args[1] || 0, args[2] || 1, args[3] || 2), attribs);
 }

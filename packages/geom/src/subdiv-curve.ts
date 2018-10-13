@@ -81,7 +81,7 @@ const CHAIKIN_FIRST = subdivKernel3([1 / 2, 1 / 2, 0], [0, 3 / 4, 1 / 4]);
 const CHAIKIN_MAIN = subdivKernel3([1 / 4, 3 / 4, 0], [0, 3 / 4, 1 / 4]);
 const CHAIKIN_LAST = subdivKernel3([1 / 4, 3 / 4, 0], [0, 1 / 2, 1 / 2]);
 
-const CUBIC_BEZIER_MAIN = subdivKernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]);
+const CUBIC_MAIN = subdivKernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]);
 
 export const CHAIKIN_CLOSED: SubdivKernel<any> = {
     fn: CHAIKIN_MAIN,
@@ -98,7 +98,7 @@ export const CHAIKIN_OPEN: SubdivKernel<any> = {
     size: 3
 };
 
-export const CUBIC_BEZIER_CLOSED: SubdivKernel<any> = {
-    fn: CUBIC_BEZIER_MAIN,
+export const CUBIC_CLOSED: SubdivKernel<any> = {
+    fn: CUBIC_MAIN,
     size: 3
 };

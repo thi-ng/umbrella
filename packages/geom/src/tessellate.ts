@@ -161,7 +161,4 @@ export function tessellate<T extends IVector<T>>(...args): T[][] {
 
 /*
 v=require("@thi.ng/vectors"); g=require("@thi.ng/geom"); h=require("@thi.ng/hiccup"); svg=require("@thi.ng/hiccup-svg"); s=require("@thi.ng/strings"); tx=require("@thi.ng/transducers"); fs=require("fs");
-
-res = h.serialize(svg.convertTree(g.tessellate([g.quadFan, g.edgeSplit, g.rimTris, g.quadFan, g.inset(), g.quadFan], g.circle2(100).vertices(6)).map(p=>g.polygon2(p).toHiccup())))
-
 */

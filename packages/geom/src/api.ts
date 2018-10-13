@@ -223,13 +223,19 @@ export interface JsonCircle2 extends JsonShape {
     r: number;
 }
 
+export interface JsonCubic2 extends JsonShape {
+    points: Vec[];
+}
+
+export interface JsonQuadratic2 extends JsonShape {
+    points: Vec[];
+}
+
 export interface JsonPolygon2 extends JsonShape {
-    pos: Vec;
     points: Vec[];
 }
 
 export interface JsonPolyline2 extends JsonShape {
-    pos: Vec;
     points: Vec[];
 }
 

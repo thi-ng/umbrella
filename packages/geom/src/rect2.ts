@@ -1,6 +1,9 @@
 import { ICopy } from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { ReadonlyVec } from "@thi.ng/vectors/api";
+import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
     CollateOpts,
@@ -159,8 +162,8 @@ export class Rect2 implements
 export function rect2(x: number, y: number, w: number, h: number, attribs?: Attribs): Rect2;
 export function rect2(x: number, y: number, w: number, attribs?: Attribs): Rect2;
 export function rect2(w: number, h: number, attribs?: Attribs): Rect2;
-export function rect2(pos: Vec2, w: number, attribs?: Attribs): Rect2;
-export function rect2(pos: Vec2, size: Vec2, attribs?: Attribs): Rect2;
+export function rect2(pos: ReadonlyVec, w: number, attribs?: Attribs): Rect2;
+export function rect2(pos: ReadonlyVec, size: ReadonlyVec, attribs?: Attribs): Rect2;
 export function rect2(w: number, attribs?: Attribs): Rect2;
 export function rect2(...args: any[]) {
     let attribs;
@@ -169,13 +172,13 @@ export function rect2(...args: any[]) {
         attribs = args[n];
         n--;
     }
-    if (args[0] instanceof Vec2) {
+    if (isArrayLike(args[0])) {
         const size = args[1];
         return new Rect2(
-            args[0],
-            size instanceof Vec2 ?
-                size :
-                new Vec2([size, size]),
+            asVec2(args[0]),
+            isNumber(size) ?
+                new Vec2([size, size]) :
+                asVec2(size),
             attribs
         );
     }

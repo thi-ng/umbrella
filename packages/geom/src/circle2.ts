@@ -1,8 +1,9 @@
 import { IToHiccup } from "@thi.ng/api/api";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { Vec } from "@thi.ng/vectors/api";
-import { PI, TAU, eqDelta1 } from "@thi.ng/vectors/math";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
+import { eqDelta1, PI, TAU } from "@thi.ng/vectors/math";
 import {
     asVec2,
     setS2,
@@ -17,12 +18,12 @@ import {
     IBounds,
     IBoundsRaw,
     ICentroid,
+    IClassifyPoint,
+    IPointInside,
     IToPolygon,
     IVertices,
     JsonCircle2,
-    SamplingOpts,
-    IPointInside,
-    IClassifyPoint
+    SamplingOpts
 } from "./api";
 import { circumCenter } from "./internal/circumcenter";
 import { edges } from "./internal/edges";
@@ -164,8 +165,8 @@ export class Circle2 implements
 export function circle2(r: number, attribs?: Attribs): Circle2;
 export function circle2(x: number, y: number, attribs?: Attribs): Circle2;
 export function circle2(x: number, y: number, r: number, attribs?: Attribs): Circle2;
-export function circle2(pos: Vec2, attribs?: Attribs): Circle2;
-export function circle2(pos: Vec2, r: number, attribs?: Attribs): Circle2;
+export function circle2(pos: ReadonlyVec, attribs?: Attribs): Circle2;
+export function circle2(pos: ReadonlyVec, r: number, attribs?: Attribs): Circle2;
 export function circle2(...args: any[]) {
     let attribs;
     let n = args.length - 1;
@@ -173,9 +174,9 @@ export function circle2(...args: any[]) {
         attribs = args[n];
         n--;
     }
-    if (args[0] instanceof Vec2) {
+    if (isArrayLike(args[0])) {
         return new Circle2(
-            args[0],
+            asVec2(args[0]),
             n === 1 ? args[n] : 1,
             attribs
         );
@@ -187,5 +188,5 @@ export function circle2(...args: any[]) {
             attribs
         );
     }
-    return new Circle2(new Vec2([0, 0]), args[0], attribs);
+    return new Circle2(new Vec2(), args[0], attribs);
 }

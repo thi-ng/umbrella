@@ -1,13 +1,15 @@
 import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { IMath, Vec } from "@thi.ng/vectors/api";
+import { IMath, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { clamp1 } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
     DEFAULT_SAMPLES,
     IVertices,
+    JsonCubic2,
+    JsonQuadratic2,
     SamplingOpts
 } from "./api";
 import { PointContainer2 } from "./container2";
@@ -72,6 +74,14 @@ const cubicAxisBounds = (pa: number, pb: number, pc: number, pd: number) => {
 
 export class Cubic2 extends PointContainer2 implements
     IVertices<Vec2, number | Partial<SamplingOpts>> {
+
+    static fromJSON(spec: JsonCubic2) {
+        return cubic2(spec.points, spec.attribs);
+    }
+
+    static fromLine(a: Vec2, b: Vec2) {
+        return new Cubic2([a, a.mixNewN(b, 1 / 3), b.mixNewN(a, 1 / 3), b]);
+    }
 
     copy() {
         return new Cubic2(this._copy(), this.attribs);
@@ -158,10 +168,22 @@ export class Cubic2 extends PointContainer2 implements
         const pts = this.points;
         return [["C", pts[1], pts[2], pts[3]]];
     }
+
+    toJSON() {
+        return this._toJSON("cubic2");
+    }
 }
 
 export class Quadratic2 extends PointContainer2 implements
     IVertices<Vec2, number | Partial<SamplingOpts>> {
+
+    static fromJSON(spec: JsonQuadratic2) {
+        return quadratic2(spec.points, spec.attribs);
+    }
+
+    static fromLine(a: Vec2, b: Vec2) {
+        return new Quadratic2([a, a.mixNewN(b), b]);
+    }
 
     copy() {
         return new Quadratic2(this._copy(), this.attribs);
@@ -272,19 +294,23 @@ export class Quadratic2 extends PointContainer2 implements
         const pts = this.points;
         return [["Q", pts[1], pts[2]]];
     }
+
+    toJSON() {
+        return this._toJSON("quadratic2");
+    }
 }
 
 export function cubic2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Cubic2;
-export function cubic2(a: Vec2, b: Vec2, c: Vec2, d: Vec2, attribs?: Attribs): Cubic2;
-export function cubic2(points: Vec2[], attribs?: Attribs): Cubic2;
+export function cubic2(a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, attribs?: Attribs): Cubic2;
+export function cubic2(points: ReadonlyVec[], attribs?: Attribs): Cubic2;
 export function cubic2(...args: any[]) {
     const [points, attribs] = args4(args);
     return new Cubic2(points, attribs);
 }
 
 export function quadratic2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Quadratic2;
-export function quadratic2(a: Vec2, b: Vec2, c: Vec2, attribs?: Attribs): Quadratic2;
-export function quadratic2(points: Vec2[], attribs?: Attribs): Quadratic2;
+export function quadratic2(a: Vec2 | ReadonlyVec, b: Vec2 | ReadonlyVec, c: Vec2 | ReadonlyVec, attribs?: Attribs): Quadratic2;
+export function quadratic2(points: ReadonlyVec[], attribs?: Attribs): Quadratic2;
 export function quadratic2(...args: any[]) {
     const [points, attribs] = args3(args);
     return new Quadratic2(points, attribs);

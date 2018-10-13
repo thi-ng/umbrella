@@ -7,7 +7,7 @@ import { tuples } from "@thi.ng/transducers/iter/tuples";
 import { push } from "@thi.ng/transducers/rfn/push";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { map } from "@thi.ng/transducers/xform/map";
-import { Vec } from "@thi.ng/vectors/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { TAU } from "@thi.ng/vectors/math";
 import { asVec2, toCartesian2, Vec2 } from "@thi.ng/vectors/vec2";
 import {
@@ -154,7 +154,7 @@ export class Polygon2 extends PointContainer2 implements
 }
 
 export function polygon2(points: Vec, num?: number, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Polygon2;
-export function polygon2(points: Vec2[], attribs?: Attribs): Polygon2;
+export function polygon2(points: ReadonlyVec[], attribs?: Attribs): Polygon2;
 export function polygon2(...args: any[]) {
     const [points, attribs] = argsN(args);
     return new Polygon2(points, attribs);

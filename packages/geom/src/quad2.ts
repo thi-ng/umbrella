@@ -1,5 +1,5 @@
 import { ICopy } from "@thi.ng/api";
-import { Vec } from "@thi.ng/vectors/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
@@ -69,8 +69,8 @@ export class Quad2 extends PointContainer2 implements
 }
 
 export function quad2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Quad2;
-export function quad2(a: Vec2, b: Vec2, c: Vec2, d: Vec2, attribs?: Attribs): Quad2;
-export function quad2(points: Vec2[], attribs?: Attribs): Quad2;
+export function quad2(a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, attribs?: Attribs): Quad2;
+export function quad2(points: ReadonlyVec[], attribs?: Attribs): Quad2;
 export function quad2(...args: any[]) {
     const [points, attribs] = args4(args);
     return new Quad2(points, attribs);

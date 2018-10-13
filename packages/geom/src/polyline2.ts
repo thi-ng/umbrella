@@ -1,6 +1,6 @@
 import { ICopy, IToHiccup } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { Vec } from "@thi.ng/vectors/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
@@ -83,7 +83,7 @@ export class Polyline2 extends PointContainer2 implements
 }
 
 export function polyline2(points: Vec, num?: number, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Polyline2;
-export function polyline2(points: Vec2[], attribs?: Attribs): Polyline2;
+export function polyline2(points: ReadonlyVec[], attribs?: Attribs): Polyline2;
 export function polyline2(...args: any[]) {
     const [points, attribs] = argsN(args);
     return new Polyline2(points, attribs);

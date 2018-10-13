@@ -1,5 +1,5 @@
 import { ICopy } from "@thi.ng/api";
-import { Vec } from "@thi.ng/vectors/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { PI } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import { Vec3 } from "@thi.ng/vectors/vec3";
@@ -85,8 +85,8 @@ export class Triangle2 extends PointContainer2 implements
 }
 
 export function triangle2(points: Vec, start?: number, cstride?: number, estride?: number, attribs?: Attribs): Triangle2;
-export function triangle2(a: Vec2, b: Vec2, c: Vec2, attribs?: Attribs): Triangle2;
-export function triangle2(points: Vec2[], attribs?: Attribs): Triangle2;
+export function triangle2(a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, attribs?: Attribs): Triangle2;
+export function triangle2(points: ReadonlyVec[], attribs?: Attribs): Triangle2;
 export function triangle2(...args: any[]) {
     const [points, attribs] = args3(args);
     return new Triangle2(points, attribs);
