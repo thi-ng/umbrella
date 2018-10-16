@@ -1,4 +1,5 @@
 import { isArray } from "@thi.ng/checks/is-array";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { ensureIterable } from "./ensure-iterable";
 
 /**
@@ -11,4 +12,8 @@ import { ensureIterable } from "./ensure-iterable";
  */
 export function ensureArray(x: any): any[] {
     return isArray(x) ? x : [...ensureIterable(x)];
+}
+
+export function ensureArrayLike(x: any): ArrayLike<any> {
+    return isArrayLike(x) ? x : [...ensureIterable(x)];
 }
