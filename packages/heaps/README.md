@@ -11,7 +11,7 @@ This project is part of the
 
 Type agnostic binary heap & d-ary heap implementations with customizable
 ordering and fanout / tree arity (in case of `DHeap`). Both `Heap` and
-`DHeap` have identical API.
+`DHeap` have identical base API, however the former provides several additional operations.
 
 ## Installation
 
