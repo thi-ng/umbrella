@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/math",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Assorted common math functions & utilities",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -29,10 +29,9 @@
     },
     "dependencies": {},
     "keywords": [
-        "binary",
         "ES6",
-        "gray codes",
         "interpolation",
+        "interval",
         "math",
         "solver",
         "typescript",
