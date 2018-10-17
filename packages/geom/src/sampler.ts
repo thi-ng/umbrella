@@ -32,7 +32,7 @@ export class Sampler<T extends IVector<T>> {
         const t0 = t * idx[n];
         for (let i = 1; i <= n; i++) {
             if (idx[i] >= t0) {
-                return pts[i - 1].copy().mixN(pts[i], (t0 - idx[i - 1]) / (idx[i] - idx[i - 1]));
+                return pts[i - 1].mixNewN(pts[i], (t0 - idx[i - 1]) / (idx[i] - idx[i - 1]));
             }
         }
     }
@@ -47,7 +47,7 @@ export class Sampler<T extends IVector<T>> {
             while (ct >= index[i] && i < n) { i++; }
             if (i >= n) break;
             const p = index[i - 1];
-            result.push(this.points[i - 1].copy().mixN(this.points[i], (ct - p) / (index[i] - p)));
+            result.push(this.points[i - 1].mixNewN(this.points[i], (ct - p) / (index[i] - p)));
         }
         if (includeLast) {
             result.push(this.points[this.points.length - 1].copy());

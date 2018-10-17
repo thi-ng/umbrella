@@ -2,7 +2,7 @@ import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { IMath, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { clamp1 } from "@thi.ng/vectors/math";
+import { clamp01 } from "@thi.ng/math/interval";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
@@ -30,7 +30,7 @@ export const mixCubic1 = (a: number, b: number, c: number, d: number, t: number)
 
 export const mixQuadratic = <T extends ICopy<T> & IMath<T>>(a: T, b: T, c: T, t: number) => {
     const s = 1 - t;
-    return a.copy().mulN(s * s)
+    return a.mulNewN(s * s)
         .maddN(b, 2 * s * t)
         .maddN(c, t * t);
 };
@@ -39,7 +39,7 @@ export const mixCubic = <T extends ICopy<T> & IMath<T>>(a: T, b: T, c: T, d: T, 
     const t2 = t * t;
     const s = 1 - t;
     const s2 = s * s;
-    return a.copy().mulN(s2 * s)
+    return a.mulNewN(s2 * s)
         .maddN(b, 3 * s2 * t)
         .maddN(c, 3 * t2 * s)
         .maddN(d, t2 * t);
@@ -194,7 +194,7 @@ export class Quadratic2 extends PointContainer2 implements
         const mi = a.copy().min(c);
         const ma = a.copy().max(c);
         const solve = (a, b, c) => {
-            const t = clamp1((a - b) / (a - 2.0 * b + c), 0, 1);
+            const t = clamp01((a - b) / (a - 2.0 * b + c));
             const s = 1 - t;
             return s * s * a + 2.0 * s * t * b + t * t * c;
         };

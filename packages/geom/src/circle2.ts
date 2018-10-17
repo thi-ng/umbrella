@@ -2,8 +2,9 @@ import { IToHiccup } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { PI, TAU } from "@thi.ng/math/api";
+import { eqDelta } from "@thi.ng/math/eqdelta";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { eqDelta1, PI, TAU } from "@thi.ng/vectors/math";
 import {
     asVec2,
     setS2,
@@ -137,7 +138,7 @@ export class Circle2 implements
     classifyPoint(p: Readonly<Vec2>) {
         const d = p.distSq(this.pos);
         const r = this.r * this.r;
-        return eqDelta1(d, r) ? 0 : d < r ? 1 : -1;
+        return eqDelta(d, r) ? 0 : d < r ? 1 : -1;
     }
 
     pointInside(p: Readonly<Vec2>) {

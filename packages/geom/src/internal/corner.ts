@@ -1,4 +1,5 @@
-import { EPS, sign1 } from "@thi.ng/vectors/math";
+import { sign } from "@thi.ng/math/abs";
+import { EPS } from "@thi.ng/math/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 
 export const corner =
@@ -10,7 +11,7 @@ export const corner =
 
 export const classify =
     (a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>, eps = EPS) =>
-        sign1(corner(a, b, c), eps);
+        sign(corner(a, b, c), eps);
 
 export const clockwise2 =
     (a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) =>
@@ -19,7 +20,7 @@ export const clockwise2 =
 export const classifyPointInTriangle2 =
     (p: Readonly<Vec2>, a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) => {
         const s = clockwise2(a, b, c) ? 1 : -1;
-        return sign1(
+        return sign(
             Math.min(
                 s * corner(a, c, p),
                 s * corner(b, a, p),

@@ -1,7 +1,8 @@
 import { isNumber } from "@thi.ng/checks/is-number";
+import { rad } from "@thi.ng/math/angle";
+import { eqDelta } from "@thi.ng/math/eqdelta";
 import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
 import { peek } from "@thi.ng/transducers/func/peek";
-import { eqDelta1, rad } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
@@ -372,7 +373,7 @@ export class PathBuilder {
     }
 
     arcTo(p: Vec2, r: Vec2, xaxis: number, xl: boolean, clockwise: boolean, relative = false) {
-        if (eqDelta1(r.x, 0) || eqDelta1(r.y, 0)) {
+        if (eqDelta(r.x, 0) || eqDelta(r.y, 0)) {
             return this.lineTo(p, relative);
         }
         const prev = this.currP.copy();

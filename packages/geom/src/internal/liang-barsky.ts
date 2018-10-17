@@ -1,4 +1,4 @@
-import { EPS } from "@thi.ng/vectors/math";
+import { EPS } from "@thi.ng/math/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 
 // https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm

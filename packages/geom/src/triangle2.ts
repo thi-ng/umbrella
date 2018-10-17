@@ -1,6 +1,6 @@
 import { ICopy } from "@thi.ng/api";
+import { PI } from "@thi.ng/math/api";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { PI } from "@thi.ng/vectors/math";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import { Vec3 } from "@thi.ng/vectors/vec3";
 import {
