@@ -31,12 +31,14 @@
         "@thi.ng/math": "^0.0.1"
     },
     "keywords": [
+        "additive",
         "DSP",
         "ES6",
         "generator",
         "math",
         "oscillator",
         "stateless",
+        "synthesis",
         "typescript",
         "waveform"
     ],
