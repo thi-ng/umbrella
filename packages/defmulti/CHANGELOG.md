@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.11...@thi.ng/defmulti@0.4.0) (2018-10-17)
+
+
+### Features
+
+* **defmulti:** add varargs support ([6094738](https://github.com/thi-ng/umbrella/commit/6094738))
+
+
+
+
+
 <a name="0.3.11"></a>
 ## [0.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.10...@thi.ng/defmulti@0.3.11) (2018-09-24)
 

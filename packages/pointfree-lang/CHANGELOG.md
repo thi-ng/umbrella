@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.22...@thi.ng/pointfree-lang@0.2.23) (2018-10-17)
+
+**Note:** Version bump only for package @thi.ng/pointfree-lang
+
+
+
+
+
 <a name="0.2.22"></a>
 ## [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.21...@thi.ng/pointfree-lang@0.2.22) (2018-09-24)
 

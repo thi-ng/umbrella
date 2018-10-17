@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitstream@0.4.18...@thi.ng/bitstream@0.4.19) (2018-10-17)
+
+**Note:** Version bump only for package @thi.ng/bitstream
+
+
+
+
+
 <a name="0.4.18"></a>
 ## [0.4.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitstream@0.4.17...@thi.ng/bitstream@0.4.18) (2018-09-24)
 

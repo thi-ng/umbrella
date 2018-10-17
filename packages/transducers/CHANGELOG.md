@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.6...@thi.ng/transducers@2.2.0) (2018-10-17)
+
+
+### Bug Fixes
+
+* **transducers:** minor TS3.1 fixes ([1ef2361](https://github.com/thi-ng/umbrella/commit/1ef2361))
+
+
+### Features
+
+* **transducers:** update wrap*() fns to accept iterables ([515e5ba](https://github.com/thi-ng/umbrella/commit/515e5ba))
+
+
+
+
+
 <a name="2.1.6"></a>
 ## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.5...@thi.ng/transducers@2.1.6) (2018-09-26)
 

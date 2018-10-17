@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/binary",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Assorted binary / bitwise operations, conversions, utilities.",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -27,7 +27,6 @@
         "typedoc": "^0.11.1",
         "typescript": "^3.0.1"
     },
-    "dependencies": {},
     "keywords": [
         "alignment",
         "binary",

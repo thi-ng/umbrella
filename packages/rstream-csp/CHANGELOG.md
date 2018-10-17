@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.113](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-csp@0.1.112...@thi.ng/rstream-csp@0.1.113) (2018-10-17)
+
+**Note:** Version bump only for package @thi.ng/rstream-csp
+
+
+
+
+
 <a name="0.1.112"></a>
 ## [0.1.112](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-csp@0.1.111...@thi.ng/rstream-csp@0.1.112) (2018-09-26)
 

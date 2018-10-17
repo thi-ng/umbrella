@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.3.0...@thi.ng/vectors@1.4.0) (2018-10-17)
+
+
+### Features
+
+* **vectors:** add axis consts, add/update ops ([473ec80](https://github.com/thi-ng/umbrella/commit/473ec80))
+* **vectors:** add collate & eqDelta fns, update ctors ([221fb7f](https://github.com/thi-ng/umbrella/commit/221fb7f))
+* **vectors:** add comparators & ICompare impls for vec2/3/4 ([6a0f8aa](https://github.com/thi-ng/umbrella/commit/6a0f8aa))
+* **vectors:** add IMinMax interface ([34312d8](https://github.com/thi-ng/umbrella/commit/34312d8))
+* **vectors:** add operation specific interfaces, rename Vec3.toPolar() ([5c44ad9](https://github.com/thi-ng/umbrella/commit/5c44ad9))
+* **vectors:** replace math.ts w/ imports from [@thi](https://github.com/thi).ng/maths package ([0967929](https://github.com/thi-ng/umbrella/commit/0967929))
+
+
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.2.2...@thi.ng/vectors@1.3.0) (2018-09-28)
 

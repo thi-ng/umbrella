@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.2.10...@thi.ng/hdom-components@2.2.11) (2018-10-17)
+
+
+### Bug Fixes
+
+* **hdom-components:** add Canvas2DContextAttributes (removed in TS3.1) ([775cc8a](https://github.com/thi-ng/umbrella/commit/775cc8a))
+
+
+
+
+
 <a name="2.2.10"></a>
 ## [2.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.2.9...@thi.ng/hdom-components@2.2.10) (2018-09-26)
 

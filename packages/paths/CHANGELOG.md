@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.6.3...@thi.ng/paths@1.6.4) (2018-10-17)
+
+**Note:** Version bump only for package @thi.ng/paths
+
+
+
+
+
 <a name="1.6.3"></a>
 ## [1.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.6.2...@thi.ng/paths@1.6.3) (2018-09-24)
 

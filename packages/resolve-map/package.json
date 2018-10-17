@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/resolve-map",
-    "version": "3.0.13",
+    "version": "3.0.14",
     "description": "DAG resolution of vanilla objects & arrays with internally linked values",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -26,9 +26,9 @@
         "typescript": "^3.0.1"
     },
     "dependencies": {
-        "@thi.ng/checks": "^1.5.11",
-        "@thi.ng/errors": "^0.1.9",
-        "@thi.ng/paths": "^1.6.3"
+        "@thi.ng/checks": "^1.5.12",
+        "@thi.ng/errors": "^0.1.10",
+        "@thi.ng/paths": "^1.6.4"
     },
     "keywords": [
         "configuration",

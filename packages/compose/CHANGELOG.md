@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@0.1.4...@thi.ng/compose@0.2.0) (2018-10-17)
+
+
+### Features
+
+* **compose:** add partial(), update readme ([6851f2c](https://github.com/thi-ng/umbrella/commit/6851f2c))
+
+
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@0.1.3...@thi.ng/compose@0.1.4) (2018-09-24)
 
