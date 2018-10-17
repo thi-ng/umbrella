@@ -11,6 +11,8 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Usage examples](#usage-examples)
+    - [Tessellations](#tessellations)
+    - [Subdivision curves](#subdivision-curves)
 - [Authors](#authors)
 - [License](#license)
 
@@ -36,7 +38,9 @@ yarn add @thi.ng/geom
 
 ## Usage examples
 
-![sample output](../../assets/geom-tessel.svg)
+### Tessellations
+
+![sample output](../../assets/geom/tessel.svg)
 
 ```ts
 import * as g from "@thi.ng/geom";
@@ -72,6 +76,17 @@ fs.writeFileSync(
         )
     )
 );
+```
+
+### Subdivision curves
+
+| Chaikin (closed)                                        | Chaikin (open)                                      |
+|---------------------------------------------------------|-----------------------------------------------------|
+| ![chaikin closed](../../assets/geom/chaikin-closed.svg) | ![chaikin open](../../assets/geom/chaikin-open.svg) |
+
+```ts
+g.polygon2([-100,-100, 0,100, 100,-100, 0,0]).subdivide(g.CHAIKIN_CLOSED, 4);
+g.polyline2([-100,100, -100,-100, 0,0, 100,-100, 100,100]).subdivide(g.CHAIKIN_OPEN, 4);
 ```
 
 ## Authors
