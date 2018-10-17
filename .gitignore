@@ -5,9 +5,12 @@ build
 dev
 doc
 docs
+export
 examples/dataflow-scenegraph
 examples/hdc
 examples/hdom-class
+examples/hdom-clj
+examples/ts-parse
 .DS_Store
 tachyons.min.css
 bundle.*
@@ -18,3 +21,5 @@ bundle.*
 *.bak*
 *.zip
 /.gtm/
+
+packages/geom-accel
