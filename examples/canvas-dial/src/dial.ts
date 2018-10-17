@@ -4,7 +4,7 @@ import { canvas2D } from "@thi.ng/hdom-components/canvas";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { Subscription } from "@thi.ng/rstream/subscription";
 import { peek } from "@thi.ng/transducers/func/peek";
-import { fitClamped1 } from "@thi.ng/vectors/math";
+import { fitClamped } from "@thi.ng/math/fit";
 import { heading2, sub2 } from "@thi.ng/vectors/vec2";
 
 /**
@@ -180,7 +180,7 @@ export const dial = (opts: Partial<DialOpts>) => {
                                 theta %= TAU;
                                 opts.onchange.call(
                                     null,
-                                    fitClamped1(Math.min(theta / (TAU - opts.gap)), 0, 1, opts.min, opts.max)
+                                    fitClamped(Math.min(theta / (TAU - opts.gap)), 0, 1, opts.min, opts.max)
                                 );
                             }
                         }
@@ -199,7 +199,7 @@ export const dial = (opts: Partial<DialOpts>) => {
             const val = peek(args);
             ctx.clearRect(0, 0, el.width, el.height);
             drawRing(ctx, 1, opts.bgColor);
-            drawRing(ctx, fitClamped1(val, opts.min, opts.max, 0.005, 1), opts.color);
+            drawRing(ctx, fitClamped(val, opts.min, opts.max, 0.005, 1), opts.color);
             if (opts.label) {
                 ctx.fillStyle = opts.labelColor;
                 ctx.fillText(opts.label(val), cx, cy + opts.labelYOffset);

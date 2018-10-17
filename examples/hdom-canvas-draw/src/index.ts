@@ -10,7 +10,7 @@ import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { partition } from "@thi.ng/transducers/xform/partition";
-import { HALF_PI, PI } from "@thi.ng/vectors/math";
+import { HALF_PI, PI } from "@thi.ng/math/api";
 import { dist2 } from "@thi.ng/vectors/vec2";
 
 // canvas size
