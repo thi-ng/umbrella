@@ -1,0 +1,28 @@
+{
+    "name": "geom-tessel",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.9.7",
+        "terser": "^3.8.2",
+        "typescript": "^3.0.1"
+    },
+    "dependencies": {
+        "@thi.ng/compose": "latest",
+        "@thi.ng/geom": "latest",
+        "@thi.ng/hdom-canvas": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    }
+}
