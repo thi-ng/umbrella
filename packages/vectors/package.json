@@ -32,6 +32,7 @@
         "@thi.ng/api": "^4.2.1",
         "@thi.ng/checks": "^1.5.11",
         "@thi.ng/errors": "^0.1.9",
+        "@thi.ng/math": "^0.0.1",
         "@thi.ng/transducers": "^2.1.6"
     },
     "keywords": [

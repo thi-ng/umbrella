@@ -1,3 +1,5 @@
+import { EPS } from "@thi.ng/math/api";
+import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
 import {
     ReadonlyVec,
     ReadonlyVecOp1,
@@ -5,7 +7,6 @@ import {
     VecOp2,
     VecOp2o
 } from "./api";
-import { EPS, eqDelta1 } from "./math";
 
 export const x: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0) => v[i];
 export const y: ReadonlyVecOp1<number> = (v: ReadonlyVec, i = 0, s = 1) => v[i + s];
@@ -178,7 +179,7 @@ export const equiv = (a: ReadonlyVec, b: ReadonlyVec, n: number, ia = 0, ib = 0,
  */
 export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
     for (; n > 0; n-- , ia += sa, ib += sb) {
-        if (!eqDelta1(a[ia], b[ib], eps)) {
+        if (!_eqDelta(a[ia], b[ib], eps)) {
             return false;
         }
     }

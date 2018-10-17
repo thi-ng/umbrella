@@ -1,4 +1,11 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { atan2Abs } from "@thi.ng/math/angle";
+import { EPS } from "@thi.ng/math/api";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import { max3id, min3id } from "@thi.ng/math/interval";
+import { mixBilinear } from "@thi.ng/math/mix";
+import { fract } from "@thi.ng/math/prec";
+import { smoothStep, step } from "@thi.ng/math/step";
 import {
     IAngleBetween,
     ICrossProduct,
@@ -18,17 +25,6 @@ import {
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
 import { $iter } from "./common";
-import {
-    atan2Abs1,
-    EPS,
-    eqDelta1,
-    fract1,
-    max3id,
-    min3id,
-    mixBilinear1,
-    smoothStep1,
-    step1
-} from "./math";
 import {
     heading2,
     rotate2,
@@ -92,9 +88,9 @@ export const equiv3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, s
     a[ia + 2 * sa] === b[ib + 2 * sb];
 
 export const eqDelta3 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    eqDelta1(a[ia], b[ib], eps) &&
-    eqDelta1(a[ia + sa], b[ib + sb], eps) &&
-    eqDelta1(a[ia + 2 * sa], b[ib + 2 * sb], eps);
+    eqDelta(a[ia], b[ib], eps) &&
+    eqDelta(a[ia + sa], b[ib + sb], eps) &&
+    eqDelta(a[ia + 2 * sa], b[ib + 2 * sb], eps);
 
 export const eqDelta3buf = (a: ReadonlyVec, b: ReadonlyVec, num: number, eps = EPS, ia = 0, ib = 0, sca = 1, scb = 1, sea = 3, seb = 3) => {
     while (--num >= 0) {
@@ -163,7 +159,7 @@ export const neg3 = (a: Vec, ia = 0, sa = 1) =>
     mulN3(a, -1, ia, sa);
 
 export const fract3 = (a: Vec, ia = 0, sa = 1) =>
-    op3(fract1, a, ia, sa);
+    op3(fract, a, ia, sa);
 
 export const powN3 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op31(Math.pow, a, n, ia, sa);
@@ -196,9 +192,9 @@ export const mixBilinear3 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
     ia = 0, ib = 0, ic = 0, id = 0,
     sa = 1, sb = 1, sc = 1, sd = 1) => (
-        a[ia] = mixBilinear1(a[ia], b[ib], c[ic], d[id], u, v),
-        a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
-        a[ia + 2 * sa] = mixBilinear1(a[ia + 2 * sa], b[ib + 2 * sb], c[ic + 2 * sc], d[id + 2 * sd], u, v),
+        a[ia] = mixBilinear(a[ia], b[ib], c[ic], d[id], u, v),
+        a[ia + sa] = mixBilinear(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
+        a[ia + 2 * sa] = mixBilinear(a[ia + 2 * sa], b[ib + 2 * sb], c[ic + 2 * sc], d[id + 2 * sd], u, v),
         a
     );
 
@@ -206,16 +202,16 @@ export const clamp3 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin 
     max3(min3(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
 
 export const step3 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, sa = 1, se = 1) => (
-    a[ia] = step1(e[ie], a[ia]),
-    a[ia + sa] = step1(e[ie + se], a[ia + sa]),
-    a[ia + 2 * sa] = step1(e[ie + 2 * se], a[ia + 2 * sa]),
+    a[ia] = step(e[ie], a[ia]),
+    a[ia + sa] = step(e[ie + se], a[ia + sa]),
+    a[ia + 2 * sa] = step(e[ie + 2 * se], a[ia + 2 * sa]),
     a
 );
 
 export const smoothStep3 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, sa = 1, se1 = 1, se2 = 1) => (
-    a[ia] = smoothStep1(e1[ie1], e2[ie2], a[ia]),
-    a[ia + sa] = smoothStep1(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
-    a[ia + 2 * sa] = smoothStep1(e1[ie1 + 2 * se1], e2[ie2 + 2 * se2], a[ia + 2 * sa]),
+    a[ia] = smoothStep(e1[ie1], e2[ie2], a[ia]),
+    a[ia + sa] = smoothStep(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
+    a[ia + 2 * sa] = smoothStep(e1[ie1 + 2 * se1], e2[ie2 + 2 * se2], a[ia + 2 * sa]),
     a
 );
 
@@ -312,10 +308,10 @@ export const rotateAroundAxis3 = (v: Vec, axis: Vec, theta: number, ia = 0, ib =
 export const headingXY3 = heading2;
 
 export const headingXZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    atan2Abs1(a[ia + 2 * sa], a[ia]);
+    atan2Abs(a[ia + 2 * sa], a[ia]);
 
 export const headingYZ3 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    atan2Abs1(a[ia + 2 * sa], a[ia + sa]);
+    atan2Abs(a[ia + 2 * sa], a[ia + sa]);
 
 export const angleRatio3 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     dot3(a, b, ia, ib, sa, sb) / (mag3(a, ia, sa) * mag3(b, ib, sb));

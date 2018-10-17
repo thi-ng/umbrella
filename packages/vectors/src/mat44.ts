@@ -9,7 +9,6 @@ import {
 import { declareIndices } from "./codegen";
 import { $iter, eqDelta } from "./common";
 import { Mat33 } from "./mat33";
-import { EPS, rad } from "./math";
 import {
     cross3,
     dot3,
@@ -21,6 +20,7 @@ import {
     Vec3
 } from "./vec3";
 import { dot4, setS4, Vec4 } from "./vec4";
+import { EPS, DEG2RAD } from "@thi.ng/math/api";
 
 export const get44 = (a: Mat, i = 0) =>
     a.slice(i, i + 16);
@@ -159,7 +159,7 @@ export const frustum = (m: Mat, left: number, right: number, bottom: number, top
 };
 
 export const frustumBounds = (fovy: number, aspect: number, near: number, far: number) => {
-    const top = near * Math.tan(rad(fovy) / 2);
+    const top = near * Math.tan(fovy * DEG2RAD / 2);
     const right = top * aspect;
     return {
         left: -right,

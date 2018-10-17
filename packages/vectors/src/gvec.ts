@@ -6,6 +6,11 @@ import {
 } from "@thi.ng/api/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { sign as _sign } from "@thi.ng/math/abs";
+import { EPS } from "@thi.ng/math/api";
+import { clamp as _clamp } from "@thi.ng/math/interval";
+import { fract as _fract } from "@thi.ng/math/prec";
+import { smoothStep as _smoothStep, step as _step } from "@thi.ng/math/step";
 import {
     IDotProduct,
     IMagnitude,
@@ -18,14 +23,6 @@ import {
     Vec
 } from "./api";
 import { $iter, eqDelta, equiv } from "./common";
-import {
-    clamp1,
-    EPS,
-    fract1,
-    sign1,
-    smoothStep1,
-    step1
-} from "./math";
 
 
 export const opg0 = (fn: () => number, a: Vec, num = a.length, i = 0, s = 1) => {
@@ -174,7 +171,7 @@ export const abs = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.abs, a, num, i, s);
 
 export const sign = (a: Vec, num = a.length, eps = EPS, i = 0, s = 1) =>
-    opg1((x) => sign1(x, eps), a, num, i, s);
+    opg1((x) => _sign(x, eps), a, num, i, s);
 
 export const floor = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.floor, a, num, i, s);
@@ -183,7 +180,7 @@ export const ceil = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.ceil, a, num, i, s);
 
 export const fract = (a: Vec, num = a.length, i = 0, s = 1) =>
-    opg1(fract1, a, num, i, s);
+    opg1(_fract, a, num, i, s);
 
 export const sin = (a: Vec, num = a.length, i = 0, s = 1) =>
     opg1(Math.sin, a, num, i, s);
@@ -207,13 +204,13 @@ export const max = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa =
     opg2(Math.max, a, b, num, ia, ib, sa, sb);
 
 export const clamp = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
-    opg3(clamp1, a, b, c, num, ia, ib, ic, sa, sb, sc);
+    opg3(_clamp, a, b, c, num, ia, ib, ic, sa, sb, sc);
 
 export const step = (a: Vec, b: ReadonlyVec, num = a.length, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    opg2((x, e) => step1(e, x), a, b, num, ia, ib, sa, sb);
+    opg2((x, e) => _step(e, x), a, b, num, ia, ib, sa, sb);
 
 export const smoothStep = (a: Vec, b: ReadonlyVec, c: ReadonlyVec, num = a.length, ia = 0, ib = 0, ic = 0, sa = 1, sb = 1, sc = 1) =>
-    opg3((x, e1, e2) => smoothStep1(e1, e2, x), a, b, c, num, ia, ib, ic, sa, sb, sc);
+    opg3((x, e1, e2) => _smoothStep(e1, e2, x), a, b, c, num, ia, ib, ic, sa, sb, sc);
 
 export const gvec = (...coords: number[]) =>
     new GVec(coords, coords.length);

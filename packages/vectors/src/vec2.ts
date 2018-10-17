@@ -1,4 +1,11 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { atan2Abs } from "@thi.ng/math/angle";
+import { EPS, HALF_PI, PI } from "@thi.ng/math/api";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import { max2id, min2id } from "@thi.ng/math/interval";
+import { mixBilinear } from "@thi.ng/math/mix";
+import { fract } from "@thi.ng/math/prec";
+import { smoothStep, step } from "@thi.ng/math/step";
 import {
     IAngleBetween,
     ICrossProduct,
@@ -17,19 +24,6 @@ import {
 } from "./api";
 import { declareIndices, defcommon } from "./codegen";
 import { $iter } from "./common";
-import {
-    atan2Abs1,
-    EPS,
-    eqDelta1,
-    fract1,
-    HALF_PI,
-    max2id,
-    min2id,
-    mixBilinear1,
-    PI,
-    smoothStep1,
-    step1
-} from "./math";
 
 export const op2 = (fn: (x: number) => number, a: Vec, ia = 0, sa = 1) =>
     (a[ia] = fn(a[ia]), a[ia + sa] = fn(a[ia + sa]), a);
@@ -78,8 +72,8 @@ export const equiv2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, s
     a[ia + sa] === b[ib + sb];
 
 export const eqDelta2 = (a: ReadonlyVec, b: ReadonlyVec, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) =>
-    eqDelta1(a[ia], b[ib], eps) &&
-    eqDelta1(a[ia + sa], b[ib + sb], eps);
+    eqDelta(a[ia], b[ib], eps) &&
+    eqDelta(a[ia + sa], b[ib + sb], eps);
 
 export const eqDelta2buf = (a: ReadonlyVec, b: ReadonlyVec, num: number, eps = EPS, ia = 0, ib = 0, sca = 1, scb = 1, sea = 2, seb = 2) => {
     while (--num >= 0) {
@@ -144,7 +138,7 @@ export const neg2 = (a: Vec, ia = 0, sa = 1) =>
     mulN2(a, -1, ia, sa);
 
 export const fract2 = (a: Vec, ia = 0, sa = 1) =>
-    op2(fract1, a, ia, sa);
+    op2(fract, a, ia, sa);
 
 export const powN2 = (a: Vec, n: number, ia = 0, sa = 1) =>
     op21(Math.pow, a, n, ia, sa);
@@ -159,8 +153,8 @@ export const mixBilinear2 = (
     a: Vec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number,
     ia = 0, ib = 0, ic = 0, id = 0,
     sa = 1, sb = 1, sc = 1, sd = 1) => (
-        a[ia] = mixBilinear1(a[ia], b[ib], c[ic], d[id], u, v),
-        a[ia + sa] = mixBilinear1(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
+        a[ia] = mixBilinear(a[ia], b[ib], c[ic], d[id], u, v),
+        a[ia + sa] = mixBilinear(a[ia + sa], b[ib + sb], c[ic + sc], d[id + sd], u, v),
         a
     );
 
@@ -168,11 +162,11 @@ export const clamp2 = (a: Vec, min: ReadonlyVec, max: ReadonlyVec, ia = 0, imin 
     max2(min2(a, max, ia, imax, sa, smax), min, ia, imin, sa, smin);
 
 export const step2 = (a: Vec, e: ReadonlyVec, ia = 0, ie = 0, sa = 1, stridee = 1) =>
-    (a[ia] = step1(e[ie], a[ia]), a[ia + sa] = step1(e[ie + stridee], a[ia + sa]), a);
+    (a[ia] = step(e[ie], a[ia]), a[ia + sa] = step(e[ie + stridee], a[ia + sa]), a);
 
 export const smoothStep2 = (a: Vec, e1: ReadonlyVec, e2: ReadonlyVec, ia = 0, ie1 = 0, ie2 = 0, sa = 1, se1 = 1, se2 = 1) => (
-    a[ia] = smoothStep1(e1[ie1], e2[ie2], a[ia]),
-    a[ia + sa] = smoothStep1(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
+    a[ia] = smoothStep(e1[ie1], e2[ie2], a[ia]),
+    a[ia + sa] = smoothStep(e1[ie1 + se1], e2[ie2 + se2], a[ia + sa]),
     a
 );
 
@@ -260,7 +254,7 @@ export const rotateAroundPoint2 = (a: Vec, b: Vec, theta: number, ia = 0, ib = 0
 };
 
 export const heading2 = (a: ReadonlyVec, ia = 0, sa = 1) =>
-    atan2Abs1(a[ia + sa], a[ia]);
+    atan2Abs(a[ia + sa], a[ia]);
 
 export const angleRatio2 = (a: ReadonlyVec, b: ReadonlyVec, ia = 0, ib = 0, sa = 1, sb = 1) =>
     dot2(a, b, ia, ib, sa, sb) / (mag2(a, ia, sa) * mag2(b, ib, sb));
