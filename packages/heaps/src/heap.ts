@@ -37,8 +37,8 @@ export class Heap<T> implements
         return idx >= 0 ? (idx << 1) + 1 : -1;
     }
 
-    protected values: T[];
-    protected compare: Comparator<T>;
+    values: T[];
+    compare: Comparator<T>;
 
     constructor(values?: Iterable<T>, opts?: HeapOpts<T>) {
         opts = Object.assign({ compare: compare }, opts);
