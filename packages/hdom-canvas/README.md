@@ -9,35 +9,39 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
-- [About](#about)
-    - [Status](#status)
-- [Installation](#installation)
-- [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
-- [How it works](#how-it-works)
-    - [Restrictions & behavior controls](#restrictions--behavior-controls)
-    - [HDPI support](#hdpi-support)
-- [SVG conversion](#svg-conversion)
-- [Supported shape types](#supported-shape-types)
-    - [Group](#group)
-    - [Definition group](#definition-group)
-    - [Circle](#circle)
-    - [Rect](#rect)
-    - [Line](#line)
-    - [Polyline / Polygon](#polyline--polygon)
-    - [Path](#path)
-    - [Points](#points)
-    - [Text](#text)
-    - [Image](#image)
-    - [Gradients](#gradients)
-- [Attributes](#attributes)
-- [Coordinate transformations](#coordinate-transformations)
-    - [Transform matrix](#transform-matrix)
-    - [Translation](#translation)
-    - [Scaling](#scaling)
-    - [Rotation](#rotation)
-- [Authors](#authors)
-- [License](#license)
+- [@thi.ng/hdom-canvas](#thinghdom-canvas)
+    - [About](#about)
+        - [Status](#status)
+    - [Installation](#installation)
+    - [Dependencies](#dependencies)
+    - [Usage examples](#usage-examples)
+    - [How it works](#how-it-works)
+        - [Restrictions & behavior controls](#restrictions--behavior-controls)
+        - [HDPI support](#hdpi-support)
+    - [SVG conversion](#svg-conversion)
+    - [Supported shape types](#supported-shape-types)
+        - [Group](#group)
+        - [Definition group](#definition-group)
+        - [Circle](#circle)
+        - [Rect](#rect)
+        - [Arc](#arc)
+        - [Line](#line)
+        - [Horizontal Line](#horizontal-line)
+        - [Vertical Line](#vertical-line)
+        - [Polyline / Polygon](#polyline--polygon)
+        - [Path](#path)
+        - [Points](#points)
+        - [Text](#text)
+        - [Image](#image)
+        - [Gradients](#gradients)
+    - [Attributes](#attributes)
+    - [Coordinate transformations](#coordinate-transformations)
+        - [Transform matrix](#transform-matrix)
+        - [Translation](#translation)
+        - [Scaling](#scaling)
+        - [Rotation](#rotation)
+    - [Authors](#authors)
+    - [License](#license)
 
 <!-- /TOC -->
 
@@ -241,10 +245,28 @@ used, should always come first in a scene tree.
 If `radius` is given, creates a rounded rectangle. `radius` will be
 clamped to `Math.min(w, h)/2`.
 
+### Arc
+
+```ts
+["arc", attribs, [x, y], radius, startAngle, endAngle, anticlockwise?]
+```
+
 ### Line
 
 ```ts
 ["line", attribs, [x1, y1], [x2, y2]]
+```
+
+### Horizontal Line
+
+```ts
+["hline", attribs, y]
+```
+
+### Vertical Line
+
+```ts
+["vline", attribs, x]
 ```
 
 ### Polyline / Polygon
