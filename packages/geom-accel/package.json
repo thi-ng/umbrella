@@ -30,6 +30,7 @@
     "dependencies": {
         "@thi.ng/heaps": "^0.2.20",
         "@thi.ng/math": "^0.1.0",
+        "@thi.ng/morton": "^0.1.0",
         "@thi.ng/vectors": "^1.4.0"
     },
     "keywords": [
