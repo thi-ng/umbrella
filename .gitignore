@@ -21,5 +21,3 @@ bundle.*
 *.bak*
 *.zip
 /.gtm/
-
-packages/geom-accel
