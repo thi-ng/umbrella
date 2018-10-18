@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "@thi.ng/binary": "^0.1.0",
+        "@thi.ng/errors": "^0.1.10",
         "@thi.ng/math": "^0.1.0"
     },
     "keywords": [
