@@ -21,6 +21,17 @@ export class KdNode<T extends KdIndexable<T>> {
         this.l = this.r = null;
     }
 
+    *[Symbol.iterator](): IterableIterator<T> {
+        let queue: KdNode<T>[] = [this];
+        while (queue.length) {
+            const n = queue.pop();
+            if (n) {
+                yield n.p;
+                queue.push(n.r, n.l);
+            }
+        }
+    }
+
     height() {
         return 1 + Math.max(
             this.l ? this.l.height() : 0,
@@ -51,15 +62,8 @@ export class KdTree<T extends KdIndexable<T>> {
             null;
     }
 
-    *[Symbol.iterator](): IterableIterator<T> {
-        let queue: KdNode<T>[] = [this.root];
-        while (queue.length) {
-            const n = queue.pop();
-            if (n) {
-                yield n.p;
-                queue.push(n.r, n.l);
-            }
-        }
+    [Symbol.iterator](): IterableIterator<T> {
+        return (this.root || [])[Symbol.iterator]();
     }
 
     get length() {
