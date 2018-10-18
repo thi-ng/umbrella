@@ -25,7 +25,7 @@ const app = (main) => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     const initial = new Vec2([width / 2, height / 2, 5]);
-    let tree = new KdTree<Vec2>(2, [initial]);
+    let tree = new KdTree<Vec2>(2);
 
     // return root component function, triggered by each new mouse / touch event
     return ({ mpos }) => {
@@ -33,8 +33,10 @@ const app = (main) => {
         if (!(tree.length % 500)) {
             tree = new KdTree(2, tree);
         }
-        mpos = mpos ? asVec2(mpos) : initial.copy();
-        // record new pos in both tree
+        // the 1st time this function is executed, there will be no valid `mpos`
+        // so we insert the initial default point instead
+        mpos = mpos ? asVec2(mpos) : initial;
+        // record new pos in tree
         tree.add(mpos);
         // even though we only create 2d vectors, we store a 3rd value
         // in the backing array, which will be later used as radius when
@@ -59,9 +61,10 @@ const app = (main) => {
                 `Neighbors: ${neighbors.length}, Q1: ${t1}ms, Q2: ${t2}ms, `,
                 `Height: ${tree.root.height()}, Ratio: ${tree.balanceRatio().toFixed(2)}`],
             // visualize
-            [_canvas, { width, height, __diff: false },
+            // the __diff & __normalize control attribs are used to optimize drawing perf
+            // see: https://github.com/thi-ng/umbrella/tree/master/packages/hdom#behavior-control-attributes
+            [_canvas, { width, height, __diff: false, __normalize: false },
                 // point cloud
-                // TODO tree is iterable, but hdom-canvas currently expects arrays only
                 ["points", { fill: "black" }, [...tree]],
                 ["g", { fill: "rgba(0,192,255,0.5)" },
                     ...selected.map((p) => ["circle", {}, p, p.buf[2]])],
