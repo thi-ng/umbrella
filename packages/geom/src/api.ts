@@ -45,7 +45,7 @@ export interface LineIntersection<T> {
 export interface PathSegment {
     type: SegmentType;
     point?: Vec2;
-    geo?: IBoundsRaw<Vec2> & IVertices<Vec2, any> & IHiccupPathSegment;
+    geo?: IBoundsRaw<Vec2> & IVertices<Vec2, any> & IHiccupPathSegment & IToCubic;
 }
 
 export interface SamplingOpts {
@@ -179,6 +179,10 @@ export interface IHiccupPathSegment {
 export interface IPointMap<A, B> {
     mapPoint(p: Readonly<A>, out?: B): B;
     unmapPoint(p: Readonly<B>, out?: A): A;
+}
+
+export interface IToCubic {
+    toCubic(): Iterable<any>;
 }
 
 export interface IToPolygon<O> {

@@ -1,5 +1,7 @@
 import { ICopy, IToHiccup } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { map } from "@thi.ng/transducers/xform/map";
+import { partition } from "@thi.ng/transducers/xform/partition";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
@@ -7,10 +9,12 @@ import {
     IArcLength,
     IArea,
     IEdges,
+    IToCubic,
     IVertices,
     SamplingOpts,
     SubdivKernel
 } from "./api";
+import { Cubic2 } from "./bezier2";
 import { PointContainer2 } from "./container2";
 import { arcLength } from "./internal/arc-length";
 import { argsN } from "./internal/args";
@@ -25,6 +29,7 @@ export class Polyline2 extends PointContainer2 implements
     ICopy<Polyline2>,
     IEdges<Vec2[]>,
     IVertices<Vec2, void | number | Partial<SamplingOpts>>,
+    IToCubic,
     IToHiccup {
 
     copy() {
@@ -63,6 +68,13 @@ export class Polyline2 extends PointContainer2 implements
         } else {
             return this.points;
         }
+    }
+
+    toCubic() {
+        return map(
+            ([a, b]) => Cubic2.fromLine(a, b, { ...this.attribs }),
+            partition(2, 1, this.points)
+        );
     }
 
     toHiccup() {

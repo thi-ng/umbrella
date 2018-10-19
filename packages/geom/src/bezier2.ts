@@ -1,12 +1,14 @@
 import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { IMath, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { clamp01 } from "@thi.ng/math/interval";
+import { mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math/mix";
+import { IMath, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { Vec2 } from "@thi.ng/vectors/vec2";
 import {
     Attribs,
     DEFAULT_SAMPLES,
+    IToCubic,
     IVertices,
     JsonCubic2,
     JsonQuadratic2,
@@ -15,18 +17,6 @@ import {
 import { PointContainer2 } from "./container2";
 import { args3, args4 } from "./internal/args";
 import { Sampler } from "./sampler";
-
-export const mixQuadratic1 = (a: number, b: number, c: number, t: number) => {
-    const s = 1 - t;
-    return a * s * s + b * 2 * s * t + c * t * t;
-};
-
-export const mixCubic1 = (a: number, b: number, c: number, d: number, t: number) => {
-    const t2 = t * t;
-    const s = 1 - t;
-    const s2 = s * s;
-    return a * s2 * s + b * 3 * s2 * t + c * 3 * t2 * s + d * t2 * t;
-};
 
 export const mixQuadratic = <T extends ICopy<T> & IMath<T>>(a: T, b: T, c: T, t: number) => {
     const s = 1 - t;
@@ -55,7 +45,7 @@ const cubicAxisBounds = (pa: number, pb: number, pc: number, pd: number) => {
 
     const bounds = (t: number) => {
         if (t > 0 && t < 1) {
-            const x = mixCubic1(pa, pb, pc, pd, t);
+            const x = _mixC(pa, pb, pc, pd, t);
             x < l && (l = x);
             x > h && (h = x);
         }
@@ -73,14 +63,15 @@ const cubicAxisBounds = (pa: number, pb: number, pc: number, pd: number) => {
 };
 
 export class Cubic2 extends PointContainer2 implements
+    IToCubic,
     IVertices<Vec2, number | Partial<SamplingOpts>> {
 
     static fromJSON(spec: JsonCubic2) {
         return cubic2(spec.points, spec.attribs);
     }
 
-    static fromLine(a: Vec2, b: Vec2) {
-        return new Cubic2([a, a.mixNewN(b, 1 / 3), b.mixNewN(a, 1 / 3), b]);
+    static fromLine(a: Vec2, b: Vec2, attribs?: Attribs) {
+        return new Cubic2([a, a.mixNewN(b, 1 / 3), b.mixNewN(a, 1 / 3), b], attribs);
     }
 
     copy() {
@@ -147,12 +138,16 @@ export class Cubic2 extends PointContainer2 implements
         const delta = 1 / opts.num;
         for (let t = 0; t < opts.num; t++) {
             res.push(
-                mixCubic1(a.x, b.x, c.x, d.x, t * delta),
-                mixCubic1(a.y, b.y, c.y, d.y, t * delta)
+                _mixC(a.x, b.x, c.x, d.x, t * delta),
+                _mixC(a.y, b.y, c.y, d.y, t * delta)
             );
         }
         opts.last && res.push(d.x, d.y);
         return Vec2.mapBuffer(res);
+    }
+
+    toCubic() {
+        return [this];
     }
 
     toHiccup() {
@@ -175,14 +170,15 @@ export class Cubic2 extends PointContainer2 implements
 }
 
 export class Quadratic2 extends PointContainer2 implements
+    IToCubic,
     IVertices<Vec2, number | Partial<SamplingOpts>> {
 
     static fromJSON(spec: JsonQuadratic2) {
         return quadratic2(spec.points, spec.attribs);
     }
 
-    static fromLine(a: Vec2, b: Vec2) {
-        return new Quadratic2([a, a.mixNewN(b), b]);
+    static fromLine(a: Vec2, b: Vec2, attribs?: Attribs) {
+        return new Quadratic2([a, a.mixNewN(b), b], attribs);
     }
 
     copy() {
@@ -263,8 +259,8 @@ export class Quadratic2 extends PointContainer2 implements
         const [a, b, c] = this.points;
         for (let t = 0; t < opts.num; t++) {
             res.push(
-                mixQuadratic1(a.x, b.x, c.x, t * delta),
-                mixQuadratic1(a.y, b.y, c.y, t * delta)
+                _mixQ(a.x, b.x, c.x, t * delta),
+                _mixQ(a.y, b.y, c.y, t * delta)
             );
         }
         opts.last && res.push(c.x, c.y);
@@ -273,12 +269,14 @@ export class Quadratic2 extends PointContainer2 implements
 
     toCubic() {
         const [a, b, c] = this.points;
-        return new Cubic2([
-            a.copy(),
-            a.mulNewN(1 / 3).maddN(b, 2 / 3),
-            c.mulNewN(1 / 3).maddN(b, 2 / 3),
-            c.copy()
-        ]);
+        return [
+            new Cubic2([
+                a.copy(),
+                a.mulNewN(1 / 3).maddN(b, 2 / 3),
+                c.mulNewN(1 / 3).maddN(b, 2 / 3),
+                c.copy()
+            ])
+        ];
     }
 
     toHiccup() {

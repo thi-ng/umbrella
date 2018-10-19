@@ -1,9 +1,16 @@
 import { ICopy } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
+import { sincos } from "@thi.ng/math/angle";
+import {
+    EPS,
+    HALF_PI,
+    PI,
+    TAU
+} from "@thi.ng/math/api";
 import { inRange } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
+import { roundEps } from "@thi.ng/math/prec";
 import { range } from "@thi.ng/transducers/iter/range";
 import { push } from "@thi.ng/transducers/rfn/push";
 import { transduce } from "@thi.ng/transducers/transduce";
@@ -28,6 +35,7 @@ import {
     JsonArc2,
     SamplingOpts
 } from "./api";
+import { Cubic2 } from "./bezier2";
 import { bounds } from "./internal/bounds";
 import { edges } from "./internal/edges";
 import { Rect2 } from "./rect2";
@@ -78,28 +86,35 @@ export class Arc2 implements
         const co = Math.cos(axisTheta);
         const si = Math.sin(axisTheta);
         const m = a.subNew(b).mulN(0.5);
-        const p = new Vec2([co * m.x + si * m.y, -si * m.x + co * m.y]);
-        const px2 = p.x * p.x;
-        const py2 = p.y * p.y;
+        const px = co * m.x + si * m.y;
+        const py = -si * m.x + co * m.y;
+        const px2 = px * px;
+        const py2 = py * py;
+
         const l = px2 / (r.x * r.x) + py2 / (r.y * r.y);
         l > 1 && r.mulN(Math.sqrt(l));
+
         const rx2 = r.x * r.x;
         const ry2 = r.y * r.y;
         const rxpy = rx2 * py2;
         const rypx = ry2 * px2;
-        const root = ((large === clockwise) ? -1 : 1) *
-            Math.sqrt(Math.abs((rx2 * ry2 - rxpy - rypx)) / (rxpy + rypx));
-        const tc = new Vec2([r.x * p.y / r.y, -r.y * p.x / r.x]).mulN(root);
-        const c = new Vec2([co * tc.x - si * tc.y, si * tc.x + co * tc.y]).add(a.mixNewN(b));
-        const d1 = new Vec2([(p.x - tc.x) / r.x, (p.y - tc.y) / r.y]);
-        const d2 = new Vec2([(-p.x - tc.x) / r.x, (-p.y - tc.y) / r.y]);
+        const rad = ((large === clockwise) ? -1 : 1) *
+            Math.sqrt(Math.max(0, rx2 * ry2 - rxpy - rypx) / (rxpy + rypx));
+
+        const tc = new Vec2([rad * r.x / r.y * py, rad * -r.y / r.x * px]);
+        const c = new Vec2([co * tc.x - si * tc.y + (a.x + b.x) / 2, si * tc.x + co * tc.y + (a.y + b.y) / 2]);
+        const d1 = new Vec2([(px - tc.x) / r.x, (py - tc.y) / r.y]);
+        const d2 = new Vec2([(-px - tc.x) / r.x, (-py - tc.y) / r.y]);
+
         const theta = Vec2.X_AXIS.angleBetween(d1, true);
         let delta = d1.angleBetween(d2, true);
+
         if (clockwise && delta < 0) {
             delta += TAU;
         } else if (!clockwise && delta > 0) {
             delta -= TAU;
         }
+
         return new Arc2(c, r, axisTheta, theta, theta + delta, large, clockwise);
     }
 
@@ -175,8 +190,9 @@ export class Arc2 implements
         return this.pointAtTheta(mix(this.start, this.end, t));
     }
 
-    pointAtTheta(theta: number) {
-        return new Vec2([Math.cos(theta), Math.sin(theta)])
+    pointAtTheta(theta: number, pos?: Vec2) {
+        return (pos || new Vec2())
+            .setS(Math.cos(theta), Math.sin(theta))
             .mul(this.r)
             .rotate(this.axis)
             .add(this.pos);
@@ -211,21 +227,63 @@ export class Arc2 implements
         return Vec2.mapBuffer(pts, num);
     }
 
+    toCubic() {
+        const p = this.pointAtTheta(this.start);
+        const q = this.pointAtTheta(this.end);
+        const [rx, ry] = this.r;
+        const [sphi, cphi] = sincos(this.axis);
+        const dx = cphi * (p.x - q.x) / 2 + sphi * (p.y - q.y) / 2;
+        const dy = -sphi * (p.x - q.x) / 2 + cphi * (p.y - q.y) / 2;
+        if ((dx === 0 && dy === 0) || this.r.magSq() < EPS) {
+            return [Cubic2.fromLine(p, q, { ...this.attribs })];
+        }
+
+        const mapP = (x, y) => {
+            x *= rx;
+            y *= ry;
+            return new Vec2([
+                cphi * x - sphi * y,
+                sphi * x + cphi * y
+            ]).add(this.pos);
+        };
+
+        const res: Cubic2[] = [];
+        const delta = this.end - this.start;
+        const n = Math.max(roundEps(Math.abs(delta) / HALF_PI), 1);
+        // https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253
+        const d = delta / n;
+        const t = 8 / 6 * Math.tan(0.25 * d);
+        if (!isFinite(t)) {
+            return [Cubic2.fromLine(p, q)];
+        }
+        for (let i = n, theta = this.start; i > 0; i-- , theta += d) {
+            const [s1, c1] = sincos(theta);
+            const [s2, c2] = sincos(theta + d);
+            const curve = new Cubic2([
+                mapP(c1, s1),
+                mapP(c1 - s1 * t, s1 + c1 * t),
+                mapP(c2 + s2 * t, s2 - c2 * t),
+                mapP(c2, s2),
+            ]);
+            res.push(curve);
+        }
+        return res;
+    }
+
     toHiccup() {
-        return ["path", this.attribs,
-            [
-                ["M", this.pointAtTheta(this.start)],
-                ...this.toHiccupPathSegments()
-            ]
-        ];
+        return ["path", this.attribs, [
+            ["M", this.pointAtTheta(this.start)],
+            ...this.toHiccupPathSegments()
+        ]];
     }
 
     toHiccupPathSegments() {
         return [["A",
-            this.r,
+            this.r.x,
+            this.r.y,
             this.axis,
-            this.xl ? 1 : 0,
-            this.clockwise ? 1 : 0,
+            this.xl,
+            this.clockwise,
             this.pointAtTheta(this.end)
         ]];
     }
