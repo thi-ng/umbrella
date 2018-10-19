@@ -22,6 +22,18 @@ export const mix = (a: number, b: number, t: number) =>
 export const mixBilinear = (a: number, b: number, c: number, d: number, u: number, v: number) =>
     mix(mix(a, b, u), mix(c, d, u), v);
 
+export const mixQuadratic = (a: number, b: number, c: number, t: number) => {
+    const s = 1 - t;
+    return a * s * s + b * 2 * s * t + c * t * t;
+};
+
+export const mixCubic = (a: number, b: number, c: number, d: number, t: number) => {
+    const t2 = t * t;
+    const s = 1 - t;
+    const s2 = s * s;
+    return a * s2 * s + b * 3 * s2 * t + c * 3 * t2 * s + d * t2 * t;
+};
+
 export const tween = (f: (t: number) => number, from: number, to: number) =>
     (t: number) => mix(from, to, f(t));
 
