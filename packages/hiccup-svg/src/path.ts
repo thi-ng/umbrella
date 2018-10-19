@@ -7,9 +7,15 @@ export const path = (segments: PathSegment[], attribs?: any): any[] => {
         res.push(seg[0]);
         switch (seg[0].toLowerCase()) {
             case "a":
-                res.push(ff(<number>seg[1]), ff(<number>seg[2]));
-                res.push(seg[3] ? 1 : 0, seg[4] ? 1 : 0);
-                res.push(fpoint(<any>seg[5]));
+                res.push([
+                    ff(<number>seg[1]),
+                    ff(<number>seg[2]),
+                    ff(<number>seg[3]),
+                    seg[4] ? 1 : 0,
+                    seg[5] ? 1 : 0,
+                    ff(<number>seg[6][0]),
+                    ff(<number>seg[6][1]),
+                ].join(","));
                 break;
             case "h":
             case "v":
