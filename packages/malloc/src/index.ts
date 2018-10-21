@@ -44,13 +44,16 @@ export interface MemBlock {
 }
 
 export class MemPool {
+
+    static MIN_SPLIT = 16;
+
     buf: ArrayBuffer;
     top: number;
     end: number;
     _free: MemBlock;
     _used: MemBlock;
 
-    private u8: Uint8Array;
+    protected u8: Uint8Array;
 
     constructor(buf: ArrayBuffer, start = 8, end = buf.byteLength) {
         this.buf = buf;
@@ -83,47 +86,69 @@ export class MemPool {
 
     callocAs(type: Type, num: number): TypedArray {
         const block = this.mallocAs(type, num);
-        if (block) {
-            block.fill(0);
-        }
+        block && block.fill(0);
         return block;
     }
 
     mallocAs(type: Type, num: number): TypedArray {
         const addr = this.malloc(num * SIZEOF[type]);
-        if (addr) {
-            return CTORS[type](this.buf, addr, num);
-        }
-        return null;
+        return addr ?
+            CTORS[type](this.buf, addr, num) :
+            null;
     }
 
     calloc(size: number): number {
         const addr = this.malloc(size);
-        if (addr) {
-            this.u8.fill(0, addr, align(addr + size, 8));
-        }
+        addr && this.u8.fill(0, addr, align(addr + size, 8));
         return addr;
     }
 
     malloc(size: number): number {
         size = align(size, 8);
-        let block = this.findBlock(size);
-        if (!block) {
-            const addr = align(this.top, 8);
-            if (addr + size <= this.end) {
-                block = {
-                    addr,
-                    size,
-                    next: this._used
-                };
+        let top = this.top;
+        let block = this._free;
+        let prev = null;
+        while (block) {
+            const isTop = block.addr + block.size >= top;
+            if (isTop || block.size >= size) {
+                if (prev) {
+                    prev.next = block.next;
+                } else {
+                    this._free = block.next;
+                }
+                block.next = this._used;
                 this._used = block;
-                this.top = addr + size;
-            } else {
-                return 0;
+                if (isTop) {
+                    block.size = size;
+                    this.top = block.addr + size;
+                } else {
+                    const excess = block.size - size;
+                    if (excess >= MemPool.MIN_SPLIT) {
+                        block.size = size;
+                        this.insertBlock({
+                            addr: block.addr + size,
+                            size: excess,
+                            next: null
+                        });
+                        this.compact();
+                    }
+                }
+                return block.addr;
             }
+            prev = block;
+            block = block.next;
         }
-        if (block) {
-            return block.addr;
+        const addr = align(this.top, 8);
+        top = addr + size;
+        if (top <= this.end) {
+            block = {
+                addr,
+                size,
+                next: this._used
+            };
+            this._used = block;
+            this.top = top;
+            return addr;
         }
         return 0;
     }
@@ -132,7 +157,7 @@ export class MemPool {
         let addr: number;
         if (!isNumber(ptr)) {
             if (ptr.buffer !== this.buf) {
-                return 0;
+                return false;
             }
             addr = ptr.byteOffset;
         } else {
@@ -148,83 +173,61 @@ export class MemPool {
                     this._used = block.next;
                 }
                 this.insertBlock(block);
-                return 1;
+                this.compact();
+                return true;
             }
             prev = block;
             block = block.next;
         }
-        return 0;
+        return false;
     }
 
-    // compact() {
-    //     let ptr = this._free;
-    //     let prev: MemBlock;
-    //     let scan: MemBlock;
-    //     while (ptr) {
-    //         prev = ptr;
-    //         scan = ptr.next;
-    //         while (scan && prev.addr + prev.size === scan.addr) {
-    //             console.log("merge:", scan.addr, scan.size);
-    //             prev = scan;
-    //             scan = scan.next;
-    //         }
-    //         if (prev !== ptr) {
-    //             const newSize = prev.addr - ptr.addr + prev.size;
-    //             console.log("new size:", newSize);
-    //             ptr.size = newSize;
-    //             const next = prev.next;
-    //             let tmp = ptr.next;
-    //             while (tmp !== prev.next) {
-    //                 console.log("release:", tmp.addr);
-    //                 const tn = tmp.next;
-    //                 tmp.next = null;
-    //                 tmp = tn;
-    //             }
-    //             ptr.next = next;
-    //         }
-    //         ptr = ptr.next;
-    //     }
-    // }
-
-    protected findBlock(size: number) {
+    protected compact() {
         let block = this._free;
+        let prev: MemBlock;
+        let scan: MemBlock;
+        let res = false;
+        while (block) {
+            prev = block;
+            scan = block.next;
+            while (scan && prev.addr + prev.size === scan.addr) {
+                // console.log("merge:", scan.addr, scan.size);
+                prev = scan;
+                scan = scan.next;
+            }
+            if (prev !== block) {
+                const newSize = prev.addr - block.addr + prev.size;
+                // console.log("merged size:", newSize);
+                block.size = newSize;
+                const next = prev.next;
+                let tmp = block.next;
+                while (tmp !== prev.next) {
+                    // console.log("release:", tmp.addr);
+                    const tn = tmp.next;
+                    tmp.next = null;
+                    tmp = tn;
+                }
+                block.next = next;
+                res = true;
+            }
+            block = block.next;
+        }
+        return res;
+    }
+
+    protected insertBlock(block: MemBlock) {
+        let ptr = this._free;
         let prev: MemBlock = null;
-        while (block) {
-            if (block.size >= size) {
-                if (prev) {
-                    prev.next = block.next;
-                }
-                block.next = this._used;
-                this._used = block;
-                return block;
-            }
-            prev = block;
-            block = block.next;
+        while (ptr) {
+            if (block.addr <= ptr.addr) break;
+            prev = ptr;
+            ptr = ptr.next;
         }
-        return block;
-    }
-
-    protected insertBlock(free: MemBlock) {
-        let block = this._free;
-        let prev = null;
-        while (block) {
-            if (block.size >= free.size) {
-                free.next = block;
-                if (prev) {
-                    prev.next = free;
-                } else {
-                    this._free = free;
-                }
-                return;
-            }
-            prev = block;
-            block = block.next;
-        }
-        free.next = null;
         if (prev) {
-            prev.next = free;
+            prev.next = block;
         } else {
-            this._free = free;
+            this._free = block;
         }
+        block.next = ptr;
     }
 }
