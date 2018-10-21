@@ -1,4 +1,5 @@
 import { isNumber } from "@thi.ng/checks/is-number";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { rad } from "@thi.ng/math/angle";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
@@ -21,6 +22,8 @@ import { Polygon2 } from "./polygon2";
 import { Polyline2 } from "./polyline2";
 import { Rect2 } from "./rect2";
 import { simplifyPolyline } from "./internal/douglas–peucker";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { map } from "@thi.ng/transducers/xform/map";
 
 export class Path2 implements
     Iterable<PathSegment>,
@@ -83,7 +86,7 @@ export class Path2 implements
                 });
                 points = null;
             } else {
-                res.push(s);
+                res.push({ ...s });
             }
         }
         if (points) {
@@ -93,8 +96,7 @@ export class Path2 implements
                 type: SegmentType.POLYLINE,
             });
         }
-        this.segments = res;
-        return this;
+        return new Path2(res);
     }
 
     vertices(opts?: number | Partial<SamplingOpts>) {
@@ -104,11 +106,23 @@ export class Path2 implements
             const s = segs[i];
             if (s.geo) {
                 const v = ensureArray(s.geo.vertices({ ..._opts, last: i === n && !this.closed }));
-                // console.log(i, SegmentType[s.type], v.toString());
                 verts = verts.concat(v);
             }
         }
         return verts;
+    }
+
+    normalize() {
+        return new Path2([...mapcat(
+            (s) =>
+                implementsFunction(s.geo, "toCubic") ?
+                    map<Cubic2, PathSegment>(
+                        (c) => ({ type: SegmentType.CUBIC, geo: c }),
+                        s.geo.toCubic()
+                    ) :
+                    [s],
+            this.segments
+        )]);
     }
 
     toPolygon(opts?: number | Partial<SamplingOpts>) {

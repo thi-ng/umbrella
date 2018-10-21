@@ -100,10 +100,6 @@ export const convertTree = (tree: any[]): any[] => {
             let segments: PathSegment[] = [];
             for (let seg of tree[2]) {
                 switch (seg[0].toLowerCase()) {
-                    case "a":
-                        // TODO convert arc format
-                        // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Elliptical_Arc_Curve
-                        break;
                     case "s":
                     case "t":
                         // TODO compute reflected control point

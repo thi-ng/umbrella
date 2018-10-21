@@ -3,14 +3,21 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
-import { Attribs, HiccupLine2, SamplingOpts } from "./api";
+import {
+    Attribs,
+    HiccupLine2,
+    IToCubic,
+    SamplingOpts
+} from "./api";
+import { Cubic2 } from "./bezier2";
 import { PointContainer2 } from "./container2";
 import { liangBarsky2 } from "./internal/liang-barsky";
 import { intersectLines2 } from "./internal/line-intersection";
 import { Rect2 } from "./rect2";
 import { Sampler } from "./sampler";
 
-export class Line2 extends PointContainer2 {
+export class Line2 extends PointContainer2 implements
+    IToCubic {
 
     constructor(points: Vec2[], attribs?: Attribs) {
         if (points.length > 2) {
@@ -61,6 +68,10 @@ export class Line2 extends PointContainer2 {
         if (res) {
             return new Line2([res[0], res[1]], { ...this.attribs });
         }
+    }
+
+    toCubic() {
+        return [Cubic2.fromLine(this.points[0], this.points[1], { ...this.attribs })];
     }
 
     toHiccup(): HiccupLine2 {

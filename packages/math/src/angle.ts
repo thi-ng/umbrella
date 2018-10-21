@@ -6,6 +6,9 @@ import {
     TAU
 } from "./api";
 
+export const sincos = (theta: number) =>
+    [Math.sin(theta), Math.cos(theta)];
+
 export const absTheta = (theta: number) =>
     (theta %= TAU, theta < 0 ? TAU + theta : theta);
 

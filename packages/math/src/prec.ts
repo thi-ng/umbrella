@@ -1,3 +1,5 @@
+import { EPS } from "./api";
+
 /**
  * Returns `a - b * floor(a/b)`
  *
@@ -15,3 +17,16 @@ export const trunc = (x: number) =>
 
 export const roundTo = (x: number, prec = 1) =>
     Math.round(x / prec) * prec;
+
+/**
+ * Only rounds `x` to nearest int if `fract(x)` < `eps` or > `1-eps`.
+ *
+ * @param x
+ * @param eps
+ */
+export const roundEps = (x: number, eps = EPS) => {
+    const f = fract(x);
+    return f <= eps || f >= 1 - eps ?
+        Math.round(x) :
+        x;
+};
