@@ -24,8 +24,7 @@ const app = (main) => {
     // initialize 1st point & store in tree for fast KNN searches
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const initial = new Vec2([width / 2, height / 2, 5]);
-    let tree = new KdTree<Vec2>(2);
+    let tree = new KdTree<Vec2, Vec2>(2);
 
     // return root component function, triggered by each new mouse / touch event
     return ({ mpos }) => {
@@ -33,11 +32,13 @@ const app = (main) => {
         if (!(tree.length % 500)) {
             tree = new KdTree(2, tree);
         }
-        // the 1st time this function is executed, there will be no valid `mpos`
-        // so we insert the initial default point instead
-        mpos = mpos ? asVec2(mpos) : initial;
+        // the 1st invocation of this function will be via the
+        // `trigger()` stream defined further below. that means
+        // initially, there will be no valid `mpos` and so we insert a
+        // default point instead
+        mpos = mpos ? asVec2(mpos) : new Vec2([width / 2, height / 2, 5]);
         // record new pos in tree
-        tree.add(mpos);
+        tree.addKey(mpos);
         // even though we only create 2d vectors, we store a 3rd value
         // in the backing array, which will be later used as radius when
         // the point has been selected as part of a KNN query and is
@@ -46,13 +47,13 @@ const app = (main) => {
         // select max. 200 neighbors for given mouse position,
         // measure execution time...
         let [selected, t1] = timedResult(() =>
-            tree.select(mpos, 200, width / 4)
+            tree.selectKeys(mpos, 200, width / 4)
         );
         // for each selected neighbor, perform another KNN search and
         // create line segments to each of these secondary matches
         // use `mapcat` to yield a flat array of lines
         let [neighbors, t2] = timedResult(() =>
-            [...mapcat((p: Vec2) => tree.select(p, 8, width / 4).map((q) => ["line", {}, p, q]), selected)]
+            [...mapcat((p) => tree.selectKeys(p, 8, width / 4).map((q) => ["line", {}, p, q]), selected)]
         );
         return ["div.overflow-hidden.sans-serif.f7",
             // tree stats
@@ -65,9 +66,11 @@ const app = (main) => {
             // see: https://github.com/thi-ng/umbrella/tree/master/packages/hdom#behavior-control-attributes
             [_canvas, { width, height, __diff: false, __normalize: false },
                 // point cloud
-                ["points", { fill: "black" }, [...tree]],
+                ["points", { fill: "black" }, tree.keys()],
+                // selected points as circles (using 3rd array item as radius)
                 ["g", { fill: "rgba(0,192,255,0.5)" },
                     ...selected.map((p) => ["circle", {}, p, p.buf[2]])],
+                // secondary neighbor connections
                 ["g", { stroke: "rgba(0,0,0,0.25)" },
                     ...neighbors]]];
     };
