@@ -37,8 +37,8 @@ export class Heap<T> implements
         return idx >= 0 ? (idx << 1) + 1 : -1;
     }
 
-    protected values: T[];
-    protected compare: Comparator<T>;
+    values: T[];
+    compare: Comparator<T>;
 
     constructor(values?: Iterable<T>, opts?: HeapOpts<T>) {
         opts = Object.assign({ compare: compare }, opts);
@@ -110,6 +110,21 @@ export class Heap<T> implements
             this.push(v);
         }
         return this;
+    }
+
+    /**
+     * Calls `pushPop()` for each given value in `vals` and returns last
+     * result (i.e. the smallest value in heap after processing all
+     * `vals`).
+     *
+     * @param vals
+     */
+    pushPopAll(vals: Iterable<T>) {
+        let res: T;
+        for (let v of vals) {
+            res = this.pushPop(v);
+        }
+        return res;
     }
 
     replaceHead(val: T) {

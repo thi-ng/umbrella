@@ -1,0 +1,33 @@
+{
+    "name": "geom-knn",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.10.3",
+        "terser": "^3.10.1",
+        "typescript": "^3.1.3"
+    },
+    "dependencies": {
+        "@thi.ng/bench": "latest",
+        "@thi.ng/geom-accel": "latest",
+        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/rstream-gestures": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-hdom": "latest",
+        "@thi.ng/vectors": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    }
+}

@@ -1,5 +1,11 @@
+import { MASKS } from "@thi.ng/binary/api";
 import { ceilPow2 } from "@thi.ng/binary/pow";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { fit, fit01 } from "@thi.ng/math/fit";
+import { inRange } from "@thi.ng/math/interval";
+
+const MIN = [0, 0, 0];
+const MAX = [1, 1, 1];
 
 export const encode5 = (x: number) => {
     x &= 0x0000001f;
@@ -52,14 +58,19 @@ export const decode16 = (x: number) => {
     return x;
 };
 
+const prescale = (x: number, min: number, max: number, bits: number) =>
+    !inRange(x, min, max) ?
+        illegalArgs(`value ${x} not in range [${min}..${max}]`) :
+        Math.round(fit(x, min, max, 0, MASKS[bits]));
+
 export const encodeScaled5 = (x: number, min = 0, max = 1) =>
-    encode5(Math.round(fit(x, min, max, 0, 0x1f)));
+    encode5(prescale(x, min, max, 5));
 
 export const encodeScaled10 = (x: number, min = 0, max = 1) =>
-    encode10(Math.round(fit(x, min, max, 0, 0x3ff)));
+    encode10(prescale(x, min, max, 10));
 
 export const encodeScaled16 = (x: number, min = 0, max = 1) =>
-    encode16(Math.round(fit(x, min, max, 0, 0xffff)));
+    encode16(prescale(x, min, max, 16));
 
 export const decodeScaled5 = (x: number, min = 0, max = 1) =>
     fit01(decode5(x) / 0x1f, min, max);
@@ -82,31 +93,43 @@ export const demux2 = (n: number) =>
 export const demux3 = (n: number) =>
     [decode10(n), decode10(n >>> 1), decode10(n >>> 2)];
 
-export const muxScaled2 = (x: number, y: number, min = 0, max = 1) =>
+export const muxScaled2 = (x: number, y: number, minx = 0, maxx = 1, miny = minx, maxy = maxx) =>
     (
-        encodeScaled16(x, min, max) |
-        encodeScaled16(y, min, max) << 1
+        encodeScaled16(x, minx, maxx) |
+        encodeScaled16(y, miny, maxy) << 1
     ) >>> 0;
 
-export const muxScaled3 = (x: number, y: number, z: number, min = 0, max = 1) =>
+export const muxScaled3 = (x: number, y: number, z: number, minx = 0, maxx = 1, miny = minx, maxy = maxx, minz = minx, maxz = maxx) =>
     (
-        encodeScaled10(x, min, max) |
-        encodeScaled10(y, min, max) << 1 |
-        encodeScaled10(z, min, max) << 2
+        encodeScaled10(x, minx, maxx) |
+        encodeScaled10(y, miny, maxy) << 1 |
+        encodeScaled10(z, minz, maxz) << 2
     ) >>> 0;
 
-export const demuxScaled2 = (n: number, min = 0, max = 1) =>
+export const demuxScaled2 = (n: number, minx = 0, maxx = 1, miny = minx, maxy = maxx) =>
     [
-        decodeScaled16(n, min, max),
-        decodeScaled16(n >>> 1, min, max)
+        decodeScaled16(n, minx, maxx),
+        decodeScaled16(n >>> 1, miny, maxy)
     ];
 
-export const demuxScaled3 = (n: number, min = 0, max = 1) =>
+export const demuxScaled3 = (n: number, minx = 0, maxx = 1, miny = minx, maxy = maxx, minz = minx, maxz = maxx) =>
     [
-        decodeScaled10(n, min, max),
-        decodeScaled10(n >>> 1, min, max),
-        decodeScaled10(n >>> 2, min, max)
+        decodeScaled10(n, minx, maxx),
+        decodeScaled10(n >>> 1, miny, maxy),
+        decodeScaled10(n >>> 2, minz, maxz)
     ];
+
+export const muxScaled2v = (v: ArrayLike<number>, min: ArrayLike<number> = MIN, max: ArrayLike<number> = MAX) =>
+    muxScaled2(v[0], v[1], min[0], max[0], min[1], max[1]);
+
+export const muxScaled3v = (v: ArrayLike<number>, min: ArrayLike<number> = MIN, max: ArrayLike<number> = MAX) =>
+    muxScaled3(v[0], v[1], v[2], min[0], max[0], min[1], max[1], min[2], max[2]);
+
+export const demuxScaled2v = (n: number, min: ArrayLike<number> = MIN, max: ArrayLike<number> = MAX) =>
+    demuxScaled2(n, min[0], max[0], min[1], max[1]);
+
+export const demuxScaled3v = (n: number, min: ArrayLike<number> = MIN, max: ArrayLike<number> = MAX) =>
+    demuxScaled3(n, min[0], max[0], min[1], max[1], min[2], max[2]);
 
 export const treeToMorton = (t: number[], dim: number) => {
     let n = 0;
