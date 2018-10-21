@@ -1,4 +1,4 @@
-import { IObjectOf, TypedArray } from "@thi.ng/api";
+import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
 
@@ -46,12 +46,14 @@ export interface MemBlock {
     next: MemBlock;
 }
 
-export class MemPool {
+export class MemPool implements
+    IRelease {
 
     static MIN_SPLIT = 16;
 
     buf: ArrayBuffer;
     top: number;
+    start: number;
     end: number;
     _free: MemBlock;
     _used: MemBlock;
@@ -61,7 +63,8 @@ export class MemPool {
     constructor(buf: ArrayBuffer, start = 8, end = buf.byteLength) {
         this.buf = buf;
         this.u8 = new Uint8Array(buf);
-        this.top = Math.max(start, 8);
+        this.start = Math.max(start, 8);
+        this.top = this.start;
         this.end = end;
         this._free = null;
         this._used = null;
@@ -186,6 +189,23 @@ export class MemPool {
             block = block.next;
         }
         return false;
+    }
+
+    freeAll() {
+        this._free = null;
+        this._used = null;
+        this.top = this.start;
+    }
+
+    release() {
+        delete this._free;
+        delete this._used;
+        delete this.u8;
+        delete this.buf;
+        delete this.top;
+        delete this.start;
+        delete this.end;
+        return true;
     }
 
     protected compact() {

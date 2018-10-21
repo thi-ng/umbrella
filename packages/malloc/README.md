@@ -14,12 +14,14 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+    - [MemPool](#mempool)
     - [`malloc(size: number)`](#mallocsize-number)
     - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
     - [`calloc(size: number)`](#callocsize-number)
     - [`callocAs(type: Type, num: number)`](#callocastype-type-num-number)
     - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
     - [`stats()`](#stats)
+- [Benchmarks](#benchmarks)
 - [Authors](#authors)
 - [License](#license)
 
@@ -33,6 +35,10 @@ typed array memory pooling and/or hybrid JS/WASM use cases etc.
 
 Each `MemPool` instance operates on a single large `ArrayBuffer` used as
 backing memory chunk, e.g. the same buffer used by a WASM module.
+
+Even for non-WASM use cases, using this package can drastically speed up
+allocation of typed arrays and reduce GC pressure. See
+[benchmarks](#benchmarks) below.
 
 For now see tinyalloc docs for allocation strategy, block splitting /
 merging and further details. Unlike the original, this implementation
@@ -101,6 +107,12 @@ pool.stats();
 
 ## API
 
+### MemPool
+
+The `MemPool` constructor takes an `ArrayBuffer` and optional start and
+end addresses (byte offsets) delineating the allocatable / managed
+region. The default `start` address is 0x00000008 and end the length of the buffer. This start address is also the minimum supported address for memory blocks. Address 0x0 is reserved as return value for allocation errors.
+
 ### `malloc(size: number)`
 
 Attempts to allocate a new block of memory of given byte size and
@@ -135,6 +147,20 @@ the freed address or view after this call.
 ### `stats()`
 
 Returns pool statistics (see above example).
+
+## Benchmarks
+
+```bash
+node bench/index.js
+```
+
+```text
+1x f64x4 malloc x 8,712,284 ops/sec ±0.39% (92 runs sampled) mean: 0.00011ms
+1x f64x4 vanilla x 1,714,557 ops/sec ±2.18% (82 runs sampled) mean: 0.00058ms
+
+6x f64 malloc x 704,920 ops/sec ±1.20% (91 runs sampled) mean: 0.00142ms
+6x f64 vanilla x 251,799 ops/sec ±1.87% (84 runs sampled) mean: 0.00397ms
+```
 
 ## Authors
 
