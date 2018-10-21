@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.4...@thi.ng/bench@0.3.0) (2018-10-21)
+
+
+### Features
+
+* **bench:** add timedResult() / benchResult() ([0cf708f](https://github.com/thi-ng/umbrella/commit/0cf708f))
+
+
+
+
+
 ## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.3...@thi.ng/bench@0.2.4) (2018-10-17)
 
 **Note:** Version bump only for package @thi.ng/bench

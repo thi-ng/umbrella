@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.8.16...@thi.ng/interceptors@1.8.17) (2018-10-21)
+
+**Note:** Version bump only for package @thi.ng/interceptors
+
+
+
+
+
 ## [1.8.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.8.15...@thi.ng/interceptors@1.8.16) (2018-10-17)
 
 **Note:** Version bump only for package @thi.ng/interceptors

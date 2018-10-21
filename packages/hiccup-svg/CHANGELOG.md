@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@2.0.3...@thi.ng/hiccup-svg@2.0.4) (2018-10-21)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** fix arc segment handling ([85426d9](https://github.com/thi-ng/umbrella/commit/85426d9))
+
+
+
+
+
 ## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@2.0.2...@thi.ng/hiccup-svg@2.0.3) (2018-10-17)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

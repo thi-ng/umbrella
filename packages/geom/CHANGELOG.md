@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.1.0...@thi.ng/geom@0.2.0) (2018-10-21)
+
+
+### Features
+
+* **geom:** add IToCubic, add/update impls ([ce131d4](https://github.com/thi-ng/umbrella/commit/ce131d4))
+
+
+
+
+
 # 0.1.0 (2018-10-17)
 
 

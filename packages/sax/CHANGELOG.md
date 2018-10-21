@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.5.2...@thi.ng/sax@0.5.3) (2018-10-21)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
 ## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.5.1...@thi.ng/sax@0.5.2) (2018-10-17)
 
 **Note:** Version bump only for package @thi.ng/sax
