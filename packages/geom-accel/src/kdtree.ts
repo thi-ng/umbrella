@@ -1,32 +1,47 @@
+import { ICopy, IEmpty, Pair } from "@thi.ng/api/api";
 import { Heap } from "@thi.ng/heaps/heap";
 import { EPS } from "@thi.ng/math/api";
 import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
 import { IDistance } from "@thi.ng/vectors/api";
-import { IEmpty } from "@thi.ng/api/api";
 
 export type KdIndexable<T> = IDistance<T> & IEmpty<T>;
 
-export class KdNode<T extends KdIndexable<T>> {
+const CMP = (a, b) => b[0] - a[0];
 
-    parent: KdNode<T>;
-    l: KdNode<T>;
-    r: KdNode<T>;
+export class KdNode<K extends KdIndexable<K>, V> {
+
+    parent: KdNode<K, V>;
+    l: KdNode<K, V>;
+    r: KdNode<K, V>;
     d: number;
-    p: Readonly<T>;
+    k: Readonly<K>;
+    v: V;
 
-    constructor(parent: KdNode<T>, dim: number, val: Readonly<T>) {
+    constructor(parent: KdNode<K, V>, dim: number, key: Readonly<K>, val: V) {
         this.parent = parent;
         this.d = dim;
-        this.p = val;
+        this.k = key;
+        this.v = val;
         this.l = this.r = null;
     }
 
-    *[Symbol.iterator](): IterableIterator<T> {
-        let queue: KdNode<T>[] = [this];
+    *[Symbol.iterator](): IterableIterator<Pair<K, V>> {
+        let queue: KdNode<K, V>[] = [this];
         while (queue.length) {
             const n = queue.pop();
             if (n) {
-                yield n.p;
+                yield [n.k, n.v];
+                queue.push(n.r, n.l);
+            }
+        }
+    }
+
+    *keys(): IterableIterator<K> {
+        let queue: KdNode<K, V>[] = [this];
+        while (queue.length) {
+            const n = queue.pop();
+            if (n) {
+                yield n.k;
                 queue.push(n.r, n.l);
             }
         }
@@ -47,37 +62,47 @@ export class KdNode<T extends KdIndexable<T>> {
  * https://github.com/ubilabs/kd-tree-javascript
  *
  */
-export class KdTree<T extends KdIndexable<T>> {
+export class KdTree<K extends KdIndexable<K>, V>
+    implements ICopy<KdTree<K, V>> {
 
-    root: KdNode<T>;
+    root: KdNode<K, V>;
     dim: number;
 
     protected _length: number;
 
-    constructor(dim: number, points?: Iterable<T>) {
+    constructor(dim: number, pairs?: Iterable<Pair<K, V>>) {
         this.dim = dim;
         this._length = 0;
-        this.root = points ?
-            this.build(ensureArray(points), 0, null) :
+        this.root = pairs ?
+            this.buildTree(ensureArray(pairs), 0, null) :
             null;
     }
 
-    [Symbol.iterator](): IterableIterator<T> {
+    [Symbol.iterator](): IterableIterator<Pair<K, V>> {
         return (this.root || [])[Symbol.iterator]();
+    }
+
+    keys(): IterableIterator<K> {
+        return this.root ?
+            this.root.keys() :
+            [][Symbol.iterator]();
     }
 
     get length() {
         return this._length;
     }
 
-    // TODO add value support (point = key)
-    add(p: Readonly<T>, eps = EPS) {
+    copy() {
+        return new KdTree(this.dim, this);
+    }
+
+    add(p: Readonly<K>, v: V, eps = EPS) {
         eps *= eps;
-        const search = (node: KdNode<T>, parent: KdNode<T>): KdNode<T> | false =>
+        const search = (node: KdNode<K, V>, parent: KdNode<K, V>): KdNode<K, V> | false =>
             node ?
-                p.distSq(node.p) > eps ?
+                p.distSq(node.k) > eps ?
                     search(
-                        p[node.d] < node.p[node.d] ? node.l : node.r,
+                        p[node.d] < node.k[node.d] ? node.l : node.r,
                         node
                     ) :
                     false :
@@ -85,24 +110,35 @@ export class KdTree<T extends KdIndexable<T>> {
         const parent = search(this.root, null);
         if (parent === false) return false;
         if (parent == null) {
-            this.root = new KdNode<T>(null, 0, p);
+            this.root = new KdNode<K, V>(null, 0, p, v);
         } else {
             const dim = parent.d;
-            parent[p[dim] < parent.p[dim] ? "l" : "r"] =
-                new KdNode<T>(parent, (dim + 1) % this.dim, p);
+            parent[p[dim] < parent.k[dim] ? "l" : "r"] =
+                new KdNode<K, V>(parent, (dim + 1) % this.dim, p, v);
         }
         this._length++;
         return true;
     }
 
-    addAll(pts: Iterable<T>) {
-        for (let p of pts) {
-            this.add(p);
+    addAll(pts: Iterable<Pair<K, V>>, eps = EPS) {
+        for (let [k, v] of pts) {
+            this.add(k, v, eps);
         }
         return this;
     }
 
-    remove(p: Readonly<T>) {
+    addKey(k: Readonly<K>, eps = EPS) {
+        return this.add(k, null, eps);
+    }
+
+    addKeys(ks: Iterable<Readonly<K>>, eps = EPS) {
+        for (let k of ks) {
+            this.add(k, null, eps);
+        }
+        return this;
+    }
+
+    remove(p: Readonly<K>) {
         const node = find(p, this.root, 0);
         if (node) {
             remove(node) && (this.root = null);
@@ -112,28 +148,26 @@ export class KdTree<T extends KdIndexable<T>> {
         return false;
     }
 
-    find(q: Readonly<T>, eps = EPS): KdNode<T> | undefined {
+    find(q: Readonly<K>, eps = EPS): KdNode<K, V> | undefined {
         return find(q, this.root, eps * eps);
     }
 
-    select(q: Readonly<T>, maxNum: number, maxDist?: number): T[] {
-        const res: T[] = [];
-        const nodes = new Heap<[number, KdNode<T>]>(
-            null,
-            { compare: (a, b) => b[0] - a[0] }
-        );
-        if (maxDist) {
-            maxDist *= maxDist;
-            const c: [number, KdNode<T>] = [maxDist, null];
-            for (let i = maxNum; --i >= 0;) {
-                nodes.push(c);
-            }
+    select(q: Readonly<K>, maxNum: number, maxDist?: number): Pair<K, V>[] {
+        const res: Pair<K, V>[] = [];
+        const src = this.buildSelection(q, maxNum, maxDist);
+        for (let n = src.length; --n >= 0;) {
+            const nn = src[n][1];
+            nn && res.push([nn.k, nn.v]);
         }
-        nearest(q, nodes, this.dim, maxNum, this.root);
-        for (let n of nodes) {
-            if (n[1]) {
-                n[1] && res.push(n[1].p);
-            }
+        return res;
+    }
+
+    selectKeys(q: Readonly<K>, maxNum: number, maxDist?: number): K[] {
+        const res: K[] = [];
+        const src = this.buildSelection(q, maxNum, maxDist);
+        for (let n = src.length; --n >= 0;) {
+            const nn = src[n][1];
+            nn && res.push(nn.k);
         }
         return res;
     }
@@ -144,7 +178,20 @@ export class KdTree<T extends KdIndexable<T>> {
             0;
     }
 
-    protected build(points: T[], depth: number, parent: KdNode<T>) {
+    protected buildSelection(q: Readonly<K>, maxNum: number, maxDist?: number) {
+        const nodes = new Heap<[number, KdNode<K, V>]>(null, { compare: CMP });
+        if (maxDist) {
+            maxDist *= maxDist;
+            const c: [number, KdNode<K, V>] = [maxDist, null];
+            for (let i = maxNum; --i >= 0;) {
+                nodes.push(c);
+            }
+        }
+        nearest(q, nodes, this.dim, maxNum, this.root);
+        return nodes.values.sort(CMP);
+    }
+
+    protected buildTree(points: Pair<K, V>[], depth: number, parent: KdNode<K, V>) {
         const n = points.length;
         if (n === 0) {
             return;
@@ -152,13 +199,13 @@ export class KdTree<T extends KdIndexable<T>> {
         this._length++;
         let dim = depth % this.dim;
         if (n === 1) {
-            return new KdNode<T>(parent, dim, points[0]);
+            return new KdNode<K, V>(parent, dim, ...points[0]);
         }
-        points.sort((a, b) => a[dim] - b[dim]);
+        points.sort((a, b) => a[0][dim] - b[0][dim]);
         const med = n >>> 1;
-        const node = new KdNode<T>(parent, dim, points[med]);
-        node.l = this.build(points.slice(0, med), depth + 1, node);
-        node.r = this.build(points.slice(med + 1), depth + 1, node);
+        const node = new KdNode<K, V>(parent, dim, ...points[med]);
+        node.l = this.buildTree(points.slice(0, med), depth + 1, node);
+        node.r = this.buildTree(points.slice(med + 1), depth + 1, node);
         return node;
     }
 }
@@ -170,28 +217,28 @@ export class KdTree<T extends KdIndexable<T>> {
  * @param node
  * @param epsSq squared epsilon / tolerance
  */
-const find = <T extends KdIndexable<T>>(p: T, node: KdNode<T>, epsSq: number) => {
+const find = <K extends KdIndexable<K>, V>(p: K, node: KdNode<K, V>, epsSq: number) => {
     if (!node) return;
-    return p.distSq(node.p) <= epsSq ?
+    return p.distSq(node.k) <= epsSq ?
         node :
-        find(p, p[node.d] < node.p[node.d] ? node.l : node.r, epsSq);
+        find(p, p[node.d] < node.k[node.d] ? node.l : node.r, epsSq);
 };
 
-const findMin = <T extends KdIndexable<T>>(node: KdNode<T>, dim: number): KdNode<T> => {
+const findMin = <K extends KdIndexable<K>, V>(node: KdNode<K, V>, dim: number): KdNode<K, V> => {
     if (!node) return;
     if (node.d === dim) {
         return node.l ?
             findMin(node.l, dim) :
             node;
     }
-    const q = node.p[dim];
+    const q = node.k[dim];
     const l = findMin(node.l, dim);
     const r = findMin(node.r, dim);
     let min = node;
-    if (l && l.p[dim] < q) {
+    if (l && l.k[dim] < q) {
         min = l;
     }
-    if (r && r.p[dim] < min.p[dim]) {
+    if (r && r.k[dim] < min.k[dim]) {
         min = r;
     }
     return min;
@@ -202,35 +249,35 @@ const findMin = <T extends KdIndexable<T>>(node: KdNode<T>, dim: number): KdNode
  *
  * @param node
  */
-const remove = <T extends KdIndexable<T>>(node: KdNode<T>) => {
+const remove = <K extends KdIndexable<K>, V>(node: KdNode<K, V>) => {
     if (!node.l && !node.r) {
         if (!node.parent) {
             return true;
         }
         const parent = node.parent;
         const pdim = parent.d;
-        parent[node.p[pdim] < parent.p[pdim] ? "l" : "r"] = null;
+        parent[node.k[pdim] < parent.k[pdim] ? "l" : "r"] = null;
         return;
     }
-    let next: KdNode<T>;
-    let nextP: T;
+    let next: KdNode<K, V>;
+    let nextP: K;
     if (node.r) {
         next = findMin(node.r, node.d);
-        nextP = next.p;
+        nextP = next.k;
         remove(next);
-        node.p = nextP;
+        node.k = nextP;
     } else {
         next = findMin(node.l, node.d);
-        nextP = next.p;
+        nextP = next.k;
         remove(next);
         node.r = node.l;
         node.l = null;
-        node.p = nextP;
+        node.k = nextP;
     }
 };
 
-const nearest = <T extends KdIndexable<T>>(q: T, acc: Heap<[number, KdNode<T>]>, dims: number, maxNum: number, node: KdNode<T>) => {
-    const p = node.p;
+const nearest = <K extends KdIndexable<K>, V>(q: K, acc: Heap<[number, KdNode<K, V>]>, dims: number, maxNum: number, node: KdNode<K, V>) => {
+    const p = node.k;
     const ndist = q.distSq(p);
     if (!node.l && !node.r) {
         if (ndist < acc.peek()[0]) {
@@ -243,7 +290,7 @@ const nearest = <T extends KdIndexable<T>>(q: T, acc: Heap<[number, KdNode<T>]>,
         return;
     }
     const ndim = node.d;
-    const tp: T = q.empty();
+    const tp: K = q.empty();
     for (let i = dims; --i >= 0;) {
         tp[i] = i === ndim ? q[i] : p[i];
     }

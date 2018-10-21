@@ -20,11 +20,16 @@ This project is part of the
 
 ## About
 
-A selection of spatial indexing approaches...
+A selection of spatial indexing data structures...
+
+- [k-D Tree](src/kdtree.ts)
+
+**TODO: reimport**
 
 - [Grid](src/grid.ts)
-- [k-D Tree](src/kdtree.ts)
 - [Quadtree](src/quadtree.ts)
+- [Octree](src/octree.ts)
+- [Morton / Z-order](src/morton.ts)
 
 ## Installation
 
@@ -34,12 +39,22 @@ yarn add @thi.ng/geom-accel
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/master/packages/heaps)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
+Please see the
+[geom-knn](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+example for concrete usage & comments...
+
+[Live demo](https://demo.thi.ng/umbrella/geom-knn) |
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+
 ```ts
-import * as ga from "@thi.ng/geom-accel";
+import { KdTree } from "@thi.ng/geom-accel";
 ```
 
 ## Authors
