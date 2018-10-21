@@ -13,6 +13,13 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
+    - [`malloc(size: number)`](#mallocsize-number)
+    - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
+    - [`calloc(size: number)`](#callocsize-number)
+    - [`callocAs(type: Type, num: number)`](#callocastype-type-num-number)
+    - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
+    - [`stats()`](#stats)
 - [Authors](#authors)
 - [License](#license)
 
@@ -20,11 +27,14 @@ This project is part of the
 
 ## About
 
-A TypeScript port of
+TypeScript port of
 [thi.ng/tinyalloc](https://github.com/thi-ng/tinyalloc), for raw or
 typed array memory pooling and/or hybrid JS/WASM use cases etc.
 
-For now see thi.ng/tinyalloc for allocation strategy, block splitting /
+Each `MemPool` instance operates on a single large `ArrayBuffer` used as
+backing memory chunk, e.g. the same buffer used by a WASM module.
+
+For now see tinyalloc docs for allocation strategy, block splitting /
 merging and further details. Unlike the original, this implementation
 does not constrain the overall number of blocks in use and the only
 imposed limit in that of the underlying array buffer.
@@ -88,6 +98,43 @@ pool.stats();
 //   available: 4040,
 //   total: 4096 }
 ```
+
+## API
+
+### `malloc(size: number)`
+
+Attempts to allocate a new block of memory of given byte size and
+returns start address if successful, or zero (`0`) if unsuccessful.
+Memory blocks always start at multiples of 8.
+
+### `mallocAs(type: Type, num: number)`
+
+Similar to `malloc()`, but returns a typed array view of desired `type`
+and instead of byte size, expects number of elements. Returns `null`, if
+allocation failed.
+
+Types are referred to via the `Type` enum, e.g. `Type.F64`:
+
+`U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`
+
+### `calloc(size: number)`
+
+Like `malloc()` but zeroes allocated block before returning.
+
+### `callocAs(type: Type, num: number)`
+
+Like `mallocAs()` but zeroes allocated block before returning.
+
+### `free(addr: number | TypedArray)`
+
+Releases given address or array view back into the pool. Returns `true`
+if successful. Only previously allocated addresses or views created by
+this instance can be freed and its the user's responsibility to not use
+the freed address or view after this call.
+
+### `stats()`
+
+Returns pool statistics (see above example).
 
 ## Authors
 

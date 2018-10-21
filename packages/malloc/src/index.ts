@@ -4,6 +4,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 
 export const enum Type {
     U8,
+    U8C,
     I8,
     U16,
     I16,
@@ -17,6 +18,7 @@ type BlockCtor = (buf: ArrayBuffer, addr: number, num: number) => TypedArray;
 
 const CTORS: IObjectOf<BlockCtor> = {
     [Type.U8]: (buf, addr, num) => new Uint8Array(buf, addr, num),
+    [Type.U8C]: (buf, addr, num) => new Uint8ClampedArray(buf, addr, num),
     [Type.I8]: (buf, addr, num) => new Int8Array(buf, addr, num),
     [Type.U16]: (buf, addr, num) => new Uint16Array(buf, addr, num),
     [Type.I16]: (buf, addr, num) => new Int16Array(buf, addr, num),
@@ -28,6 +30,7 @@ const CTORS: IObjectOf<BlockCtor> = {
 
 const SIZEOF = {
     [Type.U8]: 1,
+    [Type.U8C]: 1,
     [Type.I8]: 1,
     [Type.U16]: 2,
     [Type.I16]: 2,
@@ -128,7 +131,7 @@ export class MemPool {
                     const excess = block.size - size;
                     if (excess >= MemPool.MIN_SPLIT) {
                         block.size = size;
-                        this.insertBlock({
+                        this.insert({
                             addr: block.addr + size,
                             size: excess,
                             next: null
@@ -175,7 +178,7 @@ export class MemPool {
                 } else {
                     this._used = block.next;
                 }
-                this.insertBlock(block);
+                this.insert(block);
                 this.compact();
                 return true;
             }
@@ -218,7 +221,7 @@ export class MemPool {
         return res;
     }
 
-    protected insertBlock(block: MemBlock) {
+    protected insert(block: MemBlock) {
         let ptr = this._free;
         let prev: MemBlock = null;
         while (ptr) {
