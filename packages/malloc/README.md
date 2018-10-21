@@ -21,10 +21,13 @@ This project is part of the
 ## About
 
 A TypeScript port of
-[thi.ng/tinyalloc](https://github.com/thi-ng/tinyalloc) for hybrid
-JS/WASM use cases...
+[thi.ng/tinyalloc](https://github.com/thi-ng/tinyalloc), for raw or
+typed array memory pooling and/or hybrid JS/WASM use cases etc.
 
-See see thi.ng/tinyalloc for diagram and further details.
+For now see thi.ng/tinyalloc for allocation strategy, block splitting /
+merging and further details. Unlike the original, this implementation
+does not constrain the overall number of blocks in use and the only
+imposed limit in that of the underlying array buffer.
 
 ## Installation
 
@@ -49,6 +52,7 @@ const pool = new MemPool(new ArrayBuffer(0x1000), 8);
 
 // all memory blocks will be aligned to 8-byte boundaries
 // size is given in bytes
+// returns pointer / index in array buffer
 ptr = pool.malloc(16);
 // 8
 

@@ -104,6 +104,9 @@ export class MemPool {
     }
 
     malloc(size: number): number {
+        if (size <= 0) {
+            return 0;
+        }
         size = align(size, 8);
         let top = this.top;
         let block = this._free;
