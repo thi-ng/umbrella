@@ -60,4 +60,42 @@ describe("defmulti", () => {
         assert.equal(foo(1, 2, 3), "three: 1, 2, 3");
         assert.throws(() => foo(1, 2));
     });
+
+    it("isa", () => {
+        const foo = defmulti((x) => x);
+        foo.isa(23, "odd");
+        foo.isa(42, "even");
+        foo.isa("odd", "number");
+        foo.isa("even", "number");
+        foo.add("odd", () => "odd");
+        foo.add("number", () => "number");
+        assert.deepEqual(foo.parents(23), new Set(["odd"]), "parents 23");
+        assert.deepEqual(foo.parents(42), new Set(["even"]), "parents 42");
+        assert.deepEqual(foo.ancestors(23), new Set(["odd", "number"]), "ancestors 23");
+        assert.deepEqual(foo.ancestors(42), new Set(["even", "number"]), "ancestors 42");
+        assert.deepEqual(foo.rels(), {
+            23: new Set(["odd"]),
+            42: new Set(["even"]),
+            "odd": new Set(["number"]),
+            "even": new Set(["number"]),
+        }, "foo rels");
+        assert.equal(foo(23), "odd");
+        assert.equal(foo(42), "number");
+        assert.throws(() => foo(66), "no default");
+        foo.add(DEFAULT, (x) => -x);
+        assert.equal(foo(66), -66);
+
+        const bar = defmulti((x) => x, {
+            23: ["odd"],
+            42: ["even"],
+            "odd": ["number"],
+            "even": ["number"],
+        });
+        assert.deepEqual(bar.rels(), {
+            23: new Set(["odd"]),
+            42: new Set(["even"]),
+            "odd": new Set(["number"]),
+            "even": new Set(["number"]),
+        }, "bar rels");
+    });
 });

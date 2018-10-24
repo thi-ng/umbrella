@@ -11,13 +11,9 @@ This project is part of the
 
 Dynamically extensible [multiple
 dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch) via user
-supplied dispatch function, with minimal overhead. Provides generics for
-type checking up to 8 args, but generally works with any number of
-arguments. Why "only" 8?
-
-> "If you have a procedure with ten parameters, you probably missed some."
->
-> -- Alan Perlis
+supplied dispatch function, with minimal overhead and support for
+dispatch value inheritance hierarchies (more flexible and independent of
+any actual JS type relationships).
 
 ## Installation
 
@@ -30,7 +26,7 @@ yarn add @thi.ng/defmulti
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
-## Usage examples
+## API
 
 ### defmulti
 
@@ -50,6 +46,95 @@ varargs solution.
 Implementations for different dispatch values can be added and removed
 dynamically by calling `.add(id, fn)` or `.remove(id)` on the returned
 function.
+
+#### Dispatch value hierarchies
+
+To avoid code duplication, dispatch values can be associated in
+child-parent relationships and implementations only defined for some
+ancestors. Iff no implementation exists for a concrete dispatch value,
+`defmulti` first attempts to find an implementation for any ancestor
+dispatch value before using the `DEFAULT` implementation.
+
+These relationships can be defined via an additional (optional) object
+arg to `defmulti` and/or dynamically extended via the `.isa(child,
+parent)` call to the multi-function. Relationships can also be queried
+via `.parents(id)` and `.ancestors(id)`.
+
+Note: If multiple direct parents are defined for a dispatch value, then
+it's currently undefined which implementation will be picked. If this
+causes issues to people, parents could be implemented as sorted list
+(each parent with weight) instead of Sets, but this will have perf
+impact... please open an issue if you run into problems!
+
+```ts
+const foo = defmulti((x )=> x);
+foo.isa(23, "odd");
+foo.isa(42, "even");
+foo.isa("odd", "number");
+foo.isa("even", "number");
+
+foo.parents(23); // Set { "odd" }
+foo.ancestors(23); // Set { "odd", "number" }
+
+foo.parents(1); // undefined
+foo.ancestors(1); // Set { }
+
+// add some implementations
+foo.add("odd", (x) => `${x} is odd`);
+foo.add("number", (x) => `${x} is a number`);
+
+foo(23); // "23 is odd"
+foo(42); // "42 is a number"
+foo(1);  // error (missing impl & no default)
+```
+
+Same example, but with relationships provided as argument to `defmulti`:
+
+```ts
+const foo = defmulti((x) => x, {
+    23: ["odd"],
+    42: ["even"],
+    "odd": ["number"],
+    "even": ["number"],
+});
+
+foo.rels();
+// { "23": Set { "odd" },
+//   "42": Set { "even" },
+//   odd: Set { "number" },
+//   even: Set { "number" } }
+```
+
+### defmultiN
+
+Returns a multi-dispatch function which delegates to one of the provided
+implementations, based on the arity (number of args) when the function
+is called. Internally uses `defmulti`, so new arities can be dynamically
+added (or removed) at a later time. `defmultiN` also registers a
+`DEFAULT` implementation which simply throws an `IllegalArityError` when
+invoked.
+
+**Note:** Unlike `defmulti` no argument type checking is supported,
+however you can specify the return type for the generated function.
+
+```ts
+const foo = defmultiN<string>({
+  0: () => "zero",
+  1: (x) => `one: ${x}`,
+  3: (x, y, z) => `three: ${x}, ${y}, ${z}`
+});
+
+foo();
+// zero
+foo(23);
+// one: 23
+foo(1, 2, 3);
+// three: 1, 2, 3
+foo(1, 2);
+// Error: illegal arity: 2
+```
+
+## Usage examples
 
 ```ts
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
@@ -78,6 +163,7 @@ visit([{a: 1, b: ["foo", "bar", null, 42]}])
 See
 [/test/index.ts](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti/test/index.ts)
 for a variation of this example.
+
 
 #### Dynamic dispatch: Simple S-expression interpreter
 
@@ -120,34 +206,7 @@ apr({type: "isa", balance: 10000});
 // Error: invalid account type: isa
 ```
 
-### defmultiN
 
-Returns a multi-dispatch function which delegates to one of the provided
-implementations, based on the arity (number of args) when the function
-is called. Internally uses `defmulti`, so new arities can be dynamically
-added (or removed) at a later time. `defmultiN` also registers a
-`DEFAULT` implementation which simply throws an `IllegalArityError` when
-invoked.
-
-**Note:** Unlike `defmulti` no argument type checking is supported,
-however you can specify the return type for the generated function.
-
-```ts
-const foo = defmultiN<string>({
-  0: () => "zero",
-  1: (x) => `one: ${x}`,
-  3: (x, y, z) => `three: ${x}, ${y}, ${z}`
-});
-
-foo();
-// zero
-foo(23);
-// one: 23
-foo(1, 2, 3);
-// three: 1, 2, 3
-foo(1, 2);
-// Error: illegal arity: 2
-```
 
 ## Authors
 
