@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.4.1...@thi.ng/defmulti@0.5.0) (2018-10-24)
+
+
+### Features
+
+* **defmulti:** add support for dispatch value relationships / hierarchy ([a8c3898](https://github.com/thi-ng/umbrella/commit/a8c3898))
+
+
+
+
+
 ## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.4.0...@thi.ng/defmulti@0.4.1) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/defmulti

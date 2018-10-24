@@ -1,5 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
 export const DEFAULT: unique symbol = Symbol();
@@ -24,50 +24,52 @@ export type Implementation6<A, B, C, D, E, F, T> = (a: A, b: B, c: C, d: D, e: E
 export type Implementation7<A, B, C, D, E, F, G, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...xs: any[]) => T;
 export type Implementation8<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, ...xs: any[]) => T;
 
-export interface MultiFn<T> extends Implementation<T> {
-    add: (id: PropertyKey, g: Implementation<T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
+export interface MultiFnBase<I> {
+    add(id: PropertyKey, g: I): boolean;
+    remove(id: PropertyKey): boolean;
+    isa(id: PropertyKey, parent: PropertyKey);
+    rels(): IObjectOf<Set<PropertyKey>>;
+    parents(id: PropertyKey): Set<PropertyKey>;
+    ancestors(id: PropertyKey): Set<PropertyKey>;
 }
 
-export interface MultiFn1<A, T> extends Implementation1<A, T> {
-    add: (id: PropertyKey, g: Implementation1<A, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn<T> extends
+    Implementation<T>,
+    MultiFnBase<Implementation<T>> { }
 
-export interface MultiFn2<A, B, T> extends Implementation2<A, B, T> {
-    add: (id: PropertyKey, g: Implementation2<A, B, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn1<A, T> extends
+    Implementation1<A, T>,
+    MultiFnBase<Implementation1<A, T>> { }
 
-export interface MultiFn3<A, B, C, T> extends Implementation3<A, B, C, T> {
-    add: (id: PropertyKey, g: Implementation3<A, B, C, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn2<A, B, T> extends
+    Implementation2<A, B, T>,
+    MultiFnBase<Implementation2<A, B, T>> { }
 
-export interface MultiFn4<A, B, C, D, T> extends Implementation4<A, B, C, D, T> {
-    add: (id: PropertyKey, g: Implementation4<A, B, C, D, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn3<A, B, C, T> extends
+    Implementation3<A, B, C, T>,
+    MultiFnBase<Implementation3<A, B, C, T>> { }
 
-export interface MultiFn5<A, B, C, D, E, T> extends Implementation5<A, B, C, D, E, T> {
-    add: (id: PropertyKey, g: Implementation5<A, B, C, D, E, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn4<A, B, C, D, T> extends
+    Implementation4<A, B, C, D, T>,
+    MultiFnBase<Implementation4<A, B, C, D, T>> { }
 
-export interface MultiFn6<A, B, C, D, E, F, T> extends Implementation6<A, B, C, D, E, F, T> {
-    add: (id: PropertyKey, g: Implementation6<A, B, C, D, E, F, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn5<A, B, C, D, E, T> extends
+    Implementation5<A, B, C, D, E, T>,
+    MultiFnBase<Implementation5<A, B, C, D, E, T>> { }
 
-export interface MultiFn7<A, B, C, D, E, F, G, T> extends Implementation7<A, B, C, D, E, F, G, T> {
-    add: (id: PropertyKey, g: Implementation7<A, B, C, D, E, F, G, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn6<A, B, C, D, E, F, T> extends
+    Implementation6<A, B, C, D, E, F, T>,
+    MultiFnBase<Implementation6<A, B, C, D, E, F, T>> { }
 
-export interface MultiFn8<A, B, C, D, E, F, G, H, T> extends Implementation8<A, B, C, D, E, F, G, H, T> {
-    add: (id: PropertyKey, g: Implementation8<A, B, C, D, E, F, G, H, T>) => boolean;
-    remove: (id: PropertyKey) => boolean;
-}
+export interface MultiFn7<A, B, C, D, E, F, G, T> extends
+    Implementation7<A, B, C, D, E, F, G, T>,
+    MultiFnBase<Implementation7<A, B, C, D, E, F, G, T>> { }
+
+export interface MultiFn8<A, B, C, D, E, F, G, H, T> extends
+    Implementation8<A, B, C, D, E, F, G, H, T>,
+    MultiFnBase<Implementation8<A, B, C, D, E, F, G, H, T>> { }
+
+export type AncestorDefs = IObjectOf<Iterable<PropertyKey>>;
 
 /**
  * Returns a new multi-dispatch function using the provided dispatcher.
@@ -88,21 +90,22 @@ export interface MultiFn8<A, B, C, D, E, F, G, H, T> extends Implementation8<A, 
  * returned function. Each returns `true` if the operation was
  * successful.
  */
-export function defmulti<T>(f: DispatchFn): MultiFn<T>;
-export function defmulti<A, T>(f: DispatchFn1<A>): MultiFn1<A, T>;
-export function defmulti<A, B, T>(f: DispatchFn2<A, B>): MultiFn2<A, B, T>;
-export function defmulti<A, B, C, T>(f: DispatchFn3<A, B, C>): MultiFn3<A, B, C, T>;
-export function defmulti<A, B, C, D, T>(f: DispatchFn4<A, B, C, D>): MultiFn4<A, B, C, D, T>;
-export function defmulti<A, B, C, D, E, T>(f: DispatchFn5<A, B, C, D, E>): MultiFn5<A, B, C, D, E, T>;
-export function defmulti<A, B, C, D, E, F, T>(f: DispatchFn6<A, B, C, D, E, F>): MultiFn6<A, B, C, D, E, F, T>;
-export function defmulti<A, B, C, D, E, F, G, T>(f: DispatchFn7<A, B, C, D, E, F, G>): MultiFn7<A, B, C, D, E, F, G, T>;
-export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn8<A, B, C, D, E, F, G, H>): MultiFn8<A, B, C, D, E, F, G, H, T>;
-export function defmulti<T>(f: any): MultiFn<T> {
+export function defmulti<T>(f: DispatchFn, rels?: AncestorDefs): MultiFn<T>;
+export function defmulti<A, T>(f: DispatchFn1<A>, rels?: AncestorDefs): MultiFn1<A, T>;
+export function defmulti<A, B, T>(f: DispatchFn2<A, B>, rels?: AncestorDefs): MultiFn2<A, B, T>;
+export function defmulti<A, B, C, T>(f: DispatchFn3<A, B, C>, rels?: AncestorDefs): MultiFn3<A, B, C, T>;
+export function defmulti<A, B, C, D, T>(f: DispatchFn4<A, B, C, D>, rels?: AncestorDefs): MultiFn4<A, B, C, D, T>;
+export function defmulti<A, B, C, D, E, T>(f: DispatchFn5<A, B, C, D, E>, rels?: AncestorDefs): MultiFn5<A, B, C, D, E, T>;
+export function defmulti<A, B, C, D, E, F, T>(f: DispatchFn6<A, B, C, D, E, F>, rels?: AncestorDefs): MultiFn6<A, B, C, D, E, F, T>;
+export function defmulti<A, B, C, D, E, F, G, T>(f: DispatchFn7<A, B, C, D, E, F, G>, rels?: AncestorDefs): MultiFn7<A, B, C, D, E, F, G, T>;
+export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn8<A, B, C, D, E, F, G, H>, rels?: AncestorDefs): MultiFn8<A, B, C, D, E, F, G, H, T>;
+export function defmulti<T>(f: any, ancestors?: AncestorDefs): MultiFn<T> {
     let impls: IObjectOf<Implementation<T>> = {};
+    let rels: IObjectOf<Set<PropertyKey>> = ancestors ? makeRels(ancestors) : {};
     let fn: any = (...args) => {
         const id = f(...args);
-        const g = impls[id] || impls[<any>DEFAULT];
-        return g ? g(...args) : illegalArgs(`missing implementation for: "${id.toString()}"`);
+        const g = impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
+        return g ? g(...args) : unsupported(`missing implementation for: "${id.toString()}"`);
     };
     fn.add = (id: PropertyKey, g: Implementation<T>) => {
         if (impls[<any>id]) return false;
@@ -114,7 +117,44 @@ export function defmulti<T>(f: any): MultiFn<T> {
         delete impls[<any>id];
         return true;
     };
+    fn.isa = (id: PropertyKey, parent: PropertyKey) => {
+        let val = rels[<any>id];
+        !val && (rels[<any>id] = val = new Set());
+        val.add(parent);
+    };
+    fn.rels = () => rels;
+    fn.parents = (id: PropertyKey) => rels[<any>id];
+    fn.ancestors = (id: PropertyKey) => new Set<PropertyKey>(findAncestors([], rels, id));
     return fn;
+};
+
+const findImpl = (impls: IObjectOf<Implementation<any>>, rels: IObjectOf<Set<PropertyKey>>, id: PropertyKey) => {
+    const parents = rels[<any>id];
+    if (!parents) return;
+    for (let p of parents) {
+        let impl: Implementation<any> = impls[<any>p] || findImpl(impls, rels, p)
+        if (impl) return impl;
+    }
+};
+
+const findAncestors = (acc: PropertyKey[], rels: IObjectOf<Set<PropertyKey>>, id: PropertyKey) => {
+    const parents = rels[<any>id];
+    if (parents) {
+        for (let p of parents) {
+            acc.push(p);
+            findAncestors(acc, rels, p);
+        }
+    }
+    return acc;
+};
+
+const makeRels = (spec: AncestorDefs) => {
+    const rels: IObjectOf<Set<PropertyKey>> = {};
+    for (let k in spec) {
+        const val = spec[k];
+        rels[k] = val instanceof Set ? val : new Set(val);
+    }
+    return rels;
 };
 
 /**
