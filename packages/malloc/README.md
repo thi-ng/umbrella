@@ -20,6 +20,8 @@ This project is part of the
     - [`calloc(size: number)`](#callocsize-number)
     - [`callocAs(type: Type, num: number)`](#callocastype-type-num-number)
     - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
+    - [`freeAll()`](#freeall)
+    - [`release()`](#release)
     - [`stats()`](#stats)
 - [Benchmarks](#benchmarks)
 - [Authors](#authors)
@@ -143,6 +145,21 @@ Releases given address or array view back into the pool. Returns `true`
 if successful. Only previously allocated addresses or views created by
 this instance can be freed and its the user's responsibility to not use
 the freed address or view after this call.
+
+### `freeAll()`
+
+Frees all allocated blocks, essentially resets the pool. This is useful
+when using a `MemPool` for temporary object allocation within a function
+and then calling this method before returning. This is also much cheaper
+than individually freeing the blocks.
+
+### `release()`
+
+This completely destroys all internal pool references & state and should
+only be used when the pool is no longer needed. The pool is unusable
+afterwards. If there're no other external references to the pool's
+underlying `ArrayBuffer`, then it will also be garbage collected soon
+after.
 
 ### `stats()`
 
