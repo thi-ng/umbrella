@@ -139,9 +139,12 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
                 }[e.type];
                 evt = e;
             }
-            const pos = opts.local ?
-                [(evt.clientX - el.offsetLeft) | 0, (evt.clientY - el.offsetTop) | 0] :
-                [evt.clientX | 0, evt.clientY | 0];
+            const pos = [evt.clientX | 0, evt.clientY | 0];
+            if (opts.local) {
+                const rect = el.getBoundingClientRect();
+                pos[0] -= rect.left;
+                pos[1] -= rect.top;
+            }
             if (opts.scale) {
                 pos[0] *= dpr;
                 pos[1] *= dpr;
