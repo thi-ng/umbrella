@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.15...@thi.ng/rstream-gestures@0.5.16) (2018-10-24)
+
+
+### Bug Fixes
+
+* **rstream-gestures:** fix incorrect local position when scrolled ([f1f6af4](https://github.com/thi-ng/umbrella/commit/f1f6af4))
+
+
+
+
+
 ## [0.5.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.14...@thi.ng/rstream-gestures@0.5.15) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures
