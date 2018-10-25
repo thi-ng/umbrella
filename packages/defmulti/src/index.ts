@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
@@ -27,6 +28,7 @@ export type Implementation8<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D
 export interface MultiFnBase<I> {
     add(id: PropertyKey, g: I): boolean;
     remove(id: PropertyKey): boolean;
+    callable(...args: any[]): boolean;
     isa(id: PropertyKey, parent: PropertyKey);
     rels(): IObjectOf<Set<PropertyKey>>;
     parents(id: PropertyKey): Set<PropertyKey>;
@@ -117,6 +119,10 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs): MultiFn<T> {
         delete impls[<any>id];
         return true;
     };
+    fn.callable = (...args: any[]) => {
+        const id = f(...args);
+        return !!(impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT]);
+    };
     fn.isa = (id: PropertyKey, parent: PropertyKey) => {
         let val = rels[<any>id];
         !val && (rels[<any>id] = val = new Set());
@@ -199,3 +205,35 @@ export function defmultiN<T>(impls: { [id: number]: Implementation<T> }) {
     }
     return fn;
 }
+
+/**
+ * Intended for multi-methods sharing same dispatch values / logic.
+ * Takes a dispatch value and a number of multi-methods, each with an
+ * implementation for the given dispatch value. Then for each
+ * multi-method associates the related implementation with the given
+ * dispatch value.
+ *
+ * ```
+ * foo = defmulti((x) => x.id);
+ * bar = defmulti((x) => x.id);
+ *
+ * implementations(
+ *   "a",
+ *
+ *   foo, (x) => `foo: ${x.val}`,
+ *   bar, (x) => `bar: ${x.val.toUpperCase()}`
+ * )
+ *
+ * foo({ id: "a", val: "alice" }); // "foo: alice"
+ * bar({ id: "a", val: "alice" }); // "bar: ALICE"
+ * ```
+ *
+ * @param type
+ * @param impls
+ */
+export const implementations = (type: PropertyKey, ...impls: (MultiFn<any> | Implementation<any>)[]) => {
+    (impls.length & 1) && illegalArgs("require an even number of implementation items");
+    for (let i = 0; i < impls.length; i += 2) {
+        (<MultiFn<any>>impls[i]).add(type, impls[i + 1]);
+    }
+};

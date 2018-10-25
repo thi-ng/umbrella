@@ -28,7 +28,7 @@ yarn add @thi.ng/defmulti
 
 ## API
 
-### defmulti
+### defmulti()
 
 `defmulti` returns a new multi-dispatch function using the provided
 dispatcher function. The dispatcher acts as a mapping function, can take
@@ -43,9 +43,17 @@ return type) and the generics will also apply to all implementations. If
 more than 8 args are required, `defmulti` will fall back to an untyped
 varargs solution.
 
-Implementations for different dispatch values can be added and removed
-dynamically by calling `.add(id, fn)` or `.remove(id)` on the returned
-function.
+The function returned by `defmulti` can be called like any other function, but also exposes the following operations:
+
+- `.add(id, fn)` - adds new implementation for given dispatch value
+- `.remove(id)` - removes implementation for dispatch value
+- `.callable(...args)` - takes same args as if calling the
+  multi-function, but only checks if an implementation exists for the
+  given args. Returns boolean.
+- `.isa(child, parent)` - establish dispatch value relationship hierarchy
+- `.rels()` - return all dispatch value relationships
+- `.parents(id)` - direct parents of dispatch value `id`
+- `.ancestors(id)` - transitive parents of dispatch value `id`
 
 #### Dispatch value hierarchies
 
@@ -105,7 +113,34 @@ foo.rels();
 //   even: Set { "number" } }
 ```
 
-### defmultiN
+### implementations()
+
+Intended for multi-methods sharing same dispatch values / logic.
+Takes a dispatch value and a number of multi-methods, each with an
+implementation for the given dispatch value. Then for each
+multi-method associates the related implementation with the given
+dispatch value.
+
+```ts
+const foo = defmulti((x) => x.id);
+const bar = defmulti((x) => x.id);
+
+// batch define implementations for dispatch value "a"
+implementations(
+    "a",
+
+    foo,
+    (x) => `foo: ${x.val}`,
+
+    bar,
+    (x) => `bar: ${x.val.toUpperCase()}`
+);
+
+foo({ id: "a", val: "alice" }); // "foo: alice"
+bar({ id: "a", val: "alice" }); // "bar: ALICE"
+```
+
+### defmultiN()
 
 Returns a multi-dispatch function which delegates to one of the provided
 implementations, based on the arity (number of args) when the function
