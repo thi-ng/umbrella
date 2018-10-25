@@ -75,6 +75,8 @@ export type Vec4Coord = 0 | 1 | 2 | 3;
 export const set: MultiVecOpVV<Vec> = vop();
 export const setN: MultiVecOpVN<Vec> = vop();
 export const setS: MultiVecOpV<Vec> = vop();
+export const copy: MultiVecOpV<Vec> = vop();
+copy.default((v) => [...v]);
 
 export const zero = (a: Vec) => setN(a, 0);
 export const one = (a: Vec) => setN(a, 1);

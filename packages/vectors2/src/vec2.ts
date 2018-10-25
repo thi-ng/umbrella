@@ -179,6 +179,9 @@ angleBetween.add(2, (a, b, normalize) =>
 export const vec2 =
     (x = 0, y = 0) => new Vec2([x, y]);
 
+export const vec2n =
+    (n: number) => new Vec2([n, n]);
+
 export const asVec2 =
     (x: Vec) =>
         x instanceof Vec2 ?

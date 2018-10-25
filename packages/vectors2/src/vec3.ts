@@ -206,6 +206,9 @@ angleBetween.add(3, (a, b, normalize) =>
 export const vec3 =
     (x = 0, y = 0, z = 0) => new Vec3([x, y, z]);
 
+export const vec3n =
+    (n: number) => new Vec3([n, n, n]);
+
 export const asVec3 =
     (x: Vec) =>
         x instanceof Vec3 ?
