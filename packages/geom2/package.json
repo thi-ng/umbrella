@@ -29,8 +29,11 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.2.3",
-        "@thi.ng/defmulti": "^0.4.1",
-        "@thi.ng/malloc": "^0.1.0",
+        "@thi.ng/checks": "^1.5.13",
+        "@thi.ng/defmulti": "^0.5.0",
+        "@thi.ng/hiccup": "^2.4.3",
+        "@thi.ng/hiccup-svg": "^2.0.4",
+        "@thi.ng/malloc": "^0.1.1",
         "@thi.ng/math": "^0.2.0",
         "@thi.ng/vectors2": "^0.0.1"
     },

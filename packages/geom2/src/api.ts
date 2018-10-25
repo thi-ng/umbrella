@@ -1,23 +1,30 @@
-import { defmulti, DEFAULT } from "@thi.ng/defmulti";
-import { Vec } from "@thi.ng/vectors2/api";
-import { IObjectOf, ICopy } from "@thi.ng/api";
-
-import "@thi.ng/vectors2/vec2";
-import { asVec2, Vec2 } from "@thi.ng/vectors2/vec2";
+import { ICopy, IObjectOf } from "@thi.ng/api";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { IVector, subNew, Vec } from "@thi.ng/vectors2/api";
+import { asVec2, Vec2, vec2 } from "@thi.ng/vectors2/vec2";
 
 export enum Type {
     CIRCLE2 = "circle",
-    RECT2 = "rect",
+    GROUP = "g",
+    LINE2 = "line",
+    PATH2 = "path",
+    POINTS2 = "points",
     POLYGON2 = "polygon",
+    POLYLINE2 = "polyline",
     QUAD2 = "quad",
+    RECT2 = "rect",
+    TRIANGLE2 = "triangle",
 }
 
-export interface Shape {
+export const DEFAULT_SAMPLES = 20;
+
+export interface Shape extends
+    ICopy<Shape> {
     readonly type: string;
     attribs?: IObjectOf<any>;
 }
 
-export interface AABB extends Shape {
+export interface AABBLike extends Shape {
     pos: Vec;
     size: Vec;
 }
@@ -27,21 +34,42 @@ export type Attribs = IObjectOf<any>;
 const dispatch = (x: Shape) => x.type;
 
 export const area = defmulti<Shape, number>(dispatch);
+
 export const arcLength = defmulti<Shape, number>(dispatch);
 
-export const bounds = defmulti<Shape, AABB>(dispatch);
-export const width = defmulti<Shape, number>(dispatch);
-export const height = defmulti<Shape, number>(dispatch);
-export const depth = defmulti<Shape, number>(dispatch);
-width.add(DEFAULT, (x) => bounds(x).size[0]);
-height.add(DEFAULT, (x) => bounds(x).size[0]);
-depth.add(DEFAULT, (x) => bounds(x).size[2] || 0);
+export const asPolygon = defmulti<Shape, Polygon2>(dispatch);
+
+export const asPolyline = defmulti<Shape, Polygon2>(dispatch);
+
+export const bounds = defmulti<Shape, AABBLike>(dispatch);
+
+export const center = defmulti<Shape, Shape>(dispatch);
 
 export const centroid = defmulti<Shape, Vec>(dispatch);
-export const center = defmulti<Shape, Shape>(dispatch);
+
+export const classifyPoint = defmulti<Shape, Vec, Vec>(dispatch);
+
+export const depth = defmulti<Shape, number>(dispatch);
+depth.add(DEFAULT, (x) => bounds(x).size[2] || 0);
+
+export const difference = defmulti<Shape, Shape, Shape>(dispatch);
+
+// TODO add options type
+export const extrude = defmulti<Shape, Shape>(dispatch);
+
+export const height = defmulti<Shape, number>(dispatch);
+height.add(DEFAULT, (x) => bounds(x).size[1]);
+
+export const intersect = defmulti<Shape, Shape>(dispatch);
+
+export const union = defmulti<Shape, Shape>(dispatch);
+
 export const vertices = defmulti<Shape, Vec[]>(dispatch);
 
-export class HShape extends Array<any> implements
+export const width = defmulti<Shape, number>(dispatch);
+width.add(DEFAULT, (x) => bounds(x).size[0]);
+
+export abstract class AShape extends Array<any> implements
     Shape {
 
     constructor(type: string, attribs: Attribs, ...xs: any[]) {
@@ -59,9 +87,40 @@ export class HShape extends Array<any> implements
     set attribs(attr: Attribs) {
         this[1] = attr;
     }
+
+    abstract copy(): Shape;
 }
 
-export class Circle2 extends HShape implements
+/**
+ * [type, {}, points]
+ */
+export class PointContainer<T extends IVector<T>> extends AShape {
+
+    constructor(type: Type, points: Vec[], attribs?: Attribs) {
+        super(type, attribs, points);
+    }
+
+    get points(): T[] {
+        return this[2];
+    }
+
+    set points(pts: T[]) {
+        this[2] = pts;
+    }
+
+    copy() {
+        return new PointContainer<T>(
+            this.type,
+            this.points.map((p) => p.copy()),
+            { ...this.attribs }
+        );
+    }
+}
+
+/**
+ * ["circle", {}, pos, r]
+ */
+export class Circle2 extends AShape implements
     ICopy<Circle2> {
 
     constructor(pos: Vec, r: number, attribs?: Attribs) {
@@ -89,10 +148,86 @@ export class Circle2 extends HShape implements
     }
 }
 
-export class Rect2 extends HShape implements AABB {
+/**
+ * ["circle", {}, pos, r]
+ */
+export class Group2 extends AShape implements
+    ICopy<Group2> {
+
+    constructor(attribs?: Attribs, ...children: Shape[]) {
+        super(Type.GROUP, attribs, children);
+    }
+
+    copy() {
+        return new Group2({ ...this.attribs }, ...<Shape[]>this.children.map((c) => c.copy()));
+    }
+
+    get children(): Shape[] {
+        return this[2];
+    }
+
+    set children(children: Shape[]) {
+        this[2] = children;
+    }
+}
+
+/**
+ * ```
+ * ["polygon", {}, points]
+ * ```
+ */
+export class Polygon2 extends PointContainer<Vec2> implements
+    ICopy<Polygon2> {
+
+    constructor(points: Vec[], attribs?: Attribs) {
+        super(Type.POLYGON2, points.map(asVec2), attribs);
+    }
+
+    copy() {
+        return new Polygon2(this.points, { ...this.attribs });
+    }
+}
+
+/**
+ * ```
+ * ["quad", {}, points]
+ * ```
+ */
+export class Quad2 extends PointContainer<Vec2> implements
+    ICopy<Quad2> {
+
+    constructor(points: Vec[], attribs?: Attribs) {
+        super(Type.POLYGON2, points.map(asVec2), attribs);
+    }
+
+    copy() {
+        return new Quad2(this.points, { ...this.attribs });
+    }
+
+    get type() {
+        return Type.QUAD2;
+    }
+}
+
+/**
+ * ```
+ * ["rect", {}, pos, size]
+ * ```
+ */
+export class Rect2 extends AShape implements
+    AABBLike,
+    ICopy<Rect2> {
+
+    static fromMinMax(min: Vec, max: Vec) {
+        return new Rect2(min, subNew(max, min, vec2()));
+    }
 
     constructor(pos: Vec, size: Vec, attribs?: Attribs) {
         super(Type.RECT2, attribs, asVec2(pos), asVec2(size));
+    }
+
+    copy() {
+        return new Rect2(this.pos.copy(), this.size.copy(), { ...this.attribs });
     }
 
     get pos(): Vec2 {
@@ -112,35 +247,18 @@ export class Rect2 extends HShape implements AABB {
     }
 }
 
-export class Quad2 extends HShape implements
-    ICopy<Quad2> {
+export class Triangle2 extends PointContainer<Vec2> implements
+    ICopy<Triangle2> {
 
     constructor(points: Vec[], attribs?: Attribs) {
-        super(Type.POLYGON2, attribs, points.map(asVec2));
+        super(Type.POLYGON2, points.map(asVec2), attribs);
     }
 
     copy() {
-        return new Quad2(this.points, { ...this.attribs });
+        return new Triangle2(this.points, { ...this.attribs });
     }
 
     get type() {
-        return Type.QUAD2;
-    }
-
-    get points(): Vec2[] {
-        return this[2];
-    }
-
-    set points(pts: Vec2[]) {
-        this[3] = pts;
+        return Type.TRIANGLE2;
     }
 }
-
-// traverse until no further link is found or stop if an impl is found
-// e.g. quad -> polygon -> container
-// TODO add to defmulti
-
-// const hierarchy = {
-//     [Type.QUAD2]: [Type.POLYGON2,...],
-//     [Type.POLYGON2]: [Type.CONTAINER2,...]
-// };
