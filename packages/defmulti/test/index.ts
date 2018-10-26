@@ -87,6 +87,7 @@ describe("defmulti", () => {
         assert.throws(() => foo(66), "no default");
         foo.add(DEFAULT, (x) => -x);
         assert.equal(foo(66), -66);
+        assert.deepEqual(foo.impls(), new Set([DEFAULT, "odd", "even", "number", "23", "42"]));
 
         const bar = defmulti((x) => x, {
             23: ["odd"],

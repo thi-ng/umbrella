@@ -51,6 +51,7 @@ The function returned by `defmulti` can be called like any other function, but a
   multi-function, but only checks if an implementation exists for the
   given args. Returns boolean.
 - `.isa(child, parent)` - establish dispatch value relationship hierarchy
+- `.impls()` - returns set of all dispatch values which have an implementation
 - `.rels()` - return all dispatch value relationships
 - `.parents(id)` - direct parents of dispatch value `id`
 - `.ancestors(id)` - transitive parents of dispatch value `id`
@@ -91,9 +92,15 @@ foo.ancestors(1); // Set { }
 foo.add("odd", (x) => `${x} is odd`);
 foo.add("number", (x) => `${x} is a number`);
 
+// dispatch values w/ implementations
+foo.impls();
+// Set { "odd", "even", "number", "23", "42" }
+
 foo(23); // "23 is odd"
 foo(42); // "42 is a number"
 foo(1);  // error (missing impl & no default)
+
+foo.callable(1) // false
 ```
 
 Same example, but with relationships provided as argument to `defmulti`:
@@ -122,8 +129,10 @@ multi-method associates the related implementation with the given
 dispatch value.
 
 ```ts
-const foo = defmulti((x) => x.id);
-const bar = defmulti((x) => x.id);
+const dispatch = (x) => x.id;
+
+const foo = defmulti(dispatch);
+const bar = defmulti(dispatch);
 
 // batch define implementations for dispatch value "a"
 implementations(
