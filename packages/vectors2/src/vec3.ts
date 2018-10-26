@@ -32,6 +32,8 @@ import {
     MAX4,
     ZERO4,
     ONE4,
+    ReadonlyVec,
+    dist,
 } from "./api";
 
 export class Vec3 extends AVec implements
@@ -119,12 +121,12 @@ export class Vec3 extends AVec implements
         return new Vec3();
     }
 
-    eqDelta(v: Readonly<Vec3>, eps = EPS) {
+    eqDelta(v: ReadonlyVec, eps = EPS) {
         return eqDelta(this, v, eps);
     }
 
     toJSON() {
-        return [this.x, this.y];
+        return [this.x, this.y, this.z];
     }
 
     toString() {
@@ -133,7 +135,11 @@ export class Vec3 extends AVec implements
 }
 
 declareIndices(Vec3.prototype, ["x", "y", "z"]);
-genCommon(2);
+genCommon(3);
+
+const abs = Math.abs;
+const pow = Math.pow;
+const sqrt = Math.sqrt;
 
 eqDelta.add(3, (a, b, eps = EPS) =>
     b.length == 3 &&
@@ -146,38 +152,38 @@ dot.add(3, (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
 
 magSq.add(3, (a) => a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
 
-distSq.add(3, (a, b) => {
-    const x = a[0] - b[0];
-    const y = a[1] - b[1];
-    const z = a[2] - b[2];
-    return x * x + y * y + z * z;
-});
+const distsq3 =
+    (a: ReadonlyVec, b: ReadonlyVec) =>
+        pow(a[0] - b[0], 2) +
+        pow(a[1] - b[1], 2) +
+        pow(a[2] - b[2], 2);
+
+distSq.add(3, distsq3);
+dist.add(3, (a, b) => sqrt(distsq3(a, b)));
 
 distManhattan.add(3, (a, b) =>
-    Math.abs(a[0] - b[0]) +
-    Math.abs(a[1] - b[1]) +
-    Math.abs(a[2] - b[2])
+    abs(a[0] - b[0]) +
+    abs(a[1] - b[1]) +
+    abs(a[2] - b[2])
 );
 
 distChebyshev.add(3, (a, b) =>
     Math.max(
-        Math.abs(a[0] - b[0]),
-        Math.abs(a[1] - b[1]),
-        Math.abs(a[2] - b[2])
+        abs(a[0] - b[0]),
+        abs(a[1] - b[1]),
+        abs(a[2] - b[2])
     )
 );
 
-minor.add(3, (a) =>
-    min3id(Math.abs(a[0]), Math.abs(a[1]), Math.abs(a[2])));
+minor.add(3, (a) => min3id(abs(a[0]), abs(a[1]), abs(a[2])));
 
-major.add(3, (a) =>
-    max3id(Math.abs(a[0]), Math.abs(a[1]), Math.abs(a[2])));
+major.add(3, (a) => max3id(abs(a[0]), abs(a[1]), abs(a[2])));
 
 polar.add(3, (a) => {
     const x = a[0];
     const y = a[1];
     const z = a[2];
-    const r = Math.sqrt(x * x + y * y + z * z);
+    const r = sqrt(x * x + y * y + z * z);
     a[0] = r;
     a[1] = Math.asin(z / r);
     a[2] = Math.atan2(y, x);
@@ -216,11 +222,11 @@ export const asVec3 =
             new Vec3(x.length === 3 ? x : [x[0] || 0, x[1] || 0, x[2] || 0]);
 
 export const swizzle3 =
-    (a: Vec, b: Readonly<Vec>, x: number, y: number, z: number) =>
+    (a: Vec, b: ReadonlyVec, x: number, y: number, z: number) =>
         (a[0] = b[x] || 0, a[1] = b[y] || 0, a[2] = b[z] || 0, a);
 
 export const comparator3 =
-    (o1: Vec3Coord, o2: Vec3Coord, o3: Vec3Coord): Comparator<Readonly<Vec>> =>
+    (o1: Vec3Coord, o2: Vec3Coord, o3: Vec3Coord): Comparator<ReadonlyVec> =>
         (a, b): number => {
             const ax = a[o1];
             const ay = a[o2];

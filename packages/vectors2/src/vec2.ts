@@ -33,6 +33,8 @@ import {
     MAX4,
     ZERO4,
     ONE4,
+    ReadonlyVec,
+    dist,
 } from "./api";
 
 export class Vec2 extends AVec implements
@@ -117,7 +119,7 @@ export class Vec2 extends AVec implements
         return new Vec2();
     }
 
-    eqDelta(v: Readonly<Vec2>, eps = EPS) {
+    eqDelta(v: ReadonlyVec, eps = EPS) {
         return eqDelta(this, v, eps);
     }
 
@@ -133,6 +135,10 @@ export class Vec2 extends AVec implements
 declareIndices(Vec2.prototype, ["x", "y"]);
 genCommon(2);
 
+const abs = Math.abs;
+const pow = Math.pow;
+const sqrt = Math.sqrt;
+
 eqDelta.add(2, (a, b, eps = EPS) =>
     b.length === 2 &&
     _eqDelta(a[0], b[0], eps) &&
@@ -141,18 +147,20 @@ eqDelta.add(2, (a, b, eps = EPS) =>
 
 dot.add(2, (a, b) => a[0] * b[0] + a[1] * b[1]);
 magSq.add(2, (a) => a[0] * a[0] + a[1] * a[1]);
-distSq.add(2, (a, b) => {
-    const x = a[0] - b[0];
-    const y = a[1] - b[1];
-    return x * x + y * y;
-});
-distManhattan.add(2, (a, b) =>
-    Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]));
-distChebyshev.add(2, (a, b) =>
-    Math.max(Math.abs(a[0] - b[0]), Math.abs(a[1] - b[1])));
 
-minor.add(2, (a) => min2id(Math.abs(a[0]), Math.abs(a[1])));
-major.add(2, (a) => max2id(Math.abs(a[0]), Math.abs(a[1])));
+const distsq2 =
+    (a: ReadonlyVec, b: ReadonlyVec) =>
+        pow(a[0] - b[0], 2) +
+        pow(a[1] - b[1], 2);
+
+distSq.add(2, distsq2);
+dist.add(2, (a, b) => sqrt(distsq2(a, b)));
+
+distManhattan.add(2, (a, b) => abs(a[0] - b[0]) + abs(a[1] - b[1]));
+distChebyshev.add(2, (a, b) => Math.max(abs(a[0] - b[0]), abs(a[1] - b[1])));
+
+minor.add(2, (a) => min2id(abs(a[0]), abs(a[1])));
+major.add(2, (a) => max2id(abs(a[0]), abs(a[1])));
 
 polar.add(2, (a) => {
     const x = a[0];
@@ -188,11 +196,11 @@ export const asVec2 =
             x :
             new Vec2(x.length === 2 ? x : [x[0] || 0, x[1] || 0]);
 
-export const swizzle2 = (a: Vec, b: Readonly<Vec>, x: number, y: number) =>
+export const swizzle2 = (a: Vec, b: ReadonlyVec, x: number, y: number) =>
     (a[0] = b[x] || 0, a[1] = b[y] || 0, a);
 
 export const comparator2 =
-    (o1: Vec2Coord, o2: Vec2Coord): Comparator<Readonly<Vec>> =>
+    (o1: Vec2Coord, o2: Vec2Coord): Comparator<ReadonlyVec> =>
         (a, b): number => {
             const ax = a[o1];
             const ay = a[o2];

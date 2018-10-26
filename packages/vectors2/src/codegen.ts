@@ -81,22 +81,32 @@ const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
  * result array, using `ret` as return value. Returns array of source
  * code lines.
  *
+ * The optional `pre` and `post` strings can be used to wrap the
+ * generated code. `post` will be injected **before** the generated
+ * return statement (if not suppressed).
+ *
  * @param dim
  * @param tpl
  * @param syms
  * @param ret
+ * @param pre
+ * @param post
  */
 const assemble = (
     dim: number,
     tpl: Template,
     syms: string,
-    ret = "a") => {
+    ret = "a",
+    pre?: string,
+    post?: string) => {
 
     const src = transduce(
         comp(take(dim), mapIndexed((i, x: string[]) => tpl(x, i))),
         push(),
+        pre ? [pre] : [],
         tuples.apply(null, [...map(indices, syms.split(","))])
     );
+    post && src.push(post);
     ret !== null && src.push(`return ${ret};`);
     return src;
 };

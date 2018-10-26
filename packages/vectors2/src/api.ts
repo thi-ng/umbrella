@@ -4,6 +4,7 @@ import {
     IEqualsDelta,
     ILength
 } from "@thi.ng/api";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { atan2Abs } from "@thi.ng/math/angle";
 import { EPS } from "@thi.ng/math/api";
 import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
@@ -15,20 +16,22 @@ import { vop } from "./vop";
 // Ro = readonly
 
 export type VecOpV<T> = (a: Vec, ...xs: any[]) => T;
-export type VecOpVV<T> = (a: Vec, b: Readonly<Vec>) => T;
+export type VecOpVO<T, O> = (a: Vec, o?: O, ...xs: any[]) => T;
+export type VecOpVV<T> = (a: Vec, b: ReadonlyVec) => T;
 export type VecOpVN<T> = (a: Vec, n: number) => T;
 export type VecOpVNN<T> = (a: Vec, n: number, m: number) => T;
-export type VecOpVVN<T> = (a: Vec, b: Readonly<Vec>, n: number) => T;
-export type VecOpVVV<T> = (a: Vec, b: Readonly<Vec>, c: Readonly<Vec>) => T;
+export type VecOpVVN<T> = (a: Vec, b: ReadonlyVec, n: number) => T;
+export type VecOpVVV<T> = (a: Vec, b: ReadonlyVec, c: ReadonlyVec) => T;
 
-export type VecOpNewVN<T> = (a: Vec, n: number, o?: T) => T;
-export type VecOpNewVV<T> = (a: Vec, b: Readonly<Vec>, o?: T) => T;
-export type VecOpNewVVN<T> = (a: Vec, b: Readonly<Vec>, n: number, o?: T) => T;
-export type VecOpNewVVV<T> = (a: Vec, b: Readonly<Vec>, c: Readonly<Vec>, o?: T) => T;
+export type VecOpNewVN<T> = (a: ReadonlyVec, n: number, o?: T) => T;
+export type VecOpNewVV<T> = (a: ReadonlyVec, b: ReadonlyVec, o?: T) => T;
+export type VecOpNewVVN<T> = (a: ReadonlyVec, b: ReadonlyVec, n: number, o?: T) => T;
+export type VecOpNewVVV<T> = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, o?: T) => T;
 
-export type VecOpRoV<T> = (a: Readonly<Vec>, ...xs: any[]) => T;
-export type VecOpRoVV<T> = (a: Readonly<Vec>, b: Readonly<Vec>, ...xs: any[]) => T;
-export type VecOpRoVVV<T> = (a: Readonly<Vec>, b: Readonly<Vec>, c: Readonly<Vec>, ...xs: any[]) => T;
+export type VecOpRoV<T> = (a: ReadonlyVec, ...xs: any[]) => T;
+export type VecOpRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec, ...xs: any[]) => T;
+export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, o?: O, ...xs: any[]) => T;
+export type VecOpRoVVV<T> = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, ...xs: any[]) => T;
 
 export interface MultiVecOp<VOP> {
     add(dim: number, op: VOP);
@@ -36,6 +39,7 @@ export interface MultiVecOp<VOP> {
 }
 
 export interface MultiVecOpV<T> extends VecOpV<T>, MultiVecOp<VecOpV<T>> { }
+export interface MultiVecOpVO<T, O> extends VecOpVO<T, O>, MultiVecOp<VecOpVO<T, O>> { }
 export interface MultiVecOpVV<T> extends VecOpVV<T>, MultiVecOp<VecOpVV<T>> { }
 export interface MultiVecOpVN<T> extends VecOpVN<T>, MultiVecOp<VecOpVN<T>> { }
 export interface MultiVecOpVNN<T> extends VecOpVNN<T>, MultiVecOp<VecOpVNN<T>> { }
@@ -49,6 +53,7 @@ export interface MultiVecOpNewVVV<T> extends VecOpNewVVV<T>, MultiVecOp<VecOpNew
 
 export interface MultiVecOpRoV<T> extends VecOpRoV<T>, MultiVecOp<VecOpRoV<T>> { }
 export interface MultiVecOpRoVV<T> extends VecOpRoVV<T>, MultiVecOp<VecOpRoVV<T>> { }
+export interface MultiVecOpRoVVO<T, O> extends VecOpRoVVO<T, O>, MultiVecOp<VecOpRoVVO<T, O>> { }
 export interface MultiVecOpRoVVV<T> extends VecOpRoVVV<T>, MultiVecOp<VecOpRoVVV<T>> { }
 
 export interface Vec extends
@@ -56,6 +61,12 @@ export interface Vec extends
     ILength {
 
     [id: number]: number;
+}
+
+export interface ReadonlyVec extends
+    Iterable<number>,
+    ILength {
+    readonly [id: number]: number;
 }
 
 export interface IVector<T> extends
@@ -75,13 +86,28 @@ export type Vec4Coord = 0 | 1 | 2 | 3;
 export const set: MultiVecOpVV<Vec> = vop();
 export const setN: MultiVecOpVN<Vec> = vop();
 export const setS: MultiVecOpV<Vec> = vop();
-export const copy: MultiVecOpV<Vec> = vop();
-copy.default((v) => [...v]);
+
+export const copy: MultiVecOpRoV<Vec> = vop();
+copy.default((v) =>
+    implementsFunction(v, "copy") ?
+        (<any>v).copy() :
+        [...v]
+);
+
+export const empty: MultiVecOpRoV<Vec> = vop();
+empty.default((v) =>
+    implementsFunction(v, "empty") ?
+        (<any>v).empty() :
+        zero(copy(v))
+);
 
 export const zero = (a: Vec) => setN(a, 0);
 export const one = (a: Vec) => setN(a, 1);
 
-export const eqDelta: MultiVecOpRoVV<boolean> = vop();
+export const zeroes = (n: number) => new Array(n).fill(0);
+export const ones = (n: number) => new Array(n).fill(1);
+
+export const eqDelta: MultiVecOpRoVVO<boolean, number> = vop();
 
 export const rand: MultiVecOpVNN<Vec> = vop();
 export const rand01: MultiVecOpV<Vec> = vop();
@@ -110,7 +136,7 @@ export const magSq: MultiVecOpRoV<number> = vop();
 export const mag: MultiVecOpRoV<number> = vop();
 mag.default((a) => Math.sqrt(magSq(a, a)));
 
-export const normalize: MultiVecOpV<Vec> = vop();
+export const normalize: MultiVecOpVO<Vec, number> = vop();
 normalize.default((v, n: number) => {
     let m = mag(v);
     return m >= EPS ? mulN(v, n / m) : v;
@@ -122,8 +148,8 @@ limit.default((v, n: number) => {
     return m > n ? mulN(v, n / m) : v;
 });
 
-export const distSq: MultiVecOpVV<number> = vop();
-export const dist: MultiVecOpVV<number> = vop();
+export const distSq: MultiVecOpRoVV<number> = vop();
+export const dist: MultiVecOpRoVV<number> = vop();
 dist.default((a, b) => Math.sqrt(distSq(a, b)));
 
 export const distManhattan: MultiVecOpRoVV<number> = vop();
@@ -175,7 +201,7 @@ export const rotateY = _rotate(2, 0);
 export const rotateZ = _rotate(0, 1);
 
 export const polar: MultiVecOpV<Vec> = vop();
-export const cartesian: MultiVecOpV<Vec> = vop();
+export const cartesian: MultiVecOpVO<Vec, Vec> = vop();
 
 export const reflect: VecOpVV<Vec> =
     (a, b) => maddN(a, b, -2 * dot(a, b));
@@ -189,15 +215,15 @@ export const refract: VecOpVVN<Vec> =
             maddN(mulN(a, eta), n, -(eta * d + Math.sqrt(k)));
     };
 
-export const headingXY = (a: Readonly<Vec>) => atan2Abs(a[1], a[0]);
-export const headingXZ = (a: Readonly<Vec>) => atan2Abs(a[2], a[0]);
-export const headingYZ = (a: Readonly<Vec>) => atan2Abs(a[2], a[1]);
+export const headingXY = (a: ReadonlyVec) => atan2Abs(a[1], a[0]);
+export const headingXZ = (a: ReadonlyVec) => atan2Abs(a[2], a[0]);
+export const headingYZ = (a: ReadonlyVec) => atan2Abs(a[2], a[1]);
 
 export const angleRatio =
-    (a: Readonly<Vec>, b: Readonly<Vec>) =>
+    (a: ReadonlyVec, b: ReadonlyVec) =>
         dot(a, b) / (mag(a) * mag(b));
 
-export const angleBetween: MultiVecOpRoVV<number> = vop();
+export const angleBetween: MultiVecOpRoVVO<number, boolean> = vop();
 
 const mi = -Infinity;
 const mx = Infinity;

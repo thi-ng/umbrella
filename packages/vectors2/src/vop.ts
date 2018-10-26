@@ -8,7 +8,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 export const vop = () => {
     const impls = new Array(5);
     let fallback;
-    const fn = (...args) => {
+    const fn = (...args: any[]) => {
         const g = impls[args[0].length] || fallback;
         return g ? g(...args) : unsupported(`no impl for vec size ${args[0].length}`);
     };
