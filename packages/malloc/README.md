@@ -33,7 +33,10 @@ This project is part of the
 
 TypeScript port of
 [thi.ng/tinyalloc](https://github.com/thi-ng/tinyalloc), for raw or
-typed array memory pooling and/or hybrid JS/WASM use cases etc.
+typed array memory pooling and/or hybrid JS/WASM use cases etc. Supports
+free block compaction and configurable splitting. Unlike the original,
+this implementation does not constrain the overall number of blocks in
+use and the only imposed limit is that of the underlying array buffer.
 
 Each `MemPool` instance operates on a single large `ArrayBuffer` used as
 backing memory chunk, e.g. the same buffer used by a WASM module.
@@ -41,11 +44,6 @@ backing memory chunk, e.g. the same buffer used by a WASM module.
 Even for non-WASM use cases, using this package can drastically speed up
 allocation of typed arrays and reduce GC pressure. See
 [benchmarks](#benchmarks) below.
-
-For now see tinyalloc docs for allocation strategy, block splitting /
-merging and further details. Unlike the original, this implementation
-does not constrain the overall number of blocks in use and the only
-imposed limit in that of the underlying array buffer.
 
 ## Installation
 
@@ -66,7 +64,7 @@ import { MemPool, Type } from "@thi.ng/malloc";
 
 // create memory w/ optional start allocation address
 // (start address can't be zero, reserved for malloc/calloc failure)
-const pool = new MemPool(new ArrayBuffer(0x1000), 8);
+const pool = new MemPool(new ArrayBuffer(0x1000), { start: 8 });
 
 // all memory blocks will be aligned to 8-byte boundaries
 // size is given in bytes
@@ -79,6 +77,7 @@ ptr = pool.malloc(16);
 vec = pool.mallocAs(Type.F64, 4);
 // Float64Array [ 0, 0, 0, 0 ]
 
+// report block stats (sizes & addresses in bytes)
 pool.stats();
 // { free: { count: 0, size: 0 },
 //   used: { count: 2, size: 48 },
@@ -111,9 +110,34 @@ pool.stats();
 
 ### MemPool
 
-The `MemPool` constructor takes an `ArrayBuffer` and optional start and
-end addresses (byte offsets) delineating the allocatable / managed
-region. The default `start` address is 0x00000008 and end the length of the buffer. This start address is also the minimum supported address for memory blocks. Address 0x0 is reserved as return value for allocation errors.
+The `MemPool` constructor takes an `ArrayBuffer` (or size only) and an
+optional `MemPoolOpts` object for specifying start and end addresses
+(byte offsets) delineating the allocatable / managed region and other
+options.
+
+```ts
+// example with default options shown
+new MemPool(0x1000, {
+    start:    0x8,
+    end:      0x1000,
+    compact:  true,
+    split:    true,
+    minSplit: 16
+});
+```
+
+The default `start` address is 8 and `end` the length of the buffer. This
+start address is also the minimum supported address for memory blocks.
+Address 0x0 is reserved as return value for allocation errors.
+
+The `compact` option enables recursive compaction / joining of
+neighboring free blocks. Enabled by default to minimize fragmentation.
+
+The `split` option is used to enable (default) splitting of a larger
+suitable free block when allocating a smaller size. `minSplit` specifies
+the minimum excess between requested size and actual block size, i.e. by
+default a block will be split during allocation if there're at least 16
+bytes left over. The given value should always be a multiple of 8.
 
 ### `malloc(size: number)`
 
@@ -133,7 +157,9 @@ Types are referred to via the `Type` enum, e.g. `Type.F64`:
 
 ### `calloc(size: number)`
 
-Like `malloc()` but zeroes allocated block before returning.
+Like `malloc()` but zeroes allocated block before returning. Unless the
+allocated block is immediately filled with user data, this method is
+preferred over `malloc()`.
 
 ### `callocAs(type: Type, num: number)`
 

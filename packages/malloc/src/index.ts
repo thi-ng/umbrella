@@ -1,6 +1,7 @@
 import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 export const enum Type {
     U8,
@@ -46,26 +47,44 @@ export interface MemBlock {
     next: MemBlock;
 }
 
+export interface MemPoolOpts {
+    start: number;
+    end: number;
+    compact: boolean;
+    split: boolean;
+    minSplit: number;
+}
 export class MemPool implements
     IRelease {
 
-    static MIN_SPLIT = 16;
-
     buf: ArrayBuffer;
-    top: number;
-    start: number;
-    end: number;
-    _free: MemBlock;
-    _used: MemBlock;
+    protected top: number;
+    protected start: number;
+    protected end: number;
+    protected doCompact: boolean;
+    protected doSplit: boolean;
+    protected minSplit: number;
+    protected _free: MemBlock;
+    protected _used: MemBlock;
 
     protected u8: Uint8Array;
 
-    constructor(buf: ArrayBuffer, start = 8, end = buf.byteLength) {
-        this.buf = buf;
-        this.u8 = new Uint8Array(buf);
-        this.start = Math.max(start, 8);
+    constructor(buf: number | ArrayBuffer, opts: Partial<MemPoolOpts> = {}) {
+        this.buf = isNumber(buf) ? new ArrayBuffer(buf) : buf;
+        this.u8 = new Uint8Array(this.buf);
+        this.start = opts.start != null ?
+            align(Math.max(opts.start, 8), 8) :
+            8;
+        this.end = opts.end != null ?
+            Math.min(opts.end, this.buf.byteLength) :
+            this.buf.byteLength;
+        if (this.start >= this.end) {
+            illegalArgs(`invalid address range (0x${this.start.toString(16)} - 0x${this.end.toString(16)})`);
+        }
         this.top = this.start;
-        this.end = end;
+        this.doCompact = opts.compact !== false;
+        this.doSplit = opts.split !== false;
+        this.minSplit = opts.minSplit || 16;
         this._free = null;
         this._used = null;
     }
@@ -115,11 +134,15 @@ export class MemPool implements
         }
         size = align(size, 8);
         let top = this.top;
+        const end = this.end;
         let block = this._free;
         let prev = null;
         while (block) {
             const isTop = block.addr + block.size >= top;
             if (isTop || block.size >= size) {
+                if (isTop && this.doCompact && block.addr + size > end) {
+                    return 0;
+                }
                 if (prev) {
                     prev.next = block.next;
                 } else {
@@ -130,16 +153,16 @@ export class MemPool implements
                 if (isTop) {
                     block.size = size;
                     this.top = block.addr + size;
-                } else {
+                } else if (this.doSplit) {
                     const excess = block.size - size;
-                    if (excess >= MemPool.MIN_SPLIT) {
+                    if (excess >= this.minSplit) {
                         block.size = size;
                         this.insert({
                             addr: block.addr + size,
                             size: excess,
                             next: null
                         });
-                        this.compact();
+                        this.doCompact && this.compact();
                     }
                 }
                 return block.addr;
@@ -147,9 +170,9 @@ export class MemPool implements
             prev = block;
             block = block.next;
         }
-        const addr = align(this.top, 8);
+        const addr = align(top, 8);
         top = addr + size;
-        if (top <= this.end) {
+        if (top <= end) {
             block = {
                 addr,
                 size,
@@ -182,7 +205,7 @@ export class MemPool implements
                     this._used = block.next;
                 }
                 this.insert(block);
-                this.compact();
+                this.doCompact && this.compact();
                 return true;
             }
             prev = block;
@@ -243,6 +266,11 @@ export class MemPool implements
 
     protected insert(block: MemBlock) {
         let ptr = this._free;
+        if (!this.doCompact) {
+            block.next = ptr;
+            this._free = block;
+            return;
+        }
         let prev: MemBlock = null;
         while (ptr) {
             if (block.addr <= ptr.addr) break;

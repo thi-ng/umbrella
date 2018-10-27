@@ -30,7 +30,8 @@
     "dependencies": {
         "@thi.ng/api": "^4.2.3",
         "@thi.ng/binary": "^0.1.1",
-        "@thi.ng/checks": "^1.5.13"
+        "@thi.ng/checks": "^1.5.13",
+        "@thi.ng/errors": "^0.1.11"
     },
     "keywords": [
         "ES6",
