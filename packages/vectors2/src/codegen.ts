@@ -68,9 +68,9 @@ import {
     maddNewN,
 } from "./api";
 
-type Template = (syms: string[], i?: number) => string;
+export type Template = (syms: string[], i?: number) => string;
 
-const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
+export const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
 
 /**
  * Takes a vector size `dim`, a code template function and an array of
@@ -92,7 +92,7 @@ const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
  * @param pre
  * @param post
  */
-const assemble = (
+export const assemble = (
     dim: number,
     tpl: Template,
     syms: string,
@@ -111,13 +111,30 @@ const assemble = (
     return src;
 };
 
-const compile = (dim: number, tpl: Template, args: string, syms = args, ret = "a") =>
-    <any>new Function(args, assemble(dim, tpl, syms, ret).join(""));
+export const compile = (
+    dim: number,
+    tpl: Template,
+    args: string,
+    syms = args,
+    ret = "a",
+    pre?: string,
+    post?: string) =>
 
-const compileHOF = (dim: number, fn: FnAny<any>, tpl: Template, args: string, syms = args, ret = "a") => {
+    <any>new Function(args, assemble(dim, tpl, syms, ret, pre, post).join(""));
+
+export const compileHOF = (
+    dim: number,
+    fn: FnAny<any>,
+    tpl: Template,
+    args: string,
+    syms = args,
+    ret = "a",
+    pre?: string,
+    post?: string) => {
+
     return new Function(
         "fn",
-        `return (${args})=>{${assemble(dim, tpl, syms, ret).join("\n")}}`
+        `return (${args})=>{${assemble(dim, tpl, syms, ret, pre, post).join("\n")}}`
     )(fn);
 };
 

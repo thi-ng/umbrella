@@ -27,6 +27,8 @@ export type VecOpNewVN<T> = (a: ReadonlyVec, n: number, o?: T) => T;
 export type VecOpNewVV<T> = (a: ReadonlyVec, b: ReadonlyVec, o?: T) => T;
 export type VecOpNewVVN<T> = (a: ReadonlyVec, b: ReadonlyVec, n: number, o?: T) => T;
 export type VecOpNewVVV<T> = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, o?: T) => T;
+export type VecOpNewVVVN<T> = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, n: number, o?: T) => T;
+export type VecOpNewVVVVN<T> = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, n: number, o?: T) => T;
 
 export type VecOpRoV<T> = (a: ReadonlyVec, ...xs: any[]) => T;
 export type VecOpRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec, ...xs: any[]) => T;
@@ -50,6 +52,8 @@ export interface MultiVecOpNewVV<T> extends VecOpNewVV<T>, MultiVecOp<VecOpNewVV
 export interface MultiVecOpNewVN<T> extends VecOpNewVN<T>, MultiVecOp<VecOpNewVN<T>> { }
 export interface MultiVecOpNewVVN<T> extends VecOpNewVVN<T>, MultiVecOp<VecOpNewVVN<T>> { }
 export interface MultiVecOpNewVVV<T> extends VecOpNewVVV<T>, MultiVecOp<VecOpNewVVV<T>> { }
+export interface MultiVecOpNewVVVN<T> extends VecOpNewVVVN<T>, MultiVecOp<VecOpNewVVVN<T>> { }
+export interface MultiVecOpNewVVVVN<T> extends VecOpNewVVVVN<T>, MultiVecOp<VecOpNewVVVVN<T>> { }
 
 export interface MultiVecOpRoV<T> extends VecOpRoV<T>, MultiVecOp<VecOpRoV<T>> { }
 export interface MultiVecOpRoVV<T> extends VecOpRoVV<T>, MultiVecOp<VecOpRoVV<T>> { }
@@ -75,6 +79,7 @@ export interface IVector<T> extends
     IEmpty<T>,
     IEqualsDelta<T> {
 
+    buf: Vec;
     i: number;
     s: number;
 }
