@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@0.1.1...@thi.ng/malloc@0.2.0) (2018-10-27)
+
+
+### Features
+
+* **malloc:** add MemPoolOpts, fix top block alloc, update tests, readme ([c5b0f2f](https://github.com/thi-ng/umbrella/commit/c5b0f2f))
+
+
+
+
+
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@0.1.0...@thi.ng/malloc@0.1.1) (2018-10-24)
 
 **Note:** Version bump only for package @thi.ng/malloc
