@@ -1,8 +1,16 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { implementations } from "@thi.ng/defmulti";
 import { PI, TAU } from "@thi.ng/math/api";
-import { subNewN, Vec, cartesian } from "@thi.ng/vectors2/api";
-import { vec2n, vec2 } from "@thi.ng/vectors2/vec2";
+import {
+    cartesian,
+    dist,
+    mixNewN,
+    ReadonlyVec,
+    subNewN,
+    Vec,
+    mulN
+} from "@thi.ng/vectors2/api";
+import { circumCenter } from "./internal/circumcenter";
 import {
     arcLength,
     area,
@@ -18,9 +26,21 @@ import {
     DEFAULT_SAMPLES,
 } from "./api";
 
-export function circle2(pos: Vec, r = 1, attribs?: Attribs): Circle2 {
+export function circle(pos: Vec, r = 1, attribs?: Attribs): Circle2 {
     return new Circle2(pos, r, attribs);
 }
+
+export const circleFrom2Points =
+    (a: ReadonlyVec, b: ReadonlyVec, attribs?: Attribs) =>
+        new Circle2(mixNewN(a, b, 0.5), dist(a, b) / 2, attribs);
+
+export const circleFrom3Points =
+    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, attribs?: Attribs) => {
+        const o = circumCenter(a, b, c);
+        if (o) {
+            return new Circle2(o, dist(a, o), attribs);
+        }
+    };
 
 implementations(
     Type.CIRCLE2,
@@ -32,16 +52,18 @@ implementations(
     (x: Circle2) => TAU * x.r,
 
     asPolygon,
-    (x: Circle2, opts) => new Polygon2(vertices(x, opts), { ...x.attribs }),
+    (x: Circle2, opts) =>
+        new Polygon2(vertices(x, opts), { ...x.attribs }),
 
     bounds,
-    (x: Circle2) => new Rect2(subNewN(x.pos, x.r), vec2n(x.r * 2)),
+    (x: Circle2) =>
+        new Rect2(subNewN(x.pos, x.r), mulN([2, 2], x.r)),
 
     centroid,
     (x: Circle2) => x.pos,
 
     vertices,
-    (x: Circle2, opts) => {
+    (x: Circle2, opts = DEFAULT_SAMPLES) => {
         const buf: Vec[] = [];
         const pos = x.pos;
         const r = x.r;
@@ -58,7 +80,7 @@ implementations(
         const delta = TAU / num;
         last && num++;
         for (let i = 0; i < num; i++) {
-            buf[i] = cartesian(vec2(r, i * delta), pos);
+            buf[i] = cartesian([r, i * delta], pos);
         }
         return buf;
     }

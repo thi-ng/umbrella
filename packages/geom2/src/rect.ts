@@ -1,6 +1,10 @@
 import { implementations } from "@thi.ng/defmulti";
-import { addNew, maddNewN, Vec } from "@thi.ng/vectors2/api";
-import { Vec2, vec2 } from "@thi.ng/vectors2/vec2";
+import {
+    addNew,
+    copy,
+    maddNewN,
+    Vec
+} from "@thi.ng/vectors2/api";
 import {
     arcLength,
     area,
@@ -10,15 +14,21 @@ import {
     centroid,
     Polygon2,
     Rect2,
+    tessellate,
+    Tessellator,
     Type,
     union,
     vertices
 } from "./api";
 import { unionBounds } from "./internal/bounds";
+import { tessellatePoints } from "./tessellate";
 
-export function rect(pos: Vec, size: Vec, attribs?: Attribs): Rect2 {
+export function rect(pos: Vec, size: Vec, attribs?: Attribs) {
     return new Rect2(pos, size, attribs);
 }
+
+export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
+    Rect2.fromMinMax(min, max, attribs);
 
 implementations(
     Type.RECT2,
@@ -36,7 +46,11 @@ implementations(
     (x: Rect2) => x,
 
     centroid,
-    (x: Rect2, o = vec2()) => maddNewN(x.pos, x.size, 0.5, o),
+    (x: Rect2, o?: Vec) => maddNewN(x.pos, x.size, 0.5, o),
+
+    tessellate,
+    (x: Rect2, tessel: Tessellator | Iterable<Tessellator>, iter?: number) =>
+        tessellatePoints(vertices(x), <any>tessel, iter),
 
     union,
     (r1: Rect2, r2: Rect2) =>
@@ -45,7 +59,7 @@ implementations(
     vertices,
     (x: Rect2) => {
         const p = x.pos;
-        const q = <Vec2>addNew(p, x.size, vec2());
-        return [p.copy(), vec2(q.x, p.y), q, vec2(p.x, q.y)];
+        const q = addNew(p, x.size);
+        return [copy(p), [q[0], p[1]], q, [p[0], q[1]]];
     }
 );

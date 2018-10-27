@@ -10,29 +10,30 @@ import { comparator2 } from "@thi.ng/vectors2/vec2";
  *
  * @param pts
  */
-export const convexHull2 = (pts: ReadonlyArray<Vec>) => {
-    const num = pts.length;
-    const res: Vec[] = [];
-    let h = 0, i;
-    pts = pts.slice().sort(comparator2(0, 1));
+export const grahamScan2 =
+    (pts: ReadonlyArray<Vec>) => {
+        const num = pts.length;
+        const res: Vec[] = [];
+        let h = 0, i;
+        pts = pts.slice().sort(comparator2(0, 1));
 
-    const scan = (p: Vec, thresh: number) => {
-        while (h >= thresh && corner(res[h - 2], res[h - 1], p) >= 0) {
-            res.pop();
-            h--;
+        const scan = (p: Vec, thresh: number) => {
+            while (h >= thresh && corner(res[h - 2], res[h - 1], p) >= 0) {
+                res.pop();
+                h--;
+            }
+            res[h++] = p;
+        };
+
+        for (i = 0; i < num; i++) {
+            scan(pts[i], 2);
         }
-        res[h++] = p;
+        res.pop();
+        h--;
+        const h2 = h + 2;
+        for (i = num - 1; i >= 0; i--) {
+            scan(pts[i], h2);
+        }
+        res.pop();
+        return res;
     };
-
-    for (i = 0; i < num; i++) {
-        scan(pts[i], 2);
-    }
-    res.pop();
-    h--;
-    const h2 = h + 2;
-    for (i = num - 1; i >= 0; i--) {
-        scan(pts[i], h2);
-    }
-    res.pop();
-    return res;
-};

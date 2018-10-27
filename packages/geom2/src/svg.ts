@@ -8,12 +8,12 @@ export const asSVG = (...args: any[]) =>
     serialize(convertTree(args));
 
 export const svgDoc = (attribs, ...args: Shape[]) => {
-    const bounds = <Rect2>collBounds(args);
+    const b = <Rect2>collBounds(args);
     attribs = {
-        width: bounds.size.x,
-        height: bounds.size.y,
-        viewBox: `${bounds.pos.x} ${bounds.pos.y} ${bounds.size.x} ${bounds.size.y}`,
+        width: b.size[0],
+        height: b.size[1],
+        viewBox: `${b.pos[0]} ${b.pos[1]} ${b.size[0]} ${b.size[1]}`,
         ...attribs
     };
-    return asSVG(svg(attribs, ...args));
+    return svg(attribs, ...args);
 };

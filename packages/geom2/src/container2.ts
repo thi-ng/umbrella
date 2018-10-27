@@ -1,29 +1,32 @@
 import { Vec } from "@thi.ng/vectors2/api";
-import { Vec2 } from "@thi.ng/vectors2/vec2";
 import {
     Attribs,
     bounds,
     PointContainer,
     Rect2,
     Type,
-    vertices
+    vertices,
+    centroid
 } from "./api";
 import { bounds as _bounds } from "./internal/bounds";
+import { centroid as _centroid } from "./internal/centroid";
 import { implementations } from "@thi.ng/defmulti";
+import { Vec2 } from "@thi.ng/vectors2/vec2";
 
 export function points(points: Vec[], attribs?: Attribs) {
-    return new PointContainer<Vec2>(Type.POINTS2, points, attribs);
+    return new PointContainer(Type.POINTS2, points, attribs);
 };
 
 implementations(
     Type.POINTS2,
 
     bounds,
-    (x: PointContainer<Vec2>) => {
-        const b = _bounds(x.points, Vec2.MAX.copy(), Vec2.MIN.copy());
-        return Rect2.fromMinMax(b[0], b[1]);
-    },
+    (x: PointContainer) =>
+        Rect2.fromMinMax(..._bounds(x.points, [...Vec2.MAX], [...Vec2.MIN])),
+
+    centroid,
+    (x: PointContainer) => _centroid(x.points),
 
     vertices,
-    (x: PointContainer<Vec2>) => x.points
+    (x: PointContainer) => x.points
 );
