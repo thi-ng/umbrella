@@ -1,6 +1,11 @@
 import { TypedArray } from "@thi.ng/api";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
-import { MemPool, MemPoolOpts, Type } from "@thi.ng/malloc";
+import {
+    MemPool,
+    MemPoolOpts,
+    MemPoolStats,
+    Type
+} from "@thi.ng/malloc";
 import { IVecPool, IVector, Vec } from "./api";
 import { Vec2 } from "./vec2";
 import { Vec3 } from "./vec3";
@@ -20,7 +25,7 @@ export class VecPool implements
             pool;
     }
 
-    stats() {
+    stats(): MemPoolStats {
         return this.pool.stats();
     }
 

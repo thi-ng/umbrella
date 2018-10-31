@@ -116,6 +116,20 @@ export const assemble = (
     return src;
 };
 
+export const assembleG = (
+    tpl: Template,
+    syms: string,
+    ret = "a",
+    pre?: string,
+    post?: string) => [
+        pre,
+        "for(let i=a.length;--i>=0;) {",
+        tpl(syms.split(",").map((x) => `${x}[i]`)),
+        "}",
+        post,
+        ret !== null ? `return ${ret};` : ""
+    ];
+
 export const compile = (
     dim: number,
     tpl: Template,
@@ -144,26 +158,75 @@ export const compileHOF = (
     )(...fns);
 };
 
-export const genOpFnV = (dim: number, op: string): VecOpV<Vec> =>
-    compile(dim, ([a]) => `${a}=${op}(${a});`, "a");
+export const compileG = (
+    tpl: Template,
+    args: string,
+    syms = args,
+    ret = "a",
+    pre?: string,
+    post?: string) =>
+
+    <any>new Function(args, assembleG(tpl, syms, ret, pre, post).join(""));
+
+export const compileGHOF = (
+    fns: FnAny<any>[],
+    tpl: Template,
+    hofArgs: string,
+    args: string,
+    syms = args,
+    ret = "a",
+    pre?: string,
+    post?: string) => {
+
+    return new Function(
+        hofArgs,
+        `return (${args})=>{${assembleG(tpl, syms, ret, pre, post).join("\n")}}`
+    )(...fns);
+};
+
+const tplFnV = (fn) => ([a]) => `${a}=${fn}(${a});`;
+const tplHofV = ([a]) => `${a}=fn(${a});`;
+const tplVV = (op) => ([a, b]) => `${a}${op}=${b};`
+const tplFnVV = (fn) => ([a, b]) => `${a}=${fn}(${a},${b});`
+const tplVN = (op) => ([a]) => `${a}${op}=n;`
+const tplNewVV = (op) => ([a, b, o]) => `${o}=${a}${op}${b};`
+const tplNewVN = (op) => ([a, o]) => `${o}=${a}${op}n;`;
+const tplRand01 = ([a]) => `${a}=Math.random();`
+const tplRand11 = ([a]) => `${a}=Math.random()*2-1;`
+const tplRand = ([a]) => `${a}=n+(m-n)*Math.random();`
+const tplMadd = ([a, b, c]) => `${a}+=${b}*${c};`
+const tplMaddN = ([a, b]) => `${a}+=${b}*n;`;
+const tplMaddNew = ([a, b, c, o]) => `${o}=${a}+${b}*${c};`
+const tplMaddNewN = ([a, b, o]) => `${o}=${a}+${b}*n;`;
+const tplPowN = ([a]) => `${a}=Math.pow(${a},n);`;
+const tplClamp = ([a, b, c]) => `${a}=fn(${a},${b},${c});`;
+const tplStep = ([a, e]) => `${a}=fn(${e},${a});`;
+const tplSmoothStep = ([a, e1, e2]) => `${a}=fn(${e1},${e2},${a});`;
+const tplMix = ([a, b, c]) => `${a}+=(${b}-${a})*${c};`;
+const tplMixN = ([a, b]) => `${a}+=(${b}-${a})*n;`;
+const tplMixNew = ([a, b, c, o]) => `${o}=${a}+(${b}-${a})*${c};`;
+const tplMixNewN = ([a, b, o]) => `${o}=${a}+(${b}-${a})*n;`;
+
+export const genOpFnV = (dim: number, fn: string): VecOpV<Vec> =>
+    compile(dim, tplFnV(fn), "a");
 
 export const genOpHofV = (dim: number, fn) =>
-    compileHOF(dim, [fn], ([a]) => `${a}=fn(${a});`, "fn", "a");
+    compileHOF(dim, [fn], tplHofV, "fn", "a");
 
 export const genOpVV = (dim: number, op: string): VecOpVV<Vec> =>
-    compile(dim, ([a, b]) => `${a}${op}=${b};`, "a,b");
+    compile(dim, tplVV(op), "a,b");
 
 export const genOpFnVV = (dim: number, fn: string): VecOpVV<Vec> =>
-    compile(dim, ([a, b]) => `${a}=${fn}(${a},${b});`, "a,b");
+    compile(dim, tplFnVV(fn), "a,b");
 
 export const genOpVN = (dim: number, op: string): VecOpVN<Vec> =>
-    compile(dim, ([a]) => `${a}${op}=n;`, "a,n", "a");
+    compile(dim, tplVN(op), "a,n", "a");
 
 export const genOpNewVV = (dim: number, op: string): VecOpNewVV<Vec> =>
-    compile(dim, ([a, b, o]) => `${o}=${a}${op}${b};`, "a,b,o=[]", "a,b,o", "o");
+    compile(dim, tplNewVV(op), "a,b,o=[]", "a,b,o", "o");
 
 export const genOpNewVN = (dim: number, op: string): VecOpNewVN<Vec> =>
-    compile(dim, ([a, o]) => `${o}=${a}${op}n;`, "a,n,o=[]", "a,o", "o");
+    compile(dim, tplNewVN(op), "a,n,o=[]", "a,o", "o");
 
 export const genCommon = (dim: number): CommonOps => [
     set.add(dim, genOpVV(dim, "")),
@@ -171,9 +234,9 @@ export const genCommon = (dim: number): CommonOps => [
     setS.add(dim, compile(dim, ([a], i) => `${a}=xs[${i}];`, "a,...xs", "a")),
 
     // TODO add IRandom support
-    rand01.add(dim, compile(dim, ([a]) => `${a}=Math.random();`, "a")),
-    rand11.add(dim, compile(dim, ([a]) => `${a}=Math.random()*2-1;`, "a")),
-    rand.add(dim, compile(dim, ([a]) => `${a}=n+(m-n)*Math.random();`, "a,n,m", "a")),
+    rand01.add(dim, compile(dim, tplRand01, "a")),
+    rand11.add(dim, compile(dim, tplRand11, "a")),
+    rand.add(dim, compile(dim, tplRand, "a,n,m", "a")),
 
     add.add(dim, genOpVV(dim, "+")),
     sub.add(dim, genOpVV(dim, "-")),
@@ -195,10 +258,10 @@ export const genCommon = (dim: number): CommonOps => [
     mulNewN.add(dim, genOpNewVN(dim, "*")),
     divNewN.add(dim, genOpNewVN(dim, "/")),
 
-    madd.add(dim, compile(dim, ([a, b, c]) => `${a}+=${b}*${c};`, "a,b,c")),
-    maddN.add(dim, compile(dim, ([a, b]) => `${a}+=${b}*n;`, "a,b,n", "a,b")),
-    maddNew.add(dim, compile(dim, ([a, b, c, o]) => `${o}=${a}+${b}*${c};`, "a,b,c,o=[]", "a,b,c,o", "o")),
-    maddNewN.add(dim, compile(dim, ([a, b, o]) => `${o}=${a}+${b}*n;`, "a,b,n,o=[]", "a,b,o", "o")),
+    madd.add(dim, compile(dim, tplMadd, "a,b,c")),
+    maddN.add(dim, compile(dim, tplMaddN, "a,b,n", "a,b")),
+    maddNew.add(dim, compile(dim, tplMaddNew, "a,b,c,o=[]", "a,b,c,o", "o")),
+    maddNewN.add(dim, compile(dim, tplMaddNewN, "a,b,n,o=[]", "a,b,o", "o")),
 
     abs.add(dim, genOpFnV(dim, "Math.abs")),
     sign.add(dim, genOpHofV(dim, _sign)),
@@ -216,17 +279,104 @@ export const genCommon = (dim: number): CommonOps => [
     log.add(dim, genOpFnVV(dim, "Math.log")),
     exp.add(dim, genOpFnVV(dim, "Math.exp")),
     pow.add(dim, genOpFnVV(dim, "Math.pow")),
-    powN.add(dim, compile(dim, ([a]) => `${a}=Math.pow(${a},n);`, "a,n", "a")),
+    powN.add(dim, compile(dim, tplPowN, "a,n", "a")),
 
     min.add(dim, genOpFnVV(dim, "Math.min")),
     max.add(dim, genOpFnVV(dim, "Math.max")),
-    clamp.add(dim, compileHOF(dim, [_clamp], ([a, b, c]) => `${a}=fn(${a},${b},${c});`, "fn", "a,b,c")),
+    clamp.add(dim, compileHOF(dim, [_clamp], tplClamp, "fn", "a,b,c")),
 
-    step.add(dim, compileHOF(dim, [_step], ([a, e]) => `${a}=fn(${e},${a});`, "fn", "a,e")),
-    smoothStep.add(dim, compileHOF(dim, [_smoothStep], ([a, e1, e2]) => `${a}=fn(${e1},${e2},${a});`, "fn", "a,e1,e2")),
+    step.add(dim, compileHOF(dim, [_step], tplStep, "fn", "a,e")),
+    smoothStep.add(dim, compileHOF(dim, [_smoothStep], tplSmoothStep, "fn", "a,e1,e2")),
 
-    mix.add(dim, compile(dim, ([a, b, c]) => `${a}+=(${b}-${a})*${c};`, "a,b,c")),
-    mixN.add(dim, compile(dim, ([a, b]) => `${a}+=(${b}-${a})*n;`, "a,b,n", "a,b")),
-    mixNew.add(dim, compile(dim, ([a, b, c, o]) => `${o}=${a}+(${b}-${a})*${c};`, "a,b,c,o=[]", "a,b,c,o", "o")),
-    mixNewN.add(dim, compile(dim, ([a, b, o]) => `${o}=${a}+(${b}-${a})*n;`, "a,b,n,o=[]", "a,b,o", "o")),
+    mix.add(dim, compile(dim, tplMix, "a,b,c")),
+    mixN.add(dim, compile(dim, tplMixN, "a,b,n", "a,b")),
+    mixNew.add(dim, compile(dim, tplMixNew, "a,b,c,o=[]", "a,b,c,o", "o")),
+    mixNewN.add(dim, compile(dim, tplMixNewN, "a,b,n,o=[]", "a,b,o", "o")),
+];
+
+export const genGOpFnV = (fn: string): VecOpV<Vec> =>
+    compileG(tplFnV(fn), "a");
+
+export const genGOpHofV = (fn) =>
+    compileGHOF([fn], tplHofV, "fn", "a");
+
+export const genGOpVV = (op: string): VecOpVV<Vec> =>
+    compileG(tplVV(op), "a,b");
+
+export const genGOpFnVV = (fn: string): VecOpVV<Vec> =>
+    compileG(tplFnVV(fn), "a,b");
+
+export const genGOpVN = (op: string): VecOpVN<Vec> =>
+    compileG(tplVN(op), "a,n", "a");
+
+export const genGOpNewVV = (op: string): VecOpNewVV<Vec> =>
+    compileG(tplNewVV(op), "a,b,o=[]", "a,b,o", "o");
+
+export const genGOpNewVN = (op: string): VecOpNewVN<Vec> =>
+    compileG(tplNewVN(op), "a,n,o=[]", "a,o", "o");
+
+export const genCommonDefaults = (): CommonOps => [
+    set.default(genGOpVV("")),
+    setN.default(genGOpVN("")),
+    setS.default(compileG(([a]) => `${a}=xs[i];`, "a,...xs", "a")),
+
+    // TODO add IRandom support
+    rand01.default(compileG(tplRand01, "a")),
+    rand11.default(compileG(tplRand11, "a")),
+    rand.default(compileG(tplRand, "a,n,m", "a")),
+
+    add.default(genGOpVV("+")),
+    sub.default(genGOpVV("-")),
+    mul.default(genGOpVV("*")),
+    div.default(genGOpVV("/")),
+
+    addNew.default(genGOpNewVV("+")),
+    subNew.default(genGOpNewVV("-")),
+    mulNew.default(genGOpNewVV("*")),
+    divNew.default(genGOpNewVV("/")),
+
+    addN.default(genGOpVN("+")),
+    subN.default(genGOpVN("-")),
+    mulN.default(genGOpVN("*")),
+    divN.default(genGOpVN("/")),
+
+    addNewN.default(genGOpNewVN("+")),
+    subNewN.default(genGOpNewVN("-")),
+    mulNewN.default(genGOpNewVN("*")),
+    divNewN.default(genGOpNewVN("/")),
+
+    madd.default(compileG(tplMadd, "a,b,c")),
+    maddN.default(compileG(tplMaddN, "a,b,n", "a,b")),
+    maddNew.default(compileG(tplMaddNew, "a,b,c,o=[]", "a,b,c,o", "o")),
+    maddNewN.default(compileG(tplMaddNewN, "a,b,n,o=[]", "a,b,o", "o")),
+
+    abs.default(genGOpFnV("Math.abs")),
+    sign.default(genGOpHofV(_sign)),
+    sin.default(genGOpFnV("Math.sin")),
+    cos.default(genGOpFnV("Math.cos")),
+    tan.default(genGOpFnV("Math.tan")),
+    asin.default(genGOpFnV("Math.asin")),
+    acos.default(genGOpFnV("Math.acos")),
+    atan.default(genGOpFnV("Math.atan")),
+    floor.default(genGOpFnV("Math.floor")),
+    ceil.default(genGOpFnV("Math.ceil")),
+    trunc.default(genGOpFnV("Math.trunc")),
+    fract.default(genGOpHofV(_fract)),
+    sqrt.default(genGOpFnV("Math.sqrt")),
+    log.default(genGOpFnVV("Math.log")),
+    exp.default(genGOpFnVV("Math.exp")),
+    pow.default(genGOpFnVV("Math.pow")),
+    powN.default(compileG(tplPowN, "a,n", "a")),
+
+    min.default(genGOpFnVV("Math.min")),
+    max.default(genGOpFnVV("Math.max")),
+    clamp.default(compileGHOF([_clamp], tplClamp, "fn", "a,b,c")),
+
+    step.default(compileGHOF([_step], tplStep, "fn", "a,e")),
+    smoothStep.default(compileGHOF([_smoothStep], tplSmoothStep, "fn", "a,e1,e2")),
+
+    mix.default(compileG(tplMix, "a,b,c")),
+    mixN.default(compileG(tplMixN, "a,b,n", "a,b")),
+    mixNew.default(compileG(tplMixNew, "a,b,c,o=[]", "a,b,c,o", "o")),
+    mixNewN.default(compileG(tplMixNewN, "a,b,n,o=[]", "a,b,o", "o")),
 ];

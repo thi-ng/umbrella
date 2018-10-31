@@ -2,15 +2,16 @@ import {
     ICopy,
     IEmpty,
     IEqualsDelta,
+    IEquiv,
     ILength,
     IRelease,
-    TypedArray,
-    IEquiv
+    TypedArray
 } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { Type } from "@thi.ng/malloc/api";
 import { atan2Abs } from "@thi.ng/math/angle";
 import { EPS } from "@thi.ng/math/api";
+import { genCommonDefaults } from "./internal/codegen";
 import { eqDelta as _eqDelta } from "./internal/equiv";
 import { vop } from "./internal/ops";
 import { VecPool } from "./pool";
@@ -209,7 +210,7 @@ export const getPool = () => POOL;
 export const usePool = (pool: VecPool) => (POOL = pool);
 
 export const vec = (n: number) =>
-    POOL ? POOL.malloc(n) : new Array<number>(n).fill(0);
+    POOL ? POOL.malloc(n) : zeroes(n);
 
 export const set: MultiVecOpVV<Vec> = vop();
 export const setN: MultiVecOpVN<Vec> = vop();
@@ -279,8 +280,17 @@ export const maddNew: MultiVecOpNewVVV<Vec> = vop();
 export const maddNewN: MultiVecOpNewVVN<Vec> = vop();
 
 export const dot: MultiVecOpRoVV<number> = vop();
+dot.default((a, b) => {
+    let res = 0;
+    for (let i = a.length; --i >= 0;) {
+        res += a[i] * b[i];
+    }
+    return res;
+});
 
 export const magSq: MultiVecOpRoV<number> = vop();
+magSq.default((v) => dot(v, v));
+
 export const mag: MultiVecOpRoV<number> = vop();
 mag.default((a) => Math.sqrt(magSq(a, a)));
 
@@ -387,3 +397,5 @@ export const X4 = Object.freeze([1, 0, 0, 0]);
 export const Y4 = Object.freeze([0, 1, 0, 0]);
 export const Z4 = Object.freeze([0, 0, 1, 0]);
 export const W4 = Object.freeze([0, 0, 0, 1]);
+
+genCommonDefaults();

@@ -10,6 +10,7 @@ import { truncate } from "@thi.ng/strings/truncate";
 import { INDArray, NDVec } from "./api";
 import { declareIndices } from "./internal/accessors";
 import { eqDelta as _eqDelta } from "./internal/equiv";
+import { iterator } from "./internal/iterator";
 
 export class NDArray1<T> implements
     INDArray<T> {
@@ -32,10 +33,8 @@ export class NDArray1<T> implements
         this.length = shape[0];
     }
 
-    *[Symbol.iterator]() {
-        for (let i = this.i, y = this.length, s = this.s, buf = this.buf; --y >= 0; i += s) {
-            yield buf[i];
-        }
+    [Symbol.iterator](): IterableIterator<T> {
+        return <any>iterator(<any>this.buf, this.length, this.i, this.s);
     }
 
     get dim() {
@@ -551,4 +550,7 @@ const pad = padLeft(9);
 const trunc = truncate(9);
 
 const format =
-    (x: any) => isNumber(x) ? ff(x) : trunc(pad(x.toString()));
+    (x: any) =>
+        isNumber(x) ?
+            ff(x) :
+            trunc(pad(x.toString()));

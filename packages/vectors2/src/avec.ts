@@ -29,11 +29,4 @@ export abstract class AVec {
     get stride() {
         return [this.s];
     }
-
-    extract(dest: Vec = []) {
-        for (let n = this.length - 1, s = this.s, i = this.i + n * s; n >= 0; i -= s, n--) {
-            dest[n] = this.buf[i];
-        }
-        return dest;
-    }
 }
