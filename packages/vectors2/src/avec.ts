@@ -14,19 +14,19 @@ export abstract class AVec {
 
     abstract get length(): number;
 
-    dim() {
+    get dim() {
         return 1;
     }
 
-    offset() {
+    get offset() {
         return this.i;
     }
 
-    shape() {
+    get shape() {
         return [this.length];
     }
 
-    stride() {
+    get stride() {
         return [this.s];
     }
 

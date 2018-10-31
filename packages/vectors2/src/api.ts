@@ -2,13 +2,18 @@ import {
     ICopy,
     IEmpty,
     IEqualsDelta,
-    ILength
+    ILength,
+    IRelease,
+    TypedArray,
+    IEquiv
 } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { Type } from "@thi.ng/malloc/api";
 import { atan2Abs } from "@thi.ng/math/angle";
 import { EPS } from "@thi.ng/math/api";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
-import { vop } from "./vop";
+import { eqDelta as _eqDelta } from "./internal/equiv";
+import { vop } from "./internal/ops";
+import { VecPool } from "./pool";
 
 // suffix convention:
 // V = vector arg
@@ -36,8 +41,8 @@ export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, o?: O, ...xs: an
 export type VecOpRoVVV<T> = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, ...xs: any[]) => T;
 
 export interface MultiVecOp<VOP> {
-    add(dim: number, op: VOP);
-    default(op: VOP);
+    add(dim: number, op: VOP): VOP;
+    default(op: VOP): VOP;
 }
 
 export interface MultiVecOpV<T> extends VecOpV<T>, MultiVecOp<VecOpV<T>> { }
@@ -73,6 +78,9 @@ export interface ReadonlyVec extends
     readonly [id: number]: number;
 }
 
+export type Mat = Vec;
+export type ReadonlyMat = ReadonlyVec;
+
 export interface IVector<T> extends
     Vec,
     ICopy<T>,
@@ -84,9 +92,124 @@ export interface IVector<T> extends
     s: number;
 }
 
+export interface NDVec<T> extends
+    Iterable<T>,
+    ILength {
+    [id: number]: T;
+}
+
+export interface INDArray<T> extends
+    ICopy<INDArray<T>>,
+    IEquiv,
+    IEqualsDelta<INDArray<T>>,
+    Iterable<T> {
+
+    buf: NDVec<T>;
+    i: number;
+    readonly shape: number[];
+    readonly stride: number[];
+    readonly length: number;
+
+    get(...args: number[]): T;
+
+    set(...args: [number, T] | [number, number, T] | [number, number, number, T]): void;
+
+    lo(...args: number[]): INDArray<T>;
+
+    hi(...args: number[]): INDArray<T>;
+
+    step(...args: number[]): INDArray<T>;
+
+    pick(...args: number[]): INDArray<T>;
+
+    transpose(...args: number[]): INDArray<T>;
+}
+
+export interface IVecPool extends IRelease {
+
+    malloc(size: number, type?: Type): Vec;
+
+    mallocWrapped(size: number, stride?: number, type?: Type): IVector<any>;
+
+    free(vec: IVector<any> | TypedArray): boolean;
+
+    freeAll();
+}
+
+export type CommonOps = [
+    // set
+    VecOpVV<Vec>,
+    VecOpVN<Vec>,
+    VecOpV<Vec>,
+    // rand
+    VecOpVNN<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    // math
+    VecOpVV<Vec>,
+    VecOpVV<Vec>,
+    VecOpVV<Vec>,
+    VecOpVV<Vec>,
+    VecOpNewVV<Vec>,
+    VecOpNewVV<Vec>,
+    VecOpNewVV<Vec>,
+    VecOpNewVV<Vec>,
+    VecOpVN<Vec>,
+    VecOpVN<Vec>,
+    VecOpVN<Vec>,
+    VecOpVN<Vec>,
+    VecOpNewVN<Vec>,
+    VecOpNewVN<Vec>,
+    VecOpNewVN<Vec>,
+    VecOpNewVN<Vec>,
+    // madd
+    VecOpVVV<Vec>,
+    VecOpVVN<Vec>,
+    VecOpNewVVV<Vec>,
+    VecOpNewVVN<Vec>,
+    // Math.
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpV<Vec>,
+    VecOpVN<Vec>,
+    // minmax
+    VecOpVV<Vec>,
+    VecOpVV<Vec>,
+    VecOpVVV<Vec>,
+    // step
+    VecOpVV<Vec>,
+    VecOpVVV<Vec>,
+    // mix
+    VecOpVVV<Vec>,
+    VecOpVVN<Vec>,
+    VecOpNewVVV<Vec>,
+    VecOpNewVVN<Vec>
+];
+
 export type Vec2Coord = 0 | 1;
 export type Vec3Coord = 0 | 1 | 2;
 export type Vec4Coord = 0 | 1 | 2 | 3;
+
+let POOL: IVecPool;
+
+export const getPool = () => POOL;
+export const usePool = (pool: VecPool) => (POOL = pool);
+
+export const vec = (n: number) =>
+    POOL ? POOL.malloc(n) : new Array<number>(n).fill(0);
 
 export const set: MultiVecOpVV<Vec> = vop();
 export const setN: MultiVecOpVN<Vec> = vop();
@@ -103,7 +226,7 @@ export const empty: MultiVecOpRoV<Vec> = vop();
 empty.default((v) =>
     implementsFunction(v, "empty") ?
         (<any>v).empty() :
-        zero(copy(v))
+        vec(v.length)
 );
 
 export const zero = (a: Vec) => setN(a, 0);
@@ -113,19 +236,39 @@ export const zeroes = (n: number) => new Array(n).fill(0);
 export const ones = (n: number) => new Array(n).fill(1);
 
 export const eqDelta: MultiVecOpRoVVO<boolean, number> = vop();
+eqDelta.default((v1, v2, eps = EPS) => {
+    if (implementsFunction(v1, "eqDelta")) {
+        return (<any>v1).eqDelta(v2, eps);
+    }
+    if (implementsFunction(v2, "eqDelta")) {
+        return (<any>v2).eqDelta(v1, eps);
+    }
+    return _eqDelta(v1, v2, v1.length, eps);
+});
 
 export const rand: MultiVecOpVNN<Vec> = vop();
 export const rand01: MultiVecOpV<Vec> = vop();
 export const rand11: MultiVecOpV<Vec> = vop();
 
-export const [add, sub, mul, div]: MultiVecOpVV<Vec>[]
-    = [...repeatedly(vop, 4)];
-export const [addNew, subNew, mulNew, divNew]: MultiVecOpNewVV<Vec>[]
-    = [...repeatedly(vop, 4)];
-export const [addN, subN, mulN, divN]: MultiVecOpVN<Vec>[]
-    = [...repeatedly(vop, 4)];
-export const [addNewN, subNewN, mulNewN, divNewN]: MultiVecOpNewVN<Vec>[]
-    = [...repeatedly(vop, 4)];
+export const add: MultiVecOpVV<Vec> = vop();
+export const sub: MultiVecOpVV<Vec> = vop();
+export const mul: MultiVecOpVV<Vec> = vop();
+export const div: MultiVecOpVV<Vec> = vop();
+
+export const addNew: MultiVecOpNewVV<Vec> = vop();
+export const subNew: MultiVecOpNewVV<Vec> = vop();
+export const mulNew: MultiVecOpNewVV<Vec> = vop();
+export const divNew: MultiVecOpNewVV<Vec> = vop();
+
+export const addN: MultiVecOpVN<Vec> = vop();
+export const subN: MultiVecOpVN<Vec> = vop();
+export const mulN: MultiVecOpVN<Vec> = vop();
+export const divN: MultiVecOpVN<Vec> = vop();
+
+export const addNewN: MultiVecOpNewVN<Vec> = vop();
+export const subNewN: MultiVecOpNewVN<Vec> = vop();
+export const mulNewN: MultiVecOpNewVN<Vec> = vop();
+export const divNewN: MultiVecOpNewVN<Vec> = vop();
 
 export const neg: MultiVecOpV<Vec> = vop();
 neg.default((v) => mulN(v, -1));
@@ -164,6 +307,10 @@ export const abs: MultiVecOpV<Vec> = vop();
 export const sign: MultiVecOpV<Vec> = vop();
 export const sin: MultiVecOpV<Vec> = vop();
 export const cos: MultiVecOpV<Vec> = vop();
+export const tan: MultiVecOpV<Vec> = vop();
+export const asin: MultiVecOpV<Vec> = vop();
+export const acos: MultiVecOpV<Vec> = vop();
+export const atan: MultiVecOpV<Vec> = vop();
 export const sqrt: MultiVecOpV<Vec> = vop();
 export const floor: MultiVecOpV<Vec> = vop();
 export const ceil: MultiVecOpV<Vec> = vop();

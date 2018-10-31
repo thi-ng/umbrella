@@ -2,9 +2,9 @@ import { Comparator } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
 import { max3id, min3id } from "@thi.ng/math/interval";
-import { declareIndices } from "./accessors";
+import { declareIndices } from "./internal/accessors";
 import { AVec } from "./avec";
-import { genCommon } from "./codegen";
+import { genCommon } from "./internal/codegen";
 import {
     magSq,
     dot,
@@ -135,7 +135,61 @@ export class Vec3 extends AVec implements
 }
 
 declareIndices(Vec3.prototype, ["x", "y", "z"]);
-genCommon(3);
+
+export const [
+    set3,
+    setN3,
+    setS3,
+    rand3_01,
+    rand3_11,
+    rand3,
+    add3,
+    sub3,
+    mul3,
+    div3,
+    addNew3,
+    subNew3,
+    mulNew3,
+    divNew3,
+    addN3,
+    subN3,
+    mulN3,
+    divN3,
+    addNewN3,
+    subNewN3,
+    mulNewN3,
+    divNewN3,
+    madd3,
+    maddN3,
+    maddNew3,
+    maddNewN3,
+    abs3,
+    sign3,
+    sin3,
+    cos3,
+    tan3,
+    asin3,
+    acos3,
+    atan3,
+    floor3,
+    ceil3,
+    trunc3,
+    fract3,
+    sqrt3,
+    log3,
+    exp3,
+    pow3,
+    powN3,
+    min3,
+    max3,
+    clamp3,
+    step3,
+    smoothStep3,
+    mix3,
+    mixN3,
+    mixNew3,
+    mixNewN3,
+] = genCommon(3);
 
 const abs = Math.abs;
 const pow = Math.pow;

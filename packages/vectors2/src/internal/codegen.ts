@@ -66,7 +66,12 @@ import {
     clamp,
     maddNew,
     maddNewN,
-} from "./api";
+    asin,
+    acos,
+    tan,
+    atan,
+    CommonOps,
+} from "../api";
 
 export type Template = (syms: string[], i?: number) => string;
 
@@ -124,8 +129,9 @@ export const compile = (
 
 export const compileHOF = (
     dim: number,
-    fn: FnAny<any>,
+    fns: FnAny<any>[],
     tpl: Template,
+    hofArgs: string,
     args: string,
     syms = args,
     ret = "a",
@@ -133,16 +139,16 @@ export const compileHOF = (
     post?: string) => {
 
     return new Function(
-        "fn",
+        hofArgs,
         `return (${args})=>{${assemble(dim, tpl, syms, ret, pre, post).join("\n")}}`
-    )(fn);
+    )(...fns);
 };
 
 export const genOpFnV = (dim: number, op: string): VecOpV<Vec> =>
     compile(dim, ([a]) => `${a}=${op}(${a});`, "a");
 
 export const genOpHofV = (dim: number, fn) =>
-    compileHOF(dim, fn, ([a]) => `${a}=fn(${a});`, "a");
+    compileHOF(dim, [fn], ([a]) => `${a}=fn(${a});`, "fn", "a");
 
 export const genOpVV = (dim: number, op: string): VecOpVV<Vec> =>
     compile(dim, ([a, b]) => `${a}${op}=${b};`, "a,b");
@@ -159,64 +165,68 @@ export const genOpNewVV = (dim: number, op: string): VecOpNewVV<Vec> =>
 export const genOpNewVN = (dim: number, op: string): VecOpNewVN<Vec> =>
     compile(dim, ([a, o]) => `${o}=${a}${op}n;`, "a,n,o=[]", "a,o", "o");
 
-export const genCommon = (dim: number) => {
-    set.add(dim, genOpVV(dim, ""));
-    setN.add(dim, genOpVN(dim, ""));
-    setS.add(dim, compile(dim, ([a], i) => `${a}=xs[${i}];`, "a,...xs", "a"));
+export const genCommon = (dim: number): CommonOps => [
+    set.add(dim, genOpVV(dim, "")),
+    setN.add(dim, genOpVN(dim, "")),
+    setS.add(dim, compile(dim, ([a], i) => `${a}=xs[${i}];`, "a,...xs", "a")),
 
     // TODO add IRandom support
-    rand01.add(dim, compile(dim, ([a]) => `${a}=Math.random();`, "a"));
-    rand11.add(dim, compile(dim, ([a]) => `${a}=Math.random()*2-1;`, "a"));
-    rand.add(dim, compile(dim, ([a]) => `${a}=n+(m-n)*Math.random();`, "a,n,m", "a"));
+    rand01.add(dim, compile(dim, ([a]) => `${a}=Math.random();`, "a")),
+    rand11.add(dim, compile(dim, ([a]) => `${a}=Math.random()*2-1;`, "a")),
+    rand.add(dim, compile(dim, ([a]) => `${a}=n+(m-n)*Math.random();`, "a,n,m", "a")),
 
-    add.add(dim, genOpVV(dim, "+"));
-    sub.add(dim, genOpVV(dim, "-"));
-    mul.add(dim, genOpVV(dim, "*"));
-    div.add(dim, genOpVV(dim, "/"));
+    add.add(dim, genOpVV(dim, "+")),
+    sub.add(dim, genOpVV(dim, "-")),
+    mul.add(dim, genOpVV(dim, "*")),
+    div.add(dim, genOpVV(dim, "/")),
 
-    subNew.add(dim, genOpNewVV(dim, "-"));
-    addNew.add(dim, genOpNewVV(dim, "+"));
-    mulNew.add(dim, genOpNewVV(dim, "*"));
-    divNew.add(dim, genOpNewVV(dim, "/"));
+    addNew.add(dim, genOpNewVV(dim, "+")),
+    subNew.add(dim, genOpNewVV(dim, "-")),
+    mulNew.add(dim, genOpNewVV(dim, "*")),
+    divNew.add(dim, genOpNewVV(dim, "/")),
 
-    subN.add(dim, genOpVN(dim, "-"));
-    addN.add(dim, genOpVN(dim, "+"));
-    mulN.add(dim, genOpVN(dim, "*"));
-    divN.add(dim, genOpVN(dim, "/"));
+    addN.add(dim, genOpVN(dim, "+")),
+    subN.add(dim, genOpVN(dim, "-")),
+    mulN.add(dim, genOpVN(dim, "*")),
+    divN.add(dim, genOpVN(dim, "/")),
 
-    subNewN.add(dim, genOpNewVN(dim, "-"));
-    addNewN.add(dim, genOpNewVN(dim, "+"));
-    mulNewN.add(dim, genOpNewVN(dim, "*"));
-    divNewN.add(dim, genOpNewVN(dim, "/"));
+    addNewN.add(dim, genOpNewVN(dim, "+")),
+    subNewN.add(dim, genOpNewVN(dim, "-")),
+    mulNewN.add(dim, genOpNewVN(dim, "*")),
+    divNewN.add(dim, genOpNewVN(dim, "/")),
 
-    madd.add(dim, compile(dim, ([a, b, c]) => `${a}+=${b}*${c};`, "a,b,c"));
-    maddN.add(dim, compile(dim, ([a, b]) => `${a}+=${b}*n;`, "a,b,n", "a,b"));
-    maddNew.add(dim, compile(dim, ([a, b, c, o]) => `${o}=${a}+${b}*${c};`, "a,b,c,o=[]", "a,b,c,o", "o"));
-    maddNewN.add(dim, compile(dim, ([a, b, o]) => `${o}=${a}+${b}*n;`, "a,b,n,o=[]", "a,b,o", "o"));
+    madd.add(dim, compile(dim, ([a, b, c]) => `${a}+=${b}*${c};`, "a,b,c")),
+    maddN.add(dim, compile(dim, ([a, b]) => `${a}+=${b}*n;`, "a,b,n", "a,b")),
+    maddNew.add(dim, compile(dim, ([a, b, c, o]) => `${o}=${a}+${b}*${c};`, "a,b,c,o=[]", "a,b,c,o", "o")),
+    maddNewN.add(dim, compile(dim, ([a, b, o]) => `${o}=${a}+${b}*n;`, "a,b,n,o=[]", "a,b,o", "o")),
 
-    abs.add(dim, genOpFnV(dim, "Math.abs"));
-    sign.add(dim, genOpHofV(dim, _sign));
-    sin.add(dim, genOpFnV(dim, "Math.sin"));
-    cos.add(dim, genOpFnV(dim, "Math.cos"));
-    floor.add(dim, genOpFnV(dim, "Math.floor"));
-    ceil.add(dim, genOpFnV(dim, "Math.ceil"));
-    trunc.add(dim, genOpFnV(dim, "Math.trunc"));
-    fract.add(dim, genOpHofV(dim, _fract));
-    sqrt.add(dim, genOpFnV(dim, "Math.sqrt"));
-    log.add(dim, genOpFnVV(dim, "Math.log"));
-    exp.add(dim, genOpFnVV(dim, "Math.exp"));
-    pow.add(dim, genOpFnVV(dim, "Math.pow"));
-    powN.add(dim, compile(dim, ([a]) => `${a}=Math.pow(${a},n);`, "a,n", "a"));
+    abs.add(dim, genOpFnV(dim, "Math.abs")),
+    sign.add(dim, genOpHofV(dim, _sign)),
+    sin.add(dim, genOpFnV(dim, "Math.sin")),
+    cos.add(dim, genOpFnV(dim, "Math.cos")),
+    tan.add(dim, genOpFnV(dim, "Math.tan")),
+    asin.add(dim, genOpFnV(dim, "Math.asin")),
+    acos.add(dim, genOpFnV(dim, "Math.acos")),
+    atan.add(dim, genOpFnV(dim, "Math.atan")),
+    floor.add(dim, genOpFnV(dim, "Math.floor")),
+    ceil.add(dim, genOpFnV(dim, "Math.ceil")),
+    trunc.add(dim, genOpFnV(dim, "Math.trunc")),
+    fract.add(dim, genOpHofV(dim, _fract)),
+    sqrt.add(dim, genOpFnV(dim, "Math.sqrt")),
+    log.add(dim, genOpFnVV(dim, "Math.log")),
+    exp.add(dim, genOpFnVV(dim, "Math.exp")),
+    pow.add(dim, genOpFnVV(dim, "Math.pow")),
+    powN.add(dim, compile(dim, ([a]) => `${a}=Math.pow(${a},n);`, "a,n", "a")),
 
-    min.add(dim, genOpFnVV(dim, "Math.min"));
-    max.add(dim, genOpFnVV(dim, "Math.max"));
-    clamp.add(dim, compileHOF(dim, _clamp, ([a, b, c]) => `${a}=fn(${a},${b},${c});`, "a,b,c"));
+    min.add(dim, genOpFnVV(dim, "Math.min")),
+    max.add(dim, genOpFnVV(dim, "Math.max")),
+    clamp.add(dim, compileHOF(dim, [_clamp], ([a, b, c]) => `${a}=fn(${a},${b},${c});`, "fn", "a,b,c")),
 
-    step.add(dim, compileHOF(dim, _step, ([a, e]) => `${a}=fn(${e},${a});`, "a,e"));
-    smoothStep.add(dim, compileHOF(dim, _smoothStep, ([a, e1, e2]) => `${a}=fn(${e1},${e2},${a});`, "a,e1,e2"));
+    step.add(dim, compileHOF(dim, [_step], ([a, e]) => `${a}=fn(${e},${a});`, "fn", "a,e")),
+    smoothStep.add(dim, compileHOF(dim, [_smoothStep], ([a, e1, e2]) => `${a}=fn(${e1},${e2},${a});`, "fn", "a,e1,e2")),
 
-    mix.add(dim, compile(dim, ([a, b, c]) => `${a}+=(${b}-${a})*${c};`, "a,b,c"));
-    mixN.add(dim, compile(dim, ([a, b]) => `${a}+=(${b}-${a})*n;`, "a,b,n", "a,b"));
-    mixNew.add(dim, compile(dim, ([a, b, c, o]) => `${o}=${a}+(${b}-${a})*${c};`, "a,b,c,o=[]", "a,b,c,o", "o"));
-    mixNewN.add(dim, compile(dim, ([a, b, o]) => `${o}=${a}+(${b}-${a})*n;`, "a,b,n,o=[]", "a,b,o", "o"));
-};
+    mix.add(dim, compile(dim, ([a, b, c]) => `${a}+=(${b}-${a})*${c};`, "a,b,c")),
+    mixN.add(dim, compile(dim, ([a, b]) => `${a}+=(${b}-${a})*n;`, "a,b,n", "a,b")),
+    mixNew.add(dim, compile(dim, ([a, b, c, o]) => `${o}=${a}+(${b}-${a})*${c};`, "a,b,c,o=[]", "a,b,c,o", "o")),
+    mixNewN.add(dim, compile(dim, ([a, b, o]) => `${o}=${a}+(${b}-${a})*n;`, "a,b,n,o=[]", "a,b,o", "o")),
+];
