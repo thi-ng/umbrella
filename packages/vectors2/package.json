@@ -29,8 +29,12 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.2.3",
+        "@thi.ng/checks": "^1.5.13",
+        "@thi.ng/equiv": "^0.1.13",
+        "@thi.ng/errors": "^0.1.11",
         "@thi.ng/malloc": "^0.2.0",
-        "@thi.ng/math": "^0.2.0"
+        "@thi.ng/math": "^0.2.0",
+        "@thi.ng/strings": "^0.5.2"
     },
     "keywords": [
         "ES6",
@@ -44,9 +48,5 @@
     ],
     "browser": {
         "process": false
-    },
-    "sideEffects": [
-        "./src/vec2.js",
-        "./src/vec3.js"
-    ]
+    }
 }
