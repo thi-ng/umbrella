@@ -15,8 +15,8 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors2/api";
-import { compile } from "@thi.ng/vectors2/codegen";
-import { vop } from "@thi.ng/vectors2/vop";
+import { compile } from "@thi.ng/vectors2/internal/codegen";
+import { vop } from "@thi.ng/vectors2/internal/ops";
 import {
     asCubic,
     Attribs,

@@ -4,12 +4,12 @@ import {
     Attribs,
     bounds,
     Group2,
-    Shape,
+    IShape,
     Type
 } from "./api";
 import { collBounds } from "./internal/bounds";
 
-export function group(attribs?: Attribs, ...children: Shape[]) {
+export function group(attribs?: Attribs, ...children: IShape[]) {
     return new Group2(attribs, ...children);
 }
 

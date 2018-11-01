@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./arc";
 export * from "./bezier";
 export * from "./circle";
 export * from "./container2";

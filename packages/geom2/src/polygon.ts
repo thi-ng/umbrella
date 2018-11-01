@@ -11,7 +11,7 @@ import {
     Polygon2,
     resample,
     SamplingOpts,
-    Shape,
+    IShape,
     simplify,
     tessellate,
     Tessellator,
@@ -83,5 +83,5 @@ implementations(
     },
 );
 
-export const clipConvex = (poly: Polygon2, boundary: Shape) =>
+export const clipConvex = (poly: Polygon2, boundary: IShape) =>
     sutherlandHodgeman(poly.points, vertices(boundary), centroid(boundary));

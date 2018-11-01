@@ -1,5 +1,12 @@
-import { max, min, Vec, addNew, sub, ReadonlyVec } from "@thi.ng/vectors2/api";
-import { bounds as _bounds, Shape, union } from "../api";
+import {
+    addNew,
+    max,
+    min,
+    ReadonlyVec,
+    sub,
+    Vec
+} from "@thi.ng/vectors2/api";
+import { bounds as _bounds, IShape, union } from "../api";
 
 export const bounds =
     (pts: ReadonlyArray<Vec>, vmin: Vec, vmax: Vec): [Vec, Vec] => {
@@ -13,10 +20,10 @@ export const bounds =
     };
 
 export const collBounds =
-    (shapes: Shape[]) => {
+    (shapes: IShape[]) => {
 
         let n = shapes.length - 1;
-        let res: Shape = n >= 0 ? _bounds(shapes[n]) : undefined;
+        let res: IShape = n >= 0 ? _bounds(shapes[n]) : undefined;
         for (; --n >= 0;) {
             res = union(res, _bounds(shapes[n]));
         }
