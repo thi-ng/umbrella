@@ -23,3 +23,15 @@ export const eqDelta = (a: ReadonlyVec, b: ReadonlyVec, n: number, eps = EPS, ia
     }
     return true;
 };
+
+export const eqDeltaArray = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
+    if (a.length !== b.length) {
+        return false;
+    }
+    for (let i = a.length; --i >= 0;) {
+        if (!eqDelta(a[i], b[i], a[i].length, eps)) {
+            return false;
+        }
+    }
+    return true;
+};
