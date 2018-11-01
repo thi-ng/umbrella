@@ -1,6 +1,6 @@
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-
 import { PathSegment } from "./api";
 import { circle } from "./circle";
 import { ff } from "./format";
@@ -40,7 +40,10 @@ const TEXT_ALIGN = {
  *
  * @param tree
  */
-export const convertTree = (tree: any[]): any[] => {
+export const convertTree = (tree: any): any[] => {
+    if (implementsFunction(tree, "toHiccup")) {
+        return convertTree(tree.toHiccup());
+    }
     const type = tree[0];
     if (isArray(type)) {
         return tree.map(convertTree);
@@ -85,7 +88,7 @@ export const convertTree = (tree: any[]): any[] => {
             return circle(tree[2], tree[3], attribs);
         case "rect": {
             const r = tree[5] || 0;
-            return roundedRect(tree[2], tree[3], tree[4], r, r, attribs);
+            return roundedRect(tree[2], tree[3][0], tree[3][1], r, r, attribs);
         }
         case "line":
             return line(tree[2], tree[3], attribs);
