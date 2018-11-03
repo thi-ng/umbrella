@@ -2,8 +2,9 @@ import { Comparator } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
 import { max3id, min3id } from "@thi.ng/math/interval";
-import { declareIndices } from "./internal/accessors";
+import { mixBilinear } from "@thi.ng/math/mix";
 import { AVec } from "./avec";
+import { declareIndices } from "./internal/accessors";
 import { genCommon } from "./internal/codegen";
 import {
     magSq,
@@ -336,3 +337,16 @@ export const cross3: VecOpVV<Vec> =
 
 export const orthoNormal3: VecOpRoVVV<Vec> = (a: Vec, b: Vec, c: Vec) =>
     cross3(subNew(c, a), subNew(b, a));
+
+export const mixBilinear3 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    d: ReadonlyVec,
+    u: number, v: number,
+    out: Vec = []) => (
+        out[0] = mixBilinear(a[0], b[0], c[0], d[0], u, v),
+        out[1] = mixBilinear(a[1], b[1], c[1], d[1], u, v),
+        out[2] = mixBilinear(a[2], b[2], c[2], d[2], u, v),
+        out
+    );

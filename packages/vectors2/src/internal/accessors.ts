@@ -1,8 +1,8 @@
-export const declareIndices = (proto: any, props: string[]) => {
+export const declareIndices = (proto: any, props: string[], numeric = true) => {
     const get = (i: number) => function () { return this.buf[this.i + i * this.s]; };
     const set = (i: number) => function (n: number) { this.buf[this.i + i * this.s] = n; };
     props.forEach((id, i) => {
-        Object.defineProperty(proto, i, {
+        numeric && Object.defineProperty(proto, i, {
             get: get(i),
             set: set(i),
             enumerable: true,

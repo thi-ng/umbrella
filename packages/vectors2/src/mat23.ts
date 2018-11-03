@@ -11,18 +11,20 @@ import { iterator } from "./internal/iterator";
 import { cross2, dot2 } from "./internal/matrix";
 import { NDArray2 } from "./nd";
 
-export const get23 = (a: Mat, i = 0) =>
-    (<any>a).slice(i, i + 6);
+export const get23 =
+    (a: Mat, i = 0) =>
+        (<any>a).slice(i, i + 6);
 
-export const set23 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) => (
-    a[ia] = b[ib],
-    a[ia + 1] = b[ib + 1],
-    a[ia + 2] = b[ib + 2],
-    a[ia + 3] = b[ib + 3],
-    a[ia + 4] = b[ib + 4],
-    a[ia + 5] = b[ib + 5],
-    a
-);
+export const set23 =
+    (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) => (
+        a[ia] = b[ib],
+        a[ia + 1] = b[ib + 1],
+        a[ia + 2] = b[ib + 2],
+        a[ia + 3] = b[ib + 3],
+        a[ia + 4] = b[ib + 4],
+        a[ia + 5] = b[ib + 5],
+        a
+    );
 
 /**
  * ```
@@ -54,109 +56,127 @@ export const setS23 = (
         m
     );
 
-export const identity23 = (m?: Mat, i = 0) =>
-    setS23(m || [], 1, 0, 0, 1, 0, 0, i);
+export const identity23 =
+    (m?: Mat, i = 0) =>
+        setS23(m || [], 1, 0, 0, 1, 0, 0, i);
 
-export const rotation23 = (m: Mat, theta: number, i = 0) => {
-    const s = Math.sin(theta);
-    const c = Math.cos(theta);
-    return setS23(m || [], c, s, -s, c, 0, 0, i);
-};
+export const rotation23 =
+    (m: Mat, theta: number, i = 0) => {
+        const s = Math.sin(theta);
+        const c = Math.cos(theta);
+        return setS23(m || [], c, s, -s, c, 0, 0, i);
+    };
 
-export const rotationAroundPoint23 = (m: Mat, p: ReadonlyVec, theta: number, im = 0) =>
-    concat23(
-        translationV23(m || [], p, im), im,
-        rotation23([], theta),
-        translationS23([], -p[0], -p[1])
-    );
+export const rotationAroundPoint23 =
+    (m: Mat, p: ReadonlyVec, theta: number, im = 0) =>
+        concat23(
+            translationV23(m || [], p, im), im,
+            rotation23([], theta),
+            translationS23([], -p[0], -p[1])
+        );
 
-export const scaleV23 = (m: Mat, v: Vec, i = 0) =>
-    scaleS23(m, v[0], v[1], i);
+export const scaleV23 =
+    (m: Mat, v: Vec, i = 0) =>
+        scaleS23(m, v[0], v[1], i);
 
-export const scaleN23 = (m: Mat, n: number, i = 0) =>
-    scaleS23(m, n, n, i);
+export const scaleN23 =
+    (m: Mat, n: number, i = 0) =>
+        scaleS23(m, n, n, i);
 
-export const scaleS23 = (m: Mat, sx: number, sy: number, i = 0) =>
-    setS23(m || [], sx, 0, 0, sy, 0, 0, i);
+export const scaleS23 =
+    (m: Mat, sx: number, sy: number, i = 0) =>
+        setS23(m || [], sx, 0, 0, sy, 0, 0, i);
 
-export const scaleWithCenter23 = (m: Mat, p: ReadonlyVec, sx: number, sy: number, im = 0) =>
-    concat23(
-        translationV23(m || [], p, im), im,
-        scaleS23([], sx, sy),
-        translationS23([], -p[0], -p[1])
-    );
+export const scaleWithCenter23 =
+    (m: Mat, p: ReadonlyVec, sx: number, sy: number, im = 0) =>
+        concat23(
+            translationV23(m || [], p, im), im,
+            scaleS23([], sx, sy),
+            translationS23([], -p[0], -p[1])
+        );
 
-export const translationV23 = (m: Mat, v: ReadonlyVec, i = 0) =>
-    translationS23(m, v[0], v[1], i);
+export const translationV23 =
+    (m: Mat, v: ReadonlyVec, i = 0) =>
+        translationS23(m, v[0], v[1], i);
 
-export const translationS23 = (m: Mat, x: number, y: number, i = 0) =>
-    setS23(m || [], 1, 0, 0, 1, x, y, i);
+export const translationS23 =
+    (m: Mat, x: number, y: number, i = 0) =>
+        setS23(m || [], 1, 0, 0, 1, x, y, i);
 
-export const shearX23 = (m: Mat, x: number, i = 0) =>
-    setS23(m || [], 1, 0, x, 1, 0, 0, i);
+export const shearX23 =
+    (m: Mat, x: number, i = 0) =>
+        setS23(m || [], 1, 0, x, 1, 0, 0, i);
 
-export const shearY23 = (m: Mat, y: number, i = 0) =>
-    setS23(m || [], 1, y, 0, 1, 0, 0, i);
+export const shearY23 =
+    (m: Mat, y: number, i = 0) =>
+        setS23(m || [], 1, y, 0, 1, 0, 0, i);
 
-export const skewX23 = (m: Mat, theta: number, i = 0) =>
-    shearX23(m, Math.tan(theta), i);
+export const skewX23 =
+    (m: Mat, theta: number, i = 0) =>
+        shearX23(m, Math.tan(theta), i);
 
-export const skewY23 = (m: Mat, theta: number, i = 0) =>
-    shearY23(m, Math.tan(theta), i);
+export const skewY23 =
+    (m: Mat, theta: number, i = 0) =>
+        shearY23(m, Math.tan(theta), i);
 
-export const mul23 = (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) =>
-    setS23(
-        a,
-        dot2(a, b, ia, ib, 2),
-        dot2(a, b, ia + 1, ib, 2),
-        dot2(a, b, ia, ib + 2, 2),
-        dot2(a, b, ia + 1, ib + 2, 2),
-        dot2(a, b, ia, ib + 4, 2) + a[ia + 4],
-        dot2(a, b, ia + 1, ib + 4, 2) + a[ia + 5],
-        ia
-    );
+export const mul23 =
+    (a: Mat, b: ReadonlyMat, ia = 0, ib = 0) =>
+        setS23(
+            a,
+            dot2(a, b, ia, ib, 2),
+            dot2(a, b, ia + 1, ib, 2),
+            dot2(a, b, ia, ib + 2, 2),
+            dot2(a, b, ia + 1, ib + 2, 2),
+            dot2(a, b, ia, ib + 4, 2) + a[ia + 4],
+            dot2(a, b, ia + 1, ib + 4, 2) + a[ia + 5],
+            ia
+        );
 
-export const concat23 = (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat, number])[]) =>
-    <Mat>xs.reduce(
-        (acc: Mat, x) => isArrayLike(x[0]) ?
-            mul23(acc, <ReadonlyMat>x[0], ia, <number>x[1]) :
-            mul23(acc, <ReadonlyMat>x, ia),
-        a
-    );
+export const concat23 =
+    (a: Mat, ia: number, ...xs: (ReadonlyMat | [ReadonlyMat, number])[]) =>
+        <Mat>xs.reduce(
+            (acc: Mat, x) => isArrayLike(x[0]) ?
+                mul23(acc, <ReadonlyMat>x[0], ia, <number>x[1]) :
+                mul23(acc, <ReadonlyMat>x, ia),
+            a
+        );
 
-export const mulV23 = (v: Vec, m: ReadonlyMat, im = 0) =>
-    setS(
-        v,
-        dot2(m, v, im, 0, 2) + m[im + 4],
-        dot2(m, v, im + 1, 0, 2) + m[im + 5],
-    );
+export const mulV23 =
+    (v: Vec, m: ReadonlyMat, im = 0) =>
+        setS(
+            v,
+            dot2(m, v, im, 0, 2) + m[im + 4],
+            dot2(m, v, im + 1, 0, 2) + m[im + 5],
+        );
 
-export const det23 = (m: ReadonlyMat, i = 0) =>
-    cross2(m, m, i, i + 1, 2, 2);
+export const det23 =
+    (m: ReadonlyMat, i = 0) =>
+        cross2(m, m, i, i + 1, 2, 2);
 
-export const invert23 = (m: Mat, i = 0) => {
-    const m00 = m[i];
-    const m01 = m[i + 1];
-    const m10 = m[i + 2];
-    const m11 = m[i + 3];
-    const m20 = m[i + 4];
-    const m21 = m[i + 5];
-    let det = m00 * m11 - m01 * m10;
-    if (!det) {
-        return;
+export const invert23 =
+    (m: Mat, i = 0) => {
+        const m00 = m[i];
+        const m01 = m[i + 1];
+        const m10 = m[i + 2];
+        const m11 = m[i + 3];
+        const m20 = m[i + 4];
+        const m21 = m[i + 5];
+        let det = m00 * m11 - m01 * m10;
+        if (!det) {
+            return;
+        }
+        det = 1.0 / det;
+        return setS23(
+            m,
+            m11 * det,
+            -m01 * det,
+            -m10 * det,
+            m00 * det,
+            (m10 * m21 - m11 * m20) * det,
+            (m01 * m20 - m00 * m21) * det,
+            i
+        );
     }
-    det = 1.0 / det;
-    return setS23(
-        m,
-        m11 * det,
-        -m01 * det,
-        -m10 * det,
-        m00 * det,
-        (m10 * m21 - m11 * m20) * det,
-        (m01 * m20 - m00 * m21) * det,
-        i
-    );
-}
 
 export class Mat23 extends NDArray2<number> {
 

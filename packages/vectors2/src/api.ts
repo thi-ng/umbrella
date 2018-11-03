@@ -14,12 +14,13 @@ import { EPS } from "@thi.ng/math/api";
 import { genCommonDefaults } from "./internal/codegen";
 import { eqDelta as _eqDelta } from "./internal/equiv";
 import { vop } from "./internal/ops";
-import { VecPool } from "./pool";
 
 // suffix convention:
 // V = vector arg
 // N = numeric / scalar arg
-// Ro = readonly
+// O = optional arg
+// New = immutable op (w/ output vector)
+// Ro = readonly op
 
 export type VecOpV<T> = (a: Vec, ...xs: any[]) => T;
 export type VecOpVO<T, O> = (a: Vec, o?: O, ...xs: any[]) => T;
@@ -204,14 +205,6 @@ export type Vec2Coord = 0 | 1;
 export type Vec3Coord = 0 | 1 | 2;
 export type Vec4Coord = 0 | 1 | 2 | 3;
 
-let POOL: IVecPool;
-
-export const getPool = () => POOL;
-export const usePool = (pool: VecPool) => (POOL = pool);
-
-export const vec = (n: number) =>
-    POOL ? POOL.malloc(n) : zeroes(n);
-
 export const set: MultiVecOpVV<Vec> = vop();
 export const setN: MultiVecOpVN<Vec> = vop();
 export const setS: MultiVecOpV<Vec> = vop();
@@ -227,7 +220,7 @@ export const empty: MultiVecOpRoV<Vec> = vop();
 empty.default((v) =>
     implementsFunction(v, "empty") ?
         (<any>v).empty() :
-        vec(v.length)
+        zeroes(v.length)
 );
 
 export const zero = (a: Vec) => setN(a, 0);

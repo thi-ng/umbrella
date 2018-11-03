@@ -1,9 +1,11 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { equiv } from "@thi.ng/equiv";
+import { equiv, equivArrayLike } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { EPS } from "@thi.ng/math/api";
+import { Stringer } from "@thi.ng/strings/api";
 import { floatFixedWidth } from "@thi.ng/strings/float";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { truncate } from "@thi.ng/strings/truncate";
@@ -69,8 +71,9 @@ export class NDArray1<T> implements
     equiv(o: any) {
         return this === o ||
             (isArrayLike(o) &&
+                isIterable(o) &&
                 this.length === o.length &&
-                equiv([...this], o));
+                equivArrayLike([...this], [...o]));
     }
 
     eqDelta(o: NDArray1<T>, eps = EPS) {
@@ -205,7 +208,7 @@ export class NDArray2<T> implements
         return this === o ||
             (o instanceof NDArray2 &&
                 equiv(this.shape, o.shape) &&
-                equiv([...this], [...<any>o]));
+                equivArrayLike([...this], [...<any>o]));
     }
 
     eqDelta(o: NDArray2<T>, eps = EPS) {
@@ -372,7 +375,7 @@ export class NDArray3<T> implements
         return this === o ||
             (o instanceof NDArray3 &&
                 equiv(this.shape, o.shape) &&
-                equiv([...this], [...<any>o]));
+                equivArrayLike([...this], [...<any>o]));
     }
 
     eqDelta(o: NDArray3<T>, eps = EPS) {
@@ -545,12 +548,21 @@ const pick = (
     return o;
 };
 
-const ff = floatFixedWidth(9, 4);
-const pad = padLeft(9);
-const trunc = truncate(9);
+let formatNumber: Stringer<number>;
+let pad: Stringer<string>;
+let trunc: Stringer<string>;
 
 const format =
     (x: any) =>
         isNumber(x) ?
-            ff(x) :
+            formatNumber(x) :
             trunc(pad(x.toString()));
+
+export const setFormat =
+    (width: number, prec: number) => {
+        formatNumber = floatFixedWidth(width, prec);
+        pad = padLeft(width);
+        trunc = truncate(width);
+    };
+
+setFormat(9, 4);

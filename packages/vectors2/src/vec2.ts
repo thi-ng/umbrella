@@ -2,8 +2,9 @@ import { Comparator } from "@thi.ng/api";
 import { EPS, HALF_PI, PI } from "@thi.ng/math/api";
 import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
 import { max2id, min2id } from "@thi.ng/math/interval";
-import { declareIndices } from "./internal/accessors";
+import { mixBilinear } from "@thi.ng/math/mix";
 import { AVec } from "./avec";
+import { declareIndices } from "./internal/accessors";
 import { genCommon } from "./internal/codegen";
 import {
     magSq,
@@ -298,3 +299,15 @@ export const bisect2: VecOpRoVV<number> = (a, b) => {
     const theta = (headingXY(a) + headingXY(b)) / 2;
     return theta <= HALF_PI ? theta : PI - theta;
 };
+
+export const mixBilinear2 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    d: ReadonlyVec,
+    u: number, v: number,
+    out: Vec = []) => (
+        out[0] = mixBilinear(a[0], b[0], c[0], d[0], u, v),
+        out[1] = mixBilinear(a[1], b[1], c[1], d[1], u, v),
+        out
+    );

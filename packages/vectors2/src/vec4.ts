@@ -2,8 +2,9 @@ import { Comparator } from "@thi.ng/api/api";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
 import { max4id, min4id } from "@thi.ng/math/interval";
-import { declareIndices } from "./internal/accessors";
+import { mixBilinear } from "@thi.ng/math/mix";
 import { AVec } from "./avec";
+import { declareIndices } from "./internal/accessors";
 import { genCommon } from "./internal/codegen";
 import {
     magSq,
@@ -73,6 +74,7 @@ export class Vec4 extends AVec implements
             buf[start] = v[0];
             buf[start + cstride] = v[1];
             buf[start + 2 * cstride] = v[2];
+            buf[start + 3 * cstride] = v[3];
             start += estride;
         }
         return buf;
@@ -108,7 +110,7 @@ export class Vec4 extends AVec implements
     }
 
     copy() {
-        return new Vec4([this.x, this.y, this.z]);
+        return new Vec4([this.x, this.y, this.z, this.w]);
     }
 
     empty() {
@@ -120,11 +122,11 @@ export class Vec4 extends AVec implements
     }
 
     toJSON() {
-        return [this.x, this.y, this.z];
+        return [this.x, this.y, this.z, this.w];
     }
 
     toString() {
-        return `[${this.x}, ${this.y}, ${this.z}]`;
+        return `[${this.x}, ${this.y}, ${this.z}, ${this.w}]`;
     }
 }
 
@@ -271,3 +273,17 @@ export const comparator4 =
                     ay < by ? -2 : 2 :
                 ax < bx ? -1 : 1;
         };
+
+export const mixBilinear4 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    d: ReadonlyVec,
+    u: number, v: number,
+    out: Vec = []) => (
+        out[0] = mixBilinear(a[0], b[0], c[0], d[0], u, v),
+        out[1] = mixBilinear(a[1], b[1], c[1], d[1], u, v),
+        out[2] = mixBilinear(a[2], b[2], c[2], d[2], u, v),
+        out[3] = mixBilinear(a[3], b[3], c[3], d[3], u, v),
+        out
+    );
