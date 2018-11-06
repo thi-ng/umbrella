@@ -4,7 +4,6 @@ import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
 import {
     COMMENT,
     NO_SPANS,
@@ -12,6 +11,7 @@ import {
     VOID_TAGS
 } from "./api";
 import { css } from "./css";
+import { derefContext } from "./deref";
 import { escape } from "./escape";
 
 /**
@@ -70,6 +70,11 @@ import { escape } from "./escape";
  * as arguments when that function is called. The return value the
  * function MUST be a valid new tree (or `undefined`).
  *
+ * If the `ctx` object is given a shallow copy is passed to component
+ * fns and any context keys with values implementing the thi.ng/api
+ * `IDeref` interface, will be automatically deref'd prior to
+ * serialization.
+ *
  * ```js
  * const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
  *
@@ -118,7 +123,7 @@ import { escape } from "./escape";
  * @param keys attach key attribs
  */
 export const serialize = (tree: any, ctx?: any, escape = false, span = false, keys = span, path = [0]) =>
-    _serialize(tree, ctx, escape, span, keys, path);
+    _serialize(tree, derefContext(ctx), escape, span, keys, path);
 
 const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: boolean, path: any[]) => {
     if (tree == null) {
