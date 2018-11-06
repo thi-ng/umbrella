@@ -1,8 +1,9 @@
 import { Vec2Like } from "./api";
 import { ff } from "./format";
 
-export const rect = (p: Vec2Like, width: number, height: number, attribs?: any) =>
-    roundedRect(p, width, height, 0, 0, attribs);
+export const rect =
+    (p: Vec2Like, width: number, height: number, attribs?: any) =>
+        roundedRect(p, width, height, 0, 0, attribs);
 
 export const roundedRect = (
     p: Vec2Like,
