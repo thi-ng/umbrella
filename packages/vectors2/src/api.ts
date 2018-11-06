@@ -127,6 +127,18 @@ export interface INDArray<T> extends
     transpose(...args: number[]): INDArray<T>;
 }
 
+export interface IMatrix<T> extends
+    Vec,
+    ICopy<T>,
+    IEqualsDelta<T> {
+
+    mul(m: Readonly<T>): T;
+    mulV(v: ReadonlyVec, out?: Vec): Vec;
+
+    identity(): T;
+    invert(): T;
+}
+
 export interface IVecPool extends IRelease {
 
     malloc(size: number, type?: Type): Vec;

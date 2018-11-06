@@ -1,8 +1,21 @@
-export const declareIndices = (proto: any, props: string[], numeric = true) => {
-    const get = (i: number) => function () { return this.buf[this.i + i * this.s]; };
-    const set = (i: number) => function (n: number) { this.buf[this.i + i * this.s] = n; };
+export const declareIndices = (
+    proto: any,
+    props: string[],
+    strided = true,
+    defNumeric = true) => {
+
+    const get = (i: number) =>
+        strided ?
+            function () { return this.buf[this.i + i * this.s]; } :
+            function () { return this.buf[this.i + i]; };
+
+    const set = (i: number) =>
+        strided ?
+            function (n: number) { this.buf[this.i + i * this.s] = n; } :
+            function (n: number) { this.buf[this.i + i] = n; };
+
     props.forEach((id, i) => {
-        numeric && Object.defineProperty(proto, i, {
+        defNumeric && Object.defineProperty(proto, i, {
             get: get(i),
             set: set(i),
             enumerable: true,

@@ -3,12 +3,14 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { DEG2RAD } from "@thi.ng/math/api";
 import {
     copy,
+    IMatrix,
     Mat,
     normalize,
     ReadonlyMat,
     ReadonlyVec,
     Vec
-} from "./api";
+    } from "./api";
+import { declareIndices } from "./internal/accessors";
 import { iterator } from "./internal/iterator";
 import {
     dot3,
@@ -16,7 +18,7 @@ import {
     set3,
     setS3,
     setS4
-} from "./internal/matrix";
+    } from "./internal/matrix";
 import { Mat33 } from "./mat33";
 import { NDArray2 } from "./nd";
 import { cross3, sub3 } from "./vec3";
@@ -260,9 +262,9 @@ export const mulV344 =
         );
 
 export const mulV44 =
-    (v: Vec, m: ReadonlyMat, im = 0) =>
+    (v: ReadonlyVec, m: ReadonlyMat, out: Vec = [], im = 0) =>
         setS4(
-            v,
+            out,
             dot4(m, v, im, 0, 4),
             dot4(m, v, im + 1, 0, 4),
             dot4(m, v, im + 2, 0, 4),
@@ -418,7 +420,8 @@ export const mat44to33 =
         m33
     );
 
-export class Mat44 extends NDArray2<number> {
+export class Mat44 extends NDArray2<number> implements
+    IMatrix<Mat44> {
 
     static identity() {
         return new Mat44(identity44());
@@ -484,6 +487,8 @@ export class Mat44 extends NDArray2<number> {
         );
     }
 
+    [id: number]: number;
+
     constructor(buf?: Mat, i = 0) {
         super(buf || (new Array(16).fill(0)), [4, 4], [1, 4], i);
     }
@@ -535,9 +540,8 @@ export class Mat44 extends NDArray2<number> {
         return v;
     }
 
-    mulV(v: Vec) {
-        mulV44(v, this.buf, this.i);
-        return v;
+    mulV(v: ReadonlyVec, out?: Vec) {
+        return mulV44(v, this.buf, out, this.i);
     }
 
     determinant() {
@@ -566,3 +570,14 @@ export class Mat44 extends NDArray2<number> {
         return m;
     }
 }
+
+declareIndices(
+    Mat44.prototype,
+    [
+        "m00", "m01", "m02", "m03",
+        "m10", "m11", "m12", "m13",
+        "m20", "m21", "m22", "m23",
+        "m30", "m31", "m32", "m33"
+    ],
+    false
+);

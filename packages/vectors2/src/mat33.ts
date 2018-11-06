@@ -1,15 +1,21 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import {
+    IMatrix,
     Mat,
     ReadonlyMat,
     ReadonlyVec,
-    setS,
     Vec
-} from "./api";
+    } from "./api";
+import { declareIndices } from "./internal/accessors";
 import { iterator } from "./internal/iterator";
+import {
+    dot3,
+    set3,
+    setS3,
+    setS4
+    } from "./internal/matrix";
 import { NDArray2 } from "./nd";
-import { dot3, set3, setS3, setS4 } from "./internal/matrix";
 
 export const get33 =
     (a: Mat, i = 0) =>
@@ -154,9 +160,9 @@ export const concat33 =
         );
 
 export const mulV33 =
-    (v: Vec, m: ReadonlyMat, im = 0) =>
-        setS(
-            v,
+    (v: Vec, m: ReadonlyMat, out: Vec = [], im = 0) =>
+        setS3(
+            out,
             dot3(m, v, im, 0, 3),
             dot3(m, v, im + 1, 0, 3),
             dot3(m, v, im + 2, 0, 3),
@@ -233,7 +239,8 @@ export const mat33to44 =
         m44
     );
 
-export class Mat33 extends NDArray2<number> {
+export class Mat33 extends NDArray2<number> implements
+    IMatrix<Mat33> {
 
     static identity() {
         return new Mat33(identity33());
@@ -269,6 +276,7 @@ export class Mat33 extends NDArray2<number> {
         );
     }
 
+    [id: number]: number;
 
     constructor(buf?: Mat, i = 0) {
         super(buf || [0, 0, 0, 0, 0, 0, 0, 0, 0], [3, 3], [1, 3], i);
@@ -308,9 +316,8 @@ export class Mat33 extends NDArray2<number> {
         return this;
     }
 
-    mulV(v: Vec) {
-        mulV33(v, this.buf, this.i);
-        return v;
+    mulV(v: ReadonlyVec, out?: Vec) {
+        return mulV33(v, this.buf, out, this.i);
     }
 
     determinant() {
@@ -327,3 +334,9 @@ export class Mat33 extends NDArray2<number> {
         return this;
     }
 }
+
+declareIndices(
+    Mat33.prototype,
+    ["m00", "m01", "m02", "m10", "m11", "m12", "m20", "m21", "m22"],
+    false
+);

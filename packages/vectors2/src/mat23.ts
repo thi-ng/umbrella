@@ -1,15 +1,17 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import {
+    IMatrix,
     Mat,
     ReadonlyMat,
     ReadonlyVec,
-    setS,
     Vec
-} from "./api";
+    } from "./api";
+import { declareIndices } from "./internal/accessors";
 import { iterator } from "./internal/iterator";
 import { cross2, dot2 } from "./internal/matrix";
 import { NDArray2 } from "./nd";
+import { setS2 } from "./vec2";
 
 export const get23 =
     (a: Mat, i = 0) =>
@@ -142,9 +144,9 @@ export const concat23 =
         );
 
 export const mulV23 =
-    (v: Vec, m: ReadonlyMat, im = 0) =>
-        setS(
-            v,
+    (v: ReadonlyVec, m: ReadonlyMat, out: Vec = [], im = 0) =>
+        setS2(
+            out,
             dot2(m, v, im, 0, 2) + m[im + 4],
             dot2(m, v, im + 1, 0, 2) + m[im + 5],
         );
@@ -178,7 +180,8 @@ export const invert23 =
         );
     }
 
-export class Mat23 extends NDArray2<number> {
+export class Mat23 extends NDArray2<number> implements
+    IMatrix<Mat23> {
 
     static identity() {
         return new Mat23(identity23());
@@ -240,6 +243,8 @@ export class Mat23 extends NDArray2<number> {
         );
     }
 
+    [id: number]: number;
+
     constructor(buf?: Mat, i = 0) {
         super(buf || [0, 0, 0, 0, 0, 0], [2, 3], [1, 2], i);
     }
@@ -276,8 +281,8 @@ export class Mat23 extends NDArray2<number> {
         return this;
     }
 
-    mulV(v: Vec) {
-        return mulV23(v, this.buf, this.i);
+    mulV(v: ReadonlyVec, out?: Vec) {
+        return mulV23(v, this.buf, out, this.i);
     }
 
     determinant() {
@@ -289,3 +294,9 @@ export class Mat23 extends NDArray2<number> {
         return this;
     }
 }
+
+declareIndices(
+    Mat23.prototype,
+    ["m00", "m01", "m10", "m11", "m20", "m21"],
+    false
+);
