@@ -17,6 +17,8 @@ export function group(attribs?: Attribs, ...children: IShape[]) {
 implementations(
     Type.GROUP,
 
+    null,
+
     area,
     (g: Group2) => area(bounds(g)),
 

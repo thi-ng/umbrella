@@ -1,4 +1,4 @@
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import {
     addNew,
     copy,
@@ -53,19 +53,14 @@ export function rect(pos: Vec, size: Vec, attribs?: Attribs) {
 export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
     Rect2.fromMinMax(min, max, attribs);
 
-const type = Type.RECT2;
+implementations(
+    Type.RECT2,
 
-relations(
-    type,
     {
         [Type.POLYGON2]: [
             resample,
         ]
-    }
-);
-
-implementations(
-    type,
+    },
 
     area,
     (rect: Rect2) => rect.size[0] * rect.size[1],

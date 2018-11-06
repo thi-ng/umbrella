@@ -1,5 +1,5 @@
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import {
     addNew,
     ReadonlyVec,
@@ -46,10 +46,9 @@ export function polyline(points: Vec[], attribs?: Attribs): Polyline2 {
     return new Polyline2(points, attribs);
 }
 
-const type = Type.POLYLINE2;
+implementations(
+    Type.POLYLINE2,
 
-relations(
-    type,
     {
         [Type.POINTS2]: [
             bounds,
@@ -57,11 +56,7 @@ relations(
             convexHull,
             flip
         ],
-    }
-);
-
-implementations(
-    type,
+    },
 
     asCubic,
     (line: Polyline2) =>

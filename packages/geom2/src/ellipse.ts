@@ -39,6 +39,8 @@ export function ellipse(pos: Vec, r = ones(2), attribs?: Attribs): Ellipse2 {
 implementations(
     Type.ELLIPSE2,
 
+    null,
+
     area,
     (ellipse: Ellipse2) => PI * ellipse.r[0] * ellipse.r[1],
 

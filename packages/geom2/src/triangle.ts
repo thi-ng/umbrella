@@ -1,4 +1,4 @@
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import { PI } from "@thi.ng/math/api";
 import {
     add,
@@ -45,10 +45,9 @@ export const equilateralTriangle = (a: Vec, b: Vec) => {
     return new Triangle2([a, b, maddN(c, dir, 0.5)]);
 };
 
-const type = Type.TRIANGLE2;
+implementations(
+    Type.TRIANGLE2,
 
-relations(
-    type,
     {
         [Type.POINTS2]: [
             bounds,
@@ -61,11 +60,7 @@ relations(
             tessellate,
             vertices,
         ]
-    }
-);
-
-implementations(
-    type,
+    },
 
     area,
     (tri: Triangle2, signed = true) => {

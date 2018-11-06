@@ -58,6 +58,8 @@ export const circleFrom3Points =
 implementations(
     Type.CIRCLE2,
 
+    null,
+
     area,
     (circle: Circle2) => PI * circle.r * circle.r,
 

@@ -1,4 +1,4 @@
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import {
     dist,
     mixNewN,
@@ -42,10 +42,9 @@ export function line(a: Vec, b: Vec, attribs?: Attribs) {
 export const lineNormal = (a: ReadonlyVec, b: ReadonlyVec, out?: Vec) =>
     subNew(b, a, out);
 
-const type = Type.LINE2;
+implementations(
+    Type.LINE2,
 
-relations(
-    type,
     {
         [Type.POINTS2]: [
             flip,
@@ -54,11 +53,7 @@ relations(
             resample,
             vertices,
         ],
-    }
-);
-
-implementations(
-    type,
+    },
 
     asCubic,
     (line: Line2) =>

@@ -165,6 +165,8 @@ export const pathFromSVG = (svg: string) => {
 implementations(
     Type.PATH2,
 
+    null,
+
     asCubic,
     (path: Path2) =>
         [...mapcat(

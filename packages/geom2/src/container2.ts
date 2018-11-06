@@ -27,6 +27,8 @@ export function points(points: Vec[], attribs?: Attribs) {
 implementations(
     Type.POINTS2,
 
+    null,
+
     bounds,
     (pc: PointContainer) =>
         Rect2.fromMinMax(..._bounds(pc.points, [...Vec2.MAX], [...Vec2.MIN])),

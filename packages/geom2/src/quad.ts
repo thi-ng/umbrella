@@ -1,4 +1,4 @@
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import { addNew, ReadonlyVec, Vec } from "@thi.ng/vectors2/api";
 import { Mat23 } from "@thi.ng/vectors2/mat23";
 import { mixBilinear2 } from "@thi.ng/vectors2/vec2";
@@ -29,10 +29,9 @@ export function quad(points: Vec[], attribs?: Attribs): Quad2 {
     return new Quad2(points, attribs);
 }
 
-const type = Type.QUAD2;
+implementations(
+    Type.QUAD2,
 
-relations(
-    type,
     {
         [Type.POINTS2]: [
             bounds,
@@ -49,11 +48,7 @@ relations(
             tessellate,
             vertices,
         ],
-    }
-);
-
-implementations(
-    type,
+    },
 
     transform,
     (quad: Quad2, mat: Mat23) =>

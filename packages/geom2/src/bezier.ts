@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import { clamp01 } from "@thi.ng/math/interval";
 import { mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math/mix";
 import {
@@ -112,17 +112,14 @@ const cubicAxisBounds = (pa: number, pb: number, pc: number, pd: number) => {
     return [l, h];
 };
 
-relations(
+implementations(
     Type.CUBIC2,
+
     {
         [Type.POINTS2]: [
             flip,
         ]
-    }
-);
-
-implementations(
-    Type.CUBIC2,
+    },
 
     asCubic,
     (curve: Cubic2) => [curve],
@@ -199,17 +196,14 @@ implementations(
     }
 );
 
-relations(
+implementations(
     Type.QUADRATIC2,
+
     {
         [Type.POINTS2]: [
             flip,
         ]
-    }
-);
-
-implementations(
-    Type.QUADRATIC2,
+    },
 
     asCubic,
     (curve: Quadratic2) => {

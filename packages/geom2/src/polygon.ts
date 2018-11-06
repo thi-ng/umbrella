@@ -1,5 +1,5 @@
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { implementations, relations } from "@thi.ng/defmulti";
+import { implementations } from "@thi.ng/defmulti";
 import { TAU } from "@thi.ng/math/api";
 import { Reducer } from "@thi.ng/transducers/api";
 import { cycle } from "@thi.ng/transducers/iter/cycle";
@@ -109,10 +109,9 @@ export const convexity = (poly: Polygon2) => {
         type !== 0 ? Convexity.CONVEX : Convexity.COLINEAR;
 };
 
-const type = Type.POLYGON2;
+implementations(
+    Type.POLYGON2,
 
-relations(
-    type,
     {
         [Type.POINTS2]: [
             bounds,
@@ -120,11 +119,7 @@ relations(
             flip,
             vertices
         ]
-    }
-);
-
-implementations(
-    type,
+    },
 
     area,
     (poly: Polygon2, signed = true) => {

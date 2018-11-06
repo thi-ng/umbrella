@@ -27,6 +27,9 @@ import {
     Vec
 } from "@thi.ng/vectors2/api";
 import { Vec2 } from "@thi.ng/vectors2/vec2";
+import "./bezier";
+import { bounds as _bounds } from "./internal/bounds";
+import { Sampler } from "./internal/sampler";
 import {
     Arc2,
     asCubic,
@@ -41,9 +44,6 @@ import {
     Type,
     vertices,
 } from "./api";
-import "./bezier";
-import { bounds as _bounds } from "./internal/bounds";
-import { Sampler } from "./internal/sampler";
 
 export function arc(pos: Vec, r: Vec, axis: number, start: number, end: number, xl: boolean, clockwise: boolean, attribs?: Attribs): Arc2 {
     return new Arc2(pos, r, axis, start, end, xl, clockwise, attribs);
@@ -95,6 +95,8 @@ export function arcFrom2Points(
 
 implementations(
     Type.ARC2,
+
+    null,
 
     asCubic,
     (arc: Arc2) => {
