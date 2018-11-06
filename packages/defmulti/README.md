@@ -43,7 +43,8 @@ return type) and the generics will also apply to all implementations. If
 more than 8 args are required, `defmulti` will fall back to an untyped
 varargs solution.
 
-The function returned by `defmulti` can be called like any other function, but also exposes the following operations:
+The function returned by `defmulti` can be called like any other
+function, but also exposes the following operations:
 
 - `.add(id, fn)` - adds new implementation for given dispatch value
 - `.remove(id)` - removes implementation for dispatch value
@@ -122,32 +123,59 @@ foo.rels();
 
 ### implementations()
 
-Intended for multi-methods sharing same dispatch values / logic.
-Takes a dispatch value and a number of multi-methods, each with an
-implementation for the given dispatch value. Then for each
-multi-method associates the related implementation with the given
-dispatch value.
+Syntax-sugar intended for sets of multi-methods sharing same dispatch
+values / logic. Takes a dispatch value, an object of "is-a"
+relationships and a number of multi-methods, each with an implementation
+for the given dispatch value.
+
+The relations object has dispatch values (parents) as keys and arrays of
+multi-methods as their values. For each multi-method associates the
+given `type` with the related parent dispatch value to delegate to its
+implementation (see `.isa()` above).
+
+The remaining implementations are associated with their related
+multi-method and the given `type` dispatch value.
 
 ```ts
-const dispatch = (x) => x.id;
+foo = defmulti((x) => x.id);
+bar = defmulti((x) => x.id);
+bax = defmulti((x) => x.id);
+baz = defmulti((x) => x.id);
 
-const foo = defmulti(dispatch);
-const bar = defmulti(dispatch);
-
-// batch define implementations for dispatch value "a"
+// define impls for dispatch value `a`
 implementations(
-    "a",
+  "a",
 
-    foo,
-    (x) => `foo: ${x.val}`,
+  // delegate bax & baz impls to dispatch val `b`
+  {
+     b: [bax, baz]
+  },
 
-    bar,
-    (x) => `bar: ${x.val.toUpperCase()}`
+  // concrete multi-fn impls
+  foo,
+  (x) => `foo: ${x.val}`,
+  bar,
+  (x) => `bar: ${x.val.toUpperCase()}`
 );
+
+// some parent impls for bax & baz
+bax.add("b", (x) => `bax: ${x.id}`);
+baz.add("c", (x) => `baz: ${x.id}`);
+
+// delegate to use "c" impl for "b"
+baz.isa("b", "c");
 
 foo({ id: "a", val: "alice" }); // "foo: alice"
 bar({ id: "a", val: "alice" }); // "bar: ALICE"
+bax({ id: "a", val: "alice" }); // "bax: a"
+baz({ id: "a", val: "alice" }); // "baz: a"
+
+baz.impls(); // Set { "c", "a", "b" }
 ```
+
+Also see the WIP package
+[@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2)
+for a concreate realworld usage example.
 
 ### defmultiN()
 
