@@ -1,5 +1,5 @@
 import { Vec } from "@thi.ng/vectors2/api";
-import { corner } from "./corner";
+import { signedArea } from "./corner";
 import { comparator2 } from "@thi.ng/vectors2/vec2";
 
 /**
@@ -18,7 +18,7 @@ export const grahamScan2 =
         pts = pts.slice().sort(comparator2(0, 1));
 
         const scan = (p: Vec, thresh: number) => {
-            while (h >= thresh && corner(res[h - 2], res[h - 1], p) >= 0) {
+            while (h >= thresh && signedArea(res[h - 2], res[h - 1], p) >= 0) {
                 res.pop();
                 h--;
             }

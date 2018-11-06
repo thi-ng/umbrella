@@ -2,7 +2,12 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { implementations } from "@thi.ng/defmulti";
 import { sincos } from "@thi.ng/math/angle";
-import { EPS, HALF_PI, PI, TAU } from "@thi.ng/math/api";
+import {
+    EPS,
+    HALF_PI,
+    PI,
+    TAU
+} from "@thi.ng/math/api";
 import { fit01 } from "@thi.ng/math/fit";
 import { inRange } from "@thi.ng/math/interval";
 import { roundEps } from "@thi.ng/math/prec";
@@ -11,11 +16,21 @@ import { push } from "@thi.ng/transducers/rfn/push";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
-import { add, magSq, Vec, ReadonlyVec, abs, mulN, subNew, angleBetween } from "@thi.ng/vectors2/api";
+import {
+    abs,
+    add,
+    angleBetween,
+    magSq,
+    mulN,
+    ReadonlyVec,
+    subNew,
+    Vec
+} from "@thi.ng/vectors2/api";
 import { Vec2 } from "@thi.ng/vectors2/vec2";
 import {
     Arc2,
     asCubic,
+    Attribs,
     bounds,
     centroid,
     Cubic2,
@@ -24,9 +39,9 @@ import {
     Rect2,
     SamplingOpts,
     Type,
-    vertices,
-    Attribs
+    vertices
 } from "./api";
+import "./bezier";
 import { bounds as _bounds } from "./internal/bounds";
 import { Sampler } from "./internal/sampler";
 
@@ -82,15 +97,15 @@ implementations(
     Type.ARC2,
 
     asCubic,
-    (x: Arc2) => {
-        const p = x.pointAtTheta(x.start);
-        const q = x.pointAtTheta(x.end);
-        const [rx, ry] = x.r;
-        const [sphi, cphi] = sincos(x.axis);
+    (arc: Arc2) => {
+        const p = arc.pointAtTheta(arc.start);
+        const q = arc.pointAtTheta(arc.end);
+        const [rx, ry] = arc.r;
+        const [sphi, cphi] = sincos(arc.axis);
         const dx = cphi * (p[0] - q[0]) / 2 + sphi * (p[1] - q[1]) / 2;
         const dy = -sphi * (p[0] - q[0]) / 2 + cphi * (p[1] - q[1]) / 2;
-        if ((dx === 0 && dy === 0) || magSq(x.r) < EPS) {
-            return [Cubic2.fromLine(p, q, { ...x.attribs })];
+        if ((dx === 0 && dy === 0) || magSq(arc.r) < EPS) {
+            return [Cubic2.fromLine(p, q, { ...arc.attribs })];
         }
 
         const mapP = (x, y) => {
@@ -106,7 +121,7 @@ implementations(
         };
 
         const res: Cubic2[] = [];
-        const delta = x.end - x.start;
+        const delta = arc.end - arc.start;
         const n = Math.max(roundEps(Math.abs(delta) / HALF_PI), 1);
         // https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253
         const d = delta / n;
@@ -114,7 +129,7 @@ implementations(
         if (!isFinite(t)) {
             return [Cubic2.fromLine(p, q)];
         }
-        for (let i = n, theta = x.start; i > 0; i-- , theta += d) {
+        for (let i = n, theta = arc.start; i > 0; i-- , theta += d) {
             const [s1, c1] = sincos(theta);
             const [s2, c2] = sincos(theta + d);
             const curve = new Cubic2(
@@ -124,7 +139,7 @@ implementations(
                     mapP(c2 + s2 * t, s2 - c2 * t),
                     mapP(c2, s2),
                 ],
-                { ...x.attribs }
+                { ...arc.attribs }
             );
             res.push(curve);
         }
@@ -132,16 +147,16 @@ implementations(
     },
 
     bounds,
-    (x: Arc2) => {
+    (arc: Arc2) => {
         const pts = transduce(
-            map<number, Vec>(x.pointAtTheta.bind(x)),
+            map<number, Vec>(arc.pointAtTheta.bind(arc)),
             push(),
             [
-                x.start,
-                x.end,
+                arc.start,
+                arc.end,
                 // multiples of HALF_PI in arc range
                 ...filter(
-                    (t: number) => inRange(t, x.start, x.end),
+                    (t: number) => inRange(t, arc.start, arc.end),
                     range(-3 * PI, 3.01 * PI, HALF_PI)
                 )
             ]
@@ -150,22 +165,22 @@ implementations(
     },
 
     centroid,
-    (x: Arc2) => x.pos,
+    (arc: Arc2) => arc.pos,
 
     pointAt,
-    (x: Arc2, t: number) => x.pointAtTheta(fit01(t, x.start, x.end)),
+    (arc: Arc2, t: number) => arc.pointAtTheta(fit01(t, arc.start, arc.end)),
 
     vertices,
-    (x: Arc2, opts?: number | Partial<SamplingOpts>): Vec[] => {
+    (arc: Arc2, opts?: number | Partial<SamplingOpts>): Vec[] => {
         if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-            return new Sampler(vertices(x, (<any>opts).num || DEFAULT_SAMPLES))
+            return new Sampler(vertices(arc, (<any>opts).num || DEFAULT_SAMPLES))
                 .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
         }
         opts = isNumber(opts) ?
             { num: opts, last: true } :
             { num: DEFAULT_SAMPLES, ...opts };
-        const start = x.start;
-        let delta = x.end - start;
+        const start = arc.start;
+        let delta = arc.end - start;
         let num = opts.theta ?
             Math.round(delta / opts.theta) :
             opts.num;
@@ -173,7 +188,7 @@ implementations(
         opts.last !== false && num++;
         const pts: Vec[] = new Array(num);
         for (let i = 0, j = 0; i < num; i++ , j += 2) {
-            pts[i] = x.pointAtTheta(start + i * delta);
+            pts[i] = arc.pointAtTheta(start + i * delta);
         }
         return pts;
     }

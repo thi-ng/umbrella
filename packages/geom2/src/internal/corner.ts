@@ -1,8 +1,13 @@
 import { sign } from "@thi.ng/math/abs";
 import { EPS } from "@thi.ng/math/api";
-import { ReadonlyVec } from "@thi.ng/vectors2/api";
+import {
+    dot,
+    magSq,
+    mulNewN,
+    ReadonlyVec
+} from "@thi.ng/vectors2/api";
 
-export const corner =
+export const signedArea =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
         const ax = a[0];
         const ay = a[1];
@@ -11,20 +16,20 @@ export const corner =
 
 export const classify =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, eps = EPS) =>
-        sign(corner(a, b, c), eps);
+        sign(signedArea(a, b, c), eps);
 
 export const clockwise2 =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) =>
-        corner(a, b, c) < 0;
+        signedArea(a, b, c) < 0;
 
 export const classifyPointInTriangle2 =
     (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
         const s = clockwise2(a, b, c) ? 1 : -1;
         return sign(
             Math.min(
-                s * corner(a, c, p),
-                s * corner(b, a, p),
-                s * corner(c, b, p)
+                s * signedArea(a, c, p),
+                s * signedArea(b, a, p),
+                s * signedArea(c, b, p)
             )
         );
     };
@@ -32,7 +37,19 @@ export const classifyPointInTriangle2 =
 export const pointInTriangle2 =
     (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
         const s = clockwise2(a, b, c) ? 1 : -1;
-        return s * corner(a, c, p) >= 0 &&
-            s * corner(b, a, p) >= 0 &&
-            s * corner(c, b, p) >= 0;
+        return s * signedArea(a, c, p) >= 0 &&
+            s * signedArea(b, a, p) >= 0 &&
+            s * signedArea(c, b, p) >= 0;
     };
+
+/**
+ * Returns vector projection of `v` onto `dir`.
+ *
+ * https://en.wikipedia.org/wiki/Vector_projection
+ *
+ * @param dir
+ * @param v
+ */
+export const project =
+    (dir: ReadonlyVec, v: ReadonlyVec) =>
+        mulNewN(dir, dot(v, dir) / magSq(dir));

@@ -4,8 +4,11 @@ import {
     dist,
     mixNewN,
     ReadonlyVec,
-    Vec
+    Vec,
+    subNew,
+    normalize
 } from "@thi.ng/vectors2/api";
+import { VecPair } from "../api";
 
 export class Sampler {
 
@@ -43,8 +46,46 @@ export class Sampler {
         }
     }
 
+    segmentAt(t: number): VecPair {
+        let i = this.indexAt(t);
+        if (i === undefined) {
+            return;
+        }
+        i = Math.max(1, i);
+        return [this.points[i - 1], this.points[i]];
+    }
+
+    tangentAt(t: number, n = 1) {
+        const seg = this.segmentAt(t);
+        return seg ?
+            normalize(subNew(seg[1], seg[0]), n) :
+            undefined;
+    }
+
+    indexAt(t: number) {
+        const pts = this.points;
+        const n = pts.length - 1;
+        if (n < 0) {
+            return;
+        }
+        if (n === 0 || t <= 0) {
+            return 0;
+        }
+        if (t >= 1) {
+            return n;
+        }
+        const idx = this.index;
+        const t0 = t * idx[n];
+        for (let i = 1; i <= n; i++) {
+            if (idx[i] >= t0) {
+                return i;
+            }
+        }
+    }
+
     sampleUniform(dist: number, includeLast = false, result: Vec[] = []) {
         const index = this.index;
+        const pts = this.points;
         const total = peek(index);
         const delta = dist / total;
         const n = index.length;
@@ -53,10 +94,10 @@ export class Sampler {
             while (ct >= index[i] && i < n) { i++; }
             if (i >= n) break;
             const p = index[i - 1];
-            result.push(mixNewN(this.points[i - 1], this.points[i], (ct - p) / (index[i] - p)));
+            result.push(mixNewN(pts[i - 1], pts[i], (ct - p) / (index[i] - p)));
         }
         if (includeLast) {
-            result.push(copy(this.points[this.points.length - 1]));
+            result.push(copy(peek(pts)));
         }
         return result;
     }

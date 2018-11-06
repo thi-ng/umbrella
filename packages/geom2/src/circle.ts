@@ -1,18 +1,26 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { implementations } from "@thi.ng/defmulti";
-import { PI, TAU } from "@thi.ng/math/api";
+import { sign } from "@thi.ng/math/abs";
+import { EPS, PI, TAU } from "@thi.ng/math/api";
 import {
+    add,
+    addNew,
     cartesian,
+    copy,
     dist,
+    distSq,
     mixNewN,
+    mulN,
+    normalize,
     ReadonlyVec,
+    subNew,
     subNewN,
-    Vec,
-    mulN
+    Vec
 } from "@thi.ng/vectors2/api";
 import { circumCenter } from "./internal/circumcenter";
+import "./polygon";
 import {
-    arcLength,
+    perimeter,
     area,
     bounds,
     centroid,
@@ -21,9 +29,13 @@ import {
     Attribs,
     Rect2,
     vertices,
-    Polygon2,
-    asPolygon,
     DEFAULT_SAMPLES,
+    pointAt,
+    pointInside,
+    classifyPoint,
+    closestPoint,
+    translate,
+    center,
 } from "./api";
 
 export function circle(pos: Vec, r = 1, attribs?: Attribs): Circle2 {
@@ -46,27 +58,55 @@ implementations(
     Type.CIRCLE2,
 
     area,
-    (x: Circle2) => PI * x.r * x.r,
-
-    arcLength,
-    (x: Circle2) => TAU * x.r,
-
-    asPolygon,
-    (x: Circle2, opts) =>
-        new Polygon2(vertices(x, opts), { ...x.attribs }),
+    (circle: Circle2) => PI * circle.r * circle.r,
 
     bounds,
-    (x: Circle2) =>
-        new Rect2(subNewN(x.pos, x.r), mulN([2, 2], x.r)),
+    (circle: Circle2) =>
+        new Rect2(subNewN(circle.pos, circle.r), mulN([2, 2], circle.r)),
 
     centroid,
-    (x: Circle2) => x.pos,
+    (circle: Circle2) => copy(circle.pos),
+
+    center,
+    (circle: Circle2, origin?: ReadonlyVec) =>
+        new Circle2(
+            origin ? origin : [0, 0],
+            circle.r,
+            { ...circle.attribs }
+        ),
+
+    classifyPoint,
+    (circle: Circle2, p: ReadonlyVec, eps = EPS) =>
+        sign(circle.r - dist(circle.pos, p), eps),
+
+    closestPoint,
+    (circle: Circle2, p: ReadonlyVec) =>
+        add(normalize(subNew(p, circle.pos), circle.r), circle.pos),
+
+    perimeter,
+    (circle: Circle2) => TAU * circle.r,
+
+    pointAt,
+    (circle: Circle2, t: number) =>
+        cartesian([circle.r, TAU * t], circle.pos),
+
+    pointInside,
+    (circle: Circle2, p: ReadonlyVec) =>
+        distSq(circle.pos, p) <= circle.r * circle.r,
+
+    translate,
+    (circle: Circle2, delta: ReadonlyVec) =>
+        new Circle2(
+            addNew(circle.pos, delta),
+            circle.r,
+            { ...circle.attribs }
+        ),
 
     vertices,
-    (x: Circle2, opts = DEFAULT_SAMPLES) => {
+    (circle: Circle2, opts = DEFAULT_SAMPLES) => {
         const buf: Vec[] = [];
-        const pos = x.pos;
-        const r = x.r;
+        const pos = circle.pos;
+        const r = circle.r;
         let [num, last] = isNumber(opts) ?
             [opts, false] :
             [

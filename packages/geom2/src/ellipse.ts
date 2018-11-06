@@ -1,17 +1,20 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { implementations } from "@thi.ng/defmulti";
-import { sincos } from "@thi.ng/math/angle";
+import { cossin } from "@thi.ng/math/angle";
 import { PI, TAU } from "@thi.ng/math/api";
 import {
-    add,
-    mul,
+    addNew,
+    copy,
+    maddNew,
     mulNewN,
+    ones,
+    ReadonlyVec,
     subNew,
-    Vec,
-    ones
+    Vec
 } from "@thi.ng/vectors2/api";
+import "./polygon";
 import {
-    arcLength,
+    perimeter,
     area,
     bounds,
     centroid,
@@ -23,6 +26,9 @@ import {
     Polygon2,
     asPolygon,
     DEFAULT_SAMPLES,
+    pointAt,
+    center,
+    translate,
 } from "./api";
 
 export function ellipse(pos: Vec, r = ones(2), attribs?: Attribs): Ellipse2 {
@@ -33,31 +39,51 @@ implementations(
     Type.ELLIPSE2,
 
     area,
-    (x: Ellipse2) => PI * x.r[0] * x.r[1],
+    (ellipse: Ellipse2) => PI * ellipse.r[0] * ellipse.r[1],
 
-    arcLength,
-    (x: Ellipse2) => {
-        const a = x.r[0];
-        const b = x.r[1];
+    asPolygon,
+    (ellipse: Ellipse2, opts) =>
+        new Polygon2(vertices(ellipse, opts), { ...ellipse.attribs }),
+
+    bounds,
+    (ellipse: Ellipse2) =>
+        new Rect2(subNew(ellipse.pos, ellipse.r), mulNewN(ellipse.r, 2)),
+
+    centroid,
+    (ellipse: Ellipse2) => copy(ellipse.pos),
+
+    center,
+    (ellipse: Ellipse2, origin?: ReadonlyVec) =>
+        new Ellipse2(
+            origin ? origin : [0, 0],
+            copy(ellipse.r),
+            { ...ellipse.attribs }
+        ),
+
+    perimeter,
+    (ellipse: Ellipse2) => {
+        const a = ellipse.r[0];
+        const b = ellipse.r[1];
         return PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (3 * b + a)));
     },
 
-    asPolygon,
-    (x: Ellipse2, opts) =>
-        new Polygon2(vertices(x, opts), { ...x.attribs }),
+    pointAt,
+    (ellipse: Ellipse2, t: number) =>
+        maddNew(ellipse.pos, cossin(t * TAU), ellipse.r),
 
-    bounds,
-    (x: Ellipse2) =>
-        new Rect2(subNew(x.pos, x.r), mulNewN(x.r, 2)),
-
-    centroid,
-    (x: Ellipse2) => x.pos,
+    translate,
+    (ellipse: Ellipse2, delta: ReadonlyVec) =>
+        new Ellipse2(
+            addNew(ellipse.pos, delta),
+            ellipse.r,
+            { ...ellipse.attribs }
+        ),
 
     vertices,
-    (x: Ellipse2, opts = DEFAULT_SAMPLES) => {
+    (ellipse: Ellipse2, opts = DEFAULT_SAMPLES) => {
         const buf: Vec[] = [];
-        const pos = x.pos;
-        const r = x.r;
+        const pos = ellipse.pos;
+        const r = ellipse.r;
         let [num, last] = isNumber(opts) ?
             [opts, false] :
             [
@@ -69,7 +95,7 @@ implementations(
         const delta = TAU / num;
         last && num++;
         for (let i = 0; i < num; i++) {
-            buf[i] = add(mul(sincos(i * delta), r), pos);
+            buf[i] = maddNew(pos, cossin(i * delta), r);
         }
         return buf;
     }

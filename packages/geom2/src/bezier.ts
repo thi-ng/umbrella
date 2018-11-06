@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { implementations } from "@thi.ng/defmulti";
+import { implementations, relations } from "@thi.ng/defmulti";
 import { clamp01 } from "@thi.ng/math/interval";
 import { mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math/mix";
 import {
@@ -17,21 +17,35 @@ import {
 } from "@thi.ng/vectors2/api";
 import { compile } from "@thi.ng/vectors2/internal/codegen";
 import { vop } from "@thi.ng/vectors2/internal/ops";
+import { Mat23 } from "@thi.ng/vectors2/mat23";
 import {
     asCubic,
+    asPolyline,
     Attribs,
     bounds,
     Cubic2,
     DEFAULT_SAMPLES,
     pointAt,
+    Polyline2,
     Quadratic2,
     Rect2,
     SamplingOpts,
     splitAt,
+    transform,
     Type,
-    vertices
+    vertices,
+    flip
 } from "./api";
 import { Sampler } from "./internal/sampler";
+import { transformPoints } from "./internal/transform";
+
+export function cubic2(points: Vec[], attribs?: Attribs): Cubic2 {
+    return new Cubic2(points, attribs);
+}
+
+export function quadratic2(points: Vec[], attribs?: Attribs): Quadratic2 {
+    return new Quadratic2(points, attribs);
+}
 
 const compileMixQ = (dim: number) =>
     compile(
@@ -46,7 +60,7 @@ const compileMixQ = (dim: number) =>
 const compileMixC = (dim: number) =>
     compile(
         dim,
-        ([a, b, c, d, o]) => `${o}=${a}*wa + ${b}*wb + ${c}*wc + ${d}*wd;`,
+        ([a, b, c, d, o]) => `${o} = ${a}*wa + ${b}*wb + ${c}*wc + ${d}*wd;`,
         "a,b,c,d,t,o=[]",
         "a,b,c,d,o",
         "o",
@@ -65,9 +79,9 @@ export const mixCubic: MultiVecOpNewVVVVN<Vec> = vop();
 mixCubic.add(2, compileMixC(2));
 mixCubic.add(3, compileMixC(3));
 mixCubic.default((a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, t: number, o: Vec = []) => {
-    const t2 = t * t;
     const s = 1 - t;
     const s2 = s * s;
+    const t2 = t * t;
     return maddN(maddN(maddN(mulNewN(a, s2 * s, o), b, 3 * s2 * t), c, 3 * t2 * s), d, t2 * t);
 });
 
@@ -98,26 +112,42 @@ const cubicAxisBounds = (pa: number, pb: number, pc: number, pd: number) => {
     return [l, h];
 };
 
+relations(
+    Type.CUBIC2,
+    {
+        [Type.POINTS2]: [
+            flip,
+        ]
+    }
+);
+
 implementations(
     Type.CUBIC2,
 
+    asCubic,
+    (curve: Cubic2) => [curve],
+
+    asPolyline,
+    (curve: Cubic2, opts?: number | Partial<SamplingOpts>) =>
+        new Polyline2(vertices(curve, opts), { ...curve.attribs }),
+
     bounds,
-    ($: Cubic2) => {
-        const [a, b, c, d] = $.points;
+    (curve: Cubic2) => {
+        const [a, b, c, d] = curve.points;
         const x = cubicAxisBounds(a[0], b[0], c[0], d[0]);
         const y = cubicAxisBounds(a[1], b[1], c[1], d[1]);
         return Rect2.fromMinMax([x[0], y[0]], [x[1], y[1]]);
     },
 
     pointAt,
-    (x: Cubic2, t: number) => {
-        const pts = x.points;
+    (curve: Cubic2, t: number) => {
+        const pts = curve.points;
         return mixCubic(pts[0], pts[1], pts[2], pts[3], t);
     },
 
     splitAt,
-    (x: Cubic2, t: number) => {
-        const [a, b, c, d] = x.points;
+    (curve: Cubic2, t: number) => {
+        const [a, b, c, d] = curve.points;
         if (t <= 0 || t >= 1) {
             const p = t <= 0 ? a : d;
             const c1 = new Cubic2([copy(p), copy(p), copy(p), copy(p)]);
@@ -136,10 +166,17 @@ implementations(
         ];
     },
 
+    transform,
+    (curve: Cubic2, mat: Mat23) =>
+        new Cubic2(
+            transformPoints(curve.points, mat),
+            { ...curve.attribs }
+        ),
+
     vertices,
-    (x: Cubic2, opts?: number | Partial<SamplingOpts>) => {
+    (curve: Cubic2, opts?: number | Partial<SamplingOpts>) => {
         if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-            return new Sampler(vertices(x, (<any>opts).num || DEFAULT_SAMPLES))
+            return new Sampler(vertices(curve, (<any>opts).num || DEFAULT_SAMPLES))
                 .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
         }
         opts = isNumber(opts) ?
@@ -152,7 +189,7 @@ implementations(
                 ...opts
             };
         const res: Vec[] = [];
-        const [a, b, c, d] = x.points;
+        const [a, b, c, d] = curve.points;
         const delta = 1 / opts.num;
         for (let t = 0; t < opts.num; t++) {
             res.push(mixCubic(a, b, c, d, t * delta));
@@ -162,12 +199,21 @@ implementations(
     }
 );
 
+relations(
+    Type.QUADRATIC2,
+    {
+        [Type.POINTS2]: [
+            flip,
+        ]
+    }
+);
+
 implementations(
     Type.QUADRATIC2,
 
     asCubic,
-    (x: Quadratic2) => {
-        const [a, b, c] = x.points;
+    (curve: Quadratic2) => {
+        const [a, b, c] = curve.points;
         return [
             new Cubic2(
                 [
@@ -176,14 +222,18 @@ implementations(
                     mixNewN(c, b, 2 / 3),
                     copy(c)
                 ],
-                { ...x.attribs }
+                { ...curve.attribs }
             )
         ];
     },
 
+    asPolyline,
+    (curve: Quadratic2, opts?: number | Partial<SamplingOpts>) =>
+        new Polyline2(vertices(curve, opts), { ...curve.attribs }),
+
     bounds,
-    (x: Quadratic2) => {
-        const [a, b, c] = x.points;
+    (curve: Quadratic2) => {
+        const [a, b, c] = curve.points;
         const mi = min(copy(a), c);
         const ma = max(copy(a), c);
         const solve = (a, b, c) => {
@@ -203,14 +253,14 @@ implementations(
     },
 
     pointAt,
-    (x: Quadratic2, t: number) => {
-        const pts = x.points;
+    (curve: Quadratic2, t: number) => {
+        const pts = curve.points;
         return mixQuadratic(pts[0], pts[1], pts[2], t);
     },
 
     splitAt,
-    (x: Quadratic2, t: number) => {
-        const [a, b, c] = x.points;
+    (curve: Quadratic2, t: number) => {
+        const [a, b, c] = curve.points;
         if (t <= 0 || t >= 1) {
             const p = t <= 0 ? a : c;
             const c1 = new Quadratic2([copy(p), copy(p), copy(p), copy(p)]);
@@ -226,10 +276,17 @@ implementations(
         ];
     },
 
+    transform,
+    (curve: Quadratic2, mat: Mat23) =>
+        new Quadratic2(
+            transformPoints(curve.points, mat),
+            { ...curve.attribs }
+        ),
+
     vertices,
-    (x: Quadratic2, opts?: number | Partial<SamplingOpts>) => {
+    (curve: Quadratic2, opts?: number | Partial<SamplingOpts>) => {
         if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-            return new Sampler(vertices(x, (<any>opts).num || DEFAULT_SAMPLES))
+            return new Sampler(vertices(curve, (<any>opts).num || DEFAULT_SAMPLES))
                 .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
         }
         opts = isNumber(opts) ?
@@ -243,7 +300,7 @@ implementations(
             };
         const res: Vec[] = [];
         const delta = 1 / opts.num;
-        const [a, b, c] = x.points;
+        const [a, b, c] = curve.points;
         for (let t = 0; t < opts.num; t++) {
             res.push(mixQuadratic(a, b, c, t * delta));
         }
@@ -252,11 +309,3 @@ implementations(
     }
 
 );
-
-export function cubic2(points: Vec[], attribs?: Attribs): Cubic2 {
-    return new Cubic2(points, attribs);
-}
-
-export function quadratic2(points: Vec[], attribs?: Attribs): Quadratic2 {
-    return new Quadratic2(points, attribs);
-}

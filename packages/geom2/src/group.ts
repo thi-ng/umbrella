@@ -3,6 +3,7 @@ import {
     area,
     Attribs,
     bounds,
+    centroid,
     Group2,
     IShape,
     Type
@@ -21,4 +22,7 @@ implementations(
 
     bounds,
     (g: Group2) => collBounds(g.children),
+
+    centroid,
+    (g: Group2) => centroid(bounds(g)),
 );

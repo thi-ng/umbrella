@@ -14,15 +14,15 @@ import { partition } from "@thi.ng/transducers/xform/partition";
 import { scan } from "@thi.ng/transducers/xform/scan";
 import { mixNewN, ReadonlyVec, Vec } from "@thi.ng/vectors2/api";
 import { Tessellator } from "./api";
-import { polygonArea } from "./internal/area";
 import { centroid } from "./internal/centroid";
-import { corner, pointInTriangle2 } from "./internal/corner";
+import { pointInTriangle2, signedArea } from "./internal/corner";
+import { polygonArea } from "./internal/polygon";
 
 const snip = (points: ReadonlyVec[], u: number, v: number, w: number, n: number, ids: number[]) => {
     const a = points[ids[u]];
     const b = points[ids[v]];
     const c = points[ids[w]];
-    if (corner(a, b, c) > 0) {
+    if (signedArea(a, b, c) > 0) {
         for (let i = 0; i < n; i++) {
             if (i !== u && i !== v && i !== w) {
                 if (pointInTriangle2(points[ids[i]], a, b, c)) {

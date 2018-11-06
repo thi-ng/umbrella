@@ -7,7 +7,7 @@ import {
     ReadonlyVec,
     set,
     subNew,
-    Vec
+    Vec,
 } from "@thi.ng/vectors2/api";
 
 export const closestPoint =
@@ -35,11 +35,24 @@ export const closestCoeff =
         }
     };
 
+/**
+ * Returns closest point to `p` on segment `a` -> `b`. By default, if
+ * the result point lies outside the segment, returns a copy of the
+ * closest end point. However, if `insideOnly` is true, only returns the
+ * closest point if it actually is inside the segment (incl. end
+ * points).
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param out
+ */
 export const closestPointSegment =
-    (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec, out: Vec) => {
+    (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec, out?: Vec, insideOnly = false) => {
 
         const t = closestCoeff(p, a, b);
-        if (t !== undefined) {
+        if (t !== undefined && (!insideOnly || t >= 0 && t <= 1)) {
+            out = out || empty(p);
             return t <= 0.0 ?
                 set(out, a) :
                 t >= 1.0 ?

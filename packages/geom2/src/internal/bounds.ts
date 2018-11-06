@@ -25,7 +25,7 @@ export const collBounds =
         let n = shapes.length - 1;
         let res: IShape = n >= 0 ? _bounds(shapes[n]) : undefined;
         for (; --n >= 0;) {
-            res = union(res, _bounds(shapes[n]));
+            res = union(res, _bounds(shapes[n]))[0];
         }
         return res;
     };

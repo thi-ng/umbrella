@@ -1,25 +1,46 @@
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { implementations } from "@thi.ng/defmulti";
-import { Vec } from "@thi.ng/vectors2/api";
+import { implementations, relations } from "@thi.ng/defmulti";
 import {
-    arcLength,
+    addNew,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors2/api";
+import { Mat23 } from "@thi.ng/vectors2/mat23";
+import {
     Attribs,
     bounds,
     centroid,
     convexHull,
     DEFAULT_SAMPLES,
+    edges,
+    flip,
+    offset,
+    perimeter,
+    Polygon2,
     Polyline2,
     resample,
     SamplingOpts,
     simplify,
+    subdivide,
+    SubdivKernel,
+    tangentAt,
+    transform,
+    translate,
     Type,
-    vertices
+    vertices,
+    asCubic,
+    Cubic2
 } from "./api";
-import { arcLength as _arcLength } from "./internal/arc-length";
+import "./container2";
 import { centroid as _centroid } from "./internal/centroid";
-import { grahamScan2 } from "./internal/graham-scan";
+import { edges as _edges } from "./internal/edges";
+import { offset as _offset } from "./internal/offset";
+import { perimeter as _perimeter } from "./internal/perimeter";
 import { Sampler } from "./internal/sampler";
+import { subdivideCurve } from "./internal/subdiv-curve";
+import { transformPoints } from "./internal/transform";
 import { douglasPeucker2 } from "./internal/douglas–peucker";
+import { map } from "@thi.ng/transducers/xform/map";
 
 export function polyline(points: Vec[], attribs?: Attribs): Polyline2 {
     return new Polyline2(points, attribs);
@@ -27,42 +48,87 @@ export function polyline(points: Vec[], attribs?: Attribs): Polyline2 {
 
 const type = Type.POLYLINE2;
 
-bounds.isa(type, Type.POINTS2);
-vertices.isa(type, Type.POINTS2);
+relations(
+    type,
+    {
+        [Type.POINTS2]: [
+            bounds,
+            centroid,
+            convexHull,
+            flip
+        ],
+    }
+);
 
 implementations(
     type,
 
-    arcLength,
-    (x: Polyline2) => _arcLength(x.points, false),
+    asCubic,
+    (line: Polyline2) =>
+        map((e) => Cubic2.fromLine(...e), _edges(line.points)),
 
-    centroid,
-    (x: Polyline2, c: Vec) => _centroid(x.points, c),
+    edges,
+    (line: Polyline2, opts: number | SamplingOpts) =>
+        _edges(vertices(line, opts), true),
 
-    convexHull,
-    (poly: Polyline2) => grahamScan2(poly.points),
+    offset,
+    (line: Polyline2, dist: number, res = 8) => {
+        const pts = _offset(line.points, dist, res, false);
+        return pts ?
+            new Polygon2(pts, { ...line.attribs }) :
+            undefined;
+    },
+
+    perimeter,
+    (line: Polyline2) => _perimeter(line.points, false),
 
     resample,
-    (x: Polyline2, opts?: number | SamplingOpts) =>
-        new Polyline2(vertices(x, opts), { ...this.attribs }),
+    (line: Polyline2, opts?: number | SamplingOpts) =>
+        new Polyline2(vertices(line, opts), { ...line.attribs }),
 
     simplify,
-    (x: Polyline2, eps = 0.1) =>
+    (line: Polyline2, eps = 0.1) =>
         new Polyline2(
-            douglasPeucker2(x.points, eps, true),
-            { ...this.attribs }
+            douglasPeucker2(line.points, eps, true),
+            { ...line.attribs }
+        ),
+
+    subdivide,
+    (line: Polyline2, kernel: SubdivKernel, iter = 1) =>
+        new Polyline2(
+            subdivideCurve(kernel, line.points, iter, false),
+            { ...line.attribs }
+        ),
+
+    tangentAt,
+    (line: Polyline2, t: number, n = 1) =>
+        new Sampler(line.points, false).tangentAt(t, n),
+
+    transform,
+    (line: Polyline2, mat: Mat23) =>
+        new Polyline2(
+            transformPoints(line.points, mat),
+            { ...line.attribs }
+        ),
+
+    translate,
+    (line: Polyline2, delta: ReadonlyVec) =>
+        new Polyline2(
+            line.points.map((p) => addNew(p, delta)),
+            { ...line.attribs }
         ),
 
     vertices,
-    (x: Polyline2, opts?: number | SamplingOpts) => {
+    (line: Polyline2, opts?: number | SamplingOpts) => {
         if (opts !== undefined) {
-            const sampler = new Sampler(x.points, false);
+            const sampler = new Sampler(line.points, false);
             return isPlainObject(opts) ?
                 opts.dist ?
                     sampler.sampleUniform(opts.dist, opts.last !== false) :
                     sampler.sampleFixedNum(opts.num, opts.last !== false) :
                 sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, true);
         }
-        return x.points;
+        return line.points;
     },
+
 );

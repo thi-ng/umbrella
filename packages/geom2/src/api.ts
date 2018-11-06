@@ -4,21 +4,33 @@ import {
     IObjectOf,
     IToHiccup
 } from "@thi.ng/api";
-import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import {
+    DEFAULT,
+    defmulti,
+    MultiFn1O,
+    MultiFn2O
+} from "@thi.ng/defmulti";
 import { equiv } from "@thi.ng/equiv";
 import { cossin } from "@thi.ng/math/angle";
 import {
     add,
     copy,
+    IMatrix,
+    max,
+    min,
     mixNewN,
     mul,
+    ReadonlyVec,
     rotateZ,
     subNew,
-    Vec
+    Vec,
+    neg
 } from "@thi.ng/vectors2/api";
-import { set2 } from "@thi.ng/vectors2/vec2";
+import { perpendicularLeft2, set2 } from "@thi.ng/vectors2/vec2";
+import { subdivKernel3 } from "./internal/subdiv-curve";
+import { warpPoints } from "./internal/warp";
 
-export enum Type {
+export const enum Type {
     ARC2 = "arc",
     CIRCLE2 = "circle",
     CUBIC2 = "cubic",
@@ -35,15 +47,75 @@ export enum Type {
     TRIANGLE2 = "triangle",
 }
 
+export const enum ClipMode {
+    /**
+     * Shape union (A | B)
+     */
+    UNION = 0,
+    /**
+     * Shape difference (B - A)
+     */
+    DIFF_B = 1,
+    /**
+     * Shape difference (A - B)
+     */
+    DIFF_A = 2,
+    /**
+     * Shape intersection (A & B)
+     */
+    INTERSECTION = 3,
+}
+
+export enum Convexity {
+    COLINEAR = 0,
+    CONVEX,
+    CONCAVE,
+}
+
 export const enum LineIntersectionType {
-    PARALLEL,
+    PARALLEL = 1,
     COINCIDENT,
     COINCIDENT_NO_INTERSECT,
     INTERSECT,
     INTERSECT_OUTSIDE,
 }
 
+export const enum SegmentType {
+    MOVE,
+    LINE,
+    POLYLINE,
+    ARC,
+    CUBIC,
+    QUADRATIC,
+    CLOSE,
+}
+
 export const DEFAULT_SAMPLES = 20;
+
+const CHAIKIN_FIRST = subdivKernel3([1 / 2, 1 / 2, 0], [0, 3 / 4, 1 / 4]);
+const CHAIKIN_MAIN = subdivKernel3([1 / 4, 3 / 4, 0], [0, 3 / 4, 1 / 4]);
+const CHAIKIN_LAST = subdivKernel3([1 / 4, 3 / 4, 0], [0, 1 / 2, 1 / 2]);
+const CUBIC_MAIN = subdivKernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]);
+
+export const CHAIKIN_CLOSED: SubdivKernel = {
+    fn: CHAIKIN_MAIN,
+    size: 3
+};
+
+export const CHAIKIN_OPEN: SubdivKernel = {
+    fn: (pts, i, n) =>
+        i == 0 ?
+            [pts[0], ...CHAIKIN_FIRST(pts)] :
+            i === n - 3 ?
+                [...CHAIKIN_LAST(pts), pts[2]] :
+                CHAIKIN_MAIN(pts),
+    size: 3
+};
+
+export const CUBIC_CLOSED: SubdivKernel = {
+    fn: CUBIC_MAIN,
+    size: 3
+};
 
 export interface IShape extends
     ICopy<IShape>,
@@ -52,6 +124,10 @@ export interface IShape extends
 
     readonly type: string;
     attribs?: IObjectOf<any>;
+}
+
+export interface IHiccupPathSegment {
+    toHiccupPathSegments(): any[];
 }
 
 export interface AABBLike extends IShape {
@@ -65,6 +141,12 @@ export interface LineIntersection {
     det?: number;
     alpha?: number;
     beta?: number;
+}
+
+export interface PathSegment {
+    type: SegmentType;
+    point?: Vec;
+    geo?: IShape & IHiccupPathSegment;
 }
 
 export interface SamplingOpts {
@@ -117,45 +199,85 @@ export interface SamplingOpts {
     last: boolean;
 }
 
+export interface SubdivKernel {
+    fn: (pts: ReadonlyVec[], i: number, nump: number) => Vec[];
+    size: number;
+}
+
 export type Attribs = IObjectOf<any>;
 
 export type Tessellator = (points: Vec[]) => Vec[][];
 
+export type VecPair = [Vec, Vec];
+
 const dispatch = (x: IShape) => x.type;
 
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
+area.add(DEFAULT, () => 0);
 
-export const arcLength = defmulti<IShape, number>(dispatch);
-
-export const asCubic = defmulti<IShape, Cubic2[]>(dispatch);
+export const asCubic = defmulti<IShape, Iterable<Cubic2>>(dispatch);
 
 export const asPolygon: MultiFn1O<IShape, number | SamplingOpts, Polygon2> = defmulti(dispatch);
+asPolygon.add(DEFAULT, (x, opts) =>
+    new Polygon2(vertices(x, opts), { ...x.attribs })
+);
 
 export const asPolyline: MultiFn1O<IShape, number | SamplingOpts, Polygon2> = defmulti(dispatch);
+asPolyline.add(DEFAULT, (x, opts) =>
+    new Polyline2(vertices(x, opts), { ...x.attribs })
+);
 
 export const bounds = defmulti<IShape, AABBLike>(dispatch);
 
-export const center = defmulti<IShape, IShape>(dispatch);
+export const center: MultiFn1O<IShape, ReadonlyVec, IShape> = defmulti(dispatch);
+center.add(DEFAULT, (x, origin?) => {
+    const delta = neg(centroid(x));
+    return translate(x, origin ? add(delta, origin) : delta);
+});
 
 export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
 
-export const classifyPoint = defmulti<IShape, Vec, Vec>(dispatch);
+export const classifyPoint: MultiFn2O<IShape, Vec, number, Vec> = defmulti(dispatch);
+
+export const closestPoint = defmulti<IShape, Vec, Vec>(dispatch);
+
+export const clipConvex = defmulti<IShape, IShape, IShape>(dispatch);
 
 export const convexHull = defmulti<IShape, Vec[]>(dispatch);
 
 export const depth = defmulti<IShape, number>(dispatch);
 depth.add(DEFAULT, (x) => bounds(x).size[2] || 0);
 
-export const difference = defmulti<IShape, IShape, IShape>(dispatch);
+export const difference = defmulti<IShape, IShape, IShape[]>(dispatch);
+
+export const edges: MultiFn1O<IShape, number | Partial<SamplingOpts>, Iterable<VecPair>> = defmulti(dispatch);
 
 export const extrude = defmulti<IShape, IShape>(dispatch);
+
+export const flip = defmulti<IShape, IShape>(dispatch);
 
 export const height = defmulti<IShape, number>(dispatch);
 height.add(DEFAULT, (x) => bounds(x).size[1]);
 
-export const intersect = defmulti<IShape, IShape>(dispatch);
+export const intersection = defmulti<IShape, IShape, IShape[]>(dispatch);
+
+// TODO define isec result
+export const intersectShape = defmulti<IShape, IShape, any>(dispatch);
+
+export const intersectLine = defmulti<IShape, Line2, LineIntersection>(dispatch);
+
+export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(dispatch);
+
+export const normalAt: MultiFn2O<IShape, number, number, Vec> = defmulti(dispatch);
+normalAt.add(DEFAULT, (shape, t, n = 1) => perpendicularLeft2(tangentAt(shape, t, n)));
+
+export const offset: MultiFn2O<IShape, number, number, IShape> = defmulti(dispatch);
+
+export const perimeter = defmulti<IShape, number>(dispatch);
 
 export const pointAt = defmulti<IShape, number, IShape>(dispatch);
+
+export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 
 export const resample = defmulti<IShape, IShape>(dispatch);
 
@@ -170,14 +292,39 @@ export const simplify: MultiFn1O<IShape, number, IShape> = defmulti(dispatch);
 
 export const splitAt = defmulti<IShape, number, [IShape, IShape]>(dispatch);
 
+export const subdivide: MultiFn2O<IShape, SubdivKernel, number, IShape> = defmulti(dispatch);
+
+export const tangentAt: MultiFn2O<IShape, number, number, Vec> = defmulti(dispatch);
+
 export const tessellate = defmulti<IShape, Iterable<Tessellator>, Vec[][]>(dispatch);
 
-export const union = defmulti<IShape, IShape>(dispatch);
+export const transform = defmulti<IShape, IMatrix<any>, IShape>(dispatch);
+
+export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
+
+export const union = defmulti<IShape, IShape[]>(dispatch);
+
+export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(dispatch);
 
 export const vertices: MultiFn1O<IShape, number | Partial<SamplingOpts>, Vec[]> = defmulti(dispatch);
 
+export const warp = defmulti<IShape, IShape, IShape>(dispatch);
+warp.add(DEFAULT, (src: IShape, dest: IShape) =>
+    new Polygon2(
+        warpPoints(vertices(src), bounds(src), dest),
+        { ...src.attribs }
+    )
+);
+
 export const width = defmulti<IShape, number>(dispatch);
 width.add(DEFAULT, (x) => bounds(x).size[0]);
+
+export const withAttribs = defmulti<IShape, Attribs, IShape>(dispatch);
+withAttribs.add(DEFAULT, (x, attribs) => {
+    x = x.copy();
+    Object.assign(x.attribs, attribs);
+    return x;
+});
 
 export class PointContainer implements
     IShape {
@@ -192,13 +339,23 @@ export class PointContainer implements
         this.attribs = attribs;
     }
 
+    *[Symbol.iterator]() {
+        yield* this.points;
+    }
+
     copy() {
         return new PointContainer(this.type, this._copy(), this.attribs);
     }
 
     equiv(o: any) {
         return o instanceof PointContainer &&
+            this.type === o.type &&
             equiv(this.points, o.points);
+    }
+
+    flip() {
+        this.points.reverse();
+        return this;
     }
 
     toHiccup() {
@@ -211,6 +368,7 @@ export class PointContainer implements
 }
 
 export class Arc2 implements
+    IHiccupPathSegment,
     IShape {
 
     pos: Vec;
@@ -270,13 +428,13 @@ export class Arc2 implements
             this.clockwise && o.clockwise;
     }
 
-    pointAtTheta(theta: number, pos?: Vec) {
-        return add(rotateZ(mul(set2(pos || [], cossin(theta)), this.r), this.axis), this.pos);
+    pointAtTheta(theta: number, pos: Vec = []) {
+        return add(rotateZ(mul(set2(pos, cossin(theta)), this.r), this.axis), this.pos);
     }
 
     toHiccup() {
         return ["path", this.attribs, [
-            ["M", pointAt(this, 0)],
+            ["M", this.pointAtTheta(this.start)],
             ...this.toHiccupPathSegments()
         ]];
     }
@@ -288,7 +446,7 @@ export class Arc2 implements
             this.axis,
             this.xl,
             this.clockwise,
-            pointAt(this, 1)
+            this.pointAtTheta(this.end)
         ]];
     }
 }
@@ -325,7 +483,8 @@ export class Circle2 implements
     }
 }
 
-export class Cubic2 extends PointContainer {
+export class Cubic2 extends PointContainer implements
+    IHiccupPathSegment {
 
     static fromLine(a: Vec, b: Vec, attribs?: Attribs) {
         return new Cubic2([a, mixNewN(a, b, 1 / 3), mixNewN(b, a, 1 / 3), b], attribs);
@@ -401,6 +560,10 @@ export class Group2 implements
         return Type.GROUP;
     }
 
+    *[Symbol.iterator]() {
+        yield* this.children;
+    }
+
     copy() {
         return new Group2(
             { ...this.attribs },
@@ -422,7 +585,8 @@ export class Group2 implements
     }
 }
 
-export class Line2 extends PointContainer {
+export class Line2 extends PointContainer implements
+    IHiccupPathSegment {
 
     constructor(points: Vec[], attribs?: Attribs) {
         super(Type.LINE2, points, attribs);
@@ -431,9 +595,121 @@ export class Line2 extends PointContainer {
     copy() {
         return new Line2(this._copy(), { ...this.attribs });
     }
+
+    toHiccupPathSegments() {
+        return [["L", this.points[1]]];
+    }
+
+    get a() {
+        return this.points[0];
+    }
+
+    get b() {
+        return this.points[1];
+    }
 }
 
-export class Quadratic2 extends PointContainer {
+export class Path2 implements IShape {
+
+    segments: PathSegment[];
+    closed: boolean;
+    attribs: Attribs;
+
+    constructor(segments?: PathSegment[], attribs?: Attribs) {
+        this.segments = segments || [];
+        this.attribs = attribs;
+        this.closed = false;
+    }
+
+    get type() {
+        return Type.PATH2;
+    }
+
+    *[Symbol.iterator]() {
+        yield* this.segments;
+    }
+
+    copy() {
+        const p = new Path2([...this.segments], { ...this.attribs });
+        p.closed = this.closed;
+        return p;
+    }
+
+    equiv(o: any) {
+        return o instanceof Path2 &&
+            equiv(this.segments, o.segments);
+    }
+
+    add(s: PathSegment) {
+        this.segments.push(s);
+    }
+
+    toHiccup() {
+        const dest: any[] = [];
+        const res: any[] = ["path", this.attribs || {}, dest];
+        const src = this.segments;
+        const n = src.length;
+        if (n > 1) {
+            dest.push(["M", src[0].point]);
+            for (let i = 1; i < n; i++) {
+                dest.push(...src[i].geo.toHiccupPathSegments());
+            }
+            if (this.closed) {
+                dest.push(["Z"]);
+            }
+        }
+        return res;
+    }
+}
+
+export class Polygon2 extends PointContainer {
+
+    constructor(points: Vec[], attribs?: Attribs) {
+        super(Type.POLYGON2, points, attribs);
+    }
+
+    copy() {
+        return new Polygon2(this._copy(), { ...this.attribs });
+    }
+}
+
+export class Polyline2 extends PointContainer implements
+    IHiccupPathSegment {
+
+    constructor(points: Vec[], attribs?: Attribs) {
+        super(Type.POLYLINE2, points, attribs);
+    }
+
+    copy() {
+        return new Polyline2(this._copy(), { ...this.attribs });
+    }
+
+    toHiccupPathSegments() {
+        const res: any[] = [];
+        for (let pts = this.points, n = pts.length, i = 1; i < n; i++) {
+            res.push(["L", pts[i]]);
+        }
+        return res;
+    }
+}
+
+export class Quad2 extends PointContainer {
+
+    constructor(points: Vec[], attribs?: Attribs) {
+        super(Type.QUAD2, points, attribs);
+    }
+
+    copy() {
+        return new Quad2(this._copy(), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return [Type.POLYGON2, this.attribs, this.points];
+    }
+}
+
+export class Quadratic2 extends PointContainer implements
+    IHiccupPathSegment {
 
     static fromLine(a: Vec, b: Vec, attribs?: Attribs) {
         return new Quadratic2([a, mixNewN(a, b, 0.5), b], attribs);
@@ -462,49 +738,14 @@ export class Quadratic2 extends PointContainer {
     }
 }
 
-export class Polygon2 extends PointContainer {
-
-    constructor(points: Vec[], attribs?: Attribs) {
-        super(Type.POLYGON2, points, attribs);
-    }
-
-    copy() {
-        return new Polygon2(this._copy(), { ...this.attribs });
-    }
-}
-
-export class Polyline2 extends PointContainer {
-
-    constructor(points: Vec[], attribs?: Attribs) {
-        super(Type.POLYLINE2, points, attribs);
-    }
-
-    copy() {
-        return new Polyline2(this._copy(), { ...this.attribs });
-    }
-}
-
-export class Quad2 extends PointContainer {
-
-    constructor(points: Vec[], attribs?: Attribs) {
-        super(Type.POLYGON2, points, attribs);
-    }
-
-    copy() {
-        return new Quad2(this._copy(), { ...this.attribs });
-    }
-
-    get type() {
-        return Type.QUAD2;
-    }
-}
-
 export class Rect2 implements
     AABBLike,
     IShape {
 
-    static fromMinMax(min: Vec, max: Vec, attribs?: Attribs) {
-        return new Rect2(min, subNew(max, min), attribs);
+    static fromMinMax(mi: Vec, mx: Vec, attribs?: Attribs) {
+        const _mi = min(copy(mi), mx);
+        const _mx = max(copy(mx), mi);
+        return new Rect2(_mi, subNew(_mx, _mi), attribs);
     }
 
     pos: Vec;
@@ -539,14 +780,14 @@ export class Rect2 implements
 export class Triangle2 extends PointContainer {
 
     constructor(points: Vec[], attribs?: Attribs) {
-        super(Type.POLYGON2, points, attribs);
+        super(Type.TRIANGLE2, points, attribs);
     }
 
     copy() {
         return new Triangle2(this._copy(), { ...this.attribs });
     }
 
-    get type() {
-        return Type.TRIANGLE2;
+    toHiccup() {
+        return [Type.POLYGON2, this.attribs, this.points];
     }
 }
