@@ -266,6 +266,8 @@ export const intersectShape = defmulti<IShape, IShape, any>(dispatch);
 
 export const intersectLine = defmulti<IShape, Line2, LineIntersection>(dispatch);
 
+export const isEmpty = defmulti<IShape, boolean>(dispatch);
+
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(dispatch);
 
 export const normalAt: MultiFn2O<IShape, number, number, Vec> = defmulti(dispatch);
@@ -597,7 +599,14 @@ export class Line2 extends PointContainer implements
     }
 
     toHiccupPathSegments() {
-        return [["L", this.points[1]]];
+        const [a, b] = this.points;
+        return [
+            a[0] === b[0] ?
+                ["V", b[1]] :
+                a[1] === b[1] ?
+                    ["H", b[0]] :
+                    ["L", this.points[1]]
+        ];
     }
 
     get a() {
