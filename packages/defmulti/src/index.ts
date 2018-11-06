@@ -297,8 +297,42 @@ export function defmultiN<T>(impls: { [id: number]: Implementation<T> }) {
  * @param impls
  */
 export const implementations = (type: PropertyKey, ...impls: (MultiFn<any> | Implementation<any>)[]) => {
-    (impls.length & 1) && illegalArgs("require an even number of implementation items");
+    (impls.length & 1) && illegalArgs("expected an even number of implementation items");
     for (let i = 0; i < impls.length; i += 2) {
         (<MultiFn<any>>impls[i]).add(type, impls[i + 1]);
+    }
+};
+
+/**
+ * Defines a number of `is-a` relationships for given `type` dispatch
+ * value. Takes a dispatch value and an object with other dispatch
+ * values as keys and arrays of multi-methods as their values. Then for
+ * each multi-method associates the given `type` with the related dispatch
+ * value.
+ *
+ * ```
+ * area = defmulti((x) => x.type);
+ * bounds = defmulti((x) => x.type);
+ * circumference = defmulti((x) => x.type);
+ *
+ * // triangle area & circumference impls delegated to "poly"
+ * // triangle bounds delegated to "pointcloud"
+ * relations(
+ *   "triangle",
+ *   {
+ *      "poly": [area, circumference],
+ *      "pointcloud": [bounds],
+ *   }
+ * );
+ * ```
+ *
+ * @param type
+ * @param rels
+ */
+export const relations = (type: PropertyKey, rels: IObjectOf<MultiFn<any>[]>) => {
+    for (let parent in rels) {
+        for (let fn of rels[parent]) {
+            fn.isa(type, parent);
+        }
     }
 };
