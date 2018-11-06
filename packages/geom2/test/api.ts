@@ -70,6 +70,7 @@ describe("api", () => {
             Type.ARC2,
             Type.CUBIC2,
             Type.LINE2,
+            Type.PATH2,
             Type.POLYLINE2,
             Type.QUADRATIC2,
         ]));

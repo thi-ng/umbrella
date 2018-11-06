@@ -11,6 +11,7 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import {
     add,
+    addNew,
     copy,
     maddNewN,
     mulN,
@@ -23,11 +24,13 @@ import {
 } from "@thi.ng/vectors2/api";
 import { Mat23 } from "@thi.ng/vectors2/mat23";
 import {
+    Arc2,
     asCubic,
     asPolygon,
     asPolyline,
     Attribs,
     bounds,
+    centroid,
     Cubic2,
     Line2,
     Path2,
@@ -41,8 +44,7 @@ import {
     transform,
     translate,
     Type,
-    vertices,
-    centroid
+    vertices
 } from "./api";
 import { arcFrom2Points } from "./arc";
 import { collBounds } from "./internal/bounds";
@@ -163,6 +165,13 @@ export const pathFromSVG = (svg: string) => {
 implementations(
     Type.PATH2,
 
+    asCubic,
+    (path: Path2) =>
+        [...mapcat(
+            (s) => s.geo ? asCubic(s.geo) : undefined,
+            path.segments
+        )],
+
     asPolygon,
     (path: Path2, opts?: number | Partial<SamplingOpts>) =>
         new Polygon2(vertices(path, opts), { ...path.attribs }),
@@ -220,14 +229,7 @@ implementations(
     transform,
     (path: Path2, mat: Mat23) =>
         new Path2(
-            path.segments.map((s) =>
-                s.geo ?
-                    {
-                        type: s.type,
-                        geo: <any>transform(s.geo, mat)
-                    } :
-                    { ...s }
-            ),
+            [...mapcat((s) => transformSegment(s, mat), path.segments)],
             { ...path.attribs }
         ),
 
@@ -240,7 +242,10 @@ implementations(
                         type: s.type,
                         geo: <any>translate(s.geo, delta)
                     } :
-                    { ...s }
+                    {
+                        type: s.type,
+                        point: addNew(s.point, delta)
+                    }
             ),
             { ...path.attribs }
         ),
@@ -337,6 +342,7 @@ export class PathBuilder {
         return this;
     }
 
+    // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Cubic_B%C3%A9zier_Curve
     cubicTo(cp1: Vec, cp2: Vec, p: Vec, relative = false) {
         const c2 = this.absPoint(cp2, relative);
         set(this.bezierP, c2);
@@ -352,6 +358,7 @@ export class PathBuilder {
         return this;
     }
 
+    // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Quadratic_B%C3%A9zier_Curve
     quadraticTo(cp: Vec, p: Vec, relative = false) {
         const c1 = this.absPoint(cp, relative);
         set(this.bezierP, c1);
@@ -442,6 +449,26 @@ export class PathBuilder {
         return relative ? add(p, this.currP) : p;
     }
 }
+
+const transformSegment = (s: PathSegment, mat: Mat23): Iterable<PathSegment> => {
+    if (s.geo) {
+        return s.geo instanceof Arc2 ?
+            map(
+                (c) => ({
+                    type: SegmentType.CUBIC,
+                    geo: <any>transform(c, mat)
+                }),
+                asCubic(s.geo)
+            ) :
+            [{
+                type: s.type,
+                geo: <any>transform(s.geo, mat)
+            }];
+    }
+    return s.point ?
+        [{ type: s.type, point: mat.mulV(s.point) }] :
+        [{ ...s }];
+};
 
 const readPoint =
     (src: string, index: number): [Vec, number] => {
