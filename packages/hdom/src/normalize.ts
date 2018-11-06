@@ -33,31 +33,32 @@ const isPlainObject = iso.isPlainObject;
  * @param spec
  * @param keys
  */
-export const normalizeElement = (spec: any[], keys: boolean) => {
-    let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
-    if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
-        illegalArgs(`${tag} is not a valid tag name`);
-    }
-    // return orig if already normalized and satisfies key requirement
-    if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
-        return spec;
-    }
-    attribs = hasAttribs ? { ...spec[1] } : {};
-    id = match[2];
-    clazz = match[3];
-    if (id) {
-        attribs.id = id;
-    }
-    if (clazz) {
-        clazz = clazz.replace(/\./g, " ");
-        if (attribs.class) {
-            attribs.class += " " + clazz;
-        } else {
-            attribs.class = clazz;
+export const normalizeElement =
+    (spec: any[], keys: boolean) => {
+        let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
+        if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
+            illegalArgs(`${tag} is not a valid tag name`);
         }
-    }
-    return [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
-};
+        // return orig if already normalized and satisfies key requirement
+        if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
+            return spec;
+        }
+        attribs = hasAttribs ? { ...spec[1] } : {};
+        id = match[2];
+        clazz = match[3];
+        if (id) {
+            attribs.id = id;
+        }
+        if (clazz) {
+            clazz = clazz.replace(/\./g, " ");
+            if (attribs.class) {
+                attribs.class += " " + clazz;
+            } else {
+                attribs.class = clazz;
+            }
+        }
+        return [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
+    };
 
 /**
  * See `HDOMImplementation` interface for further details.
@@ -65,10 +66,18 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
  * @param opts
  * @param tree
  */
-export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
-    _normalizeTree(tree, opts, opts.ctx, [0], opts.keys !== false, opts.span !== false);
+export const normalizeTree =
+    (opts: Partial<HDOMOpts>, tree: any) =>
+        _normalizeTree(tree, opts, opts.ctx, [0], opts.keys !== false, opts.span !== false);
 
-const _normalizeTree = (tree: any, opts: Partial<HDOMOpts>, ctx: any, path: number[], keys: boolean, span: boolean) => {
+const _normalizeTree = (
+    tree: any,
+    opts: Partial<HDOMOpts>,
+    ctx: any,
+    path: number[],
+    keys: boolean,
+    span: boolean) => {
+
     if (tree == null) {
         return;
     }

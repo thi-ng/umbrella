@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.4.3...@thi.ng/hiccup@2.5.0) (2018-11-06)
+
+
+### Features
+
+* **hiccup:** add support for dynamic user context values ([a947873](https://github.com/thi-ng/umbrella/commit/a947873))
+
+
+
+
+
 ## [2.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.4.2...@thi.ng/hiccup@2.4.3) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/hiccup

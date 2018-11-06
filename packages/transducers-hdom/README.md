@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Authors](#authors)
 - [License](#license)
@@ -25,7 +26,9 @@ stateful transducer which receives
 component trees, diffs each against the previous value and applies any
 required changes to the browser DOM, starting at given root element. By
 default, incoming values are first normalized using @thi.ng/hdom's
-`normalizeTree()` function.
+`normalizeTree()` function. See [hdom's `start()`
+function](https://github.com/thi-ng/umbrella/tree/master/packages/hdom#start)
+for more details.
 
 If the `hydrate` option is given, the first received tree is only used
 to inject event listeners and initialize components with lifecycle

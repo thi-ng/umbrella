@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "5.0.7",
+    "version": "5.1.0",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -33,7 +33,7 @@
         "@thi.ng/checks": "^1.5.13",
         "@thi.ng/diff": "^1.1.4",
         "@thi.ng/equiv": "^0.1.13",
-        "@thi.ng/hiccup": "^2.4.3"
+        "@thi.ng/hiccup": "^2.5.0"
     },
     "keywords": [
         "browser",

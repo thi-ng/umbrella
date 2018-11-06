@@ -1054,6 +1054,12 @@ manually pass down configuration data into each child component and so
 can simplify many use cases, e.g. event dispatch, style / theme
 information, global state etc.
 
+Any context keys with values implementing the thi.ng/api `IDeref`
+interface, will be automatically deref'd prior to each tree
+normalization / redraw. This feature can be used to define dynamic
+contexts linked to the main app state, e.g. using derived views provided
+by thi.ng/atom.
+
 ```ts
 import { start } from "@thi.ng/hdom";
 import { Event, EventBus } from "@thi.ng/interceptors";

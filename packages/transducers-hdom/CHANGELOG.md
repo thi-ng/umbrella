@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.1.9...@thi.ng/transducers-hdom@1.2.0) (2018-11-06)
+
+
+### Features
+
+* **transducers-hdom:** add support for dynamic user context vals ([e91dbbc](https://github.com/thi-ng/umbrella/commit/e91dbbc))
+
+
+
+
+
 ## [1.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.1.8...@thi.ng/transducers-hdom@1.1.9) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/transducers-hdom

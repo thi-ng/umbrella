@@ -1,6 +1,7 @@
-import { isString } from "@thi.ng/checks/is-string";
-import { HDOMOpts, HDOMImplementation } from "@thi.ng/hdom/api";
+import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
 import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
+import { resolveRoot } from "@thi.ng/hdom/utils";
+import { derefContext } from "@thi.ng/hiccup/deref";
 import { Transducer } from "@thi.ng/transducers/api";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/xform/scan";
@@ -11,8 +12,10 @@ import { scan } from "@thi.ng/transducers/xform/scan";
  * required changes to browser DOM starting at given root element.
  *
  * By default, incoming values are first normalized using hdom's
- * `normalizeTree()` function and the given (optional) `ctx` object is
- * provided to all embedded component functions in the tree.
+ * `normalizeTree()` function and a copy of the given (optional) `ctx`
+ * object is provided to all embedded component functions in the tree.
+ * Any context keys with values implementing the thi.ng/api `IDeref`
+ * interface, will be automatically deref'd prior to tree normalization.
  *
  * If the `hydrate` option is given, the first received tree is only
  * used to inject event listeners and initialize components with
@@ -32,27 +35,27 @@ import { scan } from "@thi.ng/transducers/xform/scan";
  *
  * @param opts hdom options
  */
-export const updateDOM = (opts?: Partial<HDOMOpts>, impl: HDOMImplementation<any> = DEFAULT_IMPL): Transducer<any, any[]> => {
-    opts = { root: "app", ...opts };
-    const root = isString(opts.root) ?
-        document.getElementById(opts.root) :
-        opts.root;
-    return scan<any, any[]>(
-        reducer(
-            () => [],
-            (prev, curr) => {
-                curr = impl.normalizeTree(opts, curr);
-                if (curr != null) {
-                    if (opts.hydrate) {
-                        impl.hydrateTree(opts, root, curr);
-                        opts.hydrate = false;
-                    } else {
-                        impl.diffTree(opts, impl, root, prev, curr, 0);
+export const updateDOM =
+    (opts: Partial<HDOMOpts> = {}, impl: HDOMImplementation<any> = DEFAULT_IMPL): Transducer<any, any[]> => {
+        const _opts = { root: "app", ...opts };
+        const root = resolveRoot(_opts.root);
+        return scan<any, any[]>(
+            reducer(
+                () => [],
+                (prev, curr) => {
+                    _opts.ctx = derefContext(opts.ctx);
+                    curr = impl.normalizeTree(_opts, curr);
+                    if (curr != null) {
+                        if (_opts.hydrate) {
+                            impl.hydrateTree(_opts, root, curr);
+                            _opts.hydrate = false;
+                        } else {
+                            impl.diffTree(_opts, impl, root, prev, curr, 0);
+                        }
+                        return curr;
                     }
-                    return curr;
+                    return prev;
                 }
-                return prev;
-            }
-        )
-    );
-};
+            )
+        );
+    };

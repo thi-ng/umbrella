@@ -15,41 +15,51 @@ const isNotStringAndIterable = isi.isNotStringAndIterable
  * @param tree
  * @param insert
  */
-export const createDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, insert?: number) => {
-    if (isArray(tree)) {
-        const tag = tree[0];
-        if (typeof tag === "function") {
-            return createDOM(opts, parent, tag.apply(null, [opts.ctx, ...tree.slice(1)]), insert);
-        }
-        const attribs = tree[1];
-        if (attribs.__impl) {
-            return (<HDOMImplementation<any>>attribs.__impl).createTree(opts, parent, tree, insert);
-        }
-        const el = createElement(parent, tag, attribs, insert);
-        if ((<any>tree).__init) {
-            // TODO hdom ctx?
-            (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
-        }
-        if (tree.length > 2) {
-            const n = tree.length;
-            for (let i = 2; i < n; i++) {
-                createDOM(opts, el, tree[i]);
+export const createDOM =
+    (opts: Partial<HDOMOpts>, parent: Element, tree: any, insert?: number) => {
+        if (isArray(tree)) {
+            const tag = tree[0];
+            if (typeof tag === "function") {
+                return createDOM(
+                    opts,
+                    parent,
+                    tag.apply(null, [opts.ctx, ...tree.slice(1)]),
+                    insert
+                );
             }
+            const attribs = tree[1];
+            if (attribs.__impl) {
+                return (<HDOMImplementation<any>>attribs.__impl)
+                    .createTree(opts, parent, tree, insert);
+            }
+            const el = createElement(parent, tag, attribs, insert);
+            if ((<any>tree).__init) {
+                // TODO hdom ctx?
+                (<any>tree).__init.apply(
+                    (<any>tree).__this,
+                    [el, ...(<any>tree).__args]
+                );
+            }
+            if (tree.length > 2) {
+                const n = tree.length;
+                for (let i = 2; i < n; i++) {
+                    createDOM(opts, el, tree[i]);
+                }
+            }
+            return el;
         }
-        return el;
-    }
-    if (isNotStringAndIterable(tree)) {
-        const res = [];
-        for (let t of tree) {
-            res.push(createDOM(opts, parent, t));
+        if (isNotStringAndIterable(tree)) {
+            const res = [];
+            for (let t of tree) {
+                res.push(createDOM(opts, parent, t));
+            }
+            return res;
         }
-        return res;
-    }
-    if (tree == null) {
-        return parent;
-    }
-    return createTextElement(parent, tree);
-};
+        if (tree == null) {
+            return parent;
+        }
+        return createTextElement(parent, tree);
+    };
 
 /**
  * See `HDOMImplementation` interface for further details.
@@ -59,34 +69,44 @@ export const createDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, i
  * @param tree
  * @param index
  */
-export const hydrateDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, index = 0) => {
-    if (isArray(tree)) {
-        const el = parent.children[index];
-        if (typeof tree[0] === "function") {
-            hydrateDOM(opts, parent, tree[0].apply(null, [opts.ctx, ...tree.slice(1)]), index);
-        }
-        const attribs = tree[1];
-        if (attribs.__impl) {
-            return (<HDOMImplementation<any>>attribs.__impl).hydrateTree(opts, parent, tree, index);
-        }
-        if ((<any>tree).__init) {
-            (<any>tree).__init.apply((<any>tree).__this, [el, ...(<any>tree).__args]);
-        }
-        for (let a in attribs) {
-            if (a.indexOf("on") === 0) {
-                el.addEventListener(a.substr(2), attribs[a]);
+export const hydrateDOM =
+    (opts: Partial<HDOMOpts>, parent: Element, tree: any, index = 0) => {
+        if (isArray(tree)) {
+            const el = parent.children[index];
+            if (typeof tree[0] === "function") {
+                hydrateDOM(
+                    opts,
+                    parent,
+                    tree[0].apply(null, [opts.ctx, ...tree.slice(1)]),
+                    index
+                );
+            }
+            const attribs = tree[1];
+            if (attribs.__impl) {
+                return (<HDOMImplementation<any>>attribs.__impl)
+                    .hydrateTree(opts, parent, tree, index);
+            }
+            if ((<any>tree).__init) {
+                (<any>tree).__init.apply(
+                    (<any>tree).__this,
+                    [el, ...(<any>tree).__args]
+                );
+            }
+            for (let a in attribs) {
+                if (a.indexOf("on") === 0) {
+                    el.addEventListener(a.substr(2), attribs[a]);
+                }
+            }
+            for (let n = tree.length, i = 2; i < n; i++) {
+                hydrateDOM(opts, el, tree[i], i - 2);
+            }
+        } else if (isNotStringAndIterable(tree)) {
+            for (let t of tree) {
+                hydrateDOM(opts, parent, t, index);
+                index++;
             }
         }
-        for (let n = tree.length, i = 2; i < n; i++) {
-            hydrateDOM(opts, el, tree[i], i - 2);
-        }
-    } else if (isNotStringAndIterable(tree)) {
-        for (let t of tree) {
-            hydrateDOM(opts, parent, t, index);
-            index++;
-        }
-    }
-};
+    };
 
 /**
  * Creates a new DOM element of type `tag` with optional `attribs`. If
@@ -102,59 +122,64 @@ export const hydrateDOM = (opts: Partial<HDOMOpts>, parent: Element, tree: any, 
  * @param attribs
  * @param insert
  */
-export const createElement = (parent: Element, tag: string, attribs?: any, insert?: number) => {
-    const el = SVG_TAGS[tag] ?
-        document.createElementNS(SVG_NS, tag) :
-        document.createElement(tag);
-    if (parent) {
-        if (insert == null) {
-            parent.appendChild(el);
-        } else {
-            parent.insertBefore(el, parent.children[insert]);
+export const createElement =
+    (parent: Element, tag: string, attribs?: any, insert?: number) => {
+        const el = SVG_TAGS[tag] ?
+            document.createElementNS(SVG_NS, tag) :
+            document.createElement(tag);
+        if (parent) {
+            if (insert == null) {
+                parent.appendChild(el);
+            } else {
+                parent.insertBefore(el, parent.children[insert]);
+            }
         }
-    }
-    if (attribs) {
-        setAttribs(el, attribs);
-    }
-    return el;
-};
-
-export const createTextElement = (parent: Element, content: string, insert?: number) => {
-    const el = document.createTextNode(content);
-    if (parent) {
-        if (insert === undefined) {
-            parent.appendChild(el);
-        } else {
-            parent.insertBefore(el, parent.children[insert]);
+        if (attribs) {
+            setAttribs(el, attribs);
         }
-    }
-    return el;
-};
+        return el;
+    };
 
-export const getChild = (parent: Element, child: number) =>
-    parent.children[child];
+export const createTextElement =
+    (parent: Element, content: string, insert?: number) => {
+        const el = document.createTextNode(content);
+        if (parent) {
+            if (insert === undefined) {
+                parent.appendChild(el);
+            } else {
+                parent.insertBefore(el, parent.children[insert]);
+            }
+        }
+        return el;
+    };
 
-export const replaceChild = (opts: Partial<HDOMOpts>, parent: Element, child: number, tree: any) => {
-    removeChild(parent, child);
-    createDOM(opts, parent, tree, child);
-};
+export const getChild =
+    (parent: Element, child: number) => parent.children[child];
 
-export const cloneWithNewAttribs = (el: Element, attribs: any) => {
-    const res = <Element>el.cloneNode(true);
-    setAttribs(res, attribs);
-    el.parentNode.replaceChild(res, el);
-    return res;
-};
+export const replaceChild =
+    (opts: Partial<HDOMOpts>, parent: Element, child: number, tree: any) => {
+        removeChild(parent, child);
+        createDOM(opts, parent, tree, child);
+    };
 
-export const setContent = (el: Element, body: any) =>
-    el.textContent = body;
+export const cloneWithNewAttribs =
+    (el: Element, attribs: any) => {
+        const res = <Element>el.cloneNode(true);
+        setAttribs(res, attribs);
+        el.parentNode.replaceChild(res, el);
+        return res;
+    };
 
-export const setAttribs = (el: Element, attribs: any) => {
-    for (let k in attribs) {
-        setAttrib(el, k, attribs[k], attribs);
-    }
-    return el;
-};
+export const setContent =
+    (el: Element, body: any) => el.textContent = body;
+
+export const setAttribs =
+    (el: Element, attribs: any) => {
+        for (let k in attribs) {
+            setAttrib(el, k, attribs[k], attribs);
+        }
+        return el;
+    };
 
 /**
  * Sets a single attribute on given element. If attrib name is NOT an
@@ -177,36 +202,37 @@ export const setAttribs = (el: Element, attribs: any) => {
  * @param val
  * @param attribs
  */
-export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
-    if (id.startsWith("__")) return;
-    const isListener = id.indexOf("on") === 0;
-    if (!isListener && typeof val === "function") {
-        val = val(attribs);
-    }
-    if (val !== undefined && val !== false) {
-        switch (id) {
-            case "style":
-                setStyle(el, val);
-                break;
-            case "value":
-                updateValueAttrib(<HTMLInputElement>el, val);
-                break;
-            case "checked":
-                // TODO add more native attribs?
-                el[id] = val;
-                break;
-            default:
-                if (isListener) {
-                    el.addEventListener(id.substr(2), val);
-                } else {
-                    el.setAttribute(id, val);
-                }
+export const setAttrib =
+    (el: Element, id: string, val: any, attribs?: any) => {
+        if (id.startsWith("__")) return;
+        const isListener = id.indexOf("on") === 0;
+        if (!isListener && typeof val === "function") {
+            val = val(attribs);
         }
-    } else {
-        el[id] != null ? (el[id] = null) : el.removeAttribute(id);
-    }
-    return el;
-};
+        if (val !== undefined && val !== false) {
+            switch (id) {
+                case "style":
+                    setStyle(el, val);
+                    break;
+                case "value":
+                    updateValueAttrib(<HTMLInputElement>el, val);
+                    break;
+                case "checked":
+                    // TODO add more native attribs?
+                    el[id] = val;
+                    break;
+                default:
+                    if (isListener) {
+                        el.addEventListener(id.substr(2), val);
+                    } else {
+                        el.setAttribute(id, val);
+                    }
+            }
+        } else {
+            el[id] != null ? (el[id] = null) : el.removeAttribute(id);
+        }
+        return el;
+    };
 
 /**
  * Updates an element's `value` property. For form elements it too
@@ -215,47 +241,52 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
  * @param el
  * @param v
  */
-export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
-    let ev;
-    switch (el.type) {
-        case "text":
-        case "textarea":
-        case "password":
-        case "email":
-        case "url":
-        case "tel":
-        case "search":
-            if ((ev = el.value) !== undefined && typeof v === "string") {
-                const off = v.length - (ev.length - el.selectionStart);
+export const updateValueAttrib =
+    (el: HTMLInputElement, v: any) => {
+        let ev;
+        switch (el.type) {
+            case "text":
+            case "textarea":
+            case "password":
+            case "email":
+            case "url":
+            case "tel":
+            case "search":
+                if ((ev = el.value) !== undefined && typeof v === "string") {
+                    const off = v.length - (ev.length - el.selectionStart);
+                    el.value = v;
+                    el.selectionStart = el.selectionEnd = off;
+                    break;
+                }
+            default:
                 el.value = v;
-                el.selectionStart = el.selectionEnd = off;
-                break;
-            }
-        default:
-            el.value = v;
-    }
-};
-
-export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
-    for (let i = attribs.length; --i >= 0;) {
-        const a = attribs[i];
-        if (a.indexOf("on") === 0) {
-            el.removeEventListener(a.substr(2), prev[a]);
-        } else {
-            el[a] ? (el[a] = null) : el.removeAttribute(a);
         }
-    }
-};
+    };
 
-export const setStyle = (el: Element, styles: any) =>
-    (el.setAttribute("style", css(styles)), el);
+export const removeAttribs =
+    (el: Element, attribs: string[], prev: any) => {
+        for (let i = attribs.length; --i >= 0;) {
+            const a = attribs[i];
+            if (a.indexOf("on") === 0) {
+                el.removeEventListener(a.substr(2), prev[a]);
+            } else {
+                el[a] ? (el[a] = null) : el.removeAttribute(a);
+            }
+        }
+    };
 
-export const clearDOM = (el: Element) =>
-    el.innerHTML = "";
+export const setStyle =
+    (el: Element, styles: any) =>
+        (el.setAttribute("style", css(styles)), el);
 
-export const removeChild = (parent: Element, childIdx: number) => {
-    const n = parent.children[childIdx];
-    if (n !== undefined) {
-        n.remove();
-    }
-};
+export const clearDOM =
+    (el: Element) =>
+        el.innerHTML = "";
+
+export const removeChild =
+    (parent: Element, childIdx: number) => {
+        const n = parent.children[childIdx];
+        if (n !== undefined) {
+            n.remove();
+        }
+    };
