@@ -1,16 +1,16 @@
 import { serialize } from "@thi.ng/hiccup";
 import { convertTree } from "@thi.ng/hiccup-svg/convert";
-import { svg } from "@thi.ng/hiccup-svg/svg";
 import { ff } from "@thi.ng/hiccup-svg/format";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import { Attribs, IShape, Rect2 } from "./api";
 import { collBounds } from "./internal/bounds";
-import { IShape, Rect2 } from "./api";
 
 export const asSvg = (...args: any[]) =>
     args
         .map((x) => serialize(convertTree(x)))
         .join("");
 
-export const svgDoc = (attribs, ...args: IShape[]) => {
+export const svgDoc = (attribs: Attribs, ...args: IShape[]) => {
     if (args.length > 0) {
         if (!attribs || !attribs.viewBox) {
             const b = <Rect2>collBounds(args);
