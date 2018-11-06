@@ -8,11 +8,17 @@ export const path = (segments: PathSegment[], attribs?: any): any[] => {
         switch (seg[0].toLowerCase()) {
             case "a":
                 res.push([
+                    // rx
                     ff(<number>seg[1]),
+                    // ry
                     ff(<number>seg[2]),
+                    // x-axis (theta)
                     ff(<number>seg[3]),
+                    // xl
                     seg[4] ? 1 : 0,
+                    // clockwise
                     seg[5] ? 1 : 0,
+                    // target xy
                     ff(<number>seg[6][0]),
                     ff(<number>seg[6][1]),
                 ].join(","));

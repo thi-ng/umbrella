@@ -1,7 +1,6 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { PathSegment } from "./api";
 import { circle } from "./circle";
 import { ff } from "./format";
 import { linearGradient, radialGradient } from "./gradients";
@@ -10,6 +9,7 @@ import { hline, line, vline } from "./line";
 import { path } from "./path";
 import { points } from "./points";
 import { polygon } from "./polygon";
+import { polyline } from "./polyline";
 import { roundedRect } from "./rect";
 import { text } from "./text";
 
@@ -32,11 +32,12 @@ const TEXT_ALIGN = {
 };
 
 /**
- * Takes a normalized hiccup tree of hdom-canvas shape definitions and
- * recursively converts it into an hiccup flavor which is ready for SVG
- * serialization. This conversion also involves translation & reorg of
- * various attributes. Returns new tree. The original remains untouched,
- * as will any unrecognized tree/shape nodes.
+ * Takes a normalized hiccup tree of thi.ng/geom or thi.ng/hdom-canvas
+ * shape definitions and recursively converts it into an hiccup flavor
+ * which is ready for SVG serialization. This conversion also involves
+ * translation & reorg of various attributes. Returns new tree. The
+ * original remains untouched, as will any unrecognized tree/shape
+ * nodes.
  *
  * @param tree
  */
@@ -97,24 +98,11 @@ export const convertTree = (tree: any): any[] => {
         case "vline":
             return vline(tree[2], attribs);
         case "polyline":
+            return polyline(tree[2], attribs);
         case "polygon":
             return polygon(tree[2], attribs);
-        case "path": {
-            let segments: PathSegment[] = [];
-            for (let seg of tree[2]) {
-                switch (seg[0].toLowerCase()) {
-                    case "s":
-                    case "t":
-                        // TODO compute reflected control point
-                        // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Cubic_B%C3%A9zier_Curve
-                        // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Quadratic_B%C3%A9zier_Curve
-                        break;
-                    default:
-                        segments.push(seg);
-                }
-            }
-            return path(segments, attribs);
-        }
+        case "path":
+            return path(tree[2], attribs);
         case "text":
             return text(tree[2], tree[3], attribs);
         case "img":
@@ -148,11 +136,13 @@ const convertAttribs = (attribs: any) => {
                     res["text-anchor"] = TEXT_ALIGN[v];
                     break;
                 case "baseline":
-                // no SVG support?
+                    // no SVG support?
+                    break;
                 case "filter":
-                // TODO needs to be translated into <filter> def first
-                // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
-                // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+                    // TODO needs to be translated into <filter> def first
+                    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+                    // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+                    break;
                 case "transform":
                 case "translate":
                 case "rotate":
