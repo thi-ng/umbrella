@@ -29,6 +29,7 @@ import {
     pointAt,
     center,
     translate,
+    SamplingOpts,
 } from "./api";
 
 export function ellipse(pos: Vec, r = ones(2), attribs?: Attribs): Ellipse2 {
@@ -80,7 +81,7 @@ implementations(
         ),
 
     vertices,
-    (ellipse: Ellipse2, opts = DEFAULT_SAMPLES) => {
+    (ellipse: Ellipse2, opts: number | Partial<SamplingOpts> = DEFAULT_SAMPLES) => {
         const buf: Vec[] = [];
         const pos = ellipse.pos;
         const r = ellipse.r;

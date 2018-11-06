@@ -83,7 +83,7 @@ implementations(
     (line: Polyline2) => _perimeter(line.points, false),
 
     resample,
-    (line: Polyline2, opts?: number | SamplingOpts) =>
+    (line: Polyline2, opts?: number | Partial<SamplingOpts>) =>
         new Polyline2(vertices(line, opts), { ...line.attribs }),
 
     simplify,
@@ -119,7 +119,7 @@ implementations(
         ),
 
     vertices,
-    (line: Polyline2, opts?: number | SamplingOpts) => {
+    (line: Polyline2, opts?: number | Partial<SamplingOpts>) => {
         if (opts !== undefined) {
             const sampler = new Sampler(line.points, false);
             return isPlainObject(opts) ?

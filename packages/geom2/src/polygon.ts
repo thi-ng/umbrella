@@ -152,7 +152,7 @@ implementations(
             .map((pts) => new Polygon2(pts, { ...poly.attribs })),
 
     edges,
-    (poly: Polygon2, opts: number | SamplingOpts) =>
+    (poly: Polygon2, opts?: number | Partial<SamplingOpts>) =>
         _edges(vertices(poly, opts), true),
 
     intersection,
@@ -187,7 +187,7 @@ implementations(
     },
 
     resample,
-    (poly: Polygon2, opts?: number | SamplingOpts) =>
+    (poly: Polygon2, opts?: number | Partial<SamplingOpts>) =>
         new Polygon2(vertices(poly, opts), { ...poly.attribs }),
 
     simplify,
@@ -232,7 +232,7 @@ implementations(
             .map((pts) => new Polygon2(pts)),
 
     vertices,
-    (poly: Polygon2, opts?: number | SamplingOpts) => {
+    (poly: Polygon2, opts?: number | Partial<SamplingOpts>) => {
         if (opts !== undefined) {
             const sampler = new Sampler(poly.points, true);
             return isPlainObject(opts) ?

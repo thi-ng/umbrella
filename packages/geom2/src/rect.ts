@@ -84,7 +84,7 @@ implementations(
         ),
 
     edges,
-    (rect: Rect2, opts: number | SamplingOpts) =>
+    (rect: Rect2, opts: number | Partial<SamplingOpts>) =>
         _edges(vertices(rect, opts), true),
 
     mapPoint,
@@ -138,7 +138,7 @@ implementations(
     },
 
     vertices,
-    (rect: Rect2, opts: number | SamplingOpts) => {
+    (rect: Rect2, opts: number | Partial<SamplingOpts>) => {
         const p = rect.pos;
         const q = addNew(p, rect.size);
         const verts = [copy(p), [q[0], p[1]], q, [p[0], q[1]]];

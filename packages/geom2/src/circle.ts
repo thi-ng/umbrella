@@ -36,6 +36,7 @@ import {
     closestPoint,
     translate,
     center,
+    SamplingOpts,
 } from "./api";
 
 export function circle(pos: Vec, r = 1, attribs?: Attribs): Circle2 {
@@ -103,7 +104,7 @@ implementations(
         ),
 
     vertices,
-    (circle: Circle2, opts = DEFAULT_SAMPLES) => {
+    (circle: Circle2, opts: number | Partial<SamplingOpts> = DEFAULT_SAMPLES) => {
         const buf: Vec[] = [];
         const pos = circle.pos;
         const r = circle.r;
