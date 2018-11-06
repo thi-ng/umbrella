@@ -39,7 +39,7 @@ import {
     Rect2,
     SamplingOpts,
     Type,
-    vertices
+    vertices,
 } from "./api";
 import "./bezier";
 import { bounds as _bounds } from "./internal/bounds";
@@ -108,7 +108,7 @@ implementations(
             return [Cubic2.fromLine(p, q, { ...arc.attribs })];
         }
 
-        const mapP = (x, y) => {
+        const mapP = (x: number, y: number) => {
             x *= rx;
             y *= ry;
             return add(
@@ -116,7 +116,7 @@ implementations(
                     cphi * x - sphi * y,
                     sphi * x + cphi * y
                 ],
-                x.pos
+                arc.pos
             );
         };
 
