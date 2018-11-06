@@ -4,6 +4,7 @@ import { Atom } from "@thi.ng/atom/atom";
 import { map } from "@thi.ng/iterators/map";
 import { range } from "@thi.ng/iterators/range";
 import { normalizeTree } from "../src/normalize";
+import { derefContext } from "@thi.ng/hiccup/deref";
 
 function _check(a, b, ctx = null) {
     assert.deepEqual(normalizeTree({ ctx, keys: false, span: false }, a), b);
@@ -127,6 +128,21 @@ describe("hdom", () => {
         assert.deepEqual(
             normalizeTree({}, [src]),
             res
+        );
+    });
+
+    it("dyn context", () => {
+        assert.deepEqual(
+            derefContext({
+                a: 23,
+                b: new Atom(42),
+                c: new Atom({ foo: { bar: 66 } }).addView("foo.bar"),
+            }),
+            {
+                a: 23,
+                b: 42,
+                c: 66
+            }
         );
     });
 });

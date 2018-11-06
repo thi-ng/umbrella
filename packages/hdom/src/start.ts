@@ -1,3 +1,4 @@
+import { derefContext } from "@thi.ng/hiccup/deref";
 import { HDOMImplementation, HDOMOpts } from "./api";
 import { DEFAULT_IMPL } from "./default";
 import { resolveRoot } from "./utils";
@@ -10,8 +11,12 @@ import { resolveRoot } from "./utils";
  * the real DOM. The `ctx` option can be used for passing arbitrary
  * config data or state down into the hiccup component tree. Any
  * embedded component function in the tree will receive this context
- * object as first argument, as will life cycle methods in component
- * objects.
+ * object (shallow copy) as first argument, as will life cycle methods
+ * in component objects. Any context keys with values implementing the
+ * thi.ng/api `IDeref` interface, will be automatically deref'd prior to
+ * each tree normalization / redraw. This feature can be used to define
+ * dynamic contexts linked to the main app state, e.g. using derived
+ * views provided by thi.ng/atom.
  *
  * **Selective updates**: No updates will be applied if the given hiccup
  * tree is `undefined` or `null` or a root component function returns no
@@ -40,27 +45,29 @@ import { resolveRoot } from "./utils";
  * @param opts options
  * @param impl hdom target implementation
  */
-export const start = (tree: any, opts?: Partial<HDOMOpts>, impl: HDOMImplementation<any> = DEFAULT_IMPL) => {
-    opts = { root: "app", ...opts };
-    let prev = [];
-    let isActive = true;
-    const root = resolveRoot(opts.root);
-    const update = () => {
-        if (isActive) {
-            const curr = impl.normalizeTree(opts, tree);
-            if (curr != null) {
-                if (opts.hydrate) {
-                    impl.hydrateTree(opts, root, curr);
-                    opts.hydrate = false;
-                } else {
-                    impl.diffTree(opts, impl, root, prev, curr, 0);
+export const start =
+    (tree: any, opts: Partial<HDOMOpts> = {}, impl: HDOMImplementation<any> = DEFAULT_IMPL) => {
+        const _opts = { root: "app", ...opts };
+        let prev = [];
+        let isActive = true;
+        const root = resolveRoot(_opts.root);
+        const update = () => {
+            if (isActive) {
+                _opts.ctx = derefContext(opts.ctx);
+                const curr = impl.normalizeTree(_opts, tree);
+                if (curr != null) {
+                    if (_opts.hydrate) {
+                        impl.hydrateTree(_opts, root, curr);
+                        _opts.hydrate = false;
+                    } else {
+                        impl.diffTree(_opts, impl, root, prev, curr, 0);
+                    }
+                    prev = curr;
                 }
-                prev = curr;
+                // check again in case one of the components called cancel
+                isActive && requestAnimationFrame(update);
             }
-            // check again in case one of the components called cancel
-            isActive && requestAnimationFrame(update);
-        }
+        };
+        requestAnimationFrame(update);
+        return () => (isActive = false);
     };
-    requestAnimationFrame(update);
-    return () => (isActive = false);
-};
