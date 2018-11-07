@@ -27,10 +27,25 @@ export interface MemPoolOpts {
 }
 
 export interface MemPoolStats {
+    /**
+     * Free block stats.
+     */
     free: { count: number, size: number };
+    /**
+     * Used block stats.
+     */
     used: { count: number, size: number };
+    /**
+     * Current top address.
+     */
     top: number;
+    /**
+     * Bytes available
+     */
     available: number;
+    /**
+     * Total pool size.
+     */
     total: number;
 }
 
