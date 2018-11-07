@@ -34,7 +34,8 @@
         "@thi.ng/errors": "^0.1.11",
         "@thi.ng/malloc": "^0.2.0",
         "@thi.ng/math": "^0.2.0",
-        "@thi.ng/strings": "^0.5.2"
+        "@thi.ng/strings": "^0.5.2",
+        "@thi.ng/transducers": "^2.2.1"
     },
     "keywords": [
         "ES6",

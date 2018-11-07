@@ -141,9 +141,11 @@ export interface IMatrix<T> extends
 
 export interface IVecPool extends IRelease {
 
-    malloc(size: number, type?: Type): Vec;
+    malloc(size: number, type?: Type): TypedArray;
 
-    mallocWrapped(size: number, stride?: number, type?: Type): IVector<any>;
+    mallocWrapped(size: number, stride?: number, type?: Type): Vec;
+
+    mallocArray(num: number, size: number, cstride?: number, estride?: number, type?: Type): Vec[];
 
     free(vec: IVector<any> | TypedArray): boolean;
 

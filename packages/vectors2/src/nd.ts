@@ -17,6 +17,27 @@ import { iterator } from "./internal/iterator";
 export class NDArray1<T> implements
     INDArray<T> {
 
+    static mapBuffer<T>(buf: NDVec<T>, num: number, size: number, start = 0, cstride = 1, estride = size) {
+        const res: NDArray1<T>[] = [];
+        while (--num >= 0) {
+            res.push(new NDArray1<T>(buf, [size], [cstride], start));
+            start += estride;
+        }
+        return res;
+    }
+
+    static intoBuffer<T>(buf: NDVec<T>, src: Iterable<NDArray1<T>>, start: number, cstride: number, estride: number) {
+        for (let v of src) {
+            let i = start;
+            for (let x of v) {
+                buf[i] = x;
+                i += cstride;
+            }
+            start += estride;
+        }
+        return buf;
+    }
+
     buf: NDVec<T>;
     i: number;
     s: number;
