@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.1.0...@thi.ng/hdom@5.2.0) (2018-11-07)
+
+
+### Features
+
+* **hdom:** update auto-deref ctx behavior ([3016116](https://github.com/thi-ng/umbrella/commit/3016116))
+
+
+
+
+
 # [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.0.7...@thi.ng/hdom@5.1.0) (2018-11-06)
 
 
