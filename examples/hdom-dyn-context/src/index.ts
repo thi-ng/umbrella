@@ -50,7 +50,13 @@ const app =
         ];
 
 // kick off hdom render loop
-const cancel = start(app, { ctx });
+const cancel = start(
+    app,
+    {
+        ctx,
+        autoDerefKeys: Object.keys(ctx),
+    }
+);
 
 // HMR handling
 if (process.env.NODE_ENV !== "production") {
