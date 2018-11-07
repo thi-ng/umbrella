@@ -895,6 +895,12 @@ Config options object passed to hdom's `start()`, `renderOnce()` or
 - `root`: Root element or ID (default: "app")
 - `ctx`: Arbitrary user context object, passed to all component
   functions embedded in the tree (see below)
+- `autoDerefKeys`: Attempts to auto-expand/deref the given keys in the
+  user supplied context object (`ctx` option) prior to *each* tree
+  normalization. All of these values should implement the thi.ng/api
+  `IDeref` interface (e.g. atoms, cursors, views, rstreams etc.). This
+  feature can be used to define dynamic contexts linked to the main app
+  state.
 - `keys`: If true (default), each elements will receive an
   auto-generated `key` attribute (unless one already exists).
 - `span`: If true (default), all text content will be wrapped in
@@ -1054,11 +1060,15 @@ manually pass down configuration data into each child component and so
 can simplify many use cases, e.g. event dispatch, style / theme
 information, global state etc.
 
-Any context keys with values implementing the thi.ng/api `IDeref`
-interface, will be automatically deref'd prior to each tree
-normalization / redraw. This feature can be used to define dynamic
-contexts linked to the main app state, e.g. using derived views provided
-by thi.ng/atom.
+If the `autoDerefKeys` option is enabled, the given keys in the user
+supplied context object will be auto-expand/deref'd prior to *each* tree
+normalization. All of these values should implement the thi.ng/api
+`IDeref` interface (e.g. atoms, cursors, views, rstreams etc.). This
+feature can be used to define dynamic contexts linked to the main app
+state, e.g. using derived views provided by
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom),
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+etc.
 
 ```ts
 import { start } from "@thi.ng/hdom";

@@ -95,6 +95,17 @@ export interface HDOMOpts {
      */
     ctx?: any;
     /**
+     * Attempts to auto-expand/deref the given keys in the user supplied
+     * context object (`ctx` option) prior to *each* tree normalization.
+     * All of these values should implement the thi.ng/api `IDeref`
+     * interface (e.g. atoms, cursors, views, rstreams etc.). This
+     * feature can be used to define dynamic contexts linked to the main
+     * app state, e.g. using derived views provided by thi.ng/atom.
+     *
+     * Default: none
+     */
+    autoDerefKeys: PropertyKey[];
+    /**
      * If true (default), each elements will receive an auto-generated
      * `key` attribute (unless one already exists).
      */
