@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.5.2...@thi.ng/strings@0.6.0) (2018-11-08)
+
+
+### Features
+
+* **strings:** add configurable units() HOF & presets ([33e915b](https://github.com/thi-ng/umbrella/commit/33e915b))
+
+
+
+
+
 ## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.5.1...@thi.ng/strings@0.5.2) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/strings

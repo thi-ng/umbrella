@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.19...@thi.ng/iges@0.2.20) (2018-11-08)
+
+**Note:** Version bump only for package @thi.ng/iges
+
+
+
+
+
 ## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@0.2.18...@thi.ng/iges@0.2.19) (2018-10-24)
 
 **Note:** Version bump only for package @thi.ng/iges

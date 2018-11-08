@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-query",
-    "version": "0.3.52",
+    "version": "0.3.53",
     "description": "@thi.ng/rstream based triple store & reactive query engine",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -29,13 +29,13 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.2.3",
-        "@thi.ng/associative": "^0.6.13",
+        "@thi.ng/associative": "^0.6.14",
         "@thi.ng/checks": "^1.5.13",
         "@thi.ng/equiv": "^0.1.13",
         "@thi.ng/errors": "^0.1.11",
-        "@thi.ng/rstream": "^1.13.7",
-        "@thi.ng/rstream-dot": "^0.2.53",
-        "@thi.ng/transducers": "^2.2.1"
+        "@thi.ng/rstream": "^1.13.8",
+        "@thi.ng/rstream-dot": "^0.2.54",
+        "@thi.ng/transducers": "^2.2.2"
     },
     "keywords": [
         "dataflow",
