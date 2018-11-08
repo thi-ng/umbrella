@@ -12,4 +12,5 @@ export * from "./repeat";
 export * from "./splice";
 export * from "./truncate";
 export * from "./truncate-left";
+export * from "./units";
 export * from "./wrap";
