@@ -19,7 +19,7 @@ export const renderOnce = (
     impl: HDOMImplementation<any> = DEFAULT_IMPL) => {
 
     opts = { root: "app", ...opts };
-    opts.ctx = derefContext(opts.ctx);
+    opts.ctx = derefContext(opts.ctx, opts.autoDerefKeys);
     const root = resolveRoot(opts.root);
     tree = impl.normalizeTree(opts, tree);
     if (!tree) return;

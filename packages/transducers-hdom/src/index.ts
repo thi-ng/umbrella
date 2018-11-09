@@ -14,8 +14,13 @@ import { scan } from "@thi.ng/transducers/xform/scan";
  * By default, incoming values are first normalized using hdom's
  * `normalizeTree()` function and a copy of the given (optional) `ctx`
  * object is provided to all embedded component functions in the tree.
- * Any context keys with values implementing the thi.ng/api `IDeref`
- * interface, will be automatically deref'd prior to tree normalization.
+ * If the `autoDerefKeys` option is given, attempts to auto-expand/deref
+ * the given keys in the user supplied context object (`ctx` option)
+ * prior to *each* tree normalization. All of these values should
+ * implement the thi.ng/api `IDeref` interface (e.g. atoms, cursors,
+ * views, rstreams etc.). This feature can be used to define dynamic
+ * contexts linked to the main app state, e.g. using derived views
+ * provided by thi.ng/atom.
  *
  * If the `hydrate` option is given, the first received tree is only
  * used to inject event listeners and initialize components with
@@ -43,7 +48,7 @@ export const updateDOM =
             reducer(
                 () => [],
                 (prev, curr) => {
-                    _opts.ctx = derefContext(opts.ctx);
+                    _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
                     curr = impl.normalizeTree(_opts, curr);
                     if (curr != null) {
                         if (_opts.hydrate) {

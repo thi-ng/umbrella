@@ -12,11 +12,13 @@ import { resolveRoot } from "./utils";
  * config data or state down into the hiccup component tree. Any
  * embedded component function in the tree will receive this context
  * object (shallow copy) as first argument, as will life cycle methods
- * in component objects. Any context keys with values implementing the
- * thi.ng/api `IDeref` interface, will be automatically deref'd prior to
- * each tree normalization / redraw. This feature can be used to define
- * dynamic contexts linked to the main app state, e.g. using derived
- * views provided by thi.ng/atom.
+ * in component objects. If the `autoDerefKeys` option is given, attempts
+ * to auto-expand/deref the given keys in the user supplied context
+ * object (`ctx` option) prior to *each* tree normalization. All of
+ * these values should implement the thi.ng/api `IDeref` interface (e.g.
+ * atoms, cursors, views, rstreams etc.). This feature can be used to
+ * define dynamic contexts linked to the main app state, e.g. using
+ * derived views provided by thi.ng/atom.
  *
  * **Selective updates**: No updates will be applied if the given hiccup
  * tree is `undefined` or `null` or a root component function returns no
@@ -53,7 +55,7 @@ export const start =
         const root = resolveRoot(_opts.root);
         const update = () => {
             if (isActive) {
-                _opts.ctx = derefContext(opts.ctx);
+                _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
                 const curr = impl.normalizeTree(_opts, tree);
                 if (curr != null) {
                     if (_opts.hydrate) {

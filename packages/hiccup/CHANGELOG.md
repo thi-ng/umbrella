@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.5.0...@thi.ng/hiccup@2.6.0) (2018-11-07)
+
+
+### Features
+
+* **hiccup:** update derefContext() to only apply to selected keys ([749925f](https://github.com/thi-ng/umbrella/commit/749925f))
+
+
+
+
+
 # [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.4.3...@thi.ng/hiccup@2.5.0) (2018-11-06)
 
 

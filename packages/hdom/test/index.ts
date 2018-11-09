@@ -133,11 +133,14 @@ describe("hdom", () => {
 
     it("dyn context", () => {
         assert.deepEqual(
-            derefContext({
-                a: 23,
-                b: new Atom(42),
-                c: new Atom({ foo: { bar: 66 } }).addView("foo.bar"),
-            }),
+            derefContext(
+                {
+                    a: 23,
+                    b: new Atom(42),
+                    c: new Atom({ foo: { bar: 66 } }).addView("foo.bar"),
+                },
+                ["a", "b", "c"]
+            ),
             {
                 a: 23,
                 b: 42,
