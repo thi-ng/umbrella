@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-canvas",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "Declarative canvas scenegraph & visualization for @thi.ng/hdom",
     "main": "./index.js",
     "typings": "./index.d.ts",
