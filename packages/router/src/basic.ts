@@ -89,7 +89,8 @@ export class BasicRouter implements
      * Throw an error if an invalid route `id` is provided.
      *
      * @param match
-     * @param hash
+     * @param params
+     * @param hash if true, prepends `#` to results
      */
     format(id: PropertyKey, params?: any, hash?: boolean): string;
     format(match: Partial<RouteMatch>, hash?: boolean): string;
@@ -128,12 +129,7 @@ export class BasicRouter implements
     }
 
     routeForID(id: PropertyKey) {
-        const routes = this.config.routes;
-        for (let i = 0, n = routes.length; i < n; i++) {
-            if (id === routes[i].id) {
-                return routes[i];
-            }
-        }
+        return this.config.routes.find((route) => route.id === id);
     }
 
     protected matchRoute(curr: string[], route: Route): RouteMatch {
