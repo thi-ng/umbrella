@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.8.17...@thi.ng/interceptors@1.9.0) (2018-11-13)
+
+
+### Features
+
+* **interceptors:** update forwardSideFx(), refactor iceps as arrow fns ([9334f83](https://github.com/thi-ng/umbrella/commit/9334f83))
+
+
+
+
+
 ## [1.8.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@1.8.16...@thi.ng/interceptors@1.8.17) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/interceptors

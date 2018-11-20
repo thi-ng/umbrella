@@ -1,7 +1,15 @@
 import { clamp01, clamp11 } from "./interval";
 
+/**
+ * Returns normalized value of `x` WRT to interval `a .. b`. If `a`
+ * equals `b`, returns 0.
+ *
+ * @param x
+ * @param a
+ * @param b
+ */
 export const norm = (x: number, a: number, b: number) =>
-    (x - a) / (b - a);
+    b !== a ? (x - a) / (b - a) : 0;
 
 export const fit = (x: number, a: number, b: number, c: number, d: number) =>
     c + (d - c) * norm(x, a, b);
