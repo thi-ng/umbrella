@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.0...@thi.ng/math@0.2.1) (2018-11-20)
+
+
+### Bug Fixes
+
+* **math:** fix [#60](https://github.com/thi-ng/umbrella/issues/60), add range check for norm() ([143c47c](https://github.com/thi-ng/umbrella/commit/143c47c))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.1.0...@thi.ng/math@0.2.0) (2018-10-21)
 
 
