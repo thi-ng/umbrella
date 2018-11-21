@@ -208,7 +208,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     }
 
     removeID(id: string) {
-        const src = this.idSources.get(this.realSourceIDs.get(id));
+        const src = this.getSourceForID(id);
         if (src) {
             return this.remove(src);
         }
@@ -233,6 +233,18 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             ok = this.removeID(id) && ok;
         }
         return ok;
+    }
+
+    getSourceForID(id: string) {
+        return this.idSources.get(this.realSourceIDs.get(id));
+    }
+
+    getSources() {
+        const res = {}
+        for (let [id, src] of this.idSources) {
+            res[this.invRealSourceIDs.get(id)] = src;
+        }
+        return res;
     }
 
     unsubscribe(sub?: Subscription<B, any>) {
