@@ -5,6 +5,7 @@ export * from "./stream-merge";
 export * from "./stream-sync";
 export * from "./subscription";
 export * from "./trigger";
+export * from "./tunnel";
 
 export * from "./from/atom";
 export * from "./from/event";
