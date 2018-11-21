@@ -1,6 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components/canvas";
 import { fit } from "@thi.ng/math/fit";
+import { mix } from "@thi.ng/math/mix";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
@@ -27,6 +28,15 @@ const sel2 = stream<number[]>();
 
 // main stream combinator
 const main = sync({ src: { x1, y1, x2, y2, n, sel1, sel2 } });
+
+const updateRegion = (a, b, c, d) => {
+    x1.next(a);
+    y1.next(b);
+    x2.next(c);
+    y2.next(d);
+    sel1.next(null);
+    sel2.next(null);
+};
 
 // root component HOF
 const app = () => {
@@ -58,9 +68,13 @@ const app = () => {
                 });
             // also initialize gesture stream for allowing users to draw
             // target zoom rectangle
-            gestureStream(el, { scale: true })
+            gestureStream(el, { scale: true, absZoom: false, smooth: 1e-3 })
                 .subscribe({
-                    next: ([type, { pos }]: [GestureType, any]) => {
+                    next: ([type, { pos, zoom }]: [GestureType, any]) => {
+                        const _x1 = x1.deref();
+                        const _y1 = y1.deref();
+                        const _x2 = x2.deref();
+                        const _y2 = y2.deref();
                         switch (type) {
                             case GestureType.START:
                                 sel1.next(pos);
@@ -68,13 +82,9 @@ const app = () => {
                             case GestureType.DRAG:
                                 sel2.next(pos);
                                 break;
-                            case GestureType.END:
+                            case GestureType.END: {
                                 const p = sel1.deref();
                                 if (equiv(p, pos)) return;
-                                const _x1 = x1.deref();
-                                const _y1 = y1.deref();
-                                const _x2 = x2.deref();
-                                const _y2 = y2.deref();
                                 // compute target coord based on current zoom region
                                 let ax = fit(p[0], 0, el.width, _x1, _x2);
                                 let ay = fit(p[1], 0, el.height, _y1, _y2);
@@ -97,17 +107,52 @@ const app = () => {
                                 } else if (aspect < 1) {
                                     bx = ax + (by - ay);
                                 }
-                                // zoom to new region
-                                x1.next(ax);
-                                y1.next(ay);
-                                x2.next(bx);
-                                y2.next(by);
-                                // clear selection
-                                sel1.next(null);
-                                sel2.next(null);
+                                updateRegion(ax, ay, bx, by);
+                                break;
+                            }
+                            case GestureType.ZOOM:
+                                updateRegion(
+                                    mix(_x1, _x2, zoom),
+                                    mix(_y1, _y2, zoom),
+                                    mix(_x2, _x1, zoom),
+                                    mix(_y2, _y1, zoom)
+                                );
+                            default:
                         }
                     }
-                })
+                });
+            // key controls fine tuning region
+            window.addEventListener("keydown", (e) => {
+                let _x1 = x1.deref();
+                let _y1 = y1.deref();
+                let _x2 = x2.deref();
+                let _y2 = y2.deref();
+                const amp = e.shiftKey ? 0.1 : 0.01;
+                const deltaX = (_x2 - _x1) * amp;
+                const deltaY = (_y2 - _y1) * amp;
+                switch (e.code) {
+                    case "ArrowDown":
+                        _y1 += deltaY;
+                        _y2 += deltaY;
+                        updateRegion(_x1, _y1, _x2, _y2);
+                        break;
+                    case "ArrowUp":
+                        _y1 -= deltaY;
+                        _y2 -= deltaY;
+                        updateRegion(_x1, _y1, _x2, _y2);
+                        break;
+                    case "ArrowLeft":
+                        _x1 -= deltaX;
+                        _x2 -= deltaX;
+                        updateRegion(_x1, _y1, _x2, _y2);
+                        break;
+                    case "ArrowRight":
+                        _x1 += deltaX;
+                        _x2 += deltaX;
+                        updateRegion(_x1, _y1, _x2, _y2);
+                        break;
+                }
+            });
         },
         // canvas update handler
         update: (_, ctx, ...args) => {
