@@ -7,6 +7,8 @@ import { push } from "@thi.ng/transducers/rfn/push";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { map } from "@thi.ng/transducers/xform/map";
 
+// see http://dev.thi.ng/gradients/
+
 const cosColor = (dc: number[], amp: number[], fmod: number[], phase: number[], t: number) =>
     transduce(
         map<number[], number>(

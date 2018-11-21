@@ -1,17 +1,22 @@
 import { fit01 } from "@thi.ng/math/fit";
 import { cosineGradient } from "./gradient";
 
+// see http://dev.thi.ng/gradients/
+
 const pallette = cosineGradient(
     256,
     [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5], [-1.0, -1.0, -1.0], [0.00, 0.10, 0.20]]
 );
 
+// host message listener & responder
 const $self: any = self;
 self.addEventListener("message", (e) => {
     const pix = render(e.data);
     $self.postMessage(pix.buffer, [pix.buffer]);
 });
 
+// single pixel fractal evaluation
+// see: https://en.wikipedia.org/wiki/Mandelbrot_set
 const mandelbrot = (x0: number, y0: number, n: number) => {
     let x = 0;
     let y = 0;
@@ -25,6 +30,7 @@ const mandelbrot = (x0: number, y0: number, n: number) => {
     return (i / n * 255) | 0;
 };
 
+// generates new fractal image based on given config tuple
 const render = ({ x1, y1, x2, y2, n, w, h }) => {
     const pix = new Uint32Array(w * h);
     for (let y = 0, i = 0; y < h; y++) {
