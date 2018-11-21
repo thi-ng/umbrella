@@ -44,6 +44,15 @@ export interface GestureStreamOpts extends IID<string> {
      */
     zoom: number;
     /**
+     * If true, the produced `zoom` values are considered absolute and
+     * will be constrained to the `minZoom .. maxZoom` interval. If
+     * `false`, the zoom values are relative and simply the result of
+     * `event.deltaY * smooth`.
+     *
+     * Default: true
+     */
+    absZoom: boolean;
+    /**
      * Min zoom value. Default: 0.25
      */
     minZoom: number;
@@ -102,6 +111,7 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
     opts = Object.assign(<GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
+        absZoom: true,
         minZoom: 0.25,
         maxZoom: 4,
         smooth: 1,
@@ -164,7 +174,9 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
                     body.delta = [pos[0] - clickPos[0], pos[1] - clickPos[1]];
                     break;
                 case GestureType.ZOOM:
-                    body.zoom = zoom = Math.min(Math.max(zoom + (<WheelEvent>e).deltaY * opts.smooth, opts.minZoom), opts.maxZoom);
+                    body.zoom = zoom = opts.absZoom ?
+                        Math.min(Math.max(zoom + (<WheelEvent>e).deltaY * opts.smooth, opts.minZoom), opts.maxZoom) :
+                        (<WheelEvent>e).deltaY * opts.smooth;
                     break;
                 default:
             }
