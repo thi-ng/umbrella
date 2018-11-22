@@ -1,3 +1,4 @@
+import { splat8_24 } from "@thi.ng/binary/splat";
 import { fit01 } from "@thi.ng/math/fit";
 import { cosineGradient } from "./gradient";
 
@@ -31,11 +32,12 @@ const mandelbrot = (x0: number, y0: number, n: number) => {
 };
 
 // generates new fractal image based on given config tuple
-const render = ({ x1, y1, x2, y2, n, w, h }) => {
+const render = ({ x1, y1, x2, y2, iter, w, h }) => {
     const pix = new Uint32Array(w * h);
     for (let y = 0, i = 0; y < h; y++) {
         for (let x = 0; x < w; x++) {
-            pix[i++] = pallette[mandelbrot(fit01(x / w, x1, x2), fit01(y / w, y1, y2), n)];
+            // pix[i++] = splat8_24(mandelbrot(fit01(x / w, x1, x2), fit01(y / w, y1, y2), iter, k * x / w)) | 0xff000000;
+            pix[i++] = pallette[mandelbrot(fit01(x / w, x1, x2), fit01(y / w, y1, y2), iter)];
         }
     }
     return pix;

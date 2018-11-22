@@ -14,6 +14,8 @@ import { map } from "@thi.ng/transducers/xform/map";
 // canvas size
 const SIZE = 640;
 
+const DEFAULT_REGION = [-1.65, -1, 0.65, 1, 128];
+
 // format helper (for URL hash)
 const ff = (x: number) => x.toExponential(8);
 
@@ -22,18 +24,19 @@ const x1 = stream<number>();
 const y1 = stream<number>();
 const x2 = stream<number>();
 const y2 = stream<number>();
-const n = stream<number>();
+const iter = stream<number>();
 const sel1 = stream<number[]>();
 const sel2 = stream<number[]>();
 
 // main stream combinator
-const main = sync({ src: { x1, y1, x2, y2, n, sel1, sel2 } });
+const main = sync({ src: { x1, y1, x2, y2, iter, sel1, sel2 } });
 
-const updateRegion = (a, b, c, d) => {
+const updateRegion = (a, b, c, d, i = iter.deref()) => {
     x1.next(a);
     y1.next(b);
     x2.next(c);
     y2.next(d);
+    iter.next(i);
     sel1.next(null);
     sel2.next(null);
 };
@@ -57,7 +60,7 @@ const app = () => {
             // the `interrupt` option and ensures only the most recent
             // configuration is being fully executed without having to
             // wait for older render tasks to complete...
-            sync({ src: { x1, y1, x2, y2, n } })
+            sync({ src: { x1, y1, x2, y2, iter } })
                 .transform(map((obj) => ({ ...obj, w: el.width, h: el.height })))
                 .subscribe(tunnel({ src: "./worker.js", interrupt: true }))
                 .subscribe({
@@ -169,16 +172,23 @@ const app = () => {
     // return actual root component function
     return ({ sel1, sel2 }) => {
         return ["div.flex-l.sans-serif.f7",
-            [canvas, { width: SIZE, height: SIZE }, sel1, sel2],
+            [canvas, { id: "main", width: SIZE, height: SIZE }, sel1, sel2],
             ["div.pa2.lh-copy",
                 ["h1.ma0", "Mandelbrot explorer"],
                 [slider, x1, -2.5, 1, 1e-8, "x1"],
                 [slider, y1, -1, 1, 1e-8, "y1"],
                 [slider, x2, -2.5, 1, 1e-8, "x2"],
                 [slider, y2, -1, 1, 1e-8, "y2"],
-                [slider, n, 1, 1000, 1, "iter"],
+                [slider, iter, 1, 1000, 1, "iter"],
+                ["button", {
+                    onclick: () => updateRegion.apply(null, DEFAULT_REGION),
+                }, "reset"],
                 ["div",
-                    "Click & drag to draw target zoom rectangle"
+                    ["ul",
+                        ["li", "Click & drag to draw target zoom rectangle"],
+                        ["li", "Mouse wheel to zoom in / out"],
+                        ["li", "Cursor keys to fine tune region (+ Shift for bigger steps)"],
+                    ]
                 ]
             ]
         ];
@@ -216,10 +226,10 @@ main.transform(
 run(
     map(([src, x]) => src.next(x)),
     tuples(
-        [x1, y1, x2, y2, n],
+        [x1, y1, x2, y2, iter],
         location.hash.length > 1 ?
             location.hash.substr(1).split(";").map(parseFloat) :
-            [-1.65, -1, 0.65, 1, 128]
+            DEFAULT_REGION
     )
 );
 
