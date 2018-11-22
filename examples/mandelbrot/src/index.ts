@@ -7,17 +7,17 @@ import { stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { tunnel } from "@thi.ng/rstream/tunnel";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { run } from "@thi.ng/transducers/run";
 import { map } from "@thi.ng/transducers/xform/map";
 
 // canvas size
 const SIZE = 640;
 
-const DEFAULT_REGION = [-1.65, -1, 0.65, 1, 128];
+// default region / configuration
+// x1, y1, x2, y2, iter, gradient
+const DEFAULT_CONFIG = [-1.65, -1, 0.65, 1, 128, 0];
 
-// format helper (for URL hash)
-const ff = (x: number) => x.toExponential(8);
+// formatting helper (for URL hash)
+const ff = (x: number) => x.toExponential(10);
 
 // mandelbrot parameter streams
 const x1 = stream<number>();
@@ -25,18 +25,22 @@ const y1 = stream<number>();
 const x2 = stream<number>();
 const y2 = stream<number>();
 const iter = stream<number>();
+const gradient = stream<number>();
 const sel1 = stream<number[]>();
 const sel2 = stream<number[]>();
 
 // main stream combinator
-const main = sync({ src: { x1, y1, x2, y2, iter, sel1, sel2 } });
+const main = sync({ src: { x1, y1, x2, y2, iter, gradient, sel1, sel2 } });
 
-const updateRegion = (a, b, c, d, i = iter.deref()) => {
+// update param streams to trigger new render
+const newRender = (a: number, b: number, c: number, d: number, i?: number, g?: number) => {
     x1.next(a);
     y1.next(b);
     x2.next(c);
     y2.next(d);
-    iter.next(i);
+    i !== undefined && iter.next(i);
+    g !== undefined && gradient.next(g);
+    // clear selection
     sel1.next(null);
     sel2.next(null);
 };
@@ -60,7 +64,7 @@ const app = () => {
             // the `interrupt` option and ensures only the most recent
             // configuration is being fully executed without having to
             // wait for older render tasks to complete...
-            sync({ src: { x1, y1, x2, y2, iter } })
+            sync({ src: { x1, y1, x2, y2, iter, gradient } })
                 .transform(map((obj) => ({ ...obj, w: el.width, h: el.height })))
                 .subscribe(tunnel({ src: "./worker.js", interrupt: true }))
                 .subscribe({
@@ -110,15 +114,15 @@ const app = () => {
                                 } else if (aspect < 1) {
                                     bx = ax + (by - ay);
                                 }
-                                updateRegion(ax, ay, bx, by);
+                                newRender(ax, ay, bx, by);
                                 break;
                             }
                             case GestureType.ZOOM:
-                                updateRegion(
+                                newRender(
                                     mix(_x1, _x2, zoom),
                                     mix(_y1, _y2, zoom),
                                     mix(_x2, _x1, zoom),
-                                    mix(_y2, _y1, zoom)
+                                    mix(_y2, _y1, zoom),
                                 );
                             default:
                         }
@@ -137,22 +141,22 @@ const app = () => {
                     case "ArrowDown":
                         _y1 += deltaY;
                         _y2 += deltaY;
-                        updateRegion(_x1, _y1, _x2, _y2);
+                        newRender(_x1, _y1, _x2, _y2);
                         break;
                     case "ArrowUp":
                         _y1 -= deltaY;
                         _y2 -= deltaY;
-                        updateRegion(_x1, _y1, _x2, _y2);
+                        newRender(_x1, _y1, _x2, _y2);
                         break;
                     case "ArrowLeft":
                         _x1 -= deltaX;
                         _x2 -= deltaX;
-                        updateRegion(_x1, _y1, _x2, _y2);
+                        newRender(_x1, _y1, _x2, _y2);
                         break;
                     case "ArrowRight":
                         _x1 += deltaX;
                         _x2 += deltaX;
-                        updateRegion(_x1, _y1, _x2, _y2);
+                        newRender(_x1, _y1, _x2, _y2);
                         break;
                 }
             });
@@ -180,8 +184,9 @@ const app = () => {
                 [slider, x2, -2.5, 1, 1e-8, "x2"],
                 [slider, y2, -1, 1, 1e-8, "y2"],
                 [slider, iter, 1, 1000, 1, "iter"],
+                [slider, gradient, 0, 3, 0, "gradient"],
                 ["button", {
-                    onclick: () => updateRegion.apply(null, DEFAULT_REGION),
+                    onclick: () => newRender.apply(null, DEFAULT_CONFIG),
                 }, "reset"],
                 ["div",
                     ["ul",
@@ -212,8 +217,8 @@ const slider = (_, stream, min, max, step, label) =>
 
 // URL hash updater
 main.subscribe({
-    next: ({ x1, y1, x2, y2, n }) =>
-        location.hash = `${ff(x1)};${ff(y1)};${ff(x2)};${ff(y2)};${n}`
+    next: ({ x1, y1, x2, y2, iter, gradient }) =>
+        location.hash = `${ff(x1)};${ff(y1)};${ff(x2)};${ff(y2)};${iter};${gradient}`
 });
 
 // attach root component & DOM update to main stream
@@ -223,19 +228,12 @@ main.transform(
 );
 
 // pre-seed parameter streams, if possible from location.hash
-run(
-    map(([src, x]) => src.next(x)),
-    tuples(
-        [x1, y1, x2, y2, iter],
-        location.hash.length > 1 ?
-            location.hash.substr(1).split(";").map(parseFloat) :
-            DEFAULT_REGION
-    )
+newRender.apply(
+    null,
+    location.hash.length > 1 ?
+        location.hash.substr(1).split(";").map(parseFloat) :
+        DEFAULT_CONFIG
 );
-
-// pre-seed selection stream (zoom rect)
-sel1.next(null);
-sel2.next(null);
 
 // HMR handling
 if (process.env.NODE_ENV !== "production") {
