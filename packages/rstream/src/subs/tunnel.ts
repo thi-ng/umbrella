@@ -16,7 +16,7 @@ export interface TunnelOpts<A> {
      *
      * Default: 1
      */
-    maxWorkers: number;
+    maxWorkers?: number;
     /**
      * Optional subscription ID to use.
      */
