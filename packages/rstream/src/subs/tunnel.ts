@@ -9,6 +9,15 @@ export interface TunnelOpts<A> {
      */
     src: Worker | Blob | string;
     /**
+     * Max. number of worker instances to use. Only useful if
+     * `interrupt` is disabled. If more than one is used, incoming
+     * stream values will be assigned to workers in a round robin order.
+     * Workers will be instantiated on demand.
+     *
+     * Default: 1
+     */
+    maxWorkers: number;
+    /**
      * Optional subscription ID to use.
      */
     id?: string;
@@ -19,10 +28,10 @@ export interface TunnelOpts<A> {
      */
     transferables?: (x: A) => any[];
     /**
-     * If given and greater than zero, the worker will be terminated
+     * If given and greater than zero, all workers will be terminated
      * after given period (in millis) after the parent stream is done.
      *
-     * Default: 0
+     * Default: 1000
      */
     terminate?: number;
     /**
@@ -37,10 +46,11 @@ export interface TunnelOpts<A> {
 
 /**
  * Creates a new worker `Tunnel` instance with given options. This
- * subscription type processes received values via the configured worker
- * and then passes any values received back from the worker on to
- * downstream subscriptions, thereby allowing workers to be used
- * transparently for stream processing.
+ * subscription type processes received values via the configured
+ * worker(s) and then passes any values received back from the worker(s)
+ * on to downstream subscriptions, thereby allowing workers to be used
+ * transparently for stream processing. Multiple worker instances are
+ * supported for processing. See the `maxWorkers` option for details.
  *
  * @param opts
  */
@@ -49,18 +59,22 @@ export const tunnel = <A, B>(opts: TunnelOpts<A>) =>
 
 export class Tunnel<A, B> extends Subscription<A, B> {
 
-    worker: Worker;
+    workers: Worker[];
     src: Worker | Blob | string;
     transferables: (x: A) => any[];
     terminate: number;
     interrupt: boolean;
 
+    index: number;
+
     constructor(opts: TunnelOpts<A>) {
         super(null, null, null, opts.id || `tunnel-${Subscription.NEXT_ID++}`);
         this.src = opts.src;
+        this.workers = new Array(opts.maxWorkers || 1);
         this.transferables = opts.transferables;
-        this.terminate = opts.terminate || 0;
+        this.terminate = opts.terminate || 1000;
         this.interrupt = opts.interrupt;
+        this.index = 0;
     }
 
     next(x: A) {
@@ -69,22 +83,24 @@ export class Tunnel<A, B> extends Subscription<A, B> {
             if (this.transferables) {
                 tx = this.transferables(x);
             }
-            if (this.interrupt && this.worker) {
-                this.worker.terminate();
-                this.worker = null;
+            let worker = this.workers[this.index];
+            if (this.interrupt && worker) {
+                worker.terminate();
+                worker = null;
             }
-            if (!this.worker) {
-                this.worker = makeWorker(this.src);
-                this.worker.addEventListener(
+            if (!worker) {
+                this.workers[this.index++] = worker = makeWorker(this.src);
+                this.index %= this.workers.length;
+                worker.addEventListener(
                     "message",
                     (e: MessageEvent) => this.dispatch(e.data)
                 );
-                this.worker.addEventListener(
+                worker.addEventListener(
                     "error",
                     (e: ErrorEvent) => this.error(e)
                 );
             }
-            this.worker.postMessage(x, tx);
+            worker.postMessage(x, tx);
         }
     }
 
@@ -92,8 +108,9 @@ export class Tunnel<A, B> extends Subscription<A, B> {
         super.done();
         if (this.terminate > 0) {
             setTimeout(() => {
-                DEBUG && console.log("terminating worker...");
-                this.worker.terminate();
+                DEBUG && console.log("terminating workers...");
+                this.workers.forEach((worker) => worker && worker.terminate());
+                delete this.workers;
             }, this.terminate);
         }
     }
