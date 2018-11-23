@@ -635,14 +635,15 @@ const points = (ctx: CanvasRenderingContext2D,
 const text = (ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pos: ReadonlyVec,
-    body: any) => {
+    body: any,
+    maxWidth?: number) => {
 
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
-        ctx.fillText(body.toString(), pos[0], pos[1]);
+        ctx.fillText(body.toString(), pos[0], pos[1], maxWidth);
     }
     if ((v = attribs.stroke) && v !== "none") {
-        ctx.strokeText(body.toString(), pos[0], pos[1]);
+        ctx.strokeText(body.toString(), pos[0], pos[1], maxWidth);
     }
 };
 
