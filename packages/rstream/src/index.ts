@@ -5,7 +5,6 @@ export * from "./stream-merge";
 export * from "./stream-sync";
 export * from "./subscription";
 export * from "./trigger";
-export * from "./tunnel";
 
 export * from "./from/atom";
 export * from "./from/event";
@@ -24,5 +23,6 @@ export * from "./subs/sidechain-partition";
 export * from "./subs/sidechain-toggle";
 export * from "./subs/trace";
 export * from "./subs/transduce";
+export * from "./subs/tunnel";
 
 export * from "./utils/worker";
