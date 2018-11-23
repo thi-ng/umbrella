@@ -1,0 +1,30 @@
+{
+    "name": "mandelbrot",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && yarn build:worker && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "build:worker": "parcel build src/worker.ts -d out --no-source-maps --no-cache --detailed-report",
+        "start": "yarn build:worker && parcel index.html -d out -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.10.3",
+        "terser": "^3.10.1",
+        "typescript": "^3.1.3"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/atom": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers-hdom": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    }
+}
