@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.8...@thi.ng/rstream@1.14.0) (2018-11-24)
+
+
+### Bug Fixes
+
+* **rstream:** make maxWorkers optional ([46c2882](https://github.com/thi-ng/umbrella/commit/46c2882))
+
+
+### Features
+
+* **rstream:** add StreamSync.getSources() / getSourceForID() ([ef0fe42](https://github.com/thi-ng/umbrella/commit/ef0fe42))
+* **rstream:** add support multiple workers in Tunnel & TunnelOpts ([67a5b10](https://github.com/thi-ng/umbrella/commit/67a5b10))
+* **rstream:** add worker tunnel() sub ([4750e79](https://github.com/thi-ng/umbrella/commit/4750e79))
+
+
+
+
+
 ## [1.13.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@1.13.7...@thi.ng/rstream@1.13.8) (2018-11-08)
 
 **Note:** Version bump only for package @thi.ng/rstream
