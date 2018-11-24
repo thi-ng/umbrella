@@ -33,9 +33,10 @@
         "@thi.ng/equiv": "^0.1.13",
         "@thi.ng/errors": "^0.1.11",
         "@thi.ng/malloc": "^0.2.0",
-        "@thi.ng/math": "^0.2.0",
-        "@thi.ng/strings": "^0.5.2",
-        "@thi.ng/transducers": "^2.2.1"
+        "@thi.ng/math": "^0.2.1",
+        "@thi.ng/random": "^0.1.0",
+        "@thi.ng/strings": "^0.6.0",
+        "@thi.ng/transducers": "^2.2.2"
     },
     "keywords": [
         "ES6",
