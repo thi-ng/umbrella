@@ -25,6 +25,7 @@ This project is part of the
     - [Stream merging](#stream-merging)
     - [Stream splitting](#stream-splitting)
     - [Side-chaining](#side-chaining)
+    - [Worker support](#worker-support)
     - [Other subscription ops](#other-subscription-ops)
 - [Authors](#authors)
 - [License](#license)
@@ -118,6 +119,13 @@ A small selection:
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
 [Live version](https://demo.thi.ng/umbrella/crypto-chart/)
+
+### Worker-based mandelbrot fractal renderer
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/mandelbrot.jpg)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/mandelbrot) |
+[Live version](https://demo.thi.ng/umbrella/mandelbrot/)
 
 ### Interactive SVG grid generator
 
@@ -468,13 +476,27 @@ fromInterval(500)
 ...
 ```
 
+### Worker support
+
+#### [tunnel()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/tunnel.ts)
+
+Delegate stream value processing to workers and pass on their responses
+to downstream subscriptions. Supports multiple worker instances and
+worker termination / restart for each new stream value received.
+
+#### [postWorker()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts)
+
+Send values to workers (incl. optional (inline) worker instantiation)
+
+#### [fromWorker()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/worker.ts)
+
+Create value stream from worker messages.
+
 ### Other subscription ops
 
-- [postWorker](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts) - send values to workers (incl. optional worker instantiation)
 - [resolve](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
 - [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
-
 
 ## Authors
 
