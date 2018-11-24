@@ -14,10 +14,8 @@ for m in $modules; do
         name=$(echo $m | cut -d '/' -f 2)
         dest="$target/$name"
         src=$(ls $m/out/*.js.gz | cut -d '/' -f 4)
-        len=${#src}
-        src="${src:0:len-3}"
         echo "------------------------------"
-        echo "uploading $m ($src)..."
+        echo "uploading $m..."
         echo "------------------------------"
         assets=$(find $m/out/ -name '*.png')
         if [ ! -z $assets ]; then
@@ -31,7 +29,11 @@ for m in $modules; do
                 aws s3 cp $a.gz $dest/$origname $opts --content-type "application/json; charset=utf-8" --content-encoding gzip
             done
         fi
-        aws s3 cp $m/out/*.js.gz $dest/$src $opts --content-type "application/javascript; charset=utf-8" --content-encoding gzip
+        for js in $src; do
+            len=${#js}
+            js2="${js:0:len-3}"
+            aws s3 cp $m/out/$js $dest/$js2 $opts --content-type "application/javascript; charset=utf-8" --content-encoding gzip
+        done
         aws s3 cp $m/out/index.html $dest/ $opts --cache-control "max-age=900"
     fi
 done

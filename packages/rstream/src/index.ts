@@ -23,5 +23,6 @@ export * from "./subs/sidechain-partition";
 export * from "./subs/sidechain-toggle";
 export * from "./subs/trace";
 export * from "./subs/transduce";
+export * from "./subs/tunnel";
 
 export * from "./utils/worker";

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.18...@thi.ng/rstream-gestures@0.6.0) (2018-11-24)
+
+
+### Features
+
+* **rstream-gestures:** add absZoom option (abs vs. relative) ([bab55c3](https://github.com/thi-ng/umbrella/commit/bab55c3))
+
+
+
+
+
 ## [0.5.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@0.5.17...@thi.ng/rstream-gestures@0.5.18) (2018-11-08)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures
