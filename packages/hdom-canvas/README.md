@@ -319,7 +319,7 @@ The following shape specific attributes are used:
 ### Text
 
 ```ts
-["text", attribs, [x,y], "body..."]
+["text", attribs, [x,y], "body...", maxWidth?]
 ```
 
 ### Image
