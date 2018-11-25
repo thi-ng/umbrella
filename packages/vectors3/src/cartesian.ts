@@ -1,5 +1,5 @@
 import { MultiVecOpVO, ReadonlyVec, ZERO4 } from "./api";
-import { vop } from "./vop";
+import { vop } from "./internal/vop";
 
 const cos = Math.cos;
 const sin = Math.sin;

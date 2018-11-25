@@ -1,6 +1,6 @@
 import { MultiVecOpRoVV } from "./api";
-import { compile } from "./codegen";
-import { vop } from "./vop";
+import { compile } from "./internal/codegen";
+import { vop } from "./internal/vop";
 
 const $ = (dim: number) =>
     distChebyshev.add(

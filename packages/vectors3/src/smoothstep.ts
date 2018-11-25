@@ -1,6 +1,6 @@
 import { smoothStep as _step } from "@thi.ng/math/step";
 import { MultiVecOpV, VecOpV } from "./api";
-import { defHofOp } from "./codegen";
+import { defHofOp } from "./internal/codegen";
 
 export const [smoothStep, smoothStep2, smoothStep3, smoothStep4] =
     defHofOp<MultiVecOpV, VecOpV>(

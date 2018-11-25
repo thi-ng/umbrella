@@ -1,6 +1,6 @@
 import { MultiVecOpRoV } from "./api";
-import { compile, compileG } from "./codegen";
-import { vop } from "./vop";
+import { compile, compileG } from "./internal/codegen";
+import { vop } from "./internal/vop";
 
 const $ = (dim: number) =>
     magSq.add(

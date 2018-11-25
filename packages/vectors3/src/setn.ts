@@ -1,5 +1,5 @@
 import { MultiVecOpN, Vec, VecOpN } from "./api";
-import { defOp } from "./codegen";
+import { defOp } from "./internal/codegen";
 
 export const [setN, setN2, setN3, setN4] =
     defOp<MultiVecOpN, VecOpN>(([a]) => `${a}=n;`, "a,n", "a", "a", 0);

@@ -1,5 +1,5 @@
 import { MultiVecOpVVV, VecOpVVV } from "./api";
-import { defOp } from "./codegen";
+import { defOp } from "./internal/codegen";
 
 export const [mix, mix2, mix3, mix4] =
     defOp<MultiVecOpVVV, VecOpVVV>(

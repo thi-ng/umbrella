@@ -1,7 +1,7 @@
 import { IRandom } from "@thi.ng/random/api";
 import { SYSTEM } from "@thi.ng/random/system";
 import { MultiVecOpOOO, Vec, VecOpOOO } from "./api";
-import { defHofOp } from "./codegen";
+import { defHofOp } from "./internal/codegen";
 import { normalize } from "./normalize";
 
 export const [random, random2, random3, random4] =

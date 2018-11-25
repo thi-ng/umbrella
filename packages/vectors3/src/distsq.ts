@@ -1,6 +1,6 @@
 import { MultiVecOpRoVV } from "./api";
-import { compile, compileG } from "./codegen";
-import { vop } from "./vop";
+import { compile, compileG } from "./internal/codegen";
+import { vop } from "./internal/vop";
 
 const tpl = ([a, b]) => `t=${a}-${b};sum+=t*t;`;
 const pre = "let t,sum=0;";

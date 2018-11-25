@@ -1,6 +1,10 @@
 export * from "./api";
-export * from "./codegen";
-export * from "./vop";
+export * from "./internal/codegen";
+export * from "./internal/vop";
+
+export * from "./vec2";
+export * from "./vec3";
+export * from "./vec4";
 
 export * from "./abs";
 export * from "./acos";
@@ -11,6 +15,8 @@ export * from "./asin";
 export * from "./bisect";
 export * from "./cartesian";
 export * from "./ceil";
+export * from "./clamp";
+export * from "./clampn";
 export * from "./compare";
 export * from "./copy";
 export * from "./cos";
@@ -28,6 +34,7 @@ export * from "./exp";
 export * from "./floor";
 export * from "./fract";
 export * from "./heading";
+export * from "./invert";
 export * from "./limit";
 export * from "./log";
 export * from "./madd";
@@ -52,6 +59,8 @@ export * from "./polar";
 export * from "./pow";
 export * from "./pown";
 export * from "./random";
+export * from "./reflect";
+export * from "./refract";
 export * from "./rotate-around-axis";
 export * from "./rotate-around-point";
 export * from "./rotate";

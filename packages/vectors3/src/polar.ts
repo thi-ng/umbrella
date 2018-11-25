@@ -1,5 +1,5 @@
 import { MultiVecOpV } from "./api";
-import { vop } from "./vop";
+import { vop } from "./internal/vop";
 import { mag } from "./mag";
 
 const sqrt = Math.sqrt;

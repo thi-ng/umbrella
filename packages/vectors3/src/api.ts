@@ -1,10 +1,21 @@
-import { ILength } from "@thi.ng/api/api";
+import { ILength, ICopy, IEmpty, IEqualsDelta } from "@thi.ng/api/api";
 
 export interface Vec extends
     Iterable<number>,
     ILength {
 
     [id: number]: number;
+}
+
+export interface IVector<T> extends
+    Vec,
+    ICopy<T>,
+    IEmpty<T>,
+    IEqualsDelta<T> {
+
+    buf: Vec;
+    i: number;
+    s: number;
 }
 
 export interface ReadonlyVec extends
@@ -24,6 +35,7 @@ export type VecOpVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => Vec;
 export type VecOpVN = (out: Vec, a: ReadonlyVec, n: number) => Vec;
 export type VecOpVVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => Vec;
 export type VecOpVVN = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number) => Vec;
+export type VecOpVNN = (out: Vec, a: ReadonlyVec, u: number, v: number) => Vec;
 export type VecOpVVVVNN = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number) => Vec;
 
 export type VecOpVO<T> = (out: Vec, a: ReadonlyVec, b?: T) => Vec;
@@ -41,6 +53,7 @@ export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> { }
 export interface MultiVecOpVN extends VecOpVN, MultiVecOp<VecOpVN> { }
 export interface MultiVecOpVVV extends VecOpVVV, MultiVecOp<VecOpVVV> { }
 export interface MultiVecOpVVN extends VecOpVVN, MultiVecOp<VecOpVVN> { }
+export interface MultiVecOpVNN extends VecOpVNN, MultiVecOp<VecOpVNN> { }
 export interface MultiVecOpVVVVNN extends VecOpVVVVNN, MultiVecOp<VecOpVVVVNN> { }
 
 export interface MultiVecOpVO<T> extends VecOpVO<T>, MultiVecOp<VecOpVO<T>> { }
@@ -52,5 +65,13 @@ export interface MultiVecOpRoV<T> extends VecOpRoV<T>, MultiVecOp<VecOpRoV<T>> {
 export interface MultiVecOpRoVV<T> extends VecOpRoVV<T>, MultiVecOp<VecOpRoVV<T>> { }
 export interface MultiVecOpRoVVO<T, O> extends VecOpRoVVO<T, O>, MultiVecOp<VecOpRoVVO<T, O>> { }
 
-export const ZERO4 = Object.freeze([0, 0, 0, 0]);
+const mi = -Infinity;
+const mx = Infinity;
+export const MIN4 = Object.freeze([mi, mi, mi, mi]);
+export const MAX4 = Object.freeze([mx, mx, mx, mx]);
 export const ONE4 = Object.freeze([1, 1, 1, 1]);
+export const ZERO4 = Object.freeze([0, 0, 0, 0]);
+export const X4 = Object.freeze([1, 0, 0, 0]);
+export const Y4 = Object.freeze([0, 1, 0, 0]);
+export const Z4 = Object.freeze([0, 0, 1, 0]);
+export const W4 = Object.freeze([0, 0, 0, 1]);
