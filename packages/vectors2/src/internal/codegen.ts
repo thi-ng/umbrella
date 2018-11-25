@@ -1,8 +1,9 @@
-import { FnAny } from "@thi.ng/api";
+// import { FnAny } from "@thi.ng/api";
 import { sign as _sign } from "@thi.ng/math/abs";
 import { clamp as _clamp } from "@thi.ng/math/interval";
 import { fract as _fract, trunc as _trunc } from "@thi.ng/math/prec";
 import { smoothStep as _smoothStep, step as _step } from "@thi.ng/math/step";
+import { SYSTEM } from "@thi.ng/random/system";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { range } from "@thi.ng/transducers/iter/range";
 import { tuples } from "@thi.ng/transducers/iter/tuples";
@@ -143,7 +144,7 @@ export const compile = (
 
 export const compileHOF = (
     dim: number,
-    fns: FnAny<any>[],
+    fns: any[],
     tpl: Template,
     hofArgs: string,
     args: string,
@@ -169,7 +170,7 @@ export const compileG = (
     <any>new Function(args, assembleG(tpl, syms, ret, pre, post).join(""));
 
 export const compileGHOF = (
-    fns: FnAny<any>[],
+    fns: any[],
     tpl: Template,
     hofArgs: string,
     args: string,
@@ -191,9 +192,9 @@ const tplFnVV = (fn) => ([a, b]) => `${a}=${fn}(${a},${b});`
 const tplVN = (op) => ([a]) => `${a}${op}=n;`
 const tplNewVV = (op) => ([a, b, o]) => `${o}=${a}${op}${b};`
 const tplNewVN = (op) => ([a, o]) => `${o}=${a}${op}n;`;
-const tplRand01 = ([a]) => `${a}=Math.random();`
-const tplRand11 = ([a]) => `${a}=Math.random()*2-1;`
-const tplRand = ([a]) => `${a}=n+(m-n)*Math.random();`
+const tplRand01 = ([a]) => `${a}=rnd.float();`
+const tplRand11 = ([a]) => `${a}=rnd.norm();`
+const tplRand = ([a]) => `${a}=rnd.minmax(n,m);`
 const tplMadd = ([a, b, c]) => `${a}+=${b}*${c};`
 const tplMaddN = ([a, b]) => `${a}+=${b}*n;`;
 const tplMaddNew = ([a, b, c, o]) => `${o}=${a}+${b}*${c};`
@@ -233,10 +234,9 @@ export const genCommon = (dim: number): CommonOps => [
     setN.add(dim, genOpVN(dim, "")),
     setS.add(dim, compile(dim, ([a], i) => `${a}=xs[${i}];`, "a,...xs", "a")),
 
-    // TODO add IRandom support
-    rand01.add(dim, compile(dim, tplRand01, "a")),
-    rand11.add(dim, compile(dim, tplRand11, "a")),
-    rand.add(dim, compile(dim, tplRand, "a,n,m", "a")),
+    rand01.add(dim, compileHOF(dim, [SYSTEM], tplRand01, "_rnd", "a,rnd=_rnd", "a")),
+    rand11.add(dim, compileHOF(dim, [SYSTEM], tplRand11, "_rnd", "a,rnd=_rnd", "a")),
+    rand.add(dim, compileHOF(dim, [SYSTEM], tplRand, "_rnd", "a,n,m,rnd=_rnd", "a")),
 
     add.add(dim, genOpVV(dim, "+")),
     sub.add(dim, genOpVV(dim, "-")),
@@ -320,10 +320,13 @@ export const genCommonDefaults = (): CommonOps => [
     setN.default(genGOpVN("")),
     setS.default(compileG(([a]) => `${a}=xs[i];`, "a,...xs", "a")),
 
-    // TODO add IRandom support
-    rand01.default(compileG(tplRand01, "a")),
-    rand11.default(compileG(tplRand11, "a")),
-    rand.default(compileG(tplRand, "a,n,m", "a")),
+    // rand01.default(compileG(tplRand01, "a")),
+    // rand11.default(compileG(tplRand11, "a")),
+    // rand.default(compileG(tplRand, "a,n,m", "a")),
+
+    rand01.default(compileGHOF([SYSTEM], tplRand01, "_rnd", "a,rnd=_rnd", "a")),
+    rand11.default(compileGHOF([SYSTEM], tplRand11, "_rnd", "a,rnd=_rnd", "a")),
+    rand.default(compileGHOF([SYSTEM], tplRand, "_rnd", "a,n,m,rnd=_rnd", "a")),
 
     add.default(genGOpVV("+")),
     sub.default(genGOpVV("-")),
