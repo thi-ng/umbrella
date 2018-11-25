@@ -1,8 +1,8 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { ReadonlyVec } from "./api";
+import { ReadonlyVec, Vec } from "./api";
 
 export const copy =
-    (v: ReadonlyVec) =>
+    (v: ReadonlyVec): Vec =>
         implementsFunction(v, "copy") ?
             (<any>v).copy() :
             [...v];

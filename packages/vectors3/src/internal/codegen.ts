@@ -6,20 +6,64 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { take } from "@thi.ng/transducers/xform/take";
+import { FN } from "./templates";
 import { vop } from "./vop";
+
+export const ARGS_V = "o,a";
+export const ARGS_VV = "o,a,b";
+
+export const SARGS_V = "io=0,ia=0,so=1,sa=1";
+export const SARGS_VV = "io=0,ia=0,ib=0,so=1,sa=1,sb=1";
+export const SARGS_VVV = "io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1";
 
 export type Template = (syms: string[], i?: number) => string;
 
-export const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
+/**
+ * HOF array index lookup gen to provide optimized versions of:
+ *
+ * ```
+ * lookup("a")(0) // a[ia]
+ * lookup("a")(1) // a[ia * sa]
+ * lookup("a")(2) // a[ia + 2 * sa]
+ * ```
+ *
+ * @param sym
+ */
+const lookup =
+    (sym: string) =>
+        (i) => i > 1 ?
+            `${sym}[i${sym}+${i}*s${sym}]` :
+            i == 1 ? `${sym}[i${sym}+s${sym}]` :
+                `${sym}[i${sym}]`;
 
 /**
- * Takes a vector size `dim`, a code template function and an array of
- * symbol names participating in the template. For each symbol, creates
- * iterator of index lookups (e.g. `a[0]`), forms them into tuples and
- * passes them to template to generate code. If the optional `ret` arg
- * is not `null` (default `"a"`), appends a `return` statement to the
- * result array, using `ret` as return value. Returns array of source
- * code lines.
+ * Infinite iterator of strided index lookups for `sym`.
+ *
+ * @param sym
+ */
+const indicesStrided =
+    (sym: string) => map(lookup(sym), range());
+
+/**
+ * Infinite iterator of simple (non-strided) index lookups for `sym`.
+ *
+ * @param sym
+ */
+const indices =
+    (sym: string) => map((i) => `${sym}[${i}]`, range());
+
+/**
+ * Code generator for loop-unrolled vector operations. Takes a vector
+ * size `dim`, a code template function `tpl` and an array of symbol
+ * names participating in the template. For each symbol, creates
+ * iterator of index lookups (e.g. `a[0]` or `a[ia+k*sa]`), forms them
+ * into tuples and passes them to template to generate code and joins
+ * generated result with `opJoin` separator (default:
+ * `""`).
+ *
+ * If the optional `ret` arg is not `null` (default `"a"`), appends a
+ * `return` statement to the result array, using `ret` as return value.
+ * Returns array of source code lines.
  *
  * The optional `pre` and `post` strings can be used to wrap the
  * generated code. `post` will be injected **before** the generated
@@ -32,36 +76,55 @@ export const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
  * @param opJoin
  * @param pre
  * @param post
+ * @param strided
  */
-export const assemble = (
+const assemble = (
     dim: number,
     tpl: Template,
     syms: string,
     ret = "a",
     opJoin = "",
     pre = "",
-    post = "") =>
+    post = "",
+    strided = false) =>
 
     [
         pre,
         transduce(
-            comp(take(dim), mapIndexed((i, x: string[]) => tpl(x, i))),
+            comp(
+                take(dim),
+                mapIndexed((i, x: string[]) => tpl(x, i))
+            ),
             str(opJoin),
-            tuples.apply(null, [...map(indices, syms.split(","))])
+            tuples.apply(
+                null,
+                syms.split(",").map(
+                    strided ?
+                        indicesStrided :
+                        indices,
+                )
+            )
         ),
         post,
         ret !== null ? `return ${ret};` : ""
     ];
 
-export const assembleG = (
+const assembleG = (
     tpl: Template,
     syms: string,
     ret = "a",
     pre?: string,
-    post?: string) => [
+    post?: string,
+    strided = false) => [
         pre,
         "for(let i=a.length;--i>=0;) {",
-        tpl(syms.split(",").map((x) => `${x}[i]`)),
+        tpl(
+            syms.split(",").map(
+                strided ?
+                    (x) => `${x}[i${x}+i*s${x}]` :
+                    (x) => `${x}[i]`
+            )
+        ),
         "}",
         post,
         ret !== null ? `return ${ret};` : ""
@@ -75,9 +138,13 @@ export const compile = (
     ret = "a",
     opJoin?: string,
     pre?: string,
-    post?: string) =>
+    post?: string,
+    strided = false) =>
 
-    <any>new Function(args, assemble(dim, tpl, syms, ret, opJoin, pre, post).join(""));
+    <any>new Function(
+        args,
+        assemble(dim, tpl, syms, ret, opJoin, pre, post, strided).join("")
+    );
 
 export const compileHOF = (
     dim: number,
@@ -89,11 +156,14 @@ export const compileHOF = (
     ret = "a",
     opJoin = "",
     pre?: string,
-    post?: string) => {
+    post?: string,
+    strided = false) => {
 
     return new Function(
         hofArgs,
-        `return (${args})=>{${assemble(dim, tpl, syms, ret, opJoin, pre, post).join("\n")}}`
+        `return (${args})=>{${
+        assemble(dim, tpl, syms, ret, opJoin, pre, post, strided).join("")
+        }}`
     )(...fns);
 };
 
@@ -103,9 +173,13 @@ export const compileG = (
     syms = args,
     ret = "a",
     pre?: string,
-    post?: string) =>
+    post?: string,
+    strided = false) =>
 
-    <any>new Function(args, assembleG(tpl, syms, ret, pre, post).join(""));
+    <any>new Function(
+        args,
+        assembleG(tpl, syms, ret, pre, post, strided).join("")
+    );
 
 export const compileGHOF = (
     fns: any[],
@@ -115,38 +189,55 @@ export const compileGHOF = (
     syms = args,
     ret = "a",
     pre?: string,
-    post?: string) =>
+    post?: string,
+    strided = false) =>
 
     <any>new Function(
         hofArgs,
-        `return (${args})=>{${assembleG(tpl, syms, ret, pre, post).join("\n")}}`
+        `return (${args})=>{${
+        assembleG(tpl, syms, ret, pre, post, strided).join("")
+        }}`
     )(...fns);
 
-export const defOp = <M, V>(tpl: Template, args?: string, syms?: string, ret = "o", dispatch = 1): [M, V, V, V] => {
-    const fn: any = vop(dispatch);
-    args = args || "o,a,b";
+export const defOp = <M, V>(
+    tpl: Template,
+    args = ARGS_VV,
+    syms?: string,
+    ret = "o",
+    dispatch = 1): [M, V, V, V] => {
+
     syms = syms || args;
+    const fn: any = vop(dispatch);
     const $ = (dim) => fn.add(dim, compile(dim, tpl, args, syms, ret));
     fn.default(compileG(tpl, args, syms, ret));
     return [fn, $(2), $(3), $(4)];
 };
 
-export const defFnOp = <M, V>(op: string, tpl?: Template, args?: string, syms?: string, ret = "o", dispatch = 1): [M, V, V, V] => {
-    const fn: any = vop(dispatch);
-    tpl = tpl || (([o, a]) => `${o}=${op}(${a});`);
-    args = args || "o,a";
-    syms = syms || args;
-    const $ = (dim) => fn.add(dim, compile(dim, tpl, args, syms, ret));
-    fn.default(compileG(tpl, args, syms, ret));
-    return [fn, $(2), $(3), $(4)];
-};
+export const defFnOp =
+    <M, V>(op: string) => defOp<M, V>(FN(op), ARGS_V);
 
-export const defHofOp = <M, V>(op, tpl?: Template, args?: string, syms?: string, ret = "o", dispatch = 1): [M, V, V, V] => {
+export const defHofOp = <M, V>(
+    op,
+    tpl?: Template,
+    args?: string,
+    syms?: string,
+    ret = "o",
+    dispatch = 1): [M, V, V, V] => {
+
     const fn: any = vop(dispatch);
     tpl = tpl || (([o, a]) => `${o}=op(${a});`);
-    args = args || "o,a";
+    args = args || ARGS_V;
     syms = syms || args;
     const $ = (dim) => compileHOF(dim, [op], tpl, "op", args, syms, ret);
     fn.default(compileGHOF([op], tpl, "op", args, syms, ret));
     return [fn, $(2), $(3), $(4)];
 };
+
+export const defOpS = <V>(
+    tpl: Template,
+    args = `${ARGS_VV},${SARGS_VV}`,
+    syms = ARGS_VV,
+    ret = "o",
+    sizes = [2, 3, 4]): V[] =>
+
+    sizes.map((dim) => compile(dim, tpl, args, syms, ret, "", "", "", true));

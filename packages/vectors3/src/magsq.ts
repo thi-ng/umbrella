@@ -9,7 +9,7 @@ const $ = (dim: number) =>
             dim,
             ([a]) => `${a}*${a}`,
             "a",
-            undefined,
+            "a",
             null,
             "+",
             "return ",

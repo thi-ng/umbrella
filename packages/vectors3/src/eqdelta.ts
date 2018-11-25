@@ -32,7 +32,7 @@ eqDelta.default(
         if (implementsFunction(v2, "eqDelta")) {
             return (<any>v2).eqDelta(v1, eps);
         }
-        return eqDeltaStrided(v1, v2, v1.length, eps);
+        return eqDeltaS(v1, v2, v1.length, eps);
     }
 );
 
@@ -53,7 +53,7 @@ export const eqDelta4 = $(4);
  * @param sa stride a
  * @param sb stride b
  */
-export const eqDeltaStrided = (
+export const eqDeltaS = (
     a: ReadonlyVec,
     b: ReadonlyVec,
     n: number,

@@ -47,6 +47,10 @@ export type VecOpRoV<T> = (a: ReadonlyVec) => T;
 export type VecOpRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec) => T;
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c: O) => T;
 
+export type VecOpSV = (out: Vec, a: ReadonlyVec, io?: number, ia?: number, so?: number, sa?: number) => Vec;
+export type VecOpSVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io?: number, ia?: number, ib?: number, so?: number, sa?: number, sb?: number) => Vec;
+export type VecOpSRoVV = (a: ReadonlyVec, b: ReadonlyVec, ia?: number, ib?: number, sa?: number, sb?: number) => Vec;
+
 export interface MultiVecOpV extends VecOpV, MultiVecOp<VecOpV> { }
 export interface MultiVecOpN extends VecOpN, MultiVecOp<VecOpN> { }
 export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> { }

@@ -1,5 +1,6 @@
 import { MultiVecOpRoVV } from "./api";
 import { compile, compileG } from "./internal/codegen";
+import { DOT, DOT_G } from "./internal/templates";
 import { vop } from "./internal/vop";
 
 const $ = (dim: number) =>
@@ -7,7 +8,7 @@ const $ = (dim: number) =>
         dim,
         compile(
             dim,
-            ([a, b]) => `${a}*${b}`,
+            DOT,
             "a,b",
             undefined,
             null,
@@ -20,7 +21,7 @@ const $ = (dim: number) =>
 export const dot: MultiVecOpRoVV<number> = vop();
 
 dot.default(
-    compileG(([a, b]) => `sum+=${a}*${b};`, "a,b", undefined, "sum", "let sum=0;")
+    compileG(DOT_G, "a,b", undefined, "sum", "let sum=0;")
 );
 
 export const dot2 = $(2);
