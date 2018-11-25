@@ -87,12 +87,13 @@ export const compileHOF = (
     args: string,
     syms = args,
     ret = "a",
+    opJoin = "",
     pre?: string,
     post?: string) => {
 
     return new Function(
         hofArgs,
-        `return (${args})=>{${assemble(dim, tpl, syms, ret, pre, post).join("\n")}}`
+        `return (${args})=>{${assemble(dim, tpl, syms, ret, opJoin, pre, post).join("\n")}}`
     )(...fns);
 };
 

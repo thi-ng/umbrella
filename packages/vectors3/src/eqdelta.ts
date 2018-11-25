@@ -3,6 +3,24 @@ import { MultiVecOpRoVVO, ReadonlyVec } from "./api";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta as _eq } from "@thi.ng/math/eqdelta";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { compileHOF } from "./codegen";
+
+const $ = (dim) =>
+    eqDelta.add(
+        dim,
+        compileHOF(
+            dim,
+            [_eq, EPS],
+            ([a, b]) => `eq(${a},${b},eps)`,
+            "eq,_eps",
+            "a,b,eps=_eps",
+            "a,b",
+            null,
+            "&&",
+            "return a.length === b.length && ",
+            ";"
+        )
+    );
 
 export const eqDelta: MultiVecOpRoVVO<boolean, number> = vop();
 
@@ -18,26 +36,9 @@ eqDelta.default(
     }
 );
 
-eqDelta.add(2, (a, b, eps = EPS) =>
-    a.length === b.length &&
-    _eq(a[0], b[0], eps) &&
-    _eq(a[1], b[1], eps)
-);
-
-eqDelta.add(3, (a, b, eps = EPS) =>
-    a.length === b.length &&
-    _eq(a[0], b[0], eps) &&
-    _eq(a[1], b[1], eps) &&
-    _eq(a[2], b[2], eps)
-);
-
-eqDelta.add(4, (a, b, eps = EPS) =>
-    a.length === b.length &&
-    _eq(a[0], b[0], eps) &&
-    _eq(a[1], b[1], eps) &&
-    _eq(a[2], b[2], eps) &&
-    _eq(a[3], b[3], eps)
-);
+export const eqDelta2 = $(2);
+export const eqDelta3 = $(3);
+export const eqDelta4 = $(4);
 
 /**
  * Similar to `equiv()`, but takes tolerance `eps` into account for
