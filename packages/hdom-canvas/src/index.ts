@@ -259,7 +259,7 @@ const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) =>
             circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
             break;
         case "text":
-            text(ctx, attribs, shape[2], shape[3]);
+            text(ctx, attribs, shape[2], shape[3], shape[4]);
             break;
         case "img":
             image(ctx, attribs, shape[2], shape[3]);
