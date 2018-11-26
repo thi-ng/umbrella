@@ -3,7 +3,7 @@ import { compile, SARGS_V } from "./internal/codegen";
 import { DOT } from "./internal/templates";
 
 const $ =
-    (dim: number): VecOpSRoVV =>
+    (dim: number): VecOpSRoVV<number> =>
         compile(
             dim,
             DOT,
