@@ -1,0 +1,40 @@
+import { Vec, ReadonlyVec, IVector, MultiVecOp } from "@thi.ng/vectors3/api";
+
+export type Mat = Vec;
+export type ReadonlyMat = ReadonlyVec;
+export type IMatrix<T> = IVector<T>;
+export type MultiMatOp<T> = MultiVecOp<T>;
+
+export type MatOp1 = (out: Mat) => Mat;
+export type MatOpM = (out: Mat, a: ReadonlyMat) => Mat;
+export type MatOpN = (out: Mat, n: number) => Mat;
+export type MatOpMM = (out: Mat, a: ReadonlyMat, b: ReadonlyMat) => Mat;
+export type MatOpMV = (out: Vec, a: ReadonlyMat, b: ReadonlyVec) => Mat;
+
+export interface MultiMatOp1 extends MatOp1, MultiMatOp<MatOp1> { }
+export interface MultiMatOpM extends MatOpM, MultiMatOp<MatOpM> { }
+export interface MultiMatOpN extends MatOpN, MultiMatOp<MatOpN> { }
+
+export const IDENT22 = [
+    1, 0,
+    0, 1
+];
+
+export const IDENT23 = [
+    1, 0,
+    0, 1,
+    0, 0
+];
+
+export const IDENT33 = [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+];
+
+export const IDENT44 = [
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+];
