@@ -9,11 +9,13 @@ export type MatOp1 = (out: Mat) => Mat;
 export type MatOpM = (out: Mat, a: ReadonlyMat) => Mat;
 export type MatOpN = (out: Mat, n: number) => Mat;
 export type MatOpMM = (out: Mat, a: ReadonlyMat, b: ReadonlyMat) => Mat;
-export type MatOpMV = (out: Vec, a: ReadonlyMat, b: ReadonlyVec) => Mat;
+export type MatOpMV = (out: Vec, a: ReadonlyMat, b: ReadonlyVec) => Vec;
 
 export interface MultiMatOp1 extends MatOp1, MultiMatOp<MatOp1> { }
 export interface MultiMatOpM extends MatOpM, MultiMatOp<MatOpM> { }
 export interface MultiMatOpN extends MatOpN, MultiMatOp<MatOpN> { }
+export interface MultiMatOpMM extends MatOpMM, MultiMatOp<MatOpMM> { }
+export interface MultiMatOpMV extends MatOpMV, MultiMatOp<MatOpMV> { }
 
 export const IDENT22 = [
     1, 0,
