@@ -219,16 +219,15 @@ export const defFnOp =
 export const defHofOp = <M, V>(
     op,
     tpl?: Template,
-    args?: string,
+    args = ARGS_V,
     syms?: string,
     ret = "o",
     dispatch = 1): [M, V, V, V] => {
 
-    const fn: any = vop(dispatch);
-    tpl = tpl || (([o, a]) => `${o}=op(${a});`);
-    args = args || ARGS_V;
+    tpl = tpl || FN("op");
     syms = syms || args;
     const $ = (dim) => compileHOF(dim, [op], tpl, "op", args, syms, ret);
+    const fn: any = vop(dispatch);
     fn.default(compileGHOF([op], tpl, "op", args, syms, ret));
     return [fn, $(2), $(3), $(4)];
 };
