@@ -28,5 +28,6 @@ export * from "./shear";
 export * from "./skew";
 export * from "./sub";
 export * from "./subn";
+export * from "./trace";
 export * from "./translation";
 export * from "./transpose";
