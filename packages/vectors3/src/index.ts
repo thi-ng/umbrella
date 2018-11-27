@@ -51,6 +51,7 @@ export * from "./maddn";
 export * from "./mag";
 export * from "./magsq";
 export * from "./major";
+export * from "./map";
 export * from "./max";
 export * from "./min";
 export * from "./minor";
