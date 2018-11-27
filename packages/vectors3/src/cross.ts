@@ -6,6 +6,7 @@ export const cross2 =
 
 export const cross3 =
     (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => {
+        !out && (out = a);
         const x = a[1] * b[2] - a[2] * b[1];
         const y = a[2] * b[0] - a[0] * b[2];
         out[2] = a[0] * b[1] - a[1] * b[0];

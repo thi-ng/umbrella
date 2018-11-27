@@ -2,6 +2,7 @@ import { EPS } from "@thi.ng/math/api";
 import { VecOpVO } from "./api";
 import { mag } from "./mag";
 import { mulN } from "./muln";
+import { set } from "./set";
 
 /**
  * Normalizes vector to given (optional) length (default: 1). If `out`
@@ -13,6 +14,11 @@ import { mulN } from "./muln";
  */
 export const normalize: VecOpVO<number> =
     (out, v, n = 1) => {
-        let m = mag(v);
-        return m >= EPS ? mulN(out || v, v, n / m) : v;
+        !out && (out = v);
+        const m = mag(v);
+        return m >= EPS ?
+            mulN(out, v, n / m) :
+            out === v ?
+                out :
+                set(out, v);
     };

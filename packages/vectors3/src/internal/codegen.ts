@@ -130,6 +130,9 @@ const assembleG = (
         ret !== null ? `return ${ret};` : ""
     ];
 
+export const defaultOut =
+    (o: string, args: string) => `!${o} && (${o}=${args.split(",")[1]});`
+
 export const compile = (
     dim: number,
     tpl: Template,
@@ -204,12 +207,14 @@ export const defOp = <M, V>(
     args = ARGS_VV,
     syms?: string,
     ret = "o",
-    dispatch = 1): [M, V, V, V] => {
+    dispatch = 1,
+    pre?: string): [M, V, V, V] => {
 
     syms = syms || args;
+    pre = pre != null ? pre : defaultOut(ret, args);
     const fn: any = vop(dispatch);
-    const $ = (dim) => fn.add(dim, compile(dim, tpl, args, syms, ret));
-    fn.default(compileG(tpl, args, syms, ret));
+    const $ = (dim) => fn.add(dim, compile(dim, tpl, args, syms, ret, "", pre));
+    fn.default(compileG(tpl, args, syms, ret, pre));
     return [fn, $(2), $(3), $(4)];
 };
 
@@ -222,13 +227,15 @@ export const defHofOp = <M, V>(
     args = ARGS_V,
     syms?: string,
     ret = "o",
-    dispatch = 1): [M, V, V, V] => {
+    dispatch = 1,
+    pre?: string): [M, V, V, V] => {
 
     tpl = tpl || FN("op");
     syms = syms || args;
-    const $ = (dim) => compileHOF(dim, [op], tpl, "op", args, syms, ret);
+    pre = pre != null ? pre : defaultOut(ret, args);
+    const $ = (dim) => compileHOF(dim, [op], tpl, "op", args, syms, ret, "", pre);
     const fn: any = vop(dispatch);
-    fn.default(compileGHOF([op], tpl, "op", args, syms, ret));
+    fn.default(compileGHOF([op], tpl, "op", args, syms, ret, pre));
     return [fn, $(2), $(3), $(4)];
 };
 
@@ -237,6 +244,9 @@ export const defOpS = <V>(
     args = `${ARGS_VV},${SARGS_VV}`,
     syms = ARGS_VV,
     ret = "o",
+    pre?: string,
     sizes = [2, 3, 4]): V[] =>
 
-    sizes.map((dim) => compile(dim, tpl, args, syms, ret, "", "", "", true));
+    sizes.map(
+        (dim) => compile(dim, tpl, args, syms, ret, "", pre != null ? pre : defaultOut(ret, args), "", true)
+    );
