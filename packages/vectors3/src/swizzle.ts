@@ -1,9 +1,8 @@
 import { ReadonlyVec, Vec, VecOpV } from "./api";
 
 /**
- * Places a re-ordered 2D version of vector `a` into `out`. MUST be
- * separate instances. The given coord indices must be valid for `a`.
- * No bounds checking.
+ * Places a re-ordered 2D version of vector `a` into `out`. The given
+ * coord indices must be valid for `a`. No bounds checking.
  *
  * @param out
  * @param a
@@ -12,15 +11,15 @@ import { ReadonlyVec, Vec, VecOpV } from "./api";
  */
 export const swizzle2 =
     (out: Vec, a: ReadonlyVec, x: number, y: number) => (
-        out[0] = a[x] || 0,
+        x = a[x] || 0,
         out[1] = a[y] || 0,
+        out[0] = x,
         out
     );
 
 /**
- * Places a re-ordered 3D version of vector `a` into `out`. MUST be
- * separate instances. The given coord indices must be valid for `a`.
- * No bounds checking.
+ * Places a re-ordered 3D version of vector `a` into `out`. The given
+ * coord indices must be valid for `a`. No bounds checking.
  *
  * @param out
  * @param a
@@ -30,16 +29,17 @@ export const swizzle2 =
  */
 export const swizzle3 =
     (out: Vec, a: ReadonlyVec, x: number, y: number, z: number) => (
-        out[0] = a[x] || 0,
-        out[1] = a[y] || 0,
+        x = a[x] || 0,
+        y = a[y] || 0,
         out[2] = a[z] || 0,
+        out[1] = y,
+        out[0] = x,
         out
     );
 
 /**
- * Places a re-ordered 4D version of vector `a` into `out`. MUST be
- * separate instances. The given coord indices must be valid for `a`.
- * No bounds checking.
+ * Places a re-ordered 4D version of vector `a` into `out`. The given
+ * coord indices must be valid for `a`. No bounds checking.
  *
  * @param out
  * @param a
@@ -50,10 +50,13 @@ export const swizzle3 =
  */
 export const swizzle4 =
     (out: Vec, a: ReadonlyVec, x: number, y: number, z: number, w: number) => (
-        out[0] = a[x] || 0,
-        out[1] = a[y] || 0,
-        out[2] = a[z] || 0,
+        x = a[x] || 0,
+        y = a[y] || 0,
+        z = a[z] || 0,
         out[3] = a[w] || 0,
+        out[2] = z,
+        out[1] = y,
+        out[0] = x,
         out
     );
 
