@@ -27,14 +27,14 @@ export class Vec2 extends AVec implements
      * interleaved etc.
      *
      * @param buf backing array
-     * @param n num vectors
+     * @param num num vectors
      * @param start  start index
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, n: number = buf.length >> 1, start = 0, cstride = 1, estride = 2) {
+    static mapBuffer(buf: Vec, num: number = buf.length >> 1, start = 0, cstride = 1, estride = 2) {
         const res: Vec2[] = [];
-        while (--n >= 0) {
+        while (--num >= 0) {
             res.push(new Vec2(buf, start, cstride));
             start += estride;
         }
@@ -62,6 +62,13 @@ export class Vec2 extends AVec implements
             start += estride;
         }
         return buf;
+    }
+
+    static *iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 2) {
+        while (num-- > 0) {
+            yield new Vec2(buf, start, cstride);
+            start += estride;
+        }
     }
 
     static readonly X_AXIS = new Vec2(X4);

@@ -65,6 +65,13 @@ export class Vec3 extends AVec implements
         return buf;
     }
 
+    static *iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 3) {
+        while (num-- > 0) {
+            yield new Vec3(buf, start, cstride);
+            start += estride;
+        }
+    }
+
     static readonly X_AXIS = new Vec3(X4);
     static readonly Y_AXIS = new Vec3(Y4);
     static readonly Z_AXIS = new Vec3(Z4);
