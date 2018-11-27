@@ -19,6 +19,7 @@ export * from "./normal-mat";
 export * from "./ortho";
 export * from "./perspective";
 export * from "./project";
+export * from "./rotation-around-axis";
 export * from "./rotation";
 export * from "./row";
 export * from "./scale";
