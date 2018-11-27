@@ -89,6 +89,7 @@ export * from "./smoothstep";
 export * from "./sub";
 export * from "./subn";
 export * from "./subs";
+export * from "./sum";
 export * from "./swizzle";
 export * from "./tan";
 export * from "./tanh";
