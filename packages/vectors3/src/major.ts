@@ -4,6 +4,12 @@ import { vop } from "./internal/vop";
 
 const abs = Math.abs;
 
+/**
+ * Returns index of major component/axis in `v`, i.e. where `|v[i]|` is
+ * the largest.
+ *
+ * @param v
+ */
 export const major: MultiVecOpRoV<number> = vop();
 
 major.default((a) => {

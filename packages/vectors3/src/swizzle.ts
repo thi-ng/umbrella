@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "./api";
+import { ReadonlyVec, Vec, VecOpV } from "./api";
 
 /**
  * Places a re-ordered 2D version of vector `a` into `out`. MUST be
@@ -56,3 +56,12 @@ export const swizzle4 =
         out[3] = a[w] || 0,
         out
     );
+
+export const swapXY: VecOpV =
+    (out, v) => swizzle3(out, v, 1, 0, 2);
+
+export const swapXZ: VecOpV =
+    (out, v) => swizzle3(out, v, 2, 1, 0);
+
+export const swapYZ: VecOpV =
+    (out, v) => swizzle3(out, v, 0, 2, 1);

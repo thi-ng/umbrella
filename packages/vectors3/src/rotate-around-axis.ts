@@ -21,8 +21,8 @@ export const rotateAroundAxis3 =
         const s = Math.sin(theta);
         const c = Math.cos(theta);
 
-        out[0] = (ax * uvw + (x * (ay * ay + az * az) - ax * (vy + wz)) * c + (-wy + vz) * s);
-        out[1] = (ay * uvw + (y * (ax * ax + az * az) - ay * (ux + wz)) * c + (wx - uz) * s);
-        out[2] = (az * uvw + (z * (ax * ax + ay * ay) - az * (ux + vy)) * c + (-vx + uy) * s);
+        out[0] = ax * uvw + (x * (ay * ay + az * az) - ax * (vy + wz)) * c + (-wy + vz) * s;
+        out[1] = ay * uvw + (y * (ax * ax + az * az) - ay * (ux + wz)) * c + (wx - uz) * s;
+        out[2] = az * uvw + (z * (ax * ax + ay * ay) - az * (ux + vy)) * c + (-vx + uy) * s;
         return v;
     };

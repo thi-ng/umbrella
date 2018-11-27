@@ -4,6 +4,12 @@ import { vop } from "./internal/vop";
 
 const abs = Math.abs;
 
+/**
+ * Returns index of minor component/axis in `v`, i.e. where `|v[i]|` is
+ * the smallest.
+ *
+ * @param v
+ */
 export const minor: MultiVecOpRoV<number> = vop();
 
 minor.default((a) => {
