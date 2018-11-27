@@ -1,13 +1,16 @@
 import { dotValues4, dotValues6 } from "@thi.ng/vectors3/dot-values";
-import { MatOpM } from "./api";
+import { MatOpM, MultiMatOpM } from "./api";
 import { setValues23, setValues22, setValues44, setValues33 } from "./set-values";
 import { detCoeffs44, det44FromCoeffs } from "./determinant";
+import { vop } from "@thi.ng/vectors3/internal/vop";
 
 const dp4 = dotValues4;
 const dp6 = dotValues6;
 
+export const invert: MultiMatOpM = vop(1);
+
 export const invert22: MatOpM =
-    (out, m) => {
+    invert.add(4, (out, m) => {
         const [m00, m01, m10, m11] = m;
         let det = dp4(m00, m11, -m01, m10);
         if (det === 0) return;
@@ -19,10 +22,10 @@ export const invert22: MatOpM =
             -m10 * det,
             m00 * det,
         );
-    };
+    });
 
 export const invert23: MatOpM =
-    (out, m) => {
+    invert.add(6, (out, m) => {
         const [m00, m01, m10, m11, m20, m21] = m;
         let det = dp4(m00, m11, -m01, m10);
         if (det === 0) return;
@@ -36,10 +39,10 @@ export const invert23: MatOpM =
             dp4(m10, m21, -m11, m20) * det,
             dp4(m01, m20, -m00, m21) * det
         );
-    };
+    });
 
 export const invert33: MatOpM =
-    (out, m) => {
+    invert.add(9, (out, m) => {
         const [m00, m01, m02, m10, m11, m12, m20, m21, m22] = m;
         const d01 = dp4(m22, m11, -m12, m21);
         const d11 = dp4(m12, m20, -m22, m10);
@@ -59,10 +62,10 @@ export const invert33: MatOpM =
             dp4(-m21, m00, m01, m20) * det,
             dp4(m11, m00, -m01, m10) * det,
         );
-    };
+    });
 
 export const invert44: MatOpM =
-    (out, m) => {
+    invert.add(16, (out, m) => {
         const coeffs = detCoeffs44(m);
         let det = det44FromCoeffs(coeffs);
         if (det === 0) return;
@@ -88,4 +91,4 @@ export const invert44: MatOpM =
             dp6(-m30, d03, m31, d01, -m32, d00) * det,
             dp6(m20, d03, -m21, d01, m22, d00) * det
         );
-    };
+    });
