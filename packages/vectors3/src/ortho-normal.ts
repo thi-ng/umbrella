@@ -1,10 +1,12 @@
-import { VecOpVVV } from "./api";
 import { cross3 } from "./cross";
 import { sub3 } from "./sub";
+import { normalize } from "./normalize";
+import { Vec, ReadonlyVec } from "./api";
 
 /**
  * Produces a vector which is perpendicular/normal to the plane spanned
- * by given 3 input vectors.
+ * by given 3 input vectors. If `normalize` is true (default), the
+ * result vector will be normalized.
  *
  * ```
  * orthoNormal3([], [0,0,0], [1,0,0], [0,1,0])
@@ -15,7 +17,10 @@ import { sub3 } from "./sub";
  * @param a
  * @param b
  * @param c
+ * @param normalize
  */
-export const orthoNormal3: VecOpVVV =
-    (out, a, b, c) =>
-        cross3(out, sub3(out, b, a), sub3([], c, a));
+export const orthoNormal3 =
+    (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, doNormalize = true) => (
+        cross3(out, sub3(out, b, a), sub3([], c, a)),
+        doNormalize ? normalize(out, out) : out
+    );
