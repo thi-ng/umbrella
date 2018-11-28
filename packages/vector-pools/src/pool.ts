@@ -6,7 +6,8 @@ import {
     MemPoolStats,
     Type
 } from "@thi.ng/malloc";
-import { IVecPool, IVector } from "@thi.ng/vectors3//api";
+import { IVector } from "@thi.ng/vectors3/api";
+import { IVecPool } from "./api";
 import { wrap } from "./wrap";
 
 export class VecPool implements

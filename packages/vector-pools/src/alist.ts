@@ -25,7 +25,7 @@ export abstract class AVecList<T extends IVector<any>> {
         estride = size,
         start = 0) {
 
-        this.buffer = buffer;
+        this.buffer = buffer || new Float32Array(size * capacity);
         this.size = size;
         this.factory = factory;
         this.cstride = cstride;

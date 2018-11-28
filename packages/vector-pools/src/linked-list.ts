@@ -6,7 +6,7 @@ export class VecLinkedList<T extends IVector<any>> extends AVecList<T> {
 
     head: T;
     tail: T;
-    closed: boolean;
+    readonly closed: boolean;
 
     protected _length: number;
 
@@ -82,12 +82,13 @@ export class VecLinkedList<T extends IVector<any>> extends AVecList<T> {
         if (!q) return;
         const v: any = this.alloc();
         if (v) {
+            if (this.head === q) {
+                this.head = v;
+            }
             v.next = q;
             v.prev = q.prev;
             if (q.prev) {
                 q.prev.next = v;
-            } else {
-                this.head = v;
             }
             q.prev = v;
             this._length++;
