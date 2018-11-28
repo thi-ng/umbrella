@@ -39,6 +39,7 @@ export * from "./exp";
 export * from "./face-forward";
 export * from "./floor";
 export * from "./fract";
+export * from "./gvec";
 export * from "./heading";
 export * from "./homogeneous";
 export * from "./invert";
