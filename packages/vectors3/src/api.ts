@@ -1,4 +1,9 @@
-import { ILength, ICopy, IEmpty, IEqualsDelta } from "@thi.ng/api/api";
+import {
+    ICopy,
+    IEmpty,
+    IEqualsDelta,
+    ILength,
+} from "@thi.ng/api/api";
 
 export interface Vec extends
     Iterable<number>,
