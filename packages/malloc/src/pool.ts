@@ -1,4 +1,4 @@
-import { IObjectOf, TypedArray } from "@thi.ng/api";
+import { TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
@@ -6,36 +6,11 @@ import {
     IMemPool,
     MemBlock,
     MemPoolOpts,
+    MemPoolStats,
+    SIZEOF,
     Type,
-    MemPoolStats
 } from "./api";
-
-type BlockCtor =
-    (buf: ArrayBuffer, addr: number, num: number) => TypedArray;
-
-const CTORS: IObjectOf<BlockCtor> = {
-    [Type.U8]: (buf, addr, num) => new Uint8Array(buf, addr, num),
-    [Type.U8C]: (buf, addr, num) => new Uint8ClampedArray(buf, addr, num),
-    [Type.I8]: (buf, addr, num) => new Int8Array(buf, addr, num),
-    [Type.U16]: (buf, addr, num) => new Uint16Array(buf, addr, num),
-    [Type.I16]: (buf, addr, num) => new Int16Array(buf, addr, num),
-    [Type.U32]: (buf, addr, num) => new Uint32Array(buf, addr, num),
-    [Type.I32]: (buf, addr, num) => new Int32Array(buf, addr, num),
-    [Type.F32]: (buf, addr, num) => new Float32Array(buf, addr, num),
-    [Type.F64]: (buf, addr, num) => new Float64Array(buf, addr, num),
-};
-
-const SIZEOF = {
-    [Type.U8]: 1,
-    [Type.U8C]: 1,
-    [Type.I8]: 1,
-    [Type.U16]: 2,
-    [Type.I16]: 2,
-    [Type.U32]: 4,
-    [Type.I32]: 4,
-    [Type.F32]: 4,
-    [Type.F64]: 8,
-};
+import { wrap } from "./wrap";
 
 export class MemPool implements
     IMemPool {
@@ -102,7 +77,7 @@ export class MemPool implements
     mallocAs(type: Type, num: number): TypedArray {
         const addr = this.malloc(num * SIZEOF[type]);
         return addr ?
-            CTORS[type](this.buf, addr, num) :
+            wrap(type, this.buf, addr, num) :
             null;
     }
 

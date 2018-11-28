@@ -12,6 +12,18 @@ export const enum Type {
     F64
 };
 
+export const SIZEOF = {
+    [Type.U8]: 1,
+    [Type.U8C]: 1,
+    [Type.I8]: 1,
+    [Type.U16]: 2,
+    [Type.I16]: 2,
+    [Type.U32]: 4,
+    [Type.I32]: 4,
+    [Type.F32]: 4,
+    [Type.F64]: 8,
+};
+
 export interface MemBlock {
     addr: number;
     size: number;
@@ -64,3 +76,6 @@ export interface IMemPool extends IRelease {
 
     stats(): MemPoolStats;
 }
+
+export type BlockCtor =
+    (buf: ArrayBuffer, addr: number, num: number) => TypedArray;
