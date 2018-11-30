@@ -24,7 +24,7 @@ This project is part of the
 
 This still unreleased package provides various data structures for
 managing & working with memory mapped vectors. Together with
-[@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/master/packages/vectors3)
+[@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
 (also still unreleased) these structures enable high-level,
 zero-copy<sup>*</sup> manipulation of the underlying memory region and
 are largely intended for WebGL & WASM use cases, e.g. to provide JS
@@ -43,7 +43,7 @@ yarn add @thi.ng/vector-pools
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/master/packages/malloc)
-- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/master/packages/vectors3)
+- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/vec-refactor/packages/vectors3)
 
 ## Usage examples
 
