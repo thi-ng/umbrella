@@ -72,7 +72,7 @@ const geo = new AttribPool(
 );
 
 // computed overall stride length
-geo.byteStrength
+geo.byteStride
 // 36
 
 // set attrib values
@@ -115,7 +115,7 @@ geo.initAttribs({
 });
 
 // updated overall stride length
-geo.byteStrength
+geo.byteStride
 // 48
 
 // only need to use & bind single (interleaved) buffer
