@@ -1,15 +1,14 @@
 import { EPS } from "@thi.ng/math/api";
 import {
     IVector,
-    MAX4,
-    MIN4,
-    ONE4,
+    MAX2,
+    MIN2,
+    ONE2,
     ReadonlyVec,
     Vec,
-    X4,
-    Y4,
-    Z4,
-    ZERO4
+    X2,
+    Y2,
+    ZERO2
 } from "./api";
 import { eqDelta2 } from "./eqdelta";
 import { declareIndices } from "./internal/accessors";
@@ -71,13 +70,12 @@ export class Vec2 extends AVec implements
         }
     }
 
-    static readonly X_AXIS = new Vec2(X4);
-    static readonly Y_AXIS = new Vec2(Y4);
-    static readonly Z_AXIS = new Vec2(Z4);
-    static readonly MIN = new Vec2(MIN4);
-    static readonly MAX = new Vec2(MAX4);
-    static readonly ZERO = new Vec2(ZERO4);
-    static readonly ONE = new Vec2(ONE4);
+    static readonly X_AXIS = new Vec2(X2);
+    static readonly Y_AXIS = new Vec2(Y2);
+    static readonly MIN = new Vec2(MIN2);
+    static readonly MAX = new Vec2(MAX2);
+    static readonly ZERO = new Vec2(ZERO2);
+    static readonly ONE = new Vec2(ONE2);
 
     x: number;
     y: number;

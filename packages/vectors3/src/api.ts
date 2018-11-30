@@ -79,6 +79,22 @@ export interface MultiVecOpRoVVO<T, O> extends VecOpRoVVO<T, O>, MultiVecOp<VecO
 
 const mi = -Infinity;
 const mx = Infinity;
+
+export const MIN2 = Object.freeze([mi, mi]);
+export const MAX2 = Object.freeze([mx, mx]);
+export const ONE2 = Object.freeze([1, 1]);
+export const ZERO2 = Object.freeze([0, 0]);
+export const X2 = Object.freeze([1, 0]);
+export const Y2 = Object.freeze([0, 1]);
+
+export const MIN3 = Object.freeze([mi, mi, mi]);
+export const MAX3 = Object.freeze([mx, mx, mx]);
+export const ONE3 = Object.freeze([1, 1, 1]);
+export const ZERO3 = Object.freeze([0, 0, 0]);
+export const X3 = Object.freeze([1, 0, 0]);
+export const Y3 = Object.freeze([0, 1, 0]);
+export const Z3 = Object.freeze([0, 0, 1]);
+
 export const MIN4 = Object.freeze([mi, mi, mi, mi]);
 export const MAX4 = Object.freeze([mx, mx, mx, mx]);
 export const ONE4 = Object.freeze([1, 1, 1, 1]);
