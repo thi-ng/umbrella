@@ -2,12 +2,16 @@ import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api/api";
 import { assert } from "@thi.ng/api/assert";
 import { align } from "@thi.ng/binary/align";
 import { Pow2 } from "@thi.ng/binary/api";
-import { SIZEOF, MemPoolOpts } from "@thi.ng/malloc/api";
+import { SIZEOF } from "@thi.ng/malloc/api";
 import { MemPool } from "@thi.ng/malloc/pool";
 import { wrap } from "@thi.ng/malloc/wrap";
 import { range } from "@thi.ng/transducers/iter/range";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { AttribSpec } from "./api";
+import { asNativeType } from "./convert";
+import {
+    AttribPoolOpts,
+    AttribSpec,
+} from "./api";
 
 /*
  * WASM mem   : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...
@@ -24,6 +28,7 @@ export class AttribPool implements
     attribs: IObjectOf<TypedArray>;
     order: string[];
     specs: IObjectOf<AttribSpec>;
+    opts: AttribPoolOpts;
     pool: MemPool;
     addr: number;
     capacity: number;
@@ -35,11 +40,16 @@ export class AttribPool implements
         pool: number | ArrayBuffer | MemPool,
         capacity: number,
         specs: IObjectOf<AttribSpec>,
-        poolOpts?: MemPoolOpts
+        opts?: AttribPoolOpts
     ) {
+        this.opts = <AttribPoolOpts>{
+            resizable: true,
+            ...opts
+        };
         this.pool = !(pool instanceof MemPool) ?
-            new MemPool(pool, poolOpts) :
+            new MemPool(pool, this.opts.mempool) :
             pool;
+        this.opts = opts;
         this.capacity = capacity;
         this.specs = {};
         this.attribs = {};
@@ -47,6 +57,10 @@ export class AttribPool implements
         this.byteStride = 1;
         this.maxAttribSize = 1;
         this.initAttribs(specs, true);
+    }
+
+    bytes() {
+        return new Uint8Array(this.pool.buf, this.addr, this.capacity * this.byteStride);
     }
 
     release(releasePool = true) {
@@ -75,11 +89,7 @@ export class AttribPool implements
         this.initDefaults(specs);
     }
 
-    getAttrib(id: string) {
-        return this.attribs[id];
-    }
-
-    getAttribVal(id: string, i: number): number | Vec {
+    attribValue(id: string, i: number): number | Vec {
         if (i >= this.capacity) return;
         const spec = this.specs[id];
         assert(!!spec, `invalid attrib: ${id}`);
@@ -106,7 +116,7 @@ export class AttribPool implements
         }
     }
 
-    setAttribVal(id: string, index: number, v: number | ReadonlyVec) {
+    setAttribValue(id: string, index: number, v: number | ReadonlyVec) {
         const spec = this.specs[id];
         assert(!!spec, `invalid attrib: ${id}`);
         this.ensure(index);
@@ -122,11 +132,39 @@ export class AttribPool implements
                 (<Vec>v).length <= spec.size,
                 `wrong attrib val size, expected ${spec.size}, got ${(<Vec>v).length}`
             );
-            buf.set(<Vec>v, index);
+            buf.set(<ReadonlyVec>v, index);
         } else {
             buf[index] = <number>v;
         }
         return this;
+    }
+
+    setAttribValues(id: string, vals: (number | ReadonlyVec)[]) {
+        const spec = this.specs[id];
+        assert(!!spec, `invalid attrib: ${id}`);
+        const n = vals.length;
+        const v = vals[0];
+        const stride = spec.stride;
+        this.ensure(n);
+        const buf = this.attribs[id];
+        const isNum = typeof v === "number";
+        assert(
+            () => (!isNum && spec.size > 1) || (isNum && spec.size === 1),
+            `incompatible value(s) for attrib: ${id}`
+        );
+        if (!isNum) {
+            assert(
+                (<ReadonlyVec>v).length <= spec.size,
+                `wrong attrib val size, expected ${spec.size}, got ${(<ReadonlyVec>v).length}`
+            );
+            for (let i = 0; i < n; i++) {
+                buf.set(<ReadonlyVec>vals[i], i * stride);
+            }
+        } else {
+            for (let i = 0; i < n; i++) {
+                buf[i * stride] = <number>vals[i];
+            }
+        }
     }
 
     removeAttrib(id: string) {
@@ -140,14 +178,15 @@ export class AttribPool implements
     }
 
     ensure(newCapacity: number, fill = false) {
-        if (newCapacity < this.capacity) return;
+        if (newCapacity <= this.capacity) return;
+        assert(this.opts.resizable, `pool resizing disabled`);
         // TODO add realloc()
         const newAddr = this.pool.malloc(newCapacity * this.byteStride);
         assert(newAddr > 0, `out of memory`);
         for (let id in this.specs) {
             const a = this.specs[id];
             const buf = wrap(
-                a.type,
+                asNativeType(a.type),
                 this.pool.buf,
                 newAddr + (a.byteOffset || 0),
                 (newCapacity - 1) * a.stride + a.size
@@ -156,7 +195,6 @@ export class AttribPool implements
             this.attribs[id] = buf;
         }
         if (fill) {
-            // TODO fill remainder with default values?
             this.setDefaults(this.specs, this.capacity, newCapacity);
         }
         this.pool.free(this.addr);
@@ -169,7 +207,7 @@ export class AttribPool implements
         let maxSize = inclExisting ? this.maxAttribSize : 1;
         for (let id in specs) {
             const a = specs[id];
-            const size = SIZEOF[a.type];
+            const size = SIZEOF[asNativeType(a.type)];
             maxSize = Math.max(maxSize, size);
             maxStride = Math.max(maxStride, a.byteOffset + a.size * size);
         }
@@ -180,7 +218,7 @@ export class AttribPool implements
         for (let id in specs) {
             assert(!this.attribs[id], `attrib: ${id} already exists`);
             const a = specs[id];
-            const size = SIZEOF[a.type];
+            const size = SIZEOF[asNativeType(a.type)];
             const isNum = typeof a.default === "number";
             assert(
                 () => (!isNum && a.size === (<Vec>a.default).length) || (isNum && a.size === 1),
@@ -197,14 +235,16 @@ export class AttribPool implements
     }
 
     protected updateOrder() {
-        this.order = Object.keys(this.specs).sort((a, b) => this.specs[a].byteOffset - this.specs[b].byteOffset);
+        this.order = Object.keys(this.specs).sort(
+            (a, b) => this.specs[a].byteOffset - this.specs[b].byteOffset
+        );
     }
 
     protected initDefaults(specs: IObjectOf<AttribSpec>, start = 0, end = this.capacity) {
         for (let id in specs) {
             const a = specs[id];
             this.attribs[id] = wrap(
-                a.type,
+                asNativeType(a.type),
                 this.pool.buf,
                 this.addr + (a.byteOffset || 0),
                 (this.capacity - 1) * a.stride + a.size
@@ -215,8 +255,9 @@ export class AttribPool implements
 
     protected setDefaults(specs: IObjectOf<AttribSpec>, start = 0, end = this.capacity) {
         for (let id in specs) {
-            const buf = this.attribs[id];
             const a = specs[id];
+            if (a.default == null) continue;
+            const buf = this.attribs[id];
             const s = a.stride;
             const v = a.default;
             if (typeof v === "number") {
@@ -225,7 +266,7 @@ export class AttribPool implements
                 }
             } else {
                 for (let i = start; i < end; i++) {
-                    buf.set(<Vec>v, i * s);
+                    buf.set(<ReadonlyVec>v, i * s);
                 }
             }
         }
@@ -237,9 +278,12 @@ export class AttribPool implements
         const grow = newByteStride > this.byteStride;
         let newAddr = this.addr;
         if (grow) {
+            assert(this.opts.resizable, `pool resizing disabled`);
             // TODO realloc
             newAddr = this.pool.malloc(this.capacity * newByteStride);
             assert(newAddr > 0, `out of memory`);
+        } else if (!this.opts.resizable) {
+            return;
         }
         const sameBlock = newAddr === this.addr;
         const num = this.capacity - 1;
@@ -250,10 +294,11 @@ export class AttribPool implements
         // create resized attrib views (in old or new address space)
         for (let id in specs) {
             const a = specs[id];
-            const dStride = newByteStride / SIZEOF[a.type];
+            const type = asNativeType(a.type);
+            const dStride = newByteStride / SIZEOF[type];
             newAttribs[id] = [
                 wrap(
-                    a.type,
+                    type,
                     this.pool.buf,
                     newAddr + a.byteOffset,
                     num * dStride + a.size

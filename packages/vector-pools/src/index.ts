@@ -3,5 +3,5 @@ export * from "./alist";
 export * from "./array-list";
 export * from "./attrib-pool";
 export * from "./linked-list";
-export * from "./pool";
+export * from "./vec-pool";
 export * from "./wrap";

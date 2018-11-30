@@ -1,22 +1,27 @@
 import { IRelease, TypedArray } from "@thi.ng/api/api";
-import { Type } from "@thi.ng/malloc/api";
+import { Type, MemPoolOpts } from "@thi.ng/malloc/api";
 import { StridedVec, Vec, ReadonlyVec } from "@thi.ng/vectors3/api";
 
 export interface AttribSpec {
-    type: Type;
+    type: GLType | Type;
     size: number;
-    default: number | ReadonlyVec;
+    default?: number | ReadonlyVec;
     byteOffset: number;
     stride?: number;
 }
 
+export interface AttribPoolOpts {
+    resizable: boolean;
+    mempool: MemPoolOpts;
+}
+
 export interface IVecPool extends IRelease {
 
-    malloc(size: number, type?: Type): TypedArray;
+    malloc(size: number, type?: GLType | Type): TypedArray;
 
-    mallocWrapped(size: number, stride?: number, type?: Type): StridedVec;
+    mallocWrapped(size: number, stride?: number, type?: GLType | Type): StridedVec;
 
-    mallocArray(num: number, size: number, cstride?: number, estride?: number, type?: Type): StridedVec[];
+    mallocArray(num: number, size: number, cstride?: number, estride?: number, type?: GLType | Type): StridedVec[];
 
     free(vec: StridedVec | TypedArray): boolean;
 
@@ -26,4 +31,48 @@ export interface IVecPool extends IRelease {
 export type VecFactory =
     (buf: Vec, size: number, index: number, stride: number) => StridedVec;
 
-export { Type };
+/**
+ * WebGL numeric type constants. These can be used by classes in this
+ * package as aliases for thi.ng/malloc's `Type` enum (see `GL2TYPE` LUT
+ * below), but also then used directly when initializing WebGL buffers
+ * from given attribute buffer specs.
+ *
+ * See `AttribPool` & readme examples for more details.
+ */
+export const enum GLType {
+    I8 = 0x1400,
+    U8 = 0x1401,
+    I16 = 0x1402,
+    U16 = 0x1403,
+    I32 = 0x1404,
+    U32 = 0x1405,
+    F32 = 0x1406,
+};
+
+/**
+ * Conversion from `GLType` to `Type`.
+ */
+export const GL2TYPE = {
+    [GLType.I8]: Type.I8,
+    [GLType.U8]: Type.U8,
+    [GLType.I16]: Type.I16,
+    [GLType.U16]: Type.U16,
+    [GLType.I32]: Type.I32,
+    [GLType.I32]: Type.I32,
+    [GLType.U32]: Type.U32,
+    [GLType.F32]: Type.F32,
+};
+
+/**
+ * Conversion from `Type` to `GLType`.
+ */
+export const TYPE2GL = {
+    [Type.I8]: GLType.I8,
+    [Type.U8]: GLType.U8,
+    [Type.I16]: GLType.I16,
+    [Type.U16]: GLType.U16,
+    [Type.I32]: GLType.I32,
+    [Type.I32]: GLType.I32,
+    [Type.U32]: GLType.U32,
+    [Type.F32]: GLType.F32,
+};

@@ -7,7 +7,8 @@ import {
     Type
 } from "@thi.ng/malloc";
 import { IVector } from "@thi.ng/vectors3/api";
-import { IVecPool } from "./api";
+import { GLType, IVecPool } from "./api";
+import { asNativeType } from "./convert";
 import { wrap } from "./wrap";
 
 export class VecPool implements
@@ -27,12 +28,16 @@ export class VecPool implements
         return this.pool.stats();
     }
 
-    malloc(size: number, type: Type = Type.F32): TypedArray {
-        return this.pool.callocAs(type, size);
+    malloc(size: number, type: GLType | Type = Type.F32): TypedArray {
+        return this.pool.callocAs(asNativeType(type), size);
     }
 
-    mallocWrapped(size: number, stride = 1, type: Type = Type.F32): IVector<any> {
-        const buf = this.pool.callocAs(type, size * stride);
+    mallocWrapped(
+        size: number,
+        stride = 1,
+        type: GLType | Type = Type.F32
+    ): IVector<any> {
+        const buf = this.pool.callocAs(asNativeType(type), size * stride);
         return wrap(buf, size, 0, stride);
 
     }
@@ -61,8 +66,17 @@ export class VecPool implements
      * @param estride
      * @param type
      */
-    mallocArray(num: number, size: number, cstride = 1, estride = size, type: Type = Type.F32): IVector<any>[] {
-        const buf = this.malloc(Math.max(cstride, estride, size) * num, type);
+    mallocArray(
+        num: number,
+        size: number,
+        cstride = 1,
+        estride = size,
+        type: GLType | Type = Type.F32
+    ): IVector<any>[] {
+        const buf = this.malloc(
+            Math.max(cstride, estride, size) * num,
+            asNativeType(type)
+        );
         if (!buf) return;
         const res: IVector<any>[] = [];
         for (let i = 0; i < num; i += estride) {
