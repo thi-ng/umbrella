@@ -20,7 +20,7 @@ import {
  * uv  (f32)  :                           U U U U V V V V                   ... offset = 8  (bytes), size = 2 (f32)
  * col (u16)  :                                           R R G G B B A A   ... offset = 16 (bytes), size = 4 (u16)
  *
- * global stride: 16
+ * global stride: 24
  */
 export class AttribPool implements
     IRelease {
@@ -56,7 +56,7 @@ export class AttribPool implements
         this.order = [];
         this.byteStride = 1;
         this.maxAttribSize = 1;
-        this.initAttribs(specs, true);
+        this.addAttribs(specs, true);
     }
 
     bytes() {
@@ -73,13 +73,13 @@ export class AttribPool implements
         return true;
     }
 
-    initAttribs(specs: IObjectOf<AttribSpec>, alloc = false) {
+    addAttribs(specs: IObjectOf<AttribSpec>, alloc = false) {
         const [newStride, maxSize] = this.computeStride(specs);
         this.maxAttribSize = maxSize;
         if (newStride != this.byteStride) {
-            this.realignAttribs(newStride);
+            this.realign(newStride);
         }
-        this.validateAttribs(specs, newStride);
+        this.validateSpecs(specs, newStride);
         this.byteStride = newStride;
         if (alloc) {
             const addr = this.pool.malloc(this.capacity * this.byteStride);
@@ -90,9 +90,9 @@ export class AttribPool implements
     }
 
     attribValue(id: string, i: number): number | Vec {
-        if (i >= this.capacity) return;
         const spec = this.specs[id];
         assert(!!spec, `invalid attrib: ${id}`);
+        if (i >= this.capacity) return;
         i *= spec.stride;
         return spec.size > 1 ?
             this.attribs[id].subarray(i, i + spec.size) :
@@ -174,7 +174,7 @@ export class AttribPool implements
         this.updateOrder();
         const [stride, size] = this.computeStride(this.specs, false);
         this.maxAttribSize = size;
-        this.realignAttribs(stride);
+        this.realign(stride);
     }
 
     ensure(newCapacity: number, fill = false) {
@@ -214,7 +214,7 @@ export class AttribPool implements
         return [align(maxStride, <Pow2>maxSize), maxSize];
     }
 
-    protected validateAttribs(specs: IObjectOf<AttribSpec>, stride = this.byteStride) {
+    protected validateSpecs(specs: IObjectOf<AttribSpec>, stride = this.byteStride) {
         for (let id in specs) {
             assert(!this.attribs[id], `attrib: ${id} already exists`);
             const a = specs[id];
@@ -272,7 +272,7 @@ export class AttribPool implements
         }
     }
 
-    protected realignAttribs(newByteStride: number) {
+    protected realign(newByteStride: number) {
         if (this.order.length === 0 || newByteStride === this.byteStride) return;
         console.warn(`realigning ${this.byteStride} -> ${newByteStride}...`);
         const grow = newByteStride > this.byteStride;

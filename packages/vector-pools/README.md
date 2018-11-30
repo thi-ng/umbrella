@@ -111,7 +111,7 @@ tx.run(
 
 // dynamically add another attrib
 // this will change the overall stride length and re-align all existing attribs
-geo.initAttribs({
+geo.addAttribs({
     normal: { type: GLType.F32, size: 3, default: [0, 0, 1], byteOffset: 36 }
 });
 
