@@ -8,6 +8,7 @@ export * from "./vec4";
 
 export * from "./abs";
 export * from "./acos";
+export * from "./add-weighted";
 export * from "./add";
 export * from "./addn";
 export * from "./adds";
@@ -57,6 +58,8 @@ export * from "./max";
 export * from "./min";
 export * from "./minor";
 export * from "./mix-bilinear";
+export * from "./mix-cubic";
+export * from "./mix-quadratic";
 export * from "./mix";
 export * from "./mixn";
 export * from "./mod";

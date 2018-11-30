@@ -70,3 +70,14 @@ export const eqDeltaS = (
     }
     return true;
 };
+
+export const eqDeltaArray = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
+    if (a === b) return true;
+    if (a.length !== b.length) return false;
+    for (let i = a.length; --i >= 0;) {
+        if (!eqDelta(a[i], b[i], eps)) {
+            return false;
+        }
+    }
+    return true;
+};

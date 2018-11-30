@@ -131,6 +131,7 @@ v.swizzle4([], [1, 2], 1, 1, 0, 0)
 - add
 - addN
 - addS
+- addWeighted
 - angleBetween
 - asin
 - bisect
@@ -155,6 +156,8 @@ v.swizzle4([], [1, 2], 1, 1, 0, 0)
 - dotS
 - empty
 - eqDelta
+- eqDeltaS
+- eqDeltaArray
 - exp
 - faceForward
 - floor
@@ -178,6 +181,8 @@ v.swizzle4([], [1, 2], 1, 1, 0, 0)
 - min
 - minor
 - mixBilinear
+- mixCubic
+- mixQuadratic
 - mix
 - mixN
 - mod
