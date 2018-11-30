@@ -1,8 +1,8 @@
-import { IVector, Vec } from "@thi.ng/vectors3/api";
+import { StridedVec, Vec } from "@thi.ng/vectors3/api";
 import { AVecList } from "./alist";
 import { VecFactory } from "./api";
 
-export class VecLinkedList<T extends IVector<any>> extends AVecList<T> {
+export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
 
     head: T;
     tail: T;
@@ -26,12 +26,12 @@ export class VecLinkedList<T extends IVector<any>> extends AVecList<T> {
         buffer: Vec,
         capacity: number,
         size: number,
-        factory?: VecFactory,
+        start = 0,
         cstride = 1,
         estride = size,
-        start = 0) {
-
-        super(buffer, capacity, size, factory, cstride, estride, start);
+        factory?: VecFactory
+    ) {
+        super(buffer, capacity, size, cstride, estride, start, factory);
         this.closed = closed;
         this.head = null;
         this.tail = null;
@@ -99,7 +99,7 @@ export class VecLinkedList<T extends IVector<any>> extends AVecList<T> {
     remove(vec: T): boolean {
         if (this.has(vec)) {
             this._length--;
-            this._free.push(vec);
+            this.freeIDs.push(vec.i);
             const v: any = vec;
             if (v.prev) {
                 v.prev.next = v.next;

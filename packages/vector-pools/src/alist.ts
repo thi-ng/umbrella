@@ -1,8 +1,8 @@
-import { IVector, Vec } from "@thi.ng/vectors3/api";
-import { wrap } from "./wrap";
+import { StridedVec, Vec } from "@thi.ng/vectors3/api";
 import { VecFactory } from "./api";
+import { wrap } from "./wrap";
 
-export abstract class AVecList<T extends IVector<any>> {
+export abstract class AVecList<T extends StridedVec> {
 
     buffer: Vec;
     factory: VecFactory;
@@ -14,17 +14,27 @@ export abstract class AVecList<T extends IVector<any>> {
     estride: number;
     cstride: number;
 
-    _free: T[];
+    freeIDs: number[];
 
+    /**
+     *
+     * @param buffer
+     * @param capacity
+     * @param size
+     * @param start
+     * @param cstride
+     * @param estride
+     * @param factory
+     */
     constructor(
         buffer: Vec,
         capacity: number,
         size: number,
-        factory: VecFactory = wrap,
+        start = 0,
         cstride = 1,
         estride = size,
-        start = 0) {
-
+        factory: VecFactory = wrap,
+    ) {
         this.buffer = buffer || new Float32Array(size * capacity);
         this.size = size;
         this.factory = factory;
@@ -32,7 +42,7 @@ export abstract class AVecList<T extends IVector<any>> {
         this.estride = estride;
         this.start = this.curr = start;
         this.capacity = capacity;
-        this._free = [];
+        this.freeIDs = [];
     }
 
     abstract [Symbol.iterator](): IterableIterator<T>;
@@ -44,6 +54,10 @@ export abstract class AVecList<T extends IVector<any>> {
     abstract insert(i: number): T;
 
     abstract remove(v: T): boolean;
+
+    abstract has(v: T): boolean;
+
+    abstract nth(n: number): T;
 
     indices(res: Vec = [], i = 0, local = true) {
         const start = this.start;
@@ -61,15 +75,15 @@ export abstract class AVecList<T extends IVector<any>> {
     }
 
     protected alloc() {
-        let v: T;
-        if (this._free.length > 0) {
-            v = this._free.pop();
+        let idx: number;
+        if (this.freeIDs.length > 0) {
+            idx = this.freeIDs.pop();
+        } else if (this.length >= this.capacity) {
+            return;
         } else {
-            if (this.length < this.capacity) {
-                v = <T>this.factory(this.buffer, this.size, this.curr, this.cstride);
-                this.curr += this.estride;
-            }
+            idx = this.curr;
+            this.curr += this.estride;
         }
-        return v;
+        return <T>this.factory(this.buffer, this.size, idx, this.cstride);
     }
 }
