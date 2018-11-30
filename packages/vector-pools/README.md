@@ -43,7 +43,7 @@ yarn add @thi.ng/vector-pools
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/master/packages/malloc)
-- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/vec-refactor/packages/vectors3)
+- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
 
 ## Usage examples
 
@@ -52,6 +52,7 @@ yarn add @thi.ng/vector-pools
 ```ts
 import { AttribPool, GLType } from "@thi.ng/vector-pools";
 import * as v from "@thi.ng/vectors3";
+import * as tx from "@thi.ng/transducers";
 
 // ...Webgl boilerplate omitted
 const gl = ...
@@ -95,7 +96,7 @@ v.mulN(null, geo.attribValue("pos", 3), 2);
 //   Float32Array [ 5, 5, 0 ],
 //   Float32Array [ -10, 10, 0 ] ]
 
-// use with transducers, e.g. to compute map positions to colors
+// use with transducers, e.g. to map positions to colors
 tx.run(
     tx.map(([pos, col]) => v.maddN(col, [0.5, 0.5, 0.5], v.normalize(col, pos), 0.5)),
     tx.tuples(geo.attribValues("pos"), geo.attribValues("col"))
@@ -158,13 +159,7 @@ typedef struct {
     uint16_t id;
 } Vertex;
 
-const Vertex vertices[4];
-
-int main() {
-    return 0;
-}
-
-Vertex vertices[4] = {
+Vertex vertices[] = {
     {.pos = {-5, 0, 0}, .uv = {0, 0}, .col = {1, 0, 0}, .id = 0},
     {.pos = {5, 0, 0}, .uv = {1, 0}, .col = {0, 1, 0}, .id = 1},
     {.pos = {5, 5, 0}, .uv = {1, 1}, .col = {0, 0, 1}, .id = 2},
