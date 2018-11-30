@@ -1,6 +1,6 @@
-import { Vec } from "../api";
+import { StridedVec, Vec } from "../api";
 
-export abstract class AVec {
+export abstract class AVec implements StridedVec {
 
     buf: Vec;
     i: number;
@@ -15,20 +15,4 @@ export abstract class AVec {
     abstract get length(): number;
 
     abstract [Symbol.iterator](): IterableIterator<number>;
-
-    get dim() {
-        return 1;
-    }
-
-    get offset() {
-        return this.i;
-    }
-
-    get shape() {
-        return [this.length];
-    }
-
-    get stride() {
-        return [this.s];
-    }
 }

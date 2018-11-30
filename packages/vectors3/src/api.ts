@@ -12,21 +12,24 @@ export interface Vec extends
     [id: number]: number;
 }
 
-export interface IVector<T> extends
-    Vec,
-    ICopy<T>,
-    IEmpty<T>,
-    IEqualsDelta<T> {
+export interface ReadonlyVec extends
+    Iterable<number>,
+    ILength {
+    readonly [id: number]: number;
+}
 
+export interface StridedVec {
     buf: Vec;
     i: number;
     s: number;
 }
 
-export interface ReadonlyVec extends
-    Iterable<number>,
-    ILength {
-    readonly [id: number]: number;
+export interface IVector<T> extends
+    Vec,
+    ICopy<T>,
+    IEmpty<T>,
+    IEqualsDelta<T>,
+    StridedVec {
 }
 
 export interface MultiVecOp<VOP> {
