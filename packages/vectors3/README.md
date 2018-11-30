@@ -31,33 +31,46 @@ vector operations on fixed and arbitrary-length vectors, both packed and
 strided (i.e. where individual vector components are not successive
 array elements, for example in SOA layouts).
 
+Use the supporting
+[@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools)
+package to directly operate on memory mapped data.
+
 ### Features
 
 - Small & fast: The vast majority of these functions are code generated
   with fixed-sized versions not using any loops.
-- Unified API: Most functions are implemented as multi-methods,
-  dispatching to any potentially optimized versions based on given
-  vector arguments.
-- Each function is defined in its own submodule. In addition to the
-  generic multi-method base function, all fixed-length optimized
-  versions are exported too. E.g. If `add` performs vector addition on
+- Unified API: Any `ArrayLike` type can be used as vector containers
+  (e.g. JS arrays, typed arrays, custom impls). Most functions are
+  implemented as multi-methods, dispatching to any potentially optimized
+  versions based on given vector arguments.
+- Each function is defined in its own submodule / file. In addition to
+  each generic multi-method base function, all fixed-length optimized
+  versions are exported too. E.g. If [`add`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/add.ts) performs vector addition on
   arbitrary-length vectors, `add2`, `add3`, `add4` are the optimized
   version for fixed-length vectors...
 - Extensible. Custom vector ops can be defined in a similar manner using
-  the provided code generation helpers.
+  the provided code generation helpers (see [vop.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/vop.ts) and
+  [codegen.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/codegen.ts)
+  for details).
 - Immutable by default. Each operation producing a vector result takes
   an output vector as first argument. If `null`, the vector given as 2nd
   argument will be used as output (i.e. for mutation).
-- Strided vector support is handled via the
-  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/feature/vec-refactor/packages/vectors3/src/vec2.ts)
+- Strided vector support is handled via the lightweight
+  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/vec2.ts)
   class wrappers and the
-  [`gvec()`](https://github.com/thi-ng/umbrella/feature/vec-refactor/packages/vectors3/src/gvec.ts)
+  [`gvec()`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/gvec.ts)
   proxy (for generic, arbitrary-length vectors). These types behave like
   normal arrays (for read/write operations) and are also iterable. A
-  subset of functions (suffixed with `S`, e.g. `addS` vs. `add`) also
-  support striding without the need for extra class wrappers. This is
-  handled via additional index and stride arguments for each
-  input/output vector.
+  subset of functions (suffixed with `S`, e.g.
+  [`addS`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/adds.ts)
+  vs. `add`) also support striding without the need for extra class
+  wrappers. This is handled via additional index and stride arguments
+  for each input/output vector. These functions are only available for
+  sizes 2 / 3 / 4, though.
+- Random vector functions support the `IRandom` interface defined by
+  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/random)
+  to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
+  will be used.
 
 ## Installation
 
@@ -67,10 +80,10 @@ yarn add @thi.ng/vectors3
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/math)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
