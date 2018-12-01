@@ -13,7 +13,9 @@ import { push } from "./rfn/push";
  * @param xs
  */
 export function* iterator<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B> {
-    const [_, complete, reduce] = <Reducer<B[], A>>xform(push()); _;
+    const rfn = <Reducer<B[], A>>xform(push());
+    const complete = rfn[1];
+    const reduce = rfn[2];
     for (let x of xs) {
         const y = reduce([], x);
         if (isReduced(y)) {

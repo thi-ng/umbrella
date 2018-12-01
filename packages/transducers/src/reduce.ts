@@ -23,7 +23,10 @@ export function reduce<A, B>(...args: any[]): A {
         default:
             illegalArity(args.length);
     }
-    const [init, complete, reduce] = args[0];
+    const rfn = args[0];
+    const init = rfn[0];
+    const complete = rfn[1];
+    const reduce = rfn[2];
     acc = acc == null ? init() : acc;
     if (implementsFunction(xs, "$reduce")) {
         acc = <any>(<IReducible<A, B>>xs).$reduce(reduce, acc);
