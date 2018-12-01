@@ -12,21 +12,18 @@ import {
 } from "@thi.ng/defmulti";
 import { equiv } from "@thi.ng/equiv";
 import { cossin } from "@thi.ng/math/angle";
-import {
-    add,
-    copy,
-    IMatrix,
-    max,
-    min,
-    mixNewN,
-    mul,
-    ReadonlyVec,
-    rotateZ,
-    subNew,
-    Vec,
-    neg
-} from "@thi.ng/vectors2/api";
-import { perpendicularLeft2, set2 } from "@thi.ng/vectors2/vec2";
+import { ReadonlyMat } from "@thi.ng/matrices/api";
+import { add } from "@thi.ng/vectors3/add";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { copy } from "@thi.ng/vectors3/copy";
+import { mixN } from "@thi.ng/vectors3/mixn";
+import { mul } from "@thi.ng/vectors3/mul";
+import { min } from "@thi.ng/vectors3/min";
+import { max } from "@thi.ng/vectors3/max";
+import { neg } from "@thi.ng/vectors3/neg";
+import { sub } from "@thi.ng/vectors3/sub";
+import { perpendicularLeft2 } from "@thi.ng/vectors3/perpendicular";
+import { rotateZ } from "@thi.ng/vectors3/rotate";
 import { subdivKernel3 } from "./internal/subdiv-curve";
 import { warpPoints } from "./internal/warp";
 
@@ -231,8 +228,8 @@ export const bounds = defmulti<IShape, AABBLike>(dispatch);
 
 export const center: MultiFn1O<IShape, ReadonlyVec, IShape> = defmulti(dispatch);
 center.add(DEFAULT, (x, origin?) => {
-    const delta = neg(centroid(x));
-    return translate(x, origin ? add(delta, origin) : delta);
+    const delta = neg(null, centroid(x));
+    return translate(x, origin ? add(null, delta, origin) : delta);
 });
 
 export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
@@ -271,7 +268,7 @@ export const isEmpty = defmulti<IShape, boolean>(dispatch);
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(dispatch);
 
 export const normalAt: MultiFn2O<IShape, number, number, Vec> = defmulti(dispatch);
-normalAt.add(DEFAULT, (shape, t, n = 1) => perpendicularLeft2(tangentAt(shape, t, n)));
+normalAt.add(DEFAULT, (shape, t, n = 1) => perpendicularLeft2(null, tangentAt(shape, t, n)));
 
 export const offset: MultiFn2O<IShape, number, number, IShape> = defmulti(dispatch);
 
@@ -300,7 +297,7 @@ export const tangentAt: MultiFn2O<IShape, number, number, Vec> = defmulti(dispat
 
 export const tessellate = defmulti<IShape, Iterable<Tessellator>, Vec[][]>(dispatch);
 
-export const transform = defmulti<IShape, IMatrix<any>, IShape>(dispatch);
+export const transform = defmulti<IShape, ReadonlyMat, IShape>(dispatch);
 
 export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
 
@@ -431,7 +428,7 @@ export class Arc2 implements
     }
 
     pointAtTheta(theta: number, pos: Vec = []) {
-        return add(rotateZ(mul(set2(pos, cossin(theta)), this.r), this.axis), this.pos);
+        return add(null, rotateZ(null, mul(pos, cossin(theta), this.r), this.axis), this.pos);
     }
 
     toHiccup() {
@@ -489,7 +486,7 @@ export class Cubic2 extends PointContainer implements
     IHiccupPathSegment {
 
     static fromLine(a: Vec, b: Vec, attribs?: Attribs) {
-        return new Cubic2([a, mixNewN(a, b, 1 / 3), mixNewN(b, a, 1 / 3), b], attribs);
+        return new Cubic2([a, mixN([], a, b, 1 / 3), mixN([], b, a, 1 / 3), b], attribs);
     }
 
     constructor(points: Vec[], attribs?: Attribs) {
@@ -721,7 +718,7 @@ export class Quadratic2 extends PointContainer implements
     IHiccupPathSegment {
 
     static fromLine(a: Vec, b: Vec, attribs?: Attribs) {
-        return new Quadratic2([a, mixNewN(a, b, 0.5), b], attribs);
+        return new Quadratic2([a, mixN([], a, b, 0.5), b], attribs);
     }
 
     constructor(points: Vec[], attribs?: Attribs) {
@@ -752,9 +749,9 @@ export class Rect2 implements
     IShape {
 
     static fromMinMax(mi: Vec, mx: Vec, attribs?: Attribs) {
-        const _mi = min(copy(mi), mx);
-        const _mx = max(copy(mx), mi);
-        return new Rect2(_mi, subNew(_mx, _mi), attribs);
+        const _mi = min([], mi, mx);
+        const _mx = max([], mx, mi);
+        return new Rect2(_mi, sub(null, _mx, _mi), attribs);
     }
 
     pos: Vec;

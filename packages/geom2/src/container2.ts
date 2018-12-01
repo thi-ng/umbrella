@@ -1,7 +1,6 @@
 import { implementations } from "@thi.ng/defmulti";
-import { Vec } from "@thi.ng/vectors2/api";
-import { Mat23 } from "@thi.ng/vectors2/mat23";
-import { Vec2 } from "@thi.ng/vectors2/vec2";
+import { Mat } from "@thi.ng/matrices/api";
+import { MAX2, MIN2, Vec } from "@thi.ng/vectors3/api";
 import {
     Attribs,
     bounds,
@@ -22,7 +21,7 @@ import { transformPoints } from "./internal/transform";
 
 export function points(points: Vec[], attribs?: Attribs) {
     return new PointContainer(Type.POINTS2, points, attribs);
-};
+}
 
 implementations(
     Type.POINTS2,
@@ -31,20 +30,22 @@ implementations(
 
     bounds,
     (pc: PointContainer) =>
-        Rect2.fromMinMax(..._bounds(pc.points, [...Vec2.MAX], [...Vec2.MIN])),
+        Rect2.fromMinMax(..._bounds(pc.points, [...MAX2], [...MIN2])),
 
     centroid,
-    (pc: PointContainer) => _centroid(pc.points),
+    (pc: PointContainer) =>
+        _centroid(pc.points),
 
     convexHull,
     (pc: PointContainer) =>
         new Polygon2(grahamScan2(pc.points), { ...pc.attribs }),
 
     flip,
-    (pc: PointContainer) => pc.flip(),
+    (pc: PointContainer) =>
+        pc.flip(),
 
     transform,
-    (pc: PointContainer, mat: Mat23) =>
+    (pc: PointContainer, mat: Mat) =>
         new PointContainer(
             pc.type,
             transformPoints(pc.points, mat),
@@ -52,5 +53,6 @@ implementations(
         ),
 
     vertices,
-    (pc: PointContainer) => pc.points
+    (pc: PointContainer) =>
+        pc.points
 );

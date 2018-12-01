@@ -2,16 +2,12 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { implementations } from "@thi.ng/defmulti";
 import { cossin } from "@thi.ng/math/angle";
 import { PI, TAU } from "@thi.ng/math/api";
-import {
-    addNew,
-    copy,
-    maddNew,
-    mulNewN,
-    ones,
-    ReadonlyVec,
-    subNew,
-    Vec
-} from "@thi.ng/vectors2/api";
+import { add2 } from "@thi.ng/vectors3/add";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { copy } from "@thi.ng/vectors3/copy";
+import { madd2 } from "@thi.ng/vectors3/madd";
+import { mulN2 } from "@thi.ng/vectors3/muln";
+import { sub2 } from "@thi.ng/vectors3/sub";
 import "./polygon";
 import {
     perimeter,
@@ -32,7 +28,7 @@ import {
     SamplingOpts,
 } from "./api";
 
-export function ellipse(pos: Vec, r = ones(2), attribs?: Attribs): Ellipse2 {
+export function ellipse(pos: Vec, r = [1, 1], attribs?: Attribs): Ellipse2 {
     return new Ellipse2(pos, r, attribs);
 }
 
@@ -50,7 +46,7 @@ implementations(
 
     bounds,
     (ellipse: Ellipse2) =>
-        new Rect2(subNew(ellipse.pos, ellipse.r), mulNewN(ellipse.r, 2)),
+        new Rect2(sub2([], ellipse.pos, ellipse.r), mulN2([], ellipse.r, 2)),
 
     centroid,
     (ellipse: Ellipse2) => copy(ellipse.pos),
@@ -72,12 +68,12 @@ implementations(
 
     pointAt,
     (ellipse: Ellipse2, t: number) =>
-        maddNew(ellipse.pos, cossin(t * TAU), ellipse.r),
+        madd2([], ellipse.pos, cossin(t * TAU), ellipse.r),
 
     translate,
     (ellipse: Ellipse2, delta: ReadonlyVec) =>
         new Ellipse2(
-            addNew(ellipse.pos, delta),
+            add2([], ellipse.pos, delta),
             ellipse.r,
             { ...ellipse.attribs }
         ),
@@ -98,7 +94,7 @@ implementations(
         const delta = TAU / num;
         last && num++;
         for (let i = 0; i < num; i++) {
-            buf[i] = maddNew(pos, cossin(i * delta), r);
+            buf[i] = madd2([], pos, cossin(i * delta), r);
         }
         return buf;
     }

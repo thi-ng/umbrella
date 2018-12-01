@@ -1,4 +1,6 @@
-import { addNew, subNew, Vec } from "@thi.ng/vectors2/api";
+import { add2 } from "@thi.ng/vectors3/add";
+import { Vec } from "@thi.ng/vectors3/api";
+import { sub2 } from "@thi.ng/vectors3/sub";
 import { ClipMode, VecPair } from "../api";
 import { arcVertices } from "./arc";
 import { normalL2 } from "./direction";
@@ -42,8 +44,8 @@ export const offsetLine = ([ea, eb]: VecPair, dist: number, res: number) => {
     const verts: Vec[] = [];
     const r = [dist, dist];
     const n = normalL2(ea, eb, dist);
-    const e1 = [addNew(ea, n), addNew(eb, n)];
-    const e2 = [subNew(eb, n), subNew(ea, n)];
+    const e1 = [add2([], ea, n), add2([], eb, n)];
+    const e2 = [sub2([], eb, n), sub2([], ea, n)];
     arcVertices(ea, e2[1], e1[0], r, verts, true, res);
     return arcVertices(eb, e1[1], e2[0], r, verts, true, res);
 };

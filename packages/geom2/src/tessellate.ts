@@ -12,17 +12,19 @@ import { map } from "@thi.ng/transducers/xform/map";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { partition } from "@thi.ng/transducers/xform/partition";
 import { scan } from "@thi.ng/transducers/xform/scan";
-import { mixNewN, ReadonlyVec, Vec } from "@thi.ng/vectors2/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { mixN } from "@thi.ng/vectors3/mixn";
+import { signedArea2 } from "@thi.ng/vectors3/signed-area";
 import { Tessellator } from "./api";
 import { centroid } from "./internal/centroid";
-import { pointInTriangle2, signedArea } from "./internal/corner";
+import { pointInTriangle2 } from "./internal/corner";
 import { polygonArea } from "./internal/polygon";
 
 const snip = (points: ReadonlyVec[], u: number, v: number, w: number, n: number, ids: number[]) => {
     const a = points[ids[u]];
     const b = points[ids[v]];
     const c = points[ids[w]];
-    if (signedArea(a, b, c) > 0) {
+    if (signedArea2(a, b, c) > 0) {
         for (let i = 0; i < n; i++) {
             if (i !== u && i !== v && i !== w) {
                 if (pointInTriangle2(points[ids[i]], a, b, c)) {
@@ -80,7 +82,7 @@ export const quadFan = (points: ReadonlyVec[]) => {
     return transduce(
         comp(
             partition<Vec>(3, 1),
-            map(([a, b, c]) => [mixNewN(a, b, 0.5), b, mixNewN(b, c, 0.5), p])
+            map(([a, b, c]) => [mixN([], a, b, 0.5), b, mixN([], b, c, 0.5), p])
         ),
         push(),
         wrap(points, 1, true, true)
@@ -93,7 +95,7 @@ export const edgeSplit = (points: ReadonlyVec[]) => {
         comp(
             partition<Vec>(2, 1),
             mapcat(([a, b]) => {
-                const m = mixNewN(a, b, 0.5);
+                const m = mixN([], a, b, 0.5);
                 return [[a, m, c], [m, b, c]];
             })),
         push(),
@@ -105,7 +107,7 @@ export const rimTris = (points: ReadonlyVec[]) => {
     const edgeCentroids = transduce(
         comp(
             partition<Vec>(2, 1),
-            map((e) => mixNewN(e[0], e[1], 0.5))
+            map((e) => mixN([], e[0], e[1], 0.5))
         ),
         push(),
         wrap(points, 1, false, true)
@@ -124,7 +126,7 @@ export const rimTris = (points: ReadonlyVec[]) => {
 export const inset = (inset = 0.5, keepInterior = false) =>
     (points: ReadonlyVec[]) => {
         const c = centroid(points);
-        const inner = points.map((p) => mixNewN(p, c, inset));
+        const inner = points.map((p) => mixN([], p, c, inset));
         return transduce(
             comp(
                 partition<Vec[]>(2, 1),

@@ -1,6 +1,7 @@
-import { TAU } from "@thi.ng/math/api";
 import { atan2Abs, cossin } from "@thi.ng/math/angle";
-import { ReadonlyVec, Vec, maddNew } from "@thi.ng/vectors2/api";
+import { TAU } from "@thi.ng/math/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { madd } from "@thi.ng/vectors3/madd";
 
 export const arcVertices = (
     o: ReadonlyVec,
@@ -17,7 +18,8 @@ export const arcVertices = (
     const ts = (outwards ? -theta : TAU - theta) / res;
     verts.push(a);
     for (let i = 1; i < res; i++) {
-        verts.push(maddNew(o, cossin(ta + ts * i), r));
+        const p = cossin(ta + ts * i);
+        verts.push(madd(p, o, p, r));
     }
     verts.push(b);
     return verts;

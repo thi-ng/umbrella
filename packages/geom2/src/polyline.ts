@@ -1,16 +1,16 @@
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { implementations } from "@thi.ng/defmulti";
+import { Mat } from "@thi.ng/matrices/api";
+import { map } from "@thi.ng/transducers/xform/map";
+import { add2 } from "@thi.ng/vectors3/add";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import {
-    addNew,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors2/api";
-import { Mat23 } from "@thi.ng/vectors2/mat23";
-import {
+    asCubic,
     Attribs,
     bounds,
     centroid,
     convexHull,
+    Cubic2,
     DEFAULT_SAMPLES,
     edges,
     flip,
@@ -27,9 +27,7 @@ import {
     transform,
     translate,
     Type,
-    vertices,
-    asCubic,
-    Cubic2
+    vertices
 } from "./api";
 import "./container2";
 import { centroid as _centroid } from "./internal/centroid";
@@ -40,7 +38,6 @@ import { Sampler } from "./internal/sampler";
 import { subdivideCurve } from "./internal/subdiv-curve";
 import { transformPoints } from "./internal/transform";
 import { douglasPeucker2 } from "./internal/douglas–peucker";
-import { map } from "@thi.ng/transducers/xform/map";
 
 export function polyline(points: Vec[], attribs?: Attribs): Polyline2 {
     return new Polyline2(points, attribs);
@@ -100,7 +97,7 @@ implementations(
         new Sampler(line.points, false).tangentAt(t, n),
 
     transform,
-    (line: Polyline2, mat: Mat23) =>
+    (line: Polyline2, mat: Mat) =>
         new Polyline2(
             transformPoints(line.points, mat),
             { ...line.attribs }
@@ -109,7 +106,7 @@ implementations(
     translate,
     (line: Polyline2, delta: ReadonlyVec) =>
         new Polyline2(
-            line.points.map((p) => addNew(p, delta)),
+            line.points.map((p) => add2([], p, delta)),
             { ...line.attribs }
         ),
 

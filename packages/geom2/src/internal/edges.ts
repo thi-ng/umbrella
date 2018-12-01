@@ -1,7 +1,7 @@
 import { wrap } from "@thi.ng/transducers/iter/wrap";
 import { partition } from "@thi.ng/transducers/xform/partition";
 import { VecPair } from "../api";
-import { Vec } from "@thi.ng/vectors2/api";
+import { Vec } from "@thi.ng/vectors3/api";
 
 export const edges = (vertices: Iterable<Vec>, closed = false) =>
     <IterableIterator<VecPair>>partition(

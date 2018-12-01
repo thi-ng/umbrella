@@ -1,4 +1,4 @@
-import { Mat23 } from "@thi.ng/vectors2/mat23";
+import { translation23 } from "@thi.ng/matrices/translation";
 import * as fs from "fs";
 import * as g from "../src";
 
@@ -15,22 +15,22 @@ fs.writeFileSync("clip-test.svg",
             stroke: "black"
         },
             g.group(
-                { transform: Mat23.translation(0, 0) },
+                { transform: translation23([], [0, 0]) },
                 g.group({ "stroke-width": 5 }, ...g.union(a, b)),
                 a, b
             ),
             g.group(
-                { transform: Mat23.translation(160, 0) },
+                { transform: translation23([], [160, 0]) },
                 g.group({ "stroke-width": 5 }, ...g.difference(a, b)),
                 a, b
             ),
             g.group(
-                { transform: Mat23.translation(0, 160) },
+                { transform: translation23([], [0, 160]) },
                 g.group({ "stroke-width": 5 }, ...g.difference(b, a)),
                 a, b
             ),
             g.group(
-                { transform: Mat23.translation(160, 160) },
+                { transform: translation23([], [160, 160]) },
                 g.group({ "stroke-width": 5 }, ...g.intersection(a, b)),
                 a, b
             ),

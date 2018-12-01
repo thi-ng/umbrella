@@ -1,5 +1,7 @@
+import { EPS } from "@thi.ng/math/api";
 import { peek } from "@thi.ng/transducers/func/peek";
-import { Vec, eqDelta } from "@thi.ng/vectors2/api";
+import { Vec } from "@thi.ng/vectors3/api";
+import { eqDelta } from "@thi.ng/vectors3/eqdelta";
 import { farthestPointSegment } from "./closest-point";
 
 // https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
@@ -9,10 +11,8 @@ export const douglasPeucker2 =
 
         let num = pts.length;
         const visited: boolean[] = [];
-        if (num <= 2) {
-            return pts.slice();
-        }
-        if (closed && !eqDelta(pts[0], peek(pts))) {
+        if (num <= 2) return pts.slice();
+        if (closed && !eqDelta(pts[0], peek(pts), EPS)) {
             pts = pts.slice();
             pts.push(pts[0]);
             num++;

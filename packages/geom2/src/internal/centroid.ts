@@ -1,13 +1,9 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import {
-    add,
-    divN,
-    empty,
-    ReadonlyVec,
-    setS,
-    Vec
-} from "@thi.ng/vectors2/api";
-import { cross2 } from "@thi.ng/vectors2/vec2";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { cross2 } from "@thi.ng/vectors3/cross";
+import { empty } from "@thi.ng/vectors3/empty";
+import { add } from "@thi.ng/vectors3/add";
+import { divN } from "@thi.ng/vectors3/divn";
 
 export const centroid =
     (pts: ReadonlyVec[], c?: Vec) => {
@@ -15,13 +11,13 @@ export const centroid =
         !num && illegalArgs("no points available");
         !c && (c = empty(pts[0]));
         for (let i = num; --i >= 0;) {
-            add(c, pts[i]);
+            add(c, c, pts[i]);
         }
-        return divN(c, num);
+        return divN(null, c, num);
     };
 
 export const centerOfWeight2 =
-    (pts: ReadonlyVec[], c?: Vec) => {
+    (pts: ReadonlyVec[], c: Vec = []) => {
         let area = 0;
         let x = 0;
         let y = 0;
@@ -32,7 +28,7 @@ export const centerOfWeight2 =
             y += (i[1] + j[1]) * z;
         }
         area = 1 / (area * 3);
-        x *= area;
-        y *= area;
-        return c ? setS(c, x, y) : [x, y];
+        c[0] = x * area;
+        c[1] = y * area;
+        return c;
     };

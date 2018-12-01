@@ -5,46 +5,29 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { indexed } from "@thi.ng/transducers/xform/indexed";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { partition } from "@thi.ng/transducers/xform/partition";
-import {
-    maddN,
-    mulNewN,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors2/api";
+import { addWeighted2, addWeighted3, addWeighted5 } from "@thi.ng/vectors3/add-weighted";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { SubdivKernel } from "../api";
-
-const madd2 =
-    (a: ReadonlyVec, b: ReadonlyVec, ua: number, ub: number) =>
-        maddN(mulNewN(a, ua), b, ub);
-
-const madd3 =
-    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, ua: number, ub: number, uc: number) =>
-        maddN(maddN(mulNewN(a, ua), b, ub), c, uc);
-
-const madd5 =
-    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, e: ReadonlyVec,
-        ua: number, ub: number, uc: number, ud: number, ue: number) =>
-        maddN(maddN(maddN(maddN(mulNewN(a, ua), b, ub), c, uc), d, ud), e, ue);
 
 export const subdivKernel2 =
     ([ua, ub]: number[], [va, vb]: number[]) =>
         ([a, b]: ReadonlyVec[]) => [
-            madd2(a, b, ua, ub),
-            madd2(a, b, va, vb),
+            addWeighted2([], a, b, ua, ub),
+            addWeighted2([], a, b, va, vb),
         ];
 
 export const subdivKernel3 =
     ([ua, ub, uc]: number[], [va, vb, vc]: number[]) =>
         ([a, b, c]: ReadonlyVec[]) => [
-            madd3(a, b, c, ua, ub, uc),
-            madd3(a, b, c, va, vb, vc),
+            addWeighted3([], a, b, c, ua, ub, uc),
+            addWeighted3([], a, b, c, va, vb, vc),
         ];
 
 export const subdivKernel5 =
     ([ua, ub, uc, ud, ue]: number[], [va, vb, vc, vd, ve]: number[]) =>
         ([a, b, c, d, e]: ReadonlyVec[]) => [
-            madd5(a, b, c, d, e, ua, ub, uc, ud, ue),
-            madd5(a, b, c, d, e, va, vb, vc, vd, ve),
+            addWeighted5([], a, b, c, d, e, ua, ub, uc, ud, ue),
+            addWeighted5([], a, b, c, d, e, va, vb, vc, vd, ve),
         ];
 
 /**

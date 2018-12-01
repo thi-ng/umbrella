@@ -16,17 +16,19 @@ import { push } from "@thi.ng/transducers/rfn/push";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
+import { abs2 } from "@thi.ng/vectors3/abs";
+import { add2 } from "@thi.ng/vectors3/add";
+import { angleBetween } from "@thi.ng/vectors3/angle-between";
 import {
-    abs,
-    add,
-    angleBetween,
-    magSq,
-    mulN,
+    MAX2,
+    MIN2,
     ReadonlyVec,
-    subNew,
-    Vec
-} from "@thi.ng/vectors2/api";
-import { Vec2 } from "@thi.ng/vectors2/vec2";
+    Vec,
+    X2
+} from "@thi.ng/vectors3/api";
+import { magSq2 } from "@thi.ng/vectors3/magsq";
+import { mulN2 } from "@thi.ng/vectors3/muln";
+import { sub2 } from "@thi.ng/vectors3/sub";
 import "./bezier";
 import { bounds as _bounds } from "./internal/bounds";
 import { Sampler } from "./internal/sampler";
@@ -57,17 +59,17 @@ export function arcFrom2Points(
     large = false,
     clockwise = true) {
 
-    const r = abs([...radii]);
+    const r = abs2([], radii);
     const co = Math.cos(axisTheta);
     const si = Math.sin(axisTheta);
-    const m = mulN(subNew(a, b), 0.5);
+    const m = mulN2(null, sub2([], a, b), 0.5);
     const px = co * m[0] + si * m[1];
     const py = -si * m[0] + co * m[1];
     const px2 = px * px;
     const py2 = py * py;
 
     const l = px2 / (r[0] * r[0]) + py2 / (r[1] * r[1]);
-    l > 1 && mulN(r, Math.sqrt(l));
+    l > 1 && mulN2(null, r, Math.sqrt(l));
 
     const rx2 = r[0] * r[0];
     const ry2 = r[1] * r[1];
@@ -81,7 +83,7 @@ export function arcFrom2Points(
     const d1 = [(px - tc[0]) / r[0], (py - tc[1]) / r[1]];
     const d2 = [(-px - tc[0]) / r[0], (-py - tc[1]) / r[1]];
 
-    const theta = angleBetween(Vec2.X_AXIS, d1, true);
+    const theta = angleBetween(X2, d1, true);
     let delta = angleBetween(d1, d2, true);
 
     if (clockwise && delta < 0) {
@@ -106,14 +108,15 @@ implementations(
         const [sphi, cphi] = sincos(arc.axis);
         const dx = cphi * (p[0] - q[0]) / 2 + sphi * (p[1] - q[1]) / 2;
         const dy = -sphi * (p[0] - q[0]) / 2 + cphi * (p[1] - q[1]) / 2;
-        if ((dx === 0 && dy === 0) || magSq(arc.r) < EPS) {
+        if ((dx === 0 && dy === 0) || magSq2(arc.r) < EPS) {
             return [Cubic2.fromLine(p, q, { ...arc.attribs })];
         }
 
         const mapP = (x: number, y: number) => {
             x *= rx;
             y *= ry;
-            return add(
+            return add2(
+                null,
                 [
                     cphi * x - sphi * y,
                     sphi * x + cphi * y
@@ -163,7 +166,7 @@ implementations(
                 )
             ]
         );
-        return Rect2.fromMinMax(..._bounds(pts, [...Vec2.MAX], [...Vec2.MIN]));
+        return Rect2.fromMinMax(..._bounds(pts, [...MAX2], [...MIN2]));
     },
 
     centroid,

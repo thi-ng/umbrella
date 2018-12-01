@@ -1,4 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors2/api";
+import { ReadonlyVec } from "@thi.ng/vectors3/api";
 import { classify } from "./corner";
 import { intersectLines2 } from "./line-intersection";
 

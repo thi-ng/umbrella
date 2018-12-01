@@ -1,4 +1,5 @@
-import { dist, ReadonlyVec } from "@thi.ng/vectors2/api";
+import { ReadonlyVec } from "@thi.ng/vectors3/api";
+import { dist } from "@thi.ng/vectors3/dist";
 
 export const perimeter =
     (pts: ReadonlyVec[], closed = false) => {

@@ -1,12 +1,10 @@
 import { implementations } from "@thi.ng/defmulti";
-import {
-    dist,
-    mixNewN,
-    ReadonlyVec,
-    subNew,
-    Vec
-} from "@thi.ng/vectors2/api";
-import { Mat23 } from "@thi.ng/vectors2/mat23";
+import { Mat } from "@thi.ng/matrices/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { dist } from "@thi.ng/vectors3/dist";
+import { mixN } from "@thi.ng/vectors3/mixn";
+import { sub } from "@thi.ng/vectors3/sub";
+import { direction } from "./internal/direction";
 import { intersectLines2 } from "./internal/line-intersection";
 import { offsetLine } from "./internal/offset";
 import { transformPoints } from "./internal/transform";
@@ -33,14 +31,13 @@ import {
     vertices,
     resample,
 } from "./api";
-import { direction } from "./internal/direction";
 
 export function line(a: Vec, b: Vec, attribs?: Attribs) {
     return new Line2([a, b], attribs);
 }
 
 export const lineNormal = (a: ReadonlyVec, b: ReadonlyVec, out?: Vec) =>
-    subNew(b, a, out);
+    sub(out, b, a);
 
 implementations(
     Type.LINE2,
@@ -69,7 +66,7 @@ implementations(
 
     centroid,
     (line: Line2, c: Vec = []) =>
-        mixNewN(line.a, line.b, 0.5, c),
+        mixN(c, line.a, line.b, 0.5),
 
     intersectLine,
     (l1: Line2, l2: Line2) =>
@@ -91,7 +88,7 @@ implementations(
         direction(line.a, line.b, n),
 
     transform,
-    (line: Line2, mat: Mat23) =>
+    (line: Line2, mat: Mat) =>
         new Line2(
             transformPoints(line.points, mat),
             { ...line.attribs }

@@ -1,5 +1,5 @@
-import { ReadonlyVec } from "@thi.ng/vectors2/api";
-import { cross2 } from "@thi.ng/vectors2/vec2";
+import { ReadonlyVec } from "@thi.ng/vectors3/api";
+import { cross2 } from "@thi.ng/vectors3/cross";
 
 export const polygonArea =
     (pts: ReadonlyVec[]) => {

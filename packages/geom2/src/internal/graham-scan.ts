@@ -1,6 +1,6 @@
-import { Vec } from "@thi.ng/vectors2/api";
-import { signedArea } from "./corner";
-import { comparator2 } from "@thi.ng/vectors2/vec2";
+import { Vec } from "@thi.ng/vectors3/api";
+import { comparator2 } from "@thi.ng/vectors3/compare";
+import { signedArea2 } from "@thi.ng/vectors3/signed-area";
 
 /**
  * Returns array of points defining the 2D Convex Hull of `pts` using
@@ -18,7 +18,7 @@ export const grahamScan2 =
         pts = pts.slice().sort(comparator2(0, 1));
 
         const scan = (p: Vec, thresh: number) => {
-            while (h >= thresh && signedArea(res[h - 2], res[h - 1], p) >= 0) {
+            while (h >= thresh && signedArea2(res[h - 2], res[h - 1], p) >= 0) {
                 res.pop();
                 h--;
             }

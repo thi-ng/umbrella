@@ -1,6 +1,7 @@
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { implementations } from "@thi.ng/defmulti";
 import { TAU } from "@thi.ng/math/api";
+import { Mat } from "@thi.ng/matrices/api";
 import { Reducer } from "@thi.ng/transducers/api";
 import { cycle } from "@thi.ng/transducers/iter/cycle";
 import { normRange } from "@thi.ng/transducers/iter/norm-range";
@@ -11,16 +12,12 @@ import { push } from "@thi.ng/transducers/rfn/push";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { map } from "@thi.ng/transducers/xform/map";
 import { partition } from "@thi.ng/transducers/xform/partition";
-import {
-    addNew,
-    cartesian,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors2/api";
-import { Mat23 } from "@thi.ng/vectors2/mat23";
+import { add2 } from "@thi.ng/vectors3/add";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { cartesian2 } from "@thi.ng/vectors3/cartesian";
+import { signedArea2 } from "@thi.ng/vectors3/signed-area";
 import "./container2";
 import { centerOfWeight2 } from "./internal/centroid";
-import { signedArea } from "./internal/corner";
 import { edges as _edges } from "./internal/edges";
 import { booleanOp } from "./internal/greiner-hormann";
 import { offset as _offset } from "./internal/offset";
@@ -74,7 +71,7 @@ export function polygon(points: Vec[], attribs?: Attribs): Polygon2 {
 export const star = (r: number, n: number, profile: number[]) => {
     const total = n * profile.length;
     const pts = transduce(
-        map(([i, p]) => cartesian([r * p, i * TAU])),
+        map(([i, p]) => cartesian2(null, [r * p, i * TAU])),
         push(),
         tuples(normRange(total, false), cycle(profile))
     );
@@ -85,7 +82,7 @@ const convexityReducer: Reducer<number, ReadonlyVec[]> = [
     () => 0,
     (x) => x,
     (type, [a, b, c]) => {
-        const t = signedArea(a, b, c);
+        const t = signedArea2(a, b, c);
         if (t < 0) {
             type |= 1;
         } else if (t > 0) {
@@ -208,7 +205,7 @@ implementations(
         tessellatePoints(poly.points, tessel),
 
     transform,
-    (poly: Polygon2, mat: Mat23) =>
+    (poly: Polygon2, mat: Mat) =>
         new Polygon2(
             transformPoints(poly.points, mat),
             { ...poly.attribs }
@@ -217,7 +214,7 @@ implementations(
     translate,
     (poly: Polygon2, delta: ReadonlyVec) =>
         new Polygon2(
-            poly.points.map((p) => addNew(p, delta)),
+            poly.points.map((p) => add2([], p, delta)),
             { ...poly.attribs }
         ),
 

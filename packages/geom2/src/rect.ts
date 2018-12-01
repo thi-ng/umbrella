@@ -1,19 +1,16 @@
 import { implementations } from "@thi.ng/defmulti";
-import {
-    addNew,
-    copy,
-    div,
-    madd,
-    maddNewN,
-    ReadonlyVec,
-    set,
-    subNew,
-    Vec
-} from "@thi.ng/vectors2/api";
-import { Mat23 } from "@thi.ng/vectors2/mat23";
+import { Mat } from "@thi.ng/matrices/api";
+import { add2 } from "@thi.ng/vectors3/add";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { copy } from "@thi.ng/vectors3/copy";
+import { div2 } from "@thi.ng/vectors3/div";
+import { madd2 } from "@thi.ng/vectors3/madd";
+import { maddN2 } from "@thi.ng/vectors3/maddn";
+import { sub } from "@thi.ng/vectors3/sub";
 import { unionBounds } from "./internal/bounds";
 import { edges as _edges } from "./internal/edges";
 import { booleanOp } from "./internal/greiner-hormann";
+import { Sampler } from "./internal/sampler";
 import { sutherlandHodgeman } from "./internal/sutherland-hodgeman";
 import { transformPoints } from "./internal/transform";
 import "./polygon";
@@ -44,7 +41,6 @@ import {
     pointAt,
     pointInside,
 } from "./api";
-import { Sampler } from "./internal/sampler";
 
 export function rect(pos: Vec, size: Vec, attribs?: Attribs) {
     return new Rect2(pos, size, attribs);
@@ -63,13 +59,15 @@ implementations(
     },
 
     area,
-    (rect: Rect2) => rect.size[0] * rect.size[1],
+    (rect: Rect2) =>
+        rect.size[0] * rect.size[1],
 
     bounds,
     (rect: Rect2) => rect,
 
     centroid,
-    (rect: Rect2, o?: Vec) => maddNewN(rect.pos, rect.size, 0.5, o),
+    (rect: Rect2, o?: Vec) =>
+        maddN2(o, rect.pos, rect.size, 0.5),
 
     clipConvex,
     (rect: Rect2, boundary: IShape) =>
@@ -83,12 +81,12 @@ implementations(
         _edges(vertices(rect, opts), true),
 
     mapPoint,
-    (rect: Rect2, p: ReadonlyVec, out?: Vec) => {
-        return div(subNew(p, rect.pos, out), rect.size);
-    },
+    (rect: Rect2, p: ReadonlyVec, out: Vec = []) =>
+        div2(null, sub(out, p, rect.pos), rect.size),
 
     perimeter,
-    (rect: Rect2) => 2 * (rect.size[0] + rect.size[1]),
+    (rect: Rect2) =>
+        2 * (rect.size[0] + rect.size[1]),
 
     pointAt,
     (rect: Rect2, t: number) =>
@@ -106,7 +104,7 @@ implementations(
         tessellatePoints(vertices(rect), <any>tessel, iter),
 
     transform,
-    (rect: Rect2, mat: Mat23) =>
+    (rect: Rect2, mat: Mat) =>
         new Polygon2(
             transformPoints(vertices(rect), mat),
             { ...rect.attribs }
@@ -115,7 +113,7 @@ implementations(
     translate,
     (rect: Rect2, delta: ReadonlyVec) =>
         new Rect2(
-            addNew(rect.pos, delta),
+            add2([], rect.pos, delta),
             copy(rect.size),
             { ...rect.attribs }
         ),
@@ -128,14 +126,13 @@ implementations(
                 .map((pts) => new Polygon2(pts, { ...r1.attribs })),
 
     unmapPoint,
-    (rect: Rect2, p: ReadonlyVec, out?: Vec) => {
-        return madd((out ? set(out, rect.pos) : copy(rect.pos)), rect.size, p);
-    },
+    (rect: Rect2, p: ReadonlyVec, out: Vec = []) =>
+        madd2(out, rect.pos, rect.size, p),
 
     vertices,
     (rect: Rect2, opts: number | Partial<SamplingOpts>) => {
         const p = rect.pos;
-        const q = addNew(p, rect.size);
+        const q = add2([], p, rect.size);
         const verts = [copy(p), [q[0], p[1]], q, [p[0], q[1]]];
         return opts != null ?
             vertices(new Polygon2(verts), opts) :

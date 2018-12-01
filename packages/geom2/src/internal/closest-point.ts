@@ -1,14 +1,11 @@
-import {
-    distSq,
-    dot,
-    empty,
-    magSq,
-    mixNewN,
-    ReadonlyVec,
-    set,
-    subNew,
-    Vec,
-} from "@thi.ng/vectors2/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { distSq } from "@thi.ng/vectors3/distsq";
+import { dot } from "@thi.ng/vectors3/dot";
+import { empty } from "@thi.ng/vectors3/empty";
+import { magSq } from "@thi.ng/vectors3/magsq";
+import { mixN } from "@thi.ng/vectors3/mixn";
+import { set } from "@thi.ng/vectors3/set";
+import { sub } from "@thi.ng/vectors3/sub";
 
 export const closestPoint =
     (p: ReadonlyVec, pts: Vec[]) => {
@@ -28,10 +25,10 @@ export const closestPoint =
 export const closestCoeff =
     (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
 
-        const d = subNew(b, a);
+        const d = sub([], b, a);
         const l = magSq(d);
         if (l > 1e-6) {
-            return dot(subNew(p, a), d) / l;
+            return dot(sub([], p, a), d) / l;
         }
     };
 
@@ -57,7 +54,7 @@ export const closestPointSegment =
                 set(out, a) :
                 t >= 1.0 ?
                     set(out, b) :
-                    mixNewN(a, b, t, out);
+                    mixN(out, a, b, t);
         }
     };
 

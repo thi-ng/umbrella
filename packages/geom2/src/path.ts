@@ -2,6 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { implementations } from "@thi.ng/defmulti";
 import { rad } from "@thi.ng/math/angle";
 import { eqDelta } from "@thi.ng/math/eqdelta";
+import { Mat } from "@thi.ng/matrices/api";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
 import { peek } from "@thi.ng/transducers/func/peek";
@@ -9,20 +10,13 @@ import { iterator1 } from "@thi.ng/transducers/iterator";
 import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import {
-    add,
-    addNew,
-    copy,
-    maddNewN,
-    mulN,
-    ReadonlyVec,
-    set,
-    sub,
-    subNew,
-    Vec,
-    zeroes
-} from "@thi.ng/vectors2/api";
-import { Mat23 } from "@thi.ng/vectors2/mat23";
+import { add2, add } from "@thi.ng/vectors3/add";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { maddN } from "@thi.ng/vectors3/maddn";
+import { mulV } from "@thi.ng/matrices/mulv";
+import { zeroes } from "@thi.ng/vectors3/setn";
+import { mulN2 } from "@thi.ng/vectors3/muln";
+import { set2 } from "@thi.ng/vectors3/set";
 import {
     Arc2,
     asCubic,
@@ -51,6 +45,8 @@ import { collBounds } from "./internal/bounds";
 import "./polygon";
 import "./polyline";
 import { douglasPeucker2 } from "./internal/douglas–peucker";
+import { copy } from "@thi.ng/vectors3/copy";
+import { sub2 } from "@thi.ng/vectors3/sub";
 
 const CMD_RE = /[achlmqstvz]/i;
 
@@ -61,7 +57,7 @@ export function path(segments?: PathSegment[], attribs?: Attribs) {
 export const roundedRect = (pos: Vec, size: Vec, r: number | Vec) => {
     r = isNumber(r) ? [r, r] : r;
     const b = new PathBuilder();
-    const [w, h] = maddNewN(size, r, -2);
+    const [w, h] = maddN([], size, r, -2);
     b.moveTo([pos[0] + r[0], pos[1]]);
     b.hlineTo(w, true);
     b.arcTo(r, r, 0, false, true, true);
@@ -229,7 +225,7 @@ implementations(
     },
 
     transform,
-    (path: Path2, mat: Mat23) =>
+    (path: Path2, mat: Mat) =>
         new Path2(
             [...mapcat((s) => transformSegment(s, mat), path.segments)],
             { ...path.attribs }
@@ -246,7 +242,7 @@ implementations(
                     } :
                     {
                         type: s.type,
-                        point: addNew(s.point, delta)
+                        point: add2([], s.point, delta)
                     }
             ),
             { ...path.attribs }
@@ -301,8 +297,8 @@ export class PathBuilder {
             this.paths.push(this.curr);
         }
         p = this.updateCurrent(p, relative);
-        set(this.startP, p);
-        set(this.bezierP, p);
+        set2(this.startP, p);
+        set2(this.bezierP, p);
         this.curr.add({
             point: p,
             type: SegmentType.MOVE,
@@ -318,14 +314,14 @@ export class PathBuilder {
             ]),
             type: SegmentType.LINE,
         });
-        set(this.bezierP, this.currP);
+        set2(this.bezierP, this.currP);
         return this;
     }
 
     hlineTo(x: number, relative = false): PathBuilder {
         const prev = copy(this.currP);
         this.currP[0] = relative ? this.currP[0] + x : x;
-        set(this.bezierP, this.currP);
+        set2(this.bezierP, this.currP);
         this.curr.add({
             geo: new Line2([prev, copy(this.currP)]),
             type: SegmentType.LINE,
@@ -336,7 +332,7 @@ export class PathBuilder {
     vlineTo(y: number, relative = false): PathBuilder {
         const prev = copy(this.currP);
         this.currP[1] = relative ? this.currP[1] + y : y;
-        set(this.bezierP, this.currP);
+        set2(this.bezierP, this.currP);
         this.curr.add({
             geo: new Line2([prev, copy(this.currP)]),
             type: SegmentType.LINE,
@@ -347,7 +343,7 @@ export class PathBuilder {
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Cubic_B%C3%A9zier_Curve
     cubicTo(cp1: Vec, cp2: Vec, p: Vec, relative = false) {
         const c2 = this.absPoint(cp2, relative);
-        set(this.bezierP, c2);
+        set2(this.bezierP, c2);
         this.curr.add({
             geo: new Cubic2([
                 copy(this.currP),
@@ -363,7 +359,7 @@ export class PathBuilder {
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Quadratic_B%C3%A9zier_Curve
     quadraticTo(cp: Vec, p: Vec, relative = false) {
         const c1 = this.absPoint(cp, relative);
-        set(this.bezierP, c1);
+        set2(this.bezierP, c1);
         this.curr.add({
             geo: new Quadratic2([
                 copy(this.currP),
@@ -379,10 +375,10 @@ export class PathBuilder {
         const prevMode = peek(this.curr.segments).type;
         const c1 = copy(this.currP);
         if (prevMode === SegmentType.CUBIC) {
-            add(c1, subNew(c1, this.bezierP));
+            add2(null, sub2([], c1, this.bezierP), c1);
         }
         const c2 = this.absPoint(cp2, relative);
-        set(this.bezierP, c2);
+        set2(this.bezierP, c2);
         this.curr.add({
             geo: new Cubic2([
                 copy(this.currP),
@@ -399,9 +395,9 @@ export class PathBuilder {
         const prevMode = peek(this.curr.segments).type;
         const c1 = copy(this.currP);
         if (prevMode === SegmentType.QUADRATIC) {
-            sub(mulN(c1, 2), this.bezierP);
+            sub2(null, mulN2(null, c1, 2), this.bezierP);
         }
-        set(this.bezierP, c1);
+        set2(this.bezierP, c1);
         this.curr.add({
             geo: new Quadratic2([
                 copy(this.currP),
@@ -429,7 +425,7 @@ export class PathBuilder {
             ),
             type: SegmentType.ARC,
         });
-        set(this.bezierP, this.currP);
+        set2(this.bezierP, this.currP);
         return this;
     }
 
@@ -443,16 +439,16 @@ export class PathBuilder {
     }
 
     protected updateCurrent(p: Vec, relative: boolean) {
-        p = copy(relative ? add(this.currP, p) : set(this.currP, p));
+        p = copy(relative ? add2(null, this.currP, p) : set2(this.currP, p));
         return p;
     }
 
     protected absPoint(p: Vec, relative: boolean) {
-        return relative ? add(p, this.currP) : p;
+        return relative ? add(null, p, this.currP) : p;
     }
 }
 
-const transformSegment = (s: PathSegment, mat: Mat23): Iterable<PathSegment> => {
+const transformSegment = (s: PathSegment, mat: Mat): Iterable<PathSegment> => {
     if (s.geo) {
         return s.geo instanceof Arc2 ?
             map(
@@ -468,7 +464,7 @@ const transformSegment = (s: PathSegment, mat: Mat23): Iterable<PathSegment> => 
             }];
     }
     return s.point ?
-        [{ type: s.type, point: mat.mulV(s.point) }] :
+        [{ type: s.type, point: mulV([], mat, s.point) }] :
         [{ ...s }];
 };
 

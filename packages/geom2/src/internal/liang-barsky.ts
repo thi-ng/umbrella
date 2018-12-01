@@ -1,11 +1,11 @@
 import { EPS } from "@thi.ng/math/api";
-import { Vec, setS } from "@thi.ng/vectors2/api";
+import { Vec } from "@thi.ng/vectors3/api";
 
 // https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
 // https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c
 
 export const liangBarsky2 =
-    (la: Vec, lb: Vec, tl: Vec, br: Vec, ca?: Vec, cb?: Vec): [Vec, Vec, number, number] => {
+    (la: Vec, lb: Vec, tl: Vec, br: Vec, ca: Vec = [], cb: Vec = []): [Vec, Vec, number, number] => {
         const lax = la[0];
         const lay = la[1];
         const dx = lb[0] - lax;
@@ -43,11 +43,10 @@ export const liangBarsky2 =
             return;
         }
 
-        !ca && (ca = [0, 0]);
-        !cb && (cb = [0, 0]);
-
-        setS(ca, a * dx + lax, a * dy + lay);
-        setS(cb, b * dx + lax, b * dy + lay);
+        ca[0] = a * dx + lax;
+        ca[1] = a * dy + lay;
+        cb[0] = b * dx + lax;
+        cb[1] = b * dy + lay;
 
         return [ca, cb, a, b];
     };

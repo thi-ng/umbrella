@@ -1,13 +1,10 @@
 import { peek } from "@thi.ng/transducers/func/peek";
-import {
-    copy,
-    dist,
-    mixNewN,
-    ReadonlyVec,
-    Vec,
-    subNew,
-    normalize
-} from "@thi.ng/vectors2/api";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { copy } from "@thi.ng/vectors3/copy";
+import { dist } from "@thi.ng/vectors3/dist";
+import { mixN } from "@thi.ng/vectors3/mixn";
+import { normalize } from "@thi.ng/vectors3/normalize";
+import { sub } from "@thi.ng/vectors3/sub";
 import { VecPair } from "../api";
 
 export class Sampler {
@@ -41,7 +38,7 @@ export class Sampler {
         const t0 = t * idx[n];
         for (let i = 1; i <= n; i++) {
             if (idx[i] >= t0) {
-                return mixNewN(pts[i - 1], pts[i], (t0 - idx[i - 1]) / (idx[i] - idx[i - 1]));
+                return mixN([], pts[i - 1], pts[i], (t0 - idx[i - 1]) / (idx[i] - idx[i - 1]));
             }
         }
     }
@@ -58,7 +55,7 @@ export class Sampler {
     tangentAt(t: number, n = 1) {
         const seg = this.segmentAt(t);
         return seg ?
-            normalize(subNew(seg[1], seg[0]), n) :
+            normalize(null, sub([], seg[1], seg[0]), n) :
             undefined;
     }
 
@@ -94,7 +91,7 @@ export class Sampler {
             while (ct >= index[i] && i < n) { i++; }
             if (i >= n) break;
             const p = index[i - 1];
-            result.push(mixNewN(pts[i - 1], pts[i], (ct - p) / (index[i] - p)));
+            result.push(mixN([], pts[i - 1], pts[i], (ct - p) / (index[i] - p)));
         }
         if (includeLast) {
             result.push(copy(peek(pts)));
