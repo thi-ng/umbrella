@@ -4,12 +4,8 @@ import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { dist } from "@thi.ng/vectors3/dist";
 import { mixN } from "@thi.ng/vectors3/mixn";
 import { sub } from "@thi.ng/vectors3/sub";
-import { direction } from "./internal/direction";
-import { intersectLines2 } from "./internal/line-intersection";
-import { offsetLine } from "./internal/offset";
-import { transformPoints } from "./internal/transform";
-import "./polygon";
 import {
+    arcLength,
     asCubic,
     asPolyline,
     Attribs,
@@ -24,13 +20,18 @@ import {
     Polygon2,
     Polyline2,
     Rect2,
+    resample,
     tangentAt,
     transform,
     Type,
     VecPair,
-    vertices,
-    resample,
+    vertices
 } from "./api";
+import { direction } from "./internal/direction";
+import { intersectLines2 } from "./internal/line-intersection";
+import { offsetLine } from "./internal/offset";
+import { transformPoints } from "./internal/transform";
+import "./polygon";
 
 export function line(a: Vec, b: Vec, attribs?: Attribs) {
     return new Line2([a, b], attribs);
@@ -51,6 +52,10 @@ implementations(
             vertices,
         ],
     },
+
+    arcLength,
+    (line: Line2) =>
+        dist(line.a, line.b),
 
     asCubic,
     (line: Line2) =>

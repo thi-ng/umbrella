@@ -7,6 +7,7 @@ import {
 import {
     DEFAULT,
     defmulti,
+    MultiFn1,
     MultiFn1O,
     MultiFn2O
 } from "@thi.ng/defmulti";
@@ -16,14 +17,14 @@ import { ReadonlyMat } from "@thi.ng/matrices/api";
 import { add } from "@thi.ng/vectors3/add";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { copy } from "@thi.ng/vectors3/copy";
+import { max } from "@thi.ng/vectors3/max";
+import { min } from "@thi.ng/vectors3/min";
 import { mixN } from "@thi.ng/vectors3/mixn";
 import { mul } from "@thi.ng/vectors3/mul";
-import { min } from "@thi.ng/vectors3/min";
-import { max } from "@thi.ng/vectors3/max";
 import { neg } from "@thi.ng/vectors3/neg";
-import { sub } from "@thi.ng/vectors3/sub";
 import { perpendicularLeft2 } from "@thi.ng/vectors3/perpendicular";
 import { rotateZ } from "@thi.ng/vectors3/rotate";
+import { sub } from "@thi.ng/vectors3/sub";
 import { subdivKernel3 } from "./internal/subdiv-curve";
 import { warpPoints } from "./internal/warp";
 
@@ -208,6 +209,8 @@ export type Tessellator = (points: Vec[]) => Vec[][];
 export type VecPair = [Vec, Vec];
 
 const dispatch = (x: IShape) => x.type;
+
+export const arcLength: MultiFn1<IShape, number> = defmulti(dispatch);
 
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
 area.add(DEFAULT, () => 0);

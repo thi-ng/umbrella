@@ -8,25 +8,26 @@ import { copy } from "@thi.ng/vectors3/copy";
 import { madd2 } from "@thi.ng/vectors3/madd";
 import { mulN2 } from "@thi.ng/vectors3/muln";
 import { sub2 } from "@thi.ng/vectors3/sub";
-import "./polygon";
 import {
-    perimeter,
+    arcLength,
     area,
-    bounds,
-    centroid,
-    Ellipse2,
-    Type,
-    Attribs,
-    Rect2,
-    vertices,
-    Polygon2,
     asPolygon,
-    DEFAULT_SAMPLES,
-    pointAt,
+    Attribs,
+    bounds,
     center,
-    translate,
+    centroid,
+    DEFAULT_SAMPLES,
+    Ellipse2,
+    perimeter,
+    pointAt,
+    Polygon2,
+    Rect2,
     SamplingOpts,
+    translate,
+    Type,
+    vertices
 } from "./api";
+import "./polygon";
 
 export function ellipse(pos: Vec, r = [1, 1], attribs?: Attribs): Ellipse2 {
     return new Ellipse2(pos, r, attribs);
@@ -37,8 +38,17 @@ implementations(
 
     null,
 
+    arcLength,
+    (ellipse: Ellipse2) => {
+        const [a, b] = ellipse.r;
+        // Ramanujan approximation
+        // https://www.mathsisfun.com/geometry/ellipse-perimeter.html
+        return PI * ((3 * (a + b)) - Math.sqrt((3 * a + b) * (3 * b + a)));
+    },
+
     area,
-    (ellipse: Ellipse2) => PI * ellipse.r[0] * ellipse.r[1],
+    (ellipse: Ellipse2) =>
+        PI * ellipse.r[0] * ellipse.r[1],
 
     asPolygon,
     (ellipse: Ellipse2, opts) =>

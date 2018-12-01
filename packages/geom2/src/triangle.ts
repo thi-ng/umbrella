@@ -11,6 +11,7 @@ import { perpendicularLeft2 } from "@thi.ng/vectors3/perpendicular";
 import { signedArea2 } from "@thi.ng/vectors3/signed-area";
 import { sub } from "@thi.ng/vectors3/sub";
 import {
+    arcLength,
     area,
     Attribs,
     bounds,
@@ -50,6 +51,7 @@ implementations(
             bounds,
         ],
         [Type.POLYGON2]: [
+            arcLength,
             clipConvex,
             edges,
             perimeter,

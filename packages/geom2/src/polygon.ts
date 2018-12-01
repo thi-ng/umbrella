@@ -16,20 +16,10 @@ import { add2 } from "@thi.ng/vectors3/add";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { cartesian2 } from "@thi.ng/vectors3/cartesian";
 import { signedArea2 } from "@thi.ng/vectors3/signed-area";
-import "./container2";
-import { centerOfWeight2 } from "./internal/centroid";
-import { edges as _edges } from "./internal/edges";
-import { booleanOp } from "./internal/greiner-hormann";
-import { offset as _offset } from "./internal/offset";
-import { perimeter as _perimeter } from "./internal/perimeter";
-import { pointInside as _pointInside, polygonArea } from "./internal/polygon";
-import { Sampler } from "./internal/sampler";
-import { subdivideCurve } from "./internal/subdiv-curve";
-import { sutherlandHodgeman } from "./internal/sutherland-hodgeman";
-import { transformPoints } from "./internal/transform";
-import { tessellatePoints } from "./tessellate";
 import {
+    arcLength,
     area,
+    asPolygon,
     Attribs,
     bounds,
     centroid,
@@ -59,10 +49,22 @@ import {
     translate,
     Type,
     union,
-    vertices,
-    asPolygon,
+    vertices
 } from "./api";
+import "./container2";
+import { centerOfWeight2 } from "./internal/centroid";
+import { edges as _edges } from "./internal/edges";
+import { booleanOp } from "./internal/greiner-hormann";
+import { offset as _offset } from "./internal/offset";
+import { perimeter as _perimeter } from "./internal/perimeter";
+import { pointInside as _pointInside, polygonArea } from "./internal/polygon";
+import { Sampler } from "./internal/sampler";
+import { subdivideCurve } from "./internal/subdiv-curve";
+import { sutherlandHodgeman } from "./internal/sutherland-hodgeman";
+import { transformPoints } from "./internal/transform";
+import { tessellatePoints } from "./tessellate";
 import { douglasPeucker2 } from "./internal/douglas–peucker";
+import { arcLength as _arcLength } from "./internal/arc-length";
 
 export function polygon(points: Vec[], attribs?: Attribs): Polygon2 {
     return new Polygon2(points, attribs);
@@ -117,6 +119,10 @@ implementations(
             vertices
         ]
     },
+
+    arcLength,
+    (poly: Polygon2) =>
+        _arcLength(poly.points, true),
 
     area,
     (poly: Polygon2, signed = true) => {

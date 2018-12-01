@@ -13,27 +13,28 @@ import { mulN2 } from "@thi.ng/vectors3/muln";
 import { normalize } from "@thi.ng/vectors3/normalize";
 import { sub2 } from "@thi.ng/vectors3/sub";
 import { subN2 } from "@thi.ng/vectors3/subn";
-import { circumCenter } from "./internal/circumcenter";
-import "./polygon";
 import {
-    perimeter,
+    arcLength,
     area,
+    Attribs,
     bounds,
+    center,
     centroid,
     Circle2,
-    Type,
-    Attribs,
-    Rect2,
-    vertices,
-    DEFAULT_SAMPLES,
-    pointAt,
-    pointInside,
     classifyPoint,
     closestPoint,
-    translate,
-    center,
+    DEFAULT_SAMPLES,
+    perimeter,
+    pointAt,
+    pointInside,
+    Rect2,
     SamplingOpts,
+    translate,
+    Type,
+    vertices
 } from "./api";
+import { circumCenter } from "./internal/circumcenter";
+import "./polygon";
 
 export function circle(pos: Vec, r = 1, attribs?: Attribs): Circle2 {
     return new Circle2(pos, r, attribs);
@@ -56,8 +57,13 @@ implementations(
 
     null,
 
+    arcLength,
+    (circle: Circle2) =>
+        TAU * circle.r,
+
     area,
-    (circle: Circle2) => PI * circle.r * circle.r,
+    (circle: Circle2) =>
+        PI * circle.r * circle.r,
 
     bounds,
     (circle: Circle2) =>

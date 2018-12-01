@@ -7,6 +7,33 @@ import { div2 } from "@thi.ng/vectors3/div";
 import { madd2 } from "@thi.ng/vectors3/madd";
 import { maddN2 } from "@thi.ng/vectors3/maddn";
 import { sub } from "@thi.ng/vectors3/sub";
+import {
+    arcLength,
+    area,
+    Attribs,
+    bounds,
+    centroid,
+    clipConvex,
+    ClipMode,
+    edges,
+    IShape,
+    mapPoint,
+    perimeter,
+    pointAt,
+    pointInside,
+    Polygon2,
+    Rect2,
+    resample,
+    SamplingOpts,
+    tessellate,
+    Tessellator,
+    transform,
+    translate,
+    Type,
+    union,
+    unmapPoint,
+    vertices
+} from "./api";
 import { unionBounds } from "./internal/bounds";
 import { edges as _edges } from "./internal/edges";
 import { booleanOp } from "./internal/greiner-hormann";
@@ -15,32 +42,6 @@ import { sutherlandHodgeman } from "./internal/sutherland-hodgeman";
 import { transformPoints } from "./internal/transform";
 import "./polygon";
 import { tessellatePoints } from "./tessellate";
-import {
-    area,
-    Attribs,
-    bounds,
-    centroid,
-    clipConvex,
-    ClipMode,
-    IShape,
-    mapPoint,
-    perimeter,
-    Polygon2,
-    Rect2,
-    tessellate,
-    Tessellator,
-    Type,
-    union,
-    unmapPoint,
-    vertices,
-    transform,
-    SamplingOpts,
-    edges,
-    translate,
-    resample,
-    pointAt,
-    pointInside,
-} from "./api";
 
 export function rect(pos: Vec, size: Vec, attribs?: Attribs) {
     return new Rect2(pos, size, attribs);
@@ -57,6 +58,10 @@ implementations(
             resample,
         ]
     },
+
+    arcLength,
+    (rect: Rect2) =>
+        2 * (rect.size[0] * rect.size[1]),
 
     area,
     (rect: Rect2) =>

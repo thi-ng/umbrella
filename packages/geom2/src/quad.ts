@@ -4,6 +4,7 @@ import { add2 } from "@thi.ng/vectors3/add";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { mixBilinear2 } from "@thi.ng/vectors3/mix-bilinear";
 import {
+    arcLength,
     area,
     Attribs,
     bounds,
@@ -39,6 +40,7 @@ implementations(
             flip,
         ],
         [Type.POLYGON2]: [
+            arcLength,
             area,
             centroid,
             clipConvex,
