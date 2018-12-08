@@ -1,22 +1,27 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { ArrayDiff } from "./api";
+import { ArrayDiff, DiffMode } from "./api";
 
 const simpleDiff = <T>(
     state: ArrayDiff<T>,
     src: ArrayLike<T>,
     key: keyof ArrayDiff<T>,
     logDir: number,
-    linear: boolean
+    mode: DiffMode
 ) => {
-    let n = src.length;
+    const n = src.length;
+    const linear = state.linear;
     state.distance = n;
-    for (let i = 0; i < n; i++) {
-        state.linear[i] = [logDir, i, src[i]];
-    }
-    if (!linear) {
-        const _state = state[key];
-        for (let i = 0; i < n; i++) {
-            _state[i] = src[i];
+    if (mode !== DiffMode.ONLY_DISTANCE) {
+        for (let i = 0, j = 0; i < n; i++ , j += 3) {
+            linear[j] = logDir;
+            linear[j + 1] = i;
+            linear[j + 2] = src[i];
+        }
+        if (mode === DiffMode.FULL) {
+            const _state = state[key];
+            for (let i = 0; i < n; i++) {
+                _state[i] = src[i];
+            }
         }
     }
     return state;
@@ -36,7 +41,7 @@ export const diffArray = <T>(
     a: ArrayLike<T>,
     b: ArrayLike<T>,
     equiv = _equiv,
-    linearOnly = false
+    mode = DiffMode.FULL
 ) => {
     const state = <ArrayDiff<T>>{
         distance: 0,
@@ -49,9 +54,9 @@ export const diffArray = <T>(
     if (a === b || (a == null && b == null)) {
         return state;
     } else if (a == null || a.length === 0) {
-        return simpleDiff(state, b, "adds", 1, linearOnly);
+        return simpleDiff(state, b, "adds", 1, mode);
     } else if (b == null || b.length === 0) {
-        return simpleDiff(state, a, "dels", -1, linearOnly);
+        return simpleDiff(state, a, "dels", -1, mode);
     }
 
     const reverse = a.length >= b.length;
@@ -107,18 +112,21 @@ export const diffArray = <T>(
         }
         fp[doff] = snake(delta, fp[doff - 1] + 1, fp[doff + 1]);
     } while (fp[doff] !== nb);
+
     state.distance = delta + 2 * p;
 
-    p = path[doff] * 3;
-    while (p >= 0) {
-        epc.push(p);
-        p = pathPos[p + 2] * 3;
-    }
+    if (mode !== DiffMode.ONLY_DISTANCE) {
+        p = path[doff] * 3;
+        while (p >= 0) {
+            epc.push(p);
+            p = pathPos[p + 2] * 3;
+        }
 
-    if (linearOnly) {
-        buildLinearLog<T>(epc, pathPos, state, _a, _b, reverse);
-    } else {
-        buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
+        if (mode === DiffMode.FULL) {
+            buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
+        } else {
+            buildLinearLog<T>(epc, pathPos, state, _a, _b, reverse);
+        }
     }
     return state;
 };
@@ -156,17 +164,17 @@ const buildFullLog = <T>(
             const dp = py - px;
             if (d > dp) {
                 adds[py] = v = b[py];
-                linear.push([aID, py, v]);
+                linear.push(aID, py, v);
                 py++;
             }
             else if (d < dp) {
                 dels[px] = v = a[px];
-                linear.push([dID, px, v]);
+                linear.push(dID, px, v);
                 px++;
             }
             else {
                 _const[px] = v = a[px];
-                linear.push([0, px, v]);
+                linear.push(0, px, v);
                 px++;
                 py++;
             }
@@ -194,15 +202,15 @@ const buildLinearLog = <T>(
         while (px < ppx || py < ppy) {
             const dp = py - px;
             if (d > dp) {
-                linear.push([aID, py, b[py]]);
+                linear.push(aID, py, b[py]);
                 py++;
             }
             else if (d < dp) {
-                linear.push([dID, px, a[px]]);
+                linear.push(dID, px, a[px]);
                 px++;
             }
             else {
-                linear.push([0, px, a[px]]);
+                linear.push(0, px, a[px]);
                 px++;
                 py++;
             }
