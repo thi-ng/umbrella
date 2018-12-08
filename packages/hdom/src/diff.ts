@@ -64,7 +64,7 @@ export const diffTree = <T>(
     if (attribs.__impl) {
         return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
     }
-    const delta = diffArray(prev, curr, equiv, DiffMode.ONLY_DISTANCE_LINEAR);
+    const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE_LINEAR, equiv);
     if (delta.distance === 0) {
         return;
     }
@@ -157,7 +157,7 @@ export const diffTree = <T>(
  */
 export const diffAttributes =
     <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
-        const delta = diffObject<any>(prev, curr, _equiv);
+        const delta = diffObject<any>(prev, curr, DiffMode.FULL, _equiv);
         impl.removeAttribs(el, delta.dels, prev);
         let val = SEMAPHORE;
         let i, e, edits;
