@@ -191,7 +191,7 @@ export const diffTree = (opts: Partial<HDOMOpts>,
     if (attribs.__impl && attribs.__impl !== IMPL) {
         return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
     }
-    const delta = diffArray(prev, curr, equiv, DiffMode.ONLY_DISTANCE);
+    const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE, equiv);
     if (delta.distance > 0) {
         return createTree(opts, parent, curr);
     }
