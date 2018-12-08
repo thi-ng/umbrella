@@ -40,8 +40,8 @@ const simpleDiff = <T>(
 export const diffArray = <T>(
     a: ArrayLike<T>,
     b: ArrayLike<T>,
-    equiv = _equiv,
-    mode = DiffMode.FULL
+    mode = DiffMode.FULL,
+    equiv = _equiv
 ) => {
     const state = <ArrayDiff<T>>{
         distance: 0,

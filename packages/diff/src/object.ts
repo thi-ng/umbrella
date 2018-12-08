@@ -5,8 +5,8 @@ import { DiffMode, ObjectDiff } from "./api";
 export const diffObject = <T>(
     a: IObjectOf<T>,
     b: IObjectOf<T>,
-    _equiv: Predicate2<any> = equiv,
-    mode = DiffMode.FULL
+    mode = DiffMode.FULL,
+    _equiv: Predicate2<any> = equiv
 ): ObjectDiff<T> =>
     a === b ?
         { distance: 0 } :
