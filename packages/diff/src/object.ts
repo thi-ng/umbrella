@@ -1,28 +1,51 @@
+import { IObjectOf, Predicate2 } from "@thi.ng/api/api";
 import { equiv } from "@thi.ng/equiv";
+import { DiffMode, ObjectDiff } from "./api";
 
-import { ObjectDiff } from "./api";
+export const diffObject = <T>(
+    a: IObjectOf<T>,
+    b: IObjectOf<T>,
+    _equiv: Predicate2<any> = equiv,
+    mode = DiffMode.FULL
+): ObjectDiff<T> =>
+    a === b ?
+        { distance: 0 } :
+        mode === DiffMode.ONLY_DISTANCE ?
+            diffObjectDist(a, b, _equiv) :
+            diffObjectFull(a, b, _equiv);
 
-export function diffObject(a: any, b: any, _equiv = equiv) {
+const diffObjectDist = (a: IObjectOf<any>, b: IObjectOf<any>, _equiv: Predicate2<any>) => {
+    let d = 0;
+    for (let k in a) {
+        const vb = b[k];
+        (vb === undefined || !_equiv(a[k], vb)) && d++;
+    }
+    for (let k in b) {
+        !(k in a) && d++;
+    }
+    return { distance: d };
+};
+
+const diffObjectFull = (a: IObjectOf<any>, b: IObjectOf<any>, _equiv: Predicate2<any>) => {
+    let d = 0;
     const adds = [];
     const dels = [];
     const edits = [];
-    const state = <ObjectDiff>{ distance: 0, adds, dels, edits };
-    if (a === b) {
-        return state;
-    }
-    for (let k of new Set(Object.keys(a).concat(Object.keys(b)))) {
-        const va = a[k];
+    for (let k in a) {
         const vb = b[k];
-        const hasA = va !== undefined;
-        if (hasA && vb !== undefined) {
-            if (!_equiv(va, vb)) {
-                edits.push([k, vb]);
-                state.distance++;
-            }
-        } else {
-            (hasA ? dels : adds).push(k);
-            state.distance++;
+        if (vb === undefined) {
+            dels.push(k);
+            d++;
+        } else if (!_equiv(a[k], vb)) {
+            edits.push(k, vb);
+            d++;
         }
     }
-    return state;
-}
+    for (let k in b) {
+        if (!(k in a)) {
+            adds.push(k);
+            d++;
+        }
+    }
+    return { distance: d, adds, dels, edits };
+};
