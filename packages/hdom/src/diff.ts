@@ -1,5 +1,5 @@
 import { IObjectOf, SEMAPHORE } from "@thi.ng/api/api";
-import { DiffLogEntry } from "@thi.ng/diff/api";
+import { DiffMode } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import {
@@ -64,21 +64,21 @@ export const diffTree = <T>(
     if (attribs.__impl) {
         return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
     }
-    const delta = diffArray(prev, curr, equiv, true);
+    const delta = diffArray(prev, curr, equiv, DiffMode.ONLY_DISTANCE_LINEAR);
     if (delta.distance === 0) {
         return;
     }
     const edits = delta.linear;
     const el = impl.getChild(parent, child);
     let i: number;
+    let ii: number;
     let j: number;
     let idx: number;
     let k: string;
     let eq: any[];
-    let e: DiffLogEntry<any>;
     let status: number;
     let val: any;
-    if (edits[0][0] !== 0 || prev[1].key !== attribs.key) {
+    if (edits[0] !== 0 || prev[1].key !== attribs.key) {
         // DEBUG && console.log("replace:", prev, curr);
         releaseTree(prev);
         impl.replaceChild(opts, parent, child, curr);
@@ -87,7 +87,7 @@ export const diffTree = <T>(
     if ((val = (<any>prev).__release) && val !== (<any>curr).__release) {
         releaseTree(prev);
     }
-    if (edits[1][0] !== 0) {
+    if (edits[3] !== 0) {
         diffAttributes(impl, el, prev[1], curr[1]);
         // if attribs changed & distance == 2 then we're done here...
         if (delta.distance === 2) {
@@ -98,12 +98,11 @@ export const diffTree = <T>(
     const prevLength = prev.length - 1;
     const equivKeys = extractEquivElements(edits);
     const offsets = buildIndex(prevLength + 1);
-    for (i = 2; i < numEdits; i++) {
-        e = edits[i];
-        status = e[0];
+    for (i = 2, ii = 6; ii < numEdits; i++ , ii += 3) {
+        status = edits[ii];
         if (status === -1) {
             // element removed / edited?
-            val = e[2];
+            val = edits[ii + 2];
             if (isArray(val)) {
                 k = val[1].key;
                 if (k !== undefined && equivKeys[k][2] !== undefined) {
@@ -112,7 +111,7 @@ export const diffTree = <T>(
                     // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
                     diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
-                    idx = e[1];
+                    idx = edits[ii + 1];
                     // DEBUG && console.log("remove @", offsets[idx], val);
                     releaseTree(val);
                     impl.removeChild(el, offsets[idx]);
@@ -125,13 +124,13 @@ export const diffTree = <T>(
             }
         } else if (status === 1) {
             // element added/inserted?
-            val = e[2];
+            val = edits[ii + 2];
             if (typeof val === "string") {
                 impl.setContent(el, val);
             } else if (isArray(val)) {
                 k = val[1].key;
                 if (k === undefined || equivKeys[k][0] === undefined) {
-                    idx = e[1];
+                    idx = edits[ii + 1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
                     impl.createTree(opts, el, val, offsets[idx]);
                     for (j = prevLength; j >= idx; j--) {
@@ -158,20 +157,19 @@ export const diffTree = <T>(
  */
 export const diffAttributes =
     <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
-        const delta = diffObject(prev, curr, _equiv);
+        const delta = diffObject<any>(prev, curr, _equiv);
         impl.removeAttribs(el, delta.dels, prev);
         let val = SEMAPHORE;
         let i, e, edits;
-        for (edits = delta.edits, i = edits.length; --i >= 0;) {
-            e = edits[i];
-            const a = e[0];
+        for (edits = delta.edits, i = edits.length; (i -= 2) >= 0;) {
+            const a = edits[i];
             if (a.indexOf("on") === 0) {
                 impl.removeAttribs(el, [a], prev);
             }
             if (a !== "value") {
-                impl.setAttrib(el, a, e[1], curr);
+                impl.setAttrib(el, a, edits[i + 1], curr);
             } else {
-                val = e[1];
+                val = edits[i + 1];
             }
         }
         for (edits = delta.adds, i = edits.length; --i >= 0;) {
@@ -215,19 +213,17 @@ export const releaseTree =
     };
 
 const extractEquivElements =
-    (edits: DiffLogEntry<any>[]) => {
+    (edits: any[]) => {
         let k: string;
         let val: any;
-        let e: DiffLogEntry<any>;
         let ek: any[];
         const equiv: IObjectOf<any[]> = {};
-        for (let i = edits.length; --i >= 0;) {
-            e = edits[i];
-            val = e[2];
+        for (let i = edits.length; (i -= 3) >= 0;) {
+            val = edits[i + 2];
             if (isArray(val) && (k = val[1].key) !== undefined) {
                 ek = equiv[k];
                 !ek && (equiv[k] = ek = [, ,]);
-                ek[e[0] + 1] = e[1];
+                ek[edits[i] + 1] = edits[i + 1];
             }
         }
         return equiv;
