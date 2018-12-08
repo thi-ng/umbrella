@@ -91,12 +91,12 @@ export const diffArray = <T>(
             x++;
             y++;
         }
-        path[koff] = pathPos.length;
-        pathPos.push([x, y, r]);
+        path[koff] = pathPos.length / 3;
+        pathPos.push(x, y, r);
         return y;
     };
 
-    let p = -1, pp, k, ko;
+    let p = -1, k, ko;
     do {
         p++;
         for (k = -p, ko = k + offset; k < delta; k++ , ko++) {
@@ -109,28 +109,31 @@ export const diffArray = <T>(
     } while (fp[doff] !== nb);
     state.distance = delta + 2 * p;
 
-    let r = path[doff];
-    while (r !== -1) {
-        epc.push(pp = pathPos[r]);
-        r = pp[2];
+    p = path[doff] * 3;
+    while (p >= 0) {
+        epc.push(p);
+        p = pathPos[p + 2] * 3;
     }
 
     if (linearOnly) {
-        buildLinearLog<T>(epc, state, _a, _b, reverse);
+        buildLinearLog<T>(epc, pathPos, state, _a, _b, reverse);
     } else {
-        buildFullLog<T>(epc, state, _a, _b, reverse);
+        buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
     }
     return state;
 };
 
 const buildFullLog = <T>(
     epc: any[],
+    pathPos: any[],
     state: ArrayDiff<T>,
     a: ArrayLike<T>,
     b: ArrayLike<T>,
     reverse: boolean
 ) => {
     const linear = state.linear;
+    const _const = state.const;
+    let i = epc.length, px = 0, py = 0;
     let adds, dels, aID, dID;
     if (reverse) {
         adds = state.dels;
@@ -143,11 +146,14 @@ const buildFullLog = <T>(
         aID = 1;
         dID = -1;
     }
-    for (let i = epc.length, px = 0, py = 0; --i >= 0;) {
+    for (; --i >= 0;) {
         const e = epc[i];
+        const ppx = pathPos[e];
+        const ppy = pathPos[e + 1];
+        const d = ppy - ppx;
         let v;
-        while (px < e[0] || py < e[1]) {
-            const d = e[1] - e[0], dp = py - px;
+        while (px < ppx || py < ppy) {
+            const dp = py - px;
             if (d > dp) {
                 adds[py] = v = b[py];
                 linear.push([aID, py, v]);
@@ -159,7 +165,7 @@ const buildFullLog = <T>(
                 px++;
             }
             else {
-                state.const[px] = v = a[px];
+                _const[px] = v = a[px];
                 linear.push([0, px, v]);
                 px++;
                 py++;
@@ -170,6 +176,7 @@ const buildFullLog = <T>(
 
 const buildLinearLog = <T>(
     epc: any[],
+    pathPos: any[],
     state: ArrayDiff<T>,
     a: ArrayLike<T>,
     b: ArrayLike<T>,
@@ -178,10 +185,14 @@ const buildLinearLog = <T>(
     const linear = state.linear;
     const aID = reverse ? -1 : 1;
     const dID = reverse ? 1 : -1;
-    for (let i = epc.length, px = 0, py = 0; --i >= 0;) {
+    let i = epc.length, px = 0, py = 0;
+    for (; --i >= 0;) {
         const e = epc[i];
-        while (px < e[0] || py < e[1]) {
-            const d = e[1] - e[0], dp = py - px;
+        const ppx = pathPos[e];
+        const ppy = pathPos[e + 1];
+        const d = ppy - ppx;
+        while (px < ppx || py < ppy) {
+            const dp = py - px;
             if (d > dp) {
                 linear.push([aID, py, b[py]]);
                 py++;
