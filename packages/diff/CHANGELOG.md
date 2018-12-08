@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.1.4...@thi.ng/diff@2.0.0) (2018-12-08)
+
+
+### Code Refactoring
+
+* **diff:** flatten linear edit logs, update readme & arg order ([64feacf](https://github.com/thi-ng/umbrella/commit/64feacf))
+
+
+### Features
+
+* **diff:** add fast paths for simple cases, add tests, refactor as arrow fns ([6c6da82](https://github.com/thi-ng/umbrella/commit/6c6da82))
+
+
+### Performance Improvements
+
+* **diff:** flatten linear edit logs, rewrite diffObject(), add DiffMode ([e8356cd](https://github.com/thi-ng/umbrella/commit/e8356cd))
+* **diff:** reduce amount of temp/internal array allocs (diffArray) ([d1ee6d9](https://github.com/thi-ng/umbrella/commit/d1ee6d9))
+
+
+### BREAKING CHANGES
+
+* **diff:** `ArrayDiff.linear` & `ObjectDiff.edits` now flat arrays
+
+- see commit e8356cd296c12462ad9b126f966b55545b6ef70d
+- this change drastically reduces the number of array allocations
+- each ArrayDiff.linear entry consists of 3 successive items
+- each ObjectDiff.edits entry constist of 2 successive items
+- add `DiffMode` enum to control level of detail & internal fast paths
+- update `ArrayDiff` & `ObjectDiff` types
+- remove obsolete `DiffLogEntry`
+- replace `diffObject` with 2.5x faster version
+
+
+
+
+
 ## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.1.3...@thi.ng/diff@1.1.4) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/diff

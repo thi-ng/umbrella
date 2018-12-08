@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@0.1.12...@thi.ng/hdom-canvas@0.1.13) (2018-12-08)
+
+
+### Performance Improvements
+
+* **hdom-canvas:** update diffTree() to compute edit dist only ([899941f](https://github.com/thi-ng/umbrella/commit/899941f))
+
+
+
+
+
 ## [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@0.1.11...@thi.ng/hdom-canvas@0.1.12) (2018-11-26)
 
 

@@ -2,6 +2,7 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
+import { DiffMode } from "@thi.ng/diff/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
 import { equiv, releaseTree } from "@thi.ng/hdom/diff";
@@ -190,7 +191,7 @@ export const diffTree = (opts: Partial<HDOMOpts>,
     if (attribs.__impl && attribs.__impl !== IMPL) {
         return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
     }
-    const delta = diffArray(prev, curr, equiv, true);
+    const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE, equiv);
     if (delta.distance > 0) {
         return createTree(opts, parent, curr);
     }
