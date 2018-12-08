@@ -1,6 +1,26 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-
 import { ArrayDiff } from "./api";
+
+const simpleDiff = <T>(
+    state: ArrayDiff<T>,
+    src: ArrayLike<T>,
+    key: keyof ArrayDiff<T>,
+    logDir: number,
+    linear: boolean
+) => {
+    let n = src.length;
+    state.distance = n;
+    for (let i = 0; i < n; i++) {
+        state.linear[i] = [logDir, i, src[i]];
+    }
+    if (!linear) {
+        const _state = state[key];
+        for (let i = 0; i < n; i++) {
+            _state[i] = src[i];
+        }
+    }
+    return state;
+};
 
 /**
  * Based on "An O(NP) Sequence Comparison Algorithm""
@@ -12,7 +32,12 @@ import { ArrayDiff } from "./api";
  * Various optimizations, fixes & refactorings.
  * By default uses `@thi.ng/equiv` for equality checks.
  */
-export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = false) {
+export const diffArray = <T>(
+    a: ArrayLike<T>,
+    b: ArrayLike<T>,
+    equiv = _equiv,
+    linearOnly = false
+) => {
     const state = <ArrayDiff<T>>{
         distance: 0,
         adds: {},
@@ -20,21 +45,27 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = fals
         const: {},
         linear: []
     };
-    if (_a === _b) {
+
+    if (a === b || (a == null && b == null)) {
         return state;
+    } else if (a == null || a.length === 0) {
+        return simpleDiff(state, b, "adds", 1, linearOnly);
+    } else if (b == null || b.length === 0) {
+        return simpleDiff(state, a, "dels", -1, linearOnly);
     }
-    const reverse = _a.length >= _b.length;
-    let a, b, na, nb;
+
+    const reverse = a.length >= b.length;
+    let _a, _b, na, nb;
 
     if (reverse) {
-        a = _b;
-        b = _a;
+        _a = b;
+        _b = a;
     } else {
-        a = _a;
-        b = _b;
+        _a = a;
+        _b = b;
     }
-    na = a.length;
-    nb = b.length;
+    na = _a.length;
+    nb = _b.length;
 
     const offset = na + 1;
     const delta = nb - na;
@@ -45,7 +76,7 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = fals
     const epc = [];
     const pathPos = [];
 
-    function snake(k, p, pp) {
+    const snake = (k, p, pp) => {
         const koff = k + offset;
         let r, y;
         if (p > pp) {
@@ -56,22 +87,22 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = fals
             y = pp;
         }
         let x = y - k;
-        while (x < na && y < nb && equiv(a[x], b[y])) {
+        while (x < na && y < nb && equiv(_a[x], _b[y])) {
             x++;
             y++;
         }
         path[koff] = pathPos.length;
         pathPos.push([x, y, r]);
         return y;
-    }
+    };
 
-    let p = -1, pp;
+    let p = -1, pp, k, ko;
     do {
         p++;
-        for (let k = -p, ko = k + offset; k < delta; k++ , ko++) {
+        for (k = -p, ko = k + offset; k < delta; k++ , ko++) {
             fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
         }
-        for (let k = delta + p, ko = k + offset; k > delta; k-- , ko--) {
+        for (k = delta + p, ko = k + offset; k > delta; k-- , ko--) {
             fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
         }
         fp[doff] = snake(delta, fp[doff - 1] + 1, fp[doff + 1]);
@@ -85,14 +116,20 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = fals
     }
 
     if (linearOnly) {
-        buildLinearLog<T>(epc, state, a, b, reverse);
+        buildLinearLog<T>(epc, state, _a, _b, reverse);
     } else {
-        buildFullLog<T>(epc, state, a, b, reverse);
+        buildFullLog<T>(epc, state, _a, _b, reverse);
     }
     return state;
-}
+};
 
-function buildFullLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reverse: boolean) {
+const buildFullLog = <T>(
+    epc: any[],
+    state: ArrayDiff<T>,
+    a: ArrayLike<T>,
+    b: ArrayLike<T>,
+    reverse: boolean
+) => {
     const linear = state.linear;
     let adds, dels, aID, dID;
     if (reverse) {
@@ -129,9 +166,15 @@ function buildFullLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, revers
             }
         }
     }
-}
+};
 
-function buildLinearLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reverse: boolean) {
+const buildLinearLog = <T>(
+    epc: any[],
+    state: ArrayDiff<T>,
+    a: ArrayLike<T>,
+    b: ArrayLike<T>,
+    reverse: boolean
+) => {
     const linear = state.linear;
     const aID = reverse ? -1 : 1;
     const dID = reverse ? 1 : -1;
@@ -154,4 +197,4 @@ function buildLinearLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reve
             }
         }
     }
-}
+};
