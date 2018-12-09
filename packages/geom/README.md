@@ -26,6 +26,10 @@ thi.ng/geom](https://github.com/thi-ng/geom), as well as
 [c.thi.ng](https://github.com/thi-ng/c-thing). Currently only 2D shapes
 & operations are supported.
 
+**This package will soon be replaced by the currently still unreleased
+[@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2)
+package**
+
 ## Status
 
 ALPHA - major breaking changes forthcoming...
