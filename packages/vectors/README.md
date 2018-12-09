@@ -33,6 +33,12 @@ flexible data layouts, incl. [AOS /
 SOA](https://en.wikipedia.org/wiki/AOS_and_SOA), striped, interleaved,
 aligned etc.
 
+**This package will soon be replaced by the currently still unreleased
+[@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
+and
+[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices)
+packages**
+
 ### Vectors
 
 In addition to [arbitrary sized

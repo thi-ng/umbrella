@@ -1,6 +1,24 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
 import { ArrayDiff, DiffMode } from "./api";
 
+let _cachedFP: Int32Array;
+let _cachedPath: Int32Array;
+
+let _cachedEPC: number[] = [];
+let _cachedPathPos: number[] = [];
+
+const cachedFP =
+    (size: number) =>
+        _cachedFP && _cachedFP.length >= size ?
+            _cachedFP :
+            (_cachedFP = new Int32Array(size));
+
+const cachedPath =
+    (size: number) =>
+        _cachedPath && _cachedPath.length >= size ?
+            _cachedPath :
+            (_cachedPath = new Int32Array(size));
+
 const simpleDiff = <T>(
     state: ArrayDiff<T>,
     src: ArrayLike<T>,
@@ -36,6 +54,11 @@ const simpleDiff = <T>(
  *
  * Various optimizations, fixes & refactorings.
  * By default uses `@thi.ng/equiv` for equality checks.
+ *
+ * @param a "old" array
+ * @param b "new" array
+ * @param mode result mode
+ * @param equiv equality predicate function
  */
 export const diffArray = <T>(
     a: ArrayLike<T>,
@@ -76,10 +99,12 @@ export const diffArray = <T>(
     const delta = nb - na;
     const doff = delta + offset;
     const size = na + nb + 3;
-    const path = new Array(size).fill(-1);
-    const fp = new Array(size).fill(-1);
-    const epc = [];
-    const pathPos = [];
+    const path = cachedPath(size).fill(-1, 0, size);
+    const fp = cachedFP(size).fill(-1, 0, size);
+    const epc = _cachedEPC;
+    const pathPos = _cachedPathPos;
+    epc.length = 0;
+    pathPos.length = 0;
 
     const snake = (k, p, pp) => {
         const koff = k + offset;
@@ -159,22 +184,18 @@ const buildFullLog = <T>(
         const ppx = pathPos[e];
         const ppy = pathPos[e + 1];
         const d = ppy - ppx;
-        let v;
         while (px < ppx || py < ppy) {
             const dp = py - px;
             if (d > dp) {
-                adds[py] = v = b[py];
-                linear.push(aID, py, v);
+                linear.push(aID, py, adds[py] = b[py]);
                 py++;
             }
             else if (d < dp) {
-                dels[px] = v = a[px];
-                linear.push(dID, px, v);
+                linear.push(dID, px, dels[px] = a[px]);
                 px++;
             }
             else {
-                _const[px] = v = a[px];
-                linear.push(0, px, v);
+                linear.push(0, px, _const[px] = a[px]);
                 px++;
                 py++;
             }
