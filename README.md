@@ -115,7 +115,7 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/iges`](./packages/iges)             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)             | [changelog](./packages/iges/CHANGELOG.md)       | IGES format geometry serialization       |
 | [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    | Memory-mapped vector & matrix operations |
 
-## Low-level, binary, memory management
+### Low-level, binary, memory management
 
 | Project                                         | Version                                                                                                               | Changelog                                        | Description                               |
 |-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-------------------------------------------|
@@ -128,12 +128,19 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/rle-pack`](./packages/rle-pack)       | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)       | [changelog](./packages/rle-pack/CHANGELOG.md)    | Run-length encoding data compression      |
 | [`@thi.ng/unionstruct`](./packages/unionstruct) | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct) | [changelog](./packages/unionstruct/CHANGELOG.md) | Wrapper for C-like structs / unions       |
 
-## DSLs
+### DSLs
 
 | Project                                               | Version                                                                                                                     | Changelog                                           | Description                                   |
 |-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
+
+### Experimental packages (WIP / unreleased)
+
+- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2)
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices)
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools)
+- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
 
 ## Building
 
