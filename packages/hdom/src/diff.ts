@@ -54,6 +54,9 @@ export const diffTree = <T>(
     child: number) => {
 
     const attribs = curr[1];
+    if (attribs.__skip) {
+        return;
+    }
     // always replace element if __diff = false
     if (attribs.__diff === false) {
         releaseTree(prev);
