@@ -341,12 +341,13 @@ export interface HDOMImplementation<T> {
     createElement(parent: T, tag: string, attribs?: any, child?: number): T;
 
     /**
+     * Creates and appends the given `content` as text child node to
+     * `parent` in the target.
      *
      * @param parent
      * @param content
-     * @param child
      */
-    createTextElement(parent: T, content: string, child?: number): T;
+    createTextElement(parent: T, content: string): T;
 
     /**
      * Attempts to find an element with the given `id` attribute in the
@@ -391,9 +392,9 @@ export interface HDOMImplementation<T> {
     /**
      * Sets the given attribute `id` to new `value`. Note: `value`
      * itself can be a function and if so, the default behavior is to
-     * call this function with also provided `attribs` object to allow
-     * it to produce a derived value. See `setAttrib()` (dom.ts) for
-     * details.
+     * call this function with the also provided `attribs` object to
+     * allow it to produce a derived value. See `setAttrib()` (dom.ts)
+     * for details.
      *
      * @param element
      * @param id
@@ -414,7 +415,12 @@ export interface HDOMImplementation<T> {
     removeAttribs?(element: T, attribs: string[], prevAttribs: any);
 
     /**
-     * Sets target `element`'s text / body content.
+     * Sets target `element`'s text / body content. Note: In the default
+     * browser DOM implementation, this will implicitly remove any
+     * existing child elements in the target. In practice this function
+     * is only applied to `["span"]` elements, since (by default) any
+     * body content is automatically wrapped in such by
+     * `normalizeTree()`.
      *
      * @param element
      * @param value
