@@ -43,7 +43,7 @@ import { scan } from "@thi.ng/transducers/xform/scan";
 export const updateDOM =
     (opts: Partial<HDOMOpts> = {}, impl: HDOMImplementation<any> = DEFAULT_IMPL): Transducer<any, any[]> => {
         const _opts = { root: "app", ...opts };
-        const root = resolveRoot(_opts.root);
+        const root = resolveRoot(_opts.root, impl);
         return scan<any, any[]>(
             reducer(
                 () => [],
@@ -55,7 +55,7 @@ export const updateDOM =
                             impl.hydrateTree(_opts, root, curr);
                             _opts.hydrate = false;
                         } else {
-                            impl.diffTree(_opts, impl, root, prev, curr, 0);
+                            impl.diffTree(_opts, root, prev, curr, 0);
                         }
                         return curr;
                     }
