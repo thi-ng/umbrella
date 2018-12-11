@@ -47,6 +47,15 @@ export interface HDOMBehaviorAttribs {
      */
     __diff?: boolean;
     /**
+     * HDOM behavior control attribute. If true, the element will not be
+     * diffed and simply skipped. IMPORTANT: This attribute is only
+     * intended for cases when a component / tree branch should not be
+     * updated, but MUST NEVER be enabled when that component is first
+     * included in the tree. Doing so will result in undefined future
+     * behavior.
+     */
+    __skip?: boolean;
+    /**
      * HDOM behavior control attribute. If present, the element and all
      * of its children will be processed by the given
      * `HDOMImplementation` instead of the default implementation.
