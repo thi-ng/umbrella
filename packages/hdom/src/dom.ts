@@ -15,51 +15,57 @@ const isNotStringAndIterable = isi.isNotStringAndIterable
  * @param tree
  * @param insert
  */
-export const createDOM =
-    (opts: Partial<HDOMOpts>, parent: Element, tree: any, insert?: number) => {
-        if (isArray(tree)) {
-            const tag = tree[0];
-            if (typeof tag === "function") {
-                return createDOM(
-                    opts,
-                    parent,
-                    tag.apply(null, [opts.ctx, ...tree.slice(1)]),
-                    insert
-                );
-            }
-            const attribs = tree[1];
-            if (attribs.__impl) {
-                return (<HDOMImplementation<any>>attribs.__impl)
-                    .createTree(opts, parent, tree, insert);
-            }
-            const el = createElement(parent, tag, attribs, insert);
-            if ((<any>tree).__init) {
-                // TODO hdom ctx?
-                (<any>tree).__init.apply(
-                    (<any>tree).__this,
-                    [el, ...(<any>tree).__args]
-                );
-            }
-            if (tree.length > 2) {
-                const n = tree.length;
-                for (let i = 2; i < n; i++) {
-                    createDOM(opts, el, tree[i]);
-                }
-            }
-            return el;
+export const createTree = <T>(
+    opts: Partial<HDOMOpts>,
+    impl: HDOMImplementation<T>,
+    parent: T,
+    tree: any,
+    insert?: number
+) => {
+    if (isArray(tree)) {
+        const tag = tree[0];
+        if (typeof tag === "function") {
+            return createTree(
+                opts,
+                impl,
+                parent,
+                tag.apply(null, [opts.ctx, ...tree.slice(1)]),
+                insert
+            );
         }
-        if (isNotStringAndIterable(tree)) {
-            const res = [];
-            for (let t of tree) {
-                res.push(createDOM(opts, parent, t));
+        const attribs = tree[1];
+        if (attribs.__impl) {
+            return (<HDOMImplementation<any>>attribs.__impl)
+                .createTree(opts, parent, tree, insert);
+        }
+        const el = impl.createElement(parent, tag, attribs, insert);
+        if ((<any>tree).__init) {
+            // TODO hdom ctx?
+            (<any>tree).__init.apply(
+                (<any>tree).__this,
+                [el, ...(<any>tree).__args]
+            );
+        }
+        if (tree.length > 2) {
+            const n = tree.length;
+            for (let i = 2; i < n; i++) {
+                createTree(opts, impl, el, tree[i]);
             }
-            return res;
         }
-        if (tree == null) {
-            return parent;
+        return el;
+    }
+    if (isNotStringAndIterable(tree)) {
+        const res = [];
+        for (let t of tree) {
+            res.push(createTree(opts, impl, parent, t));
         }
-        return createTextElement(parent, tree);
-    };
+        return res;
+    }
+    if (tree == null) {
+        return parent;
+    }
+    return impl.createTextElement(parent, tree);
+};
 
 /**
  * See `HDOMImplementation` interface for further details.
@@ -69,44 +75,50 @@ export const createDOM =
  * @param tree
  * @param index
  */
-export const hydrateDOM =
-    (opts: Partial<HDOMOpts>, parent: Element, tree: any, index = 0) => {
-        if (isArray(tree)) {
-            const el = parent.children[index];
-            if (typeof tree[0] === "function") {
-                hydrateDOM(
-                    opts,
-                    parent,
-                    tree[0].apply(null, [opts.ctx, ...tree.slice(1)]),
-                    index
-                );
-            }
-            const attribs = tree[1];
-            if (attribs.__impl) {
-                return (<HDOMImplementation<any>>attribs.__impl)
-                    .hydrateTree(opts, parent, tree, index);
-            }
-            if ((<any>tree).__init) {
-                (<any>tree).__init.apply(
-                    (<any>tree).__this,
-                    [el, ...(<any>tree).__args]
-                );
-            }
-            for (let a in attribs) {
-                if (a.indexOf("on") === 0) {
-                    el.addEventListener(a.substr(2), attribs[a]);
-                }
-            }
-            for (let n = tree.length, i = 2; i < n; i++) {
-                hydrateDOM(opts, el, tree[i], i - 2);
-            }
-        } else if (isNotStringAndIterable(tree)) {
-            for (let t of tree) {
-                hydrateDOM(opts, parent, t, index);
-                index++;
+export const hydrateTree = <T>(
+    opts: Partial<HDOMOpts>,
+    impl: HDOMImplementation<any>,
+    parent: T,
+    tree: any,
+    index = 0
+) => {
+    if (isArray(tree)) {
+        const el = impl.getChild(parent, index);
+        if (typeof tree[0] === "function") {
+            hydrateTree(
+                opts,
+                impl,
+                parent,
+                tree[0].apply(null, [opts.ctx, ...tree.slice(1)]),
+                index
+            );
+        }
+        const attribs = tree[1];
+        if (attribs.__impl) {
+            return (<HDOMImplementation<any>>attribs.__impl)
+                .hydrateTree(opts, parent, tree, index);
+        }
+        if ((<any>tree).__init) {
+            (<any>tree).__init.apply(
+                (<any>tree).__this,
+                [el, ...(<any>tree).__args]
+            );
+        }
+        for (let a in attribs) {
+            if (a.indexOf("on") === 0) {
+                impl.setAttrib(el, a, attribs[a]);
             }
         }
-    };
+        for (let n = tree.length, i = 2; i < n; i++) {
+            hydrateTree(opts, impl, el, tree[i], i - 2);
+        }
+    } else if (isNotStringAndIterable(tree)) {
+        for (let t of tree) {
+            hydrateTree(opts, impl, parent, t, index);
+            index++;
+        }
+    }
+};
 
 /**
  * Creates a new DOM element of type `tag` with optional `attribs`. If
@@ -156,11 +168,16 @@ export const createTextElement =
 export const getChild =
     (parent: Element, child: number) => parent.children[child];
 
-export const replaceChild =
-    (opts: Partial<HDOMOpts>, parent: Element, child: number, tree: any) => {
-        removeChild(parent, child);
-        createDOM(opts, parent, tree, child);
-    };
+export const replaceChild = (
+    opts: Partial<HDOMOpts>,
+    impl: HDOMImplementation<any>,
+    parent: Element,
+    child: number,
+    tree: any
+) => (
+        impl.removeChild(parent, child),
+        impl.createTree(opts, parent, tree, child)
+    );
 
 export const cloneWithNewAttribs =
     (el: Element, attribs: any) => {

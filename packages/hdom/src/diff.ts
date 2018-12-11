@@ -51,7 +51,7 @@ export const diffTree = <T>(
     parent: T,
     prev: any[],
     curr: any[],
-    child: number) => {
+    child: number = 0) => {
 
     const attribs = curr[1];
     if (attribs.__skip) {
@@ -64,8 +64,9 @@ export const diffTree = <T>(
         return;
     }
     // delegate to branch-local implementation
-    if (attribs.__impl) {
-        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    let _impl = attribs.__impl;
+    if (_impl && _impl !== impl) {
+        return _impl.diffTree(opts, _impl, parent, prev, curr, child);
     }
     const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE_LINEAR, equiv);
     if (delta.distance === 0) {
