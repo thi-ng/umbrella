@@ -26,6 +26,7 @@ This project is part of the
     - [Data-driven component composition](#data-driven-component-composition)
     - [Stateful component](#stateful-component)
     - [Component objects](#component-objects)
+    - [Behavior control attributes](#behavior-control-attributes)
 - [API](#api)
     - [serialize(tree: any, ctx?: any, escape = false): string](#serializetree-any-ctx-any-escape--false-string)
     - [escape(str: string): string](#escapestr-string-string)
@@ -59,6 +60,7 @@ rendering etc. For interactive use cases, please see companion package
 - Dynamic element attribute value generation via function values
 - CSS formatting of `style` attribute objects
 - Optional HTML entity encoding
+- Branch-local behavior control attributes to control serialization
 - Small (2.2KB minified) & fast
 
 *) Lazy composition here means that functions are only executed at
@@ -450,6 +452,20 @@ const component = {
 serialize([component, "Hello world", "Body"]);
 ```
 
+### Behavior control attributes
+
+The following attributes can be used to control the serialization
+behavior of individual elements / tree branches:
+
+- **`__skip`** - if true, skips serialization (also used by
+  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom))
+- **`__serialize`** - if false, skips serialization (hiccup only)
+
+```ts
+serialize(["div.container", ["div", {__skip: true}, "ignore me"]]);
+// <div class="container"></div>
+```
+
 ## API
 
 The library exposes these two functions:
@@ -520,6 +536,9 @@ Functions located in other positions are called ONLY with the global
 context arg and can return any (serializable) value (i.e. new trees,
 strings, numbers, iterables or any type with a suitable .toString()
 implementation).
+
+Please also see list of supported [behavior control
+attributes](#behavior-control-attributes).
 
 ### escape(str: string): string
 

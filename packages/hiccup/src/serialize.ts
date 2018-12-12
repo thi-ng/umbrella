@@ -148,7 +148,7 @@ const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: bool
             tree = normalize(tree);
             tag = tree[0];
             const attribs = tree[1];
-            if (attribs.__serialize === false) {
+            if (attribs.__skip || attribs.__serialize === false) {
                 return "";
             }
             let body = tree[2];
