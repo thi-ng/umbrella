@@ -235,6 +235,9 @@ const extractEquivElements =
 
 const OBJP = Object.getPrototypeOf({});
 
+const FN = "function";
+const STR = "string";
+
 /**
  * Customized version @thi.ng/equiv which takes `__diff` attributes into
  * account (at any nesting level). If an hdom element's attribute object
@@ -251,20 +254,20 @@ export const equiv =
             return true;
         }
         if (a != null) {
-            if (typeof a.equiv === "function") {
+            if (typeof a.equiv === FN) {
                 return a.equiv(b);
             }
         } else {
             return a == b;
         }
         if (b != null) {
-            if (typeof b.equiv === "function") {
+            if (typeof b.equiv === FN) {
                 return b.equiv(a);
             }
         } else {
             return a == b;
         }
-        if (typeof a === "string" || typeof b === "string") {
+        if (typeof a === STR || typeof b === STR) {
             return false;
         }
         if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
@@ -272,8 +275,8 @@ export const equiv =
             return !((<any>a).__diff === false || (<any>b).__diff === false) &&
                 equivObject(a, b, equiv);
         }
-        if (typeof a !== "function" && a.length !== undefined &&
-            typeof b !== "function" && b.length !== undefined) {
+        if (typeof a !== FN && a.length !== undefined &&
+            typeof b !== FN && b.length !== undefined) {
             return equivArrayLike(a, b, equiv);
         }
         if (a instanceof Set && b instanceof Set) {
