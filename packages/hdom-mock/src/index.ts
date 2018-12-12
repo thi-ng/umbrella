@@ -5,9 +5,17 @@ import { diffTree } from "@thi.ng/hdom/diff";
 import { createTree, hydrateTree } from "@thi.ng/hdom/dom";
 import { normalizeTree } from "@thi.ng/hdom/normalize";
 
+export const TEXT = Symbol();
+
 export class HDOMNode {
     parent: HDOMNode;
+    /**
+     * Only real child nodes
+     */
     children: HDOMNode[];
+    /**
+     * Includes real children AND text nodes
+     */
     _children: HDOMNode[];
 
     listeners: IObjectOf<EventListener[]>;
@@ -15,12 +23,12 @@ export class HDOMNode {
     value: any;
     checked: boolean;
 
-    tag: string;
+    tag: string | symbol;
     attribs: IObjectOf<any>;
     style: IObjectOf<any>;
     body: string;
 
-    constructor(tag: string, attribs = {}) {
+    constructor(tag: string | symbol, attribs = {}) {
         this.tag = tag;
         this.children = [];
         this._children = [];
@@ -31,7 +39,7 @@ export class HDOMNode {
     get textContent() {
         const res = [];
         for (let c of this._children) {
-            if (c.tag == "#") {
+            if (c.isText()) {
                 res.push(c.body);
             }
         }
@@ -39,16 +47,20 @@ export class HDOMNode {
     }
 
     set textContent(body: string) {
-        const txt = new HDOMNode("#");
+        const txt = new HDOMNode(TEXT);
         txt.body = body;
         this._children = [txt];
         this.children = [];
     }
 
+    isText() {
+        return this.tag === TEXT;
+    }
+
     insertBefore(c: HDOMNode, i: number) {
         const existing = this.children[i];
         if (existing) {
-            c.tag !== "#" && this.children.splice(i, 0, c);
+            !this.isText() && this.children.splice(i, 0, c);
             this._children.splice(this._children.indexOf(existing), 0, c);
         } else {
             this.appendChild(c);
@@ -57,7 +69,7 @@ export class HDOMNode {
     }
 
     appendChild(c: HDOMNode) {
-        c.tag !== "#" && this.children.push(c);
+        !c.isText() && this.children.push(c);
         this._children.push(c);
         return c;
     }
@@ -79,7 +91,7 @@ export class HDOMNode {
     }
 
     toHiccup() {
-        if (this.tag === "#") {
+        if (this.isText()) {
             return this.body;
         }
         const attr = { ...this.attribs };
@@ -90,7 +102,7 @@ export class HDOMNode {
     }
 }
 
-export class MockImpl implements HDOMImplementation<HDOMNode> {
+export class MockHDOM implements HDOMImplementation<HDOMNode> {
 
     root: HDOMNode;
 
@@ -130,7 +142,7 @@ export class MockImpl implements HDOMImplementation<HDOMNode> {
     }
 
     createTextElement(parent: HDOMNode, content: string) {
-        const el = new HDOMNode("#");
+        const el = new HDOMNode(TEXT);
         el.body = content;
         parent && parent.appendChild(el);
         return el;
@@ -187,7 +199,9 @@ export class MockImpl implements HDOMImplementation<HDOMNode> {
                     }
             }
         } else {
-            el[id] != null ? (el[id] = null) : (delete el.attribs[id]);
+            el[id] != null ?
+                (el[id] = null) :
+                (delete el.attribs[id]);
         }
         return el;
     }
@@ -214,12 +228,8 @@ export class MockImpl implements HDOMImplementation<HDOMNode> {
     setStyle(el: HDOMNode, rules: IObjectOf<any>) {
         for (let r in rules) {
             let v = rules[r];
-            if (isFunction(v)) {
-                v = v(rules);
-            }
-            if (v != null) {
-                (el.style || (el.style = {}))[r] = v;
-            }
+            isFunction(v) && (v = v(rules));
+            v != null && ((el.style || (el.style = {}))[r] = v);
         }
     }
 }
