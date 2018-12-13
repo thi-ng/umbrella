@@ -36,7 +36,7 @@ export const fpsCounter =
         opts = {
             history: 25,
             smooth: 5,
-            labelPeriod: 100,
+            labelPeriod: 250,
             sparkline: {},
             ...opts
         };
@@ -64,7 +64,7 @@ export const fpsCounter =
                         this.buffer],
                     ["span",
                         { __skip: !updateLabel },
-                        smoothFps ? smoothFps.toFixed(2) + "fps" : ""]
+                        smoothFps ? smoothFps.toFixed(2) + " fps" : ""]
                 ];
             }
         };
