@@ -14,8 +14,6 @@ import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { partition } from "@thi.ng/transducers/xform/partition";
 
 const SIZE = "0.5rem";
-const RES = 32;
-const DELTA = 1024;
 
 injectStyleSheet(
     css([
@@ -44,61 +42,114 @@ injectStyleSheet(
     ])
 );
 
-const grid = (w, numChanges) => ({
-    init() {
-        this.cells = new Array(w * w).fill(0);
-        this.frame = 0;
-    },
-    render(_, interlace) {
-        if (!this.cells) return ["div"];
+const grid =
+    (_, cells, w, numChanges, frame, interlace) => {
+        if (!frame) return ["div"];
+        const isFirst = frame === 1;
         const num = w * w;
         const changed = new Set<number>();
         for (let i = 0; i < numChanges; i++) {
             const idx = (Math.random() * num) | 0;
             changed.add(idx);
-            this.cells[idx] = (this.cells[idx] + 1) % 16;
+            cells[idx] = (cells[idx] + 1) % 16;
         }
-        const isFirst = this.frame == 0;
-        const body = transduce<number, any, any[]>(
-            comp(
-                mapIndexed((i, x) => {
-                    const diff = isFirst || changed.has(i);
-                    return ["span", { key: "c" + i, __diff: diff, class: `cell ${diff ? "x" : ""}cell-${x}` }];
-                }
+        const body =
+            transduce<number, any, any[]>(
+                comp(
+                    mapIndexed((i, x) => {
+                        const diff = isFirst || changed.has(i);
+                        return ["span", {
+                            key: "c" + i,
+                            __diff: diff,
+                            class: `cell ${diff ? "x" : ""}cell-${x}`
+                        }];
+                    }
+                    ),
+                    partition(w),
+                    mapIndexed((i, row) =>
+                        ["div.row", {
+                            key: "r" + i,
+                            __skip: !isFirst && ((i + frame) & interlace)
+                        }, row]
+                    )
                 ),
-                partition(w),
-                mapIndexed((i, row) =>
-                    ["div.row", { key: "r" + i, __skip: !isFirst && ((i + this.frame) & interlace) }, ...row]
-                )
-            ),
-            push(),
-            ["div"],
-            this.cells
-        );
-        this.frame++;
+                push(),
+                ["div"],
+                cells
+            );
         return body;
-    }
-});
+    };
 
-const grid1 = grid(RES, DELTA);
+const formatInterlace = (x) => {
+    const res = x ? "but only every" : "and every";
+    return x === 0 ?
+        res :
+        x === 1 ?
+            res + " 2nd" :
+            `${res} ${x + 1}th`;
+};
+
+const newCells = (res) => new Array(res * res).fill(0);
+
 const stats = fpsCounter({ history: 50, sparkline: { width: 100 } });
 
+let cells = newCells(32);
 let interlace = 1;
+let res = 32;
+let delta = 1024;
+let frame = -1;
+
+const resOpts = [[24, 24], [32, 32], [40, 40], [48, 48], [56, 56], [64, 64]];
+const deltaOpts = [[64, 64], [128, 128], [256, 256], [512, 512], [1024, 1024]];
+const interlaceOpts = [[0, "None"], [1, 2], [3, 4], [7, 8], [15, 16], [31, 32]];
 
 const cancel = start(
-    () => ["div.ma3.code",
-        ["div", [grid1, interlace]],
-        ["div.mt3", [stats]],
-        ["div.mt3",
-            "Interlace: ",
-            [dropdown,
-                { class: "code", onchange: (e) => interlace = parseInt(e.target.value) },
-                [[0, "None"], [1, 1], [3, 3], [7, 7], [15, 15], [31, 31]],
-                interlace
-            ]
-        ],
-        ["div.mt3", `~${DELTA / (interlace + 1) + RES / (interlace + 1) + 20} nodes diffed per frame, ${RES * RES + RES + 20} total`]
-    ]);
+    () => {
+        frame++;
+        const total = res * res + res + 24;
+        const estimate = Math.min(delta / (interlace + 1) + res / (interlace + 1) + 24, total);
+        return ["div.ma3.code.f7",
+            ["div.measure.lh-copy",
+                `Each grid cell is one <span> element.
+            ${delta} random cell states will be updated each frame,
+            ${formatInterlace(interlace)} row will be updated in the browser DOM.`],
+            ["div.mt3", ["span.pink", `~${estimate}`], " real node updates/frame, ", ["span.pink", total], " DOM nodes total"],
+            ["div.mt3", [grid, cells, res, delta, frame, interlace]],
+            ["div.mt3", [stats]],
+            ["div.mt3",
+                ["span.w5.dib", "Resolution: "],
+                [dropdown,
+                    {
+                        class: "w3 code",
+                        onchange: (e) => (res = parseInt(e.target.value), frame = -1, cells = newCells(res))
+                    },
+                    resOpts,
+                    res]
+            ],
+            ["div.mt3",
+                ["span.w5.dib", "Random updates/frame: "],
+                [dropdown,
+                    {
+                        class: "w3 code",
+                        onchange: (e) => (delta = parseInt(e.target.value))
+                    },
+                    deltaOpts,
+                    delta]
+            ],
+            ["div.mt3",
+                ["span.w5.dib", "Interlace rows: "],
+                [dropdown,
+                    {
+                        class: "w3 code",
+                        onchange: (e) => (interlace = parseInt(e.target.value))
+                    },
+                    interlaceOpts,
+                    interlace]
+            ],
+            ["div.mt3",
+                ["a", { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-skip/examples/hdom-benchmark2" }, "Source"]]
+        ];
+    });
 
 // window["stop"] = cancel;
 
