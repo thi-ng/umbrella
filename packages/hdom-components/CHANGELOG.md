@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.2.15...@thi.ng/hdom-components@2.3.0) (2018-12-13)
+
+
+### Features
+
+* **hdom-components:** add FPS counter & sparkline components, update deps ([ebd3380](https://github.com/thi-ng/umbrella/commit/ebd3380))
+
+
+
+
+
 ## [2.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.2.14...@thi.ng/hdom-components@2.2.15) (2018-12-08)
 
 **Note:** Version bump only for package @thi.ng/hdom-components

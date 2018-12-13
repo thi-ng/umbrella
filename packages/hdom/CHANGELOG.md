@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.2.2...@thi.ng/hdom@6.0.0) (2018-12-13)
+
+
+### Code Refactoring
+
+* **hdom:** extend & simplify HDOMImplementation, update DEFAULT_IMPL ([6f2e8ee](https://github.com/thi-ng/umbrella/commit/6f2e8ee))
+
+
+### Features
+
+* **hdom:** add initial __skip ctrl attrib handling in diffTree() ([a4e6736](https://github.com/thi-ng/umbrella/commit/a4e6736))
+
+
+### BREAKING CHANGES
+
+* **hdom:** extend & simplify HDOMImplementation
+
+- update args for HDOMImplementation methods
+- add createElement(), createTextElement() & getElementById() methods
+  to HDOMImplementation
+- rename createDOM() => createTree(), make generic
+- rename hydrateDOM() => hydrateTree(), make generic
+- update / fix diffTree() __impl attrib handling:
+  only delegate if __impl != current impl
+- update resolveRoot() to require impl arg & delegate
+
+
+
+
+
 ## [5.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@5.2.1...@thi.ng/hdom@5.2.2) (2018-12-09)
 
 **Note:** Version bump only for package @thi.ng/hdom

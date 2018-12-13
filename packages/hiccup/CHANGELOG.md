@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.6.1...@thi.ng/hiccup@2.7.0) (2018-12-13)
+
+
+### Features
+
+* **hiccup:** add __skip support, add test, update readme ([d3500df](https://github.com/thi-ng/umbrella/commit/d3500df))
+
+
+
+
+
 ## [2.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@2.6.0...@thi.ng/hiccup@2.6.1) (2018-12-08)
 
 **Note:** Version bump only for package @thi.ng/hiccup

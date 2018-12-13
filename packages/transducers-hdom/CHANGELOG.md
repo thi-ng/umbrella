@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.5...@thi.ng/transducers-hdom@1.2.6) (2018-12-13)
+
+
+### Bug Fixes
+
+* **transducers-hdom:** integrate recent hdom updates ([6db3170](https://github.com/thi-ng/umbrella/commit/6db3170))
+
+
+
+
+
 ## [1.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.4...@thi.ng/transducers-hdom@1.2.5) (2018-12-09)
 
 **Note:** Version bump only for package @thi.ng/transducers-hdom
