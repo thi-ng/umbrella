@@ -28,6 +28,11 @@ export const capitalize: Stringer<string> =
  * Converts a CamelCase string into kebab case, with optional custom
  * delimiter (`-` by default).
  *
+ * TODO: Currently broken in Safari & FF due to usage of TC39 stage 4
+ * RegEx look-behind expression:
+ *
+ * https://github.com/tc39/proposal-regexp-lookbehind
+ *
  * ```
  * kebab("FooBar23Baz");
  * // "foo-bar23-baz"
@@ -38,7 +43,12 @@ export const capitalize: Stringer<string> =
  */
 export const kebab: Stringer<string> =
     (x: string, delim = "-") =>
-        lower(x.replace(/(?<=\w)(?=[A-Z])/g, delim));
+        lower(
+            x.replace(
+                /(?<=[a-z0-9\u00e0-\u00fd])(?=[A-Z\u00c0-\u00dd])/g,
+                (_, i) => (i ? delim : "")
+            )
+        );
 
 /**
  * Short for `kebab` using `_` as delimiter.
