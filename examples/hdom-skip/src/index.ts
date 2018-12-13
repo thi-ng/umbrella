@@ -12,12 +12,14 @@ const timer =
             render() {
                 // Key part of this example:
 
-                // Here we check the current time stamp for timer `period`
-                // crossings and only return an actual new tree/content iff
-                // the time stamp is within 16ms of the period. In all other
-                // cases, we return some dummy content with the root element
-                // using the hdom `__skip` control attribute to skip diffing
-                // of this branch and not apply the given tree/branch.
+                // Here we check the current time stamp for timer
+                // `period` crossings and only return an actual new
+                // tree/content iff the time stamp is within 16ms of the
+                // period (i.e. in the 1 frame following the timer
+                // period). In all other cases, we return some dummy
+                // content with the root element using the hdom `__skip`
+                // control attribute to skip diffing of this branch and
+                // not apply the given tree/branch.
 
                 // IMPORTANT: the element type of the skipped branch MUST
                 // match the type of the real content (e.g. here `div`)
