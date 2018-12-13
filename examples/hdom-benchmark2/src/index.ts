@@ -43,17 +43,20 @@ injectStyleSheet(
 );
 
 const grid = {
-    render(_, cells, w, numChanges, frame, interlace) {
+    render(_, cells, w, numChanges, frame) {
         if (!frame) {
             this.prevChanged = null;
+            this.prevChangedRows = null;
             return ["div"];
         }
         const isFirst = !this.prevChanged;
         const num = w * w;
         const changed = new Set<number>();
+        const changedRows = new Set<number>();
         for (let i = 0; i < numChanges; i++) {
             const idx = (Math.random() * num) | 0;
             changed.add(idx);
+            changedRows.add(~~(idx / w));
             cells[idx] = (cells[idx] + 1) % 16;
         }
         const body =
@@ -75,7 +78,7 @@ const grid = {
                     mapIndexed((i, row) =>
                         ["div.row", {
                             key: "r" + i,
-                            __skip: !isFirst && ((i + frame) & interlace)
+                            __skip: !isFirst && !(this.prevChangedRows.has(i) || changedRows.has(i))
                         }, row]
                     )
                 ),
@@ -83,46 +86,63 @@ const grid = {
                 ["div"],
                 cells
             );
+        let mergedCells = new Set(changed);
+        if (this.prevChanged) {
+            for (let x of this.prevChanged) {
+                mergedCells.add(x);
+            }
+        }
+        const mergedRows = new Set(changedRows);
+        if (this.prevChangedRows) {
+            for (let x of this.prevChangedRows) {
+                mergedRows.add(x);
+            }
+        }
+        this.stats = {
+            cells: mergedCells.size,
+            rows: mergedRows.size,
+            total: mergedCells.size + mergedRows.size
+        };
         this.prevChanged = changed;
+        this.prevChangedRows = changedRows;
         return body;
     }
 };
 
-const formatInterlace = (x) => {
-    const res = x ? "but only every" : "and every";
-    return x === 0 ?
-        res :
-        x === 1 ?
-            res + " 2nd" :
-            `${res} ${x + 1}th`;
-};
+const domStats = (_, grid, res, _static) =>
+    grid && grid.stats ?
+        ["div",
+            ["div", ["span.pink", grid.stats.cells], " cells updated"],
+            ["div", ["span.pink", grid.stats.rows], " rows updated"],
+            ["div", ["span.pink", res * res + res + _static], " DOM nodes total"]] :
+        null;
 
 const newCells = (res) => new Array(res * res).fill(0);
 
 const stats = fpsCounter({ history: 50, sparkline: { width: 100 } });
 
 let cells = newCells(32);
-let interlace = 1;
+// let interlace = 0;
 let res = 32;
 let delta = 1024;
 let frame = -1;
 
 const resOpts = [[24, 24], [32, 32], [40, 40], [48, 48], [56, 56], [64, 64]];
-const deltaOpts = [[64, 64], [128, 128], [256, 256], [512, 512], [1024, 1024]];
-const interlaceOpts = [[0, "None"], [1, 2], [3, 4], [7, 8], [15, 16], [31, 32]];
+const deltaOpts = [...map((i) => [i, i], [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])];
+// const interlaceOpts = [[0, "None"], [1, 2], [3, 4], [7, 8], [15, 16], [31, 32]];
+
+// 38
 
 const cancel = start(
     () => {
         frame++;
-        const total = res * res + res + 24;
-        const estimate = Math.min(delta / (interlace + 1) + res / (interlace + 1) + 24, total);
         return ["div.ma3.code.f7",
             ["div.measure.lh-copy",
-                `Each grid cell is one <span> element.
-            ${delta} random cell states will be updated each frame,
-            ${formatInterlace(interlace)} row will be updated in the browser DOM.`],
-            ["div.mt3", ["span.pink", `~${estimate}`], " real node updates/frame, ", ["span.pink", total], " DOM nodes total"],
-            ["div.mt3", [grid, cells, res, delta, frame, interlace]],
+                `Each grid cell is one <span> element. Each frame ${delta} random cell states
+                will be updated (highlighted in green), resulting approx. twice as many DOM updates
+                (due to resetting of updated cells from previous frame).`],
+            ["div.mt3", [grid, cells, res, delta, frame]],
+            ["div.mt3", [domStats, grid, res, 46]],
             ["div.mt3", [stats]],
             ["div.mt3",
                 ["span.w5.dib", "Resolution: "],
@@ -145,21 +165,9 @@ const cancel = start(
                     delta]
             ],
             ["div.mt3",
-                ["span.w5.dib", "Interlace rows: "],
-                [dropdown,
-                    {
-                        class: "w3 code",
-                        onchange: (e) => (interlace = parseInt(e.target.value))
-                    },
-                    interlaceOpts,
-                    interlace]
-            ],
-            ["div.mt3",
                 ["a", { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-skip/examples/hdom-benchmark2" }, "Source"]]
         ];
     });
-
-// window["stop"] = cancel;
 
 const hot = (<any>module).hot;
 if (hot) {
