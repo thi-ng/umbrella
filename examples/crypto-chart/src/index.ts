@@ -243,7 +243,9 @@ const chart = sync({
     xform: map(({ data, window, theme }) => {
         let [width, height] = window;
         const ohlc: OHLC[] = data.ohlc;
-        const w = Math.max(3, (width - 2 * MARGIN_X) / ohlc.length);
+        const chartW = width - 2 * MARGIN_X;
+        const chartH = height - 2 * MARGIN_Y;
+        const bw = Math.max(3, chartW / ohlc.length);
         const by = height - MARGIN_Y;
 
         const mapX = (x: number) => fit(x, 0, ohlc.length, MARGIN_X, width - MARGIN_X);
@@ -256,13 +258,27 @@ const chart = sync({
             );
 
         // use preset time precisions based on current chart period
-        const tickX = TIME_TICKS[data.period];
+        let tickX: number = TIME_TICKS[data.period];
+        const timeRange = data.tbounds[1] - data.tbounds[0];
+        while (chartW / (timeRange / tickX) < 60) {
+            tickX *= 2;
+        }
         const fmtTime: (t: number) => string = TIME_FORMATS[data.period];
-        // price resolution estimation based on actual OHLC interval
-        let tickY = Math.pow(10, Math.floor(Math.log(data.max - data.min) / Math.log(10))) / 2;
-        while (tickY < (data.max - data.min) / 20) {
+
+        // price tick resolution estimation based on actual OHLC interval & window height
+        const domain = data.max - data.min;
+        // min tick in currency
+        const minTickY = 0.0025;
+        // min tick in screen coords
+        const minProjTickY = Math.max(chartH / 8, 50);
+        let tickY = Math.pow(10, Math.floor(Math.log(domain) / Math.log(10))) / 2;
+        while (tickY > minTickY && chartH / (domain / tickY) > minProjTickY) {
+            tickY /= 2;
+        }
+        while (chartH / (domain / tickY) < minProjTickY) {
             tickY *= 2;
         }
+
         const lastPrice = ohlc[ohlc.length - 1].close;
         const closeX = width - MARGIN_X;
         const closeY = mapY(lastPrice);
@@ -293,7 +309,7 @@ const chart = sync({
                 // X axis ticks
                 mapcat(
                     (t: number) => {
-                        const x = fit(t, data.tbounds[0], data.tbounds[1], MARGIN_X + w / 2, width - MARGIN_X - w / 2);
+                        const x = fit(t, data.tbounds[0], data.tbounds[1], MARGIN_X + bw / 2, width - MARGIN_X - bw / 2);
                         return [
                             line([x, by], [x, by + 10]),
                             line([x, MARGIN_Y], [x, by], { stroke: theme.chart.gridMinor, "stroke-dasharray": 2 }),
@@ -322,7 +338,7 @@ const chart = sync({
                     }
                     return group({ fill: col, stroke: col },
                         line([mapX(i + 0.5), mapY(candle.low)], [mapX(i + 0.5), mapY(candle.high)]),
-                        rect([mapX(i) + 1, y], w - 2, h),
+                        rect([mapX(i) + 1, y], bw - 2, h),
                     );
                 },
                 ohlc
@@ -396,7 +412,7 @@ sync({
                         {
                             class: `mr3 b link ${theme.body}`,
                             href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
-                        }, "Source code"]
+                        }, "Source"]
                 ]
             ]
         ),
