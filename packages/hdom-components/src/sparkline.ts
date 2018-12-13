@@ -66,9 +66,9 @@ export const sparkline =
             },
             ["polyline",
                 {
-                    points: str(",", mapIndexed((i, y: number) => [i * s, fitClamped(y, opts.min, opts.max, h, r)], 0, vals))
+                    points: str(",", mapIndexed((i, y: number) => [(i * s) | 0, fitClamped(y, opts.min, opts.max, h, r) | 0], 0, vals))
                 }],
             ["circle",
-                { cx: (n - 1) * s, cy: fitClamped(vals[n - 1], opts.min, opts.max, h, r), r, fill: opts.col }]
+                { cx: ((n - 1) * s) | 0, cy: fitClamped(vals[n - 1], opts.min, opts.max, h, r) | 0, r, fill: opts.col }]
         ];
     };
