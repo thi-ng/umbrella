@@ -121,17 +121,13 @@ const newCells = (res) => new Array(res * res).fill(0);
 
 const stats = fpsCounter({ history: 50, sparkline: { width: 100 } });
 
-let cells = newCells(32);
-// let interlace = 0;
-let res = 32;
-let delta = 1024;
+let res = 48;
+let delta = 256;
 let frame = -1;
+let cells = newCells(res);
 
 const resOpts = [[24, 24], [32, 32], [40, 40], [48, 48], [56, 56], [64, 64]];
 const deltaOpts = [...map((i) => [i, i], [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])];
-// const interlaceOpts = [[0, "None"], [1, 2], [3, 4], [7, 8], [15, 16], [31, 32]];
-
-// 38
 
 const cancel = start(
     () => {
@@ -139,8 +135,8 @@ const cancel = start(
         return ["div.ma3.code.f7",
             ["div.measure.lh-copy",
                 `Each grid cell is one <span> element. Each frame ${delta} random cell states
-                will be updated (highlighted in green), resulting approx. twice as many DOM updates
-                (due to resetting of updated cells from previous frame).`],
+                will be updated (highlighted in green), resulting in approx. twice as many
+                DOM updates (due to resetting of updated cells from previous frame).`],
             ["div.mt3", [grid, cells, res, delta, frame]],
             ["div.mt3", [domStats, grid, res, 46]],
             ["div.mt3", [stats]],
