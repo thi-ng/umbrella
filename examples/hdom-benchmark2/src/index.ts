@@ -42,10 +42,13 @@ injectStyleSheet(
     ])
 );
 
-const grid =
-    (_, cells, w, numChanges, frame, interlace) => {
-        if (!frame) return ["div"];
-        const isFirst = frame === 1;
+const grid = {
+    render(_, cells, w, numChanges, frame, interlace) {
+        if (!frame) {
+            this.prevChanged = null;
+            return ["div"];
+        }
+        const isFirst = !this.prevChanged;
         const num = w * w;
         const changed = new Set<number>();
         for (let i = 0; i < numChanges; i++) {
@@ -56,14 +59,17 @@ const grid =
         const body =
             transduce<number, any, any[]>(
                 comp(
-                    mapIndexed((i, x) => {
-                        const diff = isFirst || changed.has(i);
-                        return ["span", {
-                            key: "c" + i,
-                            __diff: diff,
-                            class: `cell ${diff ? "x" : ""}cell-${x}`
-                        }];
-                    }
+                    mapIndexed((i, x) =>
+                        ["span",
+                            isFirst || this.prevChanged.has(i) ?
+                                { key: "c" + i, class: `cell cell-${x}` } :
+                                changed.has(i) ?
+                                    {
+                                        key: "c" + i,
+                                        class: `cell xcell-${x}`
+                                    } :
+                                    { key: "c" + i, __skip: true }
+                        ]
                     ),
                     partition(w),
                     mapIndexed((i, row) =>
@@ -77,8 +83,10 @@ const grid =
                 ["div"],
                 cells
             );
+        this.prevChanged = changed;
         return body;
-    };
+    }
+};
 
 const formatInterlace = (x) => {
     const res = x ? "but only every" : "and every";
