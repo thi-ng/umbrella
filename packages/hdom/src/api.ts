@@ -47,6 +47,15 @@ export interface HDOMBehaviorAttribs {
      */
     __diff?: boolean;
     /**
+     * HDOM behavior control attribute. If true, the element will not be
+     * diffed and simply skipped. IMPORTANT: This attribute is only
+     * intended for cases when a component / tree branch should not be
+     * updated, but MUST NEVER be enabled when that component is first
+     * included in the tree. Doing so will result in undefined future
+     * behavior.
+     */
+    __skip?: boolean;
+    /**
      * HDOM behavior control attribute. If present, the element and all
      * of its children will be processed by the given
      * `HDOMImplementation` instead of the default implementation.
@@ -217,11 +226,12 @@ export interface HDOMImplementation<T> {
      * @param opts
      */
     normalizeTree(opts: Partial<HDOMOpts>, tree: any): any[];
+
     /**
      * Realizes the given hdom tree in the target below the `parent`
      * node, e.g. in the case of the browser DOM, creates all required
      * DOM elements encoded by the given hdom tree. If `parent` is null
-     * the result tree won't be attached to any parent. If `insert` is
+     * the result tree won't be attached to any parent. If `child` is
      * given, the new elements will be inserted at given child index.
      *
      * For any components with `init` life cycle methods, the
@@ -241,9 +251,10 @@ export interface HDOMImplementation<T> {
      *
      * @param parent
      * @param tree
-     * @param insert
+     * @param child
      */
-    createTree(opts: Partial<HDOMOpts>, parent: T, tree: any, insert?: number): T | T[];
+    createTree(opts: Partial<HDOMOpts>, parent: T, tree: any, child?: number): T | T[];
+
     /**
      * Takes a target root element and normalized hdom tree, then walks
      * tree and initializes any event listeners and components with life
@@ -261,15 +272,16 @@ export interface HDOMImplementation<T> {
      * @param opts
      * @param parent
      * @param tree
-     * @param idx
+     * @param child
      */
-    hydrateTree(opts: Partial<HDOMOpts>, parent: T, tree: any, idx?: number);
+    hydrateTree(opts: Partial<HDOMOpts>, parent: T, tree: any, child?: number);
+
     /**
-     * Takes an `HDOMOpts` options object, an `HDOMImplementation` and
-     * two normalized hiccup trees, `prev` and `curr`. Recursively
-     * computes diff between both trees and applies any necessary
-     * changes to reflect `curr` tree, based on the differences to
-     * `prev`, in target (browser DOM when using the `DEFAULT_IMPL`
+     * Takes an `HDOMOpts` options object, a `parent` element and two
+     * normalized hiccup trees, `prev` and `curr`. Recursively computes
+     * diff between both trees and applies any necessary changes to
+     * reflect `curr` tree, based on the differences to `prev`, in
+     * target (browser DOM when using the `DEFAULT_IMPL`
      * implementation).
      *
      * All target modification operations are delegated to the given
@@ -278,13 +290,13 @@ export interface HDOMImplementation<T> {
      * involves any form of tracking of the actual underlying target
      * data structure (e.g. the real browser DOM). hdom in general and
      * `diffTree()` specifically are stateless. The only state available
-     * is that of the two trees given (prev / curr).
+     * is implicitly defined by the two trees given (prev / curr).
      *
      * Implementations MUST check for the presence of the `__impl`
-     * control attribute on each branch. If given, the current
-     * implementation MUST delegate to the `diffTree()` method of the
-     * specified implementation and not descent into that branch further
-     * itself.
+     * control attribute on each branch. If present AND different than
+     * the current implementation, the latter MUST delegate to the
+     * `diffTree()` method of the specified implementation and not
+     * descent into that branch further itself.
      *
      * Furthermore, if (and only if) an element has the `__diff` control
      * attribute set to `false`, then:
@@ -303,19 +315,49 @@ export interface HDOMImplementation<T> {
      *    replace the old element / branch with the new one.
      *
      * @param opts
-     * @param impl
      * @param parent
      * @param prev
      * @param curr
      * @param child
      */
-    diffTree(
-        opts: Partial<HDOMOpts>,
-        impl: HDOMImplementation<T>,
-        parent: T,
-        prev: any[],
-        curr: any[],
-        child: number);
+    diffTree(opts: Partial<HDOMOpts>, parent: T, prev: any[], curr: any[], child?: number): void;
+
+    /**
+     * Creates a new element of type `tag` with optional `attribs`. If
+     * `parent` is not `null`, the new element will be inserted as child
+     * at given `insert` index. If `child` is missing, the element will
+     * be appended to the `parent`'s list of children. Returns new
+     * target DOM node.
+     *
+     * In the default implementation, if `tag` is a known SVG element
+     * name, the new element will be created with the proper SVG XML
+     * namespace.
+     *
+     * @param parent
+     * @param tag
+     * @param attribs
+     * @param child
+     */
+    createElement(parent: T, tag: string, attribs?: any, child?: number): T;
+
+    /**
+     * Creates and appends the given `content` as text child node to
+     * `parent` in the target.
+     *
+     * @param parent
+     * @param content
+     */
+    createTextElement(parent: T, content: string): T;
+
+    /**
+     * Attempts to find an element with the given `id` attribute in the
+     * implementation's tree. In the default implementation this is
+     * merely delegated to `document.getElementById()`.
+     *
+     * @param id
+     */
+    getElementById(id: string): T;
+
     /**
      * A (potentially) optimized version of these 2 operations in
      * sequence:
@@ -330,6 +372,7 @@ export interface HDOMImplementation<T> {
      * @param newTree
      */
     replaceChild?(opts: Partial<HDOMOpts>, parent: T, child: number, newTree: any);
+
     /**
      * Retrieves child of `parent` node at index `i`.
      *
@@ -337,6 +380,7 @@ export interface HDOMImplementation<T> {
      * @param i
      */
     getChild?(parent: T, i: number): T;
+
     /**
      * Removes the child of `parent` at index `i` in the target.
      *
@@ -344,12 +388,13 @@ export interface HDOMImplementation<T> {
      * @param i
      */
     removeChild?(parent: T, i: number);
+
     /**
      * Sets the given attribute `id` to new `value`. Note: `value`
      * itself can be a function and if so, the default behavior is to
-     * call this function with also provided `attribs` object to allow
-     * it to produce a derived value. See `setAttrib()` (dom.ts) for
-     * details.
+     * call this function with the also provided `attribs` object to
+     * allow it to produce a derived value. See `setAttrib()` (dom.ts)
+     * for details.
      *
      * @param element
      * @param id
@@ -357,6 +402,7 @@ export interface HDOMImplementation<T> {
      * @param attribs
      */
     setAttrib?(element: T, id: string, value: any, attribs?: any);
+
     /**
      * Removes given `attribs` from target `element`. The attributes
      * from the previous tree are provided for reference (e.g. to be
@@ -367,8 +413,14 @@ export interface HDOMImplementation<T> {
      * @param prevAttribs
      */
     removeAttribs?(element: T, attribs: string[], prevAttribs: any);
+
     /**
-     * Sets target `element`'s text / body content.
+     * Sets target `element`'s text / body content. Note: In the default
+     * browser DOM implementation, this will implicitly remove any
+     * existing child elements in the target. In practice this function
+     * is only applied to `["span"]` elements, since (by default) any
+     * body content is automatically wrapped in such by
+     * `normalizeTree()`.
      *
      * @param element
      * @param value

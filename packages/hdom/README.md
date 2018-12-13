@@ -49,7 +49,7 @@ This project is part of the
     - [hydrateTree()](#hydratetree)
 - [User context](#user-context)
     - [Behavior control attributes](#behavior-control-attributes)
-    - [Benchmark](#benchmark)
+    - [Benchmarks](#benchmarks)
 - [Authors](#authors)
 - [License](#license)
 
@@ -70,26 +70,28 @@ Benefits:
 
 - Use the full expressiveness of ES6 / TypeScript to define user interfaces
 - No enforced opinion about state handling, very flexible
-- Clean, functional component composition & reuse
+- Clean, functional component composition & reuse, optionally w/ lazy
+  evaluation
 - No source pre-processing, transpiling or string interpolation
 - Less verbose than HTML / JSX, resulting in smaller file sizes
 - Supports arbitrary elements (incl. SVG), attributes and events in
   uniform, S-expression based syntax
 - Supports branch-local custom update behaviors & arbitrary (e.g.
   non-DOM) target data structures to which tree diffs are applied to
+- Component life cycle methods & behavior control attributes
 - Suitable for server-side rendering and then "hydrating" listeners and
   components with life cycle methods on the client side
 - Can use JSON for static components (or component templates)
-- Optional user context injection (an arbitrary object/value passed to
-  all component functions embedded in the tree)
+- Optional dynamic user context injection (an arbitrary object/value
+  passed to all component functions embedded in the tree)
 - Default implementation supports CSS conversion from JS objects for
   `style` attribs (also see:
   [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css))
 - Auto-expansion of embedded values / types which implement the [`IToHiccup`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L415) or
   [`IDeref`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L166)
   interfaces (e.g. [atoms, cursors, derived views](https://github.com/thi-ng/umbrella/tree/master/packages/atom), [streams](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) etc.)
-- Fast (see benchmark example below)
-- Only ~5.5KB gzipped
+- Fast (see [benchmark examples](#benchmarks) below)
+- Only ~6.2KB gzipped
 
 ### Minimal example #1: Local state, RAF update
 
@@ -1158,21 +1160,22 @@ on this element or any of its children.
 only. If `false`, this element and its children will be omitted from the
 serialized output.
 
-### Benchmark
+#### __skip
 
-A stress test benchmark is here:
-[/examples/benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
+If `true`, the element will not be diffed and simply skipped. IMPORTANT:
+This attribute is only intended for cases when a component / tree branch
+should NOT be updated, but MUST NOT be enabled when that component is
+first introduced / included in the tree. Doing so will result in
+undefined future update behavior.
 
-[Live version](https://demo.thi.ng/umbrella/hdom-benchmark/)
+### Benchmarks
 
-Based on [user feedback collected via
-Twitter](https://twitter.com/toxi/status/959246871339454464),
-performance should be more than acceptable for even quite demanding UIs.
-In the 192 / 256 cells configurations **this stress test causes approx.
-600 / 800 DOM every single frame**, very unlikely for a typical web app.
-In Chrome 68 on a MBP2016 this still runs at a stable 60fps (192 cells)
-/ 35fps (256 cells). Both FPS readings are based the 50 frame
-[SMA](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average).
+Some stress test benchmarks are here:
+
+- [/examples/hdom-benchmark](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark)
+  | [Live version](https://demo.thi.ng/umbrella/hdom-benchmark/) (naive updates)
+- [/examples/hdom-benchmark2](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
+  | [Live version](https://demo.thi.ng/umbrella/hdom-benchmark2/) (w/ selective updates)
 
 ## Authors
 

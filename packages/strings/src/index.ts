@@ -9,6 +9,7 @@ export * from "./parse";
 export * from "./percent";
 export * from "./radix";
 export * from "./repeat";
+export * from "./slugify";
 export * from "./splice";
 export * from "./truncate";
 export * from "./truncate-left";

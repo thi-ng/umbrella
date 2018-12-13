@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers",
-    "version": "2.2.4",
+    "version": "2.2.5",
     "description": "Lightweight transducer implementations for ES6 / TypeScript",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -34,7 +34,7 @@
         "@thi.ng/compose": "^0.2.1",
         "@thi.ng/equiv": "^0.1.14",
         "@thi.ng/errors": "^0.1.11",
-        "@thi.ng/strings": "^0.6.0"
+        "@thi.ng/strings": "^0.7.0"
     },
     "keywords": [
         "ES6",

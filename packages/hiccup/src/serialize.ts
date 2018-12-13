@@ -121,10 +121,23 @@ import { escape } from "./escape";
  * @param span use spans for text content
  * @param keys attach key attribs
  */
-export const serialize = (tree: any, ctx?: any, escape = false, span = false, keys = span, path = [0]) =>
-    _serialize(tree, ctx, escape, span, keys, path);
+export const serialize = (
+    tree: any,
+    ctx?: any,
+    escape = false,
+    span = false,
+    keys = span,
+    path = [0]
+) => _serialize(tree, ctx, escape, span, keys, path);
 
-const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: boolean, path: any[]) => {
+const _serialize = (
+    tree: any,
+    ctx: any,
+    esc: boolean,
+    span: boolean,
+    keys: boolean,
+    path: any[]
+) => {
     if (tree == null) {
         return "";
     }
@@ -148,7 +161,7 @@ const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: bool
             tree = normalize(tree);
             tag = tree[0];
             const attribs = tree[1];
-            if (attribs.__serialize === false) {
+            if (attribs.__skip || attribs.__serialize === false) {
                 return "";
             }
             let body = tree[2];
@@ -215,7 +228,14 @@ const _serialize = (tree: any, ctx: any, esc: boolean, span: boolean, keys: bool
         tree;
 };
 
-const _serializeIter = (iter: Iterable<any>, ctx: any, esc: boolean, span: boolean, keys: boolean, path: any[]) => {
+const _serializeIter = (
+    iter: Iterable<any>,
+    ctx: any,
+    esc: boolean,
+    span: boolean,
+    keys: boolean,
+    path: any[]
+) => {
     const res = [];
     const p = path.slice(0, path.length - 1);
     let k = 0;
@@ -223,38 +243,39 @@ const _serializeIter = (iter: Iterable<any>, ctx: any, esc: boolean, span: boole
         res.push(_serialize(i, ctx, esc, span, keys, [...p, k++]));
     }
     return res.join("");
-}
-
-const normalize = (tag: any[]) => {
-    let el = tag[0];
-    let match, id, clazz;
-    const hasAttribs = isPlainObject(tag[1]);
-    const attribs: any = hasAttribs ? { ...tag[1] } : {};
-    if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
-        illegalArgs(`"${el}" is not a valid tag name`);
-    }
-    el = match[1];
-    id = match[2];
-    clazz = match[3];
-    if (id) {
-        attribs.id = id;
-    }
-    if (clazz) {
-        clazz = clazz.replace(/\./g, " ");
-        if (attribs.class) {
-            attribs.class += " " + clazz;
-        } else {
-            attribs.class = clazz;
-        }
-    }
-    if (tag.length > 1) {
-        if (isPlainObject(attribs.style)) {
-            attribs.style = css(attribs.style);
-        }
-        tag = tag.slice(hasAttribs ? 2 : 1).filter((x) => x != null);
-        if (tag.length > 0) {
-            return [el, attribs, tag];
-        }
-    }
-    return [el, attribs];
 };
+
+const normalize =
+    (tag: any[]) => {
+        let el = tag[0];
+        let match, id, clazz;
+        const hasAttribs = isPlainObject(tag[1]);
+        const attribs: any = hasAttribs ? { ...tag[1] } : {};
+        if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
+            illegalArgs(`"${el}" is not a valid tag name`);
+        }
+        el = match[1];
+        id = match[2];
+        clazz = match[3];
+        if (id) {
+            attribs.id = id;
+        }
+        if (clazz) {
+            clazz = clazz.replace(/\./g, " ");
+            if (attribs.class) {
+                attribs.class += " " + clazz;
+            } else {
+                attribs.class = clazz;
+            }
+        }
+        if (tag.length > 1) {
+            if (isPlainObject(attribs.style)) {
+                attribs.style = css(attribs.style);
+            }
+            tag = tag.slice(hasAttribs ? 2 : 1).filter((x) => x != null);
+            if (tag.length > 0) {
+                return [el, attribs, tag];
+            }
+        }
+        return [el, attribs];
+    };
