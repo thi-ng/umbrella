@@ -43,7 +43,7 @@ const app = {
             ["h1", "Selective component updates"],
             this.timers,
             ["a.db.mt3.link",
-                { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-skip/examples/hdom-skip" },
+                { href: "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-skip" },
                 "Source code"]
         ];
     }

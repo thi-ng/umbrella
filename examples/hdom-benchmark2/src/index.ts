@@ -161,7 +161,7 @@ const cancel = start(
                     delta]
             ],
             ["div.mt3",
-                ["a", { href: "https://github.com/thi-ng/umbrella/tree/feature/hdom-skip/examples/hdom-benchmark2" }, "Source"]]
+                ["a", { href: "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2" }, "Source"]]
         ];
     });
 
