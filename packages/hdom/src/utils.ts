@@ -1,7 +1,8 @@
 import { isString } from "@thi.ng/checks/is-string";
+import { HDOMImplementation } from "./api";
 
 export const resolveRoot =
-    (root: any) =>
+    (root: any, impl: HDOMImplementation<any>) =>
         isString(root) ?
-            document.getElementById(root) :
+            impl.getElementById(root) :
             root;

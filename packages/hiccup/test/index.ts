@@ -263,4 +263,10 @@ describe("serialize", () => {
         ["div", { style: { a: (x) => x.b, b: 2 } }],
         `<div style="a:2;b:2;"></div>`
     );
+
+    check(
+        "__skip",
+        ["a", ["b", { __skip: true }, "bb"], ["b", "bbb"]],
+        `<a><b>bbb</b></a>`
+    );
 });

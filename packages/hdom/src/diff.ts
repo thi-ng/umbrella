@@ -51,9 +51,12 @@ export const diffTree = <T>(
     parent: T,
     prev: any[],
     curr: any[],
-    child: number) => {
+    child: number = 0) => {
 
     const attribs = curr[1];
+    if (attribs.__skip) {
+        return;
+    }
     // always replace element if __diff = false
     if (attribs.__diff === false) {
         releaseTree(prev);
@@ -61,8 +64,9 @@ export const diffTree = <T>(
         return;
     }
     // delegate to branch-local implementation
-    if (attribs.__impl) {
-        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    let _impl = attribs.__impl;
+    if (_impl && _impl !== impl) {
+        return _impl.diffTree(opts, _impl, parent, prev, curr, child);
     }
     const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE_LINEAR, equiv);
     if (delta.distance === 0) {
@@ -231,6 +235,9 @@ const extractEquivElements =
 
 const OBJP = Object.getPrototypeOf({});
 
+const FN = "function";
+const STR = "string";
+
 /**
  * Customized version @thi.ng/equiv which takes `__diff` attributes into
  * account (at any nesting level). If an hdom element's attribute object
@@ -247,20 +254,20 @@ export const equiv =
             return true;
         }
         if (a != null) {
-            if (typeof a.equiv === "function") {
+            if (typeof a.equiv === FN) {
                 return a.equiv(b);
             }
         } else {
             return a == b;
         }
         if (b != null) {
-            if (typeof b.equiv === "function") {
+            if (typeof b.equiv === FN) {
                 return b.equiv(a);
             }
         } else {
             return a == b;
         }
-        if (typeof a === "string" || typeof b === "string") {
+        if (typeof a === STR || typeof b === STR) {
             return false;
         }
         if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
@@ -268,8 +275,8 @@ export const equiv =
             return !((<any>a).__diff === false || (<any>b).__diff === false) &&
                 equivObject(a, b, equiv);
         }
-        if (typeof a !== "function" && a.length !== undefined &&
-            typeof b !== "function" && b.length !== undefined) {
+        if (typeof a !== FN && a.length !== undefined &&
+            typeof b !== FN && b.length !== undefined) {
             return equivArrayLike(a, b, equiv);
         }
         if (a instanceof Set && b instanceof Set) {

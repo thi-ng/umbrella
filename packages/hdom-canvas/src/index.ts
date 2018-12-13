@@ -18,6 +18,9 @@ type ReadonlyVec = ArrayLike<number> & Iterable<number>;
 
 const TAU = Math.PI * 2;
 
+const FN = "function";
+const STR = "string";
+
 const DEFAULTS = {
     align: "left",
     alpha: 1,
@@ -128,68 +131,76 @@ export const canvas = {
     }
 };
 
-export const createTree = (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
-    // console.log(Date.now(), "draw");
-    const ctx = canvas.getContext("2d");
-    const attribs = tree[1];
-    if (attribs && attribs.__clear !== false) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    walk(ctx, tree, { attribs: {} });
-};
-
-export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
-    if (tree == null) {
-        return tree;
-    }
-    if (isArray(tree)) {
-        const tag = tree[0];
-        if (typeof tag === "function") {
-            return normalizeTree(opts, tag.apply(null, [opts.ctx, ...tree.slice(1)]));
-        }
-        if (typeof tag === "string") {
-            const attribs = tree[1];
-            if (attribs && attribs.__normalize === false) {
-                return tree;
+export const createTree =
+    (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
+        // console.log(Date.now(), "draw");
+        const ctx = canvas.getContext("2d");
+        const attribs = tree[1];
+        if (attribs) {
+            if (attribs.__skip) return;
+            if (attribs.__clear !== false) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
-            const res = [tree[0], attribs]
-            for (let i = 2, n = tree.length; i < n; i++) {
-                const n = normalizeTree(opts, tree[i]);
+        }
+        walk(ctx, tree, { attribs: {} });
+    };
+
+export const normalizeTree =
+    (opts: Partial<HDOMOpts>, tree: any) => {
+        if (tree == null) {
+            return tree;
+        }
+        if (isArray(tree)) {
+            const tag = tree[0];
+            if (typeof tag === FN) {
+                return normalizeTree(opts, tag.apply(null, [opts.ctx, ...tree.slice(1)]));
+            }
+            if (typeof tag === STR) {
+                const attribs = tree[1];
+                if (attribs && attribs.__normalize === false) {
+                    return tree;
+                }
+                const res = [tree[0], attribs]
+                for (let i = 2, n = tree.length; i < n; i++) {
+                    const n = normalizeTree(opts, tree[i]);
+                    n != null && res.push(n);
+                }
+                return res;
+            }
+        } else if (typeof tree === FN) {
+            return normalizeTree(opts, tree(opts.ctx));
+        } else if (typeof tree.toHiccup === FN) {
+            return normalizeTree(opts, tree.toHiccup(opts.ctx));
+        } else if (typeof tree.deref === FN) {
+            return normalizeTree(opts, tree.deref());
+        } else if (isNotStringAndIterable(tree)) {
+            const res = [];
+            for (let t of tree) {
+                const n = normalizeTree(opts, t);
                 n != null && res.push(n);
             }
             return res;
         }
-    } else if (typeof tree === "function") {
-        return normalizeTree(opts, tree(opts.ctx));
-    } else if (typeof tree.toHiccup === "function") {
-        return normalizeTree(opts, tree.toHiccup(opts.ctx));
-    } else if (typeof tree.deref === "function") {
-        return normalizeTree(opts, tree.deref());
-    } else if (isNotStringAndIterable(tree)) {
-        const res = [];
-        for (let t of tree) {
-            const n = normalizeTree(opts, t);
-            n != null && res.push(n);
-        }
-        return res;
-    }
-    return tree;
-};
+        return tree;
+    };
 
-export const diffTree = (opts: Partial<HDOMOpts>,
-    _: HDOMImplementation<any>,
+export const diffTree = (
+    opts: Partial<HDOMOpts>,
     parent: HTMLCanvasElement,
     prev: any[],
     curr: any[],
-    child: number) => {
+    child: number
+) => {
     const attribs = curr[1];
+    if (attribs.__skip) return;
     if (attribs.__diff === false) {
         releaseTree(prev);
         return createTree(opts, parent, curr);
     }
     // delegate to branch-local implementation
-    if (attribs.__impl && attribs.__impl !== IMPL) {
-        return attribs.__impl.diffTree(opts, attribs.__impl, parent, prev, curr, child);
+    let impl: HDOMImplementation<any> = attribs.__impl;
+    if (impl && impl !== IMPL) {
+        return impl.diffTree(opts, parent, prev, curr, child);
     }
     const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE, equiv);
     if (delta.distance > 0) {
@@ -197,81 +208,90 @@ export const diffTree = (opts: Partial<HDOMOpts>,
     }
 }
 
+const NOOP = () => { };
+
 export const IMPL: HDOMImplementation<any> = {
     createTree,
     normalizeTree,
     diffTree,
-    hydrateTree: () => { },
+    hydrateTree: NOOP,
+    getElementById: NOOP,
+    createElement: NOOP,
+    createTextElement: NOOP,
 };
 
-const walk = (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {
-    if (!shape) return;
-    if (isArray(shape[0])) {
-        for (let s of shape) {
-            walk(ctx, s, pstate);
-        }
-        return;
-    }
-    const state = mergeState(ctx, pstate, shape[1]);
-    const attribs = state ? state.attribs : pstate.attribs;
-    switch (shape[0]) {
-        case "g":
-        case "defs":
-            for (let i = 2, n = shape.length,
-                __state = shape[0] === "g" ? state || pstate : pstate;
-                i < n; i++) {
-                walk(ctx, shape[i], __state);
+const walk =
+    (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {
+        if (!shape) return;
+        if (isArray(shape[0])) {
+            for (let s of shape) {
+                walk(ctx, s, pstate);
             }
-            break;
-        case "linearGradient":
-            defLinearGradient(ctx, pstate, shape[1], shape[2]);
-            break;
-        case "radialGradient":
-            defRadialGradient(ctx, pstate, shape[1], shape[2]);
-            break;
-        case "points":
-            points(ctx, attribs, shape[1], shape[2]);
-            break;
-        case "line":
-            line(ctx, attribs, shape[2], shape[3]);
-            break;
-        case "hline":
-            line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
-            break;
-        case "vline":
-            line(ctx, attribs, [shape[2], -1e6], [shape[2], 1e6]);
-            break;
-        case "polyline":
-            polyline(ctx, attribs, shape[2]);
-            break;
-        case "polygon":
-            polygon(ctx, attribs, shape[2]);
-            break;
-        case "path":
-            path(ctx, attribs, shape[2]);
-            break;
-        case "rect":
-            rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
-            break;
-        case "circle":
-            circularArc(ctx, attribs, shape[2], shape[3]);
-            break;
-        case "arc":
-            circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
-            break;
-        case "text":
-            text(ctx, attribs, shape[2], shape[3], shape[4]);
-            break;
-        case "img":
-            image(ctx, attribs, shape[2], shape[3]);
-        default:
-    }
-    state && restoreState(ctx, pstate, state);
-};
+            return;
+        }
+        const state = mergeState(ctx, pstate, shape[1]);
+        const attribs = state ? state.attribs : pstate.attribs;
+        if (attribs.__skip) return;
+        switch (shape[0]) {
+            case "g":
+            case "defs":
+                for (let i = 2, n = shape.length,
+                    __state = shape[0] === "g" ? state || pstate : pstate;
+                    i < n; i++) {
+                    walk(ctx, shape[i], __state);
+                }
+                break;
+            case "linearGradient":
+                defLinearGradient(ctx, pstate, shape[1], shape[2]);
+                break;
+            case "radialGradient":
+                defRadialGradient(ctx, pstate, shape[1], shape[2]);
+                break;
+            case "points":
+                points(ctx, attribs, shape[1], shape[2]);
+                break;
+            case "line":
+                line(ctx, attribs, shape[2], shape[3]);
+                break;
+            case "hline":
+                line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
+                break;
+            case "vline":
+                line(ctx, attribs, [shape[2], -1e6], [shape[2], 1e6]);
+                break;
+            case "polyline":
+                polyline(ctx, attribs, shape[2]);
+                break;
+            case "polygon":
+                polygon(ctx, attribs, shape[2]);
+                break;
+            case "path":
+                path(ctx, attribs, shape[2]);
+                break;
+            case "rect":
+                rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+                break;
+            case "circle":
+                circularArc(ctx, attribs, shape[2], shape[3]);
+                break;
+            case "arc":
+                circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+                break;
+            case "text":
+                text(ctx, attribs, shape[2], shape[3], shape[4]);
+                break;
+            case "img":
+                image(ctx, attribs, shape[2], shape[3]);
+            default:
+        }
+        state && restoreState(ctx, pstate, state);
+    };
 
-const mergeState = (ctx: CanvasRenderingContext2D,
+const mergeState = (
+    ctx: CanvasRenderingContext2D,
     state: DrawState,
-    attribs: IObjectOf<any>) => {
+    attribs: IObjectOf<any>
+) => {
 
     let res: DrawState;
     if (!attribs) return;
@@ -304,9 +324,11 @@ const mergeState = (ctx: CanvasRenderingContext2D,
     return res;
 };
 
-const restoreState = (ctx: CanvasRenderingContext2D,
+const restoreState = (
+    ctx: CanvasRenderingContext2D,
     prev: DrawState,
-    curr: DrawState) => {
+    curr: DrawState
+) => {
 
     if (curr.restore) {
         ctx.restore();
@@ -322,11 +344,13 @@ const restoreState = (ctx: CanvasRenderingContext2D,
     }
 };
 
-const setAttrib = (ctx: CanvasRenderingContext2D,
+const setAttrib = (
+    ctx: CanvasRenderingContext2D,
     state: DrawState,
     id: string,
     k: string,
-    val: any) => {
+    val: any
+) => {
 
     switch (id) {
         case "fill":
@@ -343,40 +367,44 @@ const setAttrib = (ctx: CanvasRenderingContext2D,
     }
 };
 
-const applyTransform = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
-    let v: any;
-    if ((v = attribs.transform) ||
-        attribs.translate ||
-        attribs.scale ||
-        attribs.rotate) {
+const applyTransform =
+    (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
+        let v: any;
+        if ((v = attribs.transform) ||
+            attribs.translate ||
+            attribs.scale ||
+            attribs.rotate) {
 
-        ctx.save();
-        if (v) {
-            ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
-        } else {
-            (v = attribs.translate) && ctx.translate(v[0], v[1]);
-            (v = attribs.rotate) && ctx.rotate(v);
-            (v = attribs.scale) && (isArrayLike(v) ? ctx.scale(v[0], v[1]) : ctx.scale(v, v));
+            ctx.save();
+            if (v) {
+                ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
+            } else {
+                (v = attribs.translate) && ctx.translate(v[0], v[1]);
+                (v = attribs.rotate) && ctx.rotate(v);
+                (v = attribs.scale) && (isArrayLike(v) ? ctx.scale(v[0], v[1]) : ctx.scale(v, v));
+            }
+            return true;
         }
-        return true;
-    }
-    return false;
-};
+        return false;
+    };
 
-const endShape = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
-    let v: any;
-    if ((v = attribs.fill) && v !== "none") {
-        ctx.fill();
-    }
-    if ((v = attribs.stroke) && v !== "none") {
-        ctx.stroke();
-    }
-};
+const endShape =
+    (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
+        let v: any;
+        if ((v = attribs.fill) && v !== "none") {
+            ctx.fill();
+        }
+        if ((v = attribs.stroke) && v !== "none") {
+            ctx.stroke();
+        }
+    };
 
-const defLinearGradient = (ctx: CanvasRenderingContext2D,
+const defLinearGradient = (
+    ctx: CanvasRenderingContext2D,
     state: DrawState,
     { id, from, to }: any,
-    stops: any[][]) => {
+    stops: any[][]
+) => {
 
     const g = ctx.createLinearGradient(from[0], from[1], to[0], to[1]);
     for (let s of stops) {
@@ -386,10 +414,12 @@ const defLinearGradient = (ctx: CanvasRenderingContext2D,
     state.grads[id] = g;
 };
 
-const defRadialGradient = (ctx: CanvasRenderingContext2D,
+const defRadialGradient = (
+    ctx: CanvasRenderingContext2D,
     state: DrawState,
     { id, from, to, r1, r2 }: any,
-    stops: any[][]) => {
+    stops: any[][]
+) => {
 
     const g = ctx.createRadialGradient(from[0], from[1], r1, to[0], to[1], r2);
     for (let s of stops) {
@@ -399,10 +429,12 @@ const defRadialGradient = (ctx: CanvasRenderingContext2D,
     state.grads[id] = g;
 };
 
-const line = (ctx: CanvasRenderingContext2D,
+const line = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     a: ReadonlyVec,
-    b: ReadonlyVec) => {
+    b: ReadonlyVec
+) => {
 
     if (attribs.stroke === "none") return;
     ctx.beginPath();
@@ -411,9 +443,11 @@ const line = (ctx: CanvasRenderingContext2D,
     ctx.stroke();
 };
 
-const polyline = (ctx: CanvasRenderingContext2D,
+const polyline = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
-    pts: ReadonlyVec[]) => {
+    pts: ReadonlyVec[]
+) => {
 
     if (pts.length < 2 || attribs.stroke == "none") return;
     let p: ReadonlyVec = pts[0];
@@ -426,9 +460,11 @@ const polyline = (ctx: CanvasRenderingContext2D,
     ctx.stroke();
 };
 
-const polygon = (ctx: CanvasRenderingContext2D,
+const polygon = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
-    pts: ReadonlyVec[]) => {
+    pts: ReadonlyVec[]
+) => {
 
     if (pts.length < 2) return;
     let p: ReadonlyVec = pts[0];
@@ -442,9 +478,11 @@ const polygon = (ctx: CanvasRenderingContext2D,
     endShape(ctx, attribs);
 };
 
-const path = (ctx: CanvasRenderingContext2D,
+const path = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
-    segments: any[]) => {
+    segments: any[]
+) => {
 
     ctx.beginPath();
     let a: ReadonlyVec = [0, 0];
@@ -557,13 +595,15 @@ const path = (ctx: CanvasRenderingContext2D,
     endShape(ctx, attribs);
 };
 
-const circularArc = (ctx: CanvasRenderingContext2D,
+const circularArc = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pos: ReadonlyVec,
     r: number,
     start = 0,
     end = TAU,
-    antiCCW = false) => {
+    antiCCW = false
+) => {
 
     ctx.beginPath();
     ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
@@ -598,10 +638,12 @@ const rect = (ctx: CanvasRenderingContext2D,
     }
 };
 
-const points = (ctx: CanvasRenderingContext2D,
+const points = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     opts: IObjectOf<any>,
-    pts: Iterable<ReadonlyVec>) => {
+    pts: Iterable<ReadonlyVec>
+) => {
 
     const s = (opts && opts.size) || 1;
     let v: any;
@@ -633,11 +675,13 @@ const points = (ctx: CanvasRenderingContext2D,
     }
 };
 
-const text = (ctx: CanvasRenderingContext2D,
+const text = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pos: ReadonlyVec,
     body: any,
-    maxWidth?: number) => {
+    maxWidth?: number
+) => {
 
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
@@ -652,7 +696,8 @@ const image = (
     ctx: CanvasRenderingContext2D,
     _: IObjectOf<any>,
     pos: ReadonlyVec,
-    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap) => {
+    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap
+) => {
 
     ctx.drawImage(img, pos[0], pos[1]);
 };
