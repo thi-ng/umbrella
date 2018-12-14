@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.3.0...@thi.ng/hdom-components@2.4.0) (2018-12-14)
+
+
+### Features
+
+* **hdom-components:** merge button & button group attribs ([da441c1](https://github.com/thi-ng/umbrella/commit/da441c1))
+
+
+
+
+
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@2.2.15...@thi.ng/hdom-components@2.3.0) (2018-12-13)
 
 
