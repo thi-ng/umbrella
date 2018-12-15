@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-stats",
-    "version": "0.4.17",
+    "version": "0.4.18",
     "description": "Transducers for statistical / technical analysis",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -28,9 +28,9 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/dcons": "^1.1.17",
-        "@thi.ng/errors": "^0.1.11",
-        "@thi.ng/transducers": "^2.2.5"
+        "@thi.ng/dcons": "^1.1.18",
+        "@thi.ng/errors": "^0.1.12",
+        "@thi.ng/transducers": "^2.2.6"
     },
     "keywords": [
         "ES6",

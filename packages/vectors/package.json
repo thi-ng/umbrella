@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "1.4.6",
+    "version": "1.4.7",
     "description": "Vector algebra for fixed & variable sizes, memory mapped, flexible layouts",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -29,11 +29,11 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.3",
-        "@thi.ng/checks": "^1.5.13",
-        "@thi.ng/errors": "^0.1.11",
-        "@thi.ng/math": "^0.2.1",
-        "@thi.ng/transducers": "^2.2.5"
+        "@thi.ng/api": "^4.2.4",
+        "@thi.ng/checks": "^1.5.14",
+        "@thi.ng/errors": "^0.1.12",
+        "@thi.ng/math": "^0.2.2",
+        "@thi.ng/transducers": "^2.2.6"
     },
     "keywords": [
         "ES6",

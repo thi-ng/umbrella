@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iges",
-    "version": "0.2.23",
+    "version": "0.2.24",
     "description": "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -28,10 +28,10 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.3",
-        "@thi.ng/defmulti": "^0.5.0",
-        "@thi.ng/strings": "^0.7.0",
-        "@thi.ng/transducers": "^2.2.5"
+        "@thi.ng/api": "^4.2.4",
+        "@thi.ng/defmulti": "^0.5.1",
+        "@thi.ng/strings": "^0.7.1",
+        "@thi.ng/transducers": "^2.2.6"
     },
     "keywords": [
         "CAD",

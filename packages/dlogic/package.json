@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dlogic",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Assorted digital logic ops / constructs.",
     "main": "./index.js",
     "typings": "./index.d.ts",

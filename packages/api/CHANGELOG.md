@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.3...@thi.ng/api@4.2.4) (2018-12-15)
+
+**Note:** Version bump only for package @thi.ng/api
+
+
+
+
+
 ## [4.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.2...@thi.ng/api@4.2.3) (2018-10-21)
 
 **Note:** Version bump only for package @thi.ng/api

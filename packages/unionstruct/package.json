@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/unionstruct",
-    "version": "0.1.18",
+    "version": "0.1.19",
     "description": "C-style struct, union and bitfield views of ArrayBuffers",
     "main": "./index.js",
     "typings": "./index.d.ts",

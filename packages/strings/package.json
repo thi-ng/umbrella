@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/strings",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "description": "Various string formatting & utility functions",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -28,8 +28,8 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/errors": "^0.1.11",
-        "@thi.ng/memoize": "^0.2.5"
+        "@thi.ng/errors": "^0.1.12",
+        "@thi.ng/memoize": "^0.2.6"
     },
     "keywords": [
         "ES6",
