@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "6.0.1",
+    "version": "6.0.2",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "main": "./index.js",
     "typings": "./index.d.ts",
