@@ -21,3 +21,6 @@ export const handleTab = (stream) =>
             );
         }
     };
+
+export const varName = (name: string) =>
+    name.replace(/\-+/g, "_");

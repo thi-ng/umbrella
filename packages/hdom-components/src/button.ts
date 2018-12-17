@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api/api";
+import { mergeAttribs } from "./utils/merge-attribs";
 
 export interface ButtonOpts {
     /**
@@ -36,7 +37,8 @@ export interface ButtonArgs {
     disabled: boolean;
 }
 
-export type Button = (_: any, args: Partial<ButtonArgs>, ...body: any[]) => any;
+export type Button =
+    (_: any, args: Partial<ButtonArgs>, ...body: any[]) => any;
 
 /**
  * Higher order function to create a new stateless button component,
@@ -52,28 +54,27 @@ export type Button = (_: any, args: Partial<ButtonArgs>, ...body: any[]) => any;
  * button version to create. The button can have any number of body
  * elements (e.g. icon and label), given as varargs.
  */
-export const button = (opts?: Partial<ButtonOpts>): Button => {
-    // init with defaults
-    opts = {
-        tag: "a",
-        tagDisabled: "span",
-        preventDefault: true,
-        attribs: {},
-        ...opts
+export const button =
+    (opts?: Partial<ButtonOpts>): Button => {
+        // init with defaults
+        opts = {
+            tag: "a",
+            tagDisabled: "span",
+            preventDefault: true,
+            attribs: {},
+            ...opts
+        };
+        !opts.attribs.role && (opts.attribs.role = "button");
+        return (_: any, args: Partial<ButtonArgs>, ...body: any[]) =>
+            args.disabled ?
+                [opts.tagDisabled, {
+                    ...mergeAttribs(opts.attribsDisabled, args.attribs),
+                    disabled: true,
+                }, ...body] :
+                [opts.tag, {
+                    ...mergeAttribs(opts.attribs, args.attribs),
+                    onclick: opts.preventDefault ?
+                        (e) => (e.preventDefault(), args.onclick(e)) :
+                        args.onclick
+                }, ...body];
     };
-    !opts.attribs.role && (opts.attribs.role = "button");
-    return (_: any, args: Partial<ButtonArgs>, ...body: any[]) =>
-        args.disabled ?
-            [opts.tagDisabled, {
-                ...opts.attribsDisabled,
-                ...args.attribs,
-                disabled: true,
-            }, ...body] :
-            [opts.tag, {
-                ...opts.attribs,
-                ...args.attribs,
-                onclick: opts.preventDefault ?
-                    (e) => (e.preventDefault(), args.onclick(e)) :
-                    args.onclick
-            }, ...body];
-};

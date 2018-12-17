@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.32...@thi.ng/hiccup-css@0.3.0) (2018-12-15)
+
+
+### Features
+
+* **hiccup-css:** add animation(), add test & update readme ([aac8b6f](https://github.com/thi-ng/umbrella/commit/aac8b6f))
+
+
+
+
+
 ## [0.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.2.31...@thi.ng/hiccup-css@0.2.32) (2018-12-13)
 
 **Note:** Version bump only for package @thi.ng/hiccup-css

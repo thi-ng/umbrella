@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./animation";
 export * from "./attribs";
 export * from "./comment";
 export * from "./conditional";

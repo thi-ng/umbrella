@@ -13,7 +13,7 @@ program
     .usage("[options] <file>")
     .option("-t, --tags <items>", "remove tags from tree", utils.asSet)
     .option("-a, --attribs <items>", "remove attribs from tree", utils.asSet)
-    .option("-v, --var <name>", "generate TS export var decl")
+    .option("-v, --var <name>", "generate TS export var decl", utils.varName)
     .option("-s, --single-quote", "use single quotes")
     .option("-p, --no-pretty", "disable pretty printing")
     .parse(process.argv);

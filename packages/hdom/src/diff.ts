@@ -207,7 +207,7 @@ export const releaseTree =
             }
             if ((<any>tag).__release) {
                 // DEBUG && console.log("call __release", tag);
-                (<any>tag).__release.apply(tag, (<any>tag).__args);
+                (<any>tag).__release.apply((<any>tag).__this, (<any>tag).__args);
                 delete (<any>tag).__release;
             }
             for (x = tag.length; --x >= 2;) {

@@ -587,7 +587,10 @@ interface ILifecycle {
     /**
      * Component init method. Called with the actual DOM element,
      * hdom user context and any other args when the component is
-     * first used, but **after** `render()` has been called once already.
+     * first used, but **after** `render()` has been called once
+     * already AND all of the components children have been realized.
+     * Therefore, if any children have their own `init` lifecycle
+     * method, these hooks will be executed before that of the parent.
      */
     init?(el: Element, ctx: any, ...args: any[]);
 

@@ -1,6 +1,7 @@
 import { IObjectOf } from "@thi.ng/api/api";
 
 import { ButtonArgs, Button } from "./button";
+import { mergeAttribs } from "./utils/merge-attribs";
 
 /**
  * Button group component config options.
@@ -52,7 +53,8 @@ export interface ButtonGroupItem extends Array<any> {
     [id: number]: any;
 }
 
-export type ButtonGroup = (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) => any;
+export type ButtonGroup =
+    (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) => any;
 
 /**
  * Higher order function to create a new stateless button group
@@ -71,35 +73,40 @@ export type ButtonGroup = (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem
  *
  * @param opts
  */
-export const buttonGroup = (opts: ButtonGroupOpts): ButtonGroup =>
-    (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) =>
-        ["div", { ...opts.attribs, ...args.attribs }, ...groupBody(opts, args.disabled, buttons)];
+export const buttonGroup =
+    (opts: ButtonGroupOpts): ButtonGroup =>
+        (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) =>
+            ["div",
+                mergeAttribs(opts.attribs, args.attribs),
+                ...groupBody(opts, args.disabled, buttons)];
 
-const groupBody = (opts: ButtonGroupOpts, disabled: boolean, buttons: ButtonGroupItem[]) => {
-    switch (buttons.length) {
-        case 0:
-            return;
-        case 1:
-            return [bt(opts.inner || opts.first, disabled, buttons[0])];
-        case 2:
-            return [
-                bt(opts.first, disabled, buttons[0]),
-                bt(opts.last || opts.first, disabled, buttons[1])
-            ];
-        default: {
-            const res = [bt(opts.first, disabled, buttons[0])];
-            const el = opts.inner || opts.first
-            const n = buttons.length - 1;
-            for (let i = 1; i < n; i++) {
-                res[i] = bt(el, disabled, buttons[i]);
+const groupBody =
+    (opts: ButtonGroupOpts, disabled: boolean, buttons: ButtonGroupItem[]) => {
+        switch (buttons.length) {
+            case 0:
+                return;
+            case 1:
+                return [bt(opts.inner || opts.first, disabled, buttons[0])];
+            case 2:
+                return [
+                    bt(opts.first, disabled, buttons[0]),
+                    bt(opts.last || opts.first, disabled, buttons[1])
+                ];
+            default: {
+                const res = [bt(opts.first, disabled, buttons[0])];
+                const el = opts.inner || opts.first
+                const n = buttons.length - 1;
+                for (let i = 1; i < n; i++) {
+                    res[i] = bt(el, disabled, buttons[i]);
+                }
+                res[n] = bt(opts.last || opts.first, disabled, buttons[n]);
+                return res;
             }
-            res[n] = bt(opts.last || opts.first, disabled, buttons[n]);
-            return res;
         }
-    }
-};
+    };
 
-const bt = (el: Button, disabled: boolean, bt: ButtonGroupItem) =>
-    disabled ?
-        [el, { ...bt[0], disabled: true }, ...bt.slice(1)] :
-        [el, ...bt];
+const bt =
+    (el: Button, disabled: boolean, bt: ButtonGroupItem) =>
+        disabled ?
+            [el, { ...bt[0], disabled: true }, ...bt.slice(1)] :
+            [el, ...bt];

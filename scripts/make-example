@@ -33,8 +33,8 @@ cat << EOF > $MODULE/package.json
     },
     "devDependencies": {
         "parcel-bundler": "^1.10.3",
-        "terser": "^3.10.1",
-        "typescript": "^3.1.3"
+        "terser": "^3.11.0",
+        "typescript": "^3.2.2"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
@@ -84,7 +84,7 @@ cat << EOF > $MODULE/index.html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>$1</title>
-    <link href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
     <style>
     </style>
 </head>

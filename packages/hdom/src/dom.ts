@@ -39,18 +39,17 @@ export const createTree = <T>(
                 .createTree(opts, parent, tree, insert);
         }
         const el = impl.createElement(parent, tag, attribs, insert);
-        if ((<any>tree).__init) {
-            // TODO hdom ctx?
-            (<any>tree).__init.apply(
-                (<any>tree).__this,
-                [el, ...(<any>tree).__args]
-            );
-        }
         if (tree.length > 2) {
             const n = tree.length;
             for (let i = 2; i < n; i++) {
                 createTree(opts, impl, el, tree[i]);
             }
+        }
+        if ((<any>tree).__init) {
+            (<any>tree).__init.apply(
+                (<any>tree).__this,
+                [el, ...(<any>tree).__args]
+            );
         }
         return el;
     }
