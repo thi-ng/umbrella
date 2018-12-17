@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.8...@thi.ng/transducers-hdom@1.2.9) (2018-12-17)
+
+**Note:** Version bump only for package @thi.ng/transducers-hdom
+
+
+
+
+
 ## [1.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.7...@thi.ng/transducers-hdom@1.2.8) (2018-12-16)
 
 **Note:** Version bump only for package @thi.ng/transducers-hdom
