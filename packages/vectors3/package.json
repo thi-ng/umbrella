@@ -21,18 +21,18 @@
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
-        "@types/node": "^10.12.0",
+        "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
         "nyc": "^13.1.0",
         "typedoc": "^0.13.0",
-        "typescript": "^3.1.3"
+        "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.3",
-        "@thi.ng/checks": "^1.5.13",
+        "@thi.ng/api": "^4.2.4",
+        "@thi.ng/checks": "^1.5.14",
         "@thi.ng/equiv": "^0.1.13",
         "@thi.ng/errors": "^0.1.11",
-        "@thi.ng/math": "^0.2.1",
+        "@thi.ng/math": "^0.2.2",
         "@thi.ng/random": "^0.1.0",
         "@thi.ng/transducers": "^2.2.2"
     },
