@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@0.2.31...@thi.ng/transducers-fsm@0.2.32) (2018-12-17)
+
+**Note:** Version bump only for package @thi.ng/transducers-fsm
+
+
+
+
+
 ## [0.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@0.2.30...@thi.ng/transducers-fsm@0.2.31) (2018-12-15)
 
 **Note:** Version bump only for package @thi.ng/transducers-fsm
