@@ -11,7 +11,8 @@ const ecol = "#aaaaaa";
 const xform = tx.comp(
     tx.map((f) => baseDir + f),
     tx.filter((f) => f.indexOf(".DS_Store") < 0 && fs.statSync(f).isDirectory),
-    tx.map((f) => fs.readFileSync(f + "/package.json")),
+    tx.map((f) => { try { return fs.readFileSync(f + "/package.json"); } catch (_) { } }),
+    tx.filter(f => f !== undefined),
     tx.map((p) => {
         p = JSON.parse(p.toString());
         return {
