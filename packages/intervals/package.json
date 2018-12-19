@@ -28,7 +28,8 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.4"
+        "@thi.ng/api": "^4.2.4",
+        "@thi.ng/errors": "^0.1.12"
     },
     "keywords": [
         "ES6",
@@ -37,6 +38,7 @@
         "intersection",
         "interval",
         "math",
+        "parser",
         "query",
         "typescript",
         "union"
