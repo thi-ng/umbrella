@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-markdown",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Markdown serialization of hiccup DOM trees",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -31,7 +31,7 @@
         "@thi.ng/checks": "^1.5.14",
         "@thi.ng/defmulti": "^0.5.1",
         "@thi.ng/errors": "^0.1.12",
-        "@thi.ng/hiccup": "^2.7.1",
+        "@thi.ng/hiccup": "^2.7.2",
         "@thi.ng/strings": "^0.7.1"
     },
     "keywords": [
