@@ -856,11 +856,21 @@ less than `n`, if input is too short...)
 ```
 
 ### `walk(fn: (x: any) => void, input: Iterable<any>, postOrder = false) => void`
+### `walk(fn: (x: any) => void, children: (x: any) => any, input: Iterable<any>, postOrder = false) => void`
 
 Recursively walks input and applies `fn` to each element (for in-place
 editing or side effects). Only iterable values and objects (but not
 strings) are traversed further. Traversal is pre-order by default, but
 can be changed to post-order via last arg.
+
+Note: Object traversal is done via `objectIterator()` and so will
+include pairs of `[k, v]` values.
+
+The optional `children` fn can be used to select child values of the
+currently visited value. If this function is given then only its return
+values will be traversed further (with the same constraint as mentioned
+above). If the fn returns `null` or `undefined`, no children will be
+visited.
 
 ```ts
 // dummy SVG document
@@ -890,7 +900,7 @@ let circleTX = x => {
 };
 
 // transform doc
-ti.walk(circleTX, doc);
+ti.walk(circleTX, (x) => x.content, doc);
 
 doc.content[0].content[1]
 // { tag: "circle", attr: { x: 83.9269, y: 31.129, r: 5 } }
@@ -899,11 +909,21 @@ doc.content[1]
 ```
 
 ### `walkIterator(input: Iterable<any>, postOrder = false) => IterableIterator<any>`
+### `walkIterator(input: Iterable<any>, children: (x: any) => any, postOrder = false) => IterableIterator<any>`
 
 Yields an iterator performing either pre-order (default) or post-order
 [traversal](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order) of
 input. Only iterable values and objects (but not strings) are traversed
 further.
+
+Note: Object traversal is done via `objectIterator()` and so will
+include pairs of `[k, v]` values.
+
+The optional `children` fn can be used to select child values of the
+currently visited value. If this function is given then only its return
+values will be traversed further (with the same constraint as mentioned
+above). If the fn returns `null` or `undefined`, no children will be
+visited.
 
 ```ts
 // pre-order traversal

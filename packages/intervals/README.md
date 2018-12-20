@@ -24,6 +24,11 @@ Data type for closed, open and semi-open intervals, point / range
 queries and set operations with other intervals (union, intersection,
 difference).
 
+Furthermore, a parser for [ISO 80000-2 / ISO 31-11 interval
+notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
+[`Interval.parse()`](https://github.com/thi-ng/umbrella/blob/master/packages/intervals/src/index.ts#L23)
+for details.
+
 ## Installation
 
 ```bash
@@ -33,6 +38,7 @@ yarn add @thi.ng/intervals
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage examples
 
@@ -48,6 +54,10 @@ b = Interval.withMax(1, true);
 i = a.intersection(b);
 i.toString();
 // [0 .. 1)
+
+// parse from string
+Interval.parse("[0 .. 1)")
+// Interval { l: 0, r: 1, lopen: false, ropen: true }
 
 i.contains(1);
 // false (because interval is open on RHS)

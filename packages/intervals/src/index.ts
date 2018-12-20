@@ -1,4 +1,5 @@
 import { ICopy, IEquiv, IContains, Fn, ICompare } from "@thi.ng/api/api";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 export const enum Classifier {
     DISJOINT_LEFT,
@@ -9,11 +10,83 @@ export const enum Classifier {
     OVERLAP_RIGHT,
 }
 
+const BRACES = "()[]";
+const RE_INF = /^([-+])?(inf(inity)?|\u221e)$/i;
+
 export class Interval implements
     ICompare<Interval>,
     IContains<number>,
     ICopy<Interval>,
     IEquiv {
+
+    /**
+     * Parses given ISO 80000-2 interval notation into a new `Interval`
+     * instance. In addition to the comma separator, `..` can be used
+     * alternatively. The following symbols (with optional sign) can be
+     * used for infinity (case insensitive):
+     *
+     * - inf
+     * - infinity
+     * - ∞ (\u221e)
+     *
+     * An empty LHS defaults to `-Infinity`. The RHS defaults to
+     * `+Infinity`.
+     *
+     * Openness / closedness symbols:
+     *
+     * - LHS: `]` or `(` (open), `[` (closed)
+     * - RHS: `[` or `)` (open), `]` (closed)
+     *
+     * ```
+     * // semi-open interval between -∞ and +1
+     * Interval.parse("[,1)")
+     *
+     * // closed interval between -1 and +1
+     * Interval.parse("[-1 .. 1]")
+     * ```
+     *
+     * @param src
+     */
+    static parse(src: string) {
+        let l, r, c1, c2;
+        const n = src.length - 1;
+        const comma = src.indexOf(",") > 0;
+        const dot = src.indexOf("..") > 0;
+        if (n < (dot ? 3 : 2)) {
+            illegalArgs(src);
+        }
+        c1 = src.charAt(0);
+        c2 = src.charAt(n);
+        if (BRACES.indexOf(c1) < 0 || BRACES.indexOf(c2) < 0 || !(comma || dot)) {
+            illegalArgs(src);
+        }
+        [l, r] = src
+            .substring(1, n)
+            .split(dot ? ".." : ",")
+            .map((x, i) => {
+                x = x.trim();
+                const inf = RE_INF.exec(x);
+                const n =
+                    ((x === "" && i === 0) || inf && inf[1] === "-") ?
+                        -Infinity :
+                        ((x === "" && i > 0) || inf && inf[1] !== "-") ?
+                            Infinity :
+                            parseFloat(x);
+                if (isNaN(n)) {
+                    illegalArgs(`term: '${x}'`);
+                }
+                return n;
+            });
+        r === undefined && (r = Infinity);
+        if (l > r) {
+            illegalArgs(`invalid interval: ${src}`);
+        }
+        return new Interval(
+            l, r,
+            c1 === "(" || c1 === "]",
+            c2 === ")" || c2 === "[",
+        );
+    }
 
     static infinity() {
         return new Interval(-Infinity, Infinity);
@@ -213,6 +286,10 @@ export class Interval implements
 
     toString() {
         return `${this.lopen ? "(" : "["}${this.l} .. ${this.r}${this.ropen ? ")" : "]"}`;
+    }
+
+    toJSON() {
+        return this.toString();
     }
 
     protected $min(a: number, b: number, ao: boolean, bo: boolean): [number, boolean] {
