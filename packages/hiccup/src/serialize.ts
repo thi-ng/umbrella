@@ -245,7 +245,7 @@ const _serializeIter = (
     return res.join("");
 };
 
-const normalize =
+export const normalize =
     (tag: any[]) => {
         let el = tag[0];
         let match, id, clazz;
