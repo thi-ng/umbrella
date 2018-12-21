@@ -14,6 +14,8 @@ import {
 import { eqDelta3 } from "./eqdelta";
 import { declareIndices } from "./internal/accessors";
 import { AVec } from "./internal/avec";
+import { intoBuffer, mapBuffer, vecIterator } from "./internal/vec-utils";
+import { setS3 } from "./sets";
 
 export class Vec3 extends AVec implements
     IVector<Vec3> {
@@ -27,18 +29,13 @@ export class Vec3 extends AVec implements
      * interleaved etc.
      *
      * @param buf backing array
-     * @param n num vectors
+     * @param num num vectors
      * @param start  start index
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, n: number = (buf.length / 3) | 0, start = 0, cstride = 1, estride = 3) {
-        const res: Vec3[] = [];
-        while (--n >= 0) {
-            res.push(new Vec3(buf, start, cstride));
-            start += estride;
-        }
-        return res;
+    static mapBuffer(buf: Vec, num: number = (buf.length / 3) | 0, start = 0, cstride = 1, estride = 3) {
+        return mapBuffer(Vec3, buf, num, start, cstride, estride);
     }
 
     /**
@@ -55,21 +52,12 @@ export class Vec3 extends AVec implements
      * @param cstride
      * @param estride
      */
-    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec3>>, start = 0, cstride = 1, estride = 3) {
-        for (let v of src) {
-            buf[start] = v[0];
-            buf[start + cstride] = v[1];
-            buf[start + 2 * cstride] = v[2];
-            start += estride;
-        }
-        return buf;
+    static intoBuffer(buf: Vec, src: Iterable<Vec3>, start = 0, cstride = 1, estride = 3) {
+        return intoBuffer(setS3, buf, src, start, cstride, estride);
     }
 
-    static *iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 3) {
-        while (num-- > 0) {
-            yield new Vec3(buf, start, cstride);
-            start += estride;
-        }
+    static iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 3) {
+        return vecIterator(Vec3, buf, num, start, cstride, estride);
     }
 
     static readonly X_AXIS = new Vec3(X3);
@@ -101,6 +89,10 @@ export class Vec3 extends AVec implements
 
     copy() {
         return new Vec3([this.x, this.y, this.z]);
+    }
+
+    copyView() {
+        return new Vec3(this.buf, this.i, this.s);
     }
 
     empty() {

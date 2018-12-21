@@ -32,6 +32,10 @@ export interface IVector<T> extends
     StridedVec {
 }
 
+export interface VectorConstructor<T> {
+    new(buf: Vec, offset?: number, stride?: number): T;
+}
+
 export interface MultiVecOp<VOP> {
     add(dim: number, op: VOP): VOP;
     default(op: VOP): VOP;

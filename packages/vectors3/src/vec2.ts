@@ -13,6 +13,8 @@ import {
 import { eqDelta2 } from "./eqdelta";
 import { declareIndices } from "./internal/accessors";
 import { AVec } from "./internal/avec";
+import { intoBuffer, mapBuffer, vecIterator } from "./internal/vec-utils";
+import { setS2 } from "./sets";
 
 export class Vec2 extends AVec implements
     IVector<Vec2> {
@@ -32,12 +34,7 @@ export class Vec2 extends AVec implements
      * @param estride element stride
      */
     static mapBuffer(buf: Vec, num: number = buf.length >> 1, start = 0, cstride = 1, estride = 2) {
-        const res: Vec2[] = [];
-        while (--num >= 0) {
-            res.push(new Vec2(buf, start, cstride));
-            start += estride;
-        }
-        return res;
+        return mapBuffer(Vec2, buf, num, start, cstride, estride);
     }
 
     /**
@@ -54,20 +51,12 @@ export class Vec2 extends AVec implements
      * @param cstride
      * @param estride
      */
-    static intoBuffer(buf: Vec, src: Iterable<Readonly<Vec2>>, start = 0, cstride = 1, estride = 2) {
-        for (let v of src) {
-            buf[start] = v[0];
-            buf[start + cstride] = v[1];
-            start += estride;
-        }
-        return buf;
+    static intoBuffer(buf: Vec, src: Iterable<Vec2>, start = 0, cstride = 1, estride = 2) {
+        return intoBuffer(setS2, buf, src, start, cstride, estride);
     }
 
-    static *iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 2) {
-        while (num-- > 0) {
-            yield new Vec2(buf, start, cstride);
-            start += estride;
-        }
+    static iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 2) {
+        return vecIterator(Vec2, buf, num, start, cstride, estride);
     }
 
     static readonly X_AXIS = new Vec2(X2);
@@ -96,6 +85,10 @@ export class Vec2 extends AVec implements
 
     copy() {
         return new Vec2([this.x, this.y]);
+    }
+
+    copyView() {
+        return new Vec2(this.buf, this.i, this.s);
     }
 
     empty() {
