@@ -302,7 +302,5 @@ export const clearDOM =
 export const removeChild =
     (parent: Element, childIdx: number) => {
         const n = parent.children[childIdx];
-        if (n !== undefined) {
-            n.remove();
-        }
+        n !== undefined && parent.removeChild(n);
     };

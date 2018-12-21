@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@6.0.3...@thi.ng/hdom@6.0.4) (2018-12-21)
+
+
+### Bug Fixes
+
+* **hdom:** fix [#63](https://github.com/thi-ng/umbrella/issues/63) update removeChild() (IE11) ([9f48a76](https://github.com/thi-ng/umbrella/commit/9f48a76))
+
+
+
+
+
 ## [6.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@6.0.2...@thi.ng/hdom@6.0.3) (2018-12-20)
 
 **Note:** Version bump only for package @thi.ng/hdom
