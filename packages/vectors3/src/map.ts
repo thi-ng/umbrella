@@ -11,7 +11,7 @@ import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
  * buffers).
  *
  * In each iteration `op` is called via `op(out, a, b)`, followed by
- * cursor updates to process the next vector. No bounds checking is
+ * cursor updates to process the next vector view. No bounds checking is
  * performed.
  *
  * This function returns `out`'s backing buffer.
@@ -19,7 +19,7 @@ import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
  * ```
  * // each input buffer contains 2 2D vectors, but using
  * // different strided data layouts
- * mapBufferVV(
+ * mapVV(
  *   // transformation function
  *   add,
  *   // init output buffer view
@@ -36,11 +36,11 @@ import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
  * // [ 11, 22, 33, 44 ]
  * ```
  *
- * `Vec2/3/4.iterator()` combined with transducers can be used to
- * achieve the same (and more flexible) transformations, but will incur
- * more intermediate object allocations. `mapBuffer*()` functions only
- * use (and mutate) the provided vector instances and do not allocate
- * any further objects.
+ * Alternatively, `Vec2/3/4.iterator()` combined with transducers can be
+ * used to achieve the same (and more flexible) transformations, but
+ * will incur more intermediate object allocations. `mapV*()`
+ * functions only use (and mutate) the provided vector instances and do
+ * not allocate any further objects.
  *
  * ```
  * // output buffer
@@ -68,7 +68,7 @@ import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
  * @param sa
  * @param sb
  */
-export const mapBufferVV = (
+export const mapVV = (
     op: VecOpVV,
     out: IVector<any>,
     a: IVector<any>,
@@ -88,7 +88,7 @@ export const mapBufferVV = (
 };
 
 /**
- * Like `mapBufferVV`, but for `VecOpV` type ops and hence only using
+ * Like `mapVV`, but for `VecOpV` type ops and hence only using
  * single input.
  *
  * ```
@@ -97,7 +97,7 @@ export const mapBufferVV = (
  * buf = [1, 3, 5, 7, 2, 4, 6, 8];
  *
  * // use `swapXY` to swizzle each vector and use AOS for output
- * res = mapBufferV(swapXY, new Vec2(), new Vec2(buf, 0, 4), 4, 2, 1);
+ * res = mapV(swapXY, new Vec2(), new Vec2(buf, 0, 4), 4, 2, 1);
  * // [ 2, 1, 4, 3, 6, 5, 8, 7 ]
  *
  * // unpack result for demonstration purposes
@@ -112,7 +112,7 @@ export const mapBufferVV = (
  * @param so
  * @param sa
  */
-export const mapBufferV = (
+export const mapV = (
     op: VecOpV,
     out: IVector<any>,
     a: IVector<any>,
@@ -129,8 +129,8 @@ export const mapBufferV = (
 };
 
 /**
- * Like `mapBufferVV`, but for `VecOpVN` type ops and hence using
- * a single vector input buffer `a` and a scalar `n`.
+ * Like `mapVV`, but for `VecOpVN` type ops and hence using a single
+ * vector input buffer `a` and a scalar `n`.
  *
  * @param op
  * @param out
@@ -140,7 +140,7 @@ export const mapBufferV = (
  * @param so
  * @param sa
  */
-export const mapBufferVN = (
+export const mapVN = (
     op: VecOpVN,
     out: IVector<any>,
     a: IVector<any>,
@@ -157,7 +157,22 @@ export const mapBufferVN = (
     return out.buf;
 };
 
-export const mapBufferVVV = (
+/**
+ * Like `mapVV`, but for `VecOpVVV` type ops and hence using three
+ * vector input buffers `a`, `b`, `c`.
+ *
+ * @param op
+ * @param out
+ * @param a
+ * @param b
+ * @param c
+ * @param num
+ * @param so
+ * @param sa
+ * @param sb
+ * @param sc
+ */
+export const mapVVV = (
     op: VecOpVVV,
     out: IVector<any>,
     a: IVector<any>,
@@ -179,7 +194,21 @@ export const mapBufferVVV = (
     return out.buf;
 };
 
-export const mapBufferVVN = (
+/**
+ * Like `mapVV`, but for `VecOpVVN` type ops and hence using two
+ * vector input buffers `a`, `b` and a scalar `n`.
+ *
+ * @param op
+ * @param out
+ * @param a
+ * @param b
+ * @param n
+ * @param num
+ * @param so
+ * @param sa
+ * @param sb
+ */
+export const mapVVN = (
     op: VecOpVVN,
     out: IVector<any>,
     a: IVector<any>,
