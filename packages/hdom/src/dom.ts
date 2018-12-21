@@ -239,7 +239,7 @@ export const setAttrib =
                     break;
                 default:
                     if (isListener) {
-                        el.addEventListener(id.substr(2), val);
+                        setListener(el, id.substr(2), val);
                     } else {
                         el.setAttribute(id, val);
                     }
@@ -284,7 +284,7 @@ export const removeAttribs =
         for (let i = attribs.length; --i >= 0;) {
             const a = attribs[i];
             if (a.indexOf("on") === 0) {
-                el.removeEventListener(a.substr(2), prev[a]);
+                removeListener(el, a.substr(2), prev[a]);
             } else {
                 el[a] ? (el[a] = null) : el.removeAttribute(a);
             }
@@ -294,6 +294,44 @@ export const removeAttribs =
 export const setStyle =
     (el: Element, styles: any) =>
         (el.setAttribute("style", css(styles)), el);
+
+/**
+ * Adds event listener (possibly with options).
+ *
+ * @param el
+ * @param id event name (w/o `on` prefix)
+ * @param listener
+ */
+export const setListener = (
+    el: Element,
+    id: string,
+    listener: EventListener | [EventListener, boolean | AddEventListenerOptions]
+) => {
+    if (isArray(listener)) {
+        el.addEventListener(id, ...listener);
+    } else {
+        el.addEventListener(id, listener);
+    }
+};
+
+/**
+ * Removes event listener (possibly with options).
+ *
+ * @param el
+ * @param id event name (w/o `on` prefix)
+ * @param listener
+ */
+export const removeListener = (
+    el: Element,
+    id: string,
+    listener: EventListener | [EventListener, boolean | AddEventListenerOptions]
+) => {
+    if (isArray(listener)) {
+        el.removeEventListener(id, ...listener);
+    } else {
+        el.removeEventListener(id, listener);
+    }
+};
 
 export const clearDOM =
     (el: Element) =>
