@@ -23,6 +23,7 @@ This project is part of the
     - [Interface support](#interface-support)
     - [Component objects with life cycle methods](#component-objects-with-life-cycle-methods)
     - [Event & state handling options](#event--state-handling-options)
+    - [Event listener options](#event-listener-options)
     - [Reusable components](#reusable-components)
 - [Status](#status)
 - [Example projects](#example-projects)
@@ -697,6 +698,39 @@ general.
 - [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
+
+### Event listener options
+
+As noted further above, event listeners for an element/component are
+specified as part of the attribute object and are always using the `on`
+prefix for their attribute name (e.g. `onclick`). The value of these
+attributes is usually just the listener function. However, if custom
+listener options are required (e.g. passive or non-capturing events),
+the listener need to be specified as an tuple of `[listeners, options]`,
+like so:
+
+```ts
+["canvas", {
+    width: 500,
+    height: 500,
+    // touchstart event listener
+    ontouchstart: [
+        // actual listener function
+        (e) => ...,
+        // listener options (see standard addEventListener() for ref)
+        { passive: true }
+    ]
+}]
+```
+
+The listener options can be either a boolean or an object with these
+keys:
+
+- `capture`
+- `passive`
+- `once`
+
+[MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters)
 
 ### Reusable components
 

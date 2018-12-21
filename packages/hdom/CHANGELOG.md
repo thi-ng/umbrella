@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@6.0.4...@thi.ng/hdom@6.1.0) (2018-12-21)
+
+
+### Features
+
+* **hdom:** add support for event listener options, update readme ([6618c22](https://github.com/thi-ng/umbrella/commit/6618c22))
+
+
+
+
+
 ## [6.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@6.0.3...@thi.ng/hdom@6.0.4) (2018-12-21)
 
 
