@@ -83,6 +83,7 @@ export * from "./rotate-around-point";
 export * from "./rotate";
 export * from "./round";
 export * from "./set";
+export * from "./setc";
 export * from "./setn";
 export * from "./sets";
 export * from "./setsn";
