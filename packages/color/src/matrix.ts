@@ -22,8 +22,8 @@ const S7 = 0.143;
 const S8 = 0.283;
 
 export const applyMatrix =
-    (out: Color, mat: ColorMatrix, rgba: ReadonlyColor, clamped = true) =>
-        clamped ?
+    (out: Color, mat: ColorMatrix, rgba: ReadonlyColor, clampOut = true) =>
+        clampOut ?
             setC4(
                 out || rgba,
                 clamp01(dotS4(rgba, mat, 0, 0) + mat[4]),
@@ -72,6 +72,14 @@ export const IDENTITY: ColorMatrix =
         1, 0, 0, 0, 0,
         0, 1, 0, 0, 0,
         0, 0, 1, 0, 0,
+        0, 0, 0, 1, 0
+    ];
+
+export const INVERT: ColorMatrix =
+    [
+        -1, 0, 0, 0, 1,
+        0, -1, 0, 0, 1,
+        0, 0, -1, 0, 1,
         0, 0, 0, 1, 0
     ];
 

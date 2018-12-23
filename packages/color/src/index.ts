@@ -23,3 +23,4 @@ export * from "./luminance";
 export * from "./cosine-gradients";
 
 export * from "./matrix";
+export * from "./porter-duff";

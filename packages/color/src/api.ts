@@ -2,6 +2,7 @@ import { Vec, ReadonlyVec } from "@thi.ng/vectors3/api";
 import { float } from "@thi.ng/strings/float";
 import { percent } from "@thi.ng/strings/percent";
 
+
 export type Color = Vec;
 export type ReadonlyColor = ReadonlyVec;
 
@@ -16,11 +17,11 @@ export type CosCoeffs = [number, number, number, number];
 export type CosGradientSpec = [CosCoeffs, CosCoeffs, CosCoeffs, CosCoeffs];
 
 export enum ColorMode {
-    CSS,
     RGBA,
     HSVA,
     HSLA,
-    INT_RGBA
+    INT_ARGB,
+    CSS,
 }
 
 // RGBA constants

@@ -54,8 +54,8 @@ defConversion(
 );
 
 defConversion(
-    ColorMode.INT_RGBA, ColorMode.CSS,
-    (x: string) => <Color>parseCss(x, ColorMode.INT_RGBA)
+    ColorMode.INT_ARGB, ColorMode.CSS,
+    (x: string) => <Color>parseCss(x, ColorMode.INT_ARGB)
 );
 
 defConversion(
@@ -66,22 +66,22 @@ defConversion(
 // Int
 
 defConversion(
-    ColorMode.CSS, ColorMode.INT_RGBA,
+    ColorMode.CSS, ColorMode.INT_ARGB,
     (x: number) => intCss(x)
 );
 
 defConversion(
-    ColorMode.HSLA, ColorMode.INT_RGBA,
+    ColorMode.HSLA, ColorMode.INT_ARGB,
     (x: number) => rgbaHsla(null, intRgba([], x))
 );
 
 defConversion(
-    ColorMode.HSVA, ColorMode.INT_RGBA,
+    ColorMode.HSVA, ColorMode.INT_ARGB,
     (x: number) => rgbaHsva(null, intRgba([], x))
 );
 
 defConversion(
-    ColorMode.RGBA, ColorMode.INT_RGBA,
+    ColorMode.RGBA, ColorMode.INT_ARGB,
     (x: number) => intRgba([], x)
 );
 
@@ -127,6 +127,6 @@ defConversion(
 );
 
 defConversion(
-    ColorMode.INT_RGBA, ColorMode.RGBA,
+    ColorMode.INT_ARGB, ColorMode.RGBA,
     (x: ReadonlyColor) => rgbaInt(x)
 );

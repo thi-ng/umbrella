@@ -1,9 +1,9 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { clamp01 } from "@thi.ng/math/interval";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
 import { Color, ColorMode, INV8BIT } from "./api";
 import { convert } from "./convert";
 import { CSS_NAMES } from "./names";
-import { clamp01 } from "@thi.ng/math/interval";
 
 const RE_HEX = /^#?([0-9a-f]{3,8})$/i;
 const RE_CSS = /^(rgb|hsl)a?\(\s*([0-9.]+?),\s*([0-9.]+%?),\s*([0-9.]+%?),?\s*([0-9.]+)?\s*\)$/;
@@ -13,7 +13,7 @@ export const parseCss =
         let res: Color | number;
         let resMode: ColorMode;
         if (col.charAt(0) === "#") {
-            resMode = ColorMode.INT_RGBA;
+            resMode = ColorMode.INT_ARGB;
             res = parseHex(col);
         } else {
             const match = RE_CSS.exec(col);
@@ -38,7 +38,7 @@ export const parseCss =
             } else {
                 const c = CSS_NAMES[col];
                 !c && illegalArgs(`invalid color: "${col}"`);
-                resMode = ColorMode.INT_RGBA;
+                resMode = ColorMode.INT_ARGB;
                 res = parseHex(c);
             }
         }
