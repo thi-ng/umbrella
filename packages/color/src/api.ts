@@ -25,6 +25,10 @@ export enum ColorMode {
     CSS,
 }
 
+export interface IColor {
+    readonly mode: ColorMode;
+}
+
 // RGBA constants
 
 export const BLACK = Object.freeze([0, 0, 0, 1]);

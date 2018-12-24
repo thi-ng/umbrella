@@ -4,6 +4,15 @@ import { Color, ReadonlyColor } from "./api";
 import { ensureAlpha } from "./ensure-alpha";
 import { ensureHue } from "./ensure-hue";
 
+/**
+ * Clamps all color channels to [0,1] interval and calls `ensureAlpha()`
+ * to ensure alpha channel is defined (if missing sets it to `alpha`
+ * (default: 1)).
+ *
+ * @param out
+ * @param src
+ * @param alpha
+ */
 export const clamp =
     (out: Color, src: ReadonlyColor, alpha = 1) =>
         setC4(
@@ -14,6 +23,14 @@ export const clamp =
             ensureAlpha(src[3], alpha)
         );
 
+/**
+ * Similar to `clamp`, but calls `ensureHue()` to fold (instead of
+ * clamping) the hue into [0,1] interval.
+ *
+ * @param out
+ * @param src
+ * @param alpha
+ */
 export const clampH =
     (out: Color, src: ReadonlyColor, alpha = 1) =>
         setC4(

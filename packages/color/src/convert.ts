@@ -1,5 +1,12 @@
-import { defmulti, Implementation3, MultiFn3 } from "@thi.ng/defmulti";
-import { Color, ColorMode, ReadonlyColor } from "./api";
+import { defmulti, Implementation3, MultiFn2O } from "@thi.ng/defmulti";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import {
+    Color,
+    ColorMode,
+    IColor,
+    ReadonlyColor
+} from "./api";
+import { hsiaRgba } from "./hsia-rgba";
 import { hslaCss } from "./hsla-css";
 import { hslaRgba } from "./hsla-rgba";
 import { hsvaCss } from "./hsva-css";
@@ -8,29 +15,44 @@ import { intCss } from "./int-css";
 import { intRgba } from "./int-rgba";
 import { parseCss } from "./parse-css";
 import { rgbaCss } from "./rgba-css";
+import { rgbaHsia } from "./rgba-hsia";
 import { rgbaHsla } from "./rgba-hsla";
 import { rgbaHsva } from "./rgba-hsva";
 import { rgbaInt } from "./rgba-int";
-import { hsiaRgba } from "./hsia-rgba";
 
-export const convert: MultiFn3<string | number | ReadonlyColor, ColorMode, ColorMode, Color | string | number> =
-    defmulti((...args: any[]) => convID(args[1], args[2]));
+export const convert: MultiFn2O<string | number | ReadonlyColor | IColor, ColorMode, ColorMode, Color | string | number> =
+    defmulti(
+        (col, mdest, msrc) =>
+            (<any>col).mode !== undefined ?
+                `${ColorMode[mdest]}-${ColorMode[<ColorMode>(<any>col).mode]}` :
+                msrc !== undefined ?
+                    `${ColorMode[mdest]}-${ColorMode[msrc]}` :
+                    illegalArgs(`missing src color mode`)
+    );
 
-export const asRGBA = (col: string | number | ReadonlyColor, mode: ColorMode) =>
-    <Color>convert(col, ColorMode.RGBA, mode);
+export function asRGBA(col: IColor): Color;
+export function asRGBA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asRGBA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.RGBA, mode);
+}
 
-export const asHSLA = (col: string | number | ReadonlyColor, mode: ColorMode) =>
-    <Color>convert(col, ColorMode.HSLA, mode);
+export function asHSLA(col: IColor): Color;
+export function asHSLA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asHSLA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.HSLA, mode);
+}
 
-export const asHSVA = (col: string | number | ReadonlyColor, mode: ColorMode) =>
-    <Color>convert(col, ColorMode.HSLA, mode);
+export function asHSVA(col: IColor): Color;
+export function asHSVA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asHSVA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.HSVA, mode);
+}
 
-export const asCSS = (col: string | number | ReadonlyColor, mode: ColorMode) =>
-    <string>convert(col, ColorMode.CSS, mode);
-
-const convID =
-    (dest: ColorMode, src: ColorMode) =>
-        `${ColorMode[dest]}-${ColorMode[src]}`;
+export function asCSS(col: IColor): string;
+export function asCSS(col: string | number | ReadonlyColor, mode: ColorMode): string;
+export function asCSS(col: any, mode?: ColorMode) {
+    return <string>convert(col, ColorMode.CSS, mode);
+}
 
 const defConversion = (
     dest: ColorMode,
@@ -38,7 +60,7 @@ const defConversion = (
     impl: Implementation3<string | number | ReadonlyColor, ColorMode, ColorMode, Color | string | number>
 ) =>
     convert.add(
-        convID(dest, src),
+        `${ColorMode[dest]}-${ColorMode[src]}`,
         impl
     );
 
@@ -137,6 +159,11 @@ defConversion(
 defConversion(
     ColorMode.CSS, ColorMode.RGBA,
     (x: ReadonlyColor) => rgbaCss(x)
+);
+
+defConversion(
+    ColorMode.HSIA, ColorMode.RGBA,
+    (x: ReadonlyColor) => rgbaHsia([], x)
 );
 
 defConversion(
