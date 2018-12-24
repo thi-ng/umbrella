@@ -56,7 +56,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
     remove(v: T) {
         const idx = this.items.indexOf(v);
         if (idx >= 0) {
-            this.freeIDs.push(v.i);
+            this.freeIDs.push(v.offset);
             this.items.splice(idx, 1);
             return true;
         }
