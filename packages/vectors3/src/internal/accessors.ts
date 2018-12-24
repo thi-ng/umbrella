@@ -1,18 +1,18 @@
 export const declareIndex = (
     proto: any,
     id: string,
-    i: number,
+    idx: number,
     strided = true,
     defNumeric = true
 ) => {
     const get = strided ?
-        function () { return this.buf[this.i + i * this.s]; } :
-        function () { return this.buf[this.i + i]; };
+        function () { return this.buf[this.offset + idx * this.stride]; } :
+        function () { return this.buf[this.offset + idx]; };
     const set = strided ?
-        function (n: number) { this.buf[this.i + i * this.s] = n; } :
-        function (n: number) { this.buf[this.i + i] = n; };
+        function (n: number) { this.buf[this.offset + idx * this.stride] = n; } :
+        function (n: number) { this.buf[this.offset + idx] = n; };
 
-    defNumeric && Object.defineProperty(proto, i, {
+    defNumeric && Object.defineProperty(proto, idx, {
         get,
         set,
         enumerable: true,
