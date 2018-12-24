@@ -1,22 +1,40 @@
+import { memoize1 } from "@thi.ng/memoize/memoize1";
 import { range } from "@thi.ng/transducers/iter/range";
 import { map } from "@thi.ng/transducers/xform/map";
 import { Vec, IVector } from "./api";
 import { zeroes } from "./setn";
 import { eqDeltaS } from "./eqdelta";
 import { EPS } from "@thi.ng/math/api";
+import { setS } from "./sets";
+
+const B = "buf";
+const L = "length";
+const O = "offset";
+const S = "stride";
+
+const keys = memoize1((size: number) =>
+    [...map(String, range(size)), L, O, S]);
 
 /**
  * Wrapper for strided, arbitrary length vectors. Wraps given buffer in
- * ES6 `Proxy` with custom property getters/setters and implements the
- * ES6 `Iterable` interface and this libraries `IVector` methods and
- * read/write access of the following properties:
+ * ES6 `Proxy` with custom property getters/setters and implements the following
+ * interfaces:
  *
- * - `i` - start index
- * - `s` - component stride
+ * - `Iterable` (ES6)
+ * - `ICopy`
+ * - `IEmpty`
+ * - `IEqualsDelta`
+ * - `IVector`
+ *
+ * Read/write access for the following properties:
+ *
+ * - array indices in the [0 .. `size`) interval
+ * - `offset` - start index
+ * - `stride` - component stride
  * - `buf` - backing buffer (readonly)
  * - `length` - vector size
  *
- * Array index access uses bounds checking against the [0..`size`)
+ * Array index access uses bounds checking against the [0 .. `size`)
  * interval, but, for performance reasons, **not** against the actual
  * wrapped buffer.
  *
@@ -43,72 +61,71 @@ import { EPS } from "@thi.ng/math/api";
  *
  * @param buf
  * @param size
- * @param i
- * @param s
+ * @param offset
+ * @param stride
  */
-export const gvec = (buf: Vec, size: number, i = 0, s = 1): IVector<any> =>
-    <any>new Proxy(buf, {
-        get: (obj, id) => {
-            switch (id) {
-                case Symbol.iterator:
-                    return function* () {
-                        for (let j = 0, ii = i, ss = s; j < size; j++) {
-                            yield obj[ii + j * ss];
-                        }
-                    };
-                case "length":
-                    return size;
-                case "buf":
-                    return buf;
-                case "i":
-                    return i;
-                case "s":
-                    return s;
-                case "copy":
-                    return function () {
-                        const res = [];
-                        for (let j = 0; j < size; j++) {
-                            res[j] = obj[i + j * s];
-                        }
-                        return res;
-                    };
-                case "empty":
-                    return () => zeroes(size);
-                case "eqDelta":
-                    return (o, eps = EPS) => eqDeltaS(buf, o, size, eps, i, 0, s, 1);
-                default:
-                    let j = parseInt(<string>id);
-                    return !isNaN(j) && j >= 0 && j < size ?
-                        obj[i + j * s] :
-                        undefined;
-            }
-        },
-        set: (obj, id, value) => {
-            const j = parseInt(<string>id);
-            if (!isNaN(j) && <any>j >= 0 && <any>j < size) {
-                obj[i + (<number>id | 0) * s] = value;
-            } else {
+export const gvec =
+    (buf: Vec, size: number, offset = 0, stride = 1): IVector<any> =>
+        <any>new Proxy(buf, {
+            get: (obj, id) => {
                 switch (id) {
-                    case "i":
-                        i = value;
-                        break;
-                    case "s":
-                        s = value;
-                        break;
-                    case "length":
-                        size = value;
-                        break;
+                    case Symbol.iterator:
+                        return function* () {
+                            for (let j = 0, ii = offset, ss = stride; j < size; j++) {
+                                yield obj[ii + j * ss];
+                            }
+                        };
+                    case L:
+                        return size;
+                    case B:
+                        return buf;
+                    case O:
+                        return offset;
+                    case S:
+                        return stride;
+                    case "copy":
+                        return () =>
+                            gvec(setS([], obj, 0, offset, 1, stride), size);
+                    case "copyView":
+                        return () =>
+                            gvec(obj, size, offset, stride);
+                    case "empty":
+                        return () => zeroes(size);
+                    case "eqDelta":
+                        return (o, eps = EPS) =>
+                            eqDeltaS(buf, o, size, eps, offset, 0, stride, 1);
                     default:
-                        return false;
+                        let j = parseInt(<string>id);
+                        return !isNaN(j) && j >= 0 && j < size ?
+                            obj[offset + j * stride] :
+                            undefined;
                 }
-            }
-            return true
-        },
-        has: (_, id) =>
-            (<any>id >= 0 && <any>id < size) ||
-            id === "i" ||
-            id == "s" ||
-            id == "length",
-        ownKeys: () =>
-            [...map(String, range(size)), "i", "s", "length"],
-    });
+            },
+            set: (obj, id, value) => {
+                const j = parseInt(<string>id);
+                if (!isNaN(j) && <any>j >= 0 && <any>j < size) {
+                    obj[offset + (<number>id | 0) * stride] = value;
+                } else {
+                    switch (id) {
+                        case O:
+                            offset = value;
+                            break;
+                        case S:
+                            stride = value;
+                            break;
+                        case L:
+                            size = value;
+                            break;
+                        default:
+                            return false;
+                    }
+                }
+                return true
+            },
+            has: (_, id) =>
+                (<any>id >= 0 && <any>id < size) ||
+                id === O ||
+                id == S ||
+                id == L,
+            ownKeys: () => keys(size),
+        });
