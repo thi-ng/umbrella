@@ -20,16 +20,21 @@ export interface ReadonlyVec extends
 
 export interface StridedVec {
     buf: Vec;
-    i: number;
-    s: number;
+    offset: number;
+    stride: number;
 }
 
 export interface IVector<T> extends
     Vec,
     ICopy<T>,
+    ICopyView<T>,
     IEmpty<T>,
     IEqualsDelta<T>,
     StridedVec {
+}
+
+export interface ICopyView<T> {
+    copyView(): T;
 }
 
 export interface VectorConstructor<T> {
