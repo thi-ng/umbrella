@@ -99,7 +99,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
     remove(vec: T): boolean {
         if (this.has(vec)) {
             this._length--;
-            this.freeIDs.push(vec.i);
+            this.freeIDs.push(vec.offset);
             const v: any = vec;
             if (v.prev) {
                 v.prev.next = v.next;

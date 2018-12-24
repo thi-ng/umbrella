@@ -74,15 +74,15 @@ export const mapVV = (
     a: IVector<any>,
     b: IVector<any>,
     num: number,
-    so = out.length * out.s,
-    sa = a.length * a.s,
-    sb = b.length * b.s) => {
+    so = out.length * out.stride,
+    sa = a.length * a.stride,
+    sb = b.length * b.stride) => {
 
     while (num-- > 0) {
         op(out, a, b);
-        out.i += so;
-        a.i += sa;
-        b.i += sb;
+        out.offset += so;
+        a.offset += sa;
+        b.offset += sb;
     }
     return out.buf;
 };
@@ -117,13 +117,13 @@ export const mapV = (
     out: IVector<any>,
     a: IVector<any>,
     num: number,
-    so = out.length * out.s,
-    sa = a.length * a.s) => {
+    so = out.length * out.stride,
+    sa = a.length * a.stride) => {
 
     while (num-- > 0) {
         op(out, a);
-        out.i += so;
-        a.i += sa;
+        out.offset += so;
+        a.offset += sa;
     }
     return out.buf;
 };
@@ -146,13 +146,13 @@ export const mapVN = (
     a: IVector<any>,
     n: number,
     num: number,
-    so = out.length * out.s,
-    sa = a.length * a.s) => {
+    so = out.length * out.stride,
+    sa = a.length * a.stride) => {
 
     while (num-- > 0) {
         op(out, a, n);
-        out.i += so;
-        a.i += sa;
+        out.offset += so;
+        a.offset += sa;
     }
     return out.buf;
 };
@@ -179,17 +179,17 @@ export const mapVVV = (
     b: IVector<any>,
     c: IVector<any>,
     num: number,
-    so = out.length * out.s,
-    sa = a.length * a.s,
-    sb = b.length * b.s,
-    sc = c.length * c.s) => {
+    so = out.length * out.stride,
+    sa = a.length * a.stride,
+    sb = b.length * b.stride,
+    sc = c.length * c.stride) => {
 
     while (num-- > 0) {
         op(out, a, b, c);
-        out.i += so;
-        a.i += sa;
-        b.i += sb;
-        c.i += sc;
+        out.offset += so;
+        a.offset += sa;
+        b.offset += sb;
+        c.offset += sc;
     }
     return out.buf;
 };
@@ -215,15 +215,15 @@ export const mapVVN = (
     b: IVector<any>,
     n: number,
     num: number,
-    so = out.length * out.s,
-    sa = a.length * a.s,
-    sb = b.length * b.s) => {
+    so = out.length * out.stride,
+    sa = a.length * a.stride,
+    sb = b.length * b.stride) => {
 
     while (num-- > 0) {
         op(out, a, b, n);
-        out.i += so;
-        a.i += sa;
-        b.i += sb;
+        out.offset += so;
+        a.offset += sa;
+        b.offset += sb;
     }
     return out.buf;
 };

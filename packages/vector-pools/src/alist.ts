@@ -64,11 +64,11 @@ export abstract class AVecList<T extends StridedVec> {
         const estride = this.estride;
         if (local) {
             for (let v of this) {
-                res[i++] = (v.i - start) / estride;
+                res[i++] = (v.offset - start) / estride;
             }
         } else {
             for (let v of this) {
-                res[i++] = v.i;
+                res[i++] = v.offset;
             }
         }
         return res;

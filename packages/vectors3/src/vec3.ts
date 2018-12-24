@@ -73,8 +73,8 @@ export class Vec3 extends AVec implements
     z: number;
     [id: number]: number;
 
-    constructor(buf?: Vec, i = 0, s = 1) {
-        super(buf || [0, 0, 0], i, s);
+    constructor(buf?: Vec, offset = 0, stride = 1) {
+        super(buf || [0, 0, 0], offset, stride);
     }
 
     *[Symbol.iterator]() {
@@ -92,7 +92,7 @@ export class Vec3 extends AVec implements
     }
 
     copyView() {
-        return new Vec3(this.buf, this.i, this.s);
+        return new Vec3(this.buf, this.offset, this.stride);
     }
 
     empty() {

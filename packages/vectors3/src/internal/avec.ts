@@ -3,13 +3,13 @@ import { StridedVec, Vec } from "../api";
 export abstract class AVec implements StridedVec {
 
     buf: Vec;
-    i: number;
-    s: number;
+    offset: number;
+    stride: number;
 
-    constructor(buf: Vec, i = 0, s = 1) {
+    constructor(buf: Vec, offset = 0, stride = 1) {
         this.buf = buf;
-        this.i = i;
-        this.s = s;
+        this.offset = offset;
+        this.stride = stride;
     }
 
     abstract get length(): number;
