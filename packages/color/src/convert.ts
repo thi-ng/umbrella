@@ -11,6 +11,7 @@ import { rgbaCss } from "./rgba-css";
 import { rgbaHsla } from "./rgba-hsla";
 import { rgbaHsva } from "./rgba-hsva";
 import { rgbaInt } from "./rgba-int";
+import { hsiaRgba } from "./hsia-rgba";
 
 export const convert: MultiFn3<string | number | ReadonlyColor, ColorMode, ColorMode, Color | string | number> =
     defmulti((...args: any[]) => convID(args[1], args[2]));
@@ -83,6 +84,28 @@ defConversion(
 defConversion(
     ColorMode.RGBA, ColorMode.INT_ARGB,
     (x: number) => intRgba([], x)
+);
+
+// HSIA
+
+defConversion(
+    ColorMode.CSS, ColorMode.HSIA,
+    (x: ReadonlyColor) => rgbaCss(hsiaRgba([], x))
+);
+
+defConversion(
+    ColorMode.HSLA, ColorMode.HSIA,
+    (x: ReadonlyColor) => rgbaHsla(null, hsiaRgba([], x))
+);
+
+defConversion(
+    ColorMode.HSVA, ColorMode.HSIA,
+    (x: ReadonlyColor) => rgbaHsva(null, hsiaRgba([], x))
+);
+
+defConversion(
+    ColorMode.RGBA, ColorMode.HSIA,
+    (x: ReadonlyColor) => hsiaRgba([], x)
 );
 
 // HSLA

@@ -2,18 +2,18 @@ import { SIXTH, THIRD, TWO_THIRD } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors3/setc";
 import { Color, ReadonlyColor } from "./api";
-import { clamp } from "./clamp";
+import { clampH } from "./clamp";
 import { ensureHue } from "./ensure-hue";
 
 export const hslaRgba =
     (out: Color, hsla: ReadonlyColor) => {
-        out = clamp(out || hsla, hsla);
+        out = clampH(out || hsla, hsla);
         const h = out[0];
         const s = out[1];
         const l = out[2];
         if (s > 1e-6) {
-            const f2 = (l < 0.5) ?
-                (l * (s + 1)) :
+            const f2 = l < 0.5 ?
+                l * (s + 1) :
                 (l + s) - (l * s);
             const f1 = 2 * l - f2;
             return setC3(

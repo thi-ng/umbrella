@@ -1,9 +1,9 @@
 import { Color, ReadonlyColor } from "./api";
-import { clamp } from "./clamp";
+import { clampH } from "./clamp";
 
 export const hslaHsva =
     (out: Color, hsla: ReadonlyColor) => {
-        out = clamp(out || hsla, hsla);
+        out = clampH(out || hsla, hsla);
         const s = out[1];
         const l = out[2];
         const l2 = 2 * l;

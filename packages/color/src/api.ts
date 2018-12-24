@@ -20,6 +20,7 @@ export enum ColorMode {
     RGBA,
     HSVA,
     HSLA,
+    HSIA,
     INT_ARGB,
     CSS,
 }

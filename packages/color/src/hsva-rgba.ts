@@ -1,16 +1,14 @@
 import { setC3 } from "@thi.ng/vectors3/setc";
 import { Color, ReadonlyColor } from "./api";
-import { clamp } from "./clamp";
+import { clampH } from "./clamp";
 
 export const hsvaRgba =
     (out: Color, hsva: ReadonlyColor) => {
-        out = clamp(out || hsva, hsva);
-        let h = out[0];
+        out = clampH(out || hsva, hsva);
         const s = out[1];
         const v = out[2];
         if (s > 1e-6) {
-            h = (h * 6) % 6;
-            h < 0 && (h += 6);
+            const h = (out[0] * 6) % 6;
             const i = h | 0;
             const f = h - i;
             const p = v * (1 - s);

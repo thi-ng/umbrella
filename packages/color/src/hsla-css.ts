@@ -1,10 +1,11 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { FF, PC, ReadonlyColor } from "./api";
 import { ensureAlpha } from "./ensure-alpha";
+import { ensureHue } from "./ensure-hue";
 
 export const hslaCss =
     (hsla: ReadonlyColor) => {
-        const h = FF(clamp01(hsla[0]) * 360);
+        const h = FF(ensureHue(hsla[0]) * 360);
         const s = PC(clamp01(hsla[1]));
         const l = PC(clamp01(hsla[2]));
         const a = ensureAlpha(hsla[3]);

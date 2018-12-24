@@ -10,7 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
-    - [Color spaces](#color-spaces)
+    - [Color modes](#color-modes)
     - [RGBA transformations](#rgba-transformations)
     - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
     - [Cosine gradients](#cosine-gradients)
@@ -24,13 +24,14 @@ This project is part of the
 
 ## About
 
-### Color spaces
+### Color modes
 
 Color space conversions (any direction) between:
 
 - CSS (string, hex3/hex4/hex6/hex8, `rgba()`, `hsla()`, color names)
 - ARGB (uint32, `0xaarrggbb`)
 - RGBA (float4, `[r,g,b,a]`)
+- HSIA (float4, `[h,s,i,a]`)
 - HSLA (float4, `[h,s,l,a]`)
 - HSVA (float4, `[h,s,v,a]`)
 
