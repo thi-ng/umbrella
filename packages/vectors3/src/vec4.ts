@@ -14,7 +14,12 @@ import {
 import { eqDelta4 } from "./eqdelta";
 import { declareIndices } from "./internal/accessors";
 import { AVec } from "./internal/avec";
-import { intoBuffer, mapBuffer, vecIterator } from "./internal/vec-utils";
+import {
+    intoBuffer,
+    mapBuffer,
+    values,
+    vecIterator
+} from "./internal/vec-utils";
 import { setS4 } from "./sets";
 
 export class Vec4 extends AVec implements
@@ -78,11 +83,8 @@ export class Vec4 extends AVec implements
         super(buf || [0, 0, 0, 0], offset, stride);
     }
 
-    *[Symbol.iterator]() {
-        yield this.x;
-        yield this.y;
-        yield this.z;
-        yield this.w;
+    [Symbol.iterator]() {
+        return values(this.buf, 4, this.offset, this.stride);
     }
 
     get length() {

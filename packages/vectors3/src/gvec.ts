@@ -1,10 +1,11 @@
+import { EPS } from "@thi.ng/math/api";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
 import { range } from "@thi.ng/transducers/iter/range";
 import { map } from "@thi.ng/transducers/xform/map";
-import { Vec, IVector } from "./api";
-import { zeroes } from "./setn";
+import { IVector, Vec } from "./api";
 import { eqDeltaS } from "./eqdelta";
-import { EPS } from "@thi.ng/math/api";
+import { values } from "./internal/vec-utils";
+import { zeroes } from "./setn";
 import { setS } from "./sets";
 
 const B = "buf";
@@ -70,11 +71,7 @@ export const gvec =
             get: (obj, id) => {
                 switch (id) {
                     case Symbol.iterator:
-                        return function* () {
-                            for (let j = 0, ii = offset, ss = stride; j < size; j++) {
-                                yield obj[ii + j * ss];
-                            }
-                        };
+                        return () => values(obj, size, offset, stride);
                     case L:
                         return size;
                     case B:
