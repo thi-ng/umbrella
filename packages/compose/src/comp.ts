@@ -45,7 +45,7 @@ export function comp(...fns: any[]): any {
         case 10:
         default:
             const fn = (...xs: any[]) => a(b(c(d(e(f(g(h(i(j(...xs))))))))));
-            return fns.length === 10 ? fn : (<any>compL)(fn, ...fns.slice(10));
+            return fns.length === 10 ? fn : (<any>comp)(fn, ...fns.slice(10));
     }
 }
 
