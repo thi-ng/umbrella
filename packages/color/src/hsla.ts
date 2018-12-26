@@ -1,12 +1,22 @@
+import { IDeref } from "@thi.ng/api/api";
 import { EPS } from "@thi.ng/math/api";
 import { IVector, Vec } from "@thi.ng/vectors3/api";
 import { eqDelta4 } from "@thi.ng/vectors3/eqdelta";
 import { declareIndices } from "@thi.ng/vectors3/internal/accessors";
 import { AVec } from "@thi.ng/vectors3/internal/avec";
-import { ColorMode, IColor } from "./api";
+import { values } from "@thi.ng/vectors3/internal/vec-utils";
+import { Color, ColorMode, IColor } from "./api";
+import { ensureArgs } from "./internal/ctor-args";
+
+export function hsla(rgba: Color): HSLA
+export function hsla(h: number, s: number, l: number, a?: number): HSLA;
+export function hsla(...args: any[]) {
+    return new HSLA(ensureArgs(args));
+}
 
 export class HSLA extends AVec implements
     IColor,
+    IDeref<Color>,
     IVector<HSLA> {
 
     h: number;
@@ -15,15 +25,12 @@ export class HSLA extends AVec implements
     a: number;
     [id: number]: number;
 
-    constructor(buf?: Vec, i = 0, s = 1) {
-        super(buf || [0, 0, 0, 0], i, s);
+    constructor(buf?: Vec, offset = 0, stride = 1) {
+        super(buf || [0, 0, 0, 0], offset, stride);
     }
 
-    *[Symbol.iterator]() {
-        yield this[0];
-        yield this[1];
-        yield this[2];
-        yield this[3];
+    [Symbol.iterator]() {
+        return values(this.buf, 4, this.offset, this.stride);
     }
 
     get mode() {
@@ -35,11 +42,15 @@ export class HSLA extends AVec implements
     }
 
     copy() {
-        return new HSLA([this[0], this[1], this[2], this[3]]);
+        return new HSLA(this.deref());
     }
 
     copyView() {
         return new HSLA(this.buf, this.offset, this.stride);
+    }
+
+    deref(): Color {
+        return [this[0], this[1], this[2], this[3]];
     }
 
     empty() {
@@ -51,4 +62,4 @@ export class HSLA extends AVec implements
     }
 }
 
-declareIndices(HSLA.prototype, ["h", "s", "v", "a"]);
+declareIndices(HSLA.prototype, ["h", "s", "l", "a"]);

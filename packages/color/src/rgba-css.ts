@@ -1,7 +1,7 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { U24 } from "@thi.ng/strings/radix";
 import { FF, ReadonlyColor } from "./api";
-import { ensureAlpha } from "./ensure-alpha";
+import { ensureAlpha } from "./internal/ensure-alpha";
 
 export const rgbaCss =
     (rgba: ReadonlyColor) => {

@@ -1,7 +1,7 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { FF, PC, ReadonlyColor } from "./api";
-import { ensureAlpha } from "./ensure-alpha";
-import { ensureHue } from "./ensure-hue";
+import { ensureAlpha } from "./internal/ensure-alpha";
+import { ensureHue } from "./internal/ensure-hue";
 
 export const hslaCss =
     (hsla: ReadonlyColor) => {

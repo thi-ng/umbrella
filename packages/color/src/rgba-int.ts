@@ -1,6 +1,6 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { ReadonlyColor } from "./api";
-import { ensureAlpha } from "./ensure-alpha";
+import { ensureAlpha } from "./internal/ensure-alpha";
 
 export const rgbaInt =
     (rgba: ReadonlyColor) =>

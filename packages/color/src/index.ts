@@ -27,5 +27,9 @@ export * from "./cosine-gradients";
 export * from "./matrix";
 export * from "./porter-duff";
 
+export * from "./argb";
+export * from "./css";
+export * from "./hsia";
 export * from "./hsla";
+export * from "./hsva";
 export * from "./rgba";

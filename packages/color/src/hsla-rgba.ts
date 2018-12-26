@@ -3,7 +3,7 @@ import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors3/setc";
 import { Color, ReadonlyColor } from "./api";
 import { clampH } from "./clamp";
-import { ensureHue } from "./ensure-hue";
+import { ensureHue } from "./internal/ensure-hue";
 
 export const hslaRgba =
     (out: Color, hsla: ReadonlyColor) => {

@@ -8,20 +8,20 @@ import { values } from "@thi.ng/vectors3/internal/vec-utils";
 import { Color, ColorMode, IColor } from "./api";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function rgba(rgba: Color): RGBA
-export function rgba(r: number, g: number, b: number, a?: number): RGBA;
-export function rgba(...args: any[]) {
-    return new RGBA(ensureArgs(args));
+export function hsva(rgba: Color): HSVA
+export function hsva(h: number, s: number, v: number, a?: number): HSVA;
+export function hsva(...args: any[]) {
+    return new HSVA(ensureArgs(args));
 }
 
-export class RGBA extends AVec implements
+export class HSVA extends AVec implements
     IColor,
     IDeref<Color>,
-    IVector<RGBA> {
+    IVector<HSVA> {
 
-    r: number;
-    g: number;
-    b: number;
+    h: number;
+    s: number;
+    v: number;
     a: number;
     [id: number]: number;
 
@@ -34,7 +34,7 @@ export class RGBA extends AVec implements
     }
 
     get mode() {
-        return ColorMode.RGBA;
+        return ColorMode.HSVA;
     }
 
     get length() {
@@ -42,11 +42,11 @@ export class RGBA extends AVec implements
     }
 
     copy() {
-        return new RGBA(this.deref());
+        return new HSVA(this.deref());
     }
 
     copyView() {
-        return new RGBA(this.buf, this.offset, this.stride);
+        return new HSVA(this.buf, this.offset, this.stride);
     }
 
     deref(): Color {
@@ -54,12 +54,12 @@ export class RGBA extends AVec implements
     }
 
     empty() {
-        return new RGBA();
+        return new HSVA();
     }
 
-    eqDelta(o: RGBA, eps = EPS): boolean {
+    eqDelta(o: HSVA, eps = EPS): boolean {
         return eqDelta4(this, o, eps);
     }
 }
 
-declareIndices(RGBA.prototype, ["r", "g", "b", "a"]);
+declareIndices(HSVA.prototype, ["h", "s", "v", "a"]);

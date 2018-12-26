@@ -1,7 +1,6 @@
-import { Vec, ReadonlyVec } from "@thi.ng/vectors3/api";
 import { float } from "@thi.ng/strings/float";
 import { percent } from "@thi.ng/strings/percent";
-
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 
 export type Color = Vec;
 export type ReadonlyColor = ReadonlyVec;
