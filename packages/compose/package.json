@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compose",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "description": "Functional composition helpers",
     "main": "./index.js",
     "typings": "./index.d.ts",
