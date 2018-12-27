@@ -30,7 +30,7 @@ export function juxt(...fns: Fn<any, any>[]) {
         default:
             return (x: any) => {
                 let res = new Array(fns.length);
-                for (let i = fns.length - 1; i >= 0; i--) {
+                for (let i = fns.length; --i >= 0;) {
                     res[i] = fns[i](x);
                 }
                 return res;

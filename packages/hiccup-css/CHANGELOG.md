@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.3.1...@thi.ng/hiccup-css@0.3.2) (2018-12-27)
+
+**Note:** Version bump only for package @thi.ng/hiccup-css
+
+
+
+
+
 ## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@0.3.0...@thi.ng/hiccup-css@0.3.1) (2018-12-17)
 
 **Note:** Version bump only for package @thi.ng/hiccup-css

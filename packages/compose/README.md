@@ -23,9 +23,11 @@ This project is part of the
 Functional composition helpers:
 
 - [comp()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts)
-- [compI()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts)
+- [compL()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts#L52)
 - [juxt()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/juxt.ts)
 - [partial()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/partial.ts)
+- [threadFirst()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-first.ts)
+- [threadLast()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-last.ts)
 
 ## Installation
 
@@ -41,7 +43,7 @@ yarn add @thi.ng/compose
 ## Usage examples
 
 ```ts
-import { comp, compI, juxt } from "@thi.ng/compose";
+import { comp, compL, juxt } from "@thi.ng/compose";
 ```
 
 ## Authors
