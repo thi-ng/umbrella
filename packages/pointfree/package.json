@@ -30,6 +30,7 @@
     "dependencies": {
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/checks": "^1.5.14",
+        "@thi.ng/compose": "^0.2.2",
         "@thi.ng/equiv": "^0.1.15",
         "@thi.ng/errors": "^0.1.12"
     },
