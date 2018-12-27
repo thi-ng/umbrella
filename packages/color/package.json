@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.2.4",
-        "@thi.ng/compose": "^0.2.2",
+        "@thi.ng/compose": "^0.3.0",
         "@thi.ng/defmulti": "^0.5.1",
         "@thi.ng/errors": "^0.1.12",
         "@thi.ng/strings": "^0.7.1",

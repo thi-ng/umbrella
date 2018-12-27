@@ -36,6 +36,12 @@ export function asRGBA(col: any, mode?: ColorMode) {
     return <Color>convert(col, ColorMode.RGBA, mode);
 }
 
+export function asHSIA(col: IColor): Color;
+export function asHSIA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asHSIA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.HSIA, mode);
+}
+
 export function asHSLA(col: IColor): Color;
 export function asHSLA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
 export function asHSLA(col: any, mode?: ColorMode) {
