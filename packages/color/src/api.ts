@@ -15,7 +15,7 @@ export type ColorMatrix = [
 export type CosCoeffs = [number, number, number, number];
 export type CosGradientSpec = [CosCoeffs, CosCoeffs, CosCoeffs, CosCoeffs];
 
-export type ColorConversion = (out: Color, src: ReadonlyColor) => Color;
+export type ColorConversion<T> = (out: Color, src: T) => Color;
 
 export enum ColorMode {
     RGBA,

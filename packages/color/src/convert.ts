@@ -2,6 +2,7 @@ import { defmulti, Implementation3, MultiFn2O } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
     Color,
+    ColorConversion,
     ColorMode,
     IColor,
     ReadonlyColor
@@ -25,6 +26,7 @@ import { rgbaInt } from "./rgba-int";
 import { rgbaXyza } from "./rgba-xyza";
 import { rgbaYcbcra } from "./rgba-ycbcra";
 import { xyzaRgba } from "./xyza-rgba";
+import { ycbcraRgba } from "./ycbcra-rgba";
 
 const RGBA_FNS = {
     [ColorMode.CSS]: rgbaCss,
@@ -105,6 +107,23 @@ const defConversion = (
         impl
     );
 
+const defConversions = (
+    src: ColorMode,
+    toRGBA: ColorConversion<any>,
+    ...dest: ColorMode[]
+) => {
+    defConversion(
+        ColorMode.RGBA, src,
+        (x: any) => toRGBA([], x)
+    );
+    dest.forEach(
+        (id) => defConversion(
+            id, src,
+            (x: any) => RGBA_FNS[id](null, toRGBA([], x))
+        )
+    );
+};
+
 // CSS
 
 [
@@ -125,18 +144,15 @@ const defConversion = (
 
 // Int
 
-[
+defConversions(
+    ColorMode.INT32,
+    int32Rgba,
     ColorMode.HCYA,
     ColorMode.HSIA,
     ColorMode.HSLA,
     ColorMode.HSVA,
     ColorMode.XYZA,
-    ColorMode.YCBCRA,
-].forEach(
-    (id) => defConversion(
-        id, ColorMode.INT32,
-        (x: number) => RGBA_FNS[id](null, int32Rgba([], x))
-    )
+    ColorMode.YCBCRA
 );
 
 defConversion(
@@ -144,46 +160,30 @@ defConversion(
     (x: number) => int32Css(x)
 );
 
-defConversion(
-    ColorMode.RGBA, ColorMode.INT32,
-    (x: number) => int32Rgba([], x)
-);
-
 // HSIA
 
-[
+defConversions(
+    ColorMode.HSIA,
+    hsiaRgba,
     ColorMode.CSS,
     ColorMode.INT32,
     ColorMode.HCYA,
     ColorMode.HSLA,
     ColorMode.HSVA,
     ColorMode.XYZA,
-    ColorMode.YCBCRA,
-].forEach(
-    (id) => defConversion(
-        id, ColorMode.HSIA,
-        (x: ReadonlyColor) => RGBA_FNS[id](null, hsiaRgba([], x))
-    )
-);
-
-defConversion(
-    ColorMode.RGBA, ColorMode.HSIA,
-    (x: ReadonlyColor) => hsiaRgba([], x)
+    ColorMode.YCBCRA
 );
 
 // HSLA
 
-[
+defConversions(
+    ColorMode.HSLA,
+    hslaRgba,
     ColorMode.HCYA,
     ColorMode.HSIA,
     ColorMode.INT32,
     ColorMode.XYZA,
-    ColorMode.YCBCRA,
-].forEach(
-    (id) => defConversion(
-        id, ColorMode.HSLA,
-        (x: ReadonlyColor) => RGBA_FNS[id](null, hslaRgba([], x))
-    )
+    ColorMode.YCBCRA
 );
 
 defConversion(
@@ -196,24 +196,16 @@ defConversion(
     (x: ReadonlyColor) => hslaHsva([], x)
 );
 
-defConversion(
-    ColorMode.RGBA, ColorMode.HSLA,
-    (x: ReadonlyColor) => hslaRgba([], x)
-);
-
 // HSVA
 
-[
+defConversions(
+    ColorMode.HSVA,
+    hsvaRgba,
     ColorMode.HCYA,
     ColorMode.HSIA,
     ColorMode.INT32,
     ColorMode.XYZA,
-    ColorMode.YCBCRA,
-].forEach(
-    (id) => defConversion(
-        id, ColorMode.HSVA,
-        (x: ReadonlyColor) => RGBA_FNS[id](null, hsvaRgba([], x))
-    )
+    ColorMode.YCBCRA
 );
 
 defConversion(
@@ -224,11 +216,6 @@ defConversion(
 defConversion(
     ColorMode.HSLA, ColorMode.HSVA,
     (x: ReadonlyColor) => hsvaHsla([], x)
-);
-
-defConversion(
-    ColorMode.RGBA, ColorMode.HSVA,
-    (x: ReadonlyColor) => hsvaRgba([], x)
 );
 
 // RGBA
@@ -259,22 +246,28 @@ defConversion(
 
 // XYZA
 
-[
+defConversions(
+    ColorMode.XYZA,
+    xyzaRgba,
     ColorMode.CSS,
     ColorMode.HCYA,
     ColorMode.HSIA,
     ColorMode.HSLA,
     ColorMode.HSVA,
     ColorMode.INT32,
-    ColorMode.YCBCRA,
-].forEach(
-    (id) => defConversion(
-        id, ColorMode.RGBA,
-        (x: ReadonlyColor) => RGBA_FNS[id](xyzaRgba([], x))
-    )
+    ColorMode.YCBCRA
 );
 
-defConversion(
-    ColorMode.RGBA, ColorMode.XYZA,
-    (x: ReadonlyColor) => xyzaRgba([], x)
+// YCbCr
+
+defConversions(
+    ColorMode.YCBCRA,
+    ycbcraRgba,
+    ColorMode.CSS,
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.INT32,
+    ColorMode.XYZA
 );
