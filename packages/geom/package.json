@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "description": "2D/3D geometry primitives",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -31,8 +31,8 @@
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/checks": "^1.5.14",
         "@thi.ng/math": "^0.2.2",
-        "@thi.ng/transducers": "^2.2.8",
-        "@thi.ng/vectors": "^1.4.9"
+        "@thi.ng/transducers": "^2.3.0",
+        "@thi.ng/vectors": "^1.4.10"
     },
     "keywords": [
         "ES6",
