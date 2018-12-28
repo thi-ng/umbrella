@@ -2,6 +2,7 @@ import { IObjectOf } from "@thi.ng/api/api";
 import { partial } from "@thi.ng/compose/partial";
 import { TAU } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
+import { interpolate } from "@thi.ng/transducers/iter/interpolate";
 import { normRange } from "@thi.ng/transducers/iter/norm-range";
 import { tuples } from "@thi.ng/transducers/iter/tuples";
 import { push } from "@thi.ng/transducers/rfn/push";
@@ -67,3 +68,12 @@ export const cosineCoeffs =
             [0, 0, 0, 0]
         ];
     };
+
+export const multiCosineGradient =
+    (n: number, ...stops: [number, ReadonlyColor][]) =>
+        interpolate(
+            n,
+            cosineCoeffs,
+            cosineColor,
+            ...stops
+        );
