@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.8...@thi.ng/transducers@2.3.0) (2018-12-28)
+
+
+### Features
+
+* **transducers:** add interpolate() iterator, update readme ([846ab5c](https://github.com/thi-ng/umbrella/commit/846ab5c))
+
+
+
+
+
 ## [2.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.7...@thi.ng/transducers@2.2.8) (2018-12-27)
 
 **Note:** Version bump only for package @thi.ng/transducers
