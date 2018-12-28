@@ -28,20 +28,36 @@ This project is part of the
 
 Color space conversions (any direction) between:
 
-- CSS (string, hex3/hex4/hex6/hex8, `rgba()`, `hsla()`, color names)
-- ARGB (uint32, `0xaarrggbb`)
-- RGBA (float4, `[r,g,b,a]`)
-- HSIA (float4, `[h,s,i,a]`)
-- HSLA (float4, `[h,s,l,a]`)
-- HSVA (float4, `[h,s,v,a]`)
+- CSS (string, hex3/hex4/hex6/hex8, `rgba()`, `hsla()`, named colors)
+- INT32 (uint32, `0xaarrggbb`)
+- RGBA (float4)
+- HCYA (float4)
+- HSIA (float4)
+- HSLA (float4)
+- HSVA (float4)
+- XYZA (float4, CIE 1931)
+- YCBCR (float4)
 
-RGBA, HSLA, HSVA colors can be stored as plain, typed or custom
-array-like types of normalized values (`[0,1]` interval).
+Apart from `CSS` and `Int32` colors, all others can be stored as plain,
+typed or custom array-like types of normalized values (`[0,1]`
+interval). Where applicable, the hue too is stored in that range, NOT in
+degrees.
+
+#### Class wrappers
+
+The package provides lightweight class wrappers for each color mode /
+space. These wrappers act similarly to the `Vec2/3/4` wrappers in
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors3),
+support striding (for mapped memory views), named channel accessor
+aliases (in addition to array indexing) and are fully compatible with
+all other functions. Wrapper factory functions are provided for
+convenience.
 
 ### RGBA transformations
 
-RGBA color matrix transformations, including parametric preset
-transforms:
+RGBA [color matrix
+transformations](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color/src/matrix.ts),
+including parametric preset transforms:
 
 - brightness
 - contrast
@@ -55,7 +71,15 @@ transforms:
 - invert (also available as non-matrix op)
 - luminance to alpha
 
+Matrix transforms can be combined using matrix multiplication /
+concatenation (`mulMatrix()` / `concatMatrices`).
+
 ### RGBA Porter-Duff compositing
+
+The package provides all 12 basic
+[Porter-Duff](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color/src/porter-duff.ts)
+compositing / blending operators, both for colors with pre-multiplied
+alpha and without.
 
 ![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/feature/color/assets/porterduff.png)
 
@@ -112,7 +136,7 @@ yarn add @thi.ng/color
 import * as col from "@thi.ng/color";
 
 // route #1: asXXX() converters: CSS -> ARGB (int) -> RGBA
-const a = col.asRGBA("#3cf", col.ColorMode.CSS);
+const a = col.asRGBA(col.css("#3cf"));
 // [0.2, 0.8, 1, 1]
 
 // route #2: parseCSS(): CSS -> HSLA -> RGBA
