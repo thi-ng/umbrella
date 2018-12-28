@@ -22,6 +22,7 @@ export * from "./rgba-hsva";
 export * from "./rgba-int";
 export * from "./rgba-xyza";
 export * from "./rgba-ycbcra";
+export * from "./srgba";
 export * from "./xyza-rgba";
 export * from "./ycbcra-rgba";
 
@@ -40,7 +41,6 @@ export * from "./ycbcr";
 
 export * from "./cosine-gradients";
 export * from "./invert";
-export * from "./linear";
 export * from "./luminance";
 export * from "./matrix";
 export * from "./porter-duff";

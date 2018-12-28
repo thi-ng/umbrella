@@ -8,17 +8,34 @@ import {
 } from "./api";
 import { hsiaRgba } from "./hsia-rgba";
 import { hslaCss } from "./hsla-css";
+import { hslaHsva } from "./hsla-hsva";
 import { hslaRgba } from "./hsla-rgba";
 import { hsvaCss } from "./hsva-css";
+import { hsvaHsla } from "./hsva-hsla";
 import { hsvaRgba } from "./hsva-rgba";
 import { int32Css } from "./int-css";
 import { int32Rgba } from "./int-rgba";
 import { parseCss } from "./parse-css";
 import { rgbaCss } from "./rgba-css";
+import { rgbaHcya } from "./rgba-hcya";
 import { rgbaHsia } from "./rgba-hsia";
 import { rgbaHsla } from "./rgba-hsla";
 import { rgbaHsva } from "./rgba-hsva";
 import { rgbaInt } from "./rgba-int";
+import { rgbaXyza } from "./rgba-xyza";
+import { rgbaYcbcra } from "./rgba-ycbcra";
+import { xyzaRgba } from "./xyza-rgba";
+
+const RGBA_FNS = {
+    [ColorMode.CSS]: rgbaCss,
+    [ColorMode.INT32]: rgbaInt,
+    [ColorMode.HCYA]: rgbaHcya,
+    [ColorMode.HSIA]: rgbaHsia,
+    [ColorMode.HSLA]: rgbaHsla,
+    [ColorMode.HSVA]: rgbaHsva,
+    [ColorMode.XYZA]: rgbaXyza,
+    [ColorMode.YCBCRA]: rgbaYcbcra,
+};
 
 export const convert: MultiFn2O<string | number | ReadonlyColor | IColor, ColorMode, ColorMode, Color | string | number> =
     defmulti(
@@ -29,6 +46,12 @@ export const convert: MultiFn2O<string | number | ReadonlyColor | IColor, ColorM
                     `${ColorMode[mdest]}-${ColorMode[msrc]}` :
                     illegalArgs(`missing src color mode`)
     );
+
+export function asCss(col: IColor): string;
+export function asCss(col: string | number | ReadonlyColor, mode: ColorMode): string;
+export function asCss(col: any, mode?: ColorMode) {
+    return <string>convert(col, ColorMode.CSS, mode);
+}
 
 export function asRGBA(col: IColor): Color;
 export function asRGBA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
@@ -60,10 +83,16 @@ export function asHSVA(col: any, mode?: ColorMode) {
     return <Color>convert(col, ColorMode.HSVA, mode);
 }
 
-export function asCSS(col: IColor): string;
-export function asCSS(col: string | number | ReadonlyColor, mode: ColorMode): string;
-export function asCSS(col: any, mode?: ColorMode) {
-    return <string>convert(col, ColorMode.CSS, mode);
+export function asXYZA(col: IColor): Color;
+export function asXYZA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asXYZA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.XYZA, mode);
+}
+
+export function asYCbCrA(col: IColor): Color;
+export function asYCbCrA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asYCbCrA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.YCBCRA, mode);
 }
 
 const defConversion = (
@@ -78,41 +107,41 @@ const defConversion = (
 
 // CSS
 
-defConversion(
-    ColorMode.HSLA, ColorMode.CSS,
-    (x: string) => <Color>parseCss(x, ColorMode.HSLA)
-);
-
-defConversion(
-    ColorMode.HSVA, ColorMode.CSS,
-    (x: string) => <Color>parseCss(x, ColorMode.HSVA)
-);
-
-defConversion(
-    ColorMode.INT32, ColorMode.CSS,
-    (x: string) => <Color>parseCss(x, ColorMode.INT32)
-);
-
-defConversion(
-    ColorMode.RGBA, ColorMode.CSS,
-    (x: string) => <Color>parseCss(x, ColorMode.RGBA)
+[
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.INT32,
+    ColorMode.RGBA,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.CSS,
+        (x: string) => <Color>parseCss(x, id)
+    )
 );
 
 // Int
 
+[
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA,
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.INT32,
+        (x: number) => RGBA_FNS[id](null, int32Rgba([], x))
+    )
+);
+
 defConversion(
     ColorMode.CSS, ColorMode.INT32,
     (x: number) => int32Css(x)
-);
-
-defConversion(
-    ColorMode.HSLA, ColorMode.INT32,
-    (x: number) => rgbaHsla(null, int32Rgba([], x))
-);
-
-defConversion(
-    ColorMode.HSVA, ColorMode.INT32,
-    (x: number) => rgbaHsva(null, int32Rgba([], x))
 );
 
 defConversion(
@@ -122,19 +151,19 @@ defConversion(
 
 // HSIA
 
-defConversion(
-    ColorMode.CSS, ColorMode.HSIA,
-    (x: ReadonlyColor) => rgbaCss(hsiaRgba([], x))
-);
-
-defConversion(
-    ColorMode.HSLA, ColorMode.HSIA,
-    (x: ReadonlyColor) => rgbaHsla(null, hsiaRgba([], x))
-);
-
-defConversion(
-    ColorMode.HSVA, ColorMode.HSIA,
-    (x: ReadonlyColor) => rgbaHsva(null, hsiaRgba([], x))
+[
+    ColorMode.CSS,
+    ColorMode.INT32,
+    ColorMode.HCYA,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA,
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.HSIA,
+        (x: ReadonlyColor) => RGBA_FNS[id](null, hsiaRgba([], x))
+    )
 );
 
 defConversion(
@@ -144,9 +173,27 @@ defConversion(
 
 // HSLA
 
+[
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.INT32,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA,
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.HSLA,
+        (x: ReadonlyColor) => RGBA_FNS[id](null, hslaRgba([], x))
+    )
+);
+
 defConversion(
     ColorMode.CSS, ColorMode.HSLA,
     (x: ReadonlyColor) => hslaCss(x)
+);
+
+defConversion(
+    ColorMode.HSVA, ColorMode.HSLA,
+    (x: ReadonlyColor) => hslaHsva([], x)
 );
 
 defConversion(
@@ -156,9 +203,27 @@ defConversion(
 
 // HSVA
 
+[
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.INT32,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA,
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.HSVA,
+        (x: ReadonlyColor) => RGBA_FNS[id](null, hsvaRgba([], x))
+    )
+);
+
 defConversion(
     ColorMode.CSS, ColorMode.HSVA,
     (x: ReadonlyColor) => hsvaCss(x)
+);
+
+defConversion(
+    ColorMode.HSLA, ColorMode.HSVA,
+    (x: ReadonlyColor) => hsvaHsla([], x)
 );
 
 defConversion(
@@ -168,27 +233,48 @@ defConversion(
 
 // RGBA
 
+[
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA,
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.RGBA,
+        (x: ReadonlyColor) => RGBA_FNS[id]([], x)
+    )
+);
+
 defConversion(
     ColorMode.CSS, ColorMode.RGBA,
     (x: ReadonlyColor) => rgbaCss(x)
 );
 
 defConversion(
-    ColorMode.HSIA, ColorMode.RGBA,
-    (x: ReadonlyColor) => rgbaHsia([], x)
-);
-
-defConversion(
-    ColorMode.HSLA, ColorMode.RGBA,
-    (x: ReadonlyColor) => rgbaHsla([], x)
-);
-
-defConversion(
-    ColorMode.HSVA, ColorMode.RGBA,
-    (x: ReadonlyColor) => rgbaHsva([], x)
-);
-
-defConversion(
     ColorMode.INT32, ColorMode.RGBA,
     (x: ReadonlyColor) => rgbaInt(x)
+);
+
+// XYZA
+
+[
+    ColorMode.CSS,
+    ColorMode.HCYA,
+    ColorMode.HSIA,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.INT32,
+    ColorMode.YCBCRA,
+].forEach(
+    (id) => defConversion(
+        id, ColorMode.RGBA,
+        (x: ReadonlyColor) => RGBA_FNS[id](xyzaRgba([], x))
+    )
+);
+
+defConversion(
+    ColorMode.RGBA, ColorMode.XYZA,
+    (x: ReadonlyColor) => xyzaRgba([], x)
 );

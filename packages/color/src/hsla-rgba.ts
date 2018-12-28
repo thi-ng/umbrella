@@ -1,41 +1,19 @@
-import { SIXTH, THIRD, TWO_THIRD } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors3/setc";
 import { Color, ReadonlyColor } from "./api";
-import { clampH } from "./clamp";
-import { ensureHue } from "./internal/ensure-hue";
+import { hueRgba } from "./hue-rgba";
+import { ensureAlpha } from "./internal/ensure-alpha";
 
 export const hslaRgba =
     (out: Color, src: ReadonlyColor) => {
-        out = clampH(out || src, src);
-        const h = out[0];
-        const s = out[1];
-        const l = out[2];
-        if (s > 1e-6) {
-            const f2 = l < 0.5 ?
-                l * (s + 1) :
-                (l + s) - (l * s);
-            const f1 = 2 * l - f2;
-            return setC3(
-                out,
-                hslHue(f1, f2, h + THIRD),
-                hslHue(f1, f2, h),
-                hslHue(f1, f2, h - THIRD),
-            );
-        }
-        return setC3(out, l, l, l);
-    };
-
-const hslHue =
-    (f1: number, f2: number, h: number) => {
-        h = ensureHue(h);
-        return clamp01(
-            (h < SIXTH) ?
-                f1 + (f2 - f1) * 6 * h :
-                (h < 0.5) ?
-                    f2 :
-                    (h < TWO_THIRD) ?
-                        f1 + (f2 - f1) * (TWO_THIRD - h) * 6 :
-                        f1
+        const s = clamp01(src[1]);
+        const l = clamp01(src[2]);
+        out = hueRgba(out || src, src[0], ensureAlpha(src[3]));
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        return setC3(
+            out,
+            (out[0] - 0.5) * c + l,
+            (out[1] - 0.5) * c + l,
+            (out[2] - 0.5) * c + l
         );
     };
