@@ -3,5 +3,5 @@ import { hsvaHsla } from "./hsva-hsla";
 import { hslaCss } from "./hsla-css";
 
 export const hsvaCss =
-    (hsva: ReadonlyColor) =>
-        hslaCss(hsvaHsla([], hsva));
+    (src: ReadonlyColor) =>
+        hslaCss(hsvaHsla([], src));

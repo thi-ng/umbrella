@@ -11,8 +11,8 @@ import { hslaCss } from "./hsla-css";
 import { hslaRgba } from "./hsla-rgba";
 import { hsvaCss } from "./hsva-css";
 import { hsvaRgba } from "./hsva-rgba";
-import { intCss } from "./int-css";
-import { intRgba } from "./int-rgba";
+import { int32Css } from "./int-css";
+import { int32Rgba } from "./int-rgba";
 import { parseCss } from "./parse-css";
 import { rgbaCss } from "./rgba-css";
 import { rgbaHsia } from "./rgba-hsia";
@@ -34,6 +34,12 @@ export function asRGBA(col: IColor): Color;
 export function asRGBA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
 export function asRGBA(col: any, mode?: ColorMode) {
     return <Color>convert(col, ColorMode.RGBA, mode);
+}
+
+export function asHCYA(col: IColor): Color;
+export function asHCYA(col: string | number | ReadonlyColor, mode: ColorMode): Color;
+export function asHCYA(col: any, mode?: ColorMode) {
+    return <Color>convert(col, ColorMode.HCYA, mode);
 }
 
 export function asHSIA(col: IColor): Color;
@@ -83,8 +89,8 @@ defConversion(
 );
 
 defConversion(
-    ColorMode.INT_ARGB, ColorMode.CSS,
-    (x: string) => <Color>parseCss(x, ColorMode.INT_ARGB)
+    ColorMode.INT32, ColorMode.CSS,
+    (x: string) => <Color>parseCss(x, ColorMode.INT32)
 );
 
 defConversion(
@@ -95,23 +101,23 @@ defConversion(
 // Int
 
 defConversion(
-    ColorMode.CSS, ColorMode.INT_ARGB,
-    (x: number) => intCss(x)
+    ColorMode.CSS, ColorMode.INT32,
+    (x: number) => int32Css(x)
 );
 
 defConversion(
-    ColorMode.HSLA, ColorMode.INT_ARGB,
-    (x: number) => rgbaHsla(null, intRgba([], x))
+    ColorMode.HSLA, ColorMode.INT32,
+    (x: number) => rgbaHsla(null, int32Rgba([], x))
 );
 
 defConversion(
-    ColorMode.HSVA, ColorMode.INT_ARGB,
-    (x: number) => rgbaHsva(null, intRgba([], x))
+    ColorMode.HSVA, ColorMode.INT32,
+    (x: number) => rgbaHsva(null, int32Rgba([], x))
 );
 
 defConversion(
-    ColorMode.RGBA, ColorMode.INT_ARGB,
-    (x: number) => intRgba([], x)
+    ColorMode.RGBA, ColorMode.INT32,
+    (x: number) => int32Rgba([], x)
 );
 
 // HSIA
@@ -183,6 +189,6 @@ defConversion(
 );
 
 defConversion(
-    ColorMode.INT_ARGB, ColorMode.RGBA,
+    ColorMode.INT32, ColorMode.RGBA,
     (x: ReadonlyColor) => rgbaInt(x)
 );

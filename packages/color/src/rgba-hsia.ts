@@ -9,8 +9,8 @@ import { atan2Abs } from "@thi.ng/math/angle";
 const SQRT32 = SQRT3 / 2;
 
 export const rgbaHsia =
-    (out: Color, rgba: ReadonlyColor) => {
-        out = clamp(out || rgba, rgba);
+    (out: Color, src: ReadonlyColor) => {
+        out = clamp(out || src, src);
         const r = out[0];
         const g = out[1];
         const b = out[2];

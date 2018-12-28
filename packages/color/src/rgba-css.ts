@@ -4,11 +4,11 @@ import { FF, ReadonlyColor } from "./api";
 import { ensureAlpha } from "./internal/ensure-alpha";
 
 export const rgbaCss =
-    (rgba: ReadonlyColor) => {
-        const r = (clamp01(rgba[0]) * 0xff) | 0;
-        const g = (clamp01(rgba[1]) * 0xff) | 0;
-        const b = (clamp01(rgba[2]) * 0xff) | 0;
-        const a = ensureAlpha(rgba[3]);
+    (src: ReadonlyColor) => {
+        const r = (clamp01(src[0]) * 0xff + 0.5) | 0;
+        const g = (clamp01(src[1]) * 0xff + 0.5) | 0;
+        const b = (clamp01(src[2]) * 0xff + 0.5) | 0;
+        const a = ensureAlpha(src[3]);
         return (a < 1) ?
             `rgba(${r},${g},${b},${FF(a)})` :
             `#${U24(r << 16 | g << 8 | b)}`

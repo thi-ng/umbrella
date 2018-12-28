@@ -1,13 +1,7 @@
-import { clamp01 } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
 import { dotS4 } from "@thi.ng/vectors3/dots";
-import { setC4 } from "@thi.ng/vectors3/setc";
-import {
-    Color,
-    ColorMatrix,
-    ReadonlyColor,
-    RGB_LUMINANCE
-} from "./api";
+import { ColorMatrix, RGB_LUMINANCE } from "./api";
+import { mulV45 } from "./internal/mulv";
 
 // https://drafts.fxtf.org/filter-effects/#feColorMatrixElement
 
@@ -21,23 +15,18 @@ const S6 = 0.140;
 const S7 = 0.143;
 const S8 = 0.283;
 
-export const applyMatrix =
-    (out: Color, mat: ColorMatrix, rgba: ReadonlyColor, clampOut = true) =>
-        clampOut ?
-            setC4(
-                out || rgba,
-                clamp01(dotS4(rgba, mat, 0, 0) + mat[4]),
-                clamp01(dotS4(rgba, mat, 0, 5) + mat[9]),
-                clamp01(dotS4(rgba, mat, 0, 10) + mat[14]),
-                clamp01(dotS4(rgba, mat, 0, 15) + mat[19])
-            ) :
-            setC4(
-                out || rgba,
-                dotS4(rgba, mat, 0, 0) + mat[4],
-                dotS4(rgba, mat, 0, 5) + mat[9],
-                dotS4(rgba, mat, 0, 10) + mat[14],
-                dotS4(rgba, mat, 0, 15) + mat[19]
-            );
+/**
+ * Transforms `src` RGBA color with given matrix and stores result in
+ * `out` (writes back to `src` if `out` is `null` or `undefined`).
+ * Unless `clampOut` is false, the result color will be clamped to `[0,1]`
+ * interval.
+ *
+ * @param out
+ * @param mat
+ * @param src
+ * @param clampOut
+ */
+export const transform = mulV45;
 
 export const mulMatrix =
     (a: ColorMatrix, b: ColorMatrix): ColorMatrix => [

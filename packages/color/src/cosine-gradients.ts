@@ -56,12 +56,12 @@ export const cosineGradient =
         );
 
 export const cosineCoeffs =
-    (src: ReadonlyColor, dest: ReadonlyColor) => {
-        src = clamp([], src);
-        dest = clamp([], dest);
-        const amp = [...map(([a, b]) => 0.5 * (a - b), tuples(src, dest))];
+    (from: ReadonlyColor, to: ReadonlyColor) => {
+        from = clamp([], from);
+        to = clamp([], to);
+        const amp = [...map(([a, b]) => 0.5 * (a - b), tuples(from, to))];
         return <CosGradientSpec>[
-            [...map(([s, a]) => s - a, tuples(src, amp))],
+            [...map(([s, a]) => s - a, tuples(from, amp))],
             amp,
             [-0.5, -0.5, -0.5, -0.5],
             [0, 0, 0, 0]

@@ -5,8 +5,8 @@ import { clampH } from "./clamp";
 // https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSI
 
 export const hsiaRgba =
-    (out: Color, hsia: ReadonlyColor) => {
-        out = clampH(out || hsia, hsia);
+    (out: Color, src: ReadonlyColor) => {
+        out = clampH(out || src, src);
         const s = out[1];
         const i = out[2];
         if (s < 1e-6) {

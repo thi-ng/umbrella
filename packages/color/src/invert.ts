@@ -4,10 +4,10 @@ import { Color, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
 
 export const invertRGB =
-    (out: Color, rgba: ReadonlyColor) => (
-        out = clamp(out || rgba, rgba),
+    (out: Color, src: ReadonlyColor) => (
+        out = clamp(out || src, src),
         sub3(out, ONE3, out)
     );
 
 export const invertInt =
-    (rgb: number) => rgb ^ 0xffffff;
+    (src: number) => src ^ 0xffffff;

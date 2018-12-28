@@ -6,8 +6,8 @@ import { clampH } from "./clamp";
 import { ensureHue } from "./internal/ensure-hue";
 
 export const hslaRgba =
-    (out: Color, hsla: ReadonlyColor) => {
-        out = clampH(out || hsla, hsla);
+    (out: Color, src: ReadonlyColor) => {
+        out = clampH(out || src, src);
         const h = out[0];
         const s = out[1];
         const l = out[2];

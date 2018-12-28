@@ -3,43 +3,43 @@ import { set } from "@thi.ng/vectors3/set";
 import { setC4 } from "@thi.ng/vectors3/setc";
 
 /**
- * Multiplies RGB channels w/ alpha channel.
- * Assumes alpha is in [0 .. 1] interval.
+ * RGBA only. Multiplies RGB channels w/ alpha channel. Assumes alpha is
+ * in [0 .. 1] interval. Does NOT clamp result.
  *
  * @param out
- * @param rgba
+ * @param src
  */
 export const premultiply =
-    (out: Color, rgba: ReadonlyColor) => {
-        const a = rgba[3];
+    (out: Color, src: ReadonlyColor) => {
+        const a = src[3];
         return setC4(
-            out || rgba,
-            rgba[0] * a,
-            rgba[1] * a,
-            rgba[2] * a,
+            out || src,
+            src[0] * a,
+            src[1] * a,
+            src[2] * a,
             a
         );
     };
 
 /**
- * Reverse operation of `premultiply`. Divides RGB channels by alpha,
- * unless alpha is zero. Does NOT clamp result.
+ * RGBA only. Reverse operation of `premultiply`. Divides RGB channels
+ * by alpha, unless alpha is zero. Does NOT clamp result.
  *
  * @param out
- * @param rgba
+ * @param src
  */
 export const postmultiply =
-    (out: Color, rgba: ReadonlyColor) => {
-        const a = rgba[3];
+    (out: Color, src: ReadonlyColor) => {
+        const a = src[3];
         return a > 0 ?
             setC4(
-                out || rgba,
-                rgba[0] / a,
-                rgba[1] / a,
-                rgba[2] / a,
+                out || src,
+                src[0] / a,
+                src[1] / a,
+                src[2] / a,
                 a
             ) :
-            !out && out != rgba ?
-                set(out, rgba) :
-                rgba;
+            !out && out != src ?
+                set(out, src) :
+                src;
     };

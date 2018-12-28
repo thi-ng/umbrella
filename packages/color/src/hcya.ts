@@ -1,0 +1,38 @@
+import { IVector } from "@thi.ng/vectors3/api";
+import { declareIndices } from "@thi.ng/vectors3/internal/accessors";
+import { Color, ColorMode } from "./api";
+import { AColor } from "./internal/acolor";
+import { ensureArgs } from "./internal/ctor-args";
+
+export function hcya(hcya: Color): HCYA
+export function hcya(h: number, c: number, y: number, a?: number): HCYA;
+export function hcya(...args: any[]) {
+    return new HCYA(ensureArgs(args));
+}
+
+export class HCYA extends AColor<HCYA> implements
+    IVector<HCYA> {
+
+    h: number;
+    s: number;
+    v: number;
+    a: number;
+
+    get mode() {
+        return ColorMode.HCYA;
+    }
+
+    copy() {
+        return new HCYA(this.deref());
+    }
+
+    copyView() {
+        return new HCYA(this.buf, this.offset, this.stride);
+    }
+
+    empty() {
+        return new HCYA();
+    }
+}
+
+declareIndices(HCYA.prototype, ["h", "c", "y", "a"]);

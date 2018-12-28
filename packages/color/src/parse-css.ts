@@ -15,7 +15,7 @@ export const parseCss =
         let res: Color | number;
         let resMode: ColorMode;
         if (col.charAt(0) === "#") {
-            resMode = ColorMode.INT_ARGB;
+            resMode = ColorMode.INT32;
             res = parseHex(col);
         } else {
             const match = RE_CSS.exec(col);
@@ -40,7 +40,7 @@ export const parseCss =
             } else {
                 const c = CSS_NAMES[col];
                 !c && illegalArgs(`invalid color: "${col}"`);
-                resMode = ColorMode.INT_ARGB;
+                resMode = ColorMode.INT32;
                 res = parseHex(c);
             }
         }

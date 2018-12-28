@@ -1,27 +1,31 @@
 import { ICopy, IDeref } from "@thi.ng/api/api";
 import { ColorMode, IColor } from "./api";
 
-export const argb =
+export const int32 =
     (x: number) =>
-        new ARGB(x >>> 0);
+        new Int32(x);
 
-export class ARGB implements
+export const int24 =
+    (x: number) =>
+        new Int32((x & 0xffffff) | 0xff000000);
+
+export class Int32 implements
     IColor,
-    ICopy<ARGB>,
+    ICopy<Int32>,
     IDeref<number> {
 
     value: number;
 
     constructor(col: number) {
-        this.value = col;
+        this.value = col >>> 0;
     }
 
     get mode() {
-        return ColorMode.INT_ARGB;
+        return ColorMode.INT32;
     }
 
     copy() {
-        return new ARGB(this.value);
+        return new Int32(this.value);
     }
 
     deref() {
