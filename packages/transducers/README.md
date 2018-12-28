@@ -30,6 +30,7 @@ This project is part of the
     - [Bitstream](#bitstream)
     - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
     - [Weighted random choices](#weighted-random-choices)
+    - [Keyframe interpolation](#keyframe-interpolation)
 - [API](#api)
     - [Types](#types)
     - [IReducible](#ireducible)
@@ -507,6 +508,22 @@ tx.transduce(tx.take(1000), tx.frequencies(), tx.choices("abcd", [1, 0.5, 0.25, 
 // Map { 'c' => 132, 'a' => 545, 'b' => 251, 'd' => 72 }
 ```
 
+### Keyframe interpolation
+
+See [`interpolate()`](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/interpolate.ts) for details.
+
+```ts
+[...tx.interpolate(
+    10,
+    (a, b) => [a,b],
+    ([a, b], t) => Math.floor(a + (b-a) * t),
+    [0.2, 100],
+    [0.5, 200],
+    [0.8, 0]
+)]
+// [ 100, 100, 100, 133, 166, 200, 133, 66, 0, 0, 0 ]
+```
+
 ## API
 
 _Documentation is slowly forthcoming in the form of doc comments (incl.
@@ -764,6 +781,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [choices](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/choices.ts)
 - [concat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/concat.ts)
 - [cycle](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/cycle.ts)
+- [interpolate](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/interpolate.ts)
 - [iterate](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/iterate.ts)
 - [keys](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/keys.ts)
 - [normRange](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/normRange.ts)
