@@ -510,16 +510,20 @@ tx.transduce(tx.take(1000), tx.frequencies(), tx.choices("abcd", [1, 0.5, 0.25, 
 
 ### Keyframe interpolation
 
-See [`interpolate()`](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/interpolate.ts) for details.
+See
+[`interpolate()`](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/interpolate.ts)
+docs for details.
 
 ```ts
-[...tx.interpolate(
+[...interpolate(
     10,
-    (a, b) => [a,b],
-    ([a, b], t) => Math.floor(a + (b-a) * t),
-    [0.2, 100],
-    [0.5, 200],
-    [0.8, 0]
+    0,
+    100,
+    (a, b) => [a, b],
+    ([a, b], t) => Math.floor(a + (b - a) * t),
+    [20, 100],
+    [50, 200],
+    [80, 0]
 )]
 // [ 100, 100, 100, 133, 166, 200, 133, 66, 0, 0, 0 ]
 ```
