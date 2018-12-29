@@ -4,8 +4,8 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function hsia(rgba: Color): HSIA
-export function hsia(h: number, s: number, i: number, a?: number): HSIA;
+export function hsia(col: Color): HSIA
+export function hsia(h?: number, s?: number, i?: number, a?: number): HSIA;
 export function hsia(...args: any[]) {
     return new HSIA(ensureArgs(args));
 }

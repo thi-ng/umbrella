@@ -4,8 +4,8 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function hcya(hcya: Color): HCYA
-export function hcya(h: number, c: number, y: number, a?: number): HCYA;
+export function hcya(col: Color): HCYA
+export function hcya(h?: number, c?: number, y?: number, a?: number): HCYA;
 export function hcya(...args: any[]) {
     return new HCYA(ensureArgs(args));
 }

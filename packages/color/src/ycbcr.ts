@@ -4,8 +4,8 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function ycbcra(rgba: Color): YCbCrA
-export function ycbcra(r: number, g: number, b: number, a?: number): YCbCrA;
+export function ycbcra(col: Color): YCbCrA
+export function ycbcra(y: number, b: number, r: number, a?: number): YCbCrA;
 export function ycbcra(...args: any[]) {
     return new YCbCrA(ensureArgs(args));
 }

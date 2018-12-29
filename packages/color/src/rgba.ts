@@ -4,8 +4,8 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function rgba(rgba: Color): RGBA
-export function rgba(r: number, g: number, b: number, a?: number): RGBA;
+export function rgba(col: Color): RGBA
+export function rgba(r?: number, g?: number, b?: number, a?: number): RGBA;
 export function rgba(...args: any[]) {
     return new RGBA(ensureArgs(args));
 }

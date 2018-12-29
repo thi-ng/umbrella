@@ -4,8 +4,8 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function hsla(rgba: Color): HSLA
-export function hsla(h: number, s: number, l: number, a?: number): HSLA;
+export function hsla(col: Color): HSLA
+export function hsla(h?: number, s?: number, l?: number, a?: number): HSLA;
 export function hsla(...args: any[]) {
     return new HSLA(ensureArgs(args));
 }

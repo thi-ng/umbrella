@@ -4,8 +4,8 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";
 
-export function xyza(rgba: Color): XYZA
-export function xyza(r: number, g: number, b: number, a?: number): XYZA;
+export function xyza(col: Color): XYZA
+export function xyza(x?: number, y?: number, z?: number, a?: number): XYZA;
 export function xyza(...args: any[]) {
     return new XYZA(ensureArgs(args));
 }
