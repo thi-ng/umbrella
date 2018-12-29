@@ -1,6 +1,6 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC4 } from "@thi.ng/vectors3/setc";
-import { Color } from "./api";
+import { Color, Hue } from "./api";
 import { ensureHue } from "./internal/ensure-hue";
 
 /**
@@ -21,3 +21,7 @@ export const hueRgba =
             alpha
         );
     };
+
+export const namedHueRgba =
+    (out: Color, hue: Hue, alpha = 1) =>
+        hueRgba(out, hue / 12, alpha);

@@ -53,8 +53,25 @@ export const YELLOW = Object.freeze([1, 1, 0, 1]);
 
 export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
 
-export const SRGB_GAMMA = 1.0 / 2.2;
-export const SRGB_INVERSE_GAMMA = 2.2;
+// Hue names
+
+export enum Hue {
+    RED,
+    ORANGE,
+    YELLOW,
+    CHARTREUSE,
+    GREEN,
+    SPRING_GREEN,
+    CYAN,
+    AZURE,
+    BLUE,
+    VIOLET,
+    MAGENTA,
+    ROSE
+}
+
+// internal helpers
+
 export const SRGB_ALPHA = 0.055;
 
 export const RGB_XYZ = [
@@ -68,8 +85,6 @@ export const XYZ_RGB = [
     -0.9692660, 1.8760108, 0.0415560,
     0.0556434, -0.2040259, 1.0572252
 ];
-
-// internal helpers
 
 export const FF = float(2);
 export const PC = percent(2);
