@@ -29,6 +29,11 @@ export const enum ColorMode {
     YCBCRA
 }
 
+/**
+ * Reverse lookup for `ColorMode` enums
+ */
+export const __ColorMode = (<any>exports).ColorMode;
+
 export interface IColor {
     readonly mode: ColorMode;
 }

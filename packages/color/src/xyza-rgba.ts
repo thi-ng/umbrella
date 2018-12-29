@@ -1,5 +1,5 @@
 import { Color, ReadonlyColor, XYZ_RGB } from "./api";
-import { mulV33 } from "./internal/mulv";
+import { mulV33 } from "./internal/matrix-ops";
 
 /**
  * https://en.wikipedia.org/wiki/CIE_1931_color_space

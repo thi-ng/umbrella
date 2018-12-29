@@ -9,7 +9,7 @@ import { IDeref } from "@thi.ng/api/api";
 const RE_HEX = /^#?([0-9a-f]{3,8})$/i;
 const RE_CSS = /^(rgb|hsl)a?\(\s*([0-9.]+?),\s*([0-9.]+%?),\s*([0-9.]+%?),?\s*([0-9.]+)?\s*\)$/;
 
-export const parseCss =
+export const parseCSS =
     (col: string | IDeref<string>, mode = ColorMode.RGBA) => {
         col = typeof col === "string" ? col : col.deref();
         let res: Color | number;

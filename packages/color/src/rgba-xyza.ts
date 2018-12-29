@@ -1,13 +1,13 @@
 import { Color, ReadonlyColor, RGB_XYZ } from "./api";
 import { clamp } from "./clamp";
-import { mulV33 } from "./internal/mulv";
+import { mulV33 } from "./internal/matrix-ops";
 import { ensureAlpha } from "./internal/ensure-alpha";
 
 /**
  * https://en.wikipedia.org/wiki/CIE_1931_color_space
- * 
+ *
  * @param out
- * @param src 
+ * @param src
  */
 export const rgbaXyza =
     (out: Color, src: ReadonlyColor) => {

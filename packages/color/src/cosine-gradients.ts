@@ -69,6 +69,13 @@ export const cosineCoeffs =
         ];
     };
 
+/**
+ * Multi-color cosine gradient generator, based on
+ * thi.ng/transducers/interpolate.
+ *
+ * @param n
+ * @param stops
+ */
 export const multiCosineGradient =
     (n: number, ...stops: [number, ReadonlyColor][]) =>
         interpolate(
