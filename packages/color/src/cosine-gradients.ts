@@ -73,6 +73,8 @@ export const multiCosineGradient =
     (n: number, ...stops: [number, ReadonlyColor][]) =>
         interpolate(
             n,
+            0,
+            1,
             cosineCoeffs,
             cosineColor,
             ...stops

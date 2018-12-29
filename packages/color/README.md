@@ -14,6 +14,7 @@ This project is part of the
     - [RGBA transformations](#rgba-transformations)
     - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
     - [Cosine gradients](#cosine-gradients)
+    - [Multi-stop gradients](#multi-stop-gradients)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -26,22 +27,28 @@ This project is part of the
 
 ### Color modes
 
-Color space conversions (any direction) between:
+Fast color space conversions (any direction) between:
 
 - CSS (string, hex3/hex4/hex6/hex8, `rgba()`, `hsla()`, named colors)
-- INT32 (uint32, `0xaarrggbb`)
-- RGBA (float4)
 - HCYA (float4)
 - HSIA (float4)
 - HSLA (float4)
 - HSVA (float4)
-- XYZA (float4, CIE 1931)
-- YCBCR (float4)
+- Int32 (uint32, `0xaarrggbb`)
+- RGBA (float4)
+- XYZA (float4, aka CIE 1931)
+- YCbCr (float4)
 
 Apart from `CSS` and `Int32` colors, all others can be stored as plain,
-typed or custom array-like types of normalized values (`[0,1]`
+typed or custom array-like types of (mostly) normalized values (`[0,1]`
 interval). Where applicable, the hue too is stored in that range, NOT in
 degrees.
+
+Apart from conversions, most other operations provided by this package
+are only supporting RGBA colors. These can also be converted to/from
+sRGB (i.e. linear vs gamma corrected). Additionally, RGBA colors can be
+pre-multiplied (and post-multiplied) with their alpha channel (see
+[Porter-Duff](#rgba-porter-duff-compositing) section below).
 
 #### Class wrappers
 
@@ -81,9 +88,9 @@ The package provides all 12 basic
 compositing / blending operators, both for colors with pre-multiplied
 alpha and without.
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/feature/color/assets/porterduff.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/feature/vec-refactor/assets/porterduff.png)
 
-[Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap)
+([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
 
 ### Cosine gradients
 
@@ -91,6 +98,7 @@ alpha and without.
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
 The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color/src/cosine-gradients.ts)):
+
 |                                                                |                                                                  |
 |----------------------------------------------------------------|------------------------------------------------------------------|
 | ![](http://media.thi.ng/color/presets/rainbow1.svg)            | ![](http://media.thi.ng/color/presets/rainbow2.svg)              |
@@ -114,6 +122,36 @@ The following presets are bundled (in [`cosine-gradients.ts`](https://github.com
 | ![](http://media.thi.ng/color/presets/blue-magenta-orange.svg) | ![](http://media.thi.ng/color/presets/magenta-green.svg)         |
 | blue-magenta-orange                                            | magenta-green                                                    |
 
+### Multi-stop gradients
+
+The `multiCosineGradient()` function returns an iterator of RGBA colors
+based on given gradient stops. This iterator computes a cosine gradient between each color stop and yields a sequence of RGBA values.
+
+```ts
+const gradient = col.multiCosineGradient(
+    // num colors to produce
+    10,
+    // gradient stops (normalized positions, only RGBA colors supported)
+    [0.1, col.RED], [0.5, col.GREEN], [0.9, col.BLUE]
+);
+
+for(let c of gradient) {
+    console.log(col.rgbaCss(c));
+}
+
+// #ff0000
+// #ff0000
+// #da2500
+// #807f00
+// #25da00
+// #00ff00
+// #00da25
+// #00807f
+// #0025da
+// #0000ff
+// #0000ff
+```
+
 ## Installation
 
 ```bash
@@ -135,24 +173,36 @@ yarn add @thi.ng/color
 ```ts
 import * as col from "@thi.ng/color";
 
-// route #1: asXXX() converters: CSS -> ARGB (int) -> RGBA
+// route #1: asXXX() converters: string -> CSS -> ARGB (int) -> RGBA
 const a = col.asRGBA(col.css("#3cf"));
 // [0.2, 0.8, 1, 1]
 
-// route #2: parseCSS(): CSS -> HSLA -> RGBA
+// route #2: parseCSS(): string -> HSLA -> RGBA
 const b = col.parseCss("hsla(30,100%,50%,0.75)", col.ColorMode.RGBA);
 // [ 1, 0.5, 0, 0.75 ]
 
 // route #3: convert() multi-method: HSVA -> RGBA
-const c = col.convert([0.5, 1, 1, 1], col.ColorMode.RGBA, col.ColorMode.HSVA);
-// [ 0, 1, 1, 1 ]
+const c = col.convert("rgb(0,255,255)", col.ColorMode.HSVA, col.ColorMode.CSS);
+// [ 0.4999999722222268, 0.9999990000010001, 1, 1 ]
+
+// route #4: direct conversion
+col.rgbaHsla([], [1,0.5,0,1])
 
 col.luminanceRGB(a)
 // 0.6434
 
 // apply color matrix (RGBA only)
-col.applyMatrix([], col.saturation(1.25), a)
+col.transform([], col.saturation(1.25), a)
 // [ 0.07835000000000002, 0.82835, 1, 1 ]
+
+// combine matrix transformations
+filter = col.concatMatrices(
+    col.saturation(0.5), // 50% saturation
+    col.brightness(0.1), // +10% brightness
+);
+
+col.transform([], filter, col.RED);
+// [ 0.7065, 0.2065, 0.2065, 1 ]
 ```
 
 ## Authors
