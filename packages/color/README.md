@@ -15,6 +15,7 @@ This project is part of the
     - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
     - [Cosine gradients](#cosine-gradients)
     - [Multi-stop gradients](#multi-stop-gradients)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -35,7 +36,7 @@ package.
 
 Fast color space conversions (any direction) between:
 
-- CSS (string, hex3/hex4/hex6/hex8, `rgba()`, `hsla()`, named colors)
+- CSS (string, hex3/hex4/hex6/hex8, rgba(), hsla(), named colors)
 - HCYA (float4)
 - HSIA (float4)
 - HSLA (float4)
@@ -136,29 +137,33 @@ colors based on given gradient stops. This iterator computes a cosine
 gradient between each color stop and yields a sequence of RGBA values.
 
 ```ts
-const gradient = col.multiCosineGradient(
+col.multiCosineGradient(
     // num colors to produce
     10,
     // gradient stops (normalized positions, only RGBA colors supported)
     [0.1, col.RED], [0.5, col.GREEN], [0.9, col.BLUE]
-);
+)
+// convert to CSS
+.map(col.rgbaCss)
 
-for(let c of gradient) {
-    console.log(col.rgbaCss(c));
-}
-
-// #ff0000
-// #ff0000
-// #da2500
-// #807f00
-// #25da00
-// #00ff00
-// #00da25
-// #00807f
-// #0025da
-// #0000ff
-// #0000ff
+// [
+//   "#ff0000",
+//   "#ff0000",
+//   "#da2500",
+//   "#807f00",
+//   "#25da00",
+//   "#00ff00",
+//   "#00da25",
+//   "#00807f",
+//   "#0025da",
+//   "#0000ff",
+//   "#0000ff",
+// ]
 ```
+
+## Status
+
+ALPHA - work in progress
 
 ## Installation
 
