@@ -10,7 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
-    - [Color modes](#color-modes)
+    - [Color spaces / modes](#color-spaces--modes)
     - [RGBA transformations](#rgba-transformations)
     - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
     - [Cosine gradients](#cosine-gradients)
@@ -25,7 +25,13 @@ This project is part of the
 
 ## About
 
-### Color modes
+Raw, array-based, color operations, conversions and optional type
+wrappers. The functions provided by this package are largely using the
+same calling convention as those in the
+[@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
+package.
+
+### Color spaces / modes
 
 Fast color space conversions (any direction) between:
 
@@ -39,16 +45,17 @@ Fast color space conversions (any direction) between:
 - XYZA (float4, aka CIE 1931)
 - YCbCr (float4)
 
-Apart from `CSS` and `Int32` colors, all others can be stored as plain,
-typed or custom array-like types of (mostly) normalized values (`[0,1]`
-interval). Where applicable, the hue too is stored in that range, NOT in
-degrees.
+Apart from `CSS` and `Int32` colors, all others can be stored as plain
+arrays, typed array or custom array-like types of (mostly) normalized
+values (`[0,1]` interval). Where applicable, the hue too is stored in
+that range, NOT in degrees.
 
 Apart from conversions, most other operations provided by this package
-are only supporting RGBA colors. These can also be converted to/from
-sRGB (i.e. linear vs gamma corrected). Additionally, RGBA colors can be
-pre-multiplied (and post-multiplied) with their alpha channel (see
-[Porter-Duff](#rgba-porter-duff-compositing) section below).
+are currently only supporting RGBA colors. These can also be converted
+to / from sRGB (i.e. linear vs gamma corrected). Additionally, RGBA
+colors can be pre-multiplied (and post-multiplied) with their alpha
+channel (see [Porter-Duff](#rgba-porter-duff-compositing) section
+below).
 
 #### Class wrappers
 
@@ -57,8 +64,8 @@ space. These wrappers act similarly to the `Vec2/3/4` wrappers in
 [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors3),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
-all other functions. Wrapper factory functions are provided for
-convenience.
+all functions (and act as syntax sugar for generic conversion
+functions). Wrapper factory functions are provided for convenience.
 
 ### RGBA transformations
 
@@ -75,11 +82,11 @@ including parametric preset transforms:
 - sepia (w/ fade amount)
 - tint (green / purple)
 - grayscale (luminance aware)
-- invert (also available as non-matrix op)
+- subtraction/inversion (also available as non-matrix op)
 - luminance to alpha
 
-Matrix transforms can be combined using matrix multiplication /
-concatenation (`mulMatrix()` / `concatMatrices`).
+Transformation matrices can be combined using matrix multiplication /
+concatenation (`concat()`) for more efficient application.
 
 ### RGBA Porter-Duff compositing
 
@@ -124,8 +131,9 @@ The following presets are bundled (in [`cosine-gradients.ts`](https://github.com
 
 ### Multi-stop gradients
 
-The `multiCosineGradient()` function returns an iterator of RGBA colors
-based on given gradient stops. This iterator computes a cosine gradient between each color stop and yields a sequence of RGBA values.
+The `multiCosineGradient()` function returns an iterator of raw RGBA
+colors based on given gradient stops. This iterator computes a cosine
+gradient between each color stop and yields a sequence of RGBA values.
 
 ```ts
 const gradient = col.multiCosineGradient(
@@ -181,15 +189,20 @@ const a = col.asRGBA(col.css("#3cf"));
 const b = col.parseCss("hsla(30,100%,50%,0.75)", col.ColorMode.RGBA);
 // [ 1, 0.5, 0, 0.75 ]
 
-// route #3: convert() multi-method: HSVA -> RGBA
+// route #3: convert() multi-method: CSS -> RGBA -> HSVA
+// (see convert.ts)
 const c = col.convert("rgb(0,255,255)", col.ColorMode.HSVA, col.ColorMode.CSS);
 // [ 0.4999999722222268, 0.9999990000010001, 1, 1 ]
 
-// route #4: direct conversion
-col.rgbaHsla([], [1,0.5,0,1])
+// route #4: direct conversion RGBA -> HSLA -> CSS
+// first arg is output color (same calling convention as @thi.ng/vectors)
+// (use `null` to mutate the input color)
+col.hslaCss(col.rgbaHsla([], [1, 0.5, 0.5, 1]))
+// "hsl(0.00,100.00%,75.00%)"
 
-col.luminanceRGB(a)
-// 0.6434
+col.luminance(col.css("white"))
+col.luminance(0xffffff, col.ColorMode.INT32)
+// 1
 
 // apply color matrix (RGBA only)
 col.transform([], col.saturation(1.25), a)
