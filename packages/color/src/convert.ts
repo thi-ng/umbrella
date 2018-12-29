@@ -33,9 +33,9 @@ export const convert: MultiFn2O<string | number | ReadonlyColor | IColor, ColorM
     defmulti(
         (col, mdest, msrc) =>
             (<any>col).mode !== undefined ?
-                `${ColorMode[mdest]}-${ColorMode[<ColorMode>(<any>col).mode]}` :
+                `${mdest}-${(<any>col).mode}` :
                 msrc !== undefined ?
-                    `${ColorMode[mdest]}-${ColorMode[msrc]}` :
+                    `${mdest}-${msrc}` :
                     illegalArgs(`missing src color mode`)
     );
 
@@ -93,7 +93,7 @@ const defConversion = (
     impl: Implementation3<string | number | ReadonlyColor, ColorMode, ColorMode, Color | string | number>
 ) =>
     convert.add(
-        `${ColorMode[dest]}-${ColorMode[src]}`,
+        `${dest}-${src}`,
         impl
     );
 

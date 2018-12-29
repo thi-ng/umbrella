@@ -17,7 +17,7 @@ export type CosGradientSpec = [CosCoeffs, CosCoeffs, CosCoeffs, CosCoeffs];
 
 export type ColorConversion<T> = (out: Color, src: T) => Color;
 
-export enum ColorMode {
+export const enum ColorMode {
     RGBA,
     HCYA,
     HSVA,
