@@ -37,8 +37,26 @@
         "@thi.ng/vectors3": "^0.0.1"
     },
     "keywords": [
-        "ES6",
+        "alpha",
+        "blending",
+        "CSS",
+        "CIE1931",
         "color",
+        "conversion",
+        "cosine",
+        "ES6",
+        "filter",
+        "gradient",
+        "HCY",
+        "HSL",
+        "HSV",
+        "HSI",
+        "matrix",
+        "porter-duff",
+        "RGB",
+        "sRGB",
+        "XYZ",
+        "YCbCr",
         "typescript"
     ],
     "publishConfig": {
