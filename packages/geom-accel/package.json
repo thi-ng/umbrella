@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-accel",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "TODO",
     "main": "./index.js",
     "typings": "./index.d.ts",
@@ -31,7 +31,7 @@
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/heaps": "^0.3.1",
         "@thi.ng/math": "^0.2.2",
-        "@thi.ng/vectors": "^1.4.10"
+        "@thi.ng/vectors": "^1.4.11"
     },
     "keywords": [
         "ES6",
