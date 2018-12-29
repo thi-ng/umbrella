@@ -27,17 +27,7 @@ import { rgbaXyza } from "./rgba-xyza";
 import { rgbaYcbcra } from "./rgba-ycbcra";
 import { xyzaRgba } from "./xyza-rgba";
 import { ycbcraRgba } from "./ycbcra-rgba";
-
-const RGBA_FNS = {
-    [ColorMode.CSS]: rgbaCss,
-    [ColorMode.INT32]: rgbaInt,
-    [ColorMode.HCYA]: rgbaHcya,
-    [ColorMode.HSIA]: rgbaHsia,
-    [ColorMode.HSLA]: rgbaHsla,
-    [ColorMode.HSVA]: rgbaHsva,
-    [ColorMode.XYZA]: rgbaXyza,
-    [ColorMode.YCBCRA]: rgbaYcbcra,
-};
+import { hcyaRgba } from "./hcya-rgba";
 
 export const convert: MultiFn2O<string | number | ReadonlyColor | IColor, ColorMode, ColorMode, Color | string | number> =
     defmulti(
@@ -119,7 +109,7 @@ const defConversions = (
     dest.forEach(
         (id) => defConversion(
             id, src,
-            (x: any) => RGBA_FNS[id](null, toRGBA([], x))
+            (x: any) => convert(toRGBA([], x), id, ColorMode.RGBA)
         )
     );
 };
@@ -158,6 +148,19 @@ defConversions(
 defConversion(
     ColorMode.CSS, ColorMode.INT32,
     (x: number) => int32Css(x)
+);
+
+// HCYA
+
+defConversions(
+    ColorMode.HCYA,
+    hcyaRgba,
+    ColorMode.CSS,
+    ColorMode.INT32,
+    ColorMode.HSLA,
+    ColorMode.HSVA,
+    ColorMode.XYZA,
+    ColorMode.YCBCRA
 );
 
 // HSIA
@@ -221,16 +224,16 @@ defConversion(
 // RGBA
 
 [
-    ColorMode.HCYA,
-    ColorMode.HSIA,
-    ColorMode.HSLA,
-    ColorMode.HSVA,
-    ColorMode.XYZA,
-    ColorMode.YCBCRA,
+    [ColorMode.HCYA, rgbaHcya],
+    [ColorMode.HSIA, rgbaHsia],
+    [ColorMode.HSLA, rgbaHsla],
+    [ColorMode.HSVA, rgbaHsva],
+    [ColorMode.XYZA, rgbaXyza],
+    [ColorMode.YCBCRA, rgbaYcbcra]
 ].forEach(
-    (id) => defConversion(
+    ([id, fn]: [ColorMode, ColorConversion<ReadonlyColor>]) => defConversion(
         id, ColorMode.RGBA,
-        (x: ReadonlyColor) => RGBA_FNS[id]([], x)
+        (x: ReadonlyColor) => fn([], x)
     )
 );
 
