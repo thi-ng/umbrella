@@ -42,5 +42,5 @@ export * from "./ycbcr";
 export * from "./cosine-gradients";
 export * from "./invert";
 export * from "./luminance";
-export * from "./matrix";
 export * from "./porter-duff";
+export * from "./transform";

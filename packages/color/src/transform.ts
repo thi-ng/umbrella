@@ -1,7 +1,6 @@
 import { mix } from "@thi.ng/math/mix";
-import { dotS4 } from "@thi.ng/vectors3/dots";
-import { ColorMatrix, RGB_LUMINANCE } from "./api";
-import { mulV45 } from "./internal/mulv";
+import { ColorMatrix, RGB_LUMINANCE, ReadonlyColor, WHITE } from "./api";
+import { mulV45, mulM45 } from "./internal/matrix-ops";
 
 // https://drafts.fxtf.org/filter-effects/#feColorMatrixElement
 
@@ -28,33 +27,25 @@ const S8 = 0.283;
  */
 export const transform = mulV45;
 
-export const mulMatrix =
-    (a: ColorMatrix, b: ColorMatrix): ColorMatrix => [
-        dotS4(a, b, 0, 0, 1, 5),
-        dotS4(a, b, 0, 1, 1, 5),
-        dotS4(a, b, 0, 2, 1, 5),
-        dotS4(a, b, 0, 3, 1, 5),
-        dotS4(a, b, 0, 4, 1, 5) + a[4],
-        dotS4(a, b, 5, 0, 1, 5),
-        dotS4(a, b, 5, 1, 1, 5),
-        dotS4(a, b, 5, 2, 1, 5),
-        dotS4(a, b, 5, 3, 1, 5),
-        dotS4(a, b, 5, 4, 1, 5) + a[9],
-        dotS4(a, b, 10, 0, 1, 5),
-        dotS4(a, b, 10, 1, 1, 5),
-        dotS4(a, b, 10, 2, 1, 5),
-        dotS4(a, b, 10, 3, 1, 5),
-        dotS4(a, b, 10, 4, 1, 5) + a[14],
-        dotS4(a, b, 15, 0, 1, 5),
-        dotS4(a, b, 15, 1, 1, 5),
-        dotS4(a, b, 15, 2, 1, 5),
-        dotS4(a, b, 15, 3, 1, 5),
-        dotS4(a, b, 15, 4, 1, 5) + a[19],
-    ];
-
-export const concatMatrices =
+/**
+ * Concatenates given color matrices by pairwise multiplying them in
+ * left-right order. Returns combined result matrix to be used with
+ * `transform()`.
+ *
+ * Note: Using `concat()` is the recommended way when applying multiple
+ * color transformations in sequence. Since the transforms are combined
+ * into a single matrix, it is faster than multiple, individual
+ * `transform()` calls and will also produce more correct results, since
+ * result color clamping is only applied once at the end (by default,
+ * unless disabled).
+ *
+ * @see transform
+ * @param mat
+ * @param xs
+ */
+export const concat =
     (mat: ColorMatrix, ...xs: ColorMatrix[]) =>
-        xs.reduce(mulMatrix, mat);
+        xs.reduce(mulM45, mat);
 
 export const IDENTITY: ColorMatrix =
     [
@@ -64,14 +55,31 @@ export const IDENTITY: ColorMatrix =
         0, 0, 0, 1, 0
     ];
 
-export const INVERT: ColorMatrix =
-    [
-        -1, 0, 0, 0, 1,
-        0, -1, 0, 0, 1,
-        0, 0, -1, 0, 1,
-        0, 0, 0, 1, 0
-    ];
+/**
+ * Returns a transformation matrix which subtracts user color from given
+ * `src` color. With the default color white, this results in the
+ * inverted color. Does NOT modify alpha channel.
+ *
+ * @param src
+ */
+export const subtract =
+    (src: ReadonlyColor = WHITE): ColorMatrix =>
+        [
+            -1, 0, 0, 0, src[0],
+            0, -1, 0, 0, src[1],
+            0, 0, -1, 0, src[2],
+            0, 0, 0, 1, 0
+        ];
 
+/**
+ * Returns a transformation matrix which adds the given constant offset
+ * `x` to RGB channels. Does NOT modify alpha channel.
+ *
+ * If `x < 0` results in darker color.
+ * If `x > 0` results in brighter color.
+ *
+ * @param x
+ */
 export const brightness =
     (x: number): ColorMatrix =>
         [
@@ -108,7 +116,7 @@ export const saturation =
             0, 0, 0, 1, 0
         ];
 
-export const hueRotation =
+export const hueRotate =
     (theta: number): ColorMatrix => {
         const s = Math.sin(theta);
         const c = Math.cos(theta);
@@ -156,6 +164,13 @@ export const tint =
             0, 0, 0, 1, 0
         ];
 
+/**
+ * Returns transformation matrix which computes luminance of user color
+ * (optionally with custom coefficients). Does NOT modify alpha channel.
+ *
+ * @param x
+ * @param coeffs
+ */
 export const grayscale =
     (x = 0, [r, g, b] = RGB_LUMINANCE): ColorMatrix =>
         [
@@ -165,6 +180,13 @@ export const grayscale =
             0, 0, 0, 1, 0
         ];
 
+/**
+ * Returns transformation matrix which computes luminance of user color
+ * (optionally with custom coefficients), uses result as alpha channel
+ * and clears RGB channels (all set to zero).
+ *
+ * @param coeffs
+ */
 export const luminanceAlpha =
     ([r, g, b] = RGB_LUMINANCE): ColorMatrix =>
         [
