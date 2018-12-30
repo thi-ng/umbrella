@@ -1,6 +1,3 @@
-import { MultiVecOpVV, VecOpVV } from "./api";
-import { defOp } from "./internal/codegen";
-import { MATH } from "./internal/templates";
+import { defMathOp } from "./internal/codegen";
 
-export const [sub, sub2, sub3, sub4] =
-    defOp<MultiVecOpVV, VecOpVV>(MATH("-"));
+export const [sub, sub2, sub3, sub4] = defMathOp("-");

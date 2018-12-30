@@ -6,11 +6,20 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { take } from "@thi.ng/transducers/xform/take";
-import { FN } from "./templates";
+import {
+    MultiVecOpVN,
+    MultiVecOpVV,
+    VecOpVN,
+    VecOpVV
+} from "../api";
+import { FN, MATH, MATH_N } from "./templates";
 import { vop } from "./vop";
 
 export const ARGS_V = "o,a";
 export const ARGS_VV = "o,a,b";
+export const ARGS_VVV = "o,a,b,c";
+export const ARGS_VN = "o,a,n";
+export const ARGS_VVN = "o,a,b,n";
 
 export const SARGS_V = "io=0,ia=0,so=1,sa=1";
 export const SARGS_VV = "io=0,ia=0,ib=0,so=1,sa=1,sb=1";
@@ -250,3 +259,9 @@ export const defOpS = <V>(
     sizes.map(
         (dim) => compile(dim, tpl, args, syms, ret, "", pre != null ? pre : defaultOut(ret, args), "", true)
     );
+
+export const defMathOp =
+    (op: string) => defOp<MultiVecOpVV, VecOpVV>(MATH(op));
+
+export const defMathNOp =
+    (op: string) => defOp<MultiVecOpVN, VecOpVN>(MATH_N(op), ARGS_VN);
