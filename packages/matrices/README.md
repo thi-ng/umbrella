@@ -48,7 +48,7 @@ sensible).
 
 ### Related packages
 
-- [@thi.ng/colors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/colors) - vector based color operations / conversions
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color) - vector based color operations / conversions
 - [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2) - 2D/3D geometry types & operations
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3) - optimized 2d/3d/4d and arbitrary length vector ops
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools) - operations on memory mapped data
