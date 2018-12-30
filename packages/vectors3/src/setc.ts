@@ -24,6 +24,17 @@ export const setC4 =
         out
     );
 
+export const setC6 =
+    (out: Vec, a: number, b: number, c: number, d: number, e: number, f: number) => (
+        out[0] = a,
+        out[1] = b,
+        out[2] = c,
+        out[3] = d,
+        out[4] = e,
+        out[5] = f,
+        out
+    );
+
 export const setC =
     (out: Vec, ...xs: number[]) => {
         for (let i = 0, n = xs.length; i < n; i++) {
