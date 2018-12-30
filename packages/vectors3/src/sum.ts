@@ -13,5 +13,5 @@ export const sum: MultiVecOpRoV<number> = vop(0);
 sum.default((v) => reduce(add(), v));
 
 export const sum2 = sum.add(2, (a) => a[0] + a[1]);
-export const sum3 = sum.add(2, (a) => a[0] + a[1] + a[2]);
-export const sum4 = sum.add(2, (a) => a[0] + a[1] + a[2] + a[3]);
+export const sum3 = sum.add(3, (a) => a[0] + a[1] + a[2]);
+export const sum4 = sum.add(4, (a) => a[0] + a[1] + a[2] + a[3]);
