@@ -9,7 +9,7 @@ export const limit =
         const m = mag(v);
         return m > n ?
             mulN(out, v, n / m) :
-            out === v ?
-                out :
-                set(out, v);
+            out !== v ?
+                set(out, v) :
+                out;
     };

@@ -13,8 +13,9 @@ const L = "length";
 const O = "offset";
 const S = "stride";
 
-const keys = memoize1((size: number) =>
-    [...map(String, range(size)), L, O, S]);
+const keys = memoize1(
+    (size: number) => [...map(String, range(size)), L, O, S]
+);
 
 /**
  * Wrapper for strided, arbitrary length vectors. Wraps given buffer in

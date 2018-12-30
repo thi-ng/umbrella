@@ -7,6 +7,8 @@ export const faceForward: VecOpVVV =
     (out, n, i, nref) => {
         !out && (out = n);
         return dot(nref, i) < 0 ?
-            out === n ? out : set(out, n) :
+            out !== n ?
+                set(out, n) :
+                out :
             mulN(out, n, -1);
     };

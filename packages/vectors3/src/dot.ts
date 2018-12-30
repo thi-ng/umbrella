@@ -21,7 +21,7 @@ const $ = (dim: number) =>
 export const dot: MultiVecOpRoVV<number> = vop();
 
 dot.default(
-    compileG(DOT_G, "a,b", undefined, "sum", "let sum=0;")
+    compileG(DOT_G, "a,b", undefined, "s", "let s=0;")
 );
 
 export const dot2 = $(2);

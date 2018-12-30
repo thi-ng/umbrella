@@ -18,7 +18,7 @@ export const normalize: VecOpVO<number> =
         const m = mag(v);
         return m >= EPS ?
             mulN(out, v, n / m) :
-            out === v ?
-                out :
-                set(out, v);
+            out !== v ?
+                set(out, v) :
+                out;
     };
