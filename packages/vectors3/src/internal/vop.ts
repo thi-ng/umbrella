@@ -19,6 +19,5 @@ export const vop = (dispatch = 0) => {
     fn.add = (dim: number, fn) => (impls[dim] = fn);
     fn.default = (fn) => (fallback = fn);
     // fn.impls = impls;
-    // fn.fallback = fallback;
     return fn;
 };
