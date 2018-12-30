@@ -165,6 +165,11 @@ col.multiCosineGradient(
 
 ALPHA - work in progress
 
+- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2) - 2D/3D geometry types & operations
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3) - optimized 2d/3d/4d and arbitrary length vector ops
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools) - operations on memory mapped data
+
 ## Installation
 
 ```bash

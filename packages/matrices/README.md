@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -44,6 +45,13 @@ Any `ArrayLike` type can be used as matrix containers (e.g. JS arrays,
 typed arrays, custom impls) and hence many other functions provided by
 the vectors package can also be used directly with matrices (where
 sensible).
+
+### Related packages
+
+- [@thi.ng/colors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/colors) - vector based color operations / conversions
+- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2) - 2D/3D geometry types & operations
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3) - optimized 2d/3d/4d and arbitrary length vector ops
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
 
