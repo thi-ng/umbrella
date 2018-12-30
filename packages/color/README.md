@@ -96,7 +96,7 @@ The package provides all 12 basic
 compositing / blending operators, both for colors with pre-multiplied
 alpha and without.
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/feature/vec-refactor/assets/porterduff.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/feature/vec-refactor/assets/porter-duff.png)
 
 ([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
 
