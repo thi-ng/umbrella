@@ -1,12 +1,15 @@
 import { VecOpVVN } from "./api";
+import { setC2 } from "./setc";
 
 export const rotateAroundPoint2: VecOpVVN =
-    (out, a, b, theta) => {
-        const x = a[0] - b[0];
-        const y = a[1] - b[1];
+    (out, v, p, theta) => {
+        const x = v[0] - p[0];
+        const y = v[1] - p[1];
         const s = Math.sin(theta);
         const c = Math.cos(theta);
-        out[0] = x * c - y * s + b[0];
-        out[1] = x * s + y * c + b[1];
-        return out;
+        return setC2(
+            out || v,
+            x * c - y * s + p[0],
+            x * s + y * c + p[1]
+        );
     };

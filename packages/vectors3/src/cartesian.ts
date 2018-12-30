@@ -2,6 +2,7 @@ import { cossin } from "@thi.ng/math/angle";
 import { MultiVecOpVO, ReadonlyVec, ZERO4 } from "./api";
 import { vop } from "./internal/vop";
 import { maddN } from "./maddn";
+import { setC3 } from "./setc";
 
 const cos = Math.cos;
 const sin = Math.sin;
@@ -43,14 +44,14 @@ export const cartesian2 =
 export const cartesian3 =
     cartesian.add(3,
         (out, a, b = ZERO4) => {
-            !out && (out = a);
             const r = a[0];
             const theta = a[1];
             const phi = a[2];
             const ct = cos(theta);
-
-            out[0] = r * ct * cos(phi) + b[0];
-            out[1] = r * ct * sin(phi) + b[1];
-            out[2] = r * sin(theta) + b[2];
-            return out;
+            return setC3(
+                out || a,
+                r * ct * cos(phi) + b[0],
+                r * ct * sin(phi) + b[1],
+                r * sin(theta) + b[2]
+            );
         });
