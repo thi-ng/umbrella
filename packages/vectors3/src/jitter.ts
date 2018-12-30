@@ -6,4 +6,4 @@ import { randNorm } from "./random";
 
 export const jitter =
     (out: Vec, a: ReadonlyVec, n = 1, rnd: IRandom = SYSTEM) =>
-        add(out, randNorm(new Array(a.length), n, rnd), a);
+        add(out, a, randNorm(new Array(a.length), n, rnd));

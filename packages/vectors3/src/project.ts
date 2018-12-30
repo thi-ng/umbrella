@@ -8,9 +8,9 @@ import { mulN } from "./muln";
  *
  * https://en.wikipedia.org/wiki/Vector_projection
  *
- * @param dir
  * @param v
+ * @param dir
  */
 export const project =
-    (out: Vec, dir: ReadonlyVec, v: ReadonlyVec) =>
-        mulN(out, dir, dot(v, dir) / magSq(dir));
+    (out: Vec, v: ReadonlyVec, dir: ReadonlyVec) =>
+        mulN(out || v, dir, dot(v, dir) / magSq(dir));
