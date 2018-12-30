@@ -1,6 +1,8 @@
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors3/dots";
-import { MatOpMV, MultiMatOpMV } from "./api";
 import { vop } from "@thi.ng/vectors3/internal/vop";
+import { setC2, setC3, setC4 } from "@thi.ng/vectors3/setc";
+import { MatOpMV, MultiMatOpMV } from "./api";
 
 /**
  * Matrix-vector multiplication. Supports in-place modification, i.e. if
@@ -21,12 +23,13 @@ export const mulV: MultiMatOpMV = vop(1);
  * @param v
  */
 export const mulV22: MatOpMV =
-    mulV.add(4, (out, m, v) => {
-        const x = dotS2(m, v, 0, 0, 2);
-        out[1] = dotS2(m, v, 1, 0, 2);
-        out[0] = x;
-        return out;
-    });
+    mulV.add(4, (out, m, v) =>
+        setC2(
+            out || v,
+            dotS2(m, v, 0, 0, 2),
+            dotS2(m, v, 1, 0, 2)
+        )
+    );
 
 /**
  * Multiplies M23 `m` with 2D vector `v`. Supports in-place
@@ -37,12 +40,13 @@ export const mulV22: MatOpMV =
  * @param v
  */
 export const mulV23: MatOpMV =
-    mulV.add(6, (out, m, v) => {
-        const x = dotS2(m, v, 0, 0, 2) + m[4];
-        out[1] = dotS2(m, v, 1, 0, 2) + m[5];
-        out[0] = x;
-        return out;
-    });
+    mulV.add(6, (out, m, v) =>
+        setC2(
+            out || v,
+            dotS2(m, v, 0, 0, 2) + m[4],
+            dotS2(m, v, 1, 0, 2) + m[5]
+        )
+    );
 
 /**
  * Multiplies M33 `m` with 3D vector `v`. Supports in-place
@@ -53,14 +57,14 @@ export const mulV23: MatOpMV =
  * @param v
  */
 export const mulV33: MatOpMV =
-    mulV.add(9, (out, m, v) => {
-        const x = dotS3(m, v, 0, 0, 3);
-        const y = dotS3(m, v, 1, 0, 3);
-        out[2] = dotS3(m, v, 2, 0, 3);
-        out[1] = y;
-        out[0] = x;
-        return out;
-    });
+    mulV.add(9, (out, m, v) =>
+        setC3(
+            out || v,
+            dotS3(m, v, 0, 0, 3),
+            dotS3(m, v, 1, 0, 3),
+            dotS3(m, v, 2, 0, 3)
+        )
+    );
 
 /**
  * Multiplies M44 `m` with 4D vector `v`. Supports in-place
@@ -71,17 +75,15 @@ export const mulV33: MatOpMV =
  * @param v
  */
 export const mulV44: MatOpMV =
-    mulV.add(16, (out, m, v) => {
-        !out && (out = v);
-        const x = dotS4(m, v, 0, 0, 4);
-        const y = dotS4(m, v, 1, 0, 4);
-        const z = dotS4(m, v, 2, 0, 4);
-        out[3] = dotS4(m, v, 3, 0, 4);
-        out[2] = z;
-        out[1] = y;
-        out[0] = x;
-        return out;
-    });
+    mulV.add(16, (out, m, v) =>
+        setC4(
+            out || v,
+            dotS4(m, v, 0, 0, 4),
+            dotS4(m, v, 1, 0, 4),
+            dotS4(m, v, 2, 0, 4),
+            dotS4(m, v, 3, 0, 4)
+        )
+    );
 
 /**
  * Multiplies M44 `m` with 3D vector `v` and assumes `w=1`, i.e. the
@@ -93,12 +95,26 @@ export const mulV44: MatOpMV =
  * @param v
  */
 export const mulV344: MatOpMV =
-    (out, m, v) => {
-        !out && (out = v);
-        const x = dotS3(m, v, 0, 0, 4) + m[12];
-        const y = dotS3(m, v, 1, 0, 4) + m[13];
-        out[2] = dotS3(m, v, 2, 0, 4) + m[14];
-        out[1] = y;
-        out[0] = x;
-        return out;
+    (out, m, v) =>
+        setC3(
+            out || v,
+            dotS3(m, v, 0, 0, 4) + m[12],
+            dotS3(m, v, 1, 0, 4) + m[13],
+            dotS3(m, v, 2, 0, 4) + m[14]
+        );
+
+export const mulVQ =
+    (out: Vec, quat: ReadonlyVec, v: ReadonlyVec) => {
+        const { 0: px, 1: py, 2: pz } = v;
+        const { 0: qx, 1: qy, 2: qz, 3: qw } = quat;
+        const ix = qw * px + qy * pz - qz * py;
+        const iy = qw * py + qz * px - qx * pz;
+        const iz = qw * pz + qx * py - qy * px;
+        const iw = -qx * px - qy * py - qz * pz;
+        return setC3(
+            out || v,
+            ix * qw + iw * -qx + iy * -qz - iz * -qy,
+            iy * qw + iw * -qy + iz * -qx - ix * -qz,
+            iz * qw + iw * -qz + ix * -qy - iy * -qx
+        );
     };

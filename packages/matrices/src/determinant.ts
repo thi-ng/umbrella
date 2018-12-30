@@ -1,8 +1,8 @@
-import { dotValues4, dotValues6 } from "@thi.ng/vectors3/dot-values";
+import { dotC4, dotC6 } from "@thi.ng/vectors3/dotc";
 import { ReadonlyMat } from "./api";
 
-const dp4 = dotValues4;
-const dp6 = dotValues6;
+const dp4 = dotC4;
+const dp6 = dotC6;
 
 export const det22 =
     (m: ReadonlyMat) =>

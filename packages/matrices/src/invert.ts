@@ -1,11 +1,13 @@
-import { dotValues4, dotValues6 } from "@thi.ng/vectors3/dot-values";
-import { MatOpM, MultiMatOpM } from "./api";
-import { setValues23, setValues22, setValues44, setValues33 } from "./set-values";
-import { detCoeffs44, det44FromCoeffs } from "./determinant";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import { dotC4, dotC6 } from "@thi.ng/vectors3/dotc";
 import { vop } from "@thi.ng/vectors3/internal/vop";
+import { magSq4 } from "@thi.ng/vectors3/magsq";
+import { setC, setC4 } from "@thi.ng/vectors3/setc";
+import { MatOpM, MultiMatOpM } from "./api";
+import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 
-const dp4 = dotValues4;
-const dp6 = dotValues6;
+const dp4 = dotC4;
+const dp6 = dotC6;
 
 export const invert: MultiMatOpM = vop(1);
 
@@ -15,8 +17,8 @@ export const invert22: MatOpM =
         let det = dp4(m00, m11, -m01, m10);
         if (det === 0) return;
         det = 1.0 / det;
-        return setValues22(
-            out,
+        return setC4(
+            out || m,
             m11 * det,
             -m01 * det,
             -m10 * det,
@@ -30,8 +32,8 @@ export const invert23: MatOpM =
         let det = dp4(m00, m11, -m01, m10);
         if (det === 0) return;
         det = 1.0 / det;
-        return setValues23(
-            out,
+        return setC(
+            out || m,
             m11 * det,
             -m01 * det,
             -m10 * det,
@@ -50,8 +52,8 @@ export const invert33: MatOpM =
         let det = dp6(m00, d01, m01, d11, m02, d21);
         if (det === 0) return;
         det = 1.0 / det;
-        return setValues33(
-            out,
+        return setC(
+            out || m,
             d01 * det,
             dp4(-m22, m01, m02, m21) * det,
             dp4(m12, m01, -m02, m11) * det,
@@ -72,8 +74,8 @@ export const invert44: MatOpM =
         det = 1.0 / det;
         const [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33] = m;
         const [d00, d01, d02, d03, d04, d05, d06, d07, d08, d09, d10, d11] = coeffs;
-        return setValues44(
-            out,
+        return setC(
+            out || m,
             dp6(m11, d11, -m12, d10, m13, d09) * det,
             dp6(-m01, d11, m02, d10, -m03, d09) * det,
             dp6(m31, d05, - m32, d04, m33, d03) * det,
@@ -92,3 +94,16 @@ export const invert44: MatOpM =
             dp6(m20, d03, -m21, d01, m22, d00) * det
         );
     });
+
+export const invertQ =
+    (out: Vec, a: ReadonlyVec) => {
+        let d = magSq4(a);
+        d = d > 0 ? -1 / d : 0;
+        return setC4(
+            out || a,
+            a[0] * d,
+            a[1] * d,
+            a[2] * d,
+            a[3] * -d
+        );
+    };

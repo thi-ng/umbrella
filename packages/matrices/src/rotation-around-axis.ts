@@ -1,15 +1,15 @@
 import { ReadonlyVec } from "@thi.ng/vectors3/api";
+import { setC } from "@thi.ng/vectors3/setc";
 import { Mat } from "./api";
-import { mat33to44 } from "./convert";
-import { setValues33 } from "./set-values";
+import { mat33to44 } from "./m33-m44";
 
 export const rotationAroundAxis33 =
     (out: Mat, [x, y, z]: ReadonlyVec, theta: number) => {
         const s = Math.sin(theta);
         const c = Math.cos(theta);
         const t = 1 - c;
-        return setValues33(
-            out,
+        return setC(
+            out || [],
             x * x * t + c,
             y * x * t + z * s,
             z * x * t - y * s,

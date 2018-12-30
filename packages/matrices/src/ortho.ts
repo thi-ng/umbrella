@@ -1,5 +1,5 @@
+import { setC } from "@thi.ng/vectors3/setc";
 import { Mat } from "./api";
-import { setValues44 } from "./set-values";
 
 export const ortho = (
     out: Mat,
@@ -13,8 +13,8 @@ export const ortho = (
     const dx = 1 / (right - left);
     const dy = 1 / (top - bottom);
     const dz = 1 / (far - near);
-    return setValues44(
-        out,
+    return setC(
+        out || [],
         2 * dx, 0, 0, 0,
         0, 2 * dy, 0, 0,
         0, 0, -2 * dz, 0,

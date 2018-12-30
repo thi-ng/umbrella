@@ -1,6 +1,6 @@
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { divN3 } from "@thi.ng/vectors3/divn";
-import { dotValues6 } from "@thi.ng/vectors3/dot-values";
+import { dotC6 } from "@thi.ng/vectors3/dotc";
 import { fromHomogeneous4 } from "@thi.ng/vectors3/homogeneous";
 import { ReadonlyMat } from "./api";
 import { invert23, invert44 } from "./invert";
@@ -43,6 +43,6 @@ export const unproject =
         return divN3(
             out,
             mulV344(out, mvp, q),
-            dotValues6(q[0], mvp[3], q[1], mvp[7], q[2], mvp[11]) + mvp[15]
+            dotC6(q[0], mvp[3], q[1], mvp[7], q[2], mvp[11]) + mvp[15]
         );
     };
