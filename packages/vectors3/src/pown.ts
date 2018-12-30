@@ -1,5 +1,6 @@
 import { MultiVecOpVN, VecOpVN } from "./api";
-import { defOp } from "./internal/codegen";
+import { ARGS_VN, defOp } from "./internal/codegen";
+import { FN_N } from "./internal/templates";
 
 export const [powN, powN2, powN3, powN4] =
-    defOp<MultiVecOpVN, VecOpVN>(([o, a]) => `${o}=Math.pow(${a},n);`, "o,a,n");
+    defOp<MultiVecOpVN, VecOpVN>(FN_N("Math.pow"), ARGS_VN);

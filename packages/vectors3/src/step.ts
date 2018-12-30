@@ -1,6 +1,7 @@
 import { step as _step } from "@thi.ng/math/step";
 import { MultiVecOpV, VecOpV } from "./api";
-import { defHofOp } from "./internal/codegen";
+import { DEFAULT_OUT, defHofOp } from "./internal/codegen";
+import { FN2 } from "./internal/templates";
 
 /**
  * Like GLSL `step()`
@@ -12,9 +13,10 @@ import { defHofOp } from "./internal/codegen";
 export const [step, step2, step3, step4] =
     defHofOp<MultiVecOpV, VecOpV>(
         _step,
-        ([o, e, a]) => `${o}=op(${e},${a});`,
+        FN2("op"),
         "o,e,a",
         undefined,
         "o",
-        2
+        2,
+        DEFAULT_OUT
     );
