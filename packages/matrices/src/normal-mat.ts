@@ -1,5 +1,5 @@
 import { MatOpM } from "./api";
-import { mat44to33 } from "./convert";
+import { mat44to33 } from "./m44-m33";
 import { invert33 } from "./invert";
 import { transpose33 } from "./transpose";
 
@@ -12,4 +12,4 @@ import { transpose33 } from "./transpose";
  */
 export const normal44: MatOpM =
     (out, m) =>
-        transpose33(out, invert33(out, mat44to33(out, m)));
+        transpose33(null, invert33(null, mat44to33(out, m)));
