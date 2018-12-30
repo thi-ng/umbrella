@@ -2,7 +2,7 @@ import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { dotC4, dotC6 } from "@thi.ng/vectors3/dotc";
 import { vop } from "@thi.ng/vectors3/internal/vop";
 import { magSq4 } from "@thi.ng/vectors3/magsq";
-import { setC, setC4 } from "@thi.ng/vectors3/setc";
+import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
 import { MatOpM, MultiMatOpM } from "./api";
 import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 
@@ -32,7 +32,7 @@ export const invert23: MatOpM =
         let det = dp4(m00, m11, -m01, m10);
         if (det === 0) return;
         det = 1.0 / det;
-        return setC(
+        return setC6(
             out || m,
             m11 * det,
             -m01 * det,

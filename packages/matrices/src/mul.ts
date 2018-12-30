@@ -1,7 +1,7 @@
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors3/dots";
 import { vop } from "@thi.ng/vectors3/internal/vop";
-import { setC, setC4 } from "@thi.ng/vectors3/setc";
+import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
 import { MultiMatOpMM } from "./api";
 
 export const mul: MultiMatOpMM = vop(1);
@@ -19,7 +19,7 @@ export const mul22 =
 
 export const mul23 =
     mul.add(6, (out, a, b) =>
-        setC(
+        setC6(
             out || a,
             dotS2(a, b, 0, 0, 2),
             dotS2(a, b, 1, 0, 2),

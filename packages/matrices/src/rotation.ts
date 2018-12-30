@@ -1,5 +1,5 @@
 import { sincos } from "@thi.ng/math/angle";
-import { setC, setC4 } from "@thi.ng/vectors3/setc";
+import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
 import { Mat } from "./api";
 
 export const rotation22 =
@@ -15,7 +15,7 @@ export const rotation22 =
 export const rotation23 =
     (m: Mat, theta: number) => {
         const [s, c] = sincos(theta);
-        return setC(
+        return setC6(
             m || [],
             c, s,
             -s, c,
