@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/matrices",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Matrix operations for 2D / 3D geometry processing",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -32,8 +32,27 @@
         "@thi.ng/vectors3": "^0.0.1"
     },
     "keywords": [
+        "2D",
+        "3D",
         "ES6",
-        "typescript"
+        "code generator",
+        "euler angles",
+        "frustum",
+        "geometry",
+        "linear algebra",
+        "lookat",
+        "math",
+        "matrix",
+        "ortho",
+        "perspective",
+        "projection",
+        "quaternion",
+        "shear",
+        "skew",
+        "transformation",
+        "typescript",
+        "vectors",
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

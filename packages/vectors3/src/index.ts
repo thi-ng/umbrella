@@ -8,7 +8,7 @@ export * from "./vec4";
 
 export * from "./abs";
 export * from "./acos";
-export * from "./add-weighted";
+export * from "./addw";
 export * from "./add";
 export * from "./addn";
 export * from "./adds";
