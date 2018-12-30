@@ -1,5 +1,5 @@
 import { Mat } from "./api";
-import { mul23 } from "./mul";
+import { mulM23 } from "./mulM";
 import { scale23 } from "./scale";
 import { translation23 } from "./translation";
 
@@ -19,5 +19,5 @@ export const viewport =
         const y = (bottom + top) / 2;
         const w = (right - left) / 2;
         const h = (top - bottom) / 2;
-        return mul23(out, translation23(out, [x, y]), scale23([], [w, h]));
+        return mulM23(null, translation23(out, [x, y]), scale23([], [w, h]));
     };
