@@ -1,7 +1,12 @@
 import { cossin } from "@thi.ng/math/angle";
-import { MultiVecOpVO, ReadonlyVec, ZERO4 } from "./api";
+import {
+    MultiVecOpVO,
+    ReadonlyVec,
+    ZERO2,
+    ZERO3
+} from "./api";
 import { vop } from "./internal/vop";
-import { maddN } from "./maddn";
+import { maddN2 } from "./maddn";
 import { setC3 } from "./setc";
 
 const cos = Math.cos;
@@ -29,7 +34,7 @@ export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
  */
 export const cartesian2 =
     cartesian.add(2,
-        (out, a, b = ZERO4) => maddN(out || a, b, cossin(a[1]), a[0])
+        (out, a, b = ZERO2) => maddN2(out || a, b, cossin(a[1]), a[0])
     );
 
 /**
@@ -43,7 +48,7 @@ export const cartesian2 =
  */
 export const cartesian3 =
     cartesian.add(3,
-        (out, a, b = ZERO4) => {
+        (out, a, b = ZERO3) => {
             const r = a[0];
             const theta = a[1];
             const phi = a[2];
