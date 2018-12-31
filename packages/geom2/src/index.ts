@@ -10,6 +10,7 @@ export * from "./path";
 export * from "./polygon";
 export * from "./polyline";
 export * from "./quad";
+export * from "./ray";
 export * from "./rect";
 export * from "./triangle";
 

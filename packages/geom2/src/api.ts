@@ -43,6 +43,7 @@ export const enum Type {
     QUADRATIC2 = "quadratic",
     RECT2 = "rect",
     TRIANGLE2 = "triangle",
+    RAY = "ray"
 }
 
 export const enum ClipMode {
@@ -281,7 +282,7 @@ export const pointAt = defmulti<IShape, number, IShape>(dispatch);
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 
-export const resample = defmulti<IShape, IShape>(dispatch);
+export const resample: MultiFn1O<IShape, number | Partial<SamplingOpts>, IShape> = defmulti(dispatch);
 
 /**
  * Returns new shape of same type with a shallow copy of the original
@@ -744,6 +745,35 @@ export class Quadratic2 extends PointContainer implements
     toHiccupPathSegments() {
         const pts = this.points;
         return [["Q", pts[1], pts[2]]];
+    }
+}
+
+export class Ray implements IShape {
+
+    pos: Vec;
+    dir: Vec;
+
+    constructor(pos: Vec, dir: Vec) {
+        this.pos = pos;
+        this.dir = dir;
+    }
+
+    get type() {
+        return Type.RAY;
+    }
+
+    copy() {
+        return new Ray(copy(this.pos), copy(this.dir));
+    }
+
+    equiv(o: any) {
+        return o instanceof Ray &&
+            equiv(this.pos, o.pos) &&
+            equiv(this.dir, o.dir);
+    }
+
+    toHiccup() {
+        return "";
     }
 }
 
