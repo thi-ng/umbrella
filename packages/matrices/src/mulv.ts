@@ -87,22 +87,32 @@ export const mulV44: MatOpMV =
 
 /**
  * Multiplies M44 `m` with 3D vector `v` and assumes `w=1`, i.e. the
- * vector is interpreted as `[x,y,z,1]` and the last row of `m` is
- * `[0,0,0,1]`. Supports in-place modification, i.e. if `out === v`.
+ * vector is interpreted as `[x,y,z,1]`. After transformation applies
+ * perspective divide of the resulting XYZ components.
  *
  * @param out
  * @param m
  * @param v
  */
 export const mulV344: MatOpMV =
-    (out, m, v) =>
-        setC3(
+    (out, m, v) => {
+        const w = dotS3(m, v, 3, 0, 4) || 1;
+        return setC3(
             out || v,
-            dotS3(m, v, 0, 0, 4) + m[12],
-            dotS3(m, v, 1, 0, 4) + m[13],
-            dotS3(m, v, 2, 0, 4) + m[14]
+            (dotS3(m, v, 0, 0, 4) + m[12]) / w,
+            (dotS3(m, v, 1, 0, 4) + m[13]) / w,
+            (dotS3(m, v, 2, 0, 4) + m[14]) / w
         );
+    };
 
+/**
+ * Multiplies quaternion `q` with 3D vector `v`. Returns transformed
+ * vector or modifies in-place if `out` is null or `v`.
+ *
+ * @param out
+ * @param quat
+ * @param v
+ */
 export const mulVQ =
     (out: Vec, quat: ReadonlyVec, v: ReadonlyVec) => {
         const { 0: px, 1: py, 2: pz } = v;
