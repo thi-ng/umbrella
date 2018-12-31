@@ -201,8 +201,6 @@ export class ClipPolygon implements
         return inside;
     }
 
-
-
     protected insertIntersections(clip: ClipPolygon) {
         let s = this.first;
         let c = clip.first;

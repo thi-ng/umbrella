@@ -10,7 +10,8 @@ export const intersectLines2 = (
     b: ReadonlyVec,
     c: ReadonlyVec,
     d: ReadonlyVec,
-    eps = EPS): LineIntersection => {
+    eps = EPS
+): LineIntersection => {
 
     const bax = b[0] - a[0];
     const bay = b[1] - a[1];
