@@ -150,7 +150,7 @@ import * as m from "@thi.ng/matrices";
 - `det22` / `det23` / `det33` / `det44`
 - `det44FromCoeffs` / `detCoeffs44`
 - `diag` / `diag22` / `diag23` / `diag33` / `diag44`
-- `invert` / `invert22` / `invert23` / `invert33` / `invert44` / `invertQ`
+- `invert` / `invert22` / `invert23` / `invert33` / `invert44`
 - `trace`
 
 ### Matrix transposition
@@ -161,12 +161,14 @@ import * as m from "@thi.ng/matrices";
 
 - `alignmentQuat`
 - `conjugateQ`
+- `invertQ`
 - `mixQ`
 - `mulQ`
 - `mulVQ`
 - `quatFromAxisAngle`
 - `quatFromEuler`
 - `quatToAxisAngle`
+- `quatToMat33`
 - `quatToMat44`
 
 ## Authors

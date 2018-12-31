@@ -28,6 +28,7 @@ export * from "./perspective";
 export * from "./project";
 export * from "./quat-axis-angle";
 export * from "./quat-euler";
+export * from "./quat-m33";
 export * from "./quat-m44";
 export * from "./rotation-around-axis";
 export * from "./rotation";
