@@ -1,7 +1,13 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { implementations } from "@thi.ng/defmulti";
 import { sign } from "@thi.ng/math/abs";
-import { EPS, PI, TAU } from "@thi.ng/math/api";
+import { cossin } from "@thi.ng/math/angle";
+import {
+    EPS,
+    HALF_PI,
+    PI,
+    TAU
+} from "@thi.ng/math/api";
 import { add2 } from "@thi.ng/vectors3/add";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
 import { cartesian2 } from "@thi.ng/vectors3/cartesian";
@@ -29,6 +35,7 @@ import {
     pointInside,
     Rect2,
     SamplingOpts,
+    tangentAt,
     translate,
     Type,
     vertices
@@ -101,6 +108,10 @@ implementations(
     pointInside,
     (circle: Circle2, p: ReadonlyVec) =>
         distSq2(circle.pos, p) <= circle.r * circle.r,
+
+    tangentAt,
+    (_: Circle2, t: number) =>
+        cossin(TAU * t + HALF_PI),
 
     translate,
     (circle: Circle2, delta: ReadonlyVec) =>

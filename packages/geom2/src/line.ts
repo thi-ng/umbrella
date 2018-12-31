@@ -17,6 +17,7 @@ import {
     Line2,
     offset,
     perimeter,
+    pointAt,
     Polygon2,
     Polyline2,
     Rect2,
@@ -87,6 +88,10 @@ implementations(
     perimeter,
     (line: Line2) =>
         dist(...<VecPair>line.points),
+
+    pointAt,
+    (line: Line2, t: number) =>
+        mixN([], line.a, line.b, t),
 
     tangentAt,
     (line: Line2, _, n = 1) =>
