@@ -210,6 +210,7 @@ export type Tessellator = (points: Vec[]) => Vec[][];
 export type VecPair = [Vec, Vec];
 
 const dispatch = (x: IShape) => x.type;
+const dispatch2 = (a: IShape, b: IShape) => a.type + "-" + b.type;
 
 export const arcLength: MultiFn1<IShape, number> = defmulti(dispatch);
 
@@ -263,7 +264,7 @@ height.add(DEFAULT, (x) => bounds(x).size[1]);
 export const intersection = defmulti<IShape, IShape, IShape[]>(dispatch);
 
 // TODO define isec result
-export const intersectShape = defmulti<IShape, IShape, any>(dispatch);
+export const intersectShape = defmulti<IShape, IShape, any>(dispatch2);
 
 export const intersectLine = defmulti<IShape, Line2, LineIntersection>(dispatch);
 
