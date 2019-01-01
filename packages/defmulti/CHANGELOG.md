@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.5.1...@thi.ng/defmulti@0.6.0) (2019-01-01)
+
+
+### Features
+
+* **defmulti:** add addAll(), add/update doc strings ([488698a](https://github.com/thi-ng/umbrella/commit/488698a))
+
+
+
+
+
 ## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.5.0...@thi.ng/defmulti@0.5.1) (2018-12-15)
 
 **Note:** Version bump only for package @thi.ng/defmulti

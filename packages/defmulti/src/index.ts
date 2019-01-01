@@ -42,13 +42,69 @@ export type Implementation8<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D
 export type Implementation8O<A, B, C, D, E, F, G, H, I, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i?: I, ...xs: any[]) => T;
 
 export interface MultiFnBase<I> {
-    add(id: PropertyKey, g: I): boolean;
+    /**
+     * Registers implementation for dispatch value `id`. Returns true,
+     * if successful. Returns false if an implementation already exists
+     * (and does nothing in this case).
+     *
+     * @param id
+     * @param impl
+     */
+    add(id: PropertyKey, impl: I): boolean;
+    /**
+     * Takes an object of dispatch values and their implementations and
+     * calls `.add()` for each KV pair. Returns true, if all impls were
+     * added successfully. Note: Only numbers or strings are accepted as
+     * dispatch values here.
+     *
+     * @param impls
+     */
+    addAll(impls: IObjectOf<I>): boolean;
+    /**
+     * Removes implementation for dispatch value `id`. Returns true, if
+     * successful.
+     *
+     * @param id
+     */
     remove(id: PropertyKey): boolean;
+    /**
+     * Returns true, if the function is callable (has a valid
+     * implementation) for given arguments.
+     *
+     * @param args
+     */
     callable(...args: any[]): boolean;
-    isa(id: PropertyKey, parent: PropertyKey);
+    /**
+     * Returns a set of all registered dispatch values.
+     */
     impls(): Set<PropertyKey>;
+    /**
+     * Updates dispatch hierarchy by declaring dispatch value `id` to
+     * delegate to `parent`'s implementation. I.e. in terms of dispatch
+     * logic, `id` is considered the same as `parent.
+     *
+     * @param id
+     * @param parent
+     */
+    isa(id: PropertyKey, parent: PropertyKey): boolean;
+    /**
+     * Returns all known dispatch relationships. This is an object with
+     * all registered dispatch values as keys, each with a set of parent
+     * dispatch values.
+     */
     rels(): IObjectOf<Set<PropertyKey>>;
+    /**
+     * Returns a set of immediate parent dispatch values for given
+     * dispatch value `id`.
+     *
+     * @param id
+     */
     parents(id: PropertyKey): Set<PropertyKey>;
+    /**
+     * Similar to `parents()`, but includes all transitive parent dispatch
+     * values for given dispatch value `id`.
+     * @param id
+     */
     ancestors(id: PropertyKey): Set<PropertyKey>;
 }
 
@@ -159,9 +215,9 @@ export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn8<A, B, C, D, E
 export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn7O<A, B, C, D, E, F, G, H>, rels?: AncestorDefs): MultiFn7O<A, B, C, D, E, F, G, H, T>;
 export function defmulti<A, B, C, D, E, F, G, H, I, T>(f: DispatchFn8O<A, B, C, D, E, F, G, H, I>, rels?: AncestorDefs): MultiFn8O<A, B, C, D, E, F, G, H, I, T>;
 export function defmulti<T>(f: any, ancestors?: AncestorDefs): MultiFn<T> {
-    let impls: IObjectOf<Implementation<T>> = {};
-    let rels: IObjectOf<Set<PropertyKey>> = ancestors ? makeRels(ancestors) : {};
-    let fn: any = (...args) => {
+    const impls: IObjectOf<Implementation<T>> = {};
+    const rels: IObjectOf<Set<PropertyKey>> = ancestors ? makeRels(ancestors) : {};
+    const fn: any = (...args) => {
         const id = f(...args);
         const g = impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
         return g ? g(...args) : unsupported(`missing implementation for: "${id.toString()}"`);
@@ -170,6 +226,13 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs): MultiFn<T> {
         if (impls[<any>id]) return false;
         impls[<any>id] = g;
         return true;
+    };
+    fn.addAll = (_impls: IObjectOf<Implementation<T>>) => {
+        let ok = true;
+        for (let id in _impls) {
+            ok = fn.add(id, _impls[id]) && ok;
+        }
+        return ok;
     };
     fn.remove = (id: PropertyKey) => {
         if (!impls[<any>id]) return false;
