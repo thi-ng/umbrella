@@ -20,7 +20,8 @@ export const [random, random2, random3, random4] =
         "a,n=-1,m=1,rnd=op",
         "a",
         "a",
-        0
+        0,
+        ""
     );
 
 /**
