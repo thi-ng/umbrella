@@ -30,7 +30,7 @@
     "dependencies": {
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/checks": "^1.5.14",
-        "@thi.ng/defmulti": "^0.6.0",
+        "@thi.ng/defmulti": "^0.7.0",
         "@thi.ng/hiccup": "^2.7.2",
         "@thi.ng/hiccup-svg": "^2.0.10",
         "@thi.ng/malloc": "^0.2.1",

@@ -34,7 +34,7 @@
         "@thi.ng/errors": "^0.1.12",
         "@thi.ng/math": "^0.2.2",
         "@thi.ng/random": "^0.1.1",
-        "@thi.ng/transducers": "^2.3.1"
+        "@thi.ng/transducers": "^2.3.2"
     },
     "keywords": [
         "2D",

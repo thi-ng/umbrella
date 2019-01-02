@@ -30,10 +30,10 @@
     "dependencies": {
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/compose": "^0.3.0",
-        "@thi.ng/defmulti": "^0.6.0",
+        "@thi.ng/defmulti": "^0.7.0",
         "@thi.ng/errors": "^0.1.12",
         "@thi.ng/strings": "^0.7.1",
-        "@thi.ng/transducers": "^2.3.1",
+        "@thi.ng/transducers": "^2.3.2",
         "@thi.ng/vectors3": "^0.0.1"
     },
     "keywords": [
