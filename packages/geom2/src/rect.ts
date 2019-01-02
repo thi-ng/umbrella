@@ -13,9 +13,11 @@ import {
     Attribs,
     bounds,
     centroid,
+    Circle2,
     clipConvex,
     ClipMode,
     edges,
+    intersectShape,
     IShape,
     mapPoint,
     perimeter,
@@ -51,7 +53,7 @@ export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
     Rect2.fromMinMax(min, max, attribs);
 
 implementations(
-    Type.RECT2,
+    Type.RECT,
 
     {
         [Type.POLYGON2]: [
@@ -144,3 +146,27 @@ implementations(
             verts;
     },
 );
+
+intersectShape.addAll({
+
+    [`${Type.RECT}-${Type.RECT}`]:
+        ({ pos: { 0: ax, 1: ay }, size: { 0: aw, 1: ah } }: Rect2,
+            { pos: { 0: bx, 1: by }, size: { 0: bw, 1: bh } }: Rect2) =>
+            !((ax > bx + bw) ||
+                (bx > ax + aw) ||
+                (ay > by + bh) ||
+                (by > ay + ah)),
+
+    [`${Type.RECT}-${Type.CIRCLE}`]:
+        ({ pos: rp, size }: Rect2, { pos: cp, r }: Circle2) =>
+            rcAxis(cp[0], rp[0], size[0]) +
+            rcAxis(cp[1], rp[1], size[1]) <= r * r,
+
+});
+
+const rcAxis = (a: number, b: number, c: number) =>
+    a < b ?
+        Math.pow(a - b, 2) :
+        a > b + c ?
+            Math.pow(a - b - c, 2) :
+            0;

@@ -60,7 +60,7 @@ export const circleFrom3Points =
     };
 
 implementations(
-    Type.CIRCLE2,
+    Type.CIRCLE,
 
     null,
 

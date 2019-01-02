@@ -34,7 +34,7 @@ export function ellipse(pos: Vec, r = [1, 1], attribs?: Attribs): Ellipse2 {
 }
 
 implementations(
-    Type.ELLIPSE2,
+    Type.ELLIPSE,
 
     null,
 

@@ -12,6 +12,7 @@ export * from "./polyline";
 export * from "./quad";
 export * from "./ray";
 export * from "./rect";
+export * from "./sphere";
 export * from "./triangle";
 
 export * from "./svg";

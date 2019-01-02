@@ -29,19 +29,25 @@ import { subdivKernel3 } from "./internal/subdiv-curve";
 import { warpPoints } from "./internal/warp";
 
 export const enum Type {
+    AABB = "aabb",
     ARC2 = "arc",
-    CIRCLE2 = "circle",
+    CIRCLE = "circle",
     CUBIC2 = "cubic",
-    ELLIPSE2 = "ellipse",
+    ELLIPSE = "ellipse",
     GROUP = "g",
     LINE2 = "line",
+    LINE3 = "line3",
     PATH2 = "path",
     POINTS2 = "points",
+    POINTS3 = "points3",
     POLYGON2 = "polygon",
+    POLYGON3 = "poly3",
     POLYLINE2 = "polyline",
-    QUAD2 = "quad",
+    QUAD2 = "quad2",
+    QUAD3 = "quad3",
     QUADRATIC2 = "quadratic",
-    RECT2 = "rect",
+    RECT = "rect",
+    SPHERE = "sphere",
     TRIANGLE2 = "triangle",
     RAY = "ray"
 }
@@ -469,7 +475,7 @@ export class Circle2 implements
     }
 
     get type() {
-        return Type.CIRCLE2;
+        return Type.CIRCLE;
     }
 
     copy() {
@@ -531,7 +537,7 @@ export class Ellipse2 implements
     }
 
     get type() {
-        return Type.ELLIPSE2;
+        return Type.ELLIPSE;
     }
 
     copy() {
@@ -596,6 +602,14 @@ export class Line2 extends PointContainer implements
         super(Type.LINE2, points, attribs);
     }
 
+    get a() {
+        return this.points[0];
+    }
+
+    get b() {
+        return this.points[1];
+    }
+
     copy() {
         return new Line2(this._copy(), { ...this.attribs });
     }
@@ -607,16 +621,8 @@ export class Line2 extends PointContainer implements
                 ["V", b[1]] :
                 a[1] === b[1] ?
                     ["H", b[0]] :
-                    ["L", this.points[1]]
+                    ["L", b]
         ];
-    }
-
-    get a() {
-        return this.points[0];
-    }
-
-    get b() {
-        return this.points[1];
     }
 }
 
@@ -799,7 +805,7 @@ export class Rect2 implements
     }
 
     get type() {
-        return Type.RECT2;
+        return Type.RECT;
     }
 
     copy() {
@@ -814,6 +820,38 @@ export class Rect2 implements
 
     toHiccup() {
         return [this.type, this.attribs, this.pos, this.size];
+    }
+}
+
+export class Sphere implements
+    IShape {
+
+    pos: Vec;
+    r: number;
+    attribs: Attribs;
+
+    constructor(pos: Vec, r: number, attribs?: Attribs) {
+        this.pos = pos;
+        this.r = r;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.SPHERE;
+    }
+
+    copy() {
+        return new Sphere(copy(this.pos), this.r, { ...this.attribs });
+    }
+
+    equiv(o: any) {
+        return o instanceof Sphere &&
+            equiv(this.pos, o.pos) &&
+            this.r === o.r;
+    }
+
+    toHiccup() {
+        return "";
     }
 }
 
