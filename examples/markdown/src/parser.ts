@@ -1,6 +1,7 @@
 import {
     alts,
     fsm,
+    repeat,
     ResultBody,
     seq,
     str,
@@ -86,8 +87,8 @@ const resultBody =
         (_, body: string) => fn(body.trim());
 
 const title =
-    (level: number) =>
-        (ctx: FSMCtx): ResultBody<any> => (ctx.hd = level, [TITLE]);
+    (ctx: FSMCtx, body: string[]): ResultBody<any> =>
+        (ctx.hd = body.length, [TITLE]);
 
 const inline =
     (id: string) => [
@@ -146,7 +147,7 @@ const DEFAULT_TAGS: TagFactories = {
     paragraph: (...xs) => ["p", ...xs],
     strong: (body) => ["strong", body],
     strike: (body) => ["del", body],
-    title: (level, body) => [`h${level}`, body],
+    title: (level, body) => [level < 7 ? `h${level}` : "p", body],
 };
 
 /**
@@ -162,14 +163,8 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                 alts(
                     [
                         whitespace(() => [START]),
-                        str("# ", title(1)),
-                        str("## ", title(2)),
-                        str("### ", title(3)),
-                        str("#### ", title(4)),
-                        str("##### ", title(5)),
-                        str("###### ", title(6)),
-                        str("####### ", title(7)),
-                        str("> ", (ctx) => (ctx.children = [], ctx.body = "", [BLOCKQUOTE])),
+                        repeat(str("#"), 1, 10, title),
+                        str("> ", (ctx) => transition(ctx, BLOCKQUOTE)),
                         str("- ", newList(tags.list, "ul")),
                         str("```", () => [START_CODEBLOCK]),
                         str("---\n", () => [START, [["hr"]]]),
