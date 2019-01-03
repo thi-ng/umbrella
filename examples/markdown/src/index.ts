@@ -3,18 +3,19 @@ import { stream, Stream } from "@thi.ng/rstream/stream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/xform/map";
-import { parseMD } from "./parser";
+import { parseMD, TagFactories } from "./parser";
 
 // ignore error, resolved by parcel
 import readme from "../README.md";
 
 // custom tag factories (passed to parser)
 // uses Tachyons CSS classes for styling
-const CUSTOM_TAGS = {
-    pre: (ctx, body) => ["pre.bg-washed-yellow.pa3.f7", { lang: ctx.lang }, ["code", body]],
-    a: (ctx) => ["a.link.dark-blue.hover-white.hover-bg-dark-blue.b", { href: ctx.href }, ctx.title],
-    strike: (_, body) => ["del.bg-washed-red", body],
-    code: (_, body) => ["code.bg-light-gray.pa1.f7", body],
+const CUSTOM_TAGS: Partial<TagFactories> = {
+    blockquote: (...xs) => ["blockquote.i.f4.gray", ...xs],
+    code: (body) => ["code.bg-light-gray.pa1.f7", body],
+    codeblock: (lang, body) => ["pre.bg-washed-yellow.pa3.f7", { lang }, ["code", body]],
+    link: (href, body) => ["a.link.dark-blue.hover-white.hover-bg-dark-blue.b", { href }, body],
+    strike: (body) => ["del.bg-washed-red", body],
 };
 
 // UI root component
@@ -23,7 +24,7 @@ const app =
         ({ src, parsed: [hiccup, time] }) =>
             ["div.flex.vh-100.sans-serif.flex-column.flex-row-l",
                 ["div.w-100.h-50.w-50-l.h-100-l",
-                    ["textarea.w-100.vh-50.vh-100-l.bg-washed-blue.pa3.f7.code",
+                    ["textarea.w-100.vh-50.vh-100-l.bg-washed-blue.navy.pa3.f7.code.lh-copy",
                         {
                             value: src,
                             oninput: (e) => input.next(e.target.value)

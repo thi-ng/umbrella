@@ -1,4 +1,4 @@
-# minimal markdown parser
+# Minimal Markdown parser
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -13,20 +13,28 @@ the (still unreleased)
 [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/feature/fsm/packages/fsm)
 package, which itself is a potential replacement / major version update
 for
-[@transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm).
+[@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm).
+
+> "Weeks of coding can **save hours** of planning."
+> -- Anonymous
 
 ### Features
 
-The parser itself is currently not aimed to support **all** of Markdown's quirky
-syntax features, but already supports so far:
+The parser itself is not aimed at supporting **all** of Markdown's
+quirky syntax features, but will restrict itself to a sane subset of
+features and already sports:
 
 - headlines (level 1-6)
 - paragraphs
+- blockquotes
 - inline links
 - images
 - flat unordered lists
 - inline formats (**bold**, _emphasis_, `code`, ~~strikethrough~~) in paragraphs & lists
 - GFM code blocks with language hint
+- horizontal rules
+
+---
 
 Other features
 
@@ -43,18 +51,74 @@ for reference...
 
 ### Limitations
 
-These MD features (and probably more) are not supported:
+These MD features (and probably many more) are not supported:
 
 - inline HTML
+- inline formats within link labels
 - image links
 - footnotes
 - link references
-- inline formats within link labels
-- ordered / numbered / todo lists
-- block quotes
+- nested / ordered / numbered / todo lists
 - tables
 
 Some of these are considered, though currently not high priority...
+
+## Serializing to HTML
+
+```ts
+import { iterator } from "@thi.ng/transducers";
+import { serialize } from "@thi.ng/hiccup";
+
+import { parseMD } from "./parser";
+
+const src = `
+# Hello world
+
+[This](http://example.com) is a _test_.
+
+`;
+
+serialize(iterator(parseMD(), src));
+
+// <h1>Hello world</h1><p>
+// <a href="http://example.com">This</a> is a <em>test</em>. </p>
+```
+
+## Customizing tags
+
+The following interface defines factory functions for all supported
+elements. User implementations / overrides can be given to the
+`parseMD()` transducer to customize output.
+
+```ts
+interface TagFactories {
+    blockquote(...children: any[]): any[];
+    code(body: string): any[];
+    codeblock(lang: string, body: string): any[];
+    em(body: string): any[];
+    img(src: string, alt: string): any[];
+    link(href: string, body: string): any[];
+    list(type: string): any[];
+    li(...children: any[]): any[];
+    paragraph(...children: any[]): any[];
+    strong(body: string): any[];
+    strike(body: string): any[];
+    title(level: number, body: string): any[];
+}
+```
+
+Example w/ custom link elements
+
+```ts
+const tags = {
+    link: (href, body) => ["a.link.blue", { href }, body]
+};
+
+serialize(iterator(parseMD(tags), src));
+
+// <h1>Hello world</h1>
+// <p><a href="http://example.com" class="link blue">This</a> is a <em>test</em>. </p>
+```
 
 ## Building locally
 

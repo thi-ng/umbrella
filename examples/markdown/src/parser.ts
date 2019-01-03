@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import {
     alts,
     fsm,
@@ -10,20 +9,38 @@ import {
 } from "@thi.ng/fsm";
 
 // parse state IDs
+const BLOCKQUOTE = "blockquote";
 const CODE = "code";
 const CODEBLOCK = "codeblock";
 const EMPHASIS = "em";
-const END_LI = "end_li";
-const END_PARA = "end_para";
-const HD = "hd";
+const END_BLOCKQUOTE = "end-blockquote";
+const END_LI = "end-li";
+const END_PARA = "end-para";
 const IMG = "img";
 const LINK = "link";
 const LI = "li";
 const PARA = "para";
 const START = "start";
-const START_CODEBLOCK = "start_codeblock";
+const START_CODEBLOCK = "start-codeblock";
 const STRIKE = "strike";
 const STRONG = "strong";
+const TITLE = "title";
+
+// hiccup element factories
+export interface TagFactories {
+    blockquote(...children: any[]): any[];
+    code(body: string): any[];
+    codeblock(lang: string, body: string): any[];
+    em(body: string): any[];
+    img(src: string, alt: string): any[];
+    link(href: string, body: string): any[];
+    list(type: string): any[];
+    li(...children: any[]): any[];
+    paragraph(...children: any[]): any[];
+    strong(body: string): any[];
+    strike(body: string): any[];
+    title(level, body): any[];
+}
 
 // parse context
 interface FSMCtx {
@@ -64,9 +81,13 @@ const collect =
         (ctx, buf): ResultBody<any> =>
             (ctx.body += buf.join(""), [id]);
 
-const hd =
+const resultBody =
+    (fn: (body: string) => any[]) =>
+        (_, body: string) => fn(body.trim());
+
+const title =
     (level: number) =>
-        (ctx: FSMCtx): ResultBody<any> => (ctx.hd = level, [HD]);
+        (ctx: FSMCtx): ResultBody<any> => (ctx.hd = level, [TITLE]);
 
 const inline =
     (id: string) => [
@@ -79,14 +100,14 @@ const inline =
     ];
 
 const link =
-    (result: (ctx: FSMCtx) => any) =>
+    (result: (href, body) => any[]) =>
         seq<string, FSMCtx, any>(
             [
                 until("]", (ctx, body) => (ctx.title = body, null)),
                 str("("),
                 until(")", (ctx, body) => (ctx.href = body, null)),
             ],
-            pop(result)
+            pop((ctx) => result(ctx.href, ctx.title))
         );
 
 const newPara =
@@ -96,24 +117,36 @@ const newPara =
             return transition(ctx, next);
         };
 
+const paragraph =
+    (id: string, next: string) =>
+        alts(
+            [
+                ...inline(id),
+                str("\n", (ctx: FSMCtx) => (ctx.body += " ", [next])),
+            ],
+            collect(id),
+        );
+
 const newList =
-    (tag: string) =>
+    (factory: (type: string) => any[], type: string) =>
         (ctx: FSMCtx): ResultBody<any> => {
-            ctx.list = [tag];
+            ctx.list = factory(type);
             return transition(ctx, LI);
         };
 
-const DEFAULT_TAGS = {
-    p: (ctx) => ["p", ...ctx.children, ctx.body],
-    hd: (ctx, buf) => [`h${ctx.hd}`, buf],
-    pre: (ctx, body) => ["pre", { lang: ctx.lang }, body],
-    li: (ctx) => ["li", ...ctx.children, ctx.body],
-    a: (ctx) => ["a", { href: ctx.href }, ctx.title],
-    img: (ctx) => ["img", { src: ctx.href, alt: ctx.title }],
-    strong: (_, body) => ["strong", body],
-    strike: (_, body) => ["del", body],
-    em: (_, body) => ["em", body],
-    code: (_, body) => ["code", body],
+const DEFAULT_TAGS: TagFactories = {
+    blockquote: (...xs) => ["blockquote", ...xs],
+    code: (body) => ["code", body],
+    codeblock: (lang, body) => ["pre", { lang }, body],
+    em: (body) => ["em", body],
+    img: (src, alt) => ["img", { src, alt }],
+    li: (...xs: any[]) => ["li", ...xs],
+    link: (href, body) => ["a", { href }, body],
+    list: (type) => [type],
+    paragraph: (...xs) => ["p", ...xs],
+    strong: (body) => ["strong", body],
+    strike: (body) => ["del", body],
+    title: (level, body) => [`h${level}`, body],
 };
 
 /**
@@ -121,7 +154,7 @@ const DEFAULT_TAGS = {
  * transition handlers. The returned parser itself is only used in
  * `index.ts`.
  */
-export const parseMD = (tags?: IObjectOf<(ctx: FSMCtx, body?: any) => any>) => {
+export const parseMD = (tags?: Partial<TagFactories>) => {
     tags = { ...DEFAULT_TAGS, ...tags };
     return fsm<string, FSMCtx, any[]>(
         {
@@ -129,14 +162,17 @@ export const parseMD = (tags?: IObjectOf<(ctx: FSMCtx, body?: any) => any>) => {
                 alts(
                     [
                         whitespace(() => [START]),
-                        str("# ", hd(1)),
-                        str("## ", hd(2)),
-                        str("### ", hd(3)),
-                        str("#### ", hd(4)),
-                        str("##### ", hd(5)),
-                        str("###### ", hd(6)),
-                        str("- ", newList("ul")),
+                        str("# ", title(1)),
+                        str("## ", title(2)),
+                        str("### ", title(3)),
+                        str("#### ", title(4)),
+                        str("##### ", title(5)),
+                        str("###### ", title(6)),
+                        str("####### ", title(7)),
+                        str("> ", (ctx) => (ctx.children = [], ctx.body = "", [BLOCKQUOTE])),
+                        str("- ", newList(tags.list, "ul")),
                         str("```", () => [START_CODEBLOCK]),
+                        str("---\n", () => [START, [["hr"]]]),
                         str("![", newPara(IMG)),
                         str("[", newPara(LINK)),
                         str("**", newPara(STRONG)),
@@ -147,25 +183,32 @@ export const parseMD = (tags?: IObjectOf<(ctx: FSMCtx, body?: any) => any>) => {
                 ),
 
             [PARA]:
-                alts(
-                    [
-                        ...inline(PARA),
-                        str("\n", (ctx) => (ctx.body += " ", [END_PARA])),
-                    ],
-                    collect(PARA),
-                ),
+                paragraph(PARA, END_PARA),
 
             [END_PARA]:
                 alts(
                     [
                         ...inline(PARA),
-                        str("\n", (ctx) => [START, [tags.p(ctx)]]),
+                        str("\n", (ctx) => [START, [tags.paragraph(...ctx.children, ctx.body)]]),
                     ],
                     collect(PARA)
                 ),
 
-            [HD]:
-                until("\n\n", (ctx, buf) => [START, [tags.hd(ctx, buf)]]),
+            [BLOCKQUOTE]:
+                paragraph(BLOCKQUOTE, END_BLOCKQUOTE),
+
+            [END_BLOCKQUOTE]:
+                alts(
+                    [
+                        ...inline(BLOCKQUOTE),
+                        str("> ", (ctx) => (ctx.children.push(ctx.body, ["br"]), ctx.body = "", [BLOCKQUOTE])),
+                        str("\n", (ctx) => [START, [tags.blockquote(...ctx.children, ctx.body)]]),
+                    ],
+                    collect(BLOCKQUOTE)
+                ),
+
+            [TITLE]:
+                until("\n\n", (ctx, body) => [START, [tags.title(ctx.hd, body)]]),
 
             [START_CODEBLOCK]:
                 until("\n", (ctx, lang) => (ctx.lang = lang, [CODEBLOCK])),
@@ -173,14 +216,14 @@ export const parseMD = (tags?: IObjectOf<(ctx: FSMCtx, body?: any) => any>) => {
             [CODEBLOCK]:
                 until(
                     "\n```\n",
-                    (ctx, body) => [START, [tags.pre(ctx, body)]]
+                    (ctx, body) => [START, [tags.codeblock(ctx.lang, body)]]
                 ),
 
             [LI]:
                 alts(
                     [
                         ...inline(LI),
-                        str("\n", (ctx) => (ctx.list.push(tags.li(ctx)), [END_LI])),
+                        str("\n", (ctx) => (ctx.list.push(tags.li(...ctx.children, ctx.body)), [END_LI])),
                     ],
                     collect(LI)
                 ),
@@ -192,22 +235,22 @@ export const parseMD = (tags?: IObjectOf<(ctx: FSMCtx, body?: any) => any>) => {
                 ]),
 
             [LINK]:
-                link(tags.a),
+                link(tags.link),
 
             [IMG]:
                 link(tags.img),
 
             [STRONG]:
-                until("**", pop(tags.strong)),
+                until("**", pop(resultBody(tags.strong))),
 
             [STRIKE]:
-                until("~~", pop(tags.strike)),
+                until("~~", pop(resultBody(tags.strike))),
 
             [EMPHASIS]:
-                until("_", pop(tags.em)),
+                until("_", pop(resultBody(tags.em))),
 
             [CODE]:
-                until("`", pop(tags.code)),
+                until("`", pop(resultBody(tags.code))),
         },
         {
             stack: []
