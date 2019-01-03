@@ -1,3 +1,4 @@
+import { IObjectOf } from "@thi.ng/api";
 import {
     alts,
     fsm,
@@ -21,6 +22,7 @@ const LI = "li";
 const PARA = "para";
 const START = "start";
 const START_CODEBLOCK = "start_codeblock";
+const STRIKE = "strike";
 const STRONG = "strong";
 
 // parse context
@@ -70,6 +72,7 @@ const inline =
     (id: string) => [
         str("![", push(id, IMG)),
         str("[", push(id, LINK)),
+        str("~~", push(id, STRIKE)),
         str("**", push(id, STRONG)),
         str("_", push(id, EMPHASIS)),
         str("`", push(id, CODE))
@@ -100,13 +103,27 @@ const newList =
             return transition(ctx, LI);
         };
 
+const DEFAULT_TAGS = {
+    p: (ctx) => ["p", ...ctx.children, ctx.body],
+    hd: (ctx, buf) => [`h${ctx.hd}`, buf],
+    pre: (ctx, body) => ["pre", { lang: ctx.lang }, body],
+    li: (ctx) => ["li", ...ctx.children, ctx.body],
+    a: (ctx) => ["a", { href: ctx.href }, ctx.title],
+    img: (ctx) => ["img", { src: ctx.href, alt: ctx.title }],
+    strong: (_, body) => ["strong", body],
+    strike: (_, body) => ["del", body],
+    em: (_, body) => ["em", body],
+    code: (_, body) => ["code", body],
+};
+
 /**
  * Main parser / transducer. Defines state map with various matchers and
  * transition handlers. The returned parser itself is only used in
  * `index.ts`.
  */
-export const parseMD = () =>
-    fsm<string, FSMCtx, any[]>(
+export const parseMD = (tags?: IObjectOf<(ctx: FSMCtx, body?: any) => any>) => {
+    tags = { ...DEFAULT_TAGS, ...tags };
+    return fsm<string, FSMCtx, any[]>(
         {
             [START]:
                 alts(
@@ -123,6 +140,7 @@ export const parseMD = () =>
                         str("![", newPara(IMG)),
                         str("[", newPara(LINK)),
                         str("**", newPara(STRONG)),
+                        str("~~", newPara(STRIKE)),
                         str("_", newPara(EMPHASIS)),
                     ],
                     (ctx, buf) => (ctx.body = buf.join(""), ctx.children = [], [PARA]),
@@ -132,7 +150,7 @@ export const parseMD = () =>
                 alts(
                     [
                         ...inline(PARA),
-                        str("\n", (s) => (s.body += " ", [END_PARA])),
+                        str("\n", (ctx) => (ctx.body += " ", [END_PARA])),
                     ],
                     collect(PARA),
                 ),
@@ -141,28 +159,28 @@ export const parseMD = () =>
                 alts(
                     [
                         ...inline(PARA),
-                        str("\n", (s) => [START, [["p", ...s.children, s.body]]]),
+                        str("\n", (ctx) => [START, [tags.p(ctx)]]),
                     ],
                     collect(PARA)
                 ),
 
             [HD]:
-                until("\n\n", (s, buf) => [START, [[`h${s.hd}`, buf]]]),
+                until("\n\n", (ctx, buf) => [START, [tags.hd(ctx, buf)]]),
 
             [START_CODEBLOCK]:
-                until("\n", (s, lang) => (s.lang = lang, [CODEBLOCK])),
+                until("\n", (ctx, lang) => (ctx.lang = lang, [CODEBLOCK])),
 
             [CODEBLOCK]:
                 until(
                     "\n```\n",
-                    (ctx, body) => [START, [["pre.bg-washed-yellow.pa3.f7", { lang: ctx.lang }, ["code", body]]]]
+                    (ctx, body) => [START, [tags.pre(ctx, body)]]
                 ),
 
             [LI]:
                 alts(
                     [
                         ...inline(LI),
-                        str("\n", (ctx) => (ctx.list.push(["li", ...ctx.children, ctx.body]), [END_LI])),
+                        str("\n", (ctx) => (ctx.list.push(tags.li(ctx)), [END_LI])),
                     ],
                     collect(LI)
                 ),
@@ -174,22 +192,26 @@ export const parseMD = () =>
                 ]),
 
             [LINK]:
-                link((ctx) => ["a", { href: ctx.href }, ctx.title]),
+                link(tags.a),
 
             [IMG]:
-                link((ctx) => ["img", { src: ctx.href, alt: ctx.title }]),
+                link(tags.img),
 
             [STRONG]:
-                until("**", pop((_, body) => ["strong", body])),
+                until("**", pop(tags.strong)),
+
+            [STRIKE]:
+                until("~~", pop(tags.strike)),
 
             [EMPHASIS]:
-                until("_", pop((_, body) => ["em", body])),
+                until("_", pop(tags.em)),
 
             [CODE]:
-                until("`", pop((_, body) => ["code.bg-washed-green.pa1.f7", body])),
+                until("`", pop(tags.code)),
         },
         {
             stack: []
         },
         START
     );
+};

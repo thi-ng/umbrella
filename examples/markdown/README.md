@@ -25,7 +25,7 @@ syntax features, but already supports so far:
 - inline links
 - images
 - flat unordered lists
-- inline formats (**bold**, _emphasis_, `code`) in paragraphs & lists
+- inline formats (**bold**, _emphasis_, `code`, ~~strikethrough~~) in paragraphs & lists
 - GFM code blocks with language hint
 
 Other features
@@ -33,6 +33,7 @@ Other features
 - **Functional:** parser entirely built using [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) & function composition. Use the parser in a transducer pipeline to easily apply post-processing of the emitted results
 - **Declarative:** parsing rules defined declaratively with only minimal state/context handling needed
 - **No regex:** consumes input character-wise and produces an iterator of hiccup-style tree nodes, ready to be used with [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom), [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) or [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown) (for back conversion to MD)
+- **Customizable:** supports custom tag factory functions to override default behavior / representation of each parsed result element
 - **Fast (enough):** parses this markdown file in 2-3ms on MBP2016 / Chrome 71
 - **Small:** minified+gzipped ~3KB
 
