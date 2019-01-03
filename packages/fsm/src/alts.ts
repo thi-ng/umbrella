@@ -1,4 +1,11 @@
-import { Match, RES_FAIL, RES_PARTIAL, Matcher, ResultBody } from "./api";
+import {
+    Match,
+    Matcher,
+    RES_FAIL,
+    RES_PARTIAL,
+    ResultBody
+} from "./api";
+import { success } from "./success";
 
 export const alts = <T, C, R>(
     opts: Matcher<T, C, R>[],
@@ -13,10 +20,7 @@ export const alts = <T, C, R>(
                 const next = alts[i](ctx, x);
                 if (next.type === Match.FULL) {
                     return callback ?
-                        {
-                            type: Match.FULL,
-                            body: callback(ctx, next.body, buf)
-                        } :
+                        success(callback(ctx, next.body, buf)) :
                         next;
                 } else if (next.type === Match.FAIL) {
                     alts.splice(i, 1);
@@ -26,10 +30,7 @@ export const alts = <T, C, R>(
             return alts.length ?
                 RES_PARTIAL :
                 fallback ?
-                    {
-                        type: Match.FULL,
-                        body: fallback(ctx, buf)
-                    } :
+                    success(fallback(ctx, buf)) :
                     RES_FAIL;
         };
     };

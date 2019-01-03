@@ -1,10 +1,10 @@
 import {
-    Match,
     Matcher,
     RangeCallback,
     RES_FAIL,
     RES_PARTIAL
 } from "./api";
+import { success } from "./success";
 
 export const str = <C, R>(
     str: string,
@@ -16,10 +16,7 @@ export const str = <C, R>(
             buf.length >= str.length ?
                 RES_FAIL :
                 (buf += x) === str ?
-                    {
-                        type: Match.FULL,
-                        body: callback && callback(state, buf)
-                    } :
+                    success(callback && callback(state, buf)) :
                     str.indexOf(buf) === 0 ?
                         RES_PARTIAL :
                         RES_FAIL;

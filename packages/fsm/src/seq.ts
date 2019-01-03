@@ -5,6 +5,7 @@ import {
     RES_PARTIAL,
     SeqCallback
 } from "./api";
+import { success } from "./success";
 
 export const seq = <T, C, R>(
     opts: Matcher<T, C, R>[],
@@ -21,10 +22,7 @@ export const seq = <T, C, R>(
             const { type } = o(state, x);
             if (type === Match.FULL) {
                 if (i === n) {
-                    return {
-                        type: Match.FULL,
-                        body: callback && callback(state, buf)
-                    };
+                    return success(callback && callback(state, buf));
                 }
                 o = opts[++i]();
             }

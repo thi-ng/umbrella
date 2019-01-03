@@ -1,6 +1,7 @@
 export const enum Match {
     PARTIAL = 0,
     FULL = 1,
+    FULL_NC = 2,
     FAIL = -1
 }
 

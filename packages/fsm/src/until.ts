@@ -1,9 +1,5 @@
-import {
-    Match,
-    Matcher,
-    RangeCallback,
-    RES_PARTIAL
-} from "./api";
+import { Matcher, RangeCallback, RES_PARTIAL } from "./api";
+import { success } from "./success";
 
 export const until = <C, R>(
     str: string,
@@ -13,12 +9,8 @@ export const until = <C, R>(
         let buf = "";
         return (ctx, x) => {
             buf += x;
-            return buf.length >= str.length &&
-                buf.substr(buf.length - str.length) === str ?
-                {
-                    type: Match.FULL,
-                    body: callback && callback(ctx, buf.substr(0, buf.length - str.length))
-                } :
+            return buf.endsWith(str) ?
+                success(callback && callback(ctx, buf.substr(0, buf.length - str.length))) :
                 RES_PARTIAL;
         };
     };

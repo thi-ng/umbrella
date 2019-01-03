@@ -1,11 +1,11 @@
 import { alts } from "./alts";
 import {
     AltCallback,
-    Match,
     Matcher,
     RangeCallback,
     RES_FAIL
 } from "./api";
+import { success } from "./success";
 import { str } from "./str";
 
 export const range = <T extends number | string, C, R>(
@@ -16,10 +16,7 @@ export const range = <T extends number | string, C, R>(
     () =>
         (ctx, x) =>
             x >= min && x <= max ?
-                {
-                    type: Match.FULL,
-                    body: callback && callback(ctx, x)
-                } :
+                success(callback && callback(ctx, x)) :
                 RES_FAIL;
 
 export const digit =
