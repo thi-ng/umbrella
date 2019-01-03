@@ -13,11 +13,9 @@ export const str = <C, R>(
     () => {
         let buf = "";
         return (state, x) =>
-            buf.length >= str.length ?
-                RES_FAIL :
-                (buf += x) === str ?
-                    success(callback && callback(state, buf)) :
-                    str.indexOf(buf) === 0 ?
-                        RES_PARTIAL :
-                        RES_FAIL;
+            (buf += x) === str ?
+                success(callback && callback(state, buf)) :
+                str.indexOf(buf) === 0 ?
+                    RES_PARTIAL :
+                    RES_FAIL;
     };

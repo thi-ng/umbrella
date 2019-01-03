@@ -19,15 +19,21 @@ export const seq = <T, C, R>(
         return (state, x) => {
             if (i > n) return RES_FAIL;
             callback && buf.push(x);
-            const { type } = o(state, x);
-            if (type === Match.FULL) {
-                if (i === n) {
-                    return success(callback && callback(state, buf));
+            while (i <= n) {
+                const { type } = o(state, x);
+                if (type >= Match.FULL) {
+                    if (i === n) {
+                        return success(callback && callback(state, buf));
+                    }
+                    o = opts[++i]();
+                    if (type === Match.FULL_NC) {
+                        continue;
+                    }
                 }
-                o = opts[++i]();
+                return type === Match.FAIL ?
+                    RES_FAIL :
+                    RES_PARTIAL;
             }
-            return type === Match.FAIL ?
-                RES_FAIL :
-                RES_PARTIAL;
+            return RES_FAIL;
         }
     };

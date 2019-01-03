@@ -29,7 +29,7 @@ export const repeat = <T, C, R>(
             } else if (r.type === Match.FAIL) {
                 if (i >= min) {
                     buf.pop();
-                    return success(callback && callback(ctx, buf));
+                    return success(callback && callback(ctx, buf), Match.FULL_NC);
                 }
             }
             return r;

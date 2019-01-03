@@ -1,7 +1,21 @@
 export const enum Match {
+    /**
+     * Partial match
+     */
     PARTIAL = 0,
+    /**
+     * Full match
+     */
     FULL = 1,
+    /**
+     * Full match (No Consume), i.e. didn't consume last input. The
+     * result will be treated like `FULL`, but the last input will be
+     * processed further.
+     */
     FULL_NC = 2,
+    /**
+     * Failed match.
+     */
     FAIL = -1
 }
 
