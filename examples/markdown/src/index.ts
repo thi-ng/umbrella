@@ -11,7 +11,7 @@ import readme from "../README.md";
 // custom tag factories (passed to parser)
 // uses Tachyons CSS classes for styling
 const CUSTOM_TAGS: Partial<TagFactories> = {
-    blockquote: (...xs) => ["blockquote.i.f4.gray", ...xs],
+    blockquote: (...xs) => ["blockquote.pl3.bl.bw2.i.f4.gray", ...xs],
     code: (body) => ["code.bg-light-gray.pa1.f7", body],
     codeblock: (lang, body) => ["pre.bg-washed-yellow.pa3.f7", { lang }, ["code", body]],
     link: (href, body) => ["a.link.dark-blue.hover-white.hover-bg-dark-blue.b", { href }, body],

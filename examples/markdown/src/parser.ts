@@ -163,8 +163,8 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                 alts(
                     [
                         whitespace(() => [START]),
-                        repeat(str("#"), 1, 10, title),
-                        str("> ", (ctx) => transition(ctx, BLOCKQUOTE)),
+                        repeat(str("#"), 1, Infinity, title),
+                        str(">", (ctx) => transition(ctx, BLOCKQUOTE)),
                         str("- ", newList(tags.list, "ul")),
                         str("```", () => [START_CODEBLOCK]),
                         str("---\n", () => [START, [["hr"]]]),
@@ -196,7 +196,7 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                 alts(
                     [
                         ...inline(BLOCKQUOTE),
-                        str("> ", (ctx) => (ctx.children.push(ctx.body, ["br"]), ctx.body = "", [BLOCKQUOTE])),
+                        str(">", (ctx) => (ctx.children.push(ctx.body, ["br"]), ctx.body = "", [BLOCKQUOTE])),
                         str("\n", (ctx) => [START, [tags.blockquote(...ctx.children, ctx.body)]]),
                     ],
                     collect(BLOCKQUOTE)
