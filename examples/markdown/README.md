@@ -24,13 +24,14 @@ The parser itself is not aimed at supporting **all** of Markdown's
 quirky syntax features, but will restrict itself to a sane subset of
 features and already sports:
 
-- headlines (level 1-6)
+- ATX headlines (level 1-6, then downgrade to paragraph)
 - paragraphs
 - blockquotes
 - inline links
 - images
 - flat unordered lists
-- inline formats (**bold**, _emphasis_, `code`, ~~strikethrough~~) in paragraphs & lists
+- inline formats (**bold**, _emphasis_, `code`, ~~strikethrough~~) in
+  paragraphs, titles, lists, blockquotes
 - GFM code blocks with language hint
 - horizontal rules
 
@@ -42,8 +43,8 @@ Other features
 - **Declarative:** parsing rules defined declaratively with only minimal state/context handling needed
 - **No regex:** consumes input character-wise and produces an iterator of hiccup-style tree nodes, ready to be used with [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom), [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) or [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown) (for back conversion to MD)
 - **Customizable:** supports custom tag factory functions to override default behavior / representation of each parsed result element
-- **Fast (enough):** parses this markdown file in 2-3ms on MBP2016 / Chrome 71
-- **Small:** minified+gzipped ~3KB
+- **Fast (enough):** parses this markdown file in ~3ms on MBP2016 / Chrome 71
+- **Small:** minified + gzipped ~3.3KB
 
 See [example source
 code](https://github.com/thi-ng/umbrella/tree/feature/fsm/examples/markdown/src/)
@@ -54,6 +55,7 @@ for reference...
 These MD features (and probably many more) are not supported:
 
 - inline HTML
+- nested inline formats (e.g. **bold** inside `code`)
 - inline formats within link labels
 - image links
 - footnotes
@@ -103,11 +105,11 @@ interface TagFactories {
     paragraph(...children: any[]): any[];
     strong(body: string): any[];
     strike(body: string): any[];
-    title(level: number, body: string): any[];
+    title(level, ...children: any[]): any[];
 }
 ```
 
-Example w/ custom link elements
+Example with custom link elements:
 
 ```ts
 const tags = {

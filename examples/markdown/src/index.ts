@@ -12,8 +12,8 @@ import readme from "../README.md";
 // uses Tachyons CSS classes for styling
 const CUSTOM_TAGS: Partial<TagFactories> = {
     blockquote: (...xs) => ["blockquote.pl3.bl.bw2.i.f4.gray", ...xs],
-    code: (body) => ["code.bg-light-gray.pa1.f7", body],
-    codeblock: (lang, body) => ["pre.bg-washed-yellow.pa3.f7", { lang }, ["code", body]],
+    code: (body) => ["code.bg-light-gray.ph1", body],
+    codeblock: (lang, body) => ["pre.bg-washed-yellow.pa3.f7.overflow-x-scroll", { lang: lang || "code" }, ["code", body]],
     link: (href, body) => ["a.link.dark-blue.hover-white.hover-bg-dark-blue.b", { href }, body],
     strike: (body) => ["del.bg-washed-red", body],
 };

@@ -1,13 +1,12 @@
-import {
-    alts,
-    fsm,
-    repeat,
-    ResultBody,
-    seq,
-    str,
-    until,
-    whitespace
-} from "@thi.ng/fsm";
+import { alts } from "@thi.ng/fsm/alts";
+import { ResultBody } from "@thi.ng/fsm/api";
+import { fsm } from "@thi.ng/fsm/fsm";
+import { not } from "@thi.ng/fsm/not";
+import { whitespace } from "@thi.ng/fsm/range";
+import { repeat } from "@thi.ng/fsm/repeat";
+import { seq } from "@thi.ng/fsm/seq";
+import { str } from "@thi.ng/fsm/str";
+import { until } from "@thi.ng/fsm/until";
 
 // parse state IDs
 const BLOCKQUOTE = "blockquote";
@@ -17,6 +16,7 @@ const EMPHASIS = "em";
 const END_BLOCKQUOTE = "end-blockquote";
 const END_LI = "end-li";
 const END_PARA = "end-para";
+const END_TITLE = "end-title";
 const IMG = "img";
 const LINK = "link";
 const LI = "li";
@@ -40,7 +40,7 @@ export interface TagFactories {
     paragraph(...children: any[]): any[];
     strong(body: string): any[];
     strike(body: string): any[];
-    title(level, body): any[];
+    title(level, ...children: any[]): any[];
 }
 
 // parse context
@@ -74,6 +74,7 @@ const pop =
             const { id, children } = ctx.stack.pop();
             children.push(result(ctx, body));
             ctx.children = children;
+            ctx.body = "";
             return [id];
         };
 
@@ -82,13 +83,17 @@ const collect =
         (ctx, buf): ResultBody<any> =>
             (ctx.body += buf.join(""), [id]);
 
+const collectList =
+    (ctx: FSMCtx, tag: (...xs: any[]) => any[]) =>
+        ctx.list.push(tag(...ctx.children, ctx.body));
+
 const resultBody =
     (fn: (body: string) => any[]) =>
-        (_, body: string) => fn(body.trim());
+        (ctx, body: string) => fn(ctx.body + body.trim());
 
 const title =
     (ctx: FSMCtx, body: string[]): ResultBody<any> =>
-        (ctx.hd = body.length, [TITLE]);
+        (ctx.hd = body.length, transition(ctx, TITLE));
 
 const inline =
     (id: string) => [
@@ -117,6 +122,13 @@ const newPara =
             ctx.stack.push({ id: PARA, children: [] });
             return transition(ctx, next);
         };
+
+const newParaCode =
+    (ctx: FSMCtx, x: string[]): ResultBody<any> => {
+        ctx.body = x[1];
+        ctx.stack.push({ id: PARA, children: [] });
+        return [CODE];
+    };
 
 const paragraph =
     (id: string, next: string) =>
@@ -147,7 +159,7 @@ const DEFAULT_TAGS: TagFactories = {
     paragraph: (...xs) => ["p", ...xs],
     strong: (body) => ["strong", body],
     strike: (body) => ["del", body],
-    title: (level, body) => [level < 7 ? `h${level}` : "p", body],
+    title: (level, ...xs) => [level < 7 ? `h${level}` : "p", ...xs],
 };
 
 /**
@@ -166,7 +178,13 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                         repeat(str("#"), 1, Infinity, title),
                         str(">", (ctx) => transition(ctx, BLOCKQUOTE)),
                         str("- ", newList(tags.list, "ul")),
-                        str("```", () => [START_CODEBLOCK]),
+                        alts(
+                            [
+                                seq([str("`"), not(str("`"))], newParaCode),
+                                str("```", () => [START_CODEBLOCK])
+                            ],
+                            null, (_, next) => next
+                        ),
                         str("---\n", () => [START, [["hr"]]]),
                         str("![", newPara(IMG)),
                         str("[", newPara(LINK)),
@@ -203,7 +221,16 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                 ),
 
             [TITLE]:
-                until("\n\n", (ctx, body) => [START, [tags.title(ctx.hd, body)]]),
+                paragraph(TITLE, END_TITLE),
+
+            [END_TITLE]:
+                alts(
+                    [
+                        ...inline(TITLE),
+                        str("\n", (ctx) => [START, [tags.title(ctx.hd, ...ctx.children, ctx.body)]]),
+                    ],
+                    collect(TITLE)
+                ),
 
             [START_CODEBLOCK]:
                 until("\n", (ctx, lang) => (ctx.lang = lang, [CODEBLOCK])),
@@ -218,16 +245,19 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                 alts(
                     [
                         ...inline(LI),
-                        str("\n", (ctx) => (ctx.list.push(tags.li(...ctx.children, ctx.body)), [END_LI])),
+                        str("\n", () => [END_LI]),
                     ],
                     collect(LI)
                 ),
 
             [END_LI]:
-                alts([
-                    str("\n", (ctx) => [START, [ctx.list]]),
-                    str("- ", (ctx) => transition(ctx, LI))
-                ]),
+                alts(
+                    [
+                        str("\n", (ctx) => (collectList(ctx, tags.li), [START, [ctx.list]])),
+                        str("- ", (ctx) => (collectList(ctx, tags.li), transition(ctx, LI)))
+                    ],
+                    (ctx, body) => (ctx.body += " " + body.join(""), [LI])
+                ),
 
             [LINK]:
                 link(tags.link),
