@@ -24,46 +24,58 @@ The parser itself is not aimed at supporting **all** of Markdown's
 quirky syntax features, but will restrict itself to a sane subset of
 features and already sports:
 
-- ATX headlines (level 1-6, then downgrade to paragraph)
-- paragraphs
-- blockquotes
-- inline links
-- images
-- flat unordered lists
-- inline formats (**bold**, _emphasis_, `code`, ~~strikethrough~~) in
-  paragraphs, titles, lists, blockquotes
-- GFM code blocks with language hint
-- horizontal rules
+| Feature     | Comments                                                                                            |
+|-------------|-----------------------------------------------------------------------------------------------------|
+| Heading     | ATX only (`#` line prefix), levels 1-6, then downgrade to paragraph                                 |
+| Paragraph   | no support for `\` line breaks                                                                      |
+| Blockquote  | Respects newlines                                                                                   |
+| Format      | **bold**, _emphasis_, `code`, ~~strikethrough~~ in paragraphs, headings, lists, blockquotes, tables |
+| Link        | no support for inline formats in label                                                              |
+| Image       | no image links                                                                                      |
+| List        | only unordered (`- ` line prefix), no nesting, supports line breaks                                 |
+| Table       | no support for column alignment                                                                     |
+| Code block  | GFM only (triple backtick prefix), w/ optional language hint                                        |
+| Horiz. Rule | only dash supported (e.g. `---`), min 3 chars required                                              |
 
----
-
-Other features
-
-- **Functional:** parser entirely built using [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) & function composition. Use the parser in a transducer pipeline to easily apply post-processing of the emitted results
-- **Declarative:** parsing rules defined declaratively with only minimal state/context handling needed
-- **No regex:** consumes input character-wise and produces an iterator of hiccup-style tree nodes, ready to be used with [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom), [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) or [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown) (for back conversion to MD)
-- **Customizable:** supports custom tag factory functions to override default behavior / representation of each parsed result element
-- **Fast (enough):** parses this markdown file in ~3ms on MBP2016 / Chrome 71
-- **Small:** minified + gzipped ~3.3KB
-
-See [example source
-code](https://github.com/thi-ng/umbrella/tree/feature/fsm/examples/markdown/src/)
-for reference...
+Note: Currently, the last heading, paragraph, blockquote, list or table requires an additional newline.
 
 ### Limitations
 
-These MD features (and probably many more) are not supported:
+These MD features (and probably many more) are **not** supported:
 
 - inline HTML
-- nested inline formats (e.g. **bold** inside `code`)
+- nested inline formats (e.g. **bold** inside _italic_)
 - inline formats within link labels
 - image links
 - footnotes
 - link references
 - nested / ordered / numbered / todo lists
-- tables
 
 Some of these are considered, though currently not high priority...
+
+### Other features
+
+- **Functional:** parser entirely built using
+  [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+  & function composition. Use the parser in a transducer pipeline to
+  easily apply post-processing of the emitted results
+- **Declarative:** parsing rules defined declaratively with only minimal
+  state/context handling needed
+- **No regex:** consumes input character-wise and produces an iterator
+  of hiccup-style tree nodes, ready to be used with
+  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom),
+  [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+  or
+  [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown)
+  (for back conversion to MD)
+- **Customizable:** supports custom tag factory functions to override
+  default behavior / representation of each parsed result element
+- **Fast (enough):** parses this markdown file (5.8KB) in ~5ms on MBP2016 / Chrome 71
+- **Small:** minified + gzipped ~2.6KB
+
+See [example source
+code](https://github.com/thi-ng/umbrella/tree/feature/fsm/examples/markdown/src/)
+for reference...
 
 ## Serializing to HTML
 
@@ -100,12 +112,16 @@ interface TagFactories {
     em(body: string): any[];
     img(src: string, alt: string): any[];
     link(href: string, body: string): any[];
-    list(type: string): any[];
-    li(...children: any[]): any[];
-    paragraph(...children: any[]): any[];
+    list(type: string, items: any[]): any[];
+    li(children: any[]): any[];
+    paragraph(children: any[]): any[];
     strong(body: string): any[];
     strike(body: string): any[];
-    title(level, ...children: any[]): any[];
+    title(level, children: any[]): any[];
+    table(rows: any[]): any[];
+    tr(i: number, cells: any[]): any[];
+    td(i: number, children: any[]): any[];
+    hr(): any[];
 }
 ```
 

@@ -11,14 +11,14 @@ import readme from "../README.md";
 // custom tag factories (passed to parser)
 // uses Tachyons CSS classes for styling
 const CUSTOM_TAGS: Partial<TagFactories> = {
-    blockquote: (...xs) => ["blockquote.pl3.bl.bw2.i.f4.gray", ...xs],
+    blockquote: (xs) => ["blockquote.pl3.bl.bw2.i.f4.gray", ...xs],
     code: (body) => ["code.bg-light-gray.ph1", body],
     codeblock: (lang, body) => ["pre.bg-washed-yellow.pa3.f7.overflow-x-scroll", { lang: lang || "code" }, ["code", body]],
     link: (href, body) => ["a.link.dark-blue.hover-white.hover-bg-dark-blue.b", { href }, body],
     strike: (body) => ["del.bg-washed-red", body],
-    table: (x, _, ...xs) => ["table.w-100.collapse.ba.b--black-10", ["tbody", x, ...xs]],
-    tr: (_, ...xs) => ["tr.striped--near-white", ...xs],
-    td: (i, ...xs) => [i < 1 ? "th.pa2.ttu.tl" : "td.pa2", ...xs],
+    table: ([x, _, ...xs]) => ["table.w-100.collapse.ba.b--black-10", ["tbody", x, ...xs]],
+    tr: (_, xs) => ["tr.striped--near-white", ...xs],
+    td: (i, xs) => [i < 1 ? "th.pa2.ttu.tl" : "td.pa2", ...xs],
 };
 
 // UI root component

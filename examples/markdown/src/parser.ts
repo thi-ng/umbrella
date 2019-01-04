@@ -7,6 +7,7 @@ import { repeat } from "@thi.ng/fsm/repeat";
 import { seq } from "@thi.ng/fsm/seq";
 import { str } from "@thi.ng/fsm/str";
 import { until } from "@thi.ng/fsm/until";
+import { peek } from "@thi.ng/transducers/func/peek";
 
 // parse state IDs
 // TODO use const enum once moved to own package
@@ -30,25 +31,6 @@ const STRIKE = "strike";
 const STRONG = "strong";
 const TITLE = "title";
 
-// hiccup element factories
-export interface TagFactories {
-    blockquote(...children: any[]): any[];
-    code(body: string): any[];
-    codeblock(lang: string, body: string): any[];
-    em(body: string): any[];
-    img(src: string, alt: string): any[];
-    link(href: string, body: string): any[];
-    list(type: string): any[];
-    li(...children: any[]): any[];
-    paragraph(...children: any[]): any[];
-    strong(body: string): any[];
-    strike(body: string): any[];
-    title(level, ...children: any[]): any[];
-    table(...rows: any[]): any[];
-    tr(i: number, ...cells: any[]): any[];
-    td(i: number, ...children: any[]): any[];
-}
-
 // parse context
 interface FSMCtx {
     stack: any[];
@@ -61,18 +43,60 @@ interface FSMCtx {
     hd?: number;
 }
 
+// hiccup element factories
+export interface TagFactories {
+    blockquote(...children: any[]): any[];
+    code(body: string): any[];
+    codeblock(lang: string, body: string): any[];
+    em(body: string): any[];
+    img(src: string, alt: string): any[];
+    link(href: string, body: string): any[];
+    list(type: string, items: any[]): any[];
+    li(children: any[]): any[];
+    paragraph(children: any[]): any[];
+    strong(body: string): any[];
+    strike(body: string): any[];
+    title(level, children: any[]): any[];
+    table(rows: any[]): any[];
+    tr(i: number, cells: any[]): any[];
+    td(i: number, children: any[]): any[];
+    hr(): any[];
+}
+
+const DEFAULT_TAGS: TagFactories = {
+    blockquote: (...xs) => ["blockquote", ...xs],
+    code: (body) => ["code", body],
+    codeblock: (lang, body) => ["pre", { lang }, body],
+    em: (body) => ["em", body],
+    img: (src, alt) => ["img", { src, alt }],
+    li: (xs: any[]) => ["li", ...xs],
+    link: (href, body) => ["a", { href }, body],
+    list: (type, xs) => [type, ...xs],
+    paragraph: (xs) => ["p", ...xs],
+    strong: (body) => ["strong", body],
+    strike: (body) => ["del", body],
+    title: (level, xs) => [level < 7 ? `h${level}` : "p", ...xs],
+    table: (rows) => ["table", ...rows],
+    tr: (_, xs) => ["tr", ...xs],
+    td: (_, xs) => ["td", ...xs],
+    hr: () => ["hr"],
+};
+
 // state / context handling helpers
 
 const transition =
-    (ctx: FSMCtx, id: string): ResultBody<any> =>
-        (ctx.children = [], ctx.body = "", [id]);
+    (ctx: FSMCtx, id: string): ResultBody<any> => (
+        ctx.children = [],
+        ctx.body = "",
+        [id]
+    );
 
 const push =
-    (curr: string, next: string) =>
-        (ctx: FSMCtx): ResultBody<any> => {
-            ctx.stack.push({ id: curr, children: [...ctx.children, ctx.body] });
-            return transition(ctx, next);
-        };
+    (id: string, next: string) =>
+        (ctx: FSMCtx): ResultBody<any> => (
+            ctx.stack.push({ id, children: ctx.children.concat(ctx.body) }),
+            transition(ctx, next)
+        );
 
 const pop =
     (result) =>
@@ -84,40 +108,83 @@ const pop =
             return [id];
         };
 
+const collectChildren =
+    (ctx: FSMCtx) => (ctx.children.push(ctx.body), ctx.children);
+
 const collect =
     (id: string) =>
-        (ctx: FSMCtx, buf: string[]): ResultBody<any> =>
-            (ctx.body += buf.join(""), [id]);
+        (ctx: FSMCtx, buf: string[]): ResultBody<any> => (
+            ctx.body += buf.join(""),
+            [id]
+        );
 
-const collectList =
-    (ctx: FSMCtx, tag: (...xs: any[]) => any[]) =>
-        ctx.container.push(tag(...ctx.children, ctx.body));
+const collectHeading =
+    (tag: (i: number, xs: any[]) => any[]) =>
+        (ctx) => [START, [tag(ctx.hd, collectChildren(ctx))]];
+
+const collectAndRestart =
+    (tag: (xs: any[]) => any[]) =>
+        (ctx) => [START, [tag(collectChildren(ctx))]];
+
+const collectBlockQuote =
+    (ctx) => (
+        ctx.children.push(ctx.body, ["br"]),
+        ctx.body = "",
+        [BLOCKQUOTE]
+    );
+
+const collectCodeBlock =
+    (tag: (lang: string, body: string) => any[]) =>
+        (ctx, body) => [START, [tag(ctx.lang, body)]];
+
+const collectLi =
+    (ctx: FSMCtx, tag: (xs: any[]) => any[]) =>
+        ctx.container.push(tag(collectChildren(ctx)));
+
+const collectList = (
+    type: string,
+    list: (type: string, xs: any[]) => any[],
+    item: (xs: any[]) => any[]
+) =>
+    (ctx) => (
+        collectLi(ctx, item),
+        [START, [list(type, ctx.container)]]
+    );
 
 const collectTD =
-    (tag: (i: number, ...xs: any[]) => any[]) =>
+    (tag: (i: number, xs: any[]) => any[]) =>
         (ctx: FSMCtx) => (
-            ctx.container.push(tag(ctx.stack[ctx.stack.length - 1].container.length, ...ctx.children, ctx.body)),
+            ctx.children.push(ctx.body),
+            ctx.container.push(
+                tag(peek(ctx.stack).container.length, ctx.children)
+            ),
             transition(ctx, TABLE)
         );
 
 const collectTR =
-    (tag: (i: number, ...xs: any[]) => any[]) =>
+    (tag: (i: number, xs: any[]) => any[]) =>
         (ctx: FSMCtx) => {
-            const rows = ctx.stack[ctx.stack.length - 1].container;
-            rows.push(tag(rows.length, ...ctx.container));
+            const rows = peek(ctx.stack).container;
+            rows.push(tag(rows.length, ctx.container));
             ctx.container = [];
             return transition(ctx, END_TABLE);
         };
 
-const resultBody =
+const collectTable =
+    (tag: (xs: any[]) => any) =>
+        (ctx) => [START, [tag(ctx.stack.pop().container)]];
+
+const collectInline =
     (fn: (body: string) => any[]) =>
-        (ctx, body: string) => fn(ctx.body + body.trim());
+        pop((ctx, body: string) => fn(ctx.body + body.trim()));
 
 const title =
-    (ctx: FSMCtx, body: string[]): ResultBody<any> =>
-        (ctx.hd = body.length, transition(ctx, TITLE));
+    (ctx: FSMCtx, body: string[]): ResultBody<any> => (
+        ctx.hd = body.length,
+        transition(ctx, TITLE)
+    );
 
-const inline =
+const matchInline =
     (id: string) => [
         str("![", push(id, IMG)),
         str("[", push(id, LINK)),
@@ -127,7 +194,7 @@ const inline =
         str("`", push(id, CODE))
     ];
 
-const link =
+const matchLink =
     (result: (href, body) => any[]) =>
         seq<string, FSMCtx, any>(
             [
@@ -138,36 +205,42 @@ const link =
             pop((ctx) => result(ctx.href, ctx.title))
         );
 
-const newPara =
-    (next: string) =>
-        (ctx: FSMCtx): ResultBody<any> => {
-            ctx.stack.push({ id: PARA, children: [] });
-            return transition(ctx, next);
-        };
-
-const newParaCode =
-    (ctx: FSMCtx, x: string[]): ResultBody<any> => {
-        ctx.body = x[1];
-        ctx.stack.push({ id: PARA, children: [] });
-        return [CODE];
-    };
-
-const paragraph =
+const matchPara =
     (id: string, next: string) =>
-        alts(
+        alts<string, FSMCtx, any>(
             [
-                ...inline(id),
+                ...matchInline(id),
                 str("\n", (ctx: FSMCtx) => (ctx.body += " ", [next])),
             ],
             collect(id),
         );
 
-const newList =
-    (factory: (type: string) => any[], type: string) =>
+const newPara =
+    (ctx: FSMCtx, buf: string[]): ResultBody<any> => (
+        ctx.body = buf.join(""),
+        ctx.children = [],
+        [PARA]
+    );
+
+const newParaInline =
+    (next: string) =>
         (ctx: FSMCtx): ResultBody<any> => (
-            ctx.container = factory(type),
-            transition(ctx, LI)
+            ctx.stack.push({ id: PARA, children: [] }),
+            transition(ctx, next)
         );
+
+const newParaCode =
+    (ctx: FSMCtx, x: string[]): ResultBody<any> => (
+        ctx.body = x[1],
+        ctx.stack.push({ id: PARA, children: [] }),
+        [CODE]
+    );
+
+const newList =
+    (ctx: FSMCtx): ResultBody<any> => (
+        ctx.container = [],
+        transition(ctx, LI)
+    );
 
 const newTable =
     (ctx: FSMCtx) => (
@@ -176,28 +249,10 @@ const newTable =
         transition(ctx, TABLE)
     );
 
-const DEFAULT_TAGS: TagFactories = {
-    blockquote: (...xs) => ["blockquote", ...xs],
-    code: (body) => ["code", body],
-    codeblock: (lang, body) => ["pre", { lang }, body],
-    em: (body) => ["em", body],
-    img: (src, alt) => ["img", { src, alt }],
-    li: (...xs: any[]) => ["li", ...xs],
-    link: (href, body) => ["a", { href }, body],
-    list: (type) => [type],
-    paragraph: (...xs) => ["p", ...xs],
-    strong: (body) => ["strong", body],
-    strike: (body) => ["del", body],
-    title: (level, ...xs) => [level < 7 ? `h${level}` : "p", ...xs],
-    table: () => ["table"],
-    tr: (...xs) => ["tr", ...xs],
-    td: (...xs) => ["td", ...xs],
-};
-
 /**
- * Main parser / transducer. Defines state map with various matchers and
- * transition handlers. The returned parser itself is only used in
- * `index.ts`.
+ * Main parser / transducer. Defines state map with the various Markdown
+ * syntax matchers and state transition handlers. The returned parser
+ * itself is only used in `index.ts`.
  */
 export const parseMD = (tags?: Partial<TagFactories>) => {
     tags = { ...DEFAULT_TAGS, ...tags };
@@ -209,7 +264,7 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                         whitespace(() => [START]),
                         repeat(str("#"), 1, Infinity, title),
                         str(">", (ctx) => transition(ctx, BLOCKQUOTE)),
-                        str("- ", newList(tags.list, "ul")),
+                        str("- ", newList),
                         alts(
                             [
                                 seq([str("`"), not(str("`"))], newParaCode),
@@ -217,50 +272,53 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                             ],
                             null, (_, next) => next
                         ),
-                        str("---\n", () => [START, [["hr"]]]),
-                        str("![", newPara(IMG)),
-                        str("[", newPara(LINK)),
-                        str("**", newPara(STRONG)),
-                        str("~~", newPara(STRIKE)),
-                        str("_", newPara(EMPHASIS)),
+                        seq(
+                            [repeat(str("-"), 3, Infinity), str("\n")],
+                            () => [START, [tags.hr()]]
+                        ),
+                        str("![", newParaInline(IMG)),
+                        str("[", newParaInline(LINK)),
+                        str("**", newParaInline(STRONG)),
+                        str("~~", newParaInline(STRIKE)),
+                        str("_", newParaInline(EMPHASIS)),
                         str("|", newTable),
                     ],
-                    (ctx, buf) => (ctx.body = buf.join(""), ctx.children = [], [PARA]),
+                    newPara,
                 ),
 
             [PARA]:
-                paragraph(PARA, END_PARA),
+                matchPara(PARA, END_PARA),
 
             [END_PARA]:
                 alts(
                     [
-                        ...inline(PARA),
-                        str("\n", (ctx) => [START, [tags.paragraph(...ctx.children, ctx.body)]]),
+                        ...matchInline(PARA),
+                        str("\n", collectAndRestart(tags.paragraph)),
                     ],
                     collect(PARA)
                 ),
 
             [BLOCKQUOTE]:
-                paragraph(BLOCKQUOTE, END_BLOCKQUOTE),
+                matchPara(BLOCKQUOTE, END_BLOCKQUOTE),
 
             [END_BLOCKQUOTE]:
                 alts(
                     [
-                        ...inline(BLOCKQUOTE),
-                        str(">", (ctx) => (ctx.children.push(ctx.body, ["br"]), ctx.body = "", [BLOCKQUOTE])),
-                        str("\n", (ctx) => [START, [tags.blockquote(...ctx.children, ctx.body)]]),
+                        ...matchInline(BLOCKQUOTE),
+                        str(">", collectBlockQuote),
+                        str("\n", collectAndRestart(tags.blockquote)),
                     ],
                     collect(BLOCKQUOTE)
                 ),
 
             [TITLE]:
-                paragraph(TITLE, END_TITLE),
+                matchPara(TITLE, END_TITLE),
 
             [END_TITLE]:
                 alts(
                     [
-                        ...inline(TITLE),
-                        str("\n", (ctx) => [START, [tags.title(ctx.hd, ...ctx.children, ctx.body)]]),
+                        ...matchInline(TITLE),
+                        str("\n", collectHeading(tags.title)),
                     ],
                     collect(TITLE)
                 ),
@@ -269,51 +327,42 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                 until("\n", (ctx, lang) => (ctx.lang = lang, [CODEBLOCK])),
 
             [CODEBLOCK]:
-                until(
-                    "\n```\n",
-                    (ctx, body) => [START, [tags.codeblock(ctx.lang, body)]]
-                ),
+                until("\n```\n", collectCodeBlock(tags.codeblock)),
 
             [LI]:
-                alts(
-                    [
-                        ...inline(LI),
-                        str("\n", () => [END_LI]),
-                    ],
-                    collect(LI)
-                ),
+                matchPara(LI, END_LI),
 
             [END_LI]:
                 alts(
                     [
-                        str("\n", (ctx) => (collectList(ctx, tags.li), [START, [ctx.container]])),
-                        str("- ", (ctx) => (collectList(ctx, tags.li), transition(ctx, LI)))
+                        str("\n", collectList("ul", tags.list, tags.li)),
+                        str("- ", (ctx) => (collectLi(ctx, tags.li), transition(ctx, LI)))
                     ],
-                    (ctx, body) => (ctx.body += " " + body.join(""), [LI])
+                    collect(LI)
                 ),
 
             [LINK]:
-                link(tags.link),
+                matchLink(tags.link),
 
             [IMG]:
-                link(tags.img),
+                matchLink(tags.img),
 
             [STRONG]:
-                until("**", pop(resultBody(tags.strong))),
+                until("**", collectInline(tags.strong)),
 
             [STRIKE]:
-                until("~~", pop(resultBody(tags.strike))),
+                until("~~", collectInline(tags.strike)),
 
             [EMPHASIS]:
-                until("_", pop(resultBody(tags.em))),
+                until("_", collectInline(tags.em)),
 
             [CODE]:
-                until("`", pop(resultBody(tags.code))),
+                until("`", collectInline(tags.code)),
 
             [TABLE]:
                 alts(
                     [
-                        ...inline(TABLE),
+                        ...matchInline(TABLE),
                         str("|", collectTD(tags.td)),
                         str("\n", collectTR(tags.tr))
                     ],
@@ -323,7 +372,7 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
             [END_TABLE]:
                 alts(
                     [
-                        str("\n", (ctx) => [START, [tags.table(...ctx.stack.pop().container)]]),
+                        str("\n", collectTable(tags.table)),
                         str("|", () => [TABLE])
                     ],
                 )
