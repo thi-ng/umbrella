@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-markdown",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Markdown serialization of hiccup DOM trees",
     "main": "./index.js",
     "typings": "./index.d.ts",
