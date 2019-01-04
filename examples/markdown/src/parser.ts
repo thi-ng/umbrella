@@ -9,6 +9,7 @@ import { str } from "@thi.ng/fsm/str";
 import { until } from "@thi.ng/fsm/until";
 
 // parse state IDs
+// TODO use const enum once moved to own package
 const BLOCKQUOTE = "blockquote";
 const CODE = "code";
 const CODEBLOCK = "codeblock";
@@ -17,12 +18,14 @@ const END_BLOCKQUOTE = "end-blockquote";
 const END_LI = "end-li";
 const END_PARA = "end-para";
 const END_TITLE = "end-title";
+const END_TABLE = "end-table";
 const IMG = "img";
 const LINK = "link";
 const LI = "li";
 const PARA = "para";
 const START = "start";
 const START_CODEBLOCK = "start-codeblock";
+const TABLE = "table";
 const STRIKE = "strike";
 const STRONG = "strong";
 const TITLE = "title";
@@ -41,12 +44,15 @@ export interface TagFactories {
     strong(body: string): any[];
     strike(body: string): any[];
     title(level, ...children: any[]): any[];
+    table(...rows: any[]): any[];
+    tr(i: number, ...cells: any[]): any[];
+    td(i: number, ...children: any[]): any[];
 }
 
 // parse context
 interface FSMCtx {
     stack: any[];
-    list?: any[];
+    container?: any[];
     children?: any[];
     body?: string;
     title?: string;
@@ -80,12 +86,28 @@ const pop =
 
 const collect =
     (id: string) =>
-        (ctx, buf): ResultBody<any> =>
+        (ctx: FSMCtx, buf: string[]): ResultBody<any> =>
             (ctx.body += buf.join(""), [id]);
 
 const collectList =
     (ctx: FSMCtx, tag: (...xs: any[]) => any[]) =>
-        ctx.list.push(tag(...ctx.children, ctx.body));
+        ctx.container.push(tag(...ctx.children, ctx.body));
+
+const collectTD =
+    (tag: (i: number, ...xs: any[]) => any[]) =>
+        (ctx: FSMCtx) => (
+            ctx.container.push(tag(ctx.stack[ctx.stack.length - 1].container.length, ...ctx.children, ctx.body)),
+            transition(ctx, TABLE)
+        );
+
+const collectTR =
+    (tag: (i: number, ...xs: any[]) => any[]) =>
+        (ctx: FSMCtx) => {
+            const rows = ctx.stack[ctx.stack.length - 1].container;
+            rows.push(tag(rows.length, ...ctx.container));
+            ctx.container = [];
+            return transition(ctx, END_TABLE);
+        };
 
 const resultBody =
     (fn: (body: string) => any[]) =>
@@ -142,10 +164,17 @@ const paragraph =
 
 const newList =
     (factory: (type: string) => any[], type: string) =>
-        (ctx: FSMCtx): ResultBody<any> => {
-            ctx.list = factory(type);
-            return transition(ctx, LI);
-        };
+        (ctx: FSMCtx): ResultBody<any> => (
+            ctx.container = factory(type),
+            transition(ctx, LI)
+        );
+
+const newTable =
+    (ctx: FSMCtx) => (
+        ctx.stack.push({ id: TABLE, container: [] }),
+        ctx.container = [],
+        transition(ctx, TABLE)
+    );
 
 const DEFAULT_TAGS: TagFactories = {
     blockquote: (...xs) => ["blockquote", ...xs],
@@ -160,6 +189,9 @@ const DEFAULT_TAGS: TagFactories = {
     strong: (body) => ["strong", body],
     strike: (body) => ["del", body],
     title: (level, ...xs) => [level < 7 ? `h${level}` : "p", ...xs],
+    table: () => ["table"],
+    tr: (...xs) => ["tr", ...xs],
+    td: (...xs) => ["td", ...xs],
 };
 
 /**
@@ -191,6 +223,7 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                         str("**", newPara(STRONG)),
                         str("~~", newPara(STRIKE)),
                         str("_", newPara(EMPHASIS)),
+                        str("|", newTable),
                     ],
                     (ctx, buf) => (ctx.body = buf.join(""), ctx.children = [], [PARA]),
                 ),
@@ -253,7 +286,7 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
             [END_LI]:
                 alts(
                     [
-                        str("\n", (ctx) => (collectList(ctx, tags.li), [START, [ctx.list]])),
+                        str("\n", (ctx) => (collectList(ctx, tags.li), [START, [ctx.container]])),
                         str("- ", (ctx) => (collectList(ctx, tags.li), transition(ctx, LI)))
                     ],
                     (ctx, body) => (ctx.body += " " + body.join(""), [LI])
@@ -276,6 +309,24 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
 
             [CODE]:
                 until("`", pop(resultBody(tags.code))),
+
+            [TABLE]:
+                alts(
+                    [
+                        ...inline(TABLE),
+                        str("|", collectTD(tags.td)),
+                        str("\n", collectTR(tags.tr))
+                    ],
+                    collect(TABLE)
+                ),
+
+            [END_TABLE]:
+                alts(
+                    [
+                        str("\n", (ctx) => [START, [tags.table(...ctx.stack.pop().container)]]),
+                        str("|", () => [TABLE])
+                    ],
+                )
         },
         {
             stack: []
