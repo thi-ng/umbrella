@@ -143,6 +143,7 @@ serialize(iterator(parseMD(tags), src));
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella
+git checkout feature/fsm
 
 # first build all packages in mono repo (takes about 1-2mins)
 yarn install
