@@ -31,16 +31,21 @@
         "@thi.ng/checks": "^1.5.14",
         "@thi.ng/defmulti": "^0.7.0",
         "@thi.ng/errors": "^0.1.12",
+        "@thi.ng/fsm": "^0.1.0",
         "@thi.ng/hiccup": "^2.7.2",
-        "@thi.ng/strings": "^0.7.1"
+        "@thi.ng/strings": "^0.7.1",
+        "@thi.ng/transducers": "^2.3.2"
     },
     "keywords": [
         "ES6",
+        "ast",
         "converter",
         "DOM",
         "hiccup",
         "markdown",
+        "parser",
         "serialize",
+        "transducers",
         "typescript"
     ],
     "publishConfig": {
