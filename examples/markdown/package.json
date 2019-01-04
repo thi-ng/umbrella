@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/fsm": "latest",
+        "@thi.ng/hiccup-markdown": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },

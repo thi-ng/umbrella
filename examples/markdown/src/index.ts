@@ -1,9 +1,10 @@
 import { timedResult } from "@thi.ng/bench";
+import { TagFactories } from "@thi.ng/hiccup-markdown/api";
+import { parse } from "@thi.ng/hiccup-markdown/parse";
 import { stream, Stream } from "@thi.ng/rstream/stream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/xform/map";
-import { parseMD, TagFactories } from "./parser";
 
 // ignore error, resolved by parcel
 import readme from "../README.md";
@@ -43,7 +44,7 @@ const src = stream<string>();
 
 // stream transformer & UI update
 src.transform(
-    map((src) => ({ src, parsed: timedResult(() => [...iterator(parseMD(CUSTOM_TAGS), src)]) })),
+    map((src) => ({ src, parsed: timedResult(() => [...iterator(parse(CUSTOM_TAGS), src)]) })),
     map(app(src)),
     updateDOM()
 );

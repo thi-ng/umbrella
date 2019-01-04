@@ -5,18 +5,15 @@ This project is part of the
 
 ## About
 
-This example is a test environment for a new & minimal
+This example is a test environment for the new & minimal
 [Markdown](https://en.wikipedia.org/wiki/Markdown) parser & converter to
 [hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-format, using basic state handling and parsing primitives provided by
-the
-[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm)
-package, which itself is a potential replacement / major version update
-for
-[@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm).
+format from the
+[@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown)
+package.
 
-> "Weeks of coding can **save hours** of planning."
-> -- Anonymous
+The rest of this file is an excerpt of the relevant parts of that
+package's `README.md`...
 
 ### Features
 
@@ -53,6 +50,9 @@ These MD features (and probably many more) are **not** supported:
 
 Some of these are considered, though currently not high priority...
 
+> "Weeks of coding can **save hours** of planning."
+> -- Anonymous
+
 ### Other features
 
 - **Functional:** parser entirely built using
@@ -77,13 +77,13 @@ See [example source
 code](https://github.com/thi-ng/umbrella/tree/master/examples/markdown/src/)
 for reference...
 
-## Serializing to HTML
+## Parsing & serializing to HTML
 
 ```ts
 import { iterator } from "@thi.ng/transducers";
 import { serialize } from "@thi.ng/hiccup";
 
-import { parseMD } from "./parser";
+import { parse } from "@thi.ng/hiccup-markdown/parse";
 
 const src = `
 # Hello world
@@ -93,7 +93,7 @@ const src = `
 `;
 
 // convert to hiccup tree
-[...iterator(parseMD(), src)]
+[...iterator(parse(), src)]
 // [ [ 'h1', ' Hello world ' ],
 //   [ 'p',
 //     [ 'a', { href: 'http://example.com' }, 'This' ],
@@ -102,7 +102,7 @@ const src = `
 //     '. ' ] ]
 
 // or serialize to HTML
-serialize(iterator(parseMD(), src));
+serialize(iterator(parse(), src));
 
 // <h1>Hello world</h1><p>
 // <a href="http://example.com">This</a> is a <em>test</em>. </p>
@@ -120,18 +120,18 @@ interface TagFactories {
     code(body: string): any[];
     codeblock(lang: string, body: string): any[];
     em(body: string): any[];
+    heading(level, children: any[]): any[];
+    hr(): any[];
     img(src: string, alt: string): any[];
+    li(children: any[]): any[];
     link(href: string, body: string): any[];
     list(type: string, items: any[]): any[];
-    li(children: any[]): any[];
     paragraph(children: any[]): any[];
-    strong(body: string): any[];
     strike(body: string): any[];
-    title(level, children: any[]): any[];
+    strong(body: string): any[];
     table(rows: any[]): any[];
-    tr(i: number, cells: any[]): any[];
     td(i: number, children: any[]): any[];
-    hr(): any[];
+    tr(i: number, cells: any[]): any[];
 }
 ```
 
@@ -142,7 +142,7 @@ const tags = {
     link: (href, body) => ["a.link.blue", { href }, body]
 };
 
-serialize(iterator(parseMD(tags), src));
+serialize(iterator(parse(tags), src));
 
 // <h1>Hello world</h1>
 // <p><a href="http://example.com" class="link blue">This</a> is a <em>test</em>. </p>
