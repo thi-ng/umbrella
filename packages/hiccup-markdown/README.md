@@ -50,6 +50,9 @@ yarn add @thi.ng/hiccup-markdown
 
 ## Parser
 
+**Try out the [Markdown editor demo](https://demo.thi.ng/umbrella/markdown/)**
+([Source code](https://github.com/thi-ng/umbrella/tree/master/examples/markdown))
+
 ### Features
 
 The parser itself is not aimed at supporting **all** of Markdown's
