@@ -31,6 +31,8 @@ const STRIKE = "strike";
 const STRONG = "strong";
 const TITLE = "title";
 
+type ParseResult = ResultBody<any[]>;
+
 // parse context
 interface FSMCtx {
     stack: any[];
@@ -85,7 +87,7 @@ const DEFAULT_TAGS: TagFactories = {
 // state / context handling helpers
 
 const transition =
-    (ctx: FSMCtx, id: string): ResultBody<any> => (
+    (ctx: FSMCtx, id: string): ParseResult => (
         ctx.children = [],
         ctx.body = "",
         [id]
@@ -93,14 +95,14 @@ const transition =
 
 const push =
     (id: string, next: string) =>
-        (ctx: FSMCtx): ResultBody<any> => (
+        (ctx: FSMCtx): ParseResult => (
             ctx.stack.push({ id, children: ctx.children.concat(ctx.body) }),
             transition(ctx, next)
         );
 
 const pop =
     (result) =>
-        (ctx, body): ResultBody<any> => {
+        (ctx, body): ParseResult => {
             const { id, children } = ctx.stack.pop();
             children.push(result(ctx, body));
             ctx.children = children;
@@ -113,21 +115,23 @@ const collectChildren =
 
 const collect =
     (id: string) =>
-        (ctx: FSMCtx, buf: string[]): ResultBody<any> => (
+        (ctx: FSMCtx, buf: string[]): ParseResult => (
             ctx.body += buf.join(""),
             [id]
         );
 
 const collectHeading =
     (tag: (i: number, xs: any[]) => any[]) =>
-        (ctx) => [START, [tag(ctx.hd, collectChildren(ctx))]];
+        (ctx): ParseResult =>
+            [START, [tag(ctx.hd, collectChildren(ctx))]];
 
 const collectAndRestart =
     (tag: (xs: any[]) => any[]) =>
-        (ctx) => [START, [tag(collectChildren(ctx))]];
+        (ctx): ParseResult =>
+            [START, [tag(collectChildren(ctx))]];
 
 const collectBlockQuote =
-    (ctx) => (
+    (ctx): ParseResult => (
         ctx.children.push(ctx.body, ["br"]),
         ctx.body = "",
         [BLOCKQUOTE]
@@ -135,7 +139,8 @@ const collectBlockQuote =
 
 const collectCodeBlock =
     (tag: (lang: string, body: string) => any[]) =>
-        (ctx, body) => [START, [tag(ctx.lang, body)]];
+        (ctx, body): ParseResult =>
+            [START, [tag(ctx.lang, body)]];
 
 const collectLi =
     (ctx: FSMCtx, tag: (xs: any[]) => any[]) =>
@@ -146,7 +151,7 @@ const collectList = (
     list: (type: string, xs: any[]) => any[],
     item: (xs: any[]) => any[]
 ) =>
-    (ctx) => (
+    (ctx): ParseResult => (
         collectLi(ctx, item),
         [START, [list(type, ctx.container)]]
     );
@@ -172,7 +177,7 @@ const collectTR =
 
 const collectTable =
     (tag: (xs: any[]) => any) =>
-        (ctx) => {
+        (ctx): ParseResult => {
             const rows = ctx.stack.pop().container;
             rows.splice(1, 1);
             return [START, [tag(rows)]];
@@ -183,7 +188,7 @@ const collectInline =
         pop((ctx, body: string) => fn(ctx.body + body.trim()));
 
 const title =
-    (ctx: FSMCtx, body: string[]): ResultBody<any> => (
+    (ctx: FSMCtx, body: string[]): ParseResult => (
         ctx.hd = body.length,
         transition(ctx, TITLE)
     );
@@ -220,7 +225,7 @@ const matchPara =
         );
 
 const newPara =
-    (ctx: FSMCtx, buf: string[]): ResultBody<any> => (
+    (ctx: FSMCtx, buf: string[]): ParseResult => (
         ctx.body = buf.join(""),
         ctx.children = [],
         [PARA]
@@ -228,20 +233,20 @@ const newPara =
 
 const newParaInline =
     (next: string) =>
-        (ctx: FSMCtx): ResultBody<any> => (
+        (ctx: FSMCtx): ParseResult => (
             ctx.stack.push({ id: PARA, children: [] }),
             transition(ctx, next)
         );
 
 const newParaCode =
-    (ctx: FSMCtx, x: string[]): ResultBody<any> => (
+    (ctx: FSMCtx, x: string[]): ParseResult => (
         ctx.body = x[1],
         ctx.stack.push({ id: PARA, children: [] }),
         [CODE]
     );
 
 const newList =
-    (ctx: FSMCtx): ResultBody<any> => (
+    (ctx: FSMCtx): ParseResult => (
         ctx.container = [],
         transition(ctx, LI)
     );
@@ -381,9 +386,7 @@ export const parseMD = (tags?: Partial<TagFactories>) => {
                     ],
                 )
         },
-        {
-            stack: []
-        },
+        { stack: [] },
         START
     );
 };
