@@ -4,8 +4,18 @@ import {
     RES_PARTIAL,
     SeqCallback
 } from "./api";
-import { success } from "./success";
+import { result } from "./result";
 
+/**
+ * Takes a matcher and `min` / `max` repeats. Returns new matcher which
+ * only returns `Match.FULL` if `match` succeeded at least `min` times
+ * or once `max` repetitions have been found.
+ *
+ * @param match
+ * @param min
+ * @param max
+ * @param callback
+ */
 export const repeat = <T, C, R>(
     match: Matcher<T, C, R>,
     min: number,
@@ -22,14 +32,14 @@ export const repeat = <T, C, R>(
             if (r.type === Match.FULL) {
                 i++;
                 if (i === max) {
-                    return success(callback && callback(ctx, buf));
+                    return result(callback && callback(ctx, buf));
                 }
                 m = match();
                 return RES_PARTIAL;
             } else if (r.type === Match.FAIL) {
                 if (i >= min) {
                     buf.pop();
-                    return success(callback && callback(ctx, buf), Match.FULL_NC);
+                    return result(callback && callback(ctx, buf), Match.FULL_NC);
                 }
             }
             return r;

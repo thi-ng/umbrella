@@ -1,11 +1,13 @@
 import {
     Match,
     Matcher,
+    MatcherInst,
+    MatchResult,
     RES_FAIL,
     RES_PARTIAL,
     ResultBody
 } from "./api";
-import { success } from "./success";
+import { result } from "./result";
 
 /**
  * Returns a composed matcher which applies inputs to all given child
@@ -13,10 +15,13 @@ import { success } from "./success";
  * a full match. If successful, calls `callback` with the context, the
  * child matcher's result and an array of all processed inputs thus far.
  * The result of `alts` is the result of this callback (else undefined).
- * Matchers are always processed in reverse order.
  *
- * If none of the matchers succeeded the optional `fallback` callback
- * will be executed and given a chance to produce a state transition.
+ * Note: Matchers are always processed in reverse order, therefore
+ * attention must be paid to the given ordering of supplied matchers.
+ *
+ * If none of the matchers succeed the optional `fallback` callback will
+ * be executed and given a chance to produce a state transition. It too
+ * will be given an array of all processed inputs thus far.
  *
  * @param opts
  * @param fallback
@@ -30,22 +35,25 @@ export const alts = <T, C, R>(
     () => {
         const alts = opts.map((o) => o());
         const buf: T[] = [];
+        let active = alts.length;
         return (ctx, x) => {
-            for (let i = alts.length; --i >= 0;) {
-                const next = alts[i](ctx, x);
+            for (let i = alts.length, a: MatcherInst<T, C, R>, next: MatchResult<R>; --i >= 0;) {
+                if (!(a = alts[i])) continue;
+                next = a(ctx, x);
                 if (next.type >= Match.FULL) {
                     return callback ?
-                        success(callback(ctx, next.body, buf), next.type) :
+                        result(callback(ctx, next.body, buf), next.type) :
                         next;
                 } else if (next.type === Match.FAIL) {
-                    alts.splice(i, 1);
+                    alts[i] = null;
+                    active--;
                 }
             }
             fallback && buf.push(x);
-            return alts.length ?
+            return active ?
                 RES_PARTIAL :
                 fallback ?
-                    success(fallback(ctx, buf)) :
+                    result(fallback(ctx, buf)) :
                     RES_FAIL;
         };
     };

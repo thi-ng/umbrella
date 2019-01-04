@@ -6,7 +6,7 @@ import {
     RES_PARTIAL,
     SeqCallback
 } from "./api";
-import { success } from "./success";
+import { result } from "./result";
 
 export const lit = <T, C, R>(
     match: T[],
@@ -20,7 +20,7 @@ export const lit = <T, C, R>(
         return (state, x) =>
             equiv((buf.push(x), x), match[i++]) ?
                 i === n ?
-                    success(callback && callback(state, buf)) :
+                    result(callback && callback(state, buf)) :
                     RES_PARTIAL :
                 RES_FAIL;
     };

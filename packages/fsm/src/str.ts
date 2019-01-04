@@ -4,8 +4,15 @@ import {
     RES_FAIL,
     RES_PARTIAL
 } from "./api";
-import { success } from "./success";
+import { result } from "./result";
 
+/**
+ * String-only version of `seq()`. Returns `Match.FULL` once the entire
+ * given string could be matched.
+ *
+ * @param str
+ * @param callback 
+ */
 export const str = <C, R>(
     str: string,
     callback?: LitCallback<string, C, R>
@@ -14,7 +21,7 @@ export const str = <C, R>(
         let buf = "";
         return (state, x) =>
             (buf += x) === str ?
-                success(callback && callback(state, buf)) :
+                result(callback && callback(state, buf)) :
                 str.indexOf(buf) === 0 ?
                     RES_PARTIAL :
                     RES_FAIL;

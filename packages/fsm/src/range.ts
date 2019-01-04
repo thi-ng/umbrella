@@ -5,9 +5,17 @@ import {
     Matcher,
     RES_FAIL
 } from "./api";
+import { result } from "./result";
 import { str } from "./str";
-import { success } from "./success";
 
+/**
+ * Returns a single input matcher which returns `Match.FULL` if the
+ * input is within the closed interval given by [`min`,`max`].
+ *
+ * @param min
+ * @param max
+ * @param callback
+ */
 export const range = <T extends number | string, C, R>(
     min: T,
     max: T,
@@ -16,13 +24,23 @@ export const range = <T extends number | string, C, R>(
     () =>
         (ctx, x) =>
             x >= min && x <= max ?
-                success(callback && callback(ctx, x)) :
+                result(callback && callback(ctx, x)) :
                 RES_FAIL;
 
+/**
+ * Matcher for single digit characters (0-9).
+ *
+ * @param callback
+ */
 export const digit =
     <C, R>(callback?: LitCallback<string, C, R>): Matcher<string, C, R> =>
         range("0", "9", callback);
 
+/**
+ * Matcher for single A-Z or a-z characters.
+ *
+ * @param callback
+ */
 export const alpha =
     <C, R>(callback?: AltCallback<string, C, R>): Matcher<string, C, R> =>
         alts(
@@ -31,6 +49,11 @@ export const alpha =
             callback
         );
 
+/**
+ * Combination of `digit()` and `alpha()`.
+ *
+ * @param callback
+ */
 export const alphaNum =
     <C, R>(callback?: AltCallback<string, C, R>): Matcher<string, C, R> =>
         alts([alpha(), digit()], null, callback);
@@ -38,6 +61,11 @@ export const alphaNum =
 const WS: Matcher<string, any, any>[] =
     [str("\r"), str("\n"), str("\t"), str(" ")];
 
+/**
+ * Matcher for single whitespace characters.
+ *
+ * @param callback
+ */
 export const whitespace =
     <C, R>(callback?: AltCallback<string, C, R>): Matcher<string, C, R> =>
         alts(WS, null, callback);

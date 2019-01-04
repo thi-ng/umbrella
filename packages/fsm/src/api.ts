@@ -25,7 +25,10 @@ export interface MatchResult<T> {
 }
 
 export type Matcher<T, C, R> =
-    () => (ctx: C, x: T) => MatchResult<R>;
+    () => MatcherInst<T, C, R>;
+
+export type MatcherInst<T, C, R> =
+    (ctx: C, x: T) => MatchResult<R>;
 
 export type ResultBody<T> =
     [number | string, T[]?];

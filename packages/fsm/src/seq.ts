@@ -5,27 +5,35 @@ import {
     RES_PARTIAL,
     SeqCallback
 } from "./api";
-import { success } from "./success";
+import { result } from "./result";
 
+/**
+ * Takes an array of matchers and returns new matcher which applies them
+ * in sequence. If any of the given matchers fails, returns
+ * `Match.FAIL`.
+ *
+ * @param matches
+ * @param callback
+ */
 export const seq = <T, C, R>(
-    opts: Matcher<T, C, R>[],
+    matches: Matcher<T, C, R>[],
     callback?: SeqCallback<T, C, R>
 ): Matcher<T, C, R> =>
     () => {
         let i = 0;
-        let o = opts[i]();
-        const n = opts.length - 1;
+        let m = matches[i]();
+        const n = matches.length - 1;
         const buf: T[] = [];
         return (state, x) => {
             if (i > n) return RES_FAIL;
             callback && buf.push(x);
             while (i <= n) {
-                const { type } = o(state, x);
+                const { type } = m(state, x);
                 if (type >= Match.FULL) {
                     if (i === n) {
-                        return success(callback && callback(state, buf));
+                        return result(callback && callback(state, buf));
                     }
-                    o = opts[++i]();
+                    m = matches[++i]();
                     if (type === Match.FULL_NC) {
                         continue;
                     }
