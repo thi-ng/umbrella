@@ -33,7 +33,7 @@ export type ResultBody<T> =
 export type AltCallback<T, C, R> =
     (ctx: C, next: ResultBody<R>, x: T[]) => ResultBody<R>;
 
-export type RangeCallback<T, C, R> =
+export type LitCallback<T, C, R> =
     (ctx: C, x: T) => ResultBody<R>;
 
 export type SeqCallback<T, C, R> =

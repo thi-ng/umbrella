@@ -1,8 +1,8 @@
 import {
     Match,
     Matcher,
-    SeqCallback,
     RES_PARTIAL,
+    SeqCallback
 } from "./api";
 import { success } from "./success";
 

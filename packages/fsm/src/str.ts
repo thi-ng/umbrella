@@ -1,6 +1,6 @@
 import {
+    LitCallback,
     Matcher,
-    RangeCallback,
     RES_FAIL,
     RES_PARTIAL
 } from "./api";
@@ -8,7 +8,7 @@ import { success } from "./success";
 
 export const str = <C, R>(
     str: string,
-    callback?: RangeCallback<string, C, R>
+    callback?: LitCallback<string, C, R>
 ): Matcher<string, C, R> =>
     () => {
         let buf = "";

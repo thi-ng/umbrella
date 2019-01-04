@@ -2,7 +2,12 @@ import { IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { reduced, unreduced, isReduced, ensureReduced } from "@thi.ng/transducers/reduced";
+import {
+    ensureReduced,
+    isReduced,
+    reduced,
+    unreduced
+} from "@thi.ng/transducers/reduced";
 import { Match, Matcher } from "./api";
 
 /**

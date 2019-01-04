@@ -1,17 +1,17 @@
 import { alts } from "./alts";
 import {
     AltCallback,
+    LitCallback,
     Matcher,
-    RangeCallback,
     RES_FAIL
 } from "./api";
-import { success } from "./success";
 import { str } from "./str";
+import { success } from "./success";
 
 export const range = <T extends number | string, C, R>(
     min: T,
     max: T,
-    callback?: RangeCallback<T, C, R>
+    callback?: LitCallback<T, C, R>
 ): Matcher<T, C, R> =>
     () =>
         (ctx, x) =>
@@ -20,7 +20,7 @@ export const range = <T extends number | string, C, R>(
                 RES_FAIL;
 
 export const digit =
-    <C, R>(callback?: RangeCallback<string, C, R>): Matcher<string, C, R> =>
+    <C, R>(callback?: LitCallback<string, C, R>): Matcher<string, C, R> =>
         range("0", "9", callback);
 
 export const alpha =

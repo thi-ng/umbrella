@@ -1,9 +1,9 @@
-import { Matcher, RangeCallback, RES_PARTIAL } from "./api";
+import { LitCallback, Matcher, RES_PARTIAL } from "./api";
 import { success } from "./success";
 
 export const until = <C, R>(
     str: string,
-    callback?: RangeCallback<string, C, R>
+    callback?: LitCallback<string, C, R>
 ): Matcher<string, C, R> =>
     () => {
         let buf = "";
