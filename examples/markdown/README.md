@@ -9,8 +9,8 @@ This example is a test environment for a new & minimal
 [Markdown](https://en.wikipedia.org/wiki/Markdown) parser & converter to
 [hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 format, using basic state handling and parsing primitives provided by
-the (still unreleased)
-[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/feature/fsm/packages/fsm)
+the
+[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm)
 package, which itself is a potential replacement / major version update
 for
 [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm).
@@ -74,7 +74,7 @@ Some of these are considered, though currently not high priority...
 - **Small:** minified + gzipped ~2.6KB
 
 See [example source
-code](https://github.com/thi-ng/umbrella/tree/feature/fsm/examples/markdown/src/)
+code](https://github.com/thi-ng/umbrella/tree/master/examples/markdown/src/)
 for reference...
 
 ## Serializing to HTML
@@ -92,6 +92,16 @@ const src = `
 
 `;
 
+// convert to hiccup tree
+[...iterator(parseMD(), src)]
+// [ [ 'h1', ' Hello world ' ],
+//   [ 'p',
+//     [ 'a', { href: 'http://example.com' }, 'This' ],
+//     ' is a ',
+//     [ 'em', 'test' ],
+//     '. ' ] ]
+
+// or serialize to HTML
 serialize(iterator(parseMD(), src));
 
 // <h1>Hello world</h1><p>
@@ -142,15 +152,8 @@ serialize(iterator(parseMD(tags), src));
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
-cd umbrella
-git checkout feature/fsm
-
-# first build all packages in mono repo (takes about 1-2mins)
+cd umbrella/examples/markdown
 yarn install
-yarn build
-
-# then launch example
-cd examples/markdown
 yarn start
 ```
 
