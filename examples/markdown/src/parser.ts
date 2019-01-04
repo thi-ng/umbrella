@@ -172,7 +172,11 @@ const collectTR =
 
 const collectTable =
     (tag: (xs: any[]) => any) =>
-        (ctx) => [START, [tag(ctx.stack.pop().container)]];
+        (ctx) => {
+            const rows = ctx.stack.pop().container;
+            rows.splice(1, 1);
+            return [START, [tag(rows)]];
+        };
 
 const collectInline =
     (fn: (body: string) => any[]) =>

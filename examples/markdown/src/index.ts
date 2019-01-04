@@ -16,7 +16,7 @@ const CUSTOM_TAGS: Partial<TagFactories> = {
     codeblock: (lang, body) => ["pre.bg-washed-yellow.pa3.f7.overflow-x-scroll", { lang: lang || "code" }, ["code", body]],
     link: (href, body) => ["a.link.dark-blue.hover-white.hover-bg-dark-blue.b", { href }, body],
     strike: (body) => ["del.bg-washed-red", body],
-    table: ([x, _, ...xs]) => ["table.w-100.collapse.ba.b--black-10", ["tbody", x, ...xs]],
+    table: (xs) => ["table.w-100.collapse.ba.b--black-10", ["tbody", ...xs]],
     tr: (_, xs) => ["tr.striped--near-white", ...xs],
     td: (i, xs) => [i < 1 ? "th.pa2.ttu.tl" : "td.pa2", ...xs],
 };
