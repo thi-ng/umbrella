@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/fsm",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Composable primitives for building declarative, transducer based Finite-State machines & parsers for arbitrary data streams",
     "main": "./index.js",
     "typings": "./index.d.ts",
