@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/fsm",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Composable primitives for building declarative, transducer based Finite-State machines & parsers for arbitrary data streams",
     "main": "./index.js",
     "typings": "./index.d.ts",
     "repository": {
@@ -29,11 +29,22 @@
     },
     "dependencies": {
         "@thi.ng/api": "^4.2.4",
+        "@thi.ng/equiv": "^0.1.15",
         "@thi.ng/errors": "^0.1.12",
         "@thi.ng/transducers": "^2.3.2"
     },
     "keywords": [
         "ES6",
+        "composition",
+        "declarative",
+        "finite state machine",
+        "FSM",
+        "functional",
+        "parser",
+        "pattern match",
+        "regex",
+        "string",
+        "transducers",
         "typescript"
     ],
     "publishConfig": {
