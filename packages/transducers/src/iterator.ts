@@ -64,7 +64,11 @@ export function* iterator1<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): Iter
  * @param args
  * @param impl
  */
-export const $iter = (xform: (...xs: any[]) => Transducer<any, any>, args: any[], impl = iterator1) => {
+export const $iter = (
+    xform: (...xs: any[]) => Transducer<any, any>,
+    args: any[],
+    impl = iterator1
+) => {
     const n = args.length - 1;
     return isIterable(args[n]) ?
         args.length > 1 ?

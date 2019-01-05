@@ -9,9 +9,8 @@
  *
  * @param src source data
  */
-export function lookup1d<T>(src: T[]) {
-    return (i: number) => src[i];
-}
+export const lookup1d =
+    <T>(src: T[]) => (i: number) => src[i];
 
 /**
  * Returns function accepting a single `[x, y]` index tuple,
@@ -28,9 +27,9 @@ export function lookup1d<T>(src: T[]) {
  * @param src source data
  * @param width number of items along X (columns)
  */
-export function lookup2d<T>(src: T[], width: number) {
-    return (i: number[]) => src[i[0] + i[1] * width];
-}
+export const lookup2d =
+    <T>(src: T[], width: number) =>
+        (i: number[]) => src[i[0] + i[1] * width];
 
 /**
  * Same as `lookup2d()`, but for 3D data. The index ordering of the
@@ -41,7 +40,8 @@ export function lookup2d<T>(src: T[], width: number) {
  * @param width number of items along X (columns)
  * @param height number of items along Y (rows)
  */
-export function lookup3d<T>(src: T[], width: number, height: number) {
-    const stridez = width * height;
-    return (i: number[]) => src[i[0] + i[1] * width + i[2] * stridez];
-}
+export const lookup3d =
+    <T>(src: T[], width: number, height: number) => {
+        const stridez = width * height;
+        return (i: number[]) => src[i[0] + i[1] * width + i[2] * stridez];
+    };

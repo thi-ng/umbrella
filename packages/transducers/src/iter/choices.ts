@@ -16,10 +16,12 @@ import { repeatedly } from "./repeatedly";
  * @param choices
  * @param weights
  */
-export function choices<T>(choices: ArrayLike<T> & Iterable<T>, weights?: ArrayLike<number> & Iterable<number>) {
-    return repeatedly(
+export const choices = <T>(
+    choices: ArrayLike<T> & Iterable<T>,
+    weights?: ArrayLike<number> & Iterable<number>
+) =>
+    repeatedly(
         weights ?
             weightedRandom(choices, weights) :
             () => choices[(Math.random() * choices.length) | 0]
     );
-}
