@@ -34,7 +34,11 @@ import { empty, first, objValues } from "./utils";
  * @param xrel
  * @param yrel
  */
-export function join(xrel: Set<IObjectOf<any>>, yrel: Set<IObjectOf<any>>): Set<IObjectOf<any>> {
+export const join = (
+    xrel: Set<IObjectOf<any>>,
+    yrel: Set<IObjectOf<any>>
+): Set<IObjectOf<any>> => {
+
     if (xrel.size && yrel.size) {
         const ks = commonKeysObj(first(xrel) || {}, first(yrel) || {});
         let a: Set<any>, b: Set<any>;
@@ -58,7 +62,7 @@ export function join(xrel: Set<IObjectOf<any>>, yrel: Set<IObjectOf<any>>): Set<
         return res;
     }
     return empty(xrel, Set);
-}
+};
 
 /**
  * Similar to `join()`, computes the join between two sets of relations,
@@ -88,7 +92,12 @@ export function join(xrel: Set<IObjectOf<any>>, yrel: Set<IObjectOf<any>>): Set<
  * @param yrel
  * @param kmap keys to compute join for
  */
-export function joinWith(xrel: Set<any>, yrel: Set<any>, kmap: IObjectOf<PropertyKey>): Set<any> {
+export const joinWith = (
+    xrel: Set<any>,
+    yrel: Set<any>,
+    kmap: IObjectOf<PropertyKey>
+): Set<any> => {
+
     if (xrel.size && yrel.size) {
         let r: Set<any>, s: Set<any>;
         let k: IObjectOf<PropertyKey>;
@@ -115,4 +124,4 @@ export function joinWith(xrel: Set<any>, yrel: Set<any>, kmap: IObjectOf<Propert
         return res;
     }
     return empty(xrel, Set);
-}
+};

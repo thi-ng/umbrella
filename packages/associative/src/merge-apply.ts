@@ -9,15 +9,16 @@ import { copy } from "./utils";
  * @param src
  * @param xs
  */
-export function mergeApplyMap<K, V>(src: Map<K, V>, xs: Map<K, V | ((x: V) => V)>) {
-    const res: any = copy(src, Map);
-    for (let p of xs) {
-        let [k, v] = p;
-        isFunction(v) && (v = v(res[k]));
-        res.set(k, v);
-    }
-    return res;
-}
+export const mergeApplyMap =
+    <K, V>(src: Map<K, V>, xs: Map<K, V | ((x: V) => V)>) => {
+        const res: any = copy(src, Map);
+        for (let p of xs) {
+            let [k, v] = p;
+            isFunction(v) && (v = v(res[k]));
+            res.set(k, v);
+        }
+        return res;
+    };
 
 /**
  * Similar to `mergeObj()`, but only supports 2 args and any function
@@ -33,12 +34,13 @@ export function mergeApplyMap<K, V>(src: Map<K, V>, xs: Map<K, V | ((x: V) => V)
  * @param src
  * @param xs
  */
-export function mergeApplyObj<V>(src: IObjectOf<V>, xs: IObjectOf<V | ((x: V) => V)>) {
-    const res: any = { ...src };
-    for (let k in xs) {
-        let v = xs[k];
-        isFunction(v) && (v = v(res[k]));
-        res[k] = v;
-    }
-    return res;
-}
+export const mergeApplyObj =
+    <V>(src: IObjectOf<V>, xs: IObjectOf<V | ((x: V) => V)>) => {
+        const res: any = { ...src };
+        for (let k in xs) {
+            let v = xs[k];
+            isFunction(v) && (v = v(res[k]));
+            res[k] = v;
+        }
+        return res;
+    };
