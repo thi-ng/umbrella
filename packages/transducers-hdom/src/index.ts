@@ -3,7 +3,6 @@ import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
 import { resolveRoot } from "@thi.ng/hdom/utils";
 import { derefContext } from "@thi.ng/hiccup/deref";
 import { Transducer } from "@thi.ng/transducers/api";
-import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/xform/scan";
 
 /**
@@ -40,27 +39,31 @@ import { scan } from "@thi.ng/transducers/xform/scan";
  *
  * @param opts hdom options
  */
-export const updateDOM =
-    (opts: Partial<HDOMOpts> = {}, impl: HDOMImplementation<any> = DEFAULT_IMPL): Transducer<any, any[]> => {
-        const _opts = { root: "app", ...opts };
-        const root = resolveRoot(_opts.root, impl);
-        return scan<any, any[]>(
-            reducer(
-                () => [],
-                (prev, curr) => {
-                    _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
-                    curr = impl.normalizeTree(_opts, curr);
-                    if (curr != null) {
-                        if (_opts.hydrate) {
-                            impl.hydrateTree(_opts, root, curr);
-                            _opts.hydrate = false;
-                        } else {
-                            impl.diffTree(_opts, root, prev, curr, 0);
-                        }
-                        return curr;
+export const updateDOM = (
+    opts: Partial<HDOMOpts> = {},
+    impl: HDOMImplementation<any> = DEFAULT_IMPL
+): Transducer<any, any[]> => {
+
+    const _opts = { root: "app", ...opts };
+    const root = resolveRoot(_opts.root, impl);
+    return scan<any, any[]>(
+        [
+            () => [],
+            (acc) => acc,
+            (prev, curr) => {
+                _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
+                curr = impl.normalizeTree(_opts, curr);
+                if (curr != null) {
+                    if (_opts.hydrate) {
+                        impl.hydrateTree(_opts, root, curr);
+                        _opts.hydrate = false;
+                    } else {
+                        impl.diffTree(_opts, root, prev, curr, 0);
                     }
-                    return prev;
+                    return curr;
                 }
-            )
-        );
-    };
+                return prev;
+            }
+        ]
+    );
+};
