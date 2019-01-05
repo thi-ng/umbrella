@@ -2,9 +2,11 @@ import { iterator, maybeIterator } from "./iterator";
 import { maybeObjectIterator } from "./object-iterator";
 import { Fn } from "@thi.ng/api/api";
 
-export function walkable(x) {
-    return typeof x !== "string" ? maybeIterator(x) || maybeObjectIterator(x) : undefined;
-}
+export const walkable =
+    (x) =>
+        typeof x !== "string" ?
+            maybeIterator(x) || maybeObjectIterator(x) :
+            undefined;
 
 export function walk(fn: Fn<any, void>, input: any, postOrder?: boolean);
 export function walk(fn: Fn<any, void>, children: Fn<any, any>, input: any, postOrder?: boolean);

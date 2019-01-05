@@ -8,7 +8,12 @@ export class ReducedValue<T> {
     }
 }
 
-export function reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) {
+export const reduce = <A, B>(
+    rfn: (acc: B, x: A) => B | ReducedValue<B>,
+    acc: B,
+    input: Iterable<A>
+) => {
+
     let iter = iterator(input);
     let v: IteratorResult<A>;
     let _acc: B | ReducedValue<B> = acc;
@@ -19,8 +24,7 @@ export function reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B,
         }
     }
     return _acc;
-}
+};
 
-export function reduced<T>(x: T) {
-    return new ReducedValue(x);
-}
+export const reduced =
+    <T>(x: T) => new ReducedValue(x);
