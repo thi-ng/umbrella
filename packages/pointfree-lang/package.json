@@ -13,20 +13,20 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn clean && tsc --declaration && yarn peg",
-        "clean": "rm -rf *.js *.d.ts .nyc_output build coverage doc",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "peg": "pegjs -o parser.js src/grammar.pegjs",
         "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
         "pub": "yarn build && yarn publish --access public",
-        "test": "rm -rf build && tsc -p test && yarn pegtest && nyc mocha build/test/*.js"
+        "test": "rimraf build && tsc -p test && yarn pegtest && nyc mocha build/test/*.js"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
         "pegjs": "^0.10.0",
-        "typedoc": "^0.13.0",
+        "typedoc": "^0.14.0",
         "typescript": "^3.2.2"
     },
     "dependencies": {
