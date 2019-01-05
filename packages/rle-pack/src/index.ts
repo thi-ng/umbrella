@@ -12,7 +12,12 @@ export type RLESizes = [number, number, number, number];
  * @param wordSize in bits, range 1 - 32
  * @param rleSizes run-length group sizes (in bits, max. 16)
  */
-export function encode(src: Iterable<number>, num: number, wordSize = 8, rleSizes: RLESizes = [3, 4, 8, 16]) {
+export const encode = (
+    src: Iterable<number>,
+    num: number,
+    wordSize = 8,
+    rleSizes: RLESizes = [3, 4, 8, 16]
+) => {
     (wordSize < 1 || wordSize > 32) && illegalArgs("word size (1-32 bits only)");
     const out = new BitOutputStream(Math.ceil(num * wordSize / 8) + 4 + 2 + 1)
         .write(num, 32)
@@ -80,34 +85,36 @@ export function encode(src: Iterable<number>, num: number, wordSize = 8, rleSize
         writeRLE();
     }
     return out.bytes();
-}
+};
 
-export function decode(src: Uint8Array) {
-    const input = new BitInputStream(src);
-    const num = input.read(32);
-    const wordSize = input.read(5) + 1;
-    const rleSizes = [0, 0, 0, 0].map(() => input.read(4) + 1);
-    const out = arrayForWordSize(wordSize, num);
-    let x, j;
-    for (let i = 0; i < num;) {
-        x = input.readBit();
-        j = i + 1 + input.read(rleSizes[input.read(2)]);
-        if (x) {
-            out.fill(input.read(wordSize), i, j);
-            i = j;
-        } else {
-            for (; i < j; i++) {
-                out[i] = input.read(wordSize);
+export const decode =
+    (src: Uint8Array) => {
+        const input = new BitInputStream(src);
+        const num = input.read(32);
+        const wordSize = input.read(5) + 1;
+        const rleSizes = [0, 0, 0, 0].map(() => input.read(4) + 1);
+        const out = arrayForWordSize(wordSize, num);
+        let x, j;
+        for (let i = 0; i < num;) {
+            x = input.readBit();
+            j = i + 1 + input.read(rleSizes[input.read(2)]);
+            if (x) {
+                out.fill(input.read(wordSize), i, j);
+                i = j;
+            } else {
+                for (; i < j; i++) {
+                    out[i] = input.read(wordSize);
+                }
             }
         }
-    }
-    return out;
-}
+        return out;
+    };
 
-const arrayForWordSize = (ws: number, n: number) => {
-    return new (ws < 9 ?
-        Uint8Array :
-        ws < 17 ?
-            Uint16Array :
-            Uint32Array)(n);
-}
+const arrayForWordSize =
+    (ws: number, n: number) => {
+        return new (ws < 9 ?
+            Uint8Array :
+            ws < 17 ?
+                Uint16Array :
+                Uint32Array)(n);
+    };
