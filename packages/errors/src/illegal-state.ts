@@ -4,6 +4,7 @@ export class IllegalStateError extends Error {
     }
 }
 
-export function illegalState(msg?: any): never {
-    throw new IllegalStateError(msg);
-}
+export const illegalState =
+    (msg?: any): never => {
+        throw new IllegalStateError(msg);
+    };

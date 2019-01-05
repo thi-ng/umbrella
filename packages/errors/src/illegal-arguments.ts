@@ -4,6 +4,7 @@ export class IllegalArgumentError extends Error {
     }
 }
 
-export function illegalArgs(msg?: any): never {
-    throw new IllegalArgumentError(msg);
-}
+export const illegalArgs =
+    (msg?: any): never => {
+        throw new IllegalArgumentError(msg);
+    };
