@@ -1,3 +1,2 @@
-export function isChrome() {
-    return typeof window !== "undefined" && !!window["chrome"];
-}
+export const isChrome =
+    () => typeof window !== "undefined" && !!window["chrome"];

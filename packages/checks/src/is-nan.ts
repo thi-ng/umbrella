@@ -1,3 +1,2 @@
-export function isNaN(x: any) {
-    return x !== x;
-}
+export const isNaN =
+    (x: any) => x !== x;

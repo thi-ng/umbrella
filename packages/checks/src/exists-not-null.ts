@@ -1,3 +1,2 @@
-export function existsAndNotNull(x: any) {
-    return x != null;
-}
+export const existsAndNotNull =
+    (x: any) => x != null;

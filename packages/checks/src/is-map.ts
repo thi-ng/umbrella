@@ -1,3 +1,2 @@
-export function isMap(x: any): x is Map<any, any> {
-    return x instanceof Map;
-}
+export const isMap =
+    (x: any): x is Map<any, any> => x instanceof Map;

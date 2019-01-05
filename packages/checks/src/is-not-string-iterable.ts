@@ -1,5 +1,5 @@
-export function isNotStringAndIterable(x: any): x is Iterable<any> {
-    return x != null &&
+export const isNotStringAndIterable =
+    (x: any): x is Iterable<any> =>
+        x != null &&
         typeof x !== "string" &&
         typeof x[Symbol.iterator] === "function";
-}

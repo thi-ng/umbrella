@@ -1,3 +1,2 @@
-export function isSymbol(x: any): x is Symbol {
-    return typeof x === "symbol";
-}
+export const isSymbol =
+    (x: any): x is Symbol => typeof x === "symbol";
