@@ -1,5 +1,5 @@
 import { Stream } from "../stream";
-import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 /**
  * Creates a new stream of DOM events attached to given element / event
@@ -15,8 +15,11 @@ export const fromEvent = (
     name: string,
     opts: boolean | AddEventListenerOptions = false
 ) =>
-    new Stream<Event>((stream) => {
-        let listener = (e) => stream.next(e);
-        src.addEventListener(name, listener, opts);
-        return () => src.removeEventListener(name, listener, opts);
-    }, `event-${name}-${Subscription.NEXT_ID++}`);
+    new Stream<Event>(
+        (stream) => {
+            let listener = (e) => stream.next(e);
+            src.addEventListener(name, listener, opts);
+            return () => src.removeEventListener(name, listener, opts);
+        },
+        `event-${name}-${nextID()}`
+    );

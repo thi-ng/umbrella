@@ -1,5 +1,6 @@
-import { State } from "../api"
+import { State } from "../api";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 /**
  * A subscription that emits an arbitrary error object after a given
@@ -29,7 +30,7 @@ class Timeout<T> extends Subscription<T, T> {
     protected resetTimeout: boolean;
 
     constructor(timeoutMs: number, error?: any, resetTimeout = false, id?: string) {
-        super(null, null, null, id || `timeout-${Subscription.NEXT_ID++}`);
+        super(null, null, null, id || `timeout-${nextID()}`);
         this.timeoutMs = timeoutMs;
         this.errorObj = error;
         this.resetTimeout = resetTimeout;

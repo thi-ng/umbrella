@@ -5,9 +5,9 @@ import { comp } from "@thi.ng/transducers/func/comp";
 import { labeled } from "@thi.ng/transducers/xform/labeled";
 import { mapVals } from "@thi.ng/transducers/xform/map-vals";
 import { partitionSync } from "@thi.ng/transducers/xform/partition-sync";
-
 import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
+import { nextID } from "./utils/idgen";
 
 export interface StreamSyncOpts<A, B> extends IID<string> {
     /**
@@ -134,7 +134,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         if (opts.xform) {
             xform = comp(xform, opts.xform);
         }
-        super(null, xform, null, opts.id || `streamsync-${Subscription.NEXT_ID++}`);
+        super(null, xform, null, opts.id || `streamsync-${nextID()}`);
         this.sources = new Map();
         this.realSourceIDs = new Map();
         this.invRealSourceIDs = new Map();

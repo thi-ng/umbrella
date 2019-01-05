@@ -1,7 +1,6 @@
 import { isNode } from "@thi.ng/checks/is-node";
-
 import { Stream } from "../stream";
-import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 import { fromInterval } from "./interval";
 
 /**
@@ -27,5 +26,5 @@ export const fromRAF = () =>
                 let id = requestAnimationFrame(loop);
                 return () => (isActive = false, cancelAnimationFrame(id));
             },
-            `raf-${Subscription.NEXT_ID++}`
+            `raf-${nextID()}`
         );

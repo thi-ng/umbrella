@@ -1,5 +1,5 @@
 import { Stream } from "../stream";
-import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 /**
  * Creates a new `Stream` of given iterable which asynchronously calls
@@ -29,7 +29,7 @@ export const fromIterable =
                 }, delay);
                 return () => clearInterval(id);
             },
-            `iterable-${Subscription.NEXT_ID++}`
+            `iterable-${nextID()}`
         );
 
 /**
@@ -52,5 +52,5 @@ export const fromIterableSync =
                 close && stream.done();
                 return null;
             },
-            `iterable-${Subscription.NEXT_ID++}`
+            `iterable-${nextID()}`
         );

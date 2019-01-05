@@ -1,7 +1,7 @@
 import { IID } from "@thi.ng/api/api";
-
 import { __State, DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 export interface ResolverOpts extends IID<string> {
     /**
@@ -40,7 +40,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected fail: (e: any) => void;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(null, null, null, opts.id || `resolve-${Subscription.NEXT_ID++}`);
+        super(null, null, null, opts.id || `resolve-${nextID()}`);
         this.fail = opts.fail;
     }
 

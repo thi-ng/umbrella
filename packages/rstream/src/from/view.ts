@@ -2,8 +2,8 @@ import { Predicate2 } from "@thi.ng/api/api";
 import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom/api";
 import { View } from "@thi.ng/atom/view";
 import { Path } from "@thi.ng/paths";
-
 import { Stream } from "../stream";
+import { nextID } from "../utils/idgen";
 
 /**
  * Similar to `fromAtom()`, but creates an eager derived view for a
@@ -64,5 +64,5 @@ export const fromView = <T>(
             );
             return () => (isActive = false, view.release());
         },
-        id
+        id || `view-${nextID()}`
     );

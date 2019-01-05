@@ -8,7 +8,6 @@ import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import { push } from "@thi.ng/transducers/rfn/push";
-
 import {
     __State,
     DEBUG,
@@ -16,6 +15,7 @@ import {
     ISubscriber,
     State
 } from "./api";
+import { nextID } from "./utils/idgen";
 
 /**
  * Creates a new `Subscription` instance, the fundamental datatype &
@@ -64,8 +64,6 @@ export class Subscription<A, B> implements
     ISubscriber<A>,
     ISubscribable<B> {
 
-    static NEXT_ID = 0;
-
     id: string;
 
     protected parent: ISubscribable<A>;
@@ -77,7 +75,7 @@ export class Subscription<A, B> implements
 
     constructor(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
         this.parent = parent;
-        this.id = id || `sub-${Subscription.NEXT_ID++}`;
+        this.id = id || `sub-${nextID()}`;
         this.last = SEMAPHORE;
         this.subs = [];
         if (sub) {
@@ -113,7 +111,7 @@ export class Subscription<A, B> implements
             case 2:
                 if (isFunction(args[0])) {
                     xform = args[0];
-                    id = args[1] || `xform-${Subscription.NEXT_ID++}`;
+                    id = args[1] || `xform-${nextID()}`;
                 } else {
                     sub = args[0];
                     if (isFunction(args[1])) {
