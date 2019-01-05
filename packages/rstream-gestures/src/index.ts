@@ -105,9 +105,14 @@ export interface GestureStreamOpts extends IID<string> {
  * @param el
  * @param opts
  */
-export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
+export const gestureStream = (
+    el: HTMLElement,
+    opts?: Partial<GestureStreamOpts>
+): StreamMerge<any, GestureEvent> => {
+
     let isDown = false,
         clickPos: number[];
+
     opts = Object.assign(<GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
@@ -120,8 +125,10 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
         local: true,
         scale: false,
     }, opts);
+
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     const dpr = window.devicePixelRatio || 1;
+
     return merge({
         id: opts.id,
         src: [
@@ -183,4 +190,4 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
             return <GestureEvent>[type, body];
         })
     });
-}
+};
