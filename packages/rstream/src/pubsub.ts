@@ -3,7 +3,7 @@ import { EquivMap } from "@thi.ng/associative/equiv-map";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { Transducer } from "@thi.ng/transducers/api";
 import { DEBUG, ISubscriber } from "./api";
-import { Subscription } from "./subscription";
+import { Subscription, subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
 
 export interface PubSubOpts<A, B> {
@@ -84,7 +84,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
     subscribeTopic(topicID: any, sub: any, id?: string): Subscription<any, any> {
         let t = this.topics.get(topicID);
         if (!t) {
-            this.topics.set(topicID, t = new Subscription<B, B>());
+            this.topics.set(topicID, t = subscription<B, B>());
         }
         return t.subscribe(sub, id);
     }
