@@ -26,13 +26,13 @@ import { FnAny } from "@thi.ng/api/api";
  * @param init
  * @param fns
  */
-export function threadLast(init: any, ...fns: (FnAny<any> | [FnAny<any>, ...any[]])[]) {
-    return fns.reduce(
-        (acc, expr) =>
-            typeof expr === "function" ?
-                expr(acc) :
-                expr[0](...expr.slice(1), acc)
-        ,
-        init
-    );
-}
+export const threadLast =
+    (init: any, ...fns: (FnAny<any> | [FnAny<any>, ...any[]])[]) =>
+        fns.reduce(
+            (acc, expr) =>
+                typeof expr === "function" ?
+                    expr(acc) :
+                    expr[0](...expr.slice(1), acc)
+            ,
+            init
+        );
