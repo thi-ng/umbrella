@@ -91,16 +91,23 @@ export type LookupPath = PropertyKey[];
  *
  *  @param root
  */
-export const resolve = (root: any) => {
-    if (isPlainObject(root)) {
-        return resolveMap(root);
-    } else if (isArray(root)) {
-        return resolveArray(root);
-    }
-    return root;
-};
+export const resolve =
+    (root: any) => {
+        if (isPlainObject(root)) {
+            return resolveMap(root);
+        } else if (isArray(root)) {
+            return resolveArray(root);
+        }
+        return root;
+    };
 
-const resolveMap = (obj: any, root?: any, path: LookupPath = [], resolved: any = {}, stack: string[] = []) => {
+const resolveMap = (
+    obj: any,
+    root?: any,
+    path: LookupPath = [],
+    resolved: any = {},
+    stack: string[] = []
+) => {
     root = root || obj;
     for (let k in obj) {
         _resolve(root, [...path, k], resolved, stack);
@@ -108,7 +115,13 @@ const resolveMap = (obj: any, root?: any, path: LookupPath = [], resolved: any =
     return obj;
 };
 
-const resolveArray = (arr: any[], root?: any, path: LookupPath = [], resolved: any = {}, stack: string[] = []) => {
+const resolveArray = (
+    arr: any[],
+    root?: any,
+    path: LookupPath = [],
+    resolved: any = {},
+    stack: string[] = []
+) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
         _resolve(root, [...path, k], resolved, stack);
@@ -127,7 +140,12 @@ const resolveArray = (arr: any[], root?: any, path: LookupPath = [], resolved: a
  * @param resolved
  * @param stack
  */
-const _resolve = (root: any, path: LookupPath, resolved: any, stack: string[]) => {
+const _resolve = (
+    root: any,
+    path: LookupPath,
+    resolved: any,
+    stack: string[]
+) => {
     const pathID = path.join("/");
     if (stack.indexOf(pathID) >= 0) {
         illegalArgs(`cyclic references not allowed: ${pathID}`);
@@ -175,7 +193,12 @@ const _resolve = (root: any, path: LookupPath, resolved: any, stack: string[]) =
  * @param path
  * @param resolved
  */
-const resolvePath = (root: any, path: LookupPath, resolved: any, stack: string[] = []) => {
+const resolvePath = (
+    root: any,
+    path: LookupPath,
+    resolved: any,
+    stack: string[] = []
+) => {
     // temporarily remove current path to avoid cycle detection
     let pathID = stack.pop()
     let v;
@@ -204,7 +227,12 @@ const resolvePath = (root: any, path: LookupPath, resolved: any, stack: string[]
  * @param pathID current base path for marking
  * @param resolved
  */
-const resolveFunction = (fn: (x: any, r?: ResolveFn) => any, resolve: ResolveFn, pathID: string, resolved: any) => {
+const resolveFunction = (
+    fn: (x: any, r?: ResolveFn) => any,
+    resolve: ResolveFn,
+    pathID: string,
+    resolved: any
+) => {
     const match = RE_ARGS.exec(fn.toString());
     let res;
     if (match) {
@@ -222,33 +250,36 @@ const resolveFunction = (fn: (x: any, r?: ResolveFn) => any, resolve: ResolveFn,
     return res;
 };
 
-const markResolved = (v: any, path: string, resolved: any) => {
-    resolved[path] = true;
-    if (isPlainObject(v)) {
-        markObjResolved(v, path, resolved);
-    }
-    else if (isArray(v)) {
-        markArrayResolved(v, path, resolved);
-    }
-};
+const markResolved =
+    (v: any, path: string, resolved: any) => {
+        resolved[path] = true;
+        if (isPlainObject(v)) {
+            markObjResolved(v, path, resolved);
+        }
+        else if (isArray(v)) {
+            markArrayResolved(v, path, resolved);
+        }
+    };
 
-const markObjResolved = (obj: any, path: string, resolved: any) => {
-    let v, p;
-    for (let k in obj) {
-        v = obj[k];
-        p = path + "/" + k;
-        markResolved(v, p, resolved);
-    }
-};
+const markObjResolved =
+    (obj: any, path: string, resolved: any) => {
+        let v, p;
+        for (let k in obj) {
+            v = obj[k];
+            p = path + "/" + k;
+            markResolved(v, p, resolved);
+        }
+    };
 
-const markArrayResolved = (arr: any[], path: string, resolved: any) => {
-    let v, p;
-    for (let i = 0, n = arr.length; i < n; i++) {
-        v = arr[i];
-        p = path + "/" + i;
-        markResolved(v, p, resolved);
-    }
-};
+const markArrayResolved =
+    (arr: any[], path: string, resolved: any) => {
+        let v, p;
+        for (let i = 0, n = arr.length; i < n; i++) {
+            v = arr[i];
+            p = path + "/" + i;
+            markResolved(v, p, resolved);
+        }
+    };
 
 /**
  * Takes the path for the current key and a lookup path string. Converts
@@ -258,20 +289,21 @@ const markArrayResolved = (arr: any[], path: string, resolved: any) => {
  * @param path
  * @param idx
  */
-export const absPath = (curr: LookupPath, path: string, idx = 1): PropertyKey[] => {
-    if (path.charAt(idx) === "/") {
-        return path.substr(idx + 1).split("/");
-    }
-    curr = curr.slice(0, curr.length - 1);
-    const sub = path.substr(idx).split("/");
-    for (let i = 0, n = sub.length; i < n; i++) {
-        if (sub[i] === "..") {
-            !curr.length && illegalArgs(`invalid lookup path: ${path}`);
-            curr.pop();
-        } else {
-            return curr.concat(sub.slice(i));
+export const absPath =
+    (curr: LookupPath, path: string, idx = 1): PropertyKey[] => {
+        if (path.charAt(idx) === "/") {
+            return path.substr(idx + 1).split("/");
         }
-    }
-    !curr.length && illegalArgs(`invalid lookup path: ${path}`);
-    return curr;
-};
+        curr = curr.slice(0, curr.length - 1);
+        const sub = path.substr(idx).split("/");
+        for (let i = 0, n = sub.length; i < n; i++) {
+            if (sub[i] === "..") {
+                !curr.length && illegalArgs(`invalid lookup path: ${path}`);
+                curr.pop();
+            } else {
+                return curr.concat(sub.slice(i));
+            }
+        }
+        !curr.length && illegalArgs(`invalid lookup path: ${path}`);
+        return curr;
+    };
