@@ -1,3 +1,2 @@
-export function isUndefined(x: any): x is undefined {
-    return x === undefined;
-}
+export const isUndefined =
+    (x: any): x is undefined => x === undefined;

@@ -1,3 +1,3 @@
-export function isObject(x: any): x is Object {
-    return x !== null && typeof x === "object";
-}
+export const isObject =
+    (x: any): x is Object =>
+        x !== null && typeof x === "object";

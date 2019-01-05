@@ -1,3 +1,2 @@
-export function isTrue(x: any): x is boolean {
-    return x === true;
-}
+export const isTrue =
+    (x: any): x is boolean => x === true;
