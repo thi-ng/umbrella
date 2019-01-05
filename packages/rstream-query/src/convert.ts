@@ -6,25 +6,27 @@ import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 
 let NEXT_ID = 0;
 
-const mapBNode = (s: any, p: any, o: any) => {
-    const id = `__b${NEXT_ID++}__`;
-    return concat([[s, p, id]], asTriples(o, id));
-};
-
-const mapSubject = (subject: any) =>
-    ([p, o]) => {
-        if (isArray(o)) {
-            return mapcat(
-                (o) =>
-                    isPlainObject(o) ?
-                        mapBNode(subject, p, o) :
-                        [[subject, p, o]],
-                o);
-        } else if (isPlainObject(o)) {
-            return mapBNode(subject, p, o);
-        }
-        return [[subject, p, o]];
+const mapBNode =
+    (s: any, p: any, o: any) => {
+        const id = `__b${NEXT_ID++}__`;
+        return concat([[s, p, id]], asTriples(o, id));
     };
+
+const mapSubject =
+    (subject: any) =>
+        ([p, o]) => {
+            if (isArray(o)) {
+                return mapcat(
+                    (o) =>
+                        isPlainObject(o) ?
+                            mapBNode(subject, p, o) :
+                            [[subject, p, o]],
+                    o);
+            } else if (isPlainObject(o)) {
+                return mapBNode(subject, p, o);
+            }
+            return [[subject, p, o]];
+        };
 
 /**
  * Converts given object into an iterable of triples, with the following
@@ -75,10 +77,11 @@ const mapSubject = (subject: any) =>
  * @param obj
  * @param subject internal use only, do not specify!
  */
-export const asTriples = (obj: any, subject?: any) =>
-    mapcat(
-        subject === undefined ?
-            ([s, v]: any) => mapcat(mapSubject(s), <any>pairs(v)) :
-            mapSubject(subject),
-        pairs(obj)
-    );
+export const asTriples =
+    (obj: any, subject?: any) =>
+        mapcat(
+            subject === undefined ?
+                ([s, v]: any) => mapcat(mapSubject(s), <any>pairs(v)) :
+                mapSubject(subject),
+            pairs(obj)
+        );

@@ -3,21 +3,23 @@ import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import { PathPattern, Pattern } from "./api";
 import { autoQVar, isQVar, qvarName } from "./qvar";
 
-export const patternVarCount = (p: Pattern) => {
-    let n = 0;
-    if (isQVar(p[0])) n++;
-    if (isQVar(p[1])) n++;
-    if (isQVar(p[2])) n++;
-    return n;
-};
+export const patternVarCount =
+    (p: Pattern) => {
+        let n = 0;
+        if (isQVar(p[0])) n++;
+        if (isQVar(p[1])) n++;
+        if (isQVar(p[2])) n++;
+        return n;
+    };
 
-export const patternVars = ([s, p, o]: Pattern) => {
-    const vars = [];
-    isQVar(s) && vars.push(qvarName(s));
-    isQVar(p) && vars.push(qvarName(p));
-    isQVar(o) && vars.push(qvarName(o));
-    return vars;
-};
+export const patternVars =
+    ([s, p, o]: Pattern) => {
+        const vars = [];
+        isQVar(s) && vars.push(qvarName(s));
+        isQVar(p) && vars.push(qvarName(p));
+        isQVar(o) && vars.push(qvarName(o));
+        return vars;
+    };
 
 /**
  * Takes a path triple pattern and max depth. The pattern's predicate
@@ -39,15 +41,17 @@ export const patternVars = ([s, p, o]: Pattern) => {
  * @param pattern
  * @param maxLen
  */
-export const resolvePathPattern = ([s, p, o]: PathPattern, maxLen = p.length): [Pattern[], string[]] => {
-    const res = [];
-    const avars = [...repeatedly(autoQVar, maxLen - 1)];
-    for (let i = 0; i < maxLen; i++) {
-        res.push([s, p[i % p.length], s = avars[i]]);
-    }
-    res[res.length - 1][2] = o;
-    return [res, avars];
-};
+export const resolvePathPattern =
+    ([s, p, o]: PathPattern, maxLen = p.length): [Pattern[], string[]] => {
+        const res = [];
+        const avars = [...repeatedly(autoQVar, maxLen - 1)];
+        for (let i = 0; i < maxLen; i++) {
+            res.push([s, p[i % p.length], s = avars[i]]);
+        }
+        res[res.length - 1][2] = o;
+        return [res, avars];
+    };
 
-export const sortPatterns = (patterns: Pattern[]) =>
-    patterns.sort((a, b) => patternVarCount(a) - patternVarCount(b));
+export const sortPatterns =
+    (patterns: Pattern[]) =>
+        patterns.sort((a, b) => patternVarCount(a) - patternVarCount(b));
