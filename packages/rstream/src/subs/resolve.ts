@@ -30,9 +30,9 @@ export interface ResolverOpts extends IID<string> {
  *
  * @param opts
  */
-export function resolve<T>(opts?: Partial<ResolverOpts>) {
-    return new Resolver<T>(opts);
-}
+export const resolve =
+    <T>(opts?: Partial<ResolverOpts>) =>
+        new Resolver<T>(opts);
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
 

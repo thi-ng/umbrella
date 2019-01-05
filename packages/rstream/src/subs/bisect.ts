@@ -44,9 +44,13 @@ import { PubSub } from "../pubsub";
  * @param a subscription for truthy branch
  * @param b subscription for falsy branch
  */
-export function bisect<T>(pred: Predicate<T>, a?: ISubscriber<T>, b?: ISubscriber<T>): PubSub<T, T> {
+export const bisect = <T>(
+    pred: Predicate<T>,
+    a?: ISubscriber<T>,
+    b?: ISubscriber<T>
+): PubSub<T, T> => {
     const sub = new PubSub<T, T>({ topic: pred });
     sub.subscribeTopic(true, a);
     sub.subscribeTopic(false, b);
     return sub;
-}
+};

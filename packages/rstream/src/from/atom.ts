@@ -33,8 +33,13 @@ import { Stream } from "../stream";
  * @param emitFirst
  * @param changed
  */
-export function fromAtom<T>(atom: ReadonlyAtom<T>, emitFirst = true, changed?: Predicate2<T>): Stream<T> {
-    return new Stream<T>((stream) => {
+export const fromAtom = <T>(
+    atom: ReadonlyAtom<T>,
+    emitFirst = true,
+    changed?: Predicate2<T>
+): Stream<T> =>
+
+    new Stream<T>((stream) => {
         changed = changed || ((a, b) => a !== b);
         atom.addWatch(stream.id, (_, prev, curr) => {
             if (changed(prev, curr)) {
@@ -44,4 +49,3 @@ export function fromAtom<T>(atom: ReadonlyAtom<T>, emitFirst = true, changed?: P
         emitFirst && stream.next(atom.deref());
         return () => atom.removeWatch(stream.id);
     });
-}

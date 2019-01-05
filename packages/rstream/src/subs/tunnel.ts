@@ -54,8 +54,9 @@ export interface TunnelOpts<A> {
  *
  * @param opts
  */
-export const tunnel = <A, B>(opts: TunnelOpts<A>) =>
-    new Tunnel<A, B>(opts);
+export const tunnel =
+    <A, B>(opts: TunnelOpts<A>) =>
+        new Tunnel<A, B>(opts);
 
 export class Tunnel<A, B> extends Subscription<A, B> {
 

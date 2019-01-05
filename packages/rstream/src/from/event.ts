@@ -10,10 +10,13 @@ import { Subscription } from "../subscription";
  * @param name event name
  * @param opts listener opts
  */
-export function fromEvent(src: EventTarget, name: string, opts: boolean | AddEventListenerOptions = false) {
-    return new Stream<Event>((stream) => {
+export const fromEvent = (
+    src: EventTarget,
+    name: string,
+    opts: boolean | AddEventListenerOptions = false
+) =>
+    new Stream<Event>((stream) => {
         let listener = (e) => stream.next(e);
         src.addEventListener(name, listener, opts);
         return () => src.removeEventListener(name, listener, opts);
     }, `event-${name}-${Subscription.NEXT_ID++}`);
-}

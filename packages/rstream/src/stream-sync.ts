@@ -91,9 +91,9 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * the @thi.ng/transducers package. See this function's docs for further
  * details.
  */
-export function sync<A, B>(opts: Partial<StreamSyncOpts<A, B>>) {
-    return new StreamSync(opts);
-}
+export const sync =
+    <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
+        new StreamSync(opts);
 
 export class StreamSync<A, B> extends Subscription<A, B> {
 

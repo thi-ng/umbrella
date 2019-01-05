@@ -51,9 +51,13 @@ import {
  * @param parent
  * @param id
  */
-export function subscription<A, B>(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
-    return new Subscription(sub, xform, parent, id);
-}
+export const subscription = <A, B>(
+    sub?: ISubscriber<B>,
+    xform?: Transducer<A, B>,
+    parent?: ISubscribable<A>,
+    id?: string
+) =>
+    new Subscription(sub, xform, parent, id);
 
 export class Subscription<A, B> implements
     IDeref<B>,

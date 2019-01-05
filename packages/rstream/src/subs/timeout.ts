@@ -14,9 +14,13 @@ import { Subscription } from "../subscription";
  * @param resetTimeout timeout reset flag
  * @param id subscription id
  */
-export function timeout<T>(timeoutMs: number, error?: any, resetTimeout = false, id?: string): Subscription<T, T> {
-    return new Timeout(timeoutMs, error, resetTimeout, id);
-}
+export const timeout = <T>(
+    timeoutMs: number,
+    error?: any,
+    resetTimeout = false,
+    id?: string
+): Subscription<T, T> =>
+    new Timeout(timeoutMs, error, resetTimeout, id);
 
 class Timeout<T> extends Subscription<T, T> {
     protected timeoutMs: number;

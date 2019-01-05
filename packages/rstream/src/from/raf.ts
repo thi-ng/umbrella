@@ -13,17 +13,19 @@ import { fromInterval } from "./interval";
  * Subscribers to this stream will be processed during that same loop
  * iteration.
  */
-export function fromRAF() {
-    return isNode() ?
+export const fromRAF = () =>
+    isNode() ?
         fromInterval(16) :
-        new Stream<number>((stream) => {
-            let i = 0;
-            let isActive = true;
-            let loop = () => {
-                isActive && stream.next(i++);
-                isActive && (id = requestAnimationFrame(loop));
-            };
-            let id = requestAnimationFrame(loop);
-            return () => (isActive = false, cancelAnimationFrame(id));
-        }, `raf-${Subscription.NEXT_ID++}`);
-}
+        new Stream<number>(
+            (stream) => {
+                let i = 0;
+                let isActive = true;
+                let loop = () => {
+                    isActive && stream.next(i++);
+                    isActive && (id = requestAnimationFrame(loop));
+                };
+                let id = requestAnimationFrame(loop);
+                return () => (isActive = false, cancelAnimationFrame(id));
+            },
+            `raf-${Subscription.NEXT_ID++}`
+        );

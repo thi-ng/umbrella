@@ -13,24 +13,24 @@ import { Subscription } from "../subscription";
  * @param delay
  * @param close
  */
-export function fromIterable<T>(src: Iterable<T>, delay = 0, close = true) {
-    return new Stream<T>(
-        (stream) => {
-            const iter = src[Symbol.iterator]();
-            const id = setInterval(() => {
-                let val: IteratorResult<T>;
-                if ((val = iter.next()).done) {
-                    clearInterval(id);
-                    close && stream.done();
-                } else {
-                    stream.next(val.value);
-                }
-            }, delay);
-            return () => clearInterval(id);
-        },
-        `iterable-${Subscription.NEXT_ID++}`
-    );
-}
+export const fromIterable =
+    <T>(src: Iterable<T>, delay = 0, close = true) =>
+        new Stream<T>(
+            (stream) => {
+                const iter = src[Symbol.iterator]();
+                const id = setInterval(() => {
+                    let val: IteratorResult<T>;
+                    if ((val = iter.next()).done) {
+                        clearInterval(id);
+                        close && stream.done();
+                    } else {
+                        stream.next(val.value);
+                    }
+                }, delay);
+                return () => clearInterval(id);
+            },
+            `iterable-${Subscription.NEXT_ID++}`
+        );
 
 /**
  * Creates a new `Stream` of given iterable which synchronously calls
@@ -42,15 +42,15 @@ export function fromIterable<T>(src: Iterable<T>, delay = 0, close = true) {
  * @param src
  * @param close
  */
-export function fromIterableSync<T>(src: Iterable<T>, close = true) {
-    return new Stream<T>(
-        (stream) => {
-            for (let s of src) {
-                stream.next(s);
-            }
-            close && stream.done();
-            return null;
-        },
-        `iterable-${Subscription.NEXT_ID++}`
-    );
-}
+export const fromIterableSync =
+    <T>(src: Iterable<T>, close = true) =>
+        new Stream<T>(
+            (stream) => {
+                for (let s of src) {
+                    stream.next(s);
+                }
+                close && stream.done();
+                return null;
+            },
+            `iterable-${Subscription.NEXT_ID++}`
+        );

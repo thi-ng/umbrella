@@ -136,6 +136,6 @@ export class PubSub<A, B> extends Subscription<A, B> {
  *
  * @param opts
  */
-export function pubsub<A, B>(opts: PubSubOpts<A, B>) {
-    return new PubSub(opts);
-}
+export const pubsub =
+    <A, B>(opts: PubSubOpts<A, B>) =>
+        new PubSub(opts);

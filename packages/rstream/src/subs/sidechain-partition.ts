@@ -27,9 +27,12 @@ import { Subscription } from "../subscription";
  * @param pred
  * @param id
  */
-export function sidechainPartition<A, B>(side: ISubscribable<B>, pred?: Predicate<B>, id?: string): Subscription<A, A[]> {
-    return new SidechainPartition<A, B>(side, pred, id);
-}
+export const sidechainPartition = <A, B>(
+    side: ISubscribable<B>,
+    pred?: Predicate<B>,
+    id?: string
+): Subscription<A, A[]> =>
+    new SidechainPartition<A, B>(side, pred, id);
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
 

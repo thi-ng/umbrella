@@ -29,9 +29,13 @@ import { Subscription } from "../subscription";
  * @param initial initial switch state
  * @param id
  */
-export function sidechainToggle<A, B>(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string): Subscription<A, A> {
-    return new SidechainToggle(side, initial, pred, id);
-}
+export const sidechainToggle = <A, B>(
+    side: ISubscribable<B>,
+    initial = true,
+    pred?: Predicate<B>,
+    id?: string
+): Subscription<A, A> =>
+    new SidechainToggle(side, initial, pred, id);
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
 
