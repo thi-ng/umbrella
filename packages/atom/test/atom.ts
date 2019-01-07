@@ -15,8 +15,8 @@ describe("atom", function () {
     });
 
     it("can be equiv'd", () => {
-        assert(a.equiv(a));
-        assert(!a.equiv(new Atom(23)));
+        assert.ok(a.equiv(a));
+        assert.ok(!a.equiv(new Atom(23)));
     });
 
     it("can be reset", () => {
@@ -30,10 +30,10 @@ describe("atom", function () {
     });
 
     it("can add & remove watch", () => {
-        assert(a.addWatch("foo", () => { }), "can't add watch");
-        assert((<any>a)._watches && (<any>a)._watches.foo, "watch missing");
-        assert(a.removeWatch("foo"), "can't remove watch");
-        assert(!a.removeWatch("foo"), "should fail to remove invalid watch id");
+        assert.ok(a.addWatch("foo", () => { }), "can't add watch");
+        assert.ok((<any>a)._watches && (<any>a)._watches.foo, "watch missing");
+        assert.ok(a.removeWatch("foo"), "can't remove watch");
+        assert.ok(!a.removeWatch("foo"), "should fail to remove invalid watch id");
     });
 
     it("can be watched", () => {

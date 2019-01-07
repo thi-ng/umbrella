@@ -72,19 +72,19 @@ export class Atom<T> implements
 
     // mixin stub
     /* istanbul ignore next */
-    addWatch(id: string, fn: Watch<T>) {
+    addWatch(_: string, __: Watch<T>) {
         return false;
     }
 
     // mixin stub
     /* istanbul ignore next */
-    removeWatch(id: string) {
+    removeWatch(_: string) {
         return false;
     }
 
     // mixin stub
     /* istanbul ignore next */
-    notifyWatches(oldState: T, newState: T) { }
+    notifyWatches(_: T, __: T) { }
 
     addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
         return new View<V>(this, path, tx, lazy);

@@ -1,4 +1,5 @@
 node_modules
+.cache
 .nyc_output
 coverage
 build

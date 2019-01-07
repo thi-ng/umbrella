@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const execSync = require('child_process').execSync;
+
+const roots = process.argv.slice(2);
+
+for (let root of roots) {
+    for (let f of fs.readdirSync(root)) {
+        if (f.endsWith(".js")) {
+            const ff = root + "/" + f;
+            execSync(`terser --module --ecma 6 -c -m -o ${ff} ${ff}`);
+        }
+    }
+}

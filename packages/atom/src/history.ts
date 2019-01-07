@@ -255,14 +255,14 @@ export class History<T> implements
         return true;
     }
 
-    addListener(id: string, fn: (e: Event) => void, scope?: any): boolean {
+    addListener(_: string, __: (e: Event) => void, ___?: any): boolean {
         return false;
     }
 
-    removeListener(id: string, fn: (e: Event) => void, scope?: any): boolean {
+    removeListener(_: string, __: (e: Event) => void, ___?: any): boolean {
         return false;
     }
 
-    notify(event: Event): void {
+    notify(_: Event): void {
     }
 }
