@@ -13,6 +13,7 @@ import { ISubscribable } from "@thi.ng/rstream/api";
 import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { Subscription } from "@thi.ng/rstream/subscription";
+import { nextID } from "@thi.ng/rstream/utils/idgen";
 import { Reducer, Transducer } from "@thi.ng/transducers/api";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { compR } from "@thi.ng/transducers/func/compr";
@@ -22,7 +23,6 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { dedupe } from "@thi.ng/transducers/xform/dedupe";
 import { map } from "@thi.ng/transducers/xform/map";
 import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-
 import {
     BindFn,
     DEBUG,
@@ -251,7 +251,7 @@ export class TripleStore implements
         if (!resolve) {
             illegalArgs("at least 1 query variable is required in pattern");
         }
-        id || (id = `query-${Subscription.NEXT_ID++}`);
+        id || (id = `query-${nextID()}`);
         const query = <Subscription<TripleIds, Triples>>this.addPatternQuery(
             [vs ? null : s, vp ? null : p, vo ? null : o],
             id + "-raw"
