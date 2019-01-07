@@ -192,7 +192,7 @@ export class Mat23 implements
     }
 
     static scaleWithCenter(p: Readonly<Vec2>, sx: number, sy = sx) {
-        return new Mat23(scaleWithCenter23([], p.buf, sx, sy, p.i, p.s));
+        return new Mat23(scaleWithCenter23([], p.buf, sx, sy, 0, p.i, p.s));
     }
 
     static translation(v: Readonly<Vec2>): Mat23;
