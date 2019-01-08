@@ -1,7 +1,7 @@
 import { IID } from "@thi.ng/api";
 import { ISubscribable } from "@thi.ng/rstream";
 
-export const enum Level {
+export enum Level {
     FINE,
     DEBUG,
     INFO,
@@ -13,7 +13,7 @@ export const enum Level {
 /**
  * Reverse lookup for `Level` enums
  */
-export const __Level = (<any>exports).Level;
+// export const __Level = (<any>exports).Level;
 
 export interface LogEntry extends Array<any> {
     [0]: Level;
