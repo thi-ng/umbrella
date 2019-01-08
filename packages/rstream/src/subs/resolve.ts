@@ -1,5 +1,5 @@
 import { IID } from "@thi.ng/api";
-import { __State, DEBUG, State } from "../api";
+import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";
 
@@ -54,7 +54,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                         this.done();
                     }
                 } else {
-                    DEBUG && console.log(`resolved value in ${__State[this.state]} state (${x})`);
+                    DEBUG && console.log(`resolved value in state ${this.state} (${x})`);
                 }
             },
             (e) => {
