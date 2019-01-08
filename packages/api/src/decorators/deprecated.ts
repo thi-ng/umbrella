@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 
 /**
  * Method property decorator factory. Augments original method with
@@ -8,8 +8,8 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  *
  * @param msg deprecation message
  */
-export function deprecated(msg?: string, log = console.log): MethodDecorator {
-    return function (target: any, prop: string | symbol, descriptor: PropertyDescriptor) {
+export const deprecated = (msg?: string, log = console.log): MethodDecorator =>
+    function (target: any, prop: string | symbol, descriptor: PropertyDescriptor) {
         const signature = `${target.constructor.name}#${prop.toString()}`;
         const fn = descriptor.value;
         if (typeof fn !== "function") {
@@ -21,4 +21,3 @@ export function deprecated(msg?: string, log = console.log): MethodDecorator {
         };
         return descriptor;
     };
-}

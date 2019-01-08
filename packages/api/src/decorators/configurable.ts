@@ -4,8 +4,8 @@
  *
  * @param state
  */
-export function configurable(state: boolean): MethodDecorator {
-    return function (_: any, __: string | symbol, descriptor: PropertyDescriptor) {
-        descriptor.configurable = state;
-    };
-}
+export const configurable =
+    (state: boolean): MethodDecorator =>
+        function (_: any, __: string | symbol, descriptor: PropertyDescriptor) {
+            descriptor.configurable = state;
+        };
