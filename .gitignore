@@ -21,4 +21,5 @@ bundle.*
 *.d.ts
 *.bak*
 *.zip
+*.map
 /.gtm/
