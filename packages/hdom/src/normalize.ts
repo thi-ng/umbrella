@@ -1,13 +1,11 @@
-import * as isa from "@thi.ng/checks/is-array";
-import * as insi from "@thi.ng/checks/is-not-string-iterable";
-import * as iso from "@thi.ng/checks/is-plain-object";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup/api";
+import { isArray as isa, isNotStringAndIterable as isi, isPlainObject as iso } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
+import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup";
 import { HDOMOpts } from "./api";
 
-const isArray = isa.isArray;
-const isNotStringAndIterable = insi.isNotStringAndIterable;
-const isPlainObject = iso.isPlainObject;
+const isArray = isa;
+const isNotStringAndIterable = isi;
+const isPlainObject = iso;
 
 /**
  * Expands single hiccup element/component into its canonical form:

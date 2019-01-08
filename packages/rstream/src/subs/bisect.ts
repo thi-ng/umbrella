@@ -1,5 +1,4 @@
-import { Predicate } from "@thi.ng/api/api";
-
+import { Predicate } from "@thi.ng/api";
 import { ISubscriber } from "../api";
 import { PubSub } from "../pubsub";
 

@@ -1,4 +1,4 @@
-import { Predicate } from "@thi.ng/api/api";
+import { Predicate } from "@thi.ng/api";
 import { ISubscribable } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";

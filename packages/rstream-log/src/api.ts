@@ -1,5 +1,5 @@
-import { IID } from "@thi.ng/api/api";
-import { ISubscribable } from "@thi.ng/rstream/api";
+import { IID } from "@thi.ng/api";
+import { ISubscribable } from "@thi.ng/rstream";
 
 export const enum Level {
     FINE,

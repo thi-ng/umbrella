@@ -1,8 +1,8 @@
-import { Fn, IObjectOf } from "@thi.ng/api/api";
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { Path } from "@thi.ng/paths";
 import { ResolveFn } from "@thi.ng/resolve-map";
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { Transducer } from "@thi.ng/transducers/api";
+import { ISubscribable } from "@thi.ng/rstream";
+import { Transducer } from "@thi.ng/transducers";
 
 /**
  * A function which constructs and returns an `ISubscribable` using

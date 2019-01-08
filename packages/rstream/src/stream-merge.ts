@@ -1,5 +1,5 @@
-import { IID } from "@thi.ng/api/api";
-import { Transducer } from "@thi.ng/transducers/api";
+import { IID } from "@thi.ng/api";
+import { Transducer } from "@thi.ng/transducers";
 import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";

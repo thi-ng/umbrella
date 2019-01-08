@@ -1,5 +1,4 @@
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-
+import { mapcat } from "@thi.ng/transducers";
 import { Subscription } from "../subscription";
 import { fromPromise } from "./promise";
 

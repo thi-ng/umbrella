@@ -1,4 +1,4 @@
-import { isNode } from "@thi.ng/checks/is-node";
+import { isNode } from "@thi.ng/checks";
 import { Stream } from "../stream";
 import { nextID } from "../utils/idgen";
 import { fromInterval } from "./interval";

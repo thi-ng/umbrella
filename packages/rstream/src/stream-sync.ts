@@ -1,10 +1,12 @@
-import { IID, IObjectOf } from "@thi.ng/api/api";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { labeled } from "@thi.ng/transducers/xform/labeled";
-import { mapVals } from "@thi.ng/transducers/xform/map-vals";
-import { partitionSync } from "@thi.ng/transducers/xform/partition-sync";
+import { IID, IObjectOf } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
+import {
+    comp,
+    labeled,
+    mapVals,
+    partitionSync,
+    Transducer
+} from "@thi.ng/transducers";
 import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";

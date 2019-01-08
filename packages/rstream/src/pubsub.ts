@@ -1,7 +1,7 @@
-import { Predicate2 } from "@thi.ng/api/api";
-import { EquivMap } from "@thi.ng/associative/equiv-map";
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { Transducer } from "@thi.ng/transducers/api";
+import { Predicate2 } from "@thi.ng/api";
+import { EquivMap } from "@thi.ng/associative";
+import { unsupported } from "@thi.ng/errors";
+import { Transducer } from "@thi.ng/transducers";
 import { DEBUG, ISubscriber } from "./api";
 import { Subscription, subscription } from "./subscription";
 import { nextID } from "./utils/idgen";

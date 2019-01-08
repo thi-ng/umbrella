@@ -1,5 +1,4 @@
-import { Transducer } from "@thi.ng/transducers/api";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map, Transducer } from "@thi.ng/transducers";
 import {
     __Level,
     BodyFormat,

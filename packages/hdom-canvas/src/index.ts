@@ -1,11 +1,12 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
-import { DiffMode } from "@thi.ng/diff/api";
-import { diffArray } from "@thi.ng/diff/array";
-import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
-import { equiv, releaseTree } from "@thi.ng/hdom/diff";
+import { IObjectOf } from "@thi.ng/api";
+import { isArray, isArrayLike, isNotStringAndIterable } from "@thi.ng/checks";
+import { diffArray, DiffMode } from "@thi.ng/diff";
+import {
+    equiv,
+    HDOMImplementation,
+    HDOMOpts,
+    releaseTree
+} from "@thi.ng/hdom";
 
 interface DrawState {
     attribs: IObjectOf<any>;

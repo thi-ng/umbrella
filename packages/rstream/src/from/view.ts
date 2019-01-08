@@ -1,6 +1,6 @@
-import { Predicate2 } from "@thi.ng/api/api";
-import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom/api";
-import { View } from "@thi.ng/atom/view";
+import { Predicate2 } from "@thi.ng/api";
+import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom";
+import { View } from "@thi.ng/atom";
 import { Path } from "@thi.ng/paths";
 import { Stream } from "../stream";
 import { nextID } from "../utils/idgen";

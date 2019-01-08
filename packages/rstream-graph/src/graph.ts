@@ -1,17 +1,17 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { IAtom } from "@thi.ng/atom/api";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { IObjectOf } from "@thi.ng/api";
+import { IAtom } from "@thi.ng/atom";
+import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import { getIn } from "@thi.ng/paths";
 import { absPath, resolve, ResolveFn } from "@thi.ng/resolve-map";
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
-import { fromView } from "@thi.ng/rstream/from/view";
-import { StreamSync, sync } from "@thi.ng/rstream/stream-sync";
-import { Transducer } from "@thi.ng/transducers/api";
-import { map } from "@thi.ng/transducers/xform/map";
+import {
+    fromIterableSync,
+    fromView,
+    ISubscribable,
+    StreamSync,
+    sync
+} from "@thi.ng/rstream";
+import { map, Transducer } from "@thi.ng/transducers";
 import {
     Graph,
     GraphSpec,

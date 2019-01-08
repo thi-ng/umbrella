@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import { IObjectOf } from "@thi.ng/api";
+import { map } from "@thi.ng/transducers";
 import { NodeFactory } from "../api";
 import { node } from "../graph";
 

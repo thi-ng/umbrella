@@ -4,10 +4,16 @@ const rollup = require("rollup");
 const terser = require("terser");
 const gz = require("gzip-size");
 
+const camelCase =
+    (x) => x.replace(/\-+(\w)/g, (_, c) => c.toUpperCase());
+
+const size =
+    (x) => (x / 1024).toFixed(2) + "KB";
+
 const name = process.argv[2];
 
 const deps = process.argv.slice(3).reduce(
-    (acc, x) => (acc[`@thi.ng/${x}`] = `thi.ng.${x}`, acc),
+    (acc, x) => (acc[`@thi.ng/${x}`] = `thi.ng.${camelCase(x)}`, acc),
     {}
 );
 
@@ -22,8 +28,6 @@ const terserOpts = {
     ecma: 6
 };
 
-const size = (x) => (x / 1024).toFixed(2) + "KB";
-
 const buildVersion = async (dest, outOpts) => {
     console.log(`bundling (${outOpts.format}): ${dest}`);
     const bundle = await rollup.rollup(inOpts);
@@ -33,11 +37,9 @@ const buildVersion = async (dest, outOpts) => {
     console.log(`\tsize: ${size(terserOut.code.length)} / gzipped: ${size(gz.sync(terserOut.code))}`);
 };
 
-if (!fs.existsSync("lib")) {
-    fs.mkdirSync("lib");
-}
-
 const build = async () => {
+
+    !fs.existsSync("lib") && fs.mkdirSync("lib");
 
     await buildVersion(
         "lib/index.js",

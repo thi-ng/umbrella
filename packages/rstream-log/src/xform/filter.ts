@@ -1,7 +1,6 @@
-import { isString } from "@thi.ng/checks/is-string";
-import { Transducer } from "@thi.ng/transducers/api";
-import { filter } from "@thi.ng/transducers/xform/filter";
-
+import { isString } from "@thi.ng/checks";
+import { Transducer } from "@thi.ng/transducers";
+import { filter } from "@thi.ng/transducers";
 import { Level, LogEntry } from "../api";
 
 export const onlyLevel =

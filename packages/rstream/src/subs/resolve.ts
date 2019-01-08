@@ -1,4 +1,4 @@
-import { IID } from "@thi.ng/api/api";
+import { IID } from "@thi.ng/api";
 import { __State, DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";

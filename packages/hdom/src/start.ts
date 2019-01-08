@@ -1,4 +1,4 @@
-import { derefContext } from "@thi.ng/hiccup/deref";
+import { derefContext } from "@thi.ng/hiccup";
 import { HDOMImplementation, HDOMOpts } from "./api";
 import { DEFAULT_IMPL } from "./default";
 import { resolveRoot } from "./utils";

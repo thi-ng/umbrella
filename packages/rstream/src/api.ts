@@ -1,6 +1,5 @@
-import { IDeref, IID } from "@thi.ng/api/api";
-import { Transducer } from "@thi.ng/transducers/api";
-
+import { IDeref, IID } from "@thi.ng/api";
+import { Transducer } from "@thi.ng/transducers";
 import { Stream } from "./stream";
 import { Subscription } from "./subscription";
 

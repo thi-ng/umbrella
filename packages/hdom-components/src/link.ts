@@ -1,4 +1,4 @@
-import { isString } from "@thi.ng/checks/is-string";
+import { isString } from "@thi.ng/checks";
 
 export const link = (attribs: any, body: any) =>
     ["a", isString(attribs) ? { href: attribs } : attribs, body];

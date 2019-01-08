@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
-import { ButtonArgs, Button } from "./button";
+import { IObjectOf } from "@thi.ng/api";
+import { Button, ButtonArgs } from "./button";
 import { mergeAttribs } from "./utils/merge-attribs";
 
 /**

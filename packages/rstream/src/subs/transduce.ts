@@ -1,6 +1,5 @@
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { isReduced } from "@thi.ng/transducers/reduced";
-
+import { Reducer, Transducer } from "@thi.ng/transducers";
+import { isReduced } from "@thi.ng/transducers";
 import { Subscription } from "../subscription";
 
 /**
