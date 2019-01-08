@@ -16,7 +16,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/hdom": "latest"
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/paths": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

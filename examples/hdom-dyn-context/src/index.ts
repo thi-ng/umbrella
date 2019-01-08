@@ -1,5 +1,5 @@
-import { Atom } from "@thi.ng/atom/atom";
-import { start } from "@thi.ng/hdom/start";
+import { Atom } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
 
 // theme definitions
 const THEMES = [

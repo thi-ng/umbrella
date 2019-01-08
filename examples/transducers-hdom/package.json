@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [

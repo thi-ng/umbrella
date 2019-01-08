@@ -1,10 +1,11 @@
-import { comp } from "@thi.ng/transducers/func/comp";
-import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { partitionBy } from "@thi.ng/transducers/xform/partition-by";
-
+import {
+    comp,
+    iterator,
+    map,
+    mapIndexed,
+    partitionBy,
+    repeat
+} from "@thi.ng/transducers";
 import { AppContext, Commit } from "../api";
 import { commitLink } from "./commit-link";
 import { table } from "./table";

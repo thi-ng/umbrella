@@ -1,7 +1,5 @@
-import { map } from "@thi.ng/transducers/xform/map";
-
+import { map, mapcat } from "@thi.ng/transducers";
 import { AppContext } from "../api";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 
 const thead = (ctx: AppContext, head: Iterable<any>) =>
     ["thead",

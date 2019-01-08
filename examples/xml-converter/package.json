@@ -16,9 +16,12 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
+        "@thi.ng/checks": "latest",
+        "@thi.ng/defmulti": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/sax": "latest",
         "@thi.ng/strings": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest",
         "commander": "^2.18.0"
     },

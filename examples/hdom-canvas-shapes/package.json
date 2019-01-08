@@ -21,7 +21,8 @@
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/transducers-hdom": "latest",
+        "@thi.ng/vectors": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

@@ -12,7 +12,9 @@
         "start": "yarn prep && parcel index.html -p 8080 --open -d out"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
+        "@thi.ng/checks": "latest",
         "@thi.ng/interceptors": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/router": "latest"

@@ -17,7 +17,10 @@
     "dependencies": {
         "@thi.ng/compose": "latest",
         "@thi.ng/geom": "latest",
-        "@thi.ng/hdom-canvas": "latest"
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/vectors": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

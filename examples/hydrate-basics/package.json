@@ -15,7 +15,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
+        "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/hiccup": "latest"

@@ -1,8 +1,7 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { IView, ViewTransform } from "@thi.ng/atom/api";
-import { EffectDef, EventDef } from "@thi.ng/interceptors/api";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { HTMLRouterConfig, RouteMatch } from "@thi.ng/router/api";
+import { IObjectOf } from "@thi.ng/api";
+import { IView, ViewTransform } from "@thi.ng/atom";
+import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
+import { HTMLRouterConfig, RouteMatch } from "@thi.ng/router";
 
 // general types defined for the base app
 

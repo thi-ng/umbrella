@@ -16,7 +16,12 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
+        "@thi.ng/atom": "latest",
+        "@thi.ng/checks": "latest",
+        "@thi.ng/compare": "latest",
         "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/paths": "latest",
         "@thi.ng/rstream-query": "latest",
         "@thi.ng/transducers": "latest"
     },

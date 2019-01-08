@@ -17,7 +17,6 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/interceptors": "latest"
     },

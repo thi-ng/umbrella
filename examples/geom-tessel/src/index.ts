@@ -1,14 +1,19 @@
-import { partial } from "@thi.ng/compose/partial";
-import { IArcLength, ICentroid, Tessellator } from "@thi.ng/geom/api";
-import { circle2 } from "@thi.ng/geom/circle2";
-import { polygon2, Polygon2 } from "@thi.ng/geom/polygon2";
-import { edgeSplit, quadFan, triFan } from "@thi.ng/geom/tessellate";
+import { partial } from "@thi.ng/compose";
+import {
+    circle2,
+    edgeSplit,
+    IArcLength,
+    ICentroid,
+    polygon2,
+    Polygon2,
+    quadFan,
+    Tessellator,
+    triFan
+} from "@thi.ng/geom";
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { deg } from "@thi.ng/math/angle";
-import { TAU } from "@thi.ng/math/api";
-import { fit01 } from "@thi.ng/math/fit";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { deg, fit01, TAU } from "@thi.ng/math";
+import { Vec2 } from "@thi.ng/vectors";
 
 type Tint = (p: Polygon2) => string;
 

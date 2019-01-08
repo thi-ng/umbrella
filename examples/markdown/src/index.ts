@@ -1,13 +1,12 @@
 import { timedResult } from "@thi.ng/bench";
-import { TagFactories } from "@thi.ng/hiccup-markdown/api";
-import { parse } from "@thi.ng/hiccup-markdown/parse";
-import { stream, Stream } from "@thi.ng/rstream/stream";
+import { TagFactories, parse } from "@thi.ng/hiccup-markdown";
+import { stream, Stream } from "@thi.ng/rstream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/xform/map";
+import { iterator, map } from "@thi.ng/transducers";
 
 // ignore error, resolved by parcel
 import readme from "../README.md";
+// const readme = "README.af35c500.md"
 
 // custom tag factories (passed to parser)
 // uses Tachyons CSS classes for styling

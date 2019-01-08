@@ -1,9 +1,8 @@
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { range } from "@thi.ng/transducers/iter/range";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { HALF_PI, TAU } from "@thi.ng/math/api";
-import { toCartesian2 } from "@thi.ng/vectors/vec2";
+import { HALF_PI, TAU } from "@thi.ng/math";
+import { mapcat, range } from "@thi.ng/transducers";
+import { toCartesian2 } from "@thi.ng/vectors";
 
 const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 

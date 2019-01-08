@@ -1,10 +1,7 @@
-import { stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { percent } from "@thi.ng/strings/percent";
+import { stream, sync } from "@thi.ng/rstream";
+import { percent } from "@thi.ng/strings";
+import { comp, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { map } from "@thi.ng/transducers/xform/map";
-
 import { dial } from "./dial";
 
 // hdom context & app state object

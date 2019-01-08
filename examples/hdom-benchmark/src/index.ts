@@ -1,15 +1,16 @@
 import { start } from "@thi.ng/hdom";
-import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
-import { Stream } from "@thi.ng/rstream/stream";
-import { radix } from "@thi.ng/strings/radix";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { benchmark } from "@thi.ng/transducers/xform/benchmark";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { movingAverage } from "@thi.ng/transducers/xform/moving-average";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import { dropdown } from "@thi.ng/hdom-components";
+import { fromRAF, Stream } from "@thi.ng/rstream";
+import { radix } from "@thi.ng/strings";
+import {
+    benchmark,
+    comp,
+    map,
+    mapIndexed,
+    movingAverage,
+    partition,
+    range
+} from "@thi.ng/transducers";
 
 // pre-defined hex formatters
 const hex4 = radix(16, 4);

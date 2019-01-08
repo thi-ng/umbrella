@@ -15,9 +15,10 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
+        "@thi.ng/hdom": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/strings": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },

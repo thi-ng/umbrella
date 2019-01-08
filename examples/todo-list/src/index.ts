@@ -1,9 +1,8 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 import { Atom, Cursor, History } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom/start";
+import { start } from "@thi.ng/hdom";
 import { setIn, updateIn } from "@thi.ng/paths";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map, pairs } from "@thi.ng/transducers";
 
 interface Task {
     done: boolean;

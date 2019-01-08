@@ -1,11 +1,8 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { Cursor } from "@thi.ng/atom/cursor";
-import { History } from "@thi.ng/atom/history";
-import { isArray } from "@thi.ng/checks/is-array";
-import { start } from "@thi.ng/hdom/start";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-
+import { IObjectOf } from "@thi.ng/api";
+import { Atom, Cursor, History } from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
+import { start } from "@thi.ng/hdom";
+import { EventBus } from "@thi.ng/interceptors";
 import {
     AppConfig,
     AppContext,

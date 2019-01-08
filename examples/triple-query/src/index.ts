@@ -8,5 +8,3 @@ if (process.env.NODE_ENV == "development") {
 } else {
     new App(CONFIG).start();
 }
-
-window["equiv"] = require("@thi.ng/equiv").equiv;
