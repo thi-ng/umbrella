@@ -1,10 +1,14 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { EPS } from "@thi.ng/math/api";
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { max4id, min4id } from "@thi.ng/math/interval";
-import { mixBilinear } from "@thi.ng/math/mix";
-import { fract } from "@thi.ng/math/prec";
-import { smoothStep, step } from "@thi.ng/math/step";
+import { isArrayLike } from "@thi.ng/checks";
+import {
+    EPS,
+    eqDelta,
+    fract,
+    max4id,
+    min4id,
+    mixBilinear,
+    smoothStep,
+    step
+} from "@thi.ng/math";
 import {
     IVec,
     IVector,

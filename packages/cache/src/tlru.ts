@@ -1,5 +1,4 @@
 import { ConsCell, DCons } from "@thi.ng/dcons";
-
 import { CacheEntry, CacheOpts } from "./api";
 import { LRUCache } from "./lru";
 

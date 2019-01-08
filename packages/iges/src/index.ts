@@ -1,16 +1,16 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { float } from "@thi.ng/strings/float";
-import { padLeft } from "@thi.ng/strings/pad-left";
-import { padRight } from "@thi.ng/strings/pad-right";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { wrap } from "@thi.ng/transducers/iter/wrap";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { wordWrap } from "@thi.ng/transducers/xform/word-wrap";
+import { float, padLeft, padRight } from "@thi.ng/strings";
+import {
+    comp,
+    map,
+    mapcat,
+    mapIndexed,
+    partition,
+    push,
+    transduce,
+    wordWrap,
+    wrap
+} from "@thi.ng/transducers";
 import {
     DEFAULT_GLOBALS,
     DictEntry,

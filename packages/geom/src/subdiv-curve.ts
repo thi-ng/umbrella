@@ -1,10 +1,12 @@
-import { comp } from "@thi.ng/transducers/func/comp";
-import { wrap } from "@thi.ng/transducers/iter/wrap";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { indexed } from "@thi.ng/transducers/xform/indexed";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import {
+    comp,
+    indexed,
+    mapcat,
+    partition,
+    push,
+    transduce,
+    wrap
+} from "@thi.ng/transducers";
 import { IVector } from "@thi.ng/vectors/api";
 import { SubdivKernel } from "./api";
 
@@ -21,7 +23,7 @@ const madd3 =
 const madd5 =
     <T extends IVector<T>>
         (a: Readonly<T>, b: Readonly<T>, c: Readonly<T>, d: Readonly<T>, e: Readonly<T>,
-        ua: number, ub: number, uc: number, ud: number, ue: number) =>
+            ua: number, ub: number, uc: number, ud: number, ue: number) =>
         a.mulNewN(ua).maddN(b, ub).maddN(c, uc).maddN(d, ud).maddN(e, ue);
 
 export const subdivKernel2 =

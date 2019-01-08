@@ -1,12 +1,12 @@
 import {
+    ICompare,
     ICopy,
+    IEmpty,
     IEqualsDelta,
     IEquiv,
-    NumericArray,
-    IEmpty,
     ILength,
-    ICompare
-} from "@thi.ng/api/api";
+    NumericArray
+} from "@thi.ng/api";
 
 export type Vec = NumericArray;
 export type ReadonlyVec = ArrayLike<number> & Iterable<number>;

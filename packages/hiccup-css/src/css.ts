@@ -1,8 +1,10 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isIterable } from "@thi.ng/checks/is-iterable";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { isString } from "@thi.ng/checks/is-string";
+import {
+    isArray,
+    isFunction,
+    isIterable,
+    isPlainObject,
+    isString
+} from "@thi.ng/checks";
 import { COMPACT, CSSOpts, DEFAULT_VENDORS } from "./api";
 import { expand, formatDecls } from "./impl";
 

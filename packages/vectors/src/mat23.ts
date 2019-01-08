@@ -1,6 +1,6 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { EPS } from "@thi.ng/math/api";
+import { ICopy, IEqualsDelta } from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
+import { EPS } from "@thi.ng/math";
 import {
     Mat,
     ReadonlyMat,

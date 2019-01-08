@@ -1,5 +1,4 @@
-import { IObjectOf, Pair } from "@thi.ng/api/api";
-
+import { IObjectOf, Pair } from "@thi.ng/api";
 import { Reducer } from "../api";
 import { reduce, reducer } from "../reduce";
 

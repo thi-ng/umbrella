@@ -1,4 +1,11 @@
-import * as api from "@thi.ng/api/api";
+import {
+    IDeref,
+    IID,
+    INotify,
+    IRelease,
+    IWatch,
+    Predicate
+} from "@thi.ng/api";
 import { Path } from "@thi.ng/paths";
 
 export type SwapFn<T> = (curr: T, ...args: any[]) => T;
@@ -6,9 +13,9 @@ export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 export type ViewTransform<T> = (x: any) => T;
 
 export interface ReadonlyAtom<T> extends
-    api.IDeref<T>,
-    api.IRelease,
-    api.IWatch<T>,
+    IDeref<T>,
+    IRelease,
+    IWatch<T>,
     IViewable {
 }
 
@@ -29,9 +36,9 @@ export interface ISwap<T> {
 }
 
 export interface IView<T> extends
-    api.IDeref<T>,
-    api.IID<string>,
-    api.IRelease {
+    IDeref<T>,
+    IID<string>,
+    IRelease {
 
     readonly path: PropertyKey[];
     readonly value: T;
@@ -47,13 +54,13 @@ export interface IViewable {
 export interface CursorOpts<T> {
     parent: IAtom<any>;
     path: Path | [(s: any) => T, (s: any, v: T) => any];
-    validate?: api.Predicate<T>;
+    validate?: Predicate<T>;
     id?: string;
 }
 
 export interface IHistory<T> extends
     IAtom<T>,
-    api.INotify {
+    INotify {
 
     canUndo(): boolean;
     canRedo(): boolean;

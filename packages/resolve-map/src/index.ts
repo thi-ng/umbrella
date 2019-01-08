@@ -1,9 +1,11 @@
-import { SEMAPHORE } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { SEMAPHORE } from "@thi.ng/api";
+import {
+    isArray,
+    isFunction,
+    isPlainObject,
+    isString
+} from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import { exists, getIn, mutIn } from "@thi.ng/paths";
 
 const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,:]+)\}/

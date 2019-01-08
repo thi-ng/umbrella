@@ -1,5 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { commonKeysObj } from "./common-keys";
 import { indexed } from "./indexed";
 import { invertObj } from "./invert";

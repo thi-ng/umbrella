@@ -1,13 +1,15 @@
-import { alts } from "@thi.ng/fsm/alts";
-import { ResultBody } from "@thi.ng/fsm/api";
-import { fsm } from "@thi.ng/fsm/fsm";
-import { not } from "@thi.ng/fsm/not";
-import { whitespace } from "@thi.ng/fsm/range";
-import { repeat } from "@thi.ng/fsm/repeat";
-import { seq } from "@thi.ng/fsm/seq";
-import { str } from "@thi.ng/fsm/str";
-import { until } from "@thi.ng/fsm/until";
-import { peek } from "@thi.ng/transducers/func/peek";
+import {
+    alts,
+    fsm,
+    not,
+    repeat,
+    ResultBody,
+    seq,
+    str,
+    until,
+    whitespace
+} from "@thi.ng/fsm";
+import { peek } from "@thi.ng/transducers";
 import { TagFactories } from "./api";
 
 type ParseResult = ResultBody<any[]>;

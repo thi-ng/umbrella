@@ -1,16 +1,14 @@
-import { IToHiccup } from "@thi.ng/api/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { PI, TAU } from "@thi.ng/math/api";
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
+import { IToHiccup } from "@thi.ng/api";
+import { isArrayLike, isNumber, isPlainObject } from "@thi.ng/checks";
+import { eqDelta, PI, TAU } from "@thi.ng/math";
 import {
     asVec2,
+    ReadonlyVec,
     setS2,
     toCartesian2,
+    Vec,
     Vec2
-} from "@thi.ng/vectors/vec2";
+} from "@thi.ng/vectors";
 import {
     Attribs,
     DEFAULT_SAMPLES,

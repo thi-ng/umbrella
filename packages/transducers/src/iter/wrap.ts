@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 import { ensureArray } from "../func/ensure-array";
 
 /**

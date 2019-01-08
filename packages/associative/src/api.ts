@@ -4,7 +4,7 @@ import {
     IEmpty,
     IEquiv,
     Predicate2
-} from "@thi.ng/api/api";
+} from "@thi.ng/api";
 
 export interface IEquivSet<T> extends
     Set<T>,

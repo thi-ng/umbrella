@@ -1,8 +1,11 @@
-import { IEquiv, Predicate, Watch } from "@thi.ng/api/api";
-import { IWatch } from "@thi.ng/api/mixins/iwatch";
-import { illegalState } from "@thi.ng/errors/illegal-state";
+import {
+    IEquiv,
+    IWatchMixin,
+    Predicate,
+    Watch
+} from "@thi.ng/api";
+import { illegalState } from "@thi.ng/errors";
 import { Path, setIn, updateIn } from "@thi.ng/paths";
-
 import {
     IAtom,
     IView,
@@ -11,11 +14,12 @@ import {
 } from "./api";
 import { View } from "./view";
 
+
 /**
  * Mutable wrapper for an (usually) immutable value. Support for
  * watches.
  */
-@IWatch
+@IWatchMixin
 export class Atom<T> implements
     IAtom<T>,
     IEquiv {

@@ -2,8 +2,7 @@
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../build",
-        "module": "es6",
-        "target": "es6"
+        "module": "commonjs",
     },
     "include": [
         "./**/*.ts",

@@ -1,7 +1,10 @@
-import { HALF_PI, TAU } from "@thi.ng/math/api";
-import { mix as _mix } from "@thi.ng/math/mix";
-import { wrap01 } from "@thi.ng/math/interval";
-import { fract } from "@thi.ng/math/prec";
+import {
+    fract,
+    HALF_PI,
+    mix as _mix,
+    TAU,
+    wrap01
+} from "@thi.ng/math";
 import { StatelessOscillator } from "./api";
 
 export class Oscillator implements

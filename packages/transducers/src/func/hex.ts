@@ -1,5 +1,4 @@
-import { Stringer } from "@thi.ng/strings/api";
-import { radix } from "@thi.ng/strings/radix";
+import { radix, Stringer } from "@thi.ng/strings";
 
 /**
  * @deprecated use thi.ng/strings `radix()` instead

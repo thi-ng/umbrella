@@ -1,6 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
-import { PI, TAU, HALF_PI } from "@thi.ng/math/api";
-import { eqDelta2array, vec2 } from "@thi.ng/vectors/vec2";
+import { HALF_PI, PI, TAU } from "@thi.ng/math";
+import { eqDelta2array, vec2 } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { circle2, Circle2, HiccupCircle2 } from "../src";
 

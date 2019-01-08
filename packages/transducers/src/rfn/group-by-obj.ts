@@ -1,8 +1,7 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { GroupByOpts, Reducer } from "../api";
 import { identity } from "../func/identity";
-import { reducer, $$reduce } from "../reduce";
+import { $$reduce, reducer } from "../reduce";
 import { push } from "./push";
 
 export function groupByObj<SRC, GROUP>(opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>): Reducer<IObjectOf<GROUP>, SRC>;

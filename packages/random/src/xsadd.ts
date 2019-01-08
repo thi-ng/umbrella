@@ -1,4 +1,4 @@
-import { IBuffered, ICopy } from "@thi.ng/api/api";
+import { IBuffered, ICopy } from "@thi.ng/api";
 import { ARandom, ISeedable } from "./api";
 
 // https://github.com/MersenneTwister-Lab/XSadd/blob/master/xsadd.h

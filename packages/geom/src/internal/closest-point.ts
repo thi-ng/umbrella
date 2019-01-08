@@ -1,4 +1,4 @@
-import { IVector } from "@thi.ng/vectors/api";
+import { IVector } from "@thi.ng/vectors";
 
 export const closestPoint =
     <T extends IVector<T>>(p: T, pts: T[]) => {

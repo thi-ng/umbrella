@@ -1,5 +1,4 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isArray, isArrayLike } from "@thi.ng/checks";
 import { ensureIterable } from "./ensure-iterable";
 
 /**

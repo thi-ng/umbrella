@@ -1,5 +1,4 @@
 import { DCons } from "@thi.ng/dcons";
-
 import { iterator } from "./iterator";
 
 export const fork =

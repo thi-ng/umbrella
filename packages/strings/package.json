@@ -2,7 +2,9 @@
     "name": "@thi.ng/strings",
     "version": "0.7.1",
     "description": "Various string formatting & utility functions",
-    "main": "./index.js",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -12,12 +14,14 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module strings errors memoize",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public",
-        "test": "rimraf build && tsc -p test && nyc mocha build/test/*.js"
+        "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
@@ -32,16 +36,28 @@
         "@thi.ng/memoize": "^0.2.6"
     },
     "keywords": [
+        "composition",
         "ES6",
+        "camelcase",
+        "center",
+        "float",
         "format",
         "functional",
+        "hex",
         "higher order",
-        "padding",
+        "kebabcase",
         "number",
+        "padding",
+        "percent",
+        "radix",
+        "slugify",
+        "snakecase",
         "string",
-        "typescript"
+        "typescript",
+        "wordwrap"
     ],
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "sideEffects": false
 }

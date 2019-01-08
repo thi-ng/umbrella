@@ -1,11 +1,8 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { compL } from "@thi.ng/compose/comp";
+import { IObjectOf } from "@thi.ng/api";
+import { isArray, isFunction, isPlainObject } from "@thi.ng/checks";
+import { compL } from "@thi.ng/compose";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalState } from "@thi.ng/errors/illegal-state";
+import { illegalArgs, illegalState } from "@thi.ng/errors";
 import {
     Stack,
     StackContext,
@@ -14,7 +11,6 @@ import {
     StackProc,
     StackProgram
 } from "./api";
-
 
 let SAFE = true;
 

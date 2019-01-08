@@ -1,8 +1,7 @@
-import * as assert from "assert";
+import { isNumber } from "@thi.ng/checks";
 import { getIn } from "@thi.ng/paths";
-
+import * as assert from "assert";
 import { Atom, Cursor } from "../src/index";
-import { isNumber } from "@thi.ng/checks/is-number";
 
 describe("cursor", function () {
 

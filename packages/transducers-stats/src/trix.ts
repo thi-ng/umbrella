@@ -1,7 +1,4 @@
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { iterator1 } from "@thi.ng/transducers/iterator";
-
+import { comp, iterator1, Transducer } from "@thi.ng/transducers";
 import { ema } from "./ema";
 import { roc } from "./roc";
 

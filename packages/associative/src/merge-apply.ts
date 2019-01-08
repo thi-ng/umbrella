@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isFunction } from "@thi.ng/checks/is-function";
-
+import { IObjectOf } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks";
 import { copy } from "./utils";
 
 /**

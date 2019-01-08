@@ -1,29 +1,30 @@
 import { ICopy } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { sincos } from "@thi.ng/math/angle";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
 import {
     EPS,
     HALF_PI,
+    inRange,
+    mix,
     PI,
+    roundEps,
+    sincos,
     TAU
-} from "@thi.ng/math/api";
-import { inRange } from "@thi.ng/math/interval";
-import { mix } from "@thi.ng/math/mix";
-import { roundEps } from "@thi.ng/math/prec";
-import { range } from "@thi.ng/transducers/iter/range";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { Vec } from "@thi.ng/vectors/api";
+} from "@thi.ng/math";
+import {
+    filter,
+    map,
+    push,
+    range,
+    transduce
+} from "@thi.ng/transducers";
 import {
     add2,
     asVec2,
     rotate2,
     setS2,
+    Vec,
     Vec2
-} from "@thi.ng/vectors/vec2";
+} from "@thi.ng/vectors";
 import {
     Attribs,
     DEFAULT_SAMPLES,

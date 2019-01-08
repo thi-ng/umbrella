@@ -1,5 +1,4 @@
-import { Predicate } from "@thi.ng/api/api";
-
+import { Predicate } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
 export const every =

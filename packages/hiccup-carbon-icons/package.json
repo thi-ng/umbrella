@@ -2,7 +2,9 @@
     "name": "@thi.ng/hiccup-carbon-icons",
     "version": "0.1.2",
     "description": "TODO",
-    "main": "./index.js",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -12,12 +14,14 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module hiccupCarbonIcons",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public",
-        "test": "rimraf build && tsc -p test && nyc mocha build/test/*.js"
+        "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
         "@thi.ng/hiccup": "^2.7.2",
@@ -29,10 +33,19 @@
         "typescript": "^3.2.2"
     },
     "keywords": [
+        "assets",
+        "carbon",
         "ES6",
-        "typescript"
+        "hdom",
+        "hiccup",
+        "IBM",
+        "icons",
+        "svg",
+        "typescript",
+        "UI"
     ],
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "sideEffects": false
 }

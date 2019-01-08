@@ -4,6 +4,7 @@
     "description": "Custom error types and helper fns.",
     "module": "./index.js",
     "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -13,13 +14,11 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && yarn build:parcel && yarn build:parcel:min",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:parcel:min": "parcel build --global thing_errors -o index.min.js -d lib --experimental-scope-hoisting src/index.ts",
-        "build:parcel": "parcel build --global thing_errors -d lib --no-minify --experimental-scope-hoisting src/index.ts && prettier --write lib/index.js",
-        "build:gzip": "gzip -c lib/index.min.js > lib/index.min.js.gz",
-        "clean": "rimraf *.js *.d.ts .cache .nyc_output build coverage doc lib",
-        "test": "rimraf build && parcel build -d build --no-cache --no-minify --no-source-maps test/index.ts && nyc mocha build/index.js",
+        "build:bundle": "../../scripts/bundle-module errors",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public"
@@ -46,5 +45,6 @@
     "browser": {
         "process": false,
         "setTimeout": false
-    }
+    },
+    "sideEffects": false
 }

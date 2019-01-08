@@ -1,1 +1,1 @@
-export * from "@thi.ng/compose/juxt";
+export { juxt } from "@thi.ng/compose";

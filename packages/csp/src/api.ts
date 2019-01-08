@@ -1,5 +1,4 @@
-import { IID, ILength, IRelease } from "@thi.ng/api/api";
-
+import { IID, ILength, IRelease } from "@thi.ng/api";
 import { Channel } from "./channel";
 
 export const enum State {

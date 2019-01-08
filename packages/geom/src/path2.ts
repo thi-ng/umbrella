@@ -1,10 +1,12 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { rad } from "@thi.ng/math/angle";
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
-import { peek } from "@thi.ng/transducers/func/peek";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { implementsFunction, isNumber } from "@thi.ng/checks";
+import { eqDelta, rad } from "@thi.ng/math";
+import {
+    ensureArray,
+    map,
+    mapcat,
+    peek
+} from "@thi.ng/transducers";
+import { Vec2 } from "@thi.ng/vectors";
 import {
     Attribs,
     IBounds,
@@ -22,8 +24,6 @@ import { Polygon2 } from "./polygon2";
 import { Polyline2 } from "./polyline2";
 import { Rect2 } from "./rect2";
 import { simplifyPolyline } from "./internal/douglas–peucker";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { map } from "@thi.ng/transducers/xform/map";
 
 export class Path2 implements
     Iterable<PathSegment>,

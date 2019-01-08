@@ -1,5 +1,4 @@
-import { isFunction } from "@thi.ng/checks/is-function";
-
+import { isFunction } from "@thi.ng/checks";
 import { TransformSpec } from "../api";
 
 /**

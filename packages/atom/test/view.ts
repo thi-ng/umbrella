@@ -1,7 +1,5 @@
-import * as assert from "assert";
-
 import { setIn, updateIn } from "@thi.ng/paths";
-
+import * as assert from "assert";
 import { IView } from "../src/api";
 import { Atom } from "../src/atom";
 import { Cursor } from "../src/cursor";

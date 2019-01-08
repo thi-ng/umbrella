@@ -1,5 +1,4 @@
-import { Mat23 } from "@thi.ng/vectors/mat23";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { Mat23, Vec2 } from "@thi.ng/vectors";
 import {
     Attribs,
     CollateOpts,

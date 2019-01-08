@@ -1,10 +1,12 @@
 import { ICopy } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { clamp01 } from "@thi.ng/math/interval";
-import { mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math/mix";
-import { IMath, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { clamp01, mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math";
+import {
+    IMath,
+    ReadonlyVec,
+    Vec,
+    Vec2
+} from "@thi.ng/vectors";
 import {
     Attribs,
     DEFAULT_SAMPLES,

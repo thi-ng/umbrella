@@ -1,6 +1,5 @@
 import { ICopy } from "@thi.ng/api";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { ReadonlyVec, Vec, Vec2 } from "@thi.ng/vectors";
 import {
     Attribs,
     IArcLength,

@@ -1,4 +1,4 @@
-import { Comparator, Fn } from "@thi.ng/api/api";
+import { Comparator, Fn } from "@thi.ng/api";
 
 /**
  * Returns the supposed index of `x` in pre-sorted array-like collection

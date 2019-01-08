@@ -1,4 +1,4 @@
-import { SVG_NS, XLINK_NS } from "@thi.ng/hiccup/api";
+import { SVG_NS, XLINK_NS } from "@thi.ng/hiccup";
 
 /**
  * Defines an <svg> root element with default XML namespaces. By default
@@ -8,10 +8,11 @@ import { SVG_NS, XLINK_NS } from "@thi.ng/hiccup/api";
  * @param attribs
  * @param body
  */
-export const svg = (attribs: any, ...body: any[]): any[] =>
-    ["svg", {
-        version: "1.1",
-        xmlns: SVG_NS,
-        "xmlns:xlink": XLINK_NS,
-        ...attribs
-    }, ...body];
+export const svg =
+    (attribs: any, ...body: any[]): any[] =>
+        ["svg", {
+            version: "1.1",
+            xmlns: SVG_NS,
+            "xmlns:xlink": XLINK_NS,
+            ...attribs
+        }, ...body];

@@ -1,8 +1,6 @@
-import { IID, IRelease, Watch } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { IID, IRelease, Watch } from "@thi.ng/api";
+import { isArray, isFunction } from "@thi.ng/checks";
+import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import { getter, Path, setter } from "@thi.ng/paths";
 import {
     CursorOpts,

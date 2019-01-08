@@ -1,4 +1,4 @@
-import { ICopy } from "@thi.ng/api/api";
+import { ICopy } from "@thi.ng/api";
 
 export interface IRandom {
     int(): number;

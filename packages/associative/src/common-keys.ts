@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 
 /**
  * Like `commonKeysObj()`, but for ES6 Maps.

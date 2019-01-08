@@ -1,5 +1,5 @@
-import { EPS } from "@thi.ng/math/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { EPS } from "@thi.ng/math";
+import { Vec2 } from "@thi.ng/vectors";
 
 // https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
 // https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c
