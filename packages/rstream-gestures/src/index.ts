@@ -13,7 +13,7 @@ export const enum GestureType {
 /**
  * Reverse lookup for `GestureType` enums
  */
-export const __GestureType = (<any>exports).GestureType;
+// export const __GestureType = (<any>exports).GestureType;
 
 export interface GestureInfo {
     pos: number[];
