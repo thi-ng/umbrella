@@ -10,7 +10,7 @@ export const enum State {
 /**
  * Reverse lookup for `State` enums
  */
-export const __State = (<any>exports).State;
+// export const __State = (<any>exports).State;
 
 export interface ChannelItem<T> {
     value: () => Promise<T>;
