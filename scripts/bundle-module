@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const rollup = require("rollup");
+const terser = require("terser");
+const gz = require("gzip-size");
+
+const name = process.argv[2];
+
+const deps = process.argv.slice(3).reduce(
+    (acc, x) => (acc[`@thi.ng/${x}`] = `thi.ng.${x}`, acc),
+    {}
+);
+
+const inOpts = {
+    external: Object.keys(deps),
+    input: "./index.js"
+};
+
+const terserOpts = {
+    compress: true,
+    mangle: true,
+    ecma: 6
+};
+
+const size = (x) => (x / 1024).toFixed(2) + "KB";
+
+const buildVersion = async (dest, outOpts) => {
+    console.log(`bundling (${outOpts.format}): ${dest}`);
+    const bundle = await rollup.rollup(inOpts);
+    const bundleOut = await bundle.generate(outOpts);
+    const terserOut = terser.minify(bundleOut.output[0].code, terserOpts);
+    fs.writeFileSync(dest, terserOut.code);
+    console.log(`\tsize: ${size(terserOut.code.length)} / gzipped: ${size(gz.sync(terserOut.code))}`);
+};
+
+if (!fs.existsSync("lib")) {
+    fs.mkdirSync("lib");
+}
+
+const build = async () => {
+
+    await buildVersion(
+        "lib/index.js",
+        {
+            format: "cjs"
+        }
+    );
+
+    await buildVersion(
+        "lib/index.umd.js",
+        {
+            format: "umd",
+            globals: deps,
+            name: `thi.ng.${name}`,
+        }
+    );
+
+};
+
+build();
