@@ -113,7 +113,7 @@ requests are welcome, though!
 import { iterator } from "@thi.ng/transducers";
 import { serialize } from "@thi.ng/hiccup";
 
-import { parse } from "@thi.ng/hiccup-markdown/parse";
+import { parse } from "@thi.ng/hiccup-markdown";
 
 const src = `
 # Hello world
@@ -225,7 +225,7 @@ See source code for reference.
 ### Usage examples
 
 ```ts
-import { serialize } from "@thi.ng/hiccup-markdown/serialize";
+import { serialize } from "@thi.ng/hiccup-markdown";
 
 // list component
 // the 1st arg is the optional user context object

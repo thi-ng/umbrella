@@ -150,7 +150,7 @@ diffing via RAF).
 [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)
 
 ```ts
-import { fromInterval, stream, sync } from "@thi.ng/rstream/stream";
+import { fromInterval, stream, sync } from "@thi.ng/rstream";
 import { updateDOM } from "@thi.ng/rstream/transducers-hdom";
 import * as tx from "@thi.ng/rstream/transducers";
 

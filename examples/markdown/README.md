@@ -83,7 +83,7 @@ for reference...
 import { iterator } from "@thi.ng/transducers";
 import { serialize } from "@thi.ng/hiccup";
 
-import { parse } from "@thi.ng/hiccup-markdown/parse";
+import { parse } from "@thi.ng/hiccup-markdown";
 
 const src = `
 # Hello world

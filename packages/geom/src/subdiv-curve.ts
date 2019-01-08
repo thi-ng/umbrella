@@ -7,7 +7,7 @@ import {
     transduce,
     wrap
 } from "@thi.ng/transducers";
-import { IVector } from "@thi.ng/vectors/api";
+import { IVector } from "@thi.ng/vectors";
 import { SubdivKernel } from "./api";
 
 const madd2 =

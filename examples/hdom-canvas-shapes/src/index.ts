@@ -6,7 +6,6 @@ import { fromRAF, stream, sync } from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { Mat23 } from "@thi.ng/vectors";
-// import { canvas2D, adaptDPI } from "@thi.ng/hdom-components/canvas";
 
 // for testing SVG conversion
 import { download } from "./download";

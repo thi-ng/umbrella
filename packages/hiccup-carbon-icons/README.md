@@ -53,7 +53,7 @@ None.
 
 ```ts
 import { renderOnce } from "@thi.ng/hdom";
-import { CODE } from "@thi.ng/hiccup-carbon-icons/code";
+import { CODE } from "@thi.ng/hiccup-carbon-icons";
 
 // using tachyons css classes for brevity
 const iconButton = (icon, onclick, label?) =>
