@@ -1,4 +1,4 @@
-import * as hdom from "@thi.ng/hdom";
+import { start } from "@thi.ng/hdom";
 
 // stateless component w/ params
 // the first arg is an auto-injected context object
@@ -18,7 +18,7 @@ const app = () => {
 };
 
 // start update loop (browser only, see diagram below)
-hdom.start(app());
+start(app());
 
 // alternatively apply DOM tree only once
 // (stateful components won't update though)

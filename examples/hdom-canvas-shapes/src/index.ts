@@ -12,7 +12,6 @@ import { download } from "./download";
 
 // ignore error, resolved by parcel
 import logo from "../assets/logo-64.png";
-// const logo = "logo-64.63ccb91c.png";
 
 // canvas size
 const W = 300;
