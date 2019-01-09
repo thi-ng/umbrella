@@ -11,8 +11,8 @@
         "start": "yarn prep && parcel index.html -p 8080 --open -d out"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.10.3",
-        "terser": "^3.11.0",
+        "parcel-bundler": "^1.11.0",
+        "terser": "^3.14.1",
         "typescript": "^3.2.2"
     },
     "dependencies": {

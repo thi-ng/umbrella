@@ -20,8 +20,8 @@
         "@thi.ng/router": "latest"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.10.3",
-        "terser": "^3.11.0",
+        "parcel-bundler": "^1.11.0",
+        "terser": "^3.14.1",
         "typescript": "^3.2.2"
     },
     "browserslist": [
