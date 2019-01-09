@@ -7,7 +7,7 @@
     "license": "MIT",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
+        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
         "start": "parcel index.html -p 8080 --open"
     },
     "dependencies": {

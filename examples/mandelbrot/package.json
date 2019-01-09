@@ -6,8 +6,8 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "build": "yarn clean && yarn build:worker && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
-        "build:worker": "parcel build src/worker.ts -d out --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build": "yarn clean && yarn build:worker && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report",
+        "build:worker": "parcel build src/worker.ts -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --experimental-scope-hoisting",
         "start": "yarn build:worker && parcel index.html -d out -p 8080 --open"
     },
     "devDependencies": {

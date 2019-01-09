@@ -6,7 +6,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {

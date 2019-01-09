@@ -29,6 +29,5 @@
     ],
     "browser": {
         "process": false
-    },
-    "sideEffects": false
+    }
 }

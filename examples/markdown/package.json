@@ -6,8 +6,8 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
-        "build-parser": "yarn clean && parcel build src/parser.ts -d out --global md --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report",
+        "build-parser": "yarn clean && parcel build src/parser.ts -d out --global md --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --experimental-scope-hoisting",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
