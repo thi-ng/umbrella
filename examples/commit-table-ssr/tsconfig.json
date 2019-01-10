@@ -1,8 +1,8 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": ".",
-        "module": "es6",
+        "outDir": "./build",
+        "module": "commonjs",
         "target": "es6",
         "sourceMap": true
     },
