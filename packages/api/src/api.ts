@@ -19,7 +19,17 @@ export type Comparator<T> = (a: T, b: T) => number;
 /**
  * A single arg function from A => B.
  */
-export type Fn<A, B> = (x: A) => B;
+export type Fn<A, B> = (a: A) => B;
+
+/**
+ * A 2-arg function from A,B => C.
+ */
+export type Fn2<A, B, C> = (a: A, b: B) => C;
+
+/**
+ * A 3-arg function from A,B,C => D.
+ */
+export type Fn3<A, B, C, D> = (a: A, b: B, c: C) => D;
 
 /**
  * A vararg arg function to type T.

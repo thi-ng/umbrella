@@ -1,5 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { $iter } from "../iterator";

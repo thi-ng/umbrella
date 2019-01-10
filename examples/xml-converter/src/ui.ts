@@ -1,4 +1,4 @@
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { mapIndexed } from "@thi.ng/transducers";
 import { handleTab } from "./utils";
 
 // converted from:

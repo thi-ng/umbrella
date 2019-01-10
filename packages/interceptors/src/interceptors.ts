@@ -14,7 +14,6 @@ import {
     InterceptorPredicate
 } from "./api";
 
-
 /**
  * Debug interceptor to log the current event to the console.
  */

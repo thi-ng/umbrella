@@ -11,7 +11,6 @@ import {
 } from "@thi.ng/transducers";
 import { execSync } from "child_process";
 import { resolve } from "path";
-
 import { Commit } from "../common/api";
 
 /**

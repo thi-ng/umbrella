@@ -1,4 +1,4 @@
-import { IVector } from "@thi.ng/vectors/api";
+import { IVector } from "@thi.ng/vectors";
 import { IBounds, IUnion } from "../api";
 
 export const axisBounds =

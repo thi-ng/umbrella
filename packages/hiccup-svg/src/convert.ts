@@ -154,6 +154,7 @@ const convertAttribs =
                     default:
                         res[id] = v;
                 }
+                return path(segments, attribs);
             }
         }
         return res;

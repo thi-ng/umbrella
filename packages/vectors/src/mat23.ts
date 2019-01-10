@@ -1,6 +1,6 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { EPS } from "@thi.ng/math/api";
+import { ICopy, IEqualsDelta } from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
+import { EPS } from "@thi.ng/math";
 import {
     Mat,
     ReadonlyMat,
@@ -192,7 +192,7 @@ export class Mat23 implements
     }
 
     static scaleWithCenter(p: Readonly<Vec2>, sx: number, sy = sx) {
-        return new Mat23(scaleWithCenter23([], p.buf, sx, sy, p.i, p.s));
+        return new Mat23(scaleWithCenter23([], p.buf, sx, sy, 0, p.i, p.s));
     }
 
     static translation(v: Readonly<Vec2>): Mat23;

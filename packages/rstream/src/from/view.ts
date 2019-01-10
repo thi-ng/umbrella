@@ -1,9 +1,9 @@
-import { Predicate2 } from "@thi.ng/api/api";
-import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom/api";
-import { View } from "@thi.ng/atom/view";
+import { Predicate2 } from "@thi.ng/api";
+import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom";
+import { View } from "@thi.ng/atom";
 import { Path } from "@thi.ng/paths";
-
 import { Stream } from "../stream";
+import { nextID } from "../utils/idgen";
 
 /**
  * Similar to `fromAtom()`, but creates an eager derived view for a
@@ -43,18 +43,26 @@ import { Stream } from "../stream";
  * @param equiv
  * @param id
  */
-export function fromView<T>(atom: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, equiv?: Predicate2<any>, id?: string): Stream<T> {
-    return new Stream<T>((stream) => {
-        let isActive = true;
-        const view = new View<T>(
-            atom,
-            path,
-            tx ?
-                (x) => isActive && (x = tx(x), stream.next(x), x) :
-                (x) => isActive && (stream.next(x), x),
-            false,
-            equiv
-        );
-        return () => (isActive = false, view.release());
-    }, id);
-}
+export const fromView = <T>(
+    atom: ReadonlyAtom<any>,
+    path: Path,
+    tx?: ViewTransform<T>,
+    equiv?: Predicate2<any>,
+    id?: string
+): Stream<T> =>
+    new Stream<T>(
+        (stream) => {
+            let isActive = true;
+            const view = new View<T>(
+                atom,
+                path,
+                tx ?
+                    (x) => isActive && (x = tx(x), stream.next(x), x) :
+                    (x) => isActive && (stream.next(x), x),
+                false,
+                equiv
+            );
+            return () => (isActive = false, view.release());
+        },
+        id || `view-${nextID()}`
+    );

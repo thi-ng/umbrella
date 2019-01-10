@@ -6,18 +6,19 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
-        "build-parser": "yarn clean && parcel build src/parser.ts -d out --global md --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report",
+        "build-parser": "yarn clean && parcel build src/parser.ts -d out --global md --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --experimental-scope-hoisting",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.10.3",
-        "terser": "^3.11.0",
+        "parcel-bundler": "^1.11.0",
+        "terser": "^3.14.1",
         "typescript": "^3.2.2"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/fsm": "latest",
+        "@thi.ng/bench": "latest",
+        "@thi.ng/hiccup-markdown": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },

@@ -1,8 +1,5 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isIterable } from "@thi.ng/checks/is-iterable";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { implementsFunction, isArrayLike, isIterable } from "@thi.ng/checks";
+import { illegalArity } from "@thi.ng/errors";
 import { IReducible, Reducer } from "./api";
 import { isReduced, Reduced, unreduced } from "./reduced";
 
@@ -58,15 +55,16 @@ export function reduce<A, B>(...args: any[]): A {
  * @param init init step of reducer
  * @param rfn reduction step of reducer
  */
-export function reducer<A, B>(init: () => A, rfn: (acc: A, x: B) => A | Reduced<A>) {
-    return <Reducer<A, B>>[init, (acc) => acc, rfn];
-}
+export const reducer =
+    <A, B>(init: () => A, rfn: (acc: A, x: B) => A | Reduced<A>) =>
+        <Reducer<A, B>>[init, (acc) => acc, rfn];
 
-export const $$reduce = (rfn: (...args: any[]) => Reducer<any, any>, args: any[]) => {
-    const n = args.length - 1;
-    return isIterable(args[n]) ?
-        args.length > 1 ?
-            reduce(rfn.apply(null, args.slice(0, n)), args[n]) :
-            reduce(rfn(), args[0]) :
-        undefined;
-};
+export const $$reduce =
+    (rfn: (...args: any[]) => Reducer<any, any>, args: any[]) => {
+        const n = args.length - 1;
+        return isIterable(args[n]) ?
+            args.length > 1 ?
+                reduce(rfn.apply(null, args.slice(0, n)), args[n]) :
+                reduce(rfn(), args[0]) :
+            undefined;
+    };

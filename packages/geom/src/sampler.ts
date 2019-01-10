@@ -1,5 +1,5 @@
-import { peek } from "@thi.ng/transducers/func/peek";
-import { IVector } from "@thi.ng/vectors/api";
+import { peek } from "@thi.ng/transducers";
+import { IVector } from "@thi.ng/vectors";
 
 export class Sampler<T extends IVector<T>> {
 

@@ -1,5 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
+import { illegalArgs } from "@thi.ng/errors";
 import { Transducer } from "../api";
 import { range2d } from "../iter/range2d";
 import { tuples } from "../iter/tuples";

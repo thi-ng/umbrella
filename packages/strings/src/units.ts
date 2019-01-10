@@ -1,5 +1,4 @@
-import { memoizeJ } from "@thi.ng/memoize/memoizej";
-
+import { memoizeJ } from "@thi.ng/memoize";
 import { Stringer } from "./api";
 
 export const units: (exp: [number, string, number?][], base: string, prec?: number) => Stringer<number> =

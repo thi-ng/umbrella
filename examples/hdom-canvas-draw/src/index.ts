@@ -1,17 +1,18 @@
 import { canvas } from "@thi.ng/hdom-canvas";
+import { HALF_PI, PI } from "@thi.ng/math";
+import { sync, trigger } from "@thi.ng/rstream";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { trigger } from "@thi.ng/rstream/trigger";
+import {
+    filter,
+    map,
+    mapcat,
+    normRange,
+    partition,
+    repeat,
+    tuples
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
-import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { HALF_PI, PI } from "@thi.ng/math/api";
-import { dist2 } from "@thi.ng/vectors/vec2";
+import { dist2 } from "@thi.ng/vectors";
 
 // canvas size
 const W = 480;

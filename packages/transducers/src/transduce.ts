@@ -1,5 +1,4 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { illegalArity } from "@thi.ng/errors";
 import { IReducible, Reducer, Transducer } from "./api";
 import { reduce } from "./reduce";
 import { map } from "./xform/map";

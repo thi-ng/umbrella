@@ -6,12 +6,9 @@ SVG bar chart component & one-off rendering.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/svg-barchart.png)
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/svg-barchart
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

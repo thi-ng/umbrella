@@ -1,7 +1,6 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { ViewTransform, IView } from "@thi.ng/atom/api";
-import { EventDef, EffectDef } from "@thi.ng/interceptors/api";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
+import { IObjectOf } from "@thi.ng/api";
+import { IView, ViewTransform } from "@thi.ng/atom";
+import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
 
 /**
  * Function signature for main app components.

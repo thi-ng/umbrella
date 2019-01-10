@@ -11,6 +11,6 @@ import { map } from "./map";
  *
  * @param t
  */
-export function delayed<T>(t: number): Transducer<T, Promise<T>> {
-    return map((x) => delay(x, t));
-}
+export const delayed =
+    <T>(t: number): Transducer<T, Promise<T>> =>
+        map((x) => delay(x, t));

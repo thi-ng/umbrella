@@ -1,11 +1,13 @@
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { take } from "@thi.ng/transducers/xform/take";
+import {
+    comp,
+    map,
+    mapcat,
+    push,
+    range,
+    take,
+    transduce,
+    tuples
+} from "@thi.ng/transducers";
 import {
     Vec,
     VecOp1,

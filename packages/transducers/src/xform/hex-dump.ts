@@ -1,5 +1,4 @@
-import { U32, U8 } from "@thi.ng/strings/radix";
-
+import { U32, U8 } from "@thi.ng/strings";
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { juxt } from "../func/juxt";

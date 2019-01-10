@@ -8,6 +8,6 @@ import { map } from "./map";
  *
  * @param fn side effect
  */
-export function sideEffect<T>(fn: (x: T) => void): Transducer<T, T> {
-    return map((x) => (fn(x), x));
-}
+export const sideEffect =
+    <T>(fn: (x: T) => void): Transducer<T, T> =>
+        map((x) => (fn(x), x));

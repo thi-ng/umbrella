@@ -1,4 +1,4 @@
-import { SVG_NS, XLINK_NS } from "@thi.ng/hiccup/api";
+import { SVG_NS, XLINK_NS } from "@thi.ng/hiccup";
 
 /**
  * Defines an <svg> root element with default XML namespaces. By default

@@ -1,5 +1,4 @@
-import { comp as _comp } from "@thi.ng/compose/comp";
-
+import { comp as _comp } from "@thi.ng/compose";
 import { Transducer } from "../api";
 
 export function comp<A, B>(a: Transducer<A, B>): Transducer<A, B>;

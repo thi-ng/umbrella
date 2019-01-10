@@ -1,14 +1,11 @@
 import { equiv } from "@thi.ng/equiv";
-import { canvas2D } from "@thi.ng/hdom-components/canvas";
-import { fit } from "@thi.ng/math/fit";
-import { mix } from "@thi.ng/math/mix";
+import { canvas2D } from "@thi.ng/hdom-components";
+import { fit, mix } from "@thi.ng/math";
+import { stream, sync, tunnel } from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
-import { stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { tunnel } from "@thi.ng/rstream/subs/tunnel";
+import { padLeft } from "@thi.ng/strings";
+import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/xform/map";
-import { padLeft } from "@thi.ng/strings/pad-left";
 import { download } from "./download";
 
 // if enabled, auto-zoom out & export frames

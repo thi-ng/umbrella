@@ -1,4 +1,4 @@
-import { Pair, Predicate2, SEMAPHORE } from "@thi.ng/api/api";
+import { Pair, Predicate2, SEMAPHORE } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { EquivSetOpts, IEquivSet } from "./api";
 

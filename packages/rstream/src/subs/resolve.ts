@@ -1,7 +1,7 @@
-import { IID } from "@thi.ng/api/api";
-
-import { __State, DEBUG, State } from "../api";
+import { IID } from "@thi.ng/api";
+import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 export interface ResolverOpts extends IID<string> {
     /**
@@ -30,9 +30,9 @@ export interface ResolverOpts extends IID<string> {
  *
  * @param opts
  */
-export function resolve<T>(opts?: Partial<ResolverOpts>) {
-    return new Resolver<T>(opts);
-}
+export const resolve =
+    <T>(opts?: Partial<ResolverOpts>) =>
+        new Resolver<T>(opts);
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
 
@@ -40,7 +40,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected fail: (e: any) => void;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(null, null, null, opts.id || `resolve-${Subscription.NEXT_ID++}`);
+        super(null, null, null, opts.id || `resolve-${nextID()}`);
         this.fail = opts.fail;
     }
 
@@ -54,7 +54,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                         this.done();
                     }
                 } else {
-                    DEBUG && console.log(`resolved value in ${__State[this.state]} state (${x})`);
+                    DEBUG && console.log(`resolved value in state ${this.state} (${x})`);
                 }
             },
             (e) => {

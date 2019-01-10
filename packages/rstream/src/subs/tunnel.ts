@@ -1,5 +1,6 @@
 import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
 
 export interface TunnelOpts<A> {
@@ -54,8 +55,9 @@ export interface TunnelOpts<A> {
  *
  * @param opts
  */
-export const tunnel = <A, B>(opts: TunnelOpts<A>) =>
-    new Tunnel<A, B>(opts);
+export const tunnel =
+    <A, B>(opts: TunnelOpts<A>) =>
+        new Tunnel<A, B>(opts);
 
 export class Tunnel<A, B> extends Subscription<A, B> {
 
@@ -68,7 +70,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
     index: number;
 
     constructor(opts: TunnelOpts<A>) {
-        super(null, null, null, opts.id || `tunnel-${Subscription.NEXT_ID++}`);
+        super(null, null, null, opts.id || `tunnel-${nextID()}`);
         this.src = opts.src;
         this.workers = new Array(opts.maxWorkers || 1);
         this.transferables = opts.transferables;

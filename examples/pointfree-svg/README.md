@@ -1,6 +1,7 @@
 # pointfree-svg
 
-This is a non-interactive demo combining the following packages to generate the SVG graphic below:
+This is a non-browser demo combining the following packages to generate
+the SVG graphic below:
 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
@@ -21,5 +22,14 @@ The generated SVG file will be written in this example's directory...
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella/examples/pointfree-svg
+yarn install
 yarn build
 ```
+
+## Authors
+
+- Karsten Schmidt
+
+## License
+
+&copy; 2018 Karsten Schmidt // Apache Software License 2.0

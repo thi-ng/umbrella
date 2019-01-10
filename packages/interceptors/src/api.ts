@@ -1,4 +1,4 @@
-import { ReadonlyAtom } from "@thi.ng/atom/api";
+import { ReadonlyAtom } from "@thi.ng/atom";
 
 export type InterceptorFn = (state: any, e: Event, bus?: IDispatch, ctx?: InterceptorContext) => InterceptorContext | void;
 export type InterceptorPredicate = (state: any, e: Event, bus?: IDispatch, ctx?: InterceptorContext) => boolean;

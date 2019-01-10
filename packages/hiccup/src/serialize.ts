@@ -1,9 +1,11 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import {
+    implementsFunction,
+    isFunction,
+    isNotStringAndIterable,
+    isPlainObject,
+    isString
+} from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import {
     COMMENT,
     NO_SPANS,

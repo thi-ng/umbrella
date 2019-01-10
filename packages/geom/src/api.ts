@@ -1,6 +1,10 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { IObjectOf } from "@thi.ng/api";
+import {
+    IVector,
+    ReadonlyVec,
+    Vec,
+    Vec2
+} from "@thi.ng/vectors";
 
 export const DEFAULT_SAMPLES = 32;
 

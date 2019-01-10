@@ -1,5 +1,5 @@
-import { SEMAPHORE } from "@thi.ng/api/api";
-import { isIterable } from "@thi.ng/checks/is-iterable";
+import { SEMAPHORE } from "@thi.ng/api";
+import { isIterable } from "@thi.ng/checks";
 
 import { Reducer, Transducer } from "./api";
 import { isReduced, unreduced } from "./reduced";
@@ -64,7 +64,11 @@ export function* iterator1<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): Iter
  * @param args
  * @param impl
  */
-export const $iter = (xform: (...xs: any[]) => Transducer<any, any>, args: any[], impl = iterator1) => {
+export const $iter = (
+    xform: (...xs: any[]) => Transducer<any, any>,
+    args: any[],
+    impl = iterator1
+) => {
     const n = args.length - 1;
     return isIterable(args[n]) ?
         args.length > 1 ?

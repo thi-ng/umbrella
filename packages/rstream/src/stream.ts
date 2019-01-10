@@ -1,7 +1,6 @@
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { Transducer } from "@thi.ng/transducers/api";
-
+import { isString } from "@thi.ng/checks";
+import { illegalArity } from "@thi.ng/errors";
+import { Transducer } from "@thi.ng/transducers";
 import {
     DEBUG,
     IStream,
@@ -10,6 +9,7 @@ import {
     StreamSource
 } from "./api";
 import { Subscription } from "./subscription";
+import { nextID } from "./utils/idgen";
 
 /**
  * Creates a new `Stream` instance, optionally with given `StreamSource`
@@ -97,7 +97,7 @@ export class Stream<T> extends Subscription<T, T>
             default:
                 illegalArity(args.length);
         }
-        super(null, null, null, id || `stream-${Subscription.NEXT_ID++}`);
+        super(null, null, null, id || `stream-${nextID()}`);
         this.src = src;
     }
 

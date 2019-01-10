@@ -1,12 +1,15 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { Reducer } from "../api";
 import { groupByObj } from "./group-by-obj";
 import { push } from "./push";
 
-function branchPred<T>(key: (x: T) => number, b: number, l: PropertyKey, r: PropertyKey) {
-    return (x: T) => key(x) & b ? r : l;
-}
+const branchPred = <T>(
+    key: (x: T) => number,
+    b: number,
+    l: PropertyKey,
+    r: PropertyKey
+) =>
+    (x: T) => key(x) & b ? r : l;
 
 /**
  * Creates a bottom-up, unbalanced binary tree of desired depth and
@@ -79,13 +82,14 @@ function branchPred<T>(key: (x: T) => number, b: number, l: PropertyKey, r: Prop
  * @param left key for storing left branches (e.g. `0` for arrays)
  * @param right key for storing right branches (e.g. `1` for arrays)
  */
-export function groupBinary<T>(
+export const groupBinary = <T>(
     bits: number,
     key: (x: T) => number,
     branch?: () => IObjectOf<T[]>,
     leaf?: Reducer<any, T>,
     left: PropertyKey = "l",
-    right: PropertyKey = "r"): Reducer<any, T> {
+    right: PropertyKey = "r"
+): Reducer<any, T> => {
 
     const init = branch || (() => ({}));
     let rfn: Reducer<any, T> = groupByObj({
@@ -96,4 +100,4 @@ export function groupBinary<T>(
         rfn = groupByObj({ key: branchPred(key, i, left, right), group: [init, rfn[1], rfn[2]] });
     }
     return [init, rfn[1], rfn[2]];
-}
+};

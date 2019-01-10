@@ -25,4 +25,5 @@ export * from "./subs/trace";
 export * from "./subs/transduce";
 export * from "./subs/tunnel";
 
+export * from "./utils/idgen";
 export * from "./utils/worker";

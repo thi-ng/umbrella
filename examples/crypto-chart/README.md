@@ -24,12 +24,9 @@ The diagram below shows a schematic of the dataflow graph used:
 
 ## Building
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/crypto-chart
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

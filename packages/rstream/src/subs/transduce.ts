@@ -1,6 +1,5 @@
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { isReduced } from "@thi.ng/transducers/reduced";
-
+import { Reducer, Transducer } from "@thi.ng/transducers";
+import { isReduced } from "@thi.ng/transducers";
 import { Subscription } from "../subscription";
 
 /**
@@ -24,7 +23,13 @@ import { Subscription } from "../subscription";
  * @param rfn
  * @param init
  */
-export function transduce<A, B, C>(src: Subscription<any, A>, xform: Transducer<A, B>, rfn: Reducer<C, B>, init?: C): Promise<C> {
+export const transduce = <A, B, C>(
+    src: Subscription<any, A>,
+    xform: Transducer<A, B>,
+    rfn: Reducer<C, B>,
+    init?: C
+): Promise<C> => {
+
     let acc = init !== undefined ? init : rfn[0]();
     let sub: Subscription<A, B>;
 
@@ -55,4 +60,4 @@ export function transduce<A, B, C>(src: Subscription<any, A>, xform: Transducer<
             throw rejected;
         }
     );
-}
+};

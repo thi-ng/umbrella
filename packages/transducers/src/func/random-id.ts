@@ -18,5 +18,6 @@ import { take } from "../xform/take";
  * @param prefix
  * @param syms
  */
-export const randomID = (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz") =>
-    [prefix, ...take(len, choices(syms))].join("");
+export const randomID =
+    (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz") =>
+        [prefix, ...take(len, choices(syms))].join("");

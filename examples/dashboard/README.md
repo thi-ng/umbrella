@@ -2,9 +2,6 @@
 
 [Live demo here](https://demo.thi.ng/umbrella/dashboard/)
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/dashboard
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.

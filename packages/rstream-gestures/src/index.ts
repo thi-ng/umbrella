@@ -1,7 +1,6 @@
-import { IID } from "@thi.ng/api/api";
-import { fromEvent } from "@thi.ng/rstream/from/event";
-import { merge, StreamMerge } from "@thi.ng/rstream/stream-merge";
-import { map } from "@thi.ng/transducers/xform/map";
+import { IID } from "@thi.ng/api";
+import { fromEvent, merge, StreamMerge } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 
 export const enum GestureType {
     START,
@@ -14,7 +13,7 @@ export const enum GestureType {
 /**
  * Reverse lookup for `GestureType` enums
  */
-export const __GestureType = (<any>exports).GestureType;
+// export const __GestureType = (<any>exports).GestureType;
 
 export interface GestureInfo {
     pos: number[];
@@ -105,9 +104,14 @@ export interface GestureStreamOpts extends IID<string> {
  * @param el
  * @param opts
  */
-export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
+export const gestureStream = (
+    el: HTMLElement,
+    opts?: Partial<GestureStreamOpts>
+): StreamMerge<any, GestureEvent> => {
+
     let isDown = false,
         clickPos: number[];
+
     opts = Object.assign(<GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
@@ -120,8 +124,10 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
         local: true,
         scale: false,
     }, opts);
+
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     const dpr = window.devicePixelRatio || 1;
+
     return merge({
         id: opts.id,
         src: [
@@ -183,4 +189,4 @@ export function gestureStream(el: HTMLElement, opts?: Partial<GestureStreamOpts>
             return <GestureEvent>[type, body];
         })
     });
-}
+};

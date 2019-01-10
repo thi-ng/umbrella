@@ -2,12 +2,9 @@
 
 [Live demo](https://demo.thi.ng/umbrella/cellular-automata/)
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/cellular-automata
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Example configurations
 

@@ -1,10 +1,12 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isBoolean } from "@thi.ng/checks/is-boolean";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import {
+    isArray,
+    isBoolean,
+    isNumber,
+    isPlainObject
+} from "@thi.ng/checks";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { repeat } from "@thi.ng/strings/repeat";
-import { peek } from "@thi.ng/transducers/func/peek";
+import { repeat } from "@thi.ng/strings";
+import { peek } from "@thi.ng/transducers";
 
 export interface FormatOpts {
     indent: number;
@@ -57,12 +59,18 @@ const formatVal = (opts: FormatOpts, x: any, indent = true) =>
         x :
         isPlainObject(x) ?
             format(indent ? indentState(opts) : opts, "", x) :
-            opts.quote + x + opts.quote;
+            opts.quote + escape(opts, x) + opts.quote;
 
 // attrib key-value pair formatter w/ indentation
 const formatPair = (opts: FormatOpts, x: any, k: string) =>
     spaces(opts.indent) + formatAttrib(opts, k) + ":" + opts.ws +
     formatVal(opts, x[k], k !== "style");
+
+const escape =
+    (opts: FormatOpts, x: any) =>
+        opts.quote === "\"" ?
+            String(x).replace(/"/g, "\\\"") :
+            String(x).replace(/'/g, "\\\'");
 
 // multiple-dispatch function to format the transformed tree (hiccup
 // structure) into a more compact & legible format than produced by

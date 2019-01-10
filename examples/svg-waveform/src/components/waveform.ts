@@ -1,11 +1,15 @@
-import { svg } from "@thi.ng/hiccup-svg/svg";
-import { defs } from "@thi.ng/hiccup-svg/defs";
-import { linearGradient } from "@thi.ng/hiccup-svg/gradients";
-import { polyline } from "@thi.ng/hiccup-svg/polyline";
-import { map } from "@thi.ng/transducers/xform/map";
-import { range } from "@thi.ng/transducers/iter/range";
-import { reduce, reducer } from "@thi.ng/transducers/reduce";
-
+import {
+    defs,
+    linearGradient,
+    polyline,
+    svg
+} from "@thi.ng/hiccup-svg";
+import {
+    map,
+    range,
+    reduce,
+    reducer
+} from "@thi.ng/transducers";
 import { AppContext } from "../api";
 
 const TAU = Math.PI * 2;

@@ -1,9 +1,17 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { start } from "@thi.ng/hdom/start";
-import { EffectDef, EventDef, IDispatch } from "@thi.ng/interceptors/api";
-import { EV_SET_VALUE, EV_UPDATE_VALUE, FX_DISPATCH_NOW } from "@thi.ng/interceptors/api";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { ensureStateGreaterThan, ensureStateLessThan, trace } from "@thi.ng/interceptors/interceptors";
+import { IObjectOf } from "@thi.ng/api";
+import { start } from "@thi.ng/hdom";
+import {
+    EffectDef,
+    ensureStateGreaterThan,
+    ensureStateLessThan,
+    EV_SET_VALUE,
+    EV_UPDATE_VALUE,
+    EventBus,
+    EventDef,
+    FX_DISPATCH_NOW,
+    IDispatch,
+    trace
+} from "@thi.ng/interceptors";
 import { Path } from "@thi.ng/paths";
 
 ///////////////////////////////////////////////////////////////////////

@@ -1,16 +1,19 @@
 import { resolve as resolveMap } from "@thi.ng/resolve-map";
-import { fromInterval } from "@thi.ng/rstream/from/interval";
-import { stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
+import {
+    fromInterval,
+    resolve as resolvePromise,
+    stream,
+    sync
+} from "@thi.ng/rstream";
+import {
+    add,
+    conj,
+    map,
+    pluck,
+    throttleTime,
+    transduce
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { add } from "@thi.ng/transducers/rfn/add";
-import { conj } from "@thi.ng/transducers/rfn/conj";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { pluck } from "@thi.ng/transducers/xform/pluck";
-import { throttleTime } from "@thi.ng/transducers/xform/throttle-time";
-
 import { AppContext, Commit } from "../common/api";
 import { header } from "../common/components/header";
 import { link } from "../common/components/link";

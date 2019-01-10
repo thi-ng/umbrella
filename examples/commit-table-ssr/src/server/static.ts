@@ -1,5 +1,4 @@
 import { writeFileSync } from "fs";
-
 import { ctx } from "../common/config";
 import { buildRepoTableHTML } from "./build-table";
 import { repoCommits } from "./git";

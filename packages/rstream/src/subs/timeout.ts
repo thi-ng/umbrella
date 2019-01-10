@@ -1,5 +1,6 @@
-import { State } from "../api"
+import { State } from "../api";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 /**
  * A subscription that emits an arbitrary error object after a given
@@ -14,9 +15,13 @@ import { Subscription } from "../subscription";
  * @param resetTimeout timeout reset flag
  * @param id subscription id
  */
-export function timeout<T>(timeoutMs: number, error?: any, resetTimeout = false, id?: string): Subscription<T, T> {
-    return new Timeout(timeoutMs, error, resetTimeout, id);
-}
+export const timeout = <T>(
+    timeoutMs: number,
+    error?: any,
+    resetTimeout = false,
+    id?: string
+): Subscription<T, T> =>
+    new Timeout(timeoutMs, error, resetTimeout, id);
 
 class Timeout<T> extends Subscription<T, T> {
     protected timeoutMs: number;
@@ -25,7 +30,7 @@ class Timeout<T> extends Subscription<T, T> {
     protected resetTimeout: boolean;
 
     constructor(timeoutMs: number, error?: any, resetTimeout = false, id?: string) {
-        super(null, null, null, id || `timeout-${Subscription.NEXT_ID++}`);
+        super(null, null, null, id || `timeout-${nextID()}`);
         this.timeoutMs = timeoutMs;
         this.errorObj = error;
         this.resetTimeout = resetTimeout;

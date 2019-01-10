@@ -1,8 +1,6 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { ReadonlyVec } from "@thi.ng/vectors/api";
-import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
+import { isArrayLike, isNumber } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
+import { asVec2, ReadonlyVec, Vec2 } from "@thi.ng/vectors";
 
 export const args3 = (args: any[]) => {
     let points = args[0], attribs;

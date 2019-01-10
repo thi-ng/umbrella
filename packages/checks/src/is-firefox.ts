@@ -1,3 +1,2 @@
-export function isFirefox() {
-    return typeof window !== "undefined" && !!window["InstallTrigger"];
-}
+export const isFirefox =
+    () => typeof window !== "undefined" && !!window["InstallTrigger"];

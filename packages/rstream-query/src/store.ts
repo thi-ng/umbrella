@@ -1,28 +1,32 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { intersection } from "@thi.ng/associative/intersection";
-import { join } from "@thi.ng/associative/join";
+import { IObjectOf } from "@thi.ng/api";
+import { intersection, join } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    ISubscribable,
+    nextID,
+    Stream,
+    Subscription,
+    sync
+} from "@thi.ng/rstream";
 import {
     DotOpts,
     IToDot,
     toDot,
     walk
 } from "@thi.ng/rstream-dot";
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { Subscription } from "@thi.ng/rstream/subscription";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { keySelector } from "@thi.ng/transducers/func/key-selector";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-
+import {
+    assocObj,
+    comp,
+    compR,
+    dedupe,
+    keySelector,
+    map,
+    mapIndexed,
+    Reducer,
+    transduce,
+    Transducer
+} from "@thi.ng/transducers";
 import {
     BindFn,
     DEBUG,
@@ -251,7 +255,7 @@ export class TripleStore implements
         if (!resolve) {
             illegalArgs("at least 1 query variable is required in pattern");
         }
-        id || (id = `query-${Subscription.NEXT_ID++}`);
+        id || (id = `query-${nextID()}`);
         const query = <Subscription<TripleIds, Triples>>this.addPatternQuery(
             [vs ? null : s, vp ? null : p, vo ? null : o],
             id + "-raw"
@@ -416,74 +420,83 @@ const intersect2: Transducer<IObjectOf<TripleIds>, TripleIds> =
 const intersect3: Transducer<IObjectOf<TripleIds>, TripleIds> =
     comp(map(({ s, p, o }) => intersection(intersection(s, p), o)), dedupe(equiv));
 
-const indexSel = (key: any): Transducer<Edit, TripleIds> =>
-    (rfn: Reducer<any, TripleIds>) => {
-        const r = rfn[2];
-        return compR(rfn,
-            (acc, e) => {
-                DEBUG && console.log("index sel", e.key, key);
-                if (equiv(e.key, key)) {
-                    return r(acc, e.index);
+const indexSel =
+    (key: any): Transducer<Edit, TripleIds> =>
+        (rfn: Reducer<any, TripleIds>) => {
+            const r = rfn[2];
+            return compR(rfn,
+                (acc, e) => {
+                    DEBUG && console.log("index sel", e.key, key);
+                    if (equiv(e.key, key)) {
+                        return r(acc, e.index);
+                    }
+                    return acc;
                 }
-                return acc;
-            }
-        );
-    };
+            );
+        };
 
-const resultTriples = (graph: TripleStore) =>
-    map<TripleIds, Set<Triple>>(
-        (ids) => {
-            const res = new Set<Triple>();
-            for (let id of ids) res.add(graph.triples[id]);
+const resultTriples =
+    (graph: TripleStore) =>
+        map<TripleIds, Set<Triple>>(
+            (ids) => {
+                const res = new Set<Triple>();
+                for (let id of ids) res.add(graph.triples[id]);
+                return res;
+            });
+
+const joinSolutions =
+    (n: number) =>
+        map<IObjectOf<Solutions>, Solutions>((src) => {
+            let res: Solutions = src[0];
+            for (let i = 1; i < n && res.size; i++) {
+                res = join(res, src[i]);
+            }
             return res;
         });
 
-const joinSolutions = (n: number) =>
-    map<IObjectOf<Solutions>, Solutions>((src) => {
-        let res: Solutions = src[0];
-        for (let i = 1; i < n && res.size; i++) {
-            res = join(res, src[i]);
-        }
-        return res;
-    });
-
-const filterSolutions = (qvars: Iterable<string>) => {
-    const filterVars = keySelector([...qvars]);
-    return map((sol: Solutions) => {
-        const res: Solutions = new Set();
-        for (let s of sol) {
-            res.add(filterVars(s));
-        }
-        return res;
-    });
-};
-
-const limitSolutions = (n: number) =>
-    map((sol: Solutions) => {
-        if (sol.size <= n) {
-            return sol;
-        }
-        const res: Solutions = new Set();
-        let m = n;
-        for (let s of sol) {
-            res.add(s);
-            if (--m <= 0) break;
-        }
-        return res;
-    });
-
-const bindVars = (bindings: IObjectOf<BindFn>) =>
-    map((sol: Solutions) => {
-        const res: Solutions = new Set();
-        for (let s of sol) {
-            s = { ...s };
-            res.add(s);
-            for (let b in bindings) {
-                s[b] = bindings[b](s);
+const filterSolutions =
+    (qvars: Iterable<string>) => {
+        const filterVars = keySelector([...qvars]);
+        return map((sol: Solutions) => {
+            const res: Solutions = new Set();
+            for (let s of sol) {
+                res.add(filterVars(s));
             }
-        }
-        return res;
-    });
+            return res;
+        });
+    };
 
-const isWhereQuery = (q: SubQuerySpec): q is WhereQuerySpec => !!(<any>q).where;
-const isPathQuery = (q: SubQuerySpec): q is PathQuerySpec => !!(<any>q).path;
+const limitSolutions =
+    (n: number) =>
+        map((sol: Solutions) => {
+            if (sol.size <= n) {
+                return sol;
+            }
+            const res: Solutions = new Set();
+            let m = n;
+            for (let s of sol) {
+                res.add(s);
+                if (--m <= 0) break;
+            }
+            return res;
+        });
+
+const bindVars =
+    (bindings: IObjectOf<BindFn>) =>
+        map((sol: Solutions) => {
+            const res: Solutions = new Set();
+            for (let s of sol) {
+                s = { ...s };
+                res.add(s);
+                for (let b in bindings) {
+                    s[b] = bindings[b](s);
+                }
+            }
+            return res;
+        });
+
+const isWhereQuery =
+    (q: SubQuerySpec): q is WhereQuerySpec => !!(<any>q).where;
+
+const isPathQuery =
+    (q: SubQuerySpec): q is PathQuerySpec => !!(<any>q).path;

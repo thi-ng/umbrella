@@ -1,13 +1,13 @@
 import * as assert from "assert";
 
 import { Event, INotify, EVENT_ALL } from "../src/api";
-import * as mixins from "../src/mixins";
+import { INotifyMixin } from "../src/mixins/inotify";
 
 describe("mixins", () => {
 
     it("INotify", () => {
 
-        @mixins.INotify
+        @INotifyMixin
         class Foo implements INotify {
             addListener(_: string, __: (e: Event) => void, ___?: any): boolean {
                 throw new Error();

@@ -14,27 +14,14 @@ template.
 
 ### Development
 
-```bash
-git clone https://github.com/thi-ng/umbrella/
-cd umbrella/examples/svg-waveform
-yarn install
-yarn start
-```
-
-Installs all dependencies, runs `parcel serve` and opens the app in your
-browser.
-
-### Production
-
-```bash
-yarn build
-```
-
-Builds a minified version of the app and places it in the `/out`
-directory.
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 
 - Karsten Schmidt
 
-&copy; 2018
+## License
+
+&copy; 2018 Karsten Schmidt // Apache Software License 2.0

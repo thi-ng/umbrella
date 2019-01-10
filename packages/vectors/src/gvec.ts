@@ -3,14 +3,17 @@ import {
     IEqualsDelta,
     IEquiv,
     ILength
-} from "@thi.ng/api/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { sign as _sign } from "@thi.ng/math/abs";
-import { EPS } from "@thi.ng/math/api";
-import { clamp as _clamp } from "@thi.ng/math/interval";
-import { fract as _fract } from "@thi.ng/math/prec";
-import { smoothStep as _smoothStep, step as _step } from "@thi.ng/math/step";
+} from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    clamp as _clamp,
+    EPS,
+    fract as _fract,
+    sign as _sign,
+    smoothStep as _smoothStep,
+    step as _step
+} from "@thi.ng/math";
 import {
     IDotProduct,
     IMagnitude,
@@ -23,7 +26,6 @@ import {
     Vec
 } from "./api";
 import { $iter, eqDelta, equiv } from "./common";
-
 
 export const opg0 = (fn: () => number, a: Vec, num = a.length, i = 0, s = 1) => {
     i += num * s;

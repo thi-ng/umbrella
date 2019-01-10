@@ -10,12 +10,13 @@ up to 200 neighboring points. Those points are highlighted in blue. For
 each of those a secondary KNN search is performed selecting up to 8
 neighbors. These matches are visualized as lines.
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/geom-knn
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
+
+**IMPORTANT:** Please also see the [troubleshooting
+note](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions#troubleshooting)
+and temporary workaround for this example.
 
 ## Authors
 

@@ -1,4 +1,4 @@
-import { Comparator } from "@thi.ng/api/api";
+import { Comparator, Fn } from "@thi.ng/api";
 
 /**
  * Returns the supposed index of `x` in pre-sorted array-like collection
@@ -12,7 +12,12 @@ import { Comparator } from "@thi.ng/api/api";
  * @param x
  * @returns index of `x`, else `-index` if item could not be found
  */
-export function binarySearch<A, B>(arr: ArrayLike<A>, key: (x: A) => B, cmp: Comparator<B>, x: A) {
+export const binarySearch = <A, B>(
+    arr: ArrayLike<A>,
+    key: Fn<A, B>,
+    cmp: Comparator<B>,
+    x: A
+) => {
     const kx = key(x);
     let low = 0;
     let high = arr.length - 1;
@@ -28,4 +33,4 @@ export function binarySearch<A, B>(arr: ArrayLike<A>, key: (x: A) => B, cmp: Com
         }
     }
     return -low;
-}
+};

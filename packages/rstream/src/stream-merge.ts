@@ -1,8 +1,8 @@
-import { IID } from "@thi.ng/api/api";
-import { Transducer } from "@thi.ng/transducers/api";
-
+import { IID } from "@thi.ng/api";
+import { Transducer } from "@thi.ng/transducers";
 import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
+import { nextID } from "./utils/idgen";
 
 export interface StreamMergeOpts<A, B> extends IID<string> {
     /**
@@ -67,9 +67,9 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * // ["b", 30]
  * ```
  */
-export function merge<A, B>(opts?: Partial<StreamMergeOpts<A, B>>) {
-    return new StreamMerge(opts);
-}
+export const merge =
+    <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
+        new StreamMerge(opts);
 
 export class StreamMerge<A, B> extends Subscription<A, B> {
 
@@ -78,7 +78,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};
-        super(null, opts.xform, null, opts.id || `streammerge-${Subscription.NEXT_ID++}`);
+        super(null, opts.xform, null, opts.id || `streammerge-${nextID()}`);
         this.sources = new Map();
         this.autoClose = opts.close !== false;
         if (opts.src) {

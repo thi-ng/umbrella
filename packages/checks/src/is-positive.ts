@@ -1,3 +1,2 @@
-export function isPosititve(x: any): x is number {
-    return typeof x === "number" && x > 0;
-}
+export const isPosititve =
+    (x: any): x is number => typeof x === "number" && x > 0;

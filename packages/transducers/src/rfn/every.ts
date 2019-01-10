@@ -1,5 +1,4 @@
-import { Predicate } from "@thi.ng/api/api";
-
+import { Predicate } from "@thi.ng/api";
 import { Reducer } from "../api";
 import { $$reduce, reducer } from "../reduce";
 import { reduced } from "../reduced";

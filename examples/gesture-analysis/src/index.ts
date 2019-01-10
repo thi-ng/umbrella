@@ -5,9 +5,17 @@ import { group } from "@thi.ng/hiccup-svg/group";
 import { polyline } from "@thi.ng/hiccup-svg/polyline";
 import { svg } from "@thi.ng/hiccup-svg/svg";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
-import { fromIterable } from "@thi.ng/rstream/from/iterable";
-import { merge } from "@thi.ng/rstream/stream-merge";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import {
+    comp,
+    filter,
+    identity,
+    map,
+    multiplexObj,
+    partition,
+    peek,
+    push,
+    transduce
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { comp } from "@thi.ng/transducers/func/comp";
 import { identity } from "@thi.ng/transducers/func/identity";

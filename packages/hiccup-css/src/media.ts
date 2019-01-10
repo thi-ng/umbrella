@@ -1,6 +1,6 @@
 import { Conditional, RuleFn } from "./api";
 import { conditional } from "./conditional";
 
-export function at_media(cond: Conditional, rules: any[]): RuleFn {
-    return conditional("@media", cond, rules);
-}
+export const at_media =
+    (cond: Conditional, rules: any[]): RuleFn =>
+        conditional("@media", cond, rules);

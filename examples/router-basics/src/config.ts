@@ -3,10 +3,9 @@ import {
     Event,
     FX_DELAY,
     FX_DISPATCH_ASYNC,
-    FX_DISPATCH_NOW
-} from "@thi.ng/interceptors/api";
-import { valueUpdater } from "@thi.ng/interceptors/interceptors";
-
+    FX_DISPATCH_NOW,
+    valueUpdater
+} from "@thi.ng/interceptors";
 import { AppConfig, StatusType } from "./api";
 import { allUsers } from "./components/all-users";
 import { contact } from "./components/contact";

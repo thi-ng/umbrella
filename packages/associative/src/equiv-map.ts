@@ -5,9 +5,8 @@ import {
     IObjectOf,
     Pair,
     SEMAPHORE
-} from "@thi.ng/api/api";
+} from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-
 import { EquivMapOpts, IEquivSet } from "./api";
 import { ArraySet } from "./array-set";
 

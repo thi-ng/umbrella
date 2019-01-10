@@ -1,11 +1,15 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { atan2Abs } from "@thi.ng/math/angle";
-import { EPS } from "@thi.ng/math/api";
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { max3id, min3id } from "@thi.ng/math/interval";
-import { mixBilinear } from "@thi.ng/math/mix";
-import { fract } from "@thi.ng/math/prec";
-import { smoothStep, step } from "@thi.ng/math/step";
+import { isArrayLike } from "@thi.ng/checks";
+import {
+    atan2Abs,
+    EPS,
+    eqDelta,
+    fract,
+    max3id,
+    min3id,
+    mixBilinear,
+    smoothStep,
+    step
+} from "@thi.ng/math";
 import {
     IAngleBetween,
     ICrossProduct,

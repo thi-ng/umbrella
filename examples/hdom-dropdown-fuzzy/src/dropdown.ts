@@ -1,9 +1,8 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { ReadonlyAtom } from "@thi.ng/atom/api";
+import { IObjectOf } from "@thi.ng/api";
+import { ReadonlyAtom } from "@thi.ng/atom";
 import { isString } from "@thi.ng/checks";
-import { appLink } from "@thi.ng/hdom-components/link";
-import { EV_SET_VALUE, EV_TOGGLE_VALUE } from "@thi.ng/interceptors/api";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
+import { appLink } from "@thi.ng/hdom-components";
+import { EventBus, EV_SET_VALUE, EV_TOGGLE_VALUE } from "@thi.ng/interceptors";
 import { getIn, Path } from "@thi.ng/paths";
 
 export interface BaseContext {

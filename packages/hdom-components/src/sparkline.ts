@@ -1,6 +1,5 @@
-import { fitClamped } from "@thi.ng/math/fit";
-import { str } from "@thi.ng/transducers/rfn/str";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { fitClamped } from "@thi.ng/math";
+import { mapIndexed, str } from "@thi.ng/transducers";
 
 export interface SparklineOpts {
     /**

@@ -1,8 +1,8 @@
-import { ICopy, IEmpty, Pair } from "@thi.ng/api/api";
-import { Heap } from "@thi.ng/heaps/heap";
-import { EPS } from "@thi.ng/math/api";
-import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
-import { IDistance } from "@thi.ng/vectors/api";
+import { ICopy, IEmpty, Pair } from "@thi.ng/api";
+import { Heap } from "@thi.ng/heaps";
+import { EPS } from "@thi.ng/math";
+import { ensureArray } from "@thi.ng/transducers";
+import { IDistance } from "@thi.ng/vectors";
 
 export type KdIndexable<T> = IDistance<T> & IEmpty<T>;
 

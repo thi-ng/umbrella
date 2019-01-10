@@ -1,3 +1,2 @@
-export function isString(x: any): x is string {
-    return typeof x === "string";
-}
+export const isString =
+    (x: any): x is string => typeof x === "string";

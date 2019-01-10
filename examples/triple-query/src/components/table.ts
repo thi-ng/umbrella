@@ -1,4 +1,4 @@
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers";
 
 import { AppContext } from "../api";
 

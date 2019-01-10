@@ -1,4 +1,4 @@
-import { Predicate2 } from "@thi.ng/api/api";
+import { Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 
 /**
@@ -15,7 +15,11 @@ import { equiv } from "@thi.ng/equiv";
  * @param query
  * @param eq
  */
-export function fuzzyMatch<T>(domain: ArrayLike<T>, query: ArrayLike<T>, eq: Predicate2<any> = equiv) {
+export const fuzzyMatch = <T>(
+    domain: ArrayLike<T>,
+    query: ArrayLike<T>,
+    eq: Predicate2<any> = equiv
+) => {
     const nd = domain.length;
     const nq = query.length;
     if (nq > nd) {
@@ -35,4 +39,4 @@ export function fuzzyMatch<T>(domain: ArrayLike<T>, query: ArrayLike<T>, eq: Pre
         return false;
     }
     return true;
-}
+};

@@ -1,3 +1,2 @@
-export function constantly<T>(x: T): (...args: any[]) => T {
-    return () => x;
-}
+export const constantly =
+    <T>(x: T): (...args: any[]) => T => () => x;

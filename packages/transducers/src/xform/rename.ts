@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-
+import { IObjectOf } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks";
 import { Reducer, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { renamer } from "../func/renamer";

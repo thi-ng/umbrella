@@ -1,7 +1,5 @@
 import { clearDOM, renderOnce } from "@thi.ng/hdom";
-import { range } from "@thi.ng/transducers/iter/range";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { range, map, mapcat } from "@thi.ng/transducers";
 
 // fit `x` from range (a,b) => (c,d)
 const fit = (x, a, b, c, d) => (x - a) / (b - a) * (d - c) + c;

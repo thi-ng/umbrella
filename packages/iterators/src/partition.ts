@@ -1,5 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
+import { illegalArgs } from "@thi.ng/errors";
 import { consume } from "./consume";
 import { iterator } from "./iterator";
 

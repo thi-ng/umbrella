@@ -34,18 +34,13 @@ Dataflow diagram:
 
 ## Building
 
-Note: Currently, some of the packages used by this demo are only
-available as pre-releases (e.g. `"@thi.ng/hdom": "^5.0.0-alpha"`).
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
-The example project also assumes that [Parcel](https://parceljs.org) is
-installed globally.
-
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/hdom-canvas-shapes
-yarn install
-yarn start
-```
+**IMPORTANT:** Please also see the [troubleshooting
+note](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions#troubleshooting)
+and temporary workaround for this example.
 
 ## Authors
 

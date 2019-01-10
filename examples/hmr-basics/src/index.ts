@@ -1,8 +1,6 @@
-import { fromAtom } from "@thi.ng/rstream/from/atom";
-import { fromInterval } from "@thi.ng/rstream/from/interval";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { fromAtom, fromInterval, sync } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/xform/map";
 import { app } from "./app";
 import { state } from "./state";
 

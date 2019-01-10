@@ -11,14 +11,15 @@ import { partial } from "@thi.ng/compose/partial";
 // see http://dev.thi.ng/gradients/
 // see http://dev.thi.ng/gradients/
 
-const cosColor = (dc: number[], amp: number[], fmod: number[], phase: number[], t: number) =>
-    transduce(
-        map<number[], number>(
-            ([a, b, c, d]) => clamp01(a + b * Math.cos(TAU * (c * t + d)))
-        ),
-        push(),
-        tuples(dc, amp, fmod, phase)
-    );
+const cosColor =
+    (dc: number[], amp: number[], fmod: number[], phase: number[], t: number) =>
+        transduce(
+            map<number[], number>(
+                ([a, b, c, d]) => clamp01(a + b * Math.cos(TAU * (c * t + d)))
+            ),
+            push(),
+            tuples(dc, amp, fmod, phase)
+        );
 
 export const cosineGradient = (n: number, spec: number[][]) => {
     const [dc, amp, fmod, phase] = spec;

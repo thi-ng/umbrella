@@ -1,4 +1,4 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { implementsFunction } from "@thi.ng/checks";
 
 /**
  * Takes an arbitrary `ctx` object and array of `keys`. Attempts to call

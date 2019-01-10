@@ -1,15 +1,13 @@
 import {
     Event,
     INotify,
+    INotifyMixin,
     IObjectOf,
     Listener
-} from "@thi.ng/api/api";
-import * as mixin from "@thi.ng/api/mixins/inotify";
-import { isString } from "@thi.ng/checks/is-string";
+} from "@thi.ng/api";
+import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import {
     EVENT_ROUTE_CHANGED,
     Route,
@@ -18,7 +16,7 @@ import {
     RouterConfig
 } from "./api";
 
-@mixin.INotify
+@INotifyMixin
 export class BasicRouter implements
     INotify {
 

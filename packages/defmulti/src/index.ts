@@ -327,10 +327,10 @@ const makeRels = (spec: AncestorDefs) => {
  * @param impls
  * @param fallback
  */
-export function defmultiN<T>(
+export const defmultiN = <T>(
     impls: { [id: number]: Implementation<T> },
     fallback?: Implementation<T>
-) {
+) => {
     const fn = defmulti<T>((...args: any[]) => args.length);
     fn.add(DEFAULT, fallback || ((...args) => illegalArity(args.length)));
     for (let id in impls) {

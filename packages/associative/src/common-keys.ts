@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 
 /**
  * Like `commonKeysObj()`, but for ES6 Maps.
@@ -6,15 +6,16 @@ import { IObjectOf } from "@thi.ng/api/api";
  * @param a
  * @param b
  */
-export function commonKeysMap<K>(a: Map<K, any>, b: Map<K, any>) {
-    const res: K[] = [];
-    for (let k of a.keys()) {
-        if (b.has(k)) {
-            res.push(k);
+export const commonKeysMap =
+    <K>(a: Map<K, any>, b: Map<K, any>) => {
+        const res: K[] = [];
+        for (let k of a.keys()) {
+            if (b.has(k)) {
+                res.push(k);
+            }
         }
-    }
-    return res;
-}
+        return res;
+    };
 
 /**
  * Returns array of keys present in both args, i.e. the set intersection
@@ -28,12 +29,13 @@ export function commonKeysMap<K>(a: Map<K, any>, b: Map<K, any>) {
  * @param a
  * @param b
  */
-export function commonKeysObj(a: IObjectOf<any>, b: IObjectOf<any>) {
-    const res: string[] = [];
-    for (let k in a) {
-        if (b.hasOwnProperty(k)) {
-            res.push(k);
+export const commonKeysObj =
+    (a: IObjectOf<any>, b: IObjectOf<any>) => {
+        const res: string[] = [];
+        for (let k in a) {
+            if (b.hasOwnProperty(k)) {
+                res.push(k);
+            }
         }
-    }
-    return res;
-}
+        return res;
+    };

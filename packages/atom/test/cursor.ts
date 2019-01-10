@@ -1,8 +1,7 @@
-import * as assert from "assert";
+import { isNumber } from "@thi.ng/checks";
 import { getIn } from "@thi.ng/paths";
-
+import * as assert from "assert";
 import { Atom, Cursor } from "../src/index";
-import { isNumber } from "@thi.ng/checks/is-number";
 
 describe("cursor", function () {
 
@@ -126,17 +125,17 @@ describe("cursor", function () {
         c = new Cursor(a, "a");
         let id = c.id;
         assert.notEqual((<any>a)._watches[id], null);
-        assert(c.release());
+        assert.ok(c.release());
         assert.strictEqual(c.parent, undefined);
         assert.strictEqual((<any>a)._watches[id], undefined);
     });
 
     it("can add & remove watch", () => {
         c = new Cursor(a, "a.b.c");
-        assert(c.addWatch("foo", () => { }), "can't add watch");
-        assert((<any>c).local._watches && (<any>c).local._watches.foo, "watch missing");
-        assert(c.removeWatch("foo"), "can't remove watch");
-        assert(!c.removeWatch("foo"), "should fail to remove invalid watch id");
+        assert.ok(c.addWatch("foo", () => { }), "can't add watch");
+        assert.ok((<any>c).local._watches && (<any>c).local._watches.foo, "watch missing");
+        assert.ok(c.removeWatch("foo"), "can't remove watch");
+        assert.ok(!c.removeWatch("foo"), "should fail to remove invalid watch id");
     });
 
     it("can be watched", () => {

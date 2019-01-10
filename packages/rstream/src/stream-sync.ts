@@ -1,13 +1,15 @@
-import { IID, IObjectOf } from "@thi.ng/api/api";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { labeled } from "@thi.ng/transducers/xform/labeled";
-import { mapVals } from "@thi.ng/transducers/xform/map-vals";
-import { partitionSync } from "@thi.ng/transducers/xform/partition-sync";
-
+import { IID, IObjectOf } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
+import {
+    comp,
+    labeled,
+    mapVals,
+    partitionSync,
+    Transducer
+} from "@thi.ng/transducers";
 import { ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
+import { nextID } from "./utils/idgen";
 
 export interface StreamSyncOpts<A, B> extends IID<string> {
     /**
@@ -91,9 +93,9 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * the @thi.ng/transducers package. See this function's docs for further
  * details.
  */
-export function sync<A, B>(opts: Partial<StreamSyncOpts<A, B>>) {
-    return new StreamSync(opts);
-}
+export const sync =
+    <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
+        new StreamSync(opts);
 
 export class StreamSync<A, B> extends Subscription<A, B> {
 
@@ -134,7 +136,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         if (opts.xform) {
             xform = comp(xform, opts.xform);
         }
-        super(null, xform, null, opts.id || `streamsync-${Subscription.NEXT_ID++}`);
+        super(null, xform, null, opts.id || `streamsync-${nextID()}`);
         this.sources = new Map();
         this.realSourceIDs = new Map();
         this.invRealSourceIDs = new Map();

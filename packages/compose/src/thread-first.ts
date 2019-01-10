@@ -1,4 +1,4 @@
-import { FnAny } from "@thi.ng/api/api";
+import { FnAny } from "@thi.ng/api";
 
 /**
  * Takes an `init` value and a number of functions and/or function
@@ -26,13 +26,13 @@ import { FnAny } from "@thi.ng/api/api";
  * @param init
  * @param fns
  */
-export function threadFirst(init: any, ...fns: (FnAny<any> | [FnAny<any>, ...any[]])[]) {
-    return fns.reduce(
-        (acc, expr) =>
-            typeof expr === "function" ?
-                expr(acc) :
-                expr[0](acc, ...expr.slice(1))
-        ,
-        init
-    );
-}
+export const threadFirst =
+    (init: any, ...fns: (FnAny<any> | [FnAny<any>, ...any[]])[]) =>
+        fns.reduce(
+            (acc, expr) =>
+                typeof expr === "function" ?
+                    expr(acc) :
+                    expr[0](acc, ...expr.slice(1))
+            ,
+            init
+        );

@@ -1,21 +1,21 @@
-import { IDeref, SEMAPHORE } from "@thi.ng/api/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { illegalState } from "@thi.ng/errors/illegal-state";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
-import { push } from "@thi.ng/transducers/rfn/push";
-
+import { IDeref, SEMAPHORE } from "@thi.ng/api";
+import { implementsFunction, isFunction, isString } from "@thi.ng/checks";
+import { illegalArity, illegalState } from "@thi.ng/errors";
 import {
-    __State,
+    comp,
+    isReduced,
+    push,
+    Reducer,
+    Transducer,
+    unreduced
+} from "@thi.ng/transducers";
+import {
     DEBUG,
     ISubscribable,
     ISubscriber,
     State
 } from "./api";
+import { nextID } from "./utils/idgen";
 
 /**
  * Creates a new `Subscription` instance, the fundamental datatype &
@@ -51,16 +51,18 @@ import {
  * @param parent
  * @param id
  */
-export function subscription<A, B>(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
-    return new Subscription(sub, xform, parent, id);
-}
+export const subscription = <A, B>(
+    sub?: ISubscriber<B>,
+    xform?: Transducer<A, B>,
+    parent?: ISubscribable<A>,
+    id?: string
+) =>
+    new Subscription(sub, xform, parent, id);
 
 export class Subscription<A, B> implements
     IDeref<B>,
     ISubscriber<A>,
     ISubscribable<B> {
-
-    static NEXT_ID = 0;
 
     id: string;
 
@@ -73,7 +75,7 @@ export class Subscription<A, B> implements
 
     constructor(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
         this.parent = parent;
-        this.id = id || `sub-${Subscription.NEXT_ID++}`;
+        this.id = id || `sub-${nextID()}`;
         this.last = SEMAPHORE;
         this.subs = [];
         if (sub) {
@@ -109,7 +111,7 @@ export class Subscription<A, B> implements
             case 2:
                 if (isFunction(args[0])) {
                     xform = args[0];
-                    id = args[1] || `xform-${Subscription.NEXT_ID++}`;
+                    id = args[1] || `xform-${nextID()}`;
                 } else {
                     sub = args[0];
                     if (isFunction(args[1])) {
@@ -128,7 +130,7 @@ export class Subscription<A, B> implements
         if (implementsFunction(sub, "subscribe")) {
             sub.parent = this;
         } else {
-            sub = new Subscription(sub, xform, this, id);
+            sub = subscription(sub, xform, this, id);
         }
         if (this.last !== SEMAPHORE) {
             sub.next(this.last);
@@ -296,7 +298,7 @@ export class Subscription<A, B> implements
 
     protected ensureState() {
         if (this.state >= State.DONE) {
-            illegalState(`operation not allowed in ${__State[this.state]} state`);
+            illegalState(`operation not allowed in state ${this.state}`);
         }
     }
 

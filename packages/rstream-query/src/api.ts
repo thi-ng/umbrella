@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { ISubscribable } from "@thi.ng/rstream/api";
+import { IObjectOf } from "@thi.ng/api";
+import { ISubscribable } from "@thi.ng/rstream";
 
 export let DEBUG = false;
 

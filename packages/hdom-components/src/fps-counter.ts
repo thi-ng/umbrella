@@ -1,5 +1,5 @@
-import { sma } from "@thi.ng/transducers-stats/sma";
-import { step } from "@thi.ng/transducers/step";
+import { step } from "@thi.ng/transducers";
+import { sma } from "@thi.ng/transducers-stats";
 import { sparkline, SparklineOpts } from "./sparkline";
 
 export interface FpsCounterOpts {

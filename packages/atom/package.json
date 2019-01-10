@@ -1,8 +1,10 @@
 {
     "name": "@thi.ng/atom",
     "version": "1.5.8",
-    "description": "Mutable wrapper for immutable values",
-    "main": "./index.js",
+    "description": "Mutable wrappers for nested immutable values w/ optional undo/redo history",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -12,19 +14,21 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rm -rf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module atom api checks equiv errors paths",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public",
-        "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
+        "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
         "nyc": "^13.1.0",
-        "typedoc": "^0.13.0",
+        "typedoc": "^0.14.0",
         "typescript": "^3.2.2"
     },
     "dependencies": {
@@ -35,15 +39,25 @@
         "@thi.ng/paths": "^1.6.6"
     },
     "keywords": [
+        "derived views",
         "cursor",
-        "datastructure",
+        "data structure",
         "ES6",
         "history",
         "immutable",
+        "redo",
         "typescript",
         "undo"
     ],
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "browserslist": [
+        "since 2018-07"
+    ],
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "sideEffects": false
 }

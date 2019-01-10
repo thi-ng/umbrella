@@ -1,5 +1,4 @@
-import { isFunction } from "@thi.ng/checks/is-function";
-
+import { isFunction } from "@thi.ng/checks";
 import { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { map } from "./map";

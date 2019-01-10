@@ -1,5 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
+import { illegalArgs } from "@thi.ng/errors";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";

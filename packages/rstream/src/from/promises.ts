@@ -1,5 +1,4 @@
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-
+import { mapcat } from "@thi.ng/transducers";
 import { Subscription } from "../subscription";
 import { fromPromise } from "./promise";
 
@@ -33,6 +32,6 @@ import { fromPromise } from "./promise";
  *
  * @param promises
  */
-export function fromPromises<T>(promises: Iterable<Promise<T>>): Subscription<T[], T> {
-    return fromPromise(Promise.all(promises)).transform(mapcat((x: T[]) => x));
-}
+export const fromPromises =
+    <T>(promises: Iterable<Promise<T>>): Subscription<T[], T> =>
+        fromPromise(Promise.all(promises)).transform(mapcat((x: T[]) => x));

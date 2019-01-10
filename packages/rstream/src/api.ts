@@ -1,6 +1,5 @@
-import { IDeref, IID } from "@thi.ng/api/api";
-import { Transducer } from "@thi.ng/transducers/api";
-
+import { IDeref, IID } from "@thi.ng/api";
+import { Transducer } from "@thi.ng/transducers";
 import { Stream } from "./stream";
 import { Subscription } from "./subscription";
 
@@ -15,7 +14,7 @@ export const enum State {
 /**
  * Reverse lookup for `State` enums
  */
-export const __State = (<any>exports).State;
+// export const __State = (<any>exports).State;
 
 export type Fn<T> = (x: T) => void;
 

@@ -5,6 +5,6 @@ import { Transducer } from "../api";
  * `map(identity)`, but faster. Useful for testing and / or to keep
  * existing values in a `multiplex()` tuple lane.
  */
-export function noop<T>(): Transducer<T, T> {
-    return (rfn) => rfn;
-}
+export const noop =
+    <T>(): Transducer<T, T> =>
+        (rfn) => rfn;

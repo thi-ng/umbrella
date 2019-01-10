@@ -1,4 +1,4 @@
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { Vec2 } from "@thi.ng/vectors";
 
 export const polygonArea = (pts: ReadonlyArray<Vec2>) => {
     let res = 0;

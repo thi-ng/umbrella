@@ -1,7 +1,6 @@
+import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArity } from "@thi.ng/errors";
-import { isString } from "@thi.ng/checks/is-string";
-
 import { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
 import { BasicRouter } from "./basic";
 

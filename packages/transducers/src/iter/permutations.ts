@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 import { ensureArrayLike } from "../func/ensure-array";
 import { range } from "./range";
 
@@ -73,14 +73,15 @@ export function* permutations(...src: any[]) {
  * @param m
  * @param offsets
  */
-export function permutationsN(n: number, m = n, offsets?: number[]): IterableIterator<number[]> {
-    if (offsets && offsets.length < n) {
-        illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
-    }
-    const seqs = [];
-    while (--n >= 0) {
-        const o = offsets ? offsets[n] : 0;
-        seqs[n] = range(o, o + m);
-    }
-    return permutations.apply(null, seqs);
-}
+export const permutationsN =
+    (n: number, m = n, offsets?: number[]): IterableIterator<number[]> => {
+        if (offsets && offsets.length < n) {
+            illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
+        }
+        const seqs = [];
+        while (--n >= 0) {
+            const o = offsets ? offsets[n] : 0;
+            seqs[n] = range(o, o + m);
+        }
+        return permutations.apply(null, seqs);
+    };

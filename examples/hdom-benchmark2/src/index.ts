@@ -1,17 +1,17 @@
-import { splat4_24 } from "@thi.ng/binary/splat";
-import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { fpsCounter } from "@thi.ng/hdom-components/fps-counter";
-import { start } from "@thi.ng/hdom/start";
-import { css } from "@thi.ng/hiccup-css/css";
-import { injectStyleSheet } from "@thi.ng/hiccup-css/inject";
-import { U24 } from "@thi.ng/strings/radix";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import { splat4_24 } from "@thi.ng/binary";
+import { start } from "@thi.ng/hdom";
+import { dropdown, fpsCounter } from "@thi.ng/hdom-components";
+import { css, injectStyleSheet } from "@thi.ng/hiccup-css";
+import { U24 } from "@thi.ng/strings";
+import {
+    comp,
+    map,
+    mapIndexed,
+    partition,
+    push,
+    range,
+    transduce
+} from "@thi.ng/transducers";
 
 const SIZE = "0.5rem";
 

@@ -1,4 +1,4 @@
-import { Route } from "@thi.ng/router/api";
+import { Route } from "@thi.ng/router";
 
 // route definitions:
 // routes are 1st class objects and used directly throughout the app

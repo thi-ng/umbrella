@@ -1,4 +1,4 @@
-import { IID, IObjectOf } from "@thi.ng/api/api";
+import { IID, IObjectOf } from "@thi.ng/api";
 
 /**
  * A validation function to for authenticated routes. If this function

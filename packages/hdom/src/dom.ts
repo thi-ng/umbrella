@@ -1,11 +1,10 @@
-import * as isa from "@thi.ng/checks/is-array";
-import * as isi from "@thi.ng/checks/is-not-string-iterable";
-import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup/api";
-import { css } from "@thi.ng/hiccup/css";
+import { isArray as isa, isNotStringAndIterable as isi } from "@thi.ng/checks";
+import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
+import { css } from "@thi.ng/hiccup";
 import { HDOMImplementation, HDOMOpts } from "./api";
 
-const isArray = isa.isArray;
-const isNotStringAndIterable = isi.isNotStringAndIterable
+const isArray = isa;
+const isNotStringAndIterable = isi;
 
 /**
  * See `HDOMImplementation` interface for further details.

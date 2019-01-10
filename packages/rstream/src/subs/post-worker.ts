@@ -1,6 +1,5 @@
-import { isTransferable } from "@thi.ng/checks/is-transferable";
-import { isTypedArray } from "@thi.ng/checks/is-typedarray";
-
+import { isTransferable } from "@thi.ng/checks";
+import { isTypedArray } from "@thi.ng/checks";
 import { DEBUG, ISubscriber } from "../api";
 import { makeWorker } from "../utils/worker";
 
@@ -34,7 +33,12 @@ import { makeWorker } from "../utils/worker";
  * @param transfer
  * @param terminate worker termination delay (ms)
  */
-export function postWorker<T>(worker: Worker | Blob | string, transfer = false, terminate = 0): ISubscriber<T> {
+export const postWorker = <T>(
+    worker: Worker | Blob | string,
+    transfer = false,
+    terminate = 0
+): ISubscriber<T> => {
+
     const _worker = makeWorker(worker);
     return {
         next(x) {
@@ -60,4 +64,4 @@ export function postWorker<T>(worker: Worker | Blob | string, transfer = false, 
             }
         }
     };
-}
+};
