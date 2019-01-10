@@ -110,6 +110,10 @@ EOF
 
 echo "writing .npmignore..."
 cat << EOF > $MODULE/.npmignore
+.meta
+.nyc_output
+*.html
+*.tgz
 build
 coverage
 dev
@@ -117,11 +121,7 @@ doc
 export
 src*
 test
-.meta
-.nyc_output
 tsconfig.json
-*.tgz
-*.html
 EOF
 
 echo "writing README.md..."
