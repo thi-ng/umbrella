@@ -1,4 +1,4 @@
-import { ICopy, IEmpty } from "@thi.ng/api/api";
+import { ICopy, IEmpty } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 
 import { DHeapOpts } from "./api";

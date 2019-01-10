@@ -1,9 +1,7 @@
-import { ICopy, IToHiccup } from "@thi.ng/api/api";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { map } from "@thi.ng/transducers/xform/map";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { ICopy, IToHiccup } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
+import { map, partition } from "@thi.ng/transducers";
+import { ReadonlyVec, Vec, Vec2 } from "@thi.ng/vectors";
 import {
     Attribs,
     IArcLength,

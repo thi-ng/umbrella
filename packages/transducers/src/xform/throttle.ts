@@ -1,5 +1,4 @@
-import { StatefulPredicate } from "@thi.ng/api/api";
-
+import { StatefulPredicate } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";

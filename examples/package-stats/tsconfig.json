@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "lib",
+        "module": "commonjs",
+        "target": "es6",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+    },
+    "include": [
+        "./src/**/*.ts"
+    ]
+}

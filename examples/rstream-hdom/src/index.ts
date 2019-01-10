@@ -1,14 +1,19 @@
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
-import { Subscription, subscription } from "@thi.ng/rstream/subscription";
+import {
+    fromRAF,
+    ISubscribable,
+    sidechainPartition,
+    Subscription,
+    subscription,
+    sync
+} from "@thi.ng/rstream";
+import {
+    map,
+    peek,
+    reducer,
+    scan,
+    vals
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { peek } from "@thi.ng/transducers/func/peek";
-import { vals } from "@thi.ng/transducers/iter/vals";
-import { reducer } from "@thi.ng/transducers/reduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { scan } from "@thi.ng/transducers/xform/scan";
 
 // example user context object
 // here only used to provide style / theme config using

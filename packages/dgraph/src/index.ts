@@ -1,11 +1,8 @@
-import { ICopy } from "@thi.ng/api/api";
-import { EquivMap } from "@thi.ng/associative/equiv-map";
-import { LLSet } from "@thi.ng/associative/ll-set";
-import { union } from "@thi.ng/associative/union";
+import { ICopy } from "@thi.ng/api";
+import { EquivMap, LLSet, union } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { reduce, reducer } from "@thi.ng/transducers/reduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
+import { illegalArgs } from "@thi.ng/errors";
+import { filter, reduce, reducer } from "@thi.ng/transducers";
 
 export class DGraph<T> implements
     Iterable<T>,

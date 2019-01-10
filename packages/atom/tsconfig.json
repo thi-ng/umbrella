@@ -2,7 +2,8 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": ".",
-        "noUnusedParameters": false
+        "module": "es6",
+        "target": "es6"
     },
     "include": [
         "./src/**/*.ts"

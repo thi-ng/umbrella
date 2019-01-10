@@ -1,9 +1,6 @@
 import { ICopy } from "@thi.ng/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { ReadonlyVec } from "@thi.ng/vectors/api";
-import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
+import { isArrayLike, isNumber, isPlainObject } from "@thi.ng/checks";
+import { asVec2, ReadonlyVec, Vec2 } from "@thi.ng/vectors";
 import {
     Attribs,
     CollateOpts,

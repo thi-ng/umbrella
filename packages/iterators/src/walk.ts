@@ -1,6 +1,6 @@
+import { Fn } from "@thi.ng/api";
 import { iterator, maybeIterator } from "./iterator";
 import { maybeObjectIterator } from "./object-iterator";
-import { Fn } from "@thi.ng/api/api";
 
 export const walkable =
     (x) =>

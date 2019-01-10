@@ -1,5 +1,4 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { illegalArity } from "@thi.ng/errors";
 import { range } from "./range";
 
 export function range2d(toX: number, toY: number): IterableIterator<[number, number]>;

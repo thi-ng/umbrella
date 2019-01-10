@@ -1,5 +1,4 @@
-import { IVector } from "@thi.ng/vectors/api";
-import { Vec3 } from "@thi.ng/vectors/vec3";
+import { IVector, Vec3 } from "@thi.ng/vectors";
 
 export const toBarycentric =
     <T extends IVector<T>>

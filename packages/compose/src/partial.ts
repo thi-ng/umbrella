@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 
 export function partial<A, T>(fn: (a: A, ...args: any[]) => T, a: A): (...args: any[]) => T;
 export function partial<A, B, T>(fn: (a: A, b: B, ...args: any[]) => T, a: A, b: B): (...args: any[]) => T;

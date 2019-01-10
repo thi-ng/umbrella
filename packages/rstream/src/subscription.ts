@@ -1,15 +1,15 @@
-import { IDeref, SEMAPHORE } from "@thi.ng/api/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { illegalState } from "@thi.ng/errors/illegal-state";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
-import { push } from "@thi.ng/transducers/rfn/push";
+import { IDeref, SEMAPHORE } from "@thi.ng/api";
+import { implementsFunction, isFunction, isString } from "@thi.ng/checks";
+import { illegalArity, illegalState } from "@thi.ng/errors";
 import {
-    __State,
+    comp,
+    isReduced,
+    push,
+    Reducer,
+    Transducer,
+    unreduced
+} from "@thi.ng/transducers";
+import {
     DEBUG,
     ISubscribable,
     ISubscriber,
@@ -298,7 +298,7 @@ export class Subscription<A, B> implements
 
     protected ensureState() {
         if (this.state >= State.DONE) {
-            illegalState(`operation not allowed in ${__State[this.state]} state`);
+            illegalState(`operation not allowed in state ${this.state}`);
         }
     }
 

@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { radix } from "@thi.ng/strings/radix";
+import { radix } from "@thi.ng/strings";
 
 import { comp } from "../src/func/comp";
 import { range } from "../src/iter/range";

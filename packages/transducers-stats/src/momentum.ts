@@ -1,8 +1,11 @@
 import { DCons } from "@thi.ng/dcons";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { iterator1 } from "@thi.ng/transducers/iterator";
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    compR,
+    iterator1,
+    Reducer,
+    Transducer
+} from "@thi.ng/transducers";
 
 /**
  * https://en.wikipedia.org/wiki/Momentum_(technical_analysis)

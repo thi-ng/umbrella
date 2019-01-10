@@ -3,7 +3,7 @@ import {
     ICopy,
     IEmpty,
     ILength
-} from "@thi.ng/api/api";
+} from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 
 import { HeapOpts } from "./api";

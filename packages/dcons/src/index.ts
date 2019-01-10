@@ -8,14 +8,12 @@ import {
     IRelease,
     IStack,
     Predicate
-} from "@thi.ng/api/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+} from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalState } from "@thi.ng/errors/illegal-state";
-import { IReducible, ReductionFn } from "@thi.ng/transducers/api";
-import { isReduced } from "@thi.ng/transducers/reduced";
+import { illegalArgs, illegalState } from "@thi.ng/errors";
+import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
 
 export interface ConsCell<T> {
     value: T;

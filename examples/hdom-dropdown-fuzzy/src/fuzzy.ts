@@ -1,11 +1,12 @@
-import { IView } from "@thi.ng/atom/api";
-import { EV_SET_VALUE } from "@thi.ng/interceptors/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { filterFuzzy } from "@thi.ng/transducers/xform/filter-fuzzy";
-import { map } from "@thi.ng/transducers/xform/map";
-
-import { dropdownListeners, DropdownState, DropdownItem } from "./dropdown";
+import { IView } from "@thi.ng/atom";
+import { EV_SET_VALUE } from "@thi.ng/interceptors";
+import {
+    comp,
+    filterFuzzy,
+    iterator,
+    map
+} from "@thi.ng/transducers";
+import { DropdownItem, dropdownListeners, DropdownState } from "./dropdown";
 
 export interface FuzzyArgs {
     state: IView<DropdownState>;

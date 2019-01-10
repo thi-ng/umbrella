@@ -1,6 +1,5 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { Mat44 } from "@thi.ng/vectors/mat44";
-import { Vec3, vec3 } from "@thi.ng/vectors/vec3";
+import { illegalArgs } from "@thi.ng/errors";
+import { Mat44, Vec3, vec3 } from "@thi.ng/vectors";
 import {
     Attribs,
     CollateOpts,

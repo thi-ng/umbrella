@@ -1,4 +1,4 @@
-import { FnAny } from "@thi.ng/api/api";
+import { FnAny } from "@thi.ng/api";
 
 /**
  * Takes an `init` value and a number of functions and/or function

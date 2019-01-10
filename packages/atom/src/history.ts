@@ -1,5 +1,9 @@
-import { Event, Predicate2, Watch } from "@thi.ng/api/api";
-import * as mixin from "@thi.ng/api/mixins/inotify";
+import {
+    Event,
+    INotifyMixin,
+    Predicate2,
+    Watch
+} from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import {
     getIn,
@@ -7,7 +11,6 @@ import {
     setIn,
     updateIn
 } from "@thi.ng/paths";
-
 import {
     IAtom,
     IHistory,
@@ -16,6 +19,7 @@ import {
     ViewTransform
 } from "./api";
 import { View } from "./view";
+
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
@@ -26,7 +30,7 @@ import { View } from "./view";
  * `INotify` interface to support event listeners for `undo()`, `redo()`
  * and `record()`.
  */
-@mixin.INotify
+@INotifyMixin
 export class History<T> implements
     IHistory<T> {
 
@@ -255,14 +259,14 @@ export class History<T> implements
         return true;
     }
 
-    addListener(id: string, fn: (e: Event) => void, scope?: any): boolean {
+    addListener(_: string, __: (e: Event) => void, ___?: any): boolean {
         return false;
     }
 
-    removeListener(id: string, fn: (e: Event) => void, scope?: any): boolean {
+    removeListener(_: string, __: (e: Event) => void, ___?: any): boolean {
         return false;
     }
 
-    notify(event: Event): void {
+    notify(_: Event): void {
     }
 }

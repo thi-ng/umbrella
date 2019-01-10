@@ -1,5 +1,5 @@
-import { Fn, FnAny } from "@thi.ng/api/api";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { Fn, FnAny } from "@thi.ng/api";
+import { illegalArity } from "@thi.ng/errors";
 
 /**
  * Returns the right-to-left composition of given functions. I.e. when

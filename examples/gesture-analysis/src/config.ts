@@ -1,5 +1,4 @@
-import { transformVectors1 } from "@thi.ng/vectors/common";
-import { mul2, Vec2 } from "@thi.ng/vectors/vec2";
+import { mul2, transformVectors1, Vec2 } from "@thi.ng/vectors";
 
 // initial call to action gesture
 // (recorded handwriting)

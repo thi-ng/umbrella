@@ -1,6 +1,6 @@
-import { isNode } from "@thi.ng/checks/is-node";
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { ISubscriber } from "@thi.ng/rstream/api";
+import { isNode } from "@thi.ng/checks";
+import { unsupported } from "@thi.ng/errors";
+import { ISubscriber } from "@thi.ng/rstream";
 
 export const writeFile =
     (path: string): ISubscriber<string> => {

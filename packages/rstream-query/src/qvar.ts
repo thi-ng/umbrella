@@ -1,4 +1,4 @@
-import { isString } from "@thi.ng/checks/is-string";
+import { isString } from "@thi.ng/checks";
 import { Triple } from "./api";
 
 const AUTO_QVAR_PREFIX = "?__q";

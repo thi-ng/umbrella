@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 
 export const ensureIterable =
     (x: any): IterableIterator<any> => {

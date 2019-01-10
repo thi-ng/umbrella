@@ -1,7 +1,6 @@
-import { Transducer } from "@thi.ng/transducers/api";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map, Transducer } from "@thi.ng/transducers";
 import {
-    __Level,
+    Level,
     BodyFormat,
     DateFormat,
     LogEntry,
@@ -16,7 +15,7 @@ export const formatString = (
     bodyFmt = bodyFmt || ((x) => x.toString());
     return map(
         ([level, id, time, ...body]) =>
-            `[${__Level[level]}] [${id}] ${dtFmt(time)} ${bodyFmt(body)}`
+            `[${Level[level]}] [${id}] ${dtFmt(time)} ${bodyFmt(body)}`
     );
 };
 
@@ -32,7 +31,7 @@ export const formatJSON =
         return map(
             ([level, id, time, ...body]) =>
                 JSON.stringify({
-                    level: __Level[level],
+                    level: Level[level],
                     id,
                     time: dtfmt(time),
                     body

@@ -10,12 +10,13 @@ constructs and
 **Note: Currently only really works on desktop until I figured out a way
 to better attach touch events...**
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/gesture-analysis
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
+
+**IMPORTANT:** Please also see the [troubleshooting
+note](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions#troubleshooting)
+and temporary workaround for this example.
 
 ## Authors
 

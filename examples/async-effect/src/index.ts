@@ -1,13 +1,13 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { start } from "@thi.ng/hdom/start";
+import { IObjectOf } from "@thi.ng/api";
+import { start } from "@thi.ng/hdom";
 import {
     EffectDef,
+    EventBus,
     EventDef,
     FX_DISPATCH_ASYNC,
-    FX_DISPATCH_NOW
-} from "@thi.ng/interceptors/api";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { valueSetter } from "@thi.ng/interceptors/interceptors";
+    FX_DISPATCH_NOW,
+    valueSetter
+} from "@thi.ng/interceptors";
 
 // best practice tip:
 // define event & effect names as consts or enums and

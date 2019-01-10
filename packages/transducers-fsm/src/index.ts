@@ -1,8 +1,12 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { ensureReduced, isReduced } from "@thi.ng/transducers/reduced";
+import { IObjectOf } from "@thi.ng/api";
+import {
+    comp,
+    compR,
+    ensureReduced,
+    isReduced,
+    Reducer,
+    Transducer
+} from "@thi.ng/transducers";
 
 export interface FSMState {
     state: PropertyKey;

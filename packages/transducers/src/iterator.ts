@@ -1,5 +1,5 @@
-import { SEMAPHORE } from "@thi.ng/api/api";
-import { isIterable } from "@thi.ng/checks/is-iterable";
+import { SEMAPHORE } from "@thi.ng/api";
+import { isIterable } from "@thi.ng/checks";
 
 import { Reducer, Transducer } from "./api";
 import { isReduced, unreduced } from "./reduced";

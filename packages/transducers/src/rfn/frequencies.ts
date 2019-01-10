@@ -1,5 +1,4 @@
-import { Fn } from "@thi.ng/api/api";
-
+import { Fn } from "@thi.ng/api";
 import { Reducer } from "../api";
 import { identity } from "../func/identity";
 import { $$reduce } from "../reduce";

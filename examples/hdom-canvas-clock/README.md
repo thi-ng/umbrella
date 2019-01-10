@@ -2,7 +2,7 @@
 
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-clock/)
 
-Declarative canvas drawing using the upcoming
+Declarative canvas drawing using the
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
 package.
 
@@ -13,18 +13,9 @@ Related examples:
 
 ## Building
 
-Note: Currently, some of the packages used by this demo are only
-available as pre-releases (e.g. `"@thi.ng/hdom": "^5.0.0-alpha"`).
-
-The example project also assumes that [Parcel](https://parceljs.org) is
-installed globally.
-
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/hdom-canvas-clock
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

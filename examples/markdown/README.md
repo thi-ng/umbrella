@@ -83,7 +83,7 @@ for reference...
 import { iterator } from "@thi.ng/transducers";
 import { serialize } from "@thi.ng/hiccup";
 
-import { parse } from "@thi.ng/hiccup-markdown/parse";
+import { parse } from "@thi.ng/hiccup-markdown";
 
 const src = `
 # Hello world
@@ -150,12 +150,9 @@ serialize(iterator(parse(tags), src));
 
 ## Building locally
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/markdown
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 
@@ -163,5 +160,4 @@ yarn start
 
 ## License
 
-© 2018 - 2019 Karsten Schmidt // Apache Software License 2.0
-
+&copy; 2018 Karsten Schmidt // Apache Software License 2.0

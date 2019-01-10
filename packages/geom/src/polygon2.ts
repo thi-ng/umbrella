@@ -1,15 +1,21 @@
-import { ICopy, IToHiccup } from "@thi.ng/api/api";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { TAU } from "@thi.ng/math/api";
-import { cycle } from "@thi.ng/transducers/iter/cycle";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
-import { asVec2, toCartesian2, Vec2 } from "@thi.ng/vectors/vec2";
+import { ICopy, IToHiccup } from "@thi.ng/api";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { TAU } from "@thi.ng/math";
+import {
+    cycle,
+    map,
+    normRange,
+    push,
+    transduce,
+    tuples
+} from "@thi.ng/transducers";
+import {
+    asVec2,
+    ReadonlyVec,
+    toCartesian2,
+    Vec,
+    Vec2
+} from "@thi.ng/vectors";
 import {
     Attribs,
     HiccupPolygon2,

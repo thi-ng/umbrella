@@ -1,8 +1,8 @@
 import { DCons } from "@thi.ng/dcons";
-
 import { ChannelItem, IBuffer } from "./api";
 
-export class FixedBuffer<T> implements IBuffer<T> {
+export class FixedBuffer<T> implements
+    IBuffer<T> {
 
     buf: DCons<ChannelItem<T>>;
     limit: number;

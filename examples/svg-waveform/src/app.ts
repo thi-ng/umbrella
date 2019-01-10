@@ -1,11 +1,14 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { History } from "@thi.ng/atom/history";
-import { isArray } from "@thi.ng/checks/is-array";
+import { IObjectOf } from "@thi.ng/api";
+import { Atom, History } from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-
-import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
+import { EventBus } from "@thi.ng/interceptors";
+import {
+    AppConfig,
+    AppContext,
+    AppViews,
+    ViewSpec
+} from "./api";
 import * as ev from "./events";
 
 /**

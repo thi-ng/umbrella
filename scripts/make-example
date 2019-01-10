@@ -27,18 +27,18 @@ cat << EOF > $MODULE/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rm -rf .cache build out",
+        "clean": "rimraf .cache build out",
         "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.10.3",
-        "terser": "^3.11.0",
+        "parcel-bundler": "^1.11.0",
+        "rimraf": "^2.6.3",
+        "terser": "^3.14.1",
         "typescript": "^3.2.2"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/atom": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
@@ -101,12 +101,7 @@ cat << EOF > $MODULE/README.md
 
 [Live demo](http://demo.thi.ng/umbrella/$1/)
 
-\`\`\`bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/$1
-yarn install
-yarn start
-\`\`\`
+Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
 ## Authors
 

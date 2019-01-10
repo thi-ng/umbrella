@@ -1,4 +1,4 @@
-import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors/interceptors"
+import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors"
 import { AppConfig } from "./api";
 // import * as ev from "./events";
 // import * as fx from "./effects";

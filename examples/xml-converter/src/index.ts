@@ -1,8 +1,6 @@
-import { stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { stream, sync } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/xform/map";
-
 import { convertXML } from "./convert";
 import { COMPACT_FORMAT, DEFAULT_FORMAT } from "./format";
 import { app, UI } from "./ui";

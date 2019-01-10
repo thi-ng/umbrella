@@ -1,8 +1,5 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { concat } from "@thi.ng/transducers/iter/concat";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { isArray, isPlainObject } from "@thi.ng/checks";
+import { concat, pairs, mapcat } from "@thi.ng/transducers";
 
 let NEXT_ID = 0;
 

@@ -1,13 +1,14 @@
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { drop } from "@thi.ng/transducers/xform/drop";
-import { map } from "@thi.ng/transducers/xform/map";
-import { multiplex } from "@thi.ng/transducers/xform/multiplex";
-import { partition } from "@thi.ng/transducers/xform/partition";
-
+import {
+    $iter,
+    comp,
+    drop,
+    map,
+    multiplex,
+    partition,
+    Transducer
+} from "@thi.ng/transducers";
 import { mse } from "./mse";
 import { sma } from "./sma";
-import { $iter } from "@thi.ng/transducers/iterator";
 
 /**
  * Moving standard deviation, calculates mean square error to SMA and

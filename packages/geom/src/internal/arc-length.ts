@@ -1,4 +1,4 @@
-import { IVector } from "@thi.ng/vectors/api";
+import { IVector } from "@thi.ng/vectors";
 
 export const arcLength = <T extends IVector<T>>(pts: ReadonlyArray<T>, closed = false) => {
     const num = pts.length;

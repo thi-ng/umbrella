@@ -1,13 +1,11 @@
 import { timedResult } from "@thi.ng/bench";
-import { KdTree } from "@thi.ng/geom-accel/kdtree";
+import { KdTree } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";
+import { sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { trigger } from "@thi.ng/rstream/trigger";
+import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { asVec2, Vec2 } from "@thi.ng/vectors/vec2";
+import { asVec2, Vec2 } from "@thi.ng/vectors";
 
 const app = (main) => {
     // augment hdom-canvas component w/ `init` lifecycle method: this is

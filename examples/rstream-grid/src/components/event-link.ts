@@ -1,4 +1,4 @@
-import { Event } from "@thi.ng/interceptors/api";
+import { Event } from "@thi.ng/interceptors";
 
 import { AppContext } from "../api";
 

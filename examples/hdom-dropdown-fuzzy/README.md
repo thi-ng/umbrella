@@ -5,12 +5,9 @@
 **This example is a work-in-progress trying out different ideas. Do not
 (yet) take as reference for your own projects.**
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/hdom-dropdown-fuzzy
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

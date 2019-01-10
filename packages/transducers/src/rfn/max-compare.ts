@@ -1,6 +1,5 @@
-import { Comparator } from "@thi.ng/api/api";
+import { Comparator } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-
 import { Reducer } from "../api";
 import { $$reduce, reducer } from "../reduce";
 

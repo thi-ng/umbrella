@@ -1,8 +1,5 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isIterable } from "@thi.ng/checks/is-iterable";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { implementsFunction, isArrayLike, isIterable } from "@thi.ng/checks";
+import { illegalArity } from "@thi.ng/errors";
 import { IReducible, Reducer } from "./api";
 import { isReduced, Reduced, unreduced } from "./reduced";
 

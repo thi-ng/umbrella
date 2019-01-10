@@ -1,5 +1,6 @@
-import { ICopy, IEqualsDelta } from "@thi.ng/api/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { ICopy, IEqualsDelta } from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
+import { DEG2RAD, EPS } from "@thi.ng/math";
 import {
     Mat,
     ReadonlyMat,
@@ -20,7 +21,6 @@ import {
     Vec3
 } from "./vec3";
 import { dot4, setS4, Vec4 } from "./vec4";
-import { EPS, DEG2RAD } from "@thi.ng/math/api";
 
 export const get44 = (a: Mat, i = 0) =>
     a.slice(i, i + 16);

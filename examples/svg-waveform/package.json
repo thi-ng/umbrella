@@ -7,11 +7,13 @@
     "license": "MIT",
     "scripts": {
         "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --detailed-report --public-url ./",
+        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
         "start": "parcel index.html -p 8080 --open"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
+        "@thi.ng/checks": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/interceptors": "latest",
@@ -19,8 +21,8 @@
     },
     "devDependencies": {
         "@types/node": "^9.6.2",
-        "parcel-bundler": "^1.10.3",
-        "terser": "^3.11.0",
+        "parcel-bundler": "^1.11.0",
+        "terser": "^3.14.1",
         "typescript": "^3.2.2"
     },
     "browserslist": [

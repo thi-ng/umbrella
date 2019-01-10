@@ -1,6 +1,5 @@
 import { getIn, Path } from "@thi.ng/paths";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import { map } from "@thi.ng/transducers";
 import { NodeFactory } from "../api";
 import { node1 } from "../graph";
 

@@ -2,7 +2,9 @@
     "name": "@thi.ng/pointfree-lang",
     "version": "0.2.27",
     "description": "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL",
-    "main": "./index.js",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -12,20 +14,22 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration && yarn peg",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration && yarn peg",
+        "build:bundle": "../../scripts/bundle-module pointfree-lang api errors pointfree",
+        "test": "rimraf build && tsc -p test/tsconfig.json && yarn pegtest && nyc mocha build/test/*.js",
+        "peg": "pegjs -f es -o parser.js src/grammar.pegjs",
+        "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "peg": "pegjs -o parser.js src/grammar.pegjs",
-        "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
-        "pub": "yarn build && yarn publish --access public",
-        "test": "rimraf build && tsc -p test && yarn pegtest && nyc mocha build/test/*.js"
+        "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
-        "pegjs": "^0.10.0",
+        "pegjs": "^0.11.0-dev.325",
         "typedoc": "^0.14.0",
         "typescript": "^3.2.2"
     },
@@ -49,5 +53,6 @@
     ],
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "sideEffects": false
 }

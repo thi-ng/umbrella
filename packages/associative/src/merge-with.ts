@@ -1,5 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { copy } from "./utils";
 
 export const mergeMapWith = <K, V>(

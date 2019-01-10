@@ -1,12 +1,13 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
-import { isString } from "@thi.ng/checks/is-string";
+import {
+    implementsFunction,
+    isFunction,
+    isNotStringAndIterable,
+    isString
+} from "@thi.ng/checks";
 import { DEFAULT, defmulti, MultiFn3 } from "@thi.ng/defmulti";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { normalize } from "@thi.ng/hiccup/serialize";
-import { repeat } from "@thi.ng/strings/repeat";
-import { wrap } from "@thi.ng/strings/wrap";
+import { illegalArgs } from "@thi.ng/errors";
+import { normalize } from "@thi.ng/hiccup";
+import { repeat, wrap } from "@thi.ng/strings";
 
 export const serialize = (tree: any, ctx) =>
     _serialize(tree, ctx, { indent: 0, sep: "" });

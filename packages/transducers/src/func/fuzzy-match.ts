@@ -1,4 +1,4 @@
-import { Predicate2 } from "@thi.ng/api/api";
+import { Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 
 /**

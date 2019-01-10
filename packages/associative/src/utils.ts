@@ -1,4 +1,4 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { implementsFunction } from "@thi.ng/checks";
 
 export const empty = (x, ctor) =>
     implementsFunction(x, "empty") ? x.empty() : new (x[Symbol.species] || ctor)();

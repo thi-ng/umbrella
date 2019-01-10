@@ -8,15 +8,17 @@ import {
     Pair,
     Predicate2,
     SEMAPHORE
-} from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
+} from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { IReducible, ReductionFn } from "@thi.ng/transducers/api";
-import { isReduced } from "@thi.ng/transducers/reduced";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    IReducible,
+    isReduced,
+    map,
+    ReductionFn
+} from "@thi.ng/transducers";
 import { SortedMapOpts } from "./api";
 
 // stores private properties for all instances

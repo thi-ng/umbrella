@@ -1,8 +1,6 @@
-import { MASKS } from "@thi.ng/binary/api";
-import { ceilPow2 } from "@thi.ng/binary/pow";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { fit, fit01 } from "@thi.ng/math/fit";
-import { inRange } from "@thi.ng/math/interval";
+import { ceilPow2, MASKS } from "@thi.ng/binary";
+import { illegalArgs } from "@thi.ng/errors";
+import { fit, fit01, inRange } from "@thi.ng/math";
 
 const MIN = [0, 0, 0];
 const MAX = [1, 1, 1];

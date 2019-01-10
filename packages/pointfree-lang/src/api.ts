@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 import * as pf from "@thi.ng/pointfree";
 
 export interface ASTNode {
@@ -34,7 +34,7 @@ export const enum NodeType {
 /**
  * Reverse lookup for `NodeType` enums
  */
-export const __NodeType = (<any>exports).NodeType;
+// export const __NodeType = (<any>exports).NodeType;
 
 export const ALIASES: IObjectOf<pf.StackFn> = {
     "?drop": pf.dropif,

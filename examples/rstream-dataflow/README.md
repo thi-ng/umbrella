@@ -2,15 +2,9 @@
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/)
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/rstream-dataflow
-yarn install
-yarn start
-```
-
-Installs all dependencies, runs `parcel serve` and opens the app in your
-browser.
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## About
 
@@ -32,3 +26,11 @@ package.
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) - data transformations (here used for stream transforms)
 
 Please see detailed comments in the source code for further explanations.
+
+## Authors
+
+- Karsten Schmidt
+
+## License
+
+&copy; 2018 Karsten Schmidt // Apache Software License 2.0

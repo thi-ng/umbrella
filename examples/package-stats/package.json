@@ -1,0 +1,32 @@
+{
+    "name": "package-stats",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf *.js *.svg lib",
+        "build": "yarn clean && tsc && node lib/index.js"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.10.3",
+        "terser": "^3.11.0",
+        "typescript": "^3.2.2"
+    },
+    "dependencies": {
+        "@thi.ng/checks": "latest",
+        "@thi.ng/dgraph": "latest",
+        "@thi.ng/hiccup": "latest",
+        "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/path": "latest",
+        "@thi.ng/strings": "latest",
+        "@thi.ng/transducers": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    }
+}

@@ -1,18 +1,23 @@
-import { Atom } from "@thi.ng/atom/atom";
+import { Atom } from "@thi.ng/atom";
 import { equiv } from "@thi.ng/equiv";
 import { start } from "@thi.ng/hdom";
 import { getIn } from "@thi.ng/paths";
+import { fromRAF } from "@thi.ng/rstream";
 import { toDot, walk } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { initGraph, node, node1 } from "@thi.ng/rstream-graph/graph";
-import { extract } from "@thi.ng/rstream-graph/nodes/extract";
-import { mul } from "@thi.ng/rstream-graph/nodes/math";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { choices } from "@thi.ng/transducers/iter/choices";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import {
+    extract,
+    initGraph,
+    mul,
+    node,
+    node1
+} from "@thi.ng/rstream-graph";
+import {
+    choices,
+    comp,
+    dedupe,
+    map
+} from "@thi.ng/transducers";
 import { circle } from "./circle";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)

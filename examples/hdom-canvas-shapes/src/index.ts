@@ -1,22 +1,17 @@
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
-// import { canvas2D, adaptDPI } from "@thi.ng/hdom-components/canvas";
-import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { stream } from "@thi.ng/rstream/stream";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { dropdown } from "@thi.ng/hdom-components";
+import { COMMENT, serialize } from "@thi.ng/hiccup";
+import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { fromRAF, stream, sync } from "@thi.ng/rstream";
+import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { range } from "@thi.ng/transducers/iter/range";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
-import { map } from "@thi.ng/transducers/xform/map";
-import { Mat23 } from "@thi.ng/vectors/mat23";
+import { Mat23 } from "@thi.ng/vectors";
 
 // for testing SVG conversion
-import { COMMENT, serialize } from "@thi.ng/hiccup";
-import { convertTree } from "@thi.ng/hiccup-svg/convert";
-import { svg } from "@thi.ng/hiccup-svg/svg";
-
-import logo from "../assets/logo-64.png"; // ignore error, resolved by parcel
 import { download } from "./download";
+
+// ignore error, resolved by parcel
+import logo from "../assets/logo-64.png";
 
 // canvas size
 const W = 300;

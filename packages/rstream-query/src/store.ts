@@ -1,28 +1,32 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { intersection } from "@thi.ng/associative/intersection";
-import { join } from "@thi.ng/associative/join";
+import { IObjectOf } from "@thi.ng/api";
+import { intersection, join } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    ISubscribable,
+    nextID,
+    Stream,
+    Subscription,
+    sync
+} from "@thi.ng/rstream";
 import {
     DotOpts,
     IToDot,
     toDot,
     walk
 } from "@thi.ng/rstream-dot";
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { Subscription } from "@thi.ng/rstream/subscription";
-import { nextID } from "@thi.ng/rstream/utils/idgen";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { keySelector } from "@thi.ng/transducers/func/key-selector";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import {
+    assocObj,
+    comp,
+    compR,
+    dedupe,
+    keySelector,
+    map,
+    mapIndexed,
+    Reducer,
+    transduce,
+    Transducer
+} from "@thi.ng/transducers";
 import {
     BindFn,
     DEBUG,

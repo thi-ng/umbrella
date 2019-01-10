@@ -1,6 +1,5 @@
-import { sign } from "@thi.ng/math/abs";
-import { EPS } from "@thi.ng/math/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { EPS, sign } from "@thi.ng/math";
+import { Vec2 } from "@thi.ng/vectors";
 
 export const corner =
     (a: Readonly<Vec2>, b: Readonly<Vec2>, c: Readonly<Vec2>) => {

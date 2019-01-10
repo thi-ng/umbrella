@@ -1,6 +1,6 @@
-export function inlineWorker(src: string) {
-    return makeWorker(new Blob([src], { type: "text/javascript" }));
-}
+export const inlineWorker =
+    (src: string) =>
+        makeWorker(new Blob([src], { type: "text/javascript" }));
 
 export const makeWorker =
     (worker: Worker | string | Blob) =>

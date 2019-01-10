@@ -172,7 +172,7 @@ first be normalized (if not already) using hdom-canvas'
 `normalizeTree()`.
 
 ```ts
-import { serialize } from "@thi.ng/hiccup/serialize";
+import { serialize } from "@thi.ng/hiccup";
 import { convertTree, svg } from "@thi.ng/hiccup-svg";
 import { normalizeTree } from "@thi.ng/hdom-canvas";
 

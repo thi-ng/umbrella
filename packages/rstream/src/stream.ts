@@ -1,6 +1,6 @@
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { Transducer } from "@thi.ng/transducers/api";
+import { isString } from "@thi.ng/checks";
+import { illegalArity } from "@thi.ng/errors";
+import { Transducer } from "@thi.ng/transducers";
 import {
     DEBUG,
     IStream,

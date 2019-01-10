@@ -1,4 +1,4 @@
-import { IObjectOf, Predicate2 } from "@thi.ng/api/api";
+import { IObjectOf, Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { DiffMode, ObjectDiff } from "./api";
 

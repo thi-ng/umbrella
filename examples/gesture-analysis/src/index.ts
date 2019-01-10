@@ -1,23 +1,24 @@
-import { circle } from "@thi.ng/hiccup-svg/circle";
-import { group } from "@thi.ng/hiccup-svg/group";
-import { polyline } from "@thi.ng/hiccup-svg/polyline";
-import { svg } from "@thi.ng/hiccup-svg/svg";
+import {
+    circle,
+    group,
+    polyline,
+    svg
+} from "@thi.ng/hiccup-svg";
+import { fromIterable, merge, sync } from "@thi.ng/rstream";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
-import { fromIterable } from "@thi.ng/rstream/from/iterable";
-import { merge } from "@thi.ng/rstream/stream-merge";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import {
+    comp,
+    filter,
+    identity,
+    map,
+    multiplexObj,
+    partition,
+    peek,
+    push,
+    transduce
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { identity } from "@thi.ng/transducers/func/identity";
-import { peek } from "@thi.ng/transducers/func/peek";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { multiplexObj } from "@thi.ng/transducers/xform/multiplex-obj";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { Vec2 } from "@thi.ng/vectors/vec2";
-
+import { Vec2 } from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**

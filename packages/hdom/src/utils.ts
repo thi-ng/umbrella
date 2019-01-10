@@ -1,4 +1,4 @@
-import { isString } from "@thi.ng/checks/is-string";
+import { isString } from "@thi.ng/checks";
 import { HDOMImplementation } from "./api";
 
 export const resolveRoot =

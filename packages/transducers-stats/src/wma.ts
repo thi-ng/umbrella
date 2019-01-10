@@ -1,11 +1,12 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { iterator1 } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/xform/map";
-import { partition } from "@thi.ng/transducers/xform/partition";
-
+import { isNumber } from "@thi.ng/checks";
+import {
+    comp,
+    iterator1,
+    map,
+    partition,
+    range,
+    Transducer
+} from "@thi.ng/transducers";
 import { dot } from "./dot";
 
 /**

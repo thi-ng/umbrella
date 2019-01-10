@@ -1,18 +1,15 @@
+import { Atom } from "@thi.ng/atom";
+import { derefContext } from "@thi.ng/hiccup";
+import { map, range } from "@thi.ng/iterators";
 import * as assert from "assert";
-
-import { Atom } from "@thi.ng/atom/atom";
-import { map } from "@thi.ng/iterators/map";
-import { range } from "@thi.ng/iterators/range";
 import { normalizeTree } from "../src/normalize";
-import { derefContext } from "@thi.ng/hiccup/deref";
 
-function _check(a, b, ctx = null) {
-    assert.deepEqual(normalizeTree({ ctx, keys: false, span: false }, a), b);
-}
+const _check =
+    (a, b, ctx = null) =>
+        assert.deepEqual(normalizeTree({ ctx, keys: false, span: false }, a), b);
 
-function check(id, a, b) {
-    it(id, () => _check(a, b));
-}
+const check =
+    (id, a, b) => it(id, () => _check(a, b));
 
 describe("hdom", () => {
 

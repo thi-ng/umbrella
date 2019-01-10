@@ -1,5 +1,4 @@
 import * as assert from "assert";
-
 import { Atom } from "../src/atom";
 import { Cursor } from "../src/cursor";
 import { History } from "../src/history";

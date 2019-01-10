@@ -1,5 +1,4 @@
-import { isString } from "@thi.ng/checks/is-string";
-
+import { isString } from "@thi.ng/checks";
 import { Conditional, CSSOpts, RuleFn } from "./api";
 import { expand, indent } from "./impl";
 

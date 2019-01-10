@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-
+import { IObjectOf } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks";
 import {
     Edge,
     Graph,

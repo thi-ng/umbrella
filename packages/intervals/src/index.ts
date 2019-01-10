@@ -1,5 +1,11 @@
-import { ICopy, IEquiv, IContains, Fn, ICompare } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import {
+    Fn,
+    ICompare,
+    IContains,
+    ICopy,
+    IEquiv
+} from "@thi.ng/api";
+import { illegalArgs } from "@thi.ng/errors";
 
 export const enum Classifier {
     DISJOINT_LEFT,

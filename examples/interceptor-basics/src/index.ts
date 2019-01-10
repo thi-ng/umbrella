@@ -1,7 +1,12 @@
 import { Atom } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
+import {
+    dispatchNow,
+    EventBus,
+    FX_STATE,
+    valueUpdater
+} from "@thi.ng/interceptors";
 import { choices } from "@thi.ng/transducers";
-import * as icep from "@thi.ng/interceptors";
 
 // infinite iterator of random color choices
 const colors = choices(["cyan", "yellow", "magenta", "chartreuse"]);
@@ -11,15 +16,15 @@ const db = new Atom({});
 
 // event bus w/ handlers
 // see @thi.ng/interceptors for more details
-const bus = new icep.EventBus(db, {
+const bus = new EventBus(db, {
     "init": () => ({
-        [icep.FX_STATE]: { clicks: 0, color: "grey" }
+        [FX_STATE]: { clicks: 0, color: "grey" }
     }),
     "inc-counter": [
-        icep.valueUpdater("clicks", (x: number) => x + 1),
-        icep.dispatchNow(["randomize-color"])
+        valueUpdater("clicks", (x: number) => x + 1),
+        dispatchNow(["randomize-color"])
     ],
-    "randomize-color": icep.valueUpdater(
+    "randomize-color": valueUpdater(
         "color", () => colors.next().value
     )
 });

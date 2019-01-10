@@ -1,4 +1,4 @@
-import { Fn0 } from "@thi.ng/memoize/src/api";
+import { Fn0 } from "./api";
 
 const cache: any = {};
 

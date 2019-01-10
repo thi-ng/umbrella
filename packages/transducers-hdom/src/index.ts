@@ -1,9 +1,11 @@
-import { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom/api";
-import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
-import { resolveRoot } from "@thi.ng/hdom/utils";
-import { derefContext } from "@thi.ng/hiccup/deref";
-import { Transducer } from "@thi.ng/transducers/api";
-import { scan } from "@thi.ng/transducers/xform/scan";
+import {
+    DEFAULT_IMPL,
+    HDOMImplementation,
+    HDOMOpts,
+    resolveRoot
+} from "@thi.ng/hdom";
+import { derefContext } from "@thi.ng/hiccup";
+import { scan, Transducer } from "@thi.ng/transducers";
 
 /**
  * Side-effecting & stateful transducer which receives @thi.ng/hdom

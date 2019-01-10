@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { IObjectOf } from "@thi.ng/api";
+import { illegalArity, unsupported } from "@thi.ng/errors";
 
 export const DEFAULT: unique symbol = Symbol();
 
@@ -247,14 +246,14 @@ const makeRels = (spec: AncestorDefs) => {
  * @param impls
  * @param fallback
  */
-export function defmultiN<T>(
+export const defmultiN = <T>(
     impls: { [id: number]: Implementation<T> },
     fallback?: Implementation<T>
-) {
+) => {
     const fn = defmulti<T>((...args: any[]) => args.length);
     fn.add(DEFAULT, fallback || ((...args) => illegalArity(args.length)));
     for (let id in impls) {
         fn.add(id, impls[id]);
     }
     return fn;
-}
+};

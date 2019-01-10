@@ -1,5 +1,5 @@
-import { partial } from "@thi.ng/compose/partial";
-import { fit01 } from "@thi.ng/math/fit";
+import { partial } from "@thi.ng/compose";
+import { fit01 } from "@thi.ng/math";
 import { cosineGradient } from "./gradient";
 
 // see http://dev.thi.ng/gradients/

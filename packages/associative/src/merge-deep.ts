@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-
+import { IObjectOf } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
 import { mergeObjWith } from "./merge-with";
 
 export const mergeDeepObj =

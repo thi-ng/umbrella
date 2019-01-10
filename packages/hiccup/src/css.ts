@@ -1,4 +1,4 @@
-import { isFunction } from "@thi.ng/checks/is-function";
+import { isFunction } from "@thi.ng/checks";
 
 export const css =
     (rules: any) => {

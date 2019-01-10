@@ -1,7 +1,4 @@
-import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-
+import { map, mapIndexed, repeat } from "@thi.ng/transducers";
 import { AppContext } from "../api";
 import { section } from "./section";
 import { table } from "./table";

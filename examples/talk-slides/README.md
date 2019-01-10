@@ -30,12 +30,9 @@ As usual, all theming is done via [Tachyons CSS](http://tachyons.io),
 also see this useful site for quick reference: [Tachyons
 TL;DR](https://tachyons-tldr.now.sh/).
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/talk-slides
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

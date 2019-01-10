@@ -1,19 +1,20 @@
-import { isFunction } from "@thi.ng/checks/is-function";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { wrap } from "@thi.ng/transducers/iter/wrap";
-import { reducer } from "@thi.ng/transducers/reduce";
-import { last } from "@thi.ng/transducers/rfn/last";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { scan } from "@thi.ng/transducers/xform/scan";
-import { IVector } from "@thi.ng/vectors/api";
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { isFunction } from "@thi.ng/checks";
+import {
+    comp,
+    last,
+    map,
+    mapcat,
+    partition,
+    push,
+    range,
+    reducer,
+    repeat,
+    scan,
+    transduce,
+    tuples,
+    wrap
+} from "@thi.ng/transducers";
+import { IVector, Vec2 } from "@thi.ng/vectors";
 import { Tessellator } from "./api";
 import { polygonArea } from "./internal/area";
 import { centroid } from "./internal/centroid";

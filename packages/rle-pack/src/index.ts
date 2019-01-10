@@ -1,5 +1,5 @@
 import { BitInputStream, BitOutputStream } from "@thi.ng/bitstream";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 
 export type RLESizes = [number, number, number, number];
 

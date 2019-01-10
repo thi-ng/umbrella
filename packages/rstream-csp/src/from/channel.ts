@@ -1,6 +1,5 @@
-import { Channel } from "@thi.ng/csp/channel";
-import { DEBUG } from "@thi.ng/rstream/api";
-import { Stream } from "@thi.ng/rstream/stream";
+import { Channel } from "@thi.ng/csp";
+import { DEBUG, Stream } from "@thi.ng/rstream";
 
 /**
  *
@@ -30,5 +29,5 @@ export const fromChannel =
                     isActive = false;
                 };
             },
-            `obs-${src.id}`
+            `channel-${src.id}`
         );

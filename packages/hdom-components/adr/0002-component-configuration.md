@@ -86,7 +86,7 @@ component](../src/button.ts).
 
 ```ts
 // button.ts
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 
 export interface ButtonOpts {
     /**

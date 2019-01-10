@@ -1,8 +1,7 @@
 import { TLRUCache } from "@thi.ng/cache";
 import * as express from "express";
-import * as Bundler from "parcel-bundler";
 import * as fs from "fs";
-
+import * as Bundler from "parcel-bundler";
 import { Commit } from "../common/api";
 import { ctx } from "../common/config";
 import { buildRepoTableHTML } from "./build-table";

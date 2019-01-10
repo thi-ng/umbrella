@@ -1,7 +1,6 @@
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
+import { mergeDeepObj } from "@thi.ng/associative";
 import { serialize } from "@thi.ng/hiccup";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import { map } from "@thi.ng/transducers";
 import { AppContext, HTMLDoc } from "../common/api";
 import { DEFAULT_DOC } from "../common/config";
 

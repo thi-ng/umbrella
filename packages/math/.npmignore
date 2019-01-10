@@ -1,10 +1,12 @@
+.cache
+.nyc_output
+*.gz
+*.html
+*.tgz
 build
 coverage
 dev
 doc
 src*
 test
-.nyc_output
 tsconfig.json
-*.tgz
-*.html

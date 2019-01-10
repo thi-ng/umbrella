@@ -1,2 +1,3 @@
-export const group = (attr: any, ...body: any[]): any[] =>
-    ["g", attr, ...body];
+export const group =
+    (attr: any, ...body: any[]): any[] =>
+        ["g", attr, ...body];

@@ -1,4 +1,4 @@
-import { Comparator, Fn, IObjectOf } from "@thi.ng/api/api";
+import { Comparator, Fn, IObjectOf } from "@thi.ng/api";
 
 import { Reduced } from "./reduced";
 

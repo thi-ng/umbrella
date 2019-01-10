@@ -1,4 +1,9 @@
-import * as api from "../api";
+import {
+    Event,
+    EVENT_DISABLE,
+    EVENT_ENABLE,
+    IEnable
+} from "../api";
 import { mixin } from "../mixin";
 
 /**
@@ -7,7 +12,7 @@ import { mixin } from "../mixin";
  * interface, `enable()` and `disable()` will automatically emit the
  * respective events.
  */
-export const IEnable = mixin(<api.IEnable<any>>{
+export const IEnableMixin = mixin(<IEnable<any>>{
 
     _enabled: true,
 
@@ -18,14 +23,14 @@ export const IEnable = mixin(<api.IEnable<any>>{
     enable() {
         this._enabled = true;
         if (this.notify) {
-            this.notify(<api.Event>{ id: api.EVENT_ENABLE, target: this });
+            this.notify(<Event>{ id: EVENT_ENABLE, target: this });
         }
     },
 
     disable() {
         this._enabled = false;
         if (this.notify) {
-            this.notify(<api.Event>{ id: api.EVENT_DISABLE, target: this });
+            this.notify(<Event>{ id: EVENT_DISABLE, target: this });
         }
     },
 

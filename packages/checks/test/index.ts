@@ -15,132 +15,132 @@ import { isTypedArray } from "../src/is-typedarray";
 describe("checks", function () {
 
     it("existsAndNotNull", () => {
-        assert(existsAndNotNull([]), "empty array");
-        assert(existsAndNotNull(new Uint8Array(1)), "typedarray");
-        assert(existsAndNotNull({}), "obj");
-        assert(existsAndNotNull("[]"), "string");
-        assert(existsAndNotNull(0), "zero");
-        assert(!existsAndNotNull({}["foobar"]), "prop");
-        assert(!existsAndNotNull(null), "null");
-        assert(!existsAndNotNull(undefined), "null");
+        assert.ok(existsAndNotNull([]), "empty array");
+        assert.ok(existsAndNotNull(new Uint8Array(1)), "typedarray");
+        assert.ok(existsAndNotNull({}), "obj");
+        assert.ok(existsAndNotNull("[]"), "string");
+        assert.ok(existsAndNotNull(0), "zero");
+        assert.ok(!existsAndNotNull({}["foobar"]), "prop");
+        assert.ok(!existsAndNotNull(null), "null");
+        assert.ok(!existsAndNotNull(undefined), "null");
     });
 
     it("isArray", () => {
-        assert(isArray([]), "empty array");
-        assert(!isArray(new Uint8Array(1)), "typedarray");
-        assert(!isArray({}), "obj");
-        assert(!isArray("[]"), "string");
-        assert(!isArray(0), "zero");
-        assert(!isArray(null), "null");
-        assert(!isArray(undefined), "null");
+        assert.ok(isArray([]), "empty array");
+        assert.ok(!isArray(new Uint8Array(1)), "typedarray");
+        assert.ok(!isArray({}), "obj");
+        assert.ok(!isArray("[]"), "string");
+        assert.ok(!isArray(0), "zero");
+        assert.ok(!isArray(null), "null");
+        assert.ok(!isArray(undefined), "null");
     });
 
     it("isTypedArray", () => {
-        assert(isTypedArray(new Uint8Array(1)), "u8");
-        assert(isTypedArray(new Uint8ClampedArray(1)), "u8c");
-        assert(isTypedArray(new Uint16Array(1)), "u16");
-        assert(isTypedArray(new Uint32Array(1)), "u32");
-        assert(isTypedArray(new Int8Array(1)), "i8");
-        assert(isTypedArray(new Int16Array(1)), "i16");
-        assert(isTypedArray(new Int32Array(1)), "i32");
-        assert(isTypedArray(new Float32Array(1)), "f32");
-        assert(isTypedArray(new Float64Array(1)), "f64");
-        assert(!isTypedArray([]), "empty array");
-        assert(!isTypedArray({}), "obj");
-        assert(!isTypedArray("[]"), "string");
-        assert(!isTypedArray(0), "zero");
-        assert(!isTypedArray(null), "null");
-        assert(!isTypedArray(undefined), "null");
+        assert.ok(isTypedArray(new Uint8Array(1)), "u8");
+        assert.ok(isTypedArray(new Uint8ClampedArray(1)), "u8c");
+        assert.ok(isTypedArray(new Uint16Array(1)), "u16");
+        assert.ok(isTypedArray(new Uint32Array(1)), "u32");
+        assert.ok(isTypedArray(new Int8Array(1)), "i8");
+        assert.ok(isTypedArray(new Int16Array(1)), "i16");
+        assert.ok(isTypedArray(new Int32Array(1)), "i32");
+        assert.ok(isTypedArray(new Float32Array(1)), "f32");
+        assert.ok(isTypedArray(new Float64Array(1)), "f64");
+        assert.ok(!isTypedArray([]), "empty array");
+        assert.ok(!isTypedArray({}), "obj");
+        assert.ok(!isTypedArray("[]"), "string");
+        assert.ok(!isTypedArray(0), "zero");
+        assert.ok(!isTypedArray(null), "null");
+        assert.ok(!isTypedArray(undefined), "null");
     });
 
     it("isArrayLike", () => {
-        assert(isArrayLike([]), "empty array");
-        assert(isArrayLike(new Uint8Array(1)), "typedarray");
-        assert(isArrayLike({ length: 1 }), "obj.length");
-        assert(isArrayLike("[]"), "string");
-        assert(!isArrayLike({}), "empty obj");
-        assert(!isArrayLike(0), "zero");
-        assert(!isArrayLike(null), "null");
-        assert(!isArrayLike(undefined), "null");
-        assert(!isArrayLike((x, y) => x + y), "null");
+        assert.ok(isArrayLike([]), "empty array");
+        assert.ok(isArrayLike(new Uint8Array(1)), "typedarray");
+        assert.ok(isArrayLike({ length: 1 }), "obj.length");
+        assert.ok(isArrayLike("[]"), "string");
+        assert.ok(!isArrayLike({}), "empty obj");
+        assert.ok(!isArrayLike(0), "zero");
+        assert.ok(!isArrayLike(null), "null");
+        assert.ok(!isArrayLike(undefined), "null");
+        assert.ok(!isArrayLike((x, y) => x + y), "null");
     });
 
     it("isObject", () => {
         function Foo() { };
-        assert(isObject([]), "empty array");
-        assert(isObject(new Uint8Array(1)), "typedarray");
-        assert(isObject({}), "obj");
-        assert(isObject(new Foo()), "class");
-        assert(!isObject(Foo), "fn");
-        assert(!isObject("[]"), "string");
-        assert(!isObject(0), "zero");
-        assert(!isObject(null), "null");
-        assert(!isObject(undefined), "null");
+        assert.ok(isObject([]), "empty array");
+        assert.ok(isObject(new Uint8Array(1)), "typedarray");
+        assert.ok(isObject({}), "obj");
+        assert.ok(isObject(new Foo()), "class");
+        assert.ok(!isObject(Foo), "fn");
+        assert.ok(!isObject("[]"), "string");
+        assert.ok(!isObject(0), "zero");
+        assert.ok(!isObject(null), "null");
+        assert.ok(!isObject(undefined), "null");
     });
 
     it("isPlainObject", () => {
         function Foo() { };
-        assert(isPlainObject({}), "obj");
-        assert(isPlainObject(new Object()), "obj ctor");
-        assert(!isPlainObject(Foo), "fn");
-        assert(!isPlainObject(new Foo()), "class");
-        assert(!isPlainObject([]), "empty array");
-        assert(!isPlainObject(new Uint8Array(1)), "typedarray");
-        assert(!isPlainObject("[]"), "string");
-        assert(!isPlainObject(0), "zero");
-        assert(!isPlainObject(null), "null");
-        assert(!isPlainObject(undefined), "null");
+        assert.ok(isPlainObject({}), "obj");
+        assert.ok(isPlainObject(new Object()), "obj ctor");
+        assert.ok(!isPlainObject(Foo), "fn");
+        assert.ok(!isPlainObject(new Foo()), "class");
+        assert.ok(!isPlainObject([]), "empty array");
+        assert.ok(!isPlainObject(new Uint8Array(1)), "typedarray");
+        assert.ok(!isPlainObject("[]"), "string");
+        assert.ok(!isPlainObject(0), "zero");
+        assert.ok(!isPlainObject(null), "null");
+        assert.ok(!isPlainObject(undefined), "null");
     });
 
     it("isString", () => {
-        assert(isString(""), "empty string");
-        assert(isString("a"), "empty string");
-        assert(!isString({}), "obj");
-        assert(!isString([]), "array");
-        assert(!isString(new Uint8Array(1)), "typedarray");
-        assert(!isString(0), "zero");
-        assert(!isString(null), "null");
-        assert(!isString(undefined), "null");
+        assert.ok(isString(""), "empty string");
+        assert.ok(isString("a"), "empty string");
+        assert.ok(!isString({}), "obj");
+        assert.ok(!isString([]), "array");
+        assert.ok(!isString(new Uint8Array(1)), "typedarray");
+        assert.ok(!isString(0), "zero");
+        assert.ok(!isString(null), "null");
+        assert.ok(!isString(undefined), "null");
     });
 
     it("isFunction", () => {
-        assert(isFunction((_) => null), "fn");
-        assert(isFunction(Uint8Array), "ctor");
-        assert(isFunction("a".toString), "toString");
-        assert(!isFunction("a"), "empty string");
-        assert(!isFunction({}), "obj");
-        assert(!isFunction([]), "array");
-        assert(!isFunction(new Uint8Array(1)), "typedarray");
-        assert(!isFunction(0), "zero");
-        assert(!isFunction(null), "null");
-        assert(!isFunction(undefined), "undefined");
+        assert.ok(isFunction((_) => null), "fn");
+        assert.ok(isFunction(Uint8Array), "ctor");
+        assert.ok(isFunction("a".toString), "toString");
+        assert.ok(!isFunction("a"), "empty string");
+        assert.ok(!isFunction({}), "obj");
+        assert.ok(!isFunction([]), "array");
+        assert.ok(!isFunction(new Uint8Array(1)), "typedarray");
+        assert.ok(!isFunction(0), "zero");
+        assert.ok(!isFunction(null), "null");
+        assert.ok(!isFunction(undefined), "undefined");
     });
 
     it("implementsFunction", () => {
-        assert(implementsFunction({ a: () => true }, "a"), "obj");
-        assert(implementsFunction([], Symbol.iterator), "arr iterator");
-        assert(implementsFunction("", Symbol.iterator), "string iterator");
-        assert(!implementsFunction(0, Symbol.iterator), "zero");
-        assert(!implementsFunction(null, Symbol.iterator), "null");
-        assert(!implementsFunction(undefined, Symbol.iterator), "undefined");
+        assert.ok(implementsFunction({ a: () => true }, "a"), "obj");
+        assert.ok(implementsFunction([], Symbol.iterator), "arr iterator");
+        assert.ok(implementsFunction("", Symbol.iterator), "string iterator");
+        assert.ok(!implementsFunction(0, Symbol.iterator), "zero");
+        assert.ok(!implementsFunction(null, Symbol.iterator), "null");
+        assert.ok(!implementsFunction(undefined, Symbol.iterator), "undefined");
     });
 
     it("isSymbol", () => {
-        assert(isSymbol(Symbol.iterator), "iterator");
-        assert(!isSymbol("iterator"), "string");
-        assert(!isFunction(0), "zero");
-        assert(!isFunction(null), "null");
-        assert(!isFunction(undefined), "undefined");
+        assert.ok(isSymbol(Symbol.iterator), "iterator");
+        assert.ok(!isSymbol("iterator"), "string");
+        assert.ok(!isFunction(0), "zero");
+        assert.ok(!isFunction(null), "null");
+        assert.ok(!isFunction(undefined), "undefined");
     });
 
     it("isTransferable", () => {
-        assert(isTransferable(new ArrayBuffer(4)), "arraybuffer");
-        assert(!isTransferable(new Uint8Array(4)), "typedarray");
-        assert(!isTransferable([]), "array");
-        assert(!isTransferable("a"), "string");
-        assert(!isTransferable(0), "zero");
-        assert(!isTransferable(null), "null");
-        assert(!isTransferable(undefined), "undefined");
+        assert.ok(isTransferable(new ArrayBuffer(4)), "arraybuffer");
+        assert.ok(!isTransferable(new Uint8Array(4)), "typedarray");
+        assert.ok(!isTransferable([]), "array");
+        assert.ok(!isTransferable("a"), "string");
+        assert.ok(!isTransferable(0), "zero");
+        assert.ok(!isTransferable(null), "null");
+        assert.ok(!isTransferable(undefined), "undefined");
     });
 
 });

@@ -1,4 +1,4 @@
-import { memoizeJ } from "@thi.ng/memoize/memoizej";
+import { memoizeJ } from "@thi.ng/memoize";
 
 /**
  * @param ch character

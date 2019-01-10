@@ -1,5 +1,4 @@
-import { IID, ILength, IRelease } from "@thi.ng/api/api";
-
+import { IID, ILength, IRelease } from "@thi.ng/api";
 import { Channel } from "./channel";
 
 export const enum State {
@@ -11,7 +10,7 @@ export const enum State {
 /**
  * Reverse lookup for `State` enums
  */
-export const __State = (<any>exports).State;
+// export const __State = (<any>exports).State;
 
 export interface ChannelItem<T> {
     value: () => Promise<T>;

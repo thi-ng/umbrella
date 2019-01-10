@@ -2,7 +2,9 @@
     "name": "@thi.ng/hdom",
     "version": "6.1.0",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
-    "main": "./index.js",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -12,12 +14,14 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module hdom api checks diff equiv errors hiccup",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public",
-        "test": "rimraf build && tsc -p test && nyc mocha build/test/*.js"
+        "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
         "@thi.ng/atom": "^1.5.8",
@@ -33,15 +37,20 @@
         "@thi.ng/checks": "^1.5.14",
         "@thi.ng/diff": "^2.0.2",
         "@thi.ng/equiv": "^0.1.15",
+        "@thi.ng/errors": "^0.1.12",
         "@thi.ng/hiccup": "^2.7.2"
     },
     "keywords": [
         "browser",
         "components",
+        "data driven",
+        "declarative",
         "diff",
         "DOM",
         "ES6",
+        "functional",
         "IOC",
+        "iterators",
         "reactive",
         "typescript",
         "UI",
@@ -49,5 +58,6 @@
     ],
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "sideEffects": false
 }
