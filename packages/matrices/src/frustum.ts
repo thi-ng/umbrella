@@ -1,5 +1,5 @@
-import { DEG2RAD } from "@thi.ng/math/api";
-import { setC } from "@thi.ng/vectors3/setc";
+import { DEG2RAD } from "@thi.ng/math";
+import { setC } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
 export const frustum = (

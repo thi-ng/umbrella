@@ -1,5 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { setC } from "@thi.ng/vectors3/setc";
+import { ReadonlyVec, setC } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 import { mat33to44 } from "./m33-m44";
 

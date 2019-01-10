@@ -1,4 +1,4 @@
-import { setC } from "@thi.ng/vectors3/setc";
+import { setC } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
 export const ortho = (

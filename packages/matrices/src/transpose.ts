@@ -1,4 +1,4 @@
-import { setC, setC4 } from "@thi.ng/vectors3/setc";
+import { setC, setC4 } from "@thi.ng/vectors3";
 import { MatOpM } from "./api";
 
 export const transpose22: MatOpM =

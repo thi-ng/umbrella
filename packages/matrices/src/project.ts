@@ -1,7 +1,10 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { divN3 } from "@thi.ng/vectors3/divn";
-import { dotC6 } from "@thi.ng/vectors3/dotc";
-import { fromHomogeneous4 } from "@thi.ng/vectors3/homogeneous";
+import {
+    divN3,
+    dotC6,
+    fromHomogeneous4,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors3";
 import { ReadonlyMat } from "./api";
 import { invert23, invert44 } from "./invert";
 import { mulV23, mulV344, mulV44 } from "./mulv";

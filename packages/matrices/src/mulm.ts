@@ -1,6 +1,12 @@
-import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors3/dots";
-import { vop } from "@thi.ng/vectors3/internal/vop";
-import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
+import {
+    dotS2,
+    dotS3,
+    dotS4,
+    setC,
+    setC4,
+    setC6,
+    vop
+} from "@thi.ng/vectors3";
 import { MultiMatOpMM } from "./api";
 
 export const mulM: MultiMatOpMM = vop(1);

@@ -1,5 +1,9 @@
-import { vop } from "@thi.ng/vectors3/internal/vop";
-import { setS2, setS3, setS4 } from "@thi.ng/vectors3/sets";
+import {
+    setS2,
+    setS3,
+    setS4,
+    vop
+} from "@thi.ng/vectors3";
 import { MultiVecOpMN, VecOpMN } from "./api";
 
 export const column: MultiVecOpMN = vop(1);

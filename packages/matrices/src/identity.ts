@@ -1,4 +1,4 @@
-import { vop } from "@thi.ng/vectors3/internal/vop";
+import { vop } from "@thi.ng/vectors3";
 import {
     IDENT22,
     IDENT23,

@@ -1,5 +1,5 @@
 import { Mat } from "./api";
-import { mulM23 } from "./mulM";
+import { mulM23 } from "./mulm";
 import { scale23 } from "./scale";
 import { translation23 } from "./translation";
 

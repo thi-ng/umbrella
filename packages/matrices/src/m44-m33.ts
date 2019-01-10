@@ -1,4 +1,4 @@
-import { setS3 } from "@thi.ng/vectors3/sets";
+import { setS3 } from "@thi.ng/vectors3";
 import { MatOpM } from "./api";
 
 export const mat44to33: MatOpM =

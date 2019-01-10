@@ -1,5 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { neg } from "@thi.ng/vectors3/neg";
+import { neg, ReadonlyVec } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 import { concat } from "./concat";
 import { scale23, scale44 } from "./scale";

@@ -1,6 +1,10 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
+import { isNumber } from "@thi.ng/checks";
+import {
+    ReadonlyVec,
+    setC,
+    setC4,
+    setC6
+} from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
 export const scale22 =

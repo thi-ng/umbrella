@@ -1,8 +1,14 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { dotC4, dotC6 } from "@thi.ng/vectors3/dotc";
-import { vop } from "@thi.ng/vectors3/internal/vop";
-import { magSq4 } from "@thi.ng/vectors3/magsq";
-import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
+import {
+    dotC4,
+    dotC6,
+    magSq4,
+    ReadonlyVec,
+    setC,
+    setC4,
+    setC6,
+    Vec,
+    vop
+} from "@thi.ng/vectors3";
 import { MatOpM, MultiMatOpM } from "./api";
 import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 

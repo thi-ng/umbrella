@@ -1,4 +1,4 @@
-import { dotC4, dotC6 } from "@thi.ng/vectors3/dotc";
+import { dotC4, dotC6 } from "@thi.ng/vectors3";
 import { ReadonlyMat } from "./api";
 
 const dp4 = dotC4;

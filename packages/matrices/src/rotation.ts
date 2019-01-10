@@ -1,5 +1,5 @@
-import { sincos } from "@thi.ng/math/angle";
-import { setC, setC4, setC6 } from "@thi.ng/vectors3/setc";
+import { sincos } from "@thi.ng/math";
+import { setC, setC4, setC6 } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
 export const rotation22 =

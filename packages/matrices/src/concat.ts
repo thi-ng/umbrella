@@ -1,5 +1,5 @@
 import { Mat, ReadonlyMat } from "./api";
-import { mulM } from "./mulM";
+import { mulM } from "./mulm";
 
 export const concat =
     (out: Mat, a: ReadonlyMat, b: ReadonlyMat, ...xs: ReadonlyMat[]) =>

@@ -1,7 +1,14 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors3/dots";
-import { vop } from "@thi.ng/vectors3/internal/vop";
-import { setC2, setC3, setC4 } from "@thi.ng/vectors3/setc";
+import {
+    dotS2,
+    dotS3,
+    dotS4,
+    ReadonlyVec,
+    setC2,
+    setC3,
+    setC4,
+    Vec,
+    vop
+} from "@thi.ng/vectors3";
 import { MatOpMV, MultiMatOpMV } from "./api";
 
 /**

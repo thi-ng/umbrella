@@ -1,5 +1,4 @@
-import { vop } from "@thi.ng/vectors3/internal/vop";
-import { setS2, setS3, setS4 } from "@thi.ng/vectors3/sets";
+import { vop, setS2, setS3, setS4 } from "@thi.ng/vectors3";
 import { MultiVecOpM } from "./api";
 
 export const diag: MultiVecOpM = vop(1);

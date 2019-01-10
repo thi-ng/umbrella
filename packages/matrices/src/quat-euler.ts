@@ -1,4 +1,4 @@
-import { X3, Y3, Z3 } from "@thi.ng/vectors3/api";
+import { X3, Y3, Z3 } from "@thi.ng/vectors3";
 import { mulQ } from "./mulq";
 import { quatFromAxisAngle } from "./quat-axis-angle";
 

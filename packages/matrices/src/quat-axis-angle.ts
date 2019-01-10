@@ -1,6 +1,5 @@
-import { EPS } from "@thi.ng/math/api";
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { normalize } from "@thi.ng/vectors3/normalize";
+import { EPS } from "@thi.ng/math";
+import { normalize, ReadonlyVec } from "@thi.ng/vectors3";
 
 export const quatFromAxisAngle =
     (axis: ReadonlyVec, theta: number) => {

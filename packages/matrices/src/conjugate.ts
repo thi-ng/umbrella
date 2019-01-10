@@ -1,5 +1,4 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { setC4 } from "@thi.ng/vectors3/setc";
+import { ReadonlyVec, setC4, Vec } from "@thi.ng/vectors3";
 
 export const conjugateQ =
     (out: Vec, a: ReadonlyVec) =>

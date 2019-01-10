@@ -1,5 +1,9 @@
-import { ReadonlyVec, Vec, ZERO3 } from "@thi.ng/vectors3/api";
-import { setC } from "@thi.ng/vectors3/setc";
+import {
+    ReadonlyVec,
+    setC,
+    Vec,
+    ZERO3
+} from "@thi.ng/vectors3";
 
 export const quatToMat44 =
     (out: Vec, a: ReadonlyVec, t: ReadonlyVec = ZERO3) => {

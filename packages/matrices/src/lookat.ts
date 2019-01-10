@@ -1,9 +1,11 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { cross3 } from "@thi.ng/vectors3/cross";
-import { dot3 } from "@thi.ng/vectors3/dot";
-import { normalize } from "@thi.ng/vectors3/normalize";
-import { setC } from "@thi.ng/vectors3/setc";
-import { sub3 } from "@thi.ng/vectors3/sub";
+import {
+    cross3,
+    dot3,
+    normalize,
+    ReadonlyVec,
+    setC,
+    sub3
+} from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
 export const lookAt = (

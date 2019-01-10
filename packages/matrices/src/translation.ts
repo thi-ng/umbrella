@@ -1,6 +1,5 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
+import { ReadonlyVec, setC, setC6 } from "@thi.ng/vectors3";
 import { Mat } from "./api";
-import { setC, setC6 } from "@thi.ng/vectors3/setc";
 
 export const translation23 =
     (m: Mat, v: ReadonlyVec) =>

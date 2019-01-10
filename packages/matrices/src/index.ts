@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./internal/codegen";
 
 export * from "./add";
 export * from "./addn";

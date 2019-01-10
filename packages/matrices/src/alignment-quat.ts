@@ -1,9 +1,11 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { normalize as _normalize } from "@thi.ng/vectors3/normalize";
-import { cross3 } from "@thi.ng/vectors3/cross";
+import {
+    cross3,
+    dot3,
+    mag,
+    normalize as _normalize,
+    ReadonlyVec
+} from "@thi.ng/vectors3";
 import { quatFromAxisAngle } from "./quat-axis-angle";
-import { dot3 } from "@thi.ng/vectors3/dot";
-import { mag } from "@thi.ng/vectors3/mag";
 
 export const alignmentQuat =
     (from: ReadonlyVec, to: ReadonlyVec, normalize = true) => {

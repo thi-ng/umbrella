@@ -1,8 +1,11 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { dot4 } from "@thi.ng/vectors3/dot";
-import { maddN4 } from "@thi.ng/vectors3/maddn";
-import { mulN4 } from "@thi.ng/vectors3/muln";
-import { set4 } from "@thi.ng/vectors3/set";
+import {
+    dot4,
+    maddN4,
+    mulN4,
+    ReadonlyVec,
+    set4,
+    Vec
+} from "@thi.ng/vectors3";
 
 export const mixQ =
     (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: number, eps = 1e-3) => {
