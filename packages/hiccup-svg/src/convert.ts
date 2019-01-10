@@ -1,7 +1,9 @@
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isString } from "@thi.ng/checks/is-string";
+import {
+    implementsFunction,
+    isArray,
+    isArrayLike,
+    isString
+} from "@thi.ng/checks";
 import { circle } from "./circle";
 import { ff } from "./format";
 import { linearGradient, radialGradient } from "./gradients";
@@ -154,7 +156,6 @@ const convertAttribs =
                     default:
                         res[id] = v;
                 }
-                return path(segments, attribs);
             }
         }
         return res;
