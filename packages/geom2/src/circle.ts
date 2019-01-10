@@ -1,24 +1,27 @@
-import { isNumber } from "@thi.ng/checks/is-number";
+import { isNumber } from "@thi.ng/checks";
 import { implementations } from "@thi.ng/defmulti";
-import { sign } from "@thi.ng/math/abs";
-import { cossin } from "@thi.ng/math/angle";
 import {
+    cossin,
     EPS,
     HALF_PI,
     PI,
+    sign,
     TAU
-} from "@thi.ng/math/api";
-import { add2 } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { cartesian2 } from "@thi.ng/vectors3/cartesian";
-import { copy } from "@thi.ng/vectors3/copy";
-import { dist } from "@thi.ng/vectors3/dist";
-import { distSq2 } from "@thi.ng/vectors3/distsq";
-import { mixN2 } from "@thi.ng/vectors3/mixn";
-import { mulN2 } from "@thi.ng/vectors3/muln";
-import { normalize } from "@thi.ng/vectors3/normalize";
-import { sub2 } from "@thi.ng/vectors3/sub";
-import { subN2 } from "@thi.ng/vectors3/subn";
+} from "@thi.ng/math";
+import {
+    add2,
+    cartesian2,
+    copy,
+    dist,
+    distSq2,
+    mixN2,
+    mulN2,
+    normalize,
+    ReadonlyVec,
+    sub2,
+    subN2,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     area,

@@ -1,8 +1,11 @@
 import { implementations } from "@thi.ng/defmulti";
-import { Mat } from "@thi.ng/matrices/api";
-import { add2 } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { mixBilinear2 } from "@thi.ng/vectors3/mix-bilinear";
+import { Mat } from "@thi.ng/matrices";
+import {
+    add2,
+    mixBilinear2,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     area,

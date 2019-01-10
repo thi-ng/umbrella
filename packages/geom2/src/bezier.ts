@@ -1,10 +1,17 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { implementations } from "@thi.ng/defmulti";
-import { clamp01 } from "@thi.ng/math/interval";
-import { mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math/mix";
-import { Vec } from "@thi.ng/vectors3/api";
-import { Mat } from "@thi.ng/matrices/api";
+import { clamp01, mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math";
+import { Mat } from "@thi.ng/matrices";
+import {
+    copy,
+    max,
+    min,
+    mixCubic,
+    mixN,
+    mixQuadratic,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     asCubic,
     asPolyline,
@@ -12,6 +19,7 @@ import {
     bounds,
     Cubic2,
     DEFAULT_SAMPLES,
+    flip,
     pointAt,
     Polyline2,
     Quadratic2,
@@ -20,17 +28,10 @@ import {
     splitAt,
     transform,
     Type,
-    vertices,
-    flip
+    vertices
 } from "./api";
 import { Sampler } from "./internal/sampler";
 import { transformPoints } from "./internal/transform";
-import { mixCubic } from "@thi.ng/vectors3/mix-cubic";
-import { mixQuadratic } from "@thi.ng/vectors3/mix-quadratic";
-import { copy } from "@thi.ng/vectors3/copy";
-import { mixN } from "@thi.ng/vectors3/mixn";
-import { min } from "@thi.ng/vectors3/min";
-import { max } from "@thi.ng/vectors3/max";
 
 export function cubic2(points: Vec[], attribs?: Attribs): Cubic2 {
     return new Cubic2(points, attribs);

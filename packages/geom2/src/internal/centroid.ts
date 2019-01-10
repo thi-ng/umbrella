@@ -1,9 +1,12 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { cross2 } from "@thi.ng/vectors3/cross";
-import { empty } from "@thi.ng/vectors3/empty";
-import { add } from "@thi.ng/vectors3/add";
-import { divN } from "@thi.ng/vectors3/divn";
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    add,
+    cross2,
+    divN,
+    empty,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors3";
 
 export const centroid =
     (pts: ReadonlyVec[], c?: Vec) => {

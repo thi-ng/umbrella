@@ -1,15 +1,17 @@
-import { Vec } from "@thi.ng/vectors3/api";
-import { dot3 } from "@thi.ng/vectors3/dot";
-import { maddN3 } from "@thi.ng/vectors3/maddn";
-import { magSq3 } from "@thi.ng/vectors3/magsq";
-import { sub3 } from "@thi.ng/vectors3/sub";
+import {
+    distSq3,
+    dot3,
+    maddN3,
+    magSq3,
+    sub3,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     intersectShape,
     Ray,
     Sphere,
     Type,
 } from "./api";
-import { distSq3 } from "@thi.ng/vectors3/distsq";
 
 export const sphere =
     (pos: Vec, r = 1) => new Sphere(pos, r);

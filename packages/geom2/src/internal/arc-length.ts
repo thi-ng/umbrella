@@ -1,5 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { dist } from "@thi.ng/vectors3/dist";
+import { ReadonlyVec, dist } from "@thi.ng/vectors3";
 
 export const arcLength = (pts: ReadonlyVec[], closed = false) => {
     const num = pts.length;

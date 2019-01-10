@@ -1,8 +1,11 @@
-import { add } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { max } from "@thi.ng/vectors3/max";
-import { min } from "@thi.ng/vectors3/min";
-import { sub } from "@thi.ng/vectors3/sub";
+import {
+    add,
+    max,
+    min,
+    ReadonlyVec,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 import { bounds as _bounds, IShape, union } from "../api";
 
 export const bounds =

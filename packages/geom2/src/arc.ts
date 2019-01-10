@@ -1,37 +1,40 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { implementations } from "@thi.ng/defmulti";
-import { sincos } from "@thi.ng/math/angle";
 import {
     EPS,
+    fit01,
     HALF_PI,
+    inRange,
     PI,
+    roundEps,
+    sincos,
     TAU
-} from "@thi.ng/math/api";
-import { fit01 } from "@thi.ng/math/fit";
-import { inRange } from "@thi.ng/math/interval";
-import { roundEps } from "@thi.ng/math/prec";
-import { range } from "@thi.ng/transducers/iter/range";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { abs2 } from "@thi.ng/vectors3/abs";
-import { add2 } from "@thi.ng/vectors3/add";
-import { angleBetween } from "@thi.ng/vectors3/angle-between";
+} from "@thi.ng/math";
 import {
+    filter,
+    map,
+    push,
+    range,
+    transduce
+} from "@thi.ng/transducers";
+import {
+    abs2,
+    add2,
+    angleBetween,
+    magSq2,
     MAX2,
     MIN2,
+    mulN2,
     ReadonlyVec,
+    sub2,
     Vec,
     X2
-} from "@thi.ng/vectors3/api";
-import { magSq2 } from "@thi.ng/vectors3/magsq";
-import { mulN2 } from "@thi.ng/vectors3/muln";
-import { sub2 } from "@thi.ng/vectors3/sub";
+} from "@thi.ng/vectors3";
 import "./bezier";
 import { bounds as _bounds } from "./internal/bounds";
 import { Sampler } from "./internal/sampler";
+import { } from "@thi.ng/math";
+import { } from "@thi.ng/vectors3";
 import {
     Arc2,
     asCubic,

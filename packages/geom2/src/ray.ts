@@ -1,6 +1,5 @@
 import { implementations } from "@thi.ng/defmulti";
-import { Vec } from "@thi.ng/vectors3/api";
-import { maddN } from "@thi.ng/vectors3/maddn";
+import { maddN, Vec } from "@thi.ng/vectors3";
 import { pointAt, Ray, Type } from "./api";
 
 export const ray =

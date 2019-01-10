@@ -1,7 +1,10 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { normalize } from "@thi.ng/vectors3/normalize";
-import { perpendicularLeft2, perpendicularRight2 } from "@thi.ng/vectors3/perpendicular";
-import { sub } from "@thi.ng/vectors3/sub";
+import {
+    normalize,
+    perpendicularLeft2,
+    perpendicularRight2,
+    ReadonlyVec,
+    sub
+} from "@thi.ng/vectors3";
 
 export const direction =
     (a: ReadonlyVec, b: ReadonlyVec, n = 1) =>

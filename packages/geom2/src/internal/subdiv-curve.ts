@@ -1,12 +1,19 @@
-import { comp } from "@thi.ng/transducers/func/comp";
-import { wrap } from "@thi.ng/transducers/iter/wrap";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { indexed } from "@thi.ng/transducers/xform/indexed";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { addW2, addW3, addW5 } from "@thi.ng/vectors3/addw";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import {
+    comp,
+    indexed,
+    mapcat,
+    partition,
+    push,
+    transduce,
+    wrap
+} from "@thi.ng/transducers";
+import {
+    addW2,
+    addW3,
+    addW5,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors3";
 import { SubdivKernel } from "../api";
 
 export const subdivKernel2 =

@@ -1,10 +1,13 @@
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { dot } from "@thi.ng/vectors3/dot";
-import { maddN } from "@thi.ng/vectors3/maddn";
-import { mulN } from "@thi.ng/vectors3/muln";
-import { zero } from "@thi.ng/vectors3/setn";
-import { sub } from "@thi.ng/vectors3/sub";
+import { eqDelta } from "@thi.ng/math";
+import {
+    dot,
+    maddN,
+    mulN,
+    ReadonlyVec,
+    sub,
+    Vec,
+    zero
+} from "@thi.ng/vectors3";
 
 export const toBarycentric =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, p: ReadonlyVec, out: Vec = []) => {

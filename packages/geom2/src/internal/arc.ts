@@ -1,7 +1,5 @@
-import { atan2Abs, cossin } from "@thi.ng/math/angle";
-import { TAU } from "@thi.ng/math/api";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { madd } from "@thi.ng/vectors3/madd";
+import { atan2Abs, cossin, TAU } from "@thi.ng/math";
+import { ReadonlyVec, Vec, madd } from "@thi.ng/vectors3";
 
 export const arcVertices = (
     o: ReadonlyVec,

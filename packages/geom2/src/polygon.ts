@@ -1,21 +1,26 @@
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isPlainObject } from "@thi.ng/checks";
 import { implementations } from "@thi.ng/defmulti";
-import { TAU } from "@thi.ng/math/api";
-import { Mat } from "@thi.ng/matrices/api";
-import { Reducer } from "@thi.ng/transducers/api";
-import { cycle } from "@thi.ng/transducers/iter/cycle";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { wrap } from "@thi.ng/transducers/iter/wrap";
-import { reduced } from "@thi.ng/transducers/reduced";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { add2 } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { cartesian2 } from "@thi.ng/vectors3/cartesian";
-import { signedArea2 } from "@thi.ng/vectors3/signed-area";
+import { TAU } from "@thi.ng/math";
+import { Mat } from "@thi.ng/matrices";
+import {
+    cycle,
+    map,
+    normRange,
+    partition,
+    push,
+    reduced,
+    Reducer,
+    transduce,
+    tuples,
+    wrap
+} from "@thi.ng/transducers";
+import {
+    add2,
+    cartesian2,
+    ReadonlyVec,
+    signedArea2,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     area,
@@ -52,6 +57,7 @@ import {
     vertices
 } from "./api";
 import "./container2";
+import { arcLength as _arcLength } from "./internal/arc-length";
 import { centerOfWeight2 } from "./internal/centroid";
 import { edges as _edges } from "./internal/edges";
 import { booleanOp } from "./internal/greiner-hormann";
@@ -64,7 +70,6 @@ import { sutherlandHodgeman } from "./internal/sutherland-hodgeman";
 import { transformPoints } from "./internal/transform";
 import { tessellatePoints } from "./tessellate";
 import { douglasPeucker2 } from "./internal/douglas–peucker";
-import { arcLength as _arcLength } from "./internal/arc-length";
 
 export function polygon(points: Vec[], attribs?: Attribs): Polygon2 {
     return new Polygon2(points, attribs);

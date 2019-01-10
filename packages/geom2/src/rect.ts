@@ -1,12 +1,15 @@
 import { implementations } from "@thi.ng/defmulti";
-import { Mat } from "@thi.ng/matrices/api";
-import { add2 } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { copy } from "@thi.ng/vectors3/copy";
-import { div2 } from "@thi.ng/vectors3/div";
-import { madd2 } from "@thi.ng/vectors3/madd";
-import { maddN2 } from "@thi.ng/vectors3/maddn";
-import { sub } from "@thi.ng/vectors3/sub";
+import { Mat } from "@thi.ng/matrices";
+import {
+    add2,
+    copy,
+    div2,
+    madd2,
+    maddN2,
+    ReadonlyVec,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     area,

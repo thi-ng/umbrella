@@ -1,7 +1,5 @@
-import { EPS } from "@thi.ng/math/api";
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { mixN2 } from "@thi.ng/vectors3/mixn";
+import { EPS, eqDelta } from "@thi.ng/math";
+import { mixN2, ReadonlyVec } from "@thi.ng/vectors3";
 import { LineIntersection, LineIntersectionType } from "../api";
 import { closestPointSegment } from "./closest-point";
 

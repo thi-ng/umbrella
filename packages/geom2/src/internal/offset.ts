@@ -1,6 +1,4 @@
-import { add2 } from "@thi.ng/vectors3/add";
-import { Vec } from "@thi.ng/vectors3/api";
-import { sub2 } from "@thi.ng/vectors3/sub";
+import { add2, sub2, Vec } from "@thi.ng/vectors3";
 import { ClipMode, VecPair } from "../api";
 import { arcVertices } from "./arc";
 import { normalL2 } from "./direction";

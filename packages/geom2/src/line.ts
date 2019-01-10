@@ -1,9 +1,12 @@
 import { implementations } from "@thi.ng/defmulti";
-import { Mat } from "@thi.ng/matrices/api";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { dist } from "@thi.ng/vectors3/dist";
-import { mixN } from "@thi.ng/vectors3/mixn";
-import { sub } from "@thi.ng/vectors3/sub";
+import { Mat } from "@thi.ng/matrices";
+import {
+    dist,
+    mixN,
+    ReadonlyVec,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     asCubic,

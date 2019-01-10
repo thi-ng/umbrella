@@ -1,7 +1,7 @@
-import { ICopy } from "@thi.ng/api/api";
+import { ICopy } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { Vec } from "@thi.ng/vectors3/api";
+import { mapcat } from "@thi.ng/transducers";
+import { Vec } from "@thi.ng/vectors3";
 import { ClipMode, LineIntersectionType, VecPair } from "../api";
 import { edges as _edges } from "./edges";
 import { intersectLines2 } from "./line-intersection";

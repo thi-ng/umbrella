@@ -1,13 +1,15 @@
-import { isNumber } from "@thi.ng/checks/is-number";
+import { isNumber } from "@thi.ng/checks";
 import { implementations } from "@thi.ng/defmulti";
-import { cossin } from "@thi.ng/math/angle";
-import { PI, TAU } from "@thi.ng/math/api";
-import { add2 } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { copy } from "@thi.ng/vectors3/copy";
-import { madd2 } from "@thi.ng/vectors3/madd";
-import { mulN2 } from "@thi.ng/vectors3/muln";
-import { sub2 } from "@thi.ng/vectors3/sub";
+import { cossin, PI, TAU } from "@thi.ng/math";
+import {
+    add2,
+    copy,
+    madd2,
+    mulN2,
+    ReadonlyVec,
+    sub2,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     area,

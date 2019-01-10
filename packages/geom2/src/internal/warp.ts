@@ -1,4 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
+import { ReadonlyVec } from "@thi.ng/vectors3";
 import { IShape, mapPoint, unmapPoint } from "../api";
 
 export const warpPoints =

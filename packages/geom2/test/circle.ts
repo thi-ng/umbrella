@@ -1,7 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
-import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
-import { Vec } from "@thi.ng/vectors2/api";
-import { eqDeltaArray } from "@thi.ng/vectors2/internal/equiv";
+import { HALF_PI, PI, TAU } from "@thi.ng/math";
+import { eqDeltaArray, Vec } from "@thi.ng/vectors3";
 import * as assert from "assert";
 import {
     area,

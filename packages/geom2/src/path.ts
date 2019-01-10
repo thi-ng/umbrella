@@ -1,22 +1,28 @@
-import { isNumber } from "@thi.ng/checks/is-number";
+import { isNumber } from "@thi.ng/checks";
 import { implementations } from "@thi.ng/defmulti";
-import { rad } from "@thi.ng/math/angle";
-import { eqDelta } from "@thi.ng/math/eqdelta";
-import { Mat } from "@thi.ng/matrices/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { ensureArray } from "@thi.ng/transducers/func/ensure-array";
-import { peek } from "@thi.ng/transducers/func/peek";
-import { iterator1 } from "@thi.ng/transducers/iterator";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { add2, add } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { maddN } from "@thi.ng/vectors3/maddn";
-import { mulV } from "@thi.ng/matrices/mulv";
-import { zeroes } from "@thi.ng/vectors3/setn";
-import { mulN2 } from "@thi.ng/vectors3/muln";
-import { set2 } from "@thi.ng/vectors3/set";
+import { eqDelta, rad } from "@thi.ng/math";
+import { Mat, mulV } from "@thi.ng/matrices";
+import {
+    comp,
+    ensureArray,
+    filter,
+    iterator1,
+    map,
+    mapcat,
+    peek
+} from "@thi.ng/transducers";
+import {
+    add,
+    add2,
+    copy,
+    maddN,
+    mulN2,
+    ReadonlyVec,
+    set2,
+    sub2,
+    Vec,
+    zeroes
+} from "@thi.ng/vectors3";
 import {
     Arc2,
     asCubic,
@@ -45,8 +51,6 @@ import { collBounds } from "./internal/bounds";
 import "./polygon";
 import "./polyline";
 import { douglasPeucker2 } from "./internal/douglas–peucker";
-import { copy } from "@thi.ng/vectors3/copy";
-import { sub2 } from "@thi.ng/vectors3/sub";
 
 const CMD_RE = /[achlmqstvz]/i;
 

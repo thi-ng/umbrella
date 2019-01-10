@@ -1,11 +1,14 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { distSq } from "@thi.ng/vectors3/distsq";
-import { dot } from "@thi.ng/vectors3/dot";
-import { empty } from "@thi.ng/vectors3/empty";
-import { magSq } from "@thi.ng/vectors3/magsq";
-import { mixN } from "@thi.ng/vectors3/mixn";
-import { set } from "@thi.ng/vectors3/set";
-import { sub } from "@thi.ng/vectors3/sub";
+import {
+    distSq,
+    dot,
+    empty,
+    magSq,
+    mixN,
+    ReadonlyVec,
+    set,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 
 export const closestPoint =
     (p: ReadonlyVec, pts: Vec[]) => {

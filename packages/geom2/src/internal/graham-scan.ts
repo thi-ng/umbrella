@@ -1,6 +1,4 @@
-import { Vec } from "@thi.ng/vectors3/api";
-import { comparator2 } from "@thi.ng/vectors3/compare";
-import { signedArea2 } from "@thi.ng/vectors3/signed-area";
+import { comparator2, signedArea2, Vec } from "@thi.ng/vectors3";
 
 /**
  * Returns array of points defining the 2D Convex Hull of `pts` using

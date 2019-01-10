@@ -1,5 +1,5 @@
-import { EPS } from "@thi.ng/math/api";
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
+import { EPS } from "@thi.ng/math";
+import { ReadonlyVec } from "@thi.ng/vectors3";
 
 export const circumCenter =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, eps = EPS) => {

@@ -1,10 +1,13 @@
-import { peek } from "@thi.ng/transducers/func/peek";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { copy } from "@thi.ng/vectors3/copy";
-import { dist } from "@thi.ng/vectors3/dist";
-import { mixN } from "@thi.ng/vectors3/mixn";
-import { normalize } from "@thi.ng/vectors3/normalize";
-import { sub } from "@thi.ng/vectors3/sub";
+import { peek } from "@thi.ng/transducers";
+import {
+    copy,
+    dist,
+    mixN,
+    normalize,
+    ReadonlyVec,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 import { VecPair } from "../api";
 
 export class Sampler {

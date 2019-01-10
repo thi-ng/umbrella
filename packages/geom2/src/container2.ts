@@ -1,6 +1,6 @@
 import { implementations } from "@thi.ng/defmulti";
-import { Mat } from "@thi.ng/matrices/api";
-import { MAX2, MIN2, Vec } from "@thi.ng/vectors3/api";
+import { Mat } from "@thi.ng/matrices";
+import { MAX2, MIN2, Vec } from "@thi.ng/vectors3";
 import {
     Attribs,
     bounds,

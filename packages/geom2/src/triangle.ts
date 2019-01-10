@@ -1,15 +1,18 @@
 import { implementations } from "@thi.ng/defmulti";
-import { PI } from "@thi.ng/math/api";
-import { Mat } from "@thi.ng/matrices/api";
-import { add } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { divN } from "@thi.ng/vectors3/divn";
-import { maddN } from "@thi.ng/vectors3/maddn";
-import { mag } from "@thi.ng/vectors3/mag";
-import { normalize } from "@thi.ng/vectors3/normalize";
-import { perpendicularLeft2 } from "@thi.ng/vectors3/perpendicular";
-import { signedArea2 } from "@thi.ng/vectors3/signed-area";
-import { sub } from "@thi.ng/vectors3/sub";
+import { PI } from "@thi.ng/math";
+import { Mat } from "@thi.ng/matrices";
+import {
+    add,
+    divN,
+    maddN,
+    mag,
+    normalize,
+    perpendicularLeft2,
+    ReadonlyVec,
+    signedArea2,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 import {
     arcLength,
     area,

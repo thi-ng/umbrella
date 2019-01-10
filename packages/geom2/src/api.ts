@@ -12,19 +12,22 @@ import {
     MultiFn2O
 } from "@thi.ng/defmulti";
 import { equiv } from "@thi.ng/equiv";
-import { cossin } from "@thi.ng/math/angle";
-import { ReadonlyMat } from "@thi.ng/matrices/api";
-import { add } from "@thi.ng/vectors3/add";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
-import { copy } from "@thi.ng/vectors3/copy";
-import { max } from "@thi.ng/vectors3/max";
-import { min } from "@thi.ng/vectors3/min";
-import { mixN } from "@thi.ng/vectors3/mixn";
-import { mul } from "@thi.ng/vectors3/mul";
-import { neg } from "@thi.ng/vectors3/neg";
-import { perpendicularLeft2 } from "@thi.ng/vectors3/perpendicular";
-import { rotateZ } from "@thi.ng/vectors3/rotate";
-import { sub } from "@thi.ng/vectors3/sub";
+import { cossin } from "@thi.ng/math";
+import { ReadonlyMat } from "@thi.ng/matrices";
+import {
+    add,
+    copy,
+    max,
+    min,
+    mixN,
+    mul,
+    neg,
+    perpendicularLeft2,
+    ReadonlyVec,
+    rotateZ,
+    sub,
+    Vec
+} from "@thi.ng/vectors3";
 import { subdivKernel3 } from "./internal/subdiv-curve";
 import { warpPoints } from "./internal/warp";
 

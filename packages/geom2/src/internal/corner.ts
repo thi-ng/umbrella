@@ -1,7 +1,5 @@
-import { sign } from "@thi.ng/math/abs";
-import { EPS } from "@thi.ng/math/api";
-import { ReadonlyVec } from "@thi.ng/vectors3/api";
-import { signedArea2 } from "@thi.ng/vectors3/signed-area";
+import { EPS, sign } from "@thi.ng/math";
+import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors3";
 
 export const classify =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, eps = EPS) =>
