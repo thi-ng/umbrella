@@ -23,6 +23,10 @@ Please refer to the [example build
 instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
+**IMPORTANT:** Please also see the [troubleshooting
+note](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions#troubleshooting)
+and temporary workaround for this example.
+
 ## CLI version
 
 In addition to the above browser UI, this example can be built as a
