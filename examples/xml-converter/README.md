@@ -18,12 +18,10 @@ dataflow topology used by the browser app:
 ![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/xml-converter.png)
 
 ## Browser version
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/xml-converter
-yarn install
-yarn start
-```
+
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## CLI version
 
@@ -33,6 +31,8 @@ written to stdout).
 
 ```bash
 # in this example's project root...
+yarn install
+
 yarn build-cli
 
 bin/hiccup --help

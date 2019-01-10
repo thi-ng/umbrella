@@ -2,14 +2,9 @@
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/)
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/router-basics
-yarn install
-yarn start
-```
-
-Installs all dependencies, runs `parcel serve` and opens the app in your browser.
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## About
 
@@ -27,14 +22,6 @@ Features covered:
 - Async side effects
 - Dynamic JSON content loading / transformation
 - Component styling with [Tachyons CSS](http://tachyons.io/)
-
-### Production build
-
-```bash
-yarn build
-```
-
-Builds a minified version of the app and places it in `/out` directory.
 
 ## Authors
 

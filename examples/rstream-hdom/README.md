@@ -8,12 +8,9 @@ constructs can be used for state handling and reactively trigger
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 updates only when any of the UI related streams have value changes.
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/rstream-hdom
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

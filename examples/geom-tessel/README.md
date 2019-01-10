@@ -11,12 +11,9 @@ Note the lack of explicit hiccup shape defs in this example. All
 @thi.ng/geom types support auto-conversion via the [`IToHiccup`
 interface](https://github.com/thi-ng/umbrella/blob/master/packages/api/src/api.ts#L415).
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/geom-tessel
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 
