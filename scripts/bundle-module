@@ -50,7 +50,7 @@ const build =
         !fs.existsSync(".meta") && fs.mkdirSync(".meta");
 
         const cjs = await buildVersion(
-            "lib/index.cjs.js",
+            "lib/index.js",
             {
                 format: "cjs"
             }
