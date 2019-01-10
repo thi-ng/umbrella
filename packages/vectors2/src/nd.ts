@@ -1,14 +1,13 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isIterable } from "@thi.ng/checks/is-iterable";
-import { isNumber } from "@thi.ng/checks/is-number";
+import { isArrayLike, isIterable, isNumber } from "@thi.ng/checks";
 import { equiv, equivArrayLike } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { EPS } from "@thi.ng/math/api";
-import { Stringer } from "@thi.ng/strings/api";
-import { floatFixedWidth } from "@thi.ng/strings/float";
-import { padLeft } from "@thi.ng/strings/pad-left";
-import { truncate } from "@thi.ng/strings/truncate";
+import { illegalArgs, unsupported } from "@thi.ng/errors";
+import { EPS } from "@thi.ng/math";
+import {
+    floatFixedWidth,
+    padLeft,
+    Stringer,
+    truncate
+} from "@thi.ng/strings";
 import { INDArray, NDVec } from "./api";
 import { declareIndices } from "./internal/accessors";
 import { eqDelta as _eqDelta } from "./internal/equiv";

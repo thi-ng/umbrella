@@ -1,5 +1,5 @@
 import { NumericArray, TypedArray } from "@thi.ng/api";
-import { isTypedArray } from "@thi.ng/checks/is-typedarray";
+import { isTypedArray } from "@thi.ng/checks";
 import {
     MemPool,
     MemPoolOpts,

@@ -1,8 +1,13 @@
 import { Comparator } from "@thi.ng/api";
-import { EPS, HALF_PI, PI } from "@thi.ng/math/api";
-import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
-import { max2id, min2id } from "@thi.ng/math/interval";
-import { mixBilinear } from "@thi.ng/math/mix";
+import {
+    EPS,
+    eqDelta as _eqDelta,
+    HALF_PI,
+    max2id,
+    min2id,
+    mixBilinear,
+    PI
+} from "@thi.ng/math";
 import { AVec } from "./avec";
 import { declareIndices } from "./internal/accessors";
 import { genCommon } from "./internal/codegen";

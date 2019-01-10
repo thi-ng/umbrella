@@ -1,12 +1,11 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isNumber } from "@thi.ng/checks/is-number";
+import { isArrayLike, isNumber } from "@thi.ng/checks";
 import {
     IMatrix,
     Mat,
     ReadonlyMat,
     ReadonlyVec,
     Vec
-    } from "./api";
+} from "./api";
 import { declareIndices } from "./internal/accessors";
 import { iterator } from "./internal/iterator";
 import { cross2, dot2 } from "./internal/matrix";

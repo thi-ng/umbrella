@@ -1,6 +1,5 @@
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { DEG2RAD } from "@thi.ng/math/api";
+import { isArrayLike, isNumber } from "@thi.ng/checks";
+import { DEG2RAD } from "@thi.ng/math";
 import {
     copy,
     IMatrix,
@@ -9,7 +8,7 @@ import {
     ReadonlyMat,
     ReadonlyVec,
     Vec
-    } from "./api";
+} from "./api";
 import { declareIndices } from "./internal/accessors";
 import { iterator } from "./internal/iterator";
 import {
@@ -18,7 +17,7 @@ import {
     set3,
     setS3,
     setS4
-    } from "./internal/matrix";
+} from "./internal/matrix";
 import { Mat33 } from "./mat33";
 import { NDArray2 } from "./nd";
 import { cross3, sub3 } from "./vec3";

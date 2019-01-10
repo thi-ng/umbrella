@@ -7,10 +7,9 @@ import {
     IRelease,
     TypedArray
 } from "@thi.ng/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { Type } from "@thi.ng/malloc/api";
-import { atan2Abs } from "@thi.ng/math/angle";
-import { EPS } from "@thi.ng/math/api";
+import { implementsFunction } from "@thi.ng/checks";
+import { Type } from "@thi.ng/malloc";
+import { atan2Abs, EPS } from "@thi.ng/math";
 import { genCommonDefaults } from "./internal/codegen";
 import { eqDelta as _eqDelta } from "./internal/equiv";
 import { vop } from "./internal/ops";

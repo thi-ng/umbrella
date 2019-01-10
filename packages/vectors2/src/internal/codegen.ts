@@ -1,17 +1,22 @@
-// import { FnAny } from "@thi.ng/api";
-import { sign as _sign } from "@thi.ng/math/abs";
-import { clamp as _clamp } from "@thi.ng/math/interval";
-import { fract as _fract, trunc as _trunc } from "@thi.ng/math/prec";
-import { smoothStep as _smoothStep, step as _step } from "@thi.ng/math/step";
+import {
+    clamp as _clamp,
+    fract as _fract,
+    sign as _sign,
+    smoothStep as _smoothStep,
+    step as _step,
+    trunc as _trunc
+} from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random/system";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { take } from "@thi.ng/transducers/xform/take";
+import {
+    comp,
+    map,
+    mapIndexed,
+    push,
+    range,
+    take,
+    transduce,
+    tuples
+} from "@thi.ng/transducers";
 import {
     abs,
     add,

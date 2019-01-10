@@ -1,8 +1,11 @@
-import { Comparator } from "@thi.ng/api/api";
-import { EPS } from "@thi.ng/math/api";
-import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
-import { max4id, min4id } from "@thi.ng/math/interval";
-import { mixBilinear } from "@thi.ng/math/mix";
+import { Comparator } from "@thi.ng/api";
+import {
+    EPS,
+    eqDelta as _eqDelta,
+    max4id,
+    min4id,
+    mixBilinear
+} from "@thi.ng/math";
 import { AVec } from "./avec";
 import { declareIndices } from "./internal/accessors";
 import { genCommon } from "./internal/codegen";

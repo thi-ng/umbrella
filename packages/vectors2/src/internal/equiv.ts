@@ -1,5 +1,4 @@
-import { EPS } from "@thi.ng/math/api";
-import { eqDelta as _eqDelta } from "@thi.ng/math/eqdelta";
+import { EPS, eqDelta as _eqDelta } from "@thi.ng/math";
 import { ReadonlyVec } from "../api";
 
 /**
