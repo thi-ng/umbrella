@@ -1,4 +1,4 @@
-import { clamp as _clamp, clamp01 as _clamp01, clamp11 as _clamp11 } from "@thi.ng/math/interval";
+import { clamp as _clamp, clamp01 as _clamp01, clamp11 as _clamp11 } from "@thi.ng/math";
 import { MultiVecOpVVV, VecOpVVV } from "./api";
 import { ARGS_VVV, defHofOp } from "./internal/codegen";
 import { HOF_VVV } from "./internal/templates";

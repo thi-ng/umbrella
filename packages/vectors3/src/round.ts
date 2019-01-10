@@ -1,4 +1,4 @@
-import { roundTo as _round } from "@thi.ng/math/prec";
+import { roundTo as _round } from "@thi.ng/math";
 import { MultiVecOpVO, VecOpVO } from "./api";
 import { defHofOp } from "./internal/codegen";
 import { FN_N } from "./internal/templates";

@@ -1,4 +1,4 @@
-import { EPS } from "@thi.ng/math/api";
+import { EPS } from "@thi.ng/math";
 import {
     IVector,
     MAX3,

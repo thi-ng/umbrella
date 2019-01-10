@@ -3,7 +3,7 @@ import {
     IEmpty,
     IEqualsDelta,
     ILength,
-} from "@thi.ng/api/api";
+} from "@thi.ng/api";
 
 export interface Vec extends
     Iterable<number>,

@@ -1,4 +1,4 @@
-import { absTheta } from "@thi.ng/math/angle";
+import { absTheta } from "@thi.ng/math";
 import { ReadonlyVec } from "./api";
 import { dot } from "./dot";
 import { mag } from "./mag";

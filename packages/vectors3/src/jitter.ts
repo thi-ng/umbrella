@@ -1,5 +1,4 @@
-import { IRandom } from "@thi.ng/random/api";
-import { SYSTEM } from "@thi.ng/random/system";
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import { add } from "./add";
 import { ReadonlyVec, Vec } from "./api";
 import { randNorm } from "./random";

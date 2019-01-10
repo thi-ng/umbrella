@@ -1,5 +1,9 @@
 export * from "./api";
+export * from "./internal/accessors";
+export * from "./internal/avec";
 export * from "./internal/codegen";
+export * from "./internal/templates";
+export * from "./internal/vec-utils";
 export * from "./internal/vop";
 
 export * from "./vec2";

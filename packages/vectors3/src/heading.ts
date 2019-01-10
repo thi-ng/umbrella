@@ -1,4 +1,4 @@
-import { atan2Abs } from "@thi.ng/math/angle";
+import { atan2Abs } from "@thi.ng/math";
 import { ReadonlyVec } from "./api";
 
 export const headingXY = (a: ReadonlyVec) => atan2Abs(a[1], a[0]);

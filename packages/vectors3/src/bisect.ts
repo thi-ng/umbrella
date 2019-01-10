@@ -1,4 +1,4 @@
-import { HALF_PI, PI } from "@thi.ng/math/api";
+import { HALF_PI, PI } from "@thi.ng/math";
 import { VecOpRoVV } from "./api";
 import { headingXY } from "./heading";
 

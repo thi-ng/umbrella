@@ -1,11 +1,13 @@
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { str } from "@thi.ng/transducers/rfn/str";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { take } from "@thi.ng/transducers/xform/take";
+import {
+    comp,
+    map,
+    mapIndexed,
+    range,
+    str,
+    take,
+    transduce,
+    tuples
+} from "@thi.ng/transducers";
 import {
     MultiVecOpVN,
     MultiVecOpVV,

@@ -1,4 +1,4 @@
-import { fract as _fract } from "@thi.ng/math/prec";
+import { fract as _fract } from "@thi.ng/math";
 import { MultiVecOpV, VecOpV } from "./api";
 import { defHofOp } from "./internal/codegen";
 

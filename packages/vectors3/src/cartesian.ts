@@ -1,4 +1,4 @@
-import { cossin } from "@thi.ng/math/angle";
+import { cossin } from "@thi.ng/math";
 import {
     MultiVecOpVO,
     ReadonlyVec,

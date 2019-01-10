@@ -1,4 +1,4 @@
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupported } from "@thi.ng/errors";
 
 /**
  * Specialized / optimized version of `@thi.ng/defmulti` for vector

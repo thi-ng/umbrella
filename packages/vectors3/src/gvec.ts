@@ -1,7 +1,6 @@
-import { EPS } from "@thi.ng/math/api";
-import { memoize1 } from "@thi.ng/memoize/memoize1";
-import { range } from "@thi.ng/transducers/iter/range";
-import { map } from "@thi.ng/transducers/xform/map";
+import { EPS } from "@thi.ng/math";
+import { memoize1 } from "@thi.ng/memoize";
+import { map, range } from "@thi.ng/transducers";
 import { IVector, Vec } from "./api";
 import { eqDeltaS } from "./eqdelta";
 import { values } from "./internal/vec-utils";

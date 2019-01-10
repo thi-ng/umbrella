@@ -1,4 +1,4 @@
-import { wrap as _wrap } from "@thi.ng/math/interval";
+import { wrap as _wrap } from "@thi.ng/math";
 import { MultiVecOpVVV, VecOpVVV } from "./api";
 import { ARGS_VVV, defHofOp } from "./internal/codegen";
 import { HOF_VVV } from "./internal/templates";

@@ -1,4 +1,4 @@
-import { max2id, max3id, max4id } from "@thi.ng/math/interval";
+import { max2id, max3id, max4id } from "@thi.ng/math";
 import { MultiVecOpRoV } from "./api";
 import { vop } from "./internal/vop";
 
