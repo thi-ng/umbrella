@@ -1,6 +1,6 @@
-import { U24 } from "@thi.ng/strings/radix";
-import { INV8BIT, FF } from "./api";
-import { IDeref } from "@thi.ng/api/api";
+import { IDeref } from "@thi.ng/api";
+import { U24 } from "@thi.ng/strings";
+import { FF, INV8BIT } from "./api";
 
 export const int32Css =
     (src: number | IDeref<number>) => {

@@ -4,7 +4,7 @@ import {
     Implementation3,
     MultiFn2O
 } from "@thi.ng/defmulti";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArgs } from "@thi.ng/errors";
 import {
     __ColorMode,
     Color,

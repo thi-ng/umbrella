@@ -1,5 +1,4 @@
-import { ONE3 } from "@thi.ng/vectors3/api";
-import { sub3 } from "@thi.ng/vectors3/sub";
+import { ONE3, sub3 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
 

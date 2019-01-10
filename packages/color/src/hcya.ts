@@ -1,5 +1,4 @@
-import { IVector } from "@thi.ng/vectors3/api";
-import { declareIndices } from "@thi.ng/vectors3/internal/accessors";
+import { IVector, declareIndices } from "@thi.ng/vectors3";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ctor-args";

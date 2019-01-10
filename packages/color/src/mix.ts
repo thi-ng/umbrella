@@ -1,7 +1,6 @@
-import { mixN4 } from "@thi.ng/vectors3/mixn";
+import { mix as _mix } from "@thi.ng/math";
+import { mixN4, setC4 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
-import { setC4 } from "@thi.ng/vectors3/setc";
-import { mix as _mix } from "@thi.ng/math/mix";
 
 export const mix: (out: Color, a: ReadonlyColor, b: ReadonlyColor, t: number) => Color =
     mixN4;

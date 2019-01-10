@@ -1,4 +1,4 @@
-import { clamp01 } from "@thi.ng/math/interval";
+import { clamp01 } from "@thi.ng/math";
 
 const G1 = -0.6088425710866344;
 const G2 = -0.001748900018414868;

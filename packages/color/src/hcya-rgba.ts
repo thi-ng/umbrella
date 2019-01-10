@@ -1,6 +1,5 @@
-import { clamp01 } from "@thi.ng/math/interval";
-import { dot3 } from "@thi.ng/vectors3/dot";
-import { setC3 } from "@thi.ng/vectors3/setc";
+import { clamp01 } from "@thi.ng/math";
+import { dot3, setC3 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor, RGB_LUMINANCE } from "./api";
 import { hueRgba } from "./hue-rgba";
 import { ensureAlpha } from "./internal/ensure-alpha";

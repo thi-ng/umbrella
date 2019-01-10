@@ -1,4 +1,4 @@
-import { setC3 } from "@thi.ng/vectors3/setc";
+import { setC3 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
 import { clampH } from "./clamp";
 

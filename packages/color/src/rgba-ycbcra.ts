@@ -1,7 +1,7 @@
+import { setC3 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
-import { luminanceRGB } from "./luminance";
-import { setC3 } from "@thi.ng/vectors3/setc";
 import { clamp } from "./clamp";
+import { luminanceRGB } from "./luminance";
 
 export const rgbaYcbcra =
     (out: Color, src: ReadonlyColor) => {

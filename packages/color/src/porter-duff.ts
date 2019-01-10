@@ -1,5 +1,4 @@
-import { setC4 } from "@thi.ng/vectors3/setc";
-import { setN4 } from "@thi.ng/vectors3/setn";
+import { setC4, setN4 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
 import { postmultiply, premultiply } from "./premultiply";
 

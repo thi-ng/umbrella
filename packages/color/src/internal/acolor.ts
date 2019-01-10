@@ -1,8 +1,7 @@
-import { EPS } from "@thi.ng/math/api";
-import { eqDelta4 } from "@thi.ng/vectors3/eqdelta";
-import { values } from "@thi.ng/vectors3/internal/vec-utils";
+import { IDeref } from "@thi.ng/api";
+import { EPS } from "@thi.ng/math";
+import { eqDelta4, values } from "@thi.ng/vectors3";
 import { Color, IColor } from "../api";
-import { IDeref } from "@thi.ng/api/api";
 
 export abstract class AColor<T extends Color> implements
     IColor,

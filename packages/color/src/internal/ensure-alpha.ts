@@ -1,4 +1,4 @@
-import { clamp01 } from "@thi.ng/math/interval";
+import { clamp01 } from "@thi.ng/math";
 
 export const ensureAlpha =
     (x: number, def = 1) =>

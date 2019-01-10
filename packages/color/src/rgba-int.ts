@@ -1,4 +1,4 @@
-import { clamp01 } from "@thi.ng/math/interval";
+import { clamp01 } from "@thi.ng/math";
 import { ReadonlyColor } from "./api";
 import { ensureAlpha } from "./internal/ensure-alpha";
 

@@ -1,10 +1,10 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { clamp01 } from "@thi.ng/math/interval";
-import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
+import { IDeref } from "@thi.ng/api";
+import { illegalArgs } from "@thi.ng/errors";
+import { clamp01 } from "@thi.ng/math";
+import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
 import { Color, ColorMode, INV8BIT } from "./api";
 import { convert } from "./convert";
 import { CSS_NAMES } from "./names";
-import { IDeref } from "@thi.ng/api/api";
 
 const RE_HEX = /^#?([0-9a-f]{3,8})$/i;
 const RE_CSS = /^(rgb|hsl)a?\(\s*([0-9.]+?),\s*([0-9.]+%?),\s*([0-9.]+%?),?\s*([0-9.]+)?\s*\)$/;

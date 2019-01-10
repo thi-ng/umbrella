@@ -1,4 +1,4 @@
-import { mix } from "@thi.ng/math/mix";
+import { mix } from "@thi.ng/math";
 import { ColorMatrix, RGB_LUMINANCE, ReadonlyColor, WHITE } from "./api";
 import { mulV45, mulM45 } from "./internal/matrix-ops";
 

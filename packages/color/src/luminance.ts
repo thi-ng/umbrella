@@ -1,6 +1,6 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { dot3 } from "@thi.ng/vectors3/dot";
+import { illegalArgs } from "@thi.ng/errors";
+import { dot3 } from "@thi.ng/vectors3";
 import {
     ColorMode,
     IColor,

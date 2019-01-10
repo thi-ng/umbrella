@@ -1,6 +1,6 @@
-import { setC4 } from "@thi.ng/vectors3/setc";
+import { IDeref } from "@thi.ng/api";
+import { setC4 } from "@thi.ng/vectors3";
 import { Color, INV8BIT } from "./api";
-import { IDeref } from "@thi.ng/api/api";
 
 export const int32Rgba =
     (out: Color, src: number | IDeref<number>) => {

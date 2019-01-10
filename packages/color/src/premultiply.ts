@@ -1,6 +1,5 @@
+import { set, setC4 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
-import { set } from "@thi.ng/vectors3/set";
-import { setC4 } from "@thi.ng/vectors3/setc";
 
 /**
  * RGBA only. Multiplies RGB channels w/ alpha channel. Assumes alpha is

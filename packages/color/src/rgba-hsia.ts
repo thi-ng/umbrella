@@ -1,8 +1,12 @@
-import { setC3 } from "@thi.ng/vectors3/setc";
+import {
+    atan2Abs,
+    SQRT3,
+    TAU,
+    THIRD
+} from "@thi.ng/math";
+import { setC3 } from "@thi.ng/vectors3";
 import { Color, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
-import { SQRT3, THIRD, TAU } from "@thi.ng/math/api";
-import { atan2Abs } from "@thi.ng/math/angle";
 
 // https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma
 

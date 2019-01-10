@@ -1,13 +1,14 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { partial } from "@thi.ng/compose/partial";
-import { TAU } from "@thi.ng/math/api";
-import { clamp01 } from "@thi.ng/math/interval";
-import { interpolate } from "@thi.ng/transducers/iter/interpolate";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
+import { IObjectOf } from "@thi.ng/api";
+import { partial } from "@thi.ng/compose";
+import { clamp01, TAU } from "@thi.ng/math";
+import {
+    interpolate,
+    map,
+    normRange,
+    push,
+    transduce,
+    tuples
+} from "@thi.ng/transducers";
 import { Color, CosGradientSpec, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
 

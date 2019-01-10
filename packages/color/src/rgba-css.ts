@@ -1,5 +1,5 @@
-import { clamp01 } from "@thi.ng/math/interval";
-import { U24 } from "@thi.ng/strings/radix";
+import { clamp01 } from "@thi.ng/math";
+import { U24 } from "@thi.ng/strings";
 import { FF, ReadonlyColor } from "./api";
 import { ensureAlpha } from "./internal/ensure-alpha";
 
