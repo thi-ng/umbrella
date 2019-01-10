@@ -1,5 +1,6 @@
 node_modules
 .cache
+.meta
 .nyc_output
 coverage
 build
@@ -12,6 +13,7 @@ examples/hdc
 examples/hdom-class
 examples/hdom-clj
 examples/ts-parse
+lib
 .DS_Store
 tachyons.min.css
 bundle.*

@@ -12,10 +12,12 @@ const size =
 
 const name = process.argv[2];
 
-const deps = process.argv.slice(3).reduce(
-    (acc, x) => (acc[`@thi.ng/${x}`] = `thi.ng.${camelCase(x)}`, acc),
-    {}
-);
+const deps = process.argv
+    .slice(3)
+    .reduce(
+        (acc, x) => (acc[`@thi.ng/${x}`] = `thi.ng.${camelCase(x)}`, acc),
+        {}
+    );
 
 const inOpts = {
     external: Object.keys(deps),
@@ -28,35 +30,52 @@ const terserOpts = {
     ecma: 6
 };
 
-const buildVersion = async (dest, outOpts) => {
-    console.log(`bundling (${outOpts.format}): ${dest}`);
-    const bundle = await rollup.rollup(inOpts);
-    const bundleOut = await bundle.generate(outOpts);
-    const terserOut = terser.minify(bundleOut.output[0].code, terserOpts);
-    fs.writeFileSync(dest, terserOut.code);
-    console.log(`\tsize: ${size(terserOut.code.length)} / gzipped: ${size(gz.sync(terserOut.code))}`);
-};
+const buildVersion =
+    async (dest, outOpts, write = true, compressed = false) => {
+        console.log(`bundling (${outOpts.format}): ${dest}`);
+        const bundle = await rollup.rollup(inOpts);
+        const bundleOut = (await bundle.generate(outOpts)).output[0].code;
+        const terserOut = terser.minify(bundleOut, terserOpts).code;
+        write && fs.writeFileSync(dest, compressed ? terserOut : bundleOut);
 
-const build = async () => {
+        const gzSize = gz.sync(terserOut);
+        console.log(`\tsize: ${size(terserOut.length)} / gzipped: ${size(gzSize)}`);
+        return { raw: terserOut.length, gzip: gzSize };
+    };
 
-    !fs.existsSync("lib") && fs.mkdirSync("lib");
+const build =
+    async () => {
 
-    await buildVersion(
-        "lib/index.js",
-        {
-            format: "cjs"
-        }
-    );
+        !fs.existsSync("lib") && fs.mkdirSync("lib");
+        !fs.existsSync(".meta") && fs.mkdirSync(".meta");
 
-    await buildVersion(
-        "lib/index.umd.js",
-        {
-            format: "umd",
-            globals: deps,
-            name: `thi.ng.${name}`,
-        }
-    );
+        const cjs = await buildVersion(
+            "lib/index.cjs.js",
+            {
+                format: "cjs"
+            }
+        );
 
-};
+        const esm = await buildVersion(
+            "lib/index.es6.js",
+            {
+                format: "esm"
+            },
+            false
+        );
+
+        const umd = await buildVersion(
+            "lib/index.umd.js",
+            {
+                format: "umd",
+                globals: deps,
+                name: `thi.ng.${name}`,
+            },
+            true,
+            true
+        );
+
+        fs.writeFileSync(".meta/size.json", JSON.stringify({ esm, cjs, umd }));
+    };
 
 build();
