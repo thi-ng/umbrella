@@ -1,8 +1,11 @@
-import { IVector, Vec } from "@thi.ng/vectors3/api";
-import { gvec } from "@thi.ng/vectors3/gvec";
-import { Vec2 } from "@thi.ng/vectors3/vec2";
-import { Vec3 } from "@thi.ng/vectors3/vec3";
-import { Vec4 } from "@thi.ng/vectors3/vec4";
+import {
+    gvec,
+    IVector,
+    Vec,
+    Vec2,
+    Vec3,
+    Vec4
+} from "@thi.ng/vectors3";
 
 export const wrap =
     (buf: Vec, size: number, idx: number, stride: number): IVector<any> => {

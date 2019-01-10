@@ -1,4 +1,4 @@
-import { StridedVec, Vec } from "@thi.ng/vectors3/api";
+import { StridedVec, Vec } from "@thi.ng/vectors3";
 import { VecFactory } from "./api";
 import { wrap } from "./wrap";
 

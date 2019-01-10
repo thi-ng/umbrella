@@ -1,12 +1,13 @@
-import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api/api";
-import { assert } from "@thi.ng/api/assert";
-import { align } from "@thi.ng/binary/align";
-import { Pow2 } from "@thi.ng/binary/api";
-import { SIZEOF } from "@thi.ng/malloc/api";
-import { MemPool } from "@thi.ng/malloc/pool";
-import { wrap } from "@thi.ng/malloc/wrap";
-import { range } from "@thi.ng/transducers/iter/range";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3/api";
+import {
+    assert,
+    IObjectOf,
+    IRelease,
+    TypedArray
+} from "@thi.ng/api";
+import { align, Pow2 } from "@thi.ng/binary";
+import { MemPool, SIZEOF, wrap } from "@thi.ng/malloc";
+import { range } from "@thi.ng/transducers";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3";
 import { asNativeType } from "./convert";
 import {
     AttribPoolOpts,

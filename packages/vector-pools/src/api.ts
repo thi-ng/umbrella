@@ -1,6 +1,6 @@
-import { IRelease, TypedArray } from "@thi.ng/api/api";
-import { Type, MemPoolOpts } from "@thi.ng/malloc/api";
-import { StridedVec, Vec, ReadonlyVec } from "@thi.ng/vectors3/api";
+import { IRelease, TypedArray } from "@thi.ng/api";
+import { Type, MemPoolOpts } from "@thi.ng/malloc";
+import { StridedVec, Vec, ReadonlyVec } from "@thi.ng/vectors3";
 
 export interface AttribSpec {
     type: GLType | Type;
