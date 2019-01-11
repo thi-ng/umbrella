@@ -12,6 +12,7 @@
         "parcel-bundler": "^1.11.0",
         "rimraf": "^2.6.3",
         "rollup": "^1.0.2",
+        "rollup-plugin-cleanup": "^3.1.0",
         "terser": "^3.14.1",
         "tslint": "^5.12.0",
         "typescript": "^3.2.2",
@@ -23,12 +24,13 @@
     "scripts": {
         "bootstrap": "lerna bootstrap",
         "build": "yarn install && lerna -v && lerna bootstrap && lerna run build --sort",
+        "build:es6only": "lerna run clean && lerna run build:es6",
         "cover": "lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
         "doc": "lerna run doc",
         "examples": "scripts/build-examples",
         "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
-        "test": "yarn build && yarn test-only",
-        "test-only": "lerna run test"
+        "test": "yarn build && yarn test:only",
+        "test:only": "lerna run test"
     }
 }
