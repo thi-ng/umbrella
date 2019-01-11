@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { DEFAULT, defmulti, defmultiN } from "../src/index";
+import { DEFAULT, defmulti, defmultiN, implementations } from "../src/index";
 
 describe("defmulti", () => {
     it("flatten", () => {
@@ -81,9 +81,13 @@ describe("defmulti", () => {
         }, "foo rels");
         assert.equal(foo(23), "odd");
         assert.equal(foo(42), "number");
+        assert(foo.callable(23));
+        assert(foo.callable(42));
+        assert(!foo.callable(66));
         assert.throws(() => foo(66), "no default");
         foo.add(DEFAULT, (x) => -x);
         assert.equal(foo(66), -66);
+        assert.deepEqual(foo.impls(), new Set([DEFAULT, "odd", "even", "number", "23", "42"]));
 
         const bar = defmulti((x) => x, {
             23: ["odd"],
@@ -97,5 +101,20 @@ describe("defmulti", () => {
             "odd": new Set(["number"]),
             "even": new Set(["number"]),
         }, "bar rels");
+    });
+
+    it("implementations", () => {
+        const foo = defmulti((x) => x.id);
+        const bar = defmulti((x) => x.id);
+
+        implementations(
+            "a",
+            {},
+            foo, (x) => `foo: ${x.val}`,
+            bar, (x) => `bar: ${x.val.toUpperCase()}`
+        )
+
+        assert.equal(foo({ id: "a", val: "alice" }), "foo: alice");
+        assert.equal(bar({ id: "a", val: "alice" }), "bar: ALICE");
     });
 });
