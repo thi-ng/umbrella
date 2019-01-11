@@ -4,7 +4,9 @@
         "outDir": ".",
         "module": "es6",
         "target": "es6",
-        "sourceMap": true
+        "sourceMap": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
     },
     "include": [
         "./src/**/*.ts"
