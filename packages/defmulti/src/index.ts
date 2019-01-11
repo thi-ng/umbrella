@@ -1,9 +1,7 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { IObjectOf } from "@thi.ng/api";
+import { illegalArgs, unsupported, illegalArity } from "@thi.ng/errors";
 
-export const DEFAULT: unique symbol = Symbol("DEFAULT");
+export const DEFAULT: unique symbol = Symbol();
 
 export type DispatchFn = (...args) => PropertyKey;
 export type DispatchFn1<A> = (a: A, ...xs: any[]) => PropertyKey;
@@ -262,7 +260,11 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs): MultiFn<T> {
     return fn;
 };
 
-const findImpl = (impls: IObjectOf<Implementation<any>>, rels: IObjectOf<Set<PropertyKey>>, id: PropertyKey) => {
+const findImpl = (
+    impls: IObjectOf<Implementation<any>>,
+    rels: IObjectOf<Set<PropertyKey>>,
+    id: PropertyKey
+) => {
     const parents = rels[<any>id];
     if (!parents) return;
     for (let p of parents) {
@@ -271,7 +273,11 @@ const findImpl = (impls: IObjectOf<Implementation<any>>, rels: IObjectOf<Set<Pro
     }
 };
 
-const findAncestors = (acc: PropertyKey[], rels: IObjectOf<Set<PropertyKey>>, id: PropertyKey) => {
+const findAncestors = (
+    acc: PropertyKey[],
+    rels: IObjectOf<Set<PropertyKey>>,
+    id: PropertyKey
+) => {
     const parents = rels[<any>id];
     if (parents) {
         for (let p of parents) {
@@ -282,14 +288,15 @@ const findAncestors = (acc: PropertyKey[], rels: IObjectOf<Set<PropertyKey>>, id
     return acc;
 };
 
-const makeRels = (spec: AncestorDefs) => {
-    const rels: IObjectOf<Set<PropertyKey>> = {};
-    for (let k in spec) {
-        const val = spec[k];
-        rels[k] = val instanceof Set ? val : new Set(val);
-    }
-    return rels;
-};
+const makeRels =
+    (spec: AncestorDefs) => {
+        const rels: IObjectOf<Set<PropertyKey>> = {};
+        for (let k in spec) {
+            const val = spec[k];
+            rels[k] = val instanceof Set ? val : new Set(val);
+        }
+        return rels;
+    };
 
 /**
  * Returns a multi-dispatch function which delegates to one of the
@@ -337,7 +344,7 @@ export const defmultiN = <T>(
         fn.add(id, impls[id]);
     }
     return fn;
-}
+};
 
 /**
  * Syntax-sugar intended for sets of multi-methods sharing same dispatch
@@ -393,17 +400,20 @@ export const defmultiN = <T>(
  * @param type
  * @param impls
  */
-export const implementations =
-    (type: PropertyKey, rels: IObjectOf<MultiFn<any>[]>, ...impls: (MultiFn<any> | Implementation<any>)[]) => {
-        (impls.length & 1) && illegalArgs("expected an even number of implementation items");
-        if (rels) {
-            for (let parent in rels) {
-                for (let fn of rels[parent]) {
-                    fn.isa(type, parent);
-                }
+export const implementations = (
+    type: PropertyKey,
+    rels: IObjectOf<MultiFn<any>[]>,
+    ...impls: (MultiFn<any> | Implementation<any>)[]
+) => {
+    (impls.length & 1) && illegalArgs("expected an even number of implementation items");
+    if (rels) {
+        for (let parent in rels) {
+            for (let fn of rels[parent]) {
+                fn.isa(type, parent);
             }
         }
-        for (let i = 0; i < impls.length; i += 2) {
-            (<MultiFn<any>>impls[i]).add(type, impls[i + 1]);
-        }
-    };
+    }
+    for (let i = 0; i < impls.length; i += 2) {
+        (<MultiFn<any>>impls[i]).add(type, impls[i + 1]);
+    }
+};

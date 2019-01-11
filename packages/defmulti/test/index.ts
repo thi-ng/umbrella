@@ -109,7 +109,7 @@ describe("defmulti", () => {
 
         implementations(
             "a",
-
+            {},
             foo, (x) => `foo: ${x.val}`,
             bar, (x) => `bar: ${x.val.toUpperCase()}`
         )
