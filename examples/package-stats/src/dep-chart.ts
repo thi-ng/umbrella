@@ -83,8 +83,8 @@ fs.writeFileSync(
             },
             mapIndexed((i, m) => [i, m[1]], packageDeps),
             group({ "font-size": "20px", "text-anchor": "middle" },
-                text([592, 28], "@thi.ng/umbrella internal re-use"),
-                text([592, 56], "(transitive dependents)"),
+                text([552, 28], "@thi.ng/umbrella internal re-use"),
+                text([552, 56], "(transitive dependents)"),
             )
         ]
     )
