@@ -6,7 +6,7 @@ import {
     step as _step,
     trunc as _trunc
 } from "@thi.ng/math";
-import { SYSTEM } from "@thi.ng/random/system";
+import { SYSTEM } from "@thi.ng/random";
 import {
     comp,
     map,
