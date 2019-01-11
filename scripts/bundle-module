@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const rollup = require("rollup");
+const cleanup = require("rollup-plugin-cleanup");
 const terser = require("terser");
 const gz = require("gzip-size");
 
@@ -19,28 +20,36 @@ const deps = process.argv
         {}
     );
 
-const inOpts = {
+const INPUT_OPTS = {
     external: Object.keys(deps),
-    input: "./index.js"
+    input: "./index.js",
+    plugins: [
+        cleanup({ comments: "some" })
+    ]
 };
 
-const terserOpts = {
+const TERSER_OPTS = {
     compress: true,
     mangle: true,
     ecma: 6
 };
 
 const buildVersion =
-    async (dest, outOpts, write = true, compressed = false) => {
-        console.log(`bundling (${outOpts.format}): ${dest}`);
-        const bundle = await rollup.rollup(inOpts);
-        const bundleOut = (await bundle.generate(outOpts)).output[0].code;
-        const terserOut = terser.minify(bundleOut, terserOpts).code;
-        write && fs.writeFileSync(dest, compressed ? terserOut : bundleOut);
+    async (opts, write = true, compressed = false) => {
 
+        console.log(`bundling (${opts.format}): ${opts.file}`);
+
+        const bundle = await rollup.rollup(INPUT_OPTS);
+        const bundleOut = (await bundle.generate(opts)).output[0];
+        const bundleCode = bundleOut.code;
+        const terserOut = terser.minify(bundleCode, TERSER_OPTS).code;
         const gzSize = gz.sync(terserOut);
+
+        write && fs.writeFileSync(opts.file, compressed ? terserOut : bundleCode);
+        opts.sourcemap && fs.writeFileSync(opts.file + ".map", bundleOut.map);
+
         console.log(`\tsize: ${size(terserOut.length)} / gzipped: ${size(gzSize)}`);
-        return { raw: terserOut.length, gzip: gzSize };
+        return { raw: bundleCode.length, min: terserOut.length, gzip: gzSize };
     };
 
 const build =
@@ -50,26 +59,36 @@ const build =
         !fs.existsSync(".meta") && fs.mkdirSync(".meta");
 
         const cjs = await buildVersion(
-            "lib/index.js",
             {
-                format: "cjs"
+                file: "lib/index.js",
+                format: "cjs",
+                // we don't use default exports, so safe to remove interop blocks
+                interop: false,
+                sourcemap: true,
+                sourcemapExcludeSources: true,
             }
         );
 
+        // output disabled, just collect meta data
         const esm = await buildVersion(
-            "lib/index.es6.js",
             {
-                format: "esm"
+                file: "lib/index.es6.js",
+                format: "esm",
+                interop: false,
             },
             false
         );
 
+        // write minified version
         const umd = await buildVersion(
-            "lib/index.umd.js",
             {
+                file: "lib/index.umd.js",
                 format: "umd",
                 globals: deps,
                 name: `thi.ng.${name}`,
+                interop: false,
+                sourcemap: true,
+                sourcemapExcludeSources: true,
             },
             true,
             true

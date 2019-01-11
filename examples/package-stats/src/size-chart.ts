@@ -27,6 +27,8 @@ const meta = transduce(
     fs.readdirSync(BASE_DIR)
 );
 
+console.log(meta.length);
+
 const fileSizeChart =
     (stats, modType, type) => {
 
@@ -68,8 +70,8 @@ const fileSizeChart =
                     },
                     mapIndexed((i, m) => [i, get(m)], stats),
                     group({ "font-size": "20px", "text-anchor": "middle" },
-                        text([592, 28], `@thi.ng/umbrella package sizes (${modType.toUpperCase()})`),
-                        text([592, 56], `(minified + gzipped)`),
+                        text([552, 28], `@thi.ng/umbrella package sizes (${modType.toUpperCase()})`),
+                        text([552, 56], `(minified + gzipped)`),
                     )
                 ]
             )
