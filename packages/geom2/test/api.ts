@@ -56,12 +56,12 @@ describe("api", () => {
     it("area", () =>
         checkImpls(area, [
             _DEFAULT,
-            Type.CIRCLE2,
-            Type.ELLIPSE2,
+            Type.CIRCLE,
+            Type.ELLIPSE,
             Type.GROUP,
             Type.POLYGON2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
@@ -78,7 +78,7 @@ describe("api", () => {
     it("asPolygon", () =>
         checkImpls(asPolygon, [
             _DEFAULT,
-            Type.ELLIPSE2,
+            Type.ELLIPSE,
             Type.PATH2,
             Type.POLYGON2,
         ]));
@@ -95,9 +95,9 @@ describe("api", () => {
     it("bounds", () =>
         checkImpls(bounds, [
             Type.ARC2,
-            Type.CIRCLE2,
+            Type.CIRCLE,
             Type.CUBIC2,
-            Type.ELLIPSE2,
+            Type.ELLIPSE,
             Type.GROUP,
             Type.LINE2,
             Type.PATH2,
@@ -106,22 +106,22 @@ describe("api", () => {
             Type.POLYLINE2,
             Type.QUAD2,
             Type.QUADRATIC2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
     it("center", () =>
         checkImpls(center, [
             _DEFAULT,
-            Type.CIRCLE2,
-            Type.ELLIPSE2
+            Type.CIRCLE,
+            Type.ELLIPSE
         ]));
 
     it("centroid", () =>
         checkImpls(centroid, [
             Type.ARC2,
-            Type.CIRCLE2,
-            Type.ELLIPSE2,
+            Type.CIRCLE,
+            Type.ELLIPSE,
             Type.GROUP,
             Type.LINE2,
             Type.PATH2,
@@ -129,26 +129,26 @@ describe("api", () => {
             Type.POLYGON2,
             Type.POLYLINE2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
     it("classifyPoint", () =>
         checkImpls(classifyPoint, [
-            Type.CIRCLE2,
+            Type.CIRCLE,
             Type.TRIANGLE2,
         ]));
 
     it("closestPoint", () =>
         checkImpls(closestPoint, [
-            Type.CIRCLE2,
+            Type.CIRCLE,
         ]));
 
     it("clipConvex", () =>
         checkImpls(clipConvex, [
             Type.POLYGON2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
@@ -176,7 +176,7 @@ describe("api", () => {
             Type.POLYGON2,
             Type.POLYLINE2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
@@ -207,6 +207,10 @@ describe("api", () => {
 
     it("intersectShape", () =>
         checkImpls(intersectShape, [
+            "rect-circle",
+            "rect-rect",
+            "sphere-ray",
+            "sphere-sphere"
         ]));
 
     it("intersectLine", () =>
@@ -216,7 +220,7 @@ describe("api", () => {
 
     it("mapPoint", () =>
         checkImpls(mapPoint, [
-            Type.RECT2
+            Type.RECT
         ]));
 
     it("normalAt", () =>
@@ -234,33 +238,35 @@ describe("api", () => {
 
     it("perimeter", () =>
         checkImpls(perimeter, [
-            Type.CIRCLE2,
-            Type.ELLIPSE2,
+            Type.CIRCLE,
+            Type.ELLIPSE,
             Type.LINE2,
             Type.POLYGON2,
             Type.POLYLINE2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
     it("pointAt", () =>
         checkImpls(pointAt, [
             Type.ARC2,
-            Type.CIRCLE2,
+            Type.CIRCLE,
             Type.CUBIC2,
-            Type.ELLIPSE2,
+            Type.ELLIPSE,
+            Type.LINE2,
             Type.POLYGON2,
             Type.QUADRATIC2,
-            Type.RECT2,
+            Type.RAY,
+            Type.RECT,
         ]));
 
     it("pointInside", () =>
         checkImpls(pointInside, [
-            Type.CIRCLE2,
+            Type.CIRCLE,
             Type.POLYGON2,
             Type.TRIANGLE2,
-            Type.RECT2,
+            Type.RECT,
         ]));
 
     it("resample", () =>
@@ -269,7 +275,7 @@ describe("api", () => {
             Type.POLYGON2,
             Type.POLYLINE2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
@@ -294,6 +300,7 @@ describe("api", () => {
 
     it("tangentAt", () =>
         checkImpls(tangentAt, [
+            Type.CIRCLE,
             Type.LINE2,
             Type.POLYGON2,
             Type.POLYLINE2,
@@ -303,7 +310,7 @@ describe("api", () => {
         checkImpls(tessellate, [
             Type.POLYGON2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
@@ -317,40 +324,40 @@ describe("api", () => {
             Type.POLYLINE2,
             Type.QUAD2,
             Type.QUADRATIC2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 
     it("translate", () =>
         checkImpls(translate, [
-            Type.CIRCLE2,
-            Type.ELLIPSE2,
+            Type.CIRCLE,
+            Type.ELLIPSE,
             Type.PATH2,
             Type.POLYGON2,
             Type.POLYLINE2,
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2
         ]));
 
     it("union", () =>
         checkImpls(union, [
             Type.POLYGON2,
-            Type.RECT2,
+            Type.RECT,
         ]));
 
     it("unmapPoint", () =>
         checkImpls(unmapPoint, [
             Type.QUAD2,
-            Type.RECT2,
+            Type.RECT,
         ]));
 
     it("vertices", () =>
         checkImpls(vertices, [
             Type.ARC2,
-            Type.CIRCLE2,
+            Type.CIRCLE,
             Type.CUBIC2,
-            Type.ELLIPSE2,
+            Type.ELLIPSE,
             Type.LINE2,
             Type.PATH2,
             Type.POINTS2,
@@ -358,7 +365,7 @@ describe("api", () => {
             Type.POLYLINE2,
             Type.QUAD2,
             Type.QUADRATIC2,
-            Type.RECT2,
+            Type.RECT,
             Type.TRIANGLE2,
         ]));
 

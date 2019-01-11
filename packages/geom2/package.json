@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module geom2 api checks defmulti equiv hiccup hiccup-svg malloc math matrices transducers vectors3",
+        "build:bundle": "../../scripts/bundle-module geom2 api checks defmulti equiv errors hiccup hiccup-svg malloc math matrices transducers vectors3",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -36,6 +36,7 @@
         "@thi.ng/checks": "^1.5.14",
         "@thi.ng/defmulti": "^0.7.0",
         "@thi.ng/equiv": "^0.1.15",
+        "@thi.ng/errors": "^0.1.12",
         "@thi.ng/hiccup": "^2.7.2",
         "@thi.ng/hiccup-svg": "^2.0.10",
         "@thi.ng/malloc": "^0.2.1",

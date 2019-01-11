@@ -1,4 +1,4 @@
-import { translation23 } from "@thi.ng/matrices/translation";
+import { translation23 } from "@thi.ng/matrices";
 import * as fs from "fs";
 import * as g from "../src";
 

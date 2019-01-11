@@ -1,5 +1,4 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { implementations } from "@thi.ng/defmulti";
 import { clamp01, mixCubic as _mixC, mixQuadratic as _mixQ } from "@thi.ng/math";
 import { Mat } from "@thi.ng/matrices";
