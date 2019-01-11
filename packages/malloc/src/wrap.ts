@@ -1,5 +1,5 @@
+import { IObjectOf } from "@thi.ng/api";
 import { BlockCtor, Type } from "./api";
-import { IObjectOf } from "@thi.ng/api/api";
 
 const CTORS: IObjectOf<BlockCtor> = {
     [Type.U8]: (buf, addr, num) => new Uint8Array(buf, addr, num),

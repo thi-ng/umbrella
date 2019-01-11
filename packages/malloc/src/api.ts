@@ -1,4 +1,4 @@
-import { IRelease, TypedArray } from "@thi.ng/api/api";
+import { IRelease, TypedArray } from "@thi.ng/api";
 
 export const enum Type {
     U8,

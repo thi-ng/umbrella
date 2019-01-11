@@ -1,7 +1,7 @@
 import { TypedArray } from "@thi.ng/api";
-import { align } from "@thi.ng/binary/align";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { align } from "@thi.ng/binary";
+import { isNumber } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import {
     IMemPool,
     MemBlock,
