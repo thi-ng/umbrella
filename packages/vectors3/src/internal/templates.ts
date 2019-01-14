@@ -11,7 +11,11 @@ export const SET_N = ([a]) => `${a}=n;`
 
 export const HOF_VVV = ([o, a, b, c]) => `${o}=op(${a},${b},${c});`;
 
+export const ADDM = ([o, a, b, c]) => `${o}=(${a}+${b})*${c};`;
+export const ADDM_N = ([o, a, b]) => `${o}=(${a}+${b})*n;`;
 export const MADD = ([o, a, b, c]) => `${o}=${a}+${b}*${c};`;
 export const MADD_N = ([o, a, b]) => `${o}=${a}+${b}*n;`;
 export const MIX = ([o, a, b, c]) => `${o}=${a}+(${b}-${a})*${c};`;
 export const MIX_N = ([o, a, b]) => `${o}=${a}+(${b}-${a})*n;`
+export const SUBM = ([o, a, b, c]) => `${o}=(${a}-${b})*${c};`;
+export const SUBM_N = ([o, a, b]) => `${o}=(${a}-${b})*n;`;

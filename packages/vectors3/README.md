@@ -246,9 +246,13 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 
 ### Multiply-add
 
+- `addm` / `addm2` / `addm3` / `addm4`
+- `addmN` / `addmN2` / `addmN3` / `addmN4`
 - `addW2` / `addW3` / `addW4` / `addW5`
 - `madd` / `madd2` / `madd3` / `madd4`
 - `maddN` / `maddN2` / `maddN3` / `maddN4`
+- `subm` / `subm2` / `subm3` / `subm4`
+- `submN` / `submN2` / `submN3` / `submN4`
 
 ### Constraints
 
