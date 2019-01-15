@@ -53,5 +53,7 @@ tx.run(
     ([p, d]) => g.addDependency(p, d),
     packages);
 
+// console.log(g.transitiveDependencies("@thi.ng/geom3"));
+
 console.log("topo order:", g.sort().map((x) => x.replace("@thi.ng/", "")).join(" "));
 console.log("done");

@@ -89,9 +89,7 @@ const build =
                 interop: false,
                 sourcemap: true,
                 sourcemapExcludeSources: true,
-            },
-            true,
-            true
+            }
         );
 
         fs.writeFileSync(".meta/size.json", JSON.stringify({ esm, cjs, umd }));
