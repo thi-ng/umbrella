@@ -1,19 +1,16 @@
-import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api";
-import { align } from "@thi.ng/binary";
-import { isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { IObjectOf, TypedArray } from "@thi.ng/api";
+import { align } from "@thi.ng/binary/align";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import {
+    IMemPool,
+    MemBlock,
+    MemPoolOpts,
+    Type,
+    MemPoolStats
+} from "./api";
 
-export const enum Type {
-    U8,
-    U8C,
-    I8,
-    U16,
-    I16,
-    U32,
-    I32,
-    F32,
-    F64
-};
+export * from "./api";
 
 type BlockCtor = (buf: ArrayBuffer, addr: number, num: number) => TypedArray;
 
@@ -41,21 +38,8 @@ const SIZEOF = {
     [Type.F64]: 8,
 };
 
-export interface MemBlock {
-    addr: number;
-    size: number;
-    next: MemBlock;
-}
-
-export interface MemPoolOpts {
-    start: number;
-    end: number;
-    compact: boolean;
-    split: boolean;
-    minSplit: number;
-}
 export class MemPool implements
-    IRelease {
+    IMemPool {
 
     buf: ArrayBuffer;
     protected top: number;
@@ -89,7 +73,7 @@ export class MemPool implements
         this._used = null;
     }
 
-    stats() {
+    stats(): MemPoolStats {
         const listStats = (block: MemBlock) => {
             let count = 0;
             let size = 0;
