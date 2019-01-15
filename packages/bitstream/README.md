@@ -25,7 +25,7 @@ yarn add @thi.ng/bitstream
 ## API
 
 ```ts
-import * as bits from "@thi.ng/bitstream";
+import { BitInputStream, BitOutputStream } from "@thi.ng/bitstream";
 ```
 
 ### BitOutputStream
@@ -47,7 +47,7 @@ but JS can only represent integers (w/o loss of precision) up to
 technically the max. supported word width is 64 bits.
 
 ```ts
-out = new bits.BitOutputStream();
+out = new BitOutputStream();
 // write 3-bit number (only the lowest 3 bits are used, here 0x05)
 out.write(0xf5, 3);
 // write 7-bit number
@@ -109,7 +109,7 @@ out.reader().seek(10).readWords(4, 16).map(x=>x.toString(16));
 
 src = new Uint8Array([0xf1,0xe2,0xd3,0xc4,0xb5,0xa6,0x97,0x88]);
 // create stream from bit 36
-input = new bits.BitInputStream(src, 36);
+input = new BitInputStream(src, 36);
 input.read(12).toString(16);
 // 5a6
 input.read(4)

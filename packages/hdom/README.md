@@ -100,7 +100,7 @@ Benefits:
 [standalone example](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-basics)
 
 ```ts
-import * as hdom from "@thi.ng/hdom";
+import { start, renderOnce } from "@thi.ng/hdom";
 
 // stateless component w/ params
 // the first arg is an auto-injected context object
@@ -120,10 +120,10 @@ const app = () => {
 };
 
 // start RAF update & diff loop
-hdom.start(app(), { root: document.body });
+start(app(), { root: document.body });
 
 // alternatively create DOM tree only once
-hdom.renderOnce(app(), { root: document.body });
+renderOnce(app(), { root: document.body });
 ```
 
 Alternatively, use the same component for browser or server side HTML
@@ -151,8 +151,8 @@ diffing via RAF).
 
 ```ts
 import { fromInterval, stream, sync } from "@thi.ng/rstream";
-import { updateDOM } from "@thi.ng/rstream/transducers-hdom";
-import * as tx from "@thi.ng/rstream/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { map, scan } from "@thi.ng/transducers";
 
 // root component function
 const app = ({ ticks, clicks }) =>
@@ -164,7 +164,7 @@ const app = ({ ticks, clicks }) =>
     ];
 
 // transformed stream to count clicks
-const clickStream = stream().transform(tx.scan(tx.count(-1)));
+const clickStream = stream().transform(scan(tx.count(-1)));
 // seed
 clickStream.next(0);
 
@@ -179,7 +179,7 @@ sync({
     },
 }).transform(
     // transform tuple into hdom component
-    tx.map(app),
+    map(app),
     // apply hdom tree to real DOM
     updateDOM({ root: document.body })
 );

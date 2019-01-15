@@ -47,7 +47,7 @@ yarn add @thi.ng/dsp
 import * as dsp from "@thi.ng/dsp";
 import { take } from "@thi.ng/transducers";
 
-[...take(20, new dsp.Oscillator(dsp.mix(dsp.sin,dsp.rect), 1/20)]
+[...take(20, new dsp.Oscillator(dsp.mix(dsp.sin, dsp.rect), 1/20)]
 // [ 0.5,
 //   0.6545084971874737,
 //   0.7938926261462366,
