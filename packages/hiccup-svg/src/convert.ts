@@ -1,6 +1,7 @@
 import { isArray, isArrayLike } from "@thi.ng/checks";
 import { PathSegment } from "./api";
 import { circle } from "./circle";
+import { ellipse } from "./ellipse";
 import { ff } from "./format";
 import { linearGradient, radialGradient } from "./gradients";
 import { image } from "./image";
@@ -82,6 +83,8 @@ export const convertTree =
                 );
             case "circle":
                 return circle(tree[2], tree[3], attribs);
+            case "ellipse":
+                return ellipse(tree[2], tree[3][0], tree[3][1], attribs);
             case "rect": {
                 const r = tree[5] || 0;
                 return roundedRect(tree[2], tree[3], tree[4], r, r, attribs);
