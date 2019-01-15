@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module vectors3 api checks equiv errors math random transducers",
+        "build:bundle": "../../scripts/bundle-module vectors3 api checks equiv errors math memoize random transducers",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -37,6 +37,7 @@
         "@thi.ng/equiv": "^0.1.15",
         "@thi.ng/errors": "^0.1.12",
         "@thi.ng/math": "^0.2.2",
+        "@thi.ng/memoize": "^0.2.6",
         "@thi.ng/random": "^0.1.1",
         "@thi.ng/transducers": "^2.3.2"
     },
