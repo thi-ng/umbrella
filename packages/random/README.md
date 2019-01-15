@@ -43,9 +43,9 @@ yarn add @thi.ng/random
 ## Usage examples
 
 ```ts
-import * as r from "@thi.ng/random";
+import { Smush32 } from "@thi.ng/random";
 
-const rnd = new r.Smush32(0xdecafbad);
+const rnd = new Smush32(0xdecafbad);
 
 // the following methods are available for all generators
 

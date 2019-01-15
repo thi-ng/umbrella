@@ -40,7 +40,7 @@ The source code of this example is also available in
 [/test/example.ts](https://github.com/thi-ng/umbrella/tree/master/packages/dot/test/example.ts).
 
 ```ts
-import * as dot from "@thi.ng/dot";
+import { serializeGraph } from "@thi.ng/dot";
 
 // node type style presets
 const terminal = {
@@ -57,7 +57,7 @@ const operator = {
     outs: { "out": "out" }
 };
 
-dot.serializeGraph({
+serializeGraph({
     directed: true, // default
     // graph attributes
     attribs: {

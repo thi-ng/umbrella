@@ -29,7 +29,7 @@ None
 import * as checks from "@thi.ng/checks";
 
 // individual import
-import { isFunction } from "@thi.ng/checks/is-function";
+import { isFunction } from "@thi.ng/checks";
 ```
 
 ## Authors

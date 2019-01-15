@@ -110,16 +110,7 @@ purposes full module re-exports are defined.
 import * as tx from "@thi.ng/transducers";
 
 // selective / single function imports
-import { transduce } from "@thi.ng/transducers/transduce";
-
-// all transducers are under the /xform import path
-import { map } from "@thi.ng/transducers/xform/map";
-
-// all reducers are under the /rfn import path
-import { push } from "@thi.ng/transducers/rfn/push";
-
-// all iterators are under the /iter import path
-import { range } from "@thi.ng/transducers/iter/range";
+import { transduce } from "@thi.ng/transducers";
 ```
 
 ### Basic usage patterns

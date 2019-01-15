@@ -20,8 +20,9 @@ This project is part of the
 
 ## About
 
-Various higher-order, but low-level string formatting & utility
-functions, some memoized. WIP / Alpha. Please sources for now.
+Various higher-order, configurable string formatting & utility
+functions, some memoized. WIP / Alpha. Please sources / docstrings for
+now.
 
 ## Installation
 

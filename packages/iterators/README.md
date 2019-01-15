@@ -29,7 +29,7 @@ case*, whereas function names are in *Camel case*.
 // import all
 import * as ti from "@thi.ng/iterators";
 // single function (ES6 / TS)
-import { partitionBy } from "@thi.ng/iterators/partition-by";
+import { partitionBy } from "@thi.ng/iterators";
 ```
 
 ## Dependencies
