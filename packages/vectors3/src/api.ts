@@ -58,11 +58,11 @@ export type VecOpVVVVNN = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: Readonly
 export type VecOpVO<T> = (out: Vec, a: ReadonlyVec, b?: T) => Vec;
 export type VecOpOO<A, B> = (out: Vec, a?: A, b?: B) => Vec;
 export type VecOpOOO<A, B, C> = (out: Vec, a?: A, b?: B, c?: C) => Vec;
-export type VecOpNNO<T> = (out: Vec, a: number, b: number, c: T) => Vec;
+export type VecOpNNO<T> = (out: Vec, a: number, b: number, c?: T) => Vec;
 
 export type VecOpRoV<T> = (a: ReadonlyVec) => T;
 export type VecOpRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec) => T;
-export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c: O) => T;
+export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
 export type VecOpSV = (out: Vec, a: ReadonlyVec, io?: number, ia?: number, so?: number, sa?: number) => Vec;
 export type VecOpSVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io?: number, ia?: number, ib?: number, so?: number, sa?: number, sb?: number) => Vec;
