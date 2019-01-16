@@ -78,6 +78,14 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
         return value;
     }
 
+    getSet(key: K, retrieve: () => Promise<V>, ttl = this.opts.ttl): Promise<V> {
+        const e = this.get(key);
+        if (e) {
+            return Promise.resolve(e);
+        }
+        return retrieve().then((v) => this.set(key, v, ttl));
+    }
+
     prune() {
         const now = Date.now();
         let cell = this.items.head;
