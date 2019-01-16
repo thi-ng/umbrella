@@ -1,6 +1,7 @@
 import { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
+import { illegalState } from "@thi.ng/errors";
 import { cossin } from "@thi.ng/math";
 import {
     add2,
@@ -12,6 +13,16 @@ import {
     Vec
 } from "@thi.ng/vectors3";
 import { copyPoints } from "./internal/copy-points";
+
+export const enum SegmentType {
+    MOVE,
+    LINE,
+    POLYLINE,
+    ARC,
+    CUBIC,
+    QUADRATIC,
+    CLOSE,
+}
 
 export const enum Type {
     AABB = 1,
@@ -68,15 +79,7 @@ export interface AABBLike extends IShape {
     size: Vec;
 }
 
-export interface PCLike extends IShape {
-    points: Vec[];
-}
-
-export interface PCLikeConstructor {
-    new(pts: Vec[], attribs: Attribs): PCLike;
-}
-
-export interface HiccupShape extends IShape, IToHiccup { }
+export interface IHiccupShape extends IShape, IToHiccup { }
 
 export interface IHiccupPathSegment {
     toHiccupPathSegments(): any[];
@@ -88,6 +91,20 @@ export interface LineIntersection {
     det?: number;
     alpha?: number;
     beta?: number;
+}
+
+export interface PathSegment {
+    type: SegmentType;
+    point?: Vec;
+    geo?: IShape & IHiccupPathSegment;
+}
+
+export interface PCLike extends IShape {
+    points: Vec[];
+}
+
+export interface PCLikeConstructor {
+    new(pts: Vec[], attribs: Attribs): PCLike;
 }
 
 export interface SamplingOpts {
@@ -109,8 +126,8 @@ export interface SamplingOpts {
     /**
      * Currently only used by these types:
      *
-     * - Arc2
-     * - Circle2
+     * - Arc
+     * - Circle
      *
      * Defines the target angle between sampled points. If greater than
      * the actual range of the arc, only the two end points will be
@@ -189,7 +206,7 @@ export class AABB implements
 }
 
 export class Arc implements
-    HiccupShape,
+    IHiccupShape,
     IHiccupPathSegment {
 
     pos: Vec;
@@ -276,7 +293,7 @@ export class Arc implements
 }
 
 export class Circle implements
-    HiccupShape {
+    IHiccupShape {
 
     pos: Vec;
     r: number;
@@ -328,7 +345,7 @@ export class Cubic extends APC implements
 }
 
 export class Ellipse implements
-    HiccupShape {
+    IHiccupShape {
 
     pos: Vec;
     r: Vec;
@@ -354,12 +371,12 @@ export class Ellipse implements
 }
 
 export class Group implements
-    HiccupShape {
+    IHiccupShape {
 
-    children: HiccupShape[];
+    children: IHiccupShape[];
     attribs: Attribs;
 
-    constructor(children: HiccupShape[], attribs?: Attribs) {
+    constructor(children: IHiccupShape[], attribs?: Attribs) {
         this.children = children;
         this.attribs = attribs;
     }
@@ -374,7 +391,7 @@ export class Group implements
 
     copy() {
         return new Group(
-            <HiccupShape[]>this.children.map((c) => c.copy()),
+            <IHiccupShape[]>this.children.map((c) => c.copy()),
             { ...this.attribs }
         );
     }
@@ -389,7 +406,9 @@ export class Group implements
     }
 }
 
-export class Line extends APC {
+export class Line extends APC implements
+    IHiccupShape,
+    IHiccupPathSegment {
 
     get type() {
         return Type.LINE;
@@ -401,6 +420,71 @@ export class Line extends APC {
 
     toHiccup() {
         return ["line", this.attribs, this.points[0], this.points[1]];
+    }
+
+    toHiccupPathSegments() {
+        const [a, b] = this.points;
+        return [
+            a[0] === b[0] ?
+                ["V", b[1]] :
+                a[1] === b[1] ?
+                    ["H", b[0]] :
+                    ["L", b]
+        ];
+    }
+}
+
+export class Path implements
+    IHiccupShape {
+
+    segments: PathSegment[];
+    closed: boolean;
+    attribs: Attribs;
+
+    constructor(segments?: PathSegment[], attribs?: Attribs) {
+        this.segments = segments || [];
+        this.attribs = attribs;
+        this.closed = false;
+    }
+
+    get type() {
+        return Type.PATH;
+    }
+
+    *[Symbol.iterator]() {
+        yield* this.segments;
+    }
+
+    copy() {
+        const p = new Path([...this.segments], { ...this.attribs });
+        p.closed = this.closed;
+        return p;
+    }
+
+    equiv(o: any) {
+        return o instanceof Path &&
+            equiv(this.segments, o.segments);
+    }
+
+    add(s: PathSegment) {
+        if (this.closed) illegalState("path already closed");
+        this.segments.push(s);
+    }
+
+    toHiccup() {
+        let dest: any[] = [];
+        const segments = this.segments;
+        const n = segments.length;
+        if (n > 1) {
+            dest.push(["M", segments[0].point]);
+            for (let i = 1; i < n; i++) {
+                dest = dest.concat(segments[i].geo.toHiccupPathSegments());
+            }
+            if (this.closed) {
+                dest.push(["Z"]);
+            }
+        }
+        return ["path", this.attribs || {}, dest];
     }
 }
 
@@ -434,7 +518,9 @@ export class Polygon extends APC {
     }
 }
 
-export class Polyline extends APC {
+export class Polyline extends APC implements
+    IHiccupShape,
+    IHiccupPathSegment {
 
     get type() {
         return Type.POLYLINE;
@@ -446,6 +532,14 @@ export class Polyline extends APC {
 
     toHiccup() {
         return ["polyline", { ...this.attribs, fill: "none" }, this.points];
+    }
+
+    toHiccupPathSegments() {
+        const res: any[] = [];
+        for (let pts = this.points, n = pts.length, i = 1; i < n; i++) {
+            res.push(["L", pts[i]]);
+        }
+        return res;
     }
 }
 
@@ -491,7 +585,7 @@ export class Quadratic extends APC implements
 }
 
 export class Ray implements
-    HiccupShape {
+    IHiccupShape {
 
     pos: Vec;
     dir: Vec;
@@ -517,7 +611,7 @@ export class Ray implements
 }
 
 export class Rect implements
-    HiccupShape {
+    IHiccupShape {
 
     pos: Vec;
     size: Vec;

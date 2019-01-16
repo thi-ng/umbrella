@@ -10,7 +10,8 @@ import {
     Polygon,
     Rect,
     Triangle,
-    Type
+    Type,
+    Arc
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { polyArea } from "../internal/poly-area";
@@ -53,6 +54,10 @@ area.addAll({
     [Type.AABB]:
         ({ size: [w, h, d] }: AABB) =>
             2 * ((w * h) + (w * d) + (h * d)),
+
+    [Type.ARC]:
+        // http://cut-the-knot.org/Generalization/Cavalieri2.shtml
+        ($: Arc) => 0.5 * Math.abs($.start - $.end) * $.r[0] * $.r[1],
 
     [Type.CIRCLE]:
         ($: Circle) =>

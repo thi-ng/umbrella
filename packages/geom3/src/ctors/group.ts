@@ -1,5 +1,5 @@
-import { HiccupShape, Attribs, Group } from "../api";
+import { IHiccupShape, Attribs, Group } from "../api";
 
 export const group =
-    (children: HiccupShape[], attribs?: Attribs) =>
+    (children: IHiccupShape[], attribs?: Attribs) =>
         new Group(children, attribs);

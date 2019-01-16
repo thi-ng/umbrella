@@ -8,12 +8,14 @@ import {
 } from "@thi.ng/vectors3";
 import {
     AABB,
+    Arc,
     Circle,
     Ellipse,
     Group,
-    HiccupShape,
+    IHiccupShape,
     IShape,
     Line,
+    Path,
     PCLike,
     PCLikeConstructor,
     Points,
@@ -38,11 +40,18 @@ export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
 translate.addAll({
 
     [Type.AABB]:
-        ($: Rect, delta) =>
+        ($: AABB, delta) =>
             new AABB(
                 add3([], $.pos, delta), set3([], $.size),
                 { ...$.attribs }
             ),
+
+    [Type.ARC]:
+        ($: Arc, delta) => {
+            const a = $.copy();
+            add2(null, a.pos, delta);
+            return a;
+        },
 
     [Type.CIRCLE]:
         ($: Circle, delta) =>
@@ -61,11 +70,28 @@ translate.addAll({
     [Type.GROUP]:
         ($: Group, delta) =>
             new Group(
-                $.children.map((s) => <HiccupShape>translate(s, delta)),
+                $.children.map((s) => <IHiccupShape>translate(s, delta)),
                 { ...$.attribs }
             ),
 
     [Type.LINE]: tx(Line),
+
+    [Type.PATH]:
+        ($: Path, delta: ReadonlyVec) =>
+            new Path(
+                $.segments.map((s) =>
+                    s.geo ?
+                        {
+                            type: s.type,
+                            geo: <any>translate(s.geo, delta)
+                        } :
+                        {
+                            type: s.type,
+                            point: add2([], s.point, delta)
+                        }
+                ),
+                { ...$.attribs }
+            ),
 
     [Type.POINTS]: tx(Points),
 

@@ -2,7 +2,7 @@ import { defmulti } from "@thi.ng/defmulti";
 import { ReadonlyMat } from "@thi.ng/matrices";
 import {
     Group,
-    HiccupShape,
+    IHiccupShape,
     IShape,
     Line,
     PCLike,
@@ -36,7 +36,7 @@ transform.addAll({
     [Type.GROUP]:
         ($: Group, mat) =>
             new Group(
-                $.children.map((x) => <HiccupShape>transform(x, mat)),
+                $.children.map((x) => <IHiccupShape>transform(x, mat)),
                 { ...$.attribs }
             ),
 

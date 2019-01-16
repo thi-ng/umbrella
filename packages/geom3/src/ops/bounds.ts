@@ -1,7 +1,9 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { HALF_PI, inRange, PI } from "@thi.ng/math";
 import {
+    comp,
     filter,
+    iterator1,
     map,
     push,
     range,
@@ -28,6 +30,8 @@ import {
     Group,
     IShape,
     Line,
+    Path,
+    PathSegment,
     PCLike,
     Quadratic,
     Rect,
@@ -88,6 +92,21 @@ bounds.addAll({
     [Type.LINE]:
         ({ points: [a, b] }: Line) =>
             rectFromMinMax(min([], a, b), max([], a, b)),
+
+    [Type.PATH]:
+        (path: Path) =>
+            new Rect(
+                ...collBounds(
+                    [...iterator1(
+                        comp(
+                            map((s: PathSegment) => s.geo),
+                            filter((s) => !!s),
+                        ),
+                        path.segments)
+                    ],
+                    bounds
+                )
+            ),
 
     [Type.POINTS]:
         ($: PCLike) =>

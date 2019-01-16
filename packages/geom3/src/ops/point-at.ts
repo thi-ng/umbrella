@@ -1,5 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { cossin, TAU } from "@thi.ng/math";
+import { cossin, fit01, TAU } from "@thi.ng/math";
 import {
     cartesian2,
     madd2,
@@ -8,6 +8,7 @@ import {
     Vec
 } from "@thi.ng/vectors3";
 import {
+    Arc,
     Circle,
     Ellipse,
     IShape,
@@ -24,6 +25,10 @@ import { vertices } from "./vertices";
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 
 pointAt.addAll({
+
+    [Type.ARC]:
+        ($: Arc, t: number) =>
+            $.pointAtTheta(fit01(t, $.start, $.end)),
 
     [Type.CIRCLE]:
         ($: Circle, t) =>
