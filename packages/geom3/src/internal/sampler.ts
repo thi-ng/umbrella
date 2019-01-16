@@ -1,13 +1,14 @@
 import { isPlainObject } from "@thi.ng/checks";
 import { peek } from "@thi.ng/transducers";
 import {
-    copy,
     dist,
     mixN,
     normalize,
     ReadonlyVec,
     sub,
-    Vec
+    Vec,
+    eqDelta,
+    set
 } from "@thi.ng/vectors3";
 import { DEFAULT_SAMPLES, SamplingOpts, VecPair } from "../api";
 import { copyPoints } from "./copy-points";
@@ -83,6 +84,23 @@ export class Sampler {
             undefined;
     }
 
+    splitAt(t: number) {
+        if (t <= 0 || t >= 1) {
+            return [this.points];
+        }
+        const p = this.pointAt(t);
+        const i = Math.max(1, this.indexAt(t));
+        const head = this.points.slice(0, i);
+        const tail = this.points.slice(i);
+        if (!eqDelta(head[i - 1], p)) {
+            head.push(p);
+        }
+        if (!eqDelta(tail[0], p)) {
+            tail.unshift(p);
+        }
+        return [head, tail];
+    }
+
     indexAt(t: number) {
         const pts = this.points;
         const n = pts.length - 1;
@@ -118,7 +136,7 @@ export class Sampler {
             result.push(mixN([], pts[i - 1], pts[i], (ct - p) / (index[i] - p)));
         }
         if (includeLast) {
-            result.push(copy(peek(pts)));
+            result.push(set([], peek(pts)));
         }
         return result;
     }

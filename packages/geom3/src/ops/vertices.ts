@@ -1,24 +1,24 @@
 import { isNumber } from "@thi.ng/checks";
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import { TAU, cossin } from "@thi.ng/math";
+import { cossin, TAU } from "@thi.ng/math";
 import {
     add2,
     cartesian2,
-    copy,
-    Vec,
-    madd2
+    madd2,
+    set2,
+    Vec
 } from "@thi.ng/vectors3";
 import {
     Circle,
     DEFAULT_SAMPLES,
+    Ellipse,
+    Group,
     IShape,
     Polygon,
     Polyline,
     Rect,
     SamplingOpts,
-    Type,
-    Ellipse,
-    Group
+    Type
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { resamplePoints } from "../internal/sampler";
@@ -71,7 +71,7 @@ vertices.addAll({
         ($: Rect, opts) => {
             const p = $.pos;
             const q = add2([], p, $.size);
-            const verts = [copy(p), [q[0], p[1]], q, [p[0], q[1]]];
+            const verts = [set2([], p), [q[0], p[1]], q, [p[0], q[1]]];
             return opts != null ?
                 vertices(new Polygon(verts), opts) :
                 verts;

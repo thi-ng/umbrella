@@ -1,12 +1,14 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import {
-    copy,
     ReadonlyVec,
+    set2,
+    set3,
     submN,
     ZERO2,
     ZERO3
 } from "@thi.ng/vectors3";
 import {
+    Arc,
     Circle,
     Ellipse,
     IShape,
@@ -27,16 +29,20 @@ center.add(
 
 center.addAll({
 
+    [Type.ARC]:
+        ($: Arc, origin = ZERO2) =>
+            new Arc(set2([], origin), set2([], $.r), $.axis, $.start, $.end, $.xl, $.cw, { ...$.attribs }),
+
     [Type.CIRCLE]:
         ($: Circle, origin = ZERO2) =>
-            new Circle(copy(origin), $.r, { ...$.attribs }),
+            new Circle(set2([], origin), $.r, { ...$.attribs }),
 
     [Type.ELLIPSE]:
         ($: Ellipse, origin = ZERO2) =>
-            new Ellipse(copy(origin), copy($.r), { ...$.attribs }),
+            new Ellipse(set2([], origin), set2([], $.r), { ...$.attribs }),
 
     [Type.SPHERE]:
         ($: Sphere, origin = ZERO3) =>
-            new Sphere(copy(origin), $.r, { ...$.attribs }),
+            new Sphere(set3([], origin), $.r, { ...$.attribs }),
 
 });

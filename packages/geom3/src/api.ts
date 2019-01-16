@@ -1,10 +1,14 @@
 import { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
+import { cossin } from "@thi.ng/math";
 import {
-    copy,
-    maddN,
+    add2,
+    maddN2,
+    mul2,
     ReadonlyVec,
+    rotateZ,
+    set,
     Vec
 } from "@thi.ng/vectors3";
 import { copyPoints } from "./internal/copy-points";
@@ -180,7 +184,94 @@ export class AABB implements
     }
 
     copy() {
-        return new AABB(copy(this.pos), copy(this.size), { ...this.attribs });
+        return new AABB(set([], this.pos), set([], this.size), { ...this.attribs });
+    }
+}
+
+export class Arc implements
+    HiccupShape,
+    IHiccupPathSegment {
+
+    pos: Vec;
+    r: Vec;
+    start: number;
+    end: number;
+    axis: number;
+    xl: boolean;
+    cw: boolean;
+    attribs: Attribs;
+
+    constructor(
+        pos: Vec,
+        r: Vec,
+        axis: number,
+        start: number,
+        end: number,
+        xl = false,
+        cw = false,
+        attribs?: Attribs) {
+
+        this.pos = pos;
+        this.r = r;
+        this.axis = axis;
+        this.start = start;
+        this.end = end;
+        this.xl = xl;
+        this.cw = cw;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.ARC;
+    }
+
+    copy() {
+        return new Arc(
+            set([], this.pos),
+            set([], this.r),
+            this.axis,
+            this.start,
+            this.end,
+            this.xl,
+            this.cw,
+            { ...this.attribs }
+        );
+    }
+
+    equiv(o: any) {
+        return o instanceof Arc &&
+            equiv(this.pos, o.pos) &&
+            equiv(this.r, o.r) &&
+            this.start === o.start &&
+            this.end === o.end &&
+            this.axis === o.axis &&
+            this.xl === o.xl &&
+            this.cw && o.cw;
+    }
+
+    pointAtTheta(theta: number, out: Vec = []) {
+        return add2(null, rotateZ(null, mul2(out, cossin(theta), this.r), this.axis), this.pos);
+    }
+
+    toHiccup() {
+        return ["path", this.attribs, [
+            ["M", this.pointAtTheta(this.start)],
+            ...this.toHiccupPathSegments()
+        ]];
+    }
+
+    toHiccupPathSegments() {
+        return [
+            [
+                "A",
+                this.r[0],
+                this.r[1],
+                this.axis,
+                this.xl,
+                this.cw,
+                this.pointAtTheta(this.end)
+            ]
+        ];
     }
 }
 
@@ -202,7 +293,7 @@ export class Circle implements
     }
 
     copy() {
-        return new Circle(copy(this.pos), this.r, { ...this.attribs });
+        return new Circle(set([], this.pos), this.r, { ...this.attribs });
     }
 
     toHiccup() {
@@ -254,7 +345,7 @@ export class Ellipse implements
     }
 
     copy() {
-        return new Ellipse(copy(this.pos), copy(this.r), { ...this.attribs });
+        return new Ellipse(set([], this.pos), set([], this.r), { ...this.attribs });
     }
 
     toHiccup() {
@@ -417,11 +508,11 @@ export class Ray implements
     }
 
     copy() {
-        return new Ray(copy(this.pos), copy(this.dir), { ...this.attribs });
+        return new Ray(set([], this.pos), set([], this.dir), { ...this.attribs });
     }
 
     toHiccup() {
-        return ["line", this.attribs, this.pos, maddN([], this.pos, this.dir, 1e6)];
+        return ["line", this.attribs, this.pos, maddN2([], this.pos, this.dir, 1e6)];
     }
 }
 
@@ -443,7 +534,7 @@ export class Rect implements
     }
 
     copy() {
-        return new Rect(copy(this.pos), copy(this.size), { ...this.attribs });
+        return new Rect(set([], this.pos), set([], this.size), { ...this.attribs });
     }
 
     toHiccup() {
@@ -469,7 +560,7 @@ export class Sphere implements
     }
 
     copy() {
-        return new Sphere(copy(this.pos), this.r, { ...this.attribs });
+        return new Sphere(set([], this.pos), this.r, { ...this.attribs });
     }
 
     toHiccup() {

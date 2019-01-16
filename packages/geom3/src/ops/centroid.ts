@@ -55,6 +55,7 @@ centroid.addAll({
 
 });
 
+centroid.isa(Type.ARC, Type.CIRCLE);
 centroid.isa(Type.AABB, Type.RECT);
 centroid.isa(Type.ELLIPSE, Type.CIRCLE);
 centroid.isa(Type.LINE3, Type.LINE);

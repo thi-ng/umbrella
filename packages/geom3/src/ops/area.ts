@@ -16,7 +16,7 @@ import { dispatch } from "../internal/dispatch";
 import { polyArea } from "../internal/poly-area";
 
 /**
- * Returns the possibly signed (by default) surface area of given
+ * Returns the possibly signed (unsigned by default) surface area of given
  * `shape`. For groups calls `area()` for each child and returns sum of
  * unsigned areas.
  *
@@ -70,7 +70,7 @@ area.addAll({
         () => 0,
 
     [Type.POLYGON]:
-        ($: Polygon, signed = true) => {
+        ($: Polygon, signed?) => {
             const area = polyArea($.points);
             return signed ? area : Math.abs(area);
         },
@@ -80,7 +80,7 @@ area.addAll({
             $.size[0] * $.size[1],
 
     [Type.TRIANGLE]:
-        ($: Triangle, signed = true) => {
+        ($: Triangle, signed?) => {
             const area = 0.5 * signedArea2(...<[Vec, Vec, Vec]>$.points);
             return signed ? area : Math.abs(area);
         },
