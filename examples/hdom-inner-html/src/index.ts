@@ -18,6 +18,11 @@ const innerHtmlWrapper =
                 this.prev = body;
             }
             return ["div"];
+        },
+        release() {
+            this.el.innerHTML = "";
+            delete this.prev;
+            delete this.el;
         }
     });
 
