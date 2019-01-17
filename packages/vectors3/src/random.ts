@@ -1,5 +1,10 @@
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import { MultiVecOpOOO, Vec, VecOpOOO } from "./api";
+import {
+    MultiVecOpOOO,
+    ReadonlyVec,
+    Vec,
+    VecOpOOO
+} from "./api";
 import { defHofOp } from "./internal/codegen";
 import { normalize } from "./normalize";
 
@@ -36,3 +41,20 @@ export const randNorm =
         v = random(v, -1, 1, rnd);
         return normalize(v, v, n);
     };
+
+/**
+ * Sets `out` to random vector with each component in the semi-open
+ * interval defined by [min,max).
+ *
+ * @param out
+ * @param min
+ * @param max
+ * @param rnd
+ */
+export const [randMinMax, randMinMax2, randMinMax3, randMinMax4] =
+    defHofOp<MultiVecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>, VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>>(
+        SYSTEM,
+        ([o, a, b]) => `${o}=rnd.minmax(${a},${b});`,
+        "o,a,b,rnd=op",
+        "o,a,b"
+    );
