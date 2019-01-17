@@ -1,6 +1,7 @@
 export * from "./api";
 
 export * from "./assert";
+export * from "./mixin";
 
 export * from "./decorators/configurable";
 export * from "./decorators/deprecated";
