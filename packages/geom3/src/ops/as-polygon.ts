@@ -20,6 +20,7 @@ asPolygon.addAll({
 asPolygon.isa(Type.CIRCLE, Type.POINTS);
 asPolygon.isa(Type.ELLIPSE, Type.POINTS);
 asPolygon.isa(Type.LINE, Type.POINTS);
+asPolygon.isa(Type.PATH, Type.POINTS);
 asPolygon.isa(Type.POLYGON, Type.POINTS);
 asPolygon.isa(Type.POLYLINE, Type.POINTS);
 asPolygon.isa(Type.QUAD, Type.POINTS);

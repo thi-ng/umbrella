@@ -5,6 +5,7 @@ import { illegalState } from "@thi.ng/errors";
 import { cossin } from "@thi.ng/math";
 import {
     add2,
+    add3,
     maddN2,
     mul2,
     ReadonlyVec,
@@ -77,6 +78,8 @@ export interface IShape extends
 export interface AABBLike extends IShape {
     pos: Vec;
     size: Vec;
+
+    max(): Vec;
 }
 
 export interface IHiccupShape extends IShape, IToHiccup { }
@@ -184,7 +187,7 @@ export abstract class APC implements
 }
 
 export class AABB implements
-    IShape {
+    AABBLike {
 
     pos: Vec;
     size: Vec;
@@ -203,7 +206,12 @@ export class AABB implements
     copy() {
         return new AABB(set([], this.pos), set([], this.size), { ...this.attribs });
     }
+
+    max() {
+        return add3([], this.pos, this.size);
+    }
 }
+
 
 export class Arc implements
     IHiccupShape,
@@ -488,7 +496,8 @@ export class Path implements
     }
 }
 
-export class Points extends APC {
+export class Points extends APC implements
+    IHiccupShape {
 
     get type() {
         return Type.POINTS;
@@ -503,7 +512,8 @@ export class Points extends APC {
     }
 }
 
-export class Polygon extends APC {
+export class Polygon extends APC implements
+    IHiccupShape {
 
     get type() {
         return Type.POLYGON;
@@ -543,7 +553,8 @@ export class Polyline extends APC implements
     }
 }
 
-export class Quad extends APC {
+export class Quad extends APC implements
+    IHiccupShape {
 
     get type() {
         return Type.QUAD;
@@ -559,6 +570,7 @@ export class Quad extends APC {
 }
 
 export class Quadratic extends APC implements
+    IHiccupShape,
     IHiccupPathSegment {
 
     get type() {
@@ -611,6 +623,7 @@ export class Ray implements
 }
 
 export class Rect implements
+    AABBLike,
     IHiccupShape {
 
     pos: Vec;
@@ -631,13 +644,17 @@ export class Rect implements
         return new Rect(set([], this.pos), set([], this.size), { ...this.attribs });
     }
 
+    max() {
+        return add2([], this.pos, this.size);
+    }
+
     toHiccup() {
         return ["rect", this.attribs, this.pos, this.size];
     }
 }
 
 export class Sphere implements
-    IShape {
+    IHiccupShape {
 
     pos: Vec;
     r: number;
@@ -662,7 +679,8 @@ export class Sphere implements
     }
 }
 
-export class Triangle extends APC {
+export class Triangle extends APC implements
+    IHiccupShape {
 
     get type() {
         return Type.TRIANGLE;
