@@ -37,6 +37,7 @@ export * from "./ops/simplify";
 export * from "./ops/split-at";
 export * from "./ops/subdiv-curve";
 export * from "./ops/tangent-at";
+export * from "./ops/tessellate";
 export * from "./ops/transform";
 export * from "./ops/translate";
 export * from "./ops/union";

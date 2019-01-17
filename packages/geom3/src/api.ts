@@ -66,6 +66,8 @@ export const DEFAULT_SAMPLES = 20;
 
 export type Attribs = IObjectOf<any>;
 
+export type Tessellator = (points: Vec[]) => Vec[][];
+
 export type VecPair = [Vec, Vec];
 
 export interface IShape extends
