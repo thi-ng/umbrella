@@ -1,6 +1,6 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import { EPS, sign } from "@thi.ng/math";
-import { dist, ReadonlyVec } from "@thi.ng/vectors3";
+import { ReadonlyVec, distSq } from "@thi.ng/vectors3";
 import { Circle, IShape, Type, Triangle } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { classifyPointInTriangle2 } from "../internal/triangle-point-inside";
@@ -11,7 +11,7 @@ classifyPoint.addAll({
 
     [Type.CIRCLE]:
         ($: Circle, p: ReadonlyVec, eps = EPS) =>
-            sign($.r - dist($.pos, p), eps),
+            sign($.r * $.r - distSq($.pos, p), eps),
 
     [Type.TRIANGLE]:
         ({ points }: Triangle, p: ReadonlyVec, eps = EPS) =>
