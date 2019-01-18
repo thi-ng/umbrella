@@ -1,10 +1,27 @@
 import { EPS } from "@thi.ng/math";
 import { Vec } from "@thi.ng/vectors3";
 
-// https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
-// https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c
-
-export const liangBarsky2 = (
+/**
+ * Performs Liang-Barsky clipping with given line endpoints `la`, `lb`
+ * and clipping rect defined by top-left `tr` and bottom-right `br`
+ * points. The optional `ca` and `cb` vectors can be given to store the
+ * result (clipped points). If omitted creates new vectors. Returns a
+ * tuple of `[ca, cb, a, b]`, where the latter two values represent the
+ * normalized distances of the clipped points relative to original given
+ * line segment. Returns `undefined` iff the line lies completely
+ * outside the rect.
+ *
+ * https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
+ * https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c
+ *
+ * @param la
+ * @param lb
+ * @param tl
+ * @param br
+ * @param ca
+ * @param cb
+ */
+export const liangBarsky = (
     la: Vec,
     lb: Vec,
     tl: Vec,
@@ -30,7 +47,7 @@ export const liangBarsky2 = (
             } else if (r > a) {
                 a = r;
             }
-        } else if (p > 0) {
+        } else {
             if (r < a) {
                 return false;
             } else if (r < b) {
