@@ -2,8 +2,18 @@ import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { cossin, TAU } from "@thi.ng/math";
 import {
+    add2,
+    cartesian2,
+    madd2,
+    mixCubic,
+    mixQuadratic,
+    set2,
+    Vec
+} from "@thi.ng/vectors3";
+import {
     Arc,
     Circle,
+    Cubic,
     DEFAULT_SAMPLES,
     Ellipse,
     Group,
@@ -11,19 +21,13 @@ import {
     Path,
     Polygon,
     Polyline,
+    Quadratic,
     Rect,
     SamplingOpts,
     Type
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { resamplePoints, Sampler } from "../internal/sampler";
-import {
-    add2,
-    cartesian2,
-    madd2,
-    set2,
-    Vec,
-} from "@thi.ng/vectors3";
 
 export const vertices: MultiFn1O<IShape, number | Partial<SamplingOpts>, Vec[]> = defmulti(dispatch);
 
@@ -66,6 +70,31 @@ vertices.addAll({
             return buf;
         },
 
+    [Type.CUBIC]:
+        ($: Cubic, opts?: number | Partial<SamplingOpts>) => {
+            if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
+                return new Sampler(vertices($, (<any>opts).num || DEFAULT_SAMPLES))
+                    .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
+            }
+            opts = isNumber(opts) ?
+                {
+                    num: opts,
+                    last: true
+                } :
+                {
+                    num: DEFAULT_SAMPLES,
+                    ...opts
+                };
+            const res: Vec[] = [];
+            const [a, b, c, d] = $.points;
+            const delta = 1 / opts.num;
+            for (let t = 0; t < opts.num; t++) {
+                res.push(mixCubic([], a, b, c, d, t * delta));
+            }
+            opts.last && res.push([d[0], d[1]]);
+            return res;
+        },
+
     [Type.ELLIPSE]:
         ($: Ellipse, opts = DEFAULT_SAMPLES) => {
             const buf: Vec[] = [];
@@ -85,16 +114,16 @@ vertices.addAll({
             children.reduce((acc, $) => acc.concat(vertices($)), []),
 
     [Type.PATH]:
-        (path: Path, opts?: number | Partial<SamplingOpts>) => {
+        ($: Path, opts?: number | Partial<SamplingOpts>) => {
             const _opts = isNumber(opts) ?
                 { num: opts } :
                 opts;
             let verts: Vec[] = [];
-            for (let segs = path.segments, n = segs.length - 1, i = 0; i <= n; i++) {
+            for (let segs = $.segments, n = segs.length - 1, i = 0; i <= n; i++) {
                 const s = segs[i];
                 if (s.geo) {
                     verts = verts.concat(
-                        vertices(s.geo, { ..._opts, last: i === n && !path.closed })
+                        vertices(s.geo, { ..._opts, last: i === n && !$.closed })
                     );
                 }
             }
@@ -108,6 +137,31 @@ vertices.addAll({
     [Type.POLYLINE]:
         ($: Polyline, opts?) =>
             resamplePoints($.points, opts),
+
+    [Type.QUADRATIC]:
+        ($: Quadratic, opts?: number | Partial<SamplingOpts>) => {
+            if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
+                return new Sampler(vertices($, (<any>opts).num || DEFAULT_SAMPLES))
+                    .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
+            }
+            opts = isNumber(opts) ?
+                {
+                    num: opts,
+                    last: true
+                } :
+                {
+                    num: DEFAULT_SAMPLES,
+                    ...opts
+                };
+            const res: Vec[] = [];
+            const delta = 1 / opts.num;
+            const [a, b, c] = $.points;
+            for (let t = 0; t < opts.num; t++) {
+                res.push(mixQuadratic([], a, b, c, t * delta));
+            }
+            opts.last && res.push([c[0], c[1]]);
+            return res;
+        },
 
     [Type.RECT]:
         ($: Rect, opts) => {
