@@ -1,5 +1,5 @@
 import { ReadonlyVec } from "@thi.ng/vectors3";
-import { classify } from "./corner";
+import { corner } from "./corner";
 import { intersectLineLine } from "../isec/line-line";
 
 /**
@@ -20,12 +20,12 @@ export const sutherlandHodgeman =
             const clipped = [];
             const ca = bounds[j];
             const cb = bounds[i];
-            const sign = classify(ca, cb, bc, eps);
+            const sign = corner(ca, cb, bc, eps);
             for (let np = pts.length, k = np - 1, l = 0; l < np; k = l, l++) {
                 const p = pts[k];
                 const q = pts[l];
-                const cqsign = classify(ca, cb, q, eps);
-                if (classify(ca, cb, p, eps) === sign) {
+                const cqsign = corner(ca, cb, q, eps);
+                if (corner(ca, cb, p, eps) === sign) {
                     clipped.push(
                         cqsign !== sign ?
                             intersectLineLine(ca, cb, p, q).isec :

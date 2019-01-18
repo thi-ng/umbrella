@@ -22,7 +22,7 @@ import {
 } from "@thi.ng/vectors3";
 import { Tessellator } from "../api";
 import { centroidRaw } from "../internal/centroid";
-import { pointInTriangle2 } from "../internal/corner";
+import { pointInTriangle2 } from "../internal/triangle-point-inside";
 import { polyArea } from "../internal/poly-area";
 
 const snip = (
