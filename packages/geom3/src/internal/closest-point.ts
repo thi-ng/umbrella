@@ -137,11 +137,11 @@ export const closestPointCubic = (
     b: ReadonlyVec,
     c: ReadonlyVec,
     d: ReadonlyVec,
-    res = 8,
-    iter = 4
+    res?: number,
+    iter?: number
 ) => {
     const fn = partial(mixCubic, [], a, b, c, d);
-    return fn(closestT(fn, p, res, iter, 0, 1));
+    return fn(findClosestT(fn, p, res, iter, 0, 1));
 };
 
 /**
@@ -161,19 +161,19 @@ export const closestPointQuadratic = (
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
-    res = 8,
-    iter = 4
+    res?: number,
+    iter?: number
 ) => {
     const fn = partial(mixQuadratic, [], a, b, c);
-    return fn(closestT(fn, p, res, iter, 0, 1));
+    return fn(findClosestT(fn, p, res, iter, 0, 1));
 };
 
 /**
  * Recursively evaluates function `fn` for `res` uniformly spaced values
- * `t` in the closed interval `[start,end]` to compute points on a curve
- * and returns the `t` producing the minimum distance to query point
- * `p`. At each level of recursion the search interval is increasingly
- * centered around the currently best `t`.
+ * `t` in the closed interval `[start,end]` to compute points and
+ * returns the `t` of the point producing the minimum distance to query
+ * point `p`. At each level of recursion the search interval is
+ * increasingly narrowed / centered around the currently best `t`.
  *
  * @param fn
  * @param p
@@ -182,13 +182,13 @@ export const closestPointQuadratic = (
  * @param start
  * @param end
  */
-const closestT = (
+export const findClosestT = (
     fn: Fn<number, Vec>,
     p: ReadonlyVec,
-    res: number,
-    iter: number,
-    start: number,
-    end: number
+    res = 8,
+    iter = 4,
+    start = 0,
+    end = 1
 ) => {
     if (iter <= 0) return (start + end) / 2;
     const delta = (end - start) / res;
@@ -203,7 +203,7 @@ const closestT = (
             minT = t;
         }
     }
-    return closestT(
+    return findClosestT(
         fn, p, res, iter - 1,
         Math.max(minT - delta, 0),
         Math.min(minT + delta, 1)

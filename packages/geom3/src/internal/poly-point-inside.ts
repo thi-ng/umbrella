@@ -9,7 +9,7 @@ export const polyPointInside =
         return inside;
     };
 
-export const polyPointInsidePair =
+const polyPointInsidePair =
     (a: ReadonlyVec, b: ReadonlyVec, px: number, py: number, inside: number) => {
         if (((a[1] < py && b[1] >= py) ||
             (b[1] < py && a[1] >= py)) &&

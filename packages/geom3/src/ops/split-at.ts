@@ -13,8 +13,7 @@ import {
 import { copyPoints } from "../internal/copy-points";
 import { dispatch } from "../internal/dispatch";
 import { Sampler } from "../internal/sampler";
-import { splitCubic, splitQuadratic } from "../internal/splines";
-import { splitLine } from "../internal/split-line";
+import { splitCubic, splitLine, splitQuadratic } from "../internal/split";
 
 export const splitAt = defmulti<IShape, number, IShape[]>(dispatch);
 

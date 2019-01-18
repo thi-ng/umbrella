@@ -8,10 +8,13 @@ import {
     sub,
     Vec,
     eqDelta,
-    set
+    set,
+    distSq
 } from "@thi.ng/vectors3";
 import { DEFAULT_SAMPLES, SamplingOpts, VecPair } from "../api";
 import { copyPoints } from "./copy-points";
+import { closestPointSegment, closestCoeff } from "./closest-point";
+import { fit01 } from "@thi.ng/math";
 
 export const resamplePoints =
     (pts: ReadonlyVec[], opts: number | Partial<SamplingOpts>, closed = false, copy = false) => {
@@ -66,6 +69,30 @@ export class Sampler {
                 return mixN([], pts[i - 1], pts[i], (t0 - idx[i - 1]) / (idx[i] - idx[i - 1]));
             }
         }
+    }
+
+    closestT(p: ReadonlyVec) {
+        const pts = this.points;
+        const idx = this.index;
+        const tmp = [];
+        const closest = [];
+        let minD = Infinity;
+        let minI;
+        for (let i = 0; i < this.index.length - 1; i++) {
+            if (closestPointSegment(p, pts[i], pts[i + 1], tmp)) {
+                const d = distSq(p, tmp);
+                if (d < minD) {
+                    minD = d;
+                    minI = i;
+                    set(closest, tmp);
+                }
+            }
+        }
+        return fit01(
+            closestCoeff(p, pts[minI], pts[minI + 1]),
+            idx[minI],
+            idx[minI + 1]
+        ) / peek(idx);
     }
 
     segmentAt(t: number): VecPair {

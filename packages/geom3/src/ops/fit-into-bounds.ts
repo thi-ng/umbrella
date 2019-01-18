@@ -6,10 +6,10 @@ import {
 } from "@thi.ng/matrices";
 import { div2, neg, ReadonlyVec } from "@thi.ng/vectors3";
 import { IShape, Rect } from "../api";
+import { collBounds } from "../internal/bounds";
 import { bounds } from "./bounds";
 import { center } from "./center";
 import { centroid } from "./centroid";
-import { collBounds } from "../internal/coll-bounds";
 import { mapPoint } from "./map-point";
 import { transform } from "./transform";
 import { unmapPoint } from "./unmap-point";

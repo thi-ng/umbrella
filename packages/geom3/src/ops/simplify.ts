@@ -12,7 +12,7 @@ import {
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
-import { douglasPeucker2 } from "../internal/douglas–peucker";
+import { douglasPeucker } from "../internal/douglas–peucker";
 
 export const simplify = defmulti<IShape, number, IShape>(dispatch);
 
@@ -35,7 +35,7 @@ simplify.addAll({
                 } else if (points) {
                     points.push(lastP);
                     res.push({
-                        geo: new Polyline(douglasPeucker2(points, eps)),
+                        geo: new Polyline(douglasPeucker(points, eps)),
                         type: SegmentType.POLYLINE,
                     });
                     points = null;
@@ -56,14 +56,14 @@ simplify.addAll({
     [Type.POLYGON]:
         (poly: Polygon, eps = 0.1) =>
             new Polygon(
-                douglasPeucker2(poly.points, eps, true),
+                douglasPeucker(poly.points, eps, true),
                 { ...poly.attribs }
             ),
 
     [Type.POLYLINE]:
         (poly: Polyline, eps = 0.1) =>
             new Polyline(
-                douglasPeucker2(poly.points, eps),
+                douglasPeucker(poly.points, eps),
                 { ...poly.attribs }
             ),
 

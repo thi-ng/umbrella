@@ -2,7 +2,7 @@ import { serialize } from "@thi.ng/hiccup";
 import { convertTree, ff, svg } from "@thi.ng/hiccup-svg";
 import { Attribs, IShape } from "../api";
 import { bounds } from "./bounds";
-import { collBounds } from "../internal/coll-bounds";
+import { collBounds } from "../internal/bounds";
 
 export const asSvg =
     (...args: any[]) =>

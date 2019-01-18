@@ -38,10 +38,13 @@ import {
     Type
 } from "../api";
 import { rectFromMinMax } from "../ctors/rect";
-import { boundsRaw } from "../internal/bounds";
-import { collBounds } from "../internal/coll-bounds";
+import {
+    boundsRaw,
+    collBounds,
+    cubicBounds2,
+    quadraticBounds2
+} from "../internal/bounds";
 import { dispatch } from "../internal/dispatch";
-import { cubicBounds2, quadraticBounds2 } from "../internal/splines";
 
 export const bounds = defmulti<IShape, AABBLike>(dispatch);
 
