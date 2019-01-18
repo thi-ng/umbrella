@@ -143,7 +143,8 @@ packages) in the [examples](./examples) directory.
 
 ### Experimental packages (WIP / unreleased)
 
-- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2)
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color)
+- [@thi.ng/geom3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom3)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices)
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools)
 - [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
