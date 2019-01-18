@@ -184,12 +184,11 @@ export abstract class APC implements
     }
 
     abstract get type(): number | string;
+    abstract copy(): IShape;
 
     *[Symbol.iterator]() {
         yield* this.points;
     }
-
-    abstract copy(): IShape;
 }
 
 export class AABB implements

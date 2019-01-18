@@ -28,7 +28,9 @@ simplify.addAll({
             for (let i = 0; i < n; i++) {
                 const s = orig[i];
                 if (s.type === SegmentType.LINE || s.type === SegmentType.POLYLINE) {
-                    points = (points || []).concat(vertices(s.geo));
+                    points = points ?
+                        points.concat(vertices(s.geo)) :
+                        vertices(s.geo);
                     lastP = peek(points);
                 } else if (points) {
                     points.push(lastP);

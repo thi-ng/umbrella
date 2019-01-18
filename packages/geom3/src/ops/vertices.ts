@@ -19,6 +19,7 @@ import {
     Group,
     IShape,
     Path,
+    Points,
     Polygon,
     Polyline,
     Quadratic,
@@ -129,6 +130,9 @@ vertices.addAll({
             }
             return verts;
         },
+
+    [Type.POINTS]:
+        ($: Points) => $.points,
 
     [Type.POLYGON]:
         ($: Polygon, opts?) =>

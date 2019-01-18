@@ -30,6 +30,7 @@ export * from "./ops/closest-point";
 export * from "./ops/convex-hull";
 export * from "./ops/edges";
 export * from "./ops/fit-into-bounds";
+export * from "./ops/flip";
 export * from "./ops/intersects";
 export * from "./ops/map-point";
 export * from "./ops/point-at";
