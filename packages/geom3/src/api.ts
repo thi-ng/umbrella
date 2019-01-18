@@ -54,8 +54,9 @@ export const enum Type {
     RAY3,
 }
 
-export const enum LineIntersectionType {
-    PARALLEL = 1,
+export const enum IntersectionType {
+    NONE,
+    PARALLEL,
     COINCIDENT,
     COINCIDENT_NO_INTERSECT,
     INTERSECT,
@@ -90,8 +91,11 @@ export interface IHiccupPathSegment {
     toHiccupPathSegments(): any[];
 }
 
-export interface LineIntersection {
-    type: LineIntersectionType;
+export interface IntersectionResult {
+    type: IntersectionType;
+}
+
+export interface LineIntersection extends IntersectionResult {
     isec?: Vec;
     det?: number;
     alpha?: number;

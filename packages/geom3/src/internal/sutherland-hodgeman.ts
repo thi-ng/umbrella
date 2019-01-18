@@ -1,6 +1,6 @@
 import { ReadonlyVec } from "@thi.ng/vectors3";
 import { classify } from "./corner";
-import { intersectLines2 } from "./line-intersection";
+import { intersectLineLine } from "../isec/line-line";
 
 /**
  * Extended version of Sutherland-Hodgeman convex polygon clipping
@@ -28,11 +28,11 @@ export const sutherlandHodgeman =
                 if (classify(ca, cb, p, eps) === sign) {
                     clipped.push(
                         cqsign !== sign ?
-                            intersectLines2(ca, cb, p, q).isec :
+                            intersectLineLine(ca, cb, p, q).isec :
                             q
                     );
                 } else if (cqsign === sign) {
-                    clipped.push(intersectLines2(ca, cb, p, q).isec, q);
+                    clipped.push(intersectLineLine(ca, cb, p, q).isec, q);
                 }
             }
             if (clipped.length < 2) {
