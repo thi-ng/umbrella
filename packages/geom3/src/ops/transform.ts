@@ -12,7 +12,9 @@ import {
     Polyline,
     Quad,
     Triangle,
-    Type
+    Type,
+    Cubic,
+    Quadratic
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { transformedPoints, transformPoints } from "../internal/transform-points";
@@ -33,6 +35,8 @@ transform.addAll({
                 { ...$.attribs }
             ),
 
+    [Type.CUBIC]: tx(Cubic),
+
     [Type.GROUP]:
         ($: Group, mat) =>
             new Group(
@@ -49,6 +53,8 @@ transform.addAll({
     [Type.POLYLINE]: tx(Polyline),
 
     [Type.QUAD]: tx(Quad),
+
+    [Type.QUADRATIC]: tx(Quadratic),
 
     [Type.TRIANGLE]: tx(Triangle),
 
