@@ -4,16 +4,20 @@ import {
     cartesian2,
     madd2,
     maddN,
+    mixCubic,
     mixN2,
+    mixQuadratic,
     Vec
 } from "@thi.ng/vectors3";
 import {
     Arc,
     Circle,
+    Cubic,
     Ellipse,
     IShape,
     Line,
     Polygon,
+    Quadratic,
     Ray,
     Rect,
     Type
@@ -34,6 +38,10 @@ pointAt.addAll({
         ($: Circle, t) =>
             cartesian2(null, [$.r, TAU * t], $.pos),
 
+    [Type.CUBIC]:
+        ({ points }: Cubic, t) =>
+            mixCubic([], points[0], points[1], points[2], points[3], t),
+
     [Type.ELLIPSE]:
         ($: Ellipse, t) =>
             madd2([], $.pos, cossin(TAU * t), $.r),
@@ -49,6 +57,10 @@ pointAt.addAll({
     [Type.POLYLINE]:
         ($: Polygon, t) =>
             new Sampler($.points).pointAt(t),
+
+    [Type.QUADRATIC]:
+        ({ points }: Quadratic, t) =>
+            mixQuadratic([], points[0], points[1], points[2], t),
 
     [Type.RAY]:
         ($: Ray, t) =>
