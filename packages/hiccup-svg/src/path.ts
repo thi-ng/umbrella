@@ -1,6 +1,8 @@
 import { PathSegment } from "./api";
 import { ff, fpoint, fpoints } from "./format";
 
+const DEG = 180 / Math.PI;
+
 export const path =
     (segments: PathSegment[], attribs?: any): any[] => {
         let res = [];
@@ -14,7 +16,7 @@ export const path =
                         // ry
                         ff(<number>seg[2]),
                         // x-axis (theta)
-                        ff(<number>seg[3]),
+                        ff(<number>seg[3] * DEG),
                         // xl
                         seg[4] ? 1 : 0,
                         // clockwise
