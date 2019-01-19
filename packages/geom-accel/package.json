@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module geomAccel api heaps math transducers vectors",
+        "build:bundle": "../../scripts/bundle-module geomAccel api heaps math transducers vectors3",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib internal",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -36,7 +36,7 @@
         "@thi.ng/heaps": "^0.3.1",
         "@thi.ng/math": "^0.2.2",
         "@thi.ng/transducers": "^2.3.2",
-        "@thi.ng/vectors": "^1.4.12"
+        "@thi.ng/vectors3": "^0.0.1"
     },
     "keywords": [
         "ES6",

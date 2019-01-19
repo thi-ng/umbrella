@@ -1,23 +1,21 @@
-import { ICopy, IEmpty, Pair } from "@thi.ng/api";
+import { ICopy, Pair } from "@thi.ng/api";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { ensureArray } from "@thi.ng/transducers";
-import { IDistance } from "@thi.ng/vectors";
-
-export type KdIndexable<T> = IDistance<T> & IEmpty<T>;
+import { distSq, empty, ReadonlyVec } from "@thi.ng/vectors3";
 
 const CMP = (a, b) => b[0] - a[0];
 
-export class KdNode<K extends KdIndexable<K>, V> {
+export class KdNode<K extends ReadonlyVec, V> {
 
     parent: KdNode<K, V>;
     l: KdNode<K, V>;
     r: KdNode<K, V>;
     d: number;
-    k: Readonly<K>;
+    k: K;
     v: V;
 
-    constructor(parent: KdNode<K, V>, dim: number, key: Readonly<K>, val: V) {
+    constructor(parent: KdNode<K, V>, dim: number, key: K, val: V) {
         this.parent = parent;
         this.d = dim;
         this.k = key;
@@ -62,7 +60,7 @@ export class KdNode<K extends KdIndexable<K>, V> {
  * https://github.com/ubilabs/kd-tree-javascript
  *
  */
-export class KdTree<K extends KdIndexable<K>, V>
+export class KdTree<K extends ReadonlyVec, V>
     implements ICopy<KdTree<K, V>> {
 
     root: KdNode<K, V>;
@@ -96,11 +94,11 @@ export class KdTree<K extends KdIndexable<K>, V>
         return new KdTree(this.dim, this);
     }
 
-    add(p: Readonly<K>, v: V, eps = EPS) {
+    add(p: K, v: V, eps = EPS) {
         eps *= eps;
         const search = (node: KdNode<K, V>, parent: KdNode<K, V>): KdNode<K, V> | false =>
             node ?
-                p.distSq(node.k) > eps ?
+                distSq(p, node.k) > eps ?
                     search(
                         p[node.d] < node.k[node.d] ? node.l : node.r,
                         node
@@ -217,14 +215,14 @@ export class KdTree<K extends KdIndexable<K>, V>
  * @param node
  * @param epsSq squared epsilon / tolerance
  */
-const find = <K extends KdIndexable<K>, V>(p: K, node: KdNode<K, V>, epsSq: number) => {
+const find = <K extends ReadonlyVec, V>(p: K, node: KdNode<K, V>, epsSq: number) => {
     if (!node) return;
-    return p.distSq(node.k) <= epsSq ?
+    return distSq(p, node.k) <= epsSq ?
         node :
         find(p, p[node.d] < node.k[node.d] ? node.l : node.r, epsSq);
 };
 
-const findMin = <K extends KdIndexable<K>, V>(node: KdNode<K, V>, dim: number): KdNode<K, V> => {
+const findMin = <K extends ReadonlyVec, V>(node: KdNode<K, V>, dim: number): KdNode<K, V> => {
     if (!node) return;
     if (node.d === dim) {
         return node.l ?
@@ -249,7 +247,7 @@ const findMin = <K extends KdIndexable<K>, V>(node: KdNode<K, V>, dim: number): 
  *
  * @param node
  */
-const remove = <K extends KdIndexable<K>, V>(node: KdNode<K, V>) => {
+const remove = <K extends ReadonlyVec, V>(node: KdNode<K, V>) => {
     if (!node.l && !node.r) {
         if (!node.parent) {
             return true;
@@ -276,9 +274,9 @@ const remove = <K extends KdIndexable<K>, V>(node: KdNode<K, V>) => {
     }
 };
 
-const nearest = <K extends KdIndexable<K>, V>(q: K, acc: Heap<[number, KdNode<K, V>]>, dims: number, maxNum: number, node: KdNode<K, V>) => {
+const nearest = <K extends ReadonlyVec, V>(q: K, acc: Heap<[number, KdNode<K, V>]>, dims: number, maxNum: number, node: KdNode<K, V>) => {
     const p = node.k;
-    const ndist = q.distSq(p);
+    const ndist = distSq(p, q);
     if (!node.l && !node.r) {
         if (ndist < acc.peek()[0]) {
             if (acc.length >= maxNum) {
@@ -290,11 +288,11 @@ const nearest = <K extends KdIndexable<K>, V>(q: K, acc: Heap<[number, KdNode<K,
         return;
     }
     const ndim = node.d;
-    const tp: K = q.empty();
+    const tp = empty(q);
     for (let i = dims; --i >= 0;) {
         tp[i] = i === ndim ? q[i] : p[i];
     }
-    const tdist = tp.distSq(p);
+    const tdist = distSq(p, tp);
     let best =
         !node.r ?
             node.l :
