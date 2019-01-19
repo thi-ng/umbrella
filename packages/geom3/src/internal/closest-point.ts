@@ -1,5 +1,6 @@
 import { Fn } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose";
+import { fit01 } from "@thi.ng/math";
 import {
     distSq,
     dot,
@@ -13,6 +14,7 @@ import {
     sub,
     Vec
 } from "@thi.ng/vectors3";
+import { arcPointAtTheta } from "./arc-point";
 
 export const closestPointArray =
     (p: ReadonlyVec, pts: Vec[]) => {
@@ -66,9 +68,8 @@ export const closestPointSegment =
     };
 
 export const closestPointPolyline =
-    (p: ReadonlyVec, pts: ReadonlyArray<Vec>, closed = false) => {
-        const closest = empty(pts[0]);
-        const tmp = empty(closest);
+    (p: ReadonlyVec, pts: ReadonlyArray<Vec>, closed = false, out: Vec = []) => {
+        const tmp = [];
         const n = pts.length - 1;
         let minD = Infinity, i, j;
         if (closed) {
@@ -83,11 +84,11 @@ export const closestPointPolyline =
                 const d = distSq(p, tmp);
                 if (d < minD) {
                     minD = d;
-                    set(closest, tmp);
+                    set(out, tmp);
                 }
             }
         }
-        return closest;
+        return out;
     };
 
 /**
@@ -118,6 +119,21 @@ export const farthestPointSegment =
         return [maxIdx, Math.sqrt(maxD)];
     };
 
+export const closestPointArc = (
+    p: ReadonlyVec,
+    o: ReadonlyVec,
+    r: ReadonlyVec,
+    axis: number,
+    start: number,
+    end: number,
+    out: Vec = [],
+    res?: number,
+    iter?: number
+) => {
+    const fn = (t: number) => arcPointAtTheta(o, r, axis, fit01(t, start, end), out);
+    return fn(findClosestT(fn, p, res, iter));
+};
+
 /**
  * Performs recursive search for closest point to `p` on cubic curve
  * defined by control points `a`,`b`,`c`,`d`. The `res` and `recur`
@@ -137,11 +153,12 @@ export const closestPointCubic = (
     b: ReadonlyVec,
     c: ReadonlyVec,
     d: ReadonlyVec,
+    out: Vec = [],
     res?: number,
     iter?: number
 ) => {
-    const fn = partial(mixCubic, [], a, b, c, d);
-    return fn(findClosestT(fn, p, res, iter, 0, 1));
+    const fn = partial(mixCubic, out, a, b, c, d);
+    return fn(findClosestT(fn, p, res, iter));
 };
 
 /**
@@ -161,11 +178,12 @@ export const closestPointQuadratic = (
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
+    out: Vec = [],
     res?: number,
     iter?: number
 ) => {
-    const fn = partial(mixQuadratic, [], a, b, c);
-    return fn(findClosestT(fn, p, res, iter, 0, 1));
+    const fn = partial(mixQuadratic, out, a, b, c);
+    return fn(findClosestT(fn, p, res, iter));
 };
 
 /**
@@ -196,8 +214,7 @@ export const findClosestT = (
     let minD = Infinity;
     for (let i = 0; i <= res; i++) {
         const t = start + i * delta;
-        const q = fn(t);
-        const d = distSq(p, q);
+        const d = distSq(p, fn(t));
         if (d < minD) {
             minD = d;
             minT = t;
