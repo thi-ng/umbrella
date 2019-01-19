@@ -2,17 +2,15 @@ import { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors";
-import { cossin } from "@thi.ng/math";
 import {
     add2,
     add3,
     maddN2,
-    mul2,
     ReadonlyVec,
-    rotateZ,
     set,
     Vec
 } from "@thi.ng/vectors3";
+import { arcPointAt, arcPointAtTheta } from "./internal/arc-point";
 import { copyPoints } from "./internal/copy-points";
 
 export const enum SegmentType {
@@ -279,13 +277,17 @@ export class Arc implements
             this.cw && o.cw;
     }
 
+    pointAt(t: number, out: Vec = []) {
+        return arcPointAt(this.pos, this.r, this.axis, this.start, this.end, t, out);
+    }
+
     pointAtTheta(theta: number, out: Vec = []) {
-        return add2(null, rotateZ(null, mul2(out, cossin(theta), this.r), this.axis), this.pos);
+        return arcPointAtTheta(this.pos, this.r, this.axis, theta, out);
     }
 
     toHiccup() {
         return ["path", this.attribs, [
-            ["M", this.pointAtTheta(this.start)],
+            ["M", this.pointAt(0)],
             ...this.toHiccupPathSegments()
         ]];
     }
@@ -299,7 +301,7 @@ export class Arc implements
                 this.axis,
                 this.xl,
                 this.cw,
-                this.pointAtTheta(this.end)
+                this.pointAt(1)
             ]
         ];
     }

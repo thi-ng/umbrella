@@ -33,6 +33,7 @@ export const cubicFromArc =
             return [cubicFromLine(p, q, { ...arc.attribs })];
         }
 
+        // TODO use mat23
         const mapP = (x: number, y: number) => {
             x *= rx;
             y *= ry;

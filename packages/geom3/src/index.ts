@@ -51,6 +51,7 @@ export * from "./ops/vertices";
 export * from "./ops/warp-points";
 export * from "./ops/with-attribs";
 
+export * from "./internal/arc-point";
 export * from "./internal/bounds";
 export * from "./internal/centroid";
 export * from "./internal/circumcenter";

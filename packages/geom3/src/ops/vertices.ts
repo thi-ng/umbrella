@@ -51,7 +51,7 @@ vertices.addAll({
             delta /= num;
             opts.last !== false && num++;
             const pts: Vec[] = new Array(num);
-            for (let i = 0, j = 0; i < num; i++ , j += 2) {
+            for (let i = 0; i < num; i++) {
                 pts[i] = arc.pointAtTheta(start + i * delta);
             }
             return pts;
