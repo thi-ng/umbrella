@@ -128,6 +128,10 @@ export class Sampler {
         return [head, tail];
     }
 
+    splitNear(p: ReadonlyVec) {
+        return this.splitAt(this.closestT(p));
+    }
+
     indexAt(t: number) {
         const pts = this.points;
         const n = pts.length - 1;
