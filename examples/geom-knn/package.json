@@ -22,7 +22,7 @@
         "@thi.ng/rstream-gestures": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest",
-        "@thi.ng/vectors": "latest"
+        "@thi.ng/vectors3": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
