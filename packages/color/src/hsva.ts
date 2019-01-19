@@ -1,7 +1,7 @@
 import { IVector, declareIndices } from "@thi.ng/vectors3";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
-import { ensureArgs } from "./internal/ctor-args";
+import { ensureArgs } from "./internal/ensure-args";
 
 export function hsva(col: Color): HSVA
 export function hsva(h?: number, s?: number, v?: number, a?: number): HSVA;

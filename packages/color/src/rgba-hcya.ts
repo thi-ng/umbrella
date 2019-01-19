@@ -1,7 +1,7 @@
 import { EPS } from "@thi.ng/math";
 import { Color, ReadonlyColor } from "./api";
 import { hueRgba } from "./hue-rgba";
-import { luminanceRGB } from "./luminance";
+import { luminanceRGB } from "./luminance-rgb";
 import { rgbaHcva } from "./rgba-hcva";
 
 /**

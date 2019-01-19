@@ -1,25 +1,8 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
-import { dot3 } from "@thi.ng/vectors3";
-import {
-    ColorMode,
-    IColor,
-    INV8BIT,
-    ReadonlyColor,
-    RGB_LUMINANCE
-} from "./api";
+import { ColorMode, IColor, ReadonlyColor } from "./api";
 import { convert } from "./convert";
-
-export const luminanceRGB =
-    (rgb: ReadonlyColor, weights = RGB_LUMINANCE) =>
-        dot3(rgb, weights);
-
-export const luminanceInt =
-    (rgb: number) => (
-        ((rgb >>> 16) & 0xff) * 76 +
-        ((rgb >>> 8) & 0xff) * 150 +
-        (rgb & 0xff) * 29
-    ) * INV8BIT * INV8BIT;
+import { luminanceInt, luminanceRGB } from "./luminance-rgb";
 
 /**
  * Multi-method to compute relative luminance from any supported input

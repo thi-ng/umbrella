@@ -1,7 +1,7 @@
 import { IVector, declareIndices } from "@thi.ng/vectors3";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
-import { ensureArgs } from "./internal/ctor-args";
+import { ensureArgs } from "./internal/ensure-args";
 
 export function hcya(col: Color): HCYA
 export function hcya(h?: number, c?: number, y?: number, a?: number): HCYA;

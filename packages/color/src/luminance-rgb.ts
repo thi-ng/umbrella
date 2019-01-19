@@ -1,0 +1,13 @@
+import { dot3 } from "@thi.ng/vectors3";
+import { INV8BIT, ReadonlyColor, RGB_LUMINANCE } from "./api";
+
+export const luminanceRGB =
+    (rgb: ReadonlyColor, weights = RGB_LUMINANCE) =>
+        dot3(rgb, weights);
+
+export const luminanceInt =
+    (rgb: number) => (
+        ((rgb >>> 16) & 0xff) * 76 +
+        ((rgb >>> 8) & 0xff) * 150 +
+        (rgb & 0xff) * 29
+    ) * INV8BIT * INV8BIT;

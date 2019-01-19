@@ -1,7 +1,7 @@
 import { declareIndices, IVector } from "@thi.ng/vectors3";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
-import { ensureArgs } from "./internal/ctor-args";
+import { ensureArgs } from "./internal/ensure-args";
 
 export function xyza(col: Color): XYZA
 export function xyza(x?: number, y?: number, z?: number, a?: number): XYZA;

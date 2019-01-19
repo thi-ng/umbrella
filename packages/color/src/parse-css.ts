@@ -2,52 +2,43 @@ import { IDeref } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { clamp01 } from "@thi.ng/math";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
-import { Color, ColorMode, INV8BIT } from "./api";
-import { convert } from "./convert";
+import { INV8BIT, Color } from "./api";
+import { hslaRgba } from "./hsla-rgba";
+import { int32Rgba } from "./int-rgba";
 import { CSS_NAMES } from "./names";
 
 const RE_HEX = /^#?([0-9a-f]{3,8})$/i;
 const RE_CSS = /^(rgb|hsl)a?\(\s*([0-9.]+?),\s*([0-9.]+%?),\s*([0-9.]+%?),?\s*([0-9.]+)?\s*\)$/;
 
-export const parseCSS =
-    (col: string | IDeref<string>, mode = ColorMode.RGBA) => {
+export const parseCss =
+    (col: string | IDeref<string>) => {
         col = typeof col === "string" ? col : col.deref();
-        let res: Color | number;
-        let resMode: ColorMode;
         if (col.charAt(0) === "#") {
-            resMode = ColorMode.INT32;
-            res = parseHex(col);
+            return int32Rgba([], parseHex(col));
         } else {
             const match = RE_CSS.exec(col);
             if (match) {
                 if (match[1] === "rgb" || match[1] === "rgba") {
-                    resMode = ColorMode.RGBA;
-                    res = [
+                    return <Color>[
                         parseChannel(match[2]),
                         parseChannel(match[3]),
                         parseChannel(match[4]),
                         maybeParseFloat(match[5], 1)
                     ];
                 } else {
-                    resMode = ColorMode.HSLA;
-                    res = [
+                    return hslaRgba(null, [
                         maybeParseFloat(match[2]) / 360,
                         parseChannel(match[3]),
                         parseChannel(match[4]),
                         maybeParseFloat(match[5], 1)
-                    ];
+                    ]);
                 }
             } else {
                 const c = CSS_NAMES[col];
                 !c && illegalArgs(`invalid color: "${col}"`);
-                resMode = ColorMode.INT32;
-                res = parseHex(c);
+                return int32Rgba([], parseHex(c));
             }
         }
-        if (res && resMode != mode) {
-            return convert(res, mode, resMode);
-        }
-        return res;
     };
 
 export const parseHex =

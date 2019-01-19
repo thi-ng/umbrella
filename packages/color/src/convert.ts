@@ -23,7 +23,7 @@ import { hsvaHsla } from "./hsva-hsla";
 import { hsvaRgba } from "./hsva-rgba";
 import { int32Css } from "./int-css";
 import { int32Rgba } from "./int-rgba";
-import { parseCSS } from "./parse-css";
+import { parseCss } from "./parse-css";
 import { rgbaCss } from "./rgba-css";
 import { rgbaHcya } from "./rgba-hcya";
 import { rgbaHsia } from "./rgba-hsia";
@@ -123,19 +123,20 @@ const defConversions = (
 
 // CSS
 
+defConversion(ColorMode.RGBA, ColorMode.CSS, (x: string) => parseCss(x));
+
 [
     ColorMode.HCYA,
     ColorMode.HSIA,
     ColorMode.HSLA,
     ColorMode.HSVA,
     ColorMode.INT32,
-    ColorMode.RGBA,
     ColorMode.XYZA,
     ColorMode.YCBCRA
 ].forEach(
     (id) => defConversion(
         id, ColorMode.CSS,
-        (x: string) => <Color>parseCSS(x, id)
+        (x: string) => convert(parseCss(x), id, ColorMode.RGBA)
     )
 );
 

@@ -1,7 +1,7 @@
 import { declareIndices, IVector } from "@thi.ng/vectors3";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
-import { ensureArgs } from "./internal/ctor-args";
+import { ensureArgs } from "./internal/ensure-args";
 
 export function hsla(col: Color): HSLA
 export function hsla(h?: number, s?: number, l?: number, a?: number): HSLA;

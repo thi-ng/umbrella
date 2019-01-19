@@ -1,7 +1,7 @@
 import { declareIndices, IVector } from "@thi.ng/vectors3";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
-import { ensureArgs } from "./internal/ctor-args";
+import { ensureArgs } from "./internal/ensure-args";
 
 export function rgba(col: Color): RGBA
 export function rgba(r?: number, g?: number, b?: number, a?: number): RGBA;
