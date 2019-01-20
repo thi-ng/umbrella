@@ -2,6 +2,7 @@ import { Vec } from "./api";
 
 export const setC2 =
     (out: Vec, x: number, y: number) => (
+        !out && (out = []),
         out[0] = x,
         out[1] = y,
         out
@@ -9,6 +10,7 @@ export const setC2 =
 
 export const setC3 =
     (out: Vec, x: number, y: number, z: number) => (
+        !out && (out = []),
         out[0] = x,
         out[1] = y,
         out[2] = z,
@@ -17,6 +19,7 @@ export const setC3 =
 
 export const setC4 =
     (out: Vec, x: number, y: number, z: number, w: number) => (
+        !out && (out = []),
         out[0] = x,
         out[1] = y,
         out[2] = z,
@@ -26,6 +29,7 @@ export const setC4 =
 
 export const setC6 =
     (out: Vec, a: number, b: number, c: number, d: number, e: number, f: number) => (
+        !out && (out = []),
         out[0] = a,
         out[1] = b,
         out[2] = c,
@@ -37,6 +41,7 @@ export const setC6 =
 
 export const setC =
     (out: Vec, ...xs: number[]) => {
+        !out && (out = []);
         for (let i = 0, n = xs.length; i < n; i++) {
             out[i] = xs[i];
         }
