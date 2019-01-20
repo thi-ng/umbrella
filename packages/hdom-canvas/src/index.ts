@@ -275,6 +275,9 @@ const walk =
             case "circle":
                 circularArc(ctx, attribs, shape[2], shape[3]);
                 break;
+            case "ellipse":
+                ellipticArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5], shape[6]);
+                break;
             case "arc":
                 circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
                 break;
@@ -505,29 +508,31 @@ const path = (
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
-            // horizontal line
+            // horizontal line rel
             case "h":
                 b = [a[0] + b, a[1]];
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
+            // horizontal line abs
             case "H":
                 b = [b, a[1]];
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
-            // vertical line
+            // vertical line rel
             case "v":
                 b = [a[0], a[1] + b];
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
+            // vertical line abs
             case "V":
                 b = [a[0], b];
                 ctx.lineTo(b[0], b[1]);
                 a = b;
                 break;
-            // cubic / bezier curve to
+            // cubic curve rel
             case "c":
                 c = s[2];
                 d = s[3];
@@ -539,6 +544,7 @@ const path = (
                 );
                 a = d;
                 break;
+            // cubic curve abs
             case "C":
                 c = s[2];
                 d = s[3];
@@ -549,7 +555,7 @@ const path = (
                 );
                 a = d;
                 break;
-            // quadratic curve to
+            // quadratic curve rel
             case "q":
                 c = s[2];
                 c = [a[0] + c[0], a[1] + c[1]];
@@ -559,6 +565,7 @@ const path = (
                 );
                 a = c;
                 break;
+            // quadratic curve abs
             case "Q":
                 c = s[2];
                 ctx.quadraticCurveTo(
@@ -567,7 +574,8 @@ const path = (
                 );
                 a = c;
                 break;
-            // arc to
+            // circular arc rel
+            // Note: NOT compatible w/ SVG arc segments
             case "a":
                 c = s[2];
                 c = [a[0] + c[0], a[1] + c[1]];
@@ -578,6 +586,8 @@ const path = (
                 );
                 a = c;
                 break;
+            // circular arc abs
+            // Note: NOT compatible w/ SVG arc segments
             case "A":
                 c = s[2];
                 ctx.arcTo(
@@ -608,6 +618,21 @@ const circularArc = (
 
     ctx.beginPath();
     ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
+    endShape(ctx, attribs);
+};
+
+const ellipticArc = (
+    ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>,
+    pos: ReadonlyVec,
+    r: ReadonlyVec,
+    axis = 0,
+    start = 0,
+    end = TAU,
+    ccw = false
+) => {
+    ctx.beginPath();
+    ctx.ellipse(pos[0], pos[1], r[0], r[1], axis, start, end, ccw);
     endShape(ctx, attribs);
 };
 
