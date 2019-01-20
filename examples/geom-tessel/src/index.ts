@@ -3,43 +3,34 @@ import {
     arcLength,
     asPolygon,
     centroid,
+    circle,
     IShape,
-    Polygon2,
+    Polygon,
+    polygon,
+    tesselEdgeSplit,
     tessellate,
     Tessellator,
-    vertices
-} from "@thi.ng/geom2/api";
-import { circle } from "@thi.ng/geom2/circle";
-import { polygon } from "@thi.ng/geom2/polygon";
-import {
-    edgeSplit,
-    inset,
-    quadFan,
-    triFan
-} from "@thi.ng/geom2/tessellate";
+    tesselQuadFan,
+    tesselTriFan
+} from "@thi.ng/geom3";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { deg } from "@thi.ng/math/angle";
-import { fit01, fit11 } from "@thi.ng/math/fit";
-import { fromInterval } from "@thi.ng/rstream/from/interval";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { deg, fit01, fit11 } from "@thi.ng/math";
+import { fromInterval, sync } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { cycle } from "@thi.ng/transducers/iter/cycle";
-import { map } from "@thi.ng/transducers/xform/map";
-import { take } from "@thi.ng/transducers/xform/take";
-import { Vec } from "@thi.ng/vectors3/api";
-import { polar } from "@thi.ng/vectors3/polar";
+import { polar, Vec } from "@thi.ng/vectors3";
 
-type Tint = (p: Polygon2) => string;
+type Tint = (p: Polygon) => string;
 
 const MIN_RES = 3;
 const MAX_RES = 30;
 // const MAX_RES = MIN_RES;
 
-// const SUBDIVS = [quadFan];
-// const SUBDIVS = [triFan];
-// const SUBDIVS = [edgeSplit];
-const SUBDIVS = [quadFan, triFan, edgeSplit, quadFan];
-// const SUBDIVS = [...take(4, cycle([quadFan]))];
+// const SUBDIVS = [tesselQuadFan];
+// const SUBDIVS = [tesselTriFan];
+// const SUBDIVS = [tesselEdgeSplit];
+const SUBDIVS = [tesselQuadFan, tesselTriFan, tesselEdgeSplit, tesselQuadFan];
+// const SUBDIVS = [...take(4, cycle([tesselQuadFan]))];
 
 const W = 600;
 const W2 = W / 2;
@@ -81,7 +72,10 @@ const tintedPoly = (tint: Tint, points: Vec[]) => {
  */
 const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
     return tessellate(
-        asPolygon(circle([0, 0], W2), Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))),
+        asPolygon(
+            circle([0, 0], W2),
+            Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))
+        ),
         tessel
     ).map(partial(tintedPoly, tint));
 };
