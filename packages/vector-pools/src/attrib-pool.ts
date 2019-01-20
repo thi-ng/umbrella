@@ -15,11 +15,11 @@ import {
 } from "./api";
 
 /*
- * WASM mem   : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...
- * typedarr   :         0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... offset = 4  (bytes)
- * pos (f32)  :         X X X X X Y Y Y Y                                 X ... offset = 0  (bytes), size = 2 (f32)
- * uv  (f32)  :                           U U U U V V V V                   ... offset = 8  (bytes), size = 2 (f32)
- * col (u16)  :                                           R R G G B B A A   ... offset = 16 (bytes), size = 4 (u16)
+ * WASM mem   : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...
+ * typedarr   :         0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... global offset = 4  (bytes)
+ * pos (f32)  :         X X X X Y Y Y Y                                 X ... offset = 0  (bytes), size = 2 (f32)
+ * uv  (f32)  :                         U U U U V V V V                   ... offset = 8  (bytes), size = 2 (f32)
+ * col (u16)  :                                         R R G G B B A A   ... offset = 16 (bytes), size = 4 (u16)
  *
  * global stride: 24
  */
