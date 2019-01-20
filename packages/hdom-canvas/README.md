@@ -96,13 +96,13 @@ start(() => {
 ```
 
 Usage with
-[@thi.ng/geom3](https://github.com/thi-ng/umbrella/tree/master/packages/geom3)
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
 shape primitives:
 
 ```ts
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import * as g from "@thi.ng/geom3";
+import * as g from "@thi.ng/geom";
 
 start(() => {
     const t = Date.now() * 0.001;
@@ -135,7 +135,7 @@ the user context object as first arg, just like normal hdom components.
 Shape components are expressed in standard hiccup syntax (or as objects
 implementing the `IToHiccup()` interface, like the shape types provided
 by
-[@thi.ng/geom3](https://github.com/thi-ng/umbrella/tree/master/packages/geom3)),
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)),
 and with the following...
 
 ### Restrictions & behavior controls
@@ -350,10 +350,10 @@ relative to the end point of the previous segment.
 handling, SVG paths containing arc segments are **NOT** compatible with
 the above format. To draw such paths reliably, these should first be
 converted to use cubics. E.g. here using
-[@thi.ng/geom3](https://github.com/thi-ng/umbrella/tree/master/packages/geom3):
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom):
 
 ```ts
-import { normalizedPath, pathFromSVG } from "@thi.ng/geom3";
+import { normalizedPath, pathFromSVG } from "@thi.ng/geom";
 
 // path w/ ac segments
 const a = pathFromSvg("M0,0H80A20,20,0,0,1,100,20V30A20,20,0,0,1,80,50")[0];

@@ -12,7 +12,7 @@ import {
     Tessellator,
     tesselQuadFan,
     tesselTriFan
-} from "@thi.ng/geom3";
+} from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { deg, fit01, fit11 } from "@thi.ng/math";
 import { fromInterval, sync } from "@thi.ng/rstream";
