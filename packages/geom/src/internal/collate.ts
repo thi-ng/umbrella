@@ -1,9 +1,15 @@
-import { IVec, Vec } from "@thi.ng/vectors";
-import { CollateOpts } from "../api";
+import { Vec, StridedVec } from "@thi.ng/vectors3";
+
+export interface CollateOpts {
+    buf: Vec;
+    start: number;
+    cstride: number;
+    estride: number;
+}
 
 export const remap = (
     buf: Vec,
-    pts: IVec[],
+    pts: StridedVec[],
     start: number,
     cstride: number,
     estride: number
@@ -11,15 +17,15 @@ export const remap = (
     for (let i = pts.length; --i >= 0;) {
         const p = pts[i];
         p.buf = buf;
-        p.i = start + i * estride;
-        p.s = cstride;
+        p.offset = start + i * estride;
+        p.stride = cstride;
     }
     return buf;
 };
 
-export const collateWith = <T extends IVec>(
-    fn: (buf: Vec, src: Iterable<Readonly<T>>, start, cstride, estride) => Vec,
-    pts: T[],
+export const collateWith = (
+    fn: (buf: Vec, src: Iterable<Readonly<StridedVec>>, start, cstride, estride) => Vec,
+    pts: StridedVec[],
     opts: Partial<CollateOpts>,
     stride: number
 ) => {

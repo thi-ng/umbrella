@@ -1,5 +1,5 @@
-import { Vec2 } from "@thi.ng/vectors";
-import { corner } from "./corner";
+import { EPS } from "@thi.ng/math";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors3";
 
 /**
  * Returns array of points defining the 2D Convex Hull of `pts` using
@@ -9,30 +9,79 @@ import { corner } from "./corner";
  *
  * @param pts
  */
-export const convexHull =
-    (pts: ReadonlyArray<Vec2>) => {
+export const grahamScan2 =
+    (pts: ReadonlyVec[], eps = EPS) => {
         const num = pts.length;
-        const res: Vec2[] = [];
-        let h = 0, i;
-        pts = pts.slice().sort(Vec2.comparator(0, 1));
-
-        const scan = (p: Vec2, thresh: number) => {
-            while (h >= thresh && corner(res[h - 2], res[h - 1], p) >= 0) {
-                res.pop();
-                h--;
-            }
-            res[h++] = p;
-        };
-
+        if (num <= 3) return pts.slice();
+        let h = 1, i, p, q, r, rx, ry;
+        // find min YX index
+        const min = findMin(pts);
+        [rx, ry] = pts[min];
+        const sorted = [];
+        // compute & sort by polar ordering relative to min
         for (i = 0; i < num; i++) {
-            scan(pts[i], 2);
+            p = pts[i];
+            sorted[i] = { p, t: Math.atan2(p[1] - ry, p[0] - rx) };
         }
-        res.pop();
-        h--;
-        const h2 = h + 2;
-        for (i = num - 1; i >= 0; i--) {
-            scan(pts[i], h2);
+        sorted.sort(
+            (a, b) =>
+                a.t !== b.t ?
+                    a.t - b.t :
+                    a.p[0] - b.p[0]
+        );
+        const hull: Vec[] = [sorted[0].p];
+        for (i = 1; i < num; i++) {
+            p = hull[h - 2];
+            q = hull[h - 1];
+            r = sorted[i].p;
+            rx = r[0];
+            ry = r[1];
+            while ((h > 1 && notCCW(p[0], p[1], q[0], q[1], rx, ry, eps)) ||
+                (h === 1 && q[0] === rx && q[1] === ry)) {
+                h--;
+                q = p;
+                p = hull[h - 2];
+            }
+            hull[h++] = r;
         }
-        res.pop();
-        return res;
+        hull.length = h;
+        return hull;
+    };
+
+/**
+ * Returns true, if triangle defined by ABC is NOT counter clockwise,
+ * i.e. clockwise or colinear.
+ *
+ * @see thi.ng/vectors3/signedArea2
+ *
+ * @param ax
+ * @param ay
+ * @param bx
+ * @param by
+ * @param cx
+ * @param cy
+ */
+const notCCW = (ax: number, ay: number, bx: number, by: number, cx: number, cy: number, eps: number) =>
+    (by - ay) * (cx - ax) >= (bx - ax) * (cy - ay) - eps;
+
+/**
+ * Returns index of point with lowest YX coords.
+ *
+ * @param pts
+ */
+const findMin =
+    (pts: ReadonlyVec[]) => {
+        let n = pts.length - 1;
+        let minID = n;
+        let min = pts[n][1];
+        let p, y;
+        for (; --n >= 0;) {
+            p = pts[n];
+            y = p[1];
+            if (y < min || (y === min && p[0] < pts[minID][0])) {
+                min = y;
+                minID = n;
+            }
+        }
+        return minID;
     };

@@ -1,74 +1,49 @@
-import { isArrayLike, isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { asVec2, ReadonlyVec, Vec2 } from "@thi.ng/vectors";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { peek } from "@thi.ng/transducers";
 
-export const args3 = (args: any[]) => {
-    let points = args[0], attribs;
-    if (isArrayLike(points[0])) {
-        points = (<ReadonlyVec[]>points).map(asVec2);
-        attribs = args[1];
-    } else if (args.length >= 3 &&
-        isArrayLike(points) &&
-        isArrayLike(args[1]) &&
-        isArrayLike(args[2])) {
-        points = [asVec2(<any>points), asVec2(args[1]), asVec2(args[2])];
-        attribs = args[3];
-    } else if (isNumber(points[0])) {
-        points = Vec2.mapBuffer(
-            points,
-            3,
-            args[1] || 0,
-            args[2] || 1,
-            args[3] || 2
-        );
-        attribs = args[4];
-    } else {
-        illegalArgs();
-    }
-    return [points, attribs];
-};
+/**
+ * Takes an array of arguments, checks if last element is a plain object
+ * and if so, removes it from array and returns it. Else returns
+ * `undefined`.
+ *
+ * @param args
+ */
+export const argAttribs =
+    (args: any[]) =>
+        isPlainObject(peek(args)) ?
+            args.pop() :
+            undefined;
 
-export const args4 = (args: any[]) => {
-    let points = args[0], attribs;
-    if (isArrayLike(points[0])) {
-        points = (<ReadonlyVec[]>points).map(asVec2);
-        attribs = args[1];
-    } else if (args.length >= 4 &&
-        isArrayLike(points) &&
-        isArrayLike(args[1]) &&
-        isArrayLike(args[2]) &&
-        isArrayLike(args[3])) {
-        points = [asVec2(<any>points), asVec2(args[1]), asVec2(args[2]), asVec2(args[3])];
-        attribs = args[4];
-    } else if (isNumber(points[0])) {
-        points = Vec2.mapBuffer(
-            points,
-            4,
-            args[1] || 0,
-            args[2] || 1,
-            args[3] || 2
-        );
-        attribs = args[4];
-    } else {
-        illegalArgs();
-    }
-    return [points, attribs];
-};
+/**
+ * Args parser for functions expecting up to 2 vector args and optional
+ * attribs object. Returns 3-tuple of re-structured args.
+ *
+ * @param args
+ */
+export const argsVV =
+    (args: any[]) => {
+        const attr = argAttribs(args);
+        return args.length ?
+            args.length === 2 ?
+                [args[0], args[1], attr] :
+                [undefined, args[0], attr] :
+            [undefined, undefined, attr];
+    };
 
-export const argsN = (args: any[]) => {
-    let points = args[0], attribs;
-    if (isNumber(points[0])) {
-        points = Vec2.mapBuffer(
-            points,
-            args[1] || points.length / 2,
-            args[2] || 0,
-            args[3] || 1,
-            args[4] || 2
-        );
-        attribs = args[5];
-    } else if (isArrayLike(points[0])) {
-        points = (<ReadonlyVec[]>points).map(asVec2);
-        attribs = args[1];
-    }
-    return [points, attribs];
-};
+/**
+ * Args parser for functions expecting a vector, numeric and/or optional
+ * attribs object. Returns 3-tuple of re-structured args.
+ *
+ * @param args
+ */
+export const argsVN =
+    (args: any[]) => {
+        const attr = argAttribs(args);
+        return args.length ?
+            args.length === 2 ?
+                [args[0], args[1], attr] :
+                isNumber(args[0]) ?
+                    [undefined, args[0], attr] :
+                    [args[0], undefined, attr] :
+            [undefined, undefined, attr];
+    };

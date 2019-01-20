@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom",
-    "version": "0.2.11",
-    "description": "2D/3D geometry primitives",
+    "version": "0.0.1",
+    "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -16,9 +16,9 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module geom api checks errors math transducers vectors",
+        "build:bundle": "../../scripts/bundle-module geom api checks compose defmulti equiv errors hiccup hiccup-svg math matrices random transducers vectors3",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib internal",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public"
@@ -34,18 +34,20 @@
     "dependencies": {
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/checks": "^1.5.14",
+        "@thi.ng/compose": "^0.3.0",
+        "@thi.ng/defmulti": "^0.7.0",
+        "@thi.ng/equiv": "^0.1.15",
         "@thi.ng/errors": "^0.1.12",
+        "@thi.ng/hiccup": "^2.7.2",
+        "@thi.ng/hiccup-svg": "^2.0.10",
         "@thi.ng/math": "^0.2.2",
+        "@thi.ng/matrices": "^0.0.1",
+        "@thi.ng/random": "^0.1.1",
         "@thi.ng/transducers": "^2.3.2",
-        "@thi.ng/vectors": "^1.4.12"
+        "@thi.ng/vectors3": "^0.0.1"
     },
     "keywords": [
         "ES6",
-        "geometry",
-        "2d",
-        "3d",
-        "shapes",
-        "intersection",
         "typescript"
     ],
     "publishConfig": {

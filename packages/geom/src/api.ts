@@ -1,25 +1,17 @@
-import { IObjectOf } from "@thi.ng/api";
+import { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
+import { equiv } from "@thi.ng/equiv";
+import { illegalState } from "@thi.ng/errors";
 import {
-    IVector,
+    add2,
+    add3,
+    maddN2,
     ReadonlyVec,
-    Vec,
-    Vec2
-} from "@thi.ng/vectors";
-
-export const DEFAULT_SAMPLES = 32;
-
-export type Attribs = IObjectOf<any>;
-
-export type Tessellator<T extends IVector<T>> =
-    (points: ReadonlyArray<T>) => T[][];
-
-export const enum LineIntersectionType {
-    PARALLEL,
-    COINCIDENT,
-    COINCIDENT_NO_INTERSECT,
-    INTERSECT,
-    INTERSECT_OUTSIDE,
-}
+    set,
+    Vec
+} from "@thi.ng/vectors3";
+import { arcPointAt, arcPointAtTheta } from "./internal/arc-point";
+import { copyPoints } from "./internal/copy-points";
 
 export const enum SegmentType {
     MOVE,
@@ -31,16 +23,78 @@ export const enum SegmentType {
     CLOSE,
 }
 
-export interface CollateOpts {
-    buf: Vec;
-    start: number;
-    cstride: number;
-    estride: number;
+export const enum Type {
+    AABB = 1,
+    ARC,
+    CIRCLE,
+    CUBIC,
+    CUBIC3,
+    ELLIPSE,
+    GROUP,
+    LINE,
+    LINE3,
+    PATH,
+    POINTS,
+    POINTS3,
+    POLYGON,
+    POLYGON3,
+    POLYLINE,
+    POLYLINE3,
+    QUAD,
+    QUAD3,
+    QUADRATIC,
+    QUADRATIC3,
+    RECT,
+    SPHERE,
+    TRIANGLE,
+    TRIANGLE3,
+    RAY,
+    RAY3,
 }
 
-export interface LineIntersection<T> {
-    type: LineIntersectionType;
-    isec?: T;
+export const enum IntersectionType {
+    NONE,
+    PARALLEL,
+    COINCIDENT,
+    COINCIDENT_NO_INTERSECT,
+    INTERSECT,
+    INTERSECT_OUTSIDE,
+}
+
+export const DEFAULT_SAMPLES = 20;
+
+export type Attribs = IObjectOf<any>;
+
+export type Tessellator = (points: Vec[]) => Vec[][];
+
+export type VecPair = [Vec, Vec];
+
+export interface IShape extends
+    ICopy<IShape> {
+
+    readonly type: number | string;
+    attribs?: Attribs;
+}
+
+export interface AABBLike extends IShape {
+    pos: Vec;
+    size: Vec;
+
+    max(): Vec;
+}
+
+export interface IHiccupShape extends IShape, IToHiccup { }
+
+export interface IHiccupPathSegment {
+    toHiccupPathSegments(): any[];
+}
+
+export interface IntersectionResult {
+    type: IntersectionType;
+}
+
+export interface LineIntersection extends IntersectionResult {
+    isec?: Vec;
     det?: number;
     alpha?: number;
     beta?: number;
@@ -48,8 +102,16 @@ export interface LineIntersection<T> {
 
 export interface PathSegment {
     type: SegmentType;
-    point?: Vec2;
-    geo?: IBoundsRaw<Vec2> & IVertices<Vec2, any> & IHiccupPathSegment & IToCubic;
+    point?: Vec;
+    geo?: IShape & IHiccupPathSegment;
+}
+
+export interface PCLike extends IShape {
+    points: Vec[];
+}
+
+export interface PCLikeConstructor {
+    new(pts: Vec[], attribs: Attribs): PCLike;
 }
 
 export interface SamplingOpts {
@@ -71,8 +133,8 @@ export interface SamplingOpts {
     /**
      * Currently only used by these types:
      *
-     * - Arc2
-     * - Circle2
+     * - Arc
+     * - Circle
      *
      * Defines the target angle between sampled points. If greater than
      * the actual range of the arc, only the two end points will be
@@ -102,170 +164,540 @@ export interface SamplingOpts {
     last: boolean;
 }
 
-export interface SubdivKernel<T extends IVector<T>> {
-    fn: (pts: T[], i: number, nump: number) => T[];
+export interface SubdivKernel {
+    fn: (pts: ReadonlyVec[], i: number, nump: number) => Vec[];
+    iter?: (pts: ReadonlyVec[]) => Iterable<ReadonlyVec>;
     size: number;
 }
 
-export interface IArea {
-    /**
-     * Computes and returns area. For types where orientation is taken
-     * into account, setting `signed` to false will always return the
-     * absolute area (default is `true`).
-     *
-     * @param unsigned
-     */
-    area(signed?: boolean): number;
+export abstract class APC implements
+    PCLike {
+
+    points: Vec[];
+    attribs: Attribs;
+
+    constructor(points: Vec[], attribs?: Attribs) {
+        this.points = points;
+        this.attribs = attribs;
+    }
+
+    abstract get type(): number | string;
+    abstract copy(): IShape;
+
+    *[Symbol.iterator]() {
+        yield* this.points;
+    }
 }
 
-export interface IArcLength {
-    /**
-     * Returns arc length, or for closed shapes, circumference.
-     */
-    arcLength(): number;
+export class AABB implements
+    AABBLike {
+
+    pos: Vec;
+    size: Vec;
+    attribs: Attribs;
+
+    constructor(pos: Vec = [0, 0, 0], size: Vec = [1, 1, 1], attribs?: Attribs) {
+        this.pos = pos;
+        this.size = size;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.AABB;
+    }
+
+    copy() {
+        return new AABB(set([], this.pos), set([], this.size), { ...this.attribs });
+    }
+
+    max() {
+        return add3([], this.pos, this.size);
+    }
 }
 
-export interface IBoundsRaw<V> {
-    /**
-     * @return min / max points
-     */
-    boundsRaw(): [V, V];
-}
 
-export interface IBounds<T> {
-    /**
-     * Bounding shape
-     */
-    bounds(): T;
-}
+export class Arc implements
+    IHiccupShape,
+    IHiccupPathSegment {
 
-export interface ICentroid<T> {
-    /**
-     * Computes & returns centroid. If `c` is given it MUST be a zero
-     * vector and will be used to store result.
-     *
-     * @param c
-     */
-    centroid(c?: T): T;
-}
-
-export interface ICenter<T> {
-    center(origin?: Readonly<T>): this;
-}
-
-export interface IClassifyPoint<T> {
-    classifyPoint(p: Readonly<T>): number;
-}
-
-export interface IPointInside<T> {
-    pointInside(p: Readonly<T>): boolean;
-}
-
-export interface ICollate {
-    /**
-     * Collates all points into a single buffer and remaps existing
-     * vertices (by default). Points will written from given `start`
-     * index, using layout defined by `cstride` and `estride`.
-     *
-     * @param opts
-     */
-    collate(opts?: Partial<CollateOpts>): Vec;
-}
-
-export interface IEdges<T> {
-    edges(opts?: any): Iterable<T>;
-}
-
-export interface IHiccupPathSegment {
-    toHiccupPathSegments(): any[];
-}
-
-export interface IPointMap<A, B> {
-    mapPoint(p: Readonly<A>, out?: B): B;
-    unmapPoint(p: Readonly<B>, out?: A): A;
-}
-
-export interface IToCubic {
-    toCubic(): Iterable<any>;
-}
-
-export interface IToPolygon<O> {
-    // FIXME return type should be interface
-    toPolygon(opts?: O): any;
-}
-
-export interface ITessellateable<T extends IVector<T>> {
-    tessellate(tessel: Tessellator<T>, iter?: number): T[][];
-    tessellate(tessel: Iterable<Tessellator<T>>): T[][];
-}
-
-export interface ITransformable<M> {
-    transform(mat: M): this;
-}
-
-export interface IUnion<T> {
-    union(x: T): T;
-}
-
-export interface IVertices<T, O> {
-    vertices(opts?: O): Iterable<T>;
-}
-
-export interface JsonShape {
-    type: string;
-    attribs?: Attribs;
-}
-
-export interface JsonArc2 extends JsonShape {
     pos: Vec;
     r: Vec;
-    axis: number;
     start: number;
     end: number;
+    axis: number;
     xl: boolean;
-    clockwise: boolean;
+    cw: boolean;
+    attribs: Attribs;
+
+    constructor(
+        pos: Vec,
+        r: Vec,
+        axis: number,
+        start: number,
+        end: number,
+        xl = false,
+        cw = false,
+        attribs?: Attribs) {
+
+        this.pos = pos;
+        this.r = r;
+        this.axis = axis;
+        this.start = start;
+        this.end = end;
+        this.xl = xl;
+        this.cw = cw;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.ARC;
+    }
+
+    copy() {
+        return new Arc(
+            set([], this.pos),
+            set([], this.r),
+            this.axis,
+            this.start,
+            this.end,
+            this.xl,
+            this.cw,
+            { ...this.attribs }
+        );
+    }
+
+    equiv(o: any) {
+        return o instanceof Arc &&
+            equiv(this.pos, o.pos) &&
+            equiv(this.r, o.r) &&
+            this.start === o.start &&
+            this.end === o.end &&
+            this.axis === o.axis &&
+            this.xl === o.xl &&
+            this.cw && o.cw;
+    }
+
+    pointAt(t: number, out: Vec = []) {
+        return arcPointAt(this.pos, this.r, this.axis, this.start, this.end, t, out);
+    }
+
+    pointAtTheta(theta: number, out: Vec = []) {
+        return arcPointAtTheta(this.pos, this.r, this.axis, theta, out);
+    }
+
+    toHiccup() {
+        return ["path", this.attribs, [
+            ["M", this.pointAt(0)],
+            ...this.toHiccupPathSegments()
+        ]];
+    }
+
+    toHiccupPathSegments() {
+        return [
+            [
+                "A",
+                this.r[0],
+                this.r[1],
+                this.axis,
+                this.xl,
+                this.cw,
+                this.pointAt(1)
+            ]
+        ];
+    }
 }
 
-export interface JsonCircle2 extends JsonShape {
+export class Circle implements
+    IHiccupShape {
+
     pos: Vec;
     r: number;
+    attribs: Attribs;
+
+    constructor(pos: Vec = [0, 0], r = 1, attribs?: Attribs) {
+        this.pos = pos;
+        this.r = r;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.CIRCLE;
+    }
+
+    copy() {
+        return new Circle(set([], this.pos), this.r, { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["circle", this.attribs, this.pos, this.r];
+    }
 }
 
-export interface JsonCubic2 extends JsonShape {
-    points: Vec[];
+export class Cubic extends APC implements
+    IHiccupPathSegment {
+
+    get type() {
+        return Type.CUBIC;
+    }
+
+    copy() {
+        return new Cubic(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["path", this.attribs,
+            [
+                ["M", this.points[0]],
+                ...this.toHiccupPathSegments()
+            ]
+        ];
+    }
+
+    toHiccupPathSegments() {
+        const pts = this.points;
+        return [["C", pts[1], pts[2], pts[3]]];
+    }
 }
 
-export interface JsonQuadratic2 extends JsonShape {
-    points: Vec[];
-}
+export class Ellipse implements
+    IHiccupShape {
 
-export interface JsonPolygon2 extends JsonShape {
-    points: Vec[];
-}
-
-export interface JsonPolyline2 extends JsonShape {
-    points: Vec[];
-}
-
-export interface JsonRect2 extends JsonShape {
     pos: Vec;
-    size: Vec[];
+    r: Vec;
+    attribs: Attribs;
+
+    constructor(pos: Vec = [0, 0], r: number | Vec = [1, 1], attribs?: Attribs) {
+        this.pos = pos;
+        this.r = isNumber(r) ? [r, r] : r;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.ELLIPSE;
+    }
+
+    copy() {
+        return new Ellipse(set([], this.pos), set([], this.r), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["ellipse", this.attribs, this.pos, this.r];
+    }
 }
 
-export type HiccupArc2 =
-    ["arc", Attribs, ReadonlyVec, ReadonlyVec, number, number, number, boolean, boolean];
+export class Group implements
+    IHiccupShape {
 
-export type HiccupCircle2 =
-    ["circle", Attribs, ReadonlyVec, number];
+    children: IHiccupShape[];
+    attribs: Attribs;
 
-export type HiccupLine2 =
-    ["line", Attribs, ReadonlyVec, ReadonlyVec];
+    constructor(children: IHiccupShape[], attribs?: Attribs) {
+        this.children = children;
+        this.attribs = attribs;
+    }
 
-export type HiccupPolygon2 =
-    ["polygon", Attribs, number[] | number[][]];
+    get type() {
+        return Type.GROUP;
+    }
 
-export type HiccupPolyline2 =
-    ["polyline", Attribs, number[] | number[][]];
+    *[Symbol.iterator]() {
+        yield* this.children;
+    }
 
-export type HiccupRect2 =
-    ["rect", Attribs, ReadonlyVec, number, number, number?];
+    copy() {
+        return new Group(
+            <IHiccupShape[]>this.children.map((c) => c.copy()),
+            { ...this.attribs }
+        );
+    }
+
+    equiv(o: any) {
+        return o instanceof Group &&
+            equiv(this.children, o.children);
+    }
+
+    toHiccup() {
+        return ["g", this.attribs, ...this.children.map((x) => x.toHiccup())];
+    }
+}
+
+export class Line extends APC implements
+    IHiccupShape,
+    IHiccupPathSegment {
+
+    get type() {
+        return Type.LINE;
+    }
+
+    copy() {
+        return new Line(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["line", this.attribs, this.points[0], this.points[1]];
+    }
+
+    toHiccupPathSegments() {
+        const [a, b] = this.points;
+        return [
+            a[0] === b[0] ?
+                ["V", b[1]] :
+                a[1] === b[1] ?
+                    ["H", b[0]] :
+                    ["L", b]
+        ];
+    }
+}
+
+export class Path implements
+    IHiccupShape {
+
+    segments: PathSegment[];
+    closed: boolean;
+    attribs: Attribs;
+
+    constructor(segments?: PathSegment[], attribs?: Attribs) {
+        this.segments = segments || [];
+        this.attribs = attribs;
+        this.closed = false;
+    }
+
+    get type() {
+        return Type.PATH;
+    }
+
+    *[Symbol.iterator]() {
+        yield* this.segments;
+    }
+
+    copy() {
+        const p = new Path([...this.segments], { ...this.attribs });
+        p.closed = this.closed;
+        return p;
+    }
+
+    equiv(o: any) {
+        return o instanceof Path &&
+            equiv(this.segments, o.segments);
+    }
+
+    add(s: PathSegment) {
+        if (this.closed) illegalState("path already closed");
+        this.segments.push(s);
+    }
+
+    toHiccup() {
+        let dest: any[] = [];
+        const segments = this.segments;
+        const n = segments.length;
+        if (n > 1) {
+            dest.push(["M", segments[0].point]);
+            for (let i = 1; i < n; i++) {
+                dest = dest.concat(segments[i].geo.toHiccupPathSegments());
+            }
+            if (this.closed) {
+                dest.push(["Z"]);
+            }
+        }
+        return ["path", this.attribs || {}, dest];
+    }
+}
+
+export class Points extends APC implements
+    IHiccupShape {
+
+    get type() {
+        return Type.POINTS;
+    }
+
+    copy() {
+        return new Points(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["points", this.attribs, this.points];
+    }
+}
+
+export class Polygon extends APC implements
+    IHiccupShape {
+
+    get type() {
+        return Type.POLYGON;
+    }
+
+    copy() {
+        return new Polygon(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["polygon", this.attribs, this.points];
+    }
+}
+
+export class Polyline extends APC implements
+    IHiccupShape,
+    IHiccupPathSegment {
+
+    get type() {
+        return Type.POLYLINE;
+    }
+
+    copy() {
+        return new Polyline(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["polyline", { ...this.attribs, fill: "none" }, this.points];
+    }
+
+    toHiccupPathSegments() {
+        const res: any[] = [];
+        for (let pts = this.points, n = pts.length, i = 1; i < n; i++) {
+            res.push(["L", pts[i]]);
+        }
+        return res;
+    }
+}
+
+export class Quad extends APC implements
+    IHiccupShape {
+
+    get type() {
+        return Type.QUAD;
+    }
+
+    copy() {
+        return new Quad(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["polygon", this.attribs, this.points];
+    }
+}
+
+export class Quadratic extends APC implements
+    IHiccupShape,
+    IHiccupPathSegment {
+
+    get type() {
+        return Type.QUADRATIC;
+    }
+
+    copy() {
+        return new Quadratic(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["path", this.attribs,
+            [
+                ["M", this.points[0]],
+                ...this.toHiccupPathSegments()
+            ]
+        ];
+    }
+
+    toHiccupPathSegments() {
+        const pts = this.points;
+        return [["Q", pts[1], pts[2]]];
+    }
+}
+
+export class Ray implements
+    IHiccupShape {
+
+    pos: Vec;
+    dir: Vec;
+    attribs: Attribs;
+
+    constructor(pos: Vec, dir: Vec, attribs?: Attribs) {
+        this.pos = pos;
+        this.dir = dir;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.RAY;
+    }
+
+    copy() {
+        return new Ray(set([], this.pos), set([], this.dir), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["line", this.attribs, this.pos, maddN2([], this.pos, this.dir, 1e6)];
+    }
+}
+
+export class Rect implements
+    AABBLike,
+    IHiccupShape {
+
+    pos: Vec;
+    size: Vec;
+    attribs: Attribs;
+
+    constructor(pos: Vec = [0, 0], size: number | Vec = [1, 1], attribs?: Attribs) {
+        this.pos = pos;
+        this.size = isNumber(size) ? [size, size] : size;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.RECT;
+    }
+
+    copy() {
+        return new Rect(set([], this.pos), set([], this.size), { ...this.attribs });
+    }
+
+    max() {
+        return add2([], this.pos, this.size);
+    }
+
+    toHiccup() {
+        return ["rect", this.attribs, this.pos, this.size];
+    }
+}
+
+export class Sphere implements
+    IHiccupShape {
+
+    pos: Vec;
+    r: number;
+    attribs: Attribs;
+
+    constructor(pos: Vec = [0, 0, 0], r = 1, attribs?: Attribs) {
+        this.pos = pos;
+        this.r = r;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.SPHERE;
+    }
+
+    copy() {
+        return new Sphere(set([], this.pos), this.r, { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["sphere", this.attribs, this.pos, this.r];
+    }
+}
+
+export class Triangle extends APC implements
+    IHiccupShape {
+
+    get type() {
+        return Type.TRIANGLE;
+    }
+
+    copy() {
+        return new Triangle(copyPoints(this.points), { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["polygon", this.attribs, this.points];
+    }
+}
