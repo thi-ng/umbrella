@@ -1,4 +1,4 @@
-import { add, ReadonlyVec } from "@thi.ng/vectors3";
+import { add, ReadonlyVec } from "@thi.ng/vectors";
 
 export const translatedPoints =
     (pts: ReadonlyVec[], delta: ReadonlyVec) =>

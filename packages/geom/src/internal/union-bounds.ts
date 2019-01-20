@@ -4,7 +4,7 @@ import {
     min,
     ReadonlyVec,
     sub
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { VecPair } from "../api";
 
 /**

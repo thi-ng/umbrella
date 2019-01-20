@@ -1,4 +1,4 @@
-import { cross2, ReadonlyVec } from "@thi.ng/vectors3";
+import { cross2, ReadonlyVec } from "@thi.ng/vectors";
 
 /**
  * Interprets given points as closed 2D polygon and computes signed

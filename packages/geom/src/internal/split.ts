@@ -1,4 +1,4 @@
-import { mixN, set, Vec, ReadonlyVec, mixCubic, mixQuadratic } from "@thi.ng/vectors3";
+import { mixN, set, Vec, ReadonlyVec, mixCubic, mixQuadratic } from "@thi.ng/vectors";
 import { VecPair } from "../api";
 import { partial } from "@thi.ng/compose";
 import { findClosestT } from "./closest-point";

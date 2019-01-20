@@ -1,5 +1,5 @@
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
-import { ReadonlyVec } from "@thi.ng/vectors3";
+import { ReadonlyVec } from "@thi.ng/vectors";
 
 export const transformPoints =
     (pts: ReadonlyVec[], mat: ReadonlyMat) =>

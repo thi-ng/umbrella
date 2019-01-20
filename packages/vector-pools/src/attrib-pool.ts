@@ -7,7 +7,7 @@ import {
 import { align, Pow2 } from "@thi.ng/binary";
 import { MemPool, SIZEOF, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { asNativeType } from "./convert";
 import {
     AttribPoolOpts,

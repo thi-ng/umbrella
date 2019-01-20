@@ -1,4 +1,4 @@
-import { setC4 } from "@thi.ng/vectors3";
+import { setC4 } from "@thi.ng/vectors";
 import { Color, ReadonlyColor } from "./api";
 
 export const alpha =

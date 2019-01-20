@@ -1,5 +1,5 @@
 import { IShape } from "../api";
-import { Vec, randMinMax } from "@thi.ng/vectors3";
+import { Vec, randMinMax } from "@thi.ng/vectors";
 import { SYSTEM } from "@thi.ng/random";
 import { bounds } from "./bounds";
 import { pointInside } from "./point-inside";

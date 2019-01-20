@@ -1,4 +1,4 @@
-import { ReadonlyVec, setC, Vec } from "@thi.ng/vectors3";
+import { ReadonlyVec, setC, Vec } from "@thi.ng/vectors";
 
 /**
  * Converts quaternion into M33 and writes result to `out`.

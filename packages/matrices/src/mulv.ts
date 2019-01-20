@@ -8,7 +8,7 @@ import {
     setC4,
     Vec,
     vop
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { MatOpMV, MultiMatOpMV } from "./api";
 
 /**

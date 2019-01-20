@@ -19,7 +19,7 @@ import {
     ReadonlyVec,
     signedArea2,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { Tessellator } from "../api";
 import { centroidRaw } from "../internal/centroid";
 import { pointInTriangle2 } from "../internal/triangle-point-inside";

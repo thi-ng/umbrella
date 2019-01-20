@@ -5,7 +5,7 @@ import {
     DEFAULT_OUT,
     MATH,
     MATH_N
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { MultiMatOpMM, MultiMatOpMN } from "../api";
 
 const DEFAULT_SIZES = [6, 9, 16];

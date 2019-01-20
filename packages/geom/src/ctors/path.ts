@@ -10,7 +10,7 @@ import {
     sub2,
     Vec,
     zeroes
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import {
     Attribs,
     Cubic,

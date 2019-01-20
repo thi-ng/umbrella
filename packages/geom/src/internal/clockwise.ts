@@ -1,4 +1,4 @@
-import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors3";
+import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors";
 
 export const clockwise2 =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) =>

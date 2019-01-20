@@ -1,4 +1,4 @@
-import { setS3, setS4, ZERO4 } from "@thi.ng/vectors3";
+import { setS3, setS4, ZERO4 } from "@thi.ng/vectors";
 import { MatOpM } from "./api";
 
 /**

@@ -1,4 +1,4 @@
-import { mixN, Vec } from "@thi.ng/vectors3";
+import { mixN, Vec } from "@thi.ng/vectors";
 import { Attribs, Quadratic } from "../api";
 import { argAttribs } from "../internal/args";
 

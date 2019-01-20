@@ -1,6 +1,6 @@
 import { clamp01 } from "@thi.ng/math";
-import { dotS3, dotS4 } from "@thi.ng/vectors3";
-import { setC4 } from "@thi.ng/vectors3";
+import { dotS3, dotS4 } from "@thi.ng/vectors";
+import { setC4 } from "@thi.ng/vectors";
 import { Color, ColorMatrix, ReadonlyColor } from "../api";
 import { ensureAlpha } from "./ensure-alpha";
 

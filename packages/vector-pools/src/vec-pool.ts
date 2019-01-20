@@ -6,7 +6,7 @@ import {
     MemPoolStats,
     Type
 } from "@thi.ng/malloc";
-import { IVector } from "@thi.ng/vectors3";
+import { IVector } from "@thi.ng/vectors";
 import { GLType, IVecPool } from "./api";
 import { asNativeType } from "./convert";
 import { wrap } from "./wrap";

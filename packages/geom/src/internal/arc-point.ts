@@ -5,7 +5,7 @@ import {
     ReadonlyVec,
     rotateZ,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 export const arcPointAt = (
     pos: ReadonlyVec,

@@ -1,4 +1,4 @@
-import { cross2, ReadonlyVec, Vec } from "@thi.ng/vectors3";
+import { cross2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export const polyCentroid =
     (pts: ReadonlyVec[], c: Vec = []) => {

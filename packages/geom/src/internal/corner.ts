@@ -1,5 +1,5 @@
 import { EPS, sign } from "@thi.ng/math";
-import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors3";
+import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors";
 
 /**
  * Syntax sugar for `sign(signedArea2(a,b,c))`.

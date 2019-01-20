@@ -2,7 +2,7 @@ import { ICopy, Pair } from "@thi.ng/api";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { ensureArray } from "@thi.ng/transducers";
-import { distSq, empty, ReadonlyVec } from "@thi.ng/vectors3";
+import { distSq, empty, ReadonlyVec } from "@thi.ng/vectors";
 
 const CMP = (a, b) => b[0] - a[0];
 

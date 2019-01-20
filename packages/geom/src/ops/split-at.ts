@@ -1,6 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { fit01 } from "@thi.ng/math";
-import { set } from "@thi.ng/vectors3";
+import { set } from "@thi.ng/vectors";
 import {
     Arc,
     Cubic,

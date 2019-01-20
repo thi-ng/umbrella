@@ -5,7 +5,7 @@ import { sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { Vec } from "@thi.ng/vectors3";
+import { Vec } from "@thi.ng/vectors";
 
 const app = (main) => {
     // augment hdom-canvas component w/ `init` lifecycle method: this is

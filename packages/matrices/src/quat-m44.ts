@@ -3,7 +3,7 @@ import {
     setC,
     Vec,
     ZERO3
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 /**
  * Converts quaternion into M44 with optional translation offset `t`,

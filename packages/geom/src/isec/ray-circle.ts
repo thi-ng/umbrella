@@ -1,4 +1,4 @@
-import { sub, dot, magSq, maddN, ReadonlyVec } from "@thi.ng/vectors3";
+import { sub, dot, magSq, maddN, ReadonlyVec } from "@thi.ng/vectors";
 
 export const intersectRayCircle =
     (rpos: ReadonlyVec, dir: ReadonlyVec, spos: ReadonlyVec, r: number) => {

@@ -1,4 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors3";
+import { ReadonlyVec } from "@thi.ng/vectors";
 
 export const polyPointInside =
     (pts: ReadonlyVec[], { 0: px, 1: py }: ReadonlyVec) => {

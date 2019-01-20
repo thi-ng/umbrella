@@ -1,6 +1,6 @@
 import { defmulti, MultiFn1 } from "@thi.ng/defmulti";
 import { PI, TAU } from "@thi.ng/math";
-import { dist } from "@thi.ng/vectors3";
+import { dist } from "@thi.ng/vectors";
 import {
     Circle,
     Ellipse,

@@ -6,7 +6,7 @@ import {
     setC4,
     setC6,
     vop
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { MultiMatOpMM } from "./api";
 
 /**

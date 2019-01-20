@@ -1,4 +1,4 @@
-import { ReadonlyVec, distSq, mag, sub, maddN, perpendicularLeft2, mulN, add } from "@thi.ng/vectors3";
+import { ReadonlyVec, distSq, mag, sub, maddN, perpendicularLeft2, mulN, add } from "@thi.ng/vectors";
 import { eqDeltaFixed } from "@thi.ng/math";
 import { IntersectionType } from "../api";
 

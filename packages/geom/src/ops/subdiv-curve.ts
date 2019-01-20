@@ -1,6 +1,6 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import { wrap } from "@thi.ng/transducers";
-import { mixN, ReadonlyVec } from "@thi.ng/vectors3";
+import { mixN, ReadonlyVec } from "@thi.ng/vectors";
 import {
     IShape,
     Polygon,

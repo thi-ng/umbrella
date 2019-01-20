@@ -1,5 +1,5 @@
 import { EPS, sign } from "@thi.ng/math";
-import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors3";
+import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors";
 import { clockwise2 } from "./clockwise";
 
 export const classifyPointInTriangle2 =

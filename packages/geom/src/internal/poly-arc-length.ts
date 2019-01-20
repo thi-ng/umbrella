@@ -1,4 +1,4 @@
-import { ReadonlyVec, dist } from "@thi.ng/vectors3";
+import { ReadonlyVec, dist } from "@thi.ng/vectors";
 
 export const polyArcLength =
     (pts: ReadonlyVec[], num = pts.length, closed = false) => {

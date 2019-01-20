@@ -1,13 +1,13 @@
 import { Fn } from "@thi.ng/api";
 import { clamp01, mixCubic as _mixCubic } from "@thi.ng/math";
-import { max, min, Vec } from "@thi.ng/vectors3";
+import { max, min, Vec } from "@thi.ng/vectors";
 import {
     max2,
     max3,
     min2,
     min3,
     ReadonlyVec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { VecPair } from "../api";
 import { AABBLike, IShape } from "../api";
 import { unionBounds } from "./union-bounds";
@@ -15,7 +15,7 @@ import { unionBounds } from "./union-bounds";
 /**
  * Computes the nD bounds of given vectors. `vmin` should be initialized
  * to `+Infinity` and `vmax` to `-Infinity` (e.g. use copies of `MIN*` /
- * `MAX*` constants defined in thi.ng/vectors3).
+ * `MAX*` constants defined in thi.ng/vectors).
  *
  * Returns 2-tuple of modified `[vmin, vmax]`.
  *

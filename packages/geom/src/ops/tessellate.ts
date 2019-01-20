@@ -1,5 +1,5 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { Vec } from "@thi.ng/vectors3";
+import { Vec } from "@thi.ng/vectors";
 import { IShape, Tessellator } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { tessellatePoints } from "../internal/tessellate";

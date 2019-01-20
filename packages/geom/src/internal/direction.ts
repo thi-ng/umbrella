@@ -4,7 +4,7 @@ import {
     perpendicularRight2,
     ReadonlyVec,
     sub
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 export const direction =
     (a: ReadonlyVec, b: ReadonlyVec, n = 1) =>

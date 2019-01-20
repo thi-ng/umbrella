@@ -4,7 +4,7 @@ import {
     fromHomogeneous4,
     ReadonlyVec,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { ReadonlyMat } from "./api";
 import { invert23, invert44 } from "./invert";
 import { mulV23, mulV344, mulV44 } from "./mulv";

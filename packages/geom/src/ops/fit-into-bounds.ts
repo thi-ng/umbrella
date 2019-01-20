@@ -4,7 +4,7 @@ import {
     scale23,
     translation23
 } from "@thi.ng/matrices";
-import { div2, neg, ReadonlyVec } from "@thi.ng/vectors3";
+import { div2, neg, ReadonlyVec } from "@thi.ng/vectors";
 import { IShape, Rect } from "../api";
 import { collBounds } from "../internal/bounds";
 import { bounds } from "./bounds";

@@ -5,7 +5,7 @@ import {
     empty,
     ReadonlyVec,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 export const centroidRaw =
     (pts: ReadonlyVec[], out?: Vec) => {

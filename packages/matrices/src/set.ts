@@ -3,7 +3,7 @@ import {
     set as _set,
     SET,
     set4
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { MatOpM } from "./api";
 
 const $ = (dim) => _set.add(dim, compile(dim, SET, "o,a"));

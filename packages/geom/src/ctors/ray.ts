@@ -1,4 +1,4 @@
-import { normalize as _norm, Vec } from "@thi.ng/vectors3";
+import { normalize as _norm, Vec } from "@thi.ng/vectors";
 import { Attribs, Ray } from "../api";
 
 export const ray =

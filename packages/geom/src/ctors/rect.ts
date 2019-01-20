@@ -1,4 +1,4 @@
-import { sub2, Vec } from "@thi.ng/vectors3";
+import { sub2, Vec } from "@thi.ng/vectors";
 import { Attribs, Rect } from "../api";
 import { argsVV } from "../internal/args";
 

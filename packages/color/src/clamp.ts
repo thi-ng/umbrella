@@ -1,5 +1,5 @@
 import { clamp01 } from "@thi.ng/math";
-import { setC4 } from "@thi.ng/vectors3";
+import { setC4 } from "@thi.ng/vectors";
 import { Color, ReadonlyColor } from "./api";
 import { ensureAlpha } from "./internal/ensure-alpha";
 import { ensureHue } from "./internal/ensure-hue";

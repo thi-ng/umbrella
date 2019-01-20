@@ -1,5 +1,5 @@
 import { EPS } from "@thi.ng/math";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
  * Returns array of points defining the 2D Convex Hull of `pts` using
@@ -52,7 +52,7 @@ export const grahamScan2 =
  * Returns true, if triangle defined by ABC is NOT counter clockwise,
  * i.e. clockwise or colinear.
  *
- * @see thi.ng/vectors3/signedArea2
+ * @see thi.ng/vectors/signedArea2
  *
  * @param ax
  * @param ay

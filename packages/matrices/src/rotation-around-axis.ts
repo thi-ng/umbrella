@@ -1,4 +1,4 @@
-import { normalize as _normalize, ReadonlyVec, setC } from "@thi.ng/vectors3";
+import { normalize as _normalize, ReadonlyVec, setC } from "@thi.ng/vectors";
 import { Mat } from "./api";
 import { mat33to44 } from "./m33-m44";
 

@@ -7,7 +7,7 @@ import {
     transduce,
     tuples
 } from "@thi.ng/transducers";
-import { cartesian2, Vec } from "@thi.ng/vectors3";
+import { cartesian2, Vec } from "@thi.ng/vectors";
 import { Attribs, Polygon } from "../api";
 
 export const polygon =

@@ -1,5 +1,5 @@
 import { EPS } from "@thi.ng/math";
-import { Vec } from "@thi.ng/vectors3";
+import { Vec } from "@thi.ng/vectors";
 
 /**
  * Performs Liang-Barsky clipping with given line endpoints `la`, `lb`

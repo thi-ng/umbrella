@@ -26,10 +26,10 @@ import { filter } from "@thi.ng/transducers/xform/filter";
 import { map } from "@thi.ng/transducers/xform/map";
 import { multiplexObj } from "@thi.ng/transducers/xform/multiplex-obj";
 import { partition } from "@thi.ng/transducers/xform/partition";
-import { angleBetween } from "@thi.ng/vectors3/angle-between";
-import { Vec } from "@thi.ng/vectors3/api";
-import { mixN2 } from "@thi.ng/vectors3/mixn";
-import { sub2 } from "@thi.ng/vectors3/sub";
+import { angleBetween } from "@thi.ng/vectors/angle-between";
+import { Vec } from "@thi.ng/vectors/api";
+import { mixN2 } from "@thi.ng/vectors/mixn";
+import { sub2 } from "@thi.ng/vectors/sub";
 import { CTA } from "./config";
 
 /**

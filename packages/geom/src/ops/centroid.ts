@@ -6,7 +6,7 @@ import {
     mixN,
     set,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import {
     AABBLike,
     Circle,

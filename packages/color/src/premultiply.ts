@@ -1,4 +1,4 @@
-import { set, setC4 } from "@thi.ng/vectors3";
+import { set, setC4 } from "@thi.ng/vectors";
 import { Color, ReadonlyColor } from "./api";
 
 /**

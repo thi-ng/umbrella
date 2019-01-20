@@ -3,7 +3,7 @@ import {
     setS3,
     setS4,
     vop
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { MultiVecOpMN, VecOpMN } from "./api";
 
 /**

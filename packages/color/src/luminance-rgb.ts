@@ -1,4 +1,4 @@
-import { dot3 } from "@thi.ng/vectors3";
+import { dot3 } from "@thi.ng/vectors";
 import { INV8BIT, ReadonlyColor, RGB_LUMINANCE } from "./api";
 
 export const luminanceRGB =

@@ -3,7 +3,7 @@ import {
     mixN2,
     ReadonlyVec,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { Attribs, Circle } from "../api";
 import { argsVN } from "../internal/args";
 import { circumCenter } from "../internal/circumcenter";

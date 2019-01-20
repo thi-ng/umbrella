@@ -10,7 +10,7 @@ import {
     mixN2,
     set2,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { Arc, Attribs, Cubic } from "../api";
 import { argAttribs } from "../internal/args";
 

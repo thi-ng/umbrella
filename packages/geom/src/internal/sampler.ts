@@ -10,7 +10,7 @@ import {
     eqDelta,
     set,
     distSq
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { DEFAULT_SAMPLES, SamplingOpts, VecPair } from "../api";
 import { copyPoints } from "./copy-points";
 import { closestPointSegment, closestCoeff } from "./closest-point";

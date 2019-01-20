@@ -1,6 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { peek } from "@thi.ng/transducers";
-import { Vec } from "@thi.ng/vectors3";
+import { Vec } from "@thi.ng/vectors";
 import {
     IShape,
     Path,

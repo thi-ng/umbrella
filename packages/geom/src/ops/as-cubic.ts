@@ -6,7 +6,7 @@ import {
     sincos
 } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
-import { add2, magSq2 } from "@thi.ng/vectors3";
+import { add2, magSq2 } from "@thi.ng/vectors";
 import {
     Arc,
     Cubic,

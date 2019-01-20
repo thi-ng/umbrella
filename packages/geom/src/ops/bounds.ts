@@ -20,7 +20,7 @@ import {
     sub2,
     subN2,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import {
     AABBLike,
     Arc,

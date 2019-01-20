@@ -5,7 +5,7 @@ import {
     ReadonlyVec,
     set4,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 /**
  * Interpolates quaternion `a` to `b` by given amount `t`, using SLERP.

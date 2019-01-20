@@ -8,7 +8,7 @@ import {
     setC6,
     Vec,
     vop
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { MatOpM, MultiMatOpM } from "./api";
 import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 

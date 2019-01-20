@@ -1,4 +1,4 @@
-import { Vec, StridedVec } from "@thi.ng/vectors3";
+import { Vec, StridedVec } from "@thi.ng/vectors";
 
 export interface CollateOpts {
     buf: Vec;

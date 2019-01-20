@@ -12,7 +12,7 @@ import {
     addW5,
     ReadonlyVec,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { SubdivKernel } from "../api";
 
 export const subdivKernel2 =

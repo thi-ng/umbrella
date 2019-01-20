@@ -13,7 +13,7 @@ import {
     set,
     sub,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { arcPointAtTheta } from "./arc-point";
 
 export const closestPointArray =

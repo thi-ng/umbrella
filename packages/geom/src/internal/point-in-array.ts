@@ -1,5 +1,5 @@
 import { EPS } from "@thi.ng/math";
-import { eqDelta, ReadonlyVec } from "@thi.ng/vectors3";
+import { eqDelta, ReadonlyVec } from "@thi.ng/vectors";
 
 export const pointInArray =
     (points: ReadonlyVec[], p: ReadonlyVec, eps = EPS) => {

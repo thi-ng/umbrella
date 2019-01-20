@@ -1,6 +1,6 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { PI } from "@thi.ng/math";
-import { signedArea2, Vec } from "@thi.ng/vectors3";
+import { signedArea2, Vec } from "@thi.ng/vectors";
 import {
     AABB,
     Circle,

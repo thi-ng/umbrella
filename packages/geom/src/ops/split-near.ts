@@ -1,6 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { clamp01 } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors3";
+import { ReadonlyVec } from "@thi.ng/vectors";
 import {
     Cubic,
     IShape,

@@ -4,7 +4,7 @@ import {
     Vec,
     sub,
     div
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { IShape, Rect, Type } from "../api";
 import { dispatch } from "../internal/dispatch";
 

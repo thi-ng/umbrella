@@ -1,4 +1,4 @@
-import { addN as _addN, addN4 } from "@thi.ng/vectors3";
+import { addN as _addN, addN4 } from "@thi.ng/vectors";
 import { MatOpMN, MultiMatOpMN } from "./api";
 import { defMathN } from "./internal/codegen";
 

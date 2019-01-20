@@ -8,7 +8,7 @@ import {
     mixN2,
     mixQuadratic,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import {
     Arc,
     Circle,

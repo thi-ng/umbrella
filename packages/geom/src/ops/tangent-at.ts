@@ -1,6 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { cossin, HALF_PI, TAU } from "@thi.ng/math";
-import { Vec } from "@thi.ng/vectors3";
+import { Vec } from "@thi.ng/vectors";
 import {
     IShape,
     Line,

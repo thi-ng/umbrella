@@ -5,7 +5,7 @@ import {
     ReadonlyVec,
     setC,
     sub3
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { Mat } from "./api";
 
 /**

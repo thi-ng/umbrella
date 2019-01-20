@@ -1,5 +1,5 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { neg } from "@thi.ng/vectors3";
+import { neg } from "@thi.ng/vectors";
 import {
     Arc,
     Group,

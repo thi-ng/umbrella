@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module matrices api checks math vectors3",
+        "build:bundle": "../../scripts/bundle-module matrices api checks math vectors",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -35,7 +35,7 @@
         "@thi.ng/api": "^4.2.4",
         "@thi.ng/checks": "^1.5.14",
         "@thi.ng/math": "^0.2.2",
-        "@thi.ng/vectors3": "^0.0.1"
+        "@thi.ng/vectors": "^1.4.12"
     },
     "keywords": [
         "2D",

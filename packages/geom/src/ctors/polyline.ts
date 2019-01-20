@@ -1,4 +1,4 @@
-import { Vec } from "@thi.ng/vectors3";
+import { Vec } from "@thi.ng/vectors";
 import { Attribs, Polyline } from "../api";
 
 export const polyline =

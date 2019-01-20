@@ -1,6 +1,6 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import { EPS, sign } from "@thi.ng/math";
-import { ReadonlyVec, distSq } from "@thi.ng/vectors3";
+import { ReadonlyVec, distSq } from "@thi.ng/vectors";
 import { Circle, IShape, Type, Triangle } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { classifyPointInTriangle2 } from "../internal/triangle-point-inside";

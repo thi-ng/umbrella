@@ -1,4 +1,4 @@
-import { maddN2, ReadonlyVec } from "@thi.ng/vectors3";
+import { maddN2, ReadonlyVec } from "@thi.ng/vectors";
 import { IntersectionType } from "../api";
 import { intersectRayLine } from "./ray-line";
 

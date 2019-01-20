@@ -6,7 +6,7 @@ import {
     setC3,
     sub,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 export const toBarycentric =
     (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, p: ReadonlyVec, out: Vec = []) => {

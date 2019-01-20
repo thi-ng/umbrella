@@ -1,4 +1,4 @@
-import { Vec, ReadonlyVec, IVector, MultiVecOp } from "@thi.ng/vectors3";
+import { Vec, ReadonlyVec, IVector, MultiVecOp } from "@thi.ng/vectors";
 
 export type Mat = Vec;
 export type ReadonlyMat = ReadonlyVec;

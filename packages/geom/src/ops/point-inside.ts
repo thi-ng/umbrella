@@ -1,5 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors3";
+import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import {
     AABB,
     Circle,

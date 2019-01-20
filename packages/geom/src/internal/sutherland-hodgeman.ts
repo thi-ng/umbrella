@@ -1,4 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors3";
+import { ReadonlyVec } from "@thi.ng/vectors";
 import { corner } from "./corner";
 import { intersectLineLine } from "../isec/line-line";
 

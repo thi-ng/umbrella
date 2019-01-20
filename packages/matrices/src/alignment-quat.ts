@@ -4,7 +4,7 @@ import {
     mag,
     normalize as _normalize,
     ReadonlyVec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { quatFromAxisAngle } from "./quat-axis-angle";
 
 /**

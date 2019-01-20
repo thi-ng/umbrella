@@ -1,5 +1,5 @@
 import { eqDeltaFixed } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors3";
+import { ReadonlyVec } from "@thi.ng/vectors";
 
 export const intersectRayLine =
     (rpos: ReadonlyVec, dir: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {

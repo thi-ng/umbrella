@@ -1,5 +1,5 @@
 import { EPS, eqDeltaFixed } from "@thi.ng/math";
-import { mixN2, ReadonlyVec } from "@thi.ng/vectors3";
+import { mixN2, ReadonlyVec } from "@thi.ng/vectors";
 import { IntersectionType, LineIntersection } from "../api";
 import { closestPointSegment } from "../internal/closest-point";
 

@@ -5,7 +5,7 @@ import {
     Vec2,
     Vec3,
     Vec4
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 
 export const wrap =
     (buf: Vec, size: number, idx: number, stride: number): IVector<any> => {

@@ -6,7 +6,7 @@ import {
     perpendicularLeft2,
     sub2,
     Vec
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { Attribs, Triangle } from "../api";
 import { argAttribs } from "../internal/args";
 

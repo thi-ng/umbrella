@@ -13,7 +13,7 @@ import {
     submN2,
     Vec,
     X2
-} from "@thi.ng/vectors3";
+} from "@thi.ng/vectors";
 import { Arc } from "../api";
 
 export const arc = (

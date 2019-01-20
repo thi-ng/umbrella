@@ -1,4 +1,4 @@
-import { StridedVec, Vec } from "@thi.ng/vectors3";
+import { StridedVec, Vec } from "@thi.ng/vectors";
 import { AVecList } from "./alist";
 import { VecFactory } from "./api";
 

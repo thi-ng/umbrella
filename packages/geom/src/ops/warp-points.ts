@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors3";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { IShape } from "../api";
 import { mapPoint } from "./map-point";
 import { unmapPoint } from "./unmap-point";

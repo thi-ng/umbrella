@@ -1,4 +1,4 @@
-import { sub as _sub, sub4 } from "@thi.ng/vectors3";
+import { sub as _sub, sub4 } from "@thi.ng/vectors";
 import { MatOpMM, MultiMatOpMM } from "./api";
 import { defMath } from "./internal/codegen";
 

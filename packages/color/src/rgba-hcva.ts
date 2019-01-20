@@ -1,5 +1,5 @@
 import { EPS, clamp01 } from "@thi.ng/math";
-import { setC3 } from "@thi.ng/vectors3";
+import { setC3 } from "@thi.ng/vectors";
 import { Color, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
 

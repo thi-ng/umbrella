@@ -1,4 +1,4 @@
-import { vop, setS2, setS3, setS4 } from "@thi.ng/vectors3";
+import { vop, setS2, setS3, setS4 } from "@thi.ng/vectors";
 import { MultiVecOpM } from "./api";
 
 /**
