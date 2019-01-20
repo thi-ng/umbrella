@@ -1,6 +1,12 @@
 import { setC, setC4 } from "@thi.ng/vectors3";
 import { MatOpM } from "./api";
 
+/**
+ * Writes transposition of M22 `m` to `out`.
+ *
+ * @param out
+ * @param m
+ */
 export const transpose22: MatOpM =
     (out, m) =>
         setC4(
@@ -9,6 +15,12 @@ export const transpose22: MatOpM =
             m[1], m[3],
         );
 
+/**
+ * Writes transposition of M33 `m` to `out`.
+ *
+ * @param out
+ * @param m
+ */
 export const transpose33: MatOpM =
     (out, m) =>
         setC(
@@ -18,6 +30,12 @@ export const transpose33: MatOpM =
             m[2], m[5], m[8],
         );
 
+/**
+ * Writes transposition of M44 `m` to `out`.
+ *
+ * @param out
+ * @param m
+ */
 export const transpose44: MatOpM =
     (out, m) =>
         setC(

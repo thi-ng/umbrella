@@ -15,6 +15,9 @@ import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 const dp4 = dotC4;
 const dp6 = dotC6;
 
+/**
+ * Matrix inversion.
+ */
 export const invert: MultiMatOpM = vop(1);
 
 export const invert22: MatOpM =

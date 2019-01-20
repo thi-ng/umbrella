@@ -5,6 +5,13 @@ import {
     ZERO3
 } from "@thi.ng/vectors3";
 
+/**
+ * Converts quaternion into M44 with optional translation offset `t`,
+ * then writes result to `out`.
+ *
+ * @param out
+ * @param q
+ */
 export const quatToMat44 =
     (out: Vec, a: ReadonlyVec, t: ReadonlyVec = ZERO3) => {
         const [x, y, z, w] = a;

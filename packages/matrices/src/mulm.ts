@@ -9,6 +9,14 @@ import {
 } from "@thi.ng/vectors3";
 import { MultiMatOpMM } from "./api";
 
+/**
+ * Performs matrix-matrix multiplication. If `out` is not given, writes
+ * result in `a`.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulM: MultiMatOpMM = vop(1);
 
 export const mulM22 =

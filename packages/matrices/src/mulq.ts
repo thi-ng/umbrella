@@ -1,5 +1,13 @@
 import { ReadonlyVec, setC4, Vec } from "@thi.ng/vectors3";
 
+/**
+ * Performs quaternion multiplication of `a` and `b` and writes result
+ * to `out`. If `out` is null, writes result into `a`.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulQ =
     (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => {
         const { 0: ax, 1: ay, 2: az, 3: aw } = a;

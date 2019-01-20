@@ -8,6 +8,9 @@ import {
 } from "./api";
 import { set } from "./set";
 
+/**
+ * Writes identity matrix into given matrix.
+ */
 export const identity: MultiMatOp1 = vop();
 
 export const identity22 =

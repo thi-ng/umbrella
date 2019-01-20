@@ -117,13 +117,13 @@ export const mulV344: MatOpMV =
  * vector or modifies in-place if `out` is null or `v`.
  *
  * @param out
- * @param quat
+ * @param q
  * @param v
  */
 export const mulVQ =
-    (out: Vec, quat: ReadonlyVec, v: ReadonlyVec) => {
+    (out: Vec, q: ReadonlyVec, v: ReadonlyVec) => {
         const { 0: px, 1: py, 2: pz } = v;
-        const { 0: qx, 1: qy, 2: qz, 3: qw } = quat;
+        const { 0: qx, 1: qy, 2: qz, 3: qw } = q;
         const ix = qw * px + qy * pz - qz * py;
         const iy = qw * py + qz * px - qx * pz;
         const iz = qw * pz + qx * py - qy * px;

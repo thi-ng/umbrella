@@ -11,6 +11,15 @@ const axisOrder = {
     "zyx": [Z3, Y3, X3],
 };
 
+/**
+ * Constructs a quaternion from given rotation angles in specified
+ * `order`.
+ *
+ * @param order
+ * @param a
+ * @param b
+ * @param c
+ */
 export const quatFromEuler =
     (order: keyof typeof axisOrder, a: number, b: number, c: number) => {
         const [aa, ab, ac] = axisOrder[order];

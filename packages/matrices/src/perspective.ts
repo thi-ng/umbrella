@@ -1,6 +1,16 @@
 import { Mat } from "./api";
 import { frustum, frustumBounds } from "./frustum";
 
+/**
+ * Computes a M44 perspective projection matrix and writes result to
+ * `out`.
+ *
+ * @param out
+ * @param fov
+ * @param aspect
+ * @param near
+ * @param far
+ */
 export const perspective = (
     out: Mat,
     fov: number,

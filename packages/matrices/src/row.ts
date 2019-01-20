@@ -6,6 +6,14 @@ import {
 } from "@thi.ng/vectors3";
 import { MultiVecOpMN } from "./api";
 
+/**
+ * Extracts row vector from given matrix and writes result to `out`. If
+ * `out` is null, creates new vector.
+ *
+ * @param out
+ * @param mat
+ * @param column
+ */
 export const row: MultiVecOpMN = vop(1);
 
 export const row22 =

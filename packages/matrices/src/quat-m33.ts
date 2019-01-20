@@ -1,5 +1,11 @@
 import { ReadonlyVec, setC, Vec } from "@thi.ng/vectors3";
 
+/**
+ * Converts quaternion into M33 and writes result to `out`.
+ *
+ * @param out
+ * @param q
+ */
 export const quatToMat33 =
     (out: Vec, q: ReadonlyVec) => {
         const [x, y, z, w] = q;

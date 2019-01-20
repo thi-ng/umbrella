@@ -1,10 +1,22 @@
 import { ReadonlyVec, setC, setC6 } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
+/**
+ * Constructs a M23 translation matrix.
+ *
+ * @param out
+ * @param v
+ */
 export const translation23 =
     (m: Mat, v: ReadonlyVec) =>
         setC6(m || [], 1, 0, 0, 1, v[0], v[1]);
 
+/**
+ * Constructs a M44 translation matrix.
+ *
+ * @param out
+ * @param v
+ */
 export const translation44 =
     (m: Mat, v: ReadonlyVec) =>
         setC(

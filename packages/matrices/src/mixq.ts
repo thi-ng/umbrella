@@ -7,6 +7,18 @@ import {
     Vec
 } from "@thi.ng/vectors3";
 
+/**
+ * Interpolates quaternion `a` to `b` by given amount `t`, using SLERP.
+ * Writes result to `out`. The optional `eps` (default 1e-3) is used to
+ * switch to linear interpolation if the angular difference is very
+ * small.
+ *
+ * @param out
+ * @param a
+ * @param b
+ * @param t
+ * @param eps
+ */
 export const mixQ =
     (out: Vec, a: ReadonlyVec, b: ReadonlyVec, t: number, eps = 1e-3) => {
         const d = dot4(a, b);

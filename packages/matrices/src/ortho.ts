@@ -1,6 +1,18 @@
 import { setC } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
+/**
+ * Computes a M44 orthographic projection matrix and writes result to
+ * `out`.
+ *
+ * @param out
+ * @param left
+ * @param right
+ * @param bottom
+ * @param top
+ * @param near
+ * @param far
+ */
 export const ortho = (
     out: Mat,
     left: number,

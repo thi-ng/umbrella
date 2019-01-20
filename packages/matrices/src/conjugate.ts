@@ -9,5 +9,3 @@ export const conjugateQ =
             -a[2],
             a[3]
         );
-
-

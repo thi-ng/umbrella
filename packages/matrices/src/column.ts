@@ -6,6 +6,14 @@ import {
 } from "@thi.ng/vectors3";
 import { MultiVecOpMN, VecOpMN } from "./api";
 
+/**
+ * Extracts column vector from given matrix and writes result to `out`.
+ * If `out` is null, creates new vector.
+ *
+ * @param out
+ * @param mat
+ * @param column
+ */
 export const column: MultiVecOpMN = vop(1);
 
 export const column22: VecOpMN =

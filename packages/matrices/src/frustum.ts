@@ -2,6 +2,17 @@ import { DEG2RAD } from "@thi.ng/math";
 import { setC } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
+/**
+ * Constructs a M44 representing the given view frustum.
+ *
+ * @param out
+ * @param left
+ * @param right
+ * @param bottom
+ * @param top
+ * @param near
+ * @param far
+ */
 export const frustum = (
     out: Mat,
     left: number,

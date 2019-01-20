@@ -1,6 +1,12 @@
 import { vop, setS2, setS3, setS4 } from "@thi.ng/vectors3";
 import { MultiVecOpM } from "./api";
 
+/**
+ * Extracts matrix diagonal into `out`.
+ *
+ * @param out
+ * @param mat
+ */
 export const diag: MultiVecOpM = vop(1);
 
 export const diag22 =

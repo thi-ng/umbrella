@@ -7,6 +7,15 @@ import {
 } from "@thi.ng/vectors3";
 import { quatFromAxisAngle } from "./quat-axis-angle";
 
+/**
+ * Returns quaternion describing the rotation from direction vector
+ * `from` -> `to`. If `normalize` is true (default), first normalizes
+ * the vectors (not modifying original).
+ *
+ * @param from
+ * @param to
+ * @param normalize
+ */
 export const alignmentQuat =
     (from: ReadonlyVec, to: ReadonlyVec, normalize = true) => {
         if (normalize) {

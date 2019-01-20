@@ -7,6 +7,13 @@ import {
 } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
+/**
+ * Computes M22 scale matrix and writes result to `out`. If `s` is a
+ * number, scaling will be uniform.
+ *
+ * @param m
+ * @param s
+ */
 export const scale22 =
     (m: Mat, s: number | ReadonlyVec) => (
         s = isNumber(s) ? [s, s] : s,
@@ -17,6 +24,13 @@ export const scale22 =
         )
     );
 
+/**
+ * Computes M23 scale matrix and writes result to `out`. If `s` is a
+ * number, scaling will be uniform.
+ *
+ * @param m
+ * @param s
+ */
 export const scale23 =
     (m: Mat, s: number | ReadonlyVec) => (
         s = isNumber(s) ? [s, s] : s,
@@ -28,6 +42,13 @@ export const scale23 =
         )
     );
 
+/**
+ * Computes M33 scale matrix and writes result to `out`. If `s` is a
+ * number, scaling will be uniform.
+ *
+ * @param m
+ * @param s
+ */
 export const scale33 =
     (m: Mat, s: number | ReadonlyVec) => (
         s = isNumber(s) ? [s, s, s] : s,
@@ -39,6 +60,13 @@ export const scale33 =
         )
     );
 
+/**
+ * Computes M44 scale matrix and writes result to `out`. If `s` is a
+ * number, scaling will be uniform.
+ *
+ * @param m
+ * @param s
+ */
 export const scale44 =
     (m: Mat, s: number | ReadonlyVec) => (
         s = isNumber(s) ? [s, s, s] : s,

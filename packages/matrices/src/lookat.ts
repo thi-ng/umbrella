@@ -8,6 +8,15 @@ import {
 } from "@thi.ng/vectors3";
 import { Mat } from "./api";
 
+/**
+ * Constructs a M44 camera matrix for given `eye` position, look-at `target`
+ * (both in world space) and `up` vector.
+ *
+ * @param out
+ * @param eye
+ * @param target
+ * @param up
+ */
 export const lookAt = (
     out: Mat,
     eye: ReadonlyVec,
