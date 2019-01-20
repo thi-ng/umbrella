@@ -1,30 +1,19 @@
 import { illegalArgs } from "@thi.ng/errors";
-import { IVector, Vec2 } from "@thi.ng/vectors";
+import {
+    add,
+    divN,
+    empty,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors";
 
-export const centroid =
-    <T extends IVector<T>>(pts: ReadonlyArray<T>, c?: T) => {
+export const centroidRaw =
+    (pts: ReadonlyVec[], out?: Vec) => {
         const num = pts.length;
         !num && illegalArgs("no points available");
-        !c && (c = pts[0].empty());
+        !out && (out = empty(pts[0]));
         for (let i = num; --i >= 0;) {
-            c.add(pts[i]);
+            add(out, out, pts[i]);
         }
-        return c.divN(num);
-    };
-
-export const centerOfWeight =
-    (pts: Vec2[], c?: Vec2) => {
-        let area = 0;
-        let x = 0;
-        let y = 0;
-        for (let n = pts.length - 1, i = pts[n], j = pts[0], k = 0; k <= n; k++ , i = j, j = pts[k]) {
-            const z = i.cross(j);
-            area += z;
-            x += (i.x + j.x) * z;
-            y += (i.y + j.y) * z;
-        }
-        area = 1 / (area * 3);
-        x *= area;
-        y *= area;
-        return c ? c.setS(x, y) : new Vec2([x, y]);
+        return divN(null, out, num);
     };

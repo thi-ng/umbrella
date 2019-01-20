@@ -1,21 +1,36 @@
-import { partial } from "@thi.ng/compose";
+import { partial } from "@thi.ng/compose/partial";
 import {
-    circle2,
-    edgeSplit,
-    IArcLength,
-    ICentroid,
-    polygon2,
-    Polygon2,
-    quadFan,
+    arcLength,
+    asPolygon,
+    centroid,
+    circle,
+    IShape,
+    Polygon,
+    polygon,
+    tesselEdgeSplit,
+    tessellate,
     Tessellator,
-    triFan
+    tesselQuadFan,
+    tesselTriFan
 } from "@thi.ng/geom";
-import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { deg, fit01, TAU } from "@thi.ng/math";
-import { Vec2 } from "@thi.ng/vectors";
+import { deg, fit01, fit11 } from "@thi.ng/math";
+import { fromInterval, sync } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { polar, Vec } from "@thi.ng/vectors";
 
-type Tint = (p: Polygon2) => string;
+type Tint = (p: Polygon) => string;
+
+const MIN_RES = 3;
+const MAX_RES = 30;
+// const MAX_RES = MIN_RES;
+
+// const SUBDIVS = [tesselQuadFan];
+// const SUBDIVS = [tesselTriFan];
+// const SUBDIVS = [tesselEdgeSplit];
+const SUBDIVS = [tesselQuadFan, tesselTriFan, tesselEdgeSplit, tesselQuadFan];
+// const SUBDIVS = [...take(4, cycle([tesselQuadFan]))];
 
 const W = 600;
 const W2 = W / 2;
@@ -24,11 +39,11 @@ const W2 = W / 2;
  * Creates a color by mapping the centroid of given shape from cartesian
  * space to HSL.
  */
-const centroidToHSL = (p: ICentroid<Vec2>) => {
-    const c = p.centroid().toPolar();
-    const h = deg(c.y);
-    const s = fit01(c.x / W2, 0, 100);
-    const l = fit01(c.x / W2, 100, 50);
+const centroidToHSL = (p: IShape) => {
+    const c = polar(null, centroid(p));
+    const h = deg(c[1]);
+    const s = fit01(c[0] / W2, 0, 100);
+    const l = fit01(c[0] / W2, 100, 50);
     return `hsl(${h},${s}%,${l}%)`;
 };
 
@@ -36,56 +51,72 @@ const centroidToHSL = (p: ICentroid<Vec2>) => {
  * Creates an HSL color from the arc length / circumference of the given
  * shape.
  */
-const arclengthToHSL = (max: number, p: IArcLength) =>
-    `hsl(${fit01(p.arcLength() / max, 0, 360)},100%,50%)`;
+const arclengthToHSL = (max: number, p: IShape) =>
+    `hsl(${fit01(arcLength(p) / max, 0, 360)},100%,50%)`;
 
 /**
  * Converts given point array into a polygon and computes fill color
  * with provided `tint` function.
  */
-const tintedPoly = (tint: Tint, points: Vec2[]) => {
-    const p = polygon2(points);
-    p.attribs = { fill: tint(p) };
+const tintedPoly = (tint: Tint, points: Vec[]) => {
+    const p = polygon(points);
+    p.attribs = {
+        fill: tint(p),
+        // stroke: tint(p),
+    };
     return p;
 };
 
 /**
  * Creates a regular polygon, then recursively subdivides it and tints
  */
-const tessellation = (t: number, tessel: Tessellator<Vec2>[], tint: Tint) => {
-    return circle2(W2)
-        .toPolygon(Math.floor(12 + 9 * Math.sin(t)))
-        .tessellate(tessel)
-        .map(partial(tintedPoly, tint));
+const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
+    return tessellate(
+        asPolygon(
+            circle([0, 0], W2),
+            Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))
+        ),
+        tessel
+    ).map(partial(tintedPoly, tint));
 };
 
-const cancel = start(() => {
-    const t = Date.now() * 0.005;
-    // create tessellation
-    // resulting array contains Polygon2 values
-    // Polygon2 implements the .toHiccup() method for
-    // auto-conversion during hdom tree normalization
-    const cells = tessellation(
-        t,
-        [quadFan, triFan, edgeSplit, quadFan],
-        partial(arclengthToHSL, 250)
-    );
-    return ["div.ma2.sans-serif",
-        ["div", `Cells: ${cells.length}`],
-        [canvas,
-            { width: 600, height: 600 },
-            ["g",
-                {
-                    translate: [300, 300],
-                    rotate: (t / 10) % TAU,
-                    stroke: "#000",
-                    weight: 0.25
-                },
-                ...cells]]];
-});
+const main = sync({
+    src: {
+        time: fromInterval(16),
+    }
+}).transform(
+    // root component function
+    map(({ time }) => {
+        time *= 0.1;
+        // create tessellation
+        // resulting array contains Polygon2 values
+        // Polygon2 implements the .toHiccup() method for
+        // auto-conversion during hdom tree normalization
+        const cells = tessellation(
+            time,
+            SUBDIVS,
+            partial(arclengthToHSL, 250)
+        );
+        return ["div.ma2.sans-serif",
+            ["div", `Cells: ${cells.length}`],
+            [canvas,
+                { width: 600, height: 600 },
+                // ["polygon", { stroke: "black" }, vertices(asPolygon(circle([300, 300], 300), 3))],
+                ["g",
+                    {
+                        translate: [300, 300],
+                        // rotate: (time / 10) % TAU,
+                        stroke: "#000",
+                        weight: 0.25
+                    },
+                    ...cells]
+            ]];
+    }),
+    updateDOM()
+);
 
 // HMR handling
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
+    hot && hot.dispose(() => main.done());
 }

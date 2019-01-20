@@ -1,24 +1,29 @@
-import { IVector, Vec3 } from "@thi.ng/vectors";
+import {
+    addW3,
+    dot,
+    magSq,
+    ReadonlyVec,
+    setC3,
+    sub,
+    Vec
+} from "@thi.ng/vectors";
 
 export const toBarycentric =
-    <T extends IVector<T>>
-        (a: Readonly<T>, b: Readonly<T>, c: Readonly<T>, p: Readonly<T>, out = new Vec3()) => {
-
-        const u = b.subNew(a);
-        const v = c.subNew(a);
-        const w = p.subNew(a);
-        const uu = u.magSq();
-        const vv = v.magSq();
-        const uv = u.dot(v);
-        const uw = u.dot(w);
-        const vw = v.dot(w);
+    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, p: ReadonlyVec, out: Vec = []) => {
+        const u = sub([], b, a);
+        const v = sub([], c, a);
+        const w = sub([], p, a);
+        const uu = magSq(u);
+        const vv = magSq(v);
+        const uv = dot(u, v);
+        const uw = dot(u, w);
+        const vw = dot(v, w);
         const d = 1 / (uv * uv - uu * vv);
         const s = d * (uv * vw - vv * uw);
         const t = d * (uv * uw - uu * vw);
-        return out.setS(1 - (s + t), s, t);
+        return setC3(out, 1 - (s + t), s, t);
     };
 
 export const fromBarycentric =
-    <T extends IVector<T>>
-        (a: Readonly<T>, b: Readonly<T>, c: Readonly<T>, p: Readonly<Vec3>, out?: T) =>
-        a.mulNewN(p.x, out).maddN(b, p.y).maddN(c, p.z);
+    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, p: ReadonlyVec, out?: Vec) =>
+        addW3(out, a, b, c, p[0], p[1], p[2]);

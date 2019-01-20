@@ -6,9 +6,11 @@ import {
     TAU
 } from "./api";
 
-export const sincos =
-    (theta: number) =>
-        [Math.sin(theta), Math.cos(theta)];
+export const sincos = (theta: number, n = 1) =>
+    [Math.sin(theta) * n, Math.cos(theta) * n];
+
+export const cossin = (theta: number, n = 1) =>
+    [Math.cos(theta) * n, Math.sin(theta) * n];
 
 export const absTheta =
     (theta: number) =>

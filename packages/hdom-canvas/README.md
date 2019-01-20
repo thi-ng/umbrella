@@ -7,41 +7,42 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
+<!-- TOC depthFrom:2 depthTo:4 -->
 
-- [@thi.ng/hdom-canvas](#thinghdom-canvas)
-    - [About](#about)
-        - [Status](#status)
-    - [Installation](#installation)
-    - [Dependencies](#dependencies)
-    - [Usage examples](#usage-examples)
-    - [How it works](#how-it-works)
-        - [Restrictions & behavior controls](#restrictions--behavior-controls)
-        - [HDPI support](#hdpi-support)
-    - [SVG conversion](#svg-conversion)
-    - [Supported shape types](#supported-shape-types)
-        - [Group](#group)
-        - [Definition group](#definition-group)
-        - [Circle](#circle)
-        - [Rect](#rect)
-        - [Arc](#arc)
-        - [Line](#line)
-        - [Horizontal Line](#horizontal-line)
-        - [Vertical Line](#vertical-line)
-        - [Polyline / Polygon](#polyline--polygon)
-        - [Path](#path)
-        - [Points](#points)
-        - [Text](#text)
-        - [Image](#image)
-        - [Gradients](#gradients)
-    - [Attributes](#attributes)
-    - [Coordinate transformations](#coordinate-transformations)
-        - [Transform matrix](#transform-matrix)
-        - [Translation](#translation)
-        - [Scaling](#scaling)
-        - [Rotation](#rotation)
-    - [Authors](#authors)
-    - [License](#license)
+- [About](#about)
+    - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [How it works](#how-it-works)
+    - [Restrictions & behavior controls](#restrictions--behavior-controls)
+    - [HDPI support](#hdpi-support)
+- [SVG conversion](#svg-conversion)
+- [Supported shape types](#supported-shape-types)
+    - [Group](#group)
+    - [Definition group](#definition-group)
+    - [Circle](#circle)
+    - [Ellipse](#ellipse)
+    - [Rect](#rect)
+    - [Arc](#arc)
+    - [Line](#line)
+    - [Horizontal Line](#horizontal-line)
+    - [Vertical Line](#vertical-line)
+    - [Polyline / Polygon](#polyline--polygon)
+    - [Path](#path)
+        - [SVG paths with arc segments](#svg-paths-with-arc-segments)
+    - [Points](#points)
+    - [Text](#text)
+    - [Image](#image)
+    - [Gradients](#gradients)
+- [Attributes](#attributes)
+- [Coordinate transformations](#coordinate-transformations)
+    - [Transform matrix](#transform-matrix)
+    - [Translation](#translation)
+    - [Scaling](#scaling)
+    - [Rotation](#rotation)
+- [Authors](#authors)
+- [License](#license)
 
 <!-- /TOC -->
 
@@ -94,6 +95,32 @@ start(() => {
 });
 ```
 
+Usage with
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+shape primitives:
+
+```ts
+import { start } from "@thi.ng/hdom";
+import { canvas } from "@thi.ng/hdom-canvas";
+import * as g from "@thi.ng/geom";
+
+start(() => {
+    const t = Date.now() * 0.001;
+    return [canvas, { width: 100, height: 100 },
+        g.group(
+            [
+                g.withAttribs(
+                    g.asPolygon(g.circle(50), 6),
+                    { rotate: t % Math.PI, stroke: "red" }
+                ),
+                g.star(25 + 25 * Math.sin(t), 6, [0.5, 1], { stroke: "blue" }),
+            ],
+            { translate: [50, 50], fill: "none" }
+        )
+    ];
+});
+```
+
 ## How it works
 
 The package provides a `canvas` component which uses the branch-local
@@ -105,8 +132,11 @@ component, but are then translated into canvas API draw commands during
 the hdom update process. Any embedded shape component functions receive
 the user context object as first arg, just like normal hdom components.
 
-Shape components are expressed in standard hiccup syntax, however with
-the following...
+Shape components are expressed in standard hiccup syntax (or as objects
+implementing the `IToHiccup()` interface, like the shape types provided
+by
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)),
+and with the following...
 
 ### Restrictions & behavior controls
 
@@ -236,6 +266,12 @@ used, should always come first in a scene tree.
 ["circle", attribs, [x, y], radius]
 ```
 
+### Ellipse
+
+```ts
+["ellipse", attribs, [x, y], [rx,ry], axisTheta?, start?, end?, ccw?]
+```
+
 ### Rect
 
 ```ts
@@ -250,6 +286,9 @@ clamped to `Math.min(w, h)/2`.
 ```ts
 ["arc", attribs, [x, y], radius, startAngle, endAngle, anticlockwise?]
 ```
+
+Only circular arcs are supported in this format. Please see [note about
+differences to SVG](#svg-paths-with-arc-segments).
 
 ### Line
 
@@ -304,6 +343,27 @@ relative to the end point of the previous segment.
 | `["Q", [x1,y1], [x2, y2]]`           | Quadratic curve      |
 | `["A", [x1,y1], [x2, y2], r]`        | Arc                  |
 | `["Z"]`                              | Close (sub)path      |
+
+#### SVG paths with arc segments
+
+**IMPORTANT:** Due to differences between SVG and canvas API arc
+handling, SVG paths containing arc segments are **NOT** compatible with
+the above format. To draw such paths reliably, these should first be
+converted to use cubics. E.g. here using
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom):
+
+```ts
+import { normalizedPath, pathFromSVG } from "@thi.ng/geom";
+
+// path w/ ac segments
+const a = pathFromSvg("M0,0H80A20,20,0,0,1,100,20V30A20,20,0,0,1,80,50")[0];
+
+// normalized to only use cubic curves
+const b = normalizedPath(a);
+
+asSvg(b);
+// <path d="M0.00,0.00C26.67,0.00,53.33,0.00,80.00,0.00C91.05,0.00,100.00,8.95,100.00,20.00C100.00,23.33,100.00,26.67,100.00,30.00C100.00,41.05,91.05,50.00,80.00,50.00"/>
+```
 
 ### Points
 

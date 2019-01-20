@@ -53,5 +53,14 @@ tx.run(
     ([p, d]) => g.addDependency(p, d),
     packages);
 
-console.log("topo order:", g.sort().map((x) => x.replace("@thi.ng/", "")).join(" "));
-console.log("done");
+
+const sorted = g.sort();
+console.log("topo order:", sorted.map((x) => x.substr(8)).join(" "), "\n\n");
+
+const noprefix = (ids) => [...ids].sort().map((x) => x.substr(8));
+
+sorted.forEach((x) => {
+    console.log(`${x}:`);
+    console.log(`\t<-- ${noprefix(g.transitiveDependencies(x))}`);
+    console.log(`\t--> ${noprefix(g.transitiveDependents(x))}\n\n`);
+});

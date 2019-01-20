@@ -28,7 +28,7 @@ yarn add @thi.ng/defmulti
 
 ## API
 
-### defmulti
+### defmulti()
 
 `defmulti` returns a new multi-dispatch function using the provided
 dispatcher function. The dispatcher acts as a mapping function, can take
@@ -43,9 +43,19 @@ return type) and the generics will also apply to all implementations. If
 more than 8 args are required, `defmulti` will fall back to an untyped
 varargs solution.
 
-Implementations for different dispatch values can be added and removed
-dynamically by calling `.add(id, fn)` or `.remove(id)` on the returned
-function.
+The function returned by `defmulti` can be called like any other
+function, but also exposes the following operations:
+
+- `.add(id, fn)` - adds new implementation for given dispatch value
+- `.remove(id)` - removes implementation for dispatch value
+- `.callable(...args)` - takes same args as if calling the
+  multi-function, but only checks if an implementation exists for the
+  given args. Returns boolean.
+- `.isa(child, parent)` - establish dispatch value relationship hierarchy
+- `.impls()` - returns set of all dispatch values which have an implementation
+- `.rels()` - return all dispatch value relationships
+- `.parents(id)` - direct parents of dispatch value `id`
+- `.ancestors(id)` - transitive parents of dispatch value `id`
 
 #### Dispatch value hierarchies
 
@@ -83,9 +93,15 @@ foo.ancestors(1); // Set { }
 foo.add("odd", (x) => `${x} is odd`);
 foo.add("number", (x) => `${x} is a number`);
 
+// dispatch values w/ implementations
+foo.impls();
+// Set { "odd", "even", "number", "23", "42" }
+
 foo(23); // "23 is odd"
 foo(42); // "42 is a number"
 foo(1);  // error (missing impl & no default)
+
+foo.callable(1) // false
 ```
 
 Same example, but with relationships provided as argument to `defmulti`:
@@ -105,7 +121,63 @@ foo.rels();
 //   even: Set { "number" } }
 ```
 
-### defmultiN
+### implementations()
+
+Syntax-sugar intended for sets of multi-methods sharing same dispatch
+values / logic. Takes a dispatch value, an object of "is-a"
+relationships and a number of multi-methods, each with an implementation
+for the given dispatch value.
+
+The relations object has dispatch values (parents) as keys and arrays of
+multi-methods as their values. For each multi-method associates the
+given `type` with the related parent dispatch value to delegate to its
+implementation (see `.isa()` above).
+
+The remaining implementations are associated with their related
+multi-method and the given `type` dispatch value.
+
+```ts
+foo = defmulti((x) => x.id);
+bar = defmulti((x) => x.id);
+bax = defmulti((x) => x.id);
+baz = defmulti((x) => x.id);
+
+// define impls for dispatch value `a`
+implementations(
+  "a",
+
+  // delegate bax & baz impls to dispatch val `b`
+  {
+     b: [bax, baz]
+  },
+
+  // concrete multi-fn impls
+  foo,
+  (x) => `foo: ${x.val}`,
+  bar,
+  (x) => `bar: ${x.val.toUpperCase()}`
+);
+
+// some parent impls for bax & baz
+bax.add("b", (x) => `bax: ${x.id}`);
+baz.add("c", (x) => `baz: ${x.id}`);
+
+// delegate to use "c" impl for "b"
+baz.isa("b", "c");
+
+foo({ id: "a", val: "alice" }); // "foo: alice"
+bar({ id: "a", val: "alice" }); // "bar: ALICE"
+bax({ id: "a", val: "alice" }); // "bax: a"
+baz({ id: "a", val: "alice" }); // "baz: a"
+
+baz.impls(); // Set { "c", "a", "b" }
+```
+
+Also see the WIP package
+[@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2)
+for a concreate realworld usage example.
+
+### defmultiN()
 
 Returns a multi-dispatch function which delegates to one of the provided
 implementations, based on the arity (number of args) when the function

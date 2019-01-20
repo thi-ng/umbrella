@@ -5,7 +5,7 @@ import { sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { asVec2, Vec2 } from "@thi.ng/vectors";
+import { Vec } from "@thi.ng/vectors";
 
 const app = (main) => {
     // augment hdom-canvas component w/ `init` lifecycle method: this is
@@ -22,7 +22,7 @@ const app = (main) => {
     // initialize 1st point & store in tree for fast KNN searches
     const width = window.innerWidth;
     const height = window.innerHeight;
-    let tree = new KdTree<Vec2, Vec2>(2);
+    let tree = new KdTree<Vec, number>(2);
 
     // return root component function, triggered by each new mouse / touch event
     return ({ mpos }) => {
@@ -34,24 +34,25 @@ const app = (main) => {
         // `trigger()` stream defined further below. that means
         // initially, there will be no valid `mpos` and so we insert a
         // default point instead
-        mpos = mpos ? asVec2(mpos) : new Vec2([width / 2, height / 2, 5]);
+        mpos = mpos || [width / 2, height / 2];
         // record new pos in tree
-        tree.addKey(mpos);
+        tree.add(mpos, 1.5 + Math.random() * 5);
         // even though we only create 2d vectors, we store a 3rd value
         // in the backing array, which will be later used as radius when
         // the point has been selected as part of a KNN query and is
         // visualized as circle.
-        mpos.buf.push(1.5 + Math.random() * 5);
+        // mpos.push(1.5 + Math.random() * 5);
+
         // select max. 200 neighbors for given mouse position,
         // measure execution time...
         let [selected, t1] = timedResult(() =>
-            tree.selectKeys(mpos, 200, width / 4)
+            tree.select(mpos, 200, width / 4)
         );
         // for each selected neighbor, perform another KNN search and
         // create line segments to each of these secondary matches
         // use `mapcat` to yield a flat array of lines
         let [neighbors, t2] = timedResult(() =>
-            [...mapcat((p) => tree.selectKeys(p, 8, width / 4).map((q) => ["line", {}, p, q]), selected)]
+            [...mapcat((p) => tree.selectKeys(p[0], 8, width / 4).map((q) => ["line", {}, p[0], q]), selected)]
         );
         return ["div.overflow-hidden.sans-serif.f7",
             // tree stats
@@ -67,7 +68,7 @@ const app = (main) => {
                 ["points", { fill: "black" }, tree.keys()],
                 // selected points as circles (using 3rd array item as radius)
                 ["g", { fill: "rgba(0,192,255,0.5)" },
-                    ...selected.map((p) => ["circle", {}, p, p.buf[2]])],
+                    ...selected.map((p) => ["circle", {}, p[0], p[1]])],
                 // secondary neighbor connections
                 ["g", { stroke: "rgba(0,0,0,0.25)" },
                     ...neighbors]]];

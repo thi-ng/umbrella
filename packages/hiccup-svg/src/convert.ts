@@ -1,5 +1,9 @@
-import { isArray, isArrayLike } from "@thi.ng/checks";
-import { PathSegment } from "./api";
+import {
+    implementsFunction,
+    isArray,
+    isArrayLike,
+    isString
+} from "@thi.ng/checks";
 import { circle } from "./circle";
 import { ellipse } from "./ellipse";
 import { ff } from "./format";
@@ -9,6 +13,7 @@ import { hline, line, vline } from "./line";
 import { path } from "./path";
 import { points } from "./points";
 import { polygon } from "./polygon";
+import { polyline } from "./polyline";
 import { roundedRect } from "./rect";
 import { text } from "./text";
 
@@ -31,16 +36,20 @@ const TEXT_ALIGN = {
 };
 
 /**
- * Takes a normalized hiccup tree of hdom-canvas shape definitions and
- * recursively converts it into an hiccup flavor which is ready for SVG
- * serialization. This conversion also involves translation & reorg of
- * various attributes. Returns new tree. The original remains untouched,
- * as will any unrecognized tree/shape nodes.
+ * Takes a normalized hiccup tree of thi.ng/geom or thi.ng/hdom-canvas
+ * shape definitions and recursively converts it into an hiccup flavor
+ * which is compatible for SVG serialization. This conversion also
+ * involves translation & reorg of various attributes. Returns new tree.
+ * The original remains untouched, as will any unrecognized tree/shape
+ * nodes.
  *
  * @param tree
  */
 export const convertTree =
-    (tree: any[]): any[] => {
+    (tree: any): any[] => {
+        if (implementsFunction(tree, "toHiccup")) {
+            return convertTree(tree.toHiccup());
+        }
         const type = tree[0];
         if (isArray(type)) {
             return tree.map(convertTree);
@@ -87,7 +96,7 @@ export const convertTree =
                 return ellipse(tree[2], tree[3][0], tree[3][1], attribs);
             case "rect": {
                 const r = tree[5] || 0;
-                return roundedRect(tree[2], tree[3], tree[4], r, r, attribs);
+                return roundedRect(tree[2], tree[3][0], tree[3][1], r, r, attribs);
             }
             case "line":
                 return line(tree[2], tree[3], attribs);
@@ -96,24 +105,11 @@ export const convertTree =
             case "vline":
                 return vline(tree[2], attribs);
             case "polyline":
+                return polyline(tree[2], attribs);
             case "polygon":
                 return polygon(tree[2], attribs);
-            case "path": {
-                let segments: PathSegment[] = [];
-                for (let seg of tree[2]) {
-                    switch (seg[0].toLowerCase()) {
-                        case "s":
-                        case "t":
-                            // TODO compute reflected control point
-                            // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Cubic_B%C3%A9zier_Curve
-                            // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Quadratic_B%C3%A9zier_Curve
-                            break;
-                        default:
-                            segments.push(seg);
-                    }
-                }
-                return path(segments, attribs);
-            }
+            case "path":
+                return path(tree[2], attribs);
             case "text":
                 return text(tree[2], tree[3], attribs);
             case "img":
@@ -148,11 +144,13 @@ const convertAttribs =
                         res["text-anchor"] = TEXT_ALIGN[v];
                         break;
                     case "baseline":
-                    // no SVG support?
+                        // no SVG support?
+                        break;
                     case "filter":
-                    // TODO needs to be translated into <filter> def first
-                    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
-                    // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+                        // TODO needs to be translated into <filter> def first
+                        // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+                        // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+                        break;
                     case "transform":
                     case "translate":
                     case "rotate":
@@ -166,6 +164,23 @@ const convertAttribs =
         return res;
     };
 
+/**
+ * Converts any transformation related attribs, i.e. `transform`,
+ * `rotate`, `scale`, `translate`. If the element has a `transform`
+ * attrib, conversion of the other attribs will be skipped, else the
+ * values are assumed to be either strings or:
+ *
+ * - `transform`: Mat23 or 6-element numeric array
+ * - `translate`: 2-element array
+ * - `rotate`: number (angle in radians)
+ * - `scale`: number (uniform scale) or 2-elem array
+ *
+ * If no `transform` is given, the resulting transformation order will
+ * always be TRS. Any string values given will used as-is and therefore
+ * need to be complete, e.g. `{ rotate: "rotate(60)" }`
+ *
+ * @param attribs
+ */
 const convertTransforms =
     (attribs: any) => {
         const res: any = {};
@@ -175,18 +190,29 @@ const convertTransforms =
             attribs.translate ||
             attribs.scale ||
             attribs.rotate) {
-
-            const tx: string[] = [];
-            (v = attribs.transform) && tx.push(`matrix(${[...v].map(ff).join(" ")})`);
-            (v = attribs.translate) && tx.push(`translate(${ff(v[0])} ${ff(v[1])})`);
-            (v = attribs.rotate) && tx.push(`rotate(${ff(v * 180 / Math.PI)})`);
-            (v = attribs.scale) &&
-                tx.push(
-                    isArrayLike(v) ?
-                        `scale(${ff(v[0])} ${ff(v[1])})` :
-                        `scale(${ff(v)})`
-                );
-            res.transform = tx.join(" ");
+            if (v) {
+                res.transform = !isString(v) ?
+                    `matrix(${[...v].map(ff).join(" ")})` :
+                    v;
+            } else {
+                const tx: string[] = [];
+                if (v = attribs.translate) {
+                    tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
+                }
+                if (v = attribs.rotate) {
+                    tx.push(isString(v) ? v : `rotate(${ff(v * 180 / Math.PI)})`);
+                }
+                if (v = attribs.scale) {
+                    tx.push(
+                        isString(v) ?
+                            v :
+                            isArrayLike(v) ?
+                                `scale(${ff(v[0])} ${ff(v[1])})` :
+                                `scale(${ff(v)})`
+                    );
+                }
+                res.transform = tx.join(" ");
+            }
         }
         return res;
     };
