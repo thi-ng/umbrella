@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration && yarn peg",
-        "build:bundle": "../../scripts/bundle-module pointfree-lang api errors pointfree",
+        "build:bundle": "../../scripts/bundle-module pointfreeLang api errors pointfree",
         "test": "rimraf build && tsc -p test/tsconfig.json && yarn pegtest && nyc mocha build/test/*.js",
         "peg": "pegjs -f es -o parser.js src/grammar.pegjs",
         "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
