@@ -108,16 +108,17 @@ start(() => {
     const t = Date.now() * 0.001;
     return [canvas, { width: 100, height: 100 },
         g.group(
-            { translate: [50,50], fill: "none" },
-            g.withAttribs(
-                g.asPolygon(g.circle(50), 6),
-                { rotate: (Date.now() * 0.01) % (Math.PI * 2), stroke: "red" }
-            ),
-            g.star(25 + 25 * Math.sin(t), 6, [0.5, 1], { stroke: "blue" }),
+            [
+                g.withAttribs(
+                    g.asPolygon(g.circle(50), 6),
+                    { rotate: t % Math.PI, stroke: "red" }
+                ),
+                g.star(25 + 25 * Math.sin(t), 6, [0.5, 1], { stroke: "blue" }),
+            ],
+            { translate: [50, 50], fill: "none" }
         )
     ];
 });
-
 ```
 
 ## How it works
