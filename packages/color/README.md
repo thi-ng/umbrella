@@ -27,10 +27,8 @@ This project is part of the
 ## About
 
 Raw, array-based, color operations, conversions and optional type
-wrappers. The functions provided by this package are largely using the
-same calling convention as those in the
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
-package.
+wrappers, based on
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors).
 
 ### Color spaces / modes
 
@@ -71,7 +69,7 @@ functions). Wrapper factory functions are provided for convenience.
 ### RGBA transformations
 
 RGBA [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/matrix.ts),
+transformations](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/transform.ts),
 including parametric preset transforms:
 
 - brightness
@@ -81,7 +79,7 @@ including parametric preset transforms:
 - hue rotation
 - color temperature (warm / cold)
 - sepia (w/ fade amount)
-- tint (green / purple)
+- tint (green / magenta)
 - grayscale (luminance aware)
 - subtraction/inversion (also available as non-matrix op)
 - luminance to alpha
@@ -195,8 +193,8 @@ import * as col from "@thi.ng/color";
 const a = col.asRGBA(col.css("#3cf"));
 // [0.2, 0.8, 1, 1]
 
-// route #2: parseCSS(): string -> HSLA -> RGBA
-const b = col.parseCss("hsla(30,100%,50%,0.75)", col.ColorMode.RGBA);
+// route #2: parseCSS(): string -> RGBA
+const b = col.parseCss("hsla(30,100%,50%,0.75)");
 // [ 1, 0.5, 0, 0.75 ]
 
 // route #3: convert() multi-method: CSS -> RGBA -> HSVA
@@ -219,7 +217,7 @@ col.transform([], col.saturation(1.25), a)
 // [ 0.07835000000000002, 0.82835, 1, 1 ]
 
 // combine matrix transformations
-filter = col.concatMatrices(
+filter = col.concat(
     col.saturation(0.5), // 50% saturation
     col.brightness(0.1), // +10% brightness
 );
