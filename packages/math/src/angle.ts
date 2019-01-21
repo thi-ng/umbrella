@@ -16,13 +16,13 @@ export const absTheta =
     (theta: number) =>
         (theta %= TAU, theta < 0 ? TAU + theta : theta);
 
+export const absInnerAngle =
+    (x: number) =>
+        (x = Math.abs(x), x > PI ? TAU - x : x);
+
 export const angleDist =
-    (a: number, b: number) => (
-        a = absTheta((b % TAU) - (a % TAU)),
-        a > PI ?
-            TAU - a :
-            a
-    );
+    (a: number, b: number) =>
+        absInnerAngle(absTheta((b % TAU) - (a % TAU)));
 
 export const atan2Abs =
     (y: number, x: number) =>
