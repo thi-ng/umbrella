@@ -22,34 +22,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@0.2.1...@thi.ng/morton@0.2.2) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/morton
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@0.2.0...@thi.ng/morton@0.2.1) (2018-11-20)
-
-**Note:** Version bump only for package @thi.ng/morton
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@0.1.0...@thi.ng/morton@0.2.0) (2018-10-21)
 
 
 ### Features
 
 * **morton:** update/add muxScaled2/3 versions, add error handling ([ac2f3e8](https://github.com/thi-ng/umbrella/commit/ac2f3e8))
-
-
-
 
 
 # 0.1.0 (2018-10-17)

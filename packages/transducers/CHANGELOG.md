@@ -61,73 +61,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [2.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.7...@thi.ng/transducers@2.2.8) (2018-12-27)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 ## [2.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.6...@thi.ng/transducers@2.2.7) (2018-12-17)
 
 
 ### Bug Fixes
 
 * **transducers:** add return type for range() ([0470505](https://github.com/thi-ng/umbrella/commit/0470505))
-
-
-
-
-
-## [2.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.5...@thi.ng/transducers@2.2.6) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [2.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.4...@thi.ng/transducers@2.2.5) (2018-12-13)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [2.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.3...@thi.ng/transducers@2.2.4) (2018-12-08)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [2.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.2...@thi.ng/transducers@2.2.3) (2018-12-01)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [2.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.1...@thi.ng/transducers@2.2.2) (2018-11-08)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [2.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.0...@thi.ng/transducers@2.2.1) (2018-10-21)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
 
 
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.6...@thi.ng/transducers@2.2.0) (2018-10-17)
@@ -153,36 +92,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **transducers:** fix matchLast(), fix & update return match*() types ([823d828](https://github.com/thi-ng/umbrella/commit/823d828))
-
-
-
-
-
-<a name="2.1.5"></a>
-## [2.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.4...@thi.ng/transducers@2.1.5) (2018-09-25)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-<a name="2.1.4"></a>
-## [2.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.3...@thi.ng/transducers@2.1.4) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-<a name="2.1.3"></a>
-## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.2...@thi.ng/transducers@2.1.3) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
 
 
 <a name="2.1.2"></a>
@@ -212,27 +121,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **transducers:** add randomID() ([b488d2b](https://github.com/thi-ng/umbrella/commit/b488d2b))
 
 
-
-
-
-<a name="2.1.2-alpha.0"></a>
-## [2.1.2-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.1...@thi.ng/transducers@2.1.2-alpha.0) (2018-09-17)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-<a name="2.1.1"></a>
-## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.0...@thi.ng/transducers@2.1.1) (2018-09-10)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.4...@thi.ng/transducers@2.1.0) (2018-09-08)
 
@@ -243,41 +131,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **transducers:** rename window() => slidingWindow(), update readme ([1f22867](https://github.com/thi-ng/umbrella/commit/1f22867))
 * **transducers:** update partitionSync() xform & PartitionSyncOpts ([d8fdc01](https://github.com/thi-ng/umbrella/commit/d8fdc01))
 
-
-
-
-
-<a name="2.0.4"></a>
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.3...@thi.ng/transducers@2.0.4) (2018-09-06)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="2.0.3"></a>
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.2...@thi.ng/transducers@2.0.3) (2018-09-03)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="2.0.2"></a>
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.1...@thi.ng/transducers@2.0.2) (2018-09-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="2.0.1"></a>
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.0...@thi.ng/transducers@2.0.1) (2018-08-24)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.16.0...@thi.ng/transducers@2.0.0) (2018-08-24)
@@ -350,32 +203,6 @@ options object
 * **transducers:** add peek() helper fn ([e50fd10](https://github.com/thi-ng/umbrella/commit/e50fd10))
 
 
-
-
-<a name="1.14.3"></a>
-## [1.14.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.2...@thi.ng/transducers@1.14.3) (2018-08-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.14.2"></a>
-## [1.14.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.1...@thi.ng/transducers@1.14.2) (2018-07-25)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.14.1"></a>
-## [1.14.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.0...@thi.ng/transducers@1.14.1) (2018-07-20)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.14.0"></a>
 # [1.14.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.13.0...@thi.ng/transducers@1.14.0) (2018-07-19)
 
@@ -414,16 +241,6 @@ options object
 * **transducers:** revert mean() from regression introduced in 095e6ef ([03543ee](https://github.com/thi-ng/umbrella/commit/03543ee))
 
 
-
-
-<a name="1.12.1"></a>
-## [1.12.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.0...@thi.ng/transducers@1.12.1) (2018-07-09)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.12.0"></a>
 # [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.11.1...@thi.ng/transducers@1.12.0) (2018-07-03)
 
@@ -433,16 +250,6 @@ options object
 * **transducers:** add ensureArray(), refactor reverse() ([677c7cc](https://github.com/thi-ng/umbrella/commit/677c7cc))
 
 
-
-
-<a name="1.11.1"></a>
-## [1.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.11.0...@thi.ng/transducers@1.11.1) (2018-06-21)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.11.0"></a>
 # [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.10.3...@thi.ng/transducers@1.11.0) (2018-06-19)
 
@@ -451,32 +258,6 @@ options object
 
 * **transducers:** add matchFirst()/matchLast() xforms, update readme ([bc261e5](https://github.com/thi-ng/umbrella/commit/bc261e5))
 
-
-
-
-<a name="1.10.3"></a>
-## [1.10.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.10.2...@thi.ng/transducers@1.10.3) (2018-06-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.10.2"></a>
-## [1.10.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.10.1...@thi.ng/transducers@1.10.2) (2018-05-14)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.10.1"></a>
-## [1.10.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.10.0...@thi.ng/transducers@1.10.1) (2018-05-14)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.4...@thi.ng/transducers@1.10.0) (2018-05-14)
@@ -488,40 +269,6 @@ options object
 * **transducers:** add wrap*() iterators ([306625d](https://github.com/thi-ng/umbrella/commit/306625d))
 
 
-
-
-<a name="1.9.4"></a>
-## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.3...@thi.ng/transducers@1.9.4) (2018-05-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.9.3"></a>
-## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.2...@thi.ng/transducers@1.9.3) (2018-05-12)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.9.2"></a>
-## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.1...@thi.ng/transducers@1.9.2) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.9.1"></a>
-## [1.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.0...@thi.ng/transducers@1.9.1) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.6...@thi.ng/transducers@1.9.0) (2018-05-10)
 
@@ -530,48 +277,6 @@ options object
 
 * **transducers:** add normRange() iterator ([55f29b8](https://github.com/thi-ng/umbrella/commit/55f29b8))
 
-
-
-
-<a name="1.8.6"></a>
-## [1.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.5...@thi.ng/transducers@1.8.6) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.8.5"></a>
-## [1.8.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.4...@thi.ng/transducers@1.8.5) (2018-05-09)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.8.4"></a>
-## [1.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.3...@thi.ng/transducers@1.8.4) (2018-04-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.8.3"></a>
-## [1.8.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.2...@thi.ng/transducers@1.8.3) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.8.2"></a>
-## [1.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.1...@thi.ng/transducers@1.8.2) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.0...@thi.ng/transducers@1.8.1) (2018-04-18)
@@ -594,48 +299,6 @@ options object
 * **transducers:** add run() for executing side effects only, update readme ([52c7508](https://github.com/thi-ng/umbrella/commit/52c7508))
 
 
-
-
-<a name="1.7.5"></a>
-## [1.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.4...@thi.ng/transducers@1.7.5) (2018-04-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.7.4"></a>
-## [1.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.3...@thi.ng/transducers@1.7.4) (2018-04-04)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.7.3"></a>
-## [1.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.2...@thi.ng/transducers@1.7.3) (2018-04-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.7.2"></a>
-## [1.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.1...@thi.ng/transducers@1.7.2) (2018-03-28)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.7.1"></a>
-## [1.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.0...@thi.ng/transducers@1.7.1) (2018-03-21)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.6.2...@thi.ng/transducers@1.7.0) (2018-03-19)
 
@@ -645,24 +308,6 @@ options object
 * **transducers:** add mapVals() xform ([abc195a](https://github.com/thi-ng/umbrella/commit/abc195a))
 * **transducers:** add partitionSync() xform ([bebd118](https://github.com/thi-ng/umbrella/commit/bebd118))
 
-
-
-
-<a name="1.6.2"></a>
-## [1.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.6.1...@thi.ng/transducers@1.6.2) (2018-03-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.6.1"></a>
-## [1.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.6.0...@thi.ng/transducers@1.6.1) (2018-03-03)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.5.1...@thi.ng/transducers@1.6.0) (2018-03-03)
@@ -746,16 +391,6 @@ options object
 * **transducers:** add page() xform, update readme ([855d803](https://github.com/thi-ng/umbrella/commit/855d803))
 
 
-
-
-<a name="1.0.7"></a>
-## [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.6...@thi.ng/transducers@1.0.7) (2018-02-02)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.5...@thi.ng/transducers@1.0.6) (2018-02-01)
 
@@ -765,32 +400,6 @@ options object
 * **transducers:** update comp() for typescript 2.7.* ([febe39f](https://github.com/thi-ng/umbrella/commit/febe39f))
 
 
-
-
-<a name="1.0.5"></a>
-## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.4...@thi.ng/transducers@1.0.5) (2018-01-31)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.0.4"></a>
-## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.3...@thi.ng/transducers@1.0.4) (2018-01-30)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-<a name="1.0.3"></a>
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.2...@thi.ng/transducers@1.0.3) (2018-01-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
-
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.1...@thi.ng/transducers@1.0.2) (2018-01-29)
 
@@ -799,16 +408,6 @@ options object
 
 * **transducers:** avoid result object cloning in struct() xform ([d774e32](https://github.com/thi-ng/umbrella/commit/d774e32))
 
-
-
-
-<a name="1.0.1"></a>
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.0...@thi.ng/transducers@1.0.1) (2018-01-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@0.11.2...@thi.ng/transducers@1.0.0) (2018-01-28)

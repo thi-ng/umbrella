@@ -27,105 +27,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [1.4.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.11...@thi.ng/vectors@1.4.12) (2019-01-02)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.10...@thi.ng/vectors@1.4.11) (2018-12-29)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.9...@thi.ng/vectors@1.4.10) (2018-12-28)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.8...@thi.ng/vectors@1.4.9) (2018-12-27)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.7...@thi.ng/vectors@1.4.8) (2018-12-17)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.6...@thi.ng/vectors@1.4.7) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.5...@thi.ng/vectors@1.4.6) (2018-12-13)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.4...@thi.ng/vectors@1.4.5) (2018-12-08)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.3...@thi.ng/vectors@1.4.4) (2018-12-01)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.2...@thi.ng/vectors@1.4.3) (2018-11-20)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.1...@thi.ng/vectors@1.4.2) (2018-11-08)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.0...@thi.ng/vectors@1.4.1) (2018-10-21)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.3.0...@thi.ng/vectors@1.4.0) (2018-10-17)
 
 
@@ -149,26 +50,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **vectors:** add vector ops codegen, update basic vec2/3/4 ops ([#51](https://github.com/thi-ng/umbrella/issues/51)) ([b5ed254](https://github.com/thi-ng/umbrella/commit/b5ed254))
-
-
-
-
-
-<a name="1.2.2"></a>
-## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.2.1...@thi.ng/vectors@1.2.2) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-<a name="1.2.1"></a>
-## [1.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.2.0...@thi.ng/vectors@1.2.1) (2018-09-22)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
 
 
 
@@ -225,16 +106,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add Vec*.intoBuffer() impls ([16aa0c4](https://github.com/thi-ng/umbrella/commit/16aa0c4))
 
 
-
-
-<a name="0.5.3"></a>
-## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.5.2...@thi.ng/vectors@0.5.3) (2018-09-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/vectors
-
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.5.1...@thi.ng/vectors@0.5.2) (2018-09-01)
 
@@ -243,16 +114,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **vectors:** add missing deps ([d2b4faf](https://github.com/thi-ng/umbrella/commit/d2b4faf))
 
-
-
-
-<a name="0.5.1"></a>
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.5.0...@thi.ng/vectors@0.5.1) (2018-08-31)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.4.0...@thi.ng/vectors@0.5.0) (2018-08-30)
@@ -286,16 +147,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add mix1(), minor cleanups ([cfb2b74](https://github.com/thi-ng/umbrella/commit/cfb2b74))
 
 
-
-
-<a name="0.2.1"></a>
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.2.0...@thi.ng/vectors@0.2.1) (2018-08-24)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/vectors
-
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.3...@thi.ng/vectors@0.2.0) (2018-08-02)
 
@@ -306,16 +157,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add toCylindrical3() / fromCylindrical3() ([74f939c](https://github.com/thi-ng/umbrella/commit/74f939c))
 * **vectors:** make Vec2/3/4 array-like, add IEquiv impls, add tests ([3039a35](https://github.com/thi-ng/umbrella/commit/3039a35))
 
-
-
-
-<a name="0.1.3"></a>
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.2...@thi.ng/vectors@0.1.3) (2018-08-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.1...@thi.ng/vectors@0.1.2) (2018-07-30)

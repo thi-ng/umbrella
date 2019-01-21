@@ -27,17 +27,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.7.0...@thi.ng/strings@0.7.1) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.6.0...@thi.ng/strings@0.7.0) (2018-12-13)
 
 
@@ -62,25 +51,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **strings:** add configurable units() HOF & presets ([33e915b](https://github.com/thi-ng/umbrella/commit/33e915b))
 
 
-
-
-
-## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.5.1...@thi.ng/strings@0.5.2) (2018-10-21)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.5.0...@thi.ng/strings@0.5.1) (2018-10-17)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.3...@thi.ng/strings@0.5.0) (2018-09-25)
 
@@ -101,52 +71,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **strings:** rename number parsers ([8cbfb97](https://github.com/thi-ng/umbrella/commit/8cbfb97))
 
-
-
-
-
-<a name="0.4.2"></a>
-## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.1...@thi.ng/strings@0.4.2) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-<a name="0.4.1"></a>
-## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.4.0...@thi.ng/strings@0.4.1) (2018-09-22)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-<a name="0.3.3"></a>
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.3.2...@thi.ng/strings@0.3.3) (2018-09-10)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-<a name="0.3.2"></a>
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.3.1...@thi.ng/strings@0.3.2) (2018-09-06)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/strings
-
-<a name="0.3.1"></a>
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.3.0...@thi.ng/strings@0.3.1) (2018-09-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/strings
 
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@0.2.0...@thi.ng/strings@0.3.0) (2018-08-24)

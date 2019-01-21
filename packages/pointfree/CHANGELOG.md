@@ -22,141 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [0.8.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.14...@thi.ng/pointfree@0.8.15) (2018-12-27)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [0.8.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.13...@thi.ng/pointfree@0.8.14) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [0.8.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.12...@thi.ng/pointfree@0.8.13) (2018-12-08)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [0.8.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.11...@thi.ng/pointfree@0.8.12) (2018-10-21)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [0.8.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.10...@thi.ng/pointfree@0.8.11) (2018-10-17)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-<a name="0.8.10"></a>
-## [0.8.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.9...@thi.ng/pointfree@0.8.10) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-<a name="0.8.9"></a>
-## [0.8.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.9-alpha.0...@thi.ng/pointfree@0.8.9) (2018-09-22)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-<a name="0.8.9-alpha.0"></a>
-## [0.8.9-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.8...@thi.ng/pointfree@0.8.9-alpha.0) (2018-09-17)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-<a name="0.8.8"></a>
-## [0.8.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.7...@thi.ng/pointfree@0.8.8) (2018-09-10)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-<a name="0.8.7"></a>
-## [0.8.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.6...@thi.ng/pointfree@0.8.7) (2018-08-24)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.8.6"></a>
-## [0.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.5...@thi.ng/pointfree@0.8.6) (2018-08-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.8.5"></a>
-## [0.8.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.4...@thi.ng/pointfree@0.8.5) (2018-07-20)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.8.4"></a>
-## [0.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.3...@thi.ng/pointfree@0.8.4) (2018-06-21)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.8.3"></a>
-## [0.8.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.2...@thi.ng/pointfree@0.8.3) (2018-06-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.8.2"></a>
-## [0.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.1...@thi.ng/pointfree@0.8.2) (2018-05-14)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.8.1"></a>
-## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.8.0...@thi.ng/pointfree@0.8.1) (2018-05-14)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.10...@thi.ng/pointfree@0.8.0) (2018-05-13)
 
@@ -165,16 +30,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **pointfree:** add execjs for host calls, update readme ([373701b](https://github.com/thi-ng/umbrella/commit/373701b))
 
-
-
-
-<a name="0.7.10"></a>
-## [0.7.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.9...@thi.ng/pointfree@0.7.10) (2018-05-12)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
 
 <a name="0.7.9"></a>
 ## [0.7.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.8...@thi.ng/pointfree@0.7.9) (2018-05-10)
@@ -185,72 +40,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **pointfree:** minor update error handling ([5391d98](https://github.com/thi-ng/umbrella/commit/5391d98))
 
 
-
-
-<a name="0.7.8"></a>
-## [0.7.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.7...@thi.ng/pointfree@0.7.8) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.7"></a>
-## [0.7.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.6...@thi.ng/pointfree@0.7.7) (2018-05-09)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.6"></a>
-## [0.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.5...@thi.ng/pointfree@0.7.6) (2018-04-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.5"></a>
-## [0.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.4...@thi.ng/pointfree@0.7.5) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.4"></a>
-## [0.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.3...@thi.ng/pointfree@0.7.4) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.3"></a>
-## [0.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.2...@thi.ng/pointfree@0.7.3) (2018-04-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.2"></a>
-## [0.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.1...@thi.ng/pointfree@0.7.2) (2018-04-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-<a name="0.7.1"></a>
-## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.7.0...@thi.ng/pointfree@0.7.1) (2018-04-04)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.6.2...@thi.ng/pointfree@0.7.0) (2018-04-03)
 
@@ -260,16 +49,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **pointfree:** add copy() word ([68a8dba](https://github.com/thi-ng/umbrella/commit/68a8dba))
 * **pointfree:** add math ops, update load/loadkey, update tests ([2101e92](https://github.com/thi-ng/umbrella/commit/2101e92))
 
-
-
-
-<a name="0.6.2"></a>
-## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.6.1...@thi.ng/pointfree@0.6.2) (2018-04-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree
 
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@0.6.0...@thi.ng/pointfree@0.6.1) (2018-03-31)

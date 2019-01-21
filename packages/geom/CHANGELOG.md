@@ -22,106 +22,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.10...@thi.ng/geom@0.2.11) (2019-01-02)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.9...@thi.ng/geom@0.2.10) (2018-12-29)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.8...@thi.ng/geom@0.2.9) (2018-12-28)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.7...@thi.ng/geom@0.2.8) (2018-12-27)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.6...@thi.ng/geom@0.2.7) (2018-12-17)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.5...@thi.ng/geom@0.2.6) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.4...@thi.ng/geom@0.2.5) (2018-12-13)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.3...@thi.ng/geom@0.2.4) (2018-12-08)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.2...@thi.ng/geom@0.2.3) (2018-12-01)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.1...@thi.ng/geom@0.2.2) (2018-11-20)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.0...@thi.ng/geom@0.2.1) (2018-11-08)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.1.0...@thi.ng/geom@0.2.0) (2018-10-21)
 
 
 ### Features
 
 * **geom:** add IToCubic, add/update impls ([ce131d4](https://github.com/thi-ng/umbrella/commit/ce131d4))
-
-
-
 
 
 # 0.1.0 (2018-10-17)

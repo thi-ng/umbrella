@@ -22,61 +22,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.3.0...@thi.ng/bench@0.3.1) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.4...@thi.ng/bench@0.3.0) (2018-10-21)
 
 
 ### Features
 
 * **bench:** add timedResult() / benchResult() ([0cf708f](https://github.com/thi-ng/umbrella/commit/0cf708f))
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.3...@thi.ng/bench@0.2.4) (2018-10-17)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-<a name="0.2.3"></a>
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.2...@thi.ng/bench@0.2.3) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-<a name="0.2.2"></a>
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.1...@thi.ng/bench@0.2.2) (2018-09-22)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-<a name="0.2.1"></a>
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.2.0...@thi.ng/bench@0.2.1) (2018-09-10)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
 
 
 <a name="0.2.0"></a>
@@ -87,48 +38,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **bench:** add opt prefix arg, update docs ([4a37367](https://github.com/thi-ng/umbrella/commit/4a37367))
 
-
-
-
-<a name="0.1.5"></a>
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.1.4...@thi.ng/bench@0.1.5) (2018-08-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/bench
-
-<a name="0.1.4"></a>
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.1.3...@thi.ng/bench@0.1.4) (2018-07-20)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/bench
-
-<a name="0.1.3"></a>
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.1.2...@thi.ng/bench@0.1.3) (2018-06-21)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/bench
-
-<a name="0.1.2"></a>
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.1.1...@thi.ng/bench@0.1.2) (2018-06-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/bench
-
-<a name="0.1.1"></a>
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@0.1.0...@thi.ng/bench@0.1.1) (2018-05-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/bench
 
 <a name="0.1.0"></a>
 # 0.1.0 (2018-05-10)

@@ -22,84 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [1.5.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.13...@thi.ng/checks@1.5.14) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [1.5.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.12...@thi.ng/checks@1.5.13) (2018-10-21)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [1.5.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.11...@thi.ng/checks@1.5.12) (2018-10-17)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-<a name="1.5.11"></a>
-## [1.5.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.10...@thi.ng/checks@1.5.11) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-<a name="1.5.10"></a>
-## [1.5.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.9...@thi.ng/checks@1.5.10) (2018-09-22)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-<a name="1.5.8"></a>
-## [1.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.7...@thi.ng/checks@1.5.8) (2018-09-10)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-<a name="1.5.7"></a>
-## [1.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.6...@thi.ng/checks@1.5.7) (2018-08-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.5.6"></a>
-## [1.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.5...@thi.ng/checks@1.5.6) (2018-07-20)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.5.5"></a>
-## [1.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.4...@thi.ng/checks@1.5.5) (2018-06-21)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
 <a name="1.5.4"></a>
 ## [1.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.3...@thi.ng/checks@1.5.4) (2018-06-18)
 
@@ -108,24 +30,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **checks:** isOdd() for negative values ([3589e15](https://github.com/thi-ng/umbrella/commit/3589e15))
 
-
-
-
-<a name="1.5.3"></a>
-## [1.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.2...@thi.ng/checks@1.5.3) (2018-05-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.5.2"></a>
-## [1.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.1...@thi.ng/checks@1.5.2) (2018-05-09)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
 
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.5.0...@thi.ng/checks@1.5.1) (2018-04-29)
@@ -137,8 +41,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **checks:** return type isMap() ([76920f7](https://github.com/thi-ng/umbrella/commit/76920f7))
 
 
-
-
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.4.0...@thi.ng/checks@1.5.0) (2018-04-26)
 
@@ -146,8 +48,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **checks:** add date, map, nan, set checks ([a865f62](https://github.com/thi-ng/umbrella/commit/a865f62))
-
-
 
 
 <a name="1.4.0"></a>
@@ -159,8 +59,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **checks:** add hasPerformance() check (performance.now) ([40d706b](https://github.com/thi-ng/umbrella/commit/40d706b))
 
 
-
-
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.3.1...@thi.ng/checks@1.3.2) (2018-04-04)
 
@@ -169,16 +67,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **checks:** add prototype check for isPlainObject(), add tests ([bffc443](https://github.com/thi-ng/umbrella/commit/bffc443))
 
-
-
-
-<a name="1.3.1"></a>
-## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.3.0...@thi.ng/checks@1.3.1) (2018-04-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
 
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.2.1...@thi.ng/checks@1.3.0) (2018-03-08)
@@ -189,16 +77,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **checks:** add isPromise() & isPromiseLike() ([9900e99](https://github.com/thi-ng/umbrella/commit/9900e99))
 
 
-
-
-<a name="1.2.1"></a>
-## [1.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.2.0...@thi.ng/checks@1.2.1) (2018-02-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.1.6...@thi.ng/checks@1.2.0) (2018-02-08)
 
@@ -206,46 +84,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **checks:** add new predicates, refactor existing ([68f8fc2](https://github.com/thi-ng/umbrella/commit/68f8fc2))
-
-
-
-
-<a name="1.1.6"></a>
-## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.1.5...@thi.ng/checks@1.1.6) (2018-02-02)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.1.5"></a>
-## [1.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.1.4...@thi.ng/checks@1.1.5) (2018-02-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.1.4"></a>
-## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.1.3...@thi.ng/checks@1.1.4) (2018-01-30)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.1.3"></a>
-## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.1.2...@thi.ng/checks@1.1.3) (2018-01-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks
-
-<a name="1.1.2"></a>
-## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@1.1.1...@thi.ng/checks@1.1.2) (2018-01-28)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/checks

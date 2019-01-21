@@ -22,69 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   all unused imported symbols.
 
 
-
-
-
-## [3.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.15...@thi.ng/resolve-map@3.0.16) (2018-12-15)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [3.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.14...@thi.ng/resolve-map@3.0.15) (2018-10-21)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [3.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.13...@thi.ng/resolve-map@3.0.14) (2018-10-17)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-<a name="3.0.13"></a>
-## [3.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.12...@thi.ng/resolve-map@3.0.13) (2018-09-24)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-<a name="3.0.12"></a>
-## [3.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.12-alpha.0...@thi.ng/resolve-map@3.0.12) (2018-09-22)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-<a name="3.0.12-alpha.0"></a>
-## [3.0.12-alpha.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.11...@thi.ng/resolve-map@3.0.12-alpha.0) (2018-09-17)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-<a name="3.0.11"></a>
-## [3.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.10...@thi.ng/resolve-map@3.0.11) (2018-09-10)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
 <a name="3.0.10"></a>
 ## [3.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.9...@thi.ng/resolve-map@3.0.10) (2018-09-01)
 
@@ -94,40 +31,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **resolve-map:** deep resolve of yet unknown path values ([a710453](https://github.com/thi-ng/umbrella/commit/a710453))
 
 
-
-
-  <a name="3.0.9"></a>
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.8...@thi.ng/resolve-map@3.0.9) (2018-08-30)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="3.0.8"></a>
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.7...@thi.ng/resolve-map@3.0.8) (2018-08-24)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="3.0.7"></a>
-## [3.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.6...@thi.ng/resolve-map@3.0.7) (2018-08-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="3.0.6"></a>
-## [3.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.5...@thi.ng/resolve-map@3.0.6) (2018-07-20)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
 <a name="3.0.5"></a>
 ## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.4...@thi.ng/resolve-map@3.0.5) (2018-07-15)
 
@@ -136,40 +39,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **resolve-map:** add support for alt ES6 destructure form `{a: b}` ([2482945](https://github.com/thi-ng/umbrella/commit/2482945))
 
-
-
-
-<a name="3.0.4"></a>
-## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.3...@thi.ng/resolve-map@3.0.4) (2018-07-11)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="3.0.3"></a>
-## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.2...@thi.ng/resolve-map@3.0.3) (2018-07-04)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="3.0.2"></a>
-## [3.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.1...@thi.ng/resolve-map@3.0.2) (2018-06-21)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="3.0.1"></a>
-## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@3.0.0...@thi.ng/resolve-map@3.0.1) (2018-06-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
 
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.6...@thi.ng/resolve-map@3.0.0) (2018-06-07)
@@ -198,48 +67,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **resolve-map:** also use _resolvePath for plain lookups, optimize ([48c796f](https://github.com/thi-ng/umbrella/commit/48c796f))
 
 
-
-
-<a name="2.0.5"></a>
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.4...@thi.ng/resolve-map@2.0.5) (2018-05-14)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="2.0.4"></a>
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.3...@thi.ng/resolve-map@2.0.4) (2018-05-14)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="2.0.3"></a>
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.2...@thi.ng/resolve-map@2.0.3) (2018-05-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="2.0.2"></a>
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.1...@thi.ng/resolve-map@2.0.2) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="2.0.1"></a>
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@2.0.0...@thi.ng/resolve-map@2.0.1) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.5...@thi.ng/resolve-map@2.0.0) (2018-05-09)
 
@@ -257,48 +84,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - all path segments must be separated by `/`
 - update readme & tests
 
-
-
-
-<a name="1.0.5"></a>
-## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.4...@thi.ng/resolve-map@1.0.5) (2018-05-09)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="1.0.4"></a>
-## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.3...@thi.ng/resolve-map@1.0.4) (2018-04-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="1.0.3"></a>
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.2...@thi.ng/resolve-map@1.0.3) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="1.0.2"></a>
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.1...@thi.ng/resolve-map@1.0.2) (2018-04-19)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="1.0.1"></a>
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@1.0.0...@thi.ng/resolve-map@1.0.1) (2018-04-17)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
 
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.2.0...@thi.ng/resolve-map@1.0.0) (2018-04-16)
@@ -321,8 +106,6 @@ absolute paths were allowed)
 - add support for "../" ancestor access
 
 
-
-
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.7...@thi.ng/resolve-map@0.2.0) (2018-04-16)
 
@@ -330,62 +113,3 @@ absolute paths were allowed)
 ### Features
 
 * **resolve-map:** resolve each ref only once, re-use resolved results ([6992e82](https://github.com/thi-ng/umbrella/commit/6992e82))
-
-
-
-
-<a name="0.1.7"></a>
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.6...@thi.ng/resolve-map@0.1.7) (2018-04-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="0.1.6"></a>
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.5...@thi.ng/resolve-map@0.1.6) (2018-04-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="0.1.5"></a>
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.4...@thi.ng/resolve-map@0.1.5) (2018-04-04)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="0.1.4"></a>
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.3...@thi.ng/resolve-map@0.1.4) (2018-04-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="0.1.3"></a>
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.2...@thi.ng/resolve-map@0.1.3) (2018-03-28)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="0.1.2"></a>
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.1...@thi.ng/resolve-map@0.1.2) (2018-03-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-<a name="0.1.1"></a>
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@0.1.0...@thi.ng/resolve-map@0.1.1) (2018-03-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/resolve-map
