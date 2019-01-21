@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.76...@thi.ng/rstream-log@2.0.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **rstream-log:** remove __Level reverse enum lookup, update Level (non const) ([d89f28f](https://github.com/thi-ng/umbrella/commit/d89f28f))
+
+
+### Build System
+
+* update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84))
+
+
+### BREAKING CHANGES
+
+* enable multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols
+
+
+
+
+
 ## [1.0.76](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@1.0.75...@thi.ng/rstream-log@1.0.76) (2019-01-02)
 
 **Note:** Version bump only for package @thi.ng/rstream-log

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.4...@thi.ng/api@5.0.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **api:** update assert(), re-export mixin() ([9f91cfa](https://github.com/thi-ng/umbrella/commit/9f91cfa))
+
+
+### Build System
+
+* **api:** update package build scripts / outputs ([f913d7b](https://github.com/thi-ng/umbrella/commit/f913d7b))
+
+
+### Features
+
+* **api:** add assert() ([d381ace](https://github.com/thi-ng/umbrella/commit/d381ace))
+
+
+### BREAKING CHANGES
+
+* **api:** rename mixins to avoid name clashes, update decorators
+
+- append `Mixin` suffix to all mixins (i.e. `INotify` => `INotifyMixin`)
+- update re-exports of mixins & decorators (no more nested child namespace)
+
+
+
+
+
 ## [4.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.3...@thi.ng/api@4.2.4) (2018-12-15)
 
 **Note:** Version bump only for package @thi.ng/api

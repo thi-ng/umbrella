@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.12...@thi.ng/vectors@2.0.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **vectors:** fix NaNs in Mat23.scaleWithCenter ([92bce73](https://github.com/thi-ng/umbrella/commit/92bce73))
+
+
+### Build System
+
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+
+
+### BREAKING CHANGES
+
+* enabled multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
+
+
+
+
+
 ## [1.4.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.11...@thi.ng/vectors@1.4.12) (2019-01-02)
 
 **Note:** Version bump only for package @thi.ng/vectors

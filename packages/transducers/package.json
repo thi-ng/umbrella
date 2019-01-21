@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers",
-    "version": "2.3.2",
+    "version": "3.0.0",
     "description": "Lightweight transducer implementations for ES6 / TypeScript",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,13 +32,13 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.4",
-        "@thi.ng/checks": "^1.5.14",
-        "@thi.ng/compare": "^0.1.12",
-        "@thi.ng/compose": "^0.3.0",
-        "@thi.ng/equiv": "^0.1.15",
-        "@thi.ng/errors": "^0.1.12",
-        "@thi.ng/strings": "^0.7.1"
+        "@thi.ng/api": "^5.0.0",
+        "@thi.ng/checks": "^2.0.0",
+        "@thi.ng/compare": "^1.0.0",
+        "@thi.ng/compose": "^1.0.0",
+        "@thi.ng/equiv": "^1.0.0",
+        "@thi.ng/errors": "^1.0.0",
+        "@thi.ng/strings": "^1.0.0"
     },
     "keywords": [
         "array",

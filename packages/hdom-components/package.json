@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-components",
-    "version": "2.4.6",
+    "version": "3.0.0",
     "description": "Raw, skinnable UI & SVG components for @thi.ng/hdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,11 +32,11 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.4",
-        "@thi.ng/checks": "^1.5.14",
-        "@thi.ng/math": "^0.2.2",
-        "@thi.ng/transducers": "^2.3.2",
-        "@thi.ng/transducers-stats": "^0.4.23",
+        "@thi.ng/api": "^5.0.0",
+        "@thi.ng/checks": "^2.0.0",
+        "@thi.ng/math": "^1.0.0",
+        "@thi.ng/transducers": "^3.0.0",
+        "@thi.ng/transducers-stats": "^1.0.0",
         "@types/webgl2": "^0.0.4"
     },
     "keywords": [

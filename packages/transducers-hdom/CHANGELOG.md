@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.16...@thi.ng/transducers-hdom@2.0.0) (2019-01-21)
+
+
+### Build System
+
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+* update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84))
+
+
+### BREAKING CHANGES
+
+* enable multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols
+* enabled multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
+
+
+
+
+
 ## [1.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.15...@thi.ng/transducers-hdom@1.2.16) (2019-01-02)
 
 **Note:** Version bump only for package @thi.ng/transducers-hdom

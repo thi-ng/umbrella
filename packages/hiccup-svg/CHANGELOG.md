@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@2.0.10...@thi.ng/hiccup-svg@3.0.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** convert path arc segment axis theta to degrees ([370f928](https://github.com/thi-ng/umbrella/commit/370f928))
+
+
+### Build System
+
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+
+
+### Features
+
+* **hiccup-svg:** add ellipse shape type, update convert() ([a39811c](https://github.com/thi-ng/umbrella/commit/a39811c))
+* **hiccup-svg:** add toHiccup() support in convertTree() ([e197f90](https://github.com/thi-ng/umbrella/commit/e197f90))
+
+
+### Reverts
+
+* **hiccup-svg:** undo merge mistake in convert.ts ([82f8ef2](https://github.com/thi-ng/umbrella/commit/82f8ef2))
+
+
+### BREAKING CHANGES
+
+* enabled multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
+
+
+
+
+
 ## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@2.0.9...@thi.ng/hiccup-svg@2.0.10) (2018-12-20)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

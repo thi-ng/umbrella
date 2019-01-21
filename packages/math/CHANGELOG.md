@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.2...@thi.ng/math@1.0.0) (2019-01-21)
+
+
+### Build System
+
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+
+
+### Features
+
+* **math:** add absInnerAngle() ([a78bd87](https://github.com/thi-ng/umbrella/commit/a78bd87))
+* **math:** add constants ([8fa05c3](https://github.com/thi-ng/umbrella/commit/8fa05c3))
+* **math:** add cossin(), add opt scale arg for sincos() ([0043fb5](https://github.com/thi-ng/umbrella/commit/0043fb5))
+* **math:** update eqDelta w/ adaptive eps, rename old => eqDeltaFixed ([5018009](https://github.com/thi-ng/umbrella/commit/5018009))
+
+
+### BREAKING CHANGES
+
+* enabled multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
+
+
+
+
+
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.1...@thi.ng/math@0.2.2) (2018-12-15)
 
 **Note:** Version bump only for package @thi.ng/math

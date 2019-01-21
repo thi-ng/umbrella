@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-markdown",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "description": "Markdown serialization of hiccup DOM trees",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,13 +32,13 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/checks": "^1.5.14",
-        "@thi.ng/defmulti": "^0.7.0",
-        "@thi.ng/errors": "^0.1.12",
-        "@thi.ng/fsm": "^0.1.0",
-        "@thi.ng/hiccup": "^2.7.2",
-        "@thi.ng/strings": "^0.7.1",
-        "@thi.ng/transducers": "^2.3.2"
+        "@thi.ng/checks": "^2.0.0",
+        "@thi.ng/defmulti": "^1.0.0",
+        "@thi.ng/errors": "^1.0.0",
+        "@thi.ng/fsm": "^1.0.0",
+        "@thi.ng/hiccup": "^3.0.0",
+        "@thi.ng/strings": "^1.0.0",
+        "@thi.ng/transducers": "^3.0.0"
     },
     "keywords": [
         "ES6",

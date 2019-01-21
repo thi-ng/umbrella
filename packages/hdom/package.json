@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "6.1.0",
+    "version": "7.0.0",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -24,7 +24,7 @@
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^1.5.8",
+        "@thi.ng/atom": "^2.0.0",
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
@@ -33,12 +33,12 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.4",
-        "@thi.ng/checks": "^1.5.14",
-        "@thi.ng/diff": "^2.0.2",
-        "@thi.ng/equiv": "^0.1.15",
-        "@thi.ng/errors": "^0.1.12",
-        "@thi.ng/hiccup": "^2.7.2"
+        "@thi.ng/api": "^5.0.0",
+        "@thi.ng/checks": "^2.0.0",
+        "@thi.ng/diff": "^3.0.0",
+        "@thi.ng/equiv": "^1.0.0",
+        "@thi.ng/errors": "^1.0.0",
+        "@thi.ng/hiccup": "^3.0.0"
     },
     "keywords": [
         "browser",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/binary",
-    "version": "0.1.2",
+    "version": "1.0.0",
     "description": "Assorted binary / bitwise operations, conversions, utilities.",
     "module": "./index.js",
     "main": "./lib/index.js",
