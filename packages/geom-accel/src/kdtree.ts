@@ -151,6 +151,7 @@ export class KdTree<K extends ReadonlyVec, V>
     }
 
     select(q: Readonly<K>, maxNum: number, maxDist?: number): Pair<K, V>[] {
+        if (!this.root) return [];
         const res: Pair<K, V>[] = [];
         const src = this.buildSelection(q, maxNum, maxDist);
         for (let n = src.length; --n >= 0;) {
@@ -161,6 +162,7 @@ export class KdTree<K extends ReadonlyVec, V>
     }
 
     selectKeys(q: Readonly<K>, maxNum: number, maxDist?: number): K[] {
+        if (!this.root) return [];
         const res: K[] = [];
         const src = this.buildSelection(q, maxNum, maxDist);
         for (let n = src.length; --n >= 0;) {
