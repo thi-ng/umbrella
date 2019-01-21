@@ -22,14 +22,13 @@ This project is part of the
 
 ## About
 
-This still unreleased package provides various data structures for
-managing & working with memory mapped vectors. Together with
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
-(also still unreleased) these structures enable high-level,
-zero-copy<sup>*</sup> manipulation of the underlying memory region and
-are largely intended for WebGL & WASM use cases, e.g. to provide JS
-friendly views of a structured data region of a WebGL or WASM memory
-buffer.
+This still package provides several data structures for managing &
+working with memory mapped vectors. Together with
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors),
+these structures enable high-level, zero-copy<sup>*</sup> manipulation
+of the underlying memory region and are largely intended for WebGL &
+WASM use cases, e.g. to provide JS friendly views of a structured data
+region of a WebGL or WASM memory buffer.
 
 <sup>*</sup> The only copying taking place is to GPU memory
 
@@ -53,9 +52,6 @@ yarn add @thi.ng/vector-pools
 import { AttribPool, GLType } from "@thi.ng/vector-pools";
 import * as v from "@thi.ng/vectors";
 import * as tx from "@thi.ng/transducers";
-
-// ...Webgl boilerplate omitted
-const gl = ...
 
 // create an interleaved (AOS layout) attribute buffer w/ default values
 const geo = new AttribPool(
@@ -119,6 +115,9 @@ geo.addAttribs({
 geo.byteStride
 // 48
 
+// ...Webgl boilerplate omitted
+const gl = ...
+
 // only need to use & bind single (interleaved) buffer
 // containing all attribs
 buf = gl.createBuffer();
@@ -181,7 +180,7 @@ EMSCRIPTEN_KEEPALIVE int getNumVertices() {
 // ... WASM / Emscripten boilerplate omitted
 const Module = ...
 
-//
+// initialize pool from mapped WASM memory
 const geo = new vp.AttribPool(
     // map WASM memory
     Module.buffer,
