@@ -1,6 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { cossin, HALF_PI, TAU } from "@thi.ng/math";
-import { Vec } from "@thi.ng/vectors";
+import { direction, Vec } from "@thi.ng/vectors";
 import {
     IShape,
     Line,
@@ -8,7 +8,6 @@ import {
     Rect,
     Type
 } from "../api";
-import { direction } from "../internal/direction";
 import { dispatch } from "../internal/dispatch";
 import { Sampler } from "../internal/sampler";
 import { vertices } from "./vertices";
@@ -23,7 +22,7 @@ tangentAt.addAll({
 
     [Type.LINE]:
         ({ points }: Line) =>
-            direction(points[0], points[1]),
+            direction([], points[0], points[1]),
 
     [Type.POLYGON]:
         ($: PCLike, t) =>
