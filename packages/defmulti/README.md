@@ -174,7 +174,7 @@ baz.impls(); // Set { "c", "a", "b" }
 ```
 
 Also see the WIP package
-[@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2)
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
 for a concreate realworld usage example.
 
 ### defmultiN()

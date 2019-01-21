@@ -36,7 +36,7 @@ This project is part of the
 
 This package provides 160+ matrix & quaternion operations for 2D/3D
 geometry processing and acts as companion package for
-[@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3).
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors).
 Like with the vectors package, most functions are defined as
 multi-method dispatching to optimized implementations based on matrix
 size (which themselves are exposed for direct use too).
@@ -48,10 +48,10 @@ sensible).
 
 ### Related packages
 
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color) - vector based color operations / conversions
-- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2) - 2D/3D geometry types & operations
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3) - optimized 2d/3d/4d and arbitrary length vector ops
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools) - operations on memory mapped data
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - optimized 2d/3d/4d and arbitrary length vector ops
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
 
@@ -64,7 +64,7 @@ yarn add @thi.ng/matrices
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
-- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 

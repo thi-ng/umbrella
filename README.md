@@ -19,8 +19,8 @@ All / most packages:
 
 - have detailed, individual README files w/ small usage examples
 - are versioned independently
-- distributed in ES6 syntax (as CommonJS modules) with doc comments
-  (incl. example code snippets), bundled TypeScript typings & changelogs
+- distributed in ES6 syntax and multiple format (ESM, CommonJS, UMD)
+  with TypeScript typings & changelogs
 - highly modular with largely only a few closely related functions or
   single function / class per file to help w/ tree shaking
 - provide re-exports of all their publics for full library imports
@@ -31,8 +31,8 @@ All / most packages:
 - auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
 - licensed under Apache Software License 2.0
 
-There's a steadily growing number (~40) of standalone examples
-(different difficulties, many combining functionality from several
+There's a steadily growing number (40+) of standalone examples
+(different complexities, many combining functionality from several
 packages) in the [examples](./examples) directory.
 
 ## Projects
@@ -113,26 +113,29 @@ packages) in the [examples](./examples) directory.
 
 ### Geometry & visualization
 
-| Project                                       | Version                                                                                                             | Changelog                                       | Description                              |
-|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|------------------------------------------|
-| [`@thi.ng/dot`](./packages/dot)               | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)               | [changelog](./packages/dot/CHANGELOG.md)        | Graphviz DOM & export                    |
-| [`@thi.ng/geom`](./packages/geom)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)             | [changelog](./packages/geom/CHANGELOG.md)       | 2D geometry types & operations           |
-| [`@thi.ng/geom-accel`](./packages/geom-accel) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel) | [changelog](./packages/geom-accel/CHANGELOG.md) | Spatial indexing data structures         |
-| [`@thi.ng/iges`](./packages/iges)             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)             | [changelog](./packages/iges/CHANGELOG.md)       | IGES format geometry serialization       |
-| [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    | Memory-mapped vector & matrix operations |
+| Project                                       | Version                                                                                                             | Changelog                                       | Description                         |
+|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|-------------------------------------|
+| [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      | Color                               |
+| [`@thi.ng/dot`](./packages/dot)               | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)               | [changelog](./packages/dot/CHANGELOG.md)        | Graphviz DOM & export               |
+| [`@thi.ng/geom`](./packages/geom)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)             | [changelog](./packages/geom/CHANGELOG.md)       | 2D geometry types & operations      |
+| [`@thi.ng/geom-accel`](./packages/geom-accel) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel) | [changelog](./packages/geom-accel/CHANGELOG.md) | Spatial indexing data structures    |
+| [`@thi.ng/iges`](./packages/iges)             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)             | [changelog](./packages/iges/CHANGELOG.md)       | IGES format geometry serialization  |
+| [`@thi.ng/matrices`](./packages/matrices)     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)     | [changelog](./packages/matrices/CHANGELOG.md)   | Matrix operations                   |
+| [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    | Fixed & arbitrary-length vector ops |
 
 ### Low-level, binary, memory management
 
-| Project                                         | Version                                                                                                               | Changelog                                        | Description                               |
-|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-------------------------------------------|
-| [`@thi.ng/binary`](./packages/binary)           | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)           | [changelog](./packages/binary/CHANGELOG.md)      | Assorted binary / bitwise ops, utilities  |
-| [`@thi.ng/bitstream`](./packages/bitstream)     | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)     | [changelog](./packages/bitstream/CHANGELOG.md)   | Bitwise input / output streams            |
-| [`@thi.ng/dlogic`](./packages/dlogic)           | [![version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)           | [changelog](./packages/dlogic/CHANGELOG.md)      | Digital logic ops / constructs            |
-| [`@thi.ng/malloc`](./packages/malloc)           | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)           | [changelog](./packages/malloc/CHANGELOG.md)      | Raw & typed array memory pool & allocator |
-| [`@thi.ng/morton`](./packages/morton)           | [![version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)           | [changelog](./packages/morton/CHANGELOG.md)      | Z-order-curve / Morton coding             |
-| [`@thi.ng/range-coder`](./packages/range-coder) | [![version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder) | [changelog](./packages/range-coder/CHANGELOG.md) | Binary data Range encoder / decoder       |
-| [`@thi.ng/rle-pack`](./packages/rle-pack)       | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)       | [changelog](./packages/rle-pack/CHANGELOG.md)    | Run-length encoding data compression      |
-| [`@thi.ng/unionstruct`](./packages/unionstruct) | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct) | [changelog](./packages/unionstruct/CHANGELOG.md) | Wrapper for C-like structs / unions       |
+| Project                                           | Version                                                                                                                 | Changelog                                         | Description                               |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------|
+| [`@thi.ng/binary`](./packages/binary)             | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)             | [changelog](./packages/binary/CHANGELOG.md)       | Assorted binary / bitwise ops, utilities  |
+| [`@thi.ng/bitstream`](./packages/bitstream)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)       | [changelog](./packages/bitstream/CHANGELOG.md)    | Bitwise input / output streams            |
+| [`@thi.ng/dlogic`](./packages/dlogic)             | [![version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)             | [changelog](./packages/dlogic/CHANGELOG.md)       | Digital logic ops / constructs            |
+| [`@thi.ng/malloc`](./packages/malloc)             | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)             | [changelog](./packages/malloc/CHANGELOG.md)       | Raw & typed array memory pool & allocator |
+| [`@thi.ng/morton`](./packages/morton)             | [![version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)             | [changelog](./packages/morton/CHANGELOG.md)       | Z-order-curve / Morton coding             |
+| [`@thi.ng/range-coder`](./packages/range-coder)   | [![version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)   | [changelog](./packages/range-coder/CHANGELOG.md)  | Binary data Range encoder / decoder       |
+| [`@thi.ng/rle-pack`](./packages/rle-pack)         | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)         | [changelog](./packages/rle-pack/CHANGELOG.md)     | Run-length encoding data compression      |
+| [`@thi.ng/unionstruct`](./packages/unionstruct)   | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)   | [changelog](./packages/unionstruct/CHANGELOG.md)  | Wrapper for C-like structs / unions       |
+| [`@thi.ng/vector-pools`](./packages/vector-pools) | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools) | [changelog](./packages/vector-pools/CHANGELOG.md) | data structures for memory mapped vectors |
 
 ### DSLs
 
@@ -141,19 +144,13 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
 
-### Experimental packages (WIP / unreleased)
-
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color)
-- [@thi.ng/geom3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom3)
-- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices)
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools)
-- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
-
 ## Building
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella
+
+yarn install
 yarn build
 ```
 
@@ -181,7 +178,7 @@ yarn build
 
 ### Testing
 
-(TODO most but not all packages have tests)
+(most, but not all packages have tests)
 
 ```bash
 yarn test

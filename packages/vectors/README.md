@@ -1,7 +1,7 @@
-# @thi.ng/vectors3
+# @thi.ng/vectors
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/vectors3.svg)](https://www.npmjs.com/package/@thi.ng/vectors3)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors3.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
@@ -61,62 +61,62 @@ layouts).
 - Highly modular: Each function is defined in its own submodule / file.
   In addition to each generic multi-method base function, all
   fixed-length optimized versions are exported too. E.g. If
-  [`add`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/add.ts)
+  [`add`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/add.ts)
   performs vector addition on arbitrary-length vectors, `add2`, `add3`,
   `add4` are the optimized version for fixed-length vectors...
 - Extensible: Custom vector ops can be defined in a similar manner using
   the provided code generation helpers (see
-  [vop.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/vop.ts)
+  [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
   and
-  [codegen.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/codegen.ts)
+  [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
   for details).
 - Immutable by default: Each operation producing a vector result takes
   an output vector as first argument. If `null`, the vector given as 2nd
   argument will be used as output (i.e. for mutation).
 - Strided vector support is handled via the lightweight
-  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/vec2.ts)
+  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec2.ts)
   class wrappers and the
-  [`gvec()`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/gvec.ts)
+  [`gvec()`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/gvec.ts)
   proxy (for generic, arbitrary-length vectors). These types behave like
   normal arrays (for read/write operations) and are also iterable. A
   subset of functions (suffixed with `S`, e.g.
-  [`addS`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/adds.ts)
+  [`addS`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/adds.ts)
   vs. `add`) also support striding without the need for extra class
   wrappers. This is handled via additional index and stride arguments
   for each input/output vector. These functions are only available for
   sizes 2 / 3 / 4, though.
 - Random vector functions support the `IRandom` interface defined by
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/random)
+  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
   to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
   will be used.
 
 ### Related packages
 
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color) - vector based color operations / conversions
-- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2) - 2D/3D geometry types & operations
-- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools) - operations on memory mapped data
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
 
 ```bash
-yarn add @thi.ng/vectors3
+yarn add @thi.ng/vectors
 ```
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/api)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/math)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
 ```ts
-import * as v from "@thi.ng/vectors3";
+import * as v from "@thi.ng/vectors";
 
 // immutable vector addition (1st arg is result)
 v.add([], [1, 2, 3, 4], [10, 20, 30, 40])
@@ -313,7 +313,7 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 ### Rotations
 
 (Also see rotation matrices provided by
-[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices))
+[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices))
 
 - `rotateAroundAxis3`
 - `rotateAroundPoint2`
@@ -384,9 +384,9 @@ Functions to transform flat / strided buffers w/ vector operations:
 
 For more information about the code generator see:
 
-- [codegen.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/codegen.ts)
-- [templates.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/templates.ts)
-- [vop.ts](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3/src/internal/vop.ts)
+- [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
+- [templates.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/templates.ts)
+- [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
 
 ## Authors
 

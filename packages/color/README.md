@@ -29,7 +29,7 @@ This project is part of the
 Raw, array-based, color operations, conversions and optional type
 wrappers. The functions provided by this package are largely using the
 same calling convention as those in the
-[@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 package.
 
 ### Color spaces / modes
@@ -62,7 +62,7 @@ below).
 
 The package provides lightweight class wrappers for each color mode /
 space. These wrappers act similarly to the `Vec2/3/4` wrappers in
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors3),
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
 all functions (and act as syntax sugar for generic conversion
@@ -71,7 +71,7 @@ functions). Wrapper factory functions are provided for convenience.
 ### RGBA transformations
 
 RGBA [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color/src/matrix.ts),
+transformations](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/matrix.ts),
 including parametric preset transforms:
 
 - brightness
@@ -92,11 +92,11 @@ concatenation (`concat()`) for more efficient application.
 ### RGBA Porter-Duff compositing
 
 The package provides all 12 basic
-[Porter-Duff](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color/src/porter-duff.ts)
+[Porter-Duff](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/porter-duff.ts)
 compositing / blending operators, both for colors with pre-multiplied
 alpha and without.
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/feature/vec-refactor/assets/porter-duff.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff.png)
 
 ([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
 
@@ -105,7 +105,7 @@ alpha and without.
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/color/src/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/cosine-gradients.ts)):
 
 |                                                                |                                                                  |
 |----------------------------------------------------------------|------------------------------------------------------------------|
@@ -165,10 +165,10 @@ col.multiCosineGradient(
 
 ALPHA - work in progress
 
-- [@thi.ng/geom2](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/geom2) - 2D/3D geometry types & operations
-- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3) - optimized 2d/3d/4d and arbitrary length vector ops
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vector-pools) - operations on memory mapped data
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - optimized 2d/3d/4d and arbitrary length vector ops
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
 
@@ -184,7 +184,7 @@ yarn add @thi.ng/color
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/vectors3](https://github.com/thi-ng/umbrella/tree/feature/vec-refactor/packages/vectors3)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
