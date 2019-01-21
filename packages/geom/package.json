@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,19 +32,19 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^5.0.0",
-        "@thi.ng/checks": "^2.0.0",
-        "@thi.ng/compose": "^1.0.0",
-        "@thi.ng/defmulti": "^1.0.0",
-        "@thi.ng/equiv": "^1.0.0",
-        "@thi.ng/errors": "^1.0.0",
-        "@thi.ng/hiccup": "^3.0.0",
-        "@thi.ng/hiccup-svg": "^3.0.0",
-        "@thi.ng/math": "^1.0.0",
-        "@thi.ng/matrices": "^0.1.0",
-        "@thi.ng/random": "^1.0.0",
-        "@thi.ng/transducers": "^3.0.0",
-        "@thi.ng/vectors": "^2.0.0"
+        "@thi.ng/api": "^5.0.1",
+        "@thi.ng/checks": "^2.0.1",
+        "@thi.ng/compose": "^1.0.1",
+        "@thi.ng/defmulti": "^1.0.1",
+        "@thi.ng/equiv": "^1.0.1",
+        "@thi.ng/errors": "^1.0.1",
+        "@thi.ng/hiccup": "^3.0.1",
+        "@thi.ng/hiccup-svg": "^3.0.1",
+        "@thi.ng/math": "^1.0.1",
+        "@thi.ng/matrices": "^0.1.1",
+        "@thi.ng/random": "^1.0.1",
+        "@thi.ng/transducers": "^3.0.1",
+        "@thi.ng/vectors": "^2.1.0"
     },
     "keywords": [
         "ES6",

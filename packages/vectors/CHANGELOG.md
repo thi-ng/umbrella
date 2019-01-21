@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.0.0...@thi.ng/vectors@2.1.0) (2019-01-21)
+
+
+### Features
+
+* **vectors:** migrate direction(), normalLeft/Right2() from geom pkg ([07d5f8f](https://github.com/thi-ng/umbrella/commit/07d5f8f))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.12...@thi.ng/vectors@2.0.0) (2019-01-21)
 
 

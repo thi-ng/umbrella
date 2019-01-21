@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/api",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "Common, generic types & interfaces for thi.ng projects",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,7 +32,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.0.0"
+        "@thi.ng/errors": "^1.0.1"
     },
     "keywords": [
         "compare",
