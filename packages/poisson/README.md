@@ -13,6 +13,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
@@ -20,7 +21,17 @@ This project is part of the
 
 ## About
 
-TODO...
+nD [Poisson disk
+sampling](https://en.wikipedia.org/wiki/Supersampling#Poisson_disc) with
+support for variable spatial density, custom PRNGs (via
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)'s
+`IRandom` interface & implementations) and customizable quality
+settings.
+
+Currently uses a [k-D
+tree](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel/src/kdtree.ts#L57)
+implementation to speed up the sampling process, but will be refactored
+to support other, alternative spatial indexing mechanisms...
 
 ## Installation
 
@@ -30,9 +41,14 @@ yarn add @thi.ng/poisson
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
+
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/poisson.jpg)
 
 ```ts
 import { samplePoisson } from "@thi.ng/poisson";
@@ -45,17 +61,81 @@ import { dist2, randMinMax2 } from "@thi.ng/vectors";
 accel = new KdTree(2);
 
 pts = samplePoisson({
+	accel,
 	points: () => randMinMax2(null, [0, 0], [500, 500]),
 	density: (p) => fit01(Math.pow(Math.max(dist2(p, [250, 250]) / 250, 0), 2), 2, 10),
-	accel,
 	iter: 5,
 	max: 8000,
 	quality: 500
 });
 
-mapAsCircle = (p) => circle(p, dist2(p, accel.selectKeys(p, 10, 40)[1]) / 2)
+// use thi.ng/geom to visualize results
+// each circle's radius is set to distance to its nearest neighbor
+circles = pts.map((p) => circle(p, dist2(p, accel.selectKeys(p, 10, 40)[1]) / 2));
 
-document.body.innerHTML = asSvg(svgDoc({ fill: "none", stroke: "red" }, ...pts.map(mapAsCircle)));
+document.body.innerHTML = asSvg(svgDoc({ fill: "none", stroke: "red" }, ...circles));
+```
+
+## API
+
+The package provides a single function `samplePoisson()` and the
+following options to customize the sampling process:
+
+```ts
+interface PoissonOpts {
+    /**
+     * Point generator function. Responsible for producing a new
+     * candidate point within user defined bounds using provided RNG.
+     */
+    points: PointGenerator;
+    /**
+     * Density field function. Called for each new sample point created
+     * by point generator and should return the exclusion radius for
+     * given point location. If this option is given as number, uses
+     * this value to create a uniform distance field.
+     */
+    density: DensityFunction | number;
+    /**
+     * Spatial indexing implementation. Currently only KdTree from
+     * thi.ng/geom-accel package is supported and must be
+     * pre-initialized to given dimensions. Furthermore, pre-seeding the
+     * tree allows already indexed points to participate in the sampling
+     * process and act as exclusion zones.
+     */
+    accel: KdTree<ReadonlyVec, any>;
+    /**
+     * Max number of samples to produce.
+     */
+    max: number;
+    /**
+     * Max number of KNN search points for each candidate sample.
+     * Default: 8
+     */
+    maxSelect?: number;
+    /**
+     * Step distance for the random walk each failed candidate point is
+     * undergoing. This distance should be adjusted depending on overall
+     * sampling area/bounds. Default: 1
+     */
+    jitter?: number;
+    /**
+     * Number of random walk steps performed before giving up on a
+     * candidate point. Default: 5
+     */
+    iter?: number;
+    /**
+     * Number of allowed failed continuous candidate points before
+     * stopping entire sampling process. Increasing this value improves
+     * overall quality, especially in dense regions with small radii.
+     * Default: 500
+     */
+    quality?: number;
+    /**
+     * Random number generator instance. Default thi.ng/random/SYSTEM
+     * (aka Math.random)
+     */
+    rnd?: IRandom;
+}
 ```
 
 ## Authors
