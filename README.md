@@ -121,6 +121,7 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/geom-accel`](./packages/geom-accel) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel) | [changelog](./packages/geom-accel/CHANGELOG.md) | Spatial indexing data structures    |
 | [`@thi.ng/iges`](./packages/iges)             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)             | [changelog](./packages/iges/CHANGELOG.md)       | IGES format geometry serialization  |
 | [`@thi.ng/matrices`](./packages/matrices)     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)     | [changelog](./packages/matrices/CHANGELOG.md)   | Matrix operations                   |
+| [`@thi.ng/poisson`](./packages/poisson)       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)       | [changelog](./packages/poisson/CHANGELOG.md)    | nD Poisson disk sampling            |
 | [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    | Fixed & arbitrary-length vector ops |
 
 ### Low-level, binary, memory management
