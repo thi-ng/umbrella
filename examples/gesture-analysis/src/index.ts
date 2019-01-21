@@ -1,9 +1,11 @@
-import { resample, vertices } from "@thi.ng/geom2/api";
-import { polyline as _polyline } from "@thi.ng/geom2/polyline";
-import { circle } from "@thi.ng/hiccup-svg/circle";
-import { group } from "@thi.ng/hiccup-svg/group";
-import { polyline } from "@thi.ng/hiccup-svg/polyline";
-import { svg } from "@thi.ng/hiccup-svg/svg";
+import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
+import {
+    circle,
+    group,
+    polyline,
+    svg
+} from "@thi.ng/hiccup-svg";
+import { fromIterable, merge, sync } from "@thi.ng/rstream";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import {
     comp,
@@ -17,19 +19,12 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { identity } from "@thi.ng/transducers/func/identity";
-import { peek } from "@thi.ng/transducers/func/peek";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { multiplexObj } from "@thi.ng/transducers/xform/multiplex-obj";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { angleBetween } from "@thi.ng/vectors/angle-between";
-import { Vec } from "@thi.ng/vectors/api";
-import { mixN2 } from "@thi.ng/vectors/mixn";
-import { sub2 } from "@thi.ng/vectors/sub";
+import {
+    angleBetween2,
+    mixN2,
+    sub2,
+    Vec
+} from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**
@@ -87,7 +82,7 @@ const path =
  */
 const sampleUniform =
     (step: number, pts: Vec[]) =>
-        vertices(resample(_polyline(pts), { dist: step }));
+        vertices(resample(gPolyline(pts), { dist: step }));
 
 /**
  * Applies low-pass filter to given polyline. I.e. Each point in the
@@ -112,11 +107,9 @@ const smoothPath =
  * @param thresh normalized angle threshold
  */
 const isCorner =
-    (thresh: number) => {
-        thresh = Math.PI * (1 - thresh);
-        return ([a, b, c]: Vec[]) =>
-            angleBetween(sub2([], b, a), sub2([], b, c), true) < thresh;
-    };
+    (thresh: number) =>
+        ([a, b, c]: Vec[]) =>
+            angleBetween2(sub2([], b, a), sub2([], b, c), true) < thresh;
 
 /**
  * Gesture event processor. Collects gesture event positions into an
@@ -176,7 +169,7 @@ sync({
                         (pts) => transduce(
                             comp(
                                 partition(3, 1),
-                                filter(isCorner(1 / 4)),
+                                filter(isCorner(Math.PI * 2 / 3)),
                                 map((x) => x[1])
                             ),
                             push(),
@@ -193,3 +186,6 @@ sync({
     // update UI diff
     updateDOM()
 );
+
+window["v"] = require("@thi.ng/vectors");
+window["m"] = require("@thi.ng/math");

@@ -1,4 +1,4 @@
-import { mul2, transformVectors1, Vec2 } from "@thi.ng/vectors";
+import { Vec2 } from "@thi.ng/vectors";
 
 // initial call to action gesture
 // (recorded handwriting)
@@ -63,7 +63,4 @@ const raw = [
 ];
 
 // downscale & transform into memory mapped Vec2 array
-export const CTA = Vec2.mapBuffer(
-    transformVectors1(mul2, raw, [0.75, 0.75], raw.length / 2, 2),
-    raw.length / 2
-);
+export const CTA = Vec2.mapBuffer(raw, raw.length / 2);
