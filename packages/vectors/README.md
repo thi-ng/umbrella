@@ -303,8 +303,10 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 - `angleBetween2` / `angleBetween3`
 - `angleRatio`
 - `bisect2`
+- `direction`
 - `faceForward`
 - `heading` / `headingXY` / `headingXZ` / `headingYZ`
+- `normalLeft2` / `normalRight2`
 - `perpendicularLeft2` / `perpendicularRight2`
 - `project`
 - `reflect`
