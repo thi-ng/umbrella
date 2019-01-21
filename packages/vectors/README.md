@@ -300,7 +300,7 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 
 ### Orientation
 
-- `angleBetween`
+- `angleBetween2` / `angleBetween3`
 - `angleRatio`
 - `bisect2`
 - `faceForward`
@@ -331,6 +331,7 @@ All ops support custom PRNG impls based on the
 `IRandom` interface and use `Math.random` by default:
 
 - `jitter`
+- `randMinMax` / `randMinMax2` / `randMinMax3` / `randMinMax4`
 - `randNorm`
 - `random` / `random2` / `random3` / `random4`
 
