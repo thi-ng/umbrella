@@ -20,6 +20,7 @@ export * from "./ops/arc-length";
 export * from "./ops/area";
 export * from "./ops/as-cubic";
 export * from "./ops/as-polygon";
+export * from "./ops/as-polyline";
 export * from "./ops/as-svg";
 export * from "./ops/bounds";
 export * from "./ops/center";
