@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.0.1...@thi.ng/geom@1.1.0) (2019-01-22)
+
+
+### Bug Fixes
+
+* **geom:** update Rect.toHiccup() format (separate widht/height vals) ([8c1df49](https://github.com/thi-ng/umbrella/commit/8c1df49))
+
+
+### Features
+
+* **geom:** add asPolyline() multi-fn ([c602379](https://github.com/thi-ng/umbrella/commit/c602379))
+* **geom:** add attrib support to PathBuilder ([a017b10](https://github.com/thi-ng/umbrella/commit/a017b10))
+
+
+
+
+
 ## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.0.0...@thi.ng/geom@1.0.1) (2019-01-21)
 
 **Note:** Version bump only for package @thi.ng/geom

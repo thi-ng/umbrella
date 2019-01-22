@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/poisson",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "nD Poisson-disc sampling w/ support for spatial density functions and custom PRNGs",
     "module": "./index.js",
     "main": "./lib/index.js",
