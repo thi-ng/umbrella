@@ -43,32 +43,34 @@ export const normalizedPath =
         );
 
 export const roundedRect =
-    (pos: Vec, size: Vec, r: number | Vec) => {
+    (pos: Vec, size: Vec, r: number | Vec, attribs?: Attribs) => {
         r = isNumber(r) ? [r, r] : r;
-        const b = new PathBuilder();
         const [w, h] = maddN2([], size, r, -2);
-        b.moveTo([pos[0] + r[0], pos[1]]);
-        b.hlineTo(w, true);
-        b.arcTo(r, r, 0, false, true, true);
-        b.vlineTo(h, true);
-        b.arcTo([-r[0], r[1]], r, 0, false, true, true);
-        b.hlineTo(-w, true);
-        b.arcTo([-r[0], -r[1]], r, 0, false, true, true);
-        b.vlineTo(-h, true);
-        b.arcTo([r[0], -r[1]], r, 0, false, true, true);
-        return b.curr;
+        return new PathBuilder(attribs)
+            .moveTo([pos[0] + r[0], pos[1]])
+            .hlineTo(w, true)
+            .arcTo(r, r, 0, false, true, true)
+            .vlineTo(h, true)
+            .arcTo([-r[0], r[1]], r, 0, false, true, true)
+            .hlineTo(-w, true)
+            .arcTo([-r[0], -r[1]], r, 0, false, true, true)
+            .vlineTo(-h, true)
+            .arcTo([r[0], -r[1]], r, 0, false, true, true)
+            .current();
     };
 
 export class PathBuilder {
 
     paths: Path[];
-    curr: Path;
+    attribs: Attribs;
+    protected curr: Path;
     protected currP: Vec;
     protected bezierP: Vec;
     protected startP: Vec;
 
-    constructor() {
+    constructor(attribs?: Attribs) {
         this.paths = [];
+        this.attribs = attribs;
         this.newPath();
     }
 
@@ -76,8 +78,12 @@ export class PathBuilder {
         yield* this.paths;
     }
 
+    current() {
+        return this.curr;
+    }
+
     newPath() {
-        this.curr = new Path();
+        this.curr = new Path([], this.attribs);
         this.paths.push(this.curr);
         this.currP = zeroes(2);
         this.bezierP = zeroes(2);
@@ -242,7 +248,7 @@ export class PathBuilder {
 }
 
 export const pathBuilder =
-    () => new PathBuilder();
+    (attribs?: Attribs) => new PathBuilder(attribs);
 
 const CMD_RE = /[achlmqstvz]/i;
 
