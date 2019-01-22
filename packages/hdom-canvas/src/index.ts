@@ -1,5 +1,12 @@
 import { IObjectOf } from "@thi.ng/api";
-import { isArray, isArrayLike, isNotStringAndIterable } from "@thi.ng/checks";
+import {
+    isArray,
+    isArrayLike,
+    isNotStringAndIterable,
+    isNumber,
+    isString
+} from "@thi.ng/checks";
+import { asCSS, ColorMode, ReadonlyColor } from "@thi.ng/color";
 import { diffArray, DiffMode } from "@thi.ng/diff";
 import {
     equiv,
@@ -359,7 +366,8 @@ const setAttrib = (
     switch (id) {
         case "fill":
         case "stroke":
-            ctx[k] = val[0] == "$" ? state.grads[val.substr(1)] : val;
+        case "shadowColor":
+            ctx[k] = resolveColor(state, val);
             break;
         case "dash":
             ctx[k].call(ctx, val);
@@ -370,6 +378,20 @@ const setAttrib = (
             ctx[k] = val;
     }
 };
+
+const resolveColor =
+    (state: DrawState, v: any) =>
+        isString(v) ?
+            v[0] === "$" ?
+                state.grads[v.substr(1)] :
+                v :
+            isArrayLike(v) ?
+                isNumber((<any>v).mode) ?
+                    asCSS(<any>v) :
+                    asCSS(<ReadonlyColor>v, ColorMode.RGBA) :
+                isNumber(v) ?
+                    asCSS(v, ColorMode.INT32) :
+                    v;
 
 const applyTransform =
     (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
@@ -412,7 +434,7 @@ const defLinearGradient = (
 
     const g = ctx.createLinearGradient(from[0], from[1], to[0], to[1]);
     for (let s of stops) {
-        g.addColorStop(s[0], s[1]);
+        g.addColorStop(s[0], resolveColor(state, s[1]));
     }
     !state.grads && (state.grads = {});
     state.grads[id] = g;
@@ -427,7 +449,7 @@ const defRadialGradient = (
 
     const g = ctx.createRadialGradient(from[0], from[1], r1, to[0], to[1], r2);
     for (let s of stops) {
-        g.addColorStop(s[0], s[1]);
+        g.addColorStop(s[0], resolveColor(state, s[1]));
     }
     !state.grads && (state.grads = {});
     state.grads[id] = g;

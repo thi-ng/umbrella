@@ -13,6 +13,7 @@ This project is part of the
     - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Related packages](#related-packages)
 - [Usage examples](#usage-examples)
 - [How it works](#how-it-works)
     - [Restrictions & behavior controls](#restrictions--behavior-controls)
@@ -22,9 +23,9 @@ This project is part of the
     - [Group](#group)
     - [Definition group](#definition-group)
     - [Circle](#circle)
-    - [Ellipse](#ellipse)
+    - [Circular arc](#circular-arc)
+    - [Ellipse / elliptic arc](#ellipse--elliptic-arc)
     - [Rect](#rect)
-    - [Arc](#arc)
     - [Line](#line)
     - [Horizontal Line](#horizontal-line)
     - [Vertical Line](#vertical-line)
@@ -36,11 +37,16 @@ This project is part of the
     - [Image](#image)
     - [Gradients](#gradients)
 - [Attributes](#attributes)
-- [Coordinate transformations](#coordinate-transformations)
-    - [Transform matrix](#transform-matrix)
-    - [Translation](#translation)
-    - [Scaling](#scaling)
-    - [Rotation](#rotation)
+    - [Color attributes](#color-attributes)
+        - [String](#string)
+        - [Number](#number)
+        - [Array](#array)
+        - [[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) values](#thingcolorhttpsgithubcomthi-ngumbrellatreemasterpackagescolor-values)
+    - [Coordinate transformations](#coordinate-transformations)
+        - [Transform matrix](#transform-matrix)
+        - [Translation](#translation)
+        - [Scaling](#scaling)
+        - [Rotation](#rotation)
 - [Authors](#authors)
 - [License](#license)
 
@@ -73,14 +79,21 @@ yarn add @thi.ng/hdom-canvas
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
 - [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+
+## Related packages
+
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
 ## Usage examples
 
 Please see these example projects for reference:
 
 - [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+- [hdom-canvas-draw](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
 - [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 
 ```ts
@@ -266,22 +279,7 @@ used, should always come first in a scene tree.
 ["circle", attribs, [x, y], radius]
 ```
 
-### Ellipse
-
-```ts
-["ellipse", attribs, [x, y], [rx,ry], axisTheta?, start?, end?, ccw?]
-```
-
-### Rect
-
-```ts
-["rect", attribs, [x, y], w, h, radius?]
-```
-
-If `radius` is given, creates a rounded rectangle. `radius` will be
-clamped to `Math.min(w, h)/2`.
-
-### Arc
+### Circular arc
 
 ```ts
 ["arc", attribs, [x, y], radius, startAngle, endAngle, anticlockwise?]
@@ -289,6 +287,21 @@ clamped to `Math.min(w, h)/2`.
 
 Only circular arcs are supported in this format. Please see [note about
 differences to SVG](#svg-paths-with-arc-segments).
+
+### Ellipse / elliptic arc
+
+```ts
+["ellipse", attribs, [x, y], [rx, ry], axisTheta?, start?, end?, ccw?]
+```
+
+### Rect
+
+```ts
+["rect", attribs, [x, y], [w, h], radius?]
+```
+
+If `radius` is given, creates a rounded rectangle. `radius` will be
+clamped to `Math.min(w, h)/2`.
 
 ### Line
 
@@ -331,38 +344,47 @@ Always closed, can be filled and/or stroked.
 Path segments are tuples of `[type, [x,y]...]`. The following segment
 types are supported and (as with SVG), absolute and relative versions
 can be used. Relative versions use lowercase letters and are always
-relative to the end point of the previous segment.
+relative to the end point of the previous segment. The first segment
+(usually of type `"M"`) must be absolute.
 
-| Format                               | Description          |
-|--------------------------------------|----------------------|
-| `["M", [x, y]]`                      | Move                 |
-| `["L", [x, y]]`                      | Line                 |
-| `["H", x]`                           | Horizontal line      |
-| `["V", y]`                           | Vertical line        |
-| `["C", [x1,y1], [x2, y2], [x3, y3]]` | Cubic / bezier curve |
-| `["Q", [x1,y1], [x2, y2]]`           | Quadratic curve      |
-| `["A", [x1,y1], [x2, y2], r]`        | Arc                  |
-| `["Z"]`                              | Close (sub)path      |
+| Format                               | Description              |
+|--------------------------------------|--------------------------|
+| `["M", [x, y]]`                      | Move                     |
+| `["L", [x, y]]`                      | Line                     |
+| `["H", x]`                           | Horizontal line          |
+| `["V", y]`                           | Vertical line            |
+| `["C", [x1,y1], [x2, y2], [x3, y3]]` | Cubic / bezier curve     |
+| `["Q", [x1,y1], [x2, y2]]`           | Quadratic curve          |
+| `["A", [x1,y1], [x2, y2], r]`        | Circular arc (see below) |
+| `["Z"]`                              | Close (sub)path          |
 
 #### SVG paths with arc segments
 
-**IMPORTANT:** Due to differences between SVG and canvas API arc
-handling, SVG paths containing arc segments are **NOT** compatible with
-the above format. To draw such paths reliably, these should first be
-converted to use cubics. E.g. here using
+**IMPORTANT:** Currently, due to differences between SVG and canvas API
+arc handling, SVG paths containing arc segments are **NOT** compatible
+with the above format. [This
+issue](https://github.com/thi-ng/umbrella/issues/69) is being worked on,
+but in the meantime, to use such paths, these should first be converted
+to use cubics or polygon / polyline. E.g. here using
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom):
 
 ```ts
-import { normalizedPath, pathFromSVG } from "@thi.ng/geom";
+import { normalizedPath, pathFromSVG, asPolyline } from "@thi.ng/geom";
 
-// path w/ ac segments
+// path w/ arc segments (*not* usable by hdom-canvas)
 const a = pathFromSvg("M0,0H80A20,20,0,0,1,100,20V30A20,20,0,0,1,80,50")[0];
 
-// normalized to only use cubic curves
+// normalized to only use cubic curves (usable by hdom-canvas)
 const b = normalizedPath(a);
 
+// converted to polyline (usable by hdom-canvas)
+const c = asPolyline(a);
+
 asSvg(b);
-// <path d="M0.00,0.00C26.67,0.00,53.33,0.00,80.00,0.00C91.05,0.00,100.00,8.95,100.00,20.00C100.00,23.33,100.00,26.67,100.00,30.00C100.00,41.05,91.05,50.00,80.00,50.00"/>
+// <path d="M0.00,0.00C26.67,0.00,53.33,0.00,80.00,0.00C..."/>
+
+asSvg(c);
+// <polyline fill="none" points="0.00,0.00 80.00,0.00 81.57,0.06..."/>
 ```
 
 ### Points
@@ -438,7 +460,35 @@ Some attributes use different names than their actual names in the
 | stroke      | strokeStyle              |
 | weight      | lineWidth                |
 
-## Coordinate transformations
+### Color attributes
+
+Color conversions are only applied to `fill`, `stroke`, `shadowColor`
+attributes and color stops provided to gradient definitions.
+
+#### String
+
+String color attribs prefixed with `$` are replaced with `url(#...)`
+refs (e.g. to refer to  gradients), else used as is (untransformed)
+
+#### Number
+
+Interpreted as ARGB hex value:
+
+`{ fill: 0xffaabbcc }` => `{ fill: "#aabbcc" }`
+
+#### Array
+
+Interpreted as float RGB(A):
+
+`{ fill: [1, 0.8, 0.6, 0.4] }` => `{ fill: "rgba(255,204,153,0.40)" }`
+
+#### [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) values
+
+Converted to CSS color strings:
+
+`{ fill: hcya(0.1666, 1, 0.8859) }` => `{ fill: "#ffff00" }`
+
+### Coordinate transformations
 
 Coordinate system transformations can be achieved via the following
 attributes. Nested transformations are supported.
@@ -446,7 +496,7 @@ attributes. Nested transformations are supported.
 If using a combination of `translate`, `scale` and/or `rotate` attribs,
 the order of application is always TRS.
 
-### Transform matrix
+#### Transform matrix
 
 ```ts
 { transform: [xx, xy, yx, yy, ox, oy] }
@@ -456,28 +506,28 @@ See [MDN
 docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform)
 for further details.
 
-Also see the [`Mat23` type in the
-@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/mat23.ts)
+Also see the [2x3 matrix functions in the
+@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices/README.md)
 package for creating different kinds of transformation matrices, e.g.
 
 ```
-{ transform: Mat23.skewX(Math.PI / 12) }
+{ transform: skewX23([], Math.PI / 12) }
 ```
 
-### Translation
+#### Translation
 
 ```ts
 { translate: [x, y] }
 ```
 
-### Scaling
+#### Scaling
 
 ```ts
 { scale: [x, y] } // non-uniform
 { scale: x } // uniform
 ```
 
-### Rotation
+#### Rotation
 
 ```ts
 { rotate: theta } // in radians

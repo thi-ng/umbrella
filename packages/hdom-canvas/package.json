@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module hdomCanvas api checks diff hdom",
+        "build:bundle": "../../scripts/bundle-module hdomCanvas api checks color diff hdom",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -34,6 +34,7 @@
     "dependencies": {
         "@thi.ng/api": "^5.0.1",
         "@thi.ng/checks": "^2.0.1",
+        "@thi.ng/color": "^0.1.1",
         "@thi.ng/diff": "^3.0.1",
         "@thi.ng/hdom": "^7.0.1"
     },
