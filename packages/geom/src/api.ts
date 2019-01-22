@@ -656,7 +656,7 @@ export class Rect implements
     }
 
     toHiccup() {
-        return ["rect", this.attribs, this.pos, this.size];
+        return ["rect", this.attribs, this.pos, this.size[0], this.size[1]];
     }
 }
 
