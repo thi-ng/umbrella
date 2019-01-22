@@ -12,7 +12,7 @@ import {
     tuples
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { dist2 } from "@thi.ng/vectors";
+import { dist } from "@thi.ng/vectors";
 
 // canvas size
 const W = 480;
@@ -21,7 +21,7 @@ const W = 480;
 // takes a tuple of 2 points and returns a component fn
 const line = ([a, b]: number[][]) =>
     (_, attribs) =>
-        ["line", { ...attribs, weight: dist2(a, b) / 4 }, a, b];
+        ["line", { ...attribs, weight: dist(a, b) / 4 }, a, b];
 
 // higher order root component function. takes a @thi.ng/rstream
 // `StreamSync` instance as argument to dynamically add a new input

@@ -186,6 +186,3 @@ sync({
     // update UI diff
     updateDOM()
 );
-
-window["v"] = require("@thi.ng/vectors");
-window["m"] = require("@thi.ng/math");

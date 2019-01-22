@@ -2,25 +2,27 @@ import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, TAU } from "@thi.ng/math";
 import { mapcat, range } from "@thi.ng/transducers";
-import { toCartesian2 } from "@thi.ng/vectors";
+import { cartesian2 } from "@thi.ng/vectors";
 
 const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-const tick = (i: number, r1: number, r2: number) => {
-    const theta = i / 12 * TAU - HALF_PI;
-    return [
-        ["line", {}, toCartesian2([r1, theta]), toCartesian2([r2, theta])],
-        (i % 3) == 0 ?
-            ["text", { stroke: "none" }, toCartesian2([r1 - 10, theta]), i > 0 ? i : 12] :
-            null
-    ];
-};
+const tick =
+    (i: number, r1: number, r2: number) => {
+        const theta = i / 12 * TAU - HALF_PI;
+        return [
+            ["line", {}, cartesian2(null, [r1, theta]), cartesian2(null, [r2, theta])],
+            (i % 3) == 0 ?
+                ["text", { stroke: "none" }, cartesian2(null, [r1 - 10, theta]), i > 0 ? i : 12] :
+                null
+        ];
+    };
 
-const hand = (r1: number, r2: number, theta: number, attribs = {}, eps = 0.5) => {
-    theta = theta * TAU - HALF_PI;
-    return ["polygon", attribs,
-        [[r1, theta - eps], [r2, theta], [r1, theta + eps]].map((p) => toCartesian2(p))];
-};
+const hand =
+    (r1: number, r2: number, theta: number, attribs = {}, eps = 0.5) => {
+        theta = theta * TAU - HALF_PI;
+        return ["polygon", attribs,
+            [[r1, theta - eps], [r2, theta], [r1, theta + eps]].map((p) => cartesian2(null, p))];
+    };
 
 const cancel = start(() => {
     const now = new Date();

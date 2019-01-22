@@ -5,7 +5,7 @@ import { fitClamped } from "@thi.ng/math";
 import { Subscription } from "@thi.ng/rstream";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { peek } from "@thi.ng/transducers";
-import { heading2, sub2 } from "@thi.ng/vectors";
+import { heading, sub2 } from "@thi.ng/vectors";
 
 /**
  * Dial component options.
@@ -175,7 +175,7 @@ export const dial = (opts: Partial<DialOpts>) => {
                     .subscribe({
                         next: (e) => {
                             if (e[0] === GestureType.START || e[0] === GestureType.DRAG) {
-                                let theta = heading2(sub2(e[1].pos, [cx, cy])) - startTheta;
+                                let theta = heading(sub2([], e[1].pos, [cx, cy])) - startTheta;
                                 if (theta < 0) theta += TAU;
                                 theta %= TAU;
                                 opts.onchange.call(

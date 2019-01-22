@@ -1,17 +1,18 @@
+import { pathBuilder, points } from "@thi.ng/geom";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components";
 import { COMMENT, serialize } from "@thi.ng/hiccup";
 import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { concat, skewX23, translation23 } from "@thi.ng/matrices";
 import { fromRAF, stream, sync } from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { Mat23 } from "@thi.ng/vectors";
-
-// for testing SVG conversion
+import logo from "../assets/logo-64.png";
 import { download } from "./download";
 
+// for testing SVG conversion
+
 // ignore error, resolved by parcel
-import logo from "../assets/logo-64.png";
 
 // canvas size
 const W = 300;
@@ -31,16 +32,18 @@ const TESTS = {
         attribs: {},
         desc: "Simple path w/ animated stroke dash pattern",
         body: () =>
-            ["path",
-                {
-                    fill: "blue", stroke: "#000", weight: 3,
-                    dash: [4, 8], dashOffset: (Date.now() * 0.01) % 12
-                },
-                [
-                    ["M", [10, 10]], ["Q", [W2, W2], [W2, W - 10]],
-                    ["Q", [W2, W2], [W - 10, 10]], ["Q", [W2, W2], [10, 10]]
-                ]
-            ]
+            pathBuilder({
+                fill: "blue",
+                stroke: "#000",
+                weight: 3,
+                dash: [4, 8],
+                dashOffset: (Date.now() * 0.01) % 12
+            })
+                .moveTo([10, 10])
+                .quadraticTo([W2, W2], [W2, W - 10])
+                .quadraticTo([W2, W2], [W - 10, 10])
+                .quadraticTo([W2, W2], [10, 10])
+                .current()
     },
 
     "shape morph": {
@@ -49,61 +52,65 @@ const TESTS = {
         body: () => {
             const t = Date.now() * 0.01;
             const a = 10 + 140 * (Math.sin(t * 0.33) * 0.5 + 0.5);
-            return ["path",
-                {
-                    fill: "rgba(255,255,255,0.05)", stroke: "#000",
-                    weight: 3,
-                    miterLimit: 1,
-                    dash: [20, 20], dashOffset: (t * 5) % 40,
-                    translate: [W2, W2],
-                    rotate: (t * 0.05) % (2 * Math.PI)
-                },
-                [
-                    ["M", [-100, -100]], ["Q", [-a, 0], [0, 100]],
-                    ["Q", [a, 0], [100, -100]], ["Q", [0, -a], [-100, -100]]
-                ]
-            ];
+            return pathBuilder({
+                fill: [1, 1, 1, 0.05],
+                stroke: "#000",
+                weight: 3,
+                miterLimit: 1,
+                dash: [20, 20], dashOffset: (t * 5) % 40,
+                translate: [W2, W2],
+                rotate: (t * 0.05) % (2 * Math.PI)
+            })
+                .moveTo([-100, -100])
+                .quadraticTo([-a, 0], [0, 100])
+                .quadraticTo([a, 0], [100, -100])
+                .quadraticTo([0, -a], [-100, -100])
+                .current();
         }
     },
 
     "points 1k": {
         attribs: { __diff: false },
         desc: "1,000 random circles",
-        body: () =>
-            ["points",
-                {
-                    fill: "#000", stroke: "none", size: 4,
-                    translate: [W2, W2],
-                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005),
-                    shape: "circle"
-                },
-                [...repeatedly(randpos, 1000)]],
+        body: () => points(
+            [...repeatedly(randpos, 1000)],
+            {
+                fill: "#000",
+                stroke: "none",
+                size: 4,
+                shape: "circle",
+                translate: [W2, W2],
+                scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005),
+            },
+        ),
     },
 
     "points 10k": {
         attribs: { __diff: false },
         desc: "10,000 random rects",
-        body: () =>
-            ["points",
-                {
-                    fill: "#000", stroke: "none",
-                    translate: [W2, W2],
-                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
-                },
-                [...repeatedly(randpos, 10000)]],
+        body: () => points(
+            [...repeatedly(randpos, 10000)],
+            {
+                fill: "#000",
+                stroke: "none",
+                translate: [W2, W2],
+                scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
+            },
+        ),
     },
 
     "points 50k": {
         attribs: { __diff: false },
         desc: "50,000 random rects",
-        body: () =>
-            ["points",
-                {
-                    fill: "#000", stroke: "none",
-                    translate: [W2, W2],
-                    scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
-                },
-                [...repeatedly(randpos, 50000)]],
+        body: () => points(
+            [...repeatedly(randpos, 50000)],
+            {
+                fill: "#000",
+                stroke: "none",
+                translate: [W2, W2],
+                scale: 0.6 + 0.4 * Math.sin(Date.now() * 0.005)
+            },
+        ),
     },
 
     "rounded rects": {
@@ -122,6 +129,7 @@ const TESTS = {
                     __normalize: false
                 },
                 ...map((i) => ["rect", null, [i, i], W - 2 * i, W - 2 * i, r], range(10, 50, 5)),
+                // ...map((i) => normalizedPath(roundedRect([i, i], [W - 2 * i, W - 2 * i], r)), range(10, 50, 5)),
                 ["text", {}, [W2, W2], Math.round(r)]
             ];
         }
@@ -133,9 +141,11 @@ const TESTS = {
         body: () =>
             [
                 ["defs", {},
-                    ["linearGradient", { id: "grad1", from: [0, 0], to: [W, W] },
+                    ["linearGradient",
+                        { id: "grad1", from: [0, 0], to: [W, W] },
                         [[0, "#fc0"], [1, "#0ef"]]],
-                    ["linearGradient", { id: "grad2", from: [0, 0], to: [W, W2 + W2 * Math.sin(Date.now() * 0.005)] },
+                    ["linearGradient",
+                        { id: "grad2", from: [0, 0], to: [W, W2 + W2 * Math.sin(Date.now() * 0.005)] },
                         [[0, "#700"], [0.5, "#d0f"], [1, "#fff"]]]
                 ],
                 ["circle", { fill: "$grad1" }, [W2, W2], W2 - 10],
@@ -154,10 +164,12 @@ const TESTS = {
             const spos = [110, 120];
             return [
                 ["defs", {},
-                    ["radialGradient", { id: "bg", from: [x, W - 20], to: [W2, W], r1: W, r2: 100 },
+                    ["radialGradient",
+                        { id: "bg", from: [x, W - 20], to: [W2, W], r1: W, r2: 100 },
                         [[0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]]],
-                    ["radialGradient", { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
-                        [[0, "#fff"], [1, "rgba(255,255,192,0)"]]]
+                    ["radialGradient",
+                        { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
+                        [[0, [1, 1, 1]], [1, [1, 1, 0.75, 0]]]]
                 ],
                 ["circle", { fill: "$bg" }, [W2, y], W2 - 20],
                 ["circle", { fill: "$sun" }, spos, 50],
@@ -199,9 +211,10 @@ const TESTS = {
             const body =
                 ["g",
                     {
-                        transform: Mat23.concat(
-                            Mat23.translation(150, 150),
-                            Mat23.skewX(-Math.PI / 6)
+                        transform: concat(
+                            [],
+                            translation23([], [150, 150]),
+                            skewX23([], -Math.PI / 6)
                         ),
                     },
                     ["rect", { fill: "#ff0" }, [-50, -50], 100, 100],
