@@ -9,14 +9,10 @@ This project is part of the
 
 ## About
 
-SVG element functions for
+SVG element functions & conversion for
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 &
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
-
-This package's functionality was formerly part of
-[@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom),
-but has been extracted to remain more focused.
 
 ### Important
 
@@ -27,27 +23,78 @@ called like:
 
 ```ts
 // correct (direct invocation)
-svg.svg(svg.circle([0, 0], 100, { fill: "red" }));
+svg.svg({}, svg.circle([0, 0], 100, { fill: "red" }));
 
 // incorrect / unsupported (lazy evaluation)
-[svg.svg, [svg.circle, [0, 0], 100, { fill: "red" }]]
+[svg.svg, {}, [svg.circle, [0, 0], 100, { fill: "red" }]]
 ```
 
-### SVG conversion of hdom-canvas shape trees
+### SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees
 
 Since v2.0.0 this package provides a conversion utility to translate the
-more compact syntax used for
+more compact syntax used by
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+and
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
-shape trees (designed for more performant realtime canvas drawing) into
+shape trees (designed for more performant realtime / canvas drawing) into
 a SVG serializable hiccup format.
 
-The `convertTree()` function takes a normalized hiccup tree of
+The `convertTree()` function takes a pre-normalized hiccup tree of
 hdom-canvas shape definitions and recursively converts it into an hiccup
-flavor which is ready for SVG serialization. This conversion also
-involves translation & re-organization of various attributes. The
-function returns a new tree. The original remains untouched, as will any
-unrecognized tree/shape nodes (those will be transferred as-is to the
+flavor which is ready for SVG serialization (i.e. using stringified
+geometry attribs). This conversion also involves translation &
+re-organization of various attributes, as described below. This function
+returns a new tree. The original remains untouched, as will any
+unrecognized tree / shape nodes (those will be transferred as-is to the
 result tree). See example below.
+
+### Automatic attribute conversions
+
+#### Colors
+
+Since v3.1.0:
+
+Color conversions are only applied to `fill` and `stroke` attributes and color stops provided to `linearGradient()`, `radialGradient()`
+
+##### String
+
+String color attribs prefixed with `$` are replaced with `url(#...)`
+refs (e.g. to refer to  gradients), else used as is (untransformed)
+
+##### Number
+
+Interpreted as ARGB hex value:
+
+`{ fill: 0xffaabbcc }` => `{ fill: "#aabbcc" }`
+
+##### Array
+
+Interpreted as float RGB(A):
+
+`{ fill: [1, 0.8, 0.6, 0.4] }` => `{ fill: "rgba(255,204,153,0.40)" }`
+
+##### [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) values
+
+Converted to CSS color strings:
+
+`{ fill: hcya(0.1666, 1, 0.8859) }` => `{ fill: "#ffff00" }`
+
+#### Transforms
+
+(i.e. `transform`, `rotate`, `scale`, `translate`)
+
+If an element has a `transform` attrib, conversion of the other
+transformation attribs will be skipped, else the values are assumed to
+be either strings or:
+
+- `transform`: 6-element numeric array ([2x3 matrix in column major order](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform#Matrix))
+- `translate`: 2-element array
+- `rotate`: number (angle in radians)
+- `scale`: number (uniform scale) or 2-elem array
+
+If no `transform`, but others are given, the resulting transformation
+order will always be TRS. Any string values will be used as-is and
+therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 
 ## Installation
 
@@ -57,6 +104,8 @@ yarn add @thi.ng/hiccup-svg
 
 ## Dependencies
 
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 
 ## Usage examples
@@ -71,9 +120,9 @@ fs.writeFileSync(
     serialize(
         svg.svg(
             {width: 100, height: 100},
-            svg.defs(svg.linearGradient("grad", 0, 0, 0, 1, [[0, "red"], [1, "blue"]])),
-            svg.circle([50, 50], 50, {fill: "url(#grad)"}),
-            svg.text("Hello", [50, 55], { fill: "white", "text-anchor": "middle"})
+            svg.defs(svg.linearGradient("grad", [0, 0], [0, 1], [[0, "red"], [1, "blue"]])),
+            svg.circle([50, 50], 50, { fill: "url(#grad)" }),
+            svg.text([50, 55], "Hello", { fill: "white", "text-anchor": "middle" })
         )
     ));
 ```
