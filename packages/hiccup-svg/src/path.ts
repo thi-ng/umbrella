@@ -1,5 +1,10 @@
 import { PathSegment } from "./api";
-import { ff, fpoint, fpoints } from "./format";
+import {
+    fattribs,
+    ff,
+    fpoint,
+    fpoints
+} from "./format";
 
 const DEG = 180 / Math.PI;
 
@@ -40,5 +45,5 @@ export const path =
                     res.push(fpoints((<any>seg).slice(1), ","));
             }
         }
-        return ["path", { ...attribs, d: res.join("") }];
+        return ["path", fattribs({ ...attribs, d: res.join("") })];
     };

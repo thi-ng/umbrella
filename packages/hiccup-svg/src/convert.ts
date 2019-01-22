@@ -1,12 +1,7 @@
-import {
-    implementsFunction,
-    isArray,
-    isArrayLike,
-    isString
-} from "@thi.ng/checks";
+import { implementsFunction, isArray } from "@thi.ng/checks";
 import { circle } from "./circle";
 import { ellipse } from "./ellipse";
-import { ff } from "./format";
+import { fattribs } from "./format";
 import { linearGradient, radialGradient } from "./gradients";
 import { image } from "./image";
 import { hline, line, vline } from "./line";
@@ -59,7 +54,7 @@ export const convertTree =
             case "svg":
             case "defs":
             case "g": {
-                const res: any[] = [type, attribs];
+                const res: any[] = [type, fattribs(attribs)];
                 for (let i = 2, n = tree.length; i < n; i++) {
                     const c = convertTree(tree[i]);
                     c != null && res.push(c);
@@ -96,7 +91,7 @@ export const convertTree =
                 return ellipse(tree[2], tree[3][0], tree[3][1], attribs);
             case "rect": {
                 const r = tree[5] || 0;
-                return roundedRect(tree[2], tree[3][0], tree[3][1], r, r, attribs);
+                return roundedRect(tree[2], tree[3], tree[4], r, r, attribs);
             }
             case "line":
                 return line(tree[2], tree[3], attribs);
@@ -123,17 +118,15 @@ export const convertTree =
 
 const convertAttribs =
     (attribs: any) => {
-        const res: any = convertTransforms(attribs);
+        const res: any = {};
+        if (!attribs) return res;
+        // convertTransforms(res, attribs);
         for (let id in attribs) {
             const v = attribs[id];
             if (ATTRIB_ALIASES[id]) {
                 res[ATTRIB_ALIASES[id]] = v;
             } else {
                 switch (id) {
-                    case "fill":
-                    case "stroke":
-                        res[id] = v[0] === "$" ? `url(#${v.substr(1)})` : v;
-                        break;
                     case "font": {
                         const i = v.indexOf(" ");
                         res["font-size"] = v.substr(0, i);
@@ -151,67 +144,9 @@ const convertAttribs =
                         // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
                         // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
                         break;
-                    case "transform":
-                    case "translate":
-                    case "rotate":
-                    case "scale":
-                        break;
                     default:
                         res[id] = v;
                 }
-            }
-        }
-        return res;
-    };
-
-/**
- * Converts any transformation related attribs, i.e. `transform`,
- * `rotate`, `scale`, `translate`. If the element has a `transform`
- * attrib, conversion of the other attribs will be skipped, else the
- * values are assumed to be either strings or:
- *
- * - `transform`: Mat23 or 6-element numeric array
- * - `translate`: 2-element array
- * - `rotate`: number (angle in radians)
- * - `scale`: number (uniform scale) or 2-elem array
- *
- * If no `transform` is given, the resulting transformation order will
- * always be TRS. Any string values given will used as-is and therefore
- * need to be complete, e.g. `{ rotate: "rotate(60)" }`
- *
- * @param attribs
- */
-const convertTransforms =
-    (attribs: any) => {
-        const res: any = {};
-        if (!attribs) return res;
-        let v: any;
-        if ((v = attribs.transform) ||
-            attribs.translate ||
-            attribs.scale ||
-            attribs.rotate) {
-            if (v) {
-                res.transform = !isString(v) ?
-                    `matrix(${[...v].map(ff).join(" ")})` :
-                    v;
-            } else {
-                const tx: string[] = [];
-                if (v = attribs.translate) {
-                    tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
-                }
-                if (v = attribs.rotate) {
-                    tx.push(isString(v) ? v : `rotate(${ff(v * 180 / Math.PI)})`);
-                }
-                if (v = attribs.scale) {
-                    tx.push(
-                        isString(v) ?
-                            v :
-                            isArrayLike(v) ?
-                                `scale(${ff(v[0])} ${ff(v[1])})` :
-                                `scale(${ff(v)})`
-                    );
-                }
-                res.transform = tx.join(" ");
             }
         }
         return res;

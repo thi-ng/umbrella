@@ -1,3 +1,5 @@
+import { fattribs } from "./format";
+
 export const group =
-    (attr: any, ...body: any[]): any[] =>
-        ["g", attr, ...body];
+    (attribs: any, ...body: any[]): any[] =>
+        ["g", fattribs({ ...attribs }), ...body];

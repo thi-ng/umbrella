@@ -1,5 +1,5 @@
-import { Vec2Like, GradientStop } from "./api";
-import { ff } from "./format";
+import { GradientStop, Vec2Like } from "./api";
+import { fattribs, fcolor, ff } from "./format";
 
 const RE_ALPHA_COLOR = /(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+)\)/;
 
@@ -7,12 +7,13 @@ const gradient =
     (type: string, attribs: any, stops: GradientStop[]): any[] =>
         [
             type,
-            attribs,
+            fattribs(attribs),
             ...stops.map(gradientStop)
         ];
 
 const gradientStop =
     ([offset, col]: GradientStop) => {
+        col = fcolor(col);
         // use stop-opacity attrib for safari compatibility
         // https://stackoverflow.com/a/26220870/294515
         let opacity: string;
@@ -34,12 +35,12 @@ export const linearGradient = (
     gradient(
         "linearGradient",
         {
+            ...attribs,
             id,
             x1: ff(from[0]),
             y1: ff(from[1]),
             x2: ff(to[0]),
             y2: ff(to[1]),
-            ...attribs
         },
         stops
     );
@@ -56,6 +57,7 @@ export const radialGradient = (
     gradient(
         "radialGradient",
         {
+            ...attribs,
             id,
             fx: ff(from[0]),
             fy: ff(from[1]),
@@ -63,7 +65,6 @@ export const radialGradient = (
             cy: ff(to[1]),
             fr: ff(fr),
             r: ff(r),
-            ...attribs
         },
         stops
     );

@@ -16,7 +16,7 @@
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module hiccupSvg checks hiccup",
+        "build:bundle": "../../scripts/bundle-module hiccupSvg checks color hiccup",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^2.0.1",
+        "@thi.ng/color": "^0.1.1",
         "@thi.ng/hiccup": "^3.0.1"
     },
     "keywords": [

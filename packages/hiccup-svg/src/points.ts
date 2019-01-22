@@ -1,5 +1,5 @@
 import { Vec2Like } from "./api";
-import { ff } from "./format";
+import { fattribs, ff } from "./format";
 
 /**
  * Shape instancing group. The `shape` can be an SVG shape `#id` defined
@@ -14,7 +14,7 @@ import { ff } from "./format";
  */
 export const points =
     (pts: Iterable<Vec2Like>, shape: string, size = 1, attribs?: any): any[] => {
-        const group = ["g", attribs];
+        const group = ["g", fattribs({ ...attribs })];
         let href: string;
         if (!shape || shape[0] !== "#") {
             const r = ff(size);
