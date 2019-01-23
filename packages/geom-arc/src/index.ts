@@ -1,4 +1,3 @@
-export * from "./api";
 export * from "./bounds";
 export * from "./closest-point";
 export * from "./from-endpoints";

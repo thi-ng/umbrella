@@ -1,7 +1,7 @@
 import { isNumber, isPlainObject } from "@thi.ng/checks";
-import { DEFAULT_SAMPLES, Sampler } from "@thi.ng/geom-resample";
+import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
+import { Sampler } from "@thi.ng/geom-resample";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { ArcSamplingOpts } from "./api";
 import { pointAtTheta } from "./point-at";
 
 export const sample = (
@@ -10,10 +10,10 @@ export const sample = (
     axis: number,
     start: number,
     end: number,
-    opts?: number | Partial<ArcSamplingOpts>
+    opts?: number | Partial<SamplingOpts>
 ): Vec[] => {
     if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-        return new Sampler(sample(pos, r, axis, start, end, (<ArcSamplingOpts>opts).num || DEFAULT_SAMPLES))
+        return new Sampler(sample(pos, r, axis, start, end, (<SamplingOpts>opts).num || DEFAULT_SAMPLES))
             .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
     }
     opts = isNumber(opts) ?
