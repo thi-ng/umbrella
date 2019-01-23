@@ -5,7 +5,8 @@ import {
     MIN2,
     min2,
     ReadonlyVec,
-    set2
+    set2,
+    VecPair
 } from "@thi.ng/vectors";
 import { pointAtTheta } from "./point-at";
 
@@ -15,7 +16,7 @@ export const bounds = (
     axis: number,
     start: number,
     end: number
-) => {
+): VecPair => {
     const min = set2([], MAX2);
     const max = set2([], MIN2);
     const p = [];
@@ -23,7 +24,7 @@ export const bounds = (
         pointAtTheta(pos, r, axis, theta, p);
         min2(null, min, p);
         max2(null, max, p);
-    }
+    };
     update(start);
     update(end);
     if (start > end) {
@@ -31,6 +32,7 @@ export const bounds = (
         start = end;
         end = t;
     }
+    // include multiples of π/2 within [start,end] interval
     for (let i = roundTo(start, HALF_PI), j = roundTo(end, HALF_PI); i < j; i += HALF_PI) {
         inRange(i, start, end) && update(i);
     }

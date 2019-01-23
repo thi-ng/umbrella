@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-arc",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "2D circular / elliptic arc operations",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -39,9 +39,15 @@
     },
     "keywords": [
         "2D",
+        "arc",
         "bounding rect",
-        "elliptic arc",
+        "circle",
+        "circumcenter",
+        "elliptic",
         "ES6",
+        "interpolation",
+        "SVG",
+        "resampling",
         "typescript"
     ],
     "publishConfig": {
