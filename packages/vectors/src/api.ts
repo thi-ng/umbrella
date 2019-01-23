@@ -46,6 +46,8 @@ export interface MultiVecOp<VOP> {
     default(op: VOP): VOP;
 }
 
+export type VecPair = [Vec, Vec];
+
 export type VecOpV = (out: Vec, a: ReadonlyVec) => Vec;
 export type VecOpN = (out: Vec, n: number) => Vec;
 export type VecOpVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => Vec;

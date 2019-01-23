@@ -7,3 +7,6 @@ export const copy =
         implementsFunction(v, "copy") ?
             (<any>v).copy() :
             set([], v);
+
+export const copyVectors =
+    (pts: ReadonlyVec[]) => pts.map(copy);
