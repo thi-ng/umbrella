@@ -1,6 +1,6 @@
-import { sign, EPS } from "@thi.ng/math";
-import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors";
 import { intersectLineLine } from "@thi.ng/geom-isec";
+import { EPS, sign } from "@thi.ng/math";
+import { ReadonlyVec, signedArea2 } from "@thi.ng/vectors";
 
 /**
  * Extended version of Sutherland-Hodgeman convex polygon clipping
