@@ -1,3 +1,4 @@
+import { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import {
     comp,
@@ -9,7 +10,7 @@ import {
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-export const edgeSplit =
+export const edgeSplit: Tessellator =
     (points: ReadonlyVec[]) => {
         const c = centroid(points);
         return transduce(

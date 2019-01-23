@@ -1,4 +1,3 @@
-export * from "./api";
 export * from "./tessellate";
 
 export * from "./earcut";
