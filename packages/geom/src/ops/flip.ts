@@ -1,13 +1,11 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { neg } from "@thi.ng/vectors";
 import {
     Arc,
     Group,
-    IShape,
     Path,
-    PCLike,
-    Ray,
-    Type
+    Ray
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 

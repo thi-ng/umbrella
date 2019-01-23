@@ -1,7 +1,13 @@
 import { isNumber } from "@thi.ng/checks";
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import { ArcSamplingOpts, sample as _arcVertices } from "@thi.ng/geom-arc";
-import { DEFAULT_SAMPLES, resample, SamplingOpts } from "@thi.ng/geom-resample";
+import {
+    DEFAULT_SAMPLES,
+    IShape,
+    SamplingOpts,
+    Type
+} from "@thi.ng/geom-api";
+import { sample as _arcVertices } from "@thi.ng/geom-arc";
+import { resample } from "@thi.ng/geom-resample";
 import { sampleCubic, sampleQuadratic } from "@thi.ng/geom-splines";
 import { cossin, TAU } from "@thi.ng/math";
 import {
@@ -11,29 +17,27 @@ import {
     set2,
     Vec
 } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
 import {
     Arc,
     Circle,
     Cubic,
     Ellipse,
     Group,
-    IShape,
     Path,
     Points,
     Polygon,
     Polyline,
     Quadratic,
     Rect,
-    Type
 } from "../api";
-import { dispatch } from "../internal/dispatch";
 
 export const vertices: MultiFn1O<IShape, number | Partial<SamplingOpts>, Vec[]> = defmulti(dispatch);
 
 vertices.addAll({
 
     [Type.ARC]:
-        ($: Arc, opts?: number | Partial<ArcSamplingOpts>): Vec[] =>
+        ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
             _arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
 
 
@@ -123,7 +127,7 @@ vertices.isa(Type.QUAD, Type.POLYGON);
 vertices.isa(Type.TRIANGLE, Type.POLYGON);
 
 const circleOpts =
-    (opts: number | Partial<ArcSamplingOpts>, r: number): [number, boolean] =>
+    (opts: number | Partial<SamplingOpts>, r: number): [number, boolean] =>
         isNumber(opts) ?
             [opts, false] :
             [

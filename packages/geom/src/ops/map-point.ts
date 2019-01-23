@@ -1,11 +1,12 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import {
+    div,
     ReadonlyVec,
-    Vec,
     sub,
-    div
+    Vec
 } from "@thi.ng/vectors";
-import { IShape, Rect, Type } from "../api";
+import { Rect } from "../api";
 import { dispatch } from "../internal/dispatch";
 
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(dispatch);

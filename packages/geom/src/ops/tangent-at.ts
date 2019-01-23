@@ -1,14 +1,9 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, HALF_PI, TAU } from "@thi.ng/math";
 import { direction, Vec } from "@thi.ng/vectors";
-import {
-    IShape,
-    Line,
-    PCLike,
-    Rect,
-    Type
-} from "../api";
+import { Line, Rect } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 

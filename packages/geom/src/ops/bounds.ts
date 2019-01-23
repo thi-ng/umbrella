@@ -1,4 +1,11 @@
 import { defmulti } from "@thi.ng/defmulti";
+import {
+    AABBLike,
+    IShape,
+    PathSegment,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
 import { bounds as arcBounds } from "@thi.ng/geom-arc";
 import { bounds as _bounds } from "@thi.ng/geom-poly-utils";
 import { cubicBounds, quadraticBounds } from "@thi.ng/geom-splines";
@@ -19,25 +26,20 @@ import {
     sub2,
     subN2
 } from "@thi.ng/vectors";
+import { rectFromMinMax } from "../ctors/rect";
+import { collBounds } from "../internal/coll-bounds";
+import { dispatch } from "../internal/dispatch";
 import {
-    AABBLike,
     Arc,
     Circle,
     Cubic,
     Ellipse,
     Group,
-    IShape,
     Line,
     Path,
-    PathSegment,
-    PCLike,
     Quadratic,
     Rect,
-    Type
 } from "../api";
-import { rectFromMinMax } from "../ctors/rect";
-import { collBounds } from "../internal/coll-bounds";
-import { dispatch } from "../internal/dispatch";
 
 export const bounds = defmulti<IShape, AABBLike>(dispatch);
 

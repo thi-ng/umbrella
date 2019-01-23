@@ -1,4 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
+import { pointInPoly2, pointInTriangle2 } from "@thi.ng/geom-poly-utils";
 import {
     distSq,
     isInArray,
@@ -8,15 +10,12 @@ import {
 import {
     AABB,
     Circle,
-    IShape,
     Points,
     Polygon,
     Rect,
-    Triangle,
-    Type
+    Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { pointInPoly2, pointInTriangle2 } from "@thi.ng/geom-poly-utils";
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 

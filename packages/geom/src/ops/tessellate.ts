@@ -1,7 +1,7 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { Tessellator, tessellate as _tessellate } from "@thi.ng/geom-tessellate";
+import { IShape, Tessellator } from "@thi.ng/geom-api";
+import { tessellate as _tessellate } from "@thi.ng/geom-tessellate";
 import { Vec } from "@thi.ng/vectors";
-import { IShape } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 

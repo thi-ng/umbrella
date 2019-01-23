@@ -1,6 +1,7 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
+import { AABB, Rect } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { IShape, Type, Rect, AABB } from "../api";
 import { unionBounds } from "../internal/union-bounds";
 
 export const union = defmulti<IShape, IShape, IShape[]>(dispatch);

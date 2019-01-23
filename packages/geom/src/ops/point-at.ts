@@ -1,4 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, fit01, TAU } from "@thi.ng/math";
 import {
@@ -10,21 +11,19 @@ import {
     mixQuadratic,
     Vec
 } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
+import { vertices } from "./vertices";
 import {
     Arc,
     Circle,
     Cubic,
     Ellipse,
-    IShape,
     Line,
     Polygon,
     Quadratic,
     Ray,
     Rect,
-    Type
 } from "../api";
-import { dispatch } from "../internal/dispatch";
-import { vertices } from "./vertices";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 

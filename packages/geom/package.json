@@ -38,6 +38,7 @@
         "@thi.ng/defmulti": "^1.0.1",
         "@thi.ng/equiv": "^1.0.1",
         "@thi.ng/errors": "^1.0.1",
+        "@thi.ng/geom-api": "^0.0.1",
         "@thi.ng/geom-arc": "^0.0.1",
         "@thi.ng/geom-clip-convex": "^0.0.1",
         "@thi.ng/geom-closest-point": "^0.0.1",

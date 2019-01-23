@@ -1,4 +1,4 @@
-import { Attribs, IShape } from "../api";
+import { Attribs, IShape } from "@thi.ng/geom-api";
 
 export const withAttribs = <T extends IShape>(
     shape: T,

@@ -1,7 +1,16 @@
-import { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors";
+import {
+    AABBLike,
+    Attribs,
+    IHiccupPathSegment,
+    IHiccupShape,
+    IShape,
+    PathSegment,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
 import { pointAt as arcPointAt, pointAtTheta as arcPointAtTheta } from "@thi.ng/geom-arc";
 import {
     add2,
@@ -11,81 +20,6 @@ import {
     set,
     Vec
 } from "@thi.ng/vectors";
-
-export const enum SegmentType {
-    MOVE,
-    LINE,
-    POLYLINE,
-    ARC,
-    CUBIC,
-    QUADRATIC,
-    CLOSE,
-}
-
-export const enum Type {
-    AABB = 1,
-    ARC,
-    CIRCLE,
-    CUBIC,
-    CUBIC3,
-    ELLIPSE,
-    GROUP,
-    LINE,
-    LINE3,
-    PATH,
-    POINTS,
-    POINTS3,
-    POLYGON,
-    POLYGON3,
-    POLYLINE,
-    POLYLINE3,
-    QUAD,
-    QUAD3,
-    QUADRATIC,
-    QUADRATIC3,
-    RECT,
-    SPHERE,
-    TRIANGLE,
-    TRIANGLE3,
-    RAY,
-    RAY3,
-}
-
-export type Attribs = IObjectOf<any>;
-
-export interface IShape extends
-    ICopy<IShape> {
-
-    readonly type: number | string;
-    attribs?: Attribs;
-}
-
-export interface AABBLike extends IShape {
-    pos: Vec;
-    size: Vec;
-
-    max(): Vec;
-}
-
-export interface IHiccupShape extends IShape, IToHiccup { }
-
-export interface IHiccupPathSegment {
-    toHiccupPathSegments(): any[];
-}
-
-export interface PathSegment {
-    type: SegmentType;
-    point?: Vec;
-    geo?: IShape & IHiccupPathSegment;
-}
-
-export interface PCLike extends IShape {
-    points: Vec[];
-}
-
-export interface PCLikeConstructor {
-    new(pts: Vec[], attribs: Attribs): PCLike;
-}
 
 export abstract class APC implements
     PCLike {

@@ -1,12 +1,12 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { resample as _resample, SamplingOpts } from "@thi.ng/geom-resample";
 import {
     IShape,
     PCLike,
-    Polygon,
-    Polyline,
+    SamplingOpts,
     Type
-} from "../api";
+} from "@thi.ng/geom-api";
+import { resample as _resample } from "@thi.ng/geom-resample";
+import { Polygon, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
 

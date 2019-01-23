@@ -1,25 +1,27 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import {
-    intersectCircleCircle,
     IntersectionResult,
     IntersectionType,
+    IShape,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
+import {
+    intersectCircleCircle,
     intersectLineLine,
     intersectRayCircle,
     intersectRayPolyline,
     testRectCircle,
     testRectRect
 } from "@thi.ng/geom-isec";
+import { dispatch2 } from "../internal/dispatch";
 import {
     Circle,
-    IShape,
     Line,
-    PCLike,
     Ray,
     Rect,
     Sphere,
-    Type
 } from "../api";
-import { dispatch2 } from "../internal/dispatch";
 
 export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> = defmulti(dispatch2);
 
@@ -34,12 +36,8 @@ intersects.addAll({
             intersectLineLine(a[0], a[1], b[0], b[1]),
 
     [`${Type.RAY}-${Type.CIRCLE}`]:
-        (ray: Ray, sphere: Sphere) => {
-            const isec = intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r);
-            return isec ?
-                { type: IntersectionType.INTERSECT, isec } :
-                { type: IntersectionType.NONE };
-        },
+        (ray: Ray, sphere: Sphere) =>
+            intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r),
 
     [`${Type.RAY}-${Type.POLYGON}`]:
         (ray: Ray, poly: PCLike) =>

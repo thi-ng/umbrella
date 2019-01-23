@@ -1,6 +1,7 @@
+import { Attribs } from "@thi.ng/geom-api";
 import { quadraticFromLine as _line } from "@thi.ng/geom-splines";
 import { Vec } from "@thi.ng/vectors";
-import { Attribs, Quadratic } from "../api";
+import { Quadratic } from "../api";
 import { argAttribs } from "../internal/args";
 
 export function quadratic(a: Vec, b: Vec, c: Vec, attribs?: Attribs): Quadratic;

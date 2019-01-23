@@ -1,6 +1,7 @@
+import { Attribs } from "@thi.ng/geom-api";
 import { cubicFromArc as _arc, cubicFromLine as _line, cubicFromQuadratic as _quad } from "@thi.ng/geom-splines";
 import { Vec } from "@thi.ng/vectors";
-import { Arc, Attribs, Cubic } from "../api";
+import { Arc, Cubic } from "../api";
 import { argAttribs } from "../internal/args";
 
 export function cubic(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Cubic;

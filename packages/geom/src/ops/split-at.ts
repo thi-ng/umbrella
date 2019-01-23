@@ -1,19 +1,18 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cubicSplitAt, quadraticSplitAt } from "@thi.ng/geom-splines";
 import { fit01 } from "@thi.ng/math";
 import { copyVectors, set } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
+import { splitLine } from "../internal/split";
 import {
     Arc,
     Cubic,
-    IShape,
     Line,
     Polyline,
     Quadratic,
-    Type
 } from "../api";
-import { dispatch } from "../internal/dispatch";
-import { splitLine } from "../internal/split";
 
 export const splitAt = defmulti<IShape, number, IShape[]>(dispatch);
 

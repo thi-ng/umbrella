@@ -53,7 +53,6 @@ export * from "./ops/warp-points";
 export * from "./ops/with-attribs";
 
 export * from "./internal/coll-bounds";
-export * from "./internal/douglas–peucker";
 export * from "./internal/edges";
 export * from "./internal/graham-scan";
 export * from "./internal/split";

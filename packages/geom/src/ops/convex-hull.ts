@@ -1,10 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
-import {
-    IShape,
-    PCLike,
-    Polygon,
-    Type
-} from "../api";
+import { IShape, PCLike, Type } from "@thi.ng/geom-api";
+import { Polygon } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { grahamScan2 } from "../internal/graham-scan";
 import { vertices } from "./vertices";

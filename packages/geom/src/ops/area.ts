@@ -1,17 +1,16 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import { PI } from "@thi.ng/math";
 import { signedArea2, Vec } from "@thi.ng/vectors";
 import {
     AABB,
+    Arc,
     Circle,
     Ellipse,
     Group,
-    IShape,
     Polygon,
     Rect,
-    Triangle,
-    Type,
-    Arc
+    Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { polyArea } from "../internal/poly-area";

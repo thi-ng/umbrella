@@ -1,5 +1,6 @@
+import { Attribs } from "@thi.ng/geom-api";
 import { sub2, Vec } from "@thi.ng/vectors";
-import { Attribs, Rect } from "../api";
+import { Rect } from "../api";
 import { argsVV } from "../internal/args";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;

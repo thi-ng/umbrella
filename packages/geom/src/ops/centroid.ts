@@ -1,4 +1,10 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import {
+    AABBLike,
+    IShape,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
 import { centerOfWeight2, centroid as _centroid } from "@thi.ng/geom-poly-utils";
 import {
     add,
@@ -8,19 +14,15 @@ import {
     set,
     Vec
 } from "@thi.ng/vectors";
-import {
-    AABBLike,
-    Circle,
-    Group,
-    IShape,
-    Line,
-    PCLike,
-    Polygon,
-    Triangle,
-    Type
-} from "../api";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
+import {
+    Circle,
+    Group,
+    Line,
+    Polygon,
+    Triangle,
+} from "../api";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
 

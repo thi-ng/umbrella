@@ -1,16 +1,12 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import {
     madd,
     mixBilinear,
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
-import {
-    IShape,
-    Quad,
-    Rect,
-    Type
-} from "../api";
+import { Quad, Rect } from "../api";
 import { dispatch } from "../internal/dispatch";
 
 /**

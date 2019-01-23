@@ -1,6 +1,6 @@
 import { Fn } from "@thi.ng/api";
+import { AABBLike, IShape } from "@thi.ng/geom-api";
 import { mixCubic as _mixCubic } from "@thi.ng/math";
-import { AABBLike, IShape } from "../api";
 import { unionBounds } from "./union-bounds";
 
 /**

@@ -1,13 +1,7 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import { SamplingOpts } from "@thi.ng/geom-resample";
+import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { VecPair } from "@thi.ng/vectors";
-import {
-    IShape,
-    Polygon,
-    Polyline,
-    Rect,
-    Type
-} from "../api";
+import { Polygon, Polyline, Rect } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { edgeIterator } from "../internal/edges";
 import { vertices } from "./vertices";

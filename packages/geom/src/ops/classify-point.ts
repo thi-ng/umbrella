@@ -1,13 +1,9 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import { classifyPointInTriangle2 } from "@thi.ng/geom-poly-utils";
 import { EPS, sign } from "@thi.ng/math";
 import { distSq, ReadonlyVec } from "@thi.ng/vectors";
-import {
-    Circle,
-    IShape,
-    Triangle,
-    Type
-} from "../api";
+import { Circle, Triangle } from "../api";
 import { dispatch } from "../internal/dispatch";
 
 export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> = defmulti(dispatch);

@@ -1,6 +1,6 @@
-import { IShape } from "../api";
-import { Vec, randMinMax } from "@thi.ng/vectors";
+import { IShape } from "@thi.ng/geom-api";
 import { SYSTEM } from "@thi.ng/random";
+import { randMinMax, Vec } from "@thi.ng/vectors";
 import { bounds } from "./bounds";
 import { pointInside } from "./point-inside";
 

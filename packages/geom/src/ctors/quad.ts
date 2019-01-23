@@ -1,5 +1,6 @@
+import { Attribs } from "@thi.ng/geom-api";
 import { Vec } from "@thi.ng/vectors";
-import { Attribs, Quad } from "../api";
+import { Quad } from "../api";
 import { argAttribs } from "../internal/args";
 
 export function quad(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Quad;

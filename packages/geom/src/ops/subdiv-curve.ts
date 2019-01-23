@@ -1,11 +1,7 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
-import {
-    IShape,
-    Polygon,
-    Polyline,
-    Type
-} from "../api";
-import { subdivide, SubdivKernel } from "@thi.ng/geom-subdiv-curve";
+import { IShape, SubdivKernel, Type } from "@thi.ng/geom-api";
+import { subdivide } from "@thi.ng/geom-subdiv-curve";
+import { Polygon, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
 
 export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> = defmulti(dispatch);

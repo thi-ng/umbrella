@@ -1,4 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { Sampler } from "@thi.ng/geom-resample";
 import { quadraticSplitNearPoint, splitCubicNearPoint } from "@thi.ng/geom-splines";
@@ -6,11 +7,9 @@ import { clamp01 } from "@thi.ng/math";
 import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
 import {
     Cubic,
-    IShape,
     Line,
     Polyline,
-    Quadratic,
-    Type
+    Quadratic
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { splitLine } from "../internal/split";

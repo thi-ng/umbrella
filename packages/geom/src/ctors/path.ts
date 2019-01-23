@@ -1,4 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
+import { Attribs, PathSegment, SegmentType } from "@thi.ng/geom-api";
 import { eqDelta, rad } from "@thi.ng/math";
 import { map, mapcat, peek } from "@thi.ng/transducers";
 import {
@@ -12,13 +13,10 @@ import {
     zeroes
 } from "@thi.ng/vectors";
 import {
-    Attribs,
     Cubic,
     Line,
     Path,
-    PathSegment,
-    Quadratic,
-    SegmentType
+    Quadratic
 } from "../api";
 import { asCubic } from "../ops/as-cubic";
 import { arcFrom2Points } from "./arc";

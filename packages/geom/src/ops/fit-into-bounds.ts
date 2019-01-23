@@ -1,3 +1,4 @@
+import { IShape } from "@thi.ng/geom-api";
 import {
     concat,
     ReadonlyMat,
@@ -5,7 +6,7 @@ import {
     translation23
 } from "@thi.ng/matrices";
 import { div2, neg, ReadonlyVec } from "@thi.ng/vectors";
-import { IShape, Rect } from "../api";
+import { Rect } from "../api";
 import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";
 import { center } from "./center";
