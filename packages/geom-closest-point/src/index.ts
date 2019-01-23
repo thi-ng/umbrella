@@ -1,4 +1,6 @@
 import {
+    dist,
+    distSq,
     dot,
     empty,
     magSq,
@@ -6,8 +8,7 @@ import {
     ReadonlyVec,
     set,
     sub,
-    Vec,
-    dist
+    Vec
 } from "@thi.ng/vectors";
 
 /**
@@ -84,3 +85,70 @@ export const closestPointSegment =
 export const distToSegment =
     (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
         dist(p, closestPointSegment(p, a, b) || a);
+
+export const closestPointPolyline =
+    (p: ReadonlyVec, pts: ReadonlyArray<Vec>, closed = false, out: Vec = []) => {
+        const tmp = [];
+        const n = pts.length - 1;
+        let minD = Infinity, i, j;
+        if (closed) {
+            i = n;
+            j = 0;
+        } else {
+            i = 0;
+            j = 1;
+        }
+        for (; j <= n; i = j, j++) {
+            if (closestPointSegment(p, pts[i], pts[j], tmp)) {
+                const d = distSq(p, tmp);
+                if (d < minD) {
+                    minD = d;
+                    set(out, tmp);
+                }
+            }
+        }
+        return out;
+    };
+
+/**
+ * Returns the index of the start point containing the segment in the
+ * polyline array `points` farthest away from `p` with regards to the
+ * line segment `a` to `b`. `points` is only checked between indices
+ * `from` and `to` (not including the latter).
+ *
+ * @param a
+ * @param b
+ * @param points
+ * @param from
+ * @param to
+ */
+export const farthestPointSegment =
+    (a: ReadonlyVec, b: ReadonlyVec, points: ReadonlyVec[], from = 0, to = points.length) => {
+        let maxD = -1;
+        let maxIdx;
+        const tmp = empty(a);
+        for (let i = from; i < to; i++) {
+            const p = points[i];
+            const d = distSq(p, closestPointSegment(p, a, b, tmp) || a);
+            if (d > maxD) {
+                maxD = d;
+                maxIdx = i;
+            }
+        }
+        return [maxIdx, Math.sqrt(maxD)];
+    };
+
+export const closestPointArray =
+    (p: ReadonlyVec, pts: Vec[]) => {
+
+        let minD = Infinity;
+        let closest: Vec;
+        for (let i = pts.length; --i >= 0;) {
+            const d = distSq(pts[i], p);
+            if (d < minD) {
+                minD = d;
+                closest = pts[i];
+            }
+        }
+        return closest;
+    };
