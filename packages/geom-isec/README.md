@@ -9,11 +9,37 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
+- [About](#about)
+    - [2D tests](#2d-tests)
+    - [3D tests](#3d-tests)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [Authors](#authors)
+- [License](#license)
+
 <!-- /TOC -->
 
 ## About
 
-TODO...
+2D / 3D shape intersection tests:
+
+### 2D tests
+
+| Type   | Circle | Line | Poly | Ray | Rect |
+|--------|:------:|:----:|:----:|:---:|:----:|
+| Circle |   ✓    |      |      |     |      |
+| Line   |        |  ✓   |      |     |      |
+| Ray    |   ✓    |  ✓   |  ✓   |     |      |
+| Rect   |   ✓    |      |      |     |  ✓   |
+
+### 3D tests
+
+| Type   | AABB | Ray | Sphere |
+|--------|:----:|:---:|:------:|
+| AABB   |  ✓   |     |   ✓    |
+| Ray    |      |     |   ✓    |
+| Sphere |      |     |   ✓    |
 
 ## Installation
 
@@ -23,12 +49,20 @@ yarn add @thi.ng/geom-isec
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/master/packages/geom-closest-point)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
 ```ts
-import * as gi from "@thi.ng/geom-isec";
+import * as isec from "@thi.ng/geom-isec";
+
+const res = isec.intersectLineLine([0,0], [100,50], [50,100], [50,-100]);
+// { type: 4, isec: [ 50, 25 ], alpha: 0.5, beta: 0.375, det: -20000 }
+
+res.type === isec.IntersectionType.INTERSECT
+// true
 ```
 
 ## Authors

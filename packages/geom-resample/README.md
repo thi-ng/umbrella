@@ -1,7 +1,7 @@
 # @thi.ng/geom-resample
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-sample.svg)](https://www.npmjs.com/package/@thi.ng/geom-sample)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-sample.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
@@ -20,7 +20,8 @@ This project is part of the
 
 ## About
 
-TODO...
+Customizable nD polyline interpolation, re-sampling, splitting & nearest
+point computation.
 
 ## Installation
 
@@ -30,12 +31,15 @@ yarn add @thi.ng/geom-resample
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/master/packages/geom-closest-point)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
 ```ts
-import { resample } from "@thi.ng/geom-resample";
+import { resample, Sampler } from "@thi.ng/geom-resample";
 ```
 
 ## Authors
