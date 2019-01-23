@@ -32,6 +32,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
+        "@thi.ng/geom-api": "^0.0.1",
         "@thi.ng/geom-closest-point": "^0.0.1",
         "@thi.ng/math": "^1.0.1",
         "@thi.ng/vectors": "^2.1.0"

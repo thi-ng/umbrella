@@ -1,3 +1,4 @@
+import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
 import { eqDeltaFixed } from "@thi.ng/math";
 import {
     add,
@@ -9,10 +10,9 @@ import {
     ReadonlyVec,
     sub
 } from "@thi.ng/vectors";
-import { IntersectionType } from "./api";
 
 export const intersectCircleCircle =
-    (a: ReadonlyVec, b: ReadonlyVec, ar: number, br: number) => {
+    (a: ReadonlyVec, b: ReadonlyVec, ar: number, br: number): IntersectionResult => {
         const delta = sub([], b, a);
         const d = mag(delta);
         if (eqDeltaFixed(d, 0)) {
