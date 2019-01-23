@@ -1,6 +1,6 @@
 import { isPlainObject } from "@thi.ng/checks";
 import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
-import { DEFAULT_SAMPLES, SamplingOpts } from "./api";
+import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
 import { Sampler } from "./sampler";
 
 export const resample = (
