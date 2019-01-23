@@ -1,5 +1,6 @@
 import { isNumber, isPlainObject } from "@thi.ng/checks";
-import { DEFAULT_SAMPLES, Sampler, SamplingOpts } from "@thi.ng/geom-resample";
+import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
+import { Sampler } from "@thi.ng/geom-resample";
 import {
     mixCubic,
     ReadonlyVec,
