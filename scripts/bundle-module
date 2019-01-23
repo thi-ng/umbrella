@@ -11,12 +11,14 @@ const camelCase =
 const size =
     (x) => (x / 1024).toFixed(2) + "KB";
 
-const name = process.argv[2];
 
-const deps = process.argv
-    .slice(3)
+const pkg = JSON.parse(fs.readFileSync("./package.json").toString());
+
+const name = camelCase(pkg.name.substr(8));
+
+const deps = Object.keys(pkg.dependencies || {})
     .reduce(
-        (acc, x) => (acc[`@thi.ng/${x}`] = `thi.ng.${camelCase(x)}`, acc),
+        (acc, x) => (acc[x] = `thi.ng.${camelCase(x.substr(8))}`, acc),
         {}
     );
 
