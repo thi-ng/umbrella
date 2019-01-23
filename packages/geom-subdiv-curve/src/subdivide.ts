@@ -1,3 +1,4 @@
+import { SubdivKernel } from "@thi.ng/geom-api";
 import {
     comp,
     indexed,
@@ -7,7 +8,6 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { SubdivKernel } from "./api";
 
 /**
  * http://algorithmicbotany.org/papers/subgpu.sig2003.pdf

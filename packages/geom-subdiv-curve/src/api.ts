@@ -1,12 +1,7 @@
+import { SubdivKernel } from "@thi.ng/geom-api";
 import { wrap } from "@thi.ng/transducers";
-import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { mixN, ReadonlyVec } from "@thi.ng/vectors";
 import { kernel3 } from "./kernels";
-
-export interface SubdivKernel {
-    fn: (pts: ReadonlyVec[], i: number, nump: number) => Vec[];
-    iter?: (pts: ReadonlyVec[]) => Iterable<ReadonlyVec>;
-    size: number;
-}
 
 const CHAIKIN_FIRST = kernel3([1 / 2, 1 / 2, 0], [0, 3 / 4, 1 / 4]);
 const CHAIKIN_MAIN = kernel3([1 / 4, 3 / 4, 0], [0, 3 / 4, 1 / 4]);
