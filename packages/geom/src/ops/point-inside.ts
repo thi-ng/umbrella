@@ -1,5 +1,10 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import {
+    distSq,
+    isInArray,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors";
 import {
     AABB,
     Circle,
@@ -11,9 +16,7 @@ import {
     Type
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { pointInArray } from "../internal/point-in-array";
-import { polyPointInside } from "../internal/poly-point-inside";
-import { pointInTriangle2 } from "../internal/triangle-point-inside";
+import { pointInPoly2, pointInTriangle2 } from "@thi.ng/geom-poly-utils";
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 
@@ -31,11 +34,11 @@ pointInside.addAll({
 
     [Type.POINTS]:
         ({ points }: Points, p) =>
-            pointInArray(points, p),
+            isInArray(p, points),
 
     [Type.POLYGON]:
         ($: Polygon, p) =>
-            polyPointInside($.points, p) > 0,
+            pointInPoly2($.points, p) > 0,
 
     [Type.RECT]:
         ({ pos, size }: Rect, [x, y]: ReadonlyVec) =>

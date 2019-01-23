@@ -1,12 +1,13 @@
-import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks";
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { ArcSamplingOpts, sample as _arcVertices } from "@thi.ng/geom-arc";
+import { DEFAULT_SAMPLES, resample, SamplingOpts } from "@thi.ng/geom-resample";
+import { sampleCubic, sampleQuadratic } from "@thi.ng/geom-splines";
 import { cossin, TAU } from "@thi.ng/math";
 import {
     add2,
     cartesian2,
     madd2,
-    mixCubic,
-    mixQuadratic,
     set2,
     Vec
 } from "@thi.ng/vectors";
@@ -14,7 +15,6 @@ import {
     Arc,
     Circle,
     Cubic,
-    DEFAULT_SAMPLES,
     Ellipse,
     Group,
     IShape,
@@ -24,38 +24,18 @@ import {
     Polyline,
     Quadratic,
     Rect,
-    SamplingOpts,
     Type
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { resamplePoints, Sampler } from "../internal/sampler";
 
 export const vertices: MultiFn1O<IShape, number | Partial<SamplingOpts>, Vec[]> = defmulti(dispatch);
 
 vertices.addAll({
 
     [Type.ARC]:
-        (arc: Arc, opts?: number | Partial<SamplingOpts>): Vec[] => {
-            if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-                return new Sampler(vertices(arc, (<any>opts).num || DEFAULT_SAMPLES))
-                    .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
-            }
-            opts = isNumber(opts) ?
-                { num: opts, last: true } :
-                { num: DEFAULT_SAMPLES, ...opts };
-            const start = arc.start;
-            let delta = arc.end - start;
-            let num = opts.theta ?
-                Math.round(delta / opts.theta) :
-                opts.num;
-            delta /= num;
-            opts.last !== false && num++;
-            const pts: Vec[] = new Array(num);
-            for (let i = 0; i < num; i++) {
-                pts[i] = arc.pointAtTheta(start + i * delta);
-            }
-            return pts;
-        },
+        ($: Arc, opts?: number | Partial<ArcSamplingOpts>): Vec[] =>
+            _arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
+
 
     [Type.CIRCLE]:
         ($: Circle, opts = DEFAULT_SAMPLES) => {
@@ -72,29 +52,9 @@ vertices.addAll({
         },
 
     [Type.CUBIC]:
-        ($: Cubic, opts?: number | Partial<SamplingOpts>) => {
-            if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-                return new Sampler(vertices($, (<any>opts).num || DEFAULT_SAMPLES))
-                    .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
-            }
-            opts = isNumber(opts) ?
-                {
-                    num: opts,
-                    last: true
-                } :
-                {
-                    num: DEFAULT_SAMPLES,
-                    ...opts
-                };
-            const res: Vec[] = [];
-            const [a, b, c, d] = $.points;
-            const delta = 1 / opts.num;
-            for (let t = 0; t < opts.num; t++) {
-                res.push(mixCubic([], a, b, c, d, t * delta));
-            }
-            opts.last && res.push([d[0], d[1]]);
-            return res;
-        },
+        ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
+            sampleCubic($.points, opts),
+
 
     [Type.ELLIPSE]:
         ($: Ellipse, opts = DEFAULT_SAMPLES) => {
@@ -136,36 +96,16 @@ vertices.addAll({
 
     [Type.POLYGON]:
         ($: Polygon, opts?) =>
-            resamplePoints($.points, opts, true),
+            resample($.points, opts, true),
 
     [Type.POLYLINE]:
         ($: Polyline, opts?) =>
-            resamplePoints($.points, opts),
+            resample($.points, opts),
 
     [Type.QUADRATIC]:
-        ($: Quadratic, opts?: number | Partial<SamplingOpts>) => {
-            if (isPlainObject(opts) && (<any>opts).dist !== undefined) {
-                return new Sampler(vertices($, (<any>opts).num || DEFAULT_SAMPLES))
-                    .sampleUniform((<any>opts).dist, (<any>opts).last !== false);
-            }
-            opts = isNumber(opts) ?
-                {
-                    num: opts,
-                    last: true
-                } :
-                {
-                    num: DEFAULT_SAMPLES,
-                    ...opts
-                };
-            const res: Vec[] = [];
-            const delta = 1 / opts.num;
-            const [a, b, c] = $.points;
-            for (let t = 0; t < opts.num; t++) {
-                res.push(mixQuadratic([], a, b, c, t * delta));
-            }
-            opts.last && res.push([c[0], c[1]]);
-            return res;
-        },
+        ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
+            sampleQuadratic($.points, opts),
+
 
     [Type.RECT]:
         ($: Rect, opts) => {
@@ -183,7 +123,7 @@ vertices.isa(Type.QUAD, Type.POLYGON);
 vertices.isa(Type.TRIANGLE, Type.POLYGON);
 
 const circleOpts =
-    (opts: number | Partial<SamplingOpts>, r: number): [number, boolean] =>
+    (opts: number | Partial<ArcSamplingOpts>, r: number): [number, boolean] =>
         isNumber(opts) ?
             [opts, false] :
             [

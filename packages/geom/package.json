@@ -42,8 +42,11 @@
         "@thi.ng/geom-clip-convex": "^0.0.1",
         "@thi.ng/geom-closest-point": "^0.0.1",
         "@thi.ng/geom-isec": "^0.0.1",
+        "@thi.ng/geom-poly-utils": "^0.0.1",
         "@thi.ng/geom-resample": "^0.0.1",
         "@thi.ng/geom-splines": "^0.0.1",
+        "@thi.ng/geom-subdiv-curve": "^0.0.1",
+        "@thi.ng/geom-tessellate": "^0.0.1",
         "@thi.ng/hiccup": "^3.0.1",
         "@thi.ng/hiccup-svg": "^3.1.0",
         "@thi.ng/math": "^1.0.1",
@@ -53,7 +56,13 @@
         "@thi.ng/vectors": "^2.1.0"
     },
     "keywords": [
+        "2D",
         "ES6",
+        "conversion",
+        "intersection",
+        "geometry",
+        "shapes",
+        "SVG",
         "typescript"
     ],
     "publishConfig": {

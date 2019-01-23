@@ -1,4 +1,5 @@
-import { mixN, Vec } from "@thi.ng/vectors";
+import { quadraticFromLine as _line } from "@thi.ng/geom-splines";
+import { Vec } from "@thi.ng/vectors";
 import { Attribs, Quadratic } from "../api";
 import { argAttribs } from "../internal/args";
 
@@ -11,4 +12,4 @@ export function quadratic(...args: any[]) {
 
 export const quadraticFromLine =
     (a: Vec, b: Vec, attribs?: Attribs) =>
-        new Quadratic([a, mixN([], a, b, 0.5), b], attribs)
+        new Quadratic(_line(a, b), attribs)

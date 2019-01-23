@@ -1,4 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, HALF_PI, TAU } from "@thi.ng/math";
 import { direction, Vec } from "@thi.ng/vectors";
 import {
@@ -9,7 +10,6 @@ import {
     Type
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { Sampler } from "../internal/sampler";
 import { vertices } from "./vertices";
 
 export const tangentAt = defmulti<IShape, number, Vec>(dispatch);

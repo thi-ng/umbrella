@@ -1,8 +1,16 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import {
-    Circle,
+    intersectCircleCircle,
     IntersectionResult,
     IntersectionType,
+    intersectLineLine,
+    intersectRayCircle,
+    intersectRayPolyline,
+    testRectCircle,
+    testRectRect
+} from "@thi.ng/geom-isec";
+import {
+    Circle,
     IShape,
     Line,
     PCLike,
@@ -12,12 +20,6 @@ import {
     Type
 } from "../api";
 import { dispatch2 } from "../internal/dispatch";
-import { intersectCircleCircle } from "../isec/circle-circle";
-import { intersectLineLine } from "../isec/line-line";
-import { intersectRayCircle } from "../isec/ray-circle";
-import { intersectRayPolyline } from "../isec/ray-poly";
-import { intersectRectCircle } from "../isec/rect-circle";
-import { testRectRect } from "../isec/rect-rect";
 
 export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> = defmulti(dispatch2);
 
@@ -49,7 +51,7 @@ intersects.addAll({
 
     [`${Type.RECT}-${Type.CIRCLE}`]:
         ({ pos: rp, size }: Rect, { pos: cp, r }: Circle) => ({
-            type: intersectRectCircle(rp[0], rp[1], size[0], size[1], cp[0], cp[1], r) ?
+            type: testRectCircle(rp, size, cp, r) ?
                 IntersectionType.INTERSECT :
                 IntersectionType.NONE
         }),
@@ -57,7 +59,7 @@ intersects.addAll({
     [`${Type.RECT}-${Type.RECT}`]:
         ({ pos: ap, size: as }: Rect,
             { pos: bp, size: bs }: Rect) => ({
-                type: testRectRect(ap[0], ap[1], as[0], as[1], bp[0], bp[1], bs[0], bs[1]) ?
+                type: testRectRect(ap, as, bp, bs) ?
                     IntersectionType.INTERSECT :
                     IntersectionType.NONE
             }),

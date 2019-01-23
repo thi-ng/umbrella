@@ -1,7 +1,7 @@
+import { farthestPointSegment } from "@thi.ng/geom-closest-point";
 import { EPS } from "@thi.ng/math";
 import { peek } from "@thi.ng/transducers";
 import { eqDelta, Vec } from "@thi.ng/vectors";
-import { farthestPointSegment } from "./closest-point";
 
 // https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
 

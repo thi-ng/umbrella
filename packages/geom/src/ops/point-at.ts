@@ -1,4 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, fit01, TAU } from "@thi.ng/math";
 import {
     cartesian2,
@@ -23,7 +24,6 @@ import {
     Type
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { Sampler } from "../internal/sampler";
 import { vertices } from "./vertices";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);

@@ -1,12 +1,11 @@
-import { Vec } from "@thi.ng/vectors";
+import { liangBarsky } from "@thi.ng/geom-clip-convex";
+import { Vec, VecPair } from "@thi.ng/vectors";
+import { argAttribs } from "../internal/args";
 import {
     Attribs,
     Line,
     Rect,
-    VecPair
 } from "../api";
-import { argAttribs } from "../internal/args";
-import { liangBarsky } from "../internal/liang-barsky";
 
 export function line(a: Vec, b: Vec, attribs?: Attribs): Line;
 export function line(pts: Vec[], attribs?: Attribs): Line;

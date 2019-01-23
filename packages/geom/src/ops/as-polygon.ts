@@ -1,10 +1,6 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import {
-    IShape,
-    Polygon,
-    SamplingOpts,
-    Type
-} from "../api";
+import { SamplingOpts } from "@thi.ng/geom-resample";
+import { IShape, Polygon, Type } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
