@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^2.0.1",
-        "@thi.ng/geom-accel": "^1.0.1",
+        "@thi.ng/geom-api": "^0.0.1",
         "@thi.ng/random": "^1.0.1",
         "@thi.ng/vectors": "^2.1.0"
     },

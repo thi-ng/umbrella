@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { KdTree } from "@thi.ng/geom-accel";
+import { ISpatialAccel } from "@thi.ng/geom-api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { jitter as _jitter, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -26,16 +26,11 @@ export interface PoissonOpts {
      * tree allows already indexed points to participate in the sampling
      * process and act as exclusion zones.
      */
-    accel: KdTree<ReadonlyVec, any>;
+    accel: ISpatialAccel<ReadonlyVec, any>;
     /**
      * Max number of samples to produce.
      */
     max: number;
-    /**
-     * Max number of KNN search points for each candidate sample.
-     * Default: 8
-     */
-    maxSelect?: number;
     /**
      * Step distance for the random walk each failed candidate point is
      * undergoing. This distance should be adjusted depending on overall
@@ -67,11 +62,10 @@ export const samplePoisson =
             rnd: SYSTEM,
             iter: 5,
             jitter: 1,
-            maxSelect: 8,
-            quality: 200,
+            quality: 500,
             ...opts
         };
-        const { points, accel, rnd, maxSelect, iter, jitter, quality } = opts;
+        const { points, accel, rnd, iter, jitter, quality } = opts;
         const density = isNumber(opts.density) ?
             ((x) => () => x)(opts.density) :
             opts.density;
@@ -84,8 +78,8 @@ export const samplePoisson =
             let i = iter;
             while (i-- > 0) {
                 _jitter(null, pos, jitter, rnd);
-                if (accel.selectKeys(pos, maxSelect, r).length === 0) {
-                    accel.add(pos, null);
+                if (!accel.has(pos, r)) {
+                    accel.addKey(pos);
                     samples.push(pos);
                     failed = 0;
                     num--;
