@@ -1,8 +1,9 @@
 import { ICopy, Pair } from "@thi.ng/api";
+import { ISpatialAccel } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { ensureArray } from "@thi.ng/transducers";
-import { distSq, empty, ReadonlyVec } from "@thi.ng/vectors";
+import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const CMP = (a, b) => b[0] - a[0];
 
@@ -60,8 +61,9 @@ export class KdNode<K extends ReadonlyVec, V> {
  * https://github.com/ubilabs/kd-tree-javascript
  *
  */
-export class KdTree<K extends ReadonlyVec, V>
-    implements ICopy<KdTree<K, V>> {
+export class KdTree<K extends ReadonlyVec, V> implements
+    ICopy<KdTree<K, V>>,
+    ISpatialAccel<K, V> {
 
     root: KdNode<K, V>;
     dim: number;
@@ -119,10 +121,11 @@ export class KdTree<K extends ReadonlyVec, V>
     }
 
     addAll(pts: Iterable<Pair<K, V>>, eps = EPS) {
+        let ok = true;
         for (let [k, v] of pts) {
-            this.add(k, v, eps);
+            ok = ok && this.add(k, v, eps);
         }
-        return this;
+        return ok;
     }
 
     addKey(k: Readonly<K>, eps = EPS) {
@@ -130,10 +133,11 @@ export class KdTree<K extends ReadonlyVec, V>
     }
 
     addKeys(ks: Iterable<Readonly<K>>, eps = EPS) {
+        let ok = true;
         for (let k of ks) {
-            this.add(k, null, eps);
+            ok = ok && this.add(k, null, eps);
         }
-        return this;
+        return ok;
     }
 
     remove(p: Readonly<K>) {
@@ -146,17 +150,22 @@ export class KdTree<K extends ReadonlyVec, V>
         return false;
     }
 
-    find(q: Readonly<K>, eps = EPS): KdNode<K, V> | undefined {
-        return find(q, this.root, eps * eps);
+    has(k: Readonly<K>, eps = EPS) {
+        return this.root && !!nearest1(k, [eps * eps, null], [], this.dim, this.root)[1];
     }
 
     select(q: Readonly<K>, maxNum: number, maxDist?: number): Pair<K, V>[] {
         if (!this.root) return [];
         const res: Pair<K, V>[] = [];
-        const src = this.buildSelection(q, maxNum, maxDist);
-        for (let n = src.length; --n >= 0;) {
-            const nn = src[n][1];
-            nn && res.push([nn.k, nn.v]);
+        if (maxNum === 1) {
+            const sel = nearest1(q, [maxDist != null ? maxDist : Infinity, null], [], this.dim, this.root)[1];
+            sel && res.push([sel.k, sel.v]);
+        } else {
+            const sel = this.buildSelection(q, maxNum, maxDist);
+            for (let n = sel.length; --n >= 0;) {
+                const nn = sel[n][1];
+                nn && res.push([nn.k, nn.v]);
+            }
         }
         return res;
     }
@@ -164,10 +173,15 @@ export class KdTree<K extends ReadonlyVec, V>
     selectKeys(q: Readonly<K>, maxNum: number, maxDist?: number): K[] {
         if (!this.root) return [];
         const res: K[] = [];
-        const src = this.buildSelection(q, maxNum, maxDist);
-        for (let n = src.length; --n >= 0;) {
-            const nn = src[n][1];
-            nn && res.push(nn.k);
+        if (maxNum === 1) {
+            const sel = nearest1(q, [maxDist != null ? maxDist : Infinity, null], [], this.dim, this.root)[1];
+            sel && res.push(sel.k);
+        } else {
+            const src = this.buildSelection(q, maxNum, maxDist);
+            for (let n = src.length; --n >= 0;) {
+                const nn = src[n][1];
+                nn && res.push(nn.k);
+            }
         }
         return res;
     }
@@ -178,16 +192,14 @@ export class KdTree<K extends ReadonlyVec, V>
             0;
     }
 
-    protected buildSelection(q: Readonly<K>, maxNum: number, maxDist?: number) {
+    protected buildSelection(q: Readonly<K>, maxNum: number, maxDist = Infinity) {
         const nodes = new Heap<[number, KdNode<K, V>]>(null, { compare: CMP });
-        if (maxDist) {
-            maxDist *= maxDist;
-            const c: [number, KdNode<K, V>] = [maxDist, null];
-            for (let i = maxNum; --i >= 0;) {
-                nodes.push(c);
-            }
+        maxDist *= maxDist;
+        const c: [number, KdNode<K, V>] = [maxDist, null];
+        for (let i = maxNum; --i >= 0;) {
+            nodes.push(c);
         }
-        nearest(q, nodes, this.dim, maxNum, this.root);
+        nearest(q, nodes, [], this.dim, maxNum, this.root);
         return nodes.values.sort(CMP);
     }
 
@@ -276,11 +288,18 @@ const remove = <K extends ReadonlyVec, V>(node: KdNode<K, V>) => {
     }
 };
 
-const nearest = <K extends ReadonlyVec, V>(q: K, acc: Heap<[number, KdNode<K, V>]>, dims: number, maxNum: number, node: KdNode<K, V>) => {
+const nearest = <K extends ReadonlyVec, V>(
+    q: K,
+    acc: Heap<[number, KdNode<K, V>]>,
+    tmp: Vec,
+    dims: number,
+    maxNum: number,
+    node: KdNode<K, V>
+) => {
     const p = node.k;
     const ndist = distSq(p, q);
     if (!node.l && !node.r) {
-        if (ndist < acc.peek()[0]) {
+        if (!acc.length || ndist < acc.peek()[0]) {
             if (acc.length >= maxNum) {
                 acc.pushPop([ndist, node]);
             } else {
@@ -290,11 +309,10 @@ const nearest = <K extends ReadonlyVec, V>(q: K, acc: Heap<[number, KdNode<K, V>
         return;
     }
     const ndim = node.d;
-    const tp = empty(q);
     for (let i = dims; --i >= 0;) {
-        tp[i] = i === ndim ? q[i] : p[i];
+        tmp[i] = i === ndim ? q[i] : p[i];
     }
-    const tdist = distSq(p, tp);
+    const tdist = distSq(p, tmp);
     let best =
         !node.r ?
             node.l :
@@ -303,16 +321,65 @@ const nearest = <K extends ReadonlyVec, V>(q: K, acc: Heap<[number, KdNode<K, V>
                 q[ndim] < p[ndim] ?
                     node.l :
                     node.r;
-    nearest(q, acc, dims, maxNum, best);
-    if (ndist < acc.peek()[0]) {
+    nearest(q, acc, tmp, dims, maxNum, best);
+    if (!acc.length || ndist < acc.peek()[0]) {
         if (acc.length >= maxNum) {
             acc.pushPop([ndist, node]);
         } else {
             acc.push([ndist, node]);
         }
     }
-    if (tdist < acc.peek()[0]) {
+    if (!acc.length || tdist < acc.peek()[0]) {
         best = best === node.l ? node.r : node.l;
-        best && nearest(q, acc, dims, maxNum, best);
+        best && nearest(q, acc, tmp, dims, maxNum, best);
     }
+};
+
+/**
+ * Optimized version of `nearest()` for single closest point search.
+ *
+ * @param q
+ * @param acc
+ * @param dims
+ * @param node
+ */
+const nearest1 = <K extends ReadonlyVec, V>(
+    q: K,
+    acc: [number, KdNode<K, V>],
+    tmp: Vec,
+    dims: number,
+    node: KdNode<K, V>
+): [number, KdNode<K, V>] => {
+    const p = node.k;
+    const ndist = distSq(p, q);
+    if (!node.l && !node.r) {
+        if (ndist < acc[0]) {
+            acc[0] = ndist;
+            acc[1] = node;
+        }
+        return acc;
+    }
+    const ndim = node.d;
+    for (let i = dims; --i >= 0;) {
+        tmp[i] = i === ndim ? q[i] : p[i];
+    }
+    const tdist = distSq(p, tmp);
+    let best =
+        !node.r ?
+            node.l :
+            !node.l ?
+                node.r :
+                q[ndim] < p[ndim] ?
+                    node.l :
+                    node.r;
+    nearest1(q, acc, tmp, dims, best);
+    if (ndist < acc[0]) {
+        acc[0] = ndist;
+        acc[1] = node;
+    }
+    if (tdist < acc[0]) {
+        best = best === node.l ? node.r : node.l;
+        best && nearest1(q, acc, tmp, dims, best);
+    }
+    return acc;
 };
