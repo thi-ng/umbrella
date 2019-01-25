@@ -1,5 +1,6 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
+import { polyArea2 } from "@thi.ng/geom-poly-utils";
 import { PI } from "@thi.ng/math";
 import { signedArea2, Vec } from "@thi.ng/vectors";
 import {
@@ -13,7 +14,6 @@ import {
     Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { polyArea } from "../internal/poly-area";
 
 /**
  * Returns the possibly signed (unsigned by default) surface area of given
@@ -75,7 +75,7 @@ area.addAll({
 
     [Type.POLYGON]:
         ($: Polygon, signed?) => {
-            const area = polyArea($.points);
+            const area = polyArea2($.points);
             return signed ? area : Math.abs(area);
         },
 

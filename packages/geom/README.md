@@ -32,6 +32,7 @@ This package acts as a higher-level front end for the following related packages
 - [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/master/packages/geom-arc) - elliptic arc utils
 - [@thi.ng/geom-clip-convex](https://github.com/thi-ng/umbrella/tree/master/packages/geom-clip-convex) - Sutherland-Hodgeman / Liang-Barsky clipping
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/master/packages/geom-closest-point) - line-point proximity queries
+- [@thi.ng/geom-hull](https://github.com/thi-ng/umbrella/tree/master/packages/geom-hull) - convex hull functions
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec) - shape intersection tests
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/master/packages/geom-poly-utils) - 2D polygon helpers
 - [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/master/packages/geom-resample) - nD polyline resampling

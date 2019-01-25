@@ -54,7 +54,7 @@ export * from "./ops/with-attribs";
 
 export * from "./internal/coll-bounds";
 export * from "./internal/edges";
-export * from "./internal/graham-scan";
 export * from "./internal/split";
 export * from "./internal/transform-points";
+export * from "./internal/translate-points";
 export * from "./internal/union-bounds";
