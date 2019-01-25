@@ -1,9 +1,10 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
+import { classifyPointInTriangle2 } from "@thi.ng/geom-poly-utils";
 import { EPS, sign } from "@thi.ng/math";
-import { ReadonlyVec, distSq } from "@thi.ng/vectors";
-import { Circle, IShape, Type, Triangle } from "../api";
+import { distSq, ReadonlyVec } from "@thi.ng/vectors";
+import { Circle, Triangle } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { classifyPointInTriangle2 } from "../internal/triangle-point-inside";
 
 export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> = defmulti(dispatch);
 

@@ -1,0 +1,12 @@
+.meta
+.nyc_output
+*.html
+*.tgz
+build
+coverage
+dev
+doc
+export
+src*
+test
+tsconfig.json

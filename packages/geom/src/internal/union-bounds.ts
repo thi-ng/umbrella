@@ -3,9 +3,9 @@ import {
     max,
     min,
     ReadonlyVec,
-    sub
+    sub,
+    VecPair
 } from "@thi.ng/vectors";
-import { VecPair } from "../api";
 
 /**
  * Takes the position and size vectors of 2 `AABBLike`s and returns

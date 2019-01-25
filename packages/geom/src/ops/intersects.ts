@@ -1,23 +1,27 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import {
-    Circle,
     IntersectionResult,
     IntersectionType,
     IShape,
-    Line,
     PCLike,
+    Type
+} from "@thi.ng/geom-api";
+import {
+    intersectCircleCircle,
+    intersectLineLine,
+    intersectRayCircle,
+    intersectRayPolyline,
+    testRectCircle,
+    testRectRect
+} from "@thi.ng/geom-isec";
+import { dispatch2 } from "../internal/dispatch";
+import {
+    Circle,
+    Line,
     Ray,
     Rect,
     Sphere,
-    Type
 } from "../api";
-import { dispatch2 } from "../internal/dispatch";
-import { intersectCircleCircle } from "../isec/circle-circle";
-import { intersectLineLine } from "../isec/line-line";
-import { intersectRayCircle } from "../isec/ray-circle";
-import { intersectRayPolyline } from "../isec/ray-poly";
-import { intersectRectCircle } from "../isec/rect-circle";
-import { testRectRect } from "../isec/rect-rect";
 
 export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> = defmulti(dispatch2);
 
@@ -32,12 +36,8 @@ intersects.addAll({
             intersectLineLine(a[0], a[1], b[0], b[1]),
 
     [`${Type.RAY}-${Type.CIRCLE}`]:
-        (ray: Ray, sphere: Sphere) => {
-            const isec = intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r);
-            return isec ?
-                { type: IntersectionType.INTERSECT, isec } :
-                { type: IntersectionType.NONE };
-        },
+        (ray: Ray, sphere: Sphere) =>
+            intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r),
 
     [`${Type.RAY}-${Type.POLYGON}`]:
         (ray: Ray, poly: PCLike) =>
@@ -49,7 +49,7 @@ intersects.addAll({
 
     [`${Type.RECT}-${Type.CIRCLE}`]:
         ({ pos: rp, size }: Rect, { pos: cp, r }: Circle) => ({
-            type: intersectRectCircle(rp[0], rp[1], size[0], size[1], cp[0], cp[1], r) ?
+            type: testRectCircle(rp, size, cp, r) ?
                 IntersectionType.INTERSECT :
                 IntersectionType.NONE
         }),
@@ -57,7 +57,7 @@ intersects.addAll({
     [`${Type.RECT}-${Type.RECT}`]:
         ({ pos: ap, size: as }: Rect,
             { pos: bp, size: bs }: Rect) => ({
-                type: testRectRect(ap[0], ap[1], as[0], as[1], bp[0], bp[1], bs[0], bs[1]) ?
+                type: testRectRect(ap, as, bp, bs) ?
                     IntersectionType.INTERSECT :
                     IntersectionType.NONE
             }),

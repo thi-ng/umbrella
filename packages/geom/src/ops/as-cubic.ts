@@ -1,4 +1,5 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import {
     EPS,
     HALF_PI,
@@ -7,17 +8,15 @@ import {
 } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
 import { add2, magSq2 } from "@thi.ng/vectors";
+import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
+import { dispatch } from "../internal/dispatch";
 import {
     Arc,
     Cubic,
-    IShape,
     Line,
     Path,
     Quadratic,
-    Type
 } from "../api";
-import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
-import { dispatch } from "../internal/dispatch";
 
 export const asCubic = defmulti<IShape, Cubic[]>(dispatch);
 

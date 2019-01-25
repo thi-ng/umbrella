@@ -49,7 +49,7 @@ cat << EOF > $MODULE/package.json
     "scripts": {
         "build": "yarn clean && yarn build:es6 && yarn build:bundle",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module $1",
+        "build:bundle": "../../scripts/bundle-module",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
@@ -65,7 +65,7 @@ cat << EOF > $MODULE/package.json
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.2.4"
+        "@thi.ng/api": "^5.0.1"
     },
     "keywords": [
         "ES6",

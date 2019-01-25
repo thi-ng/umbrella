@@ -71,7 +71,7 @@ pts = samplePoisson({
 
 // use thi.ng/geom to visualize results
 // each circle's radius is set to distance to its nearest neighbor
-circles = pts.map((p) => circle(p, dist2(p, accel.selectKeys(p, 10, 40)[1]) / 2));
+circles = pts.map((p) => circle(p, dist2(p, accel.selectKeys(p, 2, 40)[1]) / 2));
 
 document.body.innerHTML = asSvg(svgDoc({ fill: "none", stroke: "red" }, ...circles));
 ```
@@ -107,11 +107,6 @@ interface PoissonOpts {
      * Max number of samples to produce.
      */
     max: number;
-    /**
-     * Max number of KNN search points for each candidate sample.
-     * Default: 8
-     */
-    maxSelect?: number;
     /**
      * Step distance for the random walk each failed candidate point is
      * undergoing. This distance should be adjusted depending on overall

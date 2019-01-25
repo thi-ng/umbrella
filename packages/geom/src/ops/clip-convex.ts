@@ -1,9 +1,10 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { IShape, Polygon, Type } from "../api";
+import { IShape, Type } from "@thi.ng/geom-api";
+import { sutherlandHodgeman } from "@thi.ng/geom-clip-convex";
+import { Polygon } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { sutherlandHodgeman } from "../internal/sutherland-hodgeman";
-import { vertices } from "./vertices";
 import { centroid } from "./centroid";
+import { vertices } from "./vertices";
 
 export const clipConvex = defmulti<IShape, IShape, Polygon>(dispatch);
 

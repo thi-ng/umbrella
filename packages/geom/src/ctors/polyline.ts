@@ -1,5 +1,6 @@
+import { Attribs } from "@thi.ng/geom-api";
 import { Vec } from "@thi.ng/vectors";
-import { Attribs, Polyline } from "../api";
+import { Polyline } from "../api";
 
 export const polyline =
     (pts: Vec[], attribs?: Attribs) =>

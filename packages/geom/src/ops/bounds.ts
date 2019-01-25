@@ -1,13 +1,19 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { HALF_PI, inRange, PI } from "@thi.ng/math";
+import {
+    AABBLike,
+    IShape,
+    PathSegment,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
+import { bounds as arcBounds } from "@thi.ng/geom-arc";
+import { bounds as _bounds } from "@thi.ng/geom-poly-utils";
+import { cubicBounds, quadraticBounds } from "@thi.ng/geom-splines";
 import {
     comp,
     filter,
     iterator1,
-    map,
-    push,
-    range,
-    transduce
+    map
 } from "@thi.ng/transducers";
 import {
     max,
@@ -18,55 +24,30 @@ import {
     mulN2,
     set2,
     sub2,
-    subN2,
-    Vec
+    subN2
 } from "@thi.ng/vectors";
+import { rectFromMinMax } from "../ctors/rect";
+import { collBounds } from "../internal/coll-bounds";
+import { dispatch } from "../internal/dispatch";
 import {
-    AABBLike,
     Arc,
     Circle,
     Cubic,
     Ellipse,
     Group,
-    IShape,
     Line,
     Path,
-    PathSegment,
-    PCLike,
     Quadratic,
     Rect,
-    Type
 } from "../api";
-import { rectFromMinMax } from "../ctors/rect";
-import {
-    boundsRaw,
-    collBounds,
-    cubicBounds2,
-    quadraticBounds2
-} from "../internal/bounds";
-import { dispatch } from "../internal/dispatch";
 
 export const bounds = defmulti<IShape, AABBLike>(dispatch);
 
 bounds.addAll({
 
     [Type.ARC]:
-        (arc: Arc) => {
-            const pts = transduce(
-                map<number, Vec>(arc.pointAtTheta.bind(arc)),
-                push(),
-                [
-                    arc.start,
-                    arc.end,
-                    // multiples of HALF_PI in arc range
-                    ...filter(
-                        (t: number) => inRange(t, arc.start, arc.end),
-                        range(-3 * PI, 3.01 * PI, HALF_PI)
-                    )
-                ]
-            );
-            return rectFromMinMax(...boundsRaw(pts, set2([], MAX2), set2([], MIN2)));
-        },
+        ($: Arc) =>
+            rectFromMinMax(...arcBounds($.pos, $.r, $.axis, $.start, $.end)),
 
     [Type.CIRCLE]:
         ($: Circle) =>
@@ -78,7 +59,7 @@ bounds.addAll({
     [Type.CUBIC]:
         ({ points }: Cubic) =>
             rectFromMinMax(
-                ...cubicBounds2(points[0], points[1], points[2], points[3])
+                ...cubicBounds(points[0], points[1], points[2], points[3])
             ),
 
     [Type.ELLIPSE]:
@@ -113,12 +94,12 @@ bounds.addAll({
 
     [Type.POINTS]:
         ($: PCLike) =>
-            rectFromMinMax(...boundsRaw($.points, set2([], MAX2), set2([], MIN2))),
+            rectFromMinMax(..._bounds($.points, set2([], MAX2), set2([], MIN2))),
 
     [Type.QUADRATIC]:
         ({ points }: Quadratic) =>
             rectFromMinMax(
-                ...quadraticBounds2(points[0], points[1], points[2])
+                ...quadraticBounds(points[0], points[1], points[2])
             ),
 
     [Type.RECT]:

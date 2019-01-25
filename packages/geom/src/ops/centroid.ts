@@ -1,5 +1,12 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import {
+    AABBLike,
+    IShape,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
+import { centerOfWeight2, centroid as _centroid } from "@thi.ng/geom-poly-utils";
+import {
     add,
     divN,
     maddN,
@@ -7,21 +14,15 @@ import {
     set,
     Vec
 } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
+import { bounds } from "./bounds";
 import {
-    AABBLike,
     Circle,
     Group,
-    IShape,
     Line,
-    PCLike,
     Polygon,
     Triangle,
-    Type
 } from "../api";
-import { centroidRaw } from "../internal/centroid";
-import { dispatch } from "../internal/dispatch";
-import { polyCentroid } from "../internal/poly-centroid";
-import { bounds } from "./bounds";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
 
@@ -41,10 +42,10 @@ centroid.addAll({
 
     [Type.POINTS]:
         ($: PCLike, out?) =>
-            centroidRaw($.points, out),
+            _centroid($.points, out),
 
     [Type.POLYGON]:
-        ($: Polygon, out?) => polyCentroid($.points, out),
+        ($: Polygon, out?) => centerOfWeight2($.points, out),
 
     [Type.RECT]:
         ($: AABBLike, out?) => maddN(out || [], $.pos, $.size, 0.5),

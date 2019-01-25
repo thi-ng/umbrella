@@ -1,3 +1,4 @@
+import { Attribs } from "@thi.ng/geom-api";
 import { THIRD_PI } from "@thi.ng/math";
 import {
     maddN2,
@@ -7,7 +8,7 @@ import {
     sub2,
     Vec
 } from "@thi.ng/vectors";
-import { Attribs, Triangle } from "../api";
+import { Triangle } from "../api";
 import { argAttribs } from "../internal/args";
 
 export function triangle(a: Vec, b: Vec, c: Vec, attribs?: Attribs): Triangle;

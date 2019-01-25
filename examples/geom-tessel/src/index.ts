@@ -1,24 +1,21 @@
 import { partial } from "@thi.ng/compose/partial";
-import {
-    arcLength,
-    asPolygon,
-    centroid,
-    circle,
-    IShape,
-    Polygon,
-    polygon,
-    tesselEdgeSplit,
-    tessellate,
-    Tessellator,
-    tesselQuadFan,
-    tesselTriFan
-} from "@thi.ng/geom";
+import { IShape, Tessellator } from "@thi.ng/geom-api";
+import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { deg, fit01, fit11 } from "@thi.ng/math";
 import { fromInterval, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { polar, Vec } from "@thi.ng/vectors";
+import {
+    arcLength,
+    asPolygon,
+    centroid,
+    circle,
+    Polygon,
+    polygon,
+    tessellate,
+} from "@thi.ng/geom";
 
 type Tint = (p: Polygon) => string;
 
@@ -29,7 +26,7 @@ const MAX_RES = 30;
 // const SUBDIVS = [tesselQuadFan];
 // const SUBDIVS = [tesselTriFan];
 // const SUBDIVS = [tesselEdgeSplit];
-const SUBDIVS = [tesselQuadFan, tesselTriFan, tesselEdgeSplit, tesselQuadFan];
+const SUBDIVS = [quadFan, triFan, edgeSplit, quadFan];
 // const SUBDIVS = [...take(4, cycle([tesselQuadFan]))];
 
 const W = 600;

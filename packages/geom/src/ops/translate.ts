@@ -1,5 +1,12 @@
 import { defmulti } from "@thi.ng/defmulti";
 import {
+    IHiccupShape,
+    IShape,
+    PCLike,
+    PCLikeConstructor,
+    Type
+} from "@thi.ng/geom-api";
+import {
     add2,
     add3,
     ReadonlyVec,
@@ -12,12 +19,8 @@ import {
     Circle,
     Ellipse,
     Group,
-    IHiccupShape,
-    IShape,
     Line,
     Path,
-    PCLike,
-    PCLikeConstructor,
     Points,
     Polygon,
     Polyline,
@@ -25,8 +28,7 @@ import {
     Ray,
     Rect,
     Sphere,
-    Triangle,
-    Type
+    Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { translatedPoints } from "../internal/translate-points";

@@ -1,8 +1,8 @@
+import { Attribs, IShape } from "@thi.ng/geom-api";
 import { serialize } from "@thi.ng/hiccup";
 import { convertTree, ff, svg } from "@thi.ng/hiccup-svg";
-import { Attribs, IShape } from "../api";
+import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";
-import { collBounds } from "../internal/bounds";
 
 export const asSvg =
     (...args: any[]) =>

@@ -1,4 +1,8 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IShape, PCLike, Type } from "@thi.ng/geom-api";
+import { closestPoint as closestPointArc } from "@thi.ng/geom-arc";
+import { closestPointArray, closestPointPolyline, closestPointSegment } from "@thi.ng/geom-closest-point";
+import { closestPointCubic, closestPointQuadratic } from "@thi.ng/geom-splines";
 import {
     add,
     normalize,
@@ -7,26 +11,15 @@ import {
     sub,
     Vec
 } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
+import { vertices } from "./vertices";
 import {
     Arc,
     Circle,
     Cubic,
-    IShape,
     Line,
-    PCLike,
     Quadratic,
-    Type
 } from "../api";
-import {
-    closestPointArc,
-    closestPointArray,
-    closestPointCubic,
-    closestPointPolyline,
-    closestPointQuadratic,
-    closestPointSegment
-} from "../internal/closest-point";
-import { dispatch } from "../internal/dispatch";
-import { vertices } from "./vertices";
 
 export const closestPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(dispatch);
 

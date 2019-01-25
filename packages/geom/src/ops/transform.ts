@@ -1,20 +1,22 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { ReadonlyMat } from "@thi.ng/matrices";
 import {
-    Group,
     IHiccupShape,
     IShape,
-    Line,
     PCLike,
     PCLikeConstructor,
+    Type
+} from "@thi.ng/geom-api";
+import { ReadonlyMat } from "@thi.ng/matrices";
+import {
+    Cubic,
+    Group,
+    Line,
     Points,
     Polygon,
     Polyline,
     Quad,
-    Triangle,
-    Type,
-    Cubic,
-    Quadratic
+    Quadratic,
+    Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { transformedPoints, transformPoints } from "../internal/transform-points";

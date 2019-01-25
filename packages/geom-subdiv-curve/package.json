@@ -1,0 +1,56 @@
+{
+    "name": "@thi.ng/geom-subdiv-curve",
+    "version": "0.0.1",
+    "description": "TODO",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-subdiv-curve",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "cover": "yarn test && nyc report --reporter=lcov",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^10.12.15",
+        "mocha": "^5.2.0",
+        "nyc": "^13.1.0",
+        "typedoc": "^0.14.0",
+        "typescript": "^3.2.2"
+    },
+    "dependencies": {
+        "@thi.ng/geom-api": "^0.0.1",
+        "@thi.ng/transducers": "^3.0.1",
+        "@thi.ng/vectors": "^2.1.0"
+    },
+    "keywords": [
+        "2D",
+        "3D",
+        "chaikin",
+        "cubic",
+        "curve",
+        "ES6",
+        "iterative",
+        "polyline",
+        "recursive",
+        "subdivision",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false
+}

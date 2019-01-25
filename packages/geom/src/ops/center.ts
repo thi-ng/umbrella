@@ -1,4 +1,5 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
 import {
     ReadonlyVec,
     set2,
@@ -7,17 +8,15 @@ import {
     ZERO2,
     ZERO3
 } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
+import { centroid } from "./centroid";
+import { translate } from "./translate";
 import {
     Arc,
     Circle,
     Ellipse,
-    IShape,
     Sphere,
-    Type
 } from "../api";
-import { dispatch } from "../internal/dispatch";
-import { centroid } from "./centroid";
-import { translate } from "./translate";
 
 export const center: MultiFn1O<IShape, ReadonlyVec, IShape> = defmulti(dispatch);
 

@@ -1,19 +1,18 @@
 import { defmulti, MultiFn1 } from "@thi.ng/defmulti";
+import { IShape, Type } from "@thi.ng/geom-api";
+import { perimeter } from "@thi.ng/geom-poly-utils";
 import { PI, TAU } from "@thi.ng/math";
 import { dist } from "@thi.ng/vectors";
+import { dispatch } from "../internal/dispatch";
 import {
     Circle,
     Ellipse,
     Group,
-    IShape,
     Line,
     Polygon,
     Rect,
-    Type,
-    Triangle
+    Triangle,
 } from "../api";
-import { dispatch } from "../internal/dispatch";
-import { polyArcLength } from "../internal/poly-arc-length";
 
 /**
  * Returns the arc length / perimeter / circumference of the given
@@ -57,11 +56,11 @@ arcLength.addAll({
 
     [Type.POLYGON]:
         ({ points }: Polygon) =>
-            polyArcLength(points, points.length, true),
+            perimeter(points, points.length, true),
 
     [Type.POLYLINE]:
         ({ points }: Polygon) =>
-            polyArcLength(points, points.length),
+            perimeter(points, points.length),
 
     [Type.RECT]:
         ({ size }: Rect) =>

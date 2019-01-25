@@ -25,6 +25,7 @@ export * from "./cartesian";
 export * from "./ceil";
 export * from "./clamp";
 export * from "./clampn";
+export * from "./clockwise";
 export * from "./compare";
 export * from "./copy";
 export * from "./cos";
