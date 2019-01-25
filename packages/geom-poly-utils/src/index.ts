@@ -1,4 +1,5 @@
 export * from "./area";
+export * from "./barycentric";
 export * from "./bounds";
 export * from "./center-of-weight";
 export * from "./centroid";
