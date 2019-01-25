@@ -11,9 +11,13 @@ export interface SubdivKernel {
      */
     fn: (pts: ReadonlyVec[], i: number, nump: number) => Vec[];
     /**
-     * Optional function to pre-process the original curve points prior to subdivision and yield a point iteratable (e.g. for closed curves / polygons to prepend the last point before the first).
+     * Optional function to pre-process the original curve points prior
+     * to each subdivision iteration and MUST yield an iterable of
+     * points (e.g. for closed curves / polygons to prepend the last
+     * point before the first). If omitted, the curve points are
+     * processed as is.
      */
-    iter?: (pts: ReadonlyVec[]) => Iterable<ReadonlyVec>;
+    pre?: (pts: ReadonlyVec[]) => Iterable<ReadonlyVec>;
     /**
      * Kernal size. The subdivision function `fn` always receives `size`
      * number consecutive points.
