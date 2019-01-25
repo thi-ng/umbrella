@@ -14,14 +14,14 @@ import { ReadonlyVec, Vec } from "@thi.ng/vectors";
  *
  * @param kernel subdivision scheme
  * @param pts source points
- * @param recurse number of iterations
+ * @param iter number of iterations
  */
 export const subdivide = (
     pts: ReadonlyVec[],
-    { fn, iter, size }: SubdivKernel,
-    recurse = 1
+    { fn, pre, size }: SubdivKernel,
+    iter = 1
 ) => {
-    while (--recurse >= 0) {
+    while (--iter >= 0) {
         const nump = pts.length;
         pts = transduce<ReadonlyVec, ReadonlyVec, Vec[]>(
             comp(
@@ -30,7 +30,7 @@ export const subdivide = (
                 mapcat(([i, pts]) => fn(pts, i, nump))
             ),
             push(),
-            iter ? iter(pts) : pts
+            pre ? pre(pts) : pts
         );
     }
     return pts;

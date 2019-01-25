@@ -14,28 +14,47 @@ const THIRDS = ([a, b]: ReadonlyVec[]) => [a, mixN([], a, b, 1 / 3), mixN([], a,
 const wrap2 = (pts: ReadonlyVec[]) => wrap(pts, 1, false, true);
 const wrap3 = (pts: ReadonlyVec[]) => wrap(pts, 1, true, true);
 
+/**
+ * Splits each curve / line segment into halves at midpoint. Version for
+ * open curves.
+ */
 export const SUBDIV_MID_OPEN: SubdivKernel = {
     fn: (pts, i, n) => i < n - 2 ? MIDP(pts) : [...MIDP(pts), pts[1]],
     size: 2
 };
 
+/**
+ * Splits each curve / line segment into halves at midpoint. Version for
+ * closed curves.
+ */
 export const SUBDIV_MID_CLOSED: SubdivKernel = {
     fn: MIDP,
-    iter: wrap2,
+    pre: wrap2,
     size: 2
 };
 
+/**
+ * Splits each curve / line segment into 3 parts at 1/3 and 2/3. Version for
+ * open curves.
+ */
 export const SUBDIV_THIRDS_OPEN: SubdivKernel = {
     fn: (pts, i, n) => i < n - 2 ? THIRDS(pts) : [...THIRDS(pts), pts[1]],
     size: 2
 };
 
+/**
+ * Splits each curve / line segment into 3 parts at 1/3 and 2/3. Version for
+ * open curves.
+ */
 export const SUBDIV_THIRDS_CLOSED: SubdivKernel = {
     fn: THIRDS,
-    iter: wrap2,
+    pre: wrap2,
     size: 2
 };
 
+/**
+ * Chaikin subdivision scheme for open curves.
+ */
 export const SUBDIV_CHAIKIN_OPEN: SubdivKernel = {
     fn: (pts, i, n) =>
         i == 0 ?
@@ -46,14 +65,20 @@ export const SUBDIV_CHAIKIN_OPEN: SubdivKernel = {
     size: 3
 };
 
+/**
+ * Chaikin subdivision scheme for closed curves.
+ */
 export const SUBDIV_CHAIKIN_CLOSED: SubdivKernel = {
     fn: CHAIKIN_MAIN,
-    iter: wrap3,
+    pre: wrap3,
     size: 3
 };
 
+/**
+ * Cubic bezier subdivision scheme for closed curves.
+ */
 export const SUBDIV_CUBIC_CLOSED: SubdivKernel = {
     fn: CUBIC_MAIN,
-    iter: wrap3,
+    pre: wrap3,
     size: 3
 };
