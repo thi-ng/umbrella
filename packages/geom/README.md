@@ -20,7 +20,24 @@ This project is part of the
 
 ## About
 
-[up-to-date feature matrix spreadsheet](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
+WIP (currently 2D only) geometry types & polymorphic operations, built on
+[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti).
+
+[**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
+
+This package acts as a higher-level front end for the following related packages:
+
+- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api) - shared types & interfaces
+- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel) - spatial indexing data structures
+- [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/master/packages/geom-arc) - elliptic arc utils
+- [@thi.ng/geom-clip-convex](https://github.com/thi-ng/umbrella/tree/master/packages/geom-clip-convex) - Sutherland-Hodgeman / Liang-Barsky clipping
+- [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/master/packages/geom-closest-point) - line-point proximity queries
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec) - shape intersection tests
+- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/master/packages/geom-poly-utils) - 2D polygon helpers
+- [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/master/packages/geom-resample) - nD polyline resampling
+- [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/master/packages/geom-splines) - nD cubic / quadratic spline utils
+- [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/master/packages/geom-subdiv-curve) - nD subdivision curve utils
+- [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate) - nD convex polygon tessellators
 
 ## Installation
 
