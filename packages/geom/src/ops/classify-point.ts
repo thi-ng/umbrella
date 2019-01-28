@@ -1,8 +1,8 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { classifyPointInTriangle2 } from "@thi.ng/geom-poly-utils";
-import { EPS, sign } from "@thi.ng/math";
-import { distSq, ReadonlyVec } from "@thi.ng/vectors";
+import { classifyPointInCircle, classifyPointInTriangle2 } from "@thi.ng/geom-isec";
+import { EPS } from "@thi.ng/math";
+import { ReadonlyVec } from "@thi.ng/vectors";
 import { Circle, Triangle } from "../api";
 import { dispatch } from "../internal/dispatch";
 
@@ -12,10 +12,12 @@ classifyPoint.addAll({
 
     [Type.CIRCLE]:
         ($: Circle, p: ReadonlyVec, eps = EPS) =>
-            sign($.r * $.r - distSq($.pos, p), eps),
+            classifyPointInCircle(p, $.pos, $.r, eps),
 
     [Type.TRIANGLE]:
         ({ points }: Triangle, p: ReadonlyVec, eps = EPS) =>
             classifyPointInTriangle2(p, points[0], points[1], points[2], eps),
 
 });
+
+classifyPoint.isa(Type.SPHERE, Type.CIRCLE);
