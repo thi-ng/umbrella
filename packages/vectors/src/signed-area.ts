@@ -6,7 +6,7 @@ import { ReadonlyVec } from "./api";
  * addition to the triangle area, the result can also be interpreted as
  * follows:
  *
- * - `> 0`: points are ordered anti-clockwise
+ * - `> 0`: points are ordered counterclockwise
  * - `< 0`: points are ordered clockwise
  * - `0`: points are co-linear
  *
