@@ -72,8 +72,8 @@ translate.addAll({
     [Type.GROUP]:
         ($: Group, delta) =>
             new Group(
-                $.children.map((s) => <IHiccupShape>translate(s, delta)),
-                { ...$.attribs }
+                { ...$.attribs },
+                $.children.map((s) => <IHiccupShape>translate(s, delta))
             ),
 
     [Type.LINE]: tx(Line),
