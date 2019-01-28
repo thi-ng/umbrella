@@ -1,7 +1,7 @@
-# @thi.ng/geom-clip-convex
+# @thi.ng/geom-clip
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-clip-convex.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-convex)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-convex.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-clip.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
@@ -25,7 +25,7 @@ TODO...
 ## Installation
 
 ```bash
-yarn add @thi.ng/geom-clip-convex
+yarn add @thi.ng/geom-clip
 ```
 
 ## Dependencies
@@ -35,7 +35,7 @@ yarn add @thi.ng/geom-clip-convex
 ## Usage examples
 
 ```ts
-import * as gc from "@thi.ng/geom-clip-convex";
+import * as gc from "@thi.ng/geom-clip";
 ```
 
 ## Authors
