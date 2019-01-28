@@ -1,6 +1,6 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { sutherlandHodgeman } from "@thi.ng/geom-clip-convex";
+import { sutherlandHodgeman } from "@thi.ng/geom-clip";
 import { Polygon } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";

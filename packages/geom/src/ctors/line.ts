@@ -1,5 +1,5 @@
 import { Attribs } from "@thi.ng/geom-api";
-import { liangBarsky } from "@thi.ng/geom-clip-convex";
+import { liangBarsky } from "@thi.ng/geom-clip";
 import { Vec, VecPair } from "@thi.ng/vectors";
 import { Line, Rect } from "../api";
 import { argAttribs } from "../internal/args";
