@@ -1,7 +1,9 @@
-import { IObjectOf } from "@thi.ng/api";
+import { IObjectOf, Pair } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
 import { liangBarsky2, sutherlandHodgeman } from "@thi.ng/geom-clip";
 import { pointInCircumCircle, pointInPolygon2, pointInSegment2 } from "@thi.ng/geom-isec";
 import { centroid, circumCenter2 } from "@thi.ng/geom-poly-utils";
+import { EPS } from "@thi.ng/math";
 import { Edge } from "@thi.ng/quad-edge";
 import {
     eqDelta2,
@@ -12,28 +14,29 @@ import {
     ZERO2
 } from "@thi.ng/vectors";
 
-export type Visitor =
-    (e: Edge<Vertex>, visted?: IObjectOf<boolean>, processed?: IObjectOf<boolean>) => void;
+export type Visitor<T> =
+    (e: Edge<Vertex<T>>, visted?: IObjectOf<boolean>, processed?: IObjectOf<boolean>) => void;
 
 const rightOf =
-    (p: ReadonlyVec, e: Edge<Vertex>) =>
-        signedArea2(p, e.dest.pos, e.vertex.pos) > 0;
+    (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
+        signedArea2(p, e.dest.pos, e.origin.pos) > 0;
 
-export interface Vertex {
+export interface Vertex<T> {
     pos: ReadonlyVec;
     id: number;
+    val?: T;
 }
 
-export class DVMesh {
+export class DVMesh<T> {
 
-    first: Edge<Vertex>;
+    first: Edge<Vertex<T>>;
     boundsTri: ReadonlyVec[];
     nextID: number;
 
-    constructor(pts?: ReadonlyVec[], size = 1e5) {
-        const a: Vertex = { pos: [0, -size], id: 0 };
-        const b: Vertex = { pos: [size, size], id: 1 };
-        const c: Vertex = { pos: [-size, size], id: 2 };
+    constructor(pts?: ReadonlyVec[] | Pair<ReadonlyVec, T>[], size = 1e5) {
+        const a: Vertex<T> = { pos: [0, -size], id: 0 };
+        const b: Vertex<T> = { pos: [size, size], id: 1 };
+        const c: Vertex<T> = { pos: [-size, size], id: 2 };
         const eab = Edge.create(a, b);
         const ebc = Edge.create(b, c);
         const eca = Edge.create(c, a);
@@ -43,17 +46,21 @@ export class DVMesh {
         this.boundsTri = [a.pos, b.pos, c.pos];
         this.first = eab;
         this.nextID = 3;
-        pts && this.addAll(pts);
+        if (pts && pts.length) {
+            isNumber(pts[0][0]) ?
+                this.addKeys(<ReadonlyVec[]>pts) :
+                this.addAll(<Pair<ReadonlyVec, T>[]>pts);
+        }
     }
 
-    add(p: ReadonlyVec) {
-        let [e, exists] = this.locate(p);
+    add(p: ReadonlyVec, val?: T, eps = EPS) {
+        let [e, exists] = this.locate(p, eps);
         if (exists) return false;
-        if (pointInSegment2(p, e.vertex.pos, e.dest.pos)) {
+        if (pointInSegment2(p, e.origin.pos, e.dest.pos)) {
             e = e.oprev;
             e.onext.remove();
         }
-        let base = Edge.create<Vertex>(e.vertex, { pos: p, id: this.nextID++ });
+        let base = Edge.create<Vertex<T>>(e.origin, { pos: p, id: this.nextID++, val });
         base.splice(e);
         const first = base;
         do {
@@ -64,7 +71,7 @@ export class DVMesh {
         do {
             const t = e.oprev;
             if (rightOf(t.dest.pos, e) &&
-                pointInCircumCircle(e.vertex.pos, t.dest.pos, e.dest.pos, p)) {
+                pointInCircumCircle(e.origin.pos, t.dest.pos, e.dest.pos, p)) {
                 e.swap();
                 e = e.oprev;
             } else if (e.onext !== first) {
@@ -76,9 +83,16 @@ export class DVMesh {
         return true;
     }
 
-    addAll(pts: ReadonlyVec[]) {
+    addKeys(pts: Iterable<ReadonlyVec>, eps?: number) {
         for (let p of pts) {
-            this.add(p);
+            this.add(p, null, eps);
+        }
+        this.computeDual();
+    }
+
+    addAll(pairs: Iterable<Pair<ReadonlyVec, T>>, eps?: number) {
+        for (let p of pairs) {
+            this.add(p[0], p[1], eps);
         }
         this.computeDual();
     }
@@ -89,10 +103,10 @@ export class DVMesh {
      *
      * @param p
      */
-    locate(p: ReadonlyVec): [Edge<Vertex>, boolean] {
+    locate(p: ReadonlyVec, eps = EPS): [Edge<Vertex<T>>, boolean] {
         let e = this.first;
         while (true) {
-            if (eqDelta2(p, e.vertex.pos) || eqDelta2(p, e.dest.pos)) {
+            if (eqDelta2(p, e.origin.pos, eps) || eqDelta2(p, e.dest.pos, eps)) {
                 return [e, true];
             } else if (rightOf(p, e)) {
                 e = e.sym;
@@ -118,23 +132,23 @@ export class DVMesh {
             const e = work.pop();
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
-            if (!e.vertex || !visitedVerts[e.vertex.id]) {
+            if (!e.origin || !visitedVerts[e.origin.id]) {
                 let t = e.rot;
                 let isBounds = this.isBoundary(t);
-                const a = t.vertex;
+                const a = t.origin;
                 t = t.lnext;
                 isBounds = isBounds && this.isBoundary(t);
-                const b = t.vertex;
+                const b = t.origin;
                 t = t.lnext;
                 isBounds = isBounds && this.isBoundary(t);
-                const c = t.vertex;
-                e.vertex = {
+                const c = t.origin;
+                e.origin = {
                     pos: !isBounds ?
                         circumCenter2(a.pos, b.pos, c.pos) :
                         ZERO2,
                     id: this.nextID++
                 };
-                visitedVerts[e.vertex.id] = true;
+                visitedVerts[e.origin.id] = true;
             }
             work.push(e.sym, e.onext, e.lnext);
         }
@@ -149,9 +163,9 @@ export class DVMesh {
                 if (!usedEdges[eab.id]) {
                     const ebc = eab.lnext;
                     const eca = ebc.lnext;
-                    const va = eab.vertex.pos;
-                    const vb = ebc.vertex.pos;
-                    const vc = eca.vertex.pos;
+                    const va = eab.origin.pos;
+                    const vb = ebc.origin.pos;
+                    const vc = eca.origin.pos;
                     let verts = [va, vb, vc];
                     if (bounds &&
                         !(
@@ -184,7 +198,7 @@ export class DVMesh {
                     let needsClip = false;
                     let p: ReadonlyVec;
                     do {
-                        p = e.vertex.pos;
+                        p = e.origin.pos;
                         verts.push(p);
                         needsClip = needsClip || !pointInPolygon2(p, bounds);
                     } while ((e = e.lnext) !== first);
@@ -198,7 +212,7 @@ export class DVMesh {
                     const first = e = e.rot;
                     const verts = [];
                     do {
-                        verts.push(e.vertex.pos);
+                        verts.push(e.origin.pos);
                     } while ((e = e.lnext) !== first);
                     cells.push(verts);
                 })),
@@ -213,7 +227,7 @@ export class DVMesh {
         this.traverse(
             (e) => {
                 if (visitedEdges[e.id] || visitedEdges[e.sym.id]) return;
-                const a = e.vertex.pos;
+                const a = e.origin.pos;
                 const b = e.dest.pos;
                 if (!this.isBoundaryVertex(a) && !this.isBoundaryVertex(b)) {
                     if (boundsMinMax) {
@@ -231,7 +245,7 @@ export class DVMesh {
         return edges;
     }
 
-    traverse(proc: Visitor, edges = true, e: Edge<Vertex> = this.first) {
+    traverse(proc: Visitor<T>, edges = true, e: Edge<Vertex<T>> = this.first) {
         const work = [e];
         const visitedEdges: IObjectOf<boolean> = {};
         const visitedVerts: IObjectOf<boolean> = {};
@@ -239,10 +253,10 @@ export class DVMesh {
             e = work.pop();
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
-            if (!this.isBoundaryVertex(e.vertex.pos) &&
-                !this.isBoundaryVertex(e.rot.vertex.pos)) {
-                if (edges || !visitedVerts[e.vertex.id]) {
-                    visitedVerts[e.vertex.id] = true;
+            if (!this.isBoundaryVertex(e.origin.pos) &&
+                !this.isBoundaryVertex(e.rot.origin.pos)) {
+                if (edges || !visitedVerts[e.origin.id]) {
+                    visitedVerts[e.origin.id] = true;
                     proc(e, visitedEdges, visitedVerts);
                 }
             }
@@ -250,8 +264,8 @@ export class DVMesh {
         }
     }
 
-    protected isBoundary(e: Edge<Vertex>) {
-        return this.isBoundaryVertex(e.vertex.pos);
+    protected isBoundary(e: Edge<Vertex<T>>) {
+        return this.isBoundaryVertex(e.origin.pos);
     }
 
     protected isBoundaryVertex(v: ReadonlyVec) {
