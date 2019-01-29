@@ -1,5 +1,5 @@
 import { Attribs } from "@thi.ng/geom-api";
-import { liangBarsky } from "@thi.ng/geom-clip-convex";
+import { liangBarsky2 } from "@thi.ng/geom-clip";
 import { Vec, VecPair } from "@thi.ng/vectors";
 import { Line, Rect } from "../api";
 import { argAttribs } from "../internal/args";
@@ -14,8 +14,8 @@ export function line(...args: any[]) {
 export const clippedLine =
     (l: Line, bounds: VecPair | Rect) => {
         const res = bounds instanceof Rect ?
-            liangBarsky(l.points[0], l.points[1], bounds.pos, bounds.max()) :
-            liangBarsky(l.points[0], l.points[1], bounds[0], bounds[1]);
+            liangBarsky2(l.points[0], l.points[1], bounds.pos, bounds.max()) :
+            liangBarsky2(l.points[0], l.points[1], bounds[0], bounds[1]);
         if (res) {
             return new Line([res[0], res[1]], { ...l.attribs });
         }

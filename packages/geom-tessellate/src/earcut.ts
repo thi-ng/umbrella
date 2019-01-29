@@ -1,5 +1,6 @@
 import { Tessellator } from "@thi.ng/geom-api";
-import { pointInTriangle2, polyArea2 } from "@thi.ng/geom-poly-utils";
+import { pointInTriangle2 } from "@thi.ng/geom-isec";
+import { polyArea2 } from "@thi.ng/geom-poly-utils";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, signedArea2, Vec } from "@thi.ng/vectors";
 

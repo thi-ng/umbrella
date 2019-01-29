@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/geom-poly-utils",
+    "name": "@thi.ng/geom-clip",
     "version": "0.0.1",
-    "description": "Polygon / triangle analysis & processing utilities",
+    "description": "2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman)",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-poly-utils",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-clip",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -32,24 +32,23 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.0.1",
-        "@thi.ng/geom-api": "^0.0.1",
+        "@thi.ng/geom-isec": "^0.0.1",
+        "@thi.ng/geom-poly-utils": "^0.0.1",
         "@thi.ng/math": "^1.0.1",
         "@thi.ng/vectors": "^2.1.0"
     },
     "keywords": [
         "2D",
+        "convex",
+        "clipping",
         "ES6",
-        "area",
-        "bounding box",
-        "centroid",
-        "center of weight",
-        "circumcenter",
         "geometry",
-        "perimeter",
-        "point inside",
+        "liang-barsky",
+        "line",
         "polygon",
-        "triangle",
+        "rect",
+        "rectangle",
+        "sutherland-hodgeman",
         "typescript"
     ],
     "publishConfig": {

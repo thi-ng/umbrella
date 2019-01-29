@@ -241,9 +241,9 @@ export class Group implements
     children: IHiccupShape[];
     attribs: Attribs;
 
-    constructor(children: IHiccupShape[], attribs?: Attribs) {
-        this.children = children;
+    constructor(attribs: Attribs, children?: IHiccupShape[]) {
         this.attribs = attribs;
+        this.children = children || [];
     }
 
     get type() {
@@ -256,8 +256,8 @@ export class Group implements
 
     copy() {
         return new Group(
-            <IHiccupShape[]>this.children.map((c) => c.copy()),
-            { ...this.attribs }
+            { ...this.attribs },
+            <IHiccupShape[]>this.children.map((c) => c.copy())
         );
     }
 

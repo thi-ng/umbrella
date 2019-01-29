@@ -1,8 +1,14 @@
 import { defmulti } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { pointInPoly2, pointInTriangle2 } from "@thi.ng/geom-poly-utils";
 import {
-    distSq,
+    pointInAABB,
+    pointInCircle,
+    pointInPolygon2,
+    pointInRect,
+    pointInTriangle2,
+    pointInSegment2
+} from "@thi.ng/geom-isec";
+import {
     isInArray,
     ReadonlyVec,
     Vec
@@ -13,7 +19,8 @@ import {
     Points,
     Polygon,
     Rect,
-    Triangle
+    Triangle,
+    Line
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 
@@ -22,14 +29,16 @@ export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 pointInside.addAll({
 
     [Type.AABB]:
-        ({ pos, size }: AABB, [x, y, z]: ReadonlyVec) =>
-            x >= pos[0] && x <= pos[0] + size[0] &&
-            y >= pos[1] && y <= pos[1] + size[1] &&
-            z >= pos[2] && z <= pos[2] + size[2],
+        ($: AABB, p: ReadonlyVec) =>
+            pointInAABB(p, $.pos, $.size),
 
     [Type.CIRCLE]:
         ($: Circle, p) =>
-            distSq($.pos, p) <= $.r * $.r,
+            pointInCircle(p, $.pos, $.r),
+
+    [Type.LINE]:
+        ($: Line, p) =>
+            pointInSegment2(p, $.points[0], $.points[1]),
 
     [Type.POINTS]:
         ({ points }: Points, p) =>
@@ -37,12 +46,11 @@ pointInside.addAll({
 
     [Type.POLYGON]:
         ($: Polygon, p) =>
-            pointInPoly2($.points, p) > 0,
+            pointInPolygon2(p, $.points) > 0,
 
     [Type.RECT]:
-        ({ pos, size }: Rect, [x, y]: ReadonlyVec) =>
-            x >= pos[0] && x <= pos[0] + size[0] &&
-            y >= pos[1] && y <= pos[1] + size[1],
+        ($: Rect, p: ReadonlyVec) =>
+            pointInRect(p, $.pos, $.size),
 
     [Type.TRIANGLE]:
         (tri: Triangle, p: ReadonlyVec) =>

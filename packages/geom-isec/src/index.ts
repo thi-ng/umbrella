@@ -1,3 +1,5 @@
+export * from "./point";
+
 export * from "./circle-circle";
 export * from "./line-line";
 export * from "./ray-circle";

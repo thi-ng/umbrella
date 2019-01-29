@@ -42,8 +42,8 @@ transform.addAll({
     [Type.GROUP]:
         ($: Group, mat) =>
             new Group(
-                $.children.map((x) => <IHiccupShape>transform(x, mat)),
-                { ...$.attribs }
+                { ...$.attribs },
+                $.children.map((x) => <IHiccupShape>transform(x, mat))
             ),
 
     [Type.LINE]: tx(Line),
