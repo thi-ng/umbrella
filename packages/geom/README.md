@@ -25,7 +25,7 @@ WIP (currently 2D only) geometry types & polymorphic operations, built on
 
 [**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
 
-This package acts as a higher-level front end for the following related packages:
+This package acts as a higher-level frontend for the following related packages:
 
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api) - shared types & interfaces
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel) - spatial indexing data structures
@@ -39,6 +39,7 @@ This package acts as a higher-level front end for the following related packages
 - [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/master/packages/geom-splines) - nD cubic / quadratic spline utils
 - [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/master/packages/geom-subdiv-curve) - nD subdivision curve utils
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate) - nD convex polygon tessellators
+- [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/master/packages/geom-voronoi) - 2D incremental Delaunay/Voronoi mesh
 
 ## Installation
 
