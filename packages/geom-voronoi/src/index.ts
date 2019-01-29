@@ -134,21 +134,22 @@ export class DVMesh<T> {
             visitedEdges[e.id] = true;
             if (!e.origin || !visitedVerts[e.origin.id]) {
                 let t = e.rot;
-                let isBounds = this.isBoundary(t);
-                const a = t.origin;
+                const a = t.origin.pos;
+                let isBounds = this.isBoundary(a);
                 t = t.lnext;
-                isBounds = isBounds && this.isBoundary(t);
-                const b = t.origin;
+                const b = t.origin.pos;
+                isBounds = isBounds && this.isBoundary(b);
                 t = t.lnext;
-                isBounds = isBounds && this.isBoundary(t);
-                const c = t.origin;
+                const c = t.origin.pos;
+                isBounds = isBounds && this.isBoundary(c);
+                const id = this.nextID++;
                 e.origin = {
                     pos: !isBounds ?
-                        circumCenter2(a.pos, b.pos, c.pos) :
+                        circumCenter2(a, b, c) :
                         ZERO2,
-                    id: this.nextID++
+                    id
                 };
-                visitedVerts[e.origin.id] = true;
+                visitedVerts[id] = true;
             }
             work.push(e.sym, e.onext, e.lnext);
         }
@@ -229,7 +230,7 @@ export class DVMesh<T> {
                 if (visitedEdges[e.id] || visitedEdges[e.sym.id]) return;
                 const a = e.origin.pos;
                 const b = e.dest.pos;
-                if (!this.isBoundaryVertex(a) && !this.isBoundaryVertex(b)) {
+                if (!this.isBoundary(a) && !this.isBoundary(b)) {
                     if (boundsMinMax) {
                         const clip = liangBarsky2(a, b, boundsMinMax[0], boundsMinMax[1]);
                         clip && edges.push([clip[0], clip[1]]);
@@ -253,8 +254,8 @@ export class DVMesh<T> {
             e = work.pop();
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
-            if (!this.isBoundaryVertex(e.origin.pos) &&
-                !this.isBoundaryVertex(e.rot.origin.pos)) {
+            if (!this.isBoundary(e.origin.pos) &&
+                !this.isBoundary(e.rot.origin.pos)) {
                 if (edges || !visitedVerts[e.origin.id]) {
                     visitedVerts[e.origin.id] = true;
                     proc(e, visitedEdges, visitedVerts);
@@ -264,11 +265,7 @@ export class DVMesh<T> {
         }
     }
 
-    protected isBoundary(e: Edge<Vertex<T>>) {
-        return this.isBoundaryVertex(e.origin.pos);
-    }
-
-    protected isBoundaryVertex(v: ReadonlyVec) {
+    protected isBoundary(v: ReadonlyVec) {
         const b = this.boundsTri;
         return eqDelta2(b[0], v) ||
             eqDelta2(b[1], v) ||

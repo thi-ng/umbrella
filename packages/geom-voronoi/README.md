@@ -32,7 +32,7 @@ References:
 
 Construction speed: 20k random points ([poisson disc samples, even
 distribution](https://github.com/thi-ng/umbrella/tree/master/packages/poisson))
-in ~980ms (MBP 2016)
+in ~850ms (Chrome 72, MBP 2016)
 
 ## Installation
 
