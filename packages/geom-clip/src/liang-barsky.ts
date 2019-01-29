@@ -2,11 +2,11 @@ import { EPS } from "@thi.ng/math";
 import { Vec } from "@thi.ng/vectors";
 
 /**
- * Performs Liang-Barsky clipping with given line endpoints `la`, `lb`
- * and clipping rect defined by top-left `tr` and bottom-right `br`
- * points. The optional `ca` and `cb` vectors can be given to store the
- * result (clipped points). If omitted creates new vectors. Returns a
- * tuple of `[ca, cb, a, b]`, where the latter two values represent the
+ * Performs Liang-Barsky clipping of the line segment with endpoints
+ * `a`, `b` against the clipping rect defined by `min` and `max`. The
+ * optional `ca` and `cb` vectors can be given to store the result
+ * (clipped points). If omitted creates new vectors. Returns a tuple of
+ * `[ca, cb, a, b]`, where the latter two values represent the
  * normalized distances of the clipped points relative to original given
  * line segment. Returns `undefined` iff the line lies completely
  * outside the rect.
@@ -14,62 +14,65 @@ import { Vec } from "@thi.ng/vectors";
  * https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
  * https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c
  *
- * @param la
- * @param lb
- * @param tl
- * @param br
+ * @param a
+ * @param b
+ * @param min
+ * @param max
  * @param ca
  * @param cb
  */
-export const liangBarsky = (
-    la: Vec,
-    lb: Vec,
-    tl: Vec,
-    br: Vec,
-    ca: Vec = [],
-    cb: Vec = []
+export const liangBarsky2 = (
+    a: Vec,
+    b: Vec,
+    min: Vec,
+    max: Vec,
+    ca?: Vec,
+    cb?: Vec
 ): [Vec, Vec, number, number] => {
-    const lax = la[0];
-    const lay = la[1];
-    const dx = lb[0] - lax;
-    const dy = lb[1] - lay;
-    let a = 0;
-    let b = 1;
+    const ax = a[0];
+    const ay = a[1];
+    const dx = b[0] - ax;
+    const dy = b[1] - ay;
+    let alpha = 0;
+    let beta = 1;
 
     const clip = (p: number, q: number) => {
         if (q < 0 && Math.abs(p) < EPS) {
-            return 0;
+            return false;
         }
         const r = q / p;
         if (p < 0) {
-            if (r > b) {
+            if (r > beta) {
                 return false;
-            } else if (r > a) {
-                a = r;
+            } else if (r > alpha) {
+                alpha = r;
             }
         } else {
-            if (r < a) {
+            if (r < alpha) {
                 return false;
-            } else if (r < b) {
-                b = r;
+            } else if (r < beta) {
+                beta = r;
             }
         }
         return true;
     };
 
     if (!(
-        clip(-dx, -(tl[0] - lax)) &&
-        clip(dx, br[0] - lax) &&
-        clip(-dy, -(tl[1] - lay)) &&
-        clip(dy, br[1] - lay)
+        clip(-dx, -(min[0] - ax)) &&
+        clip(dx, max[0] - ax) &&
+        clip(-dy, -(min[1] - ay)) &&
+        clip(dy, max[1] - ay)
     )) {
         return;
     }
 
-    ca[0] = a * dx + lax;
-    ca[1] = a * dy + lay;
-    cb[0] = b * dx + lax;
-    cb[1] = b * dy + lay;
+    !ca && (ca = []);
+    !cb && (cb = []);
 
-    return [ca, cb, a, b];
+    ca[0] = alpha * dx + ax;
+    ca[1] = alpha * dy + ay;
+    cb[0] = beta * dx + ax;
+    cb[1] = beta * dy + ay;
+
+    return [ca, cb, alpha, beta];
 };
