@@ -8,25 +8,10 @@ let NEXT_ID = 0;
 export const setNextID =
     (id: number) => (NEXT_ID = (id + 3) & -4);
 
-export class QuadEdge<T> {
-
-    edges: Edge<T>[];
-
-    constructor() {
-        const edges = [
-            new Edge(this, NEXT_ID + 0),
-            new Edge(this, NEXT_ID + 1),
-            new Edge(this, NEXT_ID + 2),
-            new Edge(this, NEXT_ID + 3),
-        ];
-        NEXT_ID += 4;
-        this.edges = edges;
-        edges[0].next = edges[0];
-        edges[1].next = edges[3];
-        edges[2].next = edges[2];
-        edges[3].next = edges[1];
-    }
-}
+/**
+ * Type alias for a 4-tuple of `Edge` instances.
+ */
+export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
 
 /**
  * Quad-edge implementation after Guibas & Stolfi. Based on C++ versions
@@ -51,80 +36,135 @@ export class Edge<T> {
      * @param dest
      */
     static create<T>(src?: T, dest?: T) {
-        const e = new QuadEdge<T>().edges[0];
-        src && dest && e.setEnds(src, dest);
-        return e;
+        const quad = <QuadEdge<T>>new Array(4);
+        const a = quad[0] = new Edge(quad, NEXT_ID);
+        const b = quad[1] = new Edge(quad, NEXT_ID + 1);
+        const c = quad[2] = new Edge(quad, NEXT_ID + 2);
+        const d = quad[3] = new Edge(quad, NEXT_ID + 3);
+        a.onext = a;
+        c.onext = c;
+        b.onext = d;
+        d.onext = b;
+        NEXT_ID += 4;
+        src && dest && a.setEnds(src, dest);
+        return a;
     }
 
     id: number;
     parent: QuadEdge<T>;
-    next: Edge<T>;
-    vertex: T;
+    origin: T;
 
     constructor(parent: QuadEdge<T>, id: number) {
         this.parent = parent;
         this.id = id;
     }
 
-    get rot() {
-        return this.parent.edges[(this.id + 1) & 3];
-    }
+    /**
+     * Next CCW edge from this edge's origin.
+     */
+    onext: Edge<T>;
 
-    get invrot() {
-        return this.parent.edges[(this.id + 3) & 3];
-    }
-
-    get sym() {
-        return this.parent.edges[(this.id + 2) & 3];
-    }
-
-    get onext() {
-        return this.next;
-    }
-
+    /**
+     * Next CW edge from this edge's origin.
+     */
     get oprev() {
         return this.rot.onext.rot;
     }
 
+    /**
+     * Dual of this edge, right -> left.
+     */
+    get rot() {
+        return this.parent[(this.id + 1) & 3];
+    }
+
+    /**
+     * Dual of this edge, left -> right.
+     * I.e same as `this.rot.sym`
+     */
+    get invrot() {
+        return this.parent[(this.id + 3) & 3];
+    }
+
+    /**
+     * Symmetric partner edge of this edge, from dest -> src.
+     * I.e. `this === this.sym.sym`
+     */
+    get sym() {
+        return this.parent[(this.id + 2) & 3];
+    }
+
+    /**
+     * Next CCW edge to this edge's dest.
+     */
     get dnext() {
         return this.sym.onext.sym;
     }
 
+    /**
+     * Next CW edge to this edge's dest.
+     */
     get dprev() {
         return this.invrot.onext.invrot;
     }
 
+    /**
+     * Next CCW edge around the left face (dual vertex) from this edge's
+     * dest.
+     */
     get lnext() {
         return this.invrot.onext.rot;
     }
 
+    /**
+     * Next CCW edge around the left face (dual vertex) to this edge's
+     * origin.
+     */
     get lprev() {
         return this.onext.sym;
     }
 
+    /**
+     * Next CCW edge around the right face (dual vertex) to this edge's
+     * dest.
+     */
     get rnext() {
         return this.rot.onext.invrot;
     }
 
+    /**
+     * Next CCW edge around the right face (dual vertex) to this edge's
+     * origin.
+     */
     get rprev() {
         return this.sym.onext;
     }
 
+    /**
+     * Returns this edge's dest vertex. I.e. `this.sym.origin`
+     */
     get dest() {
-        return this.sym.vertex;
+        return this.sym.origin;
     }
 
+    /**
+     * Sets the origin & dest vertices of this edge (in other words, the
+     * origins of this edge and `this.sym`).
+     *
+     * @param o
+     * @param d
+     */
     setEnds(o: T, d: T) {
-        this.vertex = o;
-        this.sym.vertex = d;
+        this.origin = o;
+        this.sym.origin = d;
     }
 
-    connect(b: Edge<T>): Edge<T> {
-        const e = Edge.create<T>();
-        e.splice(this.lnext)
-        e.sym.splice(b);
-        e.setEnds(this.dest, b.vertex);
-        return e;
+    connect(e: Edge<T>): Edge<T> {
+        const n = Edge.create<T>();
+        n.splice(this.lnext)
+        n.sym.splice(e);
+        n.setEnds(this.dest, e.origin);
+        return n;
     }
 
     swap() {
@@ -143,17 +183,28 @@ export class Edge<T> {
         delete this.parent;
     }
 
-    splice(b: Edge<T>): Edge<T> {
+    /**
+     * Modifies the edge rings around the origins of this edge and `e`,
+     * as well as, independently, the edge rings of both edges' left
+     * dual vertex. In each case, if the rings are separate, this
+     * operator will join them and if both rings are the same ring, they
+     * will be split / separated. Therefore, `splice()` is it's own
+     * reverse operator and the only operator needed to edit quad edge
+     * topologies.
+     *
+     * @param e
+     */
+    splice(e: Edge<T>): Edge<T> {
         const alpha = this.onext.rot;
-        const beta = b.onext.rot;
-        const t1 = b.onext;
+        const beta = e.onext.rot;
+        const t1 = e.onext;
         const t2 = this.onext;
         const t3 = beta.onext;
         const t4 = alpha.onext;
-        this.next = t1;
-        b.next = t2;
-        alpha.next = t3;
-        beta.next = t4;
+        this.onext = t1;
+        e.onext = t2;
+        alpha.onext = t3;
+        beta.onext = t4;
         return this;
     }
 }
