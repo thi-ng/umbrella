@@ -1,3 +1,4 @@
+import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
 import {
     dot,
     maddN,
@@ -5,7 +6,7 @@ import {
     ReadonlyVec,
     sub
 } from "@thi.ng/vectors";
-import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
+import { NONE } from "./api";
 
 export const intersectRayCircle = (
     rpos: ReadonlyVec,
@@ -31,6 +32,6 @@ export const intersectRayCircle = (
                 undefined;
         return isec ?
             { type: IntersectionType.INTERSECT, isec } :
-            { type: IntersectionType.NONE };
+            NONE;
     }
 };

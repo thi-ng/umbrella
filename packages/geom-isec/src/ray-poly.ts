@@ -1,5 +1,6 @@
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
 import { maddN2, ReadonlyVec } from "@thi.ng/vectors";
+import { NONE } from "./api";
 import { intersectRayLine } from "./ray-line";
 
 export const intersectRayPolyline = (
@@ -33,9 +34,7 @@ export const intersectRayPolyline = (
             inside: !(cross & 1),
             alpha: minD,
         } :
-        {
-            type: IntersectionType.NONE
-        };
+        NONE;
 };
 
 export const intersectRayPolylineAll = (
@@ -63,7 +62,7 @@ export const intersectRayPolylineAll = (
     return res.length ?
         {
             type: IntersectionType.INTERSECT,
-            isec: res.sort((a, b) => a[0] - b[0])
+            isec: res.sort((a, b) => a[0] - b[0]).map((x) => x[1])
         } :
-        { type: IntersectionType.NONE };
+        NONE;
 };

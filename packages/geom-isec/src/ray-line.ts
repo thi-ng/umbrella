@@ -1,6 +1,7 @@
-import { eqDeltaFixed } from "@thi.ng/math";
-import { ReadonlyVec, maddN } from "@thi.ng/vectors";
 import { IntersectionType } from "@thi.ng/geom-api";
+import { eqDeltaFixed } from "@thi.ng/math";
+import { maddN, ReadonlyVec } from "@thi.ng/vectors";
+import { NONE } from "./api";
 
 export const intersectRayLine = (
     rpos: ReadonlyVec,
@@ -11,7 +12,9 @@ export const intersectRayLine = (
     const bax = b[0] - a[0];
     const bay = b[1] - a[1];
     const d = dir[0] * bay - dir[1] * bax;
-    if (eqDeltaFixed(d, 0)) return;
+    if (eqDeltaFixed(d, 0)) {
+        return { type: IntersectionType.NONE };
+    }
     const arx = a[0] - rpos[0];
     const ary = a[1] - rpos[1];
     const t = (bay * arx - bax * ary) / d;
@@ -22,5 +25,5 @@ export const intersectRayLine = (
             isec: maddN([], rpos, dir, t),
             alpha: t
         } :
-        { type: IntersectionType.NONE };
+        NONE;
 };

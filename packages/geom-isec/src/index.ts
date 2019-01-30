@@ -5,5 +5,6 @@ export * from "./line-line";
 export * from "./ray-circle";
 export * from "./ray-line";
 export * from "./ray-poly";
+export * from "./ray-rect";
 export * from "./rect-circle";
 export * from "./rect-rect";

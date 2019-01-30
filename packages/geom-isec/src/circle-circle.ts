@@ -10,6 +10,7 @@ import {
     ReadonlyVec,
     sub
 } from "@thi.ng/vectors";
+import { NONE } from "./api";
 
 export const intersectCircleCircle =
     (a: ReadonlyVec, b: ReadonlyVec, ar: number, br: number): IntersectionResult => {
@@ -29,7 +30,7 @@ export const intersectCircleCircle =
                 isec: [add([], p, t), sub([], p, t)]
             };
         }
-        return { type: IntersectionType.NONE };
+        return NONE;
     };
 
 export const testCircleCircle =
