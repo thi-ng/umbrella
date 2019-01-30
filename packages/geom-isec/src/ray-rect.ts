@@ -1,5 +1,5 @@
 import { IntersectionType } from "@thi.ng/geom-api";
-import { maddN2, maddN3, ReadonlyVec } from "@thi.ng/vectors";
+import { maddN, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
 const min = Math.min;
@@ -53,39 +53,38 @@ const rayBox =
         return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
     };
 
-export const intersectRayRect =
-    (rpos: ReadonlyVec, dir: ReadonlyVec, bmin: ReadonlyVec, bmax: ReadonlyVec) => {
-        const t = rayRect(rpos, dir, bmin, bmax);
-        return t[1] > max(t[0], 0) ?
-            {
-                type: IntersectionType.INTERSECT,
-                inside: t[0] < 0,
-                isec: t[0] < 0 ?
-                    [maddN2([], rpos, dir, t[1])] :
-                    [maddN2([], rpos, dir, t[0]), maddN2([], rpos, dir, t[1])]
-            } :
-            NONE;
-    };
+const intersectWith =
+    (fn: (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec) => number[]) =>
+        (rpos: ReadonlyVec, dir: ReadonlyVec, bmin: ReadonlyVec, bmax: ReadonlyVec) => {
+            const t = fn(rpos, dir, bmin, bmax);
+            const tmin = t[0];
+            const tmax = t[1];
+            const inside = tmin < 0;
+            return tmax > max(tmin, 0) ?
+                inside ?
+                    {
+                        type: IntersectionType.INTERSECT,
+                        inside,
+                        isec: [maddN([], rpos, dir, tmax)],
+                        alpha: tmax,
+                    } :
+                    {
+                        type: IntersectionType.INTERSECT,
+                        isec: [maddN([], rpos, dir, tmin), maddN([], rpos, dir, tmax)],
+                        alpha: tmin,
+                        beta: tmax,
+                    } :
+                NONE;
+        };
+
+export const intersectRayRect = intersectWith(rayRect);
+
+export const intersectRayAABB = intersectWith(rayBox);
 
 export const testRayRect =
     (rpos: ReadonlyVec, dir: ReadonlyVec, bmin: ReadonlyVec, bmax: ReadonlyVec) => {
         const t = rayRect(rpos, dir, bmin, bmax);
         return t[1] > max(t[0], 0);
-    };
-
-
-export const intersectRayAABB =
-    (rpos: ReadonlyVec, dir: ReadonlyVec, bmin: ReadonlyVec, bmax: ReadonlyVec) => {
-        const t = rayBox(rpos, dir, bmin, bmax);
-        return t[1] > max(t[0], 0) ?
-            {
-                type: IntersectionType.INTERSECT,
-                inside: t[0] < 0,
-                isec: t[0] < 0 ?
-                    [maddN3([], rpos, dir, t[1])] :
-                    [maddN3([], rpos, dir, t[0]), maddN3([], rpos, dir, t[1])]
-            } :
-            NONE;
     };
 
 export const testRayAABB =
