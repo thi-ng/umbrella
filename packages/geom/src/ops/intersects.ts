@@ -9,19 +9,22 @@ import {
 import {
     intersectCircleCircle,
     intersectLineLine,
+    intersectRayAABB,
     intersectRayCircle,
     intersectRayPolyline,
+    intersectRayRect,
     testRectCircle,
     testRectRect
 } from "@thi.ng/geom-isec";
-import { dispatch2 } from "../internal/dispatch";
 import {
+    AABB,
     Circle,
     Line,
     Ray,
     Rect,
-    Sphere,
+    Sphere
 } from "../api";
+import { dispatch2 } from "../internal/dispatch";
 
 export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> = defmulti(dispatch2);
 
@@ -35,6 +38,10 @@ intersects.addAll({
         ({ points: a }: Line, { points: b }: Line) =>
             intersectLineLine(a[0], a[1], b[0], b[1]),
 
+    [`${Type.RAY}-${Type.AABB}`]:
+        (ray: Ray, box: AABB) =>
+            intersectRayAABB(ray.pos, ray.dir, box.pos, box.max()),
+
     [`${Type.RAY}-${Type.CIRCLE}`]:
         (ray: Ray, sphere: Sphere) =>
             intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r),
@@ -46,6 +53,10 @@ intersects.addAll({
     [`${Type.RAY}-${Type.POLYLINE}`]:
         (ray: Ray, poly: PCLike) =>
             intersectRayPolyline(ray.pos, ray.dir, poly.points, false),
+
+    [`${Type.RAY}-${Type.RECT}`]:
+        (ray: Ray, rect: Rect) =>
+            intersectRayRect(ray.pos, ray.dir, rect.pos, rect.max()),
 
     [`${Type.RECT}-${Type.CIRCLE}`]:
         ({ pos: rp, size }: Rect, { pos: cp, r }: Circle) => ({
