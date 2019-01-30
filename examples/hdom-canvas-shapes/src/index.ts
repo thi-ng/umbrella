@@ -1,12 +1,15 @@
+import { hsva } from "@thi.ng/color";
 import { pathBuilder, points } from "@thi.ng/geom";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components";
 import { COMMENT, serialize } from "@thi.ng/hiccup";
 import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { sincos } from "@thi.ng/math";
 import { concat, skewX23, translation23 } from "@thi.ng/matrices";
 import { fromRAF, stream, sync } from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { addN } from "@thi.ng/vectors";
 import logo from "../assets/logo-64.png";
 import { download } from "./download";
 
@@ -225,6 +228,25 @@ const TESTS = {
                 ];
             return () => body;
         })()
+    },
+
+    "ellipse": {
+        attribs: {},
+        desc: "ellipses",
+        body: () => {
+            const t = Date.now() * 0.005;
+            return ["g", {},
+                map((x) =>
+                    ["ellipse",
+                        { stroke: hsva(x / 20, 1, 1) },
+                        [150, 150], // pos
+                        addN(null, sincos(t + x * 0.1, 75), 75), // radii
+                        Math.sin(t * 0.25) // axis
+                    ],
+                    range(30)
+                )
+            ];
+        }
     }
 };
 
