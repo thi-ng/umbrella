@@ -35,7 +35,7 @@
         "@thi.ng/errors": "^1.0.1",
         "@thi.ng/geom-api": "^0.0.1",
         "@thi.ng/math": "^1.0.1",
-        "@thi.ng/vectors": "^2.1.0"
+        "@thi.ng/vectors": "^2.1.1"
     },
     "keywords": [
         "2D",
