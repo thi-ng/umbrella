@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -37,9 +37,9 @@
         "@thi.ng/defmulti": "^1.0.1",
         "@thi.ng/errors": "^1.0.1",
         "@thi.ng/math": "^1.0.1",
-        "@thi.ng/strings": "^1.0.1",
-        "@thi.ng/transducers": "^3.0.1",
-        "@thi.ng/vectors": "^2.1.0"
+        "@thi.ng/strings": "^1.0.2",
+        "@thi.ng/transducers": "^3.0.2",
+        "@thi.ng/vectors": "^2.1.1"
     },
     "keywords": [
         "alpha",
