@@ -7,7 +7,7 @@ import {
 import { align, Pow2 } from "@thi.ng/binary";
 import { MemPool, SIZEOF, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { asNativeType } from "./convert";
 import {
     AttribPoolOpts,
@@ -50,7 +50,6 @@ export class AttribPool implements
         this.pool = !(pool instanceof MemPool) ?
             new MemPool(pool, this.opts.mempool) :
             pool;
-        this.opts = opts;
         this.capacity = capacity;
         this.specs = {};
         this.attribs = {};
@@ -219,15 +218,17 @@ export class AttribPool implements
         for (let id in specs) {
             assert(!this.attribs[id], `attrib: ${id} already exists`);
             const a = specs[id];
+            assert(a.size > 0, `attrib ${id}: illegal or missing size`);
             const size = SIZEOF[asNativeType(a.type)];
+            a.default == null && (a.default = a.size > 1 ? zeroes(a.size) : 0);
             const isNum = typeof a.default === "number";
             assert(
                 () => (!isNum && a.size === (<Vec>a.default).length) || (isNum && a.size === 1),
-                `incompatible default value for attrib: ${id}, expected size ${a.size}`
+                `attrib ${id}: incompatible default value, expected size ${a.size}`
             );
             assert(
                 a.byteOffset % size === 0,
-                `invalid offset for attrib: ${id}, expected multiple of ${size}`
+                `attrib ${id}: invalid offset, expected multiple of ${size}`
             );
             a.stride = stride / size;
             this.specs[id] = <AttribSpec>a;
