@@ -150,8 +150,12 @@ export class MemPool implements
         }
         size = align(size, 8);
         let block = this._used;
+        let blockEnd: number;
+        let newAddr = 0;
         while (block) {
             if (block.addr === addr) {
+                blockEnd = addr + block.size;
+                const isTop = blockEnd >= this.top;
                 // shrink & possibly split existing block
                 if (size <= block.size) {
                     if (this.doSplit) {
@@ -164,29 +168,44 @@ export class MemPool implements
                                 next: null
                             });
                             this.doCompact && this.compact();
+                        } else if (isTop) {
+                            this.top = addr + size;
                         }
+                    } else if (isTop) {
+                        this.top = addr + size;
                     }
-                    return block.addr;
+                    newAddr = addr;
+                    break;
                 }
                 // try to enlarge block if current top
-                const blockEnd = addr + block.size;
-                if (blockEnd >= this.top && addr + size < this.end) {
+                if (isTop && addr + size < this.end) {
                     block.size = size;
                     this.top = addr + size;
-                    return addr;
+                    newAddr = addr;
+                    break;
                 }
                 // fallback to free & malloc
                 this.free(addr);
-                const newAddr = this.malloc(size);
-                // copy old block contents to new addr
-                if (newAddr) {
-                    this.u8.copyWithin(newAddr, addr, blockEnd);
-                }
-                return newAddr;
+                newAddr = this.malloc(size);
+                break;
             }
             block = block.next;
         }
-        return 0;
+        // copy old block contents to new addr
+        if (newAddr && newAddr !== addr) {
+            this.u8.copyWithin(newAddr, addr, blockEnd);
+        }
+        return newAddr;
+    }
+
+    reallocArray(ptr: TypedArray, num: number) {
+        if (ptr.buffer !== this.buf) {
+            return null;
+        }
+        const addr = this.realloc(ptr.byteOffset, num * ptr.BYTES_PER_ELEMENT);
+        return addr ?
+            new (<any>ptr.constructor)(this.buf, addr, num) :
+            null;
     }
 
     free(ptr: number | TypedArray) {
@@ -239,22 +258,23 @@ export class MemPool implements
         let block = this._free;
         let prev: MemBlock;
         let scan: MemBlock;
+        let scanPrev: MemBlock;
         let res = false;
         while (block) {
-            prev = block;
+            scanPrev = block;
             scan = block.next;
-            while (scan && prev.addr + prev.size === scan.addr) {
+            while (scan && scanPrev.addr + scanPrev.size === scan.addr) {
                 // console.log("merge:", scan.addr, scan.size);
-                prev = scan;
+                scanPrev = scan;
                 scan = scan.next;
             }
-            if (prev !== block) {
-                const newSize = prev.addr - block.addr + prev.size;
+            if (scanPrev !== block) {
+                const newSize = scanPrev.addr - block.addr + scanPrev.size;
                 // console.log("merged size:", newSize);
                 block.size = newSize;
-                const next = prev.next;
+                const next = scanPrev.next;
                 let tmp = block.next;
-                while (tmp !== prev.next) {
+                while (tmp !== scanPrev.next) {
                     // console.log("release:", tmp.addr);
                     const tn = tmp.next;
                     tmp.next = null;
@@ -263,6 +283,14 @@ export class MemPool implements
                 block.next = next;
                 res = true;
             }
+            // re-adjust top if poss
+            if (block.addr + block.size >= this.top) {
+                this.top = block.addr;
+                prev ?
+                    (prev.next = block.next) :
+                    (this._free = block.next);
+            }
+            prev = block;
             block = block.next;
         }
         return res;

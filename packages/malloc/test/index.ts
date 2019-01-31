@@ -50,8 +50,8 @@ describe("malloc", () => {
         assert(pool.free(b), "free c");
         assert(!pool.free(b), "free b (repeat)");
         stats = pool.stats();
-        assert.equal(stats.top, 8 + 16 + 32 + 24, "top2");
-        assert.deepEqual(stats.free, { count: 1, size: 16 + 32 + 24 });
+        assert.equal(stats.top, 8, "top2");
+        assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, { count: 0, size: 0 });
 
         // alloc & split free block
@@ -90,11 +90,12 @@ describe("malloc", () => {
 
         // non-continous free chain
         assert(pool.free(c), "free c2");
+        assert.equal(stats.top, 80, "top6");
         assert(pool.free(a), "free a3");
         stats = pool.stats();
-        assert.deepEqual(stats.free, { count: 2, size: 16 });
+        assert.deepEqual(stats.free, { count: 1, size: 8 });
         assert.deepEqual(stats.used, { count: 1, size: 64 });
-        assert.equal(stats.top, 88, "top6");
+        assert.equal(stats.top, 80, "top7");
 
         // alloc larger size to force walking free chain
         // and then alloc @ top (reuse block @ 80)
@@ -103,14 +104,15 @@ describe("malloc", () => {
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 1, size: 8 });
         assert.deepEqual(stats.used, { count: 2, size: 96 });
-        assert.equal(stats.top, 80 + 32, "top7");
+        assert.equal(stats.top, 80 + 32, "top8");
 
         assert(pool.free(a), "free a4");
         assert(pool.free(b), "free b3");
         stats = pool.stats();
-        assert.deepEqual(stats.free, { count: 1, size: 8 + 64 + 32 });
+        assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, { count: 0, size: 0 });
-        assert.equal(stats.top, 8 + 8 + 64 + 32, "top8");
+        assert.equal(stats.available, 256 - 8);
+        assert.equal(stats.top, 8, "top9");
 
         pool.freeAll();
         assert.deepEqual(
@@ -189,8 +191,9 @@ describe("malloc", () => {
         // returned arrays are zeroed
         a = pool.callocAs(Type.U32, 3);
         b = pool.callocAs(Type.U32, 3);
-        assert.deepEqual(a, [0, 0, 0]);
-        assert.deepEqual(b, [0, 0, 0]);
+        const t = [0, 0, 0];
+        assert.deepEqual(a, t);
+        assert.deepEqual(b, t);
     });
 
     it("malloc top", () => {
@@ -207,6 +210,8 @@ describe("malloc", () => {
         pool.free(c);
     });
 
+    it("realloc");
+
     it("no compact", () => {
         pool = new MemPool(0x100, { compact: false });
         pool.malloc(8);
@@ -216,9 +221,9 @@ describe("malloc", () => {
         pool.free(16);
         pool.free(24);
         let p: any = pool;
-        assert.equal(p._free.addr, 24);
+        assert.equal(p._free.addr, 8);
         assert.equal(p._free.next.addr, 16);
-        assert.equal(p._free.next.next.addr, 8);
+        assert.equal(p._free.next.next.addr, 24);
         assert.equal(p._free.next.next.next, null);
     });
 
