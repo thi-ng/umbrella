@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vector-pools",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -34,7 +34,7 @@
     "dependencies": {
         "@thi.ng/api": "^5.0.1",
         "@thi.ng/malloc": "^1.0.1",
-        "@thi.ng/vectors": "^2.1.0"
+        "@thi.ng/vectors": "^2.1.1"
     },
     "keywords": [
         "ES6",
