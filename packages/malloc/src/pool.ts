@@ -99,7 +99,7 @@ export class MemPool implements
         while (block) {
             const isTop = block.addr + block.size >= top;
             if (isTop || block.size >= size) {
-                if (isTop && this.doCompact && block.addr + size > end) {
+                if (isTop && block.addr + size > end) {
                     return 0;
                 }
                 if (prev) {
@@ -140,6 +140,51 @@ export class MemPool implements
             this._used = block;
             this.top = top;
             return addr;
+        }
+        return 0;
+    }
+
+    realloc(addr: number, size: number) {
+        if (size <= 0) {
+            return 0;
+        }
+        size = align(size, 8);
+        let block = this._used;
+        while (block) {
+            if (block.addr === addr) {
+                // shrink & possibly split existing block
+                if (size <= block.size) {
+                    if (this.doSplit) {
+                        const excess = block.size - size;
+                        if (excess >= this.minSplit) {
+                            block.size = size;
+                            this.insert({
+                                addr: block.addr + size,
+                                size: excess,
+                                next: null
+                            });
+                            this.doCompact && this.compact();
+                        }
+                    }
+                    return block.addr;
+                }
+                // try to enlarge block if current top
+                const blockEnd = addr + block.size;
+                if (blockEnd >= this.top && addr + size < this.end) {
+                    block.size = size;
+                    this.top = addr + size;
+                    return addr;
+                }
+                // fallback to free & malloc
+                this.free(addr);
+                const newAddr = this.malloc(size);
+                // copy old block contents to new addr
+                if (newAddr) {
+                    this.u8.copyWithin(newAddr, addr, blockEnd);
+                }
+                return newAddr;
+            }
+            block = block.next;
         }
         return 0;
     }
@@ -225,11 +270,6 @@ export class MemPool implements
 
     protected insert(block: MemBlock) {
         let ptr = this._free;
-        if (!this.doCompact) {
-            block.next = ptr;
-            this._free = block;
-            return;
-        }
         let prev: MemBlock = null;
         while (ptr) {
             if (block.addr <= ptr.addr) break;
