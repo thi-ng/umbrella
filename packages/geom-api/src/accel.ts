@@ -9,4 +9,5 @@ export interface ISpatialAccel<K, V> {
     has(k: K, eps?: number): boolean;
     select(q: K, maxNum: number, maxDist?: number): Pair<K, V>[];
     selectKeys(q: K, maxNum: number, maxDist?: number): K[];
+    selectVals(q: K, maxNum: number, maxDist?: number): V[];
 }
