@@ -16,12 +16,12 @@ export class VecPool implements
 
     pool: MemPool;
 
-    constructor(pool: MemPool);
-    constructor(buf: number | ArrayBuffer, opts?: Partial<MemPoolOpts>);
-    constructor(pool: any, opts?: Partial<MemPoolOpts>) {
-        this.pool = !(pool instanceof MemPool) ?
-            new MemPool(pool, opts) :
-            pool;
+    constructor(pool?: MemPool);
+    constructor(opts?: Partial<MemPoolOpts>);
+    constructor(pool: any) {
+        this.pool = pool instanceof MemPool ?
+            pool :
+            new MemPool(pool);
     }
 
     stats(): MemPoolStats {

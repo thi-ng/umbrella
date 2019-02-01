@@ -1,6 +1,6 @@
-import { IRelease, TypedArray } from "@thi.ng/api";
-import { Type, MemPoolOpts } from "@thi.ng/malloc";
-import { StridedVec, Vec, ReadonlyVec } from "@thi.ng/vectors";
+import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api";
+import { MemPool, MemPoolOpts, Type } from "@thi.ng/malloc";
+import { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
 
 export interface AttribSpec {
     type: GLType | Type;
@@ -11,8 +11,10 @@ export interface AttribSpec {
 }
 
 export interface AttribPoolOpts {
-    resizable: boolean;
-    mempool: MemPoolOpts;
+    mem: MemPool | Partial<MemPoolOpts>;
+    attribs?: IObjectOf<AttribSpec>;
+    num: number;
+    resizable?: boolean;
 }
 
 export interface IVecPool extends IRelease {

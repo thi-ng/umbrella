@@ -29,34 +29,30 @@ export class AttribPool implements
     attribs: IObjectOf<TypedArray>;
     order: string[];
     specs: IObjectOf<AttribSpec>;
-    opts: AttribPoolOpts;
     pool: MemPool;
     addr: number;
     capacity: number;
 
     byteStride: number;
     maxAttribSize: number;
+    resizable: boolean;
 
-    constructor(
-        pool: number | ArrayBuffer | MemPool,
-        capacity: number,
-        specs: IObjectOf<AttribSpec>,
-        opts?: AttribPoolOpts
-    ) {
-        this.opts = <AttribPoolOpts>{
+    constructor(opts?: AttribPoolOpts) {
+        opts = <AttribPoolOpts>{
             resizable: true,
             ...opts
         };
-        this.pool = !(pool instanceof MemPool) ?
-            new MemPool(pool, this.opts.mempool) :
-            pool;
-        this.capacity = capacity;
+        this.pool = !(opts.mem instanceof MemPool) ?
+            new MemPool(opts.mem) :
+            opts.mem;
+        this.capacity = opts.num;
+        this.resizable = opts.resizable;
         this.specs = {};
         this.attribs = {};
         this.order = [];
         this.byteStride = 1;
         this.maxAttribSize = 1;
-        this.addAttribs(specs, true);
+        opts.attribs && this.addAttribs(opts.attribs, true);
     }
 
     bytes() {
@@ -183,7 +179,7 @@ export class AttribPool implements
 
     ensure(newCapacity: number, fill = false) {
         if (newCapacity <= this.capacity) return;
-        assert(this.opts.resizable, `pool resizing disabled`);
+        assert(this.resizable, `pool resizing disabled`);
         const newAddr = this.pool.realloc(this.addr, newCapacity * this.byteStride);
         assert(newAddr > 0, `out of memory`);
         for (let id in this.specs) {
@@ -282,10 +278,10 @@ export class AttribPool implements
         const grow = newByteStride > this.byteStride;
         let newAddr = this.addr;
         if (grow) {
-            assert(this.opts.resizable, `pool resizing disabled`);
+            assert(this.resizable, `pool resizing disabled`);
             newAddr = this.pool.realloc(this.addr, this.capacity * newByteStride);
             assert(newAddr > 0, `out of memory`);
-        } else if (!this.opts.resizable) {
+        } else if (!this.resizable) {
             return;
         }
         const sameBlock = newAddr === this.addr;
