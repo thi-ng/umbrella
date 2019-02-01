@@ -60,7 +60,11 @@ export class AttribPool implements
     }
 
     bytes() {
-        return new Uint8Array(this.pool.buf, this.addr, this.capacity * this.byteStride);
+        return new Uint8Array(
+            this.pool.buf,
+            this.addr,
+            this.capacity * this.byteStride
+        );
     }
 
     release(releasePool = true) {
@@ -119,7 +123,7 @@ export class AttribPool implements
     setAttribValue(id: string, index: number, v: number | ReadonlyVec) {
         const spec = this.specs[id];
         assert(!!spec, `invalid attrib: ${id}`);
-        this.ensure(index);
+        this.ensure(index + 1);
         const buf = this.attribs[id];
         index *= spec.stride;
         const isNum = typeof v === "number";
@@ -180,8 +184,7 @@ export class AttribPool implements
     ensure(newCapacity: number, fill = false) {
         if (newCapacity <= this.capacity) return;
         assert(this.opts.resizable, `pool resizing disabled`);
-        // TODO add realloc()
-        const newAddr = this.pool.malloc(newCapacity * this.byteStride);
+        const newAddr = this.pool.realloc(this.addr, newCapacity * this.byteStride);
         assert(newAddr > 0, `out of memory`);
         for (let id in this.specs) {
             const a = this.specs[id];
@@ -197,7 +200,6 @@ export class AttribPool implements
         if (fill) {
             this.setDefaults(this.specs, this.capacity, newCapacity);
         }
-        this.pool.free(this.addr);
         this.addr = newAddr;
         this.capacity = newCapacity;
     }
@@ -281,8 +283,7 @@ export class AttribPool implements
         let newAddr = this.addr;
         if (grow) {
             assert(this.opts.resizable, `pool resizing disabled`);
-            // TODO realloc
-            newAddr = this.pool.malloc(this.capacity * newByteStride);
+            newAddr = this.pool.realloc(this.addr, this.capacity * newByteStride);
             assert(newAddr > 0, `out of memory`);
         } else if (!this.opts.resizable) {
             return;
@@ -326,10 +327,7 @@ export class AttribPool implements
                 }
             }
         }
-        if (this.addr != newAddr) {
-            this.pool.free(this.addr);
-            this.addr = newAddr;
-        }
+        this.addr = newAddr;
         this.byteStride = newByteStride;
         for (let id in newAttribs) {
             const a = newAttribs[id];
