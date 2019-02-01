@@ -64,7 +64,7 @@ import { MemPool, Type } from "@thi.ng/malloc";
 
 // create memory w/ optional start allocation address
 // (start address can't be zero, reserved for malloc/calloc failure)
-const pool = new MemPool(new ArrayBuffer(0x1000), { start: 8 });
+const pool = new MemPool({ size: 0x1000, start: 8 });
 
 // all memory blocks will be aligned to 8-byte boundaries
 // size is given in bytes
@@ -84,6 +84,13 @@ pool.stats();
 //   top: 56,
 //   available: 4040,
 //   total: 4096 }
+
+// reallocate/resize block for pointer/address
+// (might move block contents to new mem region)
+ptr = pool.realloc(ptr, 32);
+
+// same but for arrays created with `mallocAs()`
+vec = pool.reallocArray(vec, 5);
 
 // release address or view back into pool / heap
 pool.free(ptr);

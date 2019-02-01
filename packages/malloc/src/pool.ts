@@ -27,8 +27,8 @@ export class MemPool implements
 
     protected u8: Uint8Array;
 
-    constructor(buf: number | ArrayBuffer, opts: Partial<MemPoolOpts> = {}) {
-        this.buf = isNumber(buf) ? new ArrayBuffer(buf) : buf;
+    constructor(opts: Partial<MemPoolOpts> = {}) {
+        this.buf = opts.buf ? opts.buf : new ArrayBuffer(opts.size);
         this.u8 = new Uint8Array(this.buf);
         this.start = opts.start != null ?
             align(Math.max(opts.start, 8), 8) :

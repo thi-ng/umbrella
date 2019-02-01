@@ -6,7 +6,7 @@ describe("malloc", () => {
     let pool: MemPool;
 
     beforeEach(() => {
-        pool = new MemPool(new ArrayBuffer(0x100));
+        pool = new MemPool({ size: 0x100 });
     });
 
     it("ctor", () => {
@@ -17,13 +17,13 @@ describe("malloc", () => {
         assert(p.doCompact);
         assert(p.doSplit);
         assert.equal(p.end, p.buf.byteLength);
-        p = new MemPool(0x100, { start: 0x0c, end: 0x80 });
+        p = new MemPool({ size: 0x100, start: 0x0c, end: 0x80 });
         assert.equal(p.start, 0x10);
         assert.equal(p.top, 0x10);
         assert.equal(p.end, 0x80);
-        assert.throws(() => new MemPool(0x100, { start: 0x0, end: 0x0 }));
-        assert.throws(() => new MemPool(0x100, { start: 0x100, end: 0x200 }));
-        assert.throws(() => new MemPool(0x100, { start: 0x80, end: 0x0 }));
+        assert.throws(() => new MemPool({ size: 0x100, start: 0x0, end: 0x0 }));
+        assert.throws(() => new MemPool({ size: 0x100, start: 0x100, end: 0x200 }));
+        assert.throws(() => new MemPool({ size: 0x100, start: 0x80, end: 0x0 }));
     });
 
     it("malloc / free", () => {
@@ -213,7 +213,7 @@ describe("malloc", () => {
     it("realloc");
 
     it("no compact", () => {
-        pool = new MemPool(0x100, { compact: false });
+        pool = new MemPool({ size: 0x100, compact: false });
         pool.malloc(8);
         pool.malloc(8);
         pool.malloc(8);
@@ -228,7 +228,7 @@ describe("malloc", () => {
     });
 
     it("no split", () => {
-        pool = new MemPool(0x100, { split: true });
+        pool = new MemPool({ size: 0x100, split: true });
         pool.malloc(32);
         pool.malloc(8);
         pool.free(8);
@@ -238,7 +238,7 @@ describe("malloc", () => {
         assert.equal(p._used.size, 8);
         assert.equal(p._free.addr, 16);
         assert.equal(p._free.size, 24);
-        pool = new MemPool(0x100, { split: false });
+        pool = new MemPool({ size: 0x100, split: false });
         pool.malloc(32);
         pool.malloc(8);
         pool.free(8);

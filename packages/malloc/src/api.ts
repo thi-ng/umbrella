@@ -31,6 +31,8 @@ export interface MemBlock {
 }
 
 export interface MemPoolOpts {
+    buf: ArrayBuffer;
+    size: number;
     start: number;
     end: number;
     compact: boolean;
@@ -69,6 +71,10 @@ export interface IMemPool extends IRelease {
     mallocAs(type: Type, num: number): TypedArray;
 
     callocAs(type: Type, num: number): TypedArray;
+
+    realloc(ptr: number, size: number): number;
+
+    reallocArray(arr: TypedArray, num: number): TypedArray;
 
     free(ptr: number | TypedArray): boolean;
 
