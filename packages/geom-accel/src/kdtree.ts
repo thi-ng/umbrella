@@ -186,6 +186,22 @@ export class KdTree<K extends ReadonlyVec, V> implements
         return res;
     }
 
+    selectVals(q: Readonly<K>, maxNum: number, maxDist?: number): V[] {
+        if (!this.root) return [];
+        const res: V[] = [];
+        if (maxNum === 1) {
+            const sel = nearest1(q, [maxDist != null ? maxDist : Infinity, null], [], this.dim, this.root)[1];
+            sel && res.push(sel.v);
+        } else {
+            const src = this.buildSelection(q, maxNum, maxDist);
+            for (let n = src.length; --n >= 0;) {
+                const nn = src[n][1];
+                nn && res.push(nn.v);
+            }
+        }
+        return res;
+    }
+
     balanceRatio() {
         return this._length ?
             this.root.height() / (Math.log(this._length) / Math.LN2) :
