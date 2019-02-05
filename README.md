@@ -4,18 +4,21 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org/)
 [![Discord chat](https://img.shields.io/discord/445761008837984256.svg)](https://discord.gg/JhYcmBw)
 
-Mono-repository for thi.ng TypeScript/ES6 projects, a collection of
+## About
+
+Mono-repository for thi.ng TypeScript/ES6 projects, a wide collection of
 largely data transformation oriented packages and building blocks for
 functional programming, reactive applications, dataflow graphs /
-pipelines, components (not just UI related), all with a keen eye on
-simplicity & minimalism without sacrificing flexibility.
+pipelines, components (not just UI related), geometry processing &
+visualization, all with a keen eye on simplicity & minimalism without
+sacrificing flexibility.
 
 **This project is NOT a framework**, provides no one-size-fits-all
 approach and instead encourages a mix & match philosophy for various key
 aspects of (web) application design. Most customization points only
 expect certain interfaces rather than concrete implementations.
 
-All / most packages:
+Most packages:
 
 - have detailed, individual README files w/ small usage examples
 - are versioned independently
@@ -30,6 +33,8 @@ All / most packages:
   (larger packages only)
 - auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
 - licensed under Apache Software License 2.0
+
+## Examples
 
 There's a steadily growing number (40+) of standalone examples
 (different complexities, many combining functionality from several
@@ -58,16 +63,17 @@ packages) in the [examples](./examples) directory.
 
 ### Iterator, stream & sequence processing
 
-| Project                                                     | Version                                                                                                                           | Changelog                                              | Description                      |
-|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------|
-| [`@thi.ng/csp`](./packages/csp)                             | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                             | [changelog](./packages/csp/CHANGELOG.md)               | Channel based async ops          |
-| [`@thi.ng/fsm`](./packages/fsm)                             | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                             | [changelog](./packages/fsm/CHANGELOG.md)               | FSM / parser primitives          |
-| [`@thi.ng/iterators`](./packages/iterators)                 | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)                 | [changelog](./packages/iterators/CHANGELOG.md)         | ES6 generators / iterators       |
-| [`@thi.ng/sax`](./packages/sax)                             | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                             | [changelog](./packages/sax/CHANGELOG.md)               | SAX-like XML parser / transducer |
-| [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations  |
-| [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)     | [changelog](./packages/transducers-fsm/CHANGELOG.md)   | Finite state transducer          |
-| [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)   | [changelog](./packages/transducers-hdom/CHANGELOG.md)  | Transducer based hdom UI updates |
-| [`@thi.ng/transducers-stats`](./packages/transducers-stats) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats) | [changelog](./packages/transducers-stats/CHANGELOG.md) | Technical / statistical analysis |
+| Project                                                       | Version                                                                                                                             | Changelog                                               | Description                      |
+|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|----------------------------------|
+| [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                | Channel based async ops          |
+| [`@thi.ng/fsm`](./packages/fsm)                               | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                               | [changelog](./packages/fsm/CHANGELOG.md)                | FSM / parser primitives          |
+| [`@thi.ng/iterators`](./packages/iterators)                   | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)                   | [changelog](./packages/iterators/CHANGELOG.md)          | ES6 generators / iterators       |
+| [`@thi.ng/sax`](./packages/sax)                               | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                               | [changelog](./packages/sax/CHANGELOG.md)                | SAX-like XML parser / transducer |
+| [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        | Composable data transformations  |
+| [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) | Binary data related transducers  |
+| [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    | Finite state transducer          |
+| [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)     | [changelog](./packages/transducers-hdom/CHANGELOG.md)   | Transducer based hdom UI updates |
+| [`@thi.ng/transducers-stats`](./packages/transducers-stats)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)   | [changelog](./packages/transducers-stats/CHANGELOG.md)  | Technical / statistical analysis |
 
 ### Reactive programming
 
@@ -119,6 +125,7 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color                               |
 | [`@thi.ng/dot`](./packages/dot)                               | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                               | [changelog](./packages/dot/CHANGELOG.md)                | Graphviz DOM & export               |
 | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops        |
+| [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures    |
 | [`@thi.ng/geom-api`](./packages/geom-api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                     | [changelog](./packages/geom-api/CHANGELOG.md)           | Shared types & interfaces           |
 | [`@thi.ng/geom-arc`](./packages/geom-arc)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)                     | [changelog](./packages/geom-arc/CHANGELOG.md)           | 2D elliptic arc utils               |
 | [`@thi.ng/geom-clip`](./packages/geom-clip)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip)                   | [changelog](./packages/geom-clip/CHANGELOG.md)          | 2D convex line/shape clipping       |
@@ -132,7 +139,6 @@ packages) in the [examples](./examples) directory.
 | [`@thi.ng/geom-subdiv-curve`](./packages/geom-subdiv-curve)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)   | [changelog](./packages/geom-subdiv-curve/CHANGELOG.md)  | nD iterative subdivision curves     |
 | [`@thi.ng/geom-tessellate`](./packages/geom-tessellate)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)       | [changelog](./packages/geom-tessellate/CHANGELOG.md)    | nD convex polygon tessellators      |
 | [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)             | [changelog](./packages/geom-voronoi/CHANGELOG.md)       | 2D iterative delaunay/voronoi       |
-| [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures    |
 | [`@thi.ng/iges`](./packages/iges)                             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                             | [changelog](./packages/iges/CHANGELOG.md)               | IGES format geometry serialization  |
 | [`@thi.ng/matrices`](./packages/matrices)                     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)                     | [changelog](./packages/matrices/CHANGELOG.md)           | Matrix operations                   |
 | [`@thi.ng/poisson`](./packages/poisson)                       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                       | [changelog](./packages/poisson/CHANGELOG.md)            | nD Poisson disk sampling            |
@@ -142,6 +148,7 @@ packages) in the [examples](./examples) directory.
 
 | Project                                           | Version                                                                                                                 | Changelog                                         | Description                               |
 |---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------|
+| [`@thi.ng/bencode`](./packages/bencode)           | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)           | [changelog](./packages/bencode/CHANGELOG.md)      | Bencode binary format encoding            |
 | [`@thi.ng/binary`](./packages/binary)             | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)             | [changelog](./packages/binary/CHANGELOG.md)       | Assorted binary / bitwise ops, utilities  |
 | [`@thi.ng/bitstream`](./packages/bitstream)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)       | [changelog](./packages/bitstream/CHANGELOG.md)    | Bitwise input / output streams            |
 | [`@thi.ng/dlogic`](./packages/dlogic)             | [![version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)             | [changelog](./packages/dlogic/CHANGELOG.md)       | Digital logic ops / constructs            |
@@ -169,27 +176,17 @@ yarn install
 yarn build
 ```
 
+Once the entire mono-repo has been built, individual packages can be built like so:
+
+```bash
+lerna run build --scope @thi.ng/transducers
+```
+
 ### Building example projects
 
-The below `yarn examples` command assumes you have the
-[parcel](https://parceljs.org) bundler &
-[terser](https://github.com/fabiosantoscode/terser) minifier globally
-installed, if not then please first run:
-
-```bash
-yarn global add parcel-bundler terser
-```
-
-```bash
-# build all examples (from project root)
-yarn examples
-
-# build a single example (production mode)
-scripts/build-examples example-name
-
-# in example dir
-yarn build
-```
+Please see the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+in the wiki for further details.
 
 ### Testing
 
