@@ -7,7 +7,7 @@ import {
     normRange,
     push,
     transduce,
-    tuples
+    zip
 } from "@thi.ng/transducers";
 import { Color, CosGradientSpec, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
@@ -46,7 +46,7 @@ export const cosineColor =
                 ([a, b, c, d]) => clamp01(a + b * Math.cos(TAU * (c * t + d)))
             ),
             push(),
-            tuples(...spec)
+            zip(...spec)
         );
 
 export const cosineGradient =
@@ -68,9 +68,9 @@ export const cosineCoeffs =
     (from: ReadonlyColor, to: ReadonlyColor) => {
         from = clamp([], from);
         to = clamp([], to);
-        const amp = [...map(([a, b]) => 0.5 * (a - b), tuples(from, to))];
+        const amp = [...map(([a, b]) => 0.5 * (a - b), zip(from, to))];
         return <CosGradientSpec>[
-            [...map(([s, a]) => s - a, tuples(from, amp))],
+            [...map(([s, a]) => s - a, zip(from, amp))],
             amp,
             [-0.5, -0.5, -0.5, -0.5],
             [0, 0, 0, 0]
