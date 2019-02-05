@@ -6,7 +6,7 @@ import {
     normRange,
     push,
     transduce,
-    tuples
+    zip
 } from "@thi.ng/transducers";
 import { cartesian2, Vec } from "@thi.ng/vectors";
 import { Polygon } from "../api";
@@ -21,7 +21,7 @@ export const star =
             transduce(
                 map(([i, p]) => cartesian2(null, [r * p, i * TAU])),
                 push(),
-                tuples(normRange(n * profile.length, false), cycle(profile))
+                zip(normRange(n * profile.length, false), cycle(profile))
             ),
             attribs
         );
