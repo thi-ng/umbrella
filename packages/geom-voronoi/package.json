@@ -35,7 +35,6 @@
         "@thi.ng/api": "^5.0.1",
         "@thi.ng/checks": "^2.0.1",
         "@thi.ng/geom-clip": "^0.0.1",
-        "@thi.ng/geom-closest-point": "^0.0.1",
         "@thi.ng/geom-isec": "^0.0.1",
         "@thi.ng/geom-poly-utils": "^0.0.1",
         "@thi.ng/math": "^1.0.1",

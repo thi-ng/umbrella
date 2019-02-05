@@ -9,11 +9,18 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
+- [About](#about)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [Authors](#authors)
+- [License](#license)
+
 <!-- /TOC -->
 
 ## About
 
-TODO...
+Polygon / triangle analysis & processing utilities
 
 ## Installation
 

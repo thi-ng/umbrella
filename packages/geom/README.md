@@ -25,7 +25,9 @@ WIP (currently 2D only) geometry types & polymorphic operations, built on
 
 [**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
 
-This package acts as a higher-level frontend for the following related packages:
+This package acts as a higher-level frontend for most of the following
+related packages (which are more lightweight and usuable by themselves
+too):
 
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api) - shared types & interfaces
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel) - spatial indexing data structures
@@ -34,6 +36,7 @@ This package acts as a higher-level frontend for the following related packages:
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/master/packages/geom-closest-point) - line-point proximity queries
 - [@thi.ng/geom-hull](https://github.com/thi-ng/umbrella/tree/master/packages/geom-hull) - convex hull functions
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec) - shape intersection tests
+- [@thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isoline) - 2D contour line extraction
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/master/packages/geom-poly-utils) - 2D polygon helpers
 - [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/master/packages/geom-resample) - nD polyline resampling
 - [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/master/packages/geom-splines) - nD cubic / quadratic spline utils

@@ -38,6 +38,10 @@ yarn add @thi.ng/geom-isoline
 
 ## Usage examples
 
+Animated version:
+[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) |
+[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
 ![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-isoline.png)
 
 ```ts

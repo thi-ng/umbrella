@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-subdiv-curve",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Freely customizable, iterative subdivision curves for open / closed input geometries",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -39,6 +39,7 @@
     "keywords": [
         "2D",
         "3D",
+        "bezier",
         "chaikin",
         "cubic",
         "curve",

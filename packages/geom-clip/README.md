@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-TODO...
+2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman)
 
 ## Installation
 
@@ -30,7 +30,10 @@ yarn add @thi.ng/geom-clip
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec)
+- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/master/packages/geom-poly-utils)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 

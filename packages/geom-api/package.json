@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-api",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Shared type & interface declarations for @thi.ng/geom packages",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -37,6 +37,9 @@
     },
     "keywords": [
         "ES6",
+        "geometry",
+        "interfaces",
+        "types",
         "typescript"
     ],
     "publishConfig": {

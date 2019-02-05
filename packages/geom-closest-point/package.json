@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-closest-point",
     "version": "0.0.1",
-    "description": "Closest point helpers",
+    "description": "Closest point / proximity helpers",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",

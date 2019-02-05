@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-isoline",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Fast 2D contour line extraction / generation",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -36,7 +36,16 @@
         "@thi.ng/vectors": "^2.1.1"
     },
     "keywords": [
+        "2D",
+        "bitmap trace",
+        "contours",
         "ES6",
+        "extraction",
+        "iterator",
+        "level sets",
+        "marching squares",
+        "polygon",
+        "threshold",
         "typescript"
     ],
     "publishConfig": {

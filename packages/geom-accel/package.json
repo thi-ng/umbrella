@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-accel",
     "version": "1.0.2",
-    "description": "TODO",
+    "description": "nD spatial indexing data structures",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -40,13 +40,16 @@
         "@thi.ng/vectors": "^2.1.1"
     },
     "keywords": [
+        "2D",
+        "3D",
+        "nD",
+        "data structure",
         "ES6",
         "acceleration",
         "kd-tree",
-        "octree",
         "pointcloud",
-        "quadtree",
-        "spatial indexing",
+        "spatial index",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

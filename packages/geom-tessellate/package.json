@@ -42,10 +42,11 @@
     "keywords": [
         "2D",
         "3D",
+        "convex",
         "ES6",
         "geometry",
         "polygon",
-        "tessellate",
+        "tessellation",
         "typescript"
     ],
     "publishConfig": {

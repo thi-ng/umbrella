@@ -42,12 +42,46 @@ yarn add @thi.ng/geom-voronoi
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/master/packages/geom-clip)
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec)
+- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/master/packages/geom-poly-utils)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/master/packages/quad-edge)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
+![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-voronoi.jpg)
+
 ```ts
 import { DVMesh } from "@thi.ng/geom-voronoi";
+import { repeatedly } from "@thi.ng/transducers";
+import { randNorm2 } from "@thi.ng/vectors";
+
+const pts = [...repeatedly(() => randNorm2([], Math.random() * 250), 1000)];
+
+const mesh = new DVMesh(pts);
+
+// raw polygons of primary or dual mesh
+mesh.delaunay()
+mesh.voronoi()
+
+// ...or clipped & filtered polygons within convex polygon boundary
+import * as g from "@thi.ng/geom";
+
+const bounds = g.vertices(g.center(g.rect(500)));
+// [ [ -250, -250 ], [ 250, -250 ], [ 250, 250 ], [ -250, 250 ] ]
+
+const cells = mesh.voronoi(bounds);
+
+document.body.innerHtml = g.asSvg(
+    g.svgDoc({ fill: "none", "stroke-width": 0.25 },
+        g.group({ stroke: "blue" }, mesh.delaunay(bounds).map((p) => g.polygon(p))),
+        g.group({ stroke: "red" }, mesh.voronoi(bounds).map((p) => g.polygon(p)))
+    )
+);
 ```
 
 ## Authors
