@@ -54,37 +54,39 @@ const packageDeps = packages
 
 const maxDeps = transduce(pluck(1), max(), packageDeps);
 
+const width = packages.length * 16;
+
 fs.writeFileSync(
     `package-deps.svg`,
     serialize(
         [barChart,
             {
                 attribs: {
-                    width: 1024,
+                    width: width,
                     height: 260,
                     "font-size": "10px",
                     "font-family": "Iosevka-Term-Light, Menlo, sans-serif"
                 },
                 x: {
-                    axis: [80, 1010, 170],
+                    axis: [50, width - 15, 170],
                     domain: [0, packageDeps.length, 1],
-                    range: [80, 1020],
+                    range: [50, width - 5],
                     ticks: [...map((x) => x[0].substr(8), packageDeps)],
                     label: labeledTickX
                 },
                 y: {
-                    axis: [170, 10, 65],
+                    axis: [170, 10, 35],
                     domain: [0, maxDeps, 10],
                     range: [160, 20],
-                    label: labeledTickY(1010)
+                    label: labeledTickY(width - 15)
                 },
                 axis: "#666",
                 fill: "#0cc"
             },
             mapIndexed((i, m) => [i, m[1]], packageDeps),
             group({ "font-size": "20px", "text-anchor": "middle" },
-                text([552, 28], "@thi.ng/umbrella internal re-use"),
-                text([552, 56], "(transitive dependents)"),
+                text([width / 2 + 25, 28], "@thi.ng/umbrella internal re-use"),
+                text([width / 2 + 25, 56], "(transitive dependents)"),
             )
         ]
     )

@@ -35,6 +35,8 @@ const fileSizeChart =
         const get = getter([1, modType, type]);
         stats = [...stats].sort((a, b) => get(b) - get(a));
 
+        const width = stats.length * 16;
+
         const maxSize = transduce(
             mapcat(([_, m]) => [m.esm[type], m.cjs[type], m.umd[type]]),
             max(),
@@ -47,15 +49,15 @@ const fileSizeChart =
                 [barChart,
                     {
                         attribs: {
-                            width: 1024,
+                            width: width,
                             height: 260,
                             "font-size": "10px",
                             "font-family": "Iosevka-Term-Light, Menlo, sans-serif"
                         },
                         x: {
-                            axis: [80, 1010, 170],
+                            axis: [80, width - 15, 170],
                             domain: [0, stats.length, 1],
-                            range: [80, 1020],
+                            range: [80, width - 5],
                             ticks: [...map((x) => x[0], stats)],
                             label: labeledTickX
                         },
@@ -63,15 +65,15 @@ const fileSizeChart =
                             axis: [170, 10, 65],
                             domain: [0, maxSize, 5 * 1024],
                             range: [160, 20],
-                            label: labeledTickY(1010, bytes)
+                            label: labeledTickY(width - 15, bytes)
                         },
                         axis: "#666",
                         fill: "#0cc"
                     },
                     mapIndexed((i, m) => [i, get(m)], stats),
                     group({ "font-size": "20px", "text-anchor": "middle" },
-                        text([552, 28], `@thi.ng/umbrella package sizes (${modType.toUpperCase()})`),
-                        text([552, 56], `(minified + gzipped)`),
+                        text([width / 2 + 40, 28], `@thi.ng/umbrella package sizes (${modType.toUpperCase()})`),
+                        text([width / 2 + 40, 56], `(minified + gzipped)`),
                     )
                 ]
             )
