@@ -2,7 +2,7 @@ import { U32, U8 } from "@thi.ng/strings";
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { juxt } from "../func/juxt";
-import { $iter } from "../iterator";
+import { $iter, iterator } from "../iterator";
 import { map } from "./map";
 import { mapIndexed } from "./map-indexed";
 import { padLast } from "./pad-last";
@@ -42,7 +42,7 @@ export function hexDump(opts?: Partial<HexDumpOpts>): Transducer<number, string>
 export function hexDump(src: Iterable<number>): IterableIterator<string>;
 export function hexDump(opts: Partial<HexDumpOpts>, src: Iterable<number>): IterableIterator<string>;
 export function hexDump(...args: any[]): any {
-    const iter = $iter(hexDump, args);
+    const iter = $iter(hexDump, args, iterator);
     if (iter) {
         return iter;
     }
