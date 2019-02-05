@@ -7,7 +7,7 @@ import {
     mapcat,
     partitionBy,
     transduce,
-    tuples
+    zip
 } from "@thi.ng/transducers";
 import { execSync } from "child_process";
 import { resolve } from "path";
@@ -46,7 +46,7 @@ const parseStats = ([_, stats]: string[]): Partial<Commit> =>
         transduce(
             map(([k, v]) => [k, parseInt(v)]),
             assocObj(),
-            tuples(["files", "add", "del"], stats.split(","))
+            zip(["files", "add", "del"], stats.split(","))
         ) :
         null;
 

@@ -17,7 +17,8 @@
     "dependencies": {
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-binary": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

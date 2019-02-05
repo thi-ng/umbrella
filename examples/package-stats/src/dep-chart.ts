@@ -14,7 +14,7 @@ import {
     reducer,
     repeat,
     transduce,
-    tuples
+    zip
 } from "@thi.ng/transducers";
 import * as fs from "fs";
 import {
@@ -43,7 +43,7 @@ const packages = transduce(
 );
 
 const graph = transduce(
-    mapcat((p: any) => tuples(repeat(p.id), p.deps)),
+    mapcat((p: any) => zip(repeat(p.id), p.deps)),
     reducer(() => new DGraph(), (g, [p, d]) => g.addDependency(p, d)),
     packages
 );

@@ -1,12 +1,14 @@
+import { partial } from "@thi.ng/compose/partial";
 import { TAU } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
-import { tuples } from "@thi.ng/transducers/iter/tuples";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { partial } from "@thi.ng/compose/partial";
+import {
+    comp,
+    map,
+    normRange,
+    push,
+    transduce,
+    zip
+} from "@thi.ng/transducers";
 
 // see http://dev.thi.ng/gradients/
 // see http://dev.thi.ng/gradients/
@@ -18,7 +20,7 @@ const cosColor =
                 ([a, b, c, d]) => clamp01(a + b * Math.cos(TAU * (c * t + d)))
             ),
             push(),
-            tuples(dc, amp, fmod, phase)
+            zip(dc, amp, fmod, phase)
         );
 
 export const cosineGradient = (n: number, spec: number[][]) => {

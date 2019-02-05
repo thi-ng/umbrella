@@ -9,7 +9,7 @@ import {
     normRange,
     partition,
     repeat,
-    tuples
+    zip
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { dist } from "@thi.ng/vectors";
@@ -94,7 +94,7 @@ const app = (main) => {
                                 }
                             ],
                             // iterator which forms tuples of `[attribs, counter]`
-                            tuples(repeat(attribs), normRange(6))
+                            zip(repeat(attribs), normRange(6))
                         ),
                         // configurations for the replicated strokes
                         [

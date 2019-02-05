@@ -1,7 +1,6 @@
 import { start } from "@thi.ng/hdom";
 import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
 import {
-    bits,
     buildKernel2d,
     comp,
     convolve2d,
@@ -16,6 +15,7 @@ import {
     str,
     transduce
 } from "@thi.ng/transducers";
+import { bits } from "@thi.ng/transducers-binary";
 
 const W = 128;
 const H = 48;
