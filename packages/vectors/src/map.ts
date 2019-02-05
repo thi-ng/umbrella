@@ -48,7 +48,7 @@ import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
  *
  * tx.run(
  *   tx.map(([o, a, b]) => add(o, a, b)),
- *   tx.tuples(
+ *   tx.zip(
  *      Vec2.iterator(out, 2),
  *      Vec2.iterator([1,0,2,0,0,0,0,0,3,0,4,0,0,0,0,0], 2, 0, 2, 8),
  *      Vec2.iterator([0,10,0,0,20,0,0,30,0,0,40], 2, 1, 3, 6),

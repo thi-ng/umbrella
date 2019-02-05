@@ -6,7 +6,7 @@ import {
     str,
     take,
     transduce,
-    tuples
+    zip
 } from "@thi.ng/transducers";
 import {
     MultiVecOpVN,
@@ -110,7 +110,7 @@ const assemble = (
                 mapIndexed((i, x: string[]) => tpl(x, i))
             ),
             str(opJoin),
-            tuples.apply(
+            zip.apply(
                 null,
                 syms.split(",").map(
                     strided ?
