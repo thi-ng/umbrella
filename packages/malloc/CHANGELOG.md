@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@1.0.1...@thi.ng/malloc@2.0.0) (2019-02-05)
+
+
+### Code Refactoring
+
+* **malloc:** update MemPoolOpts & MemPool ctor args ([6d15686](https://github.com/thi-ng/umbrella/commit/6d15686))
+
+
+### Features
+
+* **malloc:** add realloc(), update free() ([bf8b28f](https://github.com/thi-ng/umbrella/commit/bf8b28f))
+* **malloc:** add reallocArray(), update realloc() & compact(), tests ([a55f477](https://github.com/thi-ng/umbrella/commit/a55f477))
+
+
+### BREAKING CHANGES
+
+* **malloc:** update MemPoolOpts & MemPool ctor args
+
+
+
+
+
 ## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@1.0.0...@thi.ng/malloc@1.0.1) (2019-01-21)
 
 **Note:** Version bump only for package @thi.ng/malloc

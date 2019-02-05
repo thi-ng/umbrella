@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-binary",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,8 +32,8 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/strings": "^1.0.2",
-        "@thi.ng/transducers": "^3.0.2"
+        "@thi.ng/strings": "^1.0.3",
+        "@thi.ng/transducers": "^4.0.0"
     },
     "keywords": [
         "base64",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bencode",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,11 +32,11 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^5.0.1",
-        "@thi.ng/checks": "^2.0.1",
-        "@thi.ng/defmulti": "^1.0.1",
-        "@thi.ng/transducers": "^3.0.2",
-        "@thi.ng/transducers-binary": "^0.0.1"
+        "@thi.ng/api": "^5.0.2",
+        "@thi.ng/checks": "^2.0.2",
+        "@thi.ng/defmulti": "^1.0.2",
+        "@thi.ng/transducers": "^4.0.0",
+        "@thi.ng/transducers-binary": "^0.1.0"
     },
     "keywords": [
         "bencode",

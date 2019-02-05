@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@3.0.2...@thi.ng/transducers@4.0.0) (2019-02-05)
+
+
+### Bug Fixes
+
+* **transducers:** ensure all vals in hexDump iterator version ([ae83bb2](https://github.com/thi-ng/umbrella/commit/ae83bb2))
+
+
+### Code Refactoring
+
+* **transducers:** migrate binary related ops to new package ([a7c1ef7](https://github.com/thi-ng/umbrella/commit/a7c1ef7))
+
+
+### BREAKING CHANGES
+
+* **transducers:** migrate all binary data related ops to new package @thi.ng/transducers-binary
+
+Removed:
+- bits
+- base64Encode/Decode
+- hexDump
+- partitionBits
+- utf8Encode/Decode
+
+
+
+
+
 ## [3.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@3.0.1...@thi.ng/transducers@3.0.2) (2019-01-31)
 
 **Note:** Version bump only for package @thi.ng/transducers

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.0.2...@thi.ng/geom-accel@1.1.0) (2019-02-05)
+
+
+### Features
+
+* **geom-accel:** add selectVals() impl ([bd1754d](https://github.com/thi-ng/umbrella/commit/bd1754d))
+
+
+### Performance Improvements
+
+* **geom-accel:** optimize single nearest point search, fix select() ([9022d5b](https://github.com/thi-ng/umbrella/commit/9022d5b))
+
+
+
+
+
 ## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.0.1...@thi.ng/geom-accel@1.0.2) (2019-01-31)
 
 **Note:** Version bump only for package @thi.ng/geom-accel

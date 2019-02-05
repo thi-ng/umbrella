@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.1.1...@thi.ng/vectors@2.2.0) (2019-02-05)
+
+
+### Features
+
+* **vectors:** add corner2, clockwise2, signedAreaC2, isInArray fns ([2440ffd](https://github.com/thi-ng/umbrella/commit/2440ffd))
+* **vectors:** add VecPair type alias, add copyVectors() ([58e0a05](https://github.com/thi-ng/umbrella/commit/58e0a05))
+
+
+
+
+
 ## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.1.0...@thi.ng/vectors@2.1.1) (2019-01-31)
 
 **Note:** Version bump only for package @thi.ng/vectors
