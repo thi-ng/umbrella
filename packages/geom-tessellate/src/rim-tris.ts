@@ -5,7 +5,7 @@ import {
     partition,
     push,
     transduce,
-    tuples,
+    zip,
     wrap
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -27,6 +27,6 @@ export const rimTris: Tessellator =
             ),
             push(),
             [edgeCentroids],
-            wrap([...tuples(edgeCentroids, points)], 1, true, false)
+            wrap([...zip(edgeCentroids, points)], 1, true, false)
         );
     };

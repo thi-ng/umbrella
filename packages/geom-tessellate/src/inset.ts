@@ -6,7 +6,7 @@ import {
     partition,
     push,
     transduce,
-    tuples,
+    zip,
     wrap
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -23,6 +23,6 @@ export const tesselInset =
                 ),
                 push(),
                 keepInterior ? [inner] : [],
-                wrap([...tuples(points, inner)], 1, false, true)
+                wrap([...zip(points, inner)], 1, false, true)
             );
         };
