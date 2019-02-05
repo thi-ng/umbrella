@@ -59,7 +59,7 @@ const app =
             range(-1, 1, 0.1)
         );
         return [canvas, { width: 600, height: 600 },
-            ["g", { scale: 600 / W, weight: 0.05, stroke: "#000" }, contours]
+            ["g", { scale: 600 / W, weight: 0.05, __diff: false }, contours]
         ];
     };
 
