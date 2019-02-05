@@ -1,7 +1,7 @@
 import { illegalArgs } from "@thi.ng/errors";
 import { Transducer } from "../api";
 import { range2d } from "../iter/range2d";
-import { tuples } from "../iter/tuples";
+import { zip } from "../iter/zip";
 import { iterator1 } from "../iterator";
 import { add } from "../rfn/add";
 import { transduce } from "../transduce";
@@ -26,7 +26,7 @@ export interface Convolution2DOpts {
 export const buildKernel2d = (weights: Iterable<number>, w: number, h: number): ConvolutionKernel2D => {
     const w2 = w >> 1;
     const h2 = h >> 1;
-    return [...tuples(weights, range2d(-w2, w2 + 1, -h2, h2 + 1))];
+    return [...zip(weights, range2d(-w2, w2 + 1, -h2, h2 + 1))];
 };
 
 const kernelLookup2d = (

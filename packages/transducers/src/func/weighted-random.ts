@@ -1,5 +1,5 @@
 import { repeat } from "../iter/repeat";
-import { tuples } from "../iter/tuples";
+import { zip } from "../iter/zip";
 
 /**
  * If `weights` are given, it must be the same size as `choices`. If omitted,
@@ -15,7 +15,7 @@ export const weightedRandom = <T>(
     weights?: ArrayLike<number> & Iterable<number>
 ) => {
     const n = choices.length;
-    const opts = [...tuples(choices, weights || repeat(1))].sort((a, b) => b[1] - a[1]);
+    const opts = [...zip(choices, weights || repeat(1))].sort((a, b) => b[1] - a[1]);
     let total = 0, i, r, sum;
     for (i = 0; i < n; i++) {
         total += weights[i];
