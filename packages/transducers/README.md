@@ -26,9 +26,6 @@ This project is part of the
     - [CSV parsing](#csv-parsing)
     - [Early termination](#early-termination)
     - [Scan operator](#scan-operator)
-    - [Streaming hexdump](#streaming-hexdump)
-    - [Bitstream](#bitstream)
-    - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
     - [Weighted random choices](#weighted-random-choices)
     - [Keyframe interpolation](#keyframe-interpolation)
 - [API](#api)
@@ -68,6 +65,7 @@ of the given input iterable.
 
 #### Extended functionality
 
+- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary) - Binary data related transducers & reducers
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm) - Fine State Machine transducer
 - [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom) - Transducer based [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) UI updates
 - [@thi.ng/transducers-stats](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats) - Technical / statistical analysis transducers
@@ -75,6 +73,7 @@ of the given input iterable.
 #### Packages utilizing transducers
 
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+- [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph)
 - [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log)
@@ -411,84 +410,6 @@ tx.transduce(tx.comp(tx.scan(tx.count()), tx.scan(tx.pushCopy())), tx.push(), [1
 // [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 1, 2, 3, 4 ] ]
 ```
 
-### Streaming hexdump
-
-This is a higher-order transducer, purely composed from other
-transducers. [See code
-here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts).
-
-```ts
-src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
-
-[...tx.iterator(tx.hexDump({ cols: 8, address: 0x400 }), src)]
-// [ '00000400 | 41 42 43 44 45 46 47 48 | ABCDEFGH',
-//   '00000408 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
-//   '00000410 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
-```
-
-### Bitstream
-
-```ts
-[...tx.bits(8, [0xf0, 0xaa])]
-// [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
-
-[...tx.iterator(
-    tx.comp(
-        tx.bits(8),
-        tx.map(x=> x ? "#" : "."),
-        tx.partition(8),
-        tx.map(x=>x.join(""))
-    ),
-    [ 0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00 ])]
-// [ '........',
-//   '...##...',
-//   '..####..',
-//   '.##..##.',
-//   '.##..##.',
-//   '.######.',
-//   '.##..##.',
-//   '........' ]
-```
-
-### Base64 & UTF-8 en/decoding
-
-Unlike JS default `btoa()` / `atob()` functions which operate on
-strings, these transducers convert byte values to base64 and back.
-
-```ts
-// here we first add an offset (0x80) to allow negative values to be encoded
-// (URL safe results can be produced via opt arg to `base64Encode`)
-enc = tx.transduce(
-    tx.comp(
-        tx.map(x => x + 0x80),
-        tx.base64Encode()
-    ),
-    tx.str(),
-    tx.range(-8, 8)
-);
-// "eHl6e3x9fn+AgYKDhIWGhw=="
-
-// remove offset again during decoding, but (for example) only decode while val < 0
-[...tx.iterator(
-    tx.comp(
-        tx.base64Decode(),
-        tx.map(x => x - 0x80),
-        tx.takeWhile(x=> x < 0)
-    ),
-    enc)]
-// [ -8, -7, -6, -5, -4, -3, -2, -1 ]
-
-buf = tx.transduce(
-    tx.comp(tx.utf8Encode(), tx.base64Encode()),
-    tx.str(),
-    "beer (🍺) or hot beverage (☕️)"
-);
-// "YmVlciAo8J+Nuikgb3IgaG90IGJldmVyYWdlICjimJXvuI4p"
-
-tx.transduce(tx.comp(tx.base64Decode(), tx.utf8Decode()), tx.str(), buf)
-// "beer (🍺) or hot beverage (☕️)"
-```
-
 ### Weighted random choices
 
 ```ts
@@ -704,10 +625,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 // [ 0, 10, 20, 30 ]
 ```
 
-- [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/base64.ts)
-- [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/base64.ts)
 - [benchmark](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/benchmark.ts)
-- [bits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/bits.ts)
 - [cat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/cat.ts)
 - [convolve2d](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/convolve.ts)
 - [dedupe](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/dedupe.ts)
@@ -721,7 +639,6 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [filter](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/filter.ts)
 - [flattenWith](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/flatten-with.ts)
 - [flatten](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/flatten.ts)
-- [hexDump](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts)
 - [indexed](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/indexed.ts)
 - [interleave](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interleave.ts)
 - [interpose](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interpose.ts)
@@ -743,7 +660,6 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [noop](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/noop.ts)
 - [padLast](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/pad-last.ts)
 - [page](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/page.ts)
-- [partitionBits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/partition-bits.ts)
 - [partitionBy](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/partition-by.ts)
 - [partitionOf](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/partition-of.ts)
 - [partitionSort](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/partition-sort.ts)
@@ -767,8 +683,6 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [throttleTime](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/throttle-time.ts)
 - [throttle](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/throttle.ts)
 - [trace](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/trace.ts)
-- [utf8Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/utf8.ts)
-- [utf8Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/utf8.ts)
 - [wordWrap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/word-wrap.ts)
 
 ### Generators / Iterators
@@ -789,12 +703,13 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [repeat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/repeat.ts)
 - [repeatedly](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/repeatedly.ts)
 - [reverse](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/reverse.ts)
-- [tuples](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/tuples.ts)
+- [tuples](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/zip.ts) (deprecated, use `zip`)
 - [vals](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/vals.ts)
 - [wrapBoth](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrapBoth.ts)
 - [wrapLeft](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrapLeft.ts)
 - [wrapRight](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrapRight.ts)
 - [wrap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrap.ts)
+- [zip](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/zip.ts)
 
 ### Reducers
 
