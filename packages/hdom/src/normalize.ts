@@ -55,7 +55,9 @@ export const normalizeElement =
                 attribs.class = clazz;
             }
         }
-        return [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
+        return attribs.__skip && spec.length < 3 ?
+            [match[1], attribs, ""] :
+            [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
     };
 
 /**
