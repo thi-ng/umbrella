@@ -30,7 +30,7 @@ export const setBorder =
 
 const encodeCrossings =
     (src: ReadonlyVec, w: number, h: number, iso: number) => {
-        const out: number[] = new Array(src.length);
+        const out = new Uint8Array(src.length);
         const w1 = w - 1;
         const h1 = h - 1;
         for (let y = 0, i = 0; y < h1; y++) {
@@ -47,8 +47,7 @@ const encodeCrossings =
     };
 
 const cellValue =
-    (src: ReadonlyVec, w: number, x: number, y: number) => {
-        const idx = y * w + x;
+    (src: ReadonlyVec, w: number, idx: number) => {
         return (
             src[idx] +
             src[idx + 1] +
@@ -116,15 +115,16 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
             next = true;
             continue;
         }
-        const id = coded[y * w + x];
+        const i = y * w + x;
+        const id = coded[i];
         if (id === 5) {
             [to, clear] = S5[
-                (cellValue(src, w, x, y) > iso ? 0 : 2) +
+                (cellValue(src, w, i) > iso ? 0 : 2) +
                 (from === 3 ? 0 : 1)
             ];
         } else if (id === 10) {
             [to, clear] = S10[
-                cellValue(src, w, x, y) > iso ?
+                cellValue(src, w, i) > iso ?
                     (from === 0 ? 0 : 1) :
                     (from === 2 ? 2 : 3)
             ];
