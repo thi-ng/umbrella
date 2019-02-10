@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-poly-utils",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Polygon / triangle analysis & processing utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,9 +33,9 @@
     },
     "dependencies": {
         "@thi.ng/errors": "^1.0.2",
-        "@thi.ng/geom-api": "^0.1.0",
+        "@thi.ng/geom-api": "^0.1.1",
         "@thi.ng/math": "^1.1.0",
-        "@thi.ng/vectors": "^2.2.0"
+        "@thi.ng/vectors": "^2.2.1"
     },
     "keywords": [
         "2D",

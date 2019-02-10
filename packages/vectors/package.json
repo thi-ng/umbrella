@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,13 +33,13 @@
     },
     "dependencies": {
         "@thi.ng/api": "^5.0.2",
-        "@thi.ng/checks": "^2.0.2",
+        "@thi.ng/checks": "^2.1.0",
         "@thi.ng/equiv": "^1.0.2",
         "@thi.ng/errors": "^1.0.2",
         "@thi.ng/math": "^1.1.0",
         "@thi.ng/memoize": "^1.0.2",
         "@thi.ng/random": "^1.0.2",
-        "@thi.ng/transducers": "^4.0.0"
+        "@thi.ng/transducers": "^4.0.1"
     },
     "keywords": [
         "2D",

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.0.2...@thi.ng/hdom@7.1.0) (2019-02-10)
+
+
+### Bug Fixes
+
+* **hdom:** fix [#72](https://github.com/thi-ng/umbrella/issues/72), update normalizeElement() ([3ed4ea1](https://github.com/thi-ng/umbrella/commit/3ed4ea1))
+
+
+### Features
+
+* **hdom:** add scrollTop/Left property support in setAttrib() ([895da65](https://github.com/thi-ng/umbrella/commit/895da65))
+
+
+
+
+
 ## [7.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.0.1...@thi.ng/hdom@7.0.2) (2019-02-05)
 
 **Note:** Version bump only for package @thi.ng/hdom

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/fsm",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Composable primitives for building declarative, transducer based Finite-State machines & parsers for arbitrary data streams",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -35,7 +35,7 @@
         "@thi.ng/api": "^5.0.2",
         "@thi.ng/equiv": "^1.0.2",
         "@thi.ng/errors": "^1.0.2",
-        "@thi.ng/transducers": "^4.0.0"
+        "@thi.ng/transducers": "^4.0.1"
     },
     "keywords": [
         "ES6",
