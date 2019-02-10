@@ -28,6 +28,9 @@ const isPlainObject = iso;
  * ["div.bar.baz", {class: "foo"}] => ["div", {class: "foo bar baz"}]
  * ```
  *
+ * Elements with `__skip` attrib enabled and no children, will have an
+ * empty text child element injected.
+ *
  * @param spec
  * @param keys
  */

@@ -232,7 +232,10 @@ export const setAttrib =
                 case "value":
                     updateValueAttrib(<HTMLInputElement>el, val);
                     break;
+                case "id":
                 case "checked":
+                case "scrollTop":
+                case "scrollLeft":
                     // TODO add more native attribs?
                     el[id] = val;
                     break;
