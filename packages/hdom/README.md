@@ -1199,11 +1199,16 @@ serialized output.
 
 #### __skip
 
-If `true`, the element will not be diffed and simply skipped. IMPORTANT:
-This attribute is only intended for cases when a component / tree branch
-should NOT be updated, but MUST NOT be enabled when that component is
-first introduced / included in the tree. Doing so will result in
-undefined future update behavior.
+If true, the element will not be diffed and simply skipped. This
+attribute is only intended for cases when a component / tree branch
+should not be updated, but MUST NEVER be enabled when that component is
+first included in the tree. Doing so will result in undefined future
+behavior.
+
+Note, skipped elements and their children are being normalized, but are
+ignored during diffing. Therefore, if this attribute is enabled the
+element should either have no children OR the children are the same
+(type) as when the attribute is disabled (i.e. when `__skip` is falsy).
 
 ### Benchmarks
 
