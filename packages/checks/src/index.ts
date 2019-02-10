@@ -35,6 +35,7 @@ export * from "./is-object";
 export * from "./is-odd";
 export * from "./is-plain-object";
 export * from "./is-positive";
+export * from "./is-primitive";
 export * from "./is-promise";
 export * from "./is-promiselike";
 export * from "./is-regexp";
