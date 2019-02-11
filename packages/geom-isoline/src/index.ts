@@ -1,17 +1,21 @@
 import { range2d } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
+// flattened [to,clear] tuples
+// all positive values are given as times 2
 const EDGE_INDEX = [
-    [-1, -1], [2, 0], [1, 0], [1, 0],
-    [0, 0], [-1, -1], [0, 0], [0, 0],
-    [3, 0], [2, 0], [-1, -1], [1, 0],
-    [3, 0], [2, 0], [3, 0], [-1, -1]
+    -1, -1, 4, 0, 2, 0, 2, 0,
+    0, 0, -1, -1, 0, 0, 0, 0,
+    6, 0, 4, 0, -1, -1, 2, 0,
+    6, 0, 4, 0, 6, 0, -1, -1
 ];
 
-const NEXT_EDGES = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+// flattened coord offsets [x,y] tuples
+const NEXT_EDGES = [0, -1, 1, 0, 0, 1, -1, 0];
 
-const S5 = [[2, 4], [0, 1], [0, 13], [2, 7]];
-const S10 = [[3, 2], [1, 8], [3, 11], [1, 14]];
+// flattened [to,clear] tuples (all values times 2)
+const S5 = [4, 8, 0, 2, 0, 26, 4, 14];
+const S10 = [6, 4, 2, 16, 6, 22, 2, 28];
 
 export const setBorder =
     (src: Vec, w: number, h: number, val: number) => {
@@ -36,10 +40,10 @@ const encodeCrossings =
         for (let y = 0, i = 0; y < h1; y++) {
             for (let x = 0; x < w1; i++ , x++) {
                 out[i] =
-                    (src[i] < iso ? 8 : 0) |
-                    (src[i + 1] < iso ? 4 : 0) |
-                    (src[i + 1 + w] < iso ? 2 : 0) |
-                    (src[i + w] < iso ? 1 : 0);
+                    (src[i] < iso ? 16 : 0) |
+                    (src[i + 1] < iso ? 8 : 0) |
+                    (src[i + 1 + w] < iso ? 4 : 0) |
+                    (src[i + w] < iso ? 2 : 0);
             }
             i++;
         }
@@ -81,11 +85,11 @@ const contourVertex = (
     switch (to) {
         case 0:
             return [x + mix(src, w, x, y, x + 1, y, iso), y];
-        case 1:
-            return [x + 1, y + mix(src, w, x + 1, y, x + 1, y + 1, iso)];
         case 2:
+            return [x + 1, y + mix(src, w, x + 1, y, x + 1, y + 1, iso)];
+        case 4:
             return [x + mix(src, w, x, y + 1, x + 1, y + 1, iso), y + 1];
-        case 3:
+        case 6:
             return [x, y + mix(src, w, x, y, x, y + 1, iso)];
         default:
     }
@@ -103,6 +107,7 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
     const h1 = h - 1;
     const cells = range2d(h, w);
     let next: boolean = true;
+    let idx: number;
     while (true) {
         from = to;
         if (next) {
@@ -116,20 +121,21 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
             continue;
         }
         const i = y * w + x;
-        const id = coded[i];
-        if (id === 5) {
-            [to, clear] = S5[
-                (cellValue(src, w, i) > iso ? 0 : 2) +
-                (from === 3 ? 0 : 1)
-            ];
-        } else if (id === 10) {
-            [to, clear] = S10[
-                cellValue(src, w, i) > iso ?
-                    (from === 0 ? 0 : 1) :
-                    (from === 2 ? 2 : 3)
-            ];
+        const id = coded[i]; // * 2
+        if (id === 10) {
+            idx = (cellValue(src, w, i) > iso ? 0 : 4) +
+                (from === 6 ? 0 : 2);
+            to = S5[idx];
+            clear = S5[idx + 1];
+        } else if (id === 20) {
+            idx = cellValue(src, w, i) > iso ?
+                (from === 0 ? 0 : 2) :
+                (from === 4 ? 4 : 6);
+            to = S10[idx];
+            clear = S10[idx + 1];
         } else {
-            [to, clear] = EDGE_INDEX[id];
+            to = EDGE_INDEX[id];
+            clear = EDGE_INDEX[id + 1];
         }
         if (curr.length > 0 && from === -1 && to > -1) {
             yield curr;
@@ -140,8 +146,8 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
         }
         if (to >= 0) {
             curr.push(contourVertex(src, w, x, y, to, iso));
-            y += NEXT_EDGES[to][0];
-            x += NEXT_EDGES[to][1];
+            x += NEXT_EDGES[to];
+            y += NEXT_EDGES[to + 1];
         } else {
             next = true;
         }
