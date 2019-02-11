@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.1...@thi.ng/geom-isoline@0.1.2) (2019-02-11)
+
+
+### Performance Improvements
+
+* **geom-isoline:** flatten LUTs, manual destructure ([763d7b9](https://github.com/thi-ng/umbrella/commit/763d7b9))
+
+
+
+
+
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.0...@thi.ng/geom-isoline@0.1.1) (2019-02-10)
 
 
