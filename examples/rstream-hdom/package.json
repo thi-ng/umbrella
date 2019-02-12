@@ -15,6 +15,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
+        "@thi.ng/arrays": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"

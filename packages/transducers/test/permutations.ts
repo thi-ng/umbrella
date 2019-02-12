@@ -1,4 +1,4 @@
-import { swizzler } from "../src/func/swizzler";
+import { swizzle } from "@thi.ng/arrays";
 import { permutations, permutationsN } from "../src/iter/permutations";
 import { range } from "../src/iter/range";
 import { iterator } from "../src/iterator";
@@ -41,7 +41,7 @@ describe("permutations", () => {
     });
     it("swizzle", () => {
         assert.deepEqual(
-            [...iterator(map((x: string[]) => swizzler(x)({ x: 0, y: 1, z: 2 })), permutations("xyz", "xyz", "xyz"))],
+            [...iterator(map((x: string[]) => swizzle(x)({ x: 0, y: 1, z: 2 })), permutations("xyz", "xyz", "xyz"))],
             [...permutationsN(3)]
         );
     });

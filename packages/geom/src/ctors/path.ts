@@ -1,7 +1,8 @@
+import { peek } from "@thi.ng/arrays";
 import { isNumber } from "@thi.ng/checks";
 import { Attribs, PathSegment, SegmentType } from "@thi.ng/geom-api";
 import { eqDelta, rad } from "@thi.ng/math";
-import { map, mapcat, peek } from "@thi.ng/transducers";
+import { map, mapcat } from "@thi.ng/transducers";
 import {
     add2,
     copy,

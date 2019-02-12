@@ -19,6 +19,8 @@ This project is part of the
     - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
     - [`calloc(size: number)`](#callocsize-number)
     - [`callocAs(type: Type, num: number)`](#callocastype-type-num-number)
+    - [`realloc(addr: number, size: number)`](#reallocaddr-number-size-number)
+    - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf-typedarray-num-number)
     - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
     - [`freeAll()`](#freeall)
     - [`release()`](#release)
@@ -35,8 +37,9 @@ TypeScript port of
 [thi.ng/tinyalloc](https://github.com/thi-ng/tinyalloc), for raw or
 typed array memory pooling and/or hybrid JS/WASM use cases etc. Supports
 free block compaction and configurable splitting. Unlike the original,
-this implementation does not constrain the overall number of blocks in
-use and the only imposed limit is that of the underlying array buffer.
+this implementation also supports `realloc()` and does not constrain the
+overall number of blocks in use and the only imposed limit is that of
+the underlying array buffer.
 
 Each `MemPool` instance operates on a single large `ArrayBuffer` used as
 backing memory chunk, e.g. the same buffer used by a WASM module.
@@ -171,6 +174,19 @@ preferred over `malloc()`.
 ### `callocAs(type: Type, num: number)`
 
 Like `mallocAs()` but zeroes allocated block before returning.
+
+### `realloc(addr: number, size: number)`
+
+Attempts to adjust the size of the block at the given allocated address
+to new `size` or if not possible, attempt to allocate a new block and
+copies contents of current block (if successful, automatically frees old
+address). Returns new address if successful or else 0.
+
+### `reallocArray(buf: TypedArray, num: number)`
+
+Similar to `realloc()`, but takes a typed array created with
+`mallocAs()` / `callocAs()` and returns new arrays of same type or
+`null` if re-allocation wasn't possible.
 
 ### `free(addr: number | TypedArray)`
 

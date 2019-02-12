@@ -1,3 +1,4 @@
+import { peek } from "@thi.ng/arrays";
 import {
     isArray,
     isBoolean,
@@ -6,7 +7,6 @@ import {
 } from "@thi.ng/checks";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { repeat } from "@thi.ng/strings";
-import { peek } from "@thi.ng/transducers";
 
 export interface FormatOpts {
     indent: number;

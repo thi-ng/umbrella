@@ -32,6 +32,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
+        "@thi.ng/arrays": "^0.0.1",
         "@thi.ng/checks": "^2.1.0",
         "@thi.ng/defmulti": "^1.0.2",
         "@thi.ng/errors": "^1.0.2",

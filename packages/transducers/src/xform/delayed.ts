@@ -1,9 +1,9 @@
 import { Transducer } from "../api";
-import { delay } from "../func/delay";
+import { delayed as _delayed } from "@thi.ng/compose";
 import { map } from "./map";
 
 /**
- * Yields transducer which wraps incoming values in promises, which
+ * Yields transducer which wraps incoming values in promises, which each
  * resolve after specified delay time (in ms).
  *
  * **Only to be used in async contexts and NOT with `transduce`
@@ -13,4 +13,4 @@ import { map } from "./map";
  */
 export const delayed =
     <T>(t: number): Transducer<T, Promise<T>> =>
-        map((x) => delay(x, t));
+        map((x) => _delayed(x, t));

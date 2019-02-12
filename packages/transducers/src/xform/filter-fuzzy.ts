@@ -1,6 +1,6 @@
 import { Fn, Predicate2 } from "@thi.ng/api";
+import { fuzzyMatch } from "@thi.ng/arrays";
 import { Transducer } from "../api";
-import { fuzzyMatch } from "../func/fuzzy-match";
 import { $iter } from "../iterator";
 import { filter } from "./filter";
 
@@ -35,6 +35,6 @@ export function filterFuzzy<A, B>(...args: any[]): any {
     const query: ArrayLike<B> = args[0];
     const { key, equiv } = <FilterFuzzyOpts<A, B>>(args[1] || {});
     return filter(
-        (x: A) => fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
+        (x: A) => fuzzyMatch(query, key != null ? key(x) : <any>x, equiv)
     );
 }

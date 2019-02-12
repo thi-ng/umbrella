@@ -1,4 +1,4 @@
-import { ensureIterable } from "../func/ensure-iterable";
+import { ensureIterable } from "@thi.ng/arrays";
 
 /**
  * Yields iterator producing concatenation of given iterables.

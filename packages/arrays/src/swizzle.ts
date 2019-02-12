@@ -1,27 +1,28 @@
+import { Fn } from "@thi.ng/api";
+
 /**
- * Returns optimized function to select, repeat, reshape and / or
- * reorder array/object values in the specified index order. The
- * returned function can be used directly or as mapping function for the
- * `map` transducer. Fast paths for up to 8 indices are provided, before
- * a loop based approach is used.
+ * Returns optimized function to immutably select, repeat, reshape and /
+ * or reorder array / object values in the specified index order. Fast
+ * paths for up to 8 indices are provided, before a loop based approach
+ * is used.
  *
  * ```
- * swizzler([0, 0, 0])([1, 2, 3, 4])    // [ 1, 1, 1 ]
- * swizzler([1, 1, 3, 3])([1, 2, 3, 4]) // [ 2, 2, 4, 4 ]
- * swizzler([2, 0])([1, 2, 3])          // [ 3, 1 ]
+ * swizzle([0, 0, 0])([1, 2, 3, 4])    // [ 1, 1, 1 ]
+ * swizzle([1, 1, 3, 3])([1, 2, 3, 4]) // [ 2, 2, 4, 4 ]
+ * swizzle([2, 0])([1, 2, 3])          // [ 3, 1 ]
  * ```
  *
- * Even though, objects can be used as input to the generated function,
- * the returned values will always be in array form.
+ * Objects can be used as input to the generated function, but the
+ * result will always be in array form.
  *
  * ```
- * swizzler(["a", "c", "b"])({a: 1, b: 2, c: 3}) // [ 1, 3, 2 ]
+ * swizzle(["a", "c", "b"])({a: 1, b: 2, c: 3}) // [ 1, 3, 2 ]
  * ```
  *
  * @param order indices
  */
-export const swizzler =
-    <T>(order: string | PropertyKey[]): (x: T) => any[] => {
+export const swizzle =
+    <T>(order: string | PropertyKey[]): Fn<T, any[]> => {
         const [a, b, c, d, e, f, g, h] = order;
         switch (order.length) {
             case 0:
@@ -45,7 +46,7 @@ export const swizzler =
             default:
                 return (x) => {
                     const res = [];
-                    for (let i = order.length - 1; i >= 0; i--) {
+                    for (let i = order.length; --i >= 0;) {
                         res[i] = x[order[i]];
                     }
                     return res;

@@ -1,7 +1,7 @@
 import { compare as cmp } from "@thi.ng/compare";
+import { identity } from "@thi.ng/compose";
 import { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
-import { identity } from "../func/identity";
 import { $iter } from "../iterator";
 import { map } from "./map";
 import { partition } from "./partition";

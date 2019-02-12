@@ -1,4 +1,5 @@
 import { Predicate } from "@thi.ng/api";
+import { shuffle } from "@thi.ng/arrays";
 import { isFunction } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
 import { illegalArity } from "@thi.ng/errors";
@@ -19,7 +20,6 @@ import {
     State
 } from "./api";
 import { FixedBuffer } from "./buffer";
-import { shuffle } from "./utils/shuffle";
 
 export class Channel<T> implements
     IReadWriteableChannel<T> {

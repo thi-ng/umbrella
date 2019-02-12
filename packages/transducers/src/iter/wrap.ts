@@ -1,5 +1,5 @@
+import { ensureArray } from "@thi.ng/arrays";
 import { illegalArgs } from "@thi.ng/errors";
-import { ensureArray } from "../func/ensure-array";
 
 /**
  * Yields iterator of `src` with the last `n` values of `src` prepended

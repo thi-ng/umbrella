@@ -92,28 +92,13 @@ export * from "./xform/throttle-time";
 export * from "./xform/trace";
 export * from "./xform/word-wrap";
 
-export * from "./func/binary-search";
 export * from "./func/comp";
 export * from "./func/compr";
-export * from "./func/constantly";
 export * from "./func/deep-transform";
-export * from "./func/delay";
-export * from "./func/ensure-array";
-export * from "./func/ensure-iterable";
-export * from "./func/even";
-export * from "./func/fuzzy-match";
-export * from "./func/hex";
-export * from "./func/identity";
-export * from "./func/juxt";
 export * from "./func/juxtr";
 export * from "./func/key-selector";
 export * from "./func/lookup";
-export * from "./func/odd";
-export * from "./func/peek";
-export * from "./func/random-id";
 export * from "./func/renamer";
-export * from "./func/swizzler";
-export * from "./func/weighted-random";
 
 export * from "./iter/as-iterable";
 export * from "./iter/choices";

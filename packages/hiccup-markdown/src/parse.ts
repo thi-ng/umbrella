@@ -1,3 +1,4 @@
+import { peek } from "@thi.ng/arrays";
 import {
     alts,
     fsm,
@@ -9,7 +10,6 @@ import {
     untilStr,
     whitespace
 } from "@thi.ng/fsm";
-import { peek } from "@thi.ng/transducers";
 import { TagFactories } from "./api";
 
 type ParseResult = ResultBody<any[]>;

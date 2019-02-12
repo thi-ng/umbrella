@@ -1,5 +1,5 @@
 /**
- * Returns last element of given array.
+ * Returns last element of given array or `undefined` if array is empty.
  *
  * @param x
  */

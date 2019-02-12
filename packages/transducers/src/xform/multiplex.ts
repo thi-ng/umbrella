@@ -1,5 +1,5 @@
+import { juxt } from "@thi.ng/compose";
 import { Transducer } from "../api";
-import { juxt } from "../func/juxt";
 import { step } from "../step";
 import { map } from "./map";
 

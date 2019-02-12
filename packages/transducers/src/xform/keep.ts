@@ -1,6 +1,6 @@
+import { identity } from "@thi.ng/compose";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { identity } from "../func/identity";
 import { $iter } from "../iterator";
 
 export function keep<T>(pred?: (x: T) => any): Transducer<T, T>;

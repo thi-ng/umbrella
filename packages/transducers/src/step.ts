@@ -22,7 +22,7 @@ import { push } from "./rfn/push";
  * // [ 1, 2, 3 ]
  *
  * // no result
- * f = step(filter(even))
+ * f = step(filter((x) => !(x & 1)))
  * f(1); // undefined
  * f(2); // 2
  *

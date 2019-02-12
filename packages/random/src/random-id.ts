@@ -1,5 +1,5 @@
-import { choices } from "../iter/choices";
-import { take } from "../xform/take";
+import { IRandom } from "./api";
+import { SYSTEM } from "./system";
 
 /**
  * Generates and returns a random string of `len` characters (default
@@ -17,7 +17,12 @@ import { take } from "../xform/take";
  * @param len
  * @param prefix
  * @param syms
+ * @param rnd
  */
 export const randomID =
-    (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz") =>
-        [prefix, ...take(len, choices(syms))].join("");
+    (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz", rnd: IRandom = SYSTEM) => {
+        for (const n = syms.length; --len >= 0;) {
+            prefix += syms[rnd.float(n) | 0];
+        }
+        return prefix;
+    };

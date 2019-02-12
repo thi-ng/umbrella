@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
+import { identity } from "@thi.ng/compose";
 import { Reducer, Transducer } from "../api";
-import { identity } from "../func/identity";
 import { $iter, iterator } from "../iterator";
 
 export interface PartitionSyncOpts<T> {

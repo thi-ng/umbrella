@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [5.0.0 release](#500-release)
     - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -32,7 +33,7 @@ This project is part of the
     - [Types](#types)
     - [IReducible](#ireducible)
     - [Transducer](#transducer)
-    - [Transformations](#transformations)
+    - [Composition & execution](#composition--execution)
     - [Transducers](#transducers)
     - [Generators / Iterators](#generators--iterators)
     - [Reducers](#reducers)
@@ -43,7 +44,7 @@ This project is part of the
 
 ## About
 
-This library provides altogether 130+ transducers, reducers, sequence
+This library provides altogether ~120 transducers, reducers, sequence
 generators (iterators) and other supporting functions for composing data
 transformation pipelines.
 
@@ -53,13 +54,27 @@ though the implementation does heavily differ (also in contrast to some
 other JS based implementations) and dozens of less common, but generally
 highly useful operators have been added. See full list below.
 
-Furthermore, since v2.0.0 most transducers & reducers provided here
-accept an optional input iterable, which allows them to be used
-directly instead of having to wrap their call in one of the execution
-functions (i.e. `transduce()`, `reduce()`, `iterator()`, `run()`). If
-executed this way, transducer functions will return a transforming ES6
-iterator (generator) and reducing functions will return a reduced result
-of the given input iterable.
+Furthermore, most transducers & reducers provided here accept an
+optional input iterable, which allows them to be used directly instead
+of having to wrap their call in one of the execution functions (i.e.
+`transduce()`, `reduce()`, `iterator()`, `run()`). If executed this way,
+transducer functions will return a transforming ES6 iterator (generator)
+and reducing functions will return a reduced result of the given input
+iterable.
+
+### 5.0.0 release
+
+Several previously included internal support functions have been
+migrated to the
+[@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
+package. You'll need to update your imports if you've been using any of
+these directly. Note that some of these functions also have changes to
+their arg order.
+
+Functions using randomness now all support an optional PRNG
+implementation of the `IRandom` interface from the
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+package.
 
 ### Related packages
 
@@ -574,7 +589,7 @@ function dedupe<T>(): Transducer<T, T> {
 }
 ```
 
-### Transformations
+### Composition & execution
 
 #### `comp(f1, f2, ...)`
 

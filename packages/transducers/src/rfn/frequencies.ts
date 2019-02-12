@@ -1,6 +1,6 @@
 import { Fn } from "@thi.ng/api";
+import { identity } from "@thi.ng/compose";
 import { Reducer } from "../api";
-import { identity } from "../func/identity";
 import { $$reduce } from "../reduce";
 import { count } from "./count";
 import { groupByMap } from "./group-by-map";
