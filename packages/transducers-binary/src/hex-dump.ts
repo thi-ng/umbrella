@@ -1,9 +1,9 @@
+import { juxt } from "@thi.ng/compose";
 import { U32, U8 } from "@thi.ng/strings";
 import {
     $iter,
     comp,
     iterator,
-    juxt,
     map,
     mapIndexed,
     padLast,
