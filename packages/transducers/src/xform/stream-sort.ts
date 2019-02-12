@@ -1,7 +1,7 @@
 import { binarySearch } from "@thi.ng/arrays";
 import { compare as cmp } from "@thi.ng/compare";
+import { identity } from "@thi.ng/compose";
 import { Reducer, SortOpts, Transducer } from "../api";
-import { identity } from "../func/identity";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 

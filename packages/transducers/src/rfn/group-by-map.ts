@@ -1,5 +1,5 @@
-import { Reducer, GroupByOpts } from "../api";
-import { identity } from "../func/identity";
+import { identity } from "@thi.ng/compose";
+import { GroupByOpts, Reducer } from "../api";
 import { $$reduce, reducer } from "../reduce";
 import { push } from "./push";
 

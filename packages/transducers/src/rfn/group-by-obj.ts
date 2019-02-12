@@ -1,6 +1,6 @@
 import { IObjectOf } from "@thi.ng/api";
+import { identity } from "@thi.ng/compose";
 import { GroupByOpts, Reducer } from "../api";
-import { identity } from "../func/identity";
 import { $$reduce, reducer } from "../reduce";
 import { push } from "./push";
 

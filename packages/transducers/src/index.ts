@@ -94,20 +94,11 @@ export * from "./xform/word-wrap";
 
 export * from "./func/comp";
 export * from "./func/compr";
-export * from "./func/constantly";
 export * from "./func/deep-transform";
-export * from "./func/delay";
-export * from "./func/even";
-export * from "./func/hex";
-export * from "./func/identity";
-export * from "./func/juxt";
 export * from "./func/juxtr";
 export * from "./func/key-selector";
 export * from "./func/lookup";
-export * from "./func/odd";
-export * from "./func/random-id";
 export * from "./func/renamer";
-export * from "./func/weighted-random";
 
 export * from "./iter/as-iterable";
 export * from "./iter/choices";
