@@ -1,3 +1,4 @@
+import { peek } from "@thi.ng/arrays";
 import { defmulti } from "@thi.ng/defmulti";
 import {
     IShape,
@@ -6,7 +7,6 @@ import {
     Type
 } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
-import { peek } from "@thi.ng/transducers";
 import { Vec } from "@thi.ng/vectors";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
