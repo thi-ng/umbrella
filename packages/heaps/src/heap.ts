@@ -173,11 +173,11 @@ export class Heap<T> implements
         if (!n) {
             return res;
         }
-        let x = res[n - 1], y;
+        let x = res[n - 1], y: T;
         for (let i = n, m = vals.length; i < m; i++) {
             y = vals[i];
             if (cmp(y, x) < 0) {
-                res.splice(binarySearch(res, y, 0, n, cmp), 0, y);
+                res.splice(binarySearch(y, res, 0, n, cmp), 0, y);
                 res.pop();
                 x = res[n - 1];
             }
@@ -244,7 +244,13 @@ export class Heap<T> implements
     }
 }
 
-function binarySearch<T>(vals: T[], x: T, lo: number, hi: number, cmp: Comparator<T>) {
+const binarySearch = <T>(
+    x: T,
+    vals: T[],
+    lo: number,
+    hi: number,
+    cmp: Comparator<T>
+) => {
     let m;
     while (lo < hi) {
         m = (lo + hi) >>> 1;
@@ -255,4 +261,4 @@ function binarySearch<T>(vals: T[], x: T, lo: number, hi: number, cmp: Comparato
         }
     }
     return lo;
-}
+};
