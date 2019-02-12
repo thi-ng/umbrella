@@ -1,8 +1,8 @@
 import { ICopy, Pair } from "@thi.ng/api";
+import { ensureArray } from "@thi.ng/arrays";
 import { ISpatialAccel } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
-import { ensureArray } from "@thi.ng/transducers";
 import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const CMP = (a, b) => b[0] - a[0];
