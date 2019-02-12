@@ -1,6 +1,6 @@
-import { weightedRandom } from "../func/weighted-random";
+import { ensureArray } from "@thi.ng/arrays";
+import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
 import { repeatedly } from "./repeatedly";
-import { IRandom, SYSTEM } from "@thi.ng/random";
 
 /**
  * Returns an infinite iterator of random choices and their (optional)
@@ -19,11 +19,11 @@ import { IRandom, SYSTEM } from "@thi.ng/random";
  */
 export const choices = <T>(
     choices: ArrayLike<T> & Iterable<T>,
-    weights?: ArrayLike<number> & Iterable<number>,
+    weights?: ArrayLike<number>,
     rnd: IRandom = SYSTEM
 ) =>
     repeatedly(
         weights ?
-            weightedRandom(choices, weights, rnd) :
+            weightedRandom(ensureArray(choices), weights, rnd) :
             () => choices[(rnd.float(choices.length) | 0)]
     );
