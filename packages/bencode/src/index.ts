@@ -1,4 +1,5 @@
 import { assert } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays";
 import {
     isArray,
     isArrayLike,
@@ -9,7 +10,7 @@ import {
 } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { illegalState } from "@thi.ng/errors";
-import { mapcat, peek } from "@thi.ng/transducers";
+import { mapcat } from "@thi.ng/transducers";
 import {
     BinStructItem,
     bytes,
