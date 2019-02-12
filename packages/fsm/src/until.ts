@@ -1,3 +1,4 @@
+import { endsWith } from "@thi.ng/arrays";
 import { LitCallback, Matcher, RES_PARTIAL } from "./api";
 import { result } from "./result";
 
@@ -46,17 +47,4 @@ export const until = <T, C, R>(
                 result(callback && callback(ctx, buf.slice(0, buf.length - str.length))) :
                 RES_PARTIAL;
         };
-    };
-
-const endsWith =
-    (src: any[], needle: any[]) => {
-        let i = src.length;
-        let j = needle.length;
-        if (i < j) return false;
-        for (; --i, --j >= 0;) {
-            if (src[i] !== needle[j]) {
-                return false;
-            }
-        }
-        return true;
     };
