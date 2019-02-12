@@ -153,3 +153,29 @@ const codePoint = (x) =>
     x < 0x10000 ?
         String.fromCharCode(x) :
         (x -= 0x10000, String.fromCharCode(0xd800 | (x >> 10), 0xdc00 | (x & 0x3ff)));
+
+export const utf8Length =
+    (str: string) => {
+        const n = str.length;
+        let len = 0;
+        for (let i = 0; i < n; ++i) {
+            let u = str.charCodeAt(i);
+            if (u >= 0xd800 && u <= 0xdfff) {
+                u = 0x10000 + ((u & 0x3ff) << 10) | (str.charCodeAt(++i) & 0x3ff);
+            }
+            if (u <= 0x7f) {
+                len++;
+            } else if (u <= 0x7ff) {
+                len += 2;
+            } else if (u <= 0xffff) {
+                len += 3;
+            } else if (u <= 0x1fffff) {
+                len += 4;
+            } else if (u <= 0x3ffffff) {
+                len += 5;
+            } else {
+                len += 6;
+            }
+        }
+        return len;
+    };
