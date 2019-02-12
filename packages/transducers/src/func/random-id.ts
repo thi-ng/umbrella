@@ -1,3 +1,4 @@
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import { choices } from "../iter/choices";
 import { take } from "../xform/take";
 
@@ -17,7 +18,8 @@ import { take } from "../xform/take";
  * @param len
  * @param prefix
  * @param syms
+ * @param rnd
  */
 export const randomID =
-    (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz") =>
-        [prefix, ...take(len, choices(syms))].join("");
+    (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz", rnd: IRandom = SYSTEM) =>
+        [prefix, ...take(len, choices(syms, null, rnd))].join("");

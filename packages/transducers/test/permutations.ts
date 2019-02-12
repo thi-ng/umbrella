@@ -1,4 +1,4 @@
-import { swizzler } from "../src/func/swizzler";
+import { swizzler } from "@thi.ng/arrays";
 import { permutations, permutationsN } from "../src/iter/permutations";
 import { range } from "../src/iter/range";
 import { iterator } from "../src/iterator";

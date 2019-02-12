@@ -1,5 +1,5 @@
+import { swizzle as _swizzle } from "@thi.ng/arrays";
 import { Transducer } from "../api";
-import { swizzler } from "../func/swizzler";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
 
@@ -7,8 +7,6 @@ import { map } from "./map";
  * Transducer which performs value reordering on inputs using provided
  * property order. Accepts arrays or objects as input, but always yields
  * arrays.
- *
- * Also see `swizzler()` for standalone (non-transducer) usage.
  *
  * ```
  * [...swizzle([3,0,2,1], [[1,2,3,4], [10,20,30,40]])]
@@ -21,6 +19,8 @@ import { map } from "./map";
  * // [ [ 3, 1 ] ]
  * ```
  *
+ * @see thi.ng/arrays/swizzle
+ *
  * @param order key order
  */
 export function swizzle<T>(order: PropertyKey[]): Transducer<T, any[]>;
@@ -28,5 +28,5 @@ export function swizzle<T>(order: PropertyKey[], src: Iterable<any>): IterableIt
 export function swizzle(order: PropertyKey[], src?: Iterable<any>): any {
     return src ?
         iterator1(swizzle(order), src) :
-        map(swizzler(order));
+        map(_swizzle(order));
 }

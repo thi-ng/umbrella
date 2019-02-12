@@ -1,9 +1,11 @@
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import { repeat } from "../iter/repeat";
 import { zip } from "../iter/zip";
 
 /**
- * If `weights` are given, it must be the same size as `choices`. If omitted,
- * each choice will have same probability.
+ * Returns a no-arg function which produces a random choice of given
+ * weighted `choices`. If `weights` are given, it must be the same size
+ * as `choices`. If omitted, each choice will have same probability.
  *
  * https://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/
  *
@@ -12,16 +14,17 @@ import { zip } from "../iter/zip";
  */
 export const weightedRandom = <T>(
     choices: ArrayLike<T> & Iterable<T>,
-    weights?: ArrayLike<number> & Iterable<number>
+    weights?: ArrayLike<number> & Iterable<number>,
+    rnd: IRandom = SYSTEM
 ) => {
     const n = choices.length;
     const opts = [...zip(choices, weights || repeat(1))].sort((a, b) => b[1] - a[1]);
     let total = 0, i, r, sum;
     for (i = 0; i < n; i++) {
-        total += weights[i];
+        total += opts[i][1];
     }
     return () => {
-        r = Math.random() * total;
+        r = rnd.float(total);
         sum = total;
         for (i = 0; i < n; i++) {
             sum -= opts[i][1];

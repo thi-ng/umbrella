@@ -1,5 +1,5 @@
+import { shuffle } from "@thi.ng/arrays";
 import { Reducer, Transducer } from "../api";
-import { shuffleN } from "../func/shuffle";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
@@ -30,7 +30,7 @@ export function streamShuffle<T>(...args: any[]): any {
                 init,
                 (acc) => {
                     while (buf.length && !isReduced(acc)) {
-                        shuffleN(buf, maxSwaps);
+                        shuffle(buf, maxSwaps);
                         acc = reduce(acc, buf.shift());
                     }
                     acc = complete(acc);
@@ -38,7 +38,7 @@ export function streamShuffle<T>(...args: any[]): any {
                 },
                 (acc, x: T) => {
                     buf.push(x);
-                    shuffleN(buf, maxSwaps);
+                    shuffle(buf, maxSwaps);
                     if (buf.length === n) {
                         acc = reduce(acc, buf.shift());
                     }

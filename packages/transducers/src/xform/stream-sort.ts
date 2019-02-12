@@ -1,7 +1,6 @@
+import { binarySearch } from "@thi.ng/arrays";
 import { compare as cmp } from "@thi.ng/compare";
-
 import { Reducer, SortOpts, Transducer } from "../api";
-import { binarySearch } from "../func/binary-search";
 import { identity } from "../func/identity";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
@@ -45,8 +44,8 @@ export function streamSort<A, B>(...args: any[]): any {
                 return complete(acc);
             },
             (acc, x) => {
-                const idx = binarySearch(buf, key, compare, x);
-                buf.splice(Math.abs(idx), 0, x);
+                const idx = binarySearch(x, buf, key, compare);
+                buf.splice(idx < 0 ? -(idx + 1) : idx, 0, x);
                 if (buf.length === n) {
                     acc = reduce(acc, buf.shift());
                 }
