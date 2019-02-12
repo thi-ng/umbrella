@@ -16,6 +16,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
+        "@thi.ng/arrays": "latest",
         "@thi.ng/checks": "latest",
         "@thi.ng/defmulti": "latest",
         "@thi.ng/rstream": "latest",

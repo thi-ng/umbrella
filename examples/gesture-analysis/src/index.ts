@@ -1,3 +1,4 @@
+import { peek } from "@thi.ng/arrays";
 import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
 import {
     circle,
@@ -14,7 +15,6 @@ import {
     map,
     multiplexObj,
     partition,
-    peek,
     push,
     transduce
 } from "@thi.ng/transducers";

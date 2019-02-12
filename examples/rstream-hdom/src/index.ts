@@ -1,3 +1,4 @@
+import { peek } from "@thi.ng/arrays";
 import {
     fromRAF,
     ISubscribable,
@@ -8,7 +9,6 @@ import {
 } from "@thi.ng/rstream";
 import {
     map,
-    peek,
     reducer,
     scan,
     vals
