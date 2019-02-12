@@ -6,7 +6,7 @@ import {
     ResultBody,
     seq,
     str,
-    until,
+    untilStr,
     whitespace
 } from "@thi.ng/fsm";
 import { peek } from "@thi.ng/transducers";
@@ -217,9 +217,9 @@ const matchLink =
     (result: (href, body) => any[]) =>
         seq<string, FSMCtx, any>(
             [
-                until(LINK_LABEL_END, (ctx, body) => (ctx.title = body, null)),
+                untilStr(LINK_LABEL_END, (ctx, body) => (ctx.title = body, null)),
                 str(LINK_HREF),
-                until(LINK_HREF_END, (ctx, body) => (ctx.href = body, null)),
+                untilStr(LINK_HREF_END, (ctx, body) => (ctx.href = body, null)),
             ],
             pop((ctx) => result(ctx.href, ctx.title))
         );
@@ -343,10 +343,10 @@ export const parse = (tags?: Partial<TagFactories>) => {
                 ),
 
             [State.START_CODEBLOCK]:
-                until(NL, (ctx, lang) => (ctx.lang = lang, [State.CODEBLOCK])),
+                untilStr(NL, (ctx, lang) => (ctx.lang = lang, [State.CODEBLOCK])),
 
             [State.CODEBLOCK]:
-                until(CODEBLOCK_END, collectCodeBlock(tags.codeblock)),
+                untilStr(CODEBLOCK_END, collectCodeBlock(tags.codeblock)),
 
             [State.LI]:
                 matchPara(State.LI, State.END_LI),
@@ -367,16 +367,16 @@ export const parse = (tags?: Partial<TagFactories>) => {
                 matchLink(tags.img),
 
             [State.STRONG]:
-                until(STRONG, collectInline(tags.strong)),
+                untilStr(STRONG, collectInline(tags.strong)),
 
             [State.STRIKE]:
-                until(STRIKE, collectInline(tags.strike)),
+                untilStr(STRIKE, collectInline(tags.strike)),
 
             [State.EMPHASIS]:
-                until(EM, collectInline(tags.em)),
+                untilStr(EM, collectInline(tags.em)),
 
             [State.CODE]:
-                until(CODE, collectInline(tags.code)),
+                untilStr(CODE, collectInline(tags.code)),
 
             [State.TABLE]:
                 alts(
