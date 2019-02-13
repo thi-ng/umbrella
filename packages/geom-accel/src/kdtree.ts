@@ -123,7 +123,7 @@ export class KdTree<K extends ReadonlyVec, V> implements
     addAll(pts: Iterable<Pair<K, V>>, eps = EPS) {
         let ok = true;
         for (let [k, v] of pts) {
-            ok = ok && this.add(k, v, eps);
+            ok = this.add(k, v, eps) && ok;
         }
         return ok;
     }
@@ -135,7 +135,7 @@ export class KdTree<K extends ReadonlyVec, V> implements
     addKeys(ks: Iterable<Readonly<K>>, eps = EPS) {
         let ok = true;
         for (let k of ks) {
-            ok = ok && this.add(k, null, eps);
+            ok = this.add(k, null, eps) && ok;
         }
         return ok;
     }
