@@ -1,19 +1,19 @@
 {
-    const NodeType = require("./api").NodeType;
+    // const __NodeType = require("./api").__NodeType;
 
-    // const NodeType = {};
-    // NodeType[NodeType["SYM"] = 1] = "SYM";
-    // NodeType[NodeType["WORD"] = 2] = "WORD";
-    // NodeType[NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
-    // NodeType[NodeType["VAR_STORE"] = 4] = "VAR_STORE";
-    // NodeType[NodeType["NIL"] = 5] = "NIL";
-    // NodeType[NodeType["NUMBER"] = 6] = "NUMBER";
-    // NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
-    // NodeType[NodeType["STRING"] = 8] = "STRING";
-    // NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
-    // NodeType[NodeType["OBJ"] = 10] = "OBJ";
-    // NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
-    // NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
+    const NodeType = {};
+    NodeType[NodeType["SYM"] = 1] = "SYM";
+    NodeType[NodeType["WORD"] = 2] = "WORD";
+    NodeType[NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
+    NodeType[NodeType["VAR_STORE"] = 4] = "VAR_STORE";
+    NodeType[NodeType["NIL"] = 5] = "NIL";
+    NodeType[NodeType["NUMBER"] = 6] = "NUMBER";
+    NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
+    NodeType[NodeType["STRING"] = 8] = "STRING";
+    NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
+    NodeType[NodeType["OBJ"] = 10] = "OBJ";
+    NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
+    NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
 
     const ast = (node) => {
         const loc = location().start;

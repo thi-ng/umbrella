@@ -4,6 +4,7 @@ export class UnsupportedOperationError extends Error {
     }
 }
 
-export function unsupported(msg?: any): never {
-    throw new UnsupportedOperationError(msg);
-}
+export const unsupported =
+    (msg?: any): never => {
+        throw new UnsupportedOperationError(msg);
+    };

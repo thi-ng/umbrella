@@ -1,8 +1,10 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "3.0.32",
-    "description": "Lightweight vanilla ES6 UI component & virtual DOM system",
-    "main": "./index.js",
+    "version": "7.1.0",
+    "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "repository": {
         "type": "git",
@@ -12,35 +14,43 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rm -rf *.js *.d.ts .nyc_output build coverage doc",
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public",
-        "test": "rm -rf build && tsc -p test && nyc mocha build/test/*.js"
+        "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^1.4.6",
+        "@thi.ng/atom": "^2.0.3",
         "@types/mocha": "^5.2.5",
-        "@types/node": "^10.5.5",
+        "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
-        "nyc": "^12.0.2",
-        "typedoc": "^0.11.1",
-        "typescript": "^3.0.1"
+        "nyc": "^13.1.0",
+        "typedoc": "^0.14.0",
+        "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^4.0.6",
-        "@thi.ng/checks": "^1.5.7",
-        "@thi.ng/diff": "^1.0.21",
-        "@thi.ng/equiv": "^0.1.7",
-        "@thi.ng/hiccup": "^2.0.9",
-        "@thi.ng/iterators": "^4.1.20"
+        "@thi.ng/api": "^5.0.2",
+        "@thi.ng/checks": "^2.1.0",
+        "@thi.ng/diff": "^3.0.2",
+        "@thi.ng/equiv": "^1.0.2",
+        "@thi.ng/errors": "^1.0.2",
+        "@thi.ng/hiccup": "^3.0.3"
     },
     "keywords": [
         "browser",
         "components",
+        "data driven",
+        "declarative",
+        "diff",
         "DOM",
         "ES6",
+        "functional",
+        "IOC",
+        "iterators",
         "reactive",
         "typescript",
         "UI",
@@ -48,5 +58,6 @@
     ],
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "sideEffects": false
 }

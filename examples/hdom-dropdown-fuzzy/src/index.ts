@@ -1,8 +1,7 @@
-import { Atom } from "@thi.ng/atom/atom";
-import { start } from "@thi.ng/hdom/start";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { trace } from "@thi.ng/interceptors/interceptors";
-
+import { Atom } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
+import { EventBus } from "@thi.ng/interceptors";
+import { trace } from "@thi.ng/interceptors";
 import { state, theme } from "./config";
 import { dropdown } from "./dropdown";
 import { fuzzyDropdown } from "./fuzzy";
@@ -23,7 +22,7 @@ const ctx = {
 const dd = dropdown("theme.dd");
 const input = cancelableInput("theme.input");
 
-start("app",
+start(
     (ctx) => {
         ctx.bus.processQueue();
         return ["div", ctx.theme.root,
@@ -39,6 +38,7 @@ start("app",
             ],
         ];
     },
-    ctx);
+    { ctx }
+);
 
 // window["ctx"] = ctx;

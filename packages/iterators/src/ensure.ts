@@ -1,14 +1,11 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
+import { illegalArgs } from "@thi.ng/errors";
 import { iterator } from "./iterator";
 
-export function ensureIterable(x: any): IterableIterator<any> {
-    if (!(x != null && x[Symbol.iterator])) {
-        illegalArgs(`value is not iterable: ${x}`);
-    }
-    return x;
-}
+export const ensureIterable =
+    (x: any): IterableIterator<any> =>
+        (!(x != null && x[Symbol.iterator])) ?
+            illegalArgs(`value is not iterable: ${x}`) :
+            x;
 
-export function ensureIterator(x: any) {
-    return ensureIterable(iterator(x));
-}
+export const ensureIterator =
+    (x: any) => ensureIterable(iterator(x));

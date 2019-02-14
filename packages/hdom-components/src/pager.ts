@@ -1,5 +1,4 @@
-import { range } from "@thi.ng/iterators/range";
-import { map } from "@thi.ng/iterators/map";
+import { map, range } from "@thi.ng/transducers";
 
 /**
  * Configuration options for pager components.
@@ -139,9 +138,13 @@ export const pager = (opts: PagerOpts) => {
             [opts.groupPrev,
             bt(0, id, maxID, opts.labelFirst, !id),
             bt(Math.max(id - step, 0), id, maxID, opts.labelPrev, !id)],
-            [opts.groupPages,
-            map((i: number) => bt(i, id, maxID, i + 1, i === id),
-                pageRange(id, maxID, maxBts))],
+            [
+                opts.groupPages,
+                map(
+                    (i: number) => bt(i, id, maxID, i + 1, i === id),
+                    pageRange(id, maxID, maxBts)
+                )
+            ],
             [opts.groupNext,
             bt(Math.min(id + step, maxID), id, maxID, opts.labelNext, id >= maxID),
             bt(maxID, id, maxID, opts.labelLast, id >= maxID)],

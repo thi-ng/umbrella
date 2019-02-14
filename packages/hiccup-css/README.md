@@ -1,6 +1,8 @@
 # @thi.ng/hiccup-css
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -25,6 +27,7 @@ This project is part of the
         - [Auto-prefixed properties](#auto-prefixed-properties)
         - [Media queries](#media-queries)
         - [Keyframes](#keyframes)
+        - [Animations](#animations)
         - [DOM stylesheet injection](#dom-stylesheet-injection)
         - [General function handling](#general-function-handling)
             - [Functions in scope head position](#functions-in-scope-head-position)
@@ -453,6 +456,43 @@ css.css(
         color: blue;
     }
 
+}
+```
+
+### Animations
+
+Animations can be defined via the `animation()` function and define new
+`@keyframes` with given `id` and related class of same name to configure
+given animation `opts`. Only the `duration`option is given a default
+value (250ms), all others are optional.
+
+```ts
+css(
+  animation(
+    "delayed-fade-in",
+    { delay: "0.5s" },
+    { opacity: 0 },
+    { opacity: 1 }
+  )
+);
+```
+
+Results in:
+
+```css
+@keyframes delayed-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.delayed-fade-in {
+    animation-duration: 250ms;
+    animation-name: delayed-fade-in;
+    animation-delay: 0.5s;
 }
 ```
 

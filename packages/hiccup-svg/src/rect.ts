@@ -1,12 +1,28 @@
-import { ff } from "./format";
+import { Vec2Like } from "./api";
+import { ff, fattribs } from "./format";
 
-export const rect = (p: ArrayLike<number>, width = 1, height = 1, attr?) =>
-    [
-        "rect",
-        Object.assign({
-            x: ff(p[0]),
-            y: ff(p[1]),
-            width: ff(width),
-            height: ff(height),
-        }, attr)
-    ];
+export const rect =
+    (p: Vec2Like, width: number, height: number, attribs?: any) =>
+        roundedRect(p, width, height, 0, 0, attribs);
+
+export const roundedRect = (
+    p: Vec2Like,
+    width: number,
+    height: number,
+    rx: number,
+    ry: number,
+    attribs?: any): any[] => {
+
+    attribs = fattribs({
+        ...attribs,
+        x: ff(p[0]),
+        y: ff(p[1]),
+        width: ff(width),
+        height: ff(height),
+    });
+    if (rx > 0 || ry > 0) {
+        attribs.rx = ff(rx);
+        attribs.ry = ff(ry);
+    }
+    return ["rect", attribs];
+};

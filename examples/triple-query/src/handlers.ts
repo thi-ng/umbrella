@@ -1,17 +1,23 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-import { FX_DISPATCH_NOW, FX_STATE } from "@thi.ng/interceptors/api";
-import { EffectDef, EventDef } from "@thi.ng/interceptors/api";
-import { dispatchNow, valueSetter } from "@thi.ng/interceptors/interceptors";
+import {
+    dispatchNow,
+    EffectDef,
+    EventDef,
+    FX_DISPATCH_NOW,
+    FX_STATE,
+    valueSetter
+} from "@thi.ng/interceptors";
 import { getIn, setIn } from "@thi.ng/paths";
-import { Triple } from "@thi.ng/rstream-query/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { padLast } from "@thi.ng/transducers/xform/pad-last";
-import { page } from "@thi.ng/transducers/xform/page";
-
+import { Triple } from "@thi.ng/rstream-query";
+import {
+    comp,
+    iterator,
+    mapIndexed,
+    padLast,
+    page,
+    repeat
+} from "@thi.ng/transducers";
 import { AppInterceptorContext } from "./api";
 import * as fx from "./effects";
 import * as ev from "./events";

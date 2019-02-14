@@ -1,15 +1,13 @@
 import {
     Event,
     INotify,
+    INotifyMixin,
     IObjectOf,
     Listener
-} from "@thi.ng/api/api";
-import * as mixin from "@thi.ng/api/mixins/inotify";
-import { isString } from "@thi.ng/checks/is-string";
+} from "@thi.ng/api";
+import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import {
     EVENT_ROUTE_CHANGED,
     Route,
@@ -18,7 +16,7 @@ import {
     RouterConfig
 } from "./api";
 
-@mixin.INotify
+@INotifyMixin
 export class BasicRouter implements
     INotify {
 
@@ -89,7 +87,8 @@ export class BasicRouter implements
      * Throw an error if an invalid route `id` is provided.
      *
      * @param match
-     * @param hash
+     * @param params
+     * @param hash if true, prepends `#` to results
      */
     format(id: PropertyKey, params?: any, hash?: boolean): string;
     format(match: Partial<RouteMatch>, hash?: boolean): string;
@@ -128,12 +127,7 @@ export class BasicRouter implements
     }
 
     routeForID(id: PropertyKey) {
-        const routes = this.config.routes;
-        for (let i = 0, n = routes.length; i < n; i++) {
-            if (id === routes[i].id) {
-                return routes[i];
-            }
-        }
+        return this.config.routes.find((route) => route.id === id);
     }
 
     protected matchRoute(curr: string[], route: Route): RouteMatch {

@@ -1,3 +1,2 @@
-export function isFalse(x: any): x is false {
-    return x === false;
-}
+export const isFalse =
+    (x: any): x is false => x === false;

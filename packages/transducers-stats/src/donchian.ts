@@ -1,8 +1,10 @@
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import {
+    comp,
+    iterator,
+    map,
+    partition,
+    Transducer
+} from "@thi.ng/transducers";
 import { bounds } from "./bounds";
 
 /**
@@ -14,7 +16,12 @@ import { bounds } from "./bounds";
  * number of processed inputs.
  *
  * @param period
+ * @param src
  */
-export function donchian(period: number): Transducer<number, [number, number]> {
-    return comp(partition(period, 1), map(bounds));
+export function donchian(period: number): Transducer<number, [number, number]>;
+export function donchian(period: number, src: Iterable<number>): IterableIterator<[number, number]>;
+export function donchian(period: number, src?: Iterable<number>): any {
+    return src ?
+        iterator(donchian(period), src) :
+        comp(partition(period, 1), map(bounds));
 };

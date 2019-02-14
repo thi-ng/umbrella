@@ -1,5 +1,5 @@
-import { Path } from "@thi.ng/api/api";
-import { IView } from "@thi.ng/atom/api";
+import { Path } from "@thi.ng/api";
+import { IView } from "@thi.ng/atom";
 import { getIn } from "@thi.ng/paths";
 
 export interface InputArgs {

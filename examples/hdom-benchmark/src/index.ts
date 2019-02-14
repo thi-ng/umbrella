@@ -1,20 +1,20 @@
 import { start } from "@thi.ng/hdom";
-import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
-import { Stream } from "@thi.ng/rstream/stream";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { hex } from "@thi.ng/transducers/func/hex";
-import { range } from "@thi.ng/transducers/iter/range";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { benchmark } from "@thi.ng/transducers/xform/benchmark";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { movingAverage } from "@thi.ng/transducers/xform/moving-average";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import { dropdown } from "@thi.ng/hdom-components";
+import { fromRAF, Stream } from "@thi.ng/rstream";
+import { radix } from "@thi.ng/strings";
+import {
+    benchmark,
+    comp,
+    map,
+    mapIndexed,
+    movingAverage,
+    partition,
+    range
+} from "@thi.ng/transducers";
 
 // pre-defined hex formatters
-const hex4 = hex(4);
-const hex6 = hex(6);
+const hex4 = radix(16, 4);
+const hex6 = radix(16, 6);
 
 /**
  * Single box component. Uses given id to switch between using `div` or
@@ -94,9 +94,9 @@ const app = () => {
         let j = (++i) & 0x1ff;
         return ["div",
             ["div#stats", fps, menu],
-            ["grid", iterator(mapIndexed(box), range(j, j + num))]
+            ["grid", mapIndexed(box, range(j, j + num))]
         ];
     };
 };
 
-start("app", app(), null, false);
+start(app(), { span: false });

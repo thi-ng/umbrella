@@ -1,11 +1,8 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { IObjectOf } from "@thi.ng/api";
+import { isArray, isFunction, isPlainObject } from "@thi.ng/checks";
+import { compL } from "@thi.ng/compose";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalState } from "@thi.ng/errors/illegal-state";
-
+import { illegalArgs, illegalState } from "@thi.ng/errors";
 import {
     Stack,
     StackContext,
@@ -14,7 +11,6 @@ import {
     StackProc,
     StackProgram
 } from "./api";
-import { comp } from "./comp";
 
 let SAFE = true;
 
@@ -95,7 +91,7 @@ const $stackFn = (f: StackProc) =>
 const tos = (stack: Stack) => stack[stack.length - 1];
 
 const compile = (prog: StackProgram) =>
-    comp.apply(null, prog.map(
+    compL.apply(null, prog.map(
         (w) => !isFunction(w) ?
             (ctx: StackContext) => (ctx[0].push(w), ctx) :
             w));
@@ -1793,4 +1789,3 @@ export const printrs = (ctx: StackContext) =>
     (console.log(ctx[1]), ctx);
 
 export * from "./api";
-export * from "./comp";

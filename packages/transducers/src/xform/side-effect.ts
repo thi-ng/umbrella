@@ -1,6 +1,13 @@
 import { Transducer } from "../api";
 import { map } from "./map";
 
-export function sideEffect<T>(fn: (x: T) => void): Transducer<T, T> {
-    return map((x) => (fn(x), x));
-}
+/**
+ * Helper transducer. Applies given `fn` to each input value, presumably
+ * for side effects. Discards function's result and yields original
+ * inputs.
+ *
+ * @param fn side effect
+ */
+export const sideEffect =
+    <T>(fn: (x: T) => void): Transducer<T, T> =>
+        map((x) => (fn(x), x));

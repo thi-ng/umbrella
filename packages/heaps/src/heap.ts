@@ -3,7 +3,7 @@ import {
     ICopy,
     IEmpty,
     ILength
-} from "@thi.ng/api/api";
+} from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 
 import { HeapOpts } from "./api";
@@ -37,8 +37,8 @@ export class Heap<T> implements
         return idx >= 0 ? (idx << 1) + 1 : -1;
     }
 
-    protected values: T[];
-    protected compare: Comparator<T>;
+    values: T[];
+    compare: Comparator<T>;
 
     constructor(values?: Iterable<T>, opts?: HeapOpts<T>) {
         opts = Object.assign({ compare: compare }, opts);
@@ -112,6 +112,21 @@ export class Heap<T> implements
         return this;
     }
 
+    /**
+     * Calls `pushPop()` for each given value in `vals` and returns last
+     * result (i.e. the smallest value in heap after processing all
+     * `vals`).
+     *
+     * @param vals
+     */
+    pushPopAll(vals: Iterable<T>) {
+        let res: T;
+        for (let v of vals) {
+            res = this.pushPop(v);
+        }
+        return res;
+    }
+
     replaceHead(val: T) {
         const res = this.values[0];
         this.values[0] = val;
@@ -158,11 +173,11 @@ export class Heap<T> implements
         if (!n) {
             return res;
         }
-        let x = res[n - 1], y;
+        let x = res[n - 1], y: T;
         for (let i = n, m = vals.length; i < m; i++) {
             y = vals[i];
             if (cmp(y, x) < 0) {
-                res.splice(binarySearch(res, y, 0, n, cmp), 0, y);
+                res.splice(binarySearch(y, res, 0, n, cmp), 0, y);
                 res.pop();
                 x = res[n - 1];
             }
@@ -229,7 +244,13 @@ export class Heap<T> implements
     }
 }
 
-function binarySearch<T>(vals: T[], x: T, lo: number, hi: number, cmp: Comparator<T>) {
+const binarySearch = <T>(
+    x: T,
+    vals: T[],
+    lo: number,
+    hi: number,
+    cmp: Comparator<T>
+) => {
     let m;
     while (lo < hi) {
         m = (lo + hi) >>> 1;
@@ -240,4 +261,4 @@ function binarySearch<T>(vals: T[], x: T, lo: number, hi: number, cmp: Comparato
         }
     }
     return lo;
-}
+};

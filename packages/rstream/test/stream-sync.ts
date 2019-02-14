@@ -27,25 +27,23 @@ describe("StreamSync", () => {
             a1: { ins: { a: 1, b: 2 } },
             a2: { ins: { b: 10 } },
         });
-        const a1 = new rs.StreamSync({
+        const a1 = rs.sync({
             src: [
                 a = rs.fromView(db, "a1.ins.a"),
                 b = rs.fromView(db, "a1.ins.b"),
             ],
             xform: adder(),
-            reset: false
         });
         const a1res = a1.subscribe({
             next(x) { a1buf = x; },
             done() { a1done = true; }
         });
-        const a2 = new rs.StreamSync({
+        const a2 = rs.sync({
             src: [
                 a1,
                 c = rs.fromView(db, "a2.ins.b"),
             ],
             xform: adder(),
-            reset: false
         });
         const res = a2.subscribe({
             next(x) { a2buf = x; },
@@ -75,5 +73,62 @@ describe("StreamSync", () => {
         assert.equal(a1res.getState(), rs.State.DONE, "a1res != DONE");
         assert(!a1done);
         assert(!a2done);
+    });
+
+    it("mergeOnly", (done) => {
+        const src = {
+            a: rs.stream(),
+            b: rs.stream(),
+            c: rs.stream()
+        };
+        const res = [];
+        const sync = rs.sync({ src, mergeOnly: true })
+            .subscribe({
+                next: (x) => res.push(x),
+                done: () => {
+                    assert.deepEqual(
+                        res,
+                        [{ c: 1 }, { c: 1, b: 2 }, { c: 1, b: 2, a: 3 }, { c: 1, b: 2, a: 4 }]
+                    );
+                    done();
+                }
+            });
+
+        src.c.next(1);
+        src.b.next(2);
+        src.a.next(3);
+        src.a.next(4);
+        sync.done();
+    });
+
+    it("mergeOnly (w/ required keys)", (done) => {
+        const src = {
+            a: rs.stream(),
+            b: rs.stream(),
+            c: rs.stream()
+        };
+        const res = [];
+        const sync = rs.sync({
+            src,
+            mergeOnly: true
+        }).transform(
+            // ensure `a` & `b` are present
+            tx.filter((tuple: any) => tuple.a != null && tuple.b != null)
+        ).subscribe({
+            next: (x) => res.push(x),
+            done: () => {
+                assert.deepEqual(
+                    res,
+                    [{ c: 1, b: 2, a: 3 }, { c: 1, b: 2, a: 4 }]
+                );
+                done();
+            }
+        });
+
+        src.c.next(1);
+        src.b.next(2);
+        src.a.next(3);
+        src.a.next(4);
+        sync.done();
     });
 });

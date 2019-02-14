@@ -1,7 +1,6 @@
-import { Predicate } from "@thi.ng/api/api";
-
+import { Predicate } from "@thi.ng/api";
 import { Reducer } from "../api";
-import { reducer } from "../reduce";
+import { $$reduce, reducer } from "../reduce";
 import { reduced } from "../reduced";
 
 /**
@@ -11,7 +10,15 @@ import { reduced } from "../reduced";
  *
  * @param pred
  */
-export function some<T>(pred?: Predicate<T>): Reducer<boolean, T> {
+export function some<T>(pred?: Predicate<T>): Reducer<boolean, T>;
+export function some<T>(xs: Iterable<T>): boolean;
+export function some<T>(pred: Predicate<T>, xs: Iterable<T>): boolean;
+export function some(...args: any[]): any {
+    const res = $$reduce(some, args);
+    if (res !== undefined) {
+        return res;
+    }
+    const pred = args[0];
     return reducer(
         () => false,
         pred ?

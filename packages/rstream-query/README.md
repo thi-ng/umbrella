@@ -1,6 +1,8 @@
 # @thi.ng/rstream-query
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-query.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -160,7 +162,7 @@ addCity("paris", "france");
 After setting up the above query and its internal transformations, the
 generated dataflow topology then looks as follows:
 
-![graphviz output](../../assets/rs-query1.svg)
+![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rs-query1.svg)
 
 - The blue nodes are `TripleStore`-internal index stream sources,
   emitting changes when new triples are added
@@ -174,7 +176,8 @@ Btw. The diagram has been generated using
 [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
 and can be recreated by calling `store.toDot()` (for the above example)
 
-The source code for the above example is [here](./test/example.ts)
+The source code for the above example is
+[here](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query/test/example.ts)
 
 (Many) more features forthcoming...
 

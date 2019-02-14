@@ -1,9 +1,15 @@
 import { Reducer } from "../api";
+import { reducer } from "../reduce";
 
-export function str(sep = ""): Reducer<string, any> {
-    return [
-        () => <any>[],
-        (acc) => (<any>acc).join(sep),
-        (acc, x) => ((<any>acc).push(x), acc),
-    ];
+export function str(sep?: string): Reducer<string, any>;
+export function str(sep: string, xs: Iterable<any>): string;
+export function str(sep?: string, xs?: Iterable<any>): any {
+    sep = sep || "";
+    let first = true;
+    return xs ?
+        [...xs].join(sep) :
+        reducer<string, any>(
+            () => "",
+            (acc, x) => (acc = first ? acc + x : acc + sep + x, first = false, acc),
+        );
 }

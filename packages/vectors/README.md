@@ -1,6 +1,8 @@
 # @thi.ng/vectors
 
 [![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -8,13 +10,32 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
-    - [Vectors](#vectors)
-    - [Matrices](#matrices)
+    - [Features](#features)
+    - [Related packages](#related-packages)
 - [Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Basics](#basics)
-    - [Vector classes & interleaved vectors in large buffer](#vector-classes--interleaved-vectors-in-large-buffer)
-    - [Image RGB grayscale conversion](#image-rgb-grayscale-conversion)
+- [API](#api)
+    - [Constants](#constants)
+    - [Component setters & copying](#component-setters--copying)
+    - [Component swizzling](#component-swizzling)
+    - [Vector creation](#vector-creation)
+    - [Basic vector math](#basic-vector-math)
+    - [Multiply-add](#multiply-add)
+    - [Constraints](#constraints)
+    - [Cross product](#cross-product)
+    - [Dot product](#dot-product)
+    - [Interpolation](#interpolation)
+    - [Normalization / magnitude](#normalization--magnitude)
+    - [Distances](#distances)
+    - [Orientation](#orientation)
+    - [Rotations](#rotations)
+    - [Polar / cartesian conversion](#polar--cartesian-conversion)
+    - [Randomness](#randomness)
+    - [Unary vector math ops](#unary-vector-math-ops)
+    - [Vector array batch processing](#vector-array-batch-processing)
+    - [Comparison / equality](#comparison--equality)
+    - [Code generator](#code-generator)
 - [Authors](#authors)
 - [License](#license)
 
@@ -22,129 +43,59 @@ This project is part of the
 
 ## About
 
-This package provides vector and matrix operations as plain functions
-and class wrappers with fluid interface. All functions support any array
-/ typed array storage, incl. mapped views of larger buffers (e.g. for
-WebGL / WASM interop, pixel buffers). Additionally, vectors support
-flexible data layouts, incl. [AOS /
-SOA](https://en.wikipedia.org/wiki/AOS_and_SOA), striped, interleaved,
-aligned etc.
+This package provides 350+ largely code generated functions & supporting
+types to perform vector operations on fixed and arbitrary-length
+vectors, both packed and strided (i.e. where individual vector
+components are not successive array elements, for example in SOA
+layouts).
 
-### Vectors
+### Features
 
-In addition to [arbitrary sized
-vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/gvec.ts),
-the library provides these optimized fixed-sized versions:
+- Small & fast: The vast majority of these functions are code generated
+  with fixed-sized versions not using any loops. Minified + gzipped, the
+  entire package is ~7.6KB.
+- Unified API: Any `ArrayLike` type can be used as vector containers
+  (e.g. JS arrays, typed arrays, custom impls). Most functions are
+  implemented as multi-methods, dispatching to any potentially optimized
+  versions based on given vector arguments.
+- Highly modular: Each function is defined in its own submodule / file.
+  In addition to each generic multi-method base function, all
+  fixed-length optimized versions are exported too. E.g. If
+  [`add`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/add.ts)
+  performs vector addition on arbitrary-length vectors, `add2`, `add3`,
+  `add4` are the optimized version for fixed-length vectors...
+- Extensible: Custom vector ops can be defined in a similar manner using
+  the provided code generation helpers (see
+  [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
+  and
+  [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
+  for details).
+- Immutable by default: Each operation producing a vector result takes
+  an output vector as first argument. If `null`, the vector given as 2nd
+  argument will be used as output (i.e. for mutation).
+- Strided vector support is handled via the lightweight
+  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec2.ts)
+  class wrappers and the
+  [`gvec()`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/gvec.ts)
+  proxy (for generic, arbitrary-length vectors). These types behave like
+  normal arrays (for read/write operations) and are also iterable. A
+  subset of functions (suffixed with `S`, e.g.
+  [`addS`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/adds.ts)
+  vs. `add`) also support striding without the need for extra class
+  wrappers. This is handled via additional index and stride arguments
+  for each input/output vector. These functions are only available for
+  sizes 2 / 3 / 4, though.
+- Random vector functions support the `IRandom` interface defined by
+  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+  to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
+  will be used.
 
-- [Vec2](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec2.ts)
-- [Vec3](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec3.ts)
-- [Vec4](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec4.ts)
+### Related packages
 
-#### Supported operations
-
-Note: Most functions are provided in different (optimized) versions,
-depending on vector size. E.g. `add` performs vector addition for
-arbitrary sizes, `add2` for 2D vectors, `add3` for 3D, `add4` for 4D...
-
-All vector operations (regardless of size) operate on any array-like
-buffer and accept optional start indices and component strides (number
-of elements (+1) between individual vector components). This allows for
-zero-copy vector operations on sections of larger buffers. The default
-start index is 0, default stride 1. See examples below and
-[tests](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/test/).
-
-| Operation                       | GVec         | Vec2             | Vec3             | Vec4             |
-|---------------------------------|--------------|------------------|------------------|------------------|
-| Get vector (dense copy)         | `get`        | `get2`           | `get3`           | `get4`           |
-| Set vector components (vector)  | `set`        | `set2`           | `set3`           | `set4`           |
-| Set vector components (uniform) | `setN`       | `setN2`          | `setN3`          | `setN4`          |
-| Set vector components (scalars) |              | `setS2`          | `setS3`          | `setS4`          |
-| Swizzle vector components       |              | `swizzle2`       | `swizzle3`       | `swizzle4`       |
-| Equality (w/ epsilon)           | `eqDelta`    | `eqDelta2`       | `eqDelta3`       | `eqDelta4`       |
-| Vector addition                 | `add`        | `add2`           | `add3`           | `add4`           |
-| Vector subtraction              | `sub`        | `sub2`           | `sub3`           | `sub4`           |
-| Vector multiplication           | `mul`        | `mul2`           | `mul3`           | `mul4`           |
-| Vector division                 | `div`        | `div2`           | `div3`           | `div4`           |
-| Uniform scalar addition         | `addN`       | `addN2`          | `addN3`          | `addN4`          |
-| Uniform scalar subtraction      | `subN`       | `subN2`          | `subN3`          | `subN4`          |
-| Uniform scalar multiply         | `mulN`       | `mulN2`          | `mulN3`          | `mulN4`          |
-| Uniform scalar multiply         | `divN`       | `divN2`          | `divN3`          | `divN4`          |
-| Vector negation                 | `neg`        | `neg2`           | `neg3`           | `neg4`           |
-| Multiply-add vectors            | `madd`       | `madd2`          | `madd3`          | `madd4`          |
-| Multiply-add scalar             | `maddN`      | `maddN2`         | `maddN3`         | `maddN4`         |
-| Linear interpolation (vector)   | `mix`        | `mix2`           | `mix3`           | `mix4`           |
-| Linear interpolation (uniform)  | `mixN`       | `mixN2`          | `mixN3`          | `mixN4`          |
-| Dot product                     | `dot`        | `dot2`           | `dot3`           | `dot4`           |
-| Cross product                   |              | `cross2`         | `cross3`         |                  |
-| Magnitude                       | `mag`        | `mag2`           | `mag3`           | `mag4`           |
-| Magnitude (squared)             | `magSq`      | `magSq2`         | `magSq3`         | `magSq4`         |
-| Normalize (w/ opt length)       | `normalize`  | `normalize2`     | `normalize3`     | `normalize4`     |
-| Limit to length                 |              | `limit2`         | `limit3`         | `limit4`         |
-| Distance                        | `dist`       | `dist2`          | `dist3`          | `dist4`          |
-| Distance (squared)              | `distSq`     | `distSq2`        | `distSq3`        | `distSq4`        |
-| Manhattan distance              |              | `distManhattan2` | `distManhattan3` | `distManhattan4` |
-| Chebyshev distance              |              | `distChebyshev2` | `distChebyshev3` | `distChebyshev4` |
-| Reflection                      |              | `reflect2`       | `reflect3`       | `reflect4`       |
-| RotationX                       |              |                  | `rotateX3`       |                  |
-| RotationY                       |              |                  | `rotateY3`       |                  |
-| RotationZ                       |              | `rotate2`        | `rotateZ3`       |                  |
-| Heading XY                      |              | `heading2`       | `headingXY3`     |                  |
-| Heading XZ                      |              |                  | `headingXZ3`     |                  |
-| Heading YZ                      |              |                  | `headingYZ3`     |                  |
-| Cartesian -> Polar              |              | `toPolar2`       | `toSpherical3`   |                  |
-| Polar -> Cartesian              |              | `toCartesian2`   | `toCartesian3`   |                  |
-| Minor axis                      |              | `minorAxis2`     | `minorAxis3`     | `minorAxis4`     |
-| Major axis                      |              | `majorAxis2`     | `majorAxis3`     | `majorAxis4`     |
-| Minimum                         | `min`        | `min2`           | `min3`           | `min4`           |
-| Maximum                         | `max`        | `max2`           | `max3`           | `max4`           |
-| Range clamping                  | `clamp`      | `clamp2`         | `clamp3`         | `clamp4`         |
-| Step (like GLSL)                | `step`       | `step2`          | `step3`          | `step4`          |
-| SmoothStep (like GLSL)          | `smoothStep` | `smoothStep2`    | `smoothStep3`    | `smoothStep4`    |
-| Absolute value                  | `abs`        | `abs2`           | `abs3`           | `abs4`           |
-| Sign (w/ opt epsilon)           | `sign`       | `sign2`          | `sign3`          | `sign4`          |
-| Round down                      | `floor`      | `floor2`         | `floor3`         | `floor4`         |
-| Round up                        | `ceil`       | `ceil2`          | `ceil3`          | `ceil4`          |
-| Square root                     | `sqrt`       | `sqrt2`          | `sqrt3`          | `sqrt4`          |
-| Power (vector)                  | `pow`        | `pow2`           | `pow3`           | `pow4`           |
-| Power (uniform)                 | `powN`       | `powN2`          | `powN3`          | `powN4`          |
-
-### Matrices
-
-All matrix types are in WebGL layout (column major) and densely packed (stride always 1).
-
-- [Mat23](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/mat23.ts)
-- [Mat33](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/mat33.ts)
-- [Mat44](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/mat44.ts)
-
-| Operation                           | Mat23                   | Mat33         | Mat44               |
-|-------------------------------------|-------------------------|---------------|---------------------|
-| Set identity                        | `identity23`            | `identity33`  | `identity44`        |
-| Get matrix components (dense copy)  | `get23`                 | `get33`       | `get44`             |
-| Set matrix components (matrix)      | `set23`                 | `set33`       | `set44`             |
-| Set matrix components (scalars)     | `setS23`                | `setS33`      | `setS44`            |
-| Create rotation matrix              |                         | `rotationX33` | `rotationX44`       |
-|                                     |                         | `rotationY33` | `rotationY44`       |
-|                                     | `rotation23`            | `rotationZ33` | `rotationZ44`       |
-|                                     | `rotationAroundPoint23` |               |                     |
-| Create scale matrix (vector)        | `scaleV23`              | `scaleV33`    | `scaleV44`          |
-| Create scale matrix (uniform)       | `scaleN23`              | `scaleN33`    | `scaleN44`          |
-| Create scale matrix (scalars)       | `scaleS23`              | `scaleS33`    | `scaleS44`          |
-|                                     | `scaleWithCenter23`     |               | `scaleWithCenter44` |
-| Create translation matrix (vector)  | `translationV23`        |               | `translationV44`    |
-| Create translation matrix (scalars) | `translationS23`        |               | `translationS44`    |
-| Create skew matrix                  | `skewX23` / `shearX23`  |               |                     |
-|                                     | `skewY23` / `shearY23`  |               |                     |
-| Create projection matrix            |                         |               | `projection`        |
-|                                     |                         |               | `ortho`             |
-|                                     |                         |               | `frustum`           |
-| Create camera matrix                |                         |               | `lookAt`            |
-| Matrix multiply                     | `mul23`                 | `mul33`       | `mul44`             |
-| Matrix concatenation (multiple)     | `concat23`              | `concat33`    | `concat44`          |
-| Matrix vector multiply              | `mulV23`                | `mulV33`      | `mulV44` (Vec4)     |
-|                                     |                         |               | `mulV344` (Vec3)    |
-| Determinant                         | `det23`                 | `det33`       | `det44`             |
-| Matrix inversion                    | `invert23`              | `invert33`    | `invert44`          |
-| Matrix transpose                    |                         | `transpose33` | `transpose44`       |
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
 
@@ -152,118 +103,293 @@ All matrix types are in WebGL layout (column major) and densely packed (stride a
 yarn add @thi.ng/vectors
 ```
 
-## Usage examples
+## Dependencies
 
-### Basics
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
+## Usage examples
 
 ```ts
 import * as v from "@thi.ng/vectors";
 
-// raw vector addition
-v.add4([1, 2, 3, 4], [10, 20, 30, 40]);
-// [ 11, 22, 33, 44 ]
+// immutable vector addition (1st arg is result)
+v.add([], [1, 2, 3, 4], [10, 20, 30, 40])
+// [11, 22, 33, 44]
 
-// with custom layout
-// here 3x 3D vectors in SOA layout:
-//       [x, x, x, y, y, y, z, z, z]
-points = [1, 4, 7, 2, 5, 8, 3, 6, 9];
+// mutable addition (if first arg is null)
+a = [1, 2, 3];
+v.add(null, a, a);
+// [2, 4, 6]
 
-// specify start indices and stride lengths
-// update 1st vector
-v.add3(points, [100, 200, 300], 0, 0, 3, 1);
-// [ 101, 4, 7, 202, 5, 8, 303, 6, 9 ]
+// multiply-add (o = a + b * c)
+v.madd([], [1, 2], [10, 20], [0.5, 0.25]);
+// [6, 7]
 
-// update 2nd vector
-v.add3(points, [100, 200, 300], 1, 0, 3, 1);
-// [ 101, 104, 7, 202, 205, 8, 303, 306, 9 ]
+// multiply-add w/ scalar (o = a + b * n)
+v.maddN([], [1, 2], [10, 20], 0.5);
+// [6, 12]
 
-// update 3rd vector
-v.add3(points, [100, 200, 300], 2, 0, 3, 1);
-// [ 101, 104, 107, 202, 205, 208, 303, 306, 309 ]
+// scalar addition w/ arbitrary length & strided vector
+v.addN([], gvec([0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 3, 1, 4), 10);
+// [11, 12, 13]
 
-// add 1st and 3rd vector and extract result
-v.get3(v.add3(points, points, 0, 2, 3, 3), 0, 3);
-// [ 208, 410, 612 ]
+v.dist([1, 2], [100, 200]);
+// 221.37072977247917
 
-// re-arrange vector components into new vector
-// the last 4 args define component order:
+v.distManhattan([1, 2], [100, 200]);
+// 297
 
-// YXWZ
-v.swizzle4([], [10, 20, 30, 40], 1, 0, 3, 2);
-// [ 20, 10, 40, 30 ]
+v.distChebyshev([1, 2], [100, 200]);
+// 198
 
-// XXZZ
-v.swizzle4([], [10, 20, 30, 40], 0, 0, 2, 2);
-// [ 10, 10, 30, 30 ]
+v.mixN([], [1, 2], [10, 20], 0.5);
+// [5.5, 11]
 
-// arbitrary length vectors
-norm = v.normalize([1, 2, 3, 4, 5, 6, 7, 8, 6, 4]);
-// [ 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.375, 0.25 ]
+v.fromHomogeneous([], [100, 200, 0.5]);
+// [200, 400]
 
-v.mag(norm);
-// 1
+v.swizzle4([], [1, 2], 1, 1, 0, 0);
+// [ 2, 2, 1, 1 ]
 ```
 
-### Vector classes & interleaved vectors in large buffer
+## API
 
-```ts
-// element stride 3 + 2 + 4 = 9
-buf = [
-    // pos     uv   color (rgba)
-    0,0,0,     0,0, 1,0,0,1,
-    100,0,0,   1,0, 1,1,0,1,
-    100,100,0, 1,1, 1,0,1,1,
-    0,100,0,   0,1, 0,1,1,1,
-];
+### Constants
 
-// create memory mapped vector instances (using Vec3 class)
-pos = v.Vec3.mapBuffer(buf, 4, 0, 1, 9); // offset = 0
-uv = v.Vec2.mapBuffer(buf, 4, 3, 1, 9);  // offset = 3
-col = v.Vec4.mapBuffer(buf, 4, 5, 1, 9); // offset = 5
+- `MAX2` / `MAX3` / `MAX4` - each component `+Infinity`
+- `MIN2` / `MIN3` / `MIN4` - each component `-Infinity`
+- `ONE2` / `ONE3` / `ONE4` - each component `1`
+- `ZERO2` / `ZERO3` / `ZERO4` - each component `0`
+- `X2` / `X3` / `X4` - positive X axis
+- `Y2` / `Y3` / `Y4` - positive Y axis
+- `Z3` / `Z4` - positive Z axis
+- `W4` - positive W axis
 
-console.log(`pos: ${pos[1]}, uv: ${uv[1]}, color: ${col[1]}`);
-// pos: [100, 0, 0], uv: [1, 0], color: [1, 1, 0, 1]
+### Component setters & copying
 
-// compute centroid
-centroid = pos.reduce((c, p) => c.add(p), v.vec3()).divN(pos.length);
-// Vec3 { buf: [ 50, 50, 0 ], i: 0, s: 1 }
+- `set` / `set2` / `set3` / `set4`
+- `setC` / `setC2` / `setC3` / `setC4` / `setC6`
+- `setN` / `setN2` / `setN3` / `setN4`
+- `setS` / `setS2` / `setS3` / `setS4`
+- `setSN2` / `setSN3` / `setSN4`
+- `copy`
+- `empty`
+- `one`
+- `zero`
 
-// build matrix to transform geometry
-tx = v.Mat44.concat(
-    v.Mat44.scale(0.01),
-    v.Mat44.translation(centroid.copy().neg()),
-    v.Mat44.rotationZ(v.rad(90)),
-);
+### Component swizzling
 
-// apply transform to all positions
-pos.forEach((p) => tx.mulV3(p));
-```
+- `swizzle2` / `swizzle3` / `swizzle4`
+- `swapXY` / `swapXZ` / `swapYZ`
 
-### Image RGB grayscale conversion
+### Vector creation
 
-```ts
-canvas = document.getElementById("main");
-img = canvas.getContext("2d").getImageData(0,0, canvas.width, canvas.height);
+Functions to create wrapped vector instances:
 
-v.transformVectors1(
-    // multiply each RGB vector w/ weights
-    // then use result for all 3 color channels
-    (a, b, ia, ib, sa, sb) =>
-        v.setN3(a, v.dot3(a, b, ia, ib, sa, sb), ia, sa),
-    // pixel buffer
-    img,
-    // RGB weight coefficients
-    [0.29, 0.6, 0.11],
-    // num pixels (RGBA vectors)
-    canvas.width * canvas.height,
-    // start indices
-    0, 0,
-    // component strides
-    1, 1,
-    // pixel stride
-    4
-);
-```
+- `vec2` / `vec2n`
+- `vec3` / `vec3n`
+- `vec4` / `vec4n`
+- `gvec`
+
+Wrap existing vanilla vectors:
+
+- `asVec2` / `asVec3` / `asVec4`
+
+Vanilla vector (array) factories:
+
+- `ones`
+- `zeroes`
+
+### Basic vector math
+
+#### Vector / vector
+
+Component wise op with 2 input vectors:
+
+- `add` / `add2` / `add3` / `add4`
+- `div` / `div2` / `div3` / `div4`
+- `mul` / `mul2` / `mul3` / `mul4`
+- `sub` / `sub2` / `sub3` / `sub4`
+- `mod` / `mod2` / `mod3` / `mod4`
+- `pow` / `pow2` / `pow3` / `pow4`
+
+#### Vector / scalar
+
+Component wise op with one input vector and single scalar:
+
+- `addN` / `addN2` / `addN3` / `addN4`
+- `divN` / `divN2` / `divN3` / `divN4`
+- `mulN` / `mulN2` / `mulN3` / `mulN4`
+- `subN` / `subN2` / `subN3` / `subN4`
+- `neg` - same as `mulN(out, v, -1)`
+- `modN` / `modN2` / `modN3` / `modN4`
+- `powN` / `powN2` / `powN3` / `powN4`
+
+#### Strided vectors
+
+Functions for memory mapped, strided vectors (without requiring wrappers):
+
+- `addS2` / `addS3` / `addS4`
+- `divS2` / `divS3` / `divS4`
+- `mulS2` / `mulS3` / `mulS4`
+- `subS2` / `subS3` / `subS4`
+
+### Multiply-add
+
+- `addm` / `addm2` / `addm3` / `addm4`
+- `addmN` / `addmN2` / `addmN3` / `addmN4`
+- `addW2` / `addW3` / `addW4` / `addW5`
+- `madd` / `madd2` / `madd3` / `madd4`
+- `maddN` / `maddN2` / `maddN3` / `maddN4`
+- `subm` / `subm2` / `subm3` / `subm4`
+- `submN` / `submN2` / `submN3` / `submN4`
+
+### Constraints
+
+- `clamp`
+- `clamp2` / `clamp3` / `clamp4`
+- `clampN` / `clampN2` / `clampN3` / `clampN4`
+- `clamp01` / `clamp01_2` / `clamp01_3` / `clamp01_4`
+- `clamp11` / `clamp11_2` / `clamp11_3` / `clamp11_4`
+- `max` / `max2` / `max3` / `max4`
+- `min` / `min2` / `min3` / `min4`
+
+### Cross product
+
+- `cross2`
+- `cross3`
+- `orthoNormal3`
+- `signedArea2`
+
+### Dot product
+
+- `dot`
+- `dot2` / `dot3` / `dot4`
+- `dotC4` / `dotC6` / `dotC8`
+- `dotS2` / `dotS3` / `dotS4`
+
+### Interpolation
+
+- `mix` / `mix2` / `mix3` / `mix4`
+- `mixN` / `mixN2` / `mixN3` / `mixN4`
+- `mixBilinear` / `mixBilinear2` / `mixBilinear3` / `mixBilinear4`
+- `mixCubic`
+- `mixQuadratic`
+- `smoothStep` / `smoothStep2` / `smoothStep3` / `smoothStep4`
+- `step` / `step2` / `step3` / `step4`
+
+### Normalization / magnitude
+
+- `limit`
+- `mag`
+- `magSq` / `magSq2` / `magSq3` / `magSq4`
+- `normalize`
+
+### Distances
+
+- `dist`
+- `distSq` / `distSq2` / `distSq3` / `distSq4`
+- `distChebyshev` / `distChebyshev2` / `distChebyshev3` / `distChebyshev4`
+- `distManhattan` / `distManhattan2` / `distManhattan3` / `distManhattan4`
+
+### Orientation
+
+- `angleBetween2` / `angleBetween3`
+- `angleRatio`
+- `bisect2`
+- `direction`
+- `faceForward`
+- `heading` / `headingXY` / `headingXZ` / `headingYZ`
+- `normalLeft2` / `normalRight2`
+- `perpendicularLeft2` / `perpendicularRight2`
+- `project`
+- `reflect`
+- `refract`
+
+### Rotations
+
+(Also see rotation matrices provided by
+[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices))
+
+- `rotateAroundAxis3`
+- `rotateAroundPoint2`
+- `rotateX` \ `rotateY` \ `rotateZ`
+
+### Polar / cartesian conversion
+
+- `cartesian` / `cartesian2` / `cartesian3`
+- `polar` / `polar2` / `polar3`
+
+### Randomness
+
+All ops support custom PRNG impls based on the
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+`IRandom` interface and use `Math.random` by default:
+
+- `jitter`
+- `randMinMax` / `randMinMax2` / `randMinMax3` / `randMinMax4`
+- `randNorm`
+- `random` / `random2` / `random3` / `random4`
+
+### Unary vector math ops
+
+- `abs` / `abs2` / `abs3` / `abs4`
+- `acos` / `acos2` / `acos3` / `acos4`
+- `asin` / `asin2` / `asin3` / `asin4`
+- `ceil` / `ceil2` / `ceil3` / `ceil4`
+- `cos` / `cos2` / `cos3` / `cos4`
+- `cosh` / `cosh2` / `cosh3` / `cosh4`
+- `exp` / `exp2` / `exp3` / `exp4`
+- `floor` / `floor2` / `floor3` / `floor4`
+- `fract` / `fract2` / `fract3` / `fract4`
+- `fromHomogeneous` / `fromHomogeneous3` / `fromHomogeneous4`
+- `invert` / `invert2` / `invert3` / `invert4`
+- `invSqrt` / `invSqrt2` / `invSqrt3` / `invSqrt4`
+- `log` / `log2` / `log3` / `log4`
+- `major` / `major2` / `major3` / `major4`
+- `minor` / `minor2` / `minor3` / `minor4`
+- `round` / `round2` / `round3` / `round4`
+- `sign` / `sign2` / `sign3` / `sign4`
+- `sin` / `sin2` / `sin3` / `sin4`
+- `sinh` / `sinh2` / `sinh3` / `sinh4`
+- `sqrt` / `sqrt2` / `sqrt3` / `sqrt4`
+- `sum` / `sum2` / `sum3` / `sum4`
+- `tan` / `tan2` / `tan3` / `tan4`
+- `tanh` / `tanh2` / `tanh3` / `tanh4`
+- `trunc` / `trunc2` / `trunc3` / `trunc4`
+- `wrap` / `wrap2` / `wrap3` / `wrap4`
+
+### Vector array batch processing
+
+Functions to transform flat / strided buffers w/ vector operations:
+
+- `mapV` / `mapVN` /  `mapVV` /  `mapVVN` /  `mapVVV`
+
+### Comparison / equality
+
+- `comparator2` / `comparator3` / `comparator4`
+- `eqDelta` / `eqDelta2` / `eqDelta3` / `eqDelta4`
+- `eqDeltaS`
+- `eqDeltaArray`
+
+### Code generator
+
+- `compile` / `compileG` / `compileGHOF` / `compileHOF`
+- `defOp` / `defOpS` / `defFnOp` / `defHofOp`
+- `defMathNOp` / `defMathOp`
+- `vop`
+
+For more information about the code generator see:
+
+- [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
+- [templates.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/templates.ts)
+- [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
 
 ## Authors
 
@@ -271,4 +397,4 @@ v.transformVectors1(
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 Karsten Schmidt // Apache Software License 2.0

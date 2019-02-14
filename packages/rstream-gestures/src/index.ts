@@ -1,15 +1,19 @@
-import { IID } from "@thi.ng/api/api";
-import { fromEvent } from "@thi.ng/rstream/from/event";
-import { merge, StreamMerge } from "@thi.ng/rstream/stream-merge";
-import { map } from "@thi.ng/transducers/xform/map";
+import { IID } from "@thi.ng/api";
+import { fromEvent, merge, StreamMerge } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 
-export enum GestureType {
+export const enum GestureType {
     START,
     MOVE,
     DRAG,
     END,
     ZOOM,
 }
+
+/**
+ * Reverse lookup for `GestureType` enums
+ */
+// export const __GestureType = (<any>exports).GestureType;
 
 export interface GestureInfo {
     pos: number[];
@@ -39,6 +43,15 @@ export interface GestureStreamOpts extends IID<string> {
      */
     zoom: number;
     /**
+     * If true, the produced `zoom` values are considered absolute and
+     * will be constrained to the `minZoom .. maxZoom` interval. If
+     * `false`, the zoom values are relative and simply the result of
+     * `event.deltaY * smooth`.
+     *
+     * Default: true
+     */
+    absZoom: boolean;
+    /**
      * Min zoom value. Default: 0.25
      */
     minZoom: number;
@@ -50,6 +63,17 @@ export interface GestureStreamOpts extends IID<string> {
      * Scaling factor for zoom changes. Default: 1
      */
     smooth: number;
+    /**
+     * Local coordinate flag. If true (default), the elements position
+     * offset is subtracted.
+     */
+    local: boolean;
+    /**
+     * If true (default: false), all positions and delta values are
+     * scaled by `window.devicePixelRatio`. Note: Only enable if `local`
+     * is true.
+     */
+    scale: boolean;
 }
 
 /**
@@ -80,19 +104,30 @@ export interface GestureStreamOpts extends IID<string> {
  * @param el
  * @param opts
  */
-export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): StreamMerge<any, GestureEvent> {
+export const gestureStream = (
+    el: HTMLElement,
+    opts?: Partial<GestureStreamOpts>
+): StreamMerge<any, GestureEvent> => {
+
     let isDown = false,
         clickPos: number[];
+
     opts = Object.assign(<GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
+        absZoom: true,
         minZoom: 0.25,
         maxZoom: 4,
         smooth: 1,
         eventOpts: { capture: true },
         preventDefault: true,
+        local: true,
+        scale: false,
     }, opts);
+
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
+    const dpr = window.devicePixelRatio || 1;
+
     return merge({
         id: opts.id,
         src: [
@@ -121,11 +156,20 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
                 evt = e;
             }
             const pos = [evt.clientX | 0, evt.clientY | 0];
+            if (opts.local) {
+                const rect = el.getBoundingClientRect();
+                pos[0] -= rect.left;
+                pos[1] -= rect.top;
+            }
+            if (opts.scale) {
+                pos[0] *= dpr;
+                pos[1] *= dpr;
+            }
             const body = <GestureInfo>{ pos, zoom };
             switch (type) {
                 case GestureType.START:
                     isDown = true;
-                    clickPos = pos;
+                    clickPos = [...pos];
                     break;
                 case GestureType.END:
                     isDown = false;
@@ -136,11 +180,13 @@ export function gestureStream(el: Element, opts?: Partial<GestureStreamOpts>): S
                     body.delta = [pos[0] - clickPos[0], pos[1] - clickPos[1]];
                     break;
                 case GestureType.ZOOM:
-                    body.zoom = zoom = Math.min(Math.max(zoom + (<WheelEvent>e).deltaY * opts.smooth, opts.minZoom), opts.maxZoom);
+                    body.zoom = zoom = opts.absZoom ?
+                        Math.min(Math.max(zoom + (<WheelEvent>e).deltaY * opts.smooth, opts.minZoom), opts.maxZoom) :
+                        (<WheelEvent>e).deltaY * opts.smooth;
                     break;
                 default:
             }
             return <GestureEvent>[type, body];
         })
     });
-}
+};

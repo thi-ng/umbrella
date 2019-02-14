@@ -1,12 +1,7 @@
-import { svg } from "@thi.ng/hiccup-svg/svg";
-import { group } from "@thi.ng/hiccup-svg/group";
-import { rect } from "@thi.ng/hiccup-svg/rect";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { initGraph, node } from "@thi.ng/rstream-graph/graph";
-import { range2d } from "@thi.ng/transducers/iter/range2d";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/xform/map";
-
+import { group, rect, svg } from "@thi.ng/hiccup-svg";
+import { EventBus } from "@thi.ng/interceptors";
+import { initGraph, node } from "@thi.ng/rstream-graph";
+import { map, range2d } from "@thi.ng/transducers";
 import * as ev from "./events";
 import * as paths from "./paths";
 
@@ -60,10 +55,8 @@ export function initDataflow(bus: EventBus) {
  */
 const grid = node(map(
     ({ cols, rows }) =>
-        [...iterator(
-            map(([x, y]) => ["rect", { x, y, width: 1, height: 1 }]),
-            range2d(cols, rows)
-        )]));
+        [...map(([x, y]) => ["rect", { x, y, width: 1, height: 1 }], range2d(cols, rows))]
+));
 
 /**
  * Implementation for rotate node. Injects SVG `transform` attribute in
@@ -71,9 +64,9 @@ const grid = node(map(
  */
 const rotate = node(map(
     ({ shapes, theta }) =>
-        [...iterator(
-            map((s) => (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${s[1].y + 0.5})`, s)),
-            shapes)]
+        shapes.map(
+            (s) => (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${s[1].y + 0.5})`, s)
+        )
 ));
 
 /**

@@ -50,4 +50,18 @@ describe("TLRU", () => {
         }, 20);
     });
 
+    it("getSet ttl", (done) => {
+        setTimeout(() => {
+            c.getSet("a", () => Promise.resolve(10)).then(v => {
+                assert.equal(v, 10);
+                assert(!c.has("b"));
+                assert(!c.has("c"));
+                assert.deepEqual([...evicts], [["a", 1], ["b", 2], ["c", 3]]);
+                assert.deepEqual([...c.keys()], ["a"]);
+                assert.deepEqual([...c.values()], [10]);
+                done();
+            }).catch(done)
+        }, 20)
+    });
+
 });

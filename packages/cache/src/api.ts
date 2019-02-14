@@ -3,7 +3,7 @@ import {
     IEmpty,
     ILength,
     IRelease
-} from "@thi.ng/api/api";
+} from "@thi.ng/api";
 
 export interface ICache<K, V> extends
     Iterable<Readonly<[K, CacheEntry<K, V>]>>,

@@ -1,7 +1,6 @@
+import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArity } from "@thi.ng/errors";
-import { isString } from "@thi.ng/checks/is-string";
-
 import { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
 import { BasicRouter } from "./basic";
 
@@ -116,10 +115,10 @@ export class HTMLRouter extends BasicRouter {
     }
 
     protected handleRouteFailure() {
-        const route = this.routeForID(this.config.defaultRouteID);
-        const hash = this.format({ id: route.id, title: route.title });
         this.ignoreHashChange = true;
-        location.hash = hash;
+        location.hash = this.format({
+            id: this.routeForID(this.config.defaultRouteID).id
+        });
         this.ignoreHashChange = false;
         return true;
     }

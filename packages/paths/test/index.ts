@@ -1,7 +1,18 @@
 import * as assert from "assert";
-import { setIn } from "../src/index";
+import { exists, getIn, setIn } from "../src/index";
 
 describe("paths", () => {
+    it("getIn", () => {
+        const src: any = { a: { b: { c: [23, { d: 42 }] } } };
+        assert.deepStrictEqual(getIn(src, "a"), src.a);
+        assert.deepStrictEqual(getIn(src, "a.b"), src.a.b);
+        assert.deepStrictEqual(getIn(src, "a.b.c"), src.a.b.c);
+        assert.deepStrictEqual(getIn(src, "a.b.c.d"), undefined);
+        assert.deepStrictEqual(getIn(src, "a.b.c.0"), 23);
+        assert.deepStrictEqual(getIn(src, "a.b.c.1"), src.a.b.c[1]);
+        assert.deepStrictEqual(getIn(src, "a.b.c.1.d"), src.a.b.c[1].d);
+    });
+
     it("setIn (len = 0)", () => {
         assert.deepEqual(
             setIn({ a: { b: { c: 23 } } }, "", 1),
@@ -146,8 +157,25 @@ describe("paths", () => {
             a,
             { x: { y: { z: 1 } }, u: { v: 2 } }
         );
-        assert(a.x === b.x);
-        assert(a.x.y === b.x.y);
-        assert(a.u === b.u);
+        assert.ok(a.x === b.x);
+        assert.ok(a.x.y === b.x.y);
+        assert.ok(a.u === b.u);
     });
+
+    it("exists", () => {
+        const a = { a: { b: null } };
+        const b = { x: { y: { z: [1, 2, { u: 3, v: undefined }] } } };
+        assert.ok(!exists(null, "x.y.z"), "x.y.z");
+        assert.ok(!exists(0, "x.y.z"), "x.y.z");
+        assert.ok(exists("", "length"), "length");
+        assert.ok(exists(a, "a.b"), "a.b");
+        assert.ok(!exists(a, "a.b.c"), "a.b.c");
+        assert.ok(exists(b, "x"), "x");
+        assert.ok(exists(b, "x.y.z"), "x.y.z");
+        assert.ok(exists(b, "x.y.z.2.u"), "x.y.z.2.u");
+        assert.ok(exists(b, "x.y.z.2.v"), "x.y.z.2.v");
+        assert.ok(!exists(b, "x.y.z.3"), "x.y.z.3");
+        assert.ok(!exists(b, "x.y.z.3.u"), "x.y.z.3.u");
+        assert.ok(!exists(b, "x.z.y.2.u"), "x.z.y.2.u");
+    })
 });

@@ -1,6 +1,8 @@
 # @thi.ng/sax
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -32,6 +34,7 @@ yarn add @thi.ng/sax
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm)
 
@@ -53,9 +56,13 @@ src=`<?xml version="1.0" encoding="utf-8"?>
     <b2 foo="bar" />
 </a>`
 
+// sax.parse() returns a transducer
 doc = [...tx.iterator(sax.parse(), src)]
 
-// (see description of `type` values further below)
+// ...or returns iterator if input is given
+doc = [...sax.parse(src)]
+
+// (see description of `type` values and parse options further below)
 
 // [ { type: 0,
 //     tag: 'xml',
@@ -147,6 +154,10 @@ svg=`
 ```
 
 ### DOM-style tree parsing using `defmulti`
+
+This example shows how SVG can be parsed into
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+format.
 
 ```ts
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";

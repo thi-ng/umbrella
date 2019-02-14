@@ -7,6 +7,5 @@ import { wrap } from "./wrap";
  * @param src
  * @param n
  */
-export function wrapBoth<T>(src: T[], n = 1) {
-    return wrap(src, n);
-}
+export const wrapBoth =
+    <T>(src: Iterable<T>, n = 1) => wrap(src, n);

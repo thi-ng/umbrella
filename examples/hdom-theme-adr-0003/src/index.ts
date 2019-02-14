@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { start } from "@thi.ng/hdom/start";
+import { IObjectOf } from "@thi.ng/api";
+import { start } from "@thi.ng/hdom";
 import { getIn, Path } from "@thi.ng/paths";
 
 interface ButtonBehavior {
@@ -140,8 +140,8 @@ const app = (ctx) =>
             [btFixed, { onclick: () => alert("hi"), selected: true }, "Selected"],
             [btFixed, { disabled: true }, "Disabled"]],
         ["p",
-            "Please see ", [link, "https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-components/adr/0003-component-configuration-via-context.md", "ADR-0003"], " for details of this approach."],
-        ["p", [link, "https://github.com/thi-ng/umbrella/blob/develop/examples/hdom-theme-adr-0003", "Source"]]
+            "Please see ", [link, "https://github.com/thi-ng/umbrella/blob/master/packages/hdom-components/adr/0003-component-configuration-via-context.md", "ADR-0003"], " for details of this approach."],
+        ["p", [link, "https://github.com/thi-ng/umbrella/blob/master/examples/hdom-theme-adr-0003", "Source"]]
     ];
 
-start("app", app, ctx);
+start(app, { ctx });

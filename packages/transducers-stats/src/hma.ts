@@ -1,9 +1,11 @@
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { drop } from "@thi.ng/transducers/xform/drop";
-import { map } from "@thi.ng/transducers/xform/map";
-import { multiplex } from "@thi.ng/transducers/xform/multiplex";
-
+import {
+    comp,
+    drop,
+    iterator1,
+    map,
+    multiplex,
+    Transducer
+} from "@thi.ng/transducers";
 import { wma } from "./wma";
 
 /**
@@ -14,11 +16,15 @@ import { wma } from "./wma";
  *
  * @param weights period or array of weights
  */
-export function hma(period: number): Transducer<number, any> {
-    return comp(
-        multiplex(wma(period / 2 | 0), wma(period)),
-        drop(period - 1),
-        map((w) => 2 * w[0] - w[1]),
-        wma(Math.sqrt(period))
-    );
+export function hma(period: number): Transducer<number, any>;
+export function hma(period: number, src: Iterable<number>): IterableIterator<number>;
+export function hma(period: number, src?: Iterable<number>): any {
+    return src ?
+        iterator1(hma(period), src) :
+        comp(
+            multiplex(wma(period / 2 | 0), wma(period)),
+            drop(period - 1),
+            map((w) => 2 * w[0] - w[1]),
+            wma(Math.sqrt(period))
+        );
 };

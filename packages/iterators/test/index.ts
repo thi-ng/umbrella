@@ -374,6 +374,18 @@ describe("iterators", function () {
                 4
             ]);
         assert.deepEqual(
+            [...ti.walkIterator([[1, { a: [2] }], ["3", [4]]], (x) => Array.isArray(x) ? x : null, false)],
+            [
+                [[1, { a: [2] }], ["3", [4]]],
+                [1, { a: [2] }],
+                1,
+                { a: [2] },
+                ["3", [4]],
+                "3",
+                [4],
+                4
+            ]);
+        assert.deepEqual(
             [...ti.walkIterator([[1, { a: [2] }], ["3", [4]]], true)],
             [1,
                 "a",

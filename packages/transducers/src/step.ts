@@ -22,7 +22,7 @@ import { push } from "./rfn/push";
  * // [ 1, 2, 3 ]
  *
  * // no result
- * f = step(filter(even))
+ * f = step(filter((x) => !(x & 1)))
  * f(1); // undefined
  * f(2); // 2
  *
@@ -36,21 +36,22 @@ import { push } from "./rfn/push";
  *
  * @param tx
  */
-export function step<A, B>(tx: Transducer<A, B>): (x: A) => B | B[] {
-    const [_, complete, reduce] = tx(push()); _;
-    let done = false;
-    return (x: A) => {
-        if (!done) {
-            let acc = reduce([], x);
-            done = isReduced(acc);
-            if (done) {
-                acc = complete(acc.deref());
+export const step =
+    <A, B>(tx: Transducer<A, B>): (x: A) => B | B[] => {
+        const [_, complete, reduce] = tx(push()); _;
+        let done = false;
+        return (x: A) => {
+            if (!done) {
+                let acc = reduce([], x);
+                done = isReduced(acc);
+                if (done) {
+                    acc = complete(acc.deref());
+                }
+                return acc.length === 1 ?
+                    acc[0] :
+                    acc.length > 0 ?
+                        acc :
+                        undefined;
             }
-            return acc.length === 1 ?
-                acc[0] :
-                acc.length > 0 ?
-                    acc :
-                    undefined;
-        }
+        };
     };
-}

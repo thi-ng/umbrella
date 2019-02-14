@@ -1,8 +1,12 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { copy } from "./utils";
 
-export function mergeMapWith<K, V>(f: (a: V, b: V) => V, dest: Map<K, V>, ...xs: Map<K, V>[]) {
+export const mergeMapWith = <K, V>(
+    f: (a: V, b: V) => V,
+    dest: Map<K, V>,
+    ...xs: Map<K, V>[]
+) => {
+
     const res: Map<K, V> = copy(dest, Map);
     for (let x of xs) {
         for (let [k, v] of x) {
@@ -14,9 +18,14 @@ export function mergeMapWith<K, V>(f: (a: V, b: V) => V, dest: Map<K, V>, ...xs:
         }
     }
     return res;
-}
+};
 
-export function mergeObjWith<T>(f: (a: T, b: T) => T, dest: IObjectOf<T>, ...xs: IObjectOf<T>[]) {
+export const mergeObjWith = <T>(
+    f: (a: T, b: T) => T,
+    dest: IObjectOf<T>,
+    ...xs: IObjectOf<T>[]
+) => {
+
     const res: IObjectOf<T> = { ...dest };
     for (let x of xs) {
         for (let k in x) {
@@ -29,4 +38,4 @@ export function mergeObjWith<T>(f: (a: T, b: T) => T, dest: IObjectOf<T>, ...xs:
         }
     }
     return res;
-}
+};

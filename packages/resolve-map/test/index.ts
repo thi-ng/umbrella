@@ -43,7 +43,6 @@ describe("resolve-map", () => {
     it("cycles", () => {
         assert.throws(() => resolve({ a: "@a" }));
         assert.throws(() => resolve({ a: { b: "@b" } }));
-        // console.log(resolve({ a: { b: "@/a" } }));
         assert.throws(() => resolve({ a: { b: "@/a" } }));
         assert.throws(() => resolve({ a: { b: "@/a/b" } }));
         assert.throws(() => resolve({ a: "@b", b: "@a" }));
@@ -70,16 +69,23 @@ describe("resolve-map", () => {
         assert.equal(n, 1);
     });
 
+    it("deep resolve of yet unknown refs", () => {
+        assert.deepEqual(
+            resolve({ a: "@b/c/d", b: ($) => ({ c: { d: { e: $("/x") } } }), x: 1 }),
+            { a: { e: 1 }, b: { c: { d: { e: 1 } } }, x: 1 }
+        );
+    });
+
     it("destructure", () => {
         const stats = {
             // sequence average
-            mean: ({ src: a }) => tx.reduce(tx.mean(), a),
+            mean: ({ src: a }) => tx.mean(a),
             // sequence range
             range: ({ min, max }) => max - min,
             // computes sequence min val
-            min: ({ src }) => tx.reduce(tx.min(), src),
+            min: ({ src }) => tx.min(src),
             // computes sequence max val
-            max: ({ src }) => tx.reduce(tx.max(), src),
+            max: ({ src }) => tx.max(src),
             // sorted copy
             sorted: ({ src }) => [...src].sort((a, b) => a - b),
             // standard deviation

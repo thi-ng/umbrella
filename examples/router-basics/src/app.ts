@@ -1,12 +1,9 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { isArray } from "@thi.ng/checks/is-array";
+import { IObjectOf } from "@thi.ng/api";
+import { Atom } from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { trace, valueSetter } from "@thi.ng/interceptors/interceptors";
-import { EVENT_ROUTE_CHANGED } from "@thi.ng/router/api";
-import { HTMLRouter } from "@thi.ng/router/history";
-
+import { EventBus, trace, valueSetter } from "@thi.ng/interceptors";
+import { EVENT_ROUTE_CHANGED, HTMLRouter } from "@thi.ng/router";
 import {
     AppConfig,
     AppContext,
@@ -17,6 +14,7 @@ import { debugContainer } from "./components/debug-container";
 import { nav } from "./components/nav";
 import * as fx from "./effects";
 import * as ev from "./events";
+
 
 /**
  * Generic base app skeleton. You can use this as basis for your own
@@ -110,11 +108,14 @@ export class App {
      */
     start() {
         this.router.start();
-        start(this.config.domRoot, () => {
-            if (this.ctx.bus.processQueue()) {
-                return this.rootComponent();
-            }
-        }, this.ctx);
+        start(
+            () => {
+                if (this.ctx.bus.processQueue()) {
+                    return this.rootComponent();
+                }
+            },
+            { root: this.config.domRoot, ctx: this.ctx }
+        );
     }
 
     /**

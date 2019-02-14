@@ -1,6 +1,8 @@
 # @thi.ng/pointfree-lang
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
@@ -78,7 +80,7 @@ example](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg/)
 generating the below SVG graphic is located in the `/examples`
 directory.
 
-![generated example output](../../examples/pointfree-svg/output.svg)
+![generated example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/examples/pointfree-svg/output.svg)
 
 ```ts
 // DSL source code (syntax described further below)

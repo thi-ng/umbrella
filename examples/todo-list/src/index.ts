@@ -1,10 +1,8 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 import { Atom, Cursor, History } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom/start";
+import { start } from "@thi.ng/hdom";
 import { setIn, updateIn } from "@thi.ng/paths";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map, pairs } from "@thi.ng/transducers";
 
 interface Task {
     done: boolean;
@@ -20,7 +18,7 @@ const nextID = new Cursor<number>(db, "nextID");
 // create derived view of tasks transformed into components
 const items = db.addView(
     "tasks",
-    (tasks) => [...iterator(map(([id, t]) => taskItem(id, t)), pairs(tasks))]
+    (tasks) => [...map(([id, t]) => taskItem(id, t), pairs<Task>(tasks))]
 );
 
 // state updaters
@@ -84,4 +82,4 @@ const app = () => {
 };
 
 // kick off UI w/ root component function
-start("app", app());
+start(app());

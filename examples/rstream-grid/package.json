@@ -6,23 +6,33 @@
     "author": "Karsten Schmidt",
     "license": "MIT",
     "scripts": {
-        "build": "webpack --mode production --display-reasons --display-modules",
-        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
+        "start": "parcel index.html -p 8080 --open"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
+        "@thi.ng/checks": "latest",
         "@thi.ng/hdom": "latest",
+        "@thi.ng/hiccup": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/interceptors": "latest",
+        "@thi.ng/paths": "latest",
+        "@thi.ng/rstream": "latest",
         "@thi.ng/rstream-graph": "latest",
         "@thi.ng/transducers": "latest"
     },
     "devDependencies": {
         "@types/node": "^9.6.2",
-        "typescript": "^3.0.1",
-        "ts-loader": "^4.4.2",
-        "webpack": "^4.16.3",
-        "webpack-cli": "^3.1.0",
-        "webpack-dev-server": "^3.1.5"
+        "parcel-bundler": "^1.11.0",
+        "terser": "^3.14.1",
+        "typescript": "^3.2.2"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
     }
 }

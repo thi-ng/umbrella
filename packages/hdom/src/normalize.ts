@@ -1,18 +1,11 @@
-import * as impf from "@thi.ng/checks/implements-function";
-import * as isa from "@thi.ng/checks/is-array";
-import * as isf from "@thi.ng/checks/is-function";
-import * as isi from "@thi.ng/checks/is-iterable";
-import * as iso from "@thi.ng/checks/is-plain-object";
-import * as iss from "@thi.ng/checks/is-string";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { TAG_REGEXP } from "@thi.ng/hiccup/api";
+import { isArray as isa, isNotStringAndIterable as isi, isPlainObject as iso } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
+import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup";
+import { HDOMOpts } from "./api";
 
-const isArray = isa.isArray;
-const isFunction = isf.isFunction;
-const implementsFunction = impf.implementsFunction;
-const isIterable = isi.isIterable
-const isPlainObject = iso.isPlainObject;
-const isString = iss.isString;
+const isArray = isa;
+const isNotStringAndIterable = isi;
+const isPlainObject = iso;
 
 /**
  * Expands single hiccup element/component into its canonical form:
@@ -35,83 +28,59 @@ const isString = iss.isString;
  * ["div.bar.baz", {class: "foo"}] => ["div", {class: "foo bar baz"}]
  * ```
  *
+ * Elements with `__skip` attrib enabled and no children, will have an
+ * empty text child element injected.
+ *
  * @param spec
  * @param keys
  */
-export function normalizeElement(spec: any[], keys: boolean) {
-    let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
-    if (!isString(tag) || !(match = TAG_REGEXP.exec(tag))) {
-        illegalArgs(`${tag} is not a valid tag name`);
-    }
-    // return orig if already normalized and satisfies key requirement
-    if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
-        return spec;
-    }
-    attribs = hasAttribs ? { ...spec[1] } : {};
-    id = match[2];
-    clazz = match[3];
-    if (id) {
-        attribs.id = id;
-    }
-    if (clazz) {
-        clazz = clazz.replace(/\./g, " ");
-        if (attribs.class) {
-            attribs.class += " " + clazz;
-        } else {
-            attribs.class = clazz;
+export const normalizeElement =
+    (spec: any[], keys: boolean) => {
+        let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
+        if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
+            illegalArgs(`${tag} is not a valid tag name`);
         }
-    }
-    return [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
-}
-
-const NO_SPANS = {
-    option: 1,
-    text: 1,
-    textarea: 1,
-};
+        // return orig if already normalized and satisfies key requirement
+        if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
+            return spec;
+        }
+        attribs = hasAttribs ? { ...spec[1] } : {};
+        id = match[2];
+        clazz = match[3];
+        if (id) {
+            attribs.id = id;
+        }
+        if (clazz) {
+            clazz = clazz.replace(/\./g, " ");
+            if (attribs.class) {
+                attribs.class += " " + clazz;
+            } else {
+                attribs.class = clazz;
+            }
+        }
+        return attribs.__skip && spec.length < 3 ?
+            [match[1], attribs, ""] :
+            [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
+    };
 
 /**
- * Calling this function is a prerequisite before passing a component
- * tree to `diffElement`. Recursively expands given hiccup component
- * tree into its canonical form by:
+ * See `HDOMImplementation` interface for further details.
  *
- * - resolving Emmet-style tags (e.g. from `div#id.foo.bar`)
- * - evaluating embedded functions and replacing them with their result
- * - calling `render` life cycle method on component objects and using
- *   result
- * - consuming iterables and normalizing results
- * - calling `deref()` on elements implementing `IDeref` interface and
- *   using returned result
- * - calling `.toString()` on any other non-component value `x` and by
- *   default wrapping it in `["span", x]`. The only exceptions to this
- *   are: `option`, `textarea` and SVG `text` elements, for which spans
- *   are always skipped.
- *
- * Additionally, unless `keys` is set to false, an unique `key`
- * attribute is created for each node in the tree. This attribute is
- * used by `diffElement` to determine if a changed node can be patched
- * or will need to be replaced/removed. The `key` values are defined by
- * the `path` array arg.
- *
- * In terms of life cycle methods: `render` should ALWAYS return an
- * array or another function, else the component's `init` or `release`
- * fns will NOT be able to be called. E.g. If the return value of
- * `render` evaluates as a string or number, the return value should be
- * wrapped as `["span", "foo"]`. If no `init` or `release` are used,
- * this requirement is relaxed.
- *
- * For normal usage only the first 2 args should be specified and the
- * rest kept at their defaults.
- *
- * See `normalizeElement` for further details about canonical form.
- *
+ * @param opts
  * @param tree
- * @param ctx
- * @param path
- * @param keys
- * @param span
  */
-export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, span = true) {
+export const normalizeTree =
+    (opts: Partial<HDOMOpts>, tree: any) =>
+        _normalizeTree(tree, opts, opts.ctx, [0], opts.keys !== false, opts.span !== false);
+
+const _normalizeTree = (
+    tree: any,
+    opts: Partial<HDOMOpts>,
+    ctx: any,
+    path: number[],
+    keys: boolean,
+    span: boolean) => {
+
     if (tree == null) {
         return;
     }
@@ -119,18 +88,22 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
         if (tree.length === 0) {
             return;
         }
+        let norm, nattribs = tree[1], impl;
+        // if available, use branch-local normalize implementation
+        if (nattribs && (impl = nattribs.__impl) && (impl = impl.normalizeTree)) {
+            return impl(opts, tree);
+        }
         const tag = tree[0];
-        let norm, nattribs;
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
-        if (isFunction(tag)) {
-            return normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, path, keys, span);
+        if (typeof tag === "function") {
+            return _normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), opts, ctx, path, keys, span);
         }
         // component object w/ life cycle methods
         // (render() is the only required hook)
-        if (implementsFunction(tag, "render")) {
+        if (typeof tag.render === "function") {
             const args = [ctx, ...tree.slice(1)];
-            norm = normalizeTree(tag.render.apply(tag, args), ctx, path, keys, span);
+            norm = _normalizeTree(tag.render.apply(tag, args), opts, ctx, path, keys, span);
             if (isArray(norm)) {
                 (<any>norm).__this = tag;
                 (<any>norm).__init = tag.init;
@@ -141,6 +114,9 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
         }
         norm = normalizeElement(tree, keys);
         nattribs = norm[1];
+        if (nattribs.__normalize === false) {
+            return norm;
+        }
         if (keys && nattribs.key === undefined) {
             nattribs.key = path.join("-");
         }
@@ -152,16 +128,16 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
                 let el = norm[i];
                 if (el != null) {
                     const isarray = isArray(el);
-                    if ((isarray && isArray(el[0])) || (!isarray && !isString(el) && isIterable(el))) {
+                    if ((isarray && isArray(el[0])) || (!isarray && isNotStringAndIterable(el))) {
                         for (let c of el) {
-                            c = normalizeTree(c, ctx, path.concat(k), keys, span);
+                            c = _normalizeTree(c, opts, ctx, path.concat(k), keys, span);
                             if (c !== undefined) {
                                 res[j++] = c;
                             }
                             k++;
                         }
                     } else {
-                        el = normalizeTree(el, ctx, path.concat(k), keys, span);
+                        el = _normalizeTree(el, opts, ctx, path.concat(k), keys, span);
                         if (el !== undefined) {
                             res[j++] = el;
                         }
@@ -173,13 +149,16 @@ export function normalizeTree(tree: any, ctx?: any, path = [0], keys = true, spa
         }
         return norm;
     }
-    if (isFunction(tree)) {
-        return normalizeTree(tree(ctx), ctx, path, keys, span);
+    if (typeof tree === "function") {
+        return _normalizeTree(tree(ctx), opts, ctx, path, keys, span);
     }
-    if (implementsFunction(tree, "deref")) {
-        return normalizeTree(tree.deref(), ctx, path, keys, span);
+    if (typeof tree.toHiccup === "function") {
+        return _normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span);
+    }
+    if (typeof tree.deref === "function") {
+        return _normalizeTree(tree.deref(), opts, ctx, path, keys, span);
     }
     return span ?
         ["span", keys ? { key: path.join("-") } : {}, tree.toString()] :
         tree.toString();
-}
+};

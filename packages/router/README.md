@@ -1,6 +1,8 @@
 # @thi.ng/router
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -50,10 +52,11 @@ yarn start
 
 A complete, full commented demo app is here:
 
-[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) | [Live demo](https://demo.thi.ng/umbrella/router-basics/)
+[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) |
+[Live demo](https://demo.thi.ng/umbrella/router-basics/)
 
 ```ts
-import * as r from "@thi.ng/router";
+import { HTMLRouter, EV_ROUTE_CHANGED } from "@thi.ng/router";
 
 // router configuration
 const config = {
@@ -136,13 +139,14 @@ const config = {
 
 // `HTMLRouter` ONLY works in browser environments
 // for non-browser use cases use `BasicRouter`
-const router = new r.HTMLRouter(config);
-router.addListener(r.EV_ROUTE_CHANGED, console.log);
+const router = new HTMLRouter(config);
+router.addListener(EV_ROUTE_CHANGED, console.log);
 
 router.start();
 ```
 
-See [further comments in source code](https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts)
+See [further comments in source
+code](https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts)
 
 ## Authors
 

@@ -1,7 +1,11 @@
 import { DCons } from "@thi.ng/dcons";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { compR } from "@thi.ng/transducers/func/compr";
+import { illegalArgs } from "@thi.ng/errors";
+import {
+    compR,
+    iterator1,
+    Reducer,
+    Transducer
+} from "@thi.ng/transducers";
 
 /**
  * Like @thi.ng/transducers `movingAverage`, but using more efficient
@@ -12,7 +16,12 @@ import { compR } from "@thi.ng/transducers/func/compr";
  *
  * @param period
  */
-export function sma(period: number): Transducer<number, number> {
+export function sma(period: number): Transducer<number, number>;
+export function sma(period: number, src: Iterable<number>): IterableIterator<number>;
+export function sma(period: number, src?: Iterable<number>): any {
+    if (src) {
+        return iterator1(sma(period), src);
+    }
     period |= 0;
     period < 2 && illegalArgs("period must be >= 2");
     return (rfn: Reducer<any, number>) => {
@@ -21,7 +30,7 @@ export function sma(period: number): Transducer<number, number> {
         let sum = 0;
         return compR(
             rfn,
-            (acc, x) => {
+            (acc, x: number) => {
                 window.push(x);
                 const n = window.length;
                 sum += x;
@@ -29,5 +38,5 @@ export function sma(period: number): Transducer<number, number> {
                 return n >= period ? reduce(acc, sum / period) : acc;
             }
         );
-    }
+    };
 };

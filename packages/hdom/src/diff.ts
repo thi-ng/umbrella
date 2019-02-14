@@ -1,171 +1,294 @@
-import * as isa from "@thi.ng/checks/is-array";
-import * as iss from "@thi.ng/checks/is-string";
-import { DiffLogEntry } from "@thi.ng/diff/api";
-import { diffArray } from "@thi.ng/diff/array";
-import { diffObject } from "@thi.ng/diff/object";
-import { equiv } from "@thi.ng/equiv";
+import { IObjectOf, SEMAPHORE } from "@thi.ng/api";
+import { diffArray, DiffMode, diffObject } from "@thi.ng/diff";
 import {
-    createDOM,
-    removeAttribs,
-    removeChild,
-    setAttrib
-} from "./dom";
+    equiv as _equiv,
+    equivArrayLike,
+    equivMap,
+    equivObject,
+    equivSet
+} from "@thi.ng/equiv";
+import { HDOMImplementation, HDOMOpts } from "./api";
 
-const isArray = isa.isArray;
-const isString = iss.isString;
+const isArray = Array.isArray;
+const max = Math.max;
 
-const SEMAPHORE = Symbol();
+// child index tracking template buffer
+const INDEX = (() => {
+    const res = new Array(2048);
+    for (let i = 2, n = res.length; i < n; i++) {
+        res[i] = i - 2;
+    }
+    return res;
+})();
+
+const buildIndex =
+    (n: number) => {
+        if (n <= INDEX.length) {
+            return INDEX.slice(0, n);
+        }
+        const res = new Array(n);
+        while (--n >= 2) {
+            res[n] = n - 2;
+        }
+        return res;
+    };
 
 /**
- * Takes a DOM root element and two hiccup trees, `prev` and `curr`.
- * Recursively computes diff between both trees and applies any
- * necessary changes to reflect `curr` tree in real DOM.
+ * See `HDOMImplementation` interface for further details.
  *
- * For newly added components, calls `init` with created DOM element
- * (plus user provided context and any other args) for any components
- * with `init` life cycle method. Likewise, calls `release` on
- * components with `release` method when the DOM element is removed.
- *
- * Important: The actual DOM element given is assumed to exactly
- * represent the state of the `prev` tree. Since this function does NOT
- * track the real DOM at all, the resulting changes will result in
- * potentially undefined behavior if there're discrepancies.
- *
- * @param root
+ * @param opts
+ * @param impl hdom implementation
+ * @param parent
  * @param prev previous tree
  * @param curr current tree
+ * @param child child index
  */
-export function diffElement(root: Element, prev: any, curr: any) {
-    _diffElement(root, prev, curr, 0);
-}
+export const diffTree = <T>(
+    opts: Partial<HDOMOpts>,
+    impl: HDOMImplementation<T>,
+    parent: T,
+    prev: any[],
+    curr: any[],
+    child: number = 0) => {
 
-function _diffElement(parent: Element, prev: any, curr: any, child: number) {
-    const delta = diffArray(prev, curr, equiv, true);
+    const attribs = curr[1];
+    if (attribs.__skip) {
+        return;
+    }
+    // always replace element if __diff = false
+    if (attribs.__diff === false) {
+        releaseTree(prev);
+        impl.replaceChild(opts, parent, child, curr);
+        return;
+    }
+    // delegate to branch-local implementation
+    let _impl = attribs.__impl;
+    if (_impl && _impl !== impl) {
+        return _impl.diffTree(opts, _impl, parent, prev, curr, child);
+    }
+    const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE_LINEAR, equiv);
     if (delta.distance === 0) {
         return;
     }
     const edits = delta.linear;
-    const el = parent.children[child];
-    let i, j, k, eq, e, status, idx, val;
-    if (edits[0][0] !== 0 || (i = prev[1]).key !== (j = curr[1]).key) {
+    const el = impl.getChild(parent, child);
+    let i: number;
+    let ii: number;
+    let j: number;
+    let idx: number;
+    let k: string;
+    let eq: any[];
+    let status: number;
+    let val: any;
+    if (edits[0] !== 0 || prev[1].key !== attribs.key) {
         // DEBUG && console.log("replace:", prev, curr);
-        releaseDeep(prev);
-        removeChild(parent, child);
-        createDOM(parent, curr, child);
+        releaseTree(prev);
+        impl.replaceChild(opts, parent, child, curr);
         return;
     }
-    if ((i = prev.__release) && i !== curr.__release) {
-        releaseDeep(prev);
+    if ((val = (<any>prev).__release) && val !== (<any>curr).__release) {
+        releaseTree(prev);
     }
-    if (edits[1][0] !== 0) {
-        diffAttributes(el, prev[1], curr[1]);
+    if (edits[3] !== 0) {
+        diffAttributes(impl, el, prev[1], curr[1]);
+        // if attribs changed & distance == 2 then we're done here...
+        if (delta.distance === 2) {
+            return;
+        }
     }
+    const numEdits = edits.length;
+    const prevLength = prev.length - 1;
     const equivKeys = extractEquivElements(edits);
-    const n = edits.length;
-    const noff = prev.length - 1;
-    const offsets = new Array(noff + 1);
-    for (i = noff; i >= 2; i--) {
-        offsets[i] = i - 2;
-    }
-    for (i = 2; i < n; i++) {
-        e = edits[i], status = e[0], val = e[2];
-        // DEBUG && console.log(`edit: o:[${offsets.toString()}] i:${idx} s:${status}`, val);
+    const offsets = buildIndex(prevLength + 1);
+    for (i = 2, ii = 6; ii < numEdits; i++ , ii += 3) {
+        status = edits[ii];
         if (status === -1) {
+            // element removed / edited?
+            val = edits[ii + 2];
             if (isArray(val)) {
                 k = val[1].key;
                 if (k !== undefined && equivKeys[k][2] !== undefined) {
                     eq = equivKeys[k];
                     k = eq[0];
                     // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
-                    _diffElement(el, prev[k], curr[eq[2]], offsets[k]);
+                    diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
-                    idx = e[1];
+                    idx = edits[ii + 1];
                     // DEBUG && console.log("remove @", offsets[idx], val);
-                    releaseDeep(val);
-                    removeChild(el, offsets[idx]);
-                    for (j = noff; j >= idx; j--) {
-                        offsets[j] = Math.max(offsets[j] - 1, 0);
+                    releaseTree(val);
+                    impl.removeChild(el, offsets[idx]);
+                    for (j = prevLength; j >= idx; j--) {
+                        offsets[j] = max(offsets[j] - 1, 0);
                     }
                 }
-            } else if (isString(val)) {
-                el.textContent = "";
+            } else if (typeof val === "string") {
+                impl.setContent(el, "");
             }
         } else if (status === 1) {
-            if (isString(val)) {
-                el.textContent = val;
+            // element added/inserted?
+            val = edits[ii + 2];
+            if (typeof val === "string") {
+                impl.setContent(el, val);
             } else if (isArray(val)) {
                 k = val[1].key;
-                if (k === undefined || (k && equivKeys[k][0] === undefined)) {
-                    idx = e[1];
+                if (k === undefined || equivKeys[k][0] === undefined) {
+                    idx = edits[ii + 1];
                     // DEBUG && console.log("insert @", offsets[idx], val);
-                    createDOM(el, val, offsets[idx]);
-                    for (j = noff; j >= idx; j--) {
+                    impl.createTree(opts, el, val, offsets[idx]);
+                    for (j = prevLength; j >= idx; j--) {
                         offsets[j]++;
                     }
                 }
             }
         }
     }
-    if ((i = curr.__init) && i != prev.__init) {
-        // DEBUG && console.log("call __init", curr);
-        i.apply(curr, [el, ...(curr.__args)]);
+    // call __init after all children have been added/updated
+    if ((val = (<any>curr).__init) && val != (<any>prev).__init) {
+        val.apply(curr, [el, ...((<any>curr).__args)]);
     }
-}
+};
 
-function releaseDeep(tag: any) {
-    if (isArray(tag)) {
-        if ((<any>tag).__release) {
-            // DEBUG && console.log("call __release", tag);
-            (<any>tag).__release.apply(tag, (<any>tag).__args);
-            delete (<any>tag).__release;
+/**
+ * Helper function for `diffTree()` to compute & apply the difference
+ * between a node's `prev` and `curr` attributes.
+ *
+ * @param impl
+ * @param el
+ * @param prev
+ * @param curr
+ */
+export const diffAttributes =
+    <T>(impl: HDOMImplementation<T>, el: T, prev: any, curr: any) => {
+        const delta = diffObject<any>(prev, curr, DiffMode.FULL, _equiv);
+        impl.removeAttribs(el, delta.dels, prev);
+        let val = SEMAPHORE;
+        let i, e, edits;
+        for (edits = delta.edits, i = edits.length; (i -= 2) >= 0;) {
+            const a = edits[i];
+            if (a.indexOf("on") === 0) {
+                impl.removeAttribs(el, [a], prev);
+            }
+            if (a !== "value") {
+                impl.setAttrib(el, a, edits[i + 1], curr);
+            } else {
+                val = edits[i + 1];
+            }
         }
-        for (let i = tag.length; --i >= 2;) {
-            releaseDeep(tag[i]);
+        for (edits = delta.adds, i = edits.length; --i >= 0;) {
+            e = edits[i];
+            if (e !== "value") {
+                impl.setAttrib(el, e, curr[e], curr);
+            } else {
+                val = curr[e];
+            }
         }
-    }
-}
+        if (val !== SEMAPHORE) {
+            impl.setAttrib(el, "value", val, curr);
+        }
+    };
 
-function diffAttributes(el: Element, prev: any, curr: any) {
-    let i, e, edits;
-    const delta = diffObject(prev, curr);
-    removeAttribs(el, delta.dels, prev);
-    let value = SEMAPHORE;
-    for (edits = delta.edits, i = edits.length; --i >= 0;) {
-        e = edits[i];
-        const a = e[0];
-        if (a.indexOf("on") === 0) {
-            el.removeEventListener(a.substr(2), prev[a]);
+/**
+ * Recursively attempts to call the `release` lifecycle method on every
+ * element in given tree (branch), using depth-first descent. Each
+ * element is checked for the presence of the `__release` control
+ * attribute. If (and only if) it is set to `false`, further descent
+ * into that element's branch is skipped.
+ *
+ * @param tag
+ */
+export const releaseTree =
+    (tag: any) => {
+        if (isArray(tag)) {
+            let x: any;
+            if ((x = tag[1]) && x.__release === false) {
+                return;
+            }
+            if ((<any>tag).__release) {
+                // DEBUG && console.log("call __release", tag);
+                (<any>tag).__release.apply((<any>tag).__this, (<any>tag).__args);
+                delete (<any>tag).__release;
+            }
+            for (x = tag.length; --x >= 2;) {
+                releaseTree(tag[x]);
+            }
         }
-        if (a !== "value") {
-            setAttrib(el, a, e[1], curr);
+    };
+
+const extractEquivElements =
+    (edits: any[]) => {
+        let k: string;
+        let val: any;
+        let ek: any[];
+        const equiv: IObjectOf<any[]> = {};
+        for (let i = edits.length; (i -= 3) >= 0;) {
+            val = edits[i + 2];
+            if (isArray(val) && (k = val[1].key) !== undefined) {
+                ek = equiv[k];
+                !ek && (equiv[k] = ek = [, ,]);
+                ek[edits[i] + 1] = edits[i + 1];
+            }
+        }
+        return equiv;
+    };
+
+const OBJP = Object.getPrototypeOf({});
+
+const FN = "function";
+const STR = "string";
+
+/**
+ * Customized version @thi.ng/equiv which takes `__diff` attributes into
+ * account (at any nesting level). If an hdom element's attribute object
+ * contains `__diff: false`, the object will ALWAYS be considered
+ * unequal, even if all other attributes in the object are equivalent.
+ *
+ * @param a
+ * @param b
+ */
+export const equiv =
+    (a: any, b: any): boolean => {
+        let proto: any;
+        if (a === b) {
+            return true;
+        }
+        if (a != null) {
+            if (typeof a.equiv === FN) {
+                return a.equiv(b);
+            }
         } else {
-            value = e[1];
+            return a == b;
         }
-    }
-    for (edits = delta.adds, i = edits.length; --i >= 0;) {
-        e = edits[i];
-        if (e !== "value") {
-            setAttrib(el, e, curr[e], curr);
+        if (b != null) {
+            if (typeof b.equiv === FN) {
+                return b.equiv(a);
+            }
         } else {
-            value = curr[e];
+            return a == b;
         }
-    }
-    if (value !== SEMAPHORE) {
-        setAttrib(el, "value", value, curr);
-    }
-}
-
-function extractEquivElements(edits: DiffLogEntry<any>[]) {
-    let k, v, e, ek;
-    const equiv = {};
-    for (let i = edits.length; --i >= 0;) {
-        e = edits[i];
-        v = e[2];
-        if (isArray(v) && (k = v[1].key) !== undefined) {
-            ek = equiv[k];
-            !ek && (equiv[k] = ek = [, ,]);
-            ek[e[0] + 1] = e[1];
+        if (typeof a === STR || typeof b === STR) {
+            return false;
         }
-    }
-    return equiv;
-}
+        if ((proto = Object.getPrototypeOf(a), proto == null || proto === OBJP) &&
+            (proto = Object.getPrototypeOf(b), proto == null || proto === OBJP)) {
+            return !((<any>a).__diff === false || (<any>b).__diff === false) &&
+                equivObject(a, b, equiv);
+        }
+        if (typeof a !== FN && a.length !== undefined &&
+            typeof b !== FN && b.length !== undefined) {
+            return equivArrayLike(a, b, equiv);
+        }
+        if (a instanceof Set && b instanceof Set) {
+            return equivSet(a, b, equiv);
+        }
+        if (a instanceof Map && b instanceof Map) {
+            return equivMap(a, b, equiv);
+        }
+        if (a instanceof Date && b instanceof Date) {
+            return a.getTime() === b.getTime();
+        }
+        if (a instanceof RegExp && b instanceof RegExp) {
+            return a.toString() === b.toString();
+        }
+        // NaN
+        return (a !== a && b !== b);
+    };

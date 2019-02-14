@@ -1,6 +1,10 @@
 import { Reducer } from "../api";
 import { reducer } from "../reduce";
 
-export function push<T>(): Reducer<T[], T> {
-    return reducer(() => [], (acc, x) => (acc.push(x), acc));
+export function push<T>(): Reducer<T[], T>;
+export function push<T>(xs: Iterable<T>): T[];
+export function push<T>(xs?: Iterable<T>): any {
+    return xs ?
+        [...xs] :
+        reducer(() => [], (acc, x) => (acc.push(x), acc));
 }

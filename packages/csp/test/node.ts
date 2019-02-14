@@ -1,11 +1,10 @@
-import { IEnable, IID, IObjectOf } from "@thi.ng/api/api";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-// import { DCons } from "@thi.ng/dcons";
+import { IEnable, IID, IObjectOf } from "@thi.ng/api";
+import { implementsFunction } from "@thi.ng/checks";
 import * as tx from "@thi.ng/transducers";
-
 import { IBuffer, IWriteableChannel } from "../src/api";
 import { Channel } from "../src/channel";
 import { Mult } from "../src/mult";
+// import { DCons } from "@thi.ng/dcons";
 
 export type NodeInput = NodeInputSpec | Channel<any> | Mult<any> | tx.Transducer<any, any>;
 export type NodeOutput = NodeOutputSpec | IWriteableChannel<any>;

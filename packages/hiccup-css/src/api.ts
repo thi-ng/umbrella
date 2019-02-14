@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
+import { IObjectOf } from "@thi.ng/api";
 
 /**
  * Function type used by `at_xxx()` functions or any

@@ -1,6 +1,6 @@
 import { start } from "@thi.ng/hdom";
-import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
+import { canvasWebGL } from "@thi.ng/hdom-components";
+import { repeatedly } from "@thi.ng/transducers";
 
 // canvas init hook
 const initGL = (_: HTMLCanvasElement, __: WebGLRenderingContext) => {
@@ -41,4 +41,4 @@ const app = () => {
         [c3, attribs, 400, 0.05]];
 };
 
-start("app", app());
+start(app());

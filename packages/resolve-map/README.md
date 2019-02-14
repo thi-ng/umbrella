@@ -1,6 +1,8 @@
 # @thi.ng/resolve-map
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/resolve-map.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -58,9 +60,11 @@ Any function values are called using two possible conventions:
 2) If no de-structure form is found in the function's arguments, the
    function is only called with `resolve` as argument.
 
-**Important:** Since ES6 var names can't contain special characters,
-destructured keys can ALWAYS only be looked up as siblings of the
-currently processed key.
+**Important:** ES6 destructuring can *only* be used for ES6 compile
+targets and *will fail when transpiling to ES5*. If you're not sure, use
+the 2nd (legacy) form. Also, since ES6 var names can't contain special
+characters, destructured keys can ALWAYS only be looked up as siblings
+of the currently processed key.
 
 The `resolve` function provided as arg to the user function accepts a
 path (**without `@` prefix**) to look up any other values in the root
@@ -135,22 +139,22 @@ import * as tx from "@thi.ng/transducers";
 // will be injected later as well
 const stats = {
     // sequence average
-    mean: ({src}) => tx.reduce(tx.mean(), src),
+    mean: ({ src }) => tx.mean(src),
     // sequence range
-    range: ({min,max}) => max - min,
+    range: ({ min, max }) => max - min,
     // computes sequence min val
-    min: ({src}) => tx.reduce(tx.min(), src),
+    min: ({ src }) => tx.min(src),
     // computes sequence max val
-    max: ({src}) => tx.reduce(tx.max(), src),
+    max: ({ src }) => tx.max(src),
     // sorted copy
-    sorted: ({src}) => [...src].sort((a, b) => a - b),
+    sorted: ({ src }) => [...src].sort((a, b) => a - b),
     // standard deviation
-    sd: ({src, mean})=>
+    sd: ({ src, mean })=>
         Math.sqrt(
             tx.transduce(tx.map((x) => Math.pow(x - mean, 2)), tx.add(), src) /
             (src.length - 1)),
     // compute 10th - 90th percentiles
-    percentiles: ({sorted}) => {
+    percentiles: ({ sorted }) => {
         return tx.transduce(
             tx.map((x) => sorted[Math.floor(x / 100 * sorted.length)]),
             tx.push(),

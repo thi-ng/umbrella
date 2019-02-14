@@ -1,14 +1,16 @@
-import { isArray } from "@thi.ng/checks/is-array";
-import { isString } from "@thi.ng/checks/is-string";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { isString } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 
 export type Path = PropertyKey | PropertyKey[];
 
 export type UpdateFn<T> = (curr: T, ...args: any[]) => T;
 
-const _copy = (s) => Array.isArray(s) ? s.slice() : { ...s };
+const isa = Array.isArray;
+const iss = isString;
 
-const compS = (k, f) => (s, v) => { s = _copy(s); s[k] = f ? f(s[k], v) : v; return s; }
+const _copy = (s) => isa(s) ? s.slice() : { ...s };
+
+const compS = (k, f) => (s, v) => (s = _copy(s), s[k] = (f ? f(s[k], v) : v), s);
 
 const compG = (k, f) => (s) => s ? f(s[k]) : undefined;
 
@@ -28,9 +30,45 @@ const compG = (k, f) => (s) => s ? f(s[k]) : undefined;
  *
  * @param path
  */
-export function toPath(path: Path) {
-    return isArray(path) ? path : isString(path) ? path.length > 0 ? path.split(".") : [] : path != null ? [path] : [];
-}
+export const toPath =
+    (path: Path) =>
+        isa(path) ?
+            path :
+            iss(path) ?
+                path.length > 0 ?
+                    path.split(".") :
+                    [] :
+                path != null ?
+                    [path] :
+                    [];
+
+/**
+ * Takes an arbitrary object and lookup path. Descends into object along
+ * path and returns true if the full path exists (even if final leaf
+ * value is `null` or `undefined`). Checks are performed using
+ * `hasOwnProperty()`.
+ *
+ * @param obj
+ * @param path
+ */
+export const exists =
+    (obj: any, path: Path) => {
+        if (obj == null) {
+            return false;
+        }
+        path = toPath(path);
+        for (let n = path.length - 1, i = 0; i <= n; i++) {
+            const k = path[i];
+            if (!obj.hasOwnProperty(k)) {
+                return false;
+            }
+            obj = obj[k];
+            if (obj == null && i < n) {
+                return false;
+            }
+        }
+        return true;
+    };
 
 /**
  * Composes a getter function for given nested lookup path. Optimized
@@ -62,29 +100,30 @@ export function toPath(path: Path) {
  *
  * @param path
  */
-export function getter(path: Path) {
-    const ks = toPath(path);
-    let [a, b, c, d] = ks;
-    switch (ks.length) {
-        case 0:
-            return (s) => s;
-        case 1:
-            return (s) => s ? s[a] : undefined;
-        case 2:
-            return (s) => s ? (s = s[a]) ? s[b] : undefined : undefined;
-        case 3:
-            return (s) => s ? (s = s[a]) ? (s = s[b]) ? s[c] : undefined : undefined : undefined;
-        case 4:
-            return (s) => s ? (s = s[a]) ? (s = s[b]) ? (s = s[c]) ? s[d] : undefined : undefined : undefined : undefined;
-        default:
-            const kl = ks[ks.length - 1];
-            let f = (s) => s ? s[kl] : undefined;
-            for (let i = ks.length - 2; i >= 0; i--) {
-                f = compG(ks[i], f);
-            }
-            return f;
-    }
-}
+export const getter =
+    (path: Path) => {
+        const ks = toPath(path);
+        let [a, b, c, d] = ks;
+        switch (ks.length) {
+            case 0:
+                return (s) => s;
+            case 1:
+                return (s) => s ? s[a] : undefined;
+            case 2:
+                return (s) => s ? (s = s[a]) ? s[b] : undefined : undefined;
+            case 3:
+                return (s) => s ? (s = s[a]) ? (s = s[b]) ? s[c] : undefined : undefined : undefined;
+            case 4:
+                return (s) => s ? (s = s[a]) ? (s = s[b]) ? (s = s[c]) ? s[d] : undefined : undefined : undefined : undefined;
+            default:
+                const kl = ks[ks.length - 1];
+                let f = (s) => s ? s[kl] : undefined;
+                for (let i = ks.length - 1; --i >= 0;) {
+                    f = compG(ks[i], f);
+                }
+                return f;
+        }
+    };
 
 /**
  * Composes a setter function for given nested update path. Optimized
@@ -139,28 +178,29 @@ export function getter(path: Path) {
  *
  * @param path
  */
-export function setter(path: Path): (s: any, v: any) => any {
-    const ks = toPath(path);
-    let [a, b, c, d] = ks;
-    switch (ks.length) {
-        case 0:
-            return (_, v) => v;
-        case 1:
-            return (s, v) => (s = _copy(s), s[a] = v, s);
-        case 2:
-            return (s, v) => { let x; s = _copy(s); s[a] = x = _copy(s[a]); x[b] = v; return s; };
-        case 3:
-            return (s, v) => { let x, y; s = _copy(s); s[a] = x = _copy(s[a]); x[b] = y = _copy(x[b]); y[c] = v; return s; };
-        case 4:
-            return (s, v) => { let x, y, z; s = _copy(s); s[a] = x = _copy(s[a]); x[b] = y = _copy(x[b]); y[c] = z = _copy(y[c]); z[d] = v; return s; };
-        default:
-            let f;
-            for (let i = ks.length - 1; i >= 0; i--) {
-                f = compS(ks[i], f);
-            }
-            return f;
-    }
-}
+export const setter =
+    (path: Path): (s: any, v: any) => any => {
+        const ks = toPath(path);
+        let [a, b, c, d] = ks;
+        switch (ks.length) {
+            case 0:
+                return (_, v) => v;
+            case 1:
+                return (s, v) => (s = _copy(s), s[a] = v, s);
+            case 2:
+                return (s, v) => { let x; s = _copy(s); s[a] = x = _copy(s[a]); x[b] = v; return s; };
+            case 3:
+                return (s, v) => { let x, y; s = _copy(s); s[a] = x = _copy(s[a]); x[b] = y = _copy(x[b]); y[c] = v; return s; };
+            case 4:
+                return (s, v) => { let x, y, z; s = _copy(s); s[a] = x = _copy(s[a]); x[b] = y = _copy(x[b]); y[c] = z = _copy(y[c]); z[d] = v; return s; };
+            default:
+                let f;
+                for (let i = ks.length; --i >= 0;) {
+                    f = compS(ks[i], f);
+                }
+                return f;
+        }
+    };
 
 /**
  * Immediate use getter, i.e. same as: `getter(path)(state)`.
@@ -173,9 +213,9 @@ export function setter(path: Path): (s: any, v: any) => any {
  * @param state
  * @param path
  */
-export function getIn(state: any, path: Path) {
-    return getter(path)(state);
-}
+export const getIn =
+    (state: any, path: Path) =>
+        getter(path)(state);
 
 /**
  * Immediate use setter, i.e. same as: `setter(path)(state, val)`.
@@ -188,9 +228,9 @@ export function getIn(state: any, path: Path) {
  * @param state
  * @param path
  */
-export function setIn(state: any, path: Path, val: any) {
-    return setter(path)(state, val);
-}
+export const setIn =
+    (state: any, path: Path, val: any) =>
+        setter(path)(state, val);
 
 /**
  * Like `setIn()`, but takes any number of path-value pairs and applies
@@ -206,16 +246,15 @@ export function setIn(state: any, path: Path, val: any) {
  * @param state
  * @param pairs
  */
-export function setInMany(state: any, ...pairs: any[]) {
-    const n = pairs.length;
-    if ((n & 1)) {
-        illegalArgs(`require an even number of args (got ${pairs.length})`);
-    }
-    for (let i = 0; i < n; i += 2) {
-        state = setIn(state, pairs[i], pairs[i + 1]);
-    }
-    return state;
-}
+export const setInMany =
+    (state: any, ...pairs: any[]) => {
+        const n = pairs.length;
+        (n & 1) && illegalArgs(`require even number of args (got ${pairs.length})`);
+        for (let i = 0; i < n; i += 2) {
+            state = setIn(state, pairs[i], pairs[i + 1]);
+        }
+        return state;
+    };
 
 /**
  * Similar to `setter()`, returns a function to update values at given
@@ -235,12 +274,13 @@ export function setInMany(state: any, ...pairs: any[]) {
  * @param path
  * @param fn
  */
-export function updater(path: Path, fn: UpdateFn<any>) {
-    const g = getter(path);
-    const s = setter(path);
-    return (state: any, ...args: any[]) =>
-        s(state, fn.apply(null, (args.unshift(g(state)), args)));
-};
+export const updater =
+    (path: Path, fn: UpdateFn<any>) => {
+        const g = getter(path);
+        const s = setter(path);
+        return (state: any, ...args: any[]) =>
+            s(state, fn.apply(null, (args.unshift(g(state)), args)));
+    };
 
 /**
  * Similar to `setIn()`, but applies given function to current path
@@ -257,9 +297,12 @@ export function updater(path: Path, fn: UpdateFn<any>) {
  * @param state
  * @param path
  */
-export function updateIn(state: any, path: Path, fn: UpdateFn<any>, ...args: any[]) {
-    return setter(path)(state, fn.apply(null, (args.unshift(getter(path)(state)), args)));
-}
+export const updateIn =
+    (state: any, path: Path, fn: UpdateFn<any>, ...args: any[]) =>
+        setter(path)(
+            state,
+            fn.apply(null, (args.unshift(getter(path)(state)), args))
+        );
 
 /**
  * Uses `updateIn()` and returns updated state with key for given path
@@ -275,13 +318,14 @@ export function updateIn(state: any, path: Path, fn: UpdateFn<any>, ...args: any
  * @param state
  * @param path
  */
-export function deleteIn(state: any, path: Path) {
-    const ks = [...toPath(path)];
-    if (ks.length > 0) {
-        const k = ks.pop();
-        return updateIn(state, ks, (x) => { x = { ...x }; delete x[k]; return x; });
-    }
-}
+export const deleteIn =
+    (state: any, path: Path) => {
+        const ks = [...toPath(path)];
+        if (ks.length > 0) {
+            const k = ks.pop();
+            return updateIn(state, ks, (x) => (x = { ...x }, delete x[k], x));
+        }
+    };
 
 /**
  * Higher-order function, similar to `setter()`. Returns function which
@@ -294,32 +338,33 @@ export function deleteIn(state: any, path: Path) {
  *
  * @param path
  */
-export function mutator(path: Path) {
-    const ks = toPath(path);
-    let [a, b, c, d] = ks;
-    switch (ks.length) {
-        case 0:
-            return (_, x) => x;
-        case 1:
-            return (s, x) => s ? (s[a] = x, s) : undefined;
-        case 2:
-            return (s, x) => { let t; return s ? (t = s[a]) ? (t[b] = x, s) : undefined : undefined };
-        case 3:
-            return (s, x) => { let t; return s ? (t = s[a]) ? (t = t[b]) ? (t[c] = x, s) : undefined : undefined : undefined };
-        case 4:
-            return (s, x) => { let t; return s ? (t = s[a]) ? (t = t[b]) ? (t = t[c]) ? (t[d] = x, s) : undefined : undefined : undefined : undefined };
-        default:
-            return (s, x) => {
-                let t = s;
-                const n = ks.length - 1;
-                for (let k = 0; k < n; k++) {
-                    if (!(t = t[ks[k]])) return;
+export const mutator =
+    (path: Path) => {
+        const ks = toPath(path);
+        let [a, b, c, d] = ks;
+        switch (ks.length) {
+            case 0:
+                return (_, x) => x;
+            case 1:
+                return (s, x) => s ? (s[a] = x, s) : undefined;
+            case 2:
+                return (s, x) => { let t; return s ? (t = s[a]) ? (t[b] = x, s) : undefined : undefined };
+            case 3:
+                return (s, x) => { let t; return s ? (t = s[a]) ? (t = t[b]) ? (t[c] = x, s) : undefined : undefined : undefined };
+            case 4:
+                return (s, x) => { let t; return s ? (t = s[a]) ? (t = t[b]) ? (t = t[c]) ? (t[d] = x, s) : undefined : undefined : undefined : undefined };
+            default:
+                return (s, x) => {
+                    let t = s;
+                    const n = ks.length - 1;
+                    for (let k = 0; k < n; k++) {
+                        if (!(t = t[ks[k]])) return;
+                    }
+                    t[ks[n]] = x;
+                    return s;
                 }
-                t[ks[n]] = x;
-                return s;
-            }
-    }
-}
+        }
+    };
 
 /**
  * Immediate use mutator, i.e. same as: `mutator(path)(state, val)`.
@@ -337,9 +382,9 @@ export function mutator(path: Path) {
  * @param path
  * @param val
  */
-export function mutIn(state: any, path: Path, val: any) {
-    return mutator(path)(state, val);
-}
+export const mutIn =
+    (state: any, path: Path, val: any) =>
+        mutator(path)(state, val);
 
 /**
  * Like `mutIn()`, but takes any number of path-value pairs and applies
@@ -354,13 +399,12 @@ export function mutIn(state: any, path: Path, val: any) {
  * @param state
  * @param pairs
  */
-export function mutInMany(state: any, ...pairs: any[]) {
-    const n = pairs.length;
-    if ((n & 1)) {
-        illegalArgs(`require an even number of args (got ${pairs.length})`);
-    }
-    for (let i = 0; i < n && state; i += 2) {
-        state = mutIn(state, pairs[i], pairs[i + 1]);
-    }
-    return state;
-}
+export const mutInMany =
+    (state: any, ...pairs: any[]) => {
+        const n = pairs.length;
+        (n & 1) && illegalArgs(`require even number of args (got ${pairs.length})`);
+        for (let i = 0; i < n && state; i += 2) {
+            state = mutIn(state, pairs[i], pairs[i + 1]);
+        }
+        return state;
+    };

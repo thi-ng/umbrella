@@ -1,6 +1,8 @@
 # @thi.ng/interceptors
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -39,6 +41,7 @@ and examples for now:
 Introductory:
 
 - [/examples/interceptor-basics](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics) | [live demo](https://demo.thi.ng/umbrella/interceptor-basics)
+- [/examples/interceptor-basics2](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics2) | [live demo](https://demo.thi.ng/umbrella/interceptor-basics2)
 - [/examples/async-effect](https://github.com/thi-ng/umbrella/tree/master/examples/async-effect) | [live demo](https://demo.thi.ng/umbrella/async-effect)
 
 Advanced:

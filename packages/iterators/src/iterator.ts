@@ -1,7 +1,8 @@
-export function iterator<T>(x: Iterable<T>) {
-    return x[Symbol.iterator]();
-}
+export const iterator =
+    <T>(x: Iterable<T>) =>
+        x[Symbol.iterator]();
 
-export function maybeIterator(x: any) {
-    return (x != null && x[Symbol.iterator] && x[Symbol.iterator]()) || undefined;
-}
+export const maybeIterator =
+    (x: any) =>
+        (x != null && x[Symbol.iterator] && x[Symbol.iterator]()) ||
+        undefined;

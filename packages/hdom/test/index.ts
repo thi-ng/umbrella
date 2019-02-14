@@ -1,17 +1,15 @@
+import { Atom } from "@thi.ng/atom";
+import { derefContext } from "@thi.ng/hiccup";
+import { map, range } from "@thi.ng/iterators";
 import * as assert from "assert";
-
-import { Atom } from "@thi.ng/atom/atom";
-import { map } from "@thi.ng/iterators/map";
-import { range } from "@thi.ng/iterators/range";
 import { normalizeTree } from "../src/normalize";
 
-function _check(a, b, ctx = null) {
-    assert.deepEqual(normalizeTree(a, ctx, [], false, false), b);
-}
+const _check =
+    (a, b, ctx = null) =>
+        assert.deepEqual(normalizeTree({ ctx, keys: false, span: false }, a), b);
 
-function check(id, a, b) {
-    it(id, () => _check(a, b));
-}
+const check =
+    (id, a, b) => it(id, () => _check(a, b));
 
 describe("hdom", () => {
 
@@ -111,22 +109,40 @@ describe("hdom", () => {
     );
 
     it("life cycle", () => {
-        let src: any = { render: () => ["div"] };
-        let res: any = ["div", {}];
+        let src: any = { render: () => ["div", "foo"] };
+        let res: any = ["div", {}, ["span", {}, "foo"]];
         res.__this = src;
         res.__init = res.__release = undefined;
         res.__args = [null];
         assert.deepEqual(
-            normalizeTree([src], null, [], false, false),
+            normalizeTree({ keys: false }, [src]),
             res
         );
-        res = ["div", { key: "0" }];
+        res = ["div", { key: "0" }, ["span", { key: "0-0" }, "foo"]];
         res.__this = src;
         res.__init = res.__release = undefined;
         res.__args = [null];
         assert.deepEqual(
-            normalizeTree([src], null, [0], true, false),
+            normalizeTree({}, [src]),
             res
+        );
+    });
+
+    it("dyn context", () => {
+        assert.deepEqual(
+            derefContext(
+                {
+                    a: 23,
+                    b: new Atom(42),
+                    c: new Atom({ foo: { bar: 66 } }).addView("foo.bar"),
+                },
+                ["a", "b", "c"]
+            ),
+            {
+                a: 23,
+                b: 42,
+                c: 66
+            }
         );
     });
 });

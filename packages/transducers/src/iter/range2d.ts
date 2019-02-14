@@ -1,5 +1,4 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { illegalArity } from "@thi.ng/errors";
 import { range } from "./range";
 
 export function range2d(toX: number, toY: number): IterableIterator<[number, number]>;
@@ -21,8 +20,9 @@ export function* range2d(...args: number[]) {
         default:
             illegalArity(args.length);
     }
+    const rx = range(fromX, toX, stepX);
     for (let y of range(fromY, toY, stepY)) {
-        for (let x of range(fromX, toX, stepX)) {
+        for (let x of rx) {
             yield [x, y];
         }
     }

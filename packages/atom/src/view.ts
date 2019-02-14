@@ -1,7 +1,7 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
 import { getter, Path, toPath } from "@thi.ng/paths";
-
 import { IView, ReadonlyAtom, ViewTransform } from "./api";
+import { nextID } from "./idgen";
 
 /**
  * This class implements readonly access to a deeply nested value with
@@ -47,8 +47,6 @@ import { IView, ReadonlyAtom, ViewTransform } from "./api";
 export class View<T> implements
     IView<T> {
 
-    protected static NEXT_ID = 0;
-
     readonly id: string;
 
     readonly parent: ReadonlyAtom<any>;
@@ -62,7 +60,7 @@ export class View<T> implements
 
     constructor(parent: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, lazy = true, equiv = _equiv) {
         this.parent = parent;
-        this.id = `view-${View.NEXT_ID++}`;
+        this.id = `view-${nextID()}`;
         this.tx = tx || ((x: any) => x);
         this.path = toPath(path);
         this.isDirty = true;
@@ -86,6 +84,10 @@ export class View<T> implements
                 this.isDirty = true;
             }
         });
+    }
+
+    get value() {
+        return this.deref();
     }
 
     /**

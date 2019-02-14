@@ -1,6 +1,8 @@
 # @thi.ng/heaps
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/heaps.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -9,7 +11,7 @@ This project is part of the
 
 Type agnostic binary heap & d-ary heap implementations with customizable
 ordering and fanout / tree arity (in case of `DHeap`). Both `Heap` and
-`DHeap` have identical API.
+`DHeap` have identical base API, however the former provides several additional operations.
 
 ## Installation
 

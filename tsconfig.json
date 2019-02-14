@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES6",
+        "module": "es6",
+        "target": "es6",
         "experimentalDecorators": true,
         "noUnusedParameters": true,
-        "noUnusedLocals": true
+        "noUnusedLocals": true,
+        "preserveConstEnums": true,
+        "moduleResolution": "node"
     },
     "exclude": [
         "./**/node_modules"

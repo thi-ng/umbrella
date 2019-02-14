@@ -1,6 +1,8 @@
 # @thi.ng/rstream-gestures
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -22,6 +24,10 @@ The `zoom` value is always present, but is only updated with wheel
 events. The value will be constrained to `minZoom` ... `maxZoom`
 interval (provided via options object).
 
+Also see the
+[`GestureStreamOpts`](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures/src/index.ts#L26)
+config options for further details.
+
 ## Installation
 
 ```bash
@@ -36,7 +42,12 @@ yarn add @thi.ng/rstream-gestures
 
 ## Usage examples
 
-A small, fully commented project can be found in the `/examples` folder:
+Several small, fully commented projects can be found in the `/examples` folder:
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/canvas-dial.png)
+
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial) |
+[Live version](https://demo.thi.ng/umbrella/canvas-dial)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
 [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)

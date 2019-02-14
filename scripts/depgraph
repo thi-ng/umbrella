@@ -11,7 +11,8 @@ const ecol = "#aaaaaa";
 const xform = tx.comp(
     tx.map((f) => baseDir + f),
     tx.filter((f) => f.indexOf(".DS_Store") < 0 && fs.statSync(f).isDirectory),
-    tx.map((f) => fs.readFileSync(f + "/package.json")),
+    tx.map((f) => { try { return fs.readFileSync(f + "/package.json"); } catch (_) { } }),
+    tx.filter(f => f !== undefined),
     tx.map((p) => {
         p = JSON.parse(p.toString());
         return {
@@ -52,5 +53,14 @@ tx.run(
     ([p, d]) => g.addDependency(p, d),
     packages);
 
-console.log("topo order:", g.sort().map((x) => x.replace("@thi.ng/", "")).join(" "));
-console.log("done");
+
+const sorted = g.sort();
+console.log("topo order:", sorted.map((x) => x.substr(8)).join(" "), "\n\n");
+
+const noprefix = (ids) => [...ids].sort().map((x) => x.substr(8));
+
+sorted.forEach((x) => {
+    console.log(`${x}:`);
+    console.log(`\t<-- ${noprefix(g.transitiveDependencies(x))}`);
+    console.log(`\t--> ${noprefix(g.transitiveDependents(x))}\n\n`);
+});

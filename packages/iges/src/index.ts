@@ -1,18 +1,16 @@
 import { defmulti } from "@thi.ng/defmulti";
+import { float, padLeft, padRight } from "@thi.ng/strings";
 import {
     comp,
-    iterator,
     map,
     mapcat,
     mapIndexed,
     partition,
     push,
-    str,
     transduce,
     wordWrap,
     wrap
 } from "@thi.ng/transducers";
-
 import {
     DEFAULT_GLOBALS,
     DictEntry,
@@ -25,25 +23,16 @@ import {
     Unit
 } from "./api";
 
-const padl = (n: number, ch: string) => {
-    const buf = new Array(n).fill(ch).join("");
-    return (x: any) => (x = x.toString(), x.length < n ? buf.substr(x.length) + x : x);
-};
+const LINEWIDTH_GLOBALS = 72;
+const LINEWIDTH_PARAMS = 64;
 
-const padr = (n: number, ch: string) => {
-    const buf = new Array(n).fill(ch).join("");
-    return (x: any) => (x = x.toString(), x.length < n ? x + buf.substr(x.length) : x);
-};
-
-const ff = (prec = 3) => (x: number) => x.toFixed(prec);
-
-const $Z2 = padl(2, "0");
-const $Z7 = padl(7, "0");
-const $F8 = padl(8, " ");
+const $Z2 = padLeft(2, "0");
+const $Z7 = padLeft(7, "0");
+const $F8 = padLeft(8, " ");
 const $STR = (x: any) => (x != null ? (x = x.toString(), `${x.length}H${x}`) : "");
-const $SEQ = padl(7, " ");
-const $BODY = padr(72, " ");
-const $PBODY = padr(64, " ");
+const $SEQ = padLeft(7, " ");
+const $BODY = padRight(72, " ");
+const $PBODY = padRight(64, " ");
 const $DATE = (d: Date) =>
     $STR([
         d.getUTCFullYear(),
@@ -57,7 +46,7 @@ const $DATE = (d: Date) =>
 
 export const newDocument = (g?: Partial<GlobalParams>, start?: string[]): IGESDocument => {
     const globals = <GlobalParams>{ ...DEFAULT_GLOBALS, ...g };
-    const $FF = ff(globals.precision);
+    const $FF = float(globals.precision);
     const $PARAM = defmulti<any[], string>((x) => x[1]);
     $PARAM.add(Type.INT, (x) => x[0].toString());
     $PARAM.add(Type.FLOAT, (x) => $FF(x[0]));
@@ -93,11 +82,7 @@ const formatLine = (body: string, type: string, i: number) =>
     `${$BODY(body)}${type}${$SEQ(i + 1)}`;
 
 const formatStart = (doc: IGESDocument) => {
-    const res = transduce(
-        mapIndexed((i, x: string) => formatLine(x, "S", i)),
-        push(),
-        doc.start
-    );
+    const res = [...mapIndexed((i, x: string) => formatLine(x, "S", i), doc.start)];
     doc.offsets.S += res.length;
     return res;
 };
@@ -134,7 +119,7 @@ const formatGlobals = (doc: IGESDocument) => {
             [g.modified || new Date(), Type.DATE],
         ],
         (body, i) => `${$BODY(body)}G${$SEQ(i + 1)}`,
-        72
+        LINEWIDTH_GLOBALS
     );
     doc.offsets.G += res.length;
     return res;
@@ -147,15 +132,12 @@ const formatTerminate = (doc: IGESDocument) =>
     );
 
 const formatStatus = (s: EntityStatus) =>
-    transduce(
-        map($Z2),
-        str(""),
-        [
-            s.blank || 0,
-            s.subord || 0,
-            s.usage || 0,
-            s.hierarchy || 0
-        ]);
+    [
+        s.blank || 0,
+        s.subord || 0,
+        s.usage || 0,
+        s.hierarchy || 0
+    ].map($Z2).join("");
 
 const formatDictEntry = (e: DictEntry) =>
     transduce(
@@ -192,11 +174,15 @@ const formatParam = (did: number, pid: number) =>
     (body: string, i: number) =>
         `${$PBODY(body)} ${$Z7(did + 1)}P${$SEQ(i + pid)}`;
 
-const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string, i: number) => string, bodyWidth = 64) => {
+const formatParams = (
+    doc: IGESDocument,
+    params: Param[],
+    fmtBody: (body: string, i: number) => string,
+    bodyWidth = LINEWIDTH_PARAMS) => {
     const lines = transduce(
         comp(
             map(doc.$PARAM),
-            wordWrap(bodyWidth, 1, true),
+            wordWrap(bodyWidth, { delim: 1, always: true }),
             map((p) => p.join(doc.globals.delimParam)),
         ),
         push(),
@@ -215,7 +201,7 @@ const formatParams = (doc: IGESDocument, params: Param[], fmtBody: (body: string
 // type table: page 38 (67)
 
 // sec 4.7, page 77 (106)
-export const addPolyline2d = (doc: IGESDocument, pts: number[][], form = PolylineMode.OPEN) => {
+export const addPolyline2d = (doc: IGESDocument, pts: ArrayLike<number>[], form = PolylineMode.OPEN) => {
     const did = doc.offsets.D;
     const pid = doc.offsets.P;
     const params = formatParams(
@@ -225,12 +211,10 @@ export const addPolyline2d = (doc: IGESDocument, pts: number[][], form = Polylin
             [1, Type.INT],
             [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT],
             [0, Type.FLOAT],
-            ...iterator(
-                mapcat<number[], Param>(
-                    ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]]
-                ),
+            ...mapcat<number[], Param>(
+                ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]],
                 form === PolylineMode.CLOSED ?
-                    wrap(pts, 1, false, true) :
+                    <any>wrap(pts, 1, false, true) :
                     pts
             )
         ],
@@ -249,7 +233,7 @@ export const addPolyline2d = (doc: IGESDocument, pts: number[][], form = Polylin
     return doc;
 };
 
-export const addPolygon2d = (doc: IGESDocument, pts: number[][]) =>
+export const addPolygon2d = (doc: IGESDocument, pts: ArrayLike<number>[]) =>
     addPolyline2d(doc, pts, PolylineMode.FILLED);
 
 // sec 4.23, page 123 (type 126)

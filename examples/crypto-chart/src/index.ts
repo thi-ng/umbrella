@@ -1,39 +1,44 @@
-import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
-import { diffElement } from "@thi.ng/hdom/diff";
-import { normalizeTree } from "@thi.ng/hdom/normalize";
-import { group } from "@thi.ng/hiccup-svg/group";
-import { line } from "@thi.ng/hiccup-svg/line";
-import { polygon } from "@thi.ng/hiccup-svg/polygon";
-import { polyline } from "@thi.ng/hiccup-svg/polyline";
-import { rect } from "@thi.ng/hiccup-svg/rect";
-import { svg } from "@thi.ng/hiccup-svg/svg";
-import { text } from "@thi.ng/hiccup-svg/text";
+import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
+import {
+    group,
+    line,
+    polygon,
+    polyline,
+    rect,
+    svg,
+    text
+} from "@thi.ng/hiccup-svg";
 import { resolve } from "@thi.ng/resolve-map";
-import { fromEvent } from "@thi.ng/rstream/from/event";
-import { fromInterval } from "@thi.ng/rstream/from/interval";
-import { Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
-import { trace } from "@thi.ng/rstream/subs/trace";
-import { ema } from "@thi.ng/transducers-stats/ema";
-import { hma } from "@thi.ng/transducers-stats/hma";
-import { sma } from "@thi.ng/transducers-stats/sma";
-import { wma } from "@thi.ng/transducers-stats/wma";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { range } from "@thi.ng/transducers/iter/range";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { reducer } from "@thi.ng/transducers/reduce";
-import { max } from "@thi.ng/transducers/rfn/max";
-import { min } from "@thi.ng/transducers/rfn/min";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { pluck } from "@thi.ng/transducers/xform/pluck";
-import { scan } from "@thi.ng/transducers/xform/scan";
+import {
+    fromEvent,
+    fromInterval,
+    resolve as resolvePromise,
+    stream,
+    sync,
+    trace
+} from "@thi.ng/rstream";
+import { padLeft } from "@thi.ng/strings";
+import {
+    comp,
+    filter,
+    map,
+    mapcat,
+    mapIndexed,
+    max,
+    min,
+    pairs,
+    pluck,
+    push,
+    range,
+    transduce
+} from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import {
+    ema,
+    hma,
+    sma,
+    wma
+} from "@thi.ng/transducers-stats";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle
@@ -43,10 +48,22 @@ import { scan } from "@thi.ng/transducers/xform/scan";
 // furthermore, this approach only triggers UI updates/diffs when there
 // were any relevant upstream value changes.
 
+interface OHLC {
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    time: number;
+}
+
+interface MarketResponse {
+    ohlc: OHLC[];
+}
+
 // constant definitions
 
 // supported chart (and API) timeframes
-export const TIMEFRAMES = {
+const TIMEFRAMES = {
     1: "Minute",
     60: "Hour",
     1440: "Day",
@@ -148,11 +165,7 @@ const API_URL = (market, symbol, period) =>
 // helper functions
 const clamp = (x: number, min: number, max: number) => x < min ? min : x > max ? max : x;
 const fit = (x, a, b, c, d) => c + (d - c) * clamp((x - a) / (b - a), 0, 1);
-const padl = (n: number, ch: string) => {
-    const buf = new Array(n).fill(ch).join("");
-    return (x: any) => (x = x.toString(), x.length < n ? buf.substr(x.length) + x : x);
-};
-const Z2 = padl(2, "0");
+const Z2 = padLeft(2, "0");
 
 const emitOnStream = (stream) => (e) => stream.next(e.target.value);
 
@@ -168,12 +181,12 @@ const menu = (stream, title, items) =>
 
 // stream definitions
 
-const market = new Stream<string>();
-const symbol = new Stream<string>();
-const period = new Stream<number>();
-const avgMode = new Stream<string>();
-const theme = new Stream<string>().transform(map((id) => THEMES[id]));
-const error = new Stream<any>();
+const market = stream<string>();
+const symbol = stream<string>();
+const period = stream<number>();
+const avgMode = stream<string>();
+const theme = stream<string>().transform(map((id) => THEMES[id]));
+const error = stream<any>();
 
 // I/O error handler
 error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
@@ -184,7 +197,6 @@ const refresh = fromInterval(60000).subscribe(trace("refresh"));
 // this stream combinator performs API requests to obtain OHLC data
 const response = sync({
     src: { market, symbol, period, refresh },
-    reset: false,
     xform: map((inst) =>
         fetch(API_URL(inst.market, inst.symbol, inst.period))
             .then(
@@ -210,10 +222,10 @@ const data = sync({
         // use @thi.ng/resolve-map to compute bounds & moving averages
         map(({ response, avg }: any) => resolve({
             ...response,
-            min: ({ ohlc }) => transduce(pluck("low"), min(), ohlc),
-            max: ({ ohlc }) => transduce(pluck("high"), max(), ohlc),
-            tbounds: ({ ohlc }) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
-            sma: ({ ohlc }) =>
+            min: ({ ohlc }: MarketResponse) => transduce(pluck("low"), min(), ohlc),
+            max: ({ ohlc }: MarketResponse) => transduce(pluck("high"), max(), ohlc),
+            tbounds: ({ ohlc }: MarketResponse) => [ohlc[0].time, ohlc[ohlc.length - 1].time],
+            sma: ({ ohlc }: MarketResponse) =>
                 transduce(
                     map((period: number) => [
                         period,
@@ -223,8 +235,7 @@ const data = sync({
                     [12, 24, 50, 72]
                 ),
         }))
-    ),
-    reset: false,
+    )
 });
 
 // this stream combinator (re)computes the SVG chart
@@ -237,11 +248,12 @@ const chart = sync({
             map(() => [window.innerWidth, window.innerHeight])
         )
     },
-    reset: false,
     xform: map(({ data, window, theme }) => {
         let [width, height] = window;
-        const ohlc = data.ohlc;
-        const w = Math.max(3, (width - 2 * MARGIN_X) / ohlc.length);
+        const ohlc: OHLC[] = data.ohlc;
+        const chartW = width - 2 * MARGIN_X;
+        const chartH = height - 2 * MARGIN_Y;
+        const bw = Math.max(3, chartW / ohlc.length);
         const by = height - MARGIN_Y;
 
         const mapX = (x: number) => fit(x, 0, ohlc.length, MARGIN_X, width - MARGIN_X);
@@ -254,13 +266,27 @@ const chart = sync({
             );
 
         // use preset time precisions based on current chart period
-        const tickX = TIME_TICKS[data.period];
+        let tickX: number = TIME_TICKS[data.period];
+        const timeRange = data.tbounds[1] - data.tbounds[0];
+        while (chartW / (timeRange / tickX) < 60) {
+            tickX *= 2;
+        }
         const fmtTime: (t: number) => string = TIME_FORMATS[data.period];
-        // price resolution estimation based on actual OHLC interval
-        let tickY = Math.pow(10, Math.floor(Math.log(data.max - data.min) / Math.log(10))) / 2;
-        while (tickY < (data.max - data.min) / 20) {
+
+        // price tick resolution estimation based on actual OHLC interval & window height
+        const domain = data.max - data.min;
+        // min tick in currency
+        const minTickY = 0.0025;
+        // min tick in screen coords
+        const minProjTickY = Math.max(chartH / 8, 50);
+        let tickY = Math.pow(10, Math.floor(Math.log(domain) / Math.log(10))) / 2;
+        while (tickY > minTickY && chartH / (domain / tickY) > minProjTickY) {
+            tickY /= 2;
+        }
+        while (chartH / (domain / tickY) < minProjTickY) {
             tickY *= 2;
         }
+
         const lastPrice = ohlc[ohlc.length - 1].close;
         const closeX = width - MARGIN_X;
         const closeY = mapY(lastPrice);
@@ -272,8 +298,8 @@ const chart = sync({
                 line([MARGIN_X, MARGIN_Y], [MARGIN_X, by]),
                 line([MARGIN_X, by], [width - MARGIN_X, by]),
                 // Y axis ticks
-                ...iterator(
-                    mapcat((price: number) => {
+                mapcat(
+                    (price: number) => {
                         const y = mapY(price);
                         return [
                             line([MARGIN_X - 10, y], [MARGIN_X, y]),
@@ -283,32 +309,29 @@ const chart = sync({
                                     theme.chart.gridMinor,
                                 "stroke-dasharray": 2
                             }),
-                            text(price.toFixed(4), [MARGIN_X - 15, y + 4], { stroke: "none" })
+                            text([MARGIN_X - 15, y + 4], price.toFixed(4), { stroke: "none" })
                         ];
-                    }),
+                    },
                     range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)
                 ),
                 // X axis ticks
-                ...iterator(
-                    mapcat((t: number) => {
-                        const x = fit(t, data.tbounds[0], data.tbounds[1], MARGIN_X + w / 2, width - MARGIN_X - w / 2);
+                mapcat(
+                    (t: number) => {
+                        const x = fit(t, data.tbounds[0], data.tbounds[1], MARGIN_X + bw / 2, width - MARGIN_X - bw / 2);
                         return [
                             line([x, by], [x, by + 10]),
                             line([x, MARGIN_Y], [x, by], { stroke: theme.chart.gridMinor, "stroke-dasharray": 2 }),
-                            text(fmtTime(t), [x, by + 20], { stroke: "none", "text-anchor": "middle" })
+                            text([x, by + 20], fmtTime(t), { stroke: "none", "text-anchor": "middle" })
                         ];
-                    }),
+                    },
                     range(Math.ceil(data.tbounds[0] / tickX) * tickX, data.tbounds[1], tickX)
                 ),
             ),
             // moving averages
-            ...iterator(
-                map(([period, vals]) => sma(vals, theme.chart[`sma${period}`])),
-                data.sma
-            ),
+            map(([period, vals]) => sma(vals, theme.chart[`sma${period}`]), data.sma),
             // candles
-            ...iterator(
-                mapIndexed((i, candle: any) => {
+            mapIndexed(
+                (i, candle: OHLC) => {
                     const isBullish = candle.open < candle.close;
                     let y, h;
                     let col;
@@ -323,9 +346,9 @@ const chart = sync({
                     }
                     return group({ fill: col, stroke: col },
                         line([mapX(i + 0.5), mapY(candle.low)], [mapX(i + 0.5), mapY(candle.high)]),
-                        rect([mapX(i) + 1, y], w - 2, h),
+                        rect([mapX(i) + 1, y], bw - 2, h),
                     );
-                }),
+                },
                 ohlc
             ),
             // price line
@@ -335,7 +358,7 @@ const chart = sync({
                 [[closeX, closeY], [closeX + 10, closeY - 8], [width, closeY - 8], [width, closeY + 8], [closeX + 10, closeY + 8]],
                 { fill: theme.chart.price }
             ),
-            text(lastPrice.toFixed(4), [closeX + 12, closeY + 4], { fill: theme.chart.pricelabel }),
+            text([closeX + 12, closeY + 4], lastPrice.toFixed(4), { fill: theme.chart.pricelabel }),
         )
     })
 });
@@ -351,21 +374,16 @@ sync({
         period: period.transform(menu(period, "Time frame", [...pairs(TIMEFRAMES)])),
         avg: avgMode.transform(
             menu(avgMode, "Moving average",
-                [...iterator(
-                    map(([id, mode]) => <DropDownOption>[id, mode.label]),
-                    pairs(MA_MODES))]
+                [...map(([id, mode]) => <DropDownOption>[id, mode.label], pairs(MA_MODES))]
             )
         ),
         themeSel: theme.transform(
             map((x) => x.id),
             menu(theme, "Theme",
-                [...iterator(
-                    map(([id, theme]) => <DropDownOption>[id, theme.label]),
-                    pairs(THEMES))]
+                [...map(([id, theme]) => <DropDownOption>[id, theme.label], pairs(THEMES))]
             )
         )
     },
-    reset: false,
     xform: comp(
         // combines all inputs into a single root component
         map(({ theme, themeSel, chart, symbol, period, avg }) =>
@@ -381,10 +399,7 @@ sync({
                         }
                     },
                     ["div.flex",
-                        ...iterator(
-                            map((x) => ["div.w-25.ph2", x]),
-                            [symbol, period, avg, themeSel]
-                        ),
+                        ...map((x) => ["div.w-25.ph2", x], [symbol, period, avg, themeSel]),
                     ]
                 ],
                 ["div.fixed.tc",
@@ -405,21 +420,12 @@ sync({
                         {
                             class: `mr3 b link ${theme.body}`,
                             href: "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
-                        }, "Source code"]
+                        }, "Source"]
                 ]
             ]
         ),
         // perform hdom update / diffing
-        scan<any, any>(
-            reducer(
-                () => [],
-                (prev, curr) => {
-                    curr = normalizeTree(curr, {});
-                    diffElement(document.getElementById("app"), prev, curr);
-                    return curr;
-                }
-            )
-        )
+        updateDOM()
     )
 });
 

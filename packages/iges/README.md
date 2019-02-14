@@ -1,6 +1,8 @@
 # @thi.ng/iges
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iges.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -11,13 +13,20 @@ Bare-bones IGES 5.3 serializer for (currently only) polygonal geometry,
 both open & closed, for use in various CAD applications (e.g. Rhino,
 Houdini, Fusion 360)
 
-![houdini](../../assets/iges.png)
+![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/iges.png)
 
 ## Installation
 
 ```bash
 yarn add @thi.ng/iges
 ```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 

@@ -1,5 +1,4 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { IObjectOf } from "@thi.ng/api";
 import { empty } from "./utils";
 
 /**
@@ -9,13 +8,14 @@ import { empty } from "./utils";
  * @param src
  * @param km
  */
-export function renameKeysMap<K, V>(src: Map<K, V>, km: Map<K, K>) {
-    const dest: Map<K, V> = empty(src, Map);
-    for (let [k, v] of src) {
-        dest.set(km.has(k) ? km.get(k) : k, v);
-    }
-    return dest;
-}
+export const renameKeysMap =
+    <K, V>(src: Map<K, V>, km: Map<K, K>) => {
+        const dest: Map<K, V> = empty(src, Map);
+        for (let [k, v] of src) {
+            dest.set(km.has(k) ? km.get(k) : k, v);
+        }
+        return dest;
+    };
 
 /**
  * Renames keys in `src` using mapping provided by key map `km`. Does
@@ -30,10 +30,11 @@ export function renameKeysMap<K, V>(src: Map<K, V>, km: Map<K, K>) {
  * @param src
  * @param km
  */
-export function renameKeysObj<T>(src: IObjectOf<T>, km: IObjectOf<PropertyKey>) {
-    const dest = {};
-    for (let k in src) {
-        dest[km.hasOwnProperty(k) ? km[k] : k] = src[k];
-    }
-    return dest;
-}
+export const renameKeysObj =
+    <T>(src: IObjectOf<T>, km: IObjectOf<PropertyKey>) => {
+        const dest = {};
+        for (let k in src) {
+            dest[km.hasOwnProperty(k) ? km[k] : k] = src[k];
+        }
+        return dest;
+    };

@@ -1,3 +1,2 @@
-export function isSet(x: any): x is Set<any> {
-    return x instanceof Set;
-}
+export const isSet =
+    (x: any): x is Set<any> => x instanceof Set;

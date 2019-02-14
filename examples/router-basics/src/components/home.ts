@@ -27,6 +27,6 @@ export function home(ctx: AppContext) {
             ]],
         ["p",
             "Please see the related blog post and the commented source code for more details."],
-        ["p", "(total app file size: 11.8KB)"]
+        ["p", "(total app file size: 11.2KB)"]
     ];
 }

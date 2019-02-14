@@ -4,11 +4,7 @@ import {
     IEmpty,
     IEquiv,
     Predicate2
-} from "@thi.ng/api/api";
-
-export type Pair<K, V> = [K, V];
-
-export const SEMAPHORE = Symbol("SEMAPHORE");
+} from "@thi.ng/api";
 
 export interface IEquivSet<T> extends
     Set<T>,

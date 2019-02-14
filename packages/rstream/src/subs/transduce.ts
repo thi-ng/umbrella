@@ -1,9 +1,35 @@
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { isReduced } from "@thi.ng/transducers/reduced";
-
+import { Reducer, Transducer } from "@thi.ng/transducers";
+import { isReduced } from "@thi.ng/transducers";
 import { Subscription } from "../subscription";
 
-export function transduce<A, B, C>(src: Subscription<any, A>, tx: Transducer<A, B>, rfn: Reducer<C, B>, init?: C): Promise<C> {
+/**
+ * Returns a promise which subscribes to given input and transforms
+ * incoming values using given transducer `xform` and reducer `rfn`.
+ * Once the input is done the promise will resolve with the final
+ * reduced result (or fail with error).
+ *
+ * ```
+ * rs.transduce(
+ *   rs.fromIterable(tx.range(10)),
+ *   tx.map((x) => x * 10),
+ *   tx.add()
+ * ).then((x) => console.log("result", x))
+ *
+ * // result 450
+ * ```
+ *
+ * @param src
+ * @param xform
+ * @param rfn
+ * @param init
+ */
+export const transduce = <A, B, C>(
+    src: Subscription<any, A>,
+    xform: Transducer<A, B>,
+    rfn: Reducer<C, B>,
+    init?: C
+): Promise<C> => {
+
     let acc = init !== undefined ? init : rfn[0]();
     let sub: Subscription<A, B>;
 
@@ -23,7 +49,7 @@ export function transduce<A, B, C>(src: Subscription<any, A>, tx: Transducer<A, 
             error(e) {
                 reject(e);
             }
-        }, tx);
+        }, xform);
     }).then(
         (fulfilled) => {
             sub.unsubscribe();
@@ -34,4 +60,4 @@ export function transduce<A, B, C>(src: Subscription<any, A>, tx: Transducer<A, 
             throw rejected;
         }
     );
-}
+};

@@ -21,7 +21,7 @@ describe("StreamMerge", () => {
     };
 
     beforeEach(() => {
-        src = new rs.StreamMerge<number, number>({
+        src = rs.merge<number, number>({
             src: [
                 rs.fromIterable([1, 2]),
                 rs.fromIterable([10, 20, 30, 40]),
@@ -37,14 +37,14 @@ describe("StreamMerge", () => {
     });
 
     it("merges dynamic inputs", (done) => {
-        src = new rs.StreamMerge();
+        src = rs.merge();
         src.add(rs.fromIterable([1, 2, 3, 4], 10));
         src.add(rs.fromIterable([10, 20], 5));
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
     });
 
     it("merges dynamic inputs (synchronous)", (done) => {
-        src = new rs.StreamMerge({ close: false });
+        src = rs.merge({ close: false });
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
         src.add(rs.fromIterableSync([1, 2, 3, 4]));
         src.add(rs.fromIterableSync([10, 20]));
@@ -62,7 +62,7 @@ describe("StreamMerge", () => {
     });
 
     it("applies transducer", (done) => {
-        src = new rs.StreamMerge<number, number>({
+        src = rs.merge<number, number>({
             src: [
                 rs.fromIterable([1, 2]),
                 rs.fromIterable([10, 20])
@@ -79,7 +79,7 @@ describe("StreamMerge", () => {
         ].map(
             (s) => s.subscribe(tx.map(x => rs.fromIterable([x, x, x])))
         );
-        const merge = new rs.StreamMerge({ src: sources });
+        const merge = rs.merge({ src: sources });
         const histogram = tx.frequencies();
         let acc: any = histogram[0]();
         merge.subscribe({

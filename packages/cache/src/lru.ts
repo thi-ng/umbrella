@@ -1,9 +1,9 @@
 import { ConsCell, DCons } from "@thi.ng/dcons";
-import { map } from "@thi.ng/iterators/map";
-
+import { map } from "@thi.ng/transducers";
 import { CacheEntry, CacheOpts, ICache } from "./api";
 
-export class LRUCache<K, V> implements ICache<K, V> {
+export class LRUCache<K, V> implements
+    ICache<K, V> {
 
     protected map: Map<K, ConsCell<CacheEntry<K, V>>>;
     protected items: DCons<CacheEntry<K, V>>;
@@ -12,8 +12,8 @@ export class LRUCache<K, V> implements ICache<K, V> {
 
     constructor(pairs?: Iterable<[K, V]>, opts?: Partial<CacheOpts<K, V>>) {
         const _opts = <CacheOpts<K, V>>Object.assign({
-            maxlen: Number.POSITIVE_INFINITY,
-            maxsize: Number.POSITIVE_INFINITY,
+            maxlen: Infinity,
+            maxsize: Infinity,
             map: () => new Map<K, any>(),
             ksize: () => 0,
             vsize: () => 0,
@@ -39,16 +39,16 @@ export class LRUCache<K, V> implements ICache<K, V> {
         return this.entries();
     }
 
-    *entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
-        yield* map((e) => [e.k, e], this.items);
+    entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
+        return map((e) => <[K, CacheEntry<K, V>]>[e.k, e], this.items);
     }
 
-    *keys(): IterableIterator<Readonly<K>> {
-        yield* map((e) => e.k, this.items);
+    keys(): IterableIterator<Readonly<K>> {
+        return map((e) => e.k, this.items);
     }
 
-    *values(): IterableIterator<Readonly<V>> {
-        yield* map((e) => e.v, this.items);
+    values(): IterableIterator<Readonly<V>> {
+        return map((e) => e.v, this.items);
     }
 
     copy(): ICache<K, V> {

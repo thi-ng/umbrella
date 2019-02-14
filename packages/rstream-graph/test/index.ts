@@ -1,8 +1,7 @@
 import { Atom } from "@thi.ng/atom";
 import * as rs from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
-
 import * as rsg from "../src";
 
 describe("rstream-graph", () => {

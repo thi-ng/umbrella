@@ -1,10 +1,10 @@
 import { start } from "@thi.ng/hdom";
-import { hex } from "@thi.ng/transducers/func/hex";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
+import { radix } from "@thi.ng/strings";
+import { repeatedly } from "@thi.ng/transducers";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
-const hex6 = hex(6);
+const hex6 = radix(16, 6);
 
 const updateParticle = (p, v) => {
     let x = p.cx + v[0];
@@ -37,7 +37,7 @@ const app = () => {
     for (let i = particles.length - 1; i > 0; i--) {
         updateParticle(particles[i][1], velocities[i]);
     }
-    return ["svg", { width, height }, particles];
+    return ["svg", { width, height, __diff: false }, particles];
 };
 
-start(document.body, app);
+start(app);

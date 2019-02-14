@@ -1,5 +1,4 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-
+import { illegalArity } from "@thi.ng/errors";
 import { range } from "./range";
 
 export function range3d(toX: number, toY: number, toZ: number): IterableIterator<[number, number, number]>;
@@ -22,9 +21,11 @@ export function* range3d(...args: number[]) {
         default:
             illegalArity(args.length);
     }
+    const rx = range(fromX, toX, stepX);
+    const ry = range(fromY, toY, stepY);
     for (let z of range(fromZ, toZ, stepZ)) {
-        for (let y of range(fromY, toY, stepY)) {
-            for (let x of range(fromX, toX, stepX)) {
+        for (let y of ry) {
+            for (let x of rx) {
                 yield [x, y, z];
             }
         }

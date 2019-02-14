@@ -1,3 +1,2 @@
-export function isRegExp(x: any): x is RegExp {
-    return x instanceof RegExp;
-}
+export const isRegExp =
+    (x: any): x is RegExp => x instanceof RegExp;

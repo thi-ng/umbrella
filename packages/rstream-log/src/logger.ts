@@ -1,8 +1,5 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { StreamMerge } from "@thi.ng/rstream/stream-merge";
-import { Subscription } from "@thi.ng/rstream/subscription";
-
+import { illegalArity } from "@thi.ng/errors";
+import { ISubscribable, nextID, StreamMerge } from "@thi.ng/rstream";
 import { ILogger, Level, LogEntry } from "./api";
 
 export class Logger extends StreamMerge<LogEntry, LogEntry> implements
@@ -34,7 +31,7 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements
             default:
                 illegalArity(args.length);
         }
-        id = id || `logger-${Subscription.NEXT_ID++}`;
+        id = id || `logger-${nextID()}`;
         super({ src, id, close: false });
         this.level = level;
     }

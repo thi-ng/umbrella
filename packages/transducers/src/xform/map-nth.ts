@@ -1,9 +1,35 @@
+import { Fn } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
+import { $iter } from "../iterator";
 
-export function mapNth<A, B>(n: number, fn: (x: A) => B): Transducer<A, A | B>;
-export function mapNth<A, B>(n: number, offset: number, fn: (x: A) => B): Transducer<A, A | B>;
-export function mapNth<A, B>(...args: any[]): Transducer<A, A | B> {
+/**
+ * Transducer. Similar to `map`, but only transforms every `n`-th input
+ * value and passes intermediate values unchanged downstream. The
+ * optional `offset` arg can be used to adjust the number of inputs
+ * before the first transformation occurs (default 0).
+ *
+ * ```
+ * [...mapNth(3, (x) => x * 10, range(1,10))]
+ * // [ 10, 2, 3, 40, 5, 6, 70, 8, 9 ]
+ *
+ * // with offset
+ * [...mapNth(3, 5, (x) => x * 10, range(1,10))]
+ * // [ 1, 2, 3, 4, 5, 60, 7, 8, 90 ]
+ * ```
+ *
+ * @param n step size
+ * @param fn transformation function
+ */
+export function mapNth<A, B>(n: number, fn: Fn<A, B>): Transducer<A, A | B>;
+export function mapNth<A, B>(n: number, offset: number, fn: Fn<A, B>): Transducer<A, A | B>;
+export function mapNth<A, B>(n: number, fn: Fn<A, B>, src: Iterable<A>): IterableIterator<A | B>;
+export function mapNth<A, B>(n: number, offset: number, fn: Fn<A, B>, src: Iterable<A>): IterableIterator<A | B>;
+export function mapNth<A, B>(...args: any[]): any {
+    const iter = $iter(mapNth, args);
+    if (iter) {
+        return iter;
+    }
     let n = args[0] - 1, offset, fn;
     if (typeof args[1] === "number") {
         offset = args[1];
@@ -16,7 +42,7 @@ export function mapNth<A, B>(...args: any[]): Transducer<A, A | B> {
         const r = rfn[2];
         let skip = 0, off = offset;
         return compR(rfn,
-            (acc, x) => {
+            (acc, x: A) => {
                 if (off === 0) {
                     if (skip === 0) {
                         skip = n;

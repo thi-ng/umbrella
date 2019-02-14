@@ -1,13 +1,17 @@
-import { Predicate } from "@thi.ng/api/api";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { isFunction } from "@thi.ng/checks/is-function";
+import { Predicate } from "@thi.ng/api";
+import { shuffle } from "@thi.ng/arrays";
+import { isFunction } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
-import { Reducer, Transducer } from "@thi.ng/transducers/api";
-import { cycle } from "@thi.ng/transducers/iter/cycle";
-import { range } from "@thi.ng/transducers/iter/range";
-import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
-import { delayed } from "@thi.ng/transducers/xform/delayed";
-
+import { illegalArity } from "@thi.ng/errors";
+import {
+    cycle,
+    delayed,
+    isReduced,
+    range,
+    Reducer,
+    Transducer,
+    unreduced
+} from "@thi.ng/transducers";
 import {
     ChannelItem,
     ErrorHandler,
@@ -16,7 +20,6 @@ import {
     State
 } from "./api";
 import { FixedBuffer } from "./buffer";
-import { shuffle } from "./utils/shuffle";
 
 export class Channel<T> implements
     IReadWriteableChannel<T> {
@@ -561,10 +564,9 @@ export class Channel<T> implements
     }
 }
 
-function defaultErrorHandler(e: Error, chan: Channel<any>, val?: any) {
-    console.log(chan.id, "error occurred", e.message, (val !== undefined ? val : ""));
-}
+const defaultErrorHandler =
+    (e: Error, chan: Channel<any>, val?: any) =>
+        console.log(chan.id, "error occurred", e.message, (val !== undefined ? val : ""));
 
-function maybeBuffer(x) {
-    return x instanceof FixedBuffer || typeof x === "number";
-}
+const maybeBuffer = (x) =>
+    x instanceof FixedBuffer || typeof x === "number";

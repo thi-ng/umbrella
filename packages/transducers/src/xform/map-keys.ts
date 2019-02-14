@@ -1,14 +1,43 @@
-import { IObjectOf } from "@thi.ng/api/api";
-
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { Transducer } from "../api";
+import { $iter } from "../iterator";
 import { map } from "./map";
 
-export function mapKeys(keys: IObjectOf<(x: any) => any>, copy = true): Transducer<any, any> {
-    const ks = Object.keys(keys);
+/**
+ * Takes a `keys` object of transformation functions and returns a
+ * transducer which expects object values. For each input `x` then calls
+ * transformation functions for each key `k` in `keys`. I.e. executes
+ * `keys[k](x[k])` and reassigns result. By default creates a shallow
+ * copy of each `x`.
+ *
+ * ```
+ * [...mapKeys(
+ *   {
+ *     a: (x) => x != null ? x * 10 : x,
+ *     b: (x) => x != null ? x * 100: "n/a"
+ *   },
+ *   [{a: 1, b: 2}, {c: 3, d: 4}]
+ * )]
+ * // [ { a: 10, b: 200 }, { c: 3, d: 4, b: 'n/a', a: undefined } ]
+ * ```
+ *
+ * @param keys object of transformation functions
+ * @param copy if true (default), creates a shallow copy of each incoming value
+ * @param src
+ */
+export function mapKeys(keys: IObjectOf<Fn<any, any>>, copy?: boolean): Transducer<any, any>;
+export function mapKeys(keys: IObjectOf<Fn<any, any>>, src: Iterable<any>): IterableIterator<any>;
+export function mapKeys(keys: IObjectOf<Fn<any, any>>, copy: boolean, src: Iterable<any>): IterableIterator<any>;
+export function mapKeys(...args: any[]): any {
+    const iter = $iter(mapKeys, args);
+    if (iter) {
+        return iter;
+    }
+    const keys: IObjectOf<(x: any) => any> = args[0];
+    const copy = args[1] !== false;
     return map((x) => {
         const res = copy ? Object.assign({}, x) : x;
-        for (let i = ks.length - 1; i >= 0; i--) {
-            const k = ks[i];
+        for (let k in keys) {
             res[k] = keys[k](x[k]);
         }
         return res;

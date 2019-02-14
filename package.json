@@ -4,26 +4,33 @@
         "packages/*"
     ],
     "devDependencies": {
-        "babel-minify": "^0.4.3",
         "benchmark": "^2.1.4",
-        "lerna": "^2.11.0",
+        "gzip-size": "^5.0.0",
+        "lerna": "^3.8.5",
         "mocha": "^5.2.0",
-        "nyc": "^12.0.2",
-        "ts-loader": "^4.4.2",
-        "tslint": "^5.11.0",
-        "typescript": "^3.0.1",
-        "webpack": "^4.16.3",
-        "webpack-cli": "^3.1.0",
-        "webpack-dev-server": "^3.1.5"
+        "nyc": "^13.1.0",
+        "parcel-bundler": "^1.11.0",
+        "rimraf": "^2.6.3",
+        "rollup": "^1.1.0",
+        "rollup-plugin-cleanup": "^3.1.0",
+        "terser": "^3.14.1",
+        "tslint": "^5.12.0",
+        "typescript": "^3.2.2",
+        "webpack": "^4.28.1",
+        "webpack-cli": "^3.2.1",
+        "ts-loader": "^5.3.3",
+        "file-loader": "^3.0.1"
     },
     "scripts": {
         "bootstrap": "lerna bootstrap",
         "build": "yarn install && lerna -v && lerna bootstrap && lerna run build --sort",
+        "build:es6only": "lerna run clean && lerna run build:es6",
         "cover": "lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
         "doc": "lerna run doc",
-        "examples": "ex=\"examples/*\"; for e in $ex; do (cd $e && yarn build); done",
-        "pub": "lerna publish && yarn doc && scripts/upload-docs",
-        "test": "yarn build && lerna run test"
+        "examples": "scripts/build-examples",
+        "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
+        "test": "yarn build && yarn test:only",
+        "test:only": "lerna run test"
     }
 }

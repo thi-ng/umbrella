@@ -3,93 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.3.11"></a>
-## [0.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.10...@thi.ng/sax@0.3.11) (2018-08-01)
-
-
-
+## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.0.3...@thi.ng/sax@1.0.4) (2019-02-10)
 
 **Note:** Version bump only for package @thi.ng/sax
 
-<a name="0.3.10"></a>
-## [0.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.9...@thi.ng/sax@0.3.10) (2018-07-25)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/sax
-
-<a name="0.3.9"></a>
-## [0.3.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.8...@thi.ng/sax@0.3.9) (2018-07-20)
-
-
-
+## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.0.2...@thi.ng/sax@1.0.3) (2019-02-05)
 
 **Note:** Version bump only for package @thi.ng/sax
 
-<a name="0.3.8"></a>
-## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.7...@thi.ng/sax@0.3.8) (2018-07-19)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/sax
-
-<a name="0.3.7"></a>
-## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.6...@thi.ng/sax@0.3.7) (2018-07-13)
-
-
-
+## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.0.1...@thi.ng/sax@1.0.2) (2019-01-31)
 
 **Note:** Version bump only for package @thi.ng/sax
 
-<a name="0.3.6"></a>
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.5...@thi.ng/sax@0.3.6) (2018-07-11)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/sax
-
-<a name="0.3.5"></a>
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.4...@thi.ng/sax@0.3.5) (2018-07-09)
-
-
-
+## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.0.0...@thi.ng/sax@1.0.1) (2019-01-21)
 
 **Note:** Version bump only for package @thi.ng/sax
 
-<a name="0.3.4"></a>
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.3...@thi.ng/sax@0.3.4) (2018-07-09)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/sax
-
-<a name="0.3.3"></a>
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.2...@thi.ng/sax@0.3.3) (2018-07-03)
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.5.13...@thi.ng/sax@1.0.0) (2019-01-21)
 
 
+### Build System
+
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
 
-**Note:** Version bump only for package @thi.ng/sax
+### BREAKING CHANGES
 
-<a name="0.3.2"></a>
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.1...@thi.ng/sax@0.3.2) (2018-06-21)
+* enabled multi-outputs (ES6 modules, CJS, UMD)
 
-
-
-
-**Note:** Version bump only for package @thi.ng/sax
-
-<a name="0.3.1"></a>
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.0...@thi.ng/sax@0.3.1) (2018-06-20)
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
 
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.4.1...@thi.ng/sax@0.5.0) (2018-09-25)
 
 
-**Note:** Version bump only for package @thi.ng/sax
+### Features
+
+* **sax:** add opt support for boolean attribs, add tests ([5119b67](https://github.com/thi-ng/umbrella/commit/5119b67))
+
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.3.21...@thi.ng/sax@0.4.0) (2018-09-24)
+
+
+### Features
+
+* **sax:** update parse() to return iterator if input given (optional) ([665564c](https://github.com/thi-ng/umbrella/commit/665564c))
+
+
 
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@0.2.0...@thi.ng/sax@0.3.0) (2018-06-20)

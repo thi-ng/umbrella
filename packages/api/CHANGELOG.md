@@ -3,53 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="4.0.6"></a>
-## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.5...@thi.ng/api@4.0.6) (2018-08-01)
-
-
-
+## [5.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.1...@thi.ng/api@5.0.2) (2019-02-05)
 
 **Note:** Version bump only for package @thi.ng/api
 
-<a name="4.0.5"></a>
-## [4.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.4...@thi.ng/api@4.0.5) (2018-07-20)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/api
-
-<a name="4.0.4"></a>
-## [4.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.3...@thi.ng/api@4.0.4) (2018-06-21)
-
-
-
+## [5.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.0...@thi.ng/api@5.0.1) (2019-01-21)
 
 **Note:** Version bump only for package @thi.ng/api
 
-<a name="4.0.3"></a>
-## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.2...@thi.ng/api@4.0.3) (2018-05-14)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/api
-
-<a name="4.0.2"></a>
-## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.1...@thi.ng/api@4.0.2) (2018-05-14)
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.4...@thi.ng/api@5.0.0) (2019-01-21)
 
 
+### Bug Fixes
+
+* **api:** update assert(), re-export mixin() ([9f91cfa](https://github.com/thi-ng/umbrella/commit/9f91cfa))
 
 
-**Note:** Version bump only for package @thi.ng/api
+### Build System
 
-<a name="4.0.1"></a>
-## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.0...@thi.ng/api@4.0.1) (2018-05-13)
-
+* **api:** update package build scripts / outputs ([f913d7b](https://github.com/thi-ng/umbrella/commit/f913d7b))
 
 
+### Features
 
-**Note:** Version bump only for package @thi.ng/api
+* **api:** add assert() ([d381ace](https://github.com/thi-ng/umbrella/commit/d381ace))
+
+
+### BREAKING CHANGES
+
+* **api:** rename mixins to avoid name clashes, update decorators
+
+- append `Mixin` suffix to all mixins (i.e. `INotify` => `INotifyMixin`)
+- update re-exports of mixins & decorators (no more nested child namespace)
+
+
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.1.1...@thi.ng/api@4.2.0) (2018-09-22)
+
+
+### Features
+
+* **api:** add `IToHiccup` interface ([e390a54](https://github.com/thi-ng/umbrella/commit/e390a54))
+
+
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.6...@thi.ng/api@4.1.0) (2018-08-24)
+
+
+### Features
+
+* **api:** add new/move type aliases into api.ts ([cf30ba2](https://github.com/thi-ng/umbrella/commit/cf30ba2))
+* **api:** add NumericArray and TypedArray types ([519394b](https://github.com/thi-ng/umbrella/commit/519394b))
+
 
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@3.0.1...@thi.ng/api@4.0.0) (2018-05-12)
@@ -70,16 +83,6 @@ update IIndexed, IMeta, ISet, IStack
 - add IImmutableStack
 - minor update IEnabled mixin
 
-
-
-
-<a name="3.0.1"></a>
-## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@3.0.0...@thi.ng/api@3.0.1) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
 
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.2...@thi.ng/api@3.0.0) (2018-05-10)
@@ -102,16 +105,6 @@ to new dedicated packages:
 - @thi.ng/errors
 
 
-
-
-<a name="2.3.2"></a>
-## [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.1...@thi.ng/api@2.3.2) (2018-05-09)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
 <a name="2.3.1"></a>
 ## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.0...@thi.ng/api@2.3.1) (2018-04-29)
 
@@ -131,9 +124,6 @@ to new dedicated packages:
 
 * **api:** support more types in equiv(), add tests ([2ac8bff](https://github.com/thi-ng/umbrella/commit/2ac8bff))
 
-
-
-
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.3...@thi.ng/api@2.2.0) (2018-04-08)
 
@@ -143,24 +133,6 @@ to new dedicated packages:
 * **api:** add bench() & timed() utils ([d310345](https://github.com/thi-ng/umbrella/commit/d310345))
 
 
-
-
-<a name="2.1.3"></a>
-## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.2...@thi.ng/api@2.1.3) (2018-04-04)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
-<a name="2.1.2"></a>
-## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.1...@thi.ng/api@2.1.2) (2018-04-01)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.0...@thi.ng/api@2.1.1) (2018-03-28)
 
@@ -168,8 +140,6 @@ to new dedicated packages:
 ### Bug Fixes
 
 * **api:** illegalState() creates IllegalStateError ([2b7e99b](https://github.com/thi-ng/umbrella/commit/2b7e99b))
-
-
 
 
 <a name="2.1.0"></a>
@@ -181,32 +151,6 @@ to new dedicated packages:
 * **api:** add error types & ctor fns ([4d3785f](https://github.com/thi-ng/umbrella/commit/4d3785f))
 
 
-
-
-<a name="2.0.4"></a>
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.3...@thi.ng/api@2.0.4) (2018-03-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
-<a name="2.0.3"></a>
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.2...@thi.ng/api@2.0.3) (2018-02-18)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
-<a name="2.0.2"></a>
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.1...@thi.ng/api@2.0.2) (2018-02-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.0...@thi.ng/api@2.0.1) (2018-02-02)
 
@@ -214,8 +158,6 @@ to new dedicated packages:
 ### Bug Fixes
 
 * **api:** update compare() & equiv() ([110a9de](https://github.com/thi-ng/umbrella/commit/110a9de))
-
-
 
 
 <a name="2.0.0"></a>
@@ -237,8 +179,6 @@ to new dedicated packages:
 * **api:** equiv now treats null & undefined as equal
 
 
-
-
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.2...@thi.ng/api@1.5.0) (2018-01-31)
 
@@ -248,24 +188,6 @@ to new dedicated packages:
 * **api:** add Predicate2 & StatefulPredicate2 types ([fbf8453](https://github.com/thi-ng/umbrella/commit/fbf8453))
 
 
-
-
-<a name="1.4.2"></a>
-## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.1...@thi.ng/api@1.4.2) (2018-01-30)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
-<a name="1.4.1"></a>
-## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.0...@thi.ng/api@1.4.1) (2018-01-29)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/api
-
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.3.0...@thi.ng/api@1.4.0) (2018-01-29)
 
@@ -273,8 +195,6 @@ to new dedicated packages:
 ### Features
 
 * **api:** update IWatch & mixin, boolean returns ([bddd5ce](https://github.com/thi-ng/umbrella/commit/bddd5ce))
-
-
 
 
 <a name="1.3.0"></a>

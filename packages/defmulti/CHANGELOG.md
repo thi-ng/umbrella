@@ -3,61 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.3.7"></a>
-## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.6...@thi.ng/defmulti@0.3.7) (2018-08-01)
-
-
-
+## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.0.1...@thi.ng/defmulti@1.0.2) (2019-02-05)
 
 **Note:** Version bump only for package @thi.ng/defmulti
 
-<a name="0.3.6"></a>
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.5...@thi.ng/defmulti@0.3.6) (2018-07-20)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/defmulti
-
-<a name="0.3.5"></a>
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.4...@thi.ng/defmulti@0.3.5) (2018-06-21)
-
-
-
+## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.0.0...@thi.ng/defmulti@1.0.1) (2019-01-21)
 
 **Note:** Version bump only for package @thi.ng/defmulti
 
-<a name="0.3.4"></a>
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.3...@thi.ng/defmulti@0.3.4) (2018-05-14)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/defmulti
-
-<a name="0.3.3"></a>
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.2...@thi.ng/defmulti@0.3.3) (2018-05-14)
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.7.0...@thi.ng/defmulti@1.0.0) (2019-01-21)
 
 
+### Build System
+
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
 
-**Note:** Version bump only for package @thi.ng/defmulti
+### Features
 
-<a name="0.3.2"></a>
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.1...@thi.ng/defmulti@0.3.2) (2018-05-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-<a name="0.3.1"></a>
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.0...@thi.ng/defmulti@0.3.1) (2018-05-12)
+* **defmulti:** add callable() & implementations(), update readme ([fde2db2](https://github.com/thi-ng/umbrella/commit/fde2db2))
+* **defmulti:** add relations() ([4066c80](https://github.com/thi-ng/umbrella/commit/4066c80))
+* **defmulti:** add versions w/ 1 optional typed arg, add .impls() ([125c784](https://github.com/thi-ng/umbrella/commit/125c784))
 
 
+### BREAKING CHANGES
+
+* enabled multi-outputs (ES6 modules, CJS, UMD)
+
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
 
 
-**Note:** Version bump only for package @thi.ng/defmulti
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.6.0...@thi.ng/defmulti@0.7.0) (2019-01-02)
+
+
+### Features
+
+* **defmulti:** add opt fallback arg for defmultiN(), update docs ([1d29153](https://github.com/thi-ng/umbrella/commit/1d29153))
+
+
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.5.1...@thi.ng/defmulti@0.6.0) (2019-01-01)
+
+
+### Features
+
+* **defmulti:** add addAll(), add/update doc strings ([488698a](https://github.com/thi-ng/umbrella/commit/488698a))
+
+
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.4.1...@thi.ng/defmulti@0.5.0) (2018-10-24)
+
+
+### Features
+
+* **defmulti:** add support for dispatch value relationships / hierarchy ([a8c3898](https://github.com/thi-ng/umbrella/commit/a8c3898))
+
+
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.11...@thi.ng/defmulti@0.4.0) (2018-10-17)
+
+
+### Features
+
+* **defmulti:** add varargs support ([6094738](https://github.com/thi-ng/umbrella/commit/6094738))
+
 
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.2.0...@thi.ng/defmulti@0.3.0) (2018-05-11)
@@ -68,8 +86,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **defmulti:** add generics, update docs & readme ([eeed25e](https://github.com/thi-ng/umbrella/commit/eeed25e))
 
 
-
-
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.1.0...@thi.ng/defmulti@0.2.0) (2018-05-10)
 
@@ -77,8 +93,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **defmulti:** add defmultiN(), update readme, add tests ([126ecf3](https://github.com/thi-ng/umbrella/commit/126ecf3))
-
-
 
 
 <a name="0.1.0"></a>

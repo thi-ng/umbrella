@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if [ $# == 1 ]; then
+    examples="examples/$1"
+else
+    examples="examples/*"
+fi
+
+for e in $examples; do
+    if [ -d "$e" ] && [ ! -e "$e/.skip" ]; then
+        echo "------------------------------"
+        echo "building $e..."
+        echo "------------------------------"
+        rm -rf $e/out $e/.cache
+        (cd $e && yarn build)
+        if [ 0 -eq $? ]; then
+            src=`ls $e/out/*.js`
+            for js in $src; do
+                node_modules/.bin/terser -c -m --ecma 6 -o $js $js
+                sed -i 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0});//g' $js
+                sed -i 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0}),\([^f]\)/(\1)/g' $js
+                gzip -c $js > $js.gz
+                ls -la $js*
+            done
+            # sed -i 's/src="\//src=".\//g' $e/out/index.html
+        else
+            echo "skipping..."
+        fi
+    fi
+done

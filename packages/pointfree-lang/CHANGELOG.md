@@ -3,141 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.2.17"></a>
-## [0.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.16...@thi.ng/pointfree-lang@0.2.17) (2018-08-01)
-
-
-
+## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.0.2...@thi.ng/pointfree-lang@1.0.3) (2019-02-10)
 
 **Note:** Version bump only for package @thi.ng/pointfree-lang
 
-<a name="0.2.16"></a>
-## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.15...@thi.ng/pointfree-lang@0.2.16) (2018-07-20)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.15"></a>
-## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.14...@thi.ng/pointfree-lang@0.2.15) (2018-06-21)
-
-
-
+## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.0.1...@thi.ng/pointfree-lang@1.0.2) (2019-02-05)
 
 **Note:** Version bump only for package @thi.ng/pointfree-lang
 
-<a name="0.2.14"></a>
-## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.13...@thi.ng/pointfree-lang@0.2.14) (2018-06-18)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.13"></a>
-## [0.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.12...@thi.ng/pointfree-lang@0.2.13) (2018-05-14)
-
-
-
+## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.0.0...@thi.ng/pointfree-lang@1.0.1) (2019-01-21)
 
 **Note:** Version bump only for package @thi.ng/pointfree-lang
 
-<a name="0.2.12"></a>
-## [0.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.11...@thi.ng/pointfree-lang@0.2.12) (2018-05-14)
 
 
 
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.11"></a>
-## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.10...@thi.ng/pointfree-lang@0.2.11) (2018-05-13)
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.27...@thi.ng/pointfree-lang@1.0.0) (2019-01-21)
 
 
+### Bug Fixes
+
+* **pointfree-lang:** update NodeType handling ([227be4b](https://github.com/thi-ng/umbrella/commit/227be4b))
 
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
+### Build System
 
-<a name="0.2.10"></a>
-## [0.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.9...@thi.ng/pointfree-lang@0.2.10) (2018-05-12)
-
+* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
 
+### BREAKING CHANGES
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
+* enabled multi-outputs (ES6 modules, CJS, UMD)
 
-<a name="0.2.9"></a>
-## [0.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.8...@thi.ng/pointfree-lang@0.2.9) (2018-05-10)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.8"></a>
-## [0.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.7...@thi.ng/pointfree-lang@0.2.8) (2018-05-10)
+- build scripts now first build ES6 modules in package root, then call
+  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level
+  (not individual files anymore). tree shaking in user land will get rid of
+  all unused imported symbols.
 
 
+## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.25...@thi.ng/pointfree-lang@0.2.26) (2018-12-15)
 
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
+### Bug Fixes
 
-<a name="0.2.7"></a>
-## [0.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.6...@thi.ng/pointfree-lang@0.2.7) (2018-05-09)
-
+* **pointfree-lang:** update parser stubs (TS3.2.x) ([3b3e503](https://github.com/thi-ng/umbrella/commit/3b3e503))
 
 
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.6"></a>
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.5...@thi.ng/pointfree-lang@0.2.6) (2018-04-29)
+<a name="0.2.22"></a>
+## [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.21...@thi.ng/pointfree-lang@0.2.22) (2018-09-24)
 
 
+### Performance Improvements
 
+* **pointfree-lang:** `NodeType` => const enum ([a7b9a42](https://github.com/thi-ng/umbrella/commit/a7b9a42))
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.5"></a>
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.4...@thi.ng/pointfree-lang@0.2.5) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.4"></a>
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.3...@thi.ng/pointfree-lang@0.2.4) (2018-04-26)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.3"></a>
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.2...@thi.ng/pointfree-lang@0.2.3) (2018-04-13)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.2"></a>
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.1...@thi.ng/pointfree-lang@0.2.2) (2018-04-08)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-<a name="0.2.1"></a>
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.0...@thi.ng/pointfree-lang@0.2.1) (2018-04-04)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
 
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.1.3...@thi.ng/pointfree-lang@0.2.0) (2018-04-03)
@@ -175,14 +104,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **pointfree-lang:** add ensureEnv, update re-exports, update readme ([659cce9](https://github.com/thi-ng/umbrella/commit/659cce9))
-
-
-
-
-<a name="0.1.1"></a>
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.1.0...@thi.ng/pointfree-lang@0.1.1) (2018-03-31)
-
-
-
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang

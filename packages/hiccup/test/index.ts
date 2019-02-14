@@ -46,7 +46,13 @@ describe("serialize", () => {
     check(
         "div w/ id, class & attrib",
         ["div#foo.bar.baz", { extra: 23 }, "foo"],
-        `<div id="foo" class="bar baz" extra="23">foo</div>`
+        `<div extra="23" id="foo" class="bar baz">foo</div>`
+    );
+
+    check(
+        "div w/ class merging",
+        ["div.foo", { class: "bar baz" }, "foo"],
+        `<div class="bar baz foo">foo</div>`
     );
 
     check(
@@ -256,5 +262,11 @@ describe("serialize", () => {
         "style fn attribs",
         ["div", { style: { a: (x) => x.b, b: 2 } }],
         `<div style="a:2;b:2;"></div>`
+    );
+
+    check(
+        "__skip",
+        ["a", ["b", { __skip: true }, "bb"], ["b", "bbb"]],
+        `<a><b>bbb</b></a>`
     );
 });

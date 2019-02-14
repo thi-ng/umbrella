@@ -1,4 +1,4 @@
-import { IDeref } from "@thi.ng/api/api";
+import { IDeref } from "@thi.ng/api";
 
 export class Reduced<T> implements
     IDeref<T> {
@@ -14,18 +14,14 @@ export class Reduced<T> implements
     }
 }
 
-export function reduced(x: any): any {
-    return new Reduced(x);
-}
+export const reduced =
+    (x: any): any => new Reduced(x);
 
-export function isReduced<T>(x: any): x is Reduced<T> {
-    return x instanceof Reduced;
-}
+export const isReduced =
+    <T>(x: any): x is Reduced<T> => x instanceof Reduced;
 
-export function ensureReduced(x: any) {
-    return x instanceof Reduced ? x : new Reduced(x);
-}
+export const ensureReduced =
+    (x: any) => x instanceof Reduced ? x : new Reduced(x);
 
-export function unreduced(x: any) {
-    return x instanceof Reduced ? x.deref() : x;
-}
+export const unreduced =
+    (x: any) => x instanceof Reduced ? x.deref() : x;

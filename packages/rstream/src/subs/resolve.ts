@@ -1,11 +1,38 @@
-import { IID } from "@thi.ng/api/api";
-
+import { IID } from "@thi.ng/api";
 import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
 
 export interface ResolverOpts extends IID<string> {
+    /**
+     * Error handler for failed promises.
+     */
     fail: (e: any) => void;
 }
+
+/**
+ * Creates a new subscription which receives promises, buffers them and
+ * then passes their resolved values downstream. If the optional `fail`
+ * handler is provided, it'll be called with the error of each failed
+ * promise. If none is provided, the sub's `error()` handler is called,
+ * which then stops the sub from receiving further values.
+ *
+ * ```
+ * fromIterable([1, 2, 3], 100)
+ *   .transform(tx.delayed(1000))
+ *   .subscribe(resolve())
+ *   .subscribe(trace("result"))
+ * // result 1
+ * // result 2
+ * // result 3
+ * // result done
+ * ```
+ *
+ * @param opts
+ */
+export const resolve =
+    <T>(opts?: Partial<ResolverOpts>) =>
+        new Resolver<T>(opts);
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
 
@@ -13,7 +40,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected fail: (e: any) => void;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(null, null, null, opts.id || `resolve-${Subscription.NEXT_ID++}`);
+        super(null, null, null, opts.id || `resolve-${nextID()}`);
         this.fail = opts.fail;
     }
 
@@ -27,10 +54,17 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                         this.done();
                     }
                 } else {
-                    DEBUG && console.log(`resolved value in ${State[this.state]} state (${x})`);
+                    DEBUG && console.log(`resolved value in state ${this.state} (${x})`);
                 }
             },
-            (e) => (this.fail || this.error)(e)
+            (e) => {
+                if (this.fail) {
+                    this.fail(e);
+                }
+                else {
+                    this.error(e);
+                }
+            }
         );
     }
 
@@ -39,8 +73,4 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
             super.done();
         }
     }
-}
-
-export function resolve<T>(opts?: Partial<ResolverOpts>) {
-    return new Resolver<T>(opts);
 }

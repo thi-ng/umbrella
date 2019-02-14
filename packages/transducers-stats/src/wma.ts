@@ -1,10 +1,12 @@
-import { isNumber } from "@thi.ng/checks/is-number";
-import { Transducer } from "@thi.ng/transducers/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { map } from "@thi.ng/transducers/xform/map";
-import { partition } from "@thi.ng/transducers/xform/partition";
-
+import { isNumber } from "@thi.ng/checks";
+import {
+    comp,
+    iterator1,
+    map,
+    partition,
+    range,
+    Transducer
+} from "@thi.ng/transducers";
 import { dot } from "./dot";
 
 /**
@@ -15,7 +17,12 @@ import { dot } from "./dot";
  *
  * @param weights period or array of weights
  */
-export function wma(weights: number | number[]): Transducer<number, number> {
+export function wma(weights: number | number[]): Transducer<number, number>;
+export function wma(weights: number | number[], src: Iterable<number>): IterableIterator<number>;
+export function wma(weights: number | number[], src?: Iterable<number>): any {
+    if (src) {
+        return iterator1(wma(weights), src);
+    }
     let period, wsum;
     if (isNumber(weights)) {
         period = weights | 0;
@@ -27,6 +34,6 @@ export function wma(weights: number | number[]): Transducer<number, number> {
     }
     return comp(
         partition(period, 1),
-        map((window) => dot(window, <number[]>weights) / wsum)
+        map((window: number[]) => dot(window, <number[]>weights) / wsum)
     );
 };

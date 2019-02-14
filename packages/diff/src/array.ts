@@ -1,6 +1,49 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
+import { ArrayDiff, DiffMode } from "./api";
 
-import { ArrayDiff } from "./api";
+let _cachedFP: Int32Array;
+let _cachedPath: Int32Array;
+
+let _cachedEPC: number[] = [];
+let _cachedPathPos: number[] = [];
+
+const cachedFP =
+    (size: number) =>
+        _cachedFP && _cachedFP.length >= size ?
+            _cachedFP :
+            (_cachedFP = new Int32Array(size));
+
+const cachedPath =
+    (size: number) =>
+        _cachedPath && _cachedPath.length >= size ?
+            _cachedPath :
+            (_cachedPath = new Int32Array(size));
+
+const simpleDiff = <T>(
+    state: ArrayDiff<T>,
+    src: ArrayLike<T>,
+    key: keyof ArrayDiff<T>,
+    logDir: number,
+    mode: DiffMode
+) => {
+    const n = src.length;
+    const linear = state.linear;
+    state.distance = n;
+    if (mode !== DiffMode.ONLY_DISTANCE) {
+        for (let i = 0, j = 0; i < n; i++ , j += 3) {
+            linear[j] = logDir;
+            linear[j + 1] = i;
+            linear[j + 2] = src[i];
+        }
+        if (mode === DiffMode.FULL) {
+            const _state = state[key];
+            for (let i = 0; i < n; i++) {
+                _state[i] = src[i];
+            }
+        }
+    }
+    return state;
+};
 
 /**
  * Based on "An O(NP) Sequence Comparison Algorithm""
@@ -11,8 +54,18 @@ import { ArrayDiff } from "./api";
  *
  * Various optimizations, fixes & refactorings.
  * By default uses `@thi.ng/equiv` for equality checks.
+ *
+ * @param a "old" array
+ * @param b "new" array
+ * @param mode result mode
+ * @param equiv equality predicate function
  */
-export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = false) {
+export const diffArray = <T>(
+    a: ArrayLike<T>,
+    b: ArrayLike<T>,
+    mode = DiffMode.FULL,
+    equiv = _equiv
+) => {
     const state = <ArrayDiff<T>>{
         distance: 0,
         adds: {},
@@ -20,32 +73,40 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = fals
         const: {},
         linear: []
     };
-    if (_a === _b) {
+
+    if (a === b || (a == null && b == null)) {
         return state;
+    } else if (a == null || a.length === 0) {
+        return simpleDiff(state, b, "adds", 1, mode);
+    } else if (b == null || b.length === 0) {
+        return simpleDiff(state, a, "dels", -1, mode);
     }
-    const reverse = _a.length >= _b.length;
-    let a, b, na, nb;
+
+    const reverse = a.length >= b.length;
+    let _a, _b, na, nb;
 
     if (reverse) {
-        a = _b;
-        b = _a;
+        _a = b;
+        _b = a;
     } else {
-        a = _a;
-        b = _b;
+        _a = a;
+        _b = b;
     }
-    na = a.length;
-    nb = b.length;
+    na = _a.length;
+    nb = _b.length;
 
     const offset = na + 1;
     const delta = nb - na;
     const doff = delta + offset;
     const size = na + nb + 3;
-    const path = new Array(size).fill(-1);
-    const fp = new Array(size).fill(-1);
-    const epc = [];
-    const pathPos = [];
+    const path = cachedPath(size).fill(-1, 0, size);
+    const fp = cachedFP(size).fill(-1, 0, size);
+    const epc = _cachedEPC;
+    const pathPos = _cachedPathPos;
+    epc.length = 0;
+    pathPos.length = 0;
 
-    function snake(k, p, pp) {
+    const snake = (k, p, pp) => {
         const koff = k + offset;
         let r, y;
         if (p > pp) {
@@ -56,44 +117,56 @@ export function diffArray<T>(_a: T[], _b: T[], equiv = _equiv, linearOnly = fals
             y = pp;
         }
         let x = y - k;
-        while (x < na && y < nb && equiv(a[x], b[y])) {
+        while (x < na && y < nb && equiv(_a[x], _b[y])) {
             x++;
             y++;
         }
-        path[koff] = pathPos.length;
-        pathPos.push([x, y, r]);
+        path[koff] = pathPos.length / 3;
+        pathPos.push(x, y, r);
         return y;
-    }
+    };
 
-    let p = -1, pp;
+    let p = -1, k, ko;
     do {
         p++;
-        for (let k = -p, ko = k + offset; k < delta; k++ , ko++) {
+        for (k = -p, ko = k + offset; k < delta; k++ , ko++) {
             fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
         }
-        for (let k = delta + p, ko = k + offset; k > delta; k-- , ko--) {
+        for (k = delta + p, ko = k + offset; k > delta; k-- , ko--) {
             fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
         }
         fp[doff] = snake(delta, fp[doff - 1] + 1, fp[doff + 1]);
     } while (fp[doff] !== nb);
+
     state.distance = delta + 2 * p;
 
-    let r = path[doff];
-    while (r !== -1) {
-        epc.push(pp = pathPos[r]);
-        r = pp[2];
-    }
+    if (mode !== DiffMode.ONLY_DISTANCE) {
+        p = path[doff] * 3;
+        while (p >= 0) {
+            epc.push(p);
+            p = pathPos[p + 2] * 3;
+        }
 
-    if (linearOnly) {
-        buildLinearLog<T>(epc, state, a, b, reverse);
-    } else {
-        buildFullLog<T>(epc, state, a, b, reverse);
+        if (mode === DiffMode.FULL) {
+            buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
+        } else {
+            buildLinearLog<T>(epc, pathPos, state, _a, _b, reverse);
+        }
     }
     return state;
-}
+};
 
-function buildFullLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reverse: boolean) {
+const buildFullLog = <T>(
+    epc: any[],
+    pathPos: any[],
+    state: ArrayDiff<T>,
+    a: ArrayLike<T>,
+    b: ArrayLike<T>,
+    reverse: boolean
+) => {
     const linear = state.linear;
+    const _const = state.const;
+    let i = epc.length, px = 0, py = 0;
     let adds, dels, aID, dID;
     if (reverse) {
         adds = state.dels;
@@ -106,52 +179,62 @@ function buildFullLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, revers
         aID = 1;
         dID = -1;
     }
-    for (let i = epc.length, px = 0, py = 0; --i >= 0;) {
+    for (; --i >= 0;) {
         const e = epc[i];
-        let v;
-        while (px < e[0] || py < e[1]) {
-            const d = e[1] - e[0], dp = py - px;
+        const ppx = pathPos[e];
+        const ppy = pathPos[e + 1];
+        const d = ppy - ppx;
+        while (px < ppx || py < ppy) {
+            const dp = py - px;
             if (d > dp) {
-                adds[py] = v = b[py];
-                linear.push([aID, py, v]);
+                linear.push(aID, py, adds[py] = b[py]);
                 py++;
             }
             else if (d < dp) {
-                dels[px] = v = a[px];
-                linear.push([dID, px, v]);
+                linear.push(dID, px, dels[px] = a[px]);
                 px++;
             }
             else {
-                state.const[px] = v = a[px];
-                linear.push([0, px, v]);
+                linear.push(0, px, _const[px] = a[px]);
                 px++;
                 py++;
             }
         }
     }
-}
+};
 
-function buildLinearLog<T>(epc: any[], state: ArrayDiff<T>, a: any, b: any, reverse: boolean) {
+const buildLinearLog = <T>(
+    epc: any[],
+    pathPos: any[],
+    state: ArrayDiff<T>,
+    a: ArrayLike<T>,
+    b: ArrayLike<T>,
+    reverse: boolean
+) => {
     const linear = state.linear;
     const aID = reverse ? -1 : 1;
     const dID = reverse ? 1 : -1;
-    for (let i = epc.length, px = 0, py = 0; --i >= 0;) {
+    let i = epc.length, px = 0, py = 0;
+    for (; --i >= 0;) {
         const e = epc[i];
-        while (px < e[0] || py < e[1]) {
-            const d = e[1] - e[0], dp = py - px;
+        const ppx = pathPos[e];
+        const ppy = pathPos[e + 1];
+        const d = ppy - ppx;
+        while (px < ppx || py < ppy) {
+            const dp = py - px;
             if (d > dp) {
-                linear.push([aID, py, b[py]]);
+                linear.push(aID, py, b[py]);
                 py++;
             }
             else if (d < dp) {
-                linear.push([dID, px, a[px]]);
+                linear.push(dID, px, a[px]);
                 px++;
             }
             else {
-                linear.push([0, px, a[px]]);
+                linear.push(0, px, a[px]);
                 px++;
                 py++;
             }
         }
     }
-}
+};

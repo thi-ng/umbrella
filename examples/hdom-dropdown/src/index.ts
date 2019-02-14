@@ -1,8 +1,6 @@
-import { Atom } from "@thi.ng/atom/atom";
-import { start } from "@thi.ng/hdom/start";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-import { trace } from "@thi.ng/interceptors/interceptors";
-
+import { Atom } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
+import { EventBus, trace } from "@thi.ng/interceptors";
 import { state, theme } from "./config";
 import { dropdown, dropdownListeners } from "./dropdown";
 
@@ -11,7 +9,7 @@ bus.instrumentWith([trace]);
 
 const dd = dropdown("theme.dd");
 
-start("app",
+start(
     (ctx) => {
         bus.processQueue();
         return ["div", ctx.theme.root,
@@ -29,4 +27,5 @@ start("app",
                 }]],
         ];
     },
-    { bus, theme });
+    { ctx: { bus, theme } }
+);

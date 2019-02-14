@@ -9,7 +9,14 @@ mkdir -p $MODULE
 
 echo "creating /src folder..."
 mkdir -p $MODULE/src
-touch $MODULE/src/index.ts
+cat << EOF > $MODULE/src/index.ts
+import { } from "@thi.ng/hdom";
+
+if (process.env.NODE_ENV !== "production") {
+    const hot = (<any>module).hot;
+    hot && hot.dispose(() => {});
+}
+EOF
 
 echo "writing package.json..."
 cat << EOF > $MODULE/package.json
@@ -20,21 +27,26 @@ cat << EOF > $MODULE/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "webpack --mode production --display-reasons --display-modules",
-        "start": "webpack-dev-server --open --mode development --devtool inline-source-map"
+        "clean": "rimraf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "ts-loader": "^4.4.2",
-        "typescript": "^3.0.1",
-        "webpack": "^4.16.3",
-        "webpack-cli": "^3.1.0",
-        "webpack-dev-server": "^3.1.5"
+        "parcel-bundler": "^1.11.0",
+        "rimraf": "^2.6.3",
+        "terser": "^3.14.1",
+        "typescript": "^3.2.2"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/hdom": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers-hdom": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
     }
 }
 EOF
@@ -44,7 +56,9 @@ cat << EOF > $MODULE/tsconfig.json
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "."
+        "outDir": ".",
+        "target": "es6",
+        "sourceMap": true
     },
     "include": [
         "./src/**/*.ts"
@@ -52,30 +66,10 @@ cat << EOF > $MODULE/tsconfig.json
 }
 EOF
 
-echo "writing webpack.config.js..."
-cat << EOF > $MODULE/webpack.config.js
-module.exports = {
-    entry: "./src/index.ts",
-    output: {
-        path: __dirname,
-        filename: "bundle.js"
-    },
-    resolve: {
-        extensions: [".ts", ".js"]
-    },
-    module: {
-        rules: [
-            { test: /\.ts$/, use: "ts-loader" }
-        ]
-    },
-    devServer: {
-        contentBase: "."
-    }
-};
-EOF
-
 echo "writing .gitignore..."
 cat << EOF > $MODULE/.gitignore
+.cache
+out
 node_modules
 yarn.lock
 *.js
@@ -90,13 +84,13 @@ cat << EOF > $MODULE/index.html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>$1</title>
-    <link href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
     <style>
     </style>
 </head>
 <body>
     <div id="app"></div>
-    <script type="text/javascript" src="bundle.js"></script>
+    <script type="text/javascript" src="./src/index.ts"></script>
 </body>
 </html>
 EOF
@@ -107,12 +101,7 @@ cat << EOF > $MODULE/README.md
 
 [Live demo](http://demo.thi.ng/umbrella/$1/)
 
-\`\`\`bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/$1
-yarn install
-yarn start
-\`\`\`
+Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
 ## Authors
 

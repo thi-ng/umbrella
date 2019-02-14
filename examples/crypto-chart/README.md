@@ -2,14 +2,14 @@
 
 [Live demo](https://s3.amazonaws.com/demo.thi.ng/umbrella/crypto-chart/index.html)
 
-![chart](../../assets/crypto-chart.png)
+![chart](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/crypto-chart.png)
 
 Price data provided by [cryptocompare.com](https://min-api.cryptocompare.com/).
 
 This example demonstrates how to use
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 &
-[@thi.ng/transducer](https://github.com/thi-ng/umbrella/tree/master/packages/transducer)
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 constructs to create a basic crypto-currency candle chart with multiple
 moving averages plots. Unlike most other examples in this repo, there's
 no additional state handling used (e.g. via
@@ -20,16 +20,13 @@ updates / diffs when there were any relevant upstream value changes.
 
 The diagram below shows a schematic of the dataflow graph used:
 
-![dataflow](../../assets/crypto-dflow.svg)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/crypto-dflow.png)
 
 ## Building
 
-```bash
-git clone https://github.com/thi-ng/umbrella.git
-cd umbrella/examples/crypto-chart
-yarn install
-yarn start
-```
+Please refer to the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+on the wiki.
 
 ## Authors
 

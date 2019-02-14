@@ -1,1 +1,3 @@
-export const defs = (...defs) => ["defs", ...defs];
+export const defs =
+    (...defs: any[]): any[] =>
+        ["defs", {}, ...defs];

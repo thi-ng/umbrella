@@ -1,8 +1,41 @@
-import { Predicate } from "@thi.ng/api/api";
-
+import { Predicate } from "@thi.ng/api";
 import { ISubscribable } from "../api";
-import { Stream } from "../stream";
 import { Subscription } from "../subscription";
+import { nextID } from "../utils/idgen";
+
+/**
+ * Filters values from input based on values received from side chain.
+ * By default, the value read from the side chain is ignored, however
+ * the optional predicate can be used to only trigger for specific
+ * values/conditions. Every time the predicate fn returns true, the
+ * filter will be toggled on/off. Whilst switched off, no input values
+ * will be forwarded.
+ *
+ * ```
+ * // use slower interval stream to toggle main stream on/off
+ * fromInterval(500)
+ *   .subscribe(sidechainToggle(fromInterval(1000)))
+ *   .subscribe(trace());
+ * // 0
+ * // 3
+ * // 4
+ * // 7
+ * // 8
+ * ...
+ * ```
+ *
+ * @param side
+ * @param pred
+ * @param initial initial switch state
+ * @param id
+ */
+export const sidechainToggle = <A, B>(
+    side: ISubscribable<B>,
+    initial = true,
+    pred?: Predicate<B>,
+    id?: string
+): Subscription<A, A> =>
+    new SidechainToggle(side, initial, pred, id);
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
 
@@ -10,7 +43,7 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
     isActive: boolean;
 
     constructor(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string) {
-        super(null, null, null, id || `sidetoggle-${Stream.NEXT_ID++}`);
+        super(null, null, null, id || `sidetoggle-${nextID()}`);
         this.isActive = initial;
         const $this = this;
         pred = pred || (() => true);
@@ -44,33 +77,4 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
         super.done();
         this.sideSub.unsubscribe();
     }
-}
-
-/**
- * Filters values from input based on values received from side chain.
- * By default, the value read from the side chain is ignored, however the optional
- * predicate can be used to only trigger for specific values/conditions.
- * Everytime the predicate fn returns true, the filter will be toggled on/off.
- * Whilst switched off, no input values will be forwarded.
- *
- * ```
- * // use slower interval stream to toggle main stream on/off
- * fromInterval(500)
- *   .subscribe(sidechainToggle(fromInterval(1000)))
- *   .subscribe(trace());
- * // 0
- * // 3
- * // 4
- * // 7
- * // 8
- * ...
- * ```
- *
- * @param side
- * @param pred
- * @param initial initial switch state
- * @param id
- */
-export function sidechainToggle<A, B>(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string): Subscription<A, A> {
-    return new SidechainToggle(side, initial, pred, id);
 }

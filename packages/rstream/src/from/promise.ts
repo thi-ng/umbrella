@@ -1,5 +1,6 @@
 import { State } from "../api";
 import { Stream } from "../stream";
+import { nextID } from "../utils/idgen";
 
 /**
  * Yields a single-value stream of the resolved promise and then
@@ -8,31 +9,35 @@ import { Stream } from "../stream";
  *
  * @param src
  */
-export function fromPromise<T>(src: Promise<T>) {
-    let canceled = false;
-    let isError = false;
-    let err: any = {};
-    src.catch(
-        (e) => {
-            err = e;
-            isError = true;
-        }
-    );
-    return new Stream<T>((stream) => {
-        src.then(
-            (x) => {
-                if (!canceled && stream.getState() < State.DONE) {
-                    if (isError) {
-                        stream.error(err);
-                        err = null;
-                    } else {
-                        stream.next(x);
-                        stream.done();
-                    }
-                }
-            },
-            (e) => stream.error(e)
+export const fromPromise =
+    <T>(src: Promise<T>) => {
+        let canceled = false;
+        let isError = false;
+        let err: any = {};
+        src.catch(
+            (e) => {
+                err = e;
+                isError = true;
+            }
         );
-        return () => { canceled = true; };
-    }, `promise-${Stream.NEXT_ID++}`);
-}
+        return new Stream<T>(
+            (stream) => {
+                src.then(
+                    (x) => {
+                        if (!canceled && stream.getState() < State.DONE) {
+                            if (isError) {
+                                stream.error(err);
+                                err = null;
+                            } else {
+                                stream.next(x);
+                                stream.done();
+                            }
+                        }
+                    },
+                    (e) => stream.error(e)
+                );
+                return () => { canceled = true; };
+            },
+            `promise-${nextID()}`
+        );
+    };

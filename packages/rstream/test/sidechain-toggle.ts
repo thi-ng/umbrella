@@ -8,8 +8,8 @@ describe("SidechainToggle", () => {
     let src, side, buf;
 
     beforeEach(() => {
-        src = new rs.Stream();
-        side = new rs.Stream();
+        src = rs.stream();
+        side = rs.stream();
         buf = [];
     });
 

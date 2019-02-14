@@ -1,4 +1,5 @@
 import { Stream } from "../stream";
+import { nextID } from "../utils/idgen";
 
 /**
  * Returns a new `Stream` which emits a monotonically increasing counter
@@ -9,17 +10,20 @@ import { Stream } from "../stream";
  * @param delay
  * @param count
  */
-export function fromInterval(delay: number, count = Number.POSITIVE_INFINITY) {
-    return new Stream<number>((stream) => {
-        let i = 0;
-        stream.next(i++);
-        let id = setInterval(() => {
-            stream.next(i++);
-            if (--count <= 0) {
-                clearInterval(id);
-                stream.done();
-            }
-        }, delay);
-        return () => clearInterval(id);
-    }, `interval-${Stream.NEXT_ID++}`);
-}
+export const fromInterval =
+    (delay: number, count = Infinity) =>
+        new Stream<number>(
+            (stream) => {
+                let i = 0;
+                stream.next(i++);
+                let id = setInterval(() => {
+                    stream.next(i++);
+                    if (--count <= 0) {
+                        clearInterval(id);
+                        stream.done();
+                    }
+                }, delay);
+                return () => clearInterval(id);
+            },
+            `interval-${nextID()}`
+        );

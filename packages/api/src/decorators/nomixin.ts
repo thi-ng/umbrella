@@ -5,6 +5,7 @@
  * partial implementations of mixed-in behaviors in target class and
  * avoid them being overidden by mixed-in behaviour.
  */
-export function nomixin(_: any, __: string, descriptor: PropertyDescriptor) {
-    descriptor.configurable = false;
-}
+export const nomixin =
+    (_: any, __: string, descriptor: PropertyDescriptor) => {
+        descriptor.configurable = false;
+    };

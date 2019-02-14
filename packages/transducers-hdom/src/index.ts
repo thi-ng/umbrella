@@ -1,0 +1,71 @@
+import {
+    DEFAULT_IMPL,
+    HDOMImplementation,
+    HDOMOpts,
+    resolveRoot
+} from "@thi.ng/hdom";
+import { derefContext } from "@thi.ng/hiccup";
+import { scan, Transducer } from "@thi.ng/transducers";
+
+/**
+ * Side-effecting & stateful transducer which receives @thi.ng/hdom
+ * component trees, diffs each against previous value and applies
+ * required changes to browser DOM starting at given root element.
+ *
+ * By default, incoming values are first normalized using hdom's
+ * `normalizeTree()` function and a copy of the given (optional) `ctx`
+ * object is provided to all embedded component functions in the tree.
+ * If the `autoDerefKeys` option is given, attempts to auto-expand/deref
+ * the given keys in the user supplied context object (`ctx` option)
+ * prior to *each* tree normalization. All of these values should
+ * implement the thi.ng/api `IDeref` interface (e.g. atoms, cursors,
+ * views, rstreams etc.). This feature can be used to define dynamic
+ * contexts linked to the main app state, e.g. using derived views
+ * provided by thi.ng/atom.
+ *
+ * If the `hydrate` option is given, the first received tree is only
+ * used to inject event listeners and initialize components with
+ * lifecycle `init()` methods and expects an otherwise identical,
+ * pre-existing DOM. All succeeding trees are diffed then as usual.
+ *
+ * This transducer is primarily intended for @thi.ng/rstream dataflow
+ * graph based applications, where it can be used as final leaf
+ * subscription to reactively reflect UI changes back to the user,
+ * without using the usual RAF update loop used by hdom by default. In
+ * this setup, DOM updates will only be performed when the stream this
+ * transducer is attached to emits new values (i.e. hdom component
+ * trees).
+ *
+ * Please see here for further details:
+ * https://github.com/thi-ng/umbrella/blob/master/packages/hdom/src/start.ts
+ *
+ * @param opts hdom options
+ */
+export const updateDOM = (
+    opts: Partial<HDOMOpts> = {},
+    impl: HDOMImplementation<any> = DEFAULT_IMPL
+): Transducer<any, any[]> => {
+
+    const _opts = { root: "app", ...opts };
+    const root = resolveRoot(_opts.root, impl);
+    return scan<any, any[]>(
+        [
+            () => [],
+            (acc) => acc,
+            (prev, curr) => {
+                _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
+                curr = impl.normalizeTree(_opts, curr);
+                if (curr != null) {
+                    if (_opts.hydrate) {
+                        impl.hydrateTree(_opts, root, curr);
+                        _opts.hydrate = false;
+                    } else {
+                        impl.diffTree(_opts, root, prev, curr, 0);
+                    }
+                    return curr;
+                }
+                return prev;
+            }
+        ]
+    );
+};

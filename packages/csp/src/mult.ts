@@ -1,7 +1,6 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { DCons } from "@thi.ng/dcons";
-import { Transducer } from "@thi.ng/transducers/api";
-
+import { illegalArity } from "@thi.ng/errors";
+import { Transducer } from "@thi.ng/transducers";
 import { IWriteableChannel } from "./api";
 import { Channel } from "./channel";
 

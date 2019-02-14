@@ -1,6 +1,5 @@
-import { IAtom } from "@thi.ng/atom/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { Cursor } from "@thi.ng/atom/cursor";
+import { IAtom } from "@thi.ng/atom";
+import { Atom, Cursor } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 
 type CardFn = (state: IAtom<any>) => any;
@@ -48,7 +47,7 @@ function defcard(card: CardFn, state?: IAtom<any>, title?: string, parent?: stri
     const root = card(state);
 
     // kick off hdom renderloop
-    start(parent, () => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]]);
+    start(() => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]], { root: parent });
 }
 
 /**

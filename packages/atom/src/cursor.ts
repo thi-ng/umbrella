@@ -1,10 +1,7 @@
-import { IID, IRelease, Watch } from "@thi.ng/api/api";
-import { isArray } from "@thi.ng/checks/is-array";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { IID, IRelease, Watch } from "@thi.ng/api";
+import { isArray, isFunction } from "@thi.ng/checks";
+import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import { getter, Path, setter } from "@thi.ng/paths";
-
 import {
     CursorOpts,
     IAtom,
@@ -13,8 +10,8 @@ import {
     ViewTransform
 } from "./api";
 import { Atom } from "./atom";
+import { nextID } from "./idgen";
 import { View } from "./view";
-
 
 /**
  * A cursor provides read/write access to a path location within a
@@ -45,8 +42,6 @@ export class Cursor<T> implements
     IAtom<T>,
     IID<string>,
     IRelease {
-
-    static NEXT_ID = 0;
 
     readonly id: string;
     parent: IAtom<any>;
@@ -89,7 +84,7 @@ export class Cursor<T> implements
                 illegalArity(args.length);
         }
         this.parent = parent;
-        this.id = id || `cursor-${Cursor.NEXT_ID++}`;
+        this.id = id || `cursor-${nextID()}`;
         this.selfUpdate = false;
         if (!lookup || !update) {
             illegalArgs();
@@ -110,6 +105,14 @@ export class Cursor<T> implements
                 }
             }
         });
+    }
+
+    get value() {
+        return this.deref();
+    }
+
+    set value(val: T) {
+        this.reset(val);
     }
 
     deref() {

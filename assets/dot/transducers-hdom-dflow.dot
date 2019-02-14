@@ -1,0 +1,16 @@
+digraph {
+    rankdir=LR;
+    node[fontname=Inconsolata,fontsize=11];
+    edge[fontname=Inconsolata,fontsize=9];
+
+    rank=same {
+        ticks[label="ticks\nfromInterval(1000)"];
+        clicks[label="clicks"];
+    }
+
+    sync[label="StreamSync\n(hdom UI update)"];
+
+    ticks -> sync;
+    clicks -> sync[label="xform\n(counter)"];
+    sync -> clicks[style=dashed, label="user"];
+}

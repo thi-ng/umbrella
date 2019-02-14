@@ -1,5 +1,5 @@
-import { Atom } from "@thi.ng/atom/atom";
-import { start } from "@thi.ng/hdom/start";
+import { Atom } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
 import { setIn } from "@thi.ng/paths";
 
 // central immutable app state
@@ -76,8 +76,8 @@ const currView = db.addView(
 
 // app root component
 const app = () =>
-    ["div#app",
+    ["div",
         currView,
         ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
 
-start(document.body, app);
+start(app);

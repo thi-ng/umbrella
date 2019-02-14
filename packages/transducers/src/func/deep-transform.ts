@@ -1,5 +1,4 @@
-import { isFunction } from "@thi.ng/checks/is-function";
-
+import { isFunction } from "@thi.ng/checks";
 import { TransformSpec } from "../api";
 
 /**
@@ -63,19 +62,20 @@ import { TransformSpec } from "../api";
  *
  * @param spec transformation spec
  */
-export function deepTransform(spec: TransformSpec): (x: any) => any {
-    if (isFunction(spec)) {
-        return <any>spec;
-    }
-    const mapfns = Object.keys(spec[1] || {}).reduce(
-        (acc, k) => (acc[k] = deepTransform((<any>spec)[1][k]), acc),
-        {}
-    );
-    return (x) => {
-        const res = { ...x };
-        for (let k in mapfns) {
-            res[k] = mapfns[k](res[k]);
+export const deepTransform =
+    (spec: TransformSpec): (x: any) => any => {
+        if (isFunction(spec)) {
+            return <any>spec;
         }
-        return spec[0](res);
+        const mapfns = Object.keys(spec[1] || {}).reduce(
+            (acc, k) => (acc[k] = deepTransform((<any>spec)[1][k]), acc),
+            {}
+        );
+        return (x) => {
+            const res = { ...x };
+            for (let k in mapfns) {
+                res[k] = mapfns[k](res[k]);
+            }
+            return spec[0](res);
+        };
     };
-}

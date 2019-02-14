@@ -1,11 +1,14 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { History } from "@thi.ng/atom/history";
-import { isArray } from "@thi.ng/checks/is-array";
+import { IObjectOf } from "@thi.ng/api";
+import { Atom, History } from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
-import { EventBus } from "@thi.ng/interceptors/event-bus";
-
-import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
+import { EventBus } from "@thi.ng/interceptors";
+import {
+    AppConfig,
+    AppContext,
+    AppViews,
+    ViewSpec
+} from "./api";
 import * as ev from "./events";
 
 /**
@@ -71,14 +74,13 @@ export class App {
         const root = this.config.rootComponent(this.ctx);
         let firstFrame = true;
         start(
-            this.config.domRoot,
             () => {
                 if (this.ctx.bus.processQueue({ history: this.history }) || firstFrame) {
                     firstFrame = false;
                     return root();
                 }
             },
-            this.ctx
+            { root: this.config.domRoot, ctx: this.ctx }
         );
     }
 

@@ -1,4 +1,5 @@
 import { Reducer, Transducer } from "../api";
+import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
@@ -10,41 +11,44 @@ import { isReduced } from "../reduced";
  * is empty, since length 0 is always a multiple.
  *
  * ```
- * [...iterator(padLast(8, 0), [1, 2, 3, 4, 5])]
+ * [...padLast(8, 0, [1, 2, 3, 4, 5])]
  * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  *
- * [...iterator(padLast(8, 0), [1])]
+ * [...padLast(8, 0, [1])]
  * // [ 1, 0, 0, 0, 0, 0, 0, 0 ]
  *
- * [...iterator(padLast(8, 0), [])]
+ * [...padLast(8, 0, [])]
  * // []
  *
- * [...iterator(padLast(2, 0), [1, 2, 3])]
+ * [...padLast(2, 0, [1, 2, 3])]
  * // [ 1, 2, 3, 0 ]
  *
- * [...iterator(padLast(2, 0), [1, 2, 3, 4])]
+ * [...padLast(2, 0, [1, 2, 3, 4])]
  * // [ 1, 2, 3, 4 ]
  * ```
  *
  * @param n
  * @param fill
  */
-export function padLast<T>(n: number, fill: T): Transducer<T, T> {
-    return ([init, complete, reduce]: Reducer<any, T>) => {
-        let m = 0;
-        return [
-            init,
-            (acc) => {
-                let rem = (m % n);
-                if (rem > 0) {
-                    rem = n - rem;
-                    while (rem-- > 0 && !isReduced(acc)) {
-                        acc = reduce(acc, fill);
+export function padLast<T>(n: number, fill: T): Transducer<T, T>;
+export function padLast<T>(n: number, fill: T, src: Iterable<T>): IterableIterator<T>;
+export function padLast<T>(n: number, fill: T, src?: Iterable<T>): any {
+    return src ?
+        iterator(padLast(n, fill), src) :
+        ([init, complete, reduce]: Reducer<any, T>) => {
+            let m = 0;
+            return [
+                init,
+                (acc) => {
+                    let rem = m % n;
+                    if (rem > 0) {
+                        while (++rem <= n && !isReduced(acc)) {
+                            acc = reduce(acc, fill);
+                        }
                     }
-                }
-                return complete(acc);
-            },
-            (acc, x) => (m++ , reduce(acc, x))
-        ];
-    };
+                    return complete(acc);
+                },
+                (acc, x) => (m++ , reduce(acc, x))
+            ];
+        };
 }

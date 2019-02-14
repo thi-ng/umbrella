@@ -1,6 +1,8 @@
 # @thi.ng/rstream-dot
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rsteam-dot.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -73,7 +75,7 @@ dot -Tsvg -o graph.svg graph.dot
 
 This will generate this diagram:
 
-![graphviz output](../../assets/rs-dot-example.svg)
+![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rs-dot-example.svg)
 
 ## Authors
 

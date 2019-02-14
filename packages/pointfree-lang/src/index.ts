@@ -1,6 +1,5 @@
-import { IObjectOf } from "@thi.ng/api/api";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { illegalState } from "@thi.ng/errors/illegal-state";
+import { IObjectOf } from "@thi.ng/api";
+import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
 
 import {
@@ -186,7 +185,7 @@ const endvar = (id: string) => (ctx: pf.StackContext) => {
  * @param state
  */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
-    DEBUG && console.log("visit", NodeType[node.type], node, ctx[0].toString());
+    DEBUG && console.log("visit", node.type, node, ctx[0].toString());
     switch (node.type) {
         case NodeType.SYM:
             return visitSym(node, ctx, state);

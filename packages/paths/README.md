@@ -1,6 +1,8 @@
 # @thi.ng/paths
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -146,6 +148,21 @@ mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23);
 // fails (because of missing path structure in target object)
 mutIn({}, "a.b.c", 23);
 // undefined
+```
+
+### Path checking
+
+The `exists()` function takes an arbitrary object and lookup path.
+Descends into object along path and returns true if the full path exists
+(even if final leaf value is `null` or `undefined`). Checks are
+performed using `hasOwnProperty()`.
+
+```ts
+exists({ a: { b: { c: [null] } } }, "a.b.c.0");
+// true
+
+exists({ a: { b: { c: [null] } } }, "a.b.c.1");
+// false
 ```
 
 ## Authors

@@ -1,6 +1,6 @@
 import * as assert from "assert";
 
-import { css, PRETTY, at_import, at_keyframes, at_media } from "../src";
+import { css, PRETTY, at_import, at_keyframes, at_media, animation } from "../src";
 
 const rules = {
     a: { color: "red" },
@@ -126,6 +126,20 @@ describe("hiccup-css", () => {
                 [at_media({ print: true, "max-width": "20rem" }, ["div", rules.b])]
             ])),
             "@media screen and print{div .foo{color:red;}@media print and (max-width:20rem){div{border:0;}}}"
+        );
+    });
+
+    it("animation", () => {
+        assert.equal(
+            css(
+                animation(
+                    "delayed-fade-in",
+                    { delay: "0.5s" },
+                    { opacity: 0 },
+                    { opacity: 1 }
+                )
+            ),
+            "@keyframes delayed-fade-in{0%{opacity:0;}100%{opacity:1;}}.delayed-fade-in{animation-duration:250ms;animation-name:delayed-fade-in;animation-delay:0.5s;}"
         );
     });
 });

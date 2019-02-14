@@ -2,7 +2,9 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": ".",
-        "noUnusedLocals": false,
+        "module": "commonjs",
+        "target": "es6",
+        "sourceMap": true
     },
     "include": [
         "./src/**/*.ts"

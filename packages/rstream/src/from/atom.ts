@@ -1,7 +1,7 @@
-import { Predicate2 } from "@thi.ng/api/api";
-import { ReadonlyAtom } from "@thi.ng/atom/api";
-
+import { Predicate2 } from "@thi.ng/api";
+import { ReadonlyAtom } from "@thi.ng/atom";
 import { Stream } from "../stream";
+import { nextID } from "../utils/idgen";
 
 /**
  * Yields stream of value changes in given atom / cursor. Attaches watch
@@ -33,15 +33,22 @@ import { Stream } from "../stream";
  * @param emitFirst
  * @param changed
  */
-export function fromAtom<T>(atom: ReadonlyAtom<T>, emitFirst = true, changed?: Predicate2<T>): Stream<T> {
-    return new Stream<T>((stream) => {
-        changed = changed || ((a, b) => a !== b);
-        atom.addWatch(stream.id, (_, prev, curr) => {
-            if (changed(prev, curr)) {
-                stream.next(curr);
-            }
-        });
-        emitFirst && stream.next(atom.deref());
-        return () => atom.removeWatch(stream.id);
-    });
-}
+export const fromAtom = <T>(
+    atom: ReadonlyAtom<T>,
+    emitFirst = true,
+    changed?: Predicate2<T>
+): Stream<T> =>
+
+    new Stream<T>(
+        (stream) => {
+            changed = changed || ((a, b) => a !== b);
+            atom.addWatch(stream.id, (_, prev, curr) => {
+                if (changed(prev, curr)) {
+                    stream.next(curr);
+                }
+            });
+            emitFirst && stream.next(atom.deref());
+            return () => atom.removeWatch(stream.id);
+        },
+        `atom-${nextID()}`
+    );

@@ -1,4 +1,4 @@
-import { ensureArray } from "../func/ensure-array";
+import { ensureArray } from "@thi.ng/arrays";
 
 /**
  * Yields iterator which consumes input and yield its values in reverse

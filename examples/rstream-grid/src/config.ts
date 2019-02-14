@@ -1,9 +1,8 @@
-import { serialize } from "@thi.ng/hiccup/serialize";
-import { snapshot, valueSetter } from "@thi.ng/interceptors/interceptors";
+import { serialize } from "@thi.ng/hiccup";
+import { snapshot, valueSetter } from "@thi.ng/interceptors";
 import { getIn } from "@thi.ng/paths";
-import { fromIterable } from "@thi.ng/rstream/from/iterable";
-import { range } from "@thi.ng/transducers/iter/range";
-
+import { fromIterable } from "@thi.ng/rstream";
+import { range } from "@thi.ng/transducers";
 import { AppConfig } from "./api";
 import { main } from "./components/main";
 import { download } from "./download";

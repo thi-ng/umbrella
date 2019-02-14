@@ -1,4 +1,4 @@
-import { pager } from "@thi.ng/hdom-components/pager";
+import { pager } from "@thi.ng/hdom-components";
 
 import { AppContext } from "../api";
 import { SET_PAGE, SET_SORT } from "../events";
@@ -18,18 +18,18 @@ export const tripleTable = () => {
     });
     return (ctx: AppContext, triples: any[], num: number, page: number) => {
         const [sid, sdir] = ctx.views.sort.deref();
-        const icon = sdir ? "🔼" : "🔽";
+        const icon = sdir ? "🔽" : "🔼";
         return [section,
             "All triples", ` (${ctx.store.triples.length})`,
             [table,
                 ["10%", "30%", "30%", "30%"],
                 ["id",
                     ...["subject", "predicate", "object"].map(
-                        (x, i) => [eventLink,
-                            ctx.ui.table.headlink,
-                            [SET_SORT, i],
-                            `${x} ${sid === i ? icon : ""}`
-                        ]
+                        (x, i) =>
+                            [eventLink,
+                                ctx.ui.table.headlink,
+                                [SET_SORT, i],
+                                `${x} ${sid === i ? icon : ""}`]
                     )
                 ],
                 triples],

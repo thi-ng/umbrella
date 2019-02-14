@@ -1,10 +1,10 @@
-import { Predicate2 } from "@thi.ng/api/api";
-import { EquivMap } from "@thi.ng/associative/equiv-map";
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { Transducer } from "@thi.ng/transducers/api";
-
+import { Predicate2 } from "@thi.ng/api";
+import { EquivMap } from "@thi.ng/associative";
+import { unsupported } from "@thi.ng/errors";
+import { Transducer } from "@thi.ng/transducers";
 import { DEBUG, ISubscriber } from "./api";
-import { Subscription } from "./subscription";
+import { Subscription, subscription } from "./subscription";
+import { nextID } from "./utils/idgen";
 
 export interface PubSubOpts<A, B> {
     /**
@@ -56,7 +56,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
 
     constructor(opts?: PubSubOpts<A, B>) {
         opts = opts || <PubSubOpts<A, B>>{};
-        super(null, opts.xform, null, opts.id || `pubsub-${Subscription.NEXT_ID++}`);
+        super(null, opts.xform, null, opts.id || `pubsub-${nextID()}`);
         this.topicfn = opts.topic;
         this.topics = new EquivMap<any, Subscription<B, B>>(null, { equiv: opts.equiv });
     }
@@ -84,7 +84,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
     subscribeTopic(topicID: any, sub: any, id?: string): Subscription<any, any> {
         let t = this.topics.get(topicID);
         if (!t) {
-            this.topics.set(topicID, t = new Subscription<B, B>());
+            this.topics.set(topicID, t = subscription<B, B>());
         }
         return t.subscribe(sub, id);
     }
@@ -131,6 +131,11 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 }
 
-export function pubsub<A, B>(opts: PubSubOpts<A, B>) {
-    return new PubSub(opts);
-}
+/**
+ * Creates a new `PubSub` instance. See class docs for further details.
+ *
+ * @param opts
+ */
+export const pubsub =
+    <A, B>(opts: PubSubOpts<A, B>) =>
+        new PubSub(opts);

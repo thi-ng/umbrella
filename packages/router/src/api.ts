@@ -1,4 +1,4 @@
-import { IID, IObjectOf } from "@thi.ng/api/api";
+import { IID, IObjectOf } from "@thi.ng/api";
 
 /**
  * A validation function to for authenticated routes. If this function
@@ -78,6 +78,11 @@ export interface Route extends IID<PropertyKey> {
      * Optional route title (passed to `RouteMatch`)
      */
     title?: string;
+
+    /**
+     * Allow route objects to be extented w/ custom data
+     */
+    [id: string]: any;
 }
 
 /**
@@ -86,12 +91,12 @@ export interface Route extends IID<PropertyKey> {
  * params.
  */
 export interface RouteMatch extends IID<PropertyKey> {
-    title: string;
+    title?: string;
 
     /**
      * Matched & processed route params.
      */
-    params: any;
+    params?: any;
 }
 
 /**

@@ -1,13 +1,19 @@
-import { diffElement, normalizeTree } from "@thi.ng/hdom";
-import { ISubscribable } from "@thi.ng/rstream/api";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { sidechainPartition } from "@thi.ng/rstream/subs/sidechain-partition";
-import { Subscription } from "@thi.ng/rstream/subscription";
-import { vals } from "@thi.ng/transducers/iter/vals";
-import { reducer } from "@thi.ng/transducers/reduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { scan } from "@thi.ng/transducers/xform/scan";
+import { peek } from "@thi.ng/arrays";
+import {
+    fromRAF,
+    ISubscribable,
+    sidechainPartition,
+    Subscription,
+    subscription,
+    sync
+} from "@thi.ng/rstream";
+import {
+    map,
+    reducer,
+    scan,
+    vals
+} from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // example user context object
 // here only used to provide style / theme config using
@@ -24,38 +30,34 @@ const ctx = {
 };
 
 /**
- * Takes a `parent` DOM element, a stream of `root` component values and
- * an arbitrary user context object which will be implicitly passed to
- * all component functions embedded in the root component. Subscribes to
- * `root` stream & performs DOM updates using incoming values (i.e. UI
- * components). Additionally, a RAF side chain stream is used to
- * synchronize DOM updates to be processed during RAF.
+ * Takes a `root` DOM element, a stream of `tree` component values and
+ * an (optional) arbitrary user context object which will be implicitly
+ * passed to all component functions embedded in the root component.
+ * Subscribes to `root` stream & performs DOM diffs / updates using
+ * incoming values (i.e. UI components). Additionally, a RAF side chain
+ * stream is used here to synchronize DOM update requests to be only
+ * processed during RAF. If multiple updates are triggered per frame,
+ * this also ensures that the DOM is only updated once per frame.
+ *
+ * Without RAF synchronization, the following would be sufficient:
+ *
+ * ```
+ * root.transform(updateDOM({root, ctx}))
+ * ```
  *
  * Returns stream of hdom trees.
  *
- * @param parent root DOM element
- * @param root root hdom component stream
+ * @param root root DOM element
+ * @param tree hdom component stream
  * @param ctx user context object
  */
-const domUpdate = (parent: HTMLElement, root: ISubscribable<any>, ctx: any) => {
-    return root
-        // use RAF stream as side chain trigger to
-        // force DOM updates to execute during RAF
+const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
+    tree
         .subscribe(sidechainPartition(fromRAF()))
-        // transform atom value changes using transducers
         .transform(
-            // first normalize/expand hdom component tree
-            // only use very last received value
-            map((curr: any[]) => normalizeTree(curr[curr.length - 1], ctx)),
-            // then perform diff & selective DOM update
-            scan<any, any>(
-                reducer(
-                    () => [],
-                    (prev, curr) => (diffElement(parent, prev, curr), curr)
-                )
-            )
+            map(peek),
+            updateDOM({ root, ctx })
         );
-};
 
 /**
  * Generic button component.
@@ -94,7 +96,7 @@ const resetButton = (_, counters: Subscription<boolean, number>[]) =>
  * @param step
  */
 const counter = (start: number, step: number) => {
-    const s = new Subscription<boolean, number>(
+    const s = subscription<boolean, number>(
         null,
         // the `scan` transducer is used to provide counter functionality
         // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
@@ -123,9 +125,9 @@ const app = (ctx: any, initial: number[][]) => {
         // this config ensures that only at the very beginning *all*
         // inputs must have delivered a value (i.e. stream
         // synchronization) before this stream itself delivers a value.
-        // however, by stating `reset: false` any subsequent changes to
-        // any of the inputs will not be synchronized
-        // see here for further details:
+        // however, by stating `reset: false` (actually the default) any
+        // subsequent changes to any of the inputs will not be
+        // synchronized see here for further details:
         // https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/stream-sync.ts#L21
         // https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/partition-sync.ts#L7
         reset: false,
