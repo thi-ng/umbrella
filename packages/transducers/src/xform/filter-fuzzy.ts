@@ -35,6 +35,6 @@ export function filterFuzzy<A, B>(...args: any[]): any {
     const query: ArrayLike<B> = args[0];
     const { key, equiv } = <FilterFuzzyOpts<A, B>>(args[1] || {});
     return filter(
-        (x: A) => fuzzyMatch(query, key != null ? key(x) : <any>x, equiv)
+        (x: A) => fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
     );
 }
