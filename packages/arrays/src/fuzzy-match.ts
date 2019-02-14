@@ -13,13 +13,13 @@ import { equiv as _eq } from "@thi.ng/equiv";
  *
  * @see thi.ng/transducers/xform/filterFuzzy
  *
- * @param query
  * @param domain
+ * @param query
  * @param equiv
  */
 export const fuzzyMatch = <T>(
-    query: ArrayLike<T>,
     domain: ArrayLike<T>,
+    query: ArrayLike<T>,
     equiv: Predicate2<any> = _eq
 ) => {
     const nd = domain.length;

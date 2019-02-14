@@ -12,14 +12,14 @@ import { compare } from "@thi.ng/compare";
  * to identify the index of `x`. The sort order of `buf` MUST be
  * compatible with that of `cmp`.
  *
- * @param x
  * @param buf
+ * @param x
  * @param key
  * @param cmp
  */
 export const binarySearch = <A, B>(
-    x: A,
     buf: ArrayLike<A>,
+    x: A,
     key: Fn<A, B> = (x) => <any>x,
     cmp: Comparator<B> = compare,
 ) => {
