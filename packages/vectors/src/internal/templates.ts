@@ -10,6 +10,7 @@ export const SET = ([o, a]) => `${o}=${a};`;
 export const SET_N = ([a]) => `${a}=n;`
 
 export const HOF_VVV = ([o, a, b, c]) => `${o}=op(${a},${b},${c});`;
+export const HOF_VVVVV = ([o, a, b, c, d, e]) => `${o}=op(${a},${b},${c},${d},${e});`
 
 export const ADDM = ([o, a, b, c]) => `${o}=(${a}+${b})*${c};`;
 export const ADDM_N = ([o, a, b]) => `${o}=(${a}+${b})*n;`;
