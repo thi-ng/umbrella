@@ -276,6 +276,9 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 
 ### Interpolation
 
+- `fit` / `fit2` / `fit3` / `fit4`
+- `fit01` / `fit01_2` / `fit01_3` / `fit01_4`
+- `fit11` / `fit11_2` / `fit11_3` / `fit11_4`
 - `mix` / `mix2` / `mix3` / `mix4`
 - `mixN` / `mixN2` / `mixN3` / `mixN4`
 - `mixBilinear` / `mixBilinear2` / `mixBilinear3` / `mixBilinear4`

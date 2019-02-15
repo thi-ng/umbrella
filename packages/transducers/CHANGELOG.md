@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@4.0.1...@thi.ng/transducers@5.0.0) (2019-02-15)
+
+
+### Code Refactoring
+
+* **transducers:** remove obsolete fns, update to use [@thi](https://github.com/thi).ng/arrays ([83cb816](https://github.com/thi-ng/umbrella/commit/83cb816))
+* **transducers:** remove obsolete randomID() & weightedRandom() ([4b0eec6](https://github.com/thi-ng/umbrella/commit/4b0eec6))
+* **transducers:** restructure, migrate / remove various functions ([05bf213](https://github.com/thi-ng/umbrella/commit/05bf213))
+
+
+### BREAKING CHANGES
+
+* **transducers:** migrate / remove various functions to other packages
+
+- constantly(), delay(), identity() => @thi.ng/compose
+- randomID(), weightedRandom() => @thi.ng/random
+- remove re-exports:
+  - even(), odd() (from @thi.ng/checks)
+  - juxt() (from @thi.ng/compose)
+- remove obsolete hex() fn (use @thi.ng/strings fns instead)
+* **transducers:** migrate randomID() & weightedRandom() to @thi.ng/random
+
+- update choices() iterator
+* **transducers:** migrate various support fns to @thi.ng/arrays
+
+- remove/migrate functions:
+  - binarySearch()
+  - ensureArray() / ensureIterable()
+  - fuzzyMatch()
+  - peek()
+  - shuffleN()
+  - swizzler()
+- add support for IRandom in:
+  - randomID()
+  - choices()
+  - weightedRandom()
+  - sample()
+- update deps / readme
+
+
+
+
+
 ## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@4.0.0...@thi.ng/transducers@4.0.1) (2019-02-10)
 
 **Note:** Version bump only for package @thi.ng/transducers

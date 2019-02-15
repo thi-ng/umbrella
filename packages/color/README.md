@@ -26,8 +26,8 @@ This project is part of the
 
 ## About
 
-Raw, array-based, color operations, conversions and optional type
-wrappers, based on
+Raw, array-based, color operations, color space conversions, optional type
+wrappers, multi-color gradients, based on
 [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors).
 
 ### Color spaces / modes
