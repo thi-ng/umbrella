@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/transducers-binary",
     "version": "0.1.1",
-    "description": "TODO",
+    "description": "Binary data related transducers & reducers",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",

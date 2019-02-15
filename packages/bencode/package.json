@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/bencode",
     "version": "0.1.1",
-    "description": "TODO",
+    "description": "Bencode binary encoder / decoder with optional UTF8 encoding",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",

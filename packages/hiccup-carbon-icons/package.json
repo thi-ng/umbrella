@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/hiccup-carbon-icons",
     "version": "1.0.3",
-    "description": "TODO",
+    "description": "Full set of IBM's Carbon icons in hiccup format",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",

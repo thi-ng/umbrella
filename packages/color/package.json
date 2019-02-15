@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/color",
     "version": "0.1.4",
-    "description": "TODO",
+    "description": "Raw, array-based, color ops, conversions, opt. type wrappers, multi-color gradients",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
