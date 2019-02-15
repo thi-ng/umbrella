@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.0.2...@thi.ng/random@1.1.0) (2019-02-15)
+
+
+### Bug Fixes
+
+* **random:** add opt scale arg to IRandom.float() ([5a7e448](https://github.com/thi-ng/umbrella/commit/5a7e448))
+
+
+### Features
+
+* **random:** add randomID() & weightedRandom() ([f719724](https://github.com/thi-ng/umbrella/commit/f719724))
+
+
+
+
+
 ## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.0.1...@thi.ng/random@1.0.2) (2019-02-05)
 
 **Note:** Version bump only for package @thi.ng/random

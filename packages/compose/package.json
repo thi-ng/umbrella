@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compose",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Arity-optimized functional composition helpers",
     "module": "./index.js",
     "main": "./lib/index.js",

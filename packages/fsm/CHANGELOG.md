@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.4...@thi.ng/fsm@2.0.0) (2019-02-15)
+
+
+### Features
+
+* **fsm:** update / split until() ([aeb05f8](https://github.com/thi-ng/umbrella/commit/aeb05f8))
+
+
+### BREAKING CHANGES
+
+* **fsm:** make until() array based, add untilStr()
+
+- rename existing `until()` => `untilStr()`
+
+
+
+
+
 ## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.3...@thi.ng/fsm@1.0.4) (2019-02-10)
 
 **Note:** Version bump only for package @thi.ng/fsm
