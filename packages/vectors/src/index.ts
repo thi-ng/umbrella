@@ -46,6 +46,7 @@ export * from "./empty";
 export * from "./eqdelta";
 export * from "./exp";
 export * from "./face-forward";
+export * from "./fit";
 export * from "./floor";
 export * from "./fract";
 export * from "./gvec";
