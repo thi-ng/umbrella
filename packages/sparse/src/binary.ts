@@ -1,8 +1,8 @@
 export class AdjacencyBitMatrix {
 
-    public data: Uint32Array;
-    public stride: number;
-    public n: number;
+    data: Uint32Array;
+    stride: number;
+    n: number;
 
     constructor(n: number) {
         this.n = n = (n + 31) & ~31;
@@ -15,7 +15,7 @@ export class AdjacencyBitMatrix {
      *
      * @param n
      */
-    public expand(n: number) {
+    expand(n: number) {
         n = (n + 31) & ~31;
         const dstride = n >>> 5,
             sstride = this.stride,
@@ -30,16 +30,16 @@ export class AdjacencyBitMatrix {
         return this;
     }
 
-    public get(m: number, n: number) {
+    get(m: number, n: number) {
         return (this.data[(n >>> 5) + m * this.stride] & (0x80000000 >>> (n & 31))) !== 0;
     }
 
-    public getSym(m: number, n: number) {
+    getSym(m: number, n: number) {
         return ((this.data[(n >>> 5) + m * this.stride] & (0x80000000 >>> (n & 31))) ||
             (this.data[(m >>> 5) + n * this.stride] & (0x80000000 >>> (m & 31)))) !== 0;
     }
 
-    public set(m: number, n: number, v = true) {
+    set(m: number, n: number, v = true) {
         const id = (n >>> 5) + m * this.stride,
             mask = 0x80000000 >>> (n & 31);
         if (v) {
@@ -50,7 +50,7 @@ export class AdjacencyBitMatrix {
         return this;
     }
 
-    public setSym(m: number, n: number, v = true) {
+    setSym(m: number, n: number, v = true) {
         const id1 = (n >>> 5) + m * this.stride,
             id2 = (m >>> 5) + n * this.stride,
             m1 = 0x80000000 >>> (n & 31),
@@ -65,7 +65,7 @@ export class AdjacencyBitMatrix {
         return this;
     }
 
-    public valence(m: number) {
+    valence(m: number) {
         m *= this.stride;
         let res = 0;
         for (let i = m + this.stride - 1; i >= m; i--) {
@@ -75,7 +75,7 @@ export class AdjacencyBitMatrix {
         return res;
     }
 
-    public neighbors(m: number) {
+    neighbors(m: number) {
         m *= this.stride;
         let res: number[] = [];
         for (let i = this.n - 1, j = m + this.stride - 1; i >= 0; i -= 32, j--) {
@@ -89,7 +89,7 @@ export class AdjacencyBitMatrix {
         return res;
     }
 
-    public edges() {
+    edges() {
         const res: number[][] = [];
         for (let i = this.n - 1; i >= 0; i--) {
             for (let n of this.neighbors(i)) {
@@ -99,7 +99,7 @@ export class AdjacencyBitMatrix {
         return res;
     }
 
-    public edgesSym() {
+    edgesSym() {
         const res: number[][] = [];
         for (let i = this.n - 1; i >= 0; i--) {
             for (let n of this.neighbors(i)) {
@@ -109,7 +109,7 @@ export class AdjacencyBitMatrix {
         return res;
     }
 
-    public toString() {
+    toString() {
         const res: string[] = [],
             s = this.stride;
         for (let i = 0, j = 0; i < this.n; i++ , j += s) {

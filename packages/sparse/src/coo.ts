@@ -1,11 +1,11 @@
-import { partition } from "@thi.ng/iterators/partition";
+import { partition } from "@thi.ng/transducers";
 import { Triple } from "./api";
 import { AMatrix } from "./amatrix";
 import { CSR } from "./csr";
 
 export class COO extends AMatrix {
 
-    public static fromDense(m: number, n: number, data: ArrayLike<number>) {
+    static fromDense(m: number, n: number, data: ArrayLike<number>) {
         const res = [];
         for (let i = 0, k = 0; i < m; i++) {
             for (let j = 0; j < n; j++ , k++) {
@@ -17,11 +17,11 @@ export class COO extends AMatrix {
         return new COO(m, n, res);
     }
 
-    public static identity(m: number) {
+    static identity(m: number) {
         return COO.diag(new Array(m).fill(1));
     }
 
-    public static diag(vals: ArrayLike<number>) {
+    static diag(vals: ArrayLike<number>) {
         const res = [],
             n = vals.length;
         for (let i = 0; i < n; i++) {
@@ -30,18 +30,18 @@ export class COO extends AMatrix {
         return new COO(n, n, res);
     }
 
-    public data: number[];
+    data: number[];
 
     constructor(m: number, n = m, data?: number[]) {
         super(m, n);
         this.data = data || [];
     }
 
-    public triples() {
+    triples() {
         return <IterableIterator<Triple>>partition(3, 3, this.data);
     }
 
-    public at(m: number, n: number, safe = true) {
+    at(m: number, n: number, safe = true) {
         safe && this.ensureIndex(m, n);
         const d = this.data;
         for (let i = 0, l = d.length; i < l && d[i] <= m; i += 3) {
@@ -52,7 +52,7 @@ export class COO extends AMatrix {
         return 0;
     }
 
-    public setAt(m: number, n: number, v: number, safe = true) {
+    setAt(m: number, n: number, v: number, safe = true) {
         safe && this.ensureIndex(m, n);
         const d = this.data;
         for (let i = 0, l = d.length; i < l; i += 3) {
@@ -70,7 +70,7 @@ export class COO extends AMatrix {
         return this;
     }
 
-    public mulV(v: number[]) {
+    mulV(v: number[]) {
         const res = new Array(this.m).fill(0),
             d = this.data;
         for (let i = d.length - 3; i >= 0; i -= 3) {
@@ -79,7 +79,7 @@ export class COO extends AMatrix {
         return res;
     }
 
-    public toDense() {
+    toDense() {
         const n = this.n,
             d = this.data,
             res = new Array(this.m * this.n).fill(0);
@@ -89,7 +89,7 @@ export class COO extends AMatrix {
         return res;
     }
 
-    public toCSR() {
+    toCSR() {
         const d = [],
             r = [0],
             c = [],

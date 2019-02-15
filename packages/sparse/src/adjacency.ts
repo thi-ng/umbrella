@@ -3,7 +3,7 @@ import { CSR } from "./csr";
 
 export class AdjacencyMatrix extends CSR {
 
-    public static newEmpty(n: number, undirected = true) {
+    static newEmpty(n: number, undirected = true) {
         const raw = CSR.empty(n);
         return new AdjacencyMatrix(n, raw.data, raw.rows, raw.cols, undirected);
     }
@@ -19,7 +19,7 @@ export class AdjacencyMatrix extends CSR {
      * @param edges
      * @param undirected
      */
-    public static fromEdges(n: number, edges: number[][], undirected = true) {
+    static fromEdges(n: number, edges: number[][], undirected = true) {
         const mat = AdjacencyMatrix.newEmpty(n, undirected);
         for (let i = edges.length - 1; i >= 0; i--) {
             const e = edges[i];
@@ -28,7 +28,7 @@ export class AdjacencyMatrix extends CSR {
         return mat;
     }
 
-    public static fromGrid2D(w: number, h: number, wrap = true) {
+    static fromGrid(w: number, h: number, wrap = true) {
         const mat = AdjacencyMatrix.newEmpty(w * h, true);
         if (wrap) {
             for (let x = 0, last = w * (h - 1); x < w; x++) {
@@ -60,42 +60,46 @@ export class AdjacencyMatrix extends CSR {
         return mat;
     }
 
-    public undirected: boolean;
+    undirected: boolean;
 
     constructor(n: number, data: number[], rows: number[], cols: number[], undirected = true) {
         super(n, n, data, rows, cols);
         this.undirected = undirected;
     }
 
-    public addEdge(to: number, from: number) {
+    addEdge(to: number, from: number) {
         this.setAt(to, from, 1);
         this.undirected && this.setAt(from, to, 1);
     }
 
-    public removeEdge(to: number, from: number) {
+    removeEdge(to: number, from: number) {
         this.setAt(to, from, 0);
         this.undirected && this.setAt(from, to, 0);
     }
 
-    public hasEdge(to: number, from: number) {
+    hasEdge(to: number, from: number) {
         return this.at(to, from) !== 0;
     }
 
-    public numEdges() {
+    numEdges() {
         return this.data.length;
     }
 
-    public numVertices() {
+    numVertices() {
         return this.m;
     }
 
-    public *edges() {
-        const rows = this.rows,
-            cols = this.cols;
+    *edges() {
+        const rows = this.rows;
+        const cols = this.cols;
+        const undirected = this.undirected;
         for (let i = 0; i < this.m; i++) {
             const jj = rows[i + 1];
             for (let j = rows[i]; j < jj; j++) {
-                yield [i, cols[j]];
+                const k = cols[j];
+                if (!undirected || i <= k) {
+                    yield [i, k];
+                }
             }
         }
     }
@@ -104,7 +108,7 @@ export class AdjacencyMatrix extends CSR {
      *
      * @param deg
      */
-    public degreeMat(deg: DegreeType = DegreeType.OUT) {
+    degreeMat(deg: DegreeType = DegreeType.OUT) {
         const res = CSR.empty(this.m),
             m = this.m - 1;
         switch (deg) {
@@ -133,14 +137,15 @@ export class AdjacencyMatrix extends CSR {
      * Where `D` is the degree matrix and `A` this adjacency matrix.
      *
      * https://en.wikipedia.org/wiki/Laplacian_matrix
+     * https://en.wikipedia.org/wiki/Discrete_Laplace_operator
      *
      * @param deg degree type for `degreeMat()`
      */
-    public laplacianMat(deg?: CSR) {
+    laplacianMat(deg?: CSR) {
         return (deg || this.degreeMat()).sub(this);
     }
 
-    public normalizedLaplacian(deg?: CSR) {
+    normalizedLaplacian(deg?: CSR) {
         deg = deg || this.degreeMat();
         const m = this.m,
             res = AdjacencyMatrix.newEmpty(m);
@@ -162,17 +167,20 @@ export class AdjacencyMatrix extends CSR {
      * @param n
      * @param deg
      */
-    public deformedLaplacian(n: number, deg?: CSR) {
+    deformedLaplacian(n: number, deg?: CSR) {
         deg = deg || this.degreeMat();
         const I = CSR.identity(this.m);
         return I.copy().sub(this.copy().mulN(n)).add(deg.copy().sub(I).mulN(n * n));
     }
 
-    public toDot() {
-        const res = [`digraph g {`];
+    toDot() {
+        const [type, sep] = this.undirected ?
+            ["graph", "--"] :
+            ["digraph", "->"];
+        const res = [`${type} g {`];
         for (let i = 0; i < this.m; i++) {
             for (let j of this.nzRowCols(i)) {
-                res.push(`"${j}"--"${i}";`);
+                res.push(`"${j}"${sep}"${i}";`);
             }
         }
         res.push(`}`);

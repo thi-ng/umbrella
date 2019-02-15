@@ -4,11 +4,11 @@ import { SparseVec } from "./vec";
 
 export class Diag extends AMatrix {
 
-    public static identity(m: number) {
+    static identity(m: number) {
         return new Diag(new Array(m).fill(1));
     }
 
-    public data: SparseVec;
+    data: SparseVec;
 
     constructor(data: SparseVec | number[]) {
         if (data instanceof SparseVec) {
@@ -20,18 +20,18 @@ export class Diag extends AMatrix {
         this.data = data;
     }
 
-    public at(m: number, n: number, safe = true) {
+    at(m: number, n: number, safe = true) {
         safe && this.ensureIndex(m, n);
         return m === n ? this.data.get(m, false) : 0;
     }
 
-    public setAt(m: number, n: number, v: number, safe = true) {
+    setAt(m: number, n: number, v: number, safe = true) {
         safe && this.ensureIndex(m, n);
         m === n && this.data.set(m, v, false);
         return this;
     }
 
-    public toDense() {
+    toDense() {
         const n = this.n,
             d = this.data,
             res = new Array(n * n).fill(0);
@@ -41,7 +41,7 @@ export class Diag extends AMatrix {
         return res;
     }
 
-    public toCSR() {
+    toCSR() {
         return CSR.diag(this.data.toDense());
     }
 }

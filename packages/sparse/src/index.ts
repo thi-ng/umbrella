@@ -1,5 +1,5 @@
 export * from "./adjacency";
-// export * from "./amatrix";
+export * from "./amatrix";
 export * from "./binary";
 export * from "./coo";
 export * from "./csr";

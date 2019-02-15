@@ -7,7 +7,7 @@ const DIV = (a: number, b: number) => a / b;
 
 export class SparseVec {
 
-    public static fromDense(dense: ArrayLike<number>) {
+    static fromDense(dense: ArrayLike<number>) {
         const sparse: number[] = [],
             n = dense.length;
         for (let i = 0; i < n; i++) {
@@ -17,23 +17,27 @@ export class SparseVec {
         return new SparseVec(n, sparse);
     }
 
-    public m: number;
-    public data: number[];
+    m: number;
+    data: number[];
 
     constructor(m: number, data?: number[]) {
         this.m = m;
         this.data = data || [];
     }
 
-    public copy() {
+    copy() {
         return new SparseVec(this.m, this.data.slice());
     }
 
-    public get nnz() {
+    get length() {
+        return this.m;
+    }
+
+    get nnz() {
         return this.data.length >>> 1;
     }
 
-    public get(m: number, safe = true) {
+    get(m: number, safe = true) {
         safe && this.ensureIndex(m);
         const d = this.data;
         for (let i = 0, n = d.length; i < n && d[i] <= m; i += 2) {
@@ -44,7 +48,7 @@ export class SparseVec {
         return 0;
     }
 
-    public set(m: number, v: number, safe = true) {
+    set(m: number, v: number, safe = true) {
         safe && this.ensureIndex(m);
         const d = this.data;
         for (let i = 0, n = d.length; i < n; i += 2) {
@@ -60,7 +64,7 @@ export class SparseVec {
         return this;
     }
 
-    public binopN(op: BinOp, n: number) {
+    binopN(op: BinOp, n: number) {
         const d = this.data,
             m = this.m,
             res = [];
@@ -71,7 +75,7 @@ export class SparseVec {
         return new SparseVec(this.m, res);
     }
 
-    public binop(op: BinOp, v: SparseVec) {
+    binop(op: BinOp, v: SparseVec) {
         this.ensureSize(v);
         const da = this.data,
             db = v.data,
@@ -98,31 +102,31 @@ export class SparseVec {
         return new SparseVec(this.m, res);
     }
 
-    public add(v: SparseVec) {
+    add(v: SparseVec) {
         return this.binop(ADD, v);
     }
 
-    public sub(v: SparseVec) {
+    sub(v: SparseVec) {
         return this.binop(SUB, v);
     }
 
-    public mul(v: SparseVec) {
+    mul(v: SparseVec) {
         return this.binop(MUL, v);
     }
 
-    public div(v: SparseVec) {
+    div(v: SparseVec) {
         return this.binop(DIV, v);
     }
 
-    public addN(n: number) {
+    addN(n: number) {
         return this.binopN(ADD, n);
     }
 
-    public subN(n: number) {
+    subN(n: number) {
         return this.binopN(SUB, n);
     }
 
-    public mulN(n: number) {
+    mulN(n: number) {
         const d = this.data,
             l = d.length,
             res = new Array(l);
@@ -133,7 +137,7 @@ export class SparseVec {
         return new SparseVec(this.m, res);
     }
 
-    public divN(n: number) {
+    divN(n: number) {
         const d = this.data,
             l = d.length,
             res = new Array(l);
@@ -144,7 +148,7 @@ export class SparseVec {
         return new SparseVec(this.m, res);
     }
 
-    public dot(v: SparseVec) {
+    dot(v: SparseVec) {
         this.ensureSize(v);
         const da = this.data,
             db = v.data;
@@ -162,7 +166,7 @@ export class SparseVec {
         return res;
     }
 
-    public magSquared() {
+    magSquared() {
         const d = this.data;
         let mag = 0;
         for (let i = d.length - 1; i >= 1; i -= 2) {
@@ -171,11 +175,11 @@ export class SparseVec {
         return mag;
     }
 
-    public mag() {
+    mag() {
         return Math.sqrt(this.magSquared());
     }
 
-    public normalize(n = 1) {
+    normalize(n = 1) {
         const mag = this.magSquared();
         if (mag > 1e-9) {
             n /= Math.sqrt(mag);
@@ -187,7 +191,7 @@ export class SparseVec {
         return this;
     }
 
-    public toDense() {
+    toDense() {
         const res = new Array(this.m).fill(0),
             d = this.data;
         for (let i = d.length - 2; i >= 0; i -= 2) {
