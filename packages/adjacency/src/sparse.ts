@@ -157,10 +157,8 @@ export class AdjacencyMatrix extends CSR implements
             ["graph", "--"] :
             ["digraph", "->"];
         const res = [`${type} g {`];
-        for (let i = 0; i < this.m; i++) {
-            for (let j of this.nzRowCols(i)) {
-                res.push(`"${j}"${sep}"${i}";`);
-            }
+        for (let e of this.edges()) {
+            res.push(`"${e[0]}"${sep}"${e[1]}";`);
         }
         res.push(`}`);
         return res.join("\n");

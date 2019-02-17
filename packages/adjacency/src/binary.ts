@@ -25,11 +25,13 @@ export class AdjacencyBitMatrix implements
     }
 
     mat: BitMatrix;
-    undirected: boolean;
+    protected undirected: boolean;
+    protected numE: number;
 
     constructor(n: number, undirected = false) {
         this.mat = new BitMatrix(n);
         this.undirected = undirected;
+        this.numE = 0;
     }
 
     *edges() {
@@ -44,11 +46,11 @@ export class AdjacencyBitMatrix implements
     }
 
     numEdges(): number {
-        throw new Error("Method not implemented.");
+        return this.numE;
     }
 
     numVertices(): number {
-        throw new Error("Method not implemented.");
+        return this.mat.n;
     }
 
     /**
@@ -62,13 +64,13 @@ export class AdjacencyBitMatrix implements
     }
 
     addEdge(from: number, to: number) {
-        this.mat.setAt(to, from, true);
+        !this.mat.setAt(to, from, true) && this.numE++;
         this.undirected && this.mat.setAt(from, to, true);
         return this;
     }
 
     removeEdge(from: number, to: number) {
-        this.mat.setAt(to, from, false);
+        this.mat.setAt(to, from, false) && this.numE--;
         this.undirected && this.mat.setAt(from, to, false);
         return this;
     }
@@ -106,5 +108,17 @@ export class AdjacencyBitMatrix implements
 
     toString() {
         return this.mat.toString();
+    }
+
+    toDot() {
+        const [type, sep] = this.undirected ?
+            ["graph", "--"] :
+            ["digraph", "->"];
+        const res = [`${type} g {`];
+        for (let e of this.edges()) {
+            res.push(`"${e[0]}"${sep}"${e[1]}";`);
+        }
+        res.push(`}`);
+        return res.join("\n");
     }
 }
