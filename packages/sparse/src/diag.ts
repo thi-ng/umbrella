@@ -1,0 +1,88 @@
+import { assert } from "@thi.ng/api";
+import { ASparseMatrix } from "./amatrix";
+import { CSC } from "./csc";
+import { CSR } from "./csr";
+import { SparseVec } from "./vec";
+import { NzEntry } from "./api";
+
+export class Diag extends ASparseMatrix {
+
+    static identity(m: number) {
+        return new Diag(new Array(m).fill(1));
+    }
+
+    data: SparseVec;
+
+    constructor(data: SparseVec | number[]) {
+        if (data instanceof SparseVec) {
+            super(data.m, data.m);
+            this.data = data;
+        } else {
+            super(data.length, data.length);
+            this.data = SparseVec.fromDense(data);
+        }
+    }
+
+    *nzEntries() {
+        for (let e of this.data.nzEntries()) {
+            yield <NzEntry>[e[0], e[0], e[2]];
+        }
+    }
+
+    at(m: number, n: number, safe = true) {
+        safe && this.ensureIndex(m, n);
+        return m === n ? this.data.at(m, false) : 0;
+    }
+
+    setAt(m: number, n: number, v: number, safe = true) {
+        safe && assert(m === n && m >= 0 && m < this.m, `invalid index: ${m},${n}`);
+        this.data.setAt(m, v, false);
+        return this;
+    }
+
+    nnz(): number {
+        return this.data.length;
+    }
+
+    nnzCol(n: number): number {
+        return this.data.at(n) !== 0 ? 1 : 0;
+    }
+
+    nnzRow(m: number): number {
+        return this.nnzCol(m);
+    }
+
+    nzColRows(n: number): number[] {
+        return this.data.at(n) !== 0 ? [n] : [];
+    }
+
+    nzColVals(n: number): number[] {
+        const x = this.data.at(n);
+        return x !== 0 ? [x] : [];
+    }
+    nzRowCols(m: number): number[] {
+        return this.nzColRows(m);
+    }
+
+    nzRowVals(m: number): number[] {
+        return this.nzColVals(m);
+    }
+
+    toDense() {
+        const n = this.n;
+        const d = this.data;
+        const res = new Array(n * n).fill(0);
+        for (let i = 0; i < n; i++) {
+            res[i * n + i] = d.at(i, false);
+        }
+        return res;
+    }
+
+    toCSC() {
+        return CSC.diag(this.data.toDense());
+    }
+
+    toCSR() {
+        return CSR.diag(this.data.toDense());
+    }
+}
