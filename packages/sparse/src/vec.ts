@@ -1,3 +1,6 @@
+import { assert } from "@thi.ng/api";
+import { NzEntry } from "./api";
+
 export type BinOp = (a: number, b: number) => number;
 
 const ADD = (a: number, b: number) => a + b;
@@ -8,8 +11,8 @@ const DIV = (a: number, b: number) => a / b;
 export class SparseVec {
 
     static fromDense(dense: ArrayLike<number>) {
-        const sparse: number[] = [],
-            n = dense.length;
+        const sparse: number[] = [];
+        const n = dense.length;
         for (let i = 0; i < n; i++) {
             const v = dense[i];
             v !== 0 && sparse.push(i, v);
@@ -37,7 +40,14 @@ export class SparseVec {
         return this.data.length >>> 1;
     }
 
-    get(m: number, safe = true) {
+    *nzEntries() {
+        const d = this.data;
+        for (let i = 0, n = d.length; i < n; i += 2) {
+            yield <NzEntry>[d[i], 0, d[i + 1]];
+        }
+    }
+
+    at(m: number, safe = true) {
         safe && this.ensureIndex(m);
         const d = this.data;
         for (let i = 0, n = d.length; i < n && d[i] <= m; i += 2) {
@@ -48,7 +58,7 @@ export class SparseVec {
         return 0;
     }
 
-    set(m: number, v: number, safe = true) {
+    setAt(m: number, v: number, safe = true) {
         safe && this.ensureIndex(m);
         const d = this.data;
         for (let i = 0, n = d.length; i < n; i += 2) {
@@ -65,9 +75,9 @@ export class SparseVec {
     }
 
     binopN(op: BinOp, n: number) {
-        const d = this.data,
-            m = this.m,
-            res = [];
+        const d = this.data;
+        const m = this.m;
+        const res = [];
         for (let i = 0, j = 0, k = d[j]; i < m; i++) {
             let v = op(i === k ? (j += 2, k = d[j], d[j - 1]) : 0, n);
             v !== 0 && res.push(i, v);
@@ -77,9 +87,9 @@ export class SparseVec {
 
     binop(op: BinOp, v: SparseVec) {
         this.ensureSize(v);
-        const da = this.data,
-            db = v.data,
-            res = [];
+        const da = this.data;
+        const db = v.data;
+        const res = [];
         for (let i = 0, j = 0, la = da.length, lb = db.length; i < la || j < lb;) {
             const ia = da[i], ib = db[j];
             if (ia === ib) {
@@ -150,8 +160,8 @@ export class SparseVec {
 
     dot(v: SparseVec) {
         this.ensureSize(v);
-        const da = this.data,
-            db = v.data;
+        const da = this.data;
+        const db = v.data;
         let res = 0;
         for (let i = da.length - 2, j = db.length - 2; i >= 0 && j >= 0;) {
             const ia = da[i], ib = db[j];
@@ -192,8 +202,8 @@ export class SparseVec {
     }
 
     toDense() {
-        const res = new Array(this.m).fill(0),
-            d = this.data;
+        const res = new Array(this.m).fill(0);
+        const d = this.data;
         for (let i = d.length - 2; i >= 0; i -= 2) {
             res[d[i]] = d[i + 1];
         }
@@ -201,13 +211,10 @@ export class SparseVec {
     }
 
     protected ensureIndex(m: number) {
-        if (m < 0 || m >= this.m) {
-            throw new Error(`index out of bounds: ${m}`);
-        }
+        assert(m >= 0 && m < this.m, `index out of bounds: ${m}`);
     }
+
     protected ensureSize(v: SparseVec) {
-        if (this.m !== v.m) {
-            throw new Error(`wrong vector size: ${v.m}`);
-        }
+        assert(this.m === v.m, `wrong vector size: ${v.m}`);
     }
 }

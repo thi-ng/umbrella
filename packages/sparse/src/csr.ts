@@ -1,6 +1,8 @@
-import { Triple } from "./api";
+import { assert } from "@thi.ng/api";
+import { ASparseMatrix } from "./amatrix";
+import { NzEntry } from "./api";
 
-export class CSR {
+export class CSR extends ASparseMatrix {
 
     /**
      * Constructs CSR from dense row-major matrix values.
@@ -10,52 +12,42 @@ export class CSR {
      * @param dense matrix values
      */
     static fromDense(m: number, n: number, dense: ArrayLike<number>) {
-        const a: number[] = [],
-            ia: number[] = [0],
-            ja: number[] = [];
+        const a: number[] = [];
+        const rows: number[] = [0];
+        const cols: number[] = [];
         for (let i = 0, row = 0; row < m; row++) {
             let nnz = 0;
             for (let col = 0; col < n; i++ , col++) {
                 if (dense[i] !== 0) {
                     a.push(dense[i]);
-                    ja.push(col);
+                    cols.push(col);
                     nnz++;
                 }
             }
-            ia.push(ia[ia.length - 1] + nnz);
+            rows.push(rows[rows.length - 1] + nnz);
         }
-        return new CSR(m, n, a, ia, ja);
+        return new CSR(m, n, a, rows, cols);
     }
 
     static empty(m: number, n = m) {
-        return new CSR(m, n, [], new Array(m + 1).fill(0), []);
+        return new CSR(m, n, [], new Array<number>(m + 1).fill(0), []);
     }
 
-    static identity(m: number) {
-        return CSR.diag(new Array(m).fill(1));
+    static identity(size: number) {
+        return CSR.diag(new Array<number>(size).fill(1));
     }
 
-    static diag(vals: number[]) {
-        const n = vals.length,
-            ia: number[] = [],
-            ja: number[] = [];
+    static diag(trace: number[]) {
+        const n = trace.length;
+        const rows: number[] = [];
+        const cols: number[] = [];
         for (let i = 0; i < n; i++) {
-            ia.push(i);
-            ja.push(i);
+            rows.push(i);
+            cols.push(i);
         }
-        ia.push(n);
-        return new CSR(n, n, vals, ia, ja);
+        rows.push(n);
+        return new CSR(n, n, trace, rows, cols);
     }
-
-
-    /**
-     * Rows
-     */
-    m: number;
-    /**
-     * Columns
-     */
-    n: number;
 
     /**
      * Non-zero matrix values
@@ -71,11 +63,10 @@ export class CSR {
     cols: number[];
 
     constructor(m: number, n: number, data: number[], rows: number[], cols: number[]) {
-        this.m = m;
-        this.n = n;
-        this.data = data;
+        super(m, n);
         this.rows = rows;
         this.cols = cols;
+        this.data = data;
     }
 
     copy() {
@@ -88,22 +79,21 @@ export class CSR {
         return this;
     }
 
-    *triples() {
-        const rows = this.rows,
-            cols = this.cols,
-            data = this.data;
+    *nzEntries() {
+        const rows = this.rows;
+        const cols = this.cols;
+        const data = this.data;
         for (let i = 0; i < this.m; i++) {
-            const jj = rows[i + 1];
-            for (let j = rows[i]; j < jj; j++) {
-                yield <Triple>[i, cols[j], data[j]];
+            for (let j = rows[i], jj = rows[i + 1]; j < jj; j++) {
+                yield <NzEntry>[i, cols[j], data[j]];
             }
         }
     }
 
     reshape(m: number, n = m) {
-        const data = this.data,
-            rows = this.rows,
-            cols = this.cols;
+        const data = this.data;
+        const rows = this.rows;
+        const cols = this.cols;
         if (m > this.m) {
             for (let i = m - this.m, nnz = this.nnz(); i > 0; i--) {
                 rows.push(nnz);
@@ -119,7 +109,7 @@ export class CSR {
             for (let i = 0; i < m; i++) {
                 for (let j = this.rows[i], jj = rows[i + 1]; j < jj;) {
                     if (cols[j] >= n) {
-                        this.remove(i, cols[j], j);
+                        this.remove(i, j);
                         jj--;
                     } else {
                         j++;
@@ -132,14 +122,16 @@ export class CSR {
     }
 
     extract(m: number, n: number, rows: number, cols: number) {
-        const srows = this.rows,
-            scols = this.cols,
-            sdata = this.data,
-            drows = [0],
-            dcols = [],
-            ddata = [],
-            maxcol = n + cols;
-        for (let i = m, maxrow = m + rows; i < maxrow; i++) {
+        const maxrow = m + rows;
+        const maxcol = n + cols;
+        //assert(maxrow <= this.m && maxcol <= this.n, "invalid region");
+        const srows = this.rows;
+        const scols = this.cols;
+        const sdata = this.data;
+        const drows = [0];
+        const dcols = [];
+        const ddata = [];
+        for (let i = m; i < maxrow; i++) {
             if (i < this.m) {
                 const jj = srows[i + 1];
                 for (let j = srows[i]; j < jj; j++) {
@@ -157,11 +149,11 @@ export class CSR {
 
     at(m: number, n: number, safe = true) {
         safe && this.ensureIndex(m, n);
-        const ii = this.rows[m + 1],
-            cols = this.cols;
-        for (let i = this.rows[m]; i < ii; i++) {
+        const cols = this.cols;
+        const data = this.data;
+        for (let i = this.rows[m], ii = this.rows[m + 1]; i < ii; i++) {
             if (cols[i] === n) {
-                return this.data[i];
+                return data[i];
             }
         }
         return 0;
@@ -169,16 +161,16 @@ export class CSR {
 
     setAt(m: number, n: number, x: number, safe = true, compact = true) {
         safe && this.ensureIndex(m, n);
-        const ii = this.rows[m + 1],
-            cols = this.cols,
-            notZero = x !== 0;
+        const ii = this.rows[m + 1];
+        const cols = this.cols;
+        const notZero = x !== 0;
         for (let i = this.rows[m]; i < ii; i++) {
             const j = cols[i];
             if (j === n) {
                 if (notZero || !compact) {
                     this.data[i] = x;
                 } else {
-                    this.remove(m, n, i);
+                    this.remove(m, i);
                 }
                 return this;
             } else if (j > n && notZero) {
@@ -193,18 +185,17 @@ export class CSR {
     }
 
     denseRow(m: number) {
-        const res = new Array(this.n).fill(0),
-            ii = this.rows[m + 1],
-            cols = this.cols,
-            data = this.data;
-        for (let i = this.rows[m]; i < ii; i++) {
+        const res = new Array<number>(this.n).fill(0);
+        const cols = this.cols;
+        const data = this.data;
+        for (let i = this.rows[m], ii = this.rows[m + 1]; i < ii; i++) {
             res[cols[i]] = data[i];
         }
         return res;
     }
 
     denseCol(n: number) {
-        const res = new Array(this.m);
+        const res = new Array<number>(this.m);
         for (let i = 0; i < this.m; i++) {
             res[i] = this.at(i, n, false);
         }
@@ -213,20 +204,21 @@ export class CSR {
 
     trace() {
         let trace = 0;
-        for (let i = 0; i < this.m; i++) {
+        for (let i = this.m; --i >= 0;) {
             trace += this.at(i, i, false);
         }
         return trace;
     }
 
     add(mat: CSR) {
+        this.ensureSize(mat);
         if (this === mat) {
             return this.mulN(2);
         }
-        this.ensureSize(mat);
         if (mat.nnz() === 0) {
-            return this;
+            return this.copy();
         }
+        const res = CSR.empty(this.m, this.n);
         for (let i = 0; i < this.m; i++) {
             const jj = mat.rows[i + 1];
             outer:
@@ -235,47 +227,43 @@ export class CSR {
                     kk = this.rows[i + 1];
                 for (let k = this.rows[i]; k < kk; k++) {
                     if (this.cols[k] === n) {
-                        this.setAt(i, n, this.data[k] + mat.data[j], false);
+                        res.setAt(i, n, this.data[k] + mat.data[j], false);
                         continue outer;
                     }
                 }
-                this.setAt(i, n, mat.data[j], false);
+                res.setAt(i, n, mat.data[j], false);
             }
         }
-        return this;
+        return res;
     }
 
     sub(mat: CSR) {
-        if (this === mat) {
-            return this.zero();
-        }
         this.ensureSize(mat);
-        if (mat.nnz() === 0) {
-            return this;
+        const res = CSR.empty(this.m, this.n);
+        if (this === mat || mat.nnz() === 0) {
+            return res;
         }
         for (let i = 0; i < this.m; i++) {
             const jj = mat.rows[i + 1];
             outer:
             for (let j = mat.rows[i]; j < jj; j++) {
-                const n = mat.cols[j],
-                    kk = this.rows[i + 1];
+                const n = mat.cols[j];
+                const kk = this.rows[i + 1];
                 for (let k = this.rows[i]; k < kk; k++) {
                     if (this.cols[k] === n) {
-                        this.setAt(i, n, this.data[k] - mat.data[j], false);
+                        res.setAt(i, n, this.data[k] - mat.data[j], false);
                         continue outer;
                     }
                 }
-                this.setAt(i, n, -mat.data[j], false);
+                res.setAt(i, n, -mat.data[j], false);
             }
         }
-        return this;
+        return res;
     }
 
     // https://stackoverflow.com/questions/22649361/sparse-matrix-matrix-multiplication
     mul(mat: CSR) {
-        if (this.n !== mat.m) {
-            throw new Error("incompatible matrix sizes");
-        }
+        assert(this.n === mat.m, "incompatible matrix sizes");
         const res = CSR.empty(this.m, mat.n);
         for (let j = 0; j < mat.n; j++) {
             if (mat.nnzCol(j) > 0) {
@@ -296,13 +284,11 @@ export class CSR {
     }
 
     mulV(vec: number[]) {
-        if (this.m !== vec.length) {
-            throw new Error(`vector length != ${this.m}`);
-        }
-        const rows = this.rows,
-            cols = this.cols,
-            data = this.data,
-            res = new Array(vec.length).fill(0);
+        assert(this.m === vec.length, `vector length != ${this.m}`);
+        const rows = this.rows;
+        const cols = this.cols;
+        const data = this.data;
+        const res = new Array(vec.length).fill(0);
         for (let i = 0; i < this.m; i++) {
             const jj = rows[i + 1];
             for (let j = rows[i]; j < jj; j++) {
@@ -314,17 +300,14 @@ export class CSR {
 
     mulN(n: number) {
         if (n === 0) {
-            return this.zero();
+            return CSR.empty(this.m, this.n);
         }
-        const a = this.data;
-        for (let i = a.length - 1; i >= 0; i--) {
+        const res = this.copy();
+        const a = res.data;
+        for (let i = a.length; --i >= 0;) {
             a[i] *= n;
         }
-        return this;
-    }
-
-    neg() {
-        return this.mulN(-1);
+        return res;
     }
 
     nnz() {
@@ -354,18 +337,19 @@ export class CSR {
     }
 
     nzColVals(n: number) {
-        const cols = this.cols,
-            data = this.data,
-            res = [];
-        for (let i = cols.length - 1; i >= 0; i--) {
+        const cols = this.cols;
+        const data = this.data;
+        const res = [];
+        for (let i = 0, num = cols.length; i < num; i++) {
             if (cols[i] === n) {
                 res.push(data[i]);
             }
         }
+        return res;
     }
 
     nzColRows(n: number) {
-        const res = new Array();
+        const res = [];
         for (let i = 0; i < this.m; i++) {
             if (this.at(i, n, false) !== 0) {
                 res.push(i);
@@ -375,9 +359,9 @@ export class CSR {
     }
 
     transpose() {
-        const res = CSR.empty(this.n, this.m),
-            cols = this.cols,
-            data = this.data;
+        const res = CSR.empty(this.n, this.m);
+        const cols = this.cols;
+        const data = this.data;
         for (let i = 0; i < this.m; i++) {
             const jj = this.rows[i + 1];
             for (let j = this.rows[i]; j < jj; j++) {
@@ -388,7 +372,7 @@ export class CSR {
     }
 
     toDense() {
-        let res = [];
+        let res: number[] = [];
         for (let i = 0; i < this.m; i++) {
             res = res.concat(this.denseRow(i));
         }
@@ -396,8 +380,8 @@ export class CSR {
     }
 
     toString() {
-        const dense = this.toDense(),
-            res = [];
+        const dense = this.toDense();
+        const res = [];
         for (let i = 0; i < this.m; i++) {
             res.push(dense.slice(i * this.n, (i + 1) * this.n).join(" "));
         }
@@ -405,24 +389,20 @@ export class CSR {
     }
 
     protected ensureIndex(m: number, n: number) {
-        if (m < 0 || m >= this.m || n < 0 || n >= this.n) {
-            throw new Error(`index out of bounds: (${m},${n})`);
-        }
+        assert(
+            m >= 0 && m < this.m && n >= 0 || n < this.n,
+            `index out of bounds: (${m},${n})`
+        );
     }
 
     protected ensureSize(mat: CSR) {
-        if (mat.m !== this.m || mat.n !== this.n) {
-            throw new Error(`incompatible size: (${mat.m},${mat.n})`);
-        }
-    }
-    protected ensureNotSame(mat: CSR) {
-        if (mat === this) {
-            throw new Error("given matrix can't be same instance");
-        }
+        assert(
+            mat.m === this.m && mat.n === this.n,
+            `incompatible size: (${mat.m},${mat.n})`
+        );
     }
 
     protected insert(m: number, n: number, x: number, idx: number) {
-        // console.log(`insert at: ${m},${n} @ ${idx}`);
         this.data = this.data.slice(0, idx).concat([x], this.data.slice(idx));
         this.cols = this.cols.slice(0, idx).concat([n], this.cols.slice(idx));
         for (let i = m + 1; i <= this.m; i++) {
@@ -430,8 +410,7 @@ export class CSR {
         }
     }
 
-    protected remove(m: number, n: number, idx: number) {
-        console.log(`remove at: ${m},${n} @ ${idx}`);
+    protected remove(m: number, idx: number) {
         this.data.splice(idx, 1);
         this.cols.splice(idx, 1);
         for (let i = m + 1; i <= this.m; i++) {
@@ -439,8 +418,3 @@ export class CSR {
         }
     }
 }
-
-// export const a = CSR.fromDense(4, 4, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-// console.log(a.toString());
-// a.reshape(3, 2);
-// console.log(a.toString());

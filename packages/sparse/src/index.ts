@@ -1,7 +1,8 @@
-export * from "./adjacency";
+export * from "./api";
+
 export * from "./amatrix";
-export * from "./binary";
 export * from "./coo";
+export * from "./csc";
 export * from "./csr";
 export * from "./diag";
 export * from "./vec";

@@ -1,9 +1,10 @@
 import { partition } from "@thi.ng/transducers";
-import { Triple } from "./api";
-import { AMatrix } from "./amatrix";
+import { ASparseMatrix } from "./amatrix";
+import { NzEntry } from "./api";
+import { CSC } from "./csc";
 import { CSR } from "./csr";
 
-export class COO extends AMatrix {
+export class COO extends ASparseMatrix {
 
     static fromDense(m: number, n: number, data: ArrayLike<number>) {
         const res = [];
@@ -22,8 +23,8 @@ export class COO extends AMatrix {
     }
 
     static diag(vals: ArrayLike<number>) {
-        const res = [],
-            n = vals.length;
+        const res = [];
+        const n = vals.length;
         for (let i = 0; i < n; i++) {
             res.push(i, i, vals[i]);
         }
@@ -37,8 +38,8 @@ export class COO extends AMatrix {
         this.data = data || [];
     }
 
-    triples() {
-        return <IterableIterator<Triple>>partition(3, 3, this.data);
+    nzEntries() {
+        return <IterableIterator<NzEntry>>partition(3, 3, this.data);
     }
 
     at(m: number, n: number, safe = true) {
@@ -56,8 +57,8 @@ export class COO extends AMatrix {
         safe && this.ensureIndex(m, n);
         const d = this.data;
         for (let i = 0, l = d.length; i < l; i += 3) {
-            const r = d[i],
-                c = d[i + 1];
+            const r = d[i];
+            const c = d[i + 1];
             if (m < r || (m === r && n < c)) {
                 v !== 0 && d.splice(i, 0, m, n, v);
                 return this;
@@ -71,44 +72,83 @@ export class COO extends AMatrix {
     }
 
     mulV(v: number[]) {
-        const res = new Array(this.m).fill(0),
-            d = this.data;
-        for (let i = d.length - 3; i >= 0; i -= 3) {
+        const res = new Array(this.m).fill(0);
+        for (let d = this.data, i = d.length - 3; i >= 0; i -= 3) {
             res[d[i]] += d[i + 2] * v[d[i + 1]];
         }
         return res;
     }
 
+    nnz(): number {
+        return this.data.length / 3;
+    }
+
+    nnzCol(_: number): number {
+        throw new Error("Method not implemented.");
+    }
+
+    nnzRow(_: number): number {
+        throw new Error("Method not implemented.");
+    }
+
+    nzColRows(_: number): number[] {
+        throw new Error("Method not implemented.");
+    }
+
+    nzColVals(_: number): number[] {
+        throw new Error("Method not implemented.");
+    }
+
+    nzRowCols(_: number): number[] {
+        throw new Error("Method not implemented.");
+    }
+
+    nzRowVals(_: number): number[] {
+        throw new Error("Method not implemented.");
+    }
+
     toDense() {
-        const n = this.n,
-            d = this.data,
-            res = new Array(this.m * this.n).fill(0);
+        const n = this.n;
+        const d = this.data;
+        const res = new Array(this.m * n).fill(0);
         for (let i = d.length - 3; i >= 0; i -= 3) {
             res[d[i] * n + d[i + 1]] = d[i + 2];
         }
         return res;
     }
 
-    toCSR() {
-        const d = [],
-            r = [0],
-            c = [],
-            s = this.data;
-        for (let i = 0, lr = 0; i < s.length; i += 3) {
-            if (s[i] !== lr) {
-                lr = s[i];
-                r.push(d.length);
+    toCSC() {
+        const dest = [];
+        const cols = [0];
+        const rows = [];
+        const src = [...this.nzEntries()].sort((a, b) => a[1] - b[1]);
+        for (let i = 0, lr = 0; i < src.length; i++) {
+            const s = src[i];
+            if (s[1] !== lr) {
+                lr = s[1];
+                cols.push(dest.length);
             }
-            c.push(s[i + 1]);
-            d.push(s[i + 2]);
+            rows.push(s[0]);
+            dest.push(s[2]);
         }
-        r.push(d.length);
-        return new CSR(this.m, this.n, d, r, c);
+        cols.push(dest.length);
+        return new CSC(this.m, this.n, dest, cols, rows);
     }
 
-    protected ensureIndex(m: number, n: number) {
-        if (m < 0 || m >= this.m || n < 0 || n >= this.n) {
-            throw new Error(`index out of bounds (${m}, ${n})`);
+    toCSR() {
+        const dest = [];
+        const rows = [0];
+        const cols = [];
+        const src = this.data;
+        for (let i = 0, lr = 0; i < src.length; i += 3) {
+            if (src[i] !== lr) {
+                lr = src[i];
+                rows.push(dest.length);
+            }
+            cols.push(src[i + 1]);
+            dest.push(src[i + 2]);
         }
+        rows.push(dest.length);
+        return new CSR(this.m, this.n, dest, rows, cols);
     }
 }

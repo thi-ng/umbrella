@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^5.0.2",
-        "@thi.ng/transducers": "^4.0.1"
+        "@thi.ng/transducers": "^5.0.0"
     },
     "keywords": [
         "adjacency",

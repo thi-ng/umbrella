@@ -1,4 +1,4 @@
-export type Triple = [number, number, number];
+export type NzEntry = [number, number, number];
 
 export enum DegreeType {
     IN,
