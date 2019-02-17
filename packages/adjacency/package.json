@@ -24,6 +24,7 @@
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
+        "@thi.ng/vectors": "^2.3.0",
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.12.15",
         "mocha": "^5.2.0",
@@ -35,21 +36,31 @@
         "@thi.ng/api": "^5.0.2",
         "@thi.ng/binary": "^1.0.2",
         "@thi.ng/bitfield": "^0.0.1",
+        "@thi.ng/checks": "^2.1.0",
+        "@thi.ng/dcons": "^2.0.5",
         "@thi.ng/sparse": "^0.0.1"
     },
     "keywords": [
         "adjacency",
+        "BFS",
         "bitwise",
         "degree",
+        "DFS",
         "directed",
+        "disjoint set",
         "ES6",
         "graph",
         "laplacian",
         "matrix",
+        "MST",
+        "minimum spanning tree",
         "neighbors",
+        "path",
+        "search",
         "sparse",
         "typescript",
         "undirected",
+        "unionfind",
         "valence"
     ],
     "publishConfig": {

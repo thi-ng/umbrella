@@ -1,9 +1,9 @@
 import { CSR } from "@thi.ng/sparse";
-import { DegreeType, IAdjacencyMatrix } from "./api";
+import { DegreeType, IGraph } from "./api";
 import { Pair } from "@thi.ng/api";
 
 export class AdjacencyMatrix extends CSR implements
-    IAdjacencyMatrix {
+    IGraph {
 
     static newEmpty(n: number, undirected = false) {
         const raw = CSR.empty(n);
@@ -81,7 +81,7 @@ export class AdjacencyMatrix extends CSR implements
     }
 
     neighbors(id: number): number[] {
-        return this.nzRowVals(id);
+        return this.nzRowCols(id);
     }
 
     /**

@@ -1,10 +1,10 @@
 import { Pair } from "@thi.ng/api";
 import { popCount } from "@thi.ng/binary";
 import { BitMatrix } from "@thi.ng/bitfield";
-import { IAdjacencyMatrix } from "./api";
+import { IGraph } from "./api";
 
 export class AdjacencyBitMatrix implements
-    IAdjacencyMatrix {
+    IGraph {
 
     /**
      * Creates adjacency matrix with capacity `n` (max vertices) from

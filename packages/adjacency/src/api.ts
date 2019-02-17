@@ -1,4 +1,4 @@
-import { Pair } from "@thi.ng/api";
+import { Fn2, Pair } from "@thi.ng/api";
 
 export const enum DegreeType {
     IN,
@@ -6,7 +6,7 @@ export const enum DegreeType {
     BOTH,
 }
 
-export interface IAdjacencyMatrix {
+export interface IGraph {
 
     numEdges(): number;
     numVertices(): number;
@@ -20,3 +20,5 @@ export interface IAdjacencyMatrix {
     valence(id: number): number;
     neighbors(id: number): number[];
 }
+
+export type CostFn = Fn2<number, number, number>;
