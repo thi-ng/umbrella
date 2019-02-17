@@ -1,4 +1,4 @@
-import { distSq } from "@thi.ng/vectors";
+import { distSq, comparator2 } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { mst } from "../src/mst";
 
@@ -37,10 +37,10 @@ describe("unionfind", () => {
                 10,
                 ([a, b]) => distSq(verts[a], verts[b]),
                 ([a, b]) => [a, b]
-            ),
+            ).sort(comparator2(0, 1)),
             [
                 [0, 1], [1, 2], [2, 3], [2, 4],
-                [4, 5], [7, 8], [5, 6], [6, 8]
+                [4, 5], [5, 6], [6, 8], [7, 8]
             ]
         );
     });

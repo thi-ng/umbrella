@@ -12,7 +12,6 @@ const edges: Pair<number, number>[] = [
 describe("adjacency (bitmatrix)", () => {
     it("fromEdges, undirected", () => {
         const m = AdjacencyBitMatrix.fromEdges(6, edges, true);
-        console.log([...m.edges()]);
         assert.deepEqual(
             m.mat.data.slice(0, 6),
             [
