@@ -16,7 +16,7 @@ export class BitMatrix {
     }
 
     /**
-     * Resizes matrix to new size given.
+     * Resizes matrix to new size given (aligned to multiples of 32).
      *
      * @param n
      */
@@ -24,10 +24,11 @@ export class BitMatrix {
         n = align(n, 32);
         const dstride = n >>> 5;
         const sstride = this.stride;
+        const w = Math.min(dstride, sstride);
         const src = this.data;
         const dest = new Uint32Array(n * dstride);
         for (let i = this.n - 1, si = i * sstride, di = i * dstride; i >= 0; i-- , si -= sstride, di -= dstride) {
-            dest.set(src.slice(si, si + sstride), di);
+            dest.set(src.slice(si, si + w), di);
         }
         this.n = n;
         this.stride = dstride;
@@ -35,22 +36,37 @@ export class BitMatrix {
         return this;
     }
 
+    /**
+     * Returns a non-zero value if bit at `m,n` is enabled (row major).
+     *
+     * @param m
+     * @param n
+     */
     at(m: number, n: number) {
         return (
             this.data[(n >>> 5) + m * this.stride] &
             (0x80000000 >>> (n & 31))
-        ) ? 1 : 0;
+        );
     }
 
+    /**
+     * Enables or disables bit at `m,n` (row major). Returns a non-zero
+     * value if the bit was previously enabled.
+     * .
+     * @param m
+     * @param n
+     * @param v
+     */
     setAt(m: number, n: number, v = true) {
         const id = (n >>> 5) + m * this.stride;
         const mask = 0x80000000 >>> (n & 31);
+        const r = this.data[id] & mask;
         if (v) {
             this.data[id] |= mask;
         } else {
             this.data[id] &= ~mask;
         }
-        return this;
+        return r;
     }
 
     toString() {

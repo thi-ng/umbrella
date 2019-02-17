@@ -13,19 +13,46 @@ export class BitField {
         this.data = new Uint32Array(this.n >>> 5);
     }
 
-    at(n: number) {
-        return (this.data[n >>> 5] & (0x80000000 >>> (n & 31))) ? 1 : 0;
+    /**
+     * Resizes bitfield to new size given (aligned to multiples of 32).
+     *
+     * @param n
+     */
+    resize(n: number) {
+        n = align(n, 32);
+        const dest = new Uint32Array(n >>> 5);
+        dest.set(this.data.slice(0, dest.length));
+        this.data = dest;
+        this.n = n;
+        return this;
     }
 
+    /**
+     * Returns a non-zero value if bit `n` is enabled.
+     *
+     * @param n
+     */
+    at(n: number) {
+        return (this.data[n >>> 5] & (0x80000000 >>> (n & 31)));
+    }
+
+    /**
+     * Enables or disables bit `n`. Returns a non-zero value if the bit
+     * was previously enabled.
+     * .
+     * @param n
+     * @param v
+     */
     setAt(n: number, v = true) {
         const id = (n >>> 5);
         const mask = 0x80000000 >>> (n & 31);
+        const r = this.data[id] & mask;
         if (v) {
             this.data[id] |= mask;
         } else {
             this.data[id] &= ~mask;
         }
-        return this;
+        return r;
     }
 
     toString() {
