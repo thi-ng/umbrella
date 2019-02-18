@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.0.3...@thi.ng/hiccup@3.1.0) (2019-02-18)
+
+
+### Features
+
+* **hiccup:** add support for XML/DTD proc tags, update readme, tests ([ede2842](https://github.com/thi-ng/umbrella/commit/ede2842))
+
+
+
+
+
 ## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.0.2...@thi.ng/hiccup@3.0.3) (2019-02-10)
 
 **Note:** Version bump only for package @thi.ng/hiccup
