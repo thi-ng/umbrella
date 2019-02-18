@@ -37,8 +37,9 @@ const xform = tx.comp(
 
 const packages = tx.transduce(xform, tx.push(), fs.readdirSync(baseDir));
 
-fs.writeFileSync("docs.html", "<!DOCTYPE html>\n" + h.serialize(
+fs.writeFileSync("docs.html", h.serialize(
     [
+        ["!DOCTYPE", "html"],
         ["html", { lang: "en" },
             ["head",
                 ["title", "docs.thi.ng"],
