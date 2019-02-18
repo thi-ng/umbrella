@@ -1,6 +1,7 @@
 import { assert } from "@thi.ng/api";
 import { ASparseMatrix } from "./amatrix";
 import { NzEntry } from "./api";
+import { compress, diag, setAt, at } from "./compressed";
 
 export class CSC extends ASparseMatrix {
 
@@ -12,21 +13,8 @@ export class CSC extends ASparseMatrix {
      * @param dense matrix values
      */
     static fromDense(m: number, n: number, dense: ArrayLike<number>) {
-        const a: number[] = [];
-        const cols: number[] = [0];
-        const rows: number[] = [];
-        for (let i = 0, col = 0; col < n; col++) {
-            let nnz = 0;
-            for (let row = 0; row < m; i++ , row++) {
-                if (dense[i] !== 0) {
-                    a.push(dense[i]);
-                    rows.push(row);
-                    nnz++;
-                }
-            }
-            cols.push(cols[cols.length - 1] + nnz);
-        }
-        return new CSC(m, n, a, cols, rows);
+        const [cols, rows, data] = compress(m, n, dense);
+        return new CSC(m, n, data, cols, rows);
     }
 
     static empty(m: number, n = m) {
@@ -37,16 +25,9 @@ export class CSC extends ASparseMatrix {
         return CSC.diag(new Array<number>(m).fill(1));
     }
 
-    static diag(trace: number[]) {
-        const n = trace.length;
-        const cols: number[] = [];
-        const rows: number[] = [];
-        for (let i = 0; i < n; i++) {
-            cols.push(i);
-            rows.push(i);
-        }
-        cols.push(n);
-        return new CSC(n, n, trace, cols, rows);
+    static diag(vals: number[]) {
+        const [cols, rows] = diag(vals);
+        return new CSC(vals.length, vals.length, vals, cols, rows);
     }
 
     /**
@@ -92,38 +73,15 @@ export class CSC extends ASparseMatrix {
 
     at(m: number, n: number, safe = true) {
         safe && this.ensureIndex(m, n);
-        const rows = this.rows;
-        const ii = this.cols[n + 1];
-        for (let i = this.cols[n]; i < ii; i++) {
-            if (rows[i] === m) {
-                return this.data[i];
-            }
-        }
-        return 0;
+        return at(n, m, this.cols, this.rows, this.data);
     }
 
     setAt(m: number, n: number, x: number, safe = true, compact = true) {
         safe && this.ensureIndex(m, n);
-        const rows = this.rows;
-        const notZero = x !== 0;
-        const ii = this.cols[n + 1];
-        for (let i = this.cols[n]; i < ii; i++) {
-            const j = rows[i];
-            if (j === m) {
-                if (notZero || !compact) {
-                    this.data[i] = x;
-                } else {
-                    this.remove(n, i);
-                }
-                return this;
-            } else if (j > m && notZero) {
-                this.insert(m, n, x, i);
-                return this;
-            }
-        }
-        if (notZero) {
-            this.insert(m, n, x, ii);
-        }
+        const state = setAt(n, m, this.n, x, this.cols, this.rows, this.data, compact);
+        this.cols = state[0];
+        this.rows = state[1];
+        this.data = state[2];
         return this;
     }
 
@@ -258,21 +216,5 @@ export class CSC extends ASparseMatrix {
             res.push(this.denseRow(i).join(" "));
         }
         return res.join("\n");
-    }
-
-    protected insert(m: number, n: number, x: number, idx: number) {
-        this.data = this.data.slice(0, idx).concat([x], this.data.slice(idx));
-        this.rows = this.rows.slice(0, idx).concat([m], this.rows.slice(idx));
-        for (let i = n + 1; i <= this.n; i++) {
-            this.cols[i]++;
-        }
-    }
-
-    protected remove(n: number, idx: number) {
-        this.data.splice(idx, 1);
-        this.rows.splice(idx, 1);
-        for (let i = n + 1; i <= this.n; i++) {
-            this.cols[i]--;
-        }
     }
 }

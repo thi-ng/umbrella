@@ -1,6 +1,7 @@
 import { assert } from "@thi.ng/api";
 import { ASparseMatrix } from "./amatrix";
 import { NzEntry } from "./api";
+import { compress, diag, setAt, remove, at } from "./compressed";
 
 export class CSR extends ASparseMatrix {
 
@@ -12,21 +13,8 @@ export class CSR extends ASparseMatrix {
      * @param dense matrix values
      */
     static fromDense(m: number, n: number, dense: ArrayLike<number>) {
-        const a: number[] = [];
-        const rows: number[] = [0];
-        const cols: number[] = [];
-        for (let i = 0, row = 0; row < m; row++) {
-            let nnz = 0;
-            for (let col = 0; col < n; i++ , col++) {
-                if (dense[i] !== 0) {
-                    a.push(dense[i]);
-                    cols.push(col);
-                    nnz++;
-                }
-            }
-            rows.push(rows[rows.length - 1] + nnz);
-        }
-        return new CSR(m, n, a, rows, cols);
+        const [rows, cols, data] = compress(m, n, dense);
+        return new CSR(m, n, data, rows, cols);
     }
 
     static empty(m: number, n = m) {
@@ -37,16 +25,9 @@ export class CSR extends ASparseMatrix {
         return CSR.diag(new Array<number>(size).fill(1));
     }
 
-    static diag(trace: number[]) {
-        const n = trace.length;
-        const rows: number[] = [];
-        const cols: number[] = [];
-        for (let i = 0; i < n; i++) {
-            rows.push(i);
-            cols.push(i);
-        }
-        rows.push(n);
-        return new CSR(n, n, trace, rows, cols);
+    static diag(vals: number[]) {
+        const [rows, cols] = diag(vals);
+        return new CSR(vals.length, vals.length, vals, rows, cols);
     }
 
     /**
@@ -99,7 +80,7 @@ export class CSR extends ASparseMatrix {
                 rows.push(nnz);
             }
         } else if (m < this.m) {
-            const idx = this.rows[m];
+            const idx = rows[m];
             data.length = idx;
             cols.length = idx;
             rows.length = m + 1;
@@ -107,9 +88,9 @@ export class CSR extends ASparseMatrix {
         this.m = m;
         if (n < this.n) {
             for (let i = 0; i < m; i++) {
-                for (let j = this.rows[i], jj = rows[i + 1]; j < jj;) {
+                for (let j = rows[i], jj = rows[i + 1]; j < jj;) {
                     if (cols[j] >= n) {
-                        this.remove(i, j);
+                        remove(i, m, j, rows, cols, data);
                         jj--;
                     } else {
                         j++;
@@ -149,38 +130,15 @@ export class CSR extends ASparseMatrix {
 
     at(m: number, n: number, safe = true) {
         safe && this.ensureIndex(m, n);
-        const cols = this.cols;
-        const data = this.data;
-        for (let i = this.rows[m], ii = this.rows[m + 1]; i < ii; i++) {
-            if (cols[i] === n) {
-                return data[i];
-            }
-        }
-        return 0;
+        return at(m, n, this.rows, this.cols, this.data);
     }
 
     setAt(m: number, n: number, x: number, safe = true, compact = true) {
         safe && this.ensureIndex(m, n);
-        const ii = this.rows[m + 1];
-        const cols = this.cols;
-        const notZero = x !== 0;
-        for (let i = this.rows[m]; i < ii; i++) {
-            const j = cols[i];
-            if (j === n) {
-                if (notZero || !compact) {
-                    this.data[i] = x;
-                } else {
-                    this.remove(m, i);
-                }
-                return this;
-            } else if (j > n && notZero) {
-                this.insert(m, n, x, i);
-                return this;
-            }
-        }
-        if (notZero) {
-            this.insert(m, n, x, ii);
-        }
+        const state = setAt(m, n, this.m, x, this.rows, this.cols, this.data, compact);
+        this.rows = state[0];
+        this.cols = state[1];
+        this.data = state[2];
         return this;
     }
 
@@ -202,14 +160,6 @@ export class CSR extends ASparseMatrix {
         return res;
     }
 
-    trace() {
-        let trace = 0;
-        for (let i = this.m; --i >= 0;) {
-            trace += this.at(i, i, false);
-        }
-        return trace;
-    }
-
     add(mat: CSR) {
         this.ensureSize(mat);
         if (this === mat) {
@@ -223,8 +173,8 @@ export class CSR extends ASparseMatrix {
             const jj = mat.rows[i + 1];
             outer:
             for (let j = mat.rows[i]; j < jj; j++) {
-                const n = mat.cols[j],
-                    kk = this.rows[i + 1];
+                const n = mat.cols[j];
+                const kk = this.rows[i + 1];
                 for (let k = this.rows[i]; k < kk; k++) {
                     if (this.cols[k] === n) {
                         res.setAt(i, n, this.data[k] + mat.data[j], false);
@@ -386,35 +336,5 @@ export class CSR extends ASparseMatrix {
             res.push(dense.slice(i * this.n, (i + 1) * this.n).join(" "));
         }
         return res.join("\n");
-    }
-
-    protected ensureIndex(m: number, n: number) {
-        assert(
-            m >= 0 && m < this.m && n >= 0 || n < this.n,
-            `index out of bounds: (${m},${n})`
-        );
-    }
-
-    protected ensureSize(mat: CSR) {
-        assert(
-            mat.m === this.m && mat.n === this.n,
-            `incompatible size: (${mat.m},${mat.n})`
-        );
-    }
-
-    protected insert(m: number, n: number, x: number, idx: number) {
-        this.data = this.data.slice(0, idx).concat([x], this.data.slice(idx));
-        this.cols = this.cols.slice(0, idx).concat([n], this.cols.slice(idx));
-        for (let i = m + 1; i <= this.m; i++) {
-            this.rows[i]++;
-        }
-    }
-
-    protected remove(m: number, idx: number) {
-        this.data.splice(idx, 1);
-        this.cols.splice(idx, 1);
-        for (let i = m + 1; i <= this.m; i++) {
-            this.rows[i]--;
-        }
     }
 }
