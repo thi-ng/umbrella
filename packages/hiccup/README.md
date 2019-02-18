@@ -27,6 +27,8 @@ This project is part of the
     - [Stateful component](#stateful-component)
     - [Component objects](#component-objects)
     - [Behavior control attributes](#behavior-control-attributes)
+    - [Comments](#comments)
+    - [XML / DTD processing instructions](#xml--dtd-processing-instructions)
 - [API](#api)
     - [serialize(tree: any, ctx?: any, escape = false): string](#serializetree-any-ctx-any-escape--false-string)
     - [escape(str: string): string](#escapestr-string-string)
@@ -57,11 +59,12 @@ rendering etc. For interactive use cases, please see companion package
 - Eager & lazy component composition using embedded functions / closures
 - Support for self-closing tags (incl. validation), boolean attributes
 - Arbitrary user context object injection for component functions
-- Dynamic element attribute value generation via function values
+- Dynamic derived attribute value generation via function values
 - CSS formatting of `style` attribute objects
 - Optional HTML entity encoding
+- Support for comments and XML/DTD processing instructions
 - Branch-local behavior control attributes to control serialization
-- Small (2.2KB minified) & fast
+- Small (1.9KB minified) & fast
 
 *) Lazy composition here means that functions are only executed at
 serialization time. Examples below...
@@ -70,13 +73,16 @@ serialization time. Examples below...
 
 - Serverside rendering
 - Static site, feed generation
-- SVG asset generation
+- `.innerHTML` body generation
+- SVG asset creation
 - Shape trees for declarative canvas API drawing
 
 ### Related packages
 
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 - [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css)
+- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown)
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
 ### No special sauce needed (or wanted)
@@ -466,6 +472,46 @@ serialize(["div.container", ["div", {__skip: true}, "ignore me"]]);
 // <div class="container"></div>
 ```
 
+### Comments
+
+Single or multiline comments can be included using the special `COMMENT`
+tag (`__COMMENT__`) (always WITHOUT attributes!).
+
+```ts
+[COMMENT, "Hello world"]
+// <!-- Hello world -->
+
+[COMMENT, "Hello", "world"]
+// <!--
+//     Hello
+//     world
+// -->
+```
+
+### XML / DTD processing instructions
+
+Currently, the only processing / DTD instructions supported are:
+
+- `?xml`
+- `!DOCTYTPE`
+- `!ELEMENT`
+- `!ENTITY`
+- `!ATTLIST`
+
+These are used as follows (attribs are only allowed for `?xml`, all
+others only accept a body string which is taken as is):
+
+```ts
+["?xml", { version: "1.0", standalone: "yes" }]
+// <?xml version="1.0" standalone="yes"?>
+
+["!DOCTYPE", "html"]
+// <!DOCTYPE html>
+```
+
+Emitted processing instructions are always succeeded by a newline
+character.
+
 ## API
 
 The library exposes these two functions:
@@ -528,7 +574,7 @@ new tree (or undefined).
 ```ts
 const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
 
-serialize([foo, "id", "body"], {foo: {class: "black"}})
+serialize([foo, "id", "body"], { foo: { class: "black" }})
 // <div id="id" class="black">body</div>
 ```
 
