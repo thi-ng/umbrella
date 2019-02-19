@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.1.5...@thi.ng/matrices@0.1.6) (2019-02-19)
+
+
+### Bug Fixes
+
+* **matrices:** Fix identity44 dispatch ([6812b2b](https://github.com/thi-ng/umbrella/commit/6812b2b))
+
+
+
+
+
 ## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.1.4...@thi.ng/matrices@0.1.5) (2019-02-15)
 
 **Note:** Version bump only for package @thi.ng/matrices
