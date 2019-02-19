@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const h = require("@thi.ng/hiccup");
+const tx = require("@thi.ng/transducers");
+
+const baseDir = "./packages/";
+
+const xform = tx.comp(
+    tx.map((f) => baseDir + f),
+    tx.filter((f) => f.indexOf(".DS_Store") < 0 && fs.statSync(f).isDirectory),
+    tx.map((f) => { try { return fs.readFileSync(f + "/package.json"); } catch (_) { } }),
+    tx.filter(f => f !== undefined),
+    tx.map((p) => {
+        p = JSON.parse(p.toString());
+        return {
+            name: p.name,
+            short: p.name.substr(8),
+            v: p.version,
+        };
+    }),
+    tx.map((p) => ["tr",
+        ["td",
+            ["a", { href: `umbrella/${p.short}` }, p.name]
+        ],
+        ["td",
+            ["a", { href: `https://www.npmjs.com/package/${p.name}` },
+                ["img", { src: `https://img.shields.io/npm/v/${p.name}.svg`, alt: "npm version" }]
+            ]
+        ],
+        ["td",
+            ["a",
+                { href: `https://github.com/thi-ng/umbrella/blob/master/packages/${p.short}/CHANGELOG.md` },
+                "changelog"
+            ]
+        ]
+    ]));
+
+const packages = tx.transduce(xform, tx.push(), fs.readdirSync(baseDir));
+
+fs.writeFileSync("docs.html", h.serialize(
+    [
+        ["!DOCTYPE", "html"],
+        ["html", { lang: "en" },
+            ["head",
+                ["title", "docs.thi.ng"],
+                ["meta", { "http-equiv": "Content-Type", content: "text/html; charset=utf-8" }],
+                ["link", { href: "https://unpkg.com/tachyons@4/css/tachyons.min.css", rel: "stylesheet" }]
+            ],
+            ["body.measure.center.sans-serif.lh-copy",
+                ["h1", "docs.thi.ng"],
+                ["p", "this site hosts auto-generated documentation for the following projects:"],
+                ["table.w-100",
+                    ["tbody", ...packages]],
+                ["div.mv4.tc",
+                    ["a", { href: "http://thi.ng/" }, "thi.ng"], " | ",
+                    ["a", { href: "https://github.com/thi-ng/" }, "github"], " | ",
+                    ["a", { href: "https://travis-ci.org/thi-ng/" }, "ci"], " | ",
+                    ["a", { href: "https://twitter.com/thing_umbrella/" }, "twitter"],
+                    ["p.mt3.f7.gray", "Last updated: ", new Date().toISOString()]
+                ]
+            ]
+        ]
+    ]
+));

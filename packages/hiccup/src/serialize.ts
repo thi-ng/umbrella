@@ -9,6 +9,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import {
     COMMENT,
     NO_SPANS,
+    PROC_TAGS,
     TAG_REGEXP,
     VOID_TAGS
 } from "./api";
@@ -72,9 +73,9 @@ import { escape } from "./escape";
  * function MUST be a valid new tree (or `undefined`).
  *
  * If the `ctx` object it'll be passed to each embedded component fns.
- * Optionally call `derefContext()` prior to `serialize()` to
- * auto-deref context keys with values implementing the thi.ng/api
- * `IDeref` interface.
+ * Optionally call `derefContext()` prior to `serialize()` to auto-deref
+ * context keys with values implementing the thi.ng/api `IDeref`
+ * interface.
  *
  * ```js
  * const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
@@ -104,7 +105,7 @@ import { escape } from "./escape";
  * entire tree branch will be excluded from the output.
  *
  * Single or multiline comments can be included using the special
- * `COMMENT` tag (always WITHOUT attributes!).
+ * `COMMENT` tag (`__COMMENT__`) (always WITHOUT attributes!).
  *
  * ```
  * [COMMENT, "Hello world"]
@@ -115,6 +116,25 @@ import { escape } from "./escape";
  *     Hello
  *     world
  * -->
+ * ```
+ *
+ * Currently, the only processing / DTD instructions supported are:
+ *
+ * - `?xml`
+ * - `!DOCTYTPE`
+ * - `!ELEMENT`
+ * - `!ENTITY`
+ * - `!ATTLIST`
+ *
+ * These are used as follows (attribs are only allowed for `?xml`, all
+ * others only accept a body string which is taken as is):
+ *
+ * ```
+ * ["?xml", { version: "1.0", standalone: "yes" }]
+ * // <?xml version="1.0" standalone="yes"?>
+ *
+ * ["!DOCTYPE", "html"]
+ * // <!DOCTYPE html>
  * ```
  *
  * @param tree hiccup elements / component tree
@@ -196,16 +216,17 @@ const _serialize = (
                 if (VOID_TAGS[tag]) {
                     illegalArgs(`No body allowed in tag: ${tag}`);
                 }
-                res += ">";
-                span = span && !NO_SPANS[tag];
+                const proc = PROC_TAGS[tag];
+                res += proc ? " " : ">";
+                span = span && !proc && !NO_SPANS[tag];
                 for (let i = 0, n = body.length; i < n; i++) {
                     res += _serialize(body[i], ctx, esc, span, keys, [...path, i]);
                 }
-                return res += `</${tag}>`;
+                return res += (proc || `</${tag}>`);
             } else if (!VOID_TAGS[tag]) {
                 return res += `></${tag}>`;
             }
-            return res += "/>";
+            return res += (PROC_TAGS[tag] || "/>");
         }
         if (isNotStringAndIterable(tree)) {
             return _serializeIter(tree, ctx, esc, span, keys, path);

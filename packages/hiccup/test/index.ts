@@ -269,4 +269,16 @@ describe("serialize", () => {
         ["a", ["b", { __skip: true }, "bb"], ["b", "bbb"]],
         `<a><b>bbb</b></a>`
     );
+
+    check(
+        "doctype",
+        ["!DOCTYPE", "html"],
+        "<!DOCTYPE html>\n"
+    );
+
+    check(
+        "?xml",
+        ["?xml", { version: "1.0", standalone: "yes" }],
+        `<?xml version="1.0" standalone="yes"?>\n`
+    );
 });

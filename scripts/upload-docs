@@ -9,9 +9,11 @@ fi
 for m in $modules; do
     name=$(echo $m | cut -d '/' -f 2)
     echo "sanitizing: $name"
-    find $m/doc -name "*.html" -exec sed -i "s/\/\([a-zA-Z_0-9/-]\+\)\/node_modules\///g" '{}' \;
+    find $m/doc -name "*.html" -exec sed -i '' -E "s/\/([a-zA-Z_0-9\/-]+)\/node_modules\///g" '{}' \;
     echo "syncing..."
     aws s3 sync $m/doc s3://docs.thi.ng/umbrella/$name --profile toxi-s3 --acl public-read
 done
 
-aws s3 cp dev/docs.html s3://docs.thi.ng/index.html --profile toxi-s3 --acl public-read
+scripts/generate-doc-table
+
+aws s3 cp docs.html s3://docs.thi.ng/index.html --profile toxi-s3 --acl public-read
