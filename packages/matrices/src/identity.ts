@@ -23,4 +23,4 @@ export const identity33 =
     identity.add(9, (m) => set(m, IDENT33));
 
 export const identity44 =
-    identity.add(9, (m) => set(m, IDENT44));
+    identity.add(16, (m) => set(m, IDENT44));
