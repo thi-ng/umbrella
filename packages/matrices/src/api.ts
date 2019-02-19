@@ -25,26 +25,26 @@ export interface MultiMatOpMN extends MatOpMN, MultiMatOp<MatOpMN> { }
 export interface MultiVecOpM extends VecOpM, MultiMatOp<VecOpM> { }
 export interface MultiVecOpMN extends VecOpMN, MultiMatOp<VecOpMN> { }
 
-export const IDENT22 = [
+export const IDENT22 = Object.freeze([
     1, 0,
     0, 1
-];
+]);
 
-export const IDENT23 = [
+export const IDENT23 = Object.freeze([
     1, 0,
     0, 1,
     0, 0
-];
+]);
 
-export const IDENT33 = [
+export const IDENT33 = Object.freeze([
     1, 0, 0,
     0, 1, 0,
     0, 0, 1
-];
+]);
 
-export const IDENT44 = [
+export const IDENT44 = Object.freeze([
     1, 0, 0, 0,
     0, 1, 0, 0,
     0, 0, 1, 0,
     0, 0, 0, 1
-];
+]);
