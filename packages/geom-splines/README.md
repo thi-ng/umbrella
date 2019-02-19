@@ -20,7 +20,8 @@ This project is part of the
 
 ## About
 
-nD cubic & quadratic curve analysis, conversion, interpolation, splitting
+nD cubic & quadratic curve analysis, conversion, interpolation,
+splitting, resampling.
 
 ## Installation
 
@@ -30,7 +31,12 @@ yarn add @thi.ng/geom-splines
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
+- [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/master/packages/geom-arc)
+- [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/master/packages/geom-resample)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 

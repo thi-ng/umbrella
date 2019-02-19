@@ -7,8 +7,15 @@ import {
 
 /**
  * Computes the nD bounds of given vectors. `vmin` should be initialized
- * to `+Infinity` and `vmax` to `-Infinity` (e.g. use copies of `MIN*` /
- * `MAX*` constants defined in thi.ng/vectors).
+ * to `+∞` and `vmax` to `-∞` (e.g. use copies of `MIN*` / `MAX*`
+ * constants defined in thi.ng/vectors).
+ *
+ * ```
+ * points = [[-1,-2], [5,-3], [0,4]];
+ *
+ * bounds(points, [...MAX2], [...MIN2])
+ * // [[-1,-3],[5,4]]
+ * ```
  *
  * Returns 2-tuple of modified `[vmin, vmax]`.
  *

@@ -50,6 +50,7 @@
         "conversion",
         "cubic",
         "curve",
+        "elliptic",
         "ES6",
         "geometry",
         "interpolation",

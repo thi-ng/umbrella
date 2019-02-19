@@ -10,7 +10,7 @@ export const resample = (
     copy = false
 ) => {
     if (opts !== undefined) {
-        const sampler = new Sampler(pts, false);
+        const sampler = new Sampler(pts, closed);
         return isPlainObject(opts) ?
             closed ?
                 opts.dist ?

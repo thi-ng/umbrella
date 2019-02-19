@@ -32,7 +32,8 @@ yarn add @thi.ng/geom-hull
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 

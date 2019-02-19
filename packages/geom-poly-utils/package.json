@@ -47,7 +47,6 @@
         "circumcenter",
         "geometry",
         "perimeter",
-        "point inside",
         "polygon",
         "polyline",
         "triangle",

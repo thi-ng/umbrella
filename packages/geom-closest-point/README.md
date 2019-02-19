@@ -30,7 +30,7 @@ yarn add @thi.ng/geom-closest-point
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 

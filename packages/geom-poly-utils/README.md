@@ -20,7 +20,17 @@ This project is part of the
 
 ## About
 
-Polygon / triangle analysis & processing utilities
+Polygon / triangle analysis & processing utilities:
+
+- signed 2D polygon & triangle area
+- triangle barycentric coord conversion
+- nD point cloud bounding box
+- 2D poly center of weight
+- nD point cloud centroid
+- 2D circumcenter
+- 2D polygon convexity classification
+- 2D equilateral triangle
+- polygon / polyline perimeter
 
 ## Installation
 
@@ -30,7 +40,10 @@ yarn add @thi.ng/geom-poly-utils
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
