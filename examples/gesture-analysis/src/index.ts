@@ -1,4 +1,5 @@
 import { peek } from "@thi.ng/arrays";
+import { identity } from "@thi.ng/compose";
 import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
 import {
     circle,
@@ -11,7 +12,6 @@ import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestur
 import {
     comp,
     filter,
-    identity,
     map,
     multiplexObj,
     partition,
