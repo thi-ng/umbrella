@@ -3,7 +3,6 @@ import { illegalArgs, illegalState } from "@thi.ng/errors";
 import {
     ensureReduced,
     isReduced,
-    reduced,
     Reducer,
     Transducer,
     unreduced
@@ -41,6 +40,7 @@ export const fsm = <T, C, R>(
             (acc, x) => {
                 while (true) {
                     const { type, body } = curr(ctx, x);
+                    const res = body && body[1];
                     if (type >= Match.FULL) {
                         const next = body && states[body[0]];
                         if (next) {
@@ -49,7 +49,6 @@ export const fsm = <T, C, R>(
                         } else {
                             illegalState(`unknown tx: ${currID} -> ${body && body[0]}`);
                         }
-                        const res = body[1];
                         if (res) {
                             for (let y of unreduced(res)) {
                                 acc = reduce(acc, y);
@@ -63,7 +62,15 @@ export const fsm = <T, C, R>(
                             continue;
                         }
                     } else if (type === Match.FAIL) {
-                        return reduced(acc);
+                        if (res) {
+                            for (let y of unreduced(res)) {
+                                acc = reduce(acc, y);
+                                if (isReduced(acc)) {
+                                    break;
+                                }
+                            }
+                        }
+                        return ensureReduced(acc);
                     }
                     break;
                 }

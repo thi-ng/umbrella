@@ -1,7 +1,6 @@
 import {
     Match,
     Matcher,
-    RES_FAIL,
     RES_PARTIAL,
     SeqCallback
 } from "./api";
@@ -13,25 +12,27 @@ import { result } from "./result";
  * `Match.FAIL`.
  *
  * @param matches
- * @param callback
+ * @param success
+ * @param fail
  */
 export const seq = <T, C, R>(
     matches: Matcher<T, C, R>[],
-    callback?: SeqCallback<T, C, R>
+    success?: SeqCallback<T, C, R>,
+    fail?: SeqCallback<T, C, R>
 ): Matcher<T, C, R> =>
     () => {
         let i = 0;
         let m = matches[i]();
         const n = matches.length - 1;
         const buf: T[] = [];
-        return (state, x) => {
-            if (i > n) return RES_FAIL;
-            callback && buf.push(x);
+        return (ctx, x) => {
+            if (i > n) return result(fail && fail(ctx, buf), Match.FAIL);
+            success && buf.push(x);
             while (i <= n) {
-                const { type } = m(state, x);
+                const { type } = m(ctx, x);
                 if (type >= Match.FULL) {
                     if (i === n) {
-                        return result(callback && callback(state, buf));
+                        return result(success && success(ctx, buf));
                     }
                     m = matches[++i]();
                     if (type === Match.FULL_NC) {
@@ -39,9 +40,9 @@ export const seq = <T, C, R>(
                     }
                 }
                 return type === Match.FAIL ?
-                    RES_FAIL :
+                    result(fail && fail(ctx, buf), Match.FAIL) :
                     RES_PARTIAL;
             }
-            return RES_FAIL;
+            return result(fail && fail(ctx, buf), Match.FAIL);
         }
     };

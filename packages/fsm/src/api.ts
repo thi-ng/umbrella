@@ -42,5 +42,8 @@ export type LitCallback<T, C, R> =
 export type SeqCallback<T, C, R> =
     (ctx: C, buf: T[]) => ResultBody<R>;
 
+export type AltFallback<T, C, R> =
+    SeqCallback<T, C, R>;
+
 export const RES_PARTIAL = Object.freeze({ type: Match.PARTIAL });
 export const RES_FAIL = Object.freeze({ type: Match.FAIL });

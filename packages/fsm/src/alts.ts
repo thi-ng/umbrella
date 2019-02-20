@@ -1,11 +1,11 @@
 import {
+    AltCallback,
+    AltFallback,
     Match,
     Matcher,
     MatcherInst,
     MatchResult,
-    RES_FAIL,
-    RES_PARTIAL,
-    ResultBody
+    RES_PARTIAL
 } from "./api";
 import { result } from "./result";
 
@@ -25,12 +25,14 @@ import { result } from "./result";
  *
  * @param opts
  * @param fallback
- * @param callback
+ * @param success
+ * @param fail
  */
 export const alts = <T, C, R>(
     opts: Matcher<T, C, R>[],
-    fallback?: (ctx: C, buf: T[]) => ResultBody<R>,
-    callback?: (ctx: C, next: ResultBody<R>, buf: T[]) => ResultBody<R>
+    fallback?: AltFallback<T, C, R>,
+    success?: AltCallback<T, C, R>,
+    fail?: AltFallback<T, C, R>
 ): Matcher<T, C, R> =>
     () => {
         const alts = opts.map((o) => o());
@@ -41,19 +43,19 @@ export const alts = <T, C, R>(
                 if (!(a = alts[i])) continue;
                 next = a(ctx, x);
                 if (next.type >= Match.FULL) {
-                    return callback ?
-                        result(callback(ctx, next.body, buf), next.type) :
+                    return success ?
+                        result(success(ctx, next.body, buf), next.type) :
                         next;
                 } else if (next.type === Match.FAIL) {
                     alts[i] = null;
                     active--;
                 }
             }
-            fallback && buf.push(x);
+            (fallback || fail) && buf.push(x);
             return active ?
                 RES_PARTIAL :
                 fallback ?
                     result(fallback(ctx, buf)) :
-                    RES_FAIL;
+                    result(fail && fail(ctx, buf), Match.FAIL);
         };
     };

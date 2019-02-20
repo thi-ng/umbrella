@@ -1,7 +1,7 @@
 import {
     LitCallback,
+    Match,
     Matcher,
-    RES_FAIL,
     RES_PARTIAL
 } from "./api";
 import { result } from "./result";
@@ -11,18 +11,20 @@ import { result } from "./result";
  * given string could be matched.
  *
  * @param str
- * @param callback 
+ * @param success
+ * @param fail
  */
 export const str = <C, R>(
     str: string,
-    callback?: LitCallback<string, C, R>
+    success?: LitCallback<string, C, R>,
+    fail?: LitCallback<string, C, R>
 ): Matcher<string, C, R> =>
     () => {
         let buf = "";
-        return (state, x) =>
+        return (ctx, x) =>
             (buf += x) === str ?
-                result(callback && callback(state, buf)) :
+                result(success && success(ctx, buf)) :
                 str.indexOf(buf) === 0 ?
                     RES_PARTIAL :
-                    RES_FAIL;
+                    result(fail && fail(ctx, buf), Match.FAIL);
     };

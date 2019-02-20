@@ -14,13 +14,15 @@ import { result } from "./result";
  * @param match
  * @param min
  * @param max
- * @param callback
+ * @param success
+ * @param fail
  */
 export const repeat = <T, C, R>(
     match: Matcher<T, C, R>,
     min: number,
     max: number,
-    callback?: SeqCallback<T, C, R>
+    success?: SeqCallback<T, C, R>,
+    fail?: SeqCallback<T, C, R>
 ): Matcher<T, C, R> =>
     () => {
         let m = match();
@@ -32,14 +34,16 @@ export const repeat = <T, C, R>(
             if (r.type === Match.FULL) {
                 i++;
                 if (i === max) {
-                    return result(callback && callback(ctx, buf));
+                    return result(success && success(ctx, buf));
                 }
                 m = match();
                 return RES_PARTIAL;
             } else if (r.type === Match.FAIL) {
                 if (i >= min) {
                     buf.pop();
-                    return result(callback && callback(ctx, buf), Match.FULL_NC);
+                    return result(success && success(ctx, buf), Match.FULL_NC);
+                } else {
+                    return result(fail && fail(ctx, buf), Match.FAIL);
                 }
             }
             return r;

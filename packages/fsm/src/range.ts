@@ -1,12 +1,12 @@
 import { alts } from "./alts";
+import { altsLit } from "./alts-lit";
 import {
     AltCallback,
+    AltFallback,
     LitCallback,
-    Matcher,
-    RES_FAIL
+    Matcher
 } from "./api";
 import { result } from "./result";
-import { str } from "./str";
 
 /**
  * Returns a single input matcher which returns `Match.FULL` if the
@@ -14,49 +14,61 @@ import { str } from "./str";
  *
  * @param min
  * @param max
- * @param callback
+ * @param success
+ * @param fail
  */
 export const range = <T extends number | string, C, R>(
     min: T,
     max: T,
-    callback?: LitCallback<T, C, R>
+    success?: LitCallback<T, C, R>,
+    fail?: LitCallback<T, C, R>
 ): Matcher<T, C, R> =>
     () =>
         (ctx, x) =>
             x >= min && x <= max ?
-                result(callback && callback(ctx, x)) :
-                RES_FAIL;
+                result(success && success(ctx, x)) :
+                result(fail && fail(ctx, x));
 
 /**
  * Matcher for single digit characters (0-9).
  *
- * @param callback
+ * @param success
+ * @param fail
  */
-export const digit =
-    <C, R>(callback?: LitCallback<string, C, R>): Matcher<string, C, R> =>
-        range("0", "9", callback);
+export const digit = <C, R>(
+    success?: LitCallback<string, C, R>,
+    fail?: LitCallback<string, C, R>
+): Matcher<string, C, R> =>
+    range("0", "9", success, fail);
 
 /**
  * Matcher for single A-Z or a-z characters.
  *
- * @param callback
+ * @param success
+ * @param fail
  */
-export const alpha =
-    <C, R>(callback?: AltCallback<string, C, R>): Matcher<string, C, R> =>
-        alts(
-            [range("a", "z"), range("A", "Z")],
-            null,
-            callback
-        );
+export const alpha = <C, R>(
+    success?: AltCallback<string, C, R>,
+    fail?: AltFallback<string, C, R>
+): Matcher<string, C, R> =>
+    alts(
+        [range("a", "z"), range("A", "Z")],
+        null,
+        success,
+        fail
+    );
 
 /**
  * Combination of `digit()` and `alpha()`.
  *
- * @param callback
+ * @param success
+ * @param fail
  */
-export const alphaNum =
-    <C, R>(callback?: AltCallback<string, C, R>): Matcher<string, C, R> =>
-        alts([alpha(), digit()], null, callback);
+export const alphaNum = <C, R>(
+    success?: AltCallback<string, C, R>,
+    fail?: AltFallback<string, C, R>
+): Matcher<string, C, R> =>
+    alts([alpha(), digit()], null, success, fail);
 
 const WS: Matcher<string, any, any>[] =
     [str("\r"), str("\n"), str("\t"), str(" ")];
