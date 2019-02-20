@@ -176,7 +176,7 @@ const collect =
         const parent = peek(stack);
         if (!parent) return x;
         if (parent.type === Type.LIST) {
-            parent.val.push(x);
+            parent.val.push(utf8 && isArray(x) ? utf8Decode(x) : x);
         } else {
             if (!parent.key) {
                 parent.key = isArray(x) ? utf8Decode(x) : x;
