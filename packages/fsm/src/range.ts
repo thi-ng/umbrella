@@ -70,14 +70,16 @@ export const alphaNum = <C, R>(
 ): Matcher<string, C, R> =>
     alts([alpha(), digit()], null, success, fail);
 
-const WS: Matcher<string, any, any>[] =
-    [str("\r"), str("\n"), str("\t"), str(" ")];
+const WS = new Set([" ", "\n", "\t", "\r"]);
 
 /**
  * Matcher for single whitespace characters.
  *
- * @param callback
+ * @param success
+ * @param fail
  */
-export const whitespace =
-    <C, R>(callback?: AltCallback<string, C, R>): Matcher<string, C, R> =>
-        alts(WS, null, callback);
+export const whitespace = <C, R>(
+    success?: LitCallback<string, C, R>,
+    fail?: LitCallback<string, C, R>
+): Matcher<string, C, R> =>
+    altsLit(WS, success, fail);

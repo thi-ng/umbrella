@@ -1,6 +1,7 @@
 export * from "./api";
 
 export * from "./alts";
+export * from "./alts-lit";
 export * from "./always";
 export * from "./fsm";
 export * from "./lit";
