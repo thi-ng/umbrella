@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.2.0...@thi.ng/bencode@0.2.1) (2019-02-20)
+
+
+### Bug Fixes
+
+* **bencode:** string list val decoding, add tests, update readme ([9f2b8ae](https://github.com/thi-ng/umbrella/commit/9f2b8ae))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.1.1...@thi.ng/bencode@0.2.0) (2019-02-15)
 
 
