@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
