@@ -29,9 +29,10 @@ Functional & composable primitives for building declarative,
 based Finite-State machines and parsers for arbitrary input data streams
 (not necessarily string based).
 
-See the [minimal markdown parser
-example](https://github.com/thi-ng/umbrella/tree/master/examples/markdown)
-for a concrete use case.
+See the [hiccup-markdown
+parser](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown/src/parser.ts)
+& [example](https://demo.thi.ng/umbrella/markdown/) for a concrete use
+case.
 
 ## Status
 

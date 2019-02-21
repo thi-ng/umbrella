@@ -34,7 +34,8 @@ features and already sports:
 | Code block  | GFM only (triple backtick prefix), w/ optional language hint                                        |
 | Horiz. Rule | only dash supported (e.g. `---`), min 3 chars required                                              |
 
-Note: Currently, the last heading, paragraph, blockquote, list or table requires an additional newline.
+Note: Currently, the last heading, paragraph, blockquote, list or table
+requires an additional newline.
 
 ### Limitations
 

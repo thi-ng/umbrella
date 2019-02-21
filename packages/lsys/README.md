@@ -13,6 +13,9 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [Default turtle](#default-turtle)
+    - [Options](#options)
+    - [Symbols](#symbols)
 - [Authors](#authors)
 - [License](#license)
 
@@ -87,6 +90,56 @@ examples.forEach(({ rules, delta, iter }, i) =>
     )
 );
 ```
+
+## Default turtle
+
+### Options
+
+The `turtle2d()` function creates a new state object for the L-System
+interpreter (`interpret()`). The initial state can be customized by
+providing a config object with the following options:
+
+```ts
+/**
+ * Start position. Default: [0,0]
+ */
+pos: Vec;
+/**
+ * Start direction (in radians). Default: 0
+ */
+theta: number;
+/**
+ * Rotation angle for "+" / "-" symbols.
+ * Default: PI/2
+ */
+delta: number;
+/**
+ * Step distance. Default 1
+ */
+step: number;
+/**
+ * Decay factor for `delta`. Should be in (0,1) interval.
+ * Default 0.9
+ */
+decayDelta: number;
+/**
+ * Decay factor for `step`. Should be in (0,1) interval.
+ * Default 0.9
+ */
+decayStep: number;
+```
+
+### Symbols
+
+- `f` - move forward
+- `+` - rotate ccw
+- `-` - rotate cw
+- `>` - shrink rotation angle
+- `<` - grow rotation angle
+- `!` - decay step distance
+- `^` - grow step distance
+- `[` - start branch / store context on stack
+- `]` - end branch / pop context from stack
 
 ## Authors
 

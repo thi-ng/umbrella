@@ -14,7 +14,7 @@ import { FnAny } from "@thi.ng/api";
  * threadLast(
  *   5,
  *   neg,       // -5
- *   [sub, 10], // 20 - (-5) = 15
+ *   [sub, 10], // 20 - (-5) = 25
  *   [div, 10]  // 10 / 25 = 0.4
  * );
  *
