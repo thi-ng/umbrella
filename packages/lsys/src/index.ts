@@ -2,6 +2,7 @@ import { Fn2, IObjectOf } from "@thi.ng/api";
 import { partial, threadLast } from "@thi.ng/compose";
 import { illegalState } from "@thi.ng/errors";
 import { cossin, HALF_PI } from "@thi.ng/math";
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import {
     iterate,
     last,
@@ -16,7 +17,7 @@ export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
 
 export interface Turtle2D {
     /**
-     * Current position
+     * Current position. Default: [0,0]
      */
     pos: Vec;
     /**
@@ -28,17 +29,42 @@ export interface Turtle2D {
      */
     delta: number;
     /**
-     * Step distance
+     * Max. random direction change when processing "/" symbol.
+     * Normalized percentage of `delta`. Default: 0.25 (25%)
+     */
+    jitter: number;
+    /**
+     * Step distance. Default: 1
      */
     step: number;
     /**
+     * Probability to keep current branch alive when processing "k"
+     * symbol. Default: 0.99
+     */
+    aliveProb: number;
+    /**
      * Decay factor for `delta`. Should be in (0,1) interval.
+     * Default: 0.9
      */
     decayDelta: number;
     /**
      * Decay factor for `step`. Should be in (0,1) interval.
+     * Default: 0.9
      */
     decayStep: number;
+    /**
+     * Decay factor for `aliveProp`.
+     * Default: 0.95
+     */
+    decayAlive: number;
+    /**
+     * PRNG to use for probability checks. Default: SYSTEM
+     */
+    rnd: IRandom;
+    /**
+     * Alive flag. Default: true
+     */
+    alive: boolean;
     /**
      * Current recorded path
      */
@@ -56,24 +82,33 @@ export interface Turtle2D {
 export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
     // move forward
     "f": (ctx) => {
-        ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
-        ctx.curr.push(ctx.pos);
+        if (ctx.alive) {
+            ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
+            ctx.curr.push(ctx.pos);
+        }
     },
     // rotate ccw
-    "+": (ctx) => ctx.theta += ctx.delta,
+    "+": (ctx) => ctx.alive && (ctx.theta += ctx.delta),
     // rotate cw
-    "-": (ctx) => ctx.theta -= ctx.delta,
+    "-": (ctx) => ctx.alive && (ctx.theta -= ctx.delta),
     // shrink rotation angle
-    ">": (ctx) => ctx.delta *= ctx.decayDelta,
+    ">": (ctx) => ctx.alive && (ctx.delta *= ctx.decayDelta),
     // grow rotation angle
-    "<": (ctx) => ctx.delta /= ctx.decayDelta,
+    "<": (ctx) => ctx.alive && (ctx.delta /= ctx.decayDelta),
     // decay step distance
-    "!": (ctx) => ctx.step *= ctx.decayStep,
+    "!": (ctx) => ctx.alive && (ctx.step *= ctx.decayStep),
     // grow step distance
-    "^": (ctx) => ctx.step /= ctx.decayStep,
+    "^": (ctx) => ctx.alive && (ctx.step /= ctx.decayStep),
+    "/": (ctx) => ctx.alive && (ctx.theta += ctx.rnd.norm(ctx.delta * ctx.jitter)),
+    // kill branch (probabilistic)
+    "k": (ctx) => ctx.alive && (ctx.alive = ctx.rnd.float() < ctx.aliveProb),
+    // decay alive probability
+    "p": (ctx) => ctx.alive && (ctx.aliveProb *= ctx.decayAlive),
+    // grow alive probability
+    "P": (ctx) => ctx.alive && (ctx.aliveProb /= ctx.decayAlive),
     // start branch / store context on stack
     "[": (ctx) => {
-        ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
+        ctx.alive && ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
         ctx.curr = [ctx.pos];
         const copy = { ...ctx };
         delete copy.paths;
@@ -83,9 +118,9 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
     },
     // end branch / pop context from stack
     "]": (ctx) => {
+        ctx.alive && ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
         const prev = ctx.stack.pop();
         !prev && illegalState("stack empty");
-        ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
         Object.assign(ctx, prev);
     },
 };
@@ -96,8 +131,13 @@ export const turtle2d =
         theta: 0,
         delta: HALF_PI,
         step: 1,
+        jitter: 0.25,
         decayDelta: 0.9,
         decayStep: 0.9,
+        decayAlive: 0.95,
+        aliveProb: 0.99,
+        rnd: SYSTEM,
+        alive: true,
         curr: [[0, 0]],
         paths: [],
         stack: [],

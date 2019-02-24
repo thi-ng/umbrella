@@ -10,9 +10,11 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+    - [Probabilistic behaviors](#probabilistic-behaviors)
 - [Default turtle](#default-turtle)
     - [Options](#options)
     - [Symbols](#symbols)
@@ -31,6 +33,14 @@ interpretation / execution. A base 2D turtle implementation is included.
 
 Partially based on Clojure version of
 [@thi.ng/thingybot](https://github.com/thi-ng/thingybot).
+
+## Status
+
+ALPHA. Planned features:
+
+- [ ] parametric symbols / expansion / pruning
+- [ ] max expansion length enforcement
+- [ ] 3D turtle implementation
 
 ## Installation
 
@@ -91,6 +101,55 @@ examples.forEach(({ rules, delta, iter }, i) =>
 );
 ```
 
+### Probabilistic behaviors
+
+The built-in default turtle implementation supports some basic
+probabilistic features, e.g. randomization of growth direction and
+probabilistic branch termination. This enables the
+creation of more organic looking structures, like shown in the following example:
+
+ ![probabilistic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys-tree.png)
+
+```ts
+import { XsAdd } from "@thi.ng/random";
+
+lsys.interpret(
+    // create turtle instance with customized delta (rot angle)
+    lsys.turtle2d({
+        // initial movement step distance
+        step: 20,
+        // initial direction
+        theta: -PI / 2,
+        // rotation offset
+        delta: PI / 10,
+        // direction jitter (percentage of delta, i.e. here 50%)
+        jitter: 0.5,
+        // initial survival chance
+        aliveProb: 0.999,
+        // decay factors for rotation, step, branch survival chance
+        decayDelta: 0.98,
+        decayStep: 0.85,
+        decayAlive: 0.975,
+        // use seedable PRNG for deterministic outcome
+        rnd: new XsAdd(0x7337c0de)
+    }),
+    // process syms "a" & "g" as "f"
+    { ...impl, a: impl.f, g: impl.f },
+    // recursively expand start rule "s" by ping-ponging between f & g
+    // (only difference between f & g is swapped branch orientations)
+    // see description of all symbols further below
+    lsys.expand(
+        {
+            s: "[f]",
+            f: "a[kp!>/-g]/a[kp!>/+g]",
+            g: "a[kp!>/+f]/a[kp!>/-f]"
+        },
+        "s",
+        13
+    )
+)
+```
+
 ## Default turtle
 
 ### Options
@@ -101,32 +160,50 @@ providing a config object with the following options:
 
 ```ts
 /**
- * Start position. Default: [0,0]
+ * Current position
  */
 pos: Vec;
 /**
- * Start direction (in radians). Default: 0
+ * Current direction (in radians)
  */
 theta: number;
 /**
- * Rotation angle for "+" / "-" symbols.
- * Default: PI/2
+ * Rotation angle for "+" / "-" symbols
  */
 delta: number;
 /**
- * Step distance. Default 1
+ * Max. random direction change when processing "/" symbol.
+ * Normalized percentage of `delta`. Default: 0.25 (25%)
+ */
+jitter: number;
+/**
+ * Step distance. Default: 1
  */
 step: number;
 /**
+ * Probability to keep current branch alive when processing "k"
+ * symbol. Default: 0.99
+ */
+aliveProb: number;
+/**
  * Decay factor for `delta`. Should be in (0,1) interval.
- * Default 0.9
+ * Default: 0.9
  */
 decayDelta: number;
 /**
  * Decay factor for `step`. Should be in (0,1) interval.
- * Default 0.9
+ * Default: 0.9
  */
 decayStep: number;
+/**
+ * Decay factor for `aliveProp`.
+ * Default: 0.95
+ */
+decayAlive: number;
+/**
+ * PRNG to use for probability checks. Default: SYSTEM
+ */
+rnd: IRandom;
 ```
 
 ### Symbols
@@ -134,8 +211,12 @@ decayStep: number;
 - `f` - move forward
 - `+` - rotate ccw
 - `-` - rotate cw
-- `>` - shrink rotation angle
-- `<` - grow rotation angle
+- `>` - shrink rotation angle offset
+- `<` - grow rotation angle offset
+- `/` - jitter direction
+- `k` - probabilistically kill branch
+- `p` - decay survival chance
+- `P` - increase survival chance
 - `!` - decay step distance
 - `^` - grow step distance
 - `[` - start branch / store context on stack
