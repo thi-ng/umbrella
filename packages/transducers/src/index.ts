@@ -34,6 +34,7 @@ export * from "./rfn/sub";
 
 export * from "./xform/benchmark";
 export * from "./xform/cat";
+export * from "./xform/converge";
 export * from "./xform/convolve";
 export * from "./xform/dedupe";
 export * from "./xform/delayed";
