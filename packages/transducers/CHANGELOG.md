@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.0.0...@thi.ng/transducers@5.1.0) (2019-02-26)
+
+
+### Bug Fixes
+
+* **transducers:** update converge() & update readme ([9aca912](https://github.com/thi-ng/umbrella/commit/9aca912))
+
+
+### Features
+
+* **transducers:** add converge() xform, add iter arg to iterate() ([8393a95](https://github.com/thi-ng/umbrella/commit/8393a95))
+
+
+
+
+
 # [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@4.0.1...@thi.ng/transducers@5.0.0) (2019-02-15)
 
 

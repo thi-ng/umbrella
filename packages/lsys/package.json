@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,12 +33,12 @@
     },
     "dependencies": {
         "@thi.ng/api": "^5.0.1",
-        "@thi.ng/compose": "^1.1.0",
+        "@thi.ng/compose": "^1.1.1",
         "@thi.ng/errors": "^1.0.2",
         "@thi.ng/math": "^1.1.0",
         "@thi.ng/random": "^1.1.0",
-        "@thi.ng/transducers": "^5.0.0",
-        "@thi.ng/vectors": "^2.3.0"
+        "@thi.ng/transducers": "^5.1.0",
+        "@thi.ng/vectors": "^2.3.1"
     },
     "keywords": [
         "ES6",
