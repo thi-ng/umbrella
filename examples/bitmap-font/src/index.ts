@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
-import { stream, sync } from "@thi.ng/rstream";
+import { stream, Stream, sync } from "@thi.ng/rstream";
 import {
     comp,
     map,
@@ -59,10 +59,17 @@ const banner =
 
 // dropdown menu for on/off bits
 const charSelector =
-    (onchange, sel) =>
-        [dropdown, { class: "ml3", onchange },
-            [["#", "#"], ["*", "*"], ["X", "X"], ["/", "/"], [".", "."], [" ", "space"]],
-            sel
+    (stream: Stream<string>) =>
+        [dropdown,
+            {
+                class: "ml3",
+                onchange: (e) => stream.next(e.target.value)
+            },
+            [
+                ["#", "#"], ["@", "@"], ["*", "*"], ["X", "X"], ["/", "/"],
+                ["=", "="], ["-", "-"], ["^", "^"], [".", "."], [" ", "space"]
+            ],
+            stream.deref()
         ];
 
 // main UI root component
@@ -74,8 +81,8 @@ const app =
                     oninput: (e) => input.next(e.target.value),
                     value: raw
                 }],
-                charSelector((e) => on.next(e.target.value), on.deref()),
-                charSelector((e) => off.next(e.target.value), off.deref()),
+                charSelector(on),
+                charSelector(off),
             ],
             ["pre.code.w-100.pa2.overflow-x-auto.bg-washed-yellow", result]
         ];
@@ -95,7 +102,7 @@ main.transform(
 );
 
 // kick off
-input.next("8BIT POWER");
+input.next("8BIT POWER!");
 on.next("/");
 off.next(" ");
 
