@@ -642,6 +642,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 
 - [benchmark](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/benchmark.ts)
 - [cat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/cat.ts)
+- [converge](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/converge.ts)
 - [convolve2d](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/convolve.ts)
 - [dedupe](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/dedupe.ts)
 - [delayed](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/delayed.ts)
