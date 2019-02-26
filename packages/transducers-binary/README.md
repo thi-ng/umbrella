@@ -127,7 +127,9 @@ console.log(
 // ........
 ```
 
-Extended to transform longer strings:
+Extended to transform longer strings (taken from the [bitmap-font
+example](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font),
+[live demo](https://demo.thi.ng/umbrella/bitmap-font/)):
 
 ```ts
 // font lookup table
@@ -179,7 +181,8 @@ console.log(banner("abba"))
 ### Base64 & UTF-8 en/decoding
 
 Unlike JS default `btoa()` / `atob()` functions which operate on
-strings, these transducers convert byte values to base64 and back.
+strings, these transducers stepwise convert byte values to base64 and
+back.
 
 ```ts
 // here we first add an offset (0x80) to allow negative values to be encoded
