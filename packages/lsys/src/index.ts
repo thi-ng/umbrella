@@ -87,6 +87,13 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
             ctx.curr.push(ctx.pos);
         }
     },
+    "g": (ctx) => {
+        if (ctx.alive) {
+            ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
+            ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
+            ctx.curr = [ctx.pos];
+        }
+    },
     // rotate ccw
     "+": (ctx) => ctx.alive && (ctx.theta += ctx.delta),
     // rotate cw
@@ -100,7 +107,7 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
     // grow step distance
     "^": (ctx) => ctx.alive && (ctx.step /= ctx.decayStep),
     "/": (ctx) => ctx.alive && (ctx.theta += ctx.rnd.norm(ctx.delta * ctx.jitter)),
-    // kill branch (probabilistic)
+    // kill branch (stochastic)
     "k": (ctx) => ctx.alive && (ctx.alive = ctx.rnd.float() < ctx.aliveProb),
     // decay alive probability
     "p": (ctx) => ctx.alive && (ctx.aliveProb *= ctx.decayAlive),

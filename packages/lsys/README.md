@@ -14,7 +14,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Probabilistic behaviors](#probabilistic-behaviors)
+    - [Stochastic behaviors](#stochastic-behaviors)
 - [Default turtle](#default-turtle)
     - [Options](#options)
     - [Symbols](#symbols)
@@ -27,9 +27,9 @@ This project is part of the
 
 Small, functional, highly customizable, iterator based
 [L-System](https://en.wikipedia.org/wiki/L-system) architecture for
-arbitrary rules, with separation between symbol expansion and
-interpretation / execution. A base 2D turtle implementation is included.
-0.5KB gzipped.
+arbitrary rules, basic support for stochastic behaviors and with
+separation between symbol expansion and interpretation / execution. A
+base 2D turtle implementation is included. 0.6KB gzipped.
 
 Partially based on Clojure version of
 [@thi.ng/thingybot](https://github.com/thi-ng/thingybot).
@@ -38,8 +38,9 @@ Partially based on Clojure version of
 
 ALPHA. Planned features:
 
-- [ ] parametric symbols / expansion / pruning
+- [ ] parametric grammars
 - [ ] max expansion length enforcement
+- [ ] convergence testing
 - [ ] 3D turtle implementation
 
 ## Installation
@@ -101,14 +102,14 @@ examples.forEach(({ rules, delta, iter }, i) =>
 );
 ```
 
-### Probabilistic behaviors
+### Stochastic behaviors
 
 The built-in default turtle implementation supports some basic
-probabilistic features, e.g. randomization of growth direction and
-probabilistic branch termination. This enables the
-creation of more organic looking structures, like shown in the following example:
+stochastic features, e.g. randomization of growth direction and
+stochastic branch termination. This enables the creation of more organic
+looking structures, like shown in the following example:
 
- ![probabilistic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys-tree.png)
+ ![stochastic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys-tree.png)
 
 ```ts
 import { XsAdd } from "@thi.ng/random";
@@ -208,13 +209,14 @@ rnd: IRandom;
 
 ### Symbols
 
-- `f` - move forward
+- `f` - move forward & add to current path
+- `g` - move forward & start new path
 - `+` - rotate ccw
 - `-` - rotate cw
 - `>` - shrink rotation angle offset
 - `<` - grow rotation angle offset
 - `/` - jitter direction
-- `k` - probabilistically kill branch
+- `k` - stochastically kill branch
 - `p` - decay survival chance
 - `P` - increase survival chance
 - `!` - decay step distance
