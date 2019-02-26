@@ -27,7 +27,11 @@ This project is part of the
 
 ## About
 
-Binary data related transducers & reducers.
+Binary data related transducers & reducers. Like the transducers and
+reducers defined in
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers),
+all functions defined in this package too accept an optional input
+iterable for direct use.
 
 ## Installation
 
@@ -51,67 +55,125 @@ import * as txb from "@thi.ng/transducers-binary";
 
 This is a higher-order transducer, purely composed from other
 transducers. [See code
-here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/hex-dump.ts).
+here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts).
 
 ```ts
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
 
-[...tx.iterator(txb.hexDump({ cols: 8, address: 0x400 }), src)]
-// [ '00000400 | 41 42 43 44 45 46 47 48 | ABCDEFGH',
-//   '00000408 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
-//   '00000410 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
+[...txb.hexDump({ cols: 8, address: 0x100 }, src)]
+// [ '00000100 | 41 42 43 44 45 46 47 48 | ABCDEFGH',
+//   '00000108 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
+//   '00000110 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
 ```
 
 ### Structured byte buffer construction
 
+The
+[`bytes()`](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
+reducer transforms a stream of declarative data definitions (optionally
+with Little-Endian encoding) into an `Uint8Array`.
+
 ```ts
-console.log(
-    tx.str("\n",
-        txb.hexDump({ cols: 16 },
-            txb.bytes(
-                // initial buffer capacity (grows on demand)
-                32,
-                // structured data
-                [
-                    txb.u32(0xdecafbad),
-                    // all strings will be utf-8 encoded
-                    txb.str("vec4"),
-                    // use little-endian for these array vals
-                    txb.u16array([1, 2, 3, 4], true),
-                    txb.str("FIN"),
-                    txb.u8(0x2a)
-                ]
-            )
-        )
-    )
+const bytes = txb.bytes(
+    // initial buffer capacity (grows on demand)
+    32,
+    // structured data
+    [
+        // default order is Big-Endian
+        txb.u32(0xdecafbad),
+        // force Little-endian (also works for floats)
+        txb.u32(0x44332211, true),
+        // all strings will be utf-8 encoded
+        txb.str("vec4"),
+        // use little-endian for each of these array vals
+        txb.f32array([1, 2, 3, 4], true),
+        txb.u8(0x2a)
+    ]
 );
 
-// 00000000 | de ca fb ad 76 65 63 34 01 00 02 00 03 00 04 00 | ....vec4........
-// 00000010 | 46 49 4e 2a 00 00 00 00 00 00 00 00 00 00 00 00 | FIN*............
+console.log(tx.str("\n", txb.hexDump({}, bytes)));
+
+// 00000000 | de ca fb ad 11 22 33 44 76 65 63 34 00 00 80 3f | ....."3Dvec4...?
+// 00000010 | 00 00 00 40 00 00 40 40 00 00 80 40 2a 00 00 00 | ...@..@@...@*...
 ```
 
 ### Bitstream
+
+Decompose / transform a stream of fixed size words into their bits:
 
 ```ts
 [...txb.bits(8, [0xf0, 0xaa])]
 // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
 
-[...tx.iterator(
+console.log(
+    tx.transduce(
+        tx.comp(
+            txb.bits(8),
+            tx.map((x) => x ? "#" : "."),
+            tx.partition(8),
+            tx.map((x) => x.join(""))
+        ),
+        tx.str("\n"),
+        [ 0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00 ]
+    )
+)
+// ........
+// ...##...
+// ..####..
+// .##..##.
+// .##..##.
+// .######.
+// .##..##.
+// ........
+```
+
+Extended to transform longer strings:
+
+```ts
+// font lookup table
+const chars = {
+    a: [ 0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00 ],
+    b: [ 0x00, 0x7c, 0x66, 0x7c, 0x66, 0x66, 0x7c, 0x00 ]
+};
+
+// re-usable transducer
+const xfJoin = tx.map((x) => x.join(""));
+
+// higher order transducer to transform single char from string
+const xfChar = (i) =>
     tx.comp(
+        tx.pluck(i),
         txb.bits(8),
-        tx.map(x=> x ? "#" : "."),
+        tx.map((x) => x ? "#" : "."),
         tx.partition(8),
-        tx.map(x=>x.join(""))
-    ),
-    [ 0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00 ])]
-// [ '........',
-//   '...##...',
-//   '..####..',
-//   '.##..##.',
-//   '.##..##.',
-//   '.######.',
-//   '.##..##.',
-//   '........' ]
+        xfJoin
+    );
+
+// transform entire string
+const banner = (src) =>
+    tx.transduce(
+        tx.comp(
+            // dynamically create `xfChar` transducers for each char
+            // and run them in parallel via `multiplex()`
+            tx.multiplex(...tx.map((i) => xfChar(i), tx.range(src.length))),
+            // then join the results for each line
+            xfJoin
+        ),
+        // use `str()` reducer to build string result
+        tx.str("\n"),
+        // convert input string into stream of row-major bitmap font tuples
+        tx.zip(...tx.map(x => chars[x], src))
+    );
+
+console.log(banner("abba"))
+// ................................
+// ...##....#####...#####.....##...
+// ..####...##..##..##..##...####..
+// .##..##..#####...#####...##..##.
+// .##..##..##..##..##..##..##..##.
+// .######..##..##..##..##..######.
+// .##..##..#####...#####...##..##.
+// ................................
 ```
 
 ### Base64 & UTF-8 en/decoding
