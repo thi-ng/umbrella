@@ -199,7 +199,7 @@ const TESTS = {
                     (y > w) && (y = w - (y - w), v[1] *= -1);
                     p[0] = x;
                     p[1] = y;
-                    return ["img", {}, [...p], img];
+                    return ["img", {}, img, p.slice()];
                 };
             };
             const body = ["g", {}, ...repeatedly(ball, 1000)];
