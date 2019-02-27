@@ -108,7 +108,7 @@ export const convertTree =
             case "text":
                 return text(tree[2], tree[3], attribs);
             case "img":
-                return image(tree[2], tree[3].src, attribs);
+                return image(tree[3], tree[2].src, attribs);
             case "points":
                 return points(tree[2], attribs.shape, attribs.size, attribs);
             default:
