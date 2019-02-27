@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@1.1.6...@thi.ng/hdom-canvas@2.0.0) (2019-02-27)
+
+
+### Features
+
+* **hdom-canvas:** update image handling, add image/atlas blitting support ([bc59d30](https://github.com/thi-ng/umbrella/commit/bc59d30))
+
+
+### BREAKING CHANGES
+
+* **hdom-canvas:** new image args/attribs & arg order, see readme
+
+
+
+
+
 ## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@1.1.5...@thi.ng/hdom-canvas@1.1.6) (2019-02-26)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas
