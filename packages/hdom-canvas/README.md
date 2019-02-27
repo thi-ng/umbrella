@@ -407,10 +407,21 @@ The following shape specific attributes are used:
 ### Image
 
 ```ts
-["img", attribs, [x, y], img]
+["img", { width?, height? }, img, dpos, spos?, ssize?]
 ```
 
-`img` MUST be an HTML image, canvas or video element.
+**IMPORTANT**: Since v2.0.0 this element has new/changed args...
+
+`img` MUST be an HTML image, canvas or video element. `dpos`, `spos`,
+`ssize` are 2D vectors. The latter two are optional, as are `width` and `height` attribs. Defaults:
+
+- `width` - original image width
+- `height` - original image height
+- `spos` - `[0,0]`
+- `ssize` - `[width, height]`
+
+Note: For SVG conversion `spos` & `ssize` will be ignored. Sub-image
+blitting is not supported in SVG.
 
 ### Gradients
 

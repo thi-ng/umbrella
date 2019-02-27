@@ -292,7 +292,7 @@ const walk =
                 text(ctx, attribs, shape[2], shape[3], shape[4]);
                 break;
             case "img":
-                image(ctx, attribs, shape[2], shape[3]);
+                image(ctx, attribs, shape[1], shape[2], shape[3], shape[4], shape[5]);
             default:
         }
         state && restoreState(ctx, pstate, state);
@@ -743,9 +743,21 @@ const text = (
 const image = (
     ctx: CanvasRenderingContext2D,
     _: IObjectOf<any>,
-    pos: ReadonlyVec,
-    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap
+    { width, height }: IObjectOf<any>,
+    img: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | ImageBitmap,
+    dpos: ReadonlyVec,
+    spos?: ReadonlyVec,
+    ssize?: ReadonlyVec
 ) => {
-
-    ctx.drawImage(img, pos[0], pos[1]);
+    width = width || img.width;
+    height = height || img.height;
+    spos ?
+        ctx.drawImage(
+            img,
+            spos[0], spos[1],
+            ssize[0] || width, ssize[1] || height,
+            dpos[0], dpos[1],
+            width, height
+        ) :
+        ctx.drawImage(img, dpos[0], dpos[1], width, height);
 };
