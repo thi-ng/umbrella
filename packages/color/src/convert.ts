@@ -6,7 +6,6 @@ import {
 } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
 import {
-    __ColorMode,
     Color,
     ColorConversion,
     ColorMode,
@@ -49,7 +48,7 @@ convert.add(
     (col: any, mdest, msrc) =>
         (col.mode !== undefined && col.mode === mdest) || (mdest === msrc) ?
             col :
-            illegalArgs(`missing conversion for ${__ColorMode[msrc]} -> ${__ColorMode[mdest]}`)
+            illegalArgs(`missing conversion for mode ${msrc} -> ${mdest}`)
 );
 
 export function asCSS(col: IColor): string;

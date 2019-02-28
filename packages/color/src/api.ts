@@ -28,11 +28,6 @@ export const enum ColorMode {
     YCBCRA
 }
 
-/**
- * Reverse lookup for `ColorMode` enums
- */
-export const __ColorMode = (<any>exports).ColorMode;
-
 export interface IColor {
     readonly mode: ColorMode;
 }
@@ -54,7 +49,7 @@ export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
 
 // Hue names
 
-export enum Hue {
+export const enum Hue {
     RED,
     ORANGE,
     YELLOW,
