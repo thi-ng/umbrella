@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@0.1.6...@thi.ng/color@0.1.7) (2019-02-28)
+
+
+### Bug Fixes
+
+* **color:** update ColorMode & Hue const enum handling ([bb71b7c](https://github.com/thi-ng/umbrella/commit/bb71b7c))
+
+
+
+
+
 ## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@0.1.5...@thi.ng/color@0.1.6) (2019-02-26)
 
 **Note:** Version bump only for package @thi.ng/color
