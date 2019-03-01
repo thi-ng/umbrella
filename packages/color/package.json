@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "Raw, array-based, color ops, conversions, opt. type wrappers, multi-color gradients",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,14 +32,14 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^5.0.2",
-        "@thi.ng/compose": "^1.1.1",
-        "@thi.ng/defmulti": "^1.0.2",
-        "@thi.ng/errors": "^1.0.2",
-        "@thi.ng/math": "^1.1.0",
-        "@thi.ng/strings": "^1.0.3",
-        "@thi.ng/transducers": "^5.1.0",
-        "@thi.ng/vectors": "^2.3.1"
+        "@thi.ng/api": "^5.0.3",
+        "@thi.ng/compose": "^1.1.2",
+        "@thi.ng/defmulti": "^1.0.3",
+        "@thi.ng/errors": "^1.0.3",
+        "@thi.ng/math": "^1.1.1",
+        "@thi.ng/strings": "^1.0.4",
+        "@thi.ng/transducers": "^5.1.1",
+        "@thi.ng/vectors": "^2.3.2"
     },
     "keywords": [
         "alpha",

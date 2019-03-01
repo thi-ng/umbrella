@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dsp",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Assorted DSP utils, oscillators etc.",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,7 +32,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/math": "^1.1.0"
+        "@thi.ng/math": "^1.1.1"
     },
     "keywords": [
         "additive",

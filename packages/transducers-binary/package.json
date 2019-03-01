@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-binary",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Binary data related transducers & reducers",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,9 +32,9 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/compose": "^1.1.1",
-        "@thi.ng/strings": "^1.0.3",
-        "@thi.ng/transducers": "^5.1.0"
+        "@thi.ng/compose": "^1.1.2",
+        "@thi.ng/strings": "^1.0.4",
+        "@thi.ng/transducers": "^5.1.1"
     },
     "keywords": [
         "base64",
