@@ -18,6 +18,9 @@ import { nextID } from "./utils/idgen";
  * (acts like a filter transducer).
  *
  * ```
+ * // transform each received odd number into a stream
+ * // producing 3 copies of that number in the metastream
+ * // even numbers are ignored
  * a = metastream((x) => (x & 1) ? fromIterable(tx.repeat(x, 3), 100) : null)
  *
  * a.subscribe(trace())
@@ -44,8 +47,8 @@ import { nextID } from "./utils/idgen";
  * alive and support dynamic switching between them. See issue #74
  *
  * ```
- * a = fromIterable(tx.repeat("a"), 1000, false);
- * b = fromIterable(tx.repeat("b"), 1000, false);
+ * a = fromIterable(tx.repeat("a"), 1000);
+ * b = fromIterable(tx.repeat("b"), 1000);
  *
  * // dummy subscriptions
  * a.subscribe({})
@@ -56,11 +59,12 @@ import { nextID } from "./utils/idgen";
  *
  * m.next(true);
  * // meta from: a
- * // meta from: a
  *
  * m.next(false);
  * // meta from: b
- * // meta from: b
+ *
+ * m.next(true);
+ * // meta from: a
  * ```
  *
  * @param factory
