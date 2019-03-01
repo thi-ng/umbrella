@@ -11,14 +11,11 @@ import { rgbaHcva } from "./rgba-hcva";
  * @param out
  * @param src
  */
-export const rgbaHcya =
-    (out: Color, src: ReadonlyColor) => {
-        const y = luminanceRGB(src);
-        out = rgbaHcva(out, src);
-        const z = luminanceRGB(hueRgba([], out[0]));
-        out[1] *= y < z ?
-            z / (y + EPS) :
-            (1 - z) / (1 + EPS - y);
-        out[2] = y;
-        return out;
-    };
+export const rgbaHcya = (out: Color, src: ReadonlyColor) => {
+    const y = luminanceRGB(src);
+    out = rgbaHcva(out, src);
+    const z = luminanceRGB(hueRgba([], out[0]));
+    out[1] *= y < z ? z / (y + EPS) : (1 - z) / (1 + EPS - y);
+    out[2] = y;
+    return out;
+};

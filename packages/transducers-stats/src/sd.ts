@@ -25,7 +25,11 @@ import { sma } from "./sma";
  */
 export function sd(period?: number, scale?: number): Transducer<number, number>;
 export function sd(src: Iterable<number>): IterableIterator<number>;
-export function sd(period: number, scale: number, src: Iterable<number>): IterableIterator<number>;
+export function sd(
+    period: number,
+    scale: number,
+    src: Iterable<number>
+): IterableIterator<number>;
 export function sd(...args: any[]): any {
     const iter = $iter(sd, args);
     if (iter) {
@@ -36,6 +40,9 @@ export function sd(...args: any[]): any {
     return comp(
         multiplex(partition(period, 1), sma(period)),
         drop(period - 1),
-        map(([window, mean]: [number[], number]) => Math.sqrt(mse(window, mean) / period) * scale)
+        map(
+            ([window, mean]: [number[], number]) =>
+                Math.sqrt(mse(window, mean) / period) * scale
+        )
     );
-};
+}

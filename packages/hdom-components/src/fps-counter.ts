@@ -31,41 +31,45 @@ export interface FpsCounterOpts {
  *
  * @param opts
  */
-export const fpsCounter =
-    (opts?: Partial<FpsCounterOpts>) => {
-        opts = {
-            history: 25,
-            smooth: 5,
-            labelPeriod: 250,
-            sparkline: {},
-            ...opts
-        };
-        return {
-            init() {
-                this.last = Date.now();
-                this.lastLabel = this.last;
-                this.buffer = [];
-                this.ma = step(sma(opts.smooth));
-            },
-            render() {
-                const t = Date.now();
-                const fps = 1000 / (t - this.last);
-                this.last = t;
-                if (!this.buffer) return ["div"];
-                const smoothFps = this.ma(fps);
-                if (!smoothFps) return ["div"];
-                this.buffer.push(smoothFps);
-                this.buffer.length > opts.history && this.buffer.shift();
-                const updateLabel = t - this.lastLabel > opts.labelPeriod;
-                updateLabel && (this.lastLabel = t);
-                return ["div",
-                    [sparkline,
-                        { min: 0, max: 65, ...opts.sparkline },
-                        this.buffer],
-                    ["span",
-                        { __skip: !updateLabel },
-                        smoothFps ? smoothFps.toFixed(2) + " fps" : ""]
-                ];
-            }
-        };
+export const fpsCounter = (opts?: Partial<FpsCounterOpts>) => {
+    opts = {
+        history: 25,
+        smooth: 5,
+        labelPeriod: 250,
+        sparkline: {},
+        ...opts
     };
+    return {
+        init() {
+            this.last = Date.now();
+            this.lastLabel = this.last;
+            this.buffer = [];
+            this.ma = step(sma(opts.smooth));
+        },
+        render() {
+            const t = Date.now();
+            const fps = 1000 / (t - this.last);
+            this.last = t;
+            if (!this.buffer) return ["div"];
+            const smoothFps = this.ma(fps);
+            if (!smoothFps) return ["div"];
+            this.buffer.push(smoothFps);
+            this.buffer.length > opts.history && this.buffer.shift();
+            const updateLabel = t - this.lastLabel > opts.labelPeriod;
+            updateLabel && (this.lastLabel = t);
+            return [
+                "div",
+                [
+                    sparkline,
+                    { min: 0, max: 65, ...opts.sparkline },
+                    this.buffer
+                ],
+                [
+                    "span",
+                    { __skip: !updateLabel },
+                    smoothFps ? smoothFps.toFixed(2) + " fps" : ""
+                ]
+            ];
+        }
+    };
+};

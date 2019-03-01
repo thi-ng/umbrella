@@ -29,17 +29,16 @@ export const porterDuff = (
     y: 0 | 1,
     z: 0 | 1
 ) => {
-    const dot = y ?
-        z ?
-            (s: number, d: number, sda: number, sy: number, sz: number) =>
-                f(s, d) * sda + s * sy + d * sz :
-            (s: number, d: number, sda: number, sy: number) =>
-                f(s, d) * sda + s * sy :
-        z ?
-            (s: number, d: number, sda: number, _, sz: number) =>
-                f(s, d) * sda + d * sz :
-            (s: number, d: number, sda: number) =>
-                f(s, d) * sda;
+    const dot = y
+        ? z
+            ? (s: number, d: number, sda: number, sy: number, sz: number) =>
+                  f(s, d) * sda + s * sy + d * sz
+            : (s: number, d: number, sda: number, sy: number) =>
+                  f(s, d) * sda + s * sy
+        : z
+            ? (s: number, d: number, sda: number, _, sz: number) =>
+                  f(s, d) * sda + d * sz
+            : (s: number, d: number, sda: number) => f(s, d) * sda;
     return (out: Color, src: ReadonlyColor, dest: ReadonlyColor) => {
         const sa = src[3];
         const da = dest[3];
@@ -71,7 +70,10 @@ export const porterDuffP = (
     dest: ReadonlyColor,
     mode: (out: Color, src: ReadonlyColor, dest: ReadonlyColor) => Color
 ) =>
-    postmultiply(null, mode(null, premultiply([], src), premultiply(out, dest)));
+    postmultiply(
+        null,
+        mode(null, premultiply([], src), premultiply(out, dest))
+    );
 
 /**
  * Porter-Duff operator. None of the terms are used. Always results in
@@ -83,9 +85,11 @@ export const porterDuffP = (
  * @param src
  * @param dest
  */
-export const composeClear =
-    (out: Color, _: ReadonlyColor, dest: ReadonlyColor) =>
-        setN4(out || dest, 0);
+export const composeClear = (
+    out: Color,
+    _: ReadonlyColor,
+    dest: ReadonlyColor
+) => setN4(out || dest, 0);
 
 /**
  * Porter-Duff operator. Always results in `src` color, `dest` ignored.

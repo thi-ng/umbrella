@@ -22,6 +22,7 @@ import { Reduced } from "../reduced";
  * @param rfn
  * @param fn
  */
-export const compR =
-    <A, B, C>(rfn: Reducer<A, B>, fn: (acc: A, x: C) => A | Reduced<A>): Reducer<A, C> =>
-        [rfn[0], rfn[1], fn];
+export const compR = <A, B, C>(
+    rfn: Reducer<A, B>,
+    fn: (acc: A, x: C) => A | Reduced<A>
+): Reducer<A, C> => [rfn[0], rfn[1], fn];

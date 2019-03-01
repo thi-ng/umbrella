@@ -8,12 +8,7 @@ import {
 } from "@thi.ng/checks";
 import { asCSS, ColorMode, ReadonlyColor } from "@thi.ng/color";
 import { diffArray, DiffMode } from "@thi.ng/diff";
-import {
-    equiv,
-    HDOMImplementation,
-    HDOMOpts,
-    releaseTree
-} from "@thi.ng/hdom";
+import { equiv, HDOMImplementation, HDOMOpts, releaseTree } from "@thi.ng/hdom";
 
 interface DrawState {
     attribs: IObjectOf<any>;
@@ -48,7 +43,7 @@ const DEFAULTS = {
     shadowX: 0,
     shadowY: 0,
     smooth: true,
-    stroke: "#000",
+    stroke: "#000"
 };
 
 const CTX_ATTRIBS = {
@@ -72,7 +67,7 @@ const CTX_ATTRIBS = {
     shadowY: "shadowOffsetY",
     smooth: "imageSmoothingEnabled",
     stroke: "strokeStyle",
-    weight: "lineWidth",
+    weight: "lineWidth"
 };
 
 /**
@@ -126,71 +121,83 @@ export const canvas = {
             cattribs.width *= dpr;
             cattribs.height *= dpr;
         }
-        return ["canvas", cattribs,
-            ["g", {
-                __impl: IMPL,
-                __diff: attribs.__diff !== false,
-                __normalize: attribs.__normalize !== false,
-                __release: attribs.__release === true,
-                __serialize: false,
-                __clear: attribs.__clear,
-                scale: dpr !== 1 ? dpr : null,
-            }, ...body]]
+        return [
+            "canvas",
+            cattribs,
+            [
+                "g",
+                {
+                    __impl: IMPL,
+                    __diff: attribs.__diff !== false,
+                    __normalize: attribs.__normalize !== false,
+                    __release: attribs.__release === true,
+                    __serialize: false,
+                    __clear: attribs.__clear,
+                    scale: dpr !== 1 ? dpr : null
+                },
+                ...body
+            ]
+        ];
     }
 };
 
-export const createTree =
-    (_: Partial<HDOMOpts>, canvas: HTMLCanvasElement, tree: any) => {
-        // console.log(Date.now(), "draw");
-        const ctx = canvas.getContext("2d");
-        const attribs = tree[1];
-        if (attribs) {
-            if (attribs.__skip) return;
-            if (attribs.__clear !== false) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
+export const createTree = (
+    _: Partial<HDOMOpts>,
+    canvas: HTMLCanvasElement,
+    tree: any
+) => {
+    // console.log(Date.now(), "draw");
+    const ctx = canvas.getContext("2d");
+    const attribs = tree[1];
+    if (attribs) {
+        if (attribs.__skip) return;
+        if (attribs.__clear !== false) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-        walk(ctx, tree, { attribs: {} });
-    };
+    }
+    walk(ctx, tree, { attribs: {} });
+};
 
-export const normalizeTree =
-    (opts: Partial<HDOMOpts>, tree: any) => {
-        if (tree == null) {
-            return tree;
+export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
+    if (tree == null) {
+        return tree;
+    }
+    if (isArray(tree)) {
+        const tag = tree[0];
+        if (typeof tag === FN) {
+            return normalizeTree(
+                opts,
+                tag.apply(null, [opts.ctx, ...tree.slice(1)])
+            );
         }
-        if (isArray(tree)) {
-            const tag = tree[0];
-            if (typeof tag === FN) {
-                return normalizeTree(opts, tag.apply(null, [opts.ctx, ...tree.slice(1)]));
+        if (typeof tag === STR) {
+            const attribs = tree[1];
+            if (attribs && attribs.__normalize === false) {
+                return tree;
             }
-            if (typeof tag === STR) {
-                const attribs = tree[1];
-                if (attribs && attribs.__normalize === false) {
-                    return tree;
-                }
-                const res = [tree[0], attribs]
-                for (let i = 2, n = tree.length; i < n; i++) {
-                    const n = normalizeTree(opts, tree[i]);
-                    n != null && res.push(n);
-                }
-                return res;
-            }
-        } else if (typeof tree === FN) {
-            return normalizeTree(opts, tree(opts.ctx));
-        } else if (typeof tree.toHiccup === FN) {
-            return normalizeTree(opts, tree.toHiccup(opts.ctx));
-        } else if (typeof tree.deref === FN) {
-            return normalizeTree(opts, tree.deref());
-        } else if (isNotStringAndIterable(tree)) {
-            const res = [];
-            for (let t of tree) {
-                const n = normalizeTree(opts, t);
+            const res = [tree[0], attribs];
+            for (let i = 2, n = tree.length; i < n; i++) {
+                const n = normalizeTree(opts, tree[i]);
                 n != null && res.push(n);
             }
             return res;
         }
-        return tree;
-    };
+    } else if (typeof tree === FN) {
+        return normalizeTree(opts, tree(opts.ctx));
+    } else if (typeof tree.toHiccup === FN) {
+        return normalizeTree(opts, tree.toHiccup(opts.ctx));
+    } else if (typeof tree.deref === FN) {
+        return normalizeTree(opts, tree.deref());
+    } else if (isNotStringAndIterable(tree)) {
+        const res = [];
+        for (let t of tree) {
+            const n = normalizeTree(opts, t);
+            n != null && res.push(n);
+        }
+        return res;
+    }
+    return tree;
+};
 
 export const diffTree = (
     opts: Partial<HDOMOpts>,
@@ -214,9 +221,9 @@ export const diffTree = (
     if (delta.distance > 0) {
         return createTree(opts, parent, curr);
     }
-}
+};
 
-const NOOP = () => { };
+const NOOP = () => {};
 
 export const IMPL: HDOMImplementation<any> = {
     createTree,
@@ -225,85 +232,107 @@ export const IMPL: HDOMImplementation<any> = {
     hydrateTree: NOOP,
     getElementById: NOOP,
     createElement: NOOP,
-    createTextElement: NOOP,
+    createTextElement: NOOP
 };
 
-const walk =
-    (ctx: CanvasRenderingContext2D, shape: any[], pstate: DrawState) => {
-        if (!shape) return;
-        if (isArray(shape[0])) {
-            for (let s of shape) {
-                walk(ctx, s, pstate);
-            }
-            return;
+const walk = (
+    ctx: CanvasRenderingContext2D,
+    shape: any[],
+    pstate: DrawState
+) => {
+    if (!shape) return;
+    if (isArray(shape[0])) {
+        for (let s of shape) {
+            walk(ctx, s, pstate);
         }
-        const state = mergeState(ctx, pstate, shape[1]);
-        const attribs = state ? state.attribs : pstate.attribs;
-        if (attribs.__skip) return;
-        switch (shape[0]) {
-            case "g":
-            case "defs":
-                for (let i = 2, n = shape.length,
+        return;
+    }
+    const state = mergeState(ctx, pstate, shape[1]);
+    const attribs = state ? state.attribs : pstate.attribs;
+    if (attribs.__skip) return;
+    switch (shape[0]) {
+        case "g":
+        case "defs":
+            for (
+                let i = 2,
+                    n = shape.length,
                     __state = shape[0] === "g" ? state || pstate : pstate;
-                    i < n; i++) {
-                    walk(ctx, shape[i], __state);
-                }
-                break;
-            case "linearGradient":
-                defLinearGradient(ctx, pstate, shape[1], shape[2]);
-                break;
-            case "radialGradient":
-                defRadialGradient(ctx, pstate, shape[1], shape[2]);
-                break;
-            case "points":
-                points(ctx, attribs, shape[1], shape[2]);
-                break;
-            case "line":
-                line(ctx, attribs, shape[2], shape[3]);
-                break;
-            case "hline":
-                line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
-                break;
-            case "vline":
-                line(ctx, attribs, [shape[2], -1e6], [shape[2], 1e6]);
-                break;
-            case "polyline":
-                polyline(ctx, attribs, shape[2]);
-                break;
-            case "polygon":
-                polygon(ctx, attribs, shape[2]);
-                break;
-            case "path":
-                path(ctx, attribs, shape[2]);
-                break;
-            case "rect":
-                rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
-                break;
-            case "circle":
-                circularArc(ctx, attribs, shape[2], shape[3]);
-                break;
-            case "ellipse":
-                ellipticArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5], shape[6]);
-                break;
-            case "arc":
-                circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
-                break;
-            case "text":
-                text(ctx, attribs, shape[2], shape[3], shape[4]);
-                break;
-            case "img":
-                image(ctx, attribs, shape[1], shape[2], shape[3], shape[4], shape[5]);
-            default:
-        }
-        state && restoreState(ctx, pstate, state);
-    };
+                i < n;
+                i++
+            ) {
+                walk(ctx, shape[i], __state);
+            }
+            break;
+        case "linearGradient":
+            defLinearGradient(ctx, pstate, shape[1], shape[2]);
+            break;
+        case "radialGradient":
+            defRadialGradient(ctx, pstate, shape[1], shape[2]);
+            break;
+        case "points":
+            points(ctx, attribs, shape[1], shape[2]);
+            break;
+        case "line":
+            line(ctx, attribs, shape[2], shape[3]);
+            break;
+        case "hline":
+            line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
+            break;
+        case "vline":
+            line(ctx, attribs, [shape[2], -1e6], [shape[2], 1e6]);
+            break;
+        case "polyline":
+            polyline(ctx, attribs, shape[2]);
+            break;
+        case "polygon":
+            polygon(ctx, attribs, shape[2]);
+            break;
+        case "path":
+            path(ctx, attribs, shape[2]);
+            break;
+        case "rect":
+            rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+            break;
+        case "circle":
+            circularArc(ctx, attribs, shape[2], shape[3]);
+            break;
+        case "ellipse":
+            ellipticArc(
+                ctx,
+                attribs,
+                shape[2],
+                shape[3],
+                shape[4],
+                shape[5],
+                shape[6]
+            );
+            break;
+        case "arc":
+            circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+            break;
+        case "text":
+            text(ctx, attribs, shape[2], shape[3], shape[4]);
+            break;
+        case "img":
+            image(
+                ctx,
+                attribs,
+                shape[1],
+                shape[2],
+                shape[3],
+                shape[4],
+                shape[5]
+            );
+        default:
+    }
+    state && restoreState(ctx, pstate, state);
+};
 
 const mergeState = (
     ctx: CanvasRenderingContext2D,
     state: DrawState,
     attribs: IObjectOf<any>
 ) => {
-
     let res: DrawState;
     if (!attribs) return;
     if (applyTransform(ctx, attribs)) {
@@ -340,7 +369,6 @@ const restoreState = (
     prev: DrawState,
     curr: DrawState
 ) => {
-
     if (curr.restore) {
         ctx.restore();
         return;
@@ -350,7 +378,13 @@ const restoreState = (
         for (let attribs = prev.attribs, i = edits.length - 1; i >= 0; i--) {
             const id = edits[i];
             const v = attribs[id];
-            setAttrib(ctx, prev, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);
+            setAttrib(
+                ctx,
+                prev,
+                id,
+                CTX_ATTRIBS[id],
+                v != null ? v : DEFAULTS[id]
+            );
         }
     }
 };
@@ -362,7 +396,6 @@ const setAttrib = (
     k: string,
     val: any
 ) => {
-
     switch (id) {
         case "fill":
         case "stroke":
@@ -379,51 +412,53 @@ const setAttrib = (
     }
 };
 
-const resolveColor =
-    (state: DrawState, v: any) =>
-        isString(v) ?
-            v[0] === "$" ?
-                state.grads[v.substr(1)] :
-                v :
-            isArrayLike(v) ?
-                isNumber((<any>v).mode) ?
-                    asCSS(<any>v) :
-                    asCSS(<ReadonlyColor>v, ColorMode.RGBA) :
-                isNumber(v) ?
-                    asCSS(v, ColorMode.INT32) :
-                    v;
+const resolveColor = (state: DrawState, v: any) =>
+    isString(v)
+        ? v[0] === "$"
+            ? state.grads[v.substr(1)]
+            : v
+        : isArrayLike(v)
+            ? isNumber((<any>v).mode)
+                ? asCSS(<any>v)
+                : asCSS(<ReadonlyColor>v, ColorMode.RGBA)
+            : isNumber(v)
+                ? asCSS(v, ColorMode.INT32)
+                : v;
 
-const applyTransform =
-    (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
-        let v: any;
-        if ((v = attribs.transform) ||
-            attribs.translate ||
-            attribs.scale ||
-            attribs.rotate) {
+const applyTransform = (
+    ctx: CanvasRenderingContext2D,
+    attribs: IObjectOf<any>
+) => {
+    let v: any;
+    if (
+        (v = attribs.transform) ||
+        attribs.translate ||
+        attribs.scale ||
+        attribs.rotate
+    ) {
+        ctx.save();
+        if (v) {
+            ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
+        } else {
+            (v = attribs.translate) && ctx.translate(v[0], v[1]);
+            (v = attribs.rotate) && ctx.rotate(v);
+            (v = attribs.scale) &&
+                (isArrayLike(v) ? ctx.scale(v[0], v[1]) : ctx.scale(v, v));
+        }
+        return true;
+    }
+    return false;
+};
 
-            ctx.save();
-            if (v) {
-                ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
-            } else {
-                (v = attribs.translate) && ctx.translate(v[0], v[1]);
-                (v = attribs.rotate) && ctx.rotate(v);
-                (v = attribs.scale) && (isArrayLike(v) ? ctx.scale(v[0], v[1]) : ctx.scale(v, v));
-            }
-            return true;
-        }
-        return false;
-    };
-
-const endShape =
-    (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
-        let v: any;
-        if ((v = attribs.fill) && v !== "none") {
-            ctx.fill();
-        }
-        if ((v = attribs.stroke) && v !== "none") {
-            ctx.stroke();
-        }
-    };
+const endShape = (ctx: CanvasRenderingContext2D, attribs: IObjectOf<any>) => {
+    let v: any;
+    if ((v = attribs.fill) && v !== "none") {
+        ctx.fill();
+    }
+    if ((v = attribs.stroke) && v !== "none") {
+        ctx.stroke();
+    }
+};
 
 const defLinearGradient = (
     ctx: CanvasRenderingContext2D,
@@ -431,7 +466,6 @@ const defLinearGradient = (
     { id, from, to }: any,
     stops: any[][]
 ) => {
-
     const g = ctx.createLinearGradient(from[0], from[1], to[0], to[1]);
     for (let s of stops) {
         g.addColorStop(s[0], resolveColor(state, s[1]));
@@ -446,7 +480,6 @@ const defRadialGradient = (
     { id, from, to, r1, r2 }: any,
     stops: any[][]
 ) => {
-
     const g = ctx.createRadialGradient(from[0], from[1], r1, to[0], to[1], r2);
     for (let s of stops) {
         g.addColorStop(s[0], resolveColor(state, s[1]));
@@ -461,7 +494,6 @@ const line = (
     a: ReadonlyVec,
     b: ReadonlyVec
 ) => {
-
     if (attribs.stroke === "none") return;
     ctx.beginPath();
     ctx.moveTo(a[0], a[1]);
@@ -474,7 +506,6 @@ const polyline = (
     attribs: IObjectOf<any>,
     pts: ReadonlyVec[]
 ) => {
-
     if (pts.length < 2 || attribs.stroke == "none") return;
     let p: ReadonlyVec = pts[0];
     ctx.beginPath();
@@ -491,7 +522,6 @@ const polygon = (
     attribs: IObjectOf<any>,
     pts: ReadonlyVec[]
 ) => {
-
     if (pts.length < 2) return;
     let p: ReadonlyVec = pts[0];
     ctx.beginPath();
@@ -509,12 +539,13 @@ const path = (
     attribs: IObjectOf<any>,
     segments: any[]
 ) => {
-
     ctx.beginPath();
     let a: ReadonlyVec = [0, 0];
     for (let i = 0, n = segments.length; i < n; i++) {
         const s = segments[i];
-        let b = s[1], c, d;
+        let b = s[1],
+            c,
+            d;
         switch (s[0]) {
             // move to
             case "m":
@@ -560,9 +591,12 @@ const path = (
                 d = s[3];
                 d = [a[0] + d[0], a[1] + d[1]];
                 ctx.bezierCurveTo(
-                    a[0] + b[0], a[1] + b[1],
-                    a[0] + c[0], a[1] + c[1],
-                    d[0], d[1]
+                    a[0] + b[0],
+                    a[1] + b[1],
+                    a[0] + c[0],
+                    a[1] + c[1],
+                    d[0],
+                    d[1]
                 );
                 a = d;
                 break;
@@ -570,30 +604,20 @@ const path = (
             case "C":
                 c = s[2];
                 d = s[3];
-                ctx.bezierCurveTo(
-                    b[0], b[1],
-                    c[0], c[1],
-                    d[0], d[1]
-                );
+                ctx.bezierCurveTo(b[0], b[1], c[0], c[1], d[0], d[1]);
                 a = d;
                 break;
             // quadratic curve rel
             case "q":
                 c = s[2];
                 c = [a[0] + c[0], a[1] + c[1]];
-                ctx.quadraticCurveTo(
-                    a[0] + b[0], a[1] + b[1],
-                    c[0], c[1]
-                );
+                ctx.quadraticCurveTo(a[0] + b[0], a[1] + b[1], c[0], c[1]);
                 a = c;
                 break;
             // quadratic curve abs
             case "Q":
                 c = s[2];
-                ctx.quadraticCurveTo(
-                    b[0], b[1],
-                    c[0], c[1]
-                );
+                ctx.quadraticCurveTo(b[0], b[1], c[0], c[1]);
                 a = c;
                 break;
             // circular arc rel
@@ -601,22 +625,14 @@ const path = (
             case "a":
                 c = s[2];
                 c = [a[0] + c[0], a[1] + c[1]];
-                ctx.arcTo(
-                    a[0] + b[0], a[1] + b[1],
-                    c[0], c[1],
-                    s[3]
-                );
+                ctx.arcTo(a[0] + b[0], a[1] + b[1], c[0], c[1], s[3]);
                 a = c;
                 break;
             // circular arc abs
             // Note: NOT compatible w/ SVG arc segments
             case "A":
                 c = s[2];
-                ctx.arcTo(
-                    b[0], b[1],
-                    c[0], c[1],
-                    s[3]
-                );
+                ctx.arcTo(b[0], b[1], c[0], c[1], s[3]);
                 a = c;
                 break;
             // close path
@@ -637,7 +653,6 @@ const circularArc = (
     end = TAU,
     antiCCW = false
 ) => {
-
     ctx.beginPath();
     ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
     endShape(ctx, attribs);
@@ -658,13 +673,14 @@ const ellipticArc = (
     endShape(ctx, attribs);
 };
 
-const rect = (ctx: CanvasRenderingContext2D,
+const rect = (
+    ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     pos: ReadonlyVec,
     w: number,
     h: number,
-    r = 0) => {
-
+    r = 0
+) => {
     let v: any;
     if (r > 0) {
         r = Math.min(Math.min(w, h) / 2, r);
@@ -672,11 +688,15 @@ const rect = (ctx: CanvasRenderingContext2D,
         h -= 2 * r;
         return path(ctx, attribs, [
             ["M", [pos[0] + r, pos[1]]],
-            ["h", w], ["a", [r, 0], [r, r], r],
-            ["v", h], ["a", [0, r], [-r, r], r],
-            ["h", -w], ["a", [-r, 0], [-r, -r], r],
-            ["v", -h], ["a", [0, -r], [r, -r], r]]
-        );
+            ["h", w],
+            ["a", [r, 0], [r, r], r],
+            ["v", h],
+            ["a", [0, r], [-r, r], r],
+            ["h", -w],
+            ["a", [-r, 0], [-r, -r], r],
+            ["v", -h],
+            ["a", [0, -r], [r, -r], r]
+        ]);
     }
     if ((v = attribs.fill) && v !== "none") {
         ctx.fillRect(pos[0], pos[1], w, h);
@@ -692,7 +712,6 @@ const points = (
     opts: IObjectOf<any>,
     pts: Iterable<ReadonlyVec>
 ) => {
-
     const s = (opts && opts.size) || 1;
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
@@ -730,7 +749,6 @@ const text = (
     body: any,
     maxWidth?: number
 ) => {
-
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
         ctx.fillText(body.toString(), pos[0], pos[1], maxWidth);
@@ -751,13 +769,17 @@ const image = (
 ) => {
     width = width || img.width;
     height = height || img.height;
-    spos ?
-        ctx.drawImage(
-            img,
-            spos[0], spos[1],
-            ssize[0] || width, ssize[1] || height,
-            dpos[0], dpos[1],
-            width, height
-        ) :
-        ctx.drawImage(img, dpos[0], dpos[1], width, height);
+    spos
+        ? ctx.drawImage(
+              img,
+              spos[0],
+              spos[1],
+              ssize[0] || width,
+              ssize[1] || height,
+              dpos[0],
+              dpos[1],
+              width,
+              height
+          )
+        : ctx.drawImage(img, dpos[0], dpos[1], width, height);
 };

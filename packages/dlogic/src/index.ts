@@ -3,7 +3,6 @@ export interface Sum<T> {
     c: boolean;
 }
 
-
 /**
  * https://en.wikipedia.org/wiki/Inverter_(logic_gate)
  *
@@ -140,8 +139,7 @@ export const imply = (a: boolean, b: boolean) => !a || b;
  * @param b
  * @param c
  */
-export const aoi21 = (a: boolean, b: boolean, c: boolean) =>
-    !(a || (b && c));
+export const aoi21 = (a: boolean, b: boolean, c: boolean) => !(a || (b && c));
 
 /**
  * https://en.wikipedia.org/wiki/AND-OR-Invert
@@ -173,8 +171,7 @@ export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
  * @param b
  * @param c
  */
-export const oai21 = (a: boolean, b: boolean, c: boolean) =>
-    !(a && (b || c));
+export const oai21 = (a: boolean, b: boolean, c: boolean) => !(a && (b || c));
 
 /**
  * Complement logic of `aoi22`.
@@ -223,8 +220,10 @@ export const mux = (a: boolean, b: boolean, s: boolean) =>
  * @param i
  * @param s
  */
-export const demux = (i: boolean, s: boolean): [boolean, boolean] =>
-    [i && !s, i && s];
+export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
+    i && !s,
+    i && s
+];
 
 /**
  * https://en.wikipedia.org/wiki/Adder_(electronics)#Half_adder
@@ -232,8 +231,10 @@ export const demux = (i: boolean, s: boolean): [boolean, boolean] =>
  * @param a
  * @param b
  */
-export const hadd1 = (a: boolean, b: boolean): Sum<boolean> =>
-    ({ s: a !== b, c: a && b });
+export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
+    s: a !== b,
+    c: a && b
+});
 
 /**
  * https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
@@ -242,11 +243,10 @@ export const hadd1 = (a: boolean, b: boolean): Sum<boolean> =>
  * @param b
  * @param c
  */
-export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> =>
-    ({
-        s: (a !== b) !== c,
-        c: ((a !== b) && c) || (a && b)
-    });
+export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> => ({
+    s: (a !== b) !== c,
+    c: (a !== b && c) || (a && b)
+});
 
 /**
  * https://en.wikipedia.org/wiki/Adder_(electronics)#Ripple-carry_adder
@@ -275,12 +275,12 @@ export const rca = (a: boolean[], b: boolean[], c: boolean): Sum<boolean[]> => {
 export const delay = (n: number) => {
     const buf: boolean[] = new Array(n).fill(false);
     let i = 0;
-    return n > 0 ?
-        (x: boolean) => {
-            const y = buf[i];
-            buf[i++] = x;
-            i %= n;
-            return y;
-        } :
-        (x: boolean) => x;
+    return n > 0
+        ? (x: boolean) => {
+              const y = buf[i];
+              buf[i++] = x;
+              i %= n;
+              return y;
+          }
+        : (x: boolean) => x;
 };

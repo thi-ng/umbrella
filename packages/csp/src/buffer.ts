@@ -1,9 +1,7 @@
 import { DCons } from "@thi.ng/dcons";
 import { ChannelItem, IBuffer } from "./api";
 
-export class FixedBuffer<T> implements
-    IBuffer<T> {
-
+export class FixedBuffer<T> implements IBuffer<T> {
     buf: DCons<ChannelItem<T>>;
     limit: number;
 
@@ -44,7 +42,6 @@ export class FixedBuffer<T> implements
 }
 
 export class DroppingBuffer<T> extends FixedBuffer<T> {
-
     constructor(limit = 1) {
         super(limit);
     }
@@ -62,7 +59,6 @@ export class DroppingBuffer<T> extends FixedBuffer<T> {
 }
 
 export class SlidingBuffer<T> extends FixedBuffer<T> {
-
     constructor(limit = 1) {
         super(limit);
     }

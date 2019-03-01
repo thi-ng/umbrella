@@ -88,7 +88,7 @@ export interface HDOMBehaviorAttribs {
      * `false`, the element and its children will be omitted from the
      * serialized result.
      */
-    __serialize?: boolean
+    __serialize?: boolean;
 }
 
 export interface ComponentAttribs extends HDOMBehaviorAttribs {
@@ -262,7 +262,12 @@ export interface HDOMImplementation<T> {
      * @param tree
      * @param child
      */
-    createTree(opts: Partial<HDOMOpts>, parent: T, tree: any, child?: number): T | T[];
+    createTree(
+        opts: Partial<HDOMOpts>,
+        parent: T,
+        tree: any,
+        child?: number
+    ): T | T[];
 
     /**
      * Takes a target root element and normalized hdom tree, then walks
@@ -329,7 +334,13 @@ export interface HDOMImplementation<T> {
      * @param curr
      * @param child
      */
-    diffTree(opts: Partial<HDOMOpts>, parent: T, prev: any[], curr: any[], child?: number): void;
+    diffTree(
+        opts: Partial<HDOMOpts>,
+        parent: T,
+        prev: any[],
+        curr: any[],
+        child?: number
+    ): void;
 
     /**
      * Creates a new element of type `tag` with optional `attribs`. If
@@ -380,7 +391,12 @@ export interface HDOMImplementation<T> {
      * @param child
      * @param newTree
      */
-    replaceChild?(opts: Partial<HDOMOpts>, parent: T, child: number, newTree: any);
+    replaceChild?(
+        opts: Partial<HDOMOpts>,
+        parent: T,
+        child: number,
+        newTree: any
+    );
 
     /**
      * Retrieves child of `parent` node at index `i`.

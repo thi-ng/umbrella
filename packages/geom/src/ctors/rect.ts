@@ -10,6 +10,5 @@ export function rect(...args: any[]) {
     return new Rect(...argsVV(args));
 }
 
-export const rectFromMinMax =
-    (min: Vec, max: Vec, attribs?: Attribs) =>
-        new Rect(min, sub2([], max, min), attribs);
+export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
+    new Rect(min, sub2([], max, min), attribs);

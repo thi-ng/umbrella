@@ -18,9 +18,19 @@ import { map } from "./map";
  * @param fn
  * @param copy if true (default), creates a shallow copy of each incoming value
  */
-export function mapVals<A, B>(fn: Fn<A, B>, copy?: boolean): Transducer<IObjectOf<A>, IObjectOf<B>>;
-export function mapVals<A, B>(fn: Fn<A, B>, src: Iterable<IObjectOf<A>>): IterableIterator<IObjectOf<B>>;
-export function mapVals<A, B>(fn: Fn<A, B>, copy: boolean, src: Iterable<IObjectOf<A>>): IterableIterator<IObjectOf<B>>;
+export function mapVals<A, B>(
+    fn: Fn<A, B>,
+    copy?: boolean
+): Transducer<IObjectOf<A>, IObjectOf<B>>;
+export function mapVals<A, B>(
+    fn: Fn<A, B>,
+    src: Iterable<IObjectOf<A>>
+): IterableIterator<IObjectOf<B>>;
+export function mapVals<A, B>(
+    fn: Fn<A, B>,
+    copy: boolean,
+    src: Iterable<IObjectOf<A>>
+): IterableIterator<IObjectOf<B>>;
 export function mapVals<A, B>(...args: any[]): any {
     const iter = $iter(mapVals, args);
     if (iter) {

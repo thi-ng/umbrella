@@ -19,10 +19,14 @@ import { SYSTEM } from "./system";
  * @param syms
  * @param rnd
  */
-export const randomID =
-    (len = 4, prefix = "", syms = "abcdefghijklmnopqrstuvwxyz", rnd: IRandom = SYSTEM) => {
-        for (const n = syms.length; --len >= 0;) {
-            prefix += syms[rnd.float(n) | 0];
-        }
-        return prefix;
-    };
+export const randomID = (
+    len = 4,
+    prefix = "",
+    syms = "abcdefghijklmnopqrstuvwxyz",
+    rnd: IRandom = SYSTEM
+) => {
+    for (const n = syms.length; --len >= 0; ) {
+        prefix += syms[rnd.float(n) | 0];
+    }
+    return prefix;
+};

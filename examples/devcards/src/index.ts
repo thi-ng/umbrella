@@ -29,7 +29,12 @@ let CARD_ID = 1;
  * @param title
  * @param parent
  */
-function defcard(card: CardFn, state?: IAtom<any>, title?: string, parent?: string | Element) {
+function defcard(
+    card: CardFn,
+    state?: IAtom<any>,
+    title?: string,
+    parent?: string | Element
+) {
     state = state || new Atom({});
     title = title || `devcard-${CARD_ID++}`;
 
@@ -47,7 +52,10 @@ function defcard(card: CardFn, state?: IAtom<any>, title?: string, parent?: stri
     const root = card(state);
 
     // kick off hdom renderloop
-    start(() => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]], { root: parent });
+    start(
+        () => ["div.card", ["h3", title], ["div.body", root, ["pre", json]]],
+        { root: parent }
+    );
 }
 
 /**
@@ -82,10 +90,11 @@ function slider(state: IAtom<any>, opts: SliderOpts) {
             opts.onchange && opts.onchange(e);
         }
     };
-    return () =>
-        ["div",
-            ["div", opts.label(state.deref())],
-            ["input", { ...attribs, value: state.deref() }]];
+    return () => [
+        "div",
+        ["div", opts.label(state.deref())],
+        ["input", { ...attribs, value: state.deref() }]
+    ];
 }
 
 /**
@@ -123,53 +132,60 @@ function bmi(state: IAtom<any>) {
     const bmiClass = state.addView(
         "bmi",
         (bmi: number) =>
-            bmi > thresh[3][0] ? thresh[3][1] :
-                bmi > thresh[2][0] ? thresh[2][1] :
-                    bmi > thresh[1][0] ? thresh[1][1] : thresh[0][1]
+            bmi > thresh[3][0]
+                ? thresh[3][1]
+                : bmi > thresh[2][0]
+                    ? thresh[2][1]
+                    : bmi > thresh[1][0]
+                        ? thresh[1][1]
+                        : thresh[0][1]
     );
 
     // another derived view to create SVG visualization
-    const bmiScale = (x) => (x - 10) / 30 * 100 + "%";
-    const bmiViz = state.addView(
-        "bmi",
-        (bmi: number) =>
-            ["div",
-                ["svg",
-                    { width: "100%", height: 30, style: { "font-size": "10px" } },
-                    ...thresh.map(([t, _, col]) =>
-                        ["rect", { x: bmiScale(t), y: 0, width: "100%", height: 30, fill: col }]),
-                    ...thresh.map(([t, label]) =>
-                        ["text", { x: bmiScale(t + 0.5), y: 12 }, label]),
-                    ["circle", { cx: bmiScale(bmi), cy: 20, r: 5 }]]]
-    );
+    const bmiScale = (x) => ((x - 10) / 30) * 100 + "%";
+    const bmiViz = state.addView("bmi", (bmi: number) => [
+        "div",
+        [
+            "svg",
+            { width: "100%", height: 30, style: { "font-size": "10px" } },
+            ...thresh.map(([t, _, col]) => [
+                "rect",
+                { x: bmiScale(t), y: 0, width: "100%", height: 30, fill: col }
+            ]),
+            ...thresh.map(([t, label]) => [
+                "text",
+                { x: bmiScale(t + 0.5), y: 12 },
+                label
+            ]),
+            ["circle", { cx: bmiScale(bmi), cy: 20, r: 5 }]
+        ]
+    ]);
 
     // define slider components
     // note how each uses a cursor to their respective
     // target values in the app state
-    const height = slider(
-        new Cursor(state, "height"),
-        {
-            min: 100, max: 220,
-            label: (v) => `Height: ${~~v}cm`,
-            onchange: () => calc()
-        }
-    );
-    const weight = slider(
-        new Cursor(state, "weight"),
-        {
-            min: 10, max: 150,
-            label: (v) => `Weight: ${~~v}kg`,
-            onchange: () => calc()
-        }
-    );
-    const bmi = slider(
-        new Cursor(state, "bmi"),
-        {
-            min: 10, max: 50,
-            label: (v) => ["span", { class: bmiClass.deref() }, `BMI: ${~~v} (${bmiClass.deref()})`],
-            onchange: () => calc(true)
-        }
-    );
+    const height = slider(new Cursor(state, "height"), {
+        min: 100,
+        max: 220,
+        label: (v) => `Height: ${~~v}cm`,
+        onchange: () => calc()
+    });
+    const weight = slider(new Cursor(state, "weight"), {
+        min: 10,
+        max: 150,
+        label: (v) => `Weight: ${~~v}kg`,
+        onchange: () => calc()
+    });
+    const bmi = slider(new Cursor(state, "bmi"), {
+        min: 10,
+        max: 50,
+        label: (v) => [
+            "span",
+            { class: bmiClass.deref() },
+            `BMI: ${~~v} (${bmiClass.deref()})`
+        ],
+        onchange: () => calc(true)
+    });
 
     // perform initial calculation
     calc();
@@ -185,8 +201,10 @@ function bmi(state: IAtom<any>) {
 defcard(bmi, new Atom({ weight: 75, height: 194 }), "BMI calculator");
 defcard(bmi);
 
-
-defcard(() => "The cards below are all attached to the same atom, but use cursors to subscribe to different branches within the nested state.");
+defcard(
+    () =>
+        "The cards below are all attached to the same atom, but use cursors to subscribe to different branches within the nested state."
+);
 
 /**
  * Option 2: defcard() instances using shared central state
@@ -198,6 +216,9 @@ defcard(bmi, new Cursor(db, "card2"));
 
 defcard((state) => {
     // just some random task to populate another part of the app state
-    setInterval(() => state.resetIn("stats.now", new Date().toISOString()), 1000);
+    setInterval(
+        () => state.resetIn("stats.now", new Date().toISOString()),
+        1000
+    );
     return ["div", "The full shared state:"];
 }, db);

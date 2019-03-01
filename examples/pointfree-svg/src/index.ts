@@ -79,13 +79,13 @@ const env = ffi(
         "svg.line": svg.line,
         "svg.circle": svg.circle,
         "svg.svg": svg.svg,
-        shapes: [],
+        shapes: []
     },
     // foreign function interface (FFI)
     // custom words usable by the DSL
     {
         // ( svgdom -- svgstring )
-        "serialize": maptos(serialize),
+        serialize: maptos(serialize),
         // ( body filename -- )
         "write-file": (ctx) => {
             const stack = ctx[0];
@@ -93,7 +93,8 @@ const env = ffi(
             fs.writeFileSync(stack.pop(), stack.pop());
             return ctx;
         }
-    });
+    }
+);
 // compile lib (resulting words are stored in env)
 run(libsrc, env);
 

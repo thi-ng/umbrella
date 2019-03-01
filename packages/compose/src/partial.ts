@@ -1,13 +1,65 @@
 import { illegalArgs } from "@thi.ng/errors";
 
-export function partial<A, T>(fn: (a: A, ...args: any[]) => T, a: A): (...args: any[]) => T;
-export function partial<A, B, T>(fn: (a: A, b: B, ...args: any[]) => T, a: A, b: B): (...args: any[]) => T;
-export function partial<A, B, C, T>(fn: (a: A, b: B, c: C, ...args: any[]) => T, a: A, b: B, c: C): (...args: any[]) => T;
-export function partial<A, B, C, D, T>(fn: (a: A, b: B, c: C, d: D, ...args: any[]) => T, a: A, b: B, c: C, d: D): (...args: any[]) => T;
-export function partial<A, B, C, D, E, T>(fn: (a: A, b: B, c: C, d: D, e: E, ...args: any[]) => T, a: A, b: B, c: C, d: D, e: E): (...args: any[]) => T;
-export function partial<A, B, C, D, E, F, T>(fn: (a: A, b: B, c: C, d: D, e: E, f: F, ...args: any[]) => T, a: A, b: B, c: C, d: D, e: E, f: F): (...args: any[]) => T;
-export function partial<A, B, C, D, E, F, G, T>(fn: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...args: any[]) => T, a: A, b: B, c: C, d: D, e: E, f: F, g: G): (...args: any[]) => T;
-export function partial<A, B, C, D, E, F, G, H, T>(fn: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, ...args: any[]) => T, a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H): (...args: any[]) => T;
+export function partial<A, T>(
+    fn: (a: A, ...args: any[]) => T,
+    a: A
+): (...args: any[]) => T;
+export function partial<A, B, T>(
+    fn: (a: A, b: B, ...args: any[]) => T,
+    a: A,
+    b: B
+): (...args: any[]) => T;
+export function partial<A, B, C, T>(
+    fn: (a: A, b: B, c: C, ...args: any[]) => T,
+    a: A,
+    b: B,
+    c: C
+): (...args: any[]) => T;
+export function partial<A, B, C, D, T>(
+    fn: (a: A, b: B, c: C, d: D, ...args: any[]) => T,
+    a: A,
+    b: B,
+    c: C,
+    d: D
+): (...args: any[]) => T;
+export function partial<A, B, C, D, E, T>(
+    fn: (a: A, b: B, c: C, d: D, e: E, ...args: any[]) => T,
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E
+): (...args: any[]) => T;
+export function partial<A, B, C, D, E, F, T>(
+    fn: (a: A, b: B, c: C, d: D, e: E, f: F, ...args: any[]) => T,
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F
+): (...args: any[]) => T;
+export function partial<A, B, C, D, E, F, G, T>(
+    fn: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...args: any[]) => T,
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G
+): (...args: any[]) => T;
+export function partial<A, B, C, D, E, F, G, H, T>(
+    fn: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, ...args: any[]) => T,
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H
+): (...args: any[]) => T;
 export function partial(fn, ...args: any[]) {
     let [a, b, c, d, e, f, g, h] = args;
     switch (args.length) {

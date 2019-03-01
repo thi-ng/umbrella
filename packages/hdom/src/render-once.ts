@@ -18,13 +18,12 @@ export const renderOnce = (
     opts: Partial<HDOMOpts> = {},
     impl: HDOMImplementation<any> = DEFAULT_IMPL
 ) => {
-
     opts = { root: "app", ...opts };
     opts.ctx = derefContext(opts.ctx, opts.autoDerefKeys);
     const root = resolveRoot(opts.root, impl);
     tree = impl.normalizeTree(opts, tree);
     if (!tree) return;
-    opts.hydrate ?
-        impl.hydrateTree(opts, root, tree) :
-        impl.createTree(opts, root, tree);
+    opts.hydrate
+        ? impl.hydrateTree(opts, root, tree)
+        : impl.createTree(opts, root, tree);
 };

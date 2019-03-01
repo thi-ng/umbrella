@@ -12,21 +12,20 @@ const $ = (dim: number) =>
             undefined,
             null,
             ",",
-            "return Math.max(", ");"
+            "return Math.max(",
+            ");"
         )
     );
 
 export const distChebyshev: MultiVecOpRoVV<number> = vop();
 
-distChebyshev.default(
-    (a, b) => {
-        let max = 0;
-        for (let i = a.length; --i >= 0;) {
-            max = Math.max(max, Math.abs(a[i] - b[i]));
-        }
-        return max;
+distChebyshev.default((a, b) => {
+    let max = 0;
+    for (let i = a.length; --i >= 0; ) {
+        max = Math.max(max, Math.abs(a[i] - b[i]));
     }
-);
+    return max;
+});
 
 export const distChebyshev2 = $(2);
 export const distChebyshev3 = $(3);

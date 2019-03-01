@@ -50,21 +50,30 @@ const events: IObjectOf<EventDef> = {
     [EV_RECEIVE_JSON]: [
         valueSetter("json", (json) => JSON.stringify(json, null, 2)),
         () => ({
-            [FX_DISPATCH_NOW]: [EV_SET_STATUS, ["success", "JSON succesfully loaded"]],
-            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, ["idle", "done."]], EV_SET_STATUS, EV_ERROR],
+            [FX_DISPATCH_NOW]: [
+                EV_SET_STATUS,
+                ["success", "JSON succesfully loaded"]
+            ],
+            [FX_DISPATCH_ASYNC]: [
+                FX_DELAY,
+                [1000, ["idle", "done."]],
+                EV_SET_STATUS,
+                EV_ERROR
+            ]
         })
     ],
 
     // error event handler
     [EV_ERROR]: (_, [__, err]) => ({
-        [FX_DISPATCH_NOW]: [EV_SET_STATUS, ["error", err.message]],
-    }),
+        [FX_DISPATCH_NOW]: [EV_SET_STATUS, ["error", err.message]]
+    })
 };
 
 const effects: IObjectOf<EffectDef> = {
     // these are async side effects. ALWAYS MUST RETURN A PROMISE
     [FX_JSON]: (url) => fetch(url).then((res) => res.json()),
-    [FX_DELAY]: ([x, msg]) => new Promise((res) => setTimeout(() => res(msg), x))
+    [FX_DELAY]: ([x, msg]) =>
+        new Promise((res) => setTimeout(() => res(msg), x))
 };
 
 // main app component
@@ -80,12 +89,13 @@ const app = () => {
         if (bus.processQueue()) {
             // the event bus' state can be obtained via `deref()`
             const { json, status } = bus.deref();
-            return ["div",
+            return [
+                "div",
                 ["p#status", { class: status[0] }, `status: ${status[1]}`],
                 ["pre", json]
             ];
         }
-    }
+    };
 };
 
 start(app());

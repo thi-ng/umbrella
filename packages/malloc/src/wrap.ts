@@ -10,9 +10,8 @@ const CTORS: IObjectOf<BlockCtor> = {
     [Type.U32]: (buf, addr, num) => new Uint32Array(buf, addr, num),
     [Type.I32]: (buf, addr, num) => new Int32Array(buf, addr, num),
     [Type.F32]: (buf, addr, num) => new Float32Array(buf, addr, num),
-    [Type.F64]: (buf, addr, num) => new Float64Array(buf, addr, num),
+    [Type.F64]: (buf, addr, num) => new Float64Array(buf, addr, num)
 };
 
-export const wrap =
-    (type: Type, buf: ArrayBuffer, addr: number, num: number) =>
-        CTORS[type](buf, addr, num);
+export const wrap = (type: Type, buf: ArrayBuffer, addr: number, num: number) =>
+    CTORS[type](buf, addr, num);

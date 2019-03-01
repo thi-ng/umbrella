@@ -1,8 +1,8 @@
 import { Stringer } from "./api";
 
-const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;"
+const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
 const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------";
-const re = new RegExp(src.split("").join("|"), "g")
+const re = new RegExp(src.split("").join("|"), "g");
 
 /**
  * Based on:
@@ -10,15 +10,14 @@ const re = new RegExp(src.split("").join("|"), "g")
  *
  * @param str
  */
-export const slugify: Stringer<string> =
-    (str: string) => {
-        return str
-            .toLowerCase()
-            .replace(/\s+/g, "-")
-            .replace(re, c => dest[src.indexOf(c)])
-            .replace(/&+/g, "-and-")
-            .replace(/[^\w\-]+/g, "")
-            .replace(/\-{2,}/g, "-")
-            .replace(/^-+/, "")
-            .replace(/-+$/, "");
-    };
+export const slugify: Stringer<string> = (str: string) => {
+    return str
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(re, (c) => dest[src.indexOf(c)])
+        .replace(/&+/g, "-and-")
+        .replace(/[^\w\-]+/g, "")
+        .replace(/\-{2,}/g, "-")
+        .replace(/^-+/, "")
+        .replace(/-+$/, "");
+};

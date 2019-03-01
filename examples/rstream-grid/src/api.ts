@@ -52,7 +52,7 @@ export interface UIAttribs {
     footer: any;
     link: any;
     root: any;
-    slider: { root: any, range: any, label: any, number: any };
+    slider: { root: any; range: any; label: any; number: any };
     sidebar: any;
 }
 

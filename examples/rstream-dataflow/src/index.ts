@@ -5,26 +5,21 @@ import { getIn } from "@thi.ng/paths";
 import { fromRAF } from "@thi.ng/rstream";
 import { toDot, walk } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import {
-    extract,
-    initGraph,
-    mul,
-    node,
-    node1
-} from "@thi.ng/rstream-graph";
-import {
-    choices,
-    comp,
-    dedupe,
-    map
-} from "@thi.ng/transducers";
+import { extract, initGraph, mul, node, node1 } from "@thi.ng/rstream-graph";
+import { choices, comp, dedupe, map } from "@thi.ng/transducers";
 import { circle } from "./circle";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)
 // used by `color` graph node below
 const colors = choices([
-    "bg-red", "bg-blue", "bg-gold", "bg-light-green",
-    "bg-pink", "bg-light-purple", "bg-orange", "bg-gray"
+    "bg-red",
+    "bg-blue",
+    "bg-gold",
+    "bg-light-green",
+    "bg-pink",
+    "bg-light-purple",
+    "bg-orange",
+    "bg-gray"
 ]);
 
 // atom for storing dataflow results (optional, here only for
@@ -58,7 +53,6 @@ const raf = fromRAF();
 // current internal state of the graph and is useful for debugging /
 // backup etc.
 const graph = initGraph(db, {
-
     // extracts current mouse/touch position from gesture tuple
     // the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
     mpos: {
@@ -81,12 +75,12 @@ const graph = initGraph(db, {
     // (`delta` is only defined during drag gestures)
     // `node1` is a helper function for nodes using only a single input
     dist: {
-        fn: node1(map(
-            (gesture) => {
+        fn: node1(
+            map((gesture) => {
                 const delta = getIn(gesture, [1, "delta"]);
                 return delta && Math.hypot.apply(null, delta) | 0;
-            }
-        )),
+            })
+        ),
         ins: { src: { stream: () => gestures } },
         outs: { "*": "dist" }
     },
@@ -99,16 +93,18 @@ const graph = initGraph(db, {
     // `node` is a helper function to create a `StreamSync` based node
     // with multiple inputs
     circle: {
-        fn: node(map(
-            ({ click, radius, color }) =>
-                click && radius && color ?
-                    circle(color, click[0], click[1], radius * 2) :
-                    undefined
-        )),
+        fn: node(
+            map(
+                ({ click, radius, color }) =>
+                    click && radius && color
+                        ? circle(color, click[0], click[1], radius * 2)
+                        : undefined
+            )
+        ),
         ins: {
             click: { stream: "/clickpos/node" },
             radius: { stream: "/radius/node" },
-            color: { stream: "/color/node" },
+            color: { stream: "/color/node" }
         },
         outs: { "*": "circle" }
     },
@@ -120,10 +116,7 @@ const graph = initGraph(db, {
     // time clickpos is redefined (remember, clickpos is only defined
     // during drag gestures)
     color: {
-        fn: node1(comp(
-            dedupe(equiv),
-            map((x) => x && colors.next().value)
-        )),
+        fn: node1(comp(dedupe(equiv), map((x) => x && colors.next().value))),
         ins: { src: { stream: "/clickpos/node" } },
         outs: { "*": "color" }
     },
@@ -149,18 +142,18 @@ const graph = initGraph(db, {
 });
 
 // start @thi.ng/hdom update loop
-start(
-    () =>
-        ["div",
-            ["pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
-                JSON.stringify(db.deref(), null, 2)],
-            // note: direct embedding of result stream below. this works
-            // since all @thi.ng/rstream subscriptions implement the
-            // @thi.ng/api/IDeref interface (like several other types, e.g.
-            // @thi.ng/atom's Atom, Cursor, View etc.)
-            graph.circle.node
-        ]
-);
+start(() => [
+    "div",
+    [
+        "pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
+        JSON.stringify(db.deref(), null, 2)
+    ],
+    // note: direct embedding of result stream below. this works
+    // since all @thi.ng/rstream subscriptions implement the
+    // @thi.ng/api/IDeref interface (like several other types, e.g.
+    // @thi.ng/atom's Atom, Cursor, View etc.)
+    graph.circle.node
+]);
 
 // create a GraphViz DOT file of the entire dataflow graph
 // copy the output from the console into a new text file and then run:

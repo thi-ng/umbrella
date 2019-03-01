@@ -37,20 +37,15 @@ export function* vecIterator<T>(
     num: number,
     start: number,
     cstride: number,
-    estride: number) {
-
+    estride: number
+) {
     while (num-- > 0) {
         yield new ctor(buf, start, cstride);
         start += estride;
     }
 }
 
-export function* values(
-    buf: Vec,
-    num: number,
-    start: number,
-    stride: number
-) {
+export function* values(buf: Vec, num: number, start: number, stride: number) {
     while (num-- > 0) {
         yield buf[start];
         start += stride;

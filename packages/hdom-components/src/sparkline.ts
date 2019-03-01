@@ -41,33 +41,52 @@ export interface SparklineOpts {
  * @param opts config options
  * @param vals data values
  */
-export const sparkline =
-    (_, opts: Partial<SparklineOpts>, vals: number[]) => {
-        opts = {
-            min: 0,
-            max: 100,
-            width: 50,
-            height: 16,
-            col: "red",
-            r: 1.5,
-            ...opts
-        };
-        const n = vals.length;
-        const s = opts.width / n;
-        const r = opts.r;
-        const h = opts.height - r;
-        return ["svg",
-            {
-                width: opts.width + 2 * r,
-                height: opts.height,
-                stroke: opts.col,
-                fill: "none"
-            },
-            ["polyline",
-                {
-                    points: str(",", mapIndexed((i, y: number) => [(i * s) | 0, fitClamped(y, opts.min, opts.max, h, r) | 0], 0, vals))
-                }],
-            ["circle",
-                { cx: ((n - 1) * s) | 0, cy: fitClamped(vals[n - 1], opts.min, opts.max, h, r) | 0, r, fill: opts.col }]
-        ];
+export const sparkline = (_, opts: Partial<SparklineOpts>, vals: number[]) => {
+    opts = {
+        min: 0,
+        max: 100,
+        width: 50,
+        height: 16,
+        col: "red",
+        r: 1.5,
+        ...opts
     };
+    const n = vals.length;
+    const s = opts.width / n;
+    const r = opts.r;
+    const h = opts.height - r;
+    return [
+        "svg",
+        {
+            width: opts.width + 2 * r,
+            height: opts.height,
+            stroke: opts.col,
+            fill: "none"
+        },
+        [
+            "polyline",
+            {
+                points: str(
+                    ",",
+                    mapIndexed(
+                        (i, y: number) => [
+                            (i * s) | 0,
+                            fitClamped(y, opts.min, opts.max, h, r) | 0
+                        ],
+                        0,
+                        vals
+                    )
+                )
+            }
+        ],
+        [
+            "circle",
+            {
+                cx: ((n - 1) * s) | 0,
+                cy: fitClamped(vals[n - 1], opts.min, opts.max, h, r) | 0,
+                r,
+                fill: opts.col
+            }
+        ]
+    ];
+};

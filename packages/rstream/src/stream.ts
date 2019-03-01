@@ -1,13 +1,7 @@
 import { isString } from "@thi.ng/checks";
 import { illegalArity } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
-import {
-    DEBUG,
-    IStream,
-    ISubscriber,
-    StreamCancel,
-    StreamSource
-} from "./api";
+import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
 import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
 
@@ -68,9 +62,7 @@ export function stream(src?, id?) {
     return new Stream(src, id);
 }
 
-export class Stream<T> extends Subscription<T, T>
-    implements IStream<T> {
-
+export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     src: StreamSource<T>;
 
     protected _cancel: StreamCancel;
@@ -101,7 +93,11 @@ export class Stream<T> extends Subscription<T, T>
         this.src = src;
     }
 
-    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
+    subscribe<C>(
+        sub: Partial<ISubscriber<C>>,
+        xform: Transducer<T, C>,
+        id?: string
+    ): Subscription<T, C>;
     // subscribe<S extends Subscription<T, C>, C>(sub: S): S;
     subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;

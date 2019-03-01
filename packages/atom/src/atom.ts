@@ -14,16 +14,12 @@ import {
 } from "./api";
 import { View } from "./view";
 
-
 /**
  * Mutable wrapper for an (usually) immutable value. Support for
  * watches.
  */
 @IWatchMixin
-export class Atom<T> implements
-    IAtom<T>,
-    IEquiv {
-
+export class Atom<T> implements IAtom<T>, IEquiv {
     protected _value: T;
     protected valid: Predicate<T>;
     protected _watches: any;
@@ -88,7 +84,7 @@ export class Atom<T> implements
 
     // mixin stub
     /* istanbul ignore next */
-    notifyWatches(_: T, __: T) { }
+    notifyWatches(_: T, __: T) {}
 
     addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
         return new View<V>(this, path, tx, lazy);

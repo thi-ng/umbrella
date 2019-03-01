@@ -35,9 +35,12 @@ import { takeLast } from "./take-last";
  * @param src
  */
 export function matchLast<T>(pred: Predicate<T>): Transducer<T, T>;
-export function matchLast<T>(pred: Predicate<T>, src: Iterable<T>): T | undefined;
+export function matchLast<T>(
+    pred: Predicate<T>,
+    src: Iterable<T>
+): T | undefined;
 export function matchLast<T>(pred: Predicate<T>, src?: Iterable<T>): any {
-    return src ?
-        [...iterator(matchLast(pred), src)][0] :
-        comp(filter(pred), takeLast(1));
+    return src
+        ? [...iterator(matchLast(pred), src)][0]
+        : comp(filter(pred), takeLast(1));
 }

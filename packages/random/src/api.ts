@@ -17,7 +17,6 @@ export type ISeedableRandom<T> = IRandom & ISeedable<T> & ICopy<IRandom>;
 const INV_MAX = 1 / 0xffffffff;
 
 export abstract class ARandom implements IRandom {
-
     abstract int(): number;
 
     float(norm = 1) {

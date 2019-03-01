@@ -22,9 +22,7 @@ import {
 } from "./internal/vec-utils";
 import { setS4 } from "./sets";
 
-export class Vec4 extends AVec implements
-    IVector<Vec4> {
-
+export class Vec4 extends AVec implements IVector<Vec4> {
     /**
      * Returns array of memory mapped `Vec4` instances using given
      * backing array and stride settings: The `cstride` is the step size
@@ -39,7 +37,13 @@ export class Vec4 extends AVec implements
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, num: number = buf.length >> 2, start = 0, cstride = 1, estride = 4) {
+    static mapBuffer(
+        buf: Vec,
+        num: number = buf.length >> 2,
+        start = 0,
+        cstride = 1,
+        estride = 4
+    ) {
         return mapBuffer(Vec4, buf, num, start, cstride, estride);
     }
 
@@ -57,11 +61,23 @@ export class Vec4 extends AVec implements
      * @param cstride
      * @param estride
      */
-    static intoBuffer(buf: Vec, src: Iterable<Vec4>, start = 0, cstride = 1, estride = 4) {
+    static intoBuffer(
+        buf: Vec,
+        src: Iterable<Vec4>,
+        start = 0,
+        cstride = 1,
+        estride = 4
+    ) {
         return intoBuffer(setS4, buf, src, start, cstride, estride);
     }
 
-    static *iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 4) {
+    static *iterator(
+        buf: Vec,
+        num: number,
+        start = 0,
+        cstride = 1,
+        estride = 4
+    ) {
         return vecIterator(Vec4, buf, num, start, cstride, estride);
     }
 
@@ -118,18 +134,13 @@ export class Vec4 extends AVec implements
 
 declareIndices(Vec4.prototype, ["x", "y", "z", "w"]);
 
-export const vec4 =
-    (x = 0, y = 0, z = 0, w = 0) => new Vec4([x, y, z, w]);
+export const vec4 = (x = 0, y = 0, z = 0, w = 0) => new Vec4([x, y, z, w]);
 
-export const vec4n =
-    (n: number) => new Vec4([n, n, n, n]);
+export const vec4n = (n: number) => new Vec4([n, n, n, n]);
 
-export const asVec4 =
-    (x: Vec) =>
-        x instanceof Vec4 ?
-            x :
-            new Vec4(
-                x.length >= 4 ?
-                    x :
-                    [x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]
-            );
+export const asVec4 = (x: Vec) =>
+    x instanceof Vec4
+        ? x
+        : new Vec4(
+              x.length >= 4 ? x : [x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]
+          );

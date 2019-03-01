@@ -1,7 +1,6 @@
 import { StridedVec, Vec } from "../api";
 
 export abstract class AVec implements StridedVec {
-
     buf: Vec;
     offset: number;
     stride: number;

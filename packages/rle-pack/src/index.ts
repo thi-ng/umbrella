@@ -18,8 +18,9 @@ export const encode = (
     wordSize = 8,
     rleSizes: RLESizes = [3, 4, 8, 16]
 ) => {
-    (wordSize < 1 || wordSize > 32) && illegalArgs("word size (1-32 bits only)");
-    const out = new BitOutputStream(Math.ceil(num * wordSize / 8) + 4 + 2 + 1)
+    (wordSize < 1 || wordSize > 32) &&
+        illegalArgs("word size (1-32 bits only)");
+    const out = new BitOutputStream(Math.ceil((num * wordSize) / 8) + 4 + 2 + 1)
         .write(num, 32)
         .write(wordSize - 1, 5);
     rleSizes.forEach((x) => {
@@ -34,7 +35,7 @@ export const encode = (
     let n = 0;
     let i = 0;
     const writeRLE = () => {
-        const t = (n < rle0) ? 0 : (n < rle1) ? 1 : (n < rle2) ? 2 : 3;
+        const t = n < rle0 ? 0 : n < rle1 ? 1 : n < rle2 ? 2 : 3;
         out.writeBit(1);
         out.write(t, 2);
         out.write(n, rleSizes[t]);
@@ -43,7 +44,7 @@ export const encode = (
     };
     const writeChunk = () => {
         const m = chunk.length - 1;
-        const t = (m < rle0) ? 0 : (m < rle1) ? 1 : (m < rle2) ? 2 : 3;
+        const t = m < rle0 ? 0 : m < rle1 ? 1 : m < rle2 ? 2 : 3;
         out.writeBit(0);
         out.write(t, 2);
         out.write(m, rleSizes[t]);
@@ -70,7 +71,7 @@ export const encode = (
             if (++n === rle3) {
                 n--;
                 writeRLE();
-                tail = (i < n1);
+                tail = i < n1;
             }
         }
         if (i === n1) {
@@ -87,34 +88,28 @@ export const encode = (
     return out.bytes();
 };
 
-export const decode =
-    (src: Uint8Array) => {
-        const input = new BitInputStream(src);
-        const num = input.read(32);
-        const wordSize = input.read(5) + 1;
-        const rleSizes = [0, 0, 0, 0].map(() => input.read(4) + 1);
-        const out = arrayForWordSize(wordSize, num);
-        let x, j;
-        for (let i = 0; i < num;) {
-            x = input.readBit();
-            j = i + 1 + input.read(rleSizes[input.read(2)]);
-            if (x) {
-                out.fill(input.read(wordSize), i, j);
-                i = j;
-            } else {
-                for (; i < j; i++) {
-                    out[i] = input.read(wordSize);
-                }
+export const decode = (src: Uint8Array) => {
+    const input = new BitInputStream(src);
+    const num = input.read(32);
+    const wordSize = input.read(5) + 1;
+    const rleSizes = [0, 0, 0, 0].map(() => input.read(4) + 1);
+    const out = arrayForWordSize(wordSize, num);
+    let x, j;
+    for (let i = 0; i < num; ) {
+        x = input.readBit();
+        j = i + 1 + input.read(rleSizes[input.read(2)]);
+        if (x) {
+            out.fill(input.read(wordSize), i, j);
+            i = j;
+        } else {
+            for (; i < j; i++) {
+                out[i] = input.read(wordSize);
             }
         }
-        return out;
-    };
+    }
+    return out;
+};
 
-const arrayForWordSize =
-    (ws: number, n: number) => {
-        return new (ws < 9 ?
-            Uint8Array :
-            ws < 17 ?
-                Uint16Array :
-                Uint32Array)(n);
-    };
+const arrayForWordSize = (ws: number, n: number) => {
+    return new (ws < 9 ? Uint8Array : ws < 17 ? Uint16Array : Uint32Array)(n);
+};

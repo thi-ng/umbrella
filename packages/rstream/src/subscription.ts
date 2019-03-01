@@ -9,12 +9,7 @@ import {
     Transducer,
     unreduced
 } from "@thi.ng/transducers";
-import {
-    DEBUG,
-    ISubscribable,
-    ISubscriber,
-    State
-} from "./api";
+import { DEBUG, ISubscribable, ISubscriber, State } from "./api";
 import { nextID } from "./utils/idgen";
 
 /**
@@ -56,14 +51,10 @@ export const subscription = <A, B>(
     xform?: Transducer<A, B>,
     parent?: ISubscribable<A>,
     id?: string
-) =>
-    new Subscription(sub, xform, parent, id);
+) => new Subscription(sub, xform, parent, id);
 
-export class Subscription<A, B> implements
-    IDeref<B>,
-    ISubscriber<A>,
-    ISubscribable<B> {
-
+export class Subscription<A, B>
+    implements IDeref<B>, ISubscriber<A>, ISubscribable<B> {
     id: string;
 
     protected parent: ISubscribable<A>;
@@ -73,7 +64,12 @@ export class Subscription<A, B> implements
 
     protected last: any;
 
-    constructor(sub?: ISubscriber<B>, xform?: Transducer<A, B>, parent?: ISubscribable<A>, id?: string) {
+    constructor(
+        sub?: ISubscriber<B>,
+        xform?: Transducer<A, B>,
+        parent?: ISubscribable<A>,
+        id?: string
+    ) {
         this.parent = parent;
         this.id = id || `sub-${nextID()}`;
         this.last = SEMAPHORE;
@@ -98,7 +94,11 @@ export class Subscription<A, B> implements
      * Creates new child subscription with given subscriber and/or
      * transducer and optional subscription ID.
      */
-    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>;
+    subscribe<C>(
+        sub: Partial<ISubscriber<C>>,
+        xform: Transducer<B, C>,
+        id?: string
+    ): Subscription<B, C>;
     // subscribe<S extends Subscription<B, C>, C>(sub: S): S;
     subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
     subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
@@ -161,9 +161,24 @@ export class Subscription<A, B> implements
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
     transform<C>(a: Transducer<B, C>, id?: string): Subscription<B, C>;
-    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, id?: string): Subscription<B, D>;
-    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, id?: string): Subscription<B, E>;
-    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, id?: string): Subscription<B, F>;
+    transform<C, D>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        id?: string
+    ): Subscription<B, D>;
+    transform<C, D, E>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        c: Transducer<D, E>,
+        id?: string
+    ): Subscription<B, E>;
+    transform<C, D, E, F>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        c: Transducer<D, E>,
+        d: Transducer<E, F>,
+        id?: string
+    ): Subscription<B, F>;
     transform(...xf: any[]) {
         const n = xf.length - 1;
         if (isString(xf[n])) {

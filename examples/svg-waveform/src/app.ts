@@ -3,12 +3,7 @@ import { Atom, History } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
-import {
-    AppConfig,
-    AppContext,
-    AppViews,
-    ViewSpec
-} from "./api";
+import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import * as ev from "./events";
 
 /**
@@ -23,7 +18,6 @@ import * as ev from "./events";
  * - start hdom render & event bus loop
  */
 export class App {
-
     config: AppConfig;
     ctx: AppContext;
     state: Atom<any>;
@@ -36,7 +30,7 @@ export class App {
         this.ctx = {
             bus: new EventBus(this.state, config.events, config.effects),
             views: <AppViews>{},
-            ui: config.ui,
+            ui: config.ui
         };
         this.addViews(this.config.views);
     }
@@ -75,7 +69,10 @@ export class App {
         let firstFrame = true;
         start(
             () => {
-                if (this.ctx.bus.processQueue({ history: this.history }) || firstFrame) {
+                if (
+                    this.ctx.bus.processQueue({ history: this.history }) ||
+                    firstFrame
+                ) {
                     firstFrame = false;
                     return root();
                 }

@@ -12,8 +12,13 @@ export interface FSMState {
     state: PropertyKey;
 }
 
-export type FSMStateMap<T extends FSMState, A, B> = IObjectOf<FSMHandler<T, A, B>>;
-export type FSMHandler<T extends FSMState, A, B> = (state: T, input: A) => B | null | void;
+export type FSMStateMap<T extends FSMState, A, B> = IObjectOf<
+    FSMHandler<T, A, B>
+>;
+export type FSMHandler<T extends FSMState, A, B> = (
+    state: T,
+    input: A
+) => B | null | void;
 
 export interface FSMOpts<T extends FSMState, A, B> {
     states: FSMStateMap<T, A, B>;
@@ -96,26 +101,26 @@ export interface FSMOpts<T extends FSMState, A, B> {
  *
  * @param opts
  */
-export const fsm =
-    <T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B> =>
-        comp((rfn: Reducer<any, B>) => {
-            const states = opts.states;
-            const state = opts.init();
-            const r = rfn[2];
-            return compR(rfn,
-                (acc, x) => {
-                    const res = states[<any>state.state](state, x);
-                    if (res != null) {
-                        for (let i = 0, n = (<B[]>res).length; i < n; i++) {
-                            acc = r(acc, res[i]);
-                            if (isReduced(acc)) {
-                                break;
-                            }
-                        }
+export const fsm = <T extends FSMState, A, B>(
+    opts: FSMOpts<T, A, B[]>
+): Transducer<A, B> =>
+    comp((rfn: Reducer<any, B>) => {
+        const states = opts.states;
+        const state = opts.init();
+        const r = rfn[2];
+        return compR(rfn, (acc, x) => {
+            const res = states[<any>state.state](state, x);
+            if (res != null) {
+                for (let i = 0, n = (<B[]>res).length; i < n; i++) {
+                    acc = r(acc, res[i]);
+                    if (isReduced(acc)) {
+                        break;
                     }
-                    if (state.state === opts.terminate) {
-                        return ensureReduced(acc);
-                    }
-                    return acc;
-                });
+                }
+            }
+            if (state.state === opts.terminate) {
+                return ensureReduced(acc);
+            }
+            return acc;
         });
+    });

@@ -4,13 +4,14 @@ import { Polygon } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
-export const asPolygon: MultiFn1O<IShape, number | Partial<SamplingOpts>, Polygon> = defmulti(dispatch);
+export const asPolygon: MultiFn1O<
+    IShape,
+    number | Partial<SamplingOpts>,
+    Polygon
+> = defmulti(dispatch);
 
 asPolygon.addAll({
-
-    [Type.POINTS]:
-        ($, opts) => new Polygon(vertices($, opts), { ...$.attribs }),
-
+    [Type.POINTS]: ($, opts) => new Polygon(vertices($, opts), { ...$.attribs })
 });
 
 asPolygon.isa(Type.CIRCLE, Type.POINTS);

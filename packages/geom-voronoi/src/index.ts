@@ -1,7 +1,11 @@
 import { IObjectOf, Pair } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { liangBarsky2, sutherlandHodgeman } from "@thi.ng/geom-clip";
-import { pointInCircumCircle, pointInPolygon2, pointInSegment2 } from "@thi.ng/geom-isec";
+import {
+    pointInCircumCircle,
+    pointInPolygon2,
+    pointInSegment2
+} from "@thi.ng/geom-isec";
 import { centroid, circumCenter2 } from "@thi.ng/geom-poly-utils";
 import { EPS } from "@thi.ng/math";
 import { Edge } from "@thi.ng/quad-edge";
@@ -14,12 +18,14 @@ import {
     ZERO2
 } from "@thi.ng/vectors";
 
-export type Visitor<T> =
-    (e: Edge<Vertex<T>>, visted?: IObjectOf<boolean>, processed?: IObjectOf<boolean>) => void;
+export type Visitor<T> = (
+    e: Edge<Vertex<T>>,
+    visted?: IObjectOf<boolean>,
+    processed?: IObjectOf<boolean>
+) => void;
 
-const rightOf =
-    (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
-        signedArea2(p, e.dest.pos, e.origin.pos) > 0;
+const rightOf = (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
+    signedArea2(p, e.dest.pos, e.origin.pos) > 0;
 
 export interface Vertex<T> {
     pos: ReadonlyVec;
@@ -28,7 +34,6 @@ export interface Vertex<T> {
 }
 
 export class DVMesh<T> {
-
     first: Edge<Vertex<T>>;
     boundsTri: ReadonlyVec[];
     nextID: number;
@@ -47,9 +52,9 @@ export class DVMesh<T> {
         this.first = eab;
         this.nextID = 3;
         if (pts && pts.length) {
-            isNumber(pts[0][0]) ?
-                this.addKeys(<ReadonlyVec[]>pts) :
-                this.addAll(<Pair<ReadonlyVec, T>[]>pts);
+            isNumber(pts[0][0])
+                ? this.addKeys(<ReadonlyVec[]>pts)
+                : this.addAll(<Pair<ReadonlyVec, T>[]>pts);
         }
     }
 
@@ -60,7 +65,11 @@ export class DVMesh<T> {
             e = e.oprev;
             e.onext.remove();
         }
-        let base = Edge.create<Vertex<T>>(e.origin, { pos: p, id: this.nextID++, val });
+        let base = Edge.create<Vertex<T>>(e.origin, {
+            pos: p,
+            id: this.nextID++,
+            val
+        });
         base.splice(e);
         const first = base;
         do {
@@ -70,8 +79,10 @@ export class DVMesh<T> {
         // enforce delaunay constraints
         do {
             const t = e.oprev;
-            if (rightOf(t.dest.pos, e) &&
-                pointInCircumCircle(e.origin.pos, t.dest.pos, e.dest.pos, p)) {
+            if (
+                rightOf(t.dest.pos, e) &&
+                pointInCircumCircle(e.origin.pos, t.dest.pos, e.dest.pos, p)
+            ) {
                 e.swap();
                 e = e.oprev;
             } else if (e.onext !== first) {
@@ -106,7 +117,10 @@ export class DVMesh<T> {
     locate(p: ReadonlyVec, eps = EPS): [Edge<Vertex<T>>, boolean] {
         let e = this.first;
         while (true) {
-            if (eqDelta2(p, e.origin.pos, eps) || eqDelta2(p, e.dest.pos, eps)) {
+            if (
+                eqDelta2(p, e.origin.pos, eps) ||
+                eqDelta2(p, e.dest.pos, eps)
+            ) {
                 return [e, true];
             } else if (rightOf(p, e)) {
                 e = e.sym;
@@ -144,9 +158,7 @@ export class DVMesh<T> {
                 isBounds = isBounds && this.isBoundary(c);
                 const id = this.nextID++;
                 e.origin = {
-                    pos: !isBounds ?
-                        circumCenter2(a, b, c) :
-                        ZERO2,
+                    pos: !isBounds ? circumCenter2(a, b, c) : ZERO2,
                     id
                 };
                 visitedVerts[id] = true;
@@ -159,32 +171,34 @@ export class DVMesh<T> {
         const cells: Vec[][] = [];
         const usedEdges: IObjectOf<boolean> = {};
         const bc = bounds && centroid(bounds);
-        this.traverse(
-            (eab) => {
-                if (!usedEdges[eab.id]) {
-                    const ebc = eab.lnext;
-                    const eca = ebc.lnext;
-                    const va = eab.origin.pos;
-                    const vb = ebc.origin.pos;
-                    const vc = eca.origin.pos;
-                    let verts = [va, vb, vc];
-                    if (bounds &&
-                        !(
-                            pointInPolygon2(va, bounds) &&
-                            pointInPolygon2(vb, bounds) &&
-                            pointInPolygon2(vc, bounds)
-                        )) {
-                        verts = sutherlandHodgeman(verts, bounds, bc);
-                        if (verts.length > 2) {
-                            cells.push(verts);
-                        }
-                    } else {
+        this.traverse((eab) => {
+            if (!usedEdges[eab.id]) {
+                const ebc = eab.lnext;
+                const eca = ebc.lnext;
+                const va = eab.origin.pos;
+                const vb = ebc.origin.pos;
+                const vc = eca.origin.pos;
+                let verts = [va, vb, vc];
+                if (
+                    bounds &&
+                    !(
+                        pointInPolygon2(va, bounds) &&
+                        pointInPolygon2(vb, bounds) &&
+                        pointInPolygon2(vc, bounds)
+                    )
+                ) {
+                    verts = sutherlandHodgeman(verts, bounds, bc);
+                    if (verts.length > 2) {
                         cells.push(verts);
                     }
-                    usedEdges[eab.id] = usedEdges[ebc.id] = usedEdges[eca.id] = true;
+                } else {
+                    cells.push(verts);
                 }
+                usedEdges[eab.id] = usedEdges[ebc.id] = usedEdges[
+                    eca.id
+                ] = true;
             }
-        );
+        });
         return cells;
     }
 
@@ -192,31 +206,31 @@ export class DVMesh<T> {
         const cells: Vec[][] = [];
         const bc = bounds && centroid(bounds);
         this.traverse(
-            (bounds ?
-                ((e) => {
-                    const first = e = e.rot;
-                    let verts = [];
-                    let needsClip = false;
-                    let p: ReadonlyVec;
-                    do {
-                        p = e.origin.pos;
-                        verts.push(p);
-                        needsClip = needsClip || !pointInPolygon2(p, bounds);
-                    } while ((e = e.lnext) !== first);
-                    if (needsClip) {
-                        verts = sutherlandHodgeman(verts, bounds, bc);
-                        if (verts.length < 3) return;
-                    }
-                    cells.push(verts);
-                }) :
-                ((e) => {
-                    const first = e = e.rot;
-                    const verts = [];
-                    do {
-                        verts.push(e.origin.pos);
-                    } while ((e = e.lnext) !== first);
-                    cells.push(verts);
-                })),
+            bounds
+                ? (e) => {
+                      const first = (e = e.rot);
+                      let verts = [];
+                      let needsClip = false;
+                      let p: ReadonlyVec;
+                      do {
+                          p = e.origin.pos;
+                          verts.push(p);
+                          needsClip = needsClip || !pointInPolygon2(p, bounds);
+                      } while ((e = e.lnext) !== first);
+                      if (needsClip) {
+                          verts = sutherlandHodgeman(verts, bounds, bc);
+                          if (verts.length < 3) return;
+                      }
+                      cells.push(verts);
+                  }
+                : (e) => {
+                      const first = (e = e.rot);
+                      const verts = [];
+                      do {
+                          verts.push(e.origin.pos);
+                      } while ((e = e.lnext) !== first);
+                      cells.push(verts);
+                  },
             false
         );
         return cells;
@@ -232,7 +246,12 @@ export class DVMesh<T> {
                 const b = e.dest.pos;
                 if (!this.isBoundary(a) && !this.isBoundary(b)) {
                     if (boundsMinMax) {
-                        const clip = liangBarsky2(a, b, boundsMinMax[0], boundsMinMax[1]);
+                        const clip = liangBarsky2(
+                            a,
+                            b,
+                            boundsMinMax[0],
+                            boundsMinMax[1]
+                        );
                         clip && edges.push([clip[0], clip[1]]);
                     } else {
                         edges.push([a, b]);
@@ -254,8 +273,10 @@ export class DVMesh<T> {
             e = work.pop();
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
-            if (!this.isBoundary(e.origin.pos) &&
-                !this.isBoundary(e.rot.origin.pos)) {
+            if (
+                !this.isBoundary(e.origin.pos) &&
+                !this.isBoundary(e.rot.origin.pos)
+            ) {
                 if (edges || !visitedVerts[e.origin.id]) {
                     visitedVerts[e.origin.id] = true;
                     proc(e, visitedEdges, visitedVerts);
@@ -267,8 +288,6 @@ export class DVMesh<T> {
 
     protected isBoundary(v: ReadonlyVec) {
         const b = this.boundsTri;
-        return eqDelta2(b[0], v) ||
-            eqDelta2(b[1], v) ||
-            eqDelta2(b[2], v);
+        return eqDelta2(b[0], v) || eqDelta2(b[1], v) || eqDelta2(b[2], v);
     }
 }

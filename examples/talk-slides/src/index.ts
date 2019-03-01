@@ -1,19 +1,8 @@
 import { renderOnce } from "@thi.ng/hdom";
 import { clamp } from "@thi.ng/math";
-import {
-    fromEvent,
-    fromInterval,
-    stream,
-    sync
-} from "@thi.ng/rstream";
+import { fromEvent, fromInterval, stream, sync } from "@thi.ng/rstream";
 import { padLeft } from "@thi.ng/strings";
-import {
-    dedupe,
-    map,
-    reducer,
-    scan,
-    sideEffect
-} from "@thi.ng/transducers";
+import { dedupe, map, reducer, scan, sideEffect } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { app, printApp } from "./components";
 import { ctx } from "./config";
@@ -47,7 +36,7 @@ const parseSlideID = (str: string) => {
     return isNaN(id) ? 0 : id;
 };
 
-const slideCTRL = ctx.slide = stream<number>();
+const slideCTRL = (ctx.slide = stream<number>());
 const slideID = slideCTRL.transform(
     scan(reducer(() => 0, (x, y) => clamp(x + y, 0, SLIDES.length - 1))),
     dedupe(),
@@ -58,15 +47,14 @@ const main = sync({
     src: {
         slideID,
         content: slideID.transform(map((id: number) => SLIDES[id])),
-        time: fromInterval(1000).transform(map((x: number) => `${D2((x / 60) | 0)}:${D2(x % 60)}`)),
+        time: fromInterval(1000).transform(
+            map((x: number) => `${D2((x / 60) | 0)}:${D2(x % 60)}`)
+        )
     }
 });
 
 if (INTERACTIVE) {
-    main.transform(
-        map(app(SLIDES.length, ctx)),
-        updateDOM({ ctx }),
-    );
+    main.transform(map(app(SLIDES.length, ctx)), updateDOM({ ctx }));
     initKeys(slideCTRL);
     slideCTRL.next(parseSlideID(location.hash.substr(1)));
 } else {
@@ -75,8 +63,9 @@ if (INTERACTIVE) {
 
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
-    hot && hot.dispose(() => {
-        slideCTRL.done();
-        main.done();
-    });
+    hot &&
+        hot.dispose(() => {
+            slideCTRL.done();
+            main.done();
+        });
 }

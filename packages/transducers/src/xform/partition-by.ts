@@ -16,11 +16,22 @@ import { isReduced } from "../reduced";
  * @param fn
  * @param stateful
  */
-export function partitionBy<T>(fn: Fn<T, any> | (() => Fn<T, any>), stateful?: boolean): Transducer<T, T[]>;
-export function partitionBy<T>(fn: Fn<T, any> | (() => Fn<T, any>), src: Iterable<T>): IterableIterator<T[]>;
-export function partitionBy<T>(fn: Fn<T, any> | (() => Fn<T, any>), stateful: boolean, src: Iterable<T>): IterableIterator<T[]>;
+export function partitionBy<T>(
+    fn: Fn<T, any> | (() => Fn<T, any>),
+    stateful?: boolean
+): Transducer<T, T[]>;
+export function partitionBy<T>(
+    fn: Fn<T, any> | (() => Fn<T, any>),
+    src: Iterable<T>
+): IterableIterator<T[]>;
+export function partitionBy<T>(
+    fn: Fn<T, any> | (() => Fn<T, any>),
+    stateful: boolean,
+    src: Iterable<T>
+): IterableIterator<T[]>;
 export function partitionBy<T>(...args: any[]): any {
-    return $iter(partitionBy, args, iterator) ||
+    return (
+        $iter(partitionBy, args, iterator) ||
         (([init, complete, reduce]) => {
             const fn: Fn<T, any> | (() => Fn<T, any>) = args[0];
             const f = args[1] === true ? (<() => Fn<T, any>>fn)() : fn;
@@ -48,6 +59,8 @@ export function partitionBy<T>(...args: any[]): any {
                         prev = curr;
                     }
                     return acc;
-                }];
-        });
+                }
+            ];
+        })
+    );
 }

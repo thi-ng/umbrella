@@ -20,10 +20,8 @@ export function takeNth<T>(n: number, src?: Iterable<T>): any {
         return iterator1(takeNth(n), src);
     }
     n = Math.max(0, n - 1);
-    return throttle(
-        () => {
-            let skip = 0;
-            return () => (skip === 0 ? (skip = n, true) : (skip-- , false));
-        }
-    );
+    return throttle(() => {
+        let skip = 0;
+        return () => (skip === 0 ? ((skip = n), true) : (skip--, false));
+    });
 }

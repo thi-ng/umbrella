@@ -1,11 +1,6 @@
 import { DCons } from "@thi.ng/dcons";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    compR,
-    iterator1,
-    Reducer,
-    Transducer
-} from "@thi.ng/transducers";
+import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
 
 /**
  * Rate of change.
@@ -19,7 +14,10 @@ import {
  * @param period
  */
 export function roc(period: number): Transducer<number, number>;
-export function roc(period: number, src: Iterable<number>): IterableIterator<number>;
+export function roc(
+    period: number,
+    src: Iterable<number>
+): IterableIterator<number>;
 export function roc(period: number, src?: Iterable<number>): any {
     if (src) {
         return iterator1(roc(period), src);
@@ -28,16 +26,13 @@ export function roc(period: number, src?: Iterable<number>): any {
     return (rfn: Reducer<any, number>) => {
         const reduce = rfn[2];
         const window = new DCons<number>();
-        return compR(
-            rfn,
-            (acc, x: number) => {
-                window.push(x);
-                if (window.length <= period) {
-                    return acc;
-                }
-                const prev = window.drop();
-                return reduce(acc, (x - prev) / prev);
+        return compR(rfn, (acc, x: number) => {
+            window.push(x);
+            if (window.length <= period) {
+                return acc;
             }
-        );
-    }
-};
+            const prev = window.drop();
+            return reduce(acc, (x - prev) / prev);
+        });
+    };
+}

@@ -13,7 +13,8 @@ let db = [
             tags: ["drama", "queen"]
         },
         title: "UI components for Dummies",
-        content: "Sed doloribus molestias voluptatem ut delectus vitae quo eum. Ut praesentium sed omnis sequi rerum praesentium aperiam modi. Occaecati voluptatum quis vel facere quis quisquam."
+        content:
+            "Sed doloribus molestias voluptatem ut delectus vitae quo eum. Ut praesentium sed omnis sequi rerum praesentium aperiam modi. Occaecati voluptatum quis vel facere quis quisquam."
     },
     {
         meta: {
@@ -25,7 +26,8 @@ let db = [
             tags: ["simplicity", "rules"]
         },
         title: "Look ma, so simple",
-        content: "Ratione necessitatibus doloremque itaque. Nihil hic alias cumque beatae esse sapiente incidunt. Illum vel eveniet officia."
+        content:
+            "Ratione necessitatibus doloremque itaque. Nihil hic alias cumque beatae esse sapiente incidunt. Illum vel eveniet officia."
     }
 ];
 
@@ -33,10 +35,23 @@ let db = [
 // the `item` function is the root component for each JSON object
 // it's a higher-order function, since we will create different
 // instances for theming purposes... see below
-const item = (theme) => (item) => [`div.item.${theme}`, item.title, item.meta, item.content];
+const item = (theme) => (item) => [
+    `div.item.${theme}`,
+    item.title,
+    item.meta,
+    item.content
+];
 const meta = (meta) => ["div.meta", meta.author, meta.created, meta.tags];
-const author = (author) => ["div", ["strong", "author: "], link(`mailto:${author.email}`, author.name)];
-const date = (iso) => ["div", ["strong", "date: "], new Date(Date.parse(iso)).toLocaleString()];
+const author = (author) => [
+    "div",
+    ["strong", "author: "],
+    link(`mailto:${author.email}`, author.name)
+];
+const date = (iso) => [
+    "div",
+    ["strong", "date: "],
+    new Date(Date.parse(iso)).toLocaleString()
+];
 const link = (href, body) => ["a", { href }, body];
 const tag = (tag) => ["li", link("#", tag)];
 const tags = (tags) => ["ul.tags", ...tags.map(tag)];
@@ -85,7 +100,7 @@ const editor = (() => {
             oninput: (e) => {
                 try {
                     db = JSON.parse(e.target.value);
-                } catch (_) { }
+                } catch (_) {}
             }
         },
         body
@@ -93,11 +108,12 @@ const editor = (() => {
 })();
 
 // start UI
-start(
-    () =>
-        ["div#container",
-            ["div", editor],
-            ["div",
-                ["div", ["h2", "Light theme"], ...db.map(itemLight)],
-                ["div", ["h2", "Dark theme"], ...db.map(itemDark)]]]
-);
+start(() => [
+    "div#container",
+    ["div", editor],
+    [
+        "div",
+        ["div", ["h2", "Light theme"], ...db.map(itemLight)],
+        ["div", ["h2", "Dark theme"], ...db.map(itemDark)]
+    ]
+]);

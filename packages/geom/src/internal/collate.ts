@@ -14,7 +14,7 @@ export const remap = (
     cstride: number,
     estride: number
 ) => {
-    for (let i = pts.length; --i >= 0;) {
+    for (let i = pts.length; --i >= 0; ) {
         const p = pts[i];
         p.buf = buf;
         p.offset = start + i * estride;
@@ -24,7 +24,13 @@ export const remap = (
 };
 
 export const collateWith = (
-    fn: (buf: Vec, src: Iterable<Readonly<StridedVec>>, start, cstride, estride) => Vec,
+    fn: (
+        buf: Vec,
+        src: Iterable<Readonly<StridedVec>>,
+        start,
+        cstride,
+        estride
+    ) => Vec,
     pts: StridedVec[],
     opts: Partial<CollateOpts>,
     stride: number
@@ -44,6 +50,9 @@ export const collateWith = (
             cstride,
             estride
         ),
-        pts, start, cstride, estride
+        pts,
+        start,
+        cstride,
+        estride
     );
 };

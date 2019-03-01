@@ -13,6 +13,7 @@ export const closestPoint = (
     res?: number,
     iter?: number
 ) => {
-    const fn = (t: number) => pointAtTheta(o, r, axis, fit01(t, start, end), out);
+    const fn = (t: number) =>
+        pointAtTheta(o, r, axis, fit01(t, start, end), out);
     return fn(minError(fn, distSq2, p, res, iter));
 };

@@ -32,32 +32,30 @@ const snip = (
  *
  * @param points
  */
-export const earCut2: Tessellator =
-    (points: ReadonlyVec[]) => {
-        const tris: Vec[][] = [];
-        let n = points.length;
-        const ids = [
-            ...(polyArea2(points) > 0 ?
-                range(n) :
-                range(n - 1, -1, -1))
-        ];
-        let count = 2 * n - 1;
-        let v = n - 1, u, w, t;
-        while (count > 0 && n > 2) {
-            u = n <= v ? 0 : v;
-            v = u + 1;
-            v = n <= v ? 0 : v;
-            w = v + 1;
-            w = n <= w ? 0 : w;
-            t = snip(points, u, v, w, n, ids);
-            if (t !== undefined) {
-                tris.push(t);
-                ids.splice(v, 1);
-                n--;
-                count = 2 * n;
-            } else {
-                count--;
-            }
+export const earCut2: Tessellator = (points: ReadonlyVec[]) => {
+    const tris: Vec[][] = [];
+    let n = points.length;
+    const ids = [...(polyArea2(points) > 0 ? range(n) : range(n - 1, -1, -1))];
+    let count = 2 * n - 1;
+    let v = n - 1,
+        u,
+        w,
+        t;
+    while (count > 0 && n > 2) {
+        u = n <= v ? 0 : v;
+        v = u + 1;
+        v = n <= v ? 0 : v;
+        w = v + 1;
+        w = n <= w ? 0 : w;
+        t = snip(points, u, v, w, n, ids);
+        if (t !== undefined) {
+            tris.push(t);
+            ids.splice(v, 1);
+            n--;
+            count = 2 * n;
+        } else {
+            count--;
         }
-        return tris;
-    };
+    }
+    return tris;
+};

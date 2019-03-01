@@ -11,5 +11,5 @@ export const QUOTED_FNS = {
     "@keyframes": at_keyframes,
     "@media": at_media,
     "@namespace": at_namespace,
-    "@supports": at_supports,
+    "@supports": at_supports
 };

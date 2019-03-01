@@ -1,14 +1,14 @@
 export enum Unit {
-    IN = 1,   // inches
-    MM,       // millimeters
-    FT = 4,   // feet
-    MI,       // miles
-    M,        // meters
-    KM,       // kilometers
-    MIL,      // mils
-    UM,       // microns
-    CM,       // centimeters
-    UIN       // microinches
+    IN = 1, // inches
+    MM, // millimeters
+    FT = 4, // feet
+    MI, // miles
+    M, // meters
+    KM, // kilometers
+    MIL, // mils
+    UM, // microns
+    CM, // centimeters
+    UIN // microinches
 }
 
 export enum Type {
@@ -35,7 +35,7 @@ export enum DraftVersion {
     BSI,
     CSA,
     DIN,
-    JIS,
+    JIS
 }
 
 export enum LineFontPattern {
@@ -44,7 +44,7 @@ export enum LineFontPattern {
     DASHED,
     PHANTOM,
     CENTERLINE,
-    DOTTED,
+    DOTTED
 }
 
 export enum Color {
@@ -56,19 +56,19 @@ export enum Color {
     YELLOW,
     MAGENTA,
     CYAN,
-    WHITE,
+    WHITE
 }
 
 export enum StatusBlank {
     VISIBLE = 0,
-    BLANK,
+    BLANK
 }
 
 export enum StatusSubord {
     INDEPENDENT = 0,
     PHYSICAL,
     LOGICAL,
-    BOTH,
+    BOTH
 }
 
 export enum StatusUsage {
@@ -181,5 +181,5 @@ export const DEFAULT_GLOBALS: Partial<GlobalParams> = {
     units: Unit.MM,
     precision: 3,
     numLineWeights: 1,
-    maxLineWeight: 0.254,
+    maxLineWeight: 0.254
 };

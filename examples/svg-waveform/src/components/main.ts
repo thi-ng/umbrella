@@ -7,7 +7,8 @@ import { waveform } from "./waveform";
 export function main(ctx: AppContext) {
     const bar = sidebar(ctx, ...SLIDERS);
     return () => [
-        "div", ctx.ui.root,
+        "div",
+        ctx.ui.root,
         bar,
         waveform(ctx, {
             phase: ctx.views.phase.deref(),

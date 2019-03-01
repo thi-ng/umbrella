@@ -20,12 +20,11 @@ import { ReadonlyVec } from "./api";
  * @param b
  * @param c
  */
-export const signedArea2 =
-    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
-        const ax = a[0];
-        const ay = a[1];
-        return (b[0] - ax) * (c[1] - ay) - (c[0] - ax) * (b[1] - ay);
-    };
+export const signedArea2 = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
+    const ax = a[0];
+    const ay = a[1];
+    return (b[0] - ax) * (c[1] - ay) - (c[0] - ax) * (b[1] - ay);
+};
 
 /**
  * Same as `signedArea2`, but expects individual vector component args,
@@ -45,5 +44,4 @@ export const signedAreaC2 = (
     by: number,
     cx: number,
     cy: number
-) =>
-    (bx - ax) * (cy - ay) - (cx - ax) * (by - ay);
+) => (bx - ax) * (cy - ay) - (cx - ax) * (by - ay);

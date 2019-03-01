@@ -6,22 +6,18 @@ import { dispatch } from "../internal/dispatch";
 import { edgeIterator } from "../internal/edges";
 import { vertices } from "./vertices";
 
-export const edges: MultiFn1O<IShape, number | Partial<SamplingOpts>, Iterable<VecPair>> = defmulti(dispatch);
+export const edges: MultiFn1O<
+    IShape,
+    number | Partial<SamplingOpts>,
+    Iterable<VecPair>
+> = defmulti(dispatch);
 
 edges.addAll({
+    [Type.POLYGON]: ($: Polygon) => edgeIterator($.points, true),
 
-    [Type.POLYGON]:
-        ($: Polygon) =>
-            edgeIterator($.points, true),
+    [Type.POLYLINE]: ($: Polyline) => edgeIterator($.points),
 
-    [Type.POLYLINE]:
-        ($: Polyline) =>
-            edgeIterator($.points),
-
-    [Type.RECT]:
-        ($: Rect) =>
-            edgeIterator(vertices($), true),
-
+    [Type.RECT]: ($: Rect) => edgeIterator(vertices($), true)
 });
 
 edges.isa(Type.LINE, Type.POLYLINE);

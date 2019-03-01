@@ -17,11 +17,22 @@ import { isReduced } from "../reduced";
  * @param n sliding window size
  * @param maxSwaps number of swaps per input
  */
-export function streamShuffle<T>(n: number, maxSwaps?: number): Transducer<T, T>;
-export function streamShuffle<T>(n: number, src: Iterable<T>): IterableIterator<T>;
-export function streamShuffle<T>(n: number, maxSwaps: number, src: Iterable<T>): IterableIterator<T>;
+export function streamShuffle<T>(
+    n: number,
+    maxSwaps?: number
+): Transducer<T, T>;
+export function streamShuffle<T>(
+    n: number,
+    src: Iterable<T>
+): IterableIterator<T>;
+export function streamShuffle<T>(
+    n: number,
+    maxSwaps: number,
+    src: Iterable<T>
+): IterableIterator<T>;
 export function streamShuffle<T>(...args: any[]): any {
-    return $iter(streamShuffle, args, iterator) ||
+    return (
+        $iter(streamShuffle, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, T>) => {
             const n: number = args[0];
             const maxSwaps: number = args[1] || n;
@@ -45,5 +56,6 @@ export function streamShuffle<T>(...args: any[]): any {
                     return acc;
                 }
             ];
-        });
+        })
+    );
 }

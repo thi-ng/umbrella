@@ -6,7 +6,6 @@ export const mergeMapWith = <K, V>(
     dest: Map<K, V>,
     ...xs: Map<K, V>[]
 ) => {
-
     const res: Map<K, V> = copy(dest, Map);
     for (let x of xs) {
         for (let [k, v] of x) {
@@ -25,7 +24,6 @@ export const mergeObjWith = <T>(
     dest: IObjectOf<T>,
     ...xs: IObjectOf<T>[]
 ) => {
-
     const res: IObjectOf<T> = { ...dest };
     for (let x of xs) {
         for (let k in x) {

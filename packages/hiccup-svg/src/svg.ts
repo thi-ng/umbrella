@@ -9,14 +9,13 @@ import { fattribs } from "./format";
  * @param attribs
  * @param body
  */
-export const svg =
-    (attribs: any, ...body: any[]): any[] =>
-        ["svg",
-            fattribs({
-                version: "1.1",
-                xmlns: SVG_NS,
-                "xmlns:xlink": XLINK_NS,
-                ...attribs
-            }),
-            ...body
-        ];
+export const svg = (attribs: any, ...body: any[]): any[] => [
+    "svg",
+    fattribs({
+        version: "1.1",
+        xmlns: SVG_NS,
+        "xmlns:xlink": XLINK_NS,
+        ...attribs
+    }),
+    ...body
+];

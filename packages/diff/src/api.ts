@@ -5,8 +5,8 @@ export type DiffKeyMap<T> = IObjectOf<T>;
 export const enum DiffMode {
     ONLY_DISTANCE,
     ONLY_DISTANCE_LINEAR,
-    FULL,
-};
+    FULL
+}
 
 export interface ArrayDiff<T> {
     distance: number;

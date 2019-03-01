@@ -24,26 +24,23 @@ export interface MatchResult<T> {
     body?: ResultBody<T>;
 }
 
-export type Matcher<T, C, R> =
-    () => MatcherInst<T, C, R>;
+export type Matcher<T, C, R> = () => MatcherInst<T, C, R>;
 
-export type MatcherInst<T, C, R> =
-    (ctx: C, x: T) => MatchResult<R>;
+export type MatcherInst<T, C, R> = (ctx: C, x: T) => MatchResult<R>;
 
-export type ResultBody<T> =
-    [number | string, T[]?];
+export type ResultBody<T> = [number | string, T[]?];
 
-export type AltCallback<T, C, R> =
-    (ctx: C, next: ResultBody<R>, x: T[]) => ResultBody<R>;
+export type AltCallback<T, C, R> = (
+    ctx: C,
+    next: ResultBody<R>,
+    x: T[]
+) => ResultBody<R>;
 
-export type LitCallback<T, C, R> =
-    (ctx: C, x: T) => ResultBody<R>;
+export type LitCallback<T, C, R> = (ctx: C, x: T) => ResultBody<R>;
 
-export type SeqCallback<T, C, R> =
-    (ctx: C, buf: T[]) => ResultBody<R>;
+export type SeqCallback<T, C, R> = (ctx: C, buf: T[]) => ResultBody<R>;
 
-export type AltFallback<T, C, R> =
-    SeqCallback<T, C, R>;
+export type AltFallback<T, C, R> = SeqCallback<T, C, R>;
 
 export const RES_PARTIAL = Object.freeze({ type: Match.PARTIAL });
 export const RES_FAIL = Object.freeze({ type: Match.FAIL });

@@ -8,11 +8,8 @@ import { isNumber, isPlainObject } from "@thi.ng/checks";
  *
  * @param args
  */
-export const argAttribs =
-    (args: any[]) =>
-        isPlainObject(peek(args)) ?
-            args.pop() :
-            undefined;
+export const argAttribs = (args: any[]) =>
+    isPlainObject(peek(args)) ? args.pop() : undefined;
 
 /**
  * Args parser for functions expecting up to 2 vector args and optional
@@ -20,15 +17,14 @@ export const argAttribs =
  *
  * @param args
  */
-export const argsVV =
-    (args: any[]) => {
-        const attr = argAttribs(args);
-        return args.length ?
-            args.length === 2 ?
-                [args[0], args[1], attr] :
-                [undefined, args[0], attr] :
-            [undefined, undefined, attr];
-    };
+export const argsVV = (args: any[]) => {
+    const attr = argAttribs(args);
+    return args.length
+        ? args.length === 2
+            ? [args[0], args[1], attr]
+            : [undefined, args[0], attr]
+        : [undefined, undefined, attr];
+};
 
 /**
  * Args parser for functions expecting a vector, numeric and/or optional
@@ -36,14 +32,13 @@ export const argsVV =
  *
  * @param args
  */
-export const argsVN =
-    (args: any[]) => {
-        const attr = argAttribs(args);
-        return args.length ?
-            args.length === 2 ?
-                [args[0], args[1], attr] :
-                isNumber(args[0]) ?
-                    [undefined, args[0], attr] :
-                    [args[0], undefined, attr] :
-            [undefined, undefined, attr];
-    };
+export const argsVN = (args: any[]) => {
+    const attr = argAttribs(args);
+    return args.length
+        ? args.length === 2
+            ? [args[0], args[1], attr]
+            : isNumber(args[0])
+                ? [undefined, args[0], attr]
+                : [args[0], undefined, attr]
+        : [undefined, undefined, attr];
+};

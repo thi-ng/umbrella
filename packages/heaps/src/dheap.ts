@@ -13,10 +13,8 @@ import { Heap } from "./heap";
  *
  * https://en.wikipedia.org/wiki/D-ary_heap
  */
-export class DHeap<T> extends Heap<T> implements
-    ICopy<DHeap<T>>,
-    IEmpty<DHeap<T>> {
-
+export class DHeap<T> extends Heap<T>
+    implements ICopy<DHeap<T>>, IEmpty<DHeap<T>> {
     /**
      * Returns index of parent node or -1 if `idx < 1`.
      *
@@ -34,7 +32,7 @@ export class DHeap<T> extends Heap<T> implements
      * @param d
      */
     static childIndex(idx: number, d = 4) {
-        return idx >= 0 ? (idx * d) + 1 : -1;
+        return idx >= 0 ? idx * d + 1 : -1;
     }
 
     protected d: number;
@@ -71,7 +69,7 @@ export class DHeap<T> extends Heap<T> implements
     leaves() {
         const vals = this.values;
         if (!vals.length) {
-            return []
+            return [];
         }
         return vals.slice(DHeap.parentIndex(vals.length - 1, this.d) + 1);
     }
@@ -103,7 +101,8 @@ export class DHeap<T> extends Heap<T> implements
         const d = this.d;
         const node = vals[i];
         const cmp = this.compare;
-        let child = (i * d) + 1, minChild;
+        let child = i * d + 1,
+            minChild;
         while (child < n) {
             minChild = child;
             for (let j = child + 1, k = child + d; j < k; j++) {
@@ -117,7 +116,7 @@ export class DHeap<T> extends Heap<T> implements
                 break;
             }
             i = minChild;
-            child = (i * d) + 1;
+            child = i * d + 1;
         }
         vals[i] = node;
     }

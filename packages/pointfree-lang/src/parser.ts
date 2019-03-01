@@ -10,6 +10,7 @@ export class SyntaxError {
 }
 
 export function parse(input: string, options?: any): any {
-    input; options;
+    input;
+    options;
     return null;
 }

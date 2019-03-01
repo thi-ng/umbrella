@@ -11,15 +11,85 @@ export type DispatchFn2O<A, B, C> = (a: A, b: B, c?: C) => PropertyKey;
 export type DispatchFn3<A, B, C> = (a: A, b: B, c: C) => PropertyKey;
 export type DispatchFn3O<A, B, C, D> = (a: A, b: B, c: C, d?: D) => PropertyKey;
 export type DispatchFn4<A, B, C, D> = (a: A, b: B, c: C, d: D) => PropertyKey;
-export type DispatchFn4O<A, B, C, D, E> = (a: A, b: B, c: C, d: D, e?: E) => PropertyKey;
-export type DispatchFn5<A, B, C, D, E> = (a: A, b: B, c: C, d: D, e: E) => PropertyKey;
-export type DispatchFn5O<A, B, C, D, E, F> = (a: A, b: B, c: C, d: D, e: E, f?: F) => PropertyKey;
-export type DispatchFn6<A, B, C, D, E, F> = (a: A, b: B, c: C, d: D, e: E, f: F) => PropertyKey;
-export type DispatchFn6O<A, B, C, D, E, F, G> = (a: A, b: B, c: C, d: D, e: E, f: F, g?: G) => PropertyKey;
-export type DispatchFn7<A, B, C, D, E, F, G> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => PropertyKey;
-export type DispatchFn7O<A, B, C, D, E, F, G, H> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h?: H) => PropertyKey;
-export type DispatchFn8<A, B, C, D, E, F, G, H> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H) => PropertyKey;
-export type DispatchFn8O<A, B, C, D, E, F, G, H, I> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i?: I) => PropertyKey;
+export type DispatchFn4O<A, B, C, D, E> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e?: E
+) => PropertyKey;
+export type DispatchFn5<A, B, C, D, E> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E
+) => PropertyKey;
+export type DispatchFn5O<A, B, C, D, E, F> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f?: F
+) => PropertyKey;
+export type DispatchFn6<A, B, C, D, E, F> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F
+) => PropertyKey;
+export type DispatchFn6O<A, B, C, D, E, F, G> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g?: G
+) => PropertyKey;
+export type DispatchFn7<A, B, C, D, E, F, G> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G
+) => PropertyKey;
+export type DispatchFn7O<A, B, C, D, E, F, G, H> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h?: H
+) => PropertyKey;
+export type DispatchFn8<A, B, C, D, E, F, G, H> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H
+) => PropertyKey;
+export type DispatchFn8O<A, B, C, D, E, F, G, H, I> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    i?: I
+) => PropertyKey;
 
 export type Implementation<T> = (...args: any[]) => T;
 export type Implementation1<A, T> = (a: A) => T;
@@ -29,15 +99,85 @@ export type Implementation2O<A, B, C, T> = (a: A, b: B, c?: C) => T;
 export type Implementation3<A, B, C, T> = (a: A, b: B, c: C) => T;
 export type Implementation3O<A, B, C, D, T> = (a: A, b: B, c: C, d?: D) => T;
 export type Implementation4<A, B, C, D, T> = (a: A, b: B, c: C, d: D) => T;
-export type Implementation4O<A, B, C, D, E, T> = (a: A, b: B, c: C, d: D, e?: E) => T;
-export type Implementation5<A, B, C, D, E, T> = (a: A, b: B, c: C, d: D, e: E) => T;
-export type Implementation5O<A, B, C, D, E, F, T> = (a: A, b: B, c: C, d: D, e: E, f?: F) => T;
-export type Implementation6<A, B, C, D, E, F, T> = (a: A, b: B, c: C, d: D, e: E, f: F) => T;
-export type Implementation6O<A, B, C, D, E, F, G, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g?: G) => T;
-export type Implementation7<A, B, C, D, E, F, G, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => T;
-export type Implementation7O<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h?: H) => T;
-export type Implementation8<A, B, C, D, E, F, G, H, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H) => T;
-export type Implementation8O<A, B, C, D, E, F, G, H, I, T> = (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i?: I) => T;
+export type Implementation4O<A, B, C, D, E, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e?: E
+) => T;
+export type Implementation5<A, B, C, D, E, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E
+) => T;
+export type Implementation5O<A, B, C, D, E, F, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f?: F
+) => T;
+export type Implementation6<A, B, C, D, E, F, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F
+) => T;
+export type Implementation6O<A, B, C, D, E, F, G, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g?: G
+) => T;
+export type Implementation7<A, B, C, D, E, F, G, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G
+) => T;
+export type Implementation7O<A, B, C, D, E, F, G, H, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h?: H
+) => T;
+export type Implementation8<A, B, C, D, E, F, G, H, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H
+) => T;
+export type Implementation8O<A, B, C, D, E, F, G, H, I, T> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    i?: I
+) => T;
 
 export interface MultiFnBase<I> {
     /**
@@ -106,73 +246,73 @@ export interface MultiFnBase<I> {
     ancestors(id: PropertyKey): Set<PropertyKey>;
 }
 
-export interface MultiFn<T> extends
-    Implementation<T>,
-    MultiFnBase<Implementation<T>> { }
+export interface MultiFn<T>
+    extends Implementation<T>,
+        MultiFnBase<Implementation<T>> {}
 
-export interface MultiFn1<A, T> extends
-    Implementation1<A, T>,
-    MultiFnBase<Implementation1<A, T>> { }
+export interface MultiFn1<A, T>
+    extends Implementation1<A, T>,
+        MultiFnBase<Implementation1<A, T>> {}
 
-export interface MultiFn1O<A, B, T> extends
-    Implementation1O<A, B, T>,
-    MultiFnBase<Implementation1O<A, B, T>> { }
+export interface MultiFn1O<A, B, T>
+    extends Implementation1O<A, B, T>,
+        MultiFnBase<Implementation1O<A, B, T>> {}
 
-export interface MultiFn2<A, B, T> extends
-    Implementation2<A, B, T>,
-    MultiFnBase<Implementation2<A, B, T>> { }
+export interface MultiFn2<A, B, T>
+    extends Implementation2<A, B, T>,
+        MultiFnBase<Implementation2<A, B, T>> {}
 
-export interface MultiFn2O<A, B, C, T> extends
-    Implementation2O<A, B, C, T>,
-    MultiFnBase<Implementation2O<A, B, C, T>> { }
+export interface MultiFn2O<A, B, C, T>
+    extends Implementation2O<A, B, C, T>,
+        MultiFnBase<Implementation2O<A, B, C, T>> {}
 
-export interface MultiFn3<A, B, C, T> extends
-    Implementation3<A, B, C, T>,
-    MultiFnBase<Implementation3<A, B, C, T>> { }
+export interface MultiFn3<A, B, C, T>
+    extends Implementation3<A, B, C, T>,
+        MultiFnBase<Implementation3<A, B, C, T>> {}
 
-export interface MultiFn3O<A, B, C, D, T> extends
-    Implementation3O<A, B, C, D, T>,
-    MultiFnBase<Implementation3O<A, B, C, D, T>> { }
+export interface MultiFn3O<A, B, C, D, T>
+    extends Implementation3O<A, B, C, D, T>,
+        MultiFnBase<Implementation3O<A, B, C, D, T>> {}
 
-export interface MultiFn4<A, B, C, D, T> extends
-    Implementation4<A, B, C, D, T>,
-    MultiFnBase<Implementation4<A, B, C, D, T>> { }
+export interface MultiFn4<A, B, C, D, T>
+    extends Implementation4<A, B, C, D, T>,
+        MultiFnBase<Implementation4<A, B, C, D, T>> {}
 
-export interface MultiFn4O<A, B, C, D, E, T> extends
-    Implementation4O<A, B, C, D, E, T>,
-    MultiFnBase<Implementation4O<A, B, C, D, E, T>> { }
+export interface MultiFn4O<A, B, C, D, E, T>
+    extends Implementation4O<A, B, C, D, E, T>,
+        MultiFnBase<Implementation4O<A, B, C, D, E, T>> {}
 
-export interface MultiFn5<A, B, C, D, E, T> extends
-    Implementation5<A, B, C, D, E, T>,
-    MultiFnBase<Implementation5<A, B, C, D, E, T>> { }
+export interface MultiFn5<A, B, C, D, E, T>
+    extends Implementation5<A, B, C, D, E, T>,
+        MultiFnBase<Implementation5<A, B, C, D, E, T>> {}
 
-export interface MultiFn5O<A, B, C, D, E, F, T> extends
-    Implementation5O<A, B, C, D, E, F, T>,
-    MultiFnBase<Implementation5O<A, B, C, D, E, F, T>> { }
+export interface MultiFn5O<A, B, C, D, E, F, T>
+    extends Implementation5O<A, B, C, D, E, F, T>,
+        MultiFnBase<Implementation5O<A, B, C, D, E, F, T>> {}
 
-export interface MultiFn6<A, B, C, D, E, F, T> extends
-    Implementation6<A, B, C, D, E, F, T>,
-    MultiFnBase<Implementation6<A, B, C, D, E, F, T>> { }
+export interface MultiFn6<A, B, C, D, E, F, T>
+    extends Implementation6<A, B, C, D, E, F, T>,
+        MultiFnBase<Implementation6<A, B, C, D, E, F, T>> {}
 
-export interface MultiFn6O<A, B, C, D, E, F, G, T> extends
-    Implementation6O<A, B, C, D, E, F, G, T>,
-    MultiFnBase<Implementation6O<A, B, C, D, E, F, G, T>> { }
+export interface MultiFn6O<A, B, C, D, E, F, G, T>
+    extends Implementation6O<A, B, C, D, E, F, G, T>,
+        MultiFnBase<Implementation6O<A, B, C, D, E, F, G, T>> {}
 
-export interface MultiFn7<A, B, C, D, E, F, G, T> extends
-    Implementation7<A, B, C, D, E, F, G, T>,
-    MultiFnBase<Implementation7<A, B, C, D, E, F, G, T>> { }
+export interface MultiFn7<A, B, C, D, E, F, G, T>
+    extends Implementation7<A, B, C, D, E, F, G, T>,
+        MultiFnBase<Implementation7<A, B, C, D, E, F, G, T>> {}
 
-export interface MultiFn7O<A, B, C, D, E, F, G, H, T> extends
-    Implementation7O<A, B, C, D, E, F, G, H, T>,
-    MultiFnBase<Implementation7O<A, B, C, D, E, F, G, H, T>> { }
+export interface MultiFn7O<A, B, C, D, E, F, G, H, T>
+    extends Implementation7O<A, B, C, D, E, F, G, H, T>,
+        MultiFnBase<Implementation7O<A, B, C, D, E, F, G, H, T>> {}
 
-export interface MultiFn8<A, B, C, D, E, F, G, H, T> extends
-    Implementation8<A, B, C, D, E, F, G, H, T>,
-    MultiFnBase<Implementation8<A, B, C, D, E, F, G, H, T>> { }
+export interface MultiFn8<A, B, C, D, E, F, G, H, T>
+    extends Implementation8<A, B, C, D, E, F, G, H, T>,
+        MultiFnBase<Implementation8<A, B, C, D, E, F, G, H, T>> {}
 
-export interface MultiFn8O<A, B, C, D, E, F, G, H, I, T> extends
-    Implementation8O<A, B, C, D, E, F, G, H, I, T>,
-    MultiFnBase<Implementation8O<A, B, C, D, E, F, G, H, I, T>> { }
+export interface MultiFn8O<A, B, C, D, E, F, G, H, I, T>
+    extends Implementation8O<A, B, C, D, E, F, G, H, I, T>,
+        MultiFnBase<Implementation8O<A, B, C, D, E, F, G, H, I, T>> {}
 
 export type AncestorDefs = IObjectOf<Iterable<PropertyKey>>;
 
@@ -196,29 +336,81 @@ export type AncestorDefs = IObjectOf<Iterable<PropertyKey>>;
  * successful.
  */
 export function defmulti<T>(f: DispatchFn, rels?: AncestorDefs): MultiFn<T>;
-export function defmulti<A, T>(f: DispatchFn1<A>, rels?: AncestorDefs): MultiFn1<A, T>;
-export function defmulti<A, B, T>(f: DispatchFn2<A, B>, rels?: AncestorDefs): MultiFn2<A, B, T>;
-export function defmulti<A, B, T>(f: DispatchFn1O<A, B>, rels?: AncestorDefs): MultiFn1O<A, B, T>;
-export function defmulti<A, B, C, T>(f: DispatchFn3<A, B, C>, rels?: AncestorDefs): MultiFn3<A, B, C, T>;
-export function defmulti<A, B, C, T>(f: DispatchFn2O<A, B, C>, rels?: AncestorDefs): MultiFn2O<A, B, C, T>;
-export function defmulti<A, B, C, D, T>(f: DispatchFn4<A, B, C, D>, rels?: AncestorDefs): MultiFn4<A, B, C, D, T>;
-export function defmulti<A, B, C, D, T>(f: DispatchFn3O<A, B, C, D>, rels?: AncestorDefs): MultiFn3O<A, B, C, D, T>;
-export function defmulti<A, B, C, D, E, T>(f: DispatchFn5<A, B, C, D, E>, rels?: AncestorDefs): MultiFn5<A, B, C, D, E, T>;
-export function defmulti<A, B, C, D, E, T>(f: DispatchFn4O<A, B, C, D, E>, rels?: AncestorDefs): MultiFn4O<A, B, C, D, E, T>;
-export function defmulti<A, B, C, D, E, F, T>(f: DispatchFn6<A, B, C, D, E, F>, rels?: AncestorDefs): MultiFn6<A, B, C, D, E, F, T>;
-export function defmulti<A, B, C, D, E, F, T>(f: DispatchFn5O<A, B, C, D, E, F>, rels?: AncestorDefs): MultiFn5O<A, B, C, D, E, F, T>;
-export function defmulti<A, B, C, D, E, F, G, T>(f: DispatchFn7<A, B, C, D, E, F, G>, rels?: AncestorDefs): MultiFn7<A, B, C, D, E, F, G, T>;
-export function defmulti<A, B, C, D, E, F, G, T>(f: DispatchFn6O<A, B, C, D, E, F, G>, rels?: AncestorDefs): MultiFn6O<A, B, C, D, E, F, G, T>;
-export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn8<A, B, C, D, E, F, G, H>, rels?: AncestorDefs): MultiFn8<A, B, C, D, E, F, G, H, T>;
-export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn7O<A, B, C, D, E, F, G, H>, rels?: AncestorDefs): MultiFn7O<A, B, C, D, E, F, G, H, T>;
-export function defmulti<A, B, C, D, E, F, G, H, I, T>(f: DispatchFn8O<A, B, C, D, E, F, G, H, I>, rels?: AncestorDefs): MultiFn8O<A, B, C, D, E, F, G, H, I, T>;
+export function defmulti<A, T>(
+    f: DispatchFn1<A>,
+    rels?: AncestorDefs
+): MultiFn1<A, T>;
+export function defmulti<A, B, T>(
+    f: DispatchFn2<A, B>,
+    rels?: AncestorDefs
+): MultiFn2<A, B, T>;
+export function defmulti<A, B, T>(
+    f: DispatchFn1O<A, B>,
+    rels?: AncestorDefs
+): MultiFn1O<A, B, T>;
+export function defmulti<A, B, C, T>(
+    f: DispatchFn3<A, B, C>,
+    rels?: AncestorDefs
+): MultiFn3<A, B, C, T>;
+export function defmulti<A, B, C, T>(
+    f: DispatchFn2O<A, B, C>,
+    rels?: AncestorDefs
+): MultiFn2O<A, B, C, T>;
+export function defmulti<A, B, C, D, T>(
+    f: DispatchFn4<A, B, C, D>,
+    rels?: AncestorDefs
+): MultiFn4<A, B, C, D, T>;
+export function defmulti<A, B, C, D, T>(
+    f: DispatchFn3O<A, B, C, D>,
+    rels?: AncestorDefs
+): MultiFn3O<A, B, C, D, T>;
+export function defmulti<A, B, C, D, E, T>(
+    f: DispatchFn5<A, B, C, D, E>,
+    rels?: AncestorDefs
+): MultiFn5<A, B, C, D, E, T>;
+export function defmulti<A, B, C, D, E, T>(
+    f: DispatchFn4O<A, B, C, D, E>,
+    rels?: AncestorDefs
+): MultiFn4O<A, B, C, D, E, T>;
+export function defmulti<A, B, C, D, E, F, T>(
+    f: DispatchFn6<A, B, C, D, E, F>,
+    rels?: AncestorDefs
+): MultiFn6<A, B, C, D, E, F, T>;
+export function defmulti<A, B, C, D, E, F, T>(
+    f: DispatchFn5O<A, B, C, D, E, F>,
+    rels?: AncestorDefs
+): MultiFn5O<A, B, C, D, E, F, T>;
+export function defmulti<A, B, C, D, E, F, G, T>(
+    f: DispatchFn7<A, B, C, D, E, F, G>,
+    rels?: AncestorDefs
+): MultiFn7<A, B, C, D, E, F, G, T>;
+export function defmulti<A, B, C, D, E, F, G, T>(
+    f: DispatchFn6O<A, B, C, D, E, F, G>,
+    rels?: AncestorDefs
+): MultiFn6O<A, B, C, D, E, F, G, T>;
+export function defmulti<A, B, C, D, E, F, G, H, T>(
+    f: DispatchFn8<A, B, C, D, E, F, G, H>,
+    rels?: AncestorDefs
+): MultiFn8<A, B, C, D, E, F, G, H, T>;
+export function defmulti<A, B, C, D, E, F, G, H, T>(
+    f: DispatchFn7O<A, B, C, D, E, F, G, H>,
+    rels?: AncestorDefs
+): MultiFn7O<A, B, C, D, E, F, G, H, T>;
+export function defmulti<A, B, C, D, E, F, G, H, I, T>(
+    f: DispatchFn8O<A, B, C, D, E, F, G, H, I>,
+    rels?: AncestorDefs
+): MultiFn8O<A, B, C, D, E, F, G, H, I, T>;
 export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
     const impls: IObjectOf<Implementation<T>> = {};
-    const rels: IObjectOf<Set<PropertyKey>> = ancestors ? makeRels(ancestors) : {};
+    const rels: IObjectOf<Set<PropertyKey>> = ancestors
+        ? makeRels(ancestors)
+        : {};
     const fn: any = (...args) => {
         const id = f(...args);
         const g = impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
-        return g ? g(...args) : unsupported(`missing implementation for: "${id.toString()}"`);
+        return g
+            ? g(...args)
+            : unsupported(`missing implementation for: "${id.toString()}"`);
     };
     fn.add = (id: PropertyKey, g: Implementation<T>) => {
         if (impls[<any>id]) return false;
@@ -239,7 +431,11 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
     };
     fn.callable = (...args: any[]) => {
         const id = f(...args);
-        return !!(impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT]);
+        return !!(
+            impls[id] ||
+            findImpl(impls, rels, id) ||
+            impls[<any>DEFAULT]
+        );
     };
     fn.isa = (id: PropertyKey, parent: PropertyKey) => {
         let val = rels[<any>id];
@@ -256,9 +452,10 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
     };
     fn.rels = () => rels;
     fn.parents = (id: PropertyKey) => rels[<any>id];
-    fn.ancestors = (id: PropertyKey) => new Set<PropertyKey>(findAncestors([], rels, id));
+    fn.ancestors = (id: PropertyKey) =>
+        new Set<PropertyKey>(findAncestors([], rels, id));
     return fn;
-};
+}
 
 const findImpl = (
     impls: IObjectOf<Implementation<any>>,
@@ -268,7 +465,8 @@ const findImpl = (
     const parents = rels[<any>id];
     if (!parents) return;
     for (let p of parents) {
-        let impl: Implementation<any> = impls[<any>p] || findImpl(impls, rels, p)
+        let impl: Implementation<any> =
+            impls[<any>p] || findImpl(impls, rels, p);
         if (impl) return impl;
     }
 };
@@ -288,15 +486,14 @@ const findAncestors = (
     return acc;
 };
 
-const makeRels =
-    (spec: AncestorDefs) => {
-        const rels: IObjectOf<Set<PropertyKey>> = {};
-        for (let k in spec) {
-            const val = spec[k];
-            rels[k] = val instanceof Set ? val : new Set(val);
-        }
-        return rels;
-    };
+const makeRels = (spec: AncestorDefs) => {
+    const rels: IObjectOf<Set<PropertyKey>> = {};
+    for (let k in spec) {
+        const val = spec[k];
+        rels[k] = val instanceof Set ? val : new Set(val);
+    }
+    return rels;
+};
 
 /**
  * Returns a multi-dispatch function which delegates to one of the
@@ -405,7 +602,8 @@ export const implementations = (
     rels: IObjectOf<MultiFn<any>[]>,
     ...impls: (MultiFn<any> | Implementation<any>)[]
 ) => {
-    (impls.length & 1) && illegalArgs("expected an even number of implementation items");
+    impls.length & 1 &&
+        illegalArgs("expected an even number of implementation items");
     if (rels) {
         for (let parent in rels) {
             for (let fn of rels[parent]) {

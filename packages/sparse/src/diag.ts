@@ -6,7 +6,6 @@ import { SparseVec } from "./vec";
 import { NzEntry } from "./api";
 
 export class Diag extends ASparseMatrix {
-
     static identity(m: number) {
         return new Diag(new Array(m).fill(1));
     }
@@ -35,7 +34,8 @@ export class Diag extends ASparseMatrix {
     }
 
     setAt(m: number, n: number, v: number, safe = true) {
-        safe && assert(m === n && m >= 0 && m < this.m, `invalid index: ${m},${n}`);
+        safe &&
+            assert(m === n && m >= 0 && m < this.m, `invalid index: ${m},${n}`);
         this.data.setAt(m, v, false);
         return this;
     }

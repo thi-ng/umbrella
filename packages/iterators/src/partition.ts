@@ -2,7 +2,12 @@ import { illegalArgs } from "@thi.ng/errors";
 import { consume } from "./consume";
 import { iterator } from "./iterator";
 
-export function* partition<T>(n: number, step: number, input: Iterable<T>, all = false) {
+export function* partition<T>(
+    n: number,
+    step: number,
+    input: Iterable<T>,
+    all = false
+) {
     if (n < 1) {
         illegalArgs(`invalid partition size: ${n}`);
     }

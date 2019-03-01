@@ -33,7 +33,11 @@ export const bounds = (
         end = t;
     }
     // include multiples of π/2 within [start,end] interval
-    for (let i = roundTo(start, HALF_PI), j = roundTo(end, HALF_PI); i < j; i += HALF_PI) {
+    for (
+        let i = roundTo(start, HALF_PI), j = roundTo(end, HALF_PI);
+        i < j;
+        i += HALF_PI
+    ) {
         inRange(i, start, end) && update(i);
     }
     return [min, max];

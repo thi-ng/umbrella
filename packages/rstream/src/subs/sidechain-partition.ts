@@ -31,11 +31,9 @@ export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,
     pred?: Predicate<B>,
     id?: string
-): Subscription<A, A[]> =>
-    new SidechainPartition<A, B>(side, pred, id);
+): Subscription<A, A[]> => new SidechainPartition<A, B>(side, pred, id);
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
-
     sideSub: Subscription<B, B>;
     buf: A[];
 

@@ -32,22 +32,19 @@ import { isReduced, unreduced, ensureReduced } from "../reduced";
  * @see thi.ng/transducers/iter/concat
  * @see thi.ng/transducers/xform/mapcat
  */
-export const cat =
-    <T>(): Transducer<Iterable<T>, T> =>
-        (rfn: Reducer<any, T>) => {
-            const r = rfn[2];
-            return compR(rfn,
-                (acc, x: Iterable<T>) => {
-                    if (x) {
-                        for (let y of unreduced(x)) {
-                            acc = r(acc, y);
-                            if (isReduced(acc)) {
-                                break;
-                            }
-                        }
-                    }
-                    return isReduced(x) ?
-                        ensureReduced(acc) :
-                        acc;
-                });
-        };
+export const cat = <T>(): Transducer<Iterable<T>, T> => (
+    rfn: Reducer<any, T>
+) => {
+    const r = rfn[2];
+    return compR(rfn, (acc, x: Iterable<T>) => {
+        if (x) {
+            for (let y of unreduced(x)) {
+                acc = r(acc, y);
+                if (isReduced(acc)) {
+                    break;
+                }
+            }
+        }
+        return isReduced(x) ? ensureReduced(acc) : acc;
+    });
+};

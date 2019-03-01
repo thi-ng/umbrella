@@ -7,6 +7,5 @@ import { mulV33 } from "./internal/matrix-ops";
  * @param out
  * @param src
  */
-export const xyzaRgba =
-    (out: Color, src: ReadonlyColor) =>
-        mulV33(out || src, XYZ_RGB, src);
+export const xyzaRgba = (out: Color, src: ReadonlyColor) =>
+    mulV33(out || src, XYZ_RGB, src);

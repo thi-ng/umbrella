@@ -7,5 +7,4 @@ import { ReadonlyMat } from "./api";
  *
  * @param m
  */
-export const trace =
-    (m: ReadonlyMat) => sum(diag([], m));
+export const trace = (m: ReadonlyMat) => sum(diag([], m));

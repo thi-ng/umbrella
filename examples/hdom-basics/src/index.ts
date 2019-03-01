@@ -7,7 +7,7 @@ const greeter = (_, name) => ["h1.title", "hello ", name];
 
 // component w/ local state
 const counter = (i = 0) => {
-    return () => ["button", { onclick: () => (i++) }, `clicks: ${i}`];
+    return () => ["button", { onclick: () => i++ }, `clicks: ${i}`];
 };
 
 const app = () => {

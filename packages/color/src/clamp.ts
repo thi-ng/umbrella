@@ -13,15 +13,14 @@ import { ensureHue } from "./internal/ensure-hue";
  * @param src
  * @param alpha
  */
-export const clamp =
-    (out: Color, src: ReadonlyColor, alpha = 1) =>
-        setC4(
-            out || src,
-            clamp01(src[0]),
-            clamp01(src[1]),
-            clamp01(src[2]),
-            ensureAlpha(src[3], alpha)
-        );
+export const clamp = (out: Color, src: ReadonlyColor, alpha = 1) =>
+    setC4(
+        out || src,
+        clamp01(src[0]),
+        clamp01(src[1]),
+        clamp01(src[2]),
+        ensureAlpha(src[3], alpha)
+    );
 
 /**
  * Similar to `clamp`, but calls `ensureHue()` to fold (instead of
@@ -31,12 +30,11 @@ export const clamp =
  * @param src
  * @param alpha
  */
-export const clampH =
-    (out: Color, src: ReadonlyColor, alpha = 1) =>
-        setC4(
-            out || src,
-            ensureHue(src[0]),
-            clamp01(src[1]),
-            clamp01(src[2]),
-            ensureAlpha(src[3], alpha)
-        );
+export const clampH = (out: Color, src: ReadonlyColor, alpha = 1) =>
+    setC4(
+        out || src,
+        ensureHue(src[0]),
+        clamp01(src[1]),
+        clamp01(src[2]),
+        ensureAlpha(src[3], alpha)
+    );

@@ -5,11 +5,8 @@ import { ARandom, ISeedable } from "./api";
 
 const DEFAULT_SEED = 0xdecafbad;
 
-export class XsAdd extends ARandom implements
-    IBuffered<Uint32Array>,
-    ICopy<XsAdd>,
-    ISeedable<number> {
-
+export class XsAdd extends ARandom
+    implements IBuffered<Uint32Array>, ICopy<XsAdd>, ISeedable<number> {
     buffer: Uint32Array;
 
     constructor(seed: number = DEFAULT_SEED) {
@@ -33,7 +30,7 @@ export class XsAdd extends ARandom implements
         s.set([seed, 0, 0, 0]);
         for (let j = 0, i = 1; i < 8; j = i++) {
             let x = (s[j & 3] ^ (s[j & 3] >>> 30)) >>> 0;
-            x = (((0x8965 * x) + (((0x6c07 * x) & 0xffff) << 16))) >>> 0;
+            x = (0x8965 * x + (((0x6c07 * x) & 0xffff) << 16)) >>> 0;
             s[i & 3] ^= (i + x) >>> 0;
         }
         return this;

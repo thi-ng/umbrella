@@ -9,7 +9,12 @@
  * @param type
  * @param expire
  */
-export function download(name: string, src: string, type = "image/svg", expire = 10000) {
+export function download(
+    name: string,
+    src: string,
+    type = "image/svg",
+    expire = 10000
+) {
     const blob = new Blob([src], { type });
     const uri = URL.createObjectURL(blob);
     const a = document.createElement("a");

@@ -1,4 +1,8 @@
-import { isArray as isa, isNotStringAndIterable as isi, isPlainObject as iso } from "@thi.ng/checks";
+import {
+    isArray as isa,
+    isNotStringAndIterable as isi,
+    isPlainObject as iso
+} from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup";
 import { HDOMOpts } from "./api";
@@ -34,34 +38,38 @@ const isPlainObject = iso;
  * @param spec
  * @param keys
  */
-export const normalizeElement =
-    (spec: any[], keys: boolean) => {
-        let tag = spec[0], hasAttribs = isPlainObject(spec[1]), match, id, clazz, attribs;
-        if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
-            illegalArgs(`${tag} is not a valid tag name`);
+export const normalizeElement = (spec: any[], keys: boolean) => {
+    let tag = spec[0],
+        hasAttribs = isPlainObject(spec[1]),
+        match,
+        id,
+        clazz,
+        attribs;
+    if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
+        illegalArgs(`${tag} is not a valid tag name`);
+    }
+    // return orig if already normalized and satisfies key requirement
+    if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
+        return spec;
+    }
+    attribs = hasAttribs ? { ...spec[1] } : {};
+    id = match[2];
+    clazz = match[3];
+    if (id) {
+        attribs.id = id;
+    }
+    if (clazz) {
+        clazz = clazz.replace(/\./g, " ");
+        if (attribs.class) {
+            attribs.class += " " + clazz;
+        } else {
+            attribs.class = clazz;
         }
-        // return orig if already normalized and satisfies key requirement
-        if (tag === match[1] && hasAttribs && (!keys || spec[1].key)) {
-            return spec;
-        }
-        attribs = hasAttribs ? { ...spec[1] } : {};
-        id = match[2];
-        clazz = match[3];
-        if (id) {
-            attribs.id = id;
-        }
-        if (clazz) {
-            clazz = clazz.replace(/\./g, " ");
-            if (attribs.class) {
-                attribs.class += " " + clazz;
-            } else {
-                attribs.class = clazz;
-            }
-        }
-        return attribs.__skip && spec.length < 3 ?
-            [match[1], attribs, ""] :
-            [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
-    };
+    }
+    return attribs.__skip && spec.length < 3
+        ? [match[1], attribs, ""]
+        : [match[1], attribs, ...spec.slice(hasAttribs ? 2 : 1)];
+};
 
 /**
  * See `HDOMImplementation` interface for further details.
@@ -69,9 +77,15 @@ export const normalizeElement =
  * @param opts
  * @param tree
  */
-export const normalizeTree =
-    (opts: Partial<HDOMOpts>, tree: any) =>
-        _normalizeTree(tree, opts, opts.ctx, [0], opts.keys !== false, opts.span !== false);
+export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
+    _normalizeTree(
+        tree,
+        opts,
+        opts.ctx,
+        [0],
+        opts.keys !== false,
+        opts.span !== false
+    );
 
 const _normalizeTree = (
     tree: any,
@@ -79,8 +93,8 @@ const _normalizeTree = (
     ctx: any,
     path: number[],
     keys: boolean,
-    span: boolean) => {
-
+    span: boolean
+) => {
     if (tree == null) {
         return;
     }
@@ -88,22 +102,42 @@ const _normalizeTree = (
         if (tree.length === 0) {
             return;
         }
-        let norm, nattribs = tree[1], impl;
+        let norm,
+            nattribs = tree[1],
+            impl;
         // if available, use branch-local normalize implementation
-        if (nattribs && (impl = nattribs.__impl) && (impl = impl.normalizeTree)) {
+        if (
+            nattribs &&
+            (impl = nattribs.__impl) &&
+            (impl = impl.normalizeTree)
+        ) {
             return impl(opts, tree);
         }
         const tag = tree[0];
         // use result of function call
         // pass ctx as first arg and remaining array elements as rest args
         if (typeof tag === "function") {
-            return _normalizeTree(tag.apply(null, [ctx, ...tree.slice(1)]), opts, ctx, path, keys, span);
+            return _normalizeTree(
+                tag.apply(null, [ctx, ...tree.slice(1)]),
+                opts,
+                ctx,
+                path,
+                keys,
+                span
+            );
         }
         // component object w/ life cycle methods
         // (render() is the only required hook)
         if (typeof tag.render === "function") {
             const args = [ctx, ...tree.slice(1)];
-            norm = _normalizeTree(tag.render.apply(tag, args), opts, ctx, path, keys, span);
+            norm = _normalizeTree(
+                tag.render.apply(tag, args),
+                opts,
+                ctx,
+                path,
+                keys,
+                span
+            );
             if (isArray(norm)) {
                 (<any>norm).__this = tag;
                 (<any>norm).__init = tag.init;
@@ -128,16 +162,33 @@ const _normalizeTree = (
                 let el = norm[i];
                 if (el != null) {
                     const isarray = isArray(el);
-                    if ((isarray && isArray(el[0])) || (!isarray && isNotStringAndIterable(el))) {
+                    if (
+                        (isarray && isArray(el[0])) ||
+                        (!isarray && isNotStringAndIterable(el))
+                    ) {
                         for (let c of el) {
-                            c = _normalizeTree(c, opts, ctx, path.concat(k), keys, span);
+                            c = _normalizeTree(
+                                c,
+                                opts,
+                                ctx,
+                                path.concat(k),
+                                keys,
+                                span
+                            );
                             if (c !== undefined) {
                                 res[j++] = c;
                             }
                             k++;
                         }
                     } else {
-                        el = _normalizeTree(el, opts, ctx, path.concat(k), keys, span);
+                        el = _normalizeTree(
+                            el,
+                            opts,
+                            ctx,
+                            path.concat(k),
+                            keys,
+                            span
+                        );
                         if (el !== undefined) {
                             res[j++] = el;
                         }
@@ -153,12 +204,19 @@ const _normalizeTree = (
         return _normalizeTree(tree(ctx), opts, ctx, path, keys, span);
     }
     if (typeof tree.toHiccup === "function") {
-        return _normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span);
+        return _normalizeTree(
+            tree.toHiccup(opts.ctx),
+            opts,
+            ctx,
+            path,
+            keys,
+            span
+        );
     }
     if (typeof tree.deref === "function") {
         return _normalizeTree(tree.deref(), opts, ctx, path, keys, span);
     }
-    return span ?
-        ["span", keys ? { key: path.join("-") } : {}, tree.toString()] :
-        tree.toString();
+    return span
+        ? ["span", keys ? { key: path.join("-") } : {}, tree.toString()]
+        : tree.toString();
 };

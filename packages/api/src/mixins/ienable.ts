@@ -13,7 +13,6 @@ import { mixin } from "../mixin";
  * respective events.
  */
 export const IEnableMixin = mixin(<IEnable<any>>{
-
     _enabled: true,
 
     isEnabled() {
@@ -38,5 +37,4 @@ export const IEnableMixin = mixin(<IEnable<any>>{
         this._enabled ? this.disable() : this.enable();
         return this._enabled;
     }
-
 });

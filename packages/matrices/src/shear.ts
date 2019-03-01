@@ -1,11 +1,9 @@
 import { Mat, MatOp1 } from "./api";
 import { identity33, identity44, identity23, identity22 } from "./identity";
 
-const $ =
-    (f: MatOp1) =>
-        (i: number) =>
-            (m: Mat, x: number) =>
-                (f(m), m[i] = x, m);
+const $ = (f: MatOp1) => (i: number) => (m: Mat, x: number) => (
+    f(m), (m[i] = x), m
+);
 
 const $22 = $(identity22);
 const $23 = $(identity23);

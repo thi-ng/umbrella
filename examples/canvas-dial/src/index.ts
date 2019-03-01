@@ -10,12 +10,12 @@ export const ctx = {
     streams: {
         a: stream<number>(),
         b: stream<number>(),
-        c: stream<number>(),
+        c: stream<number>()
     },
     // component styling
     ui: {
         root: { class: "vh-100 flex justify-center items-center" },
-        dial: { width: 100, height: 100, class: "pointer ma1" },
+        dial: { width: 100, height: 100, class: "pointer ma1" }
     }
 };
 
@@ -40,7 +40,11 @@ const app = () => {
         r1: 0.66,
         base: -Math.PI / 2,
         gap: Math.PI / 2,
-        color: { from: [0, 0], to: [1, 0.75], stops: [[0, "#00f"], [0.5, "#f60"], [1, "#ff0"]] },
+        color: {
+            from: [0, 0],
+            to: [1, 0.75],
+            stops: [[0, "#00f"], [0.5, "#f60"], [1, "#ff0"]]
+        },
         font: "20px Menlo",
         label: (x) => percent(1)(x),
         onchange: (x) => ctx.streams.b.next(x)
@@ -53,12 +57,13 @@ const app = () => {
         label: (x) => percent(2)(x),
         onchange: (x) => ctx.streams.c.next(x)
     });
-    return ({ a, b, c }) =>
-        ["div", ctx.ui.root,
-            [dialA, ctx.ui.dial, a],
-            [dialB, ctx.ui.dial, b],
-            [dialC, ctx.ui.dial, c]
-        ];
+    return ({ a, b, c }) => [
+        "div",
+        ctx.ui.root,
+        [dialA, ctx.ui.dial, a],
+        [dialB, ctx.ui.dial, b],
+        [dialC, ctx.ui.dial, c]
+    ];
 };
 
 // stream combinator & reactive DOM update

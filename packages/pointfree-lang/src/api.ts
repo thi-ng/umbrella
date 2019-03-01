@@ -28,8 +28,8 @@ export const enum NodeType {
     OBJ,
 
     COMMENT,
-    STACK_COMMENT,
-};
+    STACK_COMMENT
+}
 
 /**
  * Reverse lookup for `NodeType` enums
@@ -44,9 +44,9 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     ">r2": pf.movdr2,
     "r>": pf.movrd,
     "r2>": pf.movrd2,
-    "if": pf.condq,
-    "switch": pf.casesq,
-    "while": pf.loopq,
+    if: pf.condq,
+    switch: pf.casesq,
+    while: pf.loopq,
     "+": pf.add,
     "-": pf.sub,
     "*": pf.mul,
@@ -65,9 +65,9 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "neg?": pf.isneg,
     "nil?": pf.isnull,
     "zero?": pf.iszero,
-    "pi": pf.push(Math.PI),
-    "tau": pf.push(2 * Math.PI),
+    pi: pf.push(Math.PI),
+    tau: pf.push(2 * Math.PI),
     ".": pf.print,
     ".s": pf.printds,
-    ".r": pf.printrs,
+    ".r": pf.printrs
 };

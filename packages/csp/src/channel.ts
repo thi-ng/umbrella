@@ -21,9 +21,7 @@ import {
 } from "./api";
 import { FixedBuffer } from "./buffer";
 
-export class Channel<T> implements
-    IReadWriteableChannel<T> {
-
+export class Channel<T> implements IReadWriteableChannel<T> {
     static constantly<T>(x: T, delay?: number) {
         const chan = new Channel<T>(delay ? <any>delayed(delay) : null);
         chan.produce(() => x);
@@ -44,10 +42,18 @@ export class Channel<T> implements
     static range(to: number): Channel<number>;
     static range(from: number, to: number): Channel<number>;
     static range(from: number, to: number, step: number): Channel<number>;
-    static range(from: number, to: number, step: number, delay: number): Channel<number>;
+    static range(
+        from: number,
+        to: number,
+        step: number,
+        delay: number
+    ): Channel<number>;
     static range(...args: any[]) {
         const [from, to, step, delay] = args;
-        return Channel.from(range(from, to, step), delay !== undefined ? <any>delayed(delay) : null);
+        return Channel.from(
+            range(from, to, step),
+            delay !== undefined ? <any>delayed(delay) : null
+        );
     }
 
     /**
@@ -83,7 +89,8 @@ export class Channel<T> implements
                 await chan.write(x);
                 await chan.close();
                 return x;
-            })());
+            })()
+        );
         return chan;
     }
 
@@ -151,7 +158,12 @@ export class Channel<T> implements
      * @param close
      * @param named
      */
-    static merge(chans: Channel<any>[], out?: Channel<any>, close = true, named = false) {
+    static merge(
+        chans: Channel<any>[],
+        out?: Channel<any>,
+        close = true,
+        named = false
+    ) {
         out = out || new Channel<any>();
         (async () => {
             while (true) {
@@ -159,7 +171,7 @@ export class Channel<T> implements
                 if (x === undefined) {
                     chans.splice(chans.indexOf(ch), 1);
                     if (!chans.length) {
-                        close && await out.close();
+                        close && (await out.close());
                         break;
                     }
                 } else {
@@ -206,7 +218,12 @@ export class Channel<T> implements
      * @param closeOnFirst
      * @param closeOutput
      */
-    static mergeTuples(chans: Channel<any>[], out?: Channel<any>, closeOnFirst = true, closeOutput = true) {
+    static mergeTuples(
+        chans: Channel<any>[],
+        out?: Channel<any>,
+        closeOnFirst = true,
+        closeOutput = true
+    ) {
         out = out || new Channel<any>();
         (async () => {
             let buf = [];
@@ -231,7 +248,7 @@ export class Channel<T> implements
                     sel = new Set(chans);
                 }
             }
-            closeOutput && await out.close();
+            closeOutput && (await out.close());
         })();
         return out;
     }
@@ -239,9 +256,8 @@ export class Channel<T> implements
     static MAX_WRITES = 1024;
     static NEXT_ID = 0;
 
-    static SCHEDULE = typeof setImmediate === "function" ?
-        setImmediate :
-        setTimeout;
+    static SCHEDULE =
+        typeof setImmediate === "function" ? setImmediate : setTimeout;
 
     private static RFN: Reducer<DCons<any>, any> = [
         () => null,
@@ -270,7 +286,12 @@ export class Channel<T> implements
     constructor(id: string, tx: Transducer<any, T>);
     constructor(id: string, tx: Transducer<any, T>, err: ErrorHandler);
     constructor(id: string, buf: number | IBuffer<T>, tx: Transducer<any, T>);
-    constructor(id: string, buf: number | IBuffer<T>, tx: Transducer<any, T>, err: ErrorHandler);
+    constructor(
+        id: string,
+        buf: number | IBuffer<T>,
+        tx: Transducer<any, T>,
+        err: ErrorHandler
+    );
     constructor(...args: any[]) {
         let id, buf, tx, err;
         let [a, b] = args;
@@ -333,22 +354,26 @@ export class Channel<T> implements
             }
             if (this.writes.length < Channel.MAX_WRITES) {
                 this.writes.push({
-                    value: this.tx ?
-                        async () => {
-                            try {
-                                if (isReduced(this.tx[2](this.txbuf, value))) {
-                                    this.state = State.CLOSED;
-                                }
-                            } catch (e) {
-                                this.onerror(e, this, value);
-                            }
-                        } :
-                        () => value,
+                    value: this.tx
+                        ? async () => {
+                              try {
+                                  if (
+                                      isReduced(this.tx[2](this.txbuf, value))
+                                  ) {
+                                      this.state = State.CLOSED;
+                                  }
+                              } catch (e) {
+                                  this.onerror(e, this, value);
+                              }
+                          }
+                        : () => value,
                     resolve
                 });
                 this.process();
             } else {
-                throw new Error(`channel stalled (${Channel.MAX_WRITES} unprocessed writes)`);
+                throw new Error(
+                    `channel stalled (${Channel.MAX_WRITES} unprocessed writes)`
+                );
             }
         });
     }
@@ -364,8 +389,11 @@ export class Channel<T> implements
     }
 
     tryRead(timeout = 1000) {
-        return new Promise(resolve => {
-            (async () => resolve((await Channel.select([this, Channel.timeout(timeout)]))[0]))();
+        return new Promise((resolve) => {
+            (async () =>
+                resolve(
+                    (await Channel.select([this, Channel.timeout(timeout)]))[0]
+                ))();
         });
     }
 
@@ -382,16 +410,17 @@ export class Channel<T> implements
     }
 
     isReadable() {
-        return this.state !== State.DONE &&
-            (this.buf && this.buf.length > 0) ||
+        return (
+            (this.state !== State.DONE && (this.buf && this.buf.length > 0)) ||
             (this.writes && this.writes.length > 0) ||
-            (this.txbuf && this.txbuf.length > 0);
+            (this.txbuf && this.txbuf.length > 0)
+        );
     }
 
     consume<T>(fn: (x: T) => any = (x: T) => console.log(this.id, ":", x)) {
         return (async () => {
             let x;
-            while ((x = null, x = await this.read()) !== undefined) {
+            while (((x = null), (x = await this.read())) !== undefined) {
                 await fn(x);
             }
             console.log(this.id, "done");
@@ -403,7 +432,7 @@ export class Channel<T> implements
             while (!this.isClosed()) {
                 const val = await fn();
                 if (val === undefined) {
-                    close && await this.close();
+                    close && (await this.close());
                     break;
                 }
                 await this.write(val);
@@ -411,7 +440,9 @@ export class Channel<T> implements
         })();
     }
 
-    consumeWhileReadable(fn: (x: T) => any = (x: T) => console.log(this.id, ":", x)) {
+    consumeWhileReadable(
+        fn: (x: T) => any = (x: T) => console.log(this.id, ":", x)
+    ) {
         return (async () => {
             let x;
             while (this.isReadable()) {
@@ -430,7 +461,7 @@ export class Channel<T> implements
             const [init, complete, reduce] = rfn;
             acc = acc != null ? acc : init();
             let x;
-            while ((x = null, x = await this.read()) !== undefined) {
+            while (((x = null), (x = await this.read())) !== undefined) {
                 acc = <any>reduce(acc, x);
                 if (isReduced(acc)) {
                     acc = (<any>acc).deref();
@@ -441,7 +472,11 @@ export class Channel<T> implements
         })();
     }
 
-    transduce<A, B>(tx: Transducer<T, B>, rfn: Reducer<A, B>, acc?: A): Promise<A> {
+    transduce<A, B>(
+        tx: Transducer<T, B>,
+        rfn: Reducer<A, B>,
+        acc?: A
+    ): Promise<A> {
         return (async () => {
             const _rfn = tx(rfn);
             return unreduced(_rfn[1](await this.reduce(_rfn, acc)));
@@ -456,7 +491,7 @@ export class Channel<T> implements
                 }
                 await this.write(x);
             }
-            close && await this.close();
+            close && (await this.close());
         })();
     }
 
@@ -469,15 +504,21 @@ export class Channel<T> implements
         return dest;
     }
 
-    split<A, B>(pred: Predicate<T>, truthy?: Channel<A>, falsey?: Channel<B>, close = true) {
+    split<A, B>(
+        pred: Predicate<T>,
+        truthy?: Channel<A>,
+        falsey?: Channel<B>,
+        close = true
+    ) {
         if (!(truthy instanceof Channel)) {
             truthy = new Channel<A>(truthy);
         }
         if (!(falsey instanceof Channel)) {
             falsey = new Channel<B>(falsey);
         }
-        this.consume((x: T) => (pred(x) ? truthy : falsey).write(x))
-            .then(() => close && (truthy.close(), falsey.close()));
+        this.consume((x: T) => (pred(x) ? truthy : falsey).write(x)).then(
+            () => close && (truthy.close(), falsey.close())
+        );
         return [truthy, falsey];
     }
 
@@ -486,7 +527,7 @@ export class Channel<T> implements
             for (let c of chans) {
                 await c.consume((x: T) => this.write(x));
             }
-            close && await this.close();
+            close && (await this.close());
         })();
     }
 
@@ -546,7 +587,9 @@ export class Channel<T> implements
                         return;
                     }
                 }
-                doProcess = (reads.length && (txbuf.length || buf.length)) || (writes.length && !buf.isFull());
+                doProcess =
+                    (reads.length && (txbuf.length || buf.length)) ||
+                    (writes.length && !buf.isFull());
             }
             this.isBusy = false;
         }
@@ -564,9 +607,12 @@ export class Channel<T> implements
     }
 }
 
-const defaultErrorHandler =
-    (e: Error, chan: Channel<any>, val?: any) =>
-        console.log(chan.id, "error occurred", e.message, (val !== undefined ? val : ""));
+const defaultErrorHandler = (e: Error, chan: Channel<any>, val?: any) =>
+    console.log(
+        chan.id,
+        "error occurred",
+        e.message,
+        val !== undefined ? val : ""
+    );
 
-const maybeBuffer = (x) =>
-    x instanceof FixedBuffer || typeof x === "number";
+const maybeBuffer = (x) => x instanceof FixedBuffer || typeof x === "number";

@@ -32,9 +32,19 @@ import { partition } from "./partition";
  * @param key sort key lookup
  * @param cmp comparator
  */
-export function partitionSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
-export function partitionSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-export function partitionSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function partitionSort<A, B>(
+    n: number,
+    opts?: Partial<SortOpts<A, B>>
+): Transducer<A, A>;
+export function partitionSort<A, B>(
+    n: number,
+    src: Iterable<A>
+): IterableIterator<A>;
+export function partitionSort<A, B>(
+    n: number,
+    opts: Partial<SortOpts<A, B>>,
+    src: Iterable<A>
+): IterableIterator<A>;
 export function partitionSort<A, B>(...args: any[]): any {
     const iter = $iter(partitionSort, args, iterator);
     if (iter) {
@@ -47,6 +57,8 @@ export function partitionSort<A, B>(...args: any[]): any {
     };
     return comp(
         partition(args[0], true),
-        mapcat((window: A[]) => window.slice().sort((a, b) => compare(key(a), key(b))))
+        mapcat((window: A[]) =>
+            window.slice().sort((a, b) => compare(key(a), key(b)))
+        )
     );
 }

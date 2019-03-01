@@ -23,7 +23,7 @@ export const choices = <T>(
     rnd: IRandom = SYSTEM
 ) =>
     repeatedly(
-        weights ?
-            weightedRandom(ensureArray(choices), weights, rnd) :
-            () => choices[(rnd.float(choices.length) | 0)]
+        weights
+            ? weightedRandom(ensureArray(choices), weights, rnd)
+            : () => choices[rnd.float(choices.length) | 0]
     );

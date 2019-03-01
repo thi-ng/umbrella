@@ -18,46 +18,51 @@ export function cancelableInput(themeCtxPath: Path) {
     let input;
     return {
         init: (el: HTMLElement) => (input = <HTMLElement>el.firstChild).focus(),
-        render: (ctx, args: InputArgs) =>
-            ["span.relative",
-                ["input",
-                    {
-                        ...getIn(ctx, themeCtxPath),
-                        ...args.attribs,
-                        type: "text",
-                        oninput: args.oninput,
-                        onblur: args.onblur,
-                        onkeydown: (e: KeyboardEvent) => {
-                            switch (e.key) {
-                                case "Escape":
-                                    args.oncancel && args.oncancel(e);
-                                    (<HTMLElement>e.target).blur();
-                                    break;
-                                case "Enter":
-                                    // case "Tab":
-                                    args.onconfirm && args.onconfirm(e);
-                                    (<HTMLInputElement>e.target).blur();
-                                    break;
-                                default:
-                            }
-                        },
-                        placeholder: args.placeholder,
-                        value: args.state
+        render: (ctx, args: InputArgs) => [
+            "span.relative",
+            [
+                "input",
+                {
+                    ...getIn(ctx, themeCtxPath),
+                    ...args.attribs,
+                    type: "text",
+                    oninput: args.oninput,
+                    onblur: args.onblur,
+                    onkeydown: (e: KeyboardEvent) => {
+                        switch (e.key) {
+                            case "Escape":
+                                args.oncancel && args.oncancel(e);
+                                (<HTMLElement>e.target).blur();
+                                break;
+                            case "Enter":
+                                // case "Tab":
+                                args.onconfirm && args.onconfirm(e);
+                                (<HTMLInputElement>e.target).blur();
+                                break;
+                            default:
+                        }
                     },
-                ],
-                args.onclear ?
-                    ["a",
-                        {
-                            href: "#",
-                            onclick: (e) => {
-                                e.stopPropagation();
-                                input.focus();
-                                args.onclear(e);
-                            }
-                        },
-                        ["i.absolute.fas.fa-times-circle.gray.f7",
-                            { style: { right: "0.5rem", top: "0.25rem" } }]] :
-                    undefined
-            ]
+                    placeholder: args.placeholder,
+                    value: args.state
+                }
+            ],
+            args.onclear
+                ? [
+                      "a",
+                      {
+                          href: "#",
+                          onclick: (e) => {
+                              e.stopPropagation();
+                              input.focus();
+                              args.onclear(e);
+                          }
+                      },
+                      [
+                          "i.absolute.fas.fa-times-circle.gray.f7",
+                          { style: { right: "0.5rem", top: "0.25rem" } }
+                      ]
+                  ]
+                : undefined
+        ]
     };
 }

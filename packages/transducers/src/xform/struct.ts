@@ -40,14 +40,23 @@ export interface StructField extends Array<any> {
  * @param src
  */
 export function struct<T>(fields: StructField[]): Transducer<any, T>;
-export function struct<T>(fields: StructField[], src: Iterable<any>): IterableIterator<T>;
+export function struct<T>(
+    fields: StructField[],
+    src: Iterable<any>
+): IterableIterator<T>;
 export function struct(fields: StructField[], src?: Iterable<any>): any {
-    return src ?
-        iterator(struct(fields), src) :
-        comp(
-            partitionOf(fields.map((f) => f[1])),
-            partition(fields.length),
-            rename(fields.map((f) => f[0])),
-            mapKeys(fields.reduce((acc, f) => (f[2] ? (acc[f[0]] = f[2], acc) : acc), {}), false)
-        );
+    return src
+        ? iterator(struct(fields), src)
+        : comp(
+              partitionOf(fields.map((f) => f[1])),
+              partition(fields.length),
+              rename(fields.map((f) => f[0])),
+              mapKeys(
+                  fields.reduce(
+                      (acc, f) => (f[2] ? ((acc[f[0]] = f[2]), acc) : acc),
+                      {}
+                  ),
+                  false
+              )
+          );
 }

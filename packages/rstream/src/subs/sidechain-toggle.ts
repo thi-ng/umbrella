@@ -34,15 +34,18 @@ export const sidechainToggle = <A, B>(
     initial = true,
     pred?: Predicate<B>,
     id?: string
-): Subscription<A, A> =>
-    new SidechainToggle(side, initial, pred, id);
+): Subscription<A, A> => new SidechainToggle(side, initial, pred, id);
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
-
     sideSub: Subscription<B, B>;
     isActive: boolean;
 
-    constructor(side: ISubscribable<B>, initial = true, pred?: Predicate<B>, id?: string) {
+    constructor(
+        side: ISubscribable<B>,
+        initial = true,
+        pred?: Predicate<B>,
+        id?: string
+    ) {
         super(null, null, null, id || `sidetoggle-${nextID()}`);
         this.isActive = initial;
         const $this = this;

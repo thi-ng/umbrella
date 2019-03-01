@@ -7,21 +7,35 @@ import { slider, SliderOpts } from "./slider";
 
 export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
     const sliders = specs.map((s) => slider(ctx, s));
-    return ["div", ctx.ui.sidebar,
+    return [
+        "div",
+        ctx.ui.sidebar,
         ["h2.mt0", "Additive synthesis"],
         ...sliders,
-        [buttonGroup,
-            [[ev.UNDO], "undo"],
-            [[ev.REDO], "redo"]],
-        ["div",
+        [buttonGroup, [[ev.UNDO], "undo"], [[ev.REDO], "redo"]],
+        [
+            "div",
             "Undo / Redo can also be triggered via ",
-            ["code", "Ctrl+Z"], " / ", ["code", "Ctrl+Y"],
-            ". The last 1000 edits are stored."],
-        ["div", ctx.ui.footer,
-            [link, "https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform", "Source"],
+            ["code", "Ctrl+Z"],
+            " / ",
+            ["code", "Ctrl+Y"],
+            ". The last 1000 edits are stored."
+        ],
+        [
+            "div",
+            ctx.ui.footer,
+            [
+                link,
+                "https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform",
+                "Source"
+            ],
             ["br"],
             "Made with ",
-            [link, "https://github.com/thi-ng/umbrella/tree/master/packages/hdom", "@thi.ng/hdom"]
+            [
+                link,
+                "https://github.com/thi-ng/umbrella/tree/master/packages/hdom",
+                "@thi.ng/hdom"
+            ]
         ]
     ];
 }

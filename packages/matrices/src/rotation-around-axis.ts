@@ -12,25 +12,29 @@ import { mat33to44 } from "./m33-m44";
  * @param theta
  * @param normalize
  */
-export const rotationAroundAxis33 =
-    (out: Mat, axis: ReadonlyVec, theta: number, normalize = false) => {
-        const [x, y, z] = normalize ? _normalize([], axis) : axis;
-        const s = Math.sin(theta);
-        const c = Math.cos(theta);
-        const t = 1 - c;
-        return setC(
-            out || [],
-            x * x * t + c,
-            y * x * t + z * s,
-            z * x * t - y * s,
-            x * y * t - z * s,
-            y * y * t + c,
-            z * y * t + x * s,
-            x * z * t + y * s,
-            y * z * t - x * s,
-            z * z * t + c
-        );
-    };
+export const rotationAroundAxis33 = (
+    out: Mat,
+    axis: ReadonlyVec,
+    theta: number,
+    normalize = false
+) => {
+    const [x, y, z] = normalize ? _normalize([], axis) : axis;
+    const s = Math.sin(theta);
+    const c = Math.cos(theta);
+    const t = 1 - c;
+    return setC(
+        out || [],
+        x * x * t + c,
+        y * x * t + z * s,
+        z * x * t - y * s,
+        x * y * t - z * s,
+        y * y * t + c,
+        z * y * t + x * s,
+        x * z * t + y * s,
+        y * z * t - x * s,
+        z * z * t + c
+    );
+};
 
 /**
  * Constructs a M44 representing a rotation of `theta` around `axis` and
@@ -42,6 +46,9 @@ export const rotationAroundAxis33 =
  * @param theta
  * @param normalize
  */
-export const rotationAroundAxis44 =
-    (out: Mat, axis: ReadonlyVec, theta: number, normalize = false) =>
-        mat33to44(out, rotationAroundAxis33([], axis, theta, normalize));
+export const rotationAroundAxis44 = (
+    out: Mat,
+    axis: ReadonlyVec,
+    theta: number,
+    normalize = false
+) => mat33to44(out, rotationAroundAxis33([], axis, theta, normalize));

@@ -3,10 +3,7 @@ import { EPS } from "@thi.ng/math";
 import { eqDelta4, values } from "@thi.ng/vectors";
 import { Color, IColor } from "../api";
 
-export abstract class AColor<T extends Color> implements
-    IColor,
-    IDeref<Color> {
-
+export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
     buf: Color;
     offset: number;
     stride: number;

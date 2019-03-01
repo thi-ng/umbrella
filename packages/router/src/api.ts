@@ -8,7 +8,11 @@ import { IID, IObjectOf } from "@thi.ng/api";
  * returned and no other routes can be matched, the router will
  * eventually return the configure default fallback route.
  */
-export type RouteAuthenticator = (route: Route, curr: string[], params: any) => RouteMatch;
+export type RouteAuthenticator = (
+    route: Route,
+    curr: string[],
+    params: any
+) => RouteMatch;
 
 /**
  * Route validator subspecs are optional and used to coerce and/or
@@ -17,7 +21,7 @@ export type RouteAuthenticator = (route: Route, curr: string[], params: any) => 
 export interface RouteParamValidator {
     /**
      * Optional coercion function executed prior to validation.
-    */
+     */
     coerce?: (x: string) => any;
     /**
      * Optional arbitrary value validation. If any validator
@@ -35,7 +39,6 @@ export interface RouteParamValidator {
  * are optional.
  */
 export interface Route extends IID<PropertyKey> {
-
     /**
      * Array of path components. If a value is prefixed with `?` this
      * path component will be captured under that name. E.g.

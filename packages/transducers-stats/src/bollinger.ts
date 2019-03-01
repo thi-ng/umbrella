@@ -29,10 +29,22 @@ export interface BollingerBand {
  * @param sd
  * @param src
  */
-export function bollinger(period?: number, sd?: number): Transducer<number, BollingerBand>;
-export function bollinger(src: Iterable<number>): IterableIterator<BollingerBand>;
-export function bollinger(period: number, src: Iterable<number>): IterableIterator<BollingerBand>;
-export function bollinger(period: number, sd: number, src: Iterable<number>): IterableIterator<BollingerBand>;
+export function bollinger(
+    period?: number,
+    sd?: number
+): Transducer<number, BollingerBand>;
+export function bollinger(
+    src: Iterable<number>
+): IterableIterator<BollingerBand>;
+export function bollinger(
+    period: number,
+    src: Iterable<number>
+): IterableIterator<BollingerBand>;
+export function bollinger(
+    period: number,
+    sd: number,
+    src: Iterable<number>
+): IterableIterator<BollingerBand>;
 export function bollinger(...args: any[]): any {
     const iter = $iter(bollinger, args);
     if (iter) {
@@ -51,4 +63,4 @@ export function bollinger(...args: any[]): any {
             return { min, max, mean, pb };
         })
     );
-};
+}

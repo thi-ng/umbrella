@@ -21,9 +21,7 @@ import {
 } from "./internal/vec-utils";
 import { setS2 } from "./sets";
 
-export class Vec2 extends AVec implements
-    IVector<Vec2> {
-
+export class Vec2 extends AVec implements IVector<Vec2> {
     /**
      * Returns array of memory mapped `Vec2` instances using given
      * backing array and stride settings: The `cstride` is the step size
@@ -38,7 +36,13 @@ export class Vec2 extends AVec implements
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, num: number = buf.length >> 1, start = 0, cstride = 1, estride = 2) {
+    static mapBuffer(
+        buf: Vec,
+        num: number = buf.length >> 1,
+        start = 0,
+        cstride = 1,
+        estride = 2
+    ) {
         return mapBuffer(Vec2, buf, num, start, cstride, estride);
     }
 
@@ -56,11 +60,23 @@ export class Vec2 extends AVec implements
      * @param cstride
      * @param estride
      */
-    static intoBuffer(buf: Vec, src: Iterable<Vec2>, start = 0, cstride = 1, estride = 2) {
+    static intoBuffer(
+        buf: Vec,
+        src: Iterable<Vec2>,
+        start = 0,
+        cstride = 1,
+        estride = 2
+    ) {
         return intoBuffer(setS2, buf, src, start, cstride, estride);
     }
 
-    static iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 2) {
+    static iterator(
+        buf: Vec,
+        num: number,
+        start = 0,
+        cstride = 1,
+        estride = 2
+    ) {
         return vecIterator(Vec2, buf, num, start, cstride, estride);
     }
 
@@ -114,14 +130,11 @@ export class Vec2 extends AVec implements
 
 declareIndices(Vec2.prototype, ["x", "y"]);
 
-export const vec2 =
-    (x = 0, y = 0) => new Vec2([x, y]);
+export const vec2 = (x = 0, y = 0) => new Vec2([x, y]);
 
-export const vec2n =
-    (n: number) => new Vec2([n, n]);
+export const vec2n = (n: number) => new Vec2([n, n]);
 
-export const asVec2 =
-    (x: Vec) =>
-        x instanceof Vec2 ?
-            x :
-            new Vec2(x.length >= 2 ? x : [x[0] || 0, x[1] || 0]);
+export const asVec2 = (x: Vec) =>
+    x instanceof Vec2
+        ? x
+        : new Vec2(x.length >= 2 ? x : [x[0] || 0, x[1] || 0]);

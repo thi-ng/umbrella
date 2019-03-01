@@ -1,20 +1,10 @@
-import {
-    ICopy,
-    IEmpty,
-    IEqualsDelta,
-    ILength,
-} from "@thi.ng/api";
+import { ICopy, IEmpty, IEqualsDelta, ILength } from "@thi.ng/api";
 
-export interface Vec extends
-    Iterable<number>,
-    ILength {
-
+export interface Vec extends Iterable<number>, ILength {
     [id: number]: number;
 }
 
-export interface ReadonlyVec extends
-    Iterable<number>,
-    ILength {
+export interface ReadonlyVec extends Iterable<number>, ILength {
     readonly [id: number]: number;
 }
 
@@ -24,21 +14,20 @@ export interface StridedVec {
     stride: number;
 }
 
-export interface IVector<T> extends
-    Vec,
-    ICopy<T>,
-    ICopyView<T>,
-    IEmpty<T>,
-    IEqualsDelta<T>,
-    StridedVec {
-}
+export interface IVector<T>
+    extends Vec,
+        ICopy<T>,
+        ICopyView<T>,
+        IEmpty<T>,
+        IEqualsDelta<T>,
+        StridedVec {}
 
 export interface ICopyView<T> {
     copyView(): T;
 }
 
 export interface VectorConstructor<T> {
-    new(buf: Vec, offset?: number, stride?: number): T;
+    new (buf: Vec, offset?: number, stride?: number): T;
 }
 
 export interface MultiVecOp<VOP> {
@@ -52,10 +41,28 @@ export type VecOpV = (out: Vec, a: ReadonlyVec) => Vec;
 export type VecOpN = (out: Vec, n: number) => Vec;
 export type VecOpVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => Vec;
 export type VecOpVN = (out: Vec, a: ReadonlyVec, n: number) => Vec;
-export type VecOpVVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => Vec;
-export type VecOpVVN = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n: number) => Vec;
+export type VecOpVVV = (
+    out: Vec,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec
+) => Vec;
+export type VecOpVVN = (
+    out: Vec,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    n: number
+) => Vec;
 export type VecOpVNN = (out: Vec, a: ReadonlyVec, u: number, v: number) => Vec;
-export type VecOpVVVVNN = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec, u: number, v: number) => Vec;
+export type VecOpVVVVNN = (
+    out: Vec,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    d: ReadonlyVec,
+    u: number,
+    v: number
+) => Vec;
 
 export type VecOpVO<T> = (out: Vec, a: ReadonlyVec, b?: T) => Vec;
 export type VecOpOO<A, B> = (out: Vec, a?: A, b?: B) => Vec;
@@ -66,27 +73,65 @@ export type VecOpRoV<T> = (a: ReadonlyVec) => T;
 export type VecOpRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec) => T;
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
-export type VecOpSV = (out: Vec, a: ReadonlyVec, io?: number, ia?: number, so?: number, sa?: number) => Vec;
-export type VecOpSVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, io?: number, ia?: number, ib?: number, so?: number, sa?: number, sb?: number) => Vec;
-export type VecOpSRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec, ia?: number, ib?: number, sa?: number, sb?: number) => T;
+export type VecOpSV = (
+    out: Vec,
+    a: ReadonlyVec,
+    io?: number,
+    ia?: number,
+    so?: number,
+    sa?: number
+) => Vec;
+export type VecOpSVV = (
+    out: Vec,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    io?: number,
+    ia?: number,
+    ib?: number,
+    so?: number,
+    sa?: number,
+    sb?: number
+) => Vec;
+export type VecOpSRoVV<T> = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    ia?: number,
+    ib?: number,
+    sa?: number,
+    sb?: number
+) => T;
 
-export interface MultiVecOpV extends VecOpV, MultiVecOp<VecOpV> { }
-export interface MultiVecOpN extends VecOpN, MultiVecOp<VecOpN> { }
-export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> { }
-export interface MultiVecOpVN extends VecOpVN, MultiVecOp<VecOpVN> { }
-export interface MultiVecOpVVV extends VecOpVVV, MultiVecOp<VecOpVVV> { }
-export interface MultiVecOpVVN extends VecOpVVN, MultiVecOp<VecOpVVN> { }
-export interface MultiVecOpVNN extends VecOpVNN, MultiVecOp<VecOpVNN> { }
-export interface MultiVecOpVVVVNN extends VecOpVVVVNN, MultiVecOp<VecOpVVVVNN> { }
+export interface MultiVecOpV extends VecOpV, MultiVecOp<VecOpV> {}
+export interface MultiVecOpN extends VecOpN, MultiVecOp<VecOpN> {}
+export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> {}
+export interface MultiVecOpVN extends VecOpVN, MultiVecOp<VecOpVN> {}
+export interface MultiVecOpVVV extends VecOpVVV, MultiVecOp<VecOpVVV> {}
+export interface MultiVecOpVVN extends VecOpVVN, MultiVecOp<VecOpVVN> {}
+export interface MultiVecOpVNN extends VecOpVNN, MultiVecOp<VecOpVNN> {}
+export interface MultiVecOpVVVVNN
+    extends VecOpVVVVNN,
+        MultiVecOp<VecOpVVVVNN> {}
 
-export interface MultiVecOpVO<T> extends VecOpVO<T>, MultiVecOp<VecOpVO<T>> { }
-export interface MultiVecOpOO<A, B> extends VecOpOO<A, B>, MultiVecOp<VecOpOO<A, B>> { }
-export interface MultiVecOpOOO<A, B, C> extends VecOpOOO<A, B, C>, MultiVecOp<VecOpOOO<A, B, C>> { }
-export interface MultiVecOpNNO<T> extends VecOpNNO<T>, MultiVecOp<VecOpNNO<T>> { }
+export interface MultiVecOpVO<T> extends VecOpVO<T>, MultiVecOp<VecOpVO<T>> {}
+export interface MultiVecOpOO<A, B>
+    extends VecOpOO<A, B>,
+        MultiVecOp<VecOpOO<A, B>> {}
+export interface MultiVecOpOOO<A, B, C>
+    extends VecOpOOO<A, B, C>,
+        MultiVecOp<VecOpOOO<A, B, C>> {}
+export interface MultiVecOpNNO<T>
+    extends VecOpNNO<T>,
+        MultiVecOp<VecOpNNO<T>> {}
 
-export interface MultiVecOpRoV<T> extends VecOpRoV<T>, MultiVecOp<VecOpRoV<T>> { }
-export interface MultiVecOpRoVV<T> extends VecOpRoVV<T>, MultiVecOp<VecOpRoVV<T>> { }
-export interface MultiVecOpRoVVO<T, O> extends VecOpRoVVO<T, O>, MultiVecOp<VecOpRoVVO<T, O>> { }
+export interface MultiVecOpRoV<T>
+    extends VecOpRoV<T>,
+        MultiVecOp<VecOpRoV<T>> {}
+export interface MultiVecOpRoVV<T>
+    extends VecOpRoVV<T>,
+        MultiVecOp<VecOpRoVV<T>> {}
+export interface MultiVecOpRoVVO<T, O>
+    extends VecOpRoVVO<T, O>,
+        MultiVecOp<VecOpRoVVO<T, O>> {}
 
 const mi = -Infinity;
 const mx = Infinity;

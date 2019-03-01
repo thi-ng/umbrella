@@ -76,8 +76,8 @@ export const mapVV = (
     num: number,
     so = out.length * out.stride,
     sa = a.length * a.stride,
-    sb = b.length * b.stride) => {
-
+    sb = b.length * b.stride
+) => {
     while (num-- > 0) {
         op(out, a, b);
         out.offset += so;
@@ -118,8 +118,8 @@ export const mapV = (
     a: IVector<any>,
     num: number,
     so = out.length * out.stride,
-    sa = a.length * a.stride) => {
-
+    sa = a.length * a.stride
+) => {
     while (num-- > 0) {
         op(out, a);
         out.offset += so;
@@ -147,8 +147,8 @@ export const mapVN = (
     n: number,
     num: number,
     so = out.length * out.stride,
-    sa = a.length * a.stride) => {
-
+    sa = a.length * a.stride
+) => {
     while (num-- > 0) {
         op(out, a, n);
         out.offset += so;
@@ -182,8 +182,8 @@ export const mapVVV = (
     so = out.length * out.stride,
     sa = a.length * a.stride,
     sb = b.length * b.stride,
-    sc = c.length * c.stride) => {
-
+    sc = c.length * c.stride
+) => {
     while (num-- > 0) {
         op(out, a, b, c);
         out.offset += so;
@@ -217,8 +217,8 @@ export const mapVVN = (
     num: number,
     so = out.length * out.stride,
     sa = a.length * a.stride,
-    sb = b.length * b.stride) => {
-
+    sb = b.length * b.stride
+) => {
     while (num-- > 0) {
         op(out, a, b, n);
         out.offset += so;

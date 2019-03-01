@@ -31,17 +31,39 @@ import { $iter, iterator } from "../iterator";
 export function partition<T>(size: number): Transducer<T, T[]>;
 export function partition<T>(size: number, all: boolean): Transducer<T, T[]>;
 export function partition<T>(size: number, step: number): Transducer<T, T[]>;
-export function partition<T>(size: number, step: number, all: boolean): Transducer<T, T[]>;
-export function partition<T>(size: number, src: Iterable<T>): IterableIterator<T[]>;
-export function partition<T>(size: number, all: boolean, src: Iterable<T>): IterableIterator<T[]>;
-export function partition<T>(size: number, step: number, src: Iterable<T>): IterableIterator<T[]>;
-export function partition<T>(size: number, step: number, all: boolean, src: Iterable<T>): IterableIterator<T[]>;
+export function partition<T>(
+    size: number,
+    step: number,
+    all: boolean
+): Transducer<T, T[]>;
+export function partition<T>(
+    size: number,
+    src: Iterable<T>
+): IterableIterator<T[]>;
+export function partition<T>(
+    size: number,
+    all: boolean,
+    src: Iterable<T>
+): IterableIterator<T[]>;
+export function partition<T>(
+    size: number,
+    step: number,
+    src: Iterable<T>
+): IterableIterator<T[]>;
+export function partition<T>(
+    size: number,
+    step: number,
+    all: boolean,
+    src: Iterable<T>
+): IterableIterator<T[]>;
 export function partition<T>(...args: any[]): any {
     const iter = $iter(partition, args, iterator);
     if (iter) {
         return iter;
     }
-    let size = args[0], all, step;
+    let size = args[0],
+        all,
+        step;
     if (typeof args[1] == "number") {
         step = args[1];
         all = args[2];
@@ -75,6 +97,7 @@ export function partition<T>(...args: any[]): any {
                     skip--;
                 }
                 return acc;
-            }];
+            }
+        ];
     };
 }

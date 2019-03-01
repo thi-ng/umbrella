@@ -14,46 +14,70 @@ import {
 // each item in this array is an hdom tree of a single slide
 
 export const SLIDES: any[] = [
-
-    [titlePage, "",
+    [
+        titlePage,
+        "",
         "The Spirit Of Clojure",
-        "Karsten Schmidt", ["br"],
-        [twitterLink, "toxi"], ["br"],
-        [twitterLink, "thing_umbrella"],
+        "Karsten Schmidt",
+        ["br"],
+        [twitterLink, "toxi"],
+        ["br"],
+        [twitterLink, "thing_umbrella"]
     ],
 
-    [titlePage, "bg-dark-red white",
+    [
+        titlePage,
+        "bg-dark-red white",
         "The Advent Spirit Of Clojure",
-        "Karsten Schmidt", ["br"],
-        [twitterLink, "toxi"], ["br"],
-        [twitterLink, "thing_umbrella"],
+        "Karsten Schmidt",
+        ["br"],
+        [twitterLink, "toxi"],
+        ["br"],
+        [twitterLink, "thing_umbrella"]
     ],
 
-    [titlePage, "",
+    [
+        titlePage,
+        "",
         "In The Spirit Of Clojure",
-        "Karsten Schmidt", ["br"],
-        [twitterLink, "toxi"], ["br"],
-        [twitterLink, "thing_umbrella"],
+        "Karsten Schmidt",
+        ["br"],
+        [twitterLink, "toxi"],
+        ["br"],
+        [twitterLink, "thing_umbrella"]
     ],
 
-    [titlePage, "",
+    [
+        titlePage,
+        "",
         "Clojure without Clojure",
-        "Karsten Schmidt", ["br"],
-        [twitterLink, "toxi"], ["br"],
-        [twitterLink, "thing_umbrella"],
+        "Karsten Schmidt",
+        ["br"],
+        [twitterLink, "toxi"],
+        ["br"],
+        [twitterLink, "thing_umbrella"]
     ],
 
-    [titlePage, "",
+    [
+        titlePage,
+        "",
         "Clojurians Anonymous",
-        "Karsten Schmidt", ["br"],
-        [twitterLink, "toxi"], ["br"],
-        [twitterLink, "thing_umbrella"],
+        "Karsten Schmidt",
+        ["br"],
+        [twitterLink, "toxi"],
+        ["br"],
+        [twitterLink, "thing_umbrella"]
     ],
 
-    [contentPage,
+    [
+        contentPage,
         "What brought you to Clojure?",
-        ["small", "Filling in this pre-meeting questionnaire is mandatory! Answers will be reviewed during session."],
-        [list,
+        [
+            "small",
+            "Filling in this pre-meeting questionnaire is mandatory! Answers will be reviewed during session."
+        ],
+        [
+            list,
             "The Joy of...",
             `"Rich" core API / Sequence abstractions`,
             "Concision / Expressiveness",
@@ -62,13 +86,16 @@ export const SLIDES: any[] = [
             "Hosted / x-platform",
             "Amount & clarity of thought",
             "Transducers, core.async, clojure.spec",
-            "Gateway to various awesome tools / concepts",
-        ]],
+            "Gateway to various awesome tools / concepts"
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "What brought you to Clojure?",
         "...also",
-        [list,
+        [
+            list,
             "Rich Hickey (obviously!)",
             "Paul Graham",
             "Chris Houser",
@@ -77,53 +104,72 @@ export const SLIDES: any[] = [
             "Chris Granger",
             "Anthony Grimes (R.I.P.)",
             "Christophe Grand",
-            ["strong", "...all of you!"],
-        ]],
+            ["strong", "...all of you!"]
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Patient file: KS",
         "Pre-meeting notes from therapy session: 2018-12-03",
-        [list,
+        [
+            list,
             "1988 - 1994 : Z80 / 6502 assembly, Forth",
             "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing",
             "1995 - 1997 : Scheme, Common Lisp",
             "2011 - 2017 : Clojure/script, C11, Forth, ARM",
-            "2016 - ...  : TypeScript, C11, Go, Clojurescript",
-        ]],
+            "2016 - ...  : TypeScript, C11, Go, Clojurescript"
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Most formative periods",
         "To help frame discussion during the therapy session...",
-        ["ul",
+        [
+            "ul",
             ["li.transition.red", "1988 - 1994 : Z80 / 6502 assembly, Forth"],
-            ["li", "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing"],
+            [
+                "li",
+                "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing"
+            ],
             ["li", "1995 - 1997 : Scheme, Common Lisp"],
-            ["li.transition.red", "2011 - 2017 : Clojure/script, C11, Forth, ARM"],
-            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"],
-        ]],
+            [
+                "li.transition.red",
+                "2011 - 2017 : Clojure/script, C11, Forth, ARM"
+            ],
+            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"]
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Most formative periods",
         "To help frame discussion during the therapy session...",
-        ["ul",
+        [
+            "ul",
             ["li.transition", "1988 - 1994 : Z80 / 6502 assembly, Forth"],
-            ["li.transition.red", "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing"],
+            [
+                "li.transition.red",
+                "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing"
+            ],
             ["li", "1995 - 1997 : Scheme, Common Lisp"],
             ["li.transition", "2011 - 2017 : Clojure/script, C11, Forth, ARM"],
-            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"],
-        ]],
-
-    [contentPage,
-        "And so it begins..."
+            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"]
+        ]
     ],
+
+    [contentPage, "And so it begins..."],
 
     [imagePage, "bg-black", "./assets/logo-1280.jpg"],
 
     [imagePage, "bg-black", "./assets/timeline.svg"],
 
-    [contentPage,
+    [
+        contentPage,
         "clojure.thi.ng",
-        [list,
+        [
+            list,
             "Started as successor of toxiclibs.org (in 2011)",
             "Grew into collection of ~20 libraries (largely CLJC)",
             "Mostly written in LP-style (org-mode)",
@@ -132,9 +178,9 @@ export const SLIDES: any[] = [
             "Data visualization (SVG / WebGL / rendered)",
             "Declarative WebGL, OpenGL & GPGPU/OpenCL wrappers",
             "Linked data / graph tools, query engines, SPARQL-like DSLs",
-            "Monthly workshops (2015 - 2016)",
-        ]],
-
+            "Monthly workshops (2015 - 2016)"
+        ]
+    ],
 
     [titlePage, "bg-black white", "Exponential Growth"],
 
@@ -142,17 +188,24 @@ export const SLIDES: any[] = [
     [imagePage, "bg-black", "./assets/svo/grapher2.jpg"],
     [imagePage, "bg-black", "./assets/svo/grapher3.jpg"],
 
-    [contentPage,
+    [
+        contentPage,
         "Gyroid formula",
-        [codeBlock, `g(x, y, z) = abs(dot(cos([x y z]), sin([z x y])))`]],
+        [codeBlock, `g(x, y, z) = abs(dot(cos([x y z]), sin([z x y])))`]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Gyroid formula",
-        [codeBlock, `g(x, y, z) = abs(cosx * sinz + cosy * sinx + cosz * siny)`]],
+        [codeBlock, `g(x, y, z) = abs(cosx * sinz + cosy * sinx + cosz * siny)`]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Gyroid formula",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defn cossin
     [a b]
     (* (Math/cos a) (Math/sin b)))
@@ -165,11 +218,15 @@ export const SLIDES: any[] = [
     [[x y z] t]
     "Evaluates gyroid function at point p and subtracts iso threshold t."
     (- (abs-gyroid-sum x y z) t))`
-        ]],
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Gyroid formula",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defn gyroid
     [[x y z] t]
     "Evaluates gyroid function at point p and subtracts iso threshold t."
@@ -177,17 +234,83 @@ export const SLIDES: any[] = [
         (+ (* (Math/cos x) (Math/sin z))
            (* (Math/cos y) (Math/sin x))
            (* (Math/cos z) (Math/sin y))))
-        t))`],
-        "Now evaluate for each XYZ cell in a volumetric grid..."],
+        t))`
+        ],
+        "Now evaluate for each XYZ cell in a volumetric grid..."
+    ],
 
-    [bgImagePage, "bg-black", "./assets/svo/0000.jpg", ["div.f1.gray", "2", ["sup", "3", ["sup", 3]], ["br"], "8 x 8 x 8"]],
-    [bgImagePage, "bg-black", "./assets/svo/0001.jpg", ["div.f1.gray", "2", ["sup", "4", ["sup", 3]], ["br"], "16 x 16 x 16"]],
-    [bgImagePage, "bg-black", "./assets/svo/0002.jpg", ["div.f1.gray", "2", ["sup", "5", ["sup", 3]], ["br"], "32 x 32 x 32"]],
-    [bgImagePage, "bg-black", "./assets/svo/0003.jpg", ["div.f1.gray", "2", ["sup", "6", ["sup", 3]], ["br"], "64 x 64 x 64"]],
-    [bgImagePage, "bg-black", "./assets/svo/0004.jpg", ["div.f1.gray", "2", ["sup", "7", ["sup", 3]], ["br"], "128 x 128 x 128"]],
-    [bgImagePage, "bg-black", "./assets/svo/0005.jpg", ["div.f1.gray", "2", ["sup", "8", ["sup", 3]], ["br"], "256 x 256 x 256"]],
-    [bgImagePage, "bg-black", "./assets/svo/0006.jpg", ["div.f1.gray", "2", ["sup", "9", ["sup", 3]], ["br"], "512 x 512 x 512"]],
-    [bgImagePage, "bg-black", "./assets/svo/0007.jpg", ["div.f1.gray", "2", ["sup", "10", ["sup", 3]], ["br"], "(1+ billion samples!)"]],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0000.jpg",
+        ["div.f1.gray", "2", ["sup", "3", ["sup", 3]], ["br"], "8 x 8 x 8"]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0001.jpg",
+        ["div.f1.gray", "2", ["sup", "4", ["sup", 3]], ["br"], "16 x 16 x 16"]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0002.jpg",
+        ["div.f1.gray", "2", ["sup", "5", ["sup", 3]], ["br"], "32 x 32 x 32"]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0003.jpg",
+        ["div.f1.gray", "2", ["sup", "6", ["sup", 3]], ["br"], "64 x 64 x 64"]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0004.jpg",
+        [
+            "div.f1.gray",
+            "2",
+            ["sup", "7", ["sup", 3]],
+            ["br"],
+            "128 x 128 x 128"
+        ]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0005.jpg",
+        [
+            "div.f1.gray",
+            "2",
+            ["sup", "8", ["sup", 3]],
+            ["br"],
+            "256 x 256 x 256"
+        ]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0006.jpg",
+        [
+            "div.f1.gray",
+            "2",
+            ["sup", "9", ["sup", 3]],
+            ["br"],
+            "512 x 512 x 512"
+        ]
+    ],
+    [
+        bgImagePage,
+        "bg-black",
+        "./assets/svo/0007.jpg",
+        [
+            "div.f1.gray",
+            "2",
+            ["sup", "10", ["sup", 3]],
+            ["br"],
+            "(1+ billion samples!)"
+        ]
+    ],
     [bgImagePage, "bg-black", "./assets/svo/0008.jpg"],
     [bgImagePage, "bg-black", "./assets/svo/0009.jpg"],
     [bgImagePage, "bg-black", "./assets/svo/0010.jpg"],
@@ -216,12 +339,17 @@ export const SLIDES: any[] = [
 
     [imagePage, "bg-black", "./assets/holo/barricelli.jpg"],
 
-    [contentPage,
+    [
+        contentPage,
         "Barricellian reproduction",
-        [link,
+        [
+            link,
             "http://www.chilton-computing.org.uk/acl/literature/books/gamesplaying/p004.htm",
-            "chilton-computing.org.uk/acl/literature/books/gamesplaying/"],
-        [codeBlock, `
+            "chilton-computing.org.uk/acl/literature/books/gamesplaying/"
+        ],
+        [
+            codeBlock,
+            `
 integer array this generation, next generation [1 :512];
 begin
     loop: for i : = 1 step 1 until 512 do
@@ -237,24 +365,31 @@ begin
     next i: end;
     copy next generation into this generation;
     goto loop;
-end;`]],
+end;`
+        ]
+    ],
 
     [imagePage, "bg-black", "./assets/holo/0001.jpg"],
     [imagePage, "bg-black", "./assets/holo/0013.jpg"],
 
     [titlePage, "bg-black white", "Iterative Systems"],
 
-    [contentPage,
+    [
+        contentPage,
         "Iterative Systems",
         "DeJong strange attractor",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defn compute-dejong
     "Computes a single DeJong 2d point vector for given params and XY pos"
     [a b c d x y]
     [
         (+ (Math/sin (* a y)) (Math/cos (* (* b x) x)))
         (+ (Math/sin (* (* c x) x)) (Math/cos (* d y)))
-    ])`]],
+    ])`
+        ]
+    ],
 
     [imagePage, "bg-black", "./assets/lcom/0000.jpg"],
     [imagePage, "bg-black", "./assets/lcom/0001.jpg"],
@@ -268,21 +403,28 @@ end;`]],
     [imagePage, "bg-white", "./assets/bot/01.jpg"],
     [imagePage, "bg-white", "./assets/bot/02.jpg"],
 
-    [contentPage,
+    [
+        contentPage,
         "L-Systems",
         "Exponential growth through rule re-writing:",
         [codeBlock, "S = f-f-f-fs"],
         "Defines a rule named S which is iteratively expanded into:",
-        [list,
+        [
+            list,
             ["code", "f-f-f-fs"],
             ["code", "f-f-f-ff-f-f-fs"],
-            ["code", "f-f-f-ff-f-f-ff-f-f-fs"], " etc."
-        ]],
+            ["code", "f-f-f-ff-f-f-ff-f-f-fs"],
+            " etc."
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "L-Systems",
         "Exponential growth through rule re-writing",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (def valid-syms
     {
         \\s :start, \\f :fwd, \\+ :right, \\- :left,
@@ -294,23 +436,33 @@ end;`]],
     {
         :fwd [:fwd], :left [:left], :right [:right]
         :push [:push], :pop [:pop]
-    })`]],
+    })`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "L-Systems",
         "Exponential growth through rule re-writing",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defn parse
     [src]
     (replace valid-syms src))
 
 (parse "-yf+xfx+fy-")
-; (:left :y :fwd :right :x :fwd :x :right :fwd :y :left)`]],
+; (:left :y :fwd :right :x :fwd :x :right :fwd :y :left)`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "L-Systems",
         "Exponential growth through rule re-writing",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defn rewrite-symbols
     [rules syms]
     (mapcat (merge default-rules rules) syms))
@@ -323,12 +475,17 @@ end;`]],
          last))
 
 (def rules
-    {:x (parse "-yf+xfx+fy-") :y (parse "+xf-yfy-fx+") :start [:x]})`]],
+    {:x (parse "-yf+xfx+fy-") :y (parse "+xf-yfy-fx+") :start [:x]})`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "L-Systems",
         "Exponential growth through rule re-writing",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (expand-with rules 2)
 ; (:x)
 
@@ -342,7 +499,9 @@ end;`]],
 ;  :fwd :x :right :left)
 
 (count (expand-with rules 10))
-; 218451`]],
+; 218451`
+        ]
+    ],
 
     [bgImagePage, "bg-black", "./assets/morphogen/20140925-desertrose.jpg"],
     [imagePage, "bg-white", "./assets/morphogen/morphogen-flower-graph.jpg"],
@@ -376,20 +535,30 @@ end;`]],
 
     [titlePage, "bg-black white", "Personal Experience Report"],
 
-    [quotePage,
-        [`“I still believe in abstraction, but now I know that one ends with
+    [
+        quotePage,
+        [
+            `“I still believe in abstraction, but now I know that one ends with
     abstraction, not starts with it. I learned that one has to adapt
-    abstractions to reality and not the other way around.”`],
-        " Alexander Stepanov"],
+    abstractions to reality and not the other way around.”`
+        ],
+        " Alexander Stepanov"
+    ],
 
-    [quotePage,
-        [`"I'm never bored by simplicity. Show me a simpler way to do anything
-    that I'm doing. I will jump on it."`],
-        "Charles Moore"],
+    [
+        quotePage,
+        [
+            `"I'm never bored by simplicity. Show me a simpler way to do anything
+    that I'm doing. I will jump on it."`
+        ],
+        "Charles Moore"
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "The Joy of Clojure",
-        [list,
+        [
+            list,
             "Concision / Expressiveness",
             "Rich core API",
             "Sequence abstractions",
@@ -399,12 +568,15 @@ end;`]],
             "Transducers, core.async, clojure.spec",
             "Amount & quality of innovation",
             "Maturity / Community",
-            "Gateway to various awesome tools / concepts",
-        ]],
+            "Gateway to various awesome tools / concepts"
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "(Unnecessary) uphill battle(s)",
-        ["ul",
+        [
+            "ul",
             ["li", "Concision / Expressiveness"],
             ["li.transition.o-0", "Rich core API"],
             ["li.transition.o-0", "Sequence abstractions"],
@@ -414,20 +586,27 @@ end;`]],
             ["li.transition.o-0", "Transducers, core.async, clojure.spec"],
             ["li.transition.o-0", "Amount & quality of innovation"],
             ["li", "Maturity / Community"],
-            ["li.transition.o-0", "Gateway to various awesome tools / concepts"],
-        ]],
+            ["li.transition.o-0", "Gateway to various awesome tools / concepts"]
+        ]
+    ],
 
-    [quotePage,
-        [`"Weeks of coding can save you`, `hours of planning."`]
-        , "Unknown"],
+    [
+        quotePage,
+        [`"Weeks of coding can save you`, `hours of planning."`],
+        "Unknown"
+    ],
 
-    [quotePage,
-        [`"Weeks of planning can save you`, `hours of coding."`]
-        , "Unknown"],
+    [
+        quotePage,
+        [`"Weeks of planning can save you`, `hours of coding."`],
+        "Unknown"
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "(Unnecessary) uphill battle(s)",
-        [list,
+        [
+            list,
             "Immutability by default",
             "Almost zero docs about core internals",
             `Hard to optimize / "swimming against the stream"`,
@@ -436,85 +615,115 @@ end;`]],
             "Have to resort to macros to work around quirks / achieve DRY",
             `Effort vs. gain unpredictable/unacceptable (IMHO)`,
             `Protocol discrepancies between CLJ/CLJS`
-        ]],
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Immutability by default",
         "Areas where undesired / cumbersome:",
-        [list,
+        [
+            list,
             "Graphics",
             "DSP",
             "ML",
             "Tree editing (GA/GP, spatial accel etc.)",
             "Media processing",
             "Web workers (e.g. w/ SharedArrayBuffer)",
-            "GPU / hardware / low-level interop (e.g. WASM)",
+            "GPU / hardware / low-level interop (e.g. WASM)"
         ],
         ["div.f4", ["sup", "*"], "realtime"]
     ],
 
-    [quotePage,
+    [
+        quotePage,
         [
             `"I would guess that most computers don't compute, they move bytes around."`
         ],
-        "Charles Moore"],
+        "Charles Moore"
+    ],
 
     [titlePage, "bg-black white", "CLJ(S) vs ES6"],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (CLJS)",
         "Vector addition",
-        [codeBlock, `(defmulti vadd (fn [a b] (count a)))`]],
+        [codeBlock, `(defmulti vadd (fn [a b] (count a)))`]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (CLJS)",
         "Vector addition",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defmethod vadd 2
     [a b]
     [(+ (a 0) (b 0)) (+ (a 1) (b 1))])
 
 (time (dotimes [i 1e7] (vadd [1 2] [10 20])))
-; "Elapsed time: 3362.786341 msecs"`]],
+; "Elapsed time: 3362.786341 msecs"`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (CLJS)",
         "Vector addition",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defmethod vadd 3
     [a b]
     [(+ (a 0) (b 0)) (+ (a 1) (b 1)) (+ (a 2) (b 2))])
 
 (time (dotimes [i 1e7] (vadd [1 2 3] [10 20 30])))
-; "Elapsed time: 3942.254367 msecs"`]],
+; "Elapsed time: 3942.254367 msecs"`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (CLJS)",
         "Using native JS arrays...",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defmethod vadd 2
     [a b]
     #js [(+ (aget a 0) (aget b 0)) (+ (aget a 1) (aget b 1))])
 
 (time (dotimes [i 1e7] (vadd #js [1 2] #js [10 20])))
-; "Elapsed time: 1905.684968 msecs"`],
-        "~1.8x faster, but brittle solution"],
+; "Elapsed time: 1905.684968 msecs"`
+        ],
+        "~1.8x faster, but brittle solution"
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (CLJS)",
         "Vector addition (arbitrary length)",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defmethod vadd :default
     [a b]
     (mapv (fn [aa bb] (+ aa bb)) a b))
 
 (time (dotimes [i 1e7] (add [1 2 3 4 5 6 7 8] [1 2 3 4 5 6 7 8])))
-; "Elapsed time: 36108.277508 msecs"`]],
+; "Elapsed time: 36108.277508 msecs"`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (CLJS)",
         "Using manual loop & transients",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 (defmethod add :default
     [a b]
     (loop [acc (transient[]), i 0, n (count a)]
@@ -523,59 +732,82 @@ end;`]],
             (persistent! acc))))
 
 (time (dotimes [i 1e7] (add [1 2 3 4 5 6 7 8] [1 2 3 4 5 6 7 8])))
-; "Elapsed time: 15168.490184 msecs"`],
-        "2.4x faster, but hardly idiomatic"],
+; "Elapsed time: 15168.490184 msecs"`
+        ],
+        "2.4x faster, but hardly idiomatic"
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (ES6)",
         "Vector addition",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 
 vadd = defmulti((a, b) => a.length);
 
 vadd.add(2, (a, b) => [a[0] + b[0], a[1] + b[1]]);
 
 b.bench(() => vadd([1, 2], [10, 20]), 1e7);
-// 544ms`]],
+// 544ms`
+        ]
+    ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (ES6)",
         "Vector addition",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 vadd.add(3, (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]])
 
 bench(() => vadd([1, 2, 3], [10, 20, 30]), 1e7)
-// 584ms`],
+// 584ms`
+        ],
         "6x faster"
     ],
 
-    [contentPage,
+    [
+        contentPage,
         "Multi-methods (ES6)",
         "Vector addition (arbitrary length)",
-        [codeBlock, `
+        [
+            codeBlock,
+            `
 vadd.add(DEFAULT, (a, b) => a.map((a, i) => a + b[i]))
 
 bench(() => add([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8]), 1e7)
-// 698ms`],
+// 698ms`
+        ],
         ["div", "only ~100ms more than Vec3"],
         ["div", "50x faster than idiomatic CLJS"]
     ],
 
     [titlePage, "", [link, "http://thi.ng/umbrella", "thi.ng/umbrella"]],
 
-    [quotePage,
+    [
+        quotePage,
         [
             `"Society created institutions in order to serve society.
 [...] these institutions have all become counterproductive
 to their original intent because they now exist to benefit
 themselves rather than the betterment of society."`
         ],
-        "Ivan Illich"],
+        "Ivan Illich"
+    ],
 
-    [titlePage, "bg-black white",
+    [
+        titlePage,
+        "bg-black white",
         "Thanks :)",
-        [twitterLink, "toxi"], ["br"],
-        [twitterLink, "thing_umbrella"], ["br"],
-        [link, "https://medium.com/@thi.ng", "medium.com/@thi.ng"], ["br"],
-        ["p.blue", "media.thi.ng/2018/talks/clojurex/"]]
+        [twitterLink, "toxi"],
+        ["br"],
+        [twitterLink, "thing_umbrella"],
+        ["br"],
+        [link, "https://medium.com/@thi.ng", "medium.com/@thi.ng"],
+        ["br"],
+        ["p.blue", "media.thi.ng/2018/talks/clojurex/"]
+    ]
 ];

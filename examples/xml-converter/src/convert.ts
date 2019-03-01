@@ -1,10 +1,5 @@
 import { isString } from "@thi.ng/checks";
-import {
-    parse,
-    ParseElement,
-    ParseEvent,
-    Type
-} from "@thi.ng/sax";
+import { parse, ParseElement, ParseEvent, Type } from "@thi.ng/sax";
 import {
     assocObj,
     comp,
@@ -26,15 +21,15 @@ export interface ConversionOpts {
 export const DEFAULT_OPTS: ConversionOpts = {
     format: DEFAULT_FORMAT,
     removeAttribs: new Set(),
-    removeTags: new Set(),
+    removeTags: new Set()
 };
 
 // converts given XMLish string into formatted hiccup
 export const convertXML = (src: string, opts: Partial<ConversionOpts> = {}) => {
-    let tree = transformTree(
-        parseXML(src),
-        <ConversionOpts>{ ...DEFAULT_OPTS, ...opts }
-    );
+    let tree = transformTree(parseXML(src), <ConversionOpts>{
+        ...DEFAULT_OPTS,
+        ...opts
+    });
     return format({ ...DEFAULT_FORMAT, ...opts.format }, "", tree);
 };
 
@@ -54,14 +49,11 @@ const parseXML = (src: string) =>
 
 // transforms string of CSS properties into a plain object
 const transformCSS = (css: string) =>
-    css.split(";").reduce(
-        (acc, p) => {
-            const [k, v] = p.split(":");
-            (v != null) && (acc[k.trim()] = parseAttrib([k, v.trim()])[1]);
-            return acc;
-        },
-        {}
-    );
+    css.split(";").reduce((acc, p) => {
+        const [k, v] = p.split(":");
+        v != null && (acc[k.trim()] = parseAttrib([k, v.trim()])[1]);
+        return acc;
+    }, {});
 
 // takes attrib key-value pair and attempts to coerce / transform its
 // value. returns updated pair.
@@ -69,15 +61,13 @@ const parseAttrib = (attrib: string[]) => {
     let [k, v] = attrib;
     if (isString(v)) {
         v = v.replace(/[\n\r]+\s*/g, " ");
-        return k === "style" ?
-            [k, transformCSS(v)] :
-            v === "true" ?
-                [k, true] :
-                v === "false" ?
-                    [k, false] :
-                    [k, /^[0-9.e+-]+$/.test(v) ?
-                        parseFloat(v) :
-                        v];
+        return k === "style"
+            ? [k, transformCSS(v)]
+            : v === "true"
+                ? [k, true]
+                : v === "false"
+                    ? [k, false]
+                    : [k, /^[0-9.e+-]+$/.test(v) ? parseFloat(v) : v];
     }
     return attrib;
 };
@@ -85,10 +75,7 @@ const parseAttrib = (attrib: string[]) => {
 // transforms an entire object of attributes
 const transformAttribs = (attribs: any, remove: Set<string> = new Set()) =>
     transduce(
-        comp(
-            filter((a) => !remove.has(a[0])),
-            map(parseAttrib)
-        ),
+        comp(filter((a) => !remove.has(a[0])), map(parseAttrib)),
         assocObj(),
         {},
         pairs<string>(attribs)
@@ -109,7 +96,10 @@ const transformTag = (tag: string, attribs: any) => {
 };
 
 // recursively transforms entire parse tree
-const transformTree = (tree: ParseEvent | ParseElement, opts: ConversionOpts) => {
+const transformTree = (
+    tree: ParseEvent | ParseElement,
+    opts: ConversionOpts
+) => {
     if (tree == null) {
         return "";
     }
@@ -129,14 +119,11 @@ const transformTree = (tree: ParseEvent | ParseElement, opts: ConversionOpts) =>
     }
     if (tree.children && tree.children.length) {
         transduce(
-            comp(
-                map((t: any) => transformTree(t, opts)),
-                filter((t) => !!t)
-            ),
+            comp(map((t: any) => transformTree(t, opts)), filter((t) => !!t)),
             push(),
             res,
             tree.children
-        )
+        );
     }
     return res;
 };

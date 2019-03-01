@@ -1,4 +1,4 @@
-import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors"
+import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors";
 import { AppConfig } from "./api";
 // import * as ev from "./events";
 // import * as fx from "./effects";
@@ -9,7 +9,6 @@ import { SLIDERS } from "./sliders";
 
 // main App configuration
 export const CONFIG: AppConfig = {
-
     // event handlers events are queued and batch processed in app's RAF
     // render loop event handlers can be single functions, interceptor
     // objects with `pre`/`post` keys or arrays of either.
@@ -31,21 +30,18 @@ export const CONFIG: AppConfig = {
         // 3) update param in app state
         // the last 2 steps are only be executed if validation succeeded
         // else the event is canceled
-        ...SLIDERS.reduce(
-            (events, spec) => {
-                events[spec.event] = [
-                    ensureParamRange(spec.min, spec.max),
-                    snapshot(),
-                    valueSetter(spec.view)
-                ];
-                return events;
-            }, {})
+        ...SLIDERS.reduce((events, spec) => {
+            events[spec.event] = [
+                ensureParamRange(spec.min, spec.max),
+                snapshot(),
+                valueSetter(spec.view)
+            ];
+            return events;
+        }, {})
     },
 
     // custom side effects
-    effects: {
-
-    },
+    effects: {},
 
     // DOM root element (or ID)
     domRoot: "app",
@@ -59,7 +55,7 @@ export const CONFIG: AppConfig = {
         freq: 3,
         harmonics: 20,
         hstep: 2,
-        phase: 0,
+        phase: 0
     },
 
     // derived view declarations
@@ -73,14 +69,17 @@ export const CONFIG: AppConfig = {
         freq: "freq",
         phase: "phase",
         harmonics: "harmonics",
-        hstep: "hstep",
+        hstep: "hstep"
     },
 
     // component CSS class config using http://tachyons.io/ these
     // attribs are made available to all components and allow for easy
     // re-skinning of the whole app
     ui: {
-        button: { class: "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight" },
+        button: {
+            class:
+                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight"
+        },
         buttongroup: { class: "flex mb2" },
         footer: { class: "absolute bottom-1" },
         link: { class: "pointer link dim black b" },
@@ -89,7 +88,7 @@ export const CONFIG: AppConfig = {
         slider: {
             root: { class: "mb3 ttu b tracked-tight" },
             range: { class: "w-100" },
-            number: { class: "fr w3 tr ttu bn bg-transparent" },
+            number: { class: "fr w3 tr ttu bn bg-transparent" }
         },
         waveform: { class: "w-100 h-100" }
     }

@@ -50,7 +50,6 @@ export interface PubSubOpts<A, B> {
  * (incl. all topic subscriptions) from the parent stream.
  */
 export class PubSub<A, B> extends Subscription<A, B> {
-
     topicfn: (x: B) => any;
     topics: EquivMap<any, Subscription<B, B>>;
 
@@ -58,7 +57,9 @@ export class PubSub<A, B> extends Subscription<A, B> {
         opts = opts || <PubSubOpts<A, B>>{};
         super(null, opts.xform, null, opts.id || `pubsub-${nextID()}`);
         this.topicfn = opts.topic;
-        this.topics = new EquivMap<any, Subscription<B, B>>(null, { equiv: opts.equiv });
+        this.topics = new EquivMap<any, Subscription<B, B>>(null, {
+            equiv: opts.equiv
+        });
     }
 
     /**
@@ -77,14 +78,29 @@ export class PubSub<A, B> extends Subscription<A, B> {
         return null;
     }
 
-    subscribeTopic<C>(topicID: any, tx: Transducer<B, C>, id?: string): Subscription<B, C>;
+    subscribeTopic<C>(
+        topicID: any,
+        tx: Transducer<B, C>,
+        id?: string
+    ): Subscription<B, C>;
     // subscribeTopic<S extends Subscription<B, C>, C>(topicID: any, sub: S): S;
-    subscribeTopic<C>(topicID: any, sub: Subscription<B, C>): Subscription<B, C>;
-    subscribeTopic(topicID: any, sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
-    subscribeTopic(topicID: any, sub: any, id?: string): Subscription<any, any> {
+    subscribeTopic<C>(
+        topicID: any,
+        sub: Subscription<B, C>
+    ): Subscription<B, C>;
+    subscribeTopic(
+        topicID: any,
+        sub: Partial<ISubscriber<B>>,
+        id?: string
+    ): Subscription<B, B>;
+    subscribeTopic(
+        topicID: any,
+        sub: any,
+        id?: string
+    ): Subscription<any, any> {
         let t = this.topics.get(topicID);
         if (!t) {
-            this.topics.set(topicID, t = subscription<B, B>());
+            this.topics.set(topicID, (t = subscription<B, B>()));
         }
         return t.subscribe(sub, id);
     }
@@ -136,6 +152,4 @@ export class PubSub<A, B> extends Subscription<A, B> {
  *
  * @param opts
  */
-export const pubsub =
-    <A, B>(opts: PubSubOpts<A, B>) =>
-        new PubSub(opts);
+export const pubsub = <A, B>(opts: PubSubOpts<A, B>) => new PubSub(opts);

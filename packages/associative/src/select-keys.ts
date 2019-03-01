@@ -8,16 +8,15 @@ import { empty } from "./utils";
  * @param src
  * @param ks selected keys
  */
-export const selectKeysMap =
-    <K, V>(src: Map<K, V>, ks: Iterable<K>): any => {
-        const dest = empty(src, Map);
-        for (let k of ks) {
-            if (src.has(k)) {
-                dest.set(k, src.get(k));
-            }
+export const selectKeysMap = <K, V>(src: Map<K, V>, ks: Iterable<K>): any => {
+    const dest = empty(src, Map);
+    for (let k of ks) {
+        if (src.has(k)) {
+            dest.set(k, src.get(k));
         }
-        return dest;
-    };
+    }
+    return dest;
+};
 
 /**
  * Returns a new object only containing given keys (and only if they
@@ -26,13 +25,15 @@ export const selectKeysMap =
  * @param src
  * @param ks
  */
-export const selectKeysObj =
-    <T>(src: IObjectOf<T>, ks: Iterable<PropertyKey>): any => {
-        const dest: IObjectOf<T> = {};
-        for (let k of ks) {
-            if (src.hasOwnProperty(k)) {
-                dest[<any>k] = src[<any>k];
-            }
+export const selectKeysObj = <T>(
+    src: IObjectOf<T>,
+    ks: Iterable<PropertyKey>
+): any => {
+    const dest: IObjectOf<T> = {};
+    for (let k of ks) {
+        if (src.hasOwnProperty(k)) {
+            dest[<any>k] = src[<any>k];
         }
-        return dest;
-    };
+    }
+    return dest;
+};

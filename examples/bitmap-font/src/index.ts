@@ -18,74 +18,84 @@ import { updateDOM } from "@thi.ng/transducers-hdom";
 import { FONT } from "./font";
 
 // retrieve font bytes for given char
-const lookupChar =
-    (c: string) => FONT[clamp(c.charCodeAt(0) - 32, 0, FONT.length - 1)];
+const lookupChar = (c: string) =>
+    FONT[clamp(c.charCodeAt(0) - 32, 0, FONT.length - 1)];
 
 // re-usable transducer
 const xfJoin = map((x: string[]) => x.join(""));
 
 // higher order transducer to transform single char from string
-const xfChar =
-    (i: number, on: string, off: string) =>
-        comp(
-            // use byte `i` lane from current row
-            pluck<number[], number>(i),
-            // split into bits
-            bits(8),
-            // transform each bit
-            map((x) => x ? on : off),
-            // re-group
-            partition(8),
-            // build string
-            xfJoin
-        );
+const xfChar = (i: number, on: string, off: string) =>
+    comp(
+        // use byte `i` lane from current row
+        pluck<number[], number>(i),
+        // split into bits
+        bits(8),
+        // transform each bit
+        map((x) => (x ? on : off)),
+        // re-group
+        partition(8),
+        // build string
+        xfJoin
+    );
 
 // transform entire string
-const banner =
-    ({ input, on, off }: IObjectOf<string>) =>
-        transduce(
-            comp(
-                // dynamically create `xfChar` transducers for each char
-                // and run them in parallel via `multiplex()`
-                multiplex.apply(null, [...map((i) => xfChar(i, on, off), range(input.length))]),
-                // then join the results for each line
-                xfJoin
-            ),
-            // use `str()` reducer to build string result
-            str("\n"),
-            // convert input string into stream of row-major bitmap font tuples
-            zip.apply(null, [...map(lookupChar, input || " ")])
-        );
+const banner = ({ input, on, off }: IObjectOf<string>) =>
+    transduce(
+        comp(
+            // dynamically create `xfChar` transducers for each char
+            // and run them in parallel via `multiplex()`
+            multiplex.apply(null, [
+                ...map((i) => xfChar(i, on, off), range(input.length))
+            ]),
+            // then join the results for each line
+            xfJoin
+        ),
+        // use `str()` reducer to build string result
+        str("\n"),
+        // convert input string into stream of row-major bitmap font tuples
+        zip.apply(null, [...map(lookupChar, input || " ")])
+    );
 
 // dropdown menu for on/off bits
-const charSelector =
-    (stream: Stream<string>) =>
-        [dropdown,
-            {
-                class: "ml3",
-                onchange: (e) => stream.next(e.target.value)
-            },
-            [
-                ["#", "#"], ["@", "@"], ["*", "*"], ["X", "X"], ["/", "/"],
-                ["=", "="], ["-", "-"], ["^", "^"], [".", "."], [" ", "space"]
-            ],
-            stream.deref()
-        ];
+const charSelector = (stream: Stream<string>) => [
+    dropdown,
+    {
+        class: "ml3",
+        onchange: (e) => stream.next(e.target.value)
+    },
+    [
+        ["#", "#"],
+        ["@", "@"],
+        ["*", "*"],
+        ["X", "X"],
+        ["/", "/"],
+        ["=", "="],
+        ["-", "-"],
+        ["^", "^"],
+        [".", "."],
+        [" ", "space"]
+    ],
+    stream.deref()
+];
 
 // main UI root component
-const app =
-    ({ raw, result }) =>
-        ["div",
-            ["div",
-                ["input", {
-                    oninput: (e) => input.next(e.target.value),
-                    value: raw
-                }],
-                charSelector(on),
-                charSelector(off),
-            ],
-            ["pre.code.w-100.pa2.overflow-x-auto.bg-washed-yellow", result]
-        ];
+const app = ({ raw, result }) => [
+    "div",
+    [
+        "div",
+        [
+            "input",
+            {
+                oninput: (e) => input.next(e.target.value),
+                value: raw
+            }
+        ],
+        charSelector(on),
+        charSelector(off)
+    ],
+    ["pre.code.w-100.pa2.overflow-x-auto.bg-washed-yellow", result]
+];
 
 // reactive stream setup
 const input = stream<string>();
@@ -96,10 +106,7 @@ const off = stream<string>();
 const xformer = sync({ src: { input, on, off } }).transform(map(banner));
 
 const main = sync({ src: { raw: input, result: xformer } });
-main.transform(
-    map(app),
-    updateDOM()
-);
+main.transform(map(app), updateDOM());
 
 // kick off
 input.next("8BIT POWER!");

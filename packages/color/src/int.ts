@@ -6,9 +6,7 @@ import { ColorMode, IColor } from "./api";
  *
  * @param rgba
  */
-export const int32 =
-    (rgba: number) =>
-        new Int32(rgba);
+export const int32 = (rgba: number) => new Int32(rgba);
 
 /**
  * Returns new `Int32` wrapping given 24bit RGB color and setting alpha
@@ -16,15 +14,9 @@ export const int32 =
  *
  * @param rgb
  */
-export const int24 =
-    (rgb: number) =>
-        new Int32((rgb & 0xffffff) | 0xff000000);
+export const int24 = (rgb: number) => new Int32((rgb & 0xffffff) | 0xff000000);
 
-export class Int32 implements
-    IColor,
-    ICopy<Int32>,
-    IDeref<number> {
-
+export class Int32 implements IColor, ICopy<Int32>, IDeref<number> {
     value: number;
 
     constructor(col: number) {

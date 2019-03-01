@@ -1,9 +1,4 @@
-import {
-    Comparator,
-    ICopy,
-    IEmpty,
-    ILength
-} from "@thi.ng/api";
+import { Comparator, ICopy, IEmpty, ILength } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 
 import { HeapOpts } from "./api";
@@ -24,11 +19,7 @@ import { HeapOpts } from "./api";
  * h.pop(); // undefined
  * ```
  */
-export class Heap<T> implements
-    ICopy<Heap<T>>,
-    IEmpty<Heap<T>>,
-    ILength {
-
+export class Heap<T> implements ICopy<Heap<T>>, IEmpty<Heap<T>>, ILength {
     static parentIndex(idx: number) {
         return idx > 0 ? (idx - 1) >> 1 : -1;
     }
@@ -173,7 +164,8 @@ export class Heap<T> implements
         if (!n) {
             return res;
         }
-        let x = res[n - 1], y: T;
+        let x = res[n - 1],
+            y: T;
         for (let i = n, m = vals.length; i < m; i++) {
             y = vals[i];
             if (cmp(y, x) < 0) {
@@ -202,7 +194,7 @@ export class Heap<T> implements
     leaves() {
         const vals = this.values;
         if (!vals.length) {
-            return []
+            return [];
         }
         return vals.slice(Heap.parentIndex(vals.length - 1) + 1);
     }

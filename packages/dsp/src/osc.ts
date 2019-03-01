@@ -1,15 +1,7 @@
-import {
-    fract,
-    HALF_PI,
-    mix as _mix,
-    TAU,
-    wrap01
-} from "@thi.ng/math";
+import { fract, HALF_PI, mix as _mix, TAU, wrap01 } from "@thi.ng/math";
 import { StatelessOscillator } from "./api";
 
-export class Oscillator implements
-    Iterable<number> {
-
+export class Oscillator implements Iterable<number> {
     osc: StatelessOscillator;
     phase: number;
     freq: number;
@@ -17,7 +9,13 @@ export class Oscillator implements
     dc: number;
     opt: any;
 
-    constructor(osc: StatelessOscillator, freq: number, amp = 1, dc = 0, opt?: any) {
+    constructor(
+        osc: StatelessOscillator,
+        freq: number,
+        amp = 1,
+        dc = 0,
+        opt?: any
+    ) {
         this.osc = osc;
         this.phase = 0;
         this.freq = freq;
@@ -40,7 +38,6 @@ export class Oscillator implements
 }
 
 export class AMFMOscillator extends Oscillator {
-
     osc: StatelessOscillator;
     am: Oscillator;
     fm: Oscillator;
@@ -67,7 +64,9 @@ export class AMFMOscillator extends Oscillator {
             this.dc,
             this.opt
         );
-        this.phase = wrap01(this.phase + this.freq + (this.fm ? this.fm.update() : 0));
+        this.phase = wrap01(
+            this.phase + this.freq + (this.fm ? this.fm.update() : 0)
+        );
         return y;
     }
 }
@@ -76,13 +75,18 @@ export const sin = (phase: number, freq: number, amp = 1, dc = 0) =>
     dc + amp * Math.sin(phase * freq * TAU);
 
 export const tri = (phase: number, freq: number, amp = 1, dc = 0) =>
-    dc + amp * (Math.abs((phase * freq * 4) % 4 - 2) - 1);
+    dc + amp * (Math.abs(((phase * freq * 4) % 4) - 2) - 1);
 
 export const triConcave = (phase: number, freq: number, amp = 1, dc = 0) =>
     dc + amp * (8 * Math.pow(fract(phase * freq) - 0.5, 2) - 1);
 
-export const rect = (phase: number, freq: number, amp = 1, dc = 0, duty = 0.5) =>
-    dc + amp * (fract(phase * freq) < duty ? 1 : -1);
+export const rect = (
+    phase: number,
+    freq: number,
+    amp = 1,
+    dc = 0,
+    duty = 0.5
+) => dc + amp * (fract(phase * freq) < duty ? 1 : -1);
 
 export const saw = (phase: number, freq: number, amp = 1, dc = 0) =>
     dc + amp * (1 - 2 * fract(phase * freq));
@@ -95,22 +99,29 @@ export const wavetable = (table: number[]): StatelessOscillator => {
     };
 };
 
-export const mix = (osc1: StatelessOscillator, osc2: StatelessOscillator): StatelessOscillator =>
-    (phase: number, freq: number, amp = 1, dc = 0, t = 0.5) =>
-        _mix(osc1(phase, freq, amp, dc), osc2(phase, freq, amp, dc), t);
+export const mix = (
+    osc1: StatelessOscillator,
+    osc2: StatelessOscillator
+): StatelessOscillator => (
+    phase: number,
+    freq: number,
+    amp = 1,
+    dc = 0,
+    t = 0.5
+) => _mix(osc1(phase, freq, amp, dc), osc2(phase, freq, amp, dc), t);
 
 export const additive = (
     osc: StatelessOscillator,
     freqFn: (i: number) => number,
-    ampFn: (i: number) => number, n: number) =>
-
-    (phase: number, freq: number, amp = 1, dc = 0) => {
-        let y = 0;
-        for (let i = 1; i <= n; i++) {
-            y += osc(phase, freq * freqFn(i), amp * ampFn(i));
-        }
-        return dc + y;
-    };
+    ampFn: (i: number) => number,
+    n: number
+) => (phase: number, freq: number, amp = 1, dc = 0) => {
+    let y = 0;
+    for (let i = 1; i <= n; i++) {
+        y += osc(phase, freq * freqFn(i), amp * ampFn(i));
+    }
+    return dc + y;
+};
 
 /**
  * Interactive graph of this oscillator:
@@ -119,7 +130,12 @@ export const additive = (
  * @param n
  */
 export const squareAdditive = (n = 8) =>
-    additive(sin, (i) => 2 * (i - 1) + 1, (i) => 1 / (2 * (i - 1) + 1) * gibbs(n, i), n);
+    additive(
+        sin,
+        (i) => 2 * (i - 1) + 1,
+        (i) => (1 / (2 * (i - 1) + 1)) * gibbs(n, i),
+        n
+    );
 
 /**
  * Interactive graph of this oscillator:
@@ -128,7 +144,7 @@ export const squareAdditive = (n = 8) =>
  * @param n
  */
 export const sawAdditive = (n = 8) =>
-    additive(sin, (i) => i, (i) => 1 / i * gibbs(n, i), n);
+    additive(sin, (i) => i, (i) => (1 / i) * gibbs(n, i), n);
 
 /**
  * https://en.wikipedia.org/wiki/Gibbs_phenomenon
@@ -141,7 +157,7 @@ export const sawAdditive = (n = 8) =>
  * @param i
  */
 export const gibbs = (n: number, i: number) =>
-    Math.pow(Math.cos((i - 1) * HALF_PI / n), 2);
+    Math.pow(Math.cos(((i - 1) * HALF_PI) / n), 2);
 
 /**
  * Polynomial attenuation to create bandlimited version of a signal.
@@ -153,8 +169,8 @@ export const gibbs = (n: number, i: number) =>
  * @param x
  */
 export const polyBLEP = (eps: number, x: number) =>
-    x < eps ?
-        (x /= eps, x + x - x * x - 1) :
-        x > 1 - eps ?
-            (x = (x - 1) / eps, x * x + x + x + 1) :
-            0;
+    x < eps
+        ? ((x /= eps), x + x - x * x - 1)
+        : x > 1 - eps
+            ? ((x = (x - 1) / eps), x * x + x + x + 1)
+            : 0;

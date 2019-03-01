@@ -18,24 +18,24 @@ import { iterator1 } from "../iterator";
  * @param src
  */
 export function movingAverage(period: number): Transducer<number, number>;
-export function movingAverage(period: number, src: Iterable<number>): IterableIterator<number>;
+export function movingAverage(
+    period: number,
+    src: Iterable<number>
+): IterableIterator<number>;
 export function movingAverage(period: number, src?: Iterable<number>): any {
-    return src ?
-        iterator1(movingAverage(period), src) :
-        (rfn: Reducer<any, number>) => {
-            period |= 0;
-            period < 2 && illegalArgs("period must be >= 2");
-            const reduce = rfn[2];
-            const window = [];
-            let sum = 0;
-            return compR(
-                rfn,
-                (acc, x: number) => {
-                    const n = window.push(x);
-                    sum += x;
-                    n > period && (sum -= window.shift());
-                    return n >= period ? reduce(acc, sum / period) : acc;
-                }
-            );
-        };
-};
+    return src
+        ? iterator1(movingAverage(period), src)
+        : (rfn: Reducer<any, number>) => {
+              period |= 0;
+              period < 2 && illegalArgs("period must be >= 2");
+              const reduce = rfn[2];
+              const window = [];
+              let sum = 0;
+              return compR(rfn, (acc, x: number) => {
+                  const n = window.push(x);
+                  sum += x;
+                  n > period && (sum -= window.shift());
+                  return n >= period ? reduce(acc, sum / period) : acc;
+              });
+          };
+}

@@ -1,32 +1,32 @@
 import { IObjectOf } from "@thi.ng/api";
 
 export type NodeShape =
-    "box" |
-    "circle" |
-    "diamond" |
-    "doublecircle" |
-    "doubleoctagon" |
-    "egg" |
-    "ellipse" |
-    "hexagon" |
-    "house" |
-    "invhouse" |
-    "invtrapezium" |
-    "invtriangle" |
-    "Mcircle" |
-    "Mdiamond" |
-    "Mrecord" |
-    "Msquare" |
-    "none" |
-    "octagon" |
-    "parallelogram" |
-    "plaintext" |
-    "point" |
-    "polygon" |
-    "record" |
-    "trapezium" |
-    "triangle" |
-    "triple_octagon";
+    | "box"
+    | "circle"
+    | "diamond"
+    | "doublecircle"
+    | "doubleoctagon"
+    | "egg"
+    | "ellipse"
+    | "hexagon"
+    | "house"
+    | "invhouse"
+    | "invtrapezium"
+    | "invtriangle"
+    | "Mcircle"
+    | "Mdiamond"
+    | "Mrecord"
+    | "Msquare"
+    | "none"
+    | "octagon"
+    | "parallelogram"
+    | "plaintext"
+    | "point"
+    | "polygon"
+    | "record"
+    | "trapezium"
+    | "triangle"
+    | "triple_octagon";
 
 export type Color = string | number[];
 

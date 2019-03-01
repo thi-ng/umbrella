@@ -51,27 +51,44 @@ const app = (main) => {
         // for each selected neighbor, perform another KNN search and
         // create line segments to each of these secondary matches
         // use `mapcat` to yield a flat array of lines
-        let [neighbors, t2] = timedResult(() =>
-            [...mapcat((p) => tree.selectKeys(p[0], 8, width / 4).map((q) => ["line", {}, p[0], q]), selected)]
-        );
-        return ["div.overflow-hidden.sans-serif.f7",
+        let [neighbors, t2] = timedResult(() => [
+            ...mapcat(
+                (p) =>
+                    tree
+                        .selectKeys(p[0], 8, width / 4)
+                        .map((q) => ["line", {}, p[0], q]),
+                selected
+            )
+        ]);
+        return [
+            "div.overflow-hidden.sans-serif.f7",
             // tree stats
-            ["div",
+            [
+                "div",
                 `Points: ${tree.length}, Sel: ${selected.length}, `,
                 `Neighbors: ${neighbors.length}, Q1: ${t1}ms, Q2: ${t2}ms, `,
-                `Height: ${tree.root.height()}, Ratio: ${tree.balanceRatio().toFixed(2)}`],
+                `Height: ${tree.root.height()}, Ratio: ${tree
+                    .balanceRatio()
+                    .toFixed(2)}`
+            ],
             // visualize
             // the __diff & __normalize control attribs are used to optimize drawing perf
             // see: https://github.com/thi-ng/umbrella/tree/master/packages/hdom#behavior-control-attributes
-            [_canvas, { width, height, __diff: false, __normalize: false },
+            [
+                _canvas,
+                { width, height, __diff: false, __normalize: false },
                 // point cloud
                 ["points", { fill: "black" }, tree.keys()],
                 // selected points as circles (using 3rd array item as radius)
-                ["g", { fill: "rgba(0,192,255,0.5)" },
-                    ...selected.map((p) => ["circle", {}, p[0], p[1]])],
+                [
+                    "g",
+                    { fill: "rgba(0,192,255,0.5)" },
+                    ...selected.map((p) => ["circle", {}, p[0], p[1]])
+                ],
                 // secondary neighbor connections
-                ["g", { stroke: "rgba(0,0,0,0.25)" },
-                    ...neighbors]]];
+                ["g", { stroke: "rgba(0,0,0,0.25)" }, ...neighbors]
+            ]
+        ];
     };
 };
 
@@ -84,10 +101,7 @@ const main = sync({ src: { trigger: trigger() } });
 // transform result stream using the
 // root component fn and the hdom differential
 // update transducer
-main.transform(
-    map(app(main)),
-    updateDOM()
-);
+main.transform(map(app(main)), updateDOM());
 
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;

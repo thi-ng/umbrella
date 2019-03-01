@@ -19,11 +19,11 @@ export const intersectRayLine = (
     const ary = a[1] - rpos[1];
     const t = (bay * arx - bax * ary) / d;
     const s = (dir[1] * arx - dir[0] * ary) / d;
-    return t >= 0 && s >= 0 && s <= 1 ?
-        {
-            type: IntersectionType.INTERSECT,
-            isec: maddN([], rpos, dir, t),
-            alpha: t
-        } :
-        NONE;
+    return t >= 0 && s >= 0 && s <= 1
+        ? {
+              type: IntersectionType.INTERSECT,
+              isec: maddN([], rpos, dir, t),
+              alpha: t
+          }
+        : NONE;
 };

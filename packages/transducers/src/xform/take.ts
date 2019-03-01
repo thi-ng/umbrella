@@ -17,14 +17,19 @@ import { ensureReduced, reduced } from "../reduced";
 export function take<T>(n: number): Transducer<T, T>;
 export function take<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function take<T>(n: number, src?: Iterable<T>): any {
-    return src ?
-        iterator(take(n), src) :
-        (rfn: Reducer<any, T>) => {
-            const r = rfn[2];
-            let m = n;
-            return compR(rfn,
-                (acc, x: T) => --m > 0 ? r(acc, x) :
-                    m === 0 ? ensureReduced(r(acc, x)) :
-                        reduced(acc));
-        }
+    return src
+        ? iterator(take(n), src)
+        : (rfn: Reducer<any, T>) => {
+              const r = rfn[2];
+              let m = n;
+              return compR(
+                  rfn,
+                  (acc, x: T) =>
+                      --m > 0
+                          ? r(acc, x)
+                          : m === 0
+                              ? ensureReduced(r(acc, x))
+                              : reduced(acc)
+              );
+          };
 }

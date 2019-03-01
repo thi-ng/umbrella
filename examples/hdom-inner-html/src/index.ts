@@ -5,26 +5,25 @@ import { start } from "@thi.ng/hdom";
  * returned component takes a single HTML string as arg and updates each
  * time the given string has changed.
  */
-const innerHtmlWrapper =
-    () => ({
-        init(el, _, html) {
-            this.el = el;
-            this.prev = html;
-            el.innerHTML = html;
-        },
-        render(_, body) {
-            if (this.el && this.prev != body) {
-                this.el.innerHTML = body;
-                this.prev = body;
-            }
-            return ["div"];
-        },
-        release() {
-            this.el.innerHTML = "";
-            delete this.prev;
-            delete this.el;
+const innerHtmlWrapper = () => ({
+    init(el, _, html) {
+        this.el = el;
+        this.prev = html;
+        el.innerHTML = html;
+    },
+    render(_, body) {
+        if (this.el && this.prev != body) {
+            this.el.innerHTML = body;
+            this.prev = body;
         }
-    });
+        return ["div"];
+    },
+    release() {
+        this.el.innerHTML = "";
+        delete this.prev;
+        delete this.el;
+    }
+});
 
 /**
  * Root component.
@@ -32,12 +31,12 @@ const innerHtmlWrapper =
 const app = () => {
     // instantiate HTML wrapper
     const wrapper = innerHtmlWrapper();
-    return () =>
-        [wrapper,
-            new Date().getSeconds() & 1 ?
-                `<div class="bg-washed-yellow sans-serif pa3">Time now:</div>` :
-                `<div class="bg-washed-green sans-serif pa3 b">${new Date().toLocaleTimeString()}</div>`
-        ];
+    return () => [
+        wrapper,
+        new Date().getSeconds() & 1
+            ? `<div class="bg-washed-yellow sans-serif pa3">Time now:</div>`
+            : `<div class="bg-washed-green sans-serif pa3 b">${new Date().toLocaleTimeString()}</div>`
+    ];
 };
 
 // kick off

@@ -12,25 +12,31 @@ import { fattribs, ff } from "./format";
  * @param size
  * @param attribs
  */
-export const points =
-    (pts: Iterable<Vec2Like>, shape: string, size = 1, attribs?: any): any[] => {
-        const group = ["g", fattribs({ ...attribs })];
-        let href: string;
-        if (!shape || shape[0] !== "#") {
-            const r = ff(size);
-            href = "_" + ((Math.random() * 1e6) | 0).toString(36);
-            group.push(["g", { opacity: 0 },
-                shape === "circle" ?
-                    ["circle", { id: href, cx: 0, cy: 0, r: r }] :
-                    ["rect", { id: href, x: 0, y: 0, width: r, height: r }]
-            ]);
-            href = "#" + href;
-        } else {
-            href = shape;
-        }
-        for (let p of pts) {
-            // TODO replace w/ SVG2 `href` once Safari supports it
-            group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
-        }
-        return group;
-    };
+export const points = (
+    pts: Iterable<Vec2Like>,
+    shape: string,
+    size = 1,
+    attribs?: any
+): any[] => {
+    const group = ["g", fattribs({ ...attribs })];
+    let href: string;
+    if (!shape || shape[0] !== "#") {
+        const r = ff(size);
+        href = "_" + ((Math.random() * 1e6) | 0).toString(36);
+        group.push([
+            "g",
+            { opacity: 0 },
+            shape === "circle"
+                ? ["circle", { id: href, cx: 0, cy: 0, r: r }]
+                : ["rect", { id: href, x: 0, y: 0, width: r, height: r }]
+        ]);
+        href = "#" + href;
+    } else {
+        href = shape;
+    }
+    for (let p of pts) {
+        // TODO replace w/ SVG2 `href` once Safari supports it
+        group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
+    }
+    return group;
+};

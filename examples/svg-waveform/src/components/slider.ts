@@ -24,26 +24,40 @@ export interface SliderOpts {
  * @param opts
  */
 export function slider(ctx: AppContext, opts: SliderOpts) {
-    opts = Object.assign({
-        oninput: (e) => ctx.bus.dispatch([opts.event, parseFloat(e.target.value)]),
-        min: 0,
-        max: 100,
-        step: 1,
-    }, opts);
-    return (ctx: AppContext) =>
-        ["section", ctx.ui.slider.root,
-            ["input",
+    opts = Object.assign(
+        {
+            oninput: (e) =>
+                ctx.bus.dispatch([opts.event, parseFloat(e.target.value)]),
+            min: 0,
+            max: 100,
+            step: 1
+        },
+        opts
+    );
+    return (ctx: AppContext) => [
+        "section",
+        ctx.ui.slider.root,
+        [
+            "input",
+            {
+                ...ctx.ui.slider.range,
+                ...opts,
+                type: "range",
+                value: ctx.views[opts.view].deref()
+            }
+        ],
+        [
+            "div",
+            opts.label,
+            [
+                "input",
                 {
-                    ...ctx.ui.slider.range,
-                    ...opts,
-                    type: "range",
-                    value: ctx.views[opts.view].deref(),
-                }],
-            ["div", opts.label,
-                ["input", {
                     ...ctx.ui.slider.number,
                     ...opts,
                     type: "number",
-                    value: ctx.views[opts.view].deref(),
-                }]]];
+                    value: ctx.views[opts.view].deref()
+                }
+            ]
+        ]
+    ];
 }

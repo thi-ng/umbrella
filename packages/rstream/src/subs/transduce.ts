@@ -29,27 +29,29 @@ export const transduce = <A, B, C>(
     rfn: Reducer<C, B>,
     init?: C
 ): Promise<C> => {
-
     let acc = init !== undefined ? init : rfn[0]();
     let sub: Subscription<A, B>;
 
     return new Promise<C>((resolve, reject) => {
-        sub = src.subscribe({
-            next(x) {
-                const _acc = rfn[2](acc, x);
-                if (isReduced(_acc)) {
-                    resolve(_acc.deref());
-                } else {
-                    acc = _acc;
+        sub = src.subscribe(
+            {
+                next(x) {
+                    const _acc = rfn[2](acc, x);
+                    if (isReduced(_acc)) {
+                        resolve(_acc.deref());
+                    } else {
+                        acc = _acc;
+                    }
+                },
+                done() {
+                    resolve(acc);
+                },
+                error(e) {
+                    reject(e);
                 }
             },
-            done() {
-                resolve(acc);
-            },
-            error(e) {
-                reject(e);
-            }
-        }, xform);
+            xform
+        );
     }).then(
         (fulfilled) => {
             sub.unsubscribe();

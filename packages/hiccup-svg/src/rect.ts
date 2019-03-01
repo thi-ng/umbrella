@@ -1,9 +1,12 @@
 import { Vec2Like } from "./api";
 import { ff, fattribs } from "./format";
 
-export const rect =
-    (p: Vec2Like, width: number, height: number, attribs?: any) =>
-        roundedRect(p, width, height, 0, 0, attribs);
+export const rect = (
+    p: Vec2Like,
+    width: number,
+    height: number,
+    attribs?: any
+) => roundedRect(p, width, height, 0, 0, attribs);
 
 export const roundedRect = (
     p: Vec2Like,
@@ -11,14 +14,14 @@ export const roundedRect = (
     height: number,
     rx: number,
     ry: number,
-    attribs?: any): any[] => {
-
+    attribs?: any
+): any[] => {
     attribs = fattribs({
         ...attribs,
         x: ff(p[0]),
         y: ff(p[1]),
         width: ff(width),
-        height: ff(height),
+        height: ff(height)
     });
     if (rx > 0 || ry > 0) {
         attribs.rx = ff(rx);

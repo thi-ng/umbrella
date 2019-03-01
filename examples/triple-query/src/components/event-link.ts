@@ -11,8 +11,14 @@ import { AppContext } from "../api";
  * @param attribs element attribs
  * @param body link body
  */
-export function eventLink(ctx: AppContext, attribs: any, event: Event, body: any) {
-    return ["a",
+export function eventLink(
+    ctx: AppContext,
+    attribs: any,
+    event: Event,
+    body: any
+) {
+    return [
+        "a",
         {
             ...attribs,
             onclick: (e) => {
@@ -20,5 +26,6 @@ export function eventLink(ctx: AppContext, attribs: any, event: Event, body: any
                 ctx.bus.dispatch(event);
             }
         },
-        body];
+        body
+    ];
 }

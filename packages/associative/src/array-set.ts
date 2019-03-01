@@ -18,9 +18,7 @@ const __private = new WeakMap<ArraySet<any>, SetProps<any>>();
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.
  */
-export class ArraySet<T> extends Set<T> implements
-    IEquivSet<T> {
-
+export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     constructor(vals?: Iterable<T>, opts: Partial<EquivSetOpts<T>> = {}) {
         super();
         __private.set(this, { equiv: opts.equiv || equiv, vals: [] });
@@ -95,7 +93,7 @@ export class ArraySet<T> extends Set<T> implements
     }
 
     delete(x: T) {
-        const $this = __private.get(this)
+        const $this = __private.get(this);
         const eq = $this.equiv;
         const vals = $this.vals;
         for (let i = vals.length - 1; i >= 0; i--) {

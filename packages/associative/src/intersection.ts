@@ -1,18 +1,17 @@
 import { empty } from "./utils";
 
-export const intersection =
-    <T>(a: Set<T>, b: Set<T>): Set<T> => {
-        if (a === b) {
-            return a;
+export const intersection = <T>(a: Set<T>, b: Set<T>): Set<T> => {
+    if (a === b) {
+        return a;
+    }
+    if (b.size < a.size) {
+        return intersection(b, a);
+    }
+    const res = empty(a, Set);
+    for (let i of b) {
+        if (a.has(i)) {
+            res.add(i);
         }
-        if (b.size < a.size) {
-            return intersection(b, a);
-        }
-        const res = empty(a, Set);
-        for (let i of b) {
-            if (a.has(i)) {
-                res.add(i);
-            }
-        }
-        return res;
-    };
+    }
+    return res;
+};

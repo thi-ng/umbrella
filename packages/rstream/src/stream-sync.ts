@@ -48,7 +48,6 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
     close: boolean;
 }
 
-
 /**
  * Similar to `StreamMerge`, but with extra synchronization of inputs.
  * Before emitting any new values, `StreamSync` collects values until at
@@ -93,12 +92,10 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * the @thi.ng/transducers package. See this function's docs for further
  * details.
  */
-export const sync =
-    <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
-        new StreamSync(opts);
+export const sync = <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
+    new StreamSync(opts);
 
 export class StreamSync<A, B> extends Subscription<A, B> {
-
     /**
      * maps actual inputs to their virtual input subs
      */
@@ -242,7 +239,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     }
 
     getSources() {
-        const res = {}
+        const res = {};
         for (let [id, src] of this.idSources) {
             res[this.invRealSourceIDs.get(id)] = src;
         }

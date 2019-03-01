@@ -16,7 +16,7 @@ const htmlCache = new TLRUCache<string, string>(null, { ttl: 60 * 60 * 1000 });
 const bundler = new Bundler("index.html", {
     outDir: "./out",
     outFile: "index.html",
-    publicUrl: "/out",
+    publicUrl: "/out"
 });
 
 const getCommits = async () => {
@@ -37,12 +37,9 @@ app.get("/", (_, res) => {
 app.get("/commits", (_, res) => {
     // retrieve raw commit log from cache or
     // (re)create if missing...
-    rawCache.getSet(
-        ctx.repo.path,
-        getCommits
-    ).then(
-        (commits) => res.type("json").send(commits)
-    )
+    rawCache
+        .getSet(ctx.repo.path, getCommits)
+        .then((commits) => res.type("json").send(commits));
 });
 
 // route for server-side rendering
@@ -50,15 +47,11 @@ app.get("/commits", (_, res) => {
 app.get("/ssr", (_, res) => {
     // retrieve rendered html from cache or
     // (re)create if missing...
-    htmlCache.getSet(
-        ctx.repo.path,
-        async () => buildRepoTableHTML(
-            await rawCache.getSet(
-                ctx.repo.path,
-                getCommits
-            )
+    htmlCache
+        .getSet(ctx.repo.path, async () =>
+            buildRepoTableHTML(await rawCache.getSet(ctx.repo.path, getCommits))
         )
-    ).then((doc) => res.send(doc))
+        .then((doc) => res.send(doc));
 });
 
 app.use(express.static("."));

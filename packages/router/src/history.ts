@@ -5,7 +5,6 @@ import { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
 import { BasicRouter } from "./basic";
 
 export class HTMLRouter extends BasicRouter {
-
     protected currentPath: string;
     protected popHandler: EventListener;
     protected hashHandler: EventListener;
@@ -24,10 +23,12 @@ export class HTMLRouter extends BasicRouter {
         }
         if (this.config.initialRouteID) {
             const route = this.routeForID(this.config.initialRouteID);
-            this.route(this.format({
-                id: route.id,
-                title: route.title,
-            }));
+            this.route(
+                this.format({
+                    id: route.id,
+                    title: route.title
+                })
+            );
         } else {
             this.route(this.useFragment ? location.hash : location.pathname);
         }
@@ -90,20 +91,20 @@ export class HTMLRouter extends BasicRouter {
     }
 
     protected handlePopChange() {
-        return this.popHandler = this.popHandler ||
+        return (this.popHandler =
+            this.popHandler ||
             ((e: PopStateEvent) => {
                 this.route(
                     e.state ||
-                    (this.useFragment ?
-                        location.hash :
-                        location.pathname),
+                        (this.useFragment ? location.hash : location.pathname),
                     false
                 );
-            }).bind(this);
+            }).bind(this));
     }
 
     protected handleHashChange() {
-        return this.hashHandler = this.hashHandler ||
+        return (this.hashHandler =
+            this.hashHandler ||
             ((e: HashChangeEvent) => {
                 if (!this.ignoreHashChange) {
                     const hash = e.newURL.substr(e.newURL.indexOf("#"));
@@ -111,7 +112,7 @@ export class HTMLRouter extends BasicRouter {
                         this.route(hash, false);
                     }
                 }
-            }).bind(this);
+            }).bind(this));
     }
 
     protected handleRouteFailure() {

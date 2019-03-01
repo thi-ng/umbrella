@@ -34,8 +34,12 @@ export const createTree = <T>(
         }
         const attribs = tree[1];
         if (attribs.__impl) {
-            return (<HDOMImplementation<any>>attribs.__impl)
-                .createTree(opts, parent, tree, insert);
+            return (<HDOMImplementation<any>>attribs.__impl).createTree(
+                opts,
+                parent,
+                tree,
+                insert
+            );
         }
         const el = impl.createElement(parent, tag, attribs, insert);
         if (tree.length > 2) {
@@ -45,10 +49,10 @@ export const createTree = <T>(
             }
         }
         if ((<any>tree).__init) {
-            (<any>tree).__init.apply(
-                (<any>tree).__this,
-                [el, ...(<any>tree).__args]
-            );
+            (<any>tree).__init.apply((<any>tree).__this, [
+                el,
+                ...(<any>tree).__args
+            ]);
         }
         return el;
     }
@@ -93,14 +97,18 @@ export const hydrateTree = <T>(
         }
         const attribs = tree[1];
         if (attribs.__impl) {
-            return (<HDOMImplementation<any>>attribs.__impl)
-                .hydrateTree(opts, parent, tree, index);
+            return (<HDOMImplementation<any>>attribs.__impl).hydrateTree(
+                opts,
+                parent,
+                tree,
+                index
+            );
         }
         if ((<any>tree).__init) {
-            (<any>tree).__init.apply(
-                (<any>tree).__this,
-                [el, ...(<any>tree).__args]
-            );
+            (<any>tree).__init.apply((<any>tree).__this, [
+                el,
+                ...(<any>tree).__args
+            ]);
         }
         for (let a in attribs) {
             if (a.indexOf("on") === 0) {
@@ -132,39 +140,46 @@ export const hydrateTree = <T>(
  * @param attribs
  * @param insert
  */
-export const createElement =
-    (parent: Element, tag: string, attribs?: any, insert?: number) => {
-        const el = SVG_TAGS[tag] ?
-            document.createElementNS(SVG_NS, tag) :
-            document.createElement(tag);
-        if (parent) {
-            if (insert == null) {
-                parent.appendChild(el);
-            } else {
-                parent.insertBefore(el, parent.children[insert]);
-            }
+export const createElement = (
+    parent: Element,
+    tag: string,
+    attribs?: any,
+    insert?: number
+) => {
+    const el = SVG_TAGS[tag]
+        ? document.createElementNS(SVG_NS, tag)
+        : document.createElement(tag);
+    if (parent) {
+        if (insert == null) {
+            parent.appendChild(el);
+        } else {
+            parent.insertBefore(el, parent.children[insert]);
         }
-        if (attribs) {
-            setAttribs(el, attribs);
-        }
-        return el;
-    };
+    }
+    if (attribs) {
+        setAttribs(el, attribs);
+    }
+    return el;
+};
 
-export const createTextElement =
-    (parent: Element, content: string, insert?: number) => {
-        const el = document.createTextNode(content);
-        if (parent) {
-            if (insert === undefined) {
-                parent.appendChild(el);
-            } else {
-                parent.insertBefore(el, parent.children[insert]);
-            }
+export const createTextElement = (
+    parent: Element,
+    content: string,
+    insert?: number
+) => {
+    const el = document.createTextNode(content);
+    if (parent) {
+        if (insert === undefined) {
+            parent.appendChild(el);
+        } else {
+            parent.insertBefore(el, parent.children[insert]);
         }
-        return el;
-    };
+    }
+    return el;
+};
 
-export const getChild =
-    (parent: Element, child: number) => parent.children[child];
+export const getChild = (parent: Element, child: number) =>
+    parent.children[child];
 
 export const replaceChild = (
     opts: Partial<HDOMOpts>,
@@ -173,28 +188,24 @@ export const replaceChild = (
     child: number,
     tree: any
 ) => (
-        impl.removeChild(parent, child),
-        impl.createTree(opts, parent, tree, child)
-    );
+    impl.removeChild(parent, child), impl.createTree(opts, parent, tree, child)
+);
 
-export const cloneWithNewAttribs =
-    (el: Element, attribs: any) => {
-        const res = <Element>el.cloneNode(true);
-        setAttribs(res, attribs);
-        el.parentNode.replaceChild(res, el);
-        return res;
-    };
+export const cloneWithNewAttribs = (el: Element, attribs: any) => {
+    const res = <Element>el.cloneNode(true);
+    setAttribs(res, attribs);
+    el.parentNode.replaceChild(res, el);
+    return res;
+};
 
-export const setContent =
-    (el: Element, body: any) => el.textContent = body;
+export const setContent = (el: Element, body: any) => (el.textContent = body);
 
-export const setAttribs =
-    (el: Element, attribs: any) => {
-        for (let k in attribs) {
-            setAttrib(el, k, attribs[k], attribs);
-        }
-        return el;
-    };
+export const setAttribs = (el: Element, attribs: any) => {
+    for (let k in attribs) {
+        setAttrib(el, k, attribs[k], attribs);
+    }
+    return el;
+};
 
 /**
  * Sets a single attribute on given element. If attrib name is NOT an
@@ -217,40 +228,39 @@ export const setAttribs =
  * @param val
  * @param attribs
  */
-export const setAttrib =
-    (el: Element, id: string, val: any, attribs?: any) => {
-        if (id.startsWith("__")) return;
-        const isListener = id.indexOf("on") === 0;
-        if (!isListener && typeof val === "function") {
-            val = val(attribs);
+export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
+    if (id.startsWith("__")) return;
+    const isListener = id.indexOf("on") === 0;
+    if (!isListener && typeof val === "function") {
+        val = val(attribs);
+    }
+    if (val !== undefined && val !== false) {
+        switch (id) {
+            case "style":
+                setStyle(el, val);
+                break;
+            case "value":
+                updateValueAttrib(<HTMLInputElement>el, val);
+                break;
+            case "id":
+            case "checked":
+            case "scrollTop":
+            case "scrollLeft":
+                // TODO add more native attribs?
+                el[id] = val;
+                break;
+            default:
+                if (isListener) {
+                    setListener(el, id.substr(2), val);
+                } else {
+                    el.setAttribute(id, val);
+                }
         }
-        if (val !== undefined && val !== false) {
-            switch (id) {
-                case "style":
-                    setStyle(el, val);
-                    break;
-                case "value":
-                    updateValueAttrib(<HTMLInputElement>el, val);
-                    break;
-                case "id":
-                case "checked":
-                case "scrollTop":
-                case "scrollLeft":
-                    // TODO add more native attribs?
-                    el[id] = val;
-                    break;
-                default:
-                    if (isListener) {
-                        setListener(el, id.substr(2), val);
-                    } else {
-                        el.setAttribute(id, val);
-                    }
-            }
-        } else {
-            el[id] != null ? (el[id] = null) : el.removeAttribute(id);
-        }
-        return el;
-    };
+    } else {
+        el[id] != null ? (el[id] = null) : el.removeAttribute(id);
+    }
+    return el;
+};
 
 /**
  * Updates an element's `value` property. For form elements it too
@@ -259,43 +269,41 @@ export const setAttrib =
  * @param el
  * @param v
  */
-export const updateValueAttrib =
-    (el: HTMLInputElement, v: any) => {
-        let ev;
-        switch (el.type) {
-            case "text":
-            case "textarea":
-            case "password":
-            case "email":
-            case "url":
-            case "tel":
-            case "search":
-                if ((ev = el.value) !== undefined && typeof v === "string") {
-                    const off = v.length - (ev.length - el.selectionStart);
-                    el.value = v;
-                    el.selectionStart = el.selectionEnd = off;
-                    break;
-                }
-            default:
+export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
+    let ev;
+    switch (el.type) {
+        case "text":
+        case "textarea":
+        case "password":
+        case "email":
+        case "url":
+        case "tel":
+        case "search":
+            if ((ev = el.value) !== undefined && typeof v === "string") {
+                const off = v.length - (ev.length - el.selectionStart);
                 el.value = v;
-        }
-    };
-
-export const removeAttribs =
-    (el: Element, attribs: string[], prev: any) => {
-        for (let i = attribs.length; --i >= 0;) {
-            const a = attribs[i];
-            if (a.indexOf("on") === 0) {
-                removeListener(el, a.substr(2), prev[a]);
-            } else {
-                el[a] ? (el[a] = null) : el.removeAttribute(a);
+                el.selectionStart = el.selectionEnd = off;
+                break;
             }
-        }
-    };
+        default:
+            el.value = v;
+    }
+};
 
-export const setStyle =
-    (el: Element, styles: any) =>
-        (el.setAttribute("style", css(styles)), el);
+export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
+    for (let i = attribs.length; --i >= 0; ) {
+        const a = attribs[i];
+        if (a.indexOf("on") === 0) {
+            removeListener(el, a.substr(2), prev[a]);
+        } else {
+            el[a] ? (el[a] = null) : el.removeAttribute(a);
+        }
+    }
+};
+
+export const setStyle = (el: Element, styles: any) => (
+    el.setAttribute("style", css(styles)), el
+);
 
 /**
  * Adds event listener (possibly with options).
@@ -335,12 +343,9 @@ export const removeListener = (
     }
 };
 
-export const clearDOM =
-    (el: Element) =>
-        el.innerHTML = "";
+export const clearDOM = (el: Element) => (el.innerHTML = "");
 
-export const removeChild =
-    (parent: Element, childIdx: number) => {
-        const n = parent.children[childIdx];
-        n !== undefined && parent.removeChild(n);
-    };
+export const removeChild = (parent: Element, childIdx: number) => {
+    const n = parent.children[childIdx];
+    n !== undefined && parent.removeChild(n);
+};

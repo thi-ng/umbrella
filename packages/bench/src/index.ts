@@ -37,15 +37,12 @@ export const timedResult = <T>(fn: () => T): TimingResult<T> => {
  */
 export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
     let res: T;
-    return timed(
-        () => {
-            while (n-- > 0) {
-                res = fn();
-            }
-            return res;
-        },
-        prefix
-    );
+    return timed(() => {
+        while (n-- > 0) {
+            res = fn();
+        }
+        return res;
+    }, prefix);
 };
 
 /**
@@ -57,12 +54,10 @@ export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
  */
 export const benchResult = <T>(fn: () => T, n = 1e6): TimingResult<T> => {
     let res: T;
-    return timedResult(
-        () => {
-            while (n-- > 0) {
-                res = fn();
-            }
-            return res;
+    return timedResult(() => {
+        while (n-- > 0) {
+            res = fn();
         }
-    );
+        return res;
+    });
 };

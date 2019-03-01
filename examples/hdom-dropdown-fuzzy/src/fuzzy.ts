@@ -1,11 +1,6 @@
 import { IView } from "@thi.ng/atom";
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
-import {
-    comp,
-    filterFuzzy,
-    iterator,
-    map
-} from "@thi.ng/transducers";
+import { comp, filterFuzzy, iterator, map } from "@thi.ng/transducers";
 import { DropdownItem, dropdownListeners, DropdownState } from "./dropdown";
 
 export interface FuzzyArgs {
@@ -18,15 +13,24 @@ export interface FuzzyArgs {
 }
 
 export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
-    const close = () => ctx.bus.dispatch([EV_SET_VALUE, [opts.state.path + ".open", false]]);
-    const filterInput = [opts.input, {
-        state: opts.filter.deref(),
-        placeholder: opts.placeholder,
-        oninput: (e) => ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, e.target.value]]),
-        onclear: () => ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, ""]]),
-        oncancel: close,
-        onconfirm: close,
-    }];
+    const close = () =>
+        ctx.bus.dispatch([EV_SET_VALUE, [opts.state.path + ".open", false]]);
+    const filterInput = [
+        opts.input,
+        {
+            state: opts.filter.deref(),
+            placeholder: opts.placeholder,
+            oninput: (e) =>
+                ctx.bus.dispatch([
+                    EV_SET_VALUE,
+                    [opts.filter.path, e.target.value]
+                ]),
+            onclear: () =>
+                ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, ""]]),
+            oncancel: close,
+            onconfirm: close
+        }
+    ];
     return () => {
         const state = { ...opts.state.deref() };
         const filter = opts.filter.deref().toLowerCase();
@@ -34,29 +38,47 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
             state.items = [
                 ...iterator(
                     comp(
-                        filterFuzzy(filter, { key: (x: DropdownItem) => x[1].toLowerCase() }),
-                        map(([id, x]) =>
-                            <DropdownItem>[
-                                id,
-                                highlightMatches((y) => ["span", ctx.theme.fuzzy, y], x, filter)
-                            ])
+                        filterFuzzy(filter, {
+                            key: (x: DropdownItem) => x[1].toLowerCase()
+                        }),
+                        map(
+                            ([id, x]) =>
+                                <DropdownItem>[
+                                    id,
+                                    highlightMatches(
+                                        (y) => ["span", ctx.theme.fuzzy, y],
+                                        x,
+                                        filter
+                                    )
+                                ]
+                        )
                     ),
-                    state.items)
+                    state.items
+                )
             ];
         }
-        return [opts.dropdown, {
-            ...dropdownListeners(ctx, opts.state.path),
-            openLabel: filterInput,
-            hoverLabel: opts.hoverLabel,
-            noItems: "no matches",
-            state
-        }];
+        return [
+            opts.dropdown,
+            {
+                ...dropdownListeners(ctx, opts.state.path),
+                openLabel: filterInput,
+                hoverLabel: opts.hoverLabel,
+                noItems: "no matches",
+                state
+            }
+        ];
     };
 };
 
-const highlightMatches = (fn: (x: string) => any, x: string, filter: string) => {
+const highlightMatches = (
+    fn: (x: string) => any,
+    x: string,
+    filter: string
+) => {
     const res: any[] = [];
-    let prev = -1, n = x.length - 1, m = filter.length;
+    let prev = -1,
+        n = x.length - 1,
+        m = filter.length;
     for (let i = 0, j = 0; i <= n && j < m; i++) {
         const c = x.charAt(i);
         if (c.toLowerCase() === filter.charAt(j)) {

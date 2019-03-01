@@ -7,8 +7,6 @@ import { result } from "./result";
  *
  * @param callback
  */
-export const always =
-    <T, C, R>(callback?: LitCallback<T, C, R>): Matcher<T, C, R> =>
-        () =>
-            (ctx, x) =>
-                result(callback && callback(ctx, x));
+export const always = <T, C, R>(
+    callback?: LitCallback<T, C, R>
+): Matcher<T, C, R> => () => (ctx, x) => result(callback && callback(ctx, x));

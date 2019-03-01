@@ -21,6 +21,6 @@ if (hot) {
     // terminate existing UI stream before applying updated module
     hot.dispose(() => ui.unsubscribe());
     // accept hot updates for app.ts & self
-    hot.accept('./app.ts');
+    hot.accept("./app.ts");
     hot.accept();
 }

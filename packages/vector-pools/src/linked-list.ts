@@ -3,7 +3,6 @@ import { AVecList } from "./alist";
 import { VecFactory } from "./api";
 
 export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
-
     head: T;
     tail: T;
     readonly closed: boolean;

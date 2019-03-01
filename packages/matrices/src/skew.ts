@@ -18,10 +18,7 @@ import {
     shearZY44
 } from "./shear";
 
-const $ =
-    (f: MatOpN) =>
-        (m: Mat, theta: number) =>
-            f(m, Math.tan(theta));
+const $ = (f: MatOpN) => (m: Mat, theta: number) => f(m, Math.tan(theta));
 
 export const skewX22 = $(shearX22);
 export const skewY22 = $(shearY22);

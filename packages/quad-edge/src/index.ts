@@ -5,8 +5,7 @@ let NEXT_ID = 0;
  *
  * @param id
  */
-export const setNextID =
-    (id: number) => (NEXT_ID = (id + 3) & -4);
+export const setNextID = (id: number) => (NEXT_ID = (id + 3) & -4);
 
 /**
  * Type alias for a 4-tuple of `Edge` instances.
@@ -23,7 +22,6 @@ export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
  * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps
  */
 export class Edge<T> {
-
     /**
      * Main edge / quadedge factory function. Use this in preference of
      * direct invocation of the `Edge` constructor.
@@ -37,10 +35,10 @@ export class Edge<T> {
      */
     static create<T>(src?: T, dest?: T) {
         const quad = <QuadEdge<T>>new Array(4);
-        const a = quad[0] = new Edge(quad, NEXT_ID);
-        const b = quad[1] = new Edge(quad, NEXT_ID + 1);
-        const c = quad[2] = new Edge(quad, NEXT_ID + 2);
-        const d = quad[3] = new Edge(quad, NEXT_ID + 3);
+        const a = (quad[0] = new Edge(quad, NEXT_ID));
+        const b = (quad[1] = new Edge(quad, NEXT_ID + 1));
+        const c = (quad[2] = new Edge(quad, NEXT_ID + 2));
+        const d = (quad[3] = new Edge(quad, NEXT_ID + 3));
         a.onext = a;
         c.onext = c;
         b.onext = d;
@@ -161,7 +159,7 @@ export class Edge<T> {
 
     connect(e: Edge<T>): Edge<T> {
         const n = Edge.create<T>();
-        n.splice(this.lnext)
+        n.splice(this.lnext);
         n.sym.splice(e);
         n.setEnds(this.dest, e.origin);
         return n;

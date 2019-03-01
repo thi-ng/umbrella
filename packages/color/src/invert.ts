@@ -8,16 +8,13 @@ import { clamp } from "./clamp";
  * @param out
  * @param src
  */
-export const invertRGB =
-    (out: Color, src: ReadonlyColor) => (
-        out = clamp(out || src, src),
-        sub3(out, ONE3, out)
-    );
+export const invertRGB = (out: Color, src: ReadonlyColor) => (
+    (out = clamp(out || src, src)), sub3(out, ONE3, out)
+);
 
 /**
  * Inverts the lowest 24 bits of an ARGB int.
  *
  * @param src
  */
-export const invertInt =
-    (src: number) => src ^ 0xffffff;
+export const invertInt = (src: number) => src ^ 0xffffff;

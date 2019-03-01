@@ -6,7 +6,6 @@
  * - https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf
  */
 export class DisjointSet {
-
     roots: Uint32Array;
     ranks: Uint8Array;
     count: number;
@@ -17,7 +16,7 @@ export class DisjointSet {
      * @param n
      */
     constructor(n: number) {
-        const roots = this.roots = new Uint32Array(n);
+        const roots = (this.roots = new Uint32Array(n));
         this.ranks = new Uint8Array(n).fill(0);
         this.count = n;
         for (let i = 0; i < n; ++i) {
@@ -58,10 +57,10 @@ export class DisjointSet {
         const ra = ranks[rootA];
         const rb = ranks[rootB];
         if (ra < rb) {
-            return this.roots[rootA] = rootB;
+            return (this.roots[rootA] = rootB);
         }
         ra === rb && ranks[rootA]++;
-        return this.roots[rootB] = rootA;
+        return (this.roots[rootB] = rootA);
     }
 
     /**
@@ -85,7 +84,7 @@ export class DisjointSet {
     subsets() {
         const sets: Map<number, number[]> = new Map();
         const roots = this.roots;
-        for (let i = roots.length; --i >= 0;) {
+        for (let i = roots.length; --i >= 0; ) {
             let id = i;
             while (id !== roots[id]) {
                 id = roots[roots[id]];

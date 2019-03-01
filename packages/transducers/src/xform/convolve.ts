@@ -23,7 +23,11 @@ export interface Convolution2DOpts {
     border?: number;
 }
 
-export const buildKernel2d = (weights: Iterable<number>, w: number, h: number): ConvolutionKernel2D => {
+export const buildKernel2d = (
+    weights: Iterable<number>,
+    w: number,
+    h: number
+): ConvolutionKernel2D => {
     const w2 = w >> 1;
     const h2 = h >> 1;
     return [...zip(weights, range2d(-w2, w2 + 1, -h2, h2 + 1))];
@@ -36,22 +40,33 @@ const kernelLookup2d = (
     width: number,
     height: number,
     wrap: boolean,
-    border: number) =>
-    wrap ?
-        ([w, [ox, oy]]) => {
-            const xx = x < -ox ? width + ox : x >= width - ox ? ox - 1 : x + ox;
-            const yy = y < -oy ? height + oy : y >= height - oy ? oy - 1 : y + oy;
-            return w * src[yy * width + xx];
-        } :
-        ([w, [ox, oy]]) => {
-            return (x < -ox || y < -oy || x >= width - ox || y >= height - oy) ?
-                border :
-                w * src[(y + oy) * width + x + ox];
-        };
+    border: number
+) =>
+    wrap
+        ? ([w, [ox, oy]]) => {
+              const xx =
+                  x < -ox ? width + ox : x >= width - ox ? ox - 1 : x + ox;
+              const yy =
+                  y < -oy ? height + oy : y >= height - oy ? oy - 1 : y + oy;
+              return w * src[yy * width + xx];
+          }
+        : ([w, [ox, oy]]) => {
+              return x < -ox || y < -oy || x >= width - ox || y >= height - oy
+                  ? border
+                  : w * src[(y + oy) * width + x + ox];
+          };
 
-export function convolve2d(opts: Convolution2DOpts): Transducer<number[], number>;
-export function convolve2d(opts: Convolution2DOpts, src: Iterable<number[]>): IterableIterator<number>;
-export function convolve2d(opts: Convolution2DOpts, _src?: Iterable<number[]>): any {
+export function convolve2d(
+    opts: Convolution2DOpts
+): Transducer<number[], number>;
+export function convolve2d(
+    opts: Convolution2DOpts,
+    src: Iterable<number[]>
+): IterableIterator<number>;
+export function convolve2d(
+    opts: Convolution2DOpts,
+    _src?: Iterable<number[]>
+): any {
     if (_src) {
         return iterator1(convolve2d(opts), _src);
     }
@@ -65,12 +80,11 @@ export function convolve2d(opts: Convolution2DOpts, _src?: Iterable<number[]>): 
         }
         kernel = buildKernel2d(opts.weights, opts.kwidth, opts.kheight);
     }
-    return map(
-        (p: number[]) =>
-            transduce(
-                map(kernelLookup2d(src, p[0], p[1], width, height, wrap, border)),
-                add(),
-                kernel
-            )
+    return map((p: number[]) =>
+        transduce(
+            map(kernelLookup2d(src, p[0], p[1], width, height, wrap, border)),
+            add(),
+            kernel
+        )
     );
 }

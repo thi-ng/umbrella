@@ -18,7 +18,7 @@ export type Conditional = string | IObjectOf<boolean | number | string>;
 
 /**
  * Format
-*/
+ */
 export interface Format {
     rules: string;
     ruleSep: string;
@@ -68,12 +68,7 @@ export interface CSSOpts {
     scope: string;
 }
 
-export const DEFAULT_VENDORS = [
-    "-moz-",
-    "-ms-",
-    "-o-",
-    "-webkit-"
-];
+export const DEFAULT_VENDORS = ["-moz-", "-ms-", "-o-", "-webkit-"];
 
 /**
  * Default format config used by `css()` function.
@@ -88,7 +83,7 @@ export const COMPACT: Format = {
     declStart: "{",
     declEnd: "}",
     indent: "",
-    comments: false,
+    comments: false
 };
 
 /**
@@ -103,5 +98,5 @@ export const PRETTY: Format = {
     declStart: " {\n",
     declEnd: "}\n",
     indent: "    ",
-    comments: true,
+    comments: true
 };

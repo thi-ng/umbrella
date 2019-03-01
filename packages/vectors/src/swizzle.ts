@@ -10,9 +10,8 @@ import { setC2, setC3, setC4 } from "./setc";
  * @param x new x coord index
  * @param y new y coord index
  */
-export const swizzle2 =
-    (out: Vec, a: ReadonlyVec, x: number, y: number) =>
-        setC2(out || a, a[x] || 0, a[y] || 0);
+export const swizzle2 = (out: Vec, a: ReadonlyVec, x: number, y: number) =>
+    setC2(out || a, a[x] || 0, a[y] || 0);
 
 /**
  * Places a re-ordered 3D version of vector `a` into `out`. The given
@@ -24,9 +23,13 @@ export const swizzle2 =
  * @param y new y coord index
  * @param z new z coord index
  */
-export const swizzle3 =
-    (out: Vec, a: ReadonlyVec, x: number, y: number, z: number) =>
-        setC3(out || a, a[x] || 0, a[y] || 0, a[z] || 0);
+export const swizzle3 = (
+    out: Vec,
+    a: ReadonlyVec,
+    x: number,
+    y: number,
+    z: number
+) => setC3(out || a, a[x] || 0, a[y] || 0, a[z] || 0);
 
 /**
  * Places a re-ordered 4D version of vector `a` into `out`. The given
@@ -39,15 +42,17 @@ export const swizzle3 =
  * @param z new z coord index
  * @param w new w coord index
  */
-export const swizzle4 =
-    (out: Vec, a: ReadonlyVec, x: number, y: number, z: number, w: number) =>
-        setC4(out || a, a[x] || 0, a[y] || 0, a[z] || 0, a[w] || 0);
+export const swizzle4 = (
+    out: Vec,
+    a: ReadonlyVec,
+    x: number,
+    y: number,
+    z: number,
+    w: number
+) => setC4(out || a, a[x] || 0, a[y] || 0, a[z] || 0, a[w] || 0);
 
-export const swapXY: VecOpV =
-    (out, v) => swizzle3(out, v, 1, 0, 2);
+export const swapXY: VecOpV = (out, v) => swizzle3(out, v, 1, 0, 2);
 
-export const swapXZ: VecOpV =
-    (out, v) => swizzle3(out, v, 2, 1, 0);
+export const swapXZ: VecOpV = (out, v) => swizzle3(out, v, 2, 1, 0);
 
-export const swapYZ: VecOpV =
-    (out, v) => swizzle3(out, v, 0, 2, 1);
+export const swapYZ: VecOpV = (out, v) => swizzle3(out, v, 0, 2, 1);

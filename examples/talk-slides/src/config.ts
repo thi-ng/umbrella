@@ -5,7 +5,7 @@ export const ctx = {
     // theme attribs for various components
     app: {
         root: { class: "w-100 vh-100 sans-serif bg-lightest-blue" },
-        credits: "ClojureX 2018",
+        credits: "ClojureX 2018"
     },
 
     footer: { class: "fixed bottom-1 f7 gray flex w-100 ph5 noprint" },
@@ -14,13 +14,15 @@ export const ctx = {
 
     navButton: {
         prev: {
-            class: "fixed top-50 left-0 z-999 pa3 bg-black white link f3 noprint",
+            class:
+                "fixed top-50 left-0 z-999 pa3 bg-black white link f3 noprint",
             href: "#"
         },
         next: {
-            class: "fixed top-50 right-0 z-999 pa3 bg-black white link f3 noprint",
+            class:
+                "fixed top-50 right-0 z-999 pa3 bg-black white link f3 noprint",
             href: "#"
-        },
+        }
     },
 
     code: { class: "pa3 f3 bg-dark-blue white code" },
@@ -55,6 +57,6 @@ export const ctx = {
     },
 
     youtube: {
-        class: "w-100 vh-100 bg-black",
+        class: "w-100 vh-100 bg-black"
     }
 };

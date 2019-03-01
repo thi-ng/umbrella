@@ -1,11 +1,8 @@
 import { IDeref } from "@thi.ng/api";
 
-export const delay =
-    <T>(body: () => T) => new Delay<T>(body);
+export const delay = <T>(body: () => T) => new Delay<T>(body);
 
-export class Delay<T> implements
-    IDeref<T> {
-
+export class Delay<T> implements IDeref<T> {
     value: T;
     protected body: () => T;
     protected realized: boolean;

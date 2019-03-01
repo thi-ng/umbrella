@@ -7,7 +7,7 @@ export enum Level {
     INFO,
     WARN,
     SEVERE,
-    NONE,
+    NONE
 }
 
 /**

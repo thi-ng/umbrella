@@ -5,11 +5,10 @@ import { CSC } from "./csc";
 import { CSR } from "./csr";
 
 export class COO extends ASparseMatrix {
-
     static fromDense(m: number, n: number, data: ArrayLike<number>) {
         const res = [];
         for (let i = 0, k = 0; i < m; i++) {
-            for (let j = 0; j < n; j++ , k++) {
+            for (let j = 0; j < n; j++, k++) {
                 if (data[k] !== 0) {
                     res.push(i, j, data[k]);
                 }

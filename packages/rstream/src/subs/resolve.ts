@@ -30,12 +30,10 @@ export interface ResolverOpts extends IID<string> {
  *
  * @param opts
  */
-export const resolve =
-    <T>(opts?: Partial<ResolverOpts>) =>
-        new Resolver<T>(opts);
+export const resolve = <T>(opts?: Partial<ResolverOpts>) =>
+    new Resolver<T>(opts);
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
-
     protected outstanding = 0;
     protected fail: (e: any) => void;
 
@@ -54,14 +52,16 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
                         this.done();
                     }
                 } else {
-                    DEBUG && console.log(`resolved value in state ${this.state} (${x})`);
+                    DEBUG &&
+                        console.log(
+                            `resolved value in state ${this.state} (${x})`
+                        );
                 }
             },
             (e) => {
                 if (this.fail) {
                     this.fail(e);
-                }
-                else {
+                } else {
                     this.error(e);
                 }
             }

@@ -1,11 +1,4 @@
-import {
-    add,
-    max,
-    min,
-    ReadonlyVec,
-    sub,
-    VecPair
-} from "@thi.ng/vectors";
+import { add, max, min, ReadonlyVec, sub, VecPair } from "@thi.ng/vectors";
 
 /**
  * Takes the position and size vectors of 2 `AABBLike`s and returns
@@ -16,10 +9,14 @@ import {
  * @param bpos
  * @param bsize
  */
-export const unionBounds =
-    (apos: ReadonlyVec, asize: ReadonlyVec, bpos: ReadonlyVec, bsize: ReadonlyVec): VecPair => {
-        const p = add([], apos, asize);
-        const q = add([], bpos, bsize);
-        const pos = min([], apos, bpos);
-        return [pos, sub(null, max(null, p, q), pos)];
-    };
+export const unionBounds = (
+    apos: ReadonlyVec,
+    asize: ReadonlyVec,
+    bpos: ReadonlyVec,
+    bsize: ReadonlyVec
+): VecPair => {
+    const p = add([], apos, asize);
+    const q = add([], bpos, bsize);
+    const pos = min([], apos, bpos);
+    return [pos, sub(null, max(null, p, q), pos)];
+};

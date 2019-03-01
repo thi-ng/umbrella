@@ -3,13 +3,19 @@ import { ARandom, ISeedable } from "./api";
 
 // https://en.wikipedia.org/wiki/Xorshift#xorwow
 
-const DEFAULT_SEED = [0xdecafbad, 0x2fa9d75b, 0xe41f67e3, 0x5c83ec1a, 0xf69a5c71];
+const DEFAULT_SEED = [
+    0xdecafbad,
+    0x2fa9d75b,
+    0xe41f67e3,
+    0x5c83ec1a,
+    0xf69a5c71
+];
 
-export class XorWow extends ARandom implements
-    IBuffered<Uint32Array>,
-    ICopy<XorWow>,
-    ISeedable<ArrayLike<number>> {
-
+export class XorWow extends ARandom
+    implements
+        IBuffered<Uint32Array>,
+        ICopy<XorWow>,
+        ISeedable<ArrayLike<number>> {
     buffer: Uint32Array;
 
     constructor(seed: ArrayLike<number> = DEFAULT_SEED) {
@@ -21,7 +27,6 @@ export class XorWow extends ARandom implements
     copy() {
         return new XorWow(this.buffer);
     }
-
 
     seed(seed: ArrayLike<number>) {
         this.buffer.set(seed);

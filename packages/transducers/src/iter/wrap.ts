@@ -14,7 +14,10 @@ import { illegalArgs } from "@thi.ng/errors";
  */
 export function* wrap<T>(src: Iterable<T>, n = 1, left = true, right = true) {
     const _src: T[] = ensureArray(src);
-    (n < 0 || n > _src.length) && illegalArgs(`wrong number of wrap items: got ${n}, but max: ${_src.length}`);
+    (n < 0 || n > _src.length) &&
+        illegalArgs(
+            `wrong number of wrap items: got ${n}, but max: ${_src.length}`
+        );
     if (left) {
         for (let m = _src.length, i = m - n; i < m; i++) {
             yield _src[i];

@@ -10,20 +10,16 @@ import { nextID } from "../utils/idgen";
  * @param delay
  * @param count
  */
-export const fromInterval =
-    (delay: number, count = Infinity) =>
-        new Stream<number>(
-            (stream) => {
-                let i = 0;
-                stream.next(i++);
-                let id = setInterval(() => {
-                    stream.next(i++);
-                    if (--count <= 0) {
-                        clearInterval(id);
-                        stream.done();
-                    }
-                }, delay);
-                return () => clearInterval(id);
-            },
-            `interval-${nextID()}`
-        );
+export const fromInterval = (delay: number, count = Infinity) =>
+    new Stream<number>((stream) => {
+        let i = 0;
+        stream.next(i++);
+        let id = setInterval(() => {
+            stream.next(i++);
+            if (--count <= 0) {
+                clearInterval(id);
+                stream.done();
+            }
+        }, delay);
+        return () => clearInterval(id);
+    }, `interval-${nextID()}`);

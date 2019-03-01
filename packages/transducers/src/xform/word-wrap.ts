@@ -20,9 +20,19 @@ export interface WordWrapOpts {
  * @param opts
  * @param src
  */
-export function wordWrap(lineLength: number, opts?: Partial<WordWrapOpts>): Transducer<string, string[]>;
-export function wordWrap(lineLength: number, src: Iterable<string>): IterableIterator<string[]>;
-export function wordWrap(lineLength: number, opts: Partial<WordWrapOpts>, src: Iterable<string>): IterableIterator<string[]>;
+export function wordWrap(
+    lineLength: number,
+    opts?: Partial<WordWrapOpts>
+): Transducer<string, string[]>;
+export function wordWrap(
+    lineLength: number,
+    src: Iterable<string>
+): IterableIterator<string[]>;
+export function wordWrap(
+    lineLength: number,
+    opts: Partial<WordWrapOpts>,
+    src: Iterable<string>
+): IterableIterator<string[]>;
 export function wordWrap(...args: any[]): any {
     const iter = $iter(wordWrap, args, iterator);
     if (iter) {
@@ -34,17 +44,16 @@ export function wordWrap(...args: any[]): any {
         always: true,
         ...args[1]
     };
-    return partitionBy(
-        () => {
-            let n = 0;
-            let flag = false;
-            return (w: string) => {
-                n += w.length + delim;
-                if (n > lineLength + (always ? 0 : delim)) {
-                    flag = !flag;
-                    n = w.length + delim;
-                }
-                return flag;
-            };
-        }, true);
+    return partitionBy(() => {
+        let n = 0;
+        let flag = false;
+        return (w: string) => {
+            n += w.length + delim;
+            if (n > lineLength + (always ? 0 : delim)) {
+                flag = !flag;
+                n = w.length + delim;
+            }
+            return flag;
+        };
+    }, true);
 }

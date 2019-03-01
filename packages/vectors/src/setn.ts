@@ -2,8 +2,14 @@ import { MultiVecOpN, Vec, VecOpN } from "./api";
 import { defOp } from "./internal/codegen";
 import { SET_N } from "./internal/templates";
 
-export const [setN, setN2, setN3, setN4] =
-    defOp<MultiVecOpN, VecOpN>(SET_N, "a,n", "a", "a", 0, "");
+export const [setN, setN2, setN3, setN4] = defOp<MultiVecOpN, VecOpN>(
+    SET_N,
+    "a,n",
+    "a",
+    "a",
+    0,
+    ""
+);
 
 export const zero = (a: Vec) => setN(a, 0);
 export const one = (a: Vec) => setN(a, 1);

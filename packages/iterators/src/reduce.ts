@@ -13,7 +13,6 @@ export const reduce = <A, B>(
     acc: B,
     input: Iterable<A>
 ) => {
-
     let iter = iterator(input);
     let v: IteratorResult<A>;
     let _acc: B | ReducedValue<B> = acc;
@@ -26,5 +25,4 @@ export const reduce = <A, B>(
     return _acc;
 };
 
-export const reduced =
-    <T>(x: T) => new ReducedValue(x);
+export const reduced = <T>(x: T) => new ReducedValue(x);

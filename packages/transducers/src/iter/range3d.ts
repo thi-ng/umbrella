@@ -1,9 +1,30 @@
 import { illegalArity } from "@thi.ng/errors";
 import { range } from "./range";
 
-export function range3d(toX: number, toY: number, toZ: number): IterableIterator<[number, number, number]>;
-export function range3d(fromX: number, toX: number, fromY: number, toY: number, fromZ: number, toZ: number): IterableIterator<[number, number, number]>;
-export function range3d(fromX: number, toX: number, fromY: number, toY: number, fromZ: number, toZ: number, stepX: number, stepY: number, stepZ: number): IterableIterator<[number, number, number]>;
+export function range3d(
+    toX: number,
+    toY: number,
+    toZ: number
+): IterableIterator<[number, number, number]>;
+export function range3d(
+    fromX: number,
+    toX: number,
+    fromY: number,
+    toY: number,
+    fromZ: number,
+    toZ: number
+): IterableIterator<[number, number, number]>;
+export function range3d(
+    fromX: number,
+    toX: number,
+    fromY: number,
+    toY: number,
+    fromZ: number,
+    toZ: number,
+    stepX: number,
+    stepY: number,
+    stepZ: number
+): IterableIterator<[number, number, number]>;
 export function* range3d(...args: number[]) {
     let fromX, toX, fromY, toY, fromZ, toZ, stepX, stepY, stepZ;
     switch (args.length) {

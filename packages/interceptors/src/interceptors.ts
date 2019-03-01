@@ -1,9 +1,4 @@
-import {
-    getIn,
-    Path,
-    setter,
-    updater
-} from "@thi.ng/paths";
+import { getIn, Path, setter, updater } from "@thi.ng/paths";
 import {
     Event,
     FX_CANCEL,
@@ -17,8 +12,7 @@ import {
 /**
  * Debug interceptor to log the current event to the console.
  */
-export const trace: InterceptorFn =
-    (_, e) => console.log("event:", e);
+export const trace: InterceptorFn = (_, e) => console.log("event:", e);
 
 /**
  * Higher-order interceptor. Returns interceptor which unpacks payload
@@ -27,10 +21,10 @@ export const trace: InterceptorFn =
  *
  * @param fxID side effect ID
  */
-export const forwardSideFx =
-    (fxID: string): InterceptorFn =>
-        (_, [__, body]) =>
-            ({ [fxID]: body !== undefined ? body : true });
+export const forwardSideFx = (fxID: string): InterceptorFn => (
+    _,
+    [__, body]
+) => ({ [fxID]: body !== undefined ? body : true });
 
 /**
  * Higher-order interceptor. Returns interceptor which assigns given
@@ -38,9 +32,9 @@ export const forwardSideFx =
  *
  * @param event
  */
-export const dispatch =
-    (event: Event): InterceptorFn =>
-        () => ({ [FX_DISPATCH]: event });
+export const dispatch = (event: Event): InterceptorFn => () => ({
+    [FX_DISPATCH]: event
+});
 
 /**
  * Higher-order interceptor. Returns interceptor which assigns given
@@ -48,9 +42,9 @@ export const dispatch =
  *
  * @param event
  */
-export const dispatchNow =
-    (event: Event): InterceptorFn =>
-        () => ({ [FX_DISPATCH_NOW]: event });
+export const dispatchNow = (event: Event): InterceptorFn => () => ({
+    [FX_DISPATCH_NOW]: event
+});
 
 /**
  * Higher-order interceptor. Returns interceptor which calls
@@ -82,9 +76,8 @@ export const dispatchNow =
  *
  * @param id
  */
-export const snapshot =
-    (id = "history"): InterceptorFn =>
-        (_, __, ___, ctx) => (ctx[id].record());
+export const snapshot = (id = "history"): InterceptorFn => (_, __, ___, ctx) =>
+    ctx[id].record();
 
 /**
  * Higher-order interceptor for validation purposes. Takes a predicate
@@ -125,15 +118,16 @@ export const snapshot =
  * @param pred predicate applied to given state & event
  * @param err interceptor triggered on predicate failure
  */
-export const ensurePred =
-    (pred: InterceptorPredicate, err?: InterceptorFn): InterceptorFn =>
-        (state, e, bus) =>
-            !pred(state, e, bus) ?
-                {
-                    [FX_CANCEL]: true,
-                    ...(err ? err(state, e, bus) : null)
-                } :
-                undefined;
+export const ensurePred = (
+    pred: InterceptorPredicate,
+    err?: InterceptorFn
+): InterceptorFn => (state, e, bus) =>
+    !pred(state, e, bus)
+        ? {
+              [FX_CANCEL]: true,
+              ...(err ? err(state, e, bus) : null)
+          }
+        : undefined;
 
 /**
  * Specialization of `ensurePred()` to ensure a state value is less than
@@ -154,9 +148,11 @@ export const ensurePred =
  * @param path path extractor
  * @param err error interceptor
  */
-export const ensureStateLessThan =
-    (max: number, path?: (e: Event) => Path, err?: InterceptorFn) =>
-        ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) < max, err);
+export const ensureStateLessThan = (
+    max: number,
+    path?: (e: Event) => Path,
+    err?: InterceptorFn
+) => ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) < max, err);
 
 /**
  * Specialization of `ensurePred()` to ensure a state value is greater
@@ -166,9 +162,11 @@ export const ensureStateLessThan =
  * @param path path extractor
  * @param err error interceptor
  */
-export const ensureStateGreaterThan =
-    (min: number, path?: (e: Event) => Path, err?: InterceptorFn) =>
-        ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) > min, err);
+export const ensureStateGreaterThan = (
+    min: number,
+    path?: (e: Event) => Path,
+    err?: InterceptorFn
+) => ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) > min, err);
 
 /**
  * Specialization of `ensurePred()` to ensure a state value is within
@@ -180,12 +178,16 @@ export const ensureStateGreaterThan =
  * @param path path extractor
  * @param err error interceptor
  */
-export const ensureStateRange =
-    (min: number, max: number, path?: (e: Event) => Path, err?: InterceptorFn) =>
-        ensurePred((state, e) => {
-            const x = getIn(state, path ? path(e) : e[1]);
-            return x >= min && x <= max;
-        }, err);
+export const ensureStateRange = (
+    min: number,
+    max: number,
+    path?: (e: Event) => Path,
+    err?: InterceptorFn
+) =>
+    ensurePred((state, e) => {
+        const x = getIn(state, path ? path(e) : e[1]);
+        return x >= min && x <= max;
+    }, err);
 
 /**
  * Specialization of `ensurePred()` to ensure an event's payload value
@@ -202,12 +204,16 @@ export const ensureStateRange =
  * @param value event value extractor
  * @param err error interceptor
  */
-export const ensureParamRange =
-    (min: number, max: number, value?: (e: Event) => number, err?: InterceptorFn) =>
-        ensurePred((_, e) => {
-            const x = value ? value(e) : e[1];
-            return x >= min && x <= max;
-        }, err);
+export const ensureParamRange = (
+    min: number,
+    max: number,
+    value?: (e: Event) => number,
+    err?: InterceptorFn
+) =>
+    ensurePred((_, e) => {
+        const x = value ? value(e) : e[1];
+        return x >= min && x <= max;
+    }, err);
 
 /**
  * Higher-order interceptor. Returns new interceptor to set state value
@@ -228,13 +234,10 @@ export const ensureParamRange =
  * @param path
  * @param tx
  */
-export const valueSetter =
-    <T>(path: Path, tx?: (x: T) => T): InterceptorFn => {
-        const $ = setter(path);
-        return (state, [_, val]) =>
-            ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
-    };
-
+export const valueSetter = <T>(path: Path, tx?: (x: T) => T): InterceptorFn => {
+    const $ = setter(path);
+    return (state, [_, val]) => ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
+};
 
 /**
  * Higher-order interceptor. Returns new interceptor to update state
@@ -257,9 +260,10 @@ export const valueSetter =
  * @param path
  * @param fn
  */
-export const valueUpdater =
-    <T>(path: Path, fn: (x: T, ...args: any[]) => T): InterceptorFn => {
-        const $ = updater(path, fn);
-        return (state, [_, ...args]) =>
-            ({ [FX_STATE]: $(state, ...args) });
-    };
+export const valueUpdater = <T>(
+    path: Path,
+    fn: (x: T, ...args: any[]) => T
+): InterceptorFn => {
+    const $ = updater(path, fn);
+    return (state, [_, ...args]) => ({ [FX_STATE]: $(state, ...args) });
+};

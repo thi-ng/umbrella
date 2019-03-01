@@ -6,17 +6,16 @@ import {
 } from "../api";
 import { mixin } from "../mixin";
 
-export const inotify_dispatch =
-    (listeners: any[][], e: Event) => {
-        if (!listeners) return;
-        for (let i = 0, n = listeners.length, l; i < n; i++) {
-            l = listeners[i];
-            l[0].call(l[1], e);
-            if (e.canceled) {
-                return;
-            }
+export const inotify_dispatch = (listeners: any[][], e: Event) => {
+    if (!listeners) return;
+    for (let i = 0, n = listeners.length, l; i < n; i++) {
+        l = listeners[i];
+        l[0].call(l[1], e);
+        if (e.canceled) {
+            return;
         }
-    };
+    }
+};
 
 /**
  * Mixin class decorator, injects INotify default implementation, incl.
@@ -24,7 +23,6 @@ export const inotify_dispatch =
  * registered listeners.
  */
 export const INotifyMixin = mixin(<INotify>{
-
     addListener(id: PropertyKey, fn: Listener, scope?: any) {
         let l = (this._listeners = this._listeners || {})[id];
         if (!l) {
@@ -67,5 +65,4 @@ export const INotifyMixin = mixin(<INotify>{
         }
         return i;
     }
-
 });

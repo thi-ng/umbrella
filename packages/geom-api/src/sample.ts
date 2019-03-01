@@ -1,7 +1,6 @@
 export let DEFAULT_SAMPLES = 20;
 
-export const setDefaultSamples = (n: number) =>
-    (DEFAULT_SAMPLES = n);
+export const setDefaultSamples = (n: number) => (DEFAULT_SAMPLES = n);
 
 export interface SamplingOpts {
     /**

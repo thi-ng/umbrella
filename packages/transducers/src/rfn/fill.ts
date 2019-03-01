@@ -18,7 +18,7 @@ export function fill(...args: any[]): any {
         return res;
     }
     let start = args[0] || 0;
-    return reducer(() => [], (acc, x) => (acc[start++] = x, acc));
+    return reducer(() => [], (acc, x) => ((acc[start++] = x), acc));
 }
 
 /**

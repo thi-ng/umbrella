@@ -18,7 +18,6 @@ import { normalizeTree } from "./normalize";
  * Default target implementation to manipulate browser DOM.
  */
 export const DEFAULT_IMPL: HDOMImplementation<any> = {
-
     createTree(opts, parent, tree, child?) {
         return createTree(opts, this, parent, tree, child);
     },
@@ -53,5 +52,5 @@ export const DEFAULT_IMPL: HDOMImplementation<any> = {
 
     removeAttribs,
 
-    setAttrib,
+    setAttrib
 };

@@ -1,13 +1,12 @@
 import { copy, empty } from "./utils";
 
-export const difference =
-    <T>(a: Set<T>, b: Set<T>): Set<T> => {
-        if (a === b) {
-            return empty(a, Set);
-        }
-        const res = copy(a, Set);
-        for (let i of b) {
-            res.delete(i);
-        }
-        return res;
-    };
+export const difference = <T>(a: Set<T>, b: Set<T>): Set<T> => {
+    if (a === b) {
+        return empty(a, Set);
+    }
+    const res = copy(a, Set);
+    for (let i of b) {
+        res.delete(i);
+    }
+    return res;
+};

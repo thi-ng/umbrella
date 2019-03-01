@@ -20,13 +20,16 @@ import { DEFAULT_DOC } from "../common/config";
 export const html = (doc: HTMLDoc) => {
     doc = mergeDeepObj(DEFAULT_DOC, doc);
     return `<!DOCTYPE html>${serialize(
-        ["html", { lang: doc.lang || "en" },
-            ["head",
+        [
+            "html",
+            { lang: doc.lang || "en" },
+            [
+                "head",
                 map((meta) => ["meta", meta], doc.head.meta),
                 map((s) => script(null, s), doc.head.scripts),
                 map((link) => ["link", link], doc.head.links),
                 map((css) => ["style", css], doc.head.styles),
-                ["title", doc.head.title],
+                ["title", doc.head.title]
             ],
             ["body", doc.ctx.ui.body, ...doc.body]
         ],
@@ -34,5 +37,7 @@ export const html = (doc: HTMLDoc) => {
     )}`;
 };
 
-export const script = (_: AppContext, script: { src: string, type?: string }) =>
-    ["script", { type: "text/javascript", ...script }];
+export const script = (
+    _: AppContext,
+    script: { src: string; type?: string }
+) => ["script", { type: "text/javascript", ...script }];

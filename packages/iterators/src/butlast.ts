@@ -6,7 +6,9 @@ export function* butLast<T>(input: Iterable<T>) {
     let prev: T;
     let first = true;
     while (((v = iter.next()), !v.done)) {
-        if (!first) { yield prev; }
+        if (!first) {
+            yield prev;
+        }
         prev = v.value;
         first = false;
     }

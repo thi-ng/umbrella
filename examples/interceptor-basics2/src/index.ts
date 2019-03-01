@@ -48,8 +48,9 @@ const events: IObjectOf<EventDef> = {
     // each time it's triggered
     [EV_ADD_VALUE]: [
         trace,
-        (_, [__, [path, y]]) =>
-            ({ [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x) => x + y]] })
+        (_, [__, [path, y]]) => ({
+            [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x) => x + y]]
+        })
     ],
 
     // this handler increments the `nextID` state value and
@@ -61,23 +62,26 @@ const events: IObjectOf<EventDef> = {
         [FX_ADD_COUNTER]: {
             id: state.nextID,
             start: ~~(Math.random() * 100),
-            color: ["gold", "orange", "springgreen", "yellow", "cyan"][~~(Math.random() * 5)]
+            color: ["gold", "orange", "springgreen", "yellow", "cyan"][
+                ~~(Math.random() * 5)
+            ]
         }
-    }),
+    })
 };
 
 ///////////////////////////////////////////////////////////////////////
 // skeleton for other side effects, ignore for now
 
-const effects: IObjectOf<EffectDef> = {
-
-};
+const effects: IObjectOf<EffectDef> = {};
 
 ///////////////////////////////////////////////////////////////////////
 // components
 
-const button = (bus, event, label, id?) =>
-    ["button", { id, onclick: () => bus.dispatch(event) }, label];
+const button = (bus, event, label, id?) => [
+    "button",
+    { id, onclick: () => bus.dispatch(event) },
+    label
+];
 
 // counter component function
 // calls to this function will be triggered via the "addCounter" event and its side effect
@@ -85,13 +89,17 @@ const button = (bus, event, label, id?) =>
 const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
     const view = bus.state.addView(path);
     bus.dispatch([EV_SET_VALUE, [path, start]]);
-    return ["div.counter",
+    return [
+        "div.counter",
         { style: { background: color } },
         () => view.deref() || 0,
-        ["div",
+        [
+            "div",
             button(bus, [EV_DEC, view.path], "-"),
-            button(bus, [EV_INC, view.path], "+")]];
-}
+            button(bus, [EV_INC, view.path], "+")
+        ]
+    ];
+};
 
 // main app
 const app = () => {
@@ -106,24 +114,27 @@ const app = () => {
     // each type can also be added & remove dynamically
     // here we define the FX_ADD_COUNTER side effect, responsible for
     // creating a new `counter()` component
-    bus.addEffect(FX_ADD_COUNTER,
-        ({ id, color, start }, bus) =>
-            counters.push(counter(bus, ["counters", id], start, color)));
+    bus.addEffect(FX_ADD_COUNTER, ({ id, color, start }, bus) =>
+        counters.push(counter(bus, ["counters", id], start, color))
+    );
 
     // add derived view subscription for updating JSON state trace
     // (only executed when state changes)
-    const json = bus.state.addView([], (state) => JSON.stringify(state, null, 2));
+    const json = bus.state.addView([], (state) =>
+        JSON.stringify(state, null, 2)
+    );
 
     // this not just initializes the given state value
     // the changed state will also trigger the 1st DOM rendering (see returned function below)
     bus.dispatch([EV_SET_VALUE, ["nextID", 0]]);
 
     // our actual root component function passed to hdom
-    const root = () =>
-        ["div",
-            button(bus, [EV_ADD_COUNTER], "add counter", "addcounter"),
-            ["div", ...counters],
-            ["pre", json]];
+    const root = () => [
+        "div",
+        button(bus, [EV_ADD_COUNTER], "add counter", "addcounter"),
+        ["div", ...counters],
+        ["pre", json]
+    ];
 
     return () => {
         // here we do an optional fail fast check, a useful & energy saving
@@ -138,7 +149,7 @@ const app = () => {
         if (bus.processQueue()) {
             return root;
         }
-    }
+    };
 };
 
 // kick off hdom render loop

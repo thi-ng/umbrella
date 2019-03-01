@@ -5,13 +5,7 @@ export const testRectRect = (
     [aw, ah]: ReadonlyVec,
     [bx, by]: ReadonlyVec,
     [bw, bh]: ReadonlyVec
-) =>
-    !(
-        (ax > bx + bw) ||
-        (bx > ax + aw) ||
-        (ay > by + bh) ||
-        (by > ay + ah)
-    );
+) => !(ax > bx + bw || bx > ax + aw || ay > by + bh || by > ay + ah);
 
 export const testAabbAabb = (
     [ax, ay, az]: ReadonlyVec,
@@ -20,10 +14,10 @@ export const testAabbAabb = (
     [bw, bh, bd]: ReadonlyVec
 ) =>
     !(
-        (ax > bx + bw) ||
-        (bx > ax + aw) ||
-        (ay > by + bh) ||
-        (by > ay + ah) ||
-        (az > bz + bd) ||
-        (bz > az + ad)
+        ax > bx + bw ||
+        bx > ax + aw ||
+        ay > by + bh ||
+        by > ay + ah ||
+        az > bz + bd ||
+        bz > az + ad
     );

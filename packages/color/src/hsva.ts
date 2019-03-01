@@ -3,15 +3,13 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
 
-export function hsva(col: Color): HSVA
+export function hsva(col: Color): HSVA;
 export function hsva(h?: number, s?: number, v?: number, a?: number): HSVA;
 export function hsva(...args: any[]) {
     return new HSVA(ensureArgs(args));
 }
 
-export class HSVA extends AColor<HSVA> implements
-    IVector<HSVA> {
-
+export class HSVA extends AColor<HSVA> implements IVector<HSVA> {
     h: number;
     s: number;
     v: number;

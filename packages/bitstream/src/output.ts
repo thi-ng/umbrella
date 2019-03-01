@@ -1,34 +1,33 @@
 import { illegalArgs } from "@thi.ng/errors";
-
 import { BitInputStream } from "./input";
 
 const DEFAULT_BUF_SIZE = 0x10;
 const U32 = Math.pow(2, 32);
 
 export class BitOutputStream {
-
-    public buffer: Uint8Array;
+    buffer: Uint8Array;
     protected start: number;
     protected pos: number;
     protected bit: number;
     protected bitPos: number;
 
     constructor(buffer?: number | Uint8Array, offset = 0) {
-        this.buffer = typeof buffer === "undefined" ?
-            new Uint8Array(DEFAULT_BUF_SIZE) :
-            typeof buffer === "number" ?
-                new Uint8Array(buffer) :
-                buffer;
+        this.buffer =
+            typeof buffer === "undefined"
+                ? new Uint8Array(DEFAULT_BUF_SIZE)
+                : typeof buffer === "number"
+                ? new Uint8Array(buffer)
+                : buffer;
         this.start = offset;
         this.seek(offset);
         this.buffer[this.pos] &= ~((1 << this.bit) - 1);
     }
 
-    public get position() {
+    get position() {
         return this.bitPos;
     }
 
-    public seek(pos: number): BitOutputStream {
+    seek(pos: number): BitOutputStream {
         if (pos < this.start || pos >= this.buffer.length << 3) {
             illegalArgs(`seek pos out of bounds: ${pos}`);
         }
@@ -38,15 +37,15 @@ export class BitOutputStream {
         return this;
     }
 
-    public bytes() {
-        return this.buffer.slice(0, this.pos + ((this.bit & 7) ? 1 : 0));
+    bytes() {
+        return this.buffer.slice(0, this.pos + (this.bit & 7 ? 1 : 0));
     }
 
-    public reader(from = 0) {
+    reader(from = 0) {
         return new BitInputStream(this.buffer, from, this.position);
     }
 
-    public write(x: number, wordSize = 1) {
+    write(x: number, wordSize = 1) {
         if (wordSize > 32) {
             let hi = Math.floor(x / U32);
             this.write(hi, wordSize - 32);
@@ -68,17 +67,18 @@ export class BitOutputStream {
         return this;
     }
 
-    public writeWords(input: Iterable<number>, wordSize = 8) {
+    writeWords(input: Iterable<number>, wordSize = 8) {
         let iter = input[Symbol.iterator]();
         let v: IteratorResult<number>;
-        while ((v = iter.next(), !v.done)) {
+        while (((v = iter.next()), !v.done)) {
             this.write(v.value, wordSize);
         }
     }
 
-    public writeBit(x: number) {
+    writeBit(x: number) {
         this.bit--;
-        this.buffer[this.pos] = (this.buffer[this.pos] & ~(1 << this.bit)) | (x << this.bit);
+        this.buffer[this.pos] =
+            (this.buffer[this.pos] & ~(1 << this.bit)) | (x << this.bit);
         if (this.bit === 0) {
             this.ensureSize();
             //this.buffer[this.pos] = 0;
@@ -97,7 +97,7 @@ export class BitOutputStream {
         let m = bit < 8 ? ~((1 << bit) - 1) : 0;
         if (b >= 0) {
             m |= (1 << b) - 1;
-            buf[pos] = (buf[pos] & m) | (x << b & ~m);
+            buf[pos] = (buf[pos] & m) | ((x << b) & ~m);
             if (b === 0) {
                 this.ensureSize();
                 this.bit = 8;
@@ -106,9 +106,11 @@ export class BitOutputStream {
             }
         } else {
             this.bit = bit = 8 + b;
-            buf[pos] = (buf[pos] & m) | (x >>> -b & ~m);
+            buf[pos] = (buf[pos] & m) | ((x >>> -b) & ~m);
             this.ensureSize();
-            this.buffer[this.pos] = (this.buffer[this.pos] & (1 << bit) - 1) | x << bit & 0xff;
+            this.buffer[this.pos] =
+                (this.buffer[this.pos] & ((1 << bit) - 1)) |
+                ((x << bit) & 0xff);
         }
         this.bitPos += wordSize;
         return this;

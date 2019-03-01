@@ -3,12 +3,7 @@ import { Atom, Cursor, History } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
-import {
-    AppConfig,
-    AppContext,
-    AppViews,
-    ViewSpec
-} from "./api";
+import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import { initDataflow } from "./dataflow";
 import * as ev from "./events";
 import { PARAM_BASE } from "./paths";
@@ -21,7 +16,6 @@ import { PARAM_BASE } from "./paths";
  * - start hdom render & event bus loop
  */
 export class App {
-
     config: AppConfig;
     ctx: AppContext;
     state: Atom<any>;
@@ -35,12 +29,15 @@ export class App {
         // SVG in the history and therefore save a lot of RAM
         // furthermore, the param changes trigger updates in the dataflow graph
         // (see `init()` method below) and will regenerate the SVG anyway
-        this.history = new History<any>(new Cursor<any>(this.state, PARAM_BASE), 1000);
+        this.history = new History<any>(
+            new Cursor<any>(this.state, PARAM_BASE),
+            1000
+        );
         // define context object passed to all UI component functions
         this.ctx = {
             bus: new EventBus(this.state, config.events, config.effects),
             views: <AppViews>{},
-            ui: config.ui,
+            ui: config.ui
         };
         // initialize derived views
         this.addViews(this.config.views);
@@ -80,7 +77,10 @@ export class App {
         let firstFrame = true;
         start(
             () => {
-                if (this.ctx.bus.processQueue({ history: this.history }) || firstFrame) {
+                if (
+                    this.ctx.bus.processQueue({ history: this.history }) ||
+                    firstFrame
+                ) {
                     firstFrame = false;
                     return root();
                 }

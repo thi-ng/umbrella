@@ -5,9 +5,7 @@ import { IWriteableChannel, TopicFn } from "./api";
 import { Channel } from "./channel";
 import { Mult } from "./mult";
 
-export class PubSub<T> implements
-    IWriteableChannel<T> {
-
+export class PubSub<T> implements IWriteableChannel<T> {
     protected static NEXT_ID = 0;
 
     protected src: Channel<T>;
@@ -93,12 +91,12 @@ export class PubSub<T> implements
 
     protected async process() {
         let x;
-        while ((x = null, x = await this.src.read()) !== undefined) {
+        while (((x = null), (x = await this.src.read())) !== undefined) {
             const id = await this.fn(x);
             let topic = this.topics[id];
-            topic && await topic.write(x);
+            topic && (await topic.write(x));
             topic = this.topics["*"];
-            topic && await topic.write(x);
+            topic && (await topic.write(x));
         }
         for (let id of Object.keys(this.topics)) {
             this.topics[id].close();

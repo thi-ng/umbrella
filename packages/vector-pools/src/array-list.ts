@@ -3,7 +3,6 @@ import { AVecList } from "./alist";
 import { VecFactory } from "./api";
 
 export class VecArrayList<T extends StridedVec> extends AVecList<T> {
-
     items: T[];
 
     /**
@@ -22,7 +21,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
         start = 0,
         cstride = 1,
         estride = size,
-        factory?: VecFactory,
+        factory?: VecFactory
     ) {
         super(buffer, capacity, size, cstride, estride, start, factory);
         this.items = [];

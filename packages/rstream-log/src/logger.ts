@@ -2,15 +2,17 @@ import { illegalArity } from "@thi.ng/errors";
 import { ISubscribable, nextID, StreamMerge } from "@thi.ng/rstream";
 import { ILogger, Level, LogEntry } from "./api";
 
-export class Logger extends StreamMerge<LogEntry, LogEntry> implements
-    ILogger {
-
+export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
     level: Level;
 
     constructor();
     constructor(id: string);
     constructor(id: string, level: Level);
-    constructor(id: string, sources: Iterable<ISubscribable<LogEntry>>, level?: Level);
+    constructor(
+        id: string,
+        sources: Iterable<ISubscribable<LogEntry>>,
+        level?: Level
+    );
     constructor(...args: any[]) {
         let id;
         let level = Level.FINE;

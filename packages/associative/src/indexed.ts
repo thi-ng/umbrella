@@ -20,15 +20,14 @@ import { empty } from "./utils";
  * @param records objects to index
  * @param ks keys used for indexing
  */
-export const indexed =
-    <T>(records: Iterable<T>, ks: PropertyKey[]) => {
-        const res = new EquivMap<any, Set<T>>();
-        let x, ik, rv;
-        for (x of records) {
-            ik = selectKeysObj(x, ks);
-            rv = res.get(ik);
-            !rv && res.set(ik, rv = empty(records, Set));
-            rv.add(x);
-        }
-        return res;
-    };
+export const indexed = <T>(records: Iterable<T>, ks: PropertyKey[]) => {
+    const res = new EquivMap<any, Set<T>>();
+    let x, ik, rv;
+    for (x of records) {
+        ik = selectKeysObj(x, ks);
+        rv = res.get(ik);
+        !rv && res.set(ik, (rv = empty(records, Set)));
+        rv.add(x);
+    }
+    return res;
+};

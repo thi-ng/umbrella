@@ -8,8 +8,7 @@ const branchPred = <T>(
     b: number,
     l: PropertyKey,
     r: PropertyKey
-) =>
-    (x: T) => key(x) & b ? r : l;
+) => (x: T) => (key(x) & b ? r : l);
 
 /**
  * Creates a bottom-up, unbalanced binary tree of desired depth and
@@ -90,14 +89,16 @@ export const groupBinary = <T>(
     left: PropertyKey = "l",
     right: PropertyKey = "r"
 ): Reducer<any, T> => {
-
     const init = branch || (() => ({}));
     let rfn: Reducer<any, T> = groupByObj({
         key: branchPred(key, 1, left, right),
-        group: leaf || push(),
+        group: leaf || push()
     });
     for (let i = 2, maxIndex = 1 << bits; i < maxIndex; i <<= 1) {
-        rfn = groupByObj({ key: branchPred(key, i, left, right), group: [init, rfn[1], rfn[2]] });
+        rfn = groupByObj({
+            key: branchPred(key, i, left, right),
+            group: [init, rfn[1], rfn[2]]
+        });
     }
     return [init, rfn[1], rfn[2]];
 };

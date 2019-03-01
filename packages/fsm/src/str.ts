@@ -1,9 +1,4 @@
-import {
-    LitCallback,
-    Match,
-    Matcher,
-    RES_PARTIAL
-} from "./api";
+import { LitCallback, Match, Matcher, RES_PARTIAL } from "./api";
 import { result } from "./result";
 
 /**
@@ -18,13 +13,12 @@ export const str = <C, R>(
     str: string,
     success?: LitCallback<string, C, R>,
     fail?: LitCallback<string, C, R>
-): Matcher<string, C, R> =>
-    () => {
-        let buf = "";
-        return (ctx, x) =>
-            (buf += x) === str ?
-                result(success && success(ctx, buf)) :
-                str.indexOf(buf) === 0 ?
-                    RES_PARTIAL :
-                    result(fail && fail(ctx, buf), Match.FAIL);
-    };
+): Matcher<string, C, R> => () => {
+    let buf = "";
+    return (ctx, x) =>
+        (buf += x) === str
+            ? result(success && success(ctx, buf))
+            : str.indexOf(buf) === 0
+                ? RES_PARTIAL
+                : result(fail && fail(ctx, buf), Match.FAIL);
+};

@@ -1,27 +1,18 @@
 import { TypedArray } from "@thi.ng/api";
 import { isTypedArray } from "@thi.ng/checks";
-import {
-    MemPool,
-    MemPoolOpts,
-    MemPoolStats,
-    Type
-} from "@thi.ng/malloc";
+import { MemPool, MemPoolOpts, MemPoolStats, Type } from "@thi.ng/malloc";
 import { IVector } from "@thi.ng/vectors";
 import { GLType, IVecPool } from "./api";
 import { asNativeType } from "./convert";
 import { wrap } from "./wrap";
 
-export class VecPool implements
-    IVecPool {
-
+export class VecPool implements IVecPool {
     pool: MemPool;
 
     constructor(pool?: MemPool);
     constructor(opts?: Partial<MemPoolOpts>);
     constructor(pool: any) {
-        this.pool = pool instanceof MemPool ?
-            pool :
-            new MemPool(pool);
+        this.pool = pool instanceof MemPool ? pool : new MemPool(pool);
     }
 
     stats(): MemPoolStats {
@@ -39,7 +30,6 @@ export class VecPool implements
     ): IVector<any> {
         const buf = this.pool.callocAs(asNativeType(type), size * stride);
         return wrap(buf, size, 0, stride);
-
     }
 
     /**
@@ -87,11 +77,11 @@ export class VecPool implements
 
     free(vec: IVector<any> | TypedArray) {
         const buf = (<any>vec).buf;
-        return buf ?
-            isTypedArray(buf) ?
-                this.pool.free(<any>buf) :
-                false :
-            this.pool.free(<any>vec);
+        return buf
+            ? isTypedArray(buf)
+                ? this.pool.free(<any>buf)
+                : false
+            : this.pool.free(<any>vec);
     }
 
     freeAll() {

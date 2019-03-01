@@ -19,9 +19,12 @@ import { bounds } from "./bounds";
  * @param src
  */
 export function donchian(period: number): Transducer<number, [number, number]>;
-export function donchian(period: number, src: Iterable<number>): IterableIterator<[number, number]>;
+export function donchian(
+    period: number,
+    src: Iterable<number>
+): IterableIterator<[number, number]>;
 export function donchian(period: number, src?: Iterable<number>): any {
-    return src ?
-        iterator(donchian(period), src) :
-        comp(partition(period, 1), map(bounds));
-};
+    return src
+        ? iterator(donchian(period), src)
+        : comp(partition(period, 1), map(bounds));
+}

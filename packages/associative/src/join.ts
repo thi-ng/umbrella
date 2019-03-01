@@ -37,7 +37,6 @@ export const join = (
     xrel: Set<IObjectOf<any>>,
     yrel: Set<IObjectOf<any>>
 ): Set<IObjectOf<any>> => {
-
     if (xrel.size && yrel.size) {
         const ks = commonKeysObj(first(xrel) || {}, first(yrel) || {});
         let a: Set<any>, b: Set<any>;
@@ -96,7 +95,6 @@ export const joinWith = (
     yrel: Set<any>,
     kmap: IObjectOf<PropertyKey>
 ): Set<any> => {
-
     if (xrel.size && yrel.size) {
         let r: Set<any>, s: Set<any>;
         let k: IObjectOf<PropertyKey>;

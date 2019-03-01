@@ -7,12 +7,11 @@ import { MatOpM } from "./api";
  * @param out
  * @param m33
  */
-export const mat33to44: MatOpM =
-    (out, m33) => (
-        !out && (out = []),
-        setS3(out, m33, 0, 0),
-        setS3(out, m33, 4, 3),
-        setS3(out, m33, 8, 6),
-        setS3(out, ZERO4, 12),
-        setS4(out, [0, 0, 0, 1], 3, 0, 4)
-    );
+export const mat33to44: MatOpM = (out, m33) => (
+    !out && (out = []),
+    setS3(out, m33, 0, 0),
+    setS3(out, m33, 4, 3),
+    setS3(out, m33, 8, 6),
+    setS3(out, ZERO4, 12),
+    setS4(out, [0, 0, 0, 1], 3, 0, 4)
+);

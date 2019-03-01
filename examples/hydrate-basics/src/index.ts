@@ -44,32 +44,53 @@ const app = () => {
     // btw. the class names are for tachyons css
     return (state) => {
         state = state.deref();
-        return ["div#root.w-50-ns.flex.ma2.sans-serif",
-            ["div.w-50-ns",
-                [canvas, { width: 200, height: 200 }, state.bg, state.freq]],
-            ["div.w-50-ns",
-                ["label.db.mb3", { for: "#bg" }, "Background color",
-                    [dropdown,
+        return [
+            "div#root.w-50-ns.flex.ma2.sans-serif",
+            [
+                "div.w-50-ns",
+                [canvas, { width: 200, height: 200 }, state.bg, state.freq]
+            ],
+            [
+                "div.w-50-ns",
+                [
+                    "label.db.mb3",
+                    { for: "#bg" },
+                    "Background color",
+                    [
+                        dropdown,
                         {
                             id: "bg",
                             class: "w-100",
                             onchange: (e) => setBg(e.target.value)
                         },
-                        [["", "Choose..."], ["red", "Red"], ["green", "Green"], ["blue", "Blue"]],
+                        [
+                            ["", "Choose..."],
+                            ["red", "Red"],
+                            ["green", "Green"],
+                            ["blue", "Blue"]
+                        ],
                         state.bg
-                    ]],
-                ["label.db.mb3", { for: "#freq" }, "Frequency",
-                    ["input", {
-                        id: "freq",
-                        class: "w-100",
-                        type: "range",
-                        min: 0.001,
-                        max: 0.02,
-                        step: 0.001,
-                        value: state.freq,
-                        oninput: (e) => setFreq(parseFloat(e.target.value))
-                    }]]
-            ],
+                    ]
+                ],
+                [
+                    "label.db.mb3",
+                    { for: "#freq" },
+                    "Frequency",
+                    [
+                        "input",
+                        {
+                            id: "freq",
+                            class: "w-100",
+                            type: "range",
+                            min: 0.001,
+                            max: 0.02,
+                            step: 0.001,
+                            value: state.freq,
+                            oninput: (e) => setFreq(parseFloat(e.target.value))
+                        }
+                    ]
+                ]
+            ]
         ];
     };
 };

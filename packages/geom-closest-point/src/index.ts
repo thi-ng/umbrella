@@ -28,14 +28,11 @@ import {
  * @param a
  * @param b
  */
-export const closestT =
-    (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
-        const d = sub([], b, a);
-        const l = magSq(d);
-        return l > 1e-6 ?
-            dot(sub([], p, a), d) / l :
-            undefined;
-    };
+export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
+    const d = sub([], b, a);
+    const l = magSq(d);
+    return l > 1e-6 ? dot(sub([], p, a), d) / l : undefined;
+};
 
 /**
  * Returns closest point to `p` on line segment `a` -> `b`. By default,
@@ -69,13 +66,9 @@ export const closestPointSegment = (
     eps = 0
 ) => {
     const t = closestT(p, a, b);
-    if (t !== undefined && (!insideOnly || t >= eps && t <= 1 - eps)) {
+    if (t !== undefined && (!insideOnly || (t >= eps && t <= 1 - eps))) {
         out = out || empty(p);
-        return t <= 0 ?
-            set(out, a) :
-            t >= 1 ?
-                set(out, b) :
-                mixN(out, a, b, t);
+        return t <= 0 ? set(out, a) : t >= 1 ? set(out, b) : mixN(out, a, b, t);
     }
 };
 
@@ -86,9 +79,8 @@ export const closestPointSegment = (
  * @param a
  * @param b
  */
-export const distToSegment =
-    (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
-        dist(p, closestPointSegment(p, a, b) || a);
+export const distToSegment = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
+    dist(p, closestPointSegment(p, a, b) || a);
 
 export const closestPointPolyline = (
     p: ReadonlyVec,
@@ -98,7 +90,9 @@ export const closestPointPolyline = (
 ) => {
     const tmp = [];
     const n = pts.length - 1;
-    let minD = Infinity, i, j;
+    let minD = Infinity,
+        i,
+        j;
     if (closed) {
         i = n;
         j = 0;
@@ -151,17 +145,15 @@ export const farthestPointSegment = (
     return [maxIdx, Math.sqrt(maxD)];
 };
 
-export const closestPointArray =
-    (p: ReadonlyVec, pts: Vec[]) => {
-
-        let minD = Infinity;
-        let closest: Vec;
-        for (let i = pts.length; --i >= 0;) {
-            const d = distSq(pts[i], p);
-            if (d < minD) {
-                minD = d;
-                closest = pts[i];
-            }
+export const closestPointArray = (p: ReadonlyVec, pts: Vec[]) => {
+    let minD = Infinity;
+    let closest: Vec;
+    for (let i = pts.length; --i >= 0; ) {
+        const d = distSq(pts[i], p);
+        if (d < minD) {
+            minD = d;
+            closest = pts[i];
         }
-        return closest;
-    };
+    }
+    return closest;
+};

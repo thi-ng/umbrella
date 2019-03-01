@@ -107,7 +107,6 @@ export class HDOMNode {
 }
 
 export class MockHDOM implements HDOMImplementation<HDOMNode> {
-
     root: HDOMNode;
 
     constructor(root: HDOMNode) {
@@ -118,19 +117,40 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         return normalizeTree(opts, tree);
     }
 
-    createTree(opts: Partial<HDOMOpts>, parent: HDOMNode, tree: any, child?: number) {
+    createTree(
+        opts: Partial<HDOMOpts>,
+        parent: HDOMNode,
+        tree: any,
+        child?: number
+    ) {
         return createTree(opts, this, parent, tree, child);
     }
 
-    hydrateTree(opts: Partial<HDOMOpts>, parent: HDOMNode, tree: any, child?: number) {
+    hydrateTree(
+        opts: Partial<HDOMOpts>,
+        parent: HDOMNode,
+        tree: any,
+        child?: number
+    ) {
         return hydrateTree(opts, this, parent, tree, child);
     }
 
-    diffTree(opts: Partial<HDOMOpts>, parent: HDOMNode, prev: any[], curr: any[], child?: number) {
+    diffTree(
+        opts: Partial<HDOMOpts>,
+        parent: HDOMNode,
+        prev: any[],
+        curr: any[],
+        child?: number
+    ) {
         diffTree(opts, this, parent, prev, curr, child);
     }
 
-    createElement(parent: HDOMNode, tag: string, attribs?: any, insert?: number) {
+    createElement(
+        parent: HDOMNode,
+        tag: string,
+        attribs?: any,
+        insert?: number
+    ) {
         const el = new HDOMNode(tag);
         if (parent) {
             if (insert == null) {
@@ -156,7 +176,12 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         return this.root.getElementById(id);
     }
 
-    replaceChild(opts: Partial<HDOMOpts>, parent: HDOMNode, child: number, tree: any) {
+    replaceChild(
+        opts: Partial<HDOMOpts>,
+        parent: HDOMNode,
+        child: number,
+        tree: any
+    ) {
         this.removeChild(parent, child);
         this.createTree(opts, parent, tree, child);
     }
@@ -203,15 +228,13 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     }
             }
         } else {
-            el[id] != null ?
-                (el[id] = null) :
-                (delete el.attribs[id]);
+            el[id] != null ? (el[id] = null) : delete el.attribs[id];
         }
         return el;
     }
 
     removeAttribs(el: HDOMNode, attribs: string[], prev: any) {
-        for (let i = attribs.length; --i >= 0;) {
+        for (let i = attribs.length; --i >= 0; ) {
             const a = attribs[i];
             if (a.indexOf("on") === 0) {
                 const listeners = el.listeners[a.substr(2)];
@@ -220,7 +243,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     i >= 0 && listeners.splice(i, 1);
                 }
             } else {
-                el[a] ? (el[a] = null) : (delete el.attribs[a]);
+                el[a] ? (el[a] = null) : delete el.attribs[a];
             }
         }
     }

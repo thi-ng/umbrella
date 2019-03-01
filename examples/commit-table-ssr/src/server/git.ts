@@ -22,7 +22,9 @@ const gitLog = (repoPath: string) =>
     execSync(
         `git log --pretty=format:"%ad~~%an~~%h~~%s" --shortstat --date=iso-strict`,
         { cwd: resolve(repoPath) }
-    ).toString().trim();
+    )
+        .toString()
+        .trim();
 
 /**
  * Transforms 1st line of a raw commit log into a partial commit
@@ -42,13 +44,13 @@ const parseLog = ([log]: string[]): Partial<Commit> => {
  * @param log
  */
 const parseStats = ([_, stats]: string[]): Partial<Commit> =>
-    stats ?
-        transduce(
-            map(([k, v]) => [k, parseInt(v)]),
-            assocObj(),
-            zip(["files", "add", "del"], stats.split(","))
-        ) :
-        null;
+    stats
+        ? transduce(
+              map(([k, v]) => [k, parseInt(v)]),
+              assocObj(),
+              zip(["files", "add", "del"], stats.split(","))
+          )
+        : null;
 
 /**
  * Retrieves git log for given `repoPath` and transforms it into an
@@ -69,17 +71,23 @@ export const repoCommits = (repoPath: string) =>
             // pick a random number for merge commits
             // in case there're successive ones
             partitionBy(
-                (x) => x.indexOf("~~Merge ") !== -1 ?
-                    Math.random() :
-                    x.length > 0 ? 1 : 0
+                (x) =>
+                    x.indexOf("~~Merge ") !== -1
+                        ? Math.random()
+                        : x.length > 0
+                            ? 1
+                            : 0
             ),
             // remove empty lines
             filter((x) => x[0].length > 0),
             // parse commit details
-            map((commit) => <Commit>{
-                ...parseLog(commit),
-                ...parseStats(commit)
-            })
+            map(
+                (commit) =>
+                    <Commit>{
+                        ...parseLog(commit),
+                        ...parseStats(commit)
+                    }
+            )
         ),
         [repoPath]
     );

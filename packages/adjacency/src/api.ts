@@ -3,11 +3,10 @@ import { Fn2, Pair } from "@thi.ng/api";
 export const enum DegreeType {
     IN,
     OUT,
-    BOTH,
+    BOTH
 }
 
 export interface IGraph {
-
     numEdges(): number;
     numVertices(): number;
 

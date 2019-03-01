@@ -22,9 +22,21 @@ import { range } from "./range";
  * @param src
  */
 export function permutations<A>(a: Iterable<A>): IterableIterator<[A]>;
-export function permutations<A, B>(a: Iterable<A>, b: Iterable<B>): IterableIterator<[A, B]>;
-export function permutations<A, B, C>(a: Iterable<A>, b: Iterable<B>, c: Iterable<C>): IterableIterator<[A, B, C]>;
-export function permutations<A, B, C, D>(a: Iterable<A>, b: Iterable<B>, c: Iterable<C>, d: Iterable<D>): IterableIterator<[A, B, C, D]>;
+export function permutations<A, B>(
+    a: Iterable<A>,
+    b: Iterable<B>
+): IterableIterator<[A, B]>;
+export function permutations<A, B, C>(
+    a: Iterable<A>,
+    b: Iterable<B>,
+    c: Iterable<C>
+): IterableIterator<[A, B, C]>;
+export function permutations<A, B, C, D>(
+    a: Iterable<A>,
+    b: Iterable<B>,
+    c: Iterable<C>,
+    d: Iterable<D>
+): IterableIterator<[A, B, C, D]>;
 export function permutations(...src: Iterable<any>[]): IterableIterator<any[]>;
 export function* permutations(...src: any[]) {
     const n = src.length - 1;
@@ -41,7 +53,7 @@ export function* permutations(...src: any[]) {
             let s = step[j];
             if (s === r.length) {
                 step[j] = s = 0;
-                j > 0 && (step[j - 1]++);
+                j > 0 && step[j - 1]++;
             }
             tuple[j] = r[s];
         }
@@ -73,15 +85,18 @@ export function* permutations(...src: any[]) {
  * @param m
  * @param offsets
  */
-export const permutationsN =
-    (n: number, m = n, offsets?: number[]): IterableIterator<number[]> => {
-        if (offsets && offsets.length < n) {
-            illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
-        }
-        const seqs = [];
-        while (--n >= 0) {
-            const o = offsets ? offsets[n] : 0;
-            seqs[n] = range(o, o + m);
-        }
-        return permutations.apply(null, seqs);
-    };
+export const permutationsN = (
+    n: number,
+    m = n,
+    offsets?: number[]
+): IterableIterator<number[]> => {
+    if (offsets && offsets.length < n) {
+        illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
+    }
+    const seqs = [];
+    while (--n >= 0) {
+        const o = offsets ? offsets[n] : 0;
+        seqs[n] = range(o, o + m);
+    }
+    return permutations.apply(null, seqs);
+};

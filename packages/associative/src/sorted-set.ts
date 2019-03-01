@@ -1,8 +1,8 @@
+import { ICompare, Pair } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 import { IReducible, map, ReductionFn } from "@thi.ng/transducers";
 import { IEquivSet, SortedSetOpts } from "./api";
 import { SortedMap } from "./sorted-map";
-import { ICompare, Pair, } from "@thi.ng/api";
 
 const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
 
@@ -21,11 +21,8 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * This set uses a `SortedMap` as backing store and therefore has the
  * same resizing characteristics.
  */
-export class SortedSet<T> extends Set<T> implements
-    IEquivSet<T>,
-    ICompare<Set<T>>,
-    IReducible<any, T> {
-
+export class SortedSet<T> extends Set<T>
+    implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T> {
     /**
      * Creates new instance with optional given values and/or
      * implementation options. The options are the same as used by
@@ -36,10 +33,13 @@ export class SortedSet<T> extends Set<T> implements
      */
     constructor(values?: Iterable<T>, opts?: Partial<SortedSetOpts<T>>) {
         super();
-        __private.set(this, new SortedMap<T, T>(
-            values ? map((x) => <Pair<T, T>>[x, x], values) : null,
-            opts
-        ));
+        __private.set(
+            this,
+            new SortedMap<T, T>(
+                values ? map((x) => <Pair<T, T>>[x, x], values) : null,
+                opts
+            )
+        );
     }
 
     [Symbol.iterator](): IterableIterator<T> {
@@ -59,18 +59,22 @@ export class SortedSet<T> extends Set<T> implements
     }
 
     empty() {
-        return new SortedSet<T>(null, { ...this.opts(), capacity: SortedMap.DEFAULT_CAP });
+        return new SortedSet<T>(null, {
+            ...this.opts(),
+            capacity: SortedMap.DEFAULT_CAP
+        });
     }
 
     compare(o: Set<T>) {
-        const n = this.size, m = o.size;
+        const n = this.size,
+            m = o.size;
         if (n < m) return -1;
         if (n > m) return 1;
         const i = this.entries();
         const j = o.entries();
         let x: IteratorResult<Pair<T, T>>, y: IteratorResult<Pair<T, T>>;
         let c: number;
-        while ((x = i.next(), y = j.next(), !x.done && !y.done)) {
+        while (((x = i.next()), (y = j.next()), !x.done && !y.done)) {
             if ((c = compare(x.value[0], y.value[0])) !== 0) {
                 return c;
             }

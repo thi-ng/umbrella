@@ -47,7 +47,11 @@ export const minError = <T>(
         }
     }
     return minError(
-        fn, error, q, res, iter - 1,
+        fn,
+        error,
+        q,
+        res,
+        iter - 1,
         Math.max(minT - delta, 0),
         Math.min(minT + delta, 1)
     );

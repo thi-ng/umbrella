@@ -56,12 +56,13 @@ export interface NotificationArgs {
  * @param opts
  */
 export const notification = (opts?: Partial<NotificationOpts>) => {
-    return (_, args: Partial<NotificationArgs>, body: any) =>
-        ["div",
-            { ...opts.attribs, ...args.attribs },
-            opts.icon,
-            body,
-            opts.close && args.onclose ?
-                [appLink, opts.attribsClose, args.onclose, opts.close] :
-                undefined];
+    return (_, args: Partial<NotificationArgs>, body: any) => [
+        "div",
+        { ...opts.attribs, ...args.attribs },
+        opts.icon,
+        body,
+        opts.close && args.onclose
+            ? [appLink, opts.attribsClose, args.onclose, opts.close]
+            : undefined
+    ];
 };

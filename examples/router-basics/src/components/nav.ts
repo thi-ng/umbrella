@@ -10,12 +10,15 @@ import { routeLink } from "./route-link";
  */
 export function nav(ctx: AppContext) {
     const ui = ctx.ui.nav;
-    return ["nav",
+    return [
+        "nav",
         ["h1", ui.title, "Demo app"],
-        ["div", ui.inner,
+        [
+            "div",
+            ui.inner,
             [routeLink, HOME.id, null, ui.link, "Home"],
             [routeLink, USER_LIST.id, null, ui.link, "Users"],
-            [routeLink, CONTACT.id, null, ui.linkLast, "Contact"],
+            [routeLink, CONTACT.id, null, ui.linkLast, "Contact"]
         ]
     ];
 }

@@ -22,53 +22,33 @@ import {
     Polygon,
     Quadratic,
     Ray,
-    Rect,
+    Rect
 } from "../api";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 
 pointAt.addAll({
+    [Type.ARC]: ($: Arc, t: number) => $.pointAtTheta(fit01(t, $.start, $.end)),
 
-    [Type.ARC]:
-        ($: Arc, t: number) =>
-            $.pointAtTheta(fit01(t, $.start, $.end)),
+    [Type.CIRCLE]: ($: Circle, t) => cartesian2(null, [$.r, TAU * t], $.pos),
 
-    [Type.CIRCLE]:
-        ($: Circle, t) =>
-            cartesian2(null, [$.r, TAU * t], $.pos),
+    [Type.CUBIC]: ({ points }: Cubic, t) =>
+        mixCubic([], points[0], points[1], points[2], points[3], t),
 
-    [Type.CUBIC]:
-        ({ points }: Cubic, t) =>
-            mixCubic([], points[0], points[1], points[2], points[3], t),
+    [Type.ELLIPSE]: ($: Ellipse, t) => madd2([], $.pos, cossin(TAU * t), $.r),
 
-    [Type.ELLIPSE]:
-        ($: Ellipse, t) =>
-            madd2([], $.pos, cossin(TAU * t), $.r),
+    [Type.LINE]: ({ points }: Line, t) => mixN2([], points[0], points[1], t),
 
-    [Type.LINE]:
-        ({ points }: Line, t) =>
-            mixN2([], points[0], points[1], t),
+    [Type.POLYGON]: ($: Polygon, t) => new Sampler($.points, true).pointAt(t),
 
-    [Type.POLYGON]:
-        ($: Polygon, t) =>
-            new Sampler($.points, true).pointAt(t),
+    [Type.POLYLINE]: ($: Polygon, t) => new Sampler($.points).pointAt(t),
 
-    [Type.POLYLINE]:
-        ($: Polygon, t) =>
-            new Sampler($.points).pointAt(t),
+    [Type.QUADRATIC]: ({ points }: Quadratic, t) =>
+        mixQuadratic([], points[0], points[1], points[2], t),
 
-    [Type.QUADRATIC]:
-        ({ points }: Quadratic, t) =>
-            mixQuadratic([], points[0], points[1], points[2], t),
+    [Type.RAY]: ($: Ray, t) => maddN([], $.pos, $.dir, t),
 
-    [Type.RAY]:
-        ($: Ray, t) =>
-            maddN([], $.pos, $.dir, t),
-
-    [Type.RECT]:
-        ($: Rect, t) =>
-            new Sampler(vertices($), true).pointAt(t),
-
+    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t)
 });
 
 pointAt.isa(Type.QUAD, Type.POLYGON);

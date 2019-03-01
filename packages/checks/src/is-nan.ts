@@ -1,2 +1,1 @@
-export const isNaN =
-    (x: any) => x !== x;
+export const isNaN = (x: any) => x !== x;

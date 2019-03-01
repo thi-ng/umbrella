@@ -1,2 +1,1 @@
-export const isNumber =
-    (x: any): x is number => typeof x === "number";
+export const isNumber = (x: any): x is number => typeof x === "number";

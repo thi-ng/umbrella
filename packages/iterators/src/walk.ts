@@ -2,14 +2,18 @@ import { Fn } from "@thi.ng/api";
 import { iterator, maybeIterator } from "./iterator";
 import { maybeObjectIterator } from "./object-iterator";
 
-export const walkable =
-    (x) =>
-        typeof x !== "string" ?
-            maybeIterator(x) || maybeObjectIterator(x) :
-            undefined;
+export const walkable = (x) =>
+    typeof x !== "string"
+        ? maybeIterator(x) || maybeObjectIterator(x)
+        : undefined;
 
 export function walk(fn: Fn<any, void>, input: any, postOrder?: boolean);
-export function walk(fn: Fn<any, void>, children: Fn<any, any>, input: any, postOrder?: boolean);
+export function walk(
+    fn: Fn<any, void>,
+    children: Fn<any, any>,
+    input: any,
+    postOrder?: boolean
+);
 export function walk(fn: Fn<any, void>, ...args: any[]) {
     let children: Fn<any, any>;
     let input: any;
@@ -24,7 +28,9 @@ export function walk(fn: Fn<any, void>, ...args: any[]) {
     let inner = (iter) => {
         let v: IteratorResult<any>;
         while (((v = iter.next()), !v.done)) {
-            if (!postOrder) { fn(v.value); }
+            if (!postOrder) {
+                fn(v.value);
+            }
             let cvals;
             if (children) {
                 cvals = children(v.value);
@@ -34,14 +40,23 @@ export function walk(fn: Fn<any, void>, ...args: any[]) {
             if ((cvals = walkable(cvals)) !== undefined) {
                 inner(cvals);
             }
-            if (postOrder) { fn(v.value); }
+            if (postOrder) {
+                fn(v.value);
+            }
         }
     };
     inner(iterator([input]));
 }
 
-export function walkIterator(input: any, postOrder?: boolean): IterableIterator<any>;
-export function walkIterator(input: any, children: Fn<any, any>, postOrder?: boolean): IterableIterator<any>;
+export function walkIterator(
+    input: any,
+    postOrder?: boolean
+): IterableIterator<any>;
+export function walkIterator(
+    input: any,
+    children: Fn<any, any>,
+    postOrder?: boolean
+): IterableIterator<any>;
 export function walkIterator(input: any, ...args: any[]) {
     let children: Fn<any, any>;
     let postOrder: boolean;
@@ -52,10 +67,12 @@ export function walkIterator(input: any, ...args: any[]) {
     } else {
         postOrder = args[0];
     }
-    let walk = function* (iter) {
+    let walk = function*(iter) {
         let v: IteratorResult<any>;
         while (((v = iter.next()), !v.done)) {
-            if (!postOrder) { yield v.value; }
+            if (!postOrder) {
+                yield v.value;
+            }
             let cvals;
             if (children) {
                 cvals = children(v.value);
@@ -65,7 +82,9 @@ export function walkIterator(input: any, ...args: any[]) {
             if ((cvals = walkable(cvals)) !== undefined) {
                 yield* walk(cvals);
             }
-            if (postOrder) { yield v.value; }
+            if (postOrder) {
+                yield v.value;
+            }
         }
     };
     return walk(iterator([input]));

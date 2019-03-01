@@ -23,8 +23,13 @@ const hex6 = radix(16, 6);
  * @param id
  */
 const box = (index: number, id: number) => [
-    (id & 1) ? "div" : "box",
-    { key: index, style: { background: "#" + hex6((id & 0x1ff) << 15 | id << 10 | id) } },
+    id & 1 ? "div" : "box",
+    {
+        key: index,
+        style: {
+            background: "#" + hex6(((id & 0x1ff) << 15) | (id << 10) | id)
+        }
+    },
     hex4(id & 0xffff)
 ];
 
@@ -41,7 +46,14 @@ const box = (index: number, id: number) => [
  * @param col
  * @param txtCol
  */
-const fpsCounter = (src: Stream<any>, width = 100, height = 30, period = 50, col = "#09f", txtCol = "#000") => {
+const fpsCounter = (
+    src: Stream<any>,
+    width = 100,
+    height = 30,
+    period = 50,
+    col = "#09f",
+    txtCol = "#000"
+) => {
     let ctx;
     let scale = height / 60;
     (src || fromRAF()).subscribe(
@@ -57,7 +69,11 @@ const fpsCounter = (src: Stream<any>, width = 100, height = 30, period = 50, col
                 ctx.lineTo(width - 1, height);
                 ctx.fill();
                 ctx.fillStyle = txtCol;
-                ctx.fillText(`SMA(${period}): ${samples[width - 1].toFixed(1)} fps`, 2, height - 4);
+                ctx.fillText(
+                    `SMA(${period}): ${samples[width - 1].toFixed(1)} fps`,
+                    2,
+                    height - 4
+                );
             }
         },
         // stream transducer to compute the windowed moving avarage
@@ -68,14 +84,16 @@ const fpsCounter = (src: Stream<any>, width = 100, height = 30, period = 50, col
             partition(width, 1, true)
         )
     );
-    return [{
-        init: (el) => {
-            ctx = el.getContext("2d");
-            ctx.fillStyle = txtCol;
-            ctx.fillText("sampling...", 2, height - 4);
-        },
-        render: () => ["canvas", { width, height }]
-    }];
+    return [
+        {
+            init: (el) => {
+                ctx = el.getContext("2d");
+                ctx.fillStyle = txtCol;
+                ctx.fillText("sampling...", 2, height - 4);
+            },
+            render: () => ["canvas", { width, height }]
+        }
+    ];
 };
 
 /**
@@ -83,16 +101,23 @@ const fpsCounter = (src: Stream<any>, width = 100, height = 30, period = 50, col
  */
 const app = () => {
     // initialize local state
-    let i = 0, num = 128;
+    let i = 0,
+        num = 128;
     const fps = fpsCounter(null, 100, 60);
-    const menu = dropdown(null,
-        { onchange: (e) => { num = parseInt((<HTMLInputElement>e.target).value); } },
+    const menu = dropdown(
+        null,
+        {
+            onchange: (e) => {
+                num = parseInt((<HTMLInputElement>e.target).value);
+            }
+        },
         [[128, 128], [192, 192], [256, 256], [384, 384], [512, 512]]
     );
 
     return () => {
-        let j = (++i) & 0x1ff;
-        return ["div",
+        let j = ++i & 0x1ff;
+        return [
+            "div",
             ["div#stats", fps, menu],
             ["grid", mapIndexed(box, range(j, j + num))]
         ];

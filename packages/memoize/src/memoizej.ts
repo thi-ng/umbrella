@@ -14,17 +14,26 @@ import { Fn1, Fn2, Fn3, Fn4, FnAny } from "./api";
  * @param cache
  */
 export function memoizeJ<A, B>(fn: Fn1<A, B>, cache?: IObjectOf<B>): Fn1<A, B>;
-export function memoizeJ<A, B, C>(fn: Fn2<A, B, C>, cache?: IObjectOf<C>): Fn2<A, B, C>;
-export function memoizeJ<A, B, C, D>(fn: Fn3<A, B, C, D>, cache?: IObjectOf<D>): Fn3<A, B, C, D>;
-export function memoizeJ<A, B, C, D, E>(fn: Fn4<A, B, C, D, E>, cache?: IObjectOf<E>): Fn4<A, B, C, D, E>;
+export function memoizeJ<A, B, C>(
+    fn: Fn2<A, B, C>,
+    cache?: IObjectOf<C>
+): Fn2<A, B, C>;
+export function memoizeJ<A, B, C, D>(
+    fn: Fn3<A, B, C, D>,
+    cache?: IObjectOf<D>
+): Fn3<A, B, C, D>;
+export function memoizeJ<A, B, C, D, E>(
+    fn: Fn4<A, B, C, D, E>,
+    cache?: IObjectOf<E>
+): Fn4<A, B, C, D, E>;
 export function memoizeJ(fn: FnAny, cache?: IObjectOf<any>): FnAny {
     !cache && (cache = {});
     return (...args: any[]) => {
         const key = JSON.stringify(args);
         if (key !== undefined) {
-            return key in cache ?
-                cache[key] :
-                (cache[key] = fn.apply(null, args));
+            return key in cache
+                ? cache[key]
+                : (cache[key] = fn.apply(null, args));
         }
         return fn.apply(null, args);
     };

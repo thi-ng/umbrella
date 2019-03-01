@@ -21,7 +21,7 @@ export const CONTACT: Route = {
 
 export const USER_LIST: Route = {
     id: "user-list",
-    match: ["users"],
+    match: ["users"]
 };
 
 // this is a parametric route w/ parameter coercion & validation

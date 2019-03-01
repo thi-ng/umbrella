@@ -19,32 +19,28 @@ import {
     Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { transformedPoints, transformPoints } from "../internal/transform-points";
+import {
+    transformedPoints,
+    transformPoints
+} from "../internal/transform-points";
 import { vertices } from "./vertices";
 
-const tx = (ctor: PCLikeConstructor) =>
-    ($: PCLike, mat: ReadonlyMat) =>
-        new ctor(transformedPoints($.points, mat), { ...$.attribs });
+const tx = (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
+    new ctor(transformedPoints($.points, mat), { ...$.attribs });
 
 export const transform = defmulti<IShape, ReadonlyMat, IShape>(dispatch);
 
 transform.addAll({
-
-    [Type.CIRCLE]:
-        ($, mat) =>
-            new Polygon(
-                transformPoints(vertices($), mat),
-                { ...$.attribs }
-            ),
+    [Type.CIRCLE]: ($, mat) =>
+        new Polygon(transformPoints(vertices($), mat), { ...$.attribs }),
 
     [Type.CUBIC]: tx(Cubic),
 
-    [Type.GROUP]:
-        ($: Group, mat) =>
-            new Group(
-                { ...$.attribs },
-                $.children.map((x) => <IHiccupShape>transform(x, mat))
-            ),
+    [Type.GROUP]: ($: Group, mat) =>
+        new Group(
+            { ...$.attribs },
+            $.children.map((x) => <IHiccupShape>transform(x, mat))
+        ),
 
     [Type.LINE]: tx(Line),
 
@@ -58,8 +54,7 @@ transform.addAll({
 
     [Type.QUADRATIC]: tx(Quadratic),
 
-    [Type.TRIANGLE]: tx(Triangle),
-
+    [Type.TRIANGLE]: tx(Triangle)
 });
 
 transform.isa(Type.ELLIPSE, Type.CIRCLE);

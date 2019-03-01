@@ -4,17 +4,11 @@ import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus, trace, valueSetter } from "@thi.ng/interceptors";
 import { EVENT_ROUTE_CHANGED, HTMLRouter } from "@thi.ng/router";
-import {
-    AppConfig,
-    AppContext,
-    AppViews,
-    ViewSpec
-} from "./api";
+import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import { debugContainer } from "./components/debug-container";
 import { nav } from "./components/nav";
 import * as fx from "./effects";
 import * as ev from "./events";
-
 
 /**
  * Generic base app skeleton. You can use this as basis for your own
@@ -30,7 +24,6 @@ import * as ev from "./events";
  * - start router, hdom render & event bus loop
  */
 export class App {
-
     config: AppConfig;
     ctx: AppContext;
     state: Atom<any>;
@@ -48,9 +41,8 @@ export class App {
         this.router = new HTMLRouter(config.router);
         // connect router to event bus so that routing events are processed
         // as part of the normal batched event processing loop
-        this.router.addListener(
-            EVENT_ROUTE_CHANGED,
-            (e) => this.ctx.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
+        this.router.addListener(EVENT_ROUTE_CHANGED, (e) =>
+            this.ctx.bus.dispatch([EVENT_ROUTE_CHANGED, e.value])
         );
         // whenever the route has changed, record its details in the app
         // state. likewise, when the user or a component triggers a the
@@ -62,9 +54,8 @@ export class App {
             [EVENT_ROUTE_CHANGED]: valueSetter("route"),
             [ev.ROUTE_TO]: (_, [__, route]) => ({ [fx.ROUTE_TO]: route })
         });
-        this.ctx.bus.addEffect(
-            fx.ROUTE_TO,
-            ([id, params]) => this.router.routeTo(this.router.format(id, params))
+        this.ctx.bus.addEffect(fx.ROUTE_TO, ([id, params]) =>
+            this.router.routeTo(this.router.format(id, params))
         );
 
         // instrument all event handlers to trace events in console
@@ -76,7 +67,9 @@ export class App {
                 "route.id",
                 (id) =>
                     (this.config.components[id] ||
-                        (() => ["div", `missing component for route: ${id}`]))(this.ctx)
+                        (() => ["div", `missing component for route: ${id}`]))(
+                        this.ctx
+                    )
             ]
         });
     }
@@ -125,11 +118,16 @@ export class App {
     rootComponent(): any {
         const debug = this.ctx.views.debug.deref();
         const ui = this.ctx.ui;
-        return ["div", ui.root,
-            ["div", ui.column.content[debug],
+        return [
+            "div",
+            ui.root,
+            [
+                "div",
+                ui.column.content[debug],
                 nav,
-                this.ctx.views.routeComponent],
-            [debugContainer, debug, this.ctx.views.json],
+                this.ctx.views.routeComponent
+            ],
+            [debugContainer, debug, this.ctx.views.json]
         ];
     }
 }

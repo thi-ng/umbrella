@@ -4,7 +4,6 @@ import { NzEntry } from "./api";
 import { compress, diag, setAt, remove, at } from "./compressed";
 
 export class CSR extends ASparseMatrix {
-
     /**
      * Constructs CSR from dense row-major matrix values.
      *
@@ -43,7 +42,13 @@ export class CSR extends ASparseMatrix {
      */
     cols: number[];
 
-    constructor(m: number, n: number, data: number[], rows: number[], cols: number[]) {
+    constructor(
+        m: number,
+        n: number,
+        data: number[],
+        rows: number[],
+        cols: number[]
+    ) {
         super(m, n);
         this.rows = rows;
         this.cols = cols;
@@ -51,7 +56,13 @@ export class CSR extends ASparseMatrix {
     }
 
     copy() {
-        return new CSR(this.m, this.n, this.data.slice(), this.rows.slice(), this.cols.slice());
+        return new CSR(
+            this.m,
+            this.n,
+            this.data.slice(),
+            this.rows.slice(),
+            this.cols.slice()
+        );
     }
 
     zero() {
@@ -88,7 +99,7 @@ export class CSR extends ASparseMatrix {
         this.m = m;
         if (n < this.n) {
             for (let i = 0; i < m; i++) {
-                for (let j = rows[i], jj = rows[i + 1]; j < jj;) {
+                for (let j = rows[i], jj = rows[i + 1]; j < jj; ) {
                     if (cols[j] >= n) {
                         remove(i, m, j, rows, cols, data);
                         jj--;
@@ -135,7 +146,16 @@ export class CSR extends ASparseMatrix {
 
     setAt(m: number, n: number, x: number, safe = true, compact = true) {
         safe && this.ensureIndex(m, n);
-        const state = setAt(m, n, this.m, x, this.rows, this.cols, this.data, compact);
+        const state = setAt(
+            m,
+            n,
+            this.m,
+            x,
+            this.rows,
+            this.cols,
+            this.data,
+            compact
+        );
         this.rows = state[0];
         this.cols = state[1];
         this.data = state[2];
@@ -171,8 +191,7 @@ export class CSR extends ASparseMatrix {
         const res = CSR.empty(this.m, this.n);
         for (let i = 0; i < this.m; i++) {
             const jj = mat.rows[i + 1];
-            outer:
-            for (let j = mat.rows[i]; j < jj; j++) {
+            outer: for (let j = mat.rows[i]; j < jj; j++) {
                 const n = mat.cols[j];
                 const kk = this.rows[i + 1];
                 for (let k = this.rows[i]; k < kk; k++) {
@@ -195,8 +214,7 @@ export class CSR extends ASparseMatrix {
         }
         for (let i = 0; i < this.m; i++) {
             const jj = mat.rows[i + 1];
-            outer:
-            for (let j = mat.rows[i]; j < jj; j++) {
+            outer: for (let j = mat.rows[i]; j < jj; j++) {
                 const n = mat.cols[j];
                 const kk = this.rows[i + 1];
                 for (let k = this.rows[i]; k < kk; k++) {
@@ -223,7 +241,12 @@ export class CSR extends ASparseMatrix {
                         for (let i = 0; i < this.m; i++) {
                             const aik = this.at(i, k, false);
                             if (aik !== 0) {
-                                res.setAt(i, j, res.at(i, j, false) + aik * bkj, false);
+                                res.setAt(
+                                    i,
+                                    j,
+                                    res.at(i, j, false) + aik * bkj,
+                                    false
+                                );
                             }
                         }
                     }
@@ -254,7 +277,7 @@ export class CSR extends ASparseMatrix {
         }
         const res = this.copy();
         const a = res.data;
-        for (let i = a.length; --i >= 0;) {
+        for (let i = a.length; --i >= 0; ) {
             a[i] *= n;
         }
         return res;

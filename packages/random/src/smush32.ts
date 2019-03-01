@@ -6,11 +6,8 @@ import { ARandom, ISeedable } from "./api";
 
 const DEFAULT_SEED = 0xdecafbad;
 
-export class Smush32 extends ARandom implements
-    IBuffered<Uint32Array>,
-    ICopy<Smush32>,
-    ISeedable<number> {
-
+export class Smush32 extends ARandom
+    implements IBuffered<Uint32Array>, ICopy<Smush32>, ISeedable<number> {
     buffer: Uint32Array;
 
     constructor(seed = DEFAULT_SEED) {
@@ -33,7 +30,7 @@ export class Smush32 extends ARandom implements
         const b = this.buffer;
         const m = 0x5bd1e995;
         const k = (b[1]++ * m) >>> 0;
-        const s = b[0] = ((k ^ (k >> 24) ^ ((b[0] * m) >>> 0)) * m) >>> 0;
+        const s = (b[0] = ((k ^ (k >> 24) ^ ((b[0] * m) >>> 0)) * m) >>> 0);
         return (s ^ (s >>> 13)) >>> 0;
     }
 }

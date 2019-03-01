@@ -6,13 +6,7 @@ import {
     isString
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    COMMENT,
-    NO_SPANS,
-    PROC_TAGS,
-    TAG_REGEXP,
-    VOID_TAGS
-} from "./api";
+import { COMMENT, NO_SPANS, PROC_TAGS, TAG_REGEXP, VOID_TAGS } from "./api";
 import { css } from "./css";
 import { escape } from "./escape";
 
@@ -169,16 +163,33 @@ const _serialize = (
         }
         let tag = tree[0];
         if (isFunction(tag)) {
-            return _serialize(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, esc, span, keys, path);
+            return _serialize(
+                tag.apply(null, [ctx, ...tree.slice(1)]),
+                ctx,
+                esc,
+                span,
+                keys,
+                path
+            );
         }
         if (implementsFunction(tag, "render")) {
-            return _serialize(tag.render.apply(null, [ctx, ...tree.slice(1)]), ctx, esc, span, keys, path);
+            return _serialize(
+                tag.render.apply(null, [ctx, ...tree.slice(1)]),
+                ctx,
+                esc,
+                span,
+                keys,
+                path
+            );
         }
         if (isString(tag)) {
             if (tag === COMMENT) {
-                return tree.length > 2 ?
-                    `\n<!--\n${tree.slice(1).map((x) => "    " + x).join("\n")}\n-->\n` :
-                    `\n<!-- ${tree[1]} -->\n`;
+                return tree.length > 2
+                    ? `\n<!--\n${tree
+                          .slice(1)
+                          .map((x) => "    " + x)
+                          .join("\n")}\n-->\n`
+                    : `\n<!-- ${tree[1]} -->\n`;
             }
             tree = normalize(tree);
             tag = tree[0];
@@ -220,13 +231,16 @@ const _serialize = (
                 res += proc ? " " : ">";
                 span = span && !proc && !NO_SPANS[tag];
                 for (let i = 0, n = body.length; i < n; i++) {
-                    res += _serialize(body[i], ctx, esc, span, keys, [...path, i]);
+                    res += _serialize(body[i], ctx, esc, span, keys, [
+                        ...path,
+                        i
+                    ]);
                 }
-                return res += (proc || `</${tag}>`);
+                return (res += proc || `</${tag}>`);
             } else if (!VOID_TAGS[tag]) {
-                return res += `></${tag}>`;
+                return (res += `></${tag}>`);
             }
-            return res += (PROC_TAGS[tag] || "/>");
+            return (res += PROC_TAGS[tag] || "/>");
         }
         if (isNotStringAndIterable(tree)) {
             return _serializeIter(tree, ctx, esc, span, keys, path);
@@ -246,9 +260,9 @@ const _serialize = (
         return _serializeIter(tree, ctx, esc, span, keys, path);
     }
     tree = esc ? escape(tree.toString()) : tree;
-    return span ?
-        `<span${keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>` :
-        tree;
+    return span
+        ? `<span${keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>`
+        : tree;
 };
 
 const _serializeIter = (
@@ -268,37 +282,36 @@ const _serializeIter = (
     return res.join("");
 };
 
-export const normalize =
-    (tag: any[]) => {
-        let el = tag[0];
-        let match, id, clazz;
-        const hasAttribs = isPlainObject(tag[1]);
-        const attribs: any = hasAttribs ? { ...tag[1] } : {};
-        if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
-            illegalArgs(`"${el}" is not a valid tag name`);
+export const normalize = (tag: any[]) => {
+    let el = tag[0];
+    let match, id, clazz;
+    const hasAttribs = isPlainObject(tag[1]);
+    const attribs: any = hasAttribs ? { ...tag[1] } : {};
+    if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
+        illegalArgs(`"${el}" is not a valid tag name`);
+    }
+    el = match[1];
+    id = match[2];
+    clazz = match[3];
+    if (id) {
+        attribs.id = id;
+    }
+    if (clazz) {
+        clazz = clazz.replace(/\./g, " ");
+        if (attribs.class) {
+            attribs.class += " " + clazz;
+        } else {
+            attribs.class = clazz;
         }
-        el = match[1];
-        id = match[2];
-        clazz = match[3];
-        if (id) {
-            attribs.id = id;
+    }
+    if (tag.length > 1) {
+        if (isPlainObject(attribs.style)) {
+            attribs.style = css(attribs.style);
         }
-        if (clazz) {
-            clazz = clazz.replace(/\./g, " ");
-            if (attribs.class) {
-                attribs.class += " " + clazz;
-            } else {
-                attribs.class = clazz;
-            }
+        tag = tag.slice(hasAttribs ? 2 : 1).filter((x) => x != null);
+        if (tag.length > 0) {
+            return [el, attribs, tag];
         }
-        if (tag.length > 1) {
-            if (isPlainObject(attribs.style)) {
-                attribs.style = css(attribs.style);
-            }
-            tag = tag.slice(hasAttribs ? 2 : 1).filter((x) => x != null);
-            if (tag.length > 0) {
-                return [el, attribs, tag];
-            }
-        }
-        return [el, attribs];
-    };
+    }
+    return [el, attribs];
+};

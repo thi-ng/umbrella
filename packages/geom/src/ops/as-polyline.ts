@@ -4,30 +4,27 @@ import { Path, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
-export const asPolyline: MultiFn1O<IShape, number | Partial<SamplingOpts>, Polyline> = defmulti(dispatch);
+export const asPolyline: MultiFn1O<
+    IShape,
+    number | Partial<SamplingOpts>,
+    Polyline
+> = defmulti(dispatch);
 
 asPolyline.addAll({
+    [Type.POINTS]: ($, opts) =>
+        new Polyline(vertices($, opts), { ...$.attribs }),
 
-    [Type.POINTS]:
-        ($, opts) => new Polyline(vertices($, opts), { ...$.attribs }),
+    [Type.PATH]: ($: Path, opts) => {
+        const pts = vertices($, opts);
+        return new Polyline($.closed ? pts.concat([pts[0]]) : pts, {
+            ...$.attribs
+        });
+    },
 
-    [Type.PATH]:
-        ($: Path, opts) => {
-            const pts = vertices($, opts);
-            return new Polyline(
-                $.closed ?
-                    pts.concat([pts[0]]) :
-                    pts,
-                { ...$.attribs }
-            );
-        },
-
-    [Type.POLYGON]:
-        ($, opts) => {
-            const pts = vertices($, opts);
-            return new Polyline(pts.concat([pts[0]]), { ...$.attribs });
-        },
-
+    [Type.POLYGON]: ($, opts) => {
+        const pts = vertices($, opts);
+        return new Polyline(pts.concat([pts[0]]), { ...$.attribs });
+    }
 });
 
 asPolyline.isa(Type.CIRCLE, Type.POLYGON);

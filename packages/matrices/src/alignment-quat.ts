@@ -16,15 +16,15 @@ import { quatFromAxisAngle } from "./quat-axis-angle";
  * @param to
  * @param normalize
  */
-export const alignmentQuat =
-    (from: ReadonlyVec, to: ReadonlyVec, normalize = true) => {
-        if (normalize) {
-            from = _normalize([], from);
-            to = _normalize([], to);
-        }
-        const axis = cross3([], from, to);
-        return quatFromAxisAngle(
-            axis,
-            Math.atan2(mag(axis), dot3(from, to))
-        )
-    };
+export const alignmentQuat = (
+    from: ReadonlyVec,
+    to: ReadonlyVec,
+    normalize = true
+) => {
+    if (normalize) {
+        from = _normalize([], from);
+        to = _normalize([], to);
+    }
+    const axis = cross3([], from, to);
+    return quatFromAxisAngle(axis, Math.atan2(mag(axis), dot3(from, to)));
+};

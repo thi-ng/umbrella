@@ -10,27 +10,15 @@ import { vertices } from "./vertices";
 export const tangentAt = defmulti<IShape, number, Vec>(dispatch);
 
 tangentAt.addAll({
+    [Type.CIRCLE]: (_, t) => cossin(TAU * t + HALF_PI),
 
-    [Type.CIRCLE]:
-        (_, t) =>
-            cossin(TAU * t + HALF_PI),
+    [Type.LINE]: ({ points }: Line) => direction([], points[0], points[1]),
 
-    [Type.LINE]:
-        ({ points }: Line) =>
-            direction([], points[0], points[1]),
+    [Type.POLYGON]: ($: PCLike, t) => new Sampler($.points, true).tangentAt(t),
 
-    [Type.POLYGON]:
-        ($: PCLike, t) =>
-            new Sampler($.points, true).tangentAt(t),
+    [Type.POLYLINE]: ($: PCLike, t) => new Sampler($.points).tangentAt(t),
 
-    [Type.POLYLINE]:
-        ($: PCLike, t) =>
-            new Sampler($.points).tangentAt(t),
-
-    [Type.RECT]:
-        ($: Rect, t) =>
-            new Sampler(vertices($), true).tangentAt(t),
-
+    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t)
 });
 
 tangentAt.isa(Type.QUAD, Type.POLYGON);

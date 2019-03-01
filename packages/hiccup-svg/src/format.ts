@@ -4,17 +4,14 @@ import { Vec2Like } from "./api";
 
 let PRECISION = 2;
 
-export const setPrecision =
-    (n: number) => (PRECISION = n);
+export const setPrecision = (n: number) => (PRECISION = n);
 
-export const ff =
-    (x: number) => x.toFixed(PRECISION);
+export const ff = (x: number) => x.toFixed(PRECISION);
 
-export const fpoint =
-    (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
+export const fpoint = (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
 
-export const fpoints =
-    (pts: Vec2Like[], sep = " ") => pts ? pts.map(fpoint).join(sep) : "";
+export const fpoints = (pts: Vec2Like[], sep = " ") =>
+    pts ? pts.map(fpoint).join(sep) : "";
 
 /**
  * Takes an attributes object and converts any `fill`, `stroke` or
@@ -44,15 +41,14 @@ export const fpoints =
  *
  * @param attribs
  */
-export const fattribs =
-    (attribs: any) => {
-        if (!attribs) return;
-        const res: any = ftransforms(attribs);
-        let v: any;
-        (v = attribs.fill) && (res.fill = fcolor(v));
-        (v = attribs.stroke) && (res.stroke = fcolor(v));
-        return res;
-    };
+export const fattribs = (attribs: any) => {
+    if (!attribs) return;
+    const res: any = ftransforms(attribs);
+    let v: any;
+    (v = attribs.fill) && (res.fill = fcolor(v));
+    (v = attribs.stroke) && (res.stroke = fcolor(v));
+    return res;
+};
 
 /**
  * Converts any transformation related attribs.
@@ -61,45 +57,46 @@ export const fattribs =
  *
  * @param attribs
  */
-const ftransforms =
-    (attribs: any) => {
-        let v: any;
-        if ((v = attribs.transform) ||
-            attribs.translate ||
-            attribs.scale ||
-            attribs.rotate) {
-            if (v) {
-                attribs.transform = !isString(v) ?
-                    `matrix(${[...v].map(ff).join(" ")})` :
-                    v;
+const ftransforms = (attribs: any) => {
+    let v: any;
+    if (
+        (v = attribs.transform) ||
+        attribs.translate ||
+        attribs.scale ||
+        attribs.rotate
+    ) {
+        if (v) {
+            attribs.transform = !isString(v)
+                ? `matrix(${[...v].map(ff).join(" ")})`
+                : v;
+            delete attribs.translate;
+            delete attribs.rotate;
+            delete attribs.scale;
+        } else {
+            const tx: string[] = [];
+            if ((v = attribs.translate)) {
+                tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
                 delete attribs.translate;
-                delete attribs.rotate;
-                delete attribs.scale;
-            } else {
-                const tx: string[] = [];
-                if (v = attribs.translate) {
-                    tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
-                    delete attribs.translate;
-                }
-                if (v = attribs.rotate) {
-                    tx.push(isString(v) ? v : `rotate(${ff(v * 180 / Math.PI)})`);
-                    delete attribs.rotate;
-                }
-                if (v = attribs.scale) {
-                    tx.push(
-                        isString(v) ?
-                            v :
-                            isArrayLike(v) ?
-                                `scale(${ff(v[0])} ${ff(v[1])})` :
-                                `scale(${ff(v)})`
-                    );
-                    delete attribs.scale;
-                }
-                attribs.transform = tx.join(" ");
             }
+            if ((v = attribs.rotate)) {
+                tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
+                delete attribs.rotate;
+            }
+            if ((v = attribs.scale)) {
+                tx.push(
+                    isString(v)
+                        ? v
+                        : isArrayLike(v)
+                            ? `scale(${ff(v[0])} ${ff(v[1])})`
+                            : `scale(${ff(v)})`
+                );
+                delete attribs.scale;
+            }
+            attribs.transform = tx.join(" ");
         }
-        return attribs;
-    };
+    }
+    return attribs;
+};
 
 /**
  * Attempts to convert a single color attrib value.
@@ -108,16 +105,15 @@ const ftransforms =
  *
  * @param col
  */
-export const fcolor =
-    (col: any) =>
-        isString(col) ?
-            col[0] === "$" ?
-                `url(#${col.substr(1)})` :
-                col :
-            isArrayLike(col) ?
-                isNumber((<any>col).mode) ?
-                    asCSS(<any>col) :
-                    asCSS(<ReadonlyColor>col, ColorMode.RGBA) :
-                isNumber(col) ?
-                    asCSS(col, ColorMode.INT32) :
-                    col;
+export const fcolor = (col: any) =>
+    isString(col)
+        ? col[0] === "$"
+            ? `url(#${col.substr(1)})`
+            : col
+        : isArrayLike(col)
+            ? isNumber((<any>col).mode)
+                ? asCSS(<any>col)
+                : asCSS(<ReadonlyColor>col, ColorMode.RGBA)
+            : isNumber(col)
+                ? asCSS(col, ColorMode.INT32)
+                : col;

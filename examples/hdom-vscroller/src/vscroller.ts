@@ -1,10 +1,5 @@
 import { Fn2 } from "@thi.ng/api";
-import {
-    comp,
-    drop,
-    iterator,
-    take
-} from "@thi.ng/transducers";
+import { comp, drop, iterator, take } from "@thi.ng/transducers";
 
 interface VScrollOpts {
     /**
@@ -38,30 +33,39 @@ interface VScrollOpts {
     items: Iterable<any>;
 }
 
-export const virtualScroller =
-    ({ start, top, onscroll, numVisible, numItems, itemHeight, items }: VScrollOpts) =>
-        ["div.overflow-y-scroll",
-            {
-                onscroll: (e) => {
-                    const top = e.target.scrollTop;
-                    const offset = Math.min(
-                        Math.floor(top / itemHeight),
-                        numItems - numVisible
-                    );
-                    onscroll(top, offset);
-                },
-                scrollTop: top,
-                style: {
-                    height: `${numVisible * itemHeight}px`,
-                }
-            },
-            ["div",
-                {
-                    style: {
-                        height: `${numItems * itemHeight}px`,
-                        "padding-top": `${Math.min(start, numItems - numVisible) * itemHeight}px`,
-                    }
-                },
-                iterator(comp(drop(start), take(numVisible + 1)), items)
-            ]
-        ];
+export const virtualScroller = ({
+    start,
+    top,
+    onscroll,
+    numVisible,
+    numItems,
+    itemHeight,
+    items
+}: VScrollOpts) => [
+    "div.overflow-y-scroll",
+    {
+        onscroll: (e) => {
+            const top = e.target.scrollTop;
+            const offset = Math.min(
+                Math.floor(top / itemHeight),
+                numItems - numVisible
+            );
+            onscroll(top, offset);
+        },
+        scrollTop: top,
+        style: {
+            height: `${numVisible * itemHeight}px`
+        }
+    },
+    [
+        "div",
+        {
+            style: {
+                height: `${numItems * itemHeight}px`,
+                "padding-top": `${Math.min(start, numItems - numVisible) *
+                    itemHeight}px`
+            }
+        },
+        iterator(comp(drop(start), take(numVisible + 1)), items)
+    ]
+];

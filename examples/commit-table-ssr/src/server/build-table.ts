@@ -11,8 +11,5 @@ import { html } from "./html";
 export const buildRepoTableHTML = (commits: Iterable<Commit>) =>
     html({
         ctx,
-        body: [
-            [header, ctx.repo.name],
-            [repoTable, commits],
-        ]
+        body: [[header, ctx.repo.name], [repoTable, commits]]
     });
