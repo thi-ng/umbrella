@@ -7,12 +7,7 @@ import {
     subscription,
     sync
 } from "@thi.ng/rstream";
-import {
-    map,
-    reducer,
-    scan,
-    vals
-} from "@thi.ng/transducers";
+import { map, reducer, scan, vals } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // example user context object
@@ -54,10 +49,7 @@ const ctx = {
 const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
     tree
         .subscribe(sidechainPartition(fromRAF()))
-        .transform(
-            map(peek),
-            updateDOM({ root, ctx })
-        );
+        .transform(map(peek), updateDOM({ root, ctx }));
 
 /**
  * Generic button component.
@@ -66,8 +58,11 @@ const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
  * @param onclick event handler
  * @param body button body
  */
-const button = (ctx: any, onclick: EventListener, body: any) =>
-    ["button", { ...ctx.ui.button, onclick }, body];
+const button = (ctx: any, onclick: EventListener, body: any) => [
+    "button",
+    { ...ctx.ui.button, onclick },
+    body
+];
 
 /**
  * Specialized button component for counters.
@@ -75,8 +70,11 @@ const button = (ctx: any, onclick: EventListener, body: any) =>
  * @param _ hdom user context (unused)
  * @param stream counter stream
  */
-const clickButton = (_, stream: Subscription<boolean, number>) =>
-    [button, () => stream.next(true), stream.deref()];
+const clickButton = (_, stream: Subscription<boolean, number>) => [
+    button,
+    () => stream.next(true),
+    stream.deref()
+];
 
 /**
  * Specialized button to reset all counters.
@@ -84,8 +82,11 @@ const clickButton = (_, stream: Subscription<boolean, number>) =>
  * @param _ hdom user context (unused)
  * @param counters streams to reset
  */
-const resetButton = (_, counters: Subscription<boolean, number>[]) =>
-    [button, () => counters.forEach((c) => c.next(false)), "reset"];
+const resetButton = (_, counters: Subscription<boolean, number>[]) => [
+    button,
+    () => counters.forEach((c) => c.next(false)),
+    "reset"
+];
 
 /**
  * Creates a stream of counter values. Each time `true` is written to
@@ -100,7 +101,7 @@ const counter = (start: number, step: number) => {
         null,
         // the `scan` transducer is used to provide counter functionality
         // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
-        scan(reducer(() => start, (x, y) => y ? x + step : start))
+        scan(reducer(() => start, (x, y) => (y ? x + step : start)))
     );
     s.next(false);
     return s;
@@ -120,7 +121,12 @@ const app = (ctx: any, initial: number[][]) => {
         src: counters.map((c) => c.transform(map(() => [clickButton, c]))),
         xform: map(
             // build the app's actual root component
-            (buttons) => ["div", ctx.ui.root, ...vals(buttons), [resetButton, counters]]
+            (buttons) => [
+                "div",
+                ctx.ui.root,
+                ...vals(buttons),
+                [resetButton, counters]
+            ]
         ),
         // this config ensures that only at the very beginning *all*
         // inputs must have delivered a value (i.e. stream
@@ -130,7 +136,7 @@ const app = (ctx: any, initial: number[][]) => {
         // synchronized see here for further details:
         // https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/stream-sync.ts#L21
         // https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/partition-sync.ts#L7
-        reset: false,
+        reset: false
     });
 };
 

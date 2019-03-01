@@ -4,7 +4,7 @@
 export const DONE = "done";
 export const ERROR = "error";
 export const LOAD_USER = "load-user";
-export const LOAD_USER_ERROR = "load-user-error"
+export const LOAD_USER_ERROR = "load-user-error";
 export const LOAD_USER_LIST = "load-users";
 export const RECEIVE_USER = "receive-user";
 export const RECEIVE_USERS = "receive-users";

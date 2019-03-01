@@ -11,7 +11,7 @@ const error = db.addView<string>("error");
 // specify a view transformer for the username value
 const user = db.addView<string>(
     "user.name",
-    (x) => x ? x.charAt(0).toUpperCase() + x.substr(1) : null
+    (x) => (x ? x.charAt(0).toUpperCase() + x.substr(1) : null)
 );
 
 // state update functions
@@ -36,32 +36,33 @@ const logoutUser = () => {
 // note how the value views are used here
 const uiViews = {
     // dummy login form
-    login: () =>
-        ["div#login",
-            ["h1", "Login"],
-            error.deref() ? ["div.error", error] : undefined,
-            ["input", { type: "text", onchange: setUser }],
-            ["button", { onclick: loginUser }, "Login"]
-        ],
-    logout: () =>
-        ["div#logout",
-            ["h1", "Good bye"],
-            "You've been logged out. ",
-            ["a",
-                { href: "#", onclick: () => setState("login") },
-                "Log back in?"
+    login: () => [
+        "div#login",
+        ["h1", "Login"],
+        error.deref() ? ["div.error", error] : undefined,
+        ["input", { type: "text", onchange: setUser }],
+        ["button", { onclick: loginUser }, "Login"]
+    ],
+    logout: () => [
+        "div#logout",
+        ["h1", "Good bye"],
+        "You've been logged out. ",
+        ["a", { href: "#", onclick: () => setState("login") }, "Log back in?"]
+    ],
+    main: () => [
+        "div#main",
+        ["h1", `Welcome, ${user.deref()}!`],
+        ["div", "Current app state:"],
+        [
+            "div",
+            [
+                "textarea",
+                { cols: 40, rows: 10 },
+                JSON.stringify(db.deref(), null, 2)
             ]
         ],
-    main: () =>
-        ["div#main",
-            ["h1", `Welcome, ${user.deref()}!`],
-            ["div", "Current app state:"],
-            ["div",
-                ["textarea",
-                    { cols: 40, rows: 10 },
-                    JSON.stringify(db.deref(), null, 2)]],
-            ["button", { onclick: logoutUser }, "Logout"]
-        ]
+        ["button", { onclick: logoutUser }, "Logout"]
+    ]
 };
 
 // finally define another derived view for the app state value
@@ -70,14 +71,14 @@ const uiViews = {
 const currView = db.addView(
     appState.path,
     (state) =>
-        uiViews[state] ||
-        ["div", ["h1", `No component for state: ${state}`]]
+        uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
 );
 
 // app root component
-const app = () =>
-    ["div",
-        currView,
-        ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
+const app = () => [
+    "div",
+    currView,
+    ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]
+];
 
 start(app);

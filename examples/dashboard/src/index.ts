@@ -1,23 +1,27 @@
 import { start } from "@thi.ng/hdom";
 
 // static component function to create styled box
-const box = (prefix, body) =>
-    ["div",
-        {
-            style: {
-                display: "inline-block",
-                background: "#ccc",
-                width: "30%",
-                height: "40px",
-                padding: "4px",
-                margin: "2px",
-                "text-align": "center"
-            }
-        },
-        ["strong", prefix], ["br"], body];
+const box = (prefix, body) => [
+    "div",
+    {
+        style: {
+            display: "inline-block",
+            background: "#ccc",
+            width: "30%",
+            height: "40px",
+            padding: "4px",
+            margin: "2px",
+            "text-align": "center"
+        }
+    },
+    ["strong", prefix],
+    ["br"],
+    body
+];
 
 // stateful component function
-const counter = (id, from = 0, step = 1) => () => box(id, (from += step).toLocaleString());
+const counter = (id, from = 0, step = 1) => () =>
+    box(id, (from += step).toLocaleString());
 
 // dynamic component function (external state, i.e. date)
 const timer = () => box("time", new Date().toLocaleTimeString());

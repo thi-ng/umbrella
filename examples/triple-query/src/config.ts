@@ -4,7 +4,6 @@ import { EFFECTS, EVENTS } from "./handlers";
 
 // main App configuration
 export const CONFIG: AppConfig = {
-
     // event handlers events are queued and batch processed in app's RAF
     // render loop event handlers can be single functions, interceptor
     // objects with `pre`/`post` keys or arrays of either.
@@ -45,15 +44,20 @@ export const CONFIG: AppConfig = {
         pagedTriples: "pagedTriples",
         cities: "queries.cities",
         countries: "queries.countries",
-        sort: "sort",
+        sort: "sort"
     },
 
     // component CSS class config using http://tachyons.io/ these
     // attribs are made available to all components and allow for easy
     // re-skinning of the whole app
     ui: {
-        button: { class: "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight noselect" },
-        buttonDisabled: { class: "bg-gray white pa2 mr1 w-100 ttu b tracked-tight noselect" },
+        button: {
+            class:
+                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight noselect"
+        },
+        buttonDisabled: {
+            class: "bg-gray white pa2 mr1 w-100 ttu b tracked-tight noselect"
+        },
         buttongroup: { class: "flex mb2" },
         link: { class: "pointer link dim black b" },
         root: { class: "pa2 mw7-ns center f7 f6-m f5-ns" },
@@ -85,7 +89,7 @@ export const CONFIG: AppConfig = {
             ["são paulo", "br"],
             ["shanghai", "cn"],
             ["tokyo", "jp"],
-            ["toronto", "ca"],
+            ["toronto", "ca"]
         ],
         countries: [
             ["au", "australia", "oceania"],
@@ -99,7 +103,7 @@ export const CONFIG: AppConfig = {
             ["jp", "japan", "asia"],
             ["za", "south africa", "africa"],
             ["nz", "new zealand", "oceania"],
-            ["us", "united states", "north-america"],
+            ["us", "united states", "north-america"]
         ],
         regions: [
             "africa",
@@ -110,29 +114,33 @@ export const CONFIG: AppConfig = {
             "north-america",
             "oceania",
             "south-america",
-            "caribbean",
+            "caribbean"
         ],
         queries: {
             cities: {
-                q: [{
-                    where: [
-                        ["?city", "type", "city"],
-                        ["?city", "locatedIn", "?cid"],
-                        ["?cid", "type", "country"],
-                        ["?cid", "name", "?country"],
-                        ["?cid", "partOf", "?region"],
-                    ]
-                }],
-                select: ["city", "country", "region"],
+                q: [
+                    {
+                        where: [
+                            ["?city", "type", "city"],
+                            ["?city", "locatedIn", "?cid"],
+                            ["?cid", "type", "country"],
+                            ["?cid", "name", "?country"],
+                            ["?cid", "partOf", "?region"]
+                        ]
+                    }
+                ],
+                select: ["city", "country", "region"]
             },
             countries: {
-                q: [{
-                    where: [
-                        ["?code", "type", "country"],
-                        ["?code", "partOf", "?region"],
-                        ["?region", "type", "region"],
-                    ]
-                }]
+                q: [
+                    {
+                        where: [
+                            ["?code", "type", "country"],
+                            ["?code", "partOf", "?region"],
+                            ["?region", "type", "region"]
+                        ]
+                    }
+                ]
             }
         }
     }

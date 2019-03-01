@@ -1,14 +1,13 @@
 import { peek } from "@thi.ng/arrays";
 import { identity } from "@thi.ng/compose";
 import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
-import {
-    circle,
-    group,
-    polyline,
-    svg
-} from "@thi.ng/hiccup-svg";
+import { circle, group, polyline, svg } from "@thi.ng/hiccup-svg";
 import { fromIterable, merge, sync } from "@thi.ng/rstream";
-import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import {
+    GestureEvent,
+    gestureStream,
+    GestureType
+} from "@thi.ng/rstream-gestures";
 import {
     comp,
     filter,
@@ -19,12 +18,7 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import {
-    angleBetween2,
-    mixN2,
-    sub2,
-    Vec
-} from "@thi.ng/vectors";
+import { angleBetween2, mixN2, sub2, Vec } from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**
@@ -34,24 +28,24 @@ import { CTA } from "./config";
  * @param raw
  * @param processed
  */
-const app =
-    ({ raw, processed }) =>
-        ["div",
-            svg(
-                {
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                    stroke: "none",
-                    fill: "none",
-                },
-                path(raw || [], processed.path, processed.corners || [])
-            ),
-            ["div.fixed.top-0.left-0.ma3",
-                ["div", `raw: ${(raw && raw.length) || 0}`],
-                ["div", `resampled: ${(processed && processed.path.length) || 0}`],
-                ["div", `corners: ${(processed && processed.corners.length) || 0}`],
-            ]
-        ];
+const app = ({ raw, processed }) => [
+    "div",
+    svg(
+        {
+            width: window.innerWidth,
+            height: window.innerHeight,
+            stroke: "none",
+            fill: "none"
+        },
+        path(raw || [], processed.path, processed.corners || [])
+    ),
+    [
+        "div.fixed.top-0.left-0.ma3",
+        ["div", `raw: ${(raw && raw.length) || 0}`],
+        ["div", `resampled: ${(processed && processed.path.length) || 0}`],
+        ["div", `corners: ${(processed && processed.corners.length) || 0}`]
+    ]
+];
 
 /**
  * Gesture visualization component. Creates an SVG group of shape
@@ -61,17 +55,17 @@ const app =
  * @param sampled resampled path
  * @param corners array of corner points
  */
-const path =
-    (raw: Vec[], sampled: Vec[], corners: Vec[]) =>
-        group({ __diff: false },
-            polyline(raw, { stroke: "#444" }),
-            map((p) => circle(p, 2, { fill: "#444" }), raw),
-            polyline(sampled, { stroke: "#fff" }),
-            map((p) => circle(p, 2, { fill: "#fff" }), sampled),
-            map((p) => circle(p, 6, { fill: "#cf0" }), corners),
-            circle(sampled[0], 6, { fill: "#f0c" }),
-            circle(peek(sampled), 6, { fill: "#0cf" }),
-        );
+const path = (raw: Vec[], sampled: Vec[], corners: Vec[]) =>
+    group(
+        { __diff: false },
+        polyline(raw, { stroke: "#444" }),
+        map((p) => circle(p, 2, { fill: "#444" }), raw),
+        polyline(sampled, { stroke: "#fff" }),
+        map((p) => circle(p, 2, { fill: "#fff" }), sampled),
+        map((p) => circle(p, 6, { fill: "#cf0" }), corners),
+        circle(sampled[0], 6, { fill: "#f0c" }),
+        circle(peek(sampled), 6, { fill: "#0cf" })
+    );
 
 /**
  * Re-samples given polyline at given uniform distance. Returns array of
@@ -80,9 +74,8 @@ const path =
  * @param step sample distance
  * @param pts
  */
-const sampleUniform =
-    (step: number, pts: Vec[]) =>
-        vertices(resample(gPolyline(pts), { dist: step }));
+const sampleUniform = (step: number, pts: Vec[]) =>
+    vertices(resample(gPolyline(pts), { dist: step }));
 
 /**
  * Applies low-pass filter to given polyline. I.e. Each point in the
@@ -91,14 +84,13 @@ const sampleUniform =
  *
  * @param path
  */
-const smoothPath =
-    (smooth: number, path: Vec[]) => {
-        const res: Vec[] = [path[0]];
-        for (let i = 1, n = path.length; i < n; i++) {
-            res.push(mixN2([], path[i], res[i - 1], smooth));
-        }
-        return res;
-    };
+const smoothPath = (smooth: number, path: Vec[]) => {
+    const res: Vec[] = [path[0]];
+    for (let i = 1, n = path.length; i < n; i++) {
+        res.push(mixN2([], path[i], res[i - 1], smooth));
+    }
+    return res;
+};
 
 /**
  * Corner detector HOF. Returns new function which takes 3 successive
@@ -106,31 +98,28 @@ const smoothPath =
  *
  * @param thresh normalized angle threshold
  */
-const isCorner =
-    (thresh: number) =>
-        ([a, b, c]: Vec[]) =>
-            angleBetween2(sub2([], b, a), sub2([], b, c), true) < thresh;
+const isCorner = (thresh: number) => ([a, b, c]: Vec[]) =>
+    angleBetween2(sub2([], b, a), sub2([], b, c), true) < thresh;
 
 /**
  * Gesture event processor. Collects gesture event positions into an
  * array of Vec2.
  */
-const collectPath =
-    () => {
-        let pts: Vec[] = [];
-        return (g: GestureEvent) => {
-            const pos = g[1].pos;
-            switch (g[0]) {
-                case GestureType.START:
-                    pts = [pos];
-                    break;
-                case GestureType.DRAG:
-                    pts.push(pos);
-                    break;
-            }
-            return pts;
+const collectPath = () => {
+    let pts: Vec[] = [];
+    return (g: GestureEvent) => {
+        const pos = g[1].pos;
+        switch (g[0]) {
+            case GestureType.START:
+                pts = [pos];
+                break;
+            case GestureType.DRAG:
+                pts.push(pos);
+                break;
         }
+        return pts;
     };
+};
 
 // gesture input stream(s)
 const gesture = merge({
@@ -142,11 +131,10 @@ const gesture = merge({
         fromIterable([CTA]),
         // mouse & touch event stream attached to document.body
         // we're filtering out move & zoom events to avoid extraneous work
-        gestureStream(document.body)
-            .transform(
-                filter((g) => g[0] != GestureType.MOVE && g[0] != GestureType.ZOOM),
-                map(collectPath())
-            )
+        gestureStream(document.body).transform(
+            filter((g) => g[0] != GestureType.MOVE && g[0] != GestureType.ZOOM),
+            map(collectPath())
+        )
     ]
 });
 
@@ -165,11 +153,11 @@ sync({
                 map((pts: Vec[]) => sampleUniform(20, pts)),
                 multiplexObj({
                     path: map(identity),
-                    corners: map(
-                        (pts) => transduce(
+                    corners: map((pts) =>
+                        transduce(
                             comp(
                                 partition(3, 1),
-                                filter(isCorner(Math.PI * 2 / 3)),
+                                filter(isCorner((Math.PI * 2) / 3)),
                                 map((x) => x[1])
                             ),
                             push(),
@@ -178,8 +166,8 @@ sync({
                     )
                 })
             )
-        ),
-    },
+        )
+    }
 }).transform(
     // transform result tuples into HDOM components
     map(app),

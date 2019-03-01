@@ -231,9 +231,15 @@ export const theme = {
                 transition: "all 100ms ease-in"
             }
         },
-        item: { class: "pointer link db w-100 ph3 pv2 black hover-bg-washed-green bg-animate bb b--moon-gray" },
-        itemSelected: { class: "pointer link db w-100 ph3 pv2 black hover-bg-light-gray bg-animate bb b--moon-gray b" },
-        itemDisabled: { class: "db w-100 ph3 pv2 gray bb b--moon-gray" },
+        item: {
+            class:
+                "pointer link db w-100 ph3 pv2 black hover-bg-washed-green bg-animate bb b--moon-gray"
+        },
+        itemSelected: {
+            class:
+                "pointer link db w-100 ph3 pv2 black hover-bg-light-gray bg-animate bb b--moon-gray b"
+        },
+        itemDisabled: { class: "db w-100 ph3 pv2 gray bb b--moon-gray" }
     },
     fuzzy: {
         class: "b underline"

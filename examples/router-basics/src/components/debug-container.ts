@@ -10,9 +10,15 @@ import { eventLink } from "./event-link";
  * @param json
  */
 export function debugContainer(ctx: AppContext, debug: any, json: string) {
-    return ["div#debug", ctx.ui.column.debug[debug],
-        [eventLink, [TOGGLE_DEBUG], ctx.ui.debugToggle,
-            debug ? "close \u25bc" : "open \u25b2"],
+    return [
+        "div#debug",
+        ctx.ui.column.debug[debug],
+        [
+            eventLink,
+            [TOGGLE_DEBUG],
+            ctx.ui.debugToggle,
+            debug ? "close \u25bc" : "open \u25b2"
+        ],
         ["pre", ctx.ui.code, json]
     ];
 }

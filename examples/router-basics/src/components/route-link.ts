@@ -10,8 +10,15 @@ import { ROUTE_TO } from "../events";
  * @param attribs element attribs
  * @param body link body
  */
-export function routeLink(ctx: AppContext, routeID: PropertyKey, routeParams: any, attribs: any, body: any) {
-    return ["a",
+export function routeLink(
+    ctx: AppContext,
+    routeID: PropertyKey,
+    routeParams: any,
+    attribs: any,
+    body: any
+) {
+    return [
+        "a",
         {
             ...attribs,
             onclick: (e) => {
@@ -19,5 +26,6 @@ export function routeLink(ctx: AppContext, routeID: PropertyKey, routeParams: an
                 ctx.bus.dispatch([ROUTE_TO, [routeID, routeParams]]);
             }
         },
-        body];
+        body
+    ];
 }

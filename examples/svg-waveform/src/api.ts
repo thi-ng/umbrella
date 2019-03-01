@@ -50,7 +50,7 @@ export interface UIAttribs {
     buttongroup: any;
     footer: any;
     link: any;
-    slider: { root: any, range: any, number: any };
+    slider: { root: any; range: any; number: any };
     root: any;
     sidebar: any;
     waveform: any;

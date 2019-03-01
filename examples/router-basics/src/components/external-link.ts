@@ -8,6 +8,11 @@ import { AppContext } from "../api";
  * @param uri link target
  * @param body link body
  */
-export function externalLink(_: AppContext, attribs: any, uri: string, body: any) {
+export function externalLink(
+    _: AppContext,
+    attribs: any,
+    uri: string,
+    body: any
+) {
     return ["a", { ...attribs, href: uri }, body];
 }

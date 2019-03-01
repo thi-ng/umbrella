@@ -4,7 +4,11 @@ import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
 import { Subscription } from "@thi.ng/rstream";
-import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import {
+    GestureEvent,
+    gestureStream,
+    GestureType
+} from "@thi.ng/rstream-gestures";
 import { heading, sub2 } from "@thi.ng/vectors";
 
 /**
@@ -132,7 +136,11 @@ export const dial = (opts: Partial<DialOpts>) => {
     let cx, cy;
     const startTheta = opts.base + opts.gap / 2;
 
-    const drawRing = (ctx: CanvasRenderingContext2D, amount: number, col: any) => {
+    const drawRing = (
+        ctx: CanvasRenderingContext2D,
+        amount: number,
+        col: any
+    ) => {
         const endTheta = startTheta + (TAU - opts.gap) * amount;
         ctx.fillStyle = col;
         ctx.beginPath();
@@ -141,17 +149,22 @@ export const dial = (opts: Partial<DialOpts>) => {
         ctx.fill();
     };
 
-    const makeGradient = (el: HTMLCanvasElement, ctx: CanvasRenderingContext2D, def: GradientDef) => {
+    const makeGradient = (
+        el: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D,
+        def: GradientDef
+    ) => {
         const g = ctx.createLinearGradient(
-            def.from[0] * el.width, def.from[1] * el.height,
-            def.to[0] * el.width, def.to[1] * el.height
+            def.from[0] * el.width,
+            def.from[1] * el.height,
+            def.to[0] * el.width,
+            def.to[1] * el.height
         );
         def.stops.forEach(([pos, col]) => g.addColorStop(pos, col));
         return g;
     };
 
     return canvas2D({
-
         init: (el, ctx) => {
             cx = el.width * opts.cx;
             cy = el.height * opts.cy;
@@ -163,28 +176,42 @@ export const dial = (opts: Partial<DialOpts>) => {
             opts.r1 *= scale;
             opts.r2 *= scale;
             if (!isString(opts.bgColor)) {
-                opts.bgColor = <any>makeGradient(el, ctx, <GradientDef>opts.bgColor);
+                opts.bgColor = <any>(
+                    makeGradient(el, ctx, <GradientDef>opts.bgColor)
+                );
             }
             if (!isString(opts.color)) {
-                opts.color = <any>makeGradient(el, ctx, <GradientDef>opts.color);
+                opts.color = <any>(
+                    makeGradient(el, ctx, <GradientDef>opts.color)
+                );
             }
             if (opts.onchange) {
                 // add interaction event stream (mouse & touch)
                 // configure stream to return scaled coords (devicePixelRatio)
-                events = gestureStream(el, { scale: true })
-                    .subscribe({
-                        next: (e) => {
-                            if (e[0] === GestureType.START || e[0] === GestureType.DRAG) {
-                                let theta = heading(sub2([], e[1].pos, [cx, cy])) - startTheta;
-                                if (theta < 0) theta += TAU;
-                                theta %= TAU;
-                                opts.onchange.call(
-                                    null,
-                                    fitClamped(Math.min(theta / (TAU - opts.gap)), 0, 1, opts.min, opts.max)
-                                );
-                            }
+                events = gestureStream(el, { scale: true }).subscribe({
+                    next: (e) => {
+                        if (
+                            e[0] === GestureType.START ||
+                            e[0] === GestureType.DRAG
+                        ) {
+                            let theta =
+                                heading(sub2([], e[1].pos, [cx, cy])) -
+                                startTheta;
+                            if (theta < 0) theta += TAU;
+                            theta %= TAU;
+                            opts.onchange.call(
+                                null,
+                                fitClamped(
+                                    Math.min(theta / (TAU - opts.gap)),
+                                    0,
+                                    1,
+                                    opts.min,
+                                    opts.max
+                                )
+                            );
                         }
-                    });
+                    }
+                });
             }
         },
 
@@ -199,7 +226,11 @@ export const dial = (opts: Partial<DialOpts>) => {
             const val = peek(args);
             ctx.clearRect(0, 0, el.width, el.height);
             drawRing(ctx, 1, opts.bgColor);
-            drawRing(ctx, fitClamped(val, opts.min, opts.max, 0.005, 1), opts.color);
+            drawRing(
+                ctx,
+                fitClamped(val, opts.min, opts.max, 0.005, 1),
+                opts.color
+            );
             if (opts.label) {
                 ctx.fillStyle = opts.labelColor;
                 ctx.fillText(opts.label(val), cx, cy + opts.labelYOffset);

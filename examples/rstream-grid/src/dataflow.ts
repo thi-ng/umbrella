@@ -21,15 +21,15 @@ export function initDataflow(bus: EventBus) {
             fn: grid,
             ins: {
                 cols: { path: paths.COLS },
-                rows: { path: paths.ROWS },
-            },
+                rows: { path: paths.ROWS }
+            }
         },
         rotation: {
             fn: rotate,
             ins: {
                 shapes: { stream: "/grid/node" },
-                theta: { path: paths.THETA },
-            },
+                theta: { path: paths.THETA }
+            }
         },
         svg: {
             fn: createSVG,
@@ -37,44 +37,54 @@ export function initDataflow(bus: EventBus) {
                 shapes: { stream: "/rotation/node" },
                 cols: { path: paths.COLS },
                 rows: { path: paths.ROWS },
-                stroke: { path: paths.STROKE },
+                stroke: { path: paths.STROKE }
             },
             // dispatch SVG result doc as event
             outs: {
-                "*": (node) => node.subscribe({
-                    next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg])
-                })
+                "*": (node) =>
+                    node.subscribe({
+                        next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg])
+                    })
             }
         }
     });
     return graph;
-};
+}
 
 /**
  * Implementation for grid generator node.
  */
-const grid = node(map(
-    ({ cols, rows }) =>
-        [...map(([x, y]) => ["rect", { x, y, width: 1, height: 1 }], range2d(cols, rows))]
-));
+const grid = node(
+    map(({ cols, rows }) => [
+        ...map(
+            ([x, y]) => ["rect", { x, y, width: 1, height: 1 }],
+            range2d(cols, rows)
+        )
+    ])
+);
 
 /**
  * Implementation for rotate node. Injects SVG `transform` attribute in
  * all received shapes.
  */
-const rotate = node(map(
-    ({ shapes, theta }) =>
+const rotate = node(
+    map(({ shapes, theta }) =>
         shapes.map(
-            (s) => (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${s[1].y + 0.5})`, s)
+            (s) => (
+                (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${s[1].y +
+                    0.5})`),
+                s
+            )
         )
-));
+    )
+);
 
 /**
  * Implementation for svg dataflow node. Wraps received shapes as
  * complete svg document in hiccup format.
  */
-const createSVG = node(map(
-    ({ shapes, cols, rows, stroke }) =>
+const createSVG = node(
+    map(({ shapes, cols, rows, stroke }) =>
         svg(
             {
                 class: "w-100 h-100",
@@ -86,9 +96,10 @@ const createSVG = node(map(
                 {
                     stroke: "white",
                     fill: "none",
-                    "stroke-width": stroke,
+                    "stroke-width": stroke
                 },
                 ...shapes
             )
         )
-));
+    )
+);

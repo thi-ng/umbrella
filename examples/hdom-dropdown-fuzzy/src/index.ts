@@ -15,7 +15,7 @@ const ctx = {
     theme,
     views: {
         countries: bus.state.addView("countries"),
-        filter: bus.state.addView("countries.filter"),
+        filter: bus.state.addView("countries.filter")
     }
 };
 
@@ -25,17 +25,27 @@ const input = cancelableInput("theme.input");
 start(
     (ctx) => {
         ctx.bus.processQueue();
-        return ["div", ctx.theme.root,
-            ["div", ctx.theme.column,
-                [fuzzyDropdown, {
-                    state: ctx.views.countries,
-                    filter: ctx.views.filter,
-                    placeholder: "Start typing to fuzzy match",
-                    hoverLabel: [["span", "Choose a country..."], ["i.fr.fas.fa-angle-down"]],
-                    dropdown: dd,
-                    input,
-                }]
-            ],
+        return [
+            "div",
+            ctx.theme.root,
+            [
+                "div",
+                ctx.theme.column,
+                [
+                    fuzzyDropdown,
+                    {
+                        state: ctx.views.countries,
+                        filter: ctx.views.filter,
+                        placeholder: "Start typing to fuzzy match",
+                        hoverLabel: [
+                            ["span", "Choose a country..."],
+                            ["i.fr.fas.fa-angle-down"]
+                        ],
+                        dropdown: dd,
+                        input
+                    }
+                ]
+            ]
         ];
     },
     { ctx }

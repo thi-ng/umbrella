@@ -31,7 +31,7 @@ export const CONFIG: AppConfig = {
             routes.HOME,
             routes.CONTACT,
             routes.USER_PROFILE,
-            routes.USER_LIST,
+            routes.USER_LIST
         ]
     },
 
@@ -54,13 +54,21 @@ export const CONFIG: AppConfig = {
 
         // sets status to thrown error's message
         [ev.ERROR]: (_, [__, err]) => ({
-            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]],
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]]
         }),
 
         // triggers loading of JSON for single user, sets status
         [ev.LOAD_USER]: (_, [__, id]) => ({
-            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.INFO, `loading user data...`]],
-            [FX_DISPATCH_ASYNC]: [fx.JSON, `assets/user-${id}.json`, ev.RECEIVE_USER, ev.LOAD_USER_ERROR]
+            [FX_DISPATCH_NOW]: [
+                ev.SET_STATUS,
+                [StatusType.INFO, `loading user data...`]
+            ],
+            [FX_DISPATCH_ASYNC]: [
+                fx.JSON,
+                `assets/user-${id}.json`,
+                ev.RECEIVE_USER,
+                ev.LOAD_USER_ERROR
+            ]
         }),
 
         // triggered after successful IO
@@ -69,21 +77,37 @@ export const CONFIG: AppConfig = {
         [ev.RECEIVE_USER]: (_, [__, json]) => ({
             [FX_DISPATCH_NOW]: [
                 <Event>[EV_SET_VALUE, [["users", json.id], json]],
-                <Event>[ev.SET_STATUS, [StatusType.SUCCESS, "JSON successfully loaded", true]]
-            ],
+                <Event>[
+                    ev.SET_STATUS,
+                    [StatusType.SUCCESS, "JSON successfully loaded", true]
+                ]
+            ]
         }),
 
         // error event for user profile IO requests (i.e. in this demo for user ID 3)
         // set status, then redirects to /users after 1sec
         [ev.LOAD_USER_ERROR]: (_, [__, err]) => ({
             [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]],
-            [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, [routes.USER_LIST.id]], ev.ROUTE_TO, ev.ERROR],
+            [FX_DISPATCH_ASYNC]: [
+                FX_DELAY,
+                [1000, [routes.USER_LIST.id]],
+                ev.ROUTE_TO,
+                ev.ERROR
+            ]
         }),
 
         // triggers loading of JSON summary of all users, sets status
         [ev.LOAD_USER_LIST]: () => ({
-            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.INFO, `loading user data...`]],
-            [FX_DISPATCH_ASYNC]: [fx.JSON, `assets/users.json`, ev.RECEIVE_USERS, ev.ERROR]
+            [FX_DISPATCH_NOW]: [
+                ev.SET_STATUS,
+                [StatusType.INFO, `loading user data...`]
+            ],
+            [FX_DISPATCH_ASYNC]: [
+                fx.JSON,
+                `assets/users.json`,
+                ev.RECEIVE_USERS,
+                ev.ERROR
+            ]
         }),
 
         // triggered after successful IO
@@ -91,20 +115,23 @@ export const CONFIG: AppConfig = {
         [ev.RECEIVE_USERS]: (_, [__, json]) => ({
             [FX_DISPATCH_NOW]: [
                 <Event>[EV_SET_VALUE, ["userlist", json]],
-                <Event>[ev.SET_STATUS, [StatusType.SUCCESS, "JSON successfully loaded", true]]
-            ],
+                <Event>[
+                    ev.SET_STATUS,
+                    [StatusType.SUCCESS, "JSON successfully loaded", true]
+                ]
+            ]
         }),
 
         // stores status (a tuple of `[type, message, done?]`) in app state
         // if status type != DONE & `done` == true, also triggers delayed EV_DONE
         // Note: we inject the `trace` interceptor to log the event to the console
-        [ev.SET_STATUS]:
-            (_, [__, status]) => ({
-                [FX_DISPATCH_NOW]: [EV_SET_VALUE, ["status", status]],
-                [FX_DISPATCH_ASYNC]: (status[0] !== StatusType.DONE && status[2]) ?
-                    [FX_DELAY, [1000], ev.DONE, ev.ERROR] :
-                    undefined
-            }),
+        [ev.SET_STATUS]: (_, [__, status]) => ({
+            [FX_DISPATCH_NOW]: [EV_SET_VALUE, ["status", status]],
+            [FX_DISPATCH_ASYNC]:
+                status[0] !== StatusType.DONE && status[2]
+                    ? [FX_DELAY, [1000], ev.DONE, ev.ERROR]
+                    : undefined
+        }),
 
         // toggles debug state flag on/off
         [ev.TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1)
@@ -129,7 +156,7 @@ export const CONFIG: AppConfig = {
         [routes.HOME.id]: home,
         [routes.CONTACT.id]: contact,
         [routes.USER_LIST.id]: allUsers,
-        [routes.USER_PROFILE.id]: userProfile,
+        [routes.USER_PROFILE.id]: userProfile
     },
 
     // DOM root element (or ID)
@@ -141,7 +168,7 @@ export const CONFIG: AppConfig = {
         users: {},
         userlist: [],
         route: {},
-        debug: 1,
+        debug: 1
     },
 
     // derived view declarations
@@ -154,7 +181,7 @@ export const CONFIG: AppConfig = {
         users: ["users", (users) => users || {}],
         userlist: "userlist",
         status: "status",
-        debug: "debug",
+        debug: "debug"
     },
 
     // component CSS class config using tachyons-css
@@ -165,10 +192,15 @@ export const CONFIG: AppConfig = {
     // looks at first somewhat cryptic, but it's a great/powerful system
     // http://tachyons.io/
     ui: {
-        bodyCopy: { class: "center measure-narrow measure-ns tc lh-copy black-70" },
+        bodyCopy: {
+            class: "center measure-narrow measure-ns tc lh-copy black-70"
+        },
         bodyLink: { class: "link dim black" },
         card: {
-            container: { class: "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc" },
+            container: {
+                class:
+                    "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc"
+            },
             thumb: { class: "br-100 h3 w3 dib" },
             title: { class: "ma1" },
             sep: { class: "mt3 mw3 bb bw1 b--black-10" },
@@ -177,7 +209,10 @@ export const CONFIG: AppConfig = {
         code: { class: "ma0 ml4 pa2 f7 bg-light-gray code overflow-x-hidden" },
         column: {
             content: [{ class: "w-90-ns ma2" }, { class: "w-50-ns ma2" }],
-            debug: [{ class: "w-10-ns ma2 close" }, { class: "w-50-ns ma2 open" }],
+            debug: [
+                { class: "w-10-ns ma2 close" },
+                { class: "w-50-ns ma2 open" }
+            ]
         },
         contact: {
             link: { class: "db pb2 link dim black" }
@@ -191,10 +226,18 @@ export const CONFIG: AppConfig = {
         },
         root: { class: "flex-ns sans-serif ma0" },
         status: {
-            [StatusType.DONE]: { class: "pa2 bg-light-yellow gold tc fadeout bg-animate" },
-            [StatusType.INFO]: { class: "pa2 bg-light-yellow gold tc bg-animate" },
-            [StatusType.SUCCESS]: { class: "pa2 bg-light-green green tc bg-animate" },
-            [StatusType.ERROR]: { class: "pa2 bg-light-red dark-red tc bg-animate" },
+            [StatusType.DONE]: {
+                class: "pa2 bg-light-yellow gold tc fadeout bg-animate"
+            },
+            [StatusType.INFO]: {
+                class: "pa2 bg-light-yellow gold tc bg-animate"
+            },
+            [StatusType.SUCCESS]: {
+                class: "pa2 bg-light-green green tc bg-animate"
+            },
+            [StatusType.ERROR]: {
+                class: "pa2 bg-light-red dark-red tc bg-animate"
+            }
         },
         userlist: {
             root: { class: "measure center" },
@@ -205,6 +248,6 @@ export const CONFIG: AppConfig = {
             title: { class: "pointer f6 f5-ns fw6 lh-title black mv0" },
             subtitle: { class: "f6 fw4 mt0 mb0 black-60" },
             meta: { class: "dtc tr v-mid black-60 f7" }
-        },
+        }
     }
 };

@@ -14,7 +14,7 @@ import {
     circle,
     Polygon,
     polygon,
-    tessellate,
+    tessellate
 } from "@thi.ng/geom";
 
 type Tint = (p: Polygon) => string;
@@ -58,7 +58,7 @@ const arclengthToHSL = (max: number, p: IShape) =>
 const tintedPoly = (tint: Tint, points: Vec[]) => {
     const p = polygon(points);
     p.attribs = {
-        fill: tint(p),
+        fill: tint(p)
         // stroke: tint(p),
     };
     return p;
@@ -79,7 +79,7 @@ const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
 
 const main = sync({
     src: {
-        time: fromInterval(16),
+        time: fromInterval(16)
     }
 }).transform(
     // root component function
@@ -89,25 +89,26 @@ const main = sync({
         // resulting array contains Polygon2 values
         // Polygon2 implements the .toHiccup() method for
         // auto-conversion during hdom tree normalization
-        const cells = tessellation(
-            time,
-            SUBDIVS,
-            partial(arclengthToHSL, 250)
-        );
-        return ["div.ma2.sans-serif",
+        const cells = tessellation(time, SUBDIVS, partial(arclengthToHSL, 250));
+        return [
+            "div.ma2.sans-serif",
             ["div", `Cells: ${cells.length}`],
-            [canvas,
+            [
+                canvas,
                 { width: 600, height: 600 },
                 // ["polygon", { stroke: "black" }, vertices(asPolygon(circle([300, 300], 300), 3))],
-                ["g",
+                [
+                    "g",
                     {
                         translate: [300, 300],
                         // rotate: (time / 10) % TAU,
                         stroke: "#000",
                         weight: 0.25
                     },
-                    ...cells]
-            ]];
+                    ...cells
+                ]
+            ]
+        ];
     }),
     updateDOM()
 );

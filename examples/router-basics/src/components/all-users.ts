@@ -13,9 +13,9 @@ import { status } from "./status";
  */
 export function allUsers(ctx: AppContext) {
     ctx.bus.dispatch(
-        ctx.views.userlist.deref().length ?
-            [SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]] :
-            [LOAD_USER_LIST]
+        ctx.views.userlist.deref().length
+            ? [SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]]
+            : [LOAD_USER_LIST]
     );
     return ["div", status, userList];
 }
@@ -28,9 +28,13 @@ export function allUsers(ctx: AppContext) {
 function userList(ctx: AppContext) {
     const profiles = ctx.views.users.deref();
     const list = ctx.views.userlist.deref();
-    return list &&
-        ["section", ctx.ui.userlist.root,
-            list.map((u) => [user, u, !!profiles[u.id]])];
+    return (
+        list && [
+            "section",
+            ctx.ui.userlist.root,
+            list.map((u) => [user, u, !!profiles[u.id]])
+        ]
+    );
 }
 
 /**
@@ -45,15 +49,20 @@ function userList(ctx: AppContext) {
  */
 function user(ctx: AppContext, user: User, cached: boolean) {
     const ui = ctx.ui.userlist;
-    return ["article", ui.container,
-        ["div", ui.thumbWrapper,
-            ["img", { ...ui.thumb, src: user.img }]],
-        ["div", ui.body,
-            ["h1", ui.title,
-                [routeLink, USER_PROFILE.id, { id: user.id }, null, user.name]],
-            ["h2", ui.subtitle, `@${user.alias}`]],
-        cached ?
-            ["div", ui.meta, "cached"] :
-            undefined
+    return [
+        "article",
+        ui.container,
+        ["div", ui.thumbWrapper, ["img", { ...ui.thumb, src: user.img }]],
+        [
+            "div",
+            ui.body,
+            [
+                "h1",
+                ui.title,
+                [routeLink, USER_PROFILE.id, { id: user.id }, null, user.name]
+            ],
+            ["h2", ui.subtitle, `@${user.alias}`]
+        ],
+        cached ? ["div", ui.meta, "cached"] : undefined
     ];
 }

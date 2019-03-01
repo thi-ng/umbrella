@@ -7,9 +7,12 @@ import { externalLink } from "./external-link";
  * @param ctx injected context object
  */
 export function contact(ctx: AppContext) {
-    return ["div", ctx.ui.bodyCopy,
+    return [
+        "div",
+        ctx.ui.bodyCopy,
         ["p", "Get in touch!"],
-        ["p",
+        [
+            "p",
             [
                 ["https://github.com/thi-ng/umbrella", "GitHub"],
                 ["https://twitter.com/toxi", "Twitter"],

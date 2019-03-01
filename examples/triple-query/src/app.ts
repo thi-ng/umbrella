@@ -4,14 +4,8 @@ import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EV_SET_VALUE, EventBus } from "@thi.ng/interceptors";
 import { TripleStore } from "@thi.ng/rstream-query";
-import {
-    AppConfig,
-    AppContext,
-    AppViews,
-    ViewSpec
-} from "./api";
+import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import * as ev from "./events";
-
 
 /**
  * Generic base app skeleton. You can use this as basis for your own
@@ -25,7 +19,6 @@ import * as ev from "./events";
  * - start hdom render & event bus loop
  */
 export class App {
-
     config: AppConfig;
     ctx: AppContext;
     state: Atom<any>;
@@ -37,7 +30,7 @@ export class App {
             bus: new EventBus(this.state, config.events, config.effects),
             store: new TripleStore(),
             views: <AppViews>{},
-            ui: config.ui,
+            ui: config.ui
         };
         this.addViews(this.config.views);
     }
@@ -76,7 +69,10 @@ export class App {
         let firstFrame = true;
         start(
             () => {
-                if (this.ctx.bus.processQueue({ store: this.ctx.store }) || firstFrame) {
+                if (
+                    this.ctx.bus.processQueue({ store: this.ctx.store }) ||
+                    firstFrame
+                ) {
                     firstFrame = false;
                     return root();
                 }
@@ -94,12 +90,14 @@ export class App {
         const conf = this.config.data;
         const store = this.ctx.store;
         conf.cities.forEach((x) => this.ctx.bus.dispatch([ev.ADD_CITY, x]));
-        conf.countries.forEach((x) => this.ctx.bus.dispatch([ev.ADD_COUNTRY, x]));
+        conf.countries.forEach((x) =>
+            this.ctx.bus.dispatch([ev.ADD_COUNTRY, x])
+        );
         for (let q in conf.queries) {
-            store.addQueryFromSpec(conf.queries[q])
-                .subscribe({
-                    next: (res) => this.ctx.bus.dispatch([EV_SET_VALUE, [["queries", q], res]])
-                });
+            store.addQueryFromSpec(conf.queries[q]).subscribe({
+                next: (res) =>
+                    this.ctx.bus.dispatch([EV_SET_VALUE, [["queries", q], res]])
+            });
         }
     }
 }

@@ -20,7 +20,7 @@ const mandelbrot = (x0: number, y0: number, n: number) => {
         x = t;
         i++;
     }
-    return (i / n * 255) | 0;
+    return ((i / n) * 255) | 0;
 };
 
 // generates new fractal image based on given config tuple
@@ -30,7 +30,10 @@ const render = ({ x1, y1, x2, y2, iter, w, h, gradient }) => {
     for (let y = 0, i = 0; y < h; y++) {
         for (let x = 0; x < w; x++) {
             // pix[i++] = splat8_24(mandelbrot(fit01(x / w, x1, x2), fit01(y / w, y1, y2), iter, k * x / w)) | 0xff000000;
-            pix[i++] = grad[mandelbrot(fit01(x / w, x1, x2), fit01(y / w, y1, y2), iter)];
+            pix[i++] =
+                grad[
+                    mandelbrot(fit01(x / w, x1, x2), fit01(y / w, y1, y2), iter)
+                ];
         }
     }
     return pix;

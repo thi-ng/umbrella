@@ -47,37 +47,62 @@ export function dropdown(themeCtxPath: Path) {
         const state = opts.statePath ? getIn(ctx, opts.statePath) : opts.state;
         const hattribs = {
             onmouseover: opts.onmouseover,
-            onmouseleave: opts.onmouseleave,
+            onmouseleave: opts.onmouseleave
         };
-        return state.open ?
-            ["div", { ...ui.root, onkeydown: (e) => console.log(e) },
-                [appLink, { ...hattribs, ...ui.itemSelected }, opts.ontoggle, opts.openLabel || opts.hoverLabel],
-                ["div", ui.bodyOpen,
-                    state.items.length ?
-                        state.items.map(
-                            (x) =>
-                                ["a",
-                                    {
-                                        ...x[0] === state.selected ? ui.itemSelected : ui.item,
-                                        href: "#",
-                                        onclick: opts.onchange(x[0]),
-                                    },
-                                    ...(isString(x[1]) ? [x[1]] : x[1])]
-                        ) :
-                        ["span", ui.itemDisabled, opts.noItems]]] :
-            ["div", ui.root,
-                [appLink, { ...hattribs, ...ui.item }, opts.ontoggle,
-                    state.hover ?
-                        opts.hoverLabel :
-                        (state.items.find((x) => x[0] === state.selected) ||
-                            [, opts.hoverLabel])[1]],
-                ["div", ui.bodyClosed]];
+        return state.open
+            ? [
+                  "div",
+                  { ...ui.root, onkeydown: (e) => console.log(e) },
+                  [
+                      appLink,
+                      { ...hattribs, ...ui.itemSelected },
+                      opts.ontoggle,
+                      opts.openLabel || opts.hoverLabel
+                  ],
+                  [
+                      "div",
+                      ui.bodyOpen,
+                      state.items.length
+                          ? state.items.map((x) => [
+                                "a",
+                                {
+                                    ...(x[0] === state.selected
+                                        ? ui.itemSelected
+                                        : ui.item),
+                                    href: "#",
+                                    onclick: opts.onchange(x[0])
+                                },
+                                ...(isString(x[1]) ? [x[1]] : x[1])
+                            ])
+                          : ["span", ui.itemDisabled, opts.noItems]
+                  ]
+              ]
+            : [
+                  "div",
+                  ui.root,
+                  [
+                      appLink,
+                      { ...hattribs, ...ui.item },
+                      opts.ontoggle,
+                      state.hover
+                          ? opts.hoverLabel
+                          : (state.items.find(
+                                (x) => x[0] === state.selected
+                            ) || [, opts.hoverLabel])[1]
+                  ],
+                  ["div", ui.bodyClosed]
+              ];
     };
 }
 
-export const dropdownListeners = (ctx: BaseContext, basePath: PropertyKey[]) => ({
-    onmouseover: () => ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], true]]),
-    onmouseleave: () => ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], false]]),
+export const dropdownListeners = (
+    ctx: BaseContext,
+    basePath: PropertyKey[]
+) => ({
+    onmouseover: () =>
+        ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], true]]),
+    onmouseleave: () =>
+        ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], false]]),
     ontoggle: () => ctx.bus.dispatch([EV_TOGGLE_VALUE, [...basePath, "open"]]),
     onchange: (x) => () => {
         ctx.bus.dispatch(

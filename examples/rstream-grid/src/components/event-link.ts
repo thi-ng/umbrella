@@ -11,13 +11,19 @@ import { AppContext } from "../api";
  * @param attribs element attribs
  * @param body link body
  */
-export const eventLink = (ctx: AppContext, attribs: any, event: Event, body: any) =>
-    ["a",
-        {
-            ...attribs,
-            onclick: (e) => {
-                e.preventDefault();
-                ctx.bus.dispatch(event);
-            }
-        },
-        body];
+export const eventLink = (
+    ctx: AppContext,
+    attribs: any,
+    event: Event,
+    body: any
+) => [
+    "a",
+    {
+        ...attribs,
+        onclick: (e) => {
+            e.preventDefault();
+            ctx.bus.dispatch(event);
+        }
+    },
+    body
+];

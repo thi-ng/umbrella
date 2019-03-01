@@ -15,8 +15,8 @@ export interface HTMLDoc {
 export interface HTMLHead {
     title: string;
     meta: any[];
-    links: { rel: string, href: string }[];
-    scripts: { src: string, type?: string }[];
+    links: { rel: string; href: string }[];
+    scripts: { src: string; type?: string }[];
     styles: string[];
 }
 
@@ -33,7 +33,7 @@ export interface AppContext {
         table: any;
         stats: any;
         search: any;
-    }
+    };
 }
 
 export interface Repo {

@@ -12,9 +12,10 @@ import { status } from "./status";
 export function userProfile(ctx: AppContext) {
     const id = ctx.views.route.deref().params.id;
     ctx.bus.dispatch(
-        ctx.views.users.deref()[id] ?
-            [SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]] :
-            [LOAD_USER, id]);
+        ctx.views.users.deref()[id]
+            ? [SET_STATUS, [StatusType.SUCCESS, "loaded from cache", true]]
+            : [LOAD_USER, id]
+    );
     return ["div", [status], [userCard, id]];
 }
 
@@ -22,13 +23,15 @@ export function userProfile(ctx: AppContext) {
 function userCard(ctx: AppContext, id: number) {
     const user = ctx.views.users.deref()[id];
     const ui = ctx.ui.card;
-    return user ?
-        ["div", ui.container,
-            ["img", { ...ui.thumb, src: user.img }],
-            ["h3", ui.title, user.name],
-            user.job,
-            ["hr", ui.sep],
-            ["p", ui.body, user.desc]
-        ] :
-        undefined;
+    return user
+        ? [
+              "div",
+              ui.container,
+              ["img", { ...ui.thumb, src: user.img }],
+              ["h3", ui.title, user.name],
+              user.job,
+              ["hr", ui.sep],
+              ["p", ui.body, user.desc]
+          ]
+        : undefined;
 }

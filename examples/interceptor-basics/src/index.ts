@@ -17,33 +17,34 @@ const db = new Atom({});
 // event bus w/ handlers
 // see @thi.ng/interceptors for more details
 const bus = new EventBus(db, {
-    "init": () => ({
+    init: () => ({
         [FX_STATE]: { clicks: 0, color: "grey" }
     }),
     "inc-counter": [
         valueUpdater("clicks", (x: number) => x + 1),
         dispatchNow(["randomize-color"])
     ],
-    "randomize-color": valueUpdater(
-        "color", () => colors.next().value
-    )
+    "randomize-color": valueUpdater("color", () => colors.next().value)
 });
 
 start(
     // this root component function will be executed via RAF.
     // it first processes events and then only returns an updated
     // component if there was a state update...
-    (ctx) => ctx.bus.processQueue() ?
-        ["button",
-            {
-                style: {
-                    padding: "1rem",
-                    background: ctx.db.value.color
-                },
-                onclick: () => ctx.bus.dispatch(["inc-counter"])
-            },
-            `clicks: ${ctx.db.value.clicks}`] :
-        null,
+    (ctx) =>
+        ctx.bus.processQueue()
+            ? [
+                  "button",
+                  {
+                      style: {
+                          padding: "1rem",
+                          background: ctx.db.value.color
+                      },
+                      onclick: () => ctx.bus.dispatch(["inc-counter"])
+                  },
+                  `clicks: ${ctx.db.value.clicks}`
+              ]
+            : null,
     // hdom options incl.
     // arbitrary user context object passed to all components
     { ctx: { db, bus } }

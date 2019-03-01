@@ -35,7 +35,7 @@ export interface AppConfig {
         countries: string[][];
         regions: string[];
         queries: IObjectOf<QuerySpec>;
-    }
+    };
 }
 
 /**
@@ -63,8 +63,8 @@ export interface UIAttribs {
     buttongroup: any;
     link: any;
     root: any;
-    table: { root: any; head: any; headlink: any; row: any; cell: any },
-    pager: { root: any; prev: any; pages: any; next: any; }
+    table: { root: any; head: any; headlink: any; row: any; cell: any };
+    pager: { root: any; prev: any; pages: any; next: any };
 }
 
 /**
