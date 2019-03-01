@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./metastream";
 export * from "./pubsub";
 export * from "./stream";
 export * from "./stream-merge";
