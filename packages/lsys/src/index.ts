@@ -3,16 +3,13 @@ import { partial, threadLast } from "@thi.ng/compose";
 import { illegalState } from "@thi.ng/errors";
 import { cossin, HALF_PI } from "@thi.ng/math";
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import {
-    iterate,
-    last,
-    mapcat,
-    take
-} from "@thi.ng/transducers";
+import { iterate, last, mapcat, take } from "@thi.ng/transducers";
 import { add, Vec } from "@thi.ng/vectors";
 
 export type LSysSymbol = string | number;
-export type ProductionRules = IObjectOf<ArrayLike<LSysSymbol> & Iterable<LSysSymbol>>;
+export type ProductionRules = IObjectOf<
+    ArrayLike<LSysSymbol> & Iterable<LSysSymbol>
+>;
 export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
 
 export interface Turtle2D {
@@ -81,13 +78,13 @@ export interface Turtle2D {
 
 export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
     // move forward
-    "f": (ctx) => {
+    f: (ctx) => {
         if (ctx.alive) {
             ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
             ctx.curr.push(ctx.pos);
         }
     },
-    "g": (ctx) => {
+    g: (ctx) => {
         if (ctx.alive) {
             ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
             ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
@@ -106,13 +103,14 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
     "!": (ctx) => ctx.alive && (ctx.step *= ctx.decayStep),
     // grow step distance
     "^": (ctx) => ctx.alive && (ctx.step /= ctx.decayStep),
-    "/": (ctx) => ctx.alive && (ctx.theta += ctx.rnd.norm(ctx.delta * ctx.jitter)),
+    "/": (ctx) =>
+        ctx.alive && (ctx.theta += ctx.rnd.norm(ctx.delta * ctx.jitter)),
     // kill branch (stochastic)
-    "k": (ctx) => ctx.alive && (ctx.alive = ctx.rnd.float() < ctx.aliveProb),
+    k: (ctx) => ctx.alive && (ctx.alive = ctx.rnd.float() < ctx.aliveProb),
     // decay alive probability
-    "p": (ctx) => ctx.alive && (ctx.aliveProb *= ctx.decayAlive),
+    p: (ctx) => ctx.alive && (ctx.aliveProb *= ctx.decayAlive),
     // grow alive probability
-    "P": (ctx) => ctx.alive && (ctx.aliveProb /= ctx.decayAlive),
+    P: (ctx) => ctx.alive && (ctx.aliveProb /= ctx.decayAlive),
     // start branch / store context on stack
     "[": (ctx) => {
         ctx.alive && ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
@@ -129,46 +127,50 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
         const prev = ctx.stack.pop();
         !prev && illegalState("stack empty");
         Object.assign(ctx, prev);
-    },
+    }
 };
 
-export const turtle2d =
-    (state?: Partial<Turtle2D>): Turtle2D => ({
-        pos: [0, 0],
-        theta: 0,
-        delta: HALF_PI,
-        step: 1,
-        jitter: 0.25,
-        decayDelta: 0.9,
-        decayStep: 0.9,
-        decayAlive: 0.95,
-        aliveProb: 0.99,
-        rnd: SYSTEM,
-        alive: true,
-        curr: [[0, 0]],
-        paths: [],
-        stack: [],
-        ...state
-    });
+export const turtle2d = (state?: Partial<Turtle2D>): Turtle2D => ({
+    pos: [0, 0],
+    theta: 0,
+    delta: HALF_PI,
+    step: 1,
+    jitter: 0.25,
+    decayDelta: 0.9,
+    decayStep: 0.9,
+    decayAlive: 0.95,
+    aliveProb: 0.99,
+    rnd: SYSTEM,
+    alive: true,
+    curr: [[0, 0]],
+    paths: [],
+    stack: [],
+    ...state
+});
 
-export const rewrite =
-    (rules: ProductionRules, syms: Iterable<LSysSymbol>) =>
-        mapcat((x) => rules[x] || [x], syms);
+export const rewrite = (rules: ProductionRules, syms: Iterable<LSysSymbol>) =>
+    mapcat((x) => rules[x] || [x], syms);
 
-export const expand =
-    (rules: ProductionRules, initial: LSysSymbol, limit = 1) =>
-        threadLast(
-            [initial],
-            [iterate, partial(rewrite, rules)],
-            [take, limit + 1],
-            last
-        );
+export const expand = (
+    rules: ProductionRules,
+    initial: LSysSymbol,
+    limit = 1
+) =>
+    threadLast(
+        [initial],
+        [iterate, partial(rewrite, rules)],
+        [take, limit + 1],
+        last
+    );
 
-export const interpret =
-    <T>(ctx: T, impls: RuleImplementations<T>, syms: Iterable<LSysSymbol>) => {
-        for (let s of syms) {
-            const op = impls[s];
-            op && op(ctx, s);
-        }
-        return ctx;
-    };
+export const interpret = <T>(
+    ctx: T,
+    impls: RuleImplementations<T>,
+    syms: Iterable<LSysSymbol>
+) => {
+    for (let s of syms) {
+        const op = impls[s];
+        op && op(ctx, s);
+    }
+    return ctx;
+};

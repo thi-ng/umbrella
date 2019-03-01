@@ -3,7 +3,6 @@ import { VecFactory } from "./api";
 import { wrap } from "./wrap";
 
 export abstract class AVecList<T extends StridedVec> {
-
     buffer: Vec;
     factory: VecFactory;
 
@@ -33,7 +32,7 @@ export abstract class AVecList<T extends StridedVec> {
         start = 0,
         cstride = 1,
         estride = size,
-        factory: VecFactory = wrap,
+        factory: VecFactory = wrap
     ) {
         this.buffer = buffer || new Float32Array(size * capacity);
         this.size = size;

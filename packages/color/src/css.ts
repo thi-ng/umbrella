@@ -1,15 +1,9 @@
 import { ICopy, IDeref } from "@thi.ng/api";
 import { ColorMode, IColor } from "./api";
 
-export const css =
-    (col: string) =>
-        new CSS(col);
+export const css = (col: string) => new CSS(col);
 
-export class CSS implements
-    IColor,
-    ICopy<CSS>,
-    IDeref<string> {
-
+export class CSS implements IColor, ICopy<CSS>, IDeref<string> {
     value: string;
 
     constructor(col: string) {

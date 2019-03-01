@@ -9,7 +9,10 @@ import { reduce, reducer } from "../reduce";
 export function assocObj<T>(): Reducer<IObjectOf<T>, Pair<PropertyKey, T>>;
 export function assocObj<T>(xs: Iterable<Pair<PropertyKey, T>>): IObjectOf<T>;
 export function assocObj<T>(xs?: Iterable<Pair<PropertyKey, T>>): any {
-    return xs ?
-        reduce(assocObj(), xs) :
-        reducer(() => <any>new Object(), (acc, [k, v]) => (acc[k] = v, acc));
+    return xs
+        ? reduce(assocObj(), xs)
+        : reducer(
+              () => <any>new Object(),
+              (acc, [k, v]) => ((acc[k] = v), acc)
+          );
 }

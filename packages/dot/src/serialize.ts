@@ -1,16 +1,12 @@
 import { IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
-import {
-    Edge,
-    Graph,
-    GraphAttribs,
-    Node
-} from "./api";
+import { Edge, Graph, GraphAttribs, Node } from "./api";
 
 const wrapQ = (x) => `"${x}"`;
 
 const escape = (x: any) =>
-    String(x).replace(/\"/g, `\\"`)
+    String(x)
+        .replace(/\"/g, `\\"`)
         .replace(/\n/g, "\\n");
 
 const formatGraphAttribs = (attribs: Partial<GraphAttribs>, acc: string[]) => {
@@ -87,10 +83,8 @@ const formatPortLabel = (node: Partial<Node>, label: string) => {
 
 export const serializeNode = (id: string, n: Partial<Node>) => {
     const attribs = formatAttribs(n);
-    return attribs.length ?
-        `"${id}"[${attribs}];` :
-        `"${id}";`;
-}
+    return attribs.length ? `"${id}"[${attribs}];` : `"${id}";`;
+};
 
 export const serializeEdge = (e: Edge, directed = true) => {
     const acc: string[] = [wrapQ(e.src)];

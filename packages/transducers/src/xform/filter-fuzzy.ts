@@ -24,9 +24,19 @@ export interface FilterFuzzyOpts<A, B> {
  * @param opts
  * @param src
  */
-export function filterFuzzy<A, B>(query: ArrayLike<B>, opts?: Partial<FilterFuzzyOpts<A, B>>): Transducer<A, A>;
-export function filterFuzzy<A, B>(query: ArrayLike<B>, src: Iterable<A>): IterableIterator<A>;
-export function filterFuzzy<A, B>(query: ArrayLike<B>, opts: Partial<FilterFuzzyOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function filterFuzzy<A, B>(
+    query: ArrayLike<B>,
+    opts?: Partial<FilterFuzzyOpts<A, B>>
+): Transducer<A, A>;
+export function filterFuzzy<A, B>(
+    query: ArrayLike<B>,
+    src: Iterable<A>
+): IterableIterator<A>;
+export function filterFuzzy<A, B>(
+    query: ArrayLike<B>,
+    opts: Partial<FilterFuzzyOpts<A, B>>,
+    src: Iterable<A>
+): IterableIterator<A>;
 export function filterFuzzy<A, B>(...args: any[]): any {
     const iter = args.length > 1 && $iter(filterFuzzy, args);
     if (iter) {
@@ -34,7 +44,7 @@ export function filterFuzzy<A, B>(...args: any[]): any {
     }
     const query: ArrayLike<B> = args[0];
     const { key, equiv } = <FilterFuzzyOpts<A, B>>(args[1] || {});
-    return filter(
-        (x: A) => fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
+    return filter((x: A) =>
+        fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
     );
 }

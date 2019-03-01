@@ -1,4 +1,3 @@
-
 import { fit01 } from "@thi.ng/math";
 import {
     dist,
@@ -15,7 +14,6 @@ import {
 import { closestPointSegment, closestT } from "@thi.ng/geom-closest-point";
 
 export class Sampler {
-
     points: ReadonlyVec[];
     index: number[];
 
@@ -49,7 +47,12 @@ export class Sampler {
         const t0 = t * idx[n];
         for (let i = 1; i <= n; i++) {
             if (idx[i] >= t0) {
-                return mixN([], pts[i - 1], pts[i], (t0 - idx[i - 1]) / (idx[i] - idx[i - 1]));
+                return mixN(
+                    [],
+                    pts[i - 1],
+                    pts[i],
+                    (t0 - idx[i - 1]) / (idx[i] - idx[i - 1])
+                );
             }
         }
     }
@@ -88,11 +91,13 @@ export class Sampler {
                 }
             }
         }
-        return fit01(
-            closestT(p, pts[minI], pts[minI + 1]),
-            idx[minI],
-            idx[minI + 1]
-        ) / this.totalLength();
+        return (
+            fit01(
+                closestT(p, pts[minI], pts[minI + 1]),
+                idx[minI],
+                idx[minI + 1]
+            ) / this.totalLength()
+        );
     }
 
     segmentAt(t: number): VecPair {
@@ -106,9 +111,7 @@ export class Sampler {
 
     tangentAt(t: number, n = 1) {
         const seg = this.segmentAt(t);
-        return seg ?
-            normalize(null, sub([], seg[1], seg[0]), n) :
-            undefined;
+        return seg ? normalize(null, sub([], seg[1], seg[0]), n) : undefined;
     }
 
     splitAt(t: number) {
@@ -161,10 +164,14 @@ export class Sampler {
         const n = index.length;
         for (let t = 0, i = 1; t < 1; t += delta) {
             const ct = t * total;
-            while (ct >= index[i] && i < n) { i++; }
+            while (ct >= index[i] && i < n) {
+                i++;
+            }
             if (i >= n) break;
             const p = index[i - 1];
-            result.push(mixN([], pts[i - 1], pts[i], (ct - p) / (index[i] - p)));
+            result.push(
+                mixN([], pts[i - 1], pts[i], (ct - p) / (index[i] - p))
+            );
         }
         if (includeLast) {
             result.push(set([], pts[pts.length - 1]));
@@ -173,7 +180,11 @@ export class Sampler {
     }
 
     sampleFixedNum(num: number, includeLast = false, result?: Vec[]) {
-        return this.sampleUniform(this.totalLength() / num, includeLast, result);
+        return this.sampleUniform(
+            this.totalLength() / num,
+            includeLast,
+            result
+        );
     }
 
     protected buildIndex() {

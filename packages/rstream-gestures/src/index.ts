@@ -7,7 +7,7 @@ export const enum GestureType {
     MOVE,
     DRAG,
     END,
-    ZOOM,
+    ZOOM
 }
 
 /**
@@ -108,22 +108,24 @@ export const gestureStream = (
     el: HTMLElement,
     opts?: Partial<GestureStreamOpts>
 ): StreamMerge<any, GestureEvent> => {
-
     let isDown = false,
         clickPos: number[];
 
-    opts = Object.assign(<GestureStreamOpts>{
-        id: "gestures",
-        zoom: 1,
-        absZoom: true,
-        minZoom: 0.25,
-        maxZoom: 4,
-        smooth: 1,
-        eventOpts: { capture: true },
-        preventDefault: true,
-        local: true,
-        scale: false,
-    }, opts);
+    opts = Object.assign(
+        <GestureStreamOpts>{
+            id: "gestures",
+            zoom: 1,
+            absZoom: true,
+            minZoom: 0.25,
+            maxZoom: 4,
+            smooth: 1,
+            eventOpts: { capture: true },
+            preventDefault: true,
+            local: true,
+            scale: false
+        },
+        opts
+    );
 
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     const dpr = window.devicePixelRatio || 1;
@@ -131,8 +133,13 @@ export const gestureStream = (
     return merge({
         id: opts.id,
         src: [
-            "mousedown", "mousemove", "mouseup",
-            "touchstart", "touchmove", "touchend", "touchcancel",
+            "mousedown",
+            "mousemove",
+            "mouseup",
+            "touchstart",
+            "touchmove",
+            "touchend",
+            "touchcancel",
             "wheel"
         ].map((e) => fromEvent(el, e, opts.eventOpts)),
         xform: map((e: MouseEvent | TouchEvent | WheelEvent) => {
@@ -140,18 +147,18 @@ export const gestureStream = (
             opts.preventDefault && e.preventDefault();
             if ((<TouchEvent>e).touches) {
                 type = {
-                    "touchstart": GestureType.START,
-                    "touchmove": GestureType.DRAG,
-                    "touchend": GestureType.END,
-                    "touchcancel": GestureType.END
+                    touchstart: GestureType.START,
+                    touchmove: GestureType.DRAG,
+                    touchend: GestureType.END,
+                    touchcancel: GestureType.END
                 }[e.type];
                 evt = (<TouchEvent>e).changedTouches[0];
             } else {
                 type = {
-                    "mousedown": GestureType.START,
-                    "mousemove": isDown ? GestureType.DRAG : GestureType.MOVE,
-                    "mouseup": GestureType.END,
-                    "wheel": GestureType.ZOOM,
+                    mousedown: GestureType.START,
+                    mousemove: isDown ? GestureType.DRAG : GestureType.MOVE,
+                    mouseup: GestureType.END,
+                    wheel: GestureType.ZOOM
                 }[e.type];
                 evt = e;
             }
@@ -180,9 +187,15 @@ export const gestureStream = (
                     body.delta = [pos[0] - clickPos[0], pos[1] - clickPos[1]];
                     break;
                 case GestureType.ZOOM:
-                    body.zoom = zoom = opts.absZoom ?
-                        Math.min(Math.max(zoom + (<WheelEvent>e).deltaY * opts.smooth, opts.minZoom), opts.maxZoom) :
-                        (<WheelEvent>e).deltaY * opts.smooth;
+                    body.zoom = zoom = opts.absZoom
+                        ? Math.min(
+                              Math.max(
+                                  zoom + (<WheelEvent>e).deltaY * opts.smooth,
+                                  opts.minZoom
+                              ),
+                              opts.maxZoom
+                          )
+                        : (<WheelEvent>e).deltaY * opts.smooth;
                     break;
                 default:
             }

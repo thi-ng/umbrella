@@ -5,11 +5,11 @@ export interface IToDot {
 }
 
 export type NodeType =
-    "default" |
-    "noid" |
-    "stream" |
-    "streammerge" |
-    "streamsync";
+    | "default"
+    | "noid"
+    | "stream"
+    | "streammerge"
+    | "streamsync";
 
 export interface Node {
     id: number;

@@ -1,11 +1,6 @@
 import { DCons } from "@thi.ng/dcons";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    compR,
-    iterator1,
-    Reducer,
-    Transducer
-} from "@thi.ng/transducers";
+import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
 
 /**
  * https://en.wikipedia.org/wiki/Momentum_(technical_analysis)
@@ -16,7 +11,10 @@ import {
  * @param period
  */
 export function momentum(period: number): Transducer<number, number>;
-export function momentum(period: number, src: Iterable<number>): IterableIterator<number>;
+export function momentum(
+    period: number,
+    src: Iterable<number>
+): IterableIterator<number>;
 export function momentum(period: number, src?: Iterable<number>): any {
     if (src) {
         return iterator1(momentum(period), src);
@@ -26,16 +24,13 @@ export function momentum(period: number, src?: Iterable<number>): any {
     return (rfn: Reducer<any, number>) => {
         const reduce = rfn[2];
         const window = new DCons<number>();
-        return compR(
-            rfn,
-            (acc, x: number) => {
-                window.push(x);
-                if (window.length <= period) {
-                    return acc;
-                }
-                const prev = window.drop();
-                return reduce(acc, x - prev);
+        return compR(rfn, (acc, x: number) => {
+            window.push(x);
+            if (window.length <= period) {
+                return acc;
             }
-        );
-    }
-};
+            const prev = window.drop();
+            return reduce(acc, x - prev);
+        });
+    };
+}

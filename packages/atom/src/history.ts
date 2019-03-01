@@ -20,7 +20,6 @@ import {
 } from "./api";
 import { View } from "./view";
 
-
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
  * `IAtom` interface and so can be used directly in place and delegates
@@ -31,9 +30,7 @@ import { View } from "./view";
  * and `record()`.
  */
 @INotifyMixin
-export class History<T> implements
-    IHistory<T> {
-
+export class History<T> implements IHistory<T> {
     static readonly EVENT_UNDO = "undo";
     static readonly EVENT_REDO = "redo";
     static readonly EVENT_RECORD = "record";
@@ -198,7 +195,7 @@ export class History<T> implements
         // allow null/undefined as possible values
         if (!arguments.length) {
             state = this.state.deref();
-            ok = (!n || this.changed(history[n - 1], state));
+            ok = !n || this.changed(history[n - 1], state);
         }
         if (ok) {
             if (n >= this.maxLen) {
@@ -267,6 +264,5 @@ export class History<T> implements
         return false;
     }
 
-    notify(_: Event): void {
-    }
+    notify(_: Event): void {}
 }

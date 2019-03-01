@@ -29,8 +29,8 @@ export function every(...args: any[]): any {
     const pred = args[0];
     return reducer(
         () => true,
-        pred ?
-            (acc, x) => (pred(x) ? acc : reduced(false)) :
-            (acc, x) => (x ? acc : reduced(false))
+        pred
+            ? (acc, x) => (pred(x) ? acc : reduced(false))
+            : (acc, x) => (x ? acc : reduced(false))
     );
 }

@@ -38,11 +38,7 @@ import { View } from "./view";
  * it's recommended to only specify validators for leaf-level cursors in
  * the hierarchy.
  */
-export class Cursor<T> implements
-    IAtom<T>,
-    IID<string>,
-    IRelease {
-
+export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
     readonly id: string;
     parent: IAtom<any>;
 
@@ -52,7 +48,11 @@ export class Cursor<T> implements
 
     constructor(opts: CursorOpts<T>);
     constructor(parent: IAtom<any>, path: Path);
-    constructor(parent: IAtom<any>, lookup: (s: any) => T, update: (s: any, v: T) => any);
+    constructor(
+        parent: IAtom<any>,
+        lookup: (s: any) => T,
+        update: (s: any, v: T) => any
+    );
     constructor(...args: any[]) {
         let parent, id, lookup, update, validate, opts: CursorOpts<T>;
         switch (args.length) {

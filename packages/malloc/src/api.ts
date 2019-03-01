@@ -10,7 +10,7 @@ export const enum Type {
     I32,
     F32,
     F64
-};
+}
 
 export const SIZEOF = {
     [Type.U8]: 1,
@@ -21,7 +21,7 @@ export const SIZEOF = {
     [Type.U32]: 4,
     [Type.I32]: 4,
     [Type.F32]: 4,
-    [Type.F64]: 8,
+    [Type.F64]: 8
 };
 
 export interface MemBlock {
@@ -44,11 +44,11 @@ export interface MemPoolStats {
     /**
      * Free block stats.
      */
-    free: { count: number, size: number };
+    free: { count: number; size: number };
     /**
      * Used block stats.
      */
-    used: { count: number, size: number };
+    used: { count: number; size: number };
     /**
      * Current top address.
      */
@@ -83,5 +83,8 @@ export interface IMemPool extends IRelease {
     stats(): MemPoolStats;
 }
 
-export type BlockCtor =
-    (buf: ArrayBuffer, addr: number, num: number) => TypedArray;
+export type BlockCtor = (
+    buf: ArrayBuffer,
+    addr: number,
+    num: number
+) => TypedArray;

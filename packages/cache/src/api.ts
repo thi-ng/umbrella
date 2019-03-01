@@ -5,13 +5,12 @@ import {
     IRelease
 } from "@thi.ng/api";
 
-export interface ICache<K, V> extends
-    Iterable<Readonly<[K, CacheEntry<K, V>]>>,
-    ICopy<ICache<K, V>>,
-    IEmpty<ICache<K, V>>,
-    ILength,
-    IRelease {
-
+export interface ICache<K, V>
+    extends Iterable<Readonly<[K, CacheEntry<K, V>]>>,
+        ICopy<ICache<K, V>>,
+        IEmpty<ICache<K, V>>,
+        ILength,
+        IRelease {
     readonly size: number;
 
     has(key: K): boolean;

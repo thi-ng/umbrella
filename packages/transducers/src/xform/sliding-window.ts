@@ -20,9 +20,19 @@ import { $iter } from "../iterator";
  * @param partial
  * @param src
  */
-export function slidingWindow<T>(size: number, partial?: boolean): Transducer<T, T[]>;
-export function slidingWindow<T>(size: number, src: Iterable<T>): IterableIterator<T[]>;
-export function slidingWindow<T>(size: number, partial: boolean, src: Iterable<T>): IterableIterator<T[]>;
+export function slidingWindow<T>(
+    size: number,
+    partial?: boolean
+): Transducer<T, T[]>;
+export function slidingWindow<T>(
+    size: number,
+    src: Iterable<T>
+): IterableIterator<T[]>;
+export function slidingWindow<T>(
+    size: number,
+    partial: boolean,
+    src: Iterable<T>
+): IterableIterator<T[]>;
 export function slidingWindow<T>(...args: any[]): any {
     const iter = $iter(slidingWindow, args);
     if (iter) {
@@ -33,14 +43,13 @@ export function slidingWindow<T>(...args: any[]): any {
     return (rfn: Reducer<any, T[]>) => {
         const reduce = rfn[2];
         let buf: T[] = [];
-        return compR(rfn,
-            (acc, x: T) => {
-                buf.push(x);
-                if (partial || buf.length === size) {
-                    acc = reduce(acc, buf);
-                    buf = buf.slice(buf.length === size ? 1 : 0);
-                }
-                return acc;
-            });
+        return compR(rfn, (acc, x: T) => {
+            buf.push(x);
+            if (partial || buf.length === size) {
+                acc = reduce(acc, buf);
+                buf = buf.slice(buf.length === size ? 1 : 0);
+            }
+            return acc;
+        });
     };
 }

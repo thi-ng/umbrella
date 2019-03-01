@@ -19,12 +19,13 @@ const __private = new WeakMap<LLSet<any>, SetProps<any>>();
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.
  */
-export class LLSet<T> extends Set<T> implements
-    IEquivSet<T> {
-
+export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     constructor(vals?: Iterable<T>, opts: Partial<EquivSetOpts<T>> = {}) {
         super();
-        __private.set(this, { equiv: opts.equiv || equiv, vals: new DCons<T>() });
+        __private.set(this, {
+            equiv: opts.equiv || equiv,
+            vals: new DCons<T>()
+        });
         vals && this.into(vals);
     }
 
@@ -98,7 +99,7 @@ export class LLSet<T> extends Set<T> implements
     }
 
     delete(x: T) {
-        const $this = __private.get(this)
+        const $this = __private.get(this);
         const eq = $this.equiv;
         let i = $this.vals.head;
         while (i) {

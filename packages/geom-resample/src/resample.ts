@@ -11,17 +11,15 @@ export const resample = (
 ) => {
     if (opts !== undefined) {
         const sampler = new Sampler(pts, closed);
-        return isPlainObject(opts) ?
-            closed ?
-                opts.dist ?
-                    sampler.sampleUniform(opts.dist, opts.last) :
-                    sampler.sampleFixedNum(opts.num, opts.last) :
-                opts.dist ?
-                    sampler.sampleUniform(opts.dist, opts.last !== false) :
-                    sampler.sampleFixedNum(opts.num, opts.last !== false) :
-            sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, !closed);
+        return isPlainObject(opts)
+            ? closed
+                ? opts.dist
+                    ? sampler.sampleUniform(opts.dist, opts.last)
+                    : sampler.sampleFixedNum(opts.num, opts.last)
+                : opts.dist
+                    ? sampler.sampleUniform(opts.dist, opts.last !== false)
+                    : sampler.sampleFixedNum(opts.num, opts.last !== false)
+            : sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, !closed);
     }
-    return copy ?
-        copyVectors(pts) :
-        pts;
+    return copy ? copyVectors(pts) : pts;
 };

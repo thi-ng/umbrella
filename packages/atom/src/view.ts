@@ -44,9 +44,7 @@ import { nextID } from "./idgen";
  * // remove view from parent state
  * ```
  */
-export class View<T> implements
-    IView<T> {
-
+export class View<T> implements IView<T> {
     readonly id: string;
 
     readonly parent: ReadonlyAtom<any>;
@@ -58,7 +56,13 @@ export class View<T> implements
     protected isDirty: boolean;
     protected isLazy: boolean;
 
-    constructor(parent: ReadonlyAtom<any>, path: Path, tx?: ViewTransform<T>, lazy = true, equiv = _equiv) {
+    constructor(
+        parent: ReadonlyAtom<any>,
+        path: Path,
+        tx?: ViewTransform<T>,
+        lazy = true,
+        equiv = _equiv
+    ) {
         this.parent = parent;
         this.id = `view-${nextID()}`;
         this.tx = tx || ((x: any) => x);
@@ -126,7 +130,9 @@ export class View<T> implements
      * behavior when calling `view()` or `deref()` subsequently.
      */
     view() {
-        return this.isDirty && this.isLazy ? this.tx(this.unprocessed) : this.state;
+        return this.isDirty && this.isLazy
+            ? this.tx(this.unprocessed)
+            : this.state;
     }
 
     /**

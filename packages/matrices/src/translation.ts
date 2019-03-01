@@ -7,9 +7,8 @@ import { Mat } from "./api";
  * @param out
  * @param v
  */
-export const translation23 =
-    (m: Mat, v: ReadonlyVec) =>
-        setC6(m || [], 1, 0, 0, 1, v[0], v[1]);
+export const translation23 = (m: Mat, v: ReadonlyVec) =>
+    setC6(m || [], 1, 0, 0, 1, v[0], v[1]);
 
 /**
  * Constructs a M44 translation matrix.
@@ -17,12 +16,5 @@ export const translation23 =
  * @param out
  * @param v
  */
-export const translation44 =
-    (m: Mat, v: ReadonlyVec) =>
-        setC(
-            m || [],
-            1, 0, 0, 0,
-            0, 1, 0, 0,
-            0, 0, 1, 0,
-            v[0], v[1], v[2], 1,
-        );
+export const translation44 = (m: Mat, v: ReadonlyVec) =>
+    setC(m || [], 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, v[0], v[1], v[2], 1);

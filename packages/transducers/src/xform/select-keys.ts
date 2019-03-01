@@ -26,9 +26,10 @@ import { map } from "./map";
  * @param src
  */
 export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any>;
-export function selectKeys<T>(keys: PropertyKey[], src: Iterable<T>): IterableIterator<any>;
+export function selectKeys<T>(
+    keys: PropertyKey[],
+    src: Iterable<T>
+): IterableIterator<any>;
 export function selectKeys<T>(keys: PropertyKey[], src?: Iterable<T>): any {
-    return src ?
-        iterator1(selectKeys(keys), src) :
-        map(keySelector(keys));
+    return src ? iterator1(selectKeys(keys), src) : map(keySelector(keys));
 }

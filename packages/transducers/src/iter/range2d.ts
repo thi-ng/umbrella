@@ -1,9 +1,24 @@
 import { illegalArity } from "@thi.ng/errors";
 import { range } from "./range";
 
-export function range2d(toX: number, toY: number): IterableIterator<[number, number]>;
-export function range2d(fromX: number, toX: number, fromY: number, toY: number): IterableIterator<[number, number]>;
-export function range2d(fromX: number, toX: number, fromY: number, toY: number, stepX: number, stepY: number): IterableIterator<[number, number]>;
+export function range2d(
+    toX: number,
+    toY: number
+): IterableIterator<[number, number]>;
+export function range2d(
+    fromX: number,
+    toX: number,
+    fromY: number,
+    toY: number
+): IterableIterator<[number, number]>;
+export function range2d(
+    fromX: number,
+    toX: number,
+    fromY: number,
+    toY: number,
+    stepX: number,
+    stepY: number
+): IterableIterator<[number, number]>;
 export function* range2d(...args: number[]) {
     let fromX, toX, fromY, toY, stepX, stepY;
     switch (args.length) {

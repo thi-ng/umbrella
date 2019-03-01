@@ -10,7 +10,6 @@ export const intersectLineLine = (
     d: ReadonlyVec,
     eps = EPS
 ): IntersectionResult => {
-
     const bax = b[0] - a[0];
     const bay = b[1] - a[1];
     const dcx = d[0] - c[0];
@@ -26,10 +25,10 @@ export const intersectLineLine = (
                 closestPointSegment(c, a, b, undefined, true) ||
                 closestPointSegment(d, a, b, undefined, true);
             return {
-                type: isec ?
-                    IntersectionType.COINCIDENT :
-                    IntersectionType.COINCIDENT_NO_INTERSECT,
-                isec,
+                type: isec
+                    ? IntersectionType.COINCIDENT
+                    : IntersectionType.COINCIDENT_NO_INTERSECT,
+                isec
             };
         }
         return { type: IntersectionType.PARALLEL };
@@ -38,13 +37,14 @@ export const intersectLineLine = (
     beta /= det;
     const ieps = 1 - eps;
     return {
-        type: (eps < alpha && alpha < ieps) && (eps < beta && beta < ieps) ?
-            IntersectionType.INTERSECT :
-            IntersectionType.INTERSECT_OUTSIDE,
+        type:
+            eps < alpha && alpha < ieps && (eps < beta && beta < ieps)
+                ? IntersectionType.INTERSECT
+                : IntersectionType.INTERSECT_OUTSIDE,
         isec: mixN2([], a, b, alpha),
         alpha,
         beta,
-        det,
+        det
     };
 };
 
@@ -57,6 +57,13 @@ export const intersectLineLine = (
  * @param c
  * @param d
  */
-export const isParallelLine =
-    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, d: ReadonlyVec) =>
-        eqDeltaFixed((d[1] - c[1]) * (b[0] - a[0]) - (d[0] - c[0]) * (b[1] - a[1]), 0);
+export const isParallelLine = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    d: ReadonlyVec
+) =>
+    eqDeltaFixed(
+        (d[1] - c[1]) * (b[0] - a[0]) - (d[0] - c[0]) * (b[1] - a[1]),
+        0
+    );

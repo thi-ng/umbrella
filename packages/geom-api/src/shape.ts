@@ -27,14 +27,12 @@ export const enum Type {
     TRIANGLE,
     TRIANGLE3,
     RAY,
-    RAY3,
+    RAY3
 }
 
 export type Attribs = IObjectOf<any>;
 
-export interface IShape extends
-    ICopy<IShape> {
-
+export interface IShape extends ICopy<IShape> {
     readonly type: number | string;
     attribs?: Attribs;
 }
@@ -51,13 +49,12 @@ export interface SphereLike extends IShape {
     r: number;
 }
 
-export interface IHiccupShape extends IShape, IToHiccup {
-}
+export interface IHiccupShape extends IShape, IToHiccup {}
 
 export interface PCLike extends IShape {
     points: Vec[];
 }
 
 export interface PCLikeConstructor {
-    new(pts: Vec[], attribs: Attribs): PCLike;
+    new (pts: Vec[], attribs: Attribs): PCLike;
 }

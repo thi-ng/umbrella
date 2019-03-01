@@ -1,11 +1,5 @@
 import { map, Transducer } from "@thi.ng/transducers";
-import {
-    Level,
-    BodyFormat,
-    DateFormat,
-    LogEntry,
-    LogEntryObj
-} from "../api";
+import { Level, BodyFormat, DateFormat, LogEntry, LogEntryObj } from "../api";
 
 export const formatString = (
     dtFmt?: DateFormat,
@@ -19,22 +13,19 @@ export const formatString = (
     );
 };
 
-export const formatObject =
-    (): Transducer<LogEntry, LogEntryObj> =>
-        map(
-            ([level, id, time, ...body]) => ({ level, id, time, body })
-        );
+export const formatObject = (): Transducer<LogEntry, LogEntryObj> =>
+    map(([level, id, time, ...body]) => ({ level, id, time, body }));
 
-export const formatJSON =
-    (dtfmt?: DateFormat): Transducer<LogEntry, string> => {
-        dtfmt = dtfmt || ((dt) => new Date(dt).toISOString());
-        return map(
-            ([level, id, time, ...body]) =>
-                JSON.stringify({
-                    level: Level[level],
-                    id,
-                    time: dtfmt(time),
-                    body
-                })
-        );
-    };
+export const formatJSON = (
+    dtfmt?: DateFormat
+): Transducer<LogEntry, string> => {
+    dtfmt = dtfmt || ((dt) => new Date(dt).toISOString());
+    return map(([level, id, time, ...body]) =>
+        JSON.stringify({
+            level: Level[level],
+            id,
+            time: dtfmt(time),
+            body
+        })
+    );
+};

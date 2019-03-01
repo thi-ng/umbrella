@@ -36,22 +36,18 @@ import { push } from "./rfn/push";
  *
  * @param tx
  */
-export const step =
-    <A, B>(tx: Transducer<A, B>): (x: A) => B | B[] => {
-        const [_, complete, reduce] = tx(push()); _;
-        let done = false;
-        return (x: A) => {
-            if (!done) {
-                let acc = reduce([], x);
-                done = isReduced(acc);
-                if (done) {
-                    acc = complete(acc.deref());
-                }
-                return acc.length === 1 ?
-                    acc[0] :
-                    acc.length > 0 ?
-                        acc :
-                        undefined;
+export const step = <A, B>(tx: Transducer<A, B>): ((x: A) => B | B[]) => {
+    const [_, complete, reduce] = tx(push());
+    _;
+    let done = false;
+    return (x: A) => {
+        if (!done) {
+            let acc = reduce([], x);
+            done = isReduced(acc);
+            if (done) {
+                acc = complete(acc.deref());
             }
-        };
+            return acc.length === 1 ? acc[0] : acc.length > 0 ? acc : undefined;
+        }
     };
+};

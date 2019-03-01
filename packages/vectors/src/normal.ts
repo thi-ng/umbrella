@@ -12,9 +12,8 @@ import { perpendicularLeft2, perpendicularRight2 } from "./perpendicular";
  * @param b
  * @param n
  */
-export const normalLeft2 =
-    (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-        perpendicularLeft2(null, direction(out || [], a, b, n));
+export const normalLeft2 = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
+    perpendicularLeft2(null, direction(out || [], a, b, n));
 
 /**
  * Computes 2D normal by rotating direction vector `a` -> `b`, 90 deg
@@ -26,6 +25,5 @@ export const normalLeft2 =
  * @param b
  * @param n
  */
-export const normalRight2 =
-    (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-        perpendicularRight2(null, direction(out || [], a, b, n));
+export const normalRight2 = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
+    perpendicularRight2(null, direction(out || [], a, b, n));

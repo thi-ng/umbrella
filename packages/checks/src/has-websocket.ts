@@ -1,2 +1,1 @@
-export const hasWebSocket =
-    () => typeof WebSocket !== "undefined";
+export const hasWebSocket = () => typeof WebSocket !== "undefined";

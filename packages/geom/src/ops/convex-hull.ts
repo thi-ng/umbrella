@@ -8,18 +8,12 @@ import { vertices } from "./vertices";
 export const convexHull = defmulti<IShape, IShape>(dispatch);
 
 convexHull.addAll({
+    [Type.GROUP]: ($) => new Polygon(vertices($), { ...$.attribs }),
 
-    [Type.GROUP]:
-        ($) =>
-            new Polygon(vertices($), { ...$.attribs }),
+    [Type.POINTS]: ($: PCLike) =>
+        new Polygon(grahamScan2($.points), { ...$.attribs }),
 
-    [Type.POINTS]:
-        ($: PCLike) =>
-            new Polygon(grahamScan2($.points), { ...$.attribs }),
-
-    [Type.TRIANGLE]:
-        ($) => $.copy(),
-
+    [Type.TRIANGLE]: ($) => $.copy()
 });
 
 convexHull.isa(Type.CIRCLE, Type.TRIANGLE);

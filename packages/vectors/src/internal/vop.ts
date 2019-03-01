@@ -12,9 +12,9 @@ export const vop = (dispatch = 0) => {
     let fallback;
     const fn = (...args: any[]) => {
         const g = impls[args[dispatch].length] || fallback;
-        return g ?
-            g(...args) :
-            unsupported(`no impl for vec size ${args[dispatch].length}`);
+        return g
+            ? g(...args)
+            : unsupported(`no impl for vec size ${args[dispatch].length}`);
     };
     fn.add = (dim: number, fn) => (impls[dim] = fn);
     fn.default = (fn) => (fallback = fn);

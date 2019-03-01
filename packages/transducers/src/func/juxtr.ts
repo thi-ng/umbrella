@@ -16,9 +16,21 @@ import { isReduced, unreduced, reduced } from "../reduced";
  * ```
  */
 export function juxtR<A1, B>(r1: Reducer<A1, B>): Reducer<[A1], B>;
-export function juxtR<A1, A2, B>(r1: Reducer<A1, B>, r2: Reducer<A2, B>): Reducer<[A1, A2], B>;
-export function juxtR<A1, A2, A3, B>(r1: Reducer<A1, B>, r2: Reducer<A2, B>, r3: Reducer<A3, B>): Reducer<[A1, A2, A3], B>;
-export function juxtR<A1, A2, A3, B>(r1: Reducer<A1, B>, r2: Reducer<A2, B>, r3: Reducer<A3, B>, ...rs: Reducer<any, B>[]): Reducer<any[], B>;
+export function juxtR<A1, A2, B>(
+    r1: Reducer<A1, B>,
+    r2: Reducer<A2, B>
+): Reducer<[A1, A2], B>;
+export function juxtR<A1, A2, A3, B>(
+    r1: Reducer<A1, B>,
+    r2: Reducer<A2, B>,
+    r3: Reducer<A3, B>
+): Reducer<[A1, A2, A3], B>;
+export function juxtR<A1, A2, A3, B>(
+    r1: Reducer<A1, B>,
+    r2: Reducer<A2, B>,
+    r3: Reducer<A3, B>,
+    ...rs: Reducer<any, B>[]
+): Reducer<any[], B>;
 export function juxtR<B>(...rs: Reducer<any, B>[]) {
     let [a, b, c] = rs;
     const n = rs.length;
@@ -65,7 +77,11 @@ export function juxtR<B>(...rs: Reducer<any, B>[]) {
                     const aa2 = rb(acc[1], x);
                     const aa3 = rc(acc[2], x);
                     if (isReduced(aa1) || isReduced(aa2) || isReduced(aa3)) {
-                        return reduced([unreduced(aa1), unreduced(aa2), unreduced(aa3)]);
+                        return reduced([
+                            unreduced(aa1),
+                            unreduced(aa2),
+                            unreduced(aa3)
+                        ]);
                     }
                     return [aa1, aa2, aa3];
                 }

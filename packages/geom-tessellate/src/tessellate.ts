@@ -11,24 +11,25 @@ import {
 } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-export function tessellate(points: ReadonlyVec[], tessFn: Tessellator, iter?: number): Vec[][];
-export function tessellate(points: ReadonlyVec[], tessFns: Iterable<Tessellator>): Vec[][];
+export function tessellate(
+    points: ReadonlyVec[],
+    tessFn: Tessellator,
+    iter?: number
+): Vec[][];
+export function tessellate(
+    points: ReadonlyVec[],
+    tessFns: Iterable<Tessellator>
+): Vec[][];
 export function tessellate(...args) {
     return transduce(
         scan(
             reducer(
                 () => [args[0]],
                 (acc: Vec[][], fn: Tessellator) =>
-                    transduce(
-                        mapcat(fn),
-                        push(),
-                        acc
-                    )
+                    transduce(mapcat(fn), push(), acc)
             )
         ),
         last(),
-        isFunction(args[1]) ?
-            repeat(args[1], args[2] || 1) :
-            args[1]
+        isFunction(args[1]) ? repeat(args[1], args[2] || 1) : args[1]
     );
 }

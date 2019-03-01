@@ -18,12 +18,12 @@ interface MapProps<K, V> {
 
 const __private = new WeakMap<EquivMap<any, any>, MapProps<any, any>>();
 
-export class EquivMap<K, V> extends Map<K, V> implements
-    Iterable<Pair<K, V>>,
-    ICopy<EquivMap<K, V>>,
-    IEmpty<EquivMap<K, V>>,
-    IEquiv {
-
+export class EquivMap<K, V> extends Map<K, V>
+    implements
+        Iterable<Pair<K, V>>,
+        ICopy<EquivMap<K, V>>,
+        IEmpty<EquivMap<K, V>>,
+        IEquiv {
     /**
      * Converts given vanilla object into an `EquivMap` instance with
      * default options and returns it.
@@ -51,9 +51,12 @@ export class EquivMap<K, V> extends Map<K, V> implements
      */
     constructor(pairs?: Iterable<Pair<K, V>>, opts?: Partial<EquivMapOpts<K>>) {
         super();
-        const _opts: EquivMapOpts<K> = Object.assign({ equiv, keys: ArraySet }, opts);
+        const _opts: EquivMapOpts<K> = Object.assign(
+            { equiv, keys: ArraySet },
+            opts
+        );
         __private.set(this, {
-            keys: new (_opts.keys)(null, { equiv: _opts.equiv }),
+            keys: new _opts.keys(null, { equiv: _opts.equiv }),
             map: new Map<K, V>(),
             opts: _opts
         });
@@ -90,7 +93,7 @@ export class EquivMap<K, V> extends Map<K, V> implements
         __private.set(m, {
             keys: $this.keys.copy(),
             map: new Map<K, V>($this.map),
-            opts: $this.opts,
+            opts: $this.opts
         });
         return m;
     }

@@ -4,7 +4,6 @@ import { NzEntry } from "./api";
 import { compress, diag, setAt, at } from "./compressed";
 
 export class CSC extends ASparseMatrix {
-
     /**
      * Constructs CSC from dense column-major matrix values.
      *
@@ -43,7 +42,13 @@ export class CSC extends ASparseMatrix {
      */
     rows: number[];
 
-    constructor(m: number, n: number, data: number[], cols: number[], rows: number[]) {
+    constructor(
+        m: number,
+        n: number,
+        data: number[],
+        cols: number[],
+        rows: number[]
+    ) {
         super(m, n);
         this.cols = cols;
         this.rows = rows;
@@ -51,7 +56,13 @@ export class CSC extends ASparseMatrix {
     }
 
     copy() {
-        return new CSC(this.m, this.n, this.data.slice(), this.cols.slice(), this.rows.slice());
+        return new CSC(
+            this.m,
+            this.n,
+            this.data.slice(),
+            this.cols.slice(),
+            this.rows.slice()
+        );
     }
 
     zero() {
@@ -78,7 +89,16 @@ export class CSC extends ASparseMatrix {
 
     setAt(m: number, n: number, x: number, safe = true, compact = true) {
         safe && this.ensureIndex(m, n);
-        const state = setAt(n, m, this.n, x, this.cols, this.rows, this.data, compact);
+        const state = setAt(
+            n,
+            m,
+            this.n,
+            x,
+            this.cols,
+            this.rows,
+            this.data,
+            compact
+        );
         this.cols = state[0];
         this.rows = state[1];
         this.data = state[2];
@@ -96,7 +116,12 @@ export class CSC extends ASparseMatrix {
                         for (let i = 0; i < this.m; i++) {
                             const aik = this.at(i, k, false);
                             if (aik !== 0) {
-                                res.setAt(i, j, res.at(i, j, false) + aik * bkj, false);
+                                res.setAt(
+                                    i,
+                                    j,
+                                    res.at(i, j, false) + aik * bkj,
+                                    false
+                                );
                             }
                         }
                     }
@@ -140,7 +165,7 @@ export class CSC extends ASparseMatrix {
     nnzRow(m: number) {
         const rows = this.rows;
         let res = 0;
-        for (let i = rows.length; --i >= 0;) {
+        for (let i = rows.length; --i >= 0; ) {
             if (rows[i] === m) {
                 res++;
             }

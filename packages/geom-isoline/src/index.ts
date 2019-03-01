@@ -4,10 +4,38 @@ import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 // flattened [to,clear] tuples
 // all positive values are given as times 2
 const EDGE_INDEX = [
-    -1, -1, 4, 0, 2, 0, 2, 0,
-    0, 0, -1, -1, 0, 0, 0, 0,
-    6, 0, 4, 0, -1, -1, 2, 0,
-    6, 0, 4, 0, 6, 0, -1, -1
+    -1,
+    -1,
+    4,
+    0,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    6,
+    0,
+    4,
+    0,
+    -1,
+    -1,
+    2,
+    0,
+    6,
+    0,
+    4,
+    0,
+    6,
+    0,
+    -1,
+    -1
 ];
 
 // flattened coord offsets [x,y] tuples
@@ -17,48 +45,45 @@ const NEXT_EDGES = [0, -1, 1, 0, 0, 1, -1, 0];
 const S5 = [4, 8, 0, 2, 0, 26, 4, 14];
 const S10 = [6, 4, 2, 16, 6, 22, 2, 28];
 
-export const setBorder =
-    (src: Vec, w: number, h: number, val: number) => {
-        const w1 = w - 1;
-        const h1 = h - 1;
-        const idxH1 = h1 * w;
-        for (let x = 0; x < w; x++) {
-            src[x] = src[idxH1 + x] = val;
-        }
-        for (let y = 0; y < h; y++) {
-            const yy = y * w;
-            src[yy] = src[w1 + yy] = val;
-        }
-        return src;
-    };
+export const setBorder = (src: Vec, w: number, h: number, val: number) => {
+    const w1 = w - 1;
+    const h1 = h - 1;
+    const idxH1 = h1 * w;
+    for (let x = 0; x < w; x++) {
+        src[x] = src[idxH1 + x] = val;
+    }
+    for (let y = 0; y < h; y++) {
+        const yy = y * w;
+        src[yy] = src[w1 + yy] = val;
+    }
+    return src;
+};
 
-const encodeCrossings =
-    (src: ReadonlyVec, w: number, h: number, iso: number) => {
-        const out = new Uint8Array(src.length);
-        const w1 = w - 1;
-        const h1 = h - 1;
-        for (let y = 0, i = 0; y < h1; y++) {
-            for (let x = 0; x < w1; i++ , x++) {
-                out[i] =
-                    (src[i] < iso ? 16 : 0) |
-                    (src[i + 1] < iso ? 8 : 0) |
-                    (src[i + 1 + w] < iso ? 4 : 0) |
-                    (src[i + w] < iso ? 2 : 0);
-            }
-            i++;
+const encodeCrossings = (
+    src: ReadonlyVec,
+    w: number,
+    h: number,
+    iso: number
+) => {
+    const out = new Uint8Array(src.length);
+    const w1 = w - 1;
+    const h1 = h - 1;
+    for (let y = 0, i = 0; y < h1; y++) {
+        for (let x = 0; x < w1; i++, x++) {
+            out[i] =
+                (src[i] < iso ? 16 : 0) |
+                (src[i + 1] < iso ? 8 : 0) |
+                (src[i + 1 + w] < iso ? 4 : 0) |
+                (src[i + w] < iso ? 2 : 0);
         }
-        return out;
-    };
+        i++;
+    }
+    return out;
+};
 
-const cellValue =
-    (src: ReadonlyVec, w: number, idx: number) => {
-        return (
-            src[idx] +
-            src[idx + 1] +
-            src[idx + w] +
-            src[idx + w + 1]
-        ) * 0.25;
-    };
+const cellValue = (src: ReadonlyVec, w: number, idx: number) => {
+    return (src[idx] + src[idx + 1] + src[idx + w] + src[idx + w + 1]) * 0.25;
+};
 
 const mix = (
     src: ReadonlyVec,
@@ -123,14 +148,18 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
         const i = y * w + x;
         const id = coded[i]; // * 2
         if (id === 10) {
-            idx = (cellValue(src, w, i) > iso ? 0 : 4) +
-                (from === 6 ? 0 : 2);
+            idx = (cellValue(src, w, i) > iso ? 0 : 4) + (from === 6 ? 0 : 2);
             to = S5[idx];
             clear = S5[idx + 1];
         } else if (id === 20) {
-            idx = cellValue(src, w, i) > iso ?
-                (from === 0 ? 0 : 2) :
-                (from === 4 ? 4 : 6);
+            idx =
+                cellValue(src, w, i) > iso
+                    ? from === 0
+                        ? 0
+                        : 2
+                    : from === 4
+                        ? 4
+                        : 6;
             to = S10[idx];
             clear = S10[idx + 1];
         } else {
@@ -155,4 +184,4 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
     if (curr.length > 0) {
         yield curr;
     }
-};
+}

@@ -21,8 +21,8 @@ export function some(...args: any[]): any {
     const pred = args[0];
     return reducer(
         () => false,
-        pred ?
-            (acc, x) => (pred(x) ? reduced(true) : acc) :
-            (acc, x) => (x ? reduced(true) : acc)
+        pred
+            ? (acc, x) => (pred(x) ? reduced(true) : acc)
+            : (acc, x) => (x ? reduced(true) : acc)
     );
 }

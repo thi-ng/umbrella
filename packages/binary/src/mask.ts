@@ -12,8 +12,7 @@ import { MASKS } from "./api";
  * @param a
  * @param b
  */
-export const defMask = (a: number, b: number) =>
-    ((~MASKS[a]) & MASKS[b]) >>> 0;
+export const defMask = (a: number, b: number) => (~MASKS[a] & MASKS[b]) >>> 0;
 
 /**
  * Returns unsigned version of `x` with only lowest `n` bits.
@@ -21,8 +20,7 @@ export const defMask = (a: number, b: number) =>
  * @param n
  * @param x
  */
-export const maskL = (n: number, x: number) =>
-    (x & MASKS[n]) >>> 0;
+export const maskL = (n: number, x: number) => (x & MASKS[n]) >>> 0;
 
 /**
  * Returns unsigned version of `x` with only highest `n` bits.
@@ -30,5 +28,4 @@ export const maskL = (n: number, x: number) =>
  * @param n
  * @param x
  */
-export const maskH = (n: number, x: number) =>
-    (x & ~MASKS[n]) >>> 0;
+export const maskH = (n: number, x: number) => (x & ~MASKS[n]) >>> 0;

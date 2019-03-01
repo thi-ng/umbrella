@@ -8,8 +8,15 @@ import { transduce } from "../transduce";
 import { filter } from "./filter";
 import { map } from "./map";
 
-export function rename<A, B>(kmap: IObjectOf<PropertyKey> | Array<PropertyKey>, rfn?: Reducer<B, [PropertyKey, A]>): Transducer<A[], B>;
-export function rename<A, B>(kmap: IObjectOf<PropertyKey> | Array<PropertyKey>, rfn: Reducer<B, [PropertyKey, A]>, src: Iterable<A[]>): IterableIterator<B>;
+export function rename<A, B>(
+    kmap: IObjectOf<PropertyKey> | Array<PropertyKey>,
+    rfn?: Reducer<B, [PropertyKey, A]>
+): Transducer<A[], B>;
+export function rename<A, B>(
+    kmap: IObjectOf<PropertyKey> | Array<PropertyKey>,
+    rfn: Reducer<B, [PropertyKey, A]>,
+    src: Iterable<A[]>
+): IterableIterator<B>;
 export function rename(...args: any[]): any {
     const iter = args.length > 2 && $iter(rename, args);
     if (iter) {
@@ -17,17 +24,18 @@ export function rename(...args: any[]): any {
     }
     let kmap = args[0];
     if (isArray(kmap)) {
-        kmap = kmap.reduce((acc, k, i) => (acc[k] = i, acc), {});
+        kmap = kmap.reduce((acc, k, i) => ((acc[k] = i), acc), {});
     }
     if (args[1]) {
         const ks = Object.keys(kmap);
-        return map(
-            (y) => transduce(
+        return map((y) =>
+            transduce(
                 comp(
                     map((k: PropertyKey) => [k, y[kmap[k]]]),
-                    filter(x => x[1] !== undefined)
+                    filter((x) => x[1] !== undefined)
                 ),
-                args[1], ks
+                args[1],
+                ks
             )
         );
     } else {

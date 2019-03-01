@@ -11,8 +11,7 @@ import { Lane2, Lane4, Lane8 } from "./api";
  * @param x
  * @param l
  */
-export const lane8 = (x: number, l: Lane8) =>
-    (x >>> ((3 - l) << 3)) & 0xff;
+export const lane8 = (x: number, l: Lane8) => (x >>> ((3 - l) << 3)) & 0xff;
 
 /**
  * Extracts 4-bit lane from given 32bit uint.
@@ -29,11 +28,9 @@ export const lane8 = (x: number, l: Lane8) =>
  * @param x
  * @param l
  */
-export const lane4 = (x: number, l: Lane4) =>
-    (x >>> ((7 - l) << 2)) & 0xf;
+export const lane4 = (x: number, l: Lane4) => (x >>> ((7 - l) << 2)) & 0xf;
 
-export const lane2 = (x: number, l: Lane2) =>
-    (x >>> ((15 - l) << 1)) & 0x3;
+export const lane2 = (x: number, l: Lane2) => (x >>> ((15 - l) << 1)) & 0x3;
 
 /**
  * Re-orders byte lanes in given order (MSB).
@@ -51,12 +48,11 @@ export const lane2 = (x: number, l: Lane2) =>
  * @param d
  */
 export const swizzle8 = (x: number, a: Lane8, b: Lane8, c: Lane8, d: Lane8) =>
-    (
-        lane8(x, a) << 24 |
-        lane8(x, b) << 16 |
-        lane8(x, c) << 8 |
-        lane8(x, d)
-    ) >>> 0;
+    ((lane8(x, a) << 24) |
+        (lane8(x, b) << 16) |
+        (lane8(x, c) << 8) |
+        lane8(x, d)) >>>
+    0;
 
 /**
  *
@@ -70,17 +66,26 @@ export const swizzle8 = (x: number, a: Lane8, b: Lane8, c: Lane8, d: Lane8) =>
  * @param g
  * @param h
  */
-export const swizzle4 = (x: number, a: Lane4, b: Lane4, c: Lane4, d: Lane4, e: Lane4, f: Lane4, g: Lane4, h: Lane4) =>
-    (
-        lane4(x, a) << 28 |
-        lane4(x, b) << 24 |
-        lane4(x, c) << 20 |
-        lane4(x, d) << 16 |
-        lane4(x, e) << 12 |
-        lane4(x, f) << 8 |
-        lane4(x, g) << 4 |
-        lane4(x, h)
-    ) >>> 0;
+export const swizzle4 = (
+    x: number,
+    a: Lane4,
+    b: Lane4,
+    c: Lane4,
+    d: Lane4,
+    e: Lane4,
+    f: Lane4,
+    g: Lane4,
+    h: Lane4
+) =>
+    ((lane4(x, a) << 28) |
+        (lane4(x, b) << 24) |
+        (lane4(x, c) << 20) |
+        (lane4(x, d) << 16) |
+        (lane4(x, e) << 12) |
+        (lane4(x, f) << 8) |
+        (lane4(x, g) << 4) |
+        lane4(x, h)) >>>
+    0;
 
 /**
  * Same as `swizzle8(x, 3, 2, 1, 0)`, but faster.
@@ -88,4 +93,4 @@ export const swizzle4 = (x: number, a: Lane4, b: Lane4, c: Lane4, d: Lane4, e: L
  * @param x
  */
 export const flipBytes = (x: number) =>
-    ((x >>> 24) | (x >> 8 & 0xff00) | (x & 0xff00) << 8 | x << 24) >>> 0;
+    ((x >>> 24) | ((x >> 8) & 0xff00) | ((x & 0xff00) << 8) | (x << 24)) >>> 0;

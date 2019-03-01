@@ -12,14 +12,13 @@ import { empty } from "./utils";
  *
  * @param src
  */
-export const invertMap =
-    <K, V>(src: Map<K, V>) => {
-        const dest: Map<V, K> = empty(src, Map);
-        for (let p of src) {
-            dest.set(p[1], p[0]);
-        }
-        return dest;
-    };
+export const invertMap = <K, V>(src: Map<K, V>) => {
+    const dest: Map<V, K> = empty(src, Map);
+    for (let p of src) {
+        dest.set(p[1], p[0]);
+    }
+    return dest;
+};
 
 /**
  * Returns a new object in which the original values are used as keys
@@ -32,11 +31,10 @@ export const invertMap =
  *
  * @param src
  */
-export const invertObj =
-    (src: IObjectOf<PropertyKey>) => {
-        const dest: IObjectOf<PropertyKey> = {};
-        for (let k in src) {
-            dest[<any>src[k]] = k;
-        }
-        return dest;
-    };
+export const invertObj = (src: IObjectOf<PropertyKey>) => {
+    const dest: IObjectOf<PropertyKey> = {};
+    for (let k in src) {
+        dest[<any>src[k]] = k;
+    }
+    return dest;
+};

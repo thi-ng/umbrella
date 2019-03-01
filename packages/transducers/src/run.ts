@@ -1,7 +1,7 @@
 import { IReducible, Transducer } from "./api";
 import { transduce } from "./transduce";
 
-const nop = () => { };
+const nop = () => {};
 
 /**
  * Transforms `xs` with given transducer and optional side effect
@@ -16,8 +16,16 @@ const nop = () => { };
  */
 export function run<A>(tx: Transducer<A, any>, xs: Iterable<A>): void;
 export function run<A>(tx: Transducer<A, any>, xs: IReducible<any, A>): void;
-export function run<A, B>(tx: Transducer<A, B>, fx: (x: B) => void, xs: Iterable<A>): void;
-export function run<A, B>(tx: Transducer<A, B>, fx: (x: B) => void, xs: IReducible<any, A>): void;
+export function run<A, B>(
+    tx: Transducer<A, B>,
+    fx: (x: B) => void,
+    xs: Iterable<A>
+): void;
+export function run<A, B>(
+    tx: Transducer<A, B>,
+    fx: (x: B) => void,
+    xs: IReducible<any, A>
+): void;
 export function run<A, B>(tx: Transducer<A, B>, ...args: any[]) {
     if (args.length === 1) {
         transduce(tx, [nop, nop, nop], args[0]);

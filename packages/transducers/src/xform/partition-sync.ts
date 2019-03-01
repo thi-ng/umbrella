@@ -78,11 +78,22 @@ export interface PartitionSyncOpts<T> {
  * @param reset true if each tuple should contain only new values
  * @param all true if last tuple is allowed to be incomplete
  */
-export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts?: Partial<PartitionSyncOpts<T>>): Transducer<T, IObjectOf<T>>;
-export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
-export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts: Partial<PartitionSyncOpts<T>>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
+export function partitionSync<T>(
+    keys: PropertyKey[] | Set<PropertyKey>,
+    opts?: Partial<PartitionSyncOpts<T>>
+): Transducer<T, IObjectOf<T>>;
+export function partitionSync<T>(
+    keys: PropertyKey[] | Set<PropertyKey>,
+    src: Iterable<T>
+): IterableIterator<IObjectOf<T>>;
+export function partitionSync<T>(
+    keys: PropertyKey[] | Set<PropertyKey>,
+    opts: Partial<PartitionSyncOpts<T>>,
+    src: Iterable<T>
+): IterableIterator<IObjectOf<T>>;
 export function partitionSync<T>(...args: any[]): any {
-    return $iter(partitionSync, args, iterator) ||
+    return (
+        $iter(partitionSync, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
             let curr = {};
             let first = true;
@@ -98,7 +109,10 @@ export function partitionSync<T>(...args: any[]): any {
             return [
                 init,
                 (acc) => {
-                    if ((reset && all && currKeys.size > 0) || (!reset && first)) {
+                    if (
+                        (reset && all && currKeys.size > 0) ||
+                        (!reset && first)
+                    ) {
                         acc = reduce(acc, curr);
                         curr = undefined;
                         currKeys.clear();
@@ -123,6 +137,8 @@ export function partitionSync<T>(...args: any[]): any {
                         }
                     }
                     return acc;
-                }];
-        });
+                }
+            ];
+        })
+    );
 }

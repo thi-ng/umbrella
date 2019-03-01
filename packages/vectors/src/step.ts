@@ -10,13 +10,12 @@ import { FN2 } from "./internal/templates";
  * @param e
  * @param v
  */
-export const [step, step2, step3, step4] =
-    defHofOp<MultiVecOpV, VecOpV>(
-        _step,
-        FN2("op"),
-        "o,e,a",
-        undefined,
-        "o",
-        2,
-        DEFAULT_OUT
-    );
+export const [step, step2, step3, step4] = defHofOp<MultiVecOpV, VecOpV>(
+    _step,
+    FN2("op"),
+    "o,e,a",
+    undefined,
+    "o",
+    2,
+    DEFAULT_OUT
+);

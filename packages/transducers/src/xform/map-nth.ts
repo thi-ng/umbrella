@@ -22,15 +22,30 @@ import { $iter } from "../iterator";
  * @param fn transformation function
  */
 export function mapNth<A, B>(n: number, fn: Fn<A, B>): Transducer<A, A | B>;
-export function mapNth<A, B>(n: number, offset: number, fn: Fn<A, B>): Transducer<A, A | B>;
-export function mapNth<A, B>(n: number, fn: Fn<A, B>, src: Iterable<A>): IterableIterator<A | B>;
-export function mapNth<A, B>(n: number, offset: number, fn: Fn<A, B>, src: Iterable<A>): IterableIterator<A | B>;
+export function mapNth<A, B>(
+    n: number,
+    offset: number,
+    fn: Fn<A, B>
+): Transducer<A, A | B>;
+export function mapNth<A, B>(
+    n: number,
+    fn: Fn<A, B>,
+    src: Iterable<A>
+): IterableIterator<A | B>;
+export function mapNth<A, B>(
+    n: number,
+    offset: number,
+    fn: Fn<A, B>,
+    src: Iterable<A>
+): IterableIterator<A | B>;
 export function mapNth<A, B>(...args: any[]): any {
     const iter = $iter(mapNth, args);
     if (iter) {
         return iter;
     }
-    let n = args[0] - 1, offset, fn;
+    let n = args[0] - 1,
+        offset,
+        fn;
     if (typeof args[1] === "number") {
         offset = args[1];
         fn = args[2];
@@ -40,19 +55,19 @@ export function mapNth<A, B>(...args: any[]): any {
     }
     return (rfn: Reducer<any, A | B>) => {
         const r = rfn[2];
-        let skip = 0, off = offset;
-        return compR(rfn,
-            (acc, x: A) => {
-                if (off === 0) {
-                    if (skip === 0) {
-                        skip = n;
-                        return r(acc, fn(x));
-                    }
-                    skip--;
-                } else {
-                    off--;
+        let skip = 0,
+            off = offset;
+        return compR(rfn, (acc, x: A) => {
+            if (off === 0) {
+                if (skip === 0) {
+                    skip = n;
+                    return r(acc, fn(x));
                 }
-                return r(acc, x);
-            });
+                skip--;
+            } else {
+                off--;
+            }
+            return r(acc, x);
+        });
     };
 }

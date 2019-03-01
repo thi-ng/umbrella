@@ -9,10 +9,8 @@ import { ensureIterable } from "./ensure-iterable";
  *
  * @param x
  */
-export const ensureArray =
-    (x: any): any[] =>
-        isArray(x) ? x : [...ensureIterable(x)];
+export const ensureArray = (x: any): any[] =>
+    isArray(x) ? x : [...ensureIterable(x)];
 
-export const ensureArrayLike =
-    (x: any): ArrayLike<any> =>
-        isArrayLike(x) ? x : [...ensureIterable(x)];
+export const ensureArrayLike = (x: any): ArrayLike<any> =>
+    isArrayLike(x) ? x : [...ensureIterable(x)];

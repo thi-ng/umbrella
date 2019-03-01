@@ -20,9 +20,12 @@ import { mulV23, mulV344, mulV44 } from "./mulv";
  * @param view
  * @param p
  */
-export const project =
-    (out: Vec, mvp: ReadonlyMat, view: ReadonlyMat, p: ReadonlyVec) =>
-        mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)));
+export const project = (
+    out: Vec,
+    mvp: ReadonlyMat,
+    view: ReadonlyMat,
+    p: ReadonlyVec
+) => mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)));
 
 /**
  * Reverse operation of project. If `invert` is true (default: false),
@@ -36,16 +39,21 @@ export const project =
  * @param p
  * @param invert
  */
-export const unproject =
-    (out: Vec, mvp: ReadonlyMat, view: ReadonlyMat, p: ReadonlyVec, doInvert = false) => {
-        if (doInvert) {
-            mvp = invert44([], mvp);
-            view = invert23([], view);
-        }
-        const q = [...mulV23([], view, p), p[2] * 2 - 1];
-        return divN3(
-            out,
-            mulV344(out, mvp, q),
-            dotC6(q[0], mvp[3], q[1], mvp[7], q[2], mvp[11]) + mvp[15]
-        );
-    };
+export const unproject = (
+    out: Vec,
+    mvp: ReadonlyMat,
+    view: ReadonlyMat,
+    p: ReadonlyVec,
+    doInvert = false
+) => {
+    if (doInvert) {
+        mvp = invert44([], mvp);
+        view = invert23([], view);
+    }
+    const q = [...mulV23([], view, p), p[2] * 2 - 1];
+    return divN3(
+        out,
+        mulV344(out, mvp, q),
+        dotC6(q[0], mvp[3], q[1], mvp[7], q[2], mvp[11]) + mvp[15]
+    );
+};

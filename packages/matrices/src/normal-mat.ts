@@ -10,6 +10,5 @@ import { transpose33 } from "./transpose";
  * @param out
  * @param m
  */
-export const normal44: MatOpM =
-    (out, m) =>
-        transpose33(null, invert33(null, mat44to33(out, m)));
+export const normal44: MatOpM = (out, m) =>
+    transpose33(null, invert33(null, mat44to33(out, m)));

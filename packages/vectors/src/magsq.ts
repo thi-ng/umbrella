@@ -5,16 +5,7 @@ import { vop } from "./internal/vop";
 const $ = (dim: number) =>
     magSq.add(
         dim,
-        compile(
-            dim,
-            ([a]) => `${a}*${a}`,
-            "a",
-            "a",
-            null,
-            "+",
-            "return ",
-            ";"
-        )
+        compile(dim, ([a]) => `${a}*${a}`, "a", "a", null, "+", "return ", ";")
     );
 
 export const magSq: MultiVecOpRoV<number> = vop();

@@ -13,16 +13,18 @@ import { throttle } from "./throttle";
  * @param delay
  */
 export function throttleTime<T>(delay: number): Transducer<T, T>;
-export function throttleTime<T>(delay: number, src: Iterable<T>): IterableIterator<T>;
+export function throttleTime<T>(
+    delay: number,
+    src: Iterable<T>
+): IterableIterator<T>;
 export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
-    return src ?
-        iterator1(throttleTime(delay), src) :
-        throttle<T>(
-            () => {
-                let last = 0;
-                return () => {
-                    const t = Date.now();
-                    return t - last >= delay ? (last = t, true) : false;
-                };
-            });
+    return src
+        ? iterator1(throttleTime(delay), src)
+        : throttle<T>(() => {
+              let last = 0;
+              return () => {
+                  const t = Date.now();
+                  return t - last >= delay ? ((last = t), true) : false;
+              };
+          });
 }

@@ -3,5 +3,4 @@
  *
  * @param x
  */
-export const peek =
-    <T>(x: ArrayLike<T>) => x[x.length - 1];
+export const peek = <T>(x: ArrayLike<T>) => x[x.length - 1];

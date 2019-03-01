@@ -20,14 +20,19 @@ import { iterator1 } from "../iterator";
  * @param src
  */
 export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T>;
-export function throttle<T>(pred: StatefulPredicate<T>, src: Iterable<T>): IterableIterator<T>;
-export function throttle<T>(pred: StatefulPredicate<T>, src?: Iterable<T>): any {
-    return src ?
-        iterator1(throttle(pred), src) :
-        (rfn: Reducer<any, T>) => {
-            const r = rfn[2];
-            const _pred = pred();
-            return compR(rfn,
-                (acc, x: T) => _pred(x) ? r(acc, x) : acc);
-        };
+export function throttle<T>(
+    pred: StatefulPredicate<T>,
+    src: Iterable<T>
+): IterableIterator<T>;
+export function throttle<T>(
+    pred: StatefulPredicate<T>,
+    src?: Iterable<T>
+): any {
+    return src
+        ? iterator1(throttle(pred), src)
+        : (rfn: Reducer<any, T>) => {
+              const r = rfn[2];
+              const _pred = pred();
+              return compR(rfn, (acc, x: T) => (_pred(x) ? r(acc, x) : acc));
+          };
 }

@@ -10,7 +10,7 @@ export interface Reducer<A, B> extends Array<any> {
     [0]: () => A;
     [1]: (acc: A) => A;
     [2]: ReductionFn<A, B>;
-};
+}
 
 export interface IReducible<A, B> {
     $reduce(rfn: ReductionFn<A, B>, acc: A): A | Reduced<A>;

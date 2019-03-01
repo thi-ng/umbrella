@@ -33,15 +33,19 @@ export interface TitleOpts {
  * @param opts
  */
 export const title = (opts?: Partial<TitleOpts>) => {
-    opts = Object.assign(<TitleOpts>{
-        element: "h1",
-        attribs: {},
-        subElement: "small",
-        subAttribs: {},
-    }, opts);
-    return (_, title, subtitle) =>
-        [opts.element, opts.attribs, title,
-        subtitle ?
-            [opts.subElement, opts.subAttribs, subtitle] :
-            undefined];
+    opts = Object.assign(
+        <TitleOpts>{
+            element: "h1",
+            attribs: {},
+            subElement: "small",
+            subAttribs: {}
+        },
+        opts
+    );
+    return (_, title, subtitle) => [
+        opts.element,
+        opts.attribs,
+        title,
+        subtitle ? [opts.subElement, opts.subAttribs, subtitle] : undefined
+    ];
 };

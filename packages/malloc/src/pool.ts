@@ -8,13 +8,11 @@ import {
     MemPoolOpts,
     MemPoolStats,
     SIZEOF,
-    Type,
+    Type
 } from "./api";
 import { wrap } from "./wrap";
 
-export class MemPool implements
-    IMemPool {
-
+export class MemPool implements IMemPool {
     buf: ArrayBuffer;
     protected top: number;
     protected start: number;
@@ -30,14 +28,17 @@ export class MemPool implements
     constructor(opts: Partial<MemPoolOpts> = {}) {
         this.buf = opts.buf ? opts.buf : new ArrayBuffer(opts.size);
         this.u8 = new Uint8Array(this.buf);
-        this.start = opts.start != null ?
-            align(Math.max(opts.start, 8), 8) :
-            8;
-        this.end = opts.end != null ?
-            Math.min(opts.end, this.buf.byteLength) :
-            this.buf.byteLength;
+        this.start = opts.start != null ? align(Math.max(opts.start, 8), 8) : 8;
+        this.end =
+            opts.end != null
+                ? Math.min(opts.end, this.buf.byteLength)
+                : this.buf.byteLength;
         if (this.start >= this.end) {
-            illegalArgs(`invalid address range (0x${this.start.toString(16)} - 0x${this.end.toString(16)})`);
+            illegalArgs(
+                `invalid address range (0x${this.start.toString(
+                    16
+                )} - 0x${this.end.toString(16)})`
+            );
         }
         this.top = this.start;
         this.doCompact = opts.compact !== false;
@@ -76,9 +77,7 @@ export class MemPool implements
 
     mallocAs(type: Type, num: number): TypedArray {
         const addr = this.malloc(num * SIZEOF[type]);
-        return addr ?
-            wrap(type, this.buf, addr, num) :
-            null;
+        return addr ? wrap(type, this.buf, addr, num) : null;
     }
 
     calloc(size: number): number {
@@ -203,9 +202,7 @@ export class MemPool implements
             return null;
         }
         const addr = this.realloc(ptr.byteOffset, num * ptr.BYTES_PER_ELEMENT);
-        return addr ?
-            new (<any>ptr.constructor)(this.buf, addr, num) :
-            null;
+        return addr ? new (<any>ptr.constructor)(this.buf, addr, num) : null;
     }
 
     free(ptr: number | TypedArray) {
@@ -286,9 +283,7 @@ export class MemPool implements
             // re-adjust top if poss
             if (block.addr + block.size >= this.top) {
                 this.top = block.addr;
-                prev ?
-                    (prev.next = block.next) :
-                    (this._free = block.next);
+                prev ? (prev.next = block.next) : (this._free = block.next);
             }
             prev = block;
             block = block.next;

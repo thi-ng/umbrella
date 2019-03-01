@@ -18,7 +18,10 @@ import { dot } from "./dot";
  * @param weights period or array of weights
  */
 export function wma(weights: number | number[]): Transducer<number, number>;
-export function wma(weights: number | number[], src: Iterable<number>): IterableIterator<number>;
+export function wma(
+    weights: number | number[],
+    src: Iterable<number>
+): IterableIterator<number>;
 export function wma(weights: number | number[], src?: Iterable<number>): any {
     if (src) {
         return iterator1(wma(weights), src);
@@ -36,4 +39,4 @@ export function wma(weights: number | number[], src?: Iterable<number>): any {
         partition(period, 1),
         map((window: number[]) => dot(window, <number[]>weights) / wsum)
     );
-};
+}

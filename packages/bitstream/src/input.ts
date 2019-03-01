@@ -3,7 +3,7 @@ import { illegalArgs, illegalState } from "@thi.ng/errors";
 const U32 = Math.pow(2, 32);
 
 export class BitInputStream {
-    public buffer: Uint8Array;
+    buffer: Uint8Array;
     protected start: number;
     protected pos: number;
     protected limit: number;
@@ -31,15 +31,15 @@ export class BitInputStream {
         }
     }
 
-    public get length() {
+    get length() {
         return this.limit;
     }
 
-    public get position() {
+    get position() {
         return this.bitPos;
     }
 
-    public seek(pos: number): BitInputStream {
+    seek(pos: number): BitInputStream {
         if (pos < this.start || pos >= this.limit) {
             illegalArgs(`seek pos out of bounds: ${pos}`);
         }
@@ -49,7 +49,7 @@ export class BitInputStream {
         return this;
     }
 
-    public read(wordSize = 1) {
+    read(wordSize = 1) {
         if (wordSize > 32) {
             return this.read(wordSize - 32) * U32 + this.read(32);
         } else if (wordSize > 8) {
@@ -60,7 +60,7 @@ export class BitInputStream {
                 out = this._read(msb);
             }
             while (n > 0) {
-                out = (out << 8 | this._read(8)) >>> 0;
+                out = ((out << 8) | this._read(8)) >>> 0;
                 n -= 8;
             }
             return out;
@@ -69,11 +69,11 @@ export class BitInputStream {
         }
     }
 
-    public readFields(fields: number[]) {
+    readFields(fields: number[]) {
         return fields.map((word) => this.read(word));
     }
 
-    public readWords(n: number, wordSize = 8) {
+    readWords(n: number, wordSize = 8) {
         let out = [];
         while (--n >= 0) {
             out.push(this.read(wordSize));
@@ -81,11 +81,13 @@ export class BitInputStream {
         return out;
     }
 
-    public readStruct(fields: ([string, number])[]) {
-        return fields.reduce((acc, [id, word]) => { return acc[id] = this.read(word), acc; }, {});
+    readStruct(fields: ([string, number])[]) {
+        return fields.reduce((acc, [id, word]) => {
+            return (acc[id] = this.read(word)), acc;
+        }, {});
     }
 
-    public readBit() {
+    readBit() {
         this.checkLimit(1);
         this.bit--;
         this.bitPos++;
@@ -99,16 +101,17 @@ export class BitInputStream {
 
     protected _read(wordSize: number) {
         this.checkLimit(wordSize);
-        let l = this.bit - wordSize, out;
+        let l = this.bit - wordSize,
+            out;
         if (l >= 0) {
             this.bit = l;
-            out = this.buffer[this.pos] >>> l & (1 << wordSize) - 1;
+            out = (this.buffer[this.pos] >>> l) & ((1 << wordSize) - 1);
             if (l === 0) {
                 this.pos++;
                 this.bit = 8;
             }
         } else {
-            out = (this.buffer[this.pos++] & (1 << this.bit) - 1) << -l;
+            out = (this.buffer[this.pos++] & ((1 << this.bit) - 1)) << -l;
             this.bit = 8 + l;
             out = out | (this.buffer[this.pos] >>> this.bit);
         }

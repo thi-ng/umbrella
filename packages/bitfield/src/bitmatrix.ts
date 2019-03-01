@@ -4,7 +4,6 @@ import { radix } from "@thi.ng/strings";
 const B32 = radix(2, 32);
 
 export class BitMatrix {
-
     data: Uint32Array;
     stride: number;
     n: number;
@@ -27,7 +26,11 @@ export class BitMatrix {
         const w = Math.min(dstride, sstride);
         const src = this.data;
         const dest = new Uint32Array(n * dstride);
-        for (let i = this.n - 1, si = i * sstride, di = i * dstride; i >= 0; i-- , si -= sstride, di -= dstride) {
+        for (
+            let i = this.n - 1, si = i * sstride, di = i * dstride;
+            i >= 0;
+            i--, si -= sstride, di -= dstride
+        ) {
             dest.set(src.slice(si, si + w), di);
         }
         this.n = n;
@@ -44,8 +47,7 @@ export class BitMatrix {
      */
     at(m: number, n: number) {
         return (
-            this.data[(n >>> 5) + m * this.stride] &
-            (0x80000000 >>> (n & 31))
+            this.data[(n >>> 5) + m * this.stride] & (0x80000000 >>> (n & 31))
         );
     }
 
@@ -71,7 +73,7 @@ export class BitMatrix {
 
     toString() {
         const res: string[] = [];
-        for (let i = 0, j = 0, s = this.stride; i < this.n; i++ , j += s) {
+        for (let i = 0, j = 0, s = this.stride; i < this.n; i++, j += s) {
             res.push([...this.data.slice(j, j + s)].map(B32).join(""));
         }
         return res.join("\n");

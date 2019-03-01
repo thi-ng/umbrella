@@ -6,7 +6,7 @@ export const enum IntersectionType {
     COINCIDENT,
     COINCIDENT_NO_INTERSECT,
     INTERSECT,
-    INTERSECT_OUTSIDE,
+    INTERSECT_OUTSIDE
 }
 
 export interface IntersectionResult {

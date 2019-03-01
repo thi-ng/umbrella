@@ -9,20 +9,25 @@ import { vertices } from "./vertices";
 export const clipConvex = defmulti<IShape, IShape, Polygon>(dispatch);
 
 clipConvex.addAll({
-
-    [Type.POLYGON]:
-        ($: Polygon, boundary: IShape) =>
-            new Polygon(
-                sutherlandHodgeman($.points, vertices(boundary), centroid(boundary)),
-                { ...$.attribs }
+    [Type.POLYGON]: ($: Polygon, boundary: IShape) =>
+        new Polygon(
+            sutherlandHodgeman(
+                $.points,
+                vertices(boundary),
+                centroid(boundary)
             ),
+            { ...$.attribs }
+        ),
 
-    [Type.RECT]:
-        ($, boundary: IShape) =>
-            new Polygon(
-                sutherlandHodgeman(vertices($), vertices(boundary), centroid(boundary)),
-                { ...$.attribs }
-            )
+    [Type.RECT]: ($, boundary: IShape) =>
+        new Polygon(
+            sutherlandHodgeman(
+                vertices($),
+                vertices(boundary),
+                centroid(boundary)
+            ),
+            { ...$.attribs }
+        )
 });
 
 clipConvex.isa(Type.CIRCLE, Type.RECT);

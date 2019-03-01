@@ -9,9 +9,8 @@ import { ensureAlpha } from "./internal/ensure-alpha";
  * @param out
  * @param src
  */
-export const rgbaXyza =
-    (out: Color, src: ReadonlyColor) => {
-        out = mulV33(null, RGB_XYZ, clamp(out || src, src), false);
-        out[3] = ensureAlpha(src[3]);
-        return out;
-    };
+export const rgbaXyza = (out: Color, src: ReadonlyColor) => {
+    out = mulV33(null, RGB_XYZ, clamp(out || src, src), false);
+    out[3] = ensureAlpha(src[3]);
+    return out;
+};

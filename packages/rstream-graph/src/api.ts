@@ -8,8 +8,7 @@ import { Transducer } from "@thi.ng/transducers";
  * A function which constructs and returns an `ISubscribable` using
  * given object of inputs and node ID. See `node()` and `node1()`.
  */
-export type NodeFactory<T> =
-    (src: NodeInputs, id: string) => ISubscribable<T>;
+export type NodeFactory<T> = (src: NodeInputs, id: string) => ISubscribable<T>;
 
 export type NodeResolver = Fn<ResolveFn, Node>;
 export type NodeInputs = IObjectOf<ISubscribable<any>>;
@@ -28,12 +27,7 @@ export interface Node {
  * and the operation to be applied to produce one or more result
  * streams.
  */
-export type GraphSpec =
-    IObjectOf<
-        NodeSpec |
-        Node |
-        NodeResolver
-    >;
+export type GraphSpec = IObjectOf<NodeSpec | Node | NodeResolver>;
 
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
@@ -113,8 +107,9 @@ export interface NodeInputSpec {
     xform?: Transducer<any, any>;
 }
 
-export type NodeOutputSpec =
-    Path | NodeOutputFn;
+export type NodeOutputSpec = Path | NodeOutputFn;
 
-export type NodeOutputFn =
-    (node: ISubscribable<any>, id: PropertyKey) => ISubscribable<any>;
+export type NodeOutputFn = (
+    node: ISubscribable<any>,
+    id: PropertyKey
+) => ISubscribable<any>;

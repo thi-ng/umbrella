@@ -20,19 +20,22 @@ import { partitionBy } from "./partition-by";
  * @param sizes
  */
 export function partitionOf<T>(sizes: number[]): Transducer<T, T[]>;
-export function partitionOf<T>(sizes: number[], src: Iterable<T>): IterableIterator<T[]>;
+export function partitionOf<T>(
+    sizes: number[],
+    src: Iterable<T>
+): IterableIterator<T[]>;
 export function partitionOf<T>(sizes: number[], src?: Iterable<T>): any {
-    return src ?
-        iterator(partitionOf(sizes), src) :
-        partitionBy(
-            () => {
-                let i = 0, j = 0;
-                return () => {
-                    if (i++ === sizes[j]) {
-                        i = 1;
-                        j = (j + 1) % sizes.length;
-                    }
-                    return j;
-                };
-            }, true);
+    return src
+        ? iterator(partitionOf(sizes), src)
+        : partitionBy(() => {
+              let i = 0,
+                  j = 0;
+              return () => {
+                  if (i++ === sizes[j]) {
+                      i = 1;
+                      j = (j + 1) % sizes.length;
+                  }
+                  return j;
+              };
+          }, true);
 }

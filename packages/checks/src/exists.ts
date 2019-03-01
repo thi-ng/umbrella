@@ -1,2 +1,1 @@
-export const exists =
-    (x: any) => x !== undefined;
+export const exists = (x: any) => x !== undefined;

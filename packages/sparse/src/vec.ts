@@ -9,7 +9,6 @@ const MUL = (a: number, b: number) => a * b;
 const DIV = (a: number, b: number) => a / b;
 
 export class SparseVec {
-
     static fromDense(dense: ArrayLike<number>) {
         const sparse: number[] = [];
         const n = dense.length;
@@ -79,7 +78,7 @@ export class SparseVec {
         const m = this.m;
         const res = [];
         for (let i = 0, j = 0, k = d[j]; i < m; i++) {
-            let v = op(i === k ? (j += 2, k = d[j], d[j - 1]) : 0, n);
+            let v = op(i === k ? ((j += 2), (k = d[j]), d[j - 1]) : 0, n);
             v !== 0 && res.push(i, v);
         }
         return new SparseVec(this.m, res);
@@ -90,8 +89,13 @@ export class SparseVec {
         const da = this.data;
         const db = v.data;
         const res = [];
-        for (let i = 0, j = 0, la = da.length, lb = db.length; i < la || j < lb;) {
-            const ia = da[i], ib = db[j];
+        for (
+            let i = 0, j = 0, la = da.length, lb = db.length;
+            i < la || j < lb;
+
+        ) {
+            const ia = da[i],
+                ib = db[j];
             if (ia === ib) {
                 const v = op(da[i + 1], db[j + 1]);
                 v !== 0 && res.push(ia, v);
@@ -163,14 +167,15 @@ export class SparseVec {
         const da = this.data;
         const db = v.data;
         let res = 0;
-        for (let i = da.length - 2, j = db.length - 2; i >= 0 && j >= 0;) {
-            const ia = da[i], ib = db[j];
+        for (let i = da.length - 2, j = db.length - 2; i >= 0 && j >= 0; ) {
+            const ia = da[i],
+                ib = db[j];
             if (ia === ib) {
                 res += da[i + 1] * db[j + 1];
                 i -= 2;
                 j -= 2;
             } else {
-                (ia > ib) ? i -= 2 : j -= 2;
+                ia > ib ? (i -= 2) : (j -= 2);
             }
         }
         return res;

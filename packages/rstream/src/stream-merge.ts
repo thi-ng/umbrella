@@ -67,12 +67,10 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * // ["b", 30]
  * ```
  */
-export const merge =
-    <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
-        new StreamMerge(opts);
+export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
+    new StreamMerge(opts);
 
 export class StreamMerge<A, B> extends Subscription<A, B> {
-
     sources: Map<ISubscribable<A>, Subscription<A, any>>;
     autoClose: boolean;
 

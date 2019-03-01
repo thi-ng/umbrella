@@ -11,19 +11,13 @@ import {
     PCLike,
     Type
 } from "@thi.ng/geom-api";
-import { pointAt as arcPointAt, pointAtTheta as arcPointAtTheta } from "@thi.ng/geom-arc";
 import {
-    add2,
-    add3,
-    copyVectors,
-    maddN2,
-    set,
-    Vec
-} from "@thi.ng/vectors";
+    pointAt as arcPointAt,
+    pointAtTheta as arcPointAtTheta
+} from "@thi.ng/geom-arc";
+import { add2, add3, copyVectors, maddN2, set, Vec } from "@thi.ng/vectors";
 
-export abstract class APC implements
-    PCLike {
-
+export abstract class APC implements PCLike {
     points: Vec[];
     attribs: Attribs;
 
@@ -40,14 +34,16 @@ export abstract class APC implements
     }
 }
 
-export class AABB implements
-    AABBLike {
-
+export class AABB implements AABBLike {
     pos: Vec;
     size: Vec;
     attribs: Attribs;
 
-    constructor(pos: Vec = [0, 0, 0], size: Vec = [1, 1, 1], attribs?: Attribs) {
+    constructor(
+        pos: Vec = [0, 0, 0],
+        size: Vec = [1, 1, 1],
+        attribs?: Attribs
+    ) {
         this.pos = pos;
         this.size = size;
         this.attribs = attribs;
@@ -58,7 +54,9 @@ export class AABB implements
     }
 
     copy() {
-        return new AABB(set([], this.pos), set([], this.size), { ...this.attribs });
+        return new AABB(set([], this.pos), set([], this.size), {
+            ...this.attribs
+        });
     }
 
     max() {
@@ -66,10 +64,7 @@ export class AABB implements
     }
 }
 
-export class Arc implements
-    IHiccupShape,
-    IHiccupPathSegment {
-
+export class Arc implements IHiccupShape, IHiccupPathSegment {
     pos: Vec;
     r: Vec;
     start: number;
@@ -87,8 +82,8 @@ export class Arc implements
         end: number,
         xl = false,
         cw = false,
-        attribs?: Attribs) {
-
+        attribs?: Attribs
+    ) {
         this.pos = pos;
         this.r = r;
         this.axis = axis;
@@ -117,18 +112,29 @@ export class Arc implements
     }
 
     equiv(o: any) {
-        return o instanceof Arc &&
+        return (
+            o instanceof Arc &&
             equiv(this.pos, o.pos) &&
             equiv(this.r, o.r) &&
             this.start === o.start &&
             this.end === o.end &&
             this.axis === o.axis &&
             this.xl === o.xl &&
-            this.cw && o.cw;
+            this.cw &&
+            o.cw
+        );
     }
 
     pointAt(t: number, out: Vec = []) {
-        return arcPointAt(this.pos, this.r, this.axis, this.start, this.end, t, out);
+        return arcPointAt(
+            this.pos,
+            this.r,
+            this.axis,
+            this.start,
+            this.end,
+            t,
+            out
+        );
     }
 
     pointAtTheta(theta: number, out: Vec = []) {
@@ -136,10 +142,11 @@ export class Arc implements
     }
 
     toHiccup() {
-        return ["path", this.attribs, [
-            ["M", this.pointAt(0)],
-            ...this.toHiccupPathSegments()
-        ]];
+        return [
+            "path",
+            this.attribs,
+            [["M", this.pointAt(0)], ...this.toHiccupPathSegments()]
+        ];
     }
 
     toHiccupPathSegments() {
@@ -157,9 +164,7 @@ export class Arc implements
     }
 }
 
-export class Circle implements
-    IHiccupShape {
-
+export class Circle implements IHiccupShape {
     pos: Vec;
     r: number;
     attribs: Attribs;
@@ -183,9 +188,7 @@ export class Circle implements
     }
 }
 
-export class Cubic extends APC implements
-    IHiccupPathSegment {
-
+export class Cubic extends APC implements IHiccupPathSegment {
     get type() {
         return Type.CUBIC;
     }
@@ -195,11 +198,10 @@ export class Cubic extends APC implements
     }
 
     toHiccup() {
-        return ["path", this.attribs,
-            [
-                ["M", this.points[0]],
-                ...this.toHiccupPathSegments()
-            ]
+        return [
+            "path",
+            this.attribs,
+            [["M", this.points[0]], ...this.toHiccupPathSegments()]
         ];
     }
 
@@ -209,14 +211,16 @@ export class Cubic extends APC implements
     }
 }
 
-export class Ellipse implements
-    IHiccupShape {
-
+export class Ellipse implements IHiccupShape {
     pos: Vec;
     r: Vec;
     attribs: Attribs;
 
-    constructor(pos: Vec = [0, 0], r: number | Vec = [1, 1], attribs?: Attribs) {
+    constructor(
+        pos: Vec = [0, 0],
+        r: number | Vec = [1, 1],
+        attribs?: Attribs
+    ) {
         this.pos = pos;
         this.r = isNumber(r) ? [r, r] : r;
         this.attribs = attribs;
@@ -227,7 +231,9 @@ export class Ellipse implements
     }
 
     copy() {
-        return new Ellipse(set([], this.pos), set([], this.r), { ...this.attribs });
+        return new Ellipse(set([], this.pos), set([], this.r), {
+            ...this.attribs
+        });
     }
 
     toHiccup() {
@@ -235,9 +241,7 @@ export class Ellipse implements
     }
 }
 
-export class Group implements
-    IHiccupShape {
-
+export class Group implements IHiccupShape {
     children: IHiccupShape[];
     attribs: Attribs;
 
@@ -255,15 +259,13 @@ export class Group implements
     }
 
     copy() {
-        return new Group(
-            { ...this.attribs },
-            <IHiccupShape[]>this.children.map((c) => c.copy())
-        );
+        return new Group({ ...this.attribs }, <IHiccupShape[]>(
+            this.children.map((c) => c.copy())
+        ));
     }
 
     equiv(o: any) {
-        return o instanceof Group &&
-            equiv(this.children, o.children);
+        return o instanceof Group && equiv(this.children, o.children);
     }
 
     toHiccup() {
@@ -271,10 +273,7 @@ export class Group implements
     }
 }
 
-export class Line extends APC implements
-    IHiccupShape,
-    IHiccupPathSegment {
-
+export class Line extends APC implements IHiccupShape, IHiccupPathSegment {
     get type() {
         return Type.LINE;
     }
@@ -290,18 +289,12 @@ export class Line extends APC implements
     toHiccupPathSegments() {
         const [a, b] = this.points;
         return [
-            a[0] === b[0] ?
-                ["V", b[1]] :
-                a[1] === b[1] ?
-                    ["H", b[0]] :
-                    ["L", b]
+            a[0] === b[0] ? ["V", b[1]] : a[1] === b[1] ? ["H", b[0]] : ["L", b]
         ];
     }
 }
 
-export class Path implements
-    IHiccupShape {
-
+export class Path implements IHiccupShape {
     segments: PathSegment[];
     closed: boolean;
     attribs: Attribs;
@@ -327,8 +320,7 @@ export class Path implements
     }
 
     equiv(o: any) {
-        return o instanceof Path &&
-            equiv(this.segments, o.segments);
+        return o instanceof Path && equiv(this.segments, o.segments);
     }
 
     add(s: PathSegment) {
@@ -353,9 +345,7 @@ export class Path implements
     }
 }
 
-export class Points extends APC implements
-    IHiccupShape {
-
+export class Points extends APC implements IHiccupShape {
     get type() {
         return Type.POINTS;
     }
@@ -369,9 +359,7 @@ export class Points extends APC implements
     }
 }
 
-export class Polygon extends APC implements
-    IHiccupShape {
-
+export class Polygon extends APC implements IHiccupShape {
     get type() {
         return Type.POLYGON;
     }
@@ -385,10 +373,7 @@ export class Polygon extends APC implements
     }
 }
 
-export class Polyline extends APC implements
-    IHiccupShape,
-    IHiccupPathSegment {
-
+export class Polyline extends APC implements IHiccupShape, IHiccupPathSegment {
     get type() {
         return Type.POLYLINE;
     }
@@ -410,9 +395,7 @@ export class Polyline extends APC implements
     }
 }
 
-export class Quad extends APC implements
-    IHiccupShape {
-
+export class Quad extends APC implements IHiccupShape {
     get type() {
         return Type.QUAD;
     }
@@ -426,10 +409,7 @@ export class Quad extends APC implements
     }
 }
 
-export class Quadratic extends APC implements
-    IHiccupShape,
-    IHiccupPathSegment {
-
+export class Quadratic extends APC implements IHiccupShape, IHiccupPathSegment {
     get type() {
         return Type.QUADRATIC;
     }
@@ -439,11 +419,10 @@ export class Quadratic extends APC implements
     }
 
     toHiccup() {
-        return ["path", this.attribs,
-            [
-                ["M", this.points[0]],
-                ...this.toHiccupPathSegments()
-            ]
+        return [
+            "path",
+            this.attribs,
+            [["M", this.points[0]], ...this.toHiccupPathSegments()]
         ];
     }
 
@@ -453,9 +432,7 @@ export class Quadratic extends APC implements
     }
 }
 
-export class Ray implements
-    IHiccupShape {
-
+export class Ray implements IHiccupShape {
     pos: Vec;
     dir: Vec;
     attribs: Attribs;
@@ -471,23 +448,31 @@ export class Ray implements
     }
 
     copy() {
-        return new Ray(set([], this.pos), set([], this.dir), { ...this.attribs });
+        return new Ray(set([], this.pos), set([], this.dir), {
+            ...this.attribs
+        });
     }
 
     toHiccup() {
-        return ["line", this.attribs, this.pos, maddN2([], this.pos, this.dir, 1e6)];
+        return [
+            "line",
+            this.attribs,
+            this.pos,
+            maddN2([], this.pos, this.dir, 1e6)
+        ];
     }
 }
 
-export class Rect implements
-    AABBLike,
-    IHiccupShape {
-
+export class Rect implements AABBLike, IHiccupShape {
     pos: Vec;
     size: Vec;
     attribs: Attribs;
 
-    constructor(pos: Vec = [0, 0], size: number | Vec = [1, 1], attribs?: Attribs) {
+    constructor(
+        pos: Vec = [0, 0],
+        size: number | Vec = [1, 1],
+        attribs?: Attribs
+    ) {
         this.pos = pos;
         this.size = isNumber(size) ? [size, size] : size;
         this.attribs = attribs;
@@ -498,7 +483,9 @@ export class Rect implements
     }
 
     copy() {
-        return new Rect(set([], this.pos), set([], this.size), { ...this.attribs });
+        return new Rect(set([], this.pos), set([], this.size), {
+            ...this.attribs
+        });
     }
 
     max() {
@@ -510,9 +497,7 @@ export class Rect implements
     }
 }
 
-export class Sphere implements
-    IHiccupShape {
-
+export class Sphere implements IHiccupShape {
     pos: Vec;
     r: number;
     attribs: Attribs;
@@ -536,9 +521,7 @@ export class Sphere implements
     }
 }
 
-export class Triangle extends APC implements
-    IHiccupShape {
-
+export class Triangle extends APC implements IHiccupShape {
     get type() {
         return Type.TRIANGLE;
     }

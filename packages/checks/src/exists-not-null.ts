@@ -1,2 +1,1 @@
-export const existsAndNotNull =
-    (x: any) => x != null;
+export const existsAndNotNull = (x: any) => x != null;

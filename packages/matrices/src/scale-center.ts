@@ -11,7 +11,11 @@ import { translation23, translation44 } from "./translation";
  * @param out
  * @param m
  */
-export const scaleWithCenter23 = (m: Mat, p: ReadonlyVec, s: number | ReadonlyVec) =>
+export const scaleWithCenter23 = (
+    m: Mat,
+    p: ReadonlyVec,
+    s: number | ReadonlyVec
+) =>
     concat(
         m,
         translation23([], p),
@@ -26,7 +30,11 @@ export const scaleWithCenter23 = (m: Mat, p: ReadonlyVec, s: number | ReadonlyVe
  * @param out
  * @param m
  */
-export const scaleWithCenter44 = (m: Mat, p: ReadonlyVec, s: number | ReadonlyVec) =>
+export const scaleWithCenter44 = (
+    m: Mat,
+    p: ReadonlyVec,
+    s: number | ReadonlyVec
+) =>
     concat(
         m,
         translation44([], p),

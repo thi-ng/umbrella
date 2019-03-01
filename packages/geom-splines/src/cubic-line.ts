@@ -8,11 +8,9 @@ import { mixN, set, Vec } from "@thi.ng/vectors";
  * @param a
  * @param b
  */
-export const cubicFromLine =
-    (a: Vec, b: Vec) =>
-        [
-            set([], a),
-            mixN([], a, b, 1 / 3),
-            mixN([], b, a, 1 / 3),
-            set([], b)
-        ];
+export const cubicFromLine = (a: Vec, b: Vec) => [
+    set([], a),
+    mixN([], a, b, 1 / 3),
+    mixN([], b, a, 1 / 3),
+    set([], b)
+];

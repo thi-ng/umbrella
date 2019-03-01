@@ -2,7 +2,6 @@ import { BitField } from "@thi.ng/bitfield";
 import { IGraph } from "./api";
 
 export class DFS {
-
     graph: IGraph;
     marked: BitField;
     edges: Uint32Array;

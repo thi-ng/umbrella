@@ -18,9 +18,12 @@ export function triangle(...args: any[]) {
     return new Triangle(args.length === 1 ? args[0] : args, attr);
 }
 
-export const equilateralTriangle =
-    (a: Vec, b: Vec, attribs?: Attribs) => {
-        const dir = sub2([], b, a);
-        const c = normalize(null, perpendicularLeft2([], dir), mag(dir) * Math.sin(THIRD_PI));
-        return new Triangle([a, b, maddN2(null, c, dir, 0.5)], attribs);
-    };
+export const equilateralTriangle = (a: Vec, b: Vec, attribs?: Attribs) => {
+    const dir = sub2([], b, a);
+    const c = normalize(
+        null,
+        perpendicularLeft2([], dir),
+        mag(dir) * Math.sin(THIRD_PI)
+    );
+    return new Triangle([a, b, maddN2(null, c, dir, 0.5)], attribs);
+};

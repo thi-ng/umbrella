@@ -20,8 +20,7 @@ export const timeout = <T>(
     error?: any,
     resetTimeout = false,
     id?: string
-): Subscription<T, T> =>
-    new Timeout(timeoutMs, error, resetTimeout, id);
+): Subscription<T, T> => new Timeout(timeoutMs, error, resetTimeout, id);
 
 class Timeout<T> extends Subscription<T, T> {
     protected timeoutMs: number;
@@ -29,7 +28,12 @@ class Timeout<T> extends Subscription<T, T> {
     protected errorObj: any;
     protected resetTimeout: boolean;
 
-    constructor(timeoutMs: number, error?: any, resetTimeout = false, id?: string) {
+    constructor(
+        timeoutMs: number,
+        error?: any,
+        resetTimeout = false,
+        id?: string
+    ) {
         super(null, null, null, id || `timeout-${nextID()}`);
         this.timeoutMs = timeoutMs;
         this.errorObj = error;
@@ -50,7 +54,11 @@ class Timeout<T> extends Subscription<T, T> {
             if (this.state < State.DONE) {
                 this.error(
                     this.errorObj ||
-                    new Error(`Timeout stream "${this.id}" after ${this.timeoutMs} ms`)
+                        new Error(
+                            `Timeout stream "${this.id}" after ${
+                                this.timeoutMs
+                            } ms`
+                        )
                 );
             }
         }, this.timeoutMs);

@@ -4,7 +4,6 @@ import { radix } from "@thi.ng/strings";
 const B32 = radix(2, 32);
 
 export class BitField {
-
     data: Uint32Array;
     n: number;
 
@@ -33,7 +32,7 @@ export class BitField {
      * @param n
      */
     at(n: number) {
-        return (this.data[n >>> 5] & (0x80000000 >>> (n & 31)));
+        return this.data[n >>> 5] & (0x80000000 >>> (n & 31));
     }
 
     /**
@@ -44,7 +43,7 @@ export class BitField {
      * @param v
      */
     setAt(n: number, v = true) {
-        const id = (n >>> 5);
+        const id = n >>> 5;
         const mask = 0x80000000 >>> (n & 31);
         const r = this.data[id] & mask;
         if (v) {

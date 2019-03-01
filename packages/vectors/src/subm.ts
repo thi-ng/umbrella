@@ -7,5 +7,7 @@ import { SUBM } from "./internal/templates";
  *
  * @see madd
  */
-export const [subm, subm2, subm3, subm4] =
-    defOp<MultiVecOpVVV, VecOpVVV>(SUBM, ARGS_VVV);
+export const [subm, subm2, subm3, subm4] = defOp<MultiVecOpVVV, VecOpVVV>(
+    SUBM,
+    ARGS_VVV
+);

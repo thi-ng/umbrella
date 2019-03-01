@@ -24,9 +24,10 @@ import { map } from "./map";
  * @param order key order
  */
 export function swizzle<T>(order: PropertyKey[]): Transducer<T, any[]>;
-export function swizzle<T>(order: PropertyKey[], src: Iterable<any>): IterableIterator<any[]>;
+export function swizzle<T>(
+    order: PropertyKey[],
+    src: Iterable<any>
+): IterableIterator<any[]>;
 export function swizzle(order: PropertyKey[], src?: Iterable<any>): any {
-    return src ?
-        iterator1(swizzle(order), src) :
-        map(_swizzle(order));
+    return src ? iterator1(swizzle(order), src) : map(_swizzle(order));
 }

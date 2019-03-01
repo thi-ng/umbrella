@@ -11,6 +11,5 @@ export function quadratic(...args: any[]) {
     return new Quadratic(args.length === 1 ? args[0] : args, attr);
 }
 
-export const quadraticFromLine =
-    (a: Vec, b: Vec, attribs?: Attribs) =>
-        new Quadratic(_line(a, b), attribs)
+export const quadraticFromLine = (a: Vec, b: Vec, attribs?: Attribs) =>
+    new Quadratic(_line(a, b), attribs);

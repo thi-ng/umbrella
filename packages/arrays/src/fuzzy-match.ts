@@ -30,8 +30,7 @@ export const fuzzyMatch = <T>(
     if (nq === nd) {
         return equiv(query, domain);
     }
-    next:
-    for (let i = 0, j = 0; i < nq; i++) {
+    next: for (let i = 0, j = 0; i < nq; i++) {
         const q = query[i];
         while (j < nd) {
             if (equiv(domain[j++], q)) {

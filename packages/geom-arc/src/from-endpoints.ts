@@ -37,7 +37,6 @@ export const fromEndPoints = (
     xl = false,
     cw = false
 ) => {
-
     const r = abs2([], radii);
     if (eqDelta2(a, b) || r[0] < EPS || r[1] < EPS) {
         return;
@@ -47,10 +46,7 @@ export const fromEndPoints = (
     const c = Math.cos(axis);
     const s = Math.sin(axis);
     // transformed point
-    const tp = [
-        c * d[0] + s * d[1],
-        -s * d[0] + c * d[1]
-    ];
+    const tp = [c * d[0] + s * d[1], -s * d[0] + c * d[1]];
     const [tx2, ty2] = powN2([], tp, 2);
     // ensure radii
     const rc = tx2 / (r[0] * r[0]) + ty2 / (r[1] * r[1]);
@@ -59,12 +55,12 @@ export const fromEndPoints = (
     const rx2 = rx * rx;
     const ry2 = ry * ry;
     // transformed center
-    const radicant = Math.max(0, (rx2 * ry2 - rx2 * ty2 - ry2 * tx2) / (rx2 * ty2 + ry2 * tx2));
+    const radicant = Math.max(
+        0,
+        (rx2 * ry2 - rx2 * ty2 - ry2 * tx2) / (rx2 * ty2 + ry2 * tx2)
+    );
     const coeff = (xl !== cw ? 1 : -1) * Math.sqrt(radicant);
-    const tc = [
-        coeff * ((rx * tp[1]) / ry),
-        coeff * (-(ry * tp[0]) / rx)
-    ];
+    const tc = [coeff * ((rx * tp[1]) / ry), coeff * (-(ry * tp[0]) / rx)];
     // actual center
     const center: Vec = [
         c * tc[0] - s * tc[1] + (a[0] + b[0]) / 2,

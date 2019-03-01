@@ -8,7 +8,7 @@ export const enum State {
     ACTIVE,
     DONE,
     ERROR,
-    DISABLED, // TODO currently unused
+    DISABLED // TODO currently unused
 }
 
 /**
@@ -25,11 +25,12 @@ export interface ISubscriber<T> {
     [id: string]: any;
 }
 
-export interface ISubscribable<T> extends
-    IDeref<T>,
-    IID<string> {
-
-    subscribe<C>(sub: Partial<ISubscriber<T>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
+export interface ISubscribable<T> extends IDeref<T>, IID<string> {
+    subscribe<C>(
+        sub: Partial<ISubscriber<T>>,
+        xform: Transducer<T, C>,
+        id?: string
+    ): Subscription<T, C>;
     // subscribe<S extends Subscription<T, C>, C>(sub: S): S;
     subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
@@ -38,10 +39,9 @@ export interface ISubscribable<T> extends
     getState(): State;
 }
 
-export interface ISubscribableSubscriber<T> extends
-    ISubscriber<T>,
-    ISubscribable<any> {
-}
+export interface ISubscribableSubscriber<T>
+    extends ISubscriber<T>,
+        ISubscribable<any> {}
 
 export interface IStream<T> extends ISubscriber<T> {
     cancel: StreamCancel;

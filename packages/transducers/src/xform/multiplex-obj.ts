@@ -28,9 +28,19 @@ import { rename } from "./rename";
  * @param rfn
  * @param src
  */
-export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn?: Reducer<B, [PropertyKey, any]>): Transducer<A, B>;
-export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, src: Iterable<A>): IterableIterator<B>;
-export function multiplexObj<A, B>(xforms: IObjectOf<Transducer<A, any>>, rfn: Reducer<B, [PropertyKey, any]>, src: Iterable<A>): IterableIterator<B>;
+export function multiplexObj<A, B>(
+    xforms: IObjectOf<Transducer<A, any>>,
+    rfn?: Reducer<B, [PropertyKey, any]>
+): Transducer<A, B>;
+export function multiplexObj<A, B>(
+    xforms: IObjectOf<Transducer<A, any>>,
+    src: Iterable<A>
+): IterableIterator<B>;
+export function multiplexObj<A, B>(
+    xforms: IObjectOf<Transducer<A, any>>,
+    rfn: Reducer<B, [PropertyKey, any]>,
+    src: Iterable<A>
+): IterableIterator<B>;
 export function multiplexObj(...args: any[]): any {
     const iter = $iter(multiplexObj, args);
     if (iter) {

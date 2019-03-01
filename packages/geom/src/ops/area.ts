@@ -49,46 +49,32 @@ import { dispatch } from "../internal/dispatch";
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
 
 area.addAll({
-
-    [Type.AABB]:
-        ({ size: [w, h, d] }: AABB) =>
-            2 * ((w * h) + (w * d) + (h * d)),
+    [Type.AABB]: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
 
     [Type.ARC]:
         // http://cut-the-knot.org/Generalization/Cavalieri2.shtml
         ($: Arc) => 0.5 * Math.abs($.start - $.end) * $.r[0] * $.r[1],
 
-    [Type.CIRCLE]:
-        ($: Circle) =>
-            PI * $.r * $.r,
+    [Type.CIRCLE]: ($: Circle) => PI * $.r * $.r,
 
-    [Type.ELLIPSE]:
-        ($: Ellipse) =>
-            PI * $.r[0] * $.r[1],
+    [Type.ELLIPSE]: ($: Ellipse) => PI * $.r[0] * $.r[1],
 
-    [Type.GROUP]:
-        ({ children }: Group) =>
-            children.reduce((sum, $) => sum + area($, false), 0),
+    [Type.GROUP]: ({ children }: Group) =>
+        children.reduce((sum, $) => sum + area($, false), 0),
 
-    [Type.POINTS]:
-        () => 0,
+    [Type.POINTS]: () => 0,
 
-    [Type.POLYGON]:
-        ($: Polygon, signed?) => {
-            const area = polyArea2($.points);
-            return signed ? area : Math.abs(area);
-        },
+    [Type.POLYGON]: ($: Polygon, signed?) => {
+        const area = polyArea2($.points);
+        return signed ? area : Math.abs(area);
+    },
 
-    [Type.RECT]:
-        ($: Rect) =>
-            $.size[0] * $.size[1],
+    [Type.RECT]: ($: Rect) => $.size[0] * $.size[1],
 
-    [Type.TRIANGLE]:
-        ($: Triangle, signed?) => {
-            const area = 0.5 * signedArea2(...<[Vec, Vec, Vec]>$.points);
-            return signed ? area : Math.abs(area);
-        },
-
+    [Type.TRIANGLE]: ($: Triangle, signed?) => {
+        const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));
+        return signed ? area : Math.abs(area);
+    }
 });
 
 area.isa(Type.ARC, Type.POINTS);

@@ -11,13 +11,7 @@ import { HOF_VVV } from "./internal/templates";
  * @param e2
  * @param v
  */
-export const [smoothStep, smoothStep2, smoothStep3, smoothStep4] =
-    defHofOp<MultiVecOpV, VecOpV>(
-        _step,
-        HOF_VVV,
-        "o,e1,e2,a",
-        undefined,
-        "o",
-        3,
-        DEFAULT_OUT
-    );
+export const [smoothStep, smoothStep2, smoothStep3, smoothStep4] = defHofOp<
+    MultiVecOpV,
+    VecOpV
+>(_step, HOF_VVV, "o,e1,e2,a", undefined, "o", 3, DEFAULT_OUT);

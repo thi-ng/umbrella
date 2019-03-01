@@ -15,33 +15,34 @@ import { corner2, ReadonlyVec } from "@thi.ng/vectors";
  * @param bc pre-computed boundary centroid
  * @param eps edge classification tolerance
  */
-export const sutherlandHodgeman =
-    (pts: ReadonlyVec[], bounds: ReadonlyVec[], bc?: ReadonlyVec, eps = EPS) => {
-        bc = bc || centroid(bounds);
-        for (let ne = bounds.length, j = ne - 1, i = 0; i < ne; j = i, i++) {
-            const clipped = [];
-            const ca = bounds[j];
-            const cb = bounds[i];
-            const sign = corner2(ca, cb, bc, eps);
-            for (let np = pts.length, k = np - 1, l = 0; l < np; k = l, l++) {
-                const p = pts[k];
-                const q = pts[l];
-                const cqsign = corner2(ca, cb, q, eps);
-                if (corner2(ca, cb, p, eps) === sign) {
-                    clipped.push(
-                        cqsign !== sign ?
-                            intersectLineLine(ca, cb, p, q).isec :
-                            q
-                    );
-                } else if (cqsign === sign) {
-                    clipped.push(intersectLineLine(ca, cb, p, q).isec, q);
-                }
+export const sutherlandHodgeman = (
+    pts: ReadonlyVec[],
+    bounds: ReadonlyVec[],
+    bc?: ReadonlyVec,
+    eps = EPS
+) => {
+    bc = bc || centroid(bounds);
+    for (let ne = bounds.length, j = ne - 1, i = 0; i < ne; j = i, i++) {
+        const clipped = [];
+        const ca = bounds[j];
+        const cb = bounds[i];
+        const sign = corner2(ca, cb, bc, eps);
+        for (let np = pts.length, k = np - 1, l = 0; l < np; k = l, l++) {
+            const p = pts[k];
+            const q = pts[l];
+            const cqsign = corner2(ca, cb, q, eps);
+            if (corner2(ca, cb, p, eps) === sign) {
+                clipped.push(
+                    cqsign !== sign ? intersectLineLine(ca, cb, p, q).isec : q
+                );
+            } else if (cqsign === sign) {
+                clipped.push(intersectLineLine(ca, cb, p, q).isec, q);
             }
-            if (clipped.length < 2) {
-                return [];
-            }
-            pts = clipped;
         }
-        return pts;
-    };
-
+        if (clipped.length < 2) {
+            return [];
+        }
+        pts = clipped;
+    }
+    return pts;
+};

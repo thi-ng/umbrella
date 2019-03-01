@@ -12,7 +12,10 @@ import { push } from "./rfn/push";
  * @param xform
  * @param xs
  */
-export function* iterator<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B> {
+export function* iterator<A, B>(
+    xform: Transducer<A, B>,
+    xs: Iterable<A>
+): IterableIterator<B> {
     const rfn = <Reducer<B[], A>>xform(push());
     const complete = rfn[1];
     const reduce = rfn[2];
@@ -39,7 +42,10 @@ export function* iterator<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): Itera
  * @param xform
  * @param xs
  */
-export function* iterator1<A, B>(xform: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B> {
+export function* iterator1<A, B>(
+    xform: Transducer<A, B>,
+    xs: Iterable<A>
+): IterableIterator<B> {
     const reduce = (<Reducer<B, A>>xform([null, null, (_, x) => x]))[2];
     for (let x of xs) {
         let y = reduce(<any>SEMAPHORE, x);
@@ -70,9 +76,9 @@ export const $iter = (
     impl = iterator1
 ) => {
     const n = args.length - 1;
-    return isIterable(args[n]) ?
-        args.length > 1 ?
-            impl(xform.apply(null, args.slice(0, n)), args[n]) :
-            impl(xform(), args[0]) :
-        undefined;
+    return isIterable(args[n])
+        ? args.length > 1
+            ? impl(xform.apply(null, args.slice(0, n)), args[n])
+            : impl(xform(), args[0])
+        : undefined;
 };

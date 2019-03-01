@@ -4,7 +4,6 @@ import { DCons } from "@thi.ng/dcons";
 import { CostFn, IGraph } from "./api";
 
 export class BFS {
-
     graph: IGraph;
     marked: BitField;
     edges: Uint32Array;
@@ -19,7 +18,7 @@ export class BFS {
         this.search(isNumber(src) ? [src] : src, cost);
     }
 
-    search(ids: Iterable<number>, cost: CostFn = (() => 1)) {
+    search(ids: Iterable<number>, cost: CostFn = () => 1) {
         const queue = new DCons<number>(ids);
         const dist = this.dist;
         const edges = this.edges;

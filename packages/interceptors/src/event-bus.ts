@@ -66,9 +66,7 @@ const FX_STATE = api.FX_STATE;
  * - side effect priorities (to control execution order)
  * - dynamic addition/removal of handlers & effects
  */
-export class StatelessEventBus implements
-    api.IDispatch {
-
+export class StatelessEventBus implements api.IDispatch {
     state: any;
 
     protected eventQueue: api.Event[];
@@ -90,7 +88,10 @@ export class StatelessEventBus implements
      * @param handlers
      * @param effects
      */
-    constructor(handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
+    constructor(
+        handlers?: IObjectOf<api.EventDef>,
+        effects?: IObjectOf<api.EffectDef>
+    ) {
         this.handlers = {};
         this.effects = {};
         this.eventQueue = [];
@@ -164,45 +165,52 @@ export class StatelessEventBus implements
      */
     addBuiltIns(): any {
         this.addEffects({
+            [api.FX_DISPATCH]: [(e) => this.dispatch(e), -999],
 
-            [api.FX_DISPATCH]:
-                [(e) => this.dispatch(e), -999],
-
-            [api.FX_DISPATCH_ASYNC]:
-                [([id, arg, success, err]) => {
+            [api.FX_DISPATCH_ASYNC]: [
+                ([id, arg, success, err]) => {
                     const fx = this.effects[id];
                     if (fx) {
                         const p = fx(arg, this);
                         if (isPromise(p)) {
-                            p.then((res) => this.dispatch([success, res]))
-                                .catch((e) => this.dispatch([err, e]));
+                            p.then((res) =>
+                                this.dispatch([success, res])
+                            ).catch((e) => this.dispatch([err, e]));
                         } else {
                             console.warn("async effect did not return Promise");
                         }
                     } else {
                         console.warn(`skipping invalid async effect: ${id}`);
                     }
-                }, -999],
+                },
+                -999
+            ],
 
-            [api.FX_DELAY]:
-                [([x, body]) => new Promise((res) => setTimeout(() => res(body), x)),
-                    1000],
+            [api.FX_DELAY]: [
+                ([x, body]) =>
+                    new Promise((res) => setTimeout(() => res(body), x)),
+                1000
+            ],
 
-            [api.FX_FETCH]:
-                [(req) =>
+            [api.FX_FETCH]: [
+                (req) =>
                     fetch(req).then((resp) => {
                         if (!resp.ok) {
                             throw new Error(resp.statusText);
                         }
                         return resp;
-                    }), 1000]
+                    }),
+                1000
+            ]
         });
     }
 
     addHandler(id: string, spec: api.EventDef) {
-        const iceps = isArray(spec) ?
-            (<any>spec).map(asInterceptor) :
-            isFunction(spec) ? [{ pre: spec }] : [spec];
+        const iceps = isArray(spec)
+            ? (<any>spec).map(asInterceptor)
+            : isFunction(spec)
+                ? [{ pre: spec }]
+                : [spec];
         if (iceps.length > 0) {
             if (this.handlers[id]) {
                 this.removeHandler(id);
@@ -256,7 +264,10 @@ export class StatelessEventBus implements
      * @param inject
      * @param ids
      */
-    instrumentWith(inject: (api.Interceptor | api.InterceptorFn)[], ids?: string[]) {
+    instrumentWith(
+        inject: (api.Interceptor | api.InterceptorFn)[],
+        ids?: string[]
+    ) {
         const iceps = inject.map(asInterceptor);
         const handlers = this.handlers;
         for (let id of ids || Object.keys(handlers)) {
@@ -512,7 +523,7 @@ export class StatelessEventBus implements
                         e !== undefined && ctx[k].push(e);
                     }
                 } else {
-                    ctx[k].push(v)
+                    ctx[k].push(v);
                 }
             }
         }
@@ -525,10 +536,8 @@ export class StatelessEventBus implements
  * handlers and side effects to manipulate wrapped state. Prefer this
  * as the default implementation for most use cases.
  */
-export class EventBus extends StatelessEventBus implements
-    IDeref<any>,
-    api.IDispatch {
-
+export class EventBus extends StatelessEventBus
+    implements IDeref<any>, api.IDispatch {
     readonly state: IAtom<any>;
 
     /**
@@ -544,7 +553,11 @@ export class EventBus extends StatelessEventBus implements
      * @param handlers
      * @param effects
      */
-    constructor(state?: IAtom<any>, handlers?: IObjectOf<api.EventDef>, effects?: IObjectOf<api.EffectDef>) {
+    constructor(
+        state?: IAtom<any>,
+        handlers?: IObjectOf<api.EventDef>,
+        effects?: IObjectOf<api.EffectDef>
+    ) {
         super(handlers, effects);
         this.state = state || new Atom({});
     }
@@ -632,19 +645,22 @@ export class EventBus extends StatelessEventBus implements
         super.addBuiltIns();
         // handlers
         this.addHandlers({
-            [api.EV_SET_VALUE]: (state, [_, [path, val]]) =>
-                ({ [FX_STATE]: setIn(state, path, val) }),
-            [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) =>
-                ({ [FX_STATE]: updateIn(state, path, fn, ...args) }),
-            [api.EV_TOGGLE_VALUE]: (state, [_, path]) =>
-                ({ [FX_STATE]: updateIn(state, path, (x) => !x) }),
+            [api.EV_SET_VALUE]: (state, [_, [path, val]]) => ({
+                [FX_STATE]: setIn(state, path, val)
+            }),
+            [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) => ({
+                [FX_STATE]: updateIn(state, path, fn, ...args)
+            }),
+            [api.EV_TOGGLE_VALUE]: (state, [_, path]) => ({
+                [FX_STATE]: updateIn(state, path, (x) => !x)
+            }),
             [api.EV_UNDO]: undoHandler("undo"),
-            [api.EV_REDO]: undoHandler("redo"),
+            [api.EV_REDO]: undoHandler("redo")
         });
 
         // effects
         this.addEffects({
-            [FX_STATE]: [(state) => this.state.reset(state), -1000],
+            [FX_STATE]: [(state) => this.state.reset(state), -1000]
         });
     }
 
@@ -689,19 +705,19 @@ export class EventBus extends StatelessEventBus implements
 const asInterceptor = (i: api.Interceptor | api.InterceptorFn) =>
     isFunction(i) ? { pre: i } : i;
 
-const undoHandler = (action: string) =>
-    (_, [__, ev], bus, ctx) => {
-        let id = ev ? ev[0] : "history";
-        if (implementsFunction(ctx[id], action)) {
-            const ok = ctx[id][action]();
-            return {
-                [FX_STATE]: bus.state.deref(),
-                [FX_DISPATCH_NOW]: ev ?
-                    ok !== undefined ? ev[1] : ev[2] :
-                    undefined,
-            };
-        } else {
-            console.warn("no history in context");
-        }
-    };
-
+const undoHandler = (action: string) => (_, [__, ev], bus, ctx) => {
+    let id = ev ? ev[0] : "history";
+    if (implementsFunction(ctx[id], action)) {
+        const ok = ctx[id][action]();
+        return {
+            [FX_STATE]: bus.state.deref(),
+            [FX_DISPATCH_NOW]: ev
+                ? ok !== undefined
+                    ? ev[1]
+                    : ev[2]
+                : undefined
+        };
+    } else {
+        console.warn("no history in context");
+    }
+};

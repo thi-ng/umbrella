@@ -38,17 +38,13 @@ export const fromAtom = <T>(
     emitFirst = true,
     changed?: Predicate2<T>
 ): Stream<T> =>
-
-    new Stream<T>(
-        (stream) => {
-            changed = changed || ((a, b) => a !== b);
-            atom.addWatch(stream.id, (_, prev, curr) => {
-                if (changed(prev, curr)) {
-                    stream.next(curr);
-                }
-            });
-            emitFirst && stream.next(atom.deref());
-            return () => atom.removeWatch(stream.id);
-        },
-        `atom-${nextID()}`
-    );
+    new Stream<T>((stream) => {
+        changed = changed || ((a, b) => a !== b);
+        atom.addWatch(stream.id, (_, prev, curr) => {
+            if (changed(prev, curr)) {
+                stream.next(curr);
+            }
+        });
+        emitFirst && stream.next(atom.deref());
+        return () => atom.removeWatch(stream.id);
+    }, `atom-${nextID()}`);

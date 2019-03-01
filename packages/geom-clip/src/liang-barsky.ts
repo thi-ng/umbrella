@@ -57,12 +57,14 @@ export const liangBarsky2 = (
         return true;
     };
 
-    if (!(
-        clip(-dx, -(min[0] - ax)) &&
-        clip(dx, max[0] - ax) &&
-        clip(-dy, -(min[1] - ay)) &&
-        clip(dy, max[1] - ay)
-    )) {
+    if (
+        !(
+            clip(-dx, -(min[0] - ax)) &&
+            clip(dx, max[0] - ax) &&
+            clip(-dy, -(min[1] - ay)) &&
+            clip(dy, max[1] - ay)
+        )
+    ) {
         return;
     }
 

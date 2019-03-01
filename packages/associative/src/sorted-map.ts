@@ -49,7 +49,7 @@ const makeNode = (level: number, key?, value?) => {
     node[KEY] = key;
     node[VAL] = value;
     return node;
-}
+};
 
 /**
  * This class is an alternative implementation of the ES6 Map API using
@@ -69,15 +69,17 @@ const makeNode = (level: number, key?, value?) => {
  * - ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf
  * - https://en.wikipedia.org/wiki/Skip_list
  */
-export class SortedMap<K, V> extends Map<K, V> implements
-    ICopy<SortedMap<K, V>>,
-    ICompare<Map<K, V>>,
-    IEmpty<SortedMap<K, V>>,
-    IEquiv,
-    IReducible<any, Pair<K, V>> {
-
+export class SortedMap<K, V> extends Map<K, V>
+    implements
+        ICopy<SortedMap<K, V>>,
+        ICompare<Map<K, V>>,
+        IEmpty<SortedMap<K, V>>,
+        IEquiv,
+        IReducible<any, Pair<K, V>> {
     static fromObject<T>(obj: IObjectOf<T>): SortedMap<PropertyKey, T> {
-        const m = new SortedMap<PropertyKey, T>(null, { capacity: Object.keys(obj).length });
+        const m = new SortedMap<PropertyKey, T>(null, {
+            capacity: Object.keys(obj).length
+        });
         for (let k in obj) {
             m.set(k, obj[k]);
         }
@@ -94,7 +96,10 @@ export class SortedMap<K, V> extends Map<K, V> implements
      * @param values
      * @param opts
      */
-    constructor(values?: Iterable<Pair<K, V>>, opts: Partial<SortedMapOpts<K>> = {}) {
+    constructor(
+        values?: Iterable<Pair<K, V>>,
+        opts: Partial<SortedMapOpts<K>> = {}
+    ) {
         super();
         values = this.init(values, opts);
         if (values) {
@@ -119,7 +124,10 @@ export class SortedMap<K, V> extends Map<K, V> implements
     }
 
     empty(): SortedMap<K, V> {
-        return new SortedMap<K, V>(null, { ...this.opts(), capacity: SortedMap.DEFAULT_CAP });
+        return new SortedMap<K, V>(null, {
+            ...this.opts(),
+            capacity: SortedMap.DEFAULT_CAP
+        });
     }
 
     copy(): SortedMap<K, V> {
@@ -127,14 +135,15 @@ export class SortedMap<K, V> extends Map<K, V> implements
     }
 
     compare(o: Map<K, V>) {
-        const n = this.size, m = o.size;
+        const n = this.size,
+            m = o.size;
         if (n < m) return -1;
         if (n > m) return 1;
         const i = this.entries();
         const j = o.entries();
         let x: IteratorResult<Pair<K, V>>, y: IteratorResult<Pair<K, V>>;
         let c: number;
-        while ((x = i.next(), y = j.next(), !x.done && !y.done)) {
+        while (((x = i.next()), (y = j.next()), !x.done && !y.done)) {
             if ((c = compare(x.value[0], y.value[0])) !== 0) {
                 return c;
             }
@@ -182,8 +191,7 @@ export class SortedMap<K, V> extends Map<K, V> implements
         let node = this.findLessAndUpdate(update, key);
         let prev = node;
         node = node[NEXT];
-        if ($this.equiv(node[KEY], key))
-            node[VAL] = value;
+        if ($this.equiv(node[KEY], key)) node[VAL] = value;
         else {
             if ($this.length >= $this.cap) {
                 this.grow();
@@ -222,7 +230,10 @@ export class SortedMap<K, V> extends Map<K, V> implements
                 }
                 update[i][j] = node[j];
             }
-            while ($this.level > 0 && $this.head[$this.level + NEXT][KEY] === undefined) {
+            while (
+                $this.level > 0 &&
+                $this.head[$this.level + NEXT][KEY] === undefined
+            ) {
                 $this.level--;
             }
             if ($this.tail === node) {
@@ -248,9 +259,7 @@ export class SortedMap<K, V> extends Map<K, V> implements
     get(key: K, notFound?: any) {
         const $this = __private.get(this);
         const node = this.findLess(key)[NEXT];
-        return $this.equiv(node[KEY], key) ?
-            node[VAL] :
-            notFound;
+        return $this.equiv(node[KEY], key) ? node[VAL] : notFound;
     }
 
     into(pairs: Iterable<Pair<K, V>>) {
@@ -277,9 +286,11 @@ export class SortedMap<K, V> extends Map<K, V> implements
         if (key !== undefined) {
             const found = this.findLess(key);
             // the original python impl doesn't handle unknown and out-of-range keys properly
-            node = !reverse || (found[NEXT] != $this.nil && $this.equiv(found[NEXT][KEY], key)) ?
-                found[NEXT] :
-                found;
+            node =
+                !reverse ||
+                (found[NEXT] != $this.nil && $this.equiv(found[NEXT][KEY], key))
+                    ? found[NEXT]
+                    : found;
         }
         while (node[KEY] !== undefined) {
             yield [node[KEY], node[VAL]];
@@ -295,13 +306,15 @@ export class SortedMap<K, V> extends Map<K, V> implements
         return map((p) => p[1], this.entries(key, reverse));
     }
 
-    protected init(values: Iterable<Pair<K, V>>, opts: Partial<SortedMapOpts<K>>) {
+    protected init(
+        values: Iterable<Pair<K, V>>,
+        opts: Partial<SortedMapOpts<K>>
+    ) {
         let cap;
         if (values && !opts.capacity) {
             values = isArray(values) ? values : [...values];
             cap = Math.max((<any>values).length, SortedMap.DEFAULT_CAP);
-        }
-        else {
+        } else {
             cap = opts.capacity || SortedMap.DEFAULT_CAP;
         }
         cap < 1 && illegalArgs(`invalid capacity: ${cap}`);
@@ -331,7 +344,7 @@ export class SortedMap<K, V> extends Map<K, V> implements
             capacity: $this.cap * growFactor,
             equiv: $this.equiv,
             compare: $this.cmp,
-            probability: $this.p,
+            probability: $this.p
         };
     }
 
@@ -339,9 +352,7 @@ export class SortedMap<K, V> extends Map<K, V> implements
      * Recreates map with double capacity.
      */
     protected grow() {
-        const tmp = new SortedMap(
-            this.entries(),
-            this.opts(2));
+        const tmp = new SortedMap(this.entries(), this.opts(2));
         __private.set(this, __private.get(tmp));
         __private.delete(tmp);
     }

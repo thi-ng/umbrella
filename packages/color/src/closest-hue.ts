@@ -6,15 +6,13 @@ import { ensureHue } from "./internal/ensure-hue";
  *
  * @param h hue
  */
-export const closestHue =
-    (h: number): Hue =>
-        Math.round(ensureHue(h) * 12) % 12;
+export const closestHue = (h: number): Hue =>
+    Math.round(ensureHue(h) * 12) % 12;
 
 /**
  * Returns the `Hue` constant of the closest primary or secondary hue.
  *
  * @param h
  */
-export const closestPrimaryHue =
-    (h: number): Hue =>
-        (Math.round(ensureHue(h) * 12) % 12) & 0xe;
+export const closestPrimaryHue = (h: number): Hue =>
+    Math.round(ensureHue(h) * 12) % 12 & 0xe;

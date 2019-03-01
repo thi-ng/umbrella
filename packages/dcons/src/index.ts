@@ -21,16 +21,16 @@ export interface ConsCell<T> {
     prev: ConsCell<T>;
 }
 
-export class DCons<T> implements
-    ICompare<DCons<T>>,
-    ICopy<DCons<T>>,
-    IEmpty<DCons<T>>,
-    IEquiv,
-    ILength,
-    IReducible<any, T>,
-    IRelease,
-    IStack<T, DCons<T>> {
-
+export class DCons<T>
+    implements
+        ICompare<DCons<T>>,
+        ICopy<DCons<T>>,
+        IEmpty<DCons<T>>,
+        IEquiv,
+        ILength,
+        IReducible<any, T>,
+        IRelease,
+        IStack<T, DCons<T>> {
     head: ConsCell<T>;
     tail: ConsCell<T>;
     protected _length: number = 0;
@@ -58,7 +58,8 @@ export class DCons<T> implements
     }
 
     release() {
-        let cell = this.head, next;
+        let cell = this.head,
+            next;
         while (cell) {
             next = cell.next;
             delete cell.value;
@@ -91,7 +92,10 @@ export class DCons<T> implements
     }
 
     equiv(o: any) {
-        if ((o instanceof DCons || isArrayLike(o)) && this._length === o.length) {
+        if (
+            (o instanceof DCons || isArrayLike(o)) &&
+            this._length === o.length
+        ) {
             let cell = this.head;
             for (let x of <any>o) {
                 if (!equiv(cell.value, x)) {
@@ -255,7 +259,7 @@ export class DCons<T> implements
         let a = from < 0 ? from + this._length : from;
         let b = to < 0 ? to + this._length : to;
         if (a < 0 || b < 0) {
-            illegalArgs("invalid indices: ${from} / ${to}")
+            illegalArgs("invalid indices: ${from} / ${to}");
         }
         const res = new DCons<T>();
         let cell = this.nthCell(a);
@@ -428,7 +432,7 @@ export class DCons<T> implements
                 return this.swap(this.head, this.tail);
             default:
                 const x = this.peek();
-                this.pop()
+                this.pop();
                 return this.cons(x);
         }
     }
@@ -521,9 +525,13 @@ export class DCons<T> implements
         let res: any = [];
         let cell = this.head;
         while (cell) {
-            res.push(cell.value != null ?
-                cell.value.toString() :
-                cell.value === undefined ? "undefined" : "null");
+            res.push(
+                cell.value != null
+                    ? cell.value.toString()
+                    : cell.value === undefined
+                        ? "undefined"
+                        : "null"
+            );
             cell = cell.next;
         }
         return res.join(", ");

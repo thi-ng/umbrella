@@ -41,7 +41,11 @@ export interface ParseOpts {
     // voidTags: Set<string>; // TODO #48
 }
 
-export const VOID_TAGS = new Set("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
+export const VOID_TAGS = new Set(
+    "area base br col command embed hr img input keygen link meta param source track wbr".split(
+        " "
+    )
+);
 
 export interface ParseElement {
     tag: string;
@@ -86,7 +90,7 @@ export enum Type {
     /**
      * Parser error event
      */
-    ERROR,
+    ERROR
 }
 
 interface ParseState extends FSMState {
@@ -121,7 +125,7 @@ const enum State {
     DOCTYPE,
     PROC_DECL,
     PROC_END,
-    CDATA,
+    CDATA
     // H_CHAR,
     // U_CHAR,
 }
@@ -131,19 +135,19 @@ const ENTITIES = {
     "&lt;": "<",
     "&gt;": ">",
     "&quot;": '"',
-    "&apos;": "'",
+    "&apos;": "'"
 };
 
 const ENTITY_RE = new RegExp(`(${Object.keys(ENTITIES).join("|")})`, "g");
 
 const ESCAPE_SEQS = {
-    "n": "\n",
-    "r": "\r",
-    "t": "\t",
-    "v": "\v",
-    "f": "\f",
-    "b": "\b",
-    "\"": "\"",
+    n: "\n",
+    r: "\r",
+    t: "\t",
+    v: "\v",
+    f: "\f",
+    b: "\b",
+    '"': '"',
     "'": "'",
     "\\": "\\"
 };
@@ -154,9 +158,14 @@ const ESCAPE_SEQS = {
  *
  * @param opts
  */
-export function parse(opts?: Partial<ParseOpts>): Transducer<string, ParseEvent>;
+export function parse(
+    opts?: Partial<ParseOpts>
+): Transducer<string, ParseEvent>;
 export function parse(src: string): IterableIterator<ParseEvent>;
-export function parse(opts: Partial<ParseOpts>, src: string): IterableIterator<ParseEvent>;
+export function parse(
+    opts: Partial<ParseOpts>,
+    src: string
+): IterableIterator<ParseEvent>;
 export function parse(...args: any[]): any {
     const iter = $iter(parse, args, iterator);
     if (iter) {
@@ -164,37 +173,42 @@ export function parse(...args: any[]): any {
     }
     return fsm({
         states: PARSER,
-        init: () => (<ParseState>{
-            state: State.WAIT,
-            scope: [],
-            pos: 0,
-            opts: {
-                children: true,
-                entities: false,
-                trim: false,
-                ...args[0]
+        init: () =>
+            <ParseState>{
+                state: State.WAIT,
+                scope: [],
+                pos: 0,
+                opts: {
+                    children: true,
+                    entities: false,
+                    trim: false,
+                    ...args[0]
+                }
             },
-        }),
         terminate: State.ERROR
     });
 }
 
 const isWS = (x: string) => {
     const c = x.charCodeAt(0);
-    return c === 0x20 || // space
-        c === 0x09 ||    // tab
-        c === 0x0a ||    // LF
-        c === 0x0d;      // CR
+    return (
+        c === 0x20 || // space
+        c === 0x09 || // tab
+        c === 0x0a || // LF
+        c === 0x0d
+    ); // CR
 };
 
 const isTagChar = (x: string) => {
     const c = x.charCodeAt(0);
-    return (c >= 0x41 && c <= 0x5a) || // A-Z
-        (c >= 0x61 && c <= 0x7a) ||    // a-z
-        (c >= 0x30 && c <= 0x39) ||    // 0-9
-        c == 0x2d ||                   // -
-        c == 0x5f ||                   // _
-        c == 0x3a;                     // :
+    return (
+        (c >= 0x41 && c <= 0x5a) || // A-Z
+        (c >= 0x61 && c <= 0x7a) || // a-z
+        (c >= 0x30 && c <= 0x39) || // 0-9
+        c == 0x2d || // -
+        c == 0x5f || // _
+        c == 0x3a
+    ); // :
 };
 
 const error = (s: ParseState, body: string) => {
@@ -211,8 +225,7 @@ const unexpected = (s: ParseState, x: string) =>
 const replaceEntities = (x: string) => x.replace(ENTITY_RE, (y) => ENTITIES[y]);
 
 const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
-
-    [State.ERROR]: () => { },
+    [State.ERROR]: () => {},
 
     [State.WAIT]: (state, ch) => {
         state.pos++;
@@ -257,9 +270,19 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             state.state = State.MAYBE_ATTRIB;
         } else if (ch === ">") {
             state.state = State.ELEM_BODY;
-            state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
+            state.scope.push({
+                tag: state.tag,
+                attribs: state.attribs,
+                children: []
+            });
             state.body = "";
-            return [{ type: Type.ELEM_START, tag: state.tag, attribs: state.attribs }];
+            return [
+                {
+                    type: Type.ELEM_START,
+                    tag: state.tag,
+                    attribs: state.attribs
+                }
+            ];
         } else if (ch === "/") {
             state.state = State.ELEM_SINGLE;
         } else {
@@ -282,7 +305,12 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
                 state.state = State.WAIT;
                 return [{ type: Type.ELEM_END, ...res }];
             } else {
-                return error(state, `unmatched tag: '${state.tag}' @ pos ${state.pos - state.tag.length - 2}`);
+                return error(
+                    state,
+                    `unmatched tag: '${state.tag}' @ pos ${state.pos -
+                        state.tag.length -
+                        2}`
+                );
             }
         }
     },
@@ -393,7 +421,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 
     [State.ATTRIB_VAL_START]: (state, ch) => {
         state.pos++;
-        if (ch === "\"" || ch === "'") {
+        if (ch === '"' || ch === "'") {
             state.state = State.ATTRIB_VALUE;
             state.quote = ch;
         } else {
@@ -534,11 +562,13 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
         if (ch === ">") {
             state.state = State.WAIT;
             state.isProc = false;
-            return [{ type: Type.PROC, tag: state.tag, attribs: state.attribs }];
+            return [
+                { type: Type.PROC, tag: state.tag, attribs: state.attribs }
+            ];
         } else {
             return unexpected(state, ch);
         }
-    },
+    }
 };
 
 const beginElementBody = (state: ParseState) => {

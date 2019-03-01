@@ -1,10 +1,4 @@
-import {
-    Event,
-    INotify,
-    INotifyMixin,
-    IObjectOf,
-    Listener
-} from "@thi.ng/api";
+import { Event, INotify, INotifyMixin, IObjectOf, Listener } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs, illegalArity } from "@thi.ng/errors";
@@ -17,24 +11,31 @@ import {
 } from "./api";
 
 @INotifyMixin
-export class BasicRouter implements
-    INotify {
-
+export class BasicRouter implements INotify {
     public config: RouterConfig;
     public current: RouteMatch;
 
     constructor(config: RouterConfig) {
-        config.authenticator = config.authenticator ||
-            ((route, _, params) => ({ id: route.id, title: route.title, params }));
+        config.authenticator =
+            config.authenticator ||
+            ((route, _, params) => ({
+                id: route.id,
+                title: route.title,
+                params
+            }));
         config.prefix = config.prefix === undefined ? "/" : config.prefix;
         config.separator = config.separator || "/";
         this.config = config;
     }
 
     // mixin
-    public addListener(_: string, __: Listener, ___?: any) { return false; }
-    public removeListener(_: string, __: Listener, ___?: any) { return false; }
-    public notify(_: Event) { }
+    public addListener(_: string, __: Listener, ___?: any) {
+        return false;
+    }
+    public removeListener(_: string, __: Listener, ___?: any) {
+        return false;
+    }
+    public notify(_: Event) {}
 
     start() {
         if (this.config.initialRouteID) {
@@ -116,11 +117,20 @@ export class BasicRouter implements
         const route = this.routeForID(match.id);
         if (route) {
             const params = match.params || {};
-            return (hash ? "#" : "") +
+            return (
+                (hash ? "#" : "") +
                 this.config.prefix +
                 route.match
-                    .map((x) => x.charAt(0) === "?" ? ((x = params[x.substr(1)]) != null ? x : "NULL") : x)
-                    .join(this.config.separator);
+                    .map(
+                        (x) =>
+                            x.charAt(0) === "?"
+                                ? (x = params[x.substr(1)]) != null
+                                    ? x
+                                    : "NULL"
+                                : x
+                    )
+                    .join(this.config.separator)
+            );
         } else {
             illegalArgs(`invalid route ID: ${match.id.toString()}`);
         }
@@ -143,16 +153,22 @@ export class BasicRouter implements
                     return;
                 }
             }
-            if (route.validate && !this.validateRouteParams(params, route.validate)) {
+            if (
+                route.validate &&
+                !this.validateRouteParams(params, route.validate)
+            ) {
                 return;
             }
-            return route.auth ?
-                this.config.authenticator(route, curr, params) :
-                { id: route.id, title: route.title, params };
+            return route.auth
+                ? this.config.authenticator(route, curr, params)
+                : { id: route.id, title: route.title, params };
         }
     }
 
-    protected validateRouteParams(params: any, validators: IObjectOf<Partial<RouteParamValidator>>) {
+    protected validateRouteParams(
+        params: any,
+        validators: IObjectOf<Partial<RouteParamValidator>>
+    ) {
         for (let id in validators) {
             if (params[id] !== undefined) {
                 const val = validators[id];

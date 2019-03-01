@@ -7,5 +7,7 @@ import { ADDM } from "./internal/templates";
  *
  * @see madd
  */
-export const [addm, addm2, addm3, addm4] =
-    defOp<MultiVecOpVVV, VecOpVVV>(ADDM, ARGS_VVV);
+export const [addm, addm2, addm3, addm4] = defOp<MultiVecOpVVV, VecOpVVV>(
+    ADDM,
+    ARGS_VVV
+);

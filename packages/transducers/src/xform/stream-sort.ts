@@ -19,9 +19,19 @@ import { isReduced } from "../reduced";
  * @param key
  * @param cmp
  */
-export function streamSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
-export function streamSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-export function streamSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function streamSort<A, B>(
+    n: number,
+    opts?: Partial<SortOpts<A, B>>
+): Transducer<A, A>;
+export function streamSort<A, B>(
+    n: number,
+    src: Iterable<A>
+): IterableIterator<A>;
+export function streamSort<A, B>(
+    n: number,
+    opts: Partial<SortOpts<A, B>>,
+    src: Iterable<A>
+): IterableIterator<A>;
 export function streamSort<A, B>(...args: any[]): any {
     const iter = $iter(streamSort, args, iterator);
     if (iter) {

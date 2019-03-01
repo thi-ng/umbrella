@@ -22,9 +22,7 @@ import {
 } from "./internal/vec-utils";
 import { setS3 } from "./sets";
 
-export class Vec3 extends AVec implements
-    IVector<Vec3> {
-
+export class Vec3 extends AVec implements IVector<Vec3> {
     /**
      * Returns array of memory mapped `Vec3` instances using given
      * backing array and stride settings: The `cstride` is the step size
@@ -39,7 +37,13 @@ export class Vec3 extends AVec implements
      * @param cstride component stride
      * @param estride element stride
      */
-    static mapBuffer(buf: Vec, num: number = (buf.length / 3) | 0, start = 0, cstride = 1, estride = 3) {
+    static mapBuffer(
+        buf: Vec,
+        num: number = (buf.length / 3) | 0,
+        start = 0,
+        cstride = 1,
+        estride = 3
+    ) {
         return mapBuffer(Vec3, buf, num, start, cstride, estride);
     }
 
@@ -57,11 +61,23 @@ export class Vec3 extends AVec implements
      * @param cstride
      * @param estride
      */
-    static intoBuffer(buf: Vec, src: Iterable<Vec3>, start = 0, cstride = 1, estride = 3) {
+    static intoBuffer(
+        buf: Vec,
+        src: Iterable<Vec3>,
+        start = 0,
+        cstride = 1,
+        estride = 3
+    ) {
         return intoBuffer(setS3, buf, src, start, cstride, estride);
     }
 
-    static iterator(buf: Vec, num: number, start = 0, cstride = 1, estride = 3) {
+    static iterator(
+        buf: Vec,
+        num: number,
+        start = 0,
+        cstride = 1,
+        estride = 3
+    ) {
         return vecIterator(Vec3, buf, num, start, cstride, estride);
     }
 
@@ -117,14 +133,11 @@ export class Vec3 extends AVec implements
 
 declareIndices(Vec3.prototype, ["x", "y", "z"]);
 
-export const vec3 =
-    (x = 0, y = 0, z = 0) => new Vec3([x, y, z]);
+export const vec3 = (x = 0, y = 0, z = 0) => new Vec3([x, y, z]);
 
-export const vec3n =
-    (n: number) => new Vec3([n, n, n]);
+export const vec3n = (n: number) => new Vec3([n, n, n]);
 
-export const asVec3 =
-    (x: Vec) =>
-        x instanceof Vec3 ?
-            x :
-            new Vec3(x.length >= 3 ? x : [x[0] || 0, x[1] || 0, x[2] || 0]);
+export const asVec3 = (x: Vec) =>
+    x instanceof Vec3
+        ? x
+        : new Vec3(x.length >= 3 ? x : [x[0] || 0, x[1] || 0, x[2] || 0]);

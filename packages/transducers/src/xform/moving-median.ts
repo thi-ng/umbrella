@@ -16,9 +16,19 @@ import { partition } from "./partition";
  * @param opts
  * @param src
  */
-export function movingMedian<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
-export function movingMedian<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-export function movingMedian<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function movingMedian<A, B>(
+    n: number,
+    opts?: Partial<SortOpts<A, B>>
+): Transducer<A, A>;
+export function movingMedian<A, B>(
+    n: number,
+    src: Iterable<A>
+): IterableIterator<A>;
+export function movingMedian<A, B>(
+    n: number,
+    opts: Partial<SortOpts<A, B>>,
+    src: Iterable<A>
+): IterableIterator<A>;
 export function movingMedian<A, B>(...args: any[]): any {
     const iter = $iter(movingMedian, args);
     if (iter) {
@@ -33,6 +43,9 @@ export function movingMedian<A, B>(...args: any[]): any {
     const m = n >> 1;
     return comp(
         partition(n, 1, true),
-        map((window: A[]) => window.slice().sort((a, b) => compare(key(a), key(b)))[m])
+        map(
+            (window: A[]) =>
+                window.slice().sort((a, b) => compare(key(a), key(b)))[m]
+        )
     );
 }

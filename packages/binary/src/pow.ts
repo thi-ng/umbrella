@@ -1,7 +1,6 @@
 // http://graphics.stanford.edu/~seander/bithacks.html
 
-export const isPow2 = (x: number) =>
-    (!!x) && !(x & (x - 1));
+export const isPow2 = (x: number) => !!x && !(x & (x - 1));
 
 export const ceilPow2 = (x: number) => {
     x += <any>(x === 0);

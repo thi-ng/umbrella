@@ -38,7 +38,6 @@ export const postWorker = <T>(
     transfer = false,
     terminate = 0
 ): ISubscriber<T> => {
-
     const _worker = makeWorker(worker);
     return {
         next(x) {

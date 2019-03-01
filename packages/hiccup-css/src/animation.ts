@@ -2,7 +2,14 @@ import { at_keyframes } from "./keyframes";
 
 export interface AnimationOpts {
     delay: string;
-    direction: "unset" | "inherit" | "initial" | "normal" | "reverse" | "alternate" | "alternate-reverse";
+    direction:
+        | "unset"
+        | "inherit"
+        | "initial"
+        | "normal"
+        | "reverse"
+        | "alternate"
+        | "alternate-reverse";
     duration: string;
     "fill-mode": "none" | "forwards" | "backwards" | "both";
     "iteration-count": number;
@@ -47,18 +54,24 @@ export interface AnimationOpts {
  * @param opts
  * @param keyframes
  */
-export const animation =
-    (id: string, opts: Partial<AnimationOpts>, ...keyframes: any) => {
-        opts = <any>{
-            duration: "250ms",
-            name: id,
-            ...opts
-        };
-        return [
-            at_keyframes.apply(null, [id, ...keyframes]),
-            [
-                `.${id}`,
-                Object.keys(opts).reduce((acc, k) => (acc[`animation-${k}`] = opts[k], acc), {})
-            ]
-        ];
+export const animation = (
+    id: string,
+    opts: Partial<AnimationOpts>,
+    ...keyframes: any
+) => {
+    opts = <any>{
+        duration: "250ms",
+        name: id,
+        ...opts
     };
+    return [
+        at_keyframes.apply(null, [id, ...keyframes]),
+        [
+            `.${id}`,
+            Object.keys(opts).reduce(
+                (acc, k) => ((acc[`animation-${k}`] = opts[k]), acc),
+                {}
+            )
+        ]
+    ];
+};

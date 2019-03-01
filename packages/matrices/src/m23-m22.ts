@@ -7,5 +7,4 @@ import { MatOpM } from "./api";
  * @param out
  * @param m23
  */
-export const mat23to22: MatOpM =
-    (out, m23) => set4(out || [], m23);
+export const mat23to22: MatOpM = (out, m23) => set4(out || [], m23);

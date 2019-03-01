@@ -5,7 +5,10 @@ export interface FrequencyPair<T> {
     [1]: number;
 }
 
-export function* frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]> {
+export function* frequencies<T>(
+    input: Iterable<T>,
+    key?: (v: T) => any
+): IterableIterator<FrequencyPair<T>[]> {
     let freqs = {};
     let iter = iterator(input);
     let v: IteratorResult<any>;

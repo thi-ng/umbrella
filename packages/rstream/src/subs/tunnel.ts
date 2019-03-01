@@ -55,12 +55,9 @@ export interface TunnelOpts<A> {
  *
  * @param opts
  */
-export const tunnel =
-    <A, B>(opts: TunnelOpts<A>) =>
-        new Tunnel<A, B>(opts);
+export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
 
 export class Tunnel<A, B> extends Subscription<A, B> {
-
     workers: Worker[];
     src: Worker | Blob | string;
     transferables: (x: A) => any[];
@@ -93,13 +90,11 @@ export class Tunnel<A, B> extends Subscription<A, B> {
             if (!worker) {
                 this.workers[this.index++] = worker = makeWorker(this.src);
                 this.index %= this.workers.length;
-                worker.addEventListener(
-                    "message",
-                    (e: MessageEvent) => this.dispatch(e.data)
+                worker.addEventListener("message", (e: MessageEvent) =>
+                    this.dispatch(e.data)
                 );
-                worker.addEventListener(
-                    "error",
-                    (e: ErrorEvent) => this.error(e)
+                worker.addEventListener("error", (e: ErrorEvent) =>
+                    this.error(e)
                 );
             }
             worker.postMessage(x, tx);

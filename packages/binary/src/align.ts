@@ -7,11 +7,11 @@ import { Pow2 } from "./api";
  * @param addr
  * @param size
  */
-export const align = (addr: number, size: Pow2) =>
-    (size-- , (addr + size) & ~size);
+export const align = (addr: number, size: Pow2) => (
+    size--, (addr + size) & ~size
+);
 
 /**
  * Returns true if `addr` is aligned to wordsize `size`.
  */
-export const isAligned = (addr: number, size: Pow2) =>
-    !(addr & (size - 1));
+export const isAligned = (addr: number, size: Pow2) => !(addr & (size - 1));

@@ -6,12 +6,11 @@ import {
     Predicate2
 } from "@thi.ng/api";
 
-export interface IEquivSet<T> extends
-    Set<T>,
-    ICopy<IEquivSet<T>>,
-    IEmpty<IEquivSet<T>>,
-    IEquiv {
-
+export interface IEquivSet<T>
+    extends Set<T>,
+        ICopy<IEquivSet<T>>,
+        IEmpty<IEquivSet<T>>,
+        IEquiv {
     readonly [Symbol.species]: EquivSetConstructor;
     into(xs: Iterable<T>): this;
     disj(xs: Iterable<T>): this;
@@ -21,7 +20,7 @@ export interface IEquivSet<T> extends
 }
 
 export interface EquivSetConstructor {
-    new(): IEquivSet<any>;
+    new (): IEquivSet<any>;
     new <T>(values?: Iterable<T>, opts?: EquivSetOpts<T>): IEquivSet<T>;
     readonly prototype: IEquivSet<any>;
 }

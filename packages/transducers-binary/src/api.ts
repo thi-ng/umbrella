@@ -16,26 +16,26 @@ export const enum Type {
     F64,
     F64_ARRAY,
     STR
-};
+}
 
 export type BinStructItem =
-    [Type.I8, number] |
-    [Type.I8_ARRAY, ArrayLike<number>] |
-    [Type.U8, number] |
-    [Type.U8_ARRAY, ArrayLike<number>] |
-    [Type.I16, number, boolean?] |
-    [Type.I16_ARRAY, ArrayLike<number>, boolean?] |
-    [Type.U16, number, boolean?] |
-    [Type.U16_ARRAY, ArrayLike<number>, boolean?] |
-    [Type.I32, number, boolean?] |
-    [Type.I32_ARRAY, ArrayLike<number>, boolean?] |
-    [Type.U32, number, boolean?] |
-    [Type.U32_ARRAY, ArrayLike<number>, boolean?] |
-    [Type.F32, number, boolean?] |
-    [Type.F32_ARRAY, ArrayLike<number>, boolean?] |
-    [Type.F64, number, boolean?] |
-    [Type.F64_ARRAY, ArrayLike<number>, boolean?] |
-    [Type.STR, string];
+    | [Type.I8, number]
+    | [Type.I8_ARRAY, ArrayLike<number>]
+    | [Type.U8, number]
+    | [Type.U8_ARRAY, ArrayLike<number>]
+    | [Type.I16, number, boolean?]
+    | [Type.I16_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.U16, number, boolean?]
+    | [Type.U16_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.I32, number, boolean?]
+    | [Type.I32_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.U32, number, boolean?]
+    | [Type.U32_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.F32, number, boolean?]
+    | [Type.F32_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.F64, number, boolean?]
+    | [Type.F64_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.STR, string];
 
 export interface HexDumpOpts {
     /**

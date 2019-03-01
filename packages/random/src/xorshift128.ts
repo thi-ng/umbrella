@@ -5,11 +5,11 @@ import { ARandom, ISeedable } from "./api";
 
 const DEFAULT_SEED = [0xdecafbad, 0x2fa9d75b, 0xe41f67e3, 0x5c83ec1a];
 
-export class XorShift128 extends ARandom implements
-    IBuffered<Uint32Array>,
-    ICopy<XorShift128>,
-    ISeedable<ArrayLike<number>> {
-
+export class XorShift128 extends ARandom
+    implements
+        IBuffered<Uint32Array>,
+        ICopy<XorShift128>,
+        ISeedable<ArrayLike<number>> {
     buffer: Uint32Array;
 
     constructor(seed: ArrayLike<number> = DEFAULT_SEED) {
@@ -40,6 +40,6 @@ export class XorShift128 extends ARandom implements
         s[3] = s[2];
         s[2] = s[1];
         w = s[1] = s[0];
-        return s[0] = ((t ^ w) ^ (w >>> 19)) >>> 0;
+        return (s[0] = (t ^ w ^ (w >>> 19)) >>> 0);
     }
 }

@@ -7,17 +7,15 @@ let _cachedPath: Int32Array;
 let _cachedEPC: number[] = [];
 let _cachedPathPos: number[] = [];
 
-const cachedFP =
-    (size: number) =>
-        _cachedFP && _cachedFP.length >= size ?
-            _cachedFP :
-            (_cachedFP = new Int32Array(size));
+const cachedFP = (size: number) =>
+    _cachedFP && _cachedFP.length >= size
+        ? _cachedFP
+        : (_cachedFP = new Int32Array(size));
 
-const cachedPath =
-    (size: number) =>
-        _cachedPath && _cachedPath.length >= size ?
-            _cachedPath :
-            (_cachedPath = new Int32Array(size));
+const cachedPath = (size: number) =>
+    _cachedPath && _cachedPath.length >= size
+        ? _cachedPath
+        : (_cachedPath = new Int32Array(size));
 
 const simpleDiff = <T>(
     state: ArrayDiff<T>,
@@ -30,7 +28,7 @@ const simpleDiff = <T>(
     const linear = state.linear;
     state.distance = n;
     if (mode !== DiffMode.ONLY_DISTANCE) {
-        for (let i = 0, j = 0; i < n; i++ , j += 3) {
+        for (let i = 0, j = 0; i < n; i++, j += 3) {
             linear[j] = logDir;
             linear[j + 1] = i;
             linear[j + 2] = src[i];
@@ -126,13 +124,15 @@ export const diffArray = <T>(
         return y;
     };
 
-    let p = -1, k, ko;
+    let p = -1,
+        k,
+        ko;
     do {
         p++;
-        for (k = -p, ko = k + offset; k < delta; k++ , ko++) {
+        for (k = -p, ko = k + offset; k < delta; k++, ko++) {
             fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
         }
-        for (k = delta + p, ko = k + offset; k > delta; k-- , ko--) {
+        for (k = delta + p, ko = k + offset; k > delta; k--, ko--) {
             fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
         }
         fp[doff] = snake(delta, fp[doff - 1] + 1, fp[doff + 1]);
@@ -166,7 +166,9 @@ const buildFullLog = <T>(
 ) => {
     const linear = state.linear;
     const _const = state.const;
-    let i = epc.length, px = 0, py = 0;
+    let i = epc.length,
+        px = 0,
+        py = 0;
     let adds, dels, aID, dID;
     if (reverse) {
         adds = state.dels;
@@ -179,7 +181,7 @@ const buildFullLog = <T>(
         aID = 1;
         dID = -1;
     }
-    for (; --i >= 0;) {
+    for (; --i >= 0; ) {
         const e = epc[i];
         const ppx = pathPos[e];
         const ppy = pathPos[e + 1];
@@ -187,15 +189,13 @@ const buildFullLog = <T>(
         while (px < ppx || py < ppy) {
             const dp = py - px;
             if (d > dp) {
-                linear.push(aID, py, adds[py] = b[py]);
+                linear.push(aID, py, (adds[py] = b[py]));
                 py++;
-            }
-            else if (d < dp) {
-                linear.push(dID, px, dels[px] = a[px]);
+            } else if (d < dp) {
+                linear.push(dID, px, (dels[px] = a[px]));
                 px++;
-            }
-            else {
-                linear.push(0, px, _const[px] = a[px]);
+            } else {
+                linear.push(0, px, (_const[px] = a[px]));
                 px++;
                 py++;
             }
@@ -214,8 +214,10 @@ const buildLinearLog = <T>(
     const linear = state.linear;
     const aID = reverse ? -1 : 1;
     const dID = reverse ? 1 : -1;
-    let i = epc.length, px = 0, py = 0;
-    for (; --i >= 0;) {
+    let i = epc.length,
+        px = 0,
+        py = 0;
+    for (; --i >= 0; ) {
         const e = epc[i];
         const ppx = pathPos[e];
         const ppy = pathPos[e + 1];
@@ -225,12 +227,10 @@ const buildLinearLog = <T>(
             if (d > dp) {
                 linear.push(aID, py, b[py]);
                 py++;
-            }
-            else if (d < dp) {
+            } else if (d < dp) {
                 linear.push(dID, px, a[px]);
                 px++;
-            }
-            else {
+            } else {
                 linear.push(0, px, a[px]);
                 px++;
                 py++;

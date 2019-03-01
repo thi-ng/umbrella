@@ -1,10 +1,4 @@
-import {
-    Fn,
-    ICompare,
-    IContains,
-    ICopy,
-    IEquiv
-} from "@thi.ng/api";
+import { Fn, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 
 export const enum Classifier {
@@ -13,18 +7,14 @@ export const enum Classifier {
     SUBSET,
     SUPERSET,
     OVERLAP_LEFT,
-    OVERLAP_RIGHT,
+    OVERLAP_RIGHT
 }
 
 const BRACES = "()[]";
 const RE_INF = /^([-+])?(inf(inity)?|\u221e)$/i;
 
-export class Interval implements
-    ICompare<Interval>,
-    IContains<number>,
-    ICopy<Interval>,
-    IEquiv {
-
+export class Interval
+    implements ICompare<Interval>, IContains<number>, ICopy<Interval>, IEquiv {
     /**
      * Parses given ISO 80000-2 interval notation into a new `Interval`
      * instance. In addition to the comma separator, `..` can be used
@@ -63,7 +53,11 @@ export class Interval implements
         }
         c1 = src.charAt(0);
         c2 = src.charAt(n);
-        if (BRACES.indexOf(c1) < 0 || BRACES.indexOf(c2) < 0 || !(comma || dot)) {
+        if (
+            BRACES.indexOf(c1) < 0 ||
+            BRACES.indexOf(c2) < 0 ||
+            !(comma || dot)
+        ) {
             illegalArgs(src);
         }
         [l, r] = src
@@ -73,11 +67,11 @@ export class Interval implements
                 x = x.trim();
                 const inf = RE_INF.exec(x);
                 const n =
-                    ((x === "" && i === 0) || inf && inf[1] === "-") ?
-                        -Infinity :
-                        ((x === "" && i > 0) || inf && inf[1] !== "-") ?
-                            Infinity :
-                            parseFloat(x);
+                    (x === "" && i === 0) || (inf && inf[1] === "-")
+                        ? -Infinity
+                        : (x === "" && i > 0) || (inf && inf[1] !== "-")
+                            ? Infinity
+                            : parseFloat(x);
                 if (isNaN(n)) {
                     illegalArgs(`term: '${x}'`);
                 }
@@ -88,9 +82,10 @@ export class Interval implements
             illegalArgs(`invalid interval: ${src}`);
         }
         return new Interval(
-            l, r,
+            l,
+            r,
             c1 === "(" || c1 === "]",
-            c2 === ")" || c2 === "[",
+            c2 === ")" || c2 === "["
         );
     }
 
@@ -149,22 +144,25 @@ export class Interval implements
 
     compare(i: Readonly<Interval>) {
         if (this === i) return 0;
-        return this.l < i.l ?
-            -1 :
-            this.l > i.l ?
-                1 :
-                this.r < i.r ?
-                    -1 :
-                    this.r > i.r ?
-                        1 : 0;
+        return this.l < i.l
+            ? -1
+            : this.l > i.l
+                ? 1
+                : this.r < i.r
+                    ? -1
+                    : this.r > i.r
+                        ? 1
+                        : 0;
     }
 
     equiv(i: any) {
-        return i instanceof Interval &&
+        return (
+            i instanceof Interval &&
             this.l === i.l &&
             this.r === i.r &&
             this.lopen === i.lopen &&
-            this.ropen === i.ropen;
+            this.ropen === i.ropen
+        );
     }
 
     size() {
@@ -189,7 +187,7 @@ export class Interval implements
      * @param x
      */
     isBefore(x: number) {
-        return this.lopen ? (x <= this.l) : (x < this.l);
+        return this.lopen ? x <= this.l : x < this.l;
     }
 
     /**
@@ -199,20 +197,22 @@ export class Interval implements
      * @param x
      */
     isAfter(x: number) {
-        return this.ropen ? (x >= this.r) : (x > this.r);
+        return this.ropen ? x >= this.r : x > this.r;
     }
 
     contains(x: number) {
-        return (this.lopen ? (x > this.l) : (x >= this.l)) &&
-            (this.ropen ? (x < this.r) : (x <= this.r));
+        return (
+            (this.lopen ? x > this.l : x >= this.l) &&
+            (this.ropen ? x < this.r : x <= this.r)
+        );
     }
 
     include(x: number) {
-        return this.isBefore(x) ?
-            new Interval(x, this.r, false, this.ropen) :
-            this.isAfter(x) ?
-                new Interval(this.l, x, this.lopen, false) :
-                this;
+        return this.isBefore(x)
+            ? new Interval(x, this.r, false, this.ropen)
+            : this.isAfter(x)
+                ? new Interval(this.l, x, this.lopen, false)
+                : this;
     }
 
     /**
@@ -222,11 +222,11 @@ export class Interval implements
      * @param i
      */
     distance(i: Readonly<Interval>) {
-        return this.overlaps(i) ?
-            0 :
-            this.l < i.l ?
-                i.l - this.r :
-                this.l - i.r;
+        return this.overlaps(i)
+            ? 0
+            : this.l < i.l
+                ? i.l - this.r
+                : this.l - i.r;
     }
 
     /**
@@ -237,17 +237,17 @@ export class Interval implements
      * @param i
      */
     classify(i: Readonly<Interval>) {
-        return this.isBefore(i.r) ?
-            Classifier.DISJOINT_RIGHT :
-            this.isAfter(i.l) ?
-                Classifier.DISJOINT_LEFT :
-                this.contains(i.l) ?
-                    this.contains(i.r) ?
-                        Classifier.SUPERSET :
-                        Classifier.OVERLAP_RIGHT :
-                    this.contains(i.r) ?
-                        Classifier.OVERLAP_LEFT :
-                        Classifier.SUBSET;
+        return this.isBefore(i.r)
+            ? Classifier.DISJOINT_RIGHT
+            : this.isAfter(i.l)
+                ? Classifier.DISJOINT_LEFT
+                : this.contains(i.l)
+                    ? this.contains(i.r)
+                        ? Classifier.SUPERSET
+                        : Classifier.OVERLAP_RIGHT
+                    : this.contains(i.r)
+                        ? Classifier.OVERLAP_LEFT
+                        : Classifier.SUBSET;
     }
 
     overlaps(i: Readonly<Interval>) {
@@ -291,26 +291,30 @@ export class Interval implements
     }
 
     toString() {
-        return `${this.lopen ? "(" : "["}${this.l} .. ${this.r}${this.ropen ? ")" : "]"}`;
+        return `${this.lopen ? "(" : "["}${this.l} .. ${this.r}${
+            this.ropen ? ")" : "]"
+        }`;
     }
 
     toJSON() {
         return this.toString();
     }
 
-    protected $min(a: number, b: number, ao: boolean, bo: boolean): [number, boolean] {
-        return (a < b) ?
-            [a, ao] :
-            a === b ?
-                [a, ao || bo] :
-                [b, bo];
+    protected $min(
+        a: number,
+        b: number,
+        ao: boolean,
+        bo: boolean
+    ): [number, boolean] {
+        return a < b ? [a, ao] : a === b ? [a, ao || bo] : [b, bo];
     }
 
-    protected $max(a: number, b: number, ao: boolean, bo: boolean): [number, boolean] {
-        return (a > b) ?
-            [a, ao] :
-            a === b ?
-                [a, ao || bo] :
-                [b, bo];
+    protected $max(
+        a: number,
+        b: number,
+        ao: boolean,
+        bo: boolean
+    ): [number, boolean] {
+        return a > b ? [a, ao] : a === b ? [a, ao || bo] : [b, bo];
     }
 }

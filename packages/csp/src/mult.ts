@@ -4,9 +4,7 @@ import { Transducer } from "@thi.ng/transducers";
 import { IWriteableChannel } from "./api";
 import { Channel } from "./channel";
 
-export class Mult<T> implements
-    IWriteableChannel<T> {
-
+export class Mult<T> implements IWriteableChannel<T> {
     protected static nextID = 0;
 
     protected src: Channel<any>;
@@ -105,7 +103,7 @@ export class Mult<T> implements
 
     protected async process() {
         let x;
-        while ((x = null, x = await this.src.read()) !== undefined) {
+        while (((x = null), (x = await this.src.read())) !== undefined) {
             let t = this.taps.head;
             while (t) {
                 if (!(await t.value.write(x))) {

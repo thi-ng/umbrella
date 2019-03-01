@@ -7,8 +7,8 @@ import { setC2 } from "./setc";
  * @param out
  * @param v
  */
-export const perpendicularLeft2: VecOpV =
-    (out, a) => setC2(out || a, -a[1], a[0]);
+export const perpendicularLeft2: VecOpV = (out, a) =>
+    setC2(out || a, -a[1], a[0]);
 
 /**
  * Produces a perpendicular vector to `v`, i.e. `[y,-x]`.
@@ -16,5 +16,5 @@ export const perpendicularLeft2: VecOpV =
  * @param out
  * @param v
  */
-export const perpendicularRight2: VecOpV =
-    (out, a) => setC2(out || a, a[1], -a[0]);
+export const perpendicularRight2: VecOpV = (out, a) =>
+    setC2(out || a, a[1], -a[0]);

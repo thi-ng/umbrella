@@ -23,9 +23,14 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  * @param src
  */
 export function scan<A, B>(rfn: Reducer<B, A>, init?: B): Transducer<A, B>;
-export function scan<A, B>(rfn: Reducer<B, A>, init: B, src: Iterable<A>): IterableIterator<B>;
+export function scan<A, B>(
+    rfn: Reducer<B, A>,
+    init: B,
+    src: Iterable<A>
+): IterableIterator<B>;
 export function scan<A, B>(...args: any[]): any {
-    return (args.length > 2 && $iter(scan, args, iterator)) ||
+    return (
+        (args.length > 2 && $iter(scan, args, iterator)) ||
         (([inito, completeo, reduceo]: Reducer<any, B>) => {
             const [initi, completei, reducei]: Reducer<B, A> = args[0];
             let acc: B = args.length > 1 && args[1] != null ? args[1] : initi();
@@ -47,5 +52,6 @@ export function scan<A, B>(...args: any[]): any {
                     return reduceo(_acc, acc);
                 }
             ];
-        });
+        })
+    );
 }

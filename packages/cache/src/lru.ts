@@ -2,22 +2,23 @@ import { ConsCell, DCons } from "@thi.ng/dcons";
 import { map } from "@thi.ng/transducers";
 import { CacheEntry, CacheOpts, ICache } from "./api";
 
-export class LRUCache<K, V> implements
-    ICache<K, V> {
-
+export class LRUCache<K, V> implements ICache<K, V> {
     protected map: Map<K, ConsCell<CacheEntry<K, V>>>;
     protected items: DCons<CacheEntry<K, V>>;
     protected opts: CacheOpts<K, V>;
     protected _size: number;
 
     constructor(pairs?: Iterable<[K, V]>, opts?: Partial<CacheOpts<K, V>>) {
-        const _opts = <CacheOpts<K, V>>Object.assign({
-            maxlen: Infinity,
-            maxsize: Infinity,
-            map: () => new Map<K, any>(),
-            ksize: () => 0,
-            vsize: () => 0,
-        }, opts);
+        const _opts = <CacheOpts<K, V>>Object.assign(
+            {
+                maxlen: Infinity,
+                maxsize: Infinity,
+                map: () => new Map<K, any>(),
+                ksize: () => 0,
+                vsize: () => 0
+            },
+            opts
+        );
         this.map = _opts.map();
         this.items = new DCons<CacheEntry<K, V>>();
         this._size = 0;
@@ -72,7 +73,7 @@ export class LRUCache<K, V> implements
         const release = this.opts.release;
         if (release) {
             let e;
-            while (e = this.items.drop()) {
+            while ((e = this.items.drop())) {
                 release(e.k, e.v);
             }
             return true;
@@ -108,7 +109,7 @@ export class LRUCache<K, V> implements
                 this.items.push({
                     k: key,
                     v: value,
-                    s: size,
+                    s: size
                 });
                 this.map.set(key, this.items.tail);
             }

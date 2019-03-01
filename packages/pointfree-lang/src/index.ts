@@ -2,22 +2,15 @@ import { IObjectOf } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
 
-import {
-    ALIASES,
-    ASTNode,
-    NodeType,
-    VisitorState
-} from "./api";
+import { ALIASES, ASTNode, NodeType, VisitorState } from "./api";
 import { parse, SyntaxError } from "./parser";
 
 let DEBUG = false;
 
-export const setDebug = (state: boolean) => DEBUG = state;
+export const setDebug = (state: boolean) => (DEBUG = state);
 
 const nodeLoc = (node: ASTNode) =>
-    node.loc ?
-        `line ${node.loc.join(":")} -` :
-        "";
+    node.loc ? `line ${node.loc.join(":")} -` : "";
 
 /**
  * Looks up given symbol (word name) in this order of priority:
@@ -32,7 +25,7 @@ const nodeLoc = (node: ASTNode) =>
  */
 const resolveSym = (node: ASTNode, ctx: pf.StackContext) => {
     const id = node.id;
-    let w = (ctx[2].__words[id] || ALIASES[id] || pf[id]);
+    let w = ctx[2].__words[id] || ALIASES[id] || pf[id];
     if (!w) {
         illegalArgs(`${nodeLoc(node)} unknown symbol: ${id}`);
     }
@@ -108,7 +101,10 @@ const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
 const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
     const res = {};
     for (let [k, v] of node.body) {
-        res[k.type === NodeType.SYM ? k.id : resolveNode(k, ctx)] = resolveNode(v, ctx);
+        res[k.type === NodeType.SYM ? k.id : resolveNode(k, ctx)] = resolveNode(
+            v,
+            ctx
+        );
     }
     return res;
 };
@@ -118,8 +114,9 @@ const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
  *
  * @param node
  */
-const loadvar = (node: ASTNode) => (ctx: pf.StackContext) =>
-    (ctx[0].push(resolveVar(node, ctx)), ctx);
+const loadvar = (node: ASTNode) => (ctx: pf.StackContext) => (
+    ctx[0].push(resolveVar(node, ctx)), ctx
+);
 
 /**
  * HOF word function. Pops TOS and stores value in current scope of
@@ -239,7 +236,11 @@ const visitSym = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
  * @param ctx
  * @param state
  */
-const visitDeref = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+const visitDeref = (
+    node: ASTNode,
+    ctx: pf.StackContext,
+    state: VisitorState
+) => {
     if (state.word) {
         ctx[0].push(loadvar(node));
     } else {
@@ -257,7 +258,11 @@ const visitDeref = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) =>
  * @param ctx
  * @param state
  */
-const visitStore = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+const visitStore = (
+    node: ASTNode,
+    ctx: pf.StackContext,
+    state: VisitorState
+) => {
     const id = node.id;
     if (state.word) {
         ctx[0].push(storevar(id));
@@ -281,15 +286,25 @@ const visitStore = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) =>
  * @param ctx
  * @param state
  */
-const visitWord = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+const visitWord = (
+    node: ASTNode,
+    ctx: pf.StackContext,
+    state: VisitorState
+) => {
     const id = node.id;
     if (state.word) {
-        illegalState(`${nodeLoc(node)}: can't define words inside quotations (${id})`);
+        illegalState(
+            `${nodeLoc(node)}: can't define words inside quotations (${id})`
+        );
     }
     let wctx = pf.ctx([], ctx[2]);
     state.word = true;
     if (node.locals) {
-        for (let l = node.locals, stack = wctx[0], i = l.length - 1; i >= 0; i--) {
+        for (
+            let l = node.locals, stack = wctx[0], i = l.length - 1;
+            i >= 0;
+            i--
+        ) {
             stack.push(beginvar(l[i]));
         }
     }
@@ -297,7 +312,11 @@ const visitWord = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => 
         wctx = visit(n, wctx, state);
     }
     if (node.locals) {
-        for (let l = node.locals, stack = wctx[0], i = l.length - 1; i >= 0; i--) {
+        for (
+            let l = node.locals, stack = wctx[0], i = l.length - 1;
+            i >= 0;
+            i--
+        ) {
             stack.push(endvar(l[i]));
         }
     }
@@ -305,7 +324,7 @@ const visitWord = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => 
     ctx[2].__words[id] = w;
     state.word = false;
     return ctx;
-}
+};
 
 /**
  * ARRAY visitor for arrays/quotations. If `state.word` is true, pushes
@@ -316,7 +335,11 @@ const visitWord = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => 
  * @param ctx
  * @param state
  */
-const visitArray = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+const visitArray = (
+    node: ASTNode,
+    ctx: pf.StackContext,
+    state: VisitorState
+) => {
     if (state.word) {
         ctx[0].push((_ctx) => (_ctx[0].push(resolveArray(node, _ctx)), _ctx));
     } else {
@@ -334,7 +357,11 @@ const visitArray = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) =>
  * @param ctx
  * @param state
  */
-const visitObject = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+const visitObject = (
+    node: ASTNode,
+    ctx: pf.StackContext,
+    state: VisitorState
+) => {
     if (state.word) {
         ctx[0].push((_ctx) => (_ctx[0].push(resolveObject(node, _ctx)), _ctx));
     } else {
@@ -428,7 +455,11 @@ export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
         return finalizeEnv(ctx);
     } catch (e) {
         if (e instanceof SyntaxError) {
-            throw new Error(`line ${e.location.start.line}:${e.location.start.column}: ${e.message}`);
+            throw new Error(
+                `line ${e.location.start.line}:${e.location.start.column}: ${
+                    e.message
+                }`
+            );
         } else {
             throw e;
         }
@@ -477,8 +508,12 @@ export const runWord = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
  * @param stack
  * @param n
  */
-export const runWordU = (id: string, env: pf.StackEnv, stack: pf.Stack = [], n = 1) =>
-    pf.unwrap(finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env)))), n);
+export const runWordU = (
+    id: string,
+    env: pf.StackEnv,
+    stack: pf.Stack = [],
+    n = 1
+) => pf.unwrap(finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env)))), n);
 
 /**
  * Like `runWord()`, but returns resulting env object only.
@@ -505,8 +540,4 @@ export const ffi = (env: any, words: IObjectOf<pf.StackFn>) => {
     return env;
 };
 
-export {
-    ensureStack,
-    ensureStackN,
-    unwrap,
-} from "@thi.ng/pointfree";
+export { ensureStack, ensureStackN, unwrap } from "@thi.ng/pointfree";

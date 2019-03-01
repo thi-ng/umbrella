@@ -4,10 +4,7 @@ import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import { filter, reduce, reducer } from "@thi.ng/transducers";
 
-export class DGraph<T> implements
-    Iterable<T>,
-    ICopy<DGraph<T>> {
-
+export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     dependencies: EquivMap<T, LLSet<T>>;
     dependents: EquivMap<T, LLSet<T>>;
 
@@ -90,7 +87,7 @@ export class DGraph<T> implements
     nodes(): Set<T> {
         return union(
             new LLSet<T>(this.dependencies.keys()),
-            new LLSet<T>(this.dependents.keys()),
+            new LLSet<T>(this.dependents.keys())
         );
     }
 
@@ -136,7 +133,10 @@ function transitive<T>(nodes: EquivMap<T, LLSet<T>>, x: T): LLSet<T> {
     const deps: LLSet<T> = nodes.get(x);
     if (deps) {
         return reduce(
-            reducer(null, (acc, k: T) => <LLSet<T>>union(acc, transitive(nodes, k))),
+            reducer(
+                null,
+                (acc, k: T) => <LLSet<T>>union(acc, transitive(nodes, k))
+            ),
             deps,
             deps
         );

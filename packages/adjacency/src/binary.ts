@@ -3,9 +3,7 @@ import { popCount } from "@thi.ng/binary";
 import { BitMatrix } from "@thi.ng/bitfield";
 import { IGraph } from "./api";
 
-export class AdjacencyBitMatrix implements
-    IGraph {
-
+export class AdjacencyBitMatrix implements IGraph {
     /**
      * Creates adjacency matrix with capacity `n` (max vertices) from
      * given edge pairs. Each edge is `[dest-node src-node]`.
@@ -16,7 +14,11 @@ export class AdjacencyBitMatrix implements
      * @param edges
      * @param undirected
      */
-    static fromEdges(n: number, edges: Iterable<Pair<number, number>>, undirected = false) {
+    static fromEdges(
+        n: number,
+        edges: Iterable<Pair<number, number>>,
+        undirected = false
+    ) {
         const mat = new AdjacencyBitMatrix(n, undirected);
         for (let e of edges) {
             mat.addEdge(e[0], e[1]);
@@ -36,7 +38,7 @@ export class AdjacencyBitMatrix implements
 
     *edges() {
         const directed = !this.undirected;
-        for (let i = this.mat.n; --i >= 0;) {
+        for (let i = this.mat.n; --i >= 0; ) {
             for (let n of this.neighbors(i)) {
                 if (directed || n > i) {
                     yield <Pair<number, number>>[i, n];
@@ -84,7 +86,7 @@ export class AdjacencyBitMatrix implements
         const d = this.mat.data;
         let res = 0;
         id *= s;
-        for (let i = id + s; --i >= id;) {
+        for (let i = id + s; --i >= id; ) {
             d[i] !== 0 && (res += popCount(d[i]));
         }
         return res;
@@ -111,9 +113,9 @@ export class AdjacencyBitMatrix implements
     }
 
     toDot() {
-        const [type, sep] = this.undirected ?
-            ["graph", "--"] :
-            ["digraph", "->"];
+        const [type, sep] = this.undirected
+            ? ["graph", "--"]
+            : ["digraph", "->"];
         const res = [`${type} g {`];
         for (let e of this.edges()) {
             res.push(`"${e[0]}"${sep}"${e[1]}";`);

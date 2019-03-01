@@ -7,8 +7,7 @@
  *
  * @param x u32
  */
-export const encodeGray32 = (x: number) =>
-    (x ^ (x >>> 1)) >>> 0;
+export const encodeGray32 = (x: number) => (x ^ (x >>> 1)) >>> 0;
 
 /**
  * Converts 32bit Gray code to binary / unsigned int.

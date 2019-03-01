@@ -18,7 +18,7 @@ const getNodeType = (sub: ISubscribable<any>) => {
     if (sub instanceof StreamMerge) {
         return "StreamMerge";
     }
-}
+};
 
 const dotNode = (s: Node, opts: DotOpts) => {
     let res = `s${s.id}[label="`;
@@ -31,11 +31,10 @@ const dotNode = (s: Node, opts: DotOpts) => {
         res += `\\n${s.body.replace(/"/g, `'`).replace(/\n/g, "\\n")}`;
     }
     res += `", color="`;
-    res += (s.type && opts.color[s.type.toLowerCase()]) ||
-        (s.label === "<noid>" ?
-            opts.color.noid :
-            opts.color.default);
-    return res + `"];`
+    res +=
+        (s.type && opts.color[s.type.toLowerCase()]) ||
+        (s.label === "<noid>" ? opts.color.noid : opts.color.default);
+    return res + `"];`;
 };
 
 const dotEdge = (a: Node, b: Node, _: DotOpts) => {
@@ -43,10 +42,14 @@ const dotEdge = (a: Node, b: Node, _: DotOpts) => {
     if (b.xform) {
         res += `[label="xform"]`;
     }
-    return res + ";"
+    return res + ";";
 };
 
-export const walk = (subs: ISubscribable<any>[], opts?: Partial<DotOpts>, state?: WalkState) => {
+export const walk = (
+    subs: ISubscribable<any>[],
+    opts?: Partial<DotOpts>,
+    state?: WalkState
+) => {
     opts || (opts = {});
     state || (state = { id: 0, subs: new Map(), rels: [] });
     for (let sub of subs) {
@@ -57,14 +60,16 @@ export const walk = (subs: ISubscribable<any>[], opts?: Partial<DotOpts>, state?
             label: sub.id || "<noid>",
             type: getNodeType(sub),
             xform: !!(<any>sub).xform,
-            body: opts.values && sub.deref ? JSON.stringify(sub.deref()) : undefined
+            body:
+                opts.values && sub.deref
+                    ? JSON.stringify(sub.deref())
+                    : undefined
         };
         state.subs.set(sub, desc);
         state.id++;
-        const children = (<any>sub).subs ||
-            ((<any>sub).__owner ?
-                [(<any>sub).__owner] :
-                undefined);
+        const children =
+            (<any>sub).subs ||
+            ((<any>sub).__owner ? [(<any>sub).__owner] : undefined);
         if (children) {
             walk(children, opts, state);
             for (let c of children) {
@@ -73,26 +78,31 @@ export const walk = (subs: ISubscribable<any>[], opts?: Partial<DotOpts>, state?
         }
     }
     return state;
-}
+};
 
 export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
-    opts = Object.assign({
-        dir: "LR",
-        font: "Inconsolata",
-        fontsize: 11,
-        text: "white",
-        color: {
-            default: "black",
-            noid: "gray",
-            stream: "blue",
-            streammerge: "red",
-            streamsync: "red",
-        }
-    }, opts);
+    opts = Object.assign(
+        {
+            dir: "LR",
+            font: "Inconsolata",
+            fontsize: 11,
+            text: "white",
+            color: {
+                default: "black",
+                noid: "gray",
+                stream: "blue",
+                streammerge: "red",
+                streamsync: "red"
+            }
+        },
+        opts
+    );
     return [
         "digraph g {",
         `rankdir=${opts.dir};`,
-        `node[fontname=${opts.font},fontsize=${opts.fontsize},style=filled,fontcolor=${opts.text}];`,
+        `node[fontname=${opts.font},fontsize=${
+            opts.fontsize
+        },style=filled,fontcolor=${opts.text}];`,
         `edge[fontname=${opts.font},fontsize=${opts.fontsize}];`,
         ...[...state.subs.values()].map((n) => dotNode(n, <DotOpts>opts)),
         ...state.rels.map((r) => dotEdge(r[0], r[1], <DotOpts>opts)),

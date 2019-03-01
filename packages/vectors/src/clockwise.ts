@@ -13,9 +13,12 @@ import { signedArea2 } from "./signed-area";
  * @param c
  * @param eps zero tolerance for sign computation
  */
-export const corner2 =
-    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, eps = EPS) =>
-        sign(signedArea2(a, b, c), eps);
+export const corner2 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    eps = EPS
+) => sign(signedArea2(a, b, c), eps);
 
 /**
  * Returns true, if the triangle `a`, `b`, `c` is in clockwise order,
@@ -26,6 +29,9 @@ export const corner2 =
  * @param c
  * @param eps
  */
-export const clockwise2 =
-    (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, eps = EPS) =>
-        corner2(a, b, c, eps) < 0;
+export const clockwise2 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    eps = EPS
+) => corner2(a, b, c, eps) < 0;

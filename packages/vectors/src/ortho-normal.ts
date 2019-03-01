@@ -19,8 +19,13 @@ import { Vec, ReadonlyVec } from "./api";
  * @param c
  * @param normalize
  */
-export const orthoNormal3 =
-    (out: Vec, a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec, doNormalize = true) => {
-        out = cross3(null, sub3(out || a, b, a), sub3([], c, a));
-        return doNormalize ? normalize(out, out) : out;
-    };
+export const orthoNormal3 = (
+    out: Vec,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    doNormalize = true
+) => {
+    out = cross3(null, sub3(out || a, b, a), sub3([], c, a));
+    return doNormalize ? normalize(out, out) : out;
+};

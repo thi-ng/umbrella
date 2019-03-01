@@ -8,13 +8,17 @@ export const diffObject = <T>(
     mode = DiffMode.FULL,
     _equiv: Predicate2<any> = equiv
 ): ObjectDiff<T> =>
-    a === b ?
-        { distance: 0 } :
-        mode === DiffMode.ONLY_DISTANCE ?
-            diffObjectDist(a, b, _equiv) :
-            diffObjectFull(a, b, _equiv);
+    a === b
+        ? { distance: 0 }
+        : mode === DiffMode.ONLY_DISTANCE
+            ? diffObjectDist(a, b, _equiv)
+            : diffObjectFull(a, b, _equiv);
 
-const diffObjectDist = (a: IObjectOf<any>, b: IObjectOf<any>, _equiv: Predicate2<any>) => {
+const diffObjectDist = (
+    a: IObjectOf<any>,
+    b: IObjectOf<any>,
+    _equiv: Predicate2<any>
+) => {
     let d = 0;
     for (let k in a) {
         const vb = b[k];
@@ -26,7 +30,11 @@ const diffObjectDist = (a: IObjectOf<any>, b: IObjectOf<any>, _equiv: Predicate2
     return { distance: d };
 };
 
-const diffObjectFull = (a: IObjectOf<any>, b: IObjectOf<any>, _equiv: Predicate2<any>) => {
+const diffObjectFull = (
+    a: IObjectOf<any>,
+    b: IObjectOf<any>,
+    _equiv: Predicate2<any>
+) => {
     let d = 0;
     const adds = [];
     const dels = [];

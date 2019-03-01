@@ -1,10 +1,8 @@
+import { Pair } from "@thi.ng/api";
 import { CSR } from "@thi.ng/sparse";
 import { DegreeType, IGraph } from "./api";
-import { Pair } from "@thi.ng/api";
 
-export class AdjacencyMatrix extends CSR implements
-    IGraph {
-
+export class AdjacencyMatrix extends CSR implements IGraph {
     static newEmpty(n: number, undirected = false) {
         const raw = CSR.empty(n);
         return new AdjacencyMatrix(n, raw.data, raw.rows, raw.cols, undirected);
@@ -21,7 +19,11 @@ export class AdjacencyMatrix extends CSR implements
      * @param edges
      * @param undirected
      */
-    static fromEdges(n: number, edges: Iterable<Pair<number, number>>, undirected = false) {
+    static fromEdges(
+        n: number,
+        edges: Iterable<Pair<number, number>>,
+        undirected = false
+    ) {
         const mat = AdjacencyMatrix.newEmpty(n, undirected);
         for (let e of edges) {
             mat.addEdge(e[0], e[1]);
@@ -31,7 +33,13 @@ export class AdjacencyMatrix extends CSR implements
 
     undirected: boolean;
 
-    constructor(n: number, data: number[], rows: number[], cols: number[], undirected = false) {
+    constructor(
+        n: number,
+        data: number[],
+        rows: number[],
+        cols: number[],
+        undirected = false
+    ) {
         super(n, n, data, rows, cols);
         this.undirected = undirected;
     }
@@ -93,17 +101,17 @@ export class AdjacencyMatrix extends CSR implements
         switch (deg) {
             case DegreeType.OUT:
             default:
-                for (let i = this.m; --i >= 0;) {
+                for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i));
                 }
                 break;
             case DegreeType.IN:
-                for (let i = this.m; --i >= 0;) {
+                for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzCol(i));
                 }
                 break;
             case DegreeType.BOTH:
-                for (let i = this.m; --i >= 0;) {
+                for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i) + this.nnzCol(i));
                 }
                 break;
@@ -133,7 +141,11 @@ export class AdjacencyMatrix extends CSR implements
                 if (i === j && deg.at(i, i) > 0) {
                     res.setAt(i, j, 1);
                 } else if (i !== j && this.at(i, j) > 0) {
-                    res.setAt(i, j, -1 / Math.sqrt(deg.at(i, i) * deg.at(j, j)));
+                    res.setAt(
+                        i,
+                        j,
+                        -1 / Math.sqrt(deg.at(i, i) * deg.at(j, j))
+                    );
                 }
             }
         }
@@ -149,13 +161,20 @@ export class AdjacencyMatrix extends CSR implements
     deformedLaplacian(n: number, deg?: CSR) {
         deg = deg || this.degreeMat();
         const I = CSR.identity(this.m);
-        return I.copy().sub(this.copy().mulN(n)).add(deg.copy().sub(I).mulN(n * n));
+        return I.copy()
+            .sub(this.copy().mulN(n))
+            .add(
+                deg
+                    .copy()
+                    .sub(I)
+                    .mulN(n * n)
+            );
     }
 
     toDot() {
-        const [type, sep] = this.undirected ?
-            ["graph", "--"] :
-            ["digraph", "->"];
+        const [type, sep] = this.undirected
+            ? ["graph", "--"]
+            : ["digraph", "->"];
         const res = [`${type} g {`];
         for (let e of this.edges()) {
             res.push(`"${e[0]}"${sep}"${e[1]}";`);

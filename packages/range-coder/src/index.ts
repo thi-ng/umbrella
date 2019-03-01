@@ -75,26 +75,30 @@ export const encodeBytes = (src: Uint8Array) => {
 
 export const decodeBytes = (src: Uint8Array) => {
     const freq = new Uint32Array(FREQ).fill(1);
-    const input = new BitInputStream(src)
-    const nbits = input.length
-    const out = []
-    let total = FREQ
-    let current = 0
-    let lo = 0
-    let hi = HIGH
-    let _lo = lo
-    let _hi = hi
-    let step = 0
-    let buf = input.read(INITIAL_READ)
+    const input = new BitInputStream(src);
+    const nbits = input.length;
+    const out = [];
+    let total = FREQ;
+    let current = 0;
+    let lo = 0;
+    let hi = HIGH;
+    let _lo = lo;
+    let _hi = hi;
+    let step = 0;
+    let buf = input.read(INITIAL_READ);
     let val;
 
-    const read = () => input.position < nbits ? input.readBit() : 0;
+    const read = () => (input.position < nbits ? input.readBit() : 0);
 
     while (true) {
         step = ((_hi - _lo + 1) / total) >>> 0;
         val = ((buf - _lo) / step) >>> 0;
         lo = 0;
-        for (current = 0; current < 256 && lo + freq[current] <= val; current++) {
+        for (
+            current = 0;
+            current < 256 && lo + freq[current] <= val;
+            current++
+        ) {
             lo += freq[current];
         }
         if (current === 256) break;

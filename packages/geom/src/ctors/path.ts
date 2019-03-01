@@ -13,53 +13,52 @@ import {
     Vec,
     zeroes
 } from "@thi.ng/vectors";
-import {
-    Cubic,
-    Line,
-    Path,
-    Quadratic
-} from "../api";
+import { Cubic, Line, Path, Quadratic } from "../api";
 import { asCubic } from "../ops/as-cubic";
 import { arcFrom2Points } from "./arc";
 
-export const path =
-    (segments: PathSegment[], attribs?: Attribs) =>
-        new Path(segments, attribs);
+export const path = (segments: PathSegment[], attribs?: Attribs) =>
+    new Path(segments, attribs);
 
-export const normalizedPath =
-    (path: Path) =>
-        new Path(
-            [...mapcat((s) =>
-                s.geo ?
-                    map<Cubic, PathSegment>(
-                        (c) => ({ type: SegmentType.CUBIC, geo: c }),
-                        asCubic(s.geo)
-                    ) :
-                    [{ ...s }],
+export const normalizedPath = (path: Path) =>
+    new Path(
+        [
+            ...mapcat(
+                (s) =>
+                    s.geo
+                        ? map<Cubic, PathSegment>(
+                              (c) => ({ type: SegmentType.CUBIC, geo: c }),
+                              asCubic(s.geo)
+                          )
+                        : [{ ...s }],
                 path.segments
-            )],
-            path.attribs
-        );
+            )
+        ],
+        path.attribs
+    );
 
-export const roundedRect =
-    (pos: Vec, size: Vec, r: number | Vec, attribs?: Attribs) => {
-        r = isNumber(r) ? [r, r] : r;
-        const [w, h] = maddN2([], size, r, -2);
-        return new PathBuilder(attribs)
-            .moveTo([pos[0] + r[0], pos[1]])
-            .hlineTo(w, true)
-            .arcTo(r, r, 0, false, true, true)
-            .vlineTo(h, true)
-            .arcTo([-r[0], r[1]], r, 0, false, true, true)
-            .hlineTo(-w, true)
-            .arcTo([-r[0], -r[1]], r, 0, false, true, true)
-            .vlineTo(-h, true)
-            .arcTo([r[0], -r[1]], r, 0, false, true, true)
-            .current();
-    };
+export const roundedRect = (
+    pos: Vec,
+    size: Vec,
+    r: number | Vec,
+    attribs?: Attribs
+) => {
+    r = isNumber(r) ? [r, r] : r;
+    const [w, h] = maddN2([], size, r, -2);
+    return new PathBuilder(attribs)
+        .moveTo([pos[0] + r[0], pos[1]])
+        .hlineTo(w, true)
+        .arcTo(r, r, 0, false, true, true)
+        .vlineTo(h, true)
+        .arcTo([-r[0], r[1]], r, 0, false, true, true)
+        .hlineTo(-w, true)
+        .arcTo([-r[0], -r[1]], r, 0, false, true, true)
+        .vlineTo(-h, true)
+        .arcTo([r[0], -r[1]], r, 0, false, true, true)
+        .current();
+};
 
 export class PathBuilder {
-
     paths: Path[];
     attribs: Attribs;
     protected curr: Path;
@@ -99,18 +98,15 @@ export class PathBuilder {
         set2(this.bezierP, p);
         this.curr.add({
             point: p,
-            type: SegmentType.MOVE,
+            type: SegmentType.MOVE
         });
         return this;
     }
 
     lineTo(p: Vec, relative = false): PathBuilder {
         this.curr.add({
-            geo: new Line([
-                copy(this.currP),
-                this.updateCurrent(p, relative)
-            ]),
-            type: SegmentType.LINE,
+            geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
+            type: SegmentType.LINE
         });
         set2(this.bezierP, this.currP);
         return this;
@@ -122,7 +118,7 @@ export class PathBuilder {
         set2(this.bezierP, this.currP);
         this.curr.add({
             geo: new Line([prev, copy(this.currP)]),
-            type: SegmentType.LINE,
+            type: SegmentType.LINE
         });
         return this;
     }
@@ -133,7 +129,7 @@ export class PathBuilder {
         set2(this.bezierP, this.currP);
         this.curr.add({
             geo: new Line([prev, copy(this.currP)]),
-            type: SegmentType.LINE,
+            type: SegmentType.LINE
         });
         return this;
     }
@@ -147,9 +143,9 @@ export class PathBuilder {
                 copy(this.currP),
                 this.absPoint(cp1, relative),
                 c2,
-                this.updateCurrent(p, relative),
+                this.updateCurrent(p, relative)
             ]),
-            type: SegmentType.CUBIC,
+            type: SegmentType.CUBIC
         });
         return this;
     }
@@ -162,9 +158,9 @@ export class PathBuilder {
             geo: new Quadratic([
                 copy(this.currP),
                 c1,
-                this.updateCurrent(p, relative),
+                this.updateCurrent(p, relative)
             ]),
-            type: SegmentType.QUADRATIC,
+            type: SegmentType.QUADRATIC
         });
         return this;
     }
@@ -182,9 +178,9 @@ export class PathBuilder {
                 copy(this.currP),
                 c1,
                 c2,
-                this.updateCurrent(p, relative),
+                this.updateCurrent(p, relative)
             ]),
-            type: SegmentType.CUBIC,
+            type: SegmentType.CUBIC
         });
         return this;
     }
@@ -200,14 +196,21 @@ export class PathBuilder {
             geo: new Quadratic([
                 copy(this.currP),
                 c1,
-                this.updateCurrent(p, relative),
+                this.updateCurrent(p, relative)
             ]),
-            type: SegmentType.CUBIC,
+            type: SegmentType.CUBIC
         });
         return this;
     }
 
-    arcTo(p: Vec, r: Vec, xaxis: number, xl: boolean, clockwise: boolean, relative = false) {
+    arcTo(
+        p: Vec,
+        r: Vec,
+        xaxis: number,
+        xl: boolean,
+        clockwise: boolean,
+        relative = false
+    ) {
         if (eqDelta(r[0], 0) || eqDelta(r[1], 0)) {
             return this.lineTo(p, relative);
         }
@@ -221,7 +224,7 @@ export class PathBuilder {
                 xl,
                 clockwise
             ),
-            type: SegmentType.ARC,
+            type: SegmentType.ARC
         });
         set2(this.bezierP, this.currP);
         return this;
@@ -230,7 +233,7 @@ export class PathBuilder {
     closePath() {
         this.curr.add({
             geo: new Line([copy(this.currP), copy(this.startP)]),
-            type: SegmentType.LINE,
+            type: SegmentType.LINE
         });
         this.curr.closed = true;
         return this;
@@ -246,8 +249,7 @@ export class PathBuilder {
     }
 }
 
-export const pathBuilder =
-    (attribs?: Attribs) => new PathBuilder(attribs);
+export const pathBuilder = (attribs?: Attribs) => new PathBuilder(attribs);
 
 const CMD_RE = /[achlmqstvz]/i;
 
@@ -255,7 +257,7 @@ export const pathFromSvg = (svg: string) => {
     const b = new PathBuilder();
     try {
         let cmd: string;
-        for (let n = svg.length, i = 0; i < n;) {
+        for (let n = svg.length, i = 0; i < n; ) {
             i = skipWS(svg, i);
             const c = svg.charAt(i);
             if (CMD_RE.test(c)) {
@@ -318,76 +320,76 @@ export const pathFromSvg = (svg: string) => {
                     b.closePath();
                     break;
                 default:
-                    throw new Error(`unsupported segment type: ${c} @ pos ${i}`);
+                    throw new Error(
+                        `unsupported segment type: ${c} @ pos ${i}`
+                    );
             }
         }
         return b.paths;
     } catch (e) {
-        throw e instanceof Error ? e : new Error(`illegal char '${svg.charAt(e)}' @ ${e}`);
+        throw e instanceof Error
+            ? e
+            : new Error(`illegal char '${svg.charAt(e)}' @ ${e}`);
     }
 };
 
-const readPoint =
-    (src: string, index: number): [Vec, number] => {
-        let x, y;
-        [x, index] = readFloat(src, index);
-        index = skipWS(src, index);
-        [y, index] = readFloat(src, index);
-        return [[x, y], index];
-    };
+const readPoint = (src: string, index: number): [Vec, number] => {
+    let x, y;
+    [x, index] = readFloat(src, index);
+    index = skipWS(src, index);
+    [y, index] = readFloat(src, index);
+    return [[x, y], index];
+};
 
-const isWS =
-    (c: string) => c === " " || c === "\n" || c === "\r" || c === "\t";
+const isWS = (c: string) => c === " " || c === "\n" || c === "\r" || c === "\t";
 
-const skipWS =
-    (src: string, i: number) => {
-        const n = src.length;
-        while (i < n && isWS(src.charAt(i))) i++;
-        return i;
-    };
+const skipWS = (src: string, i: number) => {
+    const n = src.length;
+    while (i < n && isWS(src.charAt(i))) i++;
+    return i;
+};
 
-const readFloat =
-    (src: string, index: number) => {
-        index = skipWS(src, index);
-        let signOk = true;
-        let dotOk = true;
-        let expOk = false;
-        let commaOk = false;
-        let i = index;
-        for (let n = src.length; i < n; i++) {
-            const c = src.charAt(i);
-            // console.log("float", src.substring(index, i + 1));
-            if ("0" <= c && c <= "9") {
-                expOk = true;
-                commaOk = true;
-                signOk = false;
-                continue;
-            }
-            if (c === "-" || c === "+") {
-                if (!signOk) break;
-                signOk = false;
-                continue;
-            }
-            if (c === ".") {
-                if (!dotOk) break;
-                dotOk = false;
-                continue;
-            }
-            if (c === "e") {
-                if (!expOk) throw i;
-                expOk = false;
-                dotOk = false;
-                signOk = true;
-                continue;
-            }
-            if (c === ",") {
-                if (!commaOk) throw i;
-                i++;
-            }
-            break;
+const readFloat = (src: string, index: number) => {
+    index = skipWS(src, index);
+    let signOk = true;
+    let dotOk = true;
+    let expOk = false;
+    let commaOk = false;
+    let i = index;
+    for (let n = src.length; i < n; i++) {
+        const c = src.charAt(i);
+        // console.log("float", src.substring(index, i + 1));
+        if ("0" <= c && c <= "9") {
+            expOk = true;
+            commaOk = true;
+            signOk = false;
+            continue;
         }
-        if (i === index) {
-            throw new Error(`expected coordinate @ pos: ${i}`);
+        if (c === "-" || c === "+") {
+            if (!signOk) break;
+            signOk = false;
+            continue;
         }
-        return [parseFloat(src.substring(index, i)), i];
-    };
+        if (c === ".") {
+            if (!dotOk) break;
+            dotOk = false;
+            continue;
+        }
+        if (c === "e") {
+            if (!expOk) throw i;
+            expOk = false;
+            dotOk = false;
+            signOk = true;
+            continue;
+        }
+        if (c === ",") {
+            if (!commaOk) throw i;
+            i++;
+        }
+        break;
+    }
+    if (i === index) {
+        throw new Error(`expected coordinate @ pos: ${i}`);
+    }
+    return [parseFloat(src.substring(index, i)), i];
+};

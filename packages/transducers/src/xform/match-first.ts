@@ -35,9 +35,12 @@ import { take } from "./take";
  * @param pred predicate function
  */
 export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T>;
-export function matchFirst<T>(pred: Predicate<T>, src: Iterable<T>): T | undefined;
+export function matchFirst<T>(
+    pred: Predicate<T>,
+    src: Iterable<T>
+): T | undefined;
 export function matchFirst<T>(pred: Predicate<T>, src?: Iterable<T>): any {
-    return src ?
-        [...iterator1(matchFirst(pred), src)][0] :
-        comp(filter(pred), take(1));
+    return src
+        ? [...iterator1(matchFirst(pred), src)][0]
+        : comp(filter(pred), take(1));
 }

@@ -8,7 +8,7 @@ export const enum SegmentType {
     ARC,
     CUBIC,
     QUADRATIC,
-    CLOSE,
+    CLOSE
 }
 
 export interface PathSegment {

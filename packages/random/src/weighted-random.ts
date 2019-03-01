@@ -17,13 +17,18 @@ export const weightedRandom = <T>(
     weights?: ArrayLike<number>,
     rnd: IRandom = SYSTEM
 ) => {
-    const opts = choices.map(
-        weights ?
-            (x, i) => <[T, number]>[x, weights[i]] :
-            (x) => <[T, number]>[x, 1]
-    ).sort((a, b) => b[1] - a[1]);
+    const opts = choices
+        .map(
+            weights
+                ? (x, i) => <[T, number]>[x, weights[i]]
+                : (x) => <[T, number]>[x, 1]
+        )
+        .sort((a, b) => b[1] - a[1]);
     const n = choices.length;
-    let total = 0, i: number, r: number, sum: number;
+    let total = 0,
+        i: number,
+        r: number,
+        sum: number;
     for (i = 0; i < n; i++) {
         total += opts[i][1];
     }

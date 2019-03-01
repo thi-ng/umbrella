@@ -1,11 +1,5 @@
 import { cossin, fit01 } from "@thi.ng/math";
-import {
-    add2,
-    mul2,
-    ReadonlyVec,
-    rotateZ,
-    Vec
-} from "@thi.ng/vectors";
+import { add2, mul2, ReadonlyVec, rotateZ, Vec } from "@thi.ng/vectors";
 
 export const pointAt = (
     pos: ReadonlyVec,
@@ -15,8 +9,7 @@ export const pointAt = (
     end: number,
     t: number,
     out: Vec = []
-) =>
-    pointAtTheta(pos, r, axis, fit01(t, start, end), out);
+) => pointAtTheta(pos, r, axis, fit01(t, start, end), out);
 
 export const pointAtTheta = (
     pos: ReadonlyVec,
@@ -24,5 +17,4 @@ export const pointAtTheta = (
     axis: number,
     theta: number,
     out: Vec = []
-) =>
-    add2(null, rotateZ(null, mul2(out, cossin(theta), r), axis), pos);
+) => add2(null, rotateZ(null, mul2(out, cossin(theta), r), axis), pos);

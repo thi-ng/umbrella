@@ -21,7 +21,7 @@ export const binarySearch = <A, B>(
     buf: ArrayLike<A>,
     x: A,
     key: Fn<A, B> = (x) => <any>x,
-    cmp: Comparator<B> = compare,
+    cmp: Comparator<B> = compare
 ) => {
     const kx = key(x);
     let low = 0;
