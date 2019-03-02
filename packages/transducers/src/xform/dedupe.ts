@@ -20,7 +20,10 @@ export function dedupe<T>(...args: any[]): any {
                 rfn,
                 equiv
                     ? (acc, x: T) => {
-                          acc = equiv(prev, x) ? acc : r(acc, x);
+                          acc =
+                              prev !== SEMAPHORE && equiv(prev, x)
+                                  ? acc
+                                  : r(acc, x);
                           prev = x;
                           return acc;
                       }
