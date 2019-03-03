@@ -51,6 +51,7 @@ export * from "./floor";
 export * from "./fract";
 export * from "./gvec";
 export * from "./heading";
+export * from "./heading-segment";
 export * from "./homogeneous";
 export * from "./invert";
 export * from "./invsqrt";
