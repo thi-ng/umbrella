@@ -340,8 +340,8 @@ Returns a new `StreamMerge` instance, a subscription type consuming
 inputs from multiple inputs and passing received values on to any
 subscribers. Input streams can be added and removed dynamically. By
 default, `StreamMerge` calls `done()` when the last active input is
-done, but this behavior can be overridden via the `close` option (set it
-to `false`).
+done, but this behavior can be overridden via the `close` option, using
+`CloseMode` enums.
 
 ```ts
 merge({
@@ -436,7 +436,7 @@ can choose from two possible behaviors:
 
 Any done inputs are automatically removed. By default, `StreamSync`
 calls `done()` when the last active input is done, but this behavior can
-be overridden via the `close` constructor option (set to `false`).
+be overridden via the `close` constructor option, using `CloseMode` enums.
 
 ```ts
 const a = rs.stream();
@@ -600,6 +600,7 @@ Create value stream from worker messages.
 -   [resolve](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
 -   [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
 -   [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
+-   [tween](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/tween.ts) - stream interpolation
 
 ## Authors
 
