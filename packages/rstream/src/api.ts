@@ -59,4 +59,4 @@ export interface IStream<T> extends ISubscriber<T> {
 export type StreamCancel = () => void;
 export type StreamSource<T> = (sub: Stream<T>) => StreamCancel;
 
-export let DEBUG = true;
+export let DEBUG = false;
