@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.1.0...@thi.ng/rstream@2.2.0) (2019-03-03)
+
+
+### Bug Fixes
+
+* **rstream:** update MetaStream unsub handling ([b2e6e6f](https://github.com/thi-ng/umbrella/commit/b2e6e6f))
+
+
+### Features
+
+* **rstream:** add CloseMode enum, update StreamMerge, StreamSync & opts ([f0d53b4](https://github.com/thi-ng/umbrella/commit/f0d53b4))
+* **rstream:** add tween() stream operator ([c74a2d0](https://github.com/thi-ng/umbrella/commit/c74a2d0))
+
+
+
+
+
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.6...@thi.ng/rstream@2.1.0) (2019-03-01)
 
 

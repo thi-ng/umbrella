@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.3.2...@thi.ng/vectors@2.4.0) (2019-03-03)
+
+
+### Features
+
+* **vectors:** add headingSegment*() fns, update readme ([6ab6858](https://github.com/thi-ng/umbrella/commit/6ab6858))
+
+
+
+
+
 ## [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.3.1...@thi.ng/vectors@2.3.2) (2019-03-01)
 
 **Note:** Version bump only for package @thi.ng/vectors
