@@ -7,8 +7,9 @@ import {
     partitionSync,
     Transducer
 } from "@thi.ng/transducers";
-import { ISubscribable, State } from "./api";
+import { CloseMode, ISubscribable, State } from "./api";
 import { Subscription } from "./subscription";
+import { closeMode } from "./utils/close";
 import { nextID } from "./utils/idgen";
 
 export interface StreamSyncOpts<A, B> extends IID<string> {
@@ -43,9 +44,13 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
      */
     all: boolean;
     /**
-     * If false, StreamSync stays active even if all inputs are done.
+     * If false or `CloseMode.NEVER`, StreamSync stays active even if
+     * all inputs are done. If true (default) or `CloseMode.LAST`, the
+     * StreamSync closes when the last input is done. If
+     * `CloseMode.FIRST`, the instance closes when the first input is
+     * done.
      */
-    close: boolean;
+    close: boolean | CloseMode;
 }
 
 /**
@@ -68,8 +73,7 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  *
  * Any done inputs are automatically removed. By default, `StreamSync`
  * calls `done()` when the last active input is done, but this behavior
- * can be overridden via the `close` constructor option (set to
- * `false`).
+ * can be overridden via the `close` constructor option.
  *
  * ```ts
  * const a = rs.stream();
@@ -91,6 +95,10 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * The synchronization is done via the `partitionSync()` transducer from
  * the @thi.ng/transducers package. See this function's docs for further
  * details.
+ *
+ * @see StreamSyncOpts
+ *
+ * @param opts
  */
 export const sync = <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
     new StreamSync(opts);
@@ -117,7 +125,10 @@ export class StreamSync<A, B> extends Subscription<A, B> {
      * these IDs are used to label inputs in result tuple
      */
     sourceIDs: Set<string>;
-    autoClose: boolean;
+    /**
+     * closing behavior
+     */
+    closeMode: CloseMode;
 
     constructor(opts: Partial<StreamSyncOpts<A, B>>) {
         let srcIDs = new Set<string>();
@@ -139,7 +150,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         this.invRealSourceIDs = new Map();
         this.idSources = new Map();
         this.sourceIDs = srcIDs;
-        this.autoClose = opts.close !== false;
+        this.closeMode = closeMode(opts.close);
         if (opts.src) {
             this.addAll(opts.src);
         }
@@ -263,7 +274,10 @@ export class StreamSync<A, B> extends Subscription<A, B> {
 
     protected markDone(src: ISubscribable<A>) {
         this.remove(src);
-        if (this.autoClose && !this.sources.size) {
+        if (
+            this.closeMode === CloseMode.FIRST ||
+            (this.closeMode === CloseMode.LAST && !this.sources.size)
+        ) {
             this.done();
         }
     }

@@ -12,6 +12,15 @@ export const enum State {
 }
 
 /**
+ * Closing behavior for `StreamMerge` and `StreamSync`.
+ */
+export const enum CloseMode {
+    NEVER,
+    FIRST,
+    LAST
+}
+
+/**
  * Reverse lookup for `State` enums
  */
 // export const __State = (<any>exports).State;
@@ -50,4 +59,4 @@ export interface IStream<T> extends ISubscriber<T> {
 export type StreamCancel = () => void;
 export type StreamSource<T> = (sub: Stream<T>) => StreamCancel;
 
-export let DEBUG = false;
+export let DEBUG = true;
