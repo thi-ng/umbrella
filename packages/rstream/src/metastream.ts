@@ -1,4 +1,5 @@
 import { Fn } from "@thi.ng/api";
+import { State } from "./api";
 import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
 
@@ -86,34 +87,47 @@ export class MetaStream<A, B> extends Subscription<A, B> {
     }
 
     next(x: A) {
-        if (this.stream) {
-            this.stream.unsubscribe(this.sub);
-        }
-        let stream = this.factory(x);
-        if (stream) {
-            this.stream = stream;
-            this.sub = this.stream.subscribe({
-                next: (x) => {
-                    stream === this.stream && super.dispatch(x);
-                },
-                done: () => {
-                    this.stream.unsubscribe(this.sub);
-                    if (stream === this.stream) {
-                        this.stream = null;
-                        this.sub = null;
-                    }
-                },
-                error: (e) => super.error(e)
-            });
+        if (this.state < State.DONE) {
+            if (this.stream) {
+                this.stream.unsubscribe(this.sub);
+            }
+            let stream = this.factory(x);
+            if (stream) {
+                this.stream = stream;
+                this.sub = this.stream.subscribe({
+                    next: (x) => {
+                        stream === this.stream && super.dispatch(x);
+                    },
+                    done: () => {
+                        this.stream.unsubscribe(this.sub);
+                        if (stream === this.stream) {
+                            this.stream = null;
+                            this.sub = null;
+                        }
+                    },
+                    error: (e) => super.error(e)
+                });
+            }
         }
     }
 
     done() {
         if (this.stream) {
-            this.stream.unsubscribe(this.sub);
-            delete this.stream;
-            delete this.sub;
+            this.detach();
         }
         super.done();
+    }
+
+    unsubscribe(sub?: Subscription<B, any>) {
+        if (this.stream && (!sub || this.subs.length === 1)) {
+            this.detach();
+        }
+        return super.unsubscribe();
+    }
+
+    protected detach() {
+        this.stream.unsubscribe(this.sub);
+        delete this.stream;
+        delete this.sub;
     }
 }
