@@ -9,19 +9,20 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
-- [About](#about)
-- [Installation](#installation)
-- [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
-    - [Streaming hexdump](#streaming-hexdump)
-    - [Structured byte buffer construction](#structured-byte-buffer-construction)
-    - [Bitstream](#bitstream)
-    - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
-- [API](#api)
-    - [Transducers](#transducers)
-    - [Reducers](#reducers)
-- [Authors](#authors)
-- [License](#license)
+-   [About](#about)
+-   [Installation](#installation)
+-   [Dependencies](#dependencies)
+-   [Usage examples](#usage-examples)
+    -   [Random bits](#random-bits)
+    -   [Streaming hexdump](#streaming-hexdump)
+    -   [Structured byte buffer construction](#structured-byte-buffer-construction)
+    -   [Bitstream](#bitstream)
+    -   [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
+-   [API](#api)
+    -   [Transducers](#transducers)
+    -   [Reducers](#reducers)
+-   [Authors](#authors)
+-   [License](#license)
 
 <!-- /TOC -->
 
@@ -41,14 +42,32 @@ yarn add @thi.ng/transducers-binary
 
 ## Dependencies
 
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+-   [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
+-   [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
 ```ts
 import * as tx from "@thi.ng/transducers";
 import * as txb from "@thi.ng/transducers-binary";
+```
+
+### Random bits
+
+```ts
+// 10 samples with 50% probability of drawing a 1
+[...txb.randomBits(0.5, 10)]
+// [ 1, 0, 1, 1, 0, 1, 0, 1, 1, 0 ]
+
+// infinite iterator without 2nd arg, so limit with `take()`
+[...tx.take(10, txb.randomBits(0.1))]
+// [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ]
+
+import { Smush32 } from "@thi.ng/random";
+
+// with seeded PRNG
+[...txb.randomBits(0.5, 10, new Smush32(12345678))]
+// [ 0, 0, 1, 1, 0, 0, 0, 0, 1, 0 ]
 ```
 
 ### Streaming hexdump
@@ -102,21 +121,21 @@ console.log(tx.str("\n", txb.hexDump({}, bytes)));
 Decompose / transform a stream of fixed size words into their bits:
 
 ```ts
-[...txb.bits(8, [0xf0, 0xaa])]
+[...txb.bits(8, [0xf0, 0xaa])];
 // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
 
 console.log(
     tx.transduce(
         tx.comp(
             txb.bits(8),
-            tx.map((x) => x ? "#" : "."),
+            tx.map((x) => (x ? "#" : ".")),
             tx.partition(8),
             tx.map((x) => x.join(""))
         ),
         tx.str("\n"),
-        [ 0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00 ]
+        [0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00]
     )
-)
+);
 // ........
 // ...##...
 // ..####..
@@ -134,8 +153,8 @@ example](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font),
 ```ts
 // font lookup table
 const chars = {
-    a: [ 0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00 ],
-    b: [ 0x00, 0x7c, 0x66, 0x7c, 0x66, 0x66, 0x7c, 0x00 ]
+    a: [0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00],
+    b: [0x00, 0x7c, 0x66, 0x7c, 0x66, 0x66, 0x7c, 0x00]
 };
 
 // re-usable transducer
@@ -146,7 +165,7 @@ const xfChar = (i) =>
     tx.comp(
         tx.pluck(i),
         txb.bits(8),
-        tx.map((x) => x ? "#" : "."),
+        tx.map((x) => (x ? "#" : ".")),
         tx.partition(8),
         xfJoin
     );
@@ -164,10 +183,10 @@ const banner = (src) =>
         // use `str()` reducer to build string result
         tx.str("\n"),
         // convert input string into stream of row-major bitmap font tuples
-        tx.zip(...tx.map(x => chars[x], src))
+        tx.zip(...tx.map((x) => chars[x], src))
     );
 
-console.log(banner("abba"))
+console.log(banner("abba"));
 // ................................
 // ...##....#####...#####.....##...
 // ..####...##..##..##..##...####..
@@ -188,23 +207,23 @@ back.
 // here we first add an offset (0x80) to allow negative values to be encoded
 // (URL safe results can be produced via opt arg to `base64Encode`)
 enc = tx.transduce(
-    tx.comp(
-        tx.map(x => x + 0x80),
-        txb.base64Encode()
-    ),
+    tx.comp(tx.map((x) => x + 0x80), txb.base64Encode()),
     tx.str(),
     tx.range(-8, 8)
 );
 // "eHl6e3x9fn+AgYKDhIWGhw=="
 
 // remove offset again during decoding, but (for example) only decode while val < 0
-[...tx.iterator(
-    tx.comp(
-        txb.base64Decode(),
-        tx.map(x => x - 0x80),
-        tx.takeWhile(x=> x < 0)
-    ),
-    enc)]
+[
+    ...tx.iterator(
+        tx.comp(
+            txb.base64Decode(),
+            tx.map((x) => x - 0x80),
+            tx.takeWhile((x) => x < 0)
+        ),
+        enc
+    )
+];
 // [ -8, -7, -6, -5, -4, -3, -2, -1 ]
 
 buf = tx.transduce(
@@ -214,7 +233,7 @@ buf = tx.transduce(
 );
 // "YmVlciAo8J+Nuikgb3IgaG90IGJldmVyYWdlICjimJXvuI4p"
 
-tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf)
+tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
 // "beer (🍺) or hot beverage (☕️)"
 ```
 
@@ -222,21 +241,21 @@ tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf)
 
 ### Transducers
 
-- [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
-- [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
-- [bits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bits.ts)
-- [hexDump](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts)
-- [partitionBits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/partition-bits.ts)
-- [utf8Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
-- [utf8Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
+-   [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
+-   [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
+-   [bits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bits.ts)
+-   [hexDump](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts)
+-   [partitionBits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/partition-bits.ts)
+-   [utf8Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
+-   [utf8Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
 
 ### Reducers
 
-- [bytes](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
+-   [bytes](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
 
 ## Authors
 
-- Karsten Schmidt
+-   Karsten Schmidt
 
 ## License
 
