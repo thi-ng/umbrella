@@ -50,6 +50,11 @@ There's a steadily growing number (40+) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [examples](./examples) directory.
 
+## Blog posts
+
+- [How to UI in 2018](https://medium.com/@thi.ng/how-to-ui-in-2018-ac2ae02acdf3)
+- [Of umbrellas, transducers, reactive streams & mushrooms (Part 1)](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170)
+
 ## Projects
 
 ### Fundamentals
