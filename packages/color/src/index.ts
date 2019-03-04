@@ -45,6 +45,7 @@ export * from "./closest-hue";
 export * from "./cosine-gradients";
 export * from "./invert";
 export * from "./luminance";
+export * from "./luminance-rgb";
 export * from "./mix";
 export * from "./porter-duff";
 export * from "./premultiply";
