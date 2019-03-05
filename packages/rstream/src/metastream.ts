@@ -105,7 +105,8 @@ export class MetaStream<A, B> extends Subscription<A, B> {
                             this.sub = null;
                         }
                     },
-                    error: (e) => super.error(e)
+                    error: (e) => super.error(e),
+                    __owner: this
                 });
             }
         }

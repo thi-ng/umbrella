@@ -31,7 +31,11 @@ export interface ISubscriber<T> {
     next: (x: T) => void;
     error?: (e: any) => void;
     done?: () => void;
-    [id: string]: any;
+    /**
+     * Internal use only. Do not use.
+     */
+    __owner?: ISubscribable<any>;
+    // [id: string]: any;
 }
 
 export interface ISubscribable<T> extends IDeref<T>, IID<string> {
