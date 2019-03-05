@@ -13,5 +13,9 @@ import { repeatedly } from "@thi.ng/transducers";
  * @param num
  * @param rnd
  */
-export const randomBits = (prob: number, num?: number, rnd: IRandom = SYSTEM) =>
+export const randomBits = (
+    prob: number,
+    num?: number,
+    rnd: IRandom = SYSTEM
+): IterableIterator<number> =>
     repeatedly(() => (rnd.float() < prob ? 1 : 0), num);
