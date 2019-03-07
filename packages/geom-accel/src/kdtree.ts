@@ -94,17 +94,17 @@ export class KdTree<K extends ReadonlyVec, V>
         const search = (
             node: KdNode<K, V>,
             parent: KdNode<K, V>
-        ): KdNode<K, V> | false =>
+        ): KdNode<K, V> =>
             node
-                ? distSq(p, node.k) > eps
-                    ? search(p[node.d] < node.k[node.d] ? node.l : node.r, node)
-                    : false
+                ? search(p[node.d] < node.k[node.d] ? node.l : node.r, node)
                 : parent;
-        const parent = search(this.root, null);
-        if (parent === false) return false;
-        if (parent == null) {
-            this.root = new KdNode<K, V>(null, 0, p, v);
-        } else {
+        let parent: KdNode<K, V>;
+        if (this.root) {
+            parent = nearest1(p, [eps * eps, null], [], this.dim, this.root)[1];
+            if (parent) {
+                return false;
+            }
+            parent = search(this.root, null);
             const dim = parent.d;
             parent[p[dim] < parent.k[dim] ? "l" : "r"] = new KdNode<K, V>(
                 parent,
@@ -112,6 +112,8 @@ export class KdTree<K extends ReadonlyVec, V>
                 p,
                 v
             );
+        } else {
+            this.root = new KdNode<K, V>(null, 0, p, v);
         }
         this._length++;
         return true;
@@ -160,7 +162,7 @@ export class KdTree<K extends ReadonlyVec, V>
         if (maxNum === 1) {
             const sel = nearest1(
                 q,
-                [maxDist != null ? maxDist : Infinity, null],
+                [maxDist != null ? maxDist * maxDist : Infinity, null],
                 [],
                 this.dim,
                 this.root
@@ -182,7 +184,7 @@ export class KdTree<K extends ReadonlyVec, V>
         if (maxNum === 1) {
             const sel = nearest1(
                 q,
-                [maxDist != null ? maxDist : Infinity, null],
+                [maxDist != null ? maxDist * maxDist : Infinity, null],
                 [],
                 this.dim,
                 this.root
@@ -204,7 +206,7 @@ export class KdTree<K extends ReadonlyVec, V>
         if (maxNum === 1) {
             const sel = nearest1(
                 q,
-                [maxDist != null ? maxDist : Infinity, null],
+                [maxDist != null ? maxDist * maxDist : Infinity, null],
                 [],
                 this.dim,
                 this.root
@@ -363,10 +365,10 @@ const nearest = <K extends ReadonlyVec, V>(
     let best = !node.r
         ? node.l
         : !node.l
-            ? node.r
-            : q[ndim] < p[ndim]
-                ? node.l
-                : node.r;
+        ? node.r
+        : q[ndim] < p[ndim]
+        ? node.l
+        : node.r;
     nearest(q, acc, tmp, dims, maxNum, best);
     if (!acc.length || ndist < acc.peek()[0]) {
         if (acc.length >= maxNum) {
@@ -413,10 +415,10 @@ const nearest1 = <K extends ReadonlyVec, V>(
     let best = !node.r
         ? node.l
         : !node.l
-            ? node.r
-            : q[ndim] < p[ndim]
-                ? node.l
-                : node.r;
+        ? node.r
+        : q[ndim] < p[ndim]
+        ? node.l
+        : node.r;
     nearest1(q, acc, tmp, dims, best);
     if (ndist < acc[0]) {
         acc[0] = ndist;
