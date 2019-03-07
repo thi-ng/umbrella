@@ -1,4 +1,4 @@
-import { ICompare, Pair } from "@thi.ng/api";
+import { Fn3, ICompare, Pair } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 import { IReducible, map, ReductionFn } from "@thi.ng/transducers";
 import { IEquivSet, SortedSetOpts } from "./api";
@@ -148,7 +148,7 @@ export class SortedSet<T> extends Set<T>
         return this;
     }
 
-    forEach(fn: (val: T, val2: T, set: Set<T>) => void, thisArg?: any): void {
+    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any): void {
         for (let p of this) {
             fn.call(thisArg, p[0], p[0], this);
         }

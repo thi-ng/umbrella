@@ -1,3 +1,4 @@
+import { Fn2, Fn3 } from "@thi.ng/api";
 import { setC4, setN4 } from "@thi.ng/vectors";
 import { Color, ReadonlyColor } from "./api";
 import { postmultiply, premultiply } from "./premultiply";
@@ -24,7 +25,7 @@ import { postmultiply, premultiply } from "./premultiply";
  * @param z factor of "dest" region
  */
 export const porterDuff = (
-    f: (s: number, d: number) => number,
+    f: Fn2<number, number, number>,
     x: 0 | 1,
     y: 0 | 1,
     z: 0 | 1
@@ -36,9 +37,9 @@ export const porterDuff = (
             : (s: number, d: number, sda: number, sy: number) =>
                   f(s, d) * sda + s * sy
         : z
-            ? (s: number, d: number, sda: number, _, sz: number) =>
-                  f(s, d) * sda + d * sz
-            : (s: number, d: number, sda: number) => f(s, d) * sda;
+        ? (s: number, d: number, sda: number, _, sz: number) =>
+              f(s, d) * sda + d * sz
+        : (s: number, d: number, sda: number) => f(s, d) * sda;
     return (out: Color, src: ReadonlyColor, dest: ReadonlyColor) => {
         const sa = src[3];
         const da = dest[3];
@@ -68,7 +69,7 @@ export const porterDuffP = (
     out: Color,
     src: ReadonlyColor,
     dest: ReadonlyColor,
-    mode: (out: Color, src: ReadonlyColor, dest: ReadonlyColor) => Color
+    mode: Fn3<Color, ReadonlyColor, ReadonlyColor, Color>
 ) =>
     postmultiply(
         null,

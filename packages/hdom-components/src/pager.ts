@@ -26,36 +26,36 @@ export interface PagerOpts {
      * one-based. The currently active page ID is only provided for
      * special highlighting cases (optional).
      */
-    button: (
+    button(
         page: number,
         curr: number,
         max: number,
         label: any,
         disabled: boolean
-    ) => any;
+    ): any;
     /**
      * Pager root component function. Receives all 3 button groups as
      * arguments. Optional. Default: `["div.pager", ...body]`
      */
-    root: (ctx: any, ...body: any[]) => any;
+    root(ctx: any, ...body: any[]): any;
     /**
      * Component function to provide wrapper for the first / prev nav
      * button group. The `first` / `prev` args are button components.
      * Optional. Default: `["div.pager-prev", first, prev]`
      */
-    groupPrev: (ctx: any, first: any, prev: any) => any;
+    groupPrev(ctx: any, first: any, prev: any): any;
     /**
      * Component function to provide wrapper for the page buttons group.
      * The `buttons` argument is an array of button components.
      * Optional. Default: `["div.pager-pages", ...buttons]`
      */
-    groupPages: (ctx: any, buttons: any[]) => any;
+    groupPages(ctx: any, buttons: any[]): any;
     /**
      * Component function to provide wrapper for the next / last nav
      * button group. The `next` /  `last` args are button components.
      * Optional. Default: `["div.pager-next", next, last]`
      */
-    groupNext: (ctx: any, next: any, last: any) => any;
+    groupNext(ctx: any, next: any, last: any): any;
     /**
      * Page increment for prev / next page buttons. Default: 1
      */

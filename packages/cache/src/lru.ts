@@ -1,3 +1,4 @@
+import { Fn0 } from "@thi.ng/api";
 import { ConsCell, DCons } from "@thi.ng/dcons";
 import { map } from "@thi.ng/transducers";
 import { CacheEntry, CacheOpts, ICache } from "./api";
@@ -124,7 +125,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
         return this;
     }
 
-    getSet(key: K, retrieve: () => Promise<V>): Promise<V> {
+    getSet(key: K, retrieve: Fn0<Promise<V>>): Promise<V> {
         const e = this.map.get(key);
         if (e) {
             return Promise.resolve(this.resetEntry(e));

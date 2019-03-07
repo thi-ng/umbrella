@@ -1,5 +1,6 @@
 import {
     Comparator,
+    Fn,
     ICompare,
     ICopy,
     IEmpty,
@@ -437,7 +438,7 @@ export class DCons<T>
         }
     }
 
-    map<R>(fn: (x: T) => R) {
+    map<R>(fn: Fn<T, R>) {
         const res = new DCons<R>();
         let cell = this.head;
         while (cell) {
@@ -457,12 +458,12 @@ export class DCons<T>
         return res;
     }
 
-    reduce<R>(rfn: (acc: R, x: T) => R, initial: R) {
+    reduce<R>(rfn: ReductionFn<R, T>, initial: R) {
         let acc: R = initial;
         let cell = this.head;
         while (cell) {
             // TODO add early termination support
-            acc = rfn(acc, cell.value);
+            acc = <R>rfn(acc, cell.value);
             cell = cell.next;
         }
         return acc;
@@ -529,8 +530,8 @@ export class DCons<T>
                 cell.value != null
                     ? cell.value.toString()
                     : cell.value === undefined
-                        ? "undefined"
-                        : "null"
+                    ? "undefined"
+                    : "null"
             );
             cell = cell.next;
         }

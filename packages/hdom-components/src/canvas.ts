@@ -20,28 +20,23 @@ export interface CanvasHandlers<T extends CanvasContext> {
     /**
      * user init handler (called only once when canvas first)
      */
-    init: (el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]) => void;
+    init(el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]): void;
     /**
      * update handler (called for each hdom update iteration)
      */
-    update: (
+    update(
         el: HTMLCanvasElement,
         ctx: T,
         hctx?: any,
         time?: number,
         frame?: number,
         ...args: any[]
-    ) => void;
+    ): void;
     /**
      * release handler (called only once when canvas element is removed
      * from DOM)
      */
-    release: (
-        el: HTMLCanvasElement,
-        ctx: T,
-        hctx?: any,
-        ...args: any[]
-    ) => void;
+    release(el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]): void;
 }
 
 /**
@@ -92,7 +87,7 @@ const _canvas = (
  *
  * ```
  * const glcanvas = canvasWebGL({
- *   render: (canv, gl, hctx, time, frame, ...args) => {
+ *   render(canv, gl, hctx, time, frame, ...args) {
  *     const col = 0.5 + 0.5 * Math.sin(time);
  *     gl.clearColor(col, col, col, 1);
  *   }

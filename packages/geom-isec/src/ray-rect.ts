@@ -1,3 +1,4 @@
+import { Fn4 } from "@thi.ng/api";
 import { IntersectionType } from "@thi.ng/geom-api";
 import { maddN, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
@@ -29,7 +30,7 @@ const rayRect = (
     (p = rpos[1]), (d = 1 / dir[1]);
     t1 = (bmin[1] - p) * d;
     t2 = (bmax[1] - p) * d;
-    return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
+    return <[number, number]>[max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
 /**
@@ -60,16 +61,17 @@ const rayBox = (
     t2 = (bmax[2] - p) * d;
     tmin = max(tmin, min(t1, t2));
     tmax = min(tmax, max(t1, t2));
-    return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
+    return <[number, number]>[max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
 const intersectWith = (
-    fn: (
-        a: ReadonlyVec,
-        b: ReadonlyVec,
-        c: ReadonlyVec,
-        d: ReadonlyVec
-    ) => number[]
+    fn: Fn4<
+        ReadonlyVec,
+        ReadonlyVec,
+        ReadonlyVec,
+        ReadonlyVec,
+        [number, number]
+    >
 ) => (
     rpos: ReadonlyVec,
     dir: ReadonlyVec,

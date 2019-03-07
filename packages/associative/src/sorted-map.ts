@@ -1,5 +1,6 @@
 import {
     Comparator,
+    Fn3,
     ICompare,
     ICopy,
     IEmpty,
@@ -179,7 +180,7 @@ export class SortedMap<K, V> extends Map<K, V>
         }
     }
 
-    forEach(fn: (val: V, key: K, map: Map<K, V>) => void, thisArg?: any) {
+    forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
         for (let p of this) {
             fn.call(thisArg, p[1], p[0], this);
         }

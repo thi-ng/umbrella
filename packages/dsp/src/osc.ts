@@ -1,4 +1,11 @@
-import { fract, HALF_PI, mix as _mix, TAU, wrap01 } from "@thi.ng/math";
+import { Fn } from "@thi.ng/api";
+import {
+    fract,
+    HALF_PI,
+    mix as _mix,
+    TAU,
+    wrap01
+} from "@thi.ng/math";
 import { StatelessOscillator } from "./api";
 
 export class Oscillator implements Iterable<number> {
@@ -112,8 +119,8 @@ export const mix = (
 
 export const additive = (
     osc: StatelessOscillator,
-    freqFn: (i: number) => number,
-    ampFn: (i: number) => number,
+    freqFn: Fn<number, number>,
+    ampFn: Fn<number, number>,
     n: number
 ) => (phase: number, freq: number, amp = 1, dc = 0) => {
     let y = 0;
@@ -172,5 +179,5 @@ export const polyBLEP = (eps: number, x: number) =>
     x < eps
         ? ((x /= eps), x + x - x * x - 1)
         : x > 1 - eps
-            ? ((x = (x - 1) / eps), x * x + x + x + 1)
-            : 0;
+        ? ((x = (x - 1) / eps), x * x + x + x + 1)
+        : 0;

@@ -1,6 +1,7 @@
 import {
     Event,
     INotifyMixin,
+    Listener,
     Predicate2,
     Watch
 } from "@thi.ng/api";
@@ -256,11 +257,11 @@ export class History<T> implements IHistory<T> {
         return true;
     }
 
-    addListener(_: string, __: (e: Event) => void, ___?: any): boolean {
+    addListener(_: string, __: Listener, ___?: any): boolean {
         return false;
     }
 
-    removeListener(_: string, __: (e: Event) => void, ___?: any): boolean {
+    removeListener(_: string, __: Listener, ___?: any): boolean {
         return false;
     }
 

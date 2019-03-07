@@ -1,11 +1,8 @@
-import { IWatch } from "../api";
+import { Fn3, IWatch } from "../api";
 import { mixin } from "../mixin";
 
 export const IWatchMixin = mixin(<IWatch<any>>{
-    addWatch(
-        id: string,
-        fn: (id: string, oldState: any, newState: any) => void
-    ) {
+    addWatch(id: string, fn: Fn3<string, any, any, void>) {
         this._watches = this._watches || {};
         if (this._watches[id]) {
             return false;

@@ -1,3 +1,4 @@
+import { Fn0 } from "@thi.ng/api";
 import { ConsCell, DCons } from "@thi.ng/dcons";
 import { CacheEntry, CacheOpts } from "./api";
 import { LRUCache } from "./lru";
@@ -76,11 +77,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
         return value;
     }
 
-    getSet(
-        key: K,
-        retrieve: () => Promise<V>,
-        ttl = this.opts.ttl
-    ): Promise<V> {
+    getSet(key: K, retrieve: Fn0<Promise<V>>, ttl = this.opts.ttl): Promise<V> {
         const e = this.get(key);
         if (e) {
             return Promise.resolve(e);

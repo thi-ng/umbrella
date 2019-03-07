@@ -182,8 +182,8 @@ export type Watch<T> = (id: string, oldState: T, newState: T) => void;
 export interface IAssociative<K, V, T> {
     assoc(key: K, val: V): T;
     assocIn(key: K[], val: V): T;
-    update(key: K, f: (v: V) => V): T;
-    updateIn(key: K[], f: (v: V) => V): T;
+    update(key: K, f: Fn<V, V>): T;
+    updateIn(key: K[], f: Fn<V, V>): T;
 }
 
 /**

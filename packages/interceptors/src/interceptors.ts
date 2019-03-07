@@ -1,4 +1,10 @@
-import { getIn, Path, setter, updater } from "@thi.ng/paths";
+import { Fn } from "@thi.ng/api";
+import {
+    getIn,
+    Path,
+    setter,
+    updater
+} from "@thi.ng/paths";
 import {
     Event,
     FX_CANCEL,
@@ -150,7 +156,7 @@ export const ensurePred = (
  */
 export const ensureStateLessThan = (
     max: number,
-    path?: (e: Event) => Path,
+    path?: Fn<Event, Path>,
     err?: InterceptorFn
 ) => ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) < max, err);
 
@@ -164,7 +170,7 @@ export const ensureStateLessThan = (
  */
 export const ensureStateGreaterThan = (
     min: number,
-    path?: (e: Event) => Path,
+    path?: Fn<Event, Path>,
     err?: InterceptorFn
 ) => ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) > min, err);
 
@@ -181,7 +187,7 @@ export const ensureStateGreaterThan = (
 export const ensureStateRange = (
     min: number,
     max: number,
-    path?: (e: Event) => Path,
+    path?: Fn<Event, Path>,
     err?: InterceptorFn
 ) =>
     ensurePred((state, e) => {
@@ -207,7 +213,7 @@ export const ensureStateRange = (
 export const ensureParamRange = (
     min: number,
     max: number,
-    value?: (e: Event) => number,
+    value?: Fn<Event, number>,
     err?: InterceptorFn
 ) =>
     ensurePred((_, e) => {
@@ -234,7 +240,7 @@ export const ensureParamRange = (
  * @param path
  * @param tx
  */
-export const valueSetter = <T>(path: Path, tx?: (x: T) => T): InterceptorFn => {
+export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
     const $ = setter(path);
     return (state, [_, val]) => ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
 };

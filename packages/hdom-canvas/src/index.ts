@@ -8,7 +8,12 @@ import {
 } from "@thi.ng/checks";
 import { asCSS, ColorMode, ReadonlyColor } from "@thi.ng/color";
 import { diffArray, DiffMode } from "@thi.ng/diff";
-import { equiv, HDOMImplementation, HDOMOpts, releaseTree } from "@thi.ng/hdom";
+import {
+    equiv,
+    HDOMImplementation,
+    HDOMOpts,
+    releaseTree
+} from "@thi.ng/hdom";
 
 interface DrawState {
     attribs: IObjectOf<any>;
@@ -109,7 +114,7 @@ const CTX_ATTRIBS = {
  * @param shapes shape components
  */
 export const canvas = {
-    render: (_, attribs, ...body: any[]) => {
+    render(_, attribs, ...body: any[]) {
         const cattribs = { ...attribs };
         delete cattribs.__diff;
         delete cattribs.__normalize;
@@ -418,12 +423,12 @@ const resolveColor = (state: DrawState, v: any) =>
             ? state.grads[v.substr(1)]
             : v
         : isArrayLike(v)
-            ? isNumber((<any>v).mode)
-                ? asCSS(<any>v)
-                : asCSS(<ReadonlyColor>v, ColorMode.RGBA)
-            : isNumber(v)
-                ? asCSS(v, ColorMode.INT32)
-                : v;
+        ? isNumber((<any>v).mode)
+            ? asCSS(<any>v)
+            : asCSS(<ReadonlyColor>v, ColorMode.RGBA)
+        : isNumber(v)
+        ? asCSS(v, ColorMode.INT32)
+        : v;
 
 const applyTransform = (
     ctx: CanvasRenderingContext2D,

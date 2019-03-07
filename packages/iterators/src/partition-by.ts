@@ -1,6 +1,7 @@
+import { Fn } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
-export function* partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) {
+export function* partitionBy<T>(fn: Fn<T, any>, input: Iterable<T>) {
     let iter = iterator(input);
     let chunk: T[] = [];
     let v: IteratorResult<T>;

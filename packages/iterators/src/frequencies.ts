@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
 export interface FrequencyPair<T> {
@@ -7,7 +8,7 @@ export interface FrequencyPair<T> {
 
 export function* frequencies<T>(
     input: Iterable<T>,
-    key?: (v: T) => any
+    key?: Fn<T, any>
 ): IterableIterator<FrequencyPair<T>[]> {
     let freqs = {};
     let iter = iterator(input);

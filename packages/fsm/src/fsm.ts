@@ -1,12 +1,12 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn2, IObjectOf } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import {
     ensureReduced,
     isReduced,
+    iterator,
     Reducer,
     Transducer,
-    unreduced,
-    iterator
+    unreduced
 } from "@thi.ng/transducers";
 import { Match, Matcher } from "./api";
 
@@ -44,20 +44,20 @@ export function fsm<T, C, R>(
     states: IObjectOf<Matcher<T, C, R>>,
     ctx: C,
     initial: string | number,
-    update?: (ctx: C, x: T) => void
+    update?: Fn2<C, T, void>
 ): Transducer<T, R>;
 export function fsm<T, C, R>(
     states: IObjectOf<Matcher<T, C, R>>,
     ctx: C,
     initial: string | number,
-    update?: (ctx: C, x: T) => void,
+    update?: Fn2<C, T, void>,
     src?: Iterable<T>
 ): IterableIterator<R>;
 export function fsm<T, C, R>(
     states: IObjectOf<Matcher<T, C, R>>,
     ctx: C,
     initial: string | number = "start",
-    update?: (ctx: C, x: T) => void,
+    update?: Fn2<C, T, void>,
     src?: Iterable<T>
 ) {
     return src

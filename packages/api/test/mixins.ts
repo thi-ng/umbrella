@@ -1,18 +1,21 @@
 import * as assert from "assert";
-
-import { Event, INotify, EVENT_ALL } from "../src/api";
+import {
+    Event,
+    EVENT_ALL,
+    INotify,
+    Listener
+} from "../src/api";
 import { INotifyMixin } from "../src/mixins/inotify";
 
+
 describe("mixins", () => {
-
     it("INotify", () => {
-
         @INotifyMixin
         class Foo implements INotify {
-            addListener(_: string, __: (e: Event) => void, ___?: any): boolean {
+            addListener(_: string, __: Listener, ___?: any): boolean {
                 throw new Error();
             }
-            removeListener(_: string, __: (e: Event) => void, ___?: any): boolean {
+            removeListener(_: string, __: Listener, ___?: any): boolean {
                 throw new Error();
             }
             notify(_: Event) {
@@ -22,8 +25,8 @@ describe("mixins", () => {
 
         const res: any = {};
         const foo = new Foo();
-        const l = (e) => res[e.id] = e.value;
-        const lall = (e) => res[EVENT_ALL] = e.value;
+        const l = (e) => (res[e.id] = e.value);
+        const lall = (e) => (res[EVENT_ALL] = e.value);
         assert.doesNotThrow(() => foo.addListener("x", l));
         assert.doesNotThrow(() => foo.addListener(EVENT_ALL, lall));
         foo.notify({ id: "x", value: 1 });

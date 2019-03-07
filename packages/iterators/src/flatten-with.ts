@@ -1,7 +1,8 @@
+import { Fn } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
 export function* flattenWith(
-    tx: (x: any) => any,
+    tx: Fn<any, any>,
     input: Iterable<any>
 ): IterableIterator<any> {
     let iter = iterator(input);

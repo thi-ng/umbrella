@@ -1,9 +1,10 @@
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
 export const groupBy = <T>(
-    key: (v) => any,
+    key: Fn<T, any>,
     input: Iterable<T>
-): { [id: string]: T[] } => {
+): IObjectOf<T[]> => {
     let groups = {};
     let iter = iterator(input);
     let v: IteratorResult<any>;

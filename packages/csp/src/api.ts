@@ -1,4 +1,9 @@
-import { IID, ILength, IRelease } from "@thi.ng/api";
+import {
+    Fn,
+    IID,
+    ILength,
+    IRelease
+} from "@thi.ng/api";
 import { Channel } from "./channel";
 
 export const enum State {
@@ -13,8 +18,8 @@ export const enum State {
 // export const __State = (<any>exports).State;
 
 export interface ChannelItem<T> {
-    value: () => Promise<T>;
-    resolve: (success: boolean) => void;
+    value(): Promise<T>;
+    resolve(success: boolean): void;
 }
 
 export interface IBuffer<T> extends ILength, IRelease {
@@ -41,6 +46,6 @@ export interface IReadWriteableChannel<T>
     extends IReadableChannel<T>,
         IWriteableChannel<T> {}
 
-export type TopicFn<T> = (x: T) => string;
+export type TopicFn<T> = Fn<T, string>;
 
 export type ErrorHandler = (e: Error, chan: Channel<any>, val?: any) => void;

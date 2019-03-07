@@ -1,3 +1,5 @@
+import { Fn } from "@thi.ng/api";
+
 export enum Unit {
     IN = 1, // inches
     MM, // millimeters
@@ -161,8 +163,8 @@ export interface IGESDocument {
         P: number;
         D: number;
     };
-    $FF: (x: number) => string;
-    $PARAM: (p: any[]) => string;
+    $FF: Fn<number, string>;
+    $PARAM: Fn<any[], string>;
 }
 
 export const DEFAULT_GLOBALS: Partial<GlobalParams> = {

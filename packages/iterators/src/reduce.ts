@@ -1,3 +1,4 @@
+import { Fn2 } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
 export class ReducedValue<T> {
@@ -9,7 +10,7 @@ export class ReducedValue<T> {
 }
 
 export const reduce = <A, B>(
-    rfn: (acc: B, x: A) => B | ReducedValue<B>,
+    rfn: Fn2<B, A, B | ReducedValue<B>>,
     acc: B,
     input: Iterable<A>
 ) => {

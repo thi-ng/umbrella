@@ -1,4 +1,4 @@
-import { Predicate } from "@thi.ng/api";
+import { Fn, Fn0, Predicate } from "@thi.ng/api";
 import { shuffle } from "@thi.ng/arrays";
 import { isFunction } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
@@ -28,7 +28,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         return chan;
     }
 
-    static repeatedly<T>(fn: () => T, delay?: number) {
+    static repeatedly<T>(fn: Fn0<T>, delay?: number) {
         const chan = new Channel<T>(delay ? <any>delayed(delay) : null);
         chan.produce(fn);
         return chan;
@@ -417,7 +417,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         );
     }
 
-    consume<T>(fn: (x: T) => any = (x: T) => console.log(this.id, ":", x)) {
+    consume<T>(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
         return (async () => {
             let x;
             while (((x = null), (x = await this.read())) !== undefined) {
@@ -427,7 +427,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         })();
     }
 
-    produce(fn: () => T, close = true) {
+    produce(fn: Fn0<T>, close = true) {
         return (async () => {
             while (!this.isClosed()) {
                 const val = await fn();
@@ -440,9 +440,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         })();
     }
 
-    consumeWhileReadable(
-        fn: (x: T) => any = (x: T) => console.log(this.id, ":", x)
-    ) {
+    consumeWhileReadable(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
         return (async () => {
             let x;
             while (this.isReadable()) {

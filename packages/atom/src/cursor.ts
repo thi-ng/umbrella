@@ -1,4 +1,10 @@
-import { IID, IRelease, Watch } from "@thi.ng/api";
+import {
+    Fn,
+    Fn2,
+    IID,
+    IRelease,
+    Watch
+} from "@thi.ng/api";
 import { isArray, isFunction } from "@thi.ng/checks";
 import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import { getter, Path, setter } from "@thi.ng/paths";
@@ -43,15 +49,15 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
     parent: IAtom<any>;
 
     protected local: Atom<T>;
-    protected lookup: (s: any) => T;
+    protected lookup: Fn<any, T>;
     protected selfUpdate: boolean;
 
     constructor(opts: CursorOpts<T>);
     constructor(parent: IAtom<any>, path: Path);
     constructor(
         parent: IAtom<any>,
-        lookup: (s: any) => T,
-        update: (s: any, v: T) => any
+        lookup: Fn<any, T>,
+        update: Fn2<any, T, any>
     );
     constructor(...args: any[]) {
         let parent, id, lookup, update, validate, opts: CursorOpts<T>;

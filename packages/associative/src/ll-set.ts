@@ -1,4 +1,9 @@
-import { Pair, Predicate2, SEMAPHORE } from "@thi.ng/api";
+import {
+    Fn3,
+    Pair,
+    Predicate2,
+    SEMAPHORE
+} from "@thi.ng/api";
 import { DCons } from "@thi.ng/dcons";
 import { equiv } from "@thi.ng/equiv";
 import { EquivSetOpts, IEquivSet } from "./api";
@@ -139,7 +144,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         return true;
     }
 
-    forEach(fn: (val: T, val2: T, set: Set<T>) => void, thisArg?: any) {
+    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
         let i = __private.get(this).vals.head;
         while (i) {
             fn.call(thisArg, i.value, i.value, this);

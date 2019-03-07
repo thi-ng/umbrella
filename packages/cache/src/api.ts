@@ -1,4 +1,7 @@
 import {
+    Fn,
+    Fn0,
+    Fn2,
     ICopy,
     IEmpty,
     ILength,
@@ -16,7 +19,7 @@ export interface ICache<K, V>
     has(key: K): boolean;
     get(key: K, notFound?: V): V;
     set(key: K, val: V): V;
-    getSet(key: K, fn: () => Promise<V>): Promise<V>;
+    getSet(key: K, fn: Fn0<Promise<V>>): Promise<V>;
     delete(key: K): boolean;
 
     entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>>;
@@ -25,10 +28,10 @@ export interface ICache<K, V>
 }
 
 export interface CacheOpts<K, V> {
-    ksize: (k: K) => number;
-    vsize: (v: V) => number;
-    release: (k: K, v: V) => void;
-    map: () => Map<K, any>;
+    ksize: Fn<K, number>;
+    vsize: Fn<V, number>;
+    release: Fn2<K, V, void>;
+    map: Fn0<Map<K, any>>;
     maxlen: number;
     maxsize: number;
 }
