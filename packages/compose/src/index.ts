@@ -1,4 +1,5 @@
 export * from "./comp";
+export * from "./complement";
 export * from "./constantly";
 export * from "./delay";
 export * from "./delayed";
