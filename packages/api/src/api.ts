@@ -17,6 +17,11 @@ export const SEMAPHORE = Symbol();
 export type Comparator<T> = (a: T, b: T) => number;
 
 /**
+ * A no-arg function, returning T.
+ */
+export type Fn0<T> = () => T;
+
+/**
  * A single arg function from A => B.
  */
 export type Fn<A, B> = (a: A) => B;
@@ -30,6 +35,86 @@ export type Fn2<A, B, C> = (a: A, b: B) => C;
  * A 3-arg function from A,B,C => D.
  */
 export type Fn3<A, B, C, D> = (a: A, b: B, c: C) => D;
+
+/**
+ * A 4-arg function from A,B,C,D => E.
+ */
+export type Fn4<A, B, C, D, E> = (a: A, b: B, c: C, d: D) => E;
+
+/**
+ * A 5-arg function from A,B,C,D,E => F.
+ */
+export type Fn5<A, B, C, D, E, F> = (a: A, b: B, c: C, d: D, e: E) => F;
+
+/**
+ * A 6-arg function from A,B,C,D,E,F => G.
+ */
+export type Fn6<A, B, C, D, E, F, G> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F
+) => G;
+
+/**
+ * A 7-arg function from A,B,C,D,E,F,G => H.
+ */
+export type Fn7<A, B, C, D, E, F, G, H> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G
+) => H;
+
+/**
+ * A 8-arg function from A,B,C,D,E,F,G,H => I.
+ */
+export type Fn8<A, B, C, D, E, F, G, H, I> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H
+) => I;
+
+/**
+ * A 9-arg function from A,B,C,D,E,F,G,H,I => J.
+ */
+export type Fn9<A, B, C, D, E, F, G, H, I, J> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    i: I
+) => J;
+
+/**
+ * A 10-arg function from A,B,C,D,E,F,G,H,I,J => K.
+ */
+export type Fn10<A, B, C, D, E, F, G, H, I, J, K> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    i: I,
+    j: J
+) => K;
 
 /**
  * A vararg arg function to type T.
