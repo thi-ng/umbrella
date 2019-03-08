@@ -8,3 +8,4 @@ export * from "./juxt";
 export * from "./partial";
 export * from "./thread-first";
 export * from "./thread-last";
+export * from "./trampoline";
