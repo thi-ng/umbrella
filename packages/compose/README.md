@@ -9,12 +9,12 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
-- [About](#about)
-- [Installation](#installation)
-- [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
-- [Authors](#authors)
-- [License](#license)
+-   [About](#about)
+-   [Installation](#installation)
+-   [Dependencies](#dependencies)
+-   [Usage examples](#usage-examples)
+-   [Authors](#authors)
+-   [License](#license)
 
 <!-- /TOC -->
 
@@ -22,12 +22,13 @@ This project is part of the
 
 Functional composition helpers:
 
-- [comp()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts)
-- [compL()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts#L52)
-- [juxt()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/juxt.ts)
-- [partial()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/partial.ts)
-- [threadFirst()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-first.ts)
-- [threadLast()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-last.ts)
+-   [comp()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts)
+-   [compL()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts#L52)
+-   [juxt()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/juxt.ts)
+-   [partial()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/partial.ts)
+-   [threadFirst()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-first.ts)
+-   [threadLast()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-last.ts)
+-   [trampoline()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/trampoline.ts)
 
 ## Installation
 
@@ -37,8 +38,8 @@ yarn add @thi.ng/compose
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+-   [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+-   [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage examples
 
@@ -48,7 +49,7 @@ import { comp, compL, juxt } from "@thi.ng/compose";
 
 ## Authors
 
-- Karsten Schmidt
+-   Karsten Schmidt
 
 ## License
 

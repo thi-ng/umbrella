@@ -1,46 +1,50 @@
+import {
+    FnAny,
+    FnO,
+    FnO2,
+    FnO3,
+    FnO4,
+    FnO5,
+    FnO6,
+    FnO7,
+    FnO8
+} from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 
-export function partial<A, T>(
-    fn: (a: A, ...args: any[]) => T,
-    a: A
-): (...args: any[]) => T;
-export function partial<A, B, T>(
-    fn: (a: A, b: B, ...args: any[]) => T,
-    a: A,
-    b: B
-): (...args: any[]) => T;
+export function partial<A, T>(fn: FnO<A, T>, a: A): FnAny<T>;
+export function partial<A, B, T>(fn: FnO2<A, B, T>, a: A, b: B): FnAny<T>;
 export function partial<A, B, C, T>(
-    fn: (a: A, b: B, c: C, ...args: any[]) => T,
+    fn: FnO3<A, B, C, T>,
     a: A,
     b: B,
     c: C
-): (...args: any[]) => T;
+): FnAny<T>;
 export function partial<A, B, C, D, T>(
-    fn: (a: A, b: B, c: C, d: D, ...args: any[]) => T,
+    fn: FnO4<A, B, C, D, T>,
     a: A,
     b: B,
     c: C,
     d: D
-): (...args: any[]) => T;
+): FnAny<T>;
 export function partial<A, B, C, D, E, T>(
-    fn: (a: A, b: B, c: C, d: D, e: E, ...args: any[]) => T,
+    fn: FnO5<A, B, C, D, E, T>,
     a: A,
     b: B,
     c: C,
     d: D,
     e: E
-): (...args: any[]) => T;
+): FnAny<T>;
 export function partial<A, B, C, D, E, F, T>(
-    fn: (a: A, b: B, c: C, d: D, e: E, f: F, ...args: any[]) => T,
+    fn: FnO6<A, B, C, D, E, F, T>,
     a: A,
     b: B,
     c: C,
     d: D,
     e: E,
     f: F
-): (...args: any[]) => T;
+): FnAny<T>;
 export function partial<A, B, C, D, E, F, G, T>(
-    fn: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...args: any[]) => T,
+    fn: FnO7<A, B, C, D, E, F, G, T>,
     a: A,
     b: B,
     c: C,
@@ -48,9 +52,9 @@ export function partial<A, B, C, D, E, F, G, T>(
     e: E,
     f: F,
     g: G
-): (...args: any[]) => T;
+): FnAny<T>;
 export function partial<A, B, C, D, E, F, G, H, T>(
-    fn: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, ...args: any[]) => T,
+    fn: FnO8<A, B, C, D, E, F, G, H, T>,
     a: A,
     b: B,
     c: C,
@@ -59,7 +63,7 @@ export function partial<A, B, C, D, E, F, G, H, T>(
     f: F,
     g: G,
     h: H
-): (...args: any[]) => T;
+): FnAny<T>;
 export function partial(fn, ...args: any[]) {
     let [a, b, c, d, e, f, g, h] = args;
     switch (args.length) {
