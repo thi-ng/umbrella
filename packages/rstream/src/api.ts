@@ -34,6 +34,10 @@ export interface ISubscriber<T> {
     next: Fn<T, void>;
     error?: Fn<any, void>;
     done?: Fn0<void>;
+    /**
+     * Internal use only. Do not use.
+     */
+    __owner?: ISubscribable<any>;
     [id: string]: any;
 }
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.0...@thi.ng/rstream@2.2.1) (2019-03-05)
+
+
+### Bug Fixes
+
+* **rstream:** add __owner info for MetaStream, update ISubscriber ([b5801e9](https://github.com/thi-ng/umbrella/commit/b5801e9))
+
+
+
+
+
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.1.0...@thi.ng/rstream@2.2.0) (2019-03-03)
 
 
