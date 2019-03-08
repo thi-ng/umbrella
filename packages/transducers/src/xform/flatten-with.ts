@@ -1,17 +1,18 @@
+import { Fn } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 export function flattenWith<T>(
-    fn: (x: T) => Iterable<T>
+    fn: Fn<T, Iterable<T>>
 ): Transducer<T | Iterable<T>, T>;
 export function flattenWith<T>(
-    fn: (x: T) => Iterable<T>,
+    fn: Fn<T, Iterable<T>>,
     src: Iterable<T | Iterable<T>>
 ): IterableIterator<T>;
 export function flattenWith<T>(
-    fn: (x: T) => Iterable<T>,
+    fn: Fn<T, Iterable<T>>,
     src?: Iterable<T | Iterable<T>>
 ): any {
     return src

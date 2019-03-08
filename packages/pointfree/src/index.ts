@@ -1,4 +1,9 @@
-import { IObjectOf } from "@thi.ng/api";
+import {
+    Fn,
+    Fn2,
+    IObjectOf,
+    NO_OP
+} from "@thi.ng/api";
 import { isArray, isFunction, isPlainObject } from "@thi.ng/checks";
 import { compL } from "@thi.ng/compose";
 import { equiv as _equiv } from "@thi.ng/equiv";
@@ -83,9 +88,9 @@ export const ctx = (stack: Stack = [], env: StackEnv = {}): StackContext => [
 
 const $n = SAFE
     ? (m: number, n: number) => m < n && <any>illegalState(`stack underflow`)
-    : () => {};
+    : NO_OP;
 
-const $ = SAFE ? (stack: Stack, n: number) => $n(stack.length, n) : () => {};
+const $ = SAFE ? (stack: Stack, n: number) => $n(stack.length, n) : NO_OP;
 
 export { $ as ensureStack, $n as ensureStackN };
 
@@ -96,11 +101,8 @@ const tos = (stack: Stack) => stack[stack.length - 1];
 const compile = (prog: StackProgram) =>
     compL.apply(
         null,
-        prog.map(
-            (w) =>
-                !isFunction(w)
-                    ? (ctx: StackContext) => (ctx[0].push(w), ctx)
-                    : w
+        prog.map((w) =>
+            !isFunction(w) ? (ctx: StackContext) => (ctx[0].push(w), ctx) : w
         )
     );
 
@@ -215,7 +217,7 @@ export const execjs = (ctx: StackContext) => {
  *
  * @param op
  */
-const op1 = (op: (x) => any) => {
+const op1 = (op: Fn<any, any>) => {
     return (ctx: StackContext) => {
         const stack = ctx[0];
         const n = stack.length - 1;
@@ -233,7 +235,7 @@ const op1 = (op: (x) => any) => {
  *
  * @param op
  */
-const op2 = (op: (b, a) => any) => (ctx: StackContext) => {
+const op2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
     const stack = ctx[0];
     const n = stack.length - 2;
     $n(n, 0);
@@ -254,7 +256,9 @@ export { op1 as maptos, op2 as map2 };
  *
  * @param f
  */
-export const op2v = (f: (b, a) => any) => (ctx: StackContext): StackContext => {
+export const op2v = (f: Fn2<any, any, any>) => (
+    ctx: StackContext
+): StackContext => {
     $(ctx[0], 2);
     const stack = ctx[0];
     const b = stack.pop();
@@ -1651,13 +1655,12 @@ export const length = op1((x) => x.length);
  *
  * ( x -- copy )
  */
-export const copy = op1(
-    (x) =>
-        isArray(x)
-            ? [...x]
-            : isPlainObject(x)
-                ? { ...x }
-                : illegalArgs(`can't copy type ${typeof x}`)
+export const copy = op1((x) =>
+    isArray(x)
+        ? [...x]
+        : isPlainObject(x)
+        ? { ...x }
+        : illegalArgs(`can't copy type ${typeof x}`)
 );
 
 /**

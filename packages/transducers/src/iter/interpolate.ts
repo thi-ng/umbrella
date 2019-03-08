@@ -1,3 +1,4 @@
+import { Fn2 } from "@thi.ng/api";
 import { normRange } from "./norm-range";
 import { repeat } from "./repeat";
 
@@ -73,8 +74,8 @@ export function* interpolate<A, B, C>(
     n: number,
     minPos: number,
     maxPos: number,
-    init: (a: A, b: A) => B,
-    mix: (interval: B, t: number) => C,
+    init: Fn2<A, A, B>,
+    mix: Fn2<B, number, C>,
     ...stops: [number, A][]
 ): IterableIterator<C> {
     let l = stops.length;

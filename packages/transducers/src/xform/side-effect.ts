@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import { Transducer } from "../api";
 import { map } from "./map";
 
@@ -8,5 +9,5 @@ import { map } from "./map";
  *
  * @param fn side effect
  */
-export const sideEffect = <T>(fn: (x: T) => void): Transducer<T, T> =>
+export const sideEffect = <T>(fn: Fn<T, void>): Transducer<T, T> =>
     map((x) => (fn(x), x));

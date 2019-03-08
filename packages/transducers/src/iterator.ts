@@ -1,9 +1,9 @@
-import { SEMAPHORE } from "@thi.ng/api";
+import { FnAny, SEMAPHORE } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
-
 import { Reducer, Transducer } from "./api";
 import { isReduced, unreduced } from "./reduced";
 import { push } from "./rfn/push";
+
 
 /**
  * Takes a transducer and input iterable. Returns iterator of
@@ -71,7 +71,7 @@ export function* iterator1<A, B>(
  * @param impl
  */
 export const $iter = (
-    xform: (...xs: any[]) => Transducer<any, any>,
+    xform: FnAny<Transducer<any, any>>,
     args: any[],
     impl = iterator1
 ) => {

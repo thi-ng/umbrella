@@ -1,3 +1,4 @@
+import { Fn2 } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
@@ -20,15 +21,15 @@ import { $iter } from "../iterator";
  * @param offset initial index
  */
 export function mapIndexed<A, B>(
-    fn: (i: number, x: A) => B,
+    fn: Fn2<number, A, B>,
     offset?: number
 ): Transducer<A, B>;
 export function mapIndexed<A, B>(
-    fn: (i: number, x: A) => B,
+    fn: Fn2<number, A, B>,
     src: Iterable<A>
 ): IterableIterator<B>;
 export function mapIndexed<A, B>(
-    fn: (i: number, x: A) => B,
+    fn: Fn2<number, A, B>,
     offset: number,
     src: Iterable<A>
 ): IterableIterator<B>;
@@ -37,7 +38,7 @@ export function mapIndexed<A, B>(...args: any[]): any {
         $iter(mapIndexed, args) ||
         ((rfn: Reducer<any, B>) => {
             const r = rfn[2];
-            const fn: (i: number, x: A) => B = args[0];
+            const fn: Fn2<number, A, B> = args[0];
             let i: number = args[1] || 0;
             return compR(rfn, (acc, x: A) => r(acc, fn(i++, x)));
         })

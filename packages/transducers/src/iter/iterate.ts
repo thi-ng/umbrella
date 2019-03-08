@@ -1,3 +1,5 @@
+import { Fn2 } from "@thi.ng/api";
+
 /**
  * Yields an infinite iterator of the inductive sequence:
  *
@@ -18,7 +20,7 @@
  * @param fn
  * @param seed
  */
-export function* iterate<T>(fn: (x: T, i: number) => T, seed: T) {
+export function* iterate<T>(fn: Fn2<T, number, T>, seed: T) {
     let i = 0;
     while (true) {
         yield seed;

@@ -1,11 +1,11 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { identity } from "@thi.ng/compose";
 import { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 
 export interface PartitionSyncOpts<T> {
-    key: (x: T) => PropertyKey;
+    key: Fn<T, PropertyKey>;
     mergeOnly: boolean;
     reset: boolean;
     all: boolean;

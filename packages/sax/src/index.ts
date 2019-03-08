@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { IObjectOf, NO_OP } from "@thi.ng/api";
 import { $iter, iterator, Transducer } from "@thi.ng/transducers";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
 
@@ -225,7 +225,7 @@ const unexpected = (s: ParseState, x: string) =>
 const replaceEntities = (x: string) => x.replace(ENTITY_RE, (y) => ENTITIES[y]);
 
 const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
-    [State.ERROR]: () => {},
+    [State.ERROR]: NO_OP,
 
     [State.WAIT]: (state, ch) => {
         state.pos++;

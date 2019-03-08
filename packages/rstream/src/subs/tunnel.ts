@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";
@@ -27,7 +28,7 @@ export interface TunnelOpts<A> {
      * values, e.g. ArrayBuffers. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage
      */
-    transferables?: (x: A) => any[];
+    transferables?: Fn<A, any[]>;
     /**
      * If given and greater than zero, all workers will be terminated
      * after given period (in millis) after the parent stream is done.
@@ -60,7 +61,7 @@ export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
 export class Tunnel<A, B> extends Subscription<A, B> {
     workers: Worker[];
     src: Worker | Blob | string;
-    transferables: (x: A) => any[];
+    transferables: Fn<A, any[]>;
     terminate: number;
     interrupt: boolean;
 

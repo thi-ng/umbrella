@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn0, IObjectOf } from "@thi.ng/api";
 import {
     comp,
     compR,
@@ -23,7 +23,7 @@ export type FSMHandler<T extends FSMState, A, B> = (
 export interface FSMOpts<T extends FSMState, A, B> {
     states: FSMStateMap<T, A, B>;
     terminate: PropertyKey;
-    init: () => T;
+    init: Fn0<T>;
 }
 
 /**

@@ -1,7 +1,8 @@
+import { Fn0, FnAny } from "@thi.ng/api";
 import { implementsFunction, isArrayLike, isIterable } from "@thi.ng/checks";
 import { illegalArity } from "@thi.ng/errors";
-import { IReducible, Reducer } from "./api";
-import { isReduced, Reduced, unreduced } from "./reduced";
+import { IReducible, Reducer, ReductionFn } from "./api";
+import { isReduced, unreduced } from "./reduced";
 
 export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A;
 export function reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A;
@@ -59,15 +60,10 @@ export function reduce<A, B>(...args: any[]): A {
  * @param init init step of reducer
  * @param rfn reduction step of reducer
  */
-export const reducer = <A, B>(
-    init: () => A,
-    rfn: (acc: A, x: B) => A | Reduced<A>
-) => <Reducer<A, B>>[init, (acc) => acc, rfn];
+export const reducer = <A, B>(init: Fn0<A>, rfn: ReductionFn<A, B>) =>
+    <Reducer<A, B>>[init, (acc) => acc, rfn];
 
-export const $$reduce = (
-    rfn: (...args: any[]) => Reducer<any, any>,
-    args: any[]
-) => {
+export const $$reduce = (rfn: FnAny<Reducer<any, any>>, args: any[]) => {
     const n = args.length - 1;
     return isIterable(args[n])
         ? args.length > 1

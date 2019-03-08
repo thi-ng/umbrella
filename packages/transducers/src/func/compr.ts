@@ -1,5 +1,4 @@
-import { Reducer } from "../api";
-import { Reduced } from "../reduced";
+import { Reducer, ReductionFn } from "../api";
 
 /**
  * Reducer composition helper. Takes existing reducer `rfn` (a 3-tuple)
@@ -24,5 +23,5 @@ import { Reduced } from "../reduced";
  */
 export const compR = <A, B, C>(
     rfn: Reducer<A, B>,
-    fn: (acc: A, x: C) => A | Reduced<A>
+    fn: ReductionFn<A, C>
 ): Reducer<A, C> => [rfn[0], rfn[1], fn];

@@ -1,4 +1,4 @@
-import { IID, IObjectOf } from "@thi.ng/api";
+import { Fn, IID, IObjectOf } from "@thi.ng/api";
 
 /**
  * A validation function to for authenticated routes. If this function
@@ -22,14 +22,14 @@ export interface RouteParamValidator {
     /**
      * Optional coercion function executed prior to validation.
      */
-    coerce?: (x: string) => any;
+    coerce?: Fn<string, any>;
     /**
      * Optional arbitrary value validation. If any validator
      * returns non-true result, the currently checked route
      * becomes unmatched/invalid and the router continues
      * checking other routes.
      */
-    check: (x) => boolean;
+    check: Fn<any, boolean>;
 }
 
 /**

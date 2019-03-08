@@ -1,4 +1,4 @@
-import { IID } from "@thi.ng/api";
+import { Fn, IID } from "@thi.ng/api";
 import { DEBUG, State } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";
@@ -7,7 +7,7 @@ export interface ResolverOpts extends IID<string> {
     /**
      * Error handler for failed promises.
      */
-    fail: (e: any) => void;
+    fail: Fn<any, void>;
 }
 
 /**
@@ -35,7 +35,7 @@ export const resolve = <T>(opts?: Partial<ResolverOpts>) =>
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected outstanding = 0;
-    protected fail: (e: any) => void;
+    protected fail: Fn<any, void>;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
         super(null, null, null, opts.id || `resolve-${nextID()}`);

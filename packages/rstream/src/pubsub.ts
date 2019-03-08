@@ -1,4 +1,4 @@
-import { Predicate2 } from "@thi.ng/api";
+import { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
@@ -11,7 +11,7 @@ export interface PubSubOpts<A, B> {
      * Topic function. Incoming values will be routed to topic
      * subscriptions using this function's return value.
      */
-    topic: (x: B) => any;
+    topic: Fn<B, any>;
     /**
      * Optional transformer for incoming values. If given, `xform` will
      * be applied first and the transformed value passed to the
@@ -50,7 +50,7 @@ export interface PubSubOpts<A, B> {
  * (incl. all topic subscriptions) from the parent stream.
  */
 export class PubSub<A, B> extends Subscription<A, B> {
-    topicfn: (x: B) => any;
+    topicfn: Fn<B, any>;
     topics: EquivMap<any, Subscription<B, B>>;
 
     constructor(opts?: PubSubOpts<A, B>) {

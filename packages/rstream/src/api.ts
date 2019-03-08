@@ -1,4 +1,9 @@
-import { IDeref, IID } from "@thi.ng/api";
+import {
+    Fn,
+    Fn0,
+    IDeref,
+    IID
+} from "@thi.ng/api";
 import { Transducer } from "@thi.ng/transducers";
 import { Stream } from "./stream";
 import { Subscription } from "./subscription";
@@ -25,12 +30,10 @@ export const enum CloseMode {
  */
 // export const __State = (<any>exports).State;
 
-export type Fn<T> = (x: T) => void;
-
 export interface ISubscriber<T> {
-    next: (x: T) => void;
-    error?: (e: any) => void;
-    done?: () => void;
+    next: Fn<T, void>;
+    error?: Fn<any, void>;
+    done?: Fn0<void>;
     [id: string]: any;
 }
 

@@ -1,10 +1,10 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import { Reducer } from "../api";
 import { groupByObj } from "./group-by-obj";
 import { push } from "./push";
 
 const branchPred = <T>(
-    key: (x: T) => number,
+    key: Fn<T, number>,
     b: number,
     l: PropertyKey,
     r: PropertyKey
@@ -83,8 +83,8 @@ const branchPred = <T>(
  */
 export const groupBinary = <T>(
     bits: number,
-    key: (x: T) => number,
-    branch?: () => IObjectOf<T[]>,
+    key: Fn<T, number>,
+    branch?: Fn0<IObjectOf<T[]>>,
     leaf?: Reducer<any, T>,
     left: PropertyKey = "l",
     right: PropertyKey = "r"

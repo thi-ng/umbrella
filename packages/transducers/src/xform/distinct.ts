@@ -1,10 +1,11 @@
+import { Fn, Fn0 } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 
 export interface DistinctOpts<T> {
-    key: (x: T) => any;
-    cache: () => Set<any>;
+    key: Fn<T, any>;
+    cache: Fn0<Set<any>>;
 }
 
 /**
