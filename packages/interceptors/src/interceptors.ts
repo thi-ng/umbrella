@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import { Fn, FnO } from "@thi.ng/api";
 import {
     getIn,
     Path,
@@ -266,10 +266,7 @@ export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
  * @param path
  * @param fn
  */
-export const valueUpdater = <T>(
-    path: Path,
-    fn: (x: T, ...args: any[]) => T
-): InterceptorFn => {
+export const valueUpdater = <T>(path: Path, fn: FnO<T, T>): InterceptorFn => {
     const $ = updater(path, fn);
     return (state, [_, ...args]) => ({ [FX_STATE]: $(state, ...args) });
 };
