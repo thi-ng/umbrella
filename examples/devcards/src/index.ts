@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import { IAtom } from "@thi.ng/atom";
 import { Atom, Cursor } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
@@ -65,8 +66,8 @@ interface SliderOpts {
     min: number;
     max: number;
     step?: number;
-    label: (val) => any;
-    onchange?: (e) => void;
+    label: Fn<any, any>;
+    onchange?: EventListener;
 }
 
 /**
@@ -129,16 +130,14 @@ function bmi(state: IAtom<any>) {
     ];
 
     // derived view of bmi value to translate it into english
-    const bmiClass = state.addView(
-        "bmi",
-        (bmi: number) =>
-            bmi > thresh[3][0]
-                ? thresh[3][1]
-                : bmi > thresh[2][0]
-                    ? thresh[2][1]
-                    : bmi > thresh[1][0]
-                        ? thresh[1][1]
-                        : thresh[0][1]
+    const bmiClass = state.addView("bmi", (bmi: number) =>
+        bmi > thresh[3][0]
+            ? thresh[3][1]
+            : bmi > thresh[2][0]
+            ? thresh[2][1]
+            : bmi > thresh[1][0]
+            ? thresh[1][1]
+            : thresh[0][1]
     );
 
     // another derived view to create SVG visualization

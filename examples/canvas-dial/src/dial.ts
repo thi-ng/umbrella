@@ -4,11 +4,7 @@ import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
 import { Subscription } from "@thi.ng/rstream";
-import {
-    GestureEvent,
-    gestureStream,
-    GestureType
-} from "@thi.ng/rstream-gestures";
+import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { heading, sub2 } from "@thi.ng/vectors";
 
 /**
@@ -68,7 +64,7 @@ export interface DialOpts {
     /**
      * Label formatter. No label will be displayed, if missing.
      */
-    label: (x: number) => string;
+    label: Fn<number, string>;
     /**
      * Label Y offset from `cy`
      * Default: 0

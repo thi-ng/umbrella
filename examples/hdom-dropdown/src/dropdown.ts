@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { ReadonlyAtom } from "@thi.ng/atom";
 import { appLink } from "@thi.ng/hdom-components";
 import { EV_SET_VALUE, EV_TOGGLE_VALUE, EventBus } from "@thi.ng/interceptors";
@@ -13,7 +13,7 @@ export interface DropdownArgs {
     state: DropdownState;
     statePath: Path;
     ontoggle: EventListener;
-    onchange: (id: any) => EventListener;
+    onchange: Fn<any, EventListener>;
     attribs: IObjectOf<any>;
     hoverLabel: any;
     onmouseover: EventListener;
