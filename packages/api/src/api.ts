@@ -6,15 +6,7 @@ export const EVENT_DISABLE = "disable";
 
 export const SEMAPHORE = Symbol();
 
-/**
- * Generic 2-element comparator function type alias. Must follow this
- * contract and return:
- *
- * - negative if `a < b`
- * - zero if `a == b`
- * - positive if `a > b`
- */
-export type Comparator<T> = (a: T, b: T) => number;
+export const NO_OP = () => {};
 
 /**
  * A no-arg function, returning T.
@@ -116,15 +108,107 @@ export type Fn10<A, B, C, D, E, F, G, H, I, J, K> = (
     j: J
 ) => K;
 
+export type FnO<A, B> = (a: A, ...xs: any[]) => B;
+
+export type FnO2<A, B, C> = (a: A, b: B, ...xs: any[]) => C;
+
+export type FnO3<A, B, C, D> = (a: A, b: B, c: C, ...xs: any[]) => D;
+
+export type FnO4<A, B, C, D, E> = (a: A, b: B, c: C, d: D, ...xs: any[]) => E;
+
+export type FnO5<A, B, C, D, E, F> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    ...xs: any[]
+) => F;
+
+export type FnO6<A, B, C, D, E, F, G> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    ...xs: any[]
+) => G;
+
+export type FnO7<A, B, C, D, E, F, G, H> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    ...xs: any[]
+) => H;
+
+export type FnO8<A, B, C, D, E, F, G, H, I> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    ...xs: any[]
+) => I;
+
+export type FnO9<A, B, C, D, E, F, G, H, I, J> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    i: I,
+    ...xs: any[]
+) => J;
+
+export type FnO10<A, B, C, D, E, F, G, H, I, J, K> = (
+    a: A,
+    b: B,
+    c: C,
+    d: D,
+    e: E,
+    f: F,
+    g: G,
+    h: H,
+    i: I,
+    j: J,
+    ...xs: any[]
+) => K;
+
 /**
- * A vararg arg function to type T.
+ * An untyped vararg arg function to type T.
  */
 export type FnAny<T> = (...xs: any[]) => T;
 
 /**
+ * An typed vararg arg function from A => B.
+ */
+export type FnAnyT<A, B> = (...xs: A[]) => B;
+
+/**
+ * Generic 2-element comparator function type alias. Must follow this
+ * contract and return:
+ *
+ * - negative if `a < b`
+ * - zero if `a == b`
+ * - positive if `a > b`
+ */
+export type Comparator<T> = Fn2<T, T, number>;
+
+/**
  * Event listener.
  */
-export type Listener = (e: Event) => void;
+export type Listener = Fn<Event, void>;
 
 export type NumericArray = number[] | TypedArray;
 
@@ -141,22 +225,22 @@ export type Pair<K, V> = [K, V];
 /**
  * Predicate function mapping given value to true/false.
  */
-export type Predicate<T> = (a: T) => boolean;
+export type Predicate<T> = Fn<T, boolean>;
 
 /**
  * Predicate function mapping given args to true/false.
  */
-export type Predicate2<T> = (a: T, b: T) => boolean;
+export type Predicate2<T> = Fn2<T, T, boolean>;
 
 /**
  * Higher order `Predicate` builder. Possibly stateful.
  */
-export type StatefulPredicate<T> = () => Predicate<T>;
+export type StatefulPredicate<T> = Fn0<Predicate<T>>;
 
 /**
  * Higher order `Predicate2` builder. Possibly stateful.
  */
-export type StatefulPredicate2<T> = () => Predicate2<T>;
+export type StatefulPredicate2<T> = Fn0<Predicate2<T>>;
 
 export type TypedArray =
     | Float32Array

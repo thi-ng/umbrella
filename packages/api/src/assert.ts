@@ -1,3 +1,5 @@
+import { NO_OP } from "./api";
+
 /**
  * Takes a `test` result or predicate function without args and throws
  * error with given `msg` if test failed (i.e. is falsy). The function
@@ -13,4 +15,4 @@ export const assert =
                   throw new Error(msg);
               }
           }
-        : () => {};
+        : NO_OP;
