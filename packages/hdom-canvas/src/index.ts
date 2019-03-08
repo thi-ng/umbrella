@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { IObjectOf, NO_OP } from "@thi.ng/api";
 import {
     isArray,
     isArrayLike,
@@ -228,16 +228,14 @@ export const diffTree = (
     }
 };
 
-const NOOP = () => {};
-
 export const IMPL: HDOMImplementation<any> = {
     createTree,
     normalizeTree,
     diffTree,
-    hydrateTree: NOOP,
-    getElementById: NOOP,
-    createElement: NOOP,
-    createTextElement: NOOP
+    hydrateTree: NO_OP,
+    getElementById: NO_OP,
+    createElement: NO_OP,
+    createTextElement: NO_OP
 };
 
 const walk = (
