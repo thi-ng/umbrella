@@ -1,4 +1,14 @@
-import { ICopy, IEmpty, IEqualsDelta, ILength } from "@thi.ng/api";
+import {
+    Fn,
+    Fn2,
+    Fn3,
+    Fn4,
+    Fn7,
+    ICopy,
+    IEmpty,
+    IEqualsDelta,
+    ILength
+} from "@thi.ng/api";
 
 export interface Vec extends Iterable<number>, ILength {
     [id: number]: number;
@@ -37,40 +47,31 @@ export interface MultiVecOp<VOP> {
 
 export type VecPair = [Vec, Vec];
 
-export type VecOpV = (out: Vec, a: ReadonlyVec) => Vec;
-export type VecOpN = (out: Vec, n: number) => Vec;
-export type VecOpVV = (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => Vec;
-export type VecOpVN = (out: Vec, a: ReadonlyVec, n: number) => Vec;
-export type VecOpVVV = (
-    out: Vec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec
-) => Vec;
-export type VecOpVVN = (
-    out: Vec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    n: number
-) => Vec;
-export type VecOpVNN = (out: Vec, a: ReadonlyVec, u: number, v: number) => Vec;
-export type VecOpVVVVNN = (
-    out: Vec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec,
-    u: number,
-    v: number
-) => Vec;
+export type VecOpV = Fn2<Vec, ReadonlyVec, Vec>;
+export type VecOpN = Fn2<Vec, number, Vec>;
+export type VecOpVV = Fn3<Vec, ReadonlyVec, ReadonlyVec, Vec>;
+export type VecOpVN = Fn3<Vec, ReadonlyVec, number, Vec>;
+export type VecOpVVV = Fn4<Vec, ReadonlyVec, ReadonlyVec, ReadonlyVec, Vec>;
+export type VecOpVVN = Fn4<Vec, ReadonlyVec, ReadonlyVec, number, Vec>;
+export type VecOpVNN = Fn4<Vec, ReadonlyVec, number, number, Vec>;
+export type VecOpVVVVNN = Fn7<
+    Vec,
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    number,
+    number,
+    Vec
+>;
 
 export type VecOpVO<T> = (out: Vec, a: ReadonlyVec, b?: T) => Vec;
 export type VecOpOO<A, B> = (out: Vec, a?: A, b?: B) => Vec;
 export type VecOpOOO<A, B, C> = (out: Vec, a?: A, b?: B, c?: C) => Vec;
 export type VecOpNNO<T> = (out: Vec, a: number, b: number, c?: T) => Vec;
 
-export type VecOpRoV<T> = (a: ReadonlyVec) => T;
-export type VecOpRoVV<T> = (a: ReadonlyVec, b: ReadonlyVec) => T;
+export type VecOpRoV<T> = Fn<ReadonlyVec, T>;
+export type VecOpRoVV<T> = Fn2<ReadonlyVec, ReadonlyVec, T>;
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
 export type VecOpSV = (
