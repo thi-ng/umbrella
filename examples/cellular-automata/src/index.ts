@@ -4,9 +4,8 @@ import {
     buildKernel2d,
     comp,
     convolve2d,
-    lookup2d,
     map,
-    multiplex,
+    mapIndexed,
     partition,
     push,
     range2d,
@@ -83,11 +82,8 @@ export const convolve = (
 ) =>
     transduce(
         comp(
-            multiplex(
-                convolve2d({ src, width, height, kernel, wrap }),
-                map(lookup2d(src, width))
-            ),
-            map(lookup2d(rules, rstride))
+            convolve2d({ src, width, height, kernel, wrap }),
+            mapIndexed((i, x) => rules[x + src[i] * rstride])
         ),
         push(),
         range2d(width, height)
