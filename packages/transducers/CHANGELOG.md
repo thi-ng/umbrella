@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.2...@thi.ng/transducers@5.2.0) (2019-03-10)
+
+
+### Features
+
+* **transducers:** add / update convolution fns ([31e594b](https://github.com/thi-ng/umbrella/commit/31e594b))
+
+
+
+
+
 ## [5.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.1...@thi.ng/transducers@5.1.2) (2019-03-03)
 
 
