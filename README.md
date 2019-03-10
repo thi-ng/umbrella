@@ -53,8 +53,11 @@ packages) in the [examples](./examples) directory.
 ## Blog posts
 
 - [How to UI in 2018](https://medium.com/@thi.ng/how-to-ui-in-2018-ac2ae02acdf3)
-- [Of umbrellas, transducers, reactive streams & mushrooms (Part 1) - Overview](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170)
-- [Of umbrellas, transducers, reactive streams & mushrooms (Part 2) - Transducers](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023)
+
+- "Of umbrellas, transducers, reactive streams & mushrooms" (ongoing series):
+  - [Part 1 - Overview](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170)
+  - [Part 2 - Transducers](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023)
+  - [Part 3 - Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
 
 ## Projects
 
