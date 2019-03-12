@@ -1,4 +1,4 @@
-const OBJP = Object.getPrototypeOf({});
+const OBJP = Object.getPrototypeOf;
 
 /**
  * Similar to `isObject()`, but also checks if prototype is that of
@@ -7,9 +7,10 @@ const OBJP = Object.getPrototypeOf({});
  * @param x
  */
 export const isPlainObject = (x: any): x is object => {
-    let proto;
+    let p;
     return (
-        Object.prototype.toString.call(x) === "[object Object]" &&
-        ((proto = Object.getPrototypeOf(x)), proto === null || proto === OBJP)
+        x != null &&
+        typeof x === "object" &&
+        ((p = OBJP(x)) === null || OBJP(p) === null)
     );
 };
