@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/paths",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "immutable, optimized path-based object property / array accessors",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,7 +32,7 @@
         "typescript": "^3.2.2"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.1.1",
+        "@thi.ng/checks": "^2.1.2",
         "@thi.ng/errors": "^1.0.3"
     },
     "keywords": [
