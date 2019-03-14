@@ -38,3 +38,30 @@ export const deg = (x: number) => x * RAD2DEG;
  * @param x angle in degrees
  */
 export const rad = (x: number) => x * DEG2RAD;
+
+/**
+ * Cosecant
+ *
+ * @param x angle in radians
+ */
+export function csc(theta: number) {
+    return 1 / Math.sin(theta);
+}
+
+/**
+ * Secant
+ *
+ * @param x angle in radians
+ */
+export function sec(theta: number) {
+    return 1 / Math.cos(theta);
+}
+
+/**
+ * Cotangent
+ *
+ * @param x angle in radians
+ */
+export function cot(theta: number) {
+    return 1 / Math.tan(theta);
+}
