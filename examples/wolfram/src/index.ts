@@ -2,6 +2,8 @@ import { dropdown } from "@thi.ng/hdom-components";
 import {
     fromIterable,
     fromRAF,
+    metaStream,
+    sidechainToggle,
     stream,
     sync
 } from "@thi.ng/rstream";
@@ -9,18 +11,28 @@ import {
     buildKernel1d,
     comp,
     convolve1d,
+    filter,
+    flatten,
     iterator1,
     lookup1d,
     map,
     range,
+    range2d,
     reducer,
     scan,
-    slidingWindow
+    slidingWindow,
+    str,
+    transduce,
+    zip
 } from "@thi.ng/transducers";
 import { bits, randomBits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { download } from "./download";
 
-const resetCA = () => [...randomBits(0.25, 128)];
+const WIDTH = 160;
+const HEIGHT = 32;
+
+const resetCA = () => [...randomBits(0.25, WIDTH)];
 
 const evolveCA = (src, { kernel, rule, reset }) =>
     reset
@@ -42,6 +54,8 @@ const evolveCA = (src, { kernel, rule, reset }) =>
 
 const triggerReset = () =>
     wolfram.add(fromIterable([true, false], 16), "reset");
+
+const triggerOBJExport = () => objExport.next(1);
 
 const setRule = (e) => {
     rule.next(parseInt(e.target.value));
@@ -78,6 +92,13 @@ const app = ({ id, ksize, sim }) => [
             "Reset"
         ],
         [
+            "button.mr3.pa2",
+            {
+                onclick: triggerOBJExport
+            },
+            "Export OBJ"
+        ],
+        [
             "a.link.blue",
             {
                 href:
@@ -91,6 +112,7 @@ const app = ({ id, ksize, sim }) => [
 
 const rule = stream<number>();
 const kernel = stream<number>();
+const objExport = metaStream(() => fromIterable([true, false], 17));
 
 const wolfram = sync({
     src: {
@@ -99,7 +121,8 @@ const wolfram = sync({
             map((x) => buildKernel1d([1, 2, 4, 8, 16], x))
         ),
         _: fromRAF()
-    }
+    },
+    xform: scan(reducer<number[], any>(resetCA, evolveCA))
 });
 
 const main = sync({
@@ -107,13 +130,37 @@ const main = sync({
         id: rule,
         ksize: kernel,
         sim: wolfram.transform(
-            scan(reducer<number[], any>(resetCA, evolveCA)),
-            map((gen) => gen.map((x) => (x ? "█" : " ")).join("")),
-            slidingWindow(32),
+            map((gen) => gen.map((x) => " █"[x]).join("")),
+            slidingWindow(HEIGHT),
             map((win: string[]) => win.join("\n"))
         )
     }
 }).transform(map(app), updateDOM());
+
+// Wavefront OBJ 3D pointcloud export
+// attached as second subscription to wolfram stream
+// uses `objExport` metastream as toggle switch to produce OBJ file
+// and trigger download
+wolfram
+    // always collect new generations
+    // history length same as WIDTH to export square area
+    .transform(slidingWindow(WIDTH))
+    // sidechainToggle is only letting new values through if enabled by
+    // objExport stream
+    .subscribe(sidechainToggle(objExport, false))
+    // actual OBJ conversion & export
+    .transform(
+        map((grid) =>
+            transduce(
+                comp(filter((t) => !!t[1]), map(([[x, y]]) => `v ${x} ${y} 0`)),
+                str("\n"),
+                zip(range2d(WIDTH, WIDTH), flatten(grid))
+            )
+        ),
+        map((obj: string) =>
+            download(`ca-${rule.deref()}.obj`, obj, "text/plain")
+        )
+    );
 
 rule.next(105);
 kernel.next(3);
