@@ -5,4 +5,4 @@
 ## Contributors
 
 -   Gavin Cannizzaro (@gavinpc-mindgrub)
--   Jay Zawrotny (@andrew8er)
+-   Jay Zawrotny (@eccentric-j)
