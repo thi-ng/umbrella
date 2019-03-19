@@ -14,6 +14,10 @@ Extensible, multi-level & multi-hierarchy logging based on
 transformable via
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
+Also see the
+[@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log-file)
+support package for local file output of logged data.
+
 ## Installation
 
 ```bash
@@ -40,24 +44,11 @@ const logger = new log.Logger("main", log.Level.DEBUG);
 // add console output w/ string formatter (a transducer)
 logger.subscribe(log.writeConsole(), log.formatString());
 
-// add file output w/ post-filtering (only WARN or ERROR levels)
-// and formatted as JSON
-logger
-    .transform(log.minLevel(log.Level.WARN), log.formatJSON())
-    .subscribe(log.writeFile("main.log"))
-
 logger.debug("hello world");
-
-// only shown in console:
 // [DEBUG] [main] 2018-01-20T09:04:05.198Z hello world
 
-logger.warn("eek"); // shown in console & appended to file
-
-// console:
+logger.warn("eek");
 // [WARN] [main] 2018-01-20T09:04:16.913Z eek
-
-// file:
-// {"level":"WARN","id":"main","time":"2018-01-23T09:05:55.647Z","body":["eek"]}
 
 // each logger instance is a rstream StreamMerge instance
 // allowing to form logger hierarchies
