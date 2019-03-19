@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.3...@thi.ng/api@5.1.0) (2019-03-10)
+
+
+### Features
+
+* **api:** add additional Fn arities ([33c7dfe](https://github.com/thi-ng/umbrella/commit/33c7dfe))
+* **api:** add more Fn type aliases, update existing ([3707e61](https://github.com/thi-ng/umbrella/commit/3707e61))
+
+
+
+
+
 ## [5.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.2...@thi.ng/api@5.0.3) (2019-03-01)
 
 **Note:** Version bump only for package @thi.ng/api

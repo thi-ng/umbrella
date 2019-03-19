@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/strings",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Various string formatting & utility functions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/errors": "^1.0.3",
-        "@thi.ng/memoize": "^1.0.3"
+        "@thi.ng/memoize": "^1.0.4"
     },
     "keywords": [
         "composition",

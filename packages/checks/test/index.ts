@@ -1,5 +1,5 @@
 import * as assert from "assert";
-
+import * as vm from "vm";
 import { existsAndNotNull } from "../src/exists-not-null";
 import { implementsFunction } from "../src/implements-function";
 import { isArray } from "../src/is-array";
@@ -12,8 +12,7 @@ import { isSymbol } from "../src/is-symbol";
 import { isTransferable } from "../src/is-transferable";
 import { isTypedArray } from "../src/is-typedarray";
 
-describe("checks", function () {
-
+describe("checks", function() {
     it("existsAndNotNull", () => {
         assert.ok(existsAndNotNull([]), "empty array");
         assert.ok(existsAndNotNull(new Uint8Array(1)), "typedarray");
@@ -66,7 +65,7 @@ describe("checks", function () {
     });
 
     it("isObject", () => {
-        function Foo() { };
+        function Foo() {}
         assert.ok(isObject([]), "empty array");
         assert.ok(isObject(new Uint8Array(1)), "typedarray");
         assert.ok(isObject({}), "obj");
@@ -79,10 +78,16 @@ describe("checks", function () {
     });
 
     it("isPlainObject", () => {
-        function Foo() { };
+        const ctxClass = vm.runInNewContext("class A {}; new A();");
+        const ctxObj = vm.runInNewContext("({})");
+
+        function Foo() {}
+
         assert.ok(isPlainObject({}), "obj");
+        assert.ok(isPlainObject(Object.create(null)), "obj");
         assert.ok(isPlainObject(new Object()), "obj ctor");
         assert.ok(!isPlainObject(Foo), "fn");
+        assert.ok(!isPlainObject((function*() {})()), "generator");
         assert.ok(!isPlainObject(new Foo()), "class");
         assert.ok(!isPlainObject([]), "empty array");
         assert.ok(!isPlainObject(new Uint8Array(1)), "typedarray");
@@ -90,6 +95,8 @@ describe("checks", function () {
         assert.ok(!isPlainObject(0), "zero");
         assert.ok(!isPlainObject(null), "null");
         assert.ok(!isPlainObject(undefined), "null");
+        assert.ok(isPlainObject(ctxObj), "vm ctx obj");
+        assert.ok(!isPlainObject(ctxClass), "vm ctx class");
     });
 
     it("isString", () => {
@@ -142,5 +149,4 @@ describe("checks", function () {
         assert.ok(!isTransferable(null), "null");
         assert.ok(!isTransferable(undefined), "undefined");
     });
-
 });

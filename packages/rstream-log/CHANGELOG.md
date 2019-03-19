@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@2.0.12...@thi.ng/rstream-log@3.0.0) (2019-03-19)
+
+
+### Code Refactoring
+
+* **rstream-log:** remove obsolete writeFile() fn ([1354171](https://github.com/thi-ng/umbrella/commit/1354171))
+
+
+### BREAKING CHANGES
+
+* **rstream-log:** migrate writeFile() to new pkg @thi.ng/rstream-log-file
+
+
+
+
+
+## [2.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@2.0.11...@thi.ng/rstream-log@2.0.12) (2019-03-18)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@2.0.10...@thi.ng/rstream-log@2.0.11) (2019-03-12)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
+## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@2.0.9...@thi.ng/rstream-log@2.0.10) (2019-03-10)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
 ## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@2.0.8...@thi.ng/rstream-log@2.0.9) (2019-03-05)
 
 **Note:** Version bump only for package @thi.ng/rstream-log

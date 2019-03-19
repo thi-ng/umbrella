@@ -85,10 +85,7 @@ export class DisjointSet {
         const sets: Map<number, number[]> = new Map();
         const roots = this.roots;
         for (let i = roots.length; --i >= 0; ) {
-            let id = i;
-            while (id !== roots[id]) {
-                id = roots[roots[id]];
-            }
+            const id = this.canonical(i);
             const s = sets.get(id);
             if (s) {
                 s.push(i);

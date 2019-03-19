@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.1.11...@thi.ng/matrices@0.1.12) (2019-03-18)
+
+**Note:** Version bump only for package @thi.ng/matrices
+
+
+
+
+
+## [0.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.1.10...@thi.ng/matrices@0.1.11) (2019-03-12)
+
+**Note:** Version bump only for package @thi.ng/matrices
+
+
+
+
+
+## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.1.9...@thi.ng/matrices@0.1.10) (2019-03-10)
+
+**Note:** Version bump only for package @thi.ng/matrices
+
+
+
+
+
 ## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.1.8...@thi.ng/matrices@0.1.9) (2019-03-03)
 
 **Note:** Version bump only for package @thi.ng/matrices

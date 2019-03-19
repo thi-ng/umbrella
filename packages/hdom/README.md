@@ -49,6 +49,7 @@ This project is part of the
     - [createTree()](#createtree)
     - [hydrateTree()](#hydratetree)
 - [User context](#user-context)
+    - [`value` attribute handling](#value-attribute-handling)
     - [Behavior control attributes](#behavior-control-attributes)
     - [Benchmarks](#benchmarks)
 - [Authors](#authors)
@@ -1162,42 +1163,54 @@ const app = [
 start(app, { ctx });
 ```
 
+### `value` attribute handling
+
+hdom automatically saves & restores the cursor position when updating
+the `value` attribute of an `<input>` element w/ text content or
+`<textarea>` element. The latter also means that `textarea` body content
+SHOULD be assigned via the `value` attribute, rather than as child/body
+content:
+
+```ts
+["textarea", { value: "Body content" }]
+```
+
 ### Behavior control attributes
 
 The following special attributes can be added to elements to control the
 branch-local behavior of the hdom implementation:
 
-#### __impl
+#### \_\_impl
 
 If present, the element and all of its children will be processed by the
 given implementation of the `HDOMImplementation` interface. Currently,
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
 is the only example of a component using this feature.
 
-#### __diff
+#### \_\_diff
 
 If true (default), the element will be fully processed by `diffTree()`.
 If false, no diff will be computed and the `replaceChild()` operation
 will be called in the currently active hdom target implementation.
 
-#### __normalize
+#### \_\_normalize
 
 If `false`, the current element's children will not be normalized. Use
 this when you're sure that all children are already in canonical format
 (incl. `key` attributes). See `normalizeTree()` for details.
 
-#### __release
+#### \_\_release
 
 If `false`, hdom will not attempt to call `release()` lifecycle methods
 on this element or any of its children.
 
-#### __serialize
+#### \_\_serialize
 
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 only. If `false`, this element and its children will be omitted from the
 serialized output.
 
-#### __skip
+#### \_\_skip
 
 If true, the element will not be diffed and simply skipped. This
 attribute is only intended for cases when a component / tree branch

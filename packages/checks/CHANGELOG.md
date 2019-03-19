@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.1.2...@thi.ng/checks@2.1.3) (2019-03-18)
+
+**Note:** Version bump only for package @thi.ng/checks
+
+
+
+
+
+## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.1.1...@thi.ng/checks@2.1.2) (2019-03-12)
+
+
+### Bug Fixes
+
+* **checks:** fix [#77](https://github.com/thi-ng/umbrella/issues/77), update & minor optimization isPlainObject() ([47ac88a](https://github.com/thi-ng/umbrella/commit/47ac88a))
+
+
+
+
+
 ## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.1.0...@thi.ng/checks@2.1.1) (2019-03-01)
 
 **Note:** Version bump only for package @thi.ng/checks

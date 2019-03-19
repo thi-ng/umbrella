@@ -275,10 +275,16 @@ export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
         case "text":
         case "textarea":
         case "password":
+        case "search":
+        case "number":
         case "email":
         case "url":
         case "tel":
-        case "search":
+        case "date":
+        case "datetime-local":
+        case "time":
+        case "week":
+        case "month":
             if ((ev = el.value) !== undefined && typeof v === "string") {
                 const off = v.length - (ev.length - el.selectionStart);
                 el.value = v;
