@@ -3,7 +3,6 @@ import {
     Fn3,
     IObjectOf,
     Pair,
-    Predicate2,
     SEMAPHORE
 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
@@ -11,10 +10,9 @@ import { equiv } from "@thi.ng/equiv";
 import { isReduced, map, ReductionFn } from "@thi.ng/transducers";
 import { SortedMapOpts } from "./api";
 
-interface Skip3State<K, V> {
+interface SortedMapState<K, V> {
     head: Node<K, V>;
     cmp: Comparator<K>;
-    equiv: Predicate2<K>;
     maxh: number;
     h: number;
     length: number;
@@ -36,7 +34,7 @@ class Node<K, V> {
 
 // stores private properties for all instances
 // http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
-const __private = new WeakMap<SortedMap<any, any>, Skip3State<any, any>>();
+const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
 export class SortedMap<K, V> extends Map<K, V> {
     static fromObject<T>(
@@ -57,7 +55,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     static DEFAULT_P = 1 / Math.E;
 
     constructor(
-        pairs: Iterable<Pair<K, V>>,
+        pairs?: Iterable<Pair<K, V>>,
         opts: Partial<SortedMapOpts<K>> = {}
     ) {
         super();
@@ -67,7 +65,6 @@ export class SortedMap<K, V> extends Map<K, V> {
             head: new Node<K, V>(null, null, 0),
             cap: Math.pow(2, maxh),
             cmp: opts.compare || compare,
-            equiv: opts.equiv || equiv,
             p: opts.probability || SortedMap.DEFAULT_P,
             maxh,
             length: 0,
@@ -110,12 +107,12 @@ export class SortedMap<K, V> extends Map<K, V> {
         }
     }
 
-    keys(key?: K): IterableIterator<K> {
-        return map((p) => p[0], this.entries(key));
+    keys(key?: K, max = false): IterableIterator<K> {
+        return map((p) => p[0], this.entries(key, max));
     }
 
-    values(key?: K): IterableIterator<V> {
-        return map((p) => p[1], this.entries(key));
+    values(key?: K, max = false): IterableIterator<V> {
+        return map((p) => p[1], this.entries(key, max));
     }
 
     get size() {
@@ -293,7 +290,6 @@ export class SortedMap<K, V> extends Map<K, V> {
         return {
             capacity: $this.cap,
             compare: $this.cmp,
-            equiv: $this.equiv,
             probability: $this.p
         };
     }

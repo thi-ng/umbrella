@@ -104,16 +104,16 @@ export class SortedSet<T> extends Set<T>
         return __private.get(this).$reduce((_acc, x) => rfn(_acc, x[0]), acc);
     }
 
-    entries(): IterableIterator<Pair<T, T>> {
-        return __private.get(this).entries();
+    entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
+        return __private.get(this).entries(key, max);
     }
 
-    keys(): IterableIterator<T> {
-        return __private.get(this).keys();
+    keys(key?: T, max = false): IterableIterator<T> {
+        return __private.get(this).keys(key, max);
     }
 
-    values(): IterableIterator<T> {
-        return __private.get(this).values();
+    values(key?: T, max = false): IterableIterator<T> {
+        return __private.get(this).values(key, max);
     }
 
     add(value: T) {

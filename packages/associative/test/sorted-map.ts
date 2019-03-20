@@ -1,3 +1,6 @@
+import { shuffle } from "@thi.ng/arrays";
+import { equiv } from "@thi.ng/equiv";
+import { range, repeat, zip } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { SortedMap } from "../src/sorted-map";
 
@@ -20,6 +23,28 @@ describe("SortedMap", () => {
         assert.equal(m.size, 3);
     });
 
+    it("clear", () => {
+        m.clear();
+        assert.equal(m.size, 0);
+        assert.deepEqual([...m.entries()], []);
+    });
+
+    it("empty", () => {
+        const m2 = m.empty();
+        assert.equal(m.size, 3);
+        assert.equal(m2.size, 0);
+        assert.deepEqual([...m2.entries()], []);
+    });
+
+    it("copy", () => {
+        assert.deepEqual(m.copy(), m);
+    });
+
+    it("equiv", () => {
+        assert.ok(equiv(m.copy(), m));
+        assert.ok(!equiv(m, new SortedMap<any, any>()));
+    });
+
     it("has", () => {
         assert(m.has("a"));
         assert(m.has("b"));
@@ -27,6 +52,12 @@ describe("SortedMap", () => {
         assert(!m.has("aa"));
         assert(!m.has("d"));
         assert(!m.has("@"));
+    });
+
+    it("first", () => {
+        assert.deepEqual(["a", 1], m.first());
+        m.set("A", 10);
+        assert.deepEqual(["A", 10], m.first());
     });
 
     it("get", () => {
@@ -106,5 +137,24 @@ describe("SortedMap", () => {
         m.set("aa", 0);
         m.set("d", 0);
         assert.deepEqual([...m.values()], [1, 0, 2, 3, 0]);
+    });
+
+    it("comparator", () => {
+        m = SortedMap.fromObject(
+            { a: 1, b: 2, c: 3 },
+            {
+                compare: (a: string, b: string) =>
+                    a === b ? 0 : a < b ? 1 : -1
+            }
+        );
+        assert.deepEqual([["c", 3], ["b", 2], ["a", 1]], [...m.entries()]);
+    });
+
+    it("fuzz", () => {
+        const keys = [...range(32)];
+        for (let i = 0; i < 1000; i++) {
+            m = new SortedMap(zip(shuffle(keys.slice()), repeat(1)));
+            assert.deepEqual([...m.keys()], keys);
+        }
     });
 });

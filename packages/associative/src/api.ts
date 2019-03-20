@@ -16,12 +16,11 @@ export interface IEquivSet<T>
     disj(xs: Iterable<T>): this;
     get(val: T, notFound?: any): any;
     first(): T;
-    opts(): EquivSetOpts<T>;
 }
 
 export interface EquivSetConstructor {
     new (): IEquivSet<any>;
-    new <T>(values?: Iterable<T>, opts?: EquivSetOpts<T>): IEquivSet<T>;
+    new <T>(values?: Iterable<T>, opts?: any): IEquivSet<T>;
     readonly prototype: IEquivSet<any>;
 }
 
@@ -42,7 +41,7 @@ export interface EquivMapOpts<K> extends EquivSetOpts<K> {
 /**
  * SortedMapOpts implementation config settings.
  */
-export interface SortedMapOpts<K> extends EquivSetOpts<K> {
+export interface SortedMapOpts<K> {
     /**
      * Key comparison function. Must follow standard comparator contract
      * and return:
@@ -50,7 +49,8 @@ export interface SortedMapOpts<K> extends EquivSetOpts<K> {
      * - positive if `a > b`
      * - `0` if `a == b`
      *
-     * Note: The `SortedMap` implementation only uses `<` comparisons.
+     * Note: The `SortedMap` implementation only uses `<` and `==` style
+     * comparisons.
      *
      * Default: `@thi.ng/compare`
      */
@@ -59,12 +59,12 @@ export interface SortedMapOpts<K> extends EquivSetOpts<K> {
      * Initial capacity before resizing (doubling) occurs.
      * This value will be rounded up to next pow2.
      *
-     * Default: 16
+     * Default: 8
      */
     capacity: number;
     /**
-     * Probability for a value to exist in any express lane.
-     * Default: `1 / Math.E`
+     * Probability for a value to exist in any express lane of the
+     * underlying Skip List implementation. Default: `1 / Math.E`
      */
     probability: number;
 }
