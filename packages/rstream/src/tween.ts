@@ -1,21 +1,27 @@
 import { Fn2 } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
 import { dedupe, reducer, scan } from "@thi.ng/transducers";
-import { CloseMode } from "./api";
+import { CloseMode, ISubscribable } from "./api";
 import { fromInterval } from "./from/interval";
+import { fromRAF } from "./from/raf";
 import { sync } from "./stream-sync";
-import { Subscription } from "./subscription";
 
 /**
  * Takes an existing stream/subscription `src` and attaches new
  * subscription which interpolates between incoming values from `src`
- * using the given `mix` function. The returned subscription produces
- * values at a fixed frequency, defined by `delay` (in ms, default
- * 16ms). In general, that frequency should be higher than that of
- * `src`.
+ * using the given `mix` function. The returned construct produces
+ * values at a rate controlled by the `clock` stream or frequency. If
+ * omitted, `clock` defaults to `fromRAF()` (~60Hz). If given as number,
+ * creates a `fromInterval(clock)` or else uses the given `clock` stream
+ * directly. In general, the frequency of the `clock` should always be
+ * higher than that of `src`.
  *
  * If `stop` is given as well, no values will be passed downstream if
  * that function returns true. This can be used to limit traffic once
  * the tween target value has been reached.
+ *
+ * The returned subscription closes automatically when either `src` or
+ * `clock` is exhausted.
  *
  * ```
  * val = stream();
@@ -48,17 +54,25 @@ import { Subscription } from "./subscription";
  * @param initial
  * @param mix
  * @param stop
- * @param delay
+ * @param clock
  */
 export const tween = <T>(
-    src: Subscription<any, T>,
+    src: ISubscribable<T>,
     initial: T,
     mix: Fn2<T, T, T>,
-    stop: Fn2<T, T, boolean>,
-    delay = 16
+    stop?: Fn2<T, T, boolean>,
+    clock?: ISubscribable<any> | number
 ) =>
     sync({
-        src: { src, _: fromInterval(delay) },
+        src: {
+            src,
+            _:
+                clock == null
+                    ? fromRAF()
+                    : isNumber(clock)
+                    ? fromInterval(clock)
+                    : clock
+        },
         close: CloseMode.FIRST
     }).transform(
         scan(reducer(() => initial, (acc, { src }) => mix(acc, src))),
