@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-accel",
-    "version": "1.1.9",
+    "version": "1.1.10",
     "description": "nD spatial indexing data structures",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -34,11 +34,11 @@
     "dependencies": {
         "@thi.ng/api": "^5.1.0",
         "@thi.ng/arrays": "^0.1.4",
-        "@thi.ng/geom-api": "^0.1.8",
+        "@thi.ng/geom-api": "^0.1.9",
         "@thi.ng/heaps": "^1.0.5",
         "@thi.ng/math": "^1.2.0",
-        "@thi.ng/transducers": "^5.2.2",
-        "@thi.ng/vectors": "^2.4.3"
+        "@thi.ng/transducers": "^5.3.0",
+        "@thi.ng/vectors": "^2.4.4"
     },
     "keywords": [
         "2D",
