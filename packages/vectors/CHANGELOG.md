@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.4.3...@thi.ng/vectors@2.4.4) (2019-03-21)
+
+**Note:** Version bump only for package @thi.ng/vectors
+
+
+
+
+
 ## [2.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.4.2...@thi.ng/vectors@2.4.3) (2019-03-18)
 
 **Note:** Version bump only for package @thi.ng/vectors

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.2.2...@thi.ng/transducers@5.3.0) (2019-03-21)
+
+
+### Bug Fixes
+
+* **transducers:** update mean() completion step to avoid div by zero ([f644ecd](https://github.com/thi-ng/umbrella/commit/f644ecd))
+
+
+### Features
+
+* **transducers:** add toggle() xform ([b5c744e](https://github.com/thi-ng/umbrella/commit/b5c744e))
+
+
+
+
+
 ## [5.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.2.1...@thi.ng/transducers@5.2.2) (2019-03-18)
 
 **Note:** Version bump only for package @thi.ng/transducers

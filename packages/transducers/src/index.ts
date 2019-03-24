@@ -90,6 +90,7 @@ export * from "./xform/take-while";
 export * from "./xform/take";
 export * from "./xform/throttle";
 export * from "./xform/throttle-time";
+export * from "./xform/toggle";
 export * from "./xform/trace";
 export * from "./xform/word-wrap";
 

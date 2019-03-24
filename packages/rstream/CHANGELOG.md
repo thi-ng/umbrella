@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.4...@thi.ng/rstream@2.3.0) (2019-03-21)
+
+
+### Features
+
+* **rstream:** update clock control for tween(), update docs ([65e9c44](https://github.com/thi-ng/umbrella/commit/65e9c44))
+
+
+
+
+
 ## [2.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.3...@thi.ng/rstream@2.2.4) (2019-03-18)
 
 **Note:** Version bump only for package @thi.ng/rstream
