@@ -50,6 +50,10 @@ export class SortedSet<T> extends Set<T>
         return SortedSet;
     }
 
+    get [Symbol.toStringTag]() {
+        return "SortedSet";
+    }
+
     get size() {
         return __private.get(this).size;
     }
@@ -66,8 +70,8 @@ export class SortedSet<T> extends Set<T>
     }
 
     compare(o: Set<T>) {
-        const n = this.size,
-            m = o.size;
+        const n = this.size;
+        const m = o.size;
         if (n < m) return -1;
         if (n > m) return 1;
         const i = this.entries();
@@ -104,16 +108,16 @@ export class SortedSet<T> extends Set<T>
         return __private.get(this).$reduce((_acc, x) => rfn(_acc, x[0]), acc);
     }
 
-    entries(): IterableIterator<Pair<T, T>> {
-        return __private.get(this).entries();
+    entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
+        return __private.get(this).entries(key, max);
     }
 
-    keys(): IterableIterator<T> {
-        return __private.get(this).keys();
+    keys(key?: T, max = false): IterableIterator<T> {
+        return __private.get(this).keys(key, max);
     }
 
-    values(): IterableIterator<T> {
-        return __private.get(this).values();
+    values(key?: T, max = false): IterableIterator<T> {
+        return __private.get(this).values(key, max);
     }
 
     add(value: T) {
@@ -148,7 +152,10 @@ export class SortedSet<T> extends Set<T>
         return this;
     }
 
-    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any): void {
+    forEach(
+        fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>,
+        thisArg?: any
+    ): void {
         for (let p of this) {
             fn.call(thisArg, p[0], p[0], this);
         }

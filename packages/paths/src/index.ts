@@ -14,8 +14,6 @@ const compS = (k, f) => (s, v) => (
     (s = _copy(s)), (s[k] = f ? f(s[k], v) : v), s
 );
 
-const compG = (k, f) => (s) => (s ? f(s[k]) : undefined);
-
 /**
  * Converts the given key path to canonical form (array).
  *
@@ -36,12 +34,12 @@ export const toPath = (path: Path) =>
     isa(path)
         ? path
         : iss(path)
-            ? path.length > 0
-                ? path.split(".")
-                : []
-            : path != null
-                ? [path]
-                : [];
+        ? path.length > 0
+            ? path.split(".")
+            : []
+        : path != null
+        ? [path]
+        : [];
 
 /**
  * Takes an arbitrary object and lookup path. Descends into object along
@@ -107,36 +105,39 @@ export const getter = (path: Path) => {
         case 0:
             return (s) => s;
         case 1:
-            return (s) => (s ? s[a] : undefined);
+            return (s) => (s != null ? s[a] : undefined);
         case 2:
-            return (s) => (s ? ((s = s[a]) ? s[b] : undefined) : undefined);
+            return (s) =>
+                s != null ? ((s = s[a]) != null ? s[b] : undefined) : undefined;
         case 3:
             return (s) =>
-                s
-                    ? (s = s[a])
-                        ? (s = s[b])
+                s != null
+                    ? (s = s[a]) != null
+                        ? (s = s[b]) != null
                             ? s[c]
                             : undefined
                         : undefined
                     : undefined;
         case 4:
             return (s) =>
-                s
-                    ? (s = s[a])
-                        ? (s = s[b])
-                            ? (s = s[c])
+                s != null
+                    ? (s = s[a]) != null
+                        ? (s = s[b]) != null
+                            ? (s = s[c]) != null
                                 ? s[d]
                                 : undefined
                             : undefined
                         : undefined
                     : undefined;
         default:
-            const kl = ks[ks.length - 1];
-            let f = (s) => (s ? s[kl] : undefined);
-            for (let i = ks.length - 1; --i >= 0; ) {
-                f = compG(ks[i], f);
-            }
-            return f;
+            return (s) => {
+                const n = ks.length - 1;
+                let res = s;
+                for (let i = 0; res != null && i <= n; i++) {
+                    res = res[ks[i]];
+                }
+                return res;
+            };
     }
 };
 

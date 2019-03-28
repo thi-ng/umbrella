@@ -1,15 +1,15 @@
+import { into } from "./into";
 import { copy } from "./utils";
 
-export const union = <T>(a: Set<T>, b: Set<T>): Set<T> => {
-    if (a === b) {
-        return a;
-    }
-    if (b.size > a.size) {
-        return union(b, a);
-    }
-    const res = copy(a, Set);
-    for (let i of b) {
-        res.add(i);
-    }
-    return res;
+/**
+ * Computes union of sets `a` and `b` and writes results to new set or
+ * optionally given set `out` (assumed to be empty for correct results).
+ *
+ * @param a
+ * @param b
+ * @param out
+ */
+export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
+    out = out ? into(out, a) : copy(a, Set);
+    return a === b ? out : into(out, b);
 };

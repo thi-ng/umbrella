@@ -38,13 +38,18 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         return ArraySet;
     }
 
+    get [Symbol.toStringTag]() {
+        return "ArraySet";
+    }
+
     get size() {
         return __private.get(this).vals.length;
     }
 
     copy() {
-        const s = new ArraySet<T>(null, this.opts());
-        __private.get(s).vals = [...__private.get(this).vals];
+        const $this = __private.get(this);
+        const s = new ArraySet<T>(null, { equiv: $this.equiv });
+        __private.get(s).vals = $this.vals.slice();
         return s;
     }
 
@@ -136,7 +141,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         return true;
     }
 
-    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
+    forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
         const vals = __private.get(this).vals;
         for (let i = vals.length - 1; i >= 0; i--) {
             const v = vals[i];

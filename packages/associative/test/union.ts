@@ -1,10 +1,9 @@
 import * as assert from "assert";
-
 import { ArraySet } from "../src/array-set";
 import { union } from "../src/union";
 
-describe("union", () => {
 
+describe("union", () => {
     it("native (numbers)", () => {
         const a = new Set([1, 2, 3, 4]);
         const b = new Set([3, 4, 5, 6]);
@@ -35,5 +34,12 @@ describe("union", () => {
         assert.deepEqual(u, new ArraySet([{ a: 1 }, { a: 2 }, { a: 3 }]));
         assert.notStrictEqual(u, a);
         assert.notStrictEqual(u, b);
+    });
+
+    it("w/ out", () => {
+        assert.deepEqual(
+            union(new Set([1, 2, 3]), new Set([2, 4]), new Set([5])),
+            new Set([1, 2, 3, 4, 5])
+        );
     });
 });

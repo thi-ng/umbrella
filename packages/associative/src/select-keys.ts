@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { empty } from "./utils";
 
 /**
@@ -8,12 +7,13 @@ import { empty } from "./utils";
  * @param src
  * @param ks selected keys
  */
-export const selectKeysMap = <K, V>(src: Map<K, V>, ks: Iterable<K>): any => {
+export const selectKeysMap = <K, V>(
+    src: Map<K, V>,
+    ks: Iterable<K>
+): Map<K, V> => {
     const dest = empty(src, Map);
     for (let k of ks) {
-        if (src.has(k)) {
-            dest.set(k, src.get(k));
-        }
+        src.has(k) && dest.set(k, src.get(k));
     }
     return dest;
 };
@@ -26,14 +26,12 @@ export const selectKeysMap = <K, V>(src: Map<K, V>, ks: Iterable<K>): any => {
  * @param ks
  */
 export const selectKeysObj = <T>(
-    src: IObjectOf<T>,
+    src: T,
     ks: Iterable<PropertyKey>
-): any => {
-    const dest: IObjectOf<T> = {};
+): { [id in keyof T]?: T[id] } => {
+    const dest: any = {};
     for (let k of ks) {
-        if (src.hasOwnProperty(k)) {
-            dest[<any>k] = src[<any>k];
-        }
+        src.hasOwnProperty(k) && (dest[k] = src[<any>k]);
     }
     return dest;
 };

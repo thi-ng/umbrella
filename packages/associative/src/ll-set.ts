@@ -42,6 +42,10 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         return LLSet;
     }
 
+    get [Symbol.toStringTag]() {
+        return "LLSet";
+    }
+
     get size() {
         return __private.get(this).vals.length;
     }
@@ -144,7 +148,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         return true;
     }
 
-    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
+    forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
         let i = __private.get(this).vals.head;
         while (i) {
             fn.call(thisArg, i.value, i.value, this);
