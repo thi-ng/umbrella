@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.1.0...@thi.ng/api@6.0.0) (2019-03-28)
+
+
+### Features
+
+* **api:** add new types, update existing ([560eb90](https://github.com/thi-ng/umbrella/commit/560eb90))
+
+
+### BREAKING CHANGES
+
+* **api:** split up, remove & update various interfaces
+
+- split IAssociative => IAssoc, IAssocIn
+- update IDissoc, add IDissocIn
+- split IGet => IGet, IGetIn
+- update IInto generics & return type
+- update ISet, remove IImmutableSet
+- update IStack, remove IImmutableStack
+
+
+
+
+
 # [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.3...@thi.ng/api@5.1.0) (2019-03-10)
 
 

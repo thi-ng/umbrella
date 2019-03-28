@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@2.0.6...@thi.ng/paths@2.0.7) (2019-03-28)
+
+
+### Bug Fixes
+
+* **paths:** fix getIn for empty leaves, add tests ([49952fd](https://github.com/thi-ng/umbrella/commit/49952fd))
+
+
+
+
+
 
 
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@1.6.6...@thi.ng/paths@2.0.0) (2019-01-21)

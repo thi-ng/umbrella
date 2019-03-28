@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.4.4...@thi.ng/vectors@2.5.0) (2019-03-28)
+
+
+### Features
+
+* **vectors:** add hash() op and IHash impls for Vec2/3/4 ([577d8cf](https://github.com/thi-ng/umbrella/commit/577d8cf))
+* **vectors:** add Vec2/3/4Like type aliases, update ReadonlyVec ([3d5cd61](https://github.com/thi-ng/umbrella/commit/3d5cd61))
+
+
+
+
+
 
 
 # [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.3.2...@thi.ng/vectors@2.4.0) (2019-03-03)

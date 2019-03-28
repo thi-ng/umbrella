@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bitstream",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "ES6 iterator based read/write bit streams & support for variable word widths",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -24,7 +24,7 @@
         "pub": "yarn build && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.0.3"
+        "@thi.ng/errors": "^1.0.4"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",

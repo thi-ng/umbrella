@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/quad-edge",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Quadedge data structure after Guibas & Stolfi",
     "module": "./index.js",
     "main": "./lib/index.js",

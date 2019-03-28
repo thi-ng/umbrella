@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@1.0.12...@thi.ng/associative@2.0.0) (2019-03-28)
+
+
+### Code Refactoring
+
+* **associative:** fix/update invertMap() / invertObj() ([b57a1c0](https://github.com/thi-ng/umbrella/commit/b57a1c0))
+* **associative:** update set combinator ops ([9e78d20](https://github.com/thi-ng/umbrella/commit/9e78d20))
+
+
+### Features
+
+* **associative:** add polymorphic into() ([4577646](https://github.com/thi-ng/umbrella/commit/4577646))
+* **associative:** make .forEach() args readonly, add Symbol.toStringTag ([3749d41](https://github.com/thi-ng/umbrella/commit/3749d41))
+* **associative:** update SortedSet, IEquivSet, add tests ([e8234e8](https://github.com/thi-ng/umbrella/commit/e8234e8))
+* **associative:** update type sigs & args for various fns ([7bf2504](https://github.com/thi-ng/umbrella/commit/7bf2504))
+
+
+### BREAKING CHANGES
+
+* **associative:** improved/stricter type sigs & args for various fns
+
+- commonKeys*()
+- indexed()
+- join() / joinWith()
+- renameKeys*()
+- selectKeys*()
+- first()
+* **associative:** changed result type handling in invertMap(), see docstring
+* **associative:** make `difference`, `intersection`, `union` immutable ops
+
+
+
+
+
 
 
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@0.6.23...@thi.ng/associative@1.0.0) (2019-01-21)

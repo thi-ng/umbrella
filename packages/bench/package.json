@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bench",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Basic benchmarking helpers",
     "module": "./index.js",
     "main": "./lib/index.js",
