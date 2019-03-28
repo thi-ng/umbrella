@@ -4,9 +4,17 @@ export const EVENT_ALL = "*";
 export const EVENT_ENABLE = "enable";
 export const EVENT_DISABLE = "disable";
 
+/**
+ * Internal use only. **Do NOT use in user land code!**
+ */
 export const SEMAPHORE = Symbol();
 
+/**
+ * No-effect placeholder function.
+ */
 export const NO_OP = () => {};
+
+export type ArrayLikeIterable<T> = ArrayLike<T> & Iterable<T>;
 
 /**
  * A no-arg function, returning T.
@@ -191,9 +199,64 @@ export type FnO10<A, B, C, D, E, F, G, H, I, J, K> = (
 export type FnAny<T> = (...xs: any[]) => T;
 
 /**
- * An typed vararg arg function from A => B.
+ * A typed vararg arg function from A => B.
  */
 export type FnAnyT<A, B> = (...xs: A[]) => B;
+
+/*
+ * Utilities for extracting key types of nested objects.
+ */
+export type Keys<T> = keyof T;
+export type Keys1<T, A extends Keys<T>> = Keys<T[A]>;
+export type Keys2<T, A extends Keys<T>, B extends Keys1<T, A>> = Keys1<T[A], B>;
+export type Keys3<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>
+> = Keys2<T[A], B, C>;
+export type Keys4<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>
+> = Keys3<T[A], B, C, D>;
+export type Keys5<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>
+> = Keys4<T[A], B, C, D, E>;
+
+/*
+ * Utilities for extracting value types from nested objects.
+ */
+export type Val1<T, A extends Keys<T>> = T[A];
+export type Val2<T, A extends Keys<T>, B extends Keys1<T, A>> = Val1<T, A>[B];
+export type Val3<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>
+> = Val2<T, A, B>[C];
+export type Val4<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>
+> = Val3<T, A, B, C>[D];
+export type Val5<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>
+> = Val4<T, A, B, C, D>[E];
 
 /**
  * Generic 2-element comparator function type alias. Must follow this
@@ -211,6 +274,8 @@ export type Comparator<T> = Fn2<T, T, number>;
 export type Listener = Fn<Event, void>;
 
 export type NumericArray = number[] | TypedArray;
+
+export type Primitive = number | string | boolean | symbol;
 
 /**
  * Lookup path for nested data structures.
@@ -242,6 +307,10 @@ export type StatefulPredicate<T> = Fn0<Predicate<T>>;
  */
 export type StatefulPredicate2<T> = Fn0<Predicate2<T>>;
 
+export type Tuple<T, N extends number> = [T, ...T[]] & { length: N };
+
+export type IterableTuple<T, N extends number> = Tuple<T, N> & Iterable<T>;
+
 export type TypedArray =
     | Float32Array
     | Float64Array
@@ -261,12 +330,20 @@ export type Watch<T> = (id: string, oldState: T, newState: T) => void;
 /**
  * @param K key type
  * @param V value type
- * @param T implementation type
+ * @param T return type
  */
-export interface IAssociative<K, V, T> {
+export interface IAssoc<K, V, T> {
     assoc(key: K, val: V): T;
-    assocIn(key: K[], val: V): T;
     update(key: K, f: Fn<V, V>): T;
+}
+
+/**
+ * @param K key type
+ * @param V value type
+ * @param T return type
+ */
+export interface IAssocIn<K, V, T> {
+    assocIn(key: K[], val: V): T;
     updateIn(key: K[], f: Fn<V, V>): T;
 }
 
@@ -350,20 +427,31 @@ export interface IDeref<T> {
 }
 
 /**
- * Extension of `IAssociative` for types supporting key removals.
+ * Extension of `IAssoc` for types supporting key removals.
  *
  * @param K key type
  * @param V value type
- * @param T imlementation type
+ * @param T return type
  */
-export interface IDissoc<K, V, T> extends IAssociative<K, V, T> {
+export interface IDissoc<K, V, T> extends IAssoc<K, V, T> {
     dissoc(key: K): T;
+}
+
+/**
+ * Extension of `IAssocIn` for types supporting key removals.
+ *
+ * @param K key type
+ * @param V value type
+ * @param T return type
+ */
+export interface IDissocIn<K, V, T> extends IAssocIn<K, V, T> {
+    dissocIn(key: K[]): T;
 }
 
 export interface IEmpty<T> {
     /**
-     * Returns an empty collection of same type (and possibly same
-     * config).
+     * Returns an empty/blank instance of same type (with possibly same
+     * config, if any).
      */
     empty(): T;
 }
@@ -420,21 +508,18 @@ export interface Event extends IID<PropertyKey> {
 }
 
 /**
- * Interface to provide event emitter functionality. Also see `@INotify`
- * decorator mixin
+ * @param K key type
+ * @param V value type
  */
-export interface INotify {
-    addListener(id: string, fn: Listener, scope?: any): boolean;
-    removeListener(id: string, fn: Listener, scope?: any): boolean;
-    notify(event: Event): void;
+export interface IGet<K, V> {
+    get(key: K, notfound?: V): V;
 }
 
 /**
  * @param K key type
  * @param V value type
  */
-export interface IGet<K, V> {
-    get(key: K, notfound?: V): V;
+export interface IGetIn<K, V> {
     getIn(key: K[], notfound?: V): V;
 }
 
@@ -469,8 +554,8 @@ export interface IIndexed<T> {
  * Interface for collection types supporting addition of multiple
  * values.
  */
-export interface IInto<T> {
-    into(coll: Iterable<T>): this;
+export interface IInto<V, T> {
+    into(coll: Iterable<V>): T;
 }
 
 /**
@@ -497,6 +582,16 @@ export interface IMeta<T> {
 }
 
 /**
+ * Interface to provide event emitter functionality. Also see `@INotify`
+ * decorator mixin
+ */
+export interface INotify {
+    addListener(id: string, fn: Listener, scope?: any): boolean;
+    removeListener(id: string, fn: Listener, scope?: any): boolean;
+    notify(event: Event): void;
+}
+
+/**
  * Generic plain object with all key values of given type.
  */
 export interface IObjectOf<T> {
@@ -511,42 +606,20 @@ export interface IRelease {
 }
 
 /**
- * Generic interface for MUTABLE set collection types.
- *
- * @param T value type
- */
-export interface ISet<T> extends IInto<T> {
-    /**
-     * Conjoins/adds value `x` to set and returns true if `x` has been
-     * added.
-     *
-     * @param x
-     */
-    conj(x: T): boolean;
-    /**
-     * Disjoins/removes value `x` from set and returns true if `x` has
-     * been removed.
-     *
-     * @param x
-     */
-    disj(x: T): boolean;
-}
-
-/**
- * Generic interface for IMMUTABLE set collection types.
+ * Generic interface for set collection types.
  *
  * @param V value type
- * @param T implementation type
+ * @param T return type
  */
-export interface IImmutableSet<V, T> extends IInto<V> {
+export interface ISet<V, T> extends IInto<V, T> {
     /**
-     * Conjoins/adds value `x` to set and returns updated set.
+     * Conjoins/adds value `x` to set.
      *
      * @param x
      */
     conj(x: V): T;
     /**
-     * Disjoins/removes value `x` from set and returns updated set.
+     * Disjoins/removes value `x` from set.
      *
      * @param x
      */
@@ -554,41 +627,23 @@ export interface IImmutableSet<V, T> extends IInto<V> {
 }
 
 /**
- * Generic interface for MUTABLE sequential collections implementing
+ * Generic interface for collections implementing
  * stack functionality.
  *
  * @param V value type
- * @param T return/container type
+ * @param P return type for pop()
+ * @param Q return type for push()
  */
-export interface IStack<V, T> {
+export interface IStack<V, P, Q> {
     /**
      * Returns top-of-stack item.
      */
     peek(): V;
     /**
-     * Removes top-of-stack item and returns it.
+     * Removes top-of-stack item and returns type P.
      */
-    pop(): V;
-    push(x: V): T;
-}
-
-/**
- * Generic interface for IMMUTABLE sequential collections implementing
- * stack functionality.
- *
- * @param V value type
- * @param T return/container type
- */
-export interface IImmutableStack<V, T> {
-    /**
-     * Returns top-of-stack item.
-     */
-    peek(): V;
-    /**
-     * Returns collection w/ top-of-stack item removed.
-     */
-    pop(): T;
-    push(x: V): T;
+    pop(): P;
+    push(x: V): Q;
 }
 
 export interface IToHiccup {
