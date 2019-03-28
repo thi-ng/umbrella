@@ -50,6 +50,7 @@ export * from "./fit";
 export * from "./floor";
 export * from "./fract";
 export * from "./gvec";
+export * from "./hash";
 export * from "./heading";
 export * from "./heading-segment";
 export * from "./homogeneous";

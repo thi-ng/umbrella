@@ -1,3 +1,4 @@
+import { IHash } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import {
     IVector,
@@ -12,6 +13,7 @@ import {
     ZERO3
 } from "./api";
 import { eqDelta3 } from "./eqdelta";
+import { hash } from "./hash";
 import { declareIndices } from "./internal/accessors";
 import { AVec } from "./internal/avec";
 import {
@@ -22,7 +24,7 @@ import {
 } from "./internal/vec-utils";
 import { setS3 } from "./sets";
 
-export class Vec3 extends AVec implements IVector<Vec3> {
+export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
     /**
      * Returns array of memory mapped `Vec3` instances using given
      * backing array and stride settings: The `cstride` is the step size
@@ -120,6 +122,10 @@ export class Vec3 extends AVec implements IVector<Vec3> {
 
     eqDelta(v: ReadonlyVec, eps = EPS) {
         return eqDelta3(this, v, eps);
+    }
+
+    hash() {
+        return hash(this);
     }
 
     toJSON() {

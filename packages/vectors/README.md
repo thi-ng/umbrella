@@ -9,35 +9,36 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
--   [About](#about)
-    -   [Features](#features)
-    -   [Related packages](#related-packages)
--   [Installation](#installation)
--   [Dependencies](#dependencies)
--   [Usage examples](#usage-examples)
--   [API](#api)
-    -   [Constants](#constants)
-    -   [Component setters & copying](#component-setters--copying)
-    -   [Component swizzling](#component-swizzling)
-    -   [Vector creation](#vector-creation)
-    -   [Basic vector math](#basic-vector-math)
-    -   [Multiply-add](#multiply-add)
-    -   [Constraints](#constraints)
-    -   [Cross product](#cross-product)
-    -   [Dot product](#dot-product)
-    -   [Interpolation](#interpolation)
-    -   [Normalization / magnitude](#normalization--magnitude)
-    -   [Distances](#distances)
-    -   [Orientation](#orientation)
-    -   [Rotations](#rotations)
-    -   [Polar / cartesian conversion](#polar--cartesian-conversion)
-    -   [Randomness](#randomness)
-    -   [Unary vector math ops](#unary-vector-math-ops)
-    -   [Vector array batch processing](#vector-array-batch-processing)
-    -   [Comparison / equality](#comparison--equality)
-    -   [Code generator](#code-generator)
--   [Authors](#authors)
--   [License](#license)
+- [About](#about)
+    - [Features](#features)
+    - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+    - [Constants](#constants)
+    - [Component setters & copying](#component-setters--copying)
+    - [Component swizzling](#component-swizzling)
+    - [Vector creation](#vector-creation)
+    - [Basic vector math](#basic-vector-math)
+    - [Multiply-add](#multiply-add)
+    - [Constraints](#constraints)
+    - [Cross product](#cross-product)
+    - [Dot product](#dot-product)
+    - [Interpolation](#interpolation)
+    - [Normalization / magnitude](#normalization--magnitude)
+    - [Distances](#distances)
+    - [Orientation](#orientation)
+    - [Rotations](#rotations)
+    - [Polar / cartesian conversion](#polar--cartesian-conversion)
+    - [Randomness](#randomness)
+    - [Unary vector math ops](#unary-vector-math-ops)
+    - [Vector array batch processing](#vector-array-batch-processing)
+    - [Comparison / equality](#comparison--equality)
+    - [Hashing](#hashing)
+    - [Code generator](#code-generator)
+- [Authors](#authors)
+- [License](#license)
 
 <!-- /TOC -->
 
@@ -156,6 +157,9 @@ v.fromHomogeneous([], [100, 200, 0.5]);
 
 v.swizzle4([], [1, 2], 1, 1, 0, 0);
 // [ 2, 2, 1, 1 ]
+
+v.hash([1, 2, 3])
+// 2383338936
 ```
 
 ## API
@@ -381,6 +385,10 @@ Functions to transform flat / strided buffers w/ vector operations:
 -   `eqDelta` / `eqDelta2` / `eqDelta3` / `eqDelta4`
 -   `eqDeltaS`
 -   `eqDeltaArray`
+
+### Hashing
+
+- `hash`
 
 ### Code generator
 
