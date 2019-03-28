@@ -10,8 +10,8 @@
         "start": "parcel index.html -p 8080 --open --no-cache"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.11.0",
-        "terser": "^3.14.1",
+        "parcel-bundler": "^1.12.3",
+        "terser": "^3.17.0",
         "typescript": "^3.2.2"
     },
     "dependencies": {
