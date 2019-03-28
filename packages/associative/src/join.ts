@@ -12,7 +12,7 @@ import { empty, first, objValues } from "./utils";
  * is assumed to have plain objects as values with at least one of the
  * keys present in both sides. Furthermore the objects in each set are
  * assumed to have the same internal structure (i.e. sets of keys).
- * Returns new set of same type as `xrel`.
+ * Returns new set of same type as `a`.
  *
  * ```
  * join(
@@ -30,26 +30,26 @@ import { empty, first, objValues } from "./utils";
  * // }
  * ```
  *
- * @param xrel
- * @param yrel
+ * @param a
+ * @param b
  */
-export const join = (
-    xrel: Set<IObjectOf<any>>,
-    yrel: Set<IObjectOf<any>>
-): Set<IObjectOf<any>> => {
-    if (xrel.size && yrel.size) {
-        const ks = commonKeysObj(first(xrel) || {}, first(yrel) || {});
-        let a: Set<any>, b: Set<any>;
-        if (xrel.size <= yrel.size) {
-            a = xrel;
-            b = yrel;
+export const join = <A, B>(
+    a: Set<A>,
+    b: Set<B>
+): Set<Pick<A, keyof A> & Pick<B, keyof B>> => {
+    if (a.size && b.size) {
+        const ks = commonKeysObj(first(a) || {}, first(b) || {});
+        let aa: Set<any>, bb: Set<any>;
+        if (a.size <= b.size) {
+            aa = a;
+            bb = b;
         } else {
-            a = yrel;
-            b = xrel;
+            aa = b;
+            bb = a;
         }
-        const idx = indexed(a, ks);
-        const res: Set<any> = empty(xrel, Set);
-        for (let x of b) {
+        const idx = indexed(aa, ks);
+        const res: Set<any> = empty(a, Set);
+        for (let x of bb) {
             const found = idx.get(selectKeysObj(x, ks));
             if (found) {
                 for (let f of found) {
@@ -59,16 +59,16 @@ export const join = (
         }
         return res;
     }
-    return empty(xrel, Set);
+    return empty(a, Set);
 };
 
 /**
  * Similar to `join()`, computes the join between two sets of relations,
  * using the given keys in `kmap` only for joining and ignoring others.
- * `kmap` can also be used to translate join keys in `yrel` where
+ * `kmap` can also be used to translate join keys in `b` where
  * needed. Else, if no renaming is desired, the values in `kmap` should
  * be the same as their respective keys, e.g. `{id: "id"}`. Returns new
- * set of same type as `xrel`.
+ * set of same type as `a`.
  *
  * ```
  * joinWith(
@@ -86,31 +86,31 @@ export const join = (
  * //   { type: 2, color: 'blue', id: 2, name: 'bar' } }
  * ```
  *
- * @param xrel
- * @param yrel
+ * @param a
+ * @param b
  * @param kmap keys to compute join for
  */
-export const joinWith = (
-    xrel: Set<any>,
-    yrel: Set<any>,
-    kmap: IObjectOf<PropertyKey>
+export const joinWith = <A, B>(
+    a: Set<A>,
+    b: Set<B>,
+    kmap: { [id in keyof A]?: keyof B }
 ): Set<any> => {
-    if (xrel.size && yrel.size) {
-        let r: Set<any>, s: Set<any>;
+    if (a.size && b.size) {
+        let aa: Set<any>, bb: Set<any>;
         let k: IObjectOf<PropertyKey>;
-        if (xrel.size <= yrel.size) {
-            r = xrel;
-            s = yrel;
+        if (a.size <= b.size) {
+            aa = a;
+            bb = b;
             k = invertObj(kmap);
         } else {
-            r = yrel;
-            s = xrel;
+            aa = b;
+            bb = a;
             k = kmap;
         }
-        const idx = indexed(r, objValues(k));
+        const idx = indexed(aa, objValues(k));
         const ks = Object.keys(k);
-        const res: Set<any> = empty(xrel, Set);
-        for (let x of s) {
+        const res: Set<any> = empty(a, Set);
+        for (let x of bb) {
             const found = idx.get(renameKeysObj(selectKeysObj(x, ks), k));
             if (found) {
                 for (let f of found) {
@@ -120,5 +120,7 @@ export const joinWith = (
         }
         return res;
     }
-    return empty(xrel, Set);
+    return empty(a, Set);
 };
+
+joinWith(new Set([{ a: 1, b: 2 }]), new Set([{ id: 1, c: 2 }]), { a: "id" });

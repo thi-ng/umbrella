@@ -4,6 +4,7 @@ export * from "./difference";
 export * from "./equiv-map";
 export * from "./indexed";
 export * from "./intersection";
+export * from "./into";
 export * from "./invert";
 export * from "./join";
 export * from "./ll-set";

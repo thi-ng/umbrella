@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { empty } from "./utils";
 
 /**
@@ -7,13 +6,18 @@ import { empty } from "./utils";
  *
  * @param src
  * @param km
+ * @param out
  */
-export const renameKeysMap = <K, V>(src: Map<K, V>, km: Map<K, K>) => {
-    const dest: Map<K, V> = empty(src, Map);
+export const renameKeysMap = <K, V>(
+    src: Map<K, V>,
+    km: Map<K, K>,
+    out?: Map<K, V>
+) => {
+    out = out || empty(src, Map);
     for (let [k, v] of src) {
-        dest.set(km.has(k) ? km.get(k) : k, v);
+        out.set(km.has(k) ? km.get(k) : k, v);
     }
-    return dest;
+    return out;
 };
 
 /**
@@ -30,12 +34,12 @@ export const renameKeysMap = <K, V>(src: Map<K, V>, km: Map<K, K>) => {
  * @param km
  */
 export const renameKeysObj = <T>(
-    src: IObjectOf<T>,
-    km: IObjectOf<PropertyKey>
+    src: T,
+    km: { [id in keyof T]?: PropertyKey },
+    out: any = {}
 ) => {
-    const dest = {};
     for (let k in src) {
-        dest[km.hasOwnProperty(k) ? km[k] : k] = src[k];
+        out[km.hasOwnProperty(k) ? km[k] : k] = src[k];
     }
-    return dest;
+    return out;
 };

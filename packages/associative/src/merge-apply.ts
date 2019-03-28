@@ -22,14 +22,22 @@ export const mergeApplyMap = <K, V>(
 };
 
 /**
- * Similar to `mergeObj()`, but only supports 2 args and any function
- * values in `xs` will be called with respective value in `src` to
- * produce a new / derived value for that key. Returns new merged object
- * and does not modify any of the inputs.
+ * Similar to `mergeObjWith()`, but only supports 2 args and any
+ * function values in `xs` will be called with respective value in `src`
+ * to produce a new / derived value for that key, i.e.
  *
  * ```
- * mapKeysObj({a: "hello", b: 23}, {a: (x) => x + " world", b: 42});
- * // { a: 'hello world', b: 42 }
+ * dest[k] = xs[k](src[k])
+ * ```
+ *
+ * Returns new merged object and does not modify any of the inputs.
+ *
+ * ```
+ * mergeApplyObj(
+ *   {a: "hello", b: 23, c: 12},
+ *   {a: (x) => x + " world", b: 42}
+ * );
+ * // { a: 'hello world', b: 42, c: 12 }
  * ```
  *
  * @param src

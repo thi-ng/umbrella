@@ -27,16 +27,22 @@ export class EquivMap<K, V> extends Map<K, V>
         IEquiv {
     /**
      * Converts given vanilla object into an `EquivMap` instance with
-     * default options and returns it.
+     * default (or optionally provided) options and returns it. By
+     * default uses strict `===` equality check for `equiv` option.
      *
      * @param obj
+     * @param opts
      */
-    static fromObject<T>(obj: IObjectOf<T>): EquivMap<PropertyKey, T> {
-        const m = new EquivMap<PropertyKey, T>();
+    static fromObject<T>(
+        obj: IObjectOf<T>,
+        opts?: Partial<EquivMapOpts<string>>
+    ): EquivMap<string, T> {
+        const m = new EquivMap<string, T>(null, {
+            equiv: (a, b) => a === b,
+            ...opts
+        });
         for (let k in obj) {
-            if (obj.hasOwnProperty(k)) {
-                m.set(k, obj[k]);
-            }
+            obj.hasOwnProperty(k) && m.set(k, obj[k]);
         }
         return m;
     }
@@ -52,10 +58,7 @@ export class EquivMap<K, V> extends Map<K, V>
      */
     constructor(pairs?: Iterable<Pair<K, V>>, opts?: Partial<EquivMapOpts<K>>) {
         super();
-        const _opts: EquivMapOpts<K> = Object.assign(
-            { equiv, keys: ArraySet },
-            opts
-        );
+        const _opts: EquivMapOpts<K> = { equiv, keys: ArraySet, ...opts };
         __private.set(this, {
             keys: new _opts.keys(null, { equiv: _opts.equiv }),
             map: new Map<K, V>(),
