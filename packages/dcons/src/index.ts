@@ -31,7 +31,7 @@ export class DCons<T>
         ILength,
         IReducible<any, T>,
         IRelease,
-        IStack<T, DCons<T>> {
+        IStack<T, T, DCons<T>> {
     head: ConsCell<T>;
     tail: ConsCell<T>;
     protected _length: number = 0;
