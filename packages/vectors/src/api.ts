@@ -1,4 +1,5 @@
 import {
+    ArrayLikeIterable,
     Fn,
     Fn2,
     Fn3,
@@ -7,16 +8,20 @@ import {
     ICopy,
     IEmpty,
     IEqualsDelta,
-    ILength
+    ILength,
+    Tuple,
+    TypedArray
 } from "@thi.ng/api";
 
 export interface Vec extends Iterable<number>, ILength {
     [id: number]: number;
 }
 
-export interface ReadonlyVec extends Iterable<number>, ILength {
-    readonly [id: number]: number;
-}
+export type ReadonlyVec = ArrayLikeIterable<number>;
+
+export type Vec2Like = Tuple<number, 2> | TypedArray;
+export type Vec3Like = Tuple<number, 3> | TypedArray;
+export type Vec4Like = Tuple<number, 4> | TypedArray;
 
 export interface StridedVec {
     buf: Vec;
