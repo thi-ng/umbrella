@@ -14,16 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [1.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.1.0...@thi.ng/math@1.1.1) (2019-03-01)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.0.1...@thi.ng/math@1.1.0) (2019-02-05)
 
 
@@ -32,16 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **math:** add minError() search ([cae8394](https://github.com/thi-ng/umbrella/commit/cae8394))
 * **math:** add PHI const ([57d4488](https://github.com/thi-ng/umbrella/commit/57d4488))
 * **math:** add simplifyRatio() ([31e369b](https://github.com/thi-ng/umbrella/commit/31e369b))
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.0.0...@thi.ng/math@1.0.1) (2019-01-21)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
 
 
 

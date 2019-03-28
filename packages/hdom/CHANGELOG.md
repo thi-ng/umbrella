@@ -12,40 +12,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [7.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.1.3...@thi.ng/hdom@7.1.4) (2019-03-12)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [7.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.1.2...@thi.ng/hdom@7.1.3) (2019-03-10)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [7.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.1.1...@thi.ng/hdom@7.1.2) (2019-03-01)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [7.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.1.0...@thi.ng/hdom@7.1.1) (2019-02-18)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
 # [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.0.2...@thi.ng/hdom@7.1.0) (2019-02-10)
 
 
@@ -57,24 +23,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **hdom:** add scrollTop/Left property support in setAttrib() ([895da65](https://github.com/thi-ng/umbrella/commit/895da65))
-
-
-
-
-
-## [7.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.0.1...@thi.ng/hdom@7.0.2) (2019-02-05)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [7.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.0.0...@thi.ng/hdom@7.0.1) (2019-01-21)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
 
 
 

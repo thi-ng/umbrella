@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
+
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.4...@thi.ng/rstream@2.3.0) (2019-03-21)
 
 
@@ -12,40 +14,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [2.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.3...@thi.ng/rstream@2.2.4) (2019-03-18)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.2...@thi.ng/rstream@2.2.3) (2019-03-12)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.1...@thi.ng/rstream@2.2.2) (2019-03-10)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
 ## [2.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.2.0...@thi.ng/rstream@2.2.1) (2019-03-05)
 
 
 ### Bug Fixes
 
 * **rstream:** add __owner info for MetaStream, update ISubscriber ([b5801e9](https://github.com/thi-ng/umbrella/commit/b5801e9))
-
-
 
 
 
@@ -72,55 +46,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **rstream:** add metaStream() ([bc36005](https://github.com/thi-ng/umbrella/commit/bc36005))
-
-
-
-
-
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.5...@thi.ng/rstream@2.0.6) (2019-02-26)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.4...@thi.ng/rstream@2.0.5) (2019-02-15)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.3...@thi.ng/rstream@2.0.4) (2019-02-10)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.2...@thi.ng/rstream@2.0.3) (2019-02-05)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.1...@thi.ng/rstream@2.0.2) (2019-01-31)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.0.0...@thi.ng/rstream@2.0.1) (2019-01-21)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
 
 
 

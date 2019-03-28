@@ -3,28 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.4...@thi.ng/strings@1.0.5) (2019-03-10)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.3...@thi.ng/strings@1.0.4) (2019-03-01)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.2...@thi.ng/strings@1.0.3) (2019-02-05)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
 
 
 ## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.1...@thi.ng/strings@1.0.2) (2019-01-31)
@@ -33,16 +11,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **strings:** fix [#70](https://github.com/thi-ng/umbrella/issues/70), replace kebab() regex w/ legacy version ([3adabc4](https://github.com/thi-ng/umbrella/commit/3adabc4))
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.0...@thi.ng/strings@1.0.1) (2019-01-21)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
 
 
 

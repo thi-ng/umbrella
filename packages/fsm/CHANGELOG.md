@@ -3,68 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.7...@thi.ng/fsm@2.1.8) (2019-03-21)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.6...@thi.ng/fsm@2.1.7) (2019-03-18)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.5...@thi.ng/fsm@2.1.6) (2019-03-12)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.4...@thi.ng/fsm@2.1.5) (2019-03-10)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.3...@thi.ng/fsm@2.1.4) (2019-03-03)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.2...@thi.ng/fsm@2.1.3) (2019-03-01)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.1...@thi.ng/fsm@2.1.2) (2019-02-26)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.0...@thi.ng/fsm@2.1.1) (2019-02-21)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
 
 
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.0.0...@thi.ng/fsm@2.1.0) (2019-02-20)
@@ -96,40 +34,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.3...@thi.ng/fsm@1.0.4) (2019-02-10)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.2...@thi.ng/fsm@1.0.3) (2019-02-05)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.1...@thi.ng/fsm@1.0.2) (2019-01-31)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.0...@thi.ng/fsm@1.0.1) (2019-01-21)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@0.1.0...@thi.ng/fsm@1.0.0) (2019-01-21)
 
 
@@ -147,8 +51,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - all imports MUST be updated to only refer to package level
   (not individual files anymore). tree shaking in user land will get rid of
   all unused imported symbols.
-
-
 
 
 

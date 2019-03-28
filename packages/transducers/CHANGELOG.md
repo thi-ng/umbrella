@@ -17,24 +17,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [5.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.2.1...@thi.ng/transducers@5.2.2) (2019-03-18)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [5.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.2.0...@thi.ng/transducers@5.2.1) (2019-03-12)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 # [5.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.2...@thi.ng/transducers@5.2.0) (2019-03-10)
 
 
@@ -44,24 +26,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
 ## [5.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.1...@thi.ng/transducers@5.1.2) (2019-03-03)
 
 
 ### Bug Fixes
 
 * **transducers:** update dedupe() w/ predicate arg ([c414423](https://github.com/thi-ng/umbrella/commit/c414423))
-
-
-
-
-
-## [5.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.0...@thi.ng/transducers@5.1.1) (2019-03-01)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
 
 
 
@@ -122,16 +92,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
-## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@4.0.0...@thi.ng/transducers@4.0.1) (2019-02-10)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@3.0.2...@thi.ng/transducers@4.0.0) (2019-02-05)
 
 
@@ -155,24 +115,6 @@ Removed:
 - hexDump
 - partitionBits
 - utf8Encode/Decode
-
-
-
-
-
-## [3.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@3.0.1...@thi.ng/transducers@3.0.2) (2019-01-31)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@3.0.0...@thi.ng/transducers@3.0.1) (2019-01-21)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
 
 
 
