@@ -3,6 +3,8 @@ import {
     ICopy,
     IEmpty,
     IEquiv,
+    IGet,
+    IInto,
     Predicate2
 } from "@thi.ng/api";
 
@@ -10,18 +12,17 @@ export interface IEquivSet<T>
     extends Set<T>,
         ICopy<IEquivSet<T>>,
         IEmpty<IEquivSet<T>>,
-        IEquiv {
-    readonly [Symbol.species]: EquivSetConstructor;
-    into(xs: Iterable<T>): this;
+        IEquiv,
+        IGet<T, T>,
+        IInto<T, IEquivSet<T>> {
     disj(xs: Iterable<T>): this;
-    get(val: T, notFound?: any): any;
     first(): T;
 }
 
-export interface EquivSetConstructor {
-    new (): IEquivSet<any>;
-    new <T>(values?: Iterable<T>, opts?: any): IEquivSet<T>;
-    readonly prototype: IEquivSet<any>;
+export interface EquivSetConstructor<T> {
+    new (): IEquivSet<T>;
+    new (values?: Iterable<T>, opts?: any): IEquivSet<T>;
+    readonly prototype: IEquivSet<T>;
 }
 
 export interface EquivSetOpts<T> {
@@ -35,7 +36,7 @@ export interface EquivSetOpts<T> {
 }
 
 export interface EquivMapOpts<K> extends EquivSetOpts<K> {
-    keys: EquivSetConstructor;
+    keys: EquivSetConstructor<K>;
 }
 
 /**
