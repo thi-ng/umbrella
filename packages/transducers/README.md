@@ -56,17 +56,17 @@ other JS based implementations) and dozens of less common, but generally
 highly useful operators have been added. See full list below.
 
 Furthermore, most transducers & reducers provided here accept an
-optional input iterable, which allows them to be used directly instead
-of having to wrap their call in one of the execution functions (i.e.
-`transduce()`, `reduce()`, `iterator()`, `run()`). If executed this way,
-transducer functions will return a transforming ES6 iterator (generator)
-and reducing functions will return a reduced result of the given input
-iterable.
+optional input iterable, which allows them to be used directly as
+transformers instead of having to wrap them in one of the execution
+functions (i.e. `transduce()`, `reduce()`, `iterator()`, `run()`,
+`step()`). If called this way, transducer functions will return a
+transforming ES6 iterator (generator) and reducing functions will return
+a reduced result of the given input iterable.
 
 ### Tutorial
 
-There's an ongoing multi-part blog series about use cases & patterns of this
-package, specifically these 3 parts:
+There's an ongoing multi-part blog series about internals, use cases &
+patterns of this package, specifically these 3 parts:
 
 -   [Part 2 - HOFs, Transducers, Reducers](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023)
 -   [Part 3 - Convolution, 1D/2D Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
@@ -554,12 +554,12 @@ created via `reduced(x)` and handled via these helper functions:
 
 By default `reduce()` consumes inputs via the standard ES6 `Iterable`
 interface, i.e. using a `for..of..` loop. Array-like inputs are consumed
-via a traditional for-loop and custom optimized iterations can be
+via a traditional `for`-loop and custom optimized iterations can be
 provided via implementations of the `IReducible` interface in the source
 collection type. Examples can be found here:
 
--   [DCons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons/src/index.ts#L123)
--   [SortedMap](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/sorted-map.ts#L261)
+-   [DCons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons/src/index.ts#L126)
+-   [SortedMap](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/sorted-map.ts#L294)
 
 **Note:** The `IReducible` interface is only used by `reduce()`,
 `transduce()` and `run()`.
@@ -626,8 +626,10 @@ doesn't use a reduction function).
 
 #### `reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A`
 
-Reduces iterable using given reducer and optional initial
-accumulator/result.
+Reduces `xs` using given reducer and optional initial
+accumulator/result. If `xs` implements the `IReducible` interface,
+delegates to that implementation. Likewise, uses a fast route if `xs` is
+an `ArrayLike` type.
 
 #### `transduce<A, B, C>(tx: Transducer<A, B>, rfn: Reducer<C, B>, acc: C, xs: Iterable<A>): C`
 
