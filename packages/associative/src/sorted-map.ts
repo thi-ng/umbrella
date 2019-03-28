@@ -37,6 +37,13 @@ class Node<K, V> {
 const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
 export class SortedMap<K, V> extends Map<K, V> {
+    /**
+     * Creates new `SortedMap` instance from given object's key-value
+     * pairs.
+     *
+     * @param obj
+     * @param opts
+     */
     static fromObject<T>(
         obj: IObjectOf<T>,
         opts?: Partial<SortedMapOpts<PropertyKey>>
@@ -54,6 +61,13 @@ export class SortedMap<K, V> extends Map<K, V> {
     static DEFAULT_CAP = 8;
     static DEFAULT_P = 1 / Math.E;
 
+    /**
+     * Creates new `SortedMap` instance with optionally given pairs
+     * and/or options.
+     *
+     * @param pairs
+     * @param opts
+     */
     constructor(
         pairs?: Iterable<Pair<K, V>>,
         opts: Partial<SortedMapOpts<K>> = {}
@@ -271,7 +285,7 @@ export class SortedMap<K, V> extends Map<K, V> {
         return this;
     }
 
-    forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
+    forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
         for (let p of this) {
             fn.call(thisArg, p[1], p[0], this);
         }

@@ -74,6 +74,10 @@ export class EquivMap<K, V> extends Map<K, V>
         return EquivMap;
     }
 
+    get [Symbol.toStringTag]() {
+        return "EquivMap";
+    }
+
     get size() {
         return __private.get(this).keys.size;
     }
@@ -135,7 +139,7 @@ export class EquivMap<K, V> extends Map<K, V>
         return this;
     }
 
-    forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
+    forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
         for (let pair of __private.get(this).map) {
             fn.call(thisArg, pair[1], pair[0], this);
         }
