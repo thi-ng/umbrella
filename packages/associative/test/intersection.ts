@@ -1,10 +1,8 @@
 import * as assert from "assert";
-
 import { ArraySet } from "../src/array-set";
 import { intersection } from "../src/intersection";
 
 describe("intersection", () => {
-
     it("native (numbers)", () => {
         const a = new Set([1, 2, 3, 4]);
         const b = new Set([3, 4, 5, 6]);
@@ -31,5 +29,12 @@ describe("intersection", () => {
         const b = new ArraySet([{ a: 3 }, { a: 4 }, { a: 5 }]);
         const i = intersection(a, b);
         assert.deepEqual(i, new ArraySet([{ a: 3 }, { a: 4 }]));
+    });
+
+    it("w/ out", () => {
+        assert.deepEqual(
+            intersection(new Set([1, 2, 3]), new Set([2, 4]), new Set([5])),
+            new Set([2, 5])
+        );
     });
 });

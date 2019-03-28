@@ -1,10 +1,8 @@
 import * as assert from "assert";
-
 import { ArraySet } from "../src/array-set";
 import { difference } from "../src/difference";
 
 describe("difference", () => {
-
     it("native (numbers)", () => {
         const a = new Set([1, 2, 3, 4]);
         const b = new Set([3, 4, 5]);
@@ -35,5 +33,17 @@ describe("difference", () => {
         assert.deepEqual(d, new Set([{ a: 1 }, { a: 2 }]));
         assert.notStrictEqual(d, a);
         assert.notStrictEqual(d, b);
+    });
+
+    it("w/ out", () => {
+        assert.deepEqual(
+            difference(new Set([1, 2, 3]), new Set([2, 4]), new Set([5])),
+            new Set([1, 3, 5])
+        );
+    });
+
+    it("same", () => {
+        const a = new Set([1]);
+        assert.deepEqual(difference(a, a), new Set());
     });
 });
