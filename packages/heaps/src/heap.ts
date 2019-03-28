@@ -1,7 +1,13 @@
-import { Comparator, ICopy, IEmpty, ILength } from "@thi.ng/api";
+import {
+    Comparator,
+    ICopy,
+    IEmpty,
+    ILength,
+    IStack
+} from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-
 import { HeapOpts } from "./api";
+
 
 /**
  * Generic binary heap / priority queue with customizable ordering via
@@ -19,7 +25,8 @@ import { HeapOpts } from "./api";
  * h.pop(); // undefined
  * ```
  */
-export class Heap<T> implements ICopy<Heap<T>>, IEmpty<Heap<T>>, ILength {
+export class Heap<T>
+    implements ICopy<Heap<T>>, IEmpty<Heap<T>>, ILength, IStack<T, T, Heap<T>> {
     static parentIndex(idx: number) {
         return idx > 0 ? (idx - 1) >> 1 : -1;
     }
