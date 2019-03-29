@@ -15,7 +15,7 @@ maps & sets as backend.
 - cycle detection
 - accessors for direct & transitive dependencies / dependents
 - topological sorting
-- iterable
+- iterable (in topo order)
 
 ## Installation
 
@@ -37,12 +37,17 @@ yarn add @thi.ng/dgraph
 import { DGraph } from "@thi.ng/dgraph";
 
 g = new DGraph();
+
+// dependencies from a -> b
 g.addDependency([1, 2], [10, 20]);
 g.addDependency([3, 4], [30, 40]);
 g.addDependency([1, 2], [3, 4]);
 
-g.sort()
-// [[30, 40], [3, 4], [10, 20], [1, 2]]
+// add isolated nodes
+g.addNode([100, 200]);
+
+g.sort();
+// [[30, 40], [3, 4], [10, 20], [100, 200], [1, 2]]
 ```
 
 ## Authors
