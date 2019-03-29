@@ -194,7 +194,7 @@ export class SortedMap<K, V> extends Map<K, V> {
         return node ? [node.k, node.v] : undefined;
     }
 
-    get(k: K, notFound?: V) {
+    get(k: K, notFound?: V): V | undefined {
         const node = this.findPredNode(k).next[0];
         return node && __private.get(this).cmp(node.k, k) === 0
             ? node.v

@@ -165,7 +165,7 @@ export class SortedSet<T> extends Set<T>
         return __private.get(this).has(value);
     }
 
-    get(value: T, notFound?: any) {
+    get(value: T, notFound?: T): T | undefined {
         return __private.get(this).get(value, notFound);
     }
 

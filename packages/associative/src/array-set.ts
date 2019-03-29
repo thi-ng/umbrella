@@ -80,7 +80,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     has(x: T) {
-        return this.get(x, SEMAPHORE) !== SEMAPHORE;
+        return this.get(x, <any>SEMAPHORE) !== <any>SEMAPHORE;
     }
 
     /**
@@ -90,7 +90,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
      * @param x
      * @param notFound
      */
-    get(x: T, notFound?: any) {
+    get(x: T, notFound?: T): T | undefined {
         const $this = __private.get(this);
         const eq = $this.equiv;
         const vals = $this.vals;
@@ -155,11 +155,11 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         }
     }
 
-    *keys() {
+    *keys(): IterableIterator<T> {
         yield* __private.get(this).vals;
     }
 
-    *values() {
+    *values(): IterableIterator<T> {
         yield* this.keys();
     }
 

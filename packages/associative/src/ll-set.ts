@@ -34,7 +34,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         vals && this.into(vals);
     }
 
-    *[Symbol.iterator]() {
+    *[Symbol.iterator](): IterableIterator<T> {
         yield* __private.get(this).vals;
     }
 
@@ -84,7 +84,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     has(x: T) {
-        return this.get(x, SEMAPHORE) !== SEMAPHORE;
+        return this.get(x, <any>SEMAPHORE) !== <any>SEMAPHORE;
     }
 
     /**
@@ -94,7 +94,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
      * @param x
      * @param notFound
      */
-    get(x: T, notFound?: any) {
+    get(x: T, notFound?: T): T | undefined {
         const $this = __private.get(this);
         const eq = $this.equiv;
         let i = $this.vals.head;
@@ -162,11 +162,11 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         }
     }
 
-    *keys() {
+    *keys(): IterableIterator<T> {
         yield* __private.get(this).vals;
     }
 
-    *values() {
+    *values(): IterableIterator<T> {
         yield* this.keys();
     }
 

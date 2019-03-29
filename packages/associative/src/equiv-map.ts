@@ -69,7 +69,7 @@ export class EquivMap<K, V> extends Map<K, V>
         }
     }
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): IterableIterator<Pair<K, V>> {
         return this.entries();
     }
 
@@ -148,7 +148,7 @@ export class EquivMap<K, V> extends Map<K, V>
         }
     }
 
-    get(key: K, notFound?: any) {
+    get(key: K, notFound?: V): V | undefined {
         const $this = __private.get(this);
         key = $this.keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
@@ -180,15 +180,15 @@ export class EquivMap<K, V> extends Map<K, V>
         return this;
     }
 
-    entries() {
+    entries(): IterableIterator<Pair<K, V>> {
         return __private.get(this).map.entries();
     }
 
-    keys() {
+    keys(): IterableIterator<K> {
         return __private.get(this).map.keys();
     }
 
-    values() {
+    values(): IterableIterator<V> {
         return __private.get(this).map.values();
     }
 
