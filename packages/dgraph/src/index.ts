@@ -1,16 +1,16 @@
 import { ICopy } from "@thi.ng/api";
-import { EquivMap, LLSet, union } from "@thi.ng/associative";
+import { ArraySet, EquivMap, union } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import { filter, reduce, reducer } from "@thi.ng/transducers";
 
 export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
-    dependencies: EquivMap<T, LLSet<T>>;
-    dependents: EquivMap<T, LLSet<T>>;
+    dependencies: EquivMap<T, ArraySet<T>>;
+    dependents: EquivMap<T, ArraySet<T>>;
 
     constructor() {
-        this.dependencies = new EquivMap<T, LLSet<T>>();
-        this.dependents = new EquivMap<T, LLSet<T>>();
+        this.dependencies = new EquivMap<T, ArraySet<T>>();
+        this.dependents = new EquivMap<T, ArraySet<T>>();
     }
 
     *[Symbol.iterator]() {
@@ -32,25 +32,31 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
         return g;
     }
 
+    addNode(node: T) {
+        !this.dependencies.has(node) &&
+            this.dependencies.set(node, new ArraySet());
+        return this;
+    }
+
     addDependency(node: T, dep: T) {
         if (equiv(node, dep) || this.depends(dep, node)) {
             illegalArgs(`Circular dependency between: ${node} & ${dep}`);
         }
-        let d: LLSet<T> = this.dependencies.get(node);
-        this.dependencies.set(node, d ? d.add(dep) : new LLSet<T>([dep]));
-        d = this.dependents.get(dep);
-        this.dependents.set(dep, d ? d.add(node) : new LLSet<T>([node]));
+        let deps = this.dependencies.get(node);
+        this.dependencies.set(node, deps ? deps.add(dep) : new ArraySet([dep]));
+        deps = this.dependents.get(dep);
+        this.dependents.set(dep, deps ? deps.add(node) : new ArraySet([node]));
         return this;
     }
 
     removeEdge(node: T, dep: T) {
-        let d = this.dependencies.get(node);
-        if (d) {
-            d.delete(dep);
+        let deps = this.dependencies.get(node);
+        if (deps) {
+            deps.delete(dep);
         }
-        d = this.dependents.get(dep);
-        if (d) {
-            d.delete(node);
+        deps = this.dependents.get(dep);
+        if (deps) {
+            deps.delete(node);
         }
         return this;
     }
@@ -69,11 +75,11 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     }
 
     immediateDependencies(x: T): Set<T> {
-        return this.dependencies.get(x) || new LLSet<T>();
+        return this.dependencies.get(x) || new ArraySet();
     }
 
     immediateDependents(x: T): Set<T> {
-        return this.dependents.get(x) || new LLSet<T>();
+        return this.dependents.get(x) || new ArraySet();
     }
 
     isLeaf(x: T) {
@@ -86,16 +92,16 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 
     nodes(): Set<T> {
         return union(
-            new LLSet<T>(this.dependencies.keys()),
-            new LLSet<T>(this.dependents.keys())
+            new ArraySet(this.dependencies.keys()),
+            new ArraySet(this.dependents.keys())
         );
     }
 
-    leaves(): IterableIterator<T> {
+    leaves() {
         return filter((node: T) => this.isLeaf(node), this.nodes());
     }
 
-    roots(): IterableIterator<T> {
+    roots() {
         return filter((node: T) => this.isRoot(node), this.nodes());
     }
 
@@ -110,7 +116,7 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     sort() {
         const sorted: T[] = [];
         const g = this.copy();
-        let queue = new LLSet(g.leaves());
+        let queue = new ArraySet(g.leaves());
         while (true) {
             if (!queue.size) {
                 return sorted.reverse();
@@ -129,17 +135,17 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     }
 }
 
-function transitive<T>(nodes: EquivMap<T, LLSet<T>>, x: T): LLSet<T> {
-    const deps: LLSet<T> = nodes.get(x);
+const transitive = <T>(nodes: EquivMap<T, ArraySet<T>>, x: T): Set<T> => {
+    const deps: ArraySet<T> = nodes.get(x);
     if (deps) {
         return reduce(
             reducer(
                 null,
-                (acc, k: T) => <LLSet<T>>union(acc, transitive(nodes, k))
+                (acc, k: T) => <ArraySet<T>>union(acc, transitive(nodes, k))
             ),
             deps,
             deps
         );
     }
-    return new LLSet<T>();
-}
+    return new ArraySet<T>();
+};
