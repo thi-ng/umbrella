@@ -1,7 +1,14 @@
-import { Vec, ReadonlyVec, IVector, MultiVecOp } from "@thi.ng/vectors";
+import { Tuple, TypedArray } from "@thi.ng/api";
+import { IVector, MultiVecOp, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type Mat = Vec;
 export type ReadonlyMat = ReadonlyVec;
+
+export type Mat22Like = Tuple<number, 4> | TypedArray;
+export type Mat23Like = Tuple<number, 6> | TypedArray;
+export type Mat33Like = Tuple<number, 9> | TypedArray;
+export type Mat44Like = Tuple<number, 16> | TypedArray;
+
 export type IMatrix<T> = IVector<T>;
 export type MultiMatOp<T> = MultiVecOp<T>;
 
