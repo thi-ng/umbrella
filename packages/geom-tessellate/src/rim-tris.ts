@@ -5,15 +5,15 @@ import {
     partition,
     push,
     transduce,
-    zip,
-    wrap
+    wrap,
+    zip
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export const rimTris: Tessellator = (points: ReadonlyVec[]) => {
     const edgeCentroids = transduce(
         comp(partition<Vec>(2, 1), map((e) => mixN([], e[0], e[1], 0.5))),
-        push(),
+        push<Vec>(),
         wrap(points, 1, false, true)
     );
     return transduce(

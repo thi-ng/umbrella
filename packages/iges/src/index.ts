@@ -158,7 +158,7 @@ const formatDictEntry = (e: DictEntry) =>
                 e.index
             )
         ),
-        push(),
+        push<string>(),
         [
             e.type,
             e.param || 0,
