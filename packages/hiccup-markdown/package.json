@@ -24,12 +24,12 @@
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
-        "@types/mocha": "^5.2.5",
-        "@types/node": "^10.12.15",
-        "mocha": "^5.2.0",
-        "nyc": "^13.1.0",
-        "typedoc": "^0.14.0",
-        "typescript": "^3.2.2"
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^11.13.0",
+        "mocha": "^6.0.2",
+        "nyc": "^13.3.0",
+        "typedoc": "^0.14.2",
+        "typescript": "^3.4.1"
     },
     "dependencies": {
         "@thi.ng/arrays": "^0.1.5",
