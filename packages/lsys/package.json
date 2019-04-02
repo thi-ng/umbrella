@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
     "module": "./index.js",
     "main": "./lib/index.js",
