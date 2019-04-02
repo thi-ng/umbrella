@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-hull",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "description": "Fast 2D convex hull (Graham Scan)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,8 +32,8 @@
         "typescript": "^3.4.1"
     },
     "dependencies": {
-        "@thi.ng/math": "^1.2.1",
-        "@thi.ng/vectors": "^2.5.0"
+        "@thi.ng/math": "^1.2.2",
+        "@thi.ng/vectors": "^2.5.1"
     },
     "keywords": [
         "2D",

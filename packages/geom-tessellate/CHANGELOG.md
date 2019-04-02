@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.1.11...@thi.ng/geom-tessellate@0.1.12) (2019-04-02)
+
+
+### Bug Fixes
+
+* **geom-tesselate:** TS3.4 type inference ([800c1c7](https://github.com/thi-ng/umbrella/commit/800c1c7))
+
+
+
+
+
 ## [0.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.1.10...@thi.ng/geom-tessellate@0.1.11) (2019-03-28)
 
 **Note:** Version bump only for package @thi.ng/geom-tessellate

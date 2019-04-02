@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/sparse",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "Sparse vector & matrix implementations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,8 +32,8 @@
         "typescript": "^3.4.1"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.0.0",
-        "@thi.ng/transducers": "^5.3.1"
+        "@thi.ng/api": "^6.0.1",
+        "@thi.ng/transducers": "^5.3.2"
     },
     "keywords": [
         "adjacency",
