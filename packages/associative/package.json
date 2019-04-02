@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.0.1",
+        "@thi.ng/binary": "^1.0.5",
         "@thi.ng/checks": "^2.1.5",
         "@thi.ng/compare": "^1.0.5",
         "@thi.ng/dcons": "^2.0.14",

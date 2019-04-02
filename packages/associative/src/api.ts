@@ -1,5 +1,6 @@
 import {
     Comparator,
+    Fn,
     ICopy,
     IEmpty,
     IEquiv,
@@ -37,6 +38,32 @@ export interface EquivSetOpts<T> {
 
 export interface EquivMapOpts<K> extends EquivSetOpts<K> {
     keys: EquivSetConstructor<K>;
+}
+
+/**
+ * Creation options for HashMap class.
+ */
+export interface HashMapOpts<K> {
+    /**
+     * Function for computing key hash codes. MUST be supplied.
+     */
+    hash: Fn<K, number>;
+    /**
+     * Optional key equality predicate. Default: thi.ng/equiv
+     */
+    equiv?: Predicate2<K>;
+    /**
+     * Normalized max load factor in the open (0..1) interval. The map
+     * will be resized (doubled in size) and all existing keys rehashed
+     * every time a new key is to be added and the current size exceeds
+     * this normalized load. Default: 0.75
+     */
+    load?: number;
+    /**
+     * Initial capacity. Will be rounded up to next power of 2. Default:
+     * 16.
+     */
+    cap?: number;
 }
 
 /**
