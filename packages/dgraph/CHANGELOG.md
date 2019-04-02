@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.0.13...@thi.ng/dgraph@1.1.0) (2019-04-02)
+
+
+### Features
+
+* **dgraph:** add addNode(), refactor to use ArraySet, add tests ([ab7650f](https://github.com/thi-ng/umbrella/commit/ab7650f))
+
+
+
+
+
 ## [1.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.0.12...@thi.ng/dgraph@1.0.13) (2019-03-28)
 
 **Note:** Version bump only for package @thi.ng/dgraph

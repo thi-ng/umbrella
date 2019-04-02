@@ -185,7 +185,11 @@ map = new assoc.SortedMap([
 ]);
 // SortedMap { 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 }
 
-// forward selection w/ given start key
+// all entries
+[...map.entries()]
+// [ [ 'd', 4 ], [ 'c', 3 ], [ 'b', 2 ], [ 'a', 1 ] ]
+
+// range query w/ given start key
 // also works with `keys()` and `values()`
 [...map.entries("c")]
 // [ [ 'c', 3 ], [ 'd', 4 ] ]
@@ -194,13 +198,9 @@ map = new assoc.SortedMap([
 [...map.entries("cc")]
 // [ [ 'd', 4 ] ]
 
-// reverse order
-[...map.entries(undefined, true)]
-// [ [ 'd', 4 ], [ 'c', 3 ], [ 'b', 2 ], [ 'a', 1 ] ]
-
-// reverse order from start key
+// range query w/ given MAX key
 [...map.entries("c", true)]
-// [ [ 'c', 3 ], [ 'b', 2 ], [ 'a', 1 ] ]
+// [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
 ```
 
 ### SortedSet
@@ -220,9 +220,11 @@ This set uses a `SortedMap` as backing store.
 
 ## Usage examples
 
-TODO... Please see
-[tests](https://github.com/thi-ng/umbrella/tree/master/packages/associative/test/)
-and documentation in source code for now...
+Please see these packages for use cases:
+
+- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/master/packages/cache)
+- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/master/packages/dgraph)
+- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query)
 
 ## Authors
 
@@ -230,4 +232,4 @@ and documentation in source code for now...
 
 ## License
 
-&copy; 2017 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

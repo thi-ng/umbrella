@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.0.0...@thi.ng/associative@2.0.1) (2019-04-02)
+
+
+### Bug Fixes
+
+* **associative:** add missing return type decls ([1913bb4](https://github.com/thi-ng/umbrella/commit/1913bb4))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@1.0.12...@thi.ng/associative@2.0.0) (2019-03-28)
 
 

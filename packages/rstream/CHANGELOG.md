@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.3.1...@thi.ng/rstream@2.3.2) (2019-04-02)
+
+
+### Bug Fixes
+
+* **rstream:** fix [#80](https://github.com/thi-ng/umbrella/issues/80) update StreamSource alias ([f7b9fbd](https://github.com/thi-ng/umbrella/commit/f7b9fbd))
+
+
+
+
+
 ## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.3.0...@thi.ng/rstream@2.3.1) (2019-03-28)
 
 **Note:** Version bump only for package @thi.ng/rstream
