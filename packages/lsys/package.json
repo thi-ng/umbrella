@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/lsys",
     "version": "0.2.8",
-    "description": "TODO",
+    "description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -41,10 +41,16 @@
         "@thi.ng/vectors": "^2.5.1"
     },
     "keywords": [
+        "axiom",
+        "2d",
+        "3d",
         "ES6",
         "generative",
         "geometry",
         "l-system",
+        "probabilistic",
+        "rule based",
+        "turtle",
         "typescript"
     ],
     "publishConfig": {
