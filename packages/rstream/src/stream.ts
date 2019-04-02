@@ -1,7 +1,13 @@
 import { isString } from "@thi.ng/checks";
 import { illegalArity } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
-import { DEBUG, IStream, ISubscriber, StreamCancel, StreamSource } from "./api";
+import {
+    DEBUG,
+    IStream,
+    ISubscriber,
+    StreamCancel,
+    StreamSource
+} from "./api";
 import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
 
