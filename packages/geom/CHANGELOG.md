@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.2.16...@thi.ng/geom@1.2.17) (2019-04-02)
+
+**Note:** Version bump only for package @thi.ng/geom
+
+
+
+
+
 ## [1.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.2.15...@thi.ng/geom@1.2.16) (2019-03-28)
 
 **Note:** Version bump only for package @thi.ng/geom
