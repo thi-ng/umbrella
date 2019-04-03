@@ -7,7 +7,12 @@ import {
     partitionSync,
     Transducer
 } from "@thi.ng/transducers";
-import { CloseMode, ISubscribable, State } from "./api";
+import {
+    CloseMode,
+    DEBUG,
+    ISubscribable,
+    State
+} from "./api";
 import { Subscription } from "./subscription";
 import { closeMode } from "./utils/close";
 import { nextID } from "./utils/idgen";
@@ -207,6 +212,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         const sub = this.sources.get(src);
         if (sub) {
             const id = this.invRealSourceIDs.get(src.id);
+            DEBUG && console.log(`removing src: ${src.id} (${id})`);
             this.sourceIDs.delete(id);
             this.realSourceIDs.delete(id);
             this.idSources.delete(src.id);
