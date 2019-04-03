@@ -19,11 +19,11 @@ export interface PartitionSyncOpts<T> {
  *
  * By default, a new result is only produced once values from **all**
  * given labeled sources have been received. Only labels contained in
- * the provided key set are allowed, others are skipped. The tuples will
- * contain the most recent consumed value from each labeled input. In
- * dataflow scenarios this can be used to ensure a subsequent operation
- * consuming these tuples has all necessary inputs, regardless of the
- * individual rates of change of each original (pre-merge) input.
+ * the provided key set are used, others are skipped. The result tuples
+ * will contain the most recent consumed value from each labeled input.
+ * In dataflow scenarios this can be used to ensure a subsequent
+ * operation consuming these tuples has all necessary inputs, regardless
+ * of the individual rates of change of each original (pre-merge) input.
  *
  * If the `mergeOnly` option is set to true (default: false), **no**
  * synchronization (waiting) of inputs is applied and potentially
@@ -105,7 +105,9 @@ export function partitionSync<T>(...args: any[]): any {
                 all: true,
                 ...args[1]
             };
-            const ks = isArray(args[0]) ? new Set(args[0]) : args[0];
+            const ks: Set<PropertyKey> = isArray(args[0])
+                ? new Set(args[0])
+                : args[0];
             return [
                 init,
                 (acc) => {
@@ -125,7 +127,7 @@ export function partitionSync<T>(...args: any[]): any {
                     if (ks.has(k)) {
                         curr[k] = x;
                         currKeys.add(k);
-                        if (mergeOnly || currKeys.size >= ks.size) {
+                        if (mergeOnly || requiredInputs(ks, currKeys)) {
                             acc = reduce(acc, curr);
                             first = false;
                             if (reset) {
@@ -142,3 +144,11 @@ export function partitionSync<T>(...args: any[]): any {
         })
     );
 }
+
+const requiredInputs = (required: Set<PropertyKey>, curr: Set<PropertyKey>) => {
+    if (curr.size < required.size) return false;
+    for (let id of required) {
+        if (!curr.has(id)) return false;
+    }
+    return true;
+};
