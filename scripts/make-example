@@ -27,15 +27,14 @@ cat << EOF > $MODULE/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rimraf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.11.0",
-        "rimraf": "^2.6.3",
-        "terser": "^3.14.1",
-        "typescript": "^3.2.2"
+        "parcel-bundler": "^1.12.3",
+        "terser": "^3.17.0",
+        "typescript": "^3.4.1"
     },
     "dependencies": {
         "@thi.ng/api": "latest",

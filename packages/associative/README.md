@@ -102,6 +102,16 @@ map.set(a, "foo");
 map.get(b);
 // "foo"
 
+// Hash map w/ user supplied hash code function
+// (here using `hash` function for arrays)
+import { hash } from "@thi.ng/vectors"
+
+m = new assoc.HashMap([], { hash })
+m.set([1, 2], "a");
+m.set([3, 4, 5], "b");
+m.set([1, 2], "c");
+// HashMap { [ 1, 2 ] => 'c', [ 3, 4, 5 ] => 'b' }
+
 set = new assoc.SortedSet([a, [-1, 2], [-1, -2]]);
 // SortedSet { [ -1, -2 ], [ -1, 2 ], [ 1, 2 ] }
 set.has(b);
@@ -158,6 +168,14 @@ as backing storage for values.
 This `Map` implementation uses a native ES6 `Map` as backing storage for
 its key-value pairs and an additional `IEquivSet` implementation for
 canonical keys. By default uses `ArraySet` for this purpose.
+
+### HashMap
+
+Map implementation w/ standard ES6 Map API, supporting any key type via
+hash codes computed via user supplied hash function. Uses [Open
+Addressing](https://en.wikipedia.org/wiki/Open_addressing) / Linear
+Probing to resolve key collisions. Customizable via `HashMapOpts`
+constructor argument. Hash function MUST be given.
 
 ### SortedMap
 

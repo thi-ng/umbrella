@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-api",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "description": "Shared type & interface declarations for @thi.ng/geom packages",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.0.1",
-        "@thi.ng/vectors": "^2.5.1"
+        "@thi.ng/vectors": "^2.5.2"
     },
     "keywords": [
         "ES6",

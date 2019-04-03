@@ -2,6 +2,7 @@ export * from "./array-set";
 export * from "./common-keys";
 export * from "./difference";
 export * from "./equiv-map";
+export * from "./hash-map";
 export * from "./indexed";
 export * from "./intersection";
 export * from "./into";
