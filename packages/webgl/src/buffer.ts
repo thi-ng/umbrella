@@ -14,9 +14,9 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
 
     constructor(
         gl: WebGLRenderingContext,
+        data?: T,
         target = gl.ARRAY_BUFFER,
-        mode = gl.STATIC_DRAW,
-        data?: T
+        mode = gl.STATIC_DRAW
     ) {
         this.gl = gl;
         this.buffer = gl.createBuffer();
@@ -54,7 +54,14 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
     }
 }
 
-export const compileBuffers = (
+export const buffer = (
+    gl: WebGLRenderingContext,
+    data?: TypedArray,
+    target = gl.ARRAY_BUFFER,
+    mode = gl.STATIC_DRAW
+) => new WebGLArrayBuffer(gl, data, target, mode);
+
+export const compileModel = (
     gl: WebGLRenderingContext,
     spec: ModelSpec,
     mode = gl.STATIC_DRAW
@@ -79,9 +86,9 @@ const compileAttribs = (
             } else {
                 attr.buffer = new WebGLArrayBuffer(
                     gl,
+                    attr.data,
                     gl.ARRAY_BUFFER,
-                    mode,
-                    attr.data
+                    mode
                 );
             }
         }
@@ -99,9 +106,9 @@ const compileIndices = (
     } else {
         index.buffer = new WebGLArrayBuffer(
             gl,
+            index.data,
             gl.ELEMENT_ARRAY_BUFFER,
-            mode,
-            index.data
+            mode
         );
     }
 };

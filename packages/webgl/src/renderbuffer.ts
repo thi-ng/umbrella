@@ -55,3 +55,8 @@ export class RenderBuffer implements IRenderBuffer {
         return true;
     }
 }
+
+export const renderBuffer = (
+    gl: WebGLRenderingContext,
+    opts?: Partial<RenderBufferOpts>
+) => new RenderBuffer(gl, opts);

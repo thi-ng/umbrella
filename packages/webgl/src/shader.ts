@@ -182,7 +182,7 @@ export class Shader implements IShader {
         }
     }
 
-    setState(id: number, val: GLenum | boolean) {
+    protected setState(id: number, val: GLenum | boolean) {
         if (val) {
             this.gl.enable(id);
         } else {
@@ -190,6 +190,9 @@ export class Shader implements IShader {
         }
     }
 }
+
+export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) =>
+    Shader.fromSpec(gl, spec);
 
 const compileVars = (
     attribs: any,

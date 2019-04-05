@@ -111,3 +111,8 @@ export class Texture implements ITexture {
         return false;
     }
 }
+
+export const texture = (
+    gl: WebGLRenderingContext,
+    opts?: Partial<TextureOpts>
+) => new Texture(gl, opts);

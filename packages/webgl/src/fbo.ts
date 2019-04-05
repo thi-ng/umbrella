@@ -121,3 +121,6 @@ export class FBO implements IFbo {
         }
     }
 }
+
+export const fbo = (gl: WebGLRenderingContext, opts?: Partial<FboOpts>) =>
+    new FBO(gl, opts);
