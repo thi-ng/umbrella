@@ -116,7 +116,7 @@ export const diffTree = <T>(
                     // DEBUG && console.log("remove @", offsets[idx], val);
                     releaseTree(val);
                     impl.removeChild(el, offsets[idx]);
-                    for (j = prevLength; j >= idx; j--) {
+                    for (j = prevLength; j > idx; j--) {
                         offsets[j] = max(offsets[j] - 1, 0);
                     }
                 }
