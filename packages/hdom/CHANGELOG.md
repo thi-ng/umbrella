@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.2...@thi.ng/hdom@7.2.3) (2019-04-05)
+
+
+### Bug Fixes
+
+* **hdom:** off-by-one error when updating child offsets after removal ([beef4e9](https://github.com/thi-ng/umbrella/commit/beef4e9))
+
+
+
+
+
 ## [7.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.1...@thi.ng/hdom@7.2.2) (2019-04-02)
 
 **Note:** Version bump only for package @thi.ng/hdom
