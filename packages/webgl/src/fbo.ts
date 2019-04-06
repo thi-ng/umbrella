@@ -27,7 +27,7 @@ export class FBO implements IFbo {
     gl: WebGLRenderingContext;
     fbo: WebGLFramebuffer;
     ext: WEBGL_draw_buffers;
-    readonly maxAttachments: number;
+    maxAttachments: number;
 
     constructor(gl: WebGLRenderingContext, opts?: Partial<FboOpts>) {
         this.gl = gl;
@@ -76,8 +76,11 @@ export class FBO implements IFbo {
                 );
                 attachments[i] = attach;
             }
-            this.ext && this.ext.drawBuffersWEBGL(attachments);
-            isGL2Context(gl) && gl.drawBuffers(attachments);
+            if (this.ext) {
+                this.ext.drawBuffersWEBGL(attachments);
+            } else if (isGL2Context(gl)) {
+                gl.drawBuffers(attachments);
+            }
         }
         if (opts.depth) {
             gl.framebufferRenderbuffer(

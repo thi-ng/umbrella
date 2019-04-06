@@ -1,18 +1,6 @@
 import { IRenderBuffer, RenderBufferOpts } from "./api";
 
 export class RenderBuffer implements IRenderBuffer {
-    static newDepthBuffer(
-        gl: WebGLRenderingContext,
-        width: number,
-        height: number
-    ) {
-        return new RenderBuffer(gl, {
-            format: gl.DEPTH_COMPONENT16,
-            width,
-            height
-        });
-    }
-
     gl: WebGLRenderingContext;
     buffer: WebGLRenderbuffer;
     format: number;
@@ -60,3 +48,14 @@ export const renderBuffer = (
     gl: WebGLRenderingContext,
     opts?: Partial<RenderBufferOpts>
 ) => new RenderBuffer(gl, opts);
+
+export const depthBuffer = (
+    gl: WebGLRenderingContext,
+    width: number,
+    height: number
+) =>
+    new RenderBuffer(gl, {
+        format: gl.DEPTH_COMPONENT16,
+        width,
+        height
+    });
