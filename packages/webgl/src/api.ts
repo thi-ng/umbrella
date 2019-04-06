@@ -24,10 +24,20 @@ export enum GLSL {
     ivec2,
     ivec3,
     ivec4,
+    uvec2,
+    uvec3,
+    uvec4,
     mat2,
     mat3,
     mat4,
+    mat2x3,
+    mat2x4,
+    mat3x2,
+    mat3x4,
+    mat4x2,
+    mat4x3,
     sampler2D,
+    sampler3D,
     samplerCube,
     bool_array,
     float_array,
@@ -42,10 +52,20 @@ export enum GLSL {
     ivec2_array,
     ivec3_array,
     ivec4_array,
+    uvec2_array,
+    uvec3_array,
+    uvec4_array,
     mat2_array,
     mat3_array,
     mat4_array,
+    mat2x3_array,
+    mat2x4_array,
+    mat3x2_array,
+    mat3x4_array,
+    mat4x2_array,
+    mat4x3_array,
     sampler2D_array,
+    sampler3D_array,
     samplerCube_array
 }
 
@@ -63,6 +83,9 @@ export type GLIntVec4 = Tuple<number, 4> | Int32Array;
 export type GLMat2 = Tuple<number, 4> | Float32Array;
 export type GLMat3 = Tuple<number, 9> | Float32Array;
 export type GLMat4 = Tuple<number, 16> | Float32Array;
+export type GLMat23 = Tuple<number, 6> | Float32Array;
+export type GLMat24 = Tuple<number, 8> | Float32Array;
+export type GLMat34 = Tuple<number, 12> | Float32Array;
 
 export type AttribType =
     | GLSL.bool
@@ -92,7 +115,7 @@ export type UniformValues = IObjectOf<
 
 export type ShaderType = "vs" | "fs";
 
-export type ScalarType =
+export type GLSLScalarType =
     | GLSL.bool
     | GLSL.float
     | GLSL.int
@@ -100,13 +123,43 @@ export type ScalarType =
     | GLSL.sampler2D
     | GLSL.samplerCube;
 
+export type GLSLArrayType =
+    | GLSL.bool_array
+    | GLSL.int_array
+    | GLSL.uint_array
+    | GLSL.float_array
+    | GLSL.bvec2_array
+    | GLSL.bvec3_array
+    | GLSL.bvec4_array
+    | GLSL.ivec2_array
+    | GLSL.ivec3_array
+    | GLSL.ivec4_array
+    | GLSL.uvec2_array
+    | GLSL.uvec3_array
+    | GLSL.uvec4_array
+    | GLSL.vec2_array
+    | GLSL.vec3_array
+    | GLSL.vec4_array
+    | GLSL.mat2_array
+    | GLSL.mat3_array
+    | GLSL.mat4_array
+    | GLSL.mat2x3_array
+    | GLSL.mat2x4_array
+    | GLSL.mat3x2_array
+    | GLSL.mat3x4_array
+    | GLSL.mat4x2_array
+    | GLSL.mat4x3_array
+    | GLSL.sampler2D_array
+    | GLSL.sampler3D_array
+    | GLSL.samplerCube_array;
+
 export type UniformDefault<T> =
     | T
     | Fn2<ShaderUniforms, IObjectOf<number | ReadonlyVec>, T>;
 
 export type UniformDecl =
     | GLSL
-    | [ScalarType, UniformDefault<number>]
+    | [GLSLScalarType, UniformDefault<number>]
     | [GLSL.bvec2, UniformDefault<GLIntVec2>]
     | [GLSL.bvec3, UniformDefault<GLIntVec3>]
     | [GLSL.bvec4, UniformDefault<GLIntVec4>]
@@ -119,14 +172,39 @@ export type UniformDecl =
     | [GLSL.mat2, UniformDefault<GLMat2>]
     | [GLSL.mat3, UniformDefault<GLMat3>]
     | [GLSL.mat4, UniformDefault<GLMat4>]
+    | [GLSL.mat2x3, UniformDefault<GLMat23>]
+    | [GLSL.mat2x4, UniformDefault<GLMat24>]
+    | [GLSL.mat3x2, UniformDefault<GLMat23>]
+    | [GLSL.mat3x4, UniformDefault<GLMat34>]
+    | [GLSL.mat4x2, UniformDefault<GLMat24>]
+    | [GLSL.mat4x3, UniformDefault<GLMat34>]
     | [GLSL.bool_array, number, UniformDefault<GLIntVec>?]
     | [GLSL.int_array, number, UniformDefault<GLIntVec>?]
     | [GLSL.uint_array, number, UniformDefault<GLUintVec>?]
     | [GLSL.float_array, number, UniformDefault<GLVec>?]
+    | [GLSL.bvec2_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.bvec3_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.bvec4_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.ivec2_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.ivec3_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.ivec4_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.uvec2_array, number, UniformDefault<GLUintVec>?]
+    | [GLSL.uvec3_array, number, UniformDefault<GLUintVec>?]
+    | [GLSL.uvec4_array, number, UniformDefault<GLUintVec>?]
     | [GLSL.vec2_array, number, UniformDefault<GLVec>?]
     | [GLSL.vec3_array, number, UniformDefault<GLVec>?]
     | [GLSL.vec4_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat2_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat3_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat4_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat2x3_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat2x4_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat3x2_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat3x4_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat4x2_array, number, UniformDefault<GLVec>?]
+    | [GLSL.mat4x3_array, number, UniformDefault<GLVec>?]
     | [GLSL.sampler2D_array, number, UniformDefault<number>?]
+    | [GLSL.sampler3D_array, number, UniformDefault<number>?]
     | [GLSL.samplerCube_array, number, UniformDefault<number>?];
 
 /**
@@ -148,7 +226,7 @@ export interface ShaderAttrib {
 
 export type ShaderVaryingSpecs = IObjectOf<ShaderVaryingSpec>;
 
-export type ShaderVaryingSpec = GLSL;
+export type ShaderVaryingSpec = GLSL | [GLSLArrayType, number];
 
 export type ShaderUniformSpecs = IObjectOf<UniformDecl>;
 
@@ -188,6 +266,8 @@ export interface GLSLDeclPrefixes {
     u: string;
     o: string;
 }
+
+export type GLSLExtensionBehavior = "require" | "warn" | boolean;
 
 export interface ShaderSnippet {
     /**
@@ -263,6 +343,13 @@ export interface ShaderSpec {
      * Optional shader drawing state flags. Default: none.
      */
     state?: Partial<ShaderState>;
+    /**
+     * WebGL extension config for code generation. Keys in this object
+     * are extension names and their values specify the desired
+     * behavior. Boolean values will be translated in "enable" /
+     * "disable".
+     */
+    ext?: IObjectOf<GLSLExtensionBehavior>;
 }
 
 export interface ShaderState {
@@ -460,6 +547,7 @@ export interface TextureOpts {
     filter: GLenum | GLenum[];
     wrap: GLenum | GLenum[];
     format: GLenum;
+    internalFormat: GLenum;
     mipmap: GLenum;
     width: number;
     height: number;
@@ -504,4 +592,10 @@ export interface WeblGLCanvasOpts {
     height: number;
     autoScale: boolean;
     onContextLost: EventListener;
+    ext: string[];
 }
+
+export const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
+export const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
+export const GL_RGBA = 0x1908;
+export const GL_RGBA32F = 0x8814;
