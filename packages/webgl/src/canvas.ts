@@ -35,8 +35,19 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
         canvas.addEventListener("webglcontextlost", opts.onContextLost);
     return {
         canvas,
-        gl
+        gl,
+        ext: getExtensions(gl, opts.ext)
     };
+};
+
+export const getExtensions = (gl: WebGLRenderingContext, ids: string[]) => {
+    const ext = {};
+    if (ids) {
+        for (let id of ids) {
+            ext[id] = gl.getExtension(id);
+        }
+    }
+    return ext;
 };
 
 /**
