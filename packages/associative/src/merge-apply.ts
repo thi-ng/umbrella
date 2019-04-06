@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { copy } from "./utils";
 
@@ -10,13 +10,11 @@ import { copy } from "./utils";
  */
 export const mergeApplyMap = <K, V>(
     src: Map<K, V>,
-    xs: Map<K, V | ((x: V) => V)>
-) => {
-    const res: any = copy(src, Map);
-    for (let p of xs) {
-        let [k, v] = p;
-        isFunction(v) && (v = v(res[k]));
-        res.set(k, v);
+    xs: Map<K, V | Fn<V, V>>
+): Map<K, V> => {
+    const res: Map<K, any> = copy(src, Map);
+    for (let [k, v] of xs) {
+        res.set(k, isFunction(v) ? v(res.get(k)) : v);
     }
     return res;
 };
@@ -45,13 +43,12 @@ export const mergeApplyMap = <K, V>(
  */
 export const mergeApplyObj = <V>(
     src: IObjectOf<V>,
-    xs: IObjectOf<V | ((x: V) => V)>
+    xs: IObjectOf<V | Fn<V, V>>
 ) => {
-    const res: any = { ...src };
+    const res: IObjectOf<V> = { ...src };
     for (let k in xs) {
-        let v = xs[k];
-        isFunction(v) && (v = v(res[k]));
-        res[k] = v;
+        const v = xs[k];
+        res[k] = isFunction(v) ? v(res[k]) : v;
     }
     return res;
 };
