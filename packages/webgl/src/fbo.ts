@@ -1,9 +1,12 @@
 import { assert } from "@thi.ng/api";
-import { FboOpts, IFbo } from "./api";
+import {
+    FboOpts,
+    GL_COLOR_ATTACHMENT0_WEBGL,
+    GL_MAX_COLOR_ATTACHMENTS_WEBGL,
+    IFbo
+} from "./api";
 import { error } from "./error";
-
-const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
-const COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
+import { isGL2Context } from "./utils";
 
 /**
  * WebGL framebuffer wrapper w/ automatic detection & support for
@@ -29,11 +32,10 @@ export class FBO implements IFbo {
     constructor(gl: WebGLRenderingContext, opts?: Partial<FboOpts>) {
         this.gl = gl;
         this.fbo = gl.createFramebuffer();
-        this.ext = gl.getExtension("WEBGL_draw_buffers");
-        // TODO WebGL2 support
-        this.maxAttachments = this.ext
-            ? gl.getParameter(GL_MAX_COLOR_ATTACHMENTS_WEBGL)
-            : 1;
+        this.ext = !isGL2Context(gl)
+            ? gl.getExtension("WEBGL_draw_buffers")
+            : undefined;
+        this.maxAttachments = gl.getParameter(GL_MAX_COLOR_ATTACHMENTS_WEBGL);
         opts && this.configure(opts);
     }
 
@@ -58,38 +60,24 @@ export class FBO implements IFbo {
         const gl = this.gl;
         this.bind();
         if (opts.tex) {
-            if (this.ext) {
-                assert(
-                    opts.tex.length < this.maxAttachments,
-                    `too many attachments (max. ${this.maxAttachments})`
-                );
-                const attachments: number[] = [];
-                for (let i = 0; i < opts.tex.length; i++) {
-                    const attach = COLOR_ATTACHMENT0_WEBGL + i;
-                    gl.framebufferTexture2D(
-                        gl.FRAMEBUFFER,
-                        attach,
-                        gl.TEXTURE_2D,
-                        opts.tex[i].tex,
-                        0
-                    );
-                    attachments[i] = attach;
-                }
-                // TODO WebGL2 support
-                this.ext.drawBuffersWEBGL(attachments);
-            } else {
-                assert(
-                    opts.tex.length === 1,
-                    "only single color attachment allowed (webgl_draw_buffers ext unavailable)"
-                );
+            assert(
+                opts.tex.length < this.maxAttachments,
+                `too many attachments (max. ${this.maxAttachments})`
+            );
+            const attachments: number[] = [];
+            for (let i = 0; i < opts.tex.length; i++) {
+                const attach = GL_COLOR_ATTACHMENT0_WEBGL + i;
                 gl.framebufferTexture2D(
                     gl.FRAMEBUFFER,
-                    gl.COLOR_ATTACHMENT0,
+                    attach,
                     gl.TEXTURE_2D,
-                    opts.tex[0].tex,
+                    opts.tex[i].tex,
                     0
                 );
+                attachments[i] = attach;
             }
+            this.ext && this.ext.drawBuffersWEBGL(attachments);
+            isGL2Context(gl) && gl.drawBuffers(attachments);
         }
         if (opts.depth) {
             gl.framebufferRenderbuffer(
