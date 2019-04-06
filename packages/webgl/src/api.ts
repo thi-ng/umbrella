@@ -119,13 +119,15 @@ export type UniformDecl =
     | [GLSL.mat2, UniformDefault<GLMat2>]
     | [GLSL.mat3, UniformDefault<GLMat3>]
     | [GLSL.mat4, UniformDefault<GLMat4>]
-    | [GLSL.bool_array, number, UniformDefault<GLIntVec>]
-    | [GLSL.int_array, number, UniformDefault<GLIntVec>]
-    | [GLSL.uint_array, number, UniformDefault<GLUintVec>]
-    | [GLSL.float_array, number, UniformDefault<GLVec>]
-    | [GLSL.vec2_array, number, UniformDefault<GLVec>]
-    | [GLSL.vec3_array, number, UniformDefault<GLVec>]
-    | [GLSL.vec4_array, number, UniformDefault<GLVec>];
+    | [GLSL.bool_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.int_array, number, UniformDefault<GLIntVec>?]
+    | [GLSL.uint_array, number, UniformDefault<GLUintVec>?]
+    | [GLSL.float_array, number, UniformDefault<GLVec>?]
+    | [GLSL.vec2_array, number, UniformDefault<GLVec>?]
+    | [GLSL.vec3_array, number, UniformDefault<GLVec>?]
+    | [GLSL.vec4_array, number, UniformDefault<GLVec>?]
+    | [GLSL.sampler2D_array, number, UniformDefault<number>?]
+    | [GLSL.samplerCube_array, number, UniformDefault<number>?];
 
 /**
  * Object of attribute types w/ optional locations.
