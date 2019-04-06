@@ -9,11 +9,7 @@ export const mergeMapWith = <K, V>(
     const res: Map<K, V> = copy(dest, Map);
     for (let x of xs) {
         for (let [k, v] of x) {
-            if (res.has(k)) {
-                res.set(k, f(res.get(k), v));
-            } else {
-                res.set(k, v);
-            }
+            res.set(k, res.has(k) ? f(res.get(k), v) : v);
         }
     }
     return res;
@@ -28,11 +24,7 @@ export const mergeObjWith = <T>(
     for (let x of xs) {
         for (let k in x) {
             const v = x[k];
-            if (res.hasOwnProperty(k)) {
-                res[k] = f(dest[k], v);
-            } else {
-                res[k] = v;
-            }
+            res[k] = res.hasOwnProperty(k) ? f(dest[k], v) : v;
         }
     }
     return res;
