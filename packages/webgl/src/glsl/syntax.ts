@@ -32,15 +32,10 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
         attrib: (id, type, pre) =>
             `attribute ${GLSL[isArray(type) ? type[0] : type]} ${pre.a}${id};`,
         varying: {
-            vs: (id, type, pre) => `varying ${GLSL[type]} ${pre.v}${id};`,
-            fs: (id, type, pre) => `varying ${GLSL[type]} ${pre.v}${id};`
+            vs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
+            fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id)
         },
-        uniform: (id, u, pre) => {
-            const type = isArray(u) ? u[0] : u;
-            return `uniform ${GLSL[type]}${
-                type >= GLSL.bool_array ? `[${u[1]}]` : ""
-            } ${pre.u}${id};`;
-        },
+        uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
         output: () => ""
     },
     /**
@@ -50,20 +45,15 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
         number: 300,
         attrib: (id, type, pre) =>
             isArray(type)
-                ? `layout(location=${type[1]}) in ${GLSL[type[0]]} a_${
+                ? `layout(location=${type[1]}) in ${GLSL[type[0]]} ${
                       pre.a
                   }${id};`
-                : `in ${GLSL[type]} ${id};`,
+                : `in ${GLSL[type]} ${pre.a}${id};`,
         varying: {
-            vs: (id, type, pre) => `out ${GLSL[type]} v_${pre.v}${id};`,
-            fs: (id, type, pre) => `in ${GLSL[type]} v_${pre.v}${id};`
+            vs: (id, type, pre) => arrayDecl("out", type, pre.v + id),
+            fs: (id, type, pre) => arrayDecl("in", type, pre.v + id)
         },
-        uniform: (id, u, pre) => {
-            const type = isArray(u) ? u[0] : u;
-            return `uniform ${GLSL[type]}${
-                type >= GLSL.bool_array ? `[${u[1]}]` : ""
-            } u_${pre.u}${id};`;
-        },
+        uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
         output: (id, type, pre) =>
             isArray(type)
                 ? `layout(location=${type[1]}) out ${GLSL[type[0]]} ${
@@ -71,6 +61,17 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
                   }${id};`
                 : `out ${GLSL[type]} ${pre.o}${id};`
     }
+};
+
+const arrayDecl = (
+    qualifier: string,
+    decl: GLSL | [GLSL, number],
+    id: string
+) => {
+    const type = isArray(decl) ? decl[0] : decl;
+    return type >= GLSL.bool_array
+        ? `${qualifier} ${GLSL[type].replace("_array", "")} ${id}[${decl[1]}];`
+        : `${qualifier} ${GLSL[type]} ${id};`;
 };
 
 /**

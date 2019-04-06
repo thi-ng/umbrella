@@ -1,8 +1,14 @@
 import { Fn3, IObjectOf, Tuple } from "@thi.ng/api";
-import { existsAndNotNull, isArray, isFunction } from "@thi.ng/checks";
+import {
+    existsAndNotNull,
+    isArray,
+    isBoolean,
+    isFunction
+} from "@thi.ng/checks";
 import {
     GLSL,
     GLSLDeclPrefixes,
+    GLSLExtensionBehavior,
     GLSLVersion,
     IShader,
     ModelAttributeSpecs,
@@ -20,6 +26,7 @@ import {
 import { error } from "./error";
 import { GLSL_HEADER, PREFIXES, SYNTAX } from "./glsl/syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
+import { isGL2Context } from "./utils";
 
 // [SRC_ALPHA, ONE_MINUS_SRC_ALPHA];
 export const DEFAULT_BLEND: Tuple<GLenum, 2> = [0x302, 0x303];
@@ -27,34 +34,6 @@ export const DEFAULT_BLEND: Tuple<GLenum, 2> = [0x302, 0x303];
 const ERROR_REGEXP = /ERROR: \d+:(\d+): (.*)/;
 
 export class Shader implements IShader {
-    static fromSpec(gl: WebGLRenderingContext, spec: ShaderSpec) {
-        const srcVS = prepareShaderSource(spec, "vs");
-        const srcFS = prepareShaderSource(spec, "fs");
-        console.log(srcVS);
-        console.log(srcFS);
-        const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
-        const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
-        const program = gl.createProgram();
-        gl.attachShader(program, vs);
-        gl.attachShader(program, fs);
-        gl.linkProgram(program);
-        if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
-            const attribs = initAttributes(
-                gl,
-                program,
-                spec.attribs,
-                spec.version
-            );
-            const uniforms = initUniforms(gl, program, spec.uniforms);
-            gl.deleteShader(vs);
-            gl.deleteShader(fs);
-            return new Shader(gl, program, attribs, uniforms, spec.state);
-        }
-        throw new Error(
-            `Error linking shader: ${gl.getProgramInfoLog(program)}`
-        );
-    }
-
     gl: WebGLRenderingContext;
     program: WebGLProgram;
     attribs: IObjectOf<ShaderAttrib>;
@@ -191,8 +170,31 @@ export class Shader implements IShader {
     }
 }
 
-export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) =>
-    Shader.fromSpec(gl, spec);
+export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
+    if (!spec.version) {
+        spec.version = isGL2Context(gl)
+            ? GLSLVersion.GLES_300
+            : GLSLVersion.GLES_100;
+    }
+    const srcVS = prepareShaderSource(spec, "vs");
+    const srcFS = prepareShaderSource(spec, "fs");
+    console.log(srcVS);
+    console.log(srcFS);
+    const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
+    const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
+    const program = gl.createProgram();
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        const attribs = initAttributes(gl, program, spec.attribs, spec.version);
+        const uniforms = initUniforms(gl, program, spec.uniforms);
+        gl.deleteShader(vs);
+        gl.deleteShader(fs);
+        return new Shader(gl, program, attribs, uniforms, spec.state);
+    }
+    throw new Error(`Error linking shader: ${gl.getProgramInfoLog(program)}`);
+};
 
 const compileVars = (
     attribs: any,
@@ -209,6 +211,11 @@ const compileVars = (
     return decls.join("\n");
 };
 
+const compileExtensionPragma = (id: string, behavior: GLSLExtensionBehavior) =>
+    `#extension ${id} : ${
+        isBoolean(behavior) ? (behavior ? "enable" : "disable") : behavior
+    }\n`;
+
 export const prepareShaderSource = (spec: ShaderSpec, type: ShaderType) => {
     const syntax = SYNTAX[spec.version || GLSLVersion.GLES_100];
     const prefixes = { ...PREFIXES, ...spec.declPrefixes };
@@ -220,6 +227,11 @@ export const prepareShaderSource = (spec: ShaderSpec, type: ShaderType) => {
             ? spec.pre
             : spec.pre + "\n" + GLSL_HEADER
         : GLSL_HEADER;
+    if (spec.ext) {
+        for (let id in spec.ext) {
+            src += compileExtensionPragma(id, spec.ext[id]);
+        }
+    }
     if (spec.generateDecls !== false) {
         src += isVS
             ? compileVars(spec.attribs, syntax.attrib, prefixes)
