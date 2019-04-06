@@ -494,3 +494,14 @@ export interface Material {
     diffuseCol: GLVec3;
     specularCol: GLVec3;
 }
+
+export interface WeblGLCanvasOpts {
+    canvas: string | HTMLCanvasElement;
+    parent: HTMLElement;
+    opts: Partial<WebGLContextAttributes>;
+    version: 1 | 2;
+    width: number;
+    height: number;
+    autoScale: boolean;
+    onContextLost: EventListener;
+}
