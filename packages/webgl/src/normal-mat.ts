@@ -1,10 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
-import {
-    IDENT44,
-    invert44,
-    mulM44,
-    transpose44
-} from "@thi.ng/matrices";
+import { IDENT44, mulM44, normal44 } from "@thi.ng/matrices";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import { GLMat4, ShaderUniforms } from "./api";
 
@@ -19,7 +14,7 @@ const $ = (a: any, b: any, id: string) => a[id] || b[id].defaultVal || IDENT44;
 export const autoNormalMatrix1 = (model = "model") => (
     shaderU: ShaderUniforms,
     specU: IObjectOf<number | ReadonlyVec>
-) => <GLMat4>transpose44(null, invert44([], $(specU, shaderU, model)));
+) => <GLMat4>normal44([], $(specU, shaderU, model));
 
 /**
  * Computes the inverse transpose of the matrix product of given 4x4
@@ -33,11 +28,8 @@ export const autoNormalMatrix2 = (model = "model", view = "view") => (
     specU: IObjectOf<number | ReadonlyVec>
 ) =>
     <GLMat4>(
-        transpose44(
+        normal44(
             null,
-            invert44(
-                null,
-                mulM44([], $(specU, shaderU, view), $(specU, shaderU, model))
-            )
+            mulM44([], $(specU, shaderU, view), $(specU, shaderU, model))
         )
     );
