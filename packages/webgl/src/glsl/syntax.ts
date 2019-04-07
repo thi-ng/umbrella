@@ -36,7 +36,8 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
             fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id)
         },
         uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
-        output: () => ""
+        output: (id, type, pre) =>
+            isArray(type) ? `#define ${pre.o}${id} gl_FragData[${type[1]}]` : ""
     },
     /**
      * WebGL 2 (GLSL ES 3)

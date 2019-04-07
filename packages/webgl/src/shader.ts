@@ -6,6 +6,7 @@ import {
     isFunction
 } from "@thi.ng/checks";
 import {
+    DEFAULT_OUTPUT,
     GLSL,
     GLSLDeclPrefixes,
     GLSLExtensionBehavior,
@@ -231,7 +232,7 @@ export const prepareShaderSource = (spec: ShaderSpec, type: ShaderType) => {
         src += isVS
             ? compileVars(spec.attribs, syntax.attrib, prefixes)
             : compileVars(
-                  spec.outputs || { fragColor: GLSL.vec4 },
+                  spec.outputs || DEFAULT_OUTPUT,
                   syntax.output,
                   prefixes
               );

@@ -280,6 +280,8 @@ export interface ShaderSnippet {
     src: string;
 }
 
+export const DEFAULT_OUTPUT: ShaderOutputSpecs = { fragColor: [GLSL.vec4, 0] };
+
 export interface ShaderSpec {
     /**
      * Vertex shader GLSL source code.
@@ -402,7 +404,6 @@ export interface ShaderOpts<T> {
     color: string;
     material: Partial<T>;
     state: Partial<ShaderState>;
-    version: GLSLVersion;
 }
 
 export interface IShader extends IBind<ModelSpec>, IRelease {

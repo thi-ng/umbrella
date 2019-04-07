@@ -8,7 +8,6 @@ import {
 } from "../api";
 import { defglslA } from "../glsl/assemble";
 import { lambert } from "../glsl/lighting";
-import { EXPORT_FRAGCOL } from "../glsl/syntax";
 import { mvp, surfaceNormal } from "../glsl/vertex";
 import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../normal-mat";
@@ -30,8 +29,7 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     fs: defglslA(
         `void main(){
     float lam = lambert(normalize(v_normal), u_lightDir, u_bidir);
-    vec4 col = vec4(u_ambientCol + v_col * u_lightCol * lam, u_alpha);
-${EXPORT_FRAGCOL("col")}
+    o_fragColor = vec4(u_ambientCol + v_col * u_lightCol * lam, u_alpha);
 }`,
         [lambert]
     ),
@@ -65,6 +63,5 @@ ${EXPORT_FRAGCOL("col")}
     state: {
         depth: true,
         ...opts.state
-    },
-    version: opts.version
+    }
 });

@@ -5,7 +5,6 @@ import {
     ShaderSpec
 } from "../api";
 import { defglslA } from "../glsl/assemble";
-import { EXPORT_FRAGCOL } from "../glsl/syntax";
 import { surfaceNormal } from "../glsl/vertex";
 import { defMaterial } from "../material";
 import { autoNormalMatrix1 } from "../normal-mat";
@@ -35,8 +34,7 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
     float specular = directional > 0.0
         ? pow(dot(N, normalize(L + normalize(v_eye))), u_shininess)
         : 0.0;
-    vec3 col = u_ambientCol + v_col * directional * u_lightCol + u_specularCol * specular;
-${EXPORT_FRAGCOL("vec4(col, 1.0)")}
+    o_fragColor = u_ambientCol + v_col * directional * u_lightCol + u_specularCol * specular;
 }`,
     attribs: {
         position: GLSL.vec3,
@@ -64,6 +62,5 @@ ${EXPORT_FRAGCOL("vec4(col, 1.0)")}
         lightCol: [GLSL.vec3, [1, 1, 1]],
         ...defMaterial(opts.material)
     },
-    state: { depth: true, ...opts.state },
-    version: opts.version
+    state: { depth: true, ...opts.state }
 });
