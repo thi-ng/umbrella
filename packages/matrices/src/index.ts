@@ -46,5 +46,6 @@ export * from "./sub";
 export * from "./subn";
 export * from "./trace";
 export * from "./translation";
+export * from "./transform";
 export * from "./transpose";
 export * from "./viewport";
