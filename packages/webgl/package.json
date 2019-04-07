@@ -34,9 +34,9 @@
     "dependencies": {
         "@thi.ng/api": "^6.0.1",
         "@thi.ng/checks": "^2.1.5",
-        "@thi.ng/dgraph": "^1.1.1",
-        "@thi.ng/matrices": "^0.2.1",
-        "@thi.ng/vectors": "^2.5.1"
+        "@thi.ng/dgraph": "^1.1.4",
+        "@thi.ng/matrices": "^0.3.0",
+        "@thi.ng/vectors": "^2.5.2"
     },
     "keywords": [
         "abstraction",
