@@ -93,7 +93,7 @@ ${ok}${fail ? `\n#else\n${fail}` : ""}
  * @param body
  * @param out
  */
-export const EXPORT_FRAGCOL = (body = "col", out = "fragColor") =>
+export const EXPORT_FRAGCOL = (body = "col", out = "o_fragColor") =>
     VERSION_CHECK(300, `${out}=${body};`, `gl_FragColor=${body};`);
 
 /**
