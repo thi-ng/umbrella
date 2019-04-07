@@ -109,7 +109,7 @@ export class Texture implements ITexture {
             }
         }
 
-        opts.mipmap !== undefined && gl.generateMipmap(opts.mipmap);
+        opts.mipmap && gl.generateMipmap(target);
 
         return true;
     }

@@ -548,9 +548,9 @@ export interface TextureOpts {
     wrap: GLenum | GLenum[];
     format: GLenum;
     internalFormat: GLenum;
-    mipmap: GLenum;
     width: number;
     height: number;
+    mipmap: boolean;
     flip: boolean;
     premultiply: boolean;
 }
