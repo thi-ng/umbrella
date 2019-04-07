@@ -96,6 +96,7 @@ import * as m from "@thi.ng/matrices";
 - `skewXY33` / `skewXZ33` / `skewYX33` / `skewYZ33` / `skewZX33` / `skewZY33`
 - `skewXY44` / `skewXZ44` / `skewYX44` / `skewYZ44` / `skewZX44` / `skewZY44`
 - `translation23` / `translation44`
+- `transform23` / `transform44`
 
 #### WebGL related
 
@@ -107,6 +108,8 @@ import * as m from "@thi.ng/matrices";
 
 ### Matrix conversion
 
+- `mat22to23`
+- `mat23to22` / `mat23to44`
 - `mat33to44` / `mat44to33`
 - `normal44`
 
