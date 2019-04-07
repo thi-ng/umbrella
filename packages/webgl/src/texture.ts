@@ -81,7 +81,7 @@ export class Texture implements ITexture {
             } else if (opts.width && opts.height) {
                 gl.texStorage2D(
                     target,
-                    0,
+                    1,
                     internalFormat,
                     opts.width,
                     opts.height
