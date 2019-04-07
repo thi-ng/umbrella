@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.2.2...@thi.ng/matrices@0.3.0) (2019-04-07)
+
+
+### Features
+
+* **matrices:** add transform23/44 fns ([dab6839](https://github.com/thi-ng/umbrella/commit/dab6839))
+
+
+
+
+
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.2.1...@thi.ng/matrices@0.2.2) (2019-04-03)
 
 **Note:** Version bump only for package @thi.ng/matrices
