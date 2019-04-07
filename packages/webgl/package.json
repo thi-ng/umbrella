@@ -36,6 +36,7 @@
         "@thi.ng/checks": "^2.1.5",
         "@thi.ng/dgraph": "^1.1.4",
         "@thi.ng/matrices": "^0.3.0",
+        "@thi.ng/vector-pools": "^0.2.12",
         "@thi.ng/vectors": "^2.5.2"
     },
     "keywords": [

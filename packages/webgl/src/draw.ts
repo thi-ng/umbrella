@@ -11,6 +11,7 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
         const indices = spec.indices;
         const gl = spec.shader.gl;
         bindTextures(spec.textures);
+        spec.shader.prepareState();
         spec.shader.bind(spec);
         if (indices) {
             indices.buffer.bind();
@@ -18,8 +19,8 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
                 drawInstanced(gl, spec);
             } else {
                 gl.drawElements(
-                    spec.mode,
-                    spec.numItems,
+                    spec.mode || gl.TRIANGLES,
+                    spec.num,
                     indices.data instanceof Uint32Array
                         ? gl.UNSIGNED_INT
                         : gl.UNSIGNED_SHORT,
@@ -30,7 +31,7 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
             if (spec.instances) {
                 drawInstanced(gl, spec);
             } else {
-                gl.drawArrays(spec.mode, 0, spec.numItems);
+                gl.drawArrays(spec.mode || gl.TRIANGLES, 0, spec.num);
             }
         }
         spec.shader.unbind(null);
@@ -59,6 +60,7 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
                 : ext.vertexAttribDivisorANGLE(attr.loc, div);
         }
     }
+    const mode = spec.mode || gl.TRIANGLES;
     if (spec.indices) {
         const type =
             spec.indices.data instanceof Uint32Array
@@ -66,32 +68,32 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
                 : gl.UNSIGNED_SHORT;
         isGL2
             ? (<WebGL2RenderingContext>gl).drawElementsInstanced(
-                  spec.mode,
-                  spec.numItems,
+                  mode,
+                  spec.num,
                   type,
                   0,
-                  spec.instances.numItems
+                  spec.instances.num
               )
             : ext.drawElementsInstancedANGLE(
-                  spec.mode,
-                  spec.numItems,
+                  mode,
+                  spec.num,
                   type,
                   0,
-                  spec.instances.numItems
+                  spec.instances.num
               );
     } else {
         isGL2
             ? (<WebGL2RenderingContext>gl).drawArraysInstanced(
-                  spec.mode,
+                  mode,
                   0,
-                  spec.numItems,
-                  spec.instances.numItems
+                  spec.num,
+                  spec.instances.num
               )
             : ext.drawArraysInstancedANGLE(
-                  spec.mode,
+                  mode,
                   0,
-                  spec.numItems,
-                  spec.instances.numItems
+                  spec.num,
+                  spec.instances.num
               );
     }
     // reset attrib divisors to allow non-instanced draws later on

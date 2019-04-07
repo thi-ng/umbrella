@@ -411,6 +411,8 @@ export interface IShader extends IBind<ModelSpec>, IRelease {
     uniforms: ShaderUniforms;
 
     bindAttribs(specAttribs: ModelAttributeSpecs): void;
+    bindUniforms(specUnis: UniformValues): void;
+    prepareState(state?: Partial<ShaderState>): void;
 }
 
 export interface IWebGLBuffer<T> extends IBind<void>, IRelease {
@@ -469,13 +471,13 @@ export interface ModelSpec {
      */
     instances?: InstancingSpec;
     /**
-     * WebGL draw mode
+     * WebGL draw mode. Defaults to `TRIANGLES`
      */
-    mode: GLenum;
+    mode?: GLenum;
     /**
-     * Number of primitives to draw
+     * Number of vertices/indices to draw
      */
-    numItems: number;
+    num: number;
 }
 
 /**
@@ -537,7 +539,7 @@ export interface IndexBufferSpec {
 
 export interface InstancingSpec {
     attribs: IObjectOf<ModelAttributeSpec>;
-    numItems: number;
+    num: number;
 }
 
 export interface TextureOpts {

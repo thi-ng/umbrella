@@ -56,7 +56,6 @@ export class Shader implements IShader {
 
     bind(spec: ModelSpec) {
         if (this.program) {
-            this.prepareShaderState();
             this.gl.useProgram(this.program);
             this.bindAttribs(spec.attribs);
             this.bindUniforms(spec.uniforms);
@@ -83,22 +82,20 @@ export class Shader implements IShader {
         const gl = this.gl;
         let shaderAttrib;
         for (let id in specAttribs) {
-            if (specAttribs.hasOwnProperty(id)) {
-                if ((shaderAttrib = this.attribs[id])) {
-                    const attr = specAttribs[id];
-                    attr.buffer.bind();
-                    gl.enableVertexAttribArray(shaderAttrib.loc);
-                    gl.vertexAttribPointer(
-                        shaderAttrib.loc,
-                        attr.size || 3,
-                        attr.type || gl.FLOAT,
-                        attr.normalized,
-                        attr.stride || 0,
-                        attr.offset || 0
-                    );
-                } else {
-                    console.warn(`unknown attrib: ${id}`);
-                }
+            if ((shaderAttrib = this.attribs[id])) {
+                const attr = specAttribs[id];
+                attr.buffer.bind();
+                gl.enableVertexAttribArray(shaderAttrib.loc);
+                gl.vertexAttribPointer(
+                    shaderAttrib.loc,
+                    attr.size || 3,
+                    attr.type || gl.FLOAT,
+                    attr.normalized || false,
+                    attr.stride || 0,
+                    attr.offset || 0
+                );
+            } else {
+                console.warn(`unknown attrib: ${id}`);
             }
         }
     }
@@ -106,14 +103,12 @@ export class Shader implements IShader {
     bindUniforms(specUnis: UniformValues) {
         const shaderUnis = this.uniforms;
         for (let id in specUnis) {
-            if (specUnis.hasOwnProperty(id)) {
-                const u = shaderUnis[id];
-                if (u) {
-                    const val = specUnis[id];
-                    u.setter(isFunction(val) ? val(shaderUnis, specUnis) : val);
-                } else {
-                    console.warn(`unknown uniform: ${id}`);
-                }
+            const u = shaderUnis[id];
+            if (u) {
+                const val = specUnis[id];
+                u.setter(isFunction(val) ? val(shaderUnis, specUnis) : val);
+            } else {
+                console.warn(`unknown uniform: ${id}`);
             }
         }
         // apply defaults for non-specified uniforms in user spec
@@ -130,7 +125,7 @@ export class Shader implements IShader {
         }
     }
 
-    prepareShaderState(state = this.state) {
+    prepareState(state = this.state) {
         const gl = this.gl;
         state.depth !== undefined && this.setState(gl.DEPTH_TEST, state.depth);
         if (state.cull !== undefined) {
@@ -187,7 +182,7 @@ export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
     gl.attachShader(program, fs);
     gl.linkProgram(program);
     if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        const attribs = initAttributes(gl, program, spec.attribs, spec.version);
+        const attribs = initAttributes(gl, program, spec.attribs);
         const uniforms = initUniforms(gl, program, spec.uniforms);
         gl.deleteShader(vs);
         gl.deleteShader(fs);
@@ -285,24 +280,21 @@ const parseAndThrowShaderError = (
 const initAttributes = (
     gl: WebGLRenderingContext,
     prog: WebGLProgram,
-    attribs: ShaderAttribSpecs,
-    version: GLSLVersion
+    attribs: ShaderAttribSpecs
 ) => {
     const res = <IObjectOf<ShaderAttrib>>{};
     for (let id in attribs) {
-        if (attribs.hasOwnProperty(id)) {
-            const val = attribs[id];
-            const [type, loc] = isArray(val) ? val : [val, null];
-            const aid = `a_${id}`;
-            if (loc != null && version && version >= "300") {
-                gl.bindAttribLocation(prog, loc, aid);
-                res[id] = { type, loc };
-            } else {
-                res[id] = {
-                    type,
-                    loc: gl.getAttribLocation(prog, aid)
-                };
-            }
+        const val = attribs[id];
+        const [type, loc] = isArray(val) ? val : [val, null];
+        const aid = `a_${id}`;
+        if (loc != null) {
+            gl.bindAttribLocation(prog, loc, aid);
+            res[id] = { type, loc };
+        } else {
+            res[id] = {
+                type,
+                loc: gl.getAttribLocation(prog, aid)
+            };
         }
     }
     return res;
@@ -315,33 +307,31 @@ const initUniforms = (
 ) => {
     const res = <IObjectOf<ShaderUniform>>{};
     for (let id in uniforms) {
-        if (uniforms.hasOwnProperty(id)) {
-            const val = uniforms[id];
-            let type: GLSL;
-            let t1, t2, defaultVal, defaultFn;
-            if (isArray(val)) {
-                [type, t1, t2] = val;
-                defaultVal = type < GLSL.bool_array ? t1 : t2;
-                if (isFunction(defaultVal)) {
-                    defaultFn = defaultVal;
-                    defaultVal = undefined;
-                }
-            } else {
-                type = val;
+        const val = uniforms[id];
+        let type: GLSL;
+        let t1, t2, defaultVal, defaultFn;
+        if (isArray(val)) {
+            [type, t1, t2] = val;
+            defaultVal = type < GLSL.bool_array ? t1 : t2;
+            if (isFunction(defaultVal)) {
+                defaultFn = defaultVal;
+                defaultVal = undefined;
             }
-            const loc = gl.getUniformLocation(prog, `u_${id}`);
-            const setter = UNIFORM_SETTERS[type];
-            if (setter) {
-                res[id] = {
-                    loc,
-                    setter: setter(gl, loc, defaultVal),
-                    defaultFn,
-                    defaultVal,
-                    type
-                };
-            } else {
-                error(`invalid uniform type: ${GLSL[type]}`);
-            }
+        } else {
+            type = val;
+        }
+        const loc = gl.getUniformLocation(prog, `u_${id}`);
+        const setter = UNIFORM_SETTERS[type];
+        if (setter) {
+            res[id] = {
+                loc,
+                setter: setter(gl, loc, defaultVal),
+                defaultFn,
+                defaultVal,
+                type
+            };
+        } else {
+            error(`invalid uniform type: ${GLSL[type]}`);
         }
     }
     return res;
