@@ -20,6 +20,7 @@ export type LambertOpts = ShaderOpts<
 export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     vs: defglslA(
         `void main(){
+    ${opts.uv ? `v_uv = a_${opts.uv};` : ""}
     v_col = ${colorAttrib(opts)};
     v_normal = surfaceNormal(a_normal, u_normalMat);
     gl_Position = mvp(${positionAttrib(opts)}, u_model, u_view, u_proj);
@@ -29,13 +30,15 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     fs: defglslA(
         `void main(){
     float lam = lambert(normalize(v_normal), u_lightDir, u_bidir);
-    o_fragColor = vec4(u_ambientCol + v_col * u_lightCol * lam, u_alpha);
+    vec3 col = ${opts.uv ? `texture(u_tex, v_uv).xyz * v_col` : "v_col"};
+    o_fragColor = vec4(u_ambientCol + col * u_lightCol * lam, u_alpha);
 }`,
         [lambert]
     ),
     attribs: {
         position: GLSL.vec3,
         normal: GLSL.vec3,
+        ...(opts.uv ? { [opts.uv]: GLSL.vec2 } : null),
         ...(opts.color && !opts.instanceColor
             ? { [opts.color]: GLSL.vec3 }
             : null),
@@ -44,7 +47,8 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     },
     varying: {
         col: GLSL.vec3,
-        normal: GLSL.vec3
+        normal: GLSL.vec3,
+        ...(opts.uv ? { uv: GLSL.vec2 } : null)
     },
     uniforms: {
         model: GLSL.mat4,
@@ -57,6 +61,7 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
             { diffuseCol: [1, 1, 1], ...opts.material },
             { specularCol: false }
         ),
+        ...(opts.uv ? { tex: GLSL.sampler2D } : null),
         alpha: [GLSL.float, 1],
         bidir: [GLSL.bool, 0]
     },

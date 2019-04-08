@@ -1,4 +1,4 @@
-import { Fn3, IObjectOf, Tuple } from "@thi.ng/api";
+import { Fn3, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
     isArray,
@@ -28,9 +28,6 @@ import { error } from "./error";
 import { GLSL_HEADER, PREFIXES, SYNTAX } from "./glsl/syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
 import { isGL2Context } from "./utils";
-
-// [SRC_ALPHA, ONE_MINUS_SRC_ALPHA];
-export const DEFAULT_BLEND: Tuple<GLenum, 2> = [0x302, 0x303];
 
 const ERROR_REGEXP = /ERROR: \d+:(\d+): (.*)/;
 

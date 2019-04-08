@@ -402,6 +402,7 @@ export interface ShaderOpts<T> {
     instancePos: string;
     instanceColor: string;
     color: string;
+    uv: string;
     material: Partial<T>;
     state: Partial<ShaderState>;
 }
@@ -602,3 +603,23 @@ export const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
 export const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
 export const GL_RGBA = 0x1908;
 export const GL_RGBA32F = 0x8814;
+
+// [SRC_ALPHA, ONE_MINUS_SRC_ALPHA]
+export const DEFAULT_BLEND: Tuple<GLenum, 2> = [0x302, 0x303];
+
+export const FULLSCREEN_QUAD: ModelSpec = {
+    attribs: {
+        position: {
+            data: new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+            size: 2
+        },
+        uv: {
+            data: new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]),
+            size: 2
+        }
+    },
+    uniforms: {},
+    shader: null,
+    mode: 5, // TRIANGLE_STRIP,
+    num: 4
+};

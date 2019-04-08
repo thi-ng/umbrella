@@ -82,10 +82,17 @@ const arrayDecl = (
  * @param ok
  * @param fail
  */
-export const VERSION_CHECK = (ver: number, ok: string, fail = "") =>
-    `#if __VERSION__ >= ${ver}
+export const VERSION_CHECK = (ver: number, ok: string, fail = "") => {
+    let cmp = ">=";
+    if (!ok) {
+        ok = fail;
+        fail = null;
+        cmp = "<";
+    }
+    return `#if __VERSION__ ${cmp} ${ver}
 ${ok}${fail ? `\n#else\n${fail}` : ""}
 #endif`;
+};
 
 /**
  * GLSL version specific fragment shader output. If `__VERSION__ >= 300`
@@ -116,4 +123,5 @@ precision mediump float;
 #ifndef HALF_PI
 #define HALF_PI 1.570796326794896
 #endif
+${VERSION_CHECK(300, "", "#define texture texture2D")}
 `;

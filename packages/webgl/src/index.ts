@@ -13,6 +13,9 @@ export * from "./utils";
 export * from "./shaders/lambert";
 export * from "./shaders/phong";
 
+export * from "./textures/checkerboard";
+export * from "./textures/stripes";
+
 export * from "./glsl/assemble";
 export * from "./glsl/syntax";
 
