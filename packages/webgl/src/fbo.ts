@@ -3,9 +3,11 @@ import {
     FboOpts,
     GL_COLOR_ATTACHMENT0_WEBGL,
     GL_MAX_COLOR_ATTACHMENTS_WEBGL,
-    IFbo
+    IFbo,
+    ITexture
 } from "./api";
 import { error } from "./error";
+import { RBO } from "./rbo";
 import { isGL2Context } from "./utils";
 
 /**
@@ -83,12 +85,20 @@ export class FBO implements IFbo {
             }
         }
         if (opts.depth) {
-            gl.framebufferRenderbuffer(
-                gl.FRAMEBUFFER,
-                gl.DEPTH_ATTACHMENT,
-                gl.RENDERBUFFER,
-                opts.depth.buffer
-            );
+            opts.depth instanceof RBO
+                ? gl.framebufferRenderbuffer(
+                      gl.FRAMEBUFFER,
+                      gl.DEPTH_ATTACHMENT,
+                      gl.RENDERBUFFER,
+                      opts.depth.buffer
+                  )
+                : gl.framebufferTexture2D(
+                      gl.FRAMEBUFFER,
+                      gl.DEPTH_ATTACHMENT,
+                      gl.TEXTURE_2D,
+                      (<ITexture>opts.depth).tex,
+                      0
+                  );
         }
         return this.validate();
     }

@@ -1,13 +1,13 @@
-import { IRenderBuffer, RenderBufferOpts } from "./api";
+import { IRenderBuffer, RboOpts } from "./api";
 
-export class RenderBuffer implements IRenderBuffer {
+export class RBO implements IRenderBuffer {
     gl: WebGLRenderingContext;
     buffer: WebGLRenderbuffer;
     format: number;
     width: number;
     height: number;
 
-    constructor(gl: WebGLRenderingContext, opts?: Partial<RenderBufferOpts>) {
+    constructor(gl: WebGLRenderingContext, opts?: Partial<RboOpts>) {
         this.gl = gl;
         this.buffer = gl.createRenderbuffer();
         opts && this.configure(opts);
@@ -29,12 +29,12 @@ export class RenderBuffer implements IRenderBuffer {
         return true;
     }
 
-    configure(opts: Partial<RenderBufferOpts>) {
+    configure(opts: Partial<RboOpts>) {
         const gl = this.gl;
         this.bind();
         gl.renderbufferStorage(
             gl.RENDERBUFFER,
-            opts.format,
+            opts.format || gl.DEPTH_COMPONENT16,
             opts.width,
             opts.height
         );
@@ -44,18 +44,5 @@ export class RenderBuffer implements IRenderBuffer {
     }
 }
 
-export const renderBuffer = (
-    gl: WebGLRenderingContext,
-    opts?: Partial<RenderBufferOpts>
-) => new RenderBuffer(gl, opts);
-
-export const depthBuffer = (
-    gl: WebGLRenderingContext,
-    width: number,
-    height: number
-) =>
-    new RenderBuffer(gl, {
-        format: gl.DEPTH_COMPONENT16,
-        width,
-        height
-    });
+export const rbo = (gl: WebGLRenderingContext, opts?: Partial<RboOpts>) =>
+    new RBO(gl, opts);

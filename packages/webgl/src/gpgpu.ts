@@ -10,7 +10,6 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import {
-    FULLSCREEN_QUAD,
     GL_RGBA,
     GL_RGBA32F,
     GLSL,
@@ -25,6 +24,7 @@ import { compileModel } from "./buffer";
 import { getExtensions, glCanvas } from "./canvas";
 import { draw } from "./draw";
 import { FBO } from "./fbo";
+import { FULLSCREEN_QUAD } from "./geo/quad";
 import { VERSION_CHECK } from "./glsl/syntax";
 import { shader } from "./shader";
 import { floatTexture } from "./texture";
