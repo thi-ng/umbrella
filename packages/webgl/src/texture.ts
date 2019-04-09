@@ -1,3 +1,4 @@
+import { withoutKeysObj } from "@thi.ng/associative";
 import { isArray } from "@thi.ng/checks";
 import { ITexture, TextureOpts } from "./api";
 import { isGL2Context } from "./utils";
@@ -23,13 +24,14 @@ export class Texture implements ITexture {
 
     configure(opts: Partial<TextureOpts>) {
         const gl = this.gl;
-        const target = (this.target = opts.target || gl.TEXTURE_2D);
+        const target = this.target;
+        const imgTarget = opts.target || target;
         const format = opts.format || gl.RGBA;
         const internalFormat = opts.internalFormat || format;
         const type = opts.type || gl.UNSIGNED_BYTE;
         let t1: GLenum, t2: GLenum;
 
-        gl.bindTexture(target, this.tex);
+        gl.bindTexture(this.target, this.tex);
 
         if (opts.filter) {
             const flt = opts.filter;
@@ -67,7 +69,7 @@ export class Texture implements ITexture {
         if (isGL2Context(gl)) {
             if (opts.image && opts.width && opts.height) {
                 gl.texImage2D(
-                    target,
+                    imgTarget,
                     0,
                     internalFormat,
                     opts.width,
@@ -80,7 +82,7 @@ export class Texture implements ITexture {
                 );
             } else if (opts.width && opts.height) {
                 gl.texStorage2D(
-                    target,
+                    imgTarget,
                     1,
                     internalFormat,
                     opts.width,
@@ -91,7 +93,7 @@ export class Texture implements ITexture {
             if (opts.image) {
                 if (opts.width && opts.height) {
                     gl.texImage2D(
-                        target,
+                        imgTarget,
                         0,
                         internalFormat,
                         opts.width,
@@ -102,7 +104,7 @@ export class Texture implements ITexture {
                         <ArrayBufferView>opts.image
                     );
                 } else {
-                    gl.texImage2D(target, 0, internalFormat, format, type, <
+                    gl.texImage2D(imgTarget, 0, internalFormat, format, type, <
                         TexImageSource
                     >opts.image);
                 }
@@ -143,6 +145,32 @@ export const texture = (
     gl: WebGLRenderingContext,
     opts?: Partial<TextureOpts>
 ) => new Texture(gl, opts);
+
+/**
+ * Creates cube map texture from given 6 `face` texture sources. The
+ * given options are shared by each each side/face of the cube map.
+ *
+ * @param gl
+ * @param faces in order: +x,-x,+y,-y,+z,-z
+ * @param opts
+ */
+export const cubeMap = (
+    gl: WebGLRenderingContext,
+    faces: (ArrayBufferView | TexImageSource)[],
+    opts?: Partial<TextureOpts>
+) => {
+    const tex = new Texture(gl, { target: gl.TEXTURE_CUBE_MAP });
+    const faceOpts = withoutKeysObj(opts, ["target", "image", "mipmap"]);
+    for (let i = 0; i < 6; i++) {
+        faceOpts.target = gl.TEXTURE_CUBE_MAP_POSITIVE_X + i;
+        faceOpts.image = faces[i];
+        tex.configure(faceOpts);
+    }
+    if (opts.mipmap) {
+        gl.generateMipmap(tex.target);
+    }
+    return tex;
+};
 
 /**
  * Creates & configure a new FLOAT texture.
