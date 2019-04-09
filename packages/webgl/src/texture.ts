@@ -24,38 +24,15 @@ export class Texture implements ITexture {
 
     configure(opts: Partial<TextureOpts>) {
         const gl = this.gl;
+        const isGL2 = isGL2Context(gl);
         const target = this.target;
         const imgTarget = opts.target || target;
         const format = opts.format || gl.RGBA;
         const internalFormat = opts.internalFormat || format;
         const type = opts.type || gl.UNSIGNED_BYTE;
-        let t1: GLenum, t2: GLenum;
+        let t1: GLenum, t2: GLenum, t3: GLenum;
 
         gl.bindTexture(this.target, this.tex);
-
-        if (opts.filter) {
-            const flt = opts.filter;
-            if (isArray(flt)) {
-                t1 = flt[0];
-                t2 = flt[1];
-            } else {
-                t1 = t2 = flt;
-            }
-            gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
-            gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
-        }
-
-        if (opts.wrap) {
-            const wrap = opts.wrap;
-            if (isArray(wrap)) {
-                t1 = wrap[0];
-                t2 = wrap[1];
-            } else {
-                t1 = t2 = wrap;
-            }
-            gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
-            gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
-        }
 
         opts.flip !== undefined &&
             gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, opts.flip ? 1 : 0);
@@ -66,52 +43,119 @@ export class Texture implements ITexture {
                 opts.premultiply ? 1 : 0
             );
 
-        if (isGL2Context(gl)) {
-            if (opts.image && opts.width && opts.height) {
-                gl.texImage2D(
-                    imgTarget,
-                    0,
-                    internalFormat,
-                    opts.width,
-                    opts.height,
-                    0,
-                    format,
-                    type,
-                    <any>opts.image,
-                    0
-                );
-            } else if (opts.width && opts.height) {
-                gl.texStorage2D(
-                    imgTarget,
-                    1,
-                    internalFormat,
-                    opts.width,
-                    opts.height
-                );
-            }
-        } else {
-            if (opts.image) {
-                if (opts.width && opts.height) {
-                    gl.texImage2D(
-                        imgTarget,
-                        0,
-                        internalFormat,
-                        opts.width,
-                        opts.height,
-                        0,
-                        format,
-                        type,
-                        <ArrayBufferView>opts.image
-                    );
-                } else {
-                    gl.texImage2D(imgTarget, 0, internalFormat, format, type, <
-                        TexImageSource
-                    >opts.image);
-                }
+        if (opts.image !== undefined) {
+            const level = opts.level || 0;
+            const pos = opts.pos || [0, 0];
+            if (opts.width && opts.height) {
+                opts.sub
+                    ? gl.texSubImage2D(
+                          imgTarget,
+                          level,
+                          pos[0],
+                          pos[1],
+                          opts.width,
+                          opts.height,
+                          format,
+                          type,
+                          <ArrayBufferView>opts.image
+                      )
+                    : gl.texImage2D(
+                          imgTarget,
+                          level,
+                          internalFormat,
+                          opts.width,
+                          opts.height,
+                          0,
+                          format,
+                          type,
+                          <ArrayBufferView>opts.image
+                      );
+            } else {
+                opts.sub
+                    ? gl.texSubImage2D(
+                          imgTarget,
+                          level,
+                          pos[0],
+                          pos[1],
+                          format,
+                          type,
+                          <TexImageSource>opts.image
+                      )
+                    : gl.texImage2D(
+                          imgTarget,
+                          level,
+                          internalFormat,
+                          format,
+                          type,
+                          <TexImageSource>opts.image
+                      );
             }
         }
 
         opts.mipmap && gl.generateMipmap(target);
+
+        if (opts.filter) {
+            const flt = opts.filter;
+            if (isArray(flt)) {
+                t1 = flt[0];
+                t2 = flt[1];
+            } else {
+                t1 = t2 = flt;
+            }
+            t1 && gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
+            t2 && gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
+        }
+
+        if (opts.wrap) {
+            const wrap = opts.wrap;
+            if (isArray(wrap)) {
+                t1 = wrap[0];
+                t2 = wrap[1];
+                t3 = wrap[2];
+            } else {
+                t1 = t2 = t3 = wrap;
+            }
+            t1 && gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
+            t2 && gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
+            t3 &&
+                isGL2 &&
+                target === (<WebGL2RenderingContext>gl).TEXTURE_3D &&
+                gl.texParameteri(
+                    target,
+                    (<WebGL2RenderingContext>gl).TEXTURE_WRAP_R,
+                    t3
+                );
+        }
+
+        if (opts.lod) {
+            const [t1, t2] = opts.lod;
+            t1 &&
+                gl.texParameteri(
+                    target,
+                    (<WebGL2RenderingContext>gl).TEXTURE_MIN_LOD,
+                    t1
+                );
+            t2 &&
+                gl.texParameteri(
+                    target,
+                    (<WebGL2RenderingContext>gl).TEXTURE_MAX_LOD,
+                    t2
+                );
+        }
+
+        if (opts.minMaxLevel) {
+            const [t1, t2] = opts.minMaxLevel;
+            gl.texParameteri(
+                target,
+                (<WebGL2RenderingContext>gl).TEXTURE_BASE_LEVEL,
+                t1
+            );
+            gl.texParameteri(
+                target,
+                (<WebGL2RenderingContext>gl).TEXTURE_MAX_LEVEL,
+                t2
+            );
+        }
 
         return true;
     }
@@ -148,7 +192,16 @@ export const texture = (
 
 /**
  * Creates cube map texture from given 6 `face` texture sources. The
- * given options are shared by each each side/face of the cube map.
+ * given options are shared by each each side/face of the cube map. The
+ * following options are applied to the cube map directly:
+ *
+ * - `filter`
+ * - `mipmap`
+ *
+ * The following options are ignored entirely:
+ *
+ * - `target`
+ * - `image`
  *
  * @param gl
  * @param faces in order: +x,-x,+y,-y,+z,-z
@@ -160,15 +213,18 @@ export const cubeMap = (
     opts?: Partial<TextureOpts>
 ) => {
     const tex = new Texture(gl, { target: gl.TEXTURE_CUBE_MAP });
-    const faceOpts = withoutKeysObj(opts, ["target", "image", "mipmap"]);
+    const faceOpts = withoutKeysObj(opts, [
+        "target",
+        "image",
+        "filter",
+        "mipmap"
+    ]);
     for (let i = 0; i < 6; i++) {
         faceOpts.target = gl.TEXTURE_CUBE_MAP_POSITIVE_X + i;
         faceOpts.image = faces[i];
         tex.configure(faceOpts);
     }
-    if (opts.mipmap) {
-        gl.generateMipmap(tex.target);
-    }
+    tex.configure({ filter: opts.filter, mipmap: opts.mipmap });
     return tex;
 };
 

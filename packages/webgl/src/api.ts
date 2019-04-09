@@ -550,6 +550,9 @@ export interface TextureOpts {
     type: GLenum;
     filter: GLenum | GLenum[];
     wrap: GLenum | GLenum[];
+    lod: GLenum[];
+    minMaxLevel: GLenum[];
+    level: GLenum;
     format: GLenum;
     internalFormat: GLenum;
     width: number;
@@ -557,6 +560,8 @@ export interface TextureOpts {
     mipmap: boolean;
     flip: boolean;
     premultiply: boolean;
+    sub: boolean;
+    pos: number[];
 }
 
 export interface FboOpts {
