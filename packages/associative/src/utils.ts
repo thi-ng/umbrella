@@ -1,4 +1,5 @@
-import { implementsFunction } from "@thi.ng/checks";
+import { Pair } from "@thi.ng/api";
+import { implementsFunction, isMap, isSet } from "@thi.ng/checks";
 
 export const empty = (x, ctor) =>
     implementsFunction(x, "empty")
@@ -19,3 +20,9 @@ export const objValues = (src: any) => {
     }
     return vals;
 };
+
+export const ensureMap = <K, V>(x: Iterable<Pair<K, V>>) =>
+    isMap(x) ? <Map<K, V>>x : new Map<K, V>(x);
+
+export const ensureSet = <T>(x: Iterable<T>) =>
+    isSet(x) ? <Set<T>>x : new Set<T>(x);

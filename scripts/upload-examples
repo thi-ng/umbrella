@@ -17,6 +17,9 @@ for m in $modules; do
         echo "------------------------------"
         echo "uploading $m..."
         echo "------------------------------"
+        if [ -e $m/out/assets ]; then
+            aws s3 sync $m/out/assets $dest/assets $opts
+        fi
         assets=$(find $m/out/ -name '*.png')
         if [ ! -z $assets ]; then
             aws s3 cp $m/out/*.png $dest/ $opts

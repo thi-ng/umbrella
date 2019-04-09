@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/associative",
-    "version": "2.1.2",
+    "version": "2.2.0",
     "description": "Alternative Set & Map data type implementations with customizable equality semantics & supporting operations",
     "module": "./index.js",
     "main": "./lib/index.js",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.1.2...@thi.ng/associative@2.2.0) (2019-04-09)
+
+
+### Features
+
+* **associative:** add withoutKeys*(), ensureSet/Map fns ([5173fda](https://github.com/thi-ng/umbrella/commit/5173fda))
+
+
+
+
+
 ## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.1.1...@thi.ng/associative@2.1.2) (2019-04-06)
 
 
