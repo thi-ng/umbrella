@@ -1,12 +1,13 @@
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
-import { adaptDPI, canvasWebGL } from "@thi.ng/hdom-components";
+import { adaptDPI, canvasWebGL, dropdown } from "@thi.ng/hdom-components";
 import {
     concat,
     lookAt,
     perspective,
     transform44
 } from "@thi.ng/matrices";
+import { fromPromise, metaStream, stream } from "@thi.ng/rstream";
 import {
     compileModel,
     cube,
@@ -44,27 +45,49 @@ o_fragColor = texture(u_texture, normalize(v_normal));
     }
 };
 
+const CUBE_MAPS = [
+    ["langholmen2", "Langholmen"],
+    ["golden-gate", "Golden Gate"],
+    ["maskonaive2", "Maskonaive"]
+];
+
 const app = () => {
+    const selection = stream<string>();
+    selection.next(CUBE_MAPS[0][0]);
     let model: ModelSpec;
     const canvas = canvasWebGL({
         init: (_, gl) => {
-            loadCubeMap("assets/langholmen2/").then((faces) => {
-                try {
-                    model = compileModel(gl, {
-                        ...cube({ normal: false, uv: false }),
-                        shader: shader(gl, CUBEMAP_SHADER),
-                        uniforms: {},
-                        textures: [
-                            cubeMap(gl, faces, {
-                                filter: [gl.LINEAR_MIPMAP_LINEAR, gl.LINEAR],
-                                mipmap: true
-                            })
-                        ]
-                    });
-                } catch (err) {
-                    console.warn(err);
-                }
-            });
+            selection
+                .subscribe(
+                    metaStream((id: string) =>
+                        fromPromise(loadCubeMap(`assets/${id}/`))
+                    )
+                )
+                .subscribe({
+                    next(faces) {
+                        try {
+                            model = compileModel(gl, {
+                                ...cube({ normal: false, uv: false }),
+                                shader: shader(gl, CUBEMAP_SHADER),
+                                uniforms: {},
+                                textures: [
+                                    cubeMap(gl, faces, {
+                                        filter: [
+                                            gl.LINEAR_MIPMAP_LINEAR,
+                                            gl.LINEAR
+                                        ],
+                                        mipmap: true
+                                    })
+                                ]
+                            });
+                        } catch (err) {
+                            console.warn(err);
+                        }
+                    },
+                    error(e) {
+                        console.warn(e);
+                    }
+                });
         },
         // prettier-ignore
         update: (el, gl, __, time) => {
@@ -86,8 +109,12 @@ const app = () => {
         [canvas, { width: window.innerWidth, height: window.innerHeight }],
         [
             "div.fixed.top-0.left-0.z-1.ma3",
-            "hello (again) ",
-            ["a.link.black.b", { href: "http://thi.ng/webgl" }, "@thi.ng/webgl"]
+            [
+                dropdown,
+                { onchange: (e) => selection.next(e.target.value) },
+                CUBE_MAPS,
+                selection.deref()
+            ]
         ]
     ];
 };
