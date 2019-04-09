@@ -599,6 +599,28 @@ export interface WeblGLCanvasOpts {
     ext: string[];
 }
 
+export interface GPGPUOpts {
+    size: number;
+    inputs?: number;
+    outputs?: number;
+    gl?: WebGLRenderingContext;
+    version?: 1 | 2;
+}
+
+export interface GPGPUJobConfig {
+    shader: ShaderSpec;
+    src: string;
+    uniforms: ShaderUniformSpecs;
+    inputs: number;
+    outputs?: number;
+}
+
+export interface GPGPUJobExecOpts {
+    inputs: (ITexture | Float32Array)[];
+    outputs?: number[];
+    uniforms?: UniformValues;
+}
+
 export const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
 export const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
 export const GL_RGBA = 0x1908;
