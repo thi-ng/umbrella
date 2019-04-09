@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom",
-    "version": "1.2.20",
+    "version": "1.2.21",
     "description": "2D geometry types, polymorphic operations, SVG generation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,7 +53,7 @@
         "@thi.ng/hiccup": "^3.1.6",
         "@thi.ng/hiccup-svg": "^3.1.18",
         "@thi.ng/math": "^1.2.2",
-        "@thi.ng/matrices": "^0.3.0",
+        "@thi.ng/matrices": "^0.3.1",
         "@thi.ng/random": "^1.1.4",
         "@thi.ng/transducers": "^5.3.3",
         "@thi.ng/vectors": "^2.5.2"
