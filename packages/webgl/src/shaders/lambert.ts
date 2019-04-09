@@ -8,6 +8,7 @@ import {
 } from "../api";
 import { defglslA } from "../glsl/assemble";
 import { lambert } from "../glsl/lighting";
+import { VERSION_CHECK } from "../glsl/syntax";
 import { mvp, surfaceNormal } from "../glsl/vertex";
 import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../normal-mat";
@@ -35,6 +36,7 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
 }`,
         [lambert]
     ),
+    pre: VERSION_CHECK(300, "", "#define texture texture2D"),
     attribs: {
         position: GLSL.vec3,
         normal: GLSL.vec3,

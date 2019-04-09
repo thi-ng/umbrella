@@ -123,5 +123,4 @@ precision mediump float;
 #ifndef HALF_PI
 #define HALF_PI 1.570796326794896
 #endif
-${VERSION_CHECK(300, "", "#define texture texture2D")}
 `;
