@@ -1,0 +1,62 @@
+import { IObjectOf } from "@thi.ng/api";
+import { stream, Stream } from "@thi.ng/rstream";
+import {
+    assocObj,
+    map,
+    pairs,
+    push,
+    transduce
+} from "@thi.ng/transducers";
+
+
+const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
+    "div.mb2",
+    ["span.dib.w4", label],
+    [
+        "input.w5",
+        {
+            ...attribs,
+            type: "range",
+            value: stream.deref(),
+            oninput: (e) => stream.next(parseFloat(e.target.value))
+        }
+    ],
+    ["span.ml3", stream.deref()]
+];
+
+const initParam = (label, spec, init) => {
+    const param = stream<number>();
+    param.next(init);
+    return {
+        stream: param,
+        widget: slider(label, spec, param)
+    };
+};
+
+// prettier-ignore
+const PARAM_DEFS: IObjectOf<[string, any, number]> = {
+    radius: ["radius", { min: 2, max: 64, step: 1 }, 32],
+    bias: ["bias", { min: -0.2, max: 0.2, step: 0.01 }, 0.09],
+    baseAttenuation: ["base attenuation", { min: 0.1, max: 2, step: 0.01 }, 1],
+    distAttenuation: ["dist attenuation", { min: 0.1, max: 2, step: 0.01 }, 1.2],
+    amp: ["amplitude", { min: 0, max: 1, step: 0.01 }, 1],
+    specular: ["specular", { min: 0, max: 1, step: 0.01 }, 0.25],
+    lightTheta: ["light rotation", { min: 0, max: 3.14, step: 0.01 }, 0.48],
+    eyeDist: ["cam distance", { min: 5, max: 10, step: 0.01 }, 5]
+};
+
+export const PARAMS = transduce(
+    map(([id, spec]) => {
+        const param = stream<number>();
+        param.next(spec[2]);
+        return [id, param];
+    }),
+    assocObj<Stream<number>>(),
+    pairs(PARAM_DEFS)
+);
+
+export const CONTROLS = transduce(
+    map(([id, [label, attribs]]) => slider(label, attribs, PARAMS[id])),
+    push(),
+    pairs(PARAM_DEFS)
+);
