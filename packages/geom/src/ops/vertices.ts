@@ -1,13 +1,25 @@
 import { isNumber } from "@thi.ng/checks";
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import { DEFAULT_SAMPLES, IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
+import {
+    DEFAULT_SAMPLES,
+    IShape,
+    SamplingOpts,
+    Type
+} from "@thi.ng/geom-api";
 import { sample as _arcVertices } from "@thi.ng/geom-arc";
 import { resample } from "@thi.ng/geom-resample";
 import { sampleCubic, sampleQuadratic } from "@thi.ng/geom-splines";
 import { cossin, TAU } from "@thi.ng/math";
-import { add2, cartesian2, madd2, set2, Vec } from "@thi.ng/vectors";
-import { dispatch } from "../internal/dispatch";
 import {
+    add2,
+    add3,
+    cartesian2,
+    madd2,
+    set2,
+    Vec
+} from "@thi.ng/vectors";
+import {
+    AABB,
     Arc,
     Circle,
     Cubic,
@@ -20,6 +32,7 @@ import {
     Quadratic,
     Rect
 } from "../api";
+import { dispatch } from "../internal/dispatch";
 
 export const vertices: MultiFn1O<
     IShape,
@@ -28,6 +41,21 @@ export const vertices: MultiFn1O<
 > = defmulti(dispatch);
 
 vertices.addAll({
+    [Type.AABB]: ({ pos, size }: AABB) => {
+        const [px, py, pz] = pos;
+        const [qx, qy, qz] = add3([], pos, size);
+        return [
+            [px, py, pz],
+            [px, py, qz],
+            [qx, py, qz],
+            [qx, py, pz],
+            [px, qy, pz],
+            [px, qy, qz],
+            [qx, qy, qz],
+            [qx, qy, pz]
+        ];
+    },
+
     [Type.ARC]: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
         _arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
 
@@ -108,7 +136,7 @@ const circleOpts = (
               opts.theta
                   ? Math.floor(TAU / opts.theta)
                   : opts.dist
-                      ? Math.floor(TAU / (opts.dist / r))
-                      : opts.num || DEFAULT_SAMPLES,
+                  ? Math.floor(TAU / (opts.dist / r))
+                  : opts.num || DEFAULT_SAMPLES,
               opts.last === true
           ];
