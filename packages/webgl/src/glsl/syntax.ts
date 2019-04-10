@@ -94,6 +94,12 @@ ${ok}${fail ? `\n#else\n${fail}` : ""}
 #endif`;
 };
 
+export const ALIAS_TEXTURE = VERSION_CHECK(
+    300,
+    "",
+    "#define texture texture2D"
+);
+
 /**
  * GLSL version specific fragment shader output. If `__VERSION__ >= 300`
  * assigns `body` to `out`, else to `gl_FragColor`.
