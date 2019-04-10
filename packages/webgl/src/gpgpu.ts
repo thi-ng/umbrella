@@ -1,6 +1,7 @@
 import { assert, IRelease } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative";
 import { ceilPow2 } from "@thi.ng/binary";
+import { isNumber, isTypedArray } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import {
     assocObj,
@@ -16,6 +17,7 @@ import {
     GPGPUJobConfig,
     GPGPUJobExecOpts,
     GPGPUOpts,
+    GPGPUTextureConfig,
     ITexture,
     ModelSpec,
     ShaderSpec
@@ -25,34 +27,24 @@ import { getExtensions, glCanvas } from "./canvas";
 import { draw } from "./draw";
 import { FBO } from "./fbo";
 import { quad } from "./geo/quad";
-import { VERSION_CHECK } from "./glsl/syntax";
+import { FX_SHADER_SPEC } from "./pipeline";
 import { shader } from "./shader";
-import { floatTexture } from "./texture";
+import { floatTexture, texture } from "./texture";
 import { isGL2Context } from "./utils";
 
-export const GPGPU_SHADER_TEMPLATE: ShaderSpec = {
-    vs: `void main(){v_uv=a_uv;gl_Position=vec4(a_position,0.0,1.0);}`,
-    fs: "",
-    pre: VERSION_CHECK(300, "#define read texture", "#define read texture2D"),
-    attribs: {
-        position: GLSL.vec2,
-        uv: GLSL.vec2
-    },
-    varying: {
-        uv: GLSL.vec2
-    },
-    uniforms: {},
-    ext: {}
-};
-
 export const gpgpu = (opts: GPGPUOpts) => new GPGPU(opts);
+
+interface GPGPUIO {
+    tex: ITexture;
+    opts: GPGPUTextureConfig;
+}
 
 export class GPGPU implements IRelease {
     canvas: HTMLCanvasElement;
     gl: WebGLRenderingContext;
     fbo: FBO;
-    inputs: ITexture[];
-    outputs: ITexture[];
+    inputs: GPGPUIO[];
+    outputs: GPGPUIO[];
     spec: ModelSpec;
     opts: GPGPUOpts;
     width: number;
@@ -89,26 +81,24 @@ export class GPGPU implements IRelease {
         this.gl = gl;
         this.opts = opts;
         this.width = width;
-        this.size = width * width * 4;
-        let tmp = new Float32Array(this.size);
-        this.inputs = [
-            ...map(
-                () => floatTexture(gl, tmp, width, width),
-                range(opts.inputs)
-            )
-        ];
-        this.outputs = [
-            ...map(
-                () => floatTexture(gl, tmp, width, width),
-                range(opts.outputs)
-            )
-        ];
-        tmp = null;
+        this.size = width * width;
+        // let tmp = new Float32Array(this.size);
+        this.inputs = this.initTextures(opts.inputs);
+        this.outputs = this.initTextures(opts.outputs);
+        // tmp = null;
         this.fbo = new FBO(gl);
         this.spec = compileModel(gl, <ModelSpec>{
             ...quad(),
-            textures: this.inputs
+            textures: this.inputs.map((t) => t.tex)
         });
+    }
+
+    inputSize(id: number) {
+        return this.inputs[id].opts.stride * this.size;
+    }
+
+    outputSize(id: number) {
+        return this.outputs[id].opts.stride * this.size;
     }
 
     newJob(opts: Partial<GPGPUJobConfig>) {
@@ -118,10 +108,10 @@ export class GPGPU implements IRelease {
     release() {
         this.fbo.release();
         for (let t of this.inputs) {
-            t.release();
+            t.tex.release();
         }
         for (let t of this.outputs) {
-            t.release();
+            t.tex.release();
         }
         delete this.inputs;
         delete this.outputs;
@@ -131,6 +121,37 @@ export class GPGPU implements IRelease {
         delete this.fbo;
         delete this.opts;
         return true;
+    }
+
+    protected initTextures(specs: number | GPGPUTextureConfig[]) {
+        const gl = this.gl;
+        const width = this.width;
+        if (isNumber(specs)) {
+            return [
+                ...map(
+                    () =>
+                        <GPGPUIO>{
+                            tex: floatTexture(gl, null, width, width),
+                            opts: { stride: 4 }
+                        },
+                    range(specs)
+                )
+            ];
+        } else {
+            return specs.map(
+                (opts) =>
+                    <GPGPUIO>{
+                        tex: texture(gl, {
+                            width: width,
+                            height: width,
+                            filter: gl.NEAREST,
+                            wrap: gl.CLAMP_TO_EDGE,
+                            ...opts
+                        }),
+                        opts
+                    }
+            );
+        }
     }
 }
 
@@ -166,25 +187,33 @@ export class GPGPUJob implements IRelease {
         const ctx = this.ctx;
         const gl = ctx.gl;
         const width = ctx.width;
-        const format = ctx.opts.version === 2 ? GL_RGBA32F : GL_RGBA;
+        const internalFormat = ctx.opts.version === 2 ? GL_RGBA32F : GL_RGBA;
         const spec = this.spec;
         for (let i = 0; i < inputs.length; i++) {
             let tex = inputs[i];
-            if (tex instanceof Float32Array) {
-                assert(tex.length <= ctx.size, `input #${i} too large`);
-                ctx.inputs[i].configure({
+            if (isTypedArray(tex)) {
+                const expectedSize = ctx.inputSize(i);
+                assert(
+                    tex.length >= expectedSize,
+                    `input #${i} too small (got ${
+                        tex.length
+                    }, expected ${expectedSize})`
+                );
+                const input = ctx.inputs[i];
+                input.tex.configure({
                     image: tex,
-                    type: gl.FLOAT,
-                    internalFormat: format,
+                    type: input.opts.type || gl.FLOAT,
+                    internalFormat: input.opts.internalFormat || internalFormat,
+                    format: input.opts.format || GL_RGBA,
                     height: width,
                     width
                 });
-                tex = ctx.inputs[i];
+                tex = input.tex;
             }
             spec.textures[i] = <ITexture>tex;
         }
         spec.uniforms = { ...spec.uniforms, ...runOpts.uniforms };
-        ctx.fbo.configure({ tex: outputs.map((i) => ctx.outputs[i]) });
+        ctx.fbo.configure({ tex: outputs.map((i) => ctx.outputs[i].tex) });
         gl.viewport(0, 0, width, width);
         draw(spec);
         return this;
@@ -192,10 +221,21 @@ export class GPGPUJob implements IRelease {
 
     result(out?: Float32Array, id = 0) {
         const ctx = this.ctx;
+        const width = ctx.width;
         const gl = ctx.gl;
-        const fbo = new FBO(gl, { tex: [ctx.outputs[id]] });
-        out = out || new Float32Array(ctx.size);
-        gl.readPixels(0, 0, ctx.width, ctx.width, gl.RGBA, gl.FLOAT, out);
+        const output = ctx.outputs[id];
+        const opts = output.opts;
+        const fbo = new FBO(gl, { tex: [output.tex] });
+        out = out || new Float32Array(ctx.outputSize(id));
+        gl.readPixels(
+            0,
+            0,
+            width,
+            width,
+            opts.format || gl.RGBA,
+            opts.type || gl.FLOAT,
+            out
+        );
         fbo.release();
         return out;
     }
@@ -213,16 +253,19 @@ export class GPGPUJob implements IRelease {
         const spec: ModelSpec = mergeDeepObj({}, ctx.spec);
         let shaderSpec: ShaderSpec;
         if (opts.src) {
-            shaderSpec = mergeDeepObj({}, GPGPU_SHADER_TEMPLATE);
-            shaderSpec.fs += opts.src;
-            shaderSpec.outputs = transduce(
-                map((i) => [`output${i}`, [GLSL.vec4, i]]),
-                assocObj(),
-                range(opts.outputs)
-            );
-            if (opts.uniforms) {
-                Object.assign(shaderSpec.uniforms, opts.uniforms);
-            }
+            shaderSpec = {
+                ...FX_SHADER_SPEC,
+                pre: `#define WIDTH (${ctx.width})\n#define SIZE (ivec2(${
+                    ctx.width
+                }))`,
+                fs: opts.src,
+                uniforms: { ...opts.uniforms },
+                outputs: transduce(
+                    map((i) => [`output${i}`, [GLSL.vec4, i]]),
+                    assocObj(),
+                    range(opts.outputs)
+                )
+            };
         } else if (opts.shader) {
             shaderSpec = opts.shader;
             shaderSpec.uniforms = shaderSpec.uniforms || {};
@@ -231,11 +274,11 @@ export class GPGPUJob implements IRelease {
             illegalArgs("require either `src` or `shader` option");
         }
         shaderSpec.uniforms.inputs = [GLSL.sampler2D_array, opts.inputs];
-        if (ctx.fbo.ext && opts.outputs > 1) {
+        if (ctx.opts.version === 1 && opts.outputs > 1) {
             shaderSpec.ext["GL_EXT_draw_buffers"] = "require";
         }
         spec.uniforms.inputs = [...range(opts.inputs)];
-        spec.textures = ctx.inputs.slice(0, opts.inputs);
+        spec.textures = ctx.inputs.slice(0, opts.inputs).map((t) => t.tex);
         spec.shader = shader(ctx.gl, shaderSpec);
         return spec;
     }

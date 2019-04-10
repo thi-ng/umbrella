@@ -607,10 +607,17 @@ export interface WeblGLCanvasOpts {
 
 export interface GPGPUOpts {
     size: number;
-    inputs?: number;
-    outputs?: number;
+    inputs?: number | GPGPUTextureConfig[];
+    outputs?: number | GPGPUTextureConfig[];
     gl?: WebGLRenderingContext;
     version?: 1 | 2;
+}
+
+export interface GPGPUTextureConfig
+    extends Partial<
+        Pick<TextureOpts, "internalFormat" | "format" | "type" | "flip">
+    > {
+    stride: number;
 }
 
 export interface GPGPUJobConfig {
@@ -622,7 +629,7 @@ export interface GPGPUJobConfig {
 }
 
 export interface GPGPUJobExecOpts {
-    inputs: (ITexture | Float32Array)[];
+    inputs: (ITexture | TypedArray)[];
     outputs?: number[];
     uniforms?: UniformValues;
 }
