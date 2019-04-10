@@ -20,6 +20,7 @@ export * from "./glsl/assemble";
 export * from "./glsl/syntax";
 
 export * from "./glsl/lighting";
+export * from "./glsl/texture";
 export * from "./glsl/vertex";
 
 export * from "./textures/checkerboard";
