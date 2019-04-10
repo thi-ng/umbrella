@@ -31,7 +31,6 @@ const uniformS = (fn: SetterS) => (
     loc: WebGLUniformLocation,
     defaultVal = 0
 ) => {
-    // const set = gl["uniform1" + fn];
     return (x: number) =>
         gl["uniform1" + fn](loc, x === undefined ? defaultVal : x);
 };
@@ -41,7 +40,6 @@ const uniformV = (fn: SetterV, sysDefault?: ReadonlyVec) => (
     loc: WebGLUniformLocation,
     defaultVal = sysDefault
 ) => {
-    // const set = gl["uniform" + fn];
     return (x: any) =>
         gl["uniform" + fn](loc, x === undefined ? defaultVal : x.buffer || x);
 };
@@ -51,7 +49,6 @@ const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
     loc: WebGLUniformLocation,
     defaultVal = sysDefault
 ) => {
-    // const set = gl["uniformMatrix" + fn];
     return (x: any) =>
         gl["uniformMatrix" + fn](
             loc,

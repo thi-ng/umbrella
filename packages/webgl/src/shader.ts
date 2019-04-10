@@ -1,6 +1,7 @@
-import { Fn3, IObjectOf } from "@thi.ng/api";
+import { Fn3, IDeref, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
+    implementsFunction,
     isArray,
     isBoolean,
     isFunction
@@ -22,6 +23,7 @@ import {
     ShaderUniform,
     ShaderUniforms,
     ShaderUniformSpecs,
+    UniformValue,
     UniformValues
 } from "./api";
 import { error } from "./error";
@@ -103,8 +105,14 @@ export class Shader implements IShader {
         for (let id in specUnis) {
             const u = shaderUnis[id];
             if (u) {
-                const val = specUnis[id];
-                u.setter(isFunction(val) ? val(shaderUnis, specUnis) : val);
+                let val = specUnis[id];
+                val = isFunction(val)
+                    ? val(shaderUnis, specUnis)
+                    : implementsFunction(val, "deref")
+                    ? (<IDeref<any>>val).deref()
+                    : val;
+                // console.log(id, val);
+                u.setter(<UniformValue>val);
             } else {
                 console.warn(`unknown uniform: ${id}`);
             }
@@ -116,9 +124,11 @@ export class Shader implements IShader {
                 (!specUnis || !existsAndNotNull(specUnis[id]))
             ) {
                 const u = shaderUnis[id];
-                u.setter(
-                    u.defaultFn ? u.defaultFn(shaderUnis, specUnis) : undefined
-                );
+                const val = u.defaultFn
+                    ? u.defaultFn(shaderUnis, specUnis)
+                    : u.defaultVal;
+                // console.log("default", id, val);
+                u.setter(val);
             }
         }
     }

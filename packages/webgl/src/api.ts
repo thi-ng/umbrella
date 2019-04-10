@@ -3,6 +3,7 @@ import {
     Fn2,
     Fn3,
     IBind,
+    IDeref,
     IObjectOf,
     IRelease,
     Tuple,
@@ -110,7 +111,7 @@ export type ModelAttributeSpecs = IObjectOf<ModelAttributeSpec>;
 export type UniformValue = number | number[] | TypedArray;
 
 export type UniformValues = IObjectOf<
-    UniformValue | Fn2<ShaderUniforms, any, UniformValue>
+    UniformValue | Fn2<ShaderUniforms, any, UniformValue> | IDeref<UniformValue>
 >;
 
 export type ShaderType = "vs" | "fs";
