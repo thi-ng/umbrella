@@ -24,7 +24,7 @@ import { compileModel } from "./buffer";
 import { getExtensions, glCanvas } from "./canvas";
 import { draw } from "./draw";
 import { FBO } from "./fbo";
-import { FULLSCREEN_QUAD } from "./geo/quad";
+import { quad } from "./geo/quad";
 import { VERSION_CHECK } from "./glsl/syntax";
 import { shader } from "./shader";
 import { floatTexture } from "./texture";
@@ -106,7 +106,7 @@ export class GPGPU implements IRelease {
         tmp = null;
         this.fbo = new FBO(gl);
         this.spec = compileModel(gl, <ModelSpec>{
-            ...FULLSCREEN_QUAD,
+            ...quad(),
             textures: this.inputs
         });
     }
