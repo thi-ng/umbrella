@@ -20,6 +20,7 @@ export interface GestureInfo {
     click: number[];
     delta: number[];
     zoom: number;
+    zoomDelta: number;
 }
 
 export interface GestureEvent {
@@ -172,7 +173,7 @@ export const gestureStream = (
                 pos[0] *= dpr;
                 pos[1] *= dpr;
             }
-            const body = <GestureInfo>{ pos, zoom };
+            const body = <GestureInfo>{ pos, zoom, zoomDelta: 0 };
             switch (type) {
                 case GestureType.START:
                     isDown = true;
@@ -187,15 +188,14 @@ export const gestureStream = (
                     body.delta = [pos[0] - clickPos[0], pos[1] - clickPos[1]];
                     break;
                 case GestureType.ZOOM:
+                    const zdelta = (<WheelEvent>e).deltaY * opts.smooth;
                     body.zoom = zoom = opts.absZoom
                         ? Math.min(
-                              Math.max(
-                                  zoom + (<WheelEvent>e).deltaY * opts.smooth,
-                                  opts.minZoom
-                              ),
+                              Math.max(zoom + zdelta, opts.minZoom),
                               opts.maxZoom
                           )
-                        : (<WheelEvent>e).deltaY * opts.smooth;
+                        : zdelta;
+                    body.zoomDelta = zdelta;
                     break;
                 default:
             }

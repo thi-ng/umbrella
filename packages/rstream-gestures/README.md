@@ -13,7 +13,7 @@ Unified mouse, mouse wheel & single-touch event stream abstraction.
 Stream emits tuples of:
 
 ```ts
-[type, {pos, click?, delta?, zoom}]
+[type, { pos, click?, delta?, zoom, zoomDelta }]
 ```
 
 The `click` and `delta` values are only present if `type ==
@@ -25,7 +25,7 @@ events. The value will be constrained to `minZoom` ... `maxZoom`
 interval (provided via options object).
 
 Also see the
-[`GestureStreamOpts`](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures/src/index.ts#L26)
+[`GestureStreamOpts`](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures/src/index.ts#L31)
 config options for further details.
 
 ## Installation
@@ -60,7 +60,7 @@ import { trace } from "@thi.ng/rstream";
 import { comp, dedupe, filter, map } from "@thi.ng/transducers";
 
 // create event stream with custom option
-const gestures = gestureStream(document.body, { smooth: 0.5 });
+const gestures = gestureStream(document.body, { smooth: 0.01 });
 
 // subscription logging zoom value changes
 gestures.subscribe(
@@ -68,7 +68,7 @@ gestures.subscribe(
     trace("zoom"),
     // composed transducer, `dedupe` ensures only changed values are received
     comp(
-        map(([_, {zoom}]) => zoom),
+        map(([_, { zoom }]) => zoom),
         dedupe()
     )
 );
@@ -78,7 +78,7 @@ gestures.subscribe(
     trace("distance"),
     comp(
         filter(([type]) => type === GestureType.DRAG),
-        map(([_, {delta}]) => Math.hypot(...delta))
+        map(([_, { delta }]) => Math.hypot(...delta))
     )
 );
 ```
