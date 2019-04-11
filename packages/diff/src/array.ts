@@ -150,7 +150,15 @@ export const diffArray = <T>(
         if (mode === DiffMode.FULL) {
             buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
         } else {
-            buildLinearLog<T>(epc, pathPos, state, _a, _b, reverse);
+            buildLinearLog<T>(
+                epc,
+                pathPos,
+                state,
+                _a,
+                _b,
+                reverse,
+                mode === DiffMode.ONLY_DISTANCE_LINEAR
+            );
         }
     }
     return state;
@@ -209,7 +217,8 @@ const buildLinearLog = <T>(
     state: ArrayDiff<T>,
     a: ArrayLike<T>,
     b: ArrayLike<T>,
-    reverse: boolean
+    reverse: boolean,
+    inclConst: boolean
 ) => {
     const linear = state.linear;
     const aID = reverse ? -1 : 1;
@@ -231,7 +240,7 @@ const buildLinearLog = <T>(
                 linear.push(dID, px, a[px]);
                 px++;
             } else {
-                linear.push(0, px, a[px]);
+                inclConst && linear.push(0, px, a[px]);
                 px++;
                 py++;
             }
