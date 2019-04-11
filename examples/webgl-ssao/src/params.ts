@@ -8,7 +8,6 @@ import {
     transduce
 } from "@thi.ng/transducers";
 
-
 const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
     "div.mb2",
     ["span.dib.w4", label],
@@ -24,17 +23,8 @@ const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
     ["span.ml3", stream.deref()]
 ];
 
-const initParam = (label, spec, init) => {
-    const param = stream<number>();
-    param.next(init);
-    return {
-        stream: param,
-        widget: slider(label, spec, param)
-    };
-};
-
 // prettier-ignore
-const PARAM_DEFS: IObjectOf<[string, any, number]> = {
+export const PARAM_DEFS: IObjectOf<[string, any, number]> = {
     radius: ["radius", { min: 2, max: 64, step: 1 }, 32],
     bias: ["bias", { min: -0.2, max: 0.2, step: 0.01 }, 0.09],
     baseAttenuation: ["base attenuation", { min: 0.1, max: 2, step: 0.01 }, 1],

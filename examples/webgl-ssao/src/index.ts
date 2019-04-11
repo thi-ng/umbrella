@@ -1,15 +1,21 @@
+import { IDeref } from "@thi.ng/api";
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL2 } from "@thi.ng/hdom-components";
 import { lookAt, perspective, transform44 } from "@thi.ng/matrices";
-import { map, repeatedly } from "@thi.ng/transducers";
+import { fromRAF, tweenNumber } from "@thi.ng/rstream";
+import {
+    benchmark,
+    map,
+    movingAverage,
+    repeatedly
+} from "@thi.ng/transducers";
 import { rotateY } from "@thi.ng/vectors";
 import {
     checkerboard,
     compileModel,
     cube,
     draw,
-    error,
     fbo,
     FBO,
     GLMat4,
@@ -21,9 +27,10 @@ import {
     texture,
     TextureOpts
 } from "@thi.ng/webgl";
-import { CONTROLS, PARAMS } from "./params";
+import { CONTROLS, PARAM_DEFS, PARAMS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
 
+// FBO size
 const W = 1024;
 const H = 512;
 
@@ -31,10 +38,12 @@ const LIGHT_POS = [-5, 1.5, -1];
 const Z_NEAR = 0.1;
 const Z_FAR = 20;
 
+// noise texture data for SSAO shader
 const NOISE = new Float32Array([
     ...repeatedly(() => Math.random() * 2 - 1, W * H * 2)
 ]);
 
+// instance position data for animated cubes
 const instancePositions = (o: number) =>
     // prettier-ignore
     new Float32Array([
@@ -49,10 +58,17 @@ const app = () => {
     let finalQuad: ModelSpec;
     let fboGeo: FBO;
     let fboSSAO: FBO;
+    const raf = fromRAF();
+    const fps = raf.transform(
+        benchmark(),
+        movingAverage(100),
+        map((x: number) => (1000 / x).toFixed(2))
+    );
     const canvas = canvasWebGL2({
         init(_, gl: WebGL2RenderingContext) {
             if (!gl.getExtension("EXT_color_buffer_float")) {
-                error("EXT_color_buffer_float not available");
+                alert("EXT_color_buffer_float not available");
+                return;
             }
             const [colorTex, posTex, normTex, noiseTex, ssaoTex] = [
                 {},
@@ -94,8 +110,20 @@ const app = () => {
                     num: 6
                 },
                 uniforms: {
-                    eyePos: PARAMS.eyeDist.transform(map((z) => [0, 0, z])),
-                    lightPos: PARAMS.lightTheta.transform(
+                    eyePos: tweenNumber(
+                        PARAMS.eyeDist,
+                        PARAM_DEFS.eyeDist[2],
+                        0.05,
+                        1e-3,
+                        raf
+                    ).transform(map((z) => [0, 0, z])),
+                    lightPos: tweenNumber(
+                        PARAMS.lightTheta,
+                        PARAM_DEFS.lightTheta[2],
+                        0.05,
+                        1e-3,
+                        raf
+                    ).transform(
                         map((theta) => <GLVec3>rotateY([], LIGHT_POS, theta))
                     ),
                     specular: PARAMS.specular
@@ -134,9 +162,10 @@ const app = () => {
                 }
             });
         },
-        update(_, gl, __, time) {
+        update(_, gl, __, time, frame) {
+            if (frame < 1 || !model) return;
             const bg = 0.1;
-            const eye = [0, 0, PARAMS.eyeDist.deref()];
+            const eye = (<IDeref<GLVec3>>model.uniforms.eyePos).deref();
             const p = perspective([], 45, W / H, Z_NEAR, Z_FAR);
             const v = lookAt([], eye, [0, 0, 0], [0, 1, 0]);
             const m = transform44(
@@ -164,8 +193,9 @@ const app = () => {
         }
     });
     return () => [
-        "div.sans-serif.ma3",
+        "div.sans-serif.pa3.bg-dark-gray.white",
         [canvas, { width: W, height: H }],
+        ["div.fixed.top-0.left-0.z-1.ma3.pa3", fps, " fps"],
         ["div.mt3", ...CONTROLS]
     ];
 };
