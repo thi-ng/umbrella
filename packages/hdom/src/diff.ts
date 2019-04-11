@@ -101,6 +101,7 @@ export const diffTree = <T>(
     const offsets = buildIndex(prevLength + 1);
     for (i = 2, ii = 6; ii < numEdits; i++, ii += 3) {
         status = edits[ii];
+        if (!status) continue;
         if (status === -1) {
             // element removed / edited?
             val = edits[ii + 2];
@@ -123,7 +124,7 @@ export const diffTree = <T>(
             } else if (typeof val === "string") {
                 impl.setContent(el, "");
             }
-        } else if (status === 1) {
+        } else {
             // element added/inserted?
             val = edits[ii + 2];
             if (typeof val === "string") {

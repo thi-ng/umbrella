@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.3.8...@thi.ng/rstream@2.4.0) (2019-04-11)
+
+
+### Features
+
+* **rstream:** add tweenNumber() ([cb6d46a](https://github.com/thi-ng/umbrella/commit/cb6d46a))
+
+
+
+
+
 ## [2.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.3.7...@thi.ng/rstream@2.3.8) (2019-04-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.0.6...@thi.ng/diff@3.1.0) (2019-04-11)
+
+
+### Features
+
+* **diff:** add DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES, add tests ([9a2087d](https://github.com/thi-ng/umbrella/commit/9a2087d))
+
+
+
+
+
 ## [3.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.0.5...@thi.ng/diff@3.0.6) (2019-04-02)
 
 **Note:** Version bump only for package @thi.ng/diff
