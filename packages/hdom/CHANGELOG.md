@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.3...@thi.ng/hdom@7.2.4) (2019-04-11)
+
+
+### Performance Improvements
+
+* **hdom:** minor update diffTree() ([f2efaa5](https://github.com/thi-ng/umbrella/commit/f2efaa5))
+
+
+
+
+
 ## [7.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.2...@thi.ng/hdom@7.2.3) (2019-04-05)
 
 
