@@ -49,6 +49,7 @@ export * from "./ops/translate";
 export * from "./ops/union";
 export * from "./ops/unmap-point";
 export * from "./ops/vertices";
+export * from "./ops/volume";
 export * from "./ops/warp-points";
 export * from "./ops/with-attribs";
 

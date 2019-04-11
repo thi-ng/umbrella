@@ -9,7 +9,12 @@ import {
     Transducer,
     unreduced
 } from "@thi.ng/transducers";
-import { DEBUG, ISubscribable, ISubscriber, State } from "./api";
+import {
+    DEBUG,
+    ISubscribable,
+    ISubscriber,
+    State
+} from "./api";
 import { nextID } from "./utils/idgen";
 
 /**
@@ -82,7 +87,7 @@ export class Subscription<A, B>
         }
     }
 
-    deref() {
+    deref(): B {
         return this.last !== SEMAPHORE ? this.last : undefined;
     }
 
