@@ -40,11 +40,16 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
     };
 };
 
-export const getExtensions = (gl: WebGLRenderingContext, ids: string[]) => {
+export const getExtensions = (
+    gl: WebGLRenderingContext,
+    ids: string[],
+    required = true
+) => {
     const ext = {};
     if (ids) {
         for (let id of ids) {
             ext[id] = gl.getExtension(id);
+            required && !ext[id] && error(`extension ${id} not available`);
         }
     }
     return ext;
