@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.3.7...@thi.ng/rstream@2.3.8) (2019-04-11)
+
+
+### Bug Fixes
+
+* **rstream:** add missing Subscription.deref() return type hint ([0ae1243](https://github.com/thi-ng/umbrella/commit/0ae1243))
+
+
+
+
+
 ## [2.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.3.6...@thi.ng/rstream@2.3.7) (2019-04-09)
 
 **Note:** Version bump only for package @thi.ng/rstream

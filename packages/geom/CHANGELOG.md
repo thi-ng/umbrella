@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.2.21...@thi.ng/geom@1.3.0) (2019-04-11)
+
+
+### Features
+
+* **geom:** add AABB impls for vertices() & volume() ([a9ba010](https://github.com/thi-ng/umbrella/commit/a9ba010))
+* **geom:** add inscribedSquare*() fns ([b1790b3](https://github.com/thi-ng/umbrella/commit/b1790b3))
+
+
+
+
+
 ## [1.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.2.20...@thi.ng/geom@1.2.21) (2019-04-09)
 
 **Note:** Version bump only for package @thi.ng/geom
