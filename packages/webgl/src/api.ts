@@ -549,10 +549,10 @@ export interface TextureOpts {
     image: ArrayBufferView | TexImageSource;
     target: GLenum;
     type: GLenum;
-    filter: GLenum | GLenum[];
-    wrap: GLenum | GLenum[];
-    lod: GLenum[];
-    minMaxLevel: GLenum[];
+    filter: GLenum | [GLenum, GLenum?];
+    wrap: GLenum | [GLenum, GLenum?, GLenum?];
+    lod: [GLenum, GLenum?];
+    minMaxLevel: [GLenum, GLenum];
     level: GLenum;
     format: GLenum;
     internalFormat: GLenum;
