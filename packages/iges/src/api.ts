@@ -13,7 +13,7 @@ export enum Unit {
     UIN // microinches
 }
 
-export enum Type {
+export const enum Type {
     INT,
     FLOAT,
     STR,
@@ -22,14 +22,14 @@ export enum Type {
     POINTER
 }
 
-export enum SpecVersion {
+export const enum SpecVersion {
     IGES50 = 8,
     IGES51 = 9,
     IGES52 = 10,
     IGES53 = 11
 }
 
-export enum DraftVersion {
+export const enum DraftVersion {
     NONE = 0,
     ISO,
     AFNOR,
@@ -40,7 +40,9 @@ export enum DraftVersion {
     JIS
 }
 
-export enum LineFontPattern {
+export type SectionType = "G" | "S" | "D" | "P" | "T";
+
+export const enum LineFontPattern {
     NONE = 0,
     SOLID,
     DASHED,
@@ -49,7 +51,7 @@ export enum LineFontPattern {
     DOTTED
 }
 
-export enum Color {
+export const enum Color {
     NONE = 0,
     BLACK,
     RED,
@@ -61,19 +63,19 @@ export enum Color {
     WHITE
 }
 
-export enum StatusBlank {
+export const enum StatusBlank {
     VISIBLE = 0,
     BLANK
 }
 
-export enum StatusSubord {
+export const enum StatusSubord {
     INDEPENDENT = 0,
     PHYSICAL,
     LOGICAL,
     BOTH
 }
 
-export enum StatusUsage {
+export const enum StatusUsage {
     GEOMETRY = 0,
     ANNOTATION,
     DEFINITION,
@@ -83,16 +85,27 @@ export enum StatusUsage {
     CONSTRUCTIVE
 }
 
-export enum StatusHierarchy {
+export const enum StatusHierarchy {
     GLOBAL_TOP_DOWN = 0,
     GLOBAL_DEFER,
     USE_PROP
 }
 
-export enum PolylineMode {
+export const enum PolylineMode {
     OPEN,
     CLOSED,
     FILLED
+}
+
+export const enum EntityType {
+    POLYLINE = 106,
+    LINE = 110,
+    POINT = 116
+}
+
+export interface EntityOpts {
+    color: Color;
+    pattern: LineFontPattern;
 }
 
 // spec page 24 (53)
@@ -100,7 +113,7 @@ export interface DictEntry {
     type: number;
     param: number;
     struct: number;
-    pattern: number;
+    pattern: LineFontPattern;
     level: number;
     view: number;
     matrix: number;
@@ -108,7 +121,7 @@ export interface DictEntry {
     status: Partial<EntityStatus>;
     index: number;
     lineWeight: number;
-    color: number;
+    color: Color;
     lineCount: number;
     form: number;
     label: string;

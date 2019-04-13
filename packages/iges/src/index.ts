@@ -1,5 +1,10 @@
 import { defmulti } from "@thi.ng/defmulti";
-import { float, padLeft, padRight } from "@thi.ng/strings";
+import {
+    float,
+    hstr,
+    padLeft,
+    padRight
+} from "@thi.ng/strings";
 import {
     comp,
     map,
@@ -14,14 +19,20 @@ import {
 import {
     DEFAULT_GLOBALS,
     DictEntry,
+    EntityOpts,
     EntityStatus,
+    EntityType,
     GlobalParams,
     IGESDocument,
     Param,
     PolylineMode,
+    SectionType,
     Type,
     Unit
 } from "./api";
+
+// https://wiki.eclipse.org/IGES_file_Specification
+// http://paulbourke.net/dataformats/iges/IGES.pdf
 
 const LINEWIDTH_GLOBALS = 72;
 const LINEWIDTH_PARAMS = 64;
@@ -29,13 +40,12 @@ const LINEWIDTH_PARAMS = 64;
 const $Z2 = padLeft(2, "0");
 const $Z7 = padLeft(7, "0");
 const $F8 = padLeft(8, " ");
-const $STR = (x: any) =>
-    x != null ? ((x = x.toString()), `${x.length}H${x}`) : "";
+
 const $SEQ = padLeft(7, " ");
 const $BODY = padRight(72, " ");
 const $PBODY = padRight(64, " ");
 const $DATE = (d: Date) =>
-    $STR(
+    hstr(
         [
             d.getUTCFullYear(),
             $Z2(d.getUTCMonth() + 1),
@@ -55,9 +65,10 @@ export const newDocument = (
     const $FF = float(globals.precision);
     const $PARAM = defmulti<any[], string>((x) => x[1]);
     $PARAM.add(Type.INT, (x) => x[0].toString());
+    $PARAM.add(Type.POINTER, (x) => x[0].toString());
     $PARAM.add(Type.FLOAT, (x) => $FF(x[0]));
     $PARAM.add(Type.STR, (x) => x[0]);
-    $PARAM.add(Type.HSTR, (x) => $STR(x[0]));
+    $PARAM.add(Type.HSTR, (x) => hstr(x[0]));
     $PARAM.add(Type.DATE, (x) => $DATE(x[0]));
 
     return {
@@ -85,7 +96,7 @@ export const serialize = (doc: IGESDocument) =>
         formatTerminate(doc)
     ].join("\n");
 
-const formatLine = (body: string, type: string, i: number) =>
+const formatLine = (body: string, type: SectionType, i: number) =>
     `${$BODY(body)}${type}${$SEQ(i + 1)}`;
 
 const formatStart = (doc: IGESDocument) => {
@@ -207,49 +218,107 @@ const formatParams = (
     });
 };
 
-// type table: page 38 (67)
-
-// sec 4.7, page 77 (106)
-export const addPolyline2d = (
+const addEntity = (
     doc: IGESDocument,
-    pts: ArrayLike<number>[],
-    form = PolylineMode.OPEN
+    type: EntityType,
+    entry: Partial<DictEntry>,
+    params: Param[],
+    opts: Partial<EntityOpts> = {}
 ) => {
     const did = doc.offsets.D;
     const pid = doc.offsets.P;
-    const params = formatParams(
+    const fparams = formatParams(
         doc,
+        [<Param>[type, Type.INT]].concat(params),
+        formatParam(did, pid)
+    );
+    doc.offsets.P += fparams.length;
+    doc.offsets.D += 2;
+    doc.dict.push(
+        ...formatDictEntry(<DictEntry>{
+            type,
+            pattern: opts.pattern || 0,
+            color: opts.color || 0,
+            param: pid,
+            index: did,
+            lineCount: fparams.length,
+            ...entry
+        })
+    );
+    doc.param.push(...fparams);
+    return doc;
+};
+
+export const addPolyline = (
+    doc: IGESDocument,
+    pts: ArrayLike<number>[],
+    form = PolylineMode.OPEN,
+    opts?: Partial<EntityOpts>
+) =>
+    addEntity(
+        doc,
+        EntityType.POLYLINE,
+        {
+            form: form === PolylineMode.FILLED ? 63 : 11
+        },
         [
-            [106, Type.INT],
-            [1, Type.INT],
+            [pts[0].length == 2 ? 1 : 2, Type.INT],
             [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT],
             [0, Type.FLOAT],
             ...mapcat<number[], Param>(
-                ([x, y]) => [[x, Type.FLOAT], [y, Type.FLOAT]],
+                (p) => map((x) => <Param>[x, Type.FLOAT], p),
                 form === PolylineMode.CLOSED
                     ? <any>wrap(pts, 1, false, true)
                     : pts
             )
         ],
-        formatParam(did, pid)
+        opts
     );
-    doc.offsets.P += params.length;
-    doc.offsets.D += 2;
-    doc.dict.push(
-        ...formatDictEntry(<DictEntry>{
-            type: 106,
-            form: form === PolylineMode.FILLED ? 63 : 11,
-            param: pid,
-            index: did,
-            lineCount: params.length
-        })
-    );
-    doc.param.push(...params);
-    return doc;
-};
 
-export const addPolygon2d = (doc: IGESDocument, pts: ArrayLike<number>[]) =>
-    addPolyline2d(doc, pts, PolylineMode.FILLED);
+export const addPolygon = (
+    doc: IGESDocument,
+    pts: ArrayLike<number>[],
+    opts?: Partial<EntityOpts>
+) => addPolyline(doc, pts, PolylineMode.FILLED, opts);
+
+export const addPoint = (
+    doc: IGESDocument,
+    p: ArrayLike<number>,
+    opts?: Partial<EntityOpts>
+) =>
+    addEntity(
+        doc,
+        EntityType.POINT,
+        null,
+        [
+            [p[0], Type.FLOAT],
+            [p[1], Type.FLOAT],
+            [p[2] || 0, Type.FLOAT],
+            [0, Type.POINTER]
+        ],
+        opts
+    );
+
+export const addLine = (
+    doc: IGESDocument,
+    a: ArrayLike<number>,
+    b: ArrayLike<number>,
+    opts?: Partial<EntityOpts>
+) =>
+    addEntity(
+        doc,
+        EntityType.LINE,
+        null,
+        [
+            [a[0], Type.FLOAT],
+            [a[1], Type.FLOAT],
+            [a[2] || 0, Type.FLOAT],
+            [b[0], Type.FLOAT],
+            [b[1], Type.FLOAT],
+            [b[2] || 0, Type.FLOAT]
+        ],
+        opts
+    );
 
 // sec 4.23, page 123 (type 126)
 // export const addNurbsCurve2d = (doc: IGESDocument, degree: number, pts: number[][], closed = false) => {
