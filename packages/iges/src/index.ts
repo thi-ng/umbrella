@@ -1,3 +1,4 @@
+import { isArray } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import {
     float,
@@ -17,6 +18,8 @@ import {
     wrap
 } from "@thi.ng/transducers";
 import {
+    BooleanNode,
+    BooleanTree,
     DEFAULT_GLOBALS,
     DictEntry,
     EntityOpts,
@@ -65,7 +68,7 @@ export const newDocument = (
     const $FF = float(globals.precision);
     const $PARAM = defmulti<any[], string>((x) => x[1]);
     $PARAM.add(Type.INT, (x) => x[0].toString());
-    $PARAM.add(Type.POINTER, (x) => x[0].toString());
+    $PARAM.add(Type.POINTER, (x) => (-x[0]).toString());
     $PARAM.add(Type.FLOAT, (x) => $FF(x[0]));
     $PARAM.add(Type.STR, (x) => x[0]);
     $PARAM.add(Type.HSTR, (x) => hstr(x[0]));
@@ -246,7 +249,7 @@ const addEntity = (
         })
     );
     doc.param.push(...fparams);
-    return doc;
+    return did + 1;
 };
 
 export const addPolyline = (
@@ -254,17 +257,21 @@ export const addPolyline = (
     pts: ArrayLike<number>[],
     form = PolylineMode.OPEN,
     opts?: Partial<EntityOpts>
-) =>
-    addEntity(
+) => {
+    const is2D = pts[0].length == 2;
+    const params: Param[] = [
+        [is2D ? 1 : 2, Type.INT],
+        [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT]
+    ];
+    is2D && params.push([0, Type.FLOAT]);
+    return addEntity(
         doc,
         EntityType.POLYLINE,
         {
             form: form === PolylineMode.FILLED ? 63 : 11
         },
         [
-            [pts[0].length == 2 ? 1 : 2, Type.INT],
-            [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT],
-            [0, Type.FLOAT],
+            ...params,
             ...mapcat<number[], Param>(
                 (p) => map((x) => <Param>[x, Type.FLOAT], p),
                 form === PolylineMode.CLOSED
@@ -274,6 +281,7 @@ export const addPolyline = (
         ],
         opts
     );
+};
 
 export const addPolygon = (
     doc: IGESDocument,
@@ -316,6 +324,86 @@ export const addLine = (
             [b[0], Type.FLOAT],
             [b[1], Type.FLOAT],
             [b[2] || 0, Type.FLOAT]
+        ],
+        opts
+    );
+
+export const addBooleanTree = (
+    doc: IGESDocument,
+    tree: BooleanTree,
+    opts?: Partial<EntityOpts>
+) => {
+    const params = postOrder([], tree);
+    return addEntity(
+        doc,
+        EntityType.BOOLEAN_TREE,
+        null,
+        [[params.length, Type.INT], ...params],
+        opts
+    );
+};
+
+const postOrder = (acc: Param[], tree: BooleanNode) => {
+    if (isArray(tree)) {
+        postOrder(acc, tree[1]);
+        postOrder(acc, tree[2]);
+        acc.push([tree[0], Type.INT]);
+    } else {
+        acc.push([tree, Type.POINTER]);
+    }
+    return acc;
+};
+
+export const addCSGBox = (
+    doc: IGESDocument,
+    pos: ArrayLike<number>,
+    size: ArrayLike<number>,
+    xaxis: ArrayLike<number> = [1, 0, 0],
+    zaxis: ArrayLike<number> = [0, 0, 1],
+    opts?: Partial<EntityOpts>
+) =>
+    addEntity(
+        doc,
+        EntityType.CSG_BOX,
+        null,
+        [
+            [size[0], Type.FLOAT],
+            [size[1], Type.FLOAT],
+            [size[2], Type.FLOAT],
+            [pos[0], Type.FLOAT],
+            [pos[1], Type.FLOAT],
+            [pos[2], Type.FLOAT],
+            [xaxis[0], Type.FLOAT],
+            [xaxis[1], Type.FLOAT],
+            [xaxis[2], Type.FLOAT],
+            [zaxis[0], Type.FLOAT],
+            [zaxis[1], Type.FLOAT],
+            [zaxis[2], Type.FLOAT]
+        ],
+        opts
+    );
+
+export const addCSGCylinder = (
+    doc: IGESDocument,
+    pos: ArrayLike<number>,
+    normal: ArrayLike<number>,
+    radius: ArrayLike<number>,
+    height: ArrayLike<number>,
+    opts?: Partial<EntityOpts>
+) =>
+    addEntity(
+        doc,
+        EntityType.CSG_CYLINDER,
+        null,
+        [
+            [pos[0], Type.FLOAT],
+            [pos[1], Type.FLOAT],
+            [pos[2], Type.FLOAT],
+            [normal[0], Type.FLOAT],
+            [normal[1], Type.FLOAT],
+            [normal[2], Type.FLOAT],
+            [radius, Type.FLOAT],
+            [height, Type.FLOAT]
         ],
         opts
     );

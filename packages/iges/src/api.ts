@@ -97,10 +97,25 @@ export const enum PolylineMode {
     FILLED
 }
 
+export const enum BooleanOp {
+    UNION = 1,
+    INTERSECTION,
+    DIFFERENCE
+}
+
+export type BooleanNode = number | BooleanTree;
+
+export interface BooleanTree extends Array<BooleanNode> {
+    [0]: BooleanOp;
+}
+
 export const enum EntityType {
     POLYLINE = 106,
     LINE = 110,
-    POINT = 116
+    POINT = 116,
+    CSG_BOX = 150,
+    CSG_CYLINDER = 154,
+    BOOLEAN_TREE = 180
 }
 
 export interface EntityOpts {
