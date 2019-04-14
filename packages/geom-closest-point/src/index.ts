@@ -1,12 +1,17 @@
+import { clamp } from "@thi.ng/math";
 import {
+    add,
     dist,
     distSq,
     dot,
     empty,
     magSq,
     mixN,
+    normalize,
     ReadonlyVec,
     set,
+    setC2,
+    setC3,
     sub,
     Vec
 } from "@thi.ng/vectors";
@@ -24,6 +29,9 @@ import {
  * projected point lies outside the line segment. Returns `undefined` if
  * `a` and `b` are coincident.
  *
+ * @see closestPointLine
+ * @see closestPointSegment
+ *
  * @param p
  * @param a
  * @param b
@@ -33,6 +41,37 @@ export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
     const l = magSq(d);
     return l > 1e-6 ? dot(sub([], p, a), d) / l : undefined;
 };
+
+/**
+ * Returns closest point to `p` on infinite line defined by points `a`
+ * and `b`. Use `closestPointSegment` to only consider the actual line
+ * segment between these two points.
+ *
+ * @see closestPointSegment
+ *
+ * @param p
+ * @param a
+ * @param b
+ */
+export const closestPointLine = (
+    p: ReadonlyVec,
+    a: ReadonlyVec,
+    b: ReadonlyVec
+) => mixN([], a, b, closestT(p, a, b));
+
+/**
+ * Returns distance from `p` to closest point to infinite line `a` ->
+ * `b`. Use `distToSegment` to only consider the actual line segment
+ * between these two points.
+ *
+ * @see distToSegment
+ *
+ * @param p
+ * @param a
+ * @param b
+ */
+export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
+    dist(p, closestPointLine(p, a, b) || a);
 
 /**
  * Returns closest point to `p` on line segment `a` -> `b`. By default,
@@ -73,7 +112,8 @@ export const closestPointSegment = (
 };
 
 /**
- * Returns distance from `p` to closest point on line `a` -> `b`.
+ * Returns distance from `p` to closest point on line segment `a` ->
+ * `b`.
  *
  * @param p
  * @param a
@@ -156,4 +196,88 @@ export const closestPointArray = (p: ReadonlyVec, pts: Vec[]) => {
         }
     }
     return closest;
+};
+
+export const closestPointPlane = (
+    p: ReadonlyVec,
+    normal: ReadonlyVec,
+    w: number,
+    out: Vec = []
+) => {
+    out = normalize(out, normal, dot(p, normal) + w);
+    return sub(out, p, out);
+};
+
+export const closestPointCircle = (
+    p: ReadonlyVec,
+    c: ReadonlyVec,
+    r: number,
+    out: Vec = []
+) => add(out, c, normalize(out, sub(out, p, c), r));
+
+export const closestPointSphere = closestPointCircle;
+
+export const closestPointRect = (
+    p: ReadonlyVec,
+    bmin: ReadonlyVec,
+    bmax: ReadonlyVec,
+    out: Vec = []
+) => {
+    let minD = Infinity;
+    let minID: number;
+    let minW: number;
+    for (let i = 0; i < 4; i++) {
+        const j = i >> 1;
+        const w = (i & 1 ? bmax : bmin)[j];
+        const d = Math.abs(p[j] - w);
+        if (d < minD) {
+            minD = d;
+            minID = j;
+            minW = w;
+        }
+    }
+    return minID === 0
+        ? setC2(out, minW, clamp(p[1], bmin[1], bmax[1]))
+        : setC2(out, clamp(p[0], bmin[0], bmax[0]), minW);
+};
+
+export const closestPointAABB = (
+    p: ReadonlyVec,
+    bmin: ReadonlyVec,
+    bmax: ReadonlyVec,
+    out: Vec = []
+) => {
+    let minD = Infinity;
+    let minID: number;
+    let minW: number;
+    for (let i = 0; i < 6; i++) {
+        const j = i >> 1;
+        const w = (i & 1 ? bmax : bmin)[j];
+        const d = Math.abs(p[j] - w);
+        if (d < minD) {
+            minD = d;
+            minID = j;
+            minW = w;
+        }
+    }
+    return minID === 0
+        ? setC3(
+              out,
+              minW,
+              clamp(p[1], bmin[1], bmax[1]),
+              clamp(p[2], bmin[2], bmax[2])
+          )
+        : minID === 1
+        ? setC3(
+              out,
+              clamp(p[0], bmin[0], bmax[0]),
+              minW,
+              clamp(p[2], bmin[2], bmax[2])
+          )
+        : setC3(
+              out,
+              clamp(p[0], bmin[0], bmax[0]),
+              clamp(p[1], bmin[1], bmax[1]),
+              minW
+          );
 };

@@ -32,6 +32,7 @@
         "typescript": "^3.4.1"
     },
     "dependencies": {
+        "@thi.ng/math": "^1.2.2",
         "@thi.ng/vectors": "^2.5.2"
     },
     "keywords": [
