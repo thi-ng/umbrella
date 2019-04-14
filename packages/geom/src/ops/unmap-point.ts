@@ -1,6 +1,11 @@
 import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { madd, mixBilinear, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import {
+    madd,
+    mixBilinear,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors";
 import { Quad, Rect } from "../api";
 import { dispatch } from "../internal/dispatch";
 
@@ -36,8 +41,8 @@ unmapPoint.addAll({
             uv[1]
         ),
 
-    [Type.RECT]: ($: Rect, uv: ReadonlyVec, out = []) =>
-        madd(out, $.pos, $.size, uv)
+    [Type.RECT]: ($: Rect, uvw: ReadonlyVec, out = []) =>
+        madd(out, $.pos, $.size, uvw)
 });
 
 unmapPoint.isa(Type.AABB, Type.RECT);

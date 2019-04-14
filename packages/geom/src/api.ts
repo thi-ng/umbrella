@@ -11,11 +11,15 @@ import {
     PCLike,
     Type
 } from "@thi.ng/geom-api";
+import { pointAt as arcPointAt, pointAtTheta as arcPointAtTheta } from "@thi.ng/geom-arc";
 import {
-    pointAt as arcPointAt,
-    pointAtTheta as arcPointAtTheta
-} from "@thi.ng/geom-arc";
-import { add2, add3, copyVectors, maddN2, set, Vec } from "@thi.ng/vectors";
+    add2,
+    add3,
+    copyVectors,
+    maddN2,
+    set,
+    Vec
+} from "@thi.ng/vectors";
 
 export abstract class APC implements PCLike {
     points: Vec[];
@@ -41,11 +45,12 @@ export class AABB implements AABBLike {
 
     constructor(
         pos: Vec = [0, 0, 0],
-        size: Vec = [1, 1, 1],
+        size: number | Vec = 1,
         attribs?: Attribs
     ) {
         this.pos = pos;
-        this.size = size;
+        this.size = isNumber(size) ? [size, size, size] : size;
+        this.attribs = attribs;
         this.attribs = attribs;
     }
 
@@ -345,6 +350,30 @@ export class Path implements IHiccupShape {
     }
 }
 
+export class Plane implements IHiccupShape {
+    normal: Vec;
+    w: number;
+    attribs: Attribs;
+
+    constructor(normal: Vec = [0, 1, 0], w = 0, attribs?: Attribs) {
+        this.normal = normal;
+        this.w = w;
+        this.attribs = attribs;
+    }
+
+    get type() {
+        return Type.PLANE;
+    }
+
+    copy() {
+        return new Plane(set([], this.normal), this.w, { ...this.attribs });
+    }
+
+    toHiccup() {
+        return ["plane", this.attribs, this.normal, this.w];
+    }
+}
+
 export class Points extends APC implements IHiccupShape {
     get type() {
         return Type.POINTS;
@@ -468,11 +497,7 @@ export class Rect implements AABBLike, IHiccupShape {
     size: Vec;
     attribs: Attribs;
 
-    constructor(
-        pos: Vec = [0, 0],
-        size: number | Vec = [1, 1],
-        attribs?: Attribs
-    ) {
+    constructor(pos: Vec = [0, 0], size: number | Vec = 1, attribs?: Attribs) {
         this.pos = pos;
         this.size = isNumber(size) ? [size, size] : size;
         this.attribs = attribs;

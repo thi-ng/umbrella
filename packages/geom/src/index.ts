@@ -1,5 +1,6 @@
 export * from "./api";
 
+export * from "./ctors/aabb";
 export * from "./ctors/arc";
 export * from "./ctors/circle";
 export * from "./ctors/cubic";
@@ -7,6 +8,7 @@ export * from "./ctors/ellipse";
 export * from "./ctors/group";
 export * from "./ctors/line";
 export * from "./ctors/path";
+export * from "./ctors/plane";
 export * from "./ctors/points";
 export * from "./ctors/polygon";
 export * from "./ctors/polyline";
