@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.0.15...@thi.ng/iges@1.1.0) (2019-04-15)
+
+
+### Features
+
+* **iges:** add boolean tree, csg box & cylinder entities ([b1db275](https://github.com/thi-ng/umbrella/commit/b1db275))
+* **iges:** add new entities, options, extract addEntity, update enums ([43426e5](https://github.com/thi-ng/umbrella/commit/43426e5))
+
+
+
+
+
 ## [1.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.0.14...@thi.ng/iges@1.0.15) (2019-04-03)
 
 **Note:** Version bump only for package @thi.ng/iges
