@@ -47,11 +47,7 @@ export interface CanvasHandlers<T extends CanvasContext> {
  * @param handlers user handlers
  * @param opts canvas context creation options
  */
-const _canvas = (
-    type,
-    { init, update, release }: Partial<CanvasHandlers<any>>,
-    opts
-) => {
+const _canvas = (type, handlers: Partial<CanvasHandlers<any>>, opts) => {
     let el, ctx;
     let frame = 0;
     let time = 0;
@@ -61,17 +57,25 @@ const _canvas = (
             adaptDPI(el, el.width, el.height);
             ctx = el.getContext(type, opts);
             time = Date.now();
-            init && init(el, ctx, hctx, ...args);
-            update && update(el, ctx, hctx, time, frame++, ...args);
+            handlers.init && handlers.init(el, ctx, hctx, ...args);
+            handlers.update &&
+                handlers.update(el, ctx, hctx, time, frame++, ...args);
         },
         render(hctx: any, ...args: any[]) {
             ctx &&
-                update &&
-                update(el, ctx, hctx, Date.now() - time, frame++, ...args);
+                handlers.update &&
+                handlers.update(
+                    el,
+                    ctx,
+                    hctx,
+                    Date.now() - time,
+                    frame++,
+                    ...args
+                );
             return ["canvas", args[0]];
         },
         release(hctx: any, ...args: any[]) {
-            release && release(el, ctx, hctx, ...args);
+            handlers.release && handlers.release(el, ctx, hctx, ...args);
         }
     };
 };
