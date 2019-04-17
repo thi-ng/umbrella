@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.7...@thi.ng/strings@1.1.0) (2019-04-15)
+
+
+### Features
+
+* **strings:** add hstr() (hollerith) ([619e9ef](https://github.com/thi-ng/umbrella/commit/619e9ef))
+
+
+
+
+
 ## [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.0.6...@thi.ng/strings@1.0.7) (2019-04-02)
 
 **Note:** Version bump only for package @thi.ng/strings

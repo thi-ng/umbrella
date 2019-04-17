@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.3.0...@thi.ng/geom@1.4.0) (2019-04-15)
+
+
+### Features
+
+* **geom:** add new shape factories & impls ([1a5ead1](https://github.com/thi-ng/umbrella/commit/1a5ead1))
+
+
+
+
+
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.2.21...@thi.ng/geom@1.3.0) (2019-04-11)
 
 

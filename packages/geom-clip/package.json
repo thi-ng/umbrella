@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-clip",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,10 +32,10 @@
         "typescript": "^3.4.1"
     },
     "dependencies": {
-        "@thi.ng/geom-isec": "^0.1.13",
-        "@thi.ng/geom-poly-utils": "^0.1.13",
+        "@thi.ng/geom-isec": "^0.1.14",
+        "@thi.ng/geom-poly-utils": "^0.1.14",
         "@thi.ng/math": "^1.2.2",
-        "@thi.ng/vectors": "^2.5.2"
+        "@thi.ng/vectors": "^2.5.3"
     },
     "keywords": [
         "2D",

@@ -9,14 +9,12 @@ describe("iges", () => {
             author: "toxi",
             authorOrg: "thi.ng",
             created: new Date(123456789),
-            modified: new Date(123456789),
+            modified: new Date(123456789)
         });
 
-        doc.start = [
-            "Example file for @thi.ng/iges",
-        ];
+        doc.start = ["Example file for @thi.ng/iges"];
 
-        iges.addPolyline2d(doc, [
+        iges.addPolyline(doc, [
             [0, 0],
             [0, 100],
             [50, 150],

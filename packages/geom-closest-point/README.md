@@ -22,6 +22,20 @@ This project is part of the
 
 Closest point / proximity helpers.
 
+- `closestPointAABB`
+- `closestPointArray`
+- `closestPointCircle`
+- `closestPointLine`
+- `closestPointPlane`
+- `closestPointPolyline`
+- `closestPointRect`
+- `closestPointSphere`
+- `closestPointSegment`
+
+- `closestT`
+- `distToLine`
+- `distToSegment`
+
 ## Installation
 
 ```bash
