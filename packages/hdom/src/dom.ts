@@ -302,7 +302,7 @@ export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
         if (a.indexOf("on") === 0) {
             removeListener(el, a.substr(2), prev[a]);
         } else {
-            el[a] ? (el[a] = null) : el.removeAttribute(a);
+            el.hasAttribute(a) ? el.removeAttribute(a) : (el[a] = null);
         }
     }
 };
