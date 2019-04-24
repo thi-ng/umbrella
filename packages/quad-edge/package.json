@@ -25,11 +25,11 @@
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
-        "@types/node": "^11.13.0",
-        "mocha": "^6.0.2",
-        "nyc": "^13.3.0",
+        "@types/node": "^11.13.7",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.4.1"
+        "typescript": "^3.4.5"
     },
     "keywords": [
         "dual",
