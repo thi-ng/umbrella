@@ -1,12 +1,13 @@
 import { ILogger, LogLevel } from "./api";
 
-export const NULL_LOGGER: ILogger = {
+export const NULL_LOGGER: ILogger = Object.freeze({
+    level: LogLevel.NONE,
     fine() {},
     debug() {},
     info() {},
     warn() {},
     severe() {}
-};
+});
 
 export class ConsoleLogger implements ILogger {
     id: string;
