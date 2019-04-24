@@ -327,6 +327,15 @@ export type TypedArray =
  */
 export type Watch<T> = (id: string, oldState: T, newState: T) => void;
 
+export const enum LogLevel {
+    FINE,
+    DEBUG,
+    INFO,
+    WARN,
+    SEVERE,
+    NONE
+}
+
 /**
  * @param K key type
  * @param V value type
@@ -564,6 +573,14 @@ export interface IInto<V, T> {
  */
 export interface ILength {
     readonly length: number;
+}
+
+export interface ILogger {
+    fine(...args: any[]): void;
+    debug(...args: any[]): void;
+    info(...args: any[]): void;
+    warn(...args: any[]): void;
+    severe(...args: any[]): void;
 }
 
 /**
