@@ -80,7 +80,7 @@ export const diffTree = <T>(
     let status: number;
     let val: any;
     if (edits[0] !== 0 || prev[1].key !== attribs.key) {
-        // DEBUG && console.log("replace:", prev, curr);
+        // LOGGER.fine("replace:", prev, curr);
         releaseTree(prev);
         impl.replaceChild(opts, parent, child, curr);
         return;
@@ -110,11 +110,11 @@ export const diffTree = <T>(
                 if (k !== undefined && equivKeys[k][2] !== undefined) {
                     eq = equivKeys[k];
                     k = eq[0];
-                    // DEBUG && console.log(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
+                    // LOGGER.fine(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
                     diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
                 } else {
                     idx = edits[ii + 1];
-                    // DEBUG && console.log("remove @", offsets[idx], val);
+                    // LOGGER.fine("remove @", offsets[idx], val);
                     releaseTree(val);
                     impl.removeChild(el, offsets[idx]);
                     for (j = prevLength; j > idx; j--) {
@@ -133,7 +133,7 @@ export const diffTree = <T>(
                 k = val[1].key;
                 if (k === undefined || equivKeys[k][0] === undefined) {
                     idx = edits[ii + 1];
-                    // DEBUG && console.log("insert @", offsets[idx], val);
+                    // LOGGER.fine("insert @", offsets[idx], val);
                     impl.createTree(opts, el, val, offsets[idx]);
                     for (j = prevLength; j >= idx; j--) {
                         offsets[j]++;
@@ -207,7 +207,7 @@ export const releaseTree = (tag: any) => {
             return;
         }
         if ((<any>tag).__release) {
-            // DEBUG && console.log("call __release", tag);
+            // LOGGER.fine("call __release", tag);
             (<any>tag).__release.apply((<any>tag).__this, (<any>tag).__args);
             delete (<any>tag).__release;
         }
