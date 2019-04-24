@@ -1,4 +1,4 @@
-import { DEBUG } from "../api";
+import { LOGGER } from "../api";
 import { Stream } from "../stream";
 import { nextID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
@@ -42,7 +42,7 @@ export const fromWorker = <T>(
             _worker.removeEventListener("message", ml);
             _worker.removeEventListener("error", el);
             if (terminate) {
-                DEBUG && console.log("terminating worker", _worker);
+                LOGGER.info("terminating worker", _worker);
                 _worker.terminate();
             }
         };

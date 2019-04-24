@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.5...@thi.ng/hdom@7.2.6) (2019-04-24)
+
+**Note:** Version bump only for package @thi.ng/hdom
+
+
+
+
+
 ## [7.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.4...@thi.ng/hdom@7.2.5) (2019-04-17)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "2.5.3",
+    "version": "2.5.4",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -25,22 +25,22 @@
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
-        "@types/node": "^11.13.0",
-        "mocha": "^6.0.2",
-        "nyc": "^13.3.0",
+        "@types/node": "^11.13.7",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.4.1"
+        "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.0.1",
-        "@thi.ng/binary": "^1.0.5",
-        "@thi.ng/checks": "^2.1.5",
-        "@thi.ng/equiv": "^1.0.5",
-        "@thi.ng/errors": "^1.0.5",
-        "@thi.ng/math": "^1.2.2",
-        "@thi.ng/memoize": "^1.0.6",
-        "@thi.ng/random": "^1.1.4",
-        "@thi.ng/transducers": "^5.3.4"
+        "@thi.ng/api": "^6.1.0",
+        "@thi.ng/binary": "^1.0.6",
+        "@thi.ng/checks": "^2.1.6",
+        "@thi.ng/equiv": "^1.0.6",
+        "@thi.ng/errors": "^1.0.6",
+        "@thi.ng/math": "^1.2.3",
+        "@thi.ng/memoize": "^1.0.7",
+        "@thi.ng/random": "^1.1.5",
+        "@thi.ng/transducers": "^5.3.5"
     },
     "keywords": [
         "2D",

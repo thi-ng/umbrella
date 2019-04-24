@@ -1,6 +1,6 @@
 import { isTransferable } from "@thi.ng/checks";
 import { isTypedArray } from "@thi.ng/checks";
-import { DEBUG, ISubscriber } from "../api";
+import { ISubscriber, LOGGER } from "../api";
 import { makeWorker } from "../utils/worker";
 
 /**
@@ -57,7 +57,7 @@ export const postWorker = <T>(
         done() {
             if (terminate > 0) {
                 setTimeout(() => {
-                    DEBUG && console.log("terminating worker...");
+                    LOGGER.info("terminating worker...");
                     _worker.terminate();
                 }, terminate);
             }

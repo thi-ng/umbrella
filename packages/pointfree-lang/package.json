@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree-lang",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -27,16 +27,16 @@
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
-        "@types/node": "^11.13.0",
-        "mocha": "^6.0.2",
+        "@types/node": "^11.13.7",
+        "mocha": "^6.1.4",
         "pegjs": "^0.11.0-dev.325",
         "typedoc": "^0.14.2",
-        "typescript": "^3.4.1"
+        "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.0.1",
-        "@thi.ng/errors": "^1.0.5",
-        "@thi.ng/pointfree": "^1.0.11"
+        "@thi.ng/api": "^6.1.0",
+        "@thi.ng/errors": "^1.0.6",
+        "@thi.ng/pointfree": "^1.0.12"
     },
     "keywords": [
         "concatenative",

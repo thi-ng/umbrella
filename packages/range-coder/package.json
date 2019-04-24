@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/range-coder",
-    "version": "1.0.16",
+    "version": "1.0.17",
     "description": "Binary data range encoder / decoder",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -24,16 +24,16 @@
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/transducers": "^5.3.4",
+        "@thi.ng/transducers": "^5.3.5",
         "@types/mocha": "^5.2.6",
-        "@types/node": "^11.13.0",
-        "mocha": "^6.0.2",
-        "nyc": "^13.3.0",
+        "@types/node": "^11.13.7",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.4.1"
+        "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.0.5"
+        "@thi.ng/bitstream": "^1.0.6"
     },
     "keywords": [
         "ES6",

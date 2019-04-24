@@ -18,6 +18,11 @@ Also see the
 [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log-file)
 support package for local file output of logged data.
 
+The `Logger` class provided by this package implements the
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+`ILogger` interface and uses `LogLevel` enums to configure levels /
+filtering.
+
 ## Installation
 
 ```bash
@@ -35,11 +40,12 @@ yarn add @thi.ng/rstream-log
 ## Usage examples
 
 ```ts
+import { LogLevel } from "@thi.ng/api";
 import * as log from "@thi.ng/rstream-log";
 
 const logger = new log.Logger("main");
 // or with min level
-const logger = new log.Logger("main", log.Level.DEBUG);
+const logger = new log.Logger("main", LogLevel.DEBUG);
 
 // add console output w/ string formatter (a transducer)
 logger.subscribe(log.writeConsole(), log.formatString());
@@ -53,7 +59,7 @@ logger.warn("eek");
 // each logger instance is a rstream StreamMerge instance
 // allowing to form logger hierarchies
 
-const mod1 = new log.Logger("module-1", log.Level.INFO);
+const mod1 = new log.Logger("module-1", LogLevel.INFO);
 // pipe mod1 into main logger
 logger.add(mod1);
 

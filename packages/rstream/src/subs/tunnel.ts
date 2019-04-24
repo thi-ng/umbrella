@@ -1,5 +1,5 @@
 import { Fn } from "@thi.ng/api";
-import { DEBUG, State } from "../api";
+import { LOGGER, State } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
@@ -106,7 +106,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
         super.done();
         if (this.terminate > 0) {
             setTimeout(() => {
-                DEBUG && console.log("terminating workers...");
+                LOGGER.info("terminating workers...");
                 this.workers.forEach((worker) => worker && worker.terminate());
                 delete this.workers;
             }, this.terminate);

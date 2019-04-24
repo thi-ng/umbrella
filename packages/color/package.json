@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color",
-    "version": "0.1.18",
+    "version": "0.1.19",
     "description": "Raw, array-based, color ops, conversions, opt. type wrappers, multi-color gradients",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -25,21 +25,21 @@
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
-        "@types/node": "^11.13.0",
-        "mocha": "^6.0.2",
-        "nyc": "^13.3.0",
+        "@types/node": "^11.13.7",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.4.1"
+        "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.0.1",
-        "@thi.ng/compose": "^1.2.2",
-        "@thi.ng/defmulti": "^1.0.6",
-        "@thi.ng/errors": "^1.0.5",
-        "@thi.ng/math": "^1.2.2",
-        "@thi.ng/strings": "^1.1.0",
-        "@thi.ng/transducers": "^5.3.4",
-        "@thi.ng/vectors": "^2.5.3"
+        "@thi.ng/api": "^6.1.0",
+        "@thi.ng/compose": "^1.2.3",
+        "@thi.ng/defmulti": "^1.0.7",
+        "@thi.ng/errors": "^1.0.6",
+        "@thi.ng/math": "^1.2.3",
+        "@thi.ng/strings": "^1.1.1",
+        "@thi.ng/transducers": "^5.3.5",
+        "@thi.ng/vectors": "^2.5.4"
     },
     "keywords": [
         "alpha",

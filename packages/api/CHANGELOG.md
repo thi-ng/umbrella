@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.0.1...@thi.ng/api@6.1.0) (2019-04-24)
+
+
+### Features
+
+* **api:** add common logging types & default impls ([4578604](https://github.com/thi-ng/umbrella/commit/4578604))
+* **api:** update ILogger, freeze NULL_LOGGER ([27ff8de](https://github.com/thi-ng/umbrella/commit/27ff8de))
+
+
+
+
+
 ## [6.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.0.0...@thi.ng/api@6.0.1) (2019-04-02)
 
 **Note:** Version bump only for package @thi.ng/api
