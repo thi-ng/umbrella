@@ -1,40 +1,20 @@
-import { IID } from "@thi.ng/api";
+import { IID, ILogger as APILogger, LogLevel } from "@thi.ng/api";
 import { ISubscribable } from "@thi.ng/rstream";
 
-export enum Level {
-    FINE,
-    DEBUG,
-    INFO,
-    WARN,
-    SEVERE,
-    NONE
-}
-
-/**
- * Reverse lookup for `Level` enums
- */
-// export const __Level = (<any>exports).Level;
-
 export interface LogEntry extends Array<any> {
-    [0]: Level;
+    [0]: LogLevel;
     [1]: string;
     [2]: number;
     [id: number]: any;
 }
 
 export interface LogEntryObj extends IID<string> {
-    level: Level;
+    level: LogLevel;
     time: number;
     body: any[];
 }
 
-export interface ILogger extends ISubscribable<LogEntry> {
-    fine(...args: any[]);
-    debug(...args: any[]);
-    info(...args: any[]);
-    warn(...args: any[]);
-    severe(...args: any[]);
-}
+export interface ILogger extends APILogger, ISubscribable<LogEntry> {}
 
 export type DateFormat = (epoch: number) => string;
 export type BodyFormat = (body: any[]) => string;

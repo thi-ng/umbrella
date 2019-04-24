@@ -10,9 +10,9 @@ import {
     unreduced
 } from "@thi.ng/transducers";
 import {
-    DEBUG,
     ISubscribable,
     ISubscriber,
+    LOGGER,
     State
 } from "./api";
 import { nextID } from "./utils/idgen";
@@ -203,7 +203,7 @@ export class Subscription<A, B>
      * @param sub
      */
     unsubscribe(sub?: Subscription<B, any>) {
-        DEBUG && console.log(this.id, "unsub start", sub ? sub.id : "self");
+        LOGGER.debug(this.id, "unsub start", sub ? sub.id : "self");
         if (!sub) {
             let res = true;
             if (this.parent) {
@@ -214,7 +214,7 @@ export class Subscription<A, B>
             return res;
         }
         if (this.subs) {
-            DEBUG && console.log(this.id, "unsub child", sub.id);
+            LOGGER.debug(this.id, "unsub child", sub.id);
             const idx = this.subs.indexOf(sub);
             if (idx >= 0) {
                 this.subs.splice(idx, 1);
@@ -246,7 +246,7 @@ export class Subscription<A, B>
     }
 
     done() {
-        DEBUG && console.log(this.id, "done start");
+        LOGGER.debug(this.id, "done start");
         if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[1]([]);
@@ -261,7 +261,7 @@ export class Subscription<A, B>
                 s.done && s.done();
             }
             this.unsubscribe();
-            DEBUG && console.log(this.id, "done");
+            LOGGER.debug(this.id, "done");
         }
     }
 
@@ -277,9 +277,9 @@ export class Subscription<A, B>
             }
         }
         if (!notified) {
-            console.log(this.id, "unhandled error:", e);
+            LOGGER.warn(this.id, "unhandled error:", e);
             if (this.parent) {
-                DEBUG && console.log(this.id, "unsubscribing...");
+                LOGGER.debug(this.id, "unsubscribing...");
                 this.unsubscribe();
                 this.state = State.ERROR;
             }
@@ -293,7 +293,7 @@ export class Subscription<A, B>
     }
 
     protected dispatch(x: B) {
-        DEBUG && console.log(this.id, "dispatch", x);
+        // LOGGER.debug(this.id, "dispatch", x);
         this.last = x;
         const subs = this.subs;
         let s: ISubscriber<B>;
@@ -323,7 +323,7 @@ export class Subscription<A, B>
     }
 
     protected cleanup() {
-        DEBUG && console.log(this.id, "cleanup");
+        LOGGER.debug(this.id, "cleanup");
         this.subs.length = 0;
         delete this.parent;
         delete this.xform;

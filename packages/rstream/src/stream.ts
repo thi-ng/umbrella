@@ -2,9 +2,9 @@ import { isString } from "@thi.ng/checks";
 import { illegalArity } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
 import {
-    DEBUG,
     IStream,
     ISubscriber,
+    LOGGER,
     StreamCancel,
     StreamSource
 } from "./api";
@@ -138,7 +138,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
 
     cancel() {
         if (this._cancel) {
-            DEBUG && console.log(this.id, "cancel");
+            LOGGER.debug(this.id, "cancel");
             const f = this._cancel;
             delete this._cancel;
             f();

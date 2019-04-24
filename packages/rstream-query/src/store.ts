@@ -9,7 +9,12 @@ import {
     Subscription,
     sync
 } from "@thi.ng/rstream";
-import { DotOpts, IToDot, toDot, walk } from "@thi.ng/rstream-dot";
+import {
+    DotOpts,
+    IToDot,
+    toDot,
+    walk
+} from "@thi.ng/rstream-dot";
 import {
     assocObj,
     comp,
@@ -24,8 +29,8 @@ import {
 } from "@thi.ng/transducers";
 import {
     BindFn,
-    DEBUG,
     Edit,
+    LOGGER,
     PathPattern,
     PathQuerySpec,
     Pattern,
@@ -413,13 +418,13 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                     ? s.size < o.size
                         ? s
                         : p.size < o.size
-                            ? p
-                            : o
-                    : p.size < o.size
                         ? p
-                        : s.size < o.size
-                            ? s
-                            : o;
+                        : o
+                    : p.size < o.size
+                    ? p
+                    : s.size < o.size
+                    ? s
+                    : o;
             for (let id of index) {
                 if (equiv(triples[id], f)) {
                     return id;
@@ -481,7 +486,7 @@ const indexSel = (key: any): Transducer<Edit, TripleIds> => (
 ) => {
     const r = rfn[2];
     return compR(rfn, (acc, e) => {
-        DEBUG && console.log("index sel", e.key, key);
+        LOGGER.fine("index sel", e.key, key);
         if (equiv(e.key, key)) {
             return r(acc, e.index);
         }

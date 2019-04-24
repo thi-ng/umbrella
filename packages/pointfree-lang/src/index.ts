@@ -1,13 +1,18 @@
-import { IObjectOf } from "@thi.ng/api";
+import { ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
-
-import { ALIASES, ASTNode, NodeType, VisitorState } from "./api";
+import {
+    ALIASES,
+    ASTNode,
+    NodeType,
+    VisitorState
+} from "./api";
 import { parse, SyntaxError } from "./parser";
 
-let DEBUG = false;
 
-export const setDebug = (state: boolean) => (DEBUG = state);
+export let LOGGER = NULL_LOGGER;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);
 
 const nodeLoc = (node: ASTNode) =>
     node.loc ? `line ${node.loc.join(":")} -` : "";
@@ -182,7 +187,7 @@ const endvar = (id: string) => (ctx: pf.StackContext) => {
  * @param state
  */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
-    DEBUG && console.log("visit", node.type, node, ctx[0].toString());
+    LOGGER.fine("visit", node.type, node, ctx[0].toString());
     switch (node.type) {
         case NodeType.SYM:
             return visitSym(node, ctx, state);
@@ -203,7 +208,7 @@ const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
         case NodeType.WORD:
             return visitWord(node, ctx, state);
         default:
-            DEBUG && console.log("skipping node...");
+            LOGGER.fine("skipping node...");
     }
     return ctx;
 };

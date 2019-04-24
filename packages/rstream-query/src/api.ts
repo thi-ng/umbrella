@@ -1,7 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
+import { ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { ISubscribable } from "@thi.ng/rstream";
-
-export let DEBUG = false;
 
 export type Pattern = [any, any, any];
 
@@ -48,3 +46,7 @@ export interface JoinOpts {
     limit: number;
     select: string[];
 }
+
+export let LOGGER = NULL_LOGGER;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);

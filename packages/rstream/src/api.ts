@@ -2,7 +2,9 @@ import {
     Fn,
     Fn0,
     IDeref,
-    IID
+    IID,
+    ILogger,
+    NULL_LOGGER
 } from "@thi.ng/api";
 import { Transducer } from "@thi.ng/transducers";
 import { Stream } from "./stream";
@@ -66,4 +68,6 @@ export interface IStream<T> extends ISubscriber<T> {
 export type StreamCancel = () => void;
 export type StreamSource<T> = (sub: Stream<T>) => StreamCancel | void;
 
-export let DEBUG = false;
+export let LOGGER = NULL_LOGGER;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);
