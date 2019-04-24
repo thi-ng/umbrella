@@ -37,6 +37,7 @@
         "@thi.ng/binary": "^1.0.5",
         "@thi.ng/checks": "^2.1.5",
         "@thi.ng/dgraph": "^1.1.4",
+        "@thi.ng/equiv": "^1.0.5",
         "@thi.ng/errors": "^1.0.5",
         "@thi.ng/matrices": "^0.3.0",
         "@thi.ng/transducers": "^5.3.3",

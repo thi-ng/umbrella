@@ -1,4 +1,5 @@
 import { Fn, Fn3, IObjectOf } from "@thi.ng/api";
+import { equivArrayLike } from "@thi.ng/equiv";
 import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices";
 import {
     ReadonlyVec,
@@ -6,7 +7,7 @@ import {
     ZERO3,
     ZERO4
 } from "@thi.ng/vectors";
-import { GLSL, UniformValue } from "./api";
+import { GLSL, GLVec, UniformValue } from "./api";
 
 type SetterS = "f" | "i" | "ui";
 
@@ -31,8 +32,14 @@ const uniformS = (fn: SetterS) => (
     loc: WebGLUniformLocation,
     defaultVal = 0
 ) => {
-    return (x: number) =>
-        gl["uniform1" + fn](loc, x === undefined ? defaultVal : x);
+    let prev: number;
+    return (x: number) => {
+        x = x === undefined ? defaultVal : x;
+        if (x !== prev) {
+            gl["uniform1" + fn](loc, x);
+            prev = x;
+        }
+    };
 };
 
 const uniformV = (fn: SetterV, sysDefault?: ReadonlyVec) => (
@@ -40,8 +47,14 @@ const uniformV = (fn: SetterV, sysDefault?: ReadonlyVec) => (
     loc: WebGLUniformLocation,
     defaultVal = sysDefault
 ) => {
-    return (x: any) =>
-        gl["uniform" + fn](loc, x === undefined ? defaultVal : x.buffer || x);
+    let prev: GLVec = [];
+    return (x: any) => {
+        x = x === undefined ? defaultVal : x;
+        if (!equivArrayLike(prev, x)) {
+            gl["uniform" + fn](loc, x);
+            prev = x;
+        }
+    };
 };
 
 const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
@@ -49,12 +62,14 @@ const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
     loc: WebGLUniformLocation,
     defaultVal = sysDefault
 ) => {
-    return (x: any) =>
-        gl["uniformMatrix" + fn](
-            loc,
-            false,
-            x === undefined ? defaultVal : x.buffer || x
-        );
+    let prev: GLVec = [];
+    return (x: any) => {
+        x = x === undefined ? defaultVal : x;
+        if (!equivArrayLike(prev, x)) {
+            gl["uniformMatrix" + fn](loc, false, x);
+            prev = x;
+        }
+    };
 };
 
 export const UNIFORM_SETTERS: IObjectOf<
@@ -82,11 +97,20 @@ export const UNIFORM_SETTERS: IObjectOf<
     [GLSL.mat3]: uniformM("3fv", IDENT33),
     [GLSL.mat4]: uniformM("4fv", IDENT44),
     [GLSL.sampler2D]: uniformS("i"),
+    [GLSL.sampler2DShadow]: uniformS("i"),
+    [GLSL.sampler3D]: uniformS("i"),
     [GLSL.samplerCube]: uniformS("i"),
+    [GLSL.samplerCubeShadow]: uniformS("i"),
     [GLSL.bool_array]: uniformV("1iv"),
     [GLSL.float_array]: uniformV("1fv"),
     [GLSL.int_array]: uniformV("1iv"),
     [GLSL.uint_array]: uniformV("1uiv"),
+    [GLSL.bvec2_array]: uniformV("2iv"),
+    [GLSL.bvec3_array]: uniformV("3iv"),
+    [GLSL.bvec4_array]: uniformV("4iv"),
+    [GLSL.ivec2_array]: uniformV("2iv"),
+    [GLSL.ivec3_array]: uniformV("3iv"),
+    [GLSL.ivec4_array]: uniformV("4iv"),
     [GLSL.vec2_array]: uniformV("2fv"),
     [GLSL.vec3_array]: uniformV("3fv"),
     [GLSL.vec4_array]: uniformV("4fv"),
@@ -94,5 +118,8 @@ export const UNIFORM_SETTERS: IObjectOf<
     [GLSL.mat3_array]: uniformM("3fv"),
     [GLSL.mat4_array]: uniformM("4fv"),
     [GLSL.sampler2D_array]: uniformV("1iv"),
-    [GLSL.samplerCube_array]: uniformV("1iv")
+    [GLSL.sampler2DShadow_array]: uniformV("1iv"),
+    [GLSL.sampler3D_array]: uniformV("1iv"),
+    [GLSL.samplerCube_array]: uniformV("1iv"),
+    [GLSL.samplerCubeShadow_array]: uniformV("1iv")
 };
