@@ -9,8 +9,8 @@ import {
 } from "@thi.ng/transducers";
 import {
     CloseMode,
-    DEBUG,
     ISubscribable,
+    LOGGER,
     State
 } from "./api";
 import { Subscription } from "./subscription";
@@ -212,7 +212,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         const sub = this.sources.get(src);
         if (sub) {
             const id = this.invRealSourceIDs.get(src.id);
-            DEBUG && console.log(`removing src: ${src.id} (${id})`);
+            LOGGER.info(`removing src: ${src.id} (${id})`);
             this.sourceIDs.delete(id);
             this.realSourceIDs.delete(id);
             this.idSources.delete(src.id);

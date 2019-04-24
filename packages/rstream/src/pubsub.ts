@@ -2,7 +2,7 @@ import { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
-import { DEBUG, ISubscriber } from "./api";
+import { ISubscriber, LOGGER } from "./api";
 import { Subscription, subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
 
@@ -132,7 +132,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 
     protected dispatch(x: B) {
-        DEBUG && console.log(this.id, "dispatch", x);
+        LOGGER.debug(this.id, "dispatch", x);
         const t = this.topicfn(x);
         if (t !== undefined) {
             const sub = this.topics.get(t);
