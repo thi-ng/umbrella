@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-canvas",
-    "version": "2.0.15",
+    "version": "2.0.16",
     "description": "Declarative canvas scenegraph & visualization for @thi.ng/hdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,11 +32,11 @@
         "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.0.1",
-        "@thi.ng/checks": "^2.1.5",
-        "@thi.ng/color": "^0.1.18",
-        "@thi.ng/diff": "^3.1.0",
-        "@thi.ng/hdom": "^7.2.5"
+        "@thi.ng/api": "^6.1.0",
+        "@thi.ng/checks": "^2.1.6",
+        "@thi.ng/color": "^0.1.19",
+        "@thi.ng/diff": "^3.1.1",
+        "@thi.ng/hdom": "^7.2.6"
     },
     "keywords": [
         "ES6",

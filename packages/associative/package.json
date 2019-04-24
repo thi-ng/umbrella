@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/associative",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "description": "Alternative Set & Map data type implementations with customizable equality semantics & supporting operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,14 +32,14 @@
         "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.0.1",
-        "@thi.ng/binary": "^1.0.5",
-        "@thi.ng/checks": "^2.1.5",
-        "@thi.ng/compare": "^1.0.5",
-        "@thi.ng/dcons": "^2.0.16",
-        "@thi.ng/equiv": "^1.0.5",
-        "@thi.ng/errors": "^1.0.5",
-        "@thi.ng/transducers": "^5.3.4"
+        "@thi.ng/api": "^6.1.0",
+        "@thi.ng/binary": "^1.0.6",
+        "@thi.ng/checks": "^2.1.6",
+        "@thi.ng/compare": "^1.0.6",
+        "@thi.ng/dcons": "^2.0.17",
+        "@thi.ng/equiv": "^1.0.6",
+        "@thi.ng/errors": "^1.0.6",
+        "@thi.ng/transducers": "^5.3.5"
     },
     "keywords": [
         "data structures",

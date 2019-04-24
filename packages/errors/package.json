@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/errors",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Custom error types and helper fns.",
     "module": "./index.js",
     "main": "./lib/index.js",
