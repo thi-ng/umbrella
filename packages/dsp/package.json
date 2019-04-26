@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dsp",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Assorted DSP utils, oscillators etc.",
     "module": "./index.js",
     "main": "./lib/index.js",
