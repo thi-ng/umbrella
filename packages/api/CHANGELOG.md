@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.1.0...@thi.ng/api@6.1.1) (2019-04-26)
+
+
+### Bug Fixes
+
+* **api:** make LogLevel non-const enum, minor fix ConsoleLogger ([88d5e9d](https://github.com/thi-ng/umbrella/commit/88d5e9d))
+
+
+
+
+
 # [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.0.1...@thi.ng/api@6.1.0) (2019-04-24)
 
 
