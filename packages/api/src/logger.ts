@@ -39,6 +39,6 @@ export class ConsoleLogger implements ILogger {
     }
 
     protected log(level: string, args: any[]) {
-        console.info(`[${level}][${this.id}]`, ...args);
+        console.log(`[${level}] ${this.id}:`, ...args);
     }
 }
