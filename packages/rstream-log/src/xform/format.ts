@@ -1,3 +1,4 @@
+import { LogLevel } from "@thi.ng/api";
 import { map, Transducer } from "@thi.ng/transducers";
 import {
     BodyFormat,
@@ -5,8 +6,6 @@ import {
     LogEntry,
     LogEntryObj
 } from "../api";
-
-const LEVELS = ["FINE", "DEBUG", "INFO", "WARN", "SEVERE"];
 
 export const isoDate = (dt: number) => new Date(dt).toISOString();
 
@@ -18,7 +17,7 @@ export const formatString = (
     bodyFmt = bodyFmt || ((x) => x.toString());
     return map(
         ([level, id, time, ...body]) =>
-            `[${LEVELS[level]}] [${id}] ${dtFmt(time)} ${bodyFmt(body)}`
+            `[${LogLevel[level]}] ${id}: ${dtFmt(time)} ${bodyFmt(body)}`
     );
 };
 
@@ -32,7 +31,7 @@ export const formatJSON = (
     return map(([level, id, time, ...body]) =>
         JSON.stringify({
             id,
-            level: LEVELS[level],
+            level: LogLevel[level],
             time: dtfmt(time),
             body
         })
