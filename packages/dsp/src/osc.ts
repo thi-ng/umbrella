@@ -82,7 +82,7 @@ export const sin = (phase: number, freq: number, amp = 1, dc = 0) =>
     dc + amp * Math.sin(phase * freq * TAU);
 
 export const tri = (phase: number, freq: number, amp = 1, dc = 0) =>
-    dc + amp * (Math.abs(((phase * freq * 4) % 4) - 2) - 1);
+    dc + amp * (Math.abs(((fract(phase * freq) * 4) % 4) - 2) - 1);
 
 export const triConcave = (phase: number, freq: number, amp = 1, dc = 0) =>
     dc + amp * (8 * Math.pow(fract(phase * freq) - 0.5, 2) - 1);
