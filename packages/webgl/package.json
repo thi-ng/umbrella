@@ -32,17 +32,17 @@
         "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.1.0",
-        "@thi.ng/associative": "^2.2.2",
+        "@thi.ng/api": "^6.1.1",
+        "@thi.ng/associative": "^2.2.3",
         "@thi.ng/binary": "^1.0.6",
         "@thi.ng/checks": "^2.1.6",
-        "@thi.ng/dgraph": "^1.1.7",
+        "@thi.ng/dgraph": "^1.1.8",
         "@thi.ng/equiv": "^1.0.6",
         "@thi.ng/errors": "^1.0.6",
-        "@thi.ng/matrices": "^0.3.3",
-        "@thi.ng/transducers": "^5.3.5",
-        "@thi.ng/vector-pools": "^0.2.14",
-        "@thi.ng/vectors": "^2.5.4"
+        "@thi.ng/matrices": "^0.3.4",
+        "@thi.ng/transducers": "^5.3.6",
+        "@thi.ng/vector-pools": "^0.2.15",
+        "@thi.ng/vectors": "^2.5.5"
     },
     "keywords": [
         "abstraction",

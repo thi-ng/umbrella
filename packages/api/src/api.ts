@@ -327,7 +327,7 @@ export type TypedArray =
  */
 export type Watch<T> = (id: string, oldState: T, newState: T) => void;
 
-export const enum LogLevel {
+export enum LogLevel {
     FINE,
     DEBUG,
     INFO,

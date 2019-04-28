@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.9...@thi.ng/dsp@1.0.10) (2019-04-26)
+
+
+### Bug Fixes
+
+* **dsp:** fix tri() oscillator for negative phases ([c67c733](https://github.com/thi-ng/umbrella/commit/c67c733))
+
+
+
+
+
+## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.8...@thi.ng/dsp@1.0.9) (2019-04-26)
+
+**Note:** Version bump only for package @thi.ng/dsp
+
+
+
+
+
 ## [1.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.7...@thi.ng/dsp@1.0.8) (2019-04-24)
 
 **Note:** Version bump only for package @thi.ng/dsp
