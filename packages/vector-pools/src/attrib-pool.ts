@@ -1,10 +1,16 @@
-import { assert, IObjectOf, IRelease, TypedArray } from "@thi.ng/api";
+import {
+    assert,
+    IObjectOf,
+    IRelease,
+    SIZEOF,
+    TypedArray
+} from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
-import { MemPool, SIZEOF, wrap } from "@thi.ng/malloc";
+import { MemPool, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
-import { asNativeType } from "./convert";
 import { AttribPoolOpts, AttribSpec } from "./api";
+import { asNativeType } from "./convert";
 
 /*
  * WASM mem   : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...

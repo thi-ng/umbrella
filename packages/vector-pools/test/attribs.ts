@@ -1,5 +1,5 @@
+import { Type } from "@thi.ng/api";
 import { AttribPool } from "../src/attrib-pool";
-import { Type } from "@thi.ng/malloc";
 // import * as assert from "assert";
 
 describe("vector-pools", () => {
@@ -8,10 +8,20 @@ describe("vector-pools", () => {
             mem: { size: 0x100 },
             num: 8,
             attribs: {
-                pos: { type: Type.F32, default: [0, 0], size: 2, byteOffset: 0 },
+                pos: {
+                    type: Type.F32,
+                    default: [0, 0],
+                    size: 2,
+                    byteOffset: 0
+                },
                 id: { type: Type.U32, default: 0, size: 1, byteOffset: 8 },
                 index: { type: Type.U16, default: 0, size: 1, byteOffset: 12 },
-                col: { type: Type.I8, default: [0, 0, 0, 0], size: 4, byteOffset: 14 },
+                col: {
+                    type: Type.I8,
+                    default: [0, 0, 0, 0],
+                    size: 4,
+                    byteOffset: 14
+                }
             }
         });
         pool.setAttribValue("pos", 0, [1, 2]);

@@ -177,6 +177,8 @@ EMSCRIPTEN_KEEPALIVE int getNumVertices() {
 ```
 
 ```ts
+import { Type } from "@thi.ng/api";
+
 // ... WASM / Emscripten boilerplate omitted
 const Module = ...
 
@@ -190,10 +192,10 @@ const geo = new vp.AttribPool(
     // don't specify attrib defaults to avoid overriding
     // values already initialized by WASM code
     {
-        pos: { type: vp.GLType.F32, size: 3, byteOffset: 0 },
-        uv: { type: vp.GLType.F32, size: 2, byteOffset: 12 },
-        col: { type: vp.GLType.F32, size: 3, byteOffset: 20 },
-        id: { type: vp.GLType.U16, size: 1, byteOffset: 32 }
+        pos: { type: Type.F32, size: 3, byteOffset: 0 },
+        uv:  { type: Type.F32, size: 2, byteOffset: 12 },
+        col: { type: Type.F32, size: 3, byteOffset: 20 },
+        id:  { type: Type.U16, size: 1, byteOffset: 32 }
     },
     // pool options
     {
