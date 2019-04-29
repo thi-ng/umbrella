@@ -1,8 +1,8 @@
+import { Type } from "@thi.ng/api";
 import * as assert from "assert";
-import { MemPool, Type } from "../src/index";
+import { MemPool } from "../src/index";
 
 describe("malloc", () => {
-
     let pool: MemPool;
 
     beforeEach(() => {
@@ -22,8 +22,12 @@ describe("malloc", () => {
         assert.equal(p.top, 0x10);
         assert.equal(p.end, 0x80);
         assert.throws(() => new MemPool({ size: 0x100, start: 0x0, end: 0x0 }));
-        assert.throws(() => new MemPool({ size: 0x100, start: 0x100, end: 0x200 }));
-        assert.throws(() => new MemPool({ size: 0x100, start: 0x80, end: 0x0 }));
+        assert.throws(
+            () => new MemPool({ size: 0x100, start: 0x100, end: 0x200 })
+        );
+        assert.throws(
+            () => new MemPool({ size: 0x100, start: 0x80, end: 0x0 })
+        );
     });
 
     it("malloc / free", () => {
@@ -115,16 +119,13 @@ describe("malloc", () => {
         assert.equal(stats.top, 8, "top9");
 
         pool.freeAll();
-        assert.deepEqual(
-            pool.stats(),
-            {
-                free: { count: 0, size: 0 },
-                used: { count: 0, size: 0 },
-                available: pool.buf.byteLength - 8,
-                total: pool.buf.byteLength,
-                top: 8,
-            }
-        );
+        assert.deepEqual(pool.stats(), {
+            free: { count: 0, size: 0 },
+            used: { count: 0, size: 0 },
+            available: pool.buf.byteLength - 8,
+            total: pool.buf.byteLength,
+            top: 8
+        });
         pool.release();
     });
 
@@ -147,23 +148,20 @@ describe("malloc", () => {
         assert.equal(b.byteLength, 24, "b bytes");
         a.set([1, 2, 3]);
         b.set([10, 20, 30]);
-        assert.deepEqual(
-            new Uint32Array(pool.buf, 8, 10),
-            [
-                // a
-                0x3f800000,
-                0x40000000,
-                0x40400000,
-                0,
-                // b
-                0,
-                0x40240000,
-                0,
-                0x40340000,
-                0,
-                0x403e0000
-            ]
-        );
+        assert.deepEqual(new Uint32Array(pool.buf, 8, 10), [
+            // a
+            0x3f800000,
+            0x40000000,
+            0x40400000,
+            0,
+            // b
+            0,
+            0x40240000,
+            0,
+            0x40340000,
+            0,
+            0x403e0000
+        ]);
         assert(pool.free(a), "free a");
         assert(pool.free(b), "free b");
         assert(!pool.free(a), "free a (repeat)");
@@ -175,10 +173,7 @@ describe("malloc", () => {
         const u8 = (<any>pool).u8;
         u8.fill(0xff);
         let a = pool.calloc(6);
-        assert.deepEqual(
-            u8.subarray(a, a + 9),
-            [0, 0, 0, 0, 0, 0, 0, 0, 0xff]
-        );
+        assert.deepEqual(u8.subarray(a, a + 9), [0, 0, 0, 0, 0, 0, 0, 0, 0xff]);
     });
 
     it("callocAs", () => {
@@ -206,7 +201,11 @@ describe("malloc", () => {
         pool.free(b);
         pool.free(d);
         assert.equal(pool.malloc(pool.buf.byteLength - d + 1), 0, "malloc top");
-        assert.equal(pool.mallocAs(Type.U8, pool.buf.byteLength - d + 1), null, "mallocAs top");
+        assert.equal(
+            pool.mallocAs(Type.U8, pool.buf.byteLength - d + 1),
+            null,
+            "mallocAs top"
+        );
         pool.free(c);
     });
 

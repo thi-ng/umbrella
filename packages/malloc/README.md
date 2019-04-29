@@ -63,7 +63,8 @@ yarn add @thi.ng/malloc
 ## Usage examples
 
 ```ts
-import { MemPool, Type } from "@thi.ng/malloc";
+import { Type } from "@thi.ng/api";
+import { MemPool } from "@thi.ng/malloc";
 
 // create memory w/ optional start allocation address
 // (start address can't be zero, reserved for malloc/calloc failure)
@@ -161,7 +162,9 @@ Similar to `malloc()`, but returns a typed array view of desired `type`
 and instead of byte size, expects number of elements. Returns `null`, if
 allocation failed.
 
-Types are referred to via the `Type` enum, e.g. `Type.F64`:
+Types are referred to via the `Type` enum in the base
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts)
+package, e.g. `Type.F64`:
 
 `U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`
 

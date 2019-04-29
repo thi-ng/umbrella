@@ -1,4 +1,4 @@
-import { TypedArray } from "@thi.ng/api";
+import { SIZEOF, Type, TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -6,9 +6,7 @@ import {
     IMemPool,
     MemBlock,
     MemPoolOpts,
-    MemPoolStats,
-    SIZEOF,
-    Type
+    MemPoolStats
 } from "./api";
 import { wrap } from "./wrap";
 
