@@ -7,12 +7,12 @@ import {
 import { equiv } from "@thi.ng/equiv";
 import { EquivSetOpts, IEquivSet } from "./api";
 
-interface SetProps<T> {
+interface ArraySetProps<T> {
     vals: T[];
     equiv: Predicate2<T>;
 }
 
-const __private = new WeakMap<ArraySet<any>, SetProps<any>>();
+const __private = new WeakMap<ArraySet<any>, ArraySetProps<any>>();
 
 /**
  * An alternative set implementation to the native ES6 Set type. Uses
@@ -133,7 +133,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
             return false;
         }
         const vals = __private.get(this).vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
+        for (let i = vals.length; --i >= 0; ) {
             if (!o.has(vals[i])) {
                 return false;
             }
@@ -143,7 +143,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 
     forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
         const vals = __private.get(this).vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
+        for (let i = vals.length; --i >= 0; ) {
             const v = vals[i];
             fn.call(thisArg, v, v, this);
         }
