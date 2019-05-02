@@ -24,3 +24,23 @@ export const TWO_THIRD = 2 / 3;
 export const SIXTH = 1 / 6;
 
 export let EPS = 1e-6;
+
+export const enum Crossing {
+    /**
+     * lines A & B are equal
+     */
+    EQUAL = 0,
+    /**
+     * lines A & B are flat (all same values)
+     */
+    FLAT,
+    /**
+     * line A crossed under B
+     */
+    UNDER,
+    /**
+     * line A crossed over B
+     */
+    OVER,
+    OTHER
+}
