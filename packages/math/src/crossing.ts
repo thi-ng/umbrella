@@ -4,6 +4,13 @@ import { eqDelta } from "./eqdelta";
 /**
  * Returns true if line A rises up over B.
  *
+ * ```
+ * b1  a2
+ *   \/
+ *   /\
+ * a1  b2
+ * ```
+ *
  * @param a1
  * @param a2
  * @param b1
@@ -14,6 +21,13 @@ export const isCrossOver = (a1: number, a2: number, b1: number, b2: number) =>
 
 /**
  * Returns true if line A rises up over B.
+ *
+ * ```
+ * a1  b2
+ *   \/
+ *   /\
+ * b1  a2
+ * ```
  *
  * @param a1
  * @param a2
