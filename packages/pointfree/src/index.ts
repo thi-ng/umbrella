@@ -17,9 +17,18 @@ import {
     StackProgram
 } from "./api";
 
-let SAFE = true;
+let $: (stack: Stack, n: number) => void;
+let $n: (m: number, n: number) => void;
 
-export const safeMode = (state: boolean) => (SAFE = state);
+export const safeMode = (state: boolean) => {
+    if (state) {
+        $n = (m: number, n: number) => m < n && illegalState(`stack underflow`);
+        $ = (stack: Stack, n: number) => $n(stack.length, n);
+    } else {
+        $ = $n = NO_OP;
+    }
+};
+safeMode(true);
 
 /**
  * Executes program / quotation with given stack context (initial D/R
@@ -85,14 +94,6 @@ export const ctx = (stack: Stack = [], env: StackEnv = {}): StackContext => [
     [],
     env
 ];
-
-const $n = SAFE
-    ? (m: number, n: number) => m < n && <any>illegalState(`stack underflow`)
-    : NO_OP;
-
-const $ = SAFE ? (stack: Stack, n: number) => $n(stack.length, n) : NO_OP;
-
-export { $ as ensureStack, $n as ensureStackN };
 
 const $stackFn = (f: StackProc) => (isArray(f) ? word(f) : f);
 
@@ -1061,7 +1062,7 @@ export const keep = word([over, [exec], dip]);
 export const keep2 = word([[dup2], dip, dip2]);
 
 /**
- * Call a quotation with two values on the stack, restoring the values
+ * Call a quotation with three values on the stack, restoring the values
  * after quotation finished.
  *
  * ( x y z q -- .. x y z )
@@ -1809,3 +1810,5 @@ export const printds = (ctx: StackContext) => (console.log(ctx[0]), ctx);
 export const printrs = (ctx: StackContext) => (console.log(ctx[1]), ctx);
 
 export * from "./api";
+
+export { $ as ensureStack, $n as ensureStackN };
