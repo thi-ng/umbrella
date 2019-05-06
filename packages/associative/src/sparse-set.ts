@@ -260,3 +260,17 @@ export class SparseSet32 extends ASparseSet<Uint32Array>
         return new SparseSet32(this.capacity);
     }
 }
+
+/**
+ * Creates a new sparse set with given max. capacity (max ID + 1) and
+ * chooses most memory efficient implementation, e.g. if `n` <= 256
+ * returns a `SparseSet8` instance.
+ *
+ * @param n
+ */
+export const sparseSet = (n: number) =>
+    n < 0x100
+        ? new SparseSet8(n)
+        : n < 0x10000
+        ? new SparseSet16(n)
+        : new SparseSet32(n);
