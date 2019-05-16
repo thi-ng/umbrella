@@ -13,11 +13,12 @@ export const pointInSegment2 = (
     b: ReadonlyVec,
     eps = EPS
 ) => {
-    const ax = a[0];
-    const ay = a[1];
-    const tx = (p[0] - ax) / (b[0] - ax);
-    const ty = (p[1] - ay) / (b[1] - ay);
-    return Math.abs(tx - ty) <= eps && !(tx < 0 || tx > 1 || ty < 0 || ty > 1);
+    const tx = a[0] !== b[0] ? (p[0] - a[0]) / (b[0] - a[0]) : p[0] - a[0];
+    const ty = a[1] !== b[1] ? (p[1] - a[1]) / (b[1] - a[1]) : p[1] - a[1];
+    return (
+        Math.abs(tx - ty) <= eps &&
+        !(tx < -eps || tx > eps || ty < -eps || ty > eps)
+    );
 };
 
 export const pointInCircle = (p: ReadonlyVec, pos: ReadonlyVec, r: number) =>
