@@ -1,4 +1,4 @@
-import { Type } from "@thi.ng/malloc";
+import { Type } from "@thi.ng/api";
 import { GL2TYPE, GLType, TYPE2GL } from "./api";
 
 /**

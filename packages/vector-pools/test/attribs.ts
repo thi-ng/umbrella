@@ -1,4 +1,4 @@
-import { Type } from "@thi.ng/malloc";
+import { Type } from "@thi.ng/api";
 import * as assert from "assert";
 import { AttribPool } from "../src/attrib-pool";
 

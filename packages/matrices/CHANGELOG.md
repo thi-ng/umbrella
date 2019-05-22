@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.3.4...@thi.ng/matrices@0.4.0) (2019-05-22)
+
+
+### Features
+
+* **matrices:** add outerProduct for vec 2/3/4 ([2a9d076](https://github.com/thi-ng/umbrella/commit/2a9d076))
+
+
+
+
+
 ## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.3.3...@thi.ng/matrices@0.3.4) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/matrices

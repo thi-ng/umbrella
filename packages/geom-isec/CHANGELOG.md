@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.1.16...@thi.ng/geom-isec@0.2.0) (2019-05-22)
+
+
+### Bug Fixes
+
+* **geom-isec:** fix [#84](https://github.com/thi-ng/umbrella/issues/84), update pointInSegment, add tests ([2bef312](https://github.com/thi-ng/umbrella/commit/2bef312))
+
+
+### Features
+
+* **geom-isec:** add ray-plane, plane-plane fns, update readme ([40a8bff](https://github.com/thi-ng/umbrella/commit/40a8bff))
+
+
+
+
+
 ## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.1.15...@thi.ng/geom-isec@0.1.16) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/geom-isec

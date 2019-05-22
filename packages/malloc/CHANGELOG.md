@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@2.0.10...@thi.ng/malloc@3.0.0) (2019-05-22)
+
+
+### Code Refactoring
+
+* **malloc:** remove Type enum, SIZEOF ([b26df6d](https://github.com/thi-ng/umbrella/commit/b26df6d))
+
+
+### BREAKING CHANGES
+
+* **malloc:** remove Type enum, SIZEOF, migrated to @thi.ng/api
+
+
+
+
+
 ## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@2.0.9...@thi.ng/malloc@2.0.10) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/malloc

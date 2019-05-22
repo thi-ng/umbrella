@@ -1,5 +1,10 @@
-import { IObjectOf, IRelease, TypedArray } from "@thi.ng/api";
-import { MemPool, MemPoolOpts, Type } from "@thi.ng/malloc";
+import {
+    IObjectOf,
+    IRelease,
+    Type,
+    TypedArray
+} from "@thi.ng/api";
+import { MemPool, MemPoolOpts } from "@thi.ng/malloc";
 import { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
 
 export interface AttribSpec {

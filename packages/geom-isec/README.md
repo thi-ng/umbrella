@@ -26,22 +26,23 @@ This project is part of the
 
 ### 2D tests
 
-| Type   | Circle | Line | Poly | Rect | Tri |
-|--------|:------:|:----:|:----:|:----:|:---:|
-| Circle |   ✓    |      |      |      |     |
-| Line   |        |  ✓   |      |      |     |
-| Point  |   ✓    |  ✓   |  ✓   |  ✓   |  ✓  |
-| Ray    |   ✓    |  ✓   |  ✓   |  ✓   |     |
-| Rect   |   ✓    |      |      |  ✓   |     |
+| Type   | Circle | Line | Poly | Ray | Rect | Tri |
+|--------|:------:|:----:|:----:|:---:|:----:|:---:|
+| Circle |   ✓    |      |      |     |      |     |
+| Line   |        |  ✓   |      |     |      |     |
+| Point  |   ✓    |  ✓   |  ✓   |     |  ✓   |  ✓  |
+| Ray    |   ✓    |  ✓   |  ✓   |     |  ✓   |     |
+| Rect   |   ✓    |      |      |     |  ✓   |     |
 
 ### 3D tests
 
-| Type   | AABB | Sphere |
-|--------|:----:|:------:|
-| AABB   |  ✓   |   ✓    |
-| Point  |  ✓   |   ✓    |
-| Ray    |  ✓   |   ✓    |
-| Sphere |      |   ✓    |
+| Type   | AABB | Plane | Point | Ray | Sphere |
+|--------|:----:|:-----:|:-----:|:---:|:------:|
+| AABB   |  ✓   |       |       |     |   ✓    |
+| Plane  |      |   ✓   |       |     |        |
+| Point  |  ✓   |       |       |     |   ✓    |
+| Ray    |  ✓   |   ✓   |       |     |   ✓    |
+| Sphere |      |       |       |     |   ✓    |
 
 ## Installation
 

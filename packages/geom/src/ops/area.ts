@@ -11,6 +11,7 @@ import {
     Group,
     Polygon,
     Rect,
+    Sphere,
     Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
@@ -34,6 +35,7 @@ import { dispatch } from "../internal/dispatch";
  * - Ellipse
  * - Group
  * - Line
+ * - Plane
  * - Points
  * - Polygon
  * - Polyline
@@ -41,6 +43,7 @@ import { dispatch } from "../internal/dispatch";
  * - Quadratic
  * - Ray
  * - Rect
+ * - Sphere
  * - Triangle
  *
  * @param shape
@@ -55,7 +58,7 @@ area.addAll({
         // http://cut-the-knot.org/Generalization/Cavalieri2.shtml
         ($: Arc) => 0.5 * Math.abs($.start - $.end) * $.r[0] * $.r[1],
 
-    [Type.CIRCLE]: ($: Circle) => PI * $.r * $.r,
+    [Type.CIRCLE]: ($: Circle) => PI * $.r ** 2,
 
     [Type.ELLIPSE]: ($: Ellipse) => PI * $.r[0] * $.r[1],
 
@@ -64,12 +67,16 @@ area.addAll({
 
     [Type.POINTS]: () => 0,
 
+    [Type.PLANE]: () => Infinity,
+
     [Type.POLYGON]: ($: Polygon, signed?) => {
         const area = polyArea2($.points);
         return signed ? area : Math.abs(area);
     },
 
     [Type.RECT]: ($: Rect) => $.size[0] * $.size[1],
+
+    [Type.SPHERE]: ($: Sphere) => 4 * PI * $.r ** 2,
 
     [Type.TRIANGLE]: ($: Triangle, signed?) => {
         const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));

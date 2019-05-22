@@ -322,6 +322,34 @@ export type TypedArray =
     | Uint16Array
     | Uint32Array;
 
+export type IntArray = Int8Array | Int16Array | Int32Array;
+export type UIntArray = Uint8Array | Uint16Array | Uint32Array;
+export type FloatArray = Float32Array | Float64Array;
+
+export const enum Type {
+    U8,
+    U8C,
+    I8,
+    U16,
+    I16,
+    U32,
+    I32,
+    F32,
+    F64
+}
+
+export const SIZEOF = {
+    [Type.U8]: 1,
+    [Type.U8C]: 1,
+    [Type.I8]: 1,
+    [Type.U16]: 2,
+    [Type.I16]: 2,
+    [Type.U32]: 4,
+    [Type.I32]: 4,
+    [Type.F32]: 4,
+    [Type.F64]: 8
+};
+
 /**
  * Observer function for `IWatch` implementations.
  */

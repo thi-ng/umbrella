@@ -2,6 +2,7 @@ import { Attribs } from "@thi.ng/geom-api";
 import {
     dot3,
     normalize,
+    orthoNormal3,
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
@@ -16,5 +17,12 @@ export const planeWithPoint = (
     attribs?: Attribs
 ) => {
     normal = normalize(null, normal);
-    return new Plane(normal, -dot3(normal, p), attribs);
+    return new Plane(normal, dot3(normal, p), attribs);
 };
+
+export const planeFrom3Points = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    attribs?: Attribs
+) => planeWithPoint(orthoNormal3([], a, b, c), a, attribs);

@@ -198,15 +198,15 @@ export const closestPointArray = (p: ReadonlyVec, pts: Vec[]) => {
     return closest;
 };
 
+export const distToPlane = (p: ReadonlyVec, n: ReadonlyVec, w: number) =>
+    dot(n, p) - w;
+
 export const closestPointPlane = (
     p: ReadonlyVec,
     normal: ReadonlyVec,
     w: number,
     out: Vec = []
-) => {
-    out = normalize(out, normal, dot(p, normal) + w);
-    return sub(out, p, out);
-};
+) => sub(out, p, normalize(out, normal, distToPlane(p, normal, w)));
 
 export const closestPointCircle = (
     p: ReadonlyVec,

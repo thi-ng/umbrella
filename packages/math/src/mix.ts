@@ -1,4 +1,4 @@
-import { PI, HALF_PI } from "./api";
+import { HALF_PI, PI } from "./api";
 
 export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 
@@ -59,7 +59,7 @@ export const circular = (t: number) => {
     return Math.sqrt(1 - t * t);
 };
 
-export const cosine = (t: number): number => 1 - (Math.cos(t * PI) * 0.5 + 0.5);
+export const cosine = (t: number) => 1 - (Math.cos(t * PI) * 0.5 + 0.5);
 
 export const decimated = (n: number, t: number) => Math.floor(t * n) / n;
 
@@ -105,3 +105,20 @@ export const sinc = (k: number, t: number) => {
     t = PI * (k * t - 1.0);
     return Math.sin(t) / t;
 };
+
+/**
+ * Sigmoid function for inputs in [0..1] interval.
+ *
+ * @param k
+ * @param t
+ */
+export const sigmoid = (k: number, t: number) =>
+    1 / (1 + Math.exp(-k * (2 * t - 1)));
+
+/**
+ * Sigmoid function for inputs in [-1..+1] interval.
+ *
+ * @param k
+ * @param t
+ */
+export const sigmoid11 = (k: number, t: number) => 1 / (1 + Math.exp(-k * t));

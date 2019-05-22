@@ -29,6 +29,7 @@ export * from "./mulv";
 export * from "./normal-mat";
 export * from "./ortho";
 export * from "./orthagonal";
+export * from "./outer-product";
 export * from "./perspective";
 export * from "./project";
 export * from "./quat-axis-angle";

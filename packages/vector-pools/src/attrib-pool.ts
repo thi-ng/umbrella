@@ -2,10 +2,11 @@ import {
     assert,
     IObjectOf,
     IRelease,
+    SIZEOF,
     TypedArray
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
-import { MemPool, SIZEOF, wrap } from "@thi.ng/malloc";
+import { MemPool, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { AttribPoolOpts, AttribSpec } from "./api";

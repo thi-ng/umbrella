@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.1.2...@thi.ng/diff@3.1.3) (2019-05-22)
+
+**Note:** Version bump only for package @thi.ng/diff
+
+
+
+
+
 ## [3.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.1.1...@thi.ng/diff@3.1.2) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/diff

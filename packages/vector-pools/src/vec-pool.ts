@@ -1,6 +1,6 @@
-import { TypedArray } from "@thi.ng/api";
+import { Type, TypedArray } from "@thi.ng/api";
 import { isTypedArray } from "@thi.ng/checks";
-import { MemPool, MemPoolOpts, MemPoolStats, Type } from "@thi.ng/malloc";
+import { MemPool, MemPoolOpts, MemPoolStats } from "@thi.ng/malloc";
 import { IVector } from "@thi.ng/vectors";
 import { GLType, IVecPool } from "./api";
 import { asNativeType } from "./convert";

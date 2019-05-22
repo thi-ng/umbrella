@@ -1,23 +1,24 @@
-import { EPS, sign } from "@thi.ng/math";
+import { closestT } from "@thi.ng/geom-closest-point";
+import { clamp01, EPS, sign } from "@thi.ng/math";
 import {
     clockwise2,
     distSq,
     magSq,
+    mixN,
     ReadonlyVec,
     signedArea2
 } from "@thi.ng/vectors";
 
-export const pointInSegment2 = (
+export const pointInSegment = (
     p: ReadonlyVec,
     a: ReadonlyVec,
     b: ReadonlyVec,
     eps = EPS
 ) => {
-    const ax = a[0];
-    const ay = a[1];
-    const tx = (p[0] - ax) / (b[0] - ax);
-    const ty = (p[1] - ay) / (b[1] - ay);
-    return Math.abs(tx - ty) <= eps && !(tx < 0 || tx > 1 || ty < 0 || ty > 1);
+    const t = closestT(p, a, b);
+    return t !== undefined
+        ? distSq(p, mixN([], a, b, clamp01(t))) < eps * eps
+        : false;
 };
 
 export const pointInCircle = (p: ReadonlyVec, pos: ReadonlyVec, r: number) =>
