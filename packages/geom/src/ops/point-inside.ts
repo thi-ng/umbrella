@@ -5,11 +5,19 @@ import {
     pointInCircle,
     pointInPolygon2,
     pointInRect,
-    pointInTriangle2,
-    pointInSegment2
+    pointInSegment,
+    pointInTriangle2
 } from "@thi.ng/geom-isec";
 import { isInArray, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { AABB, Circle, Points, Polygon, Rect, Triangle, Line } from "../api";
+import {
+    AABB,
+    Circle,
+    Line,
+    Points,
+    Polygon,
+    Rect,
+    Triangle
+} from "../api";
 import { dispatch } from "../internal/dispatch";
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
@@ -19,7 +27,7 @@ pointInside.addAll({
 
     [Type.CIRCLE]: ($: Circle, p) => pointInCircle(p, $.pos, $.r),
 
-    [Type.LINE]: ($: Line, p) => pointInSegment2(p, $.points[0], $.points[1]),
+    [Type.LINE]: ($: Line, p) => pointInSegment(p, $.points[0], $.points[1]),
 
     [Type.POINTS]: ({ points }: Points, p) => isInArray(p, points),
 

@@ -9,14 +9,24 @@ import {
 import {
     intersectCircleCircle,
     intersectLineLine,
+    intersectPlanePlane,
     intersectRayAABB,
     intersectRayCircle,
+    intersectRayPlane,
     intersectRayPolyline,
     intersectRayRect,
     testRectCircle,
     testRectRect
 } from "@thi.ng/geom-isec";
-import { AABB, Circle, Line, Ray, Rect, Sphere } from "../api";
+import {
+    AABB,
+    Circle,
+    Line,
+    Plane,
+    Ray,
+    Rect,
+    Sphere
+} from "../api";
 import { dispatch2 } from "../internal/dispatch";
 
 export const intersects: MultiFn2O<
@@ -33,11 +43,17 @@ intersects.addAll({
     [`${Type.LINE}-${Type.LINE}`]: ({ points: a }: Line, { points: b }: Line) =>
         intersectLineLine(a[0], a[1], b[0], b[1]),
 
+    [`${Type.PLANE}-${Type.PLANE}`]: (a: Plane, b: Plane) =>
+        intersectPlanePlane(a.normal, a.w, b.normal, b.w),
+
     [`${Type.RAY}-${Type.AABB}`]: (ray: Ray, box: AABB) =>
         intersectRayAABB(ray.pos, ray.dir, box.pos, box.max()),
 
     [`${Type.RAY}-${Type.CIRCLE}`]: (ray: Ray, sphere: Sphere) =>
         intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r),
+
+    [`${Type.RAY}-${Type.PLANE}`]: (ray: Ray, plane: Plane) =>
+        intersectRayPlane(ray.pos, ray.dir, plane.normal, plane.w),
 
     [`${Type.RAY}-${Type.POLYGON}`]: (ray: Ray, poly: PCLike) =>
         intersectRayPolyline(ray.pos, ray.dir, poly.points, true),
@@ -48,20 +64,14 @@ intersects.addAll({
     [`${Type.RAY}-${Type.RECT}`]: (ray: Ray, rect: Rect) =>
         intersectRayRect(ray.pos, ray.dir, rect.pos, rect.max()),
 
-    [`${Type.RECT}-${Type.CIRCLE}`]: (
-        { pos: rp, size }: Rect,
-        { pos: cp, r }: Circle
-    ) => ({
-        type: testRectCircle(rp, size, cp, r)
+    [`${Type.RECT}-${Type.CIRCLE}`]: (rect: Rect, circle: Circle) => ({
+        type: testRectCircle(rect.pos, rect.size, circle.pos, circle.r)
             ? IntersectionType.INTERSECT
             : IntersectionType.NONE
     }),
 
-    [`${Type.RECT}-${Type.RECT}`]: (
-        { pos: ap, size: as }: Rect,
-        { pos: bp, size: bs }: Rect
-    ) => ({
-        type: testRectRect(ap, as, bp, bs)
+    [`${Type.RECT}-${Type.RECT}`]: (a: Rect, b: Rect) => ({
+        type: testRectRect(a.pos, a.size, b.pos, b.size)
             ? IntersectionType.INTERSECT
             : IntersectionType.NONE
     })

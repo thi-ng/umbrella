@@ -5,6 +5,7 @@ import {
     closestPointAABB,
     closestPointArray,
     closestPointCircle,
+    closestPointPlane,
     closestPointPolyline,
     closestPointRect,
     closestPointSegment
@@ -23,6 +24,7 @@ import {
     Circle,
     Cubic,
     Line,
+    Plane,
     Quadratic,
     Rect
 } from "../api";
@@ -47,6 +49,9 @@ closestPoint.addAll({
 
     [Type.LINE]: ({ points }: Line, p, out = []) =>
         closestPointSegment(p, points[0], points[1], out),
+
+    [Type.PLANE]: ($: Plane, p, out = []) =>
+        closestPointPlane(p, $.normal, $.w, out),
 
     [Type.POINTS]: ($: PCLike, p, out) =>
         set(out, closestPointArray(p, $.points)),

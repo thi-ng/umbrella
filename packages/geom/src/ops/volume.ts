@@ -18,5 +18,5 @@ volume.add(DEFAULT, () => 0);
 volume.addAll({
     [Type.AABB]: ({ size }: AABB) => size[0] * size[1] * size[2],
 
-    [Type.SPHERE]: ($: Sphere) => (4 / 3) * PI * Math.pow($.r, 3)
+    [Type.SPHERE]: ($: Sphere) => (4 / 3) * PI * $.r ** 3
 });
