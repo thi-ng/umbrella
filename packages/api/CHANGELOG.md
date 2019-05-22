@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.1.1...@thi.ng/api@6.2.0) (2019-05-22)
+
+
+### Features
+
+* **api:** add Type enum, IntArray, UIntArray, FloatArray, SIZEOF ([b0c44fe](https://github.com/thi-ng/umbrella/commit/b0c44fe))
+
+
+
+
+
 ## [6.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.1.0...@thi.ng/api@6.1.1) (2019-04-26)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.2.3...@thi.ng/associative@2.3.0) (2019-05-22)
+
+
+### Features
+
+* **associative:** add sparseSet factory fn ([867eaa3](https://github.com/thi-ng/umbrella/commit/867eaa3))
+* **associative:** add SparseSet8/16/32 ([b5994d9](https://github.com/thi-ng/umbrella/commit/b5994d9))
+
+
+
+
+
 ## [2.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.2.2...@thi.ng/associative@2.2.3) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/associative

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.2.2...@thi.ng/geom-closest-point@0.2.3) (2019-05-22)
+
+
+### Bug Fixes
+
+* **geom-closest-point:** flip sign of plane W component, extract distToPlane() ([74dbcb0](https://github.com/thi-ng/umbrella/commit/74dbcb0))
+
+
+
+
+
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.2.1...@thi.ng/geom-closest-point@0.2.2) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/geom-closest-point

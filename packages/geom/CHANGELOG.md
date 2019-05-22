@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.4.2...@thi.ng/geom@1.5.0) (2019-05-22)
+
+
+### Features
+
+* **geom:** add Plane, Quad3 factories & ops ([2079bfe](https://github.com/thi-ng/umbrella/commit/2079bfe))
+
+
+
+
+
 ## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.4.1...@thi.ng/geom@1.4.2) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/geom

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.4.3...@thi.ng/rstream@2.4.4) (2019-05-22)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
 ## [2.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.4.2...@thi.ng/rstream@2.4.3) (2019-04-26)
 
 **Note:** Version bump only for package @thi.ng/rstream

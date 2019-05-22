@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream",
-    "version": "2.4.3",
+    "version": "2.4.4",
     "description": "Reactive multi-tap streams, dataflow & transformation pipeline constructs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,13 +32,13 @@
         "typescript": "^3.4.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.1.1",
-        "@thi.ng/associative": "^2.2.3",
-        "@thi.ng/atom": "^2.0.11",
+        "@thi.ng/api": "^6.2.0",
+        "@thi.ng/associative": "^2.3.0",
+        "@thi.ng/atom": "^2.0.12",
         "@thi.ng/checks": "^2.1.6",
         "@thi.ng/errors": "^1.0.6",
         "@thi.ng/paths": "^2.0.9",
-        "@thi.ng/transducers": "^5.3.6"
+        "@thi.ng/transducers": "^5.3.7"
     },
     "keywords": [
         "datastructure",

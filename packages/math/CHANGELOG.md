@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.3...@thi.ng/math@1.3.0) (2019-05-22)
+
+
+### Features
+
+* **math:** add extrema & crossing fns and Crossing enum ([e102f39](https://github.com/thi-ng/umbrella/commit/e102f39))
+* **math:** add sigmoid / sigmoid11 fns ([3f085a3](https://github.com/thi-ng/umbrella/commit/3f085a3))
+
+
+
+
+
 ## [1.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.2...@thi.ng/math@1.2.3) (2019-04-24)
 
 **Note:** Version bump only for package @thi.ng/math
