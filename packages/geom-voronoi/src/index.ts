@@ -1,11 +1,7 @@
 import { IObjectOf, Pair } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { liangBarsky2, sutherlandHodgeman } from "@thi.ng/geom-clip";
-import {
-    pointInCircumCircle,
-    pointInPolygon2,
-    pointInSegment2
-} from "@thi.ng/geom-isec";
+import { pointInCircumCircle, pointInPolygon2, pointInSegment } from "@thi.ng/geom-isec";
 import { centroid, circumCenter2 } from "@thi.ng/geom-poly-utils";
 import { EPS } from "@thi.ng/math";
 import { Edge } from "@thi.ng/quad-edge";
@@ -61,7 +57,7 @@ export class DVMesh<T> {
     add(p: ReadonlyVec, val?: T, eps = EPS) {
         let [e, exists] = this.locate(p, eps);
         if (exists) return false;
-        if (pointInSegment2(p, e.origin.pos, e.dest.pos)) {
+        if (pointInSegment(p, e.origin.pos, e.dest.pos)) {
             e = e.oprev;
             e.onext.remove();
         }
