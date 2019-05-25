@@ -1,5 +1,10 @@
 import { IObjectOf } from "@thi.ng/api";
-import { IDENT44, mulM44, normal44 } from "@thi.ng/matrices";
+import {
+    IDENT44,
+    mulM44,
+    normal44,
+    ortho
+} from "@thi.ng/matrices";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import { GLMat4, ShaderUniforms } from "./api";
 
@@ -33,3 +38,12 @@ export const autoNormalMatrix2 = (model = "model", view = "view") => (
             mulM44([], $(specU, shaderU, view), $(specU, shaderU, model))
         )
     );
+
+/**
+ * Constructs a orthographic projection matrix for using 2D screen coords.
+ *
+ * @param width
+ * @param height
+ */
+export const screen2d = (width: number, height: number) =>
+    <GLMat4>ortho([], 0, width, height, 0, -1, 1);

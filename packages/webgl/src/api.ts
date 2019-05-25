@@ -9,6 +9,7 @@ import {
     Tuple,
     TypedArray
 } from "@thi.ng/api";
+import { AttribPool } from "@thi.ng/vector-pools";
 import { ReadonlyVec } from "@thi.ng/vectors";
 
 export const enum TextureFormat {
@@ -909,7 +910,7 @@ export interface ShaderState {
      * 2-element array of glBlendFunction coefficients
      * (default: `[gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA]`)
      */
-    blendFn: [GLenum, GLenum];
+    blendFn: Tuple<GLenum, 2>;
     /**
      * glBlendEquation mode
      */
@@ -988,6 +989,10 @@ export interface ModelSpec {
      * GLSL attribute declarations
      */
     attribs: ModelAttributeSpecs;
+    /**
+     * Geometry attributes given as `AttribPool` instance.
+     */
+    attribPool?: AttribPool;
     /**
      * GLSL uniform value overrides
      */
@@ -1174,3 +1179,14 @@ export const GL_RGBA32F = 0x8814;
 
 // [SRC_ALPHA, ONE_MINUS_SRC_ALPHA]
 export const DEFAULT_BLEND: Tuple<GLenum, 2> = [0x302, 0x303];
+
+export const GL_EXT_INFO = {
+    EXT_draw_buffers: {
+        gl: true,
+        alias: "GL_EXT_draw_buffers"
+    },
+    OES_standard_derivatives: {
+        gl: true,
+        alias: "GL_OES_standard_derivatives"
+    }
+};

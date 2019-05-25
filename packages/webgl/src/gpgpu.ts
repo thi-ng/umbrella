@@ -5,7 +5,6 @@ import { isNumber, isTypedArray } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import {
     assocObj,
-    every,
     map,
     range,
     transduce
@@ -68,15 +67,11 @@ export class GPGPU implements IRelease {
             this.canvas = res.canvas;
             gl = res.gl;
         }
-        const ext = getExtensions(
+        getExtensions(
             gl,
             opts.version === 1
                 ? ["WEBGL_color_buffer_float", "OES_texture_float"]
                 : ["EXT_color_buffer_float"]
-        );
-        assert(
-            every((id) => !!ext[id], Object.keys(ext)),
-            "WebGL float extension unavailable"
         );
         this.gl = gl;
         this.opts = opts;
@@ -275,7 +270,7 @@ export class GPGPUJob implements IRelease {
         }
         shaderSpec.uniforms.inputs = [GLSL.sampler2D_array, opts.inputs];
         if (ctx.opts.version === 1 && opts.outputs > 1) {
-            shaderSpec.ext["GL_EXT_draw_buffers"] = "require";
+            shaderSpec.ext.EXT_draw_buffers = "require";
         }
         spec.uniforms.inputs = [...range(opts.inputs)];
         spec.textures = ctx.inputs.slice(0, opts.inputs).map((t) => t.tex);

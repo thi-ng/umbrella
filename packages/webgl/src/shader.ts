@@ -8,6 +8,7 @@ import {
 } from "@thi.ng/checks";
 import {
     DEFAULT_OUTPUT,
+    GL_EXT_INFO,
     GLSL,
     GLSLDeclPrefixes,
     GLSLExtensionBehavior,
@@ -26,6 +27,7 @@ import {
     UniformValue,
     UniformValues
 } from "./api";
+import { getExtensions } from "./canvas";
 import { error } from "./error";
 import { GLSL_HEADER, PREFIXES, SYNTAX } from "./glsl/syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
@@ -183,6 +185,7 @@ export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
     const srcFS = prepareShaderSource(spec, "fs");
     console.log(srcVS);
     console.log(srcFS);
+    initShaderExtensions(gl, spec.ext);
     const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
     const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
     const program = gl.createProgram();
@@ -214,13 +217,37 @@ const compileVars = (
     return decls.join("\n");
 };
 
-const compileExtensionPragma = (id: string, behavior: GLSLExtensionBehavior) =>
-    `#extension ${id} : ${
-        isBoolean(behavior) ? (behavior ? "enable" : "disable") : behavior
-    }\n`;
+const compileExtensionPragma = (
+    id: string,
+    behavior: GLSLExtensionBehavior,
+    version: GLSLVersion
+) => {
+    const ext = GL_EXT_INFO[id];
+    const gl2 = version === GLSLVersion.GLES_300;
+    return !ext || (!gl2 && ext.gl) || (gl2 && ext.gl2)
+        ? `#extension ${ext.alias || id} : ${
+              isBoolean(behavior) ? (behavior ? "enable" : "disable") : behavior
+          }\n`
+        : "";
+};
+
+const initShaderExtensions = (
+    gl: WebGLRenderingContext,
+    exts: IObjectOf<GLSLExtensionBehavior>
+) => {
+    if (exts) {
+        for (let id in exts) {
+            const state = exts[id];
+            if (state === true || state === "require") {
+                getExtensions(gl, [id], state === "require");
+            }
+        }
+    }
+};
 
 export const prepareShaderSource = (spec: ShaderSpec, type: ShaderType) => {
-    const syntax = SYNTAX[spec.version || GLSLVersion.GLES_100];
+    const version = spec.version || GLSLVersion.GLES_100;
+    const syntax = SYNTAX[version];
     const prefixes = { ...PREFIXES, ...spec.declPrefixes };
     const isVS = type === "vs";
     let src = "";
@@ -232,7 +259,7 @@ export const prepareShaderSource = (spec: ShaderSpec, type: ShaderType) => {
         : GLSL_HEADER;
     if (spec.ext) {
         for (let id in spec.ext) {
-            src += compileExtensionPragma(id, spec.ext[id]);
+            src += compileExtensionPragma(id, spec.ext[id], version);
         }
     }
     if (spec.generateDecls !== false) {

@@ -68,7 +68,17 @@ export const compileModel = (
     spec: ModelSpec,
     mode = gl.STATIC_DRAW
 ) => {
-    compileAttribs(gl, spec.attribs, mode);
+    if (spec.attribPool) {
+        spec.attribs = compileAttribPool(
+            gl,
+            spec.attribPool,
+            undefined,
+            gl.ARRAY_BUFFER,
+            mode
+        );
+    } else {
+        compileAttribs(gl, spec.attribs, mode);
+    }
     spec.instances && compileAttribs(gl, spec.instances.attribs, mode);
     compileIndices(gl, spec.indices, mode);
     // TODO auto-create VAO & inject into model spec?
@@ -80,40 +90,44 @@ const compileAttribs = (
     attribs: ModelAttributeSpecs,
     mode: GLenum
 ) => {
-    if (!attribs) return;
-    for (let id in attribs) {
-        if (attribs.hasOwnProperty(id)) {
-            const attr = attribs[id];
-            if (attr.buffer) {
-                attr.data && attr.buffer.set(attr.data);
-            } else {
-                attr.buffer = new WebGLArrayBuffer(
-                    gl,
-                    attr.data,
-                    gl.ARRAY_BUFFER,
-                    mode
-                );
+    if (attribs) {
+        for (let id in attribs) {
+            if (attribs.hasOwnProperty(id)) {
+                const attr = attribs[id];
+                if (attr.buffer) {
+                    attr.data && attr.buffer.set(attr.data);
+                } else {
+                    attr.buffer = new WebGLArrayBuffer(
+                        gl,
+                        attr.data,
+                        gl.ARRAY_BUFFER,
+                        mode
+                    );
+                }
             }
         }
     }
+    return attribs;
 };
 
-const compileIndices = (
+export const compileIndices = (
     gl: WebGLRenderingContext,
     index: IndexBufferSpec,
-    mode: GLenum
+    mode: GLenum = gl.STATIC_DRAW
 ) => {
-    if (!index) return;
-    if (index.buffer) {
-        index.data && index.buffer.set(index.data);
-    } else {
-        index.buffer = new WebGLArrayBuffer(
-            gl,
-            index.data,
-            gl.ELEMENT_ARRAY_BUFFER,
-            mode
-        );
+    if (index) {
+        if (index.buffer) {
+            index.data && index.buffer.set(index.data);
+        } else {
+            index.buffer = new WebGLArrayBuffer(
+                gl,
+                index.data,
+                gl.ELEMENT_ARRAY_BUFFER,
+                mode
+            );
+        }
     }
+    return index;
 };
 
 export const compileVAO = (gl: WebGLRenderingContext, spec: ModelSpec) => {

@@ -11,7 +11,7 @@ import { lambert } from "../glsl/lighting";
 import { ALIAS_TEXTURE } from "../glsl/syntax";
 import { mvp, surfaceNormal } from "../glsl/vertex";
 import { defMaterial } from "../material";
-import { autoNormalMatrix2 } from "../normal-mat";
+import { autoNormalMatrix2 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
 
 export type LambertOpts = ShaderOpts<

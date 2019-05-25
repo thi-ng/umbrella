@@ -7,7 +7,7 @@ import {
 import { defglslA } from "../glsl/assemble";
 import { surfaceNormal } from "../glsl/vertex";
 import { defMaterial } from "../material";
-import { autoNormalMatrix1 } from "../normal-mat";
+import { autoNormalMatrix1 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
 
 export type PhongOpts = ShaderOpts<

@@ -6,7 +6,7 @@ export * from "./error";
 export * from "./fbo";
 export * from "./gpgpu";
 export * from "./material";
-export * from "./normal-mat";
+export * from "./matrices";
 export * from "./pipeline";
 export * from "./rbo";
 export * from "./shader";
