@@ -6,7 +6,7 @@ import {
     TypedArray
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
-import { MemPool, wrap } from "@thi.ng/malloc";
+import { MemPool, TYPEDARRAY_CTORS, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { AttribPoolOpts, AttribSpec } from "./api";
@@ -99,9 +99,9 @@ export class AttribPool implements IRelease {
     }
 
     *attribValues(id: string) {
-        const buf = this.attribs[id];
-        assert(!!buf, `invalid attrib: ${id}`);
         const spec = this.specs[id];
+        assert(!!spec, `invalid attrib: ${id}`);
+        const buf = this.attribs[id];
         const stride = spec.stride;
         const size = spec.size;
         if (size > 1) {
@@ -113,6 +113,26 @@ export class AttribPool implements IRelease {
                 yield buf[i * stride];
             }
         }
+    }
+
+    attribArray(id: string) {
+        const spec = this.specs[id];
+        assert(!!spec, `invalid attrib: ${id}`);
+        const n = this.capacity;
+        const size = spec.size;
+        const stride = spec.stride;
+        const src = this.attribs[id];
+        const dest = new TYPEDARRAY_CTORS[(asNativeType(spec.type))](n * size);
+        if (size > 1) {
+            for (let i = 0, j = 0; i < n; i++, j += stride) {
+                dest.set(src.subarray(j, j + size), i * size);
+            }
+        } else {
+            for (let i = 0; i < n; i++) {
+                dest[i] = src[i * stride];
+            }
+        }
+        return dest;
     }
 
     setAttribValue(id: string, index: number, v: number | ReadonlyVec) {

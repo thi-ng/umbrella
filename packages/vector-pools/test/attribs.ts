@@ -61,5 +61,15 @@ describe("vector-pools", () => {
                 [255, 254, 253, 252]
             ]
         );
+        // prettier-ignore
+        assert.deepEqual(
+            pool.attribArray("pos"),
+            [1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        );
+        // prettier-ignore
+        assert.deepEqual(
+            pool.attribArray("index"),
+            [10, 20, 0, 0, 0, 0, 0, 0]
+        );
     });
 });
