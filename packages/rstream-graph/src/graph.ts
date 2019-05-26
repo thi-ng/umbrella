@@ -228,17 +228,23 @@ export const stop = (graph: Graph) => {
  * function will throw an error if `inputIDs` is given and the object of
  * inputs does not contain all of them.
  *
+ * If `reset` is true (default: false), the `xform` will only re-run
+ * when all inputs have produced new values. See thi.ng/rstream
+ * `StreamSync` for further reference.
+ *
  * @param xform
  * @param inputIDs
+ * @param reset
  */
 export const node = (
     xform: Transducer<IObjectOf<any>, any>,
-    inputIDs?: string[]
+    inputIDs?: string[],
+    reset = false
 ): NodeFactory<any> => (
     src: IObjectOf<ISubscribable<any>>,
     id: string
 ): StreamSync<any, any> => (
-    ensureInputs(src, inputIDs, id), sync({ src, xform, id })
+    ensureInputs(src, inputIDs, id), sync({ src, xform, id, reset })
 );
 
 /**
