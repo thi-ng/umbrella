@@ -19,7 +19,7 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
                 drawInstanced(gl, spec);
             } else {
                 gl.drawElements(
-                    spec.mode || gl.TRIANGLES,
+                    spec.mode,
                     spec.num,
                     indices.data instanceof Uint32Array
                         ? gl.UNSIGNED_INT
@@ -31,7 +31,7 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
             if (spec.instances) {
                 drawInstanced(gl, spec);
             } else {
-                gl.drawArrays(spec.mode || gl.TRIANGLES, 0, spec.num);
+                gl.drawArrays(spec.mode, 0, spec.num);
             }
         }
         spec.shader.unbind(null);
@@ -60,7 +60,6 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
                 : ext.vertexAttribDivisorANGLE(attr.loc, div);
         }
     }
-    const mode = spec.mode || gl.TRIANGLES;
     if (spec.indices) {
         const type =
             spec.indices.data instanceof Uint32Array
@@ -68,14 +67,14 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
                 : gl.UNSIGNED_SHORT;
         isGL2
             ? (<WebGL2RenderingContext>gl).drawElementsInstanced(
-                  mode,
+                  spec.mode,
                   spec.num,
                   type,
                   0,
                   spec.instances.num
               )
             : ext.drawElementsInstancedANGLE(
-                  mode,
+                  spec.mode,
                   spec.num,
                   type,
                   0,
@@ -84,13 +83,13 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
     } else {
         isGL2
             ? (<WebGL2RenderingContext>gl).drawArraysInstanced(
-                  mode,
+                  spec.mode,
                   0,
                   spec.num,
                   spec.instances.num
               )
             : ext.drawArraysInstancedANGLE(
-                  mode,
+                  spec.mode,
                   0,
                   spec.num,
                   spec.instances.num

@@ -81,6 +81,7 @@ export const compileModel = (
     }
     spec.instances && compileAttribs(gl, spec.instances.attribs, mode);
     compileIndices(gl, spec.indices, mode);
+    spec.mode == null && (spec.mode = gl.TRIANGLES);
     // TODO auto-create VAO & inject into model spec?
     return spec;
 };
