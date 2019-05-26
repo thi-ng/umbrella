@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
 import {
     IDENT44,
     mulM44,
@@ -40,10 +41,17 @@ export const autoNormalMatrix2 = (model = "model", view = "view") => (
     );
 
 /**
- * Constructs a orthographic projection matrix for using 2D screen coords.
+ * Constructs a orthographic projection matrix for using 2D screen
+ * coords. If a WebGL context is given, the its `drawingBufferWidth` &
+ * `drawingBufferHeight` values are used.
  *
  * @param width
  * @param height
  */
-export const screen2d = (width: number, height: number) =>
-    <GLMat4>ortho([], 0, width, height, 0, -1, 1);
+export function screen2d(width: number, height: number): GLMat4;
+export function screen2d(gl: WebGLRenderingContext): GLMat4;
+export function screen2d(gl: WebGLRenderingContext | number, height?: number) {
+    return isNumber(gl)
+        ? ortho([], 0, gl, height, 0, -1, 1)
+        : ortho([], 0, gl.drawingBufferWidth, gl.drawingBufferHeight, 0, -1, 1);
+}
