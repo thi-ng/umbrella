@@ -26,9 +26,7 @@ export const msdfSample = defglsl(
     [median3]
 );
 
-export const MSDF_SHADER = (
-    opts: Partial<MSDFShaderOpts> = {}
-): ShaderSpec => ({
+export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
     vs: `void main() {
     v_uv = a_uv;
     ${opts.color ? "v_color = a_color;" : ""}
