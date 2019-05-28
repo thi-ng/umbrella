@@ -79,6 +79,8 @@ const createText = (
         ...text(font, txt, {
             align: alignCenter,
             leading: 1.4,
+            spacing: 1,
+            dirY: -1,
             useColor: true
         }),
         shader: shader(gl, msdfShader({ color: true })),
@@ -214,8 +216,8 @@ const app = () => {
                     transform44(
                         [],
                         [0, fitClamped(time % 70000, 0, 70000, -3.5, 20), 0],
-                        [0, 0, 0],
-                        mulN(null, [1, -1, 1], 0.005)
+                        ZERO3,
+                        0.005
                     )
                 )
             );
