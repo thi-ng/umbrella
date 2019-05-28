@@ -1,4 +1,4 @@
-import { Fn2, IObjectOf } from "@thi.ng/api";
+import { Fn3, IObjectOf } from "@thi.ng/api";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import { GLVec4 } from "@thi.ng/webgl";
 
@@ -41,7 +41,14 @@ export interface MSDFFont {
     }>;
 }
 
-export type TextAlign = Fn2<MSDFFont, string, number>;
+/**
+ * Alignment function for a single line of text.
+ *
+ * @param font
+ * @param dir
+ * @param line
+ */
+export type TextAlign = Fn3<MSDFFont, TextOpts, string, number>;
 
 export interface TextOpts {
     /**
@@ -50,9 +57,21 @@ export interface TextOpts {
      */
     align: TextAlign;
     /**
+     * Horizontal spacing multiplier. Default: 1.0
+     */
+    spacing: number;
+    /**
      * Leading (line height multiplier). Default: 1.0
      */
     leading: number;
+    /**
+     * X direction. Default: 1
+     */
+    dirX: 1 | -1;
+    /**
+     * Y direction. Default: 1
+     */
+    dirY: 1 | -1;
     /**
      * If true, `text()` will produce color attributes.
      */

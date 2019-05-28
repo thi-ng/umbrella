@@ -6,17 +6,33 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { AttribPool, GLType } from "@thi.ng/vector-pools";
-import { add2, div2, ONE4 } from "@thi.ng/vectors";
+import {
+    add2,
+    div2,
+    madd2,
+    mul2,
+    ONE4
+} from "@thi.ng/vectors";
 import { GLVec4, ModelSpec } from "@thi.ng/webgl";
-import { MSDFFont, TextOpts } from "./api";
+import { MSDFFont, TextAlign, TextOpts } from "./api";
 
 export const text = (
     glyphs: MSDFFont,
     txt: string,
     opts?: Partial<TextOpts>
 ) => {
-    opts = { align: alignLeft, leading: 1, color: <GLVec4>ONE4, ...opts };
-    let len = txt.replace("\n", "").length;
+    opts = {
+        align: alignLeft,
+        spacing: 1,
+        leading: 1,
+        dirX: 1,
+        dirY: 1,
+        color: <GLVec4>ONE4,
+        ...opts
+    };
+    const dir = [opts.dirX, opts.dirY];
+    const lineHeight = glyphs.lineHeight * opts.leading * opts.dirY;
+    const len = txt.replace("\n", "").length;
     const attribs = new AttribPool({
         attribs: {
             position: { type: GLType.F32, size: 3, byteOffset: 0 },
@@ -40,13 +56,11 @@ export const text = (
     const lines = txt.split("\n");
     for (let i = 0, yy = 0, id = 0; i < lines.length; i++) {
         const line = lines[i];
-        let xx = opts.align(glyphs, line);
+        let xx = opts.align(glyphs, <TextOpts>opts, line);
         for (let j = 0; j < line.length; j++, id++) {
             const g = glyphs.chars[line[j]];
-            let [x, y] = g.offset;
-            let [sx, sy] = g.size;
-            x += xx;
-            y += yy;
+            const [sx, sy] = mul2([], g.size, dir);
+            const [x, y] = madd2([], [xx, yy], g.offset, dir);
             attribs.setAttribValues(
                 "position",
                 [
@@ -61,15 +75,15 @@ export const text = (
                 "uv",
                 [
                     div2([], g.pos, glyphs.size),
-                    div2([], [g.pos[0] + sx, g.pos[1]], glyphs.size),
+                    div2([], [g.pos[0] + g.size[0], g.pos[1]], glyphs.size),
                     div2([], add2([], g.pos, g.size), glyphs.size),
-                    div2([], [g.pos[0], g.pos[1] + sy], glyphs.size)
+                    div2([], [g.pos[0], g.pos[1] + g.size[1]], glyphs.size)
                 ],
                 id * 4
             );
-            xx += g.step;
+            xx += g.step * opts.dirX * opts.spacing;
         }
-        yy += glyphs.lineHeight * opts.leading;
+        yy += lineHeight;
     }
     return <ModelSpec>{
         attribPool: attribs,
@@ -90,10 +104,10 @@ export const text = (
 export const textWidth = (font: MSDFFont, txt: string) =>
     transduce(map((x) => font.chars[x].step), add(), txt);
 
-export const alignLeft = () => 0;
+export const alignLeft: TextAlign = () => 0;
 
-export const alignRight = (font: MSDFFont, line: string) =>
-    -textWidth(font, line);
+export const alignRight: TextAlign = (font, opts, line) =>
+    -opts.dirX * opts.spacing * textWidth(font, line);
 
-export const alignCenter = (font: MSDFFont, line: string) =>
-    -textWidth(font, line) / 2;
+export const alignCenter: TextAlign = (font, opts, line) =>
+    (-opts.dirX * opts.spacing * textWidth(font, line)) / 2;
