@@ -137,8 +137,8 @@ export class StreamSync<A, B> extends Subscription<A, B> {
 
     constructor(opts: Partial<StreamSyncOpts<A, B>>) {
         let srcIDs = new Set<string>();
-        let xform: Transducer<any, any> = comp(
-            partitionSync<A>(srcIDs, {
+        let xform: Transducer<[string, A], any> = comp(
+            partitionSync(srcIDs, {
                 key: (x) => x[0],
                 mergeOnly: opts.mergeOnly === true,
                 reset: opts.reset === true,
@@ -149,7 +149,12 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         if (opts.xform) {
             xform = comp(xform, opts.xform);
         }
-        super(null, xform, null, opts.id || `streamsync-${nextID()}`);
+        super(
+            null,
+            <Transducer<any, any>>xform,
+            null,
+            opts.id || `streamsync-${nextID()}`
+        );
         this.sources = new Map();
         this.realSourceIDs = new Map();
         this.invRealSourceIDs = new Map();
@@ -172,7 +177,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             src,
             src.subscribe(
                 {
-                    next: (x) => {
+                    next: (x: any) => {
                         if (x[1] instanceof Subscription) {
                             this.add(x[1]);
                         } else {
@@ -195,7 +200,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                 this.sourceIDs.add(id);
             }
             for (let id in src) {
-                this.add(src[id], id);
+                this.add((<any>src)[id], id);
             }
         } else {
             // pre-add all source ids for partitionSync
@@ -256,7 +261,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     }
 
     getSources() {
-        const res = {};
+        const res: IObjectOf<ISubscribable<A>> = {};
         for (let [id, src] of this.idSources) {
             res[this.invRealSourceIDs.get(id)] = src;
         }

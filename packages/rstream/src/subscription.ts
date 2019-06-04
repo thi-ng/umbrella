@@ -135,7 +135,7 @@ export class Subscription<A, B>
         if (implementsFunction(sub, "subscribe")) {
             sub.parent = this;
         } else {
-            sub = subscription(sub, xform, this, id);
+            sub = subscription<B, B>(sub, xform, this, id);
         }
         if (this.last !== SEMAPHORE) {
             sub.next(this.last);

@@ -16,7 +16,7 @@ export const fromEvent = (
     opts: boolean | AddEventListenerOptions = false
 ) =>
     new Stream<Event>((stream) => {
-        let listener = (e) => stream.next(e);
+        let listener = (e: Event) => stream.next(e);
         src.addEventListener(name, listener, opts);
         return () => src.removeEventListener(name, listener, opts);
     }, `event-${name}-${nextID()}`);

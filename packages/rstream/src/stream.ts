@@ -62,9 +62,9 @@ import { nextID } from "./utils/idgen";
  */
 export function stream<T>(): Stream<T>;
 export function stream<T>(id: string): Stream<T>;
-export function stream<T>(src: StreamSource<T>);
-export function stream<T>(src: StreamSource<T>, id: string);
-export function stream(src?, id?) {
+export function stream<T>(src: StreamSource<T>): Stream<T>;
+export function stream<T>(src: StreamSource<T>, id: string): Stream<T>;
+export function stream(src?: any, id?: string) {
     return new Stream(src, id);
 }
 
@@ -109,7 +109,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
     subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
     subscribe(...args: any[]) {
-        const wrapped = super.subscribe.apply(this, args);
+        const wrapped = super.subscribe.apply(this, <any>args);
         if (this.subs.length === 1) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
         }
