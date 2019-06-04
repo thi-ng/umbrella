@@ -8,11 +8,12 @@ export type UpdateFn<T> = (curr: T, ...args: any[]) => T;
 const isa = Array.isArray;
 const iss = isString;
 
-const _copy = (s) => (isa(s) ? s.slice() : { ...s });
+const _copy = (s: any) => (isa(s) ? s.slice() : { ...s });
 
-const compS = (k, f) => (s, v) => (
-    (s = _copy(s)), (s[k] = f ? f(s[k], v) : v), s
-);
+const compS = (k: PropertyKey, f: (o: any, v: any) => any) => (
+    s: any,
+    v: any
+) => ((s = _copy(s)), (s[k] = f ? f(s[k], v) : v), s);
 
 /**
  * Converts the given key path to canonical form (array).
@@ -103,14 +104,14 @@ export const getter = (path: Path) => {
     let [a, b, c, d] = ks;
     switch (ks.length) {
         case 0:
-            return (s) => s;
+            return (s: any) => s;
         case 1:
-            return (s) => (s != null ? s[a] : undefined);
+            return (s: any) => (s != null ? s[a] : undefined);
         case 2:
-            return (s) =>
+            return (s: any) =>
                 s != null ? ((s = s[a]) != null ? s[b] : undefined) : undefined;
         case 3:
-            return (s) =>
+            return (s: any) =>
                 s != null
                     ? (s = s[a]) != null
                         ? (s = s[b]) != null
@@ -119,7 +120,7 @@ export const getter = (path: Path) => {
                         : undefined
                     : undefined;
         case 4:
-            return (s) =>
+            return (s: any) =>
                 s != null
                     ? (s = s[a]) != null
                         ? (s = s[b]) != null
@@ -130,7 +131,7 @@ export const getter = (path: Path) => {
                         : undefined
                     : undefined;
         default:
-            return (s) => {
+            return (s: any) => {
                 const n = ks.length - 1;
                 let res = s;
                 for (let i = 0; res != null && i <= n; i++) {
@@ -310,7 +311,7 @@ export const updater = (path: Path, fn: UpdateFn<any>) => {
     const g = getter(path);
     const s = setter(path);
     return (state: any, ...args: any[]) =>
-        s(state, fn.apply(null, (args.unshift(g(state)), args)));
+        s(state, fn.apply(null, <any>(args.unshift(g(state)), args)));
 };
 
 /**
@@ -336,7 +337,7 @@ export const updateIn = (
 ) =>
     setter(path)(
         state,
-        fn.apply(null, (args.unshift(getter(path)(state)), args))
+        fn.apply(null, <any>(args.unshift(getter(path)(state)), args))
     );
 
 /**
@@ -377,11 +378,11 @@ export const mutator = (path: Path) => {
     let [a, b, c, d] = ks;
     switch (ks.length) {
         case 0:
-            return (_, x) => x;
+            return (_: any, x: any) => x;
         case 1:
-            return (s, x) => (s ? ((s[a] = x), s) : undefined);
+            return (s: any, x: any) => (s ? ((s[a] = x), s) : undefined);
         case 2:
-            return (s, x) => {
+            return (s: any, x: any) => {
                 let t;
                 return s
                     ? (t = s[a])
@@ -390,7 +391,7 @@ export const mutator = (path: Path) => {
                     : undefined;
             };
         case 3:
-            return (s, x) => {
+            return (s: any, x: any) => {
                 let t;
                 return s
                     ? (t = s[a])
@@ -401,7 +402,7 @@ export const mutator = (path: Path) => {
                     : undefined;
             };
         case 4:
-            return (s, x) => {
+            return (s: any, x: any) => {
                 let t;
                 return s
                     ? (t = s[a])
@@ -414,7 +415,7 @@ export const mutator = (path: Path) => {
                     : undefined;
             };
         default:
-            return (s, x) => {
+            return (s: any, x: any) => {
                 let t = s;
                 const n = ks.length - 1;
                 for (let k = 0; k < n; k++) {
