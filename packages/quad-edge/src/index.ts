@@ -50,7 +50,7 @@ export class Edge<T> {
 
     id: number;
     parent: QuadEdge<T>;
-    origin: T;
+    origin: T | undefined;
 
     constructor(parent: QuadEdge<T>, id: number) {
         this.parent = parent;
@@ -60,7 +60,7 @@ export class Edge<T> {
     /**
      * Next CCW edge from this edge's origin.
      */
-    onext: Edge<T>;
+    onext: Edge<T> | undefined;
 
     /**
      * Next CW edge from this edge's origin.
