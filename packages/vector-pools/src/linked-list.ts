@@ -2,9 +2,16 @@ import { StridedVec, Vec } from "@thi.ng/vectors";
 import { AVecList } from "./alist";
 import { VecFactory } from "./api";
 
+interface Cell<T extends StridedVec> {
+    prev: CellVec<T>;
+    next: CellVec<T>;
+}
+
+type CellVec<T extends StridedVec> = T & Cell<T>;
+
 export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
-    head: T;
-    tail: T;
+    head: CellVec<T>;
+    tail: CellVec<T>;
     readonly closed: boolean;
 
     protected _length: number;
@@ -39,7 +46,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
 
     *[Symbol.iterator]() {
         if (this._length) {
-            let v: any = this.head;
+            let v = this.head;
             const first = v;
             do {
                 yield v;
@@ -53,15 +60,15 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
     }
 
     add(): T {
-        const v: any = this.alloc();
+        const v = <CellVec<T>>this.alloc();
         if (v) {
             if (this.tail) {
                 v.prev = this.tail;
-                (<any>this.tail).next = v;
+                this.tail.next = v;
                 this.tail = v;
                 if (this.closed) {
                     v.next = this.head;
-                    (<any>this.head).prev = v;
+                    this.head.prev = v;
                 }
                 this._length++;
             } else {
@@ -77,9 +84,9 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
         if (!this._length) {
             return i === 0 ? this.add() : undefined;
         }
-        const q: any = this.nth(i);
+        const q = <CellVec<T>>this.nth(i);
         if (!q) return;
-        const v: any = this.alloc();
+        const v = <CellVec<T>>this.alloc();
         if (v) {
             if (this.head === q) {
                 this.head = v;
@@ -99,7 +106,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
         if (this.has(vec)) {
             this._length--;
             this.freeIDs.push(vec.offset);
-            const v: any = vec;
+            const v = <CellVec<T>>vec;
             if (v.prev) {
                 v.prev.next = v.next;
             }
@@ -119,7 +126,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
     }
 
     has(value: T) {
-        let v: any = this.head;
+        let v = this.head;
         const first = v;
         do {
             if (v === value) {
@@ -130,7 +137,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
         return false;
     }
 
-    nth(n: number): T {
+    nth(n: number): T | undefined {
         if (n < 0) {
             n += this._length;
         }

@@ -41,7 +41,7 @@ export interface IVecPool extends IRelease {
 
     free(vec: StridedVec | TypedArray): boolean;
 
-    freeAll();
+    freeAll(): void;
 }
 
 export type VecFactory = (
@@ -72,7 +72,7 @@ export const enum GLType {
 /**
  * Conversion from `GLType` to `Type`.
  */
-export const GL2TYPE = {
+export const GL2TYPE: { [id: number]: Type } = {
     [GLType.I8]: Type.I8,
     [GLType.U8]: Type.U8,
     [GLType.I16]: Type.I16,
@@ -86,7 +86,7 @@ export const GL2TYPE = {
 /**
  * Conversion from `Type` to `GLType`.
  */
-export const TYPE2GL = {
+export const TYPE2GL: { [id: number]: GLType } = {
     [Type.I8]: GLType.I8,
     [Type.U8]: GLType.U8,
     [Type.I16]: GLType.I16,
