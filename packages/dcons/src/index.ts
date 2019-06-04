@@ -397,7 +397,7 @@ export class DCons<T>
         if (n < 0 || n >= this._length) {
             return;
         }
-        let cell, dir;
+        let cell, dir: keyof ConsCell<T>;
         if (n <= this._length >> 1) {
             cell = this.head;
             dir = "next";
