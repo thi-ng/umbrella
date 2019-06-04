@@ -33,5 +33,5 @@ export function complement<A, B, C, D, E, F, G, H>(
     f: Fn8<A, B, C, D, E, F, G, H, boolean>
 ): Fn8<A, B, C, D, E, F, G, H, boolean>;
 export function complement(f: FnAny<boolean>) {
-    return (...xs) => !f(...xs);
+    return (...xs: any[]) => !f(...xs);
 }
