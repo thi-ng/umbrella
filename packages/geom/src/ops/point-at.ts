@@ -1,4 +1,5 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, fit01, TAU } from "@thi.ng/math";
@@ -11,8 +12,6 @@ import {
     mixQuadratic,
     Vec
 } from "@thi.ng/vectors";
-import { dispatch } from "../internal/dispatch";
-import { vertices } from "./vertices";
 import {
     Arc,
     Circle,
@@ -24,10 +23,12 @@ import {
     Ray,
     Rect
 } from "../api";
+import { dispatch } from "../internal/dispatch";
+import { vertices } from "./vertices";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 
-pointAt.addAll({
+pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.ARC]: ($: Arc, t: number) => $.pointAtTheta(fit01(t, $.start, $.end)),
 
     [Type.CIRCLE]: ($: Circle, t) => cartesian2(null, [$.r, TAU * t], $.pos),

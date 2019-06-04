@@ -1,15 +1,21 @@
+import { IObjectOf } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
-import { defmulti } from "@thi.ng/defmulti";
-import { IShape, PathSegment, SegmentType, Type } from "@thi.ng/geom-api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import {
+    IShape,
+    PathSegment,
+    SegmentType,
+    Type
+} from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
 import { Vec } from "@thi.ng/vectors";
+import { Path, Polygon, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
-import { Path, Polygon, Polyline } from "../api";
 
 export const simplify = defmulti<IShape, number, IShape>(dispatch);
 
-simplify.addAll({
+simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
     [Type.PATH]: (path: Path, eps = 0.1) => {
         const res: PathSegment[] = [];
         const orig = path.segments;

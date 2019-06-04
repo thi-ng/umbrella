@@ -1,9 +1,21 @@
-import { defmulti } from "@thi.ng/defmulti";
-import { AABBLike, IShape, PathSegment, PCLike, Type } from "@thi.ng/geom-api";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1 } from "@thi.ng/defmulti";
+import {
+    AABBLike,
+    IShape,
+    PathSegment,
+    PCLike,
+    Type
+} from "@thi.ng/geom-api";
 import { bounds as arcBounds } from "@thi.ng/geom-arc";
 import { bounds as _bounds } from "@thi.ng/geom-poly-utils";
 import { cubicBounds, quadraticBounds } from "@thi.ng/geom-splines";
-import { comp, filter, iterator1, map } from "@thi.ng/transducers";
+import {
+    comp,
+    filter,
+    iterator1,
+    map
+} from "@thi.ng/transducers";
 import {
     max,
     MAX2,
@@ -15,9 +27,6 @@ import {
     sub2,
     subN2
 } from "@thi.ng/vectors";
-import { rectFromMinMax } from "../ctors/rect";
-import { collBounds } from "../internal/coll-bounds";
-import { dispatch } from "../internal/dispatch";
 import {
     Arc,
     Circle,
@@ -29,10 +38,13 @@ import {
     Quadratic,
     Rect
 } from "../api";
+import { rectFromMinMax } from "../ctors/rect";
+import { collBounds } from "../internal/coll-bounds";
+import { dispatch } from "../internal/dispatch";
 
 export const bounds = defmulti<IShape, AABBLike>(dispatch);
 
-bounds.addAll({
+bounds.addAll(<IObjectOf<Implementation1<unknown, AABBLike>>>{
     [Type.ARC]: ($: Arc) =>
         rectFromMinMax(...arcBounds($.pos, $.r, $.axis, $.start, $.end)),
 

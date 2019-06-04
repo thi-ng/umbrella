@@ -1,14 +1,17 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { Sampler } from "@thi.ng/geom-resample";
-import {
-    quadraticSplitNearPoint,
-    splitCubicNearPoint
-} from "@thi.ng/geom-splines";
+import { quadraticSplitNearPoint, splitCubicNearPoint } from "@thi.ng/geom-splines";
 import { clamp01 } from "@thi.ng/math";
 import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
-import { Cubic, Line, Polyline, Quadratic } from "../api";
+import {
+    Cubic,
+    Line,
+    Polyline,
+    Quadratic
+} from "../api";
 import { dispatch } from "../internal/dispatch";
 import { splitLine } from "../internal/split";
 
@@ -31,7 +34,9 @@ import { splitLine } from "../internal/split";
  */
 export const splitNearPoint = defmulti<IShape, ReadonlyVec, IShape[]>(dispatch);
 
-splitNearPoint.addAll({
+splitNearPoint.addAll(<
+    IObjectOf<Implementation2<unknown, ReadonlyVec, IShape[]>>
+>{
     [Type.CUBIC]: ({ points, attribs }: Cubic, p) =>
         splitCubicNearPoint(p, points[0], points[1], points[2], points[3]).map(
             (pts) => new Cubic(pts, { ...attribs })

@@ -1,4 +1,5 @@
-import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc";
 import {
@@ -30,11 +31,13 @@ import {
 } from "../api";
 import { dispatch } from "../internal/dispatch";
 
-export const closestPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(
-    dispatch
-);
+export const closestPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(<
+    any
+>dispatch);
 
-closestPoint.addAll({
+closestPoint.addAll(<
+    IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>
+>{
     [Type.AABB]: ($: AABB, p, out = []) =>
         closestPointAABB(p, $.pos, add3([], $.pos, $.size), out),
 

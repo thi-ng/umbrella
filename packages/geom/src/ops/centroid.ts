@@ -1,4 +1,5 @@
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import {
     AABBLike,
     IShape,
@@ -28,7 +29,7 @@ import { bounds } from "./bounds";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
 
-centroid.addAll({
+centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
     [Type.CIRCLE]: ($: Circle, out?) => set(out || [], $.pos),
 
     [Type.GROUP]: ($: Group) => centroid(bounds($)),

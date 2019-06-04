@@ -1,4 +1,5 @@
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils";
 import { PI } from "@thi.ng/math";
@@ -51,7 +52,7 @@ import { dispatch } from "../internal/dispatch";
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
 
-area.addAll({
+area.addAll(<IObjectOf<Implementation1O<unknown, boolean, number>>>{
     [Type.AABB]: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
 
     [Type.ARC]:

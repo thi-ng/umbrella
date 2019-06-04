@@ -1,5 +1,11 @@
-import { defmulti } from "@thi.ng/defmulti";
-import { IShape, PCLike, SamplingOpts, Type } from "@thi.ng/geom-api";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import {
+    IShape,
+    PCLike,
+    SamplingOpts,
+    Type
+} from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample";
 import { Polygon, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
@@ -11,8 +17,10 @@ export const resample = defmulti<
     IShape
 >(dispatch);
 
-resample.addAll({
-    [Type.CIRCLE]: ($, opts) => asPolygon($, opts),
+resample.addAll(<
+    IObjectOf<Implementation2<unknown, number | Partial<SamplingOpts>, IShape>>
+>{
+    [Type.CIRCLE]: ($: IShape, opts) => asPolygon($, opts),
 
     [Type.POLYGON]: ($: PCLike, opts) =>
         new Polygon(_resample($.points, opts, true, true), { ...$.attribs }),
