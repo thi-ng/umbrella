@@ -94,7 +94,7 @@ export class HDOMNode {
         }
     }
 
-    toHiccup() {
+    toHiccup(): any {
         if (this.isText()) {
             return this.body;
         }
@@ -122,7 +122,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         parent: HDOMNode,
         tree: any,
         child?: number
-    ) {
+    ): HDOMNode | HDOMNode[] {
         return createTree(opts, this, parent, tree, child);
     }
 
@@ -183,7 +183,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         tree: any
     ) {
         this.removeChild(parent, child);
-        this.createTree(opts, parent, tree, child);
+        return this.createTree(opts, parent, tree, child);
     }
 
     getChild(parent: HDOMNode, i: number) {
@@ -228,7 +228,9 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     }
             }
         } else {
-            el[id] != null ? (el[id] = null) : delete el.attribs[id];
+            (<any>el)[id] != null
+                ? ((<any>el)[id] = null)
+                : delete el.attribs[id];
         }
         return el;
     }
@@ -243,7 +245,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     i >= 0 && listeners.splice(i, 1);
                 }
             } else {
-                el[a] ? (el[a] = null) : delete el.attribs[a];
+                (<any>el)[a] ? ((<any>el)[a] = null) : delete el.attribs[a];
             }
         }
     }
