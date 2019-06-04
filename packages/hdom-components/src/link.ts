@@ -6,11 +6,16 @@ export const link = (attribs: any, body: any) => [
     body
 ];
 
-export const appLink = (_, attribs: any, onclick: EventListener, body: any) => [
+export const appLink = (
+    _: any,
+    attribs: any,
+    onclick: EventListener,
+    body: any
+) => [
     "a",
     {
         href: "#",
-        onclick: (e) => {
+        onclick: (e: Event) => {
             e.preventDefault();
             onclick(e);
         },

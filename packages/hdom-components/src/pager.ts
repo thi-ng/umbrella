@@ -137,7 +137,7 @@ export const pager = (opts: PagerOpts) => {
         },
         opts
     );
-    return (_, id: number, num: number, pageLen = 10, maxBts = 5) => {
+    return (_: any, id: number, num: number, pageLen = 10, maxBts = 5) => {
         const bt = opts.button;
         const step = opts.navStep;
         const maxID = Math.floor(Math.max(0, num - 1) / pageLen);

@@ -53,7 +53,7 @@ export interface ButtonGroupItem extends Array<any> {
 }
 
 export type ButtonGroup = (
-    _,
+    _: any,
     args: ButtonGroupArgs,
     ...buttons: ButtonGroupItem[]
 ) => any;

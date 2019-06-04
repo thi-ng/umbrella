@@ -41,7 +41,11 @@ export interface SparklineOpts {
  * @param opts config options
  * @param vals data values
  */
-export const sparkline = (_, opts: Partial<SparklineOpts>, vals: number[]) => {
+export const sparkline = (
+    _: any,
+    opts: Partial<SparklineOpts>,
+    vals: number[]
+) => {
     opts = {
         min: 0,
         max: 100,

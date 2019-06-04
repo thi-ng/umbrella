@@ -42,7 +42,7 @@ export const title = (opts?: Partial<TitleOpts>) => {
         },
         opts
     );
-    return (_, title, subtitle) => [
+    return (_: any, title: any, subtitle: any) => [
         opts.element,
         opts.attribs,
         title,

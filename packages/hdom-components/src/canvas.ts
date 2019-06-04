@@ -47,8 +47,16 @@ export interface CanvasHandlers<T extends CanvasContext> {
  * @param handlers user handlers
  * @param opts canvas context creation options
  */
-const _canvas = (type, handlers: Partial<CanvasHandlers<any>>, opts) => {
-    let el, ctx;
+const _canvas = (
+    type: string,
+    handlers: Partial<CanvasHandlers<any>>,
+    opts: Canvas2DContextAttributes | WebGLContextAttributes
+) => {
+    let el: HTMLCanvasElement;
+    let ctx:
+        | CanvasRenderingContext2D
+        | WebGLRenderingContext
+        | WebGL2RenderingContext;
     let frame = 0;
     let time = 0;
     return {

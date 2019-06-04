@@ -78,7 +78,7 @@ export const button = (opts?: Partial<ButtonOpts>): Button => {
                   {
                       ...mergeAttribs(opts.attribs, args.attribs),
                       onclick: opts.preventDefault
-                          ? (e) => (e.preventDefault(), args.onclick(e))
+                          ? (e: Event) => (e.preventDefault(), args.onclick(e))
                           : args.onclick
                   },
                   ...body

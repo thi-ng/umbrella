@@ -39,7 +39,7 @@ export const fpsCounter = (opts?: Partial<FpsCounterOpts>) => {
         sparkline: {},
         ...opts
     };
-    return {
+    return <any>{
         init() {
             this.last = Date.now();
             this.lastLabel = this.last;
