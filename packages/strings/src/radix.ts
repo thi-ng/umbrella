@@ -14,13 +14,15 @@ export const radix: (
     radix: number,
     len: number,
     prefix?: string
-) => Stringer<number> = memoizeJ((radix: number, n: number, prefix = "") => {
-    const buf = repeat("0", n);
-    return (x: any) => {
-        x = (x >>> 0).toString(radix);
-        return prefix + (x.length < n ? buf.substr(x.length) + x : x);
-    };
-});
+) => Stringer<number> = memoizeJ(
+    (radix: number, n: number, prefix: string = "") => {
+        const buf = repeat("0", n);
+        return (x: any) => {
+            x = (x >>> 0).toString(radix);
+            return prefix + (x.length < n ? buf.substr(x.length) + x : x);
+        };
+    }
+);
 
 /**
  * 8bit binary conversion preset.
