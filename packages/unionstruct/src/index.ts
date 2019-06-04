@@ -16,7 +16,7 @@ export interface Field extends Array<any> {
     [2]?: any;
 }
 
-const TYPES = {
+const TYPES: { [id: string]: [number, string, boolean] } = {
     f64: [64, "Float", false],
     f32: [32, "Float", false],
     u32: [32, "Uint", false],
@@ -33,7 +33,11 @@ const STRUCT = "struct";
 const isBitField = (f: Field) =>
     typeof f[2] === "number" && /^(u|i)\d+$/.test(f[1]);
 
-const align = (bitOffset: number, type: string, spec: any) => {
+const align = (
+    bitOffset: number,
+    type: keyof typeof TYPES | "union" | "struct",
+    spec: any
+): number => {
     if (type === UNION) {
         spec = spec.__spec || spec;
         let a = 0,
@@ -124,7 +128,7 @@ const bitWriter = (
     let m = bit < 32 ? ~((1 << bit) - 1) : 0;
     if (b >= 0) {
         m |= (1 << b) - 1;
-        return (x) => {
+        return (x: number) => {
             dv.setUint32(
                 byteOffset,
                 (dv.getUint32(byteOffset, false) & m) | ((x << b) & ~m),
@@ -133,7 +137,7 @@ const bitWriter = (
         };
     } else {
         let bb = 32 + b;
-        return (x) => {
+        return (x: number) => {
             dv.setUint32(
                 byteOffset,
                 (dv.getUint32(byteOffset, false) & m) | ((x >>> -b) & ~m),
@@ -180,7 +184,7 @@ const makeField = (
     } else {
         let [dsize, typeid, signed] = TYPES[type];
         let shift = 32 - size;
-        let get, set, read, write;
+        let get, set, read: any, write: any;
         if (isBF) {
             byteOffset &= -4;
             let bitPos = 32 - (bitOffset & 0x1f);
@@ -189,8 +193,8 @@ const makeField = (
             set = bitWriter(dv, byteOffset, bitPos, size);
             bitOffset += size;
         } else {
-            read = dv[`get${typeid}${dsize}`];
-            write = dv[`set${typeid}${dsize}`];
+            read = (<any>dv)[`get${typeid}${dsize}`];
+            write = (<any>dv)[`set${typeid}${dsize}`];
             get = signed
                 ? () => (read.call(dv, byteOffset, le) << shift) >> shift
                 : () => read.call(dv, byteOffset, le);
