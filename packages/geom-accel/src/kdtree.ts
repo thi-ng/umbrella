@@ -5,7 +5,7 @@ import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-const CMP = (a, b) => b[0] - a[0];
+const CMP = (a: [number, any], b: [number, any]) => b[0] - a[0];
 
 export class KdNode<K extends ReadonlyVec, V> {
     parent: KdNode<K, V>;
@@ -45,7 +45,7 @@ export class KdNode<K extends ReadonlyVec, V> {
         }
     }
 
-    height() {
+    height(): number {
         return (
             1 +
             Math.max(this.l ? this.l.height() : 0, this.r ? this.r.height() : 0)
@@ -277,7 +277,7 @@ const find = <K extends ReadonlyVec, V>(
     p: K,
     node: KdNode<K, V>,
     epsSq: number
-) => {
+): KdNode<K, V> | undefined => {
     if (!node) return;
     return distSq(p, node.k) <= epsSq
         ? node
