@@ -128,7 +128,7 @@ export const closestPointPolyline = (
     closed = false,
     out: Vec = []
 ) => {
-    const tmp = [];
+    const tmp: Vec = [];
     const n = pts.length - 1;
     let minD = Infinity,
         i,
