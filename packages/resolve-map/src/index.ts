@@ -1,5 +1,10 @@
 import { SEMAPHORE } from "@thi.ng/api";
-import { isArray, isFunction, isPlainObject, isString } from "@thi.ng/checks";
+import {
+    isArray,
+    isFunction,
+    isPlainObject,
+    isString
+} from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { exists, getIn, mutIn } from "@thi.ng/paths";
 
@@ -242,7 +247,7 @@ const resolveFunction = (
             .replace(/\s/g, "")
             .split(/,/g)
             .map((k) => k.split(":")[0])
-            .reduce((acc, k) => ((acc[k] = resolve(k)), acc), {});
+            .reduce((acc: any, k) => ((acc[k] = resolve(k)), acc), {});
         res = fn(args, resolve);
     } else {
         res = fn(resolve);
