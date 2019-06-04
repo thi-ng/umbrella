@@ -21,6 +21,33 @@ export const formatString = (
     );
 };
 
+/**
+ * Takes an array of regex patterns and optional `mask` string. Returns
+ * transducer which replaces all found pattern occurrences with `mask`.
+ * Intended to be used in combination / after `formatString()` to avoid
+ * leaking of sensitive information via logged messages.
+ *
+ *
+ * ```
+ * logger.transform(
+ *   formatString(),
+ *   maskSecrets([/(?<=[A-Z0-9_]\=)\w+/g])
+ * ).subscribe(
+ *   writeConsole()
+ * );
+ *
+ * logger.info("logged in USER=toxi, using TOKEN=123456");
+ * // [INFO] logger-0: logged in USER=****, using TOKEN=****
+ * ```
+ *
+ * @param patterns
+ * @param mask
+ */
+export const maskSecrets = (patterns: RegExp[], mask = "****") =>
+    map((msg: string) =>
+        patterns.reduce((acc, pat) => acc.replace(pat, mask), msg)
+    );
+
 export const formatObject = (): Transducer<LogEntry, LogEntryObj> =>
     map(([level, id, time, ...body]) => ({ level, id, time, body }));
 
