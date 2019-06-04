@@ -1,6 +1,11 @@
 import { alts } from "./alts";
 import { altsLit } from "./alts-lit";
-import { AltCallback, AltFallback, LitCallback, Matcher } from "./api";
+import {
+    AltCallback,
+    AltFallback,
+    LitCallback,
+    Matcher
+} from "./api";
 import { result } from "./result";
 
 /**
@@ -43,7 +48,12 @@ export const alpha = <C, R>(
     success?: AltCallback<string, C, R>,
     fail?: AltFallback<string, C, R>
 ): Matcher<string, C, R> =>
-    alts([range("a", "z"), range("A", "Z")], null, success, fail);
+    alts(
+        [range<string, C, R>("a", "z"), range<string, C, R>("A", "Z")],
+        null,
+        success,
+        fail
+    );
 
 /**
  * Combination of `digit()` and `alpha()`.

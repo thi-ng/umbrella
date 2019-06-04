@@ -67,7 +67,7 @@ export function fsm<T, C, R>(
               let curr = states[initial]
                   ? states[initial]()
                   : illegalArgs(`invalid initial state: ${initial}`);
-              return [
+              return <Reducer<any, T>>[
                   init,
                   complete,
                   (acc, x) => {
