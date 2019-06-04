@@ -3,6 +3,7 @@ import {
     Fn2,
     IID,
     IRelease,
+    Predicate,
     Watch
 } from "@thi.ng/api";
 import { isArray, isFunction } from "@thi.ng/checks";
@@ -60,7 +61,11 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         update: Fn2<any, T, any>
     );
     constructor(...args: any[]) {
-        let parent, id, lookup, update, validate, opts: CursorOpts<T>;
+        let parent: IAtom<any>;
+        let id: string;
+        let lookup: Fn<any, T>, update: Fn2<any, T, any>;
+        let validate: Predicate<T>;
+        let opts: CursorOpts<T>;
         switch (args.length) {
             case 1:
                 opts = args[0];
@@ -69,7 +74,7 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
                 validate = opts.validate;
                 if (opts.path) {
                     if (isArray(opts.path) && isFunction(opts.path[0])) {
-                        [lookup, update] = opts.path;
+                        [lookup, update] = <any>opts.path;
                     } else {
                         lookup = getter(<Path>opts.path);
                         update = setter(<Path>opts.path);
