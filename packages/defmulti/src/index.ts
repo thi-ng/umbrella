@@ -394,7 +394,7 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
     const rels: IObjectOf<Set<PropertyKey>> = ancestors
         ? makeRels(ancestors)
         : {};
-    const fn: any = (...args) => {
+    const fn: any = (...args: any[]) => {
         const id = f(...args);
         const g = impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
         return g
