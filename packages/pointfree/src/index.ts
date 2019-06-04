@@ -100,12 +100,11 @@ const $stackFn = (f: StackProc) => (isArray(f) ? word(f) : f);
 const tos = (stack: Stack) => stack[stack.length - 1];
 
 const compile = (prog: StackProgram) =>
-    compL.apply(
-        null,
+    compL.apply(null, <any>(
         prog.map((w) =>
             !isFunction(w) ? (ctx: StackContext) => (ctx[0].push(w), ctx) : w
         )
-    );
+    ));
 
 /**
  * Takes a result tuple returned by `run()` and unwraps one or more
@@ -599,7 +598,7 @@ export const cprd = (ctx: StackContext) => (
     $(ctx[1], 1), ctx[0].push(tos(ctx[1])), ctx
 );
 
-const mov2 = (a, b) => (ctx: StackContext) => {
+const mov2 = (a: number, b: number) => (ctx: StackContext) => {
     const src = ctx[a];
     $(src, 2);
     const v = src.pop();
@@ -607,7 +606,7 @@ const mov2 = (a, b) => (ctx: StackContext) => {
     return ctx;
 };
 
-const cp2 = (a, b) => (ctx: StackContext) => {
+const cp2 = (a: number, b: number) => (ctx: StackContext) => {
     const src = ctx[a];
     const n = src.length - 2;
     $n(n, 0);
