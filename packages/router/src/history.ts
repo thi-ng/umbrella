@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArity } from "@thi.ng/errors";
@@ -6,8 +7,8 @@ import { BasicRouter } from "./basic";
 
 export class HTMLRouter extends BasicRouter {
     protected currentPath: string;
-    protected popHandler: EventListener;
-    protected hashHandler: EventListener;
+    protected popHandler: Fn<PopStateEvent, void>;
+    protected hashHandler: Fn<HashChangeEvent, void>;
     protected useFragment: boolean;
     protected ignoreHashChange: boolean;
 

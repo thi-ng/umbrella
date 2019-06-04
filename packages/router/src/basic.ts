@@ -1,4 +1,10 @@
-import { Event, INotify, INotifyMixin, IObjectOf, Listener } from "@thi.ng/api";
+import {
+    Event,
+    INotify,
+    INotifyMixin,
+    IObjectOf,
+    Listener
+} from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs, illegalArity } from "@thi.ng/errors";
@@ -121,13 +127,12 @@ export class BasicRouter implements INotify {
                 (hash ? "#" : "") +
                 this.config.prefix +
                 route.match
-                    .map(
-                        (x) =>
-                            x.charAt(0) === "?"
-                                ? (x = params[x.substr(1)]) != null
-                                    ? x
-                                    : "NULL"
-                                : x
+                    .map((x) =>
+                        x.charAt(0) === "?"
+                            ? (x = params[x.substr(1)]) != null
+                                ? x
+                                : "NULL"
+                            : x
                     )
                     .join(this.config.separator)
             );
@@ -144,7 +149,7 @@ export class BasicRouter implements INotify {
         const match = route.match,
             n = match.length;
         if (curr.length === n) {
-            const params = {};
+            const params: any = {};
             for (let i = 0; i < n; i++) {
                 const m = match[i];
                 if (m.charAt(0) === "?") {
