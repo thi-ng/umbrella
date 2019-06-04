@@ -130,7 +130,7 @@ const enum State {
     // U_CHAR,
 }
 
-const ENTITIES = {
+const ENTITIES: IObjectOf<string> = {
     "&amp;": "&",
     "&lt;": "<",
     "&gt;": ">",
@@ -140,7 +140,7 @@ const ENTITIES = {
 
 const ENTITY_RE = new RegExp(`(${Object.keys(ENTITIES).join("|")})`, "g");
 
-const ESCAPE_SEQS = {
+const ESCAPE_SEQS: IObjectOf<string> = {
     n: "\n",
     r: "\r",
     t: "\t",
