@@ -1,3 +1,4 @@
+import { closestPointSegment, closestT } from "@thi.ng/geom-closest-point";
 import { fit01 } from "@thi.ng/math";
 import {
     dist,
@@ -11,7 +12,6 @@ import {
     Vec,
     VecPair
 } from "@thi.ng/vectors";
-import { closestPointSegment, closestT } from "@thi.ng/geom-closest-point";
 
 export class Sampler {
     points: ReadonlyVec[];
@@ -59,8 +59,8 @@ export class Sampler {
 
     closestPoint(p: ReadonlyVec) {
         const pts = this.points;
-        const tmp = [];
-        const closest = [];
+        const tmp: Vec = [];
+        const closest: Vec = [];
         let minD = Infinity;
         for (let i = 0, n = pts.length - 1; i < n; i++) {
             if (closestPointSegment(p, pts[i], pts[i + 1], tmp)) {
@@ -77,8 +77,8 @@ export class Sampler {
     closestT(p: ReadonlyVec) {
         const pts = this.points;
         const idx = this.index;
-        const tmp = [];
-        const closest = [];
+        const tmp: Vec = [];
+        const closest: Vec = [];
         let minD = Infinity;
         let minI;
         for (let i = 0, n = idx.length - 1; i < n; i++) {
