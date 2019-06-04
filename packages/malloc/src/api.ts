@@ -54,7 +54,7 @@ export interface IMemPool extends IRelease {
 
     free(ptr: number | TypedArray): boolean;
 
-    freeAll();
+    freeAll(): void;
 
     stats(): MemPoolStats;
 }
