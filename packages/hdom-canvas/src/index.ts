@@ -29,7 +29,7 @@ const TAU = Math.PI * 2;
 const FN = "function";
 const STR = "string";
 
-const DEFAULTS = {
+const DEFAULTS: any = {
     align: "left",
     alpha: 1,
     baseline: "alphabetic",
@@ -51,7 +51,7 @@ const DEFAULTS = {
     stroke: "#000"
 };
 
-const CTX_ATTRIBS = {
+const CTX_ATTRIBS: IObjectOf<string> = {
     align: "textAlign",
     alpha: "globalAlpha",
     baseline: "textBaseline",
@@ -114,7 +114,7 @@ const CTX_ATTRIBS = {
  * @param shapes shape components
  */
 export const canvas = {
-    render(_, attribs, ...body: any[]) {
+    render(_: any, attribs: any, ...body: any[]) {
         const cattribs = { ...attribs };
         delete cattribs.__diff;
         delete cattribs.__normalize;
@@ -163,7 +163,7 @@ export const createTree = (
     walk(ctx, tree, { attribs: {} });
 };
 
-export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) => {
+export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
     if (tree == null) {
         return tree;
     }
@@ -403,15 +403,15 @@ const setAttrib = (
         case "fill":
         case "stroke":
         case "shadowColor":
-            ctx[k] = resolveColor(state, val);
+            (<any>ctx)[k] = resolveColor(state, val);
             break;
         case "dash":
-            ctx[k].call(ctx, val);
+            (<any>ctx)[k].call(ctx, val);
             break;
         case "clip":
             break;
         default:
-            ctx[k] = val;
+            (<any>ctx)[k] = val;
     }
 };
 
