@@ -209,8 +209,8 @@ export class StatelessEventBus implements api.IDispatch {
         const iceps = isArray(spec)
             ? (<any>spec).map(asInterceptor)
             : isFunction(spec)
-                ? [{ pre: spec }]
-                : [spec];
+            ? [{ pre: spec }]
+            : [spec];
         if (iceps.length > 0) {
             if (this.handlers[id]) {
                 this.removeHandler(id);
@@ -705,7 +705,12 @@ export class EventBus extends StatelessEventBus
 const asInterceptor = (i: api.Interceptor | api.InterceptorFn) =>
     isFunction(i) ? { pre: i } : i;
 
-const undoHandler = (action: string) => (_, [__, ev], bus, ctx) => {
+const undoHandler = (action: string): api.InterceptorFn => (
+    _,
+    [__, ev],
+    bus,
+    ctx
+) => {
     let id = ev ? ev[0] : "history";
     if (implementsFunction(ctx[id], action)) {
         const ok = ctx[id][action]();
