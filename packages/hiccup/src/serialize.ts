@@ -6,7 +6,13 @@ import {
     isString
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { COMMENT, NO_SPANS, PROC_TAGS, TAG_REGEXP, VOID_TAGS } from "./api";
+import {
+    COMMENT,
+    NO_SPANS,
+    PROC_TAGS,
+    TAG_REGEXP,
+    VOID_TAGS
+} from "./api";
 import { css } from "./css";
 import { escape } from "./escape";
 
@@ -153,7 +159,7 @@ const _serialize = (
     span: boolean,
     keys: boolean,
     path: any[]
-) => {
+): string => {
     if (tree == null) {
         return "";
     }
