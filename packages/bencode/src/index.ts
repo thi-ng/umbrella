@@ -131,10 +131,10 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
                     const parent = peek(stack);
                     if (parent) {
                         if (parent.type === Type.LIST) {
-                            parent.val.push(x.val);
+                            (<any[]>parent.val).push(x.val);
                         } else if (parent.type === Type.DICT) {
-                            parent.val[parent.key] = x.val;
-                            parent.key = null;
+                            (<any>parent.val)[(<any>parent).key] = x.val;
+                            (<any>parent).key = null;
                         }
                     } else {
                         return x.val;
