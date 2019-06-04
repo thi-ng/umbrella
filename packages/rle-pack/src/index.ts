@@ -30,7 +30,7 @@ export const encode = (
     const [rle0, rle1, rle2, rle3] = rleSizes.map((x) => 1 << x);
     const chunk: number[] = [];
     const n1 = num - 1;
-    let val;
+    let val: number;
     let tail = true;
     let n = 0;
     let i = 0;
