@@ -37,7 +37,7 @@ export const porterDuff = (
             : (s: number, d: number, sda: number, sy: number) =>
                   f(s, d) * sda + s * sy
         : z
-        ? (s: number, d: number, sda: number, _, sz: number) =>
+        ? (s: number, d: number, sda: number, _: number, sz: number) =>
               f(s, d) * sda + d * sz
         : (s: number, d: number, sda: number) => f(s, d) * sda;
     return (out: Color, src: ReadonlyColor, dest: ReadonlyColor) => {

@@ -1,4 +1,6 @@
-export const CSS_NAMES = {
+import { IObjectOf } from "@thi.ng/api";
+
+export const CSS_NAMES: IObjectOf<string> = {
     aliceblue: "f0f8ff",
     antiquewhite: "faebd7",
     aqua: "0ff",
