@@ -75,7 +75,7 @@ export const diffTree = <T>(
     let ii: number;
     let j: number;
     let idx: number;
-    let k: string;
+    let k: any;
     let eq: any[];
     let status: number;
     let val: any;

@@ -1,8 +1,4 @@
-import {
-    isArray as isa,
-    isNotStringAndIterable as isi,
-    isPlainObject as iso
-} from "@thi.ng/checks";
+import { isArray as isa, isNotStringAndIterable as isi, isPlainObject as iso } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup";
 import { HDOMOpts } from "./api";
@@ -94,7 +90,7 @@ const _normalizeTree = (
     path: number[],
     keys: boolean,
     span: boolean
-) => {
+): any => {
     if (tree == null) {
         return;
     }

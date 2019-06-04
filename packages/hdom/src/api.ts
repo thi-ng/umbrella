@@ -9,7 +9,7 @@ export interface ILifecycle {
      * children have their own `init` lifecycle method, these hooks will
      * be executed before that of the parent.
      */
-    init?(el: Element, ctx: any, ...args: any[]);
+    init?(el: Element, ctx: any, ...args: any[]): void;
 
     /**
      * Returns the hdom tree of this component.
@@ -38,7 +38,7 @@ export interface ILifecycle {
      * Called when the underlying DOM of this component is removed
      * (or replaced). Intended for cleanup tasks.
      */
-    release?(ctx: any, ...args: any[]);
+    release?(ctx: any, ...args: any[]): void;
 }
 
 export interface HDOMBehaviorAttribs {
@@ -288,7 +288,12 @@ export interface HDOMImplementation<T> {
      * @param tree
      * @param child
      */
-    hydrateTree(opts: Partial<HDOMOpts>, parent: T, tree: any, child?: number);
+    hydrateTree(
+        opts: Partial<HDOMOpts>,
+        parent: T,
+        tree: any,
+        child?: number
+    ): void;
 
     /**
      * Takes an `HDOMOpts` options object, a `parent` element and two
@@ -396,7 +401,7 @@ export interface HDOMImplementation<T> {
         parent: T,
         child: number,
         newTree: any
-    );
+    ): T | T[];
 
     /**
      * Retrieves child of `parent` node at index `i`.
@@ -412,7 +417,7 @@ export interface HDOMImplementation<T> {
      * @param parent
      * @param i
      */
-    removeChild?(parent: T, i: number);
+    removeChild?(parent: T, i: number): void;
 
     /**
      * Sets the given attribute `id` to new `value`. Note: `value`
@@ -426,7 +431,7 @@ export interface HDOMImplementation<T> {
      * @param value
      * @param attribs
      */
-    setAttrib?(element: T, id: string, value: any, attribs?: any);
+    setAttrib?(element: T, id: string, value: any, attribs?: any): void;
 
     /**
      * Removes given `attribs` from target `element`. The attributes
@@ -437,7 +442,7 @@ export interface HDOMImplementation<T> {
      * @param attribs
      * @param prevAttribs
      */
-    removeAttribs?(element: T, attribs: string[], prevAttribs: any);
+    removeAttribs?(element: T, attribs: string[], prevAttribs: any): void;
 
     /**
      * Sets target `element`'s text / body content. Note: In the default
@@ -450,7 +455,7 @@ export interface HDOMImplementation<T> {
      * @param element
      * @param value
      */
-    setContent?(element: T, value: any);
+    setContent?(element: T, value: any): void;
 }
 
 export let LOGGER = NULL_LOGGER;
