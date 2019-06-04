@@ -81,7 +81,7 @@ export class EquivMap<K, V> extends Map<K, V>
         return "EquivMap";
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).keys.size;
     }
 
@@ -91,7 +91,7 @@ export class EquivMap<K, V> extends Map<K, V>
         $this.map.clear();
     }
 
-    empty() {
+    empty(): EquivMap<K, V> {
         return new EquivMap<K, V>(null, __private.get(this).opts);
     }
 
@@ -157,7 +157,7 @@ export class EquivMap<K, V> extends Map<K, V>
         return notFound;
     }
 
-    has(key: K) {
+    has(key: K): boolean {
         return __private.get(this).keys.has(key);
     }
 

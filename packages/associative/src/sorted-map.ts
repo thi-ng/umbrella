@@ -129,7 +129,7 @@ export class SortedMap<K, V> extends Map<K, V> {
         return map((p) => p[1], this.entries(key, max));
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).length;
     }
 
@@ -189,7 +189,7 @@ export class SortedMap<K, V> extends Map<K, V> {
         return true;
     }
 
-    first(): Pair<K, V> {
+    first(): Pair<K, V> | undefined {
         const node = __private.get(this).head.next[0];
         return node ? [node.k, node.v] : undefined;
     }

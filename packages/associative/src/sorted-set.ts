@@ -54,7 +54,7 @@ export class SortedSet<T> extends Set<T>
         return "SortedSet";
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).size;
     }
 
@@ -104,7 +104,7 @@ export class SortedSet<T> extends Set<T>
         return true;
     }
 
-    $reduce(rfn: ReductionFn<any, T>, acc: any) {
+    $reduce(rfn: ReductionFn<any, T>, acc: any): any {
         return __private.get(this).$reduce((_acc, x) => rfn(_acc, x[0]), acc);
     }
 
@@ -157,7 +157,7 @@ export class SortedSet<T> extends Set<T>
         thisArg?: any
     ): void {
         for (let p of this) {
-            fn.call(thisArg, p[0], p[0], this);
+            fn.call(thisArg, p, p, this);
         }
     }
 

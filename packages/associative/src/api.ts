@@ -17,7 +17,7 @@ export interface IEquivSet<T>
         IGet<T, T>,
         IInto<T, IEquivSet<T>> {
     disj(xs: Iterable<T>): this;
-    first(): T;
+    first(): T | undefined;
 }
 
 export interface EquivSetConstructor<T> {

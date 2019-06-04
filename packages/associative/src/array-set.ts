@@ -30,7 +30,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         vals && this.into(vals);
     }
 
-    *[Symbol.iterator]() {
+    *[Symbol.iterator](): IterableIterator<T> {
         yield* __private.get(this).vals;
     }
 
@@ -42,7 +42,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         return "ArraySet";
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).vals.length;
     }
 
@@ -61,7 +61,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         __private.get(this).vals.length = 0;
     }
 
-    first() {
+    first(): T | undefined {
         if (this.size) {
             return __private.get(this).vals[0];
         }

@@ -37,7 +37,7 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
         return this.keys();
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).n;
     }
 

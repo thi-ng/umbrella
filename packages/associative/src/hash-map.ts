@@ -73,7 +73,7 @@ export class HashMap<K, V> extends Map<K, V>
         return "HashMap";
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).size;
     }
 
@@ -151,7 +151,7 @@ export class HashMap<K, V> extends Map<K, V>
         return i >= 0 && $this.bins[i] != undefined;
     }
 
-    get(key: K, notFound?: V) {
+    get(key: K, notFound?: V): V | undefined {
         const $this = __private.get(this);
         const i = this.find(key, $this);
         return i >= 0 && $this.bins[i] ? $this.bins[i][1] : notFound;

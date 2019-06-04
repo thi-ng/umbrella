@@ -46,7 +46,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         return "LLSet";
     }
 
-    get size() {
+    get size(): number {
         return __private.get(this).vals.length;
     }
 
@@ -65,7 +65,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         __private.get(this).vals.clear();
     }
 
-    first() {
+    first(): T | undefined {
         if (this.size) {
             return __private.get(this).vals.head.value;
         }
