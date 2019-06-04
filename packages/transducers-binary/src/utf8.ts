@@ -18,12 +18,12 @@ export function utf8Decode(src?: Iterable<number>): any {
         ? [...iterator1(utf8Decode(), src)].join("")
         : (rfn: Reducer<any, string>) => {
               const r = rfn[2];
-              let state = 0,
-                  u0,
-                  u1,
-                  u2,
-                  u3,
-                  u4;
+              let state = 0;
+              let u0: number;
+              let u1: number;
+              let u2: number;
+              let u3: number;
+              let u4: number;
               return compR(rfn, (acc, x: number) => {
                   switch (state) {
                       case 0:
@@ -187,7 +187,7 @@ export function utf8Encode(src?: string): any {
           };
 }
 
-const codePoint = (x) =>
+const codePoint = (x: number) =>
     x < 0x10000
         ? String.fromCharCode(x)
         : ((x -= 0x10000),

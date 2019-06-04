@@ -83,7 +83,7 @@ export function base64Encode(...args: any[]): any {
         const opts = { safe: false, buffer: 1024, ...args[0] };
         const chars = opts.safe ? B64_SAFE : B64_CHARS;
         const buf: string[] = [];
-        return [
+        return <Reducer<any, number>>[
             init,
             (acc) => {
                 switch (state) {
