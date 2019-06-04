@@ -165,3 +165,5 @@ export const X4 = Object.freeze([1, 0, 0, 0]);
 export const Y4 = Object.freeze([0, 1, 0, 0]);
 export const Z4 = Object.freeze([0, 0, 1, 0]);
 export const W4 = Object.freeze([0, 0, 0, 1]);
+
+export type Template = (syms: string[], i?: number) => string;

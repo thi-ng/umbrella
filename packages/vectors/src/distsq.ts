@@ -1,8 +1,8 @@
-import { MultiVecOpRoVV } from "./api";
+import { MultiVecOpRoVV, Template } from "./api";
 import { compile, compileG } from "./internal/codegen";
 import { vop } from "./internal/vop";
 
-const tpl = ([a, b]) => `t=${a}-${b};s+=t*t;`;
+const tpl: Template = ([a, b]) => `t=${a}-${b};s+=t*t;`;
 const pre = "let t,s=0;";
 
 const $ = (dim: number) =>
