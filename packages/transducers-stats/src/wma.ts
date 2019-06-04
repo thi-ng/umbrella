@@ -26,7 +26,7 @@ export function wma(weights: number | number[], src?: Iterable<number>): any {
     if (src) {
         return iterator1(wma(weights), src);
     }
-    let period, wsum;
+    let period: number, wsum: number;
     if (isNumber(weights)) {
         period = weights | 0;
         weights = [...range(1, period + 1)];
@@ -35,8 +35,8 @@ export function wma(weights: number | number[], src?: Iterable<number>): any {
         period = weights.length;
         wsum = weights.reduce((acc, x) => acc + x, 0);
     }
-    return comp(
+    return comp<number, number[], number>(
         partition(period, 1),
-        map((window: number[]) => dot(window, <number[]>weights) / wsum)
+        map((window) => dot(window, <number[]>weights) / wsum)
     );
 }
