@@ -64,7 +64,7 @@ export class Mult<T> implements IWriteableChannel<T> {
     }
 
     close(flush = false) {
-        this.src && this.src.close(flush);
+        return this.src ? this.src.close(flush) : undefined;
     }
 
     tap<R>(ch?: Channel<R> | Transducer<T, R>) {

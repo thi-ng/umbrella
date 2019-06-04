@@ -50,7 +50,7 @@ export class PubSub<T> implements IWriteableChannel<T> {
     }
 
     close(flush = false) {
-        this.src && this.src.close(flush);
+        return this.src ? this.src.close(flush) : undefined;
     }
 
     /**

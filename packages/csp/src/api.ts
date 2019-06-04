@@ -31,7 +31,7 @@ export interface IBuffer<T> extends ILength, IRelease {
 
 export interface IChannel<T> extends IID<string> {
     channel(): Channel<T>;
-    close(flush?: boolean);
+    close(flush?: boolean): Promise<void> | undefined;
 }
 
 export interface IReadableChannel<T> extends IChannel<T> {
