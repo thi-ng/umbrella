@@ -21,7 +21,7 @@ export function takeLast<T>(n: number, src?: Iterable<T>): any {
         ? iterator(takeLast(n), src)
         : ([init, complete, reduce]: Reducer<any, T>) => {
               const buf: T[] = [];
-              return [
+              return <Reducer<any, T>>[
                   init,
                   (acc) => {
                       while (buf.length && !isReduced(acc)) {

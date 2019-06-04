@@ -45,7 +45,7 @@ export function streamSort<A, B>(...args: any[]): any {
     const n = args[0];
     return ([init, complete, reduce]: Reducer<any, A>) => {
         const buf: A[] = [];
-        return [
+        return <Reducer<any, A>>[
             init,
             (acc) => {
                 while (buf.length && !isReduced(acc)) {

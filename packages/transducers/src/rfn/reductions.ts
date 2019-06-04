@@ -8,7 +8,7 @@ export function reductions<A, B>(rfn: Reducer<A, B>, xs?: Iterable<B>): any {
     const [init, complete, _reduce] = rfn;
     return xs
         ? reduce(reductions(rfn), xs)
-        : [
+        : <Reducer<A[], B>>[
               () => [init()],
               (acc) => (
                   (acc[acc.length - 1] = complete(acc[acc.length - 1])), acc

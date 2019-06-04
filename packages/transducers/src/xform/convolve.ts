@@ -1,4 +1,4 @@
-import { Fn0 } from "@thi.ng/api";
+import { Fn, Fn0 } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { Reducer, Transducer } from "../api";
 import { range } from "../iter/range";
@@ -83,7 +83,7 @@ const kernelLookup1d = (
     width: number,
     wrap: boolean,
     border: number
-) =>
+): Fn<[number, number], number> =>
     wrap
         ? ([w, ox]) => {
               const xx =
@@ -102,7 +102,7 @@ const kernelLookup2d = (
     height: number,
     wrap: boolean,
     border: number
-) =>
+): Fn<[number, [number, number]], number> =>
     wrap
         ? ([w, [ox, oy]]) => {
               const xx =

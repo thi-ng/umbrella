@@ -55,7 +55,7 @@ export function partitionSort<A, B>(...args: any[]): any {
         compare: cmp,
         ...args[1]
     };
-    return comp(
+    return comp<A, A[], A>(
         partition(args[0], true),
         mapcat((window: A[]) =>
             window.slice().sort((a, b) => compare(key(a), key(b)))

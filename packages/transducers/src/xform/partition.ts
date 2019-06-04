@@ -62,8 +62,8 @@ export function partition<T>(...args: any[]): any {
         return iter;
     }
     let size = args[0],
-        all,
-        step;
+        all: boolean,
+        step: number;
     if (typeof args[1] == "number") {
         step = args[1];
         all = args[2];
@@ -74,7 +74,7 @@ export function partition<T>(...args: any[]): any {
     return ([init, complete, reduce]: Reducer<any, T[]>) => {
         let buf: T[] = [];
         let skip = 0;
-        return [
+        return <Reducer<any, T>>[
             init,
             (acc) => {
                 if (all && buf.length > 0) {

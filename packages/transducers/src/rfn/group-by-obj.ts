@@ -24,7 +24,7 @@ export function groupByObj<SRC, GROUP>(...args: any[]): any {
     };
     const [_init, _, _reduce] = _opts.group;
     _;
-    return reducer(
+    return reducer<IObjectOf<GROUP>, SRC>(
         () => ({}),
         (acc, x: SRC) => {
             const k: any = _opts.key(x);

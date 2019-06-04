@@ -45,8 +45,8 @@ export function mapKeys(...args: any[]): any {
     }
     const keys: IObjectOf<(x: any) => any> = args[0];
     const copy = args[1] !== false;
-    return map((x) => {
-        const res = copy ? Object.assign({}, x) : x;
+    return map((x: any) => {
+        const res: any = copy ? Object.assign({}, x) : x;
         for (let k in keys) {
             res[k] = keys[k](x[k]);
         }
