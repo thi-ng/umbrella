@@ -4,6 +4,6 @@ export class IllegalArityError extends Error {
     }
 }
 
-export const illegalArity = (n): never => {
+export const illegalArity = (n: number): never => {
     throw new IllegalArityError(n);
 };
