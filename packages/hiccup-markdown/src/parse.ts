@@ -1,3 +1,4 @@
+import { Fn2 } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import {
     alts,
@@ -104,7 +105,10 @@ const push = (id: State, next: State) => (ctx: FSMCtx): ParseResult => (
     transition(ctx, next)
 );
 
-const pop = (result) => (ctx, body): ParseResult => {
+const pop = (result: Fn2<FSMCtx, string, any>) => (
+    ctx: FSMCtx,
+    body: any
+): ParseResult => {
     const { id, children } = ctx.stack.pop();
     children.push(result(ctx, body));
     ctx.children = children;
@@ -121,21 +125,20 @@ const collect = (id: State) => (ctx: FSMCtx, buf: string[]): ParseResult => (
 );
 
 const collectHeading = (tag: (i: number, xs: any[]) => any[]) => (
-    ctx
+    ctx: FSMCtx
 ): ParseResult => [State.START, [tag(ctx.hd, collectChildren(ctx))]];
 
-const collectAndRestart = (tag: (xs: any[]) => any[]) => (ctx): ParseResult => [
-    State.START,
-    [tag(collectChildren(ctx))]
-];
+const collectAndRestart = (tag: (xs: any[]) => any[]) => (
+    ctx: FSMCtx
+): ParseResult => [State.START, [tag(collectChildren(ctx))]];
 
-const collectBlockQuote = (ctx): ParseResult => (
+const collectBlockQuote = (ctx: FSMCtx): ParseResult => (
     ctx.children.push(ctx.body, ["br"]), (ctx.body = ""), [State.BLOCKQUOTE]
 );
 
 const collectCodeBlock = (tag: (lang: string, body: string) => any[]) => (
-    ctx,
-    body
+    ctx: FSMCtx,
+    body: string
 ): ParseResult => [State.START, [tag(ctx.lang, body)]];
 
 const collectLi = (ctx: FSMCtx, tag: (xs: any[]) => any[]) =>
@@ -145,7 +148,7 @@ const collectList = (
     type: string,
     list: (type: string, xs: any[]) => any[],
     item: (xs: any[]) => any[]
-) => (ctx): ParseResult => (
+) => (ctx: FSMCtx): ParseResult => (
     collectLi(ctx, item), [State.START, [list(type, ctx.container)]]
 );
 
@@ -162,7 +165,9 @@ const collectTR = (tag: (i: number, xs: any[]) => any[]) => (ctx: FSMCtx) => {
     return transition(ctx, State.END_TABLE);
 };
 
-const collectTable = (tag: (xs: any[]) => any) => (ctx): ParseResult => {
+const collectTable = (tag: (xs: any[]) => any) => (
+    ctx: FSMCtx
+): ParseResult => {
     const rows = ctx.stack.pop().container;
     rows.splice(1, 1);
     return [State.START, [tag(rows)]];
@@ -184,14 +189,14 @@ const matchInline = (id: State) => [
     str(CODE, push(id, State.CODE))
 ];
 
-const matchLink = (result: (href, body) => any[]) =>
+const matchLink = (result: (href: string, body: string) => any[]) =>
     seq<string, FSMCtx, any>(
         [
             untilStr(LINK_LABEL_END, (ctx, body) => ((ctx.title = body), null)),
             str(LINK_HREF),
             untilStr(LINK_HREF_END, (ctx, body) => ((ctx.href = body), null))
         ],
-        pop((ctx) => result(ctx.href, ctx.title))
+        pop((ctx: FSMCtx) => result(ctx.href, ctx.title))
     );
 
 const matchPara = (id: State, next: State) =>

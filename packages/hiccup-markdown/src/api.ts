@@ -3,7 +3,7 @@ export interface TagFactories {
     code(body: string): any[];
     codeblock(lang: string, body: string): any[];
     em(body: string): any[];
-    heading(level, children: any[]): any[];
+    heading(level: number, children: any[]): any[];
     hr(): any[];
     img(src: string, alt: string): any[];
     li(children: any[]): any[];

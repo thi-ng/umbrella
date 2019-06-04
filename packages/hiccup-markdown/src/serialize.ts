@@ -9,10 +9,10 @@ import { illegalArgs } from "@thi.ng/errors";
 import { normalize } from "@thi.ng/hiccup";
 import { repeat, wrap } from "@thi.ng/strings";
 
-export const serialize = (tree: any, ctx) =>
+export const serialize = (tree: any, ctx: any) =>
     _serialize(tree, ctx, { indent: 0, sep: "" });
 
-const _serialize = (tree: any, ctx, state) => {
+const _serialize = (tree: any, ctx: any, state: any): string => {
     if (tree == null) return "";
     if (Array.isArray(tree)) {
         if (!tree.length) {
@@ -71,10 +71,11 @@ const serializeIter = (iter: Iterable<any>, ctx: any, state: any) => {
     return res.join(state.sep);
 };
 
-const header = (level) => (el, ctx, state) =>
+const header = (level: number) => (el: any[], ctx: any, state: any) =>
     repeat("#", level) + " " + body(el, ctx, state) + "\n\n";
 
-const body = (el, ctx, state) => serializeIter(el[2], ctx, state);
+const body = (el: any[], ctx: any, state: any) =>
+    serializeIter(el[2], ctx, state);
 
 export const serializeElement: MultiFn3<any, any, any, string> = defmulti(
     (el) => el[0]
@@ -113,9 +114,8 @@ serializeElement.add(
         })}\n\`\`\`\n`
 );
 
-serializeElement.add(
-    "code",
-    (el, ctx, state) => (state.pre ? el[2][0] : `\`${body(el, ctx, state)}\``)
+serializeElement.add("code", (el, ctx, state) =>
+    state.pre ? el[2][0] : `\`${body(el, ctx, state)}\``
 );
 
 serializeElement.add("ul", (el, ctx, state) => {
