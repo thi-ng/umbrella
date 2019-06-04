@@ -20,7 +20,7 @@ const cachedPath = (size: number) =>
 const simpleDiff = <T>(
     state: ArrayDiff<T>,
     src: ArrayLike<T>,
-    key: keyof ArrayDiff<T>,
+    key: "adds" | "dels",
     logDir: number,
     mode: DiffMode
 ) => {
@@ -81,7 +81,7 @@ export const diffArray = <T>(
     }
 
     const reverse = a.length >= b.length;
-    let _a, _b, na, nb;
+    let _a: ArrayLike<T>, _b: ArrayLike<T>, na: number, nb: number;
 
     if (reverse) {
         _a = b;
@@ -104,7 +104,7 @@ export const diffArray = <T>(
     epc.length = 0;
     pathPos.length = 0;
 
-    const snake = (k, p, pp) => {
+    const snake = (k: number, p: number, pp: number) => {
         const koff = k + offset;
         let r, y;
         if (p > pp) {
