@@ -45,7 +45,7 @@ export class DHeap<T> extends Heap<T>
         }
     }
 
-    copy() {
+    copy(): DHeap<T> {
         return <DHeap<T>>super.copy();
     }
 
