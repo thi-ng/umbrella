@@ -27,23 +27,23 @@ export const swizzle = <T>(order: string | PropertyKey[]): Fn<T, any[]> => {
         case 0:
             return () => [];
         case 1:
-            return (x) => [x[a]];
+            return (x: any) => [x[a]];
         case 2:
-            return (x) => [x[a], x[b]];
+            return (x: any) => [x[a], x[b]];
         case 3:
-            return (x) => [x[a], x[b], x[c]];
+            return (x: any) => [x[a], x[b], x[c]];
         case 4:
-            return (x) => [x[a], x[b], x[c], x[d]];
+            return (x: any) => [x[a], x[b], x[c], x[d]];
         case 5:
-            return (x) => [x[a], x[b], x[c], x[d], x[e]];
+            return (x: any) => [x[a], x[b], x[c], x[d], x[e]];
         case 6:
-            return (x) => [x[a], x[b], x[c], x[d], x[e], x[f]];
+            return (x: any) => [x[a], x[b], x[c], x[d], x[e], x[f]];
         case 7:
-            return (x) => [x[a], x[b], x[c], x[d], x[e], x[f], x[g]];
+            return (x: any) => [x[a], x[b], x[c], x[d], x[e], x[f], x[g]];
         case 8:
-            return (x) => [x[a], x[b], x[c], x[d], x[e], x[f], x[g], x[h]];
+            return (x: any) => [x[a], x[b], x[c], x[d], x[e], x[f], x[g], x[h]];
         default:
-            return (x) => {
+            return (x: any) => {
                 const res = [];
                 for (let i = order.length; --i >= 0; ) {
                     res[i] = x[order[i]];
