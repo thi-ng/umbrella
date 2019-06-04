@@ -2,18 +2,18 @@ import { Fn } from "@thi.ng/api";
 import { iterator, maybeIterator } from "./iterator";
 import { maybeObjectIterator } from "./object-iterator";
 
-export const walkable = (x) =>
+export const walkable = (x: any) =>
     typeof x !== "string"
         ? maybeIterator(x) || maybeObjectIterator(x)
         : undefined;
 
-export function walk(fn: Fn<any, void>, input: any, postOrder?: boolean);
+export function walk(fn: Fn<any, void>, input: any, postOrder?: boolean): void;
 export function walk(
     fn: Fn<any, void>,
     children: Fn<any, any>,
     input: any,
     postOrder?: boolean
-);
+): void;
 export function walk(fn: Fn<any, void>, ...args: any[]) {
     let children: Fn<any, any>;
     let input: any;
@@ -25,7 +25,7 @@ export function walk(fn: Fn<any, void>, ...args: any[]) {
     } else {
         [input, postOrder] = args;
     }
-    let inner = (iter) => {
+    let inner = (iter: Iterator<any>) => {
         let v: IteratorResult<any>;
         while (((v = iter.next()), !v.done)) {
             if (!postOrder) {
@@ -67,7 +67,7 @@ export function walkIterator(input: any, ...args: any[]) {
     } else {
         postOrder = args[0];
     }
-    let walk = function*(iter) {
+    let walk = function*(iter: Iterator<any>): IterableIterator<any> {
         let v: IteratorResult<any>;
         while (((v = iter.next()), !v.done)) {
             if (!postOrder) {

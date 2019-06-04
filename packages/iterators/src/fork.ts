@@ -4,7 +4,7 @@ import { iterator } from "./iterator";
 export const fork = <T>(src: Iterable<T>, cacheLimit = 16) => {
     const iter = iterator(src);
     const cache = new DCons<T>();
-    const forks = [];
+    const forks: number[] = [];
     let done = false;
     let total = 0;
 
