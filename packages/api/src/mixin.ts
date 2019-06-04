@@ -10,12 +10,12 @@
  * @param sharedBehaviour
  * @returns decorator function
  */
-export const mixin = (behaviour: any, sharedBehaviour = {}) => {
+export const mixin = (behaviour: any, sharedBehaviour: any = {}) => {
     const instanceKeys = Reflect.ownKeys(behaviour);
     const sharedKeys = Reflect.ownKeys(sharedBehaviour);
     const typeTag = Symbol("isa");
 
-    function _mixin(clazz) {
+    function _mixin(clazz: any) {
         for (let key of instanceKeys) {
             const existing = Object.getOwnPropertyDescriptor(
                 clazz.prototype,
@@ -42,7 +42,7 @@ export const mixin = (behaviour: any, sharedBehaviour = {}) => {
     }
 
     Object.defineProperty(_mixin, Symbol.hasInstance, {
-        value: (x) => !!x[typeTag]
+        value: (x: any) => !!x[typeTag]
     });
 
     return _mixin;

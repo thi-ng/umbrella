@@ -505,12 +505,12 @@ export interface IEnable<T> {
      * Disables this entity.
      * @param opts optional implementation specific arg
      */
-    disable(opts: T);
+    disable(opts?: T): any;
     /**
      * Enables this entity.
      * @param opts optional implementation specific arg
      */
-    enable(opts: T);
+    enable(opts?: T): any;
     toggle?(): boolean;
 }
 
@@ -549,7 +549,7 @@ export interface Event extends IID<PropertyKey> {
  * @param V value type
  */
 export interface IGet<K, V> {
-    get(key: K, notfound?: V): V;
+    get(key: K, notfound?: V): V | undefined;
 }
 
 /**
@@ -557,7 +557,7 @@ export interface IGet<K, V> {
  * @param V value type
  */
 export interface IGetIn<K, V> {
-    getIn(key: K[], notfound?: V): V;
+    getIn(key: K[], notfound?: V): V | undefined;
 }
 
 /**
