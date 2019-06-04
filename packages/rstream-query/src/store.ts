@@ -195,7 +195,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         let results: ISubscribable<TripleIds | Triples>;
         const [s, p, o] = pattern;
         if (s == null && p == null && o == null) {
-            results = this.streamAll;
+            results = <ISubscribable<TripleIds>>this.streamAll;
         } else {
             const key = JSON.stringify(pattern);
             if (!(results = this.queries.get(key))) {
@@ -215,7 +215,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                     src = { s: qs, p: qp, o: qo };
                     xform = intersect3;
                 }
-                results = sync<TripleIds, TripleIds>({
+                results = <ISubscribable<TripleIds>>sync<TripleIds, TripleIds>({
                     id,
                     src,
                     xform,
@@ -339,7 +339,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         return sync({
             id,
             src,
-            xform: <Transducer<any, any>>comp.apply(null, xforms)
+            xform: <Transducer<any, any>>comp.apply(null, <any>xforms)
         });
     }
 
@@ -375,7 +375,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         }
         if (xforms.length) {
             query = <ISubscribable<any>>(
-                query.subscribe(comp.apply(null, xforms))
+                query.subscribe(comp.apply(null, <any>xforms))
             );
         }
         return query;
