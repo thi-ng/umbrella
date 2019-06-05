@@ -1,5 +1,4 @@
 import * as assert from "assert";
-
 import * as rs from "../src/index";
 
 describe("fromIterable()", () => {
@@ -24,9 +23,11 @@ describe("fromIterable()", () => {
     });
 
     it("delivers all values", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         src.subscribe({
-            next(x) { buf.push(x) },
+            next(x) {
+                buf.push(x);
+            },
             done() {
                 assert.deepEqual(buf, data);
                 done();
@@ -45,11 +46,13 @@ describe("fromIterable()", () => {
     });
 
     it("works with delay", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         let t0 = Date.now();
         src = rs.fromIterable(data, 10);
         src.subscribe({
-            next(x) { buf.push(x); },
+            next(x) {
+                buf.push(x);
+            },
             done() {
                 assert.deepEqual(buf, data);
                 assert(Date.now() - t0 >= (data.length + 1) * 10);
@@ -59,12 +62,16 @@ describe("fromIterable()", () => {
     });
 
     it("can be cancelled", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         let doneCalled = false;
         src = rs.fromIterable(data, 10);
         src.subscribe({
-            next(x) { buf.push(x); },
-            done() { doneCalled = true; }
+            next(x) {
+                buf.push(x);
+            },
+            done() {
+                doneCalled = true;
+            }
         });
         setTimeout(() => src.cancel(), 10);
         setTimeout(() => {
@@ -73,5 +80,4 @@ describe("fromIterable()", () => {
             done();
         }, 50);
     });
-
 });

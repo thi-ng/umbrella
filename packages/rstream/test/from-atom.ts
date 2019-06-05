@@ -1,8 +1,9 @@
 import { Atom, Cursor, History } from "@thi.ng/atom";
 import * as assert from "assert";
-
 import { fromAtom } from "../src/from/atom";
 
+
+// prettier-ignore
 describe("fromAtom", () => {
 
     it("works with atom", (done) => {
@@ -56,7 +57,7 @@ describe("fromAtom", () => {
         let c = new Cursor(a, "a.b");
         let h = new History(c);
         let src = fromAtom(h, true);
-        let buf = [];
+        let buf: any[] = [];
         src.subscribe({ next(x) { buf.push(x); } });
         h.reset(1);
         h.reset(2);
@@ -83,8 +84,8 @@ describe("fromAtom", () => {
         let c2 = new Cursor(a, "c");
         let src1 = fromAtom(c1, true);
         let src2 = fromAtom(c2, true);
-        let buf1 = [];
-        let buf2 = [];
+        let buf1:any[] = [];
+        let buf2:any[] = [];
         src1.subscribe({ next(x) { buf1.push(x); } });
         src2.subscribe({ next(x) { buf2.push(x); } });
         h.record();

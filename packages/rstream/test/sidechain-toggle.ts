@@ -1,11 +1,10 @@
+import { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
-
 import * as rs from "../src/index";
 
+
 describe("SidechainToggle", () => {
-
-
-    let src, side, buf;
+    let src: rs.Stream<any>, side: rs.Stream<any>, buf: any[];
 
     beforeEach(() => {
         src = rs.stream();
@@ -13,17 +12,21 @@ describe("SidechainToggle", () => {
         buf = [];
     });
 
-    let check = (initial, pred, expect, done) => {
-        src.subscribe(rs.sidechainToggle(side, initial, pred))
-            .subscribe({
-                next(x) {
-                    buf.push(x);
-                },
-                done() {
-                    assert.deepEqual(buf, expect);
-                    done();
-                }
-            });
+    let check = (
+        initial: any,
+        pred: Predicate<any>,
+        expect: any,
+        done: Function
+    ) => {
+        src.subscribe(rs.sidechainToggle(side, initial, pred)).subscribe({
+            next(x) {
+                buf.push(x);
+            },
+            done() {
+                assert.deepEqual(buf, expect);
+                done();
+            }
+        });
         src.next(1);
         src.next(2);
         side.next(0);

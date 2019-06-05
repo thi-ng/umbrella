@@ -19,7 +19,7 @@ describe("checks", function() {
         assert.ok(existsAndNotNull({}), "obj");
         assert.ok(existsAndNotNull("[]"), "string");
         assert.ok(existsAndNotNull(0), "zero");
-        assert.ok(!existsAndNotNull({}["foobar"]), "prop");
+        assert.ok(!existsAndNotNull((<any>{})["foobar"]), "prop");
         assert.ok(!existsAndNotNull(null), "null");
         assert.ok(!existsAndNotNull(undefined), "null");
     });
@@ -61,11 +61,11 @@ describe("checks", function() {
         assert.ok(!isArrayLike(0), "zero");
         assert.ok(!isArrayLike(null), "null");
         assert.ok(!isArrayLike(undefined), "null");
-        assert.ok(!isArrayLike((x, y) => x + y), "null");
+        assert.ok(!isArrayLike((x: any, y: any) => x + y), "null");
     });
 
     it("isObject", () => {
-        function Foo() {}
+        class Foo {}
         assert.ok(isObject([]), "empty array");
         assert.ok(isObject(new Uint8Array(1)), "typedarray");
         assert.ok(isObject({}), "obj");
@@ -81,13 +81,16 @@ describe("checks", function() {
         const ctxClass = vm.runInNewContext("class A {}; new A();");
         const ctxObj = vm.runInNewContext("({})");
 
-        function Foo() {}
+        class Foo {}
 
         assert.ok(isPlainObject({}), "obj");
         assert.ok(isPlainObject(Object.create(null)), "obj");
         assert.ok(isPlainObject(new Object()), "obj ctor");
         assert.ok(!isPlainObject(Foo), "fn");
-        assert.ok(!isPlainObject((function*() {})()), "generator");
+        assert.ok(
+            !isPlainObject((function*(): IterableIterator<any> {})()),
+            "generator"
+        );
         assert.ok(!isPlainObject(new Foo()), "class");
         assert.ok(!isPlainObject([]), "empty array");
         assert.ok(!isPlainObject(new Uint8Array(1)), "typedarray");
@@ -111,7 +114,7 @@ describe("checks", function() {
     });
 
     it("isFunction", () => {
-        assert.ok(isFunction((_) => null), "fn");
+        assert.ok(isFunction((_: any) => {}), "fn");
         assert.ok(isFunction(Uint8Array), "ctor");
         assert.ok(isFunction("a".toString), "toString");
         assert.ok(!isFunction("a"), "empty string");

@@ -148,20 +148,23 @@ describe("malloc", () => {
         assert.equal(b.byteLength, 24, "b bytes");
         a.set([1, 2, 3]);
         b.set([10, 20, 30]);
-        assert.deepEqual(new Uint32Array(pool.buf, 8, 10), [
-            // a
-            0x3f800000,
-            0x40000000,
-            0x40400000,
-            0,
-            // b
-            0,
-            0x40240000,
-            0,
-            0x40340000,
-            0,
-            0x403e0000
-        ]);
+        assert.deepEqual(
+            [...new Uint32Array(pool.buf, 8, 10)],
+            [
+                // a
+                0x3f800000,
+                0x40000000,
+                0x40400000,
+                0,
+                // b
+                0,
+                0x40240000,
+                0,
+                0x40340000,
+                0,
+                0x403e0000
+            ]
+        );
         assert(pool.free(a), "free a");
         assert(pool.free(b), "free b");
         assert(!pool.free(a), "free a (repeat)");
@@ -173,7 +176,10 @@ describe("malloc", () => {
         const u8 = (<any>pool).u8;
         u8.fill(0xff);
         let a = pool.calloc(6);
-        assert.deepEqual(u8.subarray(a, a + 9), [0, 0, 0, 0, 0, 0, 0, 0, 0xff]);
+        assert.deepEqual(
+            [...u8.subarray(a, a + 9)],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0xff]
+        );
     });
 
     it("callocAs", () => {
@@ -187,8 +193,8 @@ describe("malloc", () => {
         a = pool.callocAs(Type.U32, 3);
         b = pool.callocAs(Type.U32, 3);
         const t = [0, 0, 0];
-        assert.deepEqual(a, t);
-        assert.deepEqual(b, t);
+        assert.deepEqual([...a], t);
+        assert.deepEqual([...b], t);
     });
 
     it("malloc top", () => {

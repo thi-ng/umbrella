@@ -4,9 +4,8 @@ import { Cursor } from "../src/cursor";
 import { History } from "../src/history";
 
 describe("history", () => {
-
     let a: Atom<any>;
-    let add = (x) => x + 1;
+    let add = (x: number) => x + 1;
 
     beforeEach(() => {
         a = new Atom({ a: 10, b: { c: 20, d: 30 }, e: 40 });
@@ -43,21 +42,29 @@ describe("history", () => {
     it("does record & shift (nested)", () => {
         let c = new Cursor(a, "b");
         let h = new History(c, 3);
-        h.swap(s => ({ ...s, c: 21 }));
+        h.swap((s) => ({ ...s, c: 21 }));
         assert.equal(h.history.length, 1);
         assert.deepEqual(h.history, [{ c: 20, d: 30 }]);
 
-        h.swap(s => ({ ...s, d: 31 }));
+        h.swap((s) => ({ ...s, d: 31 }));
         assert.equal(h.history.length, 2);
         assert.deepEqual(h.history, [{ c: 20, d: 30 }, { c: 21, d: 30 }]);
 
-        h.swap(s => ({ ...s, x: 100 }));
+        h.swap((s) => ({ ...s, x: 100 }));
         assert.equal(h.history.length, 3);
-        assert.deepEqual(h.history, [{ c: 20, d: 30 }, { c: 21, d: 30 }, { c: 21, d: 31 }]);
+        assert.deepEqual(h.history, [
+            { c: 20, d: 30 },
+            { c: 21, d: 30 },
+            { c: 21, d: 31 }
+        ]);
 
         h.reset(null);
         assert.equal(h.history.length, 3);
-        assert.deepEqual(h.history, [{ c: 21, d: 30 }, { c: 21, d: 31 }, { c: 21, d: 31, x: 100 }]);
+        assert.deepEqual(h.history, [
+            { c: 21, d: 30 },
+            { c: 21, d: 31 },
+            { c: 21, d: 31, x: 100 }
+        ]);
 
         h.clear();
         assert.equal(h.history.length, 0);
@@ -68,7 +75,7 @@ describe("history", () => {
         let h = new History(a, 3);
         h.reset(a.deref());
         assert.equal(h.history.length, 0);
-        h.swap(s => s);
+        h.swap((s) => s);
         assert.equal(h.history.length, 0);
     });
 
@@ -130,5 +137,4 @@ describe("history", () => {
         h.reset(c.deref());
         assert.equal(c.deref(), 24);
     });
-
 });
