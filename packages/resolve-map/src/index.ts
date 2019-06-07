@@ -213,7 +213,7 @@ const resolvePath = (
         v = _resolve(root, path.slice(0, i), resolved, stack);
     }
     // restore
-    stack.push(pathID);
+    stack.push(pathID!);
     return v;
 };
 
