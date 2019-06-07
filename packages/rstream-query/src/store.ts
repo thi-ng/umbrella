@@ -189,8 +189,13 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     addPatternQuery(
         pattern: Pattern,
         id?: string,
-        emitTriples?: boolean
-    ): ISubscribable<TripleIds | Triples>;
+        emitTriples?: false
+    ): ISubscribable<TripleIds>;
+    addPatternQuery(
+        pattern: Pattern,
+        id?: string,
+        emitTriples?: true
+    ): ISubscribable<Triples>;
     addPatternQuery(pattern: Pattern, id?: string, emitTriples = true) {
         let results: ISubscribable<TripleIds | Triples>;
         const [s, p, o] = pattern;
@@ -260,7 +265,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
             illegalArgs("at least 1 query variable is required in pattern");
         }
         id || (id = `query-${nextID()}`);
-        const query = <Subscription<TripleIds, Triples>>(
+        const query = <Subscription<TripleIds, any>>(
             this.addPatternQuery(
                 [vs ? null : s, vp ? null : p, vo ? null : o],
                 id + "-raw"
