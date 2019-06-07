@@ -46,9 +46,9 @@ export class SortedMap<K, V> extends Map<K, V> {
      */
     static fromObject<T>(
         obj: IObjectOf<T>,
-        opts?: Partial<SortedMapOpts<PropertyKey>>
-    ): SortedMap<PropertyKey, T> {
-        const m = new SortedMap<PropertyKey, T>(null, {
+        opts?: Partial<SortedMapOpts<string>>
+    ): SortedMap<string, T> {
+        const m = new SortedMap<string, T>(null, {
             capacity: Object.keys(obj).length,
             ...opts
         });
