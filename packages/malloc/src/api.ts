@@ -3,7 +3,7 @@ import { IRelease, Type, TypedArray } from "@thi.ng/api";
 export interface MemBlock {
     addr: number;
     size: number;
-    next: MemBlock;
+    next: MemBlock | null;
 }
 
 export interface MemPoolOpts {
@@ -44,13 +44,13 @@ export interface IMemPool extends IRelease {
 
     calloc(size: number): number;
 
-    mallocAs(type: Type, num: number): TypedArray;
+    mallocAs(type: Type, num: number): TypedArray | undefined;
 
-    callocAs(type: Type, num: number): TypedArray;
+    callocAs(type: Type, num: number): TypedArray | undefined;
 
     realloc(ptr: number, size: number): number;
 
-    reallocArray(arr: TypedArray, num: number): TypedArray;
+    reallocArray(arr: TypedArray, num: number): TypedArray | undefined;
 
     free(ptr: number | TypedArray): boolean;
 
