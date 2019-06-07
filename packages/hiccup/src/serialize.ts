@@ -290,15 +290,17 @@ const _serializeIter = (
 
 export const normalize = (tag: any[]) => {
     let el = tag[0];
-    let match, id, clazz;
+    let match: RegExpExecArray | null;
+    let id: string;
+    let clazz: string;
     const hasAttribs = isPlainObject(tag[1]);
     const attribs: any = hasAttribs ? { ...tag[1] } : {};
     if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
         illegalArgs(`"${el}" is not a valid tag name`);
     }
-    el = match[1];
-    id = match[2];
-    clazz = match[3];
+    el = match![1];
+    id = match![2];
+    clazz = match![3];
     if (id) {
         attribs.id = id;
     }
