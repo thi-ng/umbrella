@@ -138,13 +138,13 @@ export function convolve1d(
     let kernel = opts.kernel;
     if (!kernel) {
         !(opts.weights && opts.kwidth) && kernelError();
-        kernel = buildKernel1d(opts.weights, opts.kwidth);
+        kernel = buildKernel1d(opts.weights!, opts.kwidth!);
     }
     return map((p: number) =>
         transduce(
             map(kernelLookup1d(src, p, width, wrap, border)),
             rfn(),
-            kernel
+            kernel!
         )
     );
 }
@@ -170,13 +170,13 @@ export function convolve2d(
     let kernel = opts.kernel;
     if (!kernel) {
         !(opts.weights && opts.kwidth && opts.kheight) && kernelError();
-        kernel = buildKernel2d(opts.weights, opts.kwidth, opts.kheight);
+        kernel = buildKernel2d(opts.weights!, opts.kwidth!, opts.kheight!);
     }
     return map((p: number[]) =>
         transduce(
             map(kernelLookup2d(src, p[0], p[1], width, height, wrap, border)),
             rfn(),
-            kernel
+            kernel!
         )
     );
 }

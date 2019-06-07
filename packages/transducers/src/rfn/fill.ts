@@ -12,13 +12,13 @@ import { $$reduce, reducer } from "../reduce";
 export function fill<T>(start?: number): Reducer<T[], T>;
 export function fill<T>(xs: Iterable<T>): T[];
 export function fill<T>(start: number, xs: Iterable<T>): T[];
-export function fill(...args: any[]): any {
+export function fill<T>(...args: any[]): any {
     const res = $$reduce(fill, args);
     if (res !== undefined) {
         return res;
     }
     let start = args[0] || 0;
-    return reducer(() => [], (acc, x) => ((acc[start++] = x), acc));
+    return reducer<T[], T>(() => [], (acc, x) => ((acc[start++] = x), acc));
 }
 
 /**

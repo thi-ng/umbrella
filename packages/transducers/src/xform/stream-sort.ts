@@ -49,7 +49,7 @@ export function streamSort<A, B>(...args: any[]): any {
             init,
             (acc) => {
                 while (buf.length && !isReduced(acc)) {
-                    acc = reduce(acc, buf.shift());
+                    acc = reduce(acc, buf.shift()!);
                 }
                 return complete(acc);
             },
@@ -57,7 +57,7 @@ export function streamSort<A, B>(...args: any[]): any {
                 const idx = binarySearch(buf, x, key, compare);
                 buf.splice(idx < 0 ? -(idx + 1) : idx, 0, x);
                 if (buf.length === n) {
-                    acc = reduce(acc, buf.shift());
+                    acc = reduce(acc, buf.shift()!);
                 }
                 return acc;
             }

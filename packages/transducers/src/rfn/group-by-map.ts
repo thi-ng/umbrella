@@ -30,7 +30,7 @@ export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
             return acc.set(
                 k,
                 acc.has(k)
-                    ? <GROUP>reduce(acc.get(k), x)
+                    ? <GROUP>reduce(acc.get(k)!, x)
                     : <GROUP>reduce(init(), x)
             );
         }

@@ -1,9 +1,8 @@
-import { FnAny, SEMAPHORE } from "@thi.ng/api";
+import { FnAny, NO_OP, SEMAPHORE } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
 import { Reducer, Transducer } from "./api";
 import { isReduced, unreduced } from "./reduced";
 import { push } from "./rfn/push";
-
 
 /**
  * Takes a transducer and input iterable. Returns iterator of
@@ -46,7 +45,7 @@ export function* iterator1<A, B>(
     xform: Transducer<A, B>,
     xs: Iterable<A>
 ): IterableIterator<B> {
-    const reduce = (<Reducer<B, A>>xform([null, null, (_, x) => x]))[2];
+    const reduce = (<Reducer<B, A>>xform([NO_OP, NO_OP, (_, x) => x]))[2];
     for (let x of xs) {
         let y = reduce(<any>SEMAPHORE, x);
         if (isReduced(y)) {

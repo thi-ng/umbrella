@@ -34,7 +34,7 @@ export function movingAverage(period: number, src?: Iterable<number>): any {
               return compR(rfn, (acc, x: number) => {
                   const n = window.push(x);
                   sum += x;
-                  n > period && (sum -= window.shift());
+                  n > period && (sum -= window.shift()!);
                   return n >= period ? reduce(acc, sum / period) : acc;
               });
           };

@@ -13,7 +13,7 @@ export function reduce<A, B>(
     xs: IReducible<A, B>
 ): A;
 export function reduce<A, B>(...args: any[]): A {
-    let acc: A, xs: Iterable<B> | IReducible<A, B>;
+    let acc!: A, xs!: Iterable<B> | IReducible<A, B>;
     switch (args.length) {
         case 3:
             xs = args[2];

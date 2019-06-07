@@ -9,6 +9,6 @@ export function flatten<T>(src?: Iterable<T | Iterable<T>>): any {
             x != null && x[Symbol.iterator] && typeof x !== "string"
                 ? <any>x
                 : undefined,
-        src
+        src!
     );
 }

@@ -42,7 +42,7 @@ export function streamShuffle<T>(...args: any[]): any {
                 (acc) => {
                     while (buf.length && !isReduced(acc)) {
                         shuffle(buf, maxSwaps);
-                        acc = reduce(acc, buf.shift());
+                        acc = reduce(acc, buf.shift()!);
                     }
                     acc = complete(acc);
                     return acc;
@@ -51,7 +51,7 @@ export function streamShuffle<T>(...args: any[]): any {
                     buf.push(x);
                     shuffle(buf, maxSwaps);
                     if (buf.length === n) {
-                        acc = reduce(acc, buf.shift());
+                        acc = reduce(acc, buf.shift()!);
                     }
                     return acc;
                 }
