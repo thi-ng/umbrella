@@ -1,3 +1,4 @@
+import { StackContext } from "@thi.ng/pointfree/api";
 import * as pf from "../src";
 
 const src = `
@@ -18,7 +19,7 @@ const src = `
   -rot [vline] [hline] bis2 [gfx.line] bia2;
 `;
 
-const drawLine = (ctx) => {
+const drawLine = (ctx: StackContext) => {
     const stack = ctx[0];
     // minimum stack depth guard
     pf.ensureStack(stack, 2);
@@ -40,9 +41,12 @@ const drawLine = (ctx) => {
 };
 
 // create new environment and associate custom FFI words
-const env = pf.ffi({}, {
-    "gfx.line": drawLine
-});
+const env = pf.ffi(
+    {},
+    {
+        "gfx.line": drawLine
+    }
+);
 
 // compile / execute source code w/ given env
 // the compiled words will be stored in given env

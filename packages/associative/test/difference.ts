@@ -1,3 +1,4 @@
+import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
 import { ArraySet } from "../src/array-set";
 import { difference } from "../src/difference";
@@ -30,7 +31,7 @@ describe("difference", () => {
         const b = new ArraySet([{ a: 3 }, { a: 4 }, { a: 5 }]);
         const d = difference(a, b);
         assert.equal(d.size, 2);
-        assert.deepEqual(d, new Set([{ a: 1 }, { a: 2 }]));
+        assert(equiv(d, new ArraySet([{ a: 1 }, { a: 2 }])));
         assert.notStrictEqual(d, a);
         assert.notStrictEqual(d, b);
     });
