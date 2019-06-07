@@ -13,10 +13,10 @@ import { Fn1, MapLike } from "./api";
  */
 export function memoize1<A, B>(fn: Fn1<A, B>, cache?: MapLike<A, B>) {
     !cache && (cache = new Map());
-    return (x: A) => {
+    return (x: A): B => {
         let res;
         return cache!.has(x)
-            ? cache!.get(x)
+            ? cache!.get(x)!
             : (cache!.set(x, (res = fn(x))), res);
     };
 }
