@@ -3,15 +3,15 @@ import { AVecList } from "./alist";
 import { VecFactory } from "./api";
 
 interface Cell<T extends StridedVec> {
-    prev: CellVec<T>;
-    next: CellVec<T>;
+    prev: CellVec<T> | null;
+    next: CellVec<T> | null;
 }
 
 type CellVec<T extends StridedVec> = T & Cell<T>;
 
 export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
-    head: CellVec<T>;
-    tail: CellVec<T>;
+    head: CellVec<T> | null;
+    tail: CellVec<T> | null;
     readonly closed: boolean;
 
     protected _length: number;
@@ -49,8 +49,8 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
             let v = this.head;
             const first = v;
             do {
-                yield v;
-                v = v.next;
+                yield v!;
+                v = v!.next;
             } while (v && v !== first);
         }
     }
@@ -68,7 +68,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
                 this.tail = v;
                 if (this.closed) {
                     v.next = this.head;
-                    this.head.prev = v;
+                    this.head!.prev = v;
                 }
                 this._length++;
             } else {
@@ -80,7 +80,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
         return v;
     }
 
-    insert(i: number): T {
+    insert(i: number): T | undefined {
         if (!this._length) {
             return i === 0 ? this.add() : undefined;
         }
@@ -123,6 +123,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
             delete v.next;
             return true;
         }
+        return false;
     }
 
     has(value: T) {
@@ -132,7 +133,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
             if (v === value) {
                 return true;
             }
-            v = v.next;
+            v = v!.next;
         } while (v && v !== first);
         return false;
     }
@@ -157,6 +158,6 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
                 v = v.prev;
             }
         }
-        return v;
+        return v!;
     }
 }

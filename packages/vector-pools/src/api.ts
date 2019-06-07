@@ -23,13 +23,13 @@ export interface AttribPoolOpts {
 }
 
 export interface IVecPool extends IRelease {
-    malloc(size: number, type?: GLType | Type): TypedArray;
+    malloc(size: number, type?: GLType | Type): TypedArray | undefined;
 
     mallocWrapped(
         size: number,
         stride?: number,
         type?: GLType | Type
-    ): StridedVec;
+    ): StridedVec | undefined;
 
     mallocArray(
         num: number,
@@ -37,7 +37,7 @@ export interface IVecPool extends IRelease {
         cstride?: number,
         estride?: number,
         type?: GLType | Type
-    ): StridedVec[];
+    ): StridedVec[] | undefined;
 
     free(vec: StridedVec | TypedArray): boolean;
 

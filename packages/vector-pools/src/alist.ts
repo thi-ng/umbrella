@@ -48,15 +48,15 @@ export abstract class AVecList<T extends StridedVec> {
 
     abstract get length(): number;
 
-    abstract add(): T;
+    abstract add(): T | undefined;
 
-    abstract insert(i: number): T;
+    abstract insert(i: number): T | undefined;
 
     abstract remove(v: T): boolean;
 
     abstract has(v: T): boolean;
 
-    abstract nth(n: number): T;
+    abstract nth(n: number): T | undefined;
 
     indices(res: Vec = [], i = 0, local = true) {
         const start = this.start;
@@ -76,7 +76,7 @@ export abstract class AVecList<T extends StridedVec> {
     protected alloc() {
         let idx: number;
         if (this.freeIDs.length > 0) {
-            idx = this.freeIDs.pop();
+            idx = this.freeIDs.pop()!;
         } else if (this.length >= this.capacity) {
             return;
         } else {

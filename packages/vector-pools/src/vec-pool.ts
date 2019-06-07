@@ -1,7 +1,7 @@
 import { Type, TypedArray } from "@thi.ng/api";
 import { isTypedArray } from "@thi.ng/checks";
 import { MemPool, MemPoolOpts, MemPoolStats } from "@thi.ng/malloc";
-import { IVector } from "@thi.ng/vectors";
+import { StridedVec } from "@thi.ng/vectors";
 import { GLType, IVecPool } from "./api";
 import { asNativeType } from "./convert";
 import { wrap } from "./wrap";
@@ -19,7 +19,10 @@ export class VecPool implements IVecPool {
         return this.pool.stats();
     }
 
-    malloc(size: number, type: GLType | Type = Type.F32): TypedArray {
+    malloc(
+        size: number,
+        type: GLType | Type = Type.F32
+    ): TypedArray | undefined {
         return this.pool.callocAs(asNativeType(type), size);
     }
 
@@ -27,9 +30,9 @@ export class VecPool implements IVecPool {
         size: number,
         stride = 1,
         type: GLType | Type = Type.F32
-    ): IVector<any> {
+    ): StridedVec | undefined {
         const buf = this.pool.callocAs(asNativeType(type), size * stride);
-        return wrap(buf, size, 0, stride);
+        return buf ? wrap(buf, size, 0, stride) : undefined;
     }
 
     /**
@@ -62,20 +65,20 @@ export class VecPool implements IVecPool {
         cstride = 1,
         estride = size,
         type: GLType | Type = Type.F32
-    ): IVector<any>[] {
+    ): StridedVec[] | undefined {
         const buf = this.malloc(
             Math.max(cstride, estride, size) * num,
             asNativeType(type)
         );
         if (!buf) return;
-        const res: IVector<any>[] = [];
+        const res: StridedVec[] = [];
         for (let i = 0; i < num; i += estride) {
             res.push(wrap(buf, size, i, cstride));
         }
         return res;
     }
 
-    free(vec: IVector<any> | TypedArray) {
+    free(vec: StridedVec | TypedArray) {
         const buf = (<any>vec).buf;
         return buf
             ? isTypedArray(buf)
