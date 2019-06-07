@@ -194,7 +194,7 @@ export const replaceChild = (
 export const cloneWithNewAttribs = (el: Element, attribs: any) => {
     const res = <Element>el.cloneNode(true);
     setAttribs(res, attribs);
-    el.parentNode.replaceChild(res, el);
+    el.parentNode!.replaceChild(res, el);
     return res;
 };
 
@@ -286,7 +286,7 @@ export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
         case "week":
         case "month":
             if ((ev = el.value) !== undefined && typeof v === "string") {
-                const off = v.length - (ev.length - el.selectionStart);
+                const off = v.length - (ev.length - (el.selectionStart || 0));
                 el.value = v;
                 el.selectionStart = el.selectionEnd = off;
                 break;

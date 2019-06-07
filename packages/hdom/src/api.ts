@@ -381,7 +381,7 @@ export interface HDOMImplementation<T> {
      *
      * @param id
      */
-    getElementById(id: string): T;
+    getElementById(id: string): T | null;
 
     /**
      * A (potentially) optimized version of these 2 operations in
@@ -396,7 +396,7 @@ export interface HDOMImplementation<T> {
      * @param child
      * @param newTree
      */
-    replaceChild?(
+    replaceChild(
         opts: Partial<HDOMOpts>,
         parent: T,
         child: number,
@@ -409,7 +409,7 @@ export interface HDOMImplementation<T> {
      * @param parent
      * @param i
      */
-    getChild?(parent: T, i: number): T;
+    getChild(parent: T, i: number): T;
 
     /**
      * Removes the child of `parent` at index `i` in the target.
@@ -417,7 +417,7 @@ export interface HDOMImplementation<T> {
      * @param parent
      * @param i
      */
-    removeChild?(parent: T, i: number): void;
+    removeChild(parent: T, i: number): void;
 
     /**
      * Sets the given attribute `id` to new `value`. Note: `value`
@@ -431,7 +431,7 @@ export interface HDOMImplementation<T> {
      * @param value
      * @param attribs
      */
-    setAttrib?(element: T, id: string, value: any, attribs?: any): void;
+    setAttrib(element: T, id: string, value: any, attribs?: any): void;
 
     /**
      * Removes given `attribs` from target `element`. The attributes
@@ -442,7 +442,7 @@ export interface HDOMImplementation<T> {
      * @param attribs
      * @param prevAttribs
      */
-    removeAttribs?(element: T, attribs: string[], prevAttribs: any): void;
+    removeAttribs(element: T, attribs: string[], prevAttribs: any): void;
 
     /**
      * Sets target `element`'s text / body content. Note: In the default
@@ -455,7 +455,7 @@ export interface HDOMImplementation<T> {
      * @param element
      * @param value
      */
-    setContent?(element: T, value: any): void;
+    setContent(element: T, value: any): void;
 }
 
 export let LOGGER = NULL_LOGGER;

@@ -1,9 +1,9 @@
 import { HDOMImplementation } from "./api";
 import { diffTree } from "./diff";
 import {
-    createTree,
     createElement,
     createTextElement,
+    createTree,
     getChild,
     hydrateTree,
     removeAttribs,
@@ -32,7 +32,7 @@ export const DEFAULT_IMPL: HDOMImplementation<any> = {
 
     normalizeTree,
 
-    getElementById(id: string) {
+    getElementById(id: string): any | null {
         return document.getElementById(id);
     },
 
