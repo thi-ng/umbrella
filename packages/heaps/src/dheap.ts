@@ -37,7 +37,7 @@ export class DHeap<T> extends Heap<T>
     protected d: number;
 
     constructor(values?: Iterable<T>, opts?: Partial<DHeapOpts<T>>) {
-        super(null, { compare, ...opts });
+        super(undefined, { compare, ...opts });
         this.d = (opts && opts.d) || 4;
         this.values = [];
         if (values) {
@@ -50,7 +50,7 @@ export class DHeap<T> extends Heap<T>
     }
 
     empty() {
-        return new DHeap<T>(null, { compare: this.compare, d: this.d });
+        return new DHeap<T>(undefined, { compare: this.compare, d: this.d });
     }
 
     parent(n: number) {

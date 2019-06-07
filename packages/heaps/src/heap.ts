@@ -8,7 +8,6 @@ import {
 import { compare } from "@thi.ng/compare";
 import { HeapOpts } from "./api";
 
-
 /**
  * Generic binary heap / priority queue with customizable ordering via
  * user-supplied comparator. By default, implements min-heap ordering
@@ -66,7 +65,7 @@ export class Heap<T>
     }
 
     empty() {
-        return new Heap<T>(null, { compare: this.compare });
+        return new Heap<T>(undefined, { compare: this.compare });
     }
 
     peek() {
@@ -85,10 +84,10 @@ export class Heap<T>
         let res: T;
         if (vals.length > 0) {
             res = vals[0];
-            vals[0] = tail;
+            vals[0] = <T>tail;
             this.percolateDown(0);
         } else {
-            res = tail;
+            res = <T>tail;
         }
         return res;
     }
@@ -118,11 +117,11 @@ export class Heap<T>
      * @param vals
      */
     pushPopAll(vals: Iterable<T>) {
-        let res: T;
+        let res: any;
         for (let v of vals) {
             res = this.pushPop(v);
         }
-        return res;
+        return <T>res;
     }
 
     replaceHead(val: T) {
