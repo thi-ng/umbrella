@@ -6,15 +6,16 @@ import { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
 import { BasicRouter } from "./basic";
 
 export class HTMLRouter extends BasicRouter {
-    protected currentPath: string;
-    protected popHandler: Fn<PopStateEvent, void>;
-    protected hashHandler: Fn<HashChangeEvent, void>;
+    protected currentPath!: string;
+    protected popHandler!: Fn<PopStateEvent, void>;
+    protected hashHandler!: Fn<HashChangeEvent, void>;
     protected useFragment: boolean;
     protected ignoreHashChange: boolean;
 
     constructor(config: HTMLRouterConfig) {
         super(<RouterConfig>config);
         this.useFragment = config.useFragment !== false;
+        this.ignoreHashChange = false;
     }
 
     start() {
@@ -23,7 +24,7 @@ export class HTMLRouter extends BasicRouter {
             window.addEventListener("hashchange", this.handleHashChange());
         }
         if (this.config.initialRouteID) {
-            const route = this.routeForID(this.config.initialRouteID);
+            const route = this.routeForID(this.config.initialRouteID)!;
             this.route(
                 this.format({
                     id: route.id,
@@ -52,9 +53,9 @@ export class HTMLRouter extends BasicRouter {
      * @param pushState
      */
     route(src: string, pushState = true) {
-        const old = this.current,
-            route = super.route(src);
-        if (!equiv(route, old)) {
+        const old = this.current;
+        const route = super.route(src);
+        if (route && !equiv(route, old)) {
             this.currentPath = this.format(route);
             if (pushState) {
                 history.pushState(
@@ -119,7 +120,7 @@ export class HTMLRouter extends BasicRouter {
     protected handleRouteFailure() {
         this.ignoreHashChange = true;
         location.hash = this.format({
-            id: this.routeForID(this.config.defaultRouteID).id
+            id: this.routeForID(this.config.defaultRouteID)!.id
         });
         this.ignoreHashChange = false;
         return true;

@@ -1,4 +1,5 @@
 import {
+    assert,
     Event,
     INotify,
     INotifyMixin,
@@ -18,8 +19,8 @@ import {
 
 @INotifyMixin
 export class BasicRouter implements INotify {
-    public config: RouterConfig;
-    public current: RouteMatch;
+    config: RouterConfig;
+    current: RouteMatch | undefined;
 
     constructor(config: RouterConfig) {
         config.authenticator =
@@ -32,20 +33,37 @@ export class BasicRouter implements INotify {
         config.prefix = config.prefix === undefined ? "/" : config.prefix;
         config.separator = config.separator || "/";
         this.config = config;
+        assert(
+            this.routeForID(this.config.defaultRouteID) !== undefined,
+            `missing config for default route: '${this.config.defaultRouteID}'`
+        );
+        if (config.initialRouteID) {
+            const route = this.routeForID(config.initialRouteID);
+            assert(
+                route !== undefined,
+                `missing config for initial route: ${
+                    this.config.initialRouteID
+                }`
+            );
+            assert(
+                !isParametricRoute(route!),
+                "initial route MUST not be parametric"
+            );
+        }
     }
 
     // mixin
-    public addListener(_: string, __: Listener, ___?: any) {
+    addListener(_: string, __: Listener, ___?: any) {
         return false;
     }
-    public removeListener(_: string, __: Listener, ___?: any) {
+    removeListener(_: string, __: Listener, ___?: any) {
         return false;
     }
-    public notify(_: Event) {}
+    notify(_: Event) {}
 
     start() {
         if (this.config.initialRouteID) {
-            const route = this.routeForID(this.config.initialRouteID);
+            const route = this.routeForID(this.config.initialRouteID)!;
             this.current = { id: route.id, title: route.title, params: {} };
             this.notify({ id: EVENT_ROUTE_CHANGED, value: this.current });
         }
@@ -59,13 +77,13 @@ export class BasicRouter implements INotify {
      *
      * @param raw route path to match
      */
-    route(src: string): RouteMatch {
+    route(src: string): RouteMatch | undefined {
         if (src.charAt(0) === "#") {
             src = src.substr(1);
         }
-        src = src.substr(this.config.prefix.length);
+        src = src.substr(this.config.prefix!.length);
         const routes = this.config.routes,
-            curr = src.split(this.config.separator);
+            curr = src.split(this.config.separator!);
         let match;
         for (let i = 0, n = routes.length; i < n; i++) {
             const route = routes[i],
@@ -79,7 +97,7 @@ export class BasicRouter implements INotify {
             if (!this.handleRouteFailure()) {
                 return;
             }
-            const route = this.routeForID(this.config.defaultRouteID);
+            const route = this.routeForID(this.config.defaultRouteID)!;
             match = { id: route.id, title: route.title, params: {} };
         }
         if (!equiv(match, this.current)) {
@@ -97,7 +115,7 @@ export class BasicRouter implements INotify {
      * @param params
      * @param hash if true, prepends `#` to results
      */
-    format(id: PropertyKey, params?: any, hash?: boolean): string;
+    format(id: string, params?: any, hash?: boolean): string;
     format(match: Partial<RouteMatch>, hash?: boolean): string;
     format(...args: any[]) {
         let [id, params, hash] = args;
@@ -120,9 +138,9 @@ export class BasicRouter implements INotify {
             default:
                 illegalArity(args.length);
         }
-        const route = this.routeForID(match.id);
+        const route = this.routeForID(match!.id!);
         if (route) {
-            const params = match.params || {};
+            const params = match!.params || {};
             return (
                 (hash ? "#" : "") +
                 this.config.prefix +
@@ -137,15 +155,15 @@ export class BasicRouter implements INotify {
                     .join(this.config.separator)
             );
         } else {
-            illegalArgs(`invalid route ID: ${match.id.toString()}`);
+            illegalArgs(`invalid route ID: ${match!.id!}`);
         }
     }
 
-    routeForID(id: PropertyKey) {
+    routeForID(id: string) {
         return this.config.routes.find((route) => route.id === id);
     }
 
-    protected matchRoute(curr: string[], route: Route): RouteMatch {
+    protected matchRoute(curr: string[], route: Route): RouteMatch | undefined {
         const match = route.match,
             n = match.length;
         if (curr.length === n) {
@@ -165,7 +183,7 @@ export class BasicRouter implements INotify {
                 return;
             }
             return route.auth
-                ? this.config.authenticator(route, curr, params)
+                ? this.config.authenticator!(route, curr, params)
                 : { id: route.id, title: route.title, params };
         }
     }
@@ -192,3 +210,6 @@ export class BasicRouter implements INotify {
         return true;
     }
 }
+
+const isParametricRoute = (route: Route) =>
+    route.match.some((p) => p.charAt(0) === "?");
