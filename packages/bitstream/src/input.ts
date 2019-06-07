@@ -5,10 +5,10 @@ const U32 = Math.pow(2, 32);
 export class BitInputStream {
     buffer: Uint8Array;
     protected start: number;
-    protected pos: number;
     protected limit: number;
-    protected bit: number;
-    protected bitPos: number;
+    protected pos!: number;
+    protected bitPos!: number;
+    protected bit!: number;
 
     constructor(buffer: Uint8Array, offset = 0, limit = buffer.length << 3) {
         this.buffer = buffer;
