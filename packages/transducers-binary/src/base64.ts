@@ -106,7 +106,7 @@ export function base64Encode(...args: any[]): any {
                     default:
                 }
                 while (buf.length && !isReduced(acc)) {
-                    acc = reduce(acc, buf.shift());
+                    acc = reduce(acc, buf.shift()!);
                 }
                 return complete(acc);
             },
