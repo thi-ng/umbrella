@@ -287,7 +287,7 @@ export const op2v = (f: Fn2<any, any, any>) => (
             illegalArgs("at least one arg must be an array");
         }
     }
-    stack[n] = c;
+    stack[n] = c!;
     return ctx;
 };
 
@@ -1250,6 +1250,7 @@ export const cases = (cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
         return $stackFn(cases.default)(ctx);
     }
     illegalState(`no matching case for: ${tos}`);
+    return ctx;
 };
 
 export const casesq = (ctx: StackContext) => {
