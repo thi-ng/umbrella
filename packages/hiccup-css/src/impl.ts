@@ -42,7 +42,7 @@ export const expand = (
     let curr: any, isFn;
 
     const process = (i: number, r: any) => {
-        let rfn: FnAny<RuleFn>;
+        let rfn: FnAny<RuleFn> | null = null;
         if (isArray(r)) {
             expand(acc, makeSelector(parent, sel), r, opts);
         } else if (isIterable(r) && !isString(r)) {
