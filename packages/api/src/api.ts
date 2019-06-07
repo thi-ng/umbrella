@@ -682,18 +682,18 @@ export interface ISet<V, T> extends IInto<V, T> {
  *
  * @param V value type
  * @param P return type for pop()
- * @param Q return type for push()
+ * @param S return type for push()
  */
-export interface IStack<V, P, Q> {
+export interface IStack<V, P, S> {
     /**
      * Returns top-of-stack item.
      */
-    peek(): V;
+    peek(): V | undefined;
     /**
      * Removes top-of-stack item and returns type P.
      */
-    pop(): P;
-    push(x: V): Q;
+    pop(): P | undefined;
+    push(x: V): S;
 }
 
 export interface IToHiccup {
