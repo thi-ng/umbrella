@@ -13,8 +13,8 @@ const abs = Math.abs;
 export const minor: MultiVecOpRoV<number> = vop();
 
 minor.default((a) => {
-    let id,
-        min = Infinity;
+    let id = -1;
+    let min = Infinity;
     for (let i = a.length; --i >= 0; ) {
         const x = abs(a[i]);
         if (x < min) {

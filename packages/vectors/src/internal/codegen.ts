@@ -113,7 +113,7 @@ const assemble = (
         )
     ),
     post,
-    ret !== null ? `return ${ret};` : ""
+    ret !== "" ? `return ${ret};` : ""
 ];
 
 const assembleG = (
@@ -254,13 +254,13 @@ export const defHofOp = <M, V>(
     dispatch = 1,
     pre?: string
 ): [M, V, V, V] => {
-    tpl = tpl || FN("op");
+    const _tpl = tpl || FN("op");
     syms = syms || args;
     pre = pre != null ? pre : defaultOut(ret, args);
     const $ = (dim: number) =>
-        compileHOF(dim, [op], tpl, "op", args, syms, ret, "", pre);
+        compileHOF(dim, [op], _tpl, "op", args, syms, ret, "", pre);
     const fn: any = vop(dispatch);
-    fn.default(compileGHOF([op], tpl, "op", args, syms, ret, pre));
+    fn.default(compileGHOF([op], _tpl, "op", args, syms, ret, pre));
     return [fn, $(2), $(3), $(4)];
 };
 

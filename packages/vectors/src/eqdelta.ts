@@ -14,7 +14,7 @@ const $ = (dim: number) =>
             "eq,_eps",
             "a,b,eps=_eps",
             "a,b",
-            null,
+            "",
             "&&",
             "return a.length === b.length && ",
             ";"

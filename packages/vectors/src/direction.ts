@@ -10,5 +10,9 @@ import { sub } from "./sub";
  * @param b
  * @param n
  */
-export const direction = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-    normalize(null, sub(out || a, b, a), n);
+export const direction = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    n = 1
+) => normalize(null, sub(out || a, b, a), n);
