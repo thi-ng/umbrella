@@ -3,7 +3,10 @@ import { CacheEntry, CacheOpts } from "./api";
 import { LRUCache } from "./lru";
 
 export class MRUCache<K, V> extends LRUCache<K, V> {
-    constructor(pairs?: Iterable<[K, V]>, opts?: Partial<CacheOpts<K, V>>) {
+    constructor(
+        pairs?: Iterable<[K, V]> | null,
+        opts?: Partial<CacheOpts<K, V>>
+    ) {
         super(pairs, opts);
     }
 
@@ -29,7 +32,7 @@ export class MRUCache<K, V> extends LRUCache<K, V> {
                     v: value,
                     s: size
                 });
-                this.map.set(key, this.items.head);
+                this.map.set(key, this.items.head!);
             }
         }
         return value;

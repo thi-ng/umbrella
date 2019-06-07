@@ -22,11 +22,14 @@ export interface TLRUCacheEntry<K, V> extends CacheEntry<K, V> {
  * If no instance TTL is given, TTL defaults to 1 hour.
  */
 export class TLRUCache<K, V> extends LRUCache<K, V> {
-    protected opts: TLRUCacheOpts<K, V>;
-    protected map: Map<K, ConsCell<TLRUCacheEntry<K, V>>>;
-    protected items: DCons<TLRUCacheEntry<K, V>>;
+    protected opts!: TLRUCacheOpts<K, V>;
+    protected map!: Map<K, ConsCell<TLRUCacheEntry<K, V>>>;
+    protected items!: DCons<TLRUCacheEntry<K, V>>;
 
-    constructor(pairs?: Iterable<[K, V]>, opts?: Partial<TLRUCacheOpts<K, V>>) {
+    constructor(
+        pairs?: Iterable<[K, V]> | null,
+        opts?: Partial<TLRUCacheOpts<K, V>>
+    ) {
         opts = Object.assign({ ttl: 60 * 60 * 1000 }, opts);
         super(pairs, opts);
     }
@@ -71,7 +74,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
                     s: size,
                     t
                 });
-                this.map.set(key, this.items.tail);
+                this.map.set(key, this.items.tail!);
             }
         }
         return value;
