@@ -231,7 +231,7 @@ export const setter = (path: Path): ((s: any, v: any) => any) => {
                 return s;
             };
         default:
-            let f;
+            let f: any;
             for (let i = ks.length; --i >= 0; ) {
                 f = compS(ks[i], f);
             }
@@ -357,7 +357,7 @@ export const updateIn = (
 export const deleteIn = (state: any, path: Path) => {
     const ks = [...toPath(path)];
     if (ks.length > 0) {
-        const k = ks.pop();
+        const k = <PropertyKey>ks.pop();
         return updateIn(state, ks, (x) => ((x = { ...x }), delete x[k], x));
     }
 };
