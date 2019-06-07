@@ -12,7 +12,6 @@ import {
 export const TEXT = Symbol();
 
 export class HDOMNode {
-    parent: HDOMNode;
     /**
      * Only real child nodes
      */
@@ -25,12 +24,12 @@ export class HDOMNode {
     listeners: IObjectOf<EventListener[]>;
 
     value: any;
-    checked: boolean;
+    checked: boolean | undefined;
 
     tag: string | symbol;
     attribs: IObjectOf<any>;
-    style: IObjectOf<any>;
-    body: string;
+    style: IObjectOf<any> | undefined;
+    body: string | undefined;
 
     constructor(tag: string | symbol, attribs = {}) {
         this.tag = tag;
@@ -86,12 +85,14 @@ export class HDOMNode {
         }
     }
 
-    getElementById(id: string) {
+    getElementById(id: string): HDOMNode | null {
         if (this.attribs.id === id) return this;
-        for (let c of this.children) {
+        let c: HDOMNode | null;
+        for (c of this.children) {
             c = c.getElementById(id);
             if (c) return c;
         }
+        return null;
     }
 
     toHiccup(): any {
@@ -172,7 +173,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         return el;
     }
 
-    getElementById(id: string): HDOMNode {
+    getElementById(id: string): HDOMNode | null {
         return this.root.getElementById(id);
     }
 
