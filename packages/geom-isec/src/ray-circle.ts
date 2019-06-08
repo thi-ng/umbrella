@@ -1,5 +1,11 @@
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import { dot, maddN, magSq, ReadonlyVec, sub } from "@thi.ng/vectors";
+import {
+    dot,
+    maddN,
+    magSq,
+    ReadonlyVec,
+    sub
+} from "@thi.ng/vectors";
 import { NONE } from "./api";
 
 export const intersectRayCircle = (
@@ -23,8 +29,9 @@ export const intersectRayCircle = (
                         : [maddN(delta, rpos, dir, a), maddN([], rpos, dir, b)]
                     : [maddN(delta, rpos, dir, a)]
                 : b >= 0
-                    ? [maddN(delta, rpos, dir, b)]
-                    : undefined;
+                ? [maddN(delta, rpos, dir, b)]
+                : undefined;
         return isec ? { type: IntersectionType.INTERSECT, isec } : NONE;
     }
+    return NONE;
 };
