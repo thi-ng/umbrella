@@ -1,4 +1,11 @@
-import { dot4, maddN4, mulN4, ReadonlyVec, set4, Vec } from "@thi.ng/vectors";
+import {
+    dot4,
+    maddN4,
+    mulN4,
+    ReadonlyVec,
+    set4,
+    Vec
+} from "@thi.ng/vectors";
 
 /**
  * Interpolates quaternion `a` to `b` by given amount `t`, using SLERP.
@@ -13,7 +20,7 @@ import { dot4, maddN4, mulN4, ReadonlyVec, set4, Vec } from "@thi.ng/vectors";
  * @param eps
  */
 export const mixQ = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     t: number,

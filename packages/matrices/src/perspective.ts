@@ -12,7 +12,7 @@ import { frustum, frustumBounds } from "./frustum";
  * @param far
  */
 export const perspective = (
-    out: Mat,
+    out: Mat | null,
     fov: number,
     aspect: number,
     near: number,

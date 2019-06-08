@@ -1,4 +1,4 @@
-import { ReadonlyVec, setC4, Vec } from "@thi.ng/vectors";
+import { setC4, VecOpVV } from "@thi.ng/vectors";
 
 /**
  * Performs quaternion multiplication of `a` and `b` and writes result
@@ -8,7 +8,7 @@ import { ReadonlyVec, setC4, Vec } from "@thi.ng/vectors";
  * @param a
  * @param b
  */
-export const mulQ = (out: Vec, a: ReadonlyVec, b: ReadonlyVec) => {
+export const mulQ: VecOpVV = (out, a, b) => {
     const { 0: ax, 1: ay, 2: az, 3: aw } = a;
     const { 0: bx, 1: by, 2: bz, 3: bw } = b;
     return setC4(

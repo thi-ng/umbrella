@@ -12,7 +12,7 @@ import { mulM } from "./mulm";
  * @param xs
  */
 export const concat = (
-    out: Mat,
+    out: Mat | null,
     a: ReadonlyMat,
     b: ReadonlyMat,
     ...xs: ReadonlyMat[]

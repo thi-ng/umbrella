@@ -21,11 +21,14 @@ import { mulV23, mulV344, mulV44 } from "./mulv";
  * @param p
  */
 export const project = (
-    out: Vec,
+    out: Vec | null,
     mvp: ReadonlyMat,
     view: ReadonlyMat,
     p: ReadonlyVec
-) => mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)));
+) => (
+    !out && (out = []),
+    mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)))
+);
 
 /**
  * Reverse operation of project. If `invert` is true (default: false),
@@ -47,8 +50,11 @@ export const unproject = (
     doInvert = false
 ) => {
     if (doInvert) {
-        mvp = invert44([], mvp);
-        view = invert23([], view);
+        const _mvp = invert44([], mvp);
+        const _view = invert23([], view);
+        if (!_mvp || !_view) return;
+        mvp = _mvp;
+        view = _view;
     }
     const q = [...mulV23([], view, p), p[2] * 2 - 1];
     return divN3(
