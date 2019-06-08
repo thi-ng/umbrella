@@ -126,8 +126,8 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
     let from: number;
     let to = -1;
     let clear: number;
-    let x: number;
-    let y: number;
+    let x!: number;
+    let y!: number;
     const w1 = w - 1;
     const h1 = h - 1;
     const cells = range2d(h, w);
@@ -158,8 +158,8 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
                         ? 0
                         : 2
                     : from === 4
-                        ? 4
-                        : 6;
+                    ? 4
+                    : 6;
             to = S10[idx];
             clear = S10[idx + 1];
         } else {
@@ -174,7 +174,7 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
             coded[y * w + x] = clear;
         }
         if (to >= 0) {
-            curr.push(contourVertex(src, w, x, y, to, iso));
+            curr.push(contourVertex(src, w, x, y, to, iso)!);
             x += NEXT_EDGES[to];
             y += NEXT_EDGES[to + 1];
         } else {
