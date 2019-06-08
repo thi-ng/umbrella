@@ -30,9 +30,9 @@ export const sampleQuadratic = (
               ...opts
           };
     const res: Vec[] = [];
-    const delta = 1 / opts.num;
+    const delta = 1 / opts.num!;
     const [a, b, c] = points;
-    for (let t = 0; t < opts.num; t++) {
+    for (let t = 0; t < opts.num!; t++) {
         res.push(mixQuadratic([], a, b, c, t * delta));
     }
     opts.last && res.push(set([], c));

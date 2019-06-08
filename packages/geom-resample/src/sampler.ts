@@ -15,7 +15,7 @@ import {
 
 export class Sampler {
     points: ReadonlyVec[];
-    index: number[];
+    index!: number[];
 
     constructor(points: ReadonlyVec[], closed = false) {
         if (closed) {
@@ -28,10 +28,11 @@ export class Sampler {
     }
 
     totalLength() {
-        return this.index[this.index.length - 1];
+        const idx = this.index;
+        return idx ? idx[idx.length - 1] : 0;
     }
 
-    pointAt(t: number) {
+    pointAt(t: number): Vec | undefined {
         const pts = this.points;
         const n = pts.length - 1;
         if (n < 0) {
@@ -71,7 +72,7 @@ export class Sampler {
                 }
             }
         }
-        return closest;
+        return minD < Infinity ? closest : undefined;
     }
 
     closestT(p: ReadonlyVec) {
@@ -80,7 +81,7 @@ export class Sampler {
         const tmp: Vec = [];
         const closest: Vec = [];
         let minD = Infinity;
-        let minI;
+        let minI = -1;
         for (let i = 0, n = idx.length - 1; i < n; i++) {
             if (closestPointSegment(p, pts[i], pts[i + 1], tmp)) {
                 const d = distSq(p, tmp);
@@ -91,16 +92,16 @@ export class Sampler {
                 }
             }
         }
-        return (
-            fit01(
-                closestT(p, pts[minI], pts[minI + 1]),
-                idx[minI],
-                idx[minI + 1]
-            ) / this.totalLength()
-        );
+        return minI >= 0
+            ? fit01(
+                  closestT(p, pts[minI], pts[minI + 1]) || 0,
+                  idx[minI],
+                  idx[minI + 1]
+              ) / this.totalLength()
+            : undefined;
     }
 
-    segmentAt(t: number): VecPair {
+    segmentAt(t: number): VecPair | undefined {
         let i = this.indexAt(t);
         if (i === undefined) {
             return;
@@ -114,12 +115,13 @@ export class Sampler {
         return seg ? normalize(null, sub([], seg[1], seg[0]), n) : undefined;
     }
 
-    splitAt(t: number) {
+    splitAt(t: number): Vec[][] | undefined {
         if (t <= 0 || t >= 1) {
             return [this.points];
         }
         const p = this.pointAt(t);
-        const i = Math.max(1, this.indexAt(t));
+        if (!p) return;
+        const i = Math.max(1, this.indexAt(t)!);
         const head = this.points.slice(0, i);
         const tail = this.points.slice(i);
         if (!eqDelta(head[i - 1], p)) {
@@ -132,7 +134,8 @@ export class Sampler {
     }
 
     splitNear(p: ReadonlyVec) {
-        return this.splitAt(this.closestT(p));
+        const t = this.closestT(p);
+        return t !== undefined ? this.splitAt(t) : undefined;
     }
 
     indexAt(t: number) {

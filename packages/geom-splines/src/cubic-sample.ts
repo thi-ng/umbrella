@@ -31,8 +31,8 @@ export const sampleCubic = (
           };
     const res: Vec[] = [];
     const [a, b, c, d] = pts;
-    const delta = 1 / opts.num;
-    for (let t = 0; t < opts.num; t++) {
+    const delta = 1 / opts.num!;
+    for (let t = 0; t < opts.num!; t++) {
         res.push(mixCubic([], a, b, c, d, t * delta));
     }
     opts.last && res.push(set([], d));
