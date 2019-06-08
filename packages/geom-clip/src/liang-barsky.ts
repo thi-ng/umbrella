@@ -28,7 +28,7 @@ export const liangBarsky2 = (
     max: Vec,
     ca?: Vec,
     cb?: Vec
-): [Vec, Vec, number, number] => {
+): [Vec, Vec, number, number] | undefined => {
     const ax = a[0];
     const ay = a[1];
     const dx = b[0] - ax;
