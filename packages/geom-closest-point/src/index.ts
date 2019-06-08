@@ -57,7 +57,7 @@ export const closestPointLine = (
     p: ReadonlyVec,
     a: ReadonlyVec,
     b: ReadonlyVec
-) => mixN([], a, b, closestT(p, a, b));
+) => mixN([], a, b, closestT(p, a, b) || 0);
 
 /**
  * Returns distance from `p` to closest point to infinite line `a` ->
@@ -172,7 +172,7 @@ export const farthestPointSegment = (
     to = points.length
 ) => {
     let maxD = -1;
-    let maxIdx;
+    let maxIdx: number = -1;
     const tmp = empty(a);
     for (let i = from; i < to; i++) {
         const p = points[i];
@@ -187,7 +187,7 @@ export const farthestPointSegment = (
 
 export const closestPointArray = (p: ReadonlyVec, pts: Vec[]) => {
     let minD = Infinity;
-    let closest: Vec;
+    let closest: Vec | undefined;
     for (let i = pts.length; --i >= 0; ) {
         const d = distSq(pts[i], p);
         if (d < minD) {
@@ -236,8 +236,8 @@ export const closestPointRect = (
             minW = w;
         }
     }
-    return minID === 0
-        ? setC2(out, minW, clamp(p[1], bmin[1], bmax[1]))
+    return minID! === 0
+        ? setC2(out, minW!, clamp(p[1], bmin[1], bmax[1]))
         : setC2(out, clamp(p[0], bmin[0], bmax[0]), minW);
 };
 
@@ -260,10 +260,10 @@ export const closestPointAABB = (
             minW = w;
         }
     }
-    return minID === 0
+    return minID! === 0
         ? setC3(
               out,
-              minW,
+              minW!,
               clamp(p[1], bmin[1], bmax[1]),
               clamp(p[2], bmin[2], bmax[2])
           )
