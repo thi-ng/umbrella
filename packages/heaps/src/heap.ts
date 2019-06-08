@@ -37,7 +37,7 @@ export class Heap<T>
     values: T[];
     compare: Comparator<T>;
 
-    constructor(values?: Iterable<T>, opts?: HeapOpts<T>) {
+    constructor(values?: Iterable<T> | null, opts?: HeapOpts<T>) {
         opts = Object.assign({ compare: compare }, opts);
         this.compare = opts.compare;
         this.values = [];
@@ -65,7 +65,7 @@ export class Heap<T>
     }
 
     empty() {
-        return new Heap<T>(undefined, { compare: this.compare });
+        return new Heap<T>(null, { compare: this.compare });
     }
 
     peek() {
