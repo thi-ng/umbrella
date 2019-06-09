@@ -50,7 +50,7 @@ export class View<T> implements IView<T> {
     readonly parent: ReadonlyAtom<any>;
     readonly path: PropertyKey[];
 
-    protected state: T;
+    protected state: T | undefined;
     protected tx: ViewTransform<T>;
     protected unprocessed: any;
     protected isDirty: boolean;

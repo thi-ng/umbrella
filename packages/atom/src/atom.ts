@@ -21,10 +21,10 @@ import { View } from "./view";
 @IWatchMixin
 export class Atom<T> implements IAtom<T>, IEquiv {
     protected _value: T;
-    protected valid: Predicate<T>;
+    protected valid: Predicate<T> | undefined;
     protected _watches: any;
 
-    constructor(val?: T, valid?: Predicate<T>) {
+    constructor(val: T, valid?: Predicate<T>) {
         if (valid && !valid(val)) {
             illegalState("initial state value did not validate");
         }
