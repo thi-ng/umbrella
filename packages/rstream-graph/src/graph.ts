@@ -133,7 +133,7 @@ const prepareNodeInputs = (
 };
 
 const prepareNodeOutputs = (
-    outs: IObjectOf<NodeOutputSpec>,
+    outs: IObjectOf<NodeOutputSpec> | undefined,
     node: ISubscribable<any>,
     state: IAtom<any>,
     nodeID: string
@@ -262,7 +262,7 @@ export const node1 = (
     id: string
 ): ISubscribable<any> => (
     ensureInputs(src, [inputID], id),
-    xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe(null, id)
+    xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe({}, id)
 );
 
 /**
@@ -275,10 +275,10 @@ export const node1 = (
  */
 export const ensureInputs = (
     src: IObjectOf<ISubscribable<any>>,
-    inputIDs: string[],
+    inputIDs: string[] | undefined,
     nodeID: string
 ) => {
-    if (inputIDs !== undefined) {
+    if (inputIDs) {
         const missing: string[] = [];
         for (let i of inputIDs) {
             !src[i] && missing.push(i);
