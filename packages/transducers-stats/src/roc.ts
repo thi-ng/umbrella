@@ -1,6 +1,11 @@
 import { DCons } from "@thi.ng/dcons";
 import { illegalArgs } from "@thi.ng/errors";
-import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
+import {
+    compR,
+    iterator1,
+    Reducer,
+    Transducer
+} from "@thi.ng/transducers";
 
 /**
  * Rate of change.
@@ -31,7 +36,7 @@ export function roc(period: number, src?: Iterable<number>): any {
             if (window.length <= period) {
                 return acc;
             }
-            const prev = window.drop();
+            const prev = window.drop()!;
             return reduce(acc, (x - prev) / prev);
         });
     };

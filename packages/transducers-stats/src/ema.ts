@@ -1,5 +1,10 @@
 import { illegalArgs } from "@thi.ng/errors";
-import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
+import {
+    compR,
+    iterator1,
+    Reducer,
+    Transducer
+} from "@thi.ng/transducers";
 
 /**
  * https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
@@ -23,17 +28,17 @@ export function ema(period: number, src?: Iterable<number>): any {
     const k = 2 / (period + 1);
     return (rfn: Reducer<any, number>) => {
         const reduce = rfn[2];
-        let window = [];
+        let window: number[] | null = [];
+        let ema: number | null;
         let sum = 0;
-        let ema: number;
         return compR(rfn, (acc, x: number) => {
             if (ema != null) {
                 ema += (x - ema) * k;
                 return rfn[2](acc, ema);
             } else {
-                window.push(x);
+                window!.push(x);
                 sum += x;
-                if (window.length == period) {
+                if (window!.length == period) {
                     ema = sum / period;
                     window = null;
                     return reduce(acc, ema);
