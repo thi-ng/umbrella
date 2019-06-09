@@ -17,7 +17,7 @@ export const formatString = (
     bodyFmt = bodyFmt || ((x) => x.toString());
     return map(
         ([level, id, time, ...body]) =>
-            `[${LogLevel[level]}] ${id}: ${dtFmt(time)} ${bodyFmt(body)}`
+            `[${LogLevel[level]}] ${id}: ${dtFmt!(time)} ${bodyFmt!(body)}`
     );
 };
 
@@ -59,7 +59,7 @@ export const formatJSON = (
         JSON.stringify({
             id,
             level: LogLevel[level],
-            time: dtfmt(time),
+            time: dtfmt!(time),
             body
         })
     );
