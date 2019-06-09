@@ -22,7 +22,7 @@ export interface IEquivSet<T>
 
 export interface EquivSetConstructor<T> {
     new (): IEquivSet<T>;
-    new (values?: Iterable<T>, opts?: any): IEquivSet<T>;
+    new (values?: Iterable<T> | null, opts?: any): IEquivSet<T>;
     readonly prototype: IEquivSet<T>;
 }
 

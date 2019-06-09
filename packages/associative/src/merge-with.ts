@@ -9,7 +9,7 @@ export const mergeMapWith = <K, V>(
     const res: Map<K, V> = copy(dest, Map);
     for (let x of xs) {
         for (let [k, v] of x) {
-            res.set(k, res.has(k) ? f(res.get(k), v) : v);
+            res.set(k, res.has(k) ? f(res.get(k)!, v) : v);
         }
     }
     return res;

@@ -25,7 +25,10 @@ const __private = new WeakMap<LLSet<any>, SetProps<any>>();
  * `IEquiv` interfaces itself.
  */
 export class LLSet<T> extends Set<T> implements IEquivSet<T> {
-    constructor(vals?: Iterable<T>, opts: Partial<EquivSetOpts<T>> = {}) {
+    constructor(
+        vals?: Iterable<T> | null,
+        opts: Partial<EquivSetOpts<T>> = {}
+    ) {
         super();
         __private.set(this, {
             equiv: opts.equiv || equiv,
@@ -35,7 +38,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *[Symbol.iterator](): IterableIterator<T> {
-        yield* __private.get(this).vals;
+        yield* __private.get(this)!.vals;
     }
 
     get [Symbol.species]() {
@@ -47,13 +50,13 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     get size(): number {
-        return __private.get(this).vals.length;
+        return __private.get(this)!.vals.length;
     }
 
     copy() {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const s = new LLSet<T>(null, this.opts());
-        __private.get(s).vals = $this.vals.copy();
+        __private.get(s)!.vals = $this.vals.copy();
         return s;
     }
 
@@ -62,17 +65,17 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     clear() {
-        __private.get(this).vals.clear();
+        __private.get(this)!.vals.clear();
     }
 
     first(): T | undefined {
         if (this.size) {
-            return __private.get(this).vals.head.value;
+            return __private.get(this)!.vals.head!.value;
         }
     }
 
     add(x: T) {
-        !this.has(x) && __private.get(this).vals.push(x);
+        !this.has(x) && __private.get(this)!.vals.push(x);
         return this;
     }
 
@@ -95,7 +98,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
      * @param notFound
      */
     get(x: T, notFound?: T): T | undefined {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const eq = $this.equiv;
         let i = $this.vals.head;
         while (i) {
@@ -108,7 +111,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     delete(x: T) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const eq = $this.equiv;
         let i = $this.vals.head;
         while (i) {
@@ -138,7 +141,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         if (this.size !== o.size) {
             return false;
         }
-        let i = __private.get(this).vals.head;
+        let i = __private.get(this)!.vals.head;
         while (i) {
             if (!o.has(i.value)) {
                 return false;
@@ -149,7 +152,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
-        let i = __private.get(this).vals.head;
+        let i = __private.get(this)!.vals.head;
         while (i) {
             fn.call(thisArg, i.value, i.value, this);
             i = i.next;
@@ -157,13 +160,13 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *entries(): IterableIterator<Pair<T, T>> {
-        for (let v of __private.get(this).vals) {
+        for (let v of __private.get(this)!.vals) {
             yield [v, v];
         }
     }
 
     *keys(): IterableIterator<T> {
-        yield* __private.get(this).vals;
+        yield* __private.get(this)!.vals;
     }
 
     *values(): IterableIterator<T> {
@@ -171,6 +174,6 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     opts(): EquivSetOpts<T> {
-        return { equiv: __private.get(this).equiv };
+        return { equiv: __private.get(this)!.equiv };
     }
 }

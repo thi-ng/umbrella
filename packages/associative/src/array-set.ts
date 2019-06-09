@@ -24,14 +24,17 @@ const __private = new WeakMap<ArraySet<any>, ArraySetProps<any>>();
  * `IEquiv` interfaces itself.
  */
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
-    constructor(vals?: Iterable<T>, opts: Partial<EquivSetOpts<T>> = {}) {
+    constructor(
+        vals?: Iterable<T> | null,
+        opts: Partial<EquivSetOpts<T>> = {}
+    ) {
         super();
         __private.set(this, { equiv: opts.equiv || equiv, vals: [] });
         vals && this.into(vals);
     }
 
     *[Symbol.iterator](): IterableIterator<T> {
-        yield* __private.get(this).vals;
+        yield* __private.get(this)!.vals;
     }
 
     get [Symbol.species]() {
@@ -43,13 +46,13 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     get size(): number {
-        return __private.get(this).vals.length;
+        return __private.get(this)!.vals.length;
     }
 
-    copy() {
-        const $this = __private.get(this);
+    copy(): ArraySet<T> {
+        const $this = __private.get(this)!;
         const s = new ArraySet<T>(null, { equiv: $this.equiv });
-        __private.get(s).vals = $this.vals.slice();
+        __private.get(s)!.vals = $this.vals.slice();
         return s;
     }
 
@@ -58,17 +61,17 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     clear() {
-        __private.get(this).vals.length = 0;
+        __private.get(this)!.vals.length = 0;
     }
 
     first(): T | undefined {
         if (this.size) {
-            return __private.get(this).vals[0];
+            return __private.get(this)!.vals[0];
         }
     }
 
     add(x: T) {
-        !this.has(x) && __private.get(this).vals.push(x);
+        !this.has(x) && __private.get(this)!.vals.push(x);
         return this;
     }
 
@@ -91,7 +94,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
      * @param notFound
      */
     get(x: T, notFound?: T): T | undefined {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const eq = $this.equiv;
         const vals = $this.vals;
         for (let i = vals.length - 1; i >= 0; i--) {
@@ -103,7 +106,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     delete(x: T) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const eq = $this.equiv;
         const vals = $this.vals;
         for (let i = vals.length - 1; i >= 0; i--) {
@@ -132,7 +135,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         if (this.size !== o.size) {
             return false;
         }
-        const vals = __private.get(this).vals;
+        const vals = __private.get(this)!.vals;
         for (let i = vals.length; --i >= 0; ) {
             if (!o.has(vals[i])) {
                 return false;
@@ -142,7 +145,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
-        const vals = __private.get(this).vals;
+        const vals = __private.get(this)!.vals;
         for (let i = vals.length; --i >= 0; ) {
             const v = vals[i];
             fn.call(thisArg, v, v, this);
@@ -150,13 +153,13 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *entries(): IterableIterator<Pair<T, T>> {
-        for (let v of __private.get(this).vals) {
+        for (let v of __private.get(this)!.vals) {
             yield [v, v];
         }
     }
 
     *keys(): IterableIterator<T> {
-        yield* __private.get(this).vals;
+        yield* __private.get(this)!.vals;
     }
 
     *values(): IterableIterator<T> {
@@ -164,6 +167,6 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     opts(): EquivSetOpts<T> {
-        return { equiv: __private.get(this).equiv };
+        return { equiv: __private.get(this)!.equiv };
     }
 }

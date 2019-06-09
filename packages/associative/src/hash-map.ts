@@ -49,7 +49,7 @@ export class HashMap<K, V> extends Map<K, V>
         ICopy<HashMap<K, V>>,
         IEmpty<HashMap<K, V>>,
         IEquiv {
-    constructor(pairs: Iterable<Pair<K, V>>, opts: HashMapOpts<K>) {
+    constructor(pairs: Iterable<Pair<K, V>> | null, opts: HashMapOpts<K>) {
         super();
         const m = ceilPow2(Math.min(opts.cap || DEFAULT_CAP, 4)) - 1;
         __private.set(this, {
@@ -74,7 +74,7 @@ export class HashMap<K, V> extends Map<K, V>
     }
 
     get size(): number {
-        return __private.get(this).size;
+        return __private.get(this)!.size;
     }
 
     [Symbol.iterator]() {
@@ -82,31 +82,31 @@ export class HashMap<K, V> extends Map<K, V>
     }
 
     *entries(): IterableIterator<Pair<K, V>> {
-        for (let p of __private.get(this).bins) {
+        for (let p of __private.get(this)!.bins) {
             if (p) yield [p[0], p[1]];
         }
     }
 
     *keys(): IterableIterator<K> {
-        for (let p of __private.get(this).bins) {
+        for (let p of __private.get(this)!.bins) {
             if (p) yield p[0];
         }
     }
 
     *values(): IterableIterator<V> {
-        for (let p of __private.get(this).bins) {
+        for (let p of __private.get(this)!.bins) {
             if (p) yield p[1];
         }
     }
 
     forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
-        for (let pair of __private.get(this).bins) {
+        for (let pair of __private.get(this)!.bins) {
             fn.call(thisArg, pair[1], pair[0], this);
         }
     }
 
     clear() {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         $this.bins = new Array(DEFAULT_CAP);
         $this.mask = 15;
         $this.size = 0;
@@ -117,7 +117,7 @@ export class HashMap<K, V> extends Map<K, V>
     }
 
     copy() {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const m = new HashMap<K, V>(null, this.opts({ cap: 4 }));
         Object.assign(__private.get(m), {
             bins: $this.bins.slice(),
@@ -137,7 +137,7 @@ export class HashMap<K, V> extends Map<K, V>
         if (this.size !== o.size) {
             return false;
         }
-        for (let p of __private.get(this).bins) {
+        for (let p of __private.get(this)!.bins) {
             if (p && !equiv(o.get(p[0]), p[1])) {
                 return false;
             }
@@ -145,20 +145,20 @@ export class HashMap<K, V> extends Map<K, V>
         return true;
     }
 
-    has(key: K) {
-        const $this = __private.get(this);
+    has(key: K): boolean {
+        const $this = __private.get(this)!;
         const i = this.find(key, $this);
         return i >= 0 && $this.bins[i] != undefined;
     }
 
     get(key: K, notFound?: V): V | undefined {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const i = this.find(key, $this);
         return i >= 0 && $this.bins[i] ? $this.bins[i][1] : notFound;
     }
 
     set(key: K, val: V) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         let i = this.find(key, $this);
         if (i >= 0 && $this.bins[i]) {
             $this.bins[i][1] = val;
@@ -174,7 +174,7 @@ export class HashMap<K, V> extends Map<K, V>
     }
 
     delete(key: K) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         let i = this.find(key, $this);
         const bins = $this.bins;
         if (i >= 0 && !bins[i]) {
@@ -185,7 +185,7 @@ export class HashMap<K, V> extends Map<K, V>
         let j = i;
         let k: number;
         while (true) {
-            bins[i] = undefined;
+            delete bins[i];
             do {
                 j = (j + 1) & m;
                 if (!bins[j]) return true;
@@ -210,8 +210,8 @@ export class HashMap<K, V> extends Map<K, V>
         return this;
     }
 
-    opts(overrides?: Partial<HashMapOpts<K>>) {
-        const $this = __private.get(this);
+    opts(overrides?: Partial<HashMapOpts<K>>): HashMapOpts<K> {
+        const $this = __private.get(this)!;
         return <HashMapOpts<K>>{
             hash: $this.hash,
             equiv: $this.equiv,

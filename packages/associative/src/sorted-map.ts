@@ -21,11 +21,11 @@ interface SortedMapState<K, V> {
 }
 
 class Node<K, V> {
-    k: K;
-    v: V;
+    k: K | null;
+    v: V | null;
     next: Node<K, V>[];
 
-    constructor(k: K, v: V, h: number) {
+    constructor(k: K | null, v: V | null, h: number) {
         this.k = k;
         this.v = v;
         this.next = new Array(h + 1);
@@ -69,7 +69,7 @@ export class SortedMap<K, V> extends Map<K, V> {
      * @param opts
      */
     constructor(
-        pairs?: Iterable<Pair<K, V>>,
+        pairs?: Iterable<Pair<K, V>> | null,
         opts: Partial<SortedMapOpts<K>> = {}
     ) {
         super();
@@ -94,17 +94,17 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     *[Symbol.iterator](): IterableIterator<Pair<K, V>> {
-        let node = __private.get(this).head;
+        let node = __private.get(this)!.head;
         while ((node = node.next[0])) {
             yield [node.k, node.v];
         }
     }
 
     *entries(key?: K, max = false): IterableIterator<Pair<K, V>> {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         let node = $this.head;
         const cmp = $this.cmp;
-        let code: number;
+        let code: number | undefined;
         if (max) {
             while ((node = node.next[0])) {
                 if (key === undefined || (code = cmp(node.k, key)) <= 0) {
@@ -130,11 +130,11 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     get size(): number {
-        return __private.get(this).length;
+        return __private.get(this)!.length;
     }
 
     clear() {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         $this.head = new Node<K, V>(null, null, 0);
         $this.length = 0;
         $this.h = 0;
@@ -190,13 +190,13 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     first(): Pair<K, V> | undefined {
-        const node = __private.get(this).head.next[0];
+        const node = __private.get(this)!.head.next[0];
         return node ? [node.k, node.v] : undefined;
     }
 
     get(k: K, notFound?: V): V | undefined {
         const node = this.findPredNode(k).next[0];
-        return node && __private.get(this).cmp(node.k, k) === 0
+        return node && __private.get(this)!.cmp(node.k, k) === 0
             ? node.v
             : notFound;
     }
@@ -206,12 +206,12 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     set(k: K, v: V) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         let node = $this.head;
         let level = $this.h;
         let stack = new Array(level);
         const cmp = $this.cmp;
-        let code: number;
+        let code: number | undefined;
         while (level >= 0) {
             while (
                 node.next[level] &&
@@ -245,12 +245,12 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     delete(k: K) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         let node: Node<K, V> = $this.head;
         let level = $this.h;
         let removed = false;
         const cmp = $this.cmp;
-        let code: number;
+        let code: number | undefined;
         while (level >= 0) {
             while (
                 node.next[level] &&
@@ -292,7 +292,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     $reduce(rfn: ReductionFn<any, Pair<K, V>>, acc: any) {
-        let node = __private.get(this).head;
+        let node = __private.get(this)!.head;
         while ((node = node.next[0]) && !isReduced(acc)) {
             acc = rfn(acc, [node.k, node.v]);
         }
@@ -300,7 +300,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     opts(): SortedMapOpts<K> {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         return {
             capacity: $this.cap,
             compare: $this.cmp,
@@ -309,7 +309,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     protected findPredNode(k: K) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const cmp = $this.cmp;
         let node = $this.head;
         let level = $this.h;

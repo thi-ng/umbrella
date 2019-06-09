@@ -56,7 +56,10 @@ export class EquivMap<K, V> extends Map<K, V>
      * @param pairs
      * @param opts
      */
-    constructor(pairs?: Iterable<Pair<K, V>>, opts?: Partial<EquivMapOpts<K>>) {
+    constructor(
+        pairs?: Iterable<Pair<K, V>> | null,
+        opts?: Partial<EquivMapOpts<K>>
+    ) {
         super();
         const _opts: EquivMapOpts<K> = { equiv, keys: ArraySet, ...opts };
         __private.set(this, {
@@ -82,21 +85,21 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     get size(): number {
-        return __private.get(this).keys.size;
+        return __private.get(this)!.keys.size;
     }
 
     clear() {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         $this.keys.clear();
         $this.map.clear();
     }
 
     empty(): EquivMap<K, V> {
-        return new EquivMap<K, V>(null, __private.get(this).opts);
+        return new EquivMap<K, V>(null, __private.get(this)!.opts);
     }
 
     copy() {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const m = new EquivMap<K, V>();
         __private.set(m, {
             keys: $this.keys.copy(),
@@ -116,7 +119,7 @@ export class EquivMap<K, V> extends Map<K, V>
         if (this.size !== o.size) {
             return false;
         }
-        for (let p of __private.get(this).map.entries()) {
+        for (let p of __private.get(this)!.map.entries()) {
             if (!equiv(o.get(p[0]), p[1])) {
                 return false;
             }
@@ -125,7 +128,7 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     delete(key: K) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         key = $this.keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
             $this.map.delete(key);
@@ -143,13 +146,13 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
-        for (let pair of __private.get(this).map) {
+        for (let pair of __private.get(this)!.map) {
             fn.call(thisArg, pair[1], pair[0], this);
         }
     }
 
     get(key: K, notFound?: V): V | undefined {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         key = $this.keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
             return $this.map.get(key);
@@ -158,11 +161,11 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     has(key: K): boolean {
-        return __private.get(this).keys.has(key);
+        return __private.get(this)!.keys.has(key);
     }
 
     set(key: K, value: V) {
-        const $this = __private.get(this);
+        const $this = __private.get(this)!;
         const k = $this.keys.get(key, SEMAPHORE);
         if (k !== <any>SEMAPHORE) {
             $this.map.set(k, value);
@@ -181,18 +184,18 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     entries(): IterableIterator<Pair<K, V>> {
-        return __private.get(this).map.entries();
+        return __private.get(this)!.map.entries();
     }
 
     keys(): IterableIterator<K> {
-        return __private.get(this).map.keys();
+        return __private.get(this)!.map.keys();
     }
 
     values(): IterableIterator<V> {
-        return __private.get(this).map.values();
+        return __private.get(this)!.map.values();
     }
 
     opts(): EquivMapOpts<K> {
-        return __private.get(this).opts;
+        return __private.get(this)!.opts;
     }
 }
