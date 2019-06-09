@@ -128,6 +128,7 @@ export const closestPointPolyline = (
     closed = false,
     out: Vec = []
 ) => {
+    if (!pts.length) return;
     const tmp: Vec = [];
     const n = pts.length - 1;
     let minD = Infinity,
@@ -185,7 +186,11 @@ export const farthestPointSegment = (
     return [maxIdx, Math.sqrt(maxD)];
 };
 
-export const closestPointArray = (p: ReadonlyVec, pts: Vec[]) => {
+export const closestPointArray = (
+    p: ReadonlyVec,
+    pts: Vec[],
+    out: Vec = []
+) => {
     let minD = Infinity;
     let closest: Vec | undefined;
     for (let i = pts.length; --i >= 0; ) {
@@ -195,7 +200,7 @@ export const closestPointArray = (p: ReadonlyVec, pts: Vec[]) => {
             closest = pts[i];
         }
     }
-    return closest;
+    return closest ? set(out, closest) : undefined;
 };
 
 export const distToPlane = (p: ReadonlyVec, n: ReadonlyVec, w: number) =>
