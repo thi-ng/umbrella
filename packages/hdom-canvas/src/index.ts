@@ -1,4 +1,4 @@
-import { IObjectOf, NO_OP } from "@thi.ng/api";
+import { assert, IObjectOf, NO_OP } from "@thi.ng/api";
 import {
     isArray,
     isArrayLike,
@@ -153,14 +153,15 @@ export const createTree = (
 ) => {
     // console.log(Date.now(), "draw");
     const ctx = canvas.getContext("2d");
+    assert(!!ctx, "canvas ctx unavailable");
     const attribs = tree[1];
     if (attribs) {
         if (attribs.__skip) return;
         if (attribs.__clear !== false) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx!.clearRect(0, 0, canvas.width, canvas.height);
         }
     }
-    walk(ctx, tree, { attribs: {} });
+    walk(ctx!, tree, { attribs: {} });
 };
 
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
@@ -235,7 +236,13 @@ export const IMPL: HDOMImplementation<any> = {
     hydrateTree: NO_OP,
     getElementById: NO_OP,
     createElement: NO_OP,
-    createTextElement: NO_OP
+    createTextElement: NO_OP,
+    replaceChild: NO_OP,
+    getChild: NO_OP,
+    removeAttribs: NO_OP,
+    removeChild: NO_OP,
+    setAttrib: NO_OP,
+    setContent: NO_OP
 };
 
 const walk = (
@@ -336,7 +343,7 @@ const mergeState = (
     state: DrawState,
     attribs: IObjectOf<any>
 ) => {
-    let res: DrawState;
+    let res: DrawState | undefined;
     if (!attribs) return;
     if (applyTransform(ctx, attribs)) {
         res = {
@@ -358,8 +365,8 @@ const mergeState = (
                         edits: []
                     };
                 }
-                res.attribs[id] = v;
-                res.edits.push(id);
+                res!.attribs[id] = v;
+                res!.edits!.push(id);
                 setAttrib(ctx, state, id, k, v);
             }
         }
@@ -418,7 +425,7 @@ const setAttrib = (
 const resolveColor = (state: DrawState, v: any) =>
     isString(v)
         ? v[0] === "$"
-            ? state.grads[v.substr(1)]
+            ? state.grads![v.substr(1)]
             : v
         : isArrayLike(v)
         ? isNumber((<any>v).mode)
@@ -777,8 +784,8 @@ const image = (
               img,
               spos[0],
               spos[1],
-              ssize[0] || width,
-              ssize[1] || height,
+              ssize ? ssize[0] : width,
+              ssize ? ssize[1] : height,
               dpos[0],
               dpos[1],
               width,
