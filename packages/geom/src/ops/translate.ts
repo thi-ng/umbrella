@@ -73,7 +73,7 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
                       }
                     : {
                           type: s.type,
-                          point: add2([], s.point, delta)
+                          point: add2([], s.point!, delta)
                       }
             ),
             { ...$.attribs }

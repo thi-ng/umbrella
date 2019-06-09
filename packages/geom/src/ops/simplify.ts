@@ -20,8 +20,8 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
         const res: PathSegment[] = [];
         const orig = path.segments;
         const n = orig.length;
-        let points: Vec[];
-        let lastP: Vec;
+        let points!: Vec[] | null;
+        let lastP!: Vec;
         for (let i = 0; i < n; i++) {
             const s = orig[i];
             if (
@@ -29,8 +29,8 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
                 s.type === SegmentType.POLYLINE
             ) {
                 points = points
-                    ? points.concat(vertices(s.geo))
-                    : vertices(s.geo);
+                    ? points.concat(vertices(s.geo!))
+                    : vertices(s.geo!);
                 lastP = peek(points);
             } else if (points) {
                 points.push(lastP);

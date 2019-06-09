@@ -32,7 +32,11 @@ import { splitLine } from "../internal/split";
  * @param shape
  * @param p
  */
-export const splitNearPoint = defmulti<IShape, ReadonlyVec, IShape[]>(dispatch);
+export const splitNearPoint = defmulti<
+    IShape,
+    ReadonlyVec,
+    IShape[] | undefined
+>(dispatch);
 
 splitNearPoint.addAll(<
     IObjectOf<Implementation2<unknown, ReadonlyVec, IShape[]>>
@@ -49,10 +53,12 @@ splitNearPoint.addAll(<
         );
     },
 
-    [Type.POLYLINE]: ($: Polyline, p) =>
-        new Sampler($.points)
-            .splitNear(p)
-            .map((pts) => new Polyline(copyVectors(pts), { ...$.attribs })),
+    [Type.POLYLINE]: ($: Polyline, p) => {
+        const res = new Sampler($.points).splitNear(p);
+        return res
+            ? res.map((pts) => new Polyline(copyVectors(pts), { ...$.attribs }))
+            : undefined;
+    },
 
     [Type.QUADRATIC]: ({ points, attribs }: Quadratic, p) =>
         quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(

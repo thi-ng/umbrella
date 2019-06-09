@@ -27,12 +27,17 @@ import {
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
 
-export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
+export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti(
+    dispatch
+);
 
 centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
     [Type.CIRCLE]: ($: Circle, out?) => set(out || [], $.pos),
 
-    [Type.GROUP]: ($: Group) => centroid(bounds($)),
+    [Type.GROUP]: ($: Group) => {
+        const b = bounds($);
+        return b ? centroid(b) : undefined;
+    },
 
     [Type.LINE]: ({ points }: Line, out?) =>
         mixN(out || [], points[0], points[1], 0.5),

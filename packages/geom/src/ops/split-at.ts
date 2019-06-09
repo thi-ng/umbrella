@@ -15,7 +15,7 @@ import {
 import { dispatch } from "../internal/dispatch";
 import { splitLine } from "../internal/split";
 
-export const splitAt = defmulti<IShape, number, IShape[]>(dispatch);
+export const splitAt = defmulti<IShape, number, IShape[] | undefined>(dispatch);
 
 splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
     [Type.ARC]: ($: Arc, t: number) => {
@@ -54,10 +54,12 @@ splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
             (pts) => new Line(pts, { ...attribs })
         ),
 
-    [Type.POLYLINE]: ($: Polyline, t) =>
-        new Sampler($.points)
-            .splitAt(t)
-            .map((pts) => new Polyline(copyVectors(pts), { ...$.attribs })),
+    [Type.POLYLINE]: ($: Polyline, t) => {
+        const res = new Sampler($.points).splitAt(t);
+        return res
+            ? res.map((pts) => new Polyline(copyVectors(pts), { ...$.attribs }))
+            : undefined;
+    },
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic, t: number) =>
         quadraticSplitAt(points[0], points[1], points[2], t).map(

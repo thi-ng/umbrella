@@ -33,29 +33,39 @@ const translateScale2 = (
 
 export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
     const src = <Rect>bounds(shape);
+    if (!src) return;
+    const c = centroid(src);
+    if (!c) return;
     const tscale = div2([], dest.size, src.size);
     const scale = Math.min(tscale[0], tscale[1]);
     return translateScale2(
         shape,
-        centroid(dest),
-        neg(null, centroid(src)),
+        centroid(dest)!,
+        neg(null, c),
         scale23([], scale)
     );
 };
 
 export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
-    const src = new Rect(...collBounds(shapes, bounds));
+    const sbraw = collBounds(shapes, bounds);
+    if (!sbraw) return;
+    const src = new Rect(...sbraw);
     const [w, h] = div2([], dest.size, src.size);
     const s = w > 0 && h > 0 ? Math.min(w, h) : w > 0 ? w : h;
     const smat = scale23([], s);
-    const b = center(transform(src, smat), centroid(dest));
+    const b = center(transform(src, smat), centroid(dest))!;
     const c1: Vec = [];
     const c2: Vec = [];
     const res: IShape[] = [];
     for (let i = shapes.length; --i >= 0; ) {
         const s = shapes[i];
-        unmapPoint(b, mapPoint(src, centroid(s, c1)), c2);
-        res.push(translateScale2(s, c2, neg(null, c1), smat));
+        const sc = centroid(s, c1);
+        if (sc) {
+            unmapPoint(b, mapPoint(src, sc), c2);
+            res.push(translateScale2(s, c2, neg(null, c1), smat));
+        } else {
+            res.push(s);
+        }
     }
     return res;
 };

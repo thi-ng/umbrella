@@ -24,14 +24,16 @@ export const arcFrom2Points = (
     attribs?: Attribs
 ) => {
     const res = fromEndPoints(a, b, radii, axis, xl, cw);
-    return new Arc(
-        res.center,
-        res.r,
-        res.axis,
-        res.start,
-        res.end,
-        res.xl,
-        res.cw,
-        attribs
-    );
+    return res
+        ? new Arc(
+              res.center,
+              res.r,
+              res.axis,
+              res.start,
+              res.end,
+              res.xl,
+              res.cw,
+              attribs
+          )
+        : undefined;
 };

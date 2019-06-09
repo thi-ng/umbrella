@@ -23,10 +23,10 @@ import {
 
 export abstract class APC implements PCLike {
     points: Vec[];
-    attribs: Attribs;
+    attribs?: Attribs;
 
-    constructor(points: Vec[], attribs?: Attribs) {
-        this.points = points;
+    constructor(points?: Vec[], attribs?: Attribs) {
+        this.points = points || [];
         this.attribs = attribs;
     }
 
@@ -41,7 +41,7 @@ export abstract class APC implements PCLike {
 export class AABB implements AABBLike {
     pos: Vec;
     size: Vec;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(
         pos: Vec = [0, 0, 0],
@@ -50,7 +50,6 @@ export class AABB implements AABBLike {
     ) {
         this.pos = pos;
         this.size = isNumber(size) ? [size, size, size] : size;
-        this.attribs = attribs;
         this.attribs = attribs;
     }
 
@@ -77,7 +76,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
     axis: number;
     xl: boolean;
     cw: boolean;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(
         pos: Vec,
@@ -172,7 +171,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
 export class Circle implements IHiccupShape {
     pos: Vec;
     r: number;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(pos: Vec = [0, 0], r = 1, attribs?: Attribs) {
         this.pos = pos;
@@ -219,7 +218,7 @@ export class Cubic extends APC implements IHiccupPathSegment {
 export class Ellipse implements IHiccupShape {
     pos: Vec;
     r: Vec;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(
         pos: Vec = [0, 0],
@@ -302,7 +301,7 @@ export class Line extends APC implements IHiccupShape, IHiccupPathSegment {
 export class Path implements IHiccupShape {
     segments: PathSegment[];
     closed: boolean;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(segments?: PathSegment[], attribs?: Attribs) {
         this.segments = segments || [];
@@ -340,7 +339,7 @@ export class Path implements IHiccupShape {
         if (n > 1) {
             dest.push(["M", segments[0].point]);
             for (let i = 1; i < n; i++) {
-                dest = dest.concat(segments[i].geo.toHiccupPathSegments());
+                dest = dest.concat(segments[i].geo!.toHiccupPathSegments());
             }
             if (this.closed) {
                 dest.push(["Z"]);
@@ -353,7 +352,7 @@ export class Path implements IHiccupShape {
 export class Plane implements IHiccupShape {
     normal: Vec;
     w: number;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(normal: Vec = [0, 1, 0], w = 0, attribs?: Attribs) {
         this.normal = normal;
@@ -477,7 +476,7 @@ export class Quadratic extends APC implements IHiccupShape, IHiccupPathSegment {
 export class Ray implements IHiccupShape {
     pos: Vec;
     dir: Vec;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(pos: Vec, dir: Vec, attribs?: Attribs) {
         this.pos = pos;
@@ -508,7 +507,7 @@ export class Ray implements IHiccupShape {
 export class Rect implements AABBLike, IHiccupShape {
     pos: Vec;
     size: Vec;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(pos: Vec = [0, 0], size: number | Vec = 1, attribs?: Attribs) {
         this.pos = pos;
@@ -538,7 +537,7 @@ export class Rect implements AABBLike, IHiccupShape {
 export class Sphere implements IHiccupShape {
     pos: Vec;
     r: number;
-    attribs: Attribs;
+    attribs?: Attribs;
 
     constructor(pos: Vec = [0, 0, 0], r = 1, attribs?: Attribs) {
         this.pos = pos;

@@ -44,15 +44,15 @@ export const collateWith = (
     const { start, cstride, estride } = opts;
     return remap(
         fn(
-            opts.buf || new Array(start + pts.length * estride).fill(0),
+            opts.buf || new Array(start! + pts.length * estride!).fill(0),
             pts,
-            start,
-            cstride,
-            estride
+            start!,
+            cstride!,
+            estride!
         ),
         pts,
-        start,
-        cstride,
-        estride
+        start!,
+        cstride!,
+        estride!
     );
 };

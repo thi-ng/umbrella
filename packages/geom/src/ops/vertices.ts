@@ -92,7 +92,7 @@ vertices.addAll(<
     },
 
     [Type.GROUP]: ({ children }: Group) =>
-        children.reduce((acc, $) => acc.concat(vertices($)), []),
+        children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
 
     [Type.PATH]: ($: Path, opts?: number | Partial<SamplingOpts>) => {
         const _opts = isNumber(opts) ? { num: opts } : opts;
