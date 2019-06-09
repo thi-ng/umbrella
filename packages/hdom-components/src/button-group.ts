@@ -92,7 +92,7 @@ const groupBody = (
 ) => {
     switch (buttons.length) {
         case 0:
-            return;
+            return [];
         case 1:
             return [bt(opts.inner || opts.first, disabled, buttons[0])];
         case 2:

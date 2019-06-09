@@ -43,17 +43,17 @@ export interface SparklineOpts {
  */
 export const sparkline = (
     _: any,
-    opts: Partial<SparklineOpts>,
+    _opts: Partial<SparklineOpts>,
     vals: number[]
 ) => {
-    opts = {
+    const opts = {
         min: 0,
         max: 100,
         width: 50,
         height: 16,
         col: "red",
         r: 1.5,
-        ...opts
+        ..._opts
     };
     const n = vals.length;
     const s = opts.width / n;

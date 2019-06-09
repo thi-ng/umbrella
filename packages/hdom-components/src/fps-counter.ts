@@ -31,13 +31,13 @@ export interface FpsCounterOpts {
  *
  * @param opts
  */
-export const fpsCounter = (opts?: Partial<FpsCounterOpts>) => {
-    opts = {
+export const fpsCounter = (_opts?: Partial<FpsCounterOpts>) => {
+    const opts = {
         history: 25,
         smooth: 5,
         labelPeriod: 250,
         sparkline: {},
-        ...opts
+        ..._opts
     };
     return <any>{
         init() {
