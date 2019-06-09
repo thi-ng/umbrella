@@ -65,13 +65,13 @@ export function stream<T>(id: string): Stream<T>;
 export function stream<T>(src: StreamSource<T>): Stream<T>;
 export function stream<T>(src: StreamSource<T>, id: string): Stream<T>;
 export function stream(src?: any, id?: string) {
-    return new Stream(src, id);
+    return new Stream(src, id!);
 }
 
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     src: StreamSource<T>;
 
-    protected _cancel: StreamCancel;
+    protected _cancel: StreamCancel | undefined;
 
     constructor();
     constructor(id: string);
@@ -95,7 +95,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
             default:
                 illegalArity(args.length);
         }
-        super(null, null, null, id || `stream-${nextID()}`);
+        super(undefined, undefined, undefined, id || `stream-${nextID()}`);
         this.src = src;
     }
 

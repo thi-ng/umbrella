@@ -55,9 +55,14 @@ export class PubSub<A, B> extends Subscription<A, B> {
 
     constructor(opts?: PubSubOpts<A, B>) {
         opts = opts || <PubSubOpts<A, B>>{};
-        super(null, opts.xform, null, opts.id || `pubsub-${nextID()}`);
+        super(
+            undefined,
+            opts.xform,
+            undefined,
+            opts.id || `pubsub-${nextID()}`
+        );
         this.topicfn = opts.topic;
-        this.topics = new EquivMap<any, Subscription<B, B>>(null, {
+        this.topics = new EquivMap<any, Subscription<B, B>>(undefined, {
             equiv: opts.equiv
         });
     }
@@ -66,16 +71,14 @@ export class PubSub<A, B> extends Subscription<A, B> {
      * Unsupported. Use `subscribeTopic()` instead.
      */
     subscribe(): Subscription<B, any> {
-        unsupported(`use subscribeTopic() instead`);
-        return null;
+        return unsupported(`use subscribeTopic() instead`);
     }
 
     /**
      * Unsupported. Use `subscribeTopic()` instead.
      */
     transform(): Subscription<B, any> {
-        unsupported(`use subscribeTopic() instead`);
-        return null;
+        return unsupported(`use subscribeTopic() instead`);
     }
 
     subscribeTopic<C>(
@@ -121,7 +124,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
             this.topics.clear();
             return super.unsubscribe();
         }
-        unsupported();
+        return unsupported();
     }
 
     done() {

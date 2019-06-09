@@ -38,13 +38,13 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
     buf: A[];
 
     constructor(side: ISubscribable<B>, pred?: Predicate<B>, id?: string) {
-        super(null, null, null, id || `sidepart-${nextID()}`);
+        super(undefined, undefined, undefined, id || `sidepart-${nextID()}`);
         this.buf = [];
         const $this = this;
         pred = pred || (() => true);
         this.sideSub = side.subscribe({
             next(x) {
-                if ($this.buf.length && pred(x)) {
+                if ($this.buf.length && pred!(x)) {
                     $this.dispatch($this.buf);
                     $this.buf = [];
                 }

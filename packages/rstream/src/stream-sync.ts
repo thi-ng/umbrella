@@ -150,9 +150,9 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             xform = comp(xform, opts.xform);
         }
         super(
-            null,
+            undefined,
             <Transducer<any, any>>xform,
-            null,
+            undefined,
             opts.id || `streamsync-${nextID()}`
         );
         this.sources = new Map();
@@ -216,7 +216,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     remove(src: ISubscribable<A>) {
         const sub = this.sources.get(src);
         if (sub) {
-            const id = this.invRealSourceIDs.get(src.id);
+            const id = this.invRealSourceIDs.get(src.id)!;
             LOGGER.info(`removing src: ${src.id} (${id})`);
             this.sourceIDs.delete(id);
             this.realSourceIDs.delete(id);
@@ -239,7 +239,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     removeAll(src: ISubscribable<A>[]) {
         // pre-remove all source ids for partitionSync
         for (let s of src) {
-            this.sourceIDs.delete(this.invRealSourceIDs.get(s.id));
+            this.sourceIDs.delete(this.invRealSourceIDs.get(s.id)!);
         }
         let ok = true;
         for (let s of src) {
@@ -257,13 +257,13 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     }
 
     getSourceForID(id: string) {
-        return this.idSources.get(this.realSourceIDs.get(id));
+        return this.idSources.get(this.realSourceIDs.get(id)!);
     }
 
     getSources() {
         const res: IObjectOf<ISubscribable<A>> = {};
         for (let [id, src] of this.idSources) {
-            res[this.invRealSourceIDs.get(id)] = src;
+            res[this.invRealSourceIDs.get(id)!] = src;
         }
         return res;
     }
