@@ -78,7 +78,8 @@ export const walk = (
         if (children) {
             walk(children, opts, state);
             for (let c of children) {
-                state.rels.push([desc, state.subs.get(c)]);
+                const childNode = state.subs.get(c);
+                childNode && state.rels.push([desc, childNode]);
             }
         }
     }
