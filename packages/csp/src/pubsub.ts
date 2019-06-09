@@ -8,8 +8,8 @@ import { Mult } from "./mult";
 export class PubSub<T> implements IWriteableChannel<T> {
     protected static NEXT_ID = 0;
 
-    protected src: Channel<T>;
-    protected fn: TopicFn<T>;
+    protected src!: Channel<T>;
+    protected fn!: TopicFn<T>;
     protected topics: IObjectOf<Mult<T>>;
 
     constructor(fn: TopicFn<T>);
@@ -47,6 +47,7 @@ export class PubSub<T> implements IWriteableChannel<T> {
         if (this.src) {
             return this.src.write(val);
         }
+        return Promise.resolve(false);
     }
 
     close(flush = false) {

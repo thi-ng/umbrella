@@ -61,6 +61,7 @@ export class Mult<T> implements IWriteableChannel<T> {
         if (this.src) {
             return this.src.write(val);
         }
+        return Promise.resolve(false);
     }
 
     close(flush = false) {
@@ -70,7 +71,7 @@ export class Mult<T> implements IWriteableChannel<T> {
     tap<R>(ch?: Channel<R> | Transducer<T, R>) {
         if (this.taps) {
             if (!(ch instanceof Channel)) {
-                ch = new Channel<R>(this.src.id + "-tap" + this.tapID++, ch);
+                ch = new Channel<R>(this.src.id + "-tap" + this.tapID++, ch!);
             }
             this.taps.push(ch);
             return ch;

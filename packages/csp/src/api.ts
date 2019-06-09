@@ -25,7 +25,7 @@ export interface ChannelItem<T> {
 export interface IBuffer<T> extends ILength, IRelease {
     isEmpty(): boolean;
     isFull(): boolean;
-    drop(): ChannelItem<T>;
+    drop(): ChannelItem<T> | undefined;
     push(x: ChannelItem<T>): boolean;
 }
 

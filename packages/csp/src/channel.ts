@@ -270,7 +270,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         typeof setImmediate === "function" ? setImmediate : setTimeout;
 
     private static RFN: Reducer<DCons<any>, any> = [
-        () => null,
+        <any>(() => null),
         (acc) => acc,
         (acc: DCons<any>, x) => acc.push(x)
     ];
@@ -351,6 +351,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         this.tx = tx ? tx(Channel.RFN) : null;
         this.onerror = tx && (err || defaultErrorHandler);
         this.state = State.OPEN;
+        this.isBusy = false;
     }
 
     channel() {
@@ -429,7 +430,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 
     consume(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
         return (async () => {
-            let x: T;
+            let x: T | null;
             while (((x = null), (x = await this.read())) !== undefined) {
                 await fn(x);
             }
@@ -468,15 +469,15 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         return (async () => {
             const [init, complete, reduce] = rfn;
             acc = acc != null ? acc : init();
-            let x: T;
+            let x: T | null;
             while (((x = null), (x = await this.read())) !== undefined) {
-                acc = <any>reduce(acc, x);
+                acc = <any>reduce(acc!, x);
                 if (isReduced(acc)) {
                     acc = (<any>acc).deref();
                     break;
                 }
             }
-            return unreduced(complete(acc));
+            return unreduced(complete(acc!));
         })();
     }
 
@@ -508,7 +509,9 @@ export class Channel<T> implements IReadWriteableChannel<T> {
             dest = new Channel<R>(dest);
         }
         this.consume((x: T) => (<Channel<R>>dest).write(x)) // return undefined here?
-            .then(() => close && (<Channel<R>>dest).close());
+            .then(() => {
+                close && (<Channel<R>>dest).close();
+            });
         return dest;
     }
 
@@ -519,13 +522,15 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         close = true
     ) {
         if (!(truthy instanceof Channel)) {
-            truthy = new Channel<A>(truthy);
+            truthy = new Channel<A>();
         }
         if (!(falsey instanceof Channel)) {
-            falsey = new Channel<B>(falsey);
+            falsey = new Channel<B>();
         }
-        this.consume((x: T) => (pred(x) ? truthy : falsey).write(x)).then(
-            () => close && (truthy.close(), falsey.close())
+        this.consume((x: T) => (pred(x) ? truthy! : falsey!).write(x)).then(
+            () => {
+                close && (truthy!.close(), falsey!.close());
+            }
         );
         return [truthy, falsey];
     }
@@ -567,17 +572,17 @@ export class Channel<T> implements IReadWriteableChannel<T> {
                     if (txbuf.length) {
                         const val = txbuf.drop();
                         if (val !== undefined) {
-                            reads.drop()(val);
+                            reads.drop()!(val);
                         }
                     } else {
-                        const val = await buf.drop().value();
+                        const val = await buf.drop()!.value();
                         if (val !== undefined) {
-                            reads.drop()(val);
+                            reads.drop()!(val);
                         }
                     }
                 }
                 while (writes.length && !buf.isFull()) {
-                    const put = writes.drop();
+                    const put = writes.drop()!;
                     buf.push(put);
                     put.resolve(true);
                 }
