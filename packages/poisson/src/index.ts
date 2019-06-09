@@ -74,13 +74,17 @@ export interface PoissonOpts {
     rnd?: IRandom;
 }
 
-export const samplePoisson = (opts: Partial<PoissonOpts>) => {
-    opts = {
+/**
+ *
+ * @param opts
+ */
+export const samplePoisson = (_opts: PoissonOpts) => {
+    const opts = {
         rnd: SYSTEM,
         iter: 1,
         jitter: 1,
         quality: 500,
-        ...opts
+        ..._opts
     };
     const { points, index, rnd, jitter, quality, density: _d } = opts;
     const density = isNumber(_d) ? () => _d : _d;
