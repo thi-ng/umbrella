@@ -1,7 +1,7 @@
+import { ReadonlyVec, Vec } from "./api";
 import { cross3 } from "./cross";
-import { sub3 } from "./sub";
 import { normalize } from "./normalize";
-import { Vec, ReadonlyVec } from "./api";
+import { sub3 } from "./sub";
 
 /**
  * Produces a vector which is perpendicular/normal to the plane spanned
@@ -9,8 +9,8 @@ import { Vec, ReadonlyVec } from "./api";
  * result vector will be normalized.
  *
  * ```
- * orthoNormal3([], [0,0,0], [1,0,0], [0,1,0])
- * // [0,0,1]
+ * orthoNormal3([], [0, 0, 0], [1, 0, 0], [0, 1, 0])
+ * // [0, 0, 1]
  * ```
  *
  * @param out
@@ -20,7 +20,7 @@ import { Vec, ReadonlyVec } from "./api";
  * @param normalize
  */
 export const orthoNormal3 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
