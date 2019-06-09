@@ -9,7 +9,7 @@ import {
     isString
 } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
-import { illegalState } from "@thi.ng/errors";
+import { illegalState, unsupported } from "@thi.ng/errors";
 import { mapcat } from "@thi.ng/transducers";
 import {
     BinStructItem,
@@ -63,7 +63,7 @@ const encodeBin = defmulti<any, BinStructItem[]>(
             ? Type.LIST
             : isPlainObject(x)
             ? Type.DICT
-            : undefined
+            : unsupported(`unsupported data type: ${x}`)
 );
 
 encodeBin.addAll({
@@ -145,7 +145,10 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
                 break;
             default:
                 if (x >= Lit.ZERO && x <= Lit.NINE) {
-                    x = readBytes(iter, readInt(iter, x - Lit.ZERO, Lit.COLON));
+                    x = readBytes(
+                        iter,
+                        readInt(iter, x - Lit.ZERO, Lit.COLON)!
+                    );
                     x = collect(stack, x, utf8);
                     if (x !== undefined) {
                         return x;
