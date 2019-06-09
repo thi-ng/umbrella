@@ -32,7 +32,7 @@ export type ResultBody<T> = [number | string, T[]?];
 
 export type AltCallback<T, C, R> = (
     ctx: C,
-    next: ResultBody<R>,
+    next: ResultBody<R> | undefined,
     x: T[]
 ) => ResultBody<R>;
 

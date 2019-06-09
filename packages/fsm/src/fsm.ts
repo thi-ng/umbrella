@@ -78,7 +78,7 @@ export function fsm<T, C, R>(
                           if (type >= Match.FULL) {
                               const next = body && states[body[0]];
                               if (next) {
-                                  currID = body[0];
+                                  currID = body![0];
                                   curr = next();
                               } else {
                                   illegalState(

@@ -1,5 +1,5 @@
 import { EPS } from "@thi.ng/math";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { hueRgba } from "./hue-rgba";
 import { luminanceRGB } from "./luminance-rgb";
 import { rgbaHcva } from "./rgba-hcva";
@@ -11,7 +11,7 @@ import { rgbaHcva } from "./rgba-hcva";
  * @param out
  * @param src
  */
-export const rgbaHcya = (out: Color, src: ReadonlyColor) => {
+export const rgbaHcya: ColorOp = (out, src) => {
     const y = luminanceRGB(src);
     out = rgbaHcva(out, src);
     const z = luminanceRGB(hueRgba([], out[0]));

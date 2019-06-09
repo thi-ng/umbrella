@@ -10,10 +10,10 @@ export function hsla(...args: any[]) {
 }
 
 export class HSLA extends AColor<HSLA> implements IVector<HSLA> {
-    h: number;
-    s: number;
-    l: number;
-    a: number;
+    h!: number;
+    s!: number;
+    l!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.HSLA;

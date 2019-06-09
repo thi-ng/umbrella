@@ -34,12 +34,14 @@ export const alts = <T, C, R>(
     success?: AltCallback<T, C, R>,
     fail?: AltFallback<T, C, R>
 ): Matcher<T, C, R> => () => {
-    const alts = opts.map((o) => o());
+    const alts: (MatcherInst<T, C, R> | null)[] = opts.map((o) => o());
     const buf: T[] = [];
     let active = alts.length;
     return (ctx, x) => {
         for (
-            let i = alts.length, a: MatcherInst<T, C, R>, next: MatchResult<R>;
+            let i = alts.length,
+                a: MatcherInst<T, C, R> | null,
+                next: MatchResult<R>;
             --i >= 0;
 
         ) {
@@ -58,7 +60,7 @@ export const alts = <T, C, R>(
         return active
             ? RES_PARTIAL
             : fallback
-                ? result(fallback(ctx, buf))
-                : result(fail && fail(ctx, buf), Match.FAIL);
+            ? result(fallback(ctx, buf))
+            : result(fail && fail(ctx, buf), Match.FAIL);
     };
 };

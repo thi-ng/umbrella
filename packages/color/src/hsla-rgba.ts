@@ -1,10 +1,10 @@
 import { clamp01 } from "@thi.ng/math";
 import { setC3 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { hueRgba } from "./hue-rgba";
 import { ensureAlpha } from "./internal/ensure-alpha";
 
-export const hslaRgba = (out: Color, src: ReadonlyColor) => {
+export const hslaRgba: ColorOp = (out, src) => {
     const s = clamp01(src[1]);
     const l = clamp01(src[2]);
     out = hueRgba(out || src, src[0], ensureAlpha(src[3]));

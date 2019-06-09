@@ -1,8 +1,8 @@
 import { EPS } from "@thi.ng/math";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { rgbaHcva } from "./rgba-hcva";
 
-export const rgbaHsva = (out: Color, src: ReadonlyColor) => {
+export const rgbaHsva: ColorOp = (out, src) => {
     out = rgbaHcva(out, src);
     out[1] /= out[2] + EPS;
     return out;

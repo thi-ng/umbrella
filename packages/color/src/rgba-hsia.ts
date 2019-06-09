@@ -1,13 +1,18 @@
-import { atan2Abs, SQRT3, TAU, THIRD } from "@thi.ng/math";
+import {
+    atan2Abs,
+    SQRT3,
+    TAU,
+    THIRD
+} from "@thi.ng/math";
 import { setC3 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { clamp } from "./clamp";
 
 // https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma
 
 const SQRT32 = SQRT3 / 2;
 
-export const rgbaHsia = (out: Color, src: ReadonlyColor) => {
+export const rgbaHsia: ColorOp = (out, src) => {
     out = clamp(out || src, src);
     const r = out[0];
     const g = out[1];

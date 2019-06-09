@@ -36,7 +36,7 @@ export const range = <T extends number | string, C, R>(
 export const digit = <C, R>(
     success?: LitCallback<string, C, R>,
     fail?: LitCallback<string, C, R>
-): Matcher<string, C, R> => range("0", "9", success, fail);
+): Matcher<string, C, R> => range<string, C, R>("0", "9", success, fail);
 
 /**
  * Matcher for single A-Z or a-z characters.
@@ -50,7 +50,7 @@ export const alpha = <C, R>(
 ): Matcher<string, C, R> =>
     alts(
         [range<string, C, R>("a", "z"), range<string, C, R>("A", "Z")],
-        null,
+        undefined,
         success,
         fail
     );
@@ -64,7 +64,7 @@ export const alpha = <C, R>(
 export const alphaNum = <C, R>(
     success?: AltCallback<string, C, R>,
     fail?: AltFallback<string, C, R>
-): Matcher<string, C, R> => alts([alpha(), digit()], null, success, fail);
+): Matcher<string, C, R> => alts([alpha(), digit()], undefined, success, fail);
 
 const WS = new Set([" ", "\n", "\t", "\r"]);
 

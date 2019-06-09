@@ -16,6 +16,7 @@ export type CosCoeffs = [number, number, number, number];
 export type CosGradientSpec = [CosCoeffs, CosCoeffs, CosCoeffs, CosCoeffs];
 
 export type ColorConversion<T> = (out: Color, src: T) => Color;
+export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
 
 export const enum ColorMode {
     RGBA,

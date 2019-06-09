@@ -1,10 +1,10 @@
 import { setC3 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { clampH } from "./clamp";
 
 // https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSI
 
-export const hsiaRgba = (out: Color, src: ReadonlyColor) => {
+export const hsiaRgba: ColorOp = (out, src) => {
     out = clampH(out || src, src);
     const s = out[1];
     const i = out[2];
