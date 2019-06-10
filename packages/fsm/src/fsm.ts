@@ -13,7 +13,7 @@ import { Match, Matcher } from "./api";
 /**
  * Finite-state machine transducer / iterator with support for single
  * lookahead value. Takes an object of `states` and their matchers, an
- * arbitrary context object and an `initial` state ID.
+ * arbitrary context object and an `initial` state ID (default: "start").
  *
  * The returned transducer consumes inputs of type `T` and produces
  * results of type `R`. The results are produced by callbacks of the

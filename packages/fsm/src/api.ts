@@ -34,13 +34,17 @@ export type AltCallback<T, C, R> = (
     ctx: C,
     next: ResultBody<R> | undefined,
     x: T[]
-) => ResultBody<R>;
+) => ResultBody<R> | undefined;
 
-export type LitCallback<T, C, R> = (ctx: C, x: T) => ResultBody<R>;
+export type LitCallback<T, C, R> = (ctx: C, x: T) => ResultBody<R> | undefined;
 
-export type SeqCallback<T, C, R> = (ctx: C, buf: T[]) => ResultBody<R>;
+export type SeqCallback<T, C, R> = (
+    ctx: C,
+    buf: T[]
+) => ResultBody<R> | undefined;
 
 export type AltFallback<T, C, R> = SeqCallback<T, C, R>;
 
-export const RES_PARTIAL = Object.freeze({ type: Match.PARTIAL });
-export const RES_FAIL = Object.freeze({ type: Match.FAIL });
+// prettier-ignore
+export const RES_PARTIAL: MatchResult<any> = Object.freeze({ type: Match.PARTIAL });
+export const RES_FAIL: MatchResult<any> = Object.freeze({ type: Match.FAIL });
