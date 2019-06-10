@@ -64,8 +64,8 @@ const simpleDiff = <T>(
  * @param equiv equality predicate function
  */
 export const diffArray = <T>(
-    a: ArrayLike<T>,
-    b: ArrayLike<T>,
+    a: ArrayLike<T> | undefined | null,
+    b: ArrayLike<T> | undefined | null,
     mode = DiffMode.FULL,
     equiv = _equiv
 ) => {
@@ -80,7 +80,7 @@ export const diffArray = <T>(
     if (a === b || (a == null && b == null)) {
         return state;
     } else if (a == null || a.length === 0) {
-        return simpleDiff(state, b, "adds", 1, mode);
+        return simpleDiff(state, b!, "adds", 1, mode);
     } else if (b == null || b.length === 0) {
         return simpleDiff(state, a, "dels", -1, mode);
     }
