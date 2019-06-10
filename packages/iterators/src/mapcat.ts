@@ -2,7 +2,7 @@ import { ensureIterable } from "./ensure";
 import { map } from "./map";
 
 export function* mapcat<T>(
-    fn: (...args: any[]) => Iterable<T>,
+    fn: (...args: any[]) => Iterable<T> | undefined | null,
     ...inputs: Iterable<any>[]
 ): IterableIterator<T> {
     (<any>inputs).unshift(fn);
