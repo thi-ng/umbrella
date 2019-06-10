@@ -217,7 +217,7 @@ const makeField = (
 export const typedef = (
     spec: Field[],
     struct: boolean,
-    buf?: ArrayBuffer,
+    buf?: ArrayBuffer | null,
     offset = 0,
     doAlign = true,
     le = false
@@ -246,7 +246,7 @@ export const typedef = (
 
 export const union = (
     spec: Field[],
-    buf?: ArrayBuffer,
+    buf?: ArrayBuffer | null,
     offset?: number,
     doAlign?: boolean,
     le?: boolean
@@ -256,7 +256,7 @@ export const union = (
 
 export const struct = (
     spec: Field[],
-    buf?: ArrayBuffer,
+    buf?: ArrayBuffer | null,
     offset?: number,
     doAlign?: boolean,
     le?: boolean
