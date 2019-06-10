@@ -72,6 +72,8 @@ export class Mult<T> implements IWriteableChannel<T> {
         if (this.taps) {
             if (!(ch instanceof Channel)) {
                 ch = new Channel<R>(this.src.id + "-tap" + this.tapID++, ch!);
+            } else if (this.taps.find(ch)) {
+                return ch;
             }
             this.taps.push(ch);
             return ch;
