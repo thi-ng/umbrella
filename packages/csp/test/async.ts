@@ -1,7 +1,6 @@
 import * as tx from "@thi.ng/transducers";
 import { Channel, PubSub } from "../src";
 
-
 async function pingpong() {
     async function ping(ch: Channel<number>) {
         for (let i = 0; i < 10; i++) {
@@ -67,7 +66,7 @@ async function pubsub() {
         done = new Channel(),
         topics = "abc";
     for (let i of topics) {
-        pub.sub(i)
+        pub.sub(i)!
             .consume()
             .then(() => done.write(i));
     }

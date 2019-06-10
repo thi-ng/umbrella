@@ -2,12 +2,11 @@ import { Atom, Cursor, History } from "@thi.ng/atom";
 import * as assert from "assert";
 import { fromAtom } from "../src/from/atom";
 
-
 // prettier-ignore
 describe("fromAtom", () => {
 
     it("works with atom", (done) => {
-        let a = new Atom(null);
+        let a = new Atom(0);
         let src = fromAtom(a, false);
         let calledNext = false;
         src.subscribe({

@@ -2,7 +2,6 @@ import * as tx from "@thi.ng/transducers";
 import * as fs from "fs";
 import { Channel, Mult } from "../src";
 
-
 // compose transducer to split source file into words
 // and filter out short strings
 const proc: tx.Transducer<string, string> = tx.comp(
@@ -26,7 +25,7 @@ const paths = new Channel<any>(
 const results = new Mult<[string, number]>("results");
 
 // tap result channel and sum word counts
-const counter = results.tap(tx.map((x) => x[1])).reduce(tx.add());
+const counter = results.tap(tx.map((x) => x[1]))!.reduce(tx.add());
 
 // 2nd output channel with streaming sort transducer
 // (using a sliding window size of 500 items) and dropping
@@ -36,7 +35,7 @@ const sorted = results.tap(
         tx.streamSort(500, { key: (x) => x[1] }),
         tx.dropWhile((x) => x[1] < 20)
     )
-);
+)!;
 
 // define workflow:
 // pipe source files into a new channel and

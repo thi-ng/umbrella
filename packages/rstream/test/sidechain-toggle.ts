@@ -2,7 +2,6 @@ import { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
 import * as rs from "../src/index";
 
-
 describe("SidechainToggle", () => {
     let src: rs.Stream<any>, side: rs.Stream<any>, buf: any[];
 
@@ -14,7 +13,7 @@ describe("SidechainToggle", () => {
 
     let check = (
         initial: any,
-        pred: Predicate<any>,
+        pred: Predicate<any> | undefined,
         expect: any,
         done: Function
     ) => {
@@ -38,11 +37,11 @@ describe("SidechainToggle", () => {
     };
 
     it("toggles (initially on)", (done) => {
-        check(true, null, [1, 2, 5], done);
+        check(true, undefined, [1, 2, 5], done);
     });
 
     it("toggles (initially off)", (done) => {
-        check(false, null, [3, 4], done);
+        check(false, undefined, [3, 4], done);
     });
 
     it("toggles w/ predicate", (done) => {

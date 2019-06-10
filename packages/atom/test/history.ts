@@ -40,7 +40,7 @@ describe("history", () => {
     });
 
     it("does record & shift (nested)", () => {
-        let c = new Cursor(a, "b");
+        let c = new Cursor<any>(a, "b");
         let h = new History(c, 3);
         h.swap((s) => ({ ...s, c: 21 }));
         assert.equal(h.history.length, 1);
