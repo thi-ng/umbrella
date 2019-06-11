@@ -17,7 +17,8 @@ const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
             ...attribs,
             type: "range",
             value: stream.deref(),
-            oninput: (e) => stream.next(parseFloat(e.target.value))
+            oninput: (e: Event) =>
+                stream.next(parseFloat((<HTMLInputElement>e.target).value))
         }
     ],
     ["span.ml3", stream.deref()]

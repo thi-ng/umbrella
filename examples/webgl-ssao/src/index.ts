@@ -165,7 +165,7 @@ const app = () => {
         update(_, gl, __, time, frame) {
             if (frame < 1 || !model) return;
             const bg = 0.1;
-            const eye = (<IDeref<GLVec3>>model.uniforms.eyePos).deref();
+            const eye = (<IDeref<GLVec3>>model.uniforms!.eyePos).deref();
             const p = perspective([], 45, W / H, Z_NEAR, Z_FAR);
             const v = lookAt([], eye, [0, 0, 0], [0, 1, 0]);
             const m = transform44(
@@ -174,12 +174,12 @@ const app = () => {
                 [sin(time, 0.00005, 1, 0), time * 0.0003, 0],
                 1
             );
-            model.instances.attribs.offset.buffer.set(
+            model.instances!.attribs.offset.buffer!.set(
                 instancePositions(sin(time, 0.0004, 0.14, 1.15))
             );
-            model.uniforms.model = <GLMat4>m;
-            model.uniforms.view = <GLMat4>v;
-            model.uniforms.proj = <GLMat4>p;
+            model.uniforms!.model = <GLMat4>m;
+            model.uniforms!.view = <GLMat4>v;
+            model.uniforms!.proj = <GLMat4>p;
             gl.viewport(0, 0, W, H);
             fboGeo.bind();
             gl.clearColor(bg, bg, bg, 1);
@@ -207,4 +207,4 @@ if (process.env.NODE_ENV !== "production") {
     hot && hot.dispose(cancel);
 }
 
-window["params"] = PARAMS;
+//window["params"] = PARAMS;

@@ -8,7 +8,7 @@ import {
     transform44
 } from "@thi.ng/matrices";
 import { SYSTEM } from "@thi.ng/random";
-import { fromEvent, Subscription } from "@thi.ng/rstream";
+import { fromDOMEvent, Subscription } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { AttribPool, GLType } from "@thi.ng/vector-pools";
 import {
@@ -97,8 +97,8 @@ const createText = (
         }
     };
     // update bottom vertex colors of each character
-    for (let i = 2; i < model.attribPool.capacity; i += 4) {
-        model.attribPool.setAttribValues("color", [col, col], i);
+    for (let i = 2; i < model.attribPool!.capacity; i += 4) {
+        model.attribPool!.setAttribValues("color", [col, col], i);
     }
     return compileModel(gl, model);
 };
@@ -126,7 +126,7 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
         pool.setAttribValue("id", i, i);
     }
     return compileModel(gl, {
-        attribs: null,
+        attribs: {},
         attribPool: pool,
         uniforms: {},
         shader: shader(gl, {
@@ -176,7 +176,7 @@ const app = () => {
             await img.decode();
             body = createText(gl, glyphs, img, TEXT);
             stars = createStarField(gl);
-            body.uniforms.proj = stars.uniforms.proj = <GLMat4>(
+            body.uniforms!.proj = stars.uniforms!.proj = <GLMat4>(
                 perspective(
                     [],
                     60,
@@ -185,8 +185,8 @@ const app = () => {
                     20
                 )
             );
-            mouse = fromEvent(el, "mousemove").transform(
-                map((e: MouseEvent) =>
+            mouse = fromDOMEvent(el, "mousemove").transform(
+                map((e) =>
                     fit3(
                         [],
                         [e.clientX, e.clientY, 0],
@@ -209,7 +209,7 @@ const app = () => {
                 [2, 0.5, 0]
             );
             const view = lookAt([], eye, ZERO3, Y3);
-            body.uniforms.modelview = <GLMat4>(
+            body.uniforms!.modelview = <GLMat4>(
                 concat(
                     [],
                     view,
@@ -221,8 +221,8 @@ const app = () => {
                     )
                 )
             );
-            stars.uniforms.modelview = <GLMat4>view;
-            stars.uniforms.time = 10 + time * 0.001;
+            stars.uniforms!.modelview = <GLMat4>view;
+            stars.uniforms!.time = 10 + time * 0.001;
             gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
             gl.clearColor(bg, bg, bg, 1);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);

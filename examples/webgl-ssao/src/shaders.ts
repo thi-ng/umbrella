@@ -58,7 +58,8 @@ export const LIGHT_SHADER: ShaderSpec = {
     }
 };
 
-export const SSAO_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC, {
+export const SSAO_SHADER: ShaderSpec = {
+    ...FX_SHADER_SPEC,
     fs: `#define K (0.707107)
 
 const vec2 kernel[4] = vec2[](
@@ -107,7 +108,7 @@ void main() {
     outputs: {
         occlusion: GLSL.float
     }
-});
+};
 
 export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC, {
     fs: `void main() {
