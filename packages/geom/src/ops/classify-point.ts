@@ -1,4 +1,5 @@
-import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { classifyPointInCircle, classifyPointInTriangle2 } from "@thi.ng/geom-isec";
 import { EPS, sign } from "@thi.ng/math";
@@ -11,9 +12,11 @@ export const classifyPoint: MultiFn2O<
     ReadonlyVec,
     number,
     number
-> = defmulti(dispatch);
+> = defmulti(<any>dispatch);
 
-classifyPoint.addAll({
+classifyPoint.addAll(<
+    IObjectOf<Implementation2O<unknown, ReadonlyVec, number, number>>
+>{
     [Type.CIRCLE]: ($: Circle, p, eps = EPS) =>
         classifyPointInCircle(p, $.pos, $.r, eps),
 

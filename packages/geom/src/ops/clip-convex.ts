@@ -1,4 +1,5 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip";
 import { Polygon } from "../api";
@@ -8,7 +9,7 @@ import { vertices } from "./vertices";
 
 export const clipConvex = defmulti<IShape, IShape, Polygon>(dispatch);
 
-clipConvex.addAll({
+clipConvex.addAll(<IObjectOf<Implementation2<unknown, unknown, Polygon>>>{
     [Type.POLYGON]: ($: Polygon, boundary: IShape) =>
         new Polygon(
             sutherlandHodgeman(
@@ -19,7 +20,7 @@ clipConvex.addAll({
             { ...$.attribs }
         ),
 
-    [Type.RECT]: ($, boundary: IShape) =>
+    [Type.RECT]: ($: IShape, boundary: IShape) =>
         new Polygon(
             sutherlandHodgeman(
                 vertices($),

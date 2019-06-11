@@ -1,13 +1,13 @@
 import { timedResult } from "@thi.ng/bench";
 import { KdTree } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { sync, trigger } from "@thi.ng/rstream";
+import { StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { Vec } from "@thi.ng/vectors";
 
-const app = (main) => {
+const app = (main: StreamSync<any, any>) => {
     // augment hdom-canvas component w/ `init` lifecycle method: this is
     // method is called when the canvas DOM element is first created and
     // used to attach a mouse & touch event stream to it. this stream is
@@ -25,7 +25,7 @@ const app = (main) => {
     let tree = new KdTree<Vec, number>(2);
 
     // return root component function, triggered by each new mouse / touch event
-    return ({ mpos }) => {
+    return ({ mpos }: { mpos: Vec }) => {
         // recreate tree every 500 points (in lieu of re-balancing)
         if (!(tree.length % 500)) {
             tree = new KdTree(2, tree);
@@ -67,7 +67,7 @@ const app = (main) => {
                 "div",
                 `Points: ${tree.length}, Sel: ${selected.length}, `,
                 `Neighbors: ${neighbors.length}, Q1: ${t1}ms, Q2: ${t2}ms, `,
-                `Height: ${tree.root.height()}, Ratio: ${tree
+                `Height: ${tree.root!.height()}, Ratio: ${tree
                     .balanceRatio()
                     .toFixed(2)}`
             ],
@@ -97,7 +97,7 @@ const app = (main) => {
 // component's `init` method is called which attaches the above gesture
 // stream dynamically. the entire UI then only updates when there are new
 // user interactions...
-const main = sync({ src: { trigger: trigger() } });
+const main = sync<any, any>({ src: { trigger: trigger() } });
 // transform result stream using the
 // root component fn and the hdom differential
 // update transducer

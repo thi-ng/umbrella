@@ -23,29 +23,29 @@ let pkgTop = 0;
 const filterCommit = (q: string) => (x: Commit) =>
     x[2].toLowerCase().indexOf(q) >= 0 || x[1].indexOf(q) >= 0;
 
-const setQuery = (e) => {
+const setQuery = (e: Event) => {
     try {
-        query = e.target.value;
+        query = (<HTMLInputElement>e.target).value;
         filtered = COMMITS.filter(filterCommit(query));
         commitsOffset = 0;
         commitsTop = 0;
     } catch (e) {}
 };
 
-const queryFilter = (_, query, items) => [
+const queryFilter = (_: any, query: EventListener, items: any[]) => [
     "div.pv2.ph3.bg-black.white",
     "Filter: ",
     ["input", { type: "text", oninput: setQuery, value: query }],
     ` (${items.length})`
 ];
 
-const repoLink = (_, sha, body) => [
+const repoLink = (_: any, sha: string, body: any) => [
     "a.link.blue",
     { href: `${REPO_BASE}commit/${sha}` },
     body
 ];
 
-const packageLink = (_, name) => [
+const packageLink = (_: any, name: any) => [
     "a.link.blue",
     { href: `${REPO_BASE}tree/master/packages/${name.substr(8)}` },
     name

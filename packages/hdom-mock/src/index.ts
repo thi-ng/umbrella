@@ -12,7 +12,6 @@ import {
 export const TEXT = Symbol();
 
 export class HDOMNode {
-    parent: HDOMNode;
     /**
      * Only real child nodes
      */
@@ -25,12 +24,12 @@ export class HDOMNode {
     listeners: IObjectOf<EventListener[]>;
 
     value: any;
-    checked: boolean;
+    checked: boolean | undefined;
 
     tag: string | symbol;
     attribs: IObjectOf<any>;
-    style: IObjectOf<any>;
-    body: string;
+    style: IObjectOf<any> | undefined;
+    body: string | undefined;
 
     constructor(tag: string | symbol, attribs = {}) {
         this.tag = tag;
@@ -86,15 +85,17 @@ export class HDOMNode {
         }
     }
 
-    getElementById(id: string) {
+    getElementById(id: string): HDOMNode | null {
         if (this.attribs.id === id) return this;
-        for (let c of this.children) {
+        let c: HDOMNode | null;
+        for (c of this.children) {
             c = c.getElementById(id);
             if (c) return c;
         }
+        return null;
     }
 
-    toHiccup() {
+    toHiccup(): any {
         if (this.isText()) {
             return this.body;
         }
@@ -122,7 +123,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         parent: HDOMNode,
         tree: any,
         child?: number
-    ) {
+    ): HDOMNode | HDOMNode[] {
         return createTree(opts, this, parent, tree, child);
     }
 
@@ -172,7 +173,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         return el;
     }
 
-    getElementById(id: string): HDOMNode {
+    getElementById(id: string): HDOMNode | null {
         return this.root.getElementById(id);
     }
 
@@ -183,7 +184,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         tree: any
     ) {
         this.removeChild(parent, child);
-        this.createTree(opts, parent, tree, child);
+        return this.createTree(opts, parent, tree, child);
     }
 
     getChild(parent: HDOMNode, i: number) {
@@ -228,7 +229,9 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     }
             }
         } else {
-            el[id] != null ? (el[id] = null) : delete el.attribs[id];
+            (<any>el)[id] != null
+                ? ((<any>el)[id] = null)
+                : delete el.attribs[id];
         }
         return el;
     }
@@ -243,7 +246,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     i >= 0 && listeners.splice(i, 1);
                 }
             } else {
-                el[a] ? (el[a] = null) : delete el.attribs[a];
+                (<any>el)[a] ? ((<any>el)[a] = null) : delete el.attribs[a];
             }
         }
     }

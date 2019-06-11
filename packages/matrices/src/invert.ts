@@ -9,7 +9,7 @@ import {
     Vec,
     vop
 } from "@thi.ng/vectors";
-import { MatOpM, MultiMatOpM } from "./api";
+import { MatOpMU, MultiMatOpMU } from "./api";
 import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 
 const dp4 = dotC4;
@@ -18,9 +18,9 @@ const dp6 = dotC6;
 /**
  * Matrix inversion.
  */
-export const invert: MultiMatOpM = vop(1);
+export const invert: MultiMatOpMU = vop(1);
 
-export const invert22: MatOpM = invert.add(4, (out, m) => {
+export const invert22: MatOpMU = invert.add(4, (out, m) => {
     const [m00, m01, m10, m11] = m;
     let det = dp4(m00, m11, -m01, m10);
     if (det === 0) return;
@@ -28,7 +28,7 @@ export const invert22: MatOpM = invert.add(4, (out, m) => {
     return setC4(out || m, m11 * det, -m01 * det, -m10 * det, m00 * det);
 });
 
-export const invert23: MatOpM = invert.add(6, (out, m) => {
+export const invert23: MatOpMU = invert.add(6, (out, m) => {
     const [m00, m01, m10, m11, m20, m21] = m;
     let det = dp4(m00, m11, -m01, m10);
     if (det === 0) return;
@@ -44,7 +44,7 @@ export const invert23: MatOpM = invert.add(6, (out, m) => {
     );
 });
 
-export const invert33: MatOpM = invert.add(9, (out, m) => {
+export const invert33: MatOpMU = invert.add(9, (out, m) => {
     const [m00, m01, m02, m10, m11, m12, m20, m21, m22] = m;
     const d01 = dp4(m22, m11, -m12, m21);
     const d11 = dp4(m12, m20, -m22, m10);
@@ -66,7 +66,7 @@ export const invert33: MatOpM = invert.add(9, (out, m) => {
     );
 });
 
-export const invert44: MatOpM = invert.add(16, (out, m) => {
+export const invert44: MatOpMU = invert.add(16, (out, m) => {
     const coeffs = detCoeffs44(m);
     let det = det44FromCoeffs(coeffs);
     if (det === 0) return;
@@ -111,7 +111,7 @@ export const invert44: MatOpM = invert.add(16, (out, m) => {
     );
 });
 
-export const invertQ = (out: Vec, a: ReadonlyVec) => {
+export const invertQ = (out: Vec | null, a: ReadonlyVec) => {
     let d = magSq4(a);
     d = d > 0 ? -1 / d : 0;
     return setC4(out || a, a[0] * d, a[1] * d, a[2] * d, a[3] * -d);

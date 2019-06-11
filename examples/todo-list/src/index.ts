@@ -27,13 +27,13 @@ const addNewTask = () =>
     tasks.swap((tasks) =>
         setIn(tasks, nextID.swap((id) => id + 1), { body: "", done: false })
     );
-const toggleTask = (id) =>
+const toggleTask = (id: string) =>
     tasks.swap((tasks) => updateIn(tasks, [id, "done"], (done) => !done));
-const updateTask = (id, body) =>
+const updateTask = (id: string, body: string) =>
     tasks.swap((tasks) => setIn(tasks, [id, "body"], body));
 
 // single task component
-const taskItem = (id, task: Task) => {
+const taskItem = (id: string, task: Task) => {
     const checkAttribs = {
         type: "checkbox",
         checked: task.done,
@@ -43,8 +43,8 @@ const taskItem = (id, task: Task) => {
         type: "text",
         placeholder: "todo...",
         value: task.body,
-        onkeydown: (e) => e.key === "Enter" && e.target.blur(),
-        onblur: (e) => updateTask(id, (<HTMLInputElement>e.target).value)
+        onkeydown: (e: any) => e.key === "Enter" && e.target.blur(),
+        onblur: (e: any) => updateTask(id, (<HTMLInputElement>e.target).value)
     };
     return [
         "div",
@@ -57,17 +57,16 @@ const taskItem = (id, task: Task) => {
 // complete task list
 // uses transducer to transform all tasks using above component function
 const taskList = () => {
-    const _items = items.deref();
+    const _items = items.deref()!;
     return _items.length
         ? ["div#tasks", _items]
         : ["div", "nothing todo, get busy..."];
 };
 
-const button = (onclick, body) => (_, disabled) => [
-    "button",
-    { onclick, disabled },
-    body
-];
+const button = (onclick: EventListener, body: string) => (
+    _: any,
+    disabled: boolean
+) => ["button", { onclick, disabled }, body];
 
 const toolbar = () => {
     const btAdd = button(() => addNewTask(), "+ Add");

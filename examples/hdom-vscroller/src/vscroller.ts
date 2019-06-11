@@ -1,5 +1,10 @@
 import { Fn2 } from "@thi.ng/api";
-import { comp, drop, iterator, take } from "@thi.ng/transducers";
+import {
+    comp,
+    drop,
+    iterator,
+    take
+} from "@thi.ng/transducers";
 
 interface VScrollOpts {
     /**
@@ -44,8 +49,8 @@ export const virtualScroller = ({
 }: VScrollOpts) => [
     "div.overflow-y-scroll",
     {
-        onscroll: (e) => {
-            const top = e.target.scrollTop;
+        onscroll: (e: Event) => {
+            const top = (<HTMLElement>e.target).scrollTop;
             const offset = Math.min(
                 Math.floor(top / itemHeight),
                 numItems - numVisible

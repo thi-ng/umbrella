@@ -31,7 +31,7 @@ export const selectKeysObj = <T>(
 ): { [id in keyof T]?: T[id] } => {
     const dest: any = {};
     for (let k of ks) {
-        src.hasOwnProperty(k) && (dest[k] = src[<any>k]);
+        src.hasOwnProperty(k) && (dest[k] = (<any>src)[<any>k]);
     }
     return dest;
 };

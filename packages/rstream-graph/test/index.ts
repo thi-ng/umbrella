@@ -6,7 +6,7 @@ import * as rsg from "../src";
 
 describe("rstream-graph", () => {
     it("basic", (done) => {
-        const acc = [];
+        const acc: number[] = [];
         const state = new Atom({ a: 1, b: 2 });
         const graph = rsg.initGraph(state, {
             foo: () => ({
@@ -37,7 +37,10 @@ describe("rstream-graph", () => {
                     c: { stream: "/bar/node" }
                 },
                 outs: {
-                    baz: (n, id) => n.subscribe({ next: (x) => state.resetIn(["foo", id], x) })
+                    baz: (n, id) =>
+                        n.subscribe({
+                            next: (x) => state.resetIn(["foo", id], x)
+                        })
                 }
             },
             res: {
@@ -55,7 +58,7 @@ describe("rstream-graph", () => {
                 },
                 fn: rsg.node1(),
                 outs: {
-                    x: "res2.x",
+                    x: "res2.x"
                 }
             }
         });
@@ -64,10 +67,13 @@ describe("rstream-graph", () => {
             state.resetIn("a", 10);
             // console.log(graph);
             assert.deepEqual(acc, [600, 1200, 1800, 7200]);
-            assert.deepEqual(
-                state.deref(),
-                { a: 10, b: 2, foo: { baz: 7200 }, res: { x: 7200, x2: 14400 }, res2: { x: 7200 } }
-            );
+            assert.deepEqual(state.deref(), {
+                a: 10,
+                b: 2,
+                foo: { baz: 7200 },
+                res: { x: 7200, x2: 14400 },
+                res2: { x: 7200 }
+            });
             done();
         }, 30);
     });

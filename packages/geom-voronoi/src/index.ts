@@ -92,7 +92,7 @@ export class DVMesh<T> {
 
     addKeys(pts: Iterable<ReadonlyVec>, eps?: number) {
         for (let p of pts) {
-            this.add(p, null, eps);
+            this.add(p, undefined, eps);
         }
         this.computeDual();
     }
@@ -139,7 +139,7 @@ export class DVMesh<T> {
         const visitedEdges: IObjectOf<boolean> = {};
         const visitedVerts: IObjectOf<boolean> = {};
         while (work.length) {
-            const e = work.pop();
+            const e = work.pop()!;
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
             if (!e.origin || !visitedVerts[e.origin.id]) {
@@ -154,7 +154,7 @@ export class DVMesh<T> {
                 isBounds = isBounds && this.isBoundary(c);
                 const id = this.nextID++;
                 e.origin = {
-                    pos: !isBounds ? circumCenter2(a, b, c) : ZERO2,
+                    pos: !isBounds ? circumCenter2(a, b, c)! : ZERO2,
                     id
                 };
                 visitedVerts[id] = true;
@@ -266,7 +266,7 @@ export class DVMesh<T> {
         const visitedEdges: IObjectOf<boolean> = {};
         const visitedVerts: IObjectOf<boolean> = {};
         while (work.length) {
-            e = work.pop();
+            e = work.pop()!;
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
             if (

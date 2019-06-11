@@ -41,7 +41,7 @@ export function padLast<T>(n: number, fill: T, src?: Iterable<T>): any {
         ? iterator(padLast(n, fill), src)
         : ([init, complete, reduce]: Reducer<any, T>) => {
               let m = 0;
-              return [
+              return <Reducer<any, T>>[
                   init,
                   (acc) => {
                       let rem = m % n;

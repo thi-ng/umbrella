@@ -1,4 +1,4 @@
-import { IVector, declareIndices } from "@thi.ng/vectors";
+import { declareIndices, IVector } from "@thi.ng/vectors";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
@@ -10,10 +10,10 @@ export function hcya(...args: any[]) {
 }
 
 export class HCYA extends AColor<HCYA> implements IVector<HCYA> {
-    h: number;
-    c: number;
-    y: number;
-    a: number;
+    h!: number;
+    c!: number;
+    y!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.HCYA;

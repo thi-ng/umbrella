@@ -3,9 +3,8 @@
     "compilerOptions": {
         "outDir": ".",
         "target": "es6",
-        "sourceMap": true
+        "sourceMap": true,
+        "strictBindCallApply": false
     },
-    "include": [
-        "./src/**/*.ts"
-    ]
+    "include": ["./src/**/*.ts"]
 }

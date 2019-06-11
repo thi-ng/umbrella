@@ -39,7 +39,7 @@ const toggle = () => db.swapIn("id", (id: number) => (id + 1) % THEMES.length);
 // root component function
 // the destructuring form is for the context object which is always
 // passed as 1st arg
-const app = ({ theme, themeID }) => [
+const app = ({ theme, themeID }: any) => [
     "div",
     theme.root,
     ["h1", `Current theme: ${themeID}`],

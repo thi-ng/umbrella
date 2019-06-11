@@ -1,7 +1,7 @@
 import {
     DEFAULT,
     defmulti,
-    Implementation3,
+    Implementation2O,
     MultiFn2O
 } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
@@ -39,20 +39,17 @@ export const convert: MultiFn2O<
     ColorMode,
     ColorMode,
     Color | string | number
-> = defmulti(
-    (col: any, mdest, msrc) =>
-        col.mode !== undefined
-            ? `${mdest}-${col.mode}`
-            : msrc !== undefined
-                ? `${mdest}-${msrc}`
-                : illegalArgs(`missing src color mode`)
+> = defmulti((col: any, mdest, msrc) =>
+    col.mode !== undefined
+        ? `${mdest}-${col.mode}`
+        : msrc !== undefined
+        ? `${mdest}-${msrc}`
+        : illegalArgs(`missing src color mode`)
 );
-convert.add(
-    DEFAULT,
-    (col: any, mdest, msrc) =>
-        (col.mode !== undefined && col.mode === mdest) || mdest === msrc
-            ? col
-            : illegalArgs(`missing conversion for mode ${msrc} -> ${mdest}`)
+convert.add(DEFAULT, (col: any, mdest, msrc) =>
+    (col.mode !== undefined && col.mode === mdest) || mdest === msrc
+        ? col
+        : illegalArgs(`missing conversion for mode ${msrc} -> ${mdest}`)
 );
 
 export function asCSS(col: IColor): string;
@@ -130,8 +127,8 @@ export function asYCbCrA(col: any, mode?: ColorMode) {
 const defConversion = (
     dest: ColorMode,
     src: ColorMode,
-    impl: Implementation3<
-        string | number | ReadonlyColor,
+    impl: Implementation2O<
+        string | number | ReadonlyColor | IColor,
         ColorMode,
         ColorMode,
         Color | string | number
@@ -153,7 +150,7 @@ const defConversions = (
 
 // CSS
 
-defConversion(ColorMode.RGBA, ColorMode.CSS, (x: string) => parseCss(x));
+defConversion(ColorMode.RGBA, ColorMode.CSS, (x: any) => parseCss(x));
 
 [
     ColorMode.HCYA,
@@ -164,7 +161,7 @@ defConversion(ColorMode.RGBA, ColorMode.CSS, (x: string) => parseCss(x));
     ColorMode.XYZA,
     ColorMode.YCBCRA
 ].forEach((id) =>
-    defConversion(id, ColorMode.CSS, (x: string) =>
+    defConversion(id, ColorMode.CSS, (x: any) =>
         convert(parseCss(x), id, ColorMode.RGBA)
     )
 );
@@ -182,7 +179,7 @@ defConversions(
     ColorMode.YCBCRA
 );
 
-defConversion(ColorMode.CSS, ColorMode.INT32, (x: number) => int32Css(x));
+defConversion(ColorMode.CSS, ColorMode.INT32, (x: any) => int32Css(x));
 
 // HCYA
 
@@ -223,11 +220,9 @@ defConversions(
     ColorMode.YCBCRA
 );
 
-defConversion(ColorMode.CSS, ColorMode.HSLA, (x: ReadonlyColor) => hslaCss(x));
+defConversion(ColorMode.CSS, ColorMode.HSLA, (x: any) => hslaCss(x));
 
-defConversion(ColorMode.HSVA, ColorMode.HSLA, (x: ReadonlyColor) =>
-    hslaHsva([], x)
-);
+defConversion(ColorMode.HSVA, ColorMode.HSLA, (x: any) => hslaHsva([], x));
 
 // HSVA
 
@@ -241,30 +236,26 @@ defConversions(
     ColorMode.YCBCRA
 );
 
-defConversion(ColorMode.CSS, ColorMode.HSVA, (x: ReadonlyColor) => hsvaCss(x));
+defConversion(ColorMode.CSS, ColorMode.HSVA, (x: any) => hsvaCss(x));
 
-defConversion(ColorMode.HSLA, ColorMode.HSVA, (x: ReadonlyColor) =>
-    hsvaHsla([], x)
-);
+defConversion(ColorMode.HSLA, ColorMode.HSVA, (x: any) => hsvaHsla([], x));
 
 // RGBA
 
-[
+(<[ColorMode, ColorConversion<ReadonlyColor>][]>[
     [ColorMode.HCYA, rgbaHcya],
     [ColorMode.HSIA, rgbaHsia],
     [ColorMode.HSLA, rgbaHsla],
     [ColorMode.HSVA, rgbaHsva],
     [ColorMode.XYZA, rgbaXyza],
     [ColorMode.YCBCRA, rgbaYcbcra]
-].forEach(([id, fn]: [ColorMode, ColorConversion<ReadonlyColor>]) =>
-    defConversion(id, ColorMode.RGBA, (x: ReadonlyColor) => fn([], x))
+]).forEach(([id, fn]) =>
+    defConversion(id, ColorMode.RGBA, (x: any) => fn([], x))
 );
 
-defConversion(ColorMode.CSS, ColorMode.RGBA, (x: ReadonlyColor) => rgbaCss(x));
+defConversion(ColorMode.CSS, ColorMode.RGBA, (x: any) => rgbaCss(x));
 
-defConversion(ColorMode.INT32, ColorMode.RGBA, (x: ReadonlyColor) =>
-    rgbaInt(x)
-);
+defConversion(ColorMode.INT32, ColorMode.RGBA, (x: any) => rgbaInt(x));
 
 // XYZA
 

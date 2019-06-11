@@ -1,7 +1,7 @@
 import { start } from "@thi.ng/hdom";
 
-const timer = (period, name = `${period}ms`) => {
-    return {
+const timer = (period: number, name = `${period}ms`) => {
+    return <any>{
         // life cycle init method
         // called when the component is being added to the real DOM
         init() {
@@ -32,7 +32,7 @@ const timer = (period, name = `${period}ms`) => {
 };
 
 // root component object w/ life cycle methods
-const app = {
+const app = <any>{
     init() {
         // create timer component instances
         this.timers = [[timer(1000)], [timer(500)], [timer(250)]];

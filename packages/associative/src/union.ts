@@ -11,5 +11,5 @@ import { copy } from "./utils";
  */
 export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
     out = out ? into(out, a) : copy(a, Set);
-    return a === b ? out : into(out, b);
+    return a === b ? out! : into(out!, b);
 };

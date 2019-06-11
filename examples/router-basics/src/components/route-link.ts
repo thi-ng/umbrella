@@ -21,7 +21,7 @@ export function routeLink(
         "a",
         {
             ...attribs,
-            onclick: (e) => {
+            onclick: (e: Event) => {
                 e.preventDefault();
                 ctx.bus.dispatch([ROUTE_TO, [routeID, routeParams]]);
             }

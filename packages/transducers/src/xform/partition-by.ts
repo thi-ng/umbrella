@@ -1,5 +1,5 @@
 import { Fn, SEMAPHORE } from "@thi.ng/api";
-import { Transducer } from "../api";
+import { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
@@ -32,12 +32,12 @@ export function partitionBy<T>(
 export function partitionBy<T>(...args: any[]): any {
     return (
         $iter(partitionBy, args, iterator) ||
-        (([init, complete, reduce]) => {
+        (([init, complete, reduce]: Reducer<any, T[]>) => {
             const fn: Fn<T, any> | (() => Fn<T, any>) = args[0];
             const f = args[1] === true ? (<() => Fn<T, any>>fn)() : fn;
-            let prev: any = SEMAPHORE,
-                chunk;
-            return [
+            let prev: any = SEMAPHORE;
+            let chunk: T[] | null;
+            return <Reducer<any, T>>[
                 init,
                 (acc) => {
                     if (chunk && chunk.length) {
@@ -52,7 +52,7 @@ export function partitionBy<T>(...args: any[]): any {
                         prev = curr;
                         chunk = [x];
                     } else if (curr === prev) {
-                        chunk.push(x);
+                        chunk!.push(x);
                     } else {
                         chunk && (acc = reduce(acc, chunk));
                         chunk = isReduced(acc) ? null : [x];

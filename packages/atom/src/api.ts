@@ -30,11 +30,11 @@ export interface ISwap<T> {
     swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]): T;
 }
 
-export interface IView<T> extends IDeref<T>, IID<string>, IRelease {
+export interface IView<T> extends IDeref<T | undefined>, IID<string>, IRelease {
     readonly path: PropertyKey[];
-    readonly value: T;
+    readonly value: T | undefined;
 
-    view(): T;
+    view(): T | undefined;
     changed(): boolean;
 }
 
@@ -53,8 +53,8 @@ export interface IHistory<T> extends IAtom<T>, INotify {
     canUndo(): boolean;
     canRedo(): boolean;
 
-    undo(): T;
-    redo(): T;
+    undo(): T | undefined;
+    redo(): T | undefined;
     clear(): void;
 
     record(): void;

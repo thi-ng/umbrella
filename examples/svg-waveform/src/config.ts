@@ -1,11 +1,11 @@
 import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors";
 import { AppConfig } from "./api";
+import { main } from "./components/main";
+import { SLIDERS } from "./sliders";
 // import * as ev from "./events";
 // import * as fx from "./effects";
 
-import { main } from "./components/main";
 
-import { SLIDERS } from "./sliders";
 
 // main App configuration
 export const CONFIG: AppConfig = {
@@ -30,7 +30,7 @@ export const CONFIG: AppConfig = {
         // 3) update param in app state
         // the last 2 steps are only be executed if validation succeeded
         // else the event is canceled
-        ...SLIDERS.reduce((events, spec) => {
+        ...SLIDERS.reduce((events: any, spec) => {
             events[spec.event] = [
                 ensureParamRange(spec.min, spec.max),
                 snapshot(),

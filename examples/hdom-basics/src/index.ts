@@ -3,7 +3,7 @@ import { start } from "@thi.ng/hdom";
 // stateless component w/ params
 // the first arg is an auto-injected context object
 // (not used here, see `hdom-context-basics` example for details)
-const greeter = (_, name) => ["h1.title", "hello ", name];
+const greeter = (_: any, name: string) => ["h1.title", "hello ", name];
 
 // component w/ local state
 const counter = (i = 0) => {

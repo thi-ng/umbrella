@@ -5,7 +5,7 @@ export const groupBy = <T>(
     key: Fn<T, any>,
     input: Iterable<T>
 ): IObjectOf<T[]> => {
-    let groups = {};
+    let groups: IObjectOf<T[]> = {};
     let iter = iterator(input);
     let v: IteratorResult<any>;
     while (((v = iter.next()), !v.done)) {

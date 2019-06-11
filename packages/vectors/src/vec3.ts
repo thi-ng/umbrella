@@ -91,9 +91,9 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
     static readonly ZERO = new Vec3(ZERO3);
     static readonly ONE = new Vec3(ONE3);
 
-    x: number;
-    y: number;
-    z: number;
+    x!: number;
+    y!: number;
+    z!: number;
     [id: number]: number;
 
     constructor(buf?: Vec, offset = 0, stride = 1) {

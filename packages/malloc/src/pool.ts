@@ -18,13 +18,13 @@ export class MemPool implements IMemPool {
     protected doCompact: boolean;
     protected doSplit: boolean;
     protected minSplit: number;
-    protected _free: MemBlock;
-    protected _used: MemBlock;
+    protected _free: MemBlock | null;
+    protected _used: MemBlock | null;
 
     protected u8: Uint8Array;
 
     constructor(opts: Partial<MemPoolOpts> = {}) {
-        this.buf = opts.buf ? opts.buf : new ArrayBuffer(opts.size);
+        this.buf = opts.buf ? opts.buf : new ArrayBuffer(opts.size || 0x1000);
         this.u8 = new Uint8Array(this.buf);
         this.start = opts.start != null ? align(Math.max(opts.start, 8), 8) : 8;
         this.end =
@@ -47,7 +47,7 @@ export class MemPool implements IMemPool {
     }
 
     stats(): MemPoolStats {
-        const listStats = (block: MemBlock) => {
+        const listStats = (block: MemBlock | null) => {
             let count = 0;
             let size = 0;
             while (block) {
@@ -67,15 +67,15 @@ export class MemPool implements IMemPool {
         };
     }
 
-    callocAs(type: Type, num: number): TypedArray {
+    callocAs(type: Type, num: number): TypedArray | undefined {
         const block = this.mallocAs(type, num);
         block && block.fill(0);
         return block;
     }
 
-    mallocAs(type: Type, num: number): TypedArray {
+    mallocAs(type: Type, num: number): TypedArray | undefined {
         const addr = this.malloc(num * SIZEOF[type]);
-        return addr ? wrap(type, this.buf, addr, num) : null;
+        return addr ? wrap(type, this.buf, addr, num) : undefined;
     }
 
     calloc(size: number): number {
@@ -147,7 +147,7 @@ export class MemPool implements IMemPool {
         }
         size = align(size, 8);
         let block = this._used;
-        let blockEnd: number;
+        let blockEnd = 0;
         let newAddr = 0;
         while (block) {
             if (block.addr === addr) {
@@ -195,12 +195,14 @@ export class MemPool implements IMemPool {
         return newAddr;
     }
 
-    reallocArray(ptr: TypedArray, num: number) {
+    reallocArray(ptr: TypedArray, num: number): TypedArray | undefined {
         if (ptr.buffer !== this.buf) {
-            return null;
+            return;
         }
         const addr = this.realloc(ptr.byteOffset, num * ptr.BYTES_PER_ELEMENT);
-        return addr ? new (<any>ptr.constructor)(this.buf, addr, num) : null;
+        return addr
+            ? new (<any>ptr.constructor)(this.buf, addr, num)
+            : undefined;
     }
 
     free(ptr: number | TypedArray) {
@@ -214,7 +216,7 @@ export class MemPool implements IMemPool {
             addr = ptr;
         }
         let block = this._used;
-        let prev: MemBlock = null;
+        let prev: MemBlock | null = null;
         while (block) {
             if (block.addr === addr) {
                 if (prev) {
@@ -251,8 +253,8 @@ export class MemPool implements IMemPool {
 
     protected compact() {
         let block = this._free;
-        let prev: MemBlock;
-        let scan: MemBlock;
+        let prev: MemBlock | null = null;
+        let scan: MemBlock | null = null;
         let scanPrev: MemBlock;
         let res = false;
         while (block) {
@@ -269,7 +271,7 @@ export class MemPool implements IMemPool {
                 block.size = newSize;
                 const next = scanPrev.next;
                 let tmp = block.next;
-                while (tmp !== scanPrev.next) {
+                while (tmp && tmp !== scanPrev.next) {
                     // console.log("release:", tmp.addr);
                     const tn = tmp.next;
                     tmp.next = null;
@@ -291,7 +293,7 @@ export class MemPool implements IMemPool {
 
     protected insert(block: MemBlock) {
         let ptr = this._free;
-        let prev: MemBlock = null;
+        let prev: MemBlock | null = null;
         while (ptr) {
             if (block.addr <= ptr.addr) break;
             prev = ptr;

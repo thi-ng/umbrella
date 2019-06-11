@@ -26,7 +26,9 @@ export function range3d(
     stepZ: number
 ): IterableIterator<[number, number, number]>;
 export function* range3d(...args: number[]) {
-    let fromX, toX, fromY, toY, fromZ, toZ, stepX, stepY, stepZ;
+    let fromX!: number, toX!: number, stepX!: number;
+    let fromY!: number, toY!: number, stepY!: number;
+    let fromZ!: number, toZ!: number, stepZ!: number;
     switch (args.length) {
         case 9:
             stepX = args[6];

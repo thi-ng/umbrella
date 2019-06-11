@@ -61,19 +61,19 @@ export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
 export class Tunnel<A, B> extends Subscription<A, B> {
     workers: Worker[];
     src: Worker | Blob | string;
-    transferables: Fn<A, any[]>;
+    transferables?: Fn<A, any[]>;
     terminate: number;
     interrupt: boolean;
 
     index: number;
 
     constructor(opts: TunnelOpts<A>) {
-        super(null, null, null, opts.id || `tunnel-${nextID()}`);
+        super(undefined, undefined, undefined, opts.id || `tunnel-${nextID()}`);
         this.src = opts.src;
         this.workers = new Array(opts.maxWorkers || 1);
         this.transferables = opts.transferables;
         this.terminate = opts.terminate || 1000;
-        this.interrupt = opts.interrupt;
+        this.interrupt = opts.interrupt || false;
         this.index = 0;
     }
 
@@ -83,7 +83,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
             if (this.transferables) {
                 tx = this.transferables(x);
             }
-            let worker = this.workers[this.index];
+            let worker: Worker | null = this.workers[this.index];
             if (this.interrupt && worker) {
                 worker.terminate();
                 worker = null;

@@ -47,18 +47,18 @@ const box = (index: number, id: number) => [
  * @param txtCol
  */
 const fpsCounter = (
-    src: Stream<any>,
+    src: Stream<number> | null,
     width = 100,
     height = 30,
     period = 50,
     col = "#09f",
     txtCol = "#000"
 ) => {
-    let ctx;
+    let ctx: CanvasRenderingContext2D;
     let scale = height / 60;
     (src || fromRAF()).subscribe(
         {
-            next(samples) {
+            next(samples: number[]) {
                 ctx.clearRect(0, 0, width, height);
                 ctx.fillStyle = col;
                 ctx.beginPath();
@@ -86,8 +86,8 @@ const fpsCounter = (
     );
     return [
         {
-            init: (el) => {
-                ctx = el.getContext("2d");
+            init: (el: HTMLCanvasElement) => {
+                ctx = el.getContext("2d")!;
                 ctx.fillStyle = txtCol;
                 ctx.fillText("sampling...", 2, height - 4);
             },
@@ -107,7 +107,7 @@ const app = () => {
     const menu = dropdown(
         null,
         {
-            onchange: (e) => {
+            onchange: (e: Event) => {
                 num = parseInt((<HTMLInputElement>e.target).value);
             }
         },

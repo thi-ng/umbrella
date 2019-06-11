@@ -1,6 +1,6 @@
-import { EPS, clamp01 } from "@thi.ng/math";
+import { clamp01, EPS } from "@thi.ng/math";
 import { setC3 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { clamp } from "./clamp";
 
 /**
@@ -10,7 +10,7 @@ import { clamp } from "./clamp";
  * @param out
  * @param src
  */
-export const rgbaHcva = (out: Color, src: ReadonlyColor) => {
+export const rgbaHcva: ColorOp = (out, src) => {
     out = clamp(out || src, src);
     const p =
         out[1] < out[2]

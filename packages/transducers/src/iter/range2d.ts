@@ -20,7 +20,8 @@ export function range2d(
     stepY: number
 ): IterableIterator<[number, number]>;
 export function* range2d(...args: number[]) {
-    let fromX, toX, fromY, toY, stepX, stepY;
+    let fromX!: number, toX!: number, stepX!: number;
+    let fromY!: number, toY!: number, stepY!: number;
     switch (args.length) {
         case 6:
             stepX = args[4];

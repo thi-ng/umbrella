@@ -37,10 +37,10 @@ export const porterDuff = (
             : (s: number, d: number, sda: number, sy: number) =>
                   f(s, d) * sda + s * sy
         : z
-        ? (s: number, d: number, sda: number, _, sz: number) =>
+        ? (s: number, d: number, sda: number, _: number, sz: number) =>
               f(s, d) * sda + d * sz
         : (s: number, d: number, sda: number) => f(s, d) * sda;
-    return (out: Color, src: ReadonlyColor, dest: ReadonlyColor) => {
+    return (out: Color | null, src: ReadonlyColor, dest: ReadonlyColor) => {
         const sa = src[3];
         const da = dest[3];
         const sda = sa * da;
@@ -69,7 +69,7 @@ export const porterDuffP = (
     out: Color,
     src: ReadonlyColor,
     dest: ReadonlyColor,
-    mode: Fn3<Color, ReadonlyColor, ReadonlyColor, Color>
+    mode: Fn3<Color | null, ReadonlyColor, ReadonlyColor, Color>
 ) =>
     postmultiply(
         null,

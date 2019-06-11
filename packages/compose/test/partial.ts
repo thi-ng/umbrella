@@ -1,10 +1,18 @@
+import * as assert from "assert";
 import { partial } from "../src";
 
-import * as assert from "assert";
-
 describe("partial", () => {
-
-    const fn = (a, b, c, d, e, f, g, h, i) => [a, b, c, d, e, f, g, h, i];
+    const fn = (
+        a: any,
+        b: any,
+        c: any,
+        d: any,
+        e: any,
+        f: any,
+        g: any,
+        h: any,
+        i: any
+    ) => [a, b, c, d, e, f, g, h, i];
     const res = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
     it("1-arg", () => {

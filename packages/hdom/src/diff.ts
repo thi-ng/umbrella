@@ -69,13 +69,13 @@ export const diffTree = <T>(
     if (delta.distance === 0) {
         return;
     }
-    const edits = delta.linear;
+    const edits = delta.linear!;
     const el = impl.getChild(parent, child);
     let i: number;
     let ii: number;
     let j: number;
     let idx: number;
-    let k: string;
+    let k: any;
     let eq: any[];
     let status: number;
     let val: any;
@@ -164,21 +164,21 @@ export const diffAttributes = <T>(
     curr: any
 ) => {
     const delta = diffObject<any>(prev, curr, DiffMode.FULL, _equiv);
-    impl.removeAttribs(el, delta.dels, prev);
+    impl.removeAttribs(el, delta.dels!, prev);
     let val = SEMAPHORE;
-    let i, e, edits;
-    for (edits = delta.edits, i = edits.length; (i -= 2) >= 0; ) {
-        const a = edits[i];
-        if (a.indexOf("on") === 0) {
-            impl.removeAttribs(el, [a], prev);
+    let i: number, e, edits;
+    for (edits = delta.edits!, i = edits.length; (i -= 2) >= 0; ) {
+        e = edits[i];
+        if (e.indexOf("on") === 0) {
+            impl.removeAttribs(el, [e], prev);
         }
-        if (a !== "value") {
-            impl.setAttrib(el, a, edits[i + 1], curr);
+        if (e !== "value") {
+            impl.setAttrib(el, e, edits[i + 1], curr);
         } else {
             val = edits[i + 1];
         }
     }
-    for (edits = delta.adds, i = edits.length; --i >= 0; ) {
+    for (edits = delta.adds!, i = edits.length; --i >= 0; ) {
         e = edits[i];
         if (e !== "value") {
             impl.setAttrib(el, e, curr[e], curr);

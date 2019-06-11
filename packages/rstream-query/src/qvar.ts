@@ -31,9 +31,9 @@ export const qvarResolver = (
     vs: boolean,
     vp: boolean,
     vo: boolean,
-    s,
-    p,
-    o
+    s: string,
+    p: string,
+    o: string
 ) => {
     const type = ((<any>vs) << 2) | ((<any>vp) << 1) | (<any>vo);
     let ss: any = vs && qvarName(s);

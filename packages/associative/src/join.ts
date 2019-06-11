@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { commonKeysObj } from "./common-keys";
 import { indexed } from "./indexed";
 import { invertObj } from "./invert";
@@ -97,11 +96,11 @@ export const joinWith = <A, B>(
 ): Set<any> => {
     if (a.size && b.size) {
         let aa: Set<any>, bb: Set<any>;
-        let k: IObjectOf<PropertyKey>;
+        let k: { [id in keyof A]?: keyof B };
         if (a.size <= b.size) {
             aa = a;
             bb = b;
-            k = invertObj(kmap);
+            k = <any>invertObj(<any>kmap);
         } else {
             aa = b;
             bb = a;
@@ -111,7 +110,7 @@ export const joinWith = <A, B>(
         const ks = Object.keys(k);
         const res: Set<any> = empty(a, Set);
         for (let x of bb) {
-            const found = idx.get(renameKeysObj(selectKeysObj(x, ks), k));
+            const found = idx.get(renameKeysObj(<any>selectKeysObj(x, ks), k));
             if (found) {
                 for (let f of found) {
                     res.add(mergeObj({ ...f }, x));

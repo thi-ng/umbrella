@@ -7,7 +7,6 @@ import {
 } from "../src/api";
 import { INotifyMixin } from "../src/mixins/inotify";
 
-
 describe("mixins", () => {
     it("INotify", () => {
         @INotifyMixin
@@ -25,8 +24,8 @@ describe("mixins", () => {
 
         const res: any = {};
         const foo = new Foo();
-        const l = (e) => (res[e.id] = e.value);
-        const lall = (e) => (res[EVENT_ALL] = e.value);
+        const l = (e: Event) => (res[e.id] = e.value);
+        const lall = (e: Event) => (res[EVENT_ALL] = e.value);
         assert.doesNotThrow(() => foo.addListener("x", l));
         assert.doesNotThrow(() => foo.addListener(EVENT_ALL, lall));
         foo.notify({ id: "x", value: 1 });

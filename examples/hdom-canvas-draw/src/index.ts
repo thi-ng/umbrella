@@ -1,11 +1,7 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
-import { sync, trigger } from "@thi.ng/rstream";
-import {
-    GestureEvent,
-    gestureStream,
-    GestureType
-} from "@thi.ng/rstream-gestures";
+import { StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import {
     filter,
     map,
@@ -23,7 +19,7 @@ const W = 480;
 
 // higher order line/shape component function
 // takes a tuple of 2 points and returns a component fn
-const line = ([a, b]: number[][]) => (_, attribs) => [
+const line = ([a, b]: number[][]) => (_: any, attribs: any) => [
     "line",
     { ...attribs, weight: dist(a, b) / 4 },
     a,
@@ -33,7 +29,7 @@ const line = ([a, b]: number[][]) => (_, attribs) => [
 // higher order root component function. takes a @thi.ng/rstream
 // `StreamSync` instance as argument to dynamically add a new input
 // stream to later
-const app = (main) => {
+const app = (main: StreamSync<any, any>) => {
     // augment hdom-canvas component w/ `init` lifecycle method: this is
     // method is called when the canvas DOM element is first created and
     // used to attach a mouse & touch event stream to it. this stream is
@@ -68,7 +64,7 @@ const app = (main) => {
     // each time any inputs have changed...
     // the only input used here is the above stream of mouse events
     // transformed into line components
-    return ({ gesture }) => [
+    return ({ gesture }: any) => [
         "div.sans-serif.ma2",
         "Click & draw in the box below...",
         // all child elements of the canvas component
@@ -142,7 +138,7 @@ const app = (main) => {
 // component's `init` method is called which attaches the above gesture
 // stream dynamically. the entire UI then only updates when there are new
 // user interactions...
-const main = sync({ src: { trigger: trigger() } });
+const main = sync<any, any>({ src: { trigger: trigger() } });
 // transform result stream using the
 // root component fn and the hdom differential
 // update transducer

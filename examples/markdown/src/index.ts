@@ -1,11 +1,11 @@
 import { timedResult } from "@thi.ng/bench";
-import { TagFactories, parse } from "@thi.ng/hiccup-markdown";
+import { parse, TagFactories } from "@thi.ng/hiccup-markdown";
 import { stream, Stream } from "@thi.ng/rstream";
-import { updateDOM } from "@thi.ng/transducers-hdom";
 import { iterator, map } from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import readme from "../README.txt";
 
 // ignore error, resolved by parcel
-import readme from "../README.md";
 // const readme = "README.af35c500.md"
 
 // custom tag factories (passed to parser)
@@ -30,7 +30,10 @@ const CUSTOM_TAGS: Partial<TagFactories> = {
 };
 
 // UI root component
-const app = (input: Stream<string>) => ({ src, parsed: [hiccup, time] }) => [
+const app = (input: Stream<string>) => ({
+    src,
+    parsed: [hiccup, time]
+}: any) => [
     "div.flex.vh-100.sans-serif.flex-column.flex-row-l",
     [
         "div.w-100.h-50.w-50-l.h-100-l",
@@ -38,7 +41,8 @@ const app = (input: Stream<string>) => ({ src, parsed: [hiccup, time] }) => [
             "textarea.w-100.vh-50.vh-100-l.bg-washed-blue.navy.pa3.f7.code.lh-copy",
             {
                 value: src,
-                oninput: (e) => input.next(e.target.value)
+                oninput: (e: Event) =>
+                    input.next((<HTMLTextAreaElement>e.target).value)
             }
         ]
     ],

@@ -127,11 +127,11 @@ export const snapshot = (id = "history"): InterceptorFn => (_, __, ___, ctx) =>
 export const ensurePred = (
     pred: InterceptorPredicate,
     err?: InterceptorFn
-): InterceptorFn => (state, e, bus) =>
-    !pred(state, e, bus)
+): InterceptorFn => (state, e, bus, ctx) =>
+    !pred(state, e, bus, ctx)
         ? {
               [FX_CANCEL]: true,
-              ...(err ? err(state, e, bus) : null)
+              ...(err ? err(state, e, bus, ctx) : null)
           }
         : undefined;
 

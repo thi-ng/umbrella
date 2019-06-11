@@ -1,12 +1,4 @@
 import { partial } from "@thi.ng/compose/partial";
-import { IShape, Tessellator } from "@thi.ng/geom-api";
-import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
-import { canvas } from "@thi.ng/hdom-canvas";
-import { deg, fit01, fit11 } from "@thi.ng/math";
-import { fromInterval, sync } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
-import { updateDOM } from "@thi.ng/transducers-hdom";
-import { polar, Vec } from "@thi.ng/vectors";
 import {
     arcLength,
     asPolygon,
@@ -16,6 +8,14 @@ import {
     polygon,
     tessellate
 } from "@thi.ng/geom";
+import { IShape, Tessellator } from "@thi.ng/geom-api";
+import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
+import { canvas } from "@thi.ng/hdom-canvas";
+import { deg, fit01, fit11 } from "@thi.ng/math";
+import { fromInterval, sync } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { polar, Vec } from "@thi.ng/vectors";
 
 type Tint = (p: Polygon) => string;
 
@@ -37,7 +37,7 @@ const W2 = W / 2;
  * space to HSL.
  */
 const centroidToHSL = (p: IShape) => {
-    const c = polar(null, centroid(p));
+    const c = polar(null, centroid(p)!);
     const h = deg(c[1]);
     const s = fit01(c[0] / W2, 0, 100);
     const l = fit01(c[0] / W2, 100, 50);
@@ -77,7 +77,7 @@ const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
     ).map(partial(tintedPoly, tint));
 };
 
-const main = sync({
+const main = sync<any, any>({
     src: {
         time: fromInterval(16)
     }

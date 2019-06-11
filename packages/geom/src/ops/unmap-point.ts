@@ -1,4 +1,5 @@
-import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
     madd,
@@ -25,11 +26,11 @@ import { dispatch } from "../internal/dispatch";
  * @param uv
  * @param out
  */
-export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(
-    dispatch
-);
+export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(<
+    any
+>dispatch);
 
-unmapPoint.addAll({
+unmapPoint.addAll(<IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>>{
     [Type.QUAD]: ({ points }: Quad, uv, out = []) =>
         mixBilinear(
             out,

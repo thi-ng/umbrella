@@ -19,7 +19,7 @@ export function flattenWith<T>(
         ? iterator(flattenWith(fn), src)
         : (rfn: Reducer<any, T>) => {
               const reduce = rfn[2];
-              const flatten = (acc, x) => {
+              const flatten = (acc: any, x: any) => {
                   const xx = fn(x);
                   if (xx) {
                       for (let y of xx) {

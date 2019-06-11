@@ -1,9 +1,7 @@
 import * as assert from "assert";
-
 import { equiv } from "../src/";
 
 describe("equiv", () => {
-
     it("null", () => {
         assert.ok(equiv(null, null));
         assert.ok(equiv(null, undefined));
@@ -67,11 +65,11 @@ describe("equiv", () => {
     it("equiv impl", () => {
         class A {
             a: any;
-            constructor(a) {
+            constructor(a: any) {
                 this.a = a;
             }
 
-            equiv(b) {
+            equiv(b: any) {
                 return equiv(this.a, b);
             }
         }
@@ -83,8 +81,23 @@ describe("equiv", () => {
         assert.ok(equiv(new A(1), new A(1)));
         assert.ok(equiv(new A(1), 1));
         assert.ok(equiv(1, new A(1)));
-        assert.ok(equiv(1, { equiv(x) { return x === 1; } }));
-        assert.ok(equiv({ equiv(x) { return x === 1; } }, 1));
+        assert.ok(
+            equiv(1, {
+                equiv(x: number) {
+                    return x === 1;
+                }
+            })
+        );
+        assert.ok(
+            equiv(
+                {
+                    equiv(x: number) {
+                        return x === 1;
+                    }
+                },
+                1
+            )
+        );
         assert.ok(!equiv(new A(1), new A(2)));
         assert.ok(!equiv(new A(1), 2));
     });
@@ -93,7 +106,12 @@ describe("equiv", () => {
         const a = new Set([1, 2, 3]);
         assert.ok(equiv(a, a));
         assert.ok(equiv(a, new Set([3, 2, 1])));
-        assert.ok(equiv(new Set([{ a: 1 }, new Set([{ b: 2 }, [3]])]), new Set([new Set([[3], { b: 2 }]), { a: 1 }])));
+        assert.ok(
+            equiv(
+                new Set([{ a: 1 }, new Set([{ b: 2 }, [3]])]),
+                new Set([new Set([[3], { b: 2 }]), { a: 1 }])
+            )
+        );
         assert.ok(!equiv(a, new Set([3, 2, 0])));
         assert.ok(!equiv(a, [3, 2, 0]));
         assert.ok(!equiv(a, new Map([[3, 3], [2, 2], [1, 1]])));

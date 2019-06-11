@@ -1,5 +1,5 @@
 import { setC4 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor, SRGB_ALPHA } from "./api";
+import { ColorOp, SRGB_ALPHA } from "./api";
 import { ensureAlpha } from "./internal/ensure-alpha";
 
 /**
@@ -32,7 +32,7 @@ export const srgbLinear = (x: number) =>
  * @param out
  * @param src
  */
-export const rgbaSrgba = (out: Color, src: ReadonlyColor) =>
+export const rgbaSrgba: ColorOp = (out, src) =>
     setC4(
         out || src,
         linearSrgb(src[0]),
@@ -47,7 +47,7 @@ export const rgbaSrgba = (out: Color, src: ReadonlyColor) =>
  * @param out
  * @param src
  */
-export const srgbaRgba = (out: Color, src: ReadonlyColor) =>
+export const srgbaRgba: ColorOp = (out, src) =>
     setC4(
         out || src,
         srgbLinear(src[0]),

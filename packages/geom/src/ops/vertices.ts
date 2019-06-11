@@ -1,5 +1,6 @@
+import { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import {
     DEFAULT_SAMPLES,
     IShape,
@@ -40,7 +41,9 @@ export const vertices: MultiFn1O<
     Vec[]
 > = defmulti(dispatch);
 
-vertices.addAll({
+vertices.addAll(<
+    IObjectOf<Implementation1O<unknown, number | Partial<SamplingOpts>, Vec[]>>
+>{
     [Type.AABB]: ({ pos, size }: AABB) => {
         const [px, py, pz] = pos;
         const [qx, qy, qz] = add3([], pos, size);
@@ -89,7 +92,7 @@ vertices.addAll({
     },
 
     [Type.GROUP]: ({ children }: Group) =>
-        children.reduce((acc, $) => acc.concat(vertices($)), []),
+        children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
 
     [Type.PATH]: ($: Path, opts?: number | Partial<SamplingOpts>) => {
         const _opts = isNumber(opts) ? { num: opts } : opts;

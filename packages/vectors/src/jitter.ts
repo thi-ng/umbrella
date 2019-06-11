@@ -4,7 +4,7 @@ import { ReadonlyVec, Vec } from "./api";
 import { randNorm } from "./random";
 
 export const jitter = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     n = 1,
     rnd: IRandom = SYSTEM

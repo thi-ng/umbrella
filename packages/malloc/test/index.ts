@@ -130,42 +130,45 @@ describe("malloc", () => {
     });
 
     it("mallocAs", () => {
-        assert.strictEqual(pool.mallocAs(Type.U8, 257), null);
-        assert.strictEqual(pool.mallocAs(Type.U16, 129), null);
-        assert.strictEqual(pool.mallocAs(Type.U32, 65), null);
-        assert.strictEqual(pool.mallocAs(Type.F64, 33), null);
-        assert.strictEqual(pool.mallocAs(Type.U8, -1), null);
+        assert.deepEqual(pool.mallocAs(Type.U8, 257), null);
+        assert.deepEqual(pool.mallocAs(Type.U16, 129), null);
+        assert.deepEqual(pool.mallocAs(Type.U32, 65), null);
+        assert.deepEqual(pool.mallocAs(Type.F64, 33), null);
+        assert.deepEqual(pool.mallocAs(Type.U8, -1), null);
 
         let a = pool.mallocAs(Type.F32, 3);
         let b = pool.mallocAs(Type.F64, 3);
         assert(a instanceof Float32Array, "a type");
         assert(b instanceof Float64Array, "b type");
-        assert.equal(a.byteOffset, 8, "a addr");
-        assert.equal(b.byteOffset, 24, "b addr");
-        assert.equal(a.length, 3, "a.length");
-        assert.equal(b.length, 3, "b.length");
-        assert.equal(a.byteLength, 12, "a bytes");
-        assert.equal(b.byteLength, 24, "b bytes");
-        a.set([1, 2, 3]);
-        b.set([10, 20, 30]);
-        assert.deepEqual(new Uint32Array(pool.buf, 8, 10), [
-            // a
-            0x3f800000,
-            0x40000000,
-            0x40400000,
-            0,
-            // b
-            0,
-            0x40240000,
-            0,
-            0x40340000,
-            0,
-            0x403e0000
-        ]);
-        assert(pool.free(a), "free a");
-        assert(pool.free(b), "free b");
-        assert(!pool.free(a), "free a (repeat)");
-        assert(!pool.free(b), "free b (repeat)");
+        assert.equal(a!.byteOffset, 8, "a addr");
+        assert.equal(b!.byteOffset, 24, "b addr");
+        assert.equal(a!.length, 3, "a.length");
+        assert.equal(b!.length, 3, "b.length");
+        assert.equal(a!.byteLength, 12, "a bytes");
+        assert.equal(b!.byteLength, 24, "b bytes");
+        a!.set([1, 2, 3]);
+        b!.set([10, 20, 30]);
+        assert.deepEqual(
+            [...new Uint32Array(pool.buf, 8, 10)],
+            [
+                // a
+                0x3f800000,
+                0x40000000,
+                0x40400000,
+                0,
+                // b
+                0,
+                0x40240000,
+                0,
+                0x40340000,
+                0,
+                0x403e0000
+            ]
+        );
+        assert(pool.free(a!), "free a");
+        assert(pool.free(b!), "free b");
+        assert(!pool.free(a!), "free a (repeat)");
+        assert(!pool.free(b!), "free b (repeat)");
         assert(!pool.free(new Uint16Array(1)), "free unmanaged");
     });
 
@@ -173,22 +176,27 @@ describe("malloc", () => {
         const u8 = (<any>pool).u8;
         u8.fill(0xff);
         let a = pool.calloc(6);
-        assert.deepEqual(u8.subarray(a, a + 9), [0, 0, 0, 0, 0, 0, 0, 0, 0xff]);
+        assert.deepEqual(
+            [...u8.subarray(a, a + 9)],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0xff]
+        );
     });
 
     it("callocAs", () => {
         let a = pool.callocAs(Type.F32, 3);
         let b = pool.callocAs(Type.F64, 3);
-        a.set([1, 2, 3]);
-        b.set([10, 20, 30]);
-        assert(pool.free(a), "free a");
-        assert(pool.free(b), "free b");
+        assert(a instanceof Float32Array, "a type");
+        assert(b instanceof Float64Array, "b type");
+        a!.set([1, 2, 3]);
+        b!.set([10, 20, 30]);
+        assert(pool.free(a!), "free a");
+        assert(pool.free(b!), "free b");
         // returned arrays are zeroed
         a = pool.callocAs(Type.U32, 3);
         b = pool.callocAs(Type.U32, 3);
         const t = [0, 0, 0];
-        assert.deepEqual(a, t);
-        assert.deepEqual(b, t);
+        assert.deepEqual([...a!], t);
+        assert.deepEqual([...b!], t);
     });
 
     it("malloc top", () => {

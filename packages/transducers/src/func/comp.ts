@@ -88,5 +88,5 @@ export function comp<A, B, C, D, E, F, G, H, I, J, K>(
     ...fns: Transducer<any, any>[]
 ): Transducer<A, any>;
 export function comp(...fns: any[]) {
-    return _comp.apply(null, fns);
+    return _comp.apply(null, <any>fns);
 }

@@ -5,10 +5,10 @@ const U32 = Math.pow(2, 32);
 export class BitInputStream {
     buffer: Uint8Array;
     protected start: number;
-    protected pos: number;
     protected limit: number;
-    protected bit: number;
-    protected bitPos: number;
+    protected pos!: number;
+    protected bitPos!: number;
+    protected bit!: number;
 
     constructor(buffer: Uint8Array, offset = 0, limit = buffer.length << 3) {
         this.buffer = buffer;
@@ -49,7 +49,7 @@ export class BitInputStream {
         return this;
     }
 
-    read(wordSize = 1) {
+    read(wordSize = 1): number {
         if (wordSize > 32) {
             return this.read(wordSize - 32) * U32 + this.read(32);
         } else if (wordSize > 8) {
@@ -82,7 +82,7 @@ export class BitInputStream {
     }
 
     readStruct(fields: ([string, number])[]) {
-        return fields.reduce((acc, [id, word]) => {
+        return fields.reduce((acc: any, [id, word]) => {
             return (acc[id] = this.read(word)), acc;
         }, {});
     }
@@ -102,7 +102,7 @@ export class BitInputStream {
     protected _read(wordSize: number) {
         this.checkLimit(wordSize);
         let l = this.bit - wordSize,
-            out;
+            out: number;
         if (l >= 0) {
             this.bit = l;
             out = (this.buffer[this.pos] >>> l) & ((1 << wordSize) - 1);

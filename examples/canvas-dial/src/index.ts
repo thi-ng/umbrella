@@ -57,7 +57,7 @@ const app = () => {
         label: (x) => percent(2)(x),
         onchange: (x) => ctx.streams.c.next(x)
     });
-    return ({ a, b, c }) => [
+    return ({ a, b, c }: any) => [
         "div",
         ctx.ui.root,
         [dialA, ctx.ui.dial, a],
@@ -67,7 +67,7 @@ const app = () => {
 };
 
 // stream combinator & reactive DOM update
-sync({
+sync<any, any>({
     src: ctx.streams,
     xform: comp(map(app()), updateDOM())
 });

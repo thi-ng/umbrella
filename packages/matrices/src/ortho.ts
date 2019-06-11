@@ -14,7 +14,7 @@ import { Mat } from "./api";
  * @param far
  */
 export const ortho = (
-    out: Mat,
+    out: Mat | null,
     left: number,
     right: number,
     bottom: number,

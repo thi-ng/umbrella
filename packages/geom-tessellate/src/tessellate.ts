@@ -20,7 +20,7 @@ export function tessellate(
     points: ReadonlyVec[],
     tessFns: Iterable<Tessellator>
 ): Vec[][];
-export function tessellate(...args) {
+export function tessellate(...args: any[]) {
     return transduce(
         scan(
             reducer(

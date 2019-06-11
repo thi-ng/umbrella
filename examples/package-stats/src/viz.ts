@@ -1,6 +1,18 @@
-import { group, line, svg, text, rect } from "@thi.ng/hiccup-svg";
+import {
+    group,
+    line,
+    rect,
+    svg,
+    text
+} from "@thi.ng/hiccup-svg";
 import { fit, fit01 } from "@thi.ng/math";
-import { map, mapcat, range, normRange, mapIndexed } from "@thi.ng/transducers";
+import {
+    map,
+    mapcat,
+    mapIndexed,
+    normRange,
+    range
+} from "@thi.ng/transducers";
 
 // iterator of range mapped tuples: `[mapped, orig]`
 const mappedRange = (
@@ -33,7 +45,7 @@ const tickX = (y: number) => ([x, n]: [number, any]) =>
 const tickY = (x: number) => ([y, n]: [number, any]) =>
     tick(x - 10, y, x, y, x - 15, y, n);
 
-export const labeledTickX = (y) => ([x, n]: any[]) => [
+export const labeledTickX = (y: number) => ([x, n]: any[]) => [
     line([x, y], [x, y + 5]),
     text([x, y + 15], n, {
         stroke: "none",
@@ -42,16 +54,15 @@ export const labeledTickX = (y) => ([x, n]: any[]) => [
     })
 ];
 
-export const labeledTickY = (width, fmt = (x) => String(x)) => (x) => ([y, n]: [
-    number,
-    any
-]) => [
+export const labeledTickY = (width: number, fmt = (x: number) => String(x)) => (
+    x: number
+) => ([y, n]: [number, any]) => [
     ...tick(x - 5, y, x, y, x - 10, y + 4, n > 0 ? fmt(n) : 0),
     n > 0 ? line([x + 20, y], [width, y], { "stroke-dasharray": "1 3" }) : null
 ];
 
 // x-axis with ticks as SVG group
-const axisX = ({ axis: a, domain: d, range: r, label, ticks }) => [
+export const axisX = ({ axis: a, domain: d, range: r, label, ticks }: any) => [
     "g",
     { "text-anchor": "middle" },
     line([a[0], a[2]], [a[1], a[2]]),
@@ -64,7 +75,7 @@ const axisX = ({ axis: a, domain: d, range: r, label, ticks }) => [
 ];
 
 // y-axis with ticks as SVG group
-const axisY = ({ axis: a, domain: d, range: r, label, ticks }) => [
+export const axisY = ({ axis: a, domain: d, range: r, label, ticks }: any) => [
     "g",
     { "text-anchor": "end" },
     line([a[2], a[0]], [a[2], a[1]]),
@@ -77,16 +88,16 @@ const axisY = ({ axis: a, domain: d, range: r, label, ticks }) => [
 ];
 
 // mapping fn to create a single bar from `[domainPos, value]`
-const bar = ({ domain: xd, range: xr }, { domain: yd, range: yr }) => ([
-    xx,
-    yy
-]) => {
+const bar = (
+    { domain: xd, range: xr }: any,
+    { domain: yd, range: yr }: any
+) => ([xx, yy]: any) => {
     const y = fit(yy, yd[0], yd[1], yr[0], yr[1]);
     return rect([fit(xx, xd[0], xd[1], xr[0], xr[1]) - 5, y], 10, yr[0] - y);
 };
 
 // complete bar chart component
-export const barChart = (_, opts, values, ...xs) =>
+export const barChart = (_: any, opts: any, values: any, ...xs: any) =>
     svg(
         opts.attribs,
         group(

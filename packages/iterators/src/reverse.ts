@@ -1,9 +1,9 @@
 export function* reverse<T>(input: Iterable<T>) {
-    if (!(input.constructor === Array || (input as T[]).length !== undefined)) {
+    if (!(input.constructor === Array || (<T[]>input).length !== undefined)) {
         input = [...input];
     }
-    let n = (input as T[]).length;
+    let n = (<T[]>input).length;
     while (--n >= 0) {
-        yield input[n];
+        yield (<any>input)[n];
     }
 }

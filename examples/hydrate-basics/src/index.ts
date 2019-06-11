@@ -1,3 +1,4 @@
+import { IDeref } from "@thi.ng/api";
 import { Atom } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { canvas2D, dropdown } from "@thi.ng/hdom-components";
@@ -42,8 +43,8 @@ const app = () => {
     // during hydration (1st frame of hdom update loop)
 
     // btw. the class names are for tachyons css
-    return (state) => {
-        state = state.deref();
+    return (_state: IDeref<any>) => {
+        const state = _state.deref();
         return [
             "div#root.w-50-ns.flex.ma2.sans-serif",
             [
@@ -61,7 +62,8 @@ const app = () => {
                         {
                             id: "bg",
                             class: "w-100",
-                            onchange: (e) => setBg(e.target.value)
+                            onchange: (e: Event) =>
+                                setBg((<HTMLSelectElement>e.target).value)
                         },
                         [
                             ["", "Choose..."],
@@ -86,7 +88,12 @@ const app = () => {
                             max: 0.02,
                             step: 0.001,
                             value: state.freq,
-                            oninput: (e) => setFreq(parseFloat(e.target.value))
+                            oninput: (e: Event) =>
+                                setFreq(
+                                    parseFloat(
+                                        (<HTMLInputElement>e.target).value
+                                    )
+                                )
                         }
                     ]
                 ]
@@ -97,7 +104,7 @@ const app = () => {
 
 // emulate SSR by serializing to HTML
 const html = serialize(app()(state), null, false, true);
-document.getElementById("app").innerHTML = html;
+document.getElementById("app")!.innerHTML = html;
 console.log(html);
 
 // ..then start hdom update loop w/ hydrate enabled

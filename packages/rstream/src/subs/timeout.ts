@@ -34,7 +34,7 @@ class Timeout<T> extends Subscription<T, T> {
         resetTimeout = false,
         id?: string
     ) {
-        super(null, null, null, id || `timeout-${nextID()}`);
+        super(undefined, undefined, undefined, id || `timeout-${nextID()}`);
         this.timeoutMs = timeoutMs;
         this.errorObj = error;
         this.resetTimeout = resetTimeout;

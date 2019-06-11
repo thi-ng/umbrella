@@ -6,7 +6,11 @@ import { Channel } from "../src/channel";
 import { Mult } from "../src/mult";
 // import { DCons } from "@thi.ng/dcons";
 
-export type NodeInput = NodeInputSpec | Channel<any> | Mult<any> | tx.Transducer<any, any>;
+export type NodeInput =
+    | NodeInputSpec
+    | Channel<any>
+    | Mult<any>
+    | tx.Transducer<any, any>;
 export type NodeOutput = NodeOutputSpec | IWriteableChannel<any>;
 
 export interface NodeInputSpec {
@@ -34,12 +38,9 @@ export interface NodeSpec extends IID<string> {
     close?: boolean;
     reset?: boolean;
     state?: any;
-};
+}
 
-export class Node implements
-    IEnable<string>,
-    IID<string> {
-
+export class Node implements IEnable<string>, IID<string> {
     static hasRequiredInputs(n: Node) {
         for (let i of n.required) {
             if (n.enabled[i] && n.state[i] === undefined) {
@@ -60,20 +61,19 @@ export class Node implements
      */
     static inputFromSpec(id: string, spec: NodeInputSpec) {
         if (spec.buf || spec.tx) {
-            const ch = new Channel(id, spec.buf, spec.tx);
-            return spec.src instanceof Channel ?
-                spec.src.pipe(ch) :
-                spec.src.tap(ch);
+            const ch = new Channel(id, spec.buf!, spec.tx!);
+            return spec.src instanceof Channel
+                ? spec.src.pipe(ch)
+                : spec.src.tap(ch);
         } else {
-            return spec.src instanceof Channel ? spec.src : spec.src.tap();
+            return spec.src instanceof Channel ? spec.src : spec.src.tap()!;
         }
     }
 
     static outputFromSpec(id: string, spec: NodeOutputSpec) {
-        const mult = new Mult(
-            <any>((spec.buf || spec.tx) ?
-                new Channel(id, spec.buf, spec.tx) :
-                id));
+        const mult = new Mult(<any>(
+            (spec.buf || spec.tx ? new Channel(id, spec.buf!, spec.tx!) : id)
+        ));
         if (spec.dest) {
             mult.tap(spec.dest.channel());
         }
@@ -100,7 +100,8 @@ export class Node implements
         this.autoClose = spec.close !== false;
         this.autoReset = spec.reset !== false;
         this.impl = spec.impl;
-        this.impl.shouldUpdate = this.impl.shouldUpdate || Node.hasRequiredInputs;
+        this.impl.shouldUpdate =
+            this.impl.shouldUpdate || Node.hasRequiredInputs;
         for (let i of Object.keys(spec.ins)) {
             this.addInput(i, spec.ins[i], spec.state[i]);
         }
@@ -112,13 +113,13 @@ export class Node implements
 
     addInput(id: string, val: NodeInput, init?: any) {
         this.ins[id] =
-            val instanceof Channel ?
-                (val.id = id, val) :
-                val instanceof Mult ?
-                    val.tap(new Channel(id)) :
-                    val == null || typeof val === "function" ?
-                        new Channel(id, <any>val) :
-                        Node.inputFromSpec(id, val);
+            val instanceof Channel
+                ? ((val.id = id), val)
+                : val instanceof Mult
+                ? val.tap(new Channel(id))!
+                : val == null || typeof val === "function"
+                ? new Channel(id, <any>val)
+                : Node.inputFromSpec(id, val)!;
         if (init !== undefined) {
             this.state[id] = init;
             this.enabled[id] = val != null;
@@ -128,13 +129,12 @@ export class Node implements
     }
 
     addOutput(id: string, val: NodeOutput) {
-        const spec = implementsFunction(val, "channel") ?
-            { dest: <IWriteableChannel<any>>val } :
-            <NodeOutputSpec>val;
+        const spec = implementsFunction(val, "channel")
+            ? { dest: <IWriteableChannel<any>>val }
+            : <NodeOutputSpec>val;
         const pid = this.id + "-" + id;
-        this.outs[id] = spec != null ?
-            Node.outputFromSpec(pid, spec) :
-            new Mult(pid);
+        this.outs[id] =
+            spec != null ? Node.outputFromSpec(pid, spec) : new Mult(pid);
     }
 
     disable(id?: string) {
@@ -168,7 +168,9 @@ export class Node implements
             let ok = true;
             for (let id of Object.keys(this.enabled)) {
                 ok = ok && this.enabled[id];
-                if (!ok) { break; }
+                if (!ok) {
+                    break;
+                }
             }
             return ok;
         }
@@ -202,7 +204,7 @@ export class Node implements
             }
             if (this.enabled[c.id]) {
                 this.state[c.id] = x;
-                if (this.impl.shouldUpdate(this)) {
+                if (this.impl.shouldUpdate!(this)) {
                     await this.impl.update(this);
                     this.autoReset && this.clearState();
                 }
@@ -220,7 +222,7 @@ export class Node implements
 
 export interface AddSpec {
     id: string;
-    ins: Partial<{ a: NodeInput, b: NodeInput }>;
+    ins: Partial<{ a: NodeInput; b: NodeInput }>;
     outs: Partial<{ out: NodeOutput }>;
     state: any;
     close: boolean;
@@ -231,8 +233,10 @@ export function add(spec: Partial<AddSpec>) {
     return new Node({
         id: spec.id || `node-${Node.NEXT_ID++}`,
         state: Object.assign({}, spec.state),
-        ins: Object.assign({ a: null, b: null }, spec.ins),
-        outs: Object.assign({ out: null }, spec.outs),
+        ins: <IObjectOf<NodeInput>>(
+            Object.assign({ a: null, b: null }, spec.ins)
+        ),
+        outs: <IObjectOf<NodeOutput>>Object.assign({ out: null }, spec.outs),
         close: spec.close,
         reset: spec.close,
         impl: {
@@ -246,14 +250,22 @@ export function add(spec: Partial<AddSpec>) {
 
 export const res = new Channel("res");
 export const a = add({ id: "a", state: { b: 42 } });
-export const b = add({ id: "b", ins: { a: { src: a.outs.out, tx: tx.map(x => x * 1) } }, state: { b: 100 } });
-export const c = add({ id: "c", ins: { a: b.outs.out, b: b.outs.out }, outs: { out: res } });
+export const b = add({
+    id: "b",
+    ins: { a: { src: a.outs.out, tx: tx.map((x) => x * 1) } },
+    state: { b: 100 }
+});
+export const c = add({
+    id: "c",
+    ins: { a: b.outs.out, b: b.outs.out },
+    outs: { out: res }
+});
 
 // b.disable("b");
 
-a.outs.out.tap().consume();
-b.outs.out.tap().consume();
-c.outs.out.tap().consume();
+a.outs.out.tap()!.consume();
+b.outs.out.tap()!.consume();
+c.outs.out.tap()!.consume();
 res.consume();
 
 Channel.range(10).pipe(a.ins.a);

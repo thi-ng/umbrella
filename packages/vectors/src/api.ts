@@ -52,15 +52,21 @@ export interface MultiVecOp<VOP> {
 
 export type VecPair = [Vec, Vec];
 
-export type VecOpV = Fn2<Vec, ReadonlyVec, Vec>;
-export type VecOpN = Fn2<Vec, number, Vec>;
-export type VecOpVV = Fn3<Vec, ReadonlyVec, ReadonlyVec, Vec>;
-export type VecOpVN = Fn3<Vec, ReadonlyVec, number, Vec>;
-export type VecOpVVV = Fn4<Vec, ReadonlyVec, ReadonlyVec, ReadonlyVec, Vec>;
-export type VecOpVVN = Fn4<Vec, ReadonlyVec, ReadonlyVec, number, Vec>;
-export type VecOpVNN = Fn4<Vec, ReadonlyVec, number, number, Vec>;
+export type VecOpV = Fn2<Vec | null, ReadonlyVec, Vec>;
+export type VecOpN = Fn2<Vec | null, number, Vec>;
+export type VecOpVV = Fn3<Vec | null, ReadonlyVec, ReadonlyVec, Vec>;
+export type VecOpVN = Fn3<Vec | null, ReadonlyVec, number, Vec>;
+export type VecOpVVV = Fn4<
+    Vec | null,
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    Vec
+>;
+export type VecOpVVN = Fn4<Vec | null, ReadonlyVec, ReadonlyVec, number, Vec>;
+export type VecOpVNN = Fn4<Vec | null, ReadonlyVec, number, number, Vec>;
 export type VecOpVVVVNN = Fn7<
-    Vec,
+    Vec | null,
     ReadonlyVec,
     ReadonlyVec,
     ReadonlyVec,
@@ -70,17 +76,17 @@ export type VecOpVVVVNN = Fn7<
     Vec
 >;
 
-export type VecOpVO<T> = (out: Vec, a: ReadonlyVec, b?: T) => Vec;
-export type VecOpOO<A, B> = (out: Vec, a?: A, b?: B) => Vec;
-export type VecOpOOO<A, B, C> = (out: Vec, a?: A, b?: B, c?: C) => Vec;
-export type VecOpNNO<T> = (out: Vec, a: number, b: number, c?: T) => Vec;
+export type VecOpVO<T> = (out: Vec | null, a: ReadonlyVec, b?: T) => Vec;
+export type VecOpOO<A, B> = (out: Vec | null, a?: A, b?: B) => Vec;
+export type VecOpOOO<A, B, C> = (out: Vec | null, a?: A, b?: B, c?: C) => Vec;
+export type VecOpNNO<T> = (out: Vec | null, a: number, b: number, c?: T) => Vec;
 
 export type VecOpRoV<T> = Fn<ReadonlyVec, T>;
 export type VecOpRoVV<T> = Fn2<ReadonlyVec, ReadonlyVec, T>;
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
 export type VecOpSV = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     io?: number,
     ia?: number,
@@ -88,7 +94,7 @@ export type VecOpSV = (
     sa?: number
 ) => Vec;
 export type VecOpSVV = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     io?: number,
@@ -165,3 +171,5 @@ export const X4 = Object.freeze([1, 0, 0, 0]);
 export const Y4 = Object.freeze([0, 1, 0, 0]);
 export const Z4 = Object.freeze([0, 0, 1, 0]);
 export const W4 = Object.freeze([0, 0, 0, 1]);
+
+export type Template = (syms: string[], i?: number) => string;

@@ -122,22 +122,20 @@ export interface PagerOpts {
  *
  * @param opts
  */
-export const pager = (opts: PagerOpts) => {
-    opts = Object.assign(
-        <PagerOpts>{
-            root: (_, ...body: any[]) => ["div.pager", ...body],
-            groupPrev: (_, ...bts: any[]) => ["div.pager-prev", ...bts],
-            groupNext: (_, ...bts: any[]) => ["div.pager-next", ...bts],
-            groupPages: (_, ...bts: any[]) => ["div.pager-pages", ...bts],
-            navStep: 1,
-            labelFirst: "<<",
-            labelPrev: "<",
-            labelNext: ">",
-            labelLast: ">>"
-        },
-        opts
-    );
-    return (_, id: number, num: number, pageLen = 10, maxBts = 5) => {
+export const pager = (_opts: PagerOpts) => {
+    const opts = <PagerOpts>{
+        root: (_, ...body: any[]) => ["div.pager", ...body],
+        groupPrev: (_, ...bts: any[]) => ["div.pager-prev", ...bts],
+        groupNext: (_, ...bts: any[]) => ["div.pager-next", ...bts],
+        groupPages: (_, ...bts: any[]) => ["div.pager-pages", ...bts],
+        navStep: 1,
+        labelFirst: "<<",
+        labelPrev: "<",
+        labelNext: ">",
+        labelLast: ">>",
+        ..._opts
+    };
+    return (_: any, id: number, num: number, pageLen = 10, maxBts = 5) => {
         const bt = opts.button;
         const step = opts.navStep;
         const maxID = Math.floor(Math.max(0, num - 1) / pageLen);
@@ -147,7 +145,7 @@ export const pager = (opts: PagerOpts) => {
             [
                 opts.groupPrev,
                 bt(0, id, maxID, opts.labelFirst, !id),
-                bt(Math.max(id - step, 0), id, maxID, opts.labelPrev, !id)
+                bt(Math.max(id - step!, 0), id, maxID, opts.labelPrev, !id)
             ],
             [
                 opts.groupPages,
@@ -159,7 +157,7 @@ export const pager = (opts: PagerOpts) => {
             [
                 opts.groupNext,
                 bt(
-                    Math.min(id + step, maxID),
+                    Math.min(id + step!, maxID),
                     id,
                     maxID,
                     opts.labelNext,

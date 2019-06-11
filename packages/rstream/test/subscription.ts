@@ -1,36 +1,46 @@
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-
 import * as rs from "../src/index";
 
 describe("Subscription", () => {
     let src: rs.Stream<number>;
 
-    beforeEach(() => {
-    });
+    beforeEach(() => {});
 
     it("new sub receives last", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         src = rs.fromIterable([1, 2, 3], 10);
-        src.subscribe({ next(x) { buf.push(x); } });
-        setTimeout(() =>
-            src.subscribe({
-                next(x) { buf.push(x); },
-                done() {
-                    assert.deepEqual(buf, [1, 2, 2, 3, 3]);
-                    done();
-                }
-            }),
-            25);
+        src.subscribe({
+            next(x) {
+                buf.push(x);
+            }
+        });
+        setTimeout(
+            () =>
+                src.subscribe({
+                    next(x) {
+                        buf.push(x);
+                    },
+                    done() {
+                        assert.deepEqual(buf, [1, 2, 2, 3, 3]);
+                        done();
+                    }
+                }),
+            25
+        );
     });
 
     it("unsub does not trigger Subscription.done()", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         let called = false;
         src = rs.fromIterable([1, 2, 3], 10);
         const sub = src.subscribe({
-            next(x) { buf.push(x); },
-            done() { called = true; }
+            next(x) {
+                buf.push(x);
+            },
+            done() {
+                called = true;
+            }
         });
         setTimeout(() => sub.unsubscribe(), 15);
         setTimeout(() => {
@@ -43,13 +53,17 @@ describe("Subscription", () => {
     });
 
     it("no new values after unsub", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         let called = false;
         src = rs.fromIterable([1, 2, 3], 10);
         const sub = src.subscribe(
             {
-                next(x) { buf.push(x); },
-                done() { called = true; }
+                next(x) {
+                    buf.push(x);
+                },
+                done() {
+                    called = true;
+                }
             },
             tx.partition(2, true)
         );
@@ -63,11 +77,13 @@ describe("Subscription", () => {
     });
 
     it("completing transducer sends all values", (done) => {
-        let buf = [];
+        let buf: any[] = [];
         src = rs.fromIterable([1, 2, 3], 10);
         src.subscribe(
             {
-                next(x) { buf.push(x); },
+                next(x) {
+                    buf.push(x);
+                },
                 done() {
                     assert.deepEqual(buf, [[1, 2], [3]]);
                     assert.equal(src.getState(), rs.State.DONE);

@@ -1,5 +1,4 @@
 import { memoizeJ } from "@thi.ng/memoize";
-
 import { Stringer } from "./api";
 import { repeat } from "./repeat";
 
@@ -10,8 +9,12 @@ import { repeat } from "./repeat";
 export const padLeft: (
     n: number,
     ch?: string | number
-) => Stringer<any> = memoizeJ<number, string, Stringer<any>>((n, ch = " ") => {
-    const buf = repeat(ch, n);
+) => Stringer<any> = memoizeJ<
+    number,
+    string | number | undefined,
+    Stringer<any>
+>((n, ch = " ") => {
+    const buf = repeat(String(ch), n);
     return (x: any) =>
         x != null
             ? ((x = x.toString()), x.length < n ? buf.substr(x.length) + x : x)

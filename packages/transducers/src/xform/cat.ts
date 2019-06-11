@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
-import { isReduced, unreduced, ensureReduced } from "../reduced";
+import { ensureReduced, isReduced, unreduced } from "../reduced";
 
 /**
  * Transducer to concatenate iterable values. Iterates over each input
@@ -32,11 +32,11 @@ import { isReduced, unreduced, ensureReduced } from "../reduced";
  * @see thi.ng/transducers/iter/concat
  * @see thi.ng/transducers/xform/mapcat
  */
-export const cat = <T>(): Transducer<Iterable<T>, T> => (
+export const cat = <T>(): Transducer<Iterable<T> | null | undefined, T> => (
     rfn: Reducer<any, T>
 ) => {
     const r = rfn[2];
-    return compR(rfn, (acc, x: Iterable<T>) => {
+    return compR(rfn, (acc, x: Iterable<T> | null | undefined) => {
         if (x) {
             for (let y of unreduced(x)) {
                 acc = r(acc, y);

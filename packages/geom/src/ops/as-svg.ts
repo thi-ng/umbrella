@@ -10,7 +10,7 @@ export const asSvg = (...args: any[]) =>
 export const svgDoc = (attribs: Attribs, ...xs: IShape[]) => {
     if (xs.length > 0) {
         if (!attribs || !attribs.viewBox) {
-            const [pos, size] = collBounds(xs, bounds);
+            const [pos, size] = collBounds(xs, bounds)!;
             attribs = {
                 width: ff(size[0]),
                 height: ff(size[1]),

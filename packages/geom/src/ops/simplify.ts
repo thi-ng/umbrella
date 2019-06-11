@@ -1,21 +1,27 @@
+import { IObjectOf } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
-import { defmulti } from "@thi.ng/defmulti";
-import { IShape, PathSegment, SegmentType, Type } from "@thi.ng/geom-api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import {
+    IShape,
+    PathSegment,
+    SegmentType,
+    Type
+} from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
 import { Vec } from "@thi.ng/vectors";
+import { Path, Polygon, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
-import { Path, Polygon, Polyline } from "../api";
 
 export const simplify = defmulti<IShape, number, IShape>(dispatch);
 
-simplify.addAll({
+simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
     [Type.PATH]: (path: Path, eps = 0.1) => {
         const res: PathSegment[] = [];
         const orig = path.segments;
         const n = orig.length;
-        let points: Vec[];
-        let lastP: Vec;
+        let points!: Vec[] | null;
+        let lastP!: Vec;
         for (let i = 0; i < n; i++) {
             const s = orig[i];
             if (
@@ -23,8 +29,8 @@ simplify.addAll({
                 s.type === SegmentType.POLYLINE
             ) {
                 points = points
-                    ? points.concat(vertices(s.geo))
-                    : vertices(s.geo);
+                    ? points.concat(vertices(s.geo!))
+                    : vertices(s.geo!);
                 lastP = peek(points);
             } else if (points) {
                 points.push(lastP);

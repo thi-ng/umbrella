@@ -75,5 +75,5 @@ export function multiplex<T, A, B, C, D, E, F, G, H>(
     h: Transducer<T, H>
 ): Transducer<T, [A, B, C, D, E, F, G, H]>;
 export function multiplex(...args: any[]) {
-    return map(juxt.apply(null, args.map(step)));
+    return map(juxt.apply(null, <any>args.map(step)));
 }

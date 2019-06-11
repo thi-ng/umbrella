@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { FnAny, IObjectOf } from "@thi.ng/api";
 
 /**
  * Function type used by `at_xxx()` functions or any
@@ -44,7 +44,7 @@ export interface CSSOpts {
      * Maps keys to rule functions.
      * See quoted-functions.ts
      */
-    fns: IObjectOf<RuleFn>;
+    fns: IObjectOf<FnAny<RuleFn>>;
     /**
      * Array or set of properties to prefix automatically.
      * If given, each listed property will be prefixed

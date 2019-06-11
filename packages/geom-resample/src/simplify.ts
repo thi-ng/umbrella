@@ -31,7 +31,7 @@ export const simplify = (pts: Vec[], eps = 0, closed = false) => {
             from + 1,
             to
         );
-        if (maxD <= eps) {
+        if (maxIdx < 0 || maxD <= eps) {
             return;
         }
         $(from, maxIdx);

@@ -38,7 +38,7 @@ export function toggle<T>(
               return [
                   init,
                   complete,
-                  (acc) => reduce(acc, (state = !state) ? on : off)
+                  (acc: any) => reduce(acc, (state = !state) ? on : off)
               ];
           };
 }

@@ -1,10 +1,16 @@
 import * as assert from "assert";
-import { DEFAULT, defmulti, defmultiN, implementations } from "../src/index";
+import {
+    DEFAULT,
+    defmulti,
+    defmultiN,
+    implementations
+} from "../src/index";
 
+// prettier-ignore
 describe("defmulti", () => {
     it("flatten", () => {
         const flatten = defmulti<any[]>((x) => Object.prototype.toString.call(x));
-        assert(flatten.add("[object Array]", (x, acc: any[]) => (x.forEach((y) => flatten(y, acc)), acc)));
+        assert(flatten.add("[object Array]", (x, acc: any[]) => (x.forEach((y: any) => flatten(y, acc)), acc)));
         assert(flatten.add("[object Object]", (x, acc: any[]) => { for (let k in x) flatten([k, x[k]], acc); return acc; }));
         assert(flatten.add("[object Null]", (_, acc) => acc));
         assert(flatten.add(DEFAULT, (x, acc: any[]) => (acc.push(x.toString()), acc)));
@@ -17,8 +23,8 @@ describe("defmulti", () => {
 
     it("sexpr", () => {
         const exec = defmulti<number>((x) => Array.isArray(x) ? x[0] : typeof x);
-        assert(exec.add("+", ([_, ...args]) => args.reduce((acc, n) => acc + exec(n), 0)));
-        assert(exec.add("*", ([_, ...args]) => args.reduce((acc, n) => acc * exec(n), 1)));
+        assert(exec.add("+", ([_, ...args]) => args.reduce((acc: number, n: any) => acc + exec(n), 0)));
+        assert(exec.add("*", ([_, ...args]) => args.reduce((acc: number, n: any) => acc * exec(n), 1)));
         assert(exec.add("number", (x) => x));
         assert(!exec.add("number", (x) => x));
         assert(exec.add(DEFAULT, (x) => { throw new Error(`invalid expr: ${x}`); }));

@@ -1,5 +1,5 @@
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import { maddN2, ReadonlyVec } from "@thi.ng/vectors";
+import { maddN2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { NONE } from "./api";
 import { intersectRayLine } from "./ray-line";
 
@@ -52,7 +52,7 @@ export const intersectRayPolylineAll = (
         i = pts[0];
         j = pts[1];
     }
-    const res = [];
+    const res: [number, Vec][] = [];
     for (let k = 0; k <= n; i = j, j = pts[++k]) {
         const d = intersectRayLine(rpos, dir, i, j).alpha;
         if (d !== undefined) {

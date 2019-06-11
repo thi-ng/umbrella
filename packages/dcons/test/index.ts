@@ -1,9 +1,9 @@
 import * as assert from "assert";
-
 import { DCons } from "../src/index";
 
+
 describe("DCons", () => {
-    let a: DCons<any>, src;
+    let a: DCons<any>, src: number[];
     beforeEach(() => {
         src = [1, 2, 3, 4, 5];
         a = new DCons(src);

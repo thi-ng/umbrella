@@ -1,10 +1,8 @@
 import * as assert from "assert";
-
 import * as rs from "../src/index";
 
-describe("SidechainPartition", function () {
-
-    let src, side, buf;
+describe("SidechainPartition", function() {
+    let src: rs.Stream<any>, side: rs.Stream<any>, buf: any[];
 
     beforeEach(() => {
         src = rs.stream();
@@ -13,17 +11,15 @@ describe("SidechainPartition", function () {
     });
 
     it("partitions (manual)", (done) => {
-        src.subscribe(rs.sidechainPartition(side))
-            .subscribe({
-                next(x) { buf.push(x); },
-                done() {
-                    assert.deepEqual(
-                        buf,
-                        [[1, 2], [3, 4, 5]]
-                    );
-                    done();
-                }
-            });
+        src.subscribe(rs.sidechainPartition(side)).subscribe({
+            next(x) {
+                buf.push(x);
+            },
+            done() {
+                assert.deepEqual(buf, [[1, 2], [3, 4, 5]]);
+                done();
+            }
+        });
         src.next(1);
         src.next(2);
         side.next(1);
@@ -37,17 +33,15 @@ describe("SidechainPartition", function () {
     });
 
     it("partitions w/ predicate", (done) => {
-        src.subscribe(rs.sidechainPartition(side, (x) => x === 1))
-            .subscribe({
-                next(x) { buf.push(x); },
-                done() {
-                    assert.deepEqual(
-                        buf,
-                        [[1, 2, 3], [4, 5]]
-                    );
-                    done();
-                }
-            });
+        src.subscribe(rs.sidechainPartition(side, (x) => x === 1)).subscribe({
+            next(x) {
+                buf.push(x);
+            },
+            done() {
+                assert.deepEqual(buf, [[1, 2, 3], [4, 5]]);
+                done();
+            }
+        });
         src.next(1);
         src.next(2);
         side.next(0);

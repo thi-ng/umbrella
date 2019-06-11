@@ -1,5 +1,4 @@
 import * as tx from "@thi.ng/transducers";
-
 import { Channel, PubSub } from "../src";
 
 async function pingpong() {
@@ -43,7 +42,7 @@ async function alts() {
     console.log("selected", ch.id, x);
 }
 
-async function throttle(d1, d2) {
+async function throttle(d1: number, d2: number) {
     const a = Channel.range(0, 1000, 1, d1);
     const done = new Channel();
     const t0 = Date.now();
@@ -58,13 +57,18 @@ async function throttle(d1, d2) {
 
 async function pubsub() {
     const pub = new PubSub(
-        new Channel<any>("users", tx.map((x: string) => ({ type: x.charAt(0), val: x }))),
-        (x) => x.type
-    ),
+            new Channel<any>(
+                "users",
+                tx.map((x: string) => ({ type: x.charAt(0), val: x }))
+            ),
+            (x) => x.type
+        ),
         done = new Channel(),
         topics = "abc";
     for (let i of topics) {
-        pub.sub(i).consume().then(() => done.write(i));
+        pub.sub(i)!
+            .consume()
+            .then(() => done.write(i));
     }
     // pub.sub("*").consume();
     await pub.channel().into(["alice", "bert", "bella", "charlie", "arthur"]);
@@ -83,10 +87,9 @@ async function transducers() {
     ch = new Channel<any>(tx.comp(tx.take(3), tx.partition(2, true)));
     ch.into([1, 2, 2, 2, 1, 5, 3, 3]);
     await ch.consume();
-    const src = [5, 2, 8, 10, 20, 15, 12, 18, 27, 78, 35, 16, 2, 99, 123, 42]
+    const src = [5, 2, 8, 10, 20, 15, 12, 18, 27, 78, 35, 16, 2, 99, 123, 42];
     ch = Channel.from<number>(src, <any>tx.delayed(100)).pipe(tx.streamSort(8));
     await ch.consume();
-
 }
 
 async function main() {
@@ -99,4 +102,3 @@ async function main() {
 }
 
 main();
-

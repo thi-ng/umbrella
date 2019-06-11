@@ -4,6 +4,7 @@ export * from "./constantly";
 export * from "./delay";
 export * from "./delayed";
 export * from "./identity";
+export * from "./ifdef";
 export * from "./juxt";
 export * from "./partial";
 export * from "./thread-first";

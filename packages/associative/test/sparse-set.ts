@@ -1,4 +1,5 @@
 import { isSet } from "@thi.ng/checks";
+import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
 import { SparseSet8 } from "../src";
 
@@ -25,24 +26,26 @@ describe("SparseSet", () => {
     });
 
     it("add", () => {
-        assert.deepEqual(
-            set.into([1, 4, 3, 7, 9, 2, 0, 1, 2]),
-            new Set([0, 1, 2, 3, 4, 7])
+        assert(
+            equiv(
+                set.into([1, 4, 3, 7, 9, 2, 0, 1, 2]),
+                new Set([0, 1, 2, 3, 4, 7])
+            )
         );
     });
 
     it("delete", () => {
         set.into([1, 4, 3, 7, 9, 2, 0, 1, 2]);
         assert(set.delete(4));
-        assert.deepEqual(set, new Set([0, 1, 2, 3, 7]));
+        assert(equiv(set, new Set([0, 1, 2, 3, 7])));
         assert(set.delete(0));
-        assert.deepEqual(set, new Set([1, 2, 3, 7]));
+        assert(equiv(set, new Set([1, 2, 3, 7])));
         assert(set.delete(7));
-        assert.deepEqual(set, new Set([1, 2, 3]));
+        assert(equiv(set, new Set([1, 2, 3])));
         assert(!set.delete(7));
         assert(!set.delete(4));
         set.add(4);
-        assert.deepEqual(set, new Set([1, 2, 3, 4]));
+        assert(equiv(set, new Set([1, 2, 3, 4])));
     });
 
     it("has", () => {

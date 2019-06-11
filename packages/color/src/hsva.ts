@@ -1,4 +1,4 @@
-import { IVector, declareIndices } from "@thi.ng/vectors";
+import { declareIndices, IVector } from "@thi.ng/vectors";
 import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
@@ -10,10 +10,10 @@ export function hsva(...args: any[]) {
 }
 
 export class HSVA extends AColor<HSVA> implements IVector<HSVA> {
-    h: number;
-    s: number;
-    v: number;
-    a: number;
+    h!: number;
+    s!: number;
+    v!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.HSVA;

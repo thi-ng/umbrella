@@ -102,8 +102,8 @@ export interface NodeSpec {
 export interface NodeInputSpec {
     id?: string;
     path?: Path;
-    stream?: string | ((resolve) => ISubscribable<any>);
-    const?: any | ((resolve) => any);
+    stream?: string | ((resolve: ResolveFn) => ISubscribable<any>);
+    const?: any | ((resolve: ResolveFn) => any);
     xform?: Transducer<any, any>;
 }
 

@@ -6,7 +6,7 @@ export const renamer = (kmap: IObjectOf<PropertyKey>) => {
     const [a1, b1, c1] = ks.map((k) => kmap[k]);
     switch (ks.length) {
         case 3:
-            return (x) => {
+            return (x: any) => {
                 const res: any = {};
                 let v;
                 (v = x[c1]), v !== undefined && (res[c2] = v);
@@ -15,7 +15,7 @@ export const renamer = (kmap: IObjectOf<PropertyKey>) => {
                 return res;
             };
         case 2:
-            return (x) => {
+            return (x: any) => {
                 const res: any = {};
                 let v;
                 (v = x[b1]), v !== undefined && (res[b2] = v);
@@ -23,14 +23,14 @@ export const renamer = (kmap: IObjectOf<PropertyKey>) => {
                 return res;
             };
         case 1:
-            return (x) => {
+            return (x: any) => {
                 const res: any = {};
                 let v = x[a1];
                 v !== undefined && (res[a2] = v);
                 return res;
             };
         default:
-            return (x) => {
+            return (x: any) => {
                 let k, v;
                 const res: any = {};
                 for (let i = ks.length - 1; i >= 0; i--) {

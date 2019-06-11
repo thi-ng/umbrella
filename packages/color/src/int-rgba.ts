@@ -2,7 +2,7 @@ import { IDeref } from "@thi.ng/api";
 import { setC4 } from "@thi.ng/vectors";
 import { Color, INV8BIT } from "./api";
 
-export const int32Rgba = (out: Color, src: number | IDeref<number>) => {
+export const int32Rgba = (out: Color | null, src: number | IDeref<number>) => {
     src = typeof src === "number" ? src : src.deref();
     return setC4(
         out || [],
@@ -13,7 +13,7 @@ export const int32Rgba = (out: Color, src: number | IDeref<number>) => {
     );
 };
 
-export const int24Rgba = (out: Color, src: number | IDeref<number>) => {
+export const int24Rgba = (out: Color | null, src: number | IDeref<number>) => {
     src = typeof src === "number" ? src : src.deref();
     return int32Rgba(out, src | 0xff000000);
 };

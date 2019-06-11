@@ -18,7 +18,7 @@ import { Mat } from "./api";
  * @param up
  */
 export const lookAt = (
-    out: Mat,
+    out: Mat | null,
     eye: ReadonlyVec,
     target: ReadonlyVec,
     up: ReadonlyVec

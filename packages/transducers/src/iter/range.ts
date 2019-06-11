@@ -1,12 +1,12 @@
-import { isReduced, Reduced } from "../reduced";
 import { IReducible, ReductionFn } from "../api";
+import { isReduced, Reduced } from "../reduced";
 
 export function range(): Range;
 export function range(to: number): Range;
 export function range(from: number, to: number): Range;
 export function range(from: number, to: number, step: number): Range;
 export function range(from?: number, to?: number, step?: number) {
-    return new Range(from, to, step);
+    return new Range(from!, to!, step!);
 }
 
 /**

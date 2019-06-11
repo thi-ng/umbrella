@@ -137,8 +137,8 @@ export class StreamSync<A, B> extends Subscription<A, B> {
 
     constructor(opts: Partial<StreamSyncOpts<A, B>>) {
         let srcIDs = new Set<string>();
-        let xform: Transducer<any, any> = comp(
-            partitionSync<A>(srcIDs, {
+        let xform: Transducer<[string, A], any> = comp(
+            partitionSync(srcIDs, {
                 key: (x) => x[0],
                 mergeOnly: opts.mergeOnly === true,
                 reset: opts.reset === true,
@@ -149,7 +149,12 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         if (opts.xform) {
             xform = comp(xform, opts.xform);
         }
-        super(null, xform, null, opts.id || `streamsync-${nextID()}`);
+        super(
+            undefined,
+            <Transducer<any, any>>xform,
+            undefined,
+            opts.id || `streamsync-${nextID()}`
+        );
         this.sources = new Map();
         this.realSourceIDs = new Map();
         this.invRealSourceIDs = new Map();
@@ -172,7 +177,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             src,
             src.subscribe(
                 {
-                    next: (x) => {
+                    next: (x: any) => {
                         if (x[1] instanceof Subscription) {
                             this.add(x[1]);
                         } else {
@@ -195,7 +200,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                 this.sourceIDs.add(id);
             }
             for (let id in src) {
-                this.add(src[id], id);
+                this.add((<any>src)[id], id);
             }
         } else {
             // pre-add all source ids for partitionSync
@@ -211,7 +216,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     remove(src: ISubscribable<A>) {
         const sub = this.sources.get(src);
         if (sub) {
-            const id = this.invRealSourceIDs.get(src.id);
+            const id = this.invRealSourceIDs.get(src.id)!;
             LOGGER.info(`removing src: ${src.id} (${id})`);
             this.sourceIDs.delete(id);
             this.realSourceIDs.delete(id);
@@ -234,7 +239,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     removeAll(src: ISubscribable<A>[]) {
         // pre-remove all source ids for partitionSync
         for (let s of src) {
-            this.sourceIDs.delete(this.invRealSourceIDs.get(s.id));
+            this.sourceIDs.delete(this.invRealSourceIDs.get(s.id)!);
         }
         let ok = true;
         for (let s of src) {
@@ -252,13 +257,13 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     }
 
     getSourceForID(id: string) {
-        return this.idSources.get(this.realSourceIDs.get(id));
+        return this.idSources.get(this.realSourceIDs.get(id)!);
     }
 
     getSources() {
-        const res = {};
+        const res: IObjectOf<ISubscribable<A>> = {};
         for (let [id, src] of this.idSources) {
-            res[this.invRealSourceIDs.get(id)] = src;
+            res[this.invRealSourceIDs.get(id)!] = src;
         }
         return res;
     }

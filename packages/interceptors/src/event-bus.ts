@@ -8,11 +8,29 @@ import {
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { setIn, updateIn } from "@thi.ng/paths";
-import * as api from "./api";
-
-const FX_CANCEL = api.FX_CANCEL;
-const FX_DISPATCH_NOW = api.FX_DISPATCH_NOW;
-const FX_STATE = api.FX_STATE;
+import {
+    EffectDef,
+    EffectPriority,
+    EV_REDO,
+    EV_SET_VALUE,
+    EV_TOGGLE_VALUE,
+    EV_UNDO,
+    EV_UPDATE_VALUE,
+    Event,
+    EventDef,
+    FX_CANCEL,
+    FX_DELAY,
+    FX_DISPATCH,
+    FX_DISPATCH_ASYNC,
+    FX_DISPATCH_NOW,
+    FX_FETCH,
+    FX_STATE,
+    IDispatch,
+    Interceptor,
+    InterceptorContext,
+    InterceptorFn,
+    SideEffect
+} from "./api";
 
 /**
  * Batched event processor for using composable interceptors for event
@@ -66,16 +84,16 @@ const FX_STATE = api.FX_STATE;
  * - side effect priorities (to control execution order)
  * - dynamic addition/removal of handlers & effects
  */
-export class StatelessEventBus implements api.IDispatch {
+export class StatelessEventBus implements IDispatch {
     state: any;
 
-    protected eventQueue: api.Event[];
-    protected currQueue: api.Event[];
-    protected currCtx: api.InterceptorContext;
+    protected eventQueue: Event[];
+    protected currQueue: Event[] | undefined;
+    protected currCtx: InterceptorContext | undefined;
 
-    protected handlers: IObjectOf<api.Interceptor[]>;
-    protected effects: IObjectOf<api.SideEffect>;
-    protected priorities: api.EffectPriority[];
+    protected handlers: IObjectOf<Interceptor[]>;
+    protected effects: IObjectOf<SideEffect>;
+    protected priorities: EffectPriority[];
 
     /**
      * Creates a new event bus instance with given handler and effect
@@ -89,8 +107,8 @@ export class StatelessEventBus implements api.IDispatch {
      * @param effects
      */
     constructor(
-        handlers?: IObjectOf<api.EventDef>,
-        effects?: IObjectOf<api.EffectDef>
+        handlers?: IObjectOf<EventDef>,
+        effects?: IObjectOf<EffectDef>
     ) {
         this.handlers = {};
         this.effects = {};
@@ -165,13 +183,13 @@ export class StatelessEventBus implements api.IDispatch {
      */
     addBuiltIns(): any {
         this.addEffects({
-            [api.FX_DISPATCH]: [(e) => this.dispatch(e), -999],
+            [FX_DISPATCH]: [(e) => this.dispatch(e), -999],
 
-            [api.FX_DISPATCH_ASYNC]: [
-                ([id, arg, success, err]) => {
+            [FX_DISPATCH_ASYNC]: [
+                ([id, arg, success, err], bus, ctx) => {
                     const fx = this.effects[id];
                     if (fx) {
-                        const p = fx(arg, this);
+                        const p = fx(arg, bus, ctx);
                         if (isPromise(p)) {
                             p.then((res) =>
                                 this.dispatch([success, res])
@@ -186,13 +204,13 @@ export class StatelessEventBus implements api.IDispatch {
                 -999
             ],
 
-            [api.FX_DELAY]: [
+            [FX_DELAY]: [
                 ([x, body]) =>
                     new Promise((res) => setTimeout(() => res(body), x)),
                 1000
             ],
 
-            [api.FX_FETCH]: [
+            [FX_FETCH]: [
                 (req) =>
                     fetch(req).then((resp) => {
                         if (!resp.ok) {
@@ -205,12 +223,12 @@ export class StatelessEventBus implements api.IDispatch {
         });
     }
 
-    addHandler(id: string, spec: api.EventDef) {
+    addHandler(id: string, spec: EventDef) {
         const iceps = isArray(spec)
             ? (<any>spec).map(asInterceptor)
             : isFunction(spec)
-                ? [{ pre: spec }]
-                : [spec];
+            ? [{ pre: spec }]
+            : [spec];
         if (iceps.length > 0) {
             if (this.handlers[id]) {
                 this.removeHandler(id);
@@ -222,19 +240,19 @@ export class StatelessEventBus implements api.IDispatch {
         }
     }
 
-    addHandlers(specs: IObjectOf<api.EventDef>) {
+    addHandlers(specs: IObjectOf<EventDef>) {
         for (let id in specs) {
             this.addHandler(id, specs[id]);
         }
     }
 
-    addEffect(id: string, fx: api.SideEffect, priority = 1) {
+    addEffect(id: string, fx: SideEffect, priority = 1) {
         if (this.effects[id]) {
             this.removeEffect(id);
             console.warn(`overriding effect for ID: ${id}`);
         }
         this.effects[id] = fx;
-        const p: api.EffectPriority = [id, priority];
+        const p: EffectPriority = [id, priority];
         const priors = this.priorities;
         for (let i = 0; i < priors.length; i++) {
             if (p[1] < priors[i][1]) {
@@ -245,7 +263,7 @@ export class StatelessEventBus implements api.IDispatch {
         priors.push(p);
     }
 
-    addEffects(specs: IObjectOf<api.EffectDef>) {
+    addEffects(specs: IObjectOf<EffectDef>) {
         for (let id in specs) {
             const fx = specs[id];
             if (isArray(fx)) {
@@ -264,10 +282,7 @@ export class StatelessEventBus implements api.IDispatch {
      * @param inject
      * @param ids
      */
-    instrumentWith(
-        inject: (api.Interceptor | api.InterceptorFn)[],
-        ids?: string[]
-    ) {
+    instrumentWith(inject: (Interceptor | InterceptorFn)[], ids?: string[]) {
         const iceps = inject.map(asInterceptor);
         const handlers = this.handlers;
         for (let id of ids || Object.keys(handlers)) {
@@ -321,7 +336,7 @@ export class StatelessEventBus implements api.IDispatch {
      *
      * @param e
      */
-    dispatch(...e: api.Event[]) {
+    dispatch(...e: Event[]) {
         this.eventQueue.push(...e);
     }
 
@@ -334,7 +349,7 @@ export class StatelessEventBus implements api.IDispatch {
      *
      * @param e
      */
-    dispatchNow(...e: api.Event[]) {
+    dispatchNow(...e: Event[]) {
         (this.currQueue || this.eventQueue).push(...e);
     }
 
@@ -348,7 +363,7 @@ export class StatelessEventBus implements api.IDispatch {
      * @param e
      * @param delay
      */
-    dispatchLater(e: api.Event, delay = 17) {
+    dispatchLater(e: Event, delay = 17) {
         setTimeout(() => this.dispatch(e), delay);
     }
 
@@ -367,7 +382,7 @@ export class StatelessEventBus implements api.IDispatch {
      *
      * @param ctx
      */
-    processQueue(ctx?: api.InterceptorContext) {
+    processQueue(ctx?: InterceptorContext) {
         if (this.eventQueue.length > 0) {
             this.currQueue = [...this.eventQueue];
             this.eventQueue.length = 0;
@@ -407,7 +422,7 @@ export class StatelessEventBus implements api.IDispatch {
      * @param ctx
      * @param e
      */
-    protected processEvent(ctx: api.InterceptorContext, e: api.Event) {
+    protected processEvent(ctx: InterceptorContext, e: Event) {
         const iceps = this.handlers[<any>e[0]];
         if (!iceps) {
             console.warn(`missing handler for event type: ${e[0].toString()}`);
@@ -439,7 +454,7 @@ export class StatelessEventBus implements api.IDispatch {
      *
      * @param ctx
      */
-    protected processEffects(ctx: api.InterceptorContext) {
+    protected processEffects(ctx: InterceptorContext) {
         const effects = this.effects;
         for (let p of this.priorities) {
             const id = p[0];
@@ -497,7 +512,7 @@ export class StatelessEventBus implements api.IDispatch {
      * @param fx
      * @param ret
      */
-    protected mergeEffects(ctx: api.InterceptorContext, ret: any) {
+    protected mergeEffects(ctx: InterceptorContext, ret: any) {
         if (!ret) {
             return;
         }
@@ -537,7 +552,7 @@ export class StatelessEventBus implements api.IDispatch {
  * as the default implementation for most use cases.
  */
 export class EventBus extends StatelessEventBus
-    implements IDeref<any>, api.IDispatch {
+    implements IDeref<any>, IDispatch {
     readonly state: IAtom<any>;
 
     /**
@@ -554,9 +569,9 @@ export class EventBus extends StatelessEventBus
      * @param effects
      */
     constructor(
-        state?: IAtom<any>,
-        handlers?: IObjectOf<api.EventDef>,
-        effects?: IObjectOf<api.EffectDef>
+        state?: IAtom<any> | null,
+        handlers?: IObjectOf<EventDef>,
+        effects?: IObjectOf<EffectDef>
     ) {
         super(handlers, effects);
         this.state = state || new Atom({});
@@ -645,17 +660,17 @@ export class EventBus extends StatelessEventBus
         super.addBuiltIns();
         // handlers
         this.addHandlers({
-            [api.EV_SET_VALUE]: (state, [_, [path, val]]) => ({
+            [EV_SET_VALUE]: (state, [_, [path, val]]) => ({
                 [FX_STATE]: setIn(state, path, val)
             }),
-            [api.EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) => ({
+            [EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) => ({
                 [FX_STATE]: updateIn(state, path, fn, ...args)
             }),
-            [api.EV_TOGGLE_VALUE]: (state, [_, path]) => ({
+            [EV_TOGGLE_VALUE]: (state, [_, path]) => ({
                 [FX_STATE]: updateIn(state, path, (x) => !x)
             }),
-            [api.EV_UNDO]: undoHandler("undo"),
-            [api.EV_REDO]: undoHandler("redo")
+            [EV_UNDO]: undoHandler("undo"),
+            [EV_REDO]: undoHandler("redo")
         });
 
         // effects
@@ -685,7 +700,7 @@ export class EventBus extends StatelessEventBus
      * bus.processQueue({ history });
      * ```
      */
-    processQueue(ctx?: api.InterceptorContext) {
+    processQueue(ctx?: InterceptorContext) {
         if (this.eventQueue.length > 0) {
             const prev = this.state.deref();
             this.currQueue = [...this.eventQueue];
@@ -702,10 +717,15 @@ export class EventBus extends StatelessEventBus
     }
 }
 
-const asInterceptor = (i: api.Interceptor | api.InterceptorFn) =>
+const asInterceptor = (i: Interceptor | InterceptorFn) =>
     isFunction(i) ? { pre: i } : i;
 
-const undoHandler = (action: string) => (_, [__, ev], bus, ctx) => {
+const undoHandler = (action: string): InterceptorFn => (
+    _,
+    [__, ev],
+    bus,
+    ctx
+) => {
     let id = ev ? ev[0] : "history";
     if (implementsFunction(ctx[id], action)) {
         const ok = ctx[id][action]();
