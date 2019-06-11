@@ -4,7 +4,7 @@ import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // root component function
 // (using Tachyons CSS classes for styling)
-const app = ({ ticks, clicks }) => [
+const app = ({ ticks, clicks }: any) => [
     "div.vh-100.dt.w-100.bg-dark-pink.sans-serif",
     [
         "div.dtc.v-mid.tc.white.ph3.ph4-l",
@@ -37,7 +37,7 @@ const clickStream = stream().transform(scan(count(-1)));
 // stream combinator
 // waits until all inputs have produced at least one value,
 // then updates whenever any input has changed
-sync({
+sync<any, any>({
     // streams to synchronize
     src: {
         ticks: fromInterval(1000),

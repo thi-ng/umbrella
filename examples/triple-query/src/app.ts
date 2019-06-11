@@ -4,7 +4,12 @@ import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EV_SET_VALUE, EventBus } from "@thi.ng/interceptors";
 import { TripleStore } from "@thi.ng/rstream-query";
-import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
+import {
+    AppConfig,
+    AppContext,
+    AppViews,
+    ViewSpec
+} from "./api";
 import * as ev from "./events";
 
 /**
@@ -32,7 +37,7 @@ export class App {
             views: <AppViews>{},
             ui: config.ui
         };
-        this.addViews(this.config.views);
+        this.addViews(<any>this.config.views);
     }
 
     /**
@@ -46,9 +51,9 @@ export class App {
         for (let id in specs) {
             const spec = specs[id];
             if (isArray(spec)) {
-                views[id] = this.state.addView(spec[0], spec[1]);
+                (<any>views)[id] = this.state.addView(spec[0], spec[1]);
             } else {
-                views[id] = this.state.addView(spec);
+                (<any>views)[id] = this.state.addView(spec);
             }
         }
     }

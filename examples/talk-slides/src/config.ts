@@ -1,4 +1,4 @@
-export const ctx = {
+export const ctx: any = {
     // place holder for slide number stream
     slide: null,
 

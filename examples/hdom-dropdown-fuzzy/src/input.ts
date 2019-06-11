@@ -15,10 +15,10 @@ export interface InputArgs {
 }
 
 export function cancelableInput(themeCtxPath: Path) {
-    let input;
+    let input: HTMLElement;
     return {
         init: (el: HTMLElement) => (input = <HTMLElement>el.firstChild).focus(),
-        render: (ctx, args: InputArgs) => [
+        render: (ctx: any, args: InputArgs) => [
             "span.relative",
             [
                 "input",
@@ -51,7 +51,7 @@ export function cancelableInput(themeCtxPath: Path) {
                       "a",
                       {
                           href: "#",
-                          onclick: (e) => {
+                          onclick: (e: Event) => {
                               e.stopPropagation();
                               input.focus();
                               args.onclear(e);

@@ -46,7 +46,7 @@ const parseRules = step(
     comp(map((x: string) => parseInt(x.replace("-", ""), 2)), bits(18))
 );
 
-const applyRules = (raw) => {
+const applyRules = (raw: string) => {
     if (raw.length >= 18) {
         rules = <number[]>parseRules(raw);
         randomizeGrid();
@@ -55,7 +55,7 @@ const applyRules = (raw) => {
 };
 
 // create random bit sequence w/ ones appearing in given probability
-const randomSeq = (num, prob = 0.5) => [
+const randomSeq = (num: number, prob = 0.5) => [
     ...repeatedly(() => (Math.random() < prob ? 1 : 0), num)
 ];
 
@@ -80,7 +80,7 @@ export const convolve = (
     rstride = 9,
     wrap = true
 ) =>
-    transduce(
+    transduce<number[], number, number[]>(
         comp(
             convolve2d({ src, width, height, kernel, wrap }),
             mapIndexed((i, x) => rules[x + src[i] * rstride])
@@ -102,32 +102,36 @@ const format = (src: number[], width: number, fill = "\u2588", empty = " ") =>
     );
 
 // event handler for rule edits
-const setRule = (i: number, j: number, s: number, rstride = 9) => {
+const setRule = (i: number, j: number, s: boolean, rstride = 9) => {
     rules[i * rstride + j] = s ? 1 : 0;
     setHash();
 };
 
 // single checkbox component
-const checkbox = (x, onchange) => [
+const checkbox = (x: number, onchange: EventListener) => [
     "input",
     { type: "checkbox", checked: !!x, onchange }
 ];
 
 // component for single CA rule group (alive / dead FSM)
-const ruleBoxes = (prefix, i, rstride = 9) => [
+const ruleBoxes = (prefix: string, i: number, rstride = 9) => [
     "div",
     ["label", prefix],
     ...rules
         .slice(i * rstride, (i + 1) * rstride)
         .map((rule, j) =>
-            checkbox(rule, (e) => setRule(i, j, e.target.checked))
+            checkbox(rule, (e) =>
+                setRule(i, j, (<HTMLInputElement>e.target).checked)
+            )
         )
 ];
 
-const isPreset = (id) => presets.findIndex((x) => x[0] === id) !== -1;
+const isPreset = (id: string) => presets.findIndex((x) => x[0] === id) !== -1;
 
 // Use Conway CA default state rules [[dead], [alive]] if no preset present in hash
-applyRules(location.hash.length > 18 ? location.hash.substr(1) : presets[1][0]);
+applyRules(
+    location.hash.length > 18 ? location.hash.substr(1) : <string>presets[1][0]
+);
 
 // define & start main app component
 start(() => {
@@ -142,7 +146,10 @@ start(() => {
             ["button", { onclick: () => randomizeGrid() }, "reset grid"],
             [
                 dropdown,
-                { onchange: (e) => applyRules(e.target.value) },
+                {
+                    onchange: (e: Event) =>
+                        applyRules((<HTMLSelectElement>e.target).value)
+                },
                 presets,
                 isPreset(id) ? id : ""
             ]

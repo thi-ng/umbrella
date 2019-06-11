@@ -6,7 +6,7 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 const hex6 = radix(16, 6);
 
-const updateParticle = (p, v) => {
+const updateParticle = (p: any, v: number[]) => {
     let x = p.cx + v[0];
     let y = p.cy + v[1];
     x < 0 && ((x *= -1), (v[0] *= -1));
@@ -17,7 +17,7 @@ const updateParticle = (p, v) => {
     p.cy = y | 0;
 };
 
-const rand = (a, b) =>
+const rand = (a: number, b: number) =>
     (a + (b - a) * Math.random()) * (Math.random() < 0.5 ? 1 : -1);
 
 const randomParticle = () => {
@@ -33,7 +33,7 @@ const randomParticle = () => {
     ];
 };
 
-const velocities = [null];
+const velocities: any[] = [null];
 const particles: any[] = ["g", ...repeatedly(randomParticle, 100)];
 
 const app = () => {

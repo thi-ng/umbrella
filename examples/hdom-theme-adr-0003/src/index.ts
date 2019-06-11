@@ -54,9 +54,9 @@ const button = (themeCtxPath: Path, behavior?: Partial<ButtonBehavior>) => {
         const theme = getIn(ctx, themeCtxPath);
         if (args.disabled) {
             return [
-                behavior.tagDisabled,
+                behavior!.tagDisabled,
                 {
-                    ...behavior.attribs,
+                    ...behavior!.attribs,
                     ...theme.disabled,
                     ...args
                 },
@@ -64,7 +64,7 @@ const button = (themeCtxPath: Path, behavior?: Partial<ButtonBehavior>) => {
             ];
         } else {
             const attribs = {
-                ...behavior.attribs,
+                ...behavior!.attribs,
                 ...theme[args.selected ? "selected" : "default"],
                 ...args
             };
@@ -73,9 +73,11 @@ const button = (themeCtxPath: Path, behavior?: Partial<ButtonBehavior>) => {
                 args.onclick &&
                 (args.href == null || args.href === "#")
             ) {
-                attribs.onclick = (e) => (e.preventDefault(), args.onclick(e));
+                attribs.onclick = (e: Event) => (
+                    e.preventDefault(), args.onclick!(e)
+                );
             }
-            return [behavior.tag, attribs, ...body];
+            return [behavior!.tag, attribs, ...body];
         }
     };
 };
@@ -161,7 +163,7 @@ const btFixed = button("theme.button", {
     attribs: { style: { width: "8rem" } }
 });
 
-const app = (ctx) => [
+const app = (ctx: any) => [
     "div",
     ctx.theme.body,
     "Current theme: ",

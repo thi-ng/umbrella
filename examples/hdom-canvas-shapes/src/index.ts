@@ -6,7 +6,12 @@ import { COMMENT, serialize } from "@thi.ng/hiccup";
 import { convertTree, svg } from "@thi.ng/hiccup-svg";
 import { sincos } from "@thi.ng/math";
 import { concat, skewX23, translation23 } from "@thi.ng/matrices";
-import { fromRAF, stream, sync } from "@thi.ng/rstream";
+import {
+    fromRAF,
+    stream,
+    Subscription,
+    sync
+} from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { addN } from "@thi.ng/vectors";
@@ -30,7 +35,7 @@ const randdir = (n = 1) => [
 
 // various tests for different shapes & canvas drawing options
 // each test is a standalone component (only one used at a time)
-const TESTS = {
+const TESTS: any = {
     "dash offset": {
         attribs: {},
         desc: "Simple path w/ animated stroke dash pattern",
@@ -282,13 +287,14 @@ const TESTS = {
 };
 
 // test case selection dropdown
-const choices = (_, target, id) => [
+const choices = (_: any, target: Subscription<string, any>, id: string) => [
     dropdown,
     {
         class: "w4 ma2",
-        onchange: (e) => {
-            window.location.hash = e.target.value.replace(/\s/g, "-");
-            target.next(e.target.value);
+        onchange: (e: Event) => {
+            const val = (<HTMLSelectElement>e.target).value;
+            window.location.hash = val.replace(/\s/g, "-");
+            target.next(val);
         }
     },
     Object.keys(TESTS).map((k) => [k, k]),
@@ -302,7 +308,7 @@ const selection = stream<string>();
 
 // stream combinator updating & normalizing selected test component tree
 // (one of the inputs is linked to RAF to trigger updates)
-const scene = sync({
+const scene = sync<any, any>({
     src: {
         id: selection,
         time: fromRAF()
@@ -354,7 +360,7 @@ scene.transform(
 
 // stream combinator which triggers SVG conversion and file download
 // when both inputs have triggered (one of them being linked to the export button)
-sync({
+sync<any, any>({
     src: { scene, trigger },
     reset: true,
     xform: map(({ scene }) =>

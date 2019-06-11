@@ -1,8 +1,20 @@
 import { renderOnce } from "@thi.ng/hdom";
 import { clamp } from "@thi.ng/math";
-import { fromEvent, fromInterval, stream, sync } from "@thi.ng/rstream";
+import {
+    fromDOMEvent,
+    fromInterval,
+    stream,
+    Stream,
+    sync
+} from "@thi.ng/rstream";
 import { padLeft } from "@thi.ng/strings";
-import { dedupe, map, reducer, scan, sideEffect } from "@thi.ng/transducers";
+import {
+    dedupe,
+    map,
+    reducer,
+    scan,
+    sideEffect
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { app, printApp } from "./components";
 import { ctx } from "./config";
@@ -12,8 +24,8 @@ const INTERACTIVE = true;
 
 const D2 = padLeft(2, "0");
 
-const initKeys = (stream) =>
-    fromEvent(window, "keydown").transform(
+const initKeys = (stream: Stream<number>) =>
+    fromDOMEvent(window, "keydown").transform(
         map((e: KeyboardEvent) => {
             // console.log(e.code);
             switch (e.code) {
@@ -37,13 +49,13 @@ const parseSlideID = (str: string) => {
 };
 
 const slideCTRL = (ctx.slide = stream<number>());
-const slideID = slideCTRL.transform(
+const slideID = slideCTRL.transform<number, number, number>(
     scan(reducer(() => 0, (x, y) => clamp(x + y, 0, SLIDES.length - 1))),
     dedupe(),
     sideEffect((id) => (location.hash = "#" + id))
 );
 
-const main = sync({
+const main = sync<any, any>({
     src: {
         slideID,
         content: slideID.transform(map((id: number) => SLIDES[id])),

@@ -1,13 +1,14 @@
 import { peek } from "@thi.ng/arrays";
 import { identity } from "@thi.ng/compose";
 import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
-import { circle, group, polyline, svg } from "@thi.ng/hiccup-svg";
-import { fromIterable, merge, sync } from "@thi.ng/rstream";
 import {
-    GestureEvent,
-    gestureStream,
-    GestureType
-} from "@thi.ng/rstream-gestures";
+    circle,
+    group,
+    polyline,
+    svg
+} from "@thi.ng/hiccup-svg";
+import { fromIterable, merge, sync } from "@thi.ng/rstream";
+import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import {
     comp,
     filter,
@@ -18,7 +19,12 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { angleBetween2, mixN2, sub2, Vec } from "@thi.ng/vectors";
+import {
+    angleBetween2,
+    mixN2,
+    sub2,
+    Vec
+} from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**
@@ -28,7 +34,13 @@ import { CTA } from "./config";
  * @param raw
  * @param processed
  */
-const app = ({ raw, processed }) => [
+const app = ({
+    raw,
+    processed
+}: {
+    raw: Vec[];
+    processed: { path: Vec[]; corners: Vec[] };
+}) => [
     "div",
     svg(
         {
@@ -122,7 +134,7 @@ const collectPath = () => {
 };
 
 // gesture input stream(s)
-const gesture = merge({
+const gesture = merge<any, any>({
     src: [
         // the initial CTA (call-to-action) gesture (see config.ts)
         // will be shown prior to first user interaction.
@@ -144,7 +156,7 @@ const gesture = merge({
 // to create a resampled version and apply a corner detector
 // the resulting stream will emit tuple objects of this structure:
 // `{ raw: Vec2[], processed: { path: Vec2[], corners: Vec2[] } }
-sync({
+sync<any, any>({
     src: {
         raw: gesture,
         processed: gesture.transform(

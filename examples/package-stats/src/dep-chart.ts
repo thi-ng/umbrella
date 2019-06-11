@@ -17,11 +17,11 @@ import {
     zip
 } from "@thi.ng/transducers";
 import * as fs from "fs";
-import { barChart, labeledTickY, labeledTickX } from "./viz";
+import { barChart, labeledTickX, labeledTickY } from "./viz";
 
 const BASE_DIR = "../../packages/";
 
-const packages = transduce(
+const packages: { id: string; v: string; deps: string[] }[] = transduce(
     comp(
         map((f) => BASE_DIR + f),
         filter((f) => fs.statSync(f).isDirectory()),
@@ -44,15 +44,15 @@ const packages = transduce(
 
 const graph = transduce(
     mapcat((p: any) => zip(repeat(p.id), p.deps)),
-    reducer(() => new DGraph(), (g, [p, d]) => g.addDependency(p, d)),
+    reducer(() => new DGraph<any>(), (g, [p, d]: any) => g.addDependency(p, d)),
     packages
 );
 
 const packageDeps = packages
-    .map((p) => [p.id, graph.transitiveDependents(p.id).size])
+    .map((p: any) => [p.id, graph.transitiveDependents(p.id).size])
     .sort((a, b) => b[1] - a[1]);
 
-const maxDeps = transduce(pluck(1), max(), packageDeps);
+const maxDeps = transduce<any, number, number>(pluck(1), max(), packageDeps);
 
 const width = packages.length * 16;
 

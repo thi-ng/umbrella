@@ -1,5 +1,4 @@
 import { pager } from "@thi.ng/hdom-components";
-
 import { AppContext } from "../api";
 import { SET_PAGE, SET_SORT } from "../events";
 import { PAGE_LEN } from "../handlers";
@@ -7,6 +6,7 @@ import { button } from "./button";
 import { eventLink } from "./event-link";
 import { section } from "./section";
 import { table } from "./table";
+
 
 export const tripleTable = () => {
     const _pager = pager({
@@ -22,7 +22,7 @@ export const tripleTable = () => {
         groupPages: (ctx, bts) => ["div", ctx.ui.pager.pages, bts]
     });
     return (ctx: AppContext, triples: any[], num: number, page: number) => {
-        const [sid, sdir] = ctx.views.sort.deref();
+        const [sid, sdir] = ctx.views.sort.deref()!;
         const icon = sdir ? "🔽" : "🔼";
         return [
             section,

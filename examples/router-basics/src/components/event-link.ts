@@ -1,6 +1,6 @@
 import { Event } from "@thi.ng/interceptors";
-
 import { AppContext } from "../api";
+
 
 /**
  * Customizable hyperlink component emitting given event on app's event
@@ -21,7 +21,7 @@ export function eventLink(
         "a",
         {
             ...attribs,
-            onclick: (e) => {
+            onclick: (e: any) => {
                 e.preventDefault();
                 ctx.bus.dispatch(event);
             }

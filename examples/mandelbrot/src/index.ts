@@ -1,7 +1,12 @@
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fit, mix } from "@thi.ng/math";
-import { stream, sync, tunnel } from "@thi.ng/rstream";
+import {
+    stream,
+    Stream,
+    sync,
+    tunnel
+} from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { padLeft } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
@@ -30,11 +35,13 @@ const x2 = stream<number>();
 const y2 = stream<number>();
 const iter = stream<number>();
 const gradient = stream<number>();
-const sel1 = stream<number[]>();
-const sel2 = stream<number[]>();
+const sel1 = stream<number[] | null>();
+const sel2 = stream<number[] | null>();
 
 // main stream combinator
-const main = sync({ src: { x1, y1, x2, y2, iter, gradient, sel1, sel2 } });
+const main = sync<any, any>({
+    src: { x1, y1, x2, y2, iter, gradient, sel1, sel2 }
+});
 
 // URL hash updater
 main.subscribe({
@@ -99,11 +106,13 @@ const app = () => {
             // the `interrupt` option and ensures only the most recent
             // configuration is being fully executed without having to
             // wait for older render tasks to complete...
-            sync({ src: { x1, y1, x2, y2, iter, gradient } })
+            sync<any, any>({ src: { x1, y1, x2, y2, iter, gradient } })
                 .transform(
                     map((obj) => ({ ...obj, w: el.width, h: el.height }))
                 )
-                .subscribe(tunnel({ src: "./worker.js", interrupt: true }))
+                .subscribe(
+                    tunnel<any, any>({ src: "./worker.js", interrupt: true })
+                )
                 .subscribe({
                     next: (pix: ArrayBuffer) => {
                         img.data.set(new Uint8Array(pix));
@@ -111,7 +120,7 @@ const app = () => {
                         // frame export & auto zoom out
                         if (AUTO_ZOOM) {
                             el.toBlob((b) =>
-                                download(`frame-${Z4(frame++)}.png`, b)
+                                download(`frame-${Z4(frame++)}.png`, b!)
                             );
                             setTimeout(() => updateZoom(-0.02), 100);
                         }
@@ -124,7 +133,7 @@ const app = () => {
                 absZoom: false,
                 smooth: 1e-3
             }).subscribe({
-                next: ([type, { pos, zoom }]: [GestureType, any]) => {
+                next([type, { pos, zoom }]: any) {
                     const _x1 = x1.deref();
                     const _y1 = y1.deref();
                     const _x2 = x2.deref();
@@ -138,7 +147,7 @@ const app = () => {
                             break;
                         case GestureType.END: {
                             const p = sel1.deref();
-                            if (equiv(p, pos)) return;
+                            if (!p || equiv(p, pos)) return;
                             // compute target coord based on current zoom region
                             let ax = fit(p[0], 0, el.width, _x1, _x2);
                             let ay = fit(p[1], 0, el.height, _y1, _y2);
@@ -217,7 +226,7 @@ const app = () => {
         }
     });
     // return actual root component function
-    return ({ sel1, sel2 }) => {
+    return ({ sel1, sel2 }: any) => {
         return [
             "div.flex-l.sans-serif.f7",
             [canvas, { id: "main", width: SIZE, height: SIZE }, sel1, sel2],
@@ -233,7 +242,8 @@ const app = () => {
                 [
                     "button",
                     {
-                        onclick: () => newRender.apply(null, DEFAULT_CONFIG)
+                        onclick: () =>
+                            newRender.apply(null, <any>DEFAULT_CONFIG)
                     },
                     "reset"
                 ],
@@ -255,7 +265,14 @@ const app = () => {
 };
 
 // slider component which emits value changes on given stream
-const slider = (_, stream, min, max, step, label) => [
+const slider = (
+    _: any,
+    stream: Stream<any>,
+    min: number,
+    max: number,
+    step: number,
+    label: string
+) => [
     "div",
     ["div", ["strong", `${label}: `], stream.deref()],
     [
@@ -267,7 +284,8 @@ const slider = (_, stream, min, max, step, label) => [
             max,
             step,
             value: stream.deref(),
-            oninput: (e) => stream.next(parseFloat(e.target.value))
+            oninput: (e: Event) =>
+                stream.next(parseFloat((<HTMLInputElement>e.target).value))
         }
     ]
 ];
@@ -276,15 +294,12 @@ const slider = (_, stream, min, max, step, label) => [
 main.transform(map(app()), updateDOM());
 
 // init parameter streams, if possible from location.hash
-newRender.apply(
-    null,
-    location.hash.length > 1
-        ? location.hash
-              .substr(1)
-              .split(";")
-              .map(parseFloat)
-        : DEFAULT_CONFIG
-);
+newRender.apply(null, <any>(location.hash.length > 1
+    ? location.hash
+          .substr(1)
+          .split(";")
+          .map(parseFloat)
+    : DEFAULT_CONFIG));
 
 // HMR handling
 if (process.env.NODE_ENV !== "production") {

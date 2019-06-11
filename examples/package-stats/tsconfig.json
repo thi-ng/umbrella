@@ -5,9 +5,7 @@
         "module": "commonjs",
         "target": "es6",
         "noUnusedLocals": false,
-        "noUnusedParameters": false,
+        "noUnusedParameters": false
     },
-    "include": [
-        "./src/**/*.ts"
-    ]
+    "include": ["./src/**/*.ts"]
 }

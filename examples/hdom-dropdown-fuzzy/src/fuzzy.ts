@@ -1,6 +1,11 @@
 import { IView } from "@thi.ng/atom";
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
-import { comp, filterFuzzy, iterator, map } from "@thi.ng/transducers";
+import {
+    comp,
+    filterFuzzy,
+    iterator,
+    map
+} from "@thi.ng/transducers";
 import { DropdownItem, dropdownListeners, DropdownState } from "./dropdown";
 
 export interface FuzzyArgs {
@@ -12,7 +17,7 @@ export interface FuzzyArgs {
     placeholder: string;
 }
 
-export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
+export const fuzzyDropdown = (ctx: any, opts: FuzzyArgs) => {
     const close = () =>
         ctx.bus.dispatch([EV_SET_VALUE, [opts.state.path + ".open", false]]);
     const filterInput = [
@@ -20,10 +25,10 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
         {
             state: opts.filter.deref(),
             placeholder: opts.placeholder,
-            oninput: (e) =>
+            oninput: (e: Event) =>
                 ctx.bus.dispatch([
                     EV_SET_VALUE,
-                    [opts.filter.path, e.target.value]
+                    [opts.filter.path, (<any>e.target).value]
                 ]),
             onclear: () =>
                 ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, ""]]),
@@ -32,8 +37,8 @@ export const fuzzyDropdown = (ctx, opts: FuzzyArgs) => {
         }
     ];
     return () => {
-        const state = { ...opts.state.deref() };
-        const filter = opts.filter.deref().toLowerCase();
+        const state: any = { ...opts.state.deref() };
+        const filter = opts.filter.deref()!.toLowerCase();
         if (filter && state.open) {
             state.items = [
                 ...iterator(

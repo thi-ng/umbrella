@@ -1,6 +1,6 @@
 import { AppContext } from "../api";
 
-export const link = (ctx: AppContext, href, ...body) => [
+export const link = (ctx: AppContext, href: string, ...body: any[]) => [
     "a",
     { ...ctx.ui.link, href },
     ...body

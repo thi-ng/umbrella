@@ -86,8 +86,8 @@ function slider(state: IAtom<any>, opts: SliderOpts) {
     const attribs = {
         ...opts,
         type: "range",
-        oninput: (e) => {
-            state.reset(e.target.value);
+        oninput: (e: Event) => {
+            state.reset((<HTMLInputElement>e.target).value);
             opts.onchange && opts.onchange(e);
         }
     };
@@ -141,7 +141,7 @@ function bmi(state: IAtom<any>) {
     );
 
     // another derived view to create SVG visualization
-    const bmiScale = (x) => ((x - 10) / 30) * 100 + "%";
+    const bmiScale = (x: number) => ((x - 10) / 30) * 100 + "%";
     const bmiViz = state.addView("bmi", (bmi: number) => [
         "div",
         [

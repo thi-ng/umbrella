@@ -35,28 +35,28 @@ let db = [
 // the `item` function is the root component for each JSON object
 // it's a higher-order function, since we will create different
 // instances for theming purposes... see below
-const item = (theme) => (item) => [
+const item = (theme: any) => (item: any) => [
     `div.item.${theme}`,
     item.title,
     item.meta,
     item.content
 ];
-const meta = (meta) => ["div.meta", meta.author, meta.created, meta.tags];
-const author = (author) => [
+const meta = (meta: any) => ["div.meta", meta.author, meta.created, meta.tags];
+const author = (author: any) => [
     "div",
     ["strong", "author: "],
     link(`mailto:${author.email}`, author.name)
 ];
-const date = (iso) => [
+const date = (iso: string) => [
     "div",
     ["strong", "date: "],
     new Date(Date.parse(iso)).toLocaleString()
 ];
-const link = (href, body) => ["a", { href }, body];
-const tag = (tag) => ["li", link("#", tag)];
-const tags = (tags) => ["ul.tags", ...tags.map(tag)];
-const title = (title, level = 3) => [`h${level}`, title];
-const content = (body) => ["div", body];
+const link = (href: string, body: any) => ["a", { href }, body];
+const tag = (tag: string) => ["li", link("#", tag)];
+const tags = (tags: string[]) => ["ul.tags", ...tags.map(tag)];
+const title = (title: string, level = 3) => [`h${level}`, title];
+const content = (body: any) => ["div", body];
 
 // now compose themed component functions for the above JSON object format
 // the spec below is is only partially complete and will be reused by
@@ -97,9 +97,9 @@ const editor = (() => {
     return [
         "textarea",
         {
-            oninput: (e) => {
+            oninput: (e: Event) => {
                 try {
-                    db = JSON.parse(e.target.value);
+                    db = JSON.parse((<HTMLTextAreaElement>e.target).value);
                 } catch (_) {}
             }
         },

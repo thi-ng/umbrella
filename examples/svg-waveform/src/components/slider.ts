@@ -26,8 +26,11 @@ export interface SliderOpts {
 export function slider(ctx: AppContext, opts: SliderOpts) {
     opts = Object.assign(
         {
-            oninput: (e) =>
-                ctx.bus.dispatch([opts.event, parseFloat(e.target.value)]),
+            oninput: (e: Event) =>
+                ctx.bus.dispatch([
+                    opts.event,
+                    parseFloat((<HTMLInputElement>e.target).value)
+                ]),
             min: 0,
             max: 100,
             step: 1
@@ -43,7 +46,7 @@ export function slider(ctx: AppContext, opts: SliderOpts) {
                 ...ctx.ui.slider.range,
                 ...opts,
                 type: "range",
-                value: ctx.views[opts.view].deref()
+                value: (<any>ctx.views)[opts.view].deref()
             }
         ],
         [
@@ -55,7 +58,7 @@ export function slider(ctx: AppContext, opts: SliderOpts) {
                     ...ctx.ui.slider.number,
                     ...opts,
                     type: "number",
-                    value: ctx.views[opts.view].deref()
+                    value: (<any>ctx.views)[opts.view].deref()
                 }
             ]
         ]
