@@ -1,5 +1,5 @@
 import { splat4_24 } from "@thi.ng/binary";
-import { start } from "@thi.ng/hdom";
+import { ILifecycle, start } from "@thi.ng/hdom";
 import { dropdown, fpsCounter } from "@thi.ng/hdom-components";
 import { css, injectStyleSheet } from "@thi.ng/hiccup-css";
 import { U24 } from "@thi.ng/strings";
@@ -52,8 +52,14 @@ injectStyleSheet(
     ])
 );
 
-const grid = {
-    render(_, cells, w, numChanges, frame) {
+const grid = <any>{
+    render(
+        _: any,
+        cells: number[],
+        w: number,
+        numChanges: number,
+        frame: number
+    ) {
         if (!frame) {
             this.prevChanged = null;
             this.prevChangedRows = null;
@@ -76,11 +82,11 @@ const grid = {
                     isFirst || this.prevChanged.has(i)
                         ? { key: "c" + i, class: `cell cell-${x}` }
                         : changed.has(i)
-                            ? {
-                                  key: "c" + i,
-                                  class: `cell xcell-${x}`
-                              }
-                            : { key: "c" + i, __skip: true }
+                        ? {
+                              key: "c" + i,
+                              class: `cell xcell-${x}`
+                          }
+                        : { key: "c" + i, __skip: true }
                 ]),
                 partition(w),
                 mapIndexed((i, row) => [
@@ -121,7 +127,7 @@ const grid = {
     }
 };
 
-const domStats = (_, grid, res, _static) =>
+const domStats = (_: any, grid: any, res: number, _static: number) =>
     grid && grid.stats
         ? [
               "div",
@@ -135,7 +141,7 @@ const domStats = (_, grid, res, _static) =>
           ]
         : null;
 
-const newCells = (res) => new Array(res * res).fill(0);
+const newCells = (res: number) => new Array(res * res).fill(0);
 
 const stats = fpsCounter({ history: 50, sparkline: { width: 100 } });
 
@@ -169,8 +175,8 @@ const cancel = start(() => {
                 dropdown,
                 {
                     class: "w3 code",
-                    onchange: (e) => (
-                        (res = parseInt(e.target.value)),
+                    onchange: (e: Event) => (
+                        (res = parseInt((<HTMLSelectElement>e.target).value)),
                         (frame = -1),
                         (cells = newCells(res))
                     )
@@ -186,7 +192,8 @@ const cancel = start(() => {
                 dropdown,
                 {
                     class: "w3 code",
-                    onchange: (e) => (delta = parseInt(e.target.value))
+                    onchange: (e: Event) =>
+                        (delta = parseInt((<HTMLSelectElement>e.target).value))
                 },
                 deltaOpts,
                 delta

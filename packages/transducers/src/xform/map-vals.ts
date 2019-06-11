@@ -38,7 +38,7 @@ export function mapVals<A, B>(...args: any[]): any {
     }
     const fn: Fn<A, B> = args[0];
     const copy = args[1] !== false;
-    return map((x) => {
+    return map((x: any) => {
         const res: any = copy ? {} : x;
         for (let k in x) {
             res[k] = fn(x[k]);

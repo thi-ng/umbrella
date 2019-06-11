@@ -3,7 +3,7 @@ import { Fn0, IDeref } from "@thi.ng/api";
 export const delay = <T>(body: Fn0<T>) => new Delay<T>(body);
 
 export class Delay<T> implements IDeref<T> {
-    value: T;
+    protected value!: T;
     protected body: Fn0<T>;
     protected realized: boolean;
 

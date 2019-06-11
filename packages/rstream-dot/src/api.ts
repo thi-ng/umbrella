@@ -14,9 +14,9 @@ export type NodeType =
 export interface Node {
     id: number;
     label: string;
-    type: string;
-    xform: boolean;
-    body: string;
+    type?: string;
+    xform?: boolean;
+    body?: string;
 }
 
 export interface WalkState {

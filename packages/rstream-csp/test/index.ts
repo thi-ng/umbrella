@@ -1,15 +1,14 @@
 import * as csp from "@thi.ng/csp";
 import * as rs from "@thi.ng/rstream";
 import * as assert from "assert";
-
 import { fromChannel } from "../src/index";
 
-describe("fromChannel", function () {
 
+describe("fromChannel", function() {
     it("receives all values", (done) => {
         let ch = csp.Channel.range(5);
         let src = fromChannel(ch);
-        let buf = [];
+        let buf: number[] = [];
         src.subscribe({
             next(x) {
                 buf.push(x);
@@ -22,5 +21,4 @@ describe("fromChannel", function () {
             }
         });
     });
-
 });

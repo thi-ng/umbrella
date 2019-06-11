@@ -26,7 +26,7 @@ export class AttribPool implements IRelease {
     order: string[];
     specs: IObjectOf<AttribSpec>;
     pool: MemPool;
-    addr: number;
+    addr!: number;
     capacity: number;
 
     byteStride: number;
@@ -42,7 +42,7 @@ export class AttribPool implements IRelease {
             ? new MemPool(opts.mem)
             : opts.mem;
         this.capacity = opts.num;
-        this.resizable = opts.resizable;
+        this.resizable = !!opts.resizable;
         this.specs = {};
         this.attribs = {};
         this.order = [];
@@ -85,11 +85,11 @@ export class AttribPool implements IRelease {
         this.initDefaults(specs);
     }
 
-    attribValue(id: string, i: number): number | Vec {
+    attribValue(id: string, i: number): number | Vec | undefined {
         const spec = this.specs[id];
         assert(!!spec, `invalid attrib: ${id}`);
         if (i >= this.capacity) return;
-        i *= spec.stride;
+        i *= spec.stride!;
         return spec.size > 1
             ? this.attribs[id].subarray(i, i + spec.size)
             : this.attribs[id][i];
@@ -99,7 +99,7 @@ export class AttribPool implements IRelease {
         const buf = this.attribs[id];
         assert(!!buf, `invalid attrib: ${id}`);
         const spec = this.specs[id];
-        const stride = spec.stride;
+        const stride = spec.stride!;
         const size = spec.size;
         if (size > 1) {
             for (let i = 0, j = 0, n = this.capacity; i < n; i++, j += stride) {
@@ -117,7 +117,7 @@ export class AttribPool implements IRelease {
         assert(!!spec, `invalid attrib: ${id}`);
         this.ensure(index + 1);
         const buf = this.attribs[id];
-        index *= spec.stride;
+        index *= spec.stride!;
         const isNum = typeof v === "number";
         assert(
             () => (!isNum && spec.size > 1) || (isNum && spec.size === 1),
@@ -142,7 +142,7 @@ export class AttribPool implements IRelease {
         assert(!!spec, `invalid attrib: ${id}`);
         const n = vals.length;
         const v = vals[0];
-        const stride = spec.stride;
+        const stride = spec.stride!;
         this.ensure(n);
         const buf = this.attribs[id];
         const isNum = typeof v === "number";
@@ -191,7 +191,7 @@ export class AttribPool implements IRelease {
                 asNativeType(a.type),
                 this.pool.buf,
                 newAddr + (a.byteOffset || 0),
-                (newCapacity - 1) * a.stride + a.size
+                (newCapacity - 1) * a.stride! + a.size
             );
             buf.set(this.attribs[id]);
             this.attribs[id] = buf;
@@ -261,7 +261,7 @@ export class AttribPool implements IRelease {
                 asNativeType(a.type),
                 this.pool.buf,
                 this.addr + (a.byteOffset || 0),
-                (this.capacity - 1) * a.stride + a.size
+                (this.capacity - 1) * a.stride! + a.size
             );
         }
         this.setDefaults(specs, start, end);
@@ -276,7 +276,7 @@ export class AttribPool implements IRelease {
             const a = specs[id];
             if (a.default == null) continue;
             const buf = this.attribs[id];
-            const s = a.stride;
+            const s = a.stride!;
             const v = a.default;
             if (typeof v === "number") {
                 for (let i = start; i < end; i++) {
@@ -334,7 +334,7 @@ export class AttribPool implements IRelease {
             // ...in offset order to avoid successor attrib vals
             for (let id of order) {
                 const a = specs[id];
-                const sStride = a.stride;
+                const sStride = a.stride!;
                 const src = attribs[id];
                 const [dest, dStride] = newAttribs[id];
                 if (typeof a.default === "number") {

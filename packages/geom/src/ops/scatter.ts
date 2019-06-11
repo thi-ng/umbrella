@@ -11,6 +11,7 @@ export const scatter = (
     out: Vec[] = []
 ) => {
     const b = bounds(shape);
+    if (!b) return;
     const mi = b.pos;
     const mx = b.max();
     for (; --num >= 0; ) {

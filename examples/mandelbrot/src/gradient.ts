@@ -28,7 +28,7 @@ const cosColor = (
         zip(dc, amp, fmod, phase)
     );
 
-export const cosineGradient = (n: number, spec: number[][]) => {
+export const cosineGradient = (n: number, spec: number[][]): number[] => {
     const [dc, amp, fmod, phase] = spec;
     return transduce(
         comp(

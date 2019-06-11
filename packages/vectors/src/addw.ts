@@ -3,7 +3,7 @@ import { maddN } from "./maddn";
 import { mulN } from "./muln";
 
 export const addW2 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     wa: number,
@@ -11,7 +11,7 @@ export const addW2 = (
 ) => maddN(out, mulN(out, a, wa), b, wb);
 
 export const addW3 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
@@ -21,7 +21,7 @@ export const addW3 = (
 ) => maddN(out, maddN(out, mulN(out, a, wa), b, wb), c, wc);
 
 export const addW4 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
@@ -33,7 +33,7 @@ export const addW4 = (
 ) => maddN(out, maddN(out, maddN(out, mulN(out, a, wa), b, wb), c, wc), d, wd);
 
 export const addW5 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,

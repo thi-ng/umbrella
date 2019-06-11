@@ -1,5 +1,5 @@
 import { ONE3, sub3 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor } from "./api";
+import { ColorOp } from "./api";
 import { clamp } from "./clamp";
 
 /**
@@ -8,7 +8,7 @@ import { clamp } from "./clamp";
  * @param out
  * @param src
  */
-export const invertRGB = (out: Color, src: ReadonlyColor) => (
+export const invertRGB: ColorOp = (out, src) => (
     (out = clamp(out || src, src)), sub3(out, ONE3, out)
 );
 

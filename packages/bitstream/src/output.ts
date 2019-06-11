@@ -7,9 +7,9 @@ const U32 = Math.pow(2, 32);
 export class BitOutputStream {
     buffer: Uint8Array;
     protected start: number;
-    protected pos: number;
-    protected bit: number;
-    protected bitPos: number;
+    protected pos!: number;
+    protected bit!: number;
+    protected bitPos!: number;
 
     constructor(buffer?: number | Uint8Array, offset = 0) {
         this.buffer =

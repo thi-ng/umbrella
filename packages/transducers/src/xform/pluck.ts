@@ -19,5 +19,5 @@ export function pluck<A, B>(
     src: Iterable<A>
 ): IterableIterator<B>;
 export function pluck<A>(key: PropertyKey, src?: Iterable<A>): any {
-    return src ? iterator1(pluck(key), src) : map((x: A) => x[key]);
+    return src ? iterator1(pluck(key), src) : map((x: any) => x[key]);
 }

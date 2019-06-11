@@ -55,8 +55,8 @@ export interface NotificationArgs {
  *
  * @param opts
  */
-export const notification = (opts?: Partial<NotificationOpts>) => {
-    return (_, args: Partial<NotificationArgs>, body: any) => [
+export const notification = (opts: Partial<NotificationOpts> = {}) => {
+    return (_: any, args: Partial<NotificationArgs>, body: any) => [
         "div",
         { ...opts.attribs, ...args.attribs },
         opts.icon,

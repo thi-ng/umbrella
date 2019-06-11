@@ -34,5 +34,5 @@ export const fromBarycentric = (
     b: ReadonlyVec,
     c: ReadonlyVec,
     p: ReadonlyVec,
-    out?: Vec
+    out: Vec = []
 ) => addW3(out, a, b, c, p[0], p[1], p[2]);

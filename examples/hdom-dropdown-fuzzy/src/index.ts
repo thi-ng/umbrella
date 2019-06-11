@@ -23,7 +23,7 @@ const dd = dropdown("theme.dd");
 const input = cancelableInput("theme.input");
 
 start(
-    (ctx) => {
+    (ctx: any) => {
         ctx.bus.processQueue();
         return [
             "div",

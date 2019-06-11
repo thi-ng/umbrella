@@ -20,7 +20,7 @@ export const createTree = <T>(
     parent: T,
     tree: any,
     insert?: number
-) => {
+): any => {
     if (isArray(tree)) {
         const tag = tree[0];
         if (typeof tag === "function") {
@@ -194,7 +194,7 @@ export const replaceChild = (
 export const cloneWithNewAttribs = (el: Element, attribs: any) => {
     const res = <Element>el.cloneNode(true);
     setAttribs(res, attribs);
-    el.parentNode.replaceChild(res, el);
+    el.parentNode!.replaceChild(res, el);
     return res;
 };
 
@@ -247,7 +247,7 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
             case "scrollTop":
             case "scrollLeft":
                 // TODO add more native attribs?
-                el[id] = val;
+                (<any>el)[id] = val;
                 break;
             default:
                 if (isListener) {
@@ -257,7 +257,7 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
                 }
         }
     } else {
-        el[id] != null ? (el[id] = null) : el.removeAttribute(id);
+        (<any>el)[id] != null ? ((<any>el)[id] = null) : el.removeAttribute(id);
     }
     return el;
 };
@@ -286,7 +286,7 @@ export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
         case "week":
         case "month":
             if ((ev = el.value) !== undefined && typeof v === "string") {
-                const off = v.length - (ev.length - el.selectionStart);
+                const off = v.length - (ev.length - (el.selectionStart || 0));
                 el.value = v;
                 el.selectionStart = el.selectionEnd = off;
                 break;
@@ -302,7 +302,7 @@ export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
         if (a.indexOf("on") === 0) {
             removeListener(el, a.substr(2), prev[a]);
         } else {
-            el.hasAttribute(a) ? el.removeAttribute(a) : (el[a] = null);
+            el.hasAttribute(a) ? el.removeAttribute(a) : ((<any>el)[a] = null);
         }
     }
 };

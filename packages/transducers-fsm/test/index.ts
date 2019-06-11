@@ -1,10 +1,10 @@
-import * as assert from "assert";
 import * as tx from "@thi.ng/transducers";
+import * as assert from "assert";
 import { fsm } from "../src/index";
 
 describe("transducers-fsm", () => {
     it("readme example", () => {
-        const testFSM = fsm({
+        const testFSM = fsm<any, number, number>({
             states: {
                 skip: (state, x) => {
                     if (x < 20) {
@@ -29,7 +29,7 @@ describe("transducers-fsm", () => {
                         state.state = "done";
                     }
                 },
-                done: () => { },
+                done: () => {}
             },
             terminate: "done",
             init: () => ({ state: "skip", count: 0 })
@@ -43,7 +43,12 @@ describe("transducers-fsm", () => {
             [10, 12, 14, 16, 18]
         );
         assert.deepEqual(
-            [...tx.iterator(tx.comp(testFSM, tx.map((x: number) => x * 10)), tx.range(100))],
+            [
+                ...tx.iterator(
+                    tx.comp(testFSM, tx.map((x: number) => x * 10)),
+                    tx.range(100)
+                )
+            ],
             [50, 60, 70, 80, 90, 150, 160, 170, 180, 190]
         );
     });

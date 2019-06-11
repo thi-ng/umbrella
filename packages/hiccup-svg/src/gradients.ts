@@ -13,7 +13,7 @@ const gradientStop = ([offset, col]: GradientStop) => {
     col = fcolor(col);
     // use stop-opacity attrib for safari compatibility
     // https://stackoverflow.com/a/26220870/294515
-    let opacity: string;
+    let opacity: string | undefined;
     const parts = RE_ALPHA_COLOR.exec(col);
     if (parts) {
         col = `${parts[1]}(${parts[2]},${parts[3]},${parts[4]})`;

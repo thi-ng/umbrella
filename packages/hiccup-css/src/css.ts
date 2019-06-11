@@ -26,9 +26,9 @@ export const css = (rules: any, opts?: Partial<CSSOpts>) => {
         rules = [...rules];
     }
     if (isArray(rules)) {
-        return expand([], [], rules, <CSSOpts>opts).join(opts.format.rules);
+        return expand([], [], rules, <CSSOpts>opts).join(opts.format!.rules);
     }
     if (isFunction(rules)) {
-        return rules([], opts).join(opts.format.rules);
+        return rules([], opts).join(opts.format!.rules);
     }
 };

@@ -1,7 +1,12 @@
-import { compile, set as _set, SET, set4 } from "@thi.ng/vectors";
+import {
+    compile,
+    set as _set,
+    SET,
+    set4
+} from "@thi.ng/vectors";
 import { MatOpM } from "./api";
 
-const $ = (dim) => _set.add(dim, compile(dim, SET, "o,a"));
+const $ = (dim: number) => _set.add(dim, compile(dim, SET, "o,a"));
 
 export const set: MatOpM = _set;
 export const set22: MatOpM = set4;

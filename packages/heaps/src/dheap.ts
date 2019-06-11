@@ -36,8 +36,8 @@ export class DHeap<T> extends Heap<T>
 
     protected d: number;
 
-    constructor(values?: Iterable<T>, opts?: Partial<DHeapOpts<T>>) {
-        super(null, { compare, ...opts });
+    constructor(values?: Iterable<T> | null, opts?: Partial<DHeapOpts<T>>) {
+        super(undefined, { compare, ...opts });
         this.d = (opts && opts.d) || 4;
         this.values = [];
         if (values) {
@@ -45,7 +45,7 @@ export class DHeap<T> extends Heap<T>
         }
     }
 
-    copy() {
+    copy(): DHeap<T> {
         return <DHeap<T>>super.copy();
     }
 

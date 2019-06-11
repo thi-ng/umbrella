@@ -11,7 +11,7 @@ export interface DropDownOptionGroup extends Array<any> {
 
 export const option = (
     [value, label, disabled]: DropDownOption,
-    sel: string | number
+    sel: string | number | undefined
 ) => [
     "option",
     { value, disabled: !!disabled, selected: value === sel },

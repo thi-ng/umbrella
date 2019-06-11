@@ -1,11 +1,11 @@
 import { isPlainObject } from "@thi.ng/checks";
-import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
+import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
 import { Sampler } from "./sampler";
 
 export const resample = (
     pts: ReadonlyVec[],
-    opts: number | Partial<SamplingOpts>,
+    opts?: number | Partial<SamplingOpts>,
     closed = false,
     copy = false
 ) => {
@@ -15,10 +15,16 @@ export const resample = (
             ? closed
                 ? opts.dist
                     ? sampler.sampleUniform(opts.dist, opts.last)
-                    : sampler.sampleFixedNum(opts.num, opts.last)
+                    : sampler.sampleFixedNum(
+                          opts.num || DEFAULT_SAMPLES,
+                          opts.last
+                      )
                 : opts.dist
-                    ? sampler.sampleUniform(opts.dist, opts.last !== false)
-                    : sampler.sampleFixedNum(opts.num, opts.last !== false)
+                ? sampler.sampleUniform(opts.dist, opts.last !== false)
+                : sampler.sampleFixedNum(
+                      opts.num || DEFAULT_SAMPLES,
+                      opts.last !== false
+                  )
             : sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, !closed);
     }
     return copy ? copyVectors(pts) : pts;

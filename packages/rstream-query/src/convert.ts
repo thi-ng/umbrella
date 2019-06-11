@@ -1,14 +1,14 @@
 import { isArray, isPlainObject } from "@thi.ng/checks";
-import { concat, pairs, mapcat } from "@thi.ng/transducers";
+import { concat, mapcat, pairs } from "@thi.ng/transducers";
 
 let NEXT_ID = 0;
 
-const mapBNode = (s: any, p: any, o: any) => {
+const mapBNode = (s: any, p: any, o: any): IterableIterator<any[]> => {
     const id = `__b${NEXT_ID++}__`;
     return concat([[s, p, id]], asTriples(o, id));
 };
 
-const mapSubject = (subject: any) => ([p, o]) => {
+const mapSubject = (subject: any) => ([p, o]: [any, any]) => {
     if (isArray(o)) {
         return mapcat(
             (o) =>

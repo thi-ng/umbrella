@@ -1,10 +1,19 @@
-import { defmulti, MultiFn1 } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils";
 import { PI, TAU } from "@thi.ng/math";
 import { dist } from "@thi.ng/vectors";
+import {
+    Circle,
+    Ellipse,
+    Group,
+    Line,
+    Polygon,
+    Rect,
+    Triangle
+} from "../api";
 import { dispatch } from "../internal/dispatch";
-import { Circle, Ellipse, Group, Line, Polygon, Rect, Triangle } from "../api";
 
 /**
  * Returns the arc length / perimeter / circumference of the given
@@ -24,9 +33,9 @@ import { Circle, Ellipse, Group, Line, Polygon, Rect, Triangle } from "../api";
  * - Triangle
  *
  */
-export const arcLength: MultiFn1<IShape, number> = defmulti(dispatch);
+export const arcLength = defmulti<IShape, number>(dispatch);
 
-arcLength.addAll({
+arcLength.addAll(<IObjectOf<Implementation1<unknown, number>>>{
     [Type.CIRCLE]: ($: Circle) => TAU * $.r,
 
     [Type.ELLIPSE]: ({ r: [a, b] }: Ellipse) =>

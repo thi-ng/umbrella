@@ -30,7 +30,7 @@ export const encode = (
     const [rle0, rle1, rle2, rle3] = rleSizes.map((x) => 1 << x);
     const chunk: number[] = [];
     const n1 = num - 1;
-    let val;
+    let val: number | undefined;
     let tail = true;
     let n = 0;
     let i = 0;
@@ -39,7 +39,7 @@ export const encode = (
         out.writeBit(1);
         out.write(t, 2);
         out.write(n, rleSizes[t]);
-        out.write(val, wordSize);
+        out.write(val!, wordSize);
         n = 0;
     };
     const writeChunk = () => {
@@ -80,7 +80,7 @@ export const encode = (
         i++;
     }
     if (chunk.length) {
-        chunk.push(val);
+        chunk.push(val!);
         writeChunk();
     } else if (tail) {
         writeRLE();

@@ -1,5 +1,10 @@
 import { isString } from "@thi.ng/checks";
-import { parse, ParseElement, ParseEvent, Type } from "@thi.ng/sax";
+import {
+    parse,
+    ParseElement,
+    ParseEvent,
+    Type
+} from "@thi.ng/sax";
 import {
     assocObj,
     comp,
@@ -38,7 +43,7 @@ export const convertXML = (src: string, opts: Partial<ConversionOpts> = {}) => {
 // event, which will be related to the final close tag and contains the
 // entire tree
 const parseXML = (src: string) =>
-    transduce(
+    transduce<string, ParseEvent, ParseEvent>(
         comp(
             parse({ trim: true, boolean: true, entities: true }),
             filter((e) => e.type === Type.ELEM_END || e.type === Type.ERROR)
@@ -49,7 +54,7 @@ const parseXML = (src: string) =>
 
 // transforms string of CSS properties into a plain object
 const transformCSS = (css: string) =>
-    css.split(";").reduce((acc, p) => {
+    css.split(";").reduce((acc: any, p) => {
         const [k, v] = p.split(":");
         v != null && (acc[k.trim()] = parseAttrib([k, v.trim()])[1]);
         return acc;
@@ -64,17 +69,17 @@ const parseAttrib = (attrib: string[]) => {
         return k === "style"
             ? [k, transformCSS(v)]
             : v === "true"
-                ? [k, true]
-                : v === "false"
-                    ? [k, false]
-                    : [k, /^[0-9.e+-]+$/.test(v) ? parseFloat(v) : v];
+            ? [k, true]
+            : v === "false"
+            ? [k, false]
+            : [k, /^[0-9.e+-]+$/.test(v) ? parseFloat(v) : v];
     }
     return attrib;
 };
 
 // transforms an entire object of attributes
 const transformAttribs = (attribs: any, remove: Set<string> = new Set()) =>
-    transduce(
+    transduce<any, any, any>(
         comp(filter((a) => !remove.has(a[0])), map(parseAttrib)),
         assocObj(),
         {},
@@ -106,11 +111,11 @@ const transformTree = (
     if ((<ParseEvent>tree).type === Type.ERROR) {
         return ["error", tree.body];
     }
-    if (opts.removeTags.has(tree.tag)) {
+    if (opts.removeTags.has(tree.tag!)) {
         return;
     }
     const attribs = transformAttribs(tree.attribs, opts.removeAttribs);
-    const res: any[] = [transformTag(tree.tag, attribs)];
+    const res: any[] = [transformTag(tree.tag!, attribs)];
     if (Object.keys(attribs).length) {
         res.push(attribs);
     }
@@ -118,7 +123,7 @@ const transformTree = (
         res.push(tree.body);
     }
     if (tree.children && tree.children.length) {
-        transduce(
+        transduce<any, any, any>(
             comp(map((t: any) => transformTree(t, opts)), filter((t) => !!t)),
             push(),
             res,

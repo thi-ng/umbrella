@@ -1,6 +1,11 @@
 import { alts } from "./alts";
 import { altsLit } from "./alts-lit";
-import { AltCallback, AltFallback, LitCallback, Matcher } from "./api";
+import {
+    AltCallback,
+    AltFallback,
+    LitCallback,
+    Matcher
+} from "./api";
 import { result } from "./result";
 
 /**
@@ -31,7 +36,7 @@ export const range = <T extends number | string, C, R>(
 export const digit = <C, R>(
     success?: LitCallback<string, C, R>,
     fail?: LitCallback<string, C, R>
-): Matcher<string, C, R> => range("0", "9", success, fail);
+): Matcher<string, C, R> => range<string, C, R>("0", "9", success, fail);
 
 /**
  * Matcher for single A-Z or a-z characters.
@@ -43,7 +48,12 @@ export const alpha = <C, R>(
     success?: AltCallback<string, C, R>,
     fail?: AltFallback<string, C, R>
 ): Matcher<string, C, R> =>
-    alts([range("a", "z"), range("A", "Z")], null, success, fail);
+    alts(
+        [range<string, C, R>("a", "z"), range<string, C, R>("A", "Z")],
+        undefined,
+        success,
+        fail
+    );
 
 /**
  * Combination of `digit()` and `alpha()`.
@@ -54,7 +64,7 @@ export const alpha = <C, R>(
 export const alphaNum = <C, R>(
     success?: AltCallback<string, C, R>,
     fail?: AltFallback<string, C, R>
-): Matcher<string, C, R> => alts([alpha(), digit()], null, success, fail);
+): Matcher<string, C, R> => alts([alpha(), digit()], undefined, success, fail);
 
 const WS = new Set([" ", "\n", "\t", "\r"]);
 

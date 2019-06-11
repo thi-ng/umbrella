@@ -10,8 +10,12 @@ import { setC2, setC3, setC4 } from "./setc";
  * @param x new x coord index
  * @param y new y coord index
  */
-export const swizzle2 = (out: Vec, a: ReadonlyVec, x: number, y: number) =>
-    setC2(out || a, a[x] || 0, a[y] || 0);
+export const swizzle2 = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    x: number,
+    y: number
+) => setC2(out || a, a[x] || 0, a[y] || 0);
 
 /**
  * Places a re-ordered 3D version of vector `a` into `out`. The given
@@ -24,7 +28,7 @@ export const swizzle2 = (out: Vec, a: ReadonlyVec, x: number, y: number) =>
  * @param z new z coord index
  */
 export const swizzle3 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     x: number,
     y: number,
@@ -43,7 +47,7 @@ export const swizzle3 = (
  * @param w new w coord index
  */
 export const swizzle4 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     x: number,
     y: number,

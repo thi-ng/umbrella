@@ -38,7 +38,7 @@ describe("iterators", function () {
         assert.deepEqual([...ti.concat([])], [], "empty");
         assert.deepEqual([...ti.concat<any>([], "", ti.range(0))], [], "3 args empty");
         assert.deepEqual([...ti.concat<any>([1, 2, 3], "abc", ti.range(3))], [1, 2, 3, "a", "b", "c", 0, 1, 2], "3 args any");
-        assert.deepEqual([...ti.concat.apply(null, ["abc", null, [1, 2, 3]])], ["a", "b", "c", 1, 2, 3], "skip null");
+        assert.deepEqual([...ti.concat.apply(null, <any>["abc", null, [1, 2, 3]])], ["a", "b", "c", 1, 2, 3], "skip null");
     });
     it("constantly", () => {
         const f = ti.constantly(1);
@@ -58,7 +58,7 @@ describe("iterators", function () {
     });
     it("dedupeWith", () => {
         let coll = [{ a: 1 }, { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 2 }, { a: 3 }];
-        let eq = (a, b) => a.a === b.a;
+        let eq = (a:any, b:any) => a.a === b.a;
         assert.deepEqual([...ti.dedupeWith(eq, [])], [], "empty");
         assert.deepEqual([...ti.dedupeWith(eq, coll)], [{ a: 1 }, { a: 2, b: 2 }, { a: 3 }], "array[obj]");
     });
@@ -115,7 +115,7 @@ describe("iterators", function () {
         assert.deepEqual([...ti.flatten([{ a: 23, b: 42, c: [1, 2, 3] }], false)], [{ a: 23, b: 42, c: [1, 2, 3] }], "no obj");
     });
     it("flattenWith", () => {
-        let tx = x => typeof x == "string" ? ti.map(x => x.charCodeAt(0), x) : ti.maybeIterator(x);
+        let tx = (x:any) => typeof x == "string" ? ti.map(x => x.charCodeAt(0), x) : ti.maybeIterator(x);
         assert.deepEqual(
             [...ti.flattenWith(tx, ["ROOT", undefined, ["CHILD_1", null, ["CHILD_2"]]])],
             [82, 79, 79, 84, undefined, 67, 72, 73, 76, 68, 95, 49, null, 67, 72, 73, 76, 68, 95, 50],
@@ -321,8 +321,8 @@ describe("iterators", function () {
         assert.deepEqual([...ti.takeLast(5, ti.range(3))], [0, 1, 2], "excess");
     });
     it("walk", () => {
-        let walk = (post) => {
-            let res = [];
+        let walk = (post:any) => {
+            let res: any[] = [];
             ti.walk((x) => res.push(x), [[1, { a: [2] }], ["3", [4]]], post);
             return res;
         };
@@ -408,7 +408,7 @@ describe("iterators", function () {
             { id: "ts", name: "TypeScript" }
         ];
         assert.deepEqual(ti.zip("abcdef", ti.range()), { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5 }, "");
-        assert.deepEqual(ti.zip(ti.range(5, 10), ti.range(100, 200), new Uint8Array(16)), [0, 0, 0, 0, 0, 100, 101, 102, 103, 104, 0, 0, 0, 0, 0, 0], "typedarray")
+        assert.deepEqual(ti.zip(ti.range(5, 10), ti.range(100, 200), [...new Uint8Array(16)]), [0, 0, 0, 0, 0, 100, 101, 102, 103, 104, 0, 0, 0, 0, 0, 0], "typedarray")
         assert.deepEqual(ti.zip(ti.map((x) => x.id, langs), langs), { js: { id: "js", name: "JavaScript" }, clj: { id: "clj", name: "Clojure" }, ts: { id: "ts", name: "TypeScript" } }, "obj");
     });
 });

@@ -1,4 +1,5 @@
-import { defmulti, MultiFn2O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import {
     IntersectionResult,
     IntersectionType,
@@ -36,7 +37,9 @@ export const intersects: MultiFn2O<
     IntersectionResult
 > = defmulti(dispatch2);
 
-intersects.addAll({
+intersects.addAll(<
+    IObjectOf<Implementation2O<unknown, unknown, any, IntersectionResult>>
+>{
     [`${Type.CIRCLE}-${Type.CIRCLE}`]: (a: Sphere, b: Sphere) =>
         intersectCircleCircle(a.pos, b.pos, a.r, b.r),
 

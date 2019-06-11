@@ -1,4 +1,5 @@
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { VecPair } from "@thi.ng/vectors";
 import { Polygon, Polyline, Rect } from "../api";
@@ -12,7 +13,15 @@ export const edges: MultiFn1O<
     Iterable<VecPair>
 > = defmulti(dispatch);
 
-edges.addAll({
+edges.addAll(<
+    IObjectOf<
+        Implementation1O<
+            unknown,
+            number | Partial<SamplingOpts>,
+            Iterable<VecPair>
+        >
+    >
+>{
     [Type.POLYGON]: ($: Polygon) => edgeIterator($.points, true),
 
     [Type.POLYLINE]: ($: Polyline) => edgeIterator($.points),

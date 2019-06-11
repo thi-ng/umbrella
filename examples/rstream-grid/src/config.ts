@@ -31,7 +31,7 @@ export const CONFIG: AppConfig = {
         // interceptor to record a snapshot of the current app state
         // before applying new slider value
         ...SLIDERS.reduce(
-            (events, spec) => (
+            (events: any, spec) => (
                 (events[spec.event] = [snapshot(), valueSetter(spec.path)]),
                 events
             ),

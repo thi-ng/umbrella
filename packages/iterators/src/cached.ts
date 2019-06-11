@@ -22,7 +22,7 @@ export const cached = <T>(input: Iterable<T>) => {
                     }
                     done = true;
                 }
-                return { done, value: undefined };
+                return <IteratorResult<T>>{ done };
             }
         };
     };

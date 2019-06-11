@@ -53,7 +53,7 @@ export function struct(fields: StructField[], src?: Iterable<any>): any {
               rename(fields.map((f) => f[0])),
               mapKeys(
                   fields.reduce(
-                      (acc, f) => (f[2] ? ((acc[f[0]] = f[2]), acc) : acc),
+                      (acc: any, f) => (f[2] ? ((acc[f[0]] = f[2]), acc) : acc),
                       {}
                   ),
                   false

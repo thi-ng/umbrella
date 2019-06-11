@@ -1,4 +1,5 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
     pointInAABB,
@@ -22,7 +23,7 @@ import { dispatch } from "../internal/dispatch";
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 
-pointInside.addAll({
+pointInside.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, boolean>>>{
     [Type.AABB]: ($: AABB, p: ReadonlyVec) => pointInAABB(p, $.pos, $.size),
 
     [Type.CIRCLE]: ($: Circle, p) => pointInCircle(p, $.pos, $.r),

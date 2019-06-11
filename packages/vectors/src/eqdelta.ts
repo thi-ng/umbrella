@@ -4,7 +4,7 @@ import { MultiVecOpRoVVO, ReadonlyVec } from "./api";
 import { compileHOF } from "./internal/codegen";
 import { vop } from "./internal/vop";
 
-const $ = (dim) =>
+const $ = (dim: number) =>
     eqDelta.add(
         dim,
         compileHOF(
@@ -14,7 +14,7 @@ const $ = (dim) =>
             "eq,_eps",
             "a,b,eps=_eps",
             "a,b",
-            null,
+            "",
             "&&",
             "return a.length === b.length && ",
             ";"

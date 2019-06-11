@@ -41,7 +41,7 @@ export const fromAtom = <T>(
     new Stream<T>((stream) => {
         changed = changed || ((a, b) => a !== b);
         atom.addWatch(stream.id, (_, prev, curr) => {
-            if (changed(prev, curr)) {
+            if (changed!(prev, curr)) {
                 stream.next(curr);
             }
         });

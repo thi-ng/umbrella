@@ -1,5 +1,5 @@
 import * as pf from "../src";
-import { StackProgram, StackFn } from "../src/api";
+import { StackFn, StackProgram } from "../src/api";
 
 /**
  * This higher order word defines a 2D loop construct, executing a user
@@ -14,11 +14,17 @@ import { StackProgram, StackFn } from "../src/api";
  * @param bodyQ
  */
 const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
-    pf.word([0,
-        pf.loop([pf.dup, i, pf.lt], [0,
-            pf.loop([pf.dup, j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
-            pf.drop,
-            pf.inc]),
+    pf.word([
+        0,
+        pf.loop(
+            [pf.dup, i, pf.lt],
+            [
+                0,
+                pf.loop([pf.dup, j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
+                pf.drop,
+                pf.inc
+            ]
+        ),
         pf.drop
     ]);
 
@@ -34,7 +40,7 @@ const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
  * @param j inner size
  * @param body user quotation
  */
-const grid = (i, j, body: StackProgram = [pf.tuple(2)]) =>
+const grid = (i: number, j: number, body: StackProgram = [pf.tuple(2)]) =>
     pf.word([loop2(i, j, [...body, pf.invrot]), pf.tuple(i * j)]);
 
 /**
@@ -49,20 +55,30 @@ const grid = (i, j, body: StackProgram = [pf.tuple(2)]) =>
  * @param id1 outer id gen
  * @param id2 inner id gen
  */
-const makeids = (i: number, j: number, sep: string, id1: StackFn = pf.nop, id2 = id1) =>
-    grid(i, j, [id2, pf.swap, id1, pf.swap, pf.tuple(2), pf.join(sep)]);
+const makeids = (
+    i: number,
+    j: number,
+    sep: string,
+    id1: StackFn = pf.nop,
+    id2 = id1
+) => grid(i, j, [id2, pf.swap, id1, pf.swap, pf.tuple(2), pf.join(sep)]);
 
 // helper word which looks up TOS in given string/array/object, i.e. to
 // transform a number into another value (e.g. string)
-const idgen = (ids) => pf.maptos((x) => ids[x]);
+const idgen = (ids: any) => pf.maptos((x) => ids[x]);
 
 console.log(pf.runU(grid(4, 4)));
 console.log(pf.runU(makeids(4, 4, "", idgen("abcd"))));
-console.log(pf.runU(makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), pf.nop)));
+console.log(
+    pf.runU(
+        makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), pf.nop)
+    )
+);
 
 console.log(
     pf.runU([
         makeids(4, 4, "", idgen("abcd")),
-        pf.maptos(id => pf.runU(makeids(4, 4, "/", idgen(id)))),
-        pf.maptos(id => pf.runU(makeids(4, 4, "-", idgen(id))))
-    ]));
+        pf.maptos((id) => pf.runU(makeids(4, 4, "/", idgen(id)))),
+        pf.maptos((id) => pf.runU(makeids(4, 4, "-", idgen(id))))
+    ])
+);

@@ -1,12 +1,12 @@
 import { Pair } from "@thi.ng/api";
 import { implementsFunction, isMap, isSet } from "@thi.ng/checks";
 
-export const empty = (x, ctor) =>
+export const empty = (x: any, ctor: Function) =>
     implementsFunction(x, "empty")
         ? x.empty()
         : new (x[Symbol.species] || ctor)();
 
-export const copy = (x, ctor) =>
+export const copy = (x: any, ctor: Function) =>
     implementsFunction(x, "copy")
         ? x.copy()
         : new (x[Symbol.species] || ctor)(x);

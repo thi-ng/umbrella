@@ -5,25 +5,26 @@ import { start } from "@thi.ng/hdom";
  * returned component takes a single HTML string as arg and updates each
  * time the given string has changed.
  */
-const innerHtmlWrapper = () => ({
-    init(el, _, html) {
-        this.el = el;
-        this.prev = html;
-        el.innerHTML = html;
-    },
-    render(_, body) {
-        if (this.el && this.prev != body) {
-            this.el.innerHTML = body;
-            this.prev = body;
+const innerHtmlWrapper = () =>
+    <any>{
+        init(el: any, _: any, html: string) {
+            this.el = el;
+            this.prev = html;
+            el.innerHTML = html;
+        },
+        render(_: any, html: string) {
+            if (this.el && this.prev != html) {
+                this.el.innerHTML = html;
+                this.prev = html;
+            }
+            return ["div"];
+        },
+        release() {
+            this.el.innerHTML = "";
+            delete this.prev;
+            delete this.el;
         }
-        return ["div"];
-    },
-    release() {
-        this.el.innerHTML = "";
-        delete this.prev;
-        delete this.el;
-    }
-});
+    };
 
 /**
  * Root component.

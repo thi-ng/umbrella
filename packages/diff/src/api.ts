@@ -14,12 +14,14 @@ export interface ArrayDiff<T> {
     adds?: DiffKeyMap<T>;
     dels?: DiffKeyMap<T>;
     const?: DiffKeyMap<T>;
-    linear?: (number | T)[];
+    linear?: EditLog<number, T>;
 }
 
 export interface ObjectDiff<T> {
     distance: number;
     adds?: string[];
     dels?: string[];
-    edits?: (PropertyKey | T)[];
+    edits?: EditLog<string, T>;
 }
+
+export type EditLog<K, T> = (K | T)[];

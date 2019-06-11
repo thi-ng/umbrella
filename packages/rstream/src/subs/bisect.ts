@@ -49,7 +49,7 @@ export const bisect = <T>(
     b?: ISubscriber<T>
 ): PubSub<T, T> => {
     const sub = new PubSub<T, T>({ topic: pred });
-    sub.subscribeTopic(true, a);
-    sub.subscribeTopic(false, b);
+    a && sub.subscribeTopic(true, a);
+    b && sub.subscribeTopic(false, b);
     return sub;
 };

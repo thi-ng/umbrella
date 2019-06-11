@@ -13,7 +13,7 @@ import { ensureHue } from "./internal/ensure-hue";
  * @param src
  * @param alpha
  */
-export const clamp = (out: Color, src: ReadonlyColor, alpha = 1) =>
+export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
     setC4(
         out || src,
         clamp01(src[0]),
@@ -30,7 +30,7 @@ export const clamp = (out: Color, src: ReadonlyColor, alpha = 1) =>
  * @param src
  * @param alpha
  */
-export const clampH = (out: Color, src: ReadonlyColor, alpha = 1) =>
+export const clampH = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
     setC4(
         out || src,
         ensureHue(src[0]),

@@ -6,6 +6,7 @@ import {
     ensureStateLessThan,
     EV_SET_VALUE,
     EV_UPDATE_VALUE,
+    Event,
     EventBus,
     EventDef,
     FX_DISPATCH_NOW,
@@ -34,11 +35,15 @@ const events: IObjectOf<EventDef> = {
     // note how we also inject the predicate interceptors here to ensure
     // counter values will be always be in the range between 0 .. 100
     [EV_INC]: [
-        ensureStateLessThan(100, null, () => console.warn("eek, reached max")),
+        ensureStateLessThan(100, undefined, () =>
+            console.warn("eek, reached max")
+        ),
         (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, 1]] })
     ],
     [EV_DEC]: [
-        ensureStateGreaterThan(0, null, () => console.warn("eek, reached min")),
+        ensureStateGreaterThan(0, undefined, () =>
+            console.warn("eek, reached min")
+        ),
         (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, -1]] })
     ],
 
@@ -49,7 +54,7 @@ const events: IObjectOf<EventDef> = {
     [EV_ADD_VALUE]: [
         trace,
         (_, [__, [path, y]]) => ({
-            [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x) => x + y]]
+            [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x: number) => x + y]]
         })
     ],
 
@@ -77,7 +82,7 @@ const effects: IObjectOf<EffectDef> = {};
 ///////////////////////////////////////////////////////////////////////
 // components
 
-const button = (bus, event, label, id?) => [
+const button = (bus: IDispatch, event: Event, label: string, id?: string) => [
     "button",
     { id, onclick: () => bus.dispatch(event) },
     label
@@ -105,7 +110,7 @@ const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
 const app = () => {
     // an array to store counter component instances
     // (only using component local state for KISS reasons)
-    const counters = [];
+    const counters: any[] = [];
 
     // create event bus with app state atom and configure with above handlers/effects
     const bus = new EventBus(null, events, effects);

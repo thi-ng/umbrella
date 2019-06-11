@@ -1,5 +1,5 @@
 import { IID } from "@thi.ng/api";
-import { fromEvent, merge, StreamMerge } from "@thi.ng/rstream";
+import { fromDOMEvent, merge, StreamMerge } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
 export const enum GestureType {
@@ -27,6 +27,8 @@ export interface GestureEvent {
     [0]: GestureType;
     [1]: GestureInfo;
 }
+
+type UIEvent = MouseEvent | TouchEvent | WheelEvent;
 
 export interface GestureStreamOpts extends IID<string> {
     /**
@@ -107,31 +109,29 @@ export interface GestureStreamOpts extends IID<string> {
  */
 export const gestureStream = (
     el: HTMLElement,
-    opts?: Partial<GestureStreamOpts>
+    _opts?: Partial<GestureStreamOpts>
 ): StreamMerge<any, GestureEvent> => {
-    let isDown = false,
-        clickPos: number[];
+    let isDown = false;
+    let clickPos: number[] | null = null;
 
-    opts = Object.assign(
-        <GestureStreamOpts>{
-            id: "gestures",
-            zoom: 1,
-            absZoom: true,
-            minZoom: 0.25,
-            maxZoom: 4,
-            smooth: 1,
-            eventOpts: { capture: true },
-            preventDefault: true,
-            local: true,
-            scale: false
-        },
-        opts
-    );
+    const opts = <GestureStreamOpts>{
+        id: "gestures",
+        zoom: 1,
+        absZoom: true,
+        minZoom: 0.25,
+        maxZoom: 4,
+        smooth: 1,
+        eventOpts: { capture: true },
+        preventDefault: true,
+        local: true,
+        scale: false,
+        ..._opts
+    };
 
     let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
     const dpr = window.devicePixelRatio || 1;
 
-    return merge({
+    return merge<UIEvent, GestureEvent>({
         id: opts.id,
         src: [
             "mousedown",
@@ -142,26 +142,27 @@ export const gestureStream = (
             "touchend",
             "touchcancel",
             "wheel"
-        ].map((e) => fromEvent(el, e, opts.eventOpts)),
-        xform: map((e: MouseEvent | TouchEvent | WheelEvent) => {
-            let evt, type;
+        ].map((e) => fromDOMEvent(el, <any>e, opts.eventOpts)),
+        xform: map((e) => {
+            let evt: { clientX: number; clientY: number };
+            let type: any;
             opts.preventDefault && e.preventDefault();
             if ((<TouchEvent>e).touches) {
-                type = {
+                type = (<any>{
                     touchstart: GestureType.START,
                     touchmove: GestureType.DRAG,
                     touchend: GestureType.END,
                     touchcancel: GestureType.END
-                }[e.type];
+                })[e.type];
                 evt = (<TouchEvent>e).changedTouches[0];
             } else {
-                type = {
+                type = (<any>{
                     mousedown: GestureType.START,
                     mousemove: isDown ? GestureType.DRAG : GestureType.MOVE,
                     mouseup: GestureType.END,
                     wheel: GestureType.ZOOM
-                }[e.type];
-                evt = e;
+                })[e.type];
+                evt = <any>e;
             }
             const pos = [evt.clientX | 0, evt.clientY | 0];
             if (opts.local) {
@@ -184,8 +185,8 @@ export const gestureStream = (
                     clickPos = null;
                     break;
                 case GestureType.DRAG:
-                    body.click = clickPos;
-                    body.delta = [pos[0] - clickPos[0], pos[1] - clickPos[1]];
+                    body.click = clickPos!;
+                    body.delta = [pos[0] - clickPos![0], pos[1] - clickPos![1]];
                     break;
                 case GestureType.ZOOM:
                     const zdelta = (<WheelEvent>e).deltaY * opts.smooth;

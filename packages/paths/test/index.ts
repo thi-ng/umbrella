@@ -129,8 +129,8 @@ describe("paths", () => {
     });
 
     it("exists", () => {
-        const a = { a: { b: null } };
-        const b = { x: { y: { z: [1, 2, { u: 3, v: undefined }] } } };
+        const a: any = { a: { b: null } };
+        const b: any = { x: { y: { z: [1, 2, { u: 3, v: undefined }] } } };
         assert.ok(!exists(null, "x.y.z"), "x.y.z");
         assert.ok(!exists(0, "x.y.z"), "x.y.z");
         assert.ok(exists("", "length"), "length");

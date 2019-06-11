@@ -1,4 +1,6 @@
 import { clamp01 } from "@thi.ng/math";
+import { setC4 } from "@thi.ng/vectors";
+import { Color } from "./api";
 
 const G1 = -0.6088425710866344;
 const G2 = -0.001748900018414868;
@@ -20,25 +22,28 @@ const B3 = 0.453646839257496;
  *
  * Uses adjusted coefficients to produce normalized RGB values.
  *
+ * @param out
  * @param kelvin color temperature
  * @param alpha target alpha channel
  */
-export const kelvinRgba = (kelvin: number, alpha = 1) => {
+export const kelvinRgba = (out: Color | null, kelvin: number, alpha = 1) => {
     kelvin *= 0.01;
     let t: number;
     return kelvin < 66
-        ? [
+        ? setC4(
+              out || [],
               1,
               clamp01(G1 + G2 * (t = kelvin - 2) + G3 * Math.log(t)),
               kelvin < 20
                   ? 0
                   : clamp01(B1 + B2 * (t = kelvin - 10) + B3 * Math.log(t)),
               alpha
-          ]
-        : [
+          )
+        : setC4(
+              out || [],
               clamp01(R1 + R2 * (t = kelvin - 55) + R3 * Math.log(t)),
               clamp01(G4 + G5 * (t = kelvin - 50) - G6 * Math.log(t)),
               1,
               alpha
-          ];
+          );
 };

@@ -22,11 +22,16 @@ import { map } from "./map";
  *
  * @param fn mapping function
  */
-export function mapcat<A, B>(fn: Fn<A, Iterable<B>>): Transducer<A, B>;
 export function mapcat<A, B>(
-    fn: Fn<A, Iterable<B>>,
+    fn: Fn<A, Iterable<B> | null | undefined>
+): Transducer<A, B>;
+export function mapcat<A, B>(
+    fn: Fn<A, Iterable<B> | null | undefined>,
     src: Iterable<A>
 ): IterableIterator<B>;
-export function mapcat<A, B>(fn: Fn<A, Iterable<B>>, src?: Iterable<A>): any {
+export function mapcat<A, B>(
+    fn: Fn<A, Iterable<B> | null | undefined>,
+    src?: Iterable<A>
+): any {
     return src ? iterator(mapcat(fn), src) : comp(map(fn), cat());
 }

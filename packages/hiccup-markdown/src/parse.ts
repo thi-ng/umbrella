@@ -1,3 +1,4 @@
+import { Fn, Fn2 } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import {
     alts,
@@ -100,11 +101,14 @@ const transition = (ctx: FSMCtx, id: State): ParseResult => (
 );
 
 const push = (id: State, next: State) => (ctx: FSMCtx): ParseResult => (
-    ctx.stack.push({ id, children: ctx.children.concat(ctx.body) }),
+    ctx.stack.push({ id, children: ctx.children!.concat(ctx.body) }),
     transition(ctx, next)
 );
 
-const pop = (result) => (ctx, body): ParseResult => {
+const pop = (result: Fn2<FSMCtx, string, any>) => (
+    ctx: FSMCtx,
+    body: any
+): ParseResult => {
     const { id, children } = ctx.stack.pop();
     children.push(result(ctx, body));
     ctx.children = children;
@@ -113,62 +117,61 @@ const pop = (result) => (ctx, body): ParseResult => {
 };
 
 const collectChildren = (ctx: FSMCtx) => (
-    ctx.children.push(ctx.body), ctx.children
+    ctx.children!.push(ctx.body), ctx.children!
 );
 
 const collect = (id: State) => (ctx: FSMCtx, buf: string[]): ParseResult => (
     (ctx.body += buf.join("")), [id]
 );
 
-const collectHeading = (tag: (i: number, xs: any[]) => any[]) => (
-    ctx
-): ParseResult => [State.START, [tag(ctx.hd, collectChildren(ctx))]];
+const collectHeading = (tag: Fn2<number, any[], any[]>) => (
+    ctx: FSMCtx
+): ParseResult => [State.START, [tag(ctx.hd!, collectChildren(ctx))]];
 
-const collectAndRestart = (tag: (xs: any[]) => any[]) => (ctx): ParseResult => [
-    State.START,
-    [tag(collectChildren(ctx))]
-];
+const collectAndRestart = (tag: (xs: any[]) => any[]) => (
+    ctx: FSMCtx
+): ParseResult => [State.START, [tag(collectChildren(ctx))]];
 
-const collectBlockQuote = (ctx): ParseResult => (
-    ctx.children.push(ctx.body, ["br"]), (ctx.body = ""), [State.BLOCKQUOTE]
+const collectBlockQuote = (ctx: FSMCtx): ParseResult => (
+    ctx.children!.push(ctx.body, ["br"]), (ctx.body = ""), [State.BLOCKQUOTE]
 );
 
-const collectCodeBlock = (tag: (lang: string, body: string) => any[]) => (
-    ctx,
-    body
-): ParseResult => [State.START, [tag(ctx.lang, body)]];
+const collectCodeBlock = (tag: Fn2<string, string, any[]>) => (
+    ctx: FSMCtx,
+    body: string
+): ParseResult => [State.START, [tag(ctx.lang!, body)]];
 
-const collectLi = (ctx: FSMCtx, tag: (xs: any[]) => any[]) =>
-    ctx.container.push(tag(collectChildren(ctx)));
+const collectLi = (ctx: FSMCtx, tag: Fn<any[], any[]>) =>
+    ctx.container!.push(tag(collectChildren(ctx)));
 
 const collectList = (
     type: string,
-    list: (type: string, xs: any[]) => any[],
-    item: (xs: any[]) => any[]
-) => (ctx): ParseResult => (
-    collectLi(ctx, item), [State.START, [list(type, ctx.container)]]
+    list: Fn2<string, any[], any[]>,
+    item: Fn<any[], any[]>
+) => (ctx: FSMCtx): ParseResult => (
+    collectLi(ctx, item), [State.START, [list(type, ctx.container!)]]
 );
 
-const collectTD = (tag: (i: number, xs: any[]) => any[]) => (ctx: FSMCtx) => (
-    ctx.children.push(ctx.body),
-    ctx.container.push(tag(peek(ctx.stack).container.length, ctx.children)),
+const collectTD = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => (
+    ctx.children!.push(ctx.body),
+    ctx.container!.push(tag(peek(ctx.stack).container.length, ctx.children!)),
     transition(ctx, State.TABLE)
 );
 
-const collectTR = (tag: (i: number, xs: any[]) => any[]) => (ctx: FSMCtx) => {
+const collectTR = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => {
     const rows = peek(ctx.stack).container;
-    rows.push(tag(rows.length, ctx.container));
+    rows.push(tag(rows.length, ctx.container!));
     ctx.container = [];
     return transition(ctx, State.END_TABLE);
 };
 
-const collectTable = (tag: (xs: any[]) => any) => (ctx): ParseResult => {
+const collectTable = (tag: Fn<any[], any[]>) => (ctx: FSMCtx): ParseResult => {
     const rows = ctx.stack.pop().container;
     rows.splice(1, 1);
     return [State.START, [tag(rows)]];
 };
 
-const collectInline = (fn: (body: string) => any[]) =>
+const collectInline = (fn: Fn<string, any[]>) =>
     pop((ctx, body: string) => fn(ctx.body + body.trim()));
 
 const heading = (ctx: FSMCtx, body: string[]): ParseResult => (
@@ -184,14 +187,20 @@ const matchInline = (id: State) => [
     str(CODE, push(id, State.CODE))
 ];
 
-const matchLink = (result: (href, body) => any[]) =>
+const matchLink = (result: Fn2<string, string, any[]>) =>
     seq<string, FSMCtx, any>(
         [
-            untilStr(LINK_LABEL_END, (ctx, body) => ((ctx.title = body), null)),
+            untilStr(
+                LINK_LABEL_END,
+                (ctx, body) => ((ctx.title = body), undefined)
+            ),
             str(LINK_HREF),
-            untilStr(LINK_HREF_END, (ctx, body) => ((ctx.href = body), null))
+            untilStr(
+                LINK_HREF_END,
+                (ctx, body) => ((ctx.href = body), undefined)
+            )
         ],
-        pop((ctx) => result(ctx.href, ctx.title))
+        pop((ctx: FSMCtx) => result(ctx.href!, ctx.title!))
     );
 
 const matchPara = (id: State, next: State) =>
@@ -232,8 +241,8 @@ const newTable = (ctx: FSMCtx) => (
  * syntax matchers and state transition handlers. The returned parser
  * itself is only used in `index.ts`.
  */
-export const parse = (tags?: Partial<TagFactories>) => {
-    tags = { ...DEFAULT_TAGS, ...tags };
+export const parse = (_tags?: Partial<TagFactories>) => {
+    const tags = <TagFactories>{ ...DEFAULT_TAGS, ..._tags };
     return fsm<string, FSMCtx, any[]>(
         {
             [State.START]: alts(
@@ -247,7 +256,7 @@ export const parse = (tags?: Partial<TagFactories>) => {
                             seq([str(CODE), not(str(CODE))], newParaCode),
                             str(CODEBLOCK, () => [State.START_CODEBLOCK])
                         ],
-                        null,
+                        undefined,
                         (_, next) => next
                     ),
                     seq([repeat(str(HR), 3, Infinity), str(NL)], () => [

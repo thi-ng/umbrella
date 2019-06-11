@@ -1,8 +1,9 @@
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-
 import * as rs from "../src/index";
 
+
+// prettier-ignore
 describe("bisect", () => {
     let src: rs.Stream<number>;
 
@@ -11,7 +12,7 @@ describe("bisect", () => {
     });
 
     it("raw subscribers", (done) => {
-        const odds = [], evens = [];
+        const odds: number[] = [], evens: number[] = [];
         src.subscribe(
             rs.bisect<number>((x) => !!(x & 1),
                 { next(x) { odds.push(x) } },
@@ -28,7 +29,7 @@ describe("bisect", () => {
     });
 
     it("subs", (done) => {
-        const odds = [], evens = [];
+        const odds: number[] = [], evens: number[] = [];
         const subo = rs.subscription<number, number>(
             { next(x) { odds.push(x) }, done() { doneCount++; } },
             tx.map<number, number>(x => x * 10)

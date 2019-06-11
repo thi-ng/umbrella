@@ -89,8 +89,8 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     static readonly ZERO = new Vec2(ZERO2);
     static readonly ONE = new Vec2(ONE2);
 
-    x: number;
-    y: number;
+    x!: number;
+    y!: number;
     [id: number]: number;
 
     constructor(buf?: Vec, offset = 0, stride = 1) {

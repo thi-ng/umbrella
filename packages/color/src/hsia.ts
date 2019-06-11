@@ -10,10 +10,10 @@ export function hsia(...args: any[]) {
 }
 
 export class HSIA extends AColor<HSIA> implements IVector<HSIA> {
-    h: number;
-    s: number;
-    i: number;
-    a: number;
+    h!: number;
+    s!: number;
+    i!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.HSIA;

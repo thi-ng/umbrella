@@ -123,7 +123,7 @@ export const gvec = (
                 case SYM_EMPTY:
                     return () => zeroes(size);
                 case SYM_EQD:
-                    return (o, eps = EPS) =>
+                    return (o: any, eps: number = EPS) =>
                         eqDeltaS(buf, o, size, eps, offset, 0, stride, 1);
                 case SYM_STR:
                     return () =>

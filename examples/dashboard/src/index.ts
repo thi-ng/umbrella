@@ -1,7 +1,7 @@
 import { start } from "@thi.ng/hdom";
 
 // static component function to create styled box
-const box = (prefix, body) => [
+const box = (prefix: string, body: any) => [
     "div",
     {
         style: {
@@ -20,7 +20,7 @@ const box = (prefix, body) => [
 ];
 
 // stateful component function
-const counter = (id, from = 0, step = 1) => () =>
+const counter = (id: string, from = 0, step = 1) => () =>
     box(id, (from += step).toLocaleString());
 
 // dynamic component function (external state, i.e. date)

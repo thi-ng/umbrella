@@ -2,11 +2,10 @@ import {
     dotS2,
     dotS3,
     dotS4,
-    ReadonlyVec,
     setC2,
     setC3,
     setC4,
-    Vec,
+    VecOpVV,
     vop
 } from "@thi.ng/vectors";
 import { MatOpMV, MultiMatOpMV } from "./api";
@@ -107,7 +106,7 @@ export const mulV344: MatOpMV = (out, m, v) => {
  * @param q
  * @param v
  */
-export const mulVQ = (out: Vec, q: ReadonlyVec, v: ReadonlyVec) => {
+export const mulVQ: VecOpVV = (out, q, v) => {
     const { 0: px, 1: py, 2: pz } = v;
     const { 0: qx, 1: qy, 2: qz, 3: qw } = q;
     const ix = qw * px + qy * pz - qz * py;

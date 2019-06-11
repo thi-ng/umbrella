@@ -1,4 +1,4 @@
-import { Fn0 } from "@thi.ng/api";
+import { Fn, Fn0 } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { Reducer, Transducer } from "../api";
 import { range } from "../iter/range";
@@ -83,7 +83,7 @@ const kernelLookup1d = (
     width: number,
     wrap: boolean,
     border: number
-) =>
+): Fn<[number, number], number> =>
     wrap
         ? ([w, ox]) => {
               const xx =
@@ -102,7 +102,7 @@ const kernelLookup2d = (
     height: number,
     wrap: boolean,
     border: number
-) =>
+): Fn<[number, [number, number]], number> =>
     wrap
         ? ([w, [ox, oy]]) => {
               const xx =
@@ -138,13 +138,13 @@ export function convolve1d(
     let kernel = opts.kernel;
     if (!kernel) {
         !(opts.weights && opts.kwidth) && kernelError();
-        kernel = buildKernel1d(opts.weights, opts.kwidth);
+        kernel = buildKernel1d(opts.weights!, opts.kwidth!);
     }
     return map((p: number) =>
         transduce(
             map(kernelLookup1d(src, p, width, wrap, border)),
             rfn(),
-            kernel
+            kernel!
         )
     );
 }
@@ -170,13 +170,13 @@ export function convolve2d(
     let kernel = opts.kernel;
     if (!kernel) {
         !(opts.weights && opts.kwidth && opts.kheight) && kernelError();
-        kernel = buildKernel2d(opts.weights, opts.kwidth, opts.kheight);
+        kernel = buildKernel2d(opts.weights!, opts.kwidth!, opts.kheight!);
     }
     return map((p: number[]) =>
         transduce(
             map(kernelLookup2d(src, p[0], p[1], width, height, wrap, border)),
             rfn(),
-            kernel
+            kernel!
         )
     );
 }

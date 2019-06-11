@@ -52,7 +52,7 @@ export function dropdown(themeCtxPath: Path) {
         return state.open
             ? [
                   "div",
-                  { ...ui.root, onkeydown: (e) => console.log(e) },
+                  { ...ui.root, onkeydown: (e: Event) => console.log(e) },
                   [
                       appLink,
                       { ...hattribs, ...ui.itemSelected },
@@ -63,14 +63,14 @@ export function dropdown(themeCtxPath: Path) {
                       "div",
                       ui.bodyOpen,
                       state.items.length
-                          ? state.items.map((x) => [
+                          ? state.items.map((x: any) => [
                                 "a",
                                 {
                                     ...(x[0] === state.selected
                                         ? ui.itemSelected
                                         : ui.item),
                                     href: "#",
-                                    onclick: opts.onchange(x[0])
+                                    onclick: opts.onchange!(x[0])
                                 },
                                 ...(isString(x[1]) ? [x[1]] : x[1])
                             ])
@@ -87,7 +87,7 @@ export function dropdown(themeCtxPath: Path) {
                       state.hover
                           ? opts.hoverLabel
                           : (state.items.find(
-                                (x) => x[0] === state.selected
+                                (x: any) => x[0] === state.selected
                             ) || [, opts.hoverLabel])[1]
                   ],
                   ["div", ui.bodyClosed]
@@ -104,7 +104,7 @@ export const dropdownListeners = (
     onmouseleave: () =>
         ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], false]]),
     ontoggle: () => ctx.bus.dispatch([EV_TOGGLE_VALUE, [...basePath, "open"]]),
-    onchange: (x) => () => {
+    onchange: (x: any) => () => {
         ctx.bus.dispatch(
             [EV_SET_VALUE, [[...basePath, "selected"], x]],
             [EV_SET_VALUE, [[...basePath, "open"], false]]

@@ -14,10 +14,10 @@ import { GL2TYPE, GLType, TYPE2GL } from "./api";
  */
 export const asNativeType = (type: GLType | Type): Type => {
     const t = GL2TYPE[type];
-    return t !== undefined ? t : type;
+    return t !== undefined ? t : <Type>type;
 };
 
 export const asGLType = (type: GLType | Type): GLType => {
     const t = TYPE2GL[type];
-    return t !== undefined ? t : type;
+    return t !== undefined ? t : <GLType>type;
 };

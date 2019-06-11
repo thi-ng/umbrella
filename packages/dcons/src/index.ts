@@ -1,4 +1,5 @@
 import {
+    assert,
     Comparator,
     Fn,
     ICompare,
@@ -13,13 +14,13 @@ import {
 import { isArrayLike } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs, illegalState } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors";
 import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
 
 export interface ConsCell<T> {
     value: T;
-    next: ConsCell<T>;
-    prev: ConsCell<T>;
+    next: ConsCell<T> | undefined;
+    prev: ConsCell<T> | undefined;
 }
 
 export class DCons<T>
@@ -32,8 +33,8 @@ export class DCons<T>
         IReducible<any, T>,
         IRelease,
         IStack<T, T, DCons<T>> {
-    head: ConsCell<T>;
-    tail: ConsCell<T>;
+    head: ConsCell<T> | undefined;
+    tail: ConsCell<T> | undefined;
     protected _length: number = 0;
 
     constructor(src?: Iterable<T>) {
@@ -75,18 +76,21 @@ export class DCons<T>
     }
 
     compare(o: DCons<T>) {
-        if (this._length < o._length) {
+        const n = this._length;
+        if (n < o._length) {
             return -1;
-        } else if (this._length > o._length) {
+        } else if (n > o._length) {
             return 1;
+        } else if (n === 0) {
+            return 0;
         } else {
             let ca = this.head;
             let cb = o.head;
             let res = 0;
             while (ca && res == 0) {
-                res = compare(ca.value, cb.value);
+                res = compare(ca.value, cb!.value);
                 ca = ca.next;
-                cb = cb.next;
+                cb = cb!.next;
             }
             return res;
         }
@@ -97,12 +101,15 @@ export class DCons<T>
             (o instanceof DCons || isArrayLike(o)) &&
             this._length === o.length
         ) {
+            if (this._length === 0) {
+                return true;
+            }
             let cell = this.head;
             for (let x of <any>o) {
-                if (!equiv(cell.value, x)) {
+                if (!equiv(cell!.value, x)) {
                     return false;
                 }
-                cell = cell.next;
+                cell = cell!.next;
             }
             return true;
         }
@@ -195,7 +202,8 @@ export class DCons<T>
         if (n <= 0) {
             return this.cons(x);
         } else {
-            return this.insertBefore(this.nthCell(n), x);
+            this.ensureIndex(n);
+            return this.insertBefore(this.nthCellUnsafe(n), x);
         }
     }
 
@@ -206,7 +214,8 @@ export class DCons<T>
         if (n >= this._length - 1) {
             return this.push(x);
         } else {
-            return this.insertAfter(this.nthCell(n), x);
+            this.ensureIndex(n);
+            return this.insertAfter(this.nthCellUnsafe(n), x);
         }
     }
 
@@ -272,20 +281,21 @@ export class DCons<T>
     }
 
     splice(at: ConsCell<T> | number, del = 0, insert?: Iterable<T>): DCons<T> {
-        let cell: ConsCell<T>;
+        let cell: ConsCell<T> | undefined;
         if (typeof at === "number") {
             if (at < 0) {
                 at += this._length;
             }
-            cell = this.nthCell(at);
+            this.ensureIndex(at);
+            cell = this.nthCellUnsafe(at);
         } else {
             cell = at;
         }
-        const res = new DCons<T>();
+        const removed = new DCons<T>();
         if (del > 0) {
             while (cell && del-- > 0) {
                 this.remove(cell);
-                res.push(cell.value);
+                removed.push(cell.value);
                 cell = cell.next;
             }
         } else if (cell) {
@@ -302,7 +312,7 @@ export class DCons<T>
                 }
             }
         }
-        return res;
+        return removed;
     }
 
     remove(cell: ConsCell<T>) {
@@ -343,7 +353,9 @@ export class DCons<T>
 
     pop() {
         const cell = this.tail;
-        !cell && illegalState("can't pop, empty");
+        if (!cell) {
+            return;
+        }
         this.tail = cell.prev;
         if (this.tail) {
             delete this.tail.next;
@@ -381,7 +393,7 @@ export class DCons<T>
     setNth(n: number, v: T) {
         const cell = this.nthCell(n);
         !cell && illegalArgs(`index out of bounds: ${n}`);
-        cell.value = v;
+        cell!.value = v;
         return this;
     }
 
@@ -397,19 +409,7 @@ export class DCons<T>
         if (n < 0 || n >= this._length) {
             return;
         }
-        let cell, dir;
-        if (n <= this._length >> 1) {
-            cell = this.head;
-            dir = "next";
-        } else {
-            cell = this.tail;
-            dir = "prev";
-            n = this._length - n - 1;
-        }
-        while (n-- > 0 && cell) {
-            cell = cell[dir];
-        }
-        return cell;
+        return this.nthCellUnsafe(n);
     }
 
     rotateLeft() {
@@ -418,9 +418,9 @@ export class DCons<T>
             case 1:
                 return this;
             case 2:
-                return this.swap(this.head, this.tail);
+                return this.swap(this.head!, this.tail!);
             default:
-                return this.push(this.drop());
+                return this.push(this.drop()!);
         }
     }
 
@@ -430,11 +430,11 @@ export class DCons<T>
             case 1:
                 return this;
             case 2:
-                return this.swap(this.head, this.tail);
+                return this.swap(this.head!, this.tail!);
             default:
                 const x = this.peek();
                 this.pop();
-                return this.cons(x);
+                return this.cons(x!);
         }
     }
 
@@ -472,10 +472,10 @@ export class DCons<T>
     shuffle() {
         let n = this._length;
         let cell = this.tail;
-        while (n > 0) {
+        while (n > 1) {
             let i = Math.floor(Math.random() * n);
-            this.swap(this.nthCell(i), cell);
-            cell = cell.prev;
+            this.swap(this.nthCell(i)!, cell!);
+            cell = cell!.prev;
             n--;
         }
         return this;
@@ -501,7 +501,7 @@ export class DCons<T>
             return this;
         }
         this.remove(cell);
-        this.head.prev = cell;
+        this.head!.prev = cell;
         cell.next = this.head;
         cell.prev = undefined;
         this.head = cell;
@@ -514,7 +514,7 @@ export class DCons<T>
             return this;
         }
         this.remove(cell);
-        this.tail.next = cell;
+        this.tail!.next = cell;
         cell.prev = this.tail;
         cell.next = undefined;
         this.tail = cell;
@@ -540,5 +540,25 @@ export class DCons<T>
 
     toJSON() {
         return [...this];
+    }
+
+    protected ensureIndex(i: number) {
+        assert(i >= 0 && i < this._length, `index out of range: ${i}`);
+    }
+
+    protected nthCellUnsafe(n: number) {
+        let cell: ConsCell<T>, dir: keyof ConsCell<T>;
+        if (n <= this._length >> 1) {
+            cell = this.head!;
+            dir = "next";
+        } else {
+            cell = this.tail!;
+            dir = "prev";
+            n = this._length - n - 1;
+        }
+        while (n-- > 0 && cell) {
+            cell = cell[dir]!;
+        }
+        return cell;
     }
 }

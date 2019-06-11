@@ -14,15 +14,15 @@ import { empty } from "./utils";
 export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
     out = out || empty(a, Set);
     if (a === b) {
-        return into(out, a);
+        return into(out!, a);
     }
     if (b.size < a.size) {
         return intersection(b, a, out);
     }
     for (let i of b) {
         if (a.has(i)) {
-            out.add(i);
+            out!.add(i);
         }
     }
-    return out;
+    return out!;
 };

@@ -8,7 +8,13 @@ import {
     transduce,
     zip
 } from "@thi.ng/transducers";
-import { MultiVecOpVN, MultiVecOpVV, VecOpVN, VecOpVV } from "../api";
+import {
+    MultiVecOpVN,
+    MultiVecOpVV,
+    Template,
+    VecOpVN,
+    VecOpVV
+} from "../api";
 import { FN, MATH, MATH_N } from "./templates";
 import { vop } from "./vop";
 
@@ -25,8 +31,6 @@ export const SARGS_VVV = "io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1";
 export const DEFAULT_OUT = "!o&&(o=a);";
 export const NEW_OUT = "!o&&(o=[]);";
 
-export type Template = (syms: string[], i?: number) => string;
-
 /**
  * HOF array index lookup gen to provide optimized versions of:
  *
@@ -38,12 +42,12 @@ export type Template = (syms: string[], i?: number) => string;
  *
  * @param sym
  */
-const lookup = (sym: string) => (i) =>
+const lookup = (sym: string) => (i: number) =>
     i > 1
         ? `${sym}[i${sym}+${i}*s${sym}]`
         : i == 1
-            ? `${sym}[i${sym}+s${sym}]`
-            : `${sym}[i${sym}]`;
+        ? `${sym}[i${sym}+s${sym}]`
+        : `${sym}[i${sym}]`;
 
 /**
  * Infinite iterator of strided index lookups for `sym`.
@@ -97,12 +101,19 @@ const assemble = (
 ) => [
     pre,
     transduce(
-        comp(take(dim), mapIndexed((i, x: string[]) => tpl(x, i))),
+        comp<string[], string[], string>(
+            take(dim),
+            mapIndexed((i, x) => tpl(x, i))
+        ),
         str(opJoin),
-        zip.apply(null, syms.split(",").map(strided ? indicesStrided : indices))
+        <Iterable<any>>(
+            zip.apply(null, <any>(
+                syms.split(",").map(strided ? indicesStrided : indices)
+            ))
+        )
     ),
     post,
-    ret !== null ? `return ${ret};` : ""
+    ret !== "" ? `return ${ret};` : ""
 ];
 
 const assembleG = (
@@ -226,7 +237,8 @@ export const defOp = <M, V>(
     syms = syms || args;
     pre = pre != null ? pre : defaultOut(ret, args);
     const fn: any = vop(dispatch);
-    const $ = (dim) => fn.add(dim, compile(dim, tpl, args, syms, ret, "", pre));
+    const $ = (dim: number) =>
+        fn.add(dim, compile(dim, tpl, args, syms, ret, "", pre));
     fn.default(compileG(tpl, args, syms, ret, pre));
     return [fn, $(2), $(3), $(4)];
 };
@@ -234,7 +246,7 @@ export const defOp = <M, V>(
 export const defFnOp = <M, V>(op: string) => defOp<M, V>(FN(op), ARGS_V);
 
 export const defHofOp = <M, V>(
-    op,
+    op: any,
     tpl?: Template,
     args = ARGS_V,
     syms?: string,
@@ -242,13 +254,13 @@ export const defHofOp = <M, V>(
     dispatch = 1,
     pre?: string
 ): [M, V, V, V] => {
-    tpl = tpl || FN("op");
+    const _tpl = tpl || FN("op");
     syms = syms || args;
     pre = pre != null ? pre : defaultOut(ret, args);
-    const $ = (dim) =>
-        compileHOF(dim, [op], tpl, "op", args, syms, ret, "", pre);
+    const $ = (dim: number) =>
+        compileHOF(dim, [op], _tpl, "op", args, syms, ret, "", pre);
     const fn: any = vop(dispatch);
-    fn.default(compileGHOF([op], tpl, "op", args, syms, ret, pre));
+    fn.default(compileGHOF([op], _tpl, "op", args, syms, ret, pre));
     return [fn, $(2), $(3), $(4)];
 };
 

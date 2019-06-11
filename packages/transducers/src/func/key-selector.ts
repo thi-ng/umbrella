@@ -1,4 +1,4 @@
 import { renamer } from "./renamer";
 
 export const keySelector = (keys: PropertyKey[]) =>
-    renamer(keys.reduce((acc, x) => ((acc[x] = x), acc), {}));
+    renamer(keys.reduce((acc: any, x) => ((acc[x] = x), acc), {}));

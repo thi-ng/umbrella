@@ -18,7 +18,7 @@ import { translation23 } from "./translation";
  * @param scale
  */
 export const transform23 = (
-    out: Mat,
+    out: Mat | null,
     translate: ReadonlyVec,
     rotation: number,
     scale: number | ReadonlyVec
@@ -42,7 +42,7 @@ export const transform23 = (
  * @param scale
  */
 export const transform44 = (
-    out: Mat,
+    out: Mat | null,
     translate: ReadonlyVec,
     rotation: ReadonlyVec,
     scale: number | ReadonlyVec

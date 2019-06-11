@@ -6,6 +6,7 @@ import {
     min2,
     ReadonlyVec,
     set2,
+    Vec,
     VecPair
 } from "@thi.ng/vectors";
 import { pointAtTheta } from "./point-at";
@@ -19,7 +20,7 @@ export const bounds = (
 ): VecPair => {
     const min = set2([], MAX2);
     const max = set2([], MIN2);
-    const p = [];
+    const p: Vec = [];
     const update = (theta: number) => {
         pointAtTheta(pos, r, axis, theta, p);
         min2(null, min, p);

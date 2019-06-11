@@ -29,7 +29,7 @@ export class BFS {
             marked.setAt(id);
         }
         while (queue.length) {
-            const v = queue.drop();
+            const v = queue.drop()!;
             for (let n of this.graph.neighbors(v)) {
                 const c = dist[v] + cost(v, n);
                 if (c < dist[n] || !marked.at(n)) {

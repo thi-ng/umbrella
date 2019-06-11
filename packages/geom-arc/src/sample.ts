@@ -28,7 +28,7 @@ export const sample = (
         ? { num: opts, last: true }
         : { num: DEFAULT_SAMPLES, ...opts };
     let delta = end - start;
-    let num = opts.theta ? Math.round(delta / opts.theta) : opts.num;
+    let num = opts.theta ? Math.round(delta / opts.theta) : opts.num!;
     delta /= num;
     opts.last !== false && num++;
     const pts: Vec[] = new Array(num);

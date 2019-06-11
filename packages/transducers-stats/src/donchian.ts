@@ -26,5 +26,5 @@ export function donchian(
 export function donchian(period: number, src?: Iterable<number>): any {
     return src
         ? iterator(donchian(period), src)
-        : comp(partition(period, 1), map(bounds));
+        : comp<number, number[], number[]>(partition(period, 1), map(bounds));
 }

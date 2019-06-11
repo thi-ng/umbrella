@@ -1,7 +1,12 @@
 import { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
-import { stream, Stream, sync } from "@thi.ng/rstream";
+import {
+    stream,
+    Stream,
+    Subscription,
+    sync
+} from "@thi.ng/rstream";
 import {
     comp,
     map,
@@ -16,6 +21,9 @@ import {
 import { bits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { FONT } from "./font";
+
+const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
+    stream.next((<HTMLSelectElement>e.target).value);
 
 // retrieve font bytes for given char
 const lookupChar = (c: string) =>
@@ -62,7 +70,7 @@ const charSelector = (stream: Stream<string>) => [
     dropdown,
     {
         class: "ml3",
-        onchange: (e) => stream.next(e.target.value)
+        onchange: emitOnStream(stream)
     },
     [
         ["#", "#"],
@@ -80,14 +88,14 @@ const charSelector = (stream: Stream<string>) => [
 ];
 
 // main UI root component
-const app = ({ raw, result }) => [
+const app = ({ raw, result }: any) => [
     "div",
     [
         "div",
         [
             "input",
             {
-                oninput: (e) => input.next(e.target.value),
+                oninput: emitOnStream(input),
                 value: raw
             }
         ],
@@ -103,9 +111,11 @@ const on = stream<string>();
 const off = stream<string>();
 
 // transforming stream combinator
-const xformer = sync({ src: { input, on, off } }).transform(map(banner));
+const xformer = sync<any, any>({ src: { input, on, off } }).transform(
+    map(banner)
+);
 
-const main = sync({ src: { raw: input, result: xformer } });
+const main = sync<any, any>({ src: { raw: input, result: xformer } });
 main.transform(map(app), updateDOM());
 
 // kick off

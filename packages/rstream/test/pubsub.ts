@@ -7,8 +7,8 @@ describe("PubSub", () => {
     let pub: rs.PubSub<any, any>;
 
     it("simple", () => {
-        const acc = { a: [], b: [] };
-        const collect = { next: (x) => acc[x].push(x) };
+        const acc: any = { a: [], b: [] };
+        const collect = { next: (x: any) => acc[x].push(x) };
         pub = rs.pubsub({ topic: (x) => x });
         const a = pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);
@@ -22,7 +22,7 @@ describe("PubSub", () => {
     it("complex keys", () => {
         const acc = new EquivMap<[string, number], [string, number][]>();
         const collect = {
-            next: (x) => {
+            next: (x: any) => {
                 let v = acc.get(x);
                 v ? v.push(x) : acc.set(x, [x]);
             }
@@ -50,8 +50,8 @@ describe("PubSub", () => {
     });
 
     it("transducer", () => {
-        const acc = { a: [], b: [], c: [], d: [] };
-        const collect = { next: (x) => acc[x[0]].push(x) };
+        const acc: any = { a: [], b: [], c: [], d: [] };
+        const collect = { next: (x: any) => acc[x[0]].push(x) };
         pub = rs.pubsub({
             topic: (x) => x[0],
             xform: tx.mapIndexed<string, [string, number]>((i, x) => [x, i])
@@ -69,8 +69,8 @@ describe("PubSub", () => {
     });
 
     it("unsubTopic", (done) => {
-        const acc = { a: [], b: [] };
-        const collect = { next: (x) => acc[x].push(x) };
+        const acc: any = { a: [], b: [] };
+        const collect = { next: (x: any) => acc[x].push(x) };
         pub = rs.pubsub({ topic: (x) => x });
         pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);

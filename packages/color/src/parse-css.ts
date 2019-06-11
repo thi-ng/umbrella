@@ -2,7 +2,7 @@ import { IDeref } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { clamp01 } from "@thi.ng/math";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
-import { INV8BIT, Color } from "./api";
+import { Color, INV8BIT } from "./api";
 import { hslaRgba } from "./hsla-rgba";
 import { int32Rgba } from "./int-rgba";
 import { CSS_NAMES } from "./names";
@@ -67,7 +67,7 @@ export const parseHex = (src: string): number => {
             default:
         }
     }
-    illegalArgs(`invalid hex color: "${src}"`);
+    return illegalArgs(`invalid hex color: "${src}"`);
 };
 
 const parseChannel = (c: string) =>

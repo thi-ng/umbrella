@@ -1,16 +1,23 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cubicSplitAt, quadraticSplitAt } from "@thi.ng/geom-splines";
 import { fit01 } from "@thi.ng/math";
 import { copyVectors, set } from "@thi.ng/vectors";
+import {
+    Arc,
+    Cubic,
+    Line,
+    Polyline,
+    Quadratic
+} from "../api";
 import { dispatch } from "../internal/dispatch";
 import { splitLine } from "../internal/split";
-import { Arc, Cubic, Line, Polyline, Quadratic } from "../api";
 
-export const splitAt = defmulti<IShape, number, IShape[]>(dispatch);
+export const splitAt = defmulti<IShape, number, IShape[] | undefined>(dispatch);
 
-splitAt.addAll({
+splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
     [Type.ARC]: ($: Arc, t: number) => {
         const theta = fit01(t, $.start, $.end);
         return [
@@ -47,10 +54,12 @@ splitAt.addAll({
             (pts) => new Line(pts, { ...attribs })
         ),
 
-    [Type.POLYLINE]: ($: Polyline, t) =>
-        new Sampler($.points)
-            .splitAt(t)
-            .map((pts) => new Polyline(copyVectors(pts), { ...$.attribs })),
+    [Type.POLYLINE]: ($: Polyline, t) => {
+        const res = new Sampler($.points).splitAt(t);
+        return res
+            ? res.map((pts) => new Polyline(copyVectors(pts), { ...$.attribs }))
+            : undefined;
+    },
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic, t: number) =>
         quadraticSplitAt(points[0], points[1], points[2], t).map(

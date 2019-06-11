@@ -4,7 +4,12 @@ import {
     StreamMerge,
     StreamSync
 } from "@thi.ng/rstream";
-import { DotOpts, Node, WalkState } from "./api";
+import {
+    DotOpts,
+    Node,
+    NodeType,
+    WalkState
+} from "./api";
 
 export * from "./api";
 
@@ -32,7 +37,7 @@ const dotNode = (s: Node, opts: DotOpts) => {
     }
     res += `", color="`;
     res +=
-        (s.type && opts.color[s.type.toLowerCase()]) ||
+        (s.type && opts.color[<NodeType>s.type.toLowerCase()]) ||
         (s.label === "<noid>" ? opts.color.noid : opts.color.default);
     return res + `"];`;
 };
@@ -73,7 +78,8 @@ export const walk = (
         if (children) {
             walk(children, opts, state);
             for (let c of children) {
-                state.rels.push([desc, state.subs.get(c)]);
+                const childNode = state.subs.get(c);
+                childNode && state.rels.push([desc, childNode]);
             }
         }
     }

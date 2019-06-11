@@ -1,4 +1,5 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import {
     IHiccupShape,
     IShape,
@@ -6,7 +7,13 @@ import {
     PCLikeConstructor,
     Type
 } from "@thi.ng/geom-api";
-import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
+import {
+    add2,
+    add3,
+    ReadonlyVec,
+    set2,
+    set3
+} from "@thi.ng/vectors";
 import {
     AABB,
     Arc,
@@ -32,7 +39,7 @@ const tx = (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyVec) =>
 
 export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
 
-translate.addAll({
+translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
     [Type.AABB]: ($: AABB, delta) =>
         new AABB(add3([], $.pos, delta), set3([], $.size), { ...$.attribs }),
 
@@ -58,17 +65,16 @@ translate.addAll({
 
     [Type.PATH]: ($: Path, delta: ReadonlyVec) =>
         new Path(
-            $.segments.map(
-                (s) =>
-                    s.geo
-                        ? {
-                              type: s.type,
-                              geo: <any>translate(s.geo, delta)
-                          }
-                        : {
-                              type: s.type,
-                              point: add2([], s.point, delta)
-                          }
+            $.segments.map((s) =>
+                s.geo
+                    ? {
+                          type: s.type,
+                          geo: <any>translate(s.geo, delta)
+                      }
+                    : {
+                          type: s.type,
+                          point: add2([], s.point!, delta)
+                      }
             ),
             { ...$.attribs }
         ),

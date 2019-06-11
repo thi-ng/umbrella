@@ -1,15 +1,27 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { EPS, HALF_PI, roundEps, sincos } from "@thi.ng/math";
+import {
+    EPS,
+    HALF_PI,
+    roundEps,
+    sincos
+} from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
 import { add2, magSq2 } from "@thi.ng/vectors";
+import {
+    Arc,
+    Cubic,
+    Line,
+    Path,
+    Quadratic
+} from "../api";
 import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
 import { dispatch } from "../internal/dispatch";
-import { Arc, Cubic, Line, Path, Quadratic } from "../api";
 
 export const asCubic = defmulti<IShape, Cubic[]>(dispatch);
 
-asCubic.addAll({
+asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
     [Type.ARC]: ($: Arc) => {
         const p = $.pointAtTheta($.start);
         const q = $.pointAtTheta($.end);

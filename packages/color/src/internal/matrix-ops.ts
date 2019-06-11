@@ -5,7 +5,7 @@ import { Color, ColorMatrix, ReadonlyColor } from "../api";
 import { ensureAlpha } from "./ensure-alpha";
 
 export const mulV33 = (
-    out: Color,
+    out: Color | null,
     mat: number[],
     src: ReadonlyColor,
     clampOut = true
@@ -20,7 +20,7 @@ export const mulV33 = (
 };
 
 export const mulV45 = (
-    out: Color,
+    out: Color | null,
     mat: ColorMatrix,
     src: ReadonlyColor,
     clampOut = true

@@ -41,7 +41,7 @@ export function movingMedian<A, B>(...args: any[]): any {
     };
     const n = args[0];
     const m = n >> 1;
-    return comp(
+    return comp<A, A[], A>(
         partition(n, 1, true),
         map(
             (window: A[]) =>

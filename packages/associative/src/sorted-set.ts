@@ -31,7 +31,7 @@ export class SortedSet<T> extends Set<T>
      * @param values
      * @param opts
      */
-    constructor(values?: Iterable<T>, opts?: Partial<SortedSetOpts<T>>) {
+    constructor(values?: Iterable<T> | null, opts?: Partial<SortedSetOpts<T>>) {
         super();
         __private.set(
             this,
@@ -54,8 +54,8 @@ export class SortedSet<T> extends Set<T>
         return "SortedSet";
     }
 
-    get size() {
-        return __private.get(this).size;
+    get size(): number {
+        return __private.get(this)!.size;
     }
 
     copy(): SortedSet<T> {
@@ -104,24 +104,24 @@ export class SortedSet<T> extends Set<T>
         return true;
     }
 
-    $reduce(rfn: ReductionFn<any, T>, acc: any) {
-        return __private.get(this).$reduce((_acc, x) => rfn(_acc, x[0]), acc);
+    $reduce(rfn: ReductionFn<any, T>, acc: any): any {
+        return __private.get(this)!.$reduce((_acc, x) => rfn(_acc, x[0]), acc);
     }
 
     entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
-        return __private.get(this).entries(key, max);
+        return __private.get(this)!.entries(key, max);
     }
 
     keys(key?: T, max = false): IterableIterator<T> {
-        return __private.get(this).keys(key, max);
+        return __private.get(this)!.keys(key, max);
     }
 
     values(key?: T, max = false): IterableIterator<T> {
-        return __private.get(this).values(key, max);
+        return __private.get(this)!.values(key, max);
     }
 
     add(value: T) {
-        __private.get(this).set(value, value);
+        __private.get(this)!.set(value, value);
         return this;
     }
 
@@ -133,16 +133,16 @@ export class SortedSet<T> extends Set<T>
     }
 
     clear(): void {
-        __private.get(this).clear();
+        __private.get(this)!.clear();
     }
 
     first(): T {
-        const first = __private.get(this).first();
+        const first = __private.get(this)!.first();
         return first ? first[0] : undefined;
     }
 
     delete(value: T): boolean {
-        return __private.get(this).delete(value);
+        return __private.get(this)!.delete(value);
     }
 
     disj(xs: Iterable<T>) {
@@ -157,19 +157,19 @@ export class SortedSet<T> extends Set<T>
         thisArg?: any
     ): void {
         for (let p of this) {
-            fn.call(thisArg, p[0], p[0], this);
+            fn.call(thisArg, p, p, this);
         }
     }
 
     has(value: T): boolean {
-        return __private.get(this).has(value);
+        return __private.get(this)!.has(value);
     }
 
     get(value: T, notFound?: T): T | undefined {
-        return __private.get(this).get(value, notFound);
+        return __private.get(this)!.get(value, notFound);
     }
 
     opts(): SortedSetOpts<T> {
-        return __private.get(this).opts();
+        return __private.get(this)!.opts();
     }
 }

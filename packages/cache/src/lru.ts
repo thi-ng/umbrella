@@ -9,7 +9,10 @@ export class LRUCache<K, V> implements ICache<K, V> {
     protected opts: CacheOpts<K, V>;
     protected _size: number;
 
-    constructor(pairs?: Iterable<[K, V]>, opts?: Partial<CacheOpts<K, V>>) {
+    constructor(
+        pairs?: Iterable<[K, V]> | null,
+        opts?: Partial<CacheOpts<K, V>>
+    ) {
         const _opts = <CacheOpts<K, V>>Object.assign(
             {
                 maxlen: Infinity,
@@ -112,7 +115,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
                     v: value,
                     s: size
                 });
-                this.map.set(key, this.items.tail);
+                this.map.set(key, this.items.tail!);
             }
         }
         return value;

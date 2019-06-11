@@ -3,11 +3,10 @@ import { getIn } from "@thi.ng/paths";
 import * as assert from "assert";
 import { Atom, Cursor } from "../src/index";
 
-describe("cursor", function () {
-
+describe("cursor", function() {
     let a: Atom<any>;
     let c: Cursor<any>;
-    let src;
+    let src: any;
 
     beforeEach(() => {
         src = { a: { b: { c: 23, g: { h: 88 } }, d: { e: 42 } }, f: 66 };
@@ -45,7 +44,11 @@ describe("cursor", function () {
     });
 
     it("works with get/set", () => {
-        c = new Cursor(a, (s) => s.a.b, (s, x) => ({ ...s, a: { ...s.a, b: x } }));
+        c = new Cursor(
+            a,
+            (s) => s.a.b,
+            (s, x) => ({ ...s, a: { ...s.a, b: x } })
+        );
         assert.strictEqual(c.deref(), src.a.b);
         c.reset(42);
         assert.equal(c.deref(), 42);
@@ -55,10 +58,7 @@ describe("cursor", function () {
     it("works with get/set opts", () => {
         c = new Cursor({
             parent: a,
-            path: [
-                (s) => s.a.b,
-                (s, x) => ({ ...s, a: { ...s.a, b: x } })
-            ]
+            path: [(s) => s.a.b, (s, x) => ({ ...s, a: { ...s.a, b: x } })]
         });
         assert.strictEqual(c.deref(), src.a.b);
         c.reset(42);
@@ -70,17 +70,19 @@ describe("cursor", function () {
         c = new Cursor({
             parent: a,
             path: "a.b.c",
-            validate: isNumber,
+            validate: isNumber
         });
         assert.equal(c.reset(42), 42);
         assert.equal(c.reset("a"), 42);
         assert.equal(c.reset(null), 42);
-        assert.throws(() => new Cursor({ parent: a, path: "x", validate: isNumber }));
-    })
+        assert.throws(
+            () => new Cursor({ parent: a, path: "x", validate: isNumber })
+        );
+    });
 
     it("can be swapped'd (a.b.c)", () => {
         c = new Cursor(a, "a.b.c");
-        assert.equal(c.swap(x => x + 1), src.a.b.c + 1);
+        assert.equal(c.swap((x) => x + 1), src.a.b.c + 1);
         assert.equal(c.deref(), src.a.b.c + 1);
         assert.equal(a.deref().a.b.c, src.a.b.c + 1);
         assert.strictEqual(a.deref().a.d, src.a.d);
@@ -102,7 +104,7 @@ describe("cursor", function () {
 
     it("can update invalid path (x.y.z)", () => {
         c = new Cursor(a, "x.y.z");
-        let add = (x) => x != null ? x + 1 : 0;
+        let add = (x: any) => (x != null ? x + 1 : 0);
         assert.equal(c.swap(add), 0);
         assert.equal(c.deref(), 0);
         assert.equal(c.swap(add), 1);
@@ -132,10 +134,16 @@ describe("cursor", function () {
 
     it("can add & remove watch", () => {
         c = new Cursor(a, "a.b.c");
-        assert.ok(c.addWatch("foo", () => { }), "can't add watch");
-        assert.ok((<any>c).local._watches && (<any>c).local._watches.foo, "watch missing");
+        assert.ok(c.addWatch("foo", () => {}), "can't add watch");
+        assert.ok(
+            (<any>c).local._watches && (<any>c).local._watches.foo,
+            "watch missing"
+        );
         assert.ok(c.removeWatch("foo"), "can't remove watch");
-        assert.ok(!c.removeWatch("foo"), "should fail to remove invalid watch id");
+        assert.ok(
+            !c.removeWatch("foo"),
+            "should fail to remove invalid watch id"
+        );
     });
 
     it("can be watched", () => {

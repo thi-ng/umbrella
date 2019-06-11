@@ -56,13 +56,13 @@ export function dropdown(themeCtxPath: Path) {
                   [
                       "div",
                       ui.bodyOpen,
-                      state.items.map((x) =>
+                      state.items.map((x: any) =>
                           appLink(
                               null,
                               x[0] === state.selected
                                   ? ui.itemSelected
                                   : ui.item,
-                              opts.onchange(x[0]),
+                              opts.onchange!(x[0]),
                               x[1]
                           )
                       )
@@ -78,7 +78,7 @@ export function dropdown(themeCtxPath: Path) {
                       state.hover
                           ? opts.hoverLabel
                           : (state.items.find(
-                                (x) => x[0] === state.selected
+                                (x: any) => x[0] === state.selected
                             ) || [, opts.hoverLabel])[1]
                   ],
                   ["div", ui.bodyClosed]
@@ -95,7 +95,7 @@ export const dropdownListeners = (
     onmouseleave: () =>
         ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], false]]),
     ontoggle: () => ctx.bus.dispatch([EV_TOGGLE_VALUE, [...basePath, "open"]]),
-    onchange: (x) => () => {
+    onchange: (x: any) => () => {
         ctx.bus.dispatch(
             [EV_SET_VALUE, [[...basePath, "selected"], x]],
             [EV_SET_VALUE, [[...basePath, "open"], false]]

@@ -1,4 +1,5 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, HALF_PI, TAU } from "@thi.ng/math";
@@ -9,7 +10,7 @@ import { vertices } from "./vertices";
 
 export const tangentAt = defmulti<IShape, number, Vec>(dispatch);
 
-tangentAt.addAll({
+tangentAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.CIRCLE]: (_, t) => cossin(TAU * t + HALF_PI),
 
     [Type.LINE]: ({ points }: Line) => direction([], points[0], points[1]),

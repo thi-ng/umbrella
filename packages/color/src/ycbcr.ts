@@ -10,10 +10,10 @@ export function ycbcra(...args: any[]) {
 }
 
 export class YCbCrA extends AColor<YCbCrA> implements IVector<YCbCrA> {
-    y: number;
-    b: number;
-    r: number;
-    a: number;
+    y!: number;
+    b!: number;
+    r!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.YCBCRA;

@@ -4,7 +4,7 @@
 // when this module is being replaced via HMR
 
 // root component function
-export const app = ({ now, state }) => [
+export const app = ({ now, state }: any) => [
     "div.pa2.sans-serif.f6.bg-light-yellow",
     ["h1.pa0.ma0.bb", "State"],
     [
@@ -21,9 +21,13 @@ export const app = ({ now, state }) => [
     ]
 ];
 
-const item = (_, label, value) => ["li", ["span.dib.b.w4", label], value];
+const item = (_: any, label: string, value: any) => [
+    "li",
+    ["span.dib.b.w4", label],
+    value
+];
 
-const repoLink = (_, file) => [
+const repoLink = (_: any, file: string) => [
     "a.pa1.link.black.bg-light-gray",
     {
         href: `https://github.com/thi-ng/umbrella/tree/master/examples/hmr-basics/${file}`

@@ -9,7 +9,6 @@ import {
 } from "./api";
 import { parse, SyntaxError } from "./parser";
 
-
 export let LOGGER = NULL_LOGGER;
 
 export const setLogger = (logger: ILogger) => (LOGGER = logger);
@@ -29,8 +28,8 @@ const nodeLoc = (node: ASTNode) =>
  * @param ctx
  */
 const resolveSym = (node: ASTNode, ctx: pf.StackContext) => {
-    const id = node.id;
-    let w = ctx[2].__words[id] || ALIASES[id] || pf[id];
+    const id = node.id!;
+    let w = ctx[2].__words[id] || ALIASES[id] || (<any>pf)[id];
     if (!w) {
         illegalArgs(`${nodeLoc(node)} unknown symbol: ${id}`);
     }
@@ -48,7 +47,7 @@ const resolveSym = (node: ASTNode, ctx: pf.StackContext) => {
  * @param ctx
  */
 const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
-    const id = node.id;
+    const id = node.id!;
     const v = ctx[2].__vars[id];
     if (!v) {
         illegalArgs(`${nodeLoc(node)} unknown var: ${id}`);
@@ -66,14 +65,14 @@ const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
  * @param node
  * @param ctx
  */
-const resolveNode = (node: ASTNode, ctx: pf.StackContext) => {
+const resolveNode = (node: ASTNode, ctx: pf.StackContext): any => {
     switch (node.type) {
         case NodeType.SYM:
             return resolveSym(node, ctx);
         case NodeType.VAR_DEREF:
             return resolveVar(node, ctx);
         case NodeType.VAR_STORE:
-            return storevar(node.id);
+            return storevar(node.id!);
         case NodeType.ARRAY:
             return resolveArray(node, ctx);
         case NodeType.OBJ:
@@ -104,7 +103,7 @@ const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
  * @param ctx
  */
 const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
-    const res = {};
+    const res: any = {};
     for (let [k, v] of node.body) {
         res[k.type === NodeType.SYM ? k.id : resolveNode(k, ctx)] = resolveNode(
             v,
@@ -268,7 +267,7 @@ const visitStore = (
     ctx: pf.StackContext,
     state: VisitorState
 ) => {
-    const id = node.id;
+    const id = node.id!;
     if (state.word) {
         ctx[0].push(storevar(id));
         return ctx;
@@ -296,7 +295,7 @@ const visitWord = (
     ctx: pf.StackContext,
     state: VisitorState
 ) => {
-    const id = node.id;
+    const id = node.id!;
     if (state.word) {
         illegalState(
             `${nodeLoc(node)}: can't define words inside quotations (${id})`
@@ -346,7 +345,11 @@ const visitArray = (
     state: VisitorState
 ) => {
     if (state.word) {
-        ctx[0].push((_ctx) => (_ctx[0].push(resolveArray(node, _ctx)), _ctx));
+        ctx[0].push(
+            (_ctx: pf.StackContext) => (
+                _ctx[0].push(resolveArray(node, _ctx)), _ctx
+            )
+        );
     } else {
         ctx[0].push(resolveArray(node, ctx));
     }
@@ -368,7 +371,11 @@ const visitObject = (
     state: VisitorState
 ) => {
     if (state.word) {
-        ctx[0].push((_ctx) => (_ctx[0].push(resolveObject(node, _ctx)), _ctx));
+        ctx[0].push(
+            (_ctx: pf.StackContext) => (
+                _ctx[0].push(resolveObject(node, _ctx)), _ctx
+            )
+        );
     } else {
         ctx[0].push(resolveObject(node, ctx));
     }

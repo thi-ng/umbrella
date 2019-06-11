@@ -23,13 +23,13 @@ export interface AttribPoolOpts {
 }
 
 export interface IVecPool extends IRelease {
-    malloc(size: number, type?: GLType | Type): TypedArray;
+    malloc(size: number, type?: GLType | Type): TypedArray | undefined;
 
     mallocWrapped(
         size: number,
         stride?: number,
         type?: GLType | Type
-    ): StridedVec;
+    ): StridedVec | undefined;
 
     mallocArray(
         num: number,
@@ -37,11 +37,11 @@ export interface IVecPool extends IRelease {
         cstride?: number,
         estride?: number,
         type?: GLType | Type
-    ): StridedVec[];
+    ): StridedVec[] | undefined;
 
     free(vec: StridedVec | TypedArray): boolean;
 
-    freeAll();
+    freeAll(): void;
 }
 
 export type VecFactory = (
@@ -72,7 +72,7 @@ export const enum GLType {
 /**
  * Conversion from `GLType` to `Type`.
  */
-export const GL2TYPE = {
+export const GL2TYPE: { [id: number]: Type } = {
     [GLType.I8]: Type.I8,
     [GLType.U8]: Type.U8,
     [GLType.I16]: Type.I16,
@@ -86,7 +86,7 @@ export const GL2TYPE = {
 /**
  * Conversion from `Type` to `GLType`.
  */
-export const TYPE2GL = {
+export const TYPE2GL: { [id: number]: GLType } = {
     [Type.I8]: GLType.I8,
     [Type.U8]: GLType.U8,
     [Type.I16]: GLType.I16,

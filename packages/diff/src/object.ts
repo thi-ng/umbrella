@@ -3,22 +3,24 @@ import { equiv } from "@thi.ng/equiv";
 import { DiffMode, ObjectDiff } from "./api";
 
 export const diffObject = <T>(
-    a: IObjectOf<T>,
-    b: IObjectOf<T>,
+    a: IObjectOf<T> | undefined | null,
+    b: IObjectOf<T> | undefined | null,
     mode = DiffMode.FULL,
     _equiv: Predicate2<any> = equiv
 ): ObjectDiff<T> =>
     a === b
         ? { distance: 0 }
         : mode === DiffMode.ONLY_DISTANCE
-            ? diffObjectDist(a, b, _equiv)
-            : diffObjectFull(a, b, _equiv);
+        ? diffObjectDist(a, b, _equiv)
+        : diffObjectFull(a, b, _equiv);
 
 const diffObjectDist = (
-    a: IObjectOf<any>,
-    b: IObjectOf<any>,
+    a: IObjectOf<any> | undefined | null,
+    b: IObjectOf<any> | undefined | null,
     _equiv: Predicate2<any>
 ) => {
+    if (!a) a = {};
+    if (!b) b = {};
     let d = 0;
     for (let k in a) {
         const vb = b[k];
@@ -31,10 +33,12 @@ const diffObjectDist = (
 };
 
 const diffObjectFull = (
-    a: IObjectOf<any>,
-    b: IObjectOf<any>,
+    a: IObjectOf<any> | undefined | null,
+    b: IObjectOf<any> | undefined | null,
     _equiv: Predicate2<any>
 ) => {
+    if (!a) a = {};
+    if (!b) b = {};
     let d = 0;
     const adds = [];
     const dels = [];

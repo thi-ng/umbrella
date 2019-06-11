@@ -44,5 +44,4 @@ export const fromIterableSync = <T>(src: Iterable<T>, close = true) =>
             stream.next(s);
         }
         close && stream.done();
-        return null;
     }, `iterable-${nextID()}`);

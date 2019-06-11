@@ -12,7 +12,7 @@ import { translation23, translation44 } from "./translation";
  * @param m
  */
 export const scaleWithCenter23 = (
-    m: Mat,
+    m: Mat | null,
     p: ReadonlyVec,
     s: number | ReadonlyVec
 ) =>
@@ -31,7 +31,7 @@ export const scaleWithCenter23 = (
  * @param m
  */
 export const scaleWithCenter44 = (
-    m: Mat,
+    m: Mat | null,
     p: ReadonlyVec,
     s: number | ReadonlyVec
 ) =>

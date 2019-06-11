@@ -111,8 +111,8 @@ const TAU = 2 * PI;
  *
  * @param opts
  */
-export const dial = (opts: Partial<DialOpts>) => {
-    opts = {
+export const dial = (_opts: Partial<DialOpts>) => {
+    const opts = <DialOpts>{
         cx: 0.5,
         cy: 0.5,
         r1: 0.5,
@@ -126,10 +126,10 @@ export const dial = (opts: Partial<DialOpts>) => {
         labelColor: "black",
         labelYOffset: 0,
         font: "10px sans-serif",
-        ...opts
+        ..._opts
     };
     let events: Subscription<any, GestureEvent>;
-    let cx, cy;
+    let cx: number, cy: number;
     const startTheta = opts.base + opts.gap / 2;
 
     const drawRing = (
