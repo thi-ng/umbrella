@@ -30,8 +30,8 @@ export const text = (
         color: <GLVec4>ONE4,
         ...opts
     };
-    const dir = [opts.dirX, opts.dirY];
-    const lineHeight = glyphs.lineHeight * opts.leading * opts.dirY;
+    const dir: number[] = [opts.dirX!, opts.dirY!];
+    const lineHeight = glyphs.lineHeight * opts.leading! * opts.dirY!;
     const len = txt.replace("\n", "").length;
     const attribs = new AttribPool({
         attribs: {
@@ -56,7 +56,7 @@ export const text = (
     const lines = txt.split("\n");
     for (let i = 0, yy = 0, id = 0; i < lines.length; i++) {
         const line = lines[i];
-        let xx = opts.align(glyphs, <TextOpts>opts, line);
+        let xx = opts.align!(glyphs, <TextOpts>opts, line);
         for (let j = 0; j < line.length; j++, id++) {
             const g = glyphs.chars[line[j]];
             const [sx, sy] = mul2([], g.size, dir);
@@ -81,7 +81,7 @@ export const text = (
                 ],
                 id * 4
             );
-            xx += g.step * opts.dirX * opts.spacing;
+            xx += g.step * opts.dirX! * opts.spacing!;
         }
         yy += lineHeight;
     }
@@ -101,13 +101,19 @@ export const text = (
     };
 };
 
-export const textWidth = (font: MSDFFont, txt: string) =>
-    transduce(map((x) => font.chars[x].step), add(), txt);
+export const textWidth = (
+    font: MSDFFont,
+    opts: Partial<TextOpts>,
+    txt: string
+) => {
+    const s = opts.spacing !== undefined ? opts.spacing : 1;
+    return transduce(map((x) => font.chars[x].step * s), add(), txt);
+};
 
 export const alignLeft: TextAlign = () => 0;
 
 export const alignRight: TextAlign = (font, opts, line) =>
-    -opts.dirX * opts.spacing * textWidth(font, line);
+    -(opts.dirX || 1) * textWidth(font, opts, line);
 
 export const alignCenter: TextAlign = (font, opts, line) =>
-    (-opts.dirX * opts.spacing * textWidth(font, line)) / 2;
+    (-(opts.dirX || 1) * textWidth(font, opts, line)) / 2;

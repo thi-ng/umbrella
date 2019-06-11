@@ -48,7 +48,7 @@ export interface MSDFFont {
  * @param dir
  * @param line
  */
-export type TextAlign = Fn3<MSDFFont, TextOpts, string, number>;
+export type TextAlign = Fn3<MSDFFont, Partial<TextOpts>, string, number>;
 
 export interface TextOpts {
     /**

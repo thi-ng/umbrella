@@ -15,7 +15,7 @@ export const convertGlyphs = (raw: RawGlyphs): MSDFFont => ({
     baseLine: raw.common.base,
     tex: raw.pages[0],
     size: [raw.common.scaleW, raw.common.scaleH],
-    chars: raw.chars.reduce((acc, ch) => {
+    chars: raw.chars.reduce((acc: any, ch) => {
         acc[String.fromCharCode(ch.id)] = {
             pos: [ch.x, ch.y],
             offset: [ch.xoffset, ch.yoffset],
