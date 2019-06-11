@@ -569,7 +569,7 @@ export class EventBus extends StatelessEventBus
      * @param effects
      */
     constructor(
-        state?: IAtom<any>,
+        state?: IAtom<any> | null,
         handlers?: IObjectOf<EventDef>,
         effects?: IObjectOf<EffectDef>
     ) {
