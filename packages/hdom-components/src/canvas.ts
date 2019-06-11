@@ -20,23 +20,23 @@ export interface CanvasHandlers<T extends CanvasContext> {
     /**
      * user init handler (called only once when canvas first)
      */
-    init(el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]): void;
+    init(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
     /**
      * update handler (called for each hdom update iteration)
      */
     update(
         el: HTMLCanvasElement,
         ctx: T,
-        hctx?: any,
-        time?: number,
-        frame?: number,
+        hctx: any,
+        time: number,
+        frame: number,
         ...args: any[]
     ): void;
     /**
      * release handler (called only once when canvas element is removed
      * from DOM)
      */
-    release(el: HTMLCanvasElement, ctx: T, hctx?: any, ...args: any[]): void;
+    release(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
 }
 
 /**
