@@ -71,7 +71,9 @@ const arrayDecl = (
 ) => {
     const type = isArray(decl) ? decl[0] : decl;
     return type >= GLSL.bool_array
-        ? `${qualifier} ${GLSL[type].replace("_array", "")} ${id}[${decl[1]}];`
+        ? `${qualifier} ${GLSL[type].replace("_array", "")} ${id}[${
+              (<[GLSL, number]>decl)[1]
+          }];`
         : `${qualifier} ${GLSL[type]} ${id};`;
 };
 
@@ -86,7 +88,7 @@ export const VERSION_CHECK = (ver: number, ok: string, fail = "") => {
     let cmp = ">=";
     if (!ok) {
         ok = fail;
-        fail = null;
+        fail = <any>null;
         cmp = "<";
     }
     return `#if __VERSION__ ${cmp} ${ver}

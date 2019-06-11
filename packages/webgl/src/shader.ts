@@ -47,7 +47,7 @@ export class Shader implements IShader {
         program: WebGLProgram,
         attribs: IObjectOf<ShaderAttrib>,
         uniforms: ShaderUniforms,
-        state: Partial<ShaderState>
+        state?: Partial<ShaderState>
     ) {
         this.gl = gl;
         this.program = program;
@@ -86,7 +86,7 @@ export class Shader implements IShader {
         for (let id in specAttribs) {
             if ((shaderAttrib = this.attribs[id])) {
                 const attr = specAttribs[id];
-                attr.buffer.bind();
+                attr.buffer!.bind();
                 gl.enableVertexAttribArray(shaderAttrib.loc);
                 gl.vertexAttribPointer(
                     shaderAttrib.loc,
@@ -102,7 +102,7 @@ export class Shader implements IShader {
         }
     }
 
-    bindUniforms(specUnis: UniformValues) {
+    bindUniforms(specUnis: UniformValues = {}) {
         const shaderUnis = this.uniforms;
         for (let id in specUnis) {
             const u = shaderUnis[id];
@@ -188,7 +188,8 @@ export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
     initShaderExtensions(gl, spec.ext);
     const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
     const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
-    const program = gl.createProgram();
+    const program =
+        gl.createProgram() || error("error creating shader program");
     gl.attachShader(program, vs);
     gl.attachShader(program, fs);
     gl.linkProgram(program);
@@ -222,7 +223,7 @@ const compileExtensionPragma = (
     behavior: GLSLExtensionBehavior,
     version: GLSLVersion
 ) => {
-    const ext = GL_EXT_INFO[id];
+    const ext = (<any>GL_EXT_INFO)[id];
     const gl2 = version === GLSLVersion.GLES_300;
     return !ext || (!gl2 && ext.gl) || (gl2 && ext.gl2)
         ? `#extension ${ext.alias || id} : ${
@@ -233,13 +234,13 @@ const compileExtensionPragma = (
 
 const initShaderExtensions = (
     gl: WebGLRenderingContext,
-    exts: IObjectOf<GLSLExtensionBehavior>
+    exts: IObjectOf<GLSLExtensionBehavior> | undefined
 ) => {
     if (exts) {
         for (let id in exts) {
             const state = exts[id];
             if (state === true || state === "require") {
-                getExtensions(gl, [id], state === "require");
+                getExtensions(gl, <any>[id], state === "require");
             }
         }
     }
@@ -283,13 +284,13 @@ export const compileShader = (
     type: GLenum,
     src: string
 ) => {
-    const shader = gl.createShader(type);
+    const shader = gl.createShader(type) || error("error creating shader");
     gl.shaderSource(shader, src);
     gl.compileShader(shader);
     if (gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
         return shader;
     }
-    parseAndThrowShaderError(gl, shader, src);
+    return parseAndThrowShaderError(gl, shader, src);
 };
 
 const parseAndThrowShaderError = (
@@ -298,18 +299,18 @@ const parseAndThrowShaderError = (
     src: string
 ) => {
     const lines = src.split("\n");
-    const log = gl.getShaderInfoLog(shader).split("\n");
+    const log = gl.getShaderInfoLog(shader)!.split("\n");
     const errors = log
         .map((line) => {
             const matches = ERROR_REGEXP.exec(line);
             const ln = matches ? matches[1] : null;
             if (ln) {
-                return `line ${ln}: ${matches[2]}\n${lines[parseInt(ln) - 1]}`;
+                return `line ${ln}: ${matches![2]}\n${lines[parseInt(ln) - 1]}`;
             }
         })
         .filter(existsAndNotNull)
         .join("\n");
-    error(`Error compiling shader:\n${errors}`);
+    return error(`Error compiling shader:\n${errors}`);
 };
 
 const initAttributes = (
@@ -338,7 +339,7 @@ const initAttributes = (
 const initUniforms = (
     gl: WebGLRenderingContext,
     prog: WebGLProgram,
-    uniforms: ShaderUniformSpecs
+    uniforms: ShaderUniformSpecs = {}
 ) => {
     const res = <IObjectOf<ShaderUniform>>{};
     for (let id in uniforms) {
@@ -355,7 +356,8 @@ const initUniforms = (
         } else {
             type = val;
         }
-        const loc = gl.getUniformLocation(prog, `u_${id}`);
+        const loc = gl.getUniformLocation(prog, `u_${id}`)!;
+        loc == null && error(`unknown uniform: ${id}`);
         const setter = UNIFORM_SETTERS[type];
         if (setter) {
             res[id] = {

@@ -33,10 +33,10 @@ const uniformS = (fn: SetterS) => (
     defaultVal = 0
 ) => {
     let prev: number;
-    return (x: number) => {
+    return (x?: number) => {
         x = x === undefined ? defaultVal : x;
         if (x !== prev) {
-            gl["uniform1" + fn](loc, x);
+            (<any>gl)["uniform1" + fn](loc, x);
             prev = x;
         }
     };
@@ -48,10 +48,10 @@ const uniformV = (fn: SetterV, sysDefault?: ReadonlyVec) => (
     defaultVal = sysDefault
 ) => {
     let prev: GLVec = [];
-    return (x: any) => {
+    return (x?: any) => {
         x = x === undefined ? defaultVal : x;
         if (!equivArrayLike(prev, x)) {
-            gl["uniform" + fn](loc, x);
+            (<any>gl)["uniform" + fn](loc, x);
             prev = x;
         }
     };
@@ -63,10 +63,10 @@ const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
     defaultVal = sysDefault
 ) => {
     let prev: GLVec = [];
-    return (x: any) => {
+    return (x?: any) => {
         x = x === undefined ? defaultVal : x;
         if (!equivArrayLike(prev, x)) {
-            gl["uniformMatrix" + fn](loc, false, x);
+            (<any>gl)["uniformMatrix" + fn](loc, false, x);
             prev = x;
         }
     };
@@ -76,10 +76,10 @@ export const UNIFORM_SETTERS: IObjectOf<
     Fn3<
         WebGLRenderingContext,
         WebGLUniformLocation,
-        number | ReadonlyVec,
-        Fn<UniformValue, void>
+        number | ReadonlyVec | undefined,
+        Fn<UniformValue | undefined | null, void>
     >
-> = {
+> = <any>{
     [GLSL.bool]: uniformS("i"),
     [GLSL.float]: uniformS("f"),
     [GLSL.int]: uniformS("i"),

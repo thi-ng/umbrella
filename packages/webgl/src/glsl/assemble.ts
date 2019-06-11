@@ -7,11 +7,14 @@ import { ShaderSnippet } from "../api";
  * @param spec
  * @param graph
  */
-const buildGraph = (spec: ShaderSnippet, graph?: DGraph<ShaderSnippet>) =>
+const buildGraph = (
+    graph: DGraph<ShaderSnippet>,
+    spec: ShaderSnippet
+): DGraph<ShaderSnippet> =>
     spec.deps
         ? spec.deps.reduce(
-              (graph, d) => buildGraph(d, graph.addDependency(spec, d)),
-              graph || new DGraph<ShaderSnippet>()
+              (graph, d) => buildGraph(graph.addDependency(spec, d), d),
+              graph
           )
         : graph;
 
@@ -23,7 +26,7 @@ const buildGraph = (spec: ShaderSnippet, graph?: DGraph<ShaderSnippet>) =>
  */
 export const assemble = (spec: ShaderSnippet) =>
     spec.deps
-        ? buildGraph(spec)
+        ? buildGraph(new DGraph<ShaderSnippet>(), spec)
               .sort()
               .map((s) => s.src)
               .join("\n")

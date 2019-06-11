@@ -9,7 +9,7 @@ export interface CubeOpts {
 // prettier-ignore
 export const cube = (opts?: Partial<CubeOpts>) => {
     opts = { size: 1, normal: true, uv: true, ...opts};
-    const s = opts.size;
+    const s = opts.size!;
     const spec: ModelSpec = {
         attribs: {
             position: {
@@ -20,7 +20,7 @@ export const cube = (opts?: Partial<CubeOpts>) => {
             data: new Uint16Array([0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23])
         },
         uniforms: {},
-        shader: null,
+        shader: <any>null,
         num: 36
     };
     opts.normal && (spec.attribs.normal = {

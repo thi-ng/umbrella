@@ -10,16 +10,16 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
         const spec = _specs[i];
         const indices = spec.indices;
         const gl = spec.shader.gl;
-        bindTextures(spec.textures);
+        spec.textures && bindTextures(spec.textures);
         spec.shader.prepareState();
         spec.shader.bind(spec);
-        if (indices) {
+        if (indices && indices.buffer) {
             indices.buffer.bind();
             if (spec.instances) {
                 drawInstanced(gl, spec);
             } else {
                 gl.drawElements(
-                    spec.mode,
+                    spec.mode!,
                     spec.num,
                     indices.data instanceof Uint32Array
                         ? gl.UNSIGNED_INT
@@ -31,21 +31,21 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
             if (spec.instances) {
                 drawInstanced(gl, spec);
             } else {
-                gl.drawArrays(spec.mode, 0, spec.num);
+                gl.drawArrays(spec.mode!, 0, spec.num);
             }
         }
-        spec.shader.unbind(null);
+        spec.shader.unbind(<any>null);
     }
 };
 
 const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
     const isGL2 = isGL2Context(gl);
-    const ext = !isGL2 && gl.getExtension("ANGLE_instanced_arrays");
+    const ext = !isGL2 ? gl.getExtension("ANGLE_instanced_arrays") : undefined;
     if (!(isGL2 || ext)) {
         error("instancing not supported");
     }
     const sattribs = spec.shader.attribs;
-    const iattribs = spec.instances.attribs;
+    const iattribs = spec.instances!.attribs;
     spec.shader.bindAttribs(iattribs);
     for (let id in iattribs) {
         const attr = sattribs[id];
@@ -57,7 +57,7 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
                       attr.loc,
                       div
                   )
-                : ext.vertexAttribDivisorANGLE(attr.loc, div);
+                : ext!.vertexAttribDivisorANGLE(attr.loc, div);
         }
     }
     if (spec.indices) {
@@ -67,32 +67,32 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
                 : gl.UNSIGNED_SHORT;
         isGL2
             ? (<WebGL2RenderingContext>gl).drawElementsInstanced(
-                  spec.mode,
+                  spec.mode!,
                   spec.num,
                   type,
                   0,
-                  spec.instances.num
+                  spec.instances!.num
               )
-            : ext.drawElementsInstancedANGLE(
-                  spec.mode,
+            : ext!.drawElementsInstancedANGLE(
+                  spec.mode!,
                   spec.num,
                   type,
                   0,
-                  spec.instances.num
+                  spec.instances!.num
               );
     } else {
         isGL2
             ? (<WebGL2RenderingContext>gl).drawArraysInstanced(
-                  spec.mode,
+                  spec.mode!,
                   0,
                   spec.num,
-                  spec.instances.num
+                  spec.instances!.num
               )
-            : ext.drawArraysInstancedANGLE(
-                  spec.mode,
+            : ext!.drawArraysInstancedANGLE(
+                  spec.mode!,
                   0,
                   spec.num,
-                  spec.instances.num
+                  spec.instances!.num
               );
     }
     // reset attrib divisors to allow non-instanced draws later on
@@ -101,7 +101,7 @@ const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
         attr &&
             (isGL2
                 ? (<WebGL2RenderingContext>gl).vertexAttribDivisor(attr.loc, 0)
-                : ext.vertexAttribDivisorANGLE(attr.loc, 0));
+                : ext!.vertexAttribDivisorANGLE(attr.loc, 0));
     }
-    spec.shader.unbind(null);
+    spec.shader.unbind(<any>null);
 };

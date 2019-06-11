@@ -1,5 +1,5 @@
 import { isString } from "@thi.ng/checks";
-import { WeblGLCanvasOpts } from "./api";
+import { WebGLExtensionMap, WeblGLCanvasOpts } from "./api";
 import { error } from "./error";
 
 const defaultOpts: WebGLContextAttributes = {
@@ -36,16 +36,16 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
     return {
         canvas,
         gl,
-        ext: getExtensions(gl, opts.ext)
+        ext: getExtensions(gl, opts.ext!)
     };
 };
 
-export const getExtensions = (
+export const getExtensions = <K extends keyof WebGLExtensionMap>(
     gl: WebGLRenderingContext,
-    ids: string[],
+    ids: K[],
     required = true
-) => {
-    const ext = {};
+): Pick<WebGLExtensionMap, K> => {
+    const ext: any = {};
     if (ids) {
         for (let id of ids) {
             ext[id] = gl.getExtension(id);

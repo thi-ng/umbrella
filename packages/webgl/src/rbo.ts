@@ -1,16 +1,17 @@
 import { IRenderBuffer, RboOpts } from "./api";
+import { error } from "./error";
 
 export class RBO implements IRenderBuffer {
     gl: WebGLRenderingContext;
     buffer: WebGLRenderbuffer;
-    format: number;
-    width: number;
-    height: number;
+    format!: number;
+    width!: number;
+    height!: number;
 
-    constructor(gl: WebGLRenderingContext, opts?: Partial<RboOpts>) {
+    constructor(gl: WebGLRenderingContext, opts: RboOpts) {
         this.gl = gl;
-        this.buffer = gl.createRenderbuffer();
-        opts && this.configure(opts);
+        this.buffer = gl.createRenderbuffer() || error("error creating RBO");
+        this.configure(opts);
     }
 
     bind() {
@@ -29,9 +30,12 @@ export class RBO implements IRenderBuffer {
         return true;
     }
 
-    configure(opts: Partial<RboOpts>) {
+    configure(opts: RboOpts) {
         const gl = this.gl;
         this.bind();
+        this.format = opts.format || gl.DEPTH_COMPONENT16;
+        this.width = opts.width;
+        this.height = opts.height;
         gl.renderbufferStorage(
             gl.RENDERBUFFER,
             opts.format || gl.DEPTH_COMPONENT16,
@@ -39,10 +43,9 @@ export class RBO implements IRenderBuffer {
             opts.height
         );
         this.unbind();
-        Object.assign(this, opts);
         return true;
     }
 }
 
-export const rbo = (gl: WebGLRenderingContext, opts?: Partial<RboOpts>) =>
+export const rbo = (gl: WebGLRenderingContext, opts: RboOpts) =>
     new RBO(gl, opts);

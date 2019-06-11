@@ -1,6 +1,7 @@
 import { withoutKeysObj } from "@thi.ng/associative";
 import { isArray } from "@thi.ng/checks";
 import { ITexture, TextureOpts } from "./api";
+import { error } from "./error";
 import { isGL2Context } from "./utils";
 
 export const bindTextures = (textures: ITexture[]) => {
@@ -15,14 +16,14 @@ export class Texture implements ITexture {
     tex: WebGLTexture;
     target: GLenum;
 
-    constructor(gl: WebGLRenderingContext, opts?: Partial<TextureOpts>) {
+    constructor(gl: WebGLRenderingContext, opts: Partial<TextureOpts> = {}) {
         this.gl = gl;
-        this.tex = gl.createTexture();
-        this.target = opts.target || gl.TEXTURE_2D;
+        this.tex = gl.createTexture() || error("error creating WebGL texture");
+        this.target = opts!.target || gl.TEXTURE_2D;
         this.configure(opts);
     }
 
-    configure(opts: Partial<TextureOpts>) {
+    configure(opts: Partial<TextureOpts> = {}) {
         const gl = this.gl;
         const isGL2 = isGL2Context(gl);
         const target = this.target;
@@ -98,7 +99,7 @@ export class Texture implements ITexture {
             const flt = opts.filter;
             if (isArray(flt)) {
                 t1 = flt[0];
-                t2 = flt[1];
+                t2 = flt[1]!;
             } else {
                 t1 = t2 = flt;
             }
@@ -110,8 +111,8 @@ export class Texture implements ITexture {
             const wrap = opts.wrap;
             if (isArray(wrap)) {
                 t1 = wrap[0];
-                t2 = wrap[1];
-                t3 = wrap[2];
+                t2 = wrap[1]!;
+                t3 = wrap[2]!;
             } else {
                 t1 = t2 = t3 = wrap;
             }
@@ -210,7 +211,7 @@ export const texture = (
 export const cubeMap = (
     gl: WebGLRenderingContext,
     faces: (ArrayBufferView | TexImageSource)[],
-    opts?: Partial<TextureOpts>
+    opts: Partial<TextureOpts> = {}
 ) => {
     const tex = new Texture(gl, { target: gl.TEXTURE_CUBE_MAP });
     const faceOpts = withoutKeysObj(opts, [
@@ -245,7 +246,7 @@ export const cubeMap = (
  */
 export const floatTexture = (
     gl: WebGLRenderingContext,
-    data: Float32Array,
+    data: Float32Array | undefined,
     width: number,
     height: number,
     internalFormat?: GLenum,

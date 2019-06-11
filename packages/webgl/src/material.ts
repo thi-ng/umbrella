@@ -17,7 +17,8 @@ export const defMaterial = (
     flags: Partial<Record<keyof Material, boolean>> = {},
     base = DEFAULT_MATERIAL
 ): ShaderUniformSpecs =>
-    Object.keys(base).reduce((acc, id) => {
-        flags[id] !== false && (acc[id] = [TYPES[id], mat[id] || base[id]]);
+    Object.keys(base).reduce((acc: any, id) => {
+        (<any>flags)[id] !== false &&
+            (acc[id] = [(<any>TYPES)[id], (<any>mat)[id] || (<any>base)[id]]);
         return acc;
     }, {});

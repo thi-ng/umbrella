@@ -28,14 +28,15 @@ import { isGL2Context } from "./utils";
 export class FBO implements IFbo {
     gl: WebGLRenderingContext;
     fbo: WebGLFramebuffer;
-    ext: WEBGL_draw_buffers;
+    ext?: WEBGL_draw_buffers;
     maxAttachments: number;
 
     constructor(gl: WebGLRenderingContext, opts?: Partial<FboOpts>) {
         this.gl = gl;
-        this.fbo = gl.createFramebuffer();
+        this.fbo = gl.createFramebuffer() || error("error creating FBO");
         this.ext = !isGL2Context(gl)
-            ? gl.getExtension("WEBGL_draw_buffers")
+            ? gl.getExtension("WEBGL_draw_buffers") ||
+              error("missing WEBGL_draw_buffers ext")
             : undefined;
         this.maxAttachments = gl.getParameter(GL_MAX_COLOR_ATTACHMENTS_WEBGL);
         opts && this.configure(opts);
@@ -118,7 +119,7 @@ export class FBO implements IFbo {
             case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
                 error("FBO incomplete missing attachment");
             default:
-                error(`FBO error: ${err}`);
+                return error(`FBO error: ${err}`);
         }
     }
 }

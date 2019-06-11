@@ -16,7 +16,7 @@ export const quad = (uv = true): ModelSpec => ({
             : null)
     },
     uniforms: {},
-    shader: null,
+    shader: <any>null,
     mode: 5, // TRIANGLE_STRIP,
     num: 4
 });

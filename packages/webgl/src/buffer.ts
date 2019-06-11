@@ -6,6 +6,7 @@ import {
     ModelAttributeSpecs,
     ModelSpec
 } from "./api";
+import { error } from "./error";
 import { isGL2Context } from "./utils";
 
 export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
@@ -21,7 +22,7 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
         mode = gl.STATIC_DRAW
     ) {
         this.gl = gl;
-        this.buffer = gl.createBuffer();
+        this.buffer = gl.createBuffer() || error("error creating WebGL buffer");
         this.target = target;
         this.mode = mode;
         data && this.set(data);
@@ -113,7 +114,7 @@ const compileAttribs = (
 
 export const compileIndices = (
     gl: WebGLRenderingContext,
-    index: IndexBufferSpec,
+    index: IndexBufferSpec | undefined,
     mode: GLenum = gl.STATIC_DRAW
 ) => {
     if (index) {
@@ -134,25 +135,26 @@ export const compileIndices = (
 export const compileVAO = (gl: WebGLRenderingContext, spec: ModelSpec) => {
     if (spec.shader) {
         const isGL2 = isGL2Context(gl);
-        const ext = !isGL2 && gl.getExtension("OES_vertex_array_object");
+        const ext = !isGL2 ? gl.getExtension("OES_vertex_array_object") : null;
         if (isGL2 || ext) {
             let vao: WebGLVertexArrayObject;
             if (isGL2) {
-                vao = (<WebGL2RenderingContext>gl).createVertexArray();
+                vao = (<WebGL2RenderingContext>gl).createVertexArray()!;
                 (<WebGL2RenderingContext>gl).bindVertexArray(vao);
             } else {
-                vao = ext.createVertexArrayOES();
-                ext.bindVertexArrayOES(vao);
+                vao = ext!.createVertexArrayOES()!;
+                ext!.bindVertexArrayOES(vao);
             }
+            !!vao && error("error creating VAO");
             spec.shader.bindAttribs(spec.attribs);
-            if (spec.indices) {
-                spec.indices.buffer.bind();
+            if (spec.indices!) {
+                spec.indices!.buffer!.bind();
             }
-            spec.shader.unbind(null);
+            spec.shader.unbind(<any>null);
             if (isGL2) {
                 (<WebGL2RenderingContext>gl).bindVertexArray(null);
             } else {
-                ext.bindVertexArrayOES(null);
+                ext!.bindVertexArrayOES(null);
             }
             return vao;
         }
@@ -172,7 +174,6 @@ export const compileAttribPool = (
         const attr = pool.specs[id];
         spec[id] = {
             buffer: buf,
-            data: null,
             size: attr.size,
             type: attr.type,
             stride: pool.byteStride,

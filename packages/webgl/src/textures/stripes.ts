@@ -14,9 +14,9 @@ export const stripes = (opts: Partial<StripeOpts>) => {
         col2: 0xff000000,
         ...opts
     };
-    const size = opts.size;
-    const col1 = abgr(opts.col1);
-    const col2 = abgr(opts.col2);
+    const size = opts.size!;
+    const col1 = abgr(opts.col1!);
+    const col2 = abgr(opts.col2!);
     const { canvas, ctx, img, pix } = opts.horizontal
         ? canvas2d(1, size)
         : canvas2d(size, 1);
