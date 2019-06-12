@@ -16,14 +16,16 @@ export const emitGLSL = (_ = 300) => {
 
     const emitType = (t: Type) => TYPE_NAMES[t] || t;
 
+    const emitList = (body: Term<any>[], sep = ", ") =>
+        body.map(emit).join(sep);
+
     const emitVec = (v: Term<"f32">[]) =>
-        `vec${v.length}(${v
-            .slice(0, v[3] ? 4 : v[2] ? 3 : v[1] ? 2 : 1)
-            .map(emit)
-            .join(", ")})`;
+        `vec${v.length}(${emitList(
+            v.slice(0, v[3] ? 4 : v[2] ? 3 : v[1] ? 2 : 1)
+        )})`;
 
     const emitScope = (body: Term<any>[]) => {
-        const res = "{\n" + body.map(emit).join(";\n");
+        const res = "{\n" + emitList(body, ";\n");
         return (
             res + (res[res.length - 1] != "}" && body.length ? ";" : "") + "\n}"
         );
@@ -57,16 +59,16 @@ export const emitGLSL = (_ = 300) => {
 
         swizzle: (t) => `${emit(t.val)}.${t.id}`,
 
-        call: (t) => `${t.id}(${t.args.map(emit).join(", ")})`,
+        call: (t) => `${t.id}(${emitList(t.args)})`,
 
         op1: (t) => `${t.op}${emit(t.val)}`,
 
         op2: (t) => `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
 
         fn: (t) =>
-            `${emitType(t.type)} ${t.id}(${t.args
-                .map(emit)
-                .join(", ")}) ${emitScope(t.body)}`,
+            `${emitType(t.type)} ${t.id}(${emitList(t.args)}) ${emitScope(
+                t.body
+            )}`,
 
         arg: (t) => `${t.q ? t.q + " " : ""}${emitType(t.type)} ${t.id}`,
 
