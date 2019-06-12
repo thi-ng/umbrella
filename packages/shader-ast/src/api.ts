@@ -12,7 +12,7 @@ export type Tag =
     | "lit"
     | "op1"
     | "op2"
-    | "access"
+    | "swizzle"
     | "call"
     | "fn"
     | "arg"
@@ -47,29 +47,14 @@ export type Operator =
 
 export type Swizzle2_1 = "x" | "y";
 export type Swizzle2_2 = "xx" | "xy" | "yx" | "yy";
-export type Swizzle2_3 =
-    | "xxx"
-    | "xxy"
-    | "xyx"
-    | "xyy"
-    | "yxx"
-    | "yxy"
-    | "yyx"
-    | "yyy";
+// prettier-ignore
+export type Swizzle2_3 = "xxx" | "xxy" | "xyx" | "xyy" | "yxx" | "yxy" | "yyx" | "yyy";
 // prettier-ignore
 export type Swizzle2_4 = "xxxx" | "xxxy" | "xxyx" | "xxyy" | "xyxx" | "xyxy" | "xyyx" | "xyyy" | "yxxx" | "yxxy" | "yxyx" | "yxyy" | "yyxx" | "yyxy" | "yyyx" | "yyyy";
 
 export type Swizzle3_1 = "x" | "y" | "z";
-export type Swizzle3_2 =
-    | "xx"
-    | "xy"
-    | "xz"
-    | "yx"
-    | "yy"
-    | "yz"
-    | "zx"
-    | "zy"
-    | "zz";
+// prettier-ignore
+export type Swizzle3_2 = "xx" | "xy" | "xz" | "yx" | "yy" | "yz" | "zx" | "zy" | "zz";
 // prettier-ignore
 export type Swizzle3_3 = "xxx" | "xxy" | "xxz" | "xyx" | "xyy" | "xyz" | "xzx" | "xzy" | "xzz" | "yxx" | "yxy" | "yxz" | "yyx" | "yyy" | "yyz" | "yzx" | "yzy" | "yzz" | "zxx" | "zxy" | "zxz" | "zyx" | "zyy" | "zyz" | "zzx" | "zzy" | "zzz";
 // prettier-ignore
@@ -111,7 +96,7 @@ export interface Sym<T extends Type> extends Term<T> {
     q: ArgQualifier;
 }
 
-export interface Access<T extends Type> extends Term<T> {
+export interface Swizzle<T extends Type> extends Term<T> {
     val: Term<any>;
     id: string;
 }

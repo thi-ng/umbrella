@@ -76,6 +76,7 @@ yarn add @thi.ng/shader-ast
 
 ```ts
 import {
+    add,
     defn,
     dot,
     emitGLSL,
@@ -95,7 +96,7 @@ const GLSL = emitGLSL(300);
 const foo = defn(
     "void", "foo", [["vec2", "a"], ["f32", "b"], ["f32", "c", "out"]],
     (a, b, c) => [
-        ret(dot(vec3(a, b), vec3(c)))
+        ret(dot(vec3(a, b), vec3(add(c, float(1)))))
     ]);
 
 // another function which calls `foo`
@@ -112,7 +113,7 @@ console.log([foo, main].map(GLSL).join("\n\n"));
 
 ```glsl
 float foo(in vec2 a, in float b, out float c) {
-return dot(vec3(a, b), vec3(c));
+return dot(vec3(a, b), vec3((c + 1.0)));
 }
 
 void main() {

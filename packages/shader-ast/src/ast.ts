@@ -1,6 +1,13 @@
+import {
+    Fn,
+    Fn0,
+    Fn2,
+    Fn3,
+    Fn4,
+    Fn5
+} from "@thi.ng/api";
 import { isNumber, isString } from "@thi.ng/checks";
 import {
-    Access,
     Arg,
     Arg1,
     Arg2,
@@ -23,6 +30,7 @@ import {
     Op2,
     Operator,
     Prim,
+    Swizzle,
     Swizzle2_1,
     Swizzle2_2,
     Swizzle2_3,
@@ -39,6 +47,8 @@ import {
     Term,
     Type
 } from "./api";
+
+export const isVec = (t: Term<any>) => t.type.indexOf("vec") == 0;
 
 export const sym = <T extends Type>(
     type: T,
@@ -65,21 +75,21 @@ export const int = (x: number | Term<"i32">) =>
 export const uint = (x: number | Term<"u32">) =>
     lit("u32", isNumber(x) ? x >>> 0 : x);
 
-export function swizzle(val: Term<"vec2">, id: Swizzle2_1): Access<"f32">;
-export function swizzle(val: Term<"vec2">, id: Swizzle2_2): Access<"vec2">;
-export function swizzle(val: Term<"vec2">, id: Swizzle2_3): Access<"vec3">;
-export function swizzle(val: Term<"vec2">, id: Swizzle2_4): Access<"vec4">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_1): Access<"f32">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_2): Access<"vec2">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_3): Access<"vec3">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_4): Access<"vec4">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_1): Access<"f32">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_2): Access<"vec2">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_3): Access<"vec3">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_4): Access<"vec4">;
-export function swizzle(val: Term<any>, id: string): Access<any> {
+export function swizzle(val: Term<"vec2">, id: Swizzle2_1): Swizzle<"f32">;
+export function swizzle(val: Term<"vec2">, id: Swizzle2_2): Swizzle<"vec2">;
+export function swizzle(val: Term<"vec2">, id: Swizzle2_3): Swizzle<"vec3">;
+export function swizzle(val: Term<"vec2">, id: Swizzle2_4): Swizzle<"vec4">;
+export function swizzle(val: Term<"vec3">, id: Swizzle3_1): Swizzle<"f32">;
+export function swizzle(val: Term<"vec3">, id: Swizzle3_2): Swizzle<"vec2">;
+export function swizzle(val: Term<"vec3">, id: Swizzle3_3): Swizzle<"vec3">;
+export function swizzle(val: Term<"vec3">, id: Swizzle3_4): Swizzle<"vec4">;
+export function swizzle(val: Term<"vec4">, id: Swizzle4_1): Swizzle<"f32">;
+export function swizzle(val: Term<"vec4">, id: Swizzle4_2): Swizzle<"vec2">;
+export function swizzle(val: Term<"vec4">, id: Swizzle4_3): Swizzle<"vec3">;
+export function swizzle(val: Term<"vec4">, id: Swizzle4_4): Swizzle<"vec4">;
+export function swizzle(val: Term<any>, id: string): Swizzle<any> {
     return {
-        tag: "access",
+        tag: "swizzle",
         type: id.length == 1 ? "f32" : "vec" + id.length,
         val,
         id
@@ -87,14 +97,10 @@ export function swizzle(val: Term<any>, id: string): Access<any> {
 }
 
 export function vec2(x: number | Term<"f32">): Lit<"vec2">;
-export function vec2(
-    x: number | Term<"f32">,
-    y: number | Term<"f32">
-): Lit<"vec2">;
-export function vec2(
-    x: number | Term<"f32">,
-    y?: number | Term<"f32">
-): Lit<"vec2"> {
+// prettier-ignore
+export function vec2(x: number | Term<"f32">, y: number | Term<"f32">): Lit<"vec2">;
+// prettier-ignore
+export function vec2(x: number | Term<"f32">, y?: number | Term<"f32">): Lit<"vec2"> {
     return lit("vec2", [
         isNumber(x) ? float(x) : x,
         isNumber(y) ? float(y) : y
@@ -136,19 +142,17 @@ export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
     val
 });
 
-export function op2(
-    op: Operator,
-    l: Term<"bool">,
-    r: Term<"bool">
-): Op2<"bool">;
+// prettier-ignore
+export function op2(op: Operator, l: Term<"bool">, r: Term<"bool">): Op2<"bool">;
 export function op2(op: Operator, l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
+export function op2(op: Operator, l: Term<"u32">, r: Term<"u32">): Op2<"u32">;
 export function op2(op: Operator, l: Term<"f32">, r: Term<"f32">): Op2<"f32">;
 export function op2(op: Operator, l: Term<"vec2">, r: Term<"f32">): Op2<"vec2">;
 export function op2(op: Operator, l: Term<"f32">, r: Term<"vec2">): Op2<"vec2">;
 export function op2(op: Operator, l: Term<any>, r: Term<any>): Op2<any> {
     return {
         tag: "op2",
-        type: l.type == "vec2" || r.type == "vec2" ? "vec2" : "f32",
+        type: isVec(l) ? l.type : isVec(r) ? r.type : "f32",
         op,
         l,
         r
@@ -240,28 +244,20 @@ const defArg = <T extends Type>([type, id, q]: Arg<T>): FuncArg<T> => ({
     q: q || "in"
 });
 
-export function defn<T extends Type>(
-    type: T,
-    name: string,
-    args: [],
-    body: () => Term<any>[]
-): Func0<T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type>(type: T, name: string, args: Arg1<A>, body: (a: Sym<A>) => Term<any>[]): Func1<A,T>;
+export function defn<T extends Type>(type: T, name: string, args: [], body: Fn0<Term<any>[]>): Func0<T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type>(type: T, name: string, args: Arg2<A,B>, body: (a: Sym<A>, b: Sym<B>) => Term<any>[]): Func2<A,B,T>;
+export function defn<T extends Type, A extends Type>(type: T, name: string, args: Arg1<A>, body: Fn<Sym<A>, Term<any>[]>): Func1<A,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type>(type: T, name: string, args: Arg3<A,B,C>, body: (a: Sym<A>, b: Sym<B>, c:Sym<C>) => Term<any>[]): Func3<A,B,C,T>;
+export function defn<T extends Type, A extends Type, B extends Type>(type: T, name: string, args: Arg2<A,B>, body: Fn2<Sym<A>, Sym<B>, Term<any>[]>): Func2<A,B,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type>(type: T, name: string, args: Arg4<A,B,C,D>, body: (a: Sym<A>, b: Sym<B>, c: Sym<C>, d: Sym<D>) => Term<any>[]): Func4<A,B,C,D,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type>(type: T, name: string, args: Arg3<A,B,C>, body: Fn3<Sym<A>, Sym<B>, Sym<C>, Term<any>[]>): Func3<A,B,C,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type>(type: T, name: string, args: Arg5<A,B,C,D,E>, body: (a: Sym<A>, b: Sym<B>, c: Sym<C>, d: Sym<D>, e: Sym<E>) => Term<any>[]): Func5<A,B,C,D,E,T>;
-export function defn(
-    type: Type,
-    id: string,
-    _args: Arg<any>[],
-    _body: (...xs: Sym<any>[]) => Term<any>[]
-): Func<any> {
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type>(type: T, name: string, args: Arg4<A,B,C,D>, body: Fn4<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Term<any>[]>): Func4<A,B,C,D,T>;
+// prettier-ignore
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type>(type: T, name: string, args: Arg5<A,B,C,D,E>, body: Fn5<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Term<any>[]>): Func5<A,B,C,D,E,T>;
+// prettier-ignore
+export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => Term<any>[]): Func<any> {
     const args = _args.map(defArg);
     const body = _body(...args.map((x) => sym(x.type, x.id, x.q)));
     // TODO properly filter AST return terms and check for type compatibility
@@ -298,17 +294,15 @@ export function ret(val?: Term<any>): FuncReturn<any> {
 }
 
 // prettier-ignore
-export function funcall<T extends Type>(fn: string,type: T,...args: Term<any>[]): FunCall<T>;
+export function funcall<T extends Type>(fn: string, type: T, ...args: Term<any>[]): FunCall<T>;
 // prettier-ignore
 export function funcall<A extends Type, T extends Type>(fn: Func1<A,T>, a: Term<A>): FunCall<T>;
 // prettier-ignore
 export function funcall<A extends Type, B extends Type, T extends Type>(fn: Func2<A,B,T>, a: Term<A>, b: Term<B>): FunCall<T>;
 // prettier-ignore
 export function funcall<A extends Type, B extends Type, C extends Type, T extends Type>(fn: Func3<A,B,C,T>, a: Term<A>, b: Term<B>, c: Term<C>): FunCall<T>;
-export function funcall(
-    fn: string | Func<any>,
-    ...args: Term<any>[]
-): FunCall<any> {
+// prettier-ignore
+export function funcall(fn: string | Func<any>, ...args: Term<any>[]): FunCall<any> {
     return isString(fn)
         ? {
               tag: "call",
