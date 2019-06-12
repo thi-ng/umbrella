@@ -32,18 +32,18 @@ support [WHLSL for WebGPU](https://github.com/gpuweb/WHLSL) in the near future a
 
 Benefits of this approach:
 
-- type checking (at authoring time & compile time) and type annotation
+- type checking (at authoring time & compile time) and type annotations
   of all AST nodes catches many issues early on
 - shader functions can be called like standard TS/JS functions (incl.
   automatically type checked args via TS mapped types)
-- use standard TS tooling & IDE integration (e.g. docs strings)
-- improves general re-use, especially once more target codegens are
+- use standard TS tooling & IDE integration (e.g. docs strings, packaging, dependencies etc.)
+- improve general re-use, especially once more target codegens are
   available (see [future goals](#future-goals))
 - cross compilation to different graphics environments
 - shader code will be fully minimized along with main app code in
   production builds as part of standard bundling processes/toolchains,
   no extra plugins needed
-- very small run time & file size overhead (~1.2KB gzipped)
+- very small run time & file size overhead (entire pkg ~1.2KB gzipped, but hardly ever fully used)
 
 ### Tasks prior to initial release
 
@@ -93,7 +93,7 @@ const GLSL = emitGLSL(300);
 // type annotated args and returns an array of
 // AST nodes defining the function's body
 const foo = defn(
-    "void", "f32", [["vec2", "a"], ["f32", "b"], ["f32", "c", "out"]],
+    "void", "foo", [["vec2", "a"], ["f32", "b"], ["f32", "c", "out"]],
     (a, b, c) => [
         ret(dot(vec3(a, b), vec3(c)))
     ]);
