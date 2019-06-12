@@ -1,4 +1,4 @@
-import { FunCall, Term, Vec } from "./api";
+import { Term, Vec } from "./api";
 import { funcall } from "./ast";
 
 /**
@@ -15,7 +15,7 @@ export const normalize = <T extends Vec>(v: Term<T>) =>
  * @param v
  */
 export const length = <T extends Vec>(v: Term<T>) =>
-    funcall("length", v.type, v);
+    funcall("length", "f32", v);
 
 /**
  * Returns dot product of given vectors.
@@ -23,10 +23,8 @@ export const length = <T extends Vec>(v: Term<T>) =>
  * @param a
  * @param b
  */
-export const dot = <A extends Vec, B extends A>(
-    a: Term<A>,
-    b: Term<B>
-): FunCall<"f32"> => funcall("dot", "f32", a, b);
+export const dot = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
+    funcall("dot", "f32", a, b);
 
 /**
  * Returns cross product of given 3D vectors.

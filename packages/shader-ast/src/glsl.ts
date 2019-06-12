@@ -1,26 +1,13 @@
-import { Fn } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { defmulti } from "@thi.ng/defmulti";
-import {
-    Func,
-    FunCall,
-    FuncArg,
-    FuncReturn,
-    Lit,
-    Op1,
-    Op2,
-    Swizzle,
-    Sym,
-    Term,
-    Type
-} from "./api";
+import { Term, Type } from "./api";
+import { defTarget } from "./target";
 
 /**
  * GLSL code gen.
  *
  * @param version
  */
-export const emitGLSL = (_ = 300): Fn<Term<any>, string> => {
+export const emitGLSL = (_ = 300) => {
     const TYPE_NAMES: any = {
         f32: "float",
         i32: "int",
@@ -35,13 +22,18 @@ export const emitGLSL = (_ = 300): Fn<Term<any>, string> => {
             .map(emit)
             .join(", ")})`;
 
-    const emit = defmulti<Term<any>, string>((x) => x.tag);
+    const emitScope = (body: Term<any>[]) => {
+        const res = "{\n" + body.map(emit).join(";\n");
+        return (
+            res + (res[res.length - 1] != "}" && body.length ? ";" : "") + "\n}"
+        );
+    };
 
-    emit.addAll({
-        sym: (t) => (<Sym<any>>t).id,
+    const emit = defTarget({
+        sym: (t) => t.id,
 
         lit: (t) => {
-            const v = (<Lit<any>>t).val;
+            const v = t.val;
             switch (t.type) {
                 case "bool":
                     return String(!!v);
@@ -63,39 +55,30 @@ export const emitGLSL = (_ = 300): Fn<Term<any>, string> => {
             }
         },
 
-        swizzle: (t) =>
-            `${emit((<Swizzle<any>>t).val)}.${(<Swizzle<any>>t).id}`,
+        swizzle: (t) => `${emit(t.val)}.${t.id}`,
 
-        call: (t) =>
-            `${(<FunCall<any>>t).id}(${(<FunCall<any>>t).args
+        call: (t) => `${t.id}(${t.args.map(emit).join(", ")})`,
+
+        op1: (t) => `${t.op}${emit(t.val)}`,
+
+        op2: (t) => `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
+
+        fn: (t) =>
+            `${emitType(t.type)} ${t.id}(${t.args
                 .map(emit)
-                .join(", ")})`,
+                .join(", ")}) ${emitScope(t.body)}`,
 
-        op1: (t) => `${(<Op1<any>>t).op}${emit((<Op1<any>>t).val)}`,
+        arg: (t) => `${t.q ? t.q + " " : ""}${emitType(t.type)} ${t.id}`,
 
-        op2: (t) =>
-            `(${emit((<Op2<any>>t).l)} ${(<Op2<any>>t).op} ${emit(
-                (<Op2<any>>t).r
-            )})`,
+        ret: (t) => "return" + (t.val ? " " + emit(t.val) : ""),
 
-        fn: (t) => {
-            const fn = <Func<any>>t;
-            return `${emitType(fn.type)} ${fn.id}(${fn.args
-                .map(emit)
-                .join(", ")}) {
-${fn.body.map(emit).join(";\n")}${fn.body.length ? ";" : ""}
-}`;
+        if: (t) => {
+            const res = `if (${emit(t.test)}) ` + emitScope(t.t);
+            return t.f ? res + " else " + emitScope(t.f) : res;
         },
 
-        arg: (t) => {
-            const a = <FuncArg<any>>t;
-            return `${a.q ? a.q + " " : ""}${emitType(a.type)} ${a.id}`;
-        },
-
-        ret: (t) => {
-            const val = (<FuncReturn<any>>t).val;
-            return "return" + (val ? " " + emit(val) : "");
-        }
+        // TODO
+        assign: (_) => "// TODO"
     });
 
     return emit;

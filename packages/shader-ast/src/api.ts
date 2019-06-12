@@ -4,19 +4,26 @@ import {
     Fn2,
     Fn3,
     Fn4,
-    Fn5
+    Fn5,
+    Fn6,
+    Fn7,
+    Fn8,
+    IObjectOf
 } from "@thi.ng/api";
+import { Implementation1 } from "@thi.ng/defmulti";
 
 export type Tag =
     | "sym"
     | "lit"
+    | "assign"
     | "op1"
     | "op2"
     | "swizzle"
     | "call"
     | "fn"
     | "arg"
-    | "ret";
+    | "ret"
+    | "if";
 
 export type Type =
     | "void"
@@ -71,12 +78,184 @@ export type Swizzle4_4 = "xxxx" | "xxxy" | "xxxz" | "xxxw" | "xxyx" | "xxyy" | "
 export type Arg<A extends Type> = [A, string, ArgQualifier?];
 export type Arg1<A extends Type> = [Arg<A>];
 export type Arg2<A extends Type, B extends Type> = [Arg<A>, Arg<B>];
-// prettier-ignore
-export type Arg3<A extends Type, B extends Type, C extends Type> = [Arg<A>, Arg<B>, Arg<C>];
-// prettier-ignore
-export type Arg4<A extends Type, B extends Type, C extends Type, D extends Type> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>];
-// prettier-ignore
-export type Arg5<A extends Type, B extends Type, C extends Type, D extends Type, E extends Type> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>];
+export type Arg3<A extends Type, B extends Type, C extends Type> = [
+    Arg<A>,
+    Arg<B>,
+    Arg<C>
+];
+export type Arg4<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type
+> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>];
+export type Arg5<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type
+> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>];
+export type Arg6<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type
+> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>];
+export type Arg7<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type
+> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>, Arg<G>];
+export type Arg8<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type,
+    H extends Type
+> = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>, Arg<G>, Arg<H>];
+
+export type FnBody0 = Fn0<Term<any>[]>;
+export type FnBody1<A extends Type> = Fn<Sym<A>, Term<any>[]>;
+export type FnBody2<A extends Type, B extends Type> = Fn2<
+    Sym<A>,
+    Sym<B>,
+    Term<any>[]
+>;
+export type FnBody3<A extends Type, B extends Type, C extends Type> = Fn3<
+    Sym<A>,
+    Sym<B>,
+    Sym<C>,
+    Term<any>[]
+>;
+export type FnBody4<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type
+> = Fn4<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Term<any>[]>;
+export type FnBody5<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type
+> = Fn5<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Term<any>[]>;
+export type FnBody6<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type
+> = Fn6<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Term<any>[]>;
+export type FnBody7<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type
+> = Fn7<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, Term<any>[]>;
+export type FnBody8<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type,
+    H extends Type
+> = Fn8<
+    Sym<A>,
+    Sym<B>,
+    Sym<C>,
+    Sym<D>,
+    Sym<E>,
+    Sym<F>,
+    Sym<G>,
+    Sym<H>,
+    Term<any>[]
+>;
+
+export type Func0<T extends Type> = Fn0<Term<T>>;
+export type Func1<A extends Type, T extends Type> = Fn<Term<A>, Term<T>>;
+export type Func2<A extends Type, B extends Type, T extends Type> = Fn2<
+    Term<A>,
+    Term<B>,
+    Term<T>
+>;
+export type Func3<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    T extends Type
+> = Fn3<Term<A>, Term<B>, Term<C>, Term<T>>;
+export type Func4<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    T extends Type
+> = Fn4<Term<A>, Term<B>, Term<C>, Term<D>, Term<T>>;
+export type Func5<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    T extends Type
+> = Fn5<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<T>>;
+export type Func6<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    T extends Type
+> = Fn6<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<F>, Term<T>>;
+export type Func7<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type,
+    T extends Type
+> = Fn7<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<F>, Term<G>, Term<T>>;
+export type Func8<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type,
+    H extends Type,
+    T extends Type
+> = Fn8<
+    Term<A>,
+    Term<B>,
+    Term<C>,
+    Term<D>,
+    Term<E>,
+    Term<F>,
+    Term<G>,
+    Term<H>,
+    Term<T>
+>;
 
 export type ArgQualifier = "in" | "out" | "inout";
 
@@ -110,17 +289,6 @@ export interface FuncArg<T extends Type> extends Term<T> {
     q?: ArgQualifier;
 }
 
-export type Callable0<T extends Type> = Fn0<Term<T>>;
-export type Callable1<A extends Type, T extends Type> = Fn<Term<A>, Term<T>>;
-// prettier-ignore
-export type Callable2<A extends Type, B extends Type, T extends Type> = Fn2<Term<A>, Term<B>, Term<T>>;
-// prettier-ignore
-export type Callable3<A extends Type, B extends Type, C extends Type, T extends Type> = Fn3<Term<A>, Term<B>, Term<C>, Term<T>>;
-// prettier-ignore
-export type Callable4<A extends Type, B extends Type, C extends Type, D extends Type, T extends Type> = Fn4<Term<A>, Term<B>, Term<C>, Term<D>, Term<T>>;
-// prettier-ignore
-export type Callable5<A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, T extends Type> = Fn5<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<T>>;
-
 export interface Func<T extends Type> extends Term<T> {
     id: string;
     args: Sym<any>[];
@@ -128,53 +296,92 @@ export interface Func<T extends Type> extends Term<T> {
     builtin: string;
 }
 
-export interface Func0<T extends Type> extends Callable0<T>, Func<T> {
+export interface TaggedFn0<T extends Type> extends Func0<T>, Func<T> {
     args: [];
 }
 
-export interface Func1<A extends Type, T extends Type>
-    extends Callable1<A, T>,
+export interface TaggedFn1<A extends Type, T extends Type>
+    extends Func1<A, T>,
         Func<T> {
     args: [Sym<A>];
 }
 
-export interface Func2<A extends Type, B extends Type, T extends Type>
-    extends Callable2<A, B, T>,
+export interface TaggedFn2<A extends Type, B extends Type, T extends Type>
+    extends Func2<A, B, T>,
         Func<T> {
     args: [Sym<A>, Sym<B>];
 }
 
-export interface Func3<
+export interface TaggedFn3<
     A extends Type,
     B extends Type,
     C extends Type,
     T extends Type
-> extends Callable3<A, B, C, T>, Func<T> {
+> extends Func3<A, B, C, T>, Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>];
 }
 
-export interface Func4<
+export interface TaggedFn4<
     A extends Type,
     B extends Type,
     C extends Type,
     D extends Type,
     T extends Type
-> extends Callable4<A, B, C, D, T>, Func<T> {
+> extends Func4<A, B, C, D, T>, Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>];
 }
 
-export interface Func5<
+export interface TaggedFn5<
     A extends Type,
     B extends Type,
     C extends Type,
     D extends Type,
     E extends Type,
     T extends Type
-> extends Callable5<A, B, C, D, E, T>, Func<T> {
+> extends Func5<A, B, C, D, E, T>, Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>];
 }
 
-export interface FunCall<T extends Type> extends Term<T> {
+export interface TaggedFn6<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    T extends Type
+> extends Func6<A, B, C, D, E, F, T>, Func<T> {
+    args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>];
+}
+
+export interface TaggedFn7<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type,
+    T extends Type
+> extends Func7<A, B, C, D, E, F, G, T>, Func<T> {
+    args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>];
+}
+
+export interface TaggedFn8<
+    A extends Type,
+    B extends Type,
+    C extends Type,
+    D extends Type,
+    E extends Type,
+    F extends Type,
+    G extends Type,
+    H extends Type,
+    T extends Type
+> extends Func8<A, B, C, D, E, F, G, H, T>, Func<T> {
+    args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, Sym<H>];
+}
+
+export interface FnCall<T extends Type> extends Term<T> {
     id: string;
     args: Term<any>[];
 }
@@ -188,4 +395,28 @@ export interface Op2<T extends Type> extends Term<T> {
     op: Operator;
     l: Term<any>;
     r: Term<any>;
+}
+
+export interface Branch extends Term<any> {
+    tag: "if";
+    type: "void";
+    test: Term<"bool">;
+    t: Term<any>[];
+    f?: Term<any>[];
+}
+
+export type TargetImpl = IObjectOf<Implementation1<Term<any>, string>>;
+
+export interface TargetImpl2 extends Record<Tag, Fn<any, string>> {
+    sym: Fn<Sym<any>, string>;
+    lit: Fn<Lit<any>, string>;
+    // assign: Fn<Assign<Sym<any>, Term<any>>, string>;
+    op1: Fn<Op1<any>, string>;
+    op2: Fn<Op2<any>, string>;
+    swizzle: Fn<Swizzle<any>, string>;
+    call: Fn<FnCall<any>, string>;
+    fn: Fn<Func<any>, string>;
+    arg: Fn<FuncArg<any>, string>;
+    ret: Fn<FuncReturn<any>, string>;
+    if: Fn<Branch, string>;
 }
