@@ -77,17 +77,21 @@ yarn add @thi.ng/shader-ast
 ```ts
 import {
     add,
+    assign,
     defn,
     dot,
-    emitGLSL,
     float,
+    ifThen,
+    lt,
     ret,
+    swizzle,
+    targetGLSL,
     vec2,
     vec3
 } from "@thi.ng/shader-ast";
 
 // init code gen
-const GLSL = emitGLSL(300);
+const target = targetGLSL(300);
 
 // define function w/ ret type and args
 // the given inner function will be called with
@@ -96,28 +100,42 @@ const GLSL = emitGLSL(300);
 const foo = defn(
     "void", "foo", [["vec2", "a"], ["f32", "b"], ["f32", "c", "out"]],
     (a, b, c) => [
-        ret(dot(vec3(a, b), vec3(add(c, float(1)))))
-    ]);
+        ifThen(
+            lt(b, c),
+            [ret(dot(vec3(a, b), vec3(add(c, float(1)))))],
+            [ret(swizzle(a, "x"))]
+        )
+    ]
+);
 
-// another function which calls `foo`
-// the args given to `foo()` are type checked by TS
+// another function which calls above `foo` and assigns result to
+// an intrinsic output variable...
+// the args given to `foo` and the assignment are type checked by TS
+// and will not compile if types clash
 const main = defn(
     "void", "main", [],
     () => [
-        foo(vec2(1), float(1), float(2))
-    ]);
+        assign(target.gl_PointSize, foo(vec2(1), float(1), float(2)))
+    ]
+);
 
 // emit both functions (this syntax is purely WIP)
-console.log([foo, main].map(GLSL).join("\n\n"));
+console.log([foo, main].map(target).join("\n\n"));
 ```
+
+Result (no pretty printing yet):
 
 ```glsl
 float foo(in vec2 a, in float b, out float c) {
+if ((b < c)) {
 return dot(vec3(a, b), vec3((c + 1.0)));
+} else {
+return a.x;
+}
 }
 
 void main() {
-foo(vec2(1.0), 1.0, 2.0);
+gl_PointSize = foo(vec2(1.0), 1.0, 2.0);
 }
 ```
 
