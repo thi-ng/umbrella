@@ -7,10 +7,8 @@ import {
     Fn5,
     Fn6,
     Fn7,
-    Fn8,
-    IObjectOf
+    Fn8
 } from "@thi.ng/api";
-import { Implementation1 } from "@thi.ng/defmulti";
 
 export type Tag =
     | "sym"
@@ -38,6 +36,7 @@ export type Type =
 export type Vec = "vec2" | "vec3" | "vec4";
 
 export type Prim = "f32" | Vec;
+export type Comparable = "f32";
 
 export type MathOperator = "+" | "-" | "*" | "/";
 export type LogicOperator = "!" | "||" | "&&";
@@ -276,8 +275,32 @@ export interface Sym<T extends Type> extends Term<T> {
 }
 
 export interface Swizzle<T extends Type> extends Term<T> {
-    val: Term<any>;
     id: string;
+    val: Term<Vec>;
+}
+
+export interface Assign<T extends Type> extends Term<T> {
+    l: Sym<T>;
+    r: Term<T>;
+}
+
+export interface Op1<T extends Type> extends Term<T> {
+    op: Operator;
+    val: Term<any>;
+}
+
+export interface Op2<T extends Type> extends Term<T> {
+    op: Operator;
+    l: Term<any>;
+    r: Term<any>;
+}
+
+export interface Branch extends Term<any> {
+    tag: "if";
+    type: "void";
+    test: Term<"bool">;
+    t: Term<any>[];
+    f?: Term<any>[];
 }
 
 export interface FuncReturn<T extends Type> extends Term<T> {
@@ -386,31 +409,10 @@ export interface FnCall<T extends Type> extends Term<T> {
     args: Term<any>[];
 }
 
-export interface Op1<T extends Type> extends Term<T> {
-    op: Operator;
-    val: Term<any>;
-}
-
-export interface Op2<T extends Type> extends Term<T> {
-    op: Operator;
-    l: Term<any>;
-    r: Term<any>;
-}
-
-export interface Branch extends Term<any> {
-    tag: "if";
-    type: "void";
-    test: Term<"bool">;
-    t: Term<any>[];
-    f?: Term<any>[];
-}
-
-export type TargetImpl = IObjectOf<Implementation1<Term<any>, string>>;
-
-export interface TargetImpl2 extends Record<Tag, Fn<any, string>> {
+export interface TargetImpl extends Record<Tag, Fn<any, string>> {
     sym: Fn<Sym<any>, string>;
     lit: Fn<Lit<any>, string>;
-    // assign: Fn<Assign<Sym<any>, Term<any>>, string>;
+    assign: Fn<Assign<any>, string>;
     op1: Fn<Op1<any>, string>;
     op2: Fn<Op2<any>, string>;
     swizzle: Fn<Swizzle<any>, string>;

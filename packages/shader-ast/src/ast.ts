@@ -10,7 +10,9 @@ import {
     Arg7,
     Arg8,
     ArgQualifier,
+    Assign,
     Branch,
+    Comparable,
     FnBody0,
     FnBody1,
     FnBody2,
@@ -57,6 +59,8 @@ import {
 } from "./api";
 
 export const isVec = (t: Term<any>) => t.type.indexOf("vec") == 0;
+
+const wrapF32 = (x?: number | Term<"f32">) => (isNumber(x) ? float(x) : x);
 
 export const sym = <T extends Type>(
     type: T,
@@ -107,29 +111,42 @@ export function swizzle(val: Term<any>, id: string): Swizzle<any> {
     };
 }
 
+export const assign = <L extends Type, R extends L>(
+    l: Sym<L>,
+    r: Term<R>
+): Assign<L> => ({
+    tag: "assign",
+    type: l.type,
+    l,
+    r
+});
+
+export function vec2(): Lit<"vec2">;
 export function vec2(x: number | Term<"f32">): Lit<"vec2">;
 // prettier-ignore
 export function vec2(x: number | Term<"f32">, y: number | Term<"f32">): Lit<"vec2">;
 // prettier-ignore
-export function vec2(x: number | Term<"f32">, y?: number | Term<"f32">): Lit<"vec2"> {
+export function vec2(x?: number | Term<"f32">, y?: number | Term<"f32">): Lit<"vec2"> {
     return lit("vec2", [
-        isNumber(x) ? float(x) : x,
-        isNumber(y) ? float(y) : y
+        x === undefined ? float(0) : wrapF32(x),
+        wrapF32(y)
     ]);
 }
 
+export function vec3(): Lit<"vec3">;
 export function vec3(x: number | Term<"f32">): Lit<"vec3">;
 export function vec3(x: Term<"vec2">, y: number | Term<"f32">): Lit<"vec3">;
 // prettier-ignore
 export function vec3(x: number | Term<"f32">, y: number | Term<"f32">, z: number | Term<"f32">): Lit<"vec3">;
-export function vec3(x: any, y?: any, z?: any): Lit<"vec3"> {
+export function vec3(x?: any, y?: any, z?: any): Lit<"vec3"> {
     return lit("vec3", [
-        isNumber(x) ? float(x) : x,
-        isNumber(y) ? float(y) : y,
-        isNumber(z) ? float(z) : z
+        x === undefined ? float(0) : wrapF32(x),
+        wrapF32(y),
+        wrapF32(z)
     ]);
 }
 
+export function vec4(): Lit<"vec4">;
 export function vec4(x: number | Term<"f32">): Lit<"vec4">;
 export function vec4(x: Term<"vec3">, y: number | Term<"f32">): Lit<"vec4">;
 export function vec4(x: Term<"vec2">, y: Term<"vec2">): Lit<"vec4">;
@@ -137,12 +154,12 @@ export function vec4(x: Term<"vec2">, y: Term<"vec2">): Lit<"vec4">;
 export function vec4(x: Term<"vec2">, y: number | Term<"f32">, z: number | Term<"f32">): Lit<"vec4">;
 // prettier-ignore
 export function vec4(x: number | Term<"f32">, y: number | Term<"f32">, z: number | Term<"f32">): Lit<"vec4">;
-export function vec4(x: any, y?: any, z?: any, w?: any): Lit<"vec4"> {
+export function vec4(x?: any, y?: any, z?: any, w?: any): Lit<"vec4"> {
     return lit("vec4", [
-        isNumber(x) ? float(x) : x,
-        isNumber(y) ? float(y) : y,
-        isNumber(z) ? float(z) : z,
-        isNumber(w) ? float(w) : w
+        x === undefined ? float(0) : wrapF32(x),
+        wrapF32(y),
+        wrapF32(z),
+        wrapF32(w)
     ]);
 }
 
@@ -153,6 +170,7 @@ export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
     val
 });
 
+// FIXME return types should not be defined here, but in higher-level ops
 // prettier-ignore
 export function op2(op: Operator, l: Term<"bool">, r: Term<"bool">): Op2<"bool">;
 export function op2(op: Operator, l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
@@ -248,6 +266,12 @@ export const or = (a: Term<"bool">, b: Term<"bool">) => op2("||", a, b);
 
 export const and = (a: Term<"bool">, b: Term<"bool">) => op2("&&", a, b);
 
+// FIXME
+export const lt = <A extends Comparable, B extends A>(
+    a: Term<A>,
+    b: Term<B>
+): Term<"bool"> => <any>op2("<", a, b);
+
 const defArg = <T extends Type>([type, id, q]: Arg<T>): FuncArg<T> => ({
     tag: "arg",
     type,
@@ -279,17 +303,17 @@ export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: S
     const body = _body(...args.map((x) => sym(x.type, x.id, x.q)));
     // TODO properly filter AST return terms and check for type compatibility
     // currently only top level terms are checked
-    const returns = body.filter((t) => t.tag === "ret");
-    const mismatched = returns.find((t) => t.type !== type);
-    if (mismatched) {
-        throw new Error(
-            `wrong return type for function '${id}', expected ${type}, got ${
-                mismatched.type
-            }`
-        );
-    } else if (type !== "void" && !returns.length) {
-        throw new Error(`function '${id}' must return a value of type ${type}`);
-    }
+    // const returns = body.filter((t) => t.tag === "ret");
+    // const mismatched = returns.find((t) => t.type !== type);
+    // if (mismatched) {
+    //     throw new Error(
+    //         `wrong return type for function '${id}', expected ${type}, got ${
+    //             mismatched.type
+    //         }`
+    //     );
+    // } else if (type !== "void" && !returns.length) {
+    //     throw new Error(`function '${id}' must return a value of type ${type}`);
+    // }
     const $: any = (...xs: any[]) => funcall(id, type, ...xs);
     return Object.assign($, {
         tag: "fn",
