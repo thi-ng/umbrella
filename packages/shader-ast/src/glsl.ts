@@ -1,31 +1,45 @@
+import { Fn } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { Term, Type } from "./api";
+import { Sym, Term, Type } from "./api";
+import { sym } from "./ast";
 import { defTarget } from "./target";
+
+// TODO
+export interface GLSLOpts {
+    version?: 100 | 300;
+}
+
+export interface GLSLTarget extends Fn<Term<any>, string> {
+    gl_FragColor: Sym<"vec4">;
+    gl_FragCoord: Sym<"vec2">;
+    gl_Position: Sym<"vec4">;
+    gl_PointSize: Sym<"f32">;
+}
 
 /**
  * GLSL code gen.
  *
  * @param version
  */
-export const emitGLSL = (_ = 300) => {
+export const targetGLSL = (_ = 300) => {
     const TYPE_NAMES: any = {
         f32: "float",
         i32: "int",
         u32: "uint"
     };
 
-    const emitType = (t: Type) => TYPE_NAMES[t] || t;
+    const $type = (t: Type) => TYPE_NAMES[t] || t;
 
-    const emitList = (body: Term<any>[], sep = ", ") =>
-        body.map(emit).join(sep);
+    const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
-    const emitVec = (v: Term<"f32">[]) =>
-        `vec${v.length}(${emitList(
+    const $vec = (v: Term<"f32">[]) =>
+        `vec${v.length}(${$list(
             v.slice(0, v[3] ? 4 : v[2] ? 3 : v[1] ? 2 : 1)
         )})`;
 
-    const emitScope = (body: Term<any>[]) => {
-        const res = "{\n" + emitList(body, ";\n");
+    // TODO refactor as sep node type, update fn, if
+    const $scope = (body: Term<any>[]) => {
+        const res = "{\n" + $list(body, ";\n");
         return (
             res + (res[res.length - 1] != "}" && body.length ? ";" : "") + "\n}"
         );
@@ -51,7 +65,7 @@ export const emitGLSL = (_ = 300) => {
                 case "vec2":
                 case "vec3":
                 case "vec4":
-                    return emitVec(v);
+                    return $vec(v);
                 default:
                     throw new Error(`unknown type: ${t.type}`);
             }
@@ -59,29 +73,32 @@ export const emitGLSL = (_ = 300) => {
 
         swizzle: (t) => `${emit(t.val)}.${t.id}`,
 
-        call: (t) => `${t.id}(${emitList(t.args)})`,
+        call: (t) => `${t.id}(${$list(t.args)})`,
 
         op1: (t) => `${t.op}${emit(t.val)}`,
 
         op2: (t) => `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
 
         fn: (t) =>
-            `${emitType(t.type)} ${t.id}(${emitList(t.args)}) ${emitScope(
-                t.body
-            )}`,
+            `${$type(t.type)} ${t.id}(${$list(t.args)}) ${$scope(t.body)}`,
 
-        arg: (t) => `${t.q ? t.q + " " : ""}${emitType(t.type)} ${t.id}`,
+        arg: (t) => `${t.q ? t.q + " " : ""}${$type(t.type)} ${t.id}`,
 
         ret: (t) => "return" + (t.val ? " " + emit(t.val) : ""),
 
         if: (t) => {
-            const res = `if (${emit(t.test)}) ` + emitScope(t.t);
-            return t.f ? res + " else " + emitScope(t.f) : res;
+            const res = `if (${emit(t.test)}) ` + $scope(t.t);
+            return t.f ? res + " else " + $scope(t.f) : res;
         },
 
-        // TODO
-        assign: (_) => "// TODO"
+        assign: (t) => emit(t.l) + " = " + emit(t.r)
     });
 
-    return emit;
+    Object.assign(emit, {
+        gl_FragColor: sym("vec4", "gl_FragColor"),
+        gl_Position: sym("vec4", "gl_Position"),
+        gl_PointSize: sym("f32", "gl_PointSize")
+    });
+
+    return <GLSLTarget>emit;
 };
