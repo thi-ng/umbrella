@@ -1,6 +1,11 @@
 import { Fn } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { Sym, Term, Type } from "./api";
+import {
+    FnCall,
+    Sym,
+    Term,
+    Type
+} from "./api";
 import { sym } from "./ast";
 import { defTarget } from "./target";
 
@@ -11,9 +16,12 @@ export interface GLSLOpts {
 
 export interface GLSLTarget extends Fn<Term<any>, string> {
     gl_FragColor: Sym<"vec4">;
-    gl_FragCoord: Sym<"vec2">;
-    gl_Position: Sym<"vec4">;
+    gl_FragCoord: Sym<"vec4">;
+    gl_FragData: Sym<"vec4[]">;
+    gl_FrontFacing: Sym<"bool">;
+    gl_PointCoord: Sym<"vec2">;
     gl_PointSize: Sym<"f32">;
+    gl_Position: Sym<"vec4">;
 }
 
 /**
@@ -37,16 +45,28 @@ export const targetGLSL = (_ = 300) => {
             v.slice(0, v[3] ? 4 : v[2] ? 3 : v[1] ? 2 : 1)
         )})`;
 
-    // TODO refactor as sep node type, update fn, if
-    const $scope = (body: Term<any>[]) => {
-        const res = "{\n" + $list(body, ";\n");
-        return (
-            res + (res[res.length - 1] != "}" && body.length ? ";" : "") + "\n}"
-        );
-    };
+    const $fn = (t: FnCall<any>) => `${t.id}(${$list(t.args)})`;
 
     const emit = defTarget({
-        sym: (t) => t.id,
+        arg: (t) => `${t.q ? t.q + " " : ""}${$type(t.type)} ${t.id}`,
+
+        assign: (t) => emit(t.l) + " = " + emit(t.r),
+
+        call: $fn,
+
+        call_i: $fn,
+
+        decl: (t) => `${$type(t.type)} ${emit(t.id)}`,
+
+        fn: (t) =>
+            `${$type(t.type)} ${t.id}(${$list(t.args)}) ${emit(t.scope)}`,
+
+        idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
+
+        if: (t) => {
+            const res = `if (${emit(t.test)}) ` + emit(t.t);
+            return t.f ? res + " else " + emit(t.f) : res;
+        },
 
         lit: (t) => {
             const v = t.val;
@@ -71,33 +91,31 @@ export const targetGLSL = (_ = 300) => {
             }
         },
 
-        swizzle: (t) => `${emit(t.val)}.${t.id}`,
-
-        call: (t) => `${t.id}(${$list(t.args)})`,
-
         op1: (t) => `${t.op}${emit(t.val)}`,
 
         op2: (t) => `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
 
-        fn: (t) =>
-            `${$type(t.type)} ${t.id}(${$list(t.args)}) ${$scope(t.body)}`,
-
-        arg: (t) => `${t.q ? t.q + " " : ""}${$type(t.type)} ${t.id}`,
-
         ret: (t) => "return" + (t.val ? " " + emit(t.val) : ""),
 
-        if: (t) => {
-            const res = `if (${emit(t.test)}) ` + $scope(t.t);
-            return t.f ? res + " else " + $scope(t.f) : res;
+        scope: (t) => {
+            let res = $list(t.body, ";\n");
+            res += res[res.length - 1] != "}" && t.body.length ? ";" : "";
+            return !t.global ? `{\n${res}\n}` : res;
         },
 
-        assign: (t) => emit(t.l) + " = " + emit(t.r)
+        swizzle: (t) => `${emit(t.val)}.${t.id}`,
+
+        sym: (t) => t.id
     });
 
-    Object.assign(emit, {
+    Object.assign(emit, <GLSLTarget>{
         gl_FragColor: sym("vec4", "gl_FragColor"),
-        gl_Position: sym("vec4", "gl_Position"),
-        gl_PointSize: sym("f32", "gl_PointSize")
+        gl_FragCoord: sym("vec4", "gl_FragCoord", "in"),
+        gl_FragData: sym("vec4[]", "gl_FragData", "in", 1),
+        gl_FrontFacing: sym("bool", "gl_FrontFacing", "in"),
+        gl_PointCoord: sym("vec2", "gl_PointCoord", "in"),
+        gl_PointSize: sym("f32", "gl_PointSize"),
+        gl_Position: sym("vec4", "gl_Position")
     });
 
     return <GLSLTarget>emit;

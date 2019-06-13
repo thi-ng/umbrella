@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Prior art / influences](#prior-art--influences)
     - [Tasks prior to initial release](#tasks-prior-to-initial-release)
     - [Future goals](#future-goals)
 - [Installation](#installation)
@@ -22,42 +23,61 @@ This project is part of the
 
 ## About
 
-**WIP only** - Embedded DSL to define partially type checked shader code
-directly in TypeScript and cross-compile to different languages.
-Currently only GLSL is supported as target, but custom code generators
-can be easily added (see
+**WIP only** - Embedded DSL to define partially (as much as possible /
+feasible) type checked shader code directly in TypeScript and
+cross-compile to different languages. Currently only GLSL is supported
+as target, but custom code generators can be easily added (see
 [src/glsl.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/glsl.ts)
 for reference). Once more details have been ironed out, we aim to
-support [WHLSL for WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
+support [WHLSL for WebGPU](https://github.com/gpuweb/WHLSL) in the near
+future as well.
 
 Benefits of this approach:
 
-- type checking (at authoring time & compile time) and type annotations
-  of all AST nodes catches many issues early on
+- even if incomplete, type checking (at authoring time & compile time)
+  and type annotations of all AST nodes catches many issues early on
 - shader functions can be called like standard TS/JS functions (incl.
   automatically type checked args via TS mapped types)
-- use standard TS tooling & IDE integration (e.g. docs strings, packaging, dependencies etc.)
+- use standard TS tooling & IDE integration (e.g. docs strings,
+  packaging, dependencies etc.)
 - improve general re-use, especially once more target codegens are
   available (see [future goals](#future-goals))
 - cross compilation to different graphics environments
+- avoids complex GLSL parsing as done by other transpilers
 - shader code will be fully minimized along with main app code in
   production builds as part of standard bundling processes/toolchains,
   no extra plugins needed
-- very small run time & file size overhead (entire pkg ~1.2KB gzipped, but hardly ever fully used)
+- very small run time & file size overhead (entire pkg ~1.2KB gzipped,
+  but hardly ever fully used)
+
+### Prior art / influences
+
+- https://github.com/cscheid/lux/tree/master/src/shade
+- https://github.com/kovasb/gamma/
 
 ### Tasks prior to initial release
 
 - [x] type checked swizzling
-- [ ] var declarations and assignments
+- [x] var declarations and assignments
+- [x] function definitions and return type checking
+- [x] branching
+- [ ] ternary operator
+- [x] math operators
+- [x] comparisons
+- [ ] bitwise operators
+- [ ] loops (for, while, break, continue)
+- [ ] const var modifier
+- [ ] more builtin type ctors / casts (ivec, bvec, mat, samplers)
 - [ ] more builtin function defs
-- [ ] more function arities (currently max 5 args)
+- [x] support for builtin `gl_XXX` variables (target specific)
+- [x] more function arities (max 8 args)
 - [ ] function call dependency analysis and ordered output
 - [ ] GLSL version support (100/300)
 
 ### Future goals
 
 - [ ] struct support
-- [ ] opt. mem barrier ops (elided for some targets)
+- [ ] opt. mem barrier ops (where supported)
 - [ ] more code gens (WHLSL, OpenCL, TS/JS, Houdini VEX)
 
 ## Installation

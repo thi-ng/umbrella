@@ -11,42 +11,114 @@ import {
 } from "@thi.ng/api";
 
 export type Tag =
-    | "sym"
-    | "lit"
+    | "arg"
     | "assign"
+    | "call"
+    | "call_i"
+    | "decl"
+    | "fn"
+    | "idx"
+    | "if"
+    | "lit"
     | "op1"
     | "op2"
-    | "swizzle"
-    | "call"
-    | "fn"
-    | "arg"
     | "ret"
-    | "if";
+    | "scope"
+    | "swizzle"
+    | "sym";
 
 export type Type =
     | "void"
     | "bool"
+    | "bool[]"
     | "f32"
+    | "f32[]"
     | "i32"
+    | "i32[]"
     | "u32"
+    | "u32[]"
     | "vec2"
+    | "vec2[]"
     | "vec3"
-    | "vec4";
+    | "vec3[]"
+    | "vec4"
+    | "vec4[]"
+    | "ivec2"
+    | "ivec2[]"
+    | "ivec3"
+    | "ivec3[]"
+    | "ivec4"
+    | "ivec4[]"
+    | "bvec2"
+    | "bvec2[]"
+    | "bvec3"
+    | "bvec3[]"
+    | "bvec4"
+    | "bvec4[]"
+    | "mat2"
+    | "mat2[]"
+    | "mat3"
+    | "mat3[]"
+    | "mat4"
+    | "mat4[]"
+    | "sampler1D"
+    | "sampler1D[]"
+    | "sampler2D"
+    | "sampler2D[]"
+    | "sampler3D"
+    | "sampler3D[]";
+
+export type Indexable =
+    | "bool[]"
+    | "f32[]"
+    | "i32[]"
+    | "u32[]"
+    | "vec2[]"
+    | "vec3[]"
+    | "vec4[]";
+
+export interface IndexTypeMap {
+    "bool[]": "bool";
+    "f32[]": "f32";
+    "i32[]": "i32";
+    "u32[]": "u32";
+    "vec2[]": "vec2";
+    "vec3[]": "vec3";
+    "vec4[]": "vec4";
+    "ivec2[]": "ivec2";
+    "ivec3[]": "ivec3";
+    "ivec4[]": "ivec4";
+    "bvec2[]": "bvec2";
+    "bvec3[]": "bvec3";
+    "bvec4[]": "bvec4";
+}
 
 export type Vec = "vec2" | "vec3" | "vec4";
+export type IVec = "ivec2" | "ivec3" | "ivec4";
+export type BVec = "bvec2" | "bvec3" | "bvec4";
+export type Mat = "mat2" | "mat3" | "mat4";
+export type Prim = "f32" | "i32" | "u32" | Vec;
+export type Comparable = "f32" | "i32";
+export type Numeric = number | Term<"f32"> | Term<"i32"> | Term<"u32">;
 
-export type Prim = "f32" | Vec;
-export type Comparable = "f32";
+export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
 export type MathOperator = "+" | "-" | "*" | "/";
 export type LogicOperator = "!" | "||" | "&&";
-export type ComparisonOperator = "<" | "<=" | "==" | ">=" | ">";
+export type ComparisonOperator = "<" | "<=" | "==" | "!=" | ">=" | ">";
 export type BitOperator = "<<" | ">>" | "|" | "&" | "^" | "~";
 export type Operator =
     | MathOperator
     | LogicOperator
     | ComparisonOperator
     | BitOperator;
+
+export type Select<
+    T extends Type,
+    Q extends Type,
+    A extends Type,
+    B extends Type
+> = T extends Q ? A : B;
 
 // swizzle gen:
 // console.log([...permutations("xyz","xyz")].map((x) =>`"${x.join("")}"`).join(" | "))
@@ -272,6 +344,11 @@ export interface Lit<T extends Type> extends Term<T> {
 export interface Sym<T extends Type> extends Term<T> {
     id: string;
     q: ArgQualifier;
+    len?: number;
+}
+
+export interface Decl<T extends Type> extends Term<T> {
+    id: Sym<T>;
 }
 
 export interface Swizzle<T extends Type> extends Term<T> {
@@ -279,8 +356,13 @@ export interface Swizzle<T extends Type> extends Term<T> {
     val: Term<Vec>;
 }
 
+export interface Index<T extends Type> extends Term<T> {
+    id: Term<"i32"> | Term<"u32">;
+    val: Term<Indexable>;
+}
+
 export interface Assign<T extends Type> extends Term<T> {
-    l: Sym<T>;
+    l: Assignable<T>;
     r: Term<T>;
 }
 
@@ -295,12 +377,15 @@ export interface Op2<T extends Type> extends Term<T> {
     r: Term<any>;
 }
 
-export interface Branch extends Term<any> {
-    tag: "if";
-    type: "void";
+export interface Scope extends Term<"void"> {
+    body: Term<any>[];
+    global: boolean;
+}
+
+export interface Branch extends Term<"void"> {
     test: Term<"bool">;
-    t: Term<any>[];
-    f?: Term<any>[];
+    t: Scope;
+    f?: Scope;
 }
 
 export interface FuncReturn<T extends Type> extends Term<T> {
@@ -315,8 +400,7 @@ export interface FuncArg<T extends Type> extends Term<T> {
 export interface Func<T extends Type> extends Term<T> {
     id: string;
     args: Sym<any>[];
-    body: Term<any>[];
-    builtin: string;
+    scope: Scope;
 }
 
 export interface TaggedFn0<T extends Type> extends Func0<T>, Func<T> {
@@ -410,15 +494,18 @@ export interface FnCall<T extends Type> extends Term<T> {
 }
 
 export interface TargetImpl extends Record<Tag, Fn<any, string>> {
-    sym: Fn<Sym<any>, string>;
-    lit: Fn<Lit<any>, string>;
+    arg: Fn<FuncArg<any>, string>;
     assign: Fn<Assign<any>, string>;
+    call: Fn<FnCall<any>, string>;
+    call_i: Fn<FnCall<any>, string>;
+    fn: Fn<Func<any>, string>;
+    idx: Fn<Index<any>, string>;
+    if: Fn<Branch, string>;
+    lit: Fn<Lit<any>, string>;
     op1: Fn<Op1<any>, string>;
     op2: Fn<Op2<any>, string>;
-    swizzle: Fn<Swizzle<any>, string>;
-    call: Fn<FnCall<any>, string>;
-    fn: Fn<Func<any>, string>;
-    arg: Fn<FuncArg<any>, string>;
     ret: Fn<FuncReturn<any>, string>;
-    if: Fn<Branch, string>;
+    scope: Fn<Scope, string>;
+    swizzle: Fn<Swizzle<any>, string>;
+    sym: Fn<Sym<any>, string>;
 }

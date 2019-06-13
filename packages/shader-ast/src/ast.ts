@@ -1,4 +1,6 @@
+import { Fn, Fn2 } from "@thi.ng/api";
 import { isNumber, isString } from "@thi.ng/checks";
+import { isArray } from "util";
 import {
     Arg,
     Arg1,
@@ -11,8 +13,11 @@ import {
     Arg8,
     ArgQualifier,
     Assign,
+    Assignable,
     Branch,
     Comparable,
+    ComparisonOperator,
+    Decl,
     FnBody0,
     FnBody1,
     FnBody2,
@@ -26,11 +31,19 @@ import {
     Func,
     FuncArg,
     FuncReturn,
+    Index,
+    Indexable,
+    IndexTypeMap,
+    IVec,
     Lit,
+    Mat,
+    Numeric,
     Op1,
     Op2,
     Operator,
     Prim,
+    Scope,
+    Select,
     Swizzle,
     Swizzle2_1,
     Swizzle2_2,
@@ -55,22 +68,59 @@ import {
     TaggedFn7,
     TaggedFn8,
     Term,
-    Type
+    Type,
+    Vec
 } from "./api";
 
 export const isVec = (t: Term<any>) => t.type.indexOf("vec") == 0;
 
-const wrapF32 = (x?: number | Term<"f32">) => (isNumber(x) ? float(x) : x);
+const wrapF32 = (x?: Numeric) => (isNumber(x) ? float(x) : x);
+
+const numberWithMatchingType = (t: Term<Prim>, x: number) =>
+    t.type[0] === "i" ? int(x) : float(x);
+
+const children = (t: Term<any>) =>
+    t.tag == "fn"
+        ? (<Func<any>>t).scope.body
+        : t.tag == "if"
+        ? (<Branch>t).f
+            ? (<Branch>t).t.body.concat((<Branch>t).f!.body)
+            : (<Branch>t).t.body
+        : undefined;
+
+const walk = <T>(
+    visit: Fn2<T, Term<any>, void>,
+    children: Fn<Term<any>, Term<any>[] | undefined>,
+    acc: T,
+    t: Term<any> | Term<any>[]
+) => {
+    if (isArray(t)) {
+        t.forEach((x) => walk(visit, children, acc, x));
+    } else {
+        visit(acc, t);
+        const c = children(t);
+        c && walk(visit, children, acc, c);
+    }
+    return acc;
+};
 
 export const sym = <T extends Type>(
     type: T,
     id: string,
-    q: ArgQualifier = "inout"
+    q: ArgQualifier = "inout",
+    len?: number
 ): Sym<T> => ({
     tag: "sym",
     type,
     id,
-    q
+    q,
+    len
+});
+
+const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
+    tag: "decl",
+    type: id.type,
+    id
 });
 
 export const lit = <T extends Type>(type: T, val: any): Lit<T> => ({
@@ -82,6 +132,8 @@ export const lit = <T extends Type>(type: T, val: any): Lit<T> => ({
 export const T = lit("bool", true);
 export const F = lit("bool", false);
 
+const F32_0 = lit("f32", 0);
+
 export const float = (x: number | Term<"f32">) => lit("f32", x);
 
 export const int = (x: number | Term<"i32">) =>
@@ -90,29 +142,54 @@ export const int = (x: number | Term<"i32">) =>
 export const uint = (x: number | Term<"u32">) =>
     lit("u32", isNumber(x) ? x >>> 0 : x);
 
-export function swizzle(val: Term<"vec2">, id: Swizzle2_1): Swizzle<"f32">;
-export function swizzle(val: Term<"vec2">, id: Swizzle2_2): Swizzle<"vec2">;
-export function swizzle(val: Term<"vec2">, id: Swizzle2_3): Swizzle<"vec3">;
-export function swizzle(val: Term<"vec2">, id: Swizzle2_4): Swizzle<"vec4">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_1): Swizzle<"f32">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_2): Swizzle<"vec2">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_3): Swizzle<"vec3">;
-export function swizzle(val: Term<"vec3">, id: Swizzle3_4): Swizzle<"vec4">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_1): Swizzle<"f32">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_2): Swizzle<"vec2">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_3): Swizzle<"vec3">;
-export function swizzle(val: Term<"vec4">, id: Swizzle4_4): Swizzle<"vec4">;
+// prettier-ignore
+export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_1): Swizzle<Select<T,"vec2","f32","i32">>;
+// prettier-ignore
+export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_1): Swizzle<Select<T,"vec3","f32","i32">>;
+// prettier-ignore
+export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_1): Swizzle<Select<T,"vec3","f32","i32">>;
+// prettier-ignore
+export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_2): Swizzle<Select<T,"vec2","vec2","ivec2">>;
+// prettier-ignore
+export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_2): Swizzle<Select<T,"vec3","vec2","ivec2">>;
+// prettier-ignore
+export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_2): Swizzle<Select<T,"vec3","vec2","ivec2">>;
+// prettier-ignore
+export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_3): Swizzle<Select<T,"vec2","vec3","ivec3">>;
+// prettier-ignore
+export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_3): Swizzle<Select<T,"vec3","vec3","ivec3">>;
+// prettier-ignore
+export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_3): Swizzle<Select<T,"vec3","vec3","ivec3">>;
+// prettier-ignore
+export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_4): Swizzle<Select<T,"vec2","vec4","ivec4">>;
+// prettier-ignore
+export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_4): Swizzle<Select<T,"vec3","vec4","ivec4">>;
+// prettier-ignore
+export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_4): Swizzle<Select<T,"vec3","vec4","ivec4">>;
+// prettier-ignore
 export function swizzle(val: Term<any>, id: string): Swizzle<any> {
     return {
         tag: "swizzle",
-        type: id.length == 1 ? "f32" : "vec" + id.length,
+        type: val.type[0]==="i"
+            ? id.length == 1 ? "i32" : "ivec" + id.length
+            : id.length == 1 ? "f32" : "vec" + id.length,
         val,
         id
     };
 }
 
+export const index = <T extends keyof IndexTypeMap & Indexable>(
+    val: Sym<T>,
+    id: number | Term<"i32"> | Term<"u32">
+): Index<IndexTypeMap[T]> => ({
+    tag: "idx",
+    type: <any>val.type.substr(0, val.type.length - 2),
+    id: isNumber(id) ? int(id) : id,
+    val
+});
+
 export const assign = <L extends Type, R extends L>(
-    l: Sym<L>,
+    l: Assignable<L>,
     r: Term<R>
 ): Assign<L> => ({
     tag: "assign",
@@ -122,41 +199,41 @@ export const assign = <L extends Type, R extends L>(
 });
 
 export function vec2(): Lit<"vec2">;
-export function vec2(x: number | Term<"f32">): Lit<"vec2">;
+export function vec2(x: Numeric): Lit<"vec2">;
 // prettier-ignore
-export function vec2(x: number | Term<"f32">, y: number | Term<"f32">): Lit<"vec2">;
+export function vec2(x: Numeric, y: Numeric): Lit<"vec2">;
 // prettier-ignore
-export function vec2(x?: number | Term<"f32">, y?: number | Term<"f32">): Lit<"vec2"> {
+export function vec2(x?: Numeric, y?: Numeric): Lit<"vec2"> {
     return lit("vec2", [
-        x === undefined ? float(0) : wrapF32(x),
+        x === undefined ? F32_0 : wrapF32(x),
         wrapF32(y)
     ]);
 }
 
 export function vec3(): Lit<"vec3">;
-export function vec3(x: number | Term<"f32">): Lit<"vec3">;
-export function vec3(x: Term<"vec2">, y: number | Term<"f32">): Lit<"vec3">;
+export function vec3(x: Numeric): Lit<"vec3">;
+export function vec3(x: Term<"vec2">, y: Numeric): Lit<"vec3">;
 // prettier-ignore
-export function vec3(x: number | Term<"f32">, y: number | Term<"f32">, z: number | Term<"f32">): Lit<"vec3">;
+export function vec3(x: Numeric, y: Numeric, z: Numeric): Lit<"vec3">;
 export function vec3(x?: any, y?: any, z?: any): Lit<"vec3"> {
     return lit("vec3", [
-        x === undefined ? float(0) : wrapF32(x),
+        x === undefined ? F32_0 : wrapF32(x),
         wrapF32(y),
         wrapF32(z)
     ]);
 }
 
 export function vec4(): Lit<"vec4">;
-export function vec4(x: number | Term<"f32">): Lit<"vec4">;
-export function vec4(x: Term<"vec3">, y: number | Term<"f32">): Lit<"vec4">;
+export function vec4(x: Numeric): Lit<"vec4">;
+export function vec4(x: Term<"vec3">, y: Numeric): Lit<"vec4">;
 export function vec4(x: Term<"vec2">, y: Term<"vec2">): Lit<"vec4">;
 // prettier-ignore
-export function vec4(x: Term<"vec2">, y: number | Term<"f32">, z: number | Term<"f32">): Lit<"vec4">;
+export function vec4(x: Term<"vec2">, y: Numeric, z: Numeric): Lit<"vec4">;
 // prettier-ignore
-export function vec4(x: number | Term<"f32">, y: number | Term<"f32">, z: number | Term<"f32">): Lit<"vec4">;
+export function vec4(x: Numeric, y: Numeric, z: Numeric): Lit<"vec4">;
 export function vec4(x?: any, y?: any, z?: any, w?: any): Lit<"vec4"> {
     return lit("vec4", [
-        x === undefined ? float(0) : wrapF32(x),
+        x === undefined ? F32_0 : wrapF32(x),
         wrapF32(y),
         wrapF32(z),
         wrapF32(w)
@@ -170,107 +247,109 @@ export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
     val
 });
 
-// FIXME return types should not be defined here, but in higher-level ops
-// prettier-ignore
-export function op2(op: Operator, l: Term<"bool">, r: Term<"bool">): Op2<"bool">;
-export function op2(op: Operator, l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
-export function op2(op: Operator, l: Term<"u32">, r: Term<"u32">): Op2<"u32">;
-export function op2(op: Operator, l: Term<"f32">, r: Term<"f32">): Op2<"f32">;
-export function op2(op: Operator, l: Term<"vec2">, r: Term<"f32">): Op2<"vec2">;
-export function op2(op: Operator, l: Term<"f32">, r: Term<"vec2">): Op2<"vec2">;
-export function op2(op: Operator, l: Term<any>, r: Term<any>): Op2<any> {
-    return {
-        tag: "op2",
-        type: isVec(l) ? l.type : isVec(r) ? r.type : "f32",
-        op,
-        l,
-        r
-    };
-}
+export const op2 = (
+    op: Operator,
+    l: Term<any>,
+    r: Term<any>,
+    rtype?: Type
+): Op2<any> => ({
+    tag: "op2",
+    type: rtype || (isVec(l) ? l.type : isVec(r) ? r.type : l.type),
+    op,
+    l,
+    r
+});
 
 export const inc = <T extends Prim>(t: Term<T>): Op2<T> =>
-    <Op2<any>>add(<Term<any>>t, float(1));
+    <Op2<any>>add(<Term<any>>t, <Term<any>>numberWithMatchingType(t, 1));
 
 export const dec = <T extends Prim>(t: Term<T>): Op2<T> =>
-    <Op2<any>>sub(<Term<any>>t, float(1));
+    <Op2<any>>sub(<Term<any>>t, <Term<any>>numberWithMatchingType(t, 1));
 
-export function add(l: Term<"f32">, r: Term<"f32">): Op2<"f32">;
-export function add(l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
-export function add(l: Term<"u32">, r: Term<"u32">): Op2<"u32">;
-export function add(l: Term<"f32">, r: Term<"vec2">): Op2<"vec2">;
-export function add(l: Term<"vec2">, r: Term<"f32">): Op2<"vec2">;
-export function add(l: Term<"vec2">, r: Term<"vec2">): Op2<"vec2">;
-export function add(l: Term<"vec3">, r: Term<"f32">): Op2<"vec3">;
-export function add(l: Term<"f32">, r: Term<"vec3">): Op2<"vec3">;
-export function add(l: Term<"vec3">, r: Term<"vec3">): Op2<"vec3">;
-export function add(l: Term<"vec4">, r: Term<"f32">): Op2<"vec4">;
-export function add(l: Term<"f32">, r: Term<"vec4">): Op2<"vec4">;
-export function add(l: Term<"vec4">, r: Term<"vec4">): Op2<"vec4">;
+// prettier-ignore
+export function add<A extends Prim | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
+// prettier-ignore
+export function add<T extends Vec | Mat>(l: Term<"f32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function add<T extends Vec | Mat>(l: Term<T>, b: Term<"f32">): Op2<T>;
+// prettier-ignore
+export function add<T extends IVec>(l: Term<"i32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function add<T extends IVec>(l: Term<T>, b: Term<"i32">): Op2<T>;
+// prettier-ignore
 export function add(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("+", l, r);
 }
 
-export function sub(l: Term<"f32">, r: Term<"f32">): Op2<"f32">;
-export function sub(l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
-export function sub(l: Term<"u32">, r: Term<"u32">): Op2<"u32">;
-export function sub(l: Term<"f32">, r: Term<"vec2">): Op2<"vec2">;
-export function sub(l: Term<"vec2">, r: Term<"f32">): Op2<"vec2">;
-export function sub(l: Term<"vec2">, r: Term<"vec2">): Op2<"vec2">;
-export function sub(l: Term<"vec3">, r: Term<"f32">): Op2<"vec3">;
-export function sub(l: Term<"f32">, r: Term<"vec3">): Op2<"vec3">;
-export function sub(l: Term<"vec3">, r: Term<"vec3">): Op2<"vec3">;
-export function sub(l: Term<"vec4">, r: Term<"f32">): Op2<"vec4">;
-export function sub(l: Term<"f32">, r: Term<"vec4">): Op2<"vec4">;
-export function sub(l: Term<"vec4">, r: Term<"vec4">): Op2<"vec4">;
+// prettier-ignore
+export function sub<A extends Prim | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
+// prettier-ignore
+export function sub<T extends Vec | Mat>(l: Term<"f32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function sub<T extends Vec | Mat>(l: Term<T>, b: Term<"f32">): Op2<T>;
+// prettier-ignore
+export function sub<T extends IVec>(l: Term<"i32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function sub<T extends IVec>(l: Term<T>, b: Term<"i32">): Op2<T>;
 export function sub(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("-", l, r);
 }
 
-export function mul(l: Term<"f32">, r: Term<"f32">): Op2<"f32">;
-export function mul(l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
-export function mul(l: Term<"u32">, r: Term<"u32">): Op2<"u32">;
-export function mul(l: Term<"f32">, r: Term<"vec2">): Op2<"vec2">;
-export function mul(l: Term<"vec2">, r: Term<"f32">): Op2<"vec2">;
-export function mul(l: Term<"vec2">, r: Term<"vec2">): Op2<"vec2">;
-export function mul(l: Term<"vec3">, r: Term<"f32">): Op2<"vec3">;
-export function mul(l: Term<"f32">, r: Term<"vec3">): Op2<"vec3">;
-export function mul(l: Term<"vec3">, r: Term<"vec3">): Op2<"vec3">;
-export function mul(l: Term<"vec4">, r: Term<"f32">): Op2<"vec4">;
-export function mul(l: Term<"f32">, r: Term<"vec4">): Op2<"vec4">;
-export function mul(l: Term<"vec4">, r: Term<"vec4">): Op2<"vec4">;
+// prettier-ignore
+export function mul<A extends Prim | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
+// prettier-ignore
+export function mul<T extends Vec | Mat>(l: Term<"f32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function mul<T extends Vec | Mat>(l: Term<T>, b: Term<"f32">): Op2<T>;
+// prettier-ignore
+export function mul<T extends IVec>(l: Term<"i32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function mul<T extends IVec>(l: Term<T>, b: Term<"i32">): Op2<T>;
+export function mul(l: Term<"mat2">, b: Term<"vec2">): Op2<"vec2">;
+export function mul(l: Term<"mat3">, b: Term<"vec3">): Op2<"vec3">;
+export function mul(l: Term<"mat4">, b: Term<"vec4">): Op2<"vec4">;
 export function mul(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("*", l, r);
 }
 
-export function div(l: Term<"f32">, r: Term<"f32">): Op2<"f32">;
-export function div(l: Term<"i32">, r: Term<"i32">): Op2<"i32">;
-export function div(l: Term<"u32">, r: Term<"u32">): Op2<"u32">;
-export function div(l: Term<"f32">, r: Term<"vec2">): Op2<"vec2">;
-export function div(l: Term<"vec2">, r: Term<"f32">): Op2<"vec2">;
-export function div(l: Term<"vec2">, r: Term<"vec2">): Op2<"vec2">;
-export function div(l: Term<"vec3">, r: Term<"f32">): Op2<"vec3">;
-export function div(l: Term<"f32">, r: Term<"vec3">): Op2<"vec3">;
-export function div(l: Term<"vec3">, r: Term<"vec3">): Op2<"vec3">;
-export function div(l: Term<"vec4">, r: Term<"f32">): Op2<"vec4">;
-export function div(l: Term<"f32">, r: Term<"vec4">): Op2<"vec4">;
-export function div(l: Term<"vec4">, r: Term<"vec4">): Op2<"vec4">;
+// prettier-ignore
+export function div<A extends Prim | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
+// prettier-ignore
+export function div<T extends Vec | Mat>(l: Term<"f32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function div<T extends Vec | Mat>(l: Term<T>, b: Term<"f32">): Op2<T>;
+// prettier-ignore
+export function div<T extends IVec>(l: Term<"i32">, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function div<T extends IVec>(l: Term<T>, b: Term<"i32">): Op2<T>;
 export function div(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("/", l, r);
 }
 
-export const neg = <T extends Prim>(val: Term<T>) => op1("-", val);
+export const neg = <T extends Prim | IVec | Mat>(val: Term<T>) => op1("-", val);
 
 export const not = (val: Term<"bool">) => op1("!", val);
-
 export const or = (a: Term<"bool">, b: Term<"bool">) => op2("||", a, b);
-
 export const and = (a: Term<"bool">, b: Term<"bool">) => op2("&&", a, b);
 
-// FIXME
-export const lt = <A extends Comparable, B extends A>(
+const cmp = (op: ComparisonOperator) => <A extends Comparable, B extends A>(
     a: Term<A>,
     b: Term<B>
-): Term<"bool"> => <any>op2("<", a, b);
+): Term<"bool"> => op2(op, a, b, "bool");
+
+export const eq = cmp("==");
+export const neq = cmp("!=");
+export const lt = cmp("<");
+export const lte = cmp("<=");
+export const gt = cmp(">");
+export const gte = cmp(">=");
+
+export const scope = (body: Term<any>[], global = false): Scope => ({
+    tag: "scope",
+    type: "void",
+    body: body.map((x) => (x.tag === "sym" ? decl(<Sym<any>>x) : x)),
+    global
+});
 
 const defArg = <T extends Type>([type, id, q]: Arg<T>): FuncArg<T> => ({
     tag: "arg",
@@ -301,26 +380,30 @@ export function defn<T extends Type, A extends Type, B extends Type, C extends T
 export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => Term<any>[]): Func<any> {
     const args = _args.map(defArg);
     const body = _body(...args.map((x) => sym(x.type, x.id, x.q)));
-    // TODO properly filter AST return terms and check for type compatibility
-    // currently only top level terms are checked
-    // const returns = body.filter((t) => t.tag === "ret");
-    // const mismatched = returns.find((t) => t.type !== type);
-    // if (mismatched) {
-    //     throw new Error(
-    //         `wrong return type for function '${id}', expected ${type}, got ${
-    //             mismatched.type
-    //         }`
-    //     );
-    // } else if (type !== "void" && !returns.length) {
-    //     throw new Error(`function '${id}' must return a value of type ${type}`);
-    // }
+    const returns = walk(
+        (acc: FuncReturn<any>[], t) =>
+            t.tag === "ret" && acc.push(t),
+        children,
+        [],
+        body
+    );
+    const mismatched = returns.find((t) => t.type !== type);
+    if (mismatched) {
+        throw new Error(
+            `wrong return type for function '${id}', expected ${type}, got ${
+                mismatched.type
+            }`
+        );
+    } else if (type !== "void" && !returns.length) {
+        throw new Error(`function '${id}' must return a value of type ${type}`);
+    }
     const $: any = (...xs: any[]) => funcall(id, type, ...xs);
-    return Object.assign($, {
+    return Object.assign($, <Func<any>>{
         tag: "fn",
         type,
         id,
         args,
-        body
+        scope: scope(body)
     });
 }
 
@@ -369,6 +452,17 @@ export function funcall(fn: string | Func<any>, ...args: Term<any>[]): FnCall<an
           };
 }
 
+export const builtinCall = <T extends Type>(
+    id: string,
+    type: T,
+    ...args: Term<any>[]
+): FnCall<T> => ({
+    tag: "call_i",
+    type,
+    id,
+    args
+});
+
 export const ifThen = (
     test: Term<"bool">,
     truthy: Term<any>[],
@@ -377,6 +471,6 @@ export const ifThen = (
     tag: "if",
     type: "void",
     test,
-    t: truthy,
-    f: falsey
+    t: scope(truthy),
+    f: falsey ? scope(falsey) : undefined
 });
