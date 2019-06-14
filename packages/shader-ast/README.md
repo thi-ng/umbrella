@@ -25,9 +25,9 @@ This project is part of the
 
 **WIP only** - Embedded DSL to define partially (as much as possible /
 feasible) type checked shader code directly in TypeScript and
-cross-compile to different languages. Currently only GLSL is supported
-as target, but custom code generators can be easily added (see
-[src/glsl.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/glsl.ts)
+cross-compile to different languages. Currently only GLSL & JS are
+supported as target, but custom code generators can be easily added (see
+[src/glsl.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/codegen/glsl.ts)
 for reference). Once more details have been ironed out, we aim to
 support [WHLSL for WebGPU](https://github.com/gpuweb/WHLSL) in the near
 future as well.
@@ -78,7 +78,7 @@ Benefits of this approach:
 
 - [ ] struct support
 - [ ] opt. mem barrier ops (where supported)
-- [ ] more code gens (WHLSL, OpenCL, TS/JS, Houdini VEX)
+- [ ] more code gens (WHLSL, OpenCL, TS, Houdini VEX)
 
 ## Installation
 
@@ -93,6 +93,10 @@ yarn add @thi.ng/shader-ast
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
 
 ## Usage examples
+
+A longer example with both GLSL & JS output is available in [this
+gist](https://gist.github.com/postspectacular/43f3424aa9716fde1b84bfef70081e02).
+
 
 ```ts
 import {
