@@ -71,6 +71,7 @@ export const min = primOp2("min");
 export const max = primOp2("max");
 export const clamp = primOp3("clamp");
 
+export const mix = primOp3("mix");
 export const step = primOp2("step");
 export const smoothstep = primOp3("smoothstep");
 

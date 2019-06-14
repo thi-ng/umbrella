@@ -5,8 +5,8 @@ import {
     Sym,
     Term,
     Type
-} from "./api";
-import { sym } from "./ast";
+} from "../api";
+import { sym } from "../ast";
 import { defTarget } from "./target";
 
 // TODO

@@ -74,12 +74,12 @@ import {
 
 export const isVec = (t: Term<any>) => t.type.indexOf("vec") == 0;
 
-const wrapF32 = (x?: Numeric) => (isNumber(x) ? float(x) : x);
+export const wrapF32 = (x?: Numeric) => (isNumber(x) ? float(x) : x);
 
-const numberWithMatchingType = (t: Term<Prim>, x: number) =>
+export const numberWithMatchingType = (t: Term<Prim>, x: number) =>
     t.type[0] === "i" ? int(x) : float(x);
 
-const children = (t: Term<any>) =>
+export const children = (t: Term<any>) =>
     t.tag == "fn"
         ? (<Func<any>>t).scope.body
         : t.tag == "if"
@@ -88,7 +88,7 @@ const children = (t: Term<any>) =>
             : (<Branch>t).t.body
         : undefined;
 
-const walk = <T>(
+export const walk = <T>(
     visit: Fn2<T, Term<any>, void>,
     children: Fn<Term<any>, Term<any>[] | undefined>,
     acc: T,
@@ -131,8 +131,7 @@ export const lit = <T extends Type>(type: T, val: any): Lit<T> => ({
 
 export const T = lit("bool", true);
 export const F = lit("bool", false);
-
-const F32_0 = lit("f32", 0);
+export const F32_0 = lit("f32", 0);
 
 export const float = (x: number | Term<"f32">) => lit("f32", x);
 
