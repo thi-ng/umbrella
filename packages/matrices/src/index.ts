@@ -20,6 +20,8 @@ export * from "./m23-m22";
 export * from "./m23-m44";
 export * from "./m33-m44";
 export * from "./m44-m33";
+export * from "./matn";
+export * from "./matv";
 export * from "./mixq";
 export * from "./mul";
 export * from "./mulm";
