@@ -92,7 +92,6 @@ export const tan = primOp1("tan");
 export const acos = primOp1("acos");
 export const asin = primOp1("asin");
 export const atan = primOp1("atan");
-export const atan2 = primOp2("atan2");
 
 export const pow = primOp2("pow");
 export const exp = primOp1("exp");
