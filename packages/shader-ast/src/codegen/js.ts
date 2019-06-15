@@ -1,7 +1,30 @@
+import { Fn, Fn2 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { Operator, Sym, Term } from "../api";
-import { F32_0, isVec } from "../ast";
+import { unsupported } from "@thi.ng/errors";
+import { Vec as _Vec } from "@thi.ng/vectors";
+import {
+    Func,
+    Lit,
+    Operator,
+    Swizzle,
+    Sym,
+    Term
+} from "../api";
+import { isVec } from "../ast";
 import { defTarget } from "./target";
+
+export interface JSEnv {
+    vec2n: Fn<number, _Vec>;
+    vec3n: Fn<number, _Vec>;
+    vec3vn: Fn2<_Vec, number, _Vec>;
+    vec4n: Fn<number, _Vec>;
+    vec4vn: Fn2<_Vec, number, _Vec>;
+    vec4vv: Fn2<_Vec, _Vec, _Vec>;
+}
+
+export interface JSTarget extends Fn<Term<any>, string> {
+    compile(tree: Term<any>, env: Partial<JSEnv>, exports: Func<any>[]): any;
+}
 
 export const targetJS = () => {
     const OP_IDS: Record<Operator, string> = {
@@ -26,24 +49,54 @@ export const targetJS = () => {
         ">>": "rshift"
     };
 
+    const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
+
+    // const CTORS: any = {
+    //     vec2: vec2,
+    //     vec3: vec3,
+    //     vec4: vec4
+    // };
+
     const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
     const $docParam = (p: Sym<any>) => ` * @param ${p.id} ${p.type}`;
 
     const $fn = (name: string, args: Term<any>[]) => `${name}(${$list(args)})`;
 
-    const $vec = (v: Term<"f32">[]) => `[${$list(v.map((x) => x || F32_0))}]`;
+    const $vec = ({ val, info, type }: Lit<any>) =>
+        !info ? `[${$list(val)}]` : `env.${type}${info}(${$list(val)})`;
+
+    const $swizzle = (id: string) => [...id].map((x) => COMPS[x]).join(", ");
 
     const emit = defTarget({
         arg: (t) => t.id,
 
-        assign: (t) => emit(t.l) + " = " + emit(t.r),
+        assign: (t) =>
+            t.l.tag === "swizzle"
+                ? emit((<Swizzle<any>>t.l).val) +
+                  " = " +
+                  `env.${t.r.type}_swizzle(${emit(t.r)}, ${$swizzle(
+                      (<Swizzle<any>>t.l).id
+                  )})`
+                : emit(t.l) + " = " + emit(t.r),
 
         call: (t) => $fn(t.id, t.args),
 
-        call_i: (t) => $fn(`env.${t.args[0].type}_${t.id}`, t.args),
+        call_i: (t) =>
+            $fn(`env.${t.args[0].type}_${t.id}${t.info || ""}`, t.args),
 
-        decl: (t) => `var ${emit(t.id)}`,
+        decl: ({ type, id }) => {
+            const res: string[] = [];
+            res.push(id.opts.const ? "const" : "let");
+            res.push(`/*${type}*/`);
+            res.push(id.id);
+            id.init
+                ? res.push("=", emit(id.init))
+                : id.opts.num !== undefined
+                ? res.push("=", `new Array(${id.opts.num})`)
+                : undefined;
+            return res.join(" ");
+        },
 
         fn: (t) =>
             "/**\n" +
@@ -70,9 +123,12 @@ export const targetJS = () => {
                 case "vec2":
                 case "vec3":
                 case "vec4":
-                    return $vec(v);
+                case "mat2":
+                case "mat3":
+                case "mat4":
+                    return $vec(t);
                 default:
-                    throw new Error(`unknown type: ${t.type}`);
+                    return unsupported(`unknown type: ${t.type}`);
             }
         },
 
@@ -83,7 +139,7 @@ export const targetJS = () => {
 
         op2: (t) =>
             isVec(t.l) || isVec(t.r)
-                ? `env.${t.l.type}_${OP_IDS[t.op]}"(${emit(t.l)},${emit(t.r)})`
+                ? `env.${t.l.type}_${OP_IDS[t.op]}(${emit(t.l)},${emit(t.r)})`
                 : `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
 
         ret: (t) => "return" + (t.val ? " " + emit(t.val) : ""),
@@ -94,10 +150,21 @@ export const targetJS = () => {
             return !t.global ? `{\n${res}\n}` : res;
         },
 
-        swizzle: (t) => `${emit(t.val)}.${t.id}`,
+        swizzle: (t) =>
+            `env.${t.val.type}_swizzle(${emit(t.val)}, ${$swizzle(t.id)})`,
 
         sym: (t) => t.id
     });
 
-    return emit;
+    Object.assign(emit, <JSTarget>{
+        compile: (tree, env, fns) => {
+            const exports = fns.map((f) => f.id + ": " + f.id).join(",\n");
+            return new Function(
+                "env",
+                emit(tree) + "\nreturn {" + exports + "};"
+            )(env);
+        }
+    });
+
+    return <JSTarget>emit;
 };

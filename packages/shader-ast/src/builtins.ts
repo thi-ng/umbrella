@@ -1,4 +1,11 @@
-import { Prim, Term, Vec } from "./api";
+import {
+    BVec,
+    FnCall,
+    Mat,
+    Prim,
+    Term,
+    Vec
+} from "./api";
 import { builtinCall } from "./ast";
 
 const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
@@ -14,6 +21,8 @@ const primOp3 = (name: string) => <A extends Prim, B extends A, C extends A>(
     b: Term<B>,
     c: Term<C>
 ) => builtinCall(name, a.type, a, b, c);
+
+const $bvec = (t: string) => <any>("bvec" + t[t.length - 1]);
 
 /**
  * Returns normalized version of given vector.
@@ -71,7 +80,6 @@ export const min = primOp2("min");
 export const max = primOp2("max");
 export const clamp = primOp3("clamp");
 
-export const mix = primOp3("mix");
 export const step = primOp2("step");
 export const smoothstep = primOp3("smoothstep");
 
@@ -99,4 +107,99 @@ export const sign = primOp1("sign");
 export const floor = primOp1("floor");
 export const ceil = primOp1("ceil");
 export const fract = primOp1("fract");
-export const mod = primOp2("mod");
+
+// prettier-ignore
+export function mod<A extends Prim, B extends A>(a: Term<A>, b: Term<B>): FnCall<A>;
+export function mod<A extends Prim>(a: Term<A>, b: Term<"f32">): FnCall<A>;
+export function mod(a: Term<any>, b: Term<any>): FnCall<any> {
+    const f = builtinCall("mod", a.type, a, b);
+    f.type === "f32" && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function mix<A extends Prim, B extends A, C extends A>(a: Term<A>, b: Term<B>, c: Term<C>): FnCall<A>;
+export function mix<A extends Prim, B extends A>(
+    a: Term<A>,
+    b: Term<B>,
+    c: Term<"f32">
+): FnCall<A>;
+export function mix(a: Term<any>, b: Term<any>, c: Term<any>): FnCall<any> {
+    const f = builtinCall("mix", a.type, a, b, c);
+    c.type === "f32" && (f.info = "n");
+    return f;
+}
+
+export const matrixCompMult = <A extends Mat, B extends A>(
+    a: Term<A>,
+    b: Term<B>
+) => builtinCall("matrixCompMult", a.type, a, b);
+
+// prettier-ignore
+export function lessThan<A extends "vec2" | "ivec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;
+// prettier-ignore
+export function lessThan<A extends "vec3" | "ivec3", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec3">;
+// prettier-ignore
+export function lessThan<A extends "vec4" | "ivec4", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec4">;
+export function lessThan(a: Term<any>, b: Term<any>) {
+    return builtinCall("lessThan", $bvec(a.type), a, b);
+}
+
+// prettier-ignore
+export function lessThanEqual<A extends "vec2" | "ivec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;
+// prettier-ignore
+export function lessThanEqual<A extends "vec3" | "ivec3", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec3">;
+// prettier-ignore
+export function lessThanEqual<A extends "vec4" | "ivec4", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec4">;
+export function lessThanEqual(a: Term<any>, b: Term<any>) {
+    return builtinCall("lessThanEqual", $bvec(a.type), a, b);
+}
+
+// prettier-ignore
+export function greaterThan<A extends "vec2" | "ivec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;
+// prettier-ignore
+export function greaterThan<A extends "vec3" | "ivec3", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec3">;
+// prettier-ignore
+export function greaterThan<A extends "vec4" | "ivec4", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec4">;
+export function greaterThan(a: Term<any>, b: Term<any>) {
+    return builtinCall("greaterThan", $bvec(a.type), a, b);
+}
+
+// prettier-ignore
+export function greaterThanEqual<A extends "vec2" | "ivec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;
+// prettier-ignore
+export function greaterThanEqual<A extends "vec3" | "ivec3", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec3">;
+// prettier-ignore
+export function greaterThanEqual<A extends "vec4" | "ivec4", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec4">;
+export function greaterThanEqual(a: Term<any>, b: Term<any>) {
+    return builtinCall("greaterThanEqual", $bvec(a.type), a, b);
+}
+
+// prettier-ignore
+export function equal<A extends "vec2" | "ivec2" | "bvec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;
+// prettier-ignore
+export function equal<A extends "vec3" | "ivec3" | "bvec3", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec3">;
+// prettier-ignore
+export function equal<A extends "vec4" | "ivec4" | "bvec4", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec4">;
+export function equal(a: Term<any>, b: Term<any>) {
+    return builtinCall("equal", $bvec(a.type), a, b);
+}
+
+// prettier-ignore
+export function notEqual<A extends "vec2" | "ivec2" | "bvec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;
+// prettier-ignore
+export function notEqual<A extends "vec3" | "ivec3" | "bvec3", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec3">;
+// prettier-ignore
+export function notEqual<A extends "vec4" | "ivec4" | "bvec4", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec4">;
+export function notEqual(a: Term<any>, b: Term<any>) {
+    return builtinCall("notEqual", $bvec(a.type), a, b);
+}
+
+export const _any = (v: Term<BVec>): FnCall<"bool"> =>
+    builtinCall("any", "bool", v);
+
+export const all = (v: Term<BVec>): FnCall<"bool"> =>
+    builtinCall("all", "bool", v);
+
+export const _not = <T extends BVec>(v: Term<T>) =>
+    builtinCall("all", v.type, v);

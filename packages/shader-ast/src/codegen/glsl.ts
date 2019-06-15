@@ -1,12 +1,14 @@
 import { Fn } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
+import { unsupported } from "@thi.ng/errors";
 import {
     FnCall,
+    FuncArg,
     Sym,
     Term,
     Type
 } from "../api";
-import { sym } from "../ast";
+import { itemType, sym } from "../ast";
 import { defTarget } from "./target";
 
 // TODO
@@ -40,15 +42,22 @@ export const targetGLSL = (_ = 300) => {
 
     const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
-    const $vec = (v: Term<"f32">[]) =>
-        `vec${v.length}(${$list(
-            v.slice(0, v[3] ? 4 : v[2] ? 3 : v[1] ? 2 : 1)
-        )})`;
-
     const $fn = (t: FnCall<any>) => `${t.id}(${$list(t.args)})`;
 
+    const $decl = (sym: Sym<any> | FuncArg<any>, arg = false) => {
+        const { id, type, opts, init } = <any>sym;
+        const res: string[] = [];
+        opts.const && res.push("const ");
+        arg && opts.q && res.push(opts.q + " ");
+        opts.prec && res.push(opts.prec + " ");
+        res.push($type(itemType(type)), " ", id);
+        opts.num && res.push(`[${opts.num}]`);
+        init && res.push(" = ", emit(init));
+        return res.join("");
+    };
+
     const emit = defTarget({
-        arg: (t) => `${t.q ? t.q + " " : ""}${$type(t.type)} ${t.id}`,
+        arg: (t) => $decl(t, true),
 
         assign: (t) => emit(t.l) + " = " + emit(t.r),
 
@@ -56,7 +65,7 @@ export const targetGLSL = (_ = 300) => {
 
         call_i: $fn,
 
-        decl: (t) => `${$type(t.type)} ${emit(t.id)}`,
+        decl: (t) => $decl(t.id),
 
         fn: (t) =>
             `${$type(t.type)} ${t.id}(${$list(t.args)}) ${emit(t.scope)}`,
@@ -85,9 +94,12 @@ export const targetGLSL = (_ = 300) => {
                 case "vec2":
                 case "vec3":
                 case "vec4":
-                    return $vec(v);
+                case "mat2":
+                case "mat3":
+                case "mat4":
+                    return `${t.type}(${$list(v)})`;
                 default:
-                    throw new Error(`unknown type: ${t.type}`);
+                    return unsupported(`unknown type: ${t.type}`);
             }
         },
 
@@ -110,10 +122,10 @@ export const targetGLSL = (_ = 300) => {
 
     Object.assign(emit, <GLSLTarget>{
         gl_FragColor: sym("vec4", "gl_FragColor"),
-        gl_FragCoord: sym("vec4", "gl_FragCoord", "in"),
-        gl_FragData: sym("vec4[]", "gl_FragData", "in", 1),
-        gl_FrontFacing: sym("bool", "gl_FrontFacing", "in"),
-        gl_PointCoord: sym("vec2", "gl_PointCoord", "in"),
+        gl_FragCoord: sym("vec4", "gl_FragCoord", { const: true }),
+        gl_FragData: sym("vec4[]", "gl_FragData", { num: 1 }),
+        gl_FrontFacing: sym("bool", "gl_FrontFacing", { const: true }),
+        gl_PointCoord: sym("vec2", "gl_PointCoord", { const: true }),
         gl_PointSize: sym("f32", "gl_PointSize"),
         gl_Position: sym("vec4", "gl_Position")
     });

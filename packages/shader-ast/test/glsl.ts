@@ -54,7 +54,7 @@ describe("shader-ast (glsl)", () => {
     it("vec4", () => {
         assert.equal($(vec4()), "vec4(0.0)");
         assert.equal($(vec4(1)), "vec4(1.0)");
-        assert.equal($(vec4(1, -2, 3.14)), "vec4(1.0, -2.0, 3.14)");
+        assert.equal($(vec4(1, -2, 3.14, -4)), "vec4(1.0, -2.0, 3.14, -4.0)");
         assert.equal(
             $(vec4(vec2(1, -2), vec2(3.14))),
             "vec4(vec2(1.0, -2.0), vec2(3.14))"

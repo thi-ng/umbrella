@@ -68,15 +68,6 @@ export type Type =
     | "sampler3D"
     | "sampler3D[]";
 
-export type Indexable =
-    | "bool[]"
-    | "f32[]"
-    | "i32[]"
-    | "u32[]"
-    | "vec2[]"
-    | "vec3[]"
-    | "vec4[]";
-
 export interface IndexTypeMap {
     "bool[]": "bool";
     "f32[]": "f32";
@@ -92,6 +83,14 @@ export interface IndexTypeMap {
     "bvec3[]": "bvec3";
     "bvec4[]": "bvec4";
 }
+
+export interface MatIndexTypeMap {
+    mat2: "vec2";
+    mat3: "vec3";
+    mat4: "vec4";
+}
+
+export type Indexable = keyof IndexTypeMap;
 
 export type Vec = "vec2" | "vec3" | "vec4";
 export type IVec = "ivec2" | "ivec3" | "ivec4";
@@ -112,13 +111,6 @@ export type Operator =
     | LogicOperator
     | ComparisonOperator
     | BitOperator;
-
-export type Select<
-    T extends Type,
-    Q extends Type,
-    A extends Type,
-    B extends Type
-> = T extends Q ? A : B;
 
 // swizzle gen:
 // console.log([...permutations("xyz","xyz")].map((x) =>`"${x.join("")}"`).join(" | "))
@@ -146,7 +138,11 @@ export type Swizzle4_3 = "xxx" | "xxy" | "xxz" | "xxw" | "xyx" | "xyy" | "xyz" |
 // prettier-ignore
 export type Swizzle4_4 = "xxxx" | "xxxy" | "xxxz" | "xxxw" | "xxyx" | "xxyy" | "xxyz" | "xxyw" | "xxzx" | "xxzy" | "xxzz" | "xxzw" | "xxwx" | "xxwy" | "xxwz" | "xxww" | "xyxx" | "xyxy" | "xyxz" | "xyxw" | "xyyx" | "xyyy" | "xyyz" | "xyyw" | "xyzx" | "xyzy" | "xyzz" | "xyzw" | "xywx" | "xywy" | "xywz" | "xyww" | "xzxx" | "xzxy" | "xzxz" | "xzxw" | "xzyx" | "xzyy" | "xzyz" | "xzyw" | "xzzx" | "xzzy" | "xzzz" | "xzzw" | "xzwx" | "xzwy" | "xzwz" | "xzww" | "xwxx" | "xwxy" | "xwxz" | "xwxw" | "xwyx" | "xwyy" | "xwyz" | "xwyw" | "xwzx" | "xwzy" | "xwzz" | "xwzw" | "xwwx" | "xwwy" | "xwwz" | "xwww" | "yxxx" | "yxxy" | "yxxz" | "yxxw" | "yxyx" | "yxyy" | "yxyz" | "yxyw" | "yxzx" | "yxzy" | "yxzz" | "yxzw" | "yxwx" | "yxwy" | "yxwz" | "yxww" | "yyxx" | "yyxy" | "yyxz" | "yyxw" | "yyyx" | "yyyy" | "yyyz" | "yyyw" | "yyzx" | "yyzy" | "yyzz" | "yyzw" | "yywx" | "yywy" | "yywz" | "yyww" | "yzxx" | "yzxy" | "yzxz" | "yzxw" | "yzyx" | "yzyy" | "yzyz" | "yzyw" | "yzzx" | "yzzy" | "yzzz" | "yzzw" | "yzwx" | "yzwy" | "yzwz" | "yzww" | "ywxx" | "ywxy" | "ywxz" | "ywxw" | "ywyx" | "ywyy" | "ywyz" | "ywyw" | "ywzx" | "ywzy" | "ywzz" | "ywzw" | "ywwx" | "ywwy" | "ywwz" | "ywww" | "zxxx" | "zxxy" | "zxxz" | "zxxw" | "zxyx" | "zxyy" | "zxyz" | "zxyw" | "zxzx" | "zxzy" | "zxzz" | "zxzw" | "zxwx" | "zxwy" | "zxwz" | "zxww" | "zyxx" | "zyxy" | "zyxz" | "zyxw" | "zyyx" | "zyyy" | "zyyz" | "zyyw" | "zyzx" | "zyzy" | "zyzz" | "zyzw" | "zywx" | "zywy" | "zywz" | "zyww" | "zzxx" | "zzxy" | "zzxz" | "zzxw" | "zzyx" | "zzyy" | "zzyz" | "zzyw" | "zzzx" | "zzzy" | "zzzz" | "zzzw" | "zzwx" | "zzwy" | "zzwz" | "zzww" | "zwxx" | "zwxy" | "zwxz" | "zwxw" | "zwyx" | "zwyy" | "zwyz" | "zwyw" | "zwzx" | "zwzy" | "zwzz" | "zwzw" | "zwwx" | "zwwy" | "zwwz" | "zwww" | "wxxx" | "wxxy" | "wxxz" | "wxxw" | "wxyx" | "wxyy" | "wxyz" | "wxyw" | "wxzx" | "wxzy" | "wxzz" | "wxzw" | "wxwx" | "wxwy" | "wxwz" | "wxww" | "wyxx" | "wyxy" | "wyxz" | "wyxw" | "wyyx" | "wyyy" | "wyyz" | "wyyw" | "wyzx" | "wyzy" | "wyzz" | "wyzw" | "wywx" | "wywy" | "wywz" | "wyww" | "wzxx" | "wzxy" | "wzxz" | "wzxw" | "wzyx" | "wzyy" | "wzyz" | "wzyw" | "wzzx" | "wzzy" | "wzzz" | "wzzw" | "wzwx" | "wzwy" | "wzwz" | "wzww" | "wwxx" | "wwxy" | "wwxz" | "wwxw" | "wwyx" | "wwyy" | "wwyz" | "wwyw" | "wwzx" | "wwzy" | "wwzz" | "wwzw" | "wwwx" | "wwwy" | "wwwz" | "wwww";
 
-export type Arg<A extends Type> = [A, string, ArgQualifier?];
+export type Swizzle2 = Swizzle2_1 | Swizzle2_2 | Swizzle2_3 | Swizzle2_4;
+export type Swizzle3 = Swizzle3_1 | Swizzle3_2 | Swizzle3_3 | Swizzle3_4;
+export type Swizzle4 = Swizzle4_1 | Swizzle4_2 | Swizzle4_3 | Swizzle4_4;
+
+export type Arg<A extends Type> = [A, string, SymOpts?];
 export type Arg1<A extends Type> = [Arg<A>];
 export type Arg2<A extends Type, B extends Type> = [Arg<A>, Arg<B>];
 export type Arg3<A extends Type, B extends Type, C extends Type> = [
@@ -339,12 +335,20 @@ export interface Term<T extends Type> {
 
 export interface Lit<T extends Type> extends Term<T> {
     val: any;
+    info?: string;
 }
 
 export interface Sym<T extends Type> extends Term<T> {
     id: string;
-    q: ArgQualifier;
-    len?: number;
+    opts: SymOpts;
+    init?: Term<T>;
+}
+
+export interface SymOpts {
+    q?: ArgQualifier;
+    const?: boolean;
+    prec?: Precision;
+    num?: number;
 }
 
 export interface Decl<T extends Type> extends Term<T> {
@@ -394,7 +398,7 @@ export interface FuncReturn<T extends Type> extends Term<T> {
 
 export interface FuncArg<T extends Type> extends Term<T> {
     id: string;
-    q?: ArgQualifier;
+    opts: SymOpts;
 }
 
 export interface Func<T extends Type> extends Term<T> {
@@ -491,6 +495,7 @@ export interface TaggedFn8<
 export interface FnCall<T extends Type> extends Term<T> {
     id: string;
     args: Term<any>[];
+    info?: string;
 }
 
 export interface TargetImpl extends Record<Tag, Fn<any, string>> {
@@ -498,6 +503,7 @@ export interface TargetImpl extends Record<Tag, Fn<any, string>> {
     assign: Fn<Assign<any>, string>;
     call: Fn<FnCall<any>, string>;
     call_i: Fn<FnCall<any>, string>;
+    decl: Fn<Decl<any>, string>;
     fn: Fn<Func<any>, string>;
     idx: Fn<Index<any>, string>;
     if: Fn<Branch, string>;

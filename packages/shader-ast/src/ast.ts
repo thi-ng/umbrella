@@ -1,6 +1,10 @@
-import { Fn, Fn2 } from "@thi.ng/api";
-import { isNumber, isString } from "@thi.ng/checks";
-import { isArray } from "util";
+import {
+    assert,
+    Fn,
+    Fn2,
+    Select4
+} from "@thi.ng/api";
+import { isArray, isNumber, isString } from "@thi.ng/checks";
 import {
     Arg,
     Arg1,
@@ -11,7 +15,6 @@ import {
     Arg6,
     Arg7,
     Arg8,
-    ArgQualifier,
     Assign,
     Assignable,
     Branch,
@@ -37,27 +40,28 @@ import {
     IVec,
     Lit,
     Mat,
+    MatIndexTypeMap,
     Numeric,
     Op1,
     Op2,
     Operator,
     Prim,
     Scope,
-    Select,
     Swizzle,
+    Swizzle2,
     Swizzle2_1,
     Swizzle2_2,
     Swizzle2_3,
-    Swizzle2_4,
+    Swizzle3,
     Swizzle3_1,
     Swizzle3_2,
     Swizzle3_3,
-    Swizzle3_4,
+    Swizzle4,
     Swizzle4_1,
     Swizzle4_2,
     Swizzle4_3,
-    Swizzle4_4,
     Sym,
+    SymOpts,
     TaggedFn0,
     TaggedFn1,
     TaggedFn2,
@@ -72,7 +76,11 @@ import {
     Vec
 } from "./api";
 
-export const isVec = (t: Term<any>) => t.type.indexOf("vec") == 0;
+export const isVec = (t: Term<any>) => t.type.indexOf("vec") >= 0;
+
+export const isMat = (t: Term<any>) => t.type.indexOf("mat") >= 0;
+
+export const itemType = (type: Type) => <Type>type.replace("[]", "");
 
 export const wrapF32 = (x?: Numeric) => (isNumber(x) ? float(x) : x);
 
@@ -107,15 +115,22 @@ export const walk = <T>(
 export const sym = <T extends Type>(
     type: T,
     id: string,
-    q: ArgQualifier = "inout",
-    len?: number
+    opts?: SymOpts,
+    init?: Term<T>
 ): Sym<T> => ({
     tag: "sym",
     type,
     id,
-    q,
-    len
+    opts: opts || {},
+    init
 });
+
+export const constSym = <T extends Type>(
+    type: T,
+    id: string,
+    opts?: SymOpts,
+    init?: Term<T>
+) => sym(type, id, { const: true, ...opts }, init);
 
 const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
     tag: "decl",
@@ -123,61 +138,69 @@ const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
     id
 });
 
-export const lit = <T extends Type>(type: T, val: any): Lit<T> => ({
+export const lit = <T extends Type>(
+    type: T,
+    val: any,
+    info?: string
+): Lit<T> => ({
     tag: "lit",
     type,
+    info,
     val
 });
 
 export const T = lit("bool", true);
 export const F = lit("bool", false);
 export const F32_0 = lit("f32", 0);
+export const F32_1 = lit("f32", 1);
 
-export const float = (x: number | Term<"f32">) => lit("f32", x);
+export const bool = (x: Numeric) => lit("bool", x);
 
-export const int = (x: number | Term<"i32">) =>
-    lit("i32", isNumber(x) ? x | 0 : x);
+export const float = (x: Numeric) => lit("f32", x);
 
-export const uint = (x: number | Term<"u32">) =>
-    lit("u32", isNumber(x) ? x >>> 0 : x);
+export const int = (x: Numeric) => lit("i32", isNumber(x) ? x | 0 : x);
+
+export const uint = (x: Numeric) => lit("u32", isNumber(x) ? x >>> 0 : x);
 
 // prettier-ignore
-export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_1): Swizzle<Select<T,"vec2","f32","i32">>;
+export function swizzle<T extends Swizzle2>(a: Term<"vec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "f32", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_1): Swizzle<Select<T,"vec3","f32","i32">>;
+export function swizzle<T extends Swizzle3>(a: Term<"vec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "f32", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_1): Swizzle<Select<T,"vec3","f32","i32">>;
+export function swizzle<T extends Swizzle4>(a: Term<"vec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "f32", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_2): Swizzle<Select<T,"vec2","vec2","ivec2">>;
+export function swizzle<T extends Swizzle2>(a: Term<"ivec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "i32", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_2): Swizzle<Select<T,"vec3","vec2","ivec2">>;
+export function swizzle<T extends Swizzle3>(a: Term<"ivec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "i32", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_2): Swizzle<Select<T,"vec3","vec2","ivec2">>;
+export function swizzle<T extends Swizzle4>(a: Term<"ivec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "i32", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_3): Swizzle<Select<T,"vec2","vec3","ivec3">>;
+export function swizzle<T extends Swizzle2>(a: Term<"bvec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "bool", "bvec2", "bvec3", "bvec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_3): Swizzle<Select<T,"vec3","vec3","ivec3">>;
+export function swizzle<T extends Swizzle3>(a: Term<"bvec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "bool", "bvec2", "bvec3", "bvec4">>;
 // prettier-ignore
-export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_3): Swizzle<Select<T,"vec3","vec3","ivec3">>;
-// prettier-ignore
-export function swizzle<T extends "vec2" | "ivec2">(v: Term<T>, id: Swizzle2_4): Swizzle<Select<T,"vec2","vec4","ivec4">>;
-// prettier-ignore
-export function swizzle<T extends "vec3" | "ivec3">(v: Term<T>, id: Swizzle3_4): Swizzle<Select<T,"vec3","vec4","ivec4">>;
-// prettier-ignore
-export function swizzle<T extends "vec4" | "ivec4">(v: Term<T>, id: Swizzle4_4): Swizzle<Select<T,"vec3","vec4","ivec4">>;
-// prettier-ignore
+export function swizzle<T extends Swizzle4>(a: Term<"bvec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "bool", "bvec2", "bvec3", "bvec4">>;
 export function swizzle(val: Term<any>, id: string): Swizzle<any> {
     return {
         tag: "swizzle",
-        type: val.type[0]==="i"
-            ? id.length == 1 ? "i32" : "ivec" + id.length
-            : id.length == 1 ? "f32" : "vec" + id.length,
+        type:
+            val.type[0] === "i"
+                ? id.length == 1
+                    ? "i32"
+                    : "ivec" + id.length
+                : val.type[0] === "b"
+                ? id.length == 1
+                    ? "bool"
+                    : "bvec" + id.length
+                : id.length == 1
+                ? "f32"
+                : "vec" + id.length,
         val,
         id
     };
 }
 
-export const index = <T extends keyof IndexTypeMap & Indexable>(
+export const index = <T extends Indexable>(
     val: Sym<T>,
     id: number | Term<"i32"> | Term<"u32">
 ): Index<IndexTypeMap[T]> => ({
@@ -187,26 +210,50 @@ export const index = <T extends keyof IndexTypeMap & Indexable>(
     val
 });
 
+// prettier-ignore
+export function indexMat<T extends keyof MatIndexTypeMap>(m: Sym<T>, id: number): Index<MatIndexTypeMap[T]>;
+// prettier-ignore
+export function indexMat<T extends keyof MatIndexTypeMap>(m: Sym<T>, a: number, b: number): Index<"f32">;
+export function indexMat(m: Sym<any>, a: number, b?: number): Index<any> {
+    const idx: any = {
+        tag: "idx",
+        type: <any>m.type.replace("mat", "vec"),
+        id: int(a),
+        val: m
+    };
+    return b !== undefined
+        ? { tag: "idx", type: "f32", id: int(b), val: idx }
+        : idx;
+}
+
 export const assign = <L extends Type, R extends L>(
     l: Assignable<L>,
     r: Term<R>
-): Assign<L> => ({
-    tag: "assign",
-    type: l.type,
-    l,
-    r
-});
+): Assign<L> => {
+    assert(
+        l.tag !== "swizzle" || (<Swizzle<any>>l).val.tag === "sym",
+        "can't assign to non-symbol swizzle"
+    );
+    return {
+        tag: "assign",
+        type: l.type,
+        l,
+        r
+    };
+};
+
+const $vec = (xs: any[], init = F32_0) => [
+    xs[0] === undefined ? init : wrapF32(xs[0]),
+    ...xs.slice(1).map(wrapF32)
+];
 
 export function vec2(): Lit<"vec2">;
 export function vec2(x: Numeric): Lit<"vec2">;
 // prettier-ignore
 export function vec2(x: Numeric, y: Numeric): Lit<"vec2">;
 // prettier-ignore
-export function vec2(x?: Numeric, y?: Numeric): Lit<"vec2"> {
-    return lit("vec2", [
-        x === undefined ? F32_0 : wrapF32(x),
-        wrapF32(y)
-    ]);
+export function vec2(...xs: any[]): Lit<"vec2"> {
+    return lit("vec2", $vec(xs), ["n","n"][xs.length]);
 }
 
 export function vec3(): Lit<"vec3">;
@@ -214,12 +261,8 @@ export function vec3(x: Numeric): Lit<"vec3">;
 export function vec3(x: Term<"vec2">, y: Numeric): Lit<"vec3">;
 // prettier-ignore
 export function vec3(x: Numeric, y: Numeric, z: Numeric): Lit<"vec3">;
-export function vec3(x?: any, y?: any, z?: any): Lit<"vec3"> {
-    return lit("vec3", [
-        x === undefined ? F32_0 : wrapF32(x),
-        wrapF32(y),
-        wrapF32(z)
-    ]);
+export function vec3(...xs: any[]): Lit<"vec3"> {
+    return lit("vec3", (xs = $vec(xs)), ["n", "n", "vn"][xs.length]);
 }
 
 export function vec4(): Lit<"vec4">;
@@ -229,14 +272,50 @@ export function vec4(x: Term<"vec2">, y: Term<"vec2">): Lit<"vec4">;
 // prettier-ignore
 export function vec4(x: Term<"vec2">, y: Numeric, z: Numeric): Lit<"vec4">;
 // prettier-ignore
-export function vec4(x: Numeric, y: Numeric, z: Numeric): Lit<"vec4">;
-export function vec4(x?: any, y?: any, z?: any, w?: any): Lit<"vec4"> {
-    return lit("vec4", [
-        x === undefined ? F32_0 : wrapF32(x),
-        wrapF32(y),
-        wrapF32(z),
-        wrapF32(w)
-    ]);
+export function vec4(x: Numeric, y: Numeric, z: Numeric, w: Numeric): Lit<"vec4">;
+export function vec4(...xs: any[]): Lit<"vec4"> {
+    return lit(
+        "vec4",
+        (xs = $vec(xs)),
+        xs.length === 2
+            ? isVec(xs[1])
+                ? "vv"
+                : "vn"
+            : ["n", "n", , "vnn"][xs.length]
+    );
+}
+
+export function mat2(): Lit<"mat2">;
+export function mat2(x: Numeric): Lit<"mat2">;
+export function mat2(x: Term<"vec2">, y: Term<"vec2">): Lit<"mat2">;
+// prettier-ignore
+export function mat2(a: Numeric, b: Numeric, c: Numeric, d: Numeric): Lit<"mat2">;
+export function mat2(...xs: any[]): Lit<"mat2"> {
+    return lit("mat2", (xs = $vec(xs, F32_1)), ["n", "n", "vv"][xs.length]);
+}
+
+export function mat3(): Lit<"mat3">;
+export function mat3(x: Numeric): Lit<"mat3">;
+// prettier-ignore
+export function mat3(x: Term<"vec3">, y: Term<"vec3">, z: Term<"vec3">): Lit<"mat3">;
+// prettier-ignore
+export function mat3(a: Numeric, b: Numeric, c: Numeric, d: Numeric, e: Numeric, f: Numeric, g: Numeric, h: Numeric, i: Numeric): Lit<"mat3">;
+export function mat3(...xs: any[]): Lit<"mat3"> {
+    return lit("mat3", (xs = $vec(xs, F32_1)), ["n", "n", , "vvv"][xs.length]);
+}
+
+export function mat4(): Lit<"mat4">;
+export function mat4(x: Numeric): Lit<"mat4">;
+// prettier-ignore
+export function mat4(x: Term<"vec4">, y: Term<"vec4">, z: Term<"vec4">, w: Term<"vec4">): Lit<"mat4">;
+// prettier-ignore
+export function mat4(a: Numeric, b: Numeric, c: Numeric, d: Numeric, e: Numeric, f: Numeric, g: Numeric, h: Numeric, i: Numeric, j: Numeric, k: Numeric, l: Numeric, m: Numeric, n: Numeric, o: Numeric, p: Numeric): Lit<"mat4">;
+export function mat4(...xs: any[]): Lit<"mat4"> {
+    return lit(
+        "mat4",
+        (xs = $vec(xs, F32_1)),
+        ["n", "n", , , "vvvv"][xs.length]
+    );
 }
 
 export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
@@ -308,7 +387,7 @@ export function mul(l: Term<"mat2">, b: Term<"vec2">): Op2<"vec2">;
 export function mul(l: Term<"mat3">, b: Term<"vec3">): Op2<"vec3">;
 export function mul(l: Term<"mat4">, b: Term<"vec4">): Op2<"vec4">;
 export function mul(l: Term<any>, r: Term<any>): Op2<any> {
-    return op2("*", l, r);
+    return op2("*", l, r, isMat(l) && isVec(r) ? r.type : undefined);
 }
 
 // prettier-ignore
@@ -350,11 +429,11 @@ export const scope = (body: Term<any>[], global = false): Scope => ({
     global
 });
 
-const defArg = <T extends Type>([type, id, q]: Arg<T>): FuncArg<T> => ({
+const defArg = <T extends Type>([type, id, opts]: Arg<T>): FuncArg<T> => ({
     tag: "arg",
     type,
     id,
-    q: q || "in"
+    opts: { q: "in", ...opts }
 });
 
 // prettier-ignore
@@ -378,7 +457,7 @@ export function defn<T extends Type, A extends Type, B extends Type, C extends T
 // prettier-ignore
 export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => Term<any>[]): Func<any> {
     const args = _args.map(defArg);
-    const body = _body(...args.map((x) => sym(x.type, x.id, x.q)));
+    const body = _body(...args.map((x) => sym(x.type, x.id, x.opts)));
     const returns = walk(
         (acc: FuncReturn<any>[], t) =>
             t.tag === "ret" && acc.push(t),
