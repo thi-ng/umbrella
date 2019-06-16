@@ -40,4 +40,4 @@ export const fromDOMEvent = <K extends keyof GlobalEventHandlersEventMap>(
     src: EventTarget,
     name: K,
     opts: boolean | AddEventListenerOptions = false
-): Stream<GlobalEventHandlersEventMap[K]> => fromEvent(src, name, opts);
+): Stream<GlobalEventHandlersEventMap[K]> => <any>fromEvent(src, name, opts);

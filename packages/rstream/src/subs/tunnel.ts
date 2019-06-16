@@ -98,7 +98,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
                     this.error(e)
                 );
             }
-            worker.postMessage(x, tx);
+            worker.postMessage(x, tx || []);
         }
     }
 
