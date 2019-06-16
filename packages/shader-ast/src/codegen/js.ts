@@ -25,7 +25,7 @@ import {
     Sym,
     Term
 } from "../api";
-import { isVec } from "../ast";
+import { isMat, isVec } from "../ast";
 import { defTarget } from "./target";
 
 type Mat = m.Mat;
@@ -69,7 +69,21 @@ export interface JSBuiltinsMath<T> {
     div: Fn2<T, T, T>;
 }
 
-export interface JSBuiltinsVec extends JSBuiltins<Vec>, JSBuiltinsMath<Vec> {
+export interface JSBuiltinsVecScalar<T> {
+    addvn: Fn2<T, number, T>;
+    subvn: Fn2<T, number, T>;
+    mulvn: Fn2<T, number, T>;
+    divvn: Fn2<T, number, T>;
+    addnv: Fn2<number, T, T>;
+    subnv: Fn2<number, T, T>;
+    mulnv: Fn2<number, T, T>;
+    divnv: Fn2<number, T, T>;
+}
+
+export interface JSBuiltinsVec
+    extends JSBuiltins<Vec>,
+        JSBuiltinsMath<Vec>,
+        JSBuiltinsVecScalar<Vec> {
     dot: Fn2<Vec, Vec, number>;
     normalize: Fn<Vec, Vec>;
     length: Fn<Vec, number>;
@@ -78,6 +92,14 @@ export interface JSBuiltinsVec extends JSBuiltins<Vec>, JSBuiltinsMath<Vec> {
 
 export interface JSBuiltinsVec3 extends JSBuiltinsVec {
     cross: Fn2<Vec, Vec, Vec>;
+}
+
+export interface JSBuiltinsMat
+    extends JSBuiltinsMath<Mat>,
+        JSBuiltinsVecScalar<Mat> {
+    mulm: Fn2<Mat, Mat, Mat>;
+    mulvm: Fn2<Vec, Mat, Vec>;
+    mulmv: Fn2<Mat, Vec, Vec>;
 }
 
 export interface JSEnv {
@@ -105,6 +127,9 @@ export interface JSEnv {
     vec2: JSBuiltinsVec;
     vec3: JSBuiltinsVec3;
     vec4: JSBuiltinsVec;
+    mat2: JSBuiltinsMat;
+    mat3: JSBuiltinsMat;
+    mat4: JSBuiltinsMat;
 }
 
 export interface JSTarget extends Fn<Term<any>, string> {
@@ -118,11 +143,11 @@ export const JS_DEFAULT_ENV: JSEnv = {
     vec3vn: (a, n) => v.setVN3([], a, n),
     vec4vn: (a, n) => v.setVN4([], a, n),
     vec4vv: (a, b) => v.setVV4([], a, b),
-    mat2n: (n) => m.mat2n([], n),
-    mat2vv: (a, b) => m.mat2v([], a, b),
-    mat3n: (n) => m.mat3n([], n),
+    mat2n: (n) => m.mat22n([], n),
+    mat2vv: (a, b) => m.mat22v([], a, b),
+    mat3n: (n) => m.mat33n([], n),
     mat3vvv: (a, b, c) => m.mat33v([], a, b, c),
-    mat4n: (n) => m.mat4n([], n),
+    mat4n: (n) => m.mat44n([], n),
     mat4vvvv: (a, b, c, d) => m.mat44v([], a, b, c, d),
     swizzle1: (a, n) => a[n],
     swizzle2: (a, b, c) => v.swizzle2([], a, b, c),
@@ -165,6 +190,8 @@ export const JS_DEFAULT_ENV: JSEnv = {
         abs: (a) => v.abs2([], a),
         acos: (a) => v.acos2([], a),
         add: (a, b) => v.add2([], a, b),
+        addnv: (a, b) => v.addN2([], b, a),
+        addvn: (a, b) => v.addN2([], a, b),
         asin: (a) => v.asin2([], a),
         atan: (a) => v.atan2([], a),
         ceil: (a) => v.ceil2([], a),
@@ -172,6 +199,8 @@ export const JS_DEFAULT_ENV: JSEnv = {
         cos: (a) => v.cos2([], a),
         distance: v.dist,
         div: (a, b) => v.div2([], a, b),
+        divnv: (a, b) => v.mulN2([], b, 1 / a),
+        divvn: (a, b) => v.divN2([], a, b),
         dot: (a, b) => v.dot2(a, b),
         exp: (a) => v.exp2([], a),
         exp2: (a) => v.exp_22([], a),
@@ -188,6 +217,8 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mod: (a, b) => v.mod2([], a, b),
         modn: (a, b) => v.modN2([], a, b),
         mul: (a, b) => v.mul2([], a, b),
+        mulnv: (a, b) => v.mulN2([], b, a),
+        mulvn: (a, b) => v.mulN2([], a, b),
         normalize: (a) => v.normalize([], a),
         pow: (a, b) => v.pow2([], a, b),
         sign: (a) => v.sign2([], a),
@@ -197,12 +228,16 @@ export const JS_DEFAULT_ENV: JSEnv = {
         step: (a, b) => v.step2([], a, b),
         sub: (a, b) => v.sub2([], a, b),
         sub1: (a) => v.neg([], a),
+        subnv: (a, b) => v.sub2(null, [a, a], b),
+        subvn: (a, b) => v.subN2([], a, b),
         tan: (a) => v.tan2([], a)
     },
     vec3: {
         abs: (a) => v.abs3([], a),
         acos: (a) => v.acos3([], a),
         add: (a, b) => v.add3([], a, b),
+        addnv: (a, b) => v.addN3([], b, a),
+        addvn: (a, b) => v.addN3([], a, b),
         asin: (a) => v.asin3([], a),
         atan: (a) => v.atan3([], a),
         ceil: (a) => v.ceil3([], a),
@@ -211,6 +246,8 @@ export const JS_DEFAULT_ENV: JSEnv = {
         cross: (a, b) => v.cross3([], a, b),
         distance: v.dist,
         div: (a, b) => v.div3([], a, b),
+        divnv: (a, b) => v.mulN3([], b, 1 / a),
+        divvn: (a, b) => v.divN3([], a, b),
         dot: (a, b) => v.dot3(a, b),
         exp: (a) => v.exp3([], a),
         exp2: (a) => v.exp_23([], a),
@@ -227,6 +264,8 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mod: (a, b) => v.mod3([], a, b),
         modn: (a, b) => v.modN3([], a, b),
         mul: (a, b) => v.mul3([], a, b),
+        mulnv: (a, b) => v.mulN3([], b, a),
+        mulvn: (a, b) => v.mulN3([], a, b),
         normalize: (a) => v.normalize([], a),
         pow: (a, b) => v.pow3([], a, b),
         sign: (a) => v.sign3([], a),
@@ -236,19 +275,25 @@ export const JS_DEFAULT_ENV: JSEnv = {
         step: (a, b) => v.step3([], a, b),
         sub: (a, b) => v.sub3([], a, b),
         sub1: (a) => v.neg([], a),
+        subnv: (a, b) => v.sub3(null, v.vec3n(a), b),
+        subvn: (a, b) => v.subN3([], a, b),
         tan: (a) => v.tan3([], a)
     },
     vec4: {
         abs: (a) => v.abs4([], a),
         acos: (a) => v.acos4([], a),
-        add: (a, b) => v.add2([], a, b),
+        add: (a, b) => v.add4([], a, b),
+        addnv: (a, b) => v.addN4([], b, a),
+        addvn: (a, b) => v.addN4([], a, b),
         asin: (a) => v.asin4([], a),
         atan: (a) => v.atan4([], a),
         ceil: (a) => v.ceil4([], a),
         clamp: (x, a, b) => v.clamp4([], x, a, b),
         cos: (a) => v.cos4([], a),
         distance: v.dist,
-        div: (a, b) => v.div2([], a, b),
+        div: (a, b) => v.div4([], a, b),
+        divnv: (a, b) => v.mulN4([], b, 1 / a),
+        divvn: (a, b) => v.divN4([], a, b),
         dot: (a, b) => v.dot4(a, b),
         exp: (a) => v.exp4([], a),
         exp2: (a) => v.exp_24([], a),
@@ -265,6 +310,8 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mod: (a, b) => v.mod4([], a, b),
         modn: (a, b) => v.modN4([], a, b),
         mul: (a, b) => v.mul2([], a, b),
+        mulnv: (a, b) => v.mulN4([], b, a),
+        mulvn: (a, b) => v.mulN4([], a, b),
         normalize: (a) => v.normalize([], a),
         pow: (a, b) => v.pow4([], a, b),
         sign: (a) => v.sign4([], a),
@@ -274,7 +321,63 @@ export const JS_DEFAULT_ENV: JSEnv = {
         step: (a, b) => v.step4([], a, b),
         sub: (a, b) => v.sub2([], a, b),
         sub1: (a) => v.neg([], a),
+        subnv: (a, b) => v.sub4(null, v.vec4n(a), b),
+        subvn: (a, b) => v.subN4([], a, b),
         tan: (a) => v.tan4([], a)
+    },
+    mat2: {
+        add: (a, b) => m.add22([], a, b),
+        addnv: (a, b) => m.addN22([], b, a),
+        addvn: (a, b) => m.addN22([], a, b),
+        div: (a, b) => m.div22([], a, b),
+        divnv: (a, b) => m.mulN22([], b, 1 / a),
+        divvn: (a, b) => m.divN22([], a, b),
+        mul: (a, b) => m.mul22([], a, b),
+        mulm: (a, b) => m.mulM22([], a, b),
+        mulmv: (a, b) => m.mulV22([], a, b),
+        mulnv: (a, b) => m.mulN22([], b, a),
+        mulvm: (a, b) => m.mulVM22([], a, b),
+        mulvn: (a, b) => m.mulN22([], a, b),
+        sub: (a, b) => m.sub22([], a, b),
+        sub1: (a) => v.neg([], a),
+        subnv: (a, b) => m.sub22(null, v.vec4n(a), b),
+        subvn: (a, b) => m.subN22([], a, b)
+    },
+    mat3: {
+        add: (a, b) => m.add33([], a, b),
+        addnv: (a, b) => m.addN33([], b, a),
+        addvn: (a, b) => m.addN33([], a, b),
+        div: (a, b) => m.div33([], a, b),
+        divnv: (a, b) => m.mulN33([], b, 1 / a),
+        divvn: (a, b) => m.divN33([], a, b),
+        mul: (a, b) => m.mul33([], a, b),
+        mulm: (a, b) => m.mulM33([], a, b),
+        mulmv: (a, b) => m.mulV33([], a, b),
+        mulnv: (a, b) => m.mulN33([], b, a),
+        mulvm: (a, b) => m.mulVM33([], a, b),
+        mulvn: (a, b) => m.mulN33([], a, b),
+        sub: (a, b) => m.sub33([], a, b),
+        sub1: (a) => v.neg([], a),
+        subnv: (a, b) => m.sub33(null, v.vecOf(9, a), b),
+        subvn: (a, b) => m.subN33([], a, b)
+    },
+    mat4: {
+        add: (a, b) => m.add44([], a, b),
+        addnv: (a, b) => m.addN44([], b, a),
+        addvn: (a, b) => m.addN44([], a, b),
+        div: (a, b) => m.div44([], a, b),
+        divnv: (a, b) => m.mulN44([], b, 1 / a),
+        divvn: (a, b) => m.divN44([], a, b),
+        mul: (a, b) => m.mul44([], a, b),
+        mulm: (a, b) => m.mulM44([], a, b),
+        mulmv: (a, b) => m.mulV44([], a, b),
+        mulnv: (a, b) => m.mulN44([], b, a),
+        mulvm: (a, b) => m.mulVM44([], a, b),
+        mulvn: (a, b) => m.mulN44([], a, b),
+        sub: (a, b) => m.sub44([], a, b),
+        sub1: (a) => v.neg([], a),
+        subnv: (a, b) => m.sub44(null, v.vecOf(16, a), b),
+        subvn: (a, b) => m.subN44([], a, b)
     }
 };
 
@@ -306,6 +409,9 @@ const f32 = env.f32;
 const vec2 = env.vec2;
 const vec3 = env.vec3;
 const vec4 = env.vec4;
+const mat2 = env.mat2;
+const mat3 = env.mat3;
+const mat4 = env.mat4;
 `;
 
     const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
@@ -391,10 +497,17 @@ const vec4 = env.vec4;
                 : `${t.op}${emit(t.val)}`,
 
         // TODO mat-vec multiply special case
-        op2: (t) =>
-            isVec(t.l) || isVec(t.r)
-                ? `${t.l.type}.${OP_IDS[t.op]}(${emit(t.l)},${emit(t.r)})`
-                : `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
+        op2: (t) => {
+            const vl = isVec(t.l);
+            const vr = isVec(t.r);
+            const el = emit(t.l);
+            const er = emit(t.r);
+            return isMat(t.l) && vr
+                ? `${t.l.type}.mulv(${el}, ${er})`
+                : vl || vr
+                ? `${t.l.type}.${OP_IDS[t.op]}(${el},${er})`
+                : `(${el} ${t.op} ${er})`;
+        },
 
         ret: (t) => "return" + (t.val ? " " + emit(t.val) : ""),
 
