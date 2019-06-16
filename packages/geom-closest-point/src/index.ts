@@ -243,7 +243,7 @@ export const closestPointRect = (
     }
     return minID! === 0
         ? setC2(out, minW!, clamp(p[1], bmin[1], bmax[1]))
-        : setC2(out, clamp(p[0], bmin[0], bmax[0]), minW);
+        : setC2(out, clamp(p[0], bmin[0], bmax[0]), minW!);
 };
 
 export const closestPointAABB = (
@@ -272,17 +272,17 @@ export const closestPointAABB = (
               clamp(p[1], bmin[1], bmax[1]),
               clamp(p[2], bmin[2], bmax[2])
           )
-        : minID === 1
+        : minID! === 1
         ? setC3(
               out,
               clamp(p[0], bmin[0], bmax[0]),
-              minW,
+              minW!,
               clamp(p[2], bmin[2], bmax[2])
           )
         : setC3(
               out,
               clamp(p[0], bmin[0], bmax[0]),
               clamp(p[1], bmin[1], bmax[1]),
-              minW
+              minW!
           );
 };

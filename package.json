@@ -5,7 +5,7 @@
     ],
     "devDependencies": {
         "benchmark": "^2.1.4",
-        "file-loader": "^3.0.1",
+        "file-loader": "^4.0.0",
         "gzip-size": "^5.1.0",
         "lerna": "^3.13.3",
         "mocha": "^6.1.4",
@@ -14,10 +14,10 @@
         "rimraf": "^2.6.3",
         "rollup": "^1.10.1",
         "rollup-plugin-cleanup": "^3.1.1",
-        "terser": "^3.17.0",
-        "ts-loader": "^5.4.3",
+        "terser": "^4.0.0",
+        "ts-loader": "^6.0.2",
         "tslint": "^5.16.0",
-        "typescript": "^3.4.5",
+        "typescript": "^3.5.2",
         "webpack": "^4.30.0",
         "webpack-cli": "^3.3.1"
     },

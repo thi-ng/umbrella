@@ -528,7 +528,7 @@ export class DCons<T>
         while (cell) {
             res.push(
                 cell.value != null
-                    ? cell.value.toString()
+                    ? String(cell.value)
                     : cell.value === undefined
                     ? "undefined"
                     : "null"
