@@ -121,4 +121,5 @@ export * from "./swizzle";
 export * from "./tan";
 export * from "./tanh";
 export * from "./trunc";
+export * from "./vec-of";
 export * from "./wrap";
