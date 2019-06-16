@@ -2,6 +2,7 @@ import {
     assert,
     Fn,
     Fn2,
+    IObjectOf,
     Select4
 } from "@thi.ng/api";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
@@ -76,6 +77,10 @@ import {
     Vec
 } from "./api";
 
+let symID = 0;
+
+export const gensym = () => `_sym${symID++}`;
+
 export const isVec = (t: Term<any>) => t.type.indexOf("vec") >= 0;
 
 export const isMat = (t: Term<any>) => t.type.indexOf("mat") >= 0;
@@ -114,20 +119,20 @@ export const walk = <T>(
 
 export const sym = <T extends Type>(
     type: T,
-    id: string,
+    id?: string,
     opts?: SymOpts,
     init?: Term<T>
 ): Sym<T> => ({
     tag: "sym",
     type,
-    id,
+    id: id || gensym(),
     opts: opts || {},
     init
 });
 
 export const constSym = <T extends Type>(
     type: T,
-    id: string,
+    id?: string,
     opts?: SymOpts,
     init?: Term<T>
 ) => sym(type, id, { const: true, ...opts }, init);
@@ -325,18 +330,33 @@ export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
     val
 });
 
+const OP_INFO: IObjectOf<string> = {
+    mv: "mv",
+    vm: "vm",
+    vf: "vn",
+    mf: "vn",
+    fv: "nv",
+    fm: "nv"
+};
+
 export const op2 = (
     op: Operator,
     l: Term<any>,
     r: Term<any>,
     rtype?: Type
-): Op2<any> => ({
-    tag: "op2",
-    type: rtype || (isVec(l) ? l.type : isVec(r) ? r.type : l.type),
-    op,
-    l,
-    r
-});
+): Op2<any> => {
+    const type =
+        rtype ||
+        (isVec(l) ? l.type : isVec(r) ? r.type : isMat(r) ? r.type : l.type);
+    return {
+        tag: "op2",
+        type,
+        info: OP_INFO[l.type[0] + r.type[0]],
+        op,
+        l,
+        r
+    };
+};
 
 export const inc = <T extends Prim>(t: Term<T>): Op2<T> =>
     <Op2<any>>add(<Term<any>>t, <Term<any>>numberWithMatchingType(t, 1));
@@ -386,6 +406,9 @@ export function mul<T extends IVec>(l: Term<T>, b: Term<"i32">): Op2<T>;
 export function mul(l: Term<"mat2">, b: Term<"vec2">): Op2<"vec2">;
 export function mul(l: Term<"mat3">, b: Term<"vec3">): Op2<"vec3">;
 export function mul(l: Term<"mat4">, b: Term<"vec4">): Op2<"vec4">;
+export function mul(l: Term<"vec2">, b: Term<"mat2">): Op2<"vec2">;
+export function mul(l: Term<"vec3">, b: Term<"mat3">): Op2<"vec3">;
+export function mul(l: Term<"vec4">, b: Term<"mat4">): Op2<"vec4">;
 export function mul(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("*", l, r, isMat(l) && isVec(r) ? r.type : undefined);
 }
@@ -432,7 +455,7 @@ export const scope = (body: Term<any>[], global = false): Scope => ({
 const defArg = <T extends Type>([type, id, opts]: Arg<T>): FuncArg<T> => ({
     tag: "arg",
     type,
-    id,
+    id: id || gensym(),
     opts: { q: "in", ...opts }
 });
 
