@@ -6,6 +6,7 @@ import {
     Select4
 } from "@thi.ng/api";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import {
     Arg,
     Arg1,
@@ -117,25 +118,60 @@ export const walk = <T>(
     return acc;
 };
 
-export const sym = <T extends Type>(
-    type: T,
-    id?: string,
-    opts?: SymOpts,
-    init?: Term<T>
-): Sym<T> => ({
-    tag: "sym",
-    type,
-    id: id || gensym(),
-    opts: opts || {},
-    init
-});
+export function sym<T extends Type>(type: T): Sym<T>;
+export function sym<T extends Type>(type: T, opts: SymOpts): Sym<T>;
+export function sym<T extends Type>(type: T, init: Term<T>): Sym<T>;
+export function sym<T extends Type>(type: T, id: string): Sym<T>;
+// prettier-ignore
+export function sym<T extends Type>(type: T, id: string, opts: SymOpts): Sym<T>;
+// prettier-ignore
+export function sym<T extends Type>(type: T, opts: SymOpts, init: Term<T>): Sym<T>;
+// prettier-ignore
+export function sym<T extends Type>(type: T, id: string, opts: SymOpts, init: Term<T>): Sym<T>;
+export function sym<T extends Type>(type: T, ...xs: any[]): Sym<any> {
+    let id: string;
+    let opts: SymOpts;
+    let init: Term<T>;
+    switch (xs.length) {
+        case 0:
+            break;
+        case 1:
+            if (isString(xs[0])) {
+                id = xs[0];
+            } else if (xs[0].tag) {
+                init = xs[0];
+            } else {
+                opts = xs[0];
+            }
+            break;
+        case 2:
+            if (isString(xs[0])) {
+                [id, opts] = xs;
+            } else {
+                [opts, init] = xs;
+            }
+            break;
+        case 3:
+            [id, opts, init] = xs;
+            break;
+        default:
+            illegalArgs();
+    }
+    return {
+        tag: "sym",
+        type,
+        id: id! || gensym(),
+        opts: opts! || {},
+        init: init!
+    };
+}
 
 export const constSym = <T extends Type>(
     type: T,
     id?: string,
     opts?: SymOpts,
     init?: Term<T>
-) => sym(type, id, { const: true, ...opts }, init);
+) => sym(type, id || gensym(), { const: true, ...opts }, init!);
 
 const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
     tag: "decl",
