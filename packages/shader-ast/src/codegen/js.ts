@@ -21,6 +21,7 @@ import {
     Func,
     Lit,
     Operator,
+    Scope,
     Swizzle,
     Sym,
     Term
@@ -30,6 +31,37 @@ import { defTarget } from "./target";
 
 type Mat = m.Mat;
 type Vec = v.Vec;
+
+export interface JSTarget extends Fn<Term<any>, string> {
+    /**
+     * Compiles given AST to JavaScript, using optional `env` as backend
+     * for various operators / builtins. If `env` is not given the
+     * bundled `JS_DEFAULT_ENV` is used (based on thi.ng/vectors and
+     * thi.ng/matrices packages).
+     *
+     * Any functions defined in the given AST will be exported using
+     * their defined name via the returned object.
+     *
+     * ```
+     * const js = targetJS();
+     * const module = js.compile(
+     *   defn("f32", "foo", [["f32"]], (x)=> [ret(mul(x, float(10)))])
+     * );
+     *
+     * module.foo(42)
+     * // 420
+     *
+     * module.foo.toString()
+     * // function foo(_sym0) {
+     * // return (_sym0 * 10);
+     * // }
+     * ```
+     *
+     * @param tree
+     * @param env
+     */
+    compile(tree: Term<any>, env?: JSEnv): any;
+}
 
 export interface JSBuiltins<T> {
     abs: Fn<T, T>;
@@ -130,10 +162,6 @@ export interface JSEnv {
     mat2: JSBuiltinsMat;
     mat3: JSBuiltinsMat;
     mat4: JSBuiltinsMat;
-}
-
-export interface JSTarget extends Fn<Term<any>, string> {
-    compile(tree: Term<any>, env: JSEnv, exports: Func<any>[]): any;
 }
 
 export const JS_DEFAULT_ENV: JSEnv = {
@@ -396,6 +424,7 @@ export const targetJS = () => {
         "/": "div",
         "||": "or",
         "&&": "and",
+        // TODO below
         "|": "bitor",
         "&": "bitand",
         "^": "bitxor",
@@ -463,6 +492,11 @@ const mat4 = env.mat4;
             "\n */\n" +
             `function ${t.id}(${$list(t.args)}) ${emit(t.scope)}`,
 
+        for: (t) =>
+            `for(${t.init ? emit(t.init) : ""}; ${emit(t.test)}; ${
+                t.iter ? emit(t.iter) : ""
+            }) ${emit(t.body)}`,
+
         idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
 
         if: (t) => {
@@ -476,9 +510,11 @@ const mat4 = env.mat4;
                 case "bool":
                     return String(!!v);
                 case "f32":
-                case "i32":
-                case "u32":
                     return isNumber(v) ? String(v) : emit(v);
+                case "i32":
+                    return isNumber(v) ? String(v) : `(${emit(v)} | 0)`;
+                case "u32":
+                    return isNumber(v) ? String(v) : `(${emit(v)} >>> 0)`;
                 case "vec2":
                 case "vec3":
                 case "vec4":
@@ -518,12 +554,25 @@ const mat4 = env.mat4;
         swizzle: (t) =>
             `env.swizzle${t.id.length}(${emit(t.val)}, ${$swizzle(t.id)})`,
 
-        sym: (t) => t.id
+        sym: (t) => t.id,
+
+        ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`
     });
 
     Object.assign(emit, <JSTarget>{
-        compile: (tree, env, fns) => {
-            const exports = fns.map((f) => f.id + ": " + f.id).join(",\n");
+        compile: (tree, env = JS_DEFAULT_ENV) => {
+            const exports =
+                tree.tag === "scope"
+                    ? (<Scope>tree).body
+                          .filter((x) => x.tag === "fn")
+                          .map(
+                              (f) =>
+                                  (<Func<any>>f).id + ": " + (<Func<any>>f).id
+                          )
+                          .join(",\n")
+                    : tree.tag === "fn"
+                    ? `${(<Func<any>>tree).id}: ${(<Func<any>>tree).id}`
+                    : "";
             return new Function(
                 "env",
                 PRELUDE + emit(tree) + "\nreturn {\n" + exports + "\n};"

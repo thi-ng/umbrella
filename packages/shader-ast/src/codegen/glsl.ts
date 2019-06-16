@@ -70,6 +70,11 @@ export const targetGLSL = (_ = 300) => {
         fn: (t) =>
             `${$type(t.type)} ${t.id}(${$list(t.args)}) ${emit(t.scope)}`,
 
+        for: (t) =>
+            `for(${t.init ? emit(t.init) : ""}; ${emit(t.test)}; ${
+                t.iter ? emit(t.iter) : ""
+            }) ${emit(t.body)}`,
+
         idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
 
         if: (t) => {
@@ -87,10 +92,10 @@ export const targetGLSL = (_ = 300) => {
                         ? v === Math.trunc(v)
                             ? v + ".0"
                             : String(v)
-                        : emit(v);
+                        : `float(${emit(v)})`;
                 case "i32":
                 case "u32":
-                    return isNumber(v) ? String(v) : emit(v);
+                    return isNumber(v) ? String(v) : `int(${emit(v)})`;
                 case "vec2":
                 case "vec3":
                 case "vec4":
@@ -117,7 +122,9 @@ export const targetGLSL = (_ = 300) => {
 
         swizzle: (t) => `${emit(t.val)}.${t.id}`,
 
-        sym: (t) => t.id
+        sym: (t) => t.id,
+
+        ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`
     });
 
     Object.assign(emit, <GLSLTarget>{

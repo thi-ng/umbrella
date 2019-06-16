@@ -17,6 +17,7 @@ export type Tag =
     | "call_i"
     | "decl"
     | "fn"
+    | "for"
     | "idx"
     | "if"
     | "lit"
@@ -25,7 +26,8 @@ export type Tag =
     | "ret"
     | "scope"
     | "swizzle"
-    | "sym";
+    | "sym"
+    | "ternary";
 
 export type Type =
     | "void"
@@ -393,6 +395,12 @@ export interface Branch extends Term<"void"> {
     f?: Scope;
 }
 
+export interface Ternary<T extends Type> extends Term<T> {
+    test: Term<"bool">;
+    t: Term<T>;
+    f: Term<T>;
+}
+
 export interface FuncReturn<T extends Type> extends Term<T> {
     val?: Term<any>;
 }
@@ -497,6 +505,13 @@ export interface FnCall<T extends Type> extends Term<T> {
     id: string;
     args: Term<any>[];
     info?: string;
+}
+
+export interface ForLoop extends Term<"void"> {
+    init?: Decl<any>;
+    test: Term<"bool">;
+    iter?: Term<any>;
+    body: Scope;
 }
 
 export interface TargetImpl extends Record<Tag, Fn<any, string>> {

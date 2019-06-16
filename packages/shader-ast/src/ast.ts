@@ -33,6 +33,7 @@ import {
     FnBody7,
     FnBody8,
     FnCall,
+    ForLoop,
     Func,
     FuncArg,
     FuncReturn,
@@ -74,6 +75,7 @@ import {
     TaggedFn7,
     TaggedFn8,
     Term,
+    Ternary,
     Type,
     Vec
 } from "./api";
@@ -611,3 +613,38 @@ export const ifThen = (
     t: scope(truthy),
     f: falsey ? scope(falsey) : undefined
 });
+
+export const ternary = <A extends Type, B extends A>(
+    test: Term<"bool">,
+    t: Term<A>,
+    f: Term<B>
+): Ternary<A> => ({
+    tag: "ternary",
+    type: t.type,
+    test,
+    t,
+    f
+});
+
+// prettier-ignore
+export function forLoop<T extends Type>(test: Fn<Sym<T>, Term<"bool">>, body: FnBody1<T>): ForLoop;
+// prettier-ignore
+export function forLoop<T extends Type>(init: Sym<T> | undefined, test: Fn<Sym<T>, Term<"bool">>, body: FnBody1<T>): ForLoop;
+// prettier-ignore
+export function forLoop<T extends Type>(init: Sym<T> | undefined, test: Fn<Sym<T>, Term<"bool">>, iter: Fn<Sym<T>, Term<any>>, body: FnBody1<T>): ForLoop;
+export function forLoop(...xs: any[]): ForLoop {
+    const [init, test, iter, body] =
+        xs.length === 2
+            ? [, xs[0], , xs[1]]
+            : xs.length === 3
+            ? [xs[0], xs[1], , xs[2]]
+            : xs;
+    return {
+        tag: "for",
+        type: "void",
+        init: init ? decl(init) : undefined,
+        test: test(init!),
+        iter: iter ? iter(init!) : undefined,
+        body: scope(body(init!))
+    };
+}
