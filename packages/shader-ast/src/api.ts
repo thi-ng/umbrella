@@ -13,8 +13,10 @@ import {
 export type Tag =
     | "arg"
     | "assign"
+    | "break"
     | "call"
     | "call_i"
+    | "cont"
     | "decl"
     | "fn"
     | "for"

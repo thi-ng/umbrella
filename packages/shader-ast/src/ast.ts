@@ -206,24 +206,24 @@ export const int = (x: Numeric) => lit("i32", isNumber(x) ? x | 0 : x);
 export const uint = (x: Numeric) => lit("u32", isNumber(x) ? x >>> 0 : x);
 
 // prettier-ignore
-export function swizzle<T extends Swizzle2>(a: Term<"vec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "f32", "vec2", "vec3", "vec4">>;
+export function $<T extends Swizzle2>(a: Term<"vec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "f32", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle3>(a: Term<"vec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "f32", "vec2", "vec3", "vec4">>;
+export function $<T extends Swizzle3>(a: Term<"vec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "f32", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle4>(a: Term<"vec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "f32", "vec2", "vec3", "vec4">>;
+export function $<T extends Swizzle4>(a: Term<"vec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "f32", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle2>(a: Term<"ivec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "i32", "ivec2", "ivec3", "ivec4">>;
+export function $<T extends Swizzle2>(a: Term<"ivec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "i32", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle3>(a: Term<"ivec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "i32", "ivec2", "ivec3", "ivec4">>;
+export function $<T extends Swizzle3>(a: Term<"ivec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "i32", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle4>(a: Term<"ivec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "i32", "ivec2", "ivec3", "ivec4">>;
+export function $<T extends Swizzle4>(a: Term<"ivec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "i32", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle2>(a: Term<"bvec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "bool", "bvec2", "bvec3", "bvec4">>;
+export function $<T extends Swizzle2>(a: Term<"bvec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "bool", "bvec2", "bvec3", "bvec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle3>(a: Term<"bvec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "bool", "bvec2", "bvec3", "bvec4">>;
+export function $<T extends Swizzle3>(a: Term<"bvec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "bool", "bvec2", "bvec3", "bvec4">>;
 // prettier-ignore
-export function swizzle<T extends Swizzle4>(a: Term<"bvec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "bool", "bvec2", "bvec3", "bvec4">>;
-export function swizzle(val: Term<any>, id: string): Swizzle<any> {
+export function $<T extends Swizzle4>(a: Term<"bvec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "bool", "bvec2", "bvec3", "bvec4">>;
+export function $(val: Term<any>, id: string): Swizzle<any> {
     return {
         tag: "swizzle",
         type:
@@ -648,3 +648,13 @@ export function forLoop(...xs: any[]): ForLoop {
         body: scope(body(init!))
     };
 }
+
+export const brk: Term<"void"> = {
+    tag: "break",
+    type: "void"
+};
+
+export const cont: Term<"void"> = {
+    tag: "cont",
+    type: "void"
+};

@@ -469,9 +469,13 @@ const mat4 = env.mat4;
             return emit(t.l) + " = " + emit(t.r);
         },
 
+        break: () => "break",
+
         call: (t) => $fn(t.id, t.args),
 
         call_i: (t) => $fn(`${t.args[0].type}.${t.id}${t.info || ""}`, t.args),
+
+        cont: () => "continue",
 
         decl: ({ type, id }) => {
             const res: string[] = [];

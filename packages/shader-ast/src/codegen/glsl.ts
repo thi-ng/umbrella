@@ -61,9 +61,13 @@ export const targetGLSL = (_ = 300) => {
 
         assign: (t) => emit(t.l) + " = " + emit(t.r),
 
+        break: () => "break",
+
         call: $fn,
 
         call_i: $fn,
+
+        cont: () => "continue",
 
         decl: (t) => $decl(t.id),
 
