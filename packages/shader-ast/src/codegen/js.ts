@@ -498,14 +498,12 @@ const mat4 = env.mat4;
 
         // TODO mat-vec multiply special case
         op2: (t) => {
-            const vl = isVec(t.l);
-            const vr = isVec(t.r);
+            const vl = isVec(t.l) || isMat(t.l);
+            const vr = isVec(t.r) || isMat(t.r);
             const el = emit(t.l);
             const er = emit(t.r);
-            return isMat(t.l) && vr
-                ? `${t.l.type}.mulv(${el}, ${er})`
-                : vl || vr
-                ? `${t.l.type}.${OP_IDS[t.op]}(${el},${er})`
+            return vl || vr
+                ? `${t.l.type}.${OP_IDS[t.op]}${t.info || ""}(${el},${er})`
                 : `(${el} ${t.op} ${er})`;
         },
 
