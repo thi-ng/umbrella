@@ -25,7 +25,7 @@ export const selectKeysMap = <K, V>(
  * @param src
  * @param ks
  */
-export const selectKeysObj = <T>(
+export const selectKeysObj = <T extends any>(
     src: T,
     ks: Iterable<PropertyKey>
 ): { [id in keyof T]?: T[id] } => {
