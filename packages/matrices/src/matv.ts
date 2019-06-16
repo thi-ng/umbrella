@@ -5,7 +5,7 @@ import {
     setVV9
 } from "@thi.ng/vectors";
 
-export const mat2v = setVV4;
+export const mat22v = setVV4;
 
 export const mat23v = setVV6;
 

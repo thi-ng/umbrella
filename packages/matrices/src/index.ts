@@ -28,6 +28,7 @@ export * from "./mulm";
 export * from "./muln";
 export * from "./mulq";
 export * from "./mulv";
+export * from "./mulvm";
 export * from "./normal-mat";
 export * from "./ortho";
 export * from "./orthagonal";
