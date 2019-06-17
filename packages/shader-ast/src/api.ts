@@ -100,8 +100,9 @@ export type Vec = "vec2" | "vec3" | "vec4";
 export type IVec = "ivec2" | "ivec3" | "ivec4";
 export type BVec = "bvec2" | "bvec3" | "bvec4";
 export type Mat = "mat2" | "mat3" | "mat4";
-export type Prim = "f32" | "i32" | "u32" | Vec;
-export type Comparable = "f32" | "i32";
+export type Prim = "f32" | Vec;
+export type Int = "i32" | "u32";
+export type Comparable = "f32" | Int;
 export type Numeric = number | Term<"f32"> | Term<"i32"> | Term<"u32">;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
@@ -337,6 +338,10 @@ export interface Term<T extends Type> {
     type: T;
 }
 
+export interface Scoped {
+    scope: Scope;
+}
+
 export interface Lit<T extends Type> extends Term<T> {
     val: any;
     info?: string;
@@ -412,10 +417,10 @@ export interface FuncArg<T extends Type> extends Term<T> {
     opts: SymOpts;
 }
 
-export interface Func<T extends Type> extends Term<T> {
+export interface Func<T extends Type> extends Term<T>, Scoped {
     id: string;
     args: Sym<any>[];
-    scope: Scope;
+    deps: Func<any>[];
 }
 
 export interface TaggedFn0<T extends Type> extends Func0<T>, Func<T> {
@@ -509,11 +514,10 @@ export interface FnCall<T extends Type> extends Term<T> {
     info?: string;
 }
 
-export interface ForLoop extends Term<"void"> {
+export interface ForLoop extends Term<"void">, Scoped {
     init?: Decl<any>;
     test: Term<"bool">;
     iter?: Term<any>;
-    body: Scope;
 }
 
 export interface TargetImpl extends Record<Tag, Fn<any, string>> {
@@ -523,6 +527,7 @@ export interface TargetImpl extends Record<Tag, Fn<any, string>> {
     call_i: Fn<FnCall<any>, string>;
     decl: Fn<Decl<any>, string>;
     fn: Fn<Func<any>, string>;
+    for: Fn<ForLoop, string>;
     idx: Fn<Index<any>, string>;
     if: Fn<Branch, string>;
     lit: Fn<Lit<any>, string>;
@@ -532,4 +537,5 @@ export interface TargetImpl extends Record<Tag, Fn<any, string>> {
     scope: Fn<Scope, string>;
     swizzle: Fn<Swizzle<any>, string>;
     sym: Fn<Sym<any>, string>;
+    ternary: Fn<Ternary<any>, string>;
 }

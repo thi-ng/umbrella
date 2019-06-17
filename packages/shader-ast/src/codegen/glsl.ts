@@ -77,7 +77,7 @@ export const targetGLSL = (_ = 300) => {
         for: (t) =>
             `for(${t.init ? emit(t.init) : ""}; ${emit(t.test)}; ${
                 t.iter ? emit(t.iter) : ""
-            }) ${emit(t.body)}`,
+            }) ${emit(t.scope)}`,
 
         idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
 

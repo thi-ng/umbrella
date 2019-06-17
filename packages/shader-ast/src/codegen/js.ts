@@ -10,8 +10,10 @@ import { isNumber } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import {
     clamp,
+    deg,
     fract,
     mix,
+    rad,
     smoothStep,
     step
 } from "@thi.ng/math";
@@ -71,6 +73,7 @@ export interface JSBuiltins<T> {
     ceil: Fn<T, T>;
     clamp: Fn3<T, T, T, T>;
     cos: Fn<T, T>;
+    degrees: Fn<T, T>;
     exp: Fn<T, T>;
     exp2: Fn<T, T>;
     floor: Fn<T, T>;
@@ -85,6 +88,7 @@ export interface JSBuiltins<T> {
     mod: Fn2<T, T, T>;
     modn: Fn2<T, number, T>;
     pow: Fn2<T, T, T>;
+    radians: Fn<T, T>;
     sign: Fn<T, T>;
     sin: Fn<T, T>;
     smoothstep: Fn3<T, T, T, T>;
@@ -147,11 +151,11 @@ export interface JSEnv {
     mat3vvv: Fn3<Vec, Vec, Vec, Mat>;
     mat4n: Fn<number, Mat>;
     mat4vvvv: Fn4<Vec, Vec, Vec, Vec, Mat>;
-    swizzle1: Fn2<Vec, number, number>;
+    // swizzle1: Fn2<Vec, number, number>;
     swizzle2: Fn3<Vec, number, number, Vec>;
     swizzle3: Fn4<Vec, number, number, number, Vec>;
     swizzle4: Fn5<Vec, number, number, number, number, Vec>;
-    set_swizzle1: Fn3<Vec, number, number, Vec>;
+    // set_swizzle1: Fn3<Vec, number, number, Vec>;
     set_swizzle2: Fn4<Vec, Vec, number, number, Vec>;
     set_swizzle3: Fn5<Vec, Vec, number, number, number, Vec>;
     set_swizzle4: Fn6<Vec, Vec, number, number, number, number, Vec>;
@@ -177,11 +181,9 @@ export const JS_DEFAULT_ENV: JSEnv = {
     mat3vvv: (a, b, c) => m.mat33v([], a, b, c),
     mat4n: (n) => m.mat44n([], n),
     mat4vvvv: (a, b, c, d) => m.mat44v([], a, b, c, d),
-    swizzle1: (a, n) => a[n],
     swizzle2: (a, b, c) => v.swizzle2([], a, b, c),
     swizzle3: (a, b, c, d) => v.swizzle3([], a, b, c, d),
     swizzle4: (a, b, c, d, e) => v.swizzle4([], a, b, c, d, e),
-    set_swizzle1: v.setSwizzle1,
     set_swizzle2: v.setSwizzle2,
     set_swizzle3: v.setSwizzle3,
     set_swizzle4: v.setSwizzle4,
@@ -193,6 +195,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         ceil: Math.ceil,
         clamp,
         cos: Math.cos,
+        degrees: deg,
         exp: Math.exp,
         exp2: (x) => Math.pow(2, x),
         floor: Math.floor,
@@ -207,6 +210,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mod: (a, b) => a % b,
         modn: (a, b) => a % b,
         pow: Math.pow,
+        radians: rad,
         sign: Math.sign,
         sin: Math.sin,
         smoothstep: smoothStep,
@@ -225,6 +229,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         ceil: (a) => v.ceil2([], a),
         clamp: (x, a, b) => v.clamp2([], x, a, b),
         cos: (a) => v.cos2([], a),
+        degrees: (a) => v.degrees2([], a),
         distance: v.dist,
         div: (a, b) => v.div2([], a, b),
         divnv: (a, b) => v.mulN2([], b, 1 / a),
@@ -249,6 +254,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mulvn: (a, b) => v.mulN2([], a, b),
         normalize: (a) => v.normalize([], a),
         pow: (a, b) => v.pow2([], a, b),
+        radians: (a) => v.radians2([], a),
         sign: (a) => v.sign2([], a),
         sin: (a) => v.sin2([], a),
         smoothstep: (a, b, t) => v.smoothStep2([], a, b, t),
@@ -272,6 +278,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         clamp: (x, a, b) => v.clamp3([], x, a, b),
         cos: (a) => v.cos3([], a),
         cross: (a, b) => v.cross3([], a, b),
+        degrees: (a) => v.degrees3([], a),
         distance: v.dist,
         div: (a, b) => v.div3([], a, b),
         divnv: (a, b) => v.mulN3([], b, 1 / a),
@@ -296,6 +303,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mulvn: (a, b) => v.mulN3([], a, b),
         normalize: (a) => v.normalize([], a),
         pow: (a, b) => v.pow3([], a, b),
+        radians: (a) => v.radians3([], a),
         sign: (a) => v.sign3([], a),
         sin: (a) => v.sin3([], a),
         smoothstep: (a, b, t) => v.smoothStep3([], a, b, t),
@@ -318,6 +326,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         ceil: (a) => v.ceil4([], a),
         clamp: (x, a, b) => v.clamp4([], x, a, b),
         cos: (a) => v.cos4([], a),
+        degrees: (a) => v.degrees4([], a),
         distance: v.dist,
         div: (a, b) => v.div4([], a, b),
         divnv: (a, b) => v.mulN4([], b, 1 / a),
@@ -342,6 +351,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
         mulvn: (a, b) => v.mulN4([], a, b),
         normalize: (a) => v.normalize([], a),
         pow: (a, b) => v.pow4([], a, b),
+        radians: (a) => v.radians4([], a),
         sign: (a) => v.sign4([], a),
         sin: (a) => v.sin4([], a),
         smoothstep: (a, b, t) => v.smoothStep4([], a, b, t),
@@ -462,9 +472,11 @@ const mat4 = env.mat4;
         assign: (t) => {
             if (t.l.tag === "swizzle") {
                 const s = <Swizzle<any>>t.l;
-                return `env.set_swizzle${s.id.length}(${emit(s.val)}, ${emit(
-                    t.r
-                )}, ${$swizzle(s.id)})`;
+                return s.id.length > 1
+                    ? `env.set_swizzle${s.id.length}(${emit(s.val)}, ${emit(
+                          t.r
+                      )}, ${$swizzle(s.id)})`
+                    : `(${emit(s.val)}[${$swizzle(s.id)}] = ${emit(t.r)})`;
             }
             return emit(t.l) + " = " + emit(t.r);
         },
@@ -499,7 +511,7 @@ const mat4 = env.mat4;
         for: (t) =>
             `for(${t.init ? emit(t.init) : ""}; ${emit(t.test)}; ${
                 t.iter ? emit(t.iter) : ""
-            }) ${emit(t.body)}`,
+            }) ${emit(t.scope)}`,
 
         idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
 
@@ -556,7 +568,9 @@ const mat4 = env.mat4;
         },
 
         swizzle: (t) =>
-            `env.swizzle${t.id.length}(${emit(t.val)}, ${$swizzle(t.id)})`,
+            t.id.length > 1
+                ? `env.swizzle${t.id.length}(${emit(t.val)}, ${$swizzle(t.id)})`
+                : `${emit(t.val)}[${$swizzle(t.id)}]`,
 
         sym: (t) => t.id,
 
