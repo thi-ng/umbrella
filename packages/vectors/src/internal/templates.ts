@@ -13,6 +13,7 @@ export const DOT_G: Template = ([a, b]) => `s+=${a}*${b};`;
 export const SET: Template = ([o, a]) => `${o}=${a};`;
 export const SET_N: Template = ([a]) => `${a}=n;`;
 
+export const HOF_V: Template = ([o, a]) => `${o}=op(${a});`;
 export const HOF_VVV: Template = ([o, a, b, c]) => `${o}=op(${a},${b},${c});`;
 export const HOF_VVVVV: Template = ([o, a, b, c, d, e]) =>
     `${o}=op(${a},${b},${c},${d},${e});`;
