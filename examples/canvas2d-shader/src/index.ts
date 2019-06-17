@@ -7,6 +7,7 @@ import {
     defn,
     div,
     dot,
+    fit1101,
     float,
     mul,
     ret,
@@ -70,10 +71,7 @@ const main = defn(
             p2,
             m,
             o,
-            assign(
-                o,
-                add(mul(cos(mul(add(o, dp), float(2))), float(0.5)), float(0.5))
-            ),
+            assign(o, fit1101(cos(mul(add(o, dp), float(2))))),
             ret(vec4(o, 1))
         ];
     }
