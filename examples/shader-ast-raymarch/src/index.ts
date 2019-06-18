@@ -5,28 +5,28 @@ import {
     add,
     aspectCorrectedUV,
     assign,
-    buildCallGraph,
     clamp01,
     defn,
     diffuseLighting,
     eq,
+    fit1101,
     float,
     ifThen,
     lambert,
     mul,
+    program,
     raymarch,
     raymarchDir,
     raymarchNormal,
     ret,
-    scope,
     sdAABB,
     sdBlend,
     sdSphere,
     Sym,
     sym,
-    T,
     targetGLSL,
     targetJS,
+    TRUE,
     vec2,
     vec3,
     vec4
@@ -49,26 +49,17 @@ const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg
-const scene = defn(
-    "vec2",
-    "scene",
-    [["vec3"]],
-    (pos) => {
-        let d1: Sym<"f32">;
-        let d2: Sym<"f32">;
-        let d3: Sym<"f32">;
-        return [
-            (d1 = sym(sdSphere(pos, float(0.5)))),
-            (d2 = sym(sdAABB(pos, vec3(1, 0.2, 0.2)))),
-            (d3 = sym(sdAABB(pos, vec3(0.2, 0.2, 1)))),
-            ret(vec2(sdBlend(sdBlend(d1, d2, float(0.2)), d3, float(0.2)), 1))
-        ];
-    }
-    // func dependencies
-    // (not yet fully used, but are needed to construct call graph and
-    // correct output order later)
-    // [sdSphere, sdAABB, sdBlend]
-);
+const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
+    let d1: Sym<"f32">;
+    let d2: Sym<"f32">;
+    let d3: Sym<"f32">;
+    return [
+        (d1 = sym(sdSphere(pos, float(0.5)))),
+        (d2 = sym(sdAABB(pos, vec3(1, 0.2, 0.2)))),
+        (d3 = sym(sdAABB(pos, vec3(0.2, 0.2, 1)))),
+        ret(vec2(sdBlend(sdBlend(d1, d2, float(0.2)), d3, float(0.2)), 1))
+    ];
+});
 
 // build raymarcher using provided scene function
 // `raymarch` is a higher-order, configurable function which constructs
@@ -91,6 +82,7 @@ const main = defn(
         let uv: Sym<"vec2">;
         let dir: Sym<"vec3">;
         let result: Sym<"vec2">;
+        let isec: Sym<"vec3">;
         let material: Sym<"vec3">;
         let diffuse: Sym<"f32">;
         return [
@@ -100,19 +92,15 @@ const main = defn(
             (dir = sym(raymarchDir(eyePos, vec3(), vec3(0, 1, 0), uv))),
             // perform raymarch
             (result = sym(march(eyePos, dir))),
+            // set intersection pos
+            (isec = sym(add(eyePos, mul(dir, $(result, "x"))))),
             // set material
             (material = sym(vec3())),
             ifThen(eq($(result, "y"), float(1)), [
-                assign(material, vec3(1, 0.25, 0.1))
+                assign(material, fit1101(isec))
             ]),
             // compute diffuse term
-            (diffuse = sym(
-                lambert(
-                    normal(add(eyePos, mul(dir, $(result, "x"))), float(0.01)),
-                    lightDir,
-                    T
-                )
-            )),
+            (diffuse = sym(lambert(normal(isec, float(0.01)), lightDir, TRUE))),
             // combine lighting & material colors
             ret(
                 vec4(
@@ -124,37 +112,29 @@ const main = defn(
             )
         ];
     }
-    // [aspectCorrectedUV, raymarchDir, march, normal, lambert, diffuseLighting]
 );
 
 // actual GLSL fragment shader main function
-const glslMain = defn(
-    "void",
-    "main",
-    [],
-    () => [
-        assign(
-            sym("vec4", "o_fragColor"),
-            main(
-                $(GL.gl_FragCoord, "xy"),
-                sym("vec2", "u_resolution"),
-                sym("vec3", "u_eyePos"),
-                sym("vec3", "u_lightDir")
-            )
+const glslMain = defn("void", "main", [], () => [
+    assign(
+        sym("vec4", "o_fragColor"),
+        main(
+            $(GL.gl_FragCoord, "xy"),
+            sym("vec2", "u_resolution"),
+            sym("vec3", "u_eyePos"),
+            sym("vec3", "u_lightDir")
         )
-    ]
-    // [main]
-);
+    )
+]);
 
-// build call graph, sort in topological order and bundle all functions
-// in a global scope for code generation...
-// WIP ONLY!!!
-const program = scope(buildCallGraph(main).sort(), true);
+// build call graph for given entry function, sort in topological order
+// and bundle all functions in a global scope for code generation...
+const shaderProgram = program(main);
 
 console.log("JS");
-console.log(JS(program));
+console.log(JS(shaderProgram));
 console.log("GLSL");
-console.log(GL(program));
+console.log(GL(shaderProgram));
 
 const W = 320;
 const H = 240;
@@ -173,7 +153,7 @@ if (JS_MODE) {
     //
     // JS Canvas 2D shader emulation from here...
     //
-    const fn = JS.compile(program).mainImage;
+    const fn = JS.compile(shaderProgram).mainImage;
 
     const ctx = canvas.getContext("2d");
     const img = ctx!.getImageData(0, 0, W, H);
@@ -205,7 +185,7 @@ if (JS_MODE) {
     // WebGL mode...
     //
     // inject main fs function into AST program
-    program.body.push(glslMain);
+    shaderProgram.body.push(glslMain);
     const ctx: WebGL2RenderingContext = canvas.getContext("webgl2")!;
     // build fullscreen quad
     const model = quad(false);
@@ -216,7 +196,7 @@ if (JS_MODE) {
                 assign(GL.gl_Position, vec4(sym("vec2", "a_position"), 0, 1))
             ])
         ),
-        fs: GL(program).replace(/\};/g, "}"),
+        fs: GL(shaderProgram).replace(/\};/g, "}"),
         attribs: {
             position: GLSL.vec2
         },

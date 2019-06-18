@@ -1,5 +1,5 @@
 {
-    "name": "raymarch-ast",
+    "name": "shader-ast-canvas2d",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -11,14 +11,12 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.3",
-        "terser": "^3.17.0",
-        "typescript": "^3.4.1"
+        "terser": "^4.0.0",
+        "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/binary": "latest",
         "@thi.ng/color": "latest",
-        "@thi.ng/shader-ast": "latest",
-        "@thi.ng/webgl": "latest"
+        "@thi.ng/shader-ast": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

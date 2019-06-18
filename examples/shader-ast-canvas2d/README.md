@@ -1,6 +1,6 @@
-# canvas2d-shader
+# shader-ast-canvas2d
 
-[Live demo](http://demo.thi.ng/umbrella/canvas2d-shader/)
+[Live demo](http://demo.thi.ng/umbrella/shader-ast-canvas2d/)
 
 WIP example of using
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
