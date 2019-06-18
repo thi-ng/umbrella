@@ -63,11 +63,11 @@ const scene = defn(
             (d3 = sym(sdAABB(pos, vec3(0.2, 0.2, 1)))),
             ret(vec2(sdBlend(sdBlend(d1, d2, float(0.2)), d3, float(0.2)), 1))
         ];
-    },
+    }
     // func dependencies
     // (not yet fully used, but are needed to construct call graph and
     // correct output order later)
-    [sdSphere, sdAABB, sdBlend]
+    // [sdSphere, sdAABB, sdBlend]
 );
 
 // build raymarcher using provided scene function
@@ -123,8 +123,8 @@ const main = defn(
                 )
             )
         ];
-    },
-    [aspectCorrectedUV, raymarchDir, march, normal, lambert, diffuseLighting]
+    }
+    // [aspectCorrectedUV, raymarchDir, march, normal, lambert, diffuseLighting]
 );
 
 // actual GLSL fragment shader main function
@@ -142,8 +142,8 @@ const glslMain = defn(
                 sym("vec3", "u_lightDir")
             )
         )
-    ],
-    [main]
+    ]
+    // [main]
 );
 
 // build call graph, sort in topological order and bundle all functions
