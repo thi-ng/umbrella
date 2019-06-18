@@ -1,4 +1,4 @@
-import { Sym } from "../api";
+import { Sym, Term } from "../api";
 import {
     $,
     add,
@@ -6,6 +6,7 @@ import {
     div,
     F32_0,
     F32_1,
+    float,
     mul,
     neg,
     ret,
@@ -20,10 +21,57 @@ import {
     length,
     max,
     min,
-    mix
+    mix,
+    mod
 } from "../builtins";
 import { clamp01 } from "./clamp";
 import { fit1101 } from "./fit";
+
+// Signed Distance Field primitives and operations based on work by
+// Inigo Quilezles (iq).
+//
+// Reference:
+//
+// - http://www.iquilezles.org/www/articles/distfunctions2d/distfunctions2d.htm
+// - http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm
+
+//////////////// 2D primitives
+
+/**
+ * Returns signed distance from `p` to centered circle of radius `r`.
+ *
+ * @param p vec3
+ * @param r f32
+ */
+export const sdCircle = defn("f32", "sdCircle", [["vec2"], ["f32"]], (p, r) => [
+    ret(sub(length(p), r))
+]);
+
+/**
+ * Returns signed distance from `p` to centered circle of radius `r`.
+ *
+ * @param p vec3
+ * @param r f32
+ */
+export const sdLine2 = defn("f32", "sdLine2", [["vec2"], ["f32"]], (p, r) => [
+    ret(sub(length(p), r))
+]);
+
+/**
+ * Returns signed distance from `p` to centered AABB of `size`.
+ *
+ * @param p vec3
+ * @param size vec3
+ */
+export const sdRect = defn("f32", "sdRect", [["vec2"], ["vec2"]], (p, size) => {
+    let d: Sym<"vec2">;
+    return [
+        (d = sym(sub(abs(p), size))),
+        ret(add(min(max($(d, "x"), $(d, "y")), F32_0), length(max(d, vec2()))))
+    ];
+});
+
+//////////////// 3D primitives
 
 /**
  * Returns signed distance from `p` to plane.
@@ -117,30 +165,31 @@ export const sdCylinder = defn(
  * @param p vec3
  * @param a vec3
  * @param b vec3
- * @param r f32
  */
-export const sdCapsule = defn(
+export const sdLine3 = defn(
     "f32",
-    "sdCapsule",
-    [["vec3"], ["vec3"], ["vec3"], ["f32"]],
-    (p, a, b, r) => {
+    "sdLine3",
+    [["vec3"], ["vec3"], ["vec3"]],
+    (p, a, b) => {
         let pa: Sym<"vec3">, ba: Sym<"vec3">, h: Sym<"f32">;
         return [
             (pa = sym(sub(p, a))),
             (ba = sym(sub(b, a))),
             (h = sym(clamp01(div(dot(pa, ba), dot(ba, ba))))),
-            ret(sub(length(mul(sub(pa, ba), h)), r))
+            ret(length(mul(sub(pa, ba), h)))
         ];
     }
 );
+
+//////////////// Combinators
 
 /**
  * @param d1 f32
  * @param d2 f32
  */
-export const sdSubtract = defn(
+export const sdOpSubtract = defn(
     "f32",
-    "sdSubtract",
+    "sdOpSubtract",
     [["f32"], ["f32"]],
     (d1, d2) => [ret(max(neg(d2), d1))]
 );
@@ -149,23 +198,118 @@ export const sdSubtract = defn(
  * @param d1 f32
  * @param d2 f32
  */
-export const sdUnion = defn("f32", "sdUnion", [["f32"], ["f32"]], (d1, d2) => [
-    ret(min(d1, d2))
-]);
+export const sdOpUnion = defn(
+    "f32",
+    "sdOpUnion",
+    [["f32"], ["f32"]],
+    (d1, d2) => [ret(min(d1, d2))]
+);
 
 /**
  * @param d1 f32
  * @param d2 f32
  */
-export const sdBlend = defn(
+export const sdOpIntersect = defn(
     "f32",
-    "sdBlend",
+    "sdOpIntersect",
+    [["f32"], ["f32"]],
+    (d1, d2) => [ret(max(d2, d1))]
+);
+
+/**
+ * @param d1 f32
+ * @param d2 f32
+ */
+export const sdOpSmoothUnion = defn(
+    "f32",
+    "sdOpSmoothUnion",
     [["f32"], ["f32"], ["f32"]],
-    (a, b, f) => {
+    (a, b, k) => {
         let h: Sym<"f32">;
         return [
-            (h = sym(clamp01(fit1101(div(sub(b, a), f))))),
-            ret(sub(mix(b, a, h), mul(mul(f, h), sub(F32_1, h))))
+            (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
+            ret(sub(mix(b, a, h), mul(mul(k, h), sub(F32_1, h))))
         ];
     }
+);
+
+/**
+ * @param d1 f32
+ * @param d2 f32
+ */
+export const sdOpSmoothSubtract = defn(
+    "f32",
+    "sdOpSmoothSubtract",
+    [["f32"], ["f32"], ["f32"]],
+    (a, b, k) => {
+        let h: Sym<"f32">;
+        return [
+            (h = sym(clamp01(fit1101(div(add(b, a), k))))),
+            ret(add(mix(b, neg(a), h), mul(mul(k, h), sub(F32_1, h))))
+        ];
+    }
+);
+
+/**
+ * @param d1 f32
+ * @param d2 f32
+ */
+export const sdOpSmoothIntersect = defn(
+    "f32",
+    "sdOpSmoothIntersect",
+    [["f32"], ["f32"], ["f32"]],
+    (a, b, k) => {
+        let h: Sym<"f32">;
+        return [
+            (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
+            ret(add(mix(b, a, h), mul(mul(k, h), sub(F32_1, h))))
+        ];
+    }
+);
+
+/**
+ * Inline function. Essentially an isoline offset to create:
+ *
+ * - `r > 0`: rounded/thicker shapes
+ * - `r < 0`: sharper/thinner shapes
+ *
+ * @param d
+ * @param r
+ */
+export const sdOpRound = (d: Term<"f32">, r: Term<"f32">) => sub(d, r);
+
+/**
+ * Inline function. Bi-directional offset to create ring like shapes.
+ *
+ * @param d
+ * @param r
+ */
+export const sdOpAnnular = (d: Term<"f32">, r: Term<"f32">) => sub(abs(d), r);
+
+//////////////// Transformations
+
+/**
+ * Domain repetition by wrapping position `p` into period `c`.
+ *
+ * @param p vec2
+ * @param c vec2
+ */
+export const sdTxRepeat2 = defn(
+    "vec2",
+    "sdTxRepeat3",
+    [["vec2"], ["vec2"]],
+    (p, c) => [ret(sub(mod(p, c), mul(c, float(0.5))))]
+);
+
+/**
+ * Domain repetition by wrapping position `p` into period `c`.
+ *
+ * @param p vec3
+ * @param c vec3
+ */
+export const sdTxRepeat3 = defn(
+    "vec3",
+    "sdTxRepeat3",
+    [["vec3"], ["vec3"]],
+    (p, c) => [ret(sub(mod(p, c), mul(c, float(0.5))))]
 );

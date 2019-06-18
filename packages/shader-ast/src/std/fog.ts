@@ -51,7 +51,7 @@ export const fogExp2 = defn(
         ret(
             sub(
                 F32_1,
-                clamp01(exp2(mul(mul(density, density), float(1 / Math.LOG2E))))
+                clamp01(exp2(mul(mul(density, density), float(-Math.LOG2E))))
             )
         )
     ]

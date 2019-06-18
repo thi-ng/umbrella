@@ -16,6 +16,16 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
+    - [Supported types](#supported-types)
+    - [Operators](#operators)
+    - [Symbol definitions / assignments](#symbol-definitions--assignments)
+    - [Control flow](#control-flow)
+    - [Built-in functions](#built-in-functions)
+    - [User defined functions](#user-defined-functions)
+    - [Code generation](#code-generation)
+    - [Compilation & execution](#compilation--execution)
+    - [AST tooling & traversal](#ast-tooling--traversal)
 - [Authors](#authors)
 - [License](#license)
 
@@ -106,6 +116,8 @@ Benefits of this approach:
 - [ ] integration w/
   [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl)
 - [ ] boilerplate for JS runtime (non-GPU shader execution)
+- [ ] AST transformations (optimizers, e.g. [constant
+  folding](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/optimize.ts))
 
 ## Installation
 
@@ -128,6 +140,36 @@ yarn add @thi.ng/shader-ast
 - [canvas2d shader](https://demo.thi.ng/umbrella/shader-ast-canvas2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
 - [raymarch shader](https://demo.thi.ng/umbrella/shader-ast-raymarch/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
 - [tunnel shader](https://demo.thi.ng/umbrella/shader-ast-tunnel/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
+
+## API
+
+TODO
+
+### Supported types
+
+### Operators
+
+#### Swizzling
+
+#### Index lookups
+
+### Symbol definitions / assignments
+
+### Control flow
+
+### Built-in functions
+
+### User defined functions
+
+#### Inline functions
+
+### Code generation
+
+### Compilation & execution
+
+### AST tooling & traversal
+
+#### Tree optimizations
 
 ## Authors
 
