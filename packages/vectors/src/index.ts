@@ -51,6 +51,8 @@ export * from "./exp_2";
 export * from "./face-forward";
 export * from "./fit";
 export * from "./floor";
+export * from "./fmod";
+export * from "./fmodn";
 export * from "./fract";
 export * from "./gvec";
 export * from "./hash";
