@@ -570,6 +570,19 @@ export const lte = cmp("<=");
 export const gt = cmp(">");
 export const gte = cmp(">=");
 
+/**
+ * Wraps the given AST node array in `scope` node, optionally as global
+ * scope (default false). The interpretation of the global flag is
+ * dependent on the target codegen. I.e. for GLSL / JS, the flag
+ * disables wrapping the scope's body in `{}`, but else has no
+ * difference. In general this node type only serves as internal
+ * mechanism for various control flow AST nodes and should not need to
+ * be used directly from user land code (though might be useful to
+ * create custom / higher level control flow nodes).
+ *
+ * @param body
+ * @param global
+ */
 export const scope = (body: Term<any>[], global = false): Scope => ({
     tag: "scope",
     type: "void",
@@ -578,11 +591,18 @@ export const scope = (body: Term<any>[], global = false): Scope => ({
 });
 
 /**
- * DO NOT USE YET!
+ * Takes a single AST function defined via `defn()`, constructs the call
+ * graph of all transitively used functions and bundles them in
+ * topological order within a global scope object, which is then
+ * returned to the user and can be passed to a target codegen for full
+ * program output.
  *
- * TODO add func dep ordering
+ * @see scope
+ *
+ * @param entry
  */
-export const program = (entry: Func<any>) => scope([entry], true);
+export const program = (entry: Func<any>) =>
+    scope(buildCallGraph(entry).sort(), true);
 
 const defArg = <T extends Type>([type, id, opts]: Arg<T>): FuncArg<T> => ({
     tag: "arg",
