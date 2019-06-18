@@ -12,6 +12,7 @@ import {
     mul,
     neg,
     pow,
+    program,
     ret,
     scope,
     sym,
@@ -52,7 +53,6 @@ const main = defn(
     (frag, res, time, tex) => {
         let p: Sym<"vec2">;
         let uv: Sym<"vec2">;
-        let col: Sym<"vec3">;
         let r: Sym<"f32">;
         return [
             (p = sym(div(add(neg(res), mul(frag, float(2))), $(res, "y")))),
@@ -71,33 +71,26 @@ const main = defn(
                     div(atan(div($(p, "y"), $(p, "x"))), float(Math.PI))
                 )
             )),
-            (col = sym(mul($(texture(tex, uv), "xyz"), r))),
-            ret(vec4(col, float(1)))
+            ret(vec4(mul($(texture(tex, uv), "xyz"), r), float(1)))
         ];
     }
 );
 
 // actual GLSL fragment shader main function
-const glslMain = defn(
-    "void",
-    "main",
-    [],
-    () => [
-        assign(
-            sym("vec4", "o_fragColor"),
-            main(
-                $(GL.gl_FragCoord, "xy"),
-                sym("vec2", "u_resolution"),
-                sym("f32", "u_time"),
-                sym("sampler2D", "u_tex")
-            )
+const glslMain = defn("void", "main", [], () => [
+    assign(
+        sym("vec4", "o_fragColor"),
+        main(
+            $(GL.gl_FragCoord, "xy"),
+            sym("vec2", "u_resolution"),
+            sym("f32", "u_time"),
+            sym("sampler2D", "u_tex")
         )
-    ]
-    // [main]
-);
+    )
+]);
 
 // assemble all functions in a global scope for code generation...
-const shaderProgram = scope([main, glslMain], true);
+const shaderProgram = program(main);
 
 console.log("JS");
 console.log(JS(shaderProgram));
@@ -168,14 +161,13 @@ if (JS_MODE) {
                 for (let x = 0; x < W; x++) {
                     frag[0] = x;
                     // the swizzle8 is needed to convert RGBA to BGRA
-                    const col = swizzle8(
+                    u32[i++] = swizzle8(
                         rgbaInt(fn(frag, size, time)),
                         0,
                         3,
                         2,
                         1
                     );
-                    u32[i++] = col;
                 }
             }
             ctx!.putImageData(img, 0, 0);
@@ -185,6 +177,7 @@ if (JS_MODE) {
     //
     // WebGL mode...
     //
+    shaderProgram.body.push(glslMain);
     preload.then(() => {
         const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
         // build fullscreen quad

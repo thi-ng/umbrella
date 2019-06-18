@@ -155,8 +155,8 @@ if (JS_MODE) {
     //
     const fn = JS.compile(shaderProgram).mainImage;
 
-    const ctx = canvas.getContext("2d");
-    const img = ctx!.getImageData(0, 0, W, H);
+    const ctx = canvas.getContext("2d")!;
+    const img = ctx.getImageData(0, 0, W, H);
     const u32 = new Uint32Array(img.data.buffer);
     let time = 0;
 
@@ -168,17 +168,16 @@ if (JS_MODE) {
             frag[1] = y;
             for (let x = 0; x < W; x++) {
                 frag[0] = x;
-                const col = swizzle8(
+                u32[i++] = swizzle8(
                     rgbaInt(fn(frag, size, eyePos, lightDir)),
                     0,
                     3,
                     2,
                     1
                 );
-                u32[i++] = col;
             }
         }
-        ctx!.putImageData(img, 0, 0);
+        ctx.putImageData(img, 0, 0);
     }, 16);
 } else {
     //

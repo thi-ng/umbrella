@@ -2,7 +2,6 @@ import { rgbaInt } from "@thi.ng/color";
 import {
     $,
     add,
-    assign,
     cos,
     defn,
     div,
@@ -13,6 +12,7 @@ import {
     ret,
     sin,
     sym,
+    Sym,
     targetGLSL,
     targetJS,
     vec3,
@@ -23,22 +23,28 @@ const js = targetJS();
 const gl = targetGLSL();
 
 /*
-    // http://glslsandbox.com/e#55242.0
-    float a = sin(time) * 2.0 + 3.0;
-	float p = gl_FragCoord.y * resolution.x + gl_FragCoord.x;
-	vec2 sp = surfacePosition * a;
-	float dp = dot(sp,sp);
-	float p2 = sp.y * resolution.x + sp.x;
+// http://glslsandbox.com/e#55242.0
 
-	float m = (p2 + p * a) / (resolution.x * resolution.y);
+float a = sin(time) * 2.0 + 3.0;
 
-	m *= sp.x*sp.y;
+float p = gl_FragCoord.y * resolution.x + gl_FragCoord.x;
 
-	vec3 o = sin( vec3( 1.0, 2.0, 3.0 ) * m );
+vec2 sp = surfacePosition * a;
 
-	o = cos( o + dp * 2.0 ) * 0.5 + 0.5;
+float dp = dot(sp,sp);
 
-	gl_FragColor = vec4( o, 1.0 );
+float p2 = sp.y * resolution.x + sp.x;
+
+float m = (p2 + p * a) / (resolution.x * resolution.y);
+
+m *= sp.x*sp.y;
+
+vec3 o = sin( vec3( 1.0, 2.0, 3.0 ) * m );
+
+o = cos( o + dp * 2.0 ) * 0.5 + 0.5;
+
+gl_FragColor = vec4( o, 1.0 );
+
 */
 
 const main = defn(
@@ -50,29 +56,32 @@ const main = defn(
     [["vec2", "fragCoord"], ["vec2", "res"], ["vec2", "uv"], ["f32", "time"]],
     // bound args given to function body
     (frag, res, uv, time) => {
-        const a = sym("f32", add(mul(sin(time), float(2)), float(3)));
-        const p = sym("f32", add(mul($(frag, "y"), $(res, "x")), $(frag, "x")));
-        const sp = sym("vec2", mul(uv, a));
-        const dp = sym("f32", dot(sp, sp));
-        const p2 = sym("f32", add(mul($(sp, "y"), $(res, "x")), $(sp, "x")));
-        const m = sym(
-            "f32",
-            mul(
-                div(add(p2, mul(p, a)), mul($(res, "x"), $(res, "y"))),
-                mul($(sp, "x"), $(sp, "y"))
-            )
-        );
-        const o = sym("vec3", sin(mul(vec3(1, 2, 3), m)));
+        let a: Sym<"f32">;
+        let p: Sym<"f32">;
+        let sp: Sym<"vec2">;
+        let dp: Sym<"f32">;
+        let p2: Sym<"f32">;
+        let m: Sym<"f32">;
         return [
-            a,
-            p,
-            sp,
-            dp,
-            p2,
-            m,
-            o,
-            assign(o, fit1101(cos(mul(add(o, dp), float(2))))),
-            ret(vec4(o, 1))
+            (a = sym(add(mul(sin(time), float(2)), float(3)))),
+            (p = sym(add(mul($(frag, "y"), $(res, "x")), $(frag, "x")))),
+            (sp = sym(mul(uv, a))),
+            (dp = sym(dot(sp, sp))),
+            (p2 = sym(add(mul($(sp, "y"), $(res, "x")), $(sp, "x")))),
+            (m = sym(
+                mul(
+                    div(add(p2, mul(p, a)), mul($(res, "x"), $(res, "y"))),
+                    mul($(sp, "x"), $(sp, "y"))
+                )
+            )),
+            ret(
+                vec4(
+                    fit1101(
+                        cos(mul(add(sin(mul(vec3(1, 2, 3), m)), dp), float(2)))
+                    ),
+                    1
+                )
+            )
         ];
     }
 );
