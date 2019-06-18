@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-![screenshot](https://github.com/thi-ng/umbrella/tree/feature/webgl/assets/screenshots/shader-ast-00.jpg)
+![screenshot](https://github.com/thi-ng/umbrella/tree/feature/webgl/assets/screenshots/shader-ast-01.jpg)
 
 **WIP only** - Embedded DSL to define partially (as much as possible /
 feasible) type checked shader code directly in TypeScript and
