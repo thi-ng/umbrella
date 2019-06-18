@@ -6,6 +6,7 @@ import {
     Select4
 } from "@thi.ng/api";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
+import { DGraph } from "@thi.ng/dgraph";
 import { illegalArgs } from "@thi.ng/errors";
 import {
     Arg,
@@ -178,6 +179,23 @@ export const walk = <T>(
     }
     return acc;
 };
+
+/**
+ * Builds dependency graph of given function.
+ *
+ * @param fn
+ * @param graph
+ */
+export const buildCallGraph = (
+    fn: Func<any>,
+    graph: DGraph<Func<any>> = new DGraph()
+): DGraph<Func<any>> =>
+    fn.deps
+        ? fn.deps.reduce(
+              (graph, d) => buildCallGraph(d, graph.addDependency(fn, d)),
+              graph
+          )
+        : graph;
 
 export function sym<T extends Type>(init: Term<T>): Sym<T>;
 export function sym<T extends Type>(type: T): Sym<T>;
