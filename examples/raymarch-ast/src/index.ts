@@ -5,6 +5,7 @@ import {
     add,
     aspectCorrectedUV,
     assign,
+    buildCallGraph,
     clamp01,
     defn,
     diffuseLighting,
@@ -145,24 +146,10 @@ const glslMain = defn(
     [main]
 );
 
-// bundle all functions in a global scope
+// build call graph, sort in topological order and bundle all functions
+// in a global scope for code generation...
 // WIP ONLY!!!
-const program = scope(
-    [
-        sdSphere,
-        sdAABB,
-        sdBlend,
-        scene,
-        march,
-        normal,
-        aspectCorrectedUV,
-        raymarchDir,
-        lambert,
-        diffuseLighting,
-        main
-    ],
-    true
-);
+const program = scope(buildCallGraph(main).sort(), true);
 
 console.log("JS");
 console.log(JS(program));
