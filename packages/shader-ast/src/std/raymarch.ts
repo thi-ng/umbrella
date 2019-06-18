@@ -45,37 +45,31 @@ export const raymarch = (
         bias: 0.7,
         ..._opts
     };
-    return defn(
-        "vec2",
-        opts.name,
-        [["vec3"], ["vec3"]],
-        (pos, dir) => {
-            let total: Sym<"f32">;
-            let res: Sym<"vec2">;
-            return [
-                (total = sym(float(opts.near))),
-                (res = sym("vec2")),
-                forLoop(
-                    sym("i32", int(0)),
-                    (i) => lt(i, int(opts.steps)),
-                    (i) => assign(i, inc(i)),
-                    () => [
-                        assign(res, scene(add(pos, mul(dir, total)))),
-                        ifThen(lt($(res, "x"), float(opts.eps)), [
-                            ret(vec2(total, $(res, "y")))
-                        ]),
-                        assign(
-                            total,
-                            add(total, mul($(res, "x"), float(opts.bias)))
-                        ),
-                        ifThen(gt(total, float(opts.far)), [brk])
-                    ]
-                ),
-                ret(vec2(opts.far, 0))
-            ];
-        },
-        [scene]
-    );
+    return defn("vec2", opts.name, [["vec3"], ["vec3"]], (pos, dir) => {
+        let total: Sym<"f32">;
+        let res: Sym<"vec2">;
+        return [
+            (total = sym(float(opts.near))),
+            (res = sym("vec2")),
+            forLoop(
+                sym("i32", int(0)),
+                (i) => lt(i, int(opts.steps)),
+                (i) => assign(i, inc(i)),
+                () => [
+                    assign(res, scene(add(pos, mul(dir, total)))),
+                    ifThen(lt($(res, "x"), float(opts.eps)), [
+                        ret(vec2(total, $(res, "y")))
+                    ]),
+                    assign(
+                        total,
+                        add(total, mul($(res, "x"), float(opts.bias)))
+                    ),
+                    ifThen(gt(total, float(opts.far)), [brk])
+                ]
+            ),
+            ret(vec2(opts.far, 0))
+        ];
+    });
 };
 
 /**
@@ -91,24 +85,18 @@ export const raymarchNormal = (
     scene: TaggedFn1<"vec3", "vec2">,
     name = "raymarchNormal"
 ) =>
-    defn(
-        "vec3",
-        name,
-        [["vec3"], ["f32"]],
-        (p, smooth) => {
-            let dn: Sym<"vec2">;
-            let comp = (id: Swizzle2_3) =>
-                sub(
-                    $(scene(add(p, $(dn, id))), "x"),
-                    $(scene(sub(p, $(dn, id))), "x")
-                );
-            return [
-                (dn = sym(vec2(smooth, 0))),
-                ret(normalize(vec3(comp("xyy"), comp("yxy"), comp("yyx"))))
-            ];
-        },
-        [scene]
-    );
+    defn("vec3", name, [["vec3"], ["f32"]], (p, smooth) => {
+        let dn: Sym<"vec2">;
+        let comp = (id: Swizzle2_3) =>
+            sub(
+                $(scene(add(p, $(dn, id))), "x"),
+                $(scene(sub(p, $(dn, id))), "x")
+            );
+        return [
+            (dn = sym(vec2(smooth, 0))),
+            ret(normalize(vec3(comp("xyy"), comp("yxy"), comp("yyx"))))
+        ];
+    });
 
 /**
  * @param eyePos vec3

@@ -260,26 +260,26 @@ export type FnBody8<
     Term<any>[]
 >;
 
-export type Func0<T extends Type> = Fn0<Term<T>>;
-export type Func1<A extends Type, T extends Type> = Fn<Term<A>, Term<T>>;
+export type Func0<T extends Type> = Fn0<FnCall<T>>;
+export type Func1<A extends Type, T extends Type> = Fn<Term<A>, FnCall<T>>;
 export type Func2<A extends Type, B extends Type, T extends Type> = Fn2<
     Term<A>,
     Term<B>,
-    Term<T>
+    FnCall<T>
 >;
 export type Func3<
     A extends Type,
     B extends Type,
     C extends Type,
     T extends Type
-> = Fn3<Term<A>, Term<B>, Term<C>, Term<T>>;
+> = Fn3<Term<A>, Term<B>, Term<C>, FnCall<T>>;
 export type Func4<
     A extends Type,
     B extends Type,
     C extends Type,
     D extends Type,
     T extends Type
-> = Fn4<Term<A>, Term<B>, Term<C>, Term<D>, Term<T>>;
+> = Fn4<Term<A>, Term<B>, Term<C>, Term<D>, FnCall<T>>;
 export type Func5<
     A extends Type,
     B extends Type,
@@ -287,7 +287,7 @@ export type Func5<
     D extends Type,
     E extends Type,
     T extends Type
-> = Fn5<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<T>>;
+> = Fn5<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, FnCall<T>>;
 export type Func6<
     A extends Type,
     B extends Type,
@@ -296,7 +296,7 @@ export type Func6<
     E extends Type,
     F extends Type,
     T extends Type
-> = Fn6<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<F>, Term<T>>;
+> = Fn6<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<F>, FnCall<T>>;
 export type Func7<
     A extends Type,
     B extends Type,
@@ -306,7 +306,16 @@ export type Func7<
     F extends Type,
     G extends Type,
     T extends Type
-> = Fn7<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<F>, Term<G>, Term<T>>;
+> = Fn7<
+    Term<A>,
+    Term<B>,
+    Term<C>,
+    Term<D>,
+    Term<E>,
+    Term<F>,
+    Term<G>,
+    FnCall<T>
+>;
 export type Func8<
     A extends Type,
     B extends Type,
@@ -326,7 +335,7 @@ export type Func8<
     Term<F>,
     Term<G>,
     Term<H>,
-    Term<T>
+    FnCall<T>
 >;
 
 export type ArgQualifier = "in" | "out" | "inout";
@@ -512,6 +521,7 @@ export interface FnCall<T extends Type> extends Term<T> {
     id: string;
     args: Term<any>[];
     info?: string;
+    fn?: Func<T>;
 }
 
 export interface ForLoop extends Term<"void">, Scoped {

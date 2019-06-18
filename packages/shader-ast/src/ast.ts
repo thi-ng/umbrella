@@ -138,8 +138,12 @@ export const allChildren = (t: Term<any>) =>
         ? (<FnCall<any>>t).args
         : t.tag === "sym" && (<Sym<any>>t).init
         ? [(<Sym<any>>t).init]
+        : t.tag === "decl"
+        ? [(<Decl<any>>t).id]
         : t.tag === "op2"
         ? [(<Op2<any>>t).l, (<Op2<any>>t).r]
+        : t.tag === "assign"
+        ? [(<Assign<any>>t).r]
         : isVec(t) || isMat(t)
         ? (<Lit<any>>t).val
         : undefined;
@@ -597,25 +601,25 @@ const defArg = <T extends Type>([type, id, opts]: Arg<T>): FuncArg<T> => ({
  * @param deps array of userland functions called from this function
  */
 // prettier-ignore
-export function defn<T extends Type>(type: T, name: string, args: [], body: FnBody0, deps?: Func<any>[]): TaggedFn0<T>;
+export function defn<T extends Type>(type: T, name: string, args: [], body: FnBody0): TaggedFn0<T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type>(type: T, name: string, args: Arg1<A>, body: FnBody1<A>, deps?: Func<any>[]): TaggedFn1<A,T>;
+export function defn<T extends Type, A extends Type>(type: T, name: string, args: Arg1<A>, body: FnBody1<A>): TaggedFn1<A,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type>(type: T, name: string, args: Arg2<A,B>, body: FnBody2<A,B>, deps?: Func<any>[]): TaggedFn2<A,B,T>;
+export function defn<T extends Type, A extends Type, B extends Type>(type: T, name: string, args: Arg2<A,B>, body: FnBody2<A,B>): TaggedFn2<A,B,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type>(type: T, name: string, args: Arg3<A,B,C>, body: FnBody3<A,B,C>, deps?: Func<any>[]): TaggedFn3<A,B,C,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type>(type: T, name: string, args: Arg3<A,B,C>, body: FnBody3<A,B,C>): TaggedFn3<A,B,C,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type>(type: T, name: string, args: Arg4<A,B,C,D>, body: FnBody4<A,B,C,D>, deps?: Func<any>[]): TaggedFn4<A,B,C,D,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type>(type: T, name: string, args: Arg4<A,B,C,D>, body: FnBody4<A,B,C,D>): TaggedFn4<A,B,C,D,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type>(type: T, name: string, args: Arg5<A,B,C,D,E>, body: FnBody5<A,B,C,D,E>, deps?: Func<any>[]): TaggedFn5<A,B,C,D,E,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type>(type: T, name: string, args: Arg5<A,B,C,D,E>, body: FnBody5<A,B,C,D,E>): TaggedFn5<A,B,C,D,E,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type>(type: T, name: string, args: Arg6<A,B,C,D,E,F>, body: FnBody6<A,B,C,D,E,F>, deps?: Func<any>[]): TaggedFn6<A,B,C,D,E,F,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type>(type: T, name: string, args: Arg6<A,B,C,D,E,F>, body: FnBody6<A,B,C,D,E,F>): TaggedFn6<A,B,C,D,E,F,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type>(type: T, name: string, args: Arg7<A,B,C,D,E,F,G>, body: FnBody7<A,B,C,D,E,F,G>, deps?: Func<any>[]): TaggedFn7<A,B,C,D,E,F,G,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type>(type: T, name: string, args: Arg7<A,B,C,D,E,F,G>, body: FnBody7<A,B,C,D,E,F,G>): TaggedFn7<A,B,C,D,E,F,G,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type, H extends Type>(type: T, name: string, args: Arg8<A,B,C,D,E,F,G,H>, body: FnBody8<A,B,C,D,E,F,G,H>, deps?: Func<any>[]): TaggedFn8<A,B,C,D,E,F,G,H,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type, H extends Type>(type: T, name: string, args: Arg8<A,B,C,D,E,F,G,H>, body: FnBody8<A,B,C,D,E,F,G,H>): TaggedFn8<A,B,C,D,E,F,G,H,T>;
 // prettier-ignore
-export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => Term<any>[], deps: Func<any>[]=[]): Func<any> {
+export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => Term<any>[]): Func<any> {
     const args = _args.map(defArg);
     const body = _body(...args.map((x) => sym(x.type, x.id, x.opts)));
     // count & check returns
@@ -641,16 +645,18 @@ export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: S
     }
     // verify all non-builtin functions called are also
     // provided as deps to ensure complete call graph later
-    walk(
-        (_, t) => t.tag === "call" && assert(
-            !!deps.find((y) => y.id === (<FnCall<any>>t).id),
-            `function '${id}' calls function '${(<FnCall<any>>t).id}' not given in deps`
-        ),
+    const deps = walk(
+        (acc, t) => {
+            if (t.tag === "call" && (<FnCall<any>>t).fn) {
+                acc.push((<FnCall<any>>t).fn!);
+            }
+            return acc;
+        },
         allChildren,
-        <any>null,
+        <Func<any>[]>[],
         body
     );
-    const $: any = (...xs: any[]) => funcall(id, type, ...xs);
+    const $: any = (...xs: any[]) => (<any>funcall)($, ...xs);
     return Object.assign($, <Func<any>>{
         tag: "fn",
         type,
@@ -673,6 +679,7 @@ export function ret(val?: Term<any>): FuncReturn<any> {
 
 // prettier-ignore
 export function funcall<T extends Type>(fn: string, type: T, ...args: Term<any>[]): FnCall<T>;
+export function funcall<T extends Type>(fn: TaggedFn0<T>): FnCall<T>;
 // prettier-ignore
 export function funcall<A extends Type, T extends Type>(fn: TaggedFn1<A,T>, a: Term<A>): FnCall<T>;
 // prettier-ignore
@@ -702,7 +709,8 @@ export function funcall(fn: string | Func<any>, ...args: Term<any>[]): FnCall<an
               tag: "call",
               type: fn.type,
               id: fn.id,
-              args
+              args,
+              fn
           };
 }
 
