@@ -23,14 +23,20 @@ This project is part of the
 
 ## About
 
+![screenshot](https://github.com/thi-ng/umbrella/tree/feature/webgl/assets/screenshots/shader-ast-00.jpg)
+
 **WIP only** - Embedded DSL to define partially (as much as possible /
 feasible) type checked shader code directly in TypeScript and
 cross-compile to different languages. Currently only GLSL & JS are
 supported as target, but custom code generators can be easily added (see
-[src/glsl.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/codegen/glsl.ts)
+[glsl.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/codegen/glsl.ts)
+&
+[js.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/codegen/js.ts)
 for reference). Once more details have been ironed out, we aim to
 support [WHLSL for WebGPU](https://github.com/gpuweb/WHLSL) in the near
 future as well.
+
+In addition to the code generation aspects, this package also provides a number of commonly used pure functions which can be used as syntax sugar and / or higher level building blocks for your own shaders. See [/std](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/std/).
 
 Benefits of this approach:
 
@@ -38,6 +44,7 @@ Benefits of this approach:
   and type annotations of all AST nodes catches many issues early on
 - shader functions can be called like standard TS/JS functions (incl.
   automatically type checked args via TS mapped types)
+- higher-order function composition & customization (e.g. see [raymarch.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/std/raymarch.ts))
 - use standard TS tooling & IDE integration (e.g. docs strings,
   packaging, dependencies etc.)
 - improve general re-use, especially once more target codegens are
@@ -47,8 +54,7 @@ Benefits of this approach:
 - shader code will be fully minimized along with main app code in
   production builds as part of standard bundling processes/toolchains,
   no extra plugins needed
-- very small run time & file size overhead (entire pkg ~1.2KB gzipped,
-  but hardly ever fully used)
+- very small run time & file size overhead (WIP / TBC)
 
 ### Prior art / influences
 
@@ -61,24 +67,24 @@ Benefits of this approach:
 - [x] var declarations and assignments
 - [x] function definitions and return type checking
 - [x] branching
-- [ ] ternary operator
+- [x] ternary operator
 - [x] math operators
 - [x] comparisons
 - [ ] bitwise operators
-- [ ] loops (for, while, break, continue)
-- [ ] const var modifier
-- [ ] more builtin type ctors / casts (ivec, bvec, mat, samplers)
-- [ ] more builtin function defs
+- [ ] loops (for ✅, while, break ✅, continue ✅)
+- [x] const var modifier
+- [ ] more builtin type ctors / casts (ivec, bvec, mat ✅, samplers)
+- [x] more builtin function defs
 - [x] support for builtin `gl_XXX` variables (target specific)
 - [x] more function arities (max 8 args)
-- [ ] function call dependency analysis and ordered output
+- [x] function call dependency analysis and ordered output
 - [ ] GLSL version support (100/300)
 
 ### Future goals
 
 - [ ] struct support
 - [ ] opt. mem barrier ops (where supported)
-- [ ] more code gens (WHLSL, OpenCL, TS, Houdini VEX)
+- [ ] more code gens (JS ✅, WHLSL, OpenCL, Houdini VEX)
 
 ## Installation
 
@@ -94,74 +100,8 @@ yarn add @thi.ng/shader-ast
 
 ## Usage examples
 
-A longer example with both GLSL & JS output is available in [this
-gist](https://gist.github.com/postspectacular/43f3424aa9716fde1b84bfef70081e02).
-
-
-```ts
-import {
-    add,
-    assign,
-    defn,
-    dot,
-    float,
-    ifThen,
-    lt,
-    ret,
-    swizzle,
-    targetGLSL,
-    vec2,
-    vec3
-} from "@thi.ng/shader-ast";
-
-// init code gen
-const target = targetGLSL(300);
-
-// define function w/ ret type and args
-// the given inner function will be called with
-// type annotated args and returns an array of
-// AST nodes defining the function's body
-const foo = defn(
-    "void", "foo", [["vec2", "a"], ["f32", "b"], ["f32", "c", "out"]],
-    (a, b, c) => [
-        ifThen(
-            lt(b, c),
-            [ret(dot(vec3(a, b), vec3(add(c, float(1)))))],
-            [ret(swizzle(a, "x"))]
-        )
-    ]
-);
-
-// another function which calls above `foo` and assigns result to
-// an intrinsic output variable...
-// the args given to `foo` and the assignment are type checked by TS
-// and will not compile if types clash
-const main = defn(
-    "void", "main", [],
-    () => [
-        assign(target.gl_PointSize, foo(vec2(1), float(1), float(2)))
-    ]
-);
-
-// emit both functions (this syntax is purely WIP)
-console.log([foo, main].map(target).join("\n\n"));
-```
-
-Result (no pretty printing yet):
-
-```glsl
-float foo(in vec2 a, in float b, out float c) {
-if ((b < c)) {
-return dot(vec3(a, b), vec3((c + 1.0)));
-} else {
-return a.x;
-}
-}
-
-void main() {
-gl_PointSize = foo(vec2(1.0), 1.0, 2.0);
-}
-```
+- [raymarch shader demo](https://twitter.com/thing_umbrella/status/1140765043614801920), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/raymarch-ast)
+- [canvas2d shader](https://twitter.com/thing_umbrella/status/1140310781994647552), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/canvas2d-shader)
 
 ## Authors
 
