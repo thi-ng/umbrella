@@ -13,3 +13,4 @@ export * from "./std/fog";
 export * from "./std/lambert";
 export * from "./std/raymarch";
 export * from "./std/sdf";
+export * from "./std/trilight";
