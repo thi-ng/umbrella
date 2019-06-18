@@ -278,8 +278,8 @@ export const lit = <T extends Type>(
     val
 });
 
-export const T = lit("bool", true);
-export const F = lit("bool", false);
+export const TRUE = lit("bool", true);
+export const FALSE = lit("bool", false);
 export const F32_0 = lit("f32", 0);
 export const F32_1 = lit("f32", 1);
 
