@@ -1,12 +1,15 @@
 import {
     BVec,
     FnCall,
+    IVec,
     Mat,
     Prim,
+    Sampler,
+    Sym,
     Term,
     Vec
 } from "./api";
-import { builtinCall } from "./ast";
+import { builtinCall, F32_0 } from "./ast";
 
 const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
     builtinCall(name, a.type, a);
@@ -202,3 +205,109 @@ export const all = (v: Term<BVec>): FnCall<"bool"> =>
 
 export const _not = <T extends BVec>(v: Term<T>) =>
     builtinCall("all", v.type, v);
+
+const texRetType = (sampler: Sym<Sampler>) =>
+    sampler.type.indexOf("Shadow") > 0 ? "f32" : "vec4";
+
+// prettier-ignore
+export function textureSize(sampler: Sym<"sampler2D">, lod: Term<"i32">): FnCall<"ivec2">;
+// prettier-ignore
+export function textureSize(sampler: Sym<"sampler3D">, lod: Term<"i32">): FnCall<"ivec3">;
+// prettier-ignore
+export function textureSize(sampler: Sym<"samplerCube">, lod: Term<"i32">): FnCall<"ivec2">;
+// prettier-ignore
+export function textureSize(sampler: Sym<"sampler2DShadow">, lod: Term<"i32">): FnCall<"ivec2">;
+// prettier-ignore
+export function textureSize(sampler: Sym<"samplerCubeShadow">, lod: Term<"i32">): FnCall<"ivec2">;
+// prettier-ignore
+export function textureSize(sampler: Sym<Sampler>, lod: Term<"i32">): FnCall<any> {
+    return builtinCall(
+        "textureSize",
+        sampler.type.indexOf("3D") > 0 ? "ivec3" : "ivec2",
+        sampler,
+        lod
+    );
+}
+
+// prettier-ignore
+export function texture(sampler: Sym<"sampler2D">, uv: Term<"vec2">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function texture(sampler: Sym<"sampler3D">, uvw: Term<"vec3">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function texture(sampler: Sym<"samplerCube">, uvw: Term<"vec3">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function texture(sampler: Sym<"sampler2DShadow">, uvw: Term<"vec3">, bias?: Term<"f32">): FnCall<"f32">;
+// prettier-ignore
+export function texture(sampler: Sym<"samplerCubeShadow">, uvw: Term<"vec4">, bias?: Term<"f32">): FnCall<"f32">;
+// prettier-ignore
+export function texture(sampler: Sym<Sampler>, uv: Term<Vec>, bias?: Term<"f32">): FnCall<any> {
+    const f = builtinCall(
+        "texture",
+        texRetType(sampler),
+        sampler,
+        uv,
+        bias || F32_0
+    );
+    f.type === "f32" && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function textureProj(sampler: Sym<"sampler2D">, uvw: Term<"vec3" | "vec4">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureProj(sampler: Sym<"sampler3D">, uvw: Term<"vec4">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureProj(sampler: Sym<"sampler2DShadow">, uvw: Term<"vec4">, bias?: Term<"f32">): FnCall<"f32">;
+// prettier-ignore
+export function textureProj(sampler: Sym<Sampler>, uv: Term<Vec>, bias?: Term<"f32">): FnCall<any> {
+    const f = builtinCall(
+        "textureProj",
+        texRetType(sampler),
+        sampler,
+        uv,
+        bias || F32_0
+    );
+    f.type === "f32" && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function textureLod(sampler: Sym<"sampler2D">, uv: Term<"vec2">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureLod(sampler: Sym<"sampler3D">, uvw: Term<"vec3">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureLod(sampler: Sym<"samplerCube">, uvw: Term<"vec3">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureLod(sampler: Sym<"sampler2DShadow">, uvw: Term<"vec3">, bias?: Term<"f32">): FnCall<"f32">;
+// prettier-ignore
+export function textureLod(sampler: Sym<Sampler>, uv: Term<Vec>, bias?: Term<"f32">): FnCall<any> {
+    const f = builtinCall(
+        "textureLod",
+        texRetType(sampler),
+        sampler,
+        uv,
+        bias || F32_0
+    );
+    f.type === "f32" && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function textureOffset(sampler: Sym<"sampler2D">, uvw: Term<"vec2">, off: Term<"ivec2">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureOffset(sampler: Sym<"sampler3D">, uvw: Term<"vec3">, off: Term<"ivec3">, bias?: Term<"f32">): FnCall<"vec4">;
+// prettier-ignore
+export function textureOffset(sampler: Sym<"sampler2DShadow">, uvw: Term<"vec3">, off: Term<"ivec2">, bias?: Term<"f32">): FnCall<"f32">;
+// prettier-ignore
+export function textureOffset(sampler: Sym<Sampler>, uv: Term<Vec>, off: Term<IVec>, bias?: Term<"f32">): FnCall<any> {
+    const f = builtinCall(
+        "textureOffset",
+        texRetType(sampler),
+        sampler,
+        uv,
+        off,
+        bias || F32_0
+    );
+    f.type === "f32" && (f.info = "n");
+    return f;
+}

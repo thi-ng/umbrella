@@ -65,12 +65,16 @@ export type Type =
     | "mat3[]"
     | "mat4"
     | "mat4[]"
-    | "sampler1D"
-    | "sampler1D[]"
     | "sampler2D"
     | "sampler2D[]"
     | "sampler3D"
-    | "sampler3D[]";
+    | "sampler3D[]"
+    | "samplerCube"
+    | "samplerCube[]"
+    | "sampler2DShadow"
+    | "sampler2DShadow[]"
+    | "samplerCubeShadow"
+    | "samplerCubeShadow[]";
 
 export interface IndexTypeMap {
     "bool[]": "bool";
@@ -100,10 +104,18 @@ export type Vec = "vec2" | "vec3" | "vec4";
 export type IVec = "ivec2" | "ivec3" | "ivec4";
 export type BVec = "bvec2" | "bvec3" | "bvec4";
 export type Mat = "mat2" | "mat3" | "mat4";
+export type Sampler =
+    | "sampler2D"
+    | "sampler3D"
+    | "samplerCube"
+    | "sampler2DShadow"
+    | "samplerCubeShadow";
+
 export type Prim = "f32" | Vec;
 export type Int = "i32" | "u32";
 export type Comparable = "f32" | Int;
-export type Numeric = number | Term<"f32"> | Term<"i32"> | Term<"u32">;
+export type FloatT = number | Term<"f32">;
+export type Numeric = FloatT | Term<"i32"> | Term<"u32">;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
