@@ -138,6 +138,18 @@ export interface JSBuiltinsMat
     mulmv: Fn2<Mat, Vec, Vec>;
 }
 
+export interface JSBuiltinsSampler {
+    texture: Fn3<number, Vec, number, Vec>;
+    texturen: Fn3<number, Vec, number, number>;
+    textureLod: Fn3<number, Vec, number, Vec>;
+    textureLodn: Fn3<number, Vec, number, number>;
+    textureOffset: Fn4<number, Vec, Vec, number, Vec>;
+    textureOffsetn: Fn4<number, Vec, Vec, number, number>;
+    textureProj: Fn3<number, Vec, number, Vec>;
+    textureProjn: Fn3<number, Vec, number, number>;
+    textureSize: Fn2<number, number, Vec>;
+}
+
 export interface JSEnv {
     vec2n: Fn<number, Vec>;
     vec3n: Fn<number, Vec>;
@@ -166,7 +178,27 @@ export interface JSEnv {
     mat2: JSBuiltinsMat;
     mat3: JSBuiltinsMat;
     mat4: JSBuiltinsMat;
+    sampler1D: JSBuiltinsSampler;
+    sampler2D: JSBuiltinsSampler;
+    sampler3D: JSBuiltinsSampler;
+    samplerCube: JSBuiltinsSampler;
+    sampler2DShadow: JSBuiltinsSampler;
+    samplerCubeShadow: JSBuiltinsSampler;
 }
+
+// TODO texture lookups
+// all texture fns currently return [0,0,0,0]
+const SAMPLER_TODO: JSBuiltinsSampler = {
+    texture: () => v.ZERO4,
+    texturen: () => 0,
+    textureLod: () => v.ZERO4,
+    textureLodn: () => 0,
+    textureOffset: () => v.ZERO4,
+    textureOffsetn: () => 0,
+    textureProj: () => v.ZERO4,
+    textureProjn: () => 0,
+    textureSize: () => v.ZERO3
+};
 
 export const JS_DEFAULT_ENV: JSEnv = {
     vec2n: (n) => v.setN2([], n),
@@ -416,7 +448,13 @@ export const JS_DEFAULT_ENV: JSEnv = {
         sub1: (a) => v.neg([], a),
         subnv: (a, b) => m.sub44(null, v.vecOf(16, a), b),
         subvn: (a, b) => m.subN44([], a, b)
-    }
+    },
+    sampler1D: SAMPLER_TODO,
+    sampler2D: SAMPLER_TODO,
+    sampler3D: SAMPLER_TODO,
+    samplerCube: SAMPLER_TODO,
+    sampler2DShadow: SAMPLER_TODO,
+    samplerCubeShadow: SAMPLER_TODO
 };
 
 export const targetJS = () => {
@@ -443,15 +481,23 @@ export const targetJS = () => {
         ">>": "rshift"
     };
 
-    const PRELUDE = `
-const f32 = env.f32;
-const vec2 = env.vec2;
-const vec3 = env.vec3;
-const vec4 = env.vec4;
-const mat2 = env.mat2;
-const mat3 = env.mat3;
-const mat4 = env.mat4;
-`;
+    const PRELUDE =
+        [
+            "f32",
+            "vec2",
+            "vec3",
+            "vec4",
+            "mat2",
+            "mat3",
+            "mat4",
+            "sampler2D",
+            "sampler3D",
+            "samplerCube",
+            "sampler2DShadow",
+            "samplerCubeShadow"
+        ]
+            .map((x) => `const ${x} = env.${x};`)
+            .join("\n") + "\n";
 
     const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
 

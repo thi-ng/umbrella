@@ -27,11 +27,16 @@ export interface GLSLTarget extends Fn<Term<any>, string> {
 }
 
 /**
- * GLSL code gen.
+ * GLSL code gen, targets GLSL ES 3.00 (WebGL2) by default.
+ *
+ * Use `100` for WebGL v1 syntax. Currently only the only differences
+ * (in terms of code generation, not correctness!):
+ *
+ * - texture lookup function naming
  *
  * @param version
  */
-export const targetGLSL = (_ = 300) => {
+export const targetGLSL = (version = 300) => {
     const TYPE_NAMES: any = {
         f32: "float",
         i32: "int",
@@ -65,7 +70,12 @@ export const targetGLSL = (_ = 300) => {
 
         call: $fn,
 
-        call_i: $fn,
+        call_i: (t) =>
+            t.id === "texture" && version < 300
+                ? `${t.id}${(<Sym<any>>t.args[0]).type.substr(7)}(${$list(
+                      t.args
+                  )})`
+                : $fn(t),
 
         cont: () => "continue",
 
