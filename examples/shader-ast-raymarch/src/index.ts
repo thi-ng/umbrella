@@ -11,8 +11,10 @@ import {
     eq,
     fit1101,
     float,
+    fogExp2,
     ifThen,
     lambert,
+    mix,
     mul,
     program,
     raymarch,
@@ -20,10 +22,11 @@ import {
     raymarchNormal,
     ret,
     sdAABB,
-    sdBlend,
+    sdOpSmoothUnion,
     sdSphere,
-    Sym,
+    sdTxRepeat3,
     sym,
+    Sym,
     targetGLSL,
     targetJS,
     TRUE,
@@ -44,7 +47,7 @@ import {
 const JS_MODE = location.hash.indexOf("2d") >= 0;
 
 // AST compile targets
-const GL = targetGLSL();
+const GL = targetGLSL(300); // WebGL2
 const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
@@ -53,18 +56,34 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
     let d1: Sym<"f32">;
     let d2: Sym<"f32">;
     let d3: Sym<"f32">;
+    let d4: Sym<"f32">;
     return [
+        assign(pos, sdTxRepeat3(pos, vec3(2))),
         (d1 = sym(sdSphere(pos, float(0.5)))),
         (d2 = sym(sdAABB(pos, vec3(1, 0.2, 0.2)))),
         (d3 = sym(sdAABB(pos, vec3(0.2, 0.2, 1)))),
-        ret(vec2(sdBlend(sdBlend(d1, d2, float(0.2)), d3, float(0.2)), 1))
+        (d4 = sym(sdAABB(pos, vec3(0.2, 1, 0.2)))),
+        ret(
+            vec2(
+                sdOpSmoothUnion(
+                    sdOpSmoothUnion(
+                        sdOpSmoothUnion(d1, d2, float(0.2)),
+                        d3,
+                        float(0.2)
+                    ),
+                    d4,
+                    float(0.2)
+                ),
+                1
+            )
+        )
     ];
 });
 
 // build raymarcher using provided scene function
 // `raymarch` is a higher-order, configurable function which constructs
 // a raymarch function using our supplied scene fn
-const march = raymarch(scene, { steps: JS_MODE ? 40 : 60 });
+const march = raymarch(scene, { steps: JS_MODE ? 60 : 60 });
 const normal = raymarchNormal(scene);
 
 // main fragment shader function
@@ -79,17 +98,22 @@ const main = defn(
         ["vec3", "lightDir"]
     ],
     (frag, res, eyePos, lightDir) => {
-        let uv: Sym<"vec2">;
         let dir: Sym<"vec3">;
         let result: Sym<"vec2">;
         let isec: Sym<"vec3">;
         let material: Sym<"vec3">;
         let diffuse: Sym<"f32">;
         return [
-            // compute UV from fragCoord & viewport res
-            (uv = sym(aspectCorrectedUV(frag, res))),
-            // ray dir for given fragment & basic camera settings (eye, target, up)
-            (dir = sym(raymarchDir(eyePos, vec3(), vec3(0, 1, 0), uv))),
+            // compute UV from fragCoord & viewport res and then
+            // ray dir from basic camera settings (eye, target, up)
+            (dir = sym(
+                raymarchDir(
+                    eyePos,
+                    vec3(),
+                    vec3(0, 1, 0),
+                    aspectCorrectedUV(frag, res)
+                )
+            )),
             // perform raymarch
             (result = sym(march(eyePos, dir))),
             // set intersection pos
@@ -104,8 +128,17 @@ const main = defn(
             // combine lighting & material colors
             ret(
                 vec4(
-                    clamp01(
-                        diffuseLighting(diffuse, material, vec3(1), vec3(0.2))
+                    mix(
+                        clamp01(
+                            diffuseLighting(
+                                diffuse,
+                                material,
+                                vec3(1),
+                                vec3(0.2)
+                            )
+                        ),
+                        vec3(1.5, 0.6, 0),
+                        fogExp2($(result, "x"), float(0.2))
                     ),
                     1
                 )
@@ -163,7 +196,7 @@ if (JS_MODE) {
     setInterval(() => {
         time += 0.1;
         const frag = [];
-        const eyePos = [Math.cos(time * 0.75) * 1.5, Math.sin(time) * 1.5, 1];
+        const eyePos = [Math.cos(time * 0.75) * 0.5, Math.sin(time) * 0.5, 1];
         for (let y = 0, i = 0; y < H; y++) {
             frag[1] = y;
             for (let x = 0; x < W; x++) {
@@ -213,8 +246,8 @@ if (JS_MODE) {
     setInterval(() => {
         const time = (Date.now() - t0) * 0.001;
         model.uniforms!.eyePos = [
-            Math.cos(time * 0.75) * 1.5,
-            Math.sin(time) * 1.5,
+            Math.cos(time * 0.75) * 0.5,
+            Math.sin(time) * 0.5,
             1
         ];
         draw(model);
