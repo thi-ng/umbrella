@@ -3,6 +3,7 @@ import {
     Fn,
     Fn2,
     IObjectOf,
+    Select3,
     Select4
 } from "@thi.ng/api";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
@@ -21,6 +22,7 @@ import {
     Assign,
     Assignable,
     Branch,
+    BVec,
     Comparable,
     ComparisonOperator,
     Decl,
@@ -282,6 +284,8 @@ export const TRUE = lit("bool", true);
 export const FALSE = lit("bool", false);
 export const F32_0 = lit("f32", 0);
 export const F32_1 = lit("f32", 1);
+export const F32_2 = lit("f32", 2);
+export const F32_05 = lit("f32", 0.5);
 
 export const bool = (x: Numeric) => lit("bool", x);
 
@@ -328,6 +332,28 @@ export function $(val: Term<any>, id: string): Swizzle<any> {
         id
     };
 }
+
+export const $x = <T extends Vec | IVec | BVec>(
+    val: Term<T>
+): Swizzle<Select3<T, Vec, IVec, "f32", "i32", "bool">> =>
+    <any>$(<any>val, "x");
+
+export const $y = <T extends Vec | IVec | BVec>(
+    val: Term<T>
+): Swizzle<Select3<T, Vec, IVec, "f32", "i32", "bool">> =>
+    <any>$(<any>val, "y");
+
+export const $z = <
+    T extends "vec3" | "vec4" | "ivec3" | "ivec4" | "bvec3" | "bvec4"
+>(
+    val: Term<T>
+): Swizzle<Select3<T, Vec, IVec, "f32", "i32", "bool">> =>
+    <any>$(<any>val, "z");
+
+export const $w = <T extends "vec4" | "ivec4" | "bvec4">(
+    val: Term<T>
+): Swizzle<Select3<T, Vec, IVec, "f32", "i32", "bool">> =>
+    <any>$(<any>val, "w");
 
 export const index = <T extends Indexable>(
     val: Sym<T>,
