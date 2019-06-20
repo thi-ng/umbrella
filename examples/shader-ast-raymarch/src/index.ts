@@ -2,31 +2,33 @@ import { swizzle8 } from "@thi.ng/binary";
 import { rgbaInt } from "@thi.ng/color";
 import {
     $,
+    $x,
     add,
-    aspectCorrectedUV,
     assign,
     clamp01,
     defn,
     diffuseLighting,
-    eq,
     fit1101,
     float,
     fogExp2,
+    gte,
     ifThen,
     lambert,
+    lookat,
     mix,
     mul,
     program,
-    raymarch,
+    raymarchAO,
     raymarchDir,
     raymarchNormal,
+    raymarchScene,
     ret,
     sdAABB,
     sdOpSmoothUnion,
     sdSphere,
     sdTxRepeat3,
-    sym,
     Sym,
+    sym,
     targetGLSL,
     targetJS,
     TRUE,
@@ -58,7 +60,7 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
     let d3: Sym<"f32">;
     let d4: Sym<"f32">;
     return [
-        assign(pos, sdTxRepeat3(pos, vec3(2))),
+        assign(pos, sdTxRepeat3(pos, vec3(2.1))),
         (d1 = sym(sdSphere(pos, float(0.5)))),
         (d2 = sym(sdAABB(pos, vec3(1, 0.2, 0.2)))),
         (d3 = sym(sdAABB(pos, vec3(0.2, 0.2, 1)))),
@@ -80,12 +82,6 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
     ];
 });
 
-// build raymarcher using provided scene function
-// `raymarch` is a higher-order, configurable function which constructs
-// a raymarch function using our supplied scene fn
-const march = raymarch(scene, { steps: JS_MODE ? 60 : 60 });
-const normal = raymarchNormal(scene);
-
 // main fragment shader function
 // again uses several shader-ast std lib helpers
 const main = defn(
@@ -101,30 +97,51 @@ const main = defn(
         let dir: Sym<"vec3">;
         let result: Sym<"vec2">;
         let isec: Sym<"vec3">;
+        let norm: Sym<"vec3">;
         let material: Sym<"vec3">;
         let diffuse: Sym<"f32">;
+        // background color
+        let bg = vec3(1.5, 0.6, 0);
         return [
-            // compute UV from fragCoord & viewport res and then
-            // ray dir from basic camera settings (eye, target, up)
+            // compute ray dir from fragCoord, viewport res and FOV
+            // then apply basic camera settings (eye, target, up)
             (dir = sym(
-                raymarchDir(
-                    eyePos,
-                    vec3(),
-                    vec3(0, 1, 0),
-                    aspectCorrectedUV(frag, res)
+                $(
+                    mul(
+                        lookat(eyePos, vec3(), vec3(0, 1, 0)),
+                        vec4(raymarchDir(frag, res, float(120)), 0)
+                    ),
+                    "xyz"
                 )
             )),
             // perform raymarch
-            (result = sym(march(eyePos, dir))),
+            (result = sym(
+                // `raymarchScene` is a higher-order, configurable function which constructs
+                // a raymarch function using our supplied scene fn
+                raymarchScene(scene, { steps: JS_MODE ? 60 : 60, eps: 0.005 })(
+                    eyePos,
+                    dir
+                )
+            )),
+            // early bailout if nothing hit
+            ifThen(gte($x(result), float(10)), [ret(vec4(bg, 1))]),
             // set intersection pos
-            (isec = sym(add(eyePos, mul(dir, $(result, "x"))))),
-            // set material
-            (material = sym(vec3())),
-            ifThen(eq($(result, "y"), float(1)), [
-                assign(material, fit1101(isec))
-            ]),
+            (isec = sym(add(eyePos, mul(dir, $x(result))))),
+            // surface normal
+            (norm = sym(
+                // higher-order fn to compute surface normal
+                raymarchNormal(scene)(isec, float(0.01))
+            )),
+            // set material color
+            (material = sym(fit1101(isec))),
             // compute diffuse term
-            (diffuse = sym(lambert(normal(isec, float(0.01)), lightDir, TRUE))),
+            (diffuse = sym(
+                mul(
+                    lambert(norm, lightDir, TRUE),
+                    // higher order fn to compute ambient occlusion
+                    raymarchAO(scene)(isec, norm)
+                )
+            )),
             // combine lighting & material colors
             ret(
                 vec4(
@@ -137,8 +154,8 @@ const main = defn(
                                 vec3(0.2)
                             )
                         ),
-                        vec3(1.5, 0.6, 0),
-                        fogExp2($(result, "x"), float(0.2))
+                        bg,
+                        fogExp2($x(result), float(0.2))
                     ),
                     1
                 )
@@ -196,9 +213,13 @@ if (JS_MODE) {
     setInterval(() => {
         time += 0.1;
         const frag = [];
-        const eyePos = [Math.cos(time * 0.75) * 0.5, Math.sin(time) * 0.5, 1];
-        for (let y = 0, i = 0; y < H; y++) {
-            frag[1] = y;
+        const eyePos = [
+            Math.cos(time) * 2.5,
+            Math.cos(time / 2) * 0.7,
+            Math.sin(time) * 2.5
+        ];
+        for (let y = 0, H1 = H - 1, i = 0; y < H; y++) {
+            frag[1] = H1 - y;
             for (let x = 0; x < W; x++) {
                 frag[0] = x;
                 u32[i++] = swizzle8(
@@ -246,9 +267,9 @@ if (JS_MODE) {
     setInterval(() => {
         const time = (Date.now() - t0) * 0.001;
         model.uniforms!.eyePos = [
-            Math.cos(time * 0.75) * 0.5,
-            Math.sin(time) * 0.5,
-            1
+            Math.cos(time) * 2.5,
+            Math.cos(time / 2) * 0.7,
+            Math.sin(time) * 2.5
         ];
         draw(model);
     });
