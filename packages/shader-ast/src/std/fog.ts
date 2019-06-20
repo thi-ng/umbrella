@@ -2,7 +2,7 @@ import {
     assign,
     defn,
     div,
-    F32_1,
+    FLOAT1,
     float,
     mul,
     neg,
@@ -13,44 +13,44 @@ import { exp, exp2 } from "../builtins";
 import { clamp01 } from "./math";
 
 /**
- * @param dist f32
- * @param start f32
- * @param end f32
+ * @param dist float
+ * @param start float
+ * @param end float
  *
  */
 export const fogLinear = defn(
-    "f32",
+    "float",
     "fogLinear",
-    [["f32"], ["f32"], ["f32"]],
+    [["float"], ["float"], ["float"]],
     (dist, start, end) => [
-        ret(sub(F32_1, clamp01(div(sub(end, dist), sub(end, start)))))
+        ret(sub(FLOAT1, clamp01(div(sub(end, dist), sub(end, start)))))
     ]
 );
 
 /**
- * @param dist f32
- * @param density f32
+ * @param dist float
+ * @param density float
  */
 export const fogExp = defn(
-    "f32",
+    "float",
     "fogExp",
-    [["f32"], ["f32"]],
-    (dist, density) => [ret(sub(F32_1, clamp01(exp(mul(neg(density), dist)))))]
+    [["float"], ["float"]],
+    (dist, density) => [ret(sub(FLOAT1, clamp01(exp(mul(neg(density), dist)))))]
 );
 
 /**
- * @param dist f32
- * @param density f32
+ * @param dist float
+ * @param density float
  */
 export const fogExp2 = defn(
-    "f32",
+    "float",
     "fogExp2",
-    [["f32"], ["f32"]],
+    [["float"], ["float"]],
     (dist, density) => [
         assign(density, mul(density, dist)),
         ret(
             sub(
-                F32_1,
+                FLOAT1,
                 clamp01(exp2(mul(mul(density, density), float(-Math.LOG2E))))
             )
         )

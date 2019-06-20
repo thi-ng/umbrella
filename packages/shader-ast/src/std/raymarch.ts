@@ -8,11 +8,11 @@ import {
     brk,
     defn,
     div,
-    F32_0,
-    F32_05,
-    F32_1,
-    F32_2,
     float,
+    FLOAT0,
+    FLOAT05,
+    FLOAT1,
+    FLOAT2,
     forLoop,
     gt,
     ifThen,
@@ -92,13 +92,13 @@ export const raymarchScene = (
         ..._opts
     };
     return defn("vec2", opts.name, [["vec3"], ["vec3"]], (pos, dir) => {
-        let total: Sym<"f32">;
+        let total: Sym<"float">;
         let res: Sym<"vec2">;
         return [
             (total = sym(float(opts.near))),
             (res = sym("vec2")),
             forLoop(
-                sym("i32", int(0)),
+                sym("int", int(0)),
                 (i) => lt(i, int(opts.steps)),
                 (i) => assign(i, inc(i)),
                 () => [
@@ -125,7 +125,7 @@ export const raymarchScene = (
  * @param name
  */
 export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
-    defn("vec3", name, [["vec3"], ["f32"]], (p, smooth) => {
+    defn("vec3", name, [["vec3"], ["float"]], (p, smooth) => {
         let dn: Sym<"vec2">;
         let comp = (id: Swizzle2_3) =>
             sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));
@@ -138,19 +138,19 @@ export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
 /**
  * @param fragCoord vec2
  * @param res vec2
- * @param fov f32 vertical FOV (in degrees)
+ * @param fov float vertical FOV (in degrees)
  */
 export const raymarchDir = defn(
     "vec3",
     "raymarchDir",
-    [["vec2"], ["vec2"], ["f32"]],
+    [["vec2"], ["vec2"], ["float"]],
     (frag, res, fov) => {
         let uv: Sym<"vec2">;
         return [
-            (uv = sym(sub(frag, div(res, F32_2)))),
+            (uv = sym(sub(frag, div(res, FLOAT2)))),
             ret(
                 normalize(
-                    vec3(uv, neg(div($y(res), tan(div(radians(fov), F32_2)))))
+                    vec3(uv, neg(div($y(res), tan(div(radians(fov), FLOAT2)))))
                 )
             )
         ];
@@ -167,15 +167,15 @@ export const raymarchDir = defn(
  * @param numSamples
  */
 export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
-    defn("f32", "raymarchAO", [["vec3"], ["vec3"]], (p, n) => {
-        let r: Sym<"f32">;
-        let w: Sym<"f32">;
-        let d0: Sym<"f32">;
+    defn("float", "raymarchAO", [["vec3"], ["vec3"]], (p, n) => {
+        let r: Sym<"float">;
+        let w: Sym<"float">;
+        let d0: Sym<"float">;
         return [
-            (r = sym(F32_0)),
-            (w = sym(F32_1)),
+            (r = sym(FLOAT0)),
+            (w = sym(FLOAT1)),
             forLoop(
-                sym("f32", float(1)),
+                sym("float", float(1)),
                 (i) => lte(i, float(numSamples)),
                 (i) => assign(i, inc(i)),
                 (i) => [
@@ -184,10 +184,10 @@ export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
                         r,
                         add(r, mul(w, sub(d0, $x(scene(add(p, mul(n, d0)))))))
                     ),
-                    assign(w, mul(w, F32_05))
+                    assign(w, mul(w, FLOAT05))
                 ]
             ),
-            ret(sub(F32_1, clamp01(r)))
+            ret(sub(FLOAT1, clamp01(r)))
         ];
     });
 

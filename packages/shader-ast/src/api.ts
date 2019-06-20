@@ -35,12 +35,12 @@ export type Type =
     | "void"
     | "bool"
     | "bool[]"
-    | "f32"
-    | "f32[]"
-    | "i32"
-    | "i32[]"
-    | "u32"
-    | "u32[]"
+    | "float"
+    | "float[]"
+    | "int"
+    | "int[]"
+    | "uint"
+    | "uint[]"
     | "vec2"
     | "vec2[]"
     | "vec3"
@@ -78,9 +78,9 @@ export type Type =
 
 export interface IndexTypeMap {
     "bool[]": "bool";
-    "f32[]": "f32";
-    "i32[]": "i32";
-    "u32[]": "u32";
+    "float[]": "float";
+    "int[]": "int";
+    "uint[]": "uint";
     "vec2[]": "vec2";
     "vec3[]": "vec3";
     "vec4[]": "vec4";
@@ -111,11 +111,11 @@ export type Sampler =
     | "sampler2DShadow"
     | "samplerCubeShadow";
 
-export type Prim = "f32" | Vec;
-export type Int = "i32" | "u32";
-export type Comparable = "f32" | Int;
-export type FloatT = number | Term<"f32">;
-export type Numeric = FloatT | Term<"i32"> | Term<"u32">;
+export type Prim = "float" | Vec;
+export type Int = "int" | "uint";
+export type Comparable = "float" | Int;
+export type FloatT = number | Term<"float">;
+export type Numeric = FloatT | Term<"int"> | Term<"uint">;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
@@ -391,7 +391,7 @@ export interface Swizzle<T extends Type> extends Term<T> {
 }
 
 export interface Index<T extends Type> extends Term<T> {
-    id: Term<"i32"> | Term<"u32">;
+    id: Term<"int"> | Term<"uint">;
     val: Term<Indexable>;
 }
 
@@ -542,22 +542,22 @@ export interface ForLoop extends Term<"void">, Scoped {
     iter?: Term<any>;
 }
 
-export interface TargetImpl extends Record<Tag, Fn<any, string>> {
-    arg: Fn<FuncArg<any>, string>;
-    assign: Fn<Assign<any>, string>;
-    call: Fn<FnCall<any>, string>;
-    call_i: Fn<FnCall<any>, string>;
-    decl: Fn<Decl<any>, string>;
-    fn: Fn<Func<any>, string>;
-    for: Fn<ForLoop, string>;
-    idx: Fn<Index<any>, string>;
-    if: Fn<Branch, string>;
-    lit: Fn<Lit<any>, string>;
-    op1: Fn<Op1<any>, string>;
-    op2: Fn<Op2<any>, string>;
-    ret: Fn<FuncReturn<any>, string>;
-    scope: Fn<Scope, string>;
-    swizzle: Fn<Swizzle<any>, string>;
-    sym: Fn<Sym<any>, string>;
-    ternary: Fn<Ternary<any>, string>;
+export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
+    arg: Fn<FuncArg<any>, T>;
+    assign: Fn<Assign<any>, T>;
+    call: Fn<FnCall<any>, T>;
+    call_i: Fn<FnCall<any>, T>;
+    decl: Fn<Decl<any>, T>;
+    fn: Fn<Func<any>, T>;
+    for: Fn<ForLoop, T>;
+    idx: Fn<Index<any>, T>;
+    if: Fn<Branch, T>;
+    lit: Fn<Lit<any>, T>;
+    op1: Fn<Op1<any>, T>;
+    op2: Fn<Op2<any>, T>;
+    ret: Fn<FuncReturn<any>, T>;
+    scope: Fn<Scope, T>;
+    swizzle: Fn<Swizzle<any>, T>;
+    sym: Fn<Sym<any>, T>;
+    ternary: Fn<Ternary<any>, T>;
 }

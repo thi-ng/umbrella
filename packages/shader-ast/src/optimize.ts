@@ -24,7 +24,7 @@ const replaceNode = (node: any, next: any) => {
  * Currently, only scalar operations are supported / considered.
  *
  * ```
- * const foo = defn("f32", "foo", [["f32"]], (x) => [
+ * const foo = defn("float", "foo", [["float"]], (x) => [
  *   ret(mul(x, add(neg(float(10)), float(42))))]
  * )
  *
@@ -56,7 +56,7 @@ export const constantFolding = (tree: Term<any>) => {
                 case "op1": {
                     const n = <Op1<any>>node;
                     if (n.op == "-" && isLitNumeric(n.val)) {
-                        replaceNode(node, <Lit<"f32">>n.val);
+                        replaceNode(node, <Lit<"float">>n.val);
                         (<any>n).val = -(<any>n).val;
                     }
                     break;
@@ -64,8 +64,8 @@ export const constantFolding = (tree: Term<any>) => {
                 case "op2": {
                     const n = <Op2<any>>node;
                     if (isLitNumeric(n.l) && isLitNumeric(n.r)) {
-                        const vl = (<Lit<"f32">>n.l).val;
-                        const vr = (<Lit<"f32">>n.r).val;
+                        const vl = (<Lit<"float">>n.l).val;
+                        const vr = (<Lit<"float">>n.r).val;
                         let res =
                             n.op === "+"
                                 ? vl + vr
@@ -77,8 +77,8 @@ export const constantFolding = (tree: Term<any>) => {
                                 ? vl / vr
                                 : undefined;
                         if (res !== undefined) {
-                            n.type === "i32" && (res |= 0);
-                            n.type === "u32" && (res >>>= 0);
+                            n.type === "int" && (res |= 0);
+                            n.type === "uint" && (res >>>= 0);
                             replaceNode(node, lit(n.type, res));
                         }
                     }

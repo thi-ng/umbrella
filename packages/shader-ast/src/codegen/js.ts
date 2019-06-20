@@ -48,7 +48,7 @@ export interface JSTarget extends Fn<Term<any>, string> {
      * ```
      * const js = targetJS();
      * const module = js.compile(
-     *   defn("f32", "foo", [["f32"]], (x)=> [ret(mul(x, float(10)))])
+     *   defn("float", "foo", [["float"]], (x)=> [ret(mul(x, float(10)))])
      * );
      *
      * module.foo(42)
@@ -172,7 +172,7 @@ export interface JSEnv {
     set_swizzle2: Fn4<Vec, Vec, number, number, Vec>;
     set_swizzle3: Fn5<Vec, Vec, number, number, number, Vec>;
     set_swizzle4: Fn6<Vec, Vec, number, number, number, number, Vec>;
-    f32: JSBuiltins<number>;
+    float: JSBuiltins<number>;
     vec2: JSBuiltinsVec;
     vec3: JSBuiltinsVec3;
     vec4: JSBuiltinsVec;
@@ -220,7 +220,7 @@ export const JS_DEFAULT_ENV: JSEnv = {
     set_swizzle2: v.setSwizzle2,
     set_swizzle3: v.setSwizzle3,
     set_swizzle4: v.setSwizzle4,
-    f32: {
+    float: {
         abs: Math.abs,
         acos: Math.acos,
         asin: Math.asin,
@@ -484,7 +484,7 @@ export const targetJS = () => {
 
     const PRELUDE =
         [
-            "f32",
+            "float",
             "vec2",
             "vec3",
             "vec4",
@@ -513,7 +513,7 @@ export const targetJS = () => {
 
     const $swizzle = (id: string) => [...id].map((x) => COMPS[x]).join(", ");
 
-    const emit = defTarget({
+    const emit: Fn<Term<any>, string> = defTarget({
         arg: (t) => t.id,
 
         assign: (t) => {
@@ -572,11 +572,11 @@ export const targetJS = () => {
             switch (t.type) {
                 case "bool":
                     return String(!!v);
-                case "f32":
+                case "float":
                     return isNumber(v) ? String(v) : emit(v);
-                case "i32":
+                case "int":
                     return isNumber(v) ? String(v) : `(${emit(v)} | 0)`;
-                case "u32":
+                case "uint":
                     return isNumber(v) ? String(v) : `(${emit(v)} >>> 0)`;
                 case "vec2":
                 case "vec3":

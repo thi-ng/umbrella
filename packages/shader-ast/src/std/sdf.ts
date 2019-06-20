@@ -6,9 +6,9 @@ import {
     add,
     defn,
     div,
-    F32_0,
-    F32_05,
-    F32_1,
+    FLOAT0,
+    FLOAT05,
+    FLOAT1,
     mul,
     neg,
     ret,
@@ -68,9 +68,9 @@ const line = <T extends Vec>(p: Sym<T>, a: Sym<T>, b: Sym<T>) => {
  * Returns signed distance from `p` to centered circle of radius `r`.
  *
  * @param p vec2
- * @param r f32
+ * @param r float
  */
-export const sdCircle = defn("f32", "sdCircle", [["vec2"], ["f32"]], (p, r) => [
+export const sdCircle = defn("float", "sdCircle", [["vec2"], ["float"]], (p, r) => [
     ret(sub(length(p), r))
 ]);
 
@@ -78,10 +78,10 @@ export const sdCircle = defn("f32", "sdCircle", [["vec2"], ["f32"]], (p, r) => [
  * Returns signed distance from `p` to centered circle of radius `r`.
  *
  * @param p vec2
- * @param r f32
+ * @param r float
  */
 export const sdLine2 = defn(
-    "f32",
+    "float",
     "sdLine2",
     [["vec2"], ["vec2"], ["vec2"]],
     line
@@ -93,11 +93,11 @@ export const sdLine2 = defn(
  * @param p vec2
  * @param size vec2
  */
-export const sdRect = defn("f32", "sdRect", [["vec2"], ["vec2"]], (p, size) => {
+export const sdRect = defn("float", "sdRect", [["vec2"], ["vec2"]], (p, size) => {
     let d: Sym<"vec2">;
     return [
         (d = sym(sub(abs(p), size))),
-        ret(add(min(maxComp2(d), F32_0), length(max(d, vec2()))))
+        ret(add(min(maxComp2(d), FLOAT0), length(max(d, vec2()))))
     ];
 });
 
@@ -108,14 +108,14 @@ export const sdRect = defn("f32", "sdRect", [["vec2"], ["vec2"]], (p, size) => {
  * @param c vec2
  */
 export const sdTriangle = defn(
-    "f32",
+    "float",
     "sdTriangle",
     [["vec2"], ["vec2"], ["vec2"], ["vec2"]],
     (p, a, b, c) => {
         let e0: Sym<"vec2">, e1: Sym<"vec2">, e2: Sym<"vec2">;
         let v0: Sym<"vec2">, v1: Sym<"vec2">, v2: Sym<"vec2">;
         let pq0: Sym<"vec2">, pq1: Sym<"vec2">, pq2: Sym<"vec2">;
-        let s: Sym<"f32">;
+        let s: Sym<"float">;
         let d: Sym<"vec2">;
 
         const $pq = (v: Sym<"vec2">, e: Sym<"vec2">) =>
@@ -153,12 +153,12 @@ export const sdTriangle = defn(
  *
  * @param p vec3
  * @param n vec3
- * @param w f32
+ * @param w float
  */
 export const sdPlane = defn(
-    "f32",
+    "float",
     "sdPlane",
-    [["vec3"], ["vec3"], ["f32"]],
+    [["vec3"], ["vec3"], ["float"]],
     (p, n, w) => [ret(add(dot(p, n), w))]
 );
 
@@ -166,9 +166,9 @@ export const sdPlane = defn(
  * Returns signed distance from `p` to centered sphere of radius `r`.
  *
  * @param p vec3
- * @param r f32
+ * @param r float
  */
-export const sdSphere = defn("f32", "sdSphere", [["vec3"], ["f32"]], (p, r) => [
+export const sdSphere = defn("float", "sdSphere", [["vec3"], ["float"]], (p, r) => [
     ret(sub(length(p), r))
 ]);
 
@@ -178,11 +178,11 @@ export const sdSphere = defn("f32", "sdSphere", [["vec3"], ["f32"]], (p, r) => [
  * @param p vec3
  * @param size vec3
  */
-export const sdAABB = defn("f32", "sdAABB", [["vec3"], ["vec3"]], (p, size) => {
+export const sdAABB = defn("float", "sdAABB", [["vec3"], ["vec3"]], (p, size) => {
     let d: Sym<"vec3">;
     return [
         (d = sym(sub(abs(p), size))),
-        ret(add(min(maxComp3(d), F32_0), length(max(d, vec3()))))
+        ret(add(min(maxComp3(d), FLOAT0), length(max(d, vec3()))))
     ];
 });
 
@@ -191,13 +191,13 @@ export const sdAABB = defn("f32", "sdAABB", [["vec3"], ["vec3"]], (p, size) => {
  * radii `r1`, `r2`.
  *
  * @param p vec3
- * @param r1 f32
- * @param r2 f32
+ * @param r1 float
+ * @param r2 float
  */
 export const sdTorus = defn(
-    "f32",
+    "float",
     "sdTorus",
-    [["vec3"], ["f32"], ["f32"]],
+    [["vec3"], ["float"], ["float"]],
     (p, r1, r2) => [
         ret(sub(length(vec2(sub(length($(p, "xz")), r2), $y(p))), r1))
     ]
@@ -208,18 +208,18 @@ export const sdTorus = defn(
  * with height `h` and radius `r`.
  *
  * @param p vec3
- * @param h f32
- * @param r f32
+ * @param h float
+ * @param r float
  */
 export const sdCylinder = defn(
-    "f32",
+    "float",
     "sdCylinder",
-    [["vec3"], ["f32"], ["f32"]],
+    [["vec3"], ["float"], ["float"]],
     (p, h, r) => {
         let d: Sym<"vec2">;
         return [
             (d = sym(sub(abs(vec2(length($(p, "xz")), $y(p))), vec2(h, r)))),
-            ret(add(min(maxComp2(d), F32_0), length(max(d, vec2()))))
+            ret(add(min(maxComp2(d), FLOAT0), length(max(d, vec2()))))
         ];
     }
 );
@@ -230,7 +230,7 @@ export const sdCylinder = defn(
  * @param b vec3
  */
 export const sdLine3 = defn(
-    "f32",
+    "float",
     "sdLine3",
     [["vec3"], ["vec3"], ["vec3"]],
     line
@@ -239,85 +239,85 @@ export const sdLine3 = defn(
 //////////////// Combinators
 
 /**
- * @param d1 f32
- * @param d2 f32
+ * @param d1 float
+ * @param d2 float
  */
 export const sdOpSubtract = defn(
-    "f32",
+    "float",
     "sdOpSubtract",
-    [["f32"], ["f32"]],
+    [["float"], ["float"]],
     (d1, d2) => [ret(max(neg(d2), d1))]
 );
 
 /**
- * @param d1 f32
- * @param d2 f32
+ * @param d1 float
+ * @param d2 float
  */
 export const sdOpUnion = defn(
-    "f32",
+    "float",
     "sdOpUnion",
-    [["f32"], ["f32"]],
+    [["float"], ["float"]],
     (d1, d2) => [ret(min(d1, d2))]
 );
 
 /**
- * @param d1 f32
- * @param d2 f32
+ * @param d1 float
+ * @param d2 float
  */
 export const sdOpIntersect = defn(
-    "f32",
+    "float",
     "sdOpIntersect",
-    [["f32"], ["f32"]],
+    [["float"], ["float"]],
     (d1, d2) => [ret(max(d2, d1))]
 );
 
 /**
- * @param d1 f32
- * @param d2 f32
+ * @param d1 float
+ * @param d2 float
  */
 export const sdOpSmoothUnion = defn(
-    "f32",
+    "float",
     "sdOpSmoothUnion",
-    [["f32"], ["f32"], ["f32"]],
+    [["float"], ["float"], ["float"]],
     (a, b, k) => {
-        let h: Sym<"f32">;
+        let h: Sym<"float">;
         return [
             (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
-            ret(sub(mix(b, a, h), mul(mul(k, h), sub(F32_1, h))))
+            ret(sub(mix(b, a, h), mul(mul(k, h), sub(FLOAT1, h))))
         ];
     }
 );
 
 /**
- * @param d1 f32
- * @param d2 f32
+ * @param d1 float
+ * @param d2 float
  */
 export const sdOpSmoothSubtract = defn(
-    "f32",
+    "float",
     "sdOpSmoothSubtract",
-    [["f32"], ["f32"], ["f32"]],
+    [["float"], ["float"], ["float"]],
     (a, b, k) => {
-        let h: Sym<"f32">;
+        let h: Sym<"float">;
         return [
             (h = sym(clamp01(fit1101(div(add(b, a), k))))),
-            ret(add(mix(b, neg(a), h), mul(mul(k, h), sub(F32_1, h))))
+            ret(add(mix(b, neg(a), h), mul(mul(k, h), sub(FLOAT1, h))))
         ];
     }
 );
 
 /**
- * @param d1 f32
- * @param d2 f32
+ * @param d1 float
+ * @param d2 float
  */
 export const sdOpSmoothIntersect = defn(
-    "f32",
+    "float",
     "sdOpSmoothIntersect",
-    [["f32"], ["f32"], ["f32"]],
+    [["float"], ["float"], ["float"]],
     (a, b, k) => {
-        let h: Sym<"f32">;
+        let h: Sym<"float">;
         return [
             (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
-            ret(add(mix(b, a, h), mul(mul(k, h), sub(F32_1, h))))
+            ret(add(mix(b, a, h), mul(mul(k, h), sub(FLOAT1, h))))
         ];
     }
 );
@@ -331,7 +331,7 @@ export const sdOpSmoothIntersect = defn(
  * @param d
  * @param r
  */
-export const sdOpRound = (d: Term<"f32">, r: Term<"f32">) => sub(d, r);
+export const sdOpRound = (d: Term<"float">, r: Term<"float">) => sub(d, r);
 
 /**
  * Inline function. Bi-directional offset to create ring like shapes.
@@ -339,7 +339,7 @@ export const sdOpRound = (d: Term<"f32">, r: Term<"f32">) => sub(d, r);
  * @param d
  * @param r
  */
-export const sdOpAnnular = (d: Term<"f32">, r: Term<"f32">) => sub(abs(d), r);
+export const sdOpAnnular = (d: Term<"float">, r: Term<"float">) => sub(abs(d), r);
 
 //////////////// Transformations
 
@@ -353,7 +353,7 @@ export const sdTxRepeat2 = defn(
     "vec2",
     "sdTxRepeat3",
     [["vec2"], ["vec2"]],
-    (p, c) => [ret(sub(mod(p, c), mul(c, F32_05)))]
+    (p, c) => [ret(sub(mod(p, c), mul(c, FLOAT05)))]
 );
 
 /**
@@ -366,5 +366,5 @@ export const sdTxRepeat3 = defn(
     "vec3",
     "sdTxRepeat3",
     [["vec3"], ["vec3"]],
-    (p, c) => [ret(sub(mod(p, c), mul(c, F32_05)))]
+    (p, c) => [ret(sub(mod(p, c), mul(c, FLOAT05)))]
 );

@@ -22,7 +22,7 @@ export interface GLSLTarget extends Fn<Term<any>, string> {
     gl_FragData: Sym<"vec4[]">;
     gl_FrontFacing: Sym<"bool">;
     gl_PointCoord: Sym<"vec2">;
-    gl_PointSize: Sym<"f32">;
+    gl_PointSize: Sym<"float">;
     gl_Position: Sym<"vec4">;
 }
 
@@ -38,9 +38,9 @@ export interface GLSLTarget extends Fn<Term<any>, string> {
  */
 export const targetGLSL = (version = 300) => {
     const TYPE_NAMES: any = {
-        f32: "float",
-        i32: "int",
-        u32: "uint"
+        float: "float",
+        int: "int",
+        uint: "uint"
     };
 
     const $type = (t: Type) => TYPE_NAMES[t] || t;
@@ -61,7 +61,7 @@ export const targetGLSL = (version = 300) => {
         return res.join("");
     };
 
-    const emit = defTarget({
+    const emit: Fn<Term<any>, string> = defTarget({
         arg: (t) => $decl(t, true),
 
         assign: (t) => emit(t.l) + " = " + emit(t.r),
@@ -101,14 +101,14 @@ export const targetGLSL = (version = 300) => {
             switch (t.type) {
                 case "bool":
                     return String(!!v);
-                case "f32":
+                case "float":
                     return isNumber(v)
                         ? v === Math.trunc(v)
                             ? v + ".0"
                             : String(v)
                         : `float(${emit(v)})`;
-                case "i32":
-                case "u32":
+                case "int":
+                case "uint":
                     return isNumber(v) ? String(v) : `int(${emit(v)})`;
                 case "vec2":
                 case "vec3":
@@ -147,7 +147,7 @@ export const targetGLSL = (version = 300) => {
         gl_FragData: sym("vec4[]", "gl_FragData", { num: 1 }),
         gl_FrontFacing: sym("bool", "gl_FrontFacing", { const: true }),
         gl_PointCoord: sym("vec2", "gl_PointCoord", { const: true }),
-        gl_PointSize: sym("f32", "gl_PointSize"),
+        gl_PointSize: sym("float", "gl_PointSize"),
         gl_Position: sym("vec4", "gl_Position")
     });
 

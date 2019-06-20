@@ -10,10 +10,10 @@ import {
     $y,
     $z,
     add,
-    F32_0,
-    F32_05,
-    F32_1,
-    F32_2,
+    FLOAT0,
+    FLOAT05,
+    FLOAT1,
+    FLOAT2,
     mul,
     sub,
     vec2,
@@ -29,8 +29,8 @@ import { clamp, max } from "../builtins";
  */
 export const clamp01 = <T extends Prim>(x: Term<T>): Term<T> =>
     <Term<any>>(
-        (x.type === "f32"
-            ? clamp(<Term<"f32">>x, F32_0, F32_1)
+        (x.type === "float"
+            ? clamp(<Term<"float">>x, FLOAT0, FLOAT1)
             : x.type === "vec2"
             ? clamp(<Term<"vec2">>x, vec2(), vec2(1))
             : x.type === "vec3"
@@ -59,7 +59,7 @@ export const fit01 = <A extends Prim, B extends A, C extends A>(
  * @param x
  */
 export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
-    <any>add(mul(<any>x, F32_05), F32_05);
+    <any>add(mul(<any>x, FLOAT05), FLOAT05);
 
 /**
  * Inline function. Fits value `x` in [0..1] interval to [-1..+1]
@@ -68,7 +68,7 @@ export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
  * @param x
  */
 export const fit0111 = <T extends Prim>(x: Term<T>): Op2<T> =>
-    <any>sub(mul(<any>x, F32_2), F32_1);
+    <any>sub(mul(<any>x, FLOAT2), FLOAT1);
 
 export const maxComp2 = (v: Sym<"vec2">) => max($x(v), $y(v));
 
@@ -81,8 +81,8 @@ export const cross2 = (a: Term<"vec2">, b: Term<"vec2">) =>
     crossC2($x(a), $y(a), $x(b), $y(b));
 
 export const crossC2 = (
-    ax: Term<"f32">,
-    ay: Term<"f32">,
-    bx: Term<"f32">,
-    by: Term<"f32">
+    ax: Term<"float">,
+    ay: Term<"float">,
+    bx: Term<"float">,
+    by: Term<"float">
 ) => sub(mul(ax, by), mul(ay, bx));

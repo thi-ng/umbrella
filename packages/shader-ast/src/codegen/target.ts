@@ -11,8 +11,8 @@ import { TargetImpl, Term } from "../api";
  *
  * @see targetGLSL
  */
-export const defTarget = (impls: TargetImpl): Fn<Term<any>, string> => {
-    const emit = defmulti<Term<any>, string>((x) => x.tag);
+export const defTarget = <T>(impls: TargetImpl<T>): Fn<Term<any>, T> => {
+    const emit = defmulti<Term<any>, T>((x) => x.tag);
     emit.add(DEFAULT, (t) =>
         unsupported(`no impl for AST node type: '${t.tag}'`)
     );

@@ -1,14 +1,14 @@
 import * as assert from "assert";
 import {
     $,
-    F,
+    FALSE,
     float,
     int,
     IVec,
     sym,
-    T,
     targetGLSL,
     Term,
+    TRUE,
     uint,
     Vec,
     vec2,
@@ -25,8 +25,8 @@ const V4 = sym("vec4", "v");
 
 describe("shader-ast (glsl)", () => {
     it("lit", () => {
-        assert.equal(gl(T), "true");
-        assert.equal(gl(F), "false");
+        assert.equal(gl(TRUE), "true");
+        assert.equal(gl(FALSE), "false");
         assert.equal(gl(float(0)), "0.0");
         assert.equal(gl(float(-1)), "-1.0");
         assert.equal(gl(float(3.1415)), "3.1415");

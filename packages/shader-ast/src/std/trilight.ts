@@ -2,8 +2,8 @@ import { Sym } from "../api";
 import {
     add,
     defn,
-    F32_0,
-    F32_1,
+    FLOAT0,
+    FLOAT1,
     mul,
     neg,
     ret,
@@ -28,13 +28,13 @@ export const trilight = defn(
     "trilight",
     [["vec3"], ["vec3"], ["vec3"], ["vec3"], ["vec3"]],
     (n, l, c1, c2, c3) => {
-        let d: Sym<"f32">;
+        let d: Sym<"float">;
         return [
             (d = sym(dot(n, l))),
             ret(
                 add(
-                    add(mul(c1, max(d, F32_0)), mul(c2, sub(F32_1, abs(d)))),
-                    mul(c3, max(dot(neg(n), l), F32_0))
+                    add(mul(c1, max(d, FLOAT0)), mul(c2, sub(FLOAT1, abs(d)))),
+                    mul(c3, max(dot(neg(n), l), FLOAT0))
                 )
             )
         ];
