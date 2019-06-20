@@ -14,7 +14,6 @@ import {
     pow,
     program,
     ret,
-    scope,
     sym,
     Sym,
     targetGLSL,
@@ -47,13 +46,13 @@ const main = defn(
     [
         ["vec2", "fragCoord"],
         ["vec2", "res"],
-        ["f32", "time"],
+        ["float", "time"],
         ["sampler2D", "tex"]
     ],
     (frag, res, time, tex) => {
         let p: Sym<"vec2">;
         let uv: Sym<"vec2">;
-        let r: Sym<"f32">;
+        let r: Sym<"float">;
         return [
             (p = sym(div(add(neg(res), mul(frag, float(2))), $(res, "y")))),
             (r = sym(
@@ -83,7 +82,7 @@ const glslMain = defn("void", "main", [], () => [
         main(
             $(GL.gl_FragCoord, "xy"),
             sym("vec2", "u_resolution"),
-            sym("f32", "u_time"),
+            sym("float", "u_time"),
             sym("sampler2D", "u_tex")
         )
     )

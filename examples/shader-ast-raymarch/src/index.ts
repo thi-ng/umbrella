@@ -36,14 +36,7 @@ import {
     vec3,
     vec4
 } from "@thi.ng/shader-ast";
-import {
-    compileModel,
-    draw,
-    GLSL,
-    GLVec3,
-    quad,
-    shader
-} from "@thi.ng/webgl";
+import { compileModel, draw, GLSL, GLVec3, quad, shader } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;
@@ -55,10 +48,10 @@ const JS = targetJS();
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg
 const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
-    let d1: Sym<"f32">;
-    let d2: Sym<"f32">;
-    let d3: Sym<"f32">;
-    let d4: Sym<"f32">;
+    let d1: Sym<"float">;
+    let d2: Sym<"float">;
+    let d3: Sym<"float">;
+    let d4: Sym<"float">;
     return [
         assign(pos, sdTxRepeat3(pos, vec3(2.1))),
         (d1 = sym(sdSphere(pos, float(0.5)))),
@@ -99,7 +92,7 @@ const main = defn(
         let isec: Sym<"vec3">;
         let norm: Sym<"vec3">;
         let material: Sym<"vec3">;
-        let diffuse: Sym<"f32">;
+        let diffuse: Sym<"float">;
         // background color
         let bg = vec3(1.5, 0.6, 0);
         return [

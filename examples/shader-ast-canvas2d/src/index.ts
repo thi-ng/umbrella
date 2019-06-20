@@ -53,15 +53,15 @@ const main = defn(
     // func name
     "main",
     // args (names are optional)
-    [["vec2", "fragCoord"], ["vec2", "res"], ["vec2", "uv"], ["f32", "time"]],
+    [["vec2", "fragCoord"], ["vec2", "res"], ["vec2", "uv"], ["float", "time"]],
     // bound args given to function body
     (frag, res, uv, time) => {
-        let a: Sym<"f32">;
-        let p: Sym<"f32">;
+        let a: Sym<"float">;
+        let p: Sym<"float">;
         let sp: Sym<"vec2">;
-        let dp: Sym<"f32">;
-        let p2: Sym<"f32">;
-        let m: Sym<"f32">;
+        let dp: Sym<"float">;
+        let p2: Sym<"float">;
+        let m: Sym<"float">;
         return [
             (a = sym(add(mul(sin(time), float(2)), float(3)))),
             (p = sym(add(mul($(frag, "y"), $(res, "x")), $(frag, "x")))),
