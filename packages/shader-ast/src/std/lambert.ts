@@ -8,7 +8,7 @@ import {
     ternary
 } from "../ast";
 import { dot } from "../builtins";
-import { fit1101 } from "./fit";
+import { fit1101 } from "./math";
 
 /**
  * Computes Lambert term, optionally using Half-Lambertian,

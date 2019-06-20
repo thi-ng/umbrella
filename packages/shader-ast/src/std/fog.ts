@@ -10,7 +10,7 @@ import {
     sub
 } from "../ast";
 import { exp, exp2 } from "../builtins";
-import { clamp01 } from "./clamp";
+import { clamp01 } from "./math";
 
 /**
  * @param dist f32
