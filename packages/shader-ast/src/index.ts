@@ -6,6 +6,7 @@ export * from "./optimize";
 export * from "./codegen/target";
 export * from "./codegen/glsl";
 export * from "./codegen/js";
+export * from "./codegen/wasm";
 
 export * from "./std/fog";
 export * from "./std/lambert";
