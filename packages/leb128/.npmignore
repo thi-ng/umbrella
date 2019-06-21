@@ -1,0 +1,13 @@
+.meta
+.nyc_output
+*.html
+*.tgz
+*.wasm
+build
+coverage
+dev
+doc
+export
+src*
+test
+tsconfig.json
