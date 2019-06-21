@@ -62,6 +62,15 @@ packages) in the [examples](./examples) directory.
 
 ## Projects
 
+### WIP / unreleased
+
+Several new packages are being developed in parallel on various feature branches, which will be merged back into `develop` and `master` once ready. Currently, the most noteworthy of those can be found the `feature/webgl` branch, which is a few hundred commits ahead of master:
+
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl)
+- [@thi.ng/webgl-msdf](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl-msdf)
+- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
+- [@thi.ng/leb128](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/leb128)
+
 ### Fundamentals
 
 | Project                                   | Version                                                                                                         | Changelog                                     | Description                                  |
@@ -191,10 +200,6 @@ packages) in the [examples](./examples) directory.
 |-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
-
-### WIP / unreleased
-
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl)
 
 ## Building
 
