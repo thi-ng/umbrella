@@ -75,7 +75,13 @@ leb.decodeSLEB128(enc)
 ## Build binary
 
 ```bash
-# requires zig v0.4.0 or later
+# first run native tests
+zig test packages/leb128/src/leb128.zig
+# Test 1/2 min safe integer...OK
+# Test 2/2 max safe integer...OK
+# All tests passed.
+
+# compile to WASM (requires zig v0.4.0 or later)
 zig build-lib -target wasm32-freestanding --release-small --strip src/leb128.zig
 
 # apply binaryen optimizer
@@ -84,8 +90,11 @@ wasm-opt leb128.wasm -o opt.wasm -Os
 # display as .wat text format
 wasm2wat opt.wasm
 
-# base64 encode and copy to clipboard (OSX)
-base64 -i opt.wasm | pbcopy
+# base64 encode and generate src/binary.ts
+echo "export const BINARY = \"$(base64 -i opt.wasm)\";" > src/binary.ts
+
+# test TS/JS version
+yarn test
 ```
 
 ## Authors

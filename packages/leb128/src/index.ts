@@ -1,6 +1,7 @@
 import { hasWASM } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import { base64Decode } from "@thi.ng/transducers-binary";
+import { BINARY } from "./binary";
 
 interface LEB128 {
     memory: WebAssembly.Memory;
@@ -15,17 +16,13 @@ let wasm: LEB128;
 let U8: Uint8Array;
 
 if (hasWASM()) {
-    WebAssembly.instantiate(
-        new Uint8Array([
-            ...base64Decode(
-                "AGFzbQEAAAABCgJgAXwBf2AAAXwDBQQAAQABBQMBAAEGBwF/AEGACAsHZAYGbWVtb3J5AgASbGViMTI4X2VuY29kZV91X2pzAAADYnVmAwASbGViMTI4X2RlY29kZV91X2pzAAESbGViMTI4X2VuY29kZV9zX2pzAAISbGViMTI4X2RlY29kZV9zX2pzAAMKhQQEdAICfwF+AkAgAEQAAAAAAADwQ2MgAEQAAAAAAAAAAGZxBEAgALEiA0KAAVoNAQtBgAggA6dB/wBxOgAAQQEPCwNAIAFBgAhqIAOnIgJB/wBxIAJBgAFyIANCB4giA1AbOgAAIAFBAWohASADQgBSDQALIAELXgIDfwJ+AkADQCAAQQlLDQEgAUEBaiEBIABBgAhqLAAAIgJB/wBxrSAEhiADhCEDIABBAWohACAEQgd8IQQgAkF/TA0AC0GACCABOgAAIAO6DwtBgAggADoAACADuguuAQIEfwF+An5CgICAgICAgICAfyAAmUQAAAAAAADgQ2NFDQAaIACwCyIFQkB9QoABVARAQYAIIAVCOYinQcAAcSAFp0E/cXI6AABBAQ8LA0AgBaciAkHAAHEhAyABQYAIagJ/AkAgBUIHhyIFQgBRBEAgA0UNAQtBASEEIAJBgH9yIAVCf1IgA0VyDQEaC0EAIQQgAkH/AHELOgAAIAFBAWohASAEDQALIAFB/wFxC38CBH8DfgJAA0AgAEEBaiEBIAVCB3whBiAAQYAIai0AACIDQRh0QRh1IQIgA0H/AHGtIAWGIASEIQQgAEEISw0BIAEhACAGIQUgAkEASA0ACwsgAUH/AXFBCUsgAkHAAHFFckUEQCAEQn8gBkI/g4aEIQQLQYAIIAE6AAAgBLkL"
-            )
-        ])
-    ).then((inst) => {
-        wasm = inst.instance.exports;
-        // mapped view of the data buffer
-        U8 = new Uint8Array(wasm.memory.buffer, wasm.buf, 16);
-    });
+    WebAssembly.instantiate(new Uint8Array([...base64Decode(BINARY)])).then(
+        (inst) => {
+            wasm = inst.instance.exports;
+            // mapped view of the data buffer
+            U8 = new Uint8Array(wasm.memory.buffer, wasm.buf, 16);
+        }
+    );
 }
 
 const ensureWASM = () => !wasm && unsupported("WASM module unavailable");

@@ -93,22 +93,39 @@ pub fn leb128_decode_s(src: []u8, num: *u8) i64 {
 /// on JS side). Writes results to exported `buf` array and returns
 /// number of bytes used.
 export fn leb128_encode_u_js(x: f64) u8 {
-    return leb128_encode_u(@floatToInt(u64, x), buf[0..buf.len]);
+    return leb128_encode_u(@floatToInt(u64, x), buf[0..]);
 }
 
 /// WASM only. JS interop to exchange data via f64 (for lack of i64/u64
 /// on JS side). Consumes bytes from the exported `buf` array and returns
 /// decoded value. Writes number of bytes consumed into `buf[0]`
 export fn leb128_decode_u_js() f64 {
-    return @intToFloat(f64, leb128_decode_u(buf[0..buf.len], &buf[0]));
+    return @intToFloat(f64, leb128_decode_u(buf[0..], &buf[0]));
 }
 
 /// See `leb128_encode_u_js`
 export fn leb128_encode_s_js(x: f64) u8 {
-    return leb128_encode_s(@floatToInt(i64, x), buf[0..buf.len]);
+    return leb128_encode_s(@floatToInt(i64, x), buf[0..]);
 }
 
 /// See `leb128_decode_u_js`
 export fn leb128_decode_s_js() f64 {
-    return @intToFloat(f64, leb128_decode_s(buf[0..buf.len], &buf[0]));
+    return @intToFloat(f64, leb128_decode_s(buf[0..], &buf[0]));
+}
+
+const warn = @import("std").debug.warn;
+const assert = @import("std").debug.assert;
+const mem = @import("std").mem;
+
+test "min safe integer" {
+    assert(leb128_encode_s(-9007199254740991, buf[0..]) == 8);
+    assert(mem.eql(u8, buf[0..8], []u8{129, 128, 128, 128, 128, 128, 128, 112}));
+}
+
+test "max safe integer" {
+    assert(leb128_encode_s(9007199254740991, buf[0..]) == 8);
+    assert(mem.eql(u8, buf[0..8], []u8{255, 255, 255, 255, 255, 255, 255, 15}));
+
+    assert(leb128_encode_u(9007199254740991, buf[0..]) == 8);
+    assert(mem.eql(u8, buf[0..8], []u8{255, 255, 255, 255, 255, 255, 255, 15}));
 }
