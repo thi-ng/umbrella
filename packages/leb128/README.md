@@ -13,7 +13,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-- [Build binary](#build-binary)
+- [Building the binary](#building-the-binary)
 - [Authors](#authors)
 - [License](#license)
 
@@ -30,7 +30,7 @@ The WASM binary (~660 bytes) is embedded as base64 string in the
 TypeScript source to make it easier to use in both browser & node
 environments. The source code of the actual implementation (written in
 [Zig](https://ziglang.org)) is included in
-[/src/leb128.zig](https://github.com/thi-ng/umbrella/tree/master/packages/leb128/src/leb128.zig)
+[/src/leb128.zig](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/leb128/src/leb128.zig)
 
 All public functions throw an error if the WASM module could not be
 initialized.
@@ -72,9 +72,12 @@ leb.decodeSLEB128(enc)
 // [ -9007199254740991, 8 ]
 ```
 
-## Build binary
+## Building the binary
 
 ```bash
+# if not yet installed (or via https://ziglang.org)
+brew install zig
+
 # first run native tests
 zig test packages/leb128/src/leb128.zig
 # Test 1/2 min safe integer...OK
