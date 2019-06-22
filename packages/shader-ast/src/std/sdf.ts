@@ -1,4 +1,11 @@
-import { Sym, Term, Vec } from "../api";
+import {
+    FloatSym,
+    FloatTerm,
+    Sym,
+    Vec,
+    Vec2Sym,
+    Vec3Sym
+} from "../api";
 import {
     $,
     $x,
@@ -70,9 +77,12 @@ const line = <T extends Vec>(p: Sym<T>, a: Sym<T>, b: Sym<T>) => {
  * @param p vec2
  * @param r float
  */
-export const sdCircle = defn("float", "sdCircle", [["vec2"], ["float"]], (p, r) => [
-    ret(sub(length(p), r))
-]);
+export const sdCircle = defn(
+    "float",
+    "sdCircle",
+    [["vec2"], ["float"]],
+    (p, r) => [ret(sub(length(p), r))]
+);
 
 /**
  * Returns signed distance from `p` to centered circle of radius `r`.
@@ -93,13 +103,18 @@ export const sdLine2 = defn(
  * @param p vec2
  * @param size vec2
  */
-export const sdRect = defn("float", "sdRect", [["vec2"], ["vec2"]], (p, size) => {
-    let d: Sym<"vec2">;
-    return [
-        (d = sym(sub(abs(p), size))),
-        ret(add(min(maxComp2(d), FLOAT0), length(max(d, vec2()))))
-    ];
-});
+export const sdRect = defn(
+    "float",
+    "sdRect",
+    [["vec2"], ["vec2"]],
+    (p, size) => {
+        let d: Vec2Sym;
+        return [
+            (d = sym(sub(abs(p), size))),
+            ret(add(min(maxComp2(d), FLOAT0), length(max(d, vec2()))))
+        ];
+    }
+);
 
 /**
  * @param p vec2
@@ -112,13 +127,13 @@ export const sdTriangle = defn(
     "sdTriangle",
     [["vec2"], ["vec2"], ["vec2"], ["vec2"]],
     (p, a, b, c) => {
-        let e0: Sym<"vec2">, e1: Sym<"vec2">, e2: Sym<"vec2">;
-        let v0: Sym<"vec2">, v1: Sym<"vec2">, v2: Sym<"vec2">;
-        let pq0: Sym<"vec2">, pq1: Sym<"vec2">, pq2: Sym<"vec2">;
-        let s: Sym<"float">;
-        let d: Sym<"vec2">;
+        let e0: Vec2Sym, e1: Vec2Sym, e2: Vec2Sym;
+        let v0: Vec2Sym, v1: Vec2Sym, v2: Vec2Sym;
+        let pq0: Vec2Sym, pq1: Vec2Sym, pq2: Vec2Sym;
+        let s: FloatSym;
+        let d: Vec2Sym;
 
-        const $pq = (v: Sym<"vec2">, e: Sym<"vec2">) =>
+        const $pq = (v: Vec2Sym, e: Vec2Sym) =>
             sub(v, mul(e, clamp01(div(dot(v, e), dot(e, e)))));
 
         return [
@@ -168,9 +183,12 @@ export const sdPlane = defn(
  * @param p vec3
  * @param r float
  */
-export const sdSphere = defn("float", "sdSphere", [["vec3"], ["float"]], (p, r) => [
-    ret(sub(length(p), r))
-]);
+export const sdSphere = defn(
+    "float",
+    "sdSphere",
+    [["vec3"], ["float"]],
+    (p, r) => [ret(sub(length(p), r))]
+);
 
 /**
  * Returns signed distance from `p` to centered AABB of `size`.
@@ -178,13 +196,18 @@ export const sdSphere = defn("float", "sdSphere", [["vec3"], ["float"]], (p, r) 
  * @param p vec3
  * @param size vec3
  */
-export const sdAABB = defn("float", "sdAABB", [["vec3"], ["vec3"]], (p, size) => {
-    let d: Sym<"vec3">;
-    return [
-        (d = sym(sub(abs(p), size))),
-        ret(add(min(maxComp3(d), FLOAT0), length(max(d, vec3()))))
-    ];
-});
+export const sdAABB = defn(
+    "float",
+    "sdAABB",
+    [["vec3"], ["vec3"]],
+    (p, size) => {
+        let d: Vec3Sym;
+        return [
+            (d = sym(sub(abs(p), size))),
+            ret(add(min(maxComp3(d), FLOAT0), length(max(d, vec3()))))
+        ];
+    }
+);
 
 /**
  * Returns signed distance from `p` to torus centered around Y-axis with
@@ -216,7 +239,7 @@ export const sdCylinder = defn(
     "sdCylinder",
     [["vec3"], ["float"], ["float"]],
     (p, h, r) => {
-        let d: Sym<"vec2">;
+        let d: Vec2Sym;
         return [
             (d = sym(sub(abs(vec2(length($(p, "xz")), $y(p))), vec2(h, r)))),
             ret(add(min(maxComp2(d), FLOAT0), length(max(d, vec2()))))
@@ -280,7 +303,7 @@ export const sdOpSmoothUnion = defn(
     "sdOpSmoothUnion",
     [["float"], ["float"], ["float"]],
     (a, b, k) => {
-        let h: Sym<"float">;
+        let h: FloatSym;
         return [
             (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
             ret(sub(mix(b, a, h), mul(mul(k, h), sub(FLOAT1, h))))
@@ -297,7 +320,7 @@ export const sdOpSmoothSubtract = defn(
     "sdOpSmoothSubtract",
     [["float"], ["float"], ["float"]],
     (a, b, k) => {
-        let h: Sym<"float">;
+        let h: FloatSym;
         return [
             (h = sym(clamp01(fit1101(div(add(b, a), k))))),
             ret(add(mix(b, neg(a), h), mul(mul(k, h), sub(FLOAT1, h))))
@@ -314,7 +337,7 @@ export const sdOpSmoothIntersect = defn(
     "sdOpSmoothIntersect",
     [["float"], ["float"], ["float"]],
     (a, b, k) => {
-        let h: Sym<"float">;
+        let h: FloatSym;
         return [
             (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
             ret(add(mix(b, a, h), mul(mul(k, h), sub(FLOAT1, h))))
@@ -331,7 +354,7 @@ export const sdOpSmoothIntersect = defn(
  * @param d
  * @param r
  */
-export const sdOpRound = (d: Term<"float">, r: Term<"float">) => sub(d, r);
+export const sdOpRound = (d: FloatTerm, r: FloatTerm) => sub(d, r);
 
 /**
  * Inline function. Bi-directional offset to create ring like shapes.
@@ -339,7 +362,7 @@ export const sdOpRound = (d: Term<"float">, r: Term<"float">) => sub(d, r);
  * @param d
  * @param r
  */
-export const sdOpAnnular = (d: Term<"float">, r: Term<"float">) => sub(abs(d), r);
+export const sdOpAnnular = (d: FloatTerm, r: FloatTerm) => sub(abs(d), r);
 
 //////////////// Transformations
 

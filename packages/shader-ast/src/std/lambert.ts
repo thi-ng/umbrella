@@ -1,4 +1,4 @@
-import { Sym } from "../api";
+import { FloatSym } from "../api";
 import {
     add,
     defn,
@@ -25,7 +25,7 @@ export const lambert = defn(
     "lambert",
     [["vec3"], ["vec3"], ["bool"]],
     (n, ldir, bidir) => {
-        let d: Sym<"float">;
+        let d: FloatSym;
         return [(d = sym(dot(n, ldir))), ret(ternary(bidir, fit1101(d), d))];
     }
 );

@@ -1,4 +1,4 @@
-import { Sym } from "../api";
+import { FloatSym } from "../api";
 import {
     add,
     defn,
@@ -28,7 +28,7 @@ export const trilight = defn(
     "trilight",
     [["vec3"], ["vec3"], ["vec3"], ["vec3"], ["vec3"]],
     (n, l, c1, c2, c3) => {
-        let d: Sym<"float">;
+        let d: FloatSym;
         return [
             (d = sym(dot(n, l))),
             ret(

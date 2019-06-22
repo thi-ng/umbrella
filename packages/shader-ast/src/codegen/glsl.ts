@@ -2,11 +2,14 @@ import { Fn } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import {
+    FloatSym,
     FnCall,
     FuncArg,
     Sym,
     Term,
-    Type
+    Type,
+    Vec2Sym,
+    Vec4Sym
 } from "../api";
 import { itemType, sym } from "../ast";
 import { defTarget } from "./target";
@@ -17,13 +20,13 @@ export interface GLSLOpts {
 }
 
 export interface GLSLTarget extends Fn<Term<any>, string> {
-    gl_FragColor: Sym<"vec4">;
-    gl_FragCoord: Sym<"vec4">;
+    gl_FragColor: Vec4Sym;
+    gl_FragCoord: Vec4Sym;
     gl_FragData: Sym<"vec4[]">;
     gl_FrontFacing: Sym<"bool">;
-    gl_PointCoord: Sym<"vec2">;
-    gl_PointSize: Sym<"float">;
-    gl_Position: Sym<"vec4">;
+    gl_PointCoord: Vec2Sym;
+    gl_PointSize: FloatSym;
+    gl_Position: Vec4Sym;
 }
 
 /**

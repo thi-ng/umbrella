@@ -73,7 +73,7 @@ describe("shader-ast (glsl)", () => {
             const res = $(<any>v, <any>pat);
             assert.equal(
                 res.type,
-                pat.length > 1 ? "vec" + pat.length : "f32",
+                pat.length > 1 ? "vec" + pat.length : "float",
                 pat
             );
             assert.equal(gl(res), "v." + pat, pat);

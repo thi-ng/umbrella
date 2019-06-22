@@ -92,6 +92,46 @@ export interface IndexTypeMap {
     "bvec4[]": "bvec4";
 }
 
+export type BoolTerm = Term<"bool">;
+export type FloatTerm = Term<"float">;
+export type IntTerm = Term<"int">;
+export type UintTerm = Term<"uint">;
+export type Vec2Term = Term<"vec2">;
+export type Vec3Term = Term<"vec3">;
+export type Vec4Term = Term<"vec4">;
+export type IVec2Term = Term<"ivec2">;
+export type IVec3Term = Term<"ivec3">;
+export type IVec4Term = Term<"ivec4">;
+export type BVec2Term = Term<"bvec2">;
+export type BVec3Term = Term<"bvec3">;
+export type BVec4Term = Term<"bvec4">;
+export type Mat2Term = Term<"mat2">;
+export type Mat3Term = Term<"mat3">;
+export type Mat4Term = Term<"mat4">;
+export type Sampler2DTerm = Term<"sampler2D">;
+export type Sampler3DTerm = Term<"sampler3D">;
+export type SamplerCubeTerm = Term<"samplerCube">;
+
+export type BoolSym = Sym<"bool">;
+export type FloatSym = Sym<"float">;
+export type IntSym = Sym<"int">;
+export type UintSym = Sym<"uint">;
+export type Vec2Sym = Sym<"vec2">;
+export type Vec3Sym = Sym<"vec3">;
+export type Vec4Sym = Sym<"vec4">;
+export type IVec2Sym = Sym<"ivec2">;
+export type IVec3Sym = Sym<"ivec3">;
+export type IVec4Sym = Sym<"ivec4">;
+export type BVec2Sym = Sym<"bvec2">;
+export type BVec3Sym = Sym<"bvec3">;
+export type BVec4Sym = Sym<"bvec4">;
+export type Mat2Sym = Sym<"mat2">;
+export type Mat3Sym = Sym<"mat3">;
+export type Mat4Sym = Sym<"mat4">;
+export type Sampler2DSym = Sym<"sampler2D">;
+export type Sampler3DSym = Sym<"sampler3D">;
+export type SamplerCubeSym = Sym<"samplerCube">;
+
 export interface MatIndexTypeMap {
     mat2: "vec2";
     mat3: "vec3";
@@ -114,8 +154,7 @@ export type Sampler =
 export type Prim = "float" | Vec;
 export type Int = "int" | "uint";
 export type Comparable = "float" | Int;
-export type FloatT = number | Term<"float">;
-export type Numeric = FloatT | Term<"int"> | Term<"uint">;
+export type Numeric = number | FloatTerm | IntTerm | UintTerm;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 

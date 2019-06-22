@@ -26,6 +26,7 @@ import {
     Comparable,
     ComparisonOperator,
     Decl,
+    FloatTerm,
     FnBody0,
     FnBody1,
     FnBody2,
@@ -44,9 +45,13 @@ import {
     Indexable,
     IndexTypeMap,
     Int,
+    IntTerm,
     IVec,
     Lit,
     Mat,
+    Mat2Term,
+    Mat3Term,
+    Mat4Term,
     MatIndexTypeMap,
     Numeric,
     Op1,
@@ -81,7 +86,11 @@ import {
     Term,
     Ternary,
     Type,
-    Vec
+    UintTerm,
+    Vec,
+    Vec2Term,
+    Vec3Term,
+    Vec4Term
 } from "./api";
 
 let symID = 0;
@@ -297,11 +306,11 @@ export const int = (x: Numeric) => lit("int", isNumber(x) ? x | 0 : x);
 export const uint = (x: Numeric) => lit("uint", isNumber(x) ? x >>> 0 : x);
 
 // prettier-ignore
-export function $<T extends Swizzle2>(a: Term<"vec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "float", "vec2", "vec3", "vec4">>;
+export function $<T extends Swizzle2>(a: Vec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "float", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function $<T extends Swizzle3>(a: Term<"vec3">, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "float", "vec2", "vec3", "vec4">>;
+export function $<T extends Swizzle3>(a: Vec3Term, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "float", "vec2", "vec3", "vec4">>;
 // prettier-ignore
-export function $<T extends Swizzle4>(a: Term<"vec4">, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "float", "vec2", "vec3", "vec4">>;
+export function $<T extends Swizzle4>(a: Vec4Term, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "float", "vec2", "vec3", "vec4">>;
 // prettier-ignore
 export function $<T extends Swizzle2>(a: Term<"ivec2">, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "int", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
@@ -358,7 +367,7 @@ export const $w = <T extends "vec4" | "ivec4" | "bvec4">(
 
 export const index = <T extends Indexable>(
     val: Sym<T>,
-    id: number | Term<"int"> | Term<"uint">
+    id: number | IntTerm | UintTerm
 ): Index<IndexTypeMap[T]> => ({
     tag: "idx",
     type: <any>val.type.substr(0, val.type.length - 2),
@@ -414,7 +423,7 @@ export function vec2(...xs: any[]): Lit<"vec2"> {
 
 export function vec3(): Lit<"vec3">;
 export function vec3(x: Numeric): Lit<"vec3">;
-export function vec3(x: Term<"vec2">, y: Numeric): Lit<"vec3">;
+export function vec3(x: Vec2Term, y: Numeric): Lit<"vec3">;
 // prettier-ignore
 export function vec3(x: Numeric, y: Numeric, z: Numeric): Lit<"vec3">;
 export function vec3(...xs: any[]): Lit<"vec3"> {
@@ -423,10 +432,10 @@ export function vec3(...xs: any[]): Lit<"vec3"> {
 
 export function vec4(): Lit<"vec4">;
 export function vec4(x: Numeric): Lit<"vec4">;
-export function vec4(x: Term<"vec3">, y: Numeric): Lit<"vec4">;
-export function vec4(x: Term<"vec2">, y: Term<"vec2">): Lit<"vec4">;
+export function vec4(x: Vec3Term, y: Numeric): Lit<"vec4">;
+export function vec4(x: Vec2Term, y: Vec2Term): Lit<"vec4">;
 // prettier-ignore
-export function vec4(x: Term<"vec2">, y: Numeric, z: Numeric): Lit<"vec4">;
+export function vec4(x: Vec2Term, y: Numeric, z: Numeric): Lit<"vec4">;
 // prettier-ignore
 export function vec4(x: Numeric, y: Numeric, z: Numeric, w: Numeric): Lit<"vec4">;
 export function vec4(...xs: any[]): Lit<"vec4"> {
@@ -443,7 +452,7 @@ export function vec4(...xs: any[]): Lit<"vec4"> {
 
 export function mat2(): Lit<"mat2">;
 export function mat2(x: Numeric): Lit<"mat2">;
-export function mat2(x: Term<"vec2">, y: Term<"vec2">): Lit<"mat2">;
+export function mat2(x: Vec2Term, y: Vec2Term): Lit<"mat2">;
 // prettier-ignore
 export function mat2(a: Numeric, b: Numeric, c: Numeric, d: Numeric): Lit<"mat2">;
 export function mat2(...xs: any[]): Lit<"mat2"> {
@@ -453,7 +462,7 @@ export function mat2(...xs: any[]): Lit<"mat2"> {
 export function mat3(): Lit<"mat3">;
 export function mat3(x: Numeric): Lit<"mat3">;
 // prettier-ignore
-export function mat3(x: Term<"vec3">, y: Term<"vec3">, z: Term<"vec3">): Lit<"mat3">;
+export function mat3(x: Vec3Term, y: Vec3Term, z: Vec3Term): Lit<"mat3">;
 // prettier-ignore
 export function mat3(a: Numeric, b: Numeric, c: Numeric, d: Numeric, e: Numeric, f: Numeric, g: Numeric, h: Numeric, i: Numeric): Lit<"mat3">;
 export function mat3(...xs: any[]): Lit<"mat3"> {
@@ -463,7 +472,7 @@ export function mat3(...xs: any[]): Lit<"mat3"> {
 export function mat4(): Lit<"mat4">;
 export function mat4(x: Numeric): Lit<"mat4">;
 // prettier-ignore
-export function mat4(x: Term<"vec4">, y: Term<"vec4">, z: Term<"vec4">, w: Term<"vec4">): Lit<"mat4">;
+export function mat4(x: Vec4Term, y: Vec4Term, z: Vec4Term, w: Vec4Term): Lit<"mat4">;
 // prettier-ignore
 export function mat4(a: Numeric, b: Numeric, c: Numeric, d: Numeric, e: Numeric, f: Numeric, g: Numeric, h: Numeric, i: Numeric, j: Numeric, k: Numeric, l: Numeric, m: Numeric, n: Numeric, o: Numeric, p: Numeric): Lit<"mat4">;
 export function mat4(...xs: any[]): Lit<"mat4"> {
@@ -518,13 +527,13 @@ export const dec = <T extends Prim | Int>(t: Term<T>): Op2<T> =>
 // prettier-ignore
 export function add<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
 // prettier-ignore
-export function add<T extends Vec | Mat>(l: Term<"float">, b: Term<T>): Op2<T>;
+export function add<T extends Vec | Mat>(l: FloatTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function add<T extends Vec | Mat>(l: Term<T>, b: Term<"float">): Op2<T>;
+export function add<T extends Vec | Mat>(l: Term<T>, b: FloatTerm): Op2<T>;
 // prettier-ignore
-export function add<T extends IVec>(l: Term<"int">, b: Term<T>): Op2<T>;
+export function add<T extends IVec>(l: IntTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function add<T extends IVec>(l: Term<T>, b: Term<"int">): Op2<T>;
+export function add<T extends IVec>(l: Term<T>, b: IntTerm): Op2<T>;
 // prettier-ignore
 export function add(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("+", l, r);
@@ -533,13 +542,13 @@ export function add(l: Term<any>, r: Term<any>): Op2<any> {
 // prettier-ignore
 export function sub<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
 // prettier-ignore
-export function sub<T extends Vec | Mat>(l: Term<"float">, b: Term<T>): Op2<T>;
+export function sub<T extends Vec | Mat>(l: FloatTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function sub<T extends Vec | Mat>(l: Term<T>, b: Term<"float">): Op2<T>;
+export function sub<T extends Vec | Mat>(l: Term<T>, b: FloatTerm): Op2<T>;
 // prettier-ignore
-export function sub<T extends IVec>(l: Term<"int">, b: Term<T>): Op2<T>;
+export function sub<T extends IVec>(l: IntTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function sub<T extends IVec>(l: Term<T>, b: Term<"int">): Op2<T>;
+export function sub<T extends IVec>(l: Term<T>, b: IntTerm): Op2<T>;
 export function sub(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("-", l, r);
 }
@@ -547,19 +556,19 @@ export function sub(l: Term<any>, r: Term<any>): Op2<any> {
 // prettier-ignore
 export function mul<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
 // prettier-ignore
-export function mul<T extends Vec | Mat>(l: Term<"float">, b: Term<T>): Op2<T>;
+export function mul<T extends Vec | Mat>(l: FloatTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function mul<T extends Vec | Mat>(l: Term<T>, b: Term<"float">): Op2<T>;
+export function mul<T extends Vec | Mat>(l: Term<T>, b: FloatTerm): Op2<T>;
 // prettier-ignore
-export function mul<T extends IVec>(l: Term<"int">, b: Term<T>): Op2<T>;
+export function mul<T extends IVec>(l: IntTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function mul<T extends IVec>(l: Term<T>, b: Term<"int">): Op2<T>;
-export function mul(l: Term<"mat2">, b: Term<"vec2">): Op2<"vec2">;
-export function mul(l: Term<"mat3">, b: Term<"vec3">): Op2<"vec3">;
-export function mul(l: Term<"mat4">, b: Term<"vec4">): Op2<"vec4">;
-export function mul(l: Term<"vec2">, b: Term<"mat2">): Op2<"vec2">;
-export function mul(l: Term<"vec3">, b: Term<"mat3">): Op2<"vec3">;
-export function mul(l: Term<"vec4">, b: Term<"mat4">): Op2<"vec4">;
+export function mul<T extends IVec>(l: Term<T>, b: IntTerm): Op2<T>;
+export function mul(l: Mat2Term, b: Vec2Term): Op2<"vec2">;
+export function mul(l: Mat3Term, b: Vec3Term): Op2<"vec3">;
+export function mul(l: Mat4Term, b: Vec4Term): Op2<"vec4">;
+export function mul(l: Vec2Term, b: Mat2Term): Op2<"vec2">;
+export function mul(l: Vec3Term, b: Mat3Term): Op2<"vec3">;
+export function mul(l: Vec4Term, b: Mat4Term): Op2<"vec4">;
 export function mul(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("*", l, r, isMat(l) && isVec(r) ? r.type : undefined);
 }
@@ -567,13 +576,13 @@ export function mul(l: Term<any>, r: Term<any>): Op2<any> {
 // prettier-ignore
 export function div<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
 // prettier-ignore
-export function div<T extends Vec | Mat>(l: Term<"float">, b: Term<T>): Op2<T>;
+export function div<T extends Vec | Mat>(l: FloatTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function div<T extends Vec | Mat>(l: Term<T>, b: Term<"float">): Op2<T>;
+export function div<T extends Vec | Mat>(l: Term<T>, b: FloatTerm): Op2<T>;
 // prettier-ignore
-export function div<T extends IVec>(l: Term<"int">, b: Term<T>): Op2<T>;
+export function div<T extends IVec>(l: IntTerm, b: Term<T>): Op2<T>;
 // prettier-ignore
-export function div<T extends IVec>(l: Term<T>, b: Term<"int">): Op2<T>;
+export function div<T extends IVec>(l: Term<T>, b: IntTerm): Op2<T>;
 export function div(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("/", l, r);
 }

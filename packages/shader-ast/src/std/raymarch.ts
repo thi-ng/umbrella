@@ -1,4 +1,9 @@
-import { Swizzle2_3, Sym, TaggedFn1 } from "../api";
+import {
+    FloatSym,
+    Swizzle2_3,
+    TaggedFn1,
+    Vec2Sym
+} from "../api";
 import {
     $,
     $x,
@@ -92,8 +97,8 @@ export const raymarchScene = (
         ..._opts
     };
     return defn("vec2", opts.name, [["vec3"], ["vec3"]], (pos, dir) => {
-        let total: Sym<"float">;
-        let res: Sym<"vec2">;
+        let total: FloatSym;
+        let res: Vec2Sym;
         return [
             (total = sym(float(opts.near))),
             (res = sym("vec2")),
@@ -126,7 +131,7 @@ export const raymarchScene = (
  */
 export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
     defn("vec3", name, [["vec3"], ["float"]], (p, smooth) => {
-        let dn: Sym<"vec2">;
+        let dn: Vec2Sym;
         let comp = (id: Swizzle2_3) =>
             sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));
         return [
@@ -145,7 +150,7 @@ export const raymarchDir = defn(
     "raymarchDir",
     [["vec2"], ["vec2"], ["float"]],
     (frag, res, fov) => {
-        let uv: Sym<"vec2">;
+        let uv: Vec2Sym;
         return [
             (uv = sym(sub(frag, div(res, FLOAT2)))),
             ret(
@@ -168,9 +173,9 @@ export const raymarchDir = defn(
  */
 export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
     defn("float", "raymarchAO", [["vec3"], ["vec3"]], (p, n) => {
-        let r: Sym<"float">;
-        let w: Sym<"float">;
-        let d0: Sym<"float">;
+        let r: FloatSym;
+        let w: FloatSym;
+        let d0: FloatSym;
         return [
             (r = sym(FLOAT0)),
             (w = sym(FLOAT1)),
@@ -204,7 +209,7 @@ export const aspectCorrectedUV = defn(
     "aspectCorrectedUV",
     [["vec2"], ["vec2"]],
     (pos, res) => {
-        let uv: Sym<"vec2">;
+        let uv: Vec2Sym;
         return [
             (uv = sym("vec2", fit0111(div(pos, res)))),
             assign($x(uv), mul($x(uv), div($x(res), $y(res)))),

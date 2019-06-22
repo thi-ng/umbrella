@@ -1,8 +1,14 @@
 import {
+    FloatTerm,
     Op2,
     Prim,
-    Sym,
-    Term
+    Term,
+    Vec2Sym,
+    Vec2Term,
+    Vec3Sym,
+    Vec3Term,
+    Vec4Sym,
+    Vec4Term
 } from "../api";
 import {
     $w,
@@ -30,12 +36,12 @@ import { clamp, max } from "../builtins";
 export const clamp01 = <T extends Prim>(x: Term<T>): Term<T> =>
     <Term<any>>(
         (x.type === "float"
-            ? clamp(<Term<"float">>x, FLOAT0, FLOAT1)
+            ? clamp(<FloatTerm>x, FLOAT0, FLOAT1)
             : x.type === "vec2"
-            ? clamp(<Term<"vec2">>x, vec2(), vec2(1))
+            ? clamp(<Vec2Term>x, vec2(), vec2(1))
             : x.type === "vec3"
-            ? clamp(<Term<"vec3">>x, vec3(), vec3(1))
-            : clamp(<Term<"vec4">>x, vec4(), vec4(1)))
+            ? clamp(<Vec3Term>x, vec3(), vec3(1))
+            : clamp(<Vec4Term>x, vec4(), vec4(1)))
     );
 
 /**
@@ -70,19 +76,19 @@ export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
 export const fit0111 = <T extends Prim>(x: Term<T>): Op2<T> =>
     <any>sub(mul(<any>x, FLOAT2), FLOAT1);
 
-export const maxComp2 = (v: Sym<"vec2">) => max($x(v), $y(v));
+export const maxComp2 = (v: Vec2Sym) => max($x(v), $y(v));
 
-export const maxComp3 = (v: Sym<"vec3">) => max(max($x(v), $y(v)), $z(v));
+export const maxComp3 = (v: Vec3Sym) => max(max($x(v), $y(v)), $z(v));
 
-export const maxComp4 = (v: Sym<"vec4">) =>
+export const maxComp4 = (v: Vec4Sym) =>
     max(max(max($x(v), $y(v)), $z(v)), $w(v));
 
-export const cross2 = (a: Term<"vec2">, b: Term<"vec2">) =>
+export const cross2 = (a: Vec2Term, b: Vec2Term) =>
     crossC2($x(a), $y(a), $x(b), $y(b));
 
 export const crossC2 = (
-    ax: Term<"float">,
-    ay: Term<"float">,
-    bx: Term<"float">,
-    by: Term<"float">
+    ax: FloatTerm,
+    ay: FloatTerm,
+    bx: FloatTerm,
+    by: FloatTerm
 ) => sub(mul(ax, by), mul(ay, bx));
