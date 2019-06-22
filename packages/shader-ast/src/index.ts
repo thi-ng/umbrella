@@ -2,11 +2,7 @@ export * from "./api";
 export * from "./ast";
 export * from "./builtins";
 export * from "./optimize";
-
-export * from "./codegen/target";
-export * from "./codegen/glsl";
-export * from "./codegen/js";
-export * from "./codegen/wasm";
+export * from "./target";
 
 export * from "./std/fog";
 export * from "./std/lambert";

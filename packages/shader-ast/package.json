@@ -18,7 +18,7 @@
         "build:es6": "tsc --declaration",
         "build:bundle": "../../scripts/bundle-module",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib codegen std",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib std",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public"
@@ -36,8 +36,7 @@
         "@thi.ng/checks": "^2.1.6",
         "@thi.ng/defmulti": "^1.0.9",
         "@thi.ng/dgraph": "^1.1.9",
-        "@thi.ng/matrices": "^0.4.0",
-        "@thi.ng/vectors": "^2.5.6"
+        "@thi.ng/errors": "^1.0.6"
     },
     "keywords": [
         "AST",

@@ -1,7 +1,7 @@
 import { Fn } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { unsupported } from "@thi.ng/errors";
-import { TargetImpl, Term } from "../api";
+import { TargetImpl, Term } from "./api";
 
 /**
  * Returns a new code generator / compile target function which
