@@ -1,5 +1,3 @@
-import { swizzle8 } from "@thi.ng/binary";
-import { rgbaInt } from "@thi.ng/color";
 import {
     $,
     $x,
@@ -29,8 +27,6 @@ import {
     sdSphere,
     sdTxRepeat3,
     sym,
-    targetGLSL,
-    targetJS,
     TRUE,
     vec2,
     Vec2Sym,
@@ -38,6 +34,8 @@ import {
     Vec3Sym,
     vec4
 } from "@thi.ng/shader-ast";
+import { targetGLSL } from "@thi.ng/shader-ast-glsl";
+import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
 import {
     compileModel,
     draw,
@@ -206,34 +204,17 @@ if (JS_MODE) {
     // JS Canvas 2D shader emulation from here...
     //
     const fn = JS.compile(shaderProgram).mainImage;
-
-    const ctx = canvas.getContext("2d")!;
-    const img = ctx.getImageData(0, 0, W, H);
-    const u32 = new Uint32Array(img.data.buffer);
+    const rt = initRuntime({ canvas });
     let time = 0;
 
     setInterval(() => {
         time += 0.1;
-        const frag = [];
         const eyePos = [
             Math.cos(time) * 2.5,
             Math.cos(time / 2) * 0.7,
             Math.sin(time) * 2.5
         ];
-        for (let y = 0, H1 = H - 1, i = 0; y < H; y++) {
-            frag[1] = H1 - y;
-            for (let x = 0; x < W; x++) {
-                frag[0] = x;
-                u32[i++] = swizzle8(
-                    rgbaInt(fn(frag, size, eyePos, lightDir)),
-                    0,
-                    3,
-                    2,
-                    1
-                );
-            }
-        }
-        ctx.putImageData(img, 0, 0);
+        rt.update((frag) => fn(frag, size, eyePos, lightDir));
     }, 16);
 } else {
     //

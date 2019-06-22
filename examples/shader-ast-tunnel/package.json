@@ -18,6 +18,8 @@
         "@thi.ng/binary": "latest",
         "@thi.ng/color": "latest",
         "@thi.ng/shader-ast": "latest",
+        "@thi.ng/shader-ast-glsl": "latest",
+        "@thi.ng/shader-ast-js": "latest",
         "@thi.ng/webgl": "latest"
     },
     "browserslist": [

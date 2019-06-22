@@ -1,5 +1,5 @@
 import { swizzle8 } from "@thi.ng/binary";
-import { int32Rgba, rgbaInt } from "@thi.ng/color";
+import { int32Rgba } from "@thi.ng/color";
 import {
     $,
     $x,
@@ -11,20 +11,19 @@ import {
     div,
     float,
     FloatSym,
-    JS_DEFAULT_ENV,
     mul,
     neg,
     pow,
     program,
     ret,
     sym,
-    targetGLSL,
-    targetJS,
     texture,
     vec2,
     Vec2Sym,
     vec4
 } from "@thi.ng/shader-ast";
+import { targetGLSL } from "@thi.ng/shader-ast-glsl";
+import { initRuntime, JS_DEFAULT_ENV, targetJS } from "@thi.ng/shader-ast-js";
 import {
     compileModel,
     draw,
@@ -133,10 +132,9 @@ if (JS_MODE) {
         );
 
         // since texture sampling is not (yet) supported for the JS
-        // codegen target, we're patching in a simple wrap around lookup
-        // ourselves...
-        const env = { ...JS_DEFAULT_ENV };
-        env.sampler2D.texture = (_, uv) => {
+        // codegen target, we're patching in a simple wrap-around 2D
+        // lookup ourselves...
+        JS_DEFAULT_ENV.sampler2D.texture = (_, uv) => {
             let x = ((uv[0] * TW) | 0) % TW;
             let y = ((uv[1] * TH) | 0) % TH;
             x < 0 && (x += TW);
@@ -148,31 +146,12 @@ if (JS_MODE) {
         // under the hood all vector & matrix operations delegate to
         // thi.ng/vectors and thi.ng/matrices packages by default
         const fn = JS.compile(shaderProgram).mainImage;
-
-        // prep main pixel buffer
-        const ctx = canvas.getContext("2d");
-        const img = ctx!.getImageData(0, 0, W, H);
-        const u32 = new Uint32Array(img.data.buffer);
+        const rt = initRuntime({ canvas });
         let time = 0;
 
         setInterval(() => {
             time += 0.05;
-            const frag = [];
-            for (let y = 0, i = 0; y < H; y++) {
-                frag[1] = y;
-                for (let x = 0; x < W; x++) {
-                    frag[0] = x;
-                    // the swizzle8 is needed to convert RGBA to BGRA
-                    u32[i++] = swizzle8(
-                        rgbaInt(fn(frag, size, time)),
-                        0,
-                        3,
-                        2,
-                        1
-                    );
-                }
-            }
-            ctx!.putImageData(img, 0, 0);
+            rt.update((frag) => fn(frag, size, time));
         }, 16);
     });
 } else {
