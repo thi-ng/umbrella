@@ -59,6 +59,8 @@ WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 | Delta image                                                                                                          |                                                                                                                   |
 | ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/raymarch-delta.jpg) |                                                                                                                   |
 
+<small>Comparison of the raymarch shader example (link further below), cross compiled to both WebGL and JavaScript and showing the difference image of both results.</small>
+
 In addition to the code generation aspects, this package also provides a
 form of "standard library", pure functions for common use cases and
 which can be used as syntax sugar and / or higher level building blocks
