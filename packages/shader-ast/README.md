@@ -53,6 +53,11 @@ custom code generators can be easily added. Once more details have been
 ironed out, we aim to support [WASM](https://webassembly.org), [WHLSL for
 WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 
+| WebGL version                                                                                                        | Canvas 2D version                                                                                                 |
+|----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/raymarch-webgl.jpg) | ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/raymarch-2d.jpg) |
+| Delta image                                                                                                          |                                                                                                                   |
+| ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/raymarch-delta.jpg) |                                                                                                                   |
 
 In addition to the code generation aspects, this package also provides a
 form of "standard library", pure functions for common use cases and
