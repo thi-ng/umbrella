@@ -1,6 +1,7 @@
 import { rgbaInt } from "@thi.ng/color";
 import {
-    $,
+    $x,
+    $y,
     add,
     cos,
     defn,
@@ -8,13 +9,14 @@ import {
     dot,
     fit1101,
     float,
+    FloatSym,
     mul,
     ret,
     sin,
     sym,
-    Sym,
     targetGLSL,
     targetJS,
+    Vec2Sym,
     vec3,
     vec4
 } from "@thi.ng/shader-ast";
@@ -56,22 +58,22 @@ const main = defn(
     [["vec2", "fragCoord"], ["vec2", "res"], ["vec2", "uv"], ["float", "time"]],
     // bound args given to function body
     (frag, res, uv, time) => {
-        let a: Sym<"float">;
-        let p: Sym<"float">;
-        let sp: Sym<"vec2">;
-        let dp: Sym<"float">;
-        let p2: Sym<"float">;
-        let m: Sym<"float">;
+        let a: FloatSym;
+        let p: FloatSym;
+        let sp: Vec2Sym;
+        let dp: FloatSym;
+        let p2: FloatSym;
+        let m: FloatSym;
         return [
             (a = sym(add(mul(sin(time), float(2)), float(3)))),
-            (p = sym(add(mul($(frag, "y"), $(res, "x")), $(frag, "x")))),
+            (p = sym(add(mul($y(frag), $x(res)), $x(frag)))),
             (sp = sym(mul(uv, a))),
             (dp = sym(dot(sp, sp))),
-            (p2 = sym(add(mul($(sp, "y"), $(res, "x")), $(sp, "x")))),
+            (p2 = sym(add(mul($y(sp), $x(res)), $x(sp)))),
             (m = sym(
                 mul(
-                    div(add(p2, mul(p, a)), mul($(res, "x"), $(res, "y"))),
-                    mul($(sp, "x"), $(sp, "y"))
+                    div(add(p2, mul(p, a)), mul($x(res), $y(res))),
+                    mul($x(sp), $y(sp))
                 )
             )),
             ret(

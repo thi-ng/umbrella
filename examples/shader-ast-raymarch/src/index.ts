@@ -10,6 +10,7 @@ import {
     diffuseLighting,
     fit1101,
     float,
+    FloatSym,
     fogExp2,
     gte,
     ifThen,
@@ -27,16 +28,24 @@ import {
     sdOpSmoothUnion,
     sdSphere,
     sdTxRepeat3,
-    Sym,
     sym,
     targetGLSL,
     targetJS,
     TRUE,
     vec2,
+    Vec2Sym,
     vec3,
+    Vec3Sym,
     vec4
 } from "@thi.ng/shader-ast";
-import { compileModel, draw, GLSL, GLVec3, quad, shader } from "@thi.ng/webgl";
+import {
+    compileModel,
+    draw,
+    GLSL,
+    GLVec3,
+    quad,
+    shader
+} from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;
@@ -48,10 +57,10 @@ const JS = targetJS();
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg
 const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
-    let d1: Sym<"float">;
-    let d2: Sym<"float">;
-    let d3: Sym<"float">;
-    let d4: Sym<"float">;
+    let d1: FloatSym;
+    let d2: FloatSym;
+    let d3: FloatSym;
+    let d4: FloatSym;
     return [
         assign(pos, sdTxRepeat3(pos, vec3(2.1))),
         (d1 = sym(sdSphere(pos, float(0.5)))),
@@ -87,14 +96,14 @@ const main = defn(
         ["vec3", "lightDir"]
     ],
     (frag, res, eyePos, lightDir) => {
-        let dir: Sym<"vec3">;
-        let result: Sym<"vec2">;
-        let isec: Sym<"vec3">;
-        let norm: Sym<"vec3">;
-        let material: Sym<"vec3">;
-        let diffuse: Sym<"float">;
+        let dir: Vec3Sym;
+        let result: Vec2Sym;
+        let isec: Vec3Sym;
+        let norm: Vec3Sym;
+        let material: Vec3Sym;
+        let diffuse: FloatSym;
         // background color
-        let bg = vec3(1.5, 0.6, 0);
+        const bg = vec3(1.5, 0.6, 0);
         return [
             // compute ray dir from fragCoord, viewport res and FOV
             // then apply basic camera settings (eye, target, up)

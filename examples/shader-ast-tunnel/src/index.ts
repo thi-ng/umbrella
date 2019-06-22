@@ -2,12 +2,15 @@ import { swizzle8 } from "@thi.ng/binary";
 import { int32Rgba, rgbaInt } from "@thi.ng/color";
 import {
     $,
+    $x,
+    $y,
     add,
     assign,
     atan,
     defn,
     div,
     float,
+    FloatSym,
     JS_DEFAULT_ENV,
     mul,
     neg,
@@ -15,11 +18,11 @@ import {
     program,
     ret,
     sym,
-    Sym,
     targetGLSL,
     targetJS,
     texture,
     vec2,
+    Vec2Sym,
     vec4
 } from "@thi.ng/shader-ast";
 import {
@@ -50,16 +53,16 @@ const main = defn(
         ["sampler2D", "tex"]
     ],
     (frag, res, time, tex) => {
-        let p: Sym<"vec2">;
-        let uv: Sym<"vec2">;
-        let r: Sym<"float">;
+        let p: Vec2Sym;
+        let uv: Vec2Sym;
+        let r: FloatSym;
         return [
-            (p = sym(div(add(neg(res), mul(frag, float(2))), $(res, "y")))),
+            (p = sym(div(add(neg(res), mul(frag, float(2))), $y(res)))),
             (r = sym(
                 pow(
                     add(
-                        pow(mul($(p, "x"), $(p, "x")), float(4)),
-                        pow(mul($(p, "y"), $(p, "y")), float(4))
+                        pow(mul($x(p), $x(p)), float(4)),
+                        pow(mul($y(p), $y(p)), float(4))
                     ),
                     float(1 / 8)
                 )
@@ -67,7 +70,7 @@ const main = defn(
             (uv = sym(
                 vec2(
                     add(div(float(0.3), r), time),
-                    div(atan(div($(p, "y"), $(p, "x"))), float(Math.PI))
+                    div(atan(div($y(p), $x(p))), float(Math.PI))
                 )
             )),
             ret(vec4(mul($(texture(tex, uv), "xyz"), r), float(1)))
