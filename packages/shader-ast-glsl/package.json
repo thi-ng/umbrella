@@ -39,11 +39,14 @@
     },
     "keywords": [
         "AST",
-        "crosscompiler",
+        "code generator",
         "DSL",
         "ES6",
         "GLSL",
-        "typescript"
+        "shader",
+        "typescript",
+        "webgl",
+        "webgl2"
     ],
     "publishConfig": {
         "access": "public"

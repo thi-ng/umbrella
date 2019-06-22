@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -41,10 +41,14 @@
     "keywords": [
         "AST",
         "crosscompiler",
+        "code generator",
         "DSL",
         "ES6",
         "GLSL",
-        "typescript"
+        "shader",
+        "typecheck",
+        "typescript",
+        "x-platform"
     ],
     "publishConfig": {
         "access": "public"
