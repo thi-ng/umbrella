@@ -21,7 +21,7 @@ This project is part of the
 ## About
 
 JavaScript code generator, compiler & runtime for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast).
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast).
 
 Due to lack of native vector operations in JS, this compile target is
 much more involved than GLSL and uses a pluggable backend to perform all
@@ -44,7 +44,7 @@ yarn add @thi.ng/shader-ast-js
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/features/webgl/packages/shader-ast)
+- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples

@@ -125,7 +125,7 @@ Benefits of this approach:
 - [ ] struct support
 - [ ] more code gens (JS ✅, WASM, WHLSL, OpenCL, Houdini VEX)
 - [ ] integration w/
-  [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl)
+  [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl)
 - [x] boilerplate for JS runtime (non-GPU shader execution)
 - [ ] AST transformations (optimizers, e.g. [constant
   folding ✅](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/optimize.ts))

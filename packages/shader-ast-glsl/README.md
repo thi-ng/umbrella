@@ -21,11 +21,11 @@ This project is part of the
 ## About
 
 GLSL code generator for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast).
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast).
 Supports GLSL ES 1.00 (WebGL) & GLSL ES 3.00 (WebGL 2).
 
 This package is also used for shader assembly by
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/features/webgl/packages/webgl).
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl).
 
 ## Installation
 
@@ -38,7 +38,7 @@ yarn add @thi.ng/shader-ast-glsl
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/features/webgl/packages/shader-ast)
+- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
 
 ## Usage examples
 
