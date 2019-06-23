@@ -1,3 +1,3 @@
-import { defMathNOp } from "./internal/codegen";
+import { defMathOpN } from "./internal/codegen";
 
-export const [divN, divN2, divN3, divN4] = defMathNOp("/");
+export const [divN, divN2, divN3, divN4] = defMathOpN("/");

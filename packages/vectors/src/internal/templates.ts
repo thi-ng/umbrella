@@ -5,6 +5,14 @@ export const MATH = (op: string): Template => ([o, a, b]) => `${o}=${a}${op}${b}
 // prettier-ignore
 export const MATH_N = (op: string): Template => ([o, a]) => `${o}=${a}${op}n;`;
 // prettier-ignore
+export const SIGNED = (op: string): Template => ([o, a, b]) => `${o}=(${a}${op}${b})|0;`;
+// prettier-ignore
+export const UNSIGNED = (op: string): Template => ([o, a, b]) => `${o}=(${a}${op}${b})>>>0;`;
+// prettier-ignore
+export const SIGNED_N = (op: string): Template => ([o, a]) => `${o}=(${a}${op}n)|0;`;
+// prettier-ignore
+export const UNSIGNED_N = (op: string): Template => ([o, a]) => `${o}=(${a}${op}n)>>>0;`;
+// prettier-ignore
 export const FN = (op="op"): Template => ([o, a]) => `${o}=${op}(${a});`;
 // prettier-ignore
 export const FN2 = (op="op"): Template => ([o, a, b]) => `${o}=${op}(${a},${b});`;
