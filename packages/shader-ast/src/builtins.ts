@@ -4,6 +4,8 @@ import {
     FnCall,
     IntTerm,
     IVec,
+    IVec2Term,
+    IVec3Term,
     Mat,
     Prim,
     Sampler,
@@ -301,11 +303,11 @@ export function textureLod(sampler: Sym<Sampler>, uv: Term<Vec>, bias?: FloatTer
 }
 
 // prettier-ignore
-export function textureOffset(sampler: Sampler2DSym, uvw: Vec2Term, off: Term<"ivec2">, bias?: FloatTerm): FnCall<"vec4">;
+export function textureOffset(sampler: Sampler2DSym, uvw: Vec2Term, off: IVec2Term, bias?: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
-export function textureOffset(sampler: Sampler3DSym, uvw: Vec3Term, off: Term<"ivec3">, bias?: FloatTerm): FnCall<"vec4">;
+export function textureOffset(sampler: Sampler3DSym, uvw: Vec3Term, off: IVec3Term, bias?: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
-export function textureOffset(sampler: Sym<"sampler2DShadow">, uvw: Vec3Term, off: Term<"ivec2">, bias?: FloatTerm): FnCall<"float">;
+export function textureOffset(sampler: Sym<"sampler2DShadow">, uvw: Vec3Term, off: IVec2Term, bias?: FloatTerm): FnCall<"float">;
 // prettier-ignore
 export function textureOffset(sampler: Sym<Sampler>, uv: Term<Vec>, off: Term<IVec>, bias?: FloatTerm): FnCall<any> {
     const f = builtinCall(

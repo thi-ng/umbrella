@@ -29,7 +29,8 @@ export type Tag =
     | "scope"
     | "swizzle"
     | "sym"
-    | "ternary";
+    | "ternary"
+    | "while";
 
 export type Type =
     | "void"
@@ -53,6 +54,12 @@ export type Type =
     | "ivec3[]"
     | "ivec4"
     | "ivec4[]"
+    | "uvec2"
+    | "uvec2[]"
+    | "uvec3"
+    | "uvec3[]"
+    | "uvec4"
+    | "uvec4[]"
     | "bvec2"
     | "bvec2[]"
     | "bvec3"
@@ -87,6 +94,9 @@ export interface IndexTypeMap {
     "ivec2[]": "ivec2";
     "ivec3[]": "ivec3";
     "ivec4[]": "ivec4";
+    "uvec2[]": "uvec2";
+    "uvec3[]": "uvec3";
+    "uvec4[]": "uvec4";
     "bvec2[]": "bvec2";
     "bvec3[]": "bvec3";
     "bvec4[]": "bvec4";
@@ -102,6 +112,9 @@ export type Vec4Term = Term<"vec4">;
 export type IVec2Term = Term<"ivec2">;
 export type IVec3Term = Term<"ivec3">;
 export type IVec4Term = Term<"ivec4">;
+export type UVec2Term = Term<"uvec2">;
+export type UVec3Term = Term<"uvec3">;
+export type UVec4Term = Term<"uvec4">;
 export type BVec2Term = Term<"bvec2">;
 export type BVec3Term = Term<"bvec3">;
 export type BVec4Term = Term<"bvec4">;
@@ -122,6 +135,9 @@ export type Vec4Sym = Sym<"vec4">;
 export type IVec2Sym = Sym<"ivec2">;
 export type IVec3Sym = Sym<"ivec3">;
 export type IVec4Sym = Sym<"ivec4">;
+export type UVec2Sym = Sym<"uvec2">;
+export type UVec3Sym = Sym<"uvec3">;
+export type UVec4Sym = Sym<"uvec4">;
 export type BVec2Sym = Sym<"bvec2">;
 export type BVec3Sym = Sym<"bvec3">;
 export type BVec4Sym = Sym<"bvec4">;
@@ -142,6 +158,7 @@ export type Indexable = keyof IndexTypeMap;
 
 export type Vec = "vec2" | "vec3" | "vec4";
 export type IVec = "ivec2" | "ivec3" | "ivec4";
+export type UVec = "uvec2" | "uvec3" | "uvec4";
 export type BVec = "bvec2" | "bvec3" | "bvec4";
 export type Mat = "mat2" | "mat3" | "mat4";
 export type Sampler =
@@ -155,6 +172,8 @@ export type Prim = "float" | Vec;
 export type Int = "int" | "uint";
 export type Comparable = "float" | Int;
 export type Numeric = number | FloatTerm | IntTerm | UintTerm;
+export type NumericF = number | FloatTerm;
+export type NumericI = number | IntTerm;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
@@ -457,13 +476,13 @@ export interface Scope extends Term<"void"> {
 }
 
 export interface Branch extends Term<"void"> {
-    test: Term<"bool">;
+    test: BoolTerm;
     t: Scope;
     f?: Scope;
 }
 
 export interface Ternary<T extends Type> extends Term<T> {
-    test: Term<"bool">;
+    test: BoolTerm;
     t: Term<T>;
     f: Term<T>;
 }
@@ -577,8 +596,12 @@ export interface FnCall<T extends Type> extends Term<T> {
 
 export interface ForLoop extends Term<"void">, Scoped {
     init?: Decl<any>;
-    test: Term<"bool">;
+    test: BoolTerm;
     iter?: Term<any>;
+}
+
+export interface WhileLoop extends Term<"void">, Scoped {
+    test: BoolTerm;
 }
 
 export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
@@ -599,4 +622,5 @@ export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
     swizzle: Fn<Swizzle<any>, T>;
     sym: Fn<Sym<any>, T>;
     ternary: Fn<Ternary<any>, T>;
+    while: Fn<WhileLoop, T>;
 }

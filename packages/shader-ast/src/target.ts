@@ -4,8 +4,9 @@ import { unsupported } from "@thi.ng/errors";
 import { TargetImpl, Term } from "./api";
 
 /**
- * Returns a new code generator / compile target function which
- * serializes a given AST using the provided node type implementations.
+ * Takes an object of code generator functions and returns a new code
+ * generator / compile target function which serializes a given AST
+ * using the provided node type implementations.
  *
  * @param impls
  *
