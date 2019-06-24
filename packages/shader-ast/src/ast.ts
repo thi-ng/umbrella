@@ -150,7 +150,7 @@ export const scopeChildren = (t: Term<any>) =>
 export const allChildren = (t: Term<any>) =>
     t.tag === "scope"
         ? (<Scope>t).body
-        : t.tag === "fn" || t.tag === "for"
+        : t.tag === "fn" || t.tag === "for" || t.tag == "while"
         ? (<Func<any>>t).scope.body
         : t.tag === "if"
         ? (<Branch>t).f
