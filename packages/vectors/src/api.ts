@@ -148,28 +148,28 @@ export interface MultiVecOpRoVVO<T, O>
 const mi = -Infinity;
 const mx = Infinity;
 
-export const MIN2 = Object.freeze([mi, mi]);
-export const MAX2 = Object.freeze([mx, mx]);
-export const ONE2 = Object.freeze([1, 1]);
-export const ZERO2 = Object.freeze([0, 0]);
-export const X2 = Object.freeze([1, 0]);
-export const Y2 = Object.freeze([0, 1]);
+export const MIN2: ReadonlyVec = Object.freeze([mi, mi]);
+export const MAX2: ReadonlyVec = Object.freeze([mx, mx]);
+export const ONE2: ReadonlyVec = Object.freeze([1, 1]);
+export const ZERO2: ReadonlyVec = Object.freeze([0, 0]);
+export const X2: ReadonlyVec = Object.freeze([1, 0]);
+export const Y2: ReadonlyVec = Object.freeze([0, 1]);
 
-export const MIN3 = Object.freeze([mi, mi, mi]);
-export const MAX3 = Object.freeze([mx, mx, mx]);
-export const ONE3 = Object.freeze([1, 1, 1]);
-export const ZERO3 = Object.freeze([0, 0, 0]);
-export const X3 = Object.freeze([1, 0, 0]);
-export const Y3 = Object.freeze([0, 1, 0]);
-export const Z3 = Object.freeze([0, 0, 1]);
+export const MIN3: ReadonlyVec = Object.freeze([mi, mi, mi]);
+export const MAX3: ReadonlyVec = Object.freeze([mx, mx, mx]);
+export const ONE3: ReadonlyVec = Object.freeze([1, 1, 1]);
+export const ZERO3: ReadonlyVec = Object.freeze([0, 0, 0]);
+export const X3: ReadonlyVec = Object.freeze([1, 0, 0]);
+export const Y3: ReadonlyVec = Object.freeze([0, 1, 0]);
+export const Z3: ReadonlyVec = Object.freeze([0, 0, 1]);
 
-export const MIN4 = Object.freeze([mi, mi, mi, mi]);
-export const MAX4 = Object.freeze([mx, mx, mx, mx]);
-export const ONE4 = Object.freeze([1, 1, 1, 1]);
-export const ZERO4 = Object.freeze([0, 0, 0, 0]);
-export const X4 = Object.freeze([1, 0, 0, 0]);
-export const Y4 = Object.freeze([0, 1, 0, 0]);
-export const Z4 = Object.freeze([0, 0, 1, 0]);
-export const W4 = Object.freeze([0, 0, 0, 1]);
+export const MIN4: ReadonlyVec = Object.freeze([mi, mi, mi, mi]);
+export const MAX4: ReadonlyVec = Object.freeze([mx, mx, mx, mx]);
+export const ONE4: ReadonlyVec = Object.freeze([1, 1, 1, 1]);
+export const ZERO4: ReadonlyVec = Object.freeze([0, 0, 0, 0]);
+export const X4: ReadonlyVec = Object.freeze([1, 0, 0, 0]);
+export const Y4: ReadonlyVec = Object.freeze([0, 1, 0, 0]);
+export const Z4: ReadonlyVec = Object.freeze([0, 0, 1, 0]);
+export const W4: ReadonlyVec = Object.freeze([0, 0, 0, 1]);
 
 export type Template = (syms: string[], i?: number) => string;
