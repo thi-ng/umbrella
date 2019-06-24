@@ -1,5 +1,5 @@
 import { Fn } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
+import { isBoolean, isNumber } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import {
     defTarget,
@@ -104,7 +104,7 @@ export const targetGLSL = (version = 300) => {
             const v = t.val;
             switch (t.type) {
                 case "bool":
-                    return String(!!v);
+                    return isBoolean(v) ? String(v) : `bool(${emit(v)})`;
                 case "float":
                     return isNumber(v)
                         ? v === Math.trunc(v)
@@ -113,10 +113,19 @@ export const targetGLSL = (version = 300) => {
                         : `float(${emit(v)})`;
                 case "int":
                 case "uint":
-                    return isNumber(v) ? String(v) : `int(${emit(v)})`;
+                    return isNumber(v) ? String(v) : `${t.type}(${emit(v)})`;
                 case "vec2":
                 case "vec3":
                 case "vec4":
+                case "ivec2":
+                case "ivec3":
+                case "ivec4":
+                case "uvec2":
+                case "uvec3":
+                case "uvec4":
+                case "bvec2":
+                case "bvec3":
+                case "bvec4":
                 case "mat2":
                 case "mat3":
                 case "mat4":
@@ -142,7 +151,9 @@ export const targetGLSL = (version = 300) => {
 
         sym: (t) => t.id,
 
-        ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`
+        ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`,
+
+        while: (t) => `while (${emit(t.test)}) ${emit(t.scope)}`
     });
 
     Object.assign(emit, <GLSLTarget>{
