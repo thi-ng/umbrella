@@ -550,12 +550,16 @@ export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
 });
 
 const OP_INFO: IObjectOf<string> = {
-    mv: "mv",
-    vm: "vm",
-    vf: "vn",
-    mf: "vn",
-    fv: "nv",
-    fm: "nv"
+    mave: "mv",
+    vema: "vm",
+    vefl: "vn",
+    mafl: "vn",
+    flve: "nv",
+    flma: "nv",
+    ivin: "vn",
+    iniv: "nv",
+    uvui: "vn",
+    uiuv: "nv"
 };
 
 export const op2 = (
@@ -571,7 +575,7 @@ export const op2 = (
     return {
         tag: "op2",
         type,
-        info: info || OP_INFO[l.type[0] + r.type[0]],
+        info: info || OP_INFO[l.type.substr(0, 2) + r.type.substr(0, 2)],
         op,
         l,
         r
