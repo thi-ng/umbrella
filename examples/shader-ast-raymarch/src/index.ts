@@ -3,29 +3,15 @@ import {
     $x,
     add,
     assign,
-    clamp01,
     defn,
-    diffuseLighting,
-    fit1101,
     float,
     FloatSym,
-    fogExp2,
     gte,
     ifThen,
-    lambert,
-    lookat,
     mix,
     mul,
     program,
-    raymarchAO,
-    raymarchDir,
-    raymarchNormal,
-    raymarchScene,
     ret,
-    sdAABB,
-    sdOpSmoothUnion,
-    sdSphere,
-    sdTxRepeat3,
     sym,
     TRUE,
     vec2,
@@ -36,6 +22,22 @@ import {
 } from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
+import {
+    clamp01,
+    diffuseLighting,
+    fit1101,
+    fogExp2,
+    lambert,
+    lookat,
+    raymarchAO,
+    raymarchDir,
+    raymarchNormal,
+    raymarchScene,
+    sdfBox3,
+    sdfRepeat3,
+    sdfSmoothUnion,
+    sdfSphere
+} from "@thi.ng/shader-ast-stdlib";
 import {
     compileModel,
     draw,
@@ -60,16 +62,16 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
     let d3: FloatSym;
     let d4: FloatSym;
     return [
-        assign(pos, sdTxRepeat3(pos, vec3(2.1))),
-        (d1 = sym(sdSphere(pos, float(0.5)))),
-        (d2 = sym(sdAABB(pos, vec3(1, 0.2, 0.2)))),
-        (d3 = sym(sdAABB(pos, vec3(0.2, 0.2, 1)))),
-        (d4 = sym(sdAABB(pos, vec3(0.2, 1, 0.2)))),
+        assign(pos, sdfRepeat3(pos, vec3(2.1))),
+        (d1 = sym(sdfSphere(pos, float(0.5)))),
+        (d2 = sym(sdfBox3(pos, vec3(1, 0.2, 0.2)))),
+        (d3 = sym(sdfBox3(pos, vec3(0.2, 0.2, 1)))),
+        (d4 = sym(sdfBox3(pos, vec3(0.2, 1, 0.2)))),
         ret(
             vec2(
-                sdOpSmoothUnion(
-                    sdOpSmoothUnion(
-                        sdOpSmoothUnion(d1, d2, float(0.2)),
+                sdfSmoothUnion(
+                    sdfSmoothUnion(
+                        sdfSmoothUnion(d1, d2, float(0.2)),
                         d3,
                         float(0.2)
                     ),

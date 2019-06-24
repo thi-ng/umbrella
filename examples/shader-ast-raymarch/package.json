@@ -7,6 +7,7 @@
     "scripts": {
         "clean": "rm -rf .cache build out",
         "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
@@ -18,6 +19,7 @@
         "@thi.ng/shader-ast": "latest",
         "@thi.ng/shader-ast-glsl": "latest",
         "@thi.ng/shader-ast-js": "latest",
+        "@thi.ng/shader-ast-stdlib": "latest",
         "@thi.ng/webgl": "latest"
     },
     "browserslist": [

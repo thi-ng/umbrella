@@ -6,8 +6,6 @@ import {
     defn,
     div,
     dot,
-    fit0111,
-    fit1101,
     float,
     FloatSym,
     mul,
@@ -20,6 +18,7 @@ import {
 } from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
+import { fit0111, fit1101 } from "@thi.ng/shader-ast-stdlib";
 
 const js = targetJS();
 const gl = targetGLSL();

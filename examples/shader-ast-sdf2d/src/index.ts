@@ -1,19 +1,14 @@
 import {
     $,
-    aspectCorrectedUV,
     assign,
     cos,
     defn,
-    fit1101,
     float,
     FloatSym,
     min,
     mul,
     program,
     ret,
-    sdOpSmoothUnion,
-    sdRect,
-    sdTriangle,
     sym,
     vec2,
     Vec2Sym,
@@ -22,6 +17,13 @@ import {
 } from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
+import {
+    aspectCorrectedUV,
+    fit1101,
+    sdfBox2,
+    sdfSmoothUnion,
+    sdfTriangle2
+} from "@thi.ng/shader-ast-stdlib";
 import {
     compileModel,
     draw,
@@ -45,19 +47,21 @@ const scene = defn("float", "scene", [["vec2"]], (pos) => {
     let d3: FloatSym;
     return [
         // assign(pos, sdTxRepeat2(pos, vec2(2))),
-        (d1 = sym(sdTriangle(pos, vec2(1, 0.7), vec2(0, -1.3), vec2(-1, 0.7)))),
+        (d1 = sym(
+            sdfTriangle2(pos, vec2(1, 0.7), vec2(0, -1.3), vec2(-1, 0.7))
+        )),
         assign(
             d1,
             min(
                 d1,
-                sdTriangle(pos, vec2(1, -0.7), vec2(0, 1.3), vec2(-1, -0.7))
+                sdfTriangle2(pos, vec2(1, -0.7), vec2(0, 1.3), vec2(-1, -0.7))
             )
         ),
-        (d2 = sym(sdRect(pos, vec2(1.5, 0.2)))),
-        (d3 = sym(sdRect(pos, vec2(0.2, 1.5)))),
+        (d2 = sym(sdfBox2(pos, vec2(1.5, 0.2)))),
+        (d3 = sym(sdfBox2(pos, vec2(0.2, 1.5)))),
         assign(
             d1,
-            sdOpSmoothUnion(sdOpSmoothUnion(d3, d2, float(0.5)), d1, float(0.5))
+            sdfSmoothUnion(sdfSmoothUnion(d3, d2, float(0.5)), d1, float(0.5))
         ),
         ret(d1)
     ];
@@ -117,8 +121,6 @@ document.body.appendChild(canvas);
 const info = document.createElement("div");
 info.innerText = (JS_MODE ? "Canvas2D" : "WebGL2") + " version";
 document.body.appendChild(info);
-
-const lightDir = [0.707, 0.707, 0];
 
 if (JS_MODE) {
     //

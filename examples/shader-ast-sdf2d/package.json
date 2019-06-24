@@ -18,6 +18,7 @@
         "@thi.ng/shader-ast": "latest",
         "@thi.ng/shader-ast-glsl": "latest",
         "@thi.ng/shader-ast-js": "latest",
+        "@thi.ng/shader-ast-stdlib": "latest",
         "@thi.ng/webgl": "latest"
     },
     "browserslist": [
