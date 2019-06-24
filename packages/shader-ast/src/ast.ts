@@ -106,7 +106,9 @@ import {
 
 let symID = 0;
 
-export const gensym = () => `_sym${symID++}`;
+export const gensym = () => `_s${(symID++).toString(36)}`;
+
+export const isBool = (t: Term<any>) => t.type === "bool";
 
 export const isFloat = (t: Term<any>) => t.type === "float";
 
