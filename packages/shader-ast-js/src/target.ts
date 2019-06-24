@@ -6,7 +6,7 @@ import {
     Fn5,
     Fn6
 } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
+import { isBoolean, isNumber } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import {
     clamp,
@@ -22,7 +22,9 @@ import * as m from "@thi.ng/matrices";
 import {
     defTarget,
     Func,
+    isInt,
     isMat,
+    isUint,
     isVec,
     Lit,
     Operator,
@@ -67,36 +69,12 @@ export interface JSTarget extends Fn<Term<any>, string> {
     compile(tree: Term<any>, env?: JSEnv): any;
 }
 
-export interface JSBuiltins<T> {
+export interface JSBuiltinsCommon<T> {
     abs: Fn<T, T>;
-    acos: Fn<T, T>;
-    asin: Fn<T, T>;
-    atan: Fn<T, T>;
-    ceil: Fn<T, T>;
     clamp: Fn3<T, T, T, T>;
-    cos: Fn<T, T>;
-    degrees: Fn<T, T>;
-    exp: Fn<T, T>;
-    exp2: Fn<T, T>;
-    floor: Fn<T, T>;
-    fract: Fn<T, T>;
-    inversesqrt: Fn<T, T>;
-    log: Fn<T, T>;
-    log2: Fn<T, T>;
     max: Fn2<T, T, T>;
     min: Fn2<T, T, T>;
-    mix: Fn3<T, T, T, T>;
-    mixn: Fn3<T, T, number, T>;
-    mod: Fn2<T, T, T>;
-    modn: Fn2<T, number, T>;
-    pow: Fn2<T, T, T>;
-    radians: Fn<T, T>;
     sign: Fn<T, T>;
-    sin: Fn<T, T>;
-    smoothstep: Fn3<T, T, T, T>;
-    sqrt: Fn<T, T>;
-    step: Fn2<T, T, T>;
-    tan: Fn<T, T>;
 }
 
 export interface JSBuiltinsMath<T> {
@@ -106,6 +84,47 @@ export interface JSBuiltinsMath<T> {
     mul: Fn2<T, T, T>;
     div: Fn2<T, T, T>;
 }
+
+export interface JSBuiltinsBinary<T> {
+    bitand: Fn2<T, T, T>;
+    lshift: Fn2<T, T, T>;
+    bitnot1: Fn2<T, T, T>;
+    bitor: Fn2<T, T, T>;
+    rshift: Fn2<T, T, T>;
+    bitxor: Fn2<T, T, T>;
+}
+
+export interface JSBuiltinsFloat<T> extends JSBuiltinsCommon<T> {
+    acos: Fn<T, T>;
+    asin: Fn<T, T>;
+    atan: Fn<T, T>;
+    ceil: Fn<T, T>;
+    cos: Fn<T, T>;
+    degrees: Fn<T, T>;
+    exp: Fn<T, T>;
+    exp2: Fn<T, T>;
+    floor: Fn<T, T>;
+    fract: Fn<T, T>;
+    inversesqrt: Fn<T, T>;
+    log: Fn<T, T>;
+    log2: Fn<T, T>;
+    mix: Fn3<T, T, T, T>;
+    mixn: Fn3<T, T, number, T>;
+    mod: Fn2<T, T, T>;
+    modn: Fn2<T, number, T>;
+    pow: Fn2<T, T, T>;
+    radians: Fn<T, T>;
+    sin: Fn<T, T>;
+    smoothstep: Fn3<T, T, T, T>;
+    sqrt: Fn<T, T>;
+    step: Fn2<T, T, T>;
+    tan: Fn<T, T>;
+}
+
+export interface JSBuiltinsInt<T>
+    extends JSBuiltinsCommon<T>,
+        JSBuiltinsMath<T>,
+        JSBuiltinsBinary<T> {}
 
 export interface JSBuiltinsVecScalar<T> {
     addvn: Fn2<T, number, T>;
@@ -119,7 +138,7 @@ export interface JSBuiltinsVecScalar<T> {
 }
 
 export interface JSBuiltinsVec
-    extends JSBuiltins<Vec>,
+    extends JSBuiltinsFloat<Vec>,
         JSBuiltinsMath<Vec>,
         JSBuiltinsVecScalar<Vec> {
     dot: Fn2<Vec, Vec, number>;
@@ -131,6 +150,11 @@ export interface JSBuiltinsVec
 export interface JSBuiltinsVec3 extends JSBuiltinsVec {
     cross: Fn2<Vec, Vec, Vec>;
 }
+
+export interface JSBuiltinsIntVec
+    extends JSBuiltinsInt<Vec>,
+        JSBuiltinsVecScalar<Vec>,
+        JSBuiltinsBinary<Vec> {}
 
 export interface JSBuiltinsMat
     extends JSBuiltinsMath<Mat>,
@@ -173,10 +197,18 @@ export interface JSEnv {
     set_swizzle2: Fn4<Vec, Vec, number, number, Vec>;
     set_swizzle3: Fn5<Vec, Vec, number, number, number, Vec>;
     set_swizzle4: Fn6<Vec, Vec, number, number, number, number, Vec>;
-    float: JSBuiltins<number>;
+    float: JSBuiltinsFloat<number>;
+    int: JSBuiltinsInt<number>;
+    uint: JSBuiltinsInt<number>;
     vec2: JSBuiltinsVec;
     vec3: JSBuiltinsVec3;
     vec4: JSBuiltinsVec;
+    ivec2: JSBuiltinsIntVec;
+    ivec3: JSBuiltinsIntVec;
+    ivec4: JSBuiltinsIntVec;
+    uvec2: JSBuiltinsIntVec;
+    uvec3: JSBuiltinsIntVec;
+    uvec4: JSBuiltinsIntVec;
     mat2: JSBuiltinsMat;
     mat3: JSBuiltinsMat;
     mat4: JSBuiltinsMat;
@@ -202,7 +234,7 @@ const SAMPLER_TODO: JSBuiltinsSampler = {
     textureSize: () => v.ZERO3
 };
 
-export const JS_DEFAULT_ENV: JSEnv = {
+const env: Partial<JSEnv> = {
     vec2n: (n) => v.setN2([], n),
     vec3n: (n) => v.setN3([], n),
     vec4n: (n) => v.setN4([], n),
@@ -251,6 +283,42 @@ export const JS_DEFAULT_ENV: JSEnv = {
         sqrt: Math.sqrt,
         step,
         tan: Math.tan
+    },
+    int: {
+        abs: Math.abs,
+        add: (a, b) => (a + b) | 0,
+        bitand: (a, b) => a & b,
+        clamp,
+        div: (a, b) => (a / b) | 0,
+        lshift: (a, b) => a << b,
+        max: Math.max,
+        min: Math.min,
+        mul: (a, b) => (a * b) | 0,
+        bitnot1: (a) => ~a,
+        bitor: (a, b) => a | b,
+        rshift: (a, b) => a >> b,
+        sign: Math.sign,
+        sub: (a, b) => (a - b) | 0,
+        sub1: (a) => -a | 0,
+        bitxor: (a, b) => a ^ b
+    },
+    uint: {
+        abs: Math.abs,
+        add: (a, b) => (a + b) >>> 0,
+        bitand: (a, b) => (a & b) >>> 0,
+        clamp,
+        div: (a, b) => (a / b) >>> 0,
+        lshift: (a, b) => (a << b) >>> 0,
+        max: Math.max,
+        min: Math.min,
+        mul: (a, b) => (a * b) >>> 0,
+        bitnot1: (a) => ~a >>> 0,
+        bitor: (a, b) => (a | b) >>> 0,
+        rshift: (a, b) => a >>> b,
+        sign: Math.sign,
+        sub: (a, b) => (a - b) >>> 0,
+        sub1: (a) => -a >>> 0,
+        bitxor: (a, b) => (a ^ b) >>> 0
     },
     vec2: {
         abs: (a) => v.abs2([], a),
@@ -459,6 +527,79 @@ export const JS_DEFAULT_ENV: JSEnv = {
     samplerCubeShadow: SAMPLER_TODO
 };
 
+env.ivec2 = {
+    ...env.vec2!,
+    add: (a, b) => v.addI2([], a, b),
+    addvn: (a, b) => v.addNI2([], a, b),
+    addnv: (a, b) => v.addNI2([], b, a),
+    div: (a, b) => v.divI2([], a, b),
+    divvn: (a, b) => v.divNI2([], a, b),
+    divnv: (a, b) => v.mulNI2([], b, 1 / a),
+    mul: (a, b) => v.mulI2([], a, b),
+    mulvn: (a, b) => v.mulNI2([], a, b),
+    mulnv: (a, b) => v.mulNI2([], b, a),
+    sub: (a, b) => v.subI2([], a, b),
+    subvn: (a, b) => v.subNI2([], a, b),
+    subnv: (a, b) => v.subI2([], [a, a], b),
+    bitand: (a, b) => v.andI2([], a, b),
+    lshift: (a, b) => v.lshiftI2([], a, b),
+    bitnot1: (a) => v.notI2([], a),
+    bitor: (a, b) => v.orI2([], a, b),
+    rshift: (a, b) => v.rshiftI2([], a, b),
+    bitxor: (a, b) => v.xorI2([], a, b)
+};
+
+env.ivec3 = {
+    ...env.vec3!,
+    add: (a, b) => v.addI3([], a, b),
+    addvn: (a, b) => v.addNI3([], a, b),
+    addnv: (a, b) => v.addNI3([], b, a),
+    div: (a, b) => v.divI3([], a, b),
+    divvn: (a, b) => v.divNI3([], a, b),
+    divnv: (a, b) => v.mulNI3([], b, 1 / a),
+    mul: (a, b) => v.mulI3([], a, b),
+    mulvn: (a, b) => v.mulNI3([], a, b),
+    mulnv: (a, b) => v.mulNI3([], b, a),
+    sub: (a, b) => v.subI3([], a, b),
+    subvn: (a, b) => v.subNI3([], a, b),
+    subnv: (a, b) => v.subI3([], v.vec3n(a), b),
+    bitand: (a, b) => v.andI3([], a, b),
+    lshift: (a, b) => v.lshiftI3([], a, b),
+    bitnot1: (a) => v.notI3([], a),
+    bitor: (a, b) => v.orI3([], a, b),
+    rshift: (a, b) => v.rshiftI3([], a, b),
+    bitxor: (a, b) => v.xorI3([], a, b)
+};
+
+env.ivec4 = {
+    ...env.vec4!,
+    add: (a, b) => v.addI4([], a, b),
+    addvn: (a, b) => v.addNI4([], a, b),
+    addnv: (a, b) => v.addNI4([], b, a),
+    div: (a, b) => v.divI4([], a, b),
+    divvn: (a, b) => v.divNI4([], a, b),
+    divnv: (a, b) => v.mulNI4([], b, 1 / a),
+    mul: (a, b) => v.mulI4([], a, b),
+    mulvn: (a, b) => v.mulNI4([], a, b),
+    mulnv: (a, b) => v.mulNI4([], b, a),
+    sub: (a, b) => v.subI4([], a, b),
+    subvn: (a, b) => v.subNI4([], a, b),
+    subnv: (a, b) => v.subI4([], v.vec4n(a), b),
+    bitand: (a, b) => v.andI4([], a, b),
+    lshift: (a, b) => v.lshiftI4([], a, b),
+    bitnot1: (a) => v.notI4([], a),
+    bitor: (a, b) => v.orI4([], a, b),
+    rshift: (a, b) => v.rshiftI4([], a, b),
+    bitxor: (a, b) => v.xorI4([], a, b)
+};
+
+// TODO
+env.uvec2 = <any>{ ...env.vec2 };
+env.uvec3 = <any>{ ...env.vec3 };
+env.uvec4 = <any>{ ...env.vec4 };
+
+export const JS_DEFAULT_ENV = <JSEnv>env;
+
 export const targetJS = () => {
     const OP_IDS: Record<Operator, string> = {
         "!": "not",
@@ -486,9 +627,17 @@ export const targetJS = () => {
     const PRELUDE =
         [
             "float",
+            "int",
+            "uint",
             "vec2",
             "vec3",
             "vec4",
+            "ivec2",
+            "ivec3",
+            "ivec4",
+            // "uvec2",
+            // "uvec3",
+            // "uvec4",
             "mat2",
             "mat3",
             "mat4",
@@ -572,7 +721,7 @@ export const targetJS = () => {
             const v = t.val;
             switch (t.type) {
                 case "bool":
-                    return String(!!v);
+                    return isBoolean(v) ? String(v) : `!!(${emit(v)})`;
                 case "float":
                     return isNumber(v) ? String(v) : emit(v);
                 case "int":
@@ -582,6 +731,9 @@ export const targetJS = () => {
                 case "vec2":
                 case "vec3":
                 case "vec4":
+                case "ivec2":
+                case "ivec3":
+                case "ivec4":
                 case "mat2":
                 case "mat3":
                 case "mat4":
@@ -592,14 +744,14 @@ export const targetJS = () => {
         },
 
         op1: (t) =>
-            isVec(t)
+            isVec(t) || isMat(t) || isInt(t)
                 ? `${t.type}.${OP_IDS[t.op]}1(${emit(t.val)})`
                 : `${t.op}${emit(t.val)}`,
 
         // TODO mat-vec multiply special case
         op2: (t) => {
-            const vl = isVec(t.l) || isMat(t.l);
-            const vr = isVec(t.r) || isMat(t.r);
+            const vl = isVec(t.l) || isMat(t.l) || isInt(t.l) || isUint(t.l);
+            const vr = isVec(t.r) || isMat(t.r) || isInt(t.r) || isUint(t.r);
             const el = emit(t.l);
             const er = emit(t.r);
             return vl || vr
@@ -622,7 +774,9 @@ export const targetJS = () => {
 
         sym: (t) => t.id,
 
-        ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`
+        ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`,
+
+        while: (t) => `while (${emit(t.test)}) ${emit(t.scope)}`
     });
 
     Object.assign(emit, <JSTarget>{
