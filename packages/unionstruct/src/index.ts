@@ -3,7 +3,7 @@ export type FieldType =
     | "f32"
     | "u32"
     | "u16"
-    | " u8"
+    | "u8"
     | "i32"
     | "i16"
     | "i8"
