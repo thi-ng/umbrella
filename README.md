@@ -69,6 +69,9 @@ Several new packages are being developed in parallel on various feature branches
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl)
 - [@thi.ng/webgl-msdf](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl-msdf)
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
+- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-glsl)
+- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-js)
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib)
 - [@thi.ng/leb128](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/leb128)
 
 ### Fundamentals
