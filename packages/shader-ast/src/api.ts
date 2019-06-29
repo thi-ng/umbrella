@@ -408,7 +408,9 @@ export type Func8<
     FnCall<T>
 >;
 
-export type ArgQualifier = "in" | "out" | "inout";
+export type SymQualifier = "in" | "out" | "inout";
+
+export type SymType = "in" | "out" | "uni";
 
 export type Precision = "lowp" | "mediump" | "highp";
 
@@ -433,10 +435,40 @@ export interface Sym<T extends Type> extends Term<T> {
 }
 
 export interface SymOpts {
-    q?: ArgQualifier;
+    /**
+     * If in global scope, used for:
+     *
+     * - `in` => attribute (in VS), varying (in FS)
+     * - `out` => varying (in VS), output (in FS)
+     *
+     * For parameters / fn args:
+     *
+     * - `in` =>  passed into a function
+     * - `out` => passed back out of a function, but not initialized
+     * - `inout` => passed both into and out of a function
+     */
+    q?: SymQualifier;
+    /**
+     * Symbol type, only used for global scope in/out vars, e.g.
+     * attribute, varying, uniform.
+     */
+    type?: SymType;
+    /**
+     * Const symbol
+     */
     const?: boolean;
+    /**
+     * Precision qualifier
+     */
     prec?: Precision;
+    /**
+     * Arrays only. Length
+     */
     num?: number;
+    /**
+     * Layout location
+     */
+    loc?: number;
 }
 
 export interface Decl<T extends Type> extends Term<T> {

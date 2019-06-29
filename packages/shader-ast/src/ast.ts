@@ -287,6 +287,15 @@ export const constSym = <T extends Type>(
     init?: Term<T>
 ) => sym(type, id || gensym(), { const: true, ...opts }, init!);
 
+export const input = <T extends Type>(type: T, id: string, opts?: SymOpts) =>
+    sym(type, id, { q: "in", type: "in", ...opts });
+
+export const output = <T extends Type>(type: T, id: string, opts?: SymOpts) =>
+    sym(type, id, { q: "out", type: "out", ...opts });
+
+export const uniform = <T extends Type>(type: T, id: string, opts?: SymOpts) =>
+    sym(type, id, { q: "in", type: "uni", ...opts });
+
 const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
     tag: "decl",
     type: id.type,
