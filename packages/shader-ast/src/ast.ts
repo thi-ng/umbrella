@@ -553,11 +553,16 @@ export function mat4(...xs: any[]): Lit<"mat4"> {
     );
 }
 
-export const op1 = <T extends Type>(op: Operator, val: Term<T>): Op1<T> => ({
+export const op1 = <T extends Type>(
+    op: Operator,
+    val: Term<T>,
+    post = false
+): Op1<T> => ({
     tag: "op1",
     type: val.type,
     op,
-    val
+    val,
+    post
 });
 
 const OP_INFO: IObjectOf<string> = {
@@ -593,11 +598,11 @@ export const op2 = (
     };
 };
 
-export const inc = <T extends Prim | Int>(t: Term<T>): Op2<T> =>
-    <Op2<any>>add(<Term<any>>t, <Term<any>>numberWithMatchingType(t, 1));
+export const inc = <T extends Prim | Int>(t: Sym<T>): Op1<T> =>
+    op1("++", t, true);
 
-export const dec = <T extends Prim | Int>(t: Term<T>): Op2<T> =>
-    <Op2<any>>sub(<Term<any>>t, <Term<any>>numberWithMatchingType(t, 1));
+export const dec = <T extends Prim | Int>(t: Sym<T>): Op1<T> =>
+    op1("--", t, true);
 
 // prettier-ignore
 export function add<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;

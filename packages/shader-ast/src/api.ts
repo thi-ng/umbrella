@@ -177,7 +177,7 @@ export type NumericI = number | IntTerm;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
-export type MathOperator = "+" | "-" | "*" | "/";
+export type MathOperator = "+" | "-" | "*" | "/" | "++" | "--";
 export type LogicOperator = "!" | "||" | "&&";
 export type ComparisonOperator = "<" | "<=" | "==" | "!=" | ">=" | ">";
 export type BitOperator = "<<" | ">>" | "|" | "&" | "^" | "~";
@@ -493,6 +493,7 @@ export interface Assign<T extends Type> extends Term<T> {
 export interface Op1<T extends Type> extends Term<T> {
     op: Operator;
     val: Term<any>;
+    post?: boolean;
 }
 
 export interface Op2<T extends Type> extends Term<T> {
