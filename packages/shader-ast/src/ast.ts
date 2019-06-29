@@ -106,40 +106,115 @@ import {
 
 let symID = 0;
 
+const RE_VEC = /^[iub]?vec[234]$/;
+const RE_MAT = /^mat[234]$/;
+
+/**
+ * Helper for deterministic code generation / testing. Resets sym ID
+ * counter.
+ */
+export const resetSymID = () => (symID = 0);
+
+/**
+ * Generates a new symbol name, e.g. `_sa2`. Uses base36 for counter to
+ * keep names short.
+ */
 export const gensym = () => `_s${(symID++).toString(36)}`;
 
+/**
+ * Returns true, if given term evaluates to a boolean value.
+ */
 export const isBool = (t: Term<any>) => t.type === "bool";
 
+/**
+ * Returns true, if given term evaluates to a float value.
+ */
 export const isFloat = (t: Term<any>) => t.type === "float";
 
+/**
+ * Returns true, if given term evaluates to a signed integer value.
+ */
 export const isInt = (t: Term<any>) => t.type === "int";
 
+/**
+ * Returns true, if given term evaluates to an unsigned integer value.
+ */
 export const isUint = (t: Term<any>) => t.type === "uint";
 
+/**
+ * Returns true, if given term is a literal.
+ */
 export const isLit = (t: Term<any>) => t.tag === "lit";
 
+/**
+ * Returns true, if given term is a float literal.
+ */
 export const isLitFloat = (t: Term<any>) => isLit(t) && isFloat(t);
 
+/**
+ * Returns true, if given term is a signed integer literal.
+ */
 export const isLitInt = (t: Term<any>) => isLit(t) && isInt(t);
 
+/**
+ * Returns true, if given term is a numeric literal (float, int, uint).
+ */
 export const isLitNumeric = (t: Term<any>) =>
     isLit(t) && (isFloat(t) || isInt(t) || isUint(t));
 
-export const isVec = (t: Term<any>) => t.type.indexOf("vec") >= 0;
+/**
+ * Returns true, if given term evaluates to a vector value (vec, ivec, bvec).
+ */
+export const isVec = (t: Term<any>) => RE_VEC.test(t.type);
 
-export const isMat = (t: Term<any>) => t.type.indexOf("mat") >= 0;
+/**
+ * Returns true, if given term evaluates to a matrix value.
+ */
+export const isMat = (t: Term<any>) => RE_MAT.test(t.type);
 
+/**
+ * Returns base type for given term. Used for array ops.
+ *
+ * ```
+ * itemType("vec2[]") => "vec2"
+ * ```
+ */
 export const itemType = (type: Type) => <Type>type.replace("[]", "");
 
+/**
+ * Takes a plain number or numeric term and wraps it as float literal if
+ * needed.
+ *
+ * @param x
+ */
 export const wrapFloat = (x?: Numeric) => (isNumber(x) ? float(x) : x);
 
+/**
+ * Takes a plain number or numeric term and wraps it as signed integer
+ * literal if needed.
+ *
+ * @param x
+ */
 export const wrapInt = (x?: Numeric) => (isNumber(x) ? int(x) : x);
 
+/**
+ * Takes a numeric term and a plain number, returns number wrapped in
+ * typed literal compatible with term.
+ *
+ * @param t
+ * @param x
+ */
 export const numberWithMatchingType = (t: Term<Prim | Int>, x: number) =>
     t.type[0] === "i" ? int(x) : t.type[0] === "u" ? uint(x) : float(x);
 
-export const scopeChildren = (t: Term<any>) =>
-    t.tag === "fn" || t.tag === "for"
+/**
+ * Helper function for `walk()`. Returns child nodes for any control
+ * flow nodes containing a child scope.
+ *
+ * @see allChildren
+ */
+export const scopedChildren = (t: Term<any>) =>
+    t.tag === "fn" || t.tag === "for" || t.tag == "while"
         ? (<Func<any>>t).scope.body
         : t.tag === "if"
         ? (<Branch>t).f
@@ -147,6 +222,12 @@ export const scopeChildren = (t: Term<any>) =>
             : (<Branch>t).t.body
         : undefined;
 
+/**
+ * Helper function for `walk()`. Returns an array of all child nodes for
+ * a given term (if any).
+ *
+ * @see scopedChildren
+ */
 export const allChildren = (t: Term<any>) =>
     t.tag === "scope"
         ? (<Scope>t).body
@@ -166,6 +247,8 @@ export const allChildren = (t: Term<any>) =>
         ? [(<Sym<any>>t).init]
         : t.tag === "decl"
         ? [(<Decl<any>>t).id]
+        : t.tag === "op1"
+        ? [(<Op1<any>>t).val]
         : t.tag === "op2"
         ? [(<Op2<any>>t).l, (<Op2<any>>t).r]
         : t.tag === "assign"
@@ -179,8 +262,8 @@ export const allChildren = (t: Term<any>) =>
  * `children` fns to each node. Descends only further if `children`
  * returns an array of child nodes. The `visit` function must accept 2
  * args: the accumulator (`acc`) given to `walk` and a tree node. The
- * return value of `visit` is ignored. `walk` itself returns the
- * possibly updated `acc`.
+ * return value of `visit` becomes the new `acc` value, much like in a
+ * reduce operation. `walk` itself returns the final `acc`.
  *
  * If `pre` is true (default), the `visit` function will be called prior
  * to visiting a node's children. If false, the visitor is called on the
@@ -211,7 +294,8 @@ export const walk = <T>(
 };
 
 /**
- * Builds dependency graph of given function.
+ * Builds dependency graph of given function, by recursively adding all
+ * function dependencies. Returns graph.
  *
  * @param fn
  * @param graph
@@ -741,18 +825,28 @@ export const scope = (body: Term<any>[], global = false): Scope => ({
 });
 
 /**
- * Takes a single AST function defined via `defn()`, constructs the call
- * graph of all transitively used functions and bundles them in
+ * Takes an array of global sym/var definitions (`input()`, `output()`,
+ * `uniform()`) and functions defined via `defn()`. Constructs the call
+ * graph of all transitively used functions and bundles everything in
  * topological order within a global scope object, which is then
  * returned to the user and can be passed to a target codegen for full
  * program output.
  *
  * @see scope
+ * @see input
+ * @see output
+ * @see uniform
  *
- * @param entry
+ * @param body
  */
-export const program = (entry: Func<any>) =>
-    scope(buildCallGraph(entry).sort(), true);
+export const program = (body: (Sym<any> | Func<any>)[]) => {
+    const syms = body.filter((x) => x.tag !== "fn");
+    const g = body.reduce(
+        (acc, x) => (x.tag === "fn" ? buildCallGraph(<Func<any>>x, acc) : acc),
+        new DGraph<Func<any>>()
+    );
+    return scope(syms.concat(g.sort()), true);
+};
 
 const defArg = <T extends Type>([type, id, opts]: Arg<T>): FuncArg<T> => ({
     tag: "arg",
@@ -806,7 +900,7 @@ export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: S
             }
             return n;
         },
-        scopeChildren,
+        scopedChildren,
         0,
         body
     );
