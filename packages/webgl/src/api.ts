@@ -10,7 +10,7 @@ import {
     Tuple,
     TypedArray
 } from "@thi.ng/api";
-import { Sym, Type } from "@thi.ng/shader-ast";
+import { Func, Sym, Type } from "@thi.ng/shader-ast";
 import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import { AttribPool } from "@thi.ng/vector-pools";
 import { ReadonlyVec } from "@thi.ng/vectors";
@@ -748,31 +748,23 @@ export interface ShaderSnippet {
 
 export const DEFAULT_OUTPUT: ShaderOutputSpecs = { fragColor: ["vec4", 0] };
 
-export type VSFunction = Fn4<
+export type ShaderFn = Fn4<
     GLSLTarget,
     IObjectOf<Sym<any>>, // uni
     IObjectOf<Sym<any>>, // attribs
     IObjectOf<Sym<any>>, // vary
-    string
->;
-
-export type FSFunction = Fn4<
-    GLSLTarget,
-    IObjectOf<Sym<any>>, // uni
-    IObjectOf<Sym<any>>, // vary
-    IObjectOf<Sym<any>>, // outputs
-    string
+    (Sym<any> | Func<any>)[]
 >;
 
 export interface ShaderSpec {
     /**
      * Vertex shader GLSL source code.
      */
-    vs: string | VSFunction;
+    vs: string | ShaderFn;
     /**
      * Fragment shader GLSL source code.
      */
-    fs: string | FSFunction;
+    fs: string | ShaderFn;
     /**
      * Attribute type declarations.
      */

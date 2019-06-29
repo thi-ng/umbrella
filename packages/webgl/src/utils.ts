@@ -1,3 +1,10 @@
+import { IObjectOf } from "@thi.ng/api";
+import {
+    add,
+    mul,
+    Sym,
+    Term
+} from "@thi.ng/shader-ast";
 import { ShaderOpts } from "./api";
 
 export const isGL2Context = (
@@ -8,16 +15,20 @@ export const isGL2Context = (
 
 export const positionAttrib = (
     opts: Partial<ShaderOpts<any>>,
-    pos = "a_position"
-) => `${pos}${opts.instancePos ? ` + a_${opts.instancePos}` : ""}`;
+    attribs: IObjectOf<Sym<any>>,
+    pos = "position"
+) =>
+    opts.instancePos
+        ? add(attribs[pos], attribs[opts.instancePos])
+        : attribs[pos];
 
 export const colorAttrib = (
     opts: Partial<ShaderOpts<any>>,
-    fallback = "u_diffuseCol",
-    post = ` * ${fallback}`
-) =>
+    attribs: IObjectOf<Sym<any>>,
+    fallback: Sym<"vec3">
+): Term<"vec3"> =>
     opts.instanceColor
-        ? `a_${opts.instanceColor}${post}`
+        ? mul(attribs[opts.instanceColor], fallback)
         : opts.color
-        ? `a_${opts.color}${post}`
+        ? mul(attribs[opts.color], fallback)
         : fallback;

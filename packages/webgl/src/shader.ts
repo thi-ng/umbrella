@@ -6,13 +6,17 @@ import {
     isBoolean,
     isFunction
 } from "@thi.ng/checks";
+import { unsupported } from "@thi.ng/errors";
 import {
     input,
     output,
+    program,
     Sym,
+    sym,
     uniform
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
+import { vals } from "@thi.ng/transducers";
 import {
     DEFAULT_OUTPUT,
     GL_EXT_INFO,
@@ -24,6 +28,7 @@ import {
     ModelSpec,
     ShaderAttrib,
     ShaderAttribSpecs,
+    ShaderFn,
     ShaderSpec,
     ShaderState,
     ShaderType,
@@ -270,14 +275,13 @@ export const shaderSourceFromAST = (
             prelude += compileExtensionPragma(id, spec.ext[id], version);
         }
     }
-    const prefixes = { ...PREFIXES, ...spec.declPrefixes };
     const inputs: IObjectOf<Sym<any>> = {};
     const outputs: IObjectOf<Sym<any>> = {};
+    const outputAliases: IObjectOf<Sym<any>> = {};
     const unis: IObjectOf<Sym<any>> = {};
     if (spec.uniforms) {
         for (let id in spec.uniforms) {
             const u = spec.uniforms[id];
-            id = prefixes.u + id;
             unis[id] = isArray(u)
                 ? u.length === 3
                     ? uniform(u[0], id, { num: <number>u[1] })
@@ -288,7 +292,6 @@ export const shaderSourceFromAST = (
     if (type === "vs") {
         for (let id in spec.attribs) {
             const a = spec.attribs[id];
-            id = prefixes.a + id;
             inputs[id] = isArray(a)
                 ? input(a[0], id, { loc: a[1] })
                 : input(a, id);
@@ -296,7 +299,6 @@ export const shaderSourceFromAST = (
         if (spec.varying) {
             for (let id in spec.varying) {
                 const v = spec.varying[id];
-                id = prefixes.v + id;
                 outputs[id] = isArray(v)
                     ? output(v[0], id, { num: v[1] })
                     : output(v, id);
@@ -306,19 +308,28 @@ export const shaderSourceFromAST = (
         if (spec.varying) {
             for (let id in spec.varying) {
                 const v = spec.varying[id];
-                id = prefixes.v + id;
                 inputs[id] = isArray(v)
                     ? input(v[0], id, { num: v[1] })
                     : input(v, id);
             }
         }
-        if (spec.outputs) {
-            for (let id in spec.outputs) {
-                const v = spec.outputs[id];
-                id = prefixes.o + id;
-                outputs[id] = isArray(v)
-                    ? output(v[0], id, { num: v[1] })
-                    : output(v, id);
+        const outs = spec.outputs || DEFAULT_OUTPUT;
+        if (version >= GLSLVersion.GLES_300) {
+            for (let id in outs) {
+                const o = outs[id];
+                outputs[id] = isArray(o)
+                    ? output(o[0], id, { num: o[1] })
+                    : output(o, id);
+            }
+        } else {
+            for (let id in outs) {
+                const o = outs[id];
+                if (isArray(o) && o[0] === "vec4") {
+                    prelude += `#define ${id} gl_FragData[${o[1]}]\n`;
+                    outputAliases[id] = sym("vec4", id);
+                } else {
+                    unsupported(`GLSL ${version} doesn't support output vars`);
+                }
             }
         }
     }
@@ -328,8 +339,17 @@ export const shaderSourceFromAST = (
         prelude
     });
     return (
-        target((<any>spec[type])(target, unis, inputs, outputs)) +
-        (spec.post ? "\n" + spec.post : "")
+        target(
+            program([
+                ...vals(unis),
+                ...vals(inputs),
+                ...vals(outputs),
+                ...(<ShaderFn>spec[type])(target, unis, inputs, {
+                    ...outputs,
+                    ...outputAliases
+                })
+            ])
+        ) + (spec.post ? "\n" + spec.post : "")
     );
 };
 
@@ -412,7 +432,7 @@ const initAttributes = (
     for (let id in attribs) {
         const val = attribs[id];
         const [type, loc] = isArray(val) ? val : [val, null];
-        const aid = `a_${id}`;
+        const aid = id;
         if (loc != null) {
             gl.bindAttribLocation(prog, loc, aid);
             res[id] = { type, loc };
@@ -446,8 +466,7 @@ const initUniforms = (
         } else {
             type = val;
         }
-        // FIXME no hardcoded u_ prefix!
-        const loc = gl.getUniformLocation(prog, `u_${id}`)!;
+        const loc = gl.getUniformLocation(prog, id)!;
         loc == null && error(`unknown uniform: ${id}`);
         const setter = UNIFORM_SETTERS[type];
         if (setter) {
