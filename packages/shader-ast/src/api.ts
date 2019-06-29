@@ -266,32 +266,32 @@ export type Arg8<
     H extends Type
 > = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>, Arg<G>, Arg<H>];
 
-export type FnBody0 = Fn0<Term<any>[]>;
-export type FnBody1<A extends Type> = Fn<Sym<A>, Term<any>[]>;
+export type FnBody0 = Fn0<ScopeBody>;
+export type FnBody1<A extends Type> = Fn<Sym<A>, ScopeBody>;
 export type FnBody2<A extends Type, B extends Type> = Fn2<
     Sym<A>,
     Sym<B>,
-    Term<any>[]
+    ScopeBody
 >;
 export type FnBody3<A extends Type, B extends Type, C extends Type> = Fn3<
     Sym<A>,
     Sym<B>,
     Sym<C>,
-    Term<any>[]
+    ScopeBody
 >;
 export type FnBody4<
     A extends Type,
     B extends Type,
     C extends Type,
     D extends Type
-> = Fn4<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Term<any>[]>;
+> = Fn4<Sym<A>, Sym<B>, Sym<C>, Sym<D>, ScopeBody>;
 export type FnBody5<
     A extends Type,
     B extends Type,
     C extends Type,
     D extends Type,
     E extends Type
-> = Fn5<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Term<any>[]>;
+> = Fn5<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, ScopeBody>;
 export type FnBody6<
     A extends Type,
     B extends Type,
@@ -299,7 +299,7 @@ export type FnBody6<
     D extends Type,
     E extends Type,
     F extends Type
-> = Fn6<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Term<any>[]>;
+> = Fn6<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, ScopeBody>;
 export type FnBody7<
     A extends Type,
     B extends Type,
@@ -308,7 +308,7 @@ export type FnBody7<
     E extends Type,
     F extends Type,
     G extends Type
-> = Fn7<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, Term<any>[]>;
+> = Fn7<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, ScopeBody>;
 export type FnBody8<
     A extends Type,
     B extends Type,
@@ -327,7 +327,7 @@ export type FnBody8<
     Sym<F>,
     Sym<G>,
     Sym<H>,
-    Term<any>[]
+    ScopeBody
 >;
 
 export type Func0<T extends Type> = Fn0<FnCall<T>>;
@@ -413,6 +413,8 @@ export type SymQualifier = "in" | "out" | "inout";
 export type SymType = "in" | "out" | "uni";
 
 export type Precision = "lowp" | "mediump" | "highp";
+
+export type ScopeBody = (Term<any> | null | undefined)[];
 
 export interface Term<T extends Type> {
     tag: Tag;

@@ -68,6 +68,7 @@ import {
     Operator,
     Prim,
     Scope,
+    ScopeBody,
     Swizzle,
     Swizzle2,
     Swizzle2_1,
@@ -817,10 +818,14 @@ export function bitxor(a: Term<any>, b: Term<any>): Op2<any> {
  * @param body
  * @param global
  */
-export const scope = (body: Term<any>[], global = false): Scope => ({
+export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
     tag: "scope",
     type: "void",
-    body: body.map((x) => (x.tag === "sym" ? decl(<Sym<any>>x) : x)),
+    body: <Term<any>[]>(
+        body
+            .filter((x) => x != null)
+            .map((x) => (x!.tag === "sym" ? decl(<Sym<any>>x) : x))
+    ),
     global
 });
 
@@ -883,13 +888,17 @@ export function defn<T extends Type, A extends Type, B extends Type, C extends T
 // prettier-ignore
 export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type, H extends Type>(type: T, name: string, args: Arg8<A,B,C,D,E,F,G,H>, body: FnBody8<A,B,C,D,E,F,G,H>): TaggedFn8<A,B,C,D,E,F,G,H,T>;
 // prettier-ignore
-export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => Term<any>[]): Func<any> {
+export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => ScopeBody): Func<any> {
     const args = _args.map(defArg);
-    const body = _body(...args.map((x) => sym(x.type, x.id, x.opts)));
+    const body = <Term<any>[]>(
+        _body(...args.map((x) => sym(x.type, x.id, x.opts))).filter(
+            (x) => x != null
+        )
+    );
     // count & check returns
     const returns = walk(
         (n, t) => {
-            if(t.tag === "ret") {
+            if (t.tag === "ret") {
                 assert(
                     t.type === type,
                     `wrong return type for function '${id}', expected ${type}, got ${
@@ -927,9 +936,16 @@ export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: S
         id,
         args,
         deps,
-        scope: scope(body),
+        scope: scope(body)
     });
 }
+
+/**
+ * Syntax sugar for defining `void main()` functions.
+ *
+ * @param body
+ */
+export const defMain = (body: FnBody0) => defn("void", "main", [], body);
 
 export function ret(): FuncReturn<"void">;
 export function ret<T extends Type>(val: Term<T>): FuncReturn<T>;
