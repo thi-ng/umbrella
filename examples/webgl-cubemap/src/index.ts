@@ -9,6 +9,14 @@ import {
 } from "@thi.ng/matrices";
 import { fromPromise, metaStream, stream } from "@thi.ng/rstream";
 import {
+    assign,
+    defMain,
+    mul,
+    normalize,
+    texture,
+    vec4
+} from "@thi.ng/shader-ast";
+import {
     compileModel,
     cube,
     cubeMap,
@@ -21,19 +29,26 @@ import {
 } from "@thi.ng/webgl";
 
 const CUBEMAP_SHADER: ShaderSpec = {
-    vs: `void main() {
-gl_Position = u_mvp * vec4(a_position, 1.0);
-v_normal = normalize(a_position.xyz);
-}`,
-    fs: `void main() {
-o_fragColor = texture(u_texture, normalize(v_normal));
-}`,
-    pre: VERSION_CHECK(300, "", "#define texture textureCube"),
+    vs: (gl, unis, ins, outs) => [
+        defMain(() => [
+            assign(outs.vnormal, ins.position),
+            assign(gl.gl_Position, mul(unis.mvp, vec4(ins.position, 1)))
+        ])
+    ],
+    fs: (_, unis, ins, outs) => [
+        defMain(() => [
+            assign(
+                outs.fragColor,
+                texture(unis.texture, normalize(ins.vnormal))
+            )
+        ])
+    ],
+    // pre: VERSION_CHECK(300, "", "#define texture textureCube"),
     attribs: {
         position: "vec3"
     },
     varying: {
-        normal: "vec3"
+        vnormal: "vec3"
     },
     uniforms: {
         mvp: "mat4",
