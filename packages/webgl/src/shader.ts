@@ -40,7 +40,7 @@ import {
 } from "./api";
 import { getExtensions } from "./canvas";
 import { error } from "./error";
-import { GLSL_HEADER, PREFIXES, SYNTAX } from "./glsl/syntax";
+import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./glsl/syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
 import { isGL2Context } from "./utils";
 
@@ -359,7 +359,7 @@ export const prepareShaderSource = (
     version: GLSLVersion
 ) => {
     const syntax = SYNTAX[version];
-    const prefixes = { ...PREFIXES, ...spec.declPrefixes };
+    const prefixes = { ...NO_PREFIXES, ...spec.declPrefixes };
     const isVS = type === "vs";
     let src = "";
     src += `#version ${version}\n`;
