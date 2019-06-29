@@ -27,15 +27,15 @@ export const msdfSample = defglsl(
 
 export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
     vs: `void main() {
-    v_uv = a_uv;
-    ${opts.color ? "v_color = a_color;" : ""}
-    gl_Position = u_proj * u_modelview * vec4(a_position, 1.);
+    vuv = uv;
+    ${opts.color ? "vcolor = color;" : ""}
+    gl_Position = proj * modelview * vec4(position, 1.);
 }`,
     fs: defglslA(
         `void main() {
-    vec2 w = msdfSample(u_tex, v_uv);
-    o_fragColor = mix(u_bg, ${opts.color ? "v_color" : "u_fg"}, w.y);
-    if (w.x < u_thresh) {
+    vec2 w = msdfSample(tex, vuv);
+    fragColor = mix(bg, ${opts.color ? "vcolor" : "fg"}, w.y);
+    if (w.x < thresh) {
         discard;
     }
 }`,
@@ -51,8 +51,8 @@ export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
         ...(opts.color ? { color: "vec4" } : null)
     },
     varying: {
-        uv: "vec2",
-        ...(opts.color ? { color: "vec4" } : null)
+        vuv: "vec2",
+        ...(opts.color ? { vcolor: "vec4" } : null)
     },
     uniforms: {
         modelview: "mat4",
