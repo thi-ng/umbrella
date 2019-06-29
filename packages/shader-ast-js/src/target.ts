@@ -301,6 +301,8 @@ export interface JSBuiltinsMath<T> {
     sub: Fn2<T, T, T>;
     mul: Fn2<T, T, T>;
     div: Fn2<T, T, T>;
+    inc: Fn<T, T>;
+    dec: Fn<T, T>;
 }
 
 export interface JSBuiltinsBinary<T> {
@@ -506,37 +508,41 @@ const env: Partial<JSEnv> = {
         abs: Math.abs,
         add: (a, b) => (a + b) | 0,
         bitand: (a, b) => a & b,
+        bitnot1: (a) => ~a,
+        bitor: (a, b) => a | b,
+        bitxor: (a, b) => a ^ b,
         clamp,
+        dec: (a) => (a - 1) | 0,
         div: (a, b) => (a / b) | 0,
+        inc: (a) => (a + 1) | 0,
         lshift: (a, b) => a << b,
         max: Math.max,
         min: Math.min,
         mul: (a, b) => (a * b) | 0,
-        bitnot1: (a) => ~a,
-        bitor: (a, b) => a | b,
         rshift: (a, b) => a >> b,
         sign: Math.sign,
         sub: (a, b) => (a - b) | 0,
-        sub1: (a) => -a | 0,
-        bitxor: (a, b) => a ^ b
+        sub1: (a) => -a | 0
     },
     uint: {
         abs: Math.abs,
         add: (a, b) => (a + b) >>> 0,
         bitand: (a, b) => (a & b) >>> 0,
+        bitnot1: (a) => ~a >>> 0,
+        bitor: (a, b) => (a | b) >>> 0,
+        bitxor: (a, b) => (a ^ b) >>> 0,
         clamp,
+        dec: (a) => (a - 1) >>> 0,
         div: (a, b) => (a / b) >>> 0,
+        inc: (a) => (a + 1) >>> 0,
         lshift: (a, b) => (a << b) >>> 0,
         max: Math.max,
         min: Math.min,
         mul: (a, b) => (a * b) >>> 0,
-        bitnot1: (a) => ~a >>> 0,
-        bitor: (a, b) => (a | b) >>> 0,
         rshift: (a, b) => a >>> b,
         sign: Math.sign,
         sub: (a, b) => (a - b) >>> 0,
-        sub1: (a) => -a >>> 0,
-        bitxor: (a, b) => (a ^ b) >>> 0
+        sub1: (a) => -a >>> 0
     },
     vec2: {
         abs: (a) => abs2([], a),
@@ -549,6 +555,7 @@ const env: Partial<JSEnv> = {
         ceil: (a) => ceil2([], a),
         clamp: (x, a, b) => clamp2([], x, a, b),
         cos: (a) => cos2([], a),
+        dec: (a) => subN2([], a, 1),
         degrees: (a) => degrees2([], a),
         distance: dist,
         div: (a, b) => div2([], a, b),
@@ -559,6 +566,7 @@ const env: Partial<JSEnv> = {
         exp2: (a) => exp_22([], a),
         floor: (a) => floor2([], a),
         fract: (a) => fract2([], a),
+        inc: (a) => addN2([], a, 1),
         inversesqrt: (a) => invSqrt2([], a),
         length: mag,
         log: (a) => log2([], a),
@@ -598,6 +606,7 @@ const env: Partial<JSEnv> = {
         clamp: (x, a, b) => clamp3([], x, a, b),
         cos: (a) => cos3([], a),
         cross: (a, b) => cross3([], a, b),
+        dec: (a) => subN3([], a, 1),
         degrees: (a) => degrees3([], a),
         distance: dist,
         div: (a, b) => div3([], a, b),
@@ -608,6 +617,7 @@ const env: Partial<JSEnv> = {
         exp2: (a) => exp_23([], a),
         floor: (a) => floor3([], a),
         fract: (a) => fract3([], a),
+        inc: (a) => addN3([], a, 1),
         inversesqrt: (a) => invSqrt3([], a),
         length: mag,
         log: (a) => log3([], a),
@@ -646,6 +656,7 @@ const env: Partial<JSEnv> = {
         ceil: (a) => ceil4([], a),
         clamp: (x, a, b) => clamp4([], x, a, b),
         cos: (a) => cos4([], a),
+        dec: (a) => subN4([], a, 1),
         degrees: (a) => degrees4([], a),
         distance: dist,
         div: (a, b) => div4([], a, b),
@@ -656,6 +667,7 @@ const env: Partial<JSEnv> = {
         exp2: (a) => exp_24([], a),
         floor: (a) => floor4([], a),
         fract: (a) => fract4([], a),
+        inc: (a) => addN4([], a, 1),
         inversesqrt: (a) => invSqrt4([], a),
         length: mag,
         log: (a) => log4([], a),
@@ -687,9 +699,11 @@ const env: Partial<JSEnv> = {
         add: (a, b) => add22([], a, b),
         addnv: (a, b) => addN22([], b, a),
         addvn: (a, b) => addN22([], a, b),
+        dec: (a) => subN22([], a, 1),
         div: (a, b) => div22([], a, b),
         divnv: (a, b) => mulN22([], b, 1 / a),
         divvn: (a, b) => divN22([], a, b),
+        inc: (a) => addN22([], a, 1),
         mul: (a, b) => mul22([], a, b),
         mulm: (a, b) => mulM22([], a, b),
         mulmv: (a, b) => mulV22([], a, b),
@@ -705,9 +719,11 @@ const env: Partial<JSEnv> = {
         add: (a, b) => add33([], a, b),
         addnv: (a, b) => addN33([], b, a),
         addvn: (a, b) => addN33([], a, b),
+        dec: (a) => subN33([], a, 1),
         div: (a, b) => div33([], a, b),
         divnv: (a, b) => mulN33([], b, 1 / a),
         divvn: (a, b) => divN33([], a, b),
+        inc: (a) => addN33([], a, 1),
         mul: (a, b) => mul33([], a, b),
         mulm: (a, b) => mulM33([], a, b),
         mulmv: (a, b) => mulV33([], a, b),
@@ -723,9 +739,11 @@ const env: Partial<JSEnv> = {
         add: (a, b) => add44([], a, b),
         addnv: (a, b) => addN44([], b, a),
         addvn: (a, b) => addN44([], a, b),
+        dec: (a) => subN44([], a, 1),
         div: (a, b) => div44([], a, b),
         divnv: (a, b) => mulN44([], b, 1 / a),
         divvn: (a, b) => divN44([], a, b),
+        inc: (a) => addN44([], a, 1),
         mul: (a, b) => mul44([], a, b),
         mulm: (a, b) => mulM44([], a, b),
         mulmv: (a, b) => mulV44([], a, b),
@@ -834,6 +852,8 @@ export const targetJS = () => {
         "-": "sub",
         "*": "mul",
         "/": "div",
+        "++": "inc",
+        "--": "dec",
         "||": "or",
         "&&": "and",
         // TODO below
@@ -964,10 +984,19 @@ export const targetJS = () => {
             }
         },
 
-        op1: (t) =>
-            isVec(t) || isMat(t) || isInt(t)
-                ? `${t.type}.${OP_IDS[t.op]}1(${emit(t.val)})`
-                : `${t.op}${emit(t.val)}`,
+        op1: (t) => {
+            const complex = isVec(t) || isMat(t) || isInt(t);
+            if (complex && t.post) {
+                const s = <Sym<any>>t.val;
+                return `${s.id} = ${t.type}.${OP_IDS[t.op]}(${emit(s)})`;
+            } else {
+                return complex
+                    ? `${t.type}.${OP_IDS[t.op]}1(${emit(t.val)})`
+                    : t.post
+                    ? `(${emit(t.val)}${t.op})`
+                    : `${t.op}${emit(t.val)}`;
+            }
+        },
 
         // TODO mat-vec multiply special case
         op2: (t) => {
