@@ -3,6 +3,7 @@ import {
     $x,
     add,
     assign,
+    defMain,
     defn,
     float,
     FloatSym,
@@ -20,7 +21,7 @@ import {
     Vec3Sym,
     vec4
 } from "@thi.ng/shader-ast";
-import { targetGLSL } from "@thi.ng/shader-ast-glsl";
+import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
 import {
     clamp01,
@@ -41,7 +42,6 @@ import {
 import {
     compileModel,
     draw,
-    GLSL,
     GLVec3,
     quad,
     shader
@@ -51,7 +51,7 @@ import {
 const JS_MODE = location.hash.indexOf("2d") >= 0;
 
 // AST compile targets
-const GL = targetGLSL({ version: 100 }); // WebGL2
+const GL = targetGLSL({ version: GLSLVersion.GLES_100, versionPragma: false }); // WebGL
 const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
@@ -86,7 +86,7 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
 
 // main fragment shader function
 // again uses several shader-ast std lib helpers
-const main = defn(
+const mainImage = defn(
     "vec4",
     "mainImage",
     [
@@ -166,22 +166,9 @@ const main = defn(
     }
 );
 
-// actual GLSL fragment shader main function
-const glslMain = defn("void", "main", [], () => [
-    assign(
-        sym("vec4", "o_fragColor"),
-        main(
-            $(GL.gl_FragCoord, "xy"),
-            sym("vec2", "u_resolution"),
-            sym("vec3", "u_eyePos"),
-            sym("vec3", "u_lightDir")
-        )
-    )
-]);
-
 // build call graph for given entry function, sort in topological order
 // and bundle all functions in a global scope for code generation...
-const shaderProgram = program(main);
+const shaderProgram = program([mainImage]);
 
 console.log("JS");
 console.log(JS(shaderProgram));
@@ -196,7 +183,7 @@ canvas.width = W;
 canvas.height = H;
 document.body.appendChild(canvas);
 const info = document.createElement("div");
-info.innerText = (JS_MODE ? "Canvas2D" : "WebGL2") + " version";
+info.innerText = (JS_MODE ? "Canvas2D" : "WebGL") + " version";
 document.body.appendChild(info);
 
 const lightDir = [0.707, 0.707, 0];
@@ -222,26 +209,37 @@ if (JS_MODE) {
     //
     // WebGL mode...
     //
-    // inject main fs function into AST program
-    shaderProgram.body.push(glslMain);
     const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
     // build fullscreen quad
     const model = quad(false);
     // set shader
     model.shader = shader(ctx, {
-        vs: GL(
-            defn("void", "main", [], () => [
-                assign(GL.gl_Position, vec4(sym("vec2", "a_position"), 0, 1))
+        vs: (_, __, attribs) => [
+            defMain(() => [
+                assign(GL.gl_Position, vec4(attribs.position, 0, 1))
             ])
-        ),
-        fs: GL(shaderProgram).replace(/\};/g, "}"),
+        ],
+        fs: (gl, unis, _, outputs) => [
+            mainImage,
+            defMain(() => [
+                assign(
+                    outputs.fragColor,
+                    mainImage(
+                        $(gl.gl_FragCoord, "xy"),
+                        unis.resolution,
+                        unis.eyePos,
+                        unis.lightDir
+                    )
+                )
+            ])
+        ],
         attribs: {
-            position: GLSL.vec2
+            position: "vec2"
         },
         uniforms: {
-            eyePos: GLSL.vec3,
-            lightDir: [GLSL.vec3, <GLVec3>lightDir],
-            resolution: [GLSL.vec2, [W, H]]
+            eyePos: "vec3",
+            lightDir: ["vec3", <GLVec3>lightDir],
+            resolution: ["vec2", [W, H]]
         }
     });
     // compile model (attrib buffers)

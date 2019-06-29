@@ -2,6 +2,7 @@ import {
     $,
     assign,
     cos,
+    defMain,
     defn,
     float,
     FloatSym,
@@ -15,7 +16,7 @@ import {
     vec3,
     vec4
 } from "@thi.ng/shader-ast";
-import { targetGLSL } from "@thi.ng/shader-ast-glsl";
+import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
 import {
     aspectCorrectedUV,
@@ -27,7 +28,6 @@ import {
 import {
     compileModel,
     draw,
-    GLSL,
     quad,
     shader
 } from "@thi.ng/webgl";
@@ -36,7 +36,7 @@ import {
 const JS_MODE = location.hash.indexOf("2d") >= 0;
 
 // AST compile targets
-const GL = targetGLSL({ version: 100 }); // WebGL
+const GL = targetGLSL({ version: GLSLVersion.GLES_100 }); // WebGL
 const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
@@ -69,7 +69,7 @@ const scene = defn("float", "scene", [["vec2"]], (pos) => {
 
 // main fragment shader function
 // again uses several shader-ast std lib helpers
-const main = defn(
+const mainImage = defn(
     "vec4",
     "mainImage",
     [["vec2", "fragCoord"], ["vec2", "res"]],
@@ -94,17 +94,9 @@ const main = defn(
     }
 );
 
-// actual GLSL fragment shader main function
-const glslMain = defn("void", "main", [], () => [
-    assign(
-        sym("vec4", "o_fragColor"),
-        main($(GL.gl_FragCoord, "xy"), sym("vec2", "u_resolution"))
-    )
-]);
-
 // build call graph for given entry function, sort in topological order
 // and bundle all functions in a global scope for code generation...
-const shaderProgram = program(main);
+const shaderProgram = program([mainImage]);
 
 console.log("JS");
 console.log(JS(shaderProgram));
@@ -128,34 +120,38 @@ if (JS_MODE) {
     //
     const fn = JS.compile(shaderProgram).mainImage;
     const rt = initRuntime({ canvas });
-    let time = 0;
 
     setInterval(() => {
-        time += 0.1;
         rt.update((frag) => fn(frag, size));
     }, 16);
 } else {
     //
     // WebGL mode...
     //
-    // inject main fs function into AST program
-    shaderProgram.body.push(glslMain);
     const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
     // build fullscreen quad
     const model = quad(false);
     // set shader
     model.shader = shader(ctx, {
-        vs: GL(
-            defn("void", "main", [], () => [
-                assign(GL.gl_Position, vec4(sym("vec2", "a_position"), 0, 1))
+        vs: (gl, _, attribs) => [
+            defMain(() => [
+                assign(gl.gl_Position, vec4(attribs.position, 0, 1))
             ])
-        ),
-        fs: GL(shaderProgram).replace(/\};/g, "}"),
+        ],
+        fs: (gl, unis, _, outs) => [
+            mainImage,
+            defMain(() => [
+                assign(
+                    outs.fragColor,
+                    mainImage($(gl.gl_FragCoord, "xy"), unis.resolution)
+                )
+            ])
+        ],
         attribs: {
-            position: GLSL.vec2
+            position: "vec2"
         },
         uniforms: {
-            resolution: [GLSL.vec2, [W, H]]
+            resolution: ["vec2", [W, H]]
         }
     });
     // compile model (attrib buffers)

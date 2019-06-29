@@ -7,6 +7,7 @@ import {
     add,
     assign,
     atan,
+    defMain,
     defn,
     div,
     float,
@@ -22,7 +23,7 @@ import {
     Vec2Sym,
     vec4
 } from "@thi.ng/shader-ast";
-import { targetGLSL } from "@thi.ng/shader-ast-glsl";
+import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { initRuntime, JS_DEFAULT_ENV, targetJS } from "@thi.ng/shader-ast-js";
 import {
     compileModel,
@@ -38,11 +39,11 @@ import TEX_URL from "../assets/tex.jpg";
 const JS_MODE = location.hash.indexOf("2d") >= 0;
 
 // AST compile targets
-const GL = targetGLSL({ version: 100 }); // WebGL
+const GL = targetGLSL({ version: GLSLVersion.GLES_100 }); // WebGL
 const JS = targetJS();
 
 // https://www.shadertoy.com/view/Ms2SWW (by iq)
-const main = defn(
+const mainImage = defn(
     "vec4",
     "mainImage",
     [
@@ -77,21 +78,8 @@ const main = defn(
     }
 );
 
-// actual GLSL fragment shader main function
-const glslMain = defn("void", "main", [], () => [
-    assign(
-        sym("vec4", "o_fragColor"),
-        main(
-            $(GL.gl_FragCoord, "xy"),
-            sym("vec2", "u_resolution"),
-            sym("float", "u_time"),
-            sym("sampler2D", "u_tex")
-        )
-    )
-]);
-
 // assemble all functions in a global scope for code generation...
-const shaderProgram = program(main);
+const shaderProgram = program([mainImage]);
 
 console.log("JS");
 console.log(JS(shaderProgram));
@@ -158,29 +146,38 @@ if (JS_MODE) {
     //
     // WebGL mode...
     //
-    shaderProgram.body.push(glslMain);
     preload.then(() => {
         const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
         // build fullscreen quad
         const model = quad(false);
         // set shader
         model.shader = shader(ctx, {
-            vs: GL(
-                defn("void", "main", [], () => [
+            vs: (gl, _, attribs) => [
+                defMain(() => [
+                    assign(gl.gl_Position, vec4(attribs.position, 0, 1))
+                ])
+            ],
+            fs: (gl, unis, _, outs) => [
+                mainImage,
+                defMain(() => [
                     assign(
-                        GL.gl_Position,
-                        vec4(sym("vec2", "a_position"), 0, 1)
+                        outs.fragColor,
+                        mainImage(
+                            $(gl.gl_FragCoord, "xy"),
+                            unis.resolution,
+                            unis.time,
+                            unis.tex
+                        )
                     )
                 ])
-            ),
-            fs: GL(shaderProgram).replace(/\};/g, "}"),
+            ],
             attribs: {
-                position: GLSL.vec2
+                position: "vec2"
             },
             uniforms: {
-                resolution: [GLSL.vec2, [W, H]],
-                time: GLSL.float,
-                tex: [GLSL.sampler2D, 0]
+                resolution: ["vec2", [W, H]],
+                time: "float",
+                tex: ["sampler2D", 0]
             }
         });
         model.textures = [glTexture(ctx, { image: tex, filter: ctx.LINEAR })];
