@@ -6,6 +6,8 @@ import {
     FloatSym,
     FnCall,
     FuncArg,
+    isMat,
+    isVec,
     itemType,
     Sym,
     sym,
@@ -15,9 +17,16 @@ import {
     Vec4Sym
 } from "@thi.ng/shader-ast";
 
+export const enum GLSLVersion {
+    GLES_100 = "100",
+    GLES_300 = "300 es"
+}
+
 export interface GLSLOpts {
     type: "vs" | "fs";
-    version: 100 | 300;
+    version: GLSLVersion;
+    versionPragma: boolean;
+    prelude: string;
 }
 
 export interface GLSLTarget extends Fn<Term<any>, string> {
@@ -47,16 +56,17 @@ export interface GLSLTarget extends Fn<Term<any>, string> {
  * @param opts
  */
 export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
-    const _opts = { type: "fs", version: 300, ...opts };
+    const _opts: GLSLOpts = {
+        type: "fs",
+        version: GLSLVersion.GLES_300,
+        versionPragma: true,
+        prelude: "",
+        ...opts
+    };
     const isVS = _opts.type === "vs";
 
-    const TYPE_NAMES: any = {
-        float: "float",
-        int: "int",
-        uint: "uint"
-    };
-
-    const $type = (t: Type) => TYPE_NAMES[t] || t;
+    // TODO update once we have struct support
+    const $type = (t: Type) => t;
 
     const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
@@ -67,7 +77,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
         const res: string[] = [];
         if (opts.type) {
             let type: string;
-            if (_opts.version < 300) {
+            if (_opts.version < GLSLVersion.GLES_300) {
                 if (isVS) {
                     type = (<any>{
                         in: "attribute",
@@ -111,7 +121,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
         call: $fn,
 
         call_i: (t) =>
-            t.id === "texture" && _opts.version < 300
+            t.id === "texture" && _opts.version < GLSLVersion.GLES_300
                 ? `${t.id}${(<Sym<any>>t.args[0]).type.substr(7)}(${$list(
                       t.args
                   )})`
@@ -150,24 +160,12 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                 case "int":
                 case "uint":
                     return isNumber(v) ? String(v) : `${t.type}(${emit(v)})`;
-                case "vec2":
-                case "vec3":
-                case "vec4":
-                case "ivec2":
-                case "ivec3":
-                case "ivec4":
-                case "uvec2":
-                case "uvec3":
-                case "uvec4":
-                case "bvec2":
-                case "bvec3":
-                case "bvec4":
-                case "mat2":
-                case "mat3":
-                case "mat4":
-                    return `${t.type}(${$list(v)})`;
-                default:
+                default: {
+                    if (isVec(t) || isMat(t)) {
+                        return `${t.type}(${$list(v)})`;
+                    }
                     return unsupported(`unknown type: ${t.type}`);
+                }
             }
         },
 
@@ -179,9 +177,24 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
         ret: (t) => "return" + (t.val ? " " + emit(t.val) : ""),
 
         scope: (t) => {
-            let res = $list(t.body, ";\n");
+            let res = t.body
+                .map(emit)
+                .reduce(
+                    (acc, x) => (acc.push(x.endsWith("}") ? x : x + ";"), acc),
+                    <string[]>[]
+                )
+                .join("\n");
             res += res[res.length - 1] != "}" && t.body.length ? ";" : "";
-            return !t.global ? `{\n${res}\n}` : res;
+            if (!t.global) {
+                return `{\n${res}\n}`;
+            }
+            if (_opts.prelude) {
+                res = _opts.prelude + "\n" + res;
+            }
+            if (_opts.versionPragma) {
+                res = `#version ${_opts.version}\n` + res;
+            }
+            return res;
         },
 
         swizzle: (t) => `${emit(t.val)}.${t.id}`,
