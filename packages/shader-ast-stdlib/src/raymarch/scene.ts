@@ -60,7 +60,7 @@ export const raymarchScene = (
             forLoop(
                 sym("int", int(0)),
                 (i) => lt(i, int(opts.steps)),
-                (i) => assign(i, inc(i)),
+                (i) => inc(i),
                 () => [
                     assign(res, scene(add(pos, mul(dir, total)))),
                     ifThen(lt($x(res), float(opts.eps)), [

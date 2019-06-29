@@ -39,7 +39,7 @@ export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
             forLoop(
                 sym("float", float(1)),
                 (i) => lte(i, float(numSamples)),
-                (i) => assign(i, inc(i)),
+                (i) => inc(i),
                 (i) => [
                     (d0 = sym(mul(i, float(1 / numSamples)))),
                     assign(
