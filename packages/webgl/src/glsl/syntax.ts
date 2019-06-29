@@ -1,10 +1,6 @@
 import { isArray } from "@thi.ng/checks";
-import {
-    GLSL,
-    GLSLDeclPrefixes,
-    GLSLSyntax,
-    GLSLVersion
-} from "../api";
+import { GLSLVersion } from "@thi.ng/shader-ast-glsl";
+import { GLSL, GLSLDeclPrefixes, GLSLSyntax } from "../api";
 
 export const PREFIXES: GLSLDeclPrefixes = {
     a: "a_",
@@ -30,7 +26,7 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
     [GLSLVersion.GLES_100]: {
         number: 100,
         attrib: (id, type, pre) =>
-            `attribute ${GLSL[isArray(type) ? type[0] : type]} ${pre.a}${id};`,
+            `attribute ${isArray(type) ? type[0] : type} ${pre.a}${id};`,
         varying: {
             vs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
             fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id)
@@ -46,10 +42,8 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
         number: 300,
         attrib: (id, type, pre) =>
             isArray(type)
-                ? `layout(location=${type[1]}) in ${GLSL[type[0]]} ${
-                      pre.a
-                  }${id};`
-                : `in ${GLSL[type]} ${pre.a}${id};`,
+                ? `layout(location=${type[1]}) in ${type[0]} ${pre.a}${id};`
+                : `in ${type} ${pre.a}${id};`,
         varying: {
             vs: (id, type, pre) => arrayDecl("out", type, pre.v + id),
             fs: (id, type, pre) => arrayDecl("in", type, pre.v + id)
@@ -57,10 +51,8 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
         uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
         output: (id, type, pre) =>
             isArray(type)
-                ? `layout(location=${type[1]}) out ${GLSL[type[0]]} ${
-                      pre.o
-                  }${id};`
-                : `out ${GLSL[type]} ${pre.o}${id};`
+                ? `layout(location=${type[1]}) out ${type[0]} ${pre.o}${id};`
+                : `out ${type} ${pre.o}${id};`
     }
 };
 
@@ -70,11 +62,11 @@ const arrayDecl = (
     id: string
 ) => {
     const type = isArray(decl) ? decl[0] : decl;
-    return type >= GLSL.bool_array
-        ? `${qualifier} ${GLSL[type].replace("_array", "")} ${id}[${
+    return type.indexOf("[]") > 0
+        ? `${qualifier} ${type.replace("[]", "")} ${id}[${
               (<[GLSL, number]>decl)[1]
           }];`
-        : `${qualifier} ${GLSL[type]} ${id};`;
+        : `${qualifier} ${type} ${id};`;
 };
 
 /**

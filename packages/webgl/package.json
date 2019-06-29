@@ -40,6 +40,9 @@
         "@thi.ng/equiv": "^1.0.6",
         "@thi.ng/errors": "^1.0.6",
         "@thi.ng/matrices": "^0.4.0",
+        "@thi.ng/shader-ast": "^0.0.1",
+        "@thi.ng/shader-ast-glsl": "^0.0.1",
+        "@thi.ng/shader-ast-stdlib": "^0.0.1",
         "@thi.ng/transducers": "^5.3.7",
         "@thi.ng/vector-pools": "^0.2.16",
         "@thi.ng/vectors": "^2.5.6"

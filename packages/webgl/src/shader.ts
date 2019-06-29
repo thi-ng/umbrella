@@ -7,12 +7,18 @@ import {
     isFunction
 } from "@thi.ng/checks";
 import {
+    input,
+    output,
+    Sym,
+    uniform
+} from "@thi.ng/shader-ast";
+import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
+import {
     DEFAULT_OUTPUT,
     GL_EXT_INFO,
     GLSL,
     GLSLDeclPrefixes,
     GLSLExtensionBehavior,
-    GLSLVersion,
     IShader,
     ModelAttributeSpecs,
     ModelSpec,
@@ -176,13 +182,15 @@ export class Shader implements IShader {
 }
 
 export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
-    if (!spec.version) {
-        spec.version = isGL2Context(gl)
-            ? GLSLVersion.GLES_300
-            : GLSLVersion.GLES_100;
-    }
-    const srcVS = prepareShaderSource(spec, "vs");
-    const srcFS = prepareShaderSource(spec, "fs");
+    const version = isGL2Context(gl)
+        ? GLSLVersion.GLES_300
+        : GLSLVersion.GLES_100;
+    const srcVS = isFunction(spec.vs)
+        ? shaderSourceFromAST(spec, "vs", version)
+        : prepareShaderSource(spec, "vs", version);
+    const srcFS = isFunction(spec.fs)
+        ? shaderSourceFromAST(spec, "fs", version)
+        : prepareShaderSource(spec, "fs", version);
     console.log(srcVS);
     console.log(srcFS);
     initShaderExtensions(gl, spec.ext);
@@ -246,13 +254,95 @@ const initShaderExtensions = (
     }
 };
 
-export const prepareShaderSource = (spec: ShaderSpec, type: ShaderType) => {
-    const version = spec.version || GLSLVersion.GLES_100;
+export const shaderSourceFromAST = (
+    spec: ShaderSpec,
+    type: ShaderType,
+    version: GLSLVersion
+) => {
+    let prelude = "";
+    prelude += spec.pre
+        ? spec.replacePrelude
+            ? spec.pre
+            : spec.pre + "\n" + GLSL_HEADER
+        : GLSL_HEADER;
+    if (spec.ext) {
+        for (let id in spec.ext) {
+            prelude += compileExtensionPragma(id, spec.ext[id], version);
+        }
+    }
+    const prefixes = { ...PREFIXES, ...spec.declPrefixes };
+    const inputs: IObjectOf<Sym<any>> = {};
+    const outputs: IObjectOf<Sym<any>> = {};
+    const unis: IObjectOf<Sym<any>> = {};
+    if (spec.uniforms) {
+        for (let id in spec.uniforms) {
+            const u = spec.uniforms[id];
+            id = prefixes.u + id;
+            unis[id] = isArray(u)
+                ? u.length === 3
+                    ? uniform(u[0], id, { num: <number>u[1] })
+                    : uniform(u[0], id)
+                : uniform(u, id);
+        }
+    }
+    if (type === "vs") {
+        for (let id in spec.attribs) {
+            const a = spec.attribs[id];
+            id = prefixes.a + id;
+            inputs[id] = isArray(a)
+                ? input(a[0], id, { loc: a[1] })
+                : input(a, id);
+        }
+        if (spec.varying) {
+            for (let id in spec.varying) {
+                const v = spec.varying[id];
+                id = prefixes.v + id;
+                outputs[id] = isArray(v)
+                    ? output(v[0], id, { num: v[1] })
+                    : output(v, id);
+            }
+        }
+    } else {
+        if (spec.varying) {
+            for (let id in spec.varying) {
+                const v = spec.varying[id];
+                id = prefixes.v + id;
+                inputs[id] = isArray(v)
+                    ? input(v[0], id, { num: v[1] })
+                    : input(v, id);
+            }
+        }
+        if (spec.outputs) {
+            for (let id in spec.outputs) {
+                const v = spec.outputs[id];
+                id = prefixes.o + id;
+                outputs[id] = isArray(v)
+                    ? output(v[0], id, { num: v[1] })
+                    : output(v, id);
+            }
+        }
+    }
+    const target = targetGLSL({
+        type,
+        version,
+        prelude
+    });
+    return (
+        target((<any>spec[type])(target, unis, inputs, outputs)) +
+        (spec.post ? "\n" + spec.post : "")
+    );
+};
+
+export const prepareShaderSource = (
+    spec: ShaderSpec,
+    type: ShaderType,
+    version: GLSLVersion
+) => {
     const syntax = SYNTAX[version];
     const prefixes = { ...PREFIXES, ...spec.declPrefixes };
     const isVS = type === "vs";
     let src = "";
-    spec.version && (src += `#version ${spec.version}\n`);
+    src += `#version ${version}\n`;
     src += spec.pre
         ? spec.replacePrelude
             ? spec.pre
@@ -348,7 +438,7 @@ const initUniforms = (
         let t1, t2, defaultVal, defaultFn;
         if (isArray(val)) {
             [type, t1, t2] = val;
-            defaultVal = type < GLSL.bool_array ? t1 : t2;
+            defaultVal = type.indexOf("[]") < 0 ? t1 : t2;
             if (isFunction(defaultVal)) {
                 defaultFn = defaultVal;
                 defaultVal = undefined;
@@ -356,6 +446,7 @@ const initUniforms = (
         } else {
             type = val;
         }
+        // FIXME no hardcoded u_ prefix!
         const loc = gl.getUniformLocation(prog, `u_${id}`)!;
         loc == null && error(`unknown uniform: ${id}`);
         const setter = UNIFORM_SETTERS[type];
@@ -368,7 +459,7 @@ const initUniforms = (
                 type
             };
         } else {
-            error(`invalid uniform type: ${GLSL[type]}`);
+            error(`invalid uniform type: ${type}`);
         }
     }
     return res;

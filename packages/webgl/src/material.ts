@@ -7,9 +7,9 @@ export const DEFAULT_MATERIAL: Material = {
 };
 
 const TYPES: Record<keyof Material, GLSL> = {
-    ambientCol: GLSL.vec3,
-    diffuseCol: GLSL.vec3,
-    specularCol: GLSL.vec3
+    ambientCol: "vec3",
+    diffuseCol: "vec3",
+    specularCol: "vec3"
 };
 
 export const defMaterial = (

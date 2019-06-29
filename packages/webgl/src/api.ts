@@ -2,6 +2,7 @@ import {
     Fn,
     Fn2,
     Fn3,
+    Fn4,
     IBind,
     IDeref,
     IObjectOf,
@@ -9,6 +10,8 @@ import {
     Tuple,
     TypedArray
 } from "@thi.ng/api";
+import { Sym, Type } from "@thi.ng/shader-ast";
+import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import { AttribPool } from "@thi.ng/vector-pools";
 import { ReadonlyVec } from "@thi.ng/vectors";
 
@@ -541,68 +544,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     }
 };
 
-export enum GLSL {
-    bool,
-    int,
-    uint,
-    float,
-    vec2,
-    vec3,
-    vec4,
-    bvec2,
-    bvec3,
-    bvec4,
-    ivec2,
-    ivec3,
-    ivec4,
-    uvec2,
-    uvec3,
-    uvec4,
-    mat2,
-    mat3,
-    mat4,
-    mat2x3,
-    mat2x4,
-    mat3x2,
-    mat3x4,
-    mat4x2,
-    mat4x3,
-    sampler2D,
-    sampler2DShadow,
-    sampler3D,
-    samplerCube,
-    samplerCubeShadow,
-    bool_array,
-    float_array,
-    int_array,
-    uint_array,
-    vec2_array,
-    vec3_array,
-    vec4_array,
-    bvec2_array,
-    bvec3_array,
-    bvec4_array,
-    ivec2_array,
-    ivec3_array,
-    ivec4_array,
-    uvec2_array,
-    uvec3_array,
-    uvec4_array,
-    mat2_array,
-    mat3_array,
-    mat4_array,
-    mat2x3_array,
-    mat2x4_array,
-    mat3x2_array,
-    mat3x4_array,
-    mat4x2_array,
-    mat4x3_array,
-    sampler2D_array,
-    sampler2DShadow_array,
-    sampler3D_array,
-    samplerCube_array,
-    samplerCubeShadow_array
-}
+export type GLSL = Type;
 
 export type GLVec = number[] | Float32Array;
 export type GLVec2 = Tuple<number, 2> | Float32Array;
@@ -622,13 +564,7 @@ export type GLMat23 = Tuple<number, 6> | Float32Array;
 export type GLMat24 = Tuple<number, 8> | Float32Array;
 export type GLMat34 = Tuple<number, 12> | Float32Array;
 
-export type AttribType =
-    | GLSL.bool
-    | GLSL.float
-    | GLSL.int
-    | GLSL.vec2
-    | GLSL.vec3
-    | GLSL.vec4;
+export type AttribType = "bool" | "float" | "int" | "vec2" | "vec3" | "vec4";
 
 export type AttribBufferData =
     | Int8Array
@@ -651,42 +587,42 @@ export type UniformValues = IObjectOf<
 export type ShaderType = "vs" | "fs";
 
 export type GLSLScalarType =
-    | GLSL.bool
-    | GLSL.float
-    | GLSL.int
-    | GLSL.uint
-    | GLSL.sampler2D
-    | GLSL.samplerCube;
+    | "bool"
+    | "float"
+    | "int"
+    | "uint"
+    | "sampler2D"
+    | "samplerCube";
 
 export type GLSLArrayType =
-    | GLSL.bool_array
-    | GLSL.int_array
-    | GLSL.uint_array
-    | GLSL.float_array
-    | GLSL.bvec2_array
-    | GLSL.bvec3_array
-    | GLSL.bvec4_array
-    | GLSL.ivec2_array
-    | GLSL.ivec3_array
-    | GLSL.ivec4_array
-    | GLSL.uvec2_array
-    | GLSL.uvec3_array
-    | GLSL.uvec4_array
-    | GLSL.vec2_array
-    | GLSL.vec3_array
-    | GLSL.vec4_array
-    | GLSL.mat2_array
-    | GLSL.mat3_array
-    | GLSL.mat4_array
-    | GLSL.mat2x3_array
-    | GLSL.mat2x4_array
-    | GLSL.mat3x2_array
-    | GLSL.mat3x4_array
-    | GLSL.mat4x2_array
-    | GLSL.mat4x3_array
-    | GLSL.sampler2D_array
-    | GLSL.sampler3D_array
-    | GLSL.samplerCube_array;
+    | "bool[]"
+    | "int[]"
+    | "uint[]"
+    | "float[]"
+    | "bvec2[]"
+    | "bvec3[]"
+    | "bvec4[]"
+    | "ivec2[]"
+    | "ivec3[]"
+    | "ivec4[]"
+    | "uvec2[]"
+    | "uvec3[]"
+    | "uvec4[]"
+    | "vec2[]"
+    | "vec3[]"
+    | "vec4[]"
+    | "mat2[]"
+    | "mat3[]"
+    | "mat4[]"
+    // | "mat2x3[]"
+    // | "mat2x4[]"
+    // | "mat3x2[]"
+    // | "mat3x4[]"
+    // | "mat4x2[]"
+    // | "mat4x3[]"
+    | "sampler2D[]"
+    | "sampler3D[]"
+    | "samplerCube[]";
 
 export type UniformDefault<T> =
     | T
@@ -695,52 +631,52 @@ export type UniformDefault<T> =
 export type UniformDecl =
     | GLSL
     | [GLSLScalarType, UniformDefault<number>]
-    | [GLSL.bvec2, UniformDefault<GLIntVec2>]
-    | [GLSL.bvec3, UniformDefault<GLIntVec3>]
-    | [GLSL.bvec4, UniformDefault<GLIntVec4>]
-    | [GLSL.ivec2, UniformDefault<GLIntVec2>]
-    | [GLSL.ivec3, UniformDefault<GLIntVec3>]
-    | [GLSL.ivec4, UniformDefault<GLIntVec4>]
-    | [GLSL.vec2, UniformDefault<GLVec2>]
-    | [GLSL.vec3, UniformDefault<GLVec3>]
-    | [GLSL.vec4, UniformDefault<GLVec4>]
-    | [GLSL.mat2, UniformDefault<GLMat2>]
-    | [GLSL.mat3, UniformDefault<GLMat3>]
-    | [GLSL.mat4, UniformDefault<GLMat4>]
-    | [GLSL.mat2x3, UniformDefault<GLMat23>]
-    | [GLSL.mat2x4, UniformDefault<GLMat24>]
-    | [GLSL.mat3x2, UniformDefault<GLMat23>]
-    | [GLSL.mat3x4, UniformDefault<GLMat34>]
-    | [GLSL.mat4x2, UniformDefault<GLMat24>]
-    | [GLSL.mat4x3, UniformDefault<GLMat34>]
-    | [GLSL.bool_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.int_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.uint_array, number, UniformDefault<GLUintVec>?]
-    | [GLSL.float_array, number, UniformDefault<GLVec>?]
-    | [GLSL.bvec2_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.bvec3_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.bvec4_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.ivec2_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.ivec3_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.ivec4_array, number, UniformDefault<GLIntVec>?]
-    | [GLSL.uvec2_array, number, UniformDefault<GLUintVec>?]
-    | [GLSL.uvec3_array, number, UniformDefault<GLUintVec>?]
-    | [GLSL.uvec4_array, number, UniformDefault<GLUintVec>?]
-    | [GLSL.vec2_array, number, UniformDefault<GLVec>?]
-    | [GLSL.vec3_array, number, UniformDefault<GLVec>?]
-    | [GLSL.vec4_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat2_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat3_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat4_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat2x3_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat2x4_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat3x2_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat3x4_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat4x2_array, number, UniformDefault<GLVec>?]
-    | [GLSL.mat4x3_array, number, UniformDefault<GLVec>?]
-    | [GLSL.sampler2D_array, number, UniformDefault<number>?]
-    | [GLSL.sampler3D_array, number, UniformDefault<number>?]
-    | [GLSL.samplerCube_array, number, UniformDefault<number>?];
+    | ["bvec2", UniformDefault<GLIntVec2>]
+    | ["bvec3", UniformDefault<GLIntVec3>]
+    | ["bvec4", UniformDefault<GLIntVec4>]
+    | ["ivec2", UniformDefault<GLIntVec2>]
+    | ["ivec3", UniformDefault<GLIntVec3>]
+    | ["ivec4", UniformDefault<GLIntVec4>]
+    | ["vec2", UniformDefault<GLVec2>]
+    | ["vec3", UniformDefault<GLVec3>]
+    | ["vec4", UniformDefault<GLVec4>]
+    | ["mat2", UniformDefault<GLMat2>]
+    | ["mat3", UniformDefault<GLMat3>]
+    | ["mat4", UniformDefault<GLMat4>]
+    // | ["mat2x3", UniformDefault<GLMat23>]
+    // | ["mat2x4", UniformDefault<GLMat24>]
+    // | ["mat3x2", UniformDefault<GLMat23>]
+    // | ["mat3x4", UniformDefault<GLMat34>]
+    // | ["mat4x2", UniformDefault<GLMat24>]
+    // | ["mat4x3", UniformDefault<GLMat34>]
+    | ["bool[]", number, UniformDefault<GLIntVec>?]
+    | ["int[]", number, UniformDefault<GLIntVec>?]
+    | ["uint[]", number, UniformDefault<GLUintVec>?]
+    | ["float[]", number, UniformDefault<GLVec>?]
+    | ["bvec2[]", number, UniformDefault<GLIntVec>?]
+    | ["bvec3[]", number, UniformDefault<GLIntVec>?]
+    | ["bvec4[]", number, UniformDefault<GLIntVec>?]
+    | ["ivec2[]", number, UniformDefault<GLIntVec>?]
+    | ["ivec3[]", number, UniformDefault<GLIntVec>?]
+    | ["ivec4[]", number, UniformDefault<GLIntVec>?]
+    | ["uvec2[]", number, UniformDefault<GLUintVec>?]
+    | ["uvec3[]", number, UniformDefault<GLUintVec>?]
+    | ["uvec4[]", number, UniformDefault<GLUintVec>?]
+    | ["vec2[]", number, UniformDefault<GLVec>?]
+    | ["vec3[]", number, UniformDefault<GLVec>?]
+    | ["vec4[]", number, UniformDefault<GLVec>?]
+    | ["mat2[]", number, UniformDefault<GLVec>?]
+    | ["mat3[]", number, UniformDefault<GLVec>?]
+    | ["mat4[]", number, UniformDefault<GLVec>?]
+    // | ["mat2x3[]", number, UniformDefault<GLVec>?]
+    // | ["mat2x4[]", number, UniformDefault<GLVec>?]
+    // | ["mat3x2[]", number, UniformDefault<GLVec>?]
+    // | ["mat3x4[]", number, UniformDefault<GLVec>?]
+    // | ["mat4x2[]", number, UniformDefault<GLVec>?]
+    // | ["mat4x3[]", number, UniformDefault<GLVec>?]
+    | ["sampler2D[]", number, UniformDefault<number>?]
+    | ["sampler3D[]", number, UniformDefault<number>?]
+    | ["samplerCube[]", number, UniformDefault<number>?];
 
 /**
  * Object of attribute types w/ optional locations.
@@ -779,11 +715,6 @@ export interface ShaderUniform {
     defaultVal?: UniformValue;
 }
 
-export enum GLSLVersion {
-    GLES_100 = "100",
-    GLES_300 = "300 es"
-}
-
 export interface GLSLSyntax {
     number: number;
     attrib: Fn3<string, ShaderAttribSpec, GLSLDeclPrefixes, string>;
@@ -815,17 +746,33 @@ export interface ShaderSnippet {
     src: string;
 }
 
-export const DEFAULT_OUTPUT: ShaderOutputSpecs = { fragColor: [GLSL.vec4, 0] };
+export const DEFAULT_OUTPUT: ShaderOutputSpecs = { fragColor: ["vec4", 0] };
+
+export type VSFunction = Fn4<
+    GLSLTarget,
+    IObjectOf<Sym<any>>, // uni
+    IObjectOf<Sym<any>>, // attribs
+    IObjectOf<Sym<any>>, // vary
+    string
+>;
+
+export type FSFunction = Fn4<
+    GLSLTarget,
+    IObjectOf<Sym<any>>, // uni
+    IObjectOf<Sym<any>>, // vary
+    IObjectOf<Sym<any>>, // outputs
+    string
+>;
 
 export interface ShaderSpec {
     /**
      * Vertex shader GLSL source code.
      */
-    vs: string;
+    vs: string | VSFunction;
     /**
      * Fragment shader GLSL source code.
      */
-    fs: string;
+    fs: string | FSFunction;
     /**
      * Attribute type declarations.
      */
@@ -844,11 +791,7 @@ export interface ShaderSpec {
      */
     outputs?: ShaderOutputSpecs;
     /**
-     * GLSL version. Default: GLSLVersion.GLES_100
-     */
-    version?: GLSLVersion;
-    /**
-     * Flag to indicate code generation for attribs, vaarying, uniforms
+     * Flag to indicate code generation for attribs, varying, uniforms
      * and outputs. Default: true.
      */
     generateDecls?: boolean;

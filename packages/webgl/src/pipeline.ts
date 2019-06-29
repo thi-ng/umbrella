@@ -1,4 +1,4 @@
-import { GLSL, ShaderSpec } from "./api";
+import { ShaderSpec } from "./api";
 import { ALIAS_TEXTURE } from "./glsl/syntax";
 
 export const PASSTHROUGH_VS =
@@ -10,9 +10,9 @@ export const FX_SHADER_SPEC: ShaderSpec = {
     vs: PASSTHROUGH_VS,
     fs: PASSTHROUGH_FS,
     pre: ALIAS_TEXTURE,
-    attribs: { position: GLSL.vec2, uv: GLSL.vec2 },
-    varying: { uv: GLSL.vec2 },
-    uniforms: { tex: GLSL.sampler2D },
+    attribs: { position: "vec2", uv: "vec2" },
+    varying: { uv: "vec2" },
+    uniforms: { tex: "sampler2D" },
     state: { depth: false },
     ext: {}
 };

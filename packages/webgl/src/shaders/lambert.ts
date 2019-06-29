@@ -1,6 +1,5 @@
 import { normalize } from "@thi.ng/vectors";
 import {
-    GLSL,
     GLVec3,
     Material,
     ShaderOpts,
@@ -38,34 +37,34 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     ),
     pre: ALIAS_TEXTURE,
     attribs: {
-        position: GLSL.vec3,
-        normal: GLSL.vec3,
-        ...(opts.uv ? { [opts.uv]: GLSL.vec2 } : null),
+        position: "vec3",
+        normal: "vec3",
+        ...(opts.uv ? { [opts.uv]: "vec2" } : null),
         ...(opts.color && !opts.instanceColor
-            ? { [opts.color]: GLSL.vec3 }
+            ? { [opts.color]: "vec3" }
             : null),
-        ...(opts.instancePos ? { [opts.instancePos]: GLSL.vec3 } : null),
-        ...(opts.instanceColor ? { [opts.instanceColor]: GLSL.vec3 } : null)
+        ...(opts.instancePos ? { [opts.instancePos]: "vec3" } : null),
+        ...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null)
     },
     varying: {
-        col: GLSL.vec3,
-        normal: GLSL.vec3,
-        ...(opts.uv ? { uv: GLSL.vec2 } : null)
+        col: "vec3",
+        normal: "vec3",
+        ...(opts.uv ? { uv: "vec2" } : null)
     },
     uniforms: {
-        model: GLSL.mat4,
-        view: GLSL.mat4,
-        proj: GLSL.mat4,
-        normalMat: [GLSL.mat4, autoNormalMatrix2()],
-        lightDir: [GLSL.vec3, <GLVec3>normalize(null, [-1, 1, 1])],
-        lightCol: [GLSL.vec3, [1, 1, 1]],
+        model: "mat4",
+        view: "mat4",
+        proj: "mat4",
+        normalMat: ["mat4", autoNormalMatrix2()],
+        lightDir: ["vec3", <GLVec3>normalize(null, [-1, 1, 1])],
+        lightCol: ["vec3", [1, 1, 1]],
         ...defMaterial(
             { diffuseCol: [1, 1, 1], ...opts.material },
             { specularCol: false }
         ),
-        ...(opts.uv ? { tex: GLSL.sampler2D } : null),
-        alpha: [GLSL.float, 1],
-        bidir: [GLSL.bool, 0]
+        ...(opts.uv ? { tex: "sampler2D" } : null),
+        alpha: ["float", 1],
+        bidir: ["bool", 0]
     },
     state: {
         depth: true,

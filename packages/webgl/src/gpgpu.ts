@@ -12,7 +12,6 @@ import {
 import {
     GL_RGBA,
     GL_RGBA32F,
-    GLSL,
     GPGPUJobConfig,
     GPGPUJobExecOpts,
     GPGPUOpts,
@@ -256,7 +255,7 @@ export class GPGPUJob implements IRelease {
                 fs: opts.src,
                 uniforms: { ...opts.uniforms },
                 outputs: transduce(
-                    map((i) => [`output${i}`, [GLSL.vec4, i]]),
+                    map((i) => [`output${i}`, ["vec4", i]]),
                     assocObj(),
                     range(opts.outputs!)
                 )
@@ -268,7 +267,7 @@ export class GPGPUJob implements IRelease {
         } else {
             return illegalArgs("require either `src` or `shader` option");
         }
-        shaderSpec.uniforms!.inputs = [GLSL.sampler2D_array, opts.inputs];
+        shaderSpec.uniforms!.inputs = ["sampler2D[]", opts.inputs];
         if (ctx.opts.version === 1 && opts.outputs! > 1) {
             shaderSpec.ext!.EXT_draw_buffers = "require";
         }

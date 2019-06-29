@@ -4,7 +4,6 @@ import {
     DEFAULT_BLEND,
     defglsl,
     defglslA,
-    GLSL,
     GLVec4,
     ShaderSpec
 } from "@thi.ng/webgl";
@@ -47,21 +46,21 @@ export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
         OES_standard_derivatives: true
     },
     attribs: {
-        position: GLSL.vec3,
-        uv: GLSL.vec2,
-        ...(opts.color ? { color: GLSL.vec4 } : null)
+        position: "vec3",
+        uv: "vec2",
+        ...(opts.color ? { color: "vec4" } : null)
     },
     varying: {
-        uv: GLSL.vec2,
-        ...(opts.color ? { color: GLSL.vec4 } : null)
+        uv: "vec2",
+        ...(opts.color ? { color: "vec4" } : null)
     },
     uniforms: {
-        modelview: GLSL.mat4,
-        proj: GLSL.mat4,
-        tex: GLSL.sampler2D,
-        thresh: [GLSL.float, 1e-3],
-        bg: [GLSL.vec4, <GLVec4>ZERO4],
-        ...(!opts.color ? { fg: [GLSL.vec4, <GLVec4>ONE4] } : null)
+        modelview: "mat4",
+        proj: "mat4",
+        tex: "sampler2D",
+        thresh: ["float", 1e-3],
+        bg: ["vec4", <GLVec4>ZERO4],
+        ...(!opts.color ? { fg: ["vec4", <GLVec4>ONE4] } : null)
     },
     state: {
         blend: true,

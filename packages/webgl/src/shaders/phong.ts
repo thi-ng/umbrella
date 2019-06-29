@@ -1,9 +1,4 @@
-import {
-    GLSL,
-    Material,
-    ShaderOpts,
-    ShaderSpec
-} from "../api";
+import { Material, ShaderOpts, ShaderSpec } from "../api";
 import { defglslA } from "../glsl/assemble";
 import { surfaceNormal } from "../glsl/vertex";
 import { defMaterial } from "../material";
@@ -37,29 +32,29 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
     o_fragColor = u_ambientCol + v_col * directional * u_lightCol + u_specularCol * specular;
 }`,
     attribs: {
-        position: GLSL.vec3,
-        normal: GLSL.vec3,
+        position: "vec3",
+        normal: "vec3",
         ...(opts.color && !opts.instanceColor
-            ? { [opts.color]: GLSL.vec3 }
+            ? { [opts.color]: "vec3" }
             : null),
-        ...(opts.instancePos ? { [opts.instancePos]: GLSL.vec3 } : null),
-        ...(opts.instanceColor ? { [opts.instanceColor]: GLSL.vec3 } : null)
+        ...(opts.instancePos ? { [opts.instancePos]: "vec3" } : null),
+        ...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null)
     },
     varying: {
-        normal: GLSL.vec3,
-        eye: GLSL.vec3,
-        light: GLSL.vec3,
-        col: GLSL.vec3
+        normal: "vec3",
+        eye: "vec3",
+        light: "vec3",
+        col: "vec3"
     },
     uniforms: {
-        model: GLSL.mat4,
-        normalMat: [GLSL.mat4, autoNormalMatrix1()],
-        view: GLSL.mat4,
-        proj: GLSL.mat4,
-        shininess: [GLSL.float, 32],
-        eyePos: GLSL.vec3,
-        lightPos: [GLSL.vec3, [0, 0, 2]],
-        lightCol: [GLSL.vec3, [1, 1, 1]],
+        model: "mat4",
+        normalMat: ["mat4", autoNormalMatrix1()],
+        view: "mat4",
+        proj: "mat4",
+        shininess: ["float", 32],
+        eyePos: "vec3",
+        lightPos: ["vec3", [0, 0, 2]],
+        lightCol: ["vec3", [1, 1, 1]],
         ...defMaterial(opts.material)
     },
     state: { depth: true, ...opts.state }
