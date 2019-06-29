@@ -51,7 +51,7 @@ import {
 const JS_MODE = location.hash.indexOf("2d") >= 0;
 
 // AST compile targets
-const GL = targetGLSL(300); // WebGL2
+const GL = targetGLSL({ version: 100 }); // WebGL2
 const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
@@ -224,7 +224,7 @@ if (JS_MODE) {
     //
     // inject main fs function into AST program
     shaderProgram.body.push(glslMain);
-    const ctx: WebGL2RenderingContext = canvas.getContext("webgl2")!;
+    const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
     // build fullscreen quad
     const model = quad(false);
     // set shader

@@ -38,7 +38,7 @@ import TEX_URL from "../assets/tex.jpg";
 const JS_MODE = location.hash.indexOf("2d") >= 0;
 
 // AST compile targets
-const GL = targetGLSL(100);
+const GL = targetGLSL({ version: 100 }); // WebGL
 const JS = targetJS();
 
 // https://www.shadertoy.com/view/Ms2SWW (by iq)
