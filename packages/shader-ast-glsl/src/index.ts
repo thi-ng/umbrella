@@ -171,7 +171,8 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
             }
         },
 
-        op1: (t) => `${t.op}${emit(t.val)}`,
+        op1: (t) =>
+            t.post ? `(${emit(t.val)}${t.op})` : `(${t.op}${emit(t.val)})`,
 
         op2: (t) => `(${emit(t.l)} ${t.op} ${emit(t.r)})`,
 
