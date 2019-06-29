@@ -15,9 +15,9 @@ import {
     Vec4Sym
 } from "@thi.ng/shader-ast";
 
-// TODO
 export interface GLSLOpts {
-    version?: 100 | 300;
+    type: "vs" | "fs";
+    version: 100 | 300;
 }
 
 export interface GLSLTarget extends Fn<Term<any>, string> {
@@ -33,14 +33,23 @@ export interface GLSLTarget extends Fn<Term<any>, string> {
 /**
  * GLSL code gen, targets GLSL ES 3.00 (WebGL2) by default.
  *
- * Use `100` for WebGL v1 syntax. Currently only the only differences
- * (in terms of code generation, not correctness!):
+ * Use options object to configure shader type and GLSL version: `100`
+ * for WebGL, 300 for WebGL2. Currently, the only differences in terms
+ * of code generation, not correctness, are:
  *
+ * - attribute, varying, uniform declarations
  * - texture lookup function naming
  *
- * @param version
+ * Unsupported features in GLSL 100:
+ *
+ * - Fragment shader output vars
+ *
+ * @param opts
  */
-export const targetGLSL = (version = 300) => {
+export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
+    const _opts = { type: "fs", version: 300, ...opts };
+    const isVS = _opts.type === "vs";
+
     const TYPE_NAMES: any = {
         float: "float",
         int: "int",
@@ -54,10 +63,37 @@ export const targetGLSL = (version = 300) => {
     const $fn = (t: FnCall<any>) => `${t.id}(${$list(t.args)})`;
 
     const $decl = (sym: Sym<any> | FuncArg<any>, arg = false) => {
-        const { id, type, opts, init } = <any>sym;
+        const { id, type, opts, init } = <Sym<any>>sym;
         const res: string[] = [];
-        opts.const && res.push("const ");
-        arg && opts.q && res.push(opts.q + " ");
+        if (opts.type) {
+            let type: string;
+            if (_opts.version < 300) {
+                if (isVS) {
+                    type = (<any>{
+                        in: "attribute",
+                        out: "varying",
+                        uni: "uniform"
+                    })[opts.type];
+                } else {
+                    type = (<any>{
+                        in: "varying",
+                        out: null,
+                        uni: "uniform"
+                    })[opts.type];
+                    !type &&
+                        unsupported(
+                            "GLSL 100 doesn't support fragment shader output variables"
+                        );
+                }
+            } else {
+                opts.loc != null && res.push(`layout(location=${opts.loc}) `);
+                type = opts.type === "uni" ? "uniform" : opts.type;
+            }
+            res.push(type + " ");
+        } else {
+            opts.const && res.push("const ");
+            arg && opts.q && res.push(opts.q + " ");
+        }
         opts.prec && res.push(opts.prec + " ");
         res.push($type(itemType(type)), " ", id);
         opts.num && res.push(`[${opts.num}]`);
@@ -75,7 +111,7 @@ export const targetGLSL = (version = 300) => {
         call: $fn,
 
         call_i: (t) =>
-            t.id === "texture" && version < 300
+            t.id === "texture" && _opts.version < 300
                 ? `${t.id}${(<Sym<any>>t.args[0]).type.substr(7)}(${$list(
                       t.args
                   )})`
