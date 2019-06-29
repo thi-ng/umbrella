@@ -9,6 +9,22 @@ import {
 } from "@thi.ng/matrices";
 import { SYSTEM } from "@thi.ng/random";
 import { fromDOMEvent, Subscription } from "@thi.ng/rstream";
+import {
+    $w,
+    add,
+    assign,
+    defMain,
+    div,
+    float,
+    length,
+    mod,
+    mul,
+    sin,
+    smoothstep,
+    sub,
+    vec3,
+    vec4
+} from "@thi.ng/shader-ast";
 import { map } from "@thi.ng/transducers";
 import { AttribPool, GLType } from "@thi.ng/vector-pools";
 import {
@@ -129,23 +145,62 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
         attribPool: pool,
         uniforms: {},
         shader: shader(gl, {
-            vs: `void main() {
-                v_alpha = sin(a_id * 37.13829) * 0.3 + 0.7;
-                vec3 pos = mod(a_position + a_dir * u_time, 10.) - vec3(5.);
-                gl_Position = u_proj * u_modelview * vec4(pos, 1.);
-                gl_PointSize = 20. / gl_Position.w;
-            }`,
-            fs: `void main() {
-                float a = 1. - smoothstep(0.1, 0.5, length(gl_PointCoord - vec2(0.5)));
-                o_fragColor = vec4(v_alpha,v_alpha, v_alpha, a);
-            }`,
+            vs: (gl, unis, ins, outs) => [
+                defMain(() => [
+                    assign(
+                        outs.valpha,
+                        add(
+                            mul(sin(mul(ins.id, float(37.13829))), float(0.3)),
+                            float(0.7)
+                        )
+                    ),
+                    assign(
+                        gl.gl_Position,
+                        mul(
+                            mul(unis.proj, unis.modelview),
+                            vec4(
+                                sub(
+                                    mod(
+                                        add(
+                                            ins.position,
+                                            mul(ins.dir, unis.time)
+                                        ),
+                                        float(10)
+                                    ),
+                                    float(5)
+                                ),
+                                1
+                            )
+                        )
+                    ),
+                    assign(gl.gl_PointSize, div(float(20), $w(gl.gl_Position)))
+                ])
+            ],
+            fs: (gl, _, ins, outs) => [
+                defMain(() => [
+                    assign(
+                        outs.fragColor,
+                        vec4(
+                            vec3(ins.valpha),
+                            sub(
+                                float(1),
+                                smoothstep(
+                                    float(0.1),
+                                    float(0.5),
+                                    length(sub(gl.gl_PointCoord, float(0.5)))
+                                )
+                            )
+                        )
+                    )
+                ])
+            ],
             attribs: {
                 position: "vec3",
                 dir: "vec3",
                 id: "float"
             },
             varying: {
-                alpha: "float"
+                valpha: "float"
             },
             uniforms: {
                 modelview: "mat4",
