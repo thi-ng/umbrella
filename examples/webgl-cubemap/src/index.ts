@@ -14,7 +14,6 @@ import {
     cubeMap,
     draw,
     GLMat4,
-    GLSL,
     ModelSpec,
     shader,
     ShaderSpec,
@@ -31,14 +30,14 @@ o_fragColor = texture(u_texture, normalize(v_normal));
 }`,
     pre: VERSION_CHECK(300, "", "#define texture textureCube"),
     attribs: {
-        position: GLSL.vec3
+        position: "vec3"
     },
     varying: {
-        normal: GLSL.vec3
+        normal: "vec3"
     },
     uniforms: {
-        mvp: GLSL.mat4,
-        texture: GLSL.samplerCube
+        mvp: "mat4",
+        texture: "samplerCube"
     },
     state: {
         depth: true

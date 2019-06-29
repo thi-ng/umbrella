@@ -26,7 +26,6 @@ import {
     DEFAULT_BLEND,
     draw,
     GLMat4,
-    GLSL,
     ModelSpec,
     shader,
     texture
@@ -141,17 +140,17 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
                 o_fragColor = vec4(v_alpha,v_alpha, v_alpha, a);
             }`,
             attribs: {
-                position: GLSL.vec3,
-                dir: GLSL.vec3,
-                id: GLSL.float
+                position: "vec3",
+                dir: "vec3",
+                id: "float"
             },
             varying: {
-                alpha: GLSL.float
+                alpha: "float"
             },
             uniforms: {
-                modelview: GLSL.mat4,
-                proj: GLSL.mat4,
-                time: GLSL.float
+                modelview: "mat4",
+                proj: "mat4",
+                time: "float"
             },
             state: {
                 blend: true,

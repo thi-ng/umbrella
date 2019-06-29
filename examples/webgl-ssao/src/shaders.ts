@@ -1,5 +1,5 @@
 import { mergeDeepObj } from "@thi.ng/associative";
-import { FX_SHADER_SPEC, GLSL, ShaderSpec } from "@thi.ng/webgl";
+import { FX_SHADER_SPEC, ShaderSpec } from "@thi.ng/webgl";
 
 export const LIGHT_SHADER: ShaderSpec = {
     vs: `void main() {
@@ -24,33 +24,33 @@ export const LIGHT_SHADER: ShaderSpec = {
     o_viewNormal = v_viewNormal;
 }`,
     attribs: {
-        position: GLSL.vec3,
-        normal: GLSL.vec3,
-        offset: GLSL.vec3,
-        uv: GLSL.vec2
+        position: "vec3",
+        normal: "vec3",
+        offset: "vec3",
+        uv: "vec2"
     },
     varying: {
-        position: GLSL.vec4,
-        normal: GLSL.vec4,
-        uv: GLSL.vec2,
-        viewPos: GLSL.vec4,
-        viewNormal: GLSL.vec4
+        position: "vec4",
+        normal: "vec4",
+        uv: "vec2",
+        viewPos: "vec4",
+        viewNormal: "vec4"
     },
     uniforms: {
-        model: GLSL.mat4,
-        view: GLSL.mat4,
-        proj: GLSL.mat4,
-        eyePos: GLSL.vec3,
-        lightPos: GLSL.vec3,
-        shininess: [GLSL.float, 250],
-        specular: GLSL.float,
-        ambient: [GLSL.float, 0.15],
-        tex: GLSL.sampler2D
+        model: "mat4",
+        view: "mat4",
+        proj: "mat4",
+        eyePos: "vec3",
+        lightPos: "vec3",
+        shininess: ["float", 250],
+        specular: "float",
+        ambient: ["float", 0.15],
+        tex: "sampler2D"
     },
     outputs: {
-        color: [GLSL.vec4, 0],
-        viewPos: [GLSL.vec4, 1],
-        viewNormal: [GLSL.vec4, 2]
+        color: ["vec4", 0],
+        viewPos: ["vec4", 1],
+        viewNormal: ["vec4", 2]
     },
     state: {
         depth: true,
@@ -96,17 +96,17 @@ void main() {
     o_occlusion = clamp(sum / 16.0, 0.0, 1.0);
 }`,
     uniforms: {
-        positionTex: [GLSL.sampler2D, 0],
-        normalTex: [GLSL.sampler2D, 1],
-        noiseTex: [GLSL.sampler2D, 2],
-        sampleRadius: [GLSL.float, 32],
-        bias: [GLSL.float, 0.09],
-        attenuate: [GLSL.float, 1],
-        attenuateDist: [GLSL.float, 1],
-        depthRange: [GLSL.vec2, [0.1, 10]]
+        positionTex: ["sampler2D", 0],
+        normalTex: ["sampler2D", 1],
+        noiseTex: ["sampler2D", 2],
+        sampleRadius: ["float", 32],
+        bias: ["float", 0.09],
+        attenuate: ["float", 1],
+        attenuateDist: ["float", 1],
+        depthRange: ["vec2", [0.1, 10]]
     },
     outputs: {
-        occlusion: GLSL.float
+        occlusion: "float"
     }
 };
 
@@ -116,7 +116,7 @@ export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC, {
     o_fragColor = vec4(col, 1.0);
 }`,
     uniforms: {
-        tex2: [GLSL.sampler2D, 1],
-        amp: [GLSL.float, 1]
+        tex2: ["sampler2D", 1],
+        amp: ["float", 1]
     }
 });
