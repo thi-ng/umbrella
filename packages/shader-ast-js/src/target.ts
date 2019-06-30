@@ -175,6 +175,12 @@ import {
     mixN2,
     mixN3,
     mixN4,
+    mod2,
+    mod3,
+    mod4,
+    modN2,
+    modN3,
+    modN4,
     mul2,
     mul3,
     mulI2,
@@ -344,7 +350,9 @@ export interface JSBuiltinsFloat<T> extends JSBuiltinsCommon<T> {
 export interface JSBuiltinsInt<T>
     extends JSBuiltinsCommon<T>,
         JSBuiltinsMath<T>,
-        JSBuiltinsBinary<T> {}
+        JSBuiltinsBinary<T> {
+    modi: Fn2<T, T, T>;
+}
 
 export interface JSBuiltinsVecScalar<T> {
     addvn: Fn2<T, number, T>;
@@ -374,7 +382,10 @@ export interface JSBuiltinsVec3 extends JSBuiltinsVec {
 export interface JSBuiltinsIntVec
     extends JSBuiltinsInt<Vec>,
         JSBuiltinsVecScalar<Vec>,
-        JSBuiltinsBinary<Vec> {}
+        JSBuiltinsBinary<Vec> {
+    modivn: Fn2<Vec, number, Vec>;
+    modinv: Fn2<number, Vec, Vec>;
+}
 
 export interface JSBuiltinsMat
     extends JSBuiltinsMath<Mat>,
@@ -385,6 +396,7 @@ export interface JSBuiltinsMat
 }
 
 export interface JSBuiltinsSampler {
+    texelFetch: Fn3<number, Vec, number, Vec>;
     texture: Fn3<number, Vec, number, Vec>;
     texturen: Fn3<number, Vec, number, number>;
     textureLod: Fn3<number, Vec, number, Vec>;
@@ -441,8 +453,9 @@ export interface JSEnv {
 }
 
 // TODO texture lookups
-// all texture fns currently return [0,0,0,0]
+// all texture fns currently return [0,0,0,0] or 0
 const SAMPLER_TODO: JSBuiltinsSampler = {
+    texelFetch: () => ZERO4,
     texture: () => ZERO4,
     texturen: () => 0,
     textureLod: () => ZERO4,
@@ -518,6 +531,7 @@ const env: Partial<JSEnv> = {
         lshift: (a, b) => a << b,
         max: Math.max,
         min: Math.min,
+        modi: (a, b) => a % b,
         mul: (a, b) => (a * b) | 0,
         rshift: (a, b) => a >> b,
         sign: Math.sign,
@@ -538,6 +552,7 @@ const env: Partial<JSEnv> = {
         lshift: (a, b) => (a << b) >>> 0,
         max: Math.max,
         min: Math.min,
+        modi: (a, b) => a % b,
         mul: (a, b) => (a * b) >>> 0,
         rshift: (a, b) => a >>> b,
         sign: Math.sign,
@@ -771,6 +786,9 @@ env.ivec2 = {
     div: (a, b) => divI2([], a, b),
     divvn: (a, b) => divNI2([], a, b),
     divnv: (a, b) => mulNI2([], b, 1 / a),
+    modi: (a, b) => mod2([], a, b),
+    modivn: (a, b) => modN2([], a, b),
+    modinv: (a, b) => mod2([], [a, a], b),
     mul: (a, b) => mulI2([], a, b),
     mulvn: (a, b) => mulNI2([], a, b),
     mulnv: (a, b) => mulNI2([], b, a),
@@ -793,6 +811,9 @@ env.ivec3 = {
     div: (a, b) => divI3([], a, b),
     divvn: (a, b) => divNI3([], a, b),
     divnv: (a, b) => mulNI3([], b, 1 / a),
+    modi: (a, b) => mod3([], a, b),
+    modivn: (a, b) => modN3([], a, b),
+    modinv: (a, b) => mod3([], [a, a, a], b),
     mul: (a, b) => mulI3([], a, b),
     mulvn: (a, b) => mulNI3([], a, b),
     mulnv: (a, b) => mulNI3([], b, a),
@@ -815,6 +836,9 @@ env.ivec4 = {
     div: (a, b) => divI4([], a, b),
     divvn: (a, b) => divNI4([], a, b),
     divnv: (a, b) => mulNI4([], b, 1 / a),
+    modi: (a, b) => mod4([], a, b),
+    modivn: (a, b) => modN4([], a, b),
+    modinv: (a, b) => mod4([], [a, a, a, a], b),
     mul: (a, b) => mulI4([], a, b),
     mulvn: (a, b) => mulNI4([], a, b),
     mulnv: (a, b) => mulNI4([], b, a),
@@ -852,6 +876,7 @@ export const targetJS = () => {
         "-": "sub",
         "*": "mul",
         "/": "div",
+        "%": "modi",
         "++": "inc",
         "--": "dec",
         "||": "or",
@@ -1011,7 +1036,7 @@ export const targetJS = () => {
             const el = emit(l);
             const er = emit(r);
             return vec || (int && !CMP_OPS[t.op])
-                ? `${t.l.type}.${OP_IDS[t.op]}${t.info || ""}(${el},${er})`
+                ? `${t.l.type}.${OP_IDS[t.op]}${t.info || ""}(${el}, ${er})`
                 : `(${el} ${t.op} ${er})`;
         },
 
