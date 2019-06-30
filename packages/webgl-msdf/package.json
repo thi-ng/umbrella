@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.2.0",
+        "@thi.ng/shader-ast": "^0.0.1",
         "@thi.ng/transducers": "^5.3.7",
         "@thi.ng/vector-pools": "^0.2.16",
         "@thi.ng/vectors": "^2.5.6",
