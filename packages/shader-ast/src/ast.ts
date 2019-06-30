@@ -29,6 +29,7 @@ import {
     BVec4Term,
     Comparable,
     ComparisonOperator,
+    ControlFlow,
     Decl,
     FloatTerm,
     FnBody0,
@@ -1059,12 +1060,14 @@ export const whileLoop = (test: BoolTerm, body: Term<any>[]): WhileLoop => ({
     scope: scope(body)
 });
 
-export const brk: Term<"void"> = {
-    tag: "break",
-    type: "void"
-};
+const ctrl = (id: string): ControlFlow => ({
+    tag: "ctrl",
+    type: "void",
+    id
+});
 
-export const cont: Term<"void"> = {
-    tag: "cont",
-    type: "void"
-};
+export const brk = ctrl("break");
+
+export const cont = ctrl("continue");
+
+export const discard = ctrl("discard");

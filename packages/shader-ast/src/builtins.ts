@@ -19,7 +19,7 @@ import {
     Vec3Term,
     Vec4Term
 } from "./api";
-import { builtinCall, FLOAT0 } from "./ast";
+import { builtinCall, FLOAT0, INT0 } from "./ast";
 
 const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
     builtinCall(name, a.type, a);
@@ -321,3 +321,27 @@ export function textureOffset(sampler: Sym<Sampler>, uv: Term<Vec>, off: Term<IV
     f.type === "float" && (f.info = "n");
     return f;
 }
+
+// prettier-ignore
+export function texelFetch(sampler: Sampler2DSym, uv: IVec2Term, lod?: IntTerm): FnCall<"vec4">;
+// prettier-ignore
+export function texelFetch(sampler: Sampler3DSym, uvw: IVec3Term, lod?: IntTerm): FnCall<"vec4">;
+// prettier-ignore
+export function texelFetch(sampler: Sym<Sampler>, uv: Term<IVec>, lod?: IntTerm): FnCall<"vec4"> {
+    return builtinCall(
+        "texelFetch",
+        "vec4",
+        sampler,
+        uv,
+        lod || INT0
+    );
+}
+
+export const dFdx = <T extends Prim>(sym: Sym<T>) =>
+    builtinCall("dFdx", sym.type, sym);
+
+export const dFdy = <T extends Prim>(sym: Sym<T>) =>
+    builtinCall("dFdy", sym.type, sym);
+
+export const fwidth = <T extends Prim>(sym: Sym<T>) =>
+    builtinCall("fwidth", sym.type, sym);

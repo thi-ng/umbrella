@@ -13,10 +13,9 @@ import {
 export type Tag =
     | "arg"
     | "assign"
-    | "break"
     | "call"
     | "call_i"
-    | "cont"
+    | "ctrl"
     | "decl"
     | "fn"
     | "for"
@@ -520,6 +519,11 @@ export interface Ternary<T extends Type> extends Term<T> {
     test: BoolTerm;
     t: Term<T>;
     f: Term<T>;
+}
+
+export interface ControlFlow extends Term<"void"> {
+    tag: "ctrl";
+    id: string;
 }
 
 export interface FuncReturn<T extends Type> extends Term<T> {
