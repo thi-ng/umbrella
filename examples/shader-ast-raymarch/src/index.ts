@@ -89,12 +89,7 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
 const mainImage = defn(
     "vec4",
     "mainImage",
-    [
-        ["vec2", "fragCoord"],
-        ["vec2", "res"],
-        ["vec3", "eyePos"],
-        ["vec3", "lightDir"]
-    ],
+    [["vec2"], ["vec2"], ["vec3"], ["vec3"]],
     (frag, res, eyePos, lightDir) => {
         let dir: Vec3Sym;
         let result: Vec2Sym;
