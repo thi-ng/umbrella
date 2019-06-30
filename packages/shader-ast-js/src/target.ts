@@ -918,6 +918,8 @@ export const targetJS = () => {
 
     const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
 
+    const RE_SEMI = /[};]$/;
+
     const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
     const $docParam = (p: Sym<any>) => ` * @param ${p.id} ${p.type}`;
@@ -1044,7 +1046,7 @@ export const targetJS = () => {
 
         scope: (t) => {
             let res = $list(t.body, ";\n");
-            res += res[res.length - 1] != "}" && t.body.length ? ";" : "";
+            res += t.body.length && !RE_SEMI.test(res) ? ";" : "";
             return !t.global ? `{\n${res}\n}` : res;
         },
 
