@@ -116,7 +116,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 
         assign: (t) => emit(t.l) + " = " + emit(t.r),
 
-        break: () => "break",
+        ctrl: (t) => t.id,
 
         call: $fn,
 
@@ -126,8 +126,6 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                       t.args
                   )})`
                 : $fn(t),
-
-        cont: () => "continue",
 
         decl: (t) => $decl(t.id),
 
