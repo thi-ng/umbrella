@@ -176,7 +176,7 @@ export type NumericI = number | IntTerm;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
-export type MathOperator = "+" | "-" | "*" | "/" | "++" | "--";
+export type MathOperator = "+" | "-" | "*" | "/" | "%" | "++" | "--";
 export type LogicOperator = "!" | "||" | "&&";
 export type ComparisonOperator = "<" | "<=" | "==" | "!=" | ">=" | ">";
 export type BitOperator = "<<" | ">>" | "|" | "&" | "^" | "~";

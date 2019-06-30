@@ -753,6 +753,26 @@ export function div(l: Term<any>, r: Term<any>): Op2<any> {
     return op2("/", l, r);
 }
 
+/**
+ * Integer % (modulo) operator
+ *
+ * @param l
+ * @param b
+ */
+// prettier-ignore
+export function modi<A extends Int | IVec | UVec, B extends A>(l: Term<A>, b: Term<B>): Op2<A>;
+// prettier-ignore
+export function modi<T extends IVec>(l: IntTerm, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function modi<T extends IVec>(l: Term<T>, b: IntTerm): Op2<T>;
+// prettier-ignore
+export function modi<T extends UVec>(l: UintTerm, b: Term<T>): Op2<T>;
+// prettier-ignore
+export function modi<T extends UVec>(l: Term<T>, b: UintTerm): Op2<T>;
+export function modi(l: Term<any>, r: Term<any>): Op2<any> {
+    return op2("%", l, r);
+}
+
 export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
     op1("-", val);
 
