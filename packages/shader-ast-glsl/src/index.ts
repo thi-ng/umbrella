@@ -39,6 +39,8 @@ export interface GLSLTarget extends Fn<Term<any>, string> {
     gl_Position: Vec4Sym;
 }
 
+const RE_SEMI = /[};]$/;
+
 /**
  * GLSL code gen, targets GLSL ES 3.00 (WebGL2) by default.
  *
@@ -178,11 +180,11 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
             let res = t.body
                 .map(emit)
                 .reduce(
-                    (acc, x) => (acc.push(x.endsWith("}") ? x : x + ";"), acc),
+                    (acc, x) => (acc.push(RE_SEMI.test(x) ? x : x + ";"), acc),
                     <string[]>[]
                 )
                 .join("\n");
-            res += res[res.length - 1] != "}" && t.body.length ? ";" : "";
+            res += t.body.length && !RE_SEMI.test(res) ? ";" : "";
             if (!t.global) {
                 return `{\n${res}\n}`;
             }
