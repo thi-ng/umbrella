@@ -209,9 +209,6 @@ import {
     rshiftI2,
     rshiftI3,
     rshiftI4,
-    setN2,
-    setN3,
-    setN4,
     setSwizzle2,
     setSwizzle3,
     setSwizzle4,
@@ -252,12 +249,11 @@ import {
     tan3,
     tan4,
     Vec,
-    vec3n,
-    vec4n,
     vecOf,
     xorI2,
     xorI3,
     xorI4,
+    ZERO2,
     ZERO3,
     ZERO4
 } from "@thi.ng/vectors";
@@ -327,10 +323,13 @@ export interface JSBuiltinsFloat<T> extends JSBuiltinsCommon<T> {
     ceil: Fn<T, T>;
     cos: Fn<T, T>;
     degrees: Fn<T, T>;
+    dFdx: Fn<T, T>;
+    dFdy: Fn<T, T>;
     exp: Fn<T, T>;
     exp2: Fn<T, T>;
     floor: Fn<T, T>;
     fract: Fn<T, T>;
+    fwidth: Fn<T, T>;
     inversesqrt: Fn<T, T>;
     log: Fn<T, T>;
     log2: Fn<T, T>;
@@ -468,9 +467,9 @@ const SAMPLER_TODO: JSBuiltinsSampler = {
 };
 
 const env: Partial<JSEnv> = {
-    vec2n: (n) => setN2([], n),
-    vec3n: (n) => setN3([], n),
-    vec4n: (n) => setN4([], n),
+    vec2n: (n) => [n, n],
+    vec3n: (n) => [n, n, n],
+    vec4n: (n) => [n, n, n, n],
     vec3vn: (a, n) => setVN3([], a, n),
     vec4vn: (a, n) => setVN4([], a, n),
     vec4vv: (a, b) => setVV4([], a, b),
@@ -495,10 +494,13 @@ const env: Partial<JSEnv> = {
         clamp,
         cos: Math.cos,
         degrees: deg,
+        dFdx: () => 0,
+        dFdy: () => 0,
         exp: Math.exp,
         exp2: (x) => Math.pow(2, x),
         floor: Math.floor,
         fract,
+        fwidth: () => 0,
         inversesqrt: (x) => 1 / Math.sqrt(x),
         log: Math.log,
         log2: Math.log2,
@@ -572,6 +574,8 @@ const env: Partial<JSEnv> = {
         cos: (a) => cos2([], a),
         dec: (a) => subN2([], a, 1),
         degrees: (a) => degrees2([], a),
+        dFdx: () => ZERO2,
+        dFdy: () => ZERO2,
         distance: dist,
         div: (a, b) => div2([], a, b),
         divnv: (a, b) => mulN2([], b, 1 / a),
@@ -581,6 +585,7 @@ const env: Partial<JSEnv> = {
         exp2: (a) => exp_22([], a),
         floor: (a) => floor2([], a),
         fract: (a) => fract2([], a),
+        fwidth: () => ZERO2,
         inc: (a) => addN2([], a, 1),
         inversesqrt: (a) => invSqrt2([], a),
         length: mag,
@@ -623,6 +628,8 @@ const env: Partial<JSEnv> = {
         cross: (a, b) => cross3([], a, b),
         dec: (a) => subN3([], a, 1),
         degrees: (a) => degrees3([], a),
+        dFdx: () => ZERO3,
+        dFdy: () => ZERO3,
         distance: dist,
         div: (a, b) => div3([], a, b),
         divnv: (a, b) => mulN3([], b, 1 / a),
@@ -632,6 +639,7 @@ const env: Partial<JSEnv> = {
         exp2: (a) => exp_23([], a),
         floor: (a) => floor3([], a),
         fract: (a) => fract3([], a),
+        fwidth: () => ZERO3,
         inc: (a) => addN3([], a, 1),
         inversesqrt: (a) => invSqrt3([], a),
         length: mag,
@@ -656,7 +664,7 @@ const env: Partial<JSEnv> = {
         step: (a, b) => step3([], a, b),
         sub: (a, b) => sub3([], a, b),
         sub1: (a) => neg([], a),
-        subnv: (a, b) => sub3(null, vec3n(a), b),
+        subnv: (a, b) => sub3(null, [a, a, a], b),
         subvn: (a, b) => subN3([], a, b),
         tan: (a) => tan3([], a)
     },
@@ -673,6 +681,8 @@ const env: Partial<JSEnv> = {
         cos: (a) => cos4([], a),
         dec: (a) => subN4([], a, 1),
         degrees: (a) => degrees4([], a),
+        dFdx: () => ZERO4,
+        dFdy: () => ZERO4,
         distance: dist,
         div: (a, b) => div4([], a, b),
         divnv: (a, b) => mulN4([], b, 1 / a),
@@ -682,6 +692,7 @@ const env: Partial<JSEnv> = {
         exp2: (a) => exp_24([], a),
         floor: (a) => floor4([], a),
         fract: (a) => fract4([], a),
+        fwidth: () => ZERO4,
         inc: (a) => addN4([], a, 1),
         inversesqrt: (a) => invSqrt4([], a),
         length: mag,
@@ -706,7 +717,7 @@ const env: Partial<JSEnv> = {
         step: (a, b) => step4([], a, b),
         sub: (a, b) => sub2([], a, b),
         sub1: (a) => neg([], a),
-        subnv: (a, b) => sub4(null, vec4n(a), b),
+        subnv: (a, b) => sub4(null, [a, a, a, a], b),
         subvn: (a, b) => subN4([], a, b),
         tan: (a) => tan4([], a)
     },
@@ -727,7 +738,7 @@ const env: Partial<JSEnv> = {
         mulvn: (a, b) => mulN22([], a, b),
         sub: (a, b) => sub22([], a, b),
         sub1: (a) => neg([], a),
-        subnv: (a, b) => sub22(null, vec4n(a), b),
+        subnv: (a, b) => sub22(null, [a, a, a, a], b),
         subvn: (a, b) => subN22([], a, b)
     },
     mat3: {
@@ -819,7 +830,7 @@ env.ivec3 = {
     mulnv: (a, b) => mulNI3([], b, a),
     sub: (a, b) => subI3([], a, b),
     subvn: (a, b) => subNI3([], a, b),
-    subnv: (a, b) => subI3([], vec3n(a), b),
+    subnv: (a, b) => subI3([], [a, a, a], b),
     bitand: (a, b) => andI3([], a, b),
     lshift: (a, b) => lshiftI3([], a, b),
     bitnot1: (a) => notI3([], a),
@@ -844,7 +855,7 @@ env.ivec4 = {
     mulnv: (a, b) => mulNI4([], b, a),
     sub: (a, b) => subI4([], a, b),
     subvn: (a, b) => subNI4([], a, b),
-    subnv: (a, b) => subI4([], vec4n(a), b),
+    subnv: (a, b) => subI4([], [a, a, a, a], b),
     bitand: (a, b) => andI4([], a, b),
     lshift: (a, b) => lshiftI4([], a, b),
     bitnot1: (a) => notI4([], a),
@@ -933,6 +944,8 @@ export const targetJS = () => {
 
     const emit: Fn<Term<any>, string> = defTarget({
         arg: (t) => t.id,
+
+        array_init: (t) => `[${$list(t.init)}]`,
 
         assign: (t) => {
             if (t.l.tag === "swizzle") {
