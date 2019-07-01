@@ -1,7 +1,6 @@
 import {
     $,
     $x,
-    add,
     assign,
     defMain,
     defn,
@@ -14,7 +13,6 @@ import {
     program,
     ret,
     sym,
-    TRUE,
     vec2,
     Vec2Sym,
     vec3,
@@ -28,12 +26,13 @@ import {
     diffuseLighting,
     fit1101,
     fogExp2,
-    lambert,
+    halfLambert,
     lookat,
     raymarchAO,
     raymarchDir,
     raymarchNormal,
     raymarchScene,
+    rayPointAt,
     sdfBox3,
     sdfRepeat3,
     sdfSmoothUnion,
@@ -99,6 +98,7 @@ const mainImage = defn(
         let diffuse: FloatSym;
         // background color
         const bg = vec3(1.5, 0.6, 0);
+        const ambient = vec3(0.15, 0.06, 0);
         return [
             // compute ray dir from fragCoord, viewport res and FOV
             // then apply basic camera settings (eye, target, up)
@@ -115,7 +115,7 @@ const mainImage = defn(
             (result = sym(
                 // `raymarchScene` is a higher-order, configurable function which constructs
                 // a raymarch function using our supplied scene fn
-                raymarchScene(scene, { steps: JS_MODE ? 60 : 60, eps: 0.005 })(
+                raymarchScene(scene, { steps: JS_MODE ? 60 : 80, eps: 0.005 })(
                     eyePos,
                     dir
                 )
@@ -123,7 +123,7 @@ const mainImage = defn(
             // early bailout if nothing hit
             ifThen(gte($x(result), float(10)), [ret(vec4(bg, 1))]),
             // set intersection pos
-            (isec = sym(add(eyePos, mul(dir, $x(result))))),
+            (isec = sym(rayPointAt(eyePos, dir, $x(result)))),
             // surface normal
             (norm = sym(
                 // higher-order fn to compute surface normal
@@ -134,7 +134,7 @@ const mainImage = defn(
             // compute diffuse term
             (diffuse = sym(
                 mul(
-                    lambert(norm, lightDir, TRUE),
+                    halfLambert(norm, lightDir),
                     // higher order fn to compute ambient occlusion
                     raymarchAO(scene)(isec, norm)
                 )
@@ -144,12 +144,7 @@ const mainImage = defn(
                 vec4(
                     mix(
                         clamp01(
-                            diffuseLighting(
-                                diffuse,
-                                material,
-                                vec3(1),
-                                vec3(0.2)
-                            )
+                            diffuseLighting(diffuse, material, vec3(1), ambient)
                         ),
                         bg,
                         fogExp2($x(result), float(0.2))
