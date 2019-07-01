@@ -12,6 +12,7 @@ export * from "./math/cross2";
 export * from "./math/fit";
 export * from "./math/maxcomp";
 export * from "./math/mincomp";
+export * from "./math/orthogonal";
 
 export * from "./matrix/lookat";
 export * from "./matrix/mvp";
@@ -20,6 +21,7 @@ export * from "./matrix/normal";
 export * from "./raymarch/ao";
 export * from "./raymarch/direction";
 export * from "./raymarch/normal";
+export * from "./raymarch/point-at";
 export * from "./raymarch/scene";
 
 export * from "./screen/uv";

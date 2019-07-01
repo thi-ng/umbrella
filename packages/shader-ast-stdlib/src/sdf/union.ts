@@ -1,12 +1,9 @@
-import { defn, min, ret } from "@thi.ng/shader-ast";
+import { FloatTerm, min } from "@thi.ng/shader-ast";
 
 /**
- * @param d1 float
- * @param d2 float
+ * Inline function. SDF shape union (a || b).
+ *
+ * @param a float
+ * @param b float
  */
-export const sdfUnion = defn(
-    "float",
-    "sdOpUnion",
-    [["float"], ["float"]],
-    (d1, d2) => [ret(min(d1, d2))]
-);
+export const sdfUnion = (a: FloatTerm, b: FloatTerm) => min(a, b);

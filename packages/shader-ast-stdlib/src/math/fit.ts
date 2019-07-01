@@ -3,6 +3,7 @@ import {
     FLOAT05,
     FLOAT1,
     FLOAT2,
+    mix,
     mul,
     Op2,
     Prim,
@@ -11,18 +12,18 @@ import {
 } from "@thi.ng/shader-ast";
 
 /**
- * Fits value `a` in [0..1] interval to new interval [b..c]. No clamping
- * performed.
+ * Inline function. Fits value `a` in [0..1] interval to new interval
+ * [b..c]. No clamping performed. Same as `mix(b, c, a)`
  *
  * @param a
  * @param b
  * @param c
  */
-export const fit01 = <A extends Prim, B extends A, C extends A>(
+export const fit01 = <A extends Prim, B extends A, C extends B>(
     a: Term<A>,
     b: Term<B>,
     c: Term<C>
-): Op2<A> => <any>add(<any>b, mul(sub(<any>b, c), a));
+) => mix<A, A, A>(b, c, a);
 
 /**
  * Inline function. Fits value `x` in [-1..+1] interval to [0..1]

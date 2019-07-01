@@ -2,7 +2,6 @@ import {
     assign,
     defn,
     exp2,
-    float,
     FLOAT1,
     mul,
     ret,
@@ -20,11 +19,6 @@ export const fogExp2 = defn(
     [["float"], ["float"]],
     (dist, density) => [
         assign(density, mul(density, dist)),
-        ret(
-            sub(
-                FLOAT1,
-                clamp01(exp2(mul(mul(density, density), float(-Math.LOG2E))))
-            )
-        )
+        ret(sub(FLOAT1, clamp01(exp2(mul(mul(density, density), -Math.LOG2E)))))
     ]
 );

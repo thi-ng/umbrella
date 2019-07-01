@@ -26,7 +26,7 @@ import { RaymarchScene } from "../api";
 export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
     defn("vec3", name, [["vec3"], ["float"]], (p, smooth) => {
         let dn: Vec2Sym;
-        let comp = (id: Swizzle2_3) =>
+        const comp = (id: Swizzle2_3) =>
             sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));
         return [
             (dn = sym(vec2(smooth, 0))),

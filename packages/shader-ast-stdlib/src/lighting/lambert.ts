@@ -1,46 +1,47 @@
 import {
-    add,
-    defn,
     dot,
-    FloatSym,
+    FLOAT0,
+    FloatTerm,
+    madd,
+    max,
     mul,
-    ret,
-    sym,
-    ternary
+    Vec3Term
 } from "@thi.ng/shader-ast";
 import { fit1101 } from "../math/fit";
 
 /**
- * Computes Lambert term, optionally using Half-Lambertian,
- * if `half` is true.
- *
- * https://developer.valvesoftware.com/wiki/Half_Lambert
+ * Inline function. Computes Lambert term, i.e. max(dot(n,l), 0). Both
+ * vectors must be pre-normalized.
  *
  * @param surfNormal vec3
  * @param lightDir vec3
- * @param half bool
  */
-export const lambert = defn(
-    "float",
-    "lambert",
-    [["vec3"], ["vec3"], ["bool"]],
-    (n, ldir, bidir) => {
-        let d: FloatSym;
-        return [(d = sym(dot(n, ldir))), ret(ternary(bidir, fit1101(d), d))];
-    }
-);
+export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
+    max(dot(n, ldir), FLOAT0);
 
 /**
+ * Inline function. Computes Half-Lambertian term. Both vectors must be
+ * pre-normalized.
+ *
+ * https://developer.valvesoftware.com/wiki/Half_Lambert
+ *
+ * @param n
+ * @param ldir
+ */
+export const halfLambert = (n: Vec3Term, ldir: Vec3Term) =>
+    fit1101(dot(n, ldir));
+
+/**
+ * Inline function. Computes: col = lambert * light * diffuse + ambient
+ *
  * @param lambertian float
  * @param diffuseCol vec3
  * @param lightCol vec3
  * @param ambientCol vec3
  */
-export const diffuseLighting = defn(
-    "vec3",
-    "diffuseLighting",
-    [["float"], ["vec3"], ["vec3"], ["vec3"]],
-    (lambertian, diffuse, light, ambient) => [
-        ret(mul(diffuse, add(mul(light, lambertian), ambient)))
-    ]
-);
+export const diffuseLighting = (
+    lambertian: FloatTerm,
+    diffuse: Vec3Term,
+    light: Vec3Term,
+    ambient: Vec3Term
+) => madd(mul(light, lambertian), diffuse, ambient);

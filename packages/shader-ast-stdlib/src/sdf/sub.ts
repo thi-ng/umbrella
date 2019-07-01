@@ -1,17 +1,9 @@
-import {
-    defn,
-    max,
-    neg,
-    ret
-} from "@thi.ng/shader-ast";
+import { FloatTerm, max, neg } from "@thi.ng/shader-ast";
 
 /**
- * @param d1 float
- * @param d2 float
+ * Inline function.  SDF shape subtraction (a - b).
+ *
+ * @param a float
+ * @param b float
  */
-export const sdfSubtract = defn(
-    "float",
-    "sdOpSubtract",
-    [["float"], ["float"]],
-    (d1, d2) => [ret(max(neg(d2), d1))]
-);
+export const sdfSubtract = (a: FloatTerm, b: FloatTerm) => max(neg(b), a);

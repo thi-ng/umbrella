@@ -41,7 +41,7 @@ export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
                 (i) => lte(i, float(numSamples)),
                 (i) => inc(i),
                 (i) => [
-                    (d0 = sym(mul(i, float(1 / numSamples)))),
+                    (d0 = sym(mul(i, 1 / numSamples))),
                     assign(
                         r,
                         add(r, mul(w, sub(d0, $x(scene(add(p, mul(n, d0)))))))

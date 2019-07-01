@@ -1,7 +1,6 @@
 import {
     $x,
     $y,
-    add,
     assign,
     brk,
     defn,
@@ -13,13 +12,14 @@ import {
     inc,
     int,
     lt,
-    mul,
+    madd,
     ret,
     sym,
     vec2,
     Vec2Sym
 } from "@thi.ng/shader-ast";
 import { RaymarchOpts, RaymarchScene } from "../api";
+import { rayPointAt } from "./point-at";
 
 /**
  * Higher order function producing a function to perform a raymarch
@@ -43,7 +43,7 @@ export const raymarchScene = (
     _opts?: Partial<RaymarchOpts>
 ) => {
     const opts: RaymarchOpts = {
-        name: "raymarch",
+        name: "raymarchScene",
         near: 0.1,
         far: 10,
         steps: 100,
@@ -62,11 +62,11 @@ export const raymarchScene = (
                 (i) => lt(i, int(opts.steps)),
                 (i) => inc(i),
                 () => [
-                    assign(res, scene(add(pos, mul(dir, total)))),
+                    assign(res, scene(rayPointAt(pos, dir, total))),
                     ifThen(lt($x(res), float(opts.eps)), [
                         ret(vec2(total, $y(res)))
                     ]),
-                    assign(total, add(total, mul($x(res), float(opts.bias)))),
+                    assign(total, madd($x(res), float(opts.bias), total)),
                     ifThen(gt(total, float(opts.far)), [brk])
                 ]
             ),

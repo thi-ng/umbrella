@@ -1,12 +1,9 @@
-import { defn, max, ret } from "@thi.ng/shader-ast";
+import { FloatTerm, max } from "@thi.ng/shader-ast";
 
 /**
- * @param d1 float
- * @param d2 float
+ * Inline function. SDF shape intersection (a & b).
+ *
+ * @param a float
+ * @param b float
  */
-export const sdfIntersect = defn(
-    "float",
-    "sdOpIntersect",
-    [["float"], ["float"]],
-    (d1, d2) => [ret(max(d2, d1))]
-);
+export const sdfIntersect = (a: FloatTerm, b: FloatTerm) => max(b, a);
