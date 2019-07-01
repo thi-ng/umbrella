@@ -116,6 +116,15 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
     const emit: Fn<Term<any>, string> = defTarget({
         arg: (t) => $decl(t, true),
 
+        array_init: (t) =>
+            _opts.version >= GLSLVersion.GLES_300
+                ? `${t.type}(${$list(t.init)})`
+                : unsupported(
+                      `array initializers not available in GLSL ${
+                          _opts.version
+                      }`
+                  ),
+
         assign: (t) => emit(t.l) + " = " + emit(t.r),
 
         ctrl: (t) => t.id,
