@@ -29,7 +29,7 @@ const primOp2 = (name: string) => <A extends Prim, B extends A>(
     b: Term<B>
 ) => builtinCall(name, a.type, a, b);
 
-const primOp3 = (name: string) => <A extends Prim, B extends A, C extends A>(
+const primOp3 = (name: string) => <A extends Prim, B extends A, C extends B>(
     a: Term<A>,
     b: Term<B>,
     c: Term<C>
@@ -130,22 +130,18 @@ export function mod(a: Term<any>, b: Term<any>): FnCall<any> {
 }
 
 // prettier-ignore
-export function mix<A extends Prim, B extends A, C extends A>(a: Term<A>, b: Term<B>, c: Term<C>): FnCall<A>;
-export function mix<A extends Prim, B extends A>(
-    a: Term<A>,
-    b: Term<B>,
-    c: FloatTerm
-): FnCall<A>;
+export function mix<A extends Prim, B extends A, C extends B>(a: Term<A>, b: Term<B>, c: Term<C>): FnCall<A>;
+// prettier-ignore
+export function mix<A extends Prim, B extends A>(a: Term<A>, b: Term<B>, c: FloatTerm): FnCall<A>;
 export function mix(a: Term<any>, b: Term<any>, c: Term<any>): FnCall<any> {
     const f = builtinCall("mix", a.type, a, b, c);
     c.type === "float" && (f.info = "n");
     return f;
 }
 
-export const matrixCompMult = <A extends Mat, B extends A>(
-    a: Term<A>,
-    b: Term<B>
-) => builtinCall("matrixCompMult", a.type, a, b);
+// prettier-ignore
+export const matrixCompMult = <A extends Mat, B extends A>(a: Term<A>, b: Term<B>) =>
+    builtinCall("matrixCompMult", a.type, a, b);
 
 // prettier-ignore
 export function lessThan<A extends "vec2" | "ivec2", B extends A>(a: Term<A>, b: Term<B>): FnCall<"bvec2">;

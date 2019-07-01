@@ -12,6 +12,7 @@ import {
 
 export type Tag =
     | "arg"
+    | "array_init"
     | "assign"
     | "call"
     | "call_i"
@@ -81,6 +82,33 @@ export type Type =
     | "sampler2DShadow[]"
     | "samplerCubeShadow"
     | "samplerCubeShadow[]";
+
+export interface ArrayTypeMap {
+    bool: "bool[]";
+    float: "float[]";
+    int: "int[]";
+    uint: "uint[]";
+    vec2: "vec2[]";
+    vec3: "vec3[]";
+    vec4: "vec4[]";
+    ivec2: "ivec2[]";
+    ivec3: "ivec3[]";
+    ivec4: "ivec4[]";
+    uvec2: "uvec2[]";
+    uvec3: "uvec3[]";
+    uvec4: "uvec4[]";
+    bvec2: "bvec2[]";
+    bvec3: "bvec3[]";
+    bvec4: "bvec4[]";
+    mat2: "mat2[]";
+    mat3: "mat3[]";
+    mat4: "mat4[]";
+    sampler2D: "sampler2D[]";
+    sampler3D: "sampler3D[]";
+    samplerCube: "samplerCube[]";
+    sampler2DShadow: "sampler2DShadow[]";
+    samplerCubeShadow: "samplerCubeShadow[]";
+}
 
 export interface IndexTypeMap {
     "bool[]": "bool";
@@ -472,6 +500,10 @@ export interface SymOpts {
     loc?: number;
 }
 
+export interface ArrayInit<T extends Type> extends Term<T> {
+    init: (Sym<T> | Lit<T>)[];
+}
+
 export interface Decl<T extends Type> extends Term<T> {
     id: Sym<T>;
 }
@@ -645,6 +677,7 @@ export interface WhileLoop extends Term<"void">, Scoped {
 
 export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
     arg: Fn<FuncArg<any>, T>;
+    array_init: Fn<ArrayInit<any>, T>;
     assign: Fn<Assign<any>, T>;
     call: Fn<FnCall<any>, T>;
     call_i: Fn<FnCall<any>, T>;
