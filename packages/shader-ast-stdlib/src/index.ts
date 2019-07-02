@@ -18,6 +18,9 @@ export * from "./matrix/lookat";
 export * from "./matrix/mvp";
 export * from "./matrix/normal";
 
+export * from "./noise/permute";
+export * from "./noise/worley2";
+
 export * from "./raymarch/ao";
 export * from "./raymarch/direction";
 export * from "./raymarch/normal";
