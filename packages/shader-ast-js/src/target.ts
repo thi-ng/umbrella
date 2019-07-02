@@ -892,7 +892,6 @@ export const targetJS = () => {
         "--": "dec",
         "||": "or",
         "&&": "and",
-        // TODO below
         "|": "bitor",
         "&": "bitand",
         "^": "bitxor",
@@ -912,9 +911,9 @@ export const targetJS = () => {
             "ivec2",
             "ivec3",
             "ivec4",
-            // "uvec2",
-            // "uvec3",
-            // "uvec4",
+            "uvec2",
+            "uvec3",
+            "uvec4",
             "mat2",
             "mat3",
             "mat4",
@@ -1036,22 +1035,25 @@ export const targetJS = () => {
             }
         },
 
-        // TODO mat-vec multiply special case
         op2: (t) => {
             const { l, r } = t;
-            const vec = isVec(l) || isMat(l) || isVec(r) || isMat(r);
-            const int =
-                !vec &&
-                (isInt(l) ||
-                    isUint(l) ||
-                    isInt(r) ||
-                    isUint(r) ||
-                    isBool(l) ||
-                    isBool(r));
+            const vec =
+                isVec(l) || isMat(l)
+                    ? l.type
+                    : isVec(r) || isMat(r)
+                    ? r.type
+                    : undefined;
+            const int = !vec
+                ? isInt(l) || isUint(l) || isBool(l)
+                    ? l.type
+                    : isInt(r) || isUint(r) || isBool(r)
+                    ? r.type
+                    : undefined
+                : undefined;
             const el = emit(l);
             const er = emit(r);
             return vec || (int && !CMP_OPS[t.op])
-                ? `${t.l.type}.${OP_IDS[t.op]}${t.info || ""}(${el}, ${er})`
+                ? `${vec || int}.${OP_IDS[t.op]}${t.info || ""}(${el}, ${er})`
                 : `(${el} ${t.op} ${er})`;
         },
 
