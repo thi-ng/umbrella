@@ -19,6 +19,7 @@ export * from "./matrix/mvp";
 export * from "./matrix/normal";
 
 export * from "./noise/permute";
+export * from "./noise/voronoise";
 export * from "./noise/worley2";
 
 export * from "./raymarch/ao";
