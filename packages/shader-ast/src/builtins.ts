@@ -125,7 +125,7 @@ export function mod<A extends Prim, B extends A>(a: Term<A>, b: Term<B>): FnCall
 export function mod<A extends Prim>(a: Term<A>, b: FloatTerm): FnCall<A>;
 export function mod(a: Term<any>, b: Term<any>): FnCall<any> {
     const f = builtinCall("mod", a.type, a, b);
-    f.type === "float" && (f.info = "n");
+    b.type === "float" && (f.info = "n");
     return f;
 }
 
