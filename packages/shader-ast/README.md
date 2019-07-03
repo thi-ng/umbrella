@@ -64,14 +64,17 @@ VEX](http://www.sidefx.com/docs/houdini/vex/index.html) (in-progress),
 WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 
 ![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-raymarch-compare.jpg)
-Comparison of the raymarch shader example (link further below),
-cross compiled to both GLSL/WebGL and JavaScript w/ Canvas2D API and
-showing the difference image of both results.
+
+Comparison of the raymarch shader example (link further below), cross
+compiled to both GLSL/WebGL and JavaScript w/ Canvas2D API and showing
+the difference image of both results.
 
 ![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-raymarch-vex-sm.gif)
-The same raymarching example compiled to Houdini VEX and used as
-"Point Wrangle" to displace a grid geometry (using only the depth value of
-the raymarching step). [Larger version](https://twitter.com/thing_umbrella/status/1146109598274924544)
+
+The same raymarching example compiled to Houdini VEX and used as "Point
+Wrangle" to displace a grid geometry (using only the depth value of the
+raymarching step). [Larger
+version](https://twitter.com/thing_umbrella/status/1146109598274924544)
 
 ### Standard library of common, higher level operations
 
