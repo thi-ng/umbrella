@@ -183,6 +183,7 @@ import {
     modN4,
     mul2,
     mul3,
+    mul4,
     mulI2,
     mulI3,
     mulI4,
@@ -413,6 +414,7 @@ export interface JSEnv {
     vec3vn: Fn2<Vec, number, Vec>;
     vec4n: Fn<number, Vec>;
     vec4vn: Fn2<Vec, number, Vec>;
+    vec4vnn: Fn3<Vec, number, number, Vec>;
     vec4vv: Fn2<Vec, Vec, Vec>;
     mat2n: Fn<number, Mat>;
     mat2vv: Fn2<Vec, Vec, Mat>;
@@ -472,6 +474,7 @@ const env: Partial<JSEnv> = {
     vec4n: (n) => [n, n, n, n],
     vec3vn: (a, n) => setVN3([], a, n),
     vec4vn: (a, n) => setVN4([], a, n),
+    vec4vnn: (a, z, w) => setVV4([], a, [z, w]),
     vec4vv: (a, b) => setVV4([], a, b),
     mat2n: (n) => mat22n([], n),
     mat2vv: (a, b) => mat22v([], a, b),
@@ -704,7 +707,7 @@ const env: Partial<JSEnv> = {
         mixn: (a, b, t) => mixN4([], a, b, t),
         mod: (a, b) => fmod4([], a, b),
         modn: (a, b) => fmodN4([], a, b),
-        mul: (a, b) => mul2([], a, b),
+        mul: (a, b) => mul4([], a, b),
         mulnv: (a, b) => mulN4([], b, a),
         mulvn: (a, b) => mulN4([], a, b),
         normalize: (a) => normalize([], a),
@@ -715,7 +718,7 @@ const env: Partial<JSEnv> = {
         smoothstep: (a, b, t) => smoothStep4([], a, b, t),
         sqrt: (a) => sqrt4([], a),
         step: (a, b) => step4([], a, b),
-        sub: (a, b) => sub2([], a, b),
+        sub: (a, b) => sub4([], a, b),
         sub1: (a) => neg([], a),
         subnv: (a, b) => sub4(null, [a, a, a, a], b),
         subvn: (a, b) => subN4([], a, b),
