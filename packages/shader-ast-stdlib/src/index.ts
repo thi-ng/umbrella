@@ -9,7 +9,10 @@ export * from "./lighting/trilight";
 
 export * from "./math/clamp";
 export * from "./math/cross2";
+export * from "./math/dist-chebyshev";
+export * from "./math/dist-manhattan";
 export * from "./math/fit";
+export * from "./math/magsq";
 export * from "./math/maxcomp";
 export * from "./math/mincomp";
 export * from "./math/orthogonal";
@@ -18,8 +21,10 @@ export * from "./matrix/lookat";
 export * from "./matrix/mvp";
 export * from "./matrix/normal";
 
+export * from "./noise/hash3";
 export * from "./noise/permute";
-export * from "./noise/voronoise";
+export * from "./noise/simplex2";
+export * from "./noise/voronoi2";
 export * from "./noise/worley2";
 
 export * from "./raymarch/ao";
