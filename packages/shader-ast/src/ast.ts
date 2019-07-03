@@ -258,7 +258,7 @@ export const allChildren = (t: Term<any>) =>
         ? [(<Sym<any>>t).init]
         : t.tag === "decl"
         ? [(<Decl<any>>t).id]
-        : t.tag === "op1"
+        : t.tag === "op1" || t.tag === "swizzle"
         ? [(<Op1<any>>t).val]
         : t.tag === "op2"
         ? [(<Op2<any>>t).l, (<Op2<any>>t).r]
