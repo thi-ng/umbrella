@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import {
     add,
     assign,
@@ -6,14 +7,15 @@ import {
     FLOAT0,
     FLOAT05,
     FloatSym,
+    FloatTerm,
     forLoop,
-    Func1,
     inc,
     lt,
     mul,
     Prim,
     ret,
-    sym
+    sym,
+    Term
 } from "@thi.ng/shader-ast";
 
 /**
@@ -37,7 +39,7 @@ import {
  */
 export const additive = <T extends Prim>(
     type: T,
-    fn: Func1<T, "float">,
+    fn: Fn<Term<T>, FloatTerm>,
     oct = 4,
     name = "additive"
 ) =>
