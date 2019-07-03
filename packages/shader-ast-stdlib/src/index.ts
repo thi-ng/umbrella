@@ -7,6 +7,7 @@ export * from "./fog/linear";
 export * from "./lighting/lambert";
 export * from "./lighting/trilight";
 
+export * from "./math/additive";
 export * from "./math/clamp";
 export * from "./math/cross2";
 export * from "./math/dist-chebyshev";
