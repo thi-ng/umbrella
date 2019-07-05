@@ -3,10 +3,14 @@ import {
     Fn,
     Fn2,
     IObjectOf,
-    Select3,
     Select4
 } from "@thi.ng/api";
-import { isArray, isNumber, isString } from "@thi.ng/checks";
+import {
+    isArray,
+    isBoolean,
+    isNumber,
+    isString
+} from "@thi.ng/checks";
 import { DGraph } from "@thi.ng/dgraph";
 import { illegalArgs } from "@thi.ng/errors";
 import {
@@ -63,8 +67,10 @@ import {
     Mat4Term,
     MatIndexTypeMap,
     Numeric,
+    NumericB,
     NumericF,
     NumericI,
+    NumericU,
     Op1,
     Op2,
     Operator,
@@ -100,6 +106,9 @@ import {
     Type,
     UintTerm,
     UVec,
+    UVec2Term,
+    UVec3Term,
+    UVec4Term,
     Vec,
     Vec2Term,
     Vec3Term,
@@ -183,22 +192,6 @@ export const isMat = (t: Term<any>) => RE_MAT.test(t.type);
  * ```
  */
 export const itemType = (type: Type) => <Type>type.replace("[]", "");
-
-/**
- * Takes a plain number or numeric term and wraps it as float literal if
- * needed.
- *
- * @param x
- */
-export const wrapFloat = (x?: Numeric) => (isNumber(x) ? float(x) : x);
-
-/**
- * Takes a plain number or numeric term and wraps it as signed integer
- * literal if needed.
- *
- * @param x
- */
-export const wrapInt = (x?: Numeric) => (isNumber(x) ? int(x) : x);
 
 /**
  * Takes a numeric term and a plain number, returns number wrapped in
@@ -322,6 +315,89 @@ export const buildCallGraph = (
           )
         : graph.addNode(fn);
 
+export const lit = <T extends Type>(
+    type: T,
+    val: any,
+    info?: string
+): Lit<T> => ({
+    tag: "lit",
+    type,
+    info,
+    val
+});
+
+export const bool = (x: Numeric | boolean) =>
+    lit("bool", isNumber(x) ? !!x : x);
+
+export const float = (x: Numeric | boolean) =>
+    lit("float", isBoolean(x) ? (x ? 1 : 0) : x);
+
+export const int = (x: Numeric | boolean) =>
+    lit("int", isBoolean(x) ? (x ? 1 : 0) : isNumber(x) ? x | 0 : x);
+
+export const uint = (x: Numeric | boolean) =>
+    lit("uint", isBoolean(x) ? (x ? 1 : 0) : isNumber(x) ? x >>> 0 : x);
+
+export const TRUE = lit("bool", true);
+export const FALSE = lit("bool", false);
+
+export const FLOAT0: FloatTerm = float(0);
+export const FLOAT1: FloatTerm = float(1);
+export const FLOAT2: FloatTerm = float(2);
+export const FLOAT05: FloatTerm = float(0.5);
+
+export const INT0: IntTerm = int(0);
+export const INT1: IntTerm = int(1);
+
+export const UINT0: UintTerm = uint(0);
+export const UINT1: UintTerm = uint(1);
+
+export const PI: FloatTerm = float(Math.PI);
+export const TAU: FloatTerm = float(Math.PI * 2);
+export const HALF_PI: FloatTerm = float(Math.PI / 2);
+export const SQRT2: FloatTerm = float(Math.SQRT2);
+
+const wrap = <T extends Type>(type: T, ctor: Fn<any, Term<T>>) => (
+    x?: any
+): Term<T> | undefined =>
+    isNumber(x)
+        ? ctor(x)
+        : x !== undefined && !isVec(x) && x.type !== type
+        ? ctor(x)
+        : x;
+
+/**
+ * Takes a plain number or numeric term and wraps it as float literal if
+ * needed.
+ *
+ * @param x
+ */
+export const wrapFloat = wrap("float", float);
+
+/**
+ * Takes a plain number or numeric term and wraps it as signed integer
+ * literal if needed.
+ *
+ * @param x
+ */
+export const wrapInt = wrap("int", int);
+
+/**
+ * Takes a plain number or numeric term and wraps it as unsigned integer
+ * literal if needed.
+ *
+ * @param x
+ */
+export const wrapUint = wrap("uint", uint);
+
+/**
+ * Takes a plain number or numeric term and wraps it as boolean literal
+ * if needed.
+ *
+ * @param x
+ */
+export const wrapBool = wrap("bool", bool);
+
 export function sym<T extends Type>(init: Term<T>): Sym<T>;
 export function sym<T extends Type>(type: T): Sym<T>;
 export function sym<T extends Type>(type: T, opts: SymOpts): Sym<T>;
@@ -435,44 +511,6 @@ const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
     id
 });
 
-export const lit = <T extends Type>(
-    type: T,
-    val: any,
-    info?: string
-): Lit<T> => ({
-    tag: "lit",
-    type,
-    info,
-    val
-});
-
-export const bool = (x: Numeric) => lit("bool", x);
-
-export const float = (x: Numeric) => lit("float", x);
-
-export const int = (x: Numeric) => lit("int", isNumber(x) ? x | 0 : x);
-
-export const uint = (x: Numeric) => lit("uint", isNumber(x) ? x >>> 0 : x);
-
-export const TRUE = lit("bool", true);
-export const FALSE = lit("bool", false);
-
-export const FLOAT0: FloatTerm = float(0);
-export const FLOAT1: FloatTerm = float(1);
-export const FLOAT2: FloatTerm = float(2);
-export const FLOAT05: FloatTerm = float(0.5);
-
-export const INT0: IntTerm = int(0);
-export const INT1: IntTerm = int(1);
-
-export const UINT0: UintTerm = uint(0);
-export const UINT1: UintTerm = uint(1);
-
-export const PI: FloatTerm = float(Math.PI);
-export const TAU: FloatTerm = float(Math.PI * 2);
-export const HALF_PI: FloatTerm = float(Math.PI / 2);
-export const SQRT2: FloatTerm = float(Math.SQRT2);
-
 // prettier-ignore
 export function $<T extends Swizzle2>(a: Vec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "float", "vec2", "vec3", "vec4">>;
 // prettier-ignore
@@ -486,51 +524,64 @@ export function $<T extends Swizzle3>(a: IVec3Term, id: T): Swizzle<Select4<T, S
 // prettier-ignore
 export function $<T extends Swizzle4>(a: IVec4Term, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "int", "ivec2", "ivec3", "ivec4">>;
 // prettier-ignore
+export function $<T extends Swizzle2>(a: UVec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "uint", "uvec2", "uvec3", "uvec4">>;
+// prettier-ignore
+export function $<T extends Swizzle3>(a: UVec3Term, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "uint", "uvec2", "uvec3", "uvec4">>;
+// prettier-ignore
+export function $<T extends Swizzle4>(a: UVec4Term, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "uint", "uvec2", "uvec3", "uvec4">>;
+// prettier-ignore
 export function $<T extends Swizzle2>(a: BVec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "bool", "bvec2", "bvec3", "bvec4">>;
 // prettier-ignore
 export function $<T extends Swizzle3>(a: BVec3Term, id: T): Swizzle<Select4<T, Swizzle3_1, Swizzle3_2, Swizzle3_3, "bool", "bvec2", "bvec3", "bvec4">>;
 // prettier-ignore
 export function $<T extends Swizzle4>(a: BVec4Term, id: T): Swizzle<Select4<T, Swizzle4_1, Swizzle4_2, Swizzle4_3, "bool", "bvec2", "bvec3", "bvec4">>;
 export function $(val: Term<any>, id: string): Swizzle<any> {
+    const type = val.type[0];
+    const rtype = (a: Type, b: string) =>
+        id.length === 1 ? a : <Type>(b + id.length);
     return {
         tag: "swizzle",
         type:
-            val.type[0] === "i"
-                ? id.length == 1
-                    ? "int"
-                    : "ivec" + id.length
-                : val.type[0] === "b"
-                ? id.length == 1
-                    ? "bool"
-                    : "bvec" + id.length
-                : id.length == 1
-                ? "float"
-                : "vec" + id.length,
+            type === "i"
+                ? rtype("int", "ivec")
+                : type === "u"
+                ? rtype("uint", "uvec")
+                : type === "b"
+                ? rtype("bool", "bvec")
+                : rtype("float", "vec"),
         val,
         id
     };
 }
 
-export const $x = <T extends Vec | IVec | BVec>(
+export const $x = <T extends Vec | IVec | UVec | BVec>(
     val: Term<T>
-): Swizzle<Select3<T, Vec, IVec, "float", "int", "bool">> =>
+): Swizzle<Select4<T, Vec, IVec, UVec, "float", "int", "uint", "bool">> =>
     <any>$(<any>val, "x");
 
-export const $y = <T extends Vec | IVec | BVec>(
+export const $y = <T extends Vec | IVec | UVec | BVec>(
     val: Term<T>
-): Swizzle<Select3<T, Vec, IVec, "float", "int", "bool">> =>
+): Swizzle<Select4<T, Vec, IVec, UVec, "float", "int", "uint", "bool">> =>
     <any>$(<any>val, "y");
 
 export const $z = <
-    T extends "vec3" | "vec4" | "ivec3" | "ivec4" | "bvec3" | "bvec4"
+    T extends
+        | "vec3"
+        | "vec4"
+        | "ivec3"
+        | "ivec4"
+        | "uvec3"
+        | "uvec4"
+        | "bvec3"
+        | "bvec4"
 >(
     val: Term<T>
-): Swizzle<Select3<T, Vec, IVec, "float", "int", "bool">> =>
+): Swizzle<Select4<T, Vec, IVec, UVec, "float", "int", "uint", "bool">> =>
     <any>$(<any>val, "z");
 
-export const $w = <T extends "vec4" | "ivec4" | "bvec4">(
+export const $w = <T extends "vec4" | "ivec4" | "uvec4" | "bvec4">(
     val: Term<T>
-): Swizzle<Select3<T, Vec, IVec, "float", "int", "bool">> =>
+): Swizzle<Select4<T, Vec, IVec, UVec, "float", "int", "uint", "bool">> =>
     <any>$(<any>val, "w");
 
 export function $xy(val: Term<Vec>): Swizzle<"vec2">;
@@ -601,13 +652,30 @@ const $ivec = (xs: any[], init = INT0) => [
     ...xs.slice(1).map(wrapInt)
 ];
 
+const $uvec = (xs: any[], init = UINT0) => [
+    xs[0] === undefined ? init : wrapUint(xs[0]),
+    ...xs.slice(1).map(wrapUint)
+];
+
+const $bvec = (xs: any[], init = FALSE) => [
+    xs[0] === undefined ? init : wrapBool(xs[0]),
+    ...xs.slice(1).map(wrapBool)
+];
+
+const $mat = (xs: any[], init = FLOAT0) => [
+    xs[0] === undefined ? init : wrapFloat(xs[0]),
+    ...xs.slice(1).map(wrapInt)
+];
+
 export function vec2(): Lit<"vec2">;
 export function vec2(x: NumericF): Lit<"vec2">;
+// export function vec2(x: Term<Vec | IVec | BVec>): Lit<"vec2">;
 // prettier-ignore
 export function vec2(x: NumericF, y: NumericF): Lit<"vec2">;
 // prettier-ignore
 export function vec2(...xs: any[]): Lit<"vec2"> {
-    return lit("vec2", $vec(xs), ["n","n"][xs.length]);
+    xs = $vec(xs);
+    return lit("vec2", xs, ["n","n"][xs.length]);
 }
 
 export function vec3(): Lit<"vec3">;
@@ -616,7 +684,8 @@ export function vec3(x: Vec2Term, y: NumericF): Lit<"vec3">;
 // prettier-ignore
 export function vec3(x: NumericF, y: NumericF, z: NumericF): Lit<"vec3">;
 export function vec3(...xs: any[]): Lit<"vec3"> {
-    return lit("vec3", (xs = $vec(xs)), ["n", "n", "vn"][xs.length]);
+    xs = $vec(xs);
+    return lit("vec3", xs, ["n", "n", "vn"][xs.length]);
 }
 
 export function vec4(): Lit<"vec4">;
@@ -628,9 +697,10 @@ export function vec4(x: Vec2Term, y: NumericF, z: NumericF): Lit<"vec4">;
 // prettier-ignore
 export function vec4(x: NumericF, y: NumericF, z: NumericF, w: NumericF): Lit<"vec4">;
 export function vec4(...xs: any[]): Lit<"vec4"> {
+    xs = $vec(xs);
     return lit(
         "vec4",
-        (xs = $vec(xs)),
+        xs,
         xs.length === 2
             ? isVec(xs[1])
                 ? "vv"
@@ -677,13 +747,89 @@ export function ivec4(...xs: any[]): Lit<"ivec4"> {
     );
 }
 
+export function uvec2(): Lit<"uvec2">;
+export function uvec2(x: NumericU): Lit<"uvec2">;
+// prettier-ignore
+export function uvec2(x: NumericU, y: NumericU): Lit<"uvec2">;
+// prettier-ignore
+export function uvec2(...xs: any[]): Lit<"uvec2"> {
+    return lit("uvec2", $uvec(xs), ["n","n"][xs.length]);
+}
+
+export function uvec3(): Lit<"uvec3">;
+export function uvec3(x: NumericU): Lit<"uvec3">;
+export function uvec3(x: Vec2Term, y: NumericU): Lit<"uvec3">;
+// prettier-ignore
+export function uvec3(x: NumericU, y: NumericU, z: NumericU): Lit<"uvec3">;
+export function uvec3(...xs: any[]): Lit<"uvec3"> {
+    return lit("uvec3", (xs = $uvec(xs)), ["n", "n", "vn"][xs.length]);
+}
+
+export function uvec4(): Lit<"uvec4">;
+export function uvec4(x: NumericU): Lit<"uvec4">;
+export function uvec4(x: Vec3Term, y: NumericU): Lit<"uvec4">;
+export function uvec4(x: Vec2Term, y: Vec2Term): Lit<"uvec4">;
+// prettier-ignore
+export function uvec4(x: Vec2Term, y: NumericU, z: NumericU): Lit<"uvec4">;
+// prettier-ignore
+export function uvec4(x: NumericU, y: NumericU, z: NumericU, w: NumericU): Lit<"uvec4">;
+export function uvec4(...xs: any[]): Lit<"uvec4"> {
+    return lit(
+        "uvec4",
+        (xs = $uvec(xs)),
+        xs.length === 2
+            ? isVec(xs[1])
+                ? "vv"
+                : "vn"
+            : ["n", "n", , "vnn"][xs.length]
+    );
+}
+
+export function bvec2(): Lit<"bvec2">;
+export function bvec2(x: NumericB): Lit<"bvec2">;
+// prettier-ignore
+export function bvec2(x: NumericB, y: NumericB): Lit<"bvec2">;
+// prettier-ignore
+export function bvec2(...xs: any[]): Lit<"bvec2"> {
+    return lit("bvec2", $bvec(xs), ["n","n"][xs.length]);
+}
+
+export function bvec3(): Lit<"bvec3">;
+export function bvec3(x: NumericB): Lit<"bvec3">;
+export function bvec3(x: Vec2Term, y: NumericB): Lit<"bvec3">;
+// prettier-ignore
+export function bvec3(x: NumericB, y: NumericB, z: NumericB): Lit<"bvec3">;
+export function bvec3(...xs: any[]): Lit<"bvec3"> {
+    return lit("bvec3", (xs = $bvec(xs)), ["n", "n", "vn"][xs.length]);
+}
+
+export function bvec4(): Lit<"bvec4">;
+export function bvec4(x: NumericB): Lit<"bvec4">;
+export function bvec4(x: Vec3Term, y: NumericB): Lit<"bvec4">;
+export function bvec4(x: Vec2Term, y: Vec2Term): Lit<"bvec4">;
+// prettier-ignore
+export function bvec4(x: Vec2Term, y: NumericB, z: NumericB): Lit<"bvec4">;
+// prettier-ignore
+export function bvec4(x: NumericB, y: NumericB, z: NumericB, w: NumericB): Lit<"bvec4">;
+export function bvec4(...xs: any[]): Lit<"bvec4"> {
+    return lit(
+        "bvec4",
+        (xs = $bvec(xs)),
+        xs.length === 2
+            ? isVec(xs[1])
+                ? "vv"
+                : "vn"
+            : ["n", "n", , "vnn"][xs.length]
+    );
+}
+
 export function mat2(): Lit<"mat2">;
 export function mat2(x: NumericF): Lit<"mat2">;
 export function mat2(x: Vec2Term, y: Vec2Term): Lit<"mat2">;
 // prettier-ignore
 export function mat2(a: NumericF, b: NumericF, c: NumericF, d: NumericF): Lit<"mat2">;
 export function mat2(...xs: any[]): Lit<"mat2"> {
-    return lit("mat2", (xs = $vec(xs, FLOAT1)), ["n", "n", "vv"][xs.length]);
+    return lit("mat2", (xs = $mat(xs, FLOAT1)), ["n", "n", "vv"][xs.length]);
 }
 
 export function mat3(): Lit<"mat3">;
@@ -693,7 +839,7 @@ export function mat3(x: Vec3Term, y: Vec3Term, z: Vec3Term): Lit<"mat3">;
 // prettier-ignore
 export function mat3(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: NumericF, f: NumericF, g: NumericF, h: NumericF, i: NumericF): Lit<"mat3">;
 export function mat3(...xs: any[]): Lit<"mat3"> {
-    return lit("mat3", (xs = $vec(xs, FLOAT1)), ["n", "n", , "vvv"][xs.length]);
+    return lit("mat3", (xs = $mat(xs, FLOAT1)), ["n", "n", , "vvv"][xs.length]);
 }
 
 export function mat4(): Lit<"mat4">;
@@ -705,7 +851,7 @@ export function mat4(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: Nume
 export function mat4(...xs: any[]): Lit<"mat4"> {
     return lit(
         "mat4",
-        (xs = $vec(xs, FLOAT1)),
+        (xs = $mat(xs, FLOAT1)),
         ["n", "n", , , "vvvv"][xs.length]
     );
 }
@@ -906,7 +1052,11 @@ export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
  * @param b
  * @param c
  */
-export const madd = <A extends Prim, B extends A, C extends B>(
+export const madd = <
+    A extends Prim | IVec | UVec | "int" | "uint",
+    B extends A,
+    C extends B
+>(
     a: Term<A>,
     b: Term<B>,
     c: Term<C>

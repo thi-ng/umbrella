@@ -201,6 +201,8 @@ export type Comparable = "float" | Int;
 export type Numeric = number | FloatTerm | IntTerm | UintTerm;
 export type NumericF = number | FloatTerm;
 export type NumericI = number | IntTerm;
+export type NumericU = number | UintTerm;
+export type NumericB = boolean | Numeric;
 
 export type Assignable<T extends Type> = Sym<T> | Swizzle<T> | Index<T>;
 
