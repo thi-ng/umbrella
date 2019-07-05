@@ -533,6 +533,22 @@ export const $w = <T extends "vec4" | "ivec4" | "bvec4">(
 ): Swizzle<Select3<T, Vec, IVec, "float", "int", "bool">> =>
     <any>$(<any>val, "w");
 
+export function $xy(val: Term<Vec>): Swizzle<"vec2">;
+export function $xy(val: Term<IVec>): Swizzle<"ivec2">;
+export function $xy(val: Term<UVec>): Swizzle<"uvec2">;
+export function $xy(val: Term<BVec>): Swizzle<"bvec2">;
+export function $xy(val: any): Swizzle<any> {
+    return $(val, "xy");
+}
+
+export function $xyz(val: Term<"vec3" | "vec4">): Swizzle<"vec3">;
+export function $xyz(val: Term<"ivec3" | "ivec4">): Swizzle<"ivec3">;
+export function $xyz(val: Term<"uvec3" | "uvec4">): Swizzle<"uvec3">;
+export function $xyz(val: Term<"bvec3" | "bvec4">): Swizzle<"bvec3">;
+export function $xyz(val: any): Swizzle<any> {
+    return $(val, "xyz");
+}
+
 export const index = <T extends Indexable>(
     val: Sym<T>,
     id: NumericI | UintTerm
