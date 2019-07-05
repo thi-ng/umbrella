@@ -10,8 +10,8 @@ import {
 import { fit1101 } from "../math/fit";
 
 /**
- * Inline function. Computes Lambert term, i.e. max(dot(n,l), 0). Both
- * vectors must be pre-normalized.
+ * Inline function. Computes Lambert term, i.e. `max(dot(n, l), 0)`.
+ * Both vectors must be pre-normalized.
  *
  * @param surfNormal vec3
  * @param lightDir vec3
@@ -32,7 +32,9 @@ export const halfLambert = (n: Vec3Term, ldir: Vec3Term) =>
     fit1101(dot(n, ldir));
 
 /**
- * Inline function. Computes: col = lambert * light * diffuse + ambient
+ * Inline function. Computes:
+ *
+ * col = lambert * lightCol * diffuseCol + ambientCol
  *
  * @param lambertian float
  * @param diffuseCol vec3

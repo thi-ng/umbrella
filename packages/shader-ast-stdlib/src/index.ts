@@ -22,7 +22,7 @@ export * from "./matrix/lookat";
 export * from "./matrix/mvp";
 export * from "./matrix/normal";
 
-export * from "./noise/hash3";
+export * from "./noise/hash";
 export * from "./noise/permute";
 export * from "./noise/simplex2";
 export * from "./noise/voronoi2";
@@ -51,3 +51,5 @@ export * from "./sdf/sphere";
 export * from "./sdf/torus";
 export * from "./sdf/tri";
 export * from "./sdf/union";
+
+export * from "./tex/read-index";

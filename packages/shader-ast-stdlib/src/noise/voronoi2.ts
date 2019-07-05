@@ -1,5 +1,5 @@
 import {
-    $,
+    $xy,
     $z,
     add,
     assign,
@@ -29,7 +29,7 @@ import {
     vec3,
     Vec3Sym
 } from "@thi.ng/shader-ast";
-import { hash3 } from "./hash3";
+import { hash3 } from "./hash";
 
 /**
  * IQ's parametric 2D voronoise. Depending on `u` and `v`, this function
@@ -72,7 +72,7 @@ export const voronoise2 = defn(
                 forLoop(sym(int(-2)), (j) => lte(j, int(2)), inc, (j) => [
                     (g = sym(vec2(float(i), float(j)))),
                     (o = sym(mul(hash3(add(p, g)), coeff))),
-                    (r = sym(add(sub(g, f), $(o, "xy")))),
+                    (r = sym(add(sub(g, f), $xy(o)))),
                     (w = sym(
                         pow(
                             sub(1, smoothstep(FLOAT0, SQRT2, sqrt(dot(r, r)))),

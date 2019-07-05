@@ -1,6 +1,7 @@
 import {
     $,
     $x,
+    $xy,
     $y,
     abs,
     add,
@@ -75,7 +76,7 @@ export const snoise2 = defn("float", "snoise2", [["vec2"]], (v) => {
             max(
                 sub(
                     FLOAT05,
-                    vec3(magSq2(x0), magSq2($(x12, "xy")), magSq2($(x12, "zw")))
+                    vec3(magSq2(x0), magSq2($xy(x12)), magSq2($(x12, "zw")))
                 ),
                 vec3()
             )

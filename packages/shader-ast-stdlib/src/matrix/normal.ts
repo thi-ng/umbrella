@@ -1,5 +1,5 @@
 import {
-    $,
+    $xyz,
     Mat4Term,
     mul,
     normalize,
@@ -15,4 +15,4 @@ import {
  * @param normalMat
  */
 export const surfaceNormal = (n: Vec3Term, normalMat: Mat4Term) =>
-    normalize($(mul(normalMat, vec4(n, 0)), "xyz"));
+    normalize($xyz(mul(normalMat, vec4(n, 0))));

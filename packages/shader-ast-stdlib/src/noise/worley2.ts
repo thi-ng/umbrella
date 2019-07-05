@@ -1,6 +1,7 @@
 import {
     $,
     $x,
+    $xy,
     $y,
     $z,
     abs,
@@ -95,16 +96,13 @@ export const worley2 = (distFn: Func2<"vec3", "vec3", "vec3">) =>
             assign(d2, min(max(d1, d2), d3)),
             assign(d1, min(d1a, d2)),
             assign(d2, max(d1a, d2)),
-            assign(
-                $(d1, "xy"),
-                ternary(lt($x(d1), $y(d1)), $(d1, "xy"), $(d1, "yx"))
-            ),
+            assign($xy(d1), ternary(lt($x(d1), $y(d1)), $xy(d1), $(d1, "yx"))),
             assign(
                 $(d1, "xz"),
                 ternary(lt($x(d1), $z(d1)), $(d1, "xz"), $(d1, "zx"))
             ),
             assign($(d1, "yz"), min($(d1, "yz"), $(d2, "yz"))),
             assign($y(d1), min(min($y(d1), $z(d1)), $x(d2))),
-            ret(sqrt($(d1, "xy")))
+            ret(sqrt($xy(d1)))
         ];
     });
