@@ -283,7 +283,7 @@ export const shaderSourceFromAST = (
         for (let id in spec.uniforms) {
             const u = spec.uniforms[id];
             unis[id] = isArray(u)
-                ? u.length === 3
+                ? u[0].indexOf("[]") > 0
                     ? uniform(u[0], id, { num: <number>u[1] })
                     : uniform(u[0], id)
                 : uniform(u, id);
@@ -318,7 +318,7 @@ export const shaderSourceFromAST = (
             for (let id in outs) {
                 const o = outs[id];
                 outputs[id] = isArray(o)
-                    ? output(o[0], id, { num: o[1] })
+                    ? output(o[0], id, { loc: o[1] })
                     : output(o, id);
             }
         } else {
