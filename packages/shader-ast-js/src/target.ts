@@ -138,6 +138,7 @@ import {
     exp2,
     exp3,
     exp4,
+    faceForward,
     floor2,
     floor3,
     floor4,
@@ -207,6 +208,8 @@ import {
     radians2,
     radians3,
     radians4,
+    reflect,
+    refract,
     rshiftI2,
     rshiftI3,
     rshiftI4,
@@ -369,10 +372,13 @@ export interface JSBuiltinsVec
     extends JSBuiltinsFloat<Vec>,
         JSBuiltinsMath<Vec>,
         JSBuiltinsVecScalar<Vec> {
-    dot: Fn2<Vec, Vec, number>;
-    normalize: Fn<Vec, Vec>;
-    length: Fn<Vec, number>;
     distance: Fn2<Vec, Vec, number>;
+    dot: Fn2<Vec, Vec, number>;
+    faceForward: Fn3<Vec, Vec, Vec, Vec>;
+    length: Fn<Vec, number>;
+    normalize: Fn<Vec, Vec>;
+    reflect: Fn2<Vec, Vec, Vec>;
+    refract: Fn3<Vec, Vec, number, Vec>;
 }
 
 export interface JSBuiltinsVec3 extends JSBuiltinsVec {
@@ -586,6 +592,7 @@ const env: Partial<JSEnv> = {
         dot: (a, b) => dot2(a, b),
         exp: (a) => exp2([], a),
         exp2: (a) => exp_22([], a),
+        faceForward: (a, b, c) => faceForward([], a, b, c),
         floor: (a) => floor2([], a),
         fract: (a) => fract2([], a),
         fwidth: () => ZERO2,
@@ -606,6 +613,8 @@ const env: Partial<JSEnv> = {
         normalize: (a) => normalize([], a),
         pow: (a, b) => pow2([], a, b),
         radians: (a) => radians2([], a),
+        reflect: (a, b) => reflect([], a, b),
+        refract: (a, b, c) => refract([], a, b, c),
         sign: (a) => sign2([], a),
         sin: (a) => sin2([], a),
         smoothstep: (a, b, t) => smoothStep2([], a, b, t),
@@ -640,6 +649,7 @@ const env: Partial<JSEnv> = {
         dot: (a, b) => dot3(a, b),
         exp: (a) => exp3([], a),
         exp2: (a) => exp_23([], a),
+        faceForward: (a, b, c) => faceForward([], a, b, c),
         floor: (a) => floor3([], a),
         fract: (a) => fract3([], a),
         fwidth: () => ZERO3,
@@ -660,6 +670,8 @@ const env: Partial<JSEnv> = {
         normalize: (a) => normalize([], a),
         pow: (a, b) => pow3([], a, b),
         radians: (a) => radians3([], a),
+        reflect: (a, b) => reflect([], a, b),
+        refract: (a, b, c) => refract([], a, b, c),
         sign: (a) => sign3([], a),
         sin: (a) => sin3([], a),
         smoothstep: (a, b, t) => smoothStep3([], a, b, t),
@@ -693,6 +705,7 @@ const env: Partial<JSEnv> = {
         dot: (a, b) => dot4(a, b),
         exp: (a) => exp4([], a),
         exp2: (a) => exp_24([], a),
+        faceForward: (a, b, c) => faceForward([], a, b, c),
         floor: (a) => floor4([], a),
         fract: (a) => fract4([], a),
         fwidth: () => ZERO4,
@@ -713,6 +726,8 @@ const env: Partial<JSEnv> = {
         normalize: (a) => normalize([], a),
         pow: (a, b) => pow4([], a, b),
         radians: (a) => radians4([], a),
+        reflect: (a, b) => reflect([], a, b),
+        refract: (a, b, c) => refract([], a, b, c),
         sign: (a) => sign4([], a),
         sin: (a) => sin4([], a),
         smoothstep: (a, b, t) => smoothStep4([], a, b, t),
