@@ -2,32 +2,12 @@ import {
     $x,
     $xy,
     $xyz,
-    $y,
-    defn,
-    div,
-    float,
     IntTerm,
     IVec2Term,
-    modi,
-    ret,
-    Sampler2DSym,
-    texture,
-    vec2
+    texture
 } from "@thi.ng/shader-ast";
-
-export const indexToUV = defn(
-    "vec2",
-    "indexToUV",
-    [["int"], ["ivec2"]],
-    (i, size) => [
-        ret(
-            vec2(
-                div(float(modi(i, $x(size))), float($x(size))),
-                div(float(div(i, $x(size))), float($y(size)))
-            )
-        )
-    ]
-);
+import { Sampler2DTerm } from "@thi.ng/shader-ast/api";
+import { indexToUV } from "./index-uv";
 
 /**
  * Inline function. Returns x component at index `i` in `tex`.
@@ -36,7 +16,7 @@ export const indexToUV = defn(
  * @param i
  * @param size
  */
-export const readIndex1 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
+export const readIndex1 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
     $x(texture(tex, indexToUV(i, size)));
 
 /**
@@ -46,7 +26,7 @@ export const readIndex1 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
  * @param i
  * @param size
  */
-export const readIndex2 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
+export const readIndex2 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
     $xy(texture(tex, indexToUV(i, size)));
 
 /**
@@ -56,7 +36,7 @@ export const readIndex2 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
  * @param i
  * @param size
  */
-export const readIndex3 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
+export const readIndex3 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
     $xyz(texture(tex, indexToUV(i, size)));
 
 /**
@@ -66,5 +46,5 @@ export const readIndex3 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
  * @param i
  * @param size
  */
-export const readIndex4 = (tex: Sampler2DSym, i: IntTerm, size: IVec2Term) =>
+export const readIndex4 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
     texture(tex, indexToUV(i, size));
