@@ -42,7 +42,7 @@ export const rotationZ3 = defn("mat3", "rotationZ3", [["float"]], (theta) => {
     ];
 });
 
-export const rotationX4 = defn("mat3", "rotationX4", [["float"]], (theta) => {
+export const rotationX4 = defn("mat4", "rotationX4", [["float"]], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
@@ -69,7 +69,7 @@ export const rotationX4 = defn("mat3", "rotationX4", [["float"]], (theta) => {
     ];
 });
 
-export const rotationY4 = defn("mat3", "rotationY4", [["float"]], (theta) => {
+export const rotationY4 = defn("mat4", "rotationY4", [["float"]], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
