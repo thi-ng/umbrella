@@ -30,6 +30,7 @@ export const ARGS_V = "o,a";
 export const ARGS_VV = "o,a,b";
 export const ARGS_VVV = "o,a,b,c";
 export const ARGS_VN = "o,a,n";
+export const ARGS_VNV = "o,a,n,b";
 export const ARGS_VVN = "o,a,b,n";
 
 export const SARGS_V = "io=0,ia=0,so=1,sa=1";

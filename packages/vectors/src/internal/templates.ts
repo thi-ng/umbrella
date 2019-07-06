@@ -30,8 +30,8 @@ export const SET_N: Template = ([a]) => `${a}=n;`;
 
 export const ADDM: Template = ([o, a, b, c]) => `${o}=(${a}+${b})*${c};`;
 export const ADDM_N: Template = ([o, a, b]) => `${o}=(${a}+${b})*n;`;
-export const MADD: Template = ([o, a, b, c]) => `${o}=${a}+${b}*${c};`;
-export const MADD_N: Template = ([o, a, b]) => `${o}=${a}+${b}*n;`;
+export const MADD: Template = ([o, a, b, c]) => `${o}=${a}*${b}+${c};`;
+export const MADD_N: Template = ([o, a, b]) => `${o}=${a}*n+${b};`;
 export const MIX: Template = ([o, a, b, c]) => `${o}=${a}+(${b}-${a})*${c};`;
 export const MIX_N: Template = ([o, a, b]) => `${o}=${a}+(${b}-${a})*n;`;
 export const SUBM: Template = ([o, a, b, c]) => `${o}=(${a}-${b})*${c};`;

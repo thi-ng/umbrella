@@ -1,5 +1,10 @@
 import { cossin } from "@thi.ng/math";
-import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api";
+import {
+    MultiVecOpVO,
+    ReadonlyVec,
+    ZERO2,
+    ZERO3
+} from "./api";
 import { vop } from "./internal/vop";
 import { maddN2 } from "./maddn";
 import { setC3 } from "./setc";
@@ -28,7 +33,7 @@ export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
  * @param offset
  */
 export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
-    maddN2(out || a, b, cossin(a[1]), a[0])
+    maddN2(out || a, cossin(a[1]), a[0], b)
 );
 
 /**

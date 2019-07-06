@@ -2,19 +2,20 @@ import { VecOpV } from "./api";
 import { setC2 } from "./setc";
 
 /**
- * Produces a perpendicular vector to `v`, i.e. `[-y,x]`.
+ * 2D only. Produces a perpendicular vector to `v`, i.e. `[-y,x]`.
+ * Assumes positive Y-up.
  *
  * @param out
  * @param v
  */
-export const perpendicularLeft2: VecOpV = (out, a) =>
+export const perpendicularCCW: VecOpV = (out, a) =>
     setC2(out || a, -a[1], a[0]);
 
 /**
- * Produces a perpendicular vector to `v`, i.e. `[y,-x]`.
+ * 2D only. Produces a clockwise perpendicular vector to `v`, i.e.
+ * `[y,-x]`. Assumes positive Y-up.
  *
  * @param out
  * @param v
  */
-export const perpendicularRight2: VecOpV = (out, a) =>
-    setC2(out || a, a[1], -a[0]);
+export const perpendicularCW: VecOpV = (out, a) => setC2(out || a, a[1], -a[0]);

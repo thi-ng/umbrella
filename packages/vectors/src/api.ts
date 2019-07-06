@@ -64,6 +64,7 @@ export type VecOpVVV = Fn4<
     Vec
 >;
 export type VecOpVVN = Fn4<Vec | null, ReadonlyVec, ReadonlyVec, number, Vec>;
+export type VecOpVNV = Fn4<Vec | null, ReadonlyVec, number, ReadonlyVec, Vec>;
 export type VecOpVNN = Fn4<Vec | null, ReadonlyVec, number, number, Vec>;
 export type VecOpVVVVNN = Fn7<
     Vec | null,
@@ -119,6 +120,7 @@ export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> {}
 export interface MultiVecOpVN extends VecOpVN, MultiVecOp<VecOpVN> {}
 export interface MultiVecOpVVV extends VecOpVVV, MultiVecOp<VecOpVVV> {}
 export interface MultiVecOpVVN extends VecOpVVN, MultiVecOp<VecOpVVN> {}
+export interface MultiVecOpVNV extends VecOpVNV, MultiVecOp<VecOpVNV> {}
 export interface MultiVecOpVNN extends VecOpVNN, MultiVecOp<VecOpVNN> {}
 export interface MultiVecOpVVVVNN
     extends VecOpVVVVNN,
