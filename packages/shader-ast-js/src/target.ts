@@ -403,8 +403,11 @@ export interface JSBuiltinsMat
 
 export interface JSBuiltinsSampler {
     texelFetch: Fn3<number, Vec, number, Vec>;
+    texelFetchOffset: Fn4<number, Vec, number, Vec, Vec>;
     texture: Fn3<number, Vec, number, Vec>;
     texturen: Fn3<number, Vec, number, number>;
+    textureGrad: Fn4<number, Vec, Vec, Vec, Vec>;
+    textureGradn: Fn4<number, Vec, Vec, Vec, number>;
     textureLod: Fn3<number, Vec, number, Vec>;
     textureLodn: Fn3<number, Vec, number, number>;
     textureOffset: Fn4<number, Vec, Vec, number, Vec>;
@@ -463,8 +466,11 @@ export interface JSEnv {
 // all texture fns currently return [0,0,0,0] or 0
 const SAMPLER_TODO: JSBuiltinsSampler = {
     texelFetch: () => ZERO4,
+    texelFetchOffset: () => ZERO4,
     texture: () => ZERO4,
     texturen: () => 0,
+    textureGrad: () => ZERO4,
+    textureGradn: () => 0,
     textureLod: () => ZERO4,
     textureLodn: () => 0,
     textureOffset: () => ZERO4,
