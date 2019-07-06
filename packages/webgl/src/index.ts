@@ -10,18 +10,12 @@ export * from "./matrices";
 export * from "./pipeline";
 export * from "./rbo";
 export * from "./shader";
+export * from "./syntax";
 export * from "./texture";
 export * from "./utils";
 
 export * from "./shaders/lambert";
 export * from "./shaders/phong";
-
-export * from "./glsl/assemble";
-export * from "./glsl/syntax";
-
-export * from "./glsl/lighting";
-export * from "./glsl/texture";
-export * from "./glsl/vertex";
 
 export * from "./textures/checkerboard";
 export * from "./textures/stripes";

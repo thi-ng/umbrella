@@ -40,7 +40,7 @@ import {
 } from "./api";
 import { getExtensions } from "./canvas";
 import { error } from "./error";
-import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./glsl/syntax";
+import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
 import { isGL2Context } from "./utils";
 

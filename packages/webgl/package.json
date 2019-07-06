@@ -36,7 +36,6 @@
         "@thi.ng/associative": "^2.3.0",
         "@thi.ng/binary": "^1.0.6",
         "@thi.ng/checks": "^2.1.6",
-        "@thi.ng/dgraph": "^1.1.9",
         "@thi.ng/equiv": "^1.0.6",
         "@thi.ng/errors": "^1.0.6",
         "@thi.ng/matrices": "^0.4.0",
