@@ -29,7 +29,7 @@ import {
     vec3,
     Vec3Sym
 } from "@thi.ng/shader-ast";
-import { hash3 } from "./hash";
+import { hash32 } from "./hash";
 
 /**
  * IQ's parametric 2D voronoise. Depending on `u` and `v`, this function
@@ -41,6 +41,9 @@ import { hash3 } from "./hash";
  * - voronoise (1,1)
  *
  * http://www.iquilezles.org/www/articles/voronoise/voronoise.htm
+ *
+ * Note: This implementation uses the improved `hash32` by Dave Hoskins
+ * instead of iq's original `hash3`.
  *
  * @param p
  * @param u
@@ -71,7 +74,7 @@ export const voronoise2 = defn(
             forLoop(sym(int(-2)), (i) => lte(i, int(2)), inc, (i) => [
                 forLoop(sym(int(-2)), (j) => lte(j, int(2)), inc, (j) => [
                     (g = sym(vec2(float(i), float(j)))),
-                    (o = sym(mul(hash3(add(p, g)), coeff))),
+                    (o = sym(mul(hash32(add(p, g)), coeff))),
                     (r = sym(add(sub(g, f), $xy(o)))),
                     (w = sym(
                         pow(
