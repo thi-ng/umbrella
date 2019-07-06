@@ -246,7 +246,7 @@ export const cubeMap = (
  */
 export const floatTexture = (
     gl: WebGLRenderingContext,
-    data: Float32Array | undefined,
+    data: Float32Array | undefined | null,
     width: number,
     height: number,
     internalFormat?: GLenum,

@@ -1095,7 +1095,7 @@ export interface GPGPUTextureConfig
 
 export interface GPGPUJobConfig {
     shader: ShaderSpec;
-    src: string;
+    src: string | ShaderFn;
     uniforms: ShaderUniformSpecs;
     inputs: number;
     outputs?: number;
@@ -1116,7 +1116,7 @@ export const GL_RGBA32F = 0x8814;
 export const DEFAULT_BLEND: Tuple<GLenum, 2> = [0x302, 0x303];
 
 export const GL_EXT_INFO = {
-    EXT_draw_buffers: {
+    WEBGL_draw_buffers: {
         gl: true,
         alias: "GL_EXT_draw_buffers"
     },
@@ -1128,6 +1128,7 @@ export const GL_EXT_INFO = {
 
 export interface WebGLExtensionMap {
     EXT_blend_minmax: EXT_blend_minmax;
+    EXT_color_buffer_float: WEBGL_color_buffer_float;
     EXT_texture_filter_anisotropic: EXT_texture_filter_anisotropic;
     EXT_frag_depth: EXT_frag_depth;
     EXT_shader_texture_lod: EXT_shader_texture_lod;

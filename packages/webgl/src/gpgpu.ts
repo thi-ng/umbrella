@@ -125,7 +125,7 @@ export class GPGPU implements IRelease {
                 ...map(
                     () =>
                         <GPGPUIO>{
-                            tex: floatTexture(gl, undefined, width, width),
+                            tex: floatTexture(gl, null, width, width),
                             opts: { stride: 4 }
                         },
                     range(specs)
@@ -136,6 +136,7 @@ export class GPGPU implements IRelease {
                 (opts) =>
                     <GPGPUIO>{
                         tex: texture(gl, {
+                            image: null,
                             width: width,
                             height: width,
                             filter: gl.NEAREST,
@@ -199,6 +200,8 @@ export class GPGPUJob implements IRelease {
                     type: input.opts.type || gl.FLOAT,
                     internalFormat: input.opts.internalFormat || internalFormat,
                     format: input.opts.format || GL_RGBA,
+                    filter: gl.NEAREST,
+                    wrap: gl.CLAMP_TO_EDGE,
                     height: width,
                     width
                 });
@@ -213,7 +216,7 @@ export class GPGPUJob implements IRelease {
         return this;
     }
 
-    result(out?: Float32Array, id = 0) {
+    result(out?: Float32Array | null, id = 0) {
         const ctx = this.ctx;
         const width = ctx.width;
         const gl = ctx.gl;
@@ -269,7 +272,7 @@ export class GPGPUJob implements IRelease {
         }
         shaderSpec.uniforms!.inputs = ["sampler2D[]", opts.inputs];
         if (ctx.opts.version === 1 && opts.outputs! > 1) {
-            shaderSpec.ext!.EXT_draw_buffers = "require";
+            shaderSpec.ext!.WEBGL_draw_buffers = "require";
         }
         spec.uniforms!.inputs = [...range(opts.inputs)];
         spec.textures = ctx.inputs.slice(0, opts.inputs).map((t) => t.tex);
