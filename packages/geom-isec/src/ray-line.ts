@@ -22,7 +22,7 @@ export const intersectRayLine = (
     return t >= 0 && s >= 0 && s <= 1
         ? {
               type: IntersectionType.INTERSECT,
-              isec: maddN([], rpos, dir, t),
+              isec: maddN([], dir, t, rpos),
               alpha: t
           }
         : NONE;

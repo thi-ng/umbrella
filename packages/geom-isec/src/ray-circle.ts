@@ -25,11 +25,11 @@ export const intersectRayCircle = (
             a >= 0
                 ? b >= 0
                     ? a > b
-                        ? [maddN(delta, rpos, dir, b), maddN([], rpos, dir, a)]
-                        : [maddN(delta, rpos, dir, a), maddN([], rpos, dir, b)]
-                    : [maddN(delta, rpos, dir, a)]
+                        ? [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]
+                        : [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]
+                    : [maddN(delta, dir, a, rpos)]
                 : b >= 0
-                ? [maddN(delta, rpos, dir, b)]
+                ? [maddN(delta, dir, b, rpos)]
                 : undefined;
         return isec ? { type: IntersectionType.INTERSECT, isec } : NONE;
     }

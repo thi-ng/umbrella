@@ -6,7 +6,7 @@ import {
     maddN,
     mag,
     mulN,
-    perpendicularLeft2,
+    perpendicularCCW,
     ReadonlyVec,
     sub
 } from "@thi.ng/vectors";
@@ -27,8 +27,8 @@ export const intersectCircleCircle = (
         ar *= ar;
         const alpha = (ar - br * br + d * d) / (2 * d);
         const h = Math.sqrt(ar - alpha * alpha);
-        const p = maddN([], a, delta, alpha / d);
-        const t = mulN(null, perpendicularLeft2(null, delta), h / d);
+        const p = maddN([], delta, alpha / d, a);
+        const t = mulN(null, perpendicularCCW(null, delta), h / d);
         return {
             type: IntersectionType.INTERSECT,
             isec: [add([], p, t), sub([], p, t)]

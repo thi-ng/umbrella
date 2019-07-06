@@ -87,14 +87,14 @@ const intersectWith = (
             ? {
                   type: IntersectionType.INTERSECT,
                   inside,
-                  isec: [maddN([], rpos, dir, tmax)],
+                  isec: [maddN([], dir, tmax, rpos)],
                   alpha: tmax
               }
             : {
                   type: IntersectionType.INTERSECT,
                   isec: [
-                      maddN([], rpos, dir, tmin),
-                      maddN([], rpos, dir, tmax)
+                      maddN([], dir, tmin, rpos),
+                      maddN([], dir, tmax, rpos)
                   ],
                   alpha: tmin,
                   beta: tmax

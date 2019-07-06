@@ -24,7 +24,7 @@ export const intersectRayPlane = (
         const alpha = dot(normal, isec) / d;
         return {
             type: IntersectionType.INTERSECT,
-            isec: maddN(isec, rpos, dir, alpha),
+            isec: maddN(isec, dir, alpha, rpos),
             alpha
         };
     }
