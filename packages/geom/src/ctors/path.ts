@@ -49,7 +49,7 @@ export const roundedRect = (
     attribs?: Attribs
 ) => {
     r = isNumber(r) ? [r, r] : r;
-    const [w, h] = maddN2([], size, r, -2);
+    const [w, h] = maddN2([], r, -2, size);
     return new PathBuilder(attribs)
         .moveTo([pos[0] + r[0], pos[1]])
         .hlineTo(w, true)

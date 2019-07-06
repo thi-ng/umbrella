@@ -36,7 +36,7 @@ pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.CUBIC]: ({ points }: Cubic, t) =>
         mixCubic([], points[0], points[1], points[2], points[3], t),
 
-    [Type.ELLIPSE]: ($: Ellipse, t) => madd2([], $.pos, cossin(TAU * t), $.r),
+    [Type.ELLIPSE]: ($: Ellipse, t) => madd2([], cossin(TAU * t), $.r, $.pos),
 
     [Type.LINE]: ({ points }: Line, t) => mixN2([], points[0], points[1], t),
 
@@ -47,7 +47,7 @@ pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.QUADRATIC]: ({ points }: Quadratic, t) =>
         mixQuadratic([], points[0], points[1], points[2], t),
 
-    [Type.RAY]: ($: Ray, t) => maddN([], $.pos, $.dir, t),
+    [Type.RAY]: ($: Ray, t) => maddN([], $.dir, t, $.pos),
 
     [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t)
 });

@@ -499,7 +499,7 @@ export class Ray implements IHiccupShape {
             "line",
             this.attribs,
             this.pos,
-            maddN2([], this.pos, this.dir, 1e6)
+            maddN2([], this.dir, 1e6, this.pos)
         ];
     }
 }

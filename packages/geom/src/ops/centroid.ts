@@ -48,7 +48,7 @@ centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
 
     [Type.POLYGON]: ($: Polygon, out?) => centerOfWeight2($.points, out),
 
-    [Type.RECT]: ($: AABBLike, out?) => maddN(out || [], $.pos, $.size, 0.5),
+    [Type.RECT]: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
     [Type.TRIANGLE]: ({ points }: Triangle, out?) =>
         divN(
