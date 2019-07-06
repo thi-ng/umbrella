@@ -24,8 +24,7 @@ import {
     GLMat4,
     ModelSpec,
     shader,
-    ShaderSpec,
-    VERSION_CHECK
+    ShaderSpec
 } from "@thi.ng/webgl";
 
 const CUBEMAP_SHADER: ShaderSpec = {
@@ -37,13 +36,9 @@ const CUBEMAP_SHADER: ShaderSpec = {
     ],
     fs: (_, unis, ins, outs) => [
         defMain(() => [
-            assign(
-                outs.fragColor,
-                texture(unis.texture, normalize(ins.vnormal))
-            )
+            assign(outs.fragColor, texture(unis.tex, normalize(ins.vnormal)))
         ])
     ],
-    // pre: VERSION_CHECK(300, "", "#define texture textureCube"),
     attribs: {
         position: "vec3"
     },
@@ -52,7 +47,7 @@ const CUBEMAP_SHADER: ShaderSpec = {
     },
     uniforms: {
         mvp: "mat4",
-        texture: "samplerCube"
+        tex: "samplerCube"
     },
     state: {
         depth: true

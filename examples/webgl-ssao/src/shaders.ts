@@ -1,25 +1,36 @@
 import { mergeDeepObj } from "@thi.ng/associative";
-import { FX_SHADER_SPEC, ShaderSpec } from "@thi.ng/webgl";
+import {
+    $x,
+    $xyz,
+    assign,
+    defMain,
+    mul,
+    sub,
+    texture,
+    vec4
+} from "@thi.ng/shader-ast";
+import { clamp01 } from "@thi.ng/shader-ast-stdlib";
+import { FX_SHADER_SPEC, ShaderFn, ShaderSpec } from "@thi.ng/webgl";
 
 export const LIGHT_SHADER: ShaderSpec = {
     vs: `void main() {
-    v_position = u_model * vec4(a_position + a_offset, 1.0);
-    v_normal = u_model * vec4(a_normal, 0.0);
-    v_uv = a_uv;
-    v_viewPos = u_view * v_position;
-    v_viewNormal = u_view * v_normal;
-    gl_Position = u_proj * v_viewPos;
+    v_position = model * vec4(position + offset, 1.0);
+    v_normal = model * vec4(normal, 0.0);
+    v_uv = uv;
+    v_viewPos = view * v_position;
+    v_viewNormal = view * v_normal;
+    gl_Position = proj * v_viewPos;
 }`,
     fs: `void main() {
     vec3 position = v_position.xyz;
     vec3 normal = normalize(v_normal.xyz);
-    vec3 baseColor = texture(u_tex, v_uv).xyz;
-    vec3 eyeDir = normalize(u_eyePos - position);
-    vec3 lightDir = normalize(u_lightPos - position);
+    vec3 baseColor = texture(tex, v_uv).xyz;
+    vec3 eyeDir = normalize(eyePos - position);
+    vec3 lightDir = normalize(lightPos - position);
     vec3 reflectDir = reflect(-lightDir, normal);
     float diffuse = max(dot(lightDir, normal), 0.0);
-    float specular = pow(max(dot(reflectDir, eyeDir), 0.0), u_shininess);
-    o_color = vec4((u_ambient + diffuse + specular * u_specular) * baseColor, 1.0);
+    float spec = pow(max(dot(reflectDir, eyeDir), 0.0), shininess);
+    o_color = vec4((ambient + diffuse + spec * specular) * baseColor, 1.0);
     o_viewPos = v_viewPos;
     o_viewNormal = v_viewNormal;
 }`,
@@ -30,11 +41,11 @@ export const LIGHT_SHADER: ShaderSpec = {
         uv: "vec2"
     },
     varying: {
-        position: "vec4",
-        normal: "vec4",
-        uv: "vec2",
-        viewPos: "vec4",
-        viewNormal: "vec4"
+        v_position: "vec4",
+        v_normal: "vec4",
+        v_uv: "vec2",
+        v_viewPos: "vec4",
+        v_viewNormal: "vec4"
     },
     uniforms: {
         model: "mat4",
@@ -48,9 +59,9 @@ export const LIGHT_SHADER: ShaderSpec = {
         tex: "sampler2D"
     },
     outputs: {
-        color: ["vec4", 0],
-        viewPos: ["vec4", 1],
-        viewNormal: ["vec4", 2]
+        o_color: ["vec4", 0],
+        o_viewPos: ["vec4", 1],
+        o_viewNormal: ["vec4", 2]
     },
     state: {
         depth: true,
@@ -60,28 +71,25 @@ export const LIGHT_SHADER: ShaderSpec = {
 
 export const SSAO_SHADER: ShaderSpec = {
     ...FX_SHADER_SPEC,
-    fs: `#define K (0.707107)
-
-const vec2 kernel[4] = vec2[](
+    fs: `const vec2 kernel[4] = vec2[](
     vec2(-K, 0.0), vec2(K, 0.0),
     vec2(0.0, -K), vec2(0.0, K)
 );
 
 float occlusionAt(vec3 pos, vec3 normal, ivec2 ipos) {
-    vec3 posVec = texelFetch(u_positionTex, ipos, 0).xyz - pos;
-    float intensity = max(dot(normal, normalize(posVec)) - u_bias, 0.0);
-    float attenuation = u_attenuate + u_attenuateDist * length(posVec);
+    vec3 posVec = texelFetch(positionTex, ipos, 0).xyz - pos;
+    float intensity = max(dot(normal, normalize(posVec)) - bias, 0.0);
+    float attenuation = attenuate + attenuateDist * length(posVec);
     return intensity / attenuation;
 }
 
 void main() {
-    vec2 foo = v_uv;
     ivec2 ipos = ivec2(gl_FragCoord.xy);
-    vec3 pos = texelFetch(u_positionTex, ipos, 0).xyz;
-    vec3 normal = texelFetch(u_normalTex, ipos, 0).xyz;
-    vec2 noise = normalize(texelFetch(u_noiseTex, ipos, 0).xy);
-    float depth = (length(pos) - u_depthRange.x) / (u_depthRange.y - u_depthRange.x);
-    float rScale = u_sampleRadius * (1.0 - depth);
+    vec3 pos = texelFetch(positionTex, ipos, 0).xyz;
+    vec3 normal = texelFetch(normalTex, ipos, 0).xyz;
+    vec2 noise = normalize(texelFetch(noiseTex, ipos, 0).xy);
+    float depth = (length(pos) - depthRange.x) / (depthRange.y - depthRange.x);
+    float rScale = sampleRadius * (1.0 - depth);
 
     float sum = 0.0;
     for (int i = 0; i < 4; i++) {
@@ -95,6 +103,7 @@ void main() {
 
     o_occlusion = clamp(sum / 16.0, 0.0, 1.0);
 }`,
+    pre: "#define K (0.707107)",
     uniforms: {
         positionTex: ["sampler2D", 0],
         normalTex: ["sampler2D", 1],
@@ -106,15 +115,29 @@ void main() {
         depthRange: ["vec2", [0.1, 10]]
     },
     outputs: {
-        occlusion: "float"
+        o_occlusion: "float"
     }
 };
 
 export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC, {
-    fs: `void main() {
-    vec3 col = clamp(texture(u_tex, v_uv).rgb - texture(u_tex2, v_uv).r * u_amp, 0.0, 1.0);
-    o_fragColor = vec4(col, 1.0);
-}`,
+    fs: <ShaderFn>(
+        ((_, unis, ins, outs) => [
+            defMain(() => [
+                assign(
+                    outs.fragColor,
+                    vec4(
+                        clamp01(
+                            sub(
+                                $xyz(texture(unis.tex, ins.v_uv)),
+                                mul($x(texture(unis.tex2, ins.v_uv)), unis.amp)
+                            )
+                        ),
+                        1
+                    )
+                )
+            ])
+        ])
+    ),
     uniforms: {
         tex2: ["sampler2D", 1],
         amp: ["float", 1]
