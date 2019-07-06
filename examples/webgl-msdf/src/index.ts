@@ -258,9 +258,9 @@ const app = () => {
             // prettier-ignore
             const eye = madd(
                 null,
-                [0, -4, 5],
                 mouse.deref() || ZERO3,
-                [2, 0.5, 0]
+                [2, 0.5, 0],
+                [0, -4, 5]
             );
             const view = lookAt([], eye, ZERO3, Y3);
             body.uniforms!.modelview = <GLMat4>(
