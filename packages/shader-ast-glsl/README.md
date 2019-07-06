@@ -22,7 +22,7 @@ This project is part of the
 
 GLSL code generator for
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast).
-Supports GLSL ES 1.00 (WebGL) & GLSL ES 3.00 (WebGL 2).
+Currently supports GLSL ES 1.00 (WebGL) & GLSL ES 3.00 (WebGL 2).
 
 This package is also used for shader assembly by
 [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl).
@@ -43,7 +43,7 @@ yarn add @thi.ng/shader-ast-glsl
 ## Usage examples
 
 There're are several `shader-ast` & `webgl` examples in the
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples)
 folder of this repo, for example...
 
 (Non-exhaustive list)
@@ -76,7 +76,7 @@ let fragColor: Vec4Symbol;
 glsl(
     program([
         color = uniform("vec3", "color"),
-        fragColor = output("vec4", "fragColor"),
+        fragColor = output("vec4", "fragColor", { loc: 0 }),
         defMain(()=> [
             assign(fragColor, vec4(color, 1))
         ])

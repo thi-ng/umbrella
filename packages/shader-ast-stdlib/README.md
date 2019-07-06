@@ -70,7 +70,7 @@ yarn add @thi.ng/shader-ast-stdlib
 ## Usage examples
 
 There're are several `shader-ast` & `webgl` examples in the
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples)
 folder of this repo, for example...
 
 (Non-exhaustive list)
@@ -82,7 +82,7 @@ folder of this repo, for example...
 
 ### Basic Lambert shader
 
-Below is a brief demonstration of creating a fully defined shader
+Below is a brief demonstration of a fully defined shader pair,
 implementing basic diffuse lighting:
 
 ```ts
@@ -105,6 +105,7 @@ const myShader = shader(gl, {
         ])
     ],
     // fragment shader fn
+    // here `ins` are "varying" & `outs` are output variables
     fs: (gl, unis, ins, outs) => [
         defMain(() => [
             assign(
