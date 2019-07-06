@@ -81,7 +81,19 @@ export type Type =
     | "sampler2DShadow"
     | "sampler2DShadow[]"
     | "samplerCubeShadow"
-    | "samplerCubeShadow[]";
+    | "samplerCubeShadow[]"
+    | "isampler2D"
+    | "isampler2D[]"
+    | "isampler3D"
+    | "isampler3D[]"
+    | "isamplerCube"
+    | "isamplerCube[]"
+    | "usampler2D"
+    | "usampler2D[]"
+    | "usampler3D"
+    | "usampler3D[]"
+    | "usamplerCube"
+    | "usamplerCube[]";
 
 export interface ArrayTypeMap {
     bool: "bool[]";
@@ -108,6 +120,12 @@ export interface ArrayTypeMap {
     samplerCube: "samplerCube[]";
     sampler2DShadow: "sampler2DShadow[]";
     samplerCubeShadow: "samplerCubeShadow[]";
+    isampler2D: "isampler2D[]";
+    isampler3D: "isampler3D[]";
+    isamplerCube: "isamplerCube[]";
+    usampler2D: "usampler2D[]";
+    usampler3D: "usampler3D[]";
+    usamplerCube: "usamplerCube[]";
 }
 
 export interface IndexTypeMap {
@@ -151,6 +169,12 @@ export type Mat4Term = Term<"mat4">;
 export type Sampler2DTerm = Term<"sampler2D">;
 export type Sampler3DTerm = Term<"sampler3D">;
 export type SamplerCubeTerm = Term<"samplerCube">;
+export type ISampler2DTerm = Term<"isampler2D">;
+export type ISampler3DTerm = Term<"isampler3D">;
+export type ISamplerCubeTerm = Term<"isamplerCube">;
+export type USampler2DTerm = Term<"usampler2D">;
+export type USampler3DTerm = Term<"usampler3D">;
+export type USamplerCubeTerm = Term<"usamplerCube">;
 
 export type BoolSym = Sym<"bool">;
 export type FloatSym = Sym<"float">;
@@ -174,6 +198,12 @@ export type Mat4Sym = Sym<"mat4">;
 export type Sampler2DSym = Sym<"sampler2D">;
 export type Sampler3DSym = Sym<"sampler3D">;
 export type SamplerCubeSym = Sym<"samplerCube">;
+export type ISampler2DSym = Sym<"isampler2D">;
+export type ISampler3DSym = Sym<"isampler3D">;
+export type ISamplerCubeSym = Sym<"isamplerCube">;
+export type USampler2DSym = Sym<"usampler2D">;
+export type USampler3DSym = Sym<"usampler3D">;
+export type USamplerCubeSym = Sym<"usamplerCube">;
 
 export interface MatIndexTypeMap {
     mat2: "vec2";
@@ -193,7 +223,13 @@ export type Sampler =
     | "sampler3D"
     | "samplerCube"
     | "sampler2DShadow"
-    | "samplerCubeShadow";
+    | "samplerCubeShadow"
+    | "isampler2D"
+    | "isampler3D"
+    | "isamplerCube"
+    | "usampler2D"
+    | "usampler3D"
+    | "usamplerCube";
 
 export type Prim = "float" | Vec;
 export type Int = "int" | "uint";
