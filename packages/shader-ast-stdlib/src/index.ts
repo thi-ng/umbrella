@@ -1,5 +1,8 @@
 export * from "./api";
 
+export * from "./color/linear-srgb";
+export * from "./color/luminance";
+
 export * from "./fog/exp";
 export * from "./fog/exp2";
 export * from "./fog/linear";
@@ -8,6 +11,7 @@ export * from "./lighting/lambert";
 export * from "./lighting/trilight";
 
 export * from "./math/additive";
+export * from "./math/cartesian";
 export * from "./math/clamp";
 export * from "./math/cross2";
 export * from "./math/dist-chebyshev";
@@ -17,10 +21,13 @@ export * from "./math/magsq";
 export * from "./math/maxcomp";
 export * from "./math/mincomp";
 export * from "./math/orthogonal";
+export * from "./math/polar";
+export * from "./math/sincos";
 
 export * from "./matrix/lookat";
 export * from "./matrix/mvp";
 export * from "./matrix/normal";
+export * from "./matrix/rotation";
 
 export * from "./noise/hash";
 export * from "./noise/permute";
