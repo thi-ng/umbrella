@@ -9,6 +9,7 @@ import {
 } from "@thi.ng/shader-ast";
 import {
     diffuseLighting,
+    halfLambert,
     lambert,
     surfaceNormal,
     transformMVP
@@ -18,9 +19,10 @@ import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
 
-export type LambertOpts = ShaderOpts<
-    Pick<Material, "ambientCol" | "diffuseCol">
->;
+export interface LambertOpts
+    extends ShaderOpts<Pick<Material, "ambientCol" | "diffuseCol">> {
+    bidir: boolean;
+}
 
 export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     vs: (gl, unis, ins, outs) => [
@@ -45,10 +47,9 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
                 outs.fragColor,
                 vec4(
                     diffuseLighting(
-                        lambert(
+                        (opts.bidir !== false ? halfLambert : lambert)(
                             normalize(ins.vnormal),
-                            unis.lightDir,
-                            unis.bidir
+                            unis.lightDir
                         ),
                         opts.uv
                             ? mul(
@@ -91,8 +92,7 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
             { diffuseCol: [1, 1, 1], ...opts.material },
             { specularCol: false }
         ),
-        ...(opts.uv ? { tex: "sampler2D" } : null),
-        bidir: ["bool", 0]
+        ...(opts.uv ? { tex: "sampler2D" } : null)
     },
     state: {
         depth: true,
