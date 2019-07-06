@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Unsupported features](#unsupported-features)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -31,6 +32,15 @@ and
 [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices),
 which altogether provided 500+ optimized vector/matrix functions.
 
+### Unsupported features
+
+- texture lookups (see [texture tunnel
+  demo](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
+  for a monkey-patched solution)
+- derivatives (`dFdx`, `dFdy`, `fwidth`) - probably never supported in
+  this env
+- `out` / `inout` function args (see #96 for discussion)
+
 ## Installation
 
 ```bash
@@ -49,7 +59,7 @@ yarn add @thi.ng/shader-ast-js
 
 ## Usage examples
 
-Partially commented examples:
+Commented examples:
 
 - [Canvas2D shader](https://demo.thi.ng/umbrella/shader-ast-canvas2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
 - [2D SDF](https://demo.thi.ng/umbrella/shader-ast-sdf2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)

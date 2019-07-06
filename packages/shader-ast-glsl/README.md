@@ -42,14 +42,57 @@ yarn add @thi.ng/shader-ast-glsl
 
 ## Usage examples
 
-Partially commented examples:
+There're are several `shader-ast` & `webgl` examples in the
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+folder of this repo, for example...
+
+(Non-exhaustive list)
 
 - [2D SDF](https://demo.thi.ng/umbrella/shader-ast-sdf2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
 - [Raymarching](https://demo.thi.ng/umbrella/shader-ast-raymarch/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
 - [Textured tunnel](https://demo.thi.ng/umbrella/shader-ast-tunnel/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
 
+Basic GLSL code generation:
+
 ```ts
-import * as sag from "@thi.ng/shader-ast-glsl";
+import { assign, defMain, output, program, uniform, vec4 } from "@thi.ng/shader-ast";
+import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
+
+const glsl = targetGLSL({
+    // target WebGL2
+    version: GLSLVersion.GLSL_300,
+    // emit #version pragma
+    versionPragma: true,
+    // fragment shader
+    type: "fs",
+    // custom prelude
+    prelude: `// custom GLSL source string injection, e.g.
+#define PI 3.1415926`
+});
+
+let color: Vec3Symbol;
+let fragColor: Vec4Symbol;
+
+glsl(
+    program([
+        color = uniform("vec3", "color"),
+        fragColor = output("vec4", "fragColor"),
+        defMain(()=> [
+            assign(fragColor, vec4(color, 1))
+        ])
+    ])
+)
+```
+
+```glsl
+#version 300 es
+// custom GLSL source string injection, e.g.
+#define PI 3.1415926
+uniform vec3 color;
+layout(location=0) out vec4 fragColor;
+void main() {
+fragColor = vec4(color, 1.0);
+}
 ```
 
 ## Authors
