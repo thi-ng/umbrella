@@ -60,7 +60,7 @@ export const text = (
         for (let j = 0; j < line.length; j++, id++) {
             const g = glyphs.chars[line[j]];
             const [sx, sy] = mul2([], g.size, dir);
-            const [x, y] = madd2([], [xx, yy], g.offset, dir);
+            const [x, y] = madd2([], g.offset, dir, [xx, yy]);
             attribs.setAttribValues(
                 "position",
                 [
