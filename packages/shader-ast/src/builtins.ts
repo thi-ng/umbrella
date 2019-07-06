@@ -30,7 +30,8 @@ import {
     builtinCall,
     FLOAT0,
     INT0,
-    isVec
+    isVec,
+    matchingPrimFor
 } from "./ast";
 
 const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
@@ -131,6 +132,9 @@ export const sign = primOp1("sign");
 export const floor = primOp1("floor");
 export const ceil = primOp1("ceil");
 export const fract = primOp1("fract");
+
+export const powf = <T extends Prim>(x: Term<T>, y: FloatTerm) =>
+    pow(x, matchingPrimFor(x, y));
 
 // prettier-ignore
 export function mod<A extends Prim, B extends A>(a: Term<A>, b: Term<B>): FnCall<A>;

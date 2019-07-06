@@ -214,7 +214,10 @@ export const numberWithMatchingType = (t: Term<Prim | Int>, x: number) => {
 export const matchingPrimFor = <T extends Prim>(
     t: Term<T>,
     x: FloatTerm
-): Term<T> => (<any>{ float, vec2, vec3, vec4 })[t.type](x);
+): Term<T> => {
+    const ctor = (<any>{ vec2, vec3, vec4 })[t.type];
+    return ctor ? ctor(x) : x;
+};
 
 /**
  * Helper function for `walk()`. Returns child nodes for any control
