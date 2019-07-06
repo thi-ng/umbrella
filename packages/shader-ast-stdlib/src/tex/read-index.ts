@@ -4,9 +4,9 @@ import {
     $xyz,
     IntTerm,
     IVec2Term,
+    Sampler2DTerm,
     texture
 } from "@thi.ng/shader-ast";
-import { Sampler2DTerm } from "@thi.ng/shader-ast/api";
 import { indexToUV } from "./index-uv";
 
 /**

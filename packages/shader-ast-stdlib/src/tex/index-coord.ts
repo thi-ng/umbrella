@@ -5,9 +5,9 @@ import {
     madd,
     modi,
     UintTerm,
-    uvec2
+    uvec2,
+    UVec2Term
 } from "@thi.ng/shader-ast";
-import { UVec2Term } from "@thi.ng/shader-ast/api";
 
 /**
  * Inline function. Similar to `indexToUV()`, but returns uvec2 in pixel

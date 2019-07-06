@@ -7,6 +7,7 @@ import {
     assign,
     defn,
     dot,
+    FloatSym,
     fract,
     mat2,
     mul,
@@ -15,9 +16,10 @@ import {
     sym,
     vec2,
     vec3,
-    vec4
+    Vec3Sym,
+    vec4,
+    Vec4Sym
 } from "@thi.ng/shader-ast";
-import { FloatSym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast/api";
 
 /**
  * iq's hash PRNG producing 2D results.
