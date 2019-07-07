@@ -18,7 +18,7 @@
         "build:es6": "tsc --declaration",
         "build:bundle": "../../scripts/bundle-module",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib glsl shaders",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib geo shaders textures",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public"
@@ -47,14 +47,16 @@
         "@thi.ng/vectors": "^2.5.6"
     },
     "keywords": [
-        "abstraction",
+        "declarative",
         "ES6",
         "FBO",
+        "GPGPU",
         "graphics",
         "shader",
         "texture",
         "typescript",
-        "webgl"
+        "webgl",
+        "webgl2"
     ],
     "publishConfig": {
         "access": "public"

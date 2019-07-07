@@ -44,10 +44,12 @@
         "code generator",
         "DSL",
         "ES6",
+        "GPGPU",
         "GLSL",
         "shader",
         "typecheck",
         "typescript",
+        "webgl",
         "x-platform"
     ],
     "publishConfig": {
