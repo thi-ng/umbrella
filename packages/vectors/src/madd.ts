@@ -6,6 +6,7 @@ import { MADD } from "./internal/templates";
  * Returns `out = a * b + c`.
  *
  * @see addm
+ * @see maddN
  *
  * @param out
  * @param a

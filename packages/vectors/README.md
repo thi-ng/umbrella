@@ -16,6 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+    - [Breaking changes in v3.0.0](#breaking-changes-in-v300)
     - [Naming conventions](#naming-conventions)
     - [Constants](#constants)
     - [Component setters & copying](#component-setters--copying)
@@ -36,7 +37,9 @@ This project is part of the
     - [Unary vector math ops](#unary-vector-math-ops)
     - [Vector array batch processing](#vector-array-batch-processing)
     - [Comparison / equality](#comparison--equality)
-    - [Bitwise operations (int vec)](#bitwise-operations-int-vec)
+    - [Bitwise operations (int / uint vec)](#bitwise-operations-int--uint-vec)
+    - [Boolean vector logic](#boolean-vector-logic)
+    - [Componentwise comparisons](#componentwise-comparisons)
     - [Hashing](#hashing)
     - [Code generator](#code-generator)
 - [Authors](#authors)
@@ -46,11 +49,18 @@ This project is part of the
 
 ## About
 
-This package provides **~600 largely code generated functions** and
+Likely the most comprehensive vector library for TypeScript / JavaScript
+currently available.
+
+This package provides **600+ largely code generated functions** and
 supporting types to perform vector operations on fixed and
 arbitrary-length vectors, both packed and strided (i.e. where individual
 vector components are not successive array elements, for example in SOA
-layouts).
+memory layouts).
+
+Includes componentwise logic operations for boolean vectors,
+componentwise comparisons for numeric vectors and componentwise binary
+ops for signed & unsigned integer vectors.
 
 ### Features
 
@@ -131,12 +141,12 @@ a = [1, 2, 3];
 v.add(null, a, a);
 // [2, 4, 6]
 
-// multiply-add (o = a + b * c)
-v.madd([], [1, 2], [10, 20], [0.5, 0.25]);
+// multiply-add (o = a * b + c)
+v.madd([], [10, 20], [0.5, 0.25], [1, 2]);
 // [6, 7]
 
-// multiply-add w/ scalar (o = a + b * n)
-v.maddN([], [1, 2], [10, 20], 0.5);
+// multiply-add w/ scalar (o = a * n + b)
+v.maddN([], [10, 20], 0.5, [1, 2]);
 // [6, 12]
 
 // scalar addition w/ arbitrary length & strided vector
@@ -167,32 +177,59 @@ v.hash([1, 2, 3])
 
 ## API
 
+### Breaking changes in v3.0.0
+
+- to avoid confusion, the arg order of `madd` and `maddN` functions has
+  been updated to be compatible with the OpenCL `mad` function
+  - `madd([], a, b, c)`: before `a + b * c`, now: `a * b + c`
+  - `maddN([], a, b, n)` => `maddN([], a, n, b)` (i.e. `a * n + b`)
+- rename `perpendicularLeft2` => `perpendicularCCW`
+- rename `perpendicularRight2` => `perpendicularCW`
+- rename `normalLeft2`/ `normalRight2` => `normalCCW` / `normalCW`
+
 ### Naming conventions
 
-Wherever possible / sensical, each operation comes in different
-variations. All fixed size versions use optimized implementations.
+Wherever possible, each operation comes in different variations. All
+fixed size versions use optimized, loop-free implementations.
 
-| Suffix          | Description                            | Example                                      |
-|-----------------|----------------------------------------|----------------------------------------------|
-| none            | arbitrary length vector arg(s)         | `add([], [1,2], [10,20])`                    |
-| 2               | 2d vector arg(s)                       | `add2([], [1,2], [10,20])`                   |
-| 3               | 3d vector arg(s)                       | `add3([], [1,2,3], [10,20,30])`              |
-| 4               | 4d vector arg(s)                       | `add4([], [1,2,3,4], [10,20,30,40])`         |
-| N2              | 2d vector & scalar                     | `addN2([], [1,2], 10)`                       |
-| N3              | 3d vector & scalar                     | `addN2([], [1,2], 10)`                       |
-| N4              | 4d vector & scalar                     | `addN2([], [1,2], 10)`                       |
-| I               | arbitrary len, signed int vec          | `addI([], [-1,2], [10,-20])`                 |
-| U               | arbitrary len, unsigned int vec        | `addU([], [-1,2], [10,-20])`                 |
-| I2 / I3 / I4    | fixed size signed int vec              | `addI3([], [1,-2,3], [10,20,30])`            |
-| U2 / U3 / U4    | fixed size signed int vec              | `addU3([], [1,2,3], [10,20,30])`             |
-| NI / NU         | arbitrary len, signed int vec & scalar | `addNI([], [1,-2,3], 10)`                    |
-| NI2 / NI3 / NI4 | fixed size signed int vec & scalar     | `addNI3([], [1,-2,3], [10,20,30])`           |
-| NU2 / NU3 / NU4 | fixed size unsigned int vec & scalar   | `addNU3([], [1,2,3], [10,20,30])`            |
-| S               | arbitrary len strided vector arg(s)    | `setS([], gvec([10, 0, 20, 0], 2, 0, 2), 2)` |
-| S2 / S3 / S4    | fixed size strided vec                 | `setS2()`                                    |
-| SN2 / SN3 / SN4 | fixed size strided vec & scalar        | `setSN2()`                                   |
-| C               | arbitrary len vec, component wise args | `setC([], 1,2,3,4)`                          |
-| C2 / C3 / C4    | fixed size vec, component wise args    | `setC4([], 1,2,3,4)`                         |
+| Suffix          | Description                            | Example                                           |
+|-----------------|----------------------------------------|---------------------------------------------------|
+| none            | arbitrary length vector arg(s)         | `add([], [1,2], [10,20])`                         |
+|                 |                                        | => `[11,22]`                                      |
+| 2               | 2d vector arg(s)                       | `add2([], [1,2], [10,20])`                        |
+|                 |                                        | => `[11,22]`                                      |
+| 3               | 3d vector arg(s)                       | `add3([], [1,2,3], [10,20,30])`                   |
+|                 |                                        | => `[11,22,33]`                                   |
+| 4               | 4d vector arg(s)                       | `add4([], [1,2,3,4], [10,20,30,40])`              |
+|                 |                                        | => `[11,22,33,44]`                                |
+| N2              | 2d vector & scalar                     | `addN2([], [1,2], 10)`                            |
+|                 |                                        | => `[11,12]`                                      |
+| N3              | 3d vector & scalar                     | `addN3([], [1,2,3], 10)`                          |
+|                 |                                        | => `[11,12,13]`                                   |
+| N4              | 4d vector & scalar                     | `addN4([], [1,2,3,4], 10)`                        |
+|                 |                                        | => `[11,12,13,14]`                                |
+| I               | arbitrary len, signed int vec          | `addI([], [-1,2], [10,-20])`                      |
+|                 |                                        | => `[9,-18]`                                      |
+| U               | arbitrary len, unsigned int vec        | `addU([], [1,2], [10,20])`                        |
+|                 |                                        | => `[11,22]`                                      |
+| I2 / I3 / I4    | fixed size signed int vec              | `bitnotI3([], [10,-20,30], [7,7,7])`              |
+|                 |                                        | => `[-11,19,-31]`                                 |
+| U2 / U3 / U4    | fixed size signed int vec              | `bitnotU3([], [10,20,30], [7,7,7])`               |
+|                 |                                        | => `[4294967285,4294967275,4294967265]`           |
+| NI / NU         | arbitrary len, signed int vec & scalar | `addNI([], [1,-2,3], 10)`                         |
+|                 |                                        | => `[11,8,13]`                                    |
+| NI2 / NI3 / NI4 | fixed size signed int vec & scalar     | `addNI3([], [1,-2,3], 10)`                        |
+|                 |                                        | => `[11,8,13]`                                    |
+| NU2 / NU3 / NU4 | fixed size unsigned int vec & scalar   | `addNU3([], [1,2,3], 10)`                         |
+|                 |                                        | => `[11,12,13]`                                   |
+| S2 / S3 / S4    | fixed size strided vec into unstrided  | `addS2([], [0,1,0,2], [10,0,20,0], 0,1,0, 1,2,2)` |
+|                 |                                        | => `[11,22]`                                      |
+| SN2 / SN3 / SN4 | fixed size strided vec & scalar        | `setSN2([0,0,0,0], 10, 1, 2)`                     |
+|                 |                                        | => `[0,10,0,10]`                                  |
+| C               | arbitrary len vec, component wise args | `setC([], 1,2,3,4)`                               |
+|                 |                                        | => `[1,2,3,4]`                                    |
+| C2 / C3 / C4    | fixed size vec, component wise args    | `setC4([], 1,2,3,4)`                              |
+|                 |                                        | => `[1,2,3,4]`                                    |
 
 ### Constants
 
@@ -254,7 +291,8 @@ Component wise op with 2 input vectors:
 -   `div` / `div2` / `div3` / `div4`
 -   `mul` / `mul2` / `mul3` / `mul4`
 -   `sub` / `sub2` / `sub3` / `sub4`
--   `mod` / `mod2` / `mod3` / `mod4`
+-   `fmod` / `fmod2` / `fmod3` / `fmod4` (GLSL behavior)
+-   `mod` / `mod2` / `mod3` / `mod4` (JS modulo)
 -   `pow` / `pow2` / `pow3` / `pow4`
 
 #### Integer vector
@@ -277,7 +315,8 @@ Component wise op with one input vector and single scalar:
 -   `mulN` / `mulN2` / `mulN3` / `mulN4`
 -   `subN` / `subN2` / `subN3` / `subN4`
 -   `neg` - same as `mulN(out, v, -1)`
--   `modN` / `modN2` / `modN3` / `modN4`
+-   `fmodN` / `fmodN2` / `fmodN3` / `fmodN4` (GLSL behavior)
+-   `modN` / `modN2` / `modN3` / `modN4` (JS modulo)
 -   `powN` / `powN2` / `powN3` / `powN4`
 
 #### Integer vector / scalar
@@ -447,25 +486,46 @@ Functions to transform flat / strided buffers w/ vector operations:
 -   `eqDeltaS`
 -   `eqDeltaArray`
 
-### Bitwise operations (int vec)
+### Bitwise operations (int / uint vec)
 
--   `andI` / `andI2` / `andI3` / `andI4`
--   `andU` / `andU2` / `andU3` / `andU4`
--   `andNI` / `andNI2` / `andNI3` / `andNI4`
--   `andNU` / `andNU2` / `andNU3` / `andNU4`
+Arguments are assumed to be signed / unsigned ints. Results will be
+forced accordingly.
+
+-   `bitAndI` / `bitAndI2` / `bitAndI3` / `bitAndI4`
+-   `bitAndU` / `bitAndU2` / `bitAndU3` / `bitAndU4`
+-   `bitAndNI` / `bitAndNI2` / `bitAndNI3` / `bitAndNI4`
+-   `bitAndNU` / `bitAndNU2` / `bitAndNU3` / `bitAndNU4`
+-   `bitNotI` / `bitNotI2` / `bitNotI3` / `bitNotI4` (unary)
+-   `bitNotU` / `bitNotU2` / `bitNotU3` / `bitNotU4` (unary)
+-   `bitOrI` / `bitOrI2` / `bitOrI3` / `bitOrI4`
+-   `bitOrU` / `bitOrU2` / `bitOrU3` / `bitOrU4`
+-   `bitOrNI` / `bitOrNI2` / `bitOrNI3` / `bitOrNI4`
+-   `bitOrNU` / `bitOrNU2` / `bitOrNU3` / `bitOrNU4`
+-   `bitXorI` / `bitXorI2` / `bitXorI3` / `bitXorI4`
+-   `bitXorU` / `bitXorU2` / `bitXorU3` / `bitXorU4`
+-   `bitXorNI` / `bitXorNI2` / `bitXorNI3` / `bitXorNI4`
+-   `bitXorNU` / `bitXorNU2` / `bitXorNU3` / `bitXorNU4`
 -   `lshiftI` / `lshiftI4` /`lshiftI4` / `lshiftI4`
 -   `lshiftU` / `lshiftU4` /`lshiftU4` / `lshiftU4`
--   `not` / `not2` / `not3` / `not4` (unary)
--   `orI` / `orI2` / `orI3` / `orI4`
--   `orU` / `orU2` / `orU3` / `orU4`
--   `orNI` / `orNI2` / `orNI3` / `orNI4`
--   `orNU` / `orNU2` / `orNU3` / `orNU4`
 -   `rshiftI` / `rshiftI2` /`rshiftI3` / `rshiftI4`
 -   `rshiftU` / `rshiftU2` /`rshiftU3` / `rshiftU4`
--   `xorI` / `xorI2` / `xorI3` / `xorI4`
--   `xorU` / `xorU2` / `xorU3` / `xorU4`
--   `xorNI` / `xorNI2` / `xorNI3` / `xorNI4`
--   `xorNU` / `xorNU2` / `xorNU3` / `xorNU4`
+
+### Boolean vector logic
+
+- `logicAnd` / `logicAnd2` / `logicAnd3` / `logicAnd4`
+- `logicOr` / `logicOr2` / `logicOr3` / `logicOr4`
+- `logicNot` / `logicNot2` / `logicNot3` / `logicNot4`
+
+### Componentwise comparisons
+
+All resulting in boolean vectors:
+
+- `lt` / `lt2` / `lt3`/ `lt4`
+- `lte` / `lte2` / `lte3`/ `lte4`
+- `gt` / `gt2` / `gt3`/ `gt4`
+- `gte` / `gte2` / `gte3`/ `gte4`
+- `eq` / `eq2` / `eq3`/ `eq4`
+- `neq` / `neq2` / `neq3`/ `neq4`
 
 ### Hashing
 
