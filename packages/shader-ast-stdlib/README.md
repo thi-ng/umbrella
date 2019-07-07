@@ -179,7 +179,6 @@ precision mediump float;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 proj;
-uniform mat4 normalMat;
 uniform vec3 lightDir;
 uniform vec3 lightCol;
 uniform vec3 diffuseCol;
@@ -208,7 +207,6 @@ alias for `gl_FragColor`...
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 proj;
-uniform mat4 normalMat;
 uniform vec3 lightDir;
 uniform vec3 lightCol;
 uniform vec3 diffuseCol;
@@ -224,7 +222,7 @@ fragColor = vec4((((lightCol * ((dot(normalize(vnormal), lightDir) * 0.5) + 0.5)
 
 Several of the functions included here are defined as higher-order
 functions, providing powerful compositional features not usually seen in
-shader code. For example, the `additive()` HOF takes a single-arg scalar
+shader code. For example, the [`additive()`](https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-stdlib/src/math/additive.ts#L21) HOF takes a single-arg scalar
 function and a number of octaves. It returns a new function which
 computes the summed value of `fn` over the given number octaves, with a
 user defined decay factor (per octave). This can be used for additive
