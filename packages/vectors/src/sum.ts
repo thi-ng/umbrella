@@ -7,7 +7,7 @@ import { vop } from "./internal/vop";
  *
  * @param v
  */
-export const sum: MultiVecOpRoV<number> = vop(0);
+export const sum: MultiVecOpRoV<number> = vop();
 
 sum.default((v) => reduce(add(), v));
 

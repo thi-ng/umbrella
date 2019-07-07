@@ -17,11 +17,19 @@ export interface Vec extends Iterable<number>, ILength {
     [id: number]: number;
 }
 
+export interface BVec extends Iterable<boolean>, ILength {
+    [id: number]: boolean;
+}
+
 export type ReadonlyVec = ArrayLikeIterable<number>;
+export type ReadonlyBVec = ArrayLikeIterable<boolean>;
 
 export type Vec2Like = Tuple<number, 2> | TypedArray;
 export type Vec3Like = Tuple<number, 3> | TypedArray;
 export type Vec4Like = Tuple<number, 4> | TypedArray;
+export type BVec2Like = Tuple<boolean, 2>;
+export type BVec3Like = Tuple<boolean, 3>;
+export type BVec4Like = Tuple<boolean, 4>;
 
 export interface StridedVec {
     buf: Vec;
@@ -146,6 +154,15 @@ export interface MultiVecOpRoVV<T>
 export interface MultiVecOpRoVVO<T, O>
     extends VecOpRoVVO<T, O>,
         MultiVecOp<VecOpRoVVO<T, O>> {}
+
+export type BVecOpV = Fn2<BVec | null, ReadonlyBVec, BVec>;
+export type BVecOpVV = Fn3<BVec | null, ReadonlyBVec, ReadonlyBVec, BVec>;
+
+export type CompareOp = Fn3<BVec | null, ReadonlyVec, ReadonlyVec, BVec>;
+
+export interface MultiBVecOpV extends BVecOpV, MultiVecOp<BVecOpV> {}
+export interface MultiBVecOpVV extends BVecOpVV, MultiVecOp<BVecOpVV> {}
+export interface MultiCompareOp extends CompareOp, MultiVecOp<CompareOp> {}
 
 const mi = -Infinity;
 const mx = Infinity;
