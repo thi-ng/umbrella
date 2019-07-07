@@ -73,7 +73,7 @@ describe("fromIterable()", () => {
                 doneCalled = true;
             }
         });
-        setTimeout(() => src.cancel(), 10);
+        setTimeout(() => src.cancel(), 15);
         setTimeout(() => {
             assert.deepEqual(buf, [data[0]]);
             assert(!doneCalled);

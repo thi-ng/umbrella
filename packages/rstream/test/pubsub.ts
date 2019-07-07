@@ -75,7 +75,7 @@ describe("PubSub", () => {
         pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);
         rs.fromIterable("abcbd", 5).subscribe(pub);
-        setTimeout(() => pub.unsubscribeTopic("b", b), 15);
+        setTimeout(() => pub.unsubscribeTopic("b", b), 18);
         setTimeout(() => {
             assert.deepEqual(acc, { a: ["a"], b: ["b"] });
             assert.equal(pub.getState(), rs.State.DONE);
