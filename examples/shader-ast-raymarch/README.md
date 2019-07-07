@@ -1,6 +1,6 @@
 # shader-ast-raymarch
 
-- [Live demo (WebGL2)](http://demo.thi.ng/umbrella/shader-ast-raymarch/)
+- [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-raymarch/)
 - [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-raymarch/#2d)
 
 Basic 3D raymarch shader defined via higher-order constructs of

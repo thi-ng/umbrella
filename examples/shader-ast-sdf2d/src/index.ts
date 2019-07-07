@@ -1,5 +1,5 @@
 import {
-    $,
+    $xy,
     assign,
     cos,
     defMain,
@@ -143,7 +143,7 @@ if (JS_MODE) {
             defMain(() => [
                 assign(
                     outs.fragColor,
-                    mainImage($(gl.gl_FragCoord, "xy"), unis.resolution)
+                    mainImage($xy(gl.gl_FragCoord), unis.resolution)
                 )
             ])
         ],

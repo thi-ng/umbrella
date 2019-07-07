@@ -1,6 +1,7 @@
 import {
-    $,
     $x,
+    $xy,
+    $xyz,
     assign,
     defMain,
     defn,
@@ -103,12 +104,11 @@ const mainImage = defn(
             // compute ray dir from fragCoord, viewport res and FOV
             // then apply basic camera settings (eye, target, up)
             (dir = sym(
-                $(
+                $xyz(
                     mul(
                         lookat(eyePos, vec3(), vec3(0, 1, 0)),
                         vec4(raymarchDir(frag, res, float(120)), 0)
-                    ),
-                    "xyz"
+                    )
                 )
             )),
             // perform raymarch
@@ -215,7 +215,7 @@ if (JS_MODE) {
                 assign(
                     outputs.fragColor,
                     mainImage(
-                        $(gl.gl_FragCoord, "xy"),
+                        $xy(gl.gl_FragCoord),
                         unis.resolution,
                         unis.eyePos,
                         unis.lightDir

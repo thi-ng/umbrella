@@ -1,5 +1,5 @@
 import {
-    $,
+    $xy,
     add,
     assign,
     defMain,
@@ -46,6 +46,9 @@ const mainImage = defn(
         let col: FloatSym;
         return [
             (uv = sym(aspectCorrectedUV(fragCoord, res))),
+            // dynamically create a multi-octave version of `snoise2`
+            // computed over 4 octaves w/ given phase shift and decay
+            // factor (both per octave)
             (col = sym(
                 additive("vec2", snoise2, 4)(add(uv, time), vec2(2), float(0.5))
             )),
@@ -105,11 +108,7 @@ if (JS_MODE) {
             defMain(() => [
                 assign(
                     outs.fragColor,
-                    mainImage(
-                        $(gl.gl_FragCoord, "xy"),
-                        unis.resolution,
-                        unis.time
-                    )
+                    mainImage($xy(gl.gl_FragCoord), unis.resolution, unis.time)
                 )
             ])
         ],

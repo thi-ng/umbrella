@@ -1,8 +1,9 @@
 import { swizzle8 } from "@thi.ng/binary";
 import { int32Rgba } from "@thi.ng/color";
 import {
-    $,
     $x,
+    $xy,
+    $xyz,
     $y,
     add,
     assign,
@@ -28,7 +29,6 @@ import { initRuntime, JS_DEFAULT_ENV, targetJS } from "@thi.ng/shader-ast-js";
 import {
     compileModel,
     draw,
-    GLSL,
     quad,
     shader,
     texture as glTexture
@@ -73,7 +73,7 @@ const mainImage = defn(
                     div(atan(div($y(p), $x(p))), float(Math.PI))
                 )
             )),
-            ret(vec4(mul($(texture(tex, uv), "xyz"), r), float(1)))
+            ret(vec4(mul($xyz(texture(tex, uv)), r), float(1)))
         ];
     }
 );
@@ -163,7 +163,7 @@ if (JS_MODE) {
                     assign(
                         outs.fragColor,
                         mainImage(
-                            $(gl.gl_FragCoord, "xy"),
+                            $xy(gl.gl_FragCoord),
                             unis.resolution,
                             unis.time,
                             unis.tex

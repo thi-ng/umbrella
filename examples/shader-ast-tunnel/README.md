@@ -1,6 +1,6 @@
 # shader-ast-tunnel
 
-- [Live demo (WebGL2)](http://demo.thi.ng/umbrella/shader-ast-tunnel/)
+- [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-tunnel/)
 - [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-tunnel/#2d)
 
 One of [Inigo Quilez' (IQ) Shadertoy tunnel
