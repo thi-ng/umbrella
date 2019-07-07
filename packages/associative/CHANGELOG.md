@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.3.0...@thi.ng/associative@2.4.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **associative:** update generics (TS3.5.2) ([75a4f72](https://github.com/thi-ng/umbrella/commit/75a4f72))
+* **associative:** update SortedMap.fromObject() - PropertyKey => string ([48688da](https://github.com/thi-ng/umbrella/commit/48688da))
+
+
+### Features
+
+* **associative:** enable TS strict compiler flags (refactor) ([7931e14](https://github.com/thi-ng/umbrella/commit/7931e14))
+
+
+
+
+
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.2.3...@thi.ng/associative@2.3.0) (2019-05-22)
 
 

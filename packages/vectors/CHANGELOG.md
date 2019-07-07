@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.6...@thi.ng/vectors@3.0.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **vectors:** update arg types ([6d213bd](https://github.com/thi-ng/umbrella/commit/6d213bd))
+
+
+### Code Refactoring
+
+* **vectors:** fix [#95](https://github.com/thi-ng/umbrella/issues/95), update madd/maddN arg order, bug fixes ([020b4c8](https://github.com/thi-ng/umbrella/commit/020b4c8))
+
+
+### Features
+
+* **vectors:** add atan, exp_2, log_2, setVN, setVV, minor type fixes ([8683c19](https://github.com/thi-ng/umbrella/commit/8683c19))
+* **vectors:** add bitwise int vec ops (signed/unsigned versions) ([a364f1f](https://github.com/thi-ng/umbrella/commit/a364f1f))
+* **vectors:** add bvec types, componentwise logic & comparison ops ([7b9f03d](https://github.com/thi-ng/umbrella/commit/7b9f03d))
+* **vectors:** add degrees(), radians(), add fitXX type hints ([b313a56](https://github.com/thi-ng/umbrella/commit/b313a56))
+* **vectors:** add fmod/fmodN fns (GLSL style mod op) ([928b95b](https://github.com/thi-ng/umbrella/commit/928b95b))
+* **vectors:** add integer math ops (signed/unsigned) ([c8a997f](https://github.com/thi-ng/umbrella/commit/c8a997f))
+* **vectors:** add swizzle setters ([114003c](https://github.com/thi-ng/umbrella/commit/114003c))
+* **vectors:** add vecOf() ctor fn ([25feeee](https://github.com/thi-ng/umbrella/commit/25feeee))
+* **vectors:** enable TS strict compiler flags (refactor) ([94715ff](https://github.com/thi-ng/umbrella/commit/94715ff))
+
+
+### BREAKING CHANGES
+
+* **vectors:** update madd/maddN arg order, rename functions
+
+- madd & maddN args now OpenCL/CUDA compatible, i.e.
+  - madd(a,b,c) => a * b + c
+  - maddN(a,n,b) => a * n + b
+- rename perpendicularLeft/Right => perpendicularCCW/CW
+- rename normalLeft/Right => normalCCW/CW
+- fix output vec handling in addW fns
+
+
+
+
+
 ## [2.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.5...@thi.ng/vectors@2.5.6) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/vectors

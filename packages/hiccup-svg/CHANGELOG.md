@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.1.22...@thi.ng/hiccup-svg@3.2.0) (2019-07-07)
+
+
+### Features
+
+* **hiccup-svg:** enable TS strict compiler flags (refactor) ([3143141](https://github.com/thi-ng/umbrella/commit/3143141))
+
+
+
+
+
 ## [3.1.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.1.21...@thi.ng/hiccup-svg@3.1.22) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

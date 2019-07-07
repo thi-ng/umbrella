@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.0.26...@thi.ng/rstream-query@1.1.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **rstream-query:** disambiguate return generics for addPatternQuery() ([7ffe25d](https://github.com/thi-ng/umbrella/commit/7ffe25d))
+
+
+### Features
+
+* **rstream-query:** enable TS strict compiler flags (refactor) ([6d35b86](https://github.com/thi-ng/umbrella/commit/6d35b86))
+
+
+
+
+
 ## [1.0.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.0.25...@thi.ng/rstream-query@1.0.26) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/rstream-query

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.0.19...@thi.ng/csp@1.1.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **csp:** TS strictNullChecks, update various return types ([da909ac](https://github.com/thi-ng/umbrella/commit/da909ac))
+
+
+### Features
+
+* **csp:** enable TS strict compiler flags (refactor) ([3d7fba2](https://github.com/thi-ng/umbrella/commit/3d7fba2))
+* **csp:** update Mult.tap() to use set semantics ([c9bc953](https://github.com/thi-ng/umbrella/commit/c9bc953))
+
+
+
+
+
 ## [1.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.0.18...@thi.ng/csp@1.0.19) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/csp

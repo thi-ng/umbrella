@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@2.0.12...@thi.ng/atom@3.0.0) (2019-07-07)
+
+
+### Code Refactoring
+
+* **atom:** TS strictNullChecks ([493ea57](https://github.com/thi-ng/umbrella/commit/493ea57))
+
+
+### Features
+
+* **atom:** enable TS strict compiler flags (refactor) ([c5d2853](https://github.com/thi-ng/umbrella/commit/c5d2853))
+
+
+### BREAKING CHANGES
+
+* **atom:** IView & IHistory methods can return undefined
+
+- Atom ctor requires an initial state now
+
+
+
+
+
 ## [2.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@2.0.11...@thi.ng/atom@2.0.12) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/atom

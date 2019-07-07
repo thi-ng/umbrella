@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.5.0...@thi.ng/geom@1.6.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **geom:** update madd/maddN call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([a96e028](https://github.com/thi-ng/umbrella/commit/a96e028))
+
+
+### Features
+
+* **geom:** enable TS strict compiler flags (refactor) ([aa10de0](https://github.com/thi-ng/umbrella/commit/aa10de0))
+* **geom:** TS strictNullChecks, update various classes & ops ([636dea7](https://github.com/thi-ng/umbrella/commit/636dea7))
+
+
+
+
+
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.4.2...@thi.ng/geom@1.5.0) (2019-05-22)
 
 

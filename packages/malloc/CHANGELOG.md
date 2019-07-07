@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@3.0.0...@thi.ng/malloc@4.0.0) (2019-07-07)
+
+
+### Code Refactoring
+
+* **malloc:** address TS strictNullChecks flag ([e4781e3](https://github.com/thi-ng/umbrella/commit/e4781e3))
+
+
+### Features
+
+* **malloc:** enable TS strict compiler flags (refactor) ([e23e555](https://github.com/thi-ng/umbrella/commit/e23e555))
+* **malloc:** export typed array ctors, update wrap() ([3413ad7](https://github.com/thi-ng/umbrella/commit/3413ad7))
+
+
+### BREAKING CHANGES
+
+* **malloc:** update IMemPool return types
+
+- callocAs, mallocAs, reallocAs() now return `undefined` instead of
+  `null` if operation failed
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@2.0.10...@thi.ng/malloc@3.0.0) (2019-05-22)
 
 

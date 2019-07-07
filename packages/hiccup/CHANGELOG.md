@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.1.9...@thi.ng/hiccup@3.2.0) (2019-07-07)
+
+
+### Features
+
+* **hiccup:** enable TS strict compiler flags (refactor) ([d0fce75](https://github.com/thi-ng/umbrella/commit/d0fce75))
+
+
+
+
+
 ## [3.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.1.8...@thi.ng/hiccup@3.1.9) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hiccup

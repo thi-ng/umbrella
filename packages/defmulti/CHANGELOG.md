@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.0.9...@thi.ng/defmulti@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **defmulti:** enable TS strict compiler flags (refactor) ([d51ecf9](https://github.com/thi-ng/umbrella/commit/d51ecf9))
+
+
+
+
+
 ## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.0.8...@thi.ng/defmulti@1.0.9) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/defmulti

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.0.6...@thi.ng/rle-pack@2.1.0) (2019-07-07)
+
+
+### Features
+
+* **rle-pack:** enable TS strict compiler flags (refactor) ([17c426b](https://github.com/thi-ng/umbrella/commit/17c426b))
+
+
+
+
+
 ## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.0.5...@thi.ng/rle-pack@2.0.6) (2019-04-24)
 
 **Note:** Version bump only for package @thi.ng/rle-pack

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.0.19...@thi.ng/iterators@5.1.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **iterators:** update concat/mapcat, fnil args ([c51ff98](https://github.com/thi-ng/umbrella/commit/c51ff98))
+
+
+### Features
+
+* **iterators:** enable TS strict compiler flags (refactor) ([24fd9e7](https://github.com/thi-ng/umbrella/commit/24fd9e7))
+* **iterators:** TS strictNullChecks ([9f9be1d](https://github.com/thi-ng/umbrella/commit/9f9be1d))
+
+
+
+
+
 ## [5.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.0.18...@thi.ng/iterators@5.0.19) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/iterators

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.0.10...@thi.ng/heaps@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **heaps:** enable TS strict compiler flags (refactor) ([86b9c9e](https://github.com/thi-ng/umbrella/commit/86b9c9e))
+
+
+
+
+
 ## [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.0.9...@thi.ng/heaps@1.0.10) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/heaps

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.3.12...@thi.ng/transducers-binary@0.4.0) (2019-07-07)
+
+
+### Features
+
+* **transducers-binary:** enable TS strict compiler flags (refactor) ([8d86ac6](https://github.com/thi-ng/umbrella/commit/8d86ac6))
+
+
+
+
+
 ## [0.3.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.3.11...@thi.ng/transducers-binary@0.3.12) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/transducers-binary

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@1.0.9...@thi.ng/morton@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **morton:** enable TS strict compiler flags (refactor) ([1fc2e9a](https://github.com/thi-ng/umbrella/commit/1fc2e9a))
+
+
+
+
+
 ## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@1.0.8...@thi.ng/morton@1.0.9) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/morton

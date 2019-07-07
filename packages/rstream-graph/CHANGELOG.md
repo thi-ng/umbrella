@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.0.26...@thi.ng/rstream-graph@3.1.0) (2019-07-07)
+
+
+### Features
+
+* **rstream-graph:** add opt reset arg to `node()` ([310f4d3](https://github.com/thi-ng/umbrella/commit/310f4d3))
+* **rstream-graph:** enable TS strict compiler flags (refactor) ([ace51f8](https://github.com/thi-ng/umbrella/commit/ace51f8))
+
+
+
+
+
 ## [3.0.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.0.25...@thi.ng/rstream-graph@3.0.26) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/rstream-graph

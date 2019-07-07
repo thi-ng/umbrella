@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@0.1.21...@thi.ng/color@0.2.0) (2019-07-07)
+
+
+### Features
+
+* **color:** enable TS strict compiler flags (refactor) ([8c13166](https://github.com/thi-ng/umbrella/commit/8c13166))
+* **color:** TS strictNullChecks, update color conversion fns ([04dc356](https://github.com/thi-ng/umbrella/commit/04dc356))
+
+
+
+
+
 ## [0.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@0.1.20...@thi.ng/color@0.1.21) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/color

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.0.14...@thi.ng/rstream-log@3.1.0) (2019-07-07)
+
+
+### Features
+
+* **rstream-log:** add maskSecrets() format xform ([481a65d](https://github.com/thi-ng/umbrella/commit/481a65d))
+
+
+
+
+
 ## [3.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.0.13...@thi.ng/rstream-log@3.0.14) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/rstream-log

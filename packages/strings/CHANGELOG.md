@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.1.3...@thi.ng/strings@1.2.0) (2019-07-07)
+
+
+### Features
+
+* **strings:** enable TS strict compiler flags (refactor) ([76cecb8](https://github.com/thi-ng/umbrella/commit/76cecb8))
+
+
+
+
+
 ## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.1.2...@thi.ng/strings@1.1.3) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/strings

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.2.3...@thi.ng/geom-closest-point@0.3.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **geom-closest-point:** type hints (TS 3.5.2) ([fa146d7](https://github.com/thi-ng/umbrella/commit/fa146d7))
+* **geom-closest-point:** update polyline & point array fns ([c5b4757](https://github.com/thi-ng/umbrella/commit/c5b4757))
+
+
+### Features
+
+* **geom-clostest-point:** enable TS strict compiler flags (refactor) ([b6b69e6](https://github.com/thi-ng/umbrella/commit/b6b69e6))
+
+
+
+
+
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.2.2...@thi.ng/geom-closest-point@0.2.3) (2019-05-22)
 
 

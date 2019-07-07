@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.4.4...@thi.ng/rstream@2.5.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **rstream:** generics & type hints (TS 3.5.2) ([eb2e18a](https://github.com/thi-ng/umbrella/commit/eb2e18a))
+* **rstream:** TS strictNullChecks, add assertions ([1aad856](https://github.com/thi-ng/umbrella/commit/1aad856))
+
+
+### Features
+
+* **rstream:** add fromDOMEvent() ([6e3fec8](https://github.com/thi-ng/umbrella/commit/6e3fec8))
+* **rstream:** enable TS strict compiler flags (refactor) ([d796e21](https://github.com/thi-ng/umbrella/commit/d796e21))
+
+
+
+
+
 ## [2.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.4.3...@thi.ng/rstream@2.4.4) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/rstream

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.3.0...@thi.ng/math@1.4.0) (2019-07-07)
+
+
+### Features
+
+* **math:** add signed/unsigned int math ops ([518d79a](https://github.com/thi-ng/umbrella/commit/518d79a))
+
+
+
+
+
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.3...@thi.ng/math@1.3.0) (2019-05-22)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.3.7...@thi.ng/transducers@5.4.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **transducers:** fix cat/mapcat arg types ([0d9b7cb](https://github.com/thi-ng/umbrella/commit/0d9b7cb))
+
+
+### Features
+
+* **transducers:** enable TS strict compiler flags (refactor) ([2f8ec89](https://github.com/thi-ng/umbrella/commit/2f8ec89))
+
+
+
+
+
 ## [5.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.3.6...@thi.ng/transducers@5.3.7) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/transducers

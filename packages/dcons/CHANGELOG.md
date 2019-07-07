@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.0.19...@thi.ng/dcons@2.1.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **dcons:** .toString() impl, use String() conv for values ([d6b1f11](https://github.com/thi-ng/umbrella/commit/d6b1f11))
+
+
+### Features
+
+* **dcons:** address TS strictNullChecks flag, minor optimizations ([cb5ad93](https://github.com/thi-ng/umbrella/commit/cb5ad93))
+* **dcons:** enable TS strict compiler flags (refactor) ([4e73667](https://github.com/thi-ng/umbrella/commit/4e73667))
+
+
+
+
+
 ## [2.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.0.18...@thi.ng/dcons@2.0.19) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/dcons

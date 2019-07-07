@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@0.2.16...@thi.ng/vector-pools@1.0.0) (2019-07-07)
+
+
+### Code Refactoring
+
+* **vector-pools:** address TS strictNullChecks flag ([981b5ce](https://github.com/thi-ng/umbrella/commit/981b5ce))
+
+
+### Features
+
+* **vector-pools:** add AttribPool.attribArray(), add tests ([285022a](https://github.com/thi-ng/umbrella/commit/285022a))
+* **vector-pools:** enable TS strict compiler flags (refactor) ([1af6f78](https://github.com/thi-ng/umbrella/commit/1af6f78))
+* **vector-pools:** update AttribPool, add tests, update readme ([33109d0](https://github.com/thi-ng/umbrella/commit/33109d0))
+
+
+### BREAKING CHANGES
+
+* **vector-pools:** update return types of various class methods
+
+- some AList, ArrayList, LinkedList, VecPool methods now return
+  `undefined` if operation failed
+
+
+
+
+
 ## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@0.2.15...@thi.ng/vector-pools@0.2.16) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/vector-pools

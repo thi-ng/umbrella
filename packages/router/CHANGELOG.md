@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@1.0.12...@thi.ng/router@2.0.0) (2019-07-07)
+
+
+### Code Refactoring
+
+* **router:** address TS strictNullChecks, update types, add checks ([c7ff9a4](https://github.com/thi-ng/umbrella/commit/c7ff9a4))
+
+
+### Features
+
+* **router:** enable TS strict compiler flags (refactor) ([d3ecae3](https://github.com/thi-ng/umbrella/commit/d3ecae3))
+
+
+### BREAKING CHANGES
+
+* **router:** Route & RouteMatch IDs MUST be strings now
+
+- update config fields from PropertyKey => string
+- add initial & default route checks in ctor
+
+
+
+
+
 ## [1.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@1.0.11...@thi.ng/router@1.0.12) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/router

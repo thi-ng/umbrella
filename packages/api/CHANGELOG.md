@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.2.0...@thi.ng/api@6.3.0) (2019-07-07)
+
+
+### Features
+
+* **api:** add Select2/3/4 conditional types ([a4bfb88](https://github.com/thi-ng/umbrella/commit/a4bfb88))
+* **api:** enable TS strict compiler flags (refactor) ([0430d01](https://github.com/thi-ng/umbrella/commit/0430d01))
+* **api:** update assert() message arg types ([6137b48](https://github.com/thi-ng/umbrella/commit/6137b48))
+
+
+
+
+
 # [6.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.1.1...@thi.ng/api@6.2.0) (2019-05-22)
 
 

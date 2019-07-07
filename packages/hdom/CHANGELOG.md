@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.8...@thi.ng/hdom@8.0.0) (2019-07-07)
+
+
+### Code Refactoring
+
+* **hdom:** address TS strictNullChecks flag ([d83600a](https://github.com/thi-ng/umbrella/commit/d83600a))
+
+
+### Features
+
+* **hdom:** enable TS strict compiler flags (refactor) ([7f093b9](https://github.com/thi-ng/umbrella/commit/7f093b9))
+
+
+### BREAKING CHANGES
+
+* **hdom:** all HDOMImplementation methods now mandatory, update return types
+
+
+
+
+
 ## [7.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@7.2.7...@thi.ng/hdom@7.2.8) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hdom

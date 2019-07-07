@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.0.9...@thi.ng/memoize@1.1.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **memoize:** return type memoize1() ([c0dafb9](https://github.com/thi-ng/umbrella/commit/c0dafb9))
+
+
+### Features
+
+* **memoize:** enable TS strict compiler flags (refactor) ([a08cc69](https://github.com/thi-ng/umbrella/commit/a08cc69))
+
+
+
+
+
 ## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.0.8...@thi.ng/memoize@1.0.9) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/memoize

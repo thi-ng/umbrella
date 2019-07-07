@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@1.0.19...@thi.ng/hiccup-css@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **hiccup-css:** enable TS strict compiler flags (refactor) ([1e81385](https://github.com/thi-ng/umbrella/commit/1e81385))
+
+
+
+
+
 ## [1.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-css@1.0.18...@thi.ng/hiccup-css@1.0.19) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hiccup-css

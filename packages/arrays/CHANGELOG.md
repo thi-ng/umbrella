@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.1.9...@thi.ng/arrays@0.2.0) (2019-07-07)
+
+
+### Features
+
+* **arrays:** enable TS strict compiler flags (refactor) ([8724f9e](https://github.com/thi-ng/umbrella/commit/8724f9e))
+
+
+
+
+
 ## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.1.8...@thi.ng/arrays@0.1.9) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/arrays

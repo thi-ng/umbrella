@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.2.5...@thi.ng/compose@1.3.0) (2019-07-07)
+
+
+### Features
+
+* **compose:** add ifDef() ([64aba00](https://github.com/thi-ng/umbrella/commit/64aba00))
+* **compose:** address TS strictNullChecks, make Delay.value protected ([1540f37](https://github.com/thi-ng/umbrella/commit/1540f37))
+* **compose:** enable TS strict compiler flags (refactor) ([8ea894a](https://github.com/thi-ng/umbrella/commit/8ea894a))
+
+
+
+
+
 ## [1.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.2.4...@thi.ng/compose@1.2.5) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/compose

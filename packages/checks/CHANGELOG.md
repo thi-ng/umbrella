@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.1.6...@thi.ng/checks@2.2.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **checks:** isMobile for Chrome iOS ([8216d48](https://github.com/thi-ng/umbrella/commit/8216d48))
+
+
+### Features
+
+* **checks:** enable TS strict compiler flags (refactor) ([90515e7](https://github.com/thi-ng/umbrella/commit/90515e7))
+
+
+
+
+
 ## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.1.5...@thi.ng/checks@2.1.6) (2019-04-24)
 
 **Note:** Version bump only for package @thi.ng/checks

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.1.3...@thi.ng/diff@3.2.0) (2019-07-07)
+
+
+### Features
+
+* **diff:** enable TS strict compiler flags (refactor) ([5a7d90b](https://github.com/thi-ng/umbrella/commit/5a7d90b))
+
+
+
+
+
 ## [3.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.1.2...@thi.ng/diff@3.1.3) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/diff

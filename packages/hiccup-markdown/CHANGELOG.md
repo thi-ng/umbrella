@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.0.22...@thi.ng/hiccup-markdown@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **hiccup-markdown:** enable TS strict compiler flags (refactor) ([36c8109](https://github.com/thi-ng/umbrella/commit/36c8109))
+
+
+
+
+
 ## [1.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.0.21...@thi.ng/hiccup-markdown@1.0.22) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hiccup-markdown

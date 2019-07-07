@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-mock@1.0.16...@thi.ng/hdom-mock@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **hdom-mock:** enable TS strict compiler flags (refactor) ([787e2d4](https://github.com/thi-ng/umbrella/commit/787e2d4))
+
+
+
+
+
 ## [1.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-mock@1.0.15...@thi.ng/hdom-mock@1.0.16) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hdom-mock

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/webgl-msdf",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,12 +32,12 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.2.0",
-        "@thi.ng/shader-ast": "^0.0.1",
-        "@thi.ng/transducers": "^5.3.7",
-        "@thi.ng/vector-pools": "^0.2.16",
-        "@thi.ng/vectors": "^2.5.6",
-        "@thi.ng/webgl": "^0.0.1"
+        "@thi.ng/api": "^6.3.0",
+        "@thi.ng/shader-ast": "^0.1.0",
+        "@thi.ng/transducers": "^5.4.0",
+        "@thi.ng/vector-pools": "^1.0.0",
+        "@thi.ng/vectors": "^3.0.0",
+        "@thi.ng/webgl": "^0.1.0"
     },
     "keywords": [
         "ES6",

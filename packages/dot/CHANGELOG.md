@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.0.12...@thi.ng/dot@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **dot:** enable TS strict compiler flags (refactor) ([29e0cb4](https://github.com/thi-ng/umbrella/commit/29e0cb4))
+
+
+
+
+
 ## [1.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.0.11...@thi.ng/dot@1.0.12) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/dot

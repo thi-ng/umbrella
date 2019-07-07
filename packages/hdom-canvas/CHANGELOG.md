@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.0.18...@thi.ng/hdom-canvas@2.1.0) (2019-07-07)
+
+
+### Features
+
+* **hdom-canvas:** enable TS strict compiler flags (refactor) ([998f5a1](https://github.com/thi-ng/umbrella/commit/998f5a1))
+
+
+
+
+
 ## [2.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.0.17...@thi.ng/hdom-canvas@2.0.18) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas

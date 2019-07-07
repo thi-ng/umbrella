@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/interceptors",
-    "version": "2.0.12",
+    "version": "2.1.0",
     "description": "Interceptor based event bus, side effect & immutable state handling",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,11 +32,11 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.2.0",
-        "@thi.ng/atom": "^2.0.12",
-        "@thi.ng/checks": "^2.1.6",
-        "@thi.ng/errors": "^1.0.6",
-        "@thi.ng/paths": "^2.0.9"
+        "@thi.ng/api": "^6.3.0",
+        "@thi.ng/atom": "^3.0.0",
+        "@thi.ng/checks": "^2.2.0",
+        "@thi.ng/errors": "^1.1.0",
+        "@thi.ng/paths": "^2.1.0"
     },
     "keywords": [
         "ES6",

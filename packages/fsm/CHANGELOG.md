@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.15...@thi.ng/fsm@2.2.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **fsm:** callback return types ([09b047b](https://github.com/thi-ng/umbrella/commit/09b047b))
+
+
+### Features
+
+* **color:** TS strictNullChecks, update color conversion fns ([04dc356](https://github.com/thi-ng/umbrella/commit/04dc356))
+* **fsm:** enable TS strict compiler flags (refactor) ([135b838](https://github.com/thi-ng/umbrella/commit/135b838))
+
+
+
+
+
 ## [2.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.14...@thi.ng/fsm@2.1.15) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/fsm

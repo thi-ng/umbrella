@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.2.0...@thi.ng/geom-isec@0.3.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **geom-isec:** add missing return type for intersectRayCircle() ([eaceb1a](https://github.com/thi-ng/umbrella/commit/eaceb1a))
+* **geom-isec:** update madd & perpendicular call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([d2e9969](https://github.com/thi-ng/umbrella/commit/d2e9969))
+
+
+### Features
+
+* **geom-isec:** enable TS strict compiler flags (refactor) ([4cdbd31](https://github.com/thi-ng/umbrella/commit/4cdbd31))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.1.16...@thi.ng/geom-isec@0.2.0) (2019-05-22)
 
 

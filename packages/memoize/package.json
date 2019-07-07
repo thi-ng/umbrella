@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/memoize",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "Function memoization with configurable caches",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,7 +32,7 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.2.0"
+        "@thi.ng/api": "^6.3.0"
     },
     "keywords": [
         "cache",

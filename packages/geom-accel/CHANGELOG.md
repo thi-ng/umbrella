@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.1.17...@thi.ng/geom-accel@1.2.0) (2019-07-07)
+
+
+### Features
+
+* **geom-accel:** enable TS strict compiler flags (refactor) ([e19e6bc](https://github.com/thi-ng/umbrella/commit/e19e6bc))
+
+
+
+
+
 ## [1.1.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.1.16...@thi.ng/geom-accel@1.1.17) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/geom-accel

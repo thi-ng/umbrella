@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.0.12...@thi.ng/resolve-map@4.1.0) (2019-07-07)
+
+
+### Features
+
+* **resolve-map:** enable TS strict compiler flags (refactor) ([7e7ff2a](https://github.com/thi-ng/umbrella/commit/7e7ff2a))
+
+
+
+
+
 ## [4.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.0.11...@thi.ng/resolve-map@4.0.12) (2019-05-22)
 
 **Note:** Version bump only for package @thi.ng/resolve-map

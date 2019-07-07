@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.4.0...@thi.ng/matrices@0.5.0) (2019-07-07)
+
+
+### Bug Fixes
+
+* **matrices:** update maddN call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([4a985c5](https://github.com/thi-ng/umbrella/commit/4a985c5))
+
+
+### Features
+
+* **matrices:** add isOrthagonal() ([d75305b](https://github.com/thi-ng/umbrella/commit/d75305b))
+* **matrices:** add matXXn & matXXv fns ([7a2ef82](https://github.com/thi-ng/umbrella/commit/7a2ef82))
+* **matrices:** add matXXn, matXXv, mulXXvm fns ([9359bbc](https://github.com/thi-ng/umbrella/commit/9359bbc))
+* **matrices:** enable TS strict compiler flags (refactor) ([7b1c81a](https://github.com/thi-ng/umbrella/commit/7b1c81a))
+* **matrices:** rename normal44 => normal33, add new normal44 (w/ M44 result) ([d54f746](https://github.com/thi-ng/umbrella/commit/d54f746))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.3.4...@thi.ng/matrices@0.4.0) (2019-05-22)
 
 

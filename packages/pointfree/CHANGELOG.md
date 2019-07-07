@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.0.14...@thi.ng/pointfree@1.1.0) (2019-07-07)
+
+
+### Features
+
+* **pointfree:** enable TS strict compiler flags (refactor) ([1f9d155](https://github.com/thi-ng/umbrella/commit/1f9d155))
+
+
+
+
+
 ## [1.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.0.13...@thi.ng/pointfree@1.0.14) (2019-05-22)
 
 
