@@ -107,6 +107,7 @@ const gl = ...
 const myShader = shader(gl, {
     // vertex shader fn
     // given args are symbolic uniforms, attribs, varyings & GL builtin vars
+    // here `ins` are vertex attribs and `outs` are "varying"
     vs: (gl, unis, ins, outs) => [
         defMain(() => [
             assign(outs.vnormal, ins.normal),
@@ -202,7 +203,7 @@ alias for `gl_FragColor`...
 ```glsl
 #version 300 es
 
-/* (omitting #define's for bevity, same as in VS) */
+/* (omitting #define's for brevity, same as in VS) */
 
 uniform mat4 model;
 uniform mat4 view;
@@ -221,12 +222,23 @@ fragColor = vec4((((lightCol * ((dot(normalize(vnormal), lightDir) * 0.5) + 0.5)
 ### Using higher order functions
 
 Several of the functions included here are defined as higher-order
-functions, providing powerful compositional features not usually seen in
-shader code. For example, the [`additive()`](https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-stdlib/src/math/additive.ts#L21) HOF takes a single-arg scalar
-function and a number of octaves. It returns a new function which
-computes the summed value of `fn` over the given number octaves, with a
-user defined decay factor (per octave). This can be used for additive
-wave synthesis, multi-octave noise or any other similar use cases...
+functions, providing powerful functional compositional features not
+usually seen in shader code and not easily achievable via the usual
+string templating approach used by most other GLSL libraries.
+
+For example, the
+[`additive()`](https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-stdlib/src/math/additive.ts#L21)
+HOF takes a single-arg scalar function and a number of octaves. It
+returns a new function which computes the summed value of `fn` over the
+given number octaves, with a user defined phase shift & decay factor
+(per octave). This can be used for additive wave synthesis, multi-octave
+noise or any other similar use cases...
+
+Due to the way user defined AST functions keep track of their own call
+graph, the anonymous function returned by `additive` does not need to be
+pre-declared in any way and also ensures all of its own function
+dependencies are resolved and emitted in the correct topological order
+during later code generation.
 
 Below is the main shader code of the [Simplex noise
 example](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise).
@@ -246,7 +258,8 @@ const mainImage = defn(
             // compute UV coords and assign to `uv`
             uv = sym(aspectCorrectedUV(frag, res)),
             // dynamically create a multi-octave version of `snoise2`
-            // computed over 4 octaves
+            // computed over 4 octaves w/ given phase shift and decay
+            // factor (both per octave)
             noise = sym(
                 additive("vec2", snoise2, 4)(add(uv, time), vec2(2), float(0.5))
             ),
