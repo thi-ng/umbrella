@@ -7,17 +7,20 @@
 
 ## About
 
-Mono-repository for thi.ng TypeScript/ES6 projects, a wide collection of
-largely data transformation oriented packages and building blocks for:
+Mono-repository for almost 100 thi.ng TypeScript/ES6 projects, a wide
+collection of largely data transformation oriented packages and building
+blocks for:
 
-- functional programming (composition, memoization, transducers, multi-methods)
-- stream based, reactive programming, dataflow graphs / pipelines
-- data structures & data transformations for wide range of use cases
-- data driven UI components, event & side effect handling
-- immutable data handling
-- geometry generation, processing & visualization
-- vector & matrix implementations with optional support for strided layouts
-- low-level tooling for binary data, shared memory / WASM / WebGL interop
+- Functional programming (composition, memoization, transducers, multi-methods)
+- Stream based, reactive programming, dataflow graphs / pipelines
+- Data structures & data transformations for wide range of use cases
+- Data driven UI components, event & side effect handling
+- Immutable data handling
+- Geometry generation, processing & visualization
+- Vector & matrix implementations with optional support for strided layouts
+- Declarative WebGL 1/2 abstraction layer
+- DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
+- Low-level tooling for binary data, shared memory / WASM / WebGL interop
 - etc. (see package overview below)
 
 **...all with a keen eye on simplicity, re-use & minimalism without
@@ -46,7 +49,7 @@ Most packages:
 
 ## Examples
 
-There's a steadily growing number (40+) of standalone examples
+There's a steadily growing number (~60) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [examples](./examples) directory.
 
@@ -60,19 +63,15 @@ packages) in the [examples](./examples) directory.
   - [Part 3 - Convolution, 1D/2D Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
   - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)
 
+## Community
+
+Join our little community on our [Discord
+server](https://discord.gg/JhYcmBw) or get in touch via
+[Twitter](https://twitter.com/thing_umbrella) or the [issue
+tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to
+contribute, please first read [this document](./CONTRIBUTING.md).
+
 ## Projects
-
-### WIP / unreleased
-
-Several new packages are being developed in parallel on various feature branches, which will be merged back into `develop` and `master` once ready. Currently, the most noteworthy of those can be found the `feature/webgl` branch, which is a few hundred commits ahead of master:
-
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl)
-- [@thi.ng/webgl-msdf](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl-msdf)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
-- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-glsl)
-- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-js)
-- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib)
-- [@thi.ng/leb128](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/leb128)
 
 ### Fundamentals
 
@@ -182,20 +181,32 @@ Several new packages are being developed in parallel on various feature branches
 | [`@thi.ng/poisson`](./packages/poisson)                       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                       | [changelog](./packages/poisson/CHANGELOG.md)            | nD Poisson disk sampling            |
 | [`@thi.ng/vectors`](./packages/vectors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                       | [changelog](./packages/vectors/CHANGELOG.md)            | Fixed & arbitrary-length vector ops |
 
+### WebGL / GPGPU
+
+| Project                                                     | Version                                                                                                                           | Changelog                                              | Description                        |
+|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|------------------------------------|
+| [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        | AST DSL for x-platform shader code |
+| [`@thi.ng/shader-ast-glsl`](./packages/shader-ast-glsl)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)     | [changelog](./packages/shader-ast-glsl/CHANGELOG.md)   | GLSL code generator                |
+| [`@thi.ng/shader-ast-js`](./packages/shader-ast-js)         | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)         | [changelog](./packages/shader-ast-js/CHANGELOG.md)     | JS code generator                  |
+| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | Useful AST shader functions        |
+| [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             | WebGL 1/2 / GPGPU facilities       |
+| [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)               | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)               | [changelog](./packages/webgl-msdf/CHANGELOG.md)        | MSDF font rendering                |
+
 ### Low-level, binary, memory management
 
-| Project                                           | Version                                                                                                                 | Changelog                                         | Description                               |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------|
-| [`@thi.ng/bencode`](./packages/bencode)           | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)           | [changelog](./packages/bencode/CHANGELOG.md)      | Bencode binary format encoding            |
-| [`@thi.ng/binary`](./packages/binary)             | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)             | [changelog](./packages/binary/CHANGELOG.md)       | Assorted binary / bitwise ops, utilities  |
-| [`@thi.ng/bitstream`](./packages/bitstream)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)       | [changelog](./packages/bitstream/CHANGELOG.md)    | Bitwise input / output streams            |
-| [`@thi.ng/dlogic`](./packages/dlogic)             | [![version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)             | [changelog](./packages/dlogic/CHANGELOG.md)       | Digital logic ops / constructs            |
-| [`@thi.ng/malloc`](./packages/malloc)             | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)             | [changelog](./packages/malloc/CHANGELOG.md)       | Raw & typed array memory pool & allocator |
-| [`@thi.ng/morton`](./packages/morton)             | [![version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)             | [changelog](./packages/morton/CHANGELOG.md)       | Z-order-curve / Morton coding             |
-| [`@thi.ng/range-coder`](./packages/range-coder)   | [![version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)   | [changelog](./packages/range-coder/CHANGELOG.md)  | Binary data Range encoder / decoder       |
-| [`@thi.ng/rle-pack`](./packages/rle-pack)         | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)         | [changelog](./packages/rle-pack/CHANGELOG.md)     | Run-length encoding data compression      |
-| [`@thi.ng/unionstruct`](./packages/unionstruct)   | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)   | [changelog](./packages/unionstruct/CHANGELOG.md)  | Wrapper for C-like structs / unions       |
-| [`@thi.ng/vector-pools`](./packages/vector-pools) | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools) | [changelog](./packages/vector-pools/CHANGELOG.md) | data structures for memory mapped vectors |
+| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------|
+| [`@thi.ng/bencode`](./packages/bencode)           | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)           | [changelog](./packages/bencode/CHANGELOG.md)      | Bencode binary format encoding             |
+| [`@thi.ng/binary`](./packages/binary)             | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)             | [changelog](./packages/binary/CHANGELOG.md)       | Assorted binary / bitwise ops, utilities   |
+| [`@thi.ng/bitstream`](./packages/bitstream)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)       | [changelog](./packages/bitstream/CHANGELOG.md)    | Bitwise input / output streams             |
+| [`@thi.ng/dlogic`](./packages/dlogic)             | [![version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)             | [changelog](./packages/dlogic/CHANGELOG.md)       | Digital logic ops / constructs             |
+| [`@thi.ng/leb128`](./packages/leb128)             | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)             | [changelog](./packages/leb128/CHANGELOG.md)       | WASM based LEB128 varint encoder / decoder |
+| [`@thi.ng/malloc`](./packages/malloc)             | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)             | [changelog](./packages/malloc/CHANGELOG.md)       | Raw & typed array memory pool & allocator  |
+| [`@thi.ng/morton`](./packages/morton)             | [![version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)             | [changelog](./packages/morton/CHANGELOG.md)       | Z-order-curve / Morton coding              |
+| [`@thi.ng/range-coder`](./packages/range-coder)   | [![version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)   | [changelog](./packages/range-coder/CHANGELOG.md)  | Binary data Range encoder / decoder        |
+| [`@thi.ng/rle-pack`](./packages/rle-pack)         | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)         | [changelog](./packages/rle-pack/CHANGELOG.md)     | Run-length encoding data compression       |
+| [`@thi.ng/unionstruct`](./packages/unionstruct)   | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)   | [changelog](./packages/unionstruct/CHANGELOG.md)  | Wrapper for C-like structs / unions        |
+| [`@thi.ng/vector-pools`](./packages/vector-pools) | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools) | [changelog](./packages/vector-pools/CHANGELOG.md) | data structures for memory mapped vectors  |
 
 ### DSLs
 
