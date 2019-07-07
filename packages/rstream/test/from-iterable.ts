@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import * as rs from "../src/index";
+import { TIMEOUT } from "./config";
 
 describe("fromIterable()", () => {
     let src: rs.Stream<number>;
@@ -61,10 +62,11 @@ describe("fromIterable()", () => {
         });
     });
 
-    it("can be cancelled", (done) => {
+    it("can be cancelled", function(done) {
+        this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         let doneCalled = false;
-        src = rs.fromIterable(data, 10);
+        src = rs.fromIterable(data, TIMEOUT);
         src.subscribe({
             next(x) {
                 buf.push(x);
@@ -73,11 +75,11 @@ describe("fromIterable()", () => {
                 doneCalled = true;
             }
         });
-        setTimeout(() => src.cancel(), 15);
+        setTimeout(() => src.cancel(), TIMEOUT * 1.5);
         setTimeout(() => {
             assert.deepEqual(buf, [data[0]]);
             assert(!doneCalled);
             done();
-        }, 50);
+        }, TIMEOUT * 4);
     });
 });

@@ -1,9 +1,8 @@
 import * as assert from "assert";
-
 import * as rs from "../src/index";
+import { TIMEOUT } from "./config";
 
 describe("fromPromise()", () => {
-
     it("resolves to sub", (done) => {
         let src = rs.fromPromise(Promise.resolve(23));
         let called = false;
@@ -39,11 +38,15 @@ describe("fromPromise()", () => {
         setTimeout(() => {
             assert(called, "not called");
             done();
-        }, 1);
+        }, TIMEOUT);
     });
 
     it("passes error to sub", (done) => {
-        let src = rs.fromPromise(new Promise(() => { throw new Error("foo"); }));
+        let src = rs.fromPromise(
+            new Promise(() => {
+                throw new Error("foo");
+            })
+        );
         let called = false;
         let sub = src.subscribe({
             next(_) {
@@ -66,22 +69,21 @@ describe("fromPromise()", () => {
             src.done();
             assert.equal(src.getState(), rs.State.ERROR, "src not ERROR");
             done();
-        }, 10);
+        }, TIMEOUT);
     });
 
     it("resolves via Resolver", (done) => {
         let src = rs.fromIterable([Promise.resolve(23)]);
         let called = false;
-        src.subscribe(rs.resolve())
-            .subscribe({
-                next(x) {
-                    assert.equal(x, 23);
-                    called = true;
-                },
-                done() {
-                    assert(called, "not called");
-                    done();
-                }
-            });
+        src.subscribe(rs.resolve()).subscribe({
+            next(x) {
+                assert.equal(x, 23);
+                called = true;
+            },
+            done() {
+                assert(called, "not called");
+                done();
+            }
+        });
     });
 });

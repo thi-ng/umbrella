@@ -2,7 +2,6 @@ import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 import * as rs from "../src/index";
 
-
 describe("transducers", () => {
     let src: rs.Stream<number>;
     let data = [10, 20, 30];

@@ -1,21 +1,25 @@
 import * as assert from "assert";
 import { timeout } from "../src/subs/timeout";
+import { TIMEOUT } from "./config";
 
 describe("Timeout", () => {
     it("times out", function(done) {
-        this.timeout(20);
+        this.timeout(TIMEOUT * 2);
 
-        timeout(10).subscribe({
-            error: () => done()
+        timeout(TIMEOUT).subscribe({
+            error: (e) => {
+                assert(e instanceof Error);
+                done();
+            }
         });
     });
 
     it("times out with error object", function(done) {
-        this.timeout(20);
+        this.timeout(TIMEOUT * 2);
 
         const error = "error object";
 
-        timeout(10, error).subscribe({
+        timeout(TIMEOUT, error).subscribe({
             error: (err) => {
                 assert.equal(err, error);
                 done();
@@ -24,22 +28,22 @@ describe("Timeout", () => {
     });
 
     it("cancels timeout in cleanup()", function(done) {
-        this.timeout(40);
+        this.timeout(TIMEOUT * 3);
 
-        timeout(10)
+        timeout(TIMEOUT)
             .subscribe({
                 error: () => assert.fail("timed out")
             })
             .unsubscribe();
 
-        setTimeout(() => done(), 20);
+        setTimeout(() => done(), TIMEOUT * 2);
     });
 
     it("resets timeout when value received", function(done) {
-        this.timeout(40);
+        this.timeout(TIMEOUT * 4);
 
         const res: any[] = [];
-        const t = timeout(10, null, true);
+        const t = timeout(TIMEOUT, null, true);
         t.subscribe({
             next: (x) => {
                 res.push(x);
@@ -49,9 +53,9 @@ describe("Timeout", () => {
             }
         });
 
-        setTimeout(() => t.next(1), 7);
-        setTimeout(() => t.next(2), 15);
-        setTimeout(() => t.next(3), 29);
-        setTimeout(() => done(), 35);
+        setTimeout(() => t.next(1), TIMEOUT * 0.7);
+        setTimeout(() => t.next(2), TIMEOUT * 1.5);
+        setTimeout(() => t.next(3), TIMEOUT * 2.9);
+        setTimeout(() => done(), TIMEOUT * 3.5);
     });
 });

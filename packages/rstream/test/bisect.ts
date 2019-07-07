@@ -2,7 +2,6 @@ import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 import * as rs from "../src/index";
 
-
 // prettier-ignore
 describe("bisect", () => {
     let src: rs.Stream<number>;

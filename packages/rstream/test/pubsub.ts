@@ -2,6 +2,7 @@ import { EquivMap } from "@thi.ng/associative";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 import * as rs from "../src/index";
+import { TIMEOUT } from "./config";
 
 describe("PubSub", () => {
     let pub: rs.PubSub<any, any>;
@@ -69,7 +70,7 @@ describe("PubSub", () => {
     });
 
     it("unsubTopic", function(done) {
-        this.timeout(100);
+        this.timeout(TIMEOUT * 8);
         const acc: any = { a: [], b: [] };
         const collect = {
             next: (x: any) => {
@@ -79,14 +80,14 @@ describe("PubSub", () => {
         pub = rs.pubsub({ topic: (x) => x });
         pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);
-        rs.fromIterable("abcbd", 10).subscribe(pub);
+        rs.fromIterable("abcbd", TIMEOUT).subscribe(pub);
         setTimeout(() => {
             pub.unsubscribeTopic("b", b);
-        }, 30);
+        }, TIMEOUT * 2.5);
         setTimeout(() => {
             assert.deepEqual(acc, { a: ["a"], b: ["b"] });
             assert.equal(pub.getState(), rs.State.DONE);
             done();
-        }, 80);
+        }, TIMEOUT * 7);
     });
 });
