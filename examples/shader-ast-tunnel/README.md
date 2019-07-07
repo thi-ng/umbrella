@@ -5,7 +5,7 @@
 
 One of [Inigo Quilez' (IQ) Shadertoy tunnel
 shaders](https://www.shadertoy.com/view/Ms2SWW) ported to
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 and cross-compiled to GLSL and JavaScript, the latter for emulating the
 shader (incl. texture lookups) via
 [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)

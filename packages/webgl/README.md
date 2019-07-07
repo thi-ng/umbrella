@@ -31,7 +31,7 @@ updated from Clojure/ClojureScript versions of
 - Extensive set of WebGL related types & interfaces
 - Declarative shader definition
     - option to fully define shaders in TypeScript and transpile to GLSL (via
-      [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast))
+      [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast))
     - attribute, varying, uniform & output type declarations via a simple config object
     - GLSL code generation of data type declarations
     - automatic support for GLSL ES 1.0 & 3.0
@@ -79,18 +79,18 @@ yarn add @thi.ng/webgl
 
 ## Usage examples
 
-Several examples are included in the [/examples](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples)
+Several examples are included in the [/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
 folder of this repo...
 
-- [2D SDF](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
-- [Raymarching](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
-- [Simplex noise](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise)
-- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
-- [Cubemap](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-cubemap)
-- [Grid instancing](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-grid)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-gpgpu-basics)
-- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
-- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-ssao)
+- [2D SDF](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2d)
+- [Raymarching](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
+- [Simplex noise](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
+- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+- [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
+- [Grid instancing](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
+- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
+- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 
 ## Authors
 

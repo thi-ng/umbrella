@@ -22,7 +22,7 @@ This project is part of the
 
 This package provides [multi-channel SDF font
 rendering](https://github.com/Chlumsky/msdfgen) capabilities for
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl),
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl),
 incl. optional support for basic text alignment, vertex colors (e.g. for
 multi-color text), and shader options to draw outlines for each
 character. Furthermore, the key GLSL functions are provided as shader
@@ -45,12 +45,12 @@ yarn add @thi.ng/webgl-msdf
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools)
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/webgl)
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl)
 
 ## Usage examples
 
 See the bundled [webgl-msdf
-example](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
+example](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
 for reference...
 
 ```ts

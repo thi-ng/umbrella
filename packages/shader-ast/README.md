@@ -37,7 +37,7 @@ This project is part of the
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-01.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/shader-ast-01.jpg)
 Example shader running in plain JS & Canvas 2D context,
 cross-compiled JS/GLSL outputs shown on the right
 
@@ -62,13 +62,13 @@ VEX](http://www.sidefx.com/docs/houdini/vex/index.html) (in-progress),
 [WASM](https://webassembly.org), [WHLSL for
 WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 
-![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-raymarch-compare.jpg)
+![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/shader-ast-raymarch-compare.jpg)
 
 Comparison of the raymarch shader example (link further below), cross
 compiled to both GLSL/WebGL and JavaScript w/ Canvas2D API and showing
 the difference image of both results.
 
-![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-raymarch-vex-sm.gif)
+![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/shader-ast-raymarch-vex-sm.gif)
 
 The same raymarching example compiled to Houdini VEX and used as "Point
 Wrangle" to displace a grid geometry (using only the depth value of the
@@ -83,7 +83,7 @@ cases and which can be used as syntax sugar and / or higher level
 building blocks for your own shaders. So far, this includes various math
 utils, lighting models, fog equations, SDF primitives / operators,
 raymarching helpers etc. [These functions are distributed in as separate
-package](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib).
+package](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib).
 
 ### Benefits
 
@@ -96,9 +96,9 @@ package](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-a
 - **improve general re-use**, especially once more target codegens are
   available (see [future goals](#future-goals)).
 - **higher-order function composition & customization** (e.g. see
-  [raymarch.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib/src/raymarch/scene.ts),
+  [raymarch.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/raymarch/scene.ts),
   or
-  [additive.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib/src/math/additive.ts))
+  [additive.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/math/additive.ts))
 - **cross compilation** to different graphics environments
 - shader functions can be called like standard TS/JS functions (incl.
   automatically type checked args via TS mapped types)
@@ -112,13 +112,13 @@ package](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-a
 
 ### Language specific code generators
 
-- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-glsl) - GLSL 100 / 300 (WebGL1 / 2)
-- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-js) - plain JavaScript (incl. runtime)
-- [@thi.ng/shader-ast-vex](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-vex) - Houdini VEX
+- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl) - GLSL 100 / 300 (WebGL1 / 2)
+- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js) - plain JavaScript (incl. runtime)
+- [@thi.ng/shader-ast-vex](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-vex) - Houdini VEX
 
 ### Higher level building blocks
 
-- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib)
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib)
 
 ### Prior art / influences
 
@@ -142,7 +142,7 @@ status. The TL;DR list...
 - [ ] JS runtime improvements / features (non-GPU / vanilla JS shader execution)
 - [ ] Integration w/ a GLSL parser (new or existing)
 - [ ] AST transformations (optimizers, e.g. [constant
-  folding ✅](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/optimize.ts))
+  folding ✅](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/optimize.ts))
 
 ## Installation
 
@@ -162,16 +162,16 @@ yarn add @thi.ng/shader-ast
 
 (Possibly non-exhaustive list, live demo links in readme's)
 
-- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
-- [2D SDF](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
-- [Raymarching](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
-- [Simplex noise](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise)
-- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
-- [Cubemap](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-cubemap)
-- [Grid instancing](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-grid)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-gpgpu-basics)
-- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
-- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-ssao)
+- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
+- [2D SDF](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2d)
+- [Raymarching](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
+- [Simplex noise](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
+- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+- [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
+- [Grid instancing](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
+- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
+- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 
 ## API
 

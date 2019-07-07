@@ -3,7 +3,7 @@
 [Live demo](http://demo.thi.ng/umbrella/shader-ast-canvas2d/)
 
 WIP example of using
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 to port an existing WebGL fragment shader to JavaScript and execute in a
 canvas 2D context.
 

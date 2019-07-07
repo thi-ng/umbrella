@@ -38,7 +38,7 @@ This project is part of the
 A growing collection (currently 110+) of useful functions & higher order
 constructs for GPU / shader programming, acting as optional standard
 library for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 based workflows.
 
 These functions can be imported like normal TS/JS functions and (in TS)
@@ -68,26 +68,26 @@ yarn add @thi.ng/shader-ast-stdlib
 
 ## Dependencies
 
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
+- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 
 ## Usage examples
 
 There're are several `shader-ast` & `webgl` examples in the
-[/examples](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
 folder of this repo, for example...
 
 (Possibly non-exhaustive list, live demo links in readme's)
 
-- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
-- [2D SDF](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
-- [Raymarching](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
-- [Simplex noise](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise)
-- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
-- [Cubemap](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-cubemap)
-- [Grid instancing](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-grid)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-gpgpu-basics)
-- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
-- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-ssao)
+- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
+- [2D SDF](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2d)
+- [Raymarching](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
+- [Simplex noise](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
+- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+- [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
+- [Grid instancing](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
+- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
+- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 
 ### Basic Lambert shader
 
@@ -231,7 +231,7 @@ user defined decay factor (per octave). This can be used for additive
 wave synthesis, multi-octave noise or any other similar use cases...
 
 Below is the main shader code of the [Simplex noise
-example](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise).
+example](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise).
 
 ```ts
 import { add, defn, float, ret, sym, vec2, vec3, vec4 } from "@thi.ng/shader-ast";
