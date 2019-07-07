@@ -33,7 +33,7 @@ describe("Subscription", () => {
     it("unsub does not trigger Subscription.done()", (done) => {
         let buf: any[] = [];
         let called = false;
-        src = rs.fromIterable([1, 2, 3], 10);
+        src = rs.fromIterable([1, 2, 3], 20);
         const sub = src.subscribe({
             next(x) {
                 buf.push(x);
@@ -42,20 +42,22 @@ describe("Subscription", () => {
                 called = true;
             }
         });
-        setTimeout(() => sub.unsubscribe(), 15);
+        setTimeout(() => sub.unsubscribe(), 30);
         setTimeout(() => {
             assert.deepEqual(buf, [1]);
             assert.equal(src.getState(), rs.State.DONE);
             assert.equal((<any>src).subs.length, 0);
             assert(!called);
             done();
-        }, 30);
+        }, 50);
     });
 
-    it("no new values after unsub", (done) => {
+    it("no new values after unsub", function(done) {
+        this.timeout(100);
+
         let buf: any[] = [];
         let called = false;
-        src = rs.fromIterable([1, 2, 3], 10);
+        src = rs.fromIterable([1, 2, 3], 20);
         const sub = src.subscribe(
             {
                 next(x) {
@@ -67,13 +69,13 @@ describe("Subscription", () => {
             },
             tx.partition(2, true)
         );
-        setTimeout(() => sub.unsubscribe(), 25);
+        setTimeout(() => sub.unsubscribe(), 50);
         setTimeout(() => {
             assert.deepEqual(buf, [[1, 2]]);
             assert.equal(src.getState(), rs.State.DONE);
             assert(!called);
             done();
-        }, 50);
+        }, 80);
     });
 
     it("completing transducer sends all values", (done) => {
