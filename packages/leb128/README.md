@@ -57,26 +57,29 @@ yarn add @thi.ng/leb128
 ```ts
 import * as leb from "@thi.ng/leb128";
 
-// encode unsigned int (input val up to 64 bits)
-enc = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
-// Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15 ]
+// since WASM initialization is async, need to wait until module is ready...
+// if WASM is unavailable, the encode/decode functions will throw an error
+leb.READY.then(()=> {
+    // encode unsigned int (input val up to 64 bits)
+    enc = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
+    // Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15 ]
 
-// decoding returns tuple of [value, bytes consumed]
-leb.decodeULEB128(enc);
-// [ 9007199254740991, 8 ]
+    // decoding returns tuple of [value, bytes consumed]
+    leb.decodeULEB128(enc);
+    // [ 9007199254740991, 8 ]
 
-// encode signed int
-enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
-// Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
-leb.decodeSLEB128(enc)
-// [ -9007199254740991, 8 ]
+    // encode signed int
+    enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
+    // Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
+    leb.decodeSLEB128(enc)
+    // [ -9007199254740991, 8 ]
+});
 ```
 
 ## Building the binary
 
 ```bash
-# if not yet installed (or via https://ziglang.org)
-brew install zig
+# download latest master from https://ziglang.org/download/
 
 # first run native tests
 zig test packages/leb128/src/leb128.zig
