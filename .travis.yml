@@ -1,8 +1,9 @@
 language: node_js
 node_js:
-  - "10"
+    - "12"
+    - "11"
 
 branches:
-  only:
-    - master
-    - develop
+    only:
+        - master
+        - develop
