@@ -2,6 +2,8 @@
 .nyc_output
 *.html
 *.tgz
+*.h
+*.o
 *.wasm
 build
 coverage

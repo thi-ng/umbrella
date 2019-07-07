@@ -1,6 +1,7 @@
 .meta
 .nyc_output
 *.html
+*.svg
 *.tgz
 build
 coverage
