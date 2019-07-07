@@ -49,7 +49,9 @@ yarn add @thi.ng/webgl-msdf
 
 ## Usage examples
 
-See the bundled [webgl-msdf example](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf) for reference...
+See the bundled [webgl-msdf
+example](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
+for reference...
 
 ```ts
 import * as msdf from "@thi.ng/webgl-msdf";

@@ -46,11 +46,16 @@ There're are several `shader-ast` & `webgl` examples in the
 [/examples](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples)
 folder of this repo, for example...
 
-(Non-exhaustive list)
+(Possibly non-exhaustive list, live demo links in readme's)
 
-- [2D SDF](https://demo.thi.ng/umbrella/shader-ast-sdf2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
-- [Raymarching](https://demo.thi.ng/umbrella/shader-ast-raymarch/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
-- [Textured tunnel](https://demo.thi.ng/umbrella/shader-ast-tunnel/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
+- [2D SDF](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
+- [Raymarching](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
+- [Simplex noise](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise)
+- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
+- [Cubemap](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-cubemap)
+- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-gpgpu-basics)
+- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
+- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-ssao)
 
 Basic GLSL code generation:
 

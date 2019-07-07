@@ -30,7 +30,7 @@ math ops. The default backend delegates all ops to
 [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 and
 [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices),
-which altogether provided 500+ optimized vector/matrix functions.
+which altogether provide ~750 optimized vector/matrix functions.
 
 ### Unsupported features
 
@@ -39,7 +39,7 @@ which altogether provided 500+ optimized vector/matrix functions.
   for a monkey-patched solution)
 - derivatives (`dFdx`, `dFdy`, `fwidth`) - probably never supported in
   this env
-- `out` / `inout` function args (see #96 for discussion)
+- `out` / `inout` function args (see [#96](https://github.com/thi-ng/umbrella/issues/96) for discussion)
 
 ## Installation
 
@@ -61,10 +61,13 @@ yarn add @thi.ng/shader-ast-js
 
 Commented examples:
 
-- [Canvas2D shader](https://demo.thi.ng/umbrella/shader-ast-canvas2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
-- [2D SDF](https://demo.thi.ng/umbrella/shader-ast-sdf2d/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
-- [Raymarching](https://demo.thi.ng/umbrella/shader-ast-raymarch/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
-- [Textured tunnel](https://demo.thi.ng/umbrella/shader-ast-tunnel/), [source code](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
+(Possibly non-exhaustive list, live demo links in readme's)
+
+- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
+- [2D SDF](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
+- [Simplex noise](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise)
+- [Raymarching](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
+- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
 
 ```ts
 // AST node functions from main shader-ast pkg
