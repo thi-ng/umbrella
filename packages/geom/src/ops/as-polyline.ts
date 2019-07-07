@@ -1,4 +1,5 @@
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { Path, Polyline } from "../api";
 import { dispatch } from "../internal/dispatch";
@@ -10,8 +11,12 @@ export const asPolyline: MultiFn1O<
     Polyline
 > = defmulti(dispatch);
 
-asPolyline.addAll({
-    [Type.POINTS]: ($, opts) =>
+asPolyline.addAll(<
+    IObjectOf<
+        Implementation1O<unknown, number | Partial<SamplingOpts>, Polyline>
+    >
+>{
+    [Type.POINTS]: ($: IShape, opts) =>
         new Polyline(vertices($, opts), { ...$.attribs }),
 
     [Type.PATH]: ($: Path, opts) => {
@@ -21,7 +26,7 @@ asPolyline.addAll({
         });
     },
 
-    [Type.POLYGON]: ($, opts) => {
+    [Type.POLYGON]: ($: IShape, opts) => {
         const pts = vertices($, opts);
         return new Polyline(pts.concat([pts[0]]), { ...$.attribs });
     }

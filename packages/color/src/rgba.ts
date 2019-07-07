@@ -10,10 +10,10 @@ export function rgba(...args: any[]) {
 }
 
 export class RGBA extends AColor<RGBA> implements IVector<RGBA> {
-    r: number;
-    g: number;
-    b: number;
-    a: number;
+    r!: number;
+    g!: number;
+    b!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.RGBA;

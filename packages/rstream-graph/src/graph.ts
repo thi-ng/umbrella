@@ -133,7 +133,7 @@ const prepareNodeInputs = (
 };
 
 const prepareNodeOutputs = (
-    outs: IObjectOf<NodeOutputSpec>,
+    outs: IObjectOf<NodeOutputSpec> | undefined,
     node: ISubscribable<any>,
     state: IAtom<any>,
     nodeID: string
@@ -228,17 +228,23 @@ export const stop = (graph: Graph) => {
  * function will throw an error if `inputIDs` is given and the object of
  * inputs does not contain all of them.
  *
+ * If `reset` is true (default: false), the `xform` will only re-run
+ * when all inputs have produced new values. See thi.ng/rstream
+ * `StreamSync` for further reference.
+ *
  * @param xform
  * @param inputIDs
+ * @param reset
  */
 export const node = (
     xform: Transducer<IObjectOf<any>, any>,
-    inputIDs?: string[]
+    inputIDs?: string[],
+    reset = false
 ): NodeFactory<any> => (
     src: IObjectOf<ISubscribable<any>>,
     id: string
 ): StreamSync<any, any> => (
-    ensureInputs(src, inputIDs, id), sync({ src, xform, id })
+    ensureInputs(src, inputIDs, id), sync({ src, xform, id, reset })
 );
 
 /**
@@ -256,7 +262,7 @@ export const node1 = (
     id: string
 ): ISubscribable<any> => (
     ensureInputs(src, [inputID], id),
-    xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe(null, id)
+    xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe({}, id)
 );
 
 /**
@@ -269,10 +275,10 @@ export const node1 = (
  */
 export const ensureInputs = (
     src: IObjectOf<ISubscribable<any>>,
-    inputIDs: string[],
+    inputIDs: string[] | undefined,
     nodeID: string
 ) => {
-    if (inputIDs !== undefined) {
+    if (inputIDs) {
         const missing: string[] = [];
         for (let i of inputIDs) {
             !src[i] && missing.push(i);

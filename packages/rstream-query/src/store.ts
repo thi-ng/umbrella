@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { assert, IObjectOf } from "@thi.ng/api";
 import { intersection, join } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
@@ -143,16 +143,16 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         let o = this.indexO.get(t[2]);
         const id = this.findTriple(s, p, o, t);
         if (id === -1) return false;
-        s.delete(id);
-        !s.size && this.indexS.delete(t[0]);
-        p.delete(id);
-        !p.size && this.indexP.delete(t[1]);
-        o.delete(id);
-        !o.size && this.indexO.delete(t[2]);
+        s!.delete(id);
+        !s!.size && this.indexS.delete(t[0]);
+        p!.delete(id);
+        !p!.size && this.indexP.delete(t[1]);
+        o!.delete(id);
+        !o!.size && this.indexO.delete(t[2]);
         this.allIDs.delete(id);
         delete this.triples[id];
         this.freeIDs.push(id);
-        this.broadcastTriple(s, p, o, t);
+        this.broadcastTriple(s!, p!, o!, t);
         return true;
     }
 
@@ -189,13 +189,18 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     addPatternQuery(
         pattern: Pattern,
         id?: string,
-        emitTriples?: boolean
-    ): ISubscribable<TripleIds | Triples>;
+        emitTriples?: false
+    ): ISubscribable<TripleIds>;
+    addPatternQuery(
+        pattern: Pattern,
+        id?: string,
+        emitTriples?: true
+    ): ISubscribable<Triples>;
     addPatternQuery(pattern: Pattern, id?: string, emitTriples = true) {
-        let results: ISubscribable<TripleIds | Triples>;
+        let results: ISubscribable<TripleIds | Triples> | undefined;
         const [s, p, o] = pattern;
         if (s == null && p == null && o == null) {
-            results = this.streamAll;
+            results = <ISubscribable<TripleIds>>this.streamAll;
         } else {
             const key = JSON.stringify(pattern);
             if (!(results = this.queries.get(key))) {
@@ -215,7 +220,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                     src = { s: qs, p: qp, o: qo };
                     xform = intersect3;
                 }
-                results = sync<TripleIds, TripleIds>({
+                results = <ISubscribable<TripleIds>>sync<TripleIds, TripleIds>({
                     id,
                     src,
                     xform,
@@ -260,17 +265,17 @@ export class TripleStore implements Iterable<Triple>, IToDot {
             illegalArgs("at least 1 query variable is required in pattern");
         }
         id || (id = `query-${nextID()}`);
-        const query = <Subscription<TripleIds, Triples>>(
+        const query = <Subscription<TripleIds, any>>(
             this.addPatternQuery(
                 [vs ? null : s, vp ? null : p, vo ? null : o],
                 id + "-raw"
             )
         );
         return query.transform(
-            map((triples) => {
+            map((triples: Triples) => {
                 const res = new Set<any>();
                 for (let f of triples) {
-                    res.add(resolve(f));
+                    res.add(resolve!(f));
                 }
                 return res;
             }),
@@ -339,7 +344,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         return sync({
             id,
             src,
-            xform: <Transducer<any, any>>comp.apply(null, xforms)
+            xform: <Transducer<any, any>>comp.apply(null, <any>xforms)
         });
     }
 
@@ -351,8 +356,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * @param spec
      */
     addQueryFromSpec(spec: QuerySpec): QuerySolution {
-        let query: QuerySolution;
-        let curr: QuerySolution;
+        let query: QuerySolution | undefined;
+        let curr: QuerySolution | undefined;
         for (let q of spec.q) {
             if (isWhereQuery(q)) {
                 curr = this.addMultiJoin(this.addParamQueries(q.where));
@@ -363,6 +368,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
             }
             query = curr;
         }
+        assert(!!query, "illegal query spec");
         let xforms: Transducer<any, any>[] = [];
         if (spec.limit) {
             xforms.push(limitSolutions(spec.limit));
@@ -375,10 +381,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         }
         if (xforms.length) {
             query = <ISubscribable<any>>(
-                query.subscribe(comp.apply(null, xforms))
+                query!.subscribe(comp.apply(null, <any>xforms))
             );
         }
-        return query;
+        return query!;
     }
 
     toDot(opts?: Partial<DotOpts>) {
@@ -393,7 +399,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 
     protected nextID() {
         if (this.freeIDs.length) {
-            return this.freeIDs.pop();
+            return this.freeIDs.pop()!;
         }
         return this.NEXT_ID++;
     }
@@ -410,7 +416,12 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         this.streamO.next({ index: o, key: t[2] });
     }
 
-    protected findTriple(s: TripleIds, p: TripleIds, o: TripleIds, f: Triple) {
+    protected findTriple(
+        s: TripleIds | undefined,
+        p: TripleIds | undefined,
+        o: TripleIds | undefined,
+        f: Triple
+    ) {
         if (s && p && o) {
             const triples = this.triples;
             const index =

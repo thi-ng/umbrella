@@ -1,7 +1,7 @@
 import { intersectLineLine } from "@thi.ng/geom-isec";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import { EPS } from "@thi.ng/math";
-import { corner2, ReadonlyVec } from "@thi.ng/vectors";
+import { corner2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
  * Extended version of Sutherland-Hodgeman convex polygon clipping
@@ -23,7 +23,7 @@ export const sutherlandHodgeman = (
 ) => {
     bc = bc || centroid(bounds);
     for (let ne = bounds.length, j = ne - 1, i = 0; i < ne; j = i, i++) {
-        const clipped = [];
+        const clipped: Vec[] = [];
         const ca = bounds[j];
         const cb = bounds[i];
         const sign = corner2(ca, cb, bc, eps);
@@ -33,10 +33,12 @@ export const sutherlandHodgeman = (
             const cqsign = corner2(ca, cb, q, eps);
             if (corner2(ca, cb, p, eps) === sign) {
                 clipped.push(
-                    cqsign !== sign ? intersectLineLine(ca, cb, p, q).isec : q
+                    cqsign !== sign
+                        ? <Vec>intersectLineLine(ca, cb, p, q).isec
+                        : q
                 );
             } else if (cqsign === sign) {
-                clipped.push(intersectLineLine(ca, cb, p, q).isec, q);
+                clipped.push(<Vec>intersectLineLine(ca, cb, p, q).isec, q);
             }
         }
         if (clipped.length < 2) {

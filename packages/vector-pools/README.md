@@ -54,34 +54,37 @@ import * as v from "@thi.ng/vectors";
 import * as tx from "@thi.ng/transducers";
 
 // create an interleaved (AOS layout) attribute buffer w/ default values
-const geo = new AttribPool(
+const geo = new AttribPool({
     // initial size in bytes (or provide ArrayBuffer or @thi.ng/malloc/MemPool)
-    0x200,
+    mem: { size: 0x200 },
     // num elements
-    4,
+    num: 4,
     // attrib specs (data mapping layout)
-    {
-        pos: { type: GLType.F32, size: 3, default: [0, 0, 0], byteOffset: 0 },
-        uv: { type: GLType.F32, size: 2, default: [0, 0], byteOffset: 12 },
+    attribs: {
+        pos: { type: GLType.F32, size: 3, byteOffset: 0 },
+        uv: { type: GLType.F32, size: 2, byteOffset: 12 },
         col: { type: GLType.F32, size: 3, default: [1, 1, 1], byteOffset: 20 },
-        id: { type: GLType.U16, size: 1, default: 0, byteOffset: 32 }
+        id: { type: GLType.U16, size: 1, byteOffset: 32 }
     }
-);
+});
 
 // computed overall stride length
 geo.byteStride
 // 36
 
 // set attrib values
-geo.setAttribValues("pos", [[-5, 0, 0], [5, 0, 0], [5, 5, 0], [-5, 5, 0]]);
-geo.setAttribValues("uv", [[0, 0], [1, 0], [1, 1], [0, 1]]);
+geo.setAttribs({
+    pos: { data: [[-5, 0, 0], [5, 0, 0], [5, 5, 0], [-5, 5, 0]]},
+    uv: { data: [[0, 0], [1, 0], [1, 1], [0, 1]] }
+});
+// ...or individually
 geo.setAttribValues("id", [0, 1, 2, 3]);
 
 // get view of individual attrib val
 geo.attribValue("pos", 3)
 // Float32Array [ -5, 5, 0 ]
 
-// zero-copy direct manipulation of attrib val
+// zero-copy direct manipulation of mapped attrib val
 v.mulN(null, geo.attribValue("pos", 3), 2);
 // Float32Array [ -10, 10, 0 ]
 
@@ -95,7 +98,7 @@ v.mulN(null, geo.attribValue("pos", 3), 2);
 // use with transducers, e.g. to map positions to colors
 tx.run(
     tx.map(([pos, col]) => v.maddN(col, [0.5, 0.5, 0.5], v.normalize(col, pos), 0.5)),
-    tx.tuples(geo.attribValues("pos"), geo.attribValues("col"))
+    tx.zip(geo.attribValues("pos"), geo.attribValues("col"))
 );
 
 // updated colors
@@ -140,7 +143,6 @@ const initAttrib = (gl, loc, attrib) => {
 initAttrib(gl, attribLocPosition, geo.specs.pos);
 initAttrib(gl, attribLocNormal, geo.specs.normal);
 initAttrib(gl, attribLocUV, geo.specs.uv);
-initAttrib(gl, attribLocID, geo.specs.id);
 ```
 
 ### WASM interop

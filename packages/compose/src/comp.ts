@@ -200,7 +200,7 @@ export function compL<A, B, C, D, E, F, G, H, I, J>(
     ...xs: Fn<any, any>[]
 ): FnAny<any>;
 export function compL(...fns: any[]): any {
-    return comp.apply(null, fns.reverse());
+    return comp.apply(null, <any>fns.reverse());
 }
 
 /**

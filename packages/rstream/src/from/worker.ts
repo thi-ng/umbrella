@@ -37,10 +37,10 @@ export const fromWorker = <T>(
             stream.error(e.data);
         };
         _worker.addEventListener("message", ml);
-        _worker.addEventListener("error", el);
+        _worker.addEventListener("error", <EventListener>el);
         return () => {
             _worker.removeEventListener("message", ml);
-            _worker.removeEventListener("error", el);
+            _worker.removeEventListener("error", <EventListener>el);
             if (terminate) {
                 LOGGER.info("terminating worker", _worker);
                 _worker.terminate();

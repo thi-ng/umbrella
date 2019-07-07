@@ -5,7 +5,7 @@ import * as rs from "../src/index";
 
 describe("StreamSync", () => {
     function adder() {
-        return tx.map((ports) => {
+        return tx.map((ports: any) => {
             let sum = 0;
             for (let p in ports) {
                 sum += ports[p];
@@ -39,7 +39,7 @@ describe("StreamSync", () => {
             }
         });
         const a2 = rs.sync({
-            src: [a1, (c = rs.fromView(db, "a2.ins.b"))],
+            src: <any>[a1, (c = rs.fromView(db, "a2.ins.b"))],
             xform: adder()
         });
         const res = a2.subscribe({
@@ -82,7 +82,7 @@ describe("StreamSync", () => {
             b: rs.stream(),
             c: rs.stream()
         };
-        const res = [];
+        const res: any[] = [];
         const sync = rs.sync({ src, mergeOnly: true }).subscribe({
             next: (x) => res.push(x),
             done: () => {
@@ -109,7 +109,7 @@ describe("StreamSync", () => {
             b: rs.stream(),
             c: rs.stream()
         };
-        const res = [];
+        const res: any[] = [];
         const sync = rs
             .sync({
                 src,
@@ -138,18 +138,18 @@ describe("StreamSync", () => {
     });
 
     it("fromPromise", (done) => {
-        const delayed = (x, t) =>
+        const delayed = (x: any, t: number) =>
             new Promise((resolve) => setTimeout(() => resolve(x), t));
 
         rs.transduce(
             rs.sync({
-                src: {
+                src: <any>{
                     t: rs.fromInterval(5),
                     a: rs.fromPromise(delayed("aa", 20)),
                     b: rs.fromPromise(delayed("bb", 40))
                 }
             }),
-            tx.comp(tx.take(1), tx.map(({ a, b }) => ({ a, b }))),
+            tx.comp(tx.take(1), tx.map(({ a, b }: any) => ({ a, b }))),
             tx.last()
         ).then((res) => {
             assert.deepEqual(res, { a: "aa", b: "bb" });

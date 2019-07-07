@@ -1,9 +1,9 @@
 import { AppContext, StatusType, User } from "../api";
 import { LOAD_USER_LIST, SET_STATUS } from "../events";
 import { USER_PROFILE } from "../routes";
-
 import { routeLink } from "./route-link";
 import { status } from "./status";
+
 
 /**
  * Dummy user list component. Triggers JSON I/O request if user data has
@@ -13,7 +13,7 @@ import { status } from "./status";
  */
 export function allUsers(ctx: AppContext) {
     ctx.bus.dispatch(
-        ctx.views.userlist.deref().length
+        ctx.views.userlist.deref()!.length
             ? [SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]]
             : [LOAD_USER_LIST]
     );
@@ -32,7 +32,7 @@ function userList(ctx: AppContext) {
         list && [
             "section",
             ctx.ui.userlist.root,
-            list.map((u) => [user, u, !!profiles[u.id]])
+            list.map((u) => [user, u, !!profiles![u.id]])
         ]
     );
 }

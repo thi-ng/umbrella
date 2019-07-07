@@ -1,6 +1,11 @@
 import { mix } from "@thi.ng/math";
-import { ColorMatrix, RGB_LUMINANCE, ReadonlyColor, WHITE } from "./api";
-import { mulV45, mulM45 } from "./internal/matrix-ops";
+import {
+    ColorMatrix,
+    ReadonlyColor,
+    RGB_LUMINANCE,
+    WHITE
+} from "./api";
+import { mulM45, mulV45 } from "./internal/matrix-ops";
 
 // https://drafts.fxtf.org/filter-effects/#feColorMatrixElement
 
@@ -46,27 +51,12 @@ export const transform = mulV45;
 export const concat = (mat: ColorMatrix, ...xs: ColorMatrix[]) =>
     xs.reduce(mulM45, mat);
 
+// prettier-ignore
 export const IDENTITY: ColorMatrix = [
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    1, 0, 0, 0, 0,
+    0, 1, 0, 0, 0,
+    0, 0, 1, 0, 0,
+    0, 0, 0, 1, 0
 ];
 
 /**
@@ -76,27 +66,12 @@ export const IDENTITY: ColorMatrix = [
  *
  * @param src
  */
+// prettier-ignore
 export const subtract = (src: ReadonlyColor = WHITE): ColorMatrix => [
-    -1,
-    0,
-    0,
-    0,
-    src[0],
-    0,
-    -1,
-    0,
-    0,
-    src[1],
-    0,
-    0,
-    -1,
-    0,
-    src[2],
-    0,
-    0,
-    0,
-    1,
-    0
+    -1, 0, 0, 0, src[0],
+    0, -1, 0, 0, src[1],
+    0, 0, -1, 0, src[2],
+    0, 0, 0, 1, 0
 ];
 
 /**
@@ -108,192 +83,72 @@ export const subtract = (src: ReadonlyColor = WHITE): ColorMatrix => [
  *
  * @param x
  */
+// prettier-ignore
 export const brightness = (x: number): ColorMatrix => [
-    1,
-    0,
-    0,
-    0,
-    x,
-    0,
-    1,
-    0,
-    0,
-    x,
-    0,
-    0,
-    1,
-    0,
-    x,
-    0,
-    0,
-    0,
-    1,
-    0
+    1, 0, 0, 0, x,
+    0, 1, 0, 0, x,
+    0, 0, 1, 0, x,
+    0, 0, 0, 1, 0
 ];
 
+// prettier-ignore
 export const contrast = (x: number, o = 0.5 * (1 - x)): ColorMatrix => [
-    x,
-    0,
-    0,
-    0,
-    o,
-    0,
-    x,
-    0,
-    0,
-    o,
-    0,
-    0,
-    x,
-    0,
-    o,
-    0,
-    0,
-    0,
-    1,
-    0
+    x, 0, 0, 0, o,
+    0, x, 0, 0, o,
+    0, 0, x, 0, o,
+    0, 0, 0, 1, 0
 ];
 
+// prettier-ignore
 export const exposure = (x: number): ColorMatrix => [
-    x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    x, 0, 0, 0, 0,
+    0, x, 0, 0, 0,
+    0, 0, x, 0, 0,
+    0, 0, 0, 1, 0
 ];
 
+// prettier-ignore
 export const saturation = (x: number): ColorMatrix => [
-    S1 + S4 * x,
-    S3 - S3 * x,
-    S0 - S0 * x,
-    0,
-    0,
-    S1 - S1 * x,
-    S3 + S2 * x,
-    S0 - S0 * x,
-    0,
-    0,
-    S1 - S1 * x,
-    S3 - S3 * x,
-    S0 + S5 * x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    S1 + S4 * x, S3 - S3 * x, S0 - S0 * x, 0, 0,
+    S1 - S1 * x, S3 + S2 * x, S0 - S0 * x, 0, 0,
+    S1 - S1 * x, S3 - S3 * x, S0 + S5 * x, 0, 0,
+    0, 0, 0, 1, 0
 ];
 
+// prettier-ignore
 export const hueRotate = (theta: number): ColorMatrix => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
     return [
-        S1 + c * S4 - s * S1,
-        S3 - c * S3 - s * S3,
-        S0 - c * S0 + s * S5,
-        0,
-        0,
-        S1 - c * S1 + s * S7,
-        S3 + c * S2 + s * S6,
-        S0 - c * S0 - s * S8,
-        0,
-        0,
-        S1 - c * S1 - s * S4,
-        S3 - c * S3 + s * S3,
-        S0 + c * S5 + s * S0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0
+        S1 + c * S4 - s * S1, S3 - c * S3 - s * S3, S0 - c * S0 + s * S5, 0, 0,
+        S1 - c * S1 + s * S7, S3 + c * S2 + s * S6, S0 - c * S0 - s * S8, 0, 0,
+        S1 - c * S1 - s * S4, S3 - c * S3 + s * S3, S0 + c * S5 + s * S0, 0, 0,
+        0, 0, 0, 1, 0
     ];
 };
 
+// prettier-ignore
 export const temperature = (x: number): ColorMatrix => [
-    1 + x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1 - x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    1 + x, 0, 0, 0, 0,
+    0, 1, 0, 0, 0,
+    0, 0, 1 - x, 0, 0,
+    0, 0, 0, 1, 0
 ];
 
+// prettier-ignore
 export const sepia = (x = 1): ColorMatrix => [
-    mix(1, 0.393, x),
-    0.769 * x,
-    0.189 * x,
-    0,
-    0,
-    0.349 * x,
-    mix(1, 0.686, x),
-    0.168 * x,
-    0,
-    0,
-    0.272 * x,
-    0.534 * x,
-    mix(1, 0.131, x),
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    mix(1, 0.393, x), 0.769 * x, 0.189 * x, 0, 0,
+    0.349 * x, mix(1, 0.686, x), 0.168 * x, 0, 0,
+    0.272 * x, 0.534 * x, mix(1, 0.131, x), 0, 0,
+    0, 0, 0, 1, 0
 ];
 
+// prettier-ignore
 export const tint = (x: number): ColorMatrix => [
-    1 + x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1 + x,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
+    1 + x, 0, 0, 0, 0,
+    0, 1, 0, 0, 0,
+    0, 0, 1 + x, 0, 0,
+    0, 0, 0, 1, 0
 ];
 
 /**
@@ -303,27 +158,12 @@ export const tint = (x: number): ColorMatrix => [
  * @param x
  * @param coeffs
  */
+// prettier-ignore
 export const grayscale = (x = 0, [r, g, b] = RGB_LUMINANCE): ColorMatrix => [
-    r,
-    g,
-    b,
-    0,
-    x,
-    r,
-    g,
-    b,
-    0,
-    x,
-    r,
-    g,
-    b,
-    0,
-    x,
-    0,
-    0,
-    0,
-    1,
-    0
+    r, g, b, 0, x,
+    r, g, b, 0, x,
+    r, g, b, 0, x,
+    0, 0, 0, 1, 0
 ];
 
 /**
@@ -333,25 +173,10 @@ export const grayscale = (x = 0, [r, g, b] = RGB_LUMINANCE): ColorMatrix => [
  *
  * @param coeffs
  */
+// prettier-ignore
 export const luminanceAlpha = ([r, g, b] = RGB_LUMINANCE): ColorMatrix => [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    r,
-    g,
-    b,
-    0,
-    0
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0,
+    r, g, b, 0, 0
 ];

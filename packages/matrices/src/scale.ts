@@ -1,5 +1,10 @@
 import { isNumber } from "@thi.ng/checks";
-import { ReadonlyVec, setC, setC4, setC6 } from "@thi.ng/vectors";
+import {
+    ReadonlyVec,
+    setC,
+    setC4,
+    setC6
+} from "@thi.ng/vectors";
 import { Mat } from "./api";
 
 /**
@@ -9,7 +14,7 @@ import { Mat } from "./api";
  * @param m
  * @param s
  */
-export const scale22 = (m: Mat, s: number | ReadonlyVec) => (
+export const scale22 = (m: Mat | null, s: number | ReadonlyVec) => (
     (s = isNumber(s) ? [s, s] : s), setC4(m || [], s[0], 0, 0, s[1])
 );
 
@@ -20,7 +25,7 @@ export const scale22 = (m: Mat, s: number | ReadonlyVec) => (
  * @param m
  * @param s
  */
-export const scale23 = (m: Mat, s: number | ReadonlyVec) => (
+export const scale23 = (m: Mat | null, s: number | ReadonlyVec) => (
     (s = isNumber(s) ? [s, s] : s), setC6(m || [], s[0], 0, 0, s[1], 0, 0)
 );
 
@@ -31,7 +36,7 @@ export const scale23 = (m: Mat, s: number | ReadonlyVec) => (
  * @param m
  * @param s
  */
-export const scale33 = (m: Mat, s: number | ReadonlyVec) => (
+export const scale33 = (m: Mat | null, s: number | ReadonlyVec) => (
     (s = isNumber(s) ? [s, s, s] : s),
     setC(m || [], s[0], 0, 0, 0, s[1], 0, 0, 0, s[2])
 );
@@ -43,7 +48,7 @@ export const scale33 = (m: Mat, s: number | ReadonlyVec) => (
  * @param m
  * @param s
  */
-export const scale44 = (m: Mat, s: number | ReadonlyVec) => (
+export const scale44 = (m: Mat | null, s: number | ReadonlyVec) => (
     (s = isNumber(s) ? [s, s, s] : s),
     setC(
         m || [],

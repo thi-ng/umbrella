@@ -4,7 +4,12 @@ import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus, trace, valueSetter } from "@thi.ng/interceptors";
 import { EVENT_ROUTE_CHANGED, HTMLRouter } from "@thi.ng/router";
-import { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
+import {
+    AppConfig,
+    AppContext,
+    AppViews,
+    ViewSpec
+} from "./api";
 import { debugContainer } from "./components/debug-container";
 import { nav } from "./components/nav";
 import * as fx from "./effects";
@@ -37,7 +42,7 @@ export class App {
             views: <AppViews>{},
             ui: config.ui
         };
-        this.addViews(this.config.views);
+        this.addViews(<any>this.config.views);
         this.router = new HTMLRouter(config.router);
         // connect router to event bus so that routing events are processed
         // as part of the normal batched event processing loop
@@ -81,7 +86,7 @@ export class App {
      * @param specs
      */
     addViews(specs: IObjectOf<ViewSpec>) {
-        const views = this.ctx.views;
+        const views: any = this.ctx.views;
         for (let id in specs) {
             const spec = specs[id];
             if (isArray(spec)) {
@@ -116,7 +121,7 @@ export class App {
      * by current route and the derived view defined above.
      */
     rootComponent(): any {
-        const debug = this.ctx.views.debug.deref();
+        const debug = this.ctx.views.debug.deref()!;
         const ui = this.ctx.ui;
         return [
             "div",

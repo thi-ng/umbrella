@@ -17,12 +17,12 @@ export interface IEquivSet<T>
         IGet<T, T>,
         IInto<T, IEquivSet<T>> {
     disj(xs: Iterable<T>): this;
-    first(): T;
+    first(): T | undefined;
 }
 
 export interface EquivSetConstructor<T> {
     new (): IEquivSet<T>;
-    new (values?: Iterable<T>, opts?: any): IEquivSet<T>;
+    new (values?: Iterable<T> | null, opts?: any): IEquivSet<T>;
     readonly prototype: IEquivSet<T>;
 }
 

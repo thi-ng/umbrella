@@ -1,3 +1,4 @@
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
 import {
     group,
@@ -8,12 +9,14 @@ import {
     svg,
     text
 } from "@thi.ng/hiccup-svg";
+import { fit } from "@thi.ng/math";
 import { resolve } from "@thi.ng/resolve-map";
 import {
     fromEvent,
     fromInterval,
     resolve as resolvePromise,
     stream,
+    Subscription,
     sync,
     trace
 } from "@thi.ng/rstream";
@@ -30,10 +33,16 @@ import {
     pluck,
     push,
     range,
-    transduce
+    transduce,
+    Transducer
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { ema, hma, sma, wma } from "@thi.ng/transducers-stats";
+import {
+    ema,
+    hma,
+    sma,
+    wma
+} from "@thi.ng/transducers-stats";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle
@@ -58,7 +67,7 @@ interface MarketResponse {
 // constant definitions
 
 // supported chart (and API) timeframes
-const TIMEFRAMES = {
+const TIMEFRAMES: IObjectOf<string> = {
     1: "Minute",
     60: "Hour",
     1440: "Day"
@@ -74,7 +83,10 @@ const SYMBOL_PAIRS: DropDownOption[] = [
     ["XMRUSD", "XMR-USD"]
 ];
 
-const MA_MODES = {
+const MA_MODES: IObjectOf<{
+    fn: Fn<number, Transducer<number, number>>;
+    label: string;
+}> = {
     ema: { fn: ema, label: "Exponential" },
     hma: { fn: hma, label: "Hull" },
     sma: { fn: sma, label: "Simple" },
@@ -86,13 +98,13 @@ const MARGIN_X = 80;
 const MARGIN_Y = 60;
 const DAY = 60 * 60 * 24;
 
-const TIME_TICKS = {
+const TIME_TICKS: IObjectOf<number> = {
     1: 15 * 60,
     60: DAY,
     1440: DAY * 14
 };
 
-const TIME_FORMATS = {
+const TIME_FORMATS: IObjectOf<Fn<number, string>> = {
     1: (t: number) => {
         const d = new Date(t * 1000);
         return `${Z2(d.getUTCHours())}:${Z2(d.getUTCMinutes())}`;
@@ -112,7 +124,7 @@ const TIME_FORMATS = {
 };
 
 // UI theme presets
-const THEMES = {
+const THEMES: any = {
     light: {
         id: "light",
         label: "Light",
@@ -155,7 +167,7 @@ const THEMES = {
 
 // constructs request URL from given inputs
 // API docs: https://min-api.cryptocompare.com/
-const API_URL = (market, symbol, period) =>
+const API_URL = (market: string, symbol: string, period: number) =>
     `https://min-api.cryptocompare.com/data/histo${TIMEFRAMES[
         period
     ].toLowerCase()}?fsym=${symbol.substr(0, 3)}&tsym=${symbol.substr(
@@ -166,19 +178,21 @@ const API_URL = (market, symbol, period) =>
 // const API_URL = (..._) => `ohlc.json`;
 
 // helper functions
-const clamp = (x: number, min: number, max: number) =>
-    x < min ? min : x > max ? max : x;
-const fit = (x, a, b, c, d) => c + (d - c) * clamp((x - a) / (b - a), 0, 1);
 const Z2 = padLeft(2, "0");
 
-const emitOnStream = (stream) => (e) => stream.next(e.target.value);
+const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
+    stream.next((<HTMLInputElement>e.target).value);
 
-const menu = (stream, title, items) =>
+const menu = (
+    stream: Subscription<any, any>,
+    title: string,
+    items: DropDownOption[]
+) =>
     map((x: any) =>
         dropdown(
             null,
             { class: "w-100", onchange: emitOnStream(stream) },
-            [[, title, true], ...items],
+            [[<any>null, title, true], ...items],
             String(x)
         )
     );
@@ -199,7 +213,7 @@ error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
 const refresh = fromInterval(60000).subscribe(trace("refresh"));
 
 // this stream combinator performs API requests to obtain OHLC data
-const response = sync({
+const response = sync<any, any>({
     src: { market, symbol, period, refresh },
     xform: map((inst) =>
         fetch(API_URL(inst.market, inst.symbol, inst.period))
@@ -214,7 +228,7 @@ const response = sync({
 
 // this stream combinator computes a number of statistics on incoming OHLC data
 // including calculation of moving averages (based on current mode selection)
-const data = sync({
+const data = sync<any, any>({
     src: {
         response,
         avg: avgMode.transform(map((id: string) => MA_MODES[id].fn))
@@ -362,7 +376,8 @@ const chart = sync({
             ),
             // moving averages
             map(
-                ([period, vals]) => sma(vals, theme.chart[`sma${period}`]),
+                ([period, vals]: [number, number[]]) =>
+                    sma(vals, theme.chart[`sma${period}`]),
                 data.sma
             ),
             // candles
@@ -433,7 +448,8 @@ sync({
             map((x) => x.id),
             menu(theme, "Theme", [
                 ...map(
-                    ([id, theme]) => <DropDownOption>[id, theme.label],
+                    ([id, theme]: [string, any]) =>
+                        <DropDownOption>[id, theme.label],
                     pairs(THEMES)
                 )
             ])

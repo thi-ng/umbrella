@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { iterator } from "./iterator";
 
 export interface FrequencyPair<T> {
@@ -9,8 +9,8 @@ export interface FrequencyPair<T> {
 export function* frequencies<T>(
     input: Iterable<T>,
     key?: Fn<T, any>
-): IterableIterator<FrequencyPair<T>[]> {
-    let freqs = {};
+): IterableIterator<FrequencyPair<T>> {
+    let freqs: IObjectOf<FrequencyPair<T>> = {};
     let iter = iterator(input);
     let v: IteratorResult<any>;
     while (((v = iter.next()), !v.done)) {

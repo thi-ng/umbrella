@@ -10,10 +10,10 @@ import { ensureHue } from "./internal/ensure-hue";
  * @param out
  * @param hue
  */
-export const hueRgba = (out: Color, hue: number, alpha = 1): Color => {
+export const hueRgba = (out: Color | null, hue: number, alpha = 1): Color => {
     hue = ensureHue(hue) * 6;
     return setC4(
-        out,
+        out || [],
         clamp01(Math.abs(hue - 3) - 1),
         clamp01(2 - Math.abs(hue - 2)),
         clamp01(2 - Math.abs(hue - 4)),
@@ -21,5 +21,5 @@ export const hueRgba = (out: Color, hue: number, alpha = 1): Color => {
     );
 };
 
-export const namedHueRgba = (out: Color, hue: Hue, alpha = 1) =>
+export const namedHueRgba = (out: Color | null, hue: Hue, alpha = 1) =>
     hueRgba(out, hue / 12, alpha);

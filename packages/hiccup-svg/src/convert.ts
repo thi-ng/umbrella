@@ -12,7 +12,7 @@ import { polyline } from "./polyline";
 import { roundedRect } from "./rect";
 import { text } from "./text";
 
-const ATTRIB_ALIASES = {
+const ATTRIB_ALIASES: { [id: string]: string } = {
     alpha: "opacity",
     dash: "stroke-dasharray",
     dashOffset: "stroke-dashoffset",
@@ -22,7 +22,7 @@ const ATTRIB_ALIASES = {
     weight: "stroke-width"
 };
 
-const TEXT_ALIGN = {
+const TEXT_ALIGN: { [id: string]: string } = {
     left: "start",
     right: "end",
     center: "middle",

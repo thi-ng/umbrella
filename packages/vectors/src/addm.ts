@@ -6,6 +6,7 @@ import { ADDM } from "./internal/templates";
  * Returns `out = (a + b) * c`.
  *
  * @see madd
+ * @see subm
  */
 export const [addm, addm2, addm3, addm4] = defOp<MultiVecOpVVV, VecOpVVV>(
     ADDM,

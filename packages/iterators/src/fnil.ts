@@ -35,6 +35,6 @@ export const fnil = (fn: FnAny<any>, ...ctors: Fn0<any>[]) => {
                 return fn.apply(null, args);
             };
         default:
-            illegalArity(ctors.length);
+            return illegalArity(ctors.length);
     }
 };

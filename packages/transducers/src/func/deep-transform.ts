@@ -67,7 +67,7 @@ export const deepTransform = (spec: TransformSpec): ((x: any) => any) => {
         return <any>spec;
     }
     const mapfns = Object.keys(spec[1] || {}).reduce(
-        (acc, k) => ((acc[k] = deepTransform((<any>spec)[1][k])), acc),
+        (acc: any, k) => ((acc[k] = deepTransform((<any>spec)[1][k])), acc),
         {}
     );
     return (x) => {

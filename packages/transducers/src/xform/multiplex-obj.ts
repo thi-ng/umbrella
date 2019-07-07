@@ -49,7 +49,7 @@ export function multiplexObj(...args: any[]): any {
     const [xforms, rfn] = args;
     const ks = Object.keys(xforms);
     return comp(
-        multiplex.apply(null, ks.map((k) => xforms[k])),
+        multiplex.apply(null, <any>ks.map((k) => xforms[k])),
         rename(ks, rfn)
     );
 }

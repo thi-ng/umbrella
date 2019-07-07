@@ -217,7 +217,7 @@ export const treeToCartesian = (t: number[], dim: number) => {
 };
 
 export const cartesianToTree = (v: number[]) => {
-    const $ = (v: number[], half: number) => {
+    const $ = (v: number[], half: number): number[] => {
         const t = v.reduce((t, x, i) => t + (1 << i) * <any>(x >= half), 0);
         return half > 1 ? [t, ...$(v.map((x) => x % half), half >>> 1)] : [t];
     };

@@ -46,13 +46,13 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
         pred?: Predicate<B>,
         id?: string
     ) {
-        super(null, null, null, id || `sidetoggle-${nextID()}`);
+        super(undefined, undefined, undefined, id || `sidetoggle-${nextID()}`);
         this.isActive = initial;
         const $this = this;
         pred = pred || (() => true);
         this.sideSub = side.subscribe({
             next(x) {
-                if (pred(x)) {
+                if (pred!(x)) {
                     $this.isActive = !$this.isActive;
                 }
             },

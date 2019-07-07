@@ -95,7 +95,7 @@ export function partitionSync<T>(...args: any[]): any {
     return (
         $iter(partitionSync, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
-            let curr = {};
+            let curr: any = {};
             let first = true;
             const currKeys = new Set<PropertyKey>();
             const { key, mergeOnly, reset, all } = <PartitionSyncOpts<T>>{
@@ -108,7 +108,7 @@ export function partitionSync<T>(...args: any[]): any {
             const ks: Set<PropertyKey> = isArray(args[0])
                 ? new Set(args[0])
                 : args[0];
-            return [
+            return <Reducer<any, any>>[
                 init,
                 (acc) => {
                     if (

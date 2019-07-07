@@ -42,7 +42,7 @@ export const resolvePathPattern = (
     [s, p, o]: PathPattern,
     maxLen = p.length
 ): [Pattern[], string[]] => {
-    const res = [];
+    const res: Pattern[] = [];
     const avars = [...repeatedly(autoQVar, maxLen - 1)];
     for (let i = 0; i < maxLen; i++) {
         res.push([s, p[i % p.length], (s = avars[i])]);

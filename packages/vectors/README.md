@@ -16,6 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+    - [Naming conventions](#naming-conventions)
     - [Constants](#constants)
     - [Component setters & copying](#component-setters--copying)
     - [Component swizzling](#component-swizzling)
@@ -35,6 +36,7 @@ This project is part of the
     - [Unary vector math ops](#unary-vector-math-ops)
     - [Vector array batch processing](#vector-array-batch-processing)
     - [Comparison / equality](#comparison--equality)
+    - [Bitwise operations (int vec)](#bitwise-operations-int-vec)
     - [Hashing](#hashing)
     - [Code generator](#code-generator)
 - [Authors](#authors)
@@ -44,17 +46,17 @@ This project is part of the
 
 ## About
 
-This package provides 350+ largely code generated functions & supporting
-types to perform vector operations on fixed and arbitrary-length
-vectors, both packed and strided (i.e. where individual vector
-components are not successive array elements, for example in SOA
+This package provides **~600 largely code generated functions** and
+supporting types to perform vector operations on fixed and
+arbitrary-length vectors, both packed and strided (i.e. where individual
+vector components are not successive array elements, for example in SOA
 layouts).
 
 ### Features
 
--   Small & fast: The vast majority of these functions are code generated
-    with fixed-sized versions not using any loops. Minified + gzipped, the
-    entire package is ~7.6KB.
+-   Small & fast: The vast majority of functions are code generated with
+    fixed-sized versions not using any loops. Minified + gzipped, the
+    entire package is ~9.2KB.
 -   Unified API: Any `ArrayLike` type can be used as vector containers
     (e.g. JS arrays, typed arrays, custom impls). Most functions are
     implemented as multi-methods, dispatching to any potentially optimized
@@ -96,6 +98,7 @@ layouts).
 -   [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
 -   [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
 -   [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
+-   [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast)
 -   [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
@@ -164,6 +167,33 @@ v.hash([1, 2, 3])
 
 ## API
 
+### Naming conventions
+
+Wherever possible / sensical, each operation comes in different
+variations. All fixed size versions use optimized implementations.
+
+| Suffix          | Description                            | Example                                      |
+|-----------------|----------------------------------------|----------------------------------------------|
+| none            | arbitrary length vector arg(s)         | `add([], [1,2], [10,20])`                    |
+| 2               | 2d vector arg(s)                       | `add2([], [1,2], [10,20])`                   |
+| 3               | 3d vector arg(s)                       | `add3([], [1,2,3], [10,20,30])`              |
+| 4               | 4d vector arg(s)                       | `add4([], [1,2,3,4], [10,20,30,40])`         |
+| N2              | 2d vector & scalar                     | `addN2([], [1,2], 10)`                       |
+| N3              | 3d vector & scalar                     | `addN2([], [1,2], 10)`                       |
+| N4              | 4d vector & scalar                     | `addN2([], [1,2], 10)`                       |
+| I               | arbitrary len, signed int vec          | `addI([], [-1,2], [10,-20])`                 |
+| U               | arbitrary len, unsigned int vec        | `addU([], [-1,2], [10,-20])`                 |
+| I2 / I3 / I4    | fixed size signed int vec              | `addI3([], [1,-2,3], [10,20,30])`            |
+| U2 / U3 / U4    | fixed size signed int vec              | `addU3([], [1,2,3], [10,20,30])`             |
+| NI / NU         | arbitrary len, signed int vec & scalar | `addNI([], [1,-2,3], 10)`                    |
+| NI2 / NI3 / NI4 | fixed size signed int vec & scalar     | `addNI3([], [1,-2,3], [10,20,30])`           |
+| NU2 / NU3 / NU4 | fixed size unsigned int vec & scalar   | `addNU3([], [1,2,3], [10,20,30])`            |
+| S               | arbitrary len strided vector arg(s)    | `setS([], gvec([10, 0, 20, 0], 2, 0, 2), 2)` |
+| S2 / S3 / S4    | fixed size strided vec                 | `setS2()`                                    |
+| SN2 / SN3 / SN4 | fixed size strided vec & scalar        | `setSN2()`                                   |
+| C               | arbitrary len vec, component wise args | `setC([], 1,2,3,4)`                          |
+| C2 / C3 / C4    | fixed size vec, component wise args    | `setC4([], 1,2,3,4)`                         |
+
 ### Constants
 
 -   `MAX2` / `MAX3` / `MAX4` - each component `+Infinity`
@@ -190,11 +220,12 @@ v.hash([1, 2, 3])
 ### Component swizzling
 
 -   `swizzle2` / `swizzle3` / `swizzle4`
+-   `setSwizzle1` / `setSwizzle2` / `setSwizzle3` / `setSwizzle4`
 -   `swapXY` / `swapXZ` / `swapYZ`
 
 ### Vector creation
 
-Functions to create wrapped vector instances:
+Functions to create wrapped (strided) vector instances:
 
 -   `vec2` / `vec2n`
 -   `vec3` / `vec3n`
@@ -209,6 +240,9 @@ Vanilla vector (array) factories:
 
 -   `ones`
 -   `zeroes`
+-   `vecOf`
+-   `setVN3` / `setVN4`
+-   `setVV4` / `setVV6` / `setVV9` / `setVV16`
 
 ### Basic vector math
 
@@ -223,6 +257,17 @@ Component wise op with 2 input vectors:
 -   `mod` / `mod2` / `mod3` / `mod4`
 -   `pow` / `pow2` / `pow3` / `pow4`
 
+#### Integer vector
+
+- `addI` / `addI2` / `addI3` / `addI4`
+- `addU` / `addU2` / `addU3` / `addU4`
+- `divI` / `divI2` / `divI3` / `divI4`
+- `divU` / `divU2` / `divU3` / `divU4`
+- `mulI` / `mulI2` / `mulI3` / `mulI4`
+- `mulU` / `mulU2` / `mulU3` / `mulU4`
+- `subI` / `subI2` / `subI3` / `subI4`
+- `subU` / `subU2` / `subU3` / `subU4`
+
 #### Vector / scalar
 
 Component wise op with one input vector and single scalar:
@@ -234,6 +279,17 @@ Component wise op with one input vector and single scalar:
 -   `neg` - same as `mulN(out, v, -1)`
 -   `modN` / `modN2` / `modN3` / `modN4`
 -   `powN` / `powN2` / `powN3` / `powN4`
+
+#### Integer vector / scalar
+
+- `addNI` / `addNI2` / `addNI3` / `addNI4`
+- `addNU` / `addNU2` / `addNU3` / `addNU4`
+- `divNI` / `divNI2` / `divNI3` / `divNI4`
+- `divNU` / `divNU2` / `divNU3` / `divNU4`
+- `mulNI` / `mulNI2` / `mulNI3` / `mulNI4`
+- `mulNU` / `mulNU2` / `mulNU3` / `mulNU4`
+- `subNI` / `subNI2` / `subNI3` / `subNI4`
+- `subNU` / `subNU2` / `subNU3` / `subNU4`
 
 #### Strided vectors
 
@@ -310,6 +366,7 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 -   `angleBetween2` / `angleBetween3`
 -   `angleRatio`
 -   `bisect2`
+-   `degrees` / `degrees2` / `degrees3` / `degrees4`
 -   `direction`
 -   `faceForward`
 -   `heading` / `headingXY` / `headingXZ` / `headingYZ`
@@ -317,6 +374,7 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 -   `normalLeft2` / `normalRight2`
 -   `perpendicularLeft2` / `perpendicularRight2`
 -   `project`
+-   `radians` / `radians2` / `radians3` / `radians4`
 -   `reflect`
 -   `refract`
 
@@ -350,11 +408,13 @@ All ops support custom PRNG impls based on the
 -   `abs` / `abs2` / `abs3` / `abs4`
 -   `acos` / `acos2` / `acos3` / `acos4`
 -   `asin` / `asin2` / `asin3` / `asin4`
+-   `atan` / `atan2` / `atan3` / `atan4`
 -   `ceil` / `ceil2` / `ceil3` / `ceil4`
 -   `cos` / `cos2` / `cos3` / `cos4`
 -   `cosh` / `cosh2` / `cosh3` / `cosh4`
 -   `exp` / `exp2` / `exp3` / `exp4`
 -   `floor` / `floor2` / `floor3` / `floor4`
+-   `fmod` / `fmod2` / `fmod3` / `fmod4` (C / GLSL modulo)
 -   `fract` / `fract2` / `fract3` / `fract4`
 -   `fromHomogeneous` / `fromHomogeneous3` / `fromHomogeneous4`
 -   `invert` / `invert2` / `invert3` / `invert4`
@@ -362,6 +422,7 @@ All ops support custom PRNG impls based on the
 -   `log` / `log2` / `log3` / `log4`
 -   `major` / `major2` / `major3` / `major4`
 -   `minor` / `minor2` / `minor3` / `minor4`
+-   `mod` / `mod2` / `mod3` / `mod4` (JS modulo)
 -   `round` / `round2` / `round3` / `round4`
 -   `sign` / `sign2` / `sign3` / `sign4`
 -   `sin` / `sin2` / `sin3` / `sin4`
@@ -385,6 +446,26 @@ Functions to transform flat / strided buffers w/ vector operations:
 -   `eqDelta` / `eqDelta2` / `eqDelta3` / `eqDelta4`
 -   `eqDeltaS`
 -   `eqDeltaArray`
+
+### Bitwise operations (int vec)
+
+-   `andI` / `andI2` / `andI3` / `andI4`
+-   `andU` / `andU2` / `andU3` / `andU4`
+-   `andNI` / `andNI2` / `andNI3` / `andNI4`
+-   `andNU` / `andNU2` / `andNU3` / `andNU4`
+-   `lshiftI` / `lshiftI4` /`lshiftI4` / `lshiftI4`
+-   `lshiftU` / `lshiftU4` /`lshiftU4` / `lshiftU4`
+-   `not` / `not2` / `not3` / `not4` (unary)
+-   `orI` / `orI2` / `orI3` / `orI4`
+-   `orU` / `orU2` / `orU3` / `orU4`
+-   `orNI` / `orNI2` / `orNI3` / `orNI4`
+-   `orNU` / `orNU2` / `orNU3` / `orNU4`
+-   `rshiftI` / `rshiftI2` /`rshiftI3` / `rshiftI4`
+-   `rshiftU` / `rshiftU2` /`rshiftU3` / `rshiftU4`
+-   `xorI` / `xorI2` / `xorI3` / `xorI4`
+-   `xorU` / `xorU2` / `xorU3` / `xorU4`
+-   `xorNI` / `xorNI2` / `xorNI3` / `xorNI4`
+-   `xorNU` / `xorNU2` / `xorNU3` / `xorNU4`
 
 ### Hashing
 

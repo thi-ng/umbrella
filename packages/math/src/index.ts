@@ -5,6 +5,7 @@ export * from "./crossing";
 export * from "./eqdelta";
 export * from "./extrema";
 export * from "./fit";
+export * from "./int";
 export * from "./interval";
 export * from "./min-error";
 export * from "./mix";

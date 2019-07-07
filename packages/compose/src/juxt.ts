@@ -62,21 +62,21 @@ export function juxt<T>(...fns: Fn<any, any>[]) {
     const [a, b, c, d, e, f, g, h] = fns;
     switch (fns.length) {
         case 1:
-            return (x) => [a(x)];
+            return (x: T) => [a(x)];
         case 2:
-            return (x) => [a(x), b(x)];
+            return (x: T) => [a(x), b(x)];
         case 3:
-            return (x) => [a(x), b(x), c(x)];
+            return (x: T) => [a(x), b(x), c(x)];
         case 4:
-            return (x) => [a(x), b(x), c(x), d(x)];
+            return (x: T) => [a(x), b(x), c(x), d(x)];
         case 5:
-            return (x) => [a(x), b(x), c(x), d(x), e(x)];
+            return (x: T) => [a(x), b(x), c(x), d(x), e(x)];
         case 6:
-            return (x) => [a(x), b(x), c(x), d(x), e(x), f(x)];
+            return (x: T) => [a(x), b(x), c(x), d(x), e(x), f(x)];
         case 7:
-            return (x) => [a(x), b(x), c(x), d(x), e(x), f(x), g(x)];
+            return (x: T) => [a(x), b(x), c(x), d(x), e(x), f(x), g(x)];
         case 8:
-            return (x) => [a(x), b(x), c(x), d(x), e(x), f(x), g(x), h(x)];
+            return (x: T) => [a(x), b(x), c(x), d(x), e(x), f(x), g(x), h(x)];
         default:
             return (x: T) => {
                 let res = new Array(fns.length);

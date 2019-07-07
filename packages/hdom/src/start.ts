@@ -53,7 +53,7 @@ export const start = (
     impl: HDOMImplementation<any> = DEFAULT_IMPL
 ) => {
     const _opts = { root: "app", ...opts };
-    let prev = [];
+    let prev: any[] = [];
     let isActive = true;
     const root = resolveRoot(_opts.root, impl);
     const update = () => {

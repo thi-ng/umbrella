@@ -1,6 +1,7 @@
 import { Type } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
+import * as assert from "assert";
 import { AttribPool } from "../src/attrib-pool";
-// import * as assert from "assert";
 
 describe("vector-pools", () => {
     it("attribs", () => {
@@ -10,27 +11,66 @@ describe("vector-pools", () => {
             attribs: {
                 pos: {
                     type: Type.F32,
-                    default: [0, 0],
-                    size: 2,
-                    byteOffset: 0
+                    size: 2, // 8 bytes
+                    byteOffset: 0,
+                    data: [[1, 2], [3, 4]]
                 },
-                id: { type: Type.U32, default: 0, size: 1, byteOffset: 8 },
-                index: { type: Type.U16, default: 0, size: 1, byteOffset: 12 },
+                id: {
+                    type: Type.U32,
+                    size: 1, // 4 bytes
+                    byteOffset: 8,
+                    data: [1, 2],
+                    index: 4
+                },
+                index: {
+                    type: Type.U16,
+                    size: 1, // 2 bytes
+                    byteOffset: 12,
+                    data: [10, 20]
+                },
                 col: {
-                    type: Type.I8,
-                    default: [0, 0, 0, 0],
-                    size: 4,
-                    byteOffset: 14
+                    type: Type.U8,
+                    size: 4, // 4 bytes
+                    byteOffset: 14,
+                    data: [[128, 129, 130, 131], [255, 254, 253, 252]],
+                    index: 6
                 }
             }
         });
-        pool.setAttribValue("pos", 0, [1, 2]);
-        pool.setAttribValue("id", 0, 1);
-        pool.setAttribValue("index", 0, 10);
-        pool.setAttribValue("col", 0, [128, 129, 130, 131]);
-        pool.setAttribValue("pos", 1, [3, 4]);
-        pool.setAttribValue("id", 1, 2);
-        pool.setAttribValue("index", 1, 20);
-        pool.setAttribValue("col", 1, [255, 254, 253, 252]);
+        assert(
+            equiv(
+                [...pool.attribValues("pos")],
+                [[1, 2], [3, 4], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+            )
+        );
+        assert(equiv([...pool.attribValues("id")], [0, 0, 0, 0, 1, 2, 0, 0]));
+        assert(
+            equiv([...pool.attribValues("index")], [10, 20, 0, 0, 0, 0, 0, 0])
+        );
+        assert(
+            equiv(
+                [...pool.attribValues("col")],
+                [
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [128, 129, 130, 131],
+                    [255, 254, 253, 252]
+                ]
+            )
+        );
+        // prettier-ignore
+        assert(
+            equiv(pool.attribArray("pos"),
+            [1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        );
+        // prettier-ignore
+        assert(
+            equiv(pool.attribArray("index"),
+            [10, 20, 0, 0, 0, 0, 0, 0])
+        );
     });
 });

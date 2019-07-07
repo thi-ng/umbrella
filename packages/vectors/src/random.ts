@@ -1,5 +1,10 @@
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import { MultiVecOpOOO, ReadonlyVec, Vec, VecOpOOO } from "./api";
+import {
+    MultiVecOpOOO,
+    ReadonlyVec,
+    Vec,
+    VecOpOOO
+} from "./api";
 import { defHofOp } from "./internal/codegen";
 import { normalize } from "./normalize";
 
@@ -33,7 +38,7 @@ export const [random, random2, random3, random4] = defHofOp<
  * @param n
  * @param rnd
  */
-export const randNorm = (v: Vec, n = 1, rnd: IRandom = SYSTEM) => {
+export const randNorm = (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) => {
     v = random(v, -1, 1, rnd);
     return normalize(v, v, n);
 };

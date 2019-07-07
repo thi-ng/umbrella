@@ -3,8 +3,11 @@ import { execSync } from "child_process";
 import * as fs from "fs";
 import * as icons from "../src/index";
 
-const REV = execSync("git log --pretty='%h %cI' -1").toString().trim();
+const REV = execSync("git log --pretty='%h %cI' -1")
+    .toString()
+    .trim();
 
+// prettier-ignore
 fs.writeFileSync(
     "contact-sheet.html",
     serialize(
@@ -34,12 +37,12 @@ fs.writeFileSync(
                     { style: { "font-size": "0.5rem" } },
                     Object
                         .keys(icons)
-                        .filter((id) => Array.isArray(icons[id]))
+                        .filter((id) => Array.isArray((<any>icons)[id]))
                         .map((id) => {
                             return ["div.dib.ma2",
                                 ["div.w4.h4.bg-light-gray.dark-gray.flex.items-center.tc",
                                     ["div.w-100",
-                                        icons.withSize(icons[id], "2rem"),
+                                        icons.withSize((<any>icons)[id], "2rem"),
                                         ["div.mt3", id]]]
                             ];
                         })

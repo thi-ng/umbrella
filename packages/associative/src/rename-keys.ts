@@ -15,7 +15,7 @@ export const renameKeysMap = <K, V>(
 ) => {
     out = out || empty(src, Map);
     for (let [k, v] of src) {
-        out.set(km.has(k) ? km.get(k) : k, v);
+        out!.set(km.has(k) ? km.get(k)! : k, v);
     }
     return out;
 };

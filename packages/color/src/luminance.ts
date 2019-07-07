@@ -13,16 +13,15 @@ export const luminance: MultiFn1O<
     number | string | ReadonlyColor | IColor,
     ColorMode,
     number
-> = defmulti(
-    (col: any, mode) =>
-        col.mode !== undefined
-            ? col.mode
-            : mode !== undefined
-                ? mode
-                : illegalArgs(`missing color mode`)
+> = defmulti((col: any, mode) =>
+    col.mode !== undefined
+        ? col.mode
+        : mode !== undefined
+        ? mode
+        : illegalArgs(`missing color mode`)
 );
 
-luminance.add(ColorMode.RGBA, (x: ReadonlyColor) => luminanceRGB(x));
+luminance.add(ColorMode.RGBA, (x: any) => luminanceRGB(x));
 
 luminance.add(ColorMode.INT32, (x: any) =>
     luminanceInt(typeof x === "number" ? x : x.deref())

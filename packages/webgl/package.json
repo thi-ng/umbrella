@@ -1,0 +1,65 @@
+{
+    "name": "@thi.ng/webgl",
+    "version": "0.0.1",
+    "description": "WebGL abstraction layer",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/webgl",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib geo shaders textures",
+        "cover": "yarn test && nyc report --reporter=lcov",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.0.8",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
+        "typedoc": "^0.14.2",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^6.2.0",
+        "@thi.ng/associative": "^2.3.0",
+        "@thi.ng/binary": "^1.0.6",
+        "@thi.ng/checks": "^2.1.6",
+        "@thi.ng/equiv": "^1.0.6",
+        "@thi.ng/errors": "^1.0.6",
+        "@thi.ng/matrices": "^0.4.0",
+        "@thi.ng/shader-ast": "^0.0.1",
+        "@thi.ng/shader-ast-glsl": "^0.0.1",
+        "@thi.ng/shader-ast-stdlib": "^0.0.1",
+        "@thi.ng/transducers": "^5.3.7",
+        "@thi.ng/vector-pools": "^0.2.16",
+        "@thi.ng/vectors": "^2.5.6"
+    },
+    "keywords": [
+        "declarative",
+        "ES6",
+        "FBO",
+        "GPGPU",
+        "graphics",
+        "shader",
+        "texture",
+        "typescript",
+        "webgl",
+        "webgl2"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false
+}

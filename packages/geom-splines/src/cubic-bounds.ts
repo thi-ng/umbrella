@@ -1,5 +1,5 @@
 import { mixCubic } from "@thi.ng/math";
-import { ReadonlyVec, VecPair, Vec } from "@thi.ng/vectors";
+import { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 
 const axisBounds = (
     min: Vec,
@@ -46,8 +46,8 @@ export const cubicBounds = (
     c: ReadonlyVec,
     d: ReadonlyVec
 ): VecPair => {
-    const min = [];
-    const max = [];
+    const min: Vec = [];
+    const max: Vec = [];
     for (let i = a.length; --i >= 0; ) {
         axisBounds(min, max, i, a[i], b[i], c[i], d[i]);
     }

@@ -43,7 +43,7 @@ describe("partitionSync", () => {
         const keys = new Set(["a", "b", "t"]);
         const f = step(
             partitionSync(keys, {
-                key: (x) => x[0],
+                key: (x: any) => x[0],
                 reset: false
             })
         );

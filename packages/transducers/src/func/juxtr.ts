@@ -1,5 +1,5 @@
 import { Reducer } from "../api";
-import { isReduced, unreduced, reduced } from "../reduced";
+import { isReduced, reduced, unreduced } from "../reduced";
 
 /**
  * Composes a new reducer from the ones given, in order to produce
@@ -31,13 +31,13 @@ export function juxtR<A1, A2, A3, B>(
     r3: Reducer<A3, B>,
     ...rs: Reducer<any, B>[]
 ): Reducer<any[], B>;
-export function juxtR<B>(...rs: Reducer<any, B>[]) {
+export function juxtR<B>(...rs: Reducer<any, B>[]): any {
     let [a, b, c] = rs;
     const n = rs.length;
     switch (n) {
         case 1: {
             const r = a[2];
-            return [
+            return <Reducer<any[], B>>[
                 () => [a[0]()],
                 (acc) => [a[1](acc[0])],
                 (acc, x) => {
@@ -52,7 +52,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]) {
         case 2: {
             const ra = a[2];
             const rb = b[2];
-            return [
+            return <Reducer<any[], B>>[
                 () => [a[0](), b[0]()],
                 (acc) => [a[1](acc[0]), b[1](acc[1])],
                 (acc, x) => {
@@ -69,7 +69,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]) {
             const ra = a[2];
             const rb = b[2];
             const rc = c[2];
-            return [
+            return <Reducer<any[], B>>[
                 () => [a[0](), b[0](), c[0]()],
                 (acc) => [a[1](acc[0]), b[1](acc[1]), c[1](acc[2])],
                 (acc, x) => {
@@ -88,7 +88,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]) {
             ];
         }
         default:
-            return [
+            return <Reducer<any[], B>>[
                 () => rs.map((r) => r[0]()),
                 (acc) => rs.map((r, i) => r[1](acc[i])),
                 (acc, x) => {

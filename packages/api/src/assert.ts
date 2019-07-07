@@ -1,4 +1,4 @@
-import { NO_OP } from "./api";
+import { Fn0, NO_OP } from "./api";
 
 /**
  * Takes a `test` result or predicate function without args and throws
@@ -10,9 +10,12 @@ export const assert =
     typeof process === "undefined" ||
     process.env.NODE_ENV !== "production" ||
     process.env.UMBRELLA_ASSERTS === "1"
-        ? (test: boolean | (() => boolean), msg = "assertion failed") => {
+        ? (
+              test: boolean | Fn0<boolean>,
+              msg: string | Fn0<string> = "assertion failed"
+          ) => {
               if ((typeof test === "function" && !test()) || !test) {
-                  throw new Error(msg);
+                  throw new Error(typeof msg === "function" ? msg() : msg);
               }
           }
         : NO_OP;

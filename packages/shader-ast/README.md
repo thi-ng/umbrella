@@ -1,0 +1,502 @@
+# @thi.ng/shader-ast
+
+[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+<!-- TOC depthFrom:2 depthTo:3 -->
+
+- [About](#about)
+    - [Standard library of common, higher level operations](#standard-library-of-common-higher-level-operations)
+    - [Benefits](#benefits)
+    - [Language specific code generators](#language-specific-code-generators)
+    - [Higher level building blocks](#higher-level-building-blocks)
+    - [Prior art / influences](#prior-art--influences)
+    - [Future goals](#future-goals)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+    - [Supported types](#supported-types)
+    - [Operators](#operators)
+    - [Symbol definitions / assignments](#symbol-definitions--assignments)
+    - [Control flow](#control-flow)
+    - [Built-in functions](#built-in-functions)
+    - [User defined functions](#user-defined-functions)
+    - [Global scope](#global-scope)
+    - [Code generation](#code-generation)
+    - [Compilation & execution](#compilation--execution)
+    - [AST tooling & traversal](#ast-tooling--traversal)
+- [Authors](#authors)
+- [License](#license)
+
+<!-- /TOC -->
+
+## About
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-01.jpg)
+Example shader running in plain JS & Canvas 2D context,
+cross-compiled JS/GLSL outputs shown on the right
+
+Both an [embedded
+DSL](https://en.wikipedia.org/wiki/Domain-specific_language) and [IR
+format](https://en.wikipedia.org/wiki/Intermediate_representation) to
+encourage and define *modular* shader code directly in TypeScript and
+then cross-compile to different languages. Using GLSL types and
+semantics as starting point, the DSL is used as an assembly language to
+define a partially (as much as possible / feasible) type checked AST,
+incl. custom, user defined functions, higher-order functions, inline
+functions, automatic vector-scalar overrides, most of GLSL ES 3.0
+built-ins, arg checking, and function return type inference.
+
+Code generation can be done for individual expressions or entire shader
+programs, incl. call graph analysis and topological re-ordering of all
+transitively called functions (other than built-ins). Currently only
+GLSL & JS are supported as target (see code gen packages below), but
+custom code generators can be easily added. Once more details have been
+ironed out, we aim to support [Houdini
+VEX](http://www.sidefx.com/docs/houdini/vex/index.html) (in-progress),
+[WASM](https://webassembly.org), [WHLSL for
+WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
+
+![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-raymarch-compare.jpg)
+
+Comparison of the raymarch shader example (link further below), cross
+compiled to both GLSL/WebGL and JavaScript w/ Canvas2D API and showing
+the difference image of both results.
+
+![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/feature/webgl/assets/screenshots/shader-ast-raymarch-vex-sm.gif)
+
+The same raymarching example compiled to Houdini VEX and used as "Point
+Wrangle" to displace a grid geometry (using only the depth value of the
+raymarching step). [Larger
+version](https://twitter.com/thing_umbrella/status/1146109598274924544)
+
+### Standard library of common, higher level operations
+
+In addition to the code generation aspects, this package also provides a
+form of "standard library", pure functions for common shader & GPGPU use
+cases and which can be used as syntax sugar and / or higher level
+building blocks for your own shaders. So far, this includes various math
+utils, lighting models, fog equations, SDF primitives / operators,
+raymarching helpers etc. [These functions are distributed in as separate
+package](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib).
+
+### Benefits
+
+- **no more copy & pasting, string interpolation / templating**: use
+  standard TS/JS tooling & full IDE integration to create shaders (e.g.
+  docs strings, packaging, 3rd party dependencies etc.)
+- **all non-builtin functions keep track of their transitive dependencies**,
+  enabling call graph analysis, dead code elimination, topologically
+  correct code output ordering etc. - all without manual user intervention
+- **improve general re-use**, especially once more target codegens are
+  available (see [future goals](#future-goals)).
+- **higher-order function composition & customization** (e.g. see
+  [raymarch.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib/src/raymarch/scene.ts),
+  or
+  [additive.ts](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib/src/math/additive.ts))
+- **cross compilation** to different graphics environments
+- shader functions can be called like standard TS/JS functions (incl.
+  automatically type checked args via TS mapped types)
+- type checking (at authoring time & compile time)
+  and type annotations of all AST nodes catches many issues early on
+- avoids complex GLSL parsing as done by other transpilers
+- shader code will be fully minimized along with main app code in
+  production builds as part of standard bundling processes / tool
+  chains, no extra plugins needed
+- small run time & file size overhead (depending on output target impl)
+
+### Language specific code generators
+
+- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-glsl) - GLSL 100 / 300 (WebGL1 / 2)
+- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-js) - plain JavaScript (incl. runtime)
+- [@thi.ng/shader-ast-vex](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-vex) - Houdini VEX
+
+### Higher level building blocks
+
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast-stdlib)
+
+### Prior art / influences
+
+- [Hypergiant](http://alex-charlton.com/posts/Prototype_to_polish_Making_games_in_CHICKEN_Scheme_with_Hypergiant)
+- [Lux](https://github.com/cscheid/lux/tree/master/src/shade)
+- [Penumbra](https://github.com/ztellman/penumbra)
+- [gamma](https://github.com/kovasb/gamma/)
+- [thi.ng/shader-graph](http://thi.ng/shader-graph)
+- [LLVM](http://llvm.org)
+
+### Future goals
+
+See the [project
+dashboard](https://github.com/thi-ng/umbrella/projects/2) for current
+status. The TL;DR list...
+
+- [ ] documentation
+- [ ] struct support
+- [ ] uniform blocks
+- [ ] more code gens (JS ✅, WASM, WHLSL, OpenCL, Houdini VEX (WIP))
+- [ ] JS runtime improvements / features (non-GPU / vanilla JS shader execution)
+- [ ] Integration w/ a GLSL parser (new or existing)
+- [ ] AST transformations (optimizers, e.g. [constant
+  folding ✅](https://github.com/thi-ng/umbrella/tree/feature/webgl/packages/shader-ast/src/optimize.ts))
+
+## Installation
+
+```bash
+yarn add @thi.ng/shader-ast
+```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
+- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/master/packages/dgraph)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+
+## Usage examples
+
+(Possibly non-exhaustive list, live demo links in readme's)
+
+- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-canvas2d)
+- [2D SDF](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-sdf2d)
+- [Raymarching](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-raymarch)
+- [Simplex noise](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-noise)
+- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/shader-ast-tunnel)
+- [Cubemap](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-cubemap)
+- [Grid instancing](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-grid)
+- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-gpgpu-basics)
+- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-msdf)
+- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/feature/webgl/examples/webgl-ssao)
+
+## API
+
+**TODO** - docs forthcoming
+
+### Supported types
+
+- `float` (32 bit)
+- `int` (signed 32bit)
+- `uint` (unsigned 32bit)
+- `bool`
+- `vec2` (f32)
+- `vec3` (f32)
+- `vec4` (f32)
+- `ivec2` (i32)
+- `ivec3` (i32)
+- `ivec4` (i32)
+- `uvec2` (u32)
+- `uvec3` (u32)
+- `uvec4` (u32)
+- `bvec2` (bool)
+- `bvec3` (bool)
+- `bvec4` (bool)
+- `mat2` (2x2, f32)
+- `mat3` (3x3, f32)
+- `mat4` (4x4, f32)
+- `sampler2D`
+- `sampler3D`
+- `samplerCube`
+- `sampler2DShadow`
+- `samplerCubeShadow`
+- `isampler2D`
+- `isampler3D`
+- `isamplerCube`
+- `usampler2D`
+- `usampler3D`
+- `usamplerCube`
+
+### Operators
+
+The following operators are all applied componentwise, take 2 arguments
+and support mixed vector / scalar args. One of the operands can also be
+a plain JS number, but not both. The resulting AST nodes will contain
+type hints to simplify later code generation tasks:
+
+- `add`
+- `div`
+- `mul`
+- `sub`
+
+If one of the operands is a vector or matrix and the other scalar, the
+result will be vector/matrix.
+
+If a plain (unwrapped) JS number value is given for one of the operands,
+it will be automatically wrapped in a suitable type, based on that of
+the other operand. E.g. In `add(vec2(1), 10)`, the `10` will be cast to
+`float(10)`. In `add(ivec2(1), 10)`, it will be cast to `int(10)`...
+
+`mul` has exceptional semantics for `matrix * matrix`, `matrix *
+vector` and `vector * matrix` operands (all perform correct linear
+algebraic multiplications). See GLSL ES language reference.
+
+#### Comparison
+
+All comparisons result in a `bool` term (i.e. `Term<"bool">`)
+
+| AST   | GLSL |
+|-------|------|
+| `lt`  | `<`  |
+| `lte` | `<=` |
+| `eq`  | `==` |
+| `neq` | `!=` |
+| `gte` | `>=` |
+| `gt`  | `>`  |
+
+#### Logic
+
+| AST   | GLSL |
+|-------|------|
+| `and` | `&&` |
+| `or`  | `||` |
+| `not` | `!`  |
+
+#### Bitwise
+
+| AST      | GLSL |
+|----------|------|
+| `bitand` | `&`  |
+| `bitor`  | `|`  |
+| `bitxor` | `^`  |
+| `bitnot` | `~`  |
+
+#### Swizzling
+
+Only available for vector types - to extract, , optionally reordered,
+components and / or to expand, shorten vectors. If only one component is
+selected, the result will be a scalar, else a vector of the specified
+length.
+
+- `$(vec3(1,2,3), "zyx")` => `vec3(3,2,1)`
+
+Syntax sugar for single component lookups:
+
+- `$x(v)` (same as `$(v, "x")`)
+- `$y(v)`
+- `$z(v)`
+- `$w(v)`
+- `$xy(v)`
+- `$xyz(v)`
+
+Swizzle patterns are type checked in the editor (and at compile time), i.e.
+
+- `$(vec2(1,2), "xyx")` => ok (results in equivalent of `vec3(1,2,1)`)
+- `$(vec2(1,2), "xyz")` => **illegal** (since `z` is not available in a `vec2`)
+
+#### Array index lookups
+
+- `index`
+- `indexMat`
+
+### Symbol definitions / assignments
+
+- `sym`
+- `arraySym`
+- `assign`
+- `input`
+- `output`
+- `uniform`
+
+### Control flow
+
+- `brk`
+- `cont`
+- `discard`
+
+#### If-Then-Else
+
+- `ifThen(test, truthy, falsy)`
+
+#### Ternary operator
+
+- `ternary(test, truthy, falsy)`
+
+#### For-loop
+
+- `forLoop(sym, testFn, iterFn, bodyFn)`
+
+#### While-loop
+
+- `whileLoop(test, body)`
+
+### Built-in functions
+
+The most common set of GLSL ES 3.0 builtins are supported. See
+[builtins.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/builtins.ts)
+for reference.
+
+### User defined functions
+
+Functions can be created via `defn` and can accept 0-8 typed
+arguments. Functions declared in this manner can be called like any
+other TS/JS function and will return a function call AST node with the
+supplied args.
+
+```ts
+// example from @thi.ng/shader-ast-stdlib
+
+/**
+ * Computes Lambert term, optionally using Half-Lambertian,
+ * if `half` is true.
+ *
+ * https://developer.valvesoftware.com/wiki/Half_Lambert
+ *
+ * @param surfNormal vec3
+ * @param lightDir vec3
+ * @param half bool
+ */
+const lambert = defn(
+    // return type
+    "float",
+    // function name
+    "lambert",
+    // args (incl. optional name and other opts)
+    [["vec3"], ["vec3"], ["bool"]],
+    // function body
+    (n, ldir, bidir) => {
+        // pre-declare local var
+        let d: FloatSym;
+        // function body is array of AST nodes
+        return [
+            // initialize local using expr given to `sym()`
+            (d = sym(dot(n, ldir))),
+            // return statement
+            ret(
+                ternary(
+                    bidir,
+                    fit1101(d),
+                    // also see clamp01() in stdlib
+                    clamp(d, float(0), float(1))
+                )
+            )
+        ];
+    }
+);
+```
+
+When `defn` is called, the function body will be checked for correct
+return types. Additionally a call graph for the function is generated to
+ensure the code generator later emits all dependent functions in the
+correct order.
+
+Since `defn` returns a standard TS/JS function, all arguments will be
+automatically type checked at call sites (in TypeScript only).
+
+#### Inline functions
+
+If no function local variables are required and/or inlining is desired,
+vanilla TS/JS functions can be used to produce a partial AST, which is
+then inserted at the call site:
+
+```ts
+/**
+ * Inline function. Computes sinc(kx).
+ *
+ * https://en.wikipedia.org/wiki/Sinc_function
+ *
+ * @param x
+ * @param k
+ */
+const sinc = (x: FloatTerm, k: FloatTerm) =>
+    div(sin(mul(k,x)), mul(k, x));
+```
+
+### Global scope
+
+#### Input / output variables / declarations
+
+- `input`
+- `output`
+- `uniform`
+
+#### Program definition
+
+- `program([...decls, ...functions])`
+
+### Code generation
+
+Currently, an AST can be compiled into the following languages:
+
+#### GLSL (ES)
+
+See
+[@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl)
+for further details.
+
+```ts
+import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
+
+// create codegen w/ options (defaults shown)
+const glsl = targetGLSL({
+    version: GLSLVersion.GLES_300,
+    versionPragma: true,
+    type: "fs"
+});
+
+console.log(glsl(lambert))
+```
+
+#### JavaScript
+
+See
+[@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js)
+for further details.
+
+```ts
+import { targetJS } from "@thi.ng/shader-ast-js";
+
+const js = targetJS();
+
+console.log(js(lambert))
+```
+
+### Compilation & execution
+
+### AST tooling & traversal
+
+#### Tree traversals
+
+- `walk`
+- `allChildren`
+- `scopeChildren`
+
+#### Constant folding
+
+Currently only works for scalars and primitive math ops:
+
+```ts
+import { constantFolding } from "@thi.ng/shader-ast";
+
+const ast = mul(float(10), add(float(1), float(2)));
+
+// {
+//   tag: 'op2',
+//   type: 'float',
+//   info: undefined,
+//   op: '*',
+//   l: { tag: 'lit', type: 'float', info: undefined, val: 10 },
+//   r: {
+//     tag: 'op2',
+//     type: 'float',
+//     info: undefined,
+//     op: '+',
+//     l: { tag: 'lit', type: 'float', info: undefined, val: 1 },
+//     r: { tag: 'lit', type: 'float', info: undefined, val: 2 }
+//   }
+// }
+
+constantFolding(ast)
+// { tag: 'lit', type: 'float', info: undefined, val: 30 }
+```
+
+## Authors
+
+- Karsten Schmidt
+
+## License
+
+&copy; 2019 Karsten Schmidt // Apache Software License 2.0

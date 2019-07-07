@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import { assert, Fn } from "@thi.ng/api";
 import { State } from "./api";
 import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
@@ -78,11 +78,11 @@ export const metaStream = <A, B>(
 
 export class MetaStream<A, B> extends Subscription<A, B> {
     factory: Fn<A, Subscription<B, B>>;
-    stream: Subscription<B, B>;
-    sub: Subscription<B, B>;
+    stream?: Subscription<B, B>;
+    sub?: Subscription<B, B>;
 
     constructor(factory: Fn<A, Subscription<B, B>>, id?: string) {
-        super(null, null, null, id || `metastram-${nextID()}`);
+        super(undefined, undefined, undefined, id || `metastram-${nextID()}`);
         this.factory = factory;
     }
 
@@ -99,10 +99,10 @@ export class MetaStream<A, B> extends Subscription<A, B> {
                         stream === this.stream && super.dispatch(x);
                     },
                     done: () => {
-                        this.stream.unsubscribe(this.sub);
+                        this.stream!.unsubscribe(this.sub);
                         if (stream === this.stream) {
-                            this.stream = null;
-                            this.sub = null;
+                            this.stream = undefined;
+                            this.sub = undefined;
                         }
                     },
                     error: (e) => super.error(e),
@@ -127,7 +127,8 @@ export class MetaStream<A, B> extends Subscription<A, B> {
     }
 
     protected detach() {
-        this.stream.unsubscribe(this.sub);
+        assert(!!this.stream, "input stream already removed");
+        this.stream!.unsubscribe(this.sub);
         delete this.stream;
         delete this.sub;
     }

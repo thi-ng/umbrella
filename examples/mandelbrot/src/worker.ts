@@ -24,7 +24,7 @@ const mandelbrot = (x0: number, y0: number, n: number) => {
 };
 
 // generates new fractal image based on given config tuple
-const render = ({ x1, y1, x2, y2, iter, w, h, gradient }) => {
+const render = ({ x1, y1, x2, y2, iter, w, h, gradient }: any) => {
     const grad = GRADIENTS[gradient];
     const pix = new Uint32Array(w * h);
     for (let y = 0, i = 0; y < h; y++) {

@@ -40,8 +40,8 @@ export class History<T> implements IHistory<T> {
     maxLen: number;
     changed: Predicate2<T>;
 
-    history: T[];
-    future: T[];
+    history!: T[];
+    future!: T[];
 
     /**
      * @param state parent state
@@ -97,7 +97,7 @@ export class History<T> implements IHistory<T> {
         if (this.history.length) {
             const prev = this.state.deref();
             this.future.push(prev);
-            const curr = this.state.reset(this.history.pop());
+            const curr = this.state.reset(this.history.pop()!);
             this.notify({ id: History.EVENT_UNDO, value: { prev, curr } });
             return curr;
         }
@@ -121,7 +121,7 @@ export class History<T> implements IHistory<T> {
         if (this.future.length) {
             const prev = this.state.deref();
             this.history.push(prev);
-            const curr = this.state.reset(this.future.pop());
+            const curr = this.state.reset(this.future.pop()!);
             this.notify({ id: History.EVENT_REDO, value: { prev, curr } });
             return curr;
         }
@@ -202,7 +202,7 @@ export class History<T> implements IHistory<T> {
             if (n >= this.maxLen) {
                 history.shift();
             }
-            history.push(state);
+            history.push(state!);
             this.notify({ id: History.EVENT_RECORD, value: state });
             this.future.length = 0;
         }

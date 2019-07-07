@@ -10,7 +10,7 @@ const $ = (dim: number) =>
             ([a, b]) => `Math.abs(${a}-${b})`,
             "a,b",
             undefined,
-            null,
+            "",
             ",",
             "return Math.max(",
             ");"

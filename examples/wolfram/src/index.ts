@@ -34,7 +34,7 @@ const HEIGHT = 32;
 
 const resetCA = () => [...randomBits(0.25, WIDTH)];
 
-const evolveCA = (src, { kernel, rule, reset }) =>
+const evolveCA = (src: number[], { kernel, rule, reset }: any) =>
     reset
         ? resetCA()
         : [
@@ -57,14 +57,15 @@ const triggerReset = () =>
 
 const triggerOBJExport = () => objExport.next(1);
 
-const setRule = (e) => {
-    rule.next(parseInt(e.target.value));
+const setRule = (e: Event) => {
+    rule.next(parseInt((<HTMLInputElement>e.target).value));
     triggerReset();
 };
 
-const setKernel = (e) => kernel.next(parseInt(e.target.value));
+const setKernel = (e: Event) =>
+    kernel.next(parseInt((<HTMLInputElement>e.target).value));
 
-const app = ({ id, ksize, sim }) => [
+const app = ({ id, ksize, sim }: any) => [
     "div.sans-serif.ma3",
     [
         "div",
@@ -112,9 +113,11 @@ const app = ({ id, ksize, sim }) => [
 
 const rule = stream<number>();
 const kernel = stream<number>();
-const objExport = metaStream(() => fromIterable([true, false], 17));
+const objExport = metaStream<any, boolean>(() =>
+    fromIterable([true, false], 17)
+);
 
-const wolfram = sync({
+const wolfram = sync<any, any>({
     src: {
         rule: rule.transform(map((x) => [...bits(32, false, [x])])),
         kernel: kernel.transform(
@@ -125,12 +128,12 @@ const wolfram = sync({
     xform: scan(reducer<number[], any>(resetCA, evolveCA))
 });
 
-const main = sync({
+const main = sync<any, any>({
     src: {
         id: rule,
         ksize: kernel,
         sim: wolfram.transform(
-            map((gen) => gen.map((x) => " █"[x]).join("")),
+            map((gen) => gen.map((x: number) => " █"[x]).join("")),
             slidingWindow(HEIGHT),
             map((win: string[]) => win.join("\n"))
         )
@@ -147,7 +150,7 @@ wolfram
     .transform(slidingWindow(WIDTH))
     // sidechainToggle is only letting new values through if enabled by
     // objExport stream
-    .subscribe(sidechainToggle(objExport, false))
+    .subscribe(sidechainToggle<any, boolean>(objExport, false))
     // actual OBJ conversion & export
     .transform(
         map((grid) =>

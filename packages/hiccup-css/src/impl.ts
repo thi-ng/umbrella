@@ -1,3 +1,4 @@
+import { FnAny } from "@thi.ng/api";
 import {
     isArray,
     isFunction,
@@ -16,15 +17,15 @@ import {
     transduce,
     Transducer
 } from "@thi.ng/transducers";
-import { CSSOpts } from "./api";
+import { CSSOpts, RuleFn } from "./api";
 
 const EMPTY = new Set<string>();
 
 const NO_SPACES = ":[";
 
-const xfSel = comp(
+const xfSel = comp<any, string, string>(
     flatten(),
-    map((x: string) => (NO_SPACES.indexOf(x.charAt(0)) >= 0 ? x : " " + x))
+    map((x) => (NO_SPACES.indexOf(x.charAt(0)) >= 0 ? x : " " + x))
 );
 
 const withScope = (xf: Transducer<any, any>, scope: string) =>
@@ -40,15 +41,16 @@ export const expand = (
     const sel: string[] = [];
     let curr: any, isFn;
 
-    const process = (i, r) => {
+    const process = (i: number, r: any) => {
+        let rfn: FnAny<RuleFn> | null = null;
         if (isArray(r)) {
             expand(acc, makeSelector(parent, sel), r, opts);
         } else if (isIterable(r) && !isString(r)) {
             expand(acc, makeSelector(parent, sel), [...r], opts);
-        } else if ((isFn = isFunction(r)) || opts.fns[r]) {
+        } else if ((isFn = isFunction(r)) || (rfn = opts.fns[r])) {
             if (!parent.length) {
-                if (opts.fns[r]) {
-                    opts.fns[r].apply(null, rules.slice(i + 1))(acc, opts);
+                if (rfn) {
+                    rfn.apply(null, <any>rules.slice(i + 1))(acc, opts);
                     return true;
                 }
                 r(acc, opts);
@@ -127,5 +129,5 @@ export const indent = (opts: CSSOpts, d = opts.depth) =>
     d > 1
         ? [...repeat(opts.format.indent, d)].join("")
         : d > 0
-            ? opts.format.indent
-            : "";
+        ? opts.format.indent
+        : "";

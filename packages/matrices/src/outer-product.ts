@@ -17,13 +17,13 @@ export const outerProduct: MultiVecOpVV = vop(1);
 
 export const outerProduct2 = outerProduct.add(
     2,
-    (out: Mat, [ux, uy]: ReadonlyVec, [vx, vy]: ReadonlyVec) =>
+    (out: Mat | null, [ux, uy]: ReadonlyVec, [vx, vy]: ReadonlyVec) =>
         setC4(out || [], ux * vx, uy * vx, ux * vy, uy * vy)
 );
 
 export const outerProduct3 = outerProduct.add(
     3,
-    (out: Mat, [ux, uy, uz]: ReadonlyVec, [vx, vy, vz]: ReadonlyVec) =>
+    (out: Mat | null, [ux, uy, uz]: ReadonlyVec, [vx, vy, vz]: ReadonlyVec) =>
         setC(
             out || [],
             ux * vx,
@@ -40,7 +40,11 @@ export const outerProduct3 = outerProduct.add(
 
 export const outerProduct4 = outerProduct.add(
     4,
-    (out: Mat, [ux, uy, uz, uw]: ReadonlyVec, [vx, vy, vz, vw]: ReadonlyVec) =>
+    (
+        out: Mat | null,
+        [ux, uy, uz, uw]: ReadonlyVec,
+        [vx, vy, vz, vw]: ReadonlyVec
+    ) =>
         setC(
             out || [],
             ux * vx,

@@ -13,7 +13,7 @@ import { Match, Matcher } from "./api";
 /**
  * Finite-state machine transducer / iterator with support for single
  * lookahead value. Takes an object of `states` and their matchers, an
- * arbitrary context object and an `initial` state ID.
+ * arbitrary context object and an `initial` state ID (default: "start").
  *
  * The returned transducer consumes inputs of type `T` and produces
  * results of type `R`. The results are produced by callbacks of the
@@ -67,7 +67,7 @@ export function fsm<T, C, R>(
               let curr = states[initial]
                   ? states[initial]()
                   : illegalArgs(`invalid initial state: ${initial}`);
-              return [
+              return <Reducer<any, T>>[
                   init,
                   complete,
                   (acc, x) => {
@@ -78,7 +78,7 @@ export function fsm<T, C, R>(
                           if (type >= Match.FULL) {
                               const next = body && states[body[0]];
                               if (next) {
-                                  currID = body[0];
+                                  currID = body![0];
                                   curr = next();
                               } else {
                                   illegalState(

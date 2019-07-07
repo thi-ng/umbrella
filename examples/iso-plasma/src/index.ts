@@ -36,7 +36,7 @@ const plasma = (n: number, t: number) => {
 };
 
 // compute full pattern via given fn
-const makeField = (fn: Fn<number[], number>, width, height) =>
+const makeField = (fn: Fn<number[], number>, width: number, height: number) =>
     setBorder([...map(fn, range2d(width, height))], width, height, 1000);
 
 // hdom root component
@@ -44,11 +44,11 @@ const app = () => {
     const src = makeField(plasma(6, (Date.now() - t0) * 0.001), W, W);
     const contours = iterator(
         comp(
-            mapIndexed((i, x) => [x, [i / 20, 0, 1 - i / 20]]),
+            mapIndexed((i, x) => <[number, Vec]>[x, [i / 20, 0, 1 - i / 20]]),
             mapcat(([i, col]) =>
-                map((pts) => [pts, col], isolines(src, W, W, <number>i))
+                map((pts) => <[Vec[], Vec]>[pts, col], isolines(src, W, W, i))
             ),
-            map(([pts, col]: [Vec[], Vec]) => polygon(pts, { stroke: col }))
+            map(([pts, col]) => polygon(pts, { stroke: col }))
         ),
         range(-1, 1, 0.1)
     );

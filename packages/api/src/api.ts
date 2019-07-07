@@ -297,6 +297,22 @@ export type Predicate<T> = Fn<T, boolean>;
  */
 export type Predicate2<T> = Fn2<T, T, boolean>;
 
+export type Select2<T, Q, A, B> = T extends Q ? A : B;
+
+export type Select3<T, Q1, Q2, A, B, C> = T extends Q1
+    ? A
+    : T extends Q2
+    ? B
+    : C;
+
+export type Select4<T, Q1, Q2, Q3, A, B, C, D> = T extends Q1
+    ? A
+    : T extends Q2
+    ? B
+    : T extends Q3
+    ? C
+    : D;
+
 /**
  * Higher order `Predicate` builder. Possibly stateful.
  */
@@ -505,12 +521,12 @@ export interface IEnable<T> {
      * Disables this entity.
      * @param opts optional implementation specific arg
      */
-    disable(opts: T);
+    disable(opts?: T): any;
     /**
      * Enables this entity.
      * @param opts optional implementation specific arg
      */
-    enable(opts: T);
+    enable(opts?: T): any;
     toggle?(): boolean;
 }
 
@@ -549,7 +565,7 @@ export interface Event extends IID<PropertyKey> {
  * @param V value type
  */
 export interface IGet<K, V> {
-    get(key: K, notfound?: V): V;
+    get(key: K, notfound?: V): V | undefined;
 }
 
 /**
@@ -557,7 +573,7 @@ export interface IGet<K, V> {
  * @param V value type
  */
 export interface IGetIn<K, V> {
-    getIn(key: K[], notfound?: V): V;
+    getIn(key: K[], notfound?: V): V | undefined;
 }
 
 /**
@@ -682,18 +698,18 @@ export interface ISet<V, T> extends IInto<V, T> {
  *
  * @param V value type
  * @param P return type for pop()
- * @param Q return type for push()
+ * @param S return type for push()
  */
-export interface IStack<V, P, Q> {
+export interface IStack<V, P, S> {
     /**
      * Returns top-of-stack item.
      */
-    peek(): V;
+    peek(): V | undefined;
     /**
      * Removes top-of-stack item and returns type P.
      */
-    pop(): P;
-    push(x: V): Q;
+    pop(): P | undefined;
+    push(x: V): S;
 }
 
 export interface IToHiccup {

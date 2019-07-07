@@ -65,11 +65,13 @@ export const animation = (
         ...opts
     };
     return [
-        at_keyframes.apply(null, [id, ...keyframes]),
+        at_keyframes.apply(null, <any>[id, ...keyframes]),
         [
             `.${id}`,
             Object.keys(opts).reduce(
-                (acc, k) => ((acc[`animation-${k}`] = opts[k]), acc),
+                (acc: any, k) => (
+                    (acc[`animation-${k}`] = (<any>opts)[k]), acc
+                ),
                 {}
             )
         ]

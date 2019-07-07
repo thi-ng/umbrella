@@ -1,3 +1,4 @@
+import { Subscription } from "@thi.ng/rstream";
 import { mapIndexed } from "@thi.ng/transducers";
 import { handleTab } from "./utils";
 
@@ -73,7 +74,7 @@ export const UI = {
 // transformer and receives a tuple of xml & formatted hiccup strings.
 // defined as closure to avoid using global vars. the `ctx` is the above
 // `UI.main` and `inputs` are defined in `index.ts`.
-export const app = (ctx: any, inputs: any) => ({ src, hiccup }) => [
+export const app = (ctx: any, inputs: any) => ({ src, hiccup }: any) => [
     "div.flex-ns",
     [
         editPane,
@@ -83,7 +84,7 @@ export const app = (ctx: any, inputs: any) => ({ src, hiccup }) => [
             onkeydown: handleTab(inputs.xml),
             // emitting a new value to the stream will
             // re-trigger conversion & UI update
-            oninput: (e) => inputs.xml.next(e.target.value)
+            oninput: (e: any) => inputs.xml.next(e.target.value)
         },
         src
     ],
@@ -106,7 +107,13 @@ export const app = (ctx: any, inputs: any) => ({ src, hiccup }) => [
 
 // configurable editor panel UI component
 // (uses Tachyons CSS classes for styling)
-const editPane = ({ editor }, title, attribs, value, ...extra) => [
+const editPane = (
+    { editor }: any,
+    title: string,
+    attribs: any,
+    value: string,
+    ...extra: any[]
+) => [
     "div",
     editor.root,
     ["h3", editor.title, ...title],
@@ -116,29 +123,35 @@ const editPane = ({ editor }, title, attribs, value, ...extra) => [
 ];
 
 // configurable input UI component
-const input = ({ input }, label, attribs) => [
+const input = ({ input }: any, label: string, attribs: any) => [
     "div",
     input.root,
     ["label", { ...input.label, for: attribs.id }, label],
     ["input", { ...input.input, ...attribs }]
 ];
 
-const iconButton = ({ button }, attribs, icon, label) => [
-    `a.${button.class}`,
-    { ...button, ...attribs },
-    icon,
-    label
-];
+const iconButton = (
+    { button }: any,
+    attribs: any,
+    icon: any,
+    label: string
+) => [`a.${button.class}`, { ...button, ...attribs }, icon, label];
 
 // button which, when clicked, copies given `text` to clipboard and
 // emits true on `stream`. resets stream back to false after given
 // `delay` time.
-const copyButton = ({ copyButton }, attribs, stream, text, delay = 500) => [
+const copyButton = (
+    { copyButton }: any,
+    attribs: any,
+    stream: Subscription<boolean, boolean>,
+    text: string,
+    delay = 500
+) => [
     iconButton,
     {
         ...copyButton,
         ...attribs,
-        onclick: (e) => {
+        onclick: (e: any) => {
             e.preventDefault();
             e.target.blur();
             (<any>navigator).clipboard.writeText(text).then(
@@ -155,7 +168,7 @@ const copyButton = ({ copyButton }, attribs, stream, text, delay = 500) => [
 ];
 
 // combined transform options input components
-const transformOpts = (_, inputs) => [
+const transformOpts = (_: any, inputs: any) => [
     "div",
     ["h3", "Options"],
     mapIndexed(
@@ -168,7 +181,7 @@ const transformOpts = (_, inputs) => [
                     id: "opt" + i,
                     type,
                     [v]: stream.deref(),
-                    oninput: (e) => stream.next(e.target[v])
+                    oninput: (e: any) => stream.next(e.target[v])
                 }
             ];
         },

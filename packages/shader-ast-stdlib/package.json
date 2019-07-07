@@ -1,0 +1,63 @@
+{
+    "name": "@thi.ng/shader-ast-stdlib",
+    "version": "0.0.1",
+    "description": "Useful functions for GPGPU / shader programming w/ @thi.ng/shader-ast",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib color fog lighting math matrix noise raymarch screen sdf tex",
+        "cover": "yarn test && nyc report --reporter=lcov",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.0.8",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
+        "typedoc": "^0.14.2",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {
+        "@thi.ng/shader-ast": "^0.0.1"
+    },
+    "keywords": [
+        "AST",
+        "DSL",
+        "ES6",
+        "fog",
+        "functional",
+        "higher order",
+        "inline",
+        "GLSL",
+        "GPGPU",
+        "math",
+        "matrix",
+        "noise",
+        "raymarch",
+        "random",
+        "sdf",
+        "shader",
+        "texture",
+        "typescript",
+        "webgl",
+        "webgl2"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false
+}

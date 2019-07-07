@@ -1,20 +1,43 @@
-import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import {
+    DEFAULT,
+    defmulti,
+    Implementation1O,
+    MultiFn1O
+} from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { ReadonlyVec, set2, set3, submN, ZERO2, ZERO3 } from "@thi.ng/vectors";
+import {
+    ReadonlyVec,
+    set2,
+    set3,
+    submN,
+    ZERO2,
+    ZERO3
+} from "@thi.ng/vectors";
+import {
+    Arc,
+    Circle,
+    Ellipse,
+    Sphere
+} from "../api";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 import { translate } from "./translate";
-import { Arc, Circle, Ellipse, Sphere } from "../api";
 
-export const center: MultiFn1O<IShape, ReadonlyVec, IShape> = defmulti(
-    dispatch
-);
+export const center: MultiFn1O<
+    IShape,
+    ReadonlyVec,
+    IShape | undefined
+> = defmulti(dispatch);
 
-center.add(DEFAULT, ($, origin = ZERO3) =>
-    translate($, submN(null, centroid($), origin, -1))
-);
+center.add(DEFAULT, ($, origin = ZERO3) => {
+    const c = centroid($);
+    return c ? translate($, submN(null, c, origin, -1)) : undefined;
+});
 
-center.addAll({
+center.addAll(<
+    IObjectOf<Implementation1O<unknown, ReadonlyVec, IShape | undefined>>
+>{
     [Type.ARC]: ($: Arc, origin = ZERO2) =>
         new Arc(
             set2([], origin),

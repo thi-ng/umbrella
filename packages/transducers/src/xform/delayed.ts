@@ -1,5 +1,5 @@
-import { Transducer } from "../api";
 import { delayed as _delayed } from "@thi.ng/compose";
+import { Transducer } from "../api";
 import { map } from "./map";
 
 /**
@@ -12,4 +12,4 @@ import { map } from "./map";
  * @param t
  */
 export const delayed = <T>(t: number): Transducer<T, Promise<T>> =>
-    map((x) => _delayed(x, t));
+    map((x) => _delayed<T>(x, t));

@@ -1,5 +1,5 @@
 export const hasWASM = () =>
     (typeof window !== "undefined" &&
-        typeof window["WebAssembly"] !== "undefined") ||
+        typeof (<any>window)["WebAssembly"] !== "undefined") ||
     (typeof global !== "undefined" &&
-        typeof global["WebAssembly"] !== "undefined");
+        typeof (<any>global)["WebAssembly"] !== "undefined");

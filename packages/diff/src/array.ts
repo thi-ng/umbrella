@@ -1,5 +1,10 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { ArrayDiff, DiffMode } from "./api";
+import {
+    ArrayDiff,
+    DiffKeyMap,
+    DiffMode,
+    EditLog
+} from "./api";
 
 let _cachedFP: Int32Array;
 let _cachedPath: Int32Array;
@@ -20,12 +25,12 @@ const cachedPath = (size: number) =>
 const simpleDiff = <T>(
     state: ArrayDiff<T>,
     src: ArrayLike<T>,
-    key: keyof ArrayDiff<T>,
+    key: "adds" | "dels",
     logDir: number,
     mode: DiffMode
 ) => {
     const n = src.length;
-    const linear = state.linear;
+    const linear = <EditLog<Number, T>>state.linear;
     state.distance = n;
     if (mode !== DiffMode.ONLY_DISTANCE) {
         for (let i = 0, j = 0; i < n; i++, j += 3) {
@@ -34,7 +39,7 @@ const simpleDiff = <T>(
             linear[j + 2] = src[i];
         }
         if (mode === DiffMode.FULL) {
-            const _state = state[key];
+            const _state = <DiffKeyMap<T>>state[key];
             for (let i = 0; i < n; i++) {
                 _state[i] = src[i];
             }
@@ -59,8 +64,8 @@ const simpleDiff = <T>(
  * @param equiv equality predicate function
  */
 export const diffArray = <T>(
-    a: ArrayLike<T>,
-    b: ArrayLike<T>,
+    a: ArrayLike<T> | undefined | null,
+    b: ArrayLike<T> | undefined | null,
     mode = DiffMode.FULL,
     equiv = _equiv
 ) => {
@@ -75,13 +80,13 @@ export const diffArray = <T>(
     if (a === b || (a == null && b == null)) {
         return state;
     } else if (a == null || a.length === 0) {
-        return simpleDiff(state, b, "adds", 1, mode);
+        return simpleDiff(state, b!, "adds", 1, mode);
     } else if (b == null || b.length === 0) {
         return simpleDiff(state, a, "dels", -1, mode);
     }
 
     const reverse = a.length >= b.length;
-    let _a, _b, na, nb;
+    let _a: ArrayLike<T>, _b: ArrayLike<T>, na: number, nb: number;
 
     if (reverse) {
         _a = b;
@@ -104,7 +109,7 @@ export const diffArray = <T>(
     epc.length = 0;
     pathPos.length = 0;
 
-    const snake = (k, p, pp) => {
+    const snake = (k: number, p: number, pp: number) => {
         const koff = k + offset;
         let r, y;
         if (p > pp) {
@@ -172,20 +177,23 @@ const buildFullLog = <T>(
     b: ArrayLike<T>,
     reverse: boolean
 ) => {
-    const linear = state.linear;
-    const _const = state.const;
-    let i = epc.length,
-        px = 0,
-        py = 0;
-    let adds, dels, aID, dID;
+    const linear = <EditLog<Number, T>>state.linear;
+    const _const = <DiffKeyMap<T>>state.const;
+    let i = epc.length;
+    let px = 0;
+    let py = 0;
+    let adds: DiffKeyMap<T>;
+    let dels: DiffKeyMap<T>;
+    let aID: number;
+    let dID: number;
     if (reverse) {
-        adds = state.dels;
-        dels = state.adds;
+        adds = <DiffKeyMap<T>>state.dels;
+        dels = <DiffKeyMap<T>>state.adds;
         aID = -1;
         dID = 1;
     } else {
-        adds = state.adds;
-        dels = state.dels;
+        adds = <DiffKeyMap<T>>state.adds;
+        dels = <DiffKeyMap<T>>state.dels;
         aID = 1;
         dID = -1;
     }
@@ -220,7 +228,7 @@ const buildLinearLog = <T>(
     reverse: boolean,
     inclConst: boolean
 ) => {
-    const linear = state.linear;
+    const linear = <EditLog<number, T>>state.linear;
     const aID = reverse ? -1 : 1;
     const dID = reverse ? 1 : -1;
     let i = epc.length,

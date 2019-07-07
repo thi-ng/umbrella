@@ -1,4 +1,11 @@
-import { Fn1, Fn2, Fn3, Fn4, FnAny, MapLike } from "./api";
+import {
+    Fn1,
+    Fn2,
+    Fn3,
+    Fn4,
+    FnAny,
+    MapLike
+} from "./api";
 
 /**
  * Function memoization for arbitrary argument counts. Returns augmented
@@ -27,7 +34,7 @@ export function memoize<A, B, C, D, E>(
     fn: Fn4<A, B, C, D, E>,
     cache: MapLike<[A, B, C, D], E>
 ): Fn4<A, B, C, D, E>;
-export function memoize(fn: FnAny, cache: Map<any, any>): FnAny {
+export function memoize(fn: FnAny, cache: MapLike<any, any>): FnAny {
     return (...args: any[]) => {
         let res;
         return cache.has(args)

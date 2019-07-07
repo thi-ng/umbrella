@@ -7,7 +7,12 @@ import {
     subscription,
     sync
 } from "@thi.ng/rstream";
-import { map, reducer, scan, vals } from "@thi.ng/transducers";
+import {
+    map,
+    reducer,
+    scan,
+    vals
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // example user context object
@@ -48,7 +53,7 @@ const ctx = {
  */
 const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
     tree
-        .subscribe(sidechainPartition(fromRAF()))
+        .subscribe(sidechainPartition<any, number>(fromRAF()))
         .transform(map(peek), updateDOM({ root, ctx }));
 
 /**
@@ -70,7 +75,7 @@ const button = (ctx: any, onclick: EventListener, body: any) => [
  * @param _ hdom user context (unused)
  * @param stream counter stream
  */
-const clickButton = (_, stream: Subscription<boolean, number>) => [
+const clickButton = (_: any, stream: Subscription<boolean, number>) => [
     button,
     () => stream.next(true),
     stream.deref()
@@ -82,7 +87,7 @@ const clickButton = (_, stream: Subscription<boolean, number>) => [
  * @param _ hdom user context (unused)
  * @param counters streams to reset
  */
-const resetButton = (_, counters: Subscription<boolean, number>[]) => [
+const resetButton = (_: any, counters: Subscription<boolean, number>[]) => [
     button,
     () => counters.forEach((c) => c.next(false)),
     "reset"
@@ -98,7 +103,7 @@ const resetButton = (_, counters: Subscription<boolean, number>[]) => [
  */
 const counter = (start: number, step: number) => {
     const s = subscription<boolean, number>(
-        null,
+        undefined,
         // the `scan` transducer is used to provide counter functionality
         // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
         scan(reducer(() => start, (x, y) => (y ? x + step : start)))
@@ -117,7 +122,7 @@ const counter = (start: number, step: number) => {
  */
 const app = (ctx: any, initial: number[][]) => {
     const counters = initial.map(([start, step]) => counter(start, step));
-    return sync({
+    return sync<any, any>({
         src: counters.map((c) => c.transform(map(() => [clickButton, c]))),
         xform: map(
             // build the app's actual root component
@@ -142,7 +147,7 @@ const app = (ctx: any, initial: number[][]) => {
 
 // start app & DOM updates
 domUpdate(
-    document.getElementById("app"),
+    document.getElementById("app")!,
     app(ctx, [[10, 1], [20, 5], [30, 10]]),
     ctx
 );

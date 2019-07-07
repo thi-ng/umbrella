@@ -64,7 +64,7 @@ export function partial<A, B, C, D, E, F, G, H, T>(
     g: G,
     h: H
 ): FnAny<T>;
-export function partial(fn, ...args: any[]) {
+export function partial(fn: any, ...args: any[]) {
     let [a, b, c, d, e, f, g, h] = args;
     switch (args.length) {
         case 1:

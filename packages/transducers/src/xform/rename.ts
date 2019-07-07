@@ -28,7 +28,7 @@ export function rename(...args: any[]): any {
     }
     if (args[1]) {
         const ks = Object.keys(kmap);
-        return map((y) =>
+        return map((y: any) =>
             transduce(
                 comp(
                     map((k: PropertyKey) => [k, y[kmap[k]]]),

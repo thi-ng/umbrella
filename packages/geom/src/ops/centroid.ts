@@ -1,4 +1,5 @@
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import {
     AABBLike,
     IShape,
@@ -26,12 +27,17 @@ import {
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
 
-export const centroid: MultiFn1O<IShape, Vec, Vec> = defmulti(dispatch);
+export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti(
+    dispatch
+);
 
-centroid.addAll({
+centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
     [Type.CIRCLE]: ($: Circle, out?) => set(out || [], $.pos),
 
-    [Type.GROUP]: ($: Group) => centroid(bounds($)),
+    [Type.GROUP]: ($: Group) => {
+        const b = bounds($);
+        return b ? centroid(b) : undefined;
+    },
 
     [Type.LINE]: ({ points }: Line, out?) =>
         mixN(out || [], points[0], points[1], 0.5),
@@ -42,7 +48,7 @@ centroid.addAll({
 
     [Type.POLYGON]: ($: Polygon, out?) => centerOfWeight2($.points, out),
 
-    [Type.RECT]: ($: AABBLike, out?) => maddN(out || [], $.pos, $.size, 0.5),
+    [Type.RECT]: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
     [Type.TRIANGLE]: ({ points }: Triangle, out?) =>
         divN(

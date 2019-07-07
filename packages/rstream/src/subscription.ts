@@ -62,9 +62,9 @@ export class Subscription<A, B>
     implements IDeref<B>, ISubscriber<A>, ISubscribable<B> {
     id: string;
 
-    protected parent: ISubscribable<A>;
+    protected parent?: ISubscribable<A>;
     protected subs: ISubscriber<B>[];
-    protected xform: Reducer<B[], A>;
+    protected xform?: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
     protected last: any;
@@ -80,7 +80,7 @@ export class Subscription<A, B>
         this.last = SEMAPHORE;
         this.subs = [];
         if (sub) {
-            this.subs.push(<ISubscriber<B>>sub);
+            this.subs.push(sub);
         }
         if (xform) {
             this.xform = xform(push());
@@ -135,7 +135,7 @@ export class Subscription<A, B>
         if (implementsFunction(sub, "subscribe")) {
             sub.parent = this;
         } else {
-            sub = subscription(sub, xform, this, id);
+            sub = subscription<B, B>(sub, xform, this, id);
         }
         if (this.last !== SEMAPHORE) {
             sub.next(this.last);

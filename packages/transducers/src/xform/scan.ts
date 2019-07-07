@@ -34,7 +34,7 @@ export function scan<A, B>(...args: any[]): any {
         (([inito, completeo, reduceo]: Reducer<any, B>) => {
             const [initi, completei, reducei]: Reducer<B, A> = args[0];
             let acc: B = args.length > 1 && args[1] != null ? args[1] : initi();
-            return [
+            return <Reducer<B, A>>[
                 inito,
                 (_acc) => {
                     let a = completei(acc);

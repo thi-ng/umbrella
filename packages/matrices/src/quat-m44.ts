@@ -1,4 +1,5 @@
-import { ReadonlyVec, setC, Vec, ZERO3 } from "@thi.ng/vectors";
+import { ReadonlyVec, setC, ZERO3 } from "@thi.ng/vectors";
+import { Mat } from "./api";
 
 /**
  * Converts quaternion into M44 with optional translation offset `t`,
@@ -8,7 +9,7 @@ import { ReadonlyVec, setC, Vec, ZERO3 } from "@thi.ng/vectors";
  * @param q
  */
 export const quatToMat44 = (
-    out: Vec,
+    out: Mat | null,
     a: ReadonlyVec,
     t: ReadonlyVec = ZERO3
 ) => {

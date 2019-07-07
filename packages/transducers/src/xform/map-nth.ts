@@ -43,9 +43,9 @@ export function mapNth<A, B>(...args: any[]): any {
     if (iter) {
         return iter;
     }
-    let n = args[0] - 1,
-        offset,
-        fn;
+    let n = args[0] - 1;
+    let offset: number;
+    let fn: Fn<A, B>;
     if (typeof args[1] === "number") {
         offset = args[1];
         fn = args[2];

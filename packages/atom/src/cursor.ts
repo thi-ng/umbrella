@@ -3,6 +3,7 @@ import {
     Fn2,
     IID,
     IRelease,
+    Predicate,
     Watch
 } from "@thi.ng/api";
 import { isArray, isFunction } from "@thi.ng/checks";
@@ -49,7 +50,6 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
     parent: IAtom<any>;
 
     protected local: Atom<T>;
-    protected lookup: Fn<any, T>;
     protected selfUpdate: boolean;
 
     constructor(opts: CursorOpts<T>);
@@ -60,7 +60,12 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         update: Fn2<any, T, any>
     );
     constructor(...args: any[]) {
-        let parent, id, lookup, update, validate, opts: CursorOpts<T>;
+        let parent!: IAtom<any>;
+        let lookup: Fn<any, T> | undefined;
+        let update: Fn2<any, T, any> | undefined;
+        let validate: Predicate<T> | undefined;
+        let opts: CursorOpts<T>;
+        let id: string | undefined;
         switch (args.length) {
             case 1:
                 opts = args[0];
@@ -69,7 +74,7 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
                 validate = opts.validate;
                 if (opts.path) {
                     if (isArray(opts.path) && isFunction(opts.path[0])) {
-                        [lookup, update] = opts.path;
+                        [lookup, update] = <any>opts.path;
                     } else {
                         lookup = getter(<Path>opts.path);
                         update = setter(<Path>opts.path);
@@ -95,18 +100,18 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         if (!lookup || !update) {
             illegalArgs();
         }
-        this.local = new Atom<T>(lookup(parent.deref()), validate);
+        this.local = new Atom<T>(lookup!(parent.deref()), validate);
         this.local.addWatch(this.id, (_, prev, curr) => {
             if (prev !== curr) {
                 this.selfUpdate = true;
-                parent.swap((state) => update(state, curr));
+                parent.swap((state) => update!(state, curr));
                 this.selfUpdate = false;
             }
         });
         parent.addWatch(this.id, (_, prev, curr) => {
             if (!this.selfUpdate) {
-                const cval = lookup(curr);
-                if (cval !== lookup(prev)) {
+                const cval = lookup!(curr);
+                if (cval !== lookup!(prev)) {
                     this.local.reset(cval);
                 }
             }

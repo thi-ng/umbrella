@@ -29,7 +29,7 @@ const meta = transduce(
 
 console.log(meta.length);
 
-const fileSizeChart = (stats, modType, type) => {
+const fileSizeChart = (stats: any, modType: string, type: string) => {
     const get = getter([1, modType, type]);
     stats = [...stats].sort((a, b) => get(b) - get(a));
 
@@ -56,7 +56,7 @@ const fileSizeChart = (stats, modType, type) => {
                     axis: [80, width - 15, 170],
                     domain: [0, stats.length, 1],
                     range: [80, width - 5],
-                    ticks: [...map((x) => x[0], stats)],
+                    ticks: [...map((x: any) => x[0], stats)],
                     label: labeledTickX
                 },
                 y: {

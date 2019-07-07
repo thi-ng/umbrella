@@ -38,7 +38,7 @@ export interface RouteParamValidator {
  * authentication. Apart from `id` and `match` all other fields
  * are optional.
  */
-export interface Route extends IID<PropertyKey> {
+export interface Route extends IID<string> {
     /**
      * Array of path components. If a value is prefixed with `?` this
      * path component will be captured under that name. E.g.
@@ -93,7 +93,7 @@ export interface Route extends IID<PropertyKey> {
  * `EVENT_ROUTE_CHANGE`. Contains the matched route ID and any route
  * params.
  */
-export interface RouteMatch extends IID<PropertyKey> {
+export interface RouteMatch extends IID<string> {
     title?: string;
 
     /**
@@ -116,12 +116,12 @@ export interface RouterConfig {
      * defined routes could be matched against user input, e.g. a home
      * or error page.
      */
-    defaultRouteID: PropertyKey;
+    defaultRouteID: string;
     /**
      * Optional initial route to trigger when router starts. If given,
      * this MUST be a route without params.
      */
-    initialRouteID?: PropertyKey;
+    initialRouteID?: string;
     /**
      * Optional route authentication function. See `RouteAuthenticator`
      * for further details. If no authenticator is given, all matched

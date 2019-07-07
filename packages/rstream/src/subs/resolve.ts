@@ -35,10 +35,15 @@ export const resolve = <T>(opts?: Partial<ResolverOpts>) =>
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected outstanding = 0;
-    protected fail: Fn<any, void>;
+    protected fail?: Fn<any, void>;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(null, null, null, opts.id || `resolve-${nextID()}`);
+        super(
+            undefined,
+            undefined,
+            undefined,
+            opts.id || `resolve-${nextID()}`
+        );
         this.fail = opts.fail;
     }
 
@@ -66,7 +71,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     }
 
     done() {
-        if (this.parent.getState() === State.DONE && this.outstanding === 0) {
+        if (this.parent!.getState() === State.DONE && this.outstanding === 0) {
             super.done();
         }
     }

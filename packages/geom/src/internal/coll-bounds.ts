@@ -12,12 +12,18 @@ import { unionBounds } from "./union-bounds";
  * @param shapes
  * @param bounds
  */
-export const collBounds = (shapes: IShape[], bounds: Fn<IShape, AABBLike>) => {
+export const collBounds = (
+    shapes: IShape[],
+    bounds: Fn<IShape, AABBLike | undefined>
+) => {
     let n = shapes.length - 1;
     if (n < 0) return;
-    let { pos, size } = bounds(shapes[n]);
+    let b = bounds(shapes[n]);
+    if (!b) return;
+    let { pos, size } = b;
     for (; --n >= 0; ) {
-        const b = bounds(shapes[n]);
+        b = bounds(shapes[n]);
+        if (!b) continue;
         [pos, size] = unionBounds(pos, size, b.pos, b.size);
     }
     return [pos, size];

@@ -9,7 +9,7 @@ import { implementsFunction } from "@thi.ng/checks";
  * @param ctx
  * @param keys
  */
-export const derefContext = (ctx: any, keys: PropertyKey[]) => {
+export const derefContext = (ctx: any, keys: PropertyKey[] | undefined) => {
     if (ctx == null || !keys || !keys.length) return ctx;
     const res = { ...ctx };
     for (let k of keys) {

@@ -45,7 +45,6 @@ export class Oscillator implements Iterable<number> {
 }
 
 export class AMFMOscillator extends Oscillator {
-    osc: StatelessOscillator;
     am: Oscillator;
     fm: Oscillator;
 

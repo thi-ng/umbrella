@@ -36,7 +36,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
     }
 
     add() {
-        const v: T = this.alloc();
+        const v: T | undefined = this.alloc();
         if (v) {
             this.items.push(v);
         }
@@ -45,7 +45,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
 
     insert(i: number) {
         if (!this.length && i !== 0) return;
-        const v: T = this.alloc();
+        const v: T | undefined = this.alloc();
         if (v) {
             this.items.splice(i, 0, v);
         }
@@ -59,6 +59,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
             this.items.splice(idx, 1);
             return true;
         }
+        return false;
     }
 
     has(v: T) {

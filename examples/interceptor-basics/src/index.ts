@@ -31,7 +31,7 @@ start(
     // this root component function will be executed via RAF.
     // it first processes events and then only returns an updated
     // component if there was a state update...
-    (ctx) =>
+    (ctx: any) =>
         ctx.bus.processQueue()
             ? [
                   "button",

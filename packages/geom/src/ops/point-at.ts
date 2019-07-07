@@ -1,4 +1,5 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { IObjectOf } from "@thi.ng/api";
+import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, fit01, TAU } from "@thi.ng/math";
@@ -11,8 +12,6 @@ import {
     mixQuadratic,
     Vec
 } from "@thi.ng/vectors";
-import { dispatch } from "../internal/dispatch";
-import { vertices } from "./vertices";
 import {
     Arc,
     Circle,
@@ -24,10 +23,12 @@ import {
     Ray,
     Rect
 } from "../api";
+import { dispatch } from "../internal/dispatch";
+import { vertices } from "./vertices";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 
-pointAt.addAll({
+pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.ARC]: ($: Arc, t: number) => $.pointAtTheta(fit01(t, $.start, $.end)),
 
     [Type.CIRCLE]: ($: Circle, t) => cartesian2(null, [$.r, TAU * t], $.pos),
@@ -35,7 +36,7 @@ pointAt.addAll({
     [Type.CUBIC]: ({ points }: Cubic, t) =>
         mixCubic([], points[0], points[1], points[2], points[3], t),
 
-    [Type.ELLIPSE]: ($: Ellipse, t) => madd2([], $.pos, cossin(TAU * t), $.r),
+    [Type.ELLIPSE]: ($: Ellipse, t) => madd2([], cossin(TAU * t), $.r, $.pos),
 
     [Type.LINE]: ({ points }: Line, t) => mixN2([], points[0], points[1], t),
 
@@ -46,7 +47,7 @@ pointAt.addAll({
     [Type.QUADRATIC]: ({ points }: Quadratic, t) =>
         mixQuadratic([], points[0], points[1], points[2], t),
 
-    [Type.RAY]: ($: Ray, t) => maddN([], $.pos, $.dir, t),
+    [Type.RAY]: ($: Ray, t) => maddN([], $.dir, t, $.pos),
 
     [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t)
 });

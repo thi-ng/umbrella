@@ -1,6 +1,5 @@
 import { Fn0, IObjectOf } from "@thi.ng/api";
 import {
-    comp,
     compR,
     ensureReduced,
     isReduced,
@@ -103,24 +102,23 @@ export interface FSMOpts<T extends FSMState, A, B> {
  */
 export const fsm = <T extends FSMState, A, B>(
     opts: FSMOpts<T, A, B[]>
-): Transducer<A, B> =>
-    comp((rfn: Reducer<any, B>) => {
-        const states = opts.states;
-        const state = opts.init();
-        const r = rfn[2];
-        return compR(rfn, (acc, x) => {
-            const res = states[<any>state.state](state, x);
-            if (res != null) {
-                for (let i = 0, n = (<B[]>res).length; i < n; i++) {
-                    acc = r(acc, res[i]);
-                    if (isReduced(acc)) {
-                        break;
-                    }
+): Transducer<A, B> => (rfn: Reducer<any, B>) => {
+    const states = opts.states;
+    const state = opts.init();
+    const r = rfn[2];
+    return compR(rfn, (acc, x) => {
+        const res: any = states[<any>state.state](state, x);
+        if (res != null) {
+            for (let i = 0, n = (<B[]>res).length; i < n; i++) {
+                acc = r(acc, res[i]);
+                if (isReduced(acc)) {
+                    break;
                 }
             }
-            if (state.state === opts.terminate) {
-                return ensureReduced(acc);
-            }
-            return acc;
-        });
+        }
+        if (state.state === opts.terminate) {
+            return ensureReduced(acc);
+        }
+        return acc;
     });
+};

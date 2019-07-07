@@ -10,10 +10,10 @@ export function xyza(...args: any[]) {
 }
 
 export class XYZA extends AColor<XYZA> implements IVector<XYZA> {
-    x: number;
-    y: number;
-    z: number;
-    a: number;
+    x!: number;
+    y!: number;
+    z!: number;
+    a!: number;
 
     get mode() {
         return ColorMode.XYZA;

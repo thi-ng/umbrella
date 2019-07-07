@@ -1,0 +1,51 @@
+{
+    "name": "@thi.ng/leb128",
+    "version": "0.0.1",
+    "description": "WASM based LEB128 encoder / decoder (signed & unsigned)",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/binary",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "cover": "yarn test && nyc report --reporter=lcov",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.0.8",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
+        "typedoc": "^0.14.2",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {
+        "@thi.ng/checks": "^2.1.6",
+        "@thi.ng/errors": "^1.0.6",
+        "@thi.ng/transducers-binary": "^0.3.12"
+    },
+    "keywords": [
+        "LEB128",
+        "binary",
+        "conversion",
+        "ES6",
+        "typescript",
+        "WASM"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false
+}

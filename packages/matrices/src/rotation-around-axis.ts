@@ -13,7 +13,7 @@ import { mat33to44 } from "./m33-m44";
  * @param normalize
  */
 export const rotationAroundAxis33 = (
-    out: Mat,
+    out: Mat | null,
     axis: ReadonlyVec,
     theta: number,
     normalize = false
@@ -47,7 +47,7 @@ export const rotationAroundAxis33 = (
  * @param normalize
  */
 export const rotationAroundAxis44 = (
-    out: Mat,
+    out: Mat | null,
     axis: ReadonlyVec,
     theta: number,
     normalize = false

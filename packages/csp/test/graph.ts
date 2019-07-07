@@ -1,6 +1,6 @@
 import * as api from "@thi.ng/api";
-// import * as tx from "@thi.ng/transducers";
 import { Channel, Mult } from "../src";
+// import * as tx from "@thi.ng/transducers";
 
 export interface Node {
     ins: api.IObjectOf<Channel<any>>;
@@ -10,27 +10,35 @@ export interface Node {
 
 export type NodeFn = (n: Node) => void;
 
-export function node(id: string, ins: api.IObjectOf<Channel<any> | Mult<any>>, outs: string[], init: any, fn: NodeFn) {
+export function node(
+    id: string,
+    ins: api.IObjectOf<Channel<any> | Mult<any>>,
+    outs: string[],
+    init: any,
+    fn: NodeFn
+) {
     const $: Node = {
         ins: <api.IObjectOf<Channel<any>>>{},
         outs: <api.IObjectOf<Mult<any>>>{},
-        state: init || {},
+        state: init || {}
     };
     for (let k of Object.keys(ins)) {
         const val = ins[k];
         $.ins[k] =
-            val instanceof Channel ?
-                (val.id = k, val) :
-                val instanceof Mult ?
-                    val.tap(new Channel(k)) :
-                    new Channel(k);
+            val instanceof Channel
+                ? ((val.id = k), val)
+                : val instanceof Mult
+                ? val.tap(new Channel(k))!
+                : new Channel(k);
     }
     for (let o of outs) {
         $.outs[o] = new Mult(id + "-" + o);
     }
     (async () => {
         while (true) {
-            let ports = Object.keys($.ins).map((k) => $.ins[k]).filter(x => !!x);
+            let ports = Object.keys($.ins)
+                .map((k) => $.ins[k])
+                .filter((x) => !!x);
             let [x, c] = await Channel.select(ports);
             if (x === undefined) {
                 break;
@@ -51,7 +59,11 @@ export function node(id: string, ins: api.IObjectOf<Channel<any> | Mult<any>>, o
     return $;
 }
 
-export function add(id: string, ins?: api.IObjectOf<Channel<any> | Mult<any>>, init?: any) {
+export function add(
+    id: string,
+    ins?: api.IObjectOf<Channel<any> | Mult<any>>,
+    init?: any
+) {
     return node(
         id,
         Object.assign({ a: null, b: null }, ins),
@@ -63,9 +75,13 @@ export function add(id: string, ins?: api.IObjectOf<Channel<any> | Mult<any>>, i
             }
         }
     );
-};
+}
 
-export function mul(id: string, ins?: api.IObjectOf<Channel<any> | Mult<any>>, init?: any) {
+export function mul(
+    id: string,
+    ins?: api.IObjectOf<Channel<any> | Mult<any>>,
+    init?: any
+) {
     return node(
         id,
         Object.assign({ a: null, b: null }, ins),
@@ -77,13 +93,16 @@ export function mul(id: string, ins?: api.IObjectOf<Channel<any> | Mult<any>>, i
             }
         }
     );
-};
+}
 
 const add1 = add("add1", {}, { b: 100 });
 const add2 = add("add2", { b: add1.outs.out }, { a: 1000 });
 const mul1 = mul("mul1", { a: add2.outs.out, b: Channel.range(0, 10, 1, 500) });
 
-mul1.outs.out.tap().consume(console.log).then(() => (add1.ins.a.close(), add2.ins.a.close()));
+mul1.outs.out
+    .tap()!
+    .consume(console.log)
+    .then(() => (add1.ins.a.close(), add2.ins.a.close()));
 
 (async () => {
     let i = 0;

@@ -1,17 +1,27 @@
 import { IObjectOf, Type } from "@thi.ng/api";
-import { BlockCtor } from "./api";
 
-const CTORS: IObjectOf<BlockCtor> = {
-    [Type.U8]: (buf, addr, num) => new Uint8Array(buf, addr, num),
-    [Type.U8C]: (buf, addr, num) => new Uint8ClampedArray(buf, addr, num),
-    [Type.I8]: (buf, addr, num) => new Int8Array(buf, addr, num),
-    [Type.U16]: (buf, addr, num) => new Uint16Array(buf, addr, num),
-    [Type.I16]: (buf, addr, num) => new Int16Array(buf, addr, num),
-    [Type.U32]: (buf, addr, num) => new Uint32Array(buf, addr, num),
-    [Type.I32]: (buf, addr, num) => new Int32Array(buf, addr, num),
-    [Type.F32]: (buf, addr, num) => new Float32Array(buf, addr, num),
-    [Type.F64]: (buf, addr, num) => new Float64Array(buf, addr, num)
+export type TypedArrayConstructor =
+    | Uint8ArrayConstructor
+    | Uint8ClampedArrayConstructor
+    | Int8ArrayConstructor
+    | Uint16ArrayConstructor
+    | Int16ArrayConstructor
+    | Uint32ArrayConstructor
+    | Int32ArrayConstructor
+    | Float32ArrayConstructor
+    | Float64ArrayConstructor;
+
+export const TYPEDARRAY_CTORS: IObjectOf<TypedArrayConstructor> = {
+    [Type.U8]: Uint8Array,
+    [Type.U8C]: Uint8ClampedArray,
+    [Type.I8]: Int8Array,
+    [Type.U16]: Uint16Array,
+    [Type.I16]: Int16Array,
+    [Type.U32]: Uint32Array,
+    [Type.I32]: Int32Array,
+    [Type.F32]: Float32Array,
+    [Type.F64]: Float64Array
 };
 
 export const wrap = (type: Type, buf: ArrayBuffer, addr: number, num: number) =>
-    CTORS[type](buf, addr, num);
+    new TYPEDARRAY_CTORS[type](buf, addr, num);

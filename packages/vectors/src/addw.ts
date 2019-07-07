@@ -3,25 +3,27 @@ import { maddN } from "./maddn";
 import { mulN } from "./muln";
 
 export const addW2 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     wa: number,
     wb: number
-) => maddN(out, mulN(out, a, wa), b, wb);
+) => (!out && (out = a), maddN(out, b, wb, mulN(out, a, wa)));
 
 export const addW3 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
     wa: number,
     wb: number,
     wc: number
-) => maddN(out, maddN(out, mulN(out, a, wa), b, wb), c, wc);
+) => (
+    !out && (out = a), maddN(out, c, wc, maddN(out, b, wb, mulN(out, a, wa)))
+);
 
 export const addW4 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
@@ -30,10 +32,13 @@ export const addW4 = (
     wb: number,
     wc: number,
     wd: number
-) => maddN(out, maddN(out, maddN(out, mulN(out, a, wa), b, wb), c, wc), d, wd);
+) => (
+    !out && (out = a),
+    maddN(out, d, wd, maddN(out, c, wc, maddN(out, b, wb, mulN(out, a, wa))))
+);
 
 export const addW5 = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
@@ -44,15 +49,17 @@ export const addW5 = (
     wc: number,
     wd: number,
     we: number
-) =>
+) => (
+    !out && (out = a),
     maddN(
         out,
+        e,
+        we,
         maddN(
             out,
-            maddN(out, maddN(out, mulN(out, a, wa), b, wb), c, wc),
             d,
-            wd
-        ),
-        e,
-        we
-    );
+            wd,
+            maddN(out, c, wc, maddN(out, b, wb, mulN(out, a, wa)))
+        )
+    )
+);

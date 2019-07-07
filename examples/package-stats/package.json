@@ -6,12 +6,13 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rm -rf *.js *.svg lib",
-        "build": "yarn clean && tsc && node lib/index.js"
+        "build": "yarn clean && ts-node src/index.ts"
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.3",
-        "terser": "^3.17.0",
-        "typescript": "^3.4.1"
+        "terser": "^4.0.0",
+        "typescript": "^3.5.2",
+        "ts-node": "^8.2.0"
     },
     "dependencies": {
         "@thi.ng/checks": "latest",
@@ -19,9 +20,10 @@
         "@thi.ng/hiccup": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/math": "latest",
-        "@thi.ng/path": "latest",
+        "@thi.ng/paths": "latest",
         "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/vectors": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

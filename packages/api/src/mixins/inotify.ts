@@ -2,9 +2,15 @@ import {
     Event,
     EVENT_ALL,
     INotify,
+    IObjectOf,
     Listener
 } from "../api";
 import { mixin } from "../mixin";
+
+interface _INotify extends INotify {
+    _listeners: IObjectOf<[Listener, any][]>;
+    __listener(listeners: any[][], f: Listener, scope: any): number;
+}
 
 export const inotify_dispatch = (listeners: any[][], e: Event) => {
     if (!listeners) return;
@@ -23,23 +29,24 @@ export const inotify_dispatch = (listeners: any[][], e: Event) => {
  * registered listeners.
  */
 export const INotifyMixin = mixin(<INotify>{
-    addListener(id: PropertyKey, fn: Listener, scope?: any) {
-        let l = (this._listeners = this._listeners || {})[id];
+    addListener(id: string, fn: Listener, scope?: any) {
+        let l = ((<_INotify>this)._listeners =
+            (<_INotify>this)._listeners || {})[id];
         if (!l) {
-            l = this._listeners[id] = [];
+            l = (<any>this)._listeners[id] = [];
         }
-        if (this.__listener(l, fn, scope) === -1) {
+        if ((<_INotify>this).__listener(l, fn, scope) === -1) {
             l.push([fn, scope]);
             return true;
         }
         return false;
     },
 
-    removeListener(id: PropertyKey, fn: Listener, scope?: any) {
-        if (!this._listeners) return false;
-        const l: any[][] = this._listeners[id];
+    removeListener(id: string, fn: Listener, scope?: any) {
+        if (!(<_INotify>this)._listeners) return false;
+        const l = (<_INotify>this)._listeners[id];
         if (l) {
-            const idx = this.__listener(l, fn, scope);
+            const idx = (<_INotify>this).__listener(l, fn, scope);
             if (idx !== -1) {
                 l.splice(idx, 1);
                 return true;
@@ -49,13 +56,13 @@ export const INotifyMixin = mixin(<INotify>{
     },
 
     notify(e: Event) {
-        if (!this._listeners) return;
+        if (!(<_INotify>this)._listeners) return;
         e.target === undefined && (e.target = this);
-        inotify_dispatch(this._listeners[e.id], e);
-        inotify_dispatch(this._listeners[EVENT_ALL], e);
+        inotify_dispatch((<_INotify>this)._listeners[<string>e.id], e);
+        inotify_dispatch((<_INotify>this)._listeners[EVENT_ALL], e);
     },
 
-    __listener(listeners: any[][], f: Listener, scope: any) {
+    __listener(listeners: [Listener, any][], f: Listener, scope: any) {
         let i = listeners.length;
         while (--i >= 0) {
             const l = listeners[i];

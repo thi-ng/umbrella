@@ -52,7 +52,7 @@ export const postWorker = <T>(
                     tx = [ta ? (<any>x).buffer : x];
                 }
             }
-            _worker.postMessage(x, tx);
+            _worker.postMessage(x, tx || []);
         },
         done() {
             if (terminate > 0) {

@@ -1,16 +1,16 @@
-export const link = (ctx, href, body?) => [
+export const link = (ctx: any, href: string, body?: any) => [
     "a",
     { ...ctx.link, href },
     body || href
 ];
 
-export const twitterLink = (_, username) => [
+export const twitterLink = (_: any, username: string) => [
     link,
     `https://twitter.com/${username}`,
     "@" + username
 ];
 
-export const navButton = (ctx, step) => [
+export const navButton = (ctx: any, step: number) => [
     "a",
     {
         ...ctx.navButton[step < 0 ? "prev" : "next"],
@@ -19,17 +19,30 @@ export const navButton = (ctx, step) => [
     step < 0 ? "<" : ">"
 ];
 
-export const footer = (ctx, ...body) => ["footer", ctx.footer, ...body];
+export const footer = (ctx: any, ...body: any[]) => [
+    "footer",
+    ctx.footer,
+    ...body
+];
 
-export const codeBlock = (ctx, body) => ["pre", ctx.code, body.trim()];
+export const codeBlock = (ctx: any, body: string) => [
+    "pre",
+    ctx.code,
+    body.trim()
+];
 
-export const list = (ctx, ...items) => [
+export const list = (ctx: any, ...items: any[]) => [
     "ul",
     ctx.list,
     ...items.map((i) => ["li", i])
 ];
 
-export const titlePage = (ctx, clazz, title, ...body) => [
+export const titlePage = (
+    ctx: any,
+    clazz: string,
+    title: string,
+    ...body: any[]
+) => [
     "div",
     {
         ...ctx.titlePage.root,
@@ -46,21 +59,26 @@ export const titlePage = (ctx, clazz, title, ...body) => [
     ]
 ];
 
-export const contentPage = (ctx, title, ...body) => [
+export const contentPage = (ctx: any, title: string, ...body: any[]) => [
     "div",
     ctx.contentPage.root,
     ["h2", ctx.contentPage.title, title],
     ["div", ctx.contentPage.body, ...body]
 ];
 
-export const quotePage = (ctx, quote, author) => [
+export const quotePage = (ctx: any, quote: any[], author: string) => [
     "div",
     ctx.quotePage.root,
     ["div", ctx.quotePage.quote, ...quote.map((x) => ["div", x])],
     ["div", ctx.quotePage.author, `— ${author}`]
 ];
 
-export const bgImagePage = (ctx, clazz, src, ...extra) => [
+export const bgImagePage = (
+    ctx: any,
+    clazz: string,
+    src: string,
+    ...extra: any[]
+) => [
     "div",
     {
         class: `${ctx.bgImagePage.class} ${clazz}`,
@@ -73,13 +91,13 @@ export const bgImagePage = (ctx, clazz, src, ...extra) => [
     ...extra
 ];
 
-export const imagePage = (ctx, clazz, src) => [
+export const imagePage = (ctx: any, clazz: string, src: string) => [
     "div",
     { ...ctx.imagePage.root, class: `${ctx.imagePage.root.class} ${clazz}` },
     ["div.w-100", ["img", { ...ctx.imagePage.img, src }]]
 ];
 
-export const ytVideo = (ctx, id) => [
+export const ytVideo = (ctx: any, id: string) => [
     "div",
     [
         "iframe",
@@ -94,7 +112,11 @@ export const ytVideo = (ctx, id) => [
     [navButton, 1]
 ];
 
-export const app = (slideCount, ctx) => ({ slideID, content, time }) => [
+export const app = (slideCount: number, ctx: any) => ({
+    slideID,
+    content,
+    time
+}: any) => [
     "div",
     ctx.app.root,
     content,
@@ -106,7 +128,7 @@ export const app = (slideCount, ctx) => ({ slideID, content, time }) => [
     ]
 ];
 
-export const printApp = (ctx, slides) => [
+export const printApp = (ctx: any, slides: any[]) => [
     "div",
     ...slides.map((content) => ["div.slide", ctx.app.root, content])
 ];

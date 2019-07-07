@@ -1,5 +1,5 @@
 import { step as _step } from "@thi.ng/math";
-import { MultiVecOpV, VecOpV } from "./api";
+import { MultiVecOpVV, VecOpVV } from "./api";
 import { DEFAULT_OUT, defHofOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";
 
@@ -10,7 +10,7 @@ import { FN2 } from "./internal/templates";
  * @param e
  * @param v
  */
-export const [step, step2, step3, step4] = defHofOp<MultiVecOpV, VecOpV>(
+export const [step, step2, step3, step4] = defHofOp<MultiVecOpVV, VecOpVV>(
     _step,
     FN2("op"),
     "o,e,a",

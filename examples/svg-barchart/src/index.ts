@@ -1,30 +1,43 @@
 import { clearDOM, renderOnce } from "@thi.ng/hdom";
-import { range, map, mapcat } from "@thi.ng/transducers";
-
-// fit `x` from range (a,b) => (c,d)
-const fit = (x, a, b, c, d) => ((x - a) / (b - a)) * (d - c) + c;
+import { fit } from "@thi.ng/math";
+import { map, mapcat, range } from "@thi.ng/transducers";
 
 // iterator of range mapped tuples: `[mapped, orig]`
-const mappedRange = (from, to, step, start, end) =>
-    map((n) => [fit(n, from, to, start, end), n], range(from, to, step));
+const mappedRange = (
+    from: number,
+    to: number,
+    step: number,
+    start: number,
+    end: number
+) => map((n) => [fit(n, from, to, start, end), n], range(from, to, step));
 
 // syntax sugar to create SVG line
-const line = (x1, y1, x2, y2) => ["line", { x1, y1, x2, y2 }];
-
-// reusuable axis tick & label combo
-const tick = (x1, y1, x2, y2, tx, ty, label) => [
-    line(x1, y1, x2, y2),
-    ["text", { x: tx, y: ty, stroke: "none" }, label]
+const line = (x1: number, y1: number, x2: number, y2: number) => [
+    "line",
+    { x1, y1, x2, y2 }
 ];
 
+// reusuable axis tick & label combo
+const tick = (
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    tx: number,
+    ty: number,
+    label: string
+) => [line(x1, y1, x2, y2), ["text", { x: tx, y: ty, stroke: "none" }, label]];
+
 // mapping fn for x-axis ticks
-const tickX = (y) => ([x, n]) => tick(x, y, x, y + 10, x, y + 20, n);
+const tickX = (y: number) => ([x, n]: any) =>
+    tick(x, y, x, y + 10, x, y + 20, n);
 
 // mapping fn for y-axis ticks
-const tickY = (x) => ([y, n]) => tick(x - 10, y, x, y, x - 15, y, n);
+const tickY = (x: number) => ([y, n]: any) =>
+    tick(x - 10, y, x, y, x - 15, y, n);
 
 // x-axis with ticks as SVG group
-const axisX = ({ axis: a, domain: d, range: r }) => [
+const axisX = ({ axis: a, domain: d, range: r }: any) => [
     "g",
     { "text-anchor": "middle" },
     line(a[0], a[2], a[1], a[2]),
@@ -32,7 +45,7 @@ const axisX = ({ axis: a, domain: d, range: r }) => [
 ];
 
 // y-axis with ticks as SVG group
-const axisY = ({ axis: a, domain: d, range: r }) => [
+const axisY = ({ axis: a, domain: d, range: r }: any) => [
     "g",
     { "text-anchor": "end" },
     line(a[2], a[0], a[2], a[1]),
@@ -40,10 +53,10 @@ const axisY = ({ axis: a, domain: d, range: r }) => [
 ];
 
 // mapping fn to create a single bar from `[domainPos, value]`
-const bar = ({ domain: xd, range: xr }, { domain: yd, range: yr }) => ([
-    xx,
-    yy
-]) => {
+const bar = (
+    { domain: xd, range: xr }: any,
+    { domain: yd, range: yr }: any
+) => ([xx, yy]: number[]) => {
     const y = fit(yy, yd[0], yd[1], yr[0], yr[1]);
     return [
         "rect",
@@ -57,7 +70,7 @@ const bar = ({ domain: xd, range: xr }, { domain: yd, range: yr }) => ([
 };
 
 // complete bar chart component
-const barChart = (_, opts, values) => [
+const barChart = (_: any, opts: any, values: any) => [
     "svg",
     opts.attribs,
     ["g", { stroke: opts.axis, fill: opts.axis }, axisX(opts.x), axisY(opts.y)],
@@ -96,5 +109,5 @@ renderOnce([
 
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
-    hot && hot.dispose(() => clearDOM(document.getElementById("app")));
+    hot && hot.dispose(() => clearDOM(document.getElementById("app")!));
 }

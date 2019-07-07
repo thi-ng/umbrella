@@ -121,7 +121,7 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
             if (!queue.size) {
                 return sorted.reverse();
             }
-            const node = queue.first();
+            const node = queue.first()!;
             queue.delete(node);
             for (let d of [...g.immediateDependencies(node)]) {
                 g.removeEdge(node, d);
@@ -136,11 +136,11 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 }
 
 const transitive = <T>(nodes: EquivMap<T, ArraySet<T>>, x: T): Set<T> => {
-    const deps: ArraySet<T> = nodes.get(x);
+    const deps: ArraySet<T> = nodes.get(x)!;
     if (deps) {
         return reduce(
             reducer(
-                null,
+                <any>null,
                 (acc, k: T) => <ArraySet<T>>union(acc, transitive(nodes, k))
             ),
             deps,

@@ -5,8 +5,19 @@ import { getIn } from "@thi.ng/paths";
 import { fromRAF } from "@thi.ng/rstream";
 import { toDot, walk } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { extract, initGraph, mul, node, node1 } from "@thi.ng/rstream-graph";
-import { choices, comp, dedupe, map } from "@thi.ng/transducers";
+import {
+    extract,
+    initGraph,
+    mul,
+    node,
+    node1
+} from "@thi.ng/rstream-graph";
+import {
+    choices,
+    comp,
+    dedupe,
+    map
+} from "@thi.ng/transducers";
 import { circle } from "./circle";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)
@@ -30,7 +41,7 @@ const db = new Atom<any>({});
 // this stream produces tuples of:
 // [eventtype, [pos, clickpos, delta]]
 // Note: only single touches are supported, no multitouch!
-const gestures = gestureStream(document.getElementById("app"));
+const gestures = gestureStream(document.getElementById("app")!);
 
 // requestAnimationFrame() based counter stream. this is consumed by the
 // "sine" graph node below, but predefined here for visualization
@@ -94,11 +105,10 @@ const graph = initGraph(db, {
     // with multiple inputs
     circle: {
         fn: node(
-            map(
-                ({ click, radius, color }) =>
-                    click && radius && color
-                        ? circle(color, click[0], click[1], radius * 2)
-                        : undefined
+            map(({ click, radius, color }) =>
+                click && radius && color
+                    ? circle(color, click[0], click[1], radius * 2)
+                    : undefined
             )
         ),
         ins: {

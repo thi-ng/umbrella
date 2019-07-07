@@ -14,7 +14,7 @@ import { translation23 } from "./translation";
  * @param top
  */
 export const viewport = (
-    out: Mat,
+    out: Mat | null,
     left: number,
     right: number,
     bottom: number,

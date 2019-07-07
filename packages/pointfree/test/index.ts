@@ -1,7 +1,8 @@
 import * as assert from "assert";
-import * as pf from "../src/index";
 import { StackContext } from "../src/api";
+import * as pf from "../src/index";
 
+// prettier-ignore
 describe("pointfree", () => {
 
     const $ = pf.ctx;
@@ -532,7 +533,7 @@ describe("pointfree", () => {
     });
 
     it("cases", () => {
-        let classify = (x) =>
+        let classify = (x:any) =>
             pf.cases({
                 0: ["zero"],
                 1: ["one"],

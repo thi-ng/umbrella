@@ -13,7 +13,12 @@ import {
     Vec,
     zeroes
 } from "@thi.ng/vectors";
-import { Cubic, Line, Path, Quadratic } from "../api";
+import {
+    Cubic,
+    Line,
+    Path,
+    Quadratic
+} from "../api";
 import { asCubic } from "../ops/as-cubic";
 import { arcFrom2Points } from "./arc";
 
@@ -44,7 +49,7 @@ export const roundedRect = (
     attribs?: Attribs
 ) => {
     r = isNumber(r) ? [r, r] : r;
-    const [w, h] = maddN2([], size, r, -2);
+    const [w, h] = maddN2([], r, -2, size);
     return new PathBuilder(attribs)
         .moveTo([pos[0] + r[0], pos[1]])
         .hlineTo(w, true)
@@ -60,11 +65,11 @@ export const roundedRect = (
 
 export class PathBuilder {
     paths: Path[];
-    attribs: Attribs;
-    protected curr: Path;
-    protected currP: Vec;
-    protected bezierP: Vec;
-    protected startP: Vec;
+    attribs?: Attribs;
+    protected curr!: Path;
+    protected currP!: Vec;
+    protected bezierP!: Vec;
+    protected startP!: Vec;
 
     constructor(attribs?: Attribs) {
         this.paths = [];
@@ -256,7 +261,7 @@ const CMD_RE = /[achlmqstvz]/i;
 export const pathFromSvg = (svg: string) => {
     const b = new PathBuilder();
     try {
-        let cmd: string;
+        let cmd = "";
         for (let n = svg.length, i = 0; i < n; ) {
             i = skipWS(svg, i);
             const c = svg.charAt(i);

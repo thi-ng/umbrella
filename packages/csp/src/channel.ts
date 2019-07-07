@@ -1,4 +1,10 @@
-import { Fn, Fn0, Predicate } from "@thi.ng/api";
+import {
+    Fn,
+    Fn0,
+    Fn2,
+    FnAny,
+    Predicate
+} from "@thi.ng/api";
 import { shuffle } from "@thi.ng/arrays";
 import { isFunction } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
@@ -48,7 +54,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         step: number,
         delay: number
     ): Channel<number>;
-    static range(...args: any[]) {
+    static range(...args: any[]): Channel<number> {
         const [from, to, step, delay] = args;
         return Channel.from(
             range(from, to, step),
@@ -94,10 +100,14 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         return chan;
     }
 
-    static from<T>(src: Iterable<any>);
-    static from<T>(src: Iterable<any>, close: boolean);
-    static from<T>(src: Iterable<any>, tx: Transducer<any, T>);
-    static from<T>(src: Iterable<any>, tx: Transducer<any, T>, close: boolean);
+    static from<T>(src: Iterable<any>): Channel<T>;
+    static from<T>(src: Iterable<any>, close: boolean): Channel<T>;
+    static from<T>(src: Iterable<any>, tx: Transducer<any, T>): Channel<T>;
+    static from<T>(
+        src: Iterable<any>,
+        tx: Transducer<any, T>,
+        close: boolean
+    ): Channel<T>;
     static from<T>(...args: any[]) {
         let close, tx;
         switch (args.length) {
@@ -135,7 +145,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
             const _select = () => {
                 for (let c of shuffle(chans)) {
                     if (c.isReadable() || c.isClosed()) {
-                        c.read().then((x) => resolve([x, c]));
+                        c.read().then((x: any) => resolve([x, c]));
                         return;
                     }
                 }
@@ -256,11 +266,11 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     static MAX_WRITES = 1024;
     static NEXT_ID = 0;
 
-    static SCHEDULE =
+    static SCHEDULE: Fn2<FnAny<void>, number, void> =
         typeof setImmediate === "function" ? setImmediate : setTimeout;
 
     private static RFN: Reducer<DCons<any>, any> = [
-        () => null,
+        <any>(() => null),
         (acc) => acc,
         (acc: DCons<any>, x) => acc.push(x)
     ];
@@ -341,6 +351,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         this.tx = tx ? tx(Channel.RFN) : null;
         this.onerror = tx && (err || defaultErrorHandler);
         this.state = State.OPEN;
+        this.isBusy = false;
     }
 
     channel() {
@@ -417,9 +428,9 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         );
     }
 
-    consume<T>(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
+    consume(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
         return (async () => {
-            let x;
+            let x: T | null;
             while (((x = null), (x = await this.read())) !== undefined) {
                 await fn(x);
             }
@@ -454,19 +465,19 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         })();
     }
 
-    reduce<A, B>(rfn: Reducer<A, B>, acc?: A): Promise<A> {
+    reduce<A>(rfn: Reducer<A, T>, acc?: A): Promise<A> {
         return (async () => {
             const [init, complete, reduce] = rfn;
             acc = acc != null ? acc : init();
-            let x;
+            let x: T | null;
             while (((x = null), (x = await this.read())) !== undefined) {
-                acc = <any>reduce(acc, x);
+                acc = <any>reduce(acc!, x);
                 if (isReduced(acc)) {
                     acc = (<any>acc).deref();
                     break;
                 }
             }
-            return unreduced(complete(acc));
+            return unreduced(complete(acc!));
         })();
     }
 
@@ -498,7 +509,9 @@ export class Channel<T> implements IReadWriteableChannel<T> {
             dest = new Channel<R>(dest);
         }
         this.consume((x: T) => (<Channel<R>>dest).write(x)) // return undefined here?
-            .then(() => close && (<Channel<R>>dest).close());
+            .then(() => {
+                close && (<Channel<R>>dest).close();
+            });
         return dest;
     }
 
@@ -509,13 +522,15 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         close = true
     ) {
         if (!(truthy instanceof Channel)) {
-            truthy = new Channel<A>(truthy);
+            truthy = new Channel<A>();
         }
         if (!(falsey instanceof Channel)) {
-            falsey = new Channel<B>(falsey);
+            falsey = new Channel<B>();
         }
-        this.consume((x: T) => (pred(x) ? truthy : falsey).write(x)).then(
-            () => close && (truthy.close(), falsey.close())
+        this.consume((x: T) => (pred(x) ? truthy! : falsey!).write(x)).then(
+            () => {
+                close && (truthy!.close(), falsey!.close());
+            }
         );
         return [truthy, falsey];
     }
@@ -557,17 +572,17 @@ export class Channel<T> implements IReadWriteableChannel<T> {
                     if (txbuf.length) {
                         const val = txbuf.drop();
                         if (val !== undefined) {
-                            reads.drop()(val);
+                            reads.drop()!(val);
                         }
                     } else {
-                        const val = await buf.drop().value();
+                        const val = await buf.drop()!.value();
                         if (val !== undefined) {
-                            reads.drop()(val);
+                            reads.drop()!(val);
                         }
                     }
                 }
                 while (writes.length && !buf.isFull()) {
-                    const put = writes.drop();
+                    const put = writes.drop()!;
                     buf.push(put);
                     put.resolve(true);
                 }
@@ -594,7 +609,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     }
 
     protected flush() {
-        let op;
+        let op: any;
         while ((op = this.reads.drop())) {
             op();
         }
@@ -613,4 +628,5 @@ const defaultErrorHandler = (e: Error, chan: Channel<any>, val?: any) =>
         val !== undefined ? val : ""
     );
 
-const maybeBuffer = (x) => x instanceof FixedBuffer || typeof x === "number";
+const maybeBuffer = (x: any) =>
+    x instanceof FixedBuffer || typeof x === "number";

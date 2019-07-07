@@ -70,7 +70,7 @@ const grid = node(
 const rotate = node(
     map(({ shapes, theta }) =>
         shapes.map(
-            (s) => (
+            (s: any) => (
                 (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${s[1].y +
                     0.5})`),
                 s

@@ -3,20 +3,20 @@ import { ReadonlyAtom } from "@thi.ng/atom";
 export type InterceptorFn = (
     state: any,
     e: Event,
-    bus?: IDispatch,
-    ctx?: InterceptorContext
+    bus: IDispatch,
+    ctx: InterceptorContext
 ) => InterceptorContext | void;
 export type InterceptorPredicate = (
     state: any,
     e: Event,
-    bus?: IDispatch,
-    ctx?: InterceptorContext
+    bus: IDispatch,
+    ctx: InterceptorContext
 ) => boolean;
 
 export type SideEffect = (
     x: any,
-    bus?: IDispatch,
-    ctx?: InterceptorContext
+    bus: IDispatch,
+    ctx: InterceptorContext
 ) => any;
 export type EventDef =
     | Interceptor
@@ -63,9 +63,9 @@ export interface Event extends Array<any> {
 
 export interface IDispatch {
     readonly state: ReadonlyAtom<any>;
-    dispatch(...event: Event[]);
-    dispatchNow(...event: Event[]);
-    dispatchLater(event: Event, delay?: number);
+    dispatch(...event: Event[]): void;
+    dispatchNow(...event: Event[]): void;
+    dispatchLater(event: Event, delay?: number): void;
 }
 
 export interface Interceptor {

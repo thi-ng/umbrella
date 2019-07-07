@@ -1,13 +1,27 @@
 import { memoizeJ } from "@thi.ng/memoize";
 import { Stringer } from "./api";
 
+type UnitDefs = [number, string, number?][];
+
 export const units: (
-    exp: [number, string, number?][],
+    exp: UnitDefs,
     base: string,
     prec?: number
-) => Stringer<number> = memoizeJ((exp, base: string, prec = 2) => {
+) => Stringer<number> = memoizeJ<
+    UnitDefs,
+    string,
+    number | undefined,
+    Stringer<number>
+>((exp: UnitDefs, base: string, prec: number = 2) => {
     const groups = exp
-        .map((x) => [x[0], x[2] != null ? x[2] : prec, x[1]])
+        .map(
+            (x) =>
+                <[number, number, string]>[
+                    x[0],
+                    x[2] != null ? x[2] : prec,
+                    x[1]
+                ]
+        )
         .sort((a, b) => a[0] - b[0]);
     return (x: number) => {
         if (x === 0) {
@@ -20,6 +34,7 @@ export const units: (
                 return (x / g[0]).toFixed(g[1]) + g[2];
             }
         }
+        return "";
     };
 });
 
