@@ -18,12 +18,20 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import * as assert from "assert";
-import { targetGLSL } from "../src";
+import { GLSLVersion, targetGLSL } from "../src";
 
-const vs100 = targetGLSL({ type: "vs", version: 100 });
-const fs100 = targetGLSL({ type: "fs", version: 100 });
-const vs300 = targetGLSL({ type: "vs" });
-const fs300 = targetGLSL({ type: "fs" });
+const vs100 = targetGLSL({
+    type: "vs",
+    version: GLSLVersion.GLES_100,
+    versionPragma: false
+});
+const fs100 = targetGLSL({
+    type: "fs",
+    version: GLSLVersion.GLES_100,
+    versionPragma: false
+});
+const vs300 = targetGLSL({ type: "vs", versionPragma: false });
+const fs300 = targetGLSL({ type: "fs", versionPragma: false });
 
 const V2 = sym("vec2", "v");
 const V3 = sym("vec3", "v");

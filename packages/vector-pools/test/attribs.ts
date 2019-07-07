@@ -1,4 +1,5 @@
 import { Type } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
 import { AttribPool } from "../src/attrib-pool";
 
@@ -36,40 +37,40 @@ describe("vector-pools", () => {
                 }
             }
         });
-        assert.deepEqual(
-            [...pool.attribValues("pos")],
-            [[1, 2], [3, 4], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+        assert(
+            equiv(
+                [...pool.attribValues("pos")],
+                [[1, 2], [3, 4], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+            )
         );
-        assert.deepEqual(
-            [...pool.attribValues("id")],
-            [0, 0, 0, 0, 1, 2, 0, 0]
+        assert(equiv([...pool.attribValues("id")], [0, 0, 0, 0, 1, 2, 0, 0]));
+        assert(
+            equiv([...pool.attribValues("index")], [10, 20, 0, 0, 0, 0, 0, 0])
         );
-        assert.deepEqual(
-            [...pool.attribValues("index")],
-            [10, 20, 0, 0, 0, 0, 0, 0]
-        );
-        assert.deepEqual(
-            [...pool.attribValues("col")],
-            [
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [128, 129, 130, 131],
-                [255, 254, 253, 252]
-            ]
-        );
-        // prettier-ignore
-        assert.deepEqual(
-            pool.attribArray("pos"),
-            [1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        assert(
+            equiv(
+                [...pool.attribValues("col")],
+                [
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [128, 129, 130, 131],
+                    [255, 254, 253, 252]
+                ]
+            )
         );
         // prettier-ignore
-        assert.deepEqual(
-            pool.attribArray("index"),
-            [10, 20, 0, 0, 0, 0, 0, 0]
+        assert(
+            equiv(pool.attribArray("pos"),
+            [1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        );
+        // prettier-ignore
+        assert(
+            equiv(pool.attribArray("index"),
+            [10, 20, 0, 0, 0, 0, 0, 0])
         );
     });
 });

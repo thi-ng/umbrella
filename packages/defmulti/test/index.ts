@@ -34,7 +34,7 @@ describe("defmulti", () => {
     });
 
     it("apr", () => {
-        const apr = defmulti(
+        const apr = defmulti<any, number>(
             ({ type, balance }) => `${type}-${balance < 1e4 ? "low" : balance < 5e4 ? "med" : "high"}`
         );
         apr.add("current-low", ({ balance }) => balance * 0.005);
