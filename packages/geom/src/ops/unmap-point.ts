@@ -43,7 +43,7 @@ unmapPoint.addAll(<IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>>{
         ),
 
     [Type.RECT]: ($: Rect, uvw: ReadonlyVec, out = []) =>
-        madd(out, $.pos, $.size, uvw)
+        madd(out, $.size, uvw, $.pos)
 });
 
 unmapPoint.isa(Type.AABB, Type.RECT);

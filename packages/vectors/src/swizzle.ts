@@ -60,3 +60,64 @@ export const swapXY: VecOpV = (out, v) => swizzle3(out, v, 1, 0, 2);
 export const swapXZ: VecOpV = (out, v) => swizzle3(out, v, 2, 1, 0);
 
 export const swapYZ: VecOpV = (out, v) => swizzle3(out, v, 0, 2, 1);
+
+/**
+ * Sets `out[a] = n`, returns `out`.
+ *
+ * @param out
+ * @param n
+ * @param a
+ */
+export const setSwizzle1 = (out: Vec, n: number, a: number) => (
+    (out[a] = n), out
+);
+
+/**
+ * Sets `out[a] = v.x, out[b] = v.y`, returns `out`.
+ *
+ * @param out
+ * @param v
+ * @param a
+ * @param b
+ */
+export const setSwizzle2 = (out: Vec, v: ReadonlyVec, a: number, b: number) => (
+    ((out[a] = v[0]), (out[b] = v[1])), out
+);
+
+/**
+ * Sets `out[a] = v.x, out[b] = v.y, out[c] = v.z`, returns `out`.
+ *
+ * @param out
+ * @param v
+ * @param a
+ * @param b
+ * @param c
+ */
+export const setSwizzle3 = (
+    out: Vec,
+    v: ReadonlyVec,
+    a: number,
+    b: number,
+    c: number
+) => (((out[a] = v[0]), (out[b] = v[1]), (out[c] = v[2])), out);
+
+/**
+ * Sets `out[a] = v.x, out[b] = v.y, out[c] = v.z, out[d]=v.w`, returns `out`.
+ *
+ * @param out
+ * @param v
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ */
+export const setSwizzle4 = (
+    out: Vec,
+    v: ReadonlyVec,
+    a: number,
+    b: number,
+    c: number,
+    d: number
+) => (
+    ((out[a] = v[0]), (out[b] = v[1]), (out[c] = v[2]), (out[d] = v[3])), out
+);

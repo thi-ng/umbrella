@@ -6,20 +6,22 @@ import {
     TypedArray
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
-import { MemPool, wrap } from "@thi.ng/malloc";
+import { MemPool, TYPEDARRAY_CTORS, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { AttribPoolOpts, AttribSpec } from "./api";
 import { asNativeType } from "./convert";
 
 /*
+ *              0x00            0x08            0x10            0x18
+ *              ^               ^               ^               ^
  * WASM mem   : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...
  * typedarr   :         0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... global offset = 4  (bytes)
  * pos (f32)  :         X X X X Y Y Y Y                                 X ... offset = 0  (bytes), size = 2 (f32)
  * uv  (f32)  :                         U U U U V V V V                   ... offset = 8  (bytes), size = 2 (f32)
  * col (u16)  :                                         R R G G B B A A   ... offset = 16 (bytes), size = 4 (u16)
  *
- * global stride: 24
+ * stride     : 24
  */
 export class AttribPool implements IRelease {
     attribs: IObjectOf<TypedArray>;
@@ -83,6 +85,7 @@ export class AttribPool implements IRelease {
             this.addr = addr;
         }
         this.initDefaults(specs);
+        this.setAttribs(specs);
     }
 
     attribValue(id: string, i: number): number | Vec | undefined {
@@ -96,9 +99,9 @@ export class AttribPool implements IRelease {
     }
 
     *attribValues(id: string) {
-        const buf = this.attribs[id];
-        assert(!!buf, `invalid attrib: ${id}`);
         const spec = this.specs[id];
+        assert(!!spec, `invalid attrib: ${id}`);
+        const buf = this.attribs[id];
         const stride = spec.stride!;
         const size = spec.size;
         if (size > 1) {
@@ -110,6 +113,26 @@ export class AttribPool implements IRelease {
                 yield buf[i * stride];
             }
         }
+    }
+
+    attribArray(id: string) {
+        const spec = this.specs[id];
+        assert(!!spec, `invalid attrib: ${id}`);
+        const n = this.capacity;
+        const size = spec.size;
+        const stride = spec.stride!;
+        const src = this.attribs[id];
+        const dest = new TYPEDARRAY_CTORS[(asNativeType(spec.type))](n * size);
+        if (size > 1) {
+            for (let i = 0, j = 0; i < n; i++, j += stride) {
+                dest.set(src.subarray(j, j + size), i * size);
+            }
+        } else {
+            for (let i = 0; i < n; i++) {
+                dest[i] = src[i * stride];
+            }
+        }
+        return dest;
     }
 
     setAttribValue(id: string, index: number, v: number | ReadonlyVec) {
@@ -137,17 +160,17 @@ export class AttribPool implements IRelease {
         return this;
     }
 
-    setAttribValues(id: string, vals: (number | ReadonlyVec)[]) {
+    setAttribValues(id: string, vals: ReadonlyVec | ReadonlyVec[], index = 0) {
         const spec = this.specs[id];
         assert(!!spec, `invalid attrib: ${id}`);
         const n = vals.length;
-        const v = vals[0];
+        this.ensure(index + n);
         const stride = spec.stride!;
-        this.ensure(n);
         const buf = this.attribs[id];
+        const v = vals[0];
         const isNum = typeof v === "number";
         assert(
-            () => (!isNum && spec.size > 1) || (isNum && spec.size === 1),
+            (!isNum && spec.size > 1) || (isNum && spec.size === 1),
             `incompatible value(s) for attrib: ${id}`
         );
         if (!isNum) {
@@ -157,13 +180,24 @@ export class AttribPool implements IRelease {
                     (<ReadonlyVec>v).length
                 }`
             );
-            for (let i = 0; i < n; i++) {
-                buf.set(<ReadonlyVec>vals[i], i * stride);
+            for (let i = 0, j = index * stride; i < n; i++, j += stride) {
+                buf.set(<ReadonlyVec>vals[i], j);
             }
         } else {
-            for (let i = 0; i < n; i++) {
-                buf[i * stride] = <number>vals[i];
+            for (let i = 0, j = index * stride; i < n; i++, j += stride) {
+                buf[j] = <number>vals[i];
             }
+        }
+    }
+
+    setAttribs(
+        specs: IObjectOf<
+            Partial<{ data: ReadonlyVec | ReadonlyVec[]; index: number }>
+        >
+    ) {
+        for (let id in specs) {
+            const spec = specs[id];
+            spec.data && this.setAttribValues(id, spec.data, spec.index || 0);
         }
     }
 

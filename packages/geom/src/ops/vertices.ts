@@ -86,7 +86,7 @@ vertices.addAll(<
         const delta = TAU / num;
         last && num++;
         for (let i = 0; i < num; i++) {
-            buf[i] = madd2([], pos, cossin(i * delta), r);
+            buf[i] = madd2([], cossin(i * delta), r, pos);
         }
         return buf;
     },

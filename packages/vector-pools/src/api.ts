@@ -10,9 +10,11 @@ import { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
 export interface AttribSpec {
     type: GLType | Type;
     size: number;
-    default?: number | ReadonlyVec;
     byteOffset: number;
     stride?: number;
+    default?: number | ReadonlyVec;
+    data?: ReadonlyVec | ReadonlyVec[];
+    index?: number;
 }
 
 export interface AttribPoolOpts {

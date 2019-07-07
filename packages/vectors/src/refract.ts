@@ -10,5 +10,5 @@ export const refract: VecOpVVN = (out, a, n, eta) => {
     const k = 1 - eta * eta * (1 - d * d);
     return k < 0
         ? zero(out)
-        : maddN(out, mulN(out, a, eta), n, -(eta * d + Math.sqrt(k)));
+        : maddN(out, n, -(eta * d + Math.sqrt(k)), mulN(out, a, eta));
 };

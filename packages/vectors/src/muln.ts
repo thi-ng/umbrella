@@ -1,3 +1,3 @@
-import { defMathNOp } from "./internal/codegen";
+import { defMathOpN } from "./internal/codegen";
 
-export const [mulN, mulN2, mulN3, mulN4] = defMathNOp("*");
+export const [mulN, mulN2, mulN3, mulN4] = defMathOpN("*");

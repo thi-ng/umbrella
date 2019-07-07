@@ -15,13 +15,22 @@ import {
     VecOpVN,
     VecOpVV
 } from "../api";
-import { FN, MATH, MATH_N } from "./templates";
+import {
+    FN,
+    MATH,
+    MATH_N,
+    SIGNED,
+    SIGNED_N,
+    UNSIGNED,
+    UNSIGNED_N
+} from "./templates";
 import { vop } from "./vop";
 
 export const ARGS_V = "o,a";
 export const ARGS_VV = "o,a,b";
 export const ARGS_VVV = "o,a,b,c";
 export const ARGS_VN = "o,a,n";
+export const ARGS_VNV = "o,a,n,b";
 export const ARGS_VVN = "o,a,b,n";
 
 export const SARGS_V = "io=0,ia=0,so=1,sa=1";
@@ -288,5 +297,11 @@ export const defOpS = <V>(
 
 export const defMathOp = (op: string) => defOp<MultiVecOpVV, VecOpVV>(MATH(op));
 
-export const defMathNOp = (op: string) =>
+export const defMathOpN = (op: string) =>
     defOp<MultiVecOpVN, VecOpVN>(MATH_N(op), ARGS_VN);
+
+export const defBitOp = (op: string, signed = false) =>
+    defOp<MultiVecOpVV, VecOpVV>((signed ? SIGNED : UNSIGNED)(op));
+
+export const defBitOpN = (op: string, signed = false) =>
+    defOp<MultiVecOpVN, VecOpVN>((signed ? SIGNED_N : UNSIGNED_N)(op), ARGS_VN);

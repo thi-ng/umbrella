@@ -1,6 +1,6 @@
 import { ReadonlyVec, Vec } from "./api";
 import { direction } from "./direction";
-import { perpendicularLeft2, perpendicularRight2 } from "./perpendicular";
+import { perpendicularCCW, perpendicularCW } from "./perpendicular";
 
 /**
  * Computes 2D normal by rotating direction vector `a` -> `b`, 90 deg
@@ -12,8 +12,8 @@ import { perpendicularLeft2, perpendicularRight2 } from "./perpendicular";
  * @param b
  * @param n
  */
-export const normalLeft2 = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-    perpendicularLeft2(null, direction(out || [], a, b, n));
+export const normalCCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
+    perpendicularCCW(null, direction(out || [], a, b, n));
 
 /**
  * Computes 2D normal by rotating direction vector `a` -> `b`, 90 deg
@@ -25,5 +25,5 @@ export const normalLeft2 = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
  * @param b
  * @param n
  */
-export const normalRight2 = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-    perpendicularRight2(null, direction(out || [], a, b, n));
+export const normalCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
+    perpendicularCW(null, direction(out || [], a, b, n));
