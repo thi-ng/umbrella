@@ -18,7 +18,7 @@
         "build:es6": "tsc --declaration",
         "build:bundle": "../../scripts/bundle-module",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib fog lighting math matrix raymarch screen sdf",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib color fog lighting math matrix noise raymarch screen sdf tex",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public"
