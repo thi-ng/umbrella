@@ -35,7 +35,7 @@ export const worleyDist = defn(
     (a, b) => [ret(add(mul(a, a), mul(b, b)))]
 );
 
-export const worleyDistManhatten = defn(
+export const worleyDistManhattan = defn(
     "vec3",
     "worleyDistManhatten",
     [["vec3"], ["vec3"]],

@@ -7,8 +7,8 @@ export * from "./fog/exp";
 export * from "./fog/exp2";
 export * from "./fog/linear";
 
-export * from "./lighting/lambert";
-export * from "./lighting/trilight";
+export * from "./light/lambert";
+export * from "./light/trilight";
 
 export * from "./math/additive";
 export * from "./math/cartesian";
