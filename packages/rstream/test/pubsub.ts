@@ -68,18 +68,25 @@ describe("PubSub", () => {
         assert.equal(pub.getState(), rs.State.DONE);
     });
 
-    it("unsubTopic", (done) => {
+    it("unsubTopic", function(done) {
+        this.timeout(100);
         const acc: any = { a: [], b: [] };
-        const collect = { next: (x: any) => acc[x].push(x) };
+        const collect = {
+            next: (x: any) => {
+                acc[x].push(x);
+            }
+        };
         pub = rs.pubsub({ topic: (x) => x });
         pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);
-        rs.fromIterable("abcbd", 5).subscribe(pub);
-        setTimeout(() => pub.unsubscribeTopic("b", b), 18);
+        rs.fromIterable("abcbd", 10).subscribe(pub);
+        setTimeout(() => {
+            pub.unsubscribeTopic("b", b);
+        }, 30);
         setTimeout(() => {
             assert.deepEqual(acc, { a: ["a"], b: ["b"] });
             assert.equal(pub.getState(), rs.State.DONE);
             done();
-        }, 40);
+        }, 80);
     });
 });
