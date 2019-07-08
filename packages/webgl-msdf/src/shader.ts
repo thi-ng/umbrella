@@ -36,14 +36,14 @@ export interface MSDFShaderOpts {
     color: boolean;
 }
 
-export const median3 = defn("float", "median3", [["vec3"]], (v) => [
+export const median3 = defn("float", "median3", ["vec3"], (v) => [
     ret(max(min($x(v), $y(v)), min(max($x(v), $y(v)), $z(v))))
 ]);
 
 export const msdfSample = defn(
     "vec2",
     "msdfSample",
-    [["sampler2D"], ["vec2"]],
+    ["sampler2D", "vec2"],
     (tex, uv) => {
         let sd: FloatSym;
         let w: FloatSym;

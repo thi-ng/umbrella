@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-graph",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "description": "Declarative dataflow graph construction for @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
@@ -36,7 +36,7 @@
         "@thi.ng/checks": "^2.2.0",
         "@thi.ng/errors": "^1.1.0",
         "@thi.ng/paths": "^2.1.0",
-        "@thi.ng/resolve-map": "^4.1.1",
+        "@thi.ng/resolve-map": "^4.1.2",
         "@thi.ng/rstream": "^2.5.0",
         "@thi.ng/transducers": "^5.4.0"
     },

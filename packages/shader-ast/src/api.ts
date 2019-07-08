@@ -282,7 +282,7 @@ export type Swizzle2 = Swizzle2_1 | Swizzle2_2 | Swizzle2_3 | Swizzle2_4;
 export type Swizzle3 = Swizzle3_1 | Swizzle3_2 | Swizzle3_3 | Swizzle3_4;
 export type Swizzle4 = Swizzle4_1 | Swizzle4_2 | Swizzle4_3 | Swizzle4_4;
 
-export type Arg<A extends Type> = [A, string?, SymOpts?];
+export type Arg<A extends Type> = A | [A, string?, SymOpts?];
 export type Arg1<A extends Type> = [Arg<A>];
 export type Arg2<A extends Type, B extends Type> = [Arg<A>, Arg<B>];
 export type Arg3<A extends Type, B extends Type, C extends Type> = [

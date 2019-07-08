@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/adjacency",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "description": "Sparse & bitwise adjacency matrices for directed / undirected graphs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,11 +20,11 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/vectors": "^3.0.0",
+        "@thi.ng/vectors": "^3.0.1",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.0.8",
         "mocha": "^6.1.4",

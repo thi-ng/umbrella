@@ -29,7 +29,7 @@ import { clamp01 } from "../math/clamp";
  * @param numSamples
  */
 export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
-    defn("float", "raymarchAO", [["vec3"], ["vec3"]], (p, n) => {
+    defn("float", "raymarchAO", ["vec3", "vec3"], (p, n) => {
         let r: FloatSym;
         let w: FloatSym;
         let d0: FloatSym;

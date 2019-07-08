@@ -43,7 +43,7 @@ export const additive = <T extends Prim>(
     oct = 4,
     name = "additive"
 ) =>
-    defn("float", name, [[type], [type], ["float"]], (pos, shift, decay) => {
+    defn("float", name, [[type], [type], "float"], (pos, shift, decay) => {
         let n: FloatSym;
         let amp: FloatSym;
         return [

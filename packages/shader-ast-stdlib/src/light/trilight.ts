@@ -28,7 +28,7 @@ import {
 export const trilight = defn(
     "vec3",
     "trilight",
-    [["vec3"], ["vec3"], ["vec3"], ["vec3"], ["vec3"]],
+    ["vec3", "vec3", "vec3", "vec3", "vec3"],
     (n, l, c1, c2, c3) => {
         let d: FloatSym;
         return [

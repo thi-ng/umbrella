@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/shader-ast-stdlib",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Useful functions for GPGPU / shader programming w/ @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib color fog lighting math matrix noise raymarch screen sdf tex",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
@@ -32,7 +32,7 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/shader-ast": "^0.1.0"
+        "@thi.ng/shader-ast": "^0.1.1"
     },
     "keywords": [
         "AST",

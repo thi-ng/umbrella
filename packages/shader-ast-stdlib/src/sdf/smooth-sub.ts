@@ -21,7 +21,7 @@ import { fit1101 } from "../math/fit";
 export const sdfSmoothSubtract = defn(
     "float",
     "sdOpSmoothSubtract",
-    [["float"], ["float"], ["float"]],
+    ["float", "float", "float"],
     (a, b, k) => {
         let h: FloatSym;
         return [

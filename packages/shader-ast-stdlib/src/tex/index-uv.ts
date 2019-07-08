@@ -43,7 +43,7 @@ export const indexToUV = defn(
 export const uvToIndex = defn(
     "int",
     "uvToIndex",
-    [["vec2"], ["int", "width", { prec: "highp" }]],
+    ["vec2", ["int", "width", { prec: "highp" }]],
     (uv, width) => [
         ret(
             add(

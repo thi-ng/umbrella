@@ -337,7 +337,7 @@ other TS/JS function and will return a function call AST node with the
 supplied args.
 
 ```ts
-// example from @thi.ng/shader-ast-stdlib
+// example based on @thi.ng/shader-ast-stdlib
 
 /**
  * Computes Lambert term, optionally using Half-Lambertian,
@@ -355,7 +355,7 @@ const lambert = defn(
     // function name
     "lambert",
     // args (incl. optional name and other opts)
-    [["vec3"], ["vec3"], ["bool"]],
+    ["vec3", "vec3", "bool"],
     // function body
     (n, ldir, bidir) => {
         // pre-declare local var
@@ -386,6 +386,25 @@ correct order.
 Since `defn` returns a standard TS/JS function, all arguments will be
 automatically type checked at call sites (in TypeScript only).
 
+#### Function arguments
+
+Function argument lists are given as arrays, with each item either:
+
+1. an AST type string, e.g. `"float"`
+2. a tuple of `[type, name?, opts?]`, e.g. `["vec2", "bar", { q: "out" }]`
+
+If no name is specified, an auto-generated one will be used. Generally,
+this is preferable, since these names are only used for code generation
+purposes and in most cases only need to be machine readable...
+
+The body function (last arg given to `defn`), is called with
+instantiated, typed symbols representing each arg and can use any name
+within that function (also as shown in the above example).
+
+See `SymOpts` interface in
+[api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/api.ts)
+for more details about the options object...
+
 #### Inline functions
 
 If no function local variables are required and/or inlining is desired,
@@ -402,8 +421,35 @@ then inserted at the call site:
  * @param k
  */
 const sinc = (x: FloatTerm, k: FloatTerm) =>
-    div(sin(mul(k,x)), mul(k, x));
+    div(sin(mul(x,k)), mul(x, k));
 ```
+
+**Performance tip for INLINE functions only:** Since the `FloatTerm`
+type (or similarly any other `XXXTerm` type) refers to any expression
+evaluating to a `"float"`, in some cases (like this `sinc()` example) it
+might be better to only accept `FloatSym` arguments, since this ensures
+the arg expressions are not causing duplicate evaluation. For example:
+
+```ts
+sinc(length(mul(vec3(1,2,3), 100)), float(10));
+```
+
+...will be expanded to:
+
+```ts
+div(
+    sin(mul(length(mul(vec3(1,2,3), 100)),k)),
+    mul(length(mul(vec3(1,2,3), 100)), k)
+);
+```
+
+...which is not desirable.
+
+If, however, the inline function asks for `FloatSym` args, the caller is
+forced to supply variables and so is also responsible to pre-define
+them... Alternatively, the function could be re-defined via `defn` to
+avoid such issues altogether (but then causes an additional function
+call at runtime - nothing comes for free!).
 
 ### Global scope
 

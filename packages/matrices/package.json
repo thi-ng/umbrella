@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/matrices",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Matrix & quaternion operations for 2D/3D geometry processing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "typedoc --mode modules --out doc src",
+        "doc": "typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
@@ -35,7 +35,7 @@
         "@thi.ng/api": "^6.3.0",
         "@thi.ng/checks": "^2.2.0",
         "@thi.ng/math": "^1.4.0",
-        "@thi.ng/vectors": "^3.0.0"
+        "@thi.ng/vectors": "^3.0.1"
     },
     "keywords": [
         "2D",

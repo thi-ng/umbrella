@@ -37,7 +37,7 @@ import { permute3 } from "./permute";
  *
  * https://github.com/ashima/webgl-noise
  */
-export const snoise2 = defn("float", "snoise2", [["vec2"]], (v) => {
+export const snoise2 = defn("float", "snoise2", ["vec2"], (v) => {
     let C: Vec4Sym;
     let i: Vec2Sym;
     let i1: Vec2Sym;

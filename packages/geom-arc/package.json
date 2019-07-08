@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-arc",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "2D circular / elliptic arc operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,10 +33,10 @@
     },
     "dependencies": {
         "@thi.ng/checks": "^2.2.0",
-        "@thi.ng/geom-api": "^0.2.4",
-        "@thi.ng/geom-resample": "^0.2.0",
+        "@thi.ng/geom-api": "^0.2.5",
+        "@thi.ng/geom-resample": "^0.2.1",
         "@thi.ng/math": "^1.4.0",
-        "@thi.ng/vectors": "^3.0.0"
+        "@thi.ng/vectors": "^3.0.1"
     },
     "keywords": [
         "2D",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.2.15",
+    "version": "0.2.16",
     "description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
@@ -38,7 +38,7 @@
         "@thi.ng/math": "^1.4.0",
         "@thi.ng/random": "^1.1.8",
         "@thi.ng/transducers": "^5.4.0",
-        "@thi.ng/vectors": "^3.0.0"
+        "@thi.ng/vectors": "^3.0.1"
     },
     "keywords": [
         "axiom",

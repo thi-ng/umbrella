@@ -1,15 +1,36 @@
 import {
     add,
+    defn,
+    div,
+    FLOAT0,
     FLOAT05,
     FLOAT1,
     FLOAT2,
     mix,
     mul,
+    neq,
     Op2,
     Prim,
+    ret,
     sub,
-    Term
+    Term,
+    ternary
 } from "@thi.ng/shader-ast";
+
+/**
+ * Returns normalized value of `x` WRT to interval [a,b]. Returns 0, if
+ * `a` equals `b`.
+ *
+ * @param x
+ * @param a
+ * @param b
+ */
+export const fitNorm1 = defn(
+    "float",
+    "fitNorm1",
+    ["float", "float", "float"],
+    (x, a, b) => [ret(ternary(neq(a, b), div(sub(x, a), sub(b, a)), FLOAT0))]
+);
 
 /**
  * Inline function. Fits value `a` in [0..1] interval to new interval

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.1.0...@thi.ng/shader-ast-stdlib@0.1.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* **shader-ast-stdlib:** update incomplete cartesian3, refactor cartesian2 ([3299d59](https://github.com/thi-ng/umbrella/commit/3299d59))
+
+
+
+
+
 # 0.1.0 (2019-07-07)
 
 

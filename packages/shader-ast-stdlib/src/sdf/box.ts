@@ -25,7 +25,7 @@ import { maxComp2, maxComp3 } from "../math/maxcomp";
 export const sdfBox2 = defn(
     "float",
     "sdRect",
-    [["vec2"], ["vec2"]],
+    ["vec2", "vec2"],
     (p, size) => {
         let d: Vec2Sym;
         return [
@@ -44,7 +44,7 @@ export const sdfBox2 = defn(
 export const sdfBox3 = defn(
     "float",
     "sdAABB",
-    [["vec3"], ["vec3"]],
+    ["vec3", "vec3"],
     (p, size) => {
         let d: Vec3Sym;
         return [

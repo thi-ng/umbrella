@@ -244,7 +244,8 @@ const resolveFunction = (
     let res;
     if (match) {
         const args = match[2]
-            .replace(/\s|,$/g, "")
+            // remove white space and trailing comma
+            .replace(/\s|(,\s*$)/g, "")
             .split(/,/g)
             .map((k) => k.split(":")[0])
             .reduce((acc: any, k) => ((acc[k] = resolve(k)), acc), {});

@@ -40,7 +40,7 @@ const JS = targetJS();
 const mainImage = defn(
     "vec4",
     "mainImage",
-    [["vec2", "fragCoord"], ["vec2", "res"], ["float", "time"]],
+    ["vec2", "vec2", "float"],
     (fragCoord, res, time) => {
         let uv: Vec2Sym;
         let col: FloatSym;

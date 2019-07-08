@@ -31,14 +31,14 @@ import { permute3 } from "./permute";
 export const worleyDist = defn(
     "vec3",
     "worleyDist",
-    [["vec3"], ["vec3"]],
+    ["vec3", "vec3"],
     (a, b) => [ret(add(mul(a, a), mul(b, b)))]
 );
 
 export const worleyDistManhattan = defn(
     "vec3",
     "worleyDistManhatten",
-    [["vec3"], ["vec3"]],
+    ["vec3", "vec3"],
     (a, b) => [ret(add(abs(a), abs(b)))]
 );
 
@@ -56,7 +56,7 @@ export const worleyDistManhattan = defn(
  * @param distFn
  */
 export const worley2 = (distFn: Func2<"vec3", "vec3", "vec3">) =>
-    defn("vec2", "worley2", [["vec2"], ["float"]], (P, jitter) => {
+    defn("vec2", "worley2", ["vec2", "float"], (P, jitter) => {
         const K = float(1 / 7);
         const Ko = float(3 / 7);
         const oI = sym(vec3(-1, 0, 1));

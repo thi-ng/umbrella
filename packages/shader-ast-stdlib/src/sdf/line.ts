@@ -37,7 +37,7 @@ const line = <T extends Vec>(p: Sym<T>, a: Sym<T>, b: Sym<T>) => {
 export const sdfLine2 = defn(
     "float",
     "sdLine2",
-    [["vec2"], ["vec2"], ["vec2"]],
+    ["vec2", "vec2", "vec2"],
     line
 );
 
@@ -49,6 +49,6 @@ export const sdfLine2 = defn(
 export const sdfLine3 = defn(
     "float",
     "sdLine3",
-    [["vec3"], ["vec3"], ["vec3"]],
+    ["vec3", "vec3", "vec3"],
     line
 );

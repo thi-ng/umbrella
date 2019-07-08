@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "typedoc --mode modules --out doc src",
+        "doc": "typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {

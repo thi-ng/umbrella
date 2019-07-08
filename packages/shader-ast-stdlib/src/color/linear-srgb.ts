@@ -19,6 +19,20 @@ const $ = <T extends Prim>(t: Term<T>, x: FloatTerm): Term<T> => <any>{
         vec4: vec4(x, x, x, 1)
     }[t.type];
 
+/**
+ * Inline function. Converts sRGB color term (1D-4D) to linear space via
+ * `pow(rgb, GAMMA)`, where gamma is hardcoded to 2.2. For vec4 args,
+ * the `w` component (alpha) remains unchanged.
+ *
+ * @param x
+ */
 export const toLinear = <T extends Prim>(x: Term<T>) => pow(x, $(x, GAMMA));
 
+/**
+ * Inline function. Converts linear color term (1D-4D) to sRGB via
+ * `pow(rgb, 1.0 / GAMMA)`, where gamma is hardcoded to 2.2. For vec4
+ * args, the `w` component (alpha) remains unchanged.
+ *
+ * @param x
+ */
 export const toSRGB = <T extends Prim>(x: Term<T>) => pow(x, $(x, INV_GAMMA));

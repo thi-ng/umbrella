@@ -51,7 +51,7 @@ export const raymarchScene = (
         bias: 0.7,
         ..._opts
     };
-    return defn("vec2", opts.name, [["vec3"], ["vec3"]], (pos, dir) => {
+    return defn("vec2", opts.name, ["vec3", "vec3"], (pos, dir) => {
         let total: FloatSym;
         let res: Vec2Sym;
         return [

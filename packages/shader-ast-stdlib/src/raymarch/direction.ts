@@ -22,7 +22,7 @@ import {
 export const raymarchDir = defn(
     "vec3",
     "raymarchDir",
-    [["vec2"], ["vec2"], ["float"]],
+    ["vec2", "vec2", "float"],
     (frag, res, fov) => {
         let uv: Vec2Sym;
         return [

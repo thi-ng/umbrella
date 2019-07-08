@@ -26,7 +26,7 @@ import {
  *
  * @param p
  */
-export const hash2 = defn("vec2", "hash2", [["vec2"]], (p) => [
+export const hash2 = defn("vec2", "hash2", ["vec2"], (p) => [
     ret(fract(mul(sin(mul(p, mat2(127.1, 311.7, 269.5, 183.3))), 43758.5453)))
 ]);
 
@@ -35,7 +35,7 @@ export const hash2 = defn("vec2", "hash2", [["vec2"]], (p) => [
  *
  * @param p
  */
-export const hash3 = defn("vec3", "hash3", [["vec2"]], (p) => [
+export const hash3 = defn("vec3", "hash3", ["vec2"], (p) => [
     ret(
         fract(
             mul(
@@ -62,7 +62,7 @@ const H4 = vec4(0.1031, 0.103, 0.0973, 0.1099);
  *
  * @param p
  */
-export const hash11 = defn("float", "hash11", [["float"]], (p) => {
+export const hash11 = defn("float", "hash11", ["float"], (p) => {
     let x: FloatSym;
     return [
         (x = sym(fract(mul(p, 0.1031)))),
@@ -79,7 +79,7 @@ export const hash11 = defn("float", "hash11", [["float"]], (p) => {
  *
  * @param p
  */
-export const hash12 = defn("float", "hash12", [["vec2"]], (p) => {
+export const hash12 = defn("float", "hash12", ["vec2"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul($(p, "xyx"), 0.1031)))),
@@ -95,7 +95,7 @@ export const hash12 = defn("float", "hash12", [["vec2"]], (p) => {
  *
  * @param p
  */
-export const hash13 = defn("float", "hash13", [["vec3"]], (p) => {
+export const hash13 = defn("float", "hash13", ["vec3"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul($(p, "xyx"), 0.1031)))),
@@ -111,7 +111,7 @@ export const hash13 = defn("float", "hash13", [["vec3"]], (p) => {
  *
  * @param p
  */
-export const hash21 = defn("vec2", "hash21", [["float"]], (p) => {
+export const hash21 = defn("vec2", "hash21", ["float"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul(vec3(p), H)))),
@@ -127,7 +127,7 @@ export const hash21 = defn("vec2", "hash21", [["float"]], (p) => {
  *
  * @param p
  */
-export const hash22 = defn("vec2", "hash22", [["vec2"]], (p) => {
+export const hash22 = defn("vec2", "hash22", ["vec2"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul($(p, "xyx"), H)))),
@@ -143,7 +143,7 @@ export const hash22 = defn("vec2", "hash22", [["vec2"]], (p) => {
  *
  * @param p
  */
-export const hash23 = defn("vec2", "hash23", [["vec3"]], (p) => {
+export const hash23 = defn("vec2", "hash23", ["vec3"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul(p, H)))),
@@ -159,7 +159,7 @@ export const hash23 = defn("vec2", "hash23", [["vec3"]], (p) => {
  *
  * @param p
  */
-export const hash31 = defn("vec3", "hash31", [["float"]], (p) => {
+export const hash31 = defn("vec3", "hash31", ["float"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul(p, H)))),
@@ -175,7 +175,7 @@ export const hash31 = defn("vec3", "hash31", [["float"]], (p) => {
  *
  * @param p
  */
-export const hash32 = defn("vec3", "hash32", [["vec2"]], (p) => {
+export const hash32 = defn("vec3", "hash32", ["vec2"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul($(p, "xyx"), H)))),
@@ -191,7 +191,7 @@ export const hash32 = defn("vec3", "hash32", [["vec2"]], (p) => {
  *
  * @param p
  */
-export const hash33 = defn("vec3", "hash33", [["vec3"]], (p) => {
+export const hash33 = defn("vec3", "hash33", ["vec3"], (p) => {
     let x: Vec3Sym;
     return [
         (x = sym(fract(mul(p, H)))),
@@ -207,7 +207,7 @@ export const hash33 = defn("vec3", "hash33", [["vec3"]], (p) => {
  *
  * @param p
  */
-export const hash41 = defn("vec4", "hash41", [["float"]], (p) => {
+export const hash41 = defn("vec4", "hash41", ["float"], (p) => {
     let x: Vec4Sym;
     return [
         (x = sym(fract(mul(p, H4)))),
@@ -223,7 +223,7 @@ export const hash41 = defn("vec4", "hash41", [["float"]], (p) => {
  *
  * @param p
  */
-export const hash42 = defn("vec4", "hash42", [["vec2"]], (p) => {
+export const hash42 = defn("vec4", "hash42", ["vec2"], (p) => {
     let x: Vec4Sym;
     return [
         (x = sym(fract(mul($(p, "xyxy"), H4)))),
@@ -239,7 +239,7 @@ export const hash42 = defn("vec4", "hash42", [["vec2"]], (p) => {
  *
  * @param p
  */
-export const hash43 = defn("vec4", "hash43", [["vec3"]], (p) => {
+export const hash43 = defn("vec4", "hash43", ["vec3"], (p) => {
     let x: Vec4Sym;
     return [
         (x = sym(fract(mul($(p, "xyzx"), H4)))),
@@ -255,7 +255,7 @@ export const hash43 = defn("vec4", "hash43", [["vec3"]], (p) => {
  *
  * @param p
  */
-export const hash44 = defn("vec4", "hash44", [["vec4"]], (p) => {
+export const hash44 = defn("vec4", "hash44", ["vec4"], (p) => {
     let x: Vec4Sym;
     return [
         (x = sym(fract(mul(p, H4)))),

@@ -16,7 +16,7 @@ import {
 export const sdfRepeat2 = defn(
     "vec2",
     "sdTxRepeat3",
-    [["vec2"], ["vec2"]],
+    ["vec2", "vec2"],
     (p, c) => [ret(sub(mod(p, c), mul(c, FLOAT05)))]
 );
 
@@ -29,6 +29,6 @@ export const sdfRepeat2 = defn(
 export const sdfRepeat3 = defn(
     "vec3",
     "sdTxRepeat3",
-    [["vec3"], ["vec3"]],
+    ["vec3", "vec3"],
     (p, c) => [ret(sub(mod(p, c), mul(c, FLOAT05)))]
 );

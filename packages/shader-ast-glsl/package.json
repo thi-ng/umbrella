@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/shader-ast-glsl",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Customizable GLSL code generator for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -20,7 +20,7 @@
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib codegen std",
         "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
@@ -35,7 +35,7 @@
         "@thi.ng/api": "^6.3.0",
         "@thi.ng/checks": "^2.2.0",
         "@thi.ng/errors": "^1.1.0",
-        "@thi.ng/shader-ast": "^0.1.0"
+        "@thi.ng/shader-ast": "^0.1.1"
     },
     "keywords": [
         "AST",
