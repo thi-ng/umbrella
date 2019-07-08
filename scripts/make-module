@@ -57,15 +57,15 @@ cat << EOF > $MODULE/package.json
         "pub": "yarn build && yarn publish --access public"
     },
     "devDependencies": {
-        "@types/mocha": "^5.2.5",
-        "@types/node": "^10.12.15",
-        "mocha": "^5.2.0",
-        "nyc": "^13.1.0",
-        "typedoc": "^0.14.0",
-        "typescript": "^3.2.2"
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.0.8",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
+        "typedoc": "^0.14.2",
+        "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^5.0.1"
+        "@thi.ng/api": "^6.3.0"
     },
     "keywords": [
         "ES6",

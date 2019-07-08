@@ -29,6 +29,7 @@ cat << EOF > $MODULE/package.json
     "scripts": {
         "clean": "rm -rf .cache build out",
         "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
@@ -109,4 +110,31 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 ## License
 
 &copy; 2018 $AUTHOR // Apache Software License 2.0
+EOF
+
+echo "writing webpack.config.js..."
+cat << EOF > $MODULE/webpack.config.js
+module.exports = {
+    entry: "./src/index.ts",
+    output: {
+        filename: "bundle.[hash].js",
+        path: __dirname + "/out"
+    },
+    resolve: {
+        extensions: [".ts", ".js"]
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: "file-loader",
+                options: { name: "[path][hash].[ext]" }
+            },
+            { test: /\.ts$/, use: "ts-loader" }
+        ]
+    },
+    node: {
+        process: false
+    }
+};
 EOF
