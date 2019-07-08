@@ -37,7 +37,8 @@ export const mixQ = (
             u = Math.sin(theta * (1 - t)) / stheta;
             v = Math.sin(theta * t) / stheta;
         }
-        return maddN4(null, b, v, mulN4(out, a, u));
+        !out && (out = a);
+        return maddN4(out, b, v, mulN4(out, a, u));
     }
     return a !== out ? set4(out, a) : out;
 };
