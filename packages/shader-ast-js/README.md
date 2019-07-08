@@ -84,7 +84,7 @@ import { targetJS } from "@thi.ng/shader-ast-js";
 
 const js = targetJS();
 
-const hello = defn("vec4", "hello", [["float"]], (n) => [
+const hello = defn("vec4", "hello", ["float"], (n) => [
     ret(vec4(mul(vec3(1, 2, 3), n), -1))
 ]);
 

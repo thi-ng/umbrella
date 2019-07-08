@@ -250,7 +250,7 @@ import { additive, aspectCorrectedUV, fit1101, snoise2 } from "@thi.ng/shader-as
 const mainImage = defn(
     "vec4",
     "mainImage",
-    [["vec2"], ["vec2"], ["float"]],
+    ["vec2", "vec2", "float"],
     (frag, res, time) => {
         let uv;
         let noise;

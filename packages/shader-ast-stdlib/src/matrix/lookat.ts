@@ -23,7 +23,7 @@ import {
 export const lookat = defn(
     "mat4",
     "lookat",
-    [["vec3"], ["vec3"], ["vec3"]],
+    ["vec3", "vec3", "vec3"],
     (eye, target, up) => {
         let x: Vec3Sym;
         let y: Vec3Sym;

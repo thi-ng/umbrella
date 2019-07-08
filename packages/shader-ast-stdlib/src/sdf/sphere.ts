@@ -14,7 +14,7 @@ import {
 export const sdfCircle = defn(
     "float",
     "sdCircle",
-    [["vec2"], ["float"]],
+    ["vec2", "float"],
     (p, r) => [ret(sub(length(p), r))]
 );
 
@@ -27,6 +27,6 @@ export const sdfCircle = defn(
 export const sdfSphere = defn(
     "float",
     "sdSphere",
-    [["vec3"], ["float"]],
+    ["vec3", "float"],
     (p, r) => [ret(sub(length(p), r))]
 );

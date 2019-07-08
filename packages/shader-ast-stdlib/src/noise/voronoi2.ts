@@ -52,7 +52,7 @@ import { hash32 } from "./hash";
 export const voronoise2 = defn(
     "float",
     "voronoise2",
-    [["vec2"], ["float"], ["float"]],
+    ["vec2", "float", "float"],
     (x, u, v) => {
         let p: Vec2Sym;
         let f: Vec2Sym;

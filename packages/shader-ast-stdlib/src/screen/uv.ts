@@ -22,7 +22,7 @@ import { fit0111 } from "../math/fit";
 export const aspectCorrectedUV = defn(
     "vec2",
     "aspectCorrectedUV",
-    [["vec2"], ["vec2"]],
+    ["vec2", "vec2"],
     (pos, res) => {
         let uv: Vec2Sym;
         return [

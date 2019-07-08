@@ -19,7 +19,7 @@ import { fit1101 } from "../math/fit";
 export const sdfSmoothUnion = defn(
     "float",
     "sdOpSmoothUnion",
-    [["float"], ["float"], ["float"]],
+    ["float", "float", "float"],
     (a, b, k) => {
         let h: FloatSym;
         return [

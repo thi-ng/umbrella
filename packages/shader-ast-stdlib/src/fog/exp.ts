@@ -10,12 +10,15 @@ import {
 import { clamp01 } from "../math/clamp";
 
 /**
+ * Computes exponential fog factor [0..1], based on given fully
+ * saturated fog distance and density.
+ *
  * @param dist float
  * @param density float
  */
 export const fogExp = defn(
     "float",
     "fogExp",
-    [["float"], ["float"]],
+    ["float", "float"],
     (dist, density) => [ret(sub(FLOAT1, clamp01(exp(mul(neg(density), dist)))))]
 );

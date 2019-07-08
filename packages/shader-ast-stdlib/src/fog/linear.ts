@@ -1,13 +1,11 @@
-import {
-    defn,
-    div,
-    FLOAT1,
-    ret,
-    sub
-} from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
+import { fitNorm1 } from "../math/fit";
 
 /**
+ * Computes linear fog factor [0..1], based on given fog min/max
+ * distances.
+ *
  * @param dist float
  * @param start float
  * @param end float
@@ -16,8 +14,6 @@ import { clamp01 } from "../math/clamp";
 export const fogLinear = defn(
     "float",
     "fogLinear",
-    [["float"], ["float"], ["float"]],
-    (dist, start, end) => [
-        ret(sub(FLOAT1, clamp01(div(sub(end, dist), sub(end, start)))))
-    ]
+    ["float", "float", "float"],
+    (dist, start, end) => [ret(clamp01(fitNorm1(dist, start, end)))]
 );

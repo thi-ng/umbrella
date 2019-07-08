@@ -20,7 +20,7 @@ import { fit1101 } from "../math/fit";
 export const sdfSmoothIntersect = defn(
     "float",
     "sdOpSmoothIntersect",
-    [["float"], ["float"], ["float"]],
+    ["float", "float", "float"],
     (a, b, k) => {
         let h: FloatSym;
         return [

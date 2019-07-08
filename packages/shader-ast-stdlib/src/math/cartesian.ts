@@ -28,7 +28,7 @@ export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), $x(v));
  *
  * @param v
  */
-export const cartesian3 = defn("vec3", "cartesian3", [["vec3"]], (v) => {
+export const cartesian3 = defn("vec3", "cartesian3", ["vec3"], (v) => {
     let r: FloatSym;
     let t: Vec2Sym;
     let p: Vec2Sym;

@@ -28,7 +28,7 @@ import { cross2 } from "../math/cross2";
 export const sdfTriangle2 = defn(
     "float",
     "sdTriangle",
-    [["vec2"], ["vec2"], ["vec2"], ["vec2"]],
+    ["vec2", "vec2", "vec2", "vec2"],
     (p, a, b, c) => {
         let e0: Vec2Sym, e1: Vec2Sym, e2: Vec2Sym;
         let v0: Vec2Sym, v1: Vec2Sym, v2: Vec2Sym;

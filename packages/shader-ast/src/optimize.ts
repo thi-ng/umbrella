@@ -24,7 +24,7 @@ const replaceNode = (node: any, next: any) => {
  * Currently, only scalar operations are supported / considered.
  *
  * ```
- * const foo = defn("float", "foo", [["float"]], (x) => [
+ * const foo = defn("float", "foo", ["float"], (x) => [
  *   ret(mul(x, add(neg(float(10)), float(42))))]
  * )
  *

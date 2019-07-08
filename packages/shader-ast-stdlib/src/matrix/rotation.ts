@@ -13,12 +13,12 @@ import {
 import { perpendicularCCW } from "../math/orthogonal";
 import { cossin } from "../math/sincos";
 
-export const rotation2 = defn("mat2", "rotation2", [["float"]], (theta) => {
+export const rotation2 = defn("mat2", "rotation2", ["float"], (theta) => {
     let cs: Vec2Term;
     return [(cs = sym(cossin(theta))), ret(mat2(cs, perpendicularCCW(cs)))];
 });
 
-export const rotationX3 = defn("mat3", "rotationX3", [["float"]], (theta) => {
+export const rotationX3 = defn("mat3", "rotationX3", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
@@ -26,7 +26,7 @@ export const rotationX3 = defn("mat3", "rotationX3", [["float"]], (theta) => {
     ];
 });
 
-export const rotationY3 = defn("mat3", "rotationY3", [["float"]], (theta) => {
+export const rotationY3 = defn("mat3", "rotationY3", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
@@ -34,7 +34,7 @@ export const rotationY3 = defn("mat3", "rotationY3", [["float"]], (theta) => {
     ];
 });
 
-export const rotationZ3 = defn("mat3", "rotationZ3", [["float"]], (theta) => {
+export const rotationZ3 = defn("mat3", "rotationZ3", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
@@ -42,7 +42,7 @@ export const rotationZ3 = defn("mat3", "rotationZ3", [["float"]], (theta) => {
     ];
 });
 
-export const rotationX4 = defn("mat4", "rotationX4", [["float"]], (theta) => {
+export const rotationX4 = defn("mat4", "rotationX4", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
@@ -69,7 +69,7 @@ export const rotationX4 = defn("mat4", "rotationX4", [["float"]], (theta) => {
     ];
 });
 
-export const rotationY4 = defn("mat4", "rotationY4", [["float"]], (theta) => {
+export const rotationY4 = defn("mat4", "rotationY4", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
@@ -96,7 +96,7 @@ export const rotationY4 = defn("mat4", "rotationY4", [["float"]], (theta) => {
     ];
 });
 
-export const rotationZ4 = defn("mat4", "rotationZ4", [["float"]], (theta) => {
+export const rotationZ4 = defn("mat4", "rotationZ4", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),

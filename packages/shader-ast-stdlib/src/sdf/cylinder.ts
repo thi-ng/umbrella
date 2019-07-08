@@ -27,7 +27,7 @@ import { maxComp2 } from "../math/maxcomp";
 export const sdfCylinder = defn(
     "float",
     "sdCylinder",
-    [["vec3"], ["float"], ["float"]],
+    ["vec3", "float", "float"],
     (p, h, r) => {
         let d: Vec2Sym;
         return [

@@ -20,7 +20,7 @@ import {
  *
  * @param v
  */
-export const polar2 = defn("vec2", "polar2", [["vec2"]], (v) => [
+export const polar2 = defn("vec2", "polar2", ["vec2"], (v) => [
     ret(vec2(length(v), atan(div($y(v), $x(v)))))
 ]);
 
@@ -31,7 +31,7 @@ export const polar2 = defn("vec2", "polar2", [["vec2"]], (v) => [
  *
  * @param v
  */
-export const polar3 = defn("vec3", "polar3", [["vec3"]], (v) => {
+export const polar3 = defn("vec3", "polar3", ["vec3"], (v) => {
     let r: FloatSym;
     return [
         (r = sym(length(v))),
