@@ -41,7 +41,7 @@ const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg
-const scene = defn("float", "scene", [["vec2"]], (pos) => {
+const scene = defn("float", "scene", ["vec2"], (pos) => {
     let d1: FloatSym;
     let d2: FloatSym;
     let d3: FloatSym;
@@ -69,30 +69,25 @@ const scene = defn("float", "scene", [["vec2"]], (pos) => {
 
 // main fragment shader function
 // again uses several shader-ast std lib helpers
-const mainImage = defn(
-    "vec4",
-    "mainImage",
-    [["vec2", "fragCoord"], ["vec2", "res"]],
-    (frag, res) => {
-        let uv: Vec2Sym;
-        let d: FloatSym;
-        let f = 100;
-        return [
-            (uv = sym(mul(aspectCorrectedUV(frag, res), float(2)))),
-            (d = sym(scene(uv))),
-            ret(
-                vec4(
-                    vec3(
-                        fit1101(cos(mul(d, float(f)))),
-                        fit1101(cos(mul(d, float(f * 1.02)))),
-                        fit1101(cos(mul(d, float(f * 1.05))))
-                    ),
-                    1
-                )
+const mainImage = defn("vec4", "mainImage", ["vec2", "vec2"], (frag, res) => {
+    let uv: Vec2Sym;
+    let d: FloatSym;
+    let f = 100;
+    return [
+        (uv = sym(mul(aspectCorrectedUV(frag, res), float(2)))),
+        (d = sym(scene(uv))),
+        ret(
+            vec4(
+                vec3(
+                    fit1101(cos(mul(d, float(f)))),
+                    fit1101(cos(mul(d, float(f * 1.02)))),
+                    fit1101(cos(mul(d, float(f * 1.05))))
+                ),
+                1
             )
-        ];
-    }
-);
+        )
+    ];
+});
 
 // build call graph for given entry function, sort in topological order
 // and bundle all functions in a global scope for code generation...

@@ -56,7 +56,7 @@ const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg
-const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
+const scene = defn("vec2", "scene", ["vec3"], (pos) => {
     let d1: FloatSym;
     let d2: FloatSym;
     let d3: FloatSym;
@@ -89,7 +89,7 @@ const scene = defn("vec2", "scene", [["vec3"]], (pos) => {
 const mainImage = defn(
     "vec4",
     "mainImage",
-    [["vec2"], ["vec2"], ["vec3"], ["vec3"]],
+    ["vec2", "vec2", "vec3", "vec3"],
     (frag, res, eyePos, lightDir) => {
         let dir: Vec3Sym;
         let result: Vec2Sym;

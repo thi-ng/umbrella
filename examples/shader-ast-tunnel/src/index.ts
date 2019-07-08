@@ -46,12 +46,7 @@ const JS = targetJS();
 const mainImage = defn(
     "vec4",
     "mainImage",
-    [
-        ["vec2", "fragCoord"],
-        ["vec2", "res"],
-        ["float", "time"],
-        ["sampler2D", "tex"]
-    ],
+    ["vec2", "vec2", "float", "sampler2D"],
     (frag, res, time, tex) => {
         let p: Vec2Sym;
         let uv: Vec2Sym;
