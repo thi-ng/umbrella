@@ -2,7 +2,6 @@ import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 import { resolve, ResolveFn } from "../src/index";
 
-
 describe("resolve-map", () => {
     it("simple", () => {
         assert.deepEqual(resolve({ a: 1, b: "@a" }), { a: 1, b: 1 });
@@ -144,6 +143,15 @@ describe("resolve-map", () => {
                 percentiles: [-3, 1, 1, 1, 2, 2, 2, 4, 4, 4, 6, 6, 6, 7, 7, 7, 11, 11],
                 src: [1, 6, 7, 2, 4, 11, -3]
             }
+        );
+    });
+
+    it("destructures w/ trailing comma", () => {
+        assert.deepEqual(
+            // since prettier is running over this file
+            // build function dynamically to force trailing comma
+            resolve({ a: 1, b: 2, c: new Function("{a,b,}", "return a + b") }),
+            { a: 1, b: 2, c: 3 }
         );
     });
 });
