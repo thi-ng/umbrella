@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.0...@thi.ng/vectors@3.0.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* **vectors:** reflect output handling ([8ec12a4](https://github.com/thi-ng/umbrella/commit/8ec12a4))
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.6...@thi.ng/vectors@3.0.0) (2019-07-07)
 
 

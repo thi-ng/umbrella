@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.1.0...@thi.ng/shader-ast@0.1.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* **shader-ast:** fix [#98](https://github.com/thi-ng/umbrella/issues/98), update defn() arg lists, add/update docs ([bcfbcfd](https://github.com/thi-ng/umbrella/commit/bcfbcfd))
+
+
+
+
+
 # 0.1.0 (2019-07-07)
 
 

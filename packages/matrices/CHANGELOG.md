@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.5.0...@thi.ng/matrices@0.5.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* **matrices:** mixQ result handling ([cc9ab35](https://github.com/thi-ng/umbrella/commit/cc9ab35))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.4.0...@thi.ng/matrices@0.5.0) (2019-07-07)
 
 
