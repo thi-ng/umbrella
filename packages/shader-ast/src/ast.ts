@@ -1196,12 +1196,15 @@ export const program = (body: (Sym<any> | Func<any>)[]) => {
     return scope(syms.concat(g.sort()), true);
 };
 
-const defArg = <T extends Type>([type, id, opts]: Arg<T>): FuncArg<T> => ({
-    tag: "arg",
-    type,
-    id: id || gensym(),
-    opts: { q: "in", ...opts }
-});
+const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
+    const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;
+    return {
+        tag: "arg",
+        type,
+        id: id || gensym(),
+        opts: { q: "in", ...opts }
+    };
+};
 
 /**
  * Defines a new function with up to 8 typed checked arguments.
