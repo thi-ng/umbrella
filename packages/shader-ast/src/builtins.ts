@@ -226,7 +226,7 @@ export const all = (v: Term<BVec>): FnCall<"bool"> =>
     builtinCall("all", "bool", v);
 
 export const _not = <T extends BVec>(v: Term<T>) =>
-    builtinCall("all", v.type, v);
+    builtinCall("not", v.type, v);
 
 const texRetType = (sampler: Term<Sampler>) => {
     const t = sampler.type[0];
