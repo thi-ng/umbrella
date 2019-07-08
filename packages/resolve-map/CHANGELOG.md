@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.0...@thi.ng/resolve-map@4.1.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* **resolve-map:** fix [#97](https://github.com/thi-ng/umbrella/issues/97), update fn arg destructuring ([e68dc19](https://github.com/thi-ng/umbrella/commit/e68dc19))
+
+
+
+
+
 # [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.0.12...@thi.ng/resolve-map@4.1.0) (2019-07-07)
 
 
