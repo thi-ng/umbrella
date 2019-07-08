@@ -29,7 +29,7 @@ import { map } from "@thi.ng/transducers";
 import { AttribPool, GLType } from "@thi.ng/vector-pools";
 import {
     fit3,
-    madd,
+    madd3,
     mixN,
     mulN,
     ReadonlyVec,
@@ -256,8 +256,8 @@ const app = () => {
             if (!body) return;
             adaptDPI(el, window.innerWidth, window.innerHeight);
             // prettier-ignore
-            const eye = madd(
-                null,
+            const eye = madd3(
+                [],
                 mouse.deref() || ZERO3,
                 [2, 0.5, 0],
                 [0, -4, 5]
