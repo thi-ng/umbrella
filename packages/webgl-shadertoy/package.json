@@ -32,8 +32,8 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/shader-ast": "^0.1.0",
-        "@thi.ng/webgl": "^0.1.0"
+        "@thi.ng/shader-ast": "^0.1.1",
+        "@thi.ng/webgl": "^0.1.1"
     },
     "keywords": [
         "ES6",
