@@ -7,7 +7,6 @@ import {
     mul,
     ret,
     sym,
-    vec2,
     Vec2Sym,
     Vec2Term,
     vec3
@@ -15,16 +14,17 @@ import {
 import { cossin } from "./sincos";
 
 /**
- * Converts 2D polar vector `v` to cartesian coordinates. See `polar2()`
- * for reverse operation.
+ * Converts 2D polar vector `v`, i.e. `[r,θ]` (angle in radians) to
+ * cartesian coordinates. See `polar2()` for reverse operation.
  *
  * @param v
  */
-export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), vec2($x(v)));
+export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), $x(v));
 
 /**
- * Converts 3D polar vector `v` to cartesian coordinates. See `polar3()`
- * for reverse operation.
+ * Converts 3D polar/spherical vector `v`, i.e. `[r,θ,ϕ]` (angles in
+ * radians) to cartesian coordinates. See `polar3()` for reverse
+ * operation.
  *
  * @param v
  */
@@ -36,6 +36,12 @@ export const cartesian3 = defn("vec3", "cartesian3", [["vec3"]], (v) => {
         (r = sym($x(v))),
         (t = sym(cossin($y(v)))),
         (p = sym(cossin($z(v)))),
-        ret(vec3(mul(mul(r, $x(t)), $x(p))))
+        ret(
+            vec3(
+                mul(mul(r, $x(t)), $x(p)),
+                mul(mul(r, $x(t)), $y(p)),
+                mul(r, $y(t))
+            )
+        )
     ];
 });
