@@ -146,12 +146,38 @@ describe("resolve-map", () => {
         );
     });
 
+    it("destructures w/ local renames", () => {
+        assert.deepEqual(resolve({ a: 1, b: ({ a: aa }: any) => aa }), {
+            a: 1,
+            b: 1
+        });
+    });
+
     it("destructures w/ trailing comma", () => {
         assert.deepEqual(
             // since prettier is running over this file
             // build function dynamically to force trailing comma
             resolve({ a: 1, b: 2, c: new Function("{a,b,}", "return a + b") }),
-            { a: 1, b: 2, c: 3 }
+            { a: 1, b: 2, c: 3 },
+            "comma only"
+        );
+        assert.deepEqual(
+            resolve({
+                a: 1,
+                b: 2,
+                c: new Function("{ a, b, }", "return a + b")
+            }),
+            { a: 1, b: 2, c: 3 },
+            "comma & whitespaces"
+        );
+        assert.deepEqual(
+            resolve({
+                a: 1,
+                b: 2,
+                c: new Function("{ a, b: bb,  }", "return a + bb")
+            }),
+            { a: 1, b: 2, c: 3 },
+            "comma & whitespaces & rename"
         );
     });
 });
