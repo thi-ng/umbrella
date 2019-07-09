@@ -66,7 +66,6 @@ import {
     Mat3Term,
     Mat4Term,
     MatIndexTypeMap,
-    Numeric,
     NumericB,
     NumericF,
     NumericI,
@@ -334,16 +333,15 @@ export const lit = <T extends Type>(
     val
 });
 
-export const bool = (x: Numeric | boolean) =>
-    lit("bool", isNumber(x) ? !!x : x);
+export const bool = (x: NumericB) => lit("bool", isNumber(x) ? !!x : x);
 
-export const float = (x: Numeric | boolean) =>
+export const float = (x: NumericB) =>
     lit("float", isBoolean(x) ? (x ? 1 : 0) : x);
 
-export const int = (x: Numeric | boolean) =>
+export const int = (x: NumericB) =>
     lit("int", isBoolean(x) ? (x ? 1 : 0) : isNumber(x) ? x | 0 : x);
 
-export const uint = (x: Numeric | boolean) =>
+export const uint = (x: NumericB) =>
     lit("uint", isBoolean(x) ? (x ? 1 : 0) : isNumber(x) ? x >>> 0 : x);
 
 export const TRUE = lit("bool", true);
