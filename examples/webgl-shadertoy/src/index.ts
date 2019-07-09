@@ -1,8 +1,8 @@
 import {
     $xy,
     add,
-    bitand,
     distance,
+    eq,
     float,
     FloatSym,
     fract,
@@ -40,7 +40,7 @@ const mainImage: MainImageFn = (gl, unis) => {
     let col: Vec3Sym;
 
     // Inline function to create ring pattern with center at `p`
-    const rings = (p: Vec2Term, speed = 0.25, freq = 0.5) =>
+    const rings = (p: Vec2Term, speed = 0.25, freq = 50) =>
         sin(mul(add(distance(uv, p), fract(mul(unis.time, speed))), freq));
 
     return [
@@ -58,7 +58,7 @@ const mainImage: MainImageFn = (gl, unis) => {
                 mix(
                     vec3(1),
                     vec3(d1, 0, d2),
-                    float(bitand(unis.mouseButtons, int(1)))
+                    float(eq(unis.mouseButtons, int(1)))
                 )
             )
         )),
@@ -72,7 +72,7 @@ const canvas = glCanvas({
     width: window.innerWidth,
     height: window.innerHeight,
     parent: document.body,
-    version: 2
+    version: 1
 });
 
 // init shader toy with canvas & shader fn
