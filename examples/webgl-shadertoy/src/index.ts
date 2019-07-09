@@ -1,7 +1,7 @@
 import {
+    $xy,
     add,
     bitand,
-    defn,
     distance,
     float,
     FloatSym,
@@ -22,54 +22,50 @@ import {
 } from "@thi.ng/shader-ast";
 import { aspectCorrectedUV, fit1101 } from "@thi.ng/shader-ast-stdlib";
 import { glCanvas } from "@thi.ng/webgl";
-import { shaderToy } from "@thi.ng/webgl-shadertoy";
+import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
 
 // main shader function, supplied to `shaderToy` below
-const mainImage = defn(
-    "vec4",
-    "mainImage",
-    ["vec2", "vec2", "vec2", "int", "float"],
-    (fragCoord, res, mouse, buttons, time) => {
-        let uv: Vec2Sym;
-        let mp: Vec2Sym;
-        let d1: FloatSym;
-        let d2: FloatSym;
-        let col: Vec3Sym;
+// the 2 args given are objects containing GLSL builtin vars and uniforms
+//
+// see:
+// https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-glsl/src/index.ts#L32
+// https://github.com/thi-ng/umbrella/blob/feature/shadertoy/packages/webgl-shadertoy/src/api.ts#L13
+//
+const mainImage: MainImageFn = (gl, unis) => {
+    // predeclare local vars / symbols
+    let uv: Vec2Sym;
+    let mp: Vec2Sym;
+    let d1: FloatSym;
+    let d2: FloatSym;
+    let col: Vec3Sym;
 
-        /**
-         * Inline function to create ring pattern with center at `p`
-         *
-         * @param p
-         * @param speed
-         * @param freq
-         */
-        const rings = (p: Vec2Term, speed: number, freq: number) =>
-            sin(mul(add(distance(uv, p), fract(mul(time, speed))), freq));
+    // Inline function to create ring pattern with center at `p`
+    const rings = (p: Vec2Term, speed = 0.25, freq = 0.5) =>
+        sin(mul(add(distance(uv, p), fract(mul(unis.time, speed))), freq));
 
-        return [
-            // let's work in [-1..+1] range
-            (uv = sym(aspectCorrectedUV(fragCoord, res))),
-            (mp = sym(aspectCorrectedUV(mouse, res))),
-            // compute ring colors
-            (d1 = sym(rings(mp, 0.25, 50))),
-            (d2 = sym(rings(neg(mp), 0.25, 50))),
-            // combine rings and multiply with target color based on
-            // mouse button state
-            (col = sym(
-                mul(
-                    vec3(fit1101(min(d1, d2))),
-                    mix(
-                        vec3(1),
-                        vec3(d1, 0, d2),
-                        float(bitand(buttons, int(1)))
-                    )
+    return [
+        // let's work in [-1..+1] range (based on vertical resolution)
+        (uv = sym(aspectCorrectedUV($xy(gl.gl_FragCoord), unis.resolution))),
+        (mp = sym(aspectCorrectedUV(unis.mouse, unis.resolution))),
+        // compute ring colors
+        (d1 = sym(rings(mp))),
+        (d2 = sym(rings(neg(mp)))),
+        // combine rings and multiply with target color based on
+        // mouse button state
+        (col = sym(
+            mul(
+                vec3(fit1101(min(d1, d2))),
+                mix(
+                    vec3(1),
+                    vec3(d1, 0, d2),
+                    float(bitand(unis.mouseButtons, int(1)))
                 )
-            )),
-            // return as vec4 (mandatory)
-            ret(vec4(col, 1))
-        ];
-    }
-);
+            )
+        )),
+        // return as vec4 (mandatory)
+        ret(vec4(col, 1))
+    ];
+};
 
 // create WebGL2 canvas
 const canvas = glCanvas({
