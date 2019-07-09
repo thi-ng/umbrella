@@ -336,13 +336,13 @@ export const lit = <T extends Type>(
 export const bool = (x: NumericB) => lit("bool", isNumber(x) ? !!x : x);
 
 export const float = (x: NumericB) =>
-    lit("float", isBoolean(x) ? (x ? 1 : 0) : x);
+    lit("float", isBoolean(x) ? (<any>x) & 1 : x);
 
 export const int = (x: NumericB) =>
-    lit("int", isBoolean(x) ? (x ? 1 : 0) : isNumber(x) ? x | 0 : x);
+    lit("int", isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x | 0 : x);
 
 export const uint = (x: NumericB) =>
-    lit("uint", isBoolean(x) ? (x ? 1 : 0) : isNumber(x) ? x >>> 0 : x);
+    lit("uint", isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x >>> 0 : x);
 
 export const TRUE = lit("bool", true);
 export const FALSE = lit("bool", false);
