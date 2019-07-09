@@ -1,7 +1,7 @@
 import {
-    $xy,
     assign,
     defMain,
+    defn,
     FLOAT0,
     FLOAT1,
     vec4
@@ -16,6 +16,7 @@ import { MainImageFn, ShaderToy, ShaderToyOpts } from "./api";
 
 export const shaderToy = (opts: ShaderToyOpts) => {
     const gl = opts.gl;
+
     const model = quad(false);
     model.textures = opts.textures || [];
     compileModel(gl, model);
@@ -43,8 +44,10 @@ export const shaderToy = (opts: ShaderToyOpts) => {
         const h = gl.drawingBufferHeight;
         model.uniforms!.time = (Date.now() - t0) * 1e-3;
         model.uniforms!.resolution = [w, h];
+
         gl.viewport(0, 0, w, h);
         draw(model);
+
         if (active) {
             requestAnimationFrame(update);
         }
@@ -60,6 +63,9 @@ export const shaderToy = (opts: ShaderToyOpts) => {
             active = false;
         },
         recompile(main: MainImageFn) {
+            if (model.shader) {
+                model.shader.release();
+            }
             model.shader = shader(gl, {
                 vs: (gl, _, ins) => [
                     defMain(() => [
@@ -70,17 +76,12 @@ export const shaderToy = (opts: ShaderToyOpts) => {
                     ])
                 ],
                 fs: (gl, unis, _, outputs) => [
-                    main,
                     defMain(() => [
                         assign(
                             outputs.fragColor,
-                            main(
-                                $xy(gl.gl_FragCoord),
-                                unis.resolution,
-                                unis.mouse,
-                                unis.mouseButtons,
-                                unis.time
-                            )
+                            defn("vec4", "mainImage", [], () =>
+                                main(gl, <any>unis)
+                            )()
                         )
                     ])
                 ],
@@ -88,10 +89,7 @@ export const shaderToy = (opts: ShaderToyOpts) => {
                     position: "vec2"
                 },
                 uniforms: {
-                    resolution: [
-                        "vec2",
-                        [gl.drawingBufferWidth, gl.drawingBufferHeight]
-                    ],
+                    resolution: "vec2",
                     mouse: ["vec2", [0, 0]],
                     mouseButtons: ["int", 0],
                     time: "float",

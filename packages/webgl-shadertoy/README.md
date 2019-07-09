@@ -38,9 +38,9 @@ yarn add @thi.ng/webgl-shadertoy
 ## Usage examples
 
 ```ts
-import { shaderToy } from "@thi.ng/webgl-shadertoy";
 import { glCanvas } from "@thi.ng/webgl";
-import { assign, defn, div, ret, vec4 } from "@thi.ng/shader-ast";
+import { shaderToy } from "@thi.ng/webgl-shadertoy";
+import { assign, div, mul, ret, vec4 } from "@thi.ng/shader-ast";
 
 const canvas = glCanvas({
     width: 600,
@@ -52,15 +52,10 @@ const canvas = glCanvas({
 const toy = shaderToy({
     canvas: canvas.canvas
     gl: canvas.gl,
-    main: defn(
-        "vec4", "mainImage",
-        [["vec2"], ["vec2"], ["vec2"], ["int"], ["float"]],
-        (frag, res, mouse, buttons, time) => [
-            assign(mouse, div(mouse, res)),
-            assign(frag, div(frag, res)),
-            ret(vec4(mul(mouse, frag), 0, 1))
-        ]
-    )
+    main: (gl, unis) => [
+        assign(unis.mouse, div(unis.mouse, unis.res)),
+        ret(vec4(mul(mouse, div(gl.gl_FragCoord, res)), 0, 1))
+    ]
 });
 
 toy.start();
