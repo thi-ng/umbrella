@@ -1137,7 +1137,11 @@ export const targetJS = () => {
                 case "bool":
                     return isBoolean(v) ? String(v) : `!!(${emit(v)})`;
                 case "float":
-                    return isNumber(v) ? String(v) : emit(v);
+                    return isNumber(v)
+                        ? String(v)
+                        : isBool(v)
+                        ? `(${emit(v)} & 1)`
+                        : emit(v);
                 case "int":
                     return isNumber(v) ? String(v) : `(${emit(v)} | 0)`;
                 case "uint":
@@ -1148,6 +1152,12 @@ export const targetJS = () => {
                 case "ivec2":
                 case "ivec3":
                 case "ivec4":
+                case "uvec2":
+                case "uvec3":
+                case "uvec4":
+                case "bvec2":
+                case "bvec3":
+                case "bvec4":
                 case "mat2":
                 case "mat3":
                 case "mat4":
