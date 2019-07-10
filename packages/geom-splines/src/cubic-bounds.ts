@@ -1,6 +1,20 @@
 import { mixCubic } from "@thi.ng/math";
 import { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 
+/**
+ * Computes cubic spline bounds for a single vector component.
+ *
+ * Based on:
+ * http://www.iquilezles.org/www/articles/bezierbbox/bezierbbox.htm
+ *
+ * @param min
+ * @param max
+ * @param i
+ * @param pa
+ * @param pb
+ * @param pc
+ * @param pd
+ */
 const axisBounds = (
     min: Vec,
     max: Vec,
@@ -10,34 +24,29 @@ const axisBounds = (
     pc: number,
     pd: number
 ) => {
-    let a = 3 * pd - 9 * pc + 9 * pb - 3 * pa;
-    let b = 6 * pa - 12 * pb + 6 * pc;
-    let c = 3 * pb - 3 * pa;
-    let disc = b * b - 4 * a * c;
+    min[i] = Math.min(pa, pd);
+    max[i] = Math.max(pa, pd);
 
-    let l = pa;
-    let h = pa;
-    pd < l && (l = pd);
-    pd > h && (h = pd);
+    const k0 = -pa + pb;
+    const k1 = pa - 2 * pb + pc;
+    const k2 = -pa + 3 * pb - 3 * pc + pd;
+    let h = k1 * k1 - k0 * k2;
 
-    if (disc >= 0) {
-        disc = Math.sqrt(disc);
-        a *= 2;
-
-        const bounds = (t: number) => {
-            if (t > 0 && t < 1) {
-                const x = mixCubic(pa, pb, pc, pd, t);
-                x < l && (l = x);
-                x > h && (h = x);
-            }
-        };
-
-        bounds((-b + disc) / a);
-        bounds((-b - disc) / a);
+    if (h > 0) {
+        h = Math.sqrt(h);
+        let t = k0 / (-k1 - h);
+        if (t > 0 && t < 1) {
+            const q = mixCubic(pa, pb, pc, pd, t);
+            min[i] = Math.min(min[i], q);
+            max[i] = Math.max(max[i], q);
+        }
+        t = k0 / (-k1 + h);
+        if (t > 0 && t < 1) {
+            const q = mixCubic(pa, pb, pc, pd, t);
+            min[i] = Math.min(min[i], q);
+            max[i] = Math.max(max[i], q);
+        }
     }
-
-    min[i] = l;
-    max[i] = h;
 };
 
 export const cubicBounds = (
