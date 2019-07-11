@@ -1,6 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1 } from "@thi.ng/defmulti";
-import { IShape, Type } from "@thi.ng/geom-api";
+import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
+import { CubicOpts, IShape, Type } from "@thi.ng/geom-api";
+import { closedCubicFromBreakPoints, closedCubicFromControlPoints } from "@thi.ng/geom-splines";
 import {
     EPS,
     HALF_PI,
@@ -14,12 +15,15 @@ import {
     Cubic,
     Line,
     Path,
+    Polygon,
     Quadratic
 } from "../api";
-import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
+import { cubic, cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
 import { dispatch } from "../internal/dispatch";
 
-export const asCubic = defmulti<IShape, Cubic[]>(dispatch);
+export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
+    dispatch
+);
 
 asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
     [Type.ARC]: ($: Arc) => {
@@ -78,6 +82,14 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
     [Type.PATH]: ($: Path) => [
         ...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments)
     ],
+
+    [Type.POLYGON]: ($: Polygon, opts: Partial<CubicOpts> = {}) => {
+        opts = { breakPoints: false, scale: 1 / 3, uniform: false, ...opts };
+        return (opts.breakPoints
+            ? closedCubicFromBreakPoints($.points, opts.scale, opts.uniform)
+            : closedCubicFromControlPoints($.points, opts.scale, opts.uniform)
+        ).map((pts) => cubic(pts, { ...$.attribs }));
+    },
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic) => [
         cubicFromQuadratic(points[0], points[1], points[2], { ...attribs })
