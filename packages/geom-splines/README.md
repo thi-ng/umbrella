@@ -50,8 +50,9 @@ There're currently two ways to convert a polygon into a sequence of cubic curve 
 In this mode the curve always goes through the midpoints each polygon
 edge, with the original polygon vertices being used to compute control points.
 
-| Proportional tangent scale | Uniform tangent scale |
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-uni.png) |
+| Proportional tangent scale                                                                            | Uniform tangent scale                                                                              |
+|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-uni.png) |
 
 #### Poly vertices as break points
 
@@ -65,11 +66,9 @@ resulting in equidistant control points for each poly vertex. In
 non-uniform mode, each tangent is scaled by the length of its parent
 poly edge.
 
-| Proportional tangent scale | Uniform tangent scale | |
-![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-nonuni.png)
-|
-![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-uni.png)
-|
+| Proportional tangent scale                                                                            | Uniform tangent scale                                                                              |
+|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-uni.png) |
 
 ```ts
 import * as gs from "@thi.ng/geom-splines";
