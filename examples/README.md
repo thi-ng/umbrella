@@ -45,25 +45,26 @@ in touch via PR, issue tracker, email or twitter!
 | 34 | [markdown](./markdown)                       | Markdown parser & editor w/ live preview                 | fsm, rstream, transducers-hdom                                    | advanced     |
 | 35 | [package-stats](./package-stats)             | CLI util to visualize umbrella pkg stats                 | hiccup-svg, transducers                                           | intermediate |
 | 36 | [pointfree-svg](./pointfree-svg)             | Generate SVG using pointfree DSL                         | hiccup, hiccup-svg, pointfree-lang                                | intermediate |
-| 37 | [router-basics](./router-basics)             | Complete mini SPA                                        | atom, hdom, interceptors, router                                  | advanced     |
-| 38 | [rstream-dataflow](./rstream-dataflow)       | Dataflow graph                                           | atom, hdom, rstream, rstream-gestures, rstream-graph, transducers | intermediate |
-| 39 | [rstream-grid](./rstream-grid)               | Dataflow graph SVG grid                                  | atom, hdom, hiccup-svg, interceptors, rstream-graph, transducers  | advanced     |
-| 40 | [rstream-hdom](./rstream-hdom)               | rstream based UI updates & state handling                | hdom, rstream, transducers                                        | intermediate |
-| 41 | [shader-ast-canvas2d](shader-ast-canvas2d)   | 2D canvas shader emulation                               | shader-ast                                                        | basic        |
-| 42 | [shader-ast-noise](shader-ast-noise)         | HOF shader function composition                          | shader-ast, webgl                                                 | basic        |
-| 43 | [shader-ast-raymarch](shader-ast-raymarch)   | WebGL & Canvas2D raymarch shader                         | shader-ast, webgl                                                 | intermediate |
-| 44 | [shader-ast-sdf2d](shader-ast-sdf2d)         | WebGL & Canvas2D SDF                                     | shader-ast, webgl                                                 | basic        |
-| 45 | [shader-ast-tunnel](shader-ast-tunnel)       | WebGL & Canvas2D textured tunnel shader                  | shader-ast, webgl                                                 | basic        |
-| 46 | [svg-barchart](./svg-barchart)               | hdom SVG barchart component                              | hdom, transducers                                                 | basic        |
-| 47 | [svg-particles](./svg-particles)             | hdom SVG generation / animation                          | hdom, transducers                                                 | basic        |
-| 48 | [svg-waveform](./svg-waveform)               | hdom SVG generation / undo history                       | atom, hdom, hiccup-svg, interceptors, iterators                   | intermediate |
-| 49 | [talk-slides](./talk-slides)                 | Presentation slides from ClojureX 2018                   | hdom, rstream, transducers-hdom                                   | intermediate |
-| 50 | [todo-list](./todo-list)                     | Canonical Todo list with undo/redo                       | atom, hdom, transducers                                           | intermediate |
-| 51 | [transducers-hdom](./transducers-hdom)       | Transducer & rstream based hdom UI updates               | hdom, rstream, transducers-hdom                                   | basic        |
-| 52 | [triple-query](./triple-query)               | Triple store query results & sortable table              | atom, hdom, hdom-components, rstream-query, transducers           | intermediate |
-| 53 | [webgl-cubemap](./webgl-cubemap)             | WebGL cubemap, async texture loading                     | hdom, webgl, shader-ast                                           | intermediate |
-| 54 | [webgl-gpgpu-basics](./webgl-gpgpu-basics)   | Minimal GPGPU example                                    | webgl, shader-ast                                                 | basic        |
-| 55 | [webgl-grid](./webgl-grid)                   | WebGL instancing                                         | webgl, hdom                                                       | intermediate |
-| 56 | [webgl-msdf](./webgl-msdf)                   | WebGL MSDF font rendering & particle system              | webgl, webgl-msdf, shader-ast, hdom                               | intermediate |
-| 57 | [webgl-ssao](./webgl-ssao)                   | WebGL screenspace ambient occlusion                      | webgl, shader-ast, rstream, hdom                                  | advanced     |
-| 58 | [xml-converter](./xml-converter)             | XML/HTML/SVG to hiccup conversion as you type            | rstream, sax, transducers, transducers-hdom                       | advanced     |
+| 37 | [poly-spline](./poly-spline)                 | Polygon to cubic curve conversion & visualization        | geom, hiccup-svg, hdom, rstream                                   | intermediate |
+| 38 | [router-basics](./router-basics)             | Complete mini SPA                                        | atom, hdom, interceptors, router                                  | advanced     |
+| 39 | [rstream-dataflow](./rstream-dataflow)       | Dataflow graph                                           | atom, hdom, rstream, rstream-gestures, rstream-graph, transducers | intermediate |
+| 40 | [rstream-grid](./rstream-grid)               | Dataflow graph SVG grid                                  | atom, hdom, hiccup-svg, interceptors, rstream-graph, transducers  | advanced     |
+| 41 | [rstream-hdom](./rstream-hdom)               | rstream based UI updates & state handling                | hdom, rstream, transducers                                        | intermediate |
+| 42 | [shader-ast-canvas2d](shader-ast-canvas2d)   | 2D canvas shader emulation                               | shader-ast                                                        | basic        |
+| 43 | [shader-ast-noise](shader-ast-noise)         | HOF shader function composition                          | shader-ast, webgl                                                 | basic        |
+| 44 | [shader-ast-raymarch](shader-ast-raymarch)   | WebGL & Canvas2D raymarch shader                         | shader-ast, webgl                                                 | intermediate |
+| 45 | [shader-ast-sdf2d](shader-ast-sdf2d)         | WebGL & Canvas2D SDF                                     | shader-ast, webgl                                                 | basic        |
+| 46 | [shader-ast-tunnel](shader-ast-tunnel)       | WebGL & Canvas2D textured tunnel shader                  | shader-ast, webgl                                                 | basic        |
+| 47 | [svg-barchart](./svg-barchart)               | hdom SVG barchart component                              | hdom, transducers                                                 | basic        |
+| 48 | [svg-particles](./svg-particles)             | hdom SVG generation / animation                          | hdom, transducers                                                 | basic        |
+| 49 | [svg-waveform](./svg-waveform)               | hdom SVG generation / undo history                       | atom, hdom, hiccup-svg, interceptors, iterators                   | intermediate |
+| 50 | [talk-slides](./talk-slides)                 | Presentation slides from ClojureX 2018                   | hdom, rstream, transducers-hdom                                   | intermediate |
+| 51 | [todo-list](./todo-list)                     | Canonical Todo list with undo/redo                       | atom, hdom, transducers                                           | intermediate |
+| 52 | [transducers-hdom](./transducers-hdom)       | Transducer & rstream based hdom UI updates               | hdom, rstream, transducers-hdom                                   | basic        |
+| 53 | [triple-query](./triple-query)               | Triple store query results & sortable table              | atom, hdom, hdom-components, rstream-query, transducers           | intermediate |
+| 54 | [webgl-cubemap](./webgl-cubemap)             | WebGL cubemap, async texture loading                     | hdom, webgl, shader-ast                                           | intermediate |
+| 55 | [webgl-gpgpu-basics](./webgl-gpgpu-basics)   | Minimal GPGPU example                                    | webgl, shader-ast                                                 | basic        |
+| 56 | [webgl-grid](./webgl-grid)                   | WebGL instancing                                         | webgl, hdom                                                       | intermediate |
+| 57 | [webgl-msdf](./webgl-msdf)                   | WebGL MSDF font rendering & particle system              | webgl, webgl-msdf, shader-ast, hdom                               | intermediate |
+| 58 | [webgl-ssao](./webgl-ssao)                   | WebGL screenspace ambient occlusion                      | webgl, shader-ast, rstream, hdom                                  | advanced     |
+| 59 | [xml-converter](./xml-converter)             | XML/HTML/SVG to hiccup conversion as you type            | rstream, sax, transducers, transducers-hdom                       | advanced     |
