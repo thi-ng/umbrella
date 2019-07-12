@@ -21,6 +21,7 @@ export * from "./ctors/triangle";
 export * from "./ops/arc-length";
 export * from "./ops/area";
 export * from "./ops/as-cubic";
+export * from "./ops/as-path";
 export * from "./ops/as-polygon";
 export * from "./ops/as-polyline";
 export * from "./ops/as-svg";
