@@ -1,5 +1,11 @@
 import { pointAtTheta } from "@thi.ng/geom-arc";
-import { EPS, HALF_PI, roundEps, sincos } from "@thi.ng/math";
+import {
+    EPS,
+    HALF_PI,
+    PI,
+    roundEps,
+    sincos
+} from "@thi.ng/math";
 import { magSq2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cubicFromLine } from "./cubic-line";
 
@@ -25,11 +31,12 @@ export const cubicFromArc = (
 ) => {
     const p = pointAtTheta(pos, r, axis, start);
     const q = pointAtTheta(pos, r, axis, end);
+    const delta = end - start;
     const [rx, ry] = r;
     const [s, c] = sincos(axis);
     const dx = (c * (p[0] - q[0])) / 2 + (s * (p[1] - q[1])) / 2;
     const dy = (-s * (p[0] - q[0])) / 2 + (c * (p[1] - q[1])) / 2;
-    if ((dx === 0 && dy === 0) || magSq2(r) < EPS) {
+    if ((Math.abs(delta) < PI && (dx === 0 && dy === 0)) || magSq2(r) < EPS) {
         return [cubicFromLine(p, q)];
     }
 
@@ -40,7 +47,6 @@ export const cubicFromArc = (
     };
 
     const res: Vec[][] = [];
-    const delta = end - start;
     const n = Math.max(roundEps(Math.abs(delta) / HALF_PI, 1e-3), 1);
     const d = delta / n;
     const t = (8 / 6) * Math.tan(0.25 * d);
