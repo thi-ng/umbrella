@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.1.1...@thi.ng/shader-ast-js@0.2.0) (2019-07-12)
+
+
+### Features
+
+* **shader-ast-js:** add uvec/bvec support, add bool => float casting ([90bb850](https://github.com/thi-ng/umbrella/commit/90bb850))
+
+
+
+
+
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.1.0...@thi.ng/shader-ast-js@0.1.1) (2019-07-08)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-js
