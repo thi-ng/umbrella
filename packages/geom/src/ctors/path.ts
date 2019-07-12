@@ -25,6 +25,15 @@ import { arcFrom2Points } from "./arc";
 export const path = (segments: PathSegment[], attribs?: Attribs) =>
     new Path(segments, attribs);
 
+export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
+    const path = new Path([], attribs || cubics[0].attribs);
+    path.segments.push({ type: SegmentType.MOVE, point: cubics[0].points[0] });
+    for (let c of cubics) {
+        path.segments.push({ type: SegmentType.CUBIC, geo: c });
+    }
+    return path;
+};
+
 export const normalizedPath = (path: Path) =>
     new Path(
         [

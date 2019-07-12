@@ -3,34 +3,50 @@ import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import {
     IHiccupShape,
     IShape,
+    PathSegment,
     PCLike,
     PCLikeConstructor,
+    SegmentType,
     Type
 } from "@thi.ng/geom-api";
-import { ReadonlyMat } from "@thi.ng/matrices";
+import { mulV, ReadonlyMat } from "@thi.ng/matrices";
+import { map } from "@thi.ng/transducers";
 import {
     Cubic,
     Group,
     Line,
+    Path,
     Points,
     Polygon,
     Polyline,
     Quad,
     Quadratic,
+    Rect,
     Triangle
 } from "../api";
 import { dispatch } from "../internal/dispatch";
-import { transformedPoints, transformPoints } from "../internal/transform-points";
-import { vertices } from "./vertices";
+import { transformedPoints } from "../internal/transform-points";
+import { asPath } from "./as-path";
+import { asPolygon } from "./as-polygon";
 
 const tx = (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
     new ctor(transformedPoints($.points, mat), { ...$.attribs });
 
+/**
+ * Transforms given shape with provided matrix. Some shape types will be
+ * automatically converted to other types prior to transformation because they
+ * cannot be reliably represented in their original type anymore, this
+ * includes:
+ *
+ * - Arc => Path (cubics)
+ * - Circle => Path (cubics)
+ * - Ellipse => Path (cubics)
+ * - Rect => Polygon
+ */
 export const transform = defmulti<IShape, ReadonlyMat, IShape>(dispatch);
 
 transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
-    [Type.CIRCLE]: ($: IShape, mat) =>
-        new Polygon(transformPoints(vertices($), mat), { ...$.attribs }),
+    [Type.ARC]: ($: IShape, mat) => transform(asPath($), mat),
 
     [Type.CUBIC]: tx(Cubic),
 
@@ -42,6 +58,26 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
 
     [Type.LINE]: tx(Line),
 
+    [Type.PATH]: ($: Path, mat) =>
+        new Path(
+            [
+                ...map(
+                    (s) =>
+                        s.type === SegmentType.MOVE
+                            ? <PathSegment>{
+                                  type: s.type,
+                                  point: mulV([], mat, s.point!)
+                              }
+                            : <PathSegment>{
+                                  type: s.type,
+                                  geo: transform(s.geo!, mat)
+                              },
+                    $.segments
+                )
+            ],
+            $.attribs
+        ),
+
     [Type.POINTS]: tx(Points),
 
     [Type.POLYGON]: tx(Polygon),
@@ -52,8 +88,10 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
 
     [Type.QUADRATIC]: tx(Quadratic),
 
+    [Type.RECT]: ($: Rect, mat) => transform(asPolygon($), mat),
+
     [Type.TRIANGLE]: tx(Triangle)
 });
 
+transform.isa(Type.CIRCLE, Type.ARC);
 transform.isa(Type.ELLIPSE, Type.CIRCLE);
-transform.isa(Type.RECT, Type.CIRCLE);

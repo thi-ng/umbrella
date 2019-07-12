@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.1.1...@thi.ng/shader-ast@0.2.0) (2019-07-12)
+
+
+### Bug Fixes
+
+* **shader-ast:** builtin `not` (bvec) used wrong internal fn name ([237c6f3](https://github.com/thi-ng/umbrella/commit/237c6f3))
+
+
+### Features
+
+* **shader-ast:** support number casts from bools ([119f257](https://github.com/thi-ng/umbrella/commit/119f257))
+
+
+
+
+
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.1.0...@thi.ng/shader-ast@0.1.1) (2019-07-08)
 
 

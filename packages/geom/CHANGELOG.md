@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.6.1...@thi.ng/geom@1.7.0) (2019-07-12)
+
+
+### Bug Fixes
+
+* **geom:** update asCubic() circle impl (only 99.99% closed) ([36cdb4f](https://github.com/thi-ng/umbrella/commit/36cdb4f))
+
+
+### Features
+
+* **geom:** add asCubic() impls for circle, group, rect ([5ca4166](https://github.com/thi-ng/umbrella/commit/5ca4166))
+* **geom:** add asPath(), update pathFromCubics() to accept opt attribs ([980af9f](https://github.com/thi-ng/umbrella/commit/980af9f))
+* **geom:** add ellipse support for asCubic() ([4247801](https://github.com/thi-ng/umbrella/commit/4247801))
+* **geom:** add polygon impl for asCubic(), add pathFromCubics() ([2faec7f](https://github.com/thi-ng/umbrella/commit/2faec7f))
+* **geom:** add/update transform impls: arc, circle, ellipse, path, rect ([e77e7c2](https://github.com/thi-ng/umbrella/commit/e77e7c2))
+
+
+
+
+
 ## [1.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.6.0...@thi.ng/geom@1.6.1) (2019-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom

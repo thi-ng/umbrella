@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/morton",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Z-order-curve / Morton encoding & decoding for 1D, 2D, 3D",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,9 +32,9 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
-        "@thi.ng/binary": "^1.0.7",
-        "@thi.ng/errors": "^1.1.0",
-        "@thi.ng/math": "^1.4.0"
+        "@thi.ng/binary": "^1.0.8",
+        "@thi.ng/errors": "^1.1.1",
+        "@thi.ng/math": "^1.4.1"
     },
     "keywords": [
         "binary",

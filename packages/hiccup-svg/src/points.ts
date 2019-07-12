@@ -28,7 +28,10 @@ export const points = (
             { opacity: 0 },
             shape === "circle"
                 ? ["circle", { id: href, cx: 0, cy: 0, r: r }]
-                : ["rect", { id: href, x: 0, y: 0, width: r, height: r }]
+                : [
+                      "rect",
+                      { id: href, x: -r / 2, y: -r / 2, width: r, height: r }
+                  ]
         ]);
         href = "#" + href;
     } else {

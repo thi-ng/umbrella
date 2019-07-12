@@ -1,5 +1,6 @@
 export * from "./accel";
 export * from "./convex";
+export * from "./cubic";
 export * from "./isec";
 export * from "./path";
 export * from "./sample";

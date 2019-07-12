@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.2.1...@thi.ng/geom-splines@0.3.0) (2019-07-12)
+
+
+### Bug Fixes
+
+* **geom-splines:** add full circle check for cubicFromArc() ([3e386f7](https://github.com/thi-ng/umbrella/commit/3e386f7))
+* **geom-splines:** fix [#100](https://github.com/thi-ng/umbrella/issues/100), replace cubicBounds impl ([6c64b88](https://github.com/thi-ng/umbrella/commit/6c64b88))
+
+
+### Features
+
+* **geom-splines:** add closedCubicFromBreak/ControlPoints, update readme ([1284f37](https://github.com/thi-ng/umbrella/commit/1284f37))
+
+
+
+
+
 ## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.2.0...@thi.ng/geom-splines@0.2.1) (2019-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom-splines

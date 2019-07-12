@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.2.1...@thi.ng/hiccup-svg@3.2.2) (2019-07-12)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** update points(), use centered rects ([c7d6aaa](https://github.com/thi-ng/umbrella/commit/c7d6aaa))
+
+
+
+
+
 ## [3.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.2.0...@thi.ng/hiccup-svg@3.2.1) (2019-07-08)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.2.5...@thi.ng/geom-api@0.3.0) (2019-07-12)
+
+
+### Features
+
+* **geom-api:** add CubicOpts ([81ac728](https://github.com/thi-ng/umbrella/commit/81ac728))
+
+
+
+
+
 ## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.2.4...@thi.ng/geom-api@0.2.5) (2019-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom-api
