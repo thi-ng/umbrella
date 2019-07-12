@@ -31,7 +31,7 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
         ),
 
     [Type.CIRCLE]: ($: Circle) =>
-        asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
+        asCubic(arc($.pos, $.r, 0, 0, TAU * 0.999, true, true)),
 
     [Type.CUBIC]: ($: Cubic) => [$],
 
