@@ -59,3 +59,5 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
 
     [Type.RECT]: ($: Rect, opts?) => asCubic(asPolygon($), opts)
 });
+
+asCubic.isa(Type.ELLIPSE, Type.CIRCLE);
