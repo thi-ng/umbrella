@@ -7,7 +7,8 @@ import {
     ZERO3,
     ZERO4
 } from "@thi.ng/vectors";
-import { GLVec, UniformValue } from "./api";
+import { GLVec } from "./api/glsl";
+import { UniformValue } from "./api/shader";
 
 type SetterS = "f" | "i" | "ui";
 

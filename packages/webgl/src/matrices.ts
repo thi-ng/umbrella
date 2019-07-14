@@ -7,7 +7,8 @@ import {
     ortho
 } from "@thi.ng/matrices";
 import { ReadonlyVec } from "@thi.ng/vectors";
-import { GLMat4, ShaderUniforms } from "./api";
+import { GLMat4 } from "./api/glsl";
+import { ShaderUniforms } from "./api/shader";
 
 const $ = (a: any, b: any, id: string) => a[id] || b[id].defaultVal || IDENT44;
 

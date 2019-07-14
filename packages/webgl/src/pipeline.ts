@@ -1,3 +1,4 @@
+import { IObjectOf } from "@thi.ng/api";
 import {
     assign,
     defMain,
@@ -6,7 +7,9 @@ import {
     texture,
     vec4
 } from "@thi.ng/shader-ast";
-import { ShaderFn, ShaderSpec } from "./api";
+import { ShaderFn, ShaderSpec, ShaderUniformSpecs } from "./api/shader";
+import { TextureOpts } from "./api/texture";
+import { texture as _texture } from "./texture";
 
 export const PASSTHROUGH_VS: ShaderFn = (gl, _, ins, outs) => [
     defMain(() => [

@@ -10,16 +10,14 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import {
-    GL_RGBA,
-    GL_RGBA32F,
     GPGPUJobConfig,
     GPGPUJobExecOpts,
     GPGPUOpts,
-    GPGPUTextureConfig,
-    ITexture,
-    ModelSpec,
-    ShaderSpec
-} from "./api";
+    GPGPUTextureConfig
+} from "./api/gpgpu";
+import { ModelSpec } from "./api/model";
+import { ShaderSpec } from "./api/shader";
+import { ITexture, TextureFormat } from "./api/texture";
 import { compileModel } from "./buffer";
 import { getExtensions, glCanvas } from "./canvas";
 import { draw } from "./draw";
@@ -182,7 +180,8 @@ export class GPGPUJob implements IRelease {
         const ctx = this.ctx;
         const gl = ctx.gl;
         const width = ctx.width;
-        const internalFormat = ctx.opts.version === 2 ? GL_RGBA32F : GL_RGBA;
+        const internalFormat =
+            ctx.opts.version === 2 ? TextureFormat.RGBA32F : TextureFormat.RGBA;
         const spec = this.spec;
         for (let i = 0; i < inputs.length; i++) {
             let tex = inputs[i];
@@ -198,8 +197,7 @@ export class GPGPUJob implements IRelease {
                 input.tex.configure({
                     image: tex,
                     type: input.opts.type || gl.FLOAT,
-                    internalFormat: input.opts.internalFormat || internalFormat,
-                    format: input.opts.format || GL_RGBA,
+                    format: input.opts.format || internalFormat,
                     filter: gl.NEAREST,
                     wrap: gl.CLAMP_TO_EDGE,
                     height: width,

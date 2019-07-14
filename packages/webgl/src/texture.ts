@@ -1,6 +1,13 @@
 import { withoutKeysObj } from "@thi.ng/associative";
 import { isArray } from "@thi.ng/checks";
-import { ITexture, TextureOpts } from "./api";
+import {
+    ITexture,
+    TEX_FORMATS,
+    TextureFormat,
+    TextureOpts,
+    TextureTarget,
+    TextureType
+} from "./api/texture";
 import { error } from "./error";
 import { isGL2Context } from "./utils";
 
@@ -28,9 +35,10 @@ export class Texture implements ITexture {
         const isGL2 = isGL2Context(gl);
         const target = this.target;
         const imgTarget = opts.target || target;
-        const format = opts.format || gl.RGBA;
-        const internalFormat = opts.internalFormat || format;
-        const type = opts.type || gl.UNSIGNED_BYTE;
+        const internalFormat = opts.format || TextureFormat.RGBA;
+        const decl = TEX_FORMATS[internalFormat];
+        const format = decl.format;
+        const type = opts.type || decl.types[0];
         let t1: GLenum, t2: GLenum, t3: GLenum;
 
         gl.bindTexture(this.target, this.tex);
@@ -46,50 +54,81 @@ export class Texture implements ITexture {
 
         if (opts.image !== undefined) {
             const level = opts.level || 0;
-            const pos = opts.pos || [0, 0];
-            if (opts.width && opts.height) {
-                opts.sub
-                    ? gl.texSubImage2D(
-                          imgTarget,
-                          level,
-                          pos[0],
-                          pos[1],
-                          opts.width,
-                          opts.height,
-                          format,
-                          type,
-                          <ArrayBufferView>opts.image
-                      )
-                    : gl.texImage2D(
-                          imgTarget,
-                          level,
-                          internalFormat,
-                          opts.width,
-                          opts.height,
-                          0,
-                          format,
-                          type,
-                          <ArrayBufferView>opts.image
-                      );
+            const pos = opts.pos || [0, 0, 0];
+            if (imgTarget === TextureTarget.TEXTURE_3D) {
+                if (opts.width && opts.height && opts.depth) {
+                    opts.sub
+                        ? (<WebGL2RenderingContext>gl).texSubImage3D(
+                              imgTarget,
+                              level,
+                              pos[0],
+                              pos[1],
+                              pos[2],
+                              opts.width,
+                              opts.height,
+                              opts.depth,
+                              format,
+                              type,
+                              <any>opts.image
+                          )
+                        : (<WebGL2RenderingContext>gl).texImage3D(
+                              imgTarget,
+                              level,
+                              internalFormat,
+                              opts.width,
+                              opts.height,
+                              opts.depth,
+                              0,
+                              format,
+                              type,
+                              <any>opts.image
+                          );
+                }
             } else {
-                opts.sub
-                    ? gl.texSubImage2D(
-                          imgTarget,
-                          level,
-                          pos[0],
-                          pos[1],
-                          format,
-                          type,
-                          <TexImageSource>opts.image
-                      )
-                    : gl.texImage2D(
-                          imgTarget,
-                          level,
-                          internalFormat,
-                          format,
-                          type,
-                          <TexImageSource>opts.image
-                      );
+                if (opts.width && opts.height) {
+                    opts.sub
+                        ? gl.texSubImage2D(
+                              imgTarget,
+                              level,
+                              pos[0],
+                              pos[1],
+                              opts.width,
+                              opts.height,
+                              format,
+                              type,
+                              <ArrayBufferView>opts.image
+                          )
+                        : gl.texImage2D(
+                              imgTarget,
+                              level,
+                              internalFormat,
+                              opts.width,
+                              opts.height,
+                              0,
+                              format,
+                              type,
+                              <ArrayBufferView>opts.image
+                          );
+                } else {
+                    opts.sub
+                        ? gl.texSubImage2D(
+                              imgTarget,
+                              level,
+                              pos[0],
+                              pos[1],
+                              format,
+                              type,
+                              <TexImageSource>opts.image
+                          )
+                        : gl.texImage2D(
+                              imgTarget,
+                              level,
+                              internalFormat,
+                              format,
+                              type,
+                              <TexImageSource>opts.image
+                          );
+                }
             }
         }
 
@@ -243,22 +282,24 @@ export const cubeMap = (
  * @param data texture data
  * @param width width
  * @param height height
+ * @param format
+ * @param type
  */
 export const floatTexture = (
     gl: WebGLRenderingContext,
     data: Float32Array | undefined | null,
     width: number,
     height: number,
-    internalFormat?: GLenum,
-    format?: GLenum
+    format?: TextureFormat,
+    type?: TextureType
 ) =>
     new Texture(gl, {
         filter: gl.NEAREST,
         wrap: gl.CLAMP_TO_EDGE,
-        internalFormat:
-            internalFormat || (isGL2Context(gl) ? gl.RGBA32F : gl.RGBA),
-        format: format || gl.RGBA,
-        type: gl.FLOAT,
+        format:
+            format ||
+            (isGL2Context(gl) ? TextureFormat.RGBA32F : TextureFormat.RGBA),
+        type: type || gl.FLOAT,
         image: data,
         width,
         height

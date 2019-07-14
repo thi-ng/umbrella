@@ -5,7 +5,7 @@ import {
     Sym,
     Term
 } from "@thi.ng/shader-ast";
-import { ShaderOpts } from "./api";
+import { ShaderOpts } from "./api/shader";
 
 export const isGL2Context = (
     gl: WebGLRenderingContext

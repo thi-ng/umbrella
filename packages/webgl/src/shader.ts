@@ -17,15 +17,13 @@ import {
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { vals } from "@thi.ng/transducers";
+import { GL_EXT_INFO } from "./api/ext";
+import { GLSL, GLSLExtensionBehavior } from "./api/glsl";
+import { ModelAttributeSpecs, ModelSpec } from "./api/model";
 import {
     DEFAULT_OUTPUT,
-    GL_EXT_INFO,
-    GLSL,
     GLSLDeclPrefixes,
-    GLSLExtensionBehavior,
     IShader,
-    ModelAttributeSpecs,
-    ModelSpec,
     ShaderAttrib,
     ShaderAttribSpecs,
     ShaderFn,
@@ -37,7 +35,7 @@ import {
     ShaderUniformSpecs,
     UniformValue,
     UniformValues
-} from "./api";
+} from "./api/shader";
 import { getExtensions } from "./canvas";
 import { error } from "./error";
 import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";

@@ -1,5 +1,5 @@
 import { isArray } from "@thi.ng/checks";
-import { ModelSpec } from "./api";
+import { ModelSpec } from "./api/model";
 import { error } from "./error";
 import { bindTextures } from "./texture";
 import { isGL2Context } from "./utils";
