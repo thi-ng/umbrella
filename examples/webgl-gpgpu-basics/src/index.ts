@@ -14,7 +14,7 @@ const ctx = gpgpu({
     size: 64, // might be adjusted / rounded up to next power of 2
     inputs: 1, // max inputs
     outputs: 3, // max outputs
-    version: 2 // webgl version
+    version: 1 // webgl version
 });
 
 const job = ctx.newJob({

@@ -72,13 +72,11 @@ const app = () => {
             }
             const [colorTex, posTex, normTex, noiseTex, ssaoTex] = [
                 {},
-                { internalFormat: gl.RGBA16F, type: gl.FLOAT },
-                { internalFormat: gl.RGBA16F, type: gl.FLOAT },
+                { format: gl.RGBA16F },
+                { format: gl.RGBA16F },
                 {
                     image: NOISE,
-                    internalFormat: gl.RG16F,
-                    format: gl.RG,
-                    type: gl.FLOAT
+                    format: gl.RG16F
                 },
                 {}
             ].map((opts: Partial<TextureOpts>) =>
@@ -206,5 +204,3 @@ if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
     hot && hot.dispose(cancel);
 }
-
-//window["params"] = PARAMS;
