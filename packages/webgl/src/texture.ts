@@ -21,24 +21,30 @@ export const bindTextures = (textures: ITexture[]) => {
 export class Texture implements ITexture {
     gl: WebGLRenderingContext;
     tex: WebGLTexture;
-    target: GLenum;
+    target!: TextureTarget;
+    format!: TextureFormat;
+    type!: TextureType;
+    size!: number[];
 
     constructor(gl: WebGLRenderingContext, opts: Partial<TextureOpts> = {}) {
         this.gl = gl;
         this.tex = gl.createTexture() || error("error creating WebGL texture");
-        this.target = opts!.target || gl.TEXTURE_2D;
         this.configure(opts);
     }
 
     configure(opts: Partial<TextureOpts> = {}) {
         const gl = this.gl;
         const isGL2 = isGL2Context(gl);
-        const target = this.target;
-        const imgTarget = opts.target || target;
-        const internalFormat = opts.format || TextureFormat.RGBA;
-        const decl = TEX_FORMATS[internalFormat];
-        const format = decl.format;
-        const type = opts.type || decl.types[0];
+        const target = opts.target || this.target || TextureTarget.TEXTURE_2D;
+        const format = opts.format || this.format || TextureFormat.RGBA;
+        const decl = TEX_FORMATS[format];
+        const baseFormat = decl.format;
+        const type = opts.type || this.type || decl.types[0];
+
+        !this.target && (this.target = target);
+        this.format = format;
+        this.type = type;
+
         let t1: GLenum, t2: GLenum, t3: GLenum;
 
         gl.bindTexture(this.target, this.tex);
@@ -55,79 +61,92 @@ export class Texture implements ITexture {
         if (opts.image !== undefined) {
             const level = opts.level || 0;
             const pos = opts.pos || [0, 0, 0];
-            if (imgTarget === TextureTarget.TEXTURE_3D) {
+            if (target === TextureTarget.TEXTURE_3D) {
                 if (opts.width && opts.height && opts.depth) {
-                    opts.sub
-                        ? (<WebGL2RenderingContext>gl).texSubImage3D(
-                              imgTarget,
-                              level,
-                              pos[0],
-                              pos[1],
-                              pos[2],
-                              opts.width,
-                              opts.height,
-                              opts.depth,
-                              format,
-                              type,
-                              <any>opts.image
-                          )
-                        : (<WebGL2RenderingContext>gl).texImage3D(
-                              imgTarget,
-                              level,
-                              internalFormat,
-                              opts.width,
-                              opts.height,
-                              opts.depth,
-                              0,
-                              format,
-                              type,
-                              <any>opts.image
-                          );
+                    if (opts.sub) {
+                        (<WebGL2RenderingContext>gl).texSubImage3D(
+                            target,
+                            level,
+                            pos[0],
+                            pos[1],
+                            pos[2],
+                            opts.width,
+                            opts.height,
+                            opts.depth,
+                            baseFormat,
+                            type,
+                            <any>opts.image
+                        );
+                    } else {
+                        if (level === 0) {
+                            this.size = [opts.width, opts.height, opts.depth];
+                        }
+                        (<WebGL2RenderingContext>gl).texImage3D(
+                            target,
+                            level,
+                            format,
+                            opts.width,
+                            opts.height,
+                            opts.depth,
+                            0,
+                            baseFormat,
+                            type,
+                            <any>opts.image
+                        );
+                    }
                 }
             } else {
                 if (opts.width && opts.height) {
-                    opts.sub
-                        ? gl.texSubImage2D(
-                              imgTarget,
-                              level,
-                              pos[0],
-                              pos[1],
-                              opts.width,
-                              opts.height,
-                              format,
-                              type,
-                              <ArrayBufferView>opts.image
-                          )
-                        : gl.texImage2D(
-                              imgTarget,
-                              level,
-                              internalFormat,
-                              opts.width,
-                              opts.height,
-                              0,
-                              format,
-                              type,
-                              <ArrayBufferView>opts.image
-                          );
+                    if (opts.sub) {
+                        gl.texSubImage2D(
+                            target,
+                            level,
+                            pos[0],
+                            pos[1],
+                            opts.width,
+                            opts.height,
+                            baseFormat,
+                            type,
+                            <ArrayBufferView>opts.image
+                        );
+                    } else {
+                        if (level === 0) {
+                            this.size = [opts.width, opts.height];
+                        }
+                        gl.texImage2D(
+                            target,
+                            level,
+                            format,
+                            opts.width,
+                            opts.height,
+                            0,
+                            baseFormat,
+                            type,
+                            <ArrayBufferView>opts.image
+                        );
+                    }
                 } else {
-                    opts.sub
-                        ? gl.texSubImage2D(
-                              imgTarget,
-                              level,
-                              pos[0],
-                              pos[1],
-                              format,
-                              type,
-                              <TexImageSource>opts.image
-                          )
-                        : gl.texImage2D(
-                              imgTarget,
-                              level,
-                              internalFormat,
-                              format,
-                              type,
-                              <TexImageSource>opts.image
-                          );
+                    if (opts.sub) {
+                        gl.texSubImage2D(
+                            target,
+                            level,
+                            pos[0],
+                            pos[1],
+                            baseFormat,
+                            type,
+                            <TexImageSource>opts.image
+                        );
+                    } else {
+                        if (opts.image != null && level == 0) {
+                            this.size = [
+                                (<any>opts.image).width,
+                                (<any>opts.image).height
+                            ];
+                        }
+                        gl.texImage2D(target, level, format, baseFormat, type, <
+                            TexImageSource
+                        >opts.image);
+                    }
                 }
             }
         }
