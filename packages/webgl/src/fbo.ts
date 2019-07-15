@@ -1,10 +1,12 @@
 import { assert } from "@thi.ng/api";
 import { FboOpts, IFbo } from "./api/buffers";
-import { GL_COLOR_ATTACHMENT0_WEBGL, GL_MAX_COLOR_ATTACHMENTS_WEBGL } from "./api/constants";
 import { ITexture } from "./api/texture";
 import { error } from "./error";
 import { RBO } from "./rbo";
 import { isGL2Context } from "./utils";
+
+const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
+const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
 
 /**
  * WebGL framebuffer wrapper w/ automatic detection & support for

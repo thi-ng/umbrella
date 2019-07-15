@@ -7,12 +7,12 @@ import {
     IDeref,
     IObjectOf,
     IRelease,
-    Tuple,
     TypedArray
 } from "@thi.ng/api";
 import { Func, Sym } from "@thi.ng/shader-ast";
 import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import { ReadonlyVec } from "@thi.ng/vectors";
+import { BlendEquation, BlendFunc } from "./blend";
 import {
     GLIntVec,
     GLIntVec2,
@@ -32,6 +32,7 @@ import {
     GLVec4
 } from "./glsl";
 import { ModelAttributeSpecs, ModelSpec } from "./model";
+import { StencilFnParams, StencilOpParams } from "./stencil";
 
 export interface GLSLSyntax {
     number: number;
@@ -259,11 +260,11 @@ export interface ShaderState {
      * 2-element array of glBlendFunction coefficients
      * (default: `[gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA]`)
      */
-    blendFn: Tuple<GLenum, 2>;
+    blendFn: BlendFunc;
     /**
      * glBlendEquation mode
      */
-    blendEq: GLenum;
+    blendEq: BlendEquation;
     /**
      * Enable stencil test
      */
@@ -271,15 +272,15 @@ export interface ShaderState {
     /**
      * glStencilFn params
      */
-    stencilFn: Tuple<GLenum, 3>;
+    stencilFn: StencilFnParams;
     /**
      * glStencilOp params
      */
-    stencilOp: Tuple<GLenum, 3>;
+    stencilOp: StencilOpParams;
     /**
      * glStencilMask arg
      */
-    stencilMask: GLenum;
+    stencilMask: number;
 }
 
 export interface ShaderOpts<T> {

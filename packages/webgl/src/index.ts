@@ -1,6 +1,6 @@
+export * from "./api/blend";
 export * from "./api/buffers";
 export * from "./api/canvas";
-export * from "./api/constants";
 export * from "./api/ext";
 export * from "./api/glsl";
 export * from "./api/gpgpu";

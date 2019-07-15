@@ -31,3 +31,39 @@ export const FX_SHADER_SPEC: ShaderSpec = {
     state: { depth: false },
     ext: {}
 };
+
+export type GPGPUSize = number | [number, number];
+export interface ShaderPipelineOpts {
+    size: GPGPUSize;
+    gl: WebGLRenderingContext | WebGL2RenderingContext;
+    // canvas?: HTMLCanvasElement;
+    version?: 1 | 2;
+    textures: IObjectOf<TextureOpts>;
+    passes: ShaderPass;
+}
+
+export interface ShaderPass {
+    inputs: string[];
+    outputs: string[];
+    size?: [number, number];
+    uniforms?: ShaderUniformSpecs;
+    fn: ShaderFn;
+}
+
+// export const shaderPipeline = (opts: ShaderPipelineOpts) => {
+//     let width: number, height: number;
+//     const gl = opts.gl;
+//     if (isNumber(opts.size)) {
+//         width = height = ceilPow2(Math.ceil(Math.sqrt(opts.size / 4)));
+//     } else {
+//         [width, height] = opts.size;
+//     }
+//     const textures = Object.keys(opts.textures).reduce((acc, id) => {
+//         const tex = opts.textures[id];
+//         const format = TEX_FORMATS[tex.format];
+//         acc[id] = _texture(gl, {
+//             width,
+//             height
+//         });
+//     }, {});
+// };

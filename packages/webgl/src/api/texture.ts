@@ -91,14 +91,14 @@ export const enum TextureType {
     FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8dad
 }
 
-export enum TextureTarget {
+export const enum TextureTarget {
     TEXTURE_2D = 3553,
     TEXTURE_3D = 32879,
     TEXTURE_CUBE_MAP = 34067,
     TEXTURE_2D_ARRAY = 35866
 }
 
-export enum TextureFilter {
+export const enum TextureFilter {
     LINEAR = 9729,
     NEAREST = 9728,
     NEAREST_MIPMAP_NEAREST = 9984,
@@ -107,7 +107,7 @@ export enum TextureFilter {
     LINEAR_MIPMAP_LINEAR = 9987
 }
 
-export enum TextureRepeat {
+export const enum TextureRepeat {
     REPEAT = 10497,
     CLAMP = 33071,
     REPEAT_MIRROR = 33648
