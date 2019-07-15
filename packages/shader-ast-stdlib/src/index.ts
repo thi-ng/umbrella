@@ -59,6 +59,7 @@ export * from "./sdf/torus";
 export * from "./sdf/tri";
 export * from "./sdf/union";
 
+export * from "./tex/blur";
 export * from "./tex/index-coord";
 export * from "./tex/index-uv";
 export * from "./tex/read-index";
