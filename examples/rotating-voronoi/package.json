@@ -1,0 +1,48 @@
+{
+    "name": "rotating-voronoi",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Alberto Massa <nootropic.kint@gmail.com>",
+    "license": "Apache-2.0",
+    "keywords": [
+        "canvas",
+        "svg",
+        "voronoi",
+        "delanuy",
+        "spline",
+        "rstream"
+    ],
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.3",
+        "terser": "^3.17.0",
+        "typescript": "^3.4.1"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/atom": "latest",
+        "@thi.ng/geom": "latest",
+        "@thi.ng/geom-api": "latest",
+        "@thi.ng/geom-resample": "latest",
+        "@thi.ng/geom-voronoi": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-hdom": "latest",
+        "@thi.ng/vectors": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    }
+}
