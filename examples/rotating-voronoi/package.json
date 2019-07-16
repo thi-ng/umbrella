@@ -2,8 +2,16 @@
     "name": "rotating-voronoi",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "author": "Alberto Massa <nootropic.kint@gmail.com>",
     "license": "Apache-2.0",
+    "keywords": [
+        "canvas",
+        "svg",
+        "voronoi",
+        "delanuy",
+        "spline",
+        "rstream"
+    ],
     "scripts": {
         "clean": "rm -rf .cache build out",
         "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
