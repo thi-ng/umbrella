@@ -7,12 +7,6 @@ import {
 } from "@thi.ng/shader-ast";
 import { ShaderOpts } from "./api/shader";
 
-export const isGL2Context = (
-    gl: WebGLRenderingContext
-): gl is WebGL2RenderingContext =>
-    typeof WebGL2RenderingContext !== "undefined" &&
-    gl instanceof WebGL2RenderingContext;
-
 export const positionAttrib = (
     opts: Partial<ShaderOpts<any>>,
     attribs: IObjectOf<Sym<any>>,

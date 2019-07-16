@@ -11,6 +11,7 @@ export * from "./api/texture";
 
 export * from "./buffer";
 export * from "./canvas";
+export * from "./checks";
 export * from "./draw";
 export * from "./error";
 export * from "./fbo";

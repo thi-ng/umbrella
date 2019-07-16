@@ -34,3 +34,11 @@ export interface WebGLExtensionMap {
     OES_element_index_uint: OES_element_index_uint;
     ANGLE_instanced_arrays: ANGLE_instanced_arrays;
 }
+
+export type ExtensionName = keyof WebGLExtensionMap;
+
+export type ExtensionBehavior = "require" | "warn" | boolean;
+
+export type ExtensionBehaviors = Partial<
+    Record<keyof WebGLExtensionMap, ExtensionBehavior>
+>;

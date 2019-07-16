@@ -13,6 +13,7 @@ import { Func, Sym } from "@thi.ng/shader-ast";
 import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import { BlendEquation, BlendFunc } from "./blend";
+import { ExtensionBehaviors } from "./ext";
 import {
     GLIntVec,
     GLIntVec2,
@@ -23,7 +24,6 @@ import {
     GLMat4,
     GLSL,
     GLSLArrayType,
-    GLSLExtensionBehavior,
     GLSLScalarType,
     GLUintVec,
     GLVec,
@@ -236,7 +236,7 @@ export interface ShaderSpec {
      * behavior. Boolean values will be translated in "enable" /
      * "disable".
      */
-    ext?: IObjectOf<GLSLExtensionBehavior>;
+    ext?: ExtensionBehaviors;
 }
 
 export interface ShaderState {

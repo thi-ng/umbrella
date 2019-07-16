@@ -617,4 +617,8 @@ export interface ITexture
         IConfigure<Partial<TextureOpts>>,
         IRelease {
     tex: WebGLTexture;
+    target: TextureTarget;
+    format: TextureFormat;
+    type: TextureType;
+    size: number[];
 }

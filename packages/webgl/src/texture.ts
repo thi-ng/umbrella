@@ -8,8 +8,8 @@ import {
     TextureTarget,
     TextureType
 } from "./api/texture";
+import { isGL2Context } from "./checks";
 import { error } from "./error";
-import { isGL2Context } from "./utils";
 
 export const bindTextures = (textures: ITexture[]) => {
     if (!textures) return;

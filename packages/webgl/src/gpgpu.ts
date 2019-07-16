@@ -20,13 +20,13 @@ import { ShaderSpec } from "./api/shader";
 import { ITexture, TextureFormat } from "./api/texture";
 import { compileModel } from "./buffer";
 import { getExtensions, glCanvas } from "./canvas";
+import { isGL2Context } from "./checks";
 import { draw } from "./draw";
 import { FBO } from "./fbo";
 import { quad } from "./geo/quad";
-import { FX_SHADER_SPEC } from "./pipeline";
+import { FX_SHADER_SPEC_UV } from "./pipeline";
 import { shader } from "./shader";
 import { floatTexture, texture } from "./texture";
-import { isGL2Context } from "./utils";
 
 export const gpgpu = (opts: GPGPUOpts) => new GPGPU(opts);
 
@@ -249,7 +249,7 @@ export class GPGPUJob implements IRelease {
         let shaderSpec: ShaderSpec;
         if (opts.src) {
             shaderSpec = {
-                ...FX_SHADER_SPEC,
+                ...FX_SHADER_SPEC_UV,
                 pre: `#define WIDTH (${ctx.width})\n#define SIZE (ivec2(${
                     ctx.width
                 }))`,

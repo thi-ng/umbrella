@@ -58,5 +58,3 @@ export type GLSLArrayType =
     | "sampler2D[]"
     | "sampler3D[]"
     | "samplerCube[]";
-
-export type GLSLExtensionBehavior = "require" | "warn" | boolean;
