@@ -1,5 +1,5 @@
 {
-    "lerna": "3.8.5",
+    "lerna": "3.15.0",
     "packages": [
         "packages/*"
     ],
@@ -10,5 +10,9 @@
         "publish": {
             "conventionalCommits": true
         }
-    }
+    },
+    "ignoreChanges": [
+        "**/test/**",
+        "**/*.md"
+    ]
 }
