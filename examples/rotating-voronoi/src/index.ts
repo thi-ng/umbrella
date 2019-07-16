@@ -4,8 +4,6 @@ import { simplify } from "@thi.ng/geom-resample";
 import {
     pathFromCubics,
     asCubic,
-    Polygon,
-    withAttribs,
     svgDoc,
     rect,
     group,
@@ -46,8 +44,7 @@ const height = edge;
 const radius = (width / 2) * 0.8;
 const center = [width / 2, height / 2];
 
-const rndInt = (min: number, max: number) =>
-    SYSTEM.minmax(min, max) | 0;
+const rndInt = (min: number, max: number) => SYSTEM.minmax(min, max) | 0;
 
 const startingCircles: Array<[number, number, boolean]> = [
     [radius / 1, rndInt(4, 20), true],
@@ -121,8 +118,10 @@ function computeVoronoi(state: AppState) {
         group(
             { fill: "white", "stroke-width": 1 },
             cells.map((cell) =>
-                pathFromCubics(asCubic(polygon(simplify(cell, 0.01, true)), opts)
-            ))
+                pathFromCubics(
+                    asCubic(polygon(simplify(cell, 0.01, true)), opts)
+                )
+            )
         ),
         points(doSave ? [] : startPoints, {
             size: 4,
