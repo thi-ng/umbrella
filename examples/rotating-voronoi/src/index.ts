@@ -1,4 +1,3 @@
-import { serialize } from "@thi.ng/hiccup";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DVMesh } from "@thi.ng/geom-voronoi";
 import { simplify } from "@thi.ng/geom-resample";
@@ -10,12 +9,13 @@ import {
     svgDoc,
     rect,
     group,
-    points
+    points,
+    polygon,
+    asSvg
 } from "@thi.ng/geom";
 import { CubicOpts } from "@thi.ng/geom-api";
 import { cartesian2, Vec } from "@thi.ng/vectors";
 import { TAU, PI } from "@thi.ng/math";
-import { convertTree } from "@thi.ng/hiccup-svg";
 import { clearDOM } from "@thi.ng/hdom";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import {
@@ -36,6 +36,7 @@ import {
     mapcat,
     iterator
 } from "@thi.ng/transducers";
+import { SYSTEM } from "@thi.ng/random";
 import { slider, checkbox } from "./controllers";
 import { download } from "./download";
 
@@ -46,7 +47,7 @@ const radius = (width / 2) * 0.8;
 const center = [width / 2, height / 2];
 
 const rndInt = (min: number, max: number) =>
-    Math.trunc(min + Math.random() * (max - min));
+    SYSTEM.minmax(min, max) | 0;
 
 const startingCircles: Array<[number, number, boolean]> = [
     [radius / 1, rndInt(4, 20), true],
@@ -117,16 +118,12 @@ function computeVoronoi(state: AppState) {
     const voronoi = [
         rect([width, height], { fill: "black" }),
 
-        ...cells.map((cell) => {
-            const cell0 = new Polygon(simplify(cell, 0.01, true));
-
-            const cubics = asCubic(cell0, opts);
-            const paths = pathFromCubics(cubics);
-
-            return group({}, [
-                withAttribs(paths, { fill: "white", "stroke-width": 1 })
-            ]);
-        }),
+        group(
+            { fill: "white", "stroke-width": 1 },
+            cells.map((cell) =>
+                pathFromCubics(asCubic(polygon(simplify(cell, 0.01, true)), opts)
+            ))
+        ),
         points(doSave ? [] : startPoints, {
             size: 4,
             shape: "circle",
@@ -135,7 +132,7 @@ function computeVoronoi(state: AppState) {
     ];
 
     if (doSave) {
-        const svg = convertTree(
+        const svg = asSvg(
             svgDoc(
                 {
                     width,
@@ -146,8 +143,7 @@ function computeVoronoi(state: AppState) {
                 ...voronoi
             )
         );
-        const finalSvg = serialize(svg);
-        download(`${new Date().getTime()}-voronoi.svg`, finalSvg);
+        download(`${new Date().getTime()}-voronoi.svg`, svg);
     }
 
     return voronoi;

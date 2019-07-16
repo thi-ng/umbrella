@@ -5,20 +5,11 @@ import {
     fromDOMEvent,
     sync
 } from "@thi.ng/rstream";
-import { Transducer, Reducer, map, comp, mapcat } from "@thi.ng/transducers";
-
-function increment(initialValue: number = 0): Transducer<number, number> {
-    let frame = initialValue;
-    return (rfn: Reducer<number, number>) => [
-        () => rfn[0](),
-        (acc) => rfn[1](acc),
-        (acc) => rfn[2](acc, frame++)
-    ];
-}
+import { map, mapcat, scan, add } from "@thi.ng/transducers";
 
 export const keyStream = fromDOMEvent(document, "keyup");
 export const keyStreamConditional = keyStream.transform(
-    comp(map((x) => [x.key, null]), mapcat((x) => x))
+    mapcat((x) => [x.key, null])
 );
 
 export const scaleStream = stream<number>();
@@ -26,7 +17,7 @@ export const animationStream = stream<boolean>();
 export const frameStream = fromRAF();
 export const frameStreamConditional = frameStream
     .subscribe(sidechainToggle<number, boolean>(animationStream))
-    .transform(increment());
+    .transform(map(() => 1), scan(add()));
 
 export type AppState = {
     scaleValue: number;
