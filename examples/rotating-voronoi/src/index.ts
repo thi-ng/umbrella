@@ -1,42 +1,32 @@
-import { canvas } from "@thi.ng/hdom-canvas";
-import { DVMesh } from "@thi.ng/geom-voronoi";
-import { simplify } from "@thi.ng/geom-resample";
 import {
-    pathFromCubics,
     asCubic,
-    svgDoc,
-    rect,
+    asSvg,
     group,
+    pathFromCubics,
     points,
     polygon,
-    asSvg
+    rect,
+    svgDoc,
+    vertices
 } from "@thi.ng/geom";
-import { CubicOpts } from "@thi.ng/geom-api";
-import { cartesian2, Vec } from "@thi.ng/vectors";
-import { TAU, PI } from "@thi.ng/math";
-import { clearDOM } from "@thi.ng/hdom";
-import { updateDOM } from "@thi.ng/transducers-hdom";
-import {
-    AppState,
-    scaleStream,
-    animationStream,
-    frameStreamConditional,
-    frameStream,
-    keyStream,
-    keyStreamConditional,
-    mainStream
-} from "./stream-state";
-import {
-    map,
-    iterator1,
-    normRange,
-    comp,
-    mapcat,
-    iterator
-} from "@thi.ng/transducers";
+import { simplify } from "@thi.ng/geom-resample";
+import { DVMesh } from "@thi.ng/geom-voronoi";
+import { canvas } from "@thi.ng/hdom-canvas";
+import { PI, TAU } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
-import { slider, checkbox } from "./controllers";
+import { map, mapcat, normRange } from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { cartesian2, Vec } from "@thi.ng/vectors";
+import { checkbox, slider } from "./controllers";
 import { download } from "./download";
+import {
+    animationStream,
+    AppState,
+    frameStreamConditional,
+    keyStreamConditional,
+    mainStream,
+    scaleStream
+} from "./stream-state";
 
 const edge = window.innerWidth * 0.7;
 const width = edge;
@@ -59,10 +49,8 @@ const pointsInCircle = (
     _num: number,
     _angle: number
 ) => [
-    ...iterator1(
-        map((index) =>
-            cartesian2([], [_radius, index * TAU + _angle], _center)
-        ),
+    ...map(
+        (index) => cartesian2(null, [_radius, index * TAU + _angle], _center),
         normRange(_num, false)
     )
 ];
@@ -70,59 +58,46 @@ const pointsInCircle = (
 scaleStream.next(1);
 frameStreamConditional.next(0);
 animationStream.next(false);
-const startKeyEvent: KeyboardEvent = document.createEvent("KeyboardEvent");
-startKeyEvent.initEvent("keyup");
-keyStreamConditional.next(startKeyEvent);
+keyStreamConditional.next(<any>{});
 
-const app = (...args: any) => (state: AppState) => appRender(state);
-mainStream.transform(
-    map(app(scaleStream, animationStream, frameStream, keyStream)),
-    updateDOM()
-);
+mainStream.transform(map(appRender), updateDOM());
 
 function computeVoronoi(state: AppState) {
     const delta = state.frameValue / 100;
     const doSave = state.keyValue === "s";
 
-    const opts: CubicOpts = {
-        breakPoints: false,
-        uniform: false,
-        scale: state.scaleValue
-    };
-
     const startPoints = [
-        ...iterator(
-            comp(
-                map(([rad, density, clockwise]) =>
-                    pointsInCircle(
-                        center,
-                        rad,
-                        density,
-                        clockwise ? delta : PI - delta
-                    )
+        ...mapcat(
+            ([rad, density, clockwise]) =>
+                pointsInCircle(
+                    center,
+                    rad,
+                    density,
+                    clockwise ? delta : PI - delta
                 ),
-                mapcat((x) => x)
-            ),
             startingCircles
         )
     ];
 
+    const bounds = rect([width, height], { fill: "black" });
     const mesh = new DVMesh();
     mesh.addKeys(startPoints, 0.01);
-    const bounds = [[0, 0], [width, 0], [width, height], [0, height]];
-    const cells = mesh.voronoi(bounds);
+    const cells = mesh.voronoi(vertices(bounds));
 
     const voronoi = [
-        rect([width, height], { fill: "black" }),
+        bounds,
 
         group(
             { fill: "white", "stroke-width": 1 },
             cells.map((cell) =>
                 pathFromCubics(
-                    asCubic(polygon(simplify(cell, 0.01, true)), opts)
+                    asCubic(polygon(simplify(cell, 0.5, true)), {
+                        scale: state.scaleValue
+                    })
                 )
             )
         ),
+
         points(doSave ? [] : startPoints, {
             size: 4,
             shape: "circle",
@@ -150,36 +125,34 @@ function computeVoronoi(state: AppState) {
 
 function appRender(state: AppState) {
     return [
-        "div.ma3.flex.flex-column.flex-row-l.flex-row-m",
+        "div.ma3.flex.flex-column.flex-row-l.flex-row-m.sans-serif",
         [
             [
                 "div.pr3.w-100.w-30-l.w-30-m",
                 ["h1", "Rotating voronoi"],
                 [
                     "p",
+                    "Based on a M. Bostock",
                     [
-                        ["span", "Based on a M. Bostock"],
-                        [
-                            "a",
-                            {
-                                href:
-                                    "https://observablehq.com/@mbostock/rotating-voronoi"
-                            },
-                            " observablehq sketch"
-                        ],
-                        ["span", ". "],
+                        "a",
+                        {
+                            href:
+                                "https://observablehq.com/@mbostock/rotating-voronoi"
+                        },
+                        " observablehq sketch"
+                    ],
+                    ". ",
 
-                        ["span", "Originally from an "],
-                        [
-                            "a",
-                            {
-                                href:
-                                    "https://www.flickr.com/photos/quasimondo/8254540763/"
-                            },
-                            "ornament"
-                        ],
-                        ["span", " by Mario Klingemann."]
-                    ]
+                    "Originally from an ",
+                    [
+                        "a",
+                        {
+                            href:
+                                "https://www.flickr.com/photos/quasimondo/8254540763/"
+                        },
+                        "ornament"
+                    ],
+                    " by Mario Klingemann."
                 ],
                 ["p", "Press `s` to save the SVG file."],
                 [
@@ -209,9 +182,5 @@ function appRender(state: AppState) {
 
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
-    hot &&
-        hot.dispose(() => {
-            const app = document.getElementById("app");
-            app && clearDOM(app);
-        });
+    hot && hot.dispose(() => mainStream.done());
 }

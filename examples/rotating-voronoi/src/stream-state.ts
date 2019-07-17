@@ -1,21 +1,24 @@
 import {
-    stream,
+    fromDOMEvent,
     fromRAF,
     sidechainToggle,
-    fromDOMEvent,
+    stream,
     sync
 } from "@thi.ng/rstream";
-import { map, mapcat, scan, add } from "@thi.ng/transducers";
+import {
+    add,
+    map,
+    mapcat,
+    scan
+} from "@thi.ng/transducers";
 
-export const keyStream = fromDOMEvent(document, "keyup");
-export const keyStreamConditional = keyStream.transform(
+export const keyStreamConditional = fromDOMEvent(document, "keyup").transform(
     mapcat((x) => [x.key, null])
 );
 
 export const scaleStream = stream<number>();
 export const animationStream = stream<boolean>();
-export const frameStream = fromRAF();
-export const frameStreamConditional = frameStream
+export const frameStreamConditional = fromRAF()
     .subscribe(sidechainToggle<number, boolean>(animationStream))
     .transform(map(() => 1), scan(add()));
 
