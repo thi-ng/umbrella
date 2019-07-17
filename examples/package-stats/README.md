@@ -13,7 +13,7 @@ yarn install
 yarn build
 
 # then run example
-cd umbrella/examples/module-stats
+cd umbrella/examples/package-stats
 yarn build
 ```
 
