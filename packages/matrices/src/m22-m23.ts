@@ -2,7 +2,8 @@ import { set4 } from "@thi.ng/vectors";
 import { MatOpM } from "./api";
 
 /**
- * Converts M22 to M23 and writes result to `out`.
+ * Converts 2x2 to 2x3 matrix and writes result to `out`. Creates new
+ * matrix if `out` is `null`.
  *
  * @param out
  * @param m22

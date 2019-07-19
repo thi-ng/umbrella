@@ -9,8 +9,9 @@ import {
 import { Mat } from "./api";
 
 /**
- * Constructs a M44 camera matrix for given `eye` position, look-at `target`
- * (both in world space) and `up` vector.
+ * Constructs a 4x4 camera matrix for given `eye` position, look-at
+ * `target` (both in world space) and normalized `up` vector. Creates
+ * new matrix if `out` is `null`.
  *
  * @param out
  * @param eye

@@ -1,9 +1,17 @@
-import { dotS2, dotS3, dotS4, setC, setC4, setC6, vop } from "@thi.ng/vectors";
+import {
+    dotS2,
+    dotS3,
+    dotS4,
+    setC,
+    setC4,
+    setC6,
+    vop
+} from "@thi.ng/vectors";
 import { MultiMatOpMM } from "./api";
 
 /**
- * Performs matrix-matrix multiplication. If `out` is not given, writes
- * result in `a`.
+ * Multi-method. Performs matrix-matrix multiplication. If `out` is not
+ * given, writes result in `a`.
  *
  * @param out
  * @param a
@@ -11,6 +19,14 @@ import { MultiMatOpMM } from "./api";
  */
 export const mulM: MultiMatOpMM = vop(1);
 
+/**
+ * 2x2 matrix-matrix multiplication. If `out` is not given, writes
+ * result in `a`.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulM22 = mulM.add(4, (out, a, b) =>
     setC4(
         out || a,
@@ -21,6 +37,14 @@ export const mulM22 = mulM.add(4, (out, a, b) =>
     )
 );
 
+/**
+ * 2x3 matrix-matrix multiplication. If `out` is not given, writes
+ * result in `a`.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulM23 = mulM.add(6, (out, a, b) =>
     setC6(
         out || a,
@@ -33,6 +57,14 @@ export const mulM23 = mulM.add(6, (out, a, b) =>
     )
 );
 
+/**
+ * 3x3 matrix-matrix multiplication. If `out` is not given, writes
+ * result in `a`.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulM33 = mulM.add(9, (out, a, b) =>
     setC(
         out || a,
@@ -48,6 +80,14 @@ export const mulM33 = mulM.add(9, (out, a, b) =>
     )
 );
 
+/**
+ * 4x4 matrix-matrix multiplication. If `out` is not given, writes
+ * result in `a`.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulM44 = mulM.add(16, (out, a, b) =>
     setC(
         out || a,
