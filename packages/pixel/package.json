@@ -1,0 +1,54 @@
+{
+    "name": "@thi.ng/pixel",
+    "version": "0.0.1",
+    "description": "TODO",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/pixel",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build:es6": "tsc --declaration",
+        "build:bundle": "../../scripts/bundle-module",
+        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "cover": "yarn test && nyc report --reporter=lcov",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.6.3",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
+        "typedoc": "^0.14.2",
+        "typescript": "^3.5.3"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^6.3.1",
+        "@thi.ng/binary": "^1.0.8",
+        "@thi.ng/checks": "^2.2.1",
+        "@thi.ng/math": "^1.4.1"
+    },
+    "keywords": [
+        "ES6",
+        "canvas",
+        "color channels",
+        "grayscale",
+        "float",
+        "image",
+        "pixel buffer",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false
+}
