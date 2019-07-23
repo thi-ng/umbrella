@@ -87,6 +87,7 @@ export class ABGRBuffer
         idata.data.set(
             new Uint8ClampedArray(
                 this.pixels.buffer,
+                0,
                 this.width * this.height * 4
             )
         );

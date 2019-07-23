@@ -18,12 +18,7 @@ export const ensureSize = (
 export const abgrToGrayU8 = (pixels: Uint32Array, out?: Uint8Array) => {
     out = out || new Uint8Array(pixels.length);
     for (let i = pixels.length; --i >= 0; ) {
-        const c = pixels[i];
-        out[i] =
-            (((c >>> 16) & 0xff) * 29 +
-                ((c >>> 8) & 0xff) * 150 +
-                (c & 0xff) * 76) /
-            255;
+        out[i] = luminanceABGR(pixels[i]);
     }
     return out;
 };
@@ -38,12 +33,7 @@ export const abgrToGrayU8 = (pixels: Uint32Array, out?: Uint8Array) => {
 export const argbToGrayU8 = (pixels: Uint32Array, out?: Uint8Array) => {
     out = out || new Uint8Array(pixels.length);
     for (let i = pixels.length; --i >= 0; ) {
-        const c = pixels[i];
-        out[i] =
-            (((c >>> 16) & 0xff) * 76 +
-                ((c >>> 8) & 0xff) * 150 +
-                (c & 0xff) * 29) /
-            255;
+        out[i] = luminanceARGB(pixels[i]);
     }
     return out;
 };
@@ -58,12 +48,7 @@ export const argbToGrayU8 = (pixels: Uint32Array, out?: Uint8Array) => {
 export const abgrToGrayF32 = (pixels: Uint32Array, out?: Float32Array) => {
     out = out || new Float32Array(pixels.length);
     for (let i = pixels.length; --i >= 0; ) {
-        const c = pixels[i];
-        out[i] =
-            (((c >>> 16) & 0xff) * 29 +
-                ((c >>> 8) & 0xff) * 150 +
-                (c & 0xff) * 76) /
-            0xfe01;
+        out[i] = luminanceABGR(pixels[i]) / 255;
     }
     return out;
 };
@@ -73,7 +58,7 @@ export const abgrToGrayF32 = (pixels: Uint32Array, out?: Float32Array) => {
  *
  * @param col
  */
-export const swapRB = (col: number) => swizzle8(col, 0, 3, 1, 2);
+export const swapRB = (col: number) => swizzle8(col, 0, 3, 2, 1);
 
 export const blit1 = (
     src: TypedArray,
@@ -129,3 +114,11 @@ export const blitStrided = (
         }
     }
 };
+
+export const luminanceARGB = (c: number) =>
+    (((c >>> 16) & 0xff) * 76 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 29) /
+    255;
+
+export const luminanceABGR = (c: number) =>
+    (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
+    255;

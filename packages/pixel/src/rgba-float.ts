@@ -30,10 +30,10 @@ export class RGBAFloatBuffer
         const dest = new Float32Array(w * h * 4);
         for (let i = src.length, j = i * 4; (j -= 4), --i >= 0; ) {
             const c = src[i];
-            dest[j] = ((c >>> 16) & 0xff) / 255;
-            dest[j + 1] = ((c >>> 8) & 0xff) / 255;
-            dest[j + 2] = (c & 0xff) / 255;
-            dest[j + 3] = ((c >>> 24) & 0xff) / 255;
+            dest[j] = (c & 0xff) / 255; // red
+            dest[j + 1] = ((c >>> 8) & 0xff) / 255; // green
+            dest[j + 2] = ((c >>> 16) & 0xff) / 255; // blue
+            dest[j + 3] = ((c >>> 24) & 0xff) / 255; // alpha
         }
         return new RGBAFloatBuffer(w, h, dest);
     }
@@ -89,9 +89,9 @@ export class RGBAFloatBuffer
         const src = this.pixels;
         for (let i = src.length, j = dest.length; (i -= 4), --j >= 0; ) {
             dest[j] =
-                ((clamp01(src[i]) * 0xff) << 16) |
+                ((clamp01(src[i + 2]) * 0xff) << 16) |
                 ((clamp01(src[i + 1]) * 0xff) << 8) |
-                (clamp01(src[i + 2]) * 0xff) |
+                (clamp01(src[i]) * 0xff) |
                 ((clamp01(src[i + 3]) * 0xff) << 24);
         }
         ctx.putImageData(idata, x, y);
@@ -128,5 +128,15 @@ export class RGBAFloatBuffer
             dest[i] = src[j];
         }
         return this;
+    }
+
+    grayscale() {
+        const dest = new Float32Array(this.width * this.height);
+        const src = this.pixels;
+        for (let i = src.length; (i -= 4) >= 0; ) {
+            dest[i >> 2] =
+                src[i] * 0.299 + src[i + 1] * 0.587 + src[i + 2] * 0.114;
+        }
+        return new FloatBuffer(this.width, this.height, dest);
     }
 }
