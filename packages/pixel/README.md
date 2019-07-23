@@ -23,6 +23,8 @@ This project is part of the
 Single & multi-channel pixel buffers, conversions, utilities. Some
 features are browser-only.
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/pixel-basics.jpg)
+
 ## Installation
 
 ```bash
@@ -38,27 +40,43 @@ yarn add @thi.ng/pixel
 
 ## Usage examples
 
+Code for the above example / screenshot...
+
+Also see full example here:
+
+[Live demo](http://demo.thi.ng/umbrella/pixel-basics/) |
+[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)
+
 ```ts
 import * as pix from "@thi.ng/pixel";
 
-pix.ARGBBuffer.fromImagePromise("foo.jpg").then((buf) => {
-    // manipulate red channel
-    const red = buf.getChannel(pix.Channel.RED);
-    for(let y = 0; y < red.height; y += 2) {
-        for(let x = 0; x < red.width; x += 2) {
-            red.setAt(x, y, 0xff);
+// init 32bit packed ARGB pixel buffer from image (resized to 256x256)
+pix.ARGBBuffer.fromImagePromise(pix.imagePromise("foo.jpg"), 256, 256).then((buf) => {
+    // extract sub-image
+    const region = buf.getRegion(32, 96, 128, 64);
+    // copy region back at new position
+    region.blit(buf, 96, 32);
+
+    // create html canvas
+    const ctx = pix.canvas2d(buf.width * 3, buf.height);
+
+    // write pixel buffer to canvas
+    buf.blitCanvas(ctx.canvas);
+
+    // manipulate single color channel with dot pattern
+    const id = pix.Channel.RED;
+    const ch = buf.getChannel(id).invert();
+    for (let y = 0; y < ch.height; y += 2) {
+        for (let x = (y >> 1) & 1; x < ch.width; x += 2) {
+            ch.setAt(x, y, 0xff);
         }
     }
     // replace original channel
-    buf.setChannel(pix.Channel.RED, red);
-    // create canvas
-    const ctx = pix.canvas2d(buf.width * 2, buf.height);
+    buf.setChannel(id, ch);
     // write pixel buffer
-    buf.blitCanvas(ctx.canvas);
-    // create grayscale version
-    const gray = buf.grayscale();
-    // blit into right half of canvas
-    gray.blitCanvas(ctx.canvas, buf.width, 0);
+    buf.blitCanvas(ctx.canvas, buf.width, 0);
+    // create & write grayscale version (uint8 buffer)
+    buf.grayscale().blitCanvas(ctx.canvas, buf.width * 2, 0);
 
     document.body.appendChild(ctx.canvas);
 });
