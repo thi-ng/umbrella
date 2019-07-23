@@ -39,6 +39,7 @@
         "@thi.ng/equiv": "^1.0.8",
         "@thi.ng/errors": "^1.1.1",
         "@thi.ng/matrices": "^0.5.2",
+        "@thi.ng/pixel": "^0.0.1",
         "@thi.ng/shader-ast": "^0.2.0",
         "@thi.ng/shader-ast-glsl": "^0.1.2",
         "@thi.ng/shader-ast-stdlib": "^0.1.2",
