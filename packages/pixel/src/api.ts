@@ -11,27 +11,6 @@ export interface IPixelBuffer<T extends TypedArray, P> {
     pixels: T;
 
     /**
-     * Blits pixels into given `dest` pixel buffer at position `x`, `y`
-     * (0,0 by default). If `dest` buffer is smaller than source buffer,
-     * only the top-left region will be written.
-     *
-     * Destination MUST be of same format as original. No conversion is
-     * performed.
-     *
-     * @param dest
-     * @param x
-     * @param y
-     */
-    blit(dest: IPixelBuffer<T, P>, x?: number, y?: number): void;
-
-    /**
-     * Converts and blits pixels into given canvas at position `x`, `y`
-     * (0,0 by default). If canvas is smaller than source buffer, only
-     * the top-left region will be written.
-     */
-    blitCanvas(canvas: HTMLCanvasElement, x?: number, y?: number): void;
-
-    /**
      * Returns pixel value at given position. If pos is outside the
      * defined region, returns a suitable zero value.
      *
@@ -49,6 +28,64 @@ export interface IPixelBuffer<T extends TypedArray, P> {
      * @param col
      */
     setAt(x: number, y: number, col: P): this;
+
+    /**
+     * Extracts region as new pixel buffer in same format.
+     *
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
+    getRegion(
+        x: number,
+        y: number,
+        width: number,
+        height: number
+    ): IPixelBuffer<T, P>;
+}
+
+export interface IBlit<T extends TypedArray, P> {
+    /**
+     * Blits pixels into given `dest` pixel buffer at position `x`, `y`
+     * (0,0 by default). If `dest` buffer is smaller than source buffer,
+     * only the top-left region will be written.
+     *
+     * Destination MUST be of same format as original. No conversion is
+     * performed.
+     *
+     * @param dest
+     * @param dx
+     * @param dy
+     * @param sx
+     * @param sy
+     * @param w
+     * @param h
+     */
+    blit(
+        dest: IPixelBuffer<T, P>,
+        dx?: number,
+        dy?: number,
+        sx?: number,
+        sy?: number,
+        w?: number,
+        h?: number
+    ): void;
+
+    /**
+     * Converts and blits pixels into given canvas at position `x`, `y`
+     * (0,0 by default). If canvas is smaller than source buffer, only
+     * the top-left region will be written.
+     */
+    blitCanvas(canvas: HTMLCanvasElement, x?: number, y?: number): void;
+}
+
+export interface IInvert {
+    invert(): this;
+}
+
+export interface IGrayscale<T extends TypedArray, P> {
+    grayscale(): IPixelBuffer<T, P>;
 }
 
 export interface IColorChannel<T extends TypedArray> {

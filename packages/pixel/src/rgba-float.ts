@@ -1,8 +1,15 @@
 import { clamp01 } from "@thi.ng/math";
-import { Channel, IColorChannel, IPixelBuffer } from "./api";
+import {
+    Channel,
+    IBlit,
+    IColorChannel,
+    IGrayscale,
+    IInvert,
+    IPixelBuffer
+} from "./api";
 import { imageCanvas } from "./canvas";
 import { FloatBuffer } from "./float";
-import { blitStrided, ensureSize } from "./utils";
+import { blitStrided, clampRegion, ensureSize } from "./utils";
 
 /**
  * Buffer of 4x 32bit float pixel values in RGBA order.
@@ -10,7 +17,10 @@ import { blitStrided, ensureSize } from "./utils";
 export class RGBAFloatBuffer
     implements
         IPixelBuffer<Float32Array, ArrayLike<number>>,
-        IColorChannel<Float32Array> {
+        IBlit<Float32Array, ArrayLike<number>>,
+        IColorChannel<Float32Array>,
+        IGrayscale<Float32Array, number>,
+        IInvert {
     /**
      * Takes a fully initialized image element and returns a
      * `RGBAFloatBuffer` instance of its contents. Optionally, a target size
@@ -68,16 +78,28 @@ export class RGBAFloatBuffer
         }
     }
 
-    blit(buf: IPixelBuffer<Float32Array, ArrayLike<number>>, x = 0, y = 0) {
+    blit(
+        buf: IPixelBuffer<Float32Array, ArrayLike<number>>,
+        dx = 0,
+        dy = 0,
+        sx = 0,
+        sy = 0,
+        w = this.width,
+        h = this.height
+    ) {
         blitStrided(
             this.pixels,
             buf.pixels,
-            x,
-            y,
+            sx,
+            sy,
             this.width,
             this.height,
+            dx,
+            dy,
             buf.width,
             buf.height,
+            w,
+            h,
             4
         );
     }
@@ -97,6 +119,20 @@ export class RGBAFloatBuffer
         ctx.putImageData(idata, x, y);
     }
 
+    getRegion(x: number, y: number, width: number, height: number) {
+        [x, y, width, height] = clampRegion(
+            x,
+            y,
+            width,
+            height,
+            this.width,
+            this.height
+        );
+        const dest = new RGBAFloatBuffer(width, height);
+        this.blit(dest, 0, 0, x, y, width, height);
+        return dest;
+    }
+
     getAt(x: number, y: number) {
         if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
             const idx = ((x | 0) + (y | 0) * this.width) * 4;
@@ -112,7 +148,7 @@ export class RGBAFloatBuffer
         return this;
     }
 
-    getChannel(id: Channel) {
+    getChannel(id: Channel): FloatBuffer {
         const dest = new Float32Array(this.width * this.height);
         const src = this.pixels;
         for (let i = dest.length, j = src.length + id; (j -= 4), --i >= 0; ) {
@@ -138,5 +174,15 @@ export class RGBAFloatBuffer
                 src[i] * 0.299 + src[i + 1] * 0.587 + src[i + 2] * 0.114;
         }
         return new FloatBuffer(this.width, this.height, dest);
+    }
+
+    invert() {
+        const pix = this.pixels;
+        for (let i = pix.length; (i -= 4) >= 0; ) {
+            pix[i] = 1 - clamp01(pix[i]);
+            pix[i + 1] = 1 - clamp01(pix[i + 1]);
+            pix[i + 2] = 1 - clamp01(pix[i + 2]);
+        }
+        return this;
     }
 }

@@ -63,55 +63,66 @@ export const swapRB = (col: number) => swizzle8(col, 0, 3, 2, 1);
 export const blit1 = (
     src: TypedArray,
     dest: TypedArray,
-    x: number,
-    y: number,
+    sx: number,
+    sy: number,
     sw: number,
     sh: number,
+    dx: number,
+    dy: number,
     dw: number,
-    dh: number
+    dh: number,
+    rw: number,
+    rh: number
 ) => {
-    const w = Math.min(dw - x, sw);
-    const h = Math.min(dh - y, sh);
-    if (w < 1 || h < 1) return;
+    [sx, sy, rw, rh] = clampRegion(sx, sy, rw, rh, sw, sh);
+    [dx, dy, rw, rh] = clampRegion(dx, dy, rw, rh, dw, dh);
+    if (rw < 1 || rh < 1) return;
     for (
-        let si = 0, di = (x | 0) + (y | 0) * dw, yy = 0;
-        yy < h;
+        let si = (sx | 0) + (sy | 0) * sw,
+            di = (dx | 0) + (dy | 0) * dw,
+            yy = 0;
+        yy < rh;
         yy++, si += sw, di += dw
     ) {
-        for (let xx = 0; xx < w; xx++) {
-            dest[di + xx] = src[si + xx];
-        }
+        dest.set(src.subarray(si, si + rw), di);
     }
 };
 
 export const blitStrided = (
     src: TypedArray,
     dest: TypedArray,
-    x: number,
-    y: number,
+    sx: number,
+    sy: number,
     sw: number,
     sh: number,
+    dx: number,
+    dy: number,
     dw: number,
     dh: number,
+    rw: number,
+    rh: number,
     stride: number
 ) => {
-    const w = Math.min(dw - x, sw);
-    const h = Math.min(dh - y, sh);
-    if (w < 1 || h < 1) return;
+    [sx, sy, rw, rh] = clampRegion(sx, sy, rw, rh, sw, sh);
+    [dx, dy, rw, rh] = clampRegion(dx, dy, rw, rh, dw, dh);
+    if (rw < 1 || rh < 1) return;
     const ssw = sw * stride;
     const sdw = dw * stride;
     for (
-        let si = 0, di = ((x | 0) + (y | 0) * dw) * stride, yy = 0;
-        yy < h;
+        let si = ((sx | 0) + (sy | 0) * sw) * stride,
+            di = ((dx | 0) + (dy | 0) * dw) * stride,
+            yy = 0;
+        yy < rh;
         yy++, si += ssw, di += sdw
     ) {
-        for (
-            let xx = 0, s = si, d = di;
-            xx < w;
-            xx++, s += stride, d += stride
-        ) {
-            dest.set(src.subarray(s, s + stride), d);
-        }
+        dest.set(src.subarray(si, si + rw * stride), di);
+        // for (
+        //     let xx = 0, s = si, d = di;
+        //     xx < rw;
+        //     xx++, s += stride, d += stride
+        // ) {
+        //     dest.set(src.subarray(s, s + stride), d);
+        // }
     }
 };
 
@@ -122,3 +133,16 @@ export const luminanceARGB = (c: number) =>
 export const luminanceABGR = (c: number) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
     255;
+
+export const clampRegion = (
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    mw: number,
+    mh: number
+) => {
+    x < 0 && ((w += x), (x = 0));
+    y < 0 && ((h += y), (y = 0));
+    return [x, y, Math.min(w, mw - x), Math.min(h, mh - y)];
+};

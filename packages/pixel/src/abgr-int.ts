@@ -1,9 +1,21 @@
 import { IObjectOf } from "@thi.ng/api";
 import { lane8, Lane8, setLane8 } from "@thi.ng/binary";
-import { Channel, IColorChannel, IPixelBuffer } from "./api";
+import {
+    Channel,
+    IBlit,
+    IColorChannel,
+    IGrayscale,
+    IInvert,
+    IPixelBuffer
+} from "./api";
 import { imageCanvas } from "./canvas";
 import { Uint8Buffer } from "./uint8";
-import { abgrToGrayU8, blit1, ensureSize } from "./utils";
+import {
+    abgrToGrayU8,
+    blit1,
+    clampRegion,
+    ensureSize
+} from "./utils";
 
 const LANES = <IObjectOf<Lane8>>{
     [Channel.ALPHA]: 0,
@@ -17,7 +29,12 @@ const LANES = <IObjectOf<Lane8>>{
  * by `ImageData`).
  */
 export class ABGRBuffer
-    implements IPixelBuffer<Uint32Array, number>, IColorChannel<Uint8Array> {
+    implements
+        IPixelBuffer<Uint32Array, number>,
+        IBlit<Uint32Array, number>,
+        IColorChannel<Uint8Array>,
+        IGrayscale<Uint8Array, number>,
+        IInvert {
     /**
      * Takes a fully initialized image element and returns a
      * `ABGRBuffer` instance of its contents. Optionally, a target size
@@ -68,16 +85,28 @@ export class ABGRBuffer
         }
     }
 
-    blit(buf: IPixelBuffer<Uint32Array, number>, x = 0, y = 0) {
+    blit(
+        buf: IPixelBuffer<Uint32Array, number>,
+        dx = 0,
+        dy = 0,
+        sx = 0,
+        sy = 0,
+        w = this.width,
+        h = this.height
+    ) {
         blit1(
             this.pixels,
             buf.pixels,
-            x,
-            y,
+            sx,
+            sy,
             this.width,
             this.height,
+            dx,
+            dy,
             buf.width,
-            buf.height
+            buf.height,
+            w,
+            h
         );
     }
 
@@ -92,6 +121,20 @@ export class ABGRBuffer
             )
         );
         ctx.putImageData(idata, x, y);
+    }
+
+    getRegion(x: number, y: number, width: number, height: number) {
+        [x, y, width, height] = clampRegion(
+            x,
+            y,
+            width,
+            height,
+            this.width,
+            this.height
+        );
+        const dest = new ABGRBuffer(width, height);
+        this.blit(dest, 0, 0, x, y, width, height);
+        return dest;
     }
 
     getAt(x: number, y: number) {
@@ -135,5 +178,13 @@ export class ABGRBuffer
             this.height,
             abgrToGrayU8(this.pixels)
         );
+    }
+
+    invert() {
+        const pix = this.pixels;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] ^= 0xffffff;
+        }
+        return this;
     }
 }

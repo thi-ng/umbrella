@@ -1,11 +1,17 @@
-import { IPixelBuffer } from "./api";
-import { blit1, ensureSize, swapRB } from "./utils";
+import { IBlit, IPixelBuffer } from "./api";
+import {
+    blit1,
+    clampRegion,
+    ensureSize,
+    swapRB
+} from "./utils";
 
 /**
  * Buffer of indexed 8-bit int pixel values & user supplied ARGB
  * pallette.
  */
-export class IndexedBuffer implements IPixelBuffer<Uint8Array, number> {
+export class IndexedBuffer
+    implements IPixelBuffer<Uint8Array, number>, IBlit<Uint8Array, number> {
     width: number;
     height: number;
     pixels: Uint8Array;
@@ -34,16 +40,28 @@ export class IndexedBuffer implements IPixelBuffer<Uint8Array, number> {
         }
     }
 
-    blit(buf: IPixelBuffer<Uint8Array, number>, x = 0, y = 0) {
+    blit(
+        buf: IPixelBuffer<Uint8Array, number>,
+        dx = 0,
+        dy = 0,
+        sx = 0,
+        sy = 0,
+        w = this.width,
+        h = this.height
+    ) {
         blit1(
             this.pixels,
             buf.pixels,
-            x,
-            y,
+            sx,
+            sy,
             this.width,
             this.height,
+            dx,
+            dy,
             buf.width,
-            buf.height
+            buf.height,
+            w,
+            h
         );
     }
 
@@ -58,6 +76,20 @@ export class IndexedBuffer implements IPixelBuffer<Uint8Array, number> {
             dest[i] = swapRB(pallette[src[i] % nump]);
         }
         ctx.putImageData(idata, x, y);
+    }
+
+    getRegion(x: number, y: number, width: number, height: number) {
+        [x, y, width, height] = clampRegion(
+            x,
+            y,
+            width,
+            height,
+            this.width,
+            this.height
+        );
+        const dest = new IndexedBuffer(width, height, this.pallette);
+        this.blit(dest, 0, 0, x, y, width, height);
+        return dest;
     }
 
     getAt(x: number, y: number) {

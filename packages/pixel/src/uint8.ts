@@ -1,12 +1,21 @@
 import { splat8_24 } from "@thi.ng/binary";
-import { IPixelBuffer } from "./api";
+import { IBlit, IInvert, IPixelBuffer } from "./api";
 import { imageCanvas } from "./canvas";
-import { abgrToGrayU8, blit1, ensureSize } from "./utils";
+import {
+    abgrToGrayU8,
+    blit1,
+    clampRegion,
+    ensureSize
+} from "./utils";
 
 /**
  * Buffer of unsigned 8-bit int pixel values (single channel).
  */
-export class Uint8Buffer implements IPixelBuffer<Uint8Array, number> {
+export class Uint8Buffer
+    implements
+        IPixelBuffer<Uint8Array, number>,
+        IBlit<Uint8Array, number>,
+        IInvert {
     /**
      * Takes a fully initialized image element and returns a
      * `Uint8Buffer` instance of its contents. All original pixels are
@@ -60,16 +69,28 @@ export class Uint8Buffer implements IPixelBuffer<Uint8Array, number> {
         }
     }
 
-    blit(buf: IPixelBuffer<Uint8Array, number>, x = 0, y = 0) {
+    blit(
+        buf: IPixelBuffer<Uint8Array, number>,
+        dx = 0,
+        dy = 0,
+        sx = 0,
+        sy = 0,
+        w = this.width,
+        h = this.height
+    ) {
         blit1(
             this.pixels,
             buf.pixels,
-            x,
-            y,
+            sx,
+            sy,
             this.width,
             this.height,
+            dx,
+            dy,
             buf.width,
-            buf.height
+            buf.height,
+            w,
+            h
         );
     }
 
@@ -84,6 +105,20 @@ export class Uint8Buffer implements IPixelBuffer<Uint8Array, number> {
         ctx.putImageData(idata, x, y);
     }
 
+    getRegion(x: number, y: number, width: number, height: number) {
+        [x, y, width, height] = clampRegion(
+            x,
+            y,
+            width,
+            height,
+            this.width,
+            this.height
+        );
+        const dest = new Uint8Buffer(width, height);
+        this.blit(dest, 0, 0, x, y, width, height);
+        return dest;
+    }
+
     getAt(x: number, y: number) {
         return x >= 0 && x < this.width && y >= 0 && y < this.height
             ? this.pixels[(x | 0) + (y | 0) * this.width]
@@ -96,6 +131,14 @@ export class Uint8Buffer implements IPixelBuffer<Uint8Array, number> {
             y >= 0 &&
             y < this.height &&
             (this.pixels[(x | 0) + (y | 0) * this.width] = col);
+        return this;
+    }
+
+    invert() {
+        const pix = this.pixels;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] ^= 0xff;
+        }
         return this;
     }
 }
