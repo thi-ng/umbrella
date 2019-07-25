@@ -31,7 +31,7 @@ export const abgrToGrayU8 = (pixels: Uint32Array, out?: Uint8Array) => {
 
 /**
  * Converts a raw ABGR `Uint32Array` to `Uint8Array` of grayscale
- * values.
+ * values. Discards alpha.
  *
  * @param pixels
  * @param out
@@ -45,8 +45,24 @@ export const argbToGrayU8 = (pixels: Uint32Array, out?: Uint8Array) => {
 };
 
 /**
+ * Converts a raw ABGR `Uint32Array` to `Uint16Array` of grayscale and
+ * alpha values.
+ *
+ * @param pixels
+ * @param out
+ */
+export const abgrToGrayU16 = (pixels: Uint32Array, out?: Uint16Array) => {
+    out = out || new Uint16Array(pixels.length);
+    for (let i = pixels.length; --i >= 0; ) {
+        const c = pixels[i];
+        out[i] = luminanceABGR(c) | ((c >>> 16) & 0xff00);
+    }
+    return out;
+};
+
+/**
  * Converts a raw ABGR `Uint32Array` to `Float32Array` of grayscale
- * values.
+ * values. Discards alpha.
  *
  * @param pixels
  * @param out

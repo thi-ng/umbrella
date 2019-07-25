@@ -1,8 +1,40 @@
 import { Fn2, TypedArray } from "@thi.ng/api";
 
+/**
+ * Color channel IDs
+ */
+export const enum Channel {
+    RED,
+    GREEN,
+    BLUE,
+    ALPHA,
+    GRAY
+}
+
+export type RGBAChannel =
+    | Channel.RED
+    | Channel.GREEN
+    | Channel.BLUE
+    | Channel.ALPHA;
+
+export type GAChannel = Channel.GRAY | Channel.ALPHA;
+
+export type BlendFnInt = Fn2<number, number, number>;
+
+export type BlendFnFloat = (
+    out: number[] | TypedArray | null,
+    src: ArrayLike<number>,
+    dest: ArrayLike<number>
+) => ArrayLike<number>;
+
 export interface CanvasContext {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
+}
+
+export interface RawPixelBuffer extends CanvasContext {
+    img: ImageData;
+    pixels: Uint32Array;
 }
 
 export interface IPixelBuffer<T extends TypedArray, P> {
@@ -88,12 +120,12 @@ export interface IGrayscale<T extends TypedArray, P> {
     grayscale(): IPixelBuffer<T, P>;
 }
 
-export interface IColorChannel<T extends TypedArray> {
+export interface IColorChannel<T extends TypedArray, C> {
     /**
      * Returns new pixel buffer of selected color channel. The extracted
      * values are a copy of the original.
      */
-    getChannel(id: Channel): IPixelBuffer<T, number>;
+    getChannel(id: C): IPixelBuffer<T, number>;
     /**
      * Replaces selected color channel with values from given pixel
      * buffer, which MUST be of same size as target.
@@ -101,7 +133,7 @@ export interface IColorChannel<T extends TypedArray> {
      * @param id
      * @param buf
      */
-    setChannel(id: Channel, buf: IPixelBuffer<T, number>): this;
+    setChannel(id: C, buf: IPixelBuffer<T, number>): this;
 }
 
 export interface BlitOpts {
@@ -130,21 +162,3 @@ export interface BlitOpts {
      */
     h: number;
 }
-
-/**
- * Color channel IDs
- */
-export const enum Channel {
-    RED,
-    GREEN,
-    BLUE,
-    ALPHA
-}
-
-export type BlendFnInt = Fn2<number, number, number>;
-
-export type BlendFnFloat = (
-    out: number[] | TypedArray | null,
-    src: ArrayLike<number>,
-    dest: ArrayLike<number>
-) => ArrayLike<number>;

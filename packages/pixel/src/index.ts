@@ -5,5 +5,6 @@ export * from "./canvas";
 export * from "./float";
 export * from "./indexed";
 export * from "./rgba-float";
+export * from "./uint16";
 export * from "./uint8";
 export * from "./utils";

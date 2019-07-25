@@ -9,7 +9,8 @@ import {
     IColorChannel,
     IGrayscale,
     IInvert,
-    IPixelBuffer
+    IPixelBuffer,
+    RGBAChannel
 } from "./api";
 import { imageCanvas } from "./canvas";
 import { Uint8Buffer } from "./uint8";
@@ -37,7 +38,7 @@ export class ARGBBuffer
         IPixelBuffer<Uint32Array, number>,
         IBlend<BlendFnInt, Uint32Array, number>,
         IBlit<Uint32Array, number>,
-        IColorChannel<Uint8Array>,
+        IColorChannel<Uint8Array, RGBAChannel>,
         IGrayscale<Uint8Array, number>,
         IInvert {
     /**
@@ -144,7 +145,7 @@ export class ARGBBuffer
         return this;
     }
 
-    getChannel(id: Channel) {
+    getChannel(id: RGBAChannel) {
         const dest = new Uint8Array(this.width * this.height);
         const src = this.pixels;
         const lane = LANES[id];
@@ -154,7 +155,7 @@ export class ARGBBuffer
         return new Uint8Buffer(this.width, this.height, dest);
     }
 
-    setChannel(id: Channel, buf: IPixelBuffer<Uint8Array, number>) {
+    setChannel(id: RGBAChannel, buf: IPixelBuffer<Uint8Array, number>) {
         const src = buf.pixels;
         const dest = this.pixels;
         const lane = LANES[id];

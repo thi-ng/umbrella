@@ -2,13 +2,13 @@ import { clamp01 } from "@thi.ng/math";
 import {
     BlendFnFloat,
     BlitOpts,
-    Channel,
     IBlend,
     IBlit,
     IColorChannel,
     IGrayscale,
     IInvert,
-    IPixelBuffer
+    IPixelBuffer,
+    RGBAChannel
 } from "./api";
 import { imageCanvas } from "./canvas";
 import { FloatBuffer } from "./float";
@@ -27,7 +27,7 @@ export class RGBAFloatBuffer
         IPixelBuffer<Float32Array, ArrayLike<number>>,
         IBlend<BlendFnFloat, Float32Array, ArrayLike<number>>,
         IBlit<Float32Array, ArrayLike<number>>,
-        IColorChannel<Float32Array>,
+        IColorChannel<Float32Array, RGBAChannel>,
         IGrayscale<Float32Array, number>,
         IInvert {
     /**
@@ -147,7 +147,7 @@ export class RGBAFloatBuffer
         return this;
     }
 
-    getChannel(id: Channel): FloatBuffer {
+    getChannel(id: RGBAChannel): FloatBuffer {
         const dest = new Float32Array(this.width * this.height);
         const src = this.pixels;
         for (let i = dest.length, j = src.length + id; (j -= 4), --i >= 0; ) {
@@ -156,7 +156,7 @@ export class RGBAFloatBuffer
         return new FloatBuffer(this.width, this.height, dest);
     }
 
-    setChannel(id: Channel, buf: IPixelBuffer<Float32Array, number>) {
+    setChannel(id: RGBAChannel, buf: IPixelBuffer<Float32Array, number>) {
         const src = buf.pixels;
         const dest = this.pixels;
         for (let i = dest.length + id, j = src.length; (i -= 4), --j >= 0; ) {
