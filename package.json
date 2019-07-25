@@ -7,7 +7,7 @@
         "benchmark": "^2.1.4",
         "file-loader": "^4.0.0",
         "gzip-size": "^5.1.0",
-        "lerna": "^3.15.0",
+        "lerna": "^3.16.4",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "parcel-bundler": "^1.12.3",
