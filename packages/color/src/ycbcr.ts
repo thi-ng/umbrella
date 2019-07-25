@@ -3,10 +3,10 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
 
-export function ycbcra(col: Color): YCbCrA;
+export function ycbcra(col: Color, offset?: number, stride?: number): YCbCrA;
 export function ycbcra(y: number, b: number, r: number, a?: number): YCbCrA;
 export function ycbcra(...args: any[]) {
-    return new YCbCrA(ensureArgs(args));
+    return new YCbCrA(...ensureArgs(args));
 }
 
 export class YCbCrA extends AColor<YCbCrA> implements IVector<YCbCrA> {
