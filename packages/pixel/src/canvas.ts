@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { CanvasContext } from "./api";
+import { CanvasContext, RawPixelBuffer } from "./api";
 
 /**
  * Creates a canvas element of given size, obtains its 2D drawing
@@ -19,22 +19,33 @@ export const canvas2d = (width: number, height = width): CanvasContext => {
 };
 
 /**
- * Creates a new canvas of given size and returns object of canvas, 2d
- * context, img data and wrapped img data as u32 ABGR pixel array.
- *
- * @param width
- * @param height
+ * Accepts either an existing canvas or creates a new one of given size.
+ * Returns object of canvas, 2d context, img data and wrapped img data
+ * as u32 ABGR pixel array.
  */
-export const canvasPixels = (width: number, height = width) => {
-    const ctx = canvas2d(width, height);
-    const img = ctx.ctx.getImageData(0, 0, width, height);
-    const pix = new Uint32Array(img.data.buffer);
+export function canvasPixels(canvas: HTMLCanvasElement): RawPixelBuffer;
+export function canvasPixels(width: number, height?: number): RawPixelBuffer;
+// prettier-ignore
+export function canvasPixels(width: HTMLCanvasElement | number, height?: number): RawPixelBuffer {
+    let canvas: HTMLCanvasElement;
+    let ctx: CanvasRenderingContext2D;
+    if (isNumber(width)) {
+        const c = canvas2d(width, height);
+        canvas = c.canvas;
+        ctx = c.ctx;
+    } else {
+        canvas = width;
+        ctx = canvas.getContext("2d")!;
+    }
+    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = new Uint32Array(img.data.buffer);
     return {
-        ...ctx,
+        canvas,
+        ctx,
         img,
-        pix
+        pixels
     };
-};
+}
 
 /**
  * Creates canvas for given image and draws image, optionally with given
