@@ -1,10 +1,32 @@
 import { Fn2, Fn3 } from "@thi.ng/api";
 import { setC4, setN4 } from "@thi.ng/vectors";
 import { Color, ReadonlyColor } from "./api";
-import { postmultiply, premultiply } from "./premultiply";
+import {
+    postmultiply,
+    postmultiplyInt,
+    premultiply,
+    premultiplyInt
+} from "./premultiply";
 
 // http://ssp.impulsetrain.com/porterduff.html
 // https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending
+
+const porterDuffOp = (
+    f: Fn2<number, number, number>,
+    y: 0 | 1,
+    z: 0 | 1,
+    min: number
+) =>
+    y
+        ? z
+            ? (s: number, d: number, sda: number, sy: number, sz: number) =>
+                  Math.min(min, f(s, d) * sda + s * sy + d * sz)
+            : (s: number, d: number, sda: number, sy: number) =>
+                  Math.min(min, f(s, d) * sda + s * sy)
+        : z
+        ? (s: number, d: number, sda: number, _: number, sz: number) =>
+              Math.min(min, f(s, d) * sda + d * sz)
+        : (s: number, d: number, sda: number) => f(s, d) * sda;
 
 /**
  * General Porter-Duff HOF operator for **pre-multiplied** RGBA. Use
@@ -30,16 +52,7 @@ export const porterDuff = (
     y: 0 | 1,
     z: 0 | 1
 ) => {
-    const dot = y
-        ? z
-            ? (s: number, d: number, sda: number, sy: number, sz: number) =>
-                  f(s, d) * sda + s * sy + d * sz
-            : (s: number, d: number, sda: number, sy: number) =>
-                  f(s, d) * sda + s * sy
-        : z
-        ? (s: number, d: number, sda: number, _: number, sz: number) =>
-              f(s, d) * sda + d * sz
-        : (s: number, d: number, sda: number) => f(s, d) * sda;
+    const op = porterDuffOp(f, y, z, 1);
     return (out: Color | null, src: ReadonlyColor, dest: ReadonlyColor) => {
         const sa = src[3];
         const da = dest[3];
@@ -48,17 +61,43 @@ export const porterDuff = (
         const sz = z * da * (1 - sa);
         return setC4(
             out || dest,
-            dot(src[0], dest[0], sda, sy, sz),
-            dot(src[1], dest[1], sda, sy, sz),
-            dot(src[2], dest[2], sda, sy, sz),
-            x * sda + sy + sz
+            op(src[0], dest[0], sda, sy, sz),
+            op(src[1], dest[1], sda, sy, sz),
+            op(src[2], dest[2], sda, sy, sz),
+            Math.min(1, x * sda + sy + sz)
+        );
+    };
+};
+
+export const porterDuffInt = (
+    f: Fn2<number, number, number>,
+    x: 0 | 1,
+    y: 0 | 1,
+    z: 0 | 1
+) => {
+    const op = porterDuffOp(f, y, z, 255);
+    return (src: number, dest: number) => {
+        const sa = (src >>> 24) / 255;
+        const da = (dest >>> 24) / 255;
+        const sda = sa * da;
+        const sy = y * sa * (1 - da);
+        const sz = z * da * (1 - sa);
+        return (
+            ((Math.min(255, (x * sda + sy + sz) * 255) << 24) |
+                (op((src >>> 16) & 0xff, (dest >>> 16) & 0xff, sda, sy, sz) <<
+                    16) |
+                (op((src >>> 8) & 0xff, (dest >>> 8) & 0xff, sda, sy, sz) <<
+                    8) |
+                op(src & 0xff, dest & 0xff, sda, sy, sz)) >>>
+            0
         );
     };
 };
 
 /**
- * Like `porterDuff`, but pre-multiplies alpha for both input colors and
- * then post-multiplies alpha to output.
+ * Similar to `porterDuff`, but takes existing PD operator,
+ * pre-multiplies alpha for both input colors and then post-multiplies
+ * alpha to output.
  *
  * @param out
  * @param src
@@ -77,6 +116,19 @@ export const porterDuffP = (
     );
 
 /**
+ * Like `porterDuffP`, but for packed integers.
+ *
+ * @param src
+ * @param dest
+ * @param mode
+ */
+export const porterDuffPInt = (
+    src: number,
+    dest: number,
+    mode: Fn2<number, number, number>
+) => postmultiplyInt(mode(premultiplyInt(src), premultiplyInt(dest)));
+
+/**
  * Porter-Duff operator. None of the terms are used. Always results in
  * [0, 0, 0, 0].
  *
@@ -92,19 +144,22 @@ export const composeClear = (
     dest: ReadonlyColor
 ) => setN4(out || dest, 0);
 
+const FS = (s: number) => s;
+const FD = (_: number, d: number) => d;
+
 /**
  * Porter-Duff operator. Always results in `src` color, `dest` ignored.
  *
  * @see porterDuff
  */
-export const composeSrc = porterDuff((s) => s, 1, 1, 0);
+export const composeSrc = porterDuff(FS, 1, 1, 0);
 
 /**
  * Porter-Duff operator. Always results in `dest` color, `src` ignored.
  *
  * @see porterDuff
  */
-export const composeDest = porterDuff((_, d) => d, 1, 0, 1);
+export const composeDest = porterDuff(FD, 1, 0, 1);
 
 /**
  * Porter-Duff operator. The source color is placed over the destination
@@ -112,7 +167,7 @@ export const composeDest = porterDuff((_, d) => d, 1, 0, 1);
  *
  * @see porterDuff
  */
-export const composeSrcOver = porterDuff((s) => s, 1, 1, 1);
+export const composeSrcOver = porterDuff(FS, 1, 1, 1);
 
 /**
  * Porter-Duff operator. The destination color is placed over the source
@@ -120,7 +175,7 @@ export const composeSrcOver = porterDuff((s) => s, 1, 1, 1);
  *
  * @see porterDuff
  */
-export const composeDestOver = porterDuff((_, d) => d, 1, 1, 1);
+export const composeDestOver = porterDuff(FD, 1, 1, 1);
 
 /**
  * Porter-Duff operator. The source that overlaps the destination,
@@ -128,7 +183,7 @@ export const composeDestOver = porterDuff((_, d) => d, 1, 1, 1);
  *
  * @see porterDuff
  */
-export const composeSrcIn = porterDuff((s) => s, 1, 0, 0);
+export const composeSrcIn = porterDuff(FS, 1, 0, 0);
 
 /**
  * Porter-Duff operator. The destination that overlaps the source,
@@ -136,7 +191,7 @@ export const composeSrcIn = porterDuff((s) => s, 1, 0, 0);
  *
  * @see porterDuff
  */
-export const composeDestIn = porterDuff((_, d) => d, 1, 0, 0);
+export const composeDestIn = porterDuff(FD, 1, 0, 0);
 
 /**
  * Porter-Duff operator. The source that does not overlap the
@@ -144,7 +199,7 @@ export const composeDestIn = porterDuff((_, d) => d, 1, 0, 0);
  *
  * @see porterDuff
  */
-export const composeSrcOut = porterDuff((s) => s, 0, 1, 0);
+export const composeSrcOut = porterDuff(FS, 0, 1, 0);
 
 /**
  * Porter-Duff operator. The destination that does not overlap the
@@ -152,7 +207,7 @@ export const composeSrcOut = porterDuff((s) => s, 0, 1, 0);
  *
  * @see porterDuff
  */
-export const composeDestOut = porterDuff((_, d) => d, 0, 0, 1);
+export const composeDestOut = porterDuff(FD, 0, 0, 1);
 
 /**
  * Porter-Duff operator. The source that overlaps the destination is
@@ -160,7 +215,7 @@ export const composeDestOut = porterDuff((_, d) => d, 0, 0, 1);
  *
  * @see porterDuff
  */
-export const composeSrcAtop = porterDuff((s) => s, 1, 0, 1);
+export const composeSrcAtop = porterDuff(FS, 1, 0, 1);
 
 /**
  * Porter-Duff operator. The destination that overlaps the source is
@@ -168,7 +223,7 @@ export const composeSrcAtop = porterDuff((s) => s, 1, 0, 1);
  *
  * @see porterDuff
  */
-export const composeDestAtop = porterDuff((_, d) => d, 1, 1, 0);
+export const composeDestAtop = porterDuff(FD, 1, 1, 0);
 
 /**
  * Porter-Duff operator. The non-overlapping regions of source and
@@ -177,3 +232,93 @@ export const composeDestAtop = porterDuff((_, d) => d, 1, 1, 0);
  * @see porterDuff
  */
 export const composeXor = porterDuff(() => 0, 0, 1, 1);
+
+////////// Packed ARGB / ABGR versions //////////
+
+export const composeClearInt = () => 0;
+
+/**
+ * Porter-Duff operator for packed ints. Always results in `src` color, `dest` ignored.
+ *
+ * @see porterDuff
+ */
+export const composeSrcInt = porterDuffInt(FS, 1, 1, 0);
+
+/**
+ * Porter-Duff operator for packed ints. Always results in `dest` color, `src` ignored.
+ *
+ * @see porterDuff
+ */
+export const composeDestInt = porterDuffInt(FD, 1, 0, 1);
+
+/**
+ * Porter-Duff operator for packed ints. The source color is placed over the destination
+ * color.
+ *
+ * @see porterDuff
+ */
+export const composeSrcOverInt = porterDuffInt(FS, 1, 1, 1);
+
+/**
+ * Porter-Duff operator for packed ints. The destination color is placed over the source
+ * color.
+ *
+ * @see porterDuff
+ */
+export const composeDestOverInt = porterDuffInt(FD, 1, 1, 1);
+
+/**
+ * Porter-Duff operator for packed ints. The source that overlaps the destination,
+ * replaces the destination.
+ *
+ * @see porterDuff
+ */
+export const composeSrcInInt = porterDuffInt(FS, 1, 0, 0);
+
+/**
+ * Porter-Duff operator for packed ints. The destination that overlaps the source,
+ * replaces the source.
+ *
+ * @see porterDuff
+ */
+export const composeDestInInt = porterDuffInt(FD, 1, 0, 0);
+
+/**
+ * Porter-Duff operator for packed ints. The source that does not overlap the
+ * destination replaces the destination.
+ *
+ * @see porterDuff
+ */
+export const composeSrcOutInt = porterDuffInt(FS, 0, 1, 0);
+
+/**
+ * Porter-Duff operator for packed ints. The destination that does not overlap the
+ * source replaces the source.
+ *
+ * @see porterDuff
+ */
+export const composeDestOutInt = porterDuffInt(FD, 0, 0, 1);
+
+/**
+ * Porter-Duff operator for packed ints. The source that overlaps the destination is
+ * composited with the destination.
+ *
+ * @see porterDuff
+ */
+export const composeSrcAtopInt = porterDuffInt(FS, 1, 0, 1);
+
+/**
+ * Porter-Duff operator for packed ints. The destination that overlaps the source is
+ * composited with the source and replaces the destination.
+ *
+ * @see porterDuff
+ */
+export const composeDestAtopInt = porterDuffInt(FD, 1, 1, 0);
+
+/**
+ * Porter-Duff operator for packed ints. The non-overlapping regions of source and
+ * destination are combined.
+ *
+ * @see porterDuff
+ */
+export const composeXorInt = porterDuffInt(() => 0, 0, 1, 1);
