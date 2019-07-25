@@ -1,4 +1,4 @@
-import { IBlit, IPixelBuffer } from "./api";
+import { BlitOpts, IBlit, IPixelBuffer } from "./api";
 import {
     blit1,
     clampRegion,
@@ -40,29 +40,8 @@ export class IndexedBuffer
         }
     }
 
-    blit(
-        buf: IPixelBuffer<Uint8Array, number>,
-        dx = 0,
-        dy = 0,
-        sx = 0,
-        sy = 0,
-        w = this.width,
-        h = this.height
-    ) {
-        blit1(
-            this.pixels,
-            buf.pixels,
-            sx,
-            sy,
-            this.width,
-            this.height,
-            dx,
-            dy,
-            buf.width,
-            buf.height,
-            w,
-            h
-        );
+    blit(buf: IPixelBuffer<Uint8Array, number>, opts: Partial<BlitOpts>) {
+        blit1(this, buf, opts);
     }
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
@@ -79,7 +58,7 @@ export class IndexedBuffer
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
-        [x, y, width, height] = clampRegion(
+        const [sx, sy, w, h] = clampRegion(
             x,
             y,
             width,
@@ -87,8 +66,8 @@ export class IndexedBuffer
             this.width,
             this.height
         );
-        const dest = new IndexedBuffer(width, height, this.pallette);
-        this.blit(dest, 0, 0, x, y, width, height);
+        const dest = new IndexedBuffer(w, h, this.pallette);
+        this.blit(dest, { sx, sy, w, h });
         return dest;
     }
 

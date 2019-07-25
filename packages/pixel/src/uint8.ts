@@ -1,5 +1,10 @@
 import { splat8_24 } from "@thi.ng/binary";
-import { IBlit, IInvert, IPixelBuffer } from "./api";
+import {
+    BlitOpts,
+    IBlit,
+    IInvert,
+    IPixelBuffer
+} from "./api";
 import { imageCanvas } from "./canvas";
 import {
     abgrToGrayU8,
@@ -69,29 +74,8 @@ export class Uint8Buffer
         }
     }
 
-    blit(
-        buf: IPixelBuffer<Uint8Array, number>,
-        dx = 0,
-        dy = 0,
-        sx = 0,
-        sy = 0,
-        w = this.width,
-        h = this.height
-    ) {
-        blit1(
-            this.pixels,
-            buf.pixels,
-            sx,
-            sy,
-            this.width,
-            this.height,
-            dx,
-            dy,
-            buf.width,
-            buf.height,
-            w,
-            h
-        );
+    blit(buf: IPixelBuffer<Uint8Array, number>, opts: Partial<BlitOpts>) {
+        blit1(this, buf, opts);
     }
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
@@ -106,7 +90,7 @@ export class Uint8Buffer
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
-        [x, y, width, height] = clampRegion(
+        const [sx, sy, w, h] = clampRegion(
             x,
             y,
             width,
@@ -114,8 +98,8 @@ export class Uint8Buffer
             this.width,
             this.height
         );
-        const dest = new Uint8Buffer(width, height);
-        this.blit(dest, 0, 0, x, y, width, height);
+        const dest = new Uint8Buffer(w, h);
+        this.blit(dest, { sx, sy, w, h });
         return dest;
     }
 

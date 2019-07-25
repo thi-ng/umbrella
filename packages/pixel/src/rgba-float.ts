@@ -1,6 +1,9 @@
 import { clamp01 } from "@thi.ng/math";
 import {
+    BlendFnFloat,
+    BlitOpts,
     Channel,
+    IBlend,
     IBlit,
     IColorChannel,
     IGrayscale,
@@ -9,7 +12,12 @@ import {
 } from "./api";
 import { imageCanvas } from "./canvas";
 import { FloatBuffer } from "./float";
-import { blitStrided, clampRegion, ensureSize } from "./utils";
+import {
+    blendFloat,
+    blitStrided,
+    clampRegion,
+    ensureSize
+} from "./utils";
 
 /**
  * Buffer of 4x 32bit float pixel values in RGBA order.
@@ -17,6 +25,7 @@ import { blitStrided, clampRegion, ensureSize } from "./utils";
 export class RGBAFloatBuffer
     implements
         IPixelBuffer<Float32Array, ArrayLike<number>>,
+        IBlend<BlendFnFloat, Float32Array, ArrayLike<number>>,
         IBlit<Float32Array, ArrayLike<number>>,
         IColorChannel<Float32Array>,
         IGrayscale<Float32Array, number>,
@@ -78,30 +87,19 @@ export class RGBAFloatBuffer
         }
     }
 
+    blend(
+        op: BlendFnFloat,
+        buf: IPixelBuffer<Float32Array, ArrayLike<number>>,
+        opts: Partial<BlitOpts>
+    ) {
+        blendFloat(op, this, buf, 4, opts);
+    }
+
     blit(
         buf: IPixelBuffer<Float32Array, ArrayLike<number>>,
-        dx = 0,
-        dy = 0,
-        sx = 0,
-        sy = 0,
-        w = this.width,
-        h = this.height
+        opts: Partial<BlitOpts>
     ) {
-        blitStrided(
-            this.pixels,
-            buf.pixels,
-            sx,
-            sy,
-            this.width,
-            this.height,
-            dx,
-            dy,
-            buf.width,
-            buf.height,
-            w,
-            h,
-            4
-        );
+        blitStrided(this, buf, 4, opts);
     }
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
@@ -120,7 +118,7 @@ export class RGBAFloatBuffer
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
-        [x, y, width, height] = clampRegion(
+        const [sx, sy, w, h] = clampRegion(
             x,
             y,
             width,
@@ -128,15 +126,16 @@ export class RGBAFloatBuffer
             this.width,
             this.height
         );
-        const dest = new RGBAFloatBuffer(width, height);
-        this.blit(dest, 0, 0, x, y, width, height);
+        const dest = new RGBAFloatBuffer(w, h);
+        this.blit(dest, { sx, sy, w, h });
         return dest;
     }
 
     getAt(x: number, y: number) {
         if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
             const idx = ((x | 0) + (y | 0) * this.width) * 4;
-            return this.pixels.subarray(idx, idx + 4);
+            const pix = this.pixels;
+            return [pix[idx], pix[idx + 1], pix[idx + 2], pix[idx + 3]];
         }
         return [0, 0, 0, 0];
     }

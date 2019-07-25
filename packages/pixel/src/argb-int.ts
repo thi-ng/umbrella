@@ -1,7 +1,10 @@
 import { IObjectOf } from "@thi.ng/api";
 import { Lane8, lane8, setLane8 } from "@thi.ng/binary";
 import {
+    BlendFnInt,
+    BlitOpts,
     Channel,
+    IBlend,
     IBlit,
     IColorChannel,
     IGrayscale,
@@ -12,6 +15,7 @@ import { imageCanvas } from "./canvas";
 import { Uint8Buffer } from "./uint8";
 import {
     argbToGrayU8,
+    blendInt,
     blit1,
     clampRegion,
     ensureSize,
@@ -31,6 +35,7 @@ const LANES = <IObjectOf<Lane8>>{
 export class ARGBBuffer
     implements
         IPixelBuffer<Uint32Array, number>,
+        IBlend<BlendFnInt, Uint32Array, number>,
         IBlit<Uint32Array, number>,
         IColorChannel<Uint8Array>,
         IGrayscale<Uint8Array, number>,
@@ -87,29 +92,16 @@ export class ARGBBuffer
         }
     }
 
-    blit(
+    blend(
+        op: BlendFnInt,
         buf: IPixelBuffer<Uint32Array, number>,
-        dx = 0,
-        dy = 0,
-        sx = 0,
-        sy = 0,
-        w = this.width,
-        h = this.height
+        opts: Partial<BlitOpts>
     ) {
-        blit1(
-            this.pixels,
-            buf.pixels,
-            sx,
-            sy,
-            this.width,
-            this.height,
-            dx,
-            dy,
-            buf.width,
-            buf.height,
-            w,
-            h
-        );
+        blendInt(op, this, buf, opts);
+    }
+
+    blit(buf: IPixelBuffer<Uint32Array, number>, opts: Partial<BlitOpts>) {
+        blit1(this, buf, opts);
     }
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
@@ -124,7 +116,7 @@ export class ARGBBuffer
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
-        [x, y, width, height] = clampRegion(
+        const [sx, sy, w, h] = clampRegion(
             x,
             y,
             width,
@@ -132,8 +124,8 @@ export class ARGBBuffer
             this.width,
             this.height
         );
-        const dest = new ARGBBuffer(width, height);
-        this.blit(dest, 0, 0, x, y, width, height);
+        const dest = new ARGBBuffer(w, h);
+        this.blit(dest, { sx, sy, w, h });
         return dest;
     }
 

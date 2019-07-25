@@ -1,6 +1,11 @@
 import { splat8_24 } from "@thi.ng/binary";
 import { clamp01 } from "@thi.ng/math";
-import { IBlit, IInvert, IPixelBuffer } from "./api";
+import {
+    BlitOpts,
+    IBlit,
+    IInvert,
+    IPixelBuffer
+} from "./api";
 import { imageCanvas } from "./canvas";
 import {
     abgrToGrayF32,
@@ -71,29 +76,8 @@ export class FloatBuffer
         }
     }
 
-    blit(
-        buf: IPixelBuffer<Float32Array, number>,
-        dx = 0,
-        dy = 0,
-        sx = 0,
-        sy = 0,
-        w = this.width,
-        h = this.height
-    ) {
-        blit1(
-            this.pixels,
-            buf.pixels,
-            sx,
-            sy,
-            this.width,
-            this.height,
-            dx,
-            dy,
-            buf.width,
-            buf.height,
-            w,
-            h
-        );
+    blit(buf: IPixelBuffer<Float32Array, number>, opts: Partial<BlitOpts>) {
+        blit1(this, buf, opts);
     }
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
@@ -108,7 +92,7 @@ export class FloatBuffer
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
-        [x, y, width, height] = clampRegion(
+        const [sx, sy, w, h] = clampRegion(
             x,
             y,
             width,
@@ -116,8 +100,8 @@ export class FloatBuffer
             this.width,
             this.height
         );
-        const dest = new FloatBuffer(width, height);
-        this.blit(dest, 0, 0, x, y, width, height);
+        const dest = new FloatBuffer(w, h);
+        this.blit(dest, { sx, sy, w, h });
         return dest;
     }
 

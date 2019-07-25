@@ -1,5 +1,11 @@
 import { assert, TypedArray } from "@thi.ng/api";
 import { swizzle8 } from "@thi.ng/binary";
+import {
+    BlendFnFloat,
+    BlendFnInt,
+    BlitOpts,
+    IPixelBuffer
+} from "./api";
 
 export const ensureSize = (
     pixels: TypedArray,
@@ -61,22 +67,16 @@ export const abgrToGrayF32 = (pixels: Uint32Array, out?: Float32Array) => {
 export const swapRB = (col: number) => swizzle8(col, 0, 3, 2, 1);
 
 export const blit1 = (
-    src: TypedArray,
-    dest: TypedArray,
-    sx: number,
-    sy: number,
-    sw: number,
-    sh: number,
-    dx: number,
-    dy: number,
-    dw: number,
-    dh: number,
-    rw: number,
-    rh: number
+    src: IPixelBuffer<TypedArray, number>,
+    dest: IPixelBuffer<TypedArray, number>,
+    opts: Partial<BlitOpts> = {}
 ) => {
-    [sx, sy, rw, rh] = clampRegion(sx, sy, rw, rh, sw, sh);
-    [dx, dy, rw, rh] = clampRegion(dx, dy, rw, rh, dw, dh);
+    let sw = src.width;
+    let dw = dest.width;
+    const { sx, sy, dx, dy, rw, rh } = prepRegions(src, dest, opts);
     if (rw < 1 || rh < 1) return;
+    const sbuf = src.pixels;
+    const dbuf = dest.pixels;
     for (
         let si = (sx | 0) + (sy | 0) * sw,
             di = (dx | 0) + (dy | 0) * dw,
@@ -84,28 +84,22 @@ export const blit1 = (
         yy < rh;
         yy++, si += sw, di += dw
     ) {
-        dest.set(src.subarray(si, si + rw), di);
+        dbuf.set(sbuf.subarray(si, si + rw), di);
     }
 };
 
 export const blitStrided = (
-    src: TypedArray,
-    dest: TypedArray,
-    sx: number,
-    sy: number,
-    sw: number,
-    sh: number,
-    dx: number,
-    dy: number,
-    dw: number,
-    dh: number,
-    rw: number,
-    rh: number,
-    stride: number
+    src: IPixelBuffer<TypedArray, any>,
+    dest: IPixelBuffer<TypedArray, any>,
+    stride: number,
+    opts: Partial<BlitOpts> = {}
 ) => {
-    [sx, sy, rw, rh] = clampRegion(sx, sy, rw, rh, sw, sh);
-    [dx, dy, rw, rh] = clampRegion(dx, dy, rw, rh, dw, dh);
+    let sw = src.width;
+    let dw = dest.width;
+    const { sx, sy, dx, dy, rw, rh } = prepRegions(src, dest, opts);
     if (rw < 1 || rh < 1) return;
+    const sbuf = src.pixels;
+    const dbuf = dest.pixels;
     const ssw = sw * stride;
     const sdw = dw * stride;
     for (
@@ -115,14 +109,73 @@ export const blitStrided = (
         yy < rh;
         yy++, si += ssw, di += sdw
     ) {
-        dest.set(src.subarray(si, si + rw * stride), di);
-        // for (
-        //     let xx = 0, s = si, d = di;
-        //     xx < rw;
-        //     xx++, s += stride, d += stride
-        // ) {
-        //     dest.set(src.subarray(s, s + stride), d);
-        // }
+        dbuf.set(sbuf.subarray(si, si + rw * stride), di);
+    }
+};
+
+export const blendInt = (
+    op: BlendFnInt,
+    src: IPixelBuffer<TypedArray, number>,
+    dest: IPixelBuffer<TypedArray, number>,
+    opts: Partial<BlitOpts> = {}
+) => {
+    let sw = src.width;
+    let dw = dest.width;
+    const { sx, sy, dx, dy, rw, rh } = prepRegions(src, dest, opts);
+    if (rw < 1 || rh < 1) return;
+    const sbuf = src.pixels;
+    const dbuf = dest.pixels;
+    for (
+        let si = (sx | 0) + (sy | 0) * sw,
+            di = (dx | 0) + (dy | 0) * dw,
+            yy = 0;
+        yy < rh;
+        yy++, si += sw, di += dw
+    ) {
+        for (let six = si, dix = di, sie = si + rw; six < sie; six++, dix++) {
+            dbuf[dix] = op(sbuf[six], dbuf[dix]);
+        }
+    }
+};
+
+export const blendFloat = (
+    op: BlendFnFloat,
+    src: IPixelBuffer<TypedArray, any>,
+    dest: IPixelBuffer<TypedArray, any>,
+    stride: number,
+    opts: Partial<BlitOpts> = {}
+) => {
+    let sw = src.width;
+    let dw = dest.width;
+    const { sx, sy, dx, dy, rw, rh } = prepRegions(src, dest, opts);
+    if (rw < 1 || rh < 1) return;
+    const sbuf = src.pixels;
+    const dbuf = dest.pixels;
+    const ssw = sw * stride;
+    const sdw = dw * stride;
+    const tmp: number[] = [];
+    for (
+        let si = ((sx | 0) + (sy | 0) * sw) * stride,
+            di = ((dx | 0) + (dy | 0) * dw) * stride,
+            yy = 0;
+        yy < rh;
+        yy++, si += ssw, di += sdw
+    ) {
+        // dbuf.set(sbuf.subarray(si, si + rw * stride), di);
+        for (
+            let six = si, dix = di, sie = si + rw * stride;
+            six < sie;
+            six += stride, dix += stride
+        ) {
+            dbuf.set(
+                op(
+                    tmp,
+                    sbuf.subarray(six, six + stride),
+                    dbuf.subarray(dix, dix + stride)
+                ),
+                dix
+            );
+        }
     }
 };
 
@@ -145,4 +198,33 @@ export const clampRegion = (
     x < 0 && ((w += x), (x = 0));
     y < 0 && ((h += y), (y = 0));
     return [x, y, Math.min(w, mw - x), Math.min(h, mh - y)];
+};
+
+const prepRegions = (
+    src: IPixelBuffer<TypedArray, number>,
+    dest: IPixelBuffer<TypedArray, number>,
+    opts: Partial<BlitOpts> = {}
+) => {
+    let sw = src.width;
+    let dw = dest.width;
+    let sx: number, sy: number;
+    let dx: number, dy: number;
+    let rw: number, rh: number;
+    [sx, sy, rw, rh] = clampRegion(
+        opts.sx || 0,
+        opts.sy || 0,
+        opts.w || sw,
+        opts.h || src.height,
+        sw,
+        src.height
+    );
+    [dx, dy, rw, rh] = clampRegion(
+        opts.dx || 0,
+        opts.dy || 0,
+        rw,
+        rh,
+        dw,
+        dest.height
+    );
+    return { sx, sy, dx, dy, rw, rh };
 };

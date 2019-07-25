@@ -1,4 +1,4 @@
-import { TypedArray } from "@thi.ng/api";
+import { Fn2, TypedArray } from "@thi.ng/api";
 
 export interface CanvasContext {
     canvas: HTMLCanvasElement;
@@ -47,30 +47,17 @@ export interface IPixelBuffer<T extends TypedArray, P> {
 
 export interface IBlit<T extends TypedArray, P> {
     /**
-     * Blits pixels into given `dest` pixel buffer at position `x`, `y`
-     * (0,0 by default). If `dest` buffer is smaller than source buffer,
-     * only the top-left region will be written.
+     * Blits pixels into given `dest` pixel buffer, using provided
+     * options. If `dest` buffer is smaller than source buffer, only the
+     * top-left region will be written.
      *
      * Destination MUST be of same format as original. No conversion is
      * performed.
      *
      * @param dest
-     * @param dx
-     * @param dy
-     * @param sx
-     * @param sy
-     * @param w
-     * @param h
+     * @param opts
      */
-    blit(
-        dest: IPixelBuffer<T, P>,
-        dx?: number,
-        dy?: number,
-        sx?: number,
-        sy?: number,
-        w?: number,
-        h?: number
-    ): void;
+    blit(dest: IPixelBuffer<T, P>, opts?: Partial<BlitOpts>): void;
 
     /**
      * Converts and blits pixels into given canvas at position `x`, `y`
@@ -78,6 +65,19 @@ export interface IBlit<T extends TypedArray, P> {
      * the top-left region will be written.
      */
     blitCanvas(canvas: HTMLCanvasElement, x?: number, y?: number): void;
+}
+
+export interface IBlend<F, T extends TypedArray, P> {
+    /**
+     * Uses given `op` function to blend / compose pixels of this buffer
+     * with those of `dest` and writes results into `dest`. Supports
+     * same options as `blit()`.
+     *
+     * @param op
+     * @param dest
+     * @param opts
+     */
+    blend(op: F, dest: IPixelBuffer<T, P>, opts?: Partial<BlitOpts>): void;
 }
 
 export interface IInvert {
@@ -104,6 +104,33 @@ export interface IColorChannel<T extends TypedArray> {
     setChannel(id: Channel, buf: IPixelBuffer<T, number>): this;
 }
 
+export interface BlitOpts {
+    /**
+     * Destination X position (top-left), default: 0
+     */
+    dx: number;
+    /**
+     * Destination Y position (top-left), default: 0
+     */
+    dy: number;
+    /**
+     * Source X position (top-left), default: 0
+     */
+    sx: number;
+    /**
+     * Source Y position (top-left), default: 0
+     */
+    sy: number;
+    /**
+     * Source region width (default: buffer width)
+     */
+    w: number;
+    /**
+     * Source region width (default: buffer height)
+     */
+    h: number;
+}
+
 /**
  * Color channel IDs
  */
@@ -113,3 +140,11 @@ export const enum Channel {
     BLUE,
     ALPHA
 }
+
+export type BlendFnInt = Fn2<number, number, number>;
+
+export type BlendFnFloat = (
+    out: number[] | TypedArray | null,
+    src: ArrayLike<number>,
+    dest: ArrayLike<number>
+) => ArrayLike<number>;
