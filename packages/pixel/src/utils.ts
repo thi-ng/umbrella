@@ -1,5 +1,6 @@
 import { assert, TypedArray } from "@thi.ng/api";
 import { swizzle8 } from "@thi.ng/binary";
+import { clamp } from "@thi.ng/math";
 import {
     BlendFnFloat,
     BlendFnInt,
@@ -204,16 +205,18 @@ export const luminanceABGR = (c: number) =>
     255;
 
 export const clampRegion = (
-    x: number,
-    y: number,
+    sx: number,
+    sy: number,
     w: number,
     h: number,
-    mw: number,
-    mh: number
+    maxw: number,
+    maxh: number,
+    dx = 0,
+    dy = 0
 ) => {
-    x < 0 && ((w += x), (x = 0));
-    y < 0 && ((h += y), (y = 0));
-    return [x, y, Math.min(w, mw - x), Math.min(h, mh - y)];
+    sx < 0 && ((w += sx), (dx -= sx), (sx = 0));
+    sy < 0 && ((h += sy), (dy -= sy), (sy = 0));
+    return [sx, sy, clamp(w, 0, maxw - sx), clamp(h, 0, maxh - sy), dx, dy];
 };
 
 const prepRegions = (
@@ -234,7 +237,7 @@ const prepRegions = (
         sw,
         src.height
     );
-    [dx, dy, rw, rh] = clampRegion(
+    [dx, dy, rw, rh, sx, sy] = clampRegion(
         opts.dx || 0,
         opts.dy || 0,
         rw,
