@@ -1,23 +1,30 @@
-import { Fn2, TypedArray } from "@thi.ng/api";
+import {
+    Fn,
+    Fn2,
+    Type,
+    TypedArray
+} from "@thi.ng/api";
 
-/**
- * Color channel IDs
- */
-export const enum Channel {
-    RED,
-    GREEN,
-    BLUE,
-    ALPHA,
-    GRAY
+export const enum Lane {
+    ALPHA = 0,
+    RED = 3,
+    GREEN = 2,
+    BLUE = 1
 }
 
-export type RGBAChannel =
-    | Channel.RED
-    | Channel.GREEN
-    | Channel.BLUE
-    | Channel.ALPHA;
+export const enum Wrap {
+    NONE,
+    U,
+    V,
+    UV
+}
 
-export type GAChannel = Channel.GRAY | Channel.ALPHA;
+export const enum Filter {
+    NEAREST,
+    LINEAR
+}
+
+export type UintType = Type.U8 | Type.U16 | Type.U32;
 
 export type BlendFnInt = Fn2<number, number, number>;
 
@@ -26,6 +33,50 @@ export type BlendFnFloat = (
     src: ArrayLike<number>,
     dest: ArrayLike<number>
 ) => ArrayLike<number>;
+
+export interface IABGRConvert<T> {
+    fromABGR: Fn<number, T>;
+    toABGR: Fn<T, number>;
+}
+
+export interface PackedChannelSpec {
+    // bits
+    size: number;
+    lane: Lane;
+    // getter
+    get?: Fn<number, number>;
+    // setter
+    set?: Fn2<number, number, number>;
+}
+
+export interface PackedChannelDef {
+    size: number;
+    // target shift
+    shift: number;
+    // shift from ABGR channel offset
+    abgrShift: number;
+    // original channel/lane ID in ABGR
+    lane: Lane;
+    // getter
+    get: Fn<number, number>;
+    // setter
+    set: Fn2<number, number, number>;
+}
+
+export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
+    type: UintType;
+    size: number;
+    channels: PackedChannelSpec[];
+    alpha?: number;
+}
+
+export interface PackedFormat extends IABGRConvert<number> {
+    type: UintType;
+    size: number;
+    alpha: number;
+    channels: PackedChannelDef[];
+    __compiled: true;
+}
 
 export interface CanvasContext {
     canvas: HTMLCanvasElement;
@@ -114,10 +165,6 @@ export interface IBlend<F, T extends TypedArray, P> {
 
 export interface IInvert {
     invert(): this;
-}
-
-export interface IGrayscale<T extends TypedArray, P> {
-    grayscale(): IPixelBuffer<T, P>;
 }
 
 export interface IColorChannel<T extends TypedArray, C> {
