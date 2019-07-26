@@ -219,9 +219,9 @@ export const clampRegion = (
     return [sx, sy, clamp(w, 0, maxw - sx), clamp(h, 0, maxh - sy), dx, dy];
 };
 
-const prepRegions = (
-    src: IPixelBuffer<TypedArray, number>,
-    dest: IPixelBuffer<TypedArray, number>,
+export const prepRegions = (
+    src: { width: number; height: number },
+    dest: { width: number; height: number },
     opts: Partial<BlitOpts> = {}
 ) => {
     let sw = src.width;
@@ -243,7 +243,9 @@ const prepRegions = (
         rw,
         rh,
         dw,
-        dest.height
+        dest.height,
+        sx,
+        sy
     );
     return { sx, sy, dx, dy, rw, rh };
 };
