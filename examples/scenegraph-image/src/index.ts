@@ -194,7 +194,7 @@ class GeomNode extends Node {
      *
      * @param p
      */
-    containsLocalPoint(p: ReadonlyVec) {
+    containsLocalPoint(_: ReadonlyVec) {
         return true; //pointInside(this.body, p);
     }
 }
