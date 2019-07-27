@@ -14,14 +14,14 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module",
         "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib decorators mixins",
         "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
-        "pub": "yarn build && yarn publish --access public"
+        "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
