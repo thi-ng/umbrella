@@ -180,6 +180,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 | [`@thi.ng/matrices`](./packages/matrices)                     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)                     | [changelog](./packages/matrices/CHANGELOG.md)           | Matrix operations                    |
 | [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              | Single & multi-channel pixel buffers |
 | [`@thi.ng/poisson`](./packages/poisson)                       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                       | [changelog](./packages/poisson/CHANGELOG.md)            | nD Poisson disk sampling             |
+| [`@thi.ng/porter-duff`](./packages/porter-duff)               | [![version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)               | [changelog](./packages/porter-duff/CHANGELOG.md)        | Alpha blending / compositing ops     |
 | [`@thi.ng/vectors`](./packages/vectors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                       | [changelog](./packages/vectors/CHANGELOG.md)            | Fixed & arbitrary-length vector ops  |
 
 ### WebGL / GPGPU
@@ -226,7 +227,8 @@ yarn install
 yarn build
 ```
 
-Once the entire mono-repo has been built, individual packages can be built like so:
+Once the entire mono-repo has been fully built at least once before,
+individual packages can then be (re)built like so:
 
 ```bash
 lerna run build --scope @thi.ng/transducers
