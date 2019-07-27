@@ -44,6 +44,7 @@ This project is part of the
         - [[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) values](#thingcolorhttpsgithubcomthi-ngumbrellatreemasterpackagescolor-values)
     - [Coordinate transformations](#coordinate-transformations)
         - [Transform matrix](#transform-matrix)
+        - [Override transform](#override-transform)
         - [Translation](#translation)
         - [Scaling](#scaling)
         - [Rotation](#rotation)
@@ -297,7 +298,7 @@ differences to SVG](#svg-paths-with-arc-segments).
 ### Rect
 
 ```ts
-["rect", attribs, [x, y], [w, h], radius?]
+["rect", attribs, [x, y], w, h, radius?]
 ```
 
 If `radius` is given, creates a rounded rectangle. `radius` will be
@@ -512,6 +513,15 @@ the order of application is always TRS.
 ```ts
 { transform: [xx, xy, yx, yy, ox, oy] }
 ```
+
+#### Override transform
+
+```ts
+{ setTransform: [xx, xy, yx, yy, ox, oy] }
+```
+
+Similar to `transform` but completely overrides transformation matrix,
+rather than concatenating with existing one.
 
 See [MDN
 docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform)

@@ -9,9 +9,10 @@ import { Lane2, Lane4, Lane8 } from "./api";
  * - Lane #3: bits 0-7
  *
  * @param x
- * @param l
+ * @param lane
  */
-export const lane8 = (x: number, l: Lane8) => (x >>> ((3 - l) << 3)) & 0xff;
+export const lane8 = (x: number, lane: Lane8) =>
+    (x >>> ((3 - lane) << 3)) & 0xff;
 
 /**
  * Extracts 4-bit lane from given 32bit uint.
@@ -26,11 +27,55 @@ export const lane8 = (x: number, l: Lane8) => (x >>> ((3 - l) << 3)) & 0xff;
  * - Lane #7: bits 0-3
  *
  * @param x
- * @param l
+ * @param lane
  */
-export const lane4 = (x: number, l: Lane4) => (x >>> ((7 - l) << 2)) & 0xf;
+export const lane4 = (x: number, lane: Lane4) =>
+    (x >>> ((7 - lane) << 2)) & 0xf;
 
-export const lane2 = (x: number, l: Lane2) => (x >>> ((15 - l) << 1)) & 0x3;
+export const lane2 = (x: number, lane: Lane2) =>
+    (x >>> ((15 - lane) << 1)) & 0x3;
+
+/**
+ * Sets 8-bit `lane` with value`y` in `x`.
+ *
+ * @see lane8
+ *
+ * @param x
+ * @param y
+ * @param lane
+ */
+export const setLane8 = (x: number, y: number, lane: Lane8) => {
+    const l = (3 - lane) << 3;
+    return ((~(0xff << l) & x) | ((y & 0xff) << l)) >>> 0;
+};
+
+/**
+ * Sets 4-bit `lane` with value `y` in `x`.
+ *
+ * @see lane4
+ *
+ * @param x
+ * @param y
+ * @param lane
+ */
+export const setLane4 = (x: number, y: number, lane: Lane4) => {
+    const l = (7 - lane) << 2;
+    return ((~(0xf << l) & x) | ((y & 0xf) << l)) >>> 0;
+};
+
+/**
+ * Sets 2-bit `lane` with value `y` in `x`.
+ *
+ * @see lane2
+ *
+ * @param x
+ * @param y
+ * @param lane
+ */
+export const setLane2 = (x: number, y: number, lane: Lane2) => {
+    const l = (15 - lane) << 1;
+    return ((~(0x3 << l) & x) | ((y & 0x3) << l)) >>> 0;
+};
 
 /**
  * Re-orders byte lanes in given order (MSB).

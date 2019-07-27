@@ -3,10 +3,10 @@ import { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
 
-export function rgba(col: Color): RGBA;
+export function rgba(col: Color, offset?: number, stride?: number): RGBA;
 export function rgba(r?: number, g?: number, b?: number, a?: number): RGBA;
 export function rgba(...args: any[]) {
-    return new RGBA(ensureArgs(args));
+    return new RGBA(...ensureArgs(args));
 }
 
 export class RGBA extends AColor<RGBA> implements IVector<RGBA> {

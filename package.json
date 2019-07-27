@@ -7,7 +7,7 @@
         "benchmark": "^2.1.4",
         "file-loader": "^4.0.0",
         "gzip-size": "^5.1.0",
-        "lerna": "^3.15.0",
+        "lerna": "^3.16.4",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "parcel-bundler": "^1.12.3",
@@ -24,6 +24,7 @@
     "scripts": {
         "bootstrap": "lerna bootstrap",
         "build": "yarn install && lerna -v && lerna bootstrap && lerna run build --sort",
+        "build:release": "yarn install && lerna -v && lerna bootstrap && lerna run build:release --sort",
         "build:es6only": "lerna run clean && lerna run build:es6",
         "cover": "lerna run cover",
         "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",

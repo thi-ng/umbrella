@@ -1,3 +1,5 @@
+import { createElement } from "@thi.ng/hdom";
+
 /**
  * Helper function to trigger download of given `src` string as local
  * file with filename `name` and mime `type`. Wraps `src` as blob and
@@ -17,12 +19,12 @@ export function download(
 ) {
     const blob = !(src instanceof Blob) ? new Blob([src], { type }) : src;
     const uri = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.download = name;
-    a.href = uri;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const link = <HTMLLinkElement>createElement(document.body, "a", {
+        download: name,
+        href: uri
+    });
+    link.click();
+    document.body.removeChild(link);
     if (uri.indexOf("blob:") === 0) {
         setTimeout(() => URL.revokeObjectURL(uri), expire);
     }

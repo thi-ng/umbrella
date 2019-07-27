@@ -442,6 +442,7 @@ const applyTransform = (
     let v: any;
     if (
         (v = attribs.transform) ||
+        attribs.setTransform ||
         attribs.translate ||
         attribs.scale ||
         attribs.rotate
@@ -449,6 +450,8 @@ const applyTransform = (
         ctx.save();
         if (v) {
             ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
+        } else if ((v = attribs.setTransform)) {
+            ctx.setTransform(v[0], v[1], v[2], v[3], v[4], v[5]);
         } else {
             (v = attribs.translate) && ctx.translate(v[0], v[1]);
             (v = attribs.rotate) && ctx.rotate(v);
