@@ -1,5 +1,5 @@
 import { Fn } from "@thi.ng/api";
-import { PackedChannelDef } from "./api";
+import { PackedChannel } from "./api";
 import { luminanceABGR } from "./utils";
 
 const compileLShift = (x: string, shift: number) =>
@@ -38,25 +38,24 @@ export const compileGrayToABGR = (size: number) => {
     );
 };
 
-export const compileFromABGR = (chans: PackedChannelDef[]) =>
+export const compileFromABGR = (chans: PackedChannel[]) =>
     <Fn<number, number>>new Function(
         "x",
         "return (" +
             chans
                 .map((ch) => {
                     const shift = ch.abgrShift + (8 - ch.size);
-                    const mask = (((1 << ch.size) - 1) << ch.shift) >>> 0;
-                    return `(${compileRShift("x", shift)} & ${hex(mask)})`;
+                    return `(${compileRShift("x", shift)} & ${hex(ch.maskA)})`;
                 })
                 .join(" | ") +
             ") >>> 0;"
     );
 
-export const compileToABGR = (chans: PackedChannelDef[], hasAlpha: boolean) => {
+export const compileToABGR = (chans: PackedChannel[], hasAlpha: boolean) => {
     const body = chans
         .map((ch) => {
             if (ch.size !== 8) {
-                const mask = (1 << ch.size) - 1;
+                const mask = ch.mask0;
                 // rescale factor
                 const scale = 255 / mask;
                 const inner = compileRShift("x", ch.shift);
@@ -65,8 +64,7 @@ export const compileToABGR = (chans: PackedChannelDef[], hasAlpha: boolean) => {
                     24 - ch.lane * 8
                 );
             } else {
-                const mask = (0xff << ch.shift) >>> 0;
-                return compileLShift(`(x & ${hex(mask)})`, ch.abgrShift);
+                return compileLShift(`(x & ${hex(ch.maskA)})`, ch.abgrShift);
             }
         })
         .join(" | ");

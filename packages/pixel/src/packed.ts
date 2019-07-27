@@ -1,9 +1,4 @@
-import {
-    assert,
-    IObjectOf,
-    Type,
-    UIntArray
-} from "@thi.ng/api";
+import { IObjectOf, Type, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import {
     BlendFnInt,
@@ -14,7 +9,12 @@ import {
 import { imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
 import { defPackedFormat } from "./format";
-import { clampRegion, ensureSize, prepRegions } from "./utils";
+import {
+    clampRegion,
+    ensureChannel,
+    ensureSize,
+    prepRegions
+} from "./utils";
 
 interface UIntArrayConstructor {
     new (size: number): UIntArray;
@@ -84,6 +84,25 @@ export class PackedBuffer {
             y >= 0 &&
             y < this.height &&
             (this.pixels[(x | 0) + (y | 0) * this.width] = col);
+        return this;
+    }
+
+    getChannelAt(x: number, y: number, id: number, normalized = false) {
+        const chan = ensureChannel(this.format, id);
+        const col = this.getAt(x, y);
+        return normalized ? chan.float(col) : chan.int(col);
+    }
+
+    setChannelAt(
+        x: number,
+        y: number,
+        id: number,
+        col: number,
+        normalized = false
+    ) {
+        const chan = ensureChannel(this.format, id);
+        const src = this.getAt(x, y);
+        normalized ? chan.setFloat(src, col) : chan.setInt(src, col);
         return this;
     }
 
@@ -177,8 +196,7 @@ export class PackedBuffer {
     }
 
     getChannel(id: number) {
-        const chan = this.format.channels[id];
-        assert(chan != null, `invalid channel ID: ${id}`);
+        const chan = ensureChannel(this.format, id);
         // TODO memoize format
         const buf = new PackedBuffer(this.width, this.height, {
             type: Type.U8,
@@ -189,7 +207,7 @@ export class PackedBuffer {
         });
         const src = this.pixels;
         const dest = buf.pixels;
-        const get = chan.get;
+        const get = chan.int;
         for (let i = src.length; --i >= 0; ) {
             dest[i] = get(src[i]);
         }
@@ -197,10 +215,9 @@ export class PackedBuffer {
     }
 
     setChannel(id: number, src: PackedBuffer | number) {
-        const chan = this.format.channels[id];
-        assert(chan != null, `invalid channel ID: ${id}`);
+        const chan = ensureChannel(this.format, id);
         const dbuf = this.pixels;
-        const set = chan.set;
+        const set = chan.setInt;
         if (isNumber(src)) {
             for (let i = dbuf.length; --i >= 0; ) {
                 dbuf[i] = set(dbuf[i], src);

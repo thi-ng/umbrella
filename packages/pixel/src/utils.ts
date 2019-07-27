@@ -1,6 +1,6 @@
 import { assert, TypedArray } from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
-import { BlitOpts } from "./api";
+import { BlitOpts, PackedFormat } from "./api";
 
 export const ensureSize = (
     pixels: TypedArray,
@@ -8,6 +8,12 @@ export const ensureSize = (
     height: number,
     stride = 1
 ) => assert(pixels.length >= width * height * stride, "pixel buffer too small");
+
+export const ensureChannel = (fmt: PackedFormat, id: number) => {
+    const chan = fmt.channels[id];
+    assert(chan != null, `invalid channel ID: ${id}`);
+    return chan;
+};
 
 export const luminanceABGR = (c: number) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /

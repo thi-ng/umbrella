@@ -1,7 +1,7 @@
 import { Type } from "@thi.ng/api";
 import {
     Lane,
-    PackedChannelDef,
+    PackedChannel,
     PackedChannelSpec,
     PackedFormat,
     PackedFormatSpec
@@ -9,16 +9,24 @@ import {
 import { compileFromABGR, compileToABGR } from "./codegen";
 import { luminanceABGR } from "./utils";
 
-const defChannel = (ch: PackedChannelSpec, shift: number): PackedChannelDef => {
-    const mask = (1 << ch.size) - 1;
-    const invMask = ~(mask << shift);
+const defChannel = (ch: PackedChannelSpec, shift: number): PackedChannel => {
+    const mask0 = (1 << ch.size) - 1;
+    const maskA = (mask0 << shift) >>> 0;
+    const invMask = ~maskA;
+    const int = (x: number) => (x >>> shift) & mask0;
+    const setInt = (src: number, x: number) =>
+        (src & invMask) | ((x & mask0) << shift);
     return {
         size: ch.size,
         lane: ch.lane,
         abgrShift: 24 - ch.lane * 8 - shift,
         shift,
-        get: ch.get || ((x) => (x >>> shift) & mask),
-        set: ch.set || ((src, x) => (src & invMask) | ((x & mask) << shift))
+        mask0,
+        maskA,
+        int,
+        setInt,
+        float: (x) => int(x) / mask0,
+        setFloat: (src, x) => setInt(src, x * mask0)
     };
 };
 
@@ -27,9 +35,9 @@ export const defPackedFormat = (fmt: PackedFormatSpec): PackedFormat => {
         ([defs, shift], ch) => {
             shift -= ch.size;
             defs.push(defChannel(ch, shift));
-            return <[PackedChannelDef[], number]>[defs, shift];
+            return <[PackedChannel[], number]>[defs, shift];
         },
-        <[PackedChannelDef[], number]>[[], fmt.size]
+        <[PackedChannel[], number]>[[], fmt.size]
     )[0];
     return {
         __compiled: true,

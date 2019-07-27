@@ -39,28 +39,33 @@ export interface IABGRConvert<T> {
     toABGR: Fn<T, number>;
 }
 
+export type ChannelGetter<T> = Fn<T, number>;
+export type ChannelSetter<T> = Fn2<T, number, T>;
+
 export interface PackedChannelSpec {
     // bits
     size: number;
     lane: Lane;
-    // getter
-    get?: Fn<number, number>;
-    // setter
-    set?: Fn2<number, number, number>;
 }
 
-export interface PackedChannelDef {
+export interface PackedChannel {
     size: number;
     // target shift
     shift: number;
     // shift from ABGR channel offset
     abgrShift: number;
+    // 0-based channel bit mask
+    mask0: number;
+    // aligned bit mask
+    maskA: number;
     // original channel/lane ID in ABGR
     lane: Lane;
-    // getter
-    get: Fn<number, number>;
-    // setter
-    set: Fn2<number, number, number>;
+    // int accessors
+    int: ChannelGetter<number>;
+    setInt: ChannelSetter<number>;
+    // normalized float accessors
+    float: ChannelGetter<number>;
+    setFloat: ChannelSetter<number>;
 }
 
 export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
@@ -74,8 +79,9 @@ export interface PackedFormat extends IABGRConvert<number> {
     type: UintType;
     size: number;
     alpha: number;
-    channels: PackedChannelDef[];
-    __compiled: true;
+    channels: PackedChannel[];
+    // internal marker only
+    readonly __compiled: true;
 }
 
 export interface CanvasContext {
