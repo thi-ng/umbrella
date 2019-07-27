@@ -14,6 +14,7 @@ This project is part of the
     - [RGBA transformations](#rgba-transformations)
     - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
     - [Cosine gradients](#cosine-gradients)
+    - [Two-color gradients](#two-color-gradients)
     - [Multi-stop gradients](#multi-stop-gradients)
 - [Status](#status)
 - [Installation](#installation)
@@ -51,10 +52,7 @@ that range, NOT in degrees.
 
 Apart from conversions, most other operations provided by this package
 are currently only supporting RGBA colors. These can also be converted
-to / from sRGB (i.e. linear vs gamma corrected). Additionally, RGBA
-colors can be pre-multiplied (and post-multiplied) with their alpha
-channel (see [Porter-Duff](#rgba-porter-duff-compositing) section
-below).
+to / from sRGB (i.e. linear vs gamma corrected).
 
 #### Class wrappers
 
@@ -85,18 +83,13 @@ including parametric preset transforms:
 - luminance to alpha
 
 Transformation matrices can be combined using matrix multiplication /
-concatenation (`concat()`) for more efficient application.
+concatenation (see `concat()`) for more efficient application.
 
 ### RGBA Porter-Duff compositing
 
-The package provides all 12 basic
-[Porter-Duff](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/porter-duff.ts)
-compositing / blending operators, both for colors with pre-multiplied
-alpha and without.
-
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff.png)
-
-([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
+This feature has been moved to the separate
+[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
+package.
 
 ### Cosine gradients
 
@@ -127,6 +120,26 @@ The following presets are bundled (in [`cosine-gradients.ts`](https://github.com
 | green-blue-orange                                              | orange-magenta-blue                                              |
 | ![](http://media.thi.ng/color/presets/blue-magenta-orange.svg) | ![](http://media.thi.ng/color/presets/magenta-green.svg)         |
 | blue-magenta-orange                                            | magenta-green                                                    |
+
+### Two-color gradients
+
+The `cosineCoeffs()` function can be used to compute the cosine gradient
+coefficients between 2 start/end colors:
+
+```ts
+// compute gradient coeffs between red / green
+cosineGradient(10, cosineCoeffs([1,0,0,1], [0,1,0,1])).map(rgbaCss)
+// #ff0000
+// #f70800
+// #e11e00
+// #bf4000
+// #966900
+// #699600
+// #40bf00
+// #1ee100
+// #08f700
+// #00ff00
+```
 
 ### Multi-stop gradients
 
