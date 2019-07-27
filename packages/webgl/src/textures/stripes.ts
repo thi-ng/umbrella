@@ -1,4 +1,4 @@
-import { canvasPixels, swapRB } from "@thi.ng/pixel";
+import { ARGB8888, canvasPixels } from "@thi.ng/pixel";
 
 export interface StripeOpts {
     size: number;
@@ -15,13 +15,13 @@ export const stripes = (opts: Partial<StripeOpts>) => {
         ...opts
     };
     const size = opts.size!;
-    const col1 = swapRB(opts.col1!);
-    const col2 = swapRB(opts.col2!);
-    const { canvas, ctx, img, pix } = opts.horizontal
+    const col1 = ARGB8888.toABGR(opts.col1!);
+    const col2 = ARGB8888.toABGR(opts.col2!);
+    const { canvas, ctx, img, pixels } = opts.horizontal
         ? canvasPixels(1, size)
         : canvasPixels(size, 1);
     for (let x = size; --x >= 0; ) {
-        pix[x] = x & 1 ? col1 : col2;
+        pixels[x] = x & 1 ? col1 : col2;
     }
     ctx.putImageData(img, 0, 0);
     return canvas;
