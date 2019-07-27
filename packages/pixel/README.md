@@ -15,6 +15,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
@@ -37,7 +38,7 @@ with customizable layout formats and the following operations:
 - single-channel manipulation / extraction / replacement
 - inversion
 - XY pixel accessors
-- 9 preset formats
+- 9 preset formats (see table below)
 - declarative custom format & optimized code generation
 - HTML canvas creation & ImageData utilities
 
@@ -102,10 +103,10 @@ Promise
     .all([pix.imagePromise(IMG), pix.imagePromise(LOGO)])
     .then(([img, logo]) => {
         // init 16 bit packed RGB pixel buffer from image (resized to 256x256)
-        const buf = PackedBuffer.fromImage(img, RGB565, 256, 256);
+        const buf = pix.PackedBuffer.fromImage(img, pix.RGB565, 256, 256);
         // create a 16 bit ARGB4444 buffer for logo and
         // use Porter-Duff operator to blend logo into main image
-        PackedBuffer.fromImage(logo, ARGB4444).blend(composeSrcOverInt, buf, {
+        pix.PackedBuffer.fromImage(logo, pix.ARGB4444).blend(composeSrcOverInt, buf, {
             dx: 10,
             dy: 10
         });
@@ -120,7 +121,7 @@ Promise
 
         // create html canvas
         // (returns obj of canvas & 2d context)
-        const ctx = canvas2d(buf.width, buf.height * 3);
+        const ctx = pix.canvas2d(buf.width, buf.height * 3);
 
         // write pixel buffer to canvas
         buf.blitCanvas(ctx.canvas);
@@ -147,6 +148,10 @@ Promise
         document.body.appendChild(ctx.canvas);
 });
 ```
+
+## API
+
+TODO see example & source comments for now
 
 ## Authors
 
