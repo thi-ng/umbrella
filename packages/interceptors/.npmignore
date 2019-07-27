@@ -3,11 +3,13 @@
 .nyc_output
 *.gz
 *.html
+*.svg
 *.tgz
 build
 coverage
 dev
 doc
+export
 src*
 test
 tsconfig.json

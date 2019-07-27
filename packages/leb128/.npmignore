@@ -1,6 +1,9 @@
+.cache
 .meta
 .nyc_output
+*.gz
 *.html
+*.svg
 *.tgz
 *.h
 *.o

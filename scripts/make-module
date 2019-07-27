@@ -111,10 +111,16 @@ EOF
 
 echo "writing .npmignore..."
 cat << EOF > $MODULE/.npmignore
+.cache
 .meta
 .nyc_output
+*.gz
 *.html
+*.svg
 *.tgz
+*.h
+*.o
+*.wasm
 build
 coverage
 dev
