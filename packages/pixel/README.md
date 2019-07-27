@@ -10,6 +10,8 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [WIP features](#wip-features)
+    - [Preset pixel formats](#preset-pixel-formats)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -20,10 +22,53 @@ This project is part of the
 
 ## About
 
-Single & multi-channel pixel buffers, conversions, utilities. Some
-features are browser-only.
-
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/pixel-basics.jpg)
+
+Typed array backed, packed integer and non-packed float pixel buffers
+with customizable layout formats and the following operations:
+
+- buffer creation from HTML image elements w/ opt resize & format
+  conversion (browser only)
+- buffer-to-buffer blitting w/ automatic format conversion
+- buffer-to-canvas blitting
+- buffer-to-buffer blending w/ [Porter-Duff
+  operators](https://github.com/thi-ng/umbrella/tree/master/packages/color#rgba-porter-duff-compositing)
+- region / subimage extraction
+- single-channel manipulation / extraction / replacement
+- inversion
+- XY pixel accessors
+- 9 preset formats
+- declarative custom format & optimized code generation
+- HTML canvas creation & ImageData utilities
+
+### WIP features
+
+- [ ] Accessors for normalized channel value
+- [ ] Pre/Post-multipy (only if alpha is available)
+- [ ] Re-add strided float buffers / formats
+- Readonly texture sampling abstraction
+    - [ ] Wrap-around behaviors
+    - [ ] Filtered access (bilinear interpolation)
+
+### Preset pixel formats
+
+All formats use the canvas native ABGR 32bit format as common
+intermediate for conversions. During conversion to ABGR, channels with
+sizes smaller than 8 bits will be scaled appropriately to ensure an as
+full-range and as linear as possible mapping. E.g. a 4 bit channel will
+be scaled by 255 / 15 = 17.
+
+| Format ID      | Bits per pixel    | Description                           |
+|----------------|-------------------|---------------------------------------|
+| `GRAY8`        | 8                 | 8 bit single channel                  |
+| `GRAY_ALPHA88` | 16                | 8 bit single channel, 8 bit alpha     |
+| `ARGB4444`     | 16                | 4 channels @ 4 bits each              |
+| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha      |
+| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue |
+| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each              |
+| `ARGB8888`     | 32                | 4 channels @ 8 bits each              |
+| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each              |
+| `ABGR8888`     | 32                | 4 channels @ 8 bits each              |
 
 ## Installation
 
@@ -34,7 +79,6 @@ yarn add @thi.ng/pixel
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 
@@ -49,36 +93,58 @@ Also see full example here:
 
 ```ts
 import * as pix from "@thi.ng/pixel";
+import { composeSrcOverInt } from "@thi.ng/color";
 
-// init 32bit packed ARGB pixel buffer from image (resized to 256x256)
-pix.ARGBBuffer.fromImagePromise(pix.imagePromise("foo.jpg"), 256, 256).then((buf) => {
-    // extract sub-image
-    const region = buf.getRegion(32, 96, 128, 64);
-    // copy region back at new position
-    region.blit(buf, 96, 32);
+import IMG from "../assets/haystack.jpg";
+import LOGO from "../assets/logo-64.png";
 
-    // create html canvas
-    const ctx = pix.canvas2d(buf.width * 3, buf.height);
+Promise
+    .all([pix.imagePromise(IMG), pix.imagePromise(LOGO)])
+    .then(([img, logo]) => {
+        // init 16 bit packed RGB pixel buffer from image (resized to 256x256)
+        const buf = PackedBuffer.fromImage(img, RGB565, 256, 256);
+        // create a 16 bit ARGB4444 buffer for logo and
+        // use Porter-Duff operator to blend logo into main image
+        PackedBuffer.fromImage(logo, ARGB4444).blend(composeSrcOverInt, buf, {
+            dx: 10,
+            dy: 10
+        });
 
-    // write pixel buffer to canvas
-    buf.blitCanvas(ctx.canvas);
+        // extract sub-image
+        const region = buf.getRegion(32, 96, 128, 64);
+        // copy region back at new position
+        region.blit(buf, { dx: 96, dy: 32 });
 
-    // manipulate single color channel with dot pattern
-    const id = pix.Channel.RED;
-    const ch = buf.getChannel(id).invert();
-    for (let y = 0; y < ch.height; y += 2) {
-        for (let x = (y >> 1) & 1; x < ch.width; x += 2) {
-            ch.setAt(x, y, 0xff);
+        // or alternatively blit buf into itself
+        // buf.blit(buf, { dx: 96, dy: 32, sx: 32, sy: 96, w: 128, h: 64 });
+
+        // create html canvas
+        // (returns obj of canvas & 2d context)
+        const ctx = canvas2d(buf.width, buf.height * 3);
+
+        // write pixel buffer to canvas
+        buf.blitCanvas(ctx.canvas);
+
+        // manipulate single color channel (here red)
+        const id = 0;
+        // obtain channel & invert
+        const ch = buf.getChannel(id).invert();
+        // create dot pattern
+        for (let y = 0; y < ch.height; y += 2) {
+            for (let x = (y >> 1) & 1; x < ch.width; x += 2) {
+                ch.setAt(x, y, 0xff);
+            }
         }
-    }
-    // replace original channel
-    buf.setChannel(id, ch);
-    // write pixel buffer
-    buf.blitCanvas(ctx.canvas, buf.width, 0);
-    // create & write grayscale version (uint8 buffer)
-    buf.grayscale().blitCanvas(ctx.canvas, buf.width * 2, 0);
+        // replace original channel
+        buf.setChannel(id, ch);
 
-    document.body.appendChild(ctx.canvas);
+        // write pixel buffer to new position
+        buf.blitCanvas(ctx.canvas, 0, buf.height);
+
+        // create & write grayscale version
+        buf.as(GRAY8).blitCanvas(ctx.canvas, 0, buf.height * 2);
+
+        document.body.appendChild(ctx.canvas);
 });
 ```
 
@@ -88,4 +154,4 @@ pix.ARGBBuffer.fromImagePromise(pix.imagePromise("foo.jpg"), 256, 256).then((buf
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 Karsten Schmidt // Apache Software License 2.0
