@@ -17,9 +17,10 @@
         "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
-        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "yarn build:test && mocha build/test/*.js",
+        "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib internal",
-        "cover": "yarn test && nyc report --reporter=lcov",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build:release && yarn publish --access public"
     },

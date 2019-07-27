@@ -47,25 +47,26 @@ cat << EOF > $MODULE/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module",
-        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "yarn build:test && mocha build/test/*.js",
+        "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "cover": "yarn test && nyc report --reporter=lcov",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build && yarn publish --access public"
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
-        "@types/node": "^12.0.8",
+        "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.5.2"
+        "typescript": "^3.5.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.3.0"
+        "@thi.ng/api": "^6.3.1"
     },
     "keywords": [
         "ES6",
@@ -165,5 +166,5 @@ import * as $INITIAL from "@thi.ng/$1";
 
 ## License
 
-&copy; 2018 $AUTHOR // Apache Software License 2.0
+&copy; 2019 $AUTHOR // Apache Software License 2.0
 EOF
