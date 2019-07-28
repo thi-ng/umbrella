@@ -1,4 +1,4 @@
-import { IObjectOf, Tuple } from "@thi.ng/api";
+import { Tuple } from "@thi.ng/api";
 
 export const enum Blend {
     ZERO = 0,
@@ -31,7 +31,9 @@ export type BlendFunc = Tuple<Blend, 2>;
 // TODO blend func presets
 // https://www.andersriggelsen.dk/glblendfunc.php
 
-export const BLEND_MODES: IObjectOf<BlendFunc> = {
-    normal: [Blend.SRC_ALPHA, Blend.ONE_MINUS_SRC_ALPHA],
-    add: [Blend.SRC_ALPHA, Blend.DST_ALPHA]
-};
+export const BLEND_NORMAL: BlendFunc = [
+    Blend.SRC_ALPHA,
+    Blend.ONE_MINUS_SRC_ALPHA
+];
+
+export const BLEND_ADD: BlendFunc = [Blend.SRC_ALPHA, Blend.DST_ALPHA];
