@@ -14,12 +14,13 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && yarn build:bundle",
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
-        "build:bundle": "../../scripts/bundle-module",
-        "test": "rimraf build && tsc -p test/tsconfig.json && nyc mocha build/test/*.js",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib geo shaders textures",
-        "cover": "yarn test && nyc report --reporter=lcov",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "yarn build:test && mocha build/test/*.js",
+        "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build && yarn publish --access public"
     },
@@ -32,7 +33,10 @@
         "typescript": "^3.5.3"
     },
     "dependencies": {
+        "@thi.ng/api": "6.3.1",
         "@thi.ng/shader-ast": "^0.2.0",
+        "@thi.ng/shader-ast-glsl": "^0.1.2",
+        "@thi.ng/transducers": "^5.4.1",
         "@thi.ng/webgl": "^0.1.2"
     },
     "keywords": [
