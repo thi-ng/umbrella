@@ -11,17 +11,18 @@ import {
     draw,
     ExtensionBehaviors,
     fbo,
+    isFloatTexture,
+    isGL2Context,
     ITexture,
     PASSTHROUGH_VS,
     quad,
     shader,
     ShaderFn,
+    ShaderSpec,
     ShaderUniformSpecs,
     texture,
     TextureOpts
 } from "@thi.ng/webgl";
-import { ShaderSpec } from "@thi.ng/webgl/api/shader";
-import { isFloatTexture, isGL2Context } from "@thi.ng/webgl/checks";
 import { ShaderToy } from "./api";
 
 export interface ShaderPipelineOpts {
