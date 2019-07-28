@@ -1,6 +1,6 @@
 import {
-    $,
     $x,
+    $xyz,
     $y,
     $z,
     add,
@@ -30,7 +30,7 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { ONE4, ZERO4 } from "@thi.ng/vectors";
-import { DEFAULT_BLEND, GLVec4, ShaderSpec } from "@thi.ng/webgl";
+import { BLEND_NORMAL, GLVec4, ShaderSpec } from "@thi.ng/webgl";
 
 export interface MSDFShaderOpts {
     color: boolean;
@@ -48,7 +48,7 @@ export const msdfSample = defn(
         let sd: FloatSym;
         let w: FloatSym;
         return [
-            (sd = sym(sub(median3($(texture(tex, uv), "xyz")), FLOAT05))),
+            (sd = sym(sub(median3($xyz(texture(tex, uv))), FLOAT05))),
             (w = sym(clamp(add(div(sd, fwidth(sd)), FLOAT05), FLOAT0, FLOAT1))),
             ret(vec2(sd, w))
         ];
@@ -101,6 +101,6 @@ export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
     },
     state: {
         blend: true,
-        blendFn: DEFAULT_BLEND
+        blendFn: BLEND_NORMAL
     }
 });
