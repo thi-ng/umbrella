@@ -297,4 +297,4 @@ export const XOR_I = porterDuffInt(ONE_MINUS_B, ONE_MINUS_A);
  * Porter-Duff operator for packed ints. Source & destination regions
  * are added.
  */
-export const PLUS_I = porterDuff(ONE, ONE);
+export const PLUS_I = porterDuffInt(ONE, ONE);
