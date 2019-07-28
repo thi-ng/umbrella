@@ -1,5 +1,6 @@
 import { IObjectOf, Type, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
+import { isPremultipliedInt, postmultiplyInt, premultiplyInt } from "@thi.ng/porter-duff";
 import {
     BlendFnInt,
     BlitOpts,
@@ -240,5 +241,36 @@ export class PackedBuffer {
             pix[i] ^= mask;
         }
         return this;
+    }
+
+    premultiply() {
+        const pix = this.pixels;
+        const from = this.format.fromABGR;
+        const to = this.format.toABGR;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] = from(premultiplyInt(to(pix[i])));
+        }
+        return this;
+    }
+
+    postmultiply() {
+        const pix = this.pixels;
+        const from = this.format.fromABGR;
+        const to = this.format.toABGR;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] = from(postmultiplyInt(to(pix[i])));
+        }
+        return this;
+    }
+
+    isPremultiplied() {
+        const pix = this.pixels;
+        const to = this.format.toABGR;
+        for (let i = pix.length; --i >= 0; ) {
+            if (!isPremultipliedInt(to(pix[i]))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

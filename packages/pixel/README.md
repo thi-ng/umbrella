@@ -106,12 +106,15 @@ Promise
         // init 16 bit packed RGB pixel buffer from image (resized to 256x256)
         const buf = pix.PackedBuffer.fromImage(img, pix.RGB565, 256, 256);
 
-        // create a 16 bit ARGB4444 buffer for logo and
-        // use Porter-Duff operator to blend logo into main image
-        pix.PackedBuffer.fromImage(logo, pix.ARGB4444).blend(SRC_OVER_I, buf, {
-            dx: 10,
-            dy: 10
-        });
+        // create grayscale buffer for logo and use Porter-Duff operator to
+        // composite with main image. Since the logo has transparency, we need
+        // to premultiply alpha first...
+        pix.PackedBuffer.fromImage(logo, pix.GRAY_ALPHA88)
+            .premultiply()
+            .blend(SRC_OVER_I, buf, {
+                dx: 10,
+                dy: 10
+            });
 
         // extract sub-image
         const region = buf.getRegion(32, 96, 128, 64);

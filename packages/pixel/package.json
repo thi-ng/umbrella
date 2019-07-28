@@ -35,14 +35,17 @@
     "dependencies": {
         "@thi.ng/api": "^6.3.1",
         "@thi.ng/checks": "^2.2.1",
-        "@thi.ng/math": "^1.4.1"
+        "@thi.ng/math": "^1.4.1",
+        "@thi.ng/porter-duff": "^0.0.1"
     },
     "keywords": [
         "ES6",
+        "alpha blending",
+        "blit",
         "canvas",
         "color channels",
+        "conversion",
         "grayscale",
-        "float",
         "image",
         "pixel buffer",
         "typescript"
