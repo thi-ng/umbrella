@@ -226,8 +226,18 @@ export class PackedBuffer {
         } else {
             const sbuf = src.pixels;
             ensureSize(sbuf, this.width, this.height);
-            for (let i = dbuf.length; --i >= 0; ) {
-                dbuf[i] = set(dbuf[i], sbuf[i]);
+            if (this.format === src.format) {
+                for (let i = dbuf.length; --i >= 0; ) {
+                    dbuf[i] = set(dbuf[i], sbuf[i]);
+                }
+            } else {
+                const sto = src.format.toABGR;
+                const from = this.format.fromABGR;
+                const mask = chan.maskA;
+                const invMask = ~mask;
+                for (let i = dbuf.length; --i >= 0; ) {
+                    dbuf[i] = (dbuf[i] & invMask) | (from(sto(sbuf[i])) & mask);
+                }
             }
         }
         return this;

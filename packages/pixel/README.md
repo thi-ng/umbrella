@@ -28,19 +28,20 @@ This project is part of the
 Typed array backed, packed integer and non-packed float pixel buffers
 with customizable layout formats and the following operations:
 
-- buffer creation from HTML image elements w/ opt resize & format
+- Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
-- buffer-to-buffer blitting w/ automatic format conversion
-- buffer-to-canvas blitting
-- buffer-to-buffer blending w/ [Porter-Duff
+- Buffer-to-buffer blitting w/ automatic format conversion
+- Buffer-to-canvas blitting
+- Buffer-to-buffer blending w/ [Porter-Duff
   operators](https://github.com/thi-ng/umbrella/tree/master/packages/color#rgba-porter-duff-compositing)
-- region / subimage extraction
-- single-channel manipulation / extraction / replacement
-- inversion
+- Pre/post-multiply alpha
+- Region / subimage extraction
+- Single-channel manipulation / extraction / replacement / conversion
+- Inversion
 - XY pixel accessors
-- 9 preset formats (see table below)
-- declarative custom format & optimized code generation
-- HTML canvas creation & ImageData utilities
+- 10 preset formats (see table below)
+- Declarative custom format & optimized code generation
+- HTML canvas creation & `ImageData` utilities
 
 ### WIP features
 
@@ -59,17 +60,23 @@ sizes smaller than 8 bits will be scaled appropriately to ensure an as
 full-range and as linear as possible mapping. E.g. a 4 bit channel will
 be scaled by 255 / 15 = 17.
 
-| Format ID      | Bits per pixel    | Description                           |
-|----------------|-------------------|---------------------------------------|
-| `GRAY8`        | 8                 | 8 bit single channel                  |
-| `GRAY_ALPHA88` | 16                | 8 bit single channel, 8 bit alpha     |
-| `ARGB4444`     | 16                | 4 channels @ 4 bits each              |
-| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha      |
-| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue |
-| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each              |
-| `ARGB8888`     | 32                | 4 channels @ 8 bits each              |
-| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each              |
-| `ABGR8888`     | 32                | 4 channels @ 8 bits each              |
+| Format ID      | Bits per pixel    | Description                                        |
+|----------------|-------------------|----------------------------------------------------|
+| `ALPHA8`       | 8                 | 8 bit single channel (alpha channel)               |
+| `GRAY8`        | 8                 | 8 bit single channel (grayscale conv)              |
+| `GRAY_ALPHA88` | 16                | 8 bit single channel (grayscale conv), 8 bit alpha |
+| `ARGB4444`     | 16                | 4 channels @ 4 bits each                           |
+| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha                   |
+| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue              |
+| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
+| `ARGB8888`     | 32                | 4 channels @ 8 bits each                           |
+| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
+| `ABGR8888`     | 32                | 4 channels @ 8 bits each                           |
+
+- `ALPHA8` is mapped from/to ABGR alpha channel
+- `GRAY8` / `GRAY_ALPHA88` compute grayscale/luminance when converting from ABGR and produce grayscale ABGR
+
+(Note: ABGR here used synonymously for AGBR / ARGB...)
 
 ## Installation
 

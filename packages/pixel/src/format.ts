@@ -12,7 +12,7 @@ import { luminanceABGR } from "./utils";
 const defChannel = (ch: PackedChannelSpec, shift: number): PackedChannel => {
     const mask0 = (1 << ch.size) - 1;
     const maskA = (mask0 << shift) >>> 0;
-    const invMask = ~maskA;
+    const invMask = ~maskA >>> 0;
     const int = (x: number) => (x >>> shift) & mask0;
     const setInt = (src: number, x: number) =>
         (src & invMask) | ((x & mask0) << shift);
@@ -49,6 +49,18 @@ export const defPackedFormat = (fmt: PackedFormatSpec): PackedFormat => {
         toABGR: fmt.toABGR || compileToABGR(channels, !!fmt.alpha)
     };
 };
+
+export const ALPHA8 = defPackedFormat({
+    type: Type.U8,
+    size: 8,
+    alpha: 8,
+    channels: [
+        {
+            size: 8,
+            lane: 0
+        }
+    ]
+});
 
 export const GRAY8 = defPackedFormat({
     type: Type.U8,
