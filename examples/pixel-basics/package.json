@@ -16,7 +16,8 @@
         "typescript": "^3.4.1"
     },
     "dependencies": {
-        "@thi.ng/pixel": "latest"
+        "@thi.ng/pixel": "latest",
+        "@thi.ng/porter-duff": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
