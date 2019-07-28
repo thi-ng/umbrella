@@ -55,9 +55,34 @@ export const postmultiply = (out: Color | null, src: ReadonlyColor) => {
 export const postmultiplyInt = (src: number) => {
     const a = (src >>> 24) / 0xff;
     return a > 0
-        ? (src & 0xff000000) |
+        ? ((src & 0xff000000) |
               (Math.min(0xff, ((src >>> 16) & 0xff) / a) << 16) |
               (Math.min(0xff, ((src >>> 8) & 0xff) / a) << 8) |
-              Math.min(0xff, (src & 0xff) / a)
+              Math.min(0xff, (src & 0xff) / a)) >>>
+              0
         : src;
+};
+
+/**
+ * Returns true if RGBA float color vector is premultiplied.
+ *
+ * @param src
+ */
+export const isPremultiplied = (src: ReadonlyColor) => {
+    const a = src[3];
+    return (src[0] <= a && src[1] <= a) || src[2] <= a;
+};
+
+/**
+ * Returns true if packed int color value is premultiplied.
+ *
+ * @param src
+ */
+export const isPremultipliedInt = (src: number) => {
+    const a = src >>> 24;
+    return (
+        ((src >>> 16) & 0xff) <= a &&
+        ((src >>> 8) & 0xff) <= a &&
+        (src & 0xff) <= a
+    );
 };
