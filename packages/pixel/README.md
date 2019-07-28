@@ -94,19 +94,21 @@ Also see full example here:
 
 ```ts
 import * as pix from "@thi.ng/pixel";
-import { composeSrcOverInt } from "@thi.ng/color";
+import { SRC_OVER_I } from "@thi.ng/porter-duff";
 
 import IMG from "../assets/haystack.jpg";
 import LOGO from "../assets/logo-64.png";
 
 Promise
-    .all([pix.imagePromise(IMG), pix.imagePromise(LOGO)])
+    .all([IMG, LOGO].map(pix.imagePromise))
     .then(([img, logo]) => {
+
         // init 16 bit packed RGB pixel buffer from image (resized to 256x256)
         const buf = pix.PackedBuffer.fromImage(img, pix.RGB565, 256, 256);
+
         // create a 16 bit ARGB4444 buffer for logo and
         // use Porter-Duff operator to blend logo into main image
-        pix.PackedBuffer.fromImage(logo, pix.ARGB4444).blend(composeSrcOverInt, buf, {
+        pix.PackedBuffer.fromImage(logo, pix.ARGB4444).blend(SRC_OVER_I, buf, {
             dx: 10,
             dy: 10
         });
