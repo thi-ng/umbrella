@@ -23,11 +23,11 @@ This project is part of the
 
 ## About
 
-This package provides all 12 fundamental
-[Porter-Duff](http://ssp.impulsetrain.com/porterduff.html) compositing /
-blending operators, and utilities to pre/post-multiply alpha. All
-operators are available for packed ARGB/ABGR 32bit packed ints or RGBA
-float vectors.
+This package provides all 13 fundamental
+[Porter-Duff](https://keithp.com/~keithp/porterduff/p253-porter.pdf)
+compositing / blending operators, and utilities to pre/post-multiply
+alpha. All operators are available for packed ARGB/ABGR 32bit packed
+ints or RGBA float vectors.
 
 *Note:* These operators were previously part of the
 [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
@@ -39,9 +39,11 @@ package (prior to v1.0.0).
 
 ### References
 
+- https://keithp.com/~keithp/porterduff/p253-porter.pdf (original paper)
 - https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending
-- http://ssp.impulsetrain.com/porterduff.html
 - https://ciechanow.ski/alpha-compositing/
+- http://www.adriancourreges.com/blog/2017/05/09/beware-of-transparent-pixels/
+- http://ssp.impulsetrain.com/porterduff.html
 
 ## Installation
 
@@ -59,13 +61,21 @@ yarn add @thi.ng/porter-duff
 import * as pd from "@thi.ng/porter-duff";
 
 // packed int version (premultiplied ARGB)
-pd.SRC_OVER_I(0x80800000, 0xff00ff00)
+pd.SRC_OVER_I(0x80800000, 0xcc0cc00)
 
 // automatically premultiply inputs & post-multiply result
-pd.porterDuffPInt(pd.SRC_OVER_I, 0x80ff0000, 0xff00ff00);
+pd.porterDuffPInt(pd.SRC_OVER_I, 0x80ff0000, 0xcc00cc00);
 
-// float version [R,G,B,A]
-pd.SRC_OVER_F([1, 0, 0, 0.5], [0, 1, 0, 1]);
+// the above is same as:
+pd.postmultiplyInt(
+    pd.SRC_OVER_I(
+        pd.premultiplyInt(0x80ff0000),
+        pd.premultiplyInt(0xcc00ff00)
+    )
+)
+
+// premultiplied float version [R,G,B,A]
+pd.SRC_OVER_F([1, 0, 0, 0.5], [0, 1, 0, 0.8]);
 ```
 
 ## API
@@ -87,6 +97,7 @@ Consult above diagram for expected results.
 - `SRC_ATOP`
 - `DEST_ATOP`
 - `XOR`
+- `PLUS`
 
 ## Authors
 
