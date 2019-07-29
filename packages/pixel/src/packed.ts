@@ -1,4 +1,9 @@
-import { IObjectOf, Type, UIntArray } from "@thi.ng/api";
+import {
+    Fn,
+    IObjectOf,
+    Type,
+    UIntArray
+} from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { isPremultipliedInt, postmultiplyInt, premultiplyInt } from "@thi.ng/porter-duff";
 import {
@@ -292,4 +297,27 @@ export class PackedBuffer {
         }
         return true;
     }
+
+    forEach(f: Fn<number, number>) {
+        const pix = this.pixels;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] = f(pix[i]);
+        }
+        return this;
+    }
 }
+
+/**
+ * Syntax sugar for `PackedBuffer` ctor.
+ *
+ * @param w
+ * @param h
+ * @param fmt
+ * @param pixels
+ */
+export const buffer = (
+    w: number,
+    h: number,
+    fmt: PackedFormat | PackedFormatSpec,
+    pixels?: UIntArray
+) => new PackedBuffer(w, h, fmt, pixels);
