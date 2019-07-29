@@ -16,6 +16,9 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
     - [Operators](#operators)
+    - [Custom operators](#custom-operators)
+    - [Additional operators / modifiers](#additional-operators--modifiers)
+    - [Pre/post-multiplied colors](#prepost-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)
 
@@ -34,8 +37,6 @@ ints or RGBA float vectors.
 package (prior to v1.0.0).
 
 ![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
-
-([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
 
 ### References
 
@@ -105,6 +106,43 @@ Consult above diagram for expected results.
 - `DEST_ATOP`
 - `XOR`
 - `PLUS`
+
+### Custom operators
+
+New operators (e.g. for blend modes) can be easily defined via `porterDuff` / `porterDuffInt`. Both functions take 2 function arguments to extract blend coefficients from the src & dest colors:
+
+```ts
+// coefficient functions take the normalized alpha values
+// of both colors as arguments, but unused here...
+const customOp = porterDuffInt(() => -0.5, () => 1);
+```
+
+![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff-custom.png)
+
+### Additional operators / modifiers
+
+The following modifiers are also discussed in the original Porter-Duff paper (linked above).
+
+- `darken` / `darkenInt`
+- `dissolve` / `dissolveInt`
+- `opacity` / `opacityInt`
+
+### Pre/post-multiplied colors
+
+All Porter-Duff operators expect colors with **pre-multiplied** alpha.
+Premultiplication is also recommended for WebGL textures (especially
+when using mipmaps). For that purpose the following helpers might be
+useful:
+
+- `premultiply` / `premultiplyInt`
+- `postmultiply` / `postmultiplyInt`
+- `isPremultiplied` / `isPremultipliedInt`
+
+Furthermore, existing PD operators can be wrapped with automatic
+pre/post-multiplies using `porterDuffP` / `porterDuffPInt` (see example
+above).
+
+Note: HTML Canvas `ImageData` is using non-premultiplied colors.
 
 ## Authors
 
