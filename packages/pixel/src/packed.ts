@@ -1,14 +1,20 @@
-import { IObjectOf, Type, UIntArray } from "@thi.ng/api";
+import {
+    Fn,
+    IObjectOf,
+    Type,
+    UIntArray
+} from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
+import { isPremultipliedInt, postmultiplyInt, premultiplyInt } from "@thi.ng/porter-duff";
 import {
     BlendFnInt,
     BlitOpts,
     PackedFormat,
     PackedFormatSpec
 } from "./api";
-import { imageCanvas } from "./canvas";
+import { canvasPixels, imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
-import { defPackedFormat } from "./format";
+import { ABGR8888, defPackedFormat } from "./format";
 import {
     clampRegion,
     ensureChannel,
@@ -47,6 +53,15 @@ export class PackedBuffer {
             dest[i] = from(src[i]);
         }
         return new PackedBuffer(w, h, fmt, dest);
+    }
+
+    static fromCanvas(canvas: HTMLCanvasElement) {
+        return new PackedBuffer(
+            canvas.width,
+            canvas.height,
+            ABGR8888,
+            canvasPixels(canvas).pixels
+        );
     }
 
     width: number;
@@ -225,8 +240,18 @@ export class PackedBuffer {
         } else {
             const sbuf = src.pixels;
             ensureSize(sbuf, this.width, this.height);
-            for (let i = dbuf.length; --i >= 0; ) {
-                dbuf[i] = set(dbuf[i], sbuf[i]);
+            if (this.format === src.format) {
+                for (let i = dbuf.length; --i >= 0; ) {
+                    dbuf[i] = set(dbuf[i], sbuf[i]);
+                }
+            } else {
+                const sto = src.format.toABGR;
+                const from = this.format.fromABGR;
+                const mask = chan.maskA;
+                const invMask = ~mask;
+                for (let i = dbuf.length; --i >= 0; ) {
+                    dbuf[i] = (dbuf[i] & invMask) | (from(sto(sbuf[i])) & mask);
+                }
             }
         }
         return this;
@@ -241,4 +266,58 @@ export class PackedBuffer {
         }
         return this;
     }
+
+    premultiply() {
+        const pix = this.pixels;
+        const from = this.format.fromABGR;
+        const to = this.format.toABGR;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] = from(premultiplyInt(to(pix[i])));
+        }
+        return this;
+    }
+
+    postmultiply() {
+        const pix = this.pixels;
+        const from = this.format.fromABGR;
+        const to = this.format.toABGR;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] = from(postmultiplyInt(to(pix[i])));
+        }
+        return this;
+    }
+
+    isPremultiplied() {
+        const pix = this.pixels;
+        const to = this.format.toABGR;
+        for (let i = pix.length; --i >= 0; ) {
+            if (!isPremultipliedInt(to(pix[i]))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    forEach(f: Fn<number, number>) {
+        const pix = this.pixels;
+        for (let i = pix.length; --i >= 0; ) {
+            pix[i] = f(pix[i]);
+        }
+        return this;
+    }
 }
+
+/**
+ * Syntax sugar for `PackedBuffer` ctor.
+ *
+ * @param w
+ * @param h
+ * @param fmt
+ * @param pixels
+ */
+export const buffer = (
+    w: number,
+    h: number,
+    fmt: PackedFormat | PackedFormatSpec,
+    pixels?: UIntArray
+) => new PackedBuffer(w, h, fmt, pixels);

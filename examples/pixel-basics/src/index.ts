@@ -1,23 +1,28 @@
-import { composeSrcOverInt } from "@thi.ng/color";
 import {
-    ARGB4444,
     canvas2d,
+    GRAY_ALPHA88,
     GRAY8,
     imagePromise,
     PackedBuffer,
     RGB565
 } from "@thi.ng/pixel";
+import { SRC_OVER_I } from "@thi.ng/porter-duff";
 import IMG from "../assets/haystack.jpg";
 import LOGO from "../assets/logo-64.png";
 
-Promise.all([imagePromise(IMG), imagePromise(LOGO)]).then(([img, logo]) => {
+Promise.all([IMG, LOGO].map(imagePromise)).then(([img, logo]) => {
     // init 16bit packed RGB pixel buffer from image (resized to 256x256)
     const buf = PackedBuffer.fromImage(img, RGB565, 256, 256);
-    // use Porter-Duff operator to blend logo into main image
-    PackedBuffer.fromImage(logo, ARGB4444).blend(composeSrcOverInt, buf, {
-        dx: 10,
-        dy: 10
-    });
+
+    // create grayscale buffer for logo and use Porter-Duff operator to
+    // composite with main image. Since the logo has transparency, we
+    // need to premultiply alpha first...
+    PackedBuffer.fromImage(logo, GRAY_ALPHA88)
+        .premultiply()
+        .blend(SRC_OVER_I, buf, {
+            dx: 10,
+            dy: 10
+        });
 
     // extract sub-image
     const region = buf.getRegion(32, 96, 128, 64);

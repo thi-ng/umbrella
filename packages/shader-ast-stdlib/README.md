@@ -19,6 +19,7 @@ This project is part of the
     - [Using higher order functions](#using-higher-order-functions)
 - [API](#api)
     - [Color](#color)
+    - [Porter-Duff alpha blending](#porter-duff-alpha-blending)
     - [Fog](#fog)
     - [Lighting](#lighting)
     - [Math](#math)
@@ -285,6 +286,26 @@ TODO. For now, please see doc strings in source for details...
 - `toLinear`
 - `toSRGB`
 - `luminanceRGB`
+
+### Porter-Duff alpha blending
+
+Use the `porterDuff` higher order function to define new blend modes.
+See
+[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+for reference.
+
+12 standard PD operators for `vec4` RGBA colors:
+
+- `blendSrcOver`
+- `blendDestOver`
+- `blendSrcIn`
+- `blendDestIn`
+- `blendSrcOut`
+- `blendDestOut`
+- `blendSrcAtop`
+- `blendDestAtop`
+- `blendXor`
+- `blendPlus`
 
 ### Fog
 

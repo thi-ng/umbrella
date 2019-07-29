@@ -28,19 +28,20 @@ This project is part of the
 Typed array backed, packed integer and non-packed float pixel buffers
 with customizable layout formats and the following operations:
 
-- buffer creation from HTML image elements w/ opt resize & format
+- Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
-- buffer-to-buffer blitting w/ automatic format conversion
-- buffer-to-canvas blitting
-- buffer-to-buffer blending w/ [Porter-Duff
+- Buffer-to-buffer blitting w/ automatic format conversion
+- Buffer-to-canvas blitting
+- Buffer-to-buffer blending w/ [Porter-Duff
   operators](https://github.com/thi-ng/umbrella/tree/master/packages/color#rgba-porter-duff-compositing)
-- region / subimage extraction
-- single-channel manipulation / extraction / replacement
-- inversion
+- Pre/post-multiply alpha
+- Region / subimage extraction
+- Single-channel manipulation / extraction / replacement / conversion
+- Inversion
 - XY pixel accessors
-- 9 preset formats (see table below)
-- declarative custom format & optimized code generation
-- HTML canvas creation & ImageData utilities
+- 10 preset formats (see table below)
+- Declarative custom format & optimized code generation
+- HTML canvas creation & `ImageData` utilities
 
 ### WIP features
 
@@ -59,17 +60,23 @@ sizes smaller than 8 bits will be scaled appropriately to ensure an as
 full-range and as linear as possible mapping. E.g. a 4 bit channel will
 be scaled by 255 / 15 = 17.
 
-| Format ID      | Bits per pixel    | Description                           |
-|----------------|-------------------|---------------------------------------|
-| `GRAY8`        | 8                 | 8 bit single channel                  |
-| `GRAY_ALPHA88` | 16                | 8 bit single channel, 8 bit alpha     |
-| `ARGB4444`     | 16                | 4 channels @ 4 bits each              |
-| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha      |
-| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue |
-| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each              |
-| `ARGB8888`     | 32                | 4 channels @ 8 bits each              |
-| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each              |
-| `ABGR8888`     | 32                | 4 channels @ 8 bits each              |
+| Format ID      | Bits per pixel    | Description                                        |
+|----------------|-------------------|----------------------------------------------------|
+| `ALPHA8`       | 8                 | 8 bit single channel (alpha channel)               |
+| `GRAY8`        | 8                 | 8 bit single channel (grayscale conv)              |
+| `GRAY_ALPHA88` | 16                | 8 bit single channel (grayscale conv), 8 bit alpha |
+| `ARGB4444`     | 16                | 4 channels @ 4 bits each                           |
+| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha                   |
+| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue              |
+| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
+| `ARGB8888`     | 32                | 4 channels @ 8 bits each                           |
+| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
+| `ABGR8888`     | 32                | 4 channels @ 8 bits each                           |
+
+- `ALPHA8` is mapped from/to ABGR alpha channel
+- `GRAY8` / `GRAY_ALPHA88` compute grayscale/luminance when converting from ABGR and produce grayscale ABGR
+
+(Note: ABGR here used synonymously for AGBR / ARGB...)
 
 ## Installation
 
@@ -85,6 +92,13 @@ yarn add @thi.ng/pixel
 
 ## Usage examples
 
+Porter-Duff operators:
+
+[Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
+[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
+
 Code for the above example / screenshot...
 
 Also see full example here:
@@ -94,22 +108,27 @@ Also see full example here:
 
 ```ts
 import * as pix from "@thi.ng/pixel";
-import { composeSrcOverInt } from "@thi.ng/color";
+import { SRC_OVER_I } from "@thi.ng/porter-duff";
 
 import IMG from "../assets/haystack.jpg";
 import LOGO from "../assets/logo-64.png";
 
 Promise
-    .all([pix.imagePromise(IMG), pix.imagePromise(LOGO)])
+    .all([IMG, LOGO].map(pix.imagePromise))
     .then(([img, logo]) => {
+
         // init 16 bit packed RGB pixel buffer from image (resized to 256x256)
         const buf = pix.PackedBuffer.fromImage(img, pix.RGB565, 256, 256);
-        // create a 16 bit ARGB4444 buffer for logo and
-        // use Porter-Duff operator to blend logo into main image
-        pix.PackedBuffer.fromImage(logo, pix.ARGB4444).blend(composeSrcOverInt, buf, {
-            dx: 10,
-            dy: 10
-        });
+
+        // create grayscale buffer for logo and use Porter-Duff operator to
+        // composite with main image. Since the logo has transparency, we need
+        // to premultiply alpha first...
+        pix.PackedBuffer.fromImage(logo, pix.GRAY_ALPHA88)
+            .premultiply()
+            .blend(SRC_OVER_I, buf, {
+                dx: 10,
+                dy: 10
+            });
 
         // extract sub-image
         const region = buf.getRegion(32, 96, 128, 64);

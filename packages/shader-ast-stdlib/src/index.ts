@@ -2,6 +2,7 @@ export * from "./api";
 
 export * from "./color/linear-srgb";
 export * from "./color/luminance";
+export * from "./color/porter-duff";
 
 export * from "./fog/exp";
 export * from "./fog/exp2";

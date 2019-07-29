@@ -1,5 +1,5 @@
 {
-    "name": "pixel-basics",
+    "name": "porter-duff",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -17,7 +17,9 @@
     },
     "dependencies": {
         "@thi.ng/pixel": "latest",
-        "@thi.ng/porter-duff": "latest"
+        "@thi.ng/porter-duff": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

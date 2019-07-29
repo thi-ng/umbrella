@@ -16,6 +16,9 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
     - [Operators](#operators)
+    - [Custom operators](#custom-operators)
+    - [Additional operators / modifiers](#additional-operators--modifiers)
+    - [Pre/post-multiplied colors](#prepost-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)
 
@@ -23,25 +26,25 @@ This project is part of the
 
 ## About
 
-This package provides all 12 fundamental
-[Porter-Duff](http://ssp.impulsetrain.com/porterduff.html) compositing /
-blending operators, and utilities to pre/post-multiply alpha. All
-operators are available for packed ARGB/ABGR 32bit packed ints or RGBA
-float vectors.
+This package provides all 13 fundamental
+[Porter-Duff](https://keithp.com/~keithp/porterduff/p253-porter.pdf)
+compositing / blending operators, and utilities to pre/post-multiply
+alpha. All operators are available for packed ARGB/ABGR 32bit packed
+ints or RGBA float vectors.
 
 *Note:* These operators were previously part of the
 [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
 package (prior to v1.0.0).
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff.png)
-
-([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
 
 ### References
 
+- https://keithp.com/~keithp/porterduff/p253-porter.pdf (original paper)
 - https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending
-- http://ssp.impulsetrain.com/porterduff.html
 - https://ciechanow.ski/alpha-compositing/
+- http://www.adriancourreges.com/blog/2017/05/09/beware-of-transparent-pixels/
+- http://ssp.impulsetrain.com/porterduff.html
 
 ## Installation
 
@@ -55,17 +58,32 @@ yarn add @thi.ng/porter-duff
 
 ## Usage examples
 
+Full overview of all operators (shown above):
+
+[Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
+[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+
+Basic usage...
+
 ```ts
 import * as pd from "@thi.ng/porter-duff";
 
 // packed int version (premultiplied ARGB)
-pd.SRC_OVER_I(0x80800000, 0xff00ff00)
+pd.SRC_OVER_I(0x80800000, 0xcc0cc00)
 
 // automatically premultiply inputs & post-multiply result
-pd.porterDuffPInt(pd.SRC_OVER_I, 0x80ff0000, 0xff00ff00);
+pd.porterDuffPInt(pd.SRC_OVER_I, 0x80ff0000, 0xcc00cc00);
 
-// float version [R,G,B,A]
-pd.SRC_OVER_F([1, 0, 0, 0.5], [0, 1, 0, 1]);
+// the above is same as:
+pd.postmultiplyInt(
+    pd.SRC_OVER_I(
+        pd.premultiplyInt(0x80ff0000),
+        pd.premultiplyInt(0xcc00ff00)
+    )
+)
+
+// premultiplied float version [R,G,B,A]
+pd.SRC_OVER_F([1, 0, 0, 0.5], [0, 1, 0, 0.8]);
 ```
 
 ## API
@@ -87,6 +105,44 @@ Consult above diagram for expected results.
 - `SRC_ATOP`
 - `DEST_ATOP`
 - `XOR`
+- `PLUS`
+
+### Custom operators
+
+New operators (e.g. for blend modes) can be easily defined via `porterDuff` / `porterDuffInt`. Both functions take 2 function arguments to extract blend coefficients from the src & dest colors:
+
+```ts
+// coefficient functions take the normalized alpha values
+// of both colors as arguments, but unused here...
+const customOp = porterDuffInt(() => -0.5, () => 1);
+```
+
+![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff-custom.png)
+
+### Additional operators / modifiers
+
+The following modifiers are also discussed in the original Porter-Duff paper (linked above).
+
+- `darken` / `darkenInt`
+- `dissolve` / `dissolveInt`
+- `opacity` / `opacityInt`
+
+### Pre/post-multiplied colors
+
+All Porter-Duff operators expect colors with **pre-multiplied** alpha.
+Premultiplication is also recommended for WebGL textures (especially
+when using mipmaps). For that purpose the following helpers might be
+useful:
+
+- `premultiply` / `premultiplyInt`
+- `postmultiply` / `postmultiplyInt`
+- `isPremultiplied` / `isPremultipliedInt`
+
+Furthermore, existing PD operators can be wrapped with automatic
+pre/post-multiplies using `porterDuffP` / `porterDuffPInt` (see example
+above).
+
+Note: HTML Canvas `ImageData` is using non-premultiplied colors.
 
 ## Authors
 
