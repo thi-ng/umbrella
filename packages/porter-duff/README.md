@@ -33,7 +33,7 @@ ints or RGBA float vectors.
 [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
 package (prior to v1.0.0).
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff2.png)
 
 ([Image source](http://www.svgopen.org/2005/papers/abstractsvgopen/#PorterDuffMap))
 
@@ -56,6 +56,13 @@ yarn add @thi.ng/porter-duff
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 
 ## Usage examples
+
+Full overview of all operators (shown above):
+
+[Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
+[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+
+Basic usage...
 
 ```ts
 import * as pd from "@thi.ng/porter-duff";
