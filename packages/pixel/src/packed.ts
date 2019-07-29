@@ -7,9 +7,9 @@ import {
     PackedFormat,
     PackedFormatSpec
 } from "./api";
-import { imageCanvas } from "./canvas";
+import { canvasPixels, imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
-import { defPackedFormat } from "./format";
+import { ABGR8888, defPackedFormat } from "./format";
 import {
     clampRegion,
     ensureChannel,
@@ -48,6 +48,15 @@ export class PackedBuffer {
             dest[i] = from(src[i]);
         }
         return new PackedBuffer(w, h, fmt, dest);
+    }
+
+    static fromCanvas(canvas: HTMLCanvasElement) {
+        return new PackedBuffer(
+            canvas.width,
+            canvas.height,
+            ABGR8888,
+            canvasPixels(canvas).pixels
+        );
     }
 
     width: number;

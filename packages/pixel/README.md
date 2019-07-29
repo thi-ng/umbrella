@@ -92,6 +92,13 @@ yarn add @thi.ng/pixel
 
 ## Usage examples
 
+Porter-Duff operators:
+
+[Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
+[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff2.png)
+
 Code for the above example / screenshot...
 
 Also see full example here:
