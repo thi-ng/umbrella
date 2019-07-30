@@ -45,8 +45,8 @@ with customizable layout formats and the following operations:
 
 ### WIP features
 
-- [ ] Accessors for normalized channel value
-- [ ] Pre/Post-multipy (only if alpha is available)
+- [x] Accessors for normalized channel value
+- [x] Pre/Post-multipy (only if alpha is available)
 - [ ] Re-add strided float buffers / formats
 - Readonly texture sampling abstraction
     - [ ] Wrap-around behaviors
@@ -60,23 +60,31 @@ sizes smaller than 8 bits will be scaled appropriately to ensure an as
 full-range and as linear as possible mapping. E.g. a 4 bit channel will
 be scaled by 255 / 15 = 17.
 
-| Format ID      | Bits per pixel    | Description                                        |
-|----------------|-------------------|----------------------------------------------------|
-| `ALPHA8`       | 8                 | 8 bit single channel (alpha channel)               |
-| `GRAY8`        | 8                 | 8 bit single channel (grayscale conv)              |
-| `GRAY_ALPHA88` | 16                | 8 bit single channel (grayscale conv), 8 bit alpha |
-| `ARGB4444`     | 16                | 4 channels @ 4 bits each                           |
-| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha                   |
-| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue              |
-| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
-| `ARGB8888`     | 32                | 4 channels @ 8 bits each                           |
-| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
-| `ABGR8888`     | 32                | 4 channels @ 8 bits each                           |
+Format specs can freely control channel layout within current limits:
+
+- Channel sizes: 1-8 bits.
+- Storage: 8-32 bits per pixel
+
+| Format ID      | Bits per pixel    | Description                                          |
+|----------------|-------------------|------------------------------------------------------|
+| `ALPHA8`       | 8                 | 8 bit channel (alpha only)                           |
+| `GRAY8`        | 8                 | 8 bit single channel (grayscale conv)                |
+| `GRAY_ALPHA8`  | 16                | 8 bit single channel (grayscale conv), 8 bit alpha   |
+| `GRAY16`       | 16                | 16 bit single channel (grayscale conv)               |
+| `GRAY_ALPHA16` | 32                | 16 bit single channel (grayscale conv), 16 bit alpha |
+| `ARGB4444`     | 16                | 4 channels @ 4 bits each                             |
+| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha                     |
+| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue                |
+| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each                             |
+| `ARGB8888`     | 32                | 4 channels @ 8 bits each                             |
+| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each                             |
+| `ABGR8888`     | 32                | 4 channels @ 8 bits each                             |
 
 - `ALPHA8` is mapped from/to ABGR alpha channel
-- `GRAY8` / `GRAY_ALPHA88` compute grayscale/luminance when converting from ABGR and produce grayscale ABGR
-
-(Note: ABGR here used synonymously for AGBR / ARGB...)
+- `GRAY8/16`, `GRAY_ALPHA8/16` compute grayscale/luminance when
+  converting from ABGR and in return produce grayscale ABGR
+- In all built-in formats supporting it, the alpha channel always
+  occupies the most-significant bits (up to format size)
 
 ## Installation
 
