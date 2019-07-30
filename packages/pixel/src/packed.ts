@@ -239,10 +239,12 @@ export class PackedBuffer {
             }
         } else {
             const sbuf = src.pixels;
+            const schan = src.format.channels[0];
             ensureSize(sbuf, this.width, this.height);
-            if (this.format === src.format) {
+            if (chan.size === schan.size) {
+                const get = schan.int;
                 for (let i = dbuf.length; --i >= 0; ) {
-                    dbuf[i] = set(dbuf[i], sbuf[i]);
+                    dbuf[i] = set(dbuf[i], get(sbuf[i]));
                 }
             } else {
                 const sto = src.format.toABGR;
