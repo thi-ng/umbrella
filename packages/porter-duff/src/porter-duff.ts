@@ -65,7 +65,7 @@ export const porterDuffInt = (
             16) |
         (clamp(((a >>> 8) & 0xff) * aa + ((b >>> 8) & 0xff) * bb, 0, 255) <<
             8) |
-        clamp((a & 0xff) * aa + (b & 0xff), 0, 255)
+        clamp((a & 0xff) * aa + (b & 0xff) * bb, 0, 255)
     );
 };
 
