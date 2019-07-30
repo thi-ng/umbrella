@@ -23,7 +23,7 @@
         "@types/node": "^9.6.2",
         "parcel-bundler": "^1.12.3",
         "terser": "^4.0.0",
-        "typescript": "^3.5.2"
+        "typescript": "^3.5.3"
     },
     "browserslist": [
         "last 3 Chrome versions"
