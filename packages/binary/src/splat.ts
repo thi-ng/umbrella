@@ -3,14 +3,14 @@
  *
  * @param x
  */
-export const splat4_24 = (x: number) => ((x &= 0xf), splat8_24(x | (x << 4)));
+export const splat4_24 = (x: number) => (x & 0xf) * 0x111111;
 
 /**
  * Repeats lowest nibble of `x` as 32 bit uint.
  *
  * @param x
  */
-export const splat4_32 = (x: number) => ((x &= 0xf), splat8_32(x | (x << 4)));
+export const splat4_32 = (x: number) => ((x & 0xf) * 0x11111111) >>> 0;
 
 /**
  * Repeats lowest byte of `x` as 24 bit uint.
