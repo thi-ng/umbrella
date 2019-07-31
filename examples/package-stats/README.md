@@ -10,7 +10,7 @@ git clone https://github.com/thi-ng/umbrella.git
 # first need to build the entire mono-repo
 # to produce necessary meta data
 yarn install
-yarn build
+yarn build:release
 
 # then run example
 cd umbrella/examples/package-stats
