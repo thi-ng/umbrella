@@ -33,7 +33,8 @@
         "typescript": "^3.5.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.3.2"
+        "@thi.ng/api": "^6.3.2",
+        "@thi.ng/math": "^1.4.2"
     },
     "keywords": [
         "alpha blending",
