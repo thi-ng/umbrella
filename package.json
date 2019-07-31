@@ -8,6 +8,7 @@
         "file-loader": "^4.0.0",
         "gzip-size": "^5.1.0",
         "lerna": "^3.16.4",
+        "lodash.template": "^4.5.0",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "parcel-bundler": "^1.12.3",

@@ -9,6 +9,7 @@ import { isPremultipliedInt, postmultiplyInt, premultiplyInt } from "@thi.ng/por
 import {
     BlendFnInt,
     BlitOpts,
+    Lane,
     PackedFormat,
     PackedFormatSpec
 } from "./api";
@@ -212,11 +213,11 @@ export class PackedBuffer {
 
     getChannel(id: number) {
         const chan = ensureChannel(this.format, id);
-        // TODO memoize format
         const buf = new PackedBuffer(this.width, this.height, {
-            type: Type.U8,
+            type:
+                chan.size > 16 ? Type.U32 : chan.size > 8 ? Type.U16 : Type.U8,
             size: chan.size,
-            channels: [{ size: chan.size, lane: 3 }],
+            channels: [{ size: chan.size, lane: Lane.RED }],
             fromABGR: compileGrayFromABGR(chan.size),
             toABGR: compileGrayToABGR(chan.size)
         });
@@ -239,10 +240,12 @@ export class PackedBuffer {
             }
         } else {
             const sbuf = src.pixels;
+            const schan = src.format.channels[0];
             ensureSize(sbuf, this.width, this.height);
-            if (this.format === src.format) {
+            if (chan.size === schan.size) {
+                const get = schan.int;
                 for (let i = dbuf.length; --i >= 0; ) {
-                    dbuf[i] = set(dbuf[i], sbuf[i]);
+                    dbuf[i] = set(dbuf[i], get(sbuf[i]));
                 }
             } else {
                 const sto = src.format.toABGR;

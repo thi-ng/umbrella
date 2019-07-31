@@ -13,6 +13,7 @@ This project is part of the
     - [References](#references)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Related packages](#related-packages)
 - [Usage examples](#usage-examples)
 - [API](#api)
     - [Operators](#operators)
@@ -36,7 +37,7 @@ ints or RGBA float vectors.
 [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
 package (prior to v1.0.0).
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff2.png)
 
 ### References
 
@@ -56,12 +57,16 @@ yarn add @thi.ng/porter-duff
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 
+## Related packages
+
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/master/packages/pixel) - Multi-format pixel buffers
+
 ## Usage examples
 
 Full overview of all operators (shown above):
 
 [Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
 Basic usage...
 
@@ -72,7 +77,7 @@ import * as pd from "@thi.ng/porter-duff";
 pd.SRC_OVER_I(0x80800000, 0xcc0cc00)
 
 // automatically premultiply inputs & post-multiply result
-pd.porterDuffPInt(pd.SRC_OVER_I, 0x80ff0000, 0xcc00cc00);
+pd.porterDuffPInt(pd.SRC_OVER_I, 0x80ff0000, 0xcc00ff00);
 
 // the above is same as:
 pd.postmultiplyInt(
@@ -109,7 +114,9 @@ Consult above diagram for expected results.
 
 ### Custom operators
 
-New operators (e.g. for blend modes) can be easily defined via `porterDuff` / `porterDuffInt`. Both functions take 2 function arguments to extract blend coefficients from the src & dest colors:
+New operators (e.g. for blend modes) can be easily defined via
+`porterDuff` / `porterDuffInt`. Both functions take 2 function arguments
+to extract blend coefficients from the src & dest colors:
 
 ```ts
 // coefficient functions take the normalized alpha values
@@ -117,7 +124,17 @@ New operators (e.g. for blend modes) can be easily defined via `porterDuff` / `p
 const customOp = porterDuffInt(() => -0.5, () => 1);
 ```
 
-![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff-custom.png)
+![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff-custom.png)
+
+The following coefficient functions are included by default (and are
+used by all standard operators):
+
+- `ZERO` => 0
+- `ONE` => 1
+- `A` => alpha of src color
+- `B` => alpha of dest color
+- `ONE_MINUS_A` => 1 - alpha of src color
+- `ONE_MINUS_B` => 1 - alpha of dest color
 
 ### Additional operators / modifiers
 
@@ -130,9 +147,9 @@ The following modifiers are also discussed in the original Porter-Duff paper (li
 ### Pre/post-multiplied colors
 
 All Porter-Duff operators expect colors with **pre-multiplied** alpha.
-Premultiplication is also recommended for WebGL textures (especially
-when using mipmaps). For that purpose the following helpers might be
-useful:
+Premultiplication is also recommended for transparent WebGL textures
+(especially when using mipmaps). For that purpose the following helpers
+might be useful:
 
 - `premultiply` / `premultiplyInt`
 - `postmultiply` / `postmultiplyInt`

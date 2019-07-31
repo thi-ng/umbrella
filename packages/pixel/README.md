@@ -23,10 +23,10 @@ This project is part of the
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/pixel-basics.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/pixel-basics.png)
 
-Typed array backed, packed integer and non-packed float pixel buffers
-with customizable layout formats and the following operations:
+Typed array backed, packed integer pixel buffers with customizable
+layout formats and the following operations:
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
@@ -45,8 +45,8 @@ with customizable layout formats and the following operations:
 
 ### WIP features
 
-- [ ] Accessors for normalized channel value
-- [ ] Pre/Post-multipy (only if alpha is available)
+- [x] Accessors for normalized channel value
+- [x] Pre/Post-multipy (only if alpha is available)
 - [ ] Re-add strided float buffers / formats
 - Readonly texture sampling abstraction
     - [ ] Wrap-around behaviors
@@ -54,29 +54,37 @@ with customizable layout formats and the following operations:
 
 ### Preset pixel formats
 
-All formats use the canvas native ABGR 32bit format as common
-intermediate for conversions. During conversion to ABGR, channels with
-sizes smaller than 8 bits will be scaled appropriately to ensure an as
-full-range and as linear as possible mapping. E.g. a 4 bit channel will
-be scaled by 255 / 15 = 17.
+All packed integer formats use the canvas native ABGR 32bit format as
+common intermediate for conversions. During conversion to ABGR, channels
+with sizes smaller than 8 bits will be scaled appropriately to ensure an
+as full-range and as linear as possible mapping. E.g. a 4 bit channel
+will be scaled by 255 / 15 = 17.
 
-| Format ID      | Bits per pixel    | Description                                        |
-|----------------|-------------------|----------------------------------------------------|
-| `ALPHA8`       | 8                 | 8 bit single channel (alpha channel)               |
-| `GRAY8`        | 8                 | 8 bit single channel (grayscale conv)              |
-| `GRAY_ALPHA88` | 16                | 8 bit single channel (grayscale conv), 8 bit alpha |
-| `ARGB4444`     | 16                | 4 channels @ 4 bits each                           |
-| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha                   |
-| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue              |
-| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
-| `ARGB8888`     | 32                | 4 channels @ 8 bits each                           |
-| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each                           |
-| `ABGR8888`     | 32                | 4 channels @ 8 bits each                           |
+Format specs can freely control channel layout within current limits:
+
+- Channel sizes: 1 - 32 bits.
+- Storage: 8, 16 or 32 bits per pixel
+
+| Format ID      | Bits per pixel    | Description                                          |
+|----------------|-------------------|------------------------------------------------------|
+| `ALPHA8`       | 8                 | 8 bit channel (alpha only)                           |
+| `GRAY8`        | 8                 | 8 bit single channel (grayscale conv)                |
+| `GRAY_ALPHA8`  | 16                | 8 bit single channel (grayscale conv), 8 bit alpha   |
+| `GRAY16`       | 16                | 16 bit single channel (grayscale conv)               |
+| `GRAY_ALPHA16` | 32                | 16 bit single channel (grayscale conv), 16 bit alpha |
+| `ARGB4444`     | 16                | 4 channels @ 4 bits each                             |
+| `ARGB1555`     | 16                | 5 bits each for RGB, 1 bit alpha                     |
+| `RGB565`       | 16                | 5 bits red, 6 bits green, 5 bits blue                |
+| `RGB888`       | 32 (24 effective) | 3 channels @ 8 bits each                             |
+| `ARGB8888`     | 32                | 4 channels @ 8 bits each                             |
+| `BGR888`       | 32 (24 effective) | 3 channels @ 8 bits each                             |
+| `ABGR8888`     | 32                | 4 channels @ 8 bits each                             |
 
 - `ALPHA8` is mapped from/to ABGR alpha channel
-- `GRAY8` / `GRAY_ALPHA88` compute grayscale/luminance when converting from ABGR and produce grayscale ABGR
-
-(Note: ABGR here used synonymously for AGBR / ARGB...)
+- `GRAY8/16`, `GRAY_ALPHA8/16` compute grayscale/luminance when
+  converting from ABGR and in return produce grayscale ABGR
+- In all built-in formats supporting it, the alpha channel always
+  occupies the most-significant bits (up to format size)
 
 ## Installation
 
@@ -89,22 +97,23 @@ yarn add @thi.ng/pixel
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
 
 ## Usage examples
 
 Porter-Duff operators:
 
 [Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff2.png)
 
-Code for the above example / screenshot...
+Code for the screenshot at the top of this readme...
 
 Also see full example here:
 
 [Live demo](http://demo.thi.ng/umbrella/pixel-basics/) |
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/pixel-basics)
 
 ```ts
 import * as pix from "@thi.ng/pixel";
@@ -170,7 +179,7 @@ Promise
 
 ## API
 
-TODO see example & source comments for now
+TODO see examples & source comments for now
 
 ## Authors
 

@@ -17,9 +17,10 @@ export const compileGrayFromABGR = (size: number) => {
     const shift = 8 - size;
     const mask = (1 << size) - 1;
     return <Fn<number, number>>(
-        new Function("luma", `return (x) => (luma(x) >>> ${shift}) & ${mask};`)(
-            luminanceABGR
-        )
+        new Function(
+            "luma",
+            `return (x) => ${compileRShift("luma(x)", shift)} & ${mask};`
+        )(luminanceABGR)
     );
 };
 

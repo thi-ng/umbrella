@@ -1,6 +1,6 @@
 import {
     canvas2d,
-    GRAY_ALPHA88,
+    GRAY_ALPHA8,
     GRAY8,
     imagePromise,
     PackedBuffer,
@@ -17,7 +17,7 @@ Promise.all([IMG, LOGO].map(imagePromise)).then(([img, logo]) => {
     // create grayscale buffer for logo and use Porter-Duff operator to
     // composite with main image. Since the logo has transparency, we
     // need to premultiply alpha first...
-    PackedBuffer.fromImage(logo, GRAY_ALPHA88)
+    PackedBuffer.fromImage(logo, GRAY_ALPHA8)
         .premultiply()
         .blend(SRC_OVER_I, buf, {
             dx: 10,

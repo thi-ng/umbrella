@@ -5,7 +5,9 @@ import {
     ARGB4444,
     ARGB8888,
     BGR888,
-    GRAY_ALPHA88,
+    GRAY_ALPHA16,
+    GRAY_ALPHA8,
+    GRAY16,
     GRAY8,
     PackedFormat,
     RGB565,
@@ -14,17 +16,17 @@ import {
 // import { equiv } from "@thi.ng/equiv";
 
 const testFromABGR = (fmt: PackedFormat, specs: number[]) => {
-    assert.equal(fmt.fromABGR(0xff000000), specs[0], "from_a");
-    assert.equal(fmt.fromABGR(0xffff0000), specs[1], "from_b");
-    assert.equal(fmt.fromABGR(0xff00ff00), specs[2], "from_g");
-    assert.equal(fmt.fromABGR(0xff0000ff), specs[3], "from_r");
+    assert.equal(fmt.fromABGR(0xff000000) >>> 0, specs[0], "from_a");
+    assert.equal(fmt.fromABGR(0xffff0000) >>> 0, specs[1], "from_b");
+    assert.equal(fmt.fromABGR(0xff00ff00) >>> 0, specs[2], "from_g");
+    assert.equal(fmt.fromABGR(0xff0000ff) >>> 0, specs[3], "from_r");
 };
 
 const testToABGR = (fmt: PackedFormat, specs: number[]) => {
-    assert.equal(fmt.toABGR(specs[0]), 0xff000000, "to_a");
-    assert.equal(fmt.toABGR(specs[1]), 0xffff0000, "to_b");
-    assert.equal(fmt.toABGR(specs[2]), 0xff00ff00, "to_g");
-    assert.equal(fmt.toABGR(specs[3]), 0xff0000ff, "to_r");
+    assert.equal(fmt.toABGR(specs[0]) >>> 0, 0xff000000, "to_a");
+    assert.equal(fmt.toABGR(specs[1]) >>> 0, 0xffff0000, "to_b");
+    assert.equal(fmt.toABGR(specs[2]) >>> 0, 0xff00ff00, "to_g");
+    assert.equal(fmt.toABGR(specs[3]) >>> 0, 0xff0000ff, "to_r");
 };
 
 describe("pixel", () => {
@@ -32,8 +34,21 @@ describe("pixel", () => {
         testFromABGR(GRAY8, [0, 29, 150, 76]);
     });
 
-    it("GRAY_ALPHA88", () => {
-        testFromABGR(GRAY_ALPHA88, [0xff00, 0xff1d, 0xff96, 0xff4c]);
+    it("GRAY_ALPHA8", () => {
+        testFromABGR(GRAY_ALPHA8, [0xff00, 0xff1d, 0xff96, 0xff4c]);
+    });
+
+    it("GRAY16", () => {
+        testFromABGR(GRAY16, [0, 0x1d1d, 0x9696, 0x4c4c]);
+    });
+
+    it("GRAY_ALPHA16", () => {
+        testFromABGR(GRAY_ALPHA16, [
+            0xffff0000,
+            0xffff1d1d,
+            0xffff9696,
+            0xffff4c4c
+        ]);
     });
 
     it("ARGB4444", () => {

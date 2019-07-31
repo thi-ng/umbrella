@@ -47,15 +47,15 @@ export const cubicFromArc = (
     };
 
     const res: Vec[][] = [];
-    const n = Math.max(roundEps(Math.abs(delta) / HALF_PI, 1e-3), 1);
+    const n = Math.ceil(roundEps(Math.abs(delta) / HALF_PI, 1e-3));
     const d = delta / n;
     const t = (8 / 6) * Math.tan(0.25 * d);
     if (!isFinite(t)) {
         return [cubicFromLine(p, q)];
     }
-    for (let i = n, theta = start; i > 0; i--, theta += d) {
-        const [s1, c1] = sincos(theta);
-        const [s2, c2] = sincos(theta + d);
+    for (let i = n, theta = start, sc = sincos(theta); i > 0; i--, theta += d) {
+        const [s1, c1] = sc;
+        const [s2, c2] = (sc = sincos(theta + d));
         res.push([
             mapP(c1, s1),
             mapP(c1 - s1 * t, s1 + c1 * t),

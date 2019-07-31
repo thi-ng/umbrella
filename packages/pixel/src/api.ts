@@ -5,6 +5,9 @@ import {
     TypedArray
 } from "@thi.ng/api";
 
+/**
+ * ABGR 8bit lane/channel IDs
+ */
 export const enum Lane {
     ALPHA = 0,
     RED = 3,
@@ -12,6 +15,9 @@ export const enum Lane {
     BLUE = 1
 }
 
+/**
+ * Wrap behaviors (currently unused)
+ */
 export const enum Wrap {
     NONE,
     U,
@@ -19,6 +25,9 @@ export const enum Wrap {
     UV
 }
 
+/**
+ * Filtered access types (currently unused)
+ */
 export const enum Filter {
     NEAREST,
     LINEAR
@@ -26,6 +35,9 @@ export const enum Filter {
 
 export type UintType = Type.U8 | Type.U16 | Type.U32;
 
+/**
+ * Blend function (for packed integers) given to IBlend implementations.
+ */
 export type BlendFnInt = Fn2<number, number, number>;
 
 export type BlendFnFloat = (
@@ -34,47 +46,112 @@ export type BlendFnFloat = (
     dest: ArrayLike<number>
 ) => ArrayLike<number>;
 
+/**
+ * Color channel getter. Returns 0-based channel value (regardless of
+ * shift/bit position)
+ */
+export type ChannelGetter<T> = Fn<T, number>;
+/**
+ * Color channel setter. Takes current full pixel value and 0-based
+ * channel value to set (regardless of shift/bit position). Returns
+ * updated pixel value.
+ */
+export type ChannelSetter<T> = Fn2<T, number, T>;
+
 export interface IABGRConvert<T> {
+    /**
+     * Converts given ABGR value into internal pixel format.
+     */
     fromABGR: Fn<number, T>;
+    /**
+     * Converts given internal pixel format value to packed ABGR.
+     */
     toABGR: Fn<T, number>;
 }
 
-export type ChannelGetter<T> = Fn<T, number>;
-export type ChannelSetter<T> = Fn2<T, number, T>;
-
 export interface PackedChannelSpec {
-    // bits
+    /**
+     * Channel size in bits (1-8)
+     */
     size: number;
-    lane: Lane;
+    /**
+     * Related ABGR lane this channel is mapped from/to. Only used if
+     * parent format uses auto-generated `IABGRConvert` implementation
+     * (i.e. only if no-user defined converters are given to
+     * `PackedFormatSpec`).
+     */
+    lane?: Lane;
 }
 
 export interface PackedChannel {
+    /**
+     * Channel size in bits (1-8)
+     */
     size: number;
-    // target shift
+    /**
+     * Bit shift offset (in bits, not shifted value)
+     */
     shift: number;
-    // shift from ABGR channel offset
+    /**
+     * Shift from ABGR channel offset
+     */
     abgrShift: number;
-    // 0-based channel bit mask
+    /**
+     * 0-based channel bit mask (WRT parent format)
+     */
     mask0: number;
-    // aligned bit mask
+    /**
+     * Aligned bit mask (WRT parent format)
+     */
     maskA: number;
-    // original channel/lane ID in ABGR
+    /**
+     * Original channel/lane ID in ABGR
+     */
     lane: Lane;
-    // int accessors
+    /**
+     * Int value accessor
+     */
     int: ChannelGetter<number>;
+    /**
+     * Int value accessor
+     */
     setInt: ChannelSetter<number>;
-    // normalized float accessors
+    /**
+     * Normalized float accessor
+     */
     float: ChannelGetter<number>;
+    /**
+     * Normalized float accessor
+     */
     setFloat: ChannelSetter<number>;
 }
 
+/**
+ * Format configuration passed to `defPackedFormat()`.
+ */
 export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
+    /**
+     * Storage / typed array type
+     */
     type: UintType;
+    /**
+     * Number of actual used bits (must be <= `size`)
+     */
     size: number;
-    channels: PackedChannelSpec[];
+    /**
+     * Number of alpha channel bits (default: 0). MUST be given if
+     * format uses alpha channel.
+     */
     alpha?: number;
+    /**
+     * Individual channel configurations
+     */
+    channels: PackedChannelSpec[];
 }
 
+/**
+ * Compiled format object returned by `defPackedFormat()`.
+ */
 export interface PackedFormat extends IABGRConvert<number> {
     type: UintType;
     size: number;
@@ -186,7 +263,7 @@ export interface IColorChannel<T extends TypedArray, C> {
      * @param id
      * @param buf
      */
-    setChannel(id: C, buf: IPixelBuffer<T, number>): this;
+    setChannel(id: C, buf: IPixelBuffer<T, number> | number): this;
 }
 
 export interface BlitOpts {

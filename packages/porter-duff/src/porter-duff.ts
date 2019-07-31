@@ -1,5 +1,5 @@
 import { Fn2, Fn3 } from "@thi.ng/api";
-import { clamp } from "@thi.ng/math";
+import { clamp, clamp01 } from "@thi.ng/math";
 import { Color, ReadonlyColor } from "./api";
 import {
     postmultiply,
@@ -27,8 +27,11 @@ export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
  * - `src` color (background)
  * - `dest` color (foreground)
  *
- * Reference:
- * https://keithp.com/~keithp/porterduff/p253-porter.pdf
+ * Unlike the packed int version, here only the alpha channel of the
+ * result color will be clamped. RGB components can potentially go out
+ * of [0..1] range (depending on coefficient functions used).
+ *
+ * Reference: https://keithp.com/~keithp/porterduff/p253-porter.pdf
  *
  * @param fa fn for src coeff
  * @param fb fn for dest coeff
@@ -46,7 +49,7 @@ export const porterDuff = (
         src[0] * aa + dest[0] * bb,
         src[1] * aa + dest[1] * bb,
         src[2] * aa + dest[2] * bb,
-        min(1, src[3] * aa + dest[3] * bb)
+        clamp01(src[3] * aa + dest[3] * bb)
     );
 };
 
@@ -65,7 +68,7 @@ export const porterDuffInt = (
             16) |
         (clamp(((a >>> 8) & 0xff) * aa + ((b >>> 8) & 0xff) * bb, 0, 255) <<
             8) |
-        clamp((a & 0xff) * aa + (b & 0xff), 0, 255)
+        clamp((a & 0xff) * aa + (b & 0xff) * bb, 0, 255)
     );
 };
 
@@ -201,7 +204,7 @@ export const PLUS_F = porterDuff(ONE, ONE);
 
 ////////// Packed ARGB / ABGR versions //////////
 
-export const CLEAR_I: Fn2<number, number, number> = () => 0;
+export const CLEAR_I = <Fn2<number, number, number>>ZERO;
 
 /**
  * Porter-Duff operator for packed ints. Always results in `src` color, `dest` ignored.

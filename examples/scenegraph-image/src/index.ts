@@ -2,7 +2,6 @@ import { Fn0, IToHiccup } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { sin } from "@thi.ng/dsp";
 import { group, polyline } from "@thi.ng/geom";
-import { IShape } from "@thi.ng/geom-api";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import {
@@ -174,31 +173,8 @@ class Node implements IToHiccup {
 }
 
 /**
- * Specialized scene graph node using @thi.ng/geom shapes as body.
+ * Specialized scene graph node for images.
  */
-class GeomNode extends Node {
-    constructor(
-        id: string,
-        parent: Node,
-        t: Vec,
-        r: number,
-        s: Vec | number,
-        body: IShape
-    ) {
-        super(id, parent, t, r, s, body);
-    }
-
-    /**
-     * Override method to check for actual point containment with body
-     * shape.
-     *
-     * @param p
-     */
-    containsLocalPoint(_: ReadonlyVec) {
-        return true; //pointInside(this.body, p);
-    }
-}
-
 class ImgNode extends Node {
     img: HTMLImageElement;
 
@@ -244,7 +220,7 @@ imagePromise(LOGO).then((img) => {
 
     const main = new Node("main", root, [300, 300], 0, 1);
     const imgRoot = new Node("imgroot", main, [0, 0], 0, 2);
-    const geom = new GeomNode("waves", main, [0, 0], 0, 1, <any>null);
+    const geom = new Node("waves", main, [0, 0], 0, 1, <any>null);
 
     const imgMap = PackedBuffer.fromImage(img, GRAY8, 256, 256);
     const imgNode = new ImgNode(
@@ -303,6 +279,7 @@ imagePromise(LOGO).then((img) => {
                 " and ",
                 ["b", "@thi.ng/hdom-canvas"]
             ],
+            ["p", "Click to toggle image overlay"],
             [
                 // hdom-canvas component
                 // translates all shapes/attribs into canvas2d draw calls

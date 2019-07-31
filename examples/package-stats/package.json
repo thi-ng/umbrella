@@ -11,7 +11,7 @@
     "devDependencies": {
         "parcel-bundler": "^1.12.3",
         "terser": "^4.0.0",
-        "typescript": "^3.5.2",
+        "typescript": "^3.5.3",
         "ts-node": "^8.2.0"
     },
     "dependencies": {

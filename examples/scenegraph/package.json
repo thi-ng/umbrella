@@ -13,12 +13,18 @@
     "devDependencies": {
         "parcel-bundler": "^1.12.3",
         "terser": "^3.17.0",
-        "typescript": "^3.4.1"
+        "typescript": "^3.5.3"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/checks": "latest",
+        "@thi.ng/geom": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/matrices": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/vectors": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
