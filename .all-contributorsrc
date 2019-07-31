@@ -1,0 +1,6 @@
+{
+  "files": ["README.md"],
+  "imageSize": 100,
+  "contributorsPerLine": 7,
+  "skipCi": "true"
+}
