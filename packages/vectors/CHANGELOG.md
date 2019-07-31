@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.3...@thi.ng/vectors@3.1.0) (2019-07-31)
+
+
+### Features
+
+* **vectors:** add new bvec ops & types, update readme ([931ee43](https://github.com/thi-ng/umbrella/commit/931ee43))
+
+
+
+
+
 ## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.2...@thi.ng/vectors@3.0.3) (2019-07-31)
 
 **Note:** Version bump only for package @thi.ng/vectors
