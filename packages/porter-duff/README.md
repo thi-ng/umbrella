@@ -66,7 +66,7 @@ yarn add @thi.ng/porter-duff
 Full overview of all operators (shown above):
 
 [Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
 Basic usage...
 

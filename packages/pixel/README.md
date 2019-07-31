@@ -104,7 +104,7 @@ yarn add @thi.ng/pixel
 Porter-Duff operators:
 
 [Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
 ![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
 
@@ -113,7 +113,7 @@ Code for the screenshot at the top of this readme...
 Also see full example here:
 
 [Live demo](http://demo.thi.ng/umbrella/pixel-basics/) |
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)
+[Source](https://github.com/thi-ng/umbrella/tree/master/examples/pixel-basics)
 
 ```ts
 import * as pix from "@thi.ng/pixel";

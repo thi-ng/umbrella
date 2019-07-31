@@ -291,7 +291,7 @@ TODO. For now, please see doc strings in source for details...
 
 Use the `porterDuff` higher order function to define new blend modes.
 See
-[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
 for reference.
 
 12 standard PD operators for `vec4` RGBA colors:
