@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.3.0...@thi.ng/geom-splines@0.3.1) (2019-07-31)
+
+
+### Bug Fixes
+
+* **geom-splines:** fix seg count in cubicFromArc(), minor optimizations ([e289ade](https://github.com/thi-ng/umbrella/commit/e289ade))
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.2.1...@thi.ng/geom-splines@0.3.0) (2019-07-12)
 
 

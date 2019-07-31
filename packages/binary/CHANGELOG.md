@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.0.8...@thi.ng/binary@1.1.0) (2019-07-31)
+
+
+### Features
+
+* **binary:** add setLane8/4/2 fns ([7e24f5e](https://github.com/thi-ng/umbrella/commit/7e24f5e))
+
+
+
+
+
 ## [1.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.0.7...@thi.ng/binary@1.0.8) (2019-07-12)
 
 **Note:** Version bump only for package @thi.ng/binary

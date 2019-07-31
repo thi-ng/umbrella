@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@0.2.2...@thi.ng/color@1.0.0) (2019-07-31)
+
+
+### Bug Fixes
+
+* **color:** update factory fn args for mem-mapped colors ([eae671e](https://github.com/thi-ng/umbrella/commit/eae671e))
+
+
+### Code Refactoring
+
+* **color:** remove PD related functions, update readme ([5d868db](https://github.com/thi-ng/umbrella/commit/5d868db))
+
+
+### Features
+
+* **color:** ([#106](https://github.com/thi-ng/umbrella/issues/106)) add PD int ops, clamp existing `porterDuff()` ([4c975b2](https://github.com/thi-ng/umbrella/commit/4c975b2))
+
+
+### BREAKING CHANGES
+
+* **color:** Porter-Duff ops & pre/post-multiply moved to
+new package @thi.ng/porter-duff
+
+
+
+
+
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@0.2.1...@thi.ng/color@0.2.2) (2019-07-12)
 
 **Note:** Version bump only for package @thi.ng/color

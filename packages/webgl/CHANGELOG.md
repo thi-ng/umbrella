@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.2...@thi.ng/webgl@0.1.3) (2019-07-31)
+
+
+### Bug Fixes
+
+* **webgl:** update check for WEBGL_draw_buffers ([7df09d1](https://github.com/thi-ng/umbrella/commit/7df09d1))
+
+
+
+
+
 ## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.1...@thi.ng/webgl@0.1.2) (2019-07-12)
 
 **Note:** Version bump only for package @thi.ng/webgl
