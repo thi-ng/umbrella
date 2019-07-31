@@ -23,10 +23,10 @@ This project is part of the
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/pixel-basics.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/screenshots/pixel-basics.png)
 
-Typed array backed, packed integer and non-packed float pixel buffers
-with customizable layout formats and the following operations:
+Typed array backed, packed integer pixel buffers with customizable
+layout formats and the following operations:
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
@@ -54,16 +54,16 @@ with customizable layout formats and the following operations:
 
 ### Preset pixel formats
 
-All formats use the canvas native ABGR 32bit format as common
-intermediate for conversions. During conversion to ABGR, channels with
-sizes smaller than 8 bits will be scaled appropriately to ensure an as
-full-range and as linear as possible mapping. E.g. a 4 bit channel will
-be scaled by 255 / 15 = 17.
+All packed integer formats use the canvas native ABGR 32bit format as
+common intermediate for conversions. During conversion to ABGR, channels
+with sizes smaller than 8 bits will be scaled appropriately to ensure an
+as full-range and as linear as possible mapping. E.g. a 4 bit channel
+will be scaled by 255 / 15 = 17.
 
 Format specs can freely control channel layout within current limits:
 
-- Channel sizes: 1-8 bits.
-- Storage: 8-32 bits per pixel
+- Channel sizes: 1 - 32 bits.
+- Storage: 8, 16 or 32 bits per pixel
 
 | Format ID      | Bits per pixel    | Description                                          |
 |----------------|-------------------|------------------------------------------------------|
@@ -97,6 +97,7 @@ yarn add @thi.ng/pixel
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
 
 ## Usage examples
 
@@ -107,7 +108,7 @@ Porter-Duff operators:
 
 ![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff2.png)
 
-Code for the above example / screenshot...
+Code for the screenshot at the top of this readme...
 
 Also see full example here:
 
@@ -178,7 +179,7 @@ Promise
 
 ## API
 
-TODO see example & source comments for now
+TODO see examples & source comments for now
 
 ## Authors
 
