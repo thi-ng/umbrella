@@ -155,13 +155,20 @@ export interface MultiVecOpRoVVO<T, O>
     extends VecOpRoVVO<T, O>,
         MultiVecOp<VecOpRoVVO<T, O>> {}
 
+export type BVecOpRoV<T> = Fn<ReadonlyBVec, T>;
 export type BVecOpV = Fn2<BVec | null, ReadonlyBVec, BVec>;
 export type BVecOpVV = Fn3<BVec | null, ReadonlyBVec, ReadonlyBVec, BVec>;
+export type BVecOpVN = Fn3<BVec | null, ReadonlyBVec, boolean, BVec>;
 
 export type CompareOp = Fn3<BVec | null, ReadonlyVec, ReadonlyVec, BVec>;
 
 export interface MultiBVecOpV extends BVecOpV, MultiVecOp<BVecOpV> {}
 export interface MultiBVecOpVV extends BVecOpVV, MultiVecOp<BVecOpVV> {}
+export interface MultiBVecOpVN extends BVecOpVN, MultiVecOp<BVecOpVN> {}
+export interface MultiBVecOpRoV<T>
+    extends BVecOpRoV<T>,
+        MultiVecOp<BVecOpRoV<T>> {}
+
 export interface MultiCompareOp extends CompareOp, MultiVecOp<CompareOp> {}
 
 const mi = -Infinity;

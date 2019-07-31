@@ -212,9 +212,9 @@ fixed size versions use optimized, loop-free implementations.
 |                 |                                        | => `[9,-18]`                                      |
 | U               | arbitrary len, unsigned int vec        | `addU([], [1,2], [10,20])`                        |
 |                 |                                        | => `[11,22]`                                      |
-| I2 / I3 / I4    | fixed size signed int vec              | `bitnotI3([], [10,-20,30], [7,7,7])`              |
+| I2 / I3 / I4    | fixed size signed int vec              | `bitNotI3([], [10,-20,30])`                       |
 |                 |                                        | => `[-11,19,-31]`                                 |
-| U2 / U3 / U4    | fixed size signed int vec              | `bitnotU3([], [10,20,30], [7,7,7])`               |
+| U2 / U3 / U4    | fixed size signed int vec              | `bitNotU3([], [10,20,30])`                        |
 |                 |                                        | => `[4294967285,4294967275,4294967265]`           |
 | NI / NU         | arbitrary len, signed int vec & scalar | `addNI([], [1,-2,3], 10)`                         |
 |                 |                                        | => `[11,8,13]`                                    |
@@ -509,12 +509,20 @@ forced accordingly.
 -   `lshiftU` / `lshiftU4` /`lshiftU4` / `lshiftU4`
 -   `rshiftI` / `rshiftI2` /`rshiftI3` / `rshiftI4`
 -   `rshiftU` / `rshiftU2` /`rshiftU3` / `rshiftU4`
+-   `lshiftNI` / `lshiftNI4` /`lshiftNI4` / `lshiftNI4`
+-   `lshiftNU` / `lshiftNU4` /`lshiftNU4` / `lshiftNU4`
+-   `rshiftNI` / `rshiftNI2` /`rshiftNI3` / `rshiftNI4`
+-   `rshiftNU` / `rshiftNU2` /`rshiftNU3` / `rshiftNU4`
 
 ### Boolean vector logic
 
 - `logicAnd` / `logicAnd2` / `logicAnd3` / `logicAnd4`
+- `logicAndN` / `logicAndN2` / `logicAndN3` / `logicAndN4` (3rd arg is boolean)
 - `logicOr` / `logicOr2` / `logicOr3` / `logicOr4`
+- `logicOrN` / `logicOrN2` / `logicOrN3` / `logicOrN4`  (3rd arg is boolean)
 - `logicNot` / `logicNot2` / `logicNot3` / `logicNot4`
+- `every` / `every2` / `every3` / `every4`
+- `some` / `some2` / `some3` / `some4`
 
 ### Componentwise comparisons
 
