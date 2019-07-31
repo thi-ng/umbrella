@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "postspectacular",
+      "name": "Karsten Schmidt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/52302?v=4",
+      "profile": "http://thi.ng",
+      "contributions": [
+        "code",
+        "doc",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "umbrella",
+  "projectOwner": "thi-ng",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
