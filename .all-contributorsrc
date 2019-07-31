@@ -25,6 +25,18 @@
         "code",
         "example",
         "bug"
+      ],
+    },
+    {
+      "login": "acarabott",
+      "name": "Arthur Carabott",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/66132?v=4",
+      "profile": "http://www.arthurcarabott.com/",
+      "contributions": [
+        "code",
+        "ideas",
+        "example",
+        "blog"
       ]
     }
   ],
