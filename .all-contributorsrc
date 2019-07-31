@@ -38,7 +38,18 @@
         "example",
         "blog"
       ]
-    }
+    },
+    {
+      "login": "andrew8er",
+      "name": "André Wachter",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/179225?v=4",
+      "profile": "http://andrewachter.de",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug"
+      ],
+    },
   ],
   "contributorsPerLine": 7,
   "projectName": "umbrella",
