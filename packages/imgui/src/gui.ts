@@ -1,4 +1,4 @@
-import { assert, IToHiccup } from "@thi.ng/api";
+import { IToHiccup } from "@thi.ng/api";
 import { setC2, Vec } from "@thi.ng/vectors";
 import { GUITheme, IMGUIOpts, KeyModifier } from "./api";
 
@@ -81,14 +81,13 @@ export class IMGUI implements IToHiccup {
     requestFocus(id: string) {
         if (this.focusID === "" || this.activeID === id) {
             this.focusID = id;
+            return true;
         }
+        return this.focusID === id;
     }
 
     switchFocus() {
-        this.focusID = "";
-        if (this.modifiers & KeyModifier.SHIFT) {
-            this.focusID = this.lastID;
-        }
+        this.focusID = this.isShiftDown() ? this.lastID : "";
         this.key = "";
     }
 
@@ -147,15 +146,11 @@ export class IMGUI implements IToHiccup {
     }
 
     add(...els: any[]) {
-        els.length && this.layers[0].push(...els);
-        // TODO remove
-        assert(this.layers[0].length < 100, "too many elements");
+        this.layers[0].push(...els);
     }
 
     addOverlay(...els: any[]) {
-        els.length && this.layers[1].push(...els);
-        // TODO remove
-        assert(this.layers[1].length < 100, "too many elements");
+        this.layers[1].push(...els);
     }
 
     toHiccup() {

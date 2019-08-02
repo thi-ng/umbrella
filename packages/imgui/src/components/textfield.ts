@@ -26,9 +26,9 @@ export const textField = (
         }
         info && tooltip(gui, info);
     }
-    gui.requestFocus(id);
+    const focused = gui.requestFocus(id);
     r.attribs = {
-        fill: gui.bgColor(hover),
+        fill: gui.bgColor(focused || hover),
         stroke: gui.focusColor(id)
     };
     const cw = theme.charWidth;

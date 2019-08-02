@@ -1,3 +1,4 @@
+import { Fn } from "@thi.ng/api";
 import { pointInside, rect } from "@thi.ng/geom";
 import {
     clamp,
@@ -25,7 +26,8 @@ export const slider = (
     prec: number,
     val: number[],
     i: number,
-    label = "",
+    label?: string,
+    fmt?: Fn<number, string>,
     info?: string
 ) => {
     const theme = gui.theme;
@@ -66,7 +68,7 @@ export const slider = (
         textLabel(
             [x + theme.pad, y + h / 2 + theme.baseLine],
             gui.textColor(normVal > 0.25),
-            label + ": " + v.toFixed(2)
+            (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
     if (gui.focusID == id) {
@@ -104,12 +106,13 @@ export const sliderGroup = (
     prec: number,
     vals: number[],
     label: string[],
+    fmt?: Fn<number, string>,
     info: string[] = []
 ) => {
     let res = false;
     // prettier-ignore
     for (let n = vals.length, i = 0; i < n; i++) {
-        res = slider(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], info[i]) || res;
+        res = slider(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
         x += offX;
         y += offY;
     }
