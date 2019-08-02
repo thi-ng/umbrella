@@ -12,8 +12,8 @@ export const textField = (
     y: number,
     w: number,
     h: number,
-    label: string[],
-    pred: Predicate<string> = () => true,
+    label: [string, number?, number?],
+    filter: Predicate<string> = () => true,
     info?: string
 ) => {
     const theme = gui.theme;
@@ -33,10 +33,11 @@ export const textField = (
     };
     const cw = theme.charWidth;
     const pad = theme.pad;
+    const maxLen = ((w - pad * 2) / cw) | 0;
     const txt = label[0];
-    const maxLength = ((w - pad * 2) / cw) | 0;
-    let drawTxt =
-        txt.length > maxLength ? txt.substr(txt.length - maxLength) : txt;
+    const maxOffset = txt.length - maxLen;
+    let offset = label[2] !== undefined ? label[2] : maxOffset;
+    const drawTxt = txt.substr(offset, maxLen);
     gui.add(
         r,
         textLabel(
@@ -46,7 +47,9 @@ export const textField = (
         )
     );
     if (gui.focusID == id) {
-        const xx = x + 10 + drawTxt.length * cw;
+        const cursor = label[1] !== undefined ? label[1] : txt.length;
+        const drawCursor = Math.min(cursor - offset, maxLen);
+        const xx = x + pad + drawCursor * cw;
         gui.time % 0.5 < 0.25 &&
             gui.add([
                 "line",
@@ -64,14 +67,60 @@ export const textField = (
             case Key.ENTER:
                 return true;
             case Key.BACKSPACE:
-                if (txt.length > 0) {
-                    label[0] = txt.substr(0, txt.length - 1);
+                if (cursor > 0) {
+                    label[0] = txt.substr(0, cursor - 1) + txt.substr(cursor);
+                    label[1] = cursor - 1;
+                    if (drawCursor === 0 && offset > 0) {
+                        label[2] = offset - 1;
+                    }
                     return true;
                 }
                 break;
+            case Key.DELETE:
+                if (cursor < txt.length) {
+                    label[0] = txt.substr(0, cursor) + txt.substr(cursor + 1);
+                    return true;
+                }
+                break;
+            case Key.LEFT:
+                if (cursor > 0) {
+                    let delta: number, next: number;
+                    if (gui.isAltDown()) {
+                        next = prevNonAlpha(txt, cursor);
+                        delta = next - cursor;
+                    } else {
+                        next = cursor - 1;
+                        delta = -1;
+                    }
+                    label[1] = next;
+                    if (drawCursor + delta < 0) {
+                        label[2] = Math.max(offset + delta, 0);
+                    }
+                }
+                break;
+            case Key.RIGHT:
+                if (cursor < txt.length) {
+                    let delta: number, next: number;
+                    if (gui.isAltDown()) {
+                        next = nextNonAlpha(txt, cursor);
+                        delta = next - cursor;
+                    } else {
+                        next = cursor + 1;
+                        delta = 1;
+                    }
+                    label[1] = next;
+                    if (drawCursor + delta > maxLen) {
+                        label[2] = Math.min(offset + delta, maxOffset);
+                    }
+                }
+                break;
             default: {
-                if (!CONTROL_KEYS.has(k) && pred(k)) {
-                    label[0] += k;
+                if (!CONTROL_KEYS.has(k) && filter(k)) {
+                    label[0] = txt.substr(0, cursor) + k + txt.substr(cursor);
+                    label[1] = cursor + 1;
+                    if (drawCursor === maxLen && offset <= maxOffset) {
+                        label[2] = offset + 1;
+                    }
                     return true;
                 }
             }
@@ -79,4 +128,19 @@ export const textField = (
     }
     gui.lastID = id;
     return false;
+};
+
+const WS = /\s/;
+
+const nextNonAlpha = (src: string, i: number) => {
+    const n = src.length;
+    while (i < n && WS.test(src[i])) i++;
+    for (; i < n && !WS.test(src[i]); i++) {}
+    return i;
+};
+
+const prevNonAlpha = (src: string, i: number) => {
+    while (i > 0 && WS.test(src[i])) i--;
+    for (; i > 0 && !WS.test(src[i]); i--) {}
+    return i;
 };
