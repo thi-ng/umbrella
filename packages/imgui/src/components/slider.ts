@@ -7,7 +7,7 @@ import {
 } from "@thi.ng/math";
 import { Key, KeyModifier, MouseButton } from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./text-label";
+import { textLabel } from "./textlabel";
 import { tooltip } from "./tooltip";
 
 const $ = (x: number, prec: number, min: number, max: number) =>
@@ -28,10 +28,11 @@ export const slider = (
     label = "",
     info?: string
 ) => {
+    const theme = gui.theme;
     const r = rect([x, y], [w, h]);
-    const inside = pointInside(r, gui.mouse);
+    const hover = pointInside(r, gui.mouse);
     let active = false;
-    if (inside) {
+    if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
         if ((aid === "" || aid == id) && gui.buttons == MouseButton.LEFT) {
@@ -53,17 +54,17 @@ export const slider = (
     const v = val[i];
     const normVal = norm(v, min, max);
     const r2 = rect([x, y], [1 + normVal * (w - 1), h], {
-        fill: gui.fgColor(inside)
+        fill: gui.fgColor(hover)
     });
     r.attribs = {
-        fill: gui.bgColor(inside),
+        fill: gui.bgColor(hover),
         stroke: gui.focusColor(id)
     };
     gui.add(
         r,
         r2,
         textLabel(
-            [x + 8, y + h - 6],
+            [x + theme.pad, y + h / 2 + theme.baseLine],
             gui.textColor(normVal > 0.25),
             label + ": " + v.toFixed(2)
         )
@@ -77,9 +78,9 @@ export const slider = (
             case Key.DOWN: {
                 const step =
                     (gui.key === Key.UP ? prec : -prec) *
-                    (gui.modifiers & KeyModifier.SHIFT ? 5 : 1);
+                    (gui.isShiftDown() ? 5 : 1);
                 val[i] = $(v + step, prec, min, max);
-                gui.modifiers & KeyModifier.ALT && val.fill(val[i]);
+                gui.isAltDown() && val.fill(val[i]);
                 return true;
             }
             default:

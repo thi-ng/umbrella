@@ -92,6 +92,22 @@ export class IMGUI implements IToHiccup {
         this.key = "";
     }
 
+    isShiftDown() {
+        return (this.modifiers & KeyModifier.SHIFT) > 0;
+    }
+
+    isControlDown() {
+        return (this.modifiers & KeyModifier.CONTROL) > 0;
+    }
+
+    isMetaDown() {
+        return (this.modifiers & KeyModifier.META) > 0;
+    }
+
+    isAltDown() {
+        return (this.modifiers & KeyModifier.ALT) > 0;
+    }
+
     begin() {
         this.hotID = "";
         this.layers[0].length = 0;

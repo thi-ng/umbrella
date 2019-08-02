@@ -1,7 +1,7 @@
 import { pointInside, rect } from "@thi.ng/geom";
 import { Key, MouseButton } from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./text-label";
+import { textLabel } from "./textlabel";
 import { tooltip } from "./tooltip";
 
 export const button = (
@@ -14,9 +14,10 @@ export const button = (
     label: string,
     info?: string
 ) => {
+    const theme = gui.theme;
     const r = rect([x, y], [w, h]);
-    const inside = pointInside(r, gui.mouse);
-    if (inside) {
+    const hover = pointInside(r, gui.mouse);
+    if (hover) {
         gui.hotID = id;
         if (gui.activeID === "" && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
@@ -25,10 +26,17 @@ export const button = (
     }
     gui.requestFocus(id);
     r.attribs = {
-        fill: inside ? gui.fgColor(true) : gui.bgColor(false),
+        fill: hover ? gui.fgColor(true) : gui.bgColor(false),
         stroke: gui.focusColor(id)
     };
-    gui.add(r, textLabel([x + 8, y + h - 6], gui.textColor(inside), label));
+    gui.add(
+        r,
+        textLabel(
+            [x + theme.pad, y + h / 2 + theme.baseLine],
+            gui.textColor(hover),
+            label
+        )
+    );
     if (gui.focusID == id) {
         switch (gui.key) {
             case Key.TAB:
@@ -41,5 +49,6 @@ export const button = (
         }
     }
     gui.lastID = id;
+    // only emit true on mouse release over this button
     return !gui.buttons && gui.hotID == id && gui.activeID == id;
 };
