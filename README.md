@@ -73,6 +73,14 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 ## Projects
 
+### New / unreleased packages in development
+
+(These packages are only available on their respective feature branches)
+
+- [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/feature/imgui/packages/imgui) - stateless immediate mode GUI components
+- @thi.ng/scenegraph (not yet pushed) - 2D/3D scenegraph
+- [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/feature/shadertoy/packages/webgl-shadertoy) - WebGL shadertoy-like setup
+
 ### Fundamentals
 
 | Project                                   | Version                                                                                                         | Changelog                                     | Description                                  |
