@@ -5,7 +5,7 @@ import {
     norm,
     roundTo
 } from "@thi.ng/math";
-import { KeyModifier, MouseButton } from "../api";
+import { Key, KeyModifier, MouseButton } from "../api";
 import { IMGUI } from "../gui";
 import { textLabel } from "./text-label";
 import { tooltip } from "./tooltip";
@@ -70,15 +70,18 @@ export const slider = (
     );
     if (gui.focusID == id) {
         switch (gui.key) {
-            case "Tab":
+            case Key.TAB:
                 gui.switchFocus();
                 break;
-            case "ArrowUp":
-                val[i] = $(v + prec, prec, min, max);
+            case Key.UP:
+            case Key.DOWN: {
+                const step =
+                    (gui.key === Key.UP ? prec : -prec) *
+                    (gui.modifiers & KeyModifier.SHIFT ? 5 : 1);
+                val[i] = $(v + step, prec, min, max);
+                gui.modifiers & KeyModifier.ALT && val.fill(val[i]);
                 return true;
-            case "ArrowDown":
-                val[i] = $(v - prec, prec, min, max);
-                return true;
+            }
             default:
         }
     }

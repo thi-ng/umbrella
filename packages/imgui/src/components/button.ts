@@ -1,5 +1,5 @@
 import { pointInside, rect } from "@thi.ng/geom";
-import { MouseButton } from "../api";
+import { Key, MouseButton } from "../api";
 import { IMGUI } from "../gui";
 import { textLabel } from "./text-label";
 import { tooltip } from "./tooltip";
@@ -31,10 +31,11 @@ export const button = (
     gui.add(r, textLabel([x + 8, y + h - 6], gui.textColor(inside), label));
     if (gui.focusID == id) {
         switch (gui.key) {
-            case "Tab":
+            case Key.TAB:
                 gui.switchFocus();
                 break;
-            case "Enter":
+            case Key.ENTER:
+            case Key.SPACE:
                 return true;
             default:
         }

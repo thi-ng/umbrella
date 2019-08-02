@@ -31,6 +31,17 @@ export const enum KeyModifier {
     ALT = 8
 }
 
+export const enum Key {
+    TAB = "Tab",
+    ESC = "Escape",
+    ENTER = "Enter",
+    SPACE = " ",
+    UP = "ArrowUp",
+    DOWN = "ArrowDown",
+    LEFT = "ArrowLeft",
+    RIGHT = "ArrowRight"
+}
+
 export const DEFAULT_THEME: GUITheme = {
     globalBg: "#333",
     font: "10px Menlo",
