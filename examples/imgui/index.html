@@ -9,19 +9,48 @@
             href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
             rel="stylesheet"
         />
-        <style></style>
+        <link
+            href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            li {
+                line-height: 2;
+            }
+            kbd {
+                border: 1px white solid;
+                border-radius: 0.125rem;
+                padding: 0.125rem;
+                font-size: 80%;
+                font-family: "IBM Plex Mono", monospace;
+            }
+        </style>
     </head>
-    <body class="sans-serif bg-black white ma3">
+    <body class="sans-serif bg-black white ma3 f7">
         <div id="app"></div>
         <div>
             <h3>Key controls</h3>
+            The entire UI is fully keyboard controllable:
             <ul>
-                <li>Tab / Shift + Tab &mdash; switch focus</li>
-                <li>Enter &mdash; Activate focused element</li>
-                <li>Up / Down &mdash; adjust slider value</li>
+                <li><kbd>Tab/Shift+Tab</kbd> &mdash; Switch focus</li>
+                <li><kbd>Enter</kbd> &mdash; Activate focused button</li>
                 <li>
-                    Alt + click / drag &mdash; adjust RGB sliders together
-                    (grayscale)
+                    <kbd>Up/Down</kbd> or drag mouse &mdash; Adjust slider value
+                </li>
+                <li>
+                    <kbd>Shift+Up/Down</kbd> &mdash; Adjust slider value (x5)
+                </li>
+                <li>
+                    <kbd>Alt+Up/Down</kbd> / Drag &mdash; Adjust RGB sliders
+                    uniformly (grayscale)
+                </li>
+                <li>
+                    <kbd>Left/Right</kbd> &mdash; Move cursor in text field (if
+                    focused)
+                </li>
+                <li>
+                    <kbd>Alt+Left/Right</kbd> &mdash; Move cursor to prev/next
+                    word
                 </li>
             </ul>
         </div>
