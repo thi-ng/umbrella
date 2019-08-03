@@ -2,6 +2,8 @@ import { IToHiccup } from "@thi.ng/api";
 import { setC2, Vec } from "@thi.ng/vectors";
 import { GUITheme, IMGUIOpts, KeyModifier } from "./api";
 
+const NONE = "__NONE__";
+
 export class IMGUI implements IToHiccup {
     width: number;
     height: number;
@@ -119,8 +121,9 @@ export class IMGUI implements IToHiccup {
             this.activeID = "";
         } else {
             if (this.activeID === "") {
-                this.activeID = "__NONE__";
-                this.focusID = this.lastID = "";
+                this.activeID = NONE;
+                this.focusID = NONE;
+                this.lastID = "";
             }
         }
         if (this.key === "Tab") {
