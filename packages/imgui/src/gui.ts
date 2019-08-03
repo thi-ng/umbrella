@@ -1,6 +1,11 @@
 import { IToHiccup } from "@thi.ng/api";
 import { setC2, Vec } from "@thi.ng/vectors";
-import { GUITheme, IMGUIOpts, KeyModifier } from "./api";
+import {
+    GUITheme,
+    IMGUIOpts,
+    KeyModifier,
+    MouseButton
+} from "./api";
 
 const NONE = "__NONE__";
 
@@ -36,6 +41,13 @@ export class IMGUI implements IToHiccup {
         this.modifiers = 0;
         this.hotID = this.activeID = this.focusID = this.lastID = "";
         this.layers = [[], []];
+        const touchActive = (e: TouchEvent) => {
+            setMouse(e, this.mouse);
+            this.buttons |= MouseButton.LEFT;
+        };
+        const touchEnd = () => {
+            this.buttons &= ~MouseButton.LEFT;
+        };
         this.attribs = {
             onmousemove: (e: MouseEvent) => {
                 const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
@@ -46,7 +58,11 @@ export class IMGUI implements IToHiccup {
             },
             onmouseup: (e: MouseEvent) => {
                 this.buttons = e.buttons;
-            }
+            },
+            ontouchstart: touchActive,
+            ontouchmove: touchActive,
+            ontouchend: touchEnd,
+            ontouchcancel: touchEnd
         };
         this.updateAttribs();
         const setKMods = (e: KeyboardEvent) =>
@@ -165,3 +181,9 @@ export class IMGUI implements IToHiccup {
         ];
     }
 }
+
+const setMouse = (e: MouseEvent | TouchEvent, mouse: Vec) => {
+    const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
+    const t = e instanceof TouchEvent ? e.touches[0] : e;
+    setC2(mouse, t.clientX - b.left, t.clientY - b.top);
+};

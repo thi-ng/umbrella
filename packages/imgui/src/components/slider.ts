@@ -31,8 +31,8 @@ export const slider = (
     info?: string
 ) => {
     const theme = gui.theme;
-    const r = rect([x, y], [w, h]);
-    const hover = pointInside(r, gui.mouse);
+    const box = rect([x, y], [w, h]);
+    const hover = pointInside(box, gui.mouse);
     let active = false;
     if (hover) {
         gui.hotID = id;
@@ -55,16 +55,16 @@ export const slider = (
     gui.requestFocus(id);
     const v = val[i];
     const normVal = norm(v, min, max);
-    const r2 = rect([x, y], [1 + normVal * (w - 1), h], {
+    const valueBox = rect([x, y], [1 + normVal * (w - 1), h], {
         fill: gui.fgColor(hover)
     });
-    r.attribs = {
+    box.attribs = {
         fill: gui.bgColor(hover),
         stroke: gui.focusColor(id)
     };
     gui.add(
-        r,
-        r2,
+        box,
+        valueBox,
         textLabel(
             [x + theme.pad, y + h / 2 + theme.baseLine],
             gui.textColor(normVal > 0.25),

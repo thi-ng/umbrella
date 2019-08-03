@@ -15,8 +15,8 @@ export const button = (
     info?: string
 ) => {
     const theme = gui.theme;
-    const r = rect([x, y], [w, h]);
-    const hover = pointInside(r, gui.mouse);
+    const box = rect([x, y], [w, h]);
+    const hover = pointInside(box, gui.mouse);
     if (hover) {
         gui.hotID = id;
         if (gui.activeID === "" && gui.buttons & MouseButton.LEFT) {
@@ -25,12 +25,12 @@ export const button = (
         info && tooltip(gui, info);
     }
     gui.requestFocus(id);
-    r.attribs = {
+    box.attribs = {
         fill: hover ? gui.fgColor(true) : gui.bgColor(false),
         stroke: gui.focusColor(id)
     };
     gui.add(
-        r,
+        box,
         textLabel(
             [x + theme.pad, y + h / 2 + theme.baseLine],
             gui.textColor(hover),

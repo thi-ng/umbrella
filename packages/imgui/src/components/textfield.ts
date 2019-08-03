@@ -24,10 +24,10 @@ export const textField = (
     const txt = label[0];
     const txtLen = txt.length;
     const maxOffset = Math.max(0, txtLen - maxLen);
-    const offset = label[2] !== undefined ? label[2] : maxOffset;
+    const offset = label[2] || 0;
     const drawTxt = txt.substr(offset, maxLen);
-    const r = rect([x, y], [w, h]);
-    const hover = pointInside(r, gui.mouse);
+    const box = rect([x, y], [w, h]);
+    const hover = pointInside(box, gui.mouse);
     if (hover) {
         gui.hotID = id;
         if (gui.buttons & MouseButton.LEFT) {
@@ -51,12 +51,12 @@ export const textField = (
         info && tooltip(gui, info);
     }
     const focused = gui.requestFocus(id);
-    r.attribs = {
+    box.attribs = {
         fill: gui.bgColor(focused || hover),
         stroke: gui.focusColor(id)
     };
     gui.add(
-        r,
+        box,
         textLabel(
             [x + pad, y + h / 2 + theme.baseLine],
             gui.textColor(false),
@@ -64,7 +64,7 @@ export const textField = (
         )
     );
     if (gui.focusID == id) {
-        const cursor = label[1] !== undefined ? label[1] : txtLen;
+        const cursor = label[1] || 0;
         const drawCursor = Math.min(cursor - offset, maxLen);
         const xx = x + pad + drawCursor * cw;
         gui.time % 0.5 < 0.25 &&
@@ -96,7 +96,7 @@ export const textField = (
                         ? prevNonAlpha(txt, cursor - 1)
                         : cursor - 1;
                     label[0] = txt.substr(0, next) + txt.substr(cursor);
-                    movePrevWord(
+                    moveBackward(
                         label,
                         next,
                         next - cursor,
@@ -108,7 +108,10 @@ export const textField = (
                 break;
             case Key.DELETE:
                 if (cursor < txtLen) {
-                    label[0] = txt.substr(0, cursor) + txt.substr(cursor + 1);
+                    const next = gui.isAltDown()
+                        ? nextNonAlpha(txt, cursor + 1)
+                        : cursor + 1;
+                    label[0] = txt.substr(0, cursor) + txt.substr(next + 1);
                     return true;
                 }
                 break;
@@ -117,7 +120,7 @@ export const textField = (
                     const next = gui.isAltDown()
                         ? prevNonAlpha(txt, cursor - 1)
                         : cursor - 1;
-                    movePrevWord(
+                    moveBackward(
                         label,
                         next,
                         next - cursor,
@@ -131,7 +134,7 @@ export const textField = (
                     const next = gui.isAltDown()
                         ? nextNonAlpha(txt, cursor + 1)
                         : cursor + 1;
-                    moveNextWord(
+                    moveForward(
                         label,
                         next,
                         next - cursor,
@@ -145,10 +148,15 @@ export const textField = (
             default: {
                 if (!CONTROL_KEYS.has(k) && filter(k)) {
                     label[0] = txt.substr(0, cursor) + k + txt.substr(cursor);
-                    label[1] = cursor + 1;
-                    if (drawCursor === maxLen && offset <= maxOffset) {
-                        label[2] = offset + 1;
-                    }
+                    moveForward(
+                        label,
+                        cursor + 1,
+                        1,
+                        drawCursor,
+                        offset,
+                        maxLen,
+                        maxOffset
+                    );
                     return true;
                 }
             }
@@ -173,7 +181,7 @@ const prevNonAlpha = (src: string, i: number) => {
     return i;
 };
 
-const movePrevWord = (
+const moveBackward = (
     label: [string, number?, number?],
     next: number,
     delta: number,
@@ -186,7 +194,7 @@ const movePrevWord = (
     }
 };
 
-const moveNextWord = (
+const moveForward = (
     label: [string, number?, number?],
     next: number,
     delta: number,
