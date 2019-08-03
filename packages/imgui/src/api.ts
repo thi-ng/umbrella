@@ -40,7 +40,7 @@ export const enum KeyModifier {
 export const enum Key {
     ALT = "Alt",
     BACKSPACE = "Backspace",
-    CAPSLOCK = "Capslock",
+    CAPSLOCK = "CapsLock",
     CONTROL = "Control",
     DELETE = "Delete",
     DOWN = "ArrowDown",
