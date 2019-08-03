@@ -6,3 +6,4 @@ export * from "./components/slider";
 export * from "./components/textfield";
 export * from "./components/textlabel";
 export * from "./components/tooltip";
+export * from "./components/xypad";

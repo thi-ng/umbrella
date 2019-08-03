@@ -11,7 +11,7 @@ export const button = (
     y: number,
     w: number,
     h: number,
-    label: string,
+    label?: string,
     info?: string
 ) => {
     const theme = gui.theme;
@@ -29,14 +29,15 @@ export const button = (
         fill: hover ? gui.fgColor(true) : gui.bgColor(false),
         stroke: gui.focusColor(id)
     };
-    gui.add(
-        box,
-        textLabel(
-            [x + theme.pad, y + h / 2 + theme.baseLine],
-            gui.textColor(hover),
-            label
-        )
-    );
+    gui.add(box);
+    label &&
+        gui.add(
+            textLabel(
+                [x + theme.pad, y + h / 2 + theme.baseLine],
+                gui.textColor(hover),
+                label
+            )
+        );
     if (gui.focusID == id) {
         switch (gui.key) {
             case Key.TAB:
