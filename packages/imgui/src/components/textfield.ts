@@ -63,7 +63,7 @@ export const textField = (
             drawTxt
         )
     );
-    if (gui.focusID == id) {
+    if (focused) {
         const cursor = label[1] || 0;
         const drawCursor = Math.min(cursor - offset, maxLen);
         const xx = x + pad + drawCursor * cw;

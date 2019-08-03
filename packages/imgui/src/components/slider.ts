@@ -37,7 +37,7 @@ export const slider = (
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
-        if ((aid === "" || aid == id) && gui.buttons == MouseButton.LEFT) {
+        if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
             val[i] = $(
@@ -52,14 +52,14 @@ export const slider = (
         }
         info && tooltip(gui, info);
     }
-    gui.requestFocus(id);
+    const focused = gui.requestFocus(id);
     const v = val[i];
     const normVal = norm(v, min, max);
     const valueBox = rect([x, y], [1 + normVal * (w - 1), h], {
         fill: gui.fgColor(hover)
     });
     box.attribs = {
-        fill: gui.bgColor(hover),
+        fill: gui.bgColor(hover || focused),
         stroke: gui.focusColor(id)
     };
     gui.add(
@@ -71,7 +71,7 @@ export const slider = (
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
-    if (gui.focusID == id) {
+    if (focused) {
         switch (gui.key) {
             case Key.TAB:
                 gui.switchFocus();

@@ -24,9 +24,9 @@ export const button = (
         }
         info && tooltip(gui, info);
     }
-    gui.requestFocus(id);
+    const focused = gui.requestFocus(id);
     box.attribs = {
-        fill: hover ? gui.fgColor(true) : gui.bgColor(false),
+        fill: hover ? gui.fgColor(true) : gui.bgColor(hover || focused),
         stroke: gui.focusColor(id)
     };
     gui.add(box);
@@ -38,7 +38,7 @@ export const button = (
                 label
             )
         );
-    if (gui.focusID == id) {
+    if (focused) {
         switch (gui.key) {
             case Key.TAB:
                 gui.switchFocus();

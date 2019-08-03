@@ -45,16 +45,16 @@ export const xyPad = (
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
-        if ((aid === "" || aid == id) && gui.buttons == MouseButton.LEFT) {
+        if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
             $(fit2(val, gui.mouse, pos, maxPos, min, max), prec, min, max);
         }
         info && tooltip(gui, info);
     }
-    gui.requestFocus(id);
+    const focused = gui.requestFocus(id);
     box.attribs = {
-        fill: gui.bgColor(hover),
+        fill: gui.bgColor(hover || focused),
         stroke: gui.focusColor(id)
     };
     const { 0: cx, 1: cy } = fit2([], val, min, max, pos, maxPos);

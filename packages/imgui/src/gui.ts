@@ -48,17 +48,16 @@ export class IMGUI implements IToHiccup {
         const touchEnd = () => {
             this.buttons &= ~MouseButton.LEFT;
         };
+        const mouseActive = (e: MouseEvent) => {
+            setMouse(e, this.mouse);
+            this.buttons = e.buttons;
+        };
         this.attribs = {
             onmousemove: (e: MouseEvent) => {
-                const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
-                setC2(this.mouse, e.clientX - b.left, e.clientY - b.top);
+                setMouse(e, this.mouse);
             },
-            onmousedown: (e: MouseEvent) => {
-                this.buttons = e.buttons;
-            },
-            onmouseup: (e: MouseEvent) => {
-                this.buttons = e.buttons;
-            },
+            onmousedown: mouseActive,
+            onmouseup: mouseActive,
             ontouchstart: touchActive,
             ontouchmove: touchActive,
             ontouchend: touchEnd,
