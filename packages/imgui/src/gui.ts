@@ -1,6 +1,7 @@
 import { IToHiccup } from "@thi.ng/api";
 import { setC2, Vec } from "@thi.ng/vectors";
 import {
+    DEFAULT_THEME,
     GUITheme,
     IMGUIOpts,
     KeyModifier,
@@ -12,7 +13,7 @@ const NONE = "__NONE__";
 export class IMGUI implements IToHiccup {
     width: number;
     height: number;
-    theme: GUITheme;
+    theme!: GUITheme;
     attribs!: any;
     layers: any[];
 
@@ -33,7 +34,6 @@ export class IMGUI implements IToHiccup {
     constructor(opts: IMGUIOpts) {
         this.width = opts.width;
         this.height = opts.height;
-        this.theme = opts.theme;
         this.mouse = [-1e3, -1e3];
         this.buttons = 0;
         this.keys = new Set<string>();
@@ -63,7 +63,7 @@ export class IMGUI implements IToHiccup {
             ontouchend: touchEnd,
             ontouchcancel: touchEnd
         };
-        this.updateAttribs();
+        this.setTheme(opts.theme || {});
         const setKMods = (e: KeyboardEvent) =>
             (this.modifiers =
                 (~~e.shiftKey * KeyModifier.SHIFT) |
@@ -93,6 +93,11 @@ export class IMGUI implements IToHiccup {
                 background: this.theme.globalBg
             }
         });
+    }
+
+    setTheme(theme: Partial<GUITheme>) {
+        this.theme = { ...DEFAULT_THEME, ...theme };
+        this.updateAttribs();
     }
 
     requestFocus(id: string) {

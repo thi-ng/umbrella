@@ -23,7 +23,7 @@ export interface GUITheme {
 export interface IMGUIOpts {
     width: number;
     height: number;
-    theme: GUITheme;
+    theme?: Partial<GUITheme>;
 }
 
 export const enum MouseButton {
