@@ -2,7 +2,10 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=0, minimum-scale=1, maximum-scale=1"
+        />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>imgui</title>
         <link
@@ -26,33 +29,14 @@
             }
         </style>
     </head>
-    <body class="sans-serif bg-black white ma3 f7">
+    <body class="sans-serif bg-black white ma3">
         <div id="app"></div>
         <div>
-            <h3>Key controls</h3>
-            The entire UI is fully keyboard controllable:
-            <ul>
-                <li><kbd>Tab/Shift+Tab</kbd> &mdash; Switch focus</li>
-                <li><kbd>Enter</kbd> &mdash; Activate focused button</li>
-                <li>
-                    <kbd>Up/Down</kbd> or drag mouse &mdash; Adjust slider value
-                </li>
-                <li>
-                    <kbd>Shift+Up/Down</kbd> &mdash; Adjust slider value (x5)
-                </li>
-                <li>
-                    <kbd>Alt+Up/Down</kbd> / Drag &mdash; Adjust RGB sliders
-                    uniformly (grayscale)
-                </li>
-                <li>
-                    <kbd>Left/Right</kbd> &mdash; Move cursor in text field (if
-                    focused)
-                </li>
-                <li>
-                    <kbd>Alt+Left/Right</kbd> &mdash; Move cursor to prev/next
-                    word
-                </li>
-            </ul>
+            <a
+                class="link white"
+                href="https://github.com/thi-ng/umbrella/tree/feature/imgui/examples/imgui"
+                >Source code / Info</a
+            >
         </div>
         <script type="text/javascript" src="./src/index.ts"></script>
     </body>
