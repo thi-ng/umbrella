@@ -10,7 +10,8 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
-- [Status](#status)
+    - [Available components / widgets](#available-components--widgets)
+    - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -27,7 +28,21 @@ and
 [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl),
 however with no dependency on either.
 
-## Status
+### Available components / widgets
+
+- Push button
+- Dropdown
+- Radio button group
+- Slider (horizontal / vertical)
+- Slider groups (horizontal / vertical)
+- Text input (single line, filtered input)
+- Text label
+- Toggle button
+- XY pad
+
+All components are skinnable (via global theme) & support tooltips.
+
+### Status
 
 WIP
 
@@ -40,11 +55,17 @@ yarn add @thi.ng/imgui
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
+
+WIP demo GUI showcasing all available components:
+
+[Live demo](http://demo.thi.ng/umbrella/imgui/) | [Source
+code](https://github.com/thi-ng/umbrella/tree/feature/imgui/examples/imgui/)
 
 ```ts
 import * as imgui from "@thi.ng/imgui";
