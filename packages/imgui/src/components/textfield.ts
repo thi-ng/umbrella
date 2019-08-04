@@ -59,7 +59,7 @@ export const textField = (
         box,
         textLabel(
             [x + pad, y + h / 2 + theme.baseLine],
-            gui.textColor(false),
+            gui.textColor(focused),
             drawTxt
         )
     );

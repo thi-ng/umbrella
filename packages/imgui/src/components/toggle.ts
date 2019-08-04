@@ -31,11 +31,7 @@ export const toggle = (
     let changed = !gui.buttons && gui.hotID == id && gui.activeID == id;
     const v = val[i];
     box.attribs = {
-        fill: hover
-            ? gui.fgColor(true)
-            : v
-            ? gui.fgColor(false)
-            : gui.bgColor(false),
+        fill: v ? gui.fgColor(hover) : gui.bgColor(hover),
         stroke: gui.focusColor(id)
     };
     gui.add(box);

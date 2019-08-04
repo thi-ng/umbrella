@@ -32,14 +32,18 @@ export const xyPad = (
     prec: number,
     val: Vec,
     yUp = false,
+    lx: number,
+    ly: number,
     label?: string,
     fmt?: Fn<Vec, string>,
     info?: string
 ) => {
-    const col = gui.textColor(false);
-    const pos = yUp ? [x, y + h - 1] : [x, y];
-    const maxPos = yUp ? [x + w - 1, y] : [x + w - 1, y + h - 1];
+    const maxX = x + w - 1;
+    const maxY = y + h - 1;
+    const pos = yUp ? [x, maxY] : [x, y];
+    const maxPos = yUp ? [maxX, y] : [maxX, y + h - 1];
     const box = rect([x, y], [w, h]);
+    const col = gui.textColor(false);
     const hover = pointInside(box, gui.mouse);
     let active = false;
     if (hover) {
@@ -64,10 +68,10 @@ export const xyPad = (
             {
                 stroke: col
             },
-            [line([x, cy], [x + w, cy]), line([cx, y], [cx, y + h])]
+            [line([x, cy], [maxX, cy]), line([cx, y], [cx, maxY])]
         ),
         textLabel(
-            [x, y + h + 12],
+            [x + lx, y + ly],
             col,
             (label ? label + " " : "") +
                 (fmt ? fmt(val) : `${val[0] | 0}, ${val[1] | 0}`)
