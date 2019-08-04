@@ -1,21 +1,23 @@
 import { Predicate } from "@thi.ng/api";
 
+export type Color = string | number | number[];
+
 export interface GUITheme {
-    globalBg?: string;
+    globalBg?: Color;
     font?: string;
     charWidth: number;
     baseLine: number;
     pad: number;
-    focus: string;
-    cursor: string;
-    bg: string;
-    fg: string;
-    text: string;
-    bgHover: string;
-    fgHover: string;
-    textHover: string;
-    bgTooltip: string;
-    textTooltip: string;
+    focus: Color;
+    cursor: Color;
+    bg: Color;
+    fg: Color;
+    text: Color;
+    bgHover: Color;
+    fgHover: Color;
+    textHover: Color;
+    bgTooltip: Color;
+    textTooltip: Color;
 }
 
 export interface IMGUIOpts {
@@ -44,10 +46,13 @@ export const enum Key {
     CONTROL = "Control",
     DELETE = "Delete",
     DOWN = "ArrowDown",
+    END = "End",
     ENTER = "Enter",
     ESC = "Escape",
+    HOME = "Home",
     LEFT = "ArrowLeft",
     META = "Meta",
+    NUM_LOCK = "NumLock",
     RIGHT = "ArrowRight",
     SHIFT = "Shift",
     SPACE = " ",
@@ -62,10 +67,13 @@ export const CONTROL_KEYS = new Set<string>([
     Key.CONTROL,
     Key.DELETE,
     Key.DOWN,
+    Key.END,
     Key.ENTER,
     Key.ESC,
+    Key.HOME,
     Key.LEFT,
     Key.META,
+    Key.NUM_LOCK,
     Key.RIGHT,
     Key.SHIFT,
     Key.TAB,
@@ -74,20 +82,20 @@ export const CONTROL_KEYS = new Set<string>([
 
 export const DEFAULT_THEME: GUITheme = {
     globalBg: "#333",
-    font: "10px Menlo",
+    font: "10px Menlo, monospace",
     charWidth: 6,
     baseLine: 4,
     pad: 8,
-    focus: "#c0c",
-    cursor: "#c0c",
-    bg: "rgba(0,0,0,0.5)",
-    fg: "#0c0",
-    text: "#fff",
-    bgHover: "#000",
-    fgHover: "#0f0",
-    textHover: "#555",
-    bgTooltip: "rgba(0,0,0,0.8)",
-    textTooltip: "#aaa"
+    focus: [1, 1, 0, 1],
+    cursor: [1, 1, 0, 1],
+    bg: [0, 0, 0, 0.66],
+    fg: [0, 0.3, 0.5, 1],
+    text: [1, 1, 1, 1],
+    bgHover: [0.1, 0.1, 0.1, 0.9],
+    fgHover: [0, 0.66, 0.66, 1],
+    textHover: [1, 1, 1, 1],
+    bgTooltip: [1, 1, 1, 0.85],
+    textTooltip: [0, 0, 0, 1]
 };
 
 export const INPUT_ALPHA: Predicate<string> = (x) => /^\w$/.test(x);
