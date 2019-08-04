@@ -34,6 +34,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.3.2",
+        "@thi.ng/checks": "^2.2.2",
         "@thi.ng/geom": "^1.7.2",
         "@thi.ng/math": "^1.4.2",
         "@thi.ng/vectors": "^3.1.0"
