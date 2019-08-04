@@ -14,7 +14,7 @@ import { tooltip } from "./tooltip";
 const $ = (x: number, prec: number, min: number, max: number) =>
     clamp(roundTo(x, prec), min, max);
 
-export const slider = (
+export const sliderV = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -33,6 +33,7 @@ export const slider = (
     const theme = gui.theme;
     const box = rect([x, y], [w, h]);
     const hover = pointInside(box, gui.mouse);
+    const ymax = y + h;
     let active = false;
     if (hover) {
         gui.hotID = id;
@@ -41,7 +42,7 @@ export const slider = (
             gui.activeID = id;
             active = true;
             val[i] = $(
-                fit(gui.mouse[0], x, x + w - 1, min, max),
+                fit(gui.mouse[1], ymax - 1, y, min, max),
                 prec,
                 min,
                 max
@@ -55,7 +56,8 @@ export const slider = (
     const focused = gui.requestFocus(id);
     const v = val[i];
     const normVal = norm(v, min, max);
-    const valueBox = rect([x, y], [1 + normVal * (w - 1), h], {
+    const nh = normVal * (h - 1);
+    const valueBox = rect([x, ymax - nh], [w, nh], {
         fill: gui.fgColor(hover)
     });
     box.attribs = {
@@ -66,8 +68,18 @@ export const slider = (
         box,
         valueBox,
         textLabel(
-            [x + theme.pad, y + h / 2 + theme.baseLine],
-            gui.textColor(normVal > 0.25),
+            [0, 0],
+            {
+                transform: [
+                    0,
+                    -1,
+                    1,
+                    0,
+                    x + w / 2 + theme.baseLine,
+                    ymax - theme.pad
+                ],
+                fill: gui.textColor(normVal > 0.25)
+            },
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
@@ -92,7 +104,7 @@ export const slider = (
     return active;
 };
 
-export const sliderGroup = (
+export const sliderVGroup = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -112,7 +124,7 @@ export const sliderGroup = (
     let res = false;
     // prettier-ignore
     for (let n = vals.length, i = 0; i < n; i++) {
-        res = slider(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
+        res = sliderV(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
         x += offX;
         y += offY;
     }
