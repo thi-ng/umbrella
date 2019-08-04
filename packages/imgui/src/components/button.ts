@@ -26,7 +26,7 @@ export const button = (
     }
     const focused = gui.requestFocus(id);
     box.attribs = {
-        fill: hover ? gui.fgColor(true) : gui.bgColor(hover || focused),
+        fill: hover ? gui.fgColor(true) : gui.bgColor(focused),
         stroke: gui.focusColor(id)
     };
     gui.add(box);
