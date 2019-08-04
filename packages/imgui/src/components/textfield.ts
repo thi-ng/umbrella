@@ -145,6 +145,20 @@ export const textField = (
                     );
                 }
                 break;
+            case Key.HOME:
+                moveBackward(label, 0, -cursor, drawCursor, offset);
+                break;
+            case Key.END:
+                moveForward(
+                    label,
+                    txtLen,
+                    txtLen - cursor,
+                    drawCursor,
+                    offset,
+                    maxLen,
+                    maxOffset
+                );
+                break;
             default: {
                 if (!CONTROL_KEYS.has(k) && filter(k)) {
                     label[0] = txt.substr(0, cursor) + k + txt.substr(cursor);
