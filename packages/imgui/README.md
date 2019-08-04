@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
     - [Available components / widgets](#available-components--widgets)
+    - [Key controls](#key-controls)
     - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -22,7 +23,11 @@ This project is part of the
 
 ## About
 
-Customizable immediate mode GUI implementation, primarily for
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/imgui/assets/screenshots/imgui-demo.png)
+
+Currently still bare-bones, but already usable & customizable [immediate
+mode GUI](https://github.com/ocornut/imgui#references) implementation,
+primarily for
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
 and
 [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl),
@@ -40,11 +45,29 @@ however with no dependency on either.
 - Toggle button
 - XY pad
 
-All components are skinnable (via global theme) & support tooltips.
+All components are:
+
+- skinnable (via function args & global theme)
+- keyboard controllable (incl. focus switching)
+- support tooltips
+- partial touch support
+
+### Key controls
+
+The entire UI is fully keyboard controllable:
+
+| Keys                        | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `Tab` /` Shift+Tab`         | Switch focus                                    |
+| `Enter` / `Space`           | Activate focused button                         |
+| `Up` / `Down` or drag mouse | Adjust value (slider or XY pad)                 |
+| `Shift+Up/Down`             | Adjust value (5x step)                          |
+| `Alt+Up/Down` or drag mouse | Adjust slider groups uniformly (all same value) |
+| `Alt+Left/Right`            | Move cursor to prev/next word (text field)      |
 
 ### Status
 
-WIP
+WIP - Alpha. Breaking changes ahead!
 
 ## Installation
 
@@ -62,7 +85,7 @@ yarn add @thi.ng/imgui
 
 ## Usage examples
 
-WIP demo GUI showcasing all available components:
+WIP demo GUI, showcasing all available components (see above screenshot):
 
 [Live demo](http://demo.thi.ng/umbrella/imgui/) | [Source
 code](https://github.com/thi-ng/umbrella/tree/feature/imgui/examples/imgui/)
