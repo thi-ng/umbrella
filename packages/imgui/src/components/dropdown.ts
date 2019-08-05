@@ -1,9 +1,25 @@
 import { polygon } from "@thi.ng/geom";
-import { Key } from "../api";
+import { Key, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
-import { button } from "./button";
+import { GridLayout, isLayout } from "../layout";
+import { buttonRaw } from "./button";
 
 export const dropdown = (
+    gui: IMGUI,
+    layout: GridLayout | LayoutBox,
+    id: string,
+    state: [number, boolean],
+    items: string[],
+    info?: string
+) => {
+    const { x, y, w, ch, gap } = isLayout(layout)
+        ? layout.next(1, state[1] ? items.length : 1)
+        : layout;
+    // prettier-ignore
+    return dropdownRaw(gui, id, x, y, w, ch, gap, state, items, info);
+};
+
+export const dropdownRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -19,7 +35,7 @@ export const dropdown = (
     const sel = state[0];
     if (state[1]) {
         for (let i = 0, n = items.length; i < n; i++) {
-            if (button(gui, `${id}-${i}`, x, y, w, h, items[i])) {
+            if (buttonRaw(gui, `${id}-${i}`, x, y, w, h, items[i])) {
                 if (i !== sel) {
                     state[0] = i;
                     res = true;
@@ -43,7 +59,7 @@ export const dropdown = (
             }
         }
     } else {
-        if (button(gui, `${id}-${sel}`, x, y, w, h, items[sel], info)) {
+        if (buttonRaw(gui, `${id}-${sel}`, x, y, w, h, items[sel], info)) {
             state[1] = true;
         }
         const tx = x + w - gui.theme.pad - 4;

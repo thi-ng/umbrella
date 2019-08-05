@@ -8,13 +8,13 @@ import {
 } from "@thi.ng/math";
 import { Key, KeyModifier, MouseButton } from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./textlabel";
-import { tooltip } from "./tooltip";
+import { textLabelRaw } from "./textlabel";
+import { tooltipRaw } from "./tooltip";
 
 const $ = (x: number, prec: number, min: number, max: number) =>
     clamp(roundTo(x, prec), min, max);
 
-export const sliderV = (
+export const sliderVRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -51,7 +51,7 @@ export const sliderV = (
                 val.fill(val[i]);
             }
         }
-        info && tooltip(gui, info);
+        info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     const v = val[i];
@@ -67,7 +67,7 @@ export const sliderV = (
     gui.add(
         box,
         valueBox,
-        textLabel(
+        textLabelRaw(
             [0, 0],
             {
                 transform: [
@@ -104,7 +104,7 @@ export const sliderV = (
     return active;
 };
 
-export const sliderVGroup = (
+export const sliderVGroupRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -124,7 +124,7 @@ export const sliderVGroup = (
     let res = false;
     // prettier-ignore
     for (let n = vals.length, i = 0; i < n; i++) {
-        res = sliderV(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
+        res = sliderVRaw(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
         x += offX;
         y += offY;
     }

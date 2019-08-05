@@ -6,15 +6,39 @@ import {
     norm,
     roundTo
 } from "@thi.ng/math";
-import { Key, KeyModifier, MouseButton } from "../api";
+import {
+    Key,
+    KeyModifier,
+    LayoutBox,
+    MouseButton
+} from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./textlabel";
-import { tooltip } from "./tooltip";
+import { GridLayout, isLayout } from "../layout";
+import { textLabelRaw } from "./textlabel";
+import { tooltipRaw } from "./tooltip";
 
 const $ = (x: number, prec: number, min: number, max: number) =>
     clamp(roundTo(x, prec), min, max);
 
 export const sliderH = (
+    gui: IMGUI,
+    layout: GridLayout | LayoutBox,
+    id: string,
+    min: number,
+    max: number,
+    prec: number,
+    val: number[],
+    i: number,
+    label?: string,
+    fmt?: Fn<number, string>,
+    info?: string
+) => {
+    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
+    // prettier-ignore
+    return sliderHRaw(gui, id, x, y, w, h, min, max, prec, val, i, label, fmt, info);
+};
+
+export const sliderHRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -50,7 +74,7 @@ export const sliderH = (
                 val.fill(val[i]);
             }
         }
-        info && tooltip(gui, info);
+        info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     const v = val[i];
@@ -65,7 +89,7 @@ export const sliderH = (
     gui.add(
         box,
         valueBox,
-        textLabel(
+        textLabelRaw(
             [x + theme.pad, y + h / 2 + theme.baseLine],
             gui.textColor(normVal > 0.25),
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
@@ -94,6 +118,29 @@ export const sliderH = (
 
 export const sliderHGroup = (
     gui: IMGUI,
+    layout: GridLayout | LayoutBox,
+    id: string,
+    horizontal: boolean,
+    min: number,
+    max: number,
+    prec: number,
+    vals: number[],
+    label: string[],
+    fmt?: Fn<number, string>,
+    info: string[] = []
+) => {
+    const { x, y, cw, ch, gap } = isLayout(layout)
+        ? horizontal
+            ? layout.next(vals.length, 1)
+            : layout.next(1, vals.length)
+        : layout;
+    const [offX, offY] = horizontal ? [cw + gap, 0] : [0, ch + gap];
+    // prettier-ignore
+    return sliderHGroupRaw(gui, id, x, y, cw, ch, offX, offY, min, max, prec, vals, label, fmt, info);
+};
+
+export const sliderHGroupRaw = (
+    gui: IMGUI,
     id: string,
     x: number,
     y: number,
@@ -112,7 +159,7 @@ export const sliderHGroup = (
     let res = false;
     // prettier-ignore
     for (let n = vals.length, i = 0; i < n; i++) {
-        res = sliderH(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
+        res = sliderHRaw(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
         x += offX;
         y += offY;
     }

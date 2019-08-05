@@ -2,7 +2,7 @@ import { isPlainObject } from "@thi.ng/checks";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import { Color } from "../api";
 
-export const textLabel = (
+export const textLabelRaw = (
     p: ReadonlyVec,
     attribs: Color | any,
     label: string

@@ -14,13 +14,13 @@ import {
 } from "@thi.ng/vectors";
 import { Key, MouseButton } from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./textlabel";
-import { tooltip } from "./tooltip";
+import { textLabelRaw } from "./textlabel";
+import { tooltipRaw } from "./tooltip";
 
 const $ = (v: Vec, prec: number, min: Vec, max: Vec) =>
     clamp2(v, round2(v, v, prec), min, max);
 
-export const xyPad = (
+export const xyPadRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -54,7 +54,7 @@ export const xyPad = (
             active = true;
             $(fit2(val, gui.mouse, pos, maxPos, min, max), prec, min, max);
         }
-        info && tooltip(gui, info);
+        info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     box.attribs = {
@@ -70,7 +70,7 @@ export const xyPad = (
             },
             [line([x, cy], [maxX, cy]), line([cx, y], [cx, maxY])]
         ),
-        textLabel(
+        textLabelRaw(
             [x + lx, y + ly],
             col,
             (label ? label + " " : "") +

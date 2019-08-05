@@ -1,12 +1,30 @@
 import { Predicate } from "@thi.ng/api";
 import { pointInside, rect } from "@thi.ng/geom";
 import { fitClamped } from "@thi.ng/math";
-import { CONTROL_KEYS, Key, MouseButton } from "../api";
+import {
+    CONTROL_KEYS,
+    Key,
+    LayoutBox,
+    MouseButton
+} from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./textlabel";
-import { tooltip } from "./tooltip";
+import { GridLayout, isLayout } from "../layout";
+import { textLabelRaw } from "./textlabel";
+import { tooltipRaw } from "./tooltip";
 
 export const textField = (
+    gui: IMGUI,
+    layout: GridLayout | LayoutBox,
+    id: string,
+    label: [string, number?, number?],
+    filter: Predicate<string> = () => true,
+    info?: string
+) => {
+    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
+    return textFieldRaw(gui, id, x, y, w, h, label, filter, info);
+};
+
+export const textFieldRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -48,7 +66,7 @@ export const textField = (
             );
             label[2] = offset;
         }
-        info && tooltip(gui, info);
+        info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     box.attribs = {
@@ -57,7 +75,7 @@ export const textField = (
     };
     gui.add(
         box,
-        textLabel(
+        textLabelRaw(
             [x + pad, y + h / 2 + theme.baseLine],
             gui.textColor(focused),
             drawTxt

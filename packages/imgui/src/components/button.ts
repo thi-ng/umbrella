@@ -1,10 +1,22 @@
 import { pointInside, rect } from "@thi.ng/geom";
-import { Key, MouseButton } from "../api";
+import { Key, LayoutBox, MouseButton } from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./textlabel";
-import { tooltip } from "./tooltip";
+import { GridLayout, isLayout } from "../layout";
+import { textLabelRaw } from "./textlabel";
+import { tooltipRaw } from "./tooltip";
 
 export const button = (
+    gui: IMGUI,
+    layout: GridLayout | LayoutBox,
+    id: string,
+    label?: string,
+    info?: string
+) => {
+    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
+    return buttonRaw(gui, id, x, y, w, h, label, info);
+};
+
+export const buttonRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -22,7 +34,7 @@ export const button = (
         if (gui.activeID === "" && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
         }
-        info && tooltip(gui, info);
+        info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     box.attribs = {
@@ -32,7 +44,7 @@ export const button = (
     gui.add(box);
     label &&
         gui.add(
-            textLabel(
+            textLabelRaw(
                 [x + theme.pad, y + h / 2 + theme.baseLine],
                 gui.textColor(hover),
                 label

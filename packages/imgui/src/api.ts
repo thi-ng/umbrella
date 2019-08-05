@@ -26,6 +26,39 @@ export interface IMGUIOpts {
     theme?: Partial<GUITheme>;
 }
 
+export interface LayoutBox {
+    /**
+     * Top-left corner X
+     */
+    x: number;
+    /**
+     * Top-left corner Y
+     */
+    y: number;
+    /**
+     * Box width (based on requested col span and inner gutter(s))
+     */
+    w: number;
+    /**
+     * Box height (based on requested row span and inner gutter(s))
+     */
+    h: number;
+    /**
+     * Single cell column width (always w/o col span), based on
+     * layout's available space and configured number of columns.
+     */
+    cw: number;
+    /**
+     * Single cell row height (always same as `rowHeight` arg given to
+     * layout ctor).
+     */
+    ch: number;
+    /**
+     * Gutter size.
+     */
+    gap: number;
+}
+
 export const enum MouseButton {
     LEFT = 1,
     RIGHT = 2,

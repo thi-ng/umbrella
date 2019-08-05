@@ -1,7 +1,24 @@
 import { IMGUI } from "../gui";
-import { toggle } from "./toggle";
+import { GridLayout, isLayout } from "../layout";
+import { toggleRaw } from "./toggle";
 
-export const radio = (
+export const radioH = (
+    gui: IMGUI,
+    layout: GridLayout,
+    id: string,
+    val: number[],
+    idx: number,
+    labels: string[],
+    info: string[] = []
+) => {
+    const { x, y, cw, ch, gap } = isLayout(layout)
+        ? layout.next(labels.length)
+        : layout;
+    // prettier-ignore
+    return radioRaw(gui, id, x, y, ch, ch, ch, cw + gap, 0, val, idx, labels, info);
+};
+
+export const radioRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -21,7 +38,7 @@ export const radio = (
     // prettier-ignore
     for (let n = labels.length, sel = val[idx], i = 0; i < n; i++) {
         tmp[0] = sel === i;
-        if (toggle(gui, `${id}-${i}`, x, y, w, h, lx, tmp, 0, labels[i], info[i])) {
+        if (toggleRaw(gui, `${id}-${i}`, x, y, w, h, lx, tmp, 0, labels[i], info[i])) {
             val[idx] = i;
             res = true;
         }

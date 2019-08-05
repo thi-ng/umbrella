@@ -1,10 +1,25 @@
 import { pointInside, rect } from "@thi.ng/geom";
-import { Key, MouseButton } from "../api";
+import { Key, LayoutBox, MouseButton } from "../api";
 import { IMGUI } from "../gui";
-import { textLabel } from "./textlabel";
-import { tooltip } from "./tooltip";
+import { GridLayout, isLayout } from "../layout";
+import { textLabelRaw } from "./textlabel";
+import { tooltipRaw } from "./tooltip";
 
 export const toggle = (
+    gui: IMGUI,
+    layout: GridLayout | LayoutBox,
+    id: string,
+    lx: number,
+    val: boolean[],
+    i: number,
+    label?: string,
+    info?: string
+) => {
+    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
+    return toggleRaw(gui, id, x, y, w, h, lx, val, i, label, info);
+};
+
+export const toggleRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -25,7 +40,7 @@ export const toggle = (
         if (gui.activeID === "" && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
         }
-        info && tooltip(gui, info);
+        info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     let changed = !gui.buttons && gui.hotID == id && gui.activeID == id;
@@ -37,7 +52,7 @@ export const toggle = (
     gui.add(box);
     label &&
         gui.add(
-            textLabel(
+            textLabelRaw(
                 [x + theme.pad + lx, y + h / 2 + theme.baseLine],
                 gui.textColor(hover && lx > 0 && lx < w - theme.pad),
                 label
