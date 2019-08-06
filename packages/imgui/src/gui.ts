@@ -5,10 +5,9 @@ import {
     GUITheme,
     IMGUIOpts,
     KeyModifier,
-    MouseButton
+    MouseButton,
+    NONE
 } from "./api";
-
-const NONE = "__NONE__";
 
 export class IMGUI implements IToHiccup {
     width: number;
@@ -165,7 +164,7 @@ export class IMGUI implements IToHiccup {
     }
 
     focusColor(id: string) {
-        return this.focusID === id ? this.theme.focus : "none";
+        return this.focusID === id ? this.theme.focus : undefined;
     }
 
     add(...els: any[]) {

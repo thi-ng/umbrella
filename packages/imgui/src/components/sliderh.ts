@@ -7,13 +7,14 @@ import {
     roundTo
 } from "@thi.ng/math";
 import {
+    IGridLayout,
     Key,
     KeyModifier,
     LayoutBox,
     MouseButton
 } from "../api";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -22,7 +23,7 @@ const $ = (x: number, prec: number, min: number, max: number) =>
 
 export const sliderH = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     min: number,
     max: number,
@@ -118,7 +119,7 @@ export const sliderHRaw = (
 
 export const sliderHGroup = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     horizontal: boolean,
     min: number,
@@ -131,8 +132,8 @@ export const sliderHGroup = (
 ) => {
     const { x, y, cw, ch, gap } = isLayout(layout)
         ? horizontal
-            ? layout.next(vals.length, 1)
-            : layout.next(1, vals.length)
+            ? layout.next([vals.length, 1])
+            : layout.next([1, vals.length])
         : layout;
     const [offX, offY] = horizontal ? [cw + gap, 0] : [0, ch + gap];
     // prettier-ignore

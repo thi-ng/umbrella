@@ -3,18 +3,19 @@ import { pointInside, rect } from "@thi.ng/geom";
 import { fitClamped } from "@thi.ng/math";
 import {
     CONTROL_KEYS,
+    IGridLayout,
     Key,
     LayoutBox,
     MouseButton
 } from "../api";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 export const textField = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     label: [string, number?, number?],
     filter: Predicate<string> = () => true,

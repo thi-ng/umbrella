@@ -1,19 +1,19 @@
 import { polygon } from "@thi.ng/geom";
-import { Key, LayoutBox } from "../api";
+import { IGridLayout, Key, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { buttonRaw } from "./button";
 
 export const dropdown = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     state: [number, boolean],
     items: string[],
     info?: string
 ) => {
     const { x, y, w, ch, gap } = isLayout(layout)
-        ? layout.next(1, state[1] ? items.length : 1)
+        ? layout.next([1, state[1] ? items.length : 1])
         : layout;
     // prettier-ignore
     return dropdownRaw(gui, id, x, y, w, ch, gap, state, items, info);

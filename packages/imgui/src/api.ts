@@ -59,6 +59,12 @@ export interface LayoutBox {
     gap: number;
 }
 
+export interface ILayout<O, T> {
+    next(opts?: O): T;
+}
+
+export interface IGridLayout extends ILayout<[number, number], LayoutBox> {}
+
 export const enum MouseButton {
     LEFT = 1,
     RIGHT = 2,
@@ -76,16 +82,20 @@ export const enum Key {
     ALT = "Alt",
     BACKSPACE = "Backspace",
     CAPSLOCK = "CapsLock",
+    CONTEXT_MENU = "ContextMenu",
     CONTROL = "Control",
     DELETE = "Delete",
     DOWN = "ArrowDown",
     END = "End",
     ENTER = "Enter",
     ESC = "Escape",
+    HELP = "Help",
     HOME = "Home",
     LEFT = "ArrowLeft",
     META = "Meta",
     NUM_LOCK = "NumLock",
+    PAGE_DOWN = "PageDown",
+    PAGE_UP = "PageUp",
     RIGHT = "ArrowRight",
     SHIFT = "Shift",
     SPACE = " ",
@@ -97,21 +107,27 @@ export const CONTROL_KEYS = new Set<string>([
     Key.ALT,
     Key.BACKSPACE,
     Key.CAPSLOCK,
+    Key.CONTEXT_MENU,
     Key.CONTROL,
     Key.DELETE,
     Key.DOWN,
     Key.END,
     Key.ENTER,
     Key.ESC,
+    Key.HELP,
     Key.HOME,
     Key.LEFT,
     Key.META,
     Key.NUM_LOCK,
+    Key.PAGE_DOWN,
+    Key.PAGE_UP,
     Key.RIGHT,
     Key.SHIFT,
     Key.TAB,
     Key.UP
 ]);
+
+export const NONE = "__NONE__";
 
 export const DEFAULT_THEME: GUITheme = {
     globalBg: "#333",

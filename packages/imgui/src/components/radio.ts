@@ -1,10 +1,11 @@
+import { IGridLayout } from "../api";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { toggleRaw } from "./toggle";
 
 export const radioH = (
     gui: IMGUI,
-    layout: GridLayout,
+    layout: IGridLayout,
     id: string,
     val: number[],
     idx: number,
@@ -12,7 +13,7 @@ export const radioH = (
     info: string[] = []
 ) => {
     const { x, y, cw, ch, gap } = isLayout(layout)
-        ? layout.next(labels.length)
+        ? layout.next([labels.length, 1])
         : layout;
     // prettier-ignore
     return radioRaw(gui, id, x, y, ch, ch, ch, cw + gap, 0, val, idx, labels, info);

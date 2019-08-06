@@ -1,23 +1,23 @@
-import { LayoutBox } from "./api";
+import { implementsFunction } from "@thi.ng/checks";
+import { IGridLayout, ILayout, LayoutBox } from "./api";
 
-export class GridLayout {
+const DEFAULT_SPANS: [number, number] = [1, 1];
+
+export class GridLayout implements IGridLayout {
     readonly parent: GridLayout | null;
     readonly cols: number;
     readonly width: number;
     readonly x: number;
     readonly y: number;
-    readonly colW: number;
-    readonly rowH: number;
+    readonly cellW: number;
+    readonly cellH: number;
     readonly gap: number;
 
     currCol: number;
     currRow: number;
     rows: number;
 
-    id: string;
-
     constructor(
-        id: string,
         parent: GridLayout | null,
         cols: number,
         x: number,
@@ -26,21 +26,22 @@ export class GridLayout {
         rowH: number,
         gap: number
     ) {
-        this.id = id;
         this.parent = parent;
         this.cols = cols;
         this.x = x;
         this.y = y;
         this.width = width;
-        this.rowH = rowH;
+        this.cellW = (width - (cols - 1) * gap) / cols;
+        this.cellH = rowH;
         this.gap = gap;
-        this.colW = (width - (cols - 1) * gap) / cols;
         this.currCol = 0;
         this.currRow = 0;
         this.rows = 0;
     }
 
-    next(cspan = 1, rspan = 1) {
+    next(spans = DEFAULT_SPANS) {
+        const cspan = spans[0] || 1;
+        const rspan = spans[1] || 1;
         if (this.currCol > 0) {
             if (this.currCol + cspan > this.cols) {
                 this.currCol = 0;
@@ -50,32 +51,33 @@ export class GridLayout {
             this.currRow = this.rows;
         }
         const gap = this.gap;
-        const h = rspan * this.rowH + (rspan - 1) * gap;
+        const h = (rspan * this.cellH + (rspan - 1) * gap) | 0;
         const cell = <LayoutBox>{
-            x: this.x + this.currCol * (this.colW + gap),
-            y: this.y + this.currRow * (this.rowH + gap),
-            w: cspan * this.colW + (cspan - 1) * gap,
+            x: (this.x + this.currCol * (this.cellW + gap)) | 0,
+            y: (this.y + this.currRow * (this.cellH + gap)) | 0,
+            w: (cspan * this.cellW + (cspan - 1) * gap) | 0,
             h,
-            cw: this.colW,
-            ch: this.rowH,
+            cw: this.cellW,
+            ch: this.cellH,
             gap
         };
-        this.updateMaxRows(rspan);
+        this.propagateSize(rspan);
         this.currCol = Math.min(this.currCol + cspan, this.cols) % this.cols;
         return cell;
     }
 
-    nest(id: string, cols: number, cspan = 1, rspan = 1) {
-        const { x, y, w } = this.next(cspan, rspan);
-        return new GridLayout(id, this, cols, x, y, w, this.rowH, this.gap);
+    nest(cols: number, spans?: [number, number]) {
+        const { x, y, w } = this.next(spans);
+        return new GridLayout(this, cols, x, y, w, this.cellH, this.gap);
     }
 
-    protected updateMaxRows(rspan: number) {
-        this.rows = Math.max(this.rows, this.currRow + rspan);
-        if (this.parent) {
-            this.parent.updateMaxRows(this.rows);
-        }
+    protected propagateSize(rspan: number) {
+        let rows = this.rows;
+        rows = this.rows = Math.max(rows, this.currRow + rspan);
+        const parent = this.parent;
+        parent && parent.propagateSize(rows);
     }
 }
 
-export const isLayout = (x: any): x is GridLayout => x instanceof GridLayout;
+export const isLayout = (x: any): x is ILayout<any, any> =>
+    implementsFunction(x, "next");

@@ -1,13 +1,18 @@
 import { pointInside, rect } from "@thi.ng/geom";
-import { Key, LayoutBox, MouseButton } from "../api";
+import {
+    IGridLayout,
+    Key,
+    LayoutBox,
+    MouseButton
+} from "../api";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 export const button = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     label?: string,
     info?: string
