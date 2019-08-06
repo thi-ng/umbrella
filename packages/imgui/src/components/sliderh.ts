@@ -39,6 +39,29 @@ export const sliderH = (
     return sliderHRaw(gui, id, x, y, w, h, min, max, prec, val, i, label, fmt, info);
 };
 
+export const sliderHGroup = (
+    gui: IMGUI,
+    layout: IGridLayout,
+    id: string,
+    min: number,
+    max: number,
+    prec: number,
+    horizontal: boolean,
+    vals: number[],
+    label: string[],
+    fmt?: Fn<number, string>,
+    info: string[] = []
+) => {
+    const n = vals.length;
+    const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
+    let res = false;
+    for (let i = 0; i < n; i++) {
+        // prettier-ignore
+        res = sliderH(gui, nested, `${id}-${i}`, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
+    }
+    return res;
+};
+
 export const sliderHRaw = (
     gui: IMGUI,
     id: string,
@@ -115,27 +138,4 @@ export const sliderHRaw = (
     }
     gui.lastID = id;
     return active;
-};
-
-export const sliderHGroup = (
-    gui: IMGUI,
-    layout: IGridLayout,
-    id: string,
-    horizontal: boolean,
-    min: number,
-    max: number,
-    prec: number,
-    vals: number[],
-    label: string[],
-    fmt?: Fn<number, string>,
-    info: string[] = []
-) => {
-    const n = vals.length;
-    const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
-    let res = false;
-    for (let i = 0; i < n; i++) {
-        // prettier-ignore
-        res = sliderH(gui, nested, `${id}-${i}`, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
-    }
-    return res;
 };

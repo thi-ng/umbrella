@@ -1,6 +1,6 @@
 import { IGridLayout } from "../api";
 import { IMGUI } from "../gui";
-import { toggleRaw } from "./toggle";
+import { toggle } from "./toggle";
 
 export const radio = (
     gui: IMGUI,
@@ -9,6 +9,7 @@ export const radio = (
     horizontal: boolean,
     val: number[],
     idx: number,
+    square: boolean,
     labels: string[],
     info: string[] = []
 ) => {
@@ -16,13 +17,11 @@ export const radio = (
     const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
     let res = false;
     const tmp: boolean[] = [];
-    const lx = nested.cellH;
     const sel = val[idx];
     for (let i = 0; i < n; i++) {
         tmp[0] = sel === i;
-        const { x, y, h } = nested.next();
         // prettier-ignore
-        if (toggleRaw(gui, `${id}-${i}`, x, y, h, h, lx, tmp, 0, labels[i], info[i])) {
+        if (toggle(gui, nested, `${id}-${i}`, tmp, 0, square, labels[i], info[i])) {
             val[idx] = i;
             res = true;
         }

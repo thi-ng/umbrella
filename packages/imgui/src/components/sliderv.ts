@@ -6,13 +6,62 @@ import {
     norm,
     roundTo
 } from "@thi.ng/math";
-import { Key, KeyModifier, MouseButton } from "../api";
+import {
+    IGridLayout,
+    Key,
+    KeyModifier,
+    LayoutBox,
+    MouseButton
+} from "../api";
 import { IMGUI } from "../gui";
+import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 const $ = (x: number, prec: number, min: number, max: number) =>
     clamp(roundTo(x, prec), min, max);
+
+export const sliderV = (
+    gui: IMGUI,
+    layout: IGridLayout | LayoutBox,
+    id: string,
+    min: number,
+    max: number,
+    prec: number,
+    val: number[],
+    i: number,
+    rows: number,
+    label?: string,
+    fmt?: Fn<number, string>,
+    info?: string
+) => {
+    const { x, y, w, h } = isLayout(layout) ? layout.next([1, rows]) : layout;
+    // prettier-ignore
+    return sliderVRaw(gui, id, x, y, w, h, min, max, prec, val, i, label, fmt, info);
+};
+
+export const sliderVGroup = (
+    gui: IMGUI,
+    layout: IGridLayout,
+    id: string,
+    min: number,
+    max: number,
+    prec: number,
+    vals: number[],
+    rows: number,
+    label: string[],
+    fmt?: Fn<number, string>,
+    info: string[] = []
+) => {
+    const n = vals.length;
+    const nested = layout.nest(n, [1, rows]);
+    let res = false;
+    for (let i = 0; i < n; i++) {
+        // prettier-ignore
+        res = sliderV(gui, nested, `${id}-${i}`, min, max, prec, vals, i, rows, label[i], fmt, info[i]) || res;
+    }
+    return res;
+};
 
 export const sliderVRaw = (
     gui: IMGUI,
@@ -102,31 +151,4 @@ export const sliderVRaw = (
     }
     gui.lastID = id;
     return active;
-};
-
-export const sliderVGroupRaw = (
-    gui: IMGUI,
-    id: string,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    offX: number,
-    offY: number,
-    min: number,
-    max: number,
-    prec: number,
-    vals: number[],
-    label: string[],
-    fmt?: Fn<number, string>,
-    info: string[] = []
-) => {
-    let res = false;
-    // prettier-ignore
-    for (let n = vals.length, i = 0; i < n; i++) {
-        res = sliderVRaw(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
-        x += offX;
-        y += offY;
-    }
-    return res;
 };

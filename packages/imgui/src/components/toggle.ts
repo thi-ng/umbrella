@@ -10,18 +10,43 @@ import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
+/**
+ * If `square` is true, the clickable area will not fill the entire
+ * cell, but only a left-aligned square of cell/row height.
+ *
+ * @param gui
+ * @param layout
+ * @param id
+ * @param val
+ * @param i
+ * @param square
+ * @param label
+ * @param info
+ */
 export const toggle = (
     gui: IMGUI,
     layout: IGridLayout | LayoutBox,
     id: string,
-    lx: number,
     val: boolean[],
     i: number,
+    square?: boolean,
     label?: string,
     info?: string
 ) => {
     const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
-    return toggleRaw(gui, id, x, y, w, h, lx, val, i, label, info);
+    return toggleRaw(
+        gui,
+        id,
+        x,
+        y,
+        square ? h : w,
+        h,
+        square ? h : 0,
+        val,
+        i,
+        label,
+        info
+    );
 };
 
 export const toggleRaw = (

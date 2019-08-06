@@ -167,6 +167,10 @@ export class IMGUI implements IToHiccup {
         return this.focusID === id ? this.theme.focus : undefined;
     }
 
+    textWidth(txt: string) {
+        return this.theme.charWidth * txt.length;
+    }
+
     add(...els: any[]) {
         this.layers[0].push(...els);
     }

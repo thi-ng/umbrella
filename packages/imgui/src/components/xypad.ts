@@ -12,13 +12,74 @@ import {
     round2,
     Vec
 } from "@thi.ng/vectors";
-import { Key, MouseButton } from "../api";
+import { IGridLayout, Key, MouseButton } from "../api";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 const $ = (v: Vec, prec: number, min: Vec, max: Vec) =>
     clamp2(v, round2(v, v, prec), min, max);
+
+/**
+ *
+ * `mode` interpretation:
+ *
+ * - -2 = square
+ * - -1 = proportional height (snapped to rows)
+ * - >0 = fixed row height
+ *
+ * @param gui
+ * @param layout
+ * @param id
+ * @param min
+ * @param max
+ * @param prec
+ * @param val
+ * @param mode
+ * @param yUp
+ * @param label
+ * @param fmt
+ * @param info
+ */
+export const xyPad = (
+    gui: IMGUI,
+    layout: IGridLayout,
+    id: string,
+    min: Vec,
+    max: Vec,
+    prec: number,
+    val: Vec,
+    mode: number,
+    yUp: boolean,
+    label?: string,
+    fmt?: Fn<Vec, string>,
+    info?: string
+) => {
+    const ch = layout.cellH;
+    const gap = layout.gap;
+    let rows = mode > 0 ? mode : layout.cellW / (ch + gap);
+    rows = mode == -2 ? Math.ceil(rows) : rows | 0;
+    const { x, y, w, h } = layout.next([1, rows + 1]);
+    const hh = mode === -2 ? w : h - ch - gap;
+    return xyPadRaw(
+        gui,
+        id,
+        x,
+        y,
+        w,
+        hh,
+        min,
+        max,
+        prec,
+        val,
+        yUp,
+        0,
+        hh + gap + ch / 2 + gui.theme.baseLine,
+        label,
+        fmt,
+        info
+    );
+};
 
 export const xyPadRaw = (
     gui: IMGUI,
