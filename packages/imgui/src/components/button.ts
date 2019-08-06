@@ -1,4 +1,6 @@
 import { pointInside, rect } from "@thi.ng/geom";
+import { IShape } from "@thi.ng/geom-api";
+import { Vec } from "@thi.ng/vectors";
 import {
     IGridLayout,
     Key,
@@ -17,23 +19,27 @@ export const button = (
     label?: string,
     info?: string
 ) => {
+    const theme = gui.theme;
     const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
-    return buttonRaw(gui, id, x, y, w, h, label, info);
+    return buttonRaw(
+        gui,
+        id,
+        rect([x, y], [w, h]),
+        label,
+        [x + theme.pad, y + h / 2 + theme.baseLine],
+        info
+    );
 };
 
 export const buttonRaw = (
     gui: IMGUI,
     id: string,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
+    shape: IShape,
     label?: string,
+    lpos?: Vec,
     info?: string
 ) => {
-    const theme = gui.theme;
-    const box = rect([x, y], [w, h]);
-    const hover = pointInside(box, gui.mouse);
+    const hover = pointInside(shape, gui.mouse);
     if (hover) {
         gui.hotID = id;
         if (gui.activeID === "" && gui.buttons & MouseButton.LEFT) {
@@ -42,19 +48,12 @@ export const buttonRaw = (
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    box.attribs = {
+    shape.attribs = {
         fill: hover ? gui.fgColor(true) : gui.bgColor(focused),
         stroke: gui.focusColor(id)
     };
-    gui.add(box);
-    label &&
-        gui.add(
-            textLabelRaw(
-                [x + theme.pad, y + h / 2 + theme.baseLine],
-                gui.textColor(hover),
-                label
-            )
-        );
+    gui.add(shape);
+    label && lpos && gui.add(textLabelRaw(lpos, gui.textColor(hover), label));
     if (focused) {
         switch (gui.key) {
             case Key.TAB:

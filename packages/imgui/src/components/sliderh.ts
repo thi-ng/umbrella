@@ -119,7 +119,7 @@ export const sliderHRaw = (
 
 export const sliderHGroup = (
     gui: IMGUI,
-    layout: IGridLayout | LayoutBox,
+    layout: IGridLayout,
     id: string,
     horizontal: boolean,
     min: number,
@@ -130,39 +130,12 @@ export const sliderHGroup = (
     fmt?: Fn<number, string>,
     info: string[] = []
 ) => {
-    const { x, y, cw, ch, gap } = isLayout(layout)
-        ? horizontal
-            ? layout.next([vals.length, 1])
-            : layout.next([1, vals.length])
-        : layout;
-    const [offX, offY] = horizontal ? [cw + gap, 0] : [0, ch + gap];
-    // prettier-ignore
-    return sliderHGroupRaw(gui, id, x, y, cw, ch, offX, offY, min, max, prec, vals, label, fmt, info);
-};
-
-export const sliderHGroupRaw = (
-    gui: IMGUI,
-    id: string,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    offX: number,
-    offY: number,
-    min: number,
-    max: number,
-    prec: number,
-    vals: number[],
-    label: string[],
-    fmt?: Fn<number, string>,
-    info: string[] = []
-) => {
+    const n = vals.length;
+    const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
     let res = false;
-    // prettier-ignore
-    for (let n = vals.length, i = 0; i < n; i++) {
-        res = sliderHRaw(gui, `${id}-${i}`, x, y, w, h, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
-        x += offX;
-        y += offY;
+    for (let i = 0; i < n; i++) {
+        // prettier-ignore
+        res = sliderH(gui, nested, `${id}-${i}`, min, max, prec, vals, i, label[i], fmt, info[i]) || res;
     }
     return res;
 };

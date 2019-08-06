@@ -1,48 +1,28 @@
 import { polygon } from "@thi.ng/geom";
-import { IGridLayout, Key, LayoutBox } from "../api";
+import { IGridLayout, Key } from "../api";
 import { IMGUI } from "../gui";
-import { isLayout } from "../layout";
-import { buttonRaw } from "./button";
+import { button } from "./button";
 
 export const dropdown = (
     gui: IMGUI,
-    layout: IGridLayout | LayoutBox,
+    layout: IGridLayout,
     id: string,
     state: [number, boolean],
     items: string[],
     info?: string
 ) => {
-    const { x, y, w, ch, gap } = isLayout(layout)
-        ? layout.next([1, state[1] ? items.length : 1])
-        : layout;
-    // prettier-ignore
-    return dropdownRaw(gui, id, x, y, w, ch, gap, state, items, info);
-};
-
-export const dropdownRaw = (
-    gui: IMGUI,
-    id: string,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    gap: number,
-    state: [number, boolean],
-    items: string[],
-    info?: string
-) => {
+    const nested = layout.nest(1, [1, state[1] ? items.length : 1]);
     let res = false;
     const sel = state[0];
     if (state[1]) {
         for (let i = 0, n = items.length; i < n; i++) {
-            if (buttonRaw(gui, `${id}-${i}`, x, y, w, h, items[i])) {
+            if (button(gui, nested, `${id}-${i}`, items[i])) {
                 if (i !== sel) {
                     state[0] = i;
                     res = true;
                 }
                 state[1] = false;
             }
-            y += h + gap;
         }
         if (gui.focusID.startsWith(`${id}-`)) {
             switch (gui.key) {
@@ -59,7 +39,9 @@ export const dropdownRaw = (
             }
         }
     } else {
-        if (buttonRaw(gui, `${id}-${sel}`, x, y, w, h, items[sel], info)) {
+        const box = nested.next();
+        const { x, y, w, h } = box;
+        if (button(gui, box, `${id}-${sel}`, items[sel], info)) {
             state[1] = true;
         }
         const tx = x + w - gui.theme.pad - 4;
