@@ -187,6 +187,8 @@ export class IMGUI implements IToHiccup {
 
 const setMouse = (e: MouseEvent | TouchEvent, mouse: Vec) => {
     const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
-    const t = e instanceof TouchEvent ? e.touches[0] : e;
+    const t = (<TouchEvent>e).changedTouches
+        ? (<TouchEvent>e).changedTouches[0]
+        : <MouseEvent>e;
     setC2(mouse, t.clientX - b.left, t.clientY - b.top);
 };
