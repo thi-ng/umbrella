@@ -40,29 +40,29 @@ export class GridLayout implements IGridLayout {
     }
 
     next(spans = DEFAULT_SPANS) {
-        const cspan = spans[0] || 1;
-        const rspan = spans[1] || 1;
+        const { cellW, cellH, gap, cols } = this;
+        const cspan = Math.min(spans[0], cols);
+        const rspan = spans[1];
         if (this.currCol > 0) {
-            if (this.currCol + cspan > this.cols) {
+            if (this.currCol + cspan > cols) {
                 this.currCol = 0;
                 this.currRow = this.rows;
             }
         } else {
             this.currRow = this.rows;
         }
-        const gap = this.gap;
-        const h = (rspan * this.cellH + (rspan - 1) * gap) | 0;
+        const h = (rspan * cellH + (rspan - 1) * gap) | 0;
         const cell = <LayoutBox>{
-            x: (this.x + this.currCol * (this.cellW + gap)) | 0,
-            y: (this.y + this.currRow * (this.cellH + gap)) | 0,
-            w: (cspan * this.cellW + (cspan - 1) * gap) | 0,
+            x: (this.x + this.currCol * (cellW + gap)) | 0,
+            y: (this.y + this.currRow * (cellH + gap)) | 0,
+            w: (cspan * cellW + (cspan - 1) * gap) | 0,
             h,
-            cw: this.cellW,
-            ch: this.cellH,
+            cw: cellW,
+            ch: cellH,
             gap
         };
         this.propagateSize(rspan);
-        this.currCol = Math.min(this.currCol + cspan, this.cols) % this.cols;
+        this.currCol = Math.min(this.currCol + cspan, cols) % cols;
         return cell;
     }
 

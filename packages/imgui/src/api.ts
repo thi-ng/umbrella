@@ -63,7 +63,17 @@ export interface ILayout<O, T> {
     next(opts?: O): T;
 }
 
-export interface IGridLayout extends ILayout<[number, number], LayoutBox> {}
+export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
+    readonly x: number;
+    readonly y: number;
+    readonly width: number;
+    readonly cols: number;
+    readonly cellW: number;
+    readonly cellH: number;
+    readonly gap: number;
+
+    nest(cols: number, spans?: [number, number]): IGridLayout;
+}
 
 export const enum MouseButton {
     LEFT = 1,
