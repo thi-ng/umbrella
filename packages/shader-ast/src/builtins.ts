@@ -123,7 +123,7 @@ export function atan<A extends Prim, B extends A>(
     a: Term<A>,
     b: Term<B>
 ): FnCall<A>;
-export function atan(a:any, b?: any) {
+export function atan(a:Term<any>, b?: Term<any>) {
     return b
         ? builtinCall("atan", a.type, a, b)
         : builtinCall("atan", a.type, a);
