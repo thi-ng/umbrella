@@ -170,16 +170,16 @@ describe("checks", function() {
     it("isHexColorString", () => {
         assert.ok(!isHexColorString(undefined), "undefined");
         assert.ok(!isHexColorString(null), "null");
-        assert.ok(!isHexColorString("foo"), "string");
-        assert.ok(!isHexColorString("123"), "string");
-        assert.ok(!isHexColorString("#12."), "string");
-        assert.ok(!isHexColorString("#j23"), "string");
-        assert.ok(!isHexColorString("#jf3300"), "string");
-        assert.ok(!isHexColorString("#j30f"), "string");
-        assert.ok(!isHexColorString("#jf3300ff"), "string");
-        assert.ok(isHexColorString("#123"), "string");
-        assert.ok(isHexColorString("#ff3300"), "string");
-        assert.ok(isHexColorString("#f30f"), "string");
-        assert.ok(isHexColorString("#ff3300ff"), "string");
+        assert.ok(!isHexColorString("foo"), "invalid");
+        assert.ok(!isHexColorString("123"), "invalid");
+        assert.ok(!isHexColorString("#12."), "invalid");
+        assert.ok(!isHexColorString("#j23"), "invalid");
+        assert.ok(!isHexColorString("#jf3300"), "invalid");
+        assert.ok(!isHexColorString("#j30f"), "invalid");
+        assert.ok(!isHexColorString("#jf3300ff"), "invalid");
+        assert.ok(isHexColorString("#123"), "valid 3 digits rgb");
+        assert.ok(isHexColorString("#ff3300"), "valid 6 digits rrggbb");
+        assert.ok(isHexColorString("#f30f"), "valid 4 digits rgba");
+        assert.ok(isHexColorString("#ff3300ff"), "valid 8 digits rrggbbaa");
     });
 });
