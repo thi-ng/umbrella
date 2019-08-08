@@ -1,12 +1,8 @@
 import { pointInside, rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
 import { Vec } from "@thi.ng/vectors";
-import {
-    IGridLayout,
-    Key,
-    LayoutBox,
-    MouseButton
-} from "../api";
+import { IGridLayout, LayoutBox, MouseButton } from "../api";
+import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
@@ -54,16 +50,8 @@ export const buttonRaw = (
     };
     gui.add(shape);
     label && lpos && gui.add(textLabelRaw(lpos, gui.textColor(hover), label));
-    if (focused) {
-        switch (gui.key) {
-            case Key.TAB:
-                gui.switchFocus();
-                break;
-            case Key.ENTER:
-            case Key.SPACE:
-                return true;
-            default:
-        }
+    if (focused && handleButtonKeys(gui)) {
+        return true;
     }
     gui.lastID = id;
     // only emit true on mouse release over this button

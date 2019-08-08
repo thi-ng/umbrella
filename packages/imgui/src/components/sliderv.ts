@@ -1,25 +1,17 @@
 import { Fn } from "@thi.ng/api";
 import { pointInside, rect } from "@thi.ng/geom";
-import {
-    clamp,
-    fit,
-    norm,
-    roundTo
-} from "@thi.ng/math";
+import { fit, norm } from "@thi.ng/math";
 import {
     IGridLayout,
-    Key,
     KeyModifier,
     LayoutBox,
     MouseButton
 } from "../api";
+import { handleSlider1Keys, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
-
-const $ = (x: number, prec: number, min: number, max: number) =>
-    clamp(roundTo(x, prec), min, max);
 
 export const sliderV = (
     gui: IMGUI,
@@ -90,11 +82,11 @@ export const sliderVRaw = (
         if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
-            val[i] = $(
+            val[i] = slider1Val(
                 fit(gui.mouse[1], ymax - 1, y, min, max),
-                prec,
                 min,
-                max
+                max,
+                prec
             );
             if (gui.modifiers & KeyModifier.ALT) {
                 val.fill(val[i]);
@@ -132,22 +124,8 @@ export const sliderVRaw = (
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
-    if (focused) {
-        switch (gui.key) {
-            case Key.TAB:
-                gui.switchFocus();
-                break;
-            case Key.UP:
-            case Key.DOWN: {
-                const step =
-                    (gui.key === Key.UP ? prec : -prec) *
-                    (gui.isShiftDown() ? 5 : 1);
-                val[i] = $(v + step, prec, min, max);
-                gui.isAltDown() && val.fill(val[i]);
-                return true;
-            }
-            default:
-        }
+    if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
+        return true;
     }
     gui.lastID = id;
     return active;

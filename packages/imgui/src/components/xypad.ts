@@ -1,24 +1,11 @@
 import { Fn } from "@thi.ng/api";
-import {
-    group,
-    line,
-    pointInside,
-    rect
-} from "@thi.ng/geom";
-import {
-    add2,
-    clamp2,
-    fit2,
-    round2,
-    Vec
-} from "@thi.ng/vectors";
-import { IGridLayout, Key, MouseButton } from "../api";
+import { line, pointInside, rect } from "@thi.ng/geom";
+import { fit2, Vec } from "@thi.ng/vectors";
+import { IGridLayout, LayoutBox, MouseButton } from "../api";
+import { handleSlider2Keys, slider2Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
-
-const $ = (v: Vec, prec: number, min: Vec, max: Vec) =>
-    clamp2(v, round2(v, v, prec), min, max);
 
 /**
  *
@@ -55,26 +42,30 @@ export const xyPad = (
     fmt?: Fn<Vec, string>,
     info?: string
 ) => {
+    let box: LayoutBox;
     const ch = layout.cellH;
     const gap = layout.gap;
-    let rows = mode > 0 ? mode : layout.cellW / (ch + gap);
-    rows = mode == -2 ? Math.ceil(rows) : rows | 0;
-    const { x, y, w, h } = layout.next([1, rows + 1]);
-    const hh = mode === -2 ? w : h - ch - gap;
+    if (mode == -2) {
+        box = layout.nextSquare();
+    } else {
+        let rows = (mode > 0 ? mode : layout.cellW / (ch + gap)) | 0;
+        box = layout.next([1, rows + 1]);
+        box.h -= ch + gap;
+    }
     return xyPadRaw(
         gui,
         id,
-        x,
-        y,
-        w,
-        hh,
+        box.x,
+        box.y,
+        box.w,
+        box.h,
         min,
         max,
         prec,
         val,
         yUp,
         0,
-        hh + gap + ch / 2 + gui.theme.baseLine,
+        box.h + gap + ch / 2 + gui.theme.baseLine,
         label,
         fmt,
         info
@@ -113,7 +104,12 @@ export const xyPadRaw = (
         if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
-            $(fit2(val, gui.mouse, pos, maxPos, min, max), prec, min, max);
+            slider2Val(
+                fit2(val, gui.mouse, pos, maxPos, min, max),
+                min,
+                max,
+                prec
+            );
         }
         info && tooltipRaw(gui, info);
     }
@@ -125,12 +121,12 @@ export const xyPadRaw = (
     const { 0: cx, 1: cy } = fit2([], val, min, max, pos, maxPos);
     gui.add(
         box,
-        group(
-            {
-                stroke: col
-            },
-            [line([x, cy], [maxX, cy]), line([cx, y], [cx, maxY])]
-        ),
+        line([x, cy], [maxX, cy], {
+            stroke: col
+        }),
+        line([cx, y], [cx, maxY], {
+            stroke: col
+        }),
         textLabelRaw(
             [x + lx, y + ly],
             col,
@@ -138,30 +134,8 @@ export const xyPadRaw = (
                 (fmt ? fmt(val) : `${val[0] | 0}, ${val[1] | 0}`)
         )
     );
-    if (gui.focusID == id) {
-        switch (gui.key) {
-            case Key.TAB:
-                gui.switchFocus();
-                break;
-            case Key.LEFT:
-            case Key.RIGHT: {
-                const step =
-                    (gui.key === Key.RIGHT ? prec : -prec) *
-                    (gui.isShiftDown() ? 5 : 1);
-                $(add2(val, val, [step, 0]), prec, min, max);
-                return true;
-            }
-            case Key.UP:
-            case Key.DOWN: {
-                const step =
-                    (gui.key === Key.UP ? prec : -prec) *
-                    (yUp ? 1 : -1) *
-                    (gui.isShiftDown() ? 5 : 1);
-                $(add2(val, val, [0, step]), prec, min, max);
-                return true;
-            }
-            default:
-        }
+    if (focused && handleSlider2Keys(gui, min, max, prec, val, yUp)) {
+        return true;
     }
     gui.lastID = id;
     return active;

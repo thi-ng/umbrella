@@ -70,6 +70,15 @@ export class GridLayout implements IGridLayout {
         return cell;
     }
 
+    nextSquare() {
+        const box = this.next([
+            1,
+            Math.ceil(this.cellW / (this.cellH + this.gap)) + 1
+        ]);
+        box.h = box.w;
+        return box;
+    }
+
     /**
      * Requests a `spans` sized cell from this layout (via `.next()`)
      * and creates and returns a new child `GridLayout` for the returned

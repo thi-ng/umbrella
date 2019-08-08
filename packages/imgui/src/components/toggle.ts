@@ -1,10 +1,6 @@
 import { pointInside, rect } from "@thi.ng/geom";
-import {
-    IGridLayout,
-    Key,
-    LayoutBox,
-    MouseButton
-} from "../api";
+import { IGridLayout, LayoutBox, MouseButton } from "../api";
+import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
@@ -88,18 +84,7 @@ export const toggleRaw = (
                 label
             )
         );
-    if (focused) {
-        switch (gui.key) {
-            case Key.TAB:
-                gui.switchFocus();
-                break;
-            case Key.ENTER:
-            case Key.SPACE:
-                changed = true;
-                break;
-            default:
-        }
-    }
+    focused && (changed = handleButtonKeys(gui) || changed);
     changed && (val[i] = !v);
     gui.lastID = id;
     return changed;

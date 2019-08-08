@@ -3,6 +3,7 @@ export * from "./gui";
 export * from "./layout";
 
 export * from "./components/button";
+export * from "./components/dial";
 export * from "./components/dropdown";
 export * from "./components/radio";
 export * from "./components/sliderh";
@@ -12,3 +13,6 @@ export * from "./components/textlabel";
 export * from "./components/toggle";
 export * from "./components/tooltip";
 export * from "./components/xypad";
+
+export * from "./behaviors/button";
+export * from "./behaviors/slider";

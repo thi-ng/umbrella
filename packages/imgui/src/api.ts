@@ -72,6 +72,8 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
     readonly cellH: number;
     readonly gap: number;
 
+    nextSquare(): LayoutBox;
+
     nest(cols: number, spans?: [number, number]): IGridLayout;
 }
 
