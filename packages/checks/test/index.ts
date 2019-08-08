@@ -11,6 +11,8 @@ import { isString } from "../src/is-string";
 import { isSymbol } from "../src/is-symbol";
 import { isTransferable } from "../src/is-transferable";
 import { isTypedArray } from "../src/is-typedarray";
+import { isNil } from "../src/is-nil";
+import { isHexColorString } from "../src/is-hex-color-string";
 
 describe("checks", function() {
     it("existsAndNotNull", () => {
@@ -151,5 +153,33 @@ describe("checks", function() {
         assert.ok(!isTransferable(0), "zero");
         assert.ok(!isTransferable(null), "null");
         assert.ok(!isTransferable(undefined), "undefined");
+    });
+
+    it("isNil", () => {
+        assert.ok(isNil(undefined), "undefined");
+        assert.ok(isNil(null), "null");
+        assert.ok(!isNil("foo"), "string");
+        assert.ok(!isNil({}), "empty object");
+        assert.ok(!isNil([]), "empty array");
+        assert.ok(!isNil(""), "empty string");
+        assert.ok(!isNil(false), "false");
+        assert.ok(!isNil(true), "true");
+        assert.ok(!isNil(() => {}), "function");
+    });
+
+    it("isHexColorString", () => {
+        assert.ok(!isHexColorString(undefined), "undefined");
+        assert.ok(!isHexColorString(null), "null");
+        assert.ok(!isHexColorString("foo"), "string");
+        assert.ok(!isHexColorString("123"), "string");
+        assert.ok(!isHexColorString("#12."), "string");
+        assert.ok(!isHexColorString("#j23"), "string");
+        assert.ok(!isHexColorString("#jf3300"), "string");
+        assert.ok(!isHexColorString("#j30f"), "string");
+        assert.ok(!isHexColorString("#jf3300ff"), "string");
+        assert.ok(isHexColorString("#123"), "string");
+        assert.ok(isHexColorString("#ff3300"), "string");
+        assert.ok(isHexColorString("#f30f"), "string");
+        assert.ok(isHexColorString("#ff3300ff"), "string");
     });
 });
