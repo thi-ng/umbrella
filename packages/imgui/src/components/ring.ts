@@ -1,13 +1,16 @@
 import { Fn } from "@thi.ng/api";
-import { circle, line } from "@thi.ng/geom";
+import { polygon } from "@thi.ng/geom";
 import { pointInCircle } from "@thi.ng/geom-isec";
 import {
+    fitClamped,
     HALF_PI,
+    mix,
     norm,
     PI,
     TAU
 } from "@thi.ng/math";
-import { cartesian2 } from "@thi.ng/vectors";
+import { map, normRange } from "@thi.ng/transducers";
+import { cartesian2, Vec } from "@thi.ng/vectors";
 import { KeyModifier, LayoutBox, MouseButton } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
@@ -16,7 +19,23 @@ import { GridLayout, isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
-export const dial = (
+const arcVerts = (
+    o: Vec,
+    r: number,
+    start: number,
+    end: number,
+    thetaRes = 12
+): Iterable<Vec> =>
+    r > 1
+        ? map(
+              (t) => cartesian2(null, [r, mix(start, end, t)], o),
+              normRange(
+                  Math.max(1, Math.abs(end - start) / (PI / thetaRes)) | 0
+              )
+          )
+        : [o];
+
+export const ring = (
     gui: IMGUI,
     layout: GridLayout | LayoutBox,
     id: string,
@@ -25,12 +44,13 @@ export const dial = (
     prec: number,
     val: number[],
     i: number,
+    rscale: number,
     label?: string,
     fmt?: Fn<number, string>,
     info?: string
 ) => {
     const { x, y, w, h, ch } = isLayout(layout) ? layout.nextSquare() : layout;
-    return dialRaw(
+    return ringRaw(
         gui,
         id,
         x,
@@ -42,6 +62,7 @@ export const dial = (
         prec,
         val,
         i,
+        rscale,
         gui.theme.pad,
         h + ch / 2 + gui.theme.baseLine,
         label,
@@ -50,7 +71,7 @@ export const dial = (
     );
 };
 
-export const dialRaw = (
+export const ringRaw = (
     gui: IMGUI,
     id: string,
     x: number,
@@ -62,6 +83,7 @@ export const dialRaw = (
     prec: number,
     val: number[],
     i: number,
+    rscale: number,
     lx: number,
     ly: number,
     label?: string,
@@ -74,6 +96,7 @@ export const dialRaw = (
     let active = false;
     const thetaGap = PI / 3;
     const startTheta = HALF_PI + thetaGap / 2;
+    const endTheta = HALF_PI + TAU - thetaGap / 2;
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
@@ -98,15 +121,23 @@ export const dialRaw = (
     const focused = gui.requestFocus(id);
     const v = val[i];
     const valTheta = startTheta + (TAU - thetaGap) * norm(v, min, max);
+    const r2 = r * rscale;
     // adaptive arc resolution
-    const bgShape = circle(pos, r, {
-        fill: gui.bgColor(hover || focused),
-        stroke: gui.focusColor(id)
-    });
-    const valShape = line(cartesian2(null, [r, valTheta], pos), pos, {
-        stroke: gui.fgColor(hover),
-        weight: 3
-    });
+    const res = fitClamped(r, 15, 60, 12, 30);
+    const bgShape = polygon(
+        [
+            ...arcVerts(pos, r, startTheta, endTheta, res),
+            ...arcVerts(pos, r2, endTheta, startTheta, res)
+        ],
+        { fill: gui.bgColor(hover || focused), stroke: gui.focusColor(id) }
+    );
+    const valShape = polygon(
+        [
+            ...arcVerts(pos, r, startTheta, valTheta, res),
+            ...arcVerts(pos, r2, valTheta, startTheta, res)
+        ],
+        { fill: gui.fgColor(hover) }
+    );
     gui.add(
         bgShape,
         valShape,
