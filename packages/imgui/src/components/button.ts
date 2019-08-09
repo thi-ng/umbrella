@@ -1,6 +1,6 @@
 import { pointInside, rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
-import { Vec } from "@thi.ng/vectors";
+import { ReadonlyVec } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox, MouseButton } from "../api";
 import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
@@ -8,11 +8,12 @@ import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
-export const button = (
+export const buttonH = (
     gui: IMGUI,
     layout: IGridLayout | LayoutBox,
     id: string,
     label?: string,
+    labelHover?: string,
     info?: string
 ) => {
     const theme = gui.theme;
@@ -21,8 +22,31 @@ export const button = (
         gui,
         id,
         rect([x, y], [w, h]),
+        [1, 0, 0, 1, x + theme.pad, y + h / 2 + theme.baseLine],
         label,
-        [x + theme.pad, y + h / 2 + theme.baseLine],
+        labelHover,
+        info
+    );
+};
+
+export const buttonV = (
+    gui: IMGUI,
+    layout: IGridLayout | LayoutBox,
+    id: string,
+    rows: number,
+    label?: string,
+    labelHover?: string,
+    info?: string
+) => {
+    const theme = gui.theme;
+    const { x, y, w, h } = isLayout(layout) ? layout.next([1, rows]) : layout;
+    return buttonRaw(
+        gui,
+        id,
+        rect([x, y], [w, h]),
+        [0, -1, 1, 0, x + w / 2 + theme.baseLine, y + h - theme.pad],
+        label,
+        labelHover,
         info
     );
 };
@@ -31,8 +55,9 @@ export const buttonRaw = (
     gui: IMGUI,
     id: string,
     shape: IShape,
+    lmat?: ReadonlyVec,
     label?: string,
-    lpos?: Vec,
+    labelHover?: string,
     info?: string
 ) => {
     const hover = pointInside(shape, gui.mouse);
@@ -49,7 +74,18 @@ export const buttonRaw = (
         stroke: gui.focusColor(id)
     };
     gui.add(shape);
-    label && lpos && gui.add(textLabelRaw(lpos, gui.textColor(hover), label));
+    label &&
+        lmat &&
+        gui.add(
+            textLabelRaw(
+                [0, 0],
+                {
+                    transform: lmat,
+                    fill: gui.textColor(hover)
+                },
+                hover && labelHover ? labelHover : label
+            )
+        );
     if (focused && handleButtonKeys(gui)) {
         return true;
     }
