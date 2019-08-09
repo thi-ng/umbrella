@@ -33,7 +33,7 @@ const DEFAULTS: any = {
     align: "left",
     alpha: 1,
     baseline: "alphabetic",
-    comp: "source-over",
+    compose: "source-over",
     dash: [],
     dashOffset: 0,
     direction: "inherit",
@@ -48,7 +48,8 @@ const DEFAULTS: any = {
     shadowX: 0,
     shadowY: 0,
     smooth: true,
-    stroke: "#000"
+    stroke: "#000",
+    weight: 1
 };
 
 const CTX_ATTRIBS: IObjectOf<string> = {
@@ -385,7 +386,7 @@ const restoreState = (
     }
     const edits = curr.edits;
     if (edits) {
-        for (let attribs = prev.attribs, i = edits.length - 1; i >= 0; i--) {
+        for (let attribs = prev.attribs, i = edits.length; --i >= 0; ) {
             const id = edits[i];
             const v = attribs[id];
             setAttrib(
