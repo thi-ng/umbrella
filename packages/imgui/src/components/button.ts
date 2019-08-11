@@ -1,6 +1,6 @@
 import { pointInside, rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
-import { ReadonlyVec, ZERO2 } from "@thi.ng/vectors";
+import { hash, ReadonlyVec, ZERO2 } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox, MouseButton } from "../api";
 import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
@@ -18,13 +18,13 @@ export const buttonH = (
 ) => {
     const theme = gui.theme;
     const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
-    const hash = String([x, y, w, h]);
+    const key = hash([x, y, w, h]);
     return buttonRaw(
         gui,
         id,
-        gui.resource(id, hash, () => rect([x, y], [w, h])),
-        hash,
-        gui.resource(id, "mat" + hash, () => [
+        gui.resource(id, key, () => rect([x, y], [w, h])),
+        key,
+        gui.resource(id, "mat" + key, () => [
             1,
             0,
             0,
@@ -49,13 +49,13 @@ export const buttonV = (
 ) => {
     const theme = gui.theme;
     const { x, y, w, h } = isLayout(layout) ? layout.next([1, rows]) : layout;
-    const hash = String([x, y, w, h]);
+    const key = hash([x, y, w, h]);
     return buttonRaw(
         gui,
         id,
-        gui.resource(id, hash, () => rect([x, y], [w, h])),
-        hash,
-        gui.resource(id, "mat" + hash, () => [
+        gui.resource(id, key, () => rect([x, y], [w, h])),
+        key,
+        gui.resource(id, "mat" + key, () => [
             0,
             -1,
             1,
@@ -73,7 +73,7 @@ export const buttonRaw = (
     gui: IMGUI,
     id: string,
     shape: IShape,
-    hash: string,
+    hash: number | string,
     lmat?: ReadonlyVec,
     label?: string,
     labelHover?: string,

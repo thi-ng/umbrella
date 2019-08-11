@@ -7,7 +7,7 @@ import {
     PI,
     TAU
 } from "@thi.ng/math";
-import { cartesian2 } from "@thi.ng/vectors";
+import { cartesian2, hash } from "@thi.ng/vectors";
 import { LayoutBox, MouseButton } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
@@ -70,8 +70,8 @@ export const dialRaw = (
 ) => {
     const r = Math.min(w, h) / 2;
     const pos = [x + w / 2, y + h / 2];
-    const hash = String([x, y, r]);
-    gui.registerID(id, hash);
+    const key = hash([x, y, r]);
+    gui.registerID(id, key);
     const hover = pointInCircle(gui.mouse, pos, r);
     let active = false;
     const thetaGap = PI / 2;
@@ -79,7 +79,7 @@ export const dialRaw = (
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
+        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
             val[i] = dialVal(
@@ -97,10 +97,10 @@ export const dialRaw = (
     }
     const focused = gui.requestFocus(id);
     const v = val[i];
-    const bgShape = gui.resource(id, hash, () => circle(pos, r, {}));
+    const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
     bgShape.attribs.fill = gui.bgColor(hover || focused);
     bgShape.attribs.stroke = gui.focusColor(id);
-    const valShape = gui.resource(id, String(v), () =>
+    const valShape = gui.resource(id, v, () =>
         line(
             cartesian2(
                 null,

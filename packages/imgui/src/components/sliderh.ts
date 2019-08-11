@@ -1,12 +1,8 @@
 import { Fn } from "@thi.ng/api";
 import { pointInside, rect } from "@thi.ng/geom";
 import { fit, norm } from "@thi.ng/math";
-import {
-    IGridLayout,
-    KeyModifier,
-    LayoutBox,
-    MouseButton
-} from "../api";
+import { hash } from "@thi.ng/vectors";
+import { IGridLayout, LayoutBox, MouseButton } from "../api";
 import { handleSlider1Keys, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
@@ -71,15 +67,15 @@ export const sliderHRaw = (
     info?: string
 ) => {
     const theme = gui.theme;
-    const hash = String([x, y, w, h]);
-    gui.registerID(id, hash);
-    const box = gui.resource(id, hash, () => rect([x, y], [w, h], {}));
+    const key = hash([x, y, w, h]);
+    gui.registerID(id, key);
+    const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const hover = pointInside(box, gui.mouse);
     let active = false;
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
+        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
             val[i] = slider1Val(
@@ -88,16 +84,14 @@ export const sliderHRaw = (
                 max,
                 prec
             );
-            if (gui.modifiers & KeyModifier.ALT) {
-                val.fill(val[i]);
-            }
+            gui.isAltDown() && val.fill(val[i]);
         }
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     const v = val[i];
     const normVal = norm(v, min, max);
-    const valueBox = gui.resource(id, String(v), () =>
+    const valueBox = gui.resource(id, v, () =>
         rect([x, y], [1 + normVal * (w - 1), h], {})
     );
     valueBox.attribs.fill = gui.fgColor(hover);

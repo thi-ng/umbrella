@@ -1,4 +1,4 @@
-import { Fn0, IObjectOf, IToHiccup } from "@thi.ng/api";
+import { Fn0, IToHiccup } from "@thi.ng/api";
 import { setC2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
@@ -34,9 +34,9 @@ export class IMGUI implements IToHiccup {
     protected currIDs: Set<string>;
     protected prevIDs: Set<string>;
 
-    protected resources: IObjectOf<any>;
-    protected states: IObjectOf<any>;
-    protected sizes: IObjectOf<any>;
+    protected resources: Map<string, Map<number | string, any>>;
+    protected states: Map<string, number | string>;
+    protected sizes: Map<string, any>;
 
     constructor(opts: IMGUIOpts) {
         this.width = opts.width;
@@ -49,9 +49,9 @@ export class IMGUI implements IToHiccup {
         this.hotID = this.activeID = this.focusID = this.lastID = "";
         this.currIDs = new Set<string>();
         this.prevIDs = new Set<string>();
-        this.resources = {};
-        this.sizes = {};
-        this.states = {};
+        this.resources = new Map<string, Map<number | string, any>>();
+        this.sizes = new Map<string, number | string>();
+        this.states = new Map<string, any>();
         this.layers = [[], []];
         const touchActive = (e: TouchEvent) => {
             setMouse(e, this.mouse);
@@ -109,8 +109,6 @@ export class IMGUI implements IToHiccup {
 
     setTheme(theme: Partial<GUITheme>) {
         this.theme = { ...DEFAULT_THEME, ...theme };
-        this.sizes = {};
-        this.resources = {};
         this.updateAttribs();
     }
 
@@ -169,9 +167,9 @@ export class IMGUI implements IToHiccup {
         const curr = this.currIDs;
         for (let id of prev) {
             if (!curr.has(id)) {
-                delete this.resources[id];
-                delete this.sizes[id];
-                delete this.states[id];
+                this.resources.delete(id);
+                this.sizes.delete(id);
+                this.states.delete(id);
             }
         }
         this.prevIDs = curr;
@@ -199,17 +197,19 @@ export class IMGUI implements IToHiccup {
         return this.theme.charWidth * txt.length;
     }
 
-    registerID(id: string, hash = "") {
+    registerID(id: string, hash: number | string) {
         this.currIDs.add(id);
-        if (this.sizes[id] !== hash) {
-            this.sizes[id] = hash;
-            delete this.resources[id];
+        if (this.sizes.get(id) !== hash) {
+            this.sizes.set(id, hash);
+            this.resources.delete(id);
         }
     }
 
-    resource(id: string, hash: string, ctor: Fn0<any>) {
-        const c = this.resources[id] || (this.resources[id] = {});
-        return c[hash] || (c[hash] = ctor());
+    resource(id: string, hash: number | string, ctor: Fn0<any>) {
+        let res: any;
+        let c = this.resources.get(id);
+        !c && this.resources.set(id, (c = new Map()));
+        return c.get(hash) || (c.set(hash, (res = ctor())), res);
     }
 
     add(...els: any[]) {

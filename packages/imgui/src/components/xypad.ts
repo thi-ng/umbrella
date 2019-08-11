@@ -1,6 +1,6 @@
 import { Fn } from "@thi.ng/api";
 import { line, pointInside, rect } from "@thi.ng/geom";
-import { fit2, Vec } from "@thi.ng/vectors";
+import { fit2, hash, Vec } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox, MouseButton } from "../api";
 import { handleSlider2Keys, slider2Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
@@ -94,9 +94,9 @@ export const xyPadRaw = (
     const maxY = y + h - 1;
     const pos = yUp ? [x, maxY] : [x, y];
     const maxPos = yUp ? [maxX, y] : [maxX, y + h - 1];
-    const hash = String([x, y, w, h]);
-    gui.registerID(id, hash);
-    const box = gui.resource(id, hash, () => rect([x, y], [w, h]));
+    const key = hash([x, y, w, h]);
+    gui.registerID(id, key);
+    const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
     const hover = pointInside(box, gui.mouse);
     let active = false;

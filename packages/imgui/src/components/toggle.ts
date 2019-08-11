@@ -1,4 +1,5 @@
 import { pointInside, rect } from "@thi.ng/geom";
+import { hash } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox, MouseButton } from "../api";
 import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
@@ -59,9 +60,9 @@ export const toggleRaw = (
     info?: string
 ) => {
     const theme = gui.theme;
-    const hash = String([x, y, w, h]);
-    gui.registerID(id, hash);
-    const box = gui.resource(id, hash, () => rect([x, y], [w, h]));
+    const key = hash([x, y, w, h]);
+    gui.registerID(id, key);
+    const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const hover = pointInside(box, gui.mouse);
     if (hover) {
         gui.hotID = id;

@@ -1,6 +1,7 @@
 import { Predicate } from "@thi.ng/api";
 import { pointInside, rect } from "@thi.ng/geom";
 import { fitClamped } from "@thi.ng/math";
+import { hash } from "@thi.ng/vectors";
 import {
     IGridLayout,
     Key,
@@ -44,16 +45,14 @@ export const textFieldRaw = (
     const maxOffset = Math.max(0, txtLen - maxLen);
     const offset = label[2] || 0;
     const drawTxt = txt.substr(offset, maxLen);
-    const hash = String([x, y, w, h]);
-    gui.registerID(id, hash);
-    const box = gui.resource(id, hash, () => rect([x, y], [w, h], {}));
+    const key = hash([x, y, w, h]);
+    gui.registerID(id, key);
+    const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const hover = pointInside(box, gui.mouse);
     if (hover) {
         gui.hotID = id;
         if (gui.buttons & MouseButton.LEFT) {
-            if (gui.activeID === "") {
-                gui.activeID = id;
-            }
+            gui.activeID === "" && (gui.activeID = id);
             label[1] = Math.min(
                 Math.round(
                     fitClamped(

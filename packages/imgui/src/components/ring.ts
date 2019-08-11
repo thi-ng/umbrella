@@ -10,8 +10,8 @@ import {
     TAU
 } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
-import { cartesian2, Vec } from "@thi.ng/vectors";
-import { KeyModifier, MouseButton } from "../api";
+import { cartesian2, hash, Vec } from "@thi.ng/vectors";
+import { MouseButton } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
@@ -96,8 +96,8 @@ export const ringRaw = (
     info?: string
 ) => {
     const r = w / 2;
-    const hash = String([x, y, r]);
-    gui.registerID(id, hash);
+    const key = hash([x, y, r]);
+    gui.registerID(id, key);
     const pos = [x + r, y + r];
     const hover = pointInRect(gui.mouse, [x, y], [w, h]);
     let active = false;
@@ -118,9 +118,7 @@ export const ringRaw = (
                 max,
                 prec
             );
-            if (gui.modifiers & KeyModifier.ALT) {
-                val.fill(val[i]);
-            }
+            gui.isAltDown() && val.fill(val[i]);
         }
         info && tooltipRaw(gui, info);
     }
@@ -130,7 +128,7 @@ export const ringRaw = (
     const r2 = r * rscale;
     // adaptive arc resolution
     const res = fitClamped(r, 15, 80, 12, 30);
-    const bgShape = gui.resource(id, hash, () =>
+    const bgShape = gui.resource(id, key, () =>
         polygon(
             [
                 ...arcVerts(pos, r, startTheta, endTheta, res),
@@ -141,7 +139,7 @@ export const ringRaw = (
     );
     bgShape.attribs.fill = gui.bgColor(hover || focused);
     bgShape.attribs.stroke = gui.focusColor(id);
-    const valShape = gui.resource(id, String(v), () =>
+    const valShape = gui.resource(id, v, () =>
         polygon(
             [
                 ...arcVerts(pos, r, startTheta, valTheta, res),
