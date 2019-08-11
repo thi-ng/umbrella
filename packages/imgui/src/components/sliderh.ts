@@ -71,7 +71,9 @@ export const sliderHRaw = (
     info?: string
 ) => {
     const theme = gui.theme;
-    const box = rect([x, y], [w, h]);
+    const hash = String([x, y, w, h]);
+    gui.registerID(id, hash);
+    const box = gui.resource(id, hash, () => rect([x, y], [w, h], {}));
     const hover = pointInside(box, gui.mouse);
     let active = false;
     if (hover) {
@@ -95,22 +97,20 @@ export const sliderHRaw = (
     const focused = gui.requestFocus(id);
     const v = val[i];
     const normVal = norm(v, min, max);
-    const valueBox = rect([x, y], [1 + normVal * (w - 1), h], {
-        fill: gui.fgColor(hover)
-    });
-    box.attribs = {
-        fill: gui.bgColor(hover || focused),
-        stroke: gui.focusColor(id)
-    };
-    gui.add(
-        box,
-        valueBox,
+    const valueBox = gui.resource(id, String(v), () =>
+        rect([x, y], [1 + normVal * (w - 1), h], {})
+    );
+    valueBox.attribs.fill = gui.fgColor(hover);
+    box.attribs.fill = gui.bgColor(hover || focused);
+    box.attribs.stroke = gui.focusColor(id);
+    const valLabel = gui.resource(id, "l" + v, () =>
         textLabelRaw(
             [x + theme.pad, y + h / 2 + theme.baseLine],
-            gui.textColor(normVal > 0.25),
+            gui.textColor(false),
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
+    gui.add(box, valueBox, valLabel);
     if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
         return true;
     }

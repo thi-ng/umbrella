@@ -2,7 +2,6 @@ import { Predicate } from "@thi.ng/api";
 import { pointInside, rect } from "@thi.ng/geom";
 import { fitClamped } from "@thi.ng/math";
 import {
-    CONTROL_KEYS,
     IGridLayout,
     Key,
     LayoutBox,
@@ -45,7 +44,9 @@ export const textFieldRaw = (
     const maxOffset = Math.max(0, txtLen - maxLen);
     const offset = label[2] || 0;
     const drawTxt = txt.substr(offset, maxLen);
-    const box = rect([x, y], [w, h]);
+    const hash = String([x, y, w, h]);
+    gui.registerID(id, hash);
+    const box = gui.resource(id, hash, () => rect([x, y], [w, h], {}));
     const hover = pointInside(box, gui.mouse);
     if (hover) {
         gui.hotID = id;
@@ -70,10 +71,8 @@ export const textFieldRaw = (
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    box.attribs = {
-        fill: gui.bgColor(focused || hover),
-        stroke: gui.focusColor(id)
-    };
+    box.attribs.fill = gui.bgColor(focused || hover);
+    box.attribs.stroke = gui.focusColor(id);
     gui.add(
         box,
         textLabelRaw(
@@ -93,13 +92,6 @@ export const textFieldRaw = (
                 [xx, y + 4],
                 [xx, y + h - 4]
             ]);
-        // gui.add(
-        //     textLabel(
-        //         [x, y + 32],
-        //         "#fff",
-        //         `c: ${cursor} dc: ${drawCursor} o: ${offset}`
-        //     )
-        // );
         const k = gui.key;
         switch (k) {
             case "":
@@ -179,7 +171,7 @@ export const textFieldRaw = (
                 );
                 break;
             default: {
-                if (!CONTROL_KEYS.has(k) && filter(k)) {
+                if (k.length === 1 && filter(k)) {
                     label[0] = txt.substr(0, cursor) + k + txt.substr(cursor);
                     moveForward(
                         label,

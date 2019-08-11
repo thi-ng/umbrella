@@ -1,9 +1,10 @@
-import { IToHiccup } from "@thi.ng/api";
+import { Fn0, IObjectOf, IToHiccup } from "@thi.ng/api";
 import { setC2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
     GUITheme,
     IMGUIOpts,
+    Key,
     KeyModifier,
     MouseButton,
     NONE
@@ -30,6 +31,13 @@ export class IMGUI implements IToHiccup {
     t0: number;
     time!: number;
 
+    protected currIDs: Set<string>;
+    protected prevIDs: Set<string>;
+
+    protected resources: IObjectOf<any>;
+    protected states: IObjectOf<any>;
+    protected sizes: IObjectOf<any>;
+
     constructor(opts: IMGUIOpts) {
         this.width = opts.width;
         this.height = opts.height;
@@ -39,6 +47,11 @@ export class IMGUI implements IToHiccup {
         this.key = "";
         this.modifiers = 0;
         this.hotID = this.activeID = this.focusID = this.lastID = "";
+        this.currIDs = new Set<string>();
+        this.prevIDs = new Set<string>();
+        this.resources = {};
+        this.sizes = {};
+        this.states = {};
         this.layers = [[], []];
         const touchActive = (e: TouchEvent) => {
             setMouse(e, this.mouse);
@@ -96,6 +109,8 @@ export class IMGUI implements IToHiccup {
 
     setTheme(theme: Partial<GUITheme>) {
         this.theme = { ...DEFAULT_THEME, ...theme };
+        this.sizes = {};
+        this.resources = {};
         this.updateAttribs();
     }
 
@@ -145,10 +160,23 @@ export class IMGUI implements IToHiccup {
                 this.lastID = "";
             }
         }
-        if (this.key === "Tab") {
+        if (this.key === Key.TAB) {
             this.focusID = "";
         }
         this.key = "";
+        // garbage collect unused component state / resources
+        const prev = this.prevIDs;
+        const curr = this.currIDs;
+        for (let id of prev) {
+            if (!curr.has(id)) {
+                delete this.resources[id];
+                delete this.sizes[id];
+                delete this.states[id];
+            }
+        }
+        this.prevIDs = curr;
+        this.currIDs = prev;
+        prev.clear();
     }
 
     bgColor(hover: boolean) {
@@ -169,6 +197,19 @@ export class IMGUI implements IToHiccup {
 
     textWidth(txt: string) {
         return this.theme.charWidth * txt.length;
+    }
+
+    registerID(id: string, hash = "") {
+        this.currIDs.add(id);
+        if (this.sizes[id] !== hash) {
+            this.sizes[id] = hash;
+            delete this.resources[id];
+        }
+    }
+
+    resource(id: string, hash: string, ctor: Fn0<any>) {
+        const c = this.resources[id] || (this.resources[id] = {});
+        return c[hash] || (c[hash] = ctor());
     }
 
     add(...els: any[]) {

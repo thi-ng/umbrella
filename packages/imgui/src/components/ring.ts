@@ -1,6 +1,6 @@
 import { Fn } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom";
-import { pointInCircle } from "@thi.ng/geom-isec";
+import { pointInRect } from "@thi.ng/geom-isec";
 import {
     fitClamped,
     HALF_PI,
@@ -11,11 +11,11 @@ import {
 } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, Vec } from "@thi.ng/vectors";
-import { KeyModifier, LayoutBox, MouseButton } from "../api";
+import { KeyModifier, MouseButton } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { GridLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -37,19 +37,22 @@ const arcVerts = (
 
 export const ring = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: GridLayout,
     id: string,
     min: number,
     max: number,
     prec: number,
     val: number[],
     i: number,
+    thetaGap: number,
     rscale: number,
     label?: string,
     fmt?: Fn<number, string>,
     info?: string
 ) => {
-    const { x, y, w, h, ch } = isLayout(layout) ? layout.nextSquare() : layout;
+    const h = (layout.cellW / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+    const rows = Math.ceil(h / layout.cellHG + 1);
+    const { x, y, w, ch } = layout.next([1, rows]);
     return ringRaw(
         gui,
         id,
@@ -62,8 +65,9 @@ export const ring = (
         prec,
         val,
         i,
+        thetaGap,
         rscale,
-        gui.theme.pad,
+        0,
         h + ch / 2 + gui.theme.baseLine,
         label,
         fmt,
@@ -83,6 +87,7 @@ export const ringRaw = (
     prec: number,
     val: number[],
     i: number,
+    thetaGap: number,
     rscale: number,
     lx: number,
     ly: number,
@@ -90,17 +95,18 @@ export const ringRaw = (
     fmt?: Fn<number, string>,
     info?: string
 ) => {
-    const r = Math.min(w, h) / 2;
-    const pos = [x + w / 2, y + h / 2];
-    const hover = pointInCircle(gui.mouse, pos, r);
+    const r = w / 2;
+    const hash = String([x, y, r]);
+    gui.registerID(id, hash);
+    const pos = [x + r, y + r];
+    const hover = pointInRect(gui.mouse, [x, y], [w, h]);
     let active = false;
-    const thetaGap = PI / 3;
     const startTheta = HALF_PI + thetaGap / 2;
     const endTheta = HALF_PI + TAU - thetaGap / 2;
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
+        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
             val[i] = dialVal(
@@ -123,30 +129,36 @@ export const ringRaw = (
     const valTheta = startTheta + (TAU - thetaGap) * norm(v, min, max);
     const r2 = r * rscale;
     // adaptive arc resolution
-    const res = fitClamped(r, 15, 60, 12, 30);
-    const bgShape = polygon(
-        [
-            ...arcVerts(pos, r, startTheta, endTheta, res),
-            ...arcVerts(pos, r2, endTheta, startTheta, res)
-        ],
-        { fill: gui.bgColor(hover || focused), stroke: gui.focusColor(id) }
+    const res = fitClamped(r, 15, 80, 12, 30);
+    const bgShape = gui.resource(id, hash, () =>
+        polygon(
+            [
+                ...arcVerts(pos, r, startTheta, endTheta, res),
+                ...arcVerts(pos, r2, endTheta, startTheta, res)
+            ],
+            {}
+        )
     );
-    const valShape = polygon(
-        [
-            ...arcVerts(pos, r, startTheta, valTheta, res),
-            ...arcVerts(pos, r2, valTheta, startTheta, res)
-        ],
-        { fill: gui.fgColor(hover) }
+    bgShape.attribs.fill = gui.bgColor(hover || focused);
+    bgShape.attribs.stroke = gui.focusColor(id);
+    const valShape = gui.resource(id, String(v), () =>
+        polygon(
+            [
+                ...arcVerts(pos, r, startTheta, valTheta, res),
+                ...arcVerts(pos, r2, valTheta, startTheta, res)
+            ],
+            {}
+        )
     );
-    gui.add(
-        bgShape,
-        valShape,
+    valShape.attribs.fill = gui.fgColor(hover);
+    const valLabel = gui.resource(id, "l" + v, () =>
         textLabelRaw(
             [x + lx, y + ly],
             gui.textColor(false),
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
+    gui.add(bgShape, valShape, valLabel);
     if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
         return true;
     }

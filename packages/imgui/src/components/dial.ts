@@ -8,7 +8,7 @@ import {
     TAU
 } from "@thi.ng/math";
 import { cartesian2 } from "@thi.ng/vectors";
-import { KeyModifier, LayoutBox, MouseButton } from "../api";
+import { LayoutBox, MouseButton } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
@@ -70,9 +70,11 @@ export const dialRaw = (
 ) => {
     const r = Math.min(w, h) / 2;
     const pos = [x + w / 2, y + h / 2];
+    const hash = String([x, y, r]);
+    gui.registerID(id, hash);
     const hover = pointInCircle(gui.mouse, pos, r);
     let active = false;
-    const thetaGap = PI / 3;
+    const thetaGap = PI / 2;
     const startTheta = HALF_PI + thetaGap / 2;
     if (hover) {
         gui.hotID = id;
@@ -89,33 +91,36 @@ export const dialRaw = (
                 max,
                 prec
             );
-            if (gui.modifiers & KeyModifier.ALT) {
-                val.fill(val[i]);
-            }
+            gui.isAltDown() && val.fill(val[i]);
         }
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     const v = val[i];
-    const valTheta = startTheta + (TAU - thetaGap) * norm(v, min, max);
-    // adaptive arc resolution
-    const bgShape = circle(pos, r, {
-        fill: gui.bgColor(hover || focused),
-        stroke: gui.focusColor(id)
-    });
-    const valShape = line(cartesian2(null, [r, valTheta], pos), pos, {
-        stroke: gui.fgColor(hover),
-        weight: 3
-    });
-    gui.add(
-        bgShape,
-        valShape,
+    const bgShape = gui.resource(id, hash, () => circle(pos, r, {}));
+    bgShape.attribs.fill = gui.bgColor(hover || focused);
+    bgShape.attribs.stroke = gui.focusColor(id);
+    const valShape = gui.resource(id, String(v), () =>
+        line(
+            cartesian2(
+                null,
+                [r, startTheta + (TAU - thetaGap) * norm(v, min, max)],
+                pos
+            ),
+            pos,
+            {}
+        )
+    );
+    valShape.attribs.stroke = gui.fgColor(hover);
+    valShape.attribs.weight = 2;
+    const valLabel = gui.resource(id, "l" + v, () =>
         textLabelRaw(
             [x + lx, y + ly],
             gui.textColor(false),
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
+    gui.add(bgShape, valShape, valLabel);
     if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
         return true;
     }

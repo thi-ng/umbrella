@@ -59,7 +59,9 @@ export const toggleRaw = (
     info?: string
 ) => {
     const theme = gui.theme;
-    const box = rect([x, y], [w, h]);
+    const hash = String([x, y, w, h]);
+    gui.registerID(id, hash);
+    const box = gui.resource(id, hash, () => rect([x, y], [w, h]));
     const hover = pointInside(box, gui.mouse);
     if (hover) {
         gui.hotID = id;
@@ -69,7 +71,7 @@ export const toggleRaw = (
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    let changed = !gui.buttons && gui.hotID == id && gui.activeID == id;
+    let changed = !gui.buttons && gui.hotID === id && gui.activeID === id;
     const v = val[i];
     box.attribs = {
         fill: v ? gui.fgColor(hover) : gui.bgColor(hover),

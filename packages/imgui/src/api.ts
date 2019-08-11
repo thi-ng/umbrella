@@ -142,20 +142,20 @@ export const CONTROL_KEYS = new Set<string>([
 export const NONE = "__NONE__";
 
 export const DEFAULT_THEME: GUITheme = {
-    globalBg: "#333",
     font: "10px Menlo, monospace",
     charWidth: 6,
     baseLine: 4,
     pad: 8,
-    focus: [1, 1, 0, 1],
-    cursor: [1, 1, 0, 1],
-    bg: [0, 0, 0, 0.66],
-    fg: [0, 0.3, 0.5, 1],
-    text: [1, 1, 1, 1],
-    bgHover: [0.1, 0.1, 0.1, 0.9],
-    fgHover: [0, 0.66, 0.66, 1],
-    textHover: [1, 1, 1, 1],
-    bgTooltip: [1, 1, 1, 0.85],
+    globalBg: "#ccc",
+    focus: [0, 1, 0, 1],
+    cursor: [0, 0, 0, 1],
+    bg: [1, 1, 1, 0.66],
+    fg: [0.2, 0.8, 1, 1],
+    text: [0.3, 0.3, 0.3, 1],
+    bgHover: [1, 1, 1, 0.9],
+    fgHover: [0.3, 0.9, 1, 1],
+    textHover: [0.2, 0.2, 0.4, 1],
+    bgTooltip: [1, 1, 0.8, 0.85],
     textTooltip: [0, 0, 0, 1]
 };
 

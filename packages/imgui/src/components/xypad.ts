@@ -94,14 +94,16 @@ export const xyPadRaw = (
     const maxY = y + h - 1;
     const pos = yUp ? [x, maxY] : [x, y];
     const maxPos = yUp ? [maxX, y] : [maxX, y + h - 1];
-    const box = rect([x, y], [w, h]);
+    const hash = String([x, y, w, h]);
+    gui.registerID(id, hash);
+    const box = gui.resource(id, hash, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
     const hover = pointInside(box, gui.mouse);
     let active = false;
     if (hover) {
         gui.hotID = id;
         const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons == MouseButton.LEFT) {
+        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
             gui.activeID = id;
             active = true;
             slider2Val(
