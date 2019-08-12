@@ -12,7 +12,7 @@ import { isSymbol } from "../src/is-symbol";
 import { isTransferable } from "../src/is-transferable";
 import { isTypedArray } from "../src/is-typedarray";
 import { isNil } from "../src/is-nil";
-import { isHexColorString } from "../src/is-hex-color-string";
+import { isHexColor } from "../src/is-hex-color";
 
 describe("checks", function() {
     it("existsAndNotNull", () => {
@@ -167,19 +167,24 @@ describe("checks", function() {
         assert.ok(!isNil(() => {}), "function");
     });
 
-    it("isHexColorString", () => {
-        assert.ok(!isHexColorString(undefined), "undefined");
-        assert.ok(!isHexColorString(null), "null");
-        assert.ok(!isHexColorString("foo"), "invalid");
-        assert.ok(!isHexColorString("123"), "invalid");
-        assert.ok(!isHexColorString("#12."), "invalid");
-        assert.ok(!isHexColorString("#j23"), "invalid");
-        assert.ok(!isHexColorString("#jf3300"), "invalid");
-        assert.ok(!isHexColorString("#j30f"), "invalid");
-        assert.ok(!isHexColorString("#jf3300ff"), "invalid");
-        assert.ok(isHexColorString("#123"), "valid 3 digits rgb");
-        assert.ok(isHexColorString("#ff3300"), "valid 6 digits rrggbb");
-        assert.ok(isHexColorString("#f30f"), "valid 4 digits rgba");
-        assert.ok(isHexColorString("#ff3300ff"), "valid 8 digits rrggbbaa");
+    it("isHexColor", () => {
+        assert.ok(isHexColor("#123"), "valid 3 digits rgb");
+        assert.ok(isHexColor("#ff3300"), "valid 6 digits rrggbb");
+        assert.ok(isHexColor("#f30f"), "valid 4 digits rgba");
+        assert.ok(isHexColor("#ff3300ff"), "valid 8 digits rrggbbaa");
+        assert.ok(!isHexColor(undefined), "undefined");
+        assert.ok(!isHexColor(null), "null");
+        assert.ok(!isHexColor(""), "empty string");
+        assert.ok(!isHexColor("foo"), "invalid: foo");
+        assert.ok(!isHexColor("123"), "invalid: 123");
+        assert.ok(!isHexColor("#12."), "invalid: #12.");
+        assert.ok(!isHexColor("#j23"), "invalid: #j23");
+        assert.ok(!isHexColor("#jf3300"), "invalid: #jf3300");
+        assert.ok(!isHexColor("#j30f"), "invalid: #j30f");
+        assert.ok(!isHexColor("#jf3300ff"), "invalid: #jf3300ff");
+        assert.ok(!isHexColor("hi #123"), "invalid: hi #123");
+        assert.ok(!isHexColor("#ff3300 hi"), "invalid: #ff3300 hi");
+        assert.ok(!isHexColor("hi #ff3300 hi"), "invalid: hi #ff3300 hi");
+        assert.ok(!isHexColor("#123 #123"), "invalid: #123 #123");
     });
 });
