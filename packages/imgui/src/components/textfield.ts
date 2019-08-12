@@ -1,13 +1,8 @@
 import { Predicate } from "@thi.ng/api";
-import { pointInside, rect } from "@thi.ng/geom";
+import { rect } from "@thi.ng/geom";
 import { fitClamped } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
-import {
-    IGridLayout,
-    Key,
-    LayoutBox,
-    MouseButton
-} from "../api";
+import { IGridLayout, Key, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
@@ -48,11 +43,10 @@ export const textFieldRaw = (
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
-    const hover = pointInside(box, gui.mouse);
+    const hover = gui.isHover(id, box);
     if (hover) {
-        gui.hotID = id;
-        if (gui.buttons & MouseButton.LEFT) {
-            gui.activeID === "" && (gui.activeID = id);
+        if (gui.isMouseDown()) {
+            gui.activeID = id;
             label[1] = Math.min(
                 Math.round(
                     fitClamped(

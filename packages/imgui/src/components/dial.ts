@@ -8,7 +8,7 @@ import {
     TAU
 } from "@thi.ng/math";
 import { cartesian2, hash } from "@thi.ng/vectors";
-import { LayoutBox, MouseButton } from "../api";
+import { LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
@@ -70,18 +70,17 @@ export const dialRaw = (
 ) => {
     const r = Math.min(w, h) / 2;
     const pos = [x + w / 2, y + h / 2];
-    const key = hash([x, y, r]);
-    gui.registerID(id, key);
-    const hover = pointInCircle(gui.mouse, pos, r);
-    let active = false;
     const thetaGap = PI / 2;
     const startTheta = HALF_PI + thetaGap / 2;
+    const key = hash([x, y, r]);
+    gui.registerID(id, key);
+    const aid = gui.activeID;
+    const hover =
+        aid === id || (aid === "" && pointInCircle(gui.mouse, pos, r));
     if (hover) {
         gui.hotID = id;
-        const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
+        if (gui.isMouseDown()) {
             gui.activeID = id;
-            active = true;
             val[i] = dialVal(
                 gui.mouse,
                 pos,
@@ -125,5 +124,5 @@ export const dialRaw = (
         return true;
     }
     gui.lastID = id;
-    return active;
+    return gui.activeID === id;
 };

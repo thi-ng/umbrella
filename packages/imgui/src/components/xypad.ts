@@ -1,14 +1,13 @@
 import { Fn } from "@thi.ng/api";
-import { line, pointInside, rect } from "@thi.ng/geom";
+import { line, rect } from "@thi.ng/geom";
 import { fit2, hash, Vec } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox, MouseButton } from "../api";
+import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider2Keys, slider2Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 /**
- *
  * `mode` interpretation:
  *
  * - -2 = square
@@ -90,22 +89,18 @@ export const xyPadRaw = (
     fmt?: Fn<Vec, string>,
     info?: string
 ) => {
-    const maxX = x + w - 1;
-    const maxY = y + h - 1;
+    const maxX = x + w;
+    const maxY = y + h;
     const pos = yUp ? [x, maxY] : [x, y];
-    const maxPos = yUp ? [maxX, y] : [maxX, y + h - 1];
+    const maxPos = yUp ? [maxX, y] : [maxX, maxY];
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
-    const hover = pointInside(box, gui.mouse);
-    let active = false;
+    const hover = gui.isHover(id, box);
     if (hover) {
-        gui.hotID = id;
-        const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
+        if (gui.isMouseDown()) {
             gui.activeID = id;
-            active = true;
             slider2Val(
                 fit2(val, gui.mouse, pos, maxPos, min, max),
                 min,
@@ -140,5 +135,5 @@ export const xyPadRaw = (
         return true;
     }
     gui.lastID = id;
-    return active;
+    return gui.activeID === id;
 };

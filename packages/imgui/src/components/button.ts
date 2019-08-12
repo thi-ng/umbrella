@@ -1,7 +1,7 @@
-import { pointInside, rect } from "@thi.ng/geom";
+import { rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
 import { hash, ReadonlyVec, ZERO2 } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox, MouseButton } from "../api";
+import { IGridLayout, LayoutBox } from "../api";
 import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
@@ -80,12 +80,9 @@ export const buttonRaw = (
     info?: string
 ) => {
     gui.registerID(id, hash);
-    const hover = pointInside(shape, gui.mouse);
+    const hover = gui.isHover(id, shape);
     if (hover) {
-        gui.hotID = id;
-        if (gui.activeID === "" && gui.buttons & MouseButton.LEFT) {
-            gui.activeID = id;
-        }
+        gui.isMouseDown() && (gui.activeID = id);
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);

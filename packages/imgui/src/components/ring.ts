@@ -11,7 +11,6 @@ import {
 } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, hash, Vec } from "@thi.ng/vectors";
-import { MouseButton } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
@@ -99,16 +98,15 @@ export const ringRaw = (
     const key = hash([x, y, r]);
     gui.registerID(id, key);
     const pos = [x + r, y + r];
-    const hover = pointInRect(gui.mouse, [x, y], [w, h]);
-    let active = false;
     const startTheta = HALF_PI + thetaGap / 2;
     const endTheta = HALF_PI + TAU - thetaGap / 2;
+    const aid = gui.activeID;
+    const hover =
+        aid === id || (aid === "" && pointInRect(gui.mouse, [x, y], [w, h]));
     if (hover) {
         gui.hotID = id;
-        const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
+        if (gui.isMouseDown()) {
             gui.activeID = id;
-            active = true;
             val[i] = dialVal(
                 gui.mouse,
                 pos,
@@ -161,5 +159,5 @@ export const ringRaw = (
         return true;
     }
     gui.lastID = id;
-    return active;
+    return gui.activeID === id;
 };

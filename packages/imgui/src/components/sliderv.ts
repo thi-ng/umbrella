@@ -1,8 +1,8 @@
 import { Fn } from "@thi.ng/api";
-import { pointInside, rect } from "@thi.ng/geom";
+import { rect } from "@thi.ng/geom";
 import { fit, norm } from "@thi.ng/math";
 import { hash, ZERO2 } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox, MouseButton } from "../api";
+import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider1Keys, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
@@ -71,15 +71,11 @@ export const sliderVRaw = (
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
-    const hover = pointInside(box, gui.mouse);
     const ymax = y + h;
-    let active = false;
+    const hover = gui.isHover(id, box);
     if (hover) {
-        gui.hotID = id;
-        const aid = gui.activeID;
-        if ((aid === "" || aid === id) && gui.buttons & MouseButton.LEFT) {
+        if (gui.isMouseDown()) {
             gui.activeID = id;
-            active = true;
             val[i] = slider1Val(
                 fit(gui.mouse[1], ymax - 1, y, min, max),
                 min,
@@ -122,5 +118,5 @@ export const sliderVRaw = (
         return true;
     }
     gui.lastID = id;
-    return active;
+    return gui.activeID === id;
 };
