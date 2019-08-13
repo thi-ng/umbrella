@@ -21,8 +21,6 @@ export interface GUITheme {
 }
 
 export interface IMGUIOpts {
-    width: number;
-    height: number;
     theme?: Partial<GUITheme>;
 }
 

@@ -1,7 +1,7 @@
 import { Fn0, IToHiccup } from "@thi.ng/api";
 import { pointInside } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
-import { setC2, Vec } from "@thi.ng/vectors";
+import { set2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
     GUITheme,
@@ -13,15 +13,12 @@ import {
 } from "./api";
 
 export class IMGUI implements IToHiccup {
-    width: number;
-    height: number;
     theme!: GUITheme;
     attribs!: any;
     layers: any[];
 
     mouse: Vec;
     buttons: number;
-    keys: Set<string>;
     key!: string;
     modifiers: number;
 
@@ -41,11 +38,8 @@ export class IMGUI implements IToHiccup {
     protected sizes: Map<string, any>;
 
     constructor(opts: IMGUIOpts) {
-        this.width = opts.width;
-        this.height = opts.height;
         this.mouse = [-1e3, -1e3];
         this.buttons = 0;
-        this.keys = new Set<string>();
         this.key = "";
         this.modifiers = 0;
         this.hotID = this.activeID = this.focusID = this.lastID = "";
@@ -55,63 +49,29 @@ export class IMGUI implements IToHiccup {
         this.sizes = new Map<string, number | string>();
         this.states = new Map<string, any>();
         this.layers = [[], []];
-        const touchActive = (e: TouchEvent) => {
-            setMouse(e, this.mouse);
-            this.buttons |= MouseButton.LEFT;
-        };
-        const touchEnd = () => {
-            this.buttons &= ~MouseButton.LEFT;
-        };
-        const mouseActive = (e: MouseEvent) => {
-            setMouse(e, this.mouse);
-            this.buttons = e.buttons;
-        };
-        this.attribs = {
-            onmousemove: (e: MouseEvent) => {
-                setMouse(e, this.mouse);
-            },
-            onmousedown: mouseActive,
-            onmouseup: mouseActive,
-            ontouchstart: touchActive,
-            ontouchmove: touchActive,
-            ontouchend: touchEnd,
-            ontouchcancel: touchEnd
-        };
+        this.attribs = {};
         this.setTheme(opts.theme || {});
-        const setKMods = (e: KeyboardEvent) =>
-            (this.modifiers =
-                (~~e.shiftKey * KeyModifier.SHIFT) |
-                (~~e.ctrlKey * KeyModifier.CONTROL) |
-                (~~e.metaKey * KeyModifier.META) |
-                (~~e.altKey * KeyModifier.ALT));
-        window.addEventListener("keydown", (e) => {
-            this.keys.add(e.key);
-            this.key = e.key;
-            setKMods(e);
-            if (e.key === "Tab") {
-                e.preventDefault();
-            }
-        });
-        window.addEventListener("keyup", (e) => {
-            this.keys.delete(e.key);
-            setKMods(e);
-        });
         this.t0 = Date.now();
     }
 
-    updateAttribs() {
-        Object.assign(this.attribs, {
-            width: this.width,
-            height: this.height,
-            style: {
-                background: this.theme.globalBg
-            }
-        });
+    setMouse(p: Vec, buttons: number) {
+        set2(this.mouse, p);
+        this.buttons = buttons;
+        return this;
+    }
+
+    setKey(e: KeyboardEvent) {
+        e.type === "keydown" && (this.key = e.key);
+        this.modifiers =
+            (~~e.shiftKey * KeyModifier.SHIFT) |
+            (~~e.ctrlKey * KeyModifier.CONTROL) |
+            (~~e.metaKey * KeyModifier.META) |
+            (~~e.altKey * KeyModifier.ALT);
+        return this;
     }
 
     setTheme(theme: Partial<GUITheme>) {
         this.theme = { ...DEFAULT_THEME, ...theme };
-        this.updateAttribs();
     }
 
     requestFocus(id: string) {
@@ -242,12 +202,41 @@ export class IMGUI implements IToHiccup {
             ...this.layers[1]
         ];
     }
-}
 
-const setMouse = (e: MouseEvent | TouchEvent, mouse: Vec) => {
-    const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
-    const t = (<TouchEvent>e).changedTouches
-        ? (<TouchEvent>e).changedTouches[0]
-        : <MouseEvent>e;
-    setC2(mouse, t.clientX - b.left, t.clientY - b.top);
-};
+    useDefaultEventHandlers() {
+        const pos = (e: MouseEvent | TouchEvent) => {
+            const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
+            const t = (<TouchEvent>e).changedTouches
+                ? (<TouchEvent>e).changedTouches[0]
+                : <MouseEvent>e;
+            return [t.clientX - b.left, t.clientY - b.top];
+        };
+        const touchActive = (e: TouchEvent) => {
+            this.setMouse(pos(e), MouseButton.LEFT);
+        };
+        const touchEnd = (e: TouchEvent) => {
+            this.setMouse(pos(e), 0);
+        };
+        const mouseActive = (e: MouseEvent) => {
+            this.setMouse(pos(e), e.buttons);
+        };
+        Object.assign(this.attribs, {
+            onmousemove: mouseActive,
+            onmousedown: mouseActive,
+            onmouseup: mouseActive,
+            ontouchstart: touchActive,
+            ontouchmove: touchActive,
+            ontouchend: touchEnd,
+            ontouchcancel: touchEnd
+        });
+        window.addEventListener("keydown", (e) => {
+            this.setKey(e);
+            if (e.key === "Tab") {
+                e.preventDefault();
+            }
+        });
+        window.addEventListener("keyup", (e) => {
+            this.setKey(e);
+        });
+    }
+}
