@@ -30,7 +30,7 @@ import {
     Key,
 } from "@thi.ng/imgui";
 import { clamp, PI } from "@thi.ng/math";
-import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge } from "@thi.ng/rstream";
+import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode } from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
 import { step, sideEffect, map } from "@thi.ng/transducers";
@@ -101,7 +101,7 @@ const app = () => {
     let radialPos = [0, 0];
     let prevMeta = false;
     // GUI instance
-    const gui = new IMGUI({ theme: { ...THEMES[theme[0]], font: FONT } });
+    const gui = new IMGUI({ theme: { ...THEMES[theme[0]], font: FONT, cursorBlink: 0 } });
     // GUI benchmark (moving average)
     const bench = step(sma(50));
     const _canvas = {
@@ -216,7 +216,7 @@ const app = () => {
                     grid.next();
                     textLabel(gui, grid, "Select theme:");
                     if (dropdown(gui, grid, "theme", theme, ["Default", "Mono", "Miaki"], "GUI theme")) {
-                        gui.setTheme({...THEMES[theme[0]], font: FONT });
+                        gui.setTheme({...THEMES[theme[0]], font: FONT, cursorBlink: 0 });
                     }
                     break;
                 case 4:
@@ -302,7 +302,7 @@ const app = () => {
 // once the 1st frame renders, the canvas component will create and attach
 // event streams to this stream sync, which are then used to trigger future
 // updates on demand...
-const main = sync<any,any>({ src: { _: trigger() } });
+const main = sync<any,any>({ src: { _: trigger() }, close: CloseMode.NEVER });
 
 // transform the stream:
 main
