@@ -1,19 +1,22 @@
 import { rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
-import { hash, ReadonlyVec, ZERO2 } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
+import { hash, ZERO2 } from "@thi.ng/vectors";
+import { Color, IGridLayout, LayoutBox } from "../api";
 import { handleButtonKeys } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
-import { textLabelRaw } from "./textlabel";
+import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
+
+const mkLabel = (transform: number[], fill: Color, label: string) =>
+    textLabelRaw(ZERO2, { transform, fill }, label);
 
 export const buttonH = (
     gui: IMGUI,
     layout: IGridLayout | LayoutBox,
     id: string,
     label?: string,
-    labelHover?: string,
+    labelHover = label,
     info?: string
 ) => {
     const theme = gui.theme;
@@ -24,16 +27,24 @@ export const buttonH = (
         id,
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
-        gui.resource(id, "mat" + key, () => [
-            1,
-            0,
-            0,
-            1,
-            x + theme.pad,
-            y + h / 2 + theme.baseLine
-        ]),
-        label,
-        labelHover,
+        label
+            ? gui.resource(id, "l" + label + key, () =>
+                  mkLabel(
+                      textTransformH(theme, x, y, w, h),
+                      gui.textColor(false),
+                      label
+                  )
+              )
+            : undefined,
+        labelHover
+            ? gui.resource(id, "lh" + labelHover + key, () =>
+                  mkLabel(
+                      textTransformH(theme, x, y, w, h),
+                      gui.textColor(true),
+                      labelHover
+                  )
+              )
+            : undefined,
         info
     );
 };
@@ -44,7 +55,7 @@ export const buttonV = (
     id: string,
     rows: number,
     label?: string,
-    labelHover?: string,
+    labelHover = label,
     info?: string
 ) => {
     const theme = gui.theme;
@@ -55,16 +66,24 @@ export const buttonV = (
         id,
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
-        gui.resource(id, "mat" + key, () => [
-            0,
-            -1,
-            1,
-            0,
-            x + w / 2 + theme.baseLine,
-            y + h - theme.pad
-        ]),
-        label,
-        labelHover,
+        label
+            ? gui.resource(id, "l" + label + key, () =>
+                  mkLabel(
+                      textTransformV(theme, x, y, w, h),
+                      gui.textColor(false),
+                      label
+                  )
+              )
+            : undefined,
+        labelHover
+            ? gui.resource(id, "lh" + labelHover + key, () =>
+                  mkLabel(
+                      textTransformV(theme, x, y, w, h),
+                      gui.textColor(true),
+                      labelHover
+                  )
+              )
+            : undefined,
         info
     );
 };
@@ -74,9 +93,8 @@ export const buttonRaw = (
     id: string,
     shape: IShape,
     hash: number | string,
-    lmat?: ReadonlyVec,
-    label?: string,
-    labelHover?: string,
+    label?: any,
+    labelHover?: any,
     info?: string
 ) => {
     gui.registerID(id, hash);
@@ -91,18 +109,7 @@ export const buttonRaw = (
         stroke: gui.focusColor(id)
     };
     gui.add(shape);
-    label &&
-        lmat &&
-        gui.add(
-            textLabelRaw(
-                ZERO2,
-                {
-                    transform: lmat,
-                    fill: gui.textColor(hover)
-                },
-                hover && labelHover ? labelHover : label
-            )
-        );
+    label && gui.add(hover && labelHover ? labelHover : label);
     if (focused && handleButtonKeys(gui)) {
         return true;
     }
