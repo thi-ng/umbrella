@@ -1,6 +1,8 @@
 import { timedResult } from "@thi.ng/bench";
-import { line } from "@thi.ng/geom";
+import { line, pathFromSvg, normalizedPath } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
+import { DOWNLOAD } from "@thi.ng/hiccup-carbon-icons/download";
+import { RESTART } from "@thi.ng/hiccup-carbon-icons/restart";
 import {
     buttonH,
     buttonV,
@@ -9,6 +11,7 @@ import {
     dropdown,
     GridLayout,
     GUITheme,
+    iconButton,
     IMGUI,
     KeyModifier,
     MouseButton,
@@ -24,16 +27,16 @@ import {
     textLabelRaw,
     toggle,
     xyPad,
-    Key
+    Key,
 } from "@thi.ng/imgui";
 import { clamp, PI } from "@thi.ng/math";
+import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge } from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
-import { step, map, sideEffect } from "@thi.ng/transducers";
-import { sma } from "@thi.ng/transducers-stats";
+import { step, sideEffect, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { sma } from "@thi.ng/transducers-stats";
 import { ZERO2, Vec } from "@thi.ng/vectors";
-import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge } from "@thi.ng/rstream";
 
 const FONT = "10px 'IBM Plex Mono'";
 
@@ -76,6 +79,10 @@ const RADIO_LABELS = ["Yes", "No", "Maybe"];
 const RGB_LABELS = ["R", "G", "B"];
 const RGB_TOOLTIPS = ["Red", "Green", "Blue"];
 const RADIAL_LABELS = ["Buttons", "Slider", "Dials", "Dropdown", "Text"];
+
+// TODO create wrapper / simplify
+const ICON1 = ["g", {stroke: "none"}, ...pathFromSvg((<any>DOWNLOAD)[2][1].d)];
+const ICON2 = ["g", {stroke: "none"}, normalizedPath(pathFromSvg((<any>RESTART)[2][1].d)[0])];
 
 const app = () => {
     // state variables
@@ -140,6 +147,10 @@ const app = () => {
             let inner2: GridLayout;
             switch(uiMode) {
                 case 0:
+                    grid.next();
+                    inner = grid.nest(2);
+                    iconButton(gui, inner, "icon", ICON1, 14, 16, "Download", "Icon button");
+                    iconButton(gui, inner, "icon2", ICON2, 13, 16, "Restart", "Icon button");
                     grid.next();
                     textLabel(gui, grid, "Toggles:");
                     inner = grid.nest(8);
