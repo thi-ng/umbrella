@@ -50,8 +50,7 @@ export const ring = (
     info?: string
 ) => {
     const h = (layout.cellW / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
-    const rows = Math.ceil(h / layout.cellHG + 1);
-    const { x, y, w, ch } = layout.next([1, rows]);
+    const { x, y, w, ch } = layout.next([1, layout.rowsForHeight(h) + 1]);
     return ringRaw(
         gui,
         id,

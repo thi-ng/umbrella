@@ -6,7 +6,7 @@ import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider1Keys, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
-import { textLabelRaw } from "./textlabel";
+import { textLabelRaw, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 export const sliderV = (
@@ -100,14 +100,7 @@ export const sliderVRaw = (
         textLabelRaw(
             ZERO2,
             {
-                transform: [
-                    0,
-                    -1,
-                    1,
-                    0,
-                    x + w / 2 + theme.baseLine,
-                    ymax - theme.pad
-                ],
+                transform: textTransformV(theme, x, y, w, h),
                 fill: gui.textColor(false)
             },
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
