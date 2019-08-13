@@ -1,4 +1,6 @@
 import { implementsFunction } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks";
+import { ReadonlyVec } from "@thi.ng/vectors";
 import { IGridLayout, ILayout, LayoutBox } from "./api";
 
 const DEFAULT_SPANS: [number, number] = [1, 1];
@@ -41,6 +43,21 @@ export class GridLayout implements IGridLayout {
         this.currCol = 0;
         this.currRow = 0;
         this.rows = 0;
+    }
+
+    colsForWidth(w: number) {
+        return Math.ceil(w / this.cellWG);
+    }
+
+    rowsForHeight(h: number) {
+        return Math.ceil(h / this.cellHG);
+    }
+
+    spansForSize(size: ReadonlyVec): [number, number];
+    spansForSize(w: number, h: number): [number, number];
+    spansForSize(w: ReadonlyVec | number, h?: number): [number, number] {
+        const [ww, hh] = isNumber(w) ? [w, h!] : w;
+        return [this.colsForWidth(ww), this.rowsForHeight(hh)];
     }
 
     next(spans = DEFAULT_SPANS) {
