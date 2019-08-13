@@ -5,6 +5,7 @@ export * from "./layout";
 export * from "./components/button";
 export * from "./components/dial";
 export * from "./components/dropdown";
+export * from "./components/icon-button";
 export * from "./components/radial-menu";
 export * from "./components/radio";
 export * from "./components/ring";
