@@ -70,9 +70,10 @@ export const toggleRaw = (
     }
     const focused = gui.requestFocus(id);
     let changed = !gui.buttons && gui.hotID === id && gui.activeID === id;
-    const v = val[i];
+    focused && (changed = handleButtonKeys(gui) || changed);
+    changed && (val[i] = !val[i]);
     box.attribs = {
-        fill: v ? gui.fgColor(hover) : gui.bgColor(hover),
+        fill: val[i] ? gui.fgColor(hover) : gui.bgColor(hover),
         stroke: gui.focusColor(id)
     };
     gui.add(box);
@@ -84,8 +85,6 @@ export const toggleRaw = (
                 label
             )
         );
-    focused && (changed = handleButtonKeys(gui) || changed);
-    changed && (val[i] = !v);
     gui.lastID = id;
     return changed;
 };
