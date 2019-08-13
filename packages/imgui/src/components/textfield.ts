@@ -78,7 +78,7 @@ export const textFieldRaw = (
         const cursor = label[1] || 0;
         const drawCursor = Math.min(cursor - offset, maxLen);
         const xx = x + pad + drawCursor * cw;
-        gui.time % 0.5 < 0.25 &&
+        (gui.time * theme.cursorBlink) % 1 < 0.5 &&
             gui.add([
                 "line",
                 { stroke: theme.cursor },

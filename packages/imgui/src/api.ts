@@ -10,6 +10,7 @@ export interface GUITheme {
     pad: number;
     focus: Color;
     cursor: Color;
+    cursorBlink: number;
     bg: Color;
     fg: Color;
     text: Color;
@@ -147,6 +148,7 @@ export const DEFAULT_THEME: GUITheme = {
     globalBg: "#ccc",
     focus: [0, 1, 0, 1],
     cursor: [0, 0, 0, 1],
+    cursorBlink: 2,
     bg: [1, 1, 1, 0.66],
     fg: [0.2, 0.8, 1, 1],
     text: [0.3, 0.3, 0.3, 1],
