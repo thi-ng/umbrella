@@ -40,6 +40,9 @@ export const dropdown = (
             }
             if (gui.focusID.startsWith(`${id}-`)) {
                 switch (gui.key) {
+                    case Key.ESC:
+                        state[1] = false;
+                        break;
                     case Key.UP:
                         return update(
                             gui,
