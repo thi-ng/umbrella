@@ -1,3 +1,5 @@
+import { pointInside } from "@thi.ng/geom";
+import { IShape } from "@thi.ng/geom-api";
 import { clamp, roundTo } from "@thi.ng/math";
 import {
     add2,
@@ -7,6 +9,13 @@ import {
 } from "@thi.ng/vectors";
 import { Key } from "../api";
 import { IMGUI } from "../gui";
+
+export const isHoverSlider = (gui: IMGUI, id: string, shape: IShape) => {
+    const aid = gui.activeID;
+    const hover = aid === id || (aid === "" && pointInside(shape, gui.mouse));
+    hover && (gui.hotID = id);
+    return hover;
+};
 
 export const slider1Val = (x: number, min: number, max: number, prec: number) =>
     clamp(roundTo(x, prec), min, max);

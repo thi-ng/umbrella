@@ -2,7 +2,7 @@ import { Fn } from "@thi.ng/api";
 import { line, rect } from "@thi.ng/geom";
 import { fit2, hash, Vec } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox } from "../api";
-import { handleSlider2Keys, slider2Val } from "../behaviors/slider";
+import { handleSlider2Keys, isHoverSlider, slider2Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -97,7 +97,7 @@ export const xyPadRaw = (
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
-    const hover = gui.isHover(id, box);
+    const hover = isHoverSlider(gui, id, box);
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;

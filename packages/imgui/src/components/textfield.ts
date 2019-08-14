@@ -3,6 +3,7 @@ import { rect } from "@thi.ng/geom";
 import { fitClamped } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
 import { IGridLayout, Key, LayoutBox } from "../api";
+import { isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
@@ -43,7 +44,7 @@ export const textFieldRaw = (
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
-    const hover = gui.isHover(id, box);
+    const hover = isHoverSlider(gui, id, box);
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;

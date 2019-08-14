@@ -1,6 +1,4 @@
 import { Fn0, IToHiccup } from "@thi.ng/api";
-import { pointInside } from "@thi.ng/geom";
-import { IShape } from "@thi.ng/geom-api";
 import { set2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
@@ -85,14 +83,6 @@ export class IMGUI implements IToHiccup {
     switchFocus() {
         this.focusID = this.isShiftDown() ? this.lastID : "";
         this.key = "";
-    }
-
-    isHover(id: string, shape: IShape) {
-        const aid = this.activeID;
-        const hover =
-            aid === id || (aid === "" && pointInside(shape, this.mouse));
-        hover && (this.hotID = id);
-        return hover;
     }
 
     isMouseDown() {

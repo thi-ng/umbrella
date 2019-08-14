@@ -2,7 +2,7 @@ import { rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
 import { hash, ZERO2 } from "@thi.ng/vectors";
 import { Color, IGridLayout, LayoutBox } from "../api";
-import { handleButtonKeys } from "../behaviors/button";
+import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
@@ -98,7 +98,7 @@ export const buttonRaw = (
     info?: string
 ) => {
     gui.registerID(id, hash);
-    const hover = gui.isHover(id, shape);
+    const hover = isHoverButton(gui, id, shape);
     if (hover) {
         gui.isMouseDown() && (gui.activeID = id);
         info && tooltipRaw(gui, info);

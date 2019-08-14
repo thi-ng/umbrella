@@ -134,8 +134,6 @@ export const ringRaw = (
             {}
         )
     );
-    bgShape.attribs.fill = gui.bgColor(hover || focused);
-    bgShape.attribs.stroke = gui.focusColor(id);
     const valShape = gui.resource(id, v, () =>
         polygon(
             [
@@ -145,7 +143,6 @@ export const ringRaw = (
             {}
         )
     );
-    valShape.attribs.fill = gui.fgColor(hover);
     const valLabel = gui.resource(id, "l" + v, () =>
         textLabelRaw(
             [x + lx, y + ly],
@@ -153,6 +150,9 @@ export const ringRaw = (
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
+    bgShape.attribs.fill = gui.bgColor(hover || focused);
+    bgShape.attribs.stroke = gui.focusColor(id);
+    valShape.attribs.fill = gui.fgColor(hover);
     gui.add(bgShape, valShape, valLabel);
     if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
         return true;

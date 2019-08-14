@@ -1,7 +1,7 @@
 import { rect } from "@thi.ng/geom";
 import { hash } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox } from "../api";
-import { handleButtonKeys } from "../behaviors/button";
+import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
@@ -63,7 +63,7 @@ export const toggleRaw = (
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
-    const hover = gui.isHover(id, box);
+    const hover = isHoverButton(gui, id, box);
     if (hover) {
         gui.isMouseDown() && (gui.activeID = id);
         info && tooltipRaw(gui, info);

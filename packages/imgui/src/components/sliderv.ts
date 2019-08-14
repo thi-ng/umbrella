@@ -3,7 +3,7 @@ import { rect } from "@thi.ng/geom";
 import { fit, norm } from "@thi.ng/math";
 import { hash, ZERO2 } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox } from "../api";
-import { handleSlider1Keys, slider1Val } from "../behaviors/slider";
+import { handleSlider1Keys, isHoverSlider, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
 import { textLabelRaw, textTransformV } from "./textlabel";
@@ -72,7 +72,7 @@ export const sliderVRaw = (
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const ymax = y + h;
-    const hover = gui.isHover(id, box);
+    const hover = isHoverSlider(gui, id, box);
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
@@ -88,14 +88,10 @@ export const sliderVRaw = (
     }
     const focused = gui.requestFocus(id);
     const v = val[i];
-    const normVal = norm(v, min, max);
     const valueBox = gui.resource(id, v, () => {
-        const nh = normVal * (h - 1);
+        const nh = norm(v, min, max) * (h - 1);
         return rect([x, ymax - nh], [w, nh], {});
     });
-    valueBox.attribs.fill = gui.fgColor(hover);
-    box.attribs.fill = gui.bgColor(hover || focused);
-    box.attribs.stroke = gui.focusColor(id);
     const valLabel = gui.resource(id, "l" + v, () =>
         textLabelRaw(
             ZERO2,
@@ -106,6 +102,9 @@ export const sliderVRaw = (
             (label ? label + " " : "") + (fmt ? fmt(v) : v)
         )
     );
+    valueBox.attribs.fill = gui.fgColor(hover);
+    box.attribs.fill = gui.bgColor(hover || focused);
+    box.attribs.stroke = gui.focusColor(id);
     gui.add(box, valueBox, valLabel);
     if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
         return true;
