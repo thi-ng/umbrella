@@ -13,7 +13,6 @@ import {
     GUITheme,
     iconButton,
     IMGUI,
-    KeyModifier,
     MouseButton,
     NONE,
     radialMenu,
@@ -30,13 +29,14 @@ import {
     Key,
 } from "@thi.ng/imgui";
 import { clamp, PI } from "@thi.ng/math";
-import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode } from "@thi.ng/rstream";
+import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode, fromAtom } from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
 import { step, sideEffect, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
-import { ZERO2, Vec } from "@thi.ng/vectors";
+import { ZERO2, setC2, min2, Vec, vecOf } from "@thi.ng/vectors";
+import { History, Atom } from "@thi.ng/atom";
 
 const FONT = "10px 'IBM Plex Mono'";
 
@@ -84,24 +84,31 @@ const RADIAL_LABELS = ["Buttons", "Slider", "Dials", "Dropdown", "Text"];
 const ICON1 = ["g", {stroke: "none"}, ...pathFromSvg((<any>DOWNLOAD)[2][1].d)];
 const ICON2 = ["g", {stroke: "none"}, normalizedPath(pathFromSvg((<any>RESTART)[2][1].d)[0])];
 
+const themeForID = (theme: number): Partial<GUITheme> =>
+    ({ ...THEMES[theme], font: FONT, cursorBlink: 0 });
+
+const DB = new History(new Atom({
+    uiVisible: true,
+    uiMode: 0,
+    theme: 0,
+    radius: 10,
+    gridW: 15,
+    rgb: [0.9, 0.45, 0.5],
+    pos: [400, 140],
+    txt: "Hello there! This is a test, do not panic!",
+    toggles: new Array<boolean>(12).fill(false),
+    flags: [true, false],
+    level: 0,
+}));
+
+
 const app = () => {
-    // state variables
-    let isUiVisibe = true;
-    let uiMode = 0;
     let maxW = 240;
-    let rad = [10];
-    let gridW = [15];
-    let rgb = [0.9, 0.45, 0.5];
-    let pos = [400, 140];
-    let txt: any = ["Hello there! This is a test, do not panic!"];
-    let theme: any = [0, false];
-    let toggles: boolean[] = new Array(12).fill(false);
-    let level = [0];
-    let flags = [true, false];
+    let size = [window.innerWidth, window.innerHeight];
     let radialPos = [0, 0];
     let prevMeta = false;
     // GUI instance
-    const gui = new IMGUI({ theme: { ...THEMES[theme[0]], font: FONT, cursorBlink: 0 } });
+    const gui = new IMGUI({ theme: themeForID(DB.deref().theme) });
     // GUI benchmark (moving average)
     const bench = step(sma(50));
     const _canvas = {
@@ -120,15 +127,28 @@ const app = () => {
                             ))
                         ),
                         fromDOMEvent(window, "keydown").transform(
-                            sideEffect((e) => {
+                            sideEffect((e: KeyboardEvent) => {
                                 if (e.key === Key.TAB) {
                                     e.preventDefault();
                                 }
-                                gui.setKey(e);
+                                if ((e.metaKey || e.ctrlKey) && e.key === "z") {
+                                    DB.undo();
+                                } else if ((e.metaKey || e.ctrlKey) && e.key === "y") {
+                                    DB.redo();
+                                } else {
+                                    gui.setKey(e);
+                                }
                             })
                         ),
                         fromDOMEvent(window, "keyup").transform(
                             sideEffect((e) => gui.setKey(e))
+                        ),
+                        fromDOMEvent(window, "resize").transform(
+                            sideEffect(() => {
+                                maxW = Math.min(maxW, window.innerWidth - 16);
+                                setC2(size, window.innerWidth, window.innerHeight);
+                                DB.swapIn("pos", (pos: Vec) => min2([], pos, size));
+                            })
                         )
                     ]
                 })
@@ -136,109 +156,179 @@ const app = () => {
         }
     };
 
-    const updateGUI = (size: Vec) => {
-        gui.begin();
+    const updateGUI = () => {
+        const state = DB.deref();
         const grid = new GridLayout(null, 1, 10, 10, maxW - 20, 16, 4);
-        if (buttonH(gui, grid, "show", isUiVisibe ? "Hide UI" : "Show UI")) {
-            isUiVisibe = !isUiVisibe;
+        gui.setTheme(themeForID(state.theme));
+        gui.begin();
+        if (buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")) {
+            DB.resetIn("uiVisible", !state.uiVisible);
         }
-        if (isUiVisibe) {
+        if (state.uiVisible) {
             let inner: GridLayout;
             let inner2: GridLayout;
-            switch(uiMode) {
+            let res: any;
+            switch(state.uiMode) {
                 case 0:
                     grid.next();
+
                     inner = grid.nest(2);
                     iconButton(gui, inner, "icon", ICON1, 14, 16, "Download", "Icon button");
                     iconButton(gui, inner, "icon2", ICON2, 13, 16, "Restart", "Icon button");
+
                     grid.next();
                     textLabel(gui, grid, "Toggles:");
+
                     inner = grid.nest(8);
                     if (buttonV(gui, inner, "toggleAll", 3, "INVERT")) {
-                        for(let i = toggles.length; --i >= 0;) {
-                            toggles[i] = !toggles[i];
+                        DB.swapIn("toggles", (toggles: boolean[]) => toggles.map((x)=>!x));
+                    }
+
+                    inner2 = inner.nest(4, [7, 1]);
+                    for(let i = 0; i < state.toggles.length; i++) {
+                        if ((res = toggle(gui, inner2, `toggle${i}`, state.toggles[i], false, `${i}`)) !== undefined) {
+                            DB.resetIn(["toggles", i], res);
                         }
                     }
-                    inner2 = inner.nest(4, [7, 1]);
-                    for(let i = 0; i < toggles.length; i++) {
-                        toggle(gui, inner2, `toggle${i}`, toggles, i, false, `${i}`);
-                    }
+
                     inner = grid.nest(2);
-                    toggle(gui, inner, "opt1", flags, 0, false, flags[0] ? "ON" : "OFF", "Unused");
-                    toggle(gui, inner, "opt2", flags, 1, false, flags[1] ? "ON" : "OFF", "Unused");
+                    if ((res = toggle(gui, inner, "opt1", state.flags[0], false, state.flags[0] ? "ON" : "OFF", "Unused")) !== undefined) {
+                        DB.resetIn(["flags", 0], res);
+                    }
+                    if ((res = toggle(gui, inner, "opt2", state.flags[1], false, state.flags[1] ? "ON" : "OFF", "Unused")) !== undefined) {
+                        DB.resetIn(["flags", 1], res);
+                    }
+
                     textLabel(gui, grid, "Radio (horizontal):");
-                    radio(gui, grid, "level1", true, level, 0, false, RADIO_LABELS);
-                    radio(gui, grid, "level2", true, level, 0, true, RADIO_LABELS);
+                    if ((res = radio(gui, grid, "level1", true, state.level, false, RADIO_LABELS)) !== undefined) {
+                        DB.resetIn("level", res);
+                    }
+                    if ((res = radio(gui, grid, "level2", true, state.level, true, RADIO_LABELS)) !== undefined) {
+                        DB.resetIn("level", res);
+                    }
+
                     textLabel(gui, grid, "Radio (vertical):");
-                    radio(gui, grid, "level3", false, level, 0, false, RADIO_LABELS);
-                    radio(gui, grid, "level4", false, level, 0, true, RADIO_LABELS);
+                    if ((res = radio(gui, grid, "level3", false, state.level, false, RADIO_LABELS)) !== undefined) {
+                        DB.resetIn("level", res);
+                    }
+                    if ((res = radio(gui, grid, "level4", false, state.level, true, RADIO_LABELS)) !== undefined) {
+                        DB.resetIn("level", res);
+                    }
+
                     break;
+
                 case 1:
                     grid.next();
                     textLabel(gui, grid, "Slider:");
+
                     inner = grid.nest(2);
-                    sliderH(gui, inner, "grid", 1, 20, 1, gridW, 0, "Grid", undefined, "Grid size");
-                    sliderH(gui, inner, "rad", 2, 20, 1, rad, 0, "Radius", undefined, "Dot radius");
+                    if ((res = sliderH(gui, inner, "grid", 1, 20, 1, state.gridW, "Grid", undefined, "Grid size")) !== undefined) {
+                        DB.resetIn("gridW", res);
+                    }
+                    if ((res = sliderH(gui, inner, "rad", 2, 20, 1, state.radius, "Radius", undefined, "Dot radius")) !== undefined) {
+                        DB.resetIn("radius", res);
+                    }
+
                     textLabel(gui, grid, "Slider groups:");
                     textLabel(gui, grid, "(Alt + drag to adjust all):");
-                    inner = grid.nest(4)
-                    sliderVGroup(gui, inner, "col2", 0, 1, 0.05, rgb, 5, RGB_LABELS, F2, RGB_TOOLTIPS);
-                    sliderVGroup(gui, inner, "col3", 0, 1, 0.05, rgb, 5, RGB_LABELS, F2, RGB_TOOLTIPS);
-                    sliderHGroup(gui, inner.nest(1, [2, 1]), "col", 0, 1, 0.05, false, rgb, RGB_LABELS, F2, RGB_TOOLTIPS);
-                    textLabel(gui, grid, "2D controller:");
+
                     inner = grid.nest(4);
-                    xyPad(gui, inner, "xy1", ZERO2, size, 10, pos, 3, false, undefined, undefined, "Origin");
-                    xyPad(gui, inner, "xy2", ZERO2, size, 10, pos, 4, false, undefined, undefined, "Origin");
-                    xyPad(gui, inner, "xy3", ZERO2, size, 10, pos, -1, false, undefined, undefined, "Origin");
-                    xyPad(gui, inner, "xy4", ZERO2, size, 10, pos, -2, false, undefined, undefined, "Origin");
+                    res = sliderVGroup(gui, inner, "col2", 0, 1, 0.05, state.rgb, 5, RGB_LABELS, F2, RGB_TOOLTIPS);
+                    res = sliderVGroup(gui, inner, "col3", 0, 1, 0.05, state.rgb, 5, RGB_LABELS, F2, RGB_TOOLTIPS) || res;
+                    res = sliderHGroup(gui, inner.nest(1, [2, 1]), "col", 0, 1, 0.05, false, state.rgb, RGB_LABELS, F2, RGB_TOOLTIPS) || res;
+                    res !== undefined &&
+                        (gui.isAltDown()
+                            ? DB.resetIn("rgb", vecOf(3, res[1]))
+                            : DB.resetIn(["rgb", res[0]], res[1]));
+
+                    textLabel(gui, grid, "2D controller:");
+
+                    inner = grid.nest(4);
+                    res = xyPad(gui, inner, "xy1", ZERO2, size, 10, state.pos, 3, false, undefined, undefined, "Origin");
+                    res = xyPad(gui, inner, "xy2", ZERO2, size, 10, state.pos, 4, false, undefined, undefined, "Origin") || res;
+                    res = xyPad(gui, inner, "xy3", ZERO2, size, 10, state.pos, -1, false, undefined, undefined, "Origin") || res;
+                    res = xyPad(gui, inner, "xy4", ZERO2, size, 10, state.pos, -2, false, undefined, undefined, "Origin") || res;
+                    res !== undefined && DB.resetIn("pos", res);
+
                     break;
+
                 case 2:
                     grid.next();
                     textLabel(gui, grid, "Dials:");
+
                     inner = grid.nest(6);
-                    dial(gui, inner, "dial1", 0, 1, 0.05, rgb, 0, undefined, F1);
-                    dial(gui, inner, "dial2", 0, 1, 0.05, rgb, 1, undefined, F1);
-                    dial(gui, inner, "dial3", 0, 1, 0.05, rgb, 2, undefined, F1);
-                    dial(gui, inner, "dial4", 0, 1, 0.05, rgb, 0, undefined, F1);
-                    dial(gui, inner, "dial5", 0, 1, 0.05, rgb, 1, undefined, F1);
-                    dial(gui, inner, "dial6", 0, 1, 0.05, rgb, 2, undefined, F1);
+                    if ((res = dial(gui, inner, "dial1", 0, 1, 0.05, state.rgb[0], undefined, F1)) !== undefined) {
+                        DB.resetIn(["rgb", 0], res);
+                    }
+                    if ((res = dial(gui, inner, "dial2", 0, 1, 0.05, state.rgb[1], undefined, F1)) !== undefined) {
+                        DB.resetIn(["rgb", 1], res);
+                    }
+                    if ((res = dial(gui, inner, "dial3", 0, 1, 0.05, state.rgb[2], undefined, F1)) !== undefined) {
+                        DB.resetIn(["rgb", 2], res);
+                    }
+                    if ((res = dial(gui, inner, "dial4", 0, 1, 0.05, state.rgb[0], undefined, F1)) !== undefined) {
+                        DB.resetIn(["rgb", 0], res);
+                    }
+                    if ((res = dial(gui, inner, "dial5", 0, 1, 0.05, state.rgb[1], undefined, F1)) !== undefined) {
+                        DB.resetIn(["rgb", 1], res);
+                    }
+                    if ((res = dial(gui, inner, "dial6", 0, 1, 0.05, state.rgb[2], undefined, F1)) !== undefined) {
+                        DB.resetIn(["rgb", 2], res);
+                    }
+
                     inner = grid.nest(6);
                     const gap = PI;
-                    ring(gui, inner, "small", 0, 1, 0.05, rgb, 0, gap, 0.5, "R", F2, "Red");
-                    ring(gui, inner.nest(1, [2, 2]), "medium", 0, 1, 0.05, rgb, 1, gap, 0.5, "G", F2, "Green");
-                    ring(gui, inner.nest(1, [3, 3]), "large", 0, 1, 0.05, rgb, 2, gap, 0.5, "B", F2, "Blue");
+                    if ((res = ring(gui, inner, "small", 0, 1, 0.05, state.rgb[0], gap, 0.5, "R", F2, "Red")) !== undefined) {
+                        DB.resetIn(["rgb", 0], res);
+                    }
+                    if ((res = ring(gui, inner.nest(1, [2, 2]), "medium", 0, 1, 0.05, state.rgb[1], gap, 0.5, "G", F2, "Green")) !== undefined) {
+                        DB.resetIn(["rgb", 1], res);
+                    }
+                    if ((res = ring(gui, inner.nest(1, [3, 3]), "large", 0, 1, 0.05, state.rgb[2], gap, 0.5, "B", F2, "Blue")) !== undefined) {
+                        DB.resetIn(["rgb", 2], res);
+                    }
+
                     inner = grid.nest(3);
-                    ring(gui, inner, "dial11", 0, 1, 0.05, rgb, 0, gap, 0.33, "R", F2, "Red");
-                    ring(gui, inner, "dial12", 0, 1, 0.05, rgb, 1, PI * 0.66, 0.66, "G", F2, "Green");
-                    ring(gui, inner, "dial13", 0, 1, 0.05, rgb, 2, PI * 0.33, 0.9, "B", F2, "Blue");
+                    if ((res = ring(gui, inner, "dial11", 0, 1, 0.05, state.rgb[0], gap, 0.33, "R", F2, "Red")) !== undefined) {
+                        DB.resetIn(["rgb", 0], res);
+                    }
+                    if ((res = ring(gui, inner, "dial12", 0, 1, 0.05, state.rgb[1], PI * 0.66, 0.66, "G", F2, "Green")) !== undefined) {
+                        DB.resetIn(["rgb", 1], res);
+                    }
+                    if ((res = ring(gui, inner, "dial13", 0, 1, 0.05, state.rgb[2], PI * 0.33, 0.9, "B", F2, "Blue")) !== undefined) {
+                        DB.resetIn(["rgb", 2], res);
+                    }
                     break;
+
                 case 3:
                     grid.next();
                     textLabel(gui, grid, "Select theme:");
-                    if (dropdown(gui, grid, "theme", theme, ["Default", "Mono", "Miaki"], "GUI theme")) {
-                        gui.setTheme({...THEMES[theme[0]], font: FONT, cursorBlink: 0 });
+                    if ((res = dropdown(gui, grid, "theme", state.theme, ["Default", "Mono", "Miaki"], "GUI theme")) !== undefined) {
+                        DB.resetIn("theme", res);
                     }
                     break;
+
                 case 4:
                     grid.next();
                     textLabel(gui, grid, "Editable textfield:");
-                    if (textField(gui, grid, "txt", txt, undefined, "Type something...")) {
-                        console.log(txt[0]);
+                    if ((res = textField(gui, grid, "txt", state.txt, undefined, "Type something...")) !== undefined) {
+                        DB.resetIn("txt", res);
                     }
                     break;
+
                 default:
             }
         }
         // radial menu
-        if (gui.hotID === "" && (gui.modifiers & KeyModifier.META)) {
+        if (gui.hotID === "" && gui.isMetaDown()) {
             if (!prevMeta) {
                 radialPos = [...gui.mouse];
             }
             prevMeta = true;
-            let choice: number;
-            if ((choice = radialMenu(gui, "radial", radialPos[0], radialPos[1], 100, RADIAL_LABELS, [])) !== -1) {
-                uiMode = choice;
-                isUiVisibe = true;
+            let res: number | undefined;
+            if ((res = radialMenu(gui, "radial", radialPos[0], radialPos[1], 100, RADIAL_LABELS, [])) !== undefined) {
+                DB.resetIn("uiMode", res);
+                DB.resetIn("uiVisible", true);
             }
         } else {
             prevMeta = false;
@@ -247,7 +337,7 @@ const app = () => {
         if (
             gui.activeID === NONE &&
             gui.isMouseDown() &&
-            Math.abs(gui.mouse[0] - maxW - 4) < 80
+            Math.abs(gui.mouse[0] - maxW) < 80
         ) {
             maxW = clamp(gui.mouse[0], 240, size[0] - 16);
         }
@@ -263,20 +353,25 @@ const app = () => {
     return () => {
         const w = window.innerWidth;
         const h = window.innerHeight;
-        const size = [w, h];
 
         // this is only needed because we're NOT using a RAF update loop:
         // call updateGUI twice to compensate for lack of regular 60fps update
         // Note: Unless your GUI is super complex, this cost is pretty neglible
         // and no actual drawing takes place here ...
-        const t = <number>bench(timedResult(() => { updateGUI(size); updateGUI(size); })[1]);
-        // const t = <number>fps(timedResult(() => { updateGUI(size); })[1]);
+        const t = <number>bench(timedResult(() => { updateGUI(); updateGUI(); })[1]);
+        // const t = <number>fps(timedResult(() => { updateGUI(); })[1]);
 
         t != null && gui.add(textLabelRaw([10, h - 10 - 4 * 14], "#ff0", `GUI time: ${F2(t)}ms`));
         // return hdom-canvas component with embedded GUI
         return [
             _canvas,
-            { width: w, height: h, style: { background: gui.theme.globalBg }, ...gui.attribs },
+            {
+                width: w,
+                height: h,
+                style: { background: gui.theme.globalBg },
+                oncontextmenu: (e: Event) => e.preventDefault(),
+                ...gui.attribs
+            },
             line([maxW, 0], [maxW, h], {
                 stroke: gui.textColor(false)
             }),
@@ -302,7 +397,13 @@ const app = () => {
 // once the 1st frame renders, the canvas component will create and attach
 // event streams to this stream sync, which are then used to trigger future
 // updates on demand...
-const main = sync<any,any>({ src: { _: trigger() }, close: CloseMode.NEVER });
+const main = sync<any,any>({
+    src: {
+        _: trigger(),
+        state: fromAtom(DB)
+    },
+    close: CloseMode.NEVER
+});
 
 // transform the stream:
 main
