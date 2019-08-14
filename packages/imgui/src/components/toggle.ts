@@ -24,8 +24,7 @@ export const toggle = (
     gui: IMGUI,
     layout: IGridLayout | LayoutBox,
     id: string,
-    val: boolean[],
-    i: number,
+    val: boolean,
     square?: boolean,
     label?: string,
     info?: string
@@ -40,7 +39,6 @@ export const toggle = (
         h,
         square ? h : 0,
         val,
-        i,
         label,
         info
     );
@@ -54,14 +52,14 @@ export const toggleRaw = (
     w: number,
     h: number,
     lx: number,
-    val: boolean[],
-    i: number,
+    val: boolean,
     label?: string,
     info?: string
 ) => {
     const theme = gui.theme;
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
+    let res: boolean | undefined;
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const hover = isHoverButton(gui, id, box);
     if (hover) {
@@ -71,9 +69,9 @@ export const toggleRaw = (
     const focused = gui.requestFocus(id);
     let changed = !gui.buttons && gui.hotID === id && gui.activeID === id;
     focused && (changed = handleButtonKeys(gui) || changed);
-    changed && (val[i] = !val[i]);
+    changed && (res = val = !val);
     box.attribs = {
-        fill: val[i] ? gui.fgColor(hover) : gui.bgColor(hover),
+        fill: val ? gui.fgColor(hover) : gui.bgColor(hover),
         stroke: gui.focusColor(id)
     };
     gui.add(box);
@@ -86,5 +84,5 @@ export const toggleRaw = (
             )
         );
     gui.lastID = id;
-    return changed;
+    return res;
 };

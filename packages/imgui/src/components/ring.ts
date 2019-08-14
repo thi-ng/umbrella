@@ -41,8 +41,7 @@ export const ring = (
     min: number,
     max: number,
     prec: number,
-    val: number[],
-    i: number,
+    val: number,
     thetaGap: number,
     rscale: number,
     label?: string,
@@ -50,23 +49,22 @@ export const ring = (
     info?: string
 ) => {
     const h = (layout.cellW / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
-    const { x, y, w, ch } = layout.next([1, layout.rowsForHeight(h) + 1]);
+    const box = layout.next([1, layout.rowsForHeight(h) + 1]);
     return ringRaw(
         gui,
         id,
-        x,
-        y,
-        w,
+        box.x,
+        box.y,
+        box.w,
         h,
         min,
         max,
         prec,
         val,
-        i,
         thetaGap,
         rscale,
         0,
-        h + ch / 2 + gui.theme.baseLine,
+        h + box.ch / 2 + gui.theme.baseLine,
         label,
         fmt,
         info
@@ -83,8 +81,7 @@ export const ringRaw = (
     min: number,
     max: number,
     prec: number,
-    val: number[],
-    i: number,
+    val: number,
     thetaGap: number,
     rscale: number,
     lx: number,
@@ -102,11 +99,13 @@ export const ringRaw = (
     const aid = gui.activeID;
     const hover =
         aid === id || (aid === "" && pointInRect(gui.mouse, [x, y], [w, h]));
+    let v: number | undefined = val;
+    let res: number | undefined;
     if (hover) {
         gui.hotID = id;
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            val[i] = dialVal(
+            res = v = dialVal(
                 gui.mouse,
                 pos,
                 startTheta,
@@ -115,21 +114,19 @@ export const ringRaw = (
                 max,
                 prec
             );
-            gui.isAltDown() && val.fill(val[i]);
         }
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const v = val[i];
     const valTheta = startTheta + (TAU - thetaGap) * norm(v, min, max);
     const r2 = r * rscale;
     // adaptive arc resolution
-    const res = fitClamped(r, 15, 80, 12, 30);
+    const numV = fitClamped(r, 15, 80, 12, 30);
     const bgShape = gui.resource(id, key, () =>
         polygon(
             [
-                ...arcVerts(pos, r, startTheta, endTheta, res),
-                ...arcVerts(pos, r2, endTheta, startTheta, res)
+                ...arcVerts(pos, r, startTheta, endTheta, numV),
+                ...arcVerts(pos, r2, endTheta, startTheta, numV)
             ],
             {}
         )
@@ -137,8 +134,8 @@ export const ringRaw = (
     const valShape = gui.resource(id, v, () =>
         polygon(
             [
-                ...arcVerts(pos, r, startTheta, valTheta, res),
-                ...arcVerts(pos, r2, valTheta, startTheta, res)
+                ...arcVerts(pos, r, startTheta, valTheta, numV),
+                ...arcVerts(pos, r2, valTheta, startTheta, numV)
             ],
             {}
         )
@@ -147,16 +144,19 @@ export const ringRaw = (
         textLabelRaw(
             [x + lx, y + ly],
             gui.textColor(false),
-            (label ? label + " " : "") + (fmt ? fmt(v) : v)
+            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
         )
     );
     bgShape.attribs.fill = gui.bgColor(hover || focused);
     bgShape.attribs.stroke = gui.focusColor(id);
     valShape.attribs.fill = gui.fgColor(hover);
     gui.add(bgShape, valShape, valLabel);
-    if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
-        return true;
+    if (
+        focused &&
+        (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined
+    ) {
+        return v;
     }
     gui.lastID = id;
-    return gui.activeID === id;
+    return res;
 };

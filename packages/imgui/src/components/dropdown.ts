@@ -1,61 +1,66 @@
 import { polygon } from "@thi.ng/geom";
+import { hash } from "@thi.ng/vectors";
 import { IGridLayout, Key } from "../api";
 import { IMGUI } from "../gui";
 import { buttonH } from "./button";
 
+/**
+ *
+ * @param gui
+ * @param layout
+ * @param id
+ * @param sel
+ * @param items
+ * @param title
+ * @param info
+ */
 export const dropdown = (
     gui: IMGUI,
     layout: IGridLayout,
     id: string,
-    state: [number, boolean],
+    sel: number,
     items: string[],
     title: string,
     info?: string
 ) => {
-    const nested = layout.nest(1, [1, state[1] ? items.length : 1]);
-    let res = false;
-    const sel = state[0];
+    const open = gui.state<boolean>(id, () => false);
+    const nested = layout.nest(1, [1, open ? items.length : 1]);
+    let res: number | undefined;
     const box = nested.next();
     const { x, y, w, h } = box;
+    const key = hash([x, y, w, h]);
     const tx = x + w - gui.theme.pad - 4;
     const ty = y + h / 2;
-    if (state[1]) {
+    if (open) {
         const bt = buttonH(gui, box, `${id}-title`, title);
         gui.add(
-            polygon([[tx - 4, ty + 2], [tx + 4, ty + 2], [tx, ty - 2]], {
-                fill: gui.textColor(false)
-            })
+            gui.resource(id, "o" + key, () =>
+                polygon([[tx - 4, ty + 2], [tx + 4, ty + 2], [tx, ty - 2]], {
+                    fill: gui.textColor(false)
+                })
+            )
         );
         if (bt) {
-            state[1] = false;
+            gui.setState(id, false);
         } else {
             for (let i = 0, n = items.length; i < n; i++) {
                 if (buttonH(gui, nested, `${id}-${i}`, items[i])) {
-                    if (i !== sel) {
-                        state[0] = i;
-                        res = true;
-                    }
-                    state[1] = false;
+                    i !== sel && (res = i);
+                    gui.setState(id, false);
                 }
             }
             if (gui.focusID.startsWith(`${id}-`)) {
                 switch (gui.key) {
                     case Key.ESC:
-                        state[1] = false;
+                        gui.setState(id, false);
                         break;
                     case Key.UP:
-                        return update(
-                            gui,
-                            state,
-                            id,
-                            Math.max(0, state[0] - 1)
-                        );
+                        return update(gui, id, Math.max(0, sel - 1));
                     case Key.DOWN:
                         return update(
                             gui,
-                            state,
                             id,
-                            Math.min(items.length - 1, state[0] + 1)
+                            Math.min(items.length - 1, sel + 1)
                         );
                     default:
                 }
@@ -63,24 +68,20 @@ export const dropdown = (
         }
     } else {
         if (buttonH(gui, box, `${id}-${sel}`, items[sel], title, info)) {
-            state[1] = true;
+            gui.setState(id, true);
         }
         gui.add(
-            polygon([[tx - 4, ty - 2], [tx + 4, ty - 2], [tx, ty + 2]], {
-                fill: gui.textColor(false)
-            })
+            gui.resource(id, "c" + key, () =>
+                polygon([[tx - 4, ty - 2], [tx + 4, ty - 2], [tx, ty + 2]], {
+                    fill: gui.textColor(false)
+                })
+            )
         );
     }
     return res;
 };
 
-const update = (
-    gui: IMGUI,
-    state: [number, boolean?],
-    id: string,
-    next: number
-) => {
+const update = (gui: IMGUI, id: string, next: number) => {
     gui.focusID = `${id}-${next}`;
-    state[0] = next;
-    return true;
+    return next;
 };

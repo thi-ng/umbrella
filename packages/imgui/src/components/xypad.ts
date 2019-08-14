@@ -98,11 +98,13 @@ export const xyPadRaw = (
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
     const hover = isHoverSlider(gui, id, box);
+    let v: Vec | undefined = val;
+    let res: Vec | undefined;
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            slider2Val(
-                fit2(val, gui.mouse, pos, maxPos, min, max),
+            res = v = slider2Val(
+                fit2([], gui.mouse, pos, maxPos, min, max),
                 min,
                 max,
                 prec
@@ -115,7 +117,7 @@ export const xyPadRaw = (
         fill: gui.bgColor(hover || focused),
         stroke: gui.focusColor(id)
     };
-    const { 0: cx, 1: cy } = fit2([], val, min, max, pos, maxPos);
+    const { 0: cx, 1: cy } = fit2([], v, min, max, pos, maxPos);
     gui.add(
         box,
         line([x, cy], [maxX, cy], {
@@ -131,9 +133,12 @@ export const xyPadRaw = (
                 (fmt ? fmt(val) : `${val[0] | 0}, ${val[1] | 0}`)
         )
     );
-    if (focused && handleSlider2Keys(gui, min, max, prec, val, yUp)) {
-        return true;
+    if (
+        focused &&
+        (v = handleSlider2Keys(gui, min, max, prec, v, yUp)) !== undefined
+    ) {
+        return v;
     }
     gui.lastID = id;
-    return gui.activeID === id;
+    return res;
 };

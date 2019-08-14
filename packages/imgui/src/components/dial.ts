@@ -22,8 +22,7 @@ export const dial = (
     min: number,
     max: number,
     prec: number,
-    val: number[],
-    i: number,
+    val: number,
     label?: string,
     fmt?: Fn<number, string>,
     info?: string
@@ -40,7 +39,6 @@ export const dial = (
         max,
         prec,
         val,
-        i,
         gui.theme.pad,
         h + ch / 2 + gui.theme.baseLine,
         label,
@@ -59,8 +57,7 @@ export const dialRaw = (
     min: number,
     max: number,
     prec: number,
-    val: number[],
-    i: number,
+    val: number,
     lx: number,
     ly: number,
     label?: string,
@@ -75,11 +72,13 @@ export const dialRaw = (
     gui.registerID(id, key);
     const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
     const hover = isHoverSlider(gui, id, bgShape);
+    let v: number | undefined = val;
+    let res: number | undefined;
     if (hover) {
         gui.hotID = id;
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            val[i] = dialVal(
+            res = v = dialVal(
                 gui.mouse,
                 pos,
                 startTheta,
@@ -88,17 +87,15 @@ export const dialRaw = (
                 max,
                 prec
             );
-            gui.isAltDown() && val.fill(val[i]);
         }
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const v = val[i];
     const valShape = gui.resource(id, v, () =>
         line(
             cartesian2(
                 null,
-                [r, startTheta + (TAU - thetaGap) * norm(v, min, max)],
+                [r, startTheta + (TAU - thetaGap) * norm(v!, min, max)],
                 pos
             ),
             pos,
@@ -109,7 +106,7 @@ export const dialRaw = (
         textLabelRaw(
             [x + lx, y + ly],
             gui.textColor(false),
-            (label ? label + " " : "") + (fmt ? fmt(v) : v)
+            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
         )
     );
     bgShape.attribs.fill = gui.bgColor(hover || focused);
@@ -117,9 +114,12 @@ export const dialRaw = (
     valShape.attribs.stroke = gui.fgColor(hover);
     valShape.attribs.weight = 2;
     gui.add(bgShape, valShape, valLabel);
-    if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
-        return true;
+    if (
+        focused &&
+        (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined
+    ) {
+        return v;
     }
     gui.lastID = id;
-    return gui.activeID === id;
+    return res;
 };

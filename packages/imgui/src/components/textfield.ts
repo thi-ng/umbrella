@@ -9,16 +9,31 @@ import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
+interface TextfieldState {
+    cursor: number;
+    offset: number;
+}
+
 export const textField = (
     gui: IMGUI,
     layout: IGridLayout | LayoutBox,
     id: string,
-    label: [string, number?, number?],
+    label: string,
     filter: Predicate<string> = () => true,
     info?: string
 ) => {
-    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
-    return textFieldRaw(gui, id, x, y, w, h, label, filter, info);
+    const box = isLayout(layout) ? layout.next() : layout;
+    return textFieldRaw(
+        gui,
+        id,
+        box.x,
+        box.y,
+        box.w,
+        box.h,
+        label,
+        filter,
+        info
+    );
 };
 
 export const textFieldRaw = (
@@ -28,7 +43,7 @@ export const textFieldRaw = (
     y: number,
     w: number,
     h: number,
-    label: [string, number?, number?],
+    txt: string,
     filter: Predicate<string> = () => true,
     info?: string
 ) => {
@@ -36,11 +51,10 @@ export const textFieldRaw = (
     const cw = theme.charWidth;
     const pad = theme.pad;
     const maxLen = Math.max(1, ((w - pad * 2) / cw) | 0);
-    const txt = label[0];
     const txtLen = txt.length;
     const maxOffset = Math.max(0, txtLen - maxLen);
-    const offset = label[2] || 0;
-    const drawTxt = txt.substr(offset, maxLen);
+    const state = gui.state(id, () => ({ cursor: 0, offset: 0 }));
+    const drawTxt = txt.substr(state.offset, maxLen);
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
@@ -48,19 +62,18 @@ export const textFieldRaw = (
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            label[1] = Math.min(
+            state.cursor = Math.min(
                 Math.round(
                     fitClamped(
                         gui.mouse[0],
                         x + pad,
                         x + w - pad,
-                        offset,
-                        offset + maxLen
+                        state.offset,
+                        state.offset + maxLen
                     )
                 ),
                 txtLen
             );
-            label[2] = offset;
         }
         info && tooltipRaw(gui, info);
     }
@@ -76,7 +89,7 @@ export const textFieldRaw = (
         )
     );
     if (focused) {
-        const cursor = label[1] || 0;
+        const { cursor, offset } = state;
         const drawCursor = Math.min(cursor - offset, maxLen);
         const xx = x + pad + drawCursor * cw;
         (gui.time * theme.cursorBlink) % 1 < 0.5 &&
@@ -94,21 +107,22 @@ export const textFieldRaw = (
                 gui.switchFocus();
                 break;
             case Key.ENTER:
-                return true;
+                return txt;
             case Key.BACKSPACE:
                 if (cursor > 0) {
                     const next = gui.isAltDown()
                         ? prevNonAlpha(txt, cursor - 1)
                         : cursor - 1;
-                    label[0] = txt.substr(0, next) + txt.substr(cursor);
-                    moveBackward(
-                        label,
+                    move(
+                        state,
                         next,
                         next - cursor,
                         drawCursor,
-                        offset
+                        offset,
+                        maxLen,
+                        maxOffset
                     );
-                    return true;
+                    return txt.substr(0, next) + txt.substr(cursor);
                 }
                 break;
             case Key.DELETE:
@@ -116,8 +130,7 @@ export const textFieldRaw = (
                     const next = gui.isAltDown()
                         ? nextNonAlpha(txt, cursor + 1)
                         : cursor + 1;
-                    label[0] = txt.substr(0, cursor) + txt.substr(next + 1);
-                    return true;
+                    return txt.substr(0, cursor) + txt.substr(next + 1);
                 }
                 break;
             case Key.LEFT:
@@ -125,12 +138,14 @@ export const textFieldRaw = (
                     const next = gui.isAltDown()
                         ? prevNonAlpha(txt, cursor - 1)
                         : cursor - 1;
-                    moveBackward(
-                        label,
+                    move(
+                        state,
                         next,
                         next - cursor,
                         drawCursor,
-                        offset
+                        offset,
+                        maxLen,
+                        maxOffset
                     );
                 }
                 break;
@@ -139,8 +154,8 @@ export const textFieldRaw = (
                     const next = gui.isAltDown()
                         ? nextNonAlpha(txt, cursor + 1)
                         : cursor + 1;
-                    moveForward(
-                        label,
+                    move(
+                        state,
                         next,
                         next - cursor,
                         drawCursor,
@@ -151,11 +166,11 @@ export const textFieldRaw = (
                 }
                 break;
             case Key.HOME:
-                moveBackward(label, 0, -cursor, drawCursor, offset);
+                move(state, 0, -cursor, drawCursor, offset, maxLen, maxOffset);
                 break;
             case Key.END:
-                moveForward(
-                    label,
+                move(
+                    state,
                     txtLen,
                     txtLen - cursor,
                     drawCursor,
@@ -166,9 +181,8 @@ export const textFieldRaw = (
                 break;
             default: {
                 if (k.length === 1 && filter(k)) {
-                    label[0] = txt.substr(0, cursor) + k + txt.substr(cursor);
-                    moveForward(
-                        label,
+                    move(
+                        state,
                         cursor + 1,
                         1,
                         drawCursor,
@@ -176,13 +190,12 @@ export const textFieldRaw = (
                         maxLen,
                         maxOffset
                     );
-                    return true;
+                    return txt.substr(0, cursor) + k + txt.substr(cursor);
                 }
             }
         }
     }
     gui.lastID = id;
-    return false;
 };
 
 const WS = /\s/;
@@ -200,21 +213,8 @@ const prevNonAlpha = (src: string, i: number) => {
     return i;
 };
 
-const moveBackward = (
-    label: [string, number?, number?],
-    next: number,
-    delta: number,
-    drawCursor: number,
-    offset: number
-) => {
-    label[1] = next;
-    if (drawCursor + delta < 0) {
-        label[2] = Math.max(offset + delta, 0);
-    }
-};
-
-const moveForward = (
-    label: [string, number?, number?],
+const move = (
+    state: TextfieldState,
     next: number,
     delta: number,
     drawCursor: number,
@@ -222,8 +222,10 @@ const moveForward = (
     maxLen: number,
     maxOffset: number
 ) => {
-    label[1] = next;
-    if (drawCursor + delta > maxLen) {
-        label[2] = Math.min(offset + delta, maxOffset);
+    state.cursor = next;
+    if (drawCursor + delta < 0) {
+        state.offset = Math.max(offset + delta, 0);
+    } else if (drawCursor + delta > maxLen) {
+        state.offset = Math.min(offset + delta, maxOffset);
     }
 };

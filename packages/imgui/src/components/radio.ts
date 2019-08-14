@@ -7,24 +7,24 @@ export const radio = (
     layout: IGridLayout,
     id: string,
     horizontal: boolean,
-    val: number[],
-    idx: number,
+    sel: number,
     square: boolean,
     labels: string[],
     info: string[] = []
 ) => {
     const n = labels.length;
     const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
-    let res = false;
-    const tmp: boolean[] = [];
-    const sel = val[idx];
+    let res: number | undefined;
     for (let i = 0; i < n; i++) {
-        tmp[0] = sel === i;
-        // prettier-ignore
-        if (toggle(gui, nested, `${id}-${i}`, tmp, 0, square, labels[i], info[i])) {
-            val[idx] = i;
-            res = true;
-        }
+        toggle(
+            gui,
+            nested,
+            `${id}-${i}`,
+            sel === i,
+            square,
+            labels[i],
+            info[i]
+        ) !== undefined && (res = i);
     }
     return res;
 };

@@ -2,6 +2,8 @@ import { Predicate } from "@thi.ng/api";
 
 export type Color = string | number | number[];
 
+export type Hash = number | string;
+
 export interface GUITheme {
     globalBg?: Color;
     font?: string;

@@ -40,7 +40,7 @@ export const radialMenu = (
             ];
         }, triFan(vertices(circle([x, y], r), n)))
     ]);
-    let res = -1;
+    let res: number | undefined;
     for (let i = 0; i < n; i++) {
         const cell = cells[i];
         buttonRaw(gui, id + i, cell[0], cell[1], cell[2], cell[3], info[i]) &&

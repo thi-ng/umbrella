@@ -16,16 +16,28 @@ export const sliderV = (
     min: number,
     max: number,
     prec: number,
-    val: number[],
-    i: number,
+    val: number,
     rows: number,
     label?: string,
     fmt?: Fn<number, string>,
     info?: string
 ) => {
-    const { x, y, w, h } = isLayout(layout) ? layout.next([1, rows]) : layout;
-    // prettier-ignore
-    return sliderVRaw(gui, id, x, y, w, h, min, max, prec, val, i, label, fmt, info);
+    const box = isLayout(layout) ? layout.next([1, rows]) : layout;
+    return sliderVRaw(
+        gui,
+        id,
+        box.x,
+        box.y,
+        box.w,
+        box.h,
+        min,
+        max,
+        prec,
+        val,
+        label,
+        fmt,
+        info
+    );
 };
 
 export const sliderVGroup = (
@@ -43,12 +55,28 @@ export const sliderVGroup = (
 ) => {
     const n = vals.length;
     const nested = layout.nest(n, [1, rows]);
-    let res = false;
+    let res: number | undefined;
+    let idx: number = -1;
     for (let i = 0; i < n; i++) {
-        // prettier-ignore
-        res = sliderV(gui, nested, `${id}-${i}`, min, max, prec, vals, i, rows, label[i], fmt, info[i]) || res;
+        const v = sliderV(
+            gui,
+            nested,
+            `${id}-${i}`,
+            min,
+            max,
+            prec,
+            vals[i],
+            rows,
+            label[i],
+            fmt,
+            info[i]
+        );
+        if (v !== undefined) {
+            res = v;
+            idx = i;
+        }
     }
-    return res;
+    return res !== undefined ? [idx, res] : undefined;
 };
 
 export const sliderVRaw = (
@@ -61,8 +89,7 @@ export const sliderVRaw = (
     min: number,
     max: number,
     prec: number,
-    val: number[],
-    i: number,
+    val: number,
     label?: string,
     fmt?: Fn<number, string>,
     info?: string
@@ -73,23 +100,23 @@ export const sliderVRaw = (
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const ymax = y + h;
     const hover = isHoverSlider(gui, id, box);
+    let v: number | undefined = val;
+    let res: number | undefined;
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            val[i] = slider1Val(
+            res = v = slider1Val(
                 fit(gui.mouse[1], ymax - 1, y, min, max),
                 min,
                 max,
                 prec
             );
-            gui.isAltDown() && val.fill(val[i]);
         }
         info && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const v = val[i];
     const valueBox = gui.resource(id, v, () => {
-        const nh = norm(v, min, max) * (h - 1);
+        const nh = norm(v!, min, max) * (h - 1);
         return rect([x, ymax - nh], [w, nh], {});
     });
     const valLabel = gui.resource(id, "l" + v, () =>
@@ -99,16 +126,19 @@ export const sliderVRaw = (
                 transform: textTransformV(theme, x, y, w, h),
                 fill: gui.textColor(false)
             },
-            (label ? label + " " : "") + (fmt ? fmt(v) : v)
+            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
         )
     );
     valueBox.attribs.fill = gui.fgColor(hover);
     box.attribs.fill = gui.bgColor(hover || focused);
     box.attribs.stroke = gui.focusColor(id);
     gui.add(box, valueBox, valLabel);
-    if (focused && handleSlider1Keys(gui, min, max, prec, val, i)) {
-        return true;
+    if (
+        focused &&
+        (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined
+    ) {
+        return v;
     }
     gui.lastID = id;
-    return gui.activeID === id;
+    return res;
 };

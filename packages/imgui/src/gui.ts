@@ -3,6 +3,7 @@ import { set2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
     GUITheme,
+    Hash,
     IMGUIOpts,
     Key,
     KeyModifier,
@@ -31,8 +32,8 @@ export class IMGUI implements IToHiccup {
     protected currIDs: Set<string>;
     protected prevIDs: Set<string>;
 
-    protected resources: Map<string, Map<number | string, any>>;
-    protected states: Map<string, number | string>;
+    protected resources: Map<string, Map<Hash, any>>;
+    protected states: Map<string, any>;
     protected sizes: Map<string, any>;
 
     constructor(opts: IMGUIOpts) {
@@ -43,8 +44,8 @@ export class IMGUI implements IToHiccup {
         this.hotID = this.activeID = this.focusID = this.lastID = "";
         this.currIDs = new Set<string>();
         this.prevIDs = new Set<string>();
-        this.resources = new Map<string, Map<number | string, any>>();
-        this.sizes = new Map<string, number | string>();
+        this.resources = new Map<string, Map<Hash, any>>();
+        this.sizes = new Map<string, Hash>();
         this.states = new Map<string, any>();
         this.layers = [[], []];
         this.attribs = {};
@@ -161,7 +162,7 @@ export class IMGUI implements IToHiccup {
         return this.theme.charWidth * txt.length;
     }
 
-    registerID(id: string, hash: number | string) {
+    registerID(id: string, hash: Hash) {
         this.currIDs.add(id);
         if (this.sizes.get(id) !== hash) {
             this.sizes.set(id, hash);
@@ -169,11 +170,22 @@ export class IMGUI implements IToHiccup {
         }
     }
 
-    resource(id: string, hash: number | string, ctor: Fn0<any>) {
+    resource(id: string, hash: Hash, ctor: Fn0<any>) {
         let res: any;
         let c = this.resources.get(id);
         !c && this.resources.set(id, (c = new Map()));
         return c.get(hash) || (c.set(hash, (res = ctor())), res);
+    }
+
+    state<T>(id: string, ctor: Fn0<T>): T {
+        let res: any = this.states.get(id);
+        return res !== undefined
+            ? res
+            : (this.states.set(id, (res = ctor())), res);
+    }
+
+    setState<T>(id: string, state: T) {
+        this.states.set(id, state);
     }
 
     add(...els: any[]) {

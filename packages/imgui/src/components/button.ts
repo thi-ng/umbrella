@@ -1,7 +1,12 @@
 import { rect } from "@thi.ng/geom";
 import { IShape } from "@thi.ng/geom-api";
 import { hash, ZERO2 } from "@thi.ng/vectors";
-import { Color, IGridLayout, LayoutBox } from "../api";
+import {
+    Color,
+    Hash,
+    IGridLayout,
+    LayoutBox
+} from "../api";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { isLayout } from "../layout";
@@ -92,7 +97,7 @@ export const buttonRaw = (
     gui: IMGUI,
     id: string,
     shape: IShape,
-    hash: number | string,
+    hash: Hash,
     label?: any,
     labelHover?: any,
     info?: string
