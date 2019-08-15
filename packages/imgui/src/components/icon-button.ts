@@ -25,7 +25,7 @@ export const iconButton = (
     const { x, y, w, h } = isLayout(layout)
         ? layout.next(layout.spansForSize(bodyW, bodyH))
         : layout;
-    const key = hash([x, y, w, h]);
+    const key = hash([x, y, w, h, ~~gui.disabled]);
     const mkIcon = (hover: boolean) => {
         const col = gui.textColor(hover);
         const pos = [x + pad, y + (h - iconH) / 2];
@@ -51,8 +51,8 @@ export const iconButton = (
         id,
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
-        gui.resource(id, "l" + key, () => mkIcon(false)),
-        gui.resource(id, "lh" + key, () => mkIcon(true)),
+        gui.resource(id, `l${key}-${label}`, () => mkIcon(false)),
+        gui.resource(id, `lh${key}-${label}` + key, () => mkIcon(true)),
         info
     );
 };

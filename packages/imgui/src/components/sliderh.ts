@@ -115,7 +115,7 @@ export const sliderHRaw = (
     const valueBox = gui.resource(id, v, () =>
         rect([x, y], [1 + norm(v!, min, max) * (w - 1), h], {})
     );
-    const valLabel = gui.resource(id, "l" + v, () =>
+    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
         textLabelRaw(
             [x + theme.pad, y + h / 2 + theme.baseLine],
             gui.textColor(false),

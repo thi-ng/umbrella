@@ -33,7 +33,7 @@ export const buttonH = (
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
         label
-            ? gui.resource(id, "l" + label + key, () =>
+            ? gui.resource(id, `l${~~gui.disabled}${key}-${label}`, () =>
                   mkLabel(
                       textTransformH(theme, x, y, w, h),
                       gui.textColor(false),
@@ -42,7 +42,7 @@ export const buttonH = (
               )
             : undefined,
         labelHover
-            ? gui.resource(id, "lh" + labelHover + key, () =>
+            ? gui.resource(id, `lh${~~gui.disabled}${key}-${labelHover}`, () =>
                   mkLabel(
                       textTransformH(theme, x, y, w, h),
                       gui.textColor(true),
@@ -72,7 +72,7 @@ export const buttonV = (
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
         label
-            ? gui.resource(id, "l" + label + key, () =>
+            ? gui.resource(id, `l${~~gui.disabled}${label}-${key}`, () =>
                   mkLabel(
                       textTransformV(theme, x, y, w, h),
                       gui.textColor(false),
@@ -81,7 +81,7 @@ export const buttonV = (
               )
             : undefined,
         labelHover
-            ? gui.resource(id, "lh" + labelHover + key, () =>
+            ? gui.resource(id, `lh${~~gui.disabled}${labelHover}-${key}`, () =>
                   mkLabel(
                       textTransformV(theme, x, y, w, h),
                       gui.textColor(true),

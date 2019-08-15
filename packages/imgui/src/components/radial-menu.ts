@@ -22,7 +22,7 @@ export const radialMenu = (
     info: string[]
 ) => {
     const n = items.length;
-    const key = hash([x, y, r, n]);
+    const key = hash([x, y, r, n, ~~gui.disabled]);
     gui.registerID(id, key);
     const cells: [Polygon, string, any, any][] = gui.resource(id, key, () => [
         ...mapIndexed((i, pts) => {

@@ -19,7 +19,7 @@ export const textLabel = (
     const { x, y, h } = isLayout(layout) ? layout.next() : layout;
     gui.add([
         "text",
-        { fill: theme.text },
+        { fill: gui.textColor(false) },
         [x + (pad ? theme.pad : 0), y + h / 2 + theme.baseLine],
         label
     ]);

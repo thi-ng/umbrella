@@ -19,6 +19,9 @@ import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
+const ringHeight = (w: number, thetaGap: number) =>
+    (w / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+
 const arcVerts = (
     o: Vec,
     r: number,
@@ -52,10 +55,10 @@ export const ring = (
     let h: number;
     let box: LayoutBox;
     if (isLayout(layout)) {
-        h = (layout.cellW / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+        h = ringHeight(layout.cellW, thetaGap);
         box = layout.next([1, layout.rowsForHeight(h) + 1]);
     } else {
-        h = (layout.cw / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+        h = ringHeight(layout.cw, thetaGap);
         box = layout;
     }
     return ringRaw(
@@ -77,6 +80,53 @@ export const ring = (
         fmt,
         info
     );
+};
+
+export const ringGroup = (
+    gui: IMGUI,
+    layout: IGridLayout,
+    id: string,
+    min: number,
+    max: number,
+    prec: number,
+    horizontal: boolean,
+    thetaGap: number,
+    rscale: number,
+    vals: number[],
+    label: string[],
+    fmt?: Fn<number, string>,
+    info: string[] = []
+) => {
+    const n = vals.length;
+    const nested = horizontal
+        ? layout.nest(n, [n, 1])
+        : layout.nest(1, [
+              1,
+              (layout.rowsForHeight(ringHeight(layout.cellW, thetaGap)) + 1) * n
+          ]);
+    let res: number | undefined;
+    let idx: number = -1;
+    for (let i = 0; i < n; i++) {
+        const v = ring(
+            gui,
+            nested,
+            `${id}-${i}`,
+            min,
+            max,
+            prec,
+            vals[i],
+            thetaGap,
+            rscale,
+            label[i],
+            fmt,
+            info[i]
+        );
+        if (v !== undefined) {
+            res = v;
+            idx = i;
+        }
+    }
+    return res !== undefined ? [idx, res] : undefined;
 };
 
 export const ringRaw = (
@@ -150,7 +200,7 @@ export const ringRaw = (
             {}
         )
     );
-    const valLabel = gui.resource(id, "l" + v, () =>
+    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
         textLabelRaw(
             [x + lx, y + ly],
             gui.textColor(false),

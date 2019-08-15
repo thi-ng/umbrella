@@ -119,7 +119,7 @@ export const sliderVRaw = (
         const nh = norm(v!, min, max) * (h - 1);
         return rect([x, ymax - nh], [w, nh], {});
     });
-    const valLabel = gui.resource(id, "l" + v, () =>
+    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
         textLabelRaw(
             ZERO2,
             {

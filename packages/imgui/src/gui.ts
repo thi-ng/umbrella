@@ -105,7 +105,7 @@ export class IMGUI implements IToHiccup {
     }
 
     /**
-     * Merges given theme settings with DEFAULT_THEME and resets theme
+     * Merges given theme settings with `DEFAULT_THEME` and resets theme
      * stack.
      *
      * @param theme
@@ -115,8 +115,8 @@ export class IMGUI implements IToHiccup {
     }
 
     /**
-     * Merges given theme settings with current theme and pushes it on
-     * theme stack.
+     * Merges given theme settings with current theme and pushes result
+     * on theme stack.
      *
      * IMPORTANT: Currently IMGUI only supports one font and ignores any
      * font changes pushed on the theme stack.

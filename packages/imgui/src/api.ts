@@ -230,7 +230,7 @@ export const DEFAULT_THEME: GUITheme = {
     fgDisabled: [0.2, 0.8, 1, 0.5],
     fgHover: [0.3, 0.9, 1, 1],
     text: [0.3, 0.3, 0.3, 1],
-    textDisabled: [0.3, 0.3, 0.3, 1],
+    textDisabled: [0.3, 0.3, 0.3, 0.5],
     textHover: [0.2, 0.2, 0.4, 1],
     bgTooltip: [1, 1, 0.8, 0.85],
     textTooltip: [0, 0, 0, 1]

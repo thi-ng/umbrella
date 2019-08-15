@@ -47,6 +47,46 @@ export const dial = (
     );
 };
 
+export const dialGroup = (
+    gui: IMGUI,
+    layout: IGridLayout,
+    id: string,
+    min: number,
+    max: number,
+    prec: number,
+    horizontal: boolean,
+    vals: number[],
+    label: string[],
+    fmt?: Fn<number, string>,
+    info: string[] = []
+) => {
+    const n = vals.length;
+    const nested = horizontal
+        ? layout.nest(n, [n, 1])
+        : layout.nest(1, [1, (layout.rowsForHeight(layout.cellW) + 1) * n]);
+    let res: number | undefined;
+    let idx: number = -1;
+    for (let i = 0; i < n; i++) {
+        const v = dial(
+            gui,
+            nested,
+            `${id}-${i}`,
+            min,
+            max,
+            prec,
+            vals[i],
+            label[i],
+            fmt,
+            info[i]
+        );
+        if (v !== undefined) {
+            res = v;
+            idx = i;
+        }
+    }
+    return res !== undefined ? [idx, res] : undefined;
+};
+
 export const dialRaw = (
     gui: IMGUI,
     id: string,
@@ -102,7 +142,7 @@ export const dialRaw = (
             {}
         )
     );
-    const valLabel = gui.resource(id, "l" + v, () =>
+    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
         textLabelRaw(
             [x + lx, y + ly],
             gui.textColor(false),
