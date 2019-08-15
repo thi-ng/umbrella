@@ -12,7 +12,6 @@ import {
 } from "./api";
 
 export class IMGUI implements IToHiccup {
-    theme!: GUITheme;
     attribs!: any;
     layers: any[];
 
@@ -33,6 +32,7 @@ export class IMGUI implements IToHiccup {
     protected currIDs: Set<string>;
     protected prevIDs: Set<string>;
 
+    protected themes!: GUITheme[];
     protected resources: Map<string, Map<Hash, any>>;
     protected states: Map<string, any>;
     protected sizes: Map<string, any>;
@@ -52,6 +52,11 @@ export class IMGUI implements IToHiccup {
         this.attribs = {};
         this.setTheme(opts.theme || {});
         this.t0 = Date.now();
+    }
+
+    get theme() {
+        const themes = this.themes;
+        return themes[themes.length - 1];
     }
 
     /**
@@ -83,12 +88,32 @@ export class IMGUI implements IToHiccup {
     }
 
     /**
-     * Merges given theme settings with existing theme.
+     * Merges given theme settings with DEFAULT_THEME and resets theme
+     * stack.
      *
      * @param theme
      */
     setTheme(theme: Partial<GUITheme>) {
-        this.theme = { ...DEFAULT_THEME, ...theme };
+        this.themes = [{ ...DEFAULT_THEME, ...theme }];
+    }
+
+    /**
+     * Merges given theme settings with current theme and pushes it on
+     * theme stack.
+     *
+     * @param theme
+     */
+    pushTheme(theme: Partial<GUITheme>) {
+        const themes = this.themes;
+        themes.push({ ...themes[themes.length - 1], ...theme });
+    }
+
+    /**
+     * Removes current theme from stack (unless only one theme left).
+     */
+    popTheme() {
+        const themes = this.themes;
+        themes.length > 1 && themes.pop();
     }
 
     /**
@@ -298,54 +323,5 @@ export class IMGUI implements IToHiccup {
             ...this.layers[0],
             ...this.layers[1]
         ];
-    }
-
-    /**
-     * Injects default mouse & touch event handlers into `attribs`
-     * property and attaches keydown/up listeners to `window`.
-     *
-     * This method should only be used if the IMGUI is to be updated via
-     * a RAF loop or other non-reactive situation. For on-demand
-     * updates/rendering event handling and IMGUI preparation is left to
-     * the user.
-     *
-     * @see IMGUI.setMouse()
-     * @see IMGUI.setKey()
-     */
-    useDefaultEventHandlers() {
-        const pos = (e: MouseEvent | TouchEvent) => {
-            const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();
-            const t = (<TouchEvent>e).changedTouches
-                ? (<TouchEvent>e).changedTouches[0]
-                : <MouseEvent>e;
-            return [t.clientX - b.left, t.clientY - b.top];
-        };
-        const touchActive = (e: TouchEvent) => {
-            this.setMouse(pos(e), MouseButton.LEFT);
-        };
-        const touchEnd = (e: TouchEvent) => {
-            this.setMouse(pos(e), 0);
-        };
-        const mouseActive = (e: MouseEvent) => {
-            this.setMouse(pos(e), e.buttons);
-        };
-        Object.assign(this.attribs, {
-            onmousemove: mouseActive,
-            onmousedown: mouseActive,
-            onmouseup: mouseActive,
-            ontouchstart: touchActive,
-            ontouchmove: touchActive,
-            ontouchend: touchEnd,
-            ontouchcancel: touchEnd
-        });
-        window.addEventListener("keydown", (e) => {
-            this.setKey(e);
-            if (e.key === "Tab") {
-                e.preventDefault();
-            }
-        });
-        window.addEventListener("keyup", (e) => {
-            this.setKey(e);
-        });
     }
 }
