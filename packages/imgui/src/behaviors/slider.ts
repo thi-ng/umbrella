@@ -16,6 +16,7 @@ export const isHoverSlider = (
     shape: IShape,
     cursor = "ew-resize"
 ) => {
+    if (gui.disabled) return false;
     const aid = gui.activeID;
     const hover = aid === id || (aid === "" && pointInside(shape, gui.mouse));
     if (hover) {

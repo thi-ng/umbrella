@@ -106,7 +106,8 @@ export const ringRaw = (
     const endTheta = HALF_PI + TAU - thetaGap / 2;
     const aid = gui.activeID;
     const hover =
-        aid === id || (aid === "" && pointInRect(gui.mouse, [x, y], [w, h]));
+        !gui.disabled &&
+        (aid === id || (aid === "" && pointInRect(gui.mouse, [x, y], [w, h])));
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {

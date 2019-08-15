@@ -4,6 +4,7 @@ import { Key } from "../api";
 import { IMGUI } from "../gui";
 
 export const isHoverButton = (gui: IMGUI, id: string, shape: IShape) => {
+    if (gui.disabled) return false;
     const aid = gui.activeID;
     const hover = (aid === "" || aid === id) && pointInside(shape, gui.mouse);
     if (hover) {

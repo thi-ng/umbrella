@@ -16,10 +16,13 @@ export interface GUITheme {
     cursor: Color;
     cursorBlink: number;
     bg: Color;
-    fg: Color;
-    text: Color;
+    bgDisabled: Color;
     bgHover: Color;
+    fg: Color;
+    fgDisabled: Color;
     fgHover: Color;
+    text: Color;
+    textDisabled: Color;
     textHover: Color;
     bgTooltip: Color;
     textTooltip: Color;
@@ -221,10 +224,13 @@ export const DEFAULT_THEME: GUITheme = {
     cursor: [0, 0, 0, 1],
     cursorBlink: 2,
     bg: [1, 1, 1, 0.66],
-    fg: [0.2, 0.8, 1, 1],
-    text: [0.3, 0.3, 0.3, 1],
+    bgDisabled: [1, 1, 1, 0.33],
     bgHover: [1, 1, 1, 0.9],
+    fg: [0.2, 0.8, 1, 1],
+    fgDisabled: [0.2, 0.8, 1, 0.5],
     fgHover: [0.3, 0.9, 1, 1],
+    text: [0.3, 0.3, 0.3, 1],
+    textDisabled: [0.3, 0.3, 0.3, 1],
     textHover: [0.2, 0.2, 0.4, 1],
     bgTooltip: [1, 1, 0.8, 0.85],
     textTooltip: [0, 0, 0, 1]

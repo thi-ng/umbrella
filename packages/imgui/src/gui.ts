@@ -19,6 +19,10 @@ export class IMGUI implements IToHiccup {
     buttons: number;
     key!: string;
     modifiers: number;
+    prevMouse: Vec;
+    prevButtons: number;
+    prevKey!: string;
+    prevModifiers: number;
 
     hotID: string;
     activeID: string;
@@ -32,16 +36,17 @@ export class IMGUI implements IToHiccup {
     protected currIDs: Set<string>;
     protected prevIDs: Set<string>;
 
-    protected themes!: GUITheme[];
+    protected themeStack!: GUITheme[];
+    protected disabledStack!: boolean[];
     protected resources: Map<string, Map<Hash, any>>;
     protected states: Map<string, any>;
     protected sizes: Map<string, any>;
 
     constructor(opts: IMGUIOpts) {
         this.mouse = [-1e3, -1e3];
-        this.buttons = 0;
-        this.key = "";
-        this.modifiers = 0;
+        this.prevMouse = [-1e3, -1e3];
+        this.key = this.prevKey = "";
+        this.buttons = this.prevButtons = this.modifiers = this.prevModifiers = 0;
         this.hotID = this.activeID = this.focusID = this.lastID = "";
         this.currIDs = new Set<string>();
         this.prevIDs = new Set<string>();
@@ -50,13 +55,19 @@ export class IMGUI implements IToHiccup {
         this.states = new Map<string, any>();
         this.layers = [[], []];
         this.attribs = {};
+        this.disabledStack = [false];
         this.setTheme(opts.theme || {});
         this.t0 = Date.now();
     }
 
     get theme() {
-        const themes = this.themes;
-        return themes[themes.length - 1];
+        const stack = this.themeStack;
+        return stack[stack.length - 1];
+    }
+
+    get disabled() {
+        const stack = this.disabledStack;
+        return stack[stack.length - 1];
     }
 
     /**
@@ -67,7 +78,9 @@ export class IMGUI implements IToHiccup {
      * @param buttons
      */
     setMouse(p: Vec, buttons: number) {
+        set2(this.prevMouse, this.mouse);
         set2(this.mouse, p);
+        this.prevButtons = this.buttons;
         this.buttons = buttons;
         return this;
     }
@@ -78,7 +91,11 @@ export class IMGUI implements IToHiccup {
      * @param e
      */
     setKey(e: KeyboardEvent) {
-        e.type === "keydown" && (this.key = e.key);
+        if (e.type === "keydown") {
+            this.prevKey = this.key;
+            this.key = e.key;
+        }
+        this.prevModifiers = this.modifiers;
         this.modifiers =
             (~~e.shiftKey * KeyModifier.SHIFT) |
             (~~e.ctrlKey * KeyModifier.CONTROL) |
@@ -94,26 +111,76 @@ export class IMGUI implements IToHiccup {
      * @param theme
      */
     setTheme(theme: Partial<GUITheme>) {
-        this.themes = [{ ...DEFAULT_THEME, ...theme }];
+        this.themeStack = [{ ...DEFAULT_THEME, ...theme }];
     }
 
     /**
      * Merges given theme settings with current theme and pushes it on
      * theme stack.
      *
+     * IMPORTANT: Currently IMGUI only supports one font and ignores any
+     * font changes pushed on the theme stack.
+     *
      * @param theme
      */
-    pushTheme(theme: Partial<GUITheme>) {
-        const themes = this.themes;
-        themes.push({ ...themes[themes.length - 1], ...theme });
+    beginTheme(theme: Partial<GUITheme>) {
+        const stack = this.themeStack;
+        stack.push({ ...stack[stack.length - 1], ...theme });
     }
 
     /**
      * Removes current theme from stack (unless only one theme left).
      */
-    popTheme() {
-        const themes = this.themes;
-        themes.length > 1 && themes.pop();
+    endTheme() {
+        const stack = this.themeStack;
+        stack.length > 1 && stack.pop();
+    }
+
+    /**
+     * Applies component function with given theme, then restores
+     * previous theme and returns component result.
+     *
+     * @param theme
+     * @param comp
+     */
+    withTheme<T>(theme: Partial<GUITheme>, comp: Fn0<T>) {
+        this.beginTheme(theme);
+        const res = comp();
+        this.themeStack.pop();
+        return res;
+    }
+
+    /**
+     * Pushes given disabled component state flag on stack (default:
+     * true, i.e. disabled). Pass `false` to temporarily enable
+     * components.
+     *
+     * @param disabled
+     */
+    beginDisabled(disabled = true) {
+        this.disabledStack.push(disabled);
+    }
+
+    /**
+     * Removes current disabled flag from stack (unless only one theme left).
+     */
+    endDisabled() {
+        const stack = this.disabledStack;
+        stack.length > 1 && stack.pop();
+    }
+
+    /**
+     * Applies component function with given disabled flag, then
+     * restores previous disabled state and returns component result.
+     *
+     * @param disabled
+     * @param comp
+     */
+    withDisabled<T>(disabled: boolean, comp: Fn0<T>) {
+        this.disabledStack.push(disabled);
+        const res = comp();
+        this.disabledStack.pop();
+        return res;
     }
 
     /**
@@ -123,6 +190,7 @@ export class IMGUI implements IToHiccup {
      * @param id
      */
     requestFocus(id: string) {
+        if (this.disabled) return false;
         if (this.focusID === "" || this.activeID === id) {
             this.focusID = id;
             return true;
@@ -140,8 +208,11 @@ export class IMGUI implements IToHiccup {
         this.key = "";
     }
 
+    /**
+     * Returns true if left mouse button is pressed.
+     */
     isMouseDown() {
-        return this.buttons & MouseButton.LEFT;
+        return (this.buttons & MouseButton.LEFT) > 0;
     }
 
     isShiftDown() {
@@ -160,6 +231,26 @@ export class IMGUI implements IToHiccup {
         return (this.modifiers & KeyModifier.ALT) > 0;
     }
 
+    isPrevMouseDown() {
+        return (this.prevButtons & MouseButton.LEFT) > 0;
+    }
+
+    isPrevShiftDown() {
+        return (this.prevModifiers & KeyModifier.SHIFT) > 0;
+    }
+
+    isPrevControlDown() {
+        return (this.prevModifiers & KeyModifier.CONTROL) > 0;
+    }
+
+    isPrevMetaDown() {
+        return (this.prevModifiers & KeyModifier.META) > 0;
+    }
+
+    isPrevAltDown() {
+        return (this.prevModifiers & KeyModifier.ALT) > 0;
+    }
+
     /**
      * Prepares IMGUI for next frame. Resets `hotID`, `cursor`, clears
      * all layers and updates elapsed time.
@@ -168,6 +259,8 @@ export class IMGUI implements IToHiccup {
         this.hotID = "";
         this.layers[0].length = 0;
         this.layers[1].length = 0;
+        this.themeStack.length = 1;
+        this.disabledStack.length = 1;
         this.time = (Date.now() - this.t0) * 1e-3;
         this.cursor = "default";
     }
@@ -206,15 +299,27 @@ export class IMGUI implements IToHiccup {
     }
 
     bgColor(hover: boolean) {
-        return hover ? this.theme.bgHover : this.theme.bg;
+        return this.disabled
+            ? this.theme.bgDisabled
+            : hover
+            ? this.theme.bgHover
+            : this.theme.bg;
     }
 
     fgColor(hover: boolean) {
-        return hover ? this.theme.fgHover : this.theme.fg;
+        return this.disabled
+            ? this.theme.fgDisabled
+            : hover
+            ? this.theme.fgHover
+            : this.theme.fg;
     }
 
     textColor(hover: boolean) {
-        return hover ? this.theme.textHover : this.theme.text;
+        return this.disabled
+            ? this.theme.textDisabled
+            : hover
+            ? this.theme.textHover
+            : this.theme.text;
     }
 
     focusColor(id: string) {
