@@ -27,6 +27,8 @@ import {
     toggle,
     xyPad,
     Key,
+    gridLayout,
+    layoutBox,
 } from "@thi.ng/imgui";
 import { clamp, PI } from "@thi.ng/math";
 import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode, fromAtom } from "@thi.ng/rstream";
@@ -35,8 +37,9 @@ import { float } from "@thi.ng/strings";
 import { step, sideEffect, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
-import { ZERO2, setC2, min2, Vec, vecOf } from "@thi.ng/vectors";
+import { ZERO2, setC2, min2, Vec, vecOf, add2 } from "@thi.ng/vectors";
 import { History, Atom } from "@thi.ng/atom";
+import { setInMany } from "@thi.ng/paths";
 
 const FONT = "10px 'IBM Plex Mono'";
 
@@ -79,6 +82,7 @@ const RADIO_LABELS = ["Yes", "No", "Maybe"];
 const RGB_LABELS = ["R", "G", "B"];
 const RGB_TOOLTIPS = ["Red", "Green", "Blue"];
 const RADIAL_LABELS = ["Buttons", "Slider", "Dials", "Dropdown", "Text"];
+const THEME_IDS = ["Default", "Mono", "Raspberry"];
 
 // TODO create wrapper / simplify
 const ICON1 = ["g", {stroke: "none"}, ...pathFromSvg((<any>DOWNLOAD)[2][1].d)];
@@ -99,7 +103,7 @@ const DB = new History(new Atom({
     toggles: new Array<boolean>(12).fill(false),
     flags: [true, false],
     level: 0,
-}));
+}), 500);
 
 
 const app = () => {
@@ -158,7 +162,7 @@ const app = () => {
 
     const updateGUI = () => {
         const state = DB.deref();
-        const grid = new GridLayout(null, 1, 10, 10, maxW - 20, 16, 4);
+        const grid = gridLayout(10, 10, maxW - 20, 1, 16, 4);
         gui.setTheme(themeForID(state.theme));
         gui.begin();
         if (buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")) {
@@ -192,29 +196,34 @@ const app = () => {
                     }
 
                     inner = grid.nest(2);
+                    gui.pushTheme(themeForID((state.theme + 2) % 3));
                     if ((res = toggle(gui, inner, "opt1", state.flags[0], false, state.flags[0] ? "ON" : "OFF", "Unused")) !== undefined) {
                         DB.resetIn(["flags", 0], res);
                     }
                     if ((res = toggle(gui, inner, "opt2", state.flags[1], false, state.flags[1] ? "ON" : "OFF", "Unused")) !== undefined) {
                         DB.resetIn(["flags", 1], res);
                     }
+                    gui.popTheme();
 
+                    grid.next();
                     textLabel(gui, grid, "Radio (horizontal):");
                     if ((res = radio(gui, grid, "level1", true, state.level, false, RADIO_LABELS)) !== undefined) {
                         DB.resetIn("level", res);
                     }
+                    grid.next();
                     if ((res = radio(gui, grid, "level2", true, state.level, true, RADIO_LABELS)) !== undefined) {
                         DB.resetIn("level", res);
                     }
 
+                    grid.next();
                     textLabel(gui, grid, "Radio (vertical):");
                     if ((res = radio(gui, grid, "level3", false, state.level, false, RADIO_LABELS)) !== undefined) {
                         DB.resetIn("level", res);
                     }
+                    grid.next();
                     if ((res = radio(gui, grid, "level4", false, state.level, true, RADIO_LABELS)) !== undefined) {
                         DB.resetIn("level", res);
                     }
-
                     break;
 
                 case 1:
@@ -249,7 +258,6 @@ const app = () => {
                     res = xyPad(gui, inner, "xy3", ZERO2, size, 10, state.pos, -1, false, undefined, undefined, "Origin") || res;
                     res = xyPad(gui, inner, "xy4", ZERO2, size, 10, state.pos, -2, false, undefined, undefined, "Origin") || res;
                     res !== undefined && DB.resetIn("pos", res);
-
                     break;
 
                 case 2:
@@ -303,7 +311,11 @@ const app = () => {
                 case 3:
                     grid.next();
                     textLabel(gui, grid, "Select theme:");
-                    if ((res = dropdown(gui, grid, "theme", state.theme, ["Default", "Mono", "Miaki"], "GUI theme")) !== undefined) {
+                    if ((res = dropdown(gui, grid, "theme", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
+                        DB.resetIn("theme", res);
+                    }
+                    const box = layoutBox(10, 170, 150, 120, 200, 24, 0);
+                    if ((res = dropdown(gui, box, "theme2", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
                         DB.resetIn("theme", res);
                     }
                     break;
@@ -327,9 +339,10 @@ const app = () => {
             prevMeta = true;
             let res: number | undefined;
             if ((res = radialMenu(gui, "radial", radialPos[0], radialPos[1], 100, RADIAL_LABELS, [])) !== undefined) {
-                DB.resetIn("uiMode", res);
-                DB.resetIn("uiVisible", true);
+                DB.swap((db) => setInMany(db, "uiMode", res, "uiVisible", true));
             }
+            const txt = "Click to switch UI";
+            gui.add(textLabelRaw(add2([],radialPos, [-gui.textWidth(txt)/2, 120]),"#000",txt));
         } else {
             prevMeta = false;
         }
@@ -341,11 +354,13 @@ const app = () => {
         ) {
             maxW = clamp(gui.mouse[0], 240, size[0] - 16);
         }
+
         const { key, hotID, activeID, focusID, lastID } = gui;
-        const statLayout = new GridLayout(null, 1, 10, size[1] - 10 - 3 * 14, size[0], 14, 0);
+        const statLayout = gridLayout(10, size[1] - 10 - 3 * 14, size[0], 1, 14, 0);
         textLabel(gui, statLayout, `Keys: ${key}`);
         textLabel(gui, statLayout, `Focus: ${focusID} / ${lastID}`);
         textLabel(gui, statLayout, `IDs: ${hotID || "none"} / ${activeID || "none"}`);
+
         gui.end();
     };
 
@@ -368,18 +383,16 @@ const app = () => {
             {
                 width: w,
                 height: h,
-                style: { background: gui.theme.globalBg },
+                style: { background: gui.theme.globalBg, cursor: gui.cursor },
                 oncontextmenu: (e: Event) => e.preventDefault(),
                 ...gui.attribs
             },
-            line([maxW, 0], [maxW, h], {
-                stroke: gui.textColor(false)
-            }),
+            line([maxW, 0], [maxW, h], { stroke: "#000" }),
             [
                 "text",
                 {
                     transform: [0, -1, 1, 0, maxW + 12, h / 2],
-                    fill: gui.textColor(false),
+                    fill: "#000",
                     font: FONT,
                     align: "center"
                 },
