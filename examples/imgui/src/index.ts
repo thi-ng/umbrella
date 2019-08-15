@@ -1,13 +1,12 @@
+import { History, Atom } from "@thi.ng/atom";
 import { timedResult } from "@thi.ng/bench";
 import { line, pathFromSvg, normalizedPath } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { DOWNLOAD } from "@thi.ng/hiccup-carbon-icons/download";
-import { RESTART } from "@thi.ng/hiccup-carbon-icons/restart";
+import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
 import {
     buttonH,
     buttonV,
     DEFAULT_THEME,
-    dial,
     dropdown,
     GridLayout,
     GUITheme,
@@ -29,142 +28,184 @@ import {
     Key,
     gridLayout,
     layoutBox,
+    dialGroup,
+    ringGroup
 } from "@thi.ng/imgui";
 import { clamp, PI } from "@thi.ng/math";
-import { sync, trigger, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode, fromAtom } from "@thi.ng/rstream";
+import { setInMany } from "@thi.ng/paths";
+import { sync, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode, fromAtom } from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
-import { step, sideEffect, map } from "@thi.ng/transducers";
+import { step, map, comp, mapcat, iterator } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
-import { ZERO2, setC2, min2, Vec, vecOf, add2 } from "@thi.ng/vectors";
-import { History, Atom } from "@thi.ng/atom";
-import { setInMany } from "@thi.ng/paths";
-
-const FONT = "10px 'IBM Plex Mono'";
+import { ZERO2, setC2, min2, Vec, vecOf, add2, hash } from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend
 const THEMES: Partial<GUITheme>[] = [
     DEFAULT_THEME,
     {
-        globalBg: "#888",
-        focus: [0.6, 0, 0.6, 1],
-        cursor: [1, 1, 1, 1],
-        bg: [0, 0, 0, 0.4],
-        fg: [0, 0, 0, 1],
-        text: [0.9, 0.9, 0.9, 1],
-        bgHover: [0, 0, 0, 0.75],
-        fgHover: [0.8, 0.8, 0.8, 1],
-        textHover: [1, 1, 1, 1],
-        bgTooltip: [0, 0, 0, 0.85],
-        textTooltip: [0.8, 0.8, 0.8, 1]
-    },
-    {
         globalBg: "#ccc",
         focus: [1, 0.66, 0, 1],
         cursor: [0, 0, 0, 1],
         bg: [1, 1, 1, 0.66],
-        fg: [0.8, 0, 0.8, 1],
-        text: [0.3, 0.3, 0.3, 1],
+        bgDisabled: [1, 1, 1, 0.33],
         bgHover: [1, 1, 1, 0.9],
+        fg: [0.8, 0, 0.8, 1],
+        fgDisabled: [0.8, 0, 0.8, 0.5],
         fgHover: [1, 0, 1, 1],
+        text: [0.3, 0.3, 0.3, 1],
+        textDisabled: [0.3, 0.3, 0.3, 0.5],
         textHover: [0.2, 0.2, 0.4, 1],
         bgTooltip: [1, 1, 0.8, 0.85],
         textTooltip: [0, 0, 0, 1]
     }
 ];
 
+// float value formatters
 const F1 = float(1);
 const F2 = float(2);
 
+// UI constants
+const FONT = "10px 'IBM Plex Mono'";
 const RADIO_LABELS = ["Yes", "No", "Maybe"];
 const RGB_LABELS = ["R", "G", "B"];
 const RGB_TOOLTIPS = ["Red", "Green", "Blue"];
 const RADIAL_LABELS = ["Buttons", "Slider", "Dials", "Dropdown", "Text"];
-const THEME_IDS = ["Default", "Mono", "Raspberry"];
+const THEME_IDS = ["Default", "Raspberry"];
 
-// TODO create wrapper / simplify
-const ICON1 = ["g", {stroke: "none"}, ...pathFromSvg((<any>DOWNLOAD)[2][1].d)];
-const ICON2 = ["g", {stroke: "none"}, normalizedPath(pathFromSvg((<any>RESTART)[2][1].d)[0])];
+// helper function to normalize hiccup icon paths
+// (transforms each path into one only consisting of cubic spline segments)
+const mkIcon = (icon: any[]) =>
+    [
+        "g", { stroke: "none" },
+        ...iterator(
+            comp(mapcat((p) => pathFromSvg(p[1].d)), map(normalizedPath)),
+            icon.slice(2)
+        )
+    ];
 
+// icon definitions (from @thi.ng/hiccup-carbon-icons)
+const ICON1 = mkIcon(DOWNLOAD);
+const ICON2 = mkIcon(RESTART);
+
+// main immutable app state wrapper (with time travel)
+const DB = new History(
+    new Atom({
+        uiVisible: true,
+        uiMode: 0,
+        theme: 0,
+        radius: 10,
+        gridW: 15,
+        rgb: [0.9, 0.45, 0.5],
+        pos: [400, 140],
+        txt: "Hello there! This is a test, do not panic!",
+        toggles: new Array<boolean>(12).fill(false),
+        flags: [true, false],
+        radio: 0,
+    }),
+    // max. 500 undo steps
+    500
+);
+
+// theme merging helper
 const themeForID = (theme: number): Partial<GUITheme> =>
-    ({ ...THEMES[theme], font: FONT, cursorBlink: 0 });
+    ({ ...THEMES[theme % THEMES.length], font: FONT, cursorBlink: 0 });
 
-const DB = new History(new Atom({
-    uiVisible: true,
-    uiMode: 0,
-    theme: 0,
-    radius: 10,
-    gridW: 15,
-    rgb: [0.9, 0.45, 0.5],
-    pos: [400, 140],
-    txt: "Hello there! This is a test, do not panic!",
-    toggles: new Array<boolean>(12).fill(false),
-    flags: [true, false],
-    level: 0,
-}), 500);
+// state update handler for `rgb` value
+// if Alt key is pressed when this handler executes,
+// then all values will be set uniformly...
+const setRGB = (gui: IMGUI, res: number[]) =>
+    res !== undefined &&
+        (gui.isAltDown()
+            ? DB.resetIn("rgb", vecOf(3, res[1]))
+            : DB.resetIn(["rgb", res[0]], res[1]));
 
-
+// main application
 const app = () => {
     let maxW = 240;
     let size = [window.innerWidth, window.innerHeight];
     let radialPos = [0, 0];
-    let prevMeta = false;
+    let radialActive = false;
+
     // GUI instance
     const gui = new IMGUI({ theme: themeForID(DB.deref().theme) });
-    // GUI benchmark (moving average)
+
+    // GUI benchmark (moving average) transducer
     const bench = step(sma(50));
+
+    // augment hdom-canvas component with init lifecycle method to
+    // attach event streams once canvas has been mounted
     const _canvas = {
         ...canvas,
         init(canv: HTMLCanvasElement) {
-            // add event streams to trigger GUI updates
+            // add event streams to main stream combinator
+            // in order to trigger GUI updates...
             main.add(
+                // merge all event streams into a single input to `main`
+                // (we don't actually care about their actual values and merely
+                // use them as mechanism to trigger updates)
                 merge<any,any>({
                     src: [
-                        gestureStream(canv, {}).transform(
-                            sideEffect((e) => gui.setMouse(
-                                [...e[1].pos],
-                                e[0] === GestureType.START || e[0] === GestureType.DRAG
-                                    ? MouseButton.LEFT
-                                    : 0
-                            ))
-                        ),
-                        fromDOMEvent(window, "keydown").transform(
-                            sideEffect((e: KeyboardEvent) => {
+                        // mouse & touch events
+                        gestureStream(canv, {}).subscribe({
+                            next(e) {
+                                gui.setMouse(
+                                    [...e[1].pos],
+                                    e[0] === GestureType.START || e[0] === GestureType.DRAG
+                                        ? MouseButton.LEFT
+                                        : 0
+                                )
+                            }
+                        }),
+                        // keydown & undo/redo handler:
+                        // Ctrl/Command + Z = undo
+                        // Shift + Ctrl/Command + Z = redo
+                        fromDOMEvent(window, "keydown").subscribe({
+                            next(e) {
                                 if (e.key === Key.TAB) {
                                     e.preventDefault();
                                 }
-                                if ((e.metaKey || e.ctrlKey) && e.key === "z") {
-                                    DB.undo();
-                                } else if ((e.metaKey || e.ctrlKey) && e.key === "y") {
-                                    DB.redo();
+                                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "z") {
+                                    e.shiftKey ? DB.redo() : DB.undo();
                                 } else {
                                     gui.setKey(e);
                                 }
-                            })
-                        ),
-                        fromDOMEvent(window, "keyup").transform(
-                            sideEffect((e) => gui.setKey(e))
-                        ),
-                        fromDOMEvent(window, "resize").transform(
-                            sideEffect(() => {
+                            }
+                        }),
+                        fromDOMEvent(window, "keyup").subscribe({
+                            next(e) { gui.setKey(e); }
+                        }),
+                        fromDOMEvent(window, "resize").subscribe({
+                            next() {
                                 maxW = Math.min(maxW, window.innerWidth - 16);
                                 setC2(size, window.innerWidth, window.innerHeight);
                                 DB.swapIn("pos", (pos: Vec) => min2([], pos, size));
-                            })
-                        )
+                            }
+                        })
                     ]
                 })
             );
         }
     };
 
+    // main GUI update function
     const updateGUI = () => {
+        // obtain atom value
         const state = DB.deref();
+        // setup initial layout (single column)
         const grid = gridLayout(10, 10, maxW - 20, 1, 16, 4);
+
         gui.setTheme(themeForID(state.theme));
+
+        // start frame
         gui.begin();
+
+        // disable all GUI components if radial menu is active
+        gui.beginDisabled(radialActive);
+
+        // button components return true if clicked
         if (buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")) {
             DB.resetIn("uiVisible", !state.uiVisible);
         }
@@ -174,21 +215,29 @@ const app = () => {
             let res: any;
             switch(state.uiMode) {
                 case 0:
+                    // create empty row
                     grid.next();
 
+                    // create 2-column layout in next row
                     inner = grid.nest(2);
+                    // no actions for these buttons (demo only)
                     iconButton(gui, inner, "icon", ICON1, 14, 16, "Download", "Icon button");
                     iconButton(gui, inner, "icon2", ICON2, 13, 16, "Restart", "Icon button");
 
                     grid.next();
+                    // text labels on their own never are non-interactive
                     textLabel(gui, grid, "Toggles:");
 
+                    // create 8 column layout
                     inner = grid.nest(8);
+                    // vertical button in 1st column and spanning 3 rows
                     if (buttonV(gui, inner, "toggleAll", 3, "INVERT")) {
-                        DB.swapIn("toggles", (toggles: boolean[]) => toggles.map((x)=>!x));
+                        DB.swapIn("toggles", (toggles: boolean[]) => toggles.map((x) => !x));
                     }
 
+                    // create nested 4 column layout using remaining 7 columns of current layout
                     inner2 = inner.nest(4, [7, 1]);
+                    // create toggle button for each array item
                     for(let i = 0; i < state.toggles.length; i++) {
                         if ((res = toggle(gui, inner2, `toggle${i}`, state.toggles[i], false, `${i}`)) !== undefined) {
                             DB.resetIn(["toggles", i], res);
@@ -196,39 +245,44 @@ const app = () => {
                     }
 
                     inner = grid.nest(2);
-                    gui.pushTheme(themeForID((state.theme + 2) % 3));
+                    // temporarily use different theme by pushing on stack
+                    gui.beginTheme(themeForID(state.theme + 1));
                     if ((res = toggle(gui, inner, "opt1", state.flags[0], false, state.flags[0] ? "ON" : "OFF", "Unused")) !== undefined) {
                         DB.resetIn(["flags", 0], res);
                     }
                     if ((res = toggle(gui, inner, "opt2", state.flags[1], false, state.flags[1] ? "ON" : "OFF", "Unused")) !== undefined) {
                         DB.resetIn(["flags", 1], res);
                     }
-                    gui.popTheme();
+                    // restore theme
+                    gui.endTheme();
 
                     grid.next();
+                    // these next radio buttons are always disabled
+                    gui.beginDisabled();
                     textLabel(gui, grid, "Radio (horizontal):");
-                    if ((res = radio(gui, grid, "level1", true, state.level, false, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("level", res);
-                    }
+                    radio(gui, grid, "radio1", true, state.radio, false, RADIO_LABELS);
+                    gui.endDisabled();
+
                     grid.next();
-                    if ((res = radio(gui, grid, "level2", true, state.level, true, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("level", res);
+                    // alternative theme override for all components created by given function
+                    if ((res = gui.withTheme(themeForID(state.theme + 1), () => radio(gui, grid, "radio2", true, state.radio, true, RADIO_LABELS))) !== undefined) {
+                        DB.resetIn("radio", res);
                     }
 
                     grid.next();
                     textLabel(gui, grid, "Radio (vertical):");
-                    if ((res = radio(gui, grid, "level3", false, state.level, false, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("level", res);
+                    if ((res = radio(gui, grid, "radio3", false, state.radio, false, RADIO_LABELS)) !== undefined) {
+                        DB.resetIn("radio", res);
                     }
                     grid.next();
-                    if ((res = radio(gui, grid, "level4", false, state.level, true, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("level", res);
+                    if ((res = radio(gui, grid, "radio4", false, state.radio, true, RADIO_LABELS)) !== undefined) {
+                        DB.resetIn("radio", res);
                     }
                     break;
 
                 case 1:
                     grid.next();
-                    textLabel(gui, grid, "Slider:");
+                    textLabel(gui, grid, "Sliders:");
 
                     inner = grid.nest(2);
                     if ((res = sliderH(gui, inner, "grid", 1, 20, 1, state.gridW, "Grid", undefined, "Grid size")) !== undefined) {
@@ -245,10 +299,7 @@ const app = () => {
                     res = sliderVGroup(gui, inner, "col2", 0, 1, 0.05, state.rgb, 5, RGB_LABELS, F2, RGB_TOOLTIPS);
                     res = sliderVGroup(gui, inner, "col3", 0, 1, 0.05, state.rgb, 5, RGB_LABELS, F2, RGB_TOOLTIPS) || res;
                     res = sliderHGroup(gui, inner.nest(1, [2, 1]), "col", 0, 1, 0.05, false, state.rgb, RGB_LABELS, F2, RGB_TOOLTIPS) || res;
-                    res !== undefined &&
-                        (gui.isAltDown()
-                            ? DB.resetIn("rgb", vecOf(3, res[1]))
-                            : DB.resetIn(["rgb", res[0]], res[1]));
+                    setRGB(gui, res);
 
                     textLabel(gui, grid, "2D controller:");
 
@@ -265,47 +316,26 @@ const app = () => {
                     textLabel(gui, grid, "Dials:");
 
                     inner = grid.nest(6);
-                    if ((res = dial(gui, inner, "dial1", 0, 1, 0.05, state.rgb[0], undefined, F1)) !== undefined) {
-                        DB.resetIn(["rgb", 0], res);
-                    }
-                    if ((res = dial(gui, inner, "dial2", 0, 1, 0.05, state.rgb[1], undefined, F1)) !== undefined) {
-                        DB.resetIn(["rgb", 1], res);
-                    }
-                    if ((res = dial(gui, inner, "dial3", 0, 1, 0.05, state.rgb[2], undefined, F1)) !== undefined) {
-                        DB.resetIn(["rgb", 2], res);
-                    }
-                    if ((res = dial(gui, inner, "dial4", 0, 1, 0.05, state.rgb[0], undefined, F1)) !== undefined) {
-                        DB.resetIn(["rgb", 0], res);
-                    }
-                    if ((res = dial(gui, inner, "dial5", 0, 1, 0.05, state.rgb[1], undefined, F1)) !== undefined) {
-                        DB.resetIn(["rgb", 1], res);
-                    }
-                    if ((res = dial(gui, inner, "dial6", 0, 1, 0.05, state.rgb[2], undefined, F1)) !== undefined) {
-                        DB.resetIn(["rgb", 2], res);
-                    }
+                    res = dialGroup(gui, inner, "dials1", 0, 1, 0.05, true, state.rgb, [], F1, RGB_TOOLTIPS);
+                    res = dialGroup(gui, inner, "dials2", 0, 1, 0.05, true, state.rgb, [], F1, RGB_TOOLTIPS) || res;
+                    setRGB(gui, res);
 
                     inner = grid.nest(6);
-                    const gap = PI;
-                    if ((res = ring(gui, inner, "small", 0, 1, 0.05, state.rgb[0], gap, 0.5, "R", F2, "Red")) !== undefined) {
+                    if ((res = ring(gui, inner, "small", 0, 1, 0.05, state.rgb[0], PI, 0.5, "R", F2, "Red")) !== undefined) {
                         DB.resetIn(["rgb", 0], res);
                     }
-                    if ((res = ring(gui, inner.nest(1, [2, 2]), "medium", 0, 1, 0.05, state.rgb[1], gap, 0.5, "G", F2, "Green")) !== undefined) {
+                    if ((res = ring(gui, inner.nest(1, [2, 2]), "medium", 0, 1, 0.05, state.rgb[1], PI, 0.5, "G", F2, "Green")) !== undefined) {
                         DB.resetIn(["rgb", 1], res);
                     }
-                    if ((res = ring(gui, inner.nest(1, [3, 3]), "large", 0, 1, 0.05, state.rgb[2], gap, 0.5, "B", F2, "Blue")) !== undefined) {
+                    if ((res = ring(gui, inner.nest(1, [3, 3]), "large", 0, 1, 0.05, state.rgb[2], PI, 0.5, "B", F2, "Blue")) !== undefined) {
                         DB.resetIn(["rgb", 2], res);
                     }
 
                     inner = grid.nest(3);
-                    if ((res = ring(gui, inner, "dial11", 0, 1, 0.05, state.rgb[0], gap, 0.33, "R", F2, "Red")) !== undefined) {
-                        DB.resetIn(["rgb", 0], res);
-                    }
-                    if ((res = ring(gui, inner, "dial12", 0, 1, 0.05, state.rgb[1], PI * 0.66, 0.66, "G", F2, "Green")) !== undefined) {
-                        DB.resetIn(["rgb", 1], res);
-                    }
-                    if ((res = ring(gui, inner, "dial13", 0, 1, 0.05, state.rgb[2], PI * 0.33, 0.9, "B", F2, "Blue")) !== undefined) {
-                        DB.resetIn(["rgb", 2], res);
-                    }
+                    res = ringGroup(gui,inner,"rings1", 0, 1, 0.05, true, PI * 0.75, 0.5, state.rgb, RGB_LABELS, F2, RGB_TOOLTIPS);
+                    res = ringGroup(gui,inner,"rings2", 0, 1, 0.05, true, PI * 0.5, 0.75, state.rgb, RGB_LABELS, F2, RGB_TOOLTIPS) || res;
+                    res = ringGroup(gui,inner,"rings3", 0, 1, 0.05, true, PI * 0.25, 0.9, state.rgb, RGB_LABELS, F2, RGB_TOOLTIPS) || res;
+                    setRGB(gui, res);
                     break;
 
                 case 3:
@@ -314,7 +344,7 @@ const app = () => {
                     if ((res = dropdown(gui, grid, "theme", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
                         DB.resetIn("theme", res);
                     }
-                    const box = layoutBox(10, 170, 150, 120, 200, 24, 0);
+                    const box = layoutBox(10, 150, 150, 120, 200, 24, 0);
                     if ((res = dropdown(gui, box, "theme2", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
                         DB.resetIn("theme", res);
                     }
@@ -331,33 +361,62 @@ const app = () => {
                 default:
             }
         }
+        // remove disabled flag from stack
+        gui.endDisabled();
+
         // radial menu
-        if (gui.hotID === "" && gui.isMetaDown()) {
-            if (!prevMeta) {
+        if (gui.isControlDown()) {
+            if (!radialActive) {
                 radialPos = [...gui.mouse];
             }
-            prevMeta = true;
+            // menu backdrop
+            gui.add(
+                gui.resource("radial", "grad" + hash(radialPos), ()=>
+                    ["g",{},
+                        ["radialGradient",
+                            { id: "shadow", from: radialPos, to: radialPos, r1: 5, r2: 300},
+                            [[0, [1, 1, 1, 0.8]], [0.5, [1, 1, 1, 0.66]], [1, [1, 1, 1, 0]]]
+                        ],
+                        ["circle", { fill: "$shadow" }, radialPos, 300]
+                    ]
+                )
+            );
             let res: number | undefined;
             if ((res = radialMenu(gui, "radial", radialPos[0], radialPos[1], 100, RADIAL_LABELS, [])) !== undefined) {
                 DB.swap((db) => setInMany(db, "uiMode", res, "uiVisible", true));
             }
-            const txt = "Click to switch UI";
-            gui.add(textLabelRaw(add2([],radialPos, [-gui.textWidth(txt)/2, 120]),"#000",txt));
+            gui.add(
+                textLabelRaw(
+                    add2([], radialPos, [0, 120]),
+                    { fill: "#000", align: "center" },
+                    "Use cursor keys to navigate"
+                ),
+                textLabelRaw(
+                    add2([], radialPos, [0, 134]),
+                    { fill: "#000", align: "center" },
+                    "Click or Enter to switch UI"
+                )
+            );
+            if (!radialActive) {
+                gui.focusID = gui.hotID;
+            }
+            radialActive = true;
         } else {
-            prevMeta = false;
+            radialActive = false;
         }
         // resize
+        const [w,h] = size;
         if (
             gui.activeID === NONE &&
             gui.isMouseDown() &&
             Math.abs(gui.mouse[0] - maxW) < 80
         ) {
-            maxW = clamp(gui.mouse[0], 240, size[0] - 16);
+            maxW = clamp(gui.mouse[0], 240, w - 16);
         }
 
         const { key, hotID, activeID, focusID, lastID } = gui;
-        const statLayout = gridLayout(10, size[1] - 10 - 3 * 14, size[0], 1, 14, 0);
-        textLabel(gui, statLayout, `Keys: ${key}`);
+        const statLayout = gridLayout(10, h - 10 - 3 * 14, w, 1, 14, 0);
+        textLabel(gui, statLayout, `Key: ${key}`);
         textLabel(gui, statLayout, `Focus: ${focusID} / ${lastID}`);
         textLabel(gui, statLayout, `IDs: ${hotID || "none"} / ${activeID || "none"}`);
 
@@ -366,32 +425,32 @@ const app = () => {
 
     // main component function
     return () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
 
         // this is only needed because we're NOT using a RAF update loop:
         // call updateGUI twice to compensate for lack of regular 60fps update
         // Note: Unless your GUI is super complex, this cost is pretty neglible
         // and no actual drawing takes place here ...
         const t = <number>bench(timedResult(() => { updateGUI(); updateGUI(); })[1]);
-        // const t = <number>fps(timedResult(() => { updateGUI(); })[1]);
 
-        t != null && gui.add(textLabelRaw([10, h - 10 - 4 * 14], "#ff0", `GUI time: ${F2(t)}ms`));
+        t != null && gui.add(textLabelRaw([10, height - 10 - 4 * 14], "#ff0", `GUI time: ${F2(t)}ms`));
         // return hdom-canvas component with embedded GUI
         return [
             _canvas,
             {
-                width: w,
-                height: h,
+                width,
+                height,
                 style: { background: gui.theme.globalBg, cursor: gui.cursor },
                 oncontextmenu: (e: Event) => e.preventDefault(),
                 ...gui.attribs
             },
-            line([maxW, 0], [maxW, h], { stroke: "#000" }),
+            // GUI resize border line
+            line([maxW, 0], [maxW, height], { stroke: "#000" }),
             [
                 "text",
                 {
-                    transform: [0, -1, 1, 0, maxW + 12, h / 2],
+                    transform: [0, -1, 1, 0, maxW + 12, height / 2],
                     fill: "#000",
                     font: FONT,
                     align: "center"
@@ -412,7 +471,6 @@ const app = () => {
 // updates on demand...
 const main = sync<any,any>({
     src: {
-        _: trigger(),
         state: fromAtom(DB)
     },
     close: CloseMode.NEVER
