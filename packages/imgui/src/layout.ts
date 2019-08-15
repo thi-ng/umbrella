@@ -17,16 +17,16 @@ export class GridLayout implements IGridLayout {
     readonly cellHG: number;
     readonly gap: number;
 
-    currCol: number;
-    currRow: number;
-    rows: number;
+    protected currCol: number;
+    protected currRow: number;
+    protected rows: number;
 
     constructor(
         parent: GridLayout | null,
-        cols: number,
         x: number,
         y: number,
         width: number,
+        cols: number,
         rowH: number,
         gap: number
     ) {
@@ -96,52 +96,53 @@ export class GridLayout implements IGridLayout {
         return box;
     }
 
-    /**
-     * Requests a `spans` sized cell from this layout (via `.next()`)
-     * and creates and returns a new child `GridLayout` for the returned
-     * box / grid cell. This child layout is configured to use `cols`
-     * columns and shares same `gap` as this (parent) layout. The
-     * configured row span only acts as initial minimum vertical space
-     * reseervation, but is allowed to grow and if needed will propagate
-     * the new space requirements to parent layouts.
-     *
-     * Note: this size child-parent size propagation ONLY works until
-     * the next cell is requested from any parent. IOW, child layouts
-     * MUST be completed/populated first before continuing with
-     * siblings/ancestors of this current layout.
-     *
-     * ```
-     * // single column layout
-     * const outer = new GridLayout(null, 1, 0, 0, 200, 16, 4);
-     *
-     * // add button (1st row)
-     * button(gui, outer, "foo",...);
-     *
-     * // 2-column nested layout
-     * const inner = outer.nest(2)
-     * // these buttons are on same row
-     * button(gui, inner, "bar",...);
-     * button(gui, inner, "baz",...);
-     *
-     * // continue with outer (3rd row)
-     * button(gui, outer, "bye",...);
-     * ```
-     *
-     * @param cols
-     * @param spans default [1, 1] (i.e. size of single cell)
-     */
     nest(cols: number, spans?: [number, number]) {
         const { x, y, w } = this.next(spans);
-        return new GridLayout(this, cols, x, y, w, this.cellH, this.gap);
+        return new GridLayout(this, x, y, w, cols, this.cellH, this.gap);
     }
 
+    /**
+     * Updates max rows used in this layout and all of its parents.
+     *
+     * @param rspan
+     */
     protected propagateSize(rspan: number) {
         let rows = this.rows;
-        rows = this.rows = Math.max(rows, this.currRow + rspan);
+        this.rows = rows = Math.max(rows, this.currRow + rspan);
         const parent = this.parent;
         parent && parent.propagateSize(rows);
     }
 }
+
+/**
+ * Syntax sugar for `GridLayout` ctor. By default creates a
+ * single-column layout at given position and width.
+ *
+ * @param x
+ * @param y
+ * @param width
+ * @param cols
+ * @param rowH
+ * @param gap
+ */
+export const gridLayout = (
+    x: number,
+    y: number,
+    width: number,
+    cols = 1,
+    rowH = 16,
+    gap = 4
+) => new GridLayout(null, x, y, width, cols, rowH, gap);
+
+export const layoutBox = (
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    cw: number,
+    ch: number,
+    gap: number
+) => ({ x, y, w, h, cw, ch, gap });
 
 export const isLayout = (x: any): x is ILayout<any, any> =>
     implementsFunction(x, "next");

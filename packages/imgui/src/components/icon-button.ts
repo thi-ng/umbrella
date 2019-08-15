@@ -1,14 +1,14 @@
 import { rect } from "@thi.ng/geom";
 import { hash } from "@thi.ng/vectors";
-import { LayoutBox } from "../api";
+import { IGridLayout, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { buttonRaw } from "./button";
 import { textLabelRaw } from "./textlabel";
 
 export const iconButton = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     icon: any,
     iconW: number,

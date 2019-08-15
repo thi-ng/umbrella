@@ -99,7 +99,7 @@ export const sliderVRaw = (
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const ymax = y + h;
-    const hover = isHoverSlider(gui, id, box);
+    const hover = isHoverSlider(gui, id, box, "ns-resize");
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {

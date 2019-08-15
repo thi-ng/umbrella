@@ -10,10 +10,18 @@ import {
 import { Key } from "../api";
 import { IMGUI } from "../gui";
 
-export const isHoverSlider = (gui: IMGUI, id: string, shape: IShape) => {
+export const isHoverSlider = (
+    gui: IMGUI,
+    id: string,
+    shape: IShape,
+    cursor = "ew-resize"
+) => {
     const aid = gui.activeID;
     const hover = aid === id || (aid === "" && pointInside(shape, gui.mouse));
-    hover && (gui.hotID = id);
+    if (hover) {
+        gui.setCursor(cursor);
+        gui.hotID = id;
+    }
     return hover;
 };
 

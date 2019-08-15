@@ -25,6 +25,7 @@ export class IMGUI implements IToHiccup {
     activeID: string;
     focusID: string;
     lastID: string;
+    cursor!: string;
 
     t0: number;
     time!: number;
@@ -53,12 +54,24 @@ export class IMGUI implements IToHiccup {
         this.t0 = Date.now();
     }
 
+    /**
+     * Sets mouse position and current mouse button flags (i.e.
+     * `MouseEvent.buttons`).
+     *
+     * @param p
+     * @param buttons
+     */
     setMouse(p: Vec, buttons: number) {
         set2(this.mouse, p);
         this.buttons = buttons;
         return this;
     }
 
+    /**
+     * Sets internal key state from given key event details.
+     *
+     * @param e
+     */
     setKey(e: KeyboardEvent) {
         e.type === "keydown" && (this.key = e.key);
         this.modifiers =
@@ -69,10 +82,21 @@ export class IMGUI implements IToHiccup {
         return this;
     }
 
+    /**
+     * Merges given theme settings with existing theme.
+     *
+     * @param theme
+     */
     setTheme(theme: Partial<GUITheme>) {
         this.theme = { ...DEFAULT_THEME, ...theme };
     }
 
+    /**
+     * Sets `focusID` to given `id` if the component can receive focus.
+     * Returns true if component is focused.
+     *
+     * @param id
+     */
     requestFocus(id: string) {
         if (this.focusID === "" || this.activeID === id) {
             this.focusID = id;
@@ -81,6 +105,11 @@ export class IMGUI implements IToHiccup {
         return this.focusID === id;
     }
 
+    /**
+     * Attempts to switch focus to next, or if Shift is pressed, to
+     * previous component. This is meant be called ONLY from component
+     * key handlers.
+     */
     switchFocus() {
         this.focusID = this.isShiftDown() ? this.lastID : "";
         this.key = "";
@@ -106,13 +135,22 @@ export class IMGUI implements IToHiccup {
         return (this.modifiers & KeyModifier.ALT) > 0;
     }
 
+    /**
+     * Prepares IMGUI for next frame. Resets `hotID`, `cursor`, clears
+     * all layers and updates elapsed time.
+     */
     begin() {
         this.hotID = "";
         this.layers[0].length = 0;
         this.layers[1].length = 0;
         this.time = (Date.now() - this.t0) * 1e-3;
+        this.cursor = "default";
     }
 
+    /**
+     * Performs end-of-frame handling & component cache cleanup. Also
+     * removes cached state and resources of all unused components.
+     */
     end() {
         if (!this.buttons) {
             this.activeID = "";
@@ -158,10 +196,27 @@ export class IMGUI implements IToHiccup {
         return this.focusID === id ? this.theme.focus : undefined;
     }
 
+    /**
+     * Returns pixel width of given string based on current theme's font
+     * settings.
+     *
+     * IMPORTANT: Only monospace fonts are currently supported.
+     *
+     * @param txt
+     */
     textWidth(txt: string) {
         return this.theme.charWidth * txt.length;
     }
 
+    /**
+     * Marks given component ID as used and checks `hash` to determine
+     * if the component's resource cache should be cleared. This hash
+     * value should be based on any values (e.g. layout info) which
+     * might invalidate cached resources.
+     *
+     * @param id
+     * @param hash
+     */
     registerID(id: string, hash: Hash) {
         this.currIDs.add(id);
         if (this.sizes.get(id) !== hash) {
@@ -170,13 +225,32 @@ export class IMGUI implements IToHiccup {
         }
     }
 
-    resource(id: string, hash: Hash, ctor: Fn0<any>) {
+    /**
+     * Attempts to retrieve cached resource for given component `id` and
+     * resource `hash`. If unsuccessful, calls resource `ctor` function
+     * to create it, caches result and returns it.
+     *
+     * @see IMGUI.registerID()
+     *
+     * @param id
+     * @param hash
+     * @param ctor
+     */
+    resource<T>(id: string, hash: Hash, ctor: Fn0<T>) {
         let res: any;
         let c = this.resources.get(id);
         !c && this.resources.set(id, (c = new Map()));
         return c.get(hash) || (c.set(hash, (res = ctor())), res);
     }
 
+    /**
+     * Attempts to retrieve cached component state for given `id`. If
+     * unsuccessful, calls state `ctor` function, caches result and
+     * returns it.
+     *
+     * @param id
+     * @param ctor
+     */
     state<T>(id: string, ctor: Fn0<T>): T {
         let res: any = this.states.get(id);
         return res !== undefined
@@ -184,8 +258,25 @@ export class IMGUI implements IToHiccup {
             : (this.states.set(id, (res = ctor())), res);
     }
 
-    setState<T>(id: string, state: T) {
+    /**
+     * Stores / overrides given local state value for component `id` in
+     * cache.
+     *
+     * @param id
+     * @param state
+     */
+    setState(id: string, state: any) {
         this.states.set(id, state);
+    }
+
+    /**
+     * Sets cursor property to given `id`. This setting is cleared at
+     * the beginning of each frame (default value: "default").
+     *
+     * @param id
+     */
+    setCursor(id: string) {
+        this.cursor = id;
     }
 
     add(...els: any[]) {
@@ -196,6 +287,10 @@ export class IMGUI implements IToHiccup {
         this.layers[1].push(...els);
     }
 
+    /**
+     * Returns hiccup representation of all shapes/text primitives
+     * created by components in the current frame.
+     */
     toHiccup() {
         return [
             "g",
@@ -205,6 +300,18 @@ export class IMGUI implements IToHiccup {
         ];
     }
 
+    /**
+     * Injects default mouse & touch event handlers into `attribs`
+     * property and attaches keydown/up listeners to `window`.
+     *
+     * This method should only be used if the IMGUI is to be updated via
+     * a RAF loop or other non-reactive situation. For on-demand
+     * updates/rendering event handling and IMGUI preparation is left to
+     * the user.
+     *
+     * @see IMGUI.setMouse()
+     * @see IMGUI.setKey()
+     */
     useDefaultEventHandlers() {
         const pos = (e: MouseEvent | TouchEvent) => {
             const b = (<HTMLCanvasElement>e.target).getBoundingClientRect();

@@ -6,7 +6,10 @@ import { IMGUI } from "../gui";
 export const isHoverButton = (gui: IMGUI, id: string, shape: IShape) => {
     const aid = gui.activeID;
     const hover = (aid === "" || aid === id) && pointInside(shape, gui.mouse);
-    hover && (gui.hotID = id);
+    if (hover) {
+        gui.setCursor("pointer");
+        gui.hotID = id;
+    }
     return hover;
 };
 

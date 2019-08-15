@@ -1,4 +1,5 @@
 import { Predicate } from "@thi.ng/api";
+import { ReadonlyVec } from "@thi.ng/vectors";
 
 export type Color = string | number | number[];
 
@@ -7,6 +8,7 @@ export type Hash = number | string;
 export interface GUITheme {
     globalBg?: Color;
     font?: string;
+    fontSize: number;
     charWidth: number;
     baseLine: number;
     pad: number;
@@ -73,8 +75,74 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
     readonly cellH: number;
     readonly gap: number;
 
+    /**
+     * Returns the number of columns for given width.
+     *
+     * @param w
+     */
+    colsForWidth(w: number): number;
+
+    /**
+     * Returns the number of rows for given height.
+     *
+     * @param w
+     */
+    rowsForHeight(h: number): number;
+
+    /**
+     * Calculates the required number of columns & rows for the given
+     * size.
+     *
+     * @param size
+     */
+    spansForSize(size: ReadonlyVec): [number, number];
+    spansForSize(w: number, h: number): [number, number];
+
+    /**
+     * Returns a squared `LayoutBox` based on this layout's column
+     * width. This box will consume `ceil(columnWidth / rowHeight)`
+     * rows, but the returned box height might be less to satisfy the
+     * square constraint.
+     */
     nextSquare(): LayoutBox;
 
+    /**
+     * Requests a `spans` sized cell from this layout (via `.next()`)
+     * and creates and returns a new child `GridLayout` for the returned
+     * box / grid cell. This child layout is configured to use `cols`
+     * columns and shares same `gap` as this (parent) layout. The
+     * configured row span only acts as initial minimum vertical space
+     * reseervation, but is allowed to grow and if needed will propagate
+     * the new space requirements to parent layouts.
+     *
+     * Note: this size child-parent size propagation ONLY works until
+     * the next cell is requested from any parent. IOW, child layouts
+     * MUST be completed/populated first before continuing with
+     * siblings/ancestors of this current layout.
+     *
+     * ```
+     * // single column layout (default config)
+     * const outer = gridLayout(null, 0, 0, 200, 1, 16, 4);
+     *
+     * // add button (full 1st row)
+     * button(gui, outer, "foo",...);
+     *
+     * // 2-column nested layout (2nd row)
+     * const inner = outer.nest(2)
+     * // these buttons are on same row
+     * button(gui, inner, "bar",...);
+     * button(gui, inner, "baz",...);
+     *
+     * // continue with outer, create empty row
+     * outer.next();
+     *
+     * // continue with outer (4th row)
+     * button(gui, outer, "bye",...);
+     * ```
+     *
+     * @param cols columns in nested layout
+     * @param spans default [1, 1] (i.e. size of single cell)
+     */
     nest(cols: number, spans?: [number, number]): IGridLayout;
 }
 
@@ -144,6 +212,7 @@ export const NONE = "__NONE__";
 
 export const DEFAULT_THEME: GUITheme = {
     font: "10px Menlo, monospace",
+    fontSize: 10,
     charWidth: 6,
     baseLine: 4,
     pad: 8,

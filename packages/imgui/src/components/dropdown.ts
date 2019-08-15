@@ -1,7 +1,8 @@
 import { polygon } from "@thi.ng/geom";
 import { hash } from "@thi.ng/vectors";
-import { IGridLayout, Key } from "../api";
+import { IGridLayout, Key, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
+import { gridLayout, isLayout } from "../layout";
 import { buttonH } from "./button";
 
 /**
@@ -16,7 +17,7 @@ import { buttonH } from "./button";
  */
 export const dropdown = (
     gui: IMGUI,
-    layout: IGridLayout,
+    layout: IGridLayout | LayoutBox,
     id: string,
     sel: number,
     items: string[],
@@ -24,7 +25,9 @@ export const dropdown = (
     info?: string
 ) => {
     const open = gui.state<boolean>(id, () => false);
-    const nested = layout.nest(1, [1, open ? items.length : 1]);
+    const nested = isLayout(layout)
+        ? layout.nest(1, [1, open ? items.length : 1])
+        : gridLayout(layout.x, layout.y, layout.w, 1, layout.ch, layout.gap);
     let res: number | undefined;
     const box = nested.next();
     const { x, y, w, h } = box;

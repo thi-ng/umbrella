@@ -11,10 +11,11 @@ import {
 } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, hash, Vec } from "@thi.ng/vectors";
+import { IGridLayout, LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
-import { GridLayout } from "../layout";
+import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -36,7 +37,7 @@ const arcVerts = (
 
 export const ring = (
     gui: IMGUI,
-    layout: GridLayout,
+    layout: IGridLayout | LayoutBox,
     id: string,
     min: number,
     max: number,
@@ -48,8 +49,15 @@ export const ring = (
     fmt?: Fn<number, string>,
     info?: string
 ) => {
-    const h = (layout.cellW / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
-    const box = layout.next([1, layout.rowsForHeight(h) + 1]);
+    let h: number;
+    let box: LayoutBox;
+    if (isLayout(layout)) {
+        h = (layout.cellW / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+        box = layout.next([1, layout.rowsForHeight(h) + 1]);
+    } else {
+        h = (layout.cw / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+        box = layout;
+    }
     return ringRaw(
         gui,
         id,
@@ -102,6 +110,7 @@ export const ringRaw = (
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {
+        gui.setCursor("pointer");
         gui.hotID = id;
         if (gui.isMouseDown()) {
             gui.activeID = id;

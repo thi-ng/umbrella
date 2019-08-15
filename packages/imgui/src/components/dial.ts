@@ -7,17 +7,17 @@ import {
     TAU
 } from "@thi.ng/math";
 import { cartesian2, hash } from "@thi.ng/vectors";
-import { LayoutBox } from "../api";
+import { IGridLayout, LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
-import { GridLayout, isLayout } from "../layout";
+import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 export const dial = (
     gui: IMGUI,
-    layout: GridLayout | LayoutBox,
+    layout: IGridLayout | LayoutBox,
     id: string,
     min: number,
     max: number,
@@ -71,7 +71,7 @@ export const dialRaw = (
     const key = hash([x, y, r]);
     gui.registerID(id, key);
     const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
-    const hover = isHoverSlider(gui, id, bgShape);
+    const hover = isHoverSlider(gui, id, bgShape, "pointer");
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {

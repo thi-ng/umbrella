@@ -58,7 +58,7 @@ export const textFieldRaw = (
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
-    const hover = isHoverSlider(gui, id, box);
+    const hover = isHoverSlider(gui, id, box, "text");
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;

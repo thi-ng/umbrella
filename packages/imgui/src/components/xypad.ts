@@ -97,7 +97,7 @@ export const xyPadRaw = (
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
-    const hover = isHoverSlider(gui, id, box);
+    const hover = isHoverSlider(gui, id, box, "move");
     let v: Vec | undefined = val;
     let res: Vec | undefined;
     if (hover) {
