@@ -191,7 +191,7 @@ const app = () => {
     };
 
     // main GUI update function
-    const updateGUI = () => {
+    const updateGUI = (draw: boolean) => {
         // obtain atom value
         const state = DB.deref();
         // setup initial layout (single column)
@@ -200,7 +200,7 @@ const app = () => {
         gui.setTheme(themeForID(state.theme));
 
         // start frame
-        gui.begin();
+        gui.begin(draw);
 
         // disable all GUI components if radial menu is active
         gui.beginDisabled(radialActive);
@@ -371,7 +371,7 @@ const app = () => {
             }
             // menu backdrop
             gui.add(
-                gui.resource("radial", "grad" + hash(radialPos), ()=>
+                gui.resource("radial", hash(radialPos) + 1, ()=>
                     ["g",{},
                         ["radialGradient",
                             { id: "shadow", from: radialPos, to: radialPos, r1: 5, r2: 300},
@@ -432,8 +432,18 @@ const app = () => {
         // call updateGUI twice to compensate for lack of regular 60fps update
         // Note: Unless your GUI is super complex, this cost is pretty neglible
         // and no actual drawing takes place here ...
-        const t = <number>bench(timedResult(() => { updateGUI(); updateGUI(); })[1]);
 
+        // the `timedResult` function measures execution time and returns tuple
+        // of [result, time]. We then pass the time taken to our SMA transducer
+        // to update and return a moving average.
+        const t = <number>bench(
+            timedResult(() => {
+                updateGUI(false);
+                updateGUI(true);
+            }
+        )[1]);
+        // since the MA will only be available after the configured period,
+        // we will only display stats when they're ready...
         t != null && gui.add(textLabelRaw([10, height - 10 - 4 * 14], "#ff0", `GUI time: ${F2(t)}ms`));
         // return hdom-canvas component with embedded GUI
         return [
