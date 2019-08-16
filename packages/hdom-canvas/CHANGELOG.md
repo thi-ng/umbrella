@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.2.1...@thi.ng/hdom-canvas@2.2.2) (2019-08-16)
+
+
+### Bug Fixes
+
+* **hdom-canvas:** fix attrib default vals, add missing weight val ([f09677f](https://github.com/thi-ng/umbrella/commit/f09677f))
+
+
+
+
+
 ## [2.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.2.0...@thi.ng/hdom-canvas@2.2.1) (2019-07-31)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas

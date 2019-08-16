@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -34,7 +34,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.3.2",
-        "@thi.ng/checks": "^2.2.2",
+        "@thi.ng/checks": "^2.3.0",
         "@thi.ng/math": "^1.4.2",
         "@thi.ng/porter-duff": "^0.1.1"
     },

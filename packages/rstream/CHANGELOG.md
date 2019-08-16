@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.5.2...@thi.ng/rstream@2.5.3) (2019-08-16)
+
+
+### Bug Fixes
+
+* **rstream:** preserve const enums ([765a9ac](https://github.com/thi-ng/umbrella/commit/765a9ac))
+
+
+
+
+
 ## [2.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.5.1...@thi.ng/rstream@2.5.2) (2019-07-31)
 
 **Note:** Version bump only for package @thi.ng/rstream
