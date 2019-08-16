@@ -74,6 +74,16 @@ export class IMGUI implements IToHiccup {
     }
 
     /**
+     * Clears all shape layers and resets theme / disabled stacks.
+     */
+    clear() {
+        this.layers[0].length = 0;
+        this.layers[1].length = 0;
+        this.themeStack.length = 1;
+        this.disabledStack.length = 1;
+    }
+
+    /**
      * Sets mouse position and current mouse button flags (i.e.
      * `MouseEvent.buttons`).
      *
@@ -282,11 +292,8 @@ export class IMGUI implements IToHiccup {
     begin(draw = true) {
         this.hotID = "";
         this.cursor = "default";
-        this.layers[0].length = 0;
-        this.layers[1].length = 0;
-        this.themeStack.length = 1;
-        this.disabledStack.length = 1;
         this.draw = draw;
+        this.clear();
         this.time = (Date.now() - this.t0) * 1e-3;
     }
 
