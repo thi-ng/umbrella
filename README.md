@@ -77,7 +77,6 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are only available on their respective feature branches)
 
-- [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/feature/imgui/packages/imgui) - stateless immediate mode GUI components
 - @thi.ng/scenegraph (not yet pushed) - 2D/3D scenegraph
 - [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/feature/shadertoy/packages/webgl-shadertoy) - WebGL shadertoy-like setup
 
@@ -159,6 +158,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 | [`@thi.ng/hiccup-css`](./packages/hiccup-css)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)                   | [changelog](./packages/hiccup-css/CHANGELOG.md)          | CSS from nested JS data structures               |
 | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)         | [changelog](./packages/hiccup-markdown/CHANGELOG.md)     | Hiccup-to-Markdown serialization                 |
 | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)                   | [changelog](./packages/hiccup-svg/CHANGELOG.md)          | hiccup based SVG vocab                           |
+| [`@thi.ng/imgui`](./packages/imgui)                             | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)                             | [changelog](./packages/imgui/CHANGELOG.md)               | Immediate mode GUI                               |
 | [`@thi.ng/interceptors`](./packages/interceptors)               | [![version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)               | [changelog](./packages/interceptors/CHANGELOG.md)        | Composable event handlers & processor            |
 | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              | Customizable browser & non-browser router        |
 

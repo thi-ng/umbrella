@@ -5,7 +5,7 @@
 [Live demo](http://demo.thi.ng/umbrella/imgui/)
 
 WIP prototyping example for
-[@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/feature/imgui/packages/imgui)
+[@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/master/packages/imgui)
 and realisation via
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas).
 

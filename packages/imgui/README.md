@@ -239,7 +239,7 @@ Documented WIP demo GUI with undo/redo, on-demand updates and showcasing
 all available components (see above screenshot):
 
 [Live demo](http://demo.thi.ng/umbrella/imgui/) | [Source
-code](https://github.com/thi-ng/umbrella/tree/feature/imgui/examples/imgui/)
+code](https://github.com/thi-ng/umbrella/tree/master/examples/imgui/)
 
 ```ts
 import * as imgui from "@thi.ng/imgui";
