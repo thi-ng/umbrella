@@ -3,7 +3,7 @@ import { ReadonlyVec } from "@thi.ng/vectors";
 
 export type Color = string | number | number[];
 
-export type Hash = number | string;
+export type Hash = number;
 
 export interface GUITheme {
     globalBg?: Color;

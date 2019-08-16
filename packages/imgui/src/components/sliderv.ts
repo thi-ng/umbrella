@@ -5,6 +5,7 @@ import { hash, ZERO2 } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider1Keys, isHoverSlider, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
+import { valHash } from "../hash";
 import { isLayout } from "../layout";
 import { textLabelRaw, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -100,6 +101,7 @@ export const sliderVRaw = (
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const ymax = y + h;
     const hover = isHoverSlider(gui, id, box, "ns-resize");
+    const draw = gui.draw;
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {
@@ -112,27 +114,29 @@ export const sliderVRaw = (
                 prec
             );
         }
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const valueBox = gui.resource(id, v, () => {
-        const nh = norm(v!, min, max) * (h - 1);
-        return rect([x, ymax - nh], [w, nh], {});
-    });
-    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
-        textLabelRaw(
-            ZERO2,
-            {
-                transform: textTransformV(theme, x, y, w, h),
-                fill: gui.textColor(false)
-            },
-            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
-        )
-    );
-    valueBox.attribs.fill = gui.fgColor(hover);
-    box.attribs.fill = gui.bgColor(hover || focused);
-    box.attribs.stroke = gui.focusColor(id);
-    gui.add(box, valueBox, valLabel);
+    if (draw) {
+        const valueBox = gui.resource(id, v, () => {
+            const nh = norm(v!, min, max) * (h - 1);
+            return rect([x, ymax - nh], [w, nh], {});
+        });
+        const valLabel = gui.resource(id, valHash(key, v, gui.disabled), () =>
+            textLabelRaw(
+                ZERO2,
+                {
+                    transform: textTransformV(theme, x, y, w, h),
+                    fill: gui.textColor(false)
+                },
+                (label ? label + " " : "") + (fmt ? fmt(v!) : v)
+            )
+        );
+        valueBox.attribs.fill = gui.fgColor(hover);
+        box.attribs.fill = gui.bgColor(hover || focused);
+        box.attribs.stroke = gui.focusColor(id);
+        gui.add(box, valueBox, valLabel);
+    }
     if (
         focused &&
         (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined

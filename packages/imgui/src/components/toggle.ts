@@ -62,27 +62,30 @@ export const toggleRaw = (
     let res: boolean | undefined;
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const hover = isHoverButton(gui, id, box);
+    const draw = gui.draw;
     if (hover) {
         gui.isMouseDown() && (gui.activeID = id);
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
     let changed = !gui.buttons && gui.hotID === id && gui.activeID === id;
     focused && (changed = handleButtonKeys(gui) || changed);
     changed && (res = val = !val);
-    box.attribs = {
-        fill: val ? gui.fgColor(hover) : gui.bgColor(hover),
-        stroke: gui.focusColor(id)
-    };
-    gui.add(box);
-    label &&
-        gui.add(
-            textLabelRaw(
-                [x + theme.pad + lx, y + h / 2 + theme.baseLine],
-                gui.textColor(hover && lx > 0 && lx < w - theme.pad),
-                label
-            )
-        );
+    if (draw) {
+        box.attribs = {
+            fill: val ? gui.fgColor(hover) : gui.bgColor(hover),
+            stroke: gui.focusColor(id)
+        };
+        gui.add(box);
+        label &&
+            gui.add(
+                textLabelRaw(
+                    [x + theme.pad + lx, y + h / 2 + theme.baseLine],
+                    gui.textColor(hover && lx > 0 && lx < w - theme.pad),
+                    label
+                )
+            );
+    }
     gui.lastID = id;
     return res;
 };

@@ -15,6 +15,7 @@ import { IGridLayout, LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
+import { valHash } from "../hash";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -154,6 +155,7 @@ export const ringRaw = (
     const pos = [x + r, y + r];
     const startTheta = HALF_PI + thetaGap / 2;
     const endTheta = HALF_PI + TAU - thetaGap / 2;
+    const draw = gui.draw;
     const aid = gui.activeID;
     const hover =
         !gui.disabled &&
@@ -175,42 +177,44 @@ export const ringRaw = (
                 prec
             );
         }
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const valTheta = startTheta + (TAU - thetaGap) * norm(v, min, max);
-    const r2 = r * rscale;
-    // adaptive arc resolution
-    const numV = fitClamped(r, 15, 80, 12, 30);
-    const bgShape = gui.resource(id, key, () =>
-        polygon(
-            [
-                ...arcVerts(pos, r, startTheta, endTheta, numV),
-                ...arcVerts(pos, r2, endTheta, startTheta, numV)
-            ],
-            {}
-        )
-    );
-    const valShape = gui.resource(id, v, () =>
-        polygon(
-            [
-                ...arcVerts(pos, r, startTheta, valTheta, numV),
-                ...arcVerts(pos, r2, valTheta, startTheta, numV)
-            ],
-            {}
-        )
-    );
-    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
-        textLabelRaw(
-            [x + lx, y + ly],
-            gui.textColor(false),
-            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
-        )
-    );
-    bgShape.attribs.fill = gui.bgColor(hover || focused);
-    bgShape.attribs.stroke = gui.focusColor(id);
-    valShape.attribs.fill = gui.fgColor(hover);
-    gui.add(bgShape, valShape, valLabel);
+    if (draw) {
+        const valTheta = startTheta + (TAU - thetaGap) * norm(v, min, max);
+        const r2 = r * rscale;
+        // adaptive arc resolution
+        const numV = fitClamped(r, 15, 80, 12, 30);
+        const bgShape = gui.resource(id, key, () =>
+            polygon(
+                [
+                    ...arcVerts(pos, r, startTheta, endTheta, numV),
+                    ...arcVerts(pos, r2, endTheta, startTheta, numV)
+                ],
+                {}
+            )
+        );
+        const valShape = gui.resource(id, v, () =>
+            polygon(
+                [
+                    ...arcVerts(pos, r, startTheta, valTheta, numV),
+                    ...arcVerts(pos, r2, valTheta, startTheta, numV)
+                ],
+                {}
+            )
+        );
+        const valLabel = gui.resource(id, valHash(key, v, gui.disabled), () =>
+            textLabelRaw(
+                [x + lx, y + ly],
+                gui.textColor(false),
+                (label ? label + " " : "") + (fmt ? fmt(v!) : v)
+            )
+        );
+        bgShape.attribs.fill = gui.bgColor(hover || focused);
+        bgShape.attribs.stroke = gui.focusColor(id);
+        valShape.attribs.fill = gui.fgColor(hover);
+        gui.add(bgShape, valShape, valLabel);
+    }
     if (
         focused &&
         (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined

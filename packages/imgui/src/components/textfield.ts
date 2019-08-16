@@ -59,6 +59,7 @@ export const textFieldRaw = (
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const hover = isHoverSlider(gui, id, box, "text");
+    const draw = gui.draw;
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
@@ -75,30 +76,34 @@ export const textFieldRaw = (
                 txtLen
             );
         }
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    box.attribs.fill = gui.bgColor(focused || hover);
-    box.attribs.stroke = gui.focusColor(id);
-    gui.add(
-        box,
-        textLabelRaw(
-            [x + pad, y + h / 2 + theme.baseLine],
-            gui.textColor(focused),
-            drawTxt
-        )
-    );
+    if (draw) {
+        box.attribs.fill = gui.bgColor(focused || hover);
+        box.attribs.stroke = gui.focusColor(id);
+        gui.add(
+            box,
+            textLabelRaw(
+                [x + pad, y + h / 2 + theme.baseLine],
+                gui.textColor(focused),
+                drawTxt
+            )
+        );
+    }
     if (focused) {
         const { cursor, offset } = state;
         const drawCursor = Math.min(cursor - offset, maxLen);
-        const xx = x + pad + drawCursor * cw;
-        (gui.time * theme.cursorBlink) % 1 < 0.5 &&
-            gui.add([
-                "line",
-                { stroke: theme.cursor },
-                [xx, y + 4],
-                [xx, y + h - 4]
-            ]);
+        if (draw) {
+            const xx = x + pad + drawCursor * cw;
+            (gui.time * theme.cursorBlink) % 1 < 0.5 &&
+                gui.add([
+                    "line",
+                    { stroke: theme.cursor },
+                    [xx, y + 4],
+                    [xx, y + h - 4]
+                ]);
+        }
         const k = gui.key;
         switch (k) {
             case "":

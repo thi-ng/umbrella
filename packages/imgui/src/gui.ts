@@ -33,6 +33,8 @@ export class IMGUI implements IToHiccup {
     t0: number;
     time!: number;
 
+    draw: boolean;
+
     protected currIDs: Set<string>;
     protected prevIDs: Set<string>;
 
@@ -57,6 +59,7 @@ export class IMGUI implements IToHiccup {
         this.attribs = {};
         this.disabledStack = [false];
         this.setTheme(opts.theme || {});
+        this.draw = true;
         this.t0 = Date.now();
     }
 
@@ -252,17 +255,39 @@ export class IMGUI implements IToHiccup {
     }
 
     /**
-     * Prepares IMGUI for next frame. Resets `hotID`, `cursor`, clears
-     * all layers and updates elapsed time.
+     * Prepares IMGUI for next frame:
+     *
+     * - Resets `hotID`, `cursor`
+     * - Resets theme & disabled stacks
+     * - Clears all draw layers
+     * - Updates elapsed time.
+     *
+     * By default all components will emit draw shapes, however this can
+     * be disabled by passing `false` as argument. This is useful for
+     * use cases where the GUI is not updated at high frame rates and so
+     * would require two invocations per update cycle for immediate
+     * visual feedback:
+     *
+     * ```
+     * gui.begin(false); // update state only, no draw
+     * updateMyGUI();
+     * gui.end();
+     * gui.begin(true); // run once more, with draw enabled (default)
+     * updateMyGUI();
+     * gui.end();
+     * ```
+     *
+     * @param draw
      */
-    begin() {
+    begin(draw = true) {
         this.hotID = "";
+        this.cursor = "default";
         this.layers[0].length = 0;
         this.layers[1].length = 0;
         this.themeStack.length = 1;
         this.disabledStack.length = 1;
+        this.draw = draw;
         this.time = (Date.now() - this.t0) * 1e-3;
-        this.cursor = "default";
     }
 
     /**
@@ -279,9 +304,7 @@ export class IMGUI implements IToHiccup {
                 this.lastID = "";
             }
         }
-        if (this.key === Key.TAB) {
-            this.focusID = "";
-        }
+        this.key === Key.TAB && (this.focusID = "");
         this.key = "";
         // garbage collect unused component state / resources
         const prev = this.prevIDs;
@@ -330,7 +353,7 @@ export class IMGUI implements IToHiccup {
      * Returns pixel width of given string based on current theme's font
      * settings.
      *
-     * IMPORTANT: Only monospace fonts are currently supported.
+     * IMPORTANT: Currently only monospace fonts are supported.
      *
      * @param txt
      */
@@ -350,6 +373,7 @@ export class IMGUI implements IToHiccup {
     registerID(id: string, hash: Hash) {
         this.currIDs.add(id);
         if (this.sizes.get(id) !== hash) {
+            // console.warn("cache miss:", id, hash);
             this.sizes.set(id, hash);
             this.resources.delete(id);
         }

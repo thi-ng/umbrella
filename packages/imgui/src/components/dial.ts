@@ -11,6 +11,7 @@ import { IGridLayout, LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
+import { valHash } from "../hash";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -112,6 +113,7 @@ export const dialRaw = (
     gui.registerID(id, key);
     const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
     const hover = isHoverSlider(gui, id, bgShape, "pointer");
+    const draw = gui.draw;
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {
@@ -128,32 +130,34 @@ export const dialRaw = (
                 prec
             );
         }
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const valShape = gui.resource(id, v, () =>
-        line(
-            cartesian2(
-                null,
-                [r, startTheta + (TAU - thetaGap) * norm(v!, min, max)],
-                pos
-            ),
-            pos,
-            {}
-        )
-    );
-    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
-        textLabelRaw(
-            [x + lx, y + ly],
-            gui.textColor(false),
-            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
-        )
-    );
-    bgShape.attribs.fill = gui.bgColor(hover || focused);
-    bgShape.attribs.stroke = gui.focusColor(id);
-    valShape.attribs.stroke = gui.fgColor(hover);
-    valShape.attribs.weight = 2;
-    gui.add(bgShape, valShape, valLabel);
+    if (draw) {
+        const valShape = gui.resource(id, v, () =>
+            line(
+                cartesian2(
+                    null,
+                    [r, startTheta + (TAU - thetaGap) * norm(v!, min, max)],
+                    pos
+                ),
+                pos,
+                {}
+            )
+        );
+        const valLabel = gui.resource(id, valHash(key, v, gui.disabled), () =>
+            textLabelRaw(
+                [x + lx, y + ly],
+                gui.textColor(false),
+                (label ? label + " " : "") + (fmt ? fmt(v!) : v)
+            )
+        );
+        bgShape.attribs.fill = gui.bgColor(hover || focused);
+        bgShape.attribs.stroke = gui.focusColor(id);
+        valShape.attribs.stroke = gui.fgColor(hover);
+        valShape.attribs.weight = 2;
+        gui.add(bgShape, valShape, valLabel);
+    }
     if (
         focused &&
         (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined

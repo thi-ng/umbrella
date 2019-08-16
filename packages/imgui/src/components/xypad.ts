@@ -98,6 +98,7 @@ export const xyPadRaw = (
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
     const col = gui.textColor(false);
     const hover = isHoverSlider(gui, id, box, "move");
+    const draw = gui.draw;
     let v: Vec | undefined = val;
     let res: Vec | undefined;
     if (hover) {
@@ -110,29 +111,31 @@ export const xyPadRaw = (
                 prec
             );
         }
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    box.attribs = {
-        fill: gui.bgColor(hover || focused),
-        stroke: gui.focusColor(id)
-    };
-    const { 0: cx, 1: cy } = fit2([], v, min, max, pos, maxPos);
-    gui.add(
-        box,
-        line([x, cy], [maxX, cy], {
-            stroke: col
-        }),
-        line([cx, y], [cx, maxY], {
-            stroke: col
-        }),
-        textLabelRaw(
-            [x + lx, y + ly],
-            col,
-            (label ? label + " " : "") +
-                (fmt ? fmt(val) : `${val[0] | 0}, ${val[1] | 0}`)
-        )
-    );
+    if (draw) {
+        box.attribs = {
+            fill: gui.bgColor(hover || focused),
+            stroke: gui.focusColor(id)
+        };
+        const { 0: cx, 1: cy } = fit2([], v, min, max, pos, maxPos);
+        gui.add(
+            box,
+            line([x, cy], [maxX, cy], {
+                stroke: col
+            }),
+            line([cx, y], [cx, maxY], {
+                stroke: col
+            }),
+            textLabelRaw(
+                [x + lx, y + ly],
+                col,
+                (label ? label + " " : "") +
+                    (fmt ? fmt(val) : `${val[0] | 0}, ${val[1] | 0}`)
+            )
+        );
+    }
     if (
         focused &&
         (v = handleSlider2Keys(gui, min, max, prec, v, yUp)) !== undefined

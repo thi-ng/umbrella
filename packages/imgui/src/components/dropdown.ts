@@ -34,20 +34,25 @@ export const dropdown = (
     const key = hash([x, y, w, h, ~~gui.disabled]);
     const tx = x + w - gui.theme.pad - 4;
     const ty = y + h / 2;
+    const draw = gui.draw;
     if (open) {
         const bt = buttonH(gui, box, `${id}-title`, title);
-        gui.add(
-            gui.resource(id, `io${key}`, () =>
-                polygon([[tx - 4, ty + 2], [tx + 4, ty + 2], [tx, ty - 2]], {
-                    fill: gui.textColor(false)
-                })
-            )
-        );
+        draw &&
+            gui.add(
+                gui.resource(id, key + 1, () =>
+                    polygon(
+                        [[tx - 4, ty + 2], [tx + 4, ty + 2], [tx, ty - 2]],
+                        {
+                            fill: gui.textColor(false)
+                        }
+                    )
+                )
+            );
         if (bt) {
             gui.setState(id, false);
         } else {
             for (let i = 0, n = items.length; i < n; i++) {
-                if (buttonH(gui, nested, `${id}${i}`, items[i])) {
+                if (buttonH(gui, nested, `${id}-${i}`, items[i])) {
                     i !== sel && (res = i);
                     gui.setState(id, false);
                 }
@@ -70,16 +75,20 @@ export const dropdown = (
             }
         }
     } else {
-        if (buttonH(gui, box, `${id}${sel}`, items[sel], title, info)) {
+        if (buttonH(gui, box, `${id}-${sel}`, items[sel], title, info)) {
             gui.setState(id, true);
         }
-        gui.add(
-            gui.resource(id, `ic${key}`, () =>
-                polygon([[tx - 4, ty - 2], [tx + 4, ty - 2], [tx, ty + 2]], {
-                    fill: gui.textColor(false)
-                })
-            )
-        );
+        draw &&
+            gui.add(
+                gui.resource(id, key + 2, () =>
+                    polygon(
+                        [[tx - 4, ty - 2], [tx + 4, ty - 2], [tx, ty + 2]],
+                        {
+                            fill: gui.textColor(false)
+                        }
+                    )
+                )
+            );
     }
     return res;
 };

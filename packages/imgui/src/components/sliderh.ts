@@ -5,6 +5,7 @@ import { hash } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider1Keys, isHoverSlider, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
+import { valHash } from "../hash";
 import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -97,6 +98,7 @@ export const sliderHRaw = (
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
     const hover = isHoverSlider(gui, id, box);
+    const draw = gui.draw;
     let v: number | undefined = val;
     let res: number | undefined;
     if (hover) {
@@ -109,23 +111,25 @@ export const sliderHRaw = (
                 prec
             );
         }
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    const valueBox = gui.resource(id, v, () =>
-        rect([x, y], [1 + norm(v!, min, max) * (w - 1), h], {})
-    );
-    const valLabel = gui.resource(id, `l${~~gui.disabled}${key}-${v}`, () =>
-        textLabelRaw(
-            [x + theme.pad, y + h / 2 + theme.baseLine],
-            gui.textColor(false),
-            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
-        )
-    );
-    box.attribs.fill = gui.bgColor(hover || focused);
-    box.attribs.stroke = gui.focusColor(id);
-    valueBox.attribs.fill = gui.fgColor(hover);
-    gui.add(box, valueBox, valLabel);
+    if (draw) {
+        const valueBox = gui.resource(id, v, () =>
+            rect([x, y], [1 + norm(v!, min, max) * (w - 1), h], {})
+        );
+        const valLabel = gui.resource(id, valHash(key, v, gui.disabled), () =>
+            textLabelRaw(
+                [x + theme.pad, y + h / 2 + theme.baseLine],
+                gui.textColor(false),
+                (label ? label + " " : "") + (fmt ? fmt(v!) : v)
+            )
+        );
+        box.attribs.fill = gui.bgColor(hover || focused);
+        box.attribs.stroke = gui.focusColor(id);
+        valueBox.attribs.fill = gui.fgColor(hover);
+        gui.add(box, valueBox, valLabel);
+    }
     if (
         focused &&
         (v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined

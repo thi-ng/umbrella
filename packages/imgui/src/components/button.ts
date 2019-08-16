@@ -9,6 +9,7 @@ import {
 } from "../api";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
+import { labelHash } from "../hash";
 import { isLayout } from "../layout";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -33,7 +34,7 @@ export const buttonH = (
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
         label
-            ? gui.resource(id, `l${~~gui.disabled}${key}-${label}`, () =>
+            ? gui.resource(id, labelHash(key, label, gui.disabled), () =>
                   mkLabel(
                       textTransformH(theme, x, y, w, h),
                       gui.textColor(false),
@@ -42,7 +43,7 @@ export const buttonH = (
               )
             : undefined,
         labelHover
-            ? gui.resource(id, `lh${~~gui.disabled}${key}-${labelHover}`, () =>
+            ? gui.resource(id, labelHash(key, labelHover, gui.disabled), () =>
                   mkLabel(
                       textTransformH(theme, x, y, w, h),
                       gui.textColor(true),
@@ -72,7 +73,7 @@ export const buttonV = (
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
         label
-            ? gui.resource(id, `l${~~gui.disabled}${label}-${key}`, () =>
+            ? gui.resource(id, labelHash(key, label, gui.disabled), () =>
                   mkLabel(
                       textTransformV(theme, x, y, w, h),
                       gui.textColor(false),
@@ -81,7 +82,7 @@ export const buttonV = (
               )
             : undefined,
         labelHover
-            ? gui.resource(id, `lh${~~gui.disabled}${labelHover}-${key}`, () =>
+            ? gui.resource(id, labelHash(key, labelHover, gui.disabled), () =>
                   mkLabel(
                       textTransformV(theme, x, y, w, h),
                       gui.textColor(true),
@@ -104,17 +105,20 @@ export const buttonRaw = (
 ) => {
     gui.registerID(id, hash);
     const hover = isHoverButton(gui, id, shape);
+    const draw = gui.draw;
     if (hover) {
         gui.isMouseDown() && (gui.activeID = id);
-        info && tooltipRaw(gui, info);
+        info && draw && tooltipRaw(gui, info);
     }
     const focused = gui.requestFocus(id);
-    shape.attribs = {
-        fill: hover ? gui.fgColor(true) : gui.bgColor(focused),
-        stroke: gui.focusColor(id)
-    };
-    gui.add(shape);
-    label && gui.add(hover && labelHover ? labelHover : label);
+    if (draw) {
+        shape.attribs = {
+            fill: hover ? gui.fgColor(true) : gui.bgColor(focused),
+            stroke: gui.focusColor(id)
+        };
+        gui.add(shape);
+        label && gui.add(hover && labelHover ? labelHover : label);
+    }
     if (focused && handleButtonKeys(gui)) {
         return true;
     }

@@ -9,7 +9,7 @@ import { triFan } from "@thi.ng/geom-tessellate";
 import { fmod } from "@thi.ng/math";
 import { mapIndexed } from "@thi.ng/transducers";
 import { add2, hash } from "@thi.ng/vectors";
-import { Key } from "../api";
+import { Hash, Key } from "../api";
 import { IMGUI } from "../gui";
 import { buttonRaw } from "./button";
 import { textLabelRaw } from "./textlabel";
@@ -26,7 +26,7 @@ export const radialMenu = (
     const n = items.length;
     const key = hash([x, y, r, n, ~~gui.disabled]);
     gui.registerID(id, key);
-    const cells: [Polygon, string, any, any][] = gui.resource(id, key, () => [
+    const cells: [Polygon, Hash, any, any][] = gui.resource(id, key, () => [
         ...mapIndexed((i, pts) => {
             const cell = polygon(pts);
             const p = add2(

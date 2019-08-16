@@ -2,6 +2,7 @@ import { rect } from "@thi.ng/geom";
 import { hash } from "@thi.ng/vectors";
 import { IGridLayout, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
+import { mixHash } from "../hash";
 import { isLayout } from "../layout";
 import { buttonRaw } from "./button";
 import { textLabelRaw } from "./textlabel";
@@ -51,8 +52,8 @@ export const iconButton = (
         id,
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
-        gui.resource(id, `l${key}-${label}`, () => mkIcon(false)),
-        gui.resource(id, `lh${key}-${label}` + key, () => mkIcon(true)),
+        gui.resource(id, mixHash(key, `l${label}`), () => mkIcon(false)),
+        gui.resource(id, mixHash(key, `lh${label}`), () => mkIcon(true)),
         info
     );
 };
