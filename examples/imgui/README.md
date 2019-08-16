@@ -1,6 +1,6 @@
 # imgui
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/imgui/assets/screenshots/imgui-demo.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/imgui-demo.png)
 
 [Live demo](http://demo.thi.ng/umbrella/imgui/)
 
