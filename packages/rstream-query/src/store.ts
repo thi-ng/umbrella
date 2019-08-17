@@ -3,6 +3,7 @@ import { intersection, join } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import {
+    CloseMode,
     ISubscribable,
     nextID,
     Stream,
@@ -75,10 +76,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
             p: new Map(),
             o: new Map()
         };
-        this.streamS = new Stream("S");
-        this.streamP = new Stream("P");
-        this.streamO = new Stream("O");
-        this.streamAll = new Stream("ALL");
+        this.streamS = new Stream({ id: "S", closeOut: CloseMode.NEVER });
+        this.streamP = new Stream({ id: "P", closeOut: CloseMode.NEVER });
+        this.streamO = new Stream({ id: "O", closeOut: CloseMode.NEVER });
+        this.streamAll = new Stream({ id: "ALL", closeOut: CloseMode.NEVER });
         this.allIDs = new Set<number>();
         this.NEXT_ID = 0;
         if (triples) {
