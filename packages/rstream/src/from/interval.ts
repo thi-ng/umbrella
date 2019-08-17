@@ -28,4 +28,4 @@ export const fromInterval = (
             }
         }, delay);
         return () => clearInterval(id);
-    }, optsWithID("interval-", opts));
+    }, optsWithID("interval", opts));

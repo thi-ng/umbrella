@@ -46,5 +46,5 @@ export const fromWorker = <T>(
                 _worker.terminate();
             }
         };
-    }, optsWithID("worker-", opts));
+    }, optsWithID("worker", opts));
 };

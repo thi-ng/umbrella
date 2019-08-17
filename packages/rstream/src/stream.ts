@@ -78,7 +78,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     // prettier-ignore
     constructor(src?: StreamSource<T> | Partial<CommonOpts>, opts?: Partial<CommonOpts>) {
         const [_src, _opts] = isFunction(src) ? [src, opts] : [undefined, src];
-        super(undefined, optsWithID("stream-", _opts));
+        super(undefined, optsWithID("stream", _opts));
         this.src = _src;
     }
 

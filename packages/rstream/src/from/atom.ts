@@ -49,4 +49,4 @@ export const fromAtom = <T>(
         });
         emitFirst && stream.next(atom.deref());
         return () => atom.removeWatch(stream.id);
-    }, optsWithID("atom-", opts));
+    }, optsWithID("atom", opts));

@@ -1,7 +1,7 @@
 import { Predicate } from "@thi.ng/api";
-import { ISubscribable } from "../api";
+import { CommonOpts, ISubscribable } from "../api";
 import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Filters values from input based on values received from side chain.
@@ -27,14 +27,14 @@ import { nextID } from "../utils/idgen";
  * @param side
  * @param pred
  * @param initial initial switch state
- * @param id
+ * @param opts
  */
 export const sidechainToggle = <A, B>(
     side: ISubscribable<B>,
     initial = true,
     pred?: Predicate<B>,
-    id?: string
-): Subscription<A, A> => new SidechainToggle(side, initial, pred, id);
+    opts?: Partial<CommonOpts>
+): Subscription<A, A> => new SidechainToggle(side, initial, pred, opts);
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
     sideSub: Subscription<B, B>;
@@ -44,9 +44,9 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
         side: ISubscribable<B>,
         initial = true,
         pred?: Predicate<B>,
-        id?: string
+        opts?: Partial<CommonOpts>
     ) {
-        super(undefined, { id: id || `sidetoggle-${nextID()}` });
+        super(undefined, optsWithID("sidetoggle", opts));
         this.isActive = initial;
         const $this = this;
         pred = pred || (() => true);

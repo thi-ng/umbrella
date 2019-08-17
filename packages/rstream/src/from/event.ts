@@ -22,7 +22,7 @@ export const fromEvent = (
         let listener = (e: Event) => stream.next(e);
         src.addEventListener(name, listener, listenerOpts);
         return () => src.removeEventListener(name, listener, listenerOpts);
-    }, optsWithID(`event-${name}-`, streamOpts));
+    }, optsWithID(`event-${name}`, streamOpts));
 
 /**
  * Same as `fromEvent`, however only supports well-known DOM event

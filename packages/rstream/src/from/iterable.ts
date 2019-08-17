@@ -31,7 +31,7 @@ export const fromIterable = <T>(
             }
         }, delay);
         return () => clearInterval(id);
-    }, optsWithID("iterable-", opts));
+    }, optsWithID("iterable", opts));
 
 /**
  * Creates a new `Stream` of given iterable which synchronously calls
@@ -52,4 +52,4 @@ export const fromIterableSync = <T>(
             stream.next(s);
         }
         stream.closeIn !== CloseMode.NEVER && stream.done();
-    }, optsWithID("iterable-sync-", opts));
+    }, optsWithID("iterable-sync", opts));

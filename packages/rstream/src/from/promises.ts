@@ -38,6 +38,6 @@ export const fromPromises = <T>(
     promises: Iterable<Promise<T>>,
     opts?: Partial<CommonOpts>
 ): Subscription<T[], T> =>
-    fromPromise(Promise.all(promises), optsWithID("promises-", opts)).transform(
+    fromPromise(Promise.all(promises), optsWithID("promises", opts)).transform(
         mapcat((x: T[]) => x)
     );

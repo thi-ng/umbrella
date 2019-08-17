@@ -85,7 +85,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
         factory: Fn<A, Subscription<B, B>>,
         opts?: Partial<CommonOpts>
     ) {
-        super(undefined, optsWithID("metastram-", opts));
+        super(undefined, optsWithID("metastram", opts));
         this.factory = factory;
     }
 

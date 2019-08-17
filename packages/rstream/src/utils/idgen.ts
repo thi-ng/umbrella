@@ -8,4 +8,6 @@ export const optsWithID = <T extends CommonOpts>(
     prefix: string,
     opts?: Partial<T>
 ) =>
-    <Partial<T>>(!opts || !opts.id ? { ...opts, id: prefix + nextID() } : opts);
+    <Partial<T>>(
+        (!opts || !opts.id ? { ...opts, id: prefix + "-" + nextID() } : opts)
+    );

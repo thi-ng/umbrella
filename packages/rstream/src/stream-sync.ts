@@ -136,7 +136,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         }
         super(
             undefined,
-            optsWithID("streamsync-", <Partial<StreamSyncOpts<any, any>>>{
+            optsWithID("streamsync", <Partial<StreamSyncOpts<any, any>>>{
                 ...opts,
                 xform
             })

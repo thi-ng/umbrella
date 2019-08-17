@@ -1,7 +1,7 @@
 import { Predicate } from "@thi.ng/api";
-import { ISubscribable, State } from "../api";
+import { CommonOpts, ISubscribable, State } from "../api";
 import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Buffers values from `src` until side chain fires, then emits buffer
@@ -25,20 +25,24 @@ import { nextID } from "../utils/idgen";
  *
  * @param side
  * @param pred
- * @param id
+ * @param opts
  */
 export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,
     pred?: Predicate<B>,
-    id?: string
-): Subscription<A, A[]> => new SidechainPartition<A, B>(side, pred, id);
+    opts?: Partial<CommonOpts>
+): Subscription<A, A[]> => new SidechainPartition<A, B>(side, pred, opts);
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
     sideSub: Subscription<B, B>;
     buf: A[];
 
-    constructor(side: ISubscribable<B>, pred?: Predicate<B>, id?: string) {
-        super(undefined, { id: id || `sidepart-${nextID()}` });
+    constructor(
+        side: ISubscribable<B>,
+        pred?: Predicate<B>,
+        opts?: Partial<CommonOpts>
+    ) {
+        super(undefined, optsWithID("sidepart", opts));
         this.buf = [];
         const $this = this;
         pred = pred || (() => true);

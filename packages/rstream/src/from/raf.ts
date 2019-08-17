@@ -28,4 +28,4 @@ export const fromRAF = (opts?: Partial<CommonOpts>) =>
                   isActive = false;
                   cancelAnimationFrame(id);
               };
-          }, optsWithID("raf-", opts));
+          }, optsWithID("raf", opts));

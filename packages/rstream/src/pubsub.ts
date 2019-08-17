@@ -57,7 +57,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
         opts = opts || <PubSubOpts<A, B>>{};
         super(
             undefined,
-            optsWithID("pubsub-", <Partial<SubscriptionOpts<A, B>>>{
+            optsWithID("pubsub", <Partial<SubscriptionOpts<A, B>>>{
                 xform: opts.xform
             })
         );

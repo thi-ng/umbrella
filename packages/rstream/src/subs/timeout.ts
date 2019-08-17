@@ -1,6 +1,6 @@
-import { State } from "../api";
+import { CommonOpts, State } from "../api";
 import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * A subscription that emits an arbitrary error object after a given
@@ -13,14 +13,14 @@ import { nextID } from "../utils/idgen";
  * @param timeoutMs timeout period in milliseconds
  * @param error error object
  * @param resetTimeout timeout reset flag
- * @param id subscription id
+ * @param opts
  */
 export const timeout = <T>(
     timeoutMs: number,
     error?: any,
     resetTimeout = false,
-    id?: string
-): Subscription<T, T> => new Timeout(timeoutMs, error, resetTimeout, id);
+    opts?: Partial<CommonOpts>
+): Subscription<T, T> => new Timeout(timeoutMs, error, resetTimeout, opts);
 
 class Timeout<T> extends Subscription<T, T> {
     protected timeoutMs: number;
@@ -32,9 +32,9 @@ class Timeout<T> extends Subscription<T, T> {
         timeoutMs: number,
         error?: any,
         resetTimeout = false,
-        id?: string
+        opts?: Partial<CommonOpts>
     ) {
-        super(undefined, { id: id || `timeout-${nextID()}` });
+        super(undefined, optsWithID("timeout", opts));
         this.timeoutMs = timeoutMs;
         this.errorObj = error;
         this.resetTimeout = resetTimeout;

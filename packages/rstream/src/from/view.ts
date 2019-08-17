@@ -66,4 +66,4 @@ export const fromView = <T>(
             isActive = false;
             view.release();
         };
-    }, optsWithID("view-", opts));
+    }, optsWithID("view", opts));

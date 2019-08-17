@@ -71,7 +71,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};
-        super(undefined, optsWithID("streammerge-", opts));
+        super(undefined, optsWithID("streammerge", opts));
         this.sources = new Map();
         opts.src && this.addAll(opts.src);
     }

@@ -36,5 +36,5 @@ export const fromPromise = <T>(src: Promise<T>, opts?: Partial<CommonOpts>) => {
         return () => {
             canceled = true;
         };
-    }, optsWithID("promise-", opts));
+    }, optsWithID("promise", opts));
 };
