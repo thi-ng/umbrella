@@ -11,6 +11,7 @@ import {
     StreamSync,
     sync
 } from "@thi.ng/rstream";
+import { CloseMode } from "@thi.ng/rstream/api";
 import { map, Transducer } from "@thi.ng/transducers";
 import {
     Graph,
@@ -119,7 +120,7 @@ const prepareNodeInputs = (
         } else if (i.const) {
             s = fromIterableSync(
                 [isFunction(i.const) ? i.const(resolve) : i.const],
-                false
+                { closeIn: CloseMode.NEVER }
             );
         } else {
             illegalArgs(`invalid node input: ${id}`);
@@ -232,6 +233,8 @@ export const stop = (graph: Graph) => {
  * when all inputs have produced new values. See thi.ng/rstream
  * `StreamSync` for further reference.
  *
+ * // TODO add close behavior opts
+ *
  * @param xform
  * @param inputIDs
  * @param reset
@@ -250,6 +253,8 @@ export const node = (
 /**
  * Similar to `node()`, but optimized for nodes using only a single
  * input. Uses "src" as default input ID.
+ *
+ * // TODO add close behavior opts
  *
  * @param xform
  * @param inputID
