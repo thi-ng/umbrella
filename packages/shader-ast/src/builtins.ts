@@ -117,7 +117,15 @@ export const sin = primOp1("sin");
 export const tan = primOp1("tan");
 export const acos = primOp1("acos");
 export const asin = primOp1("asin");
-export const atan = primOp1("atan");
+
+export function atan<T extends Prim>(a: Term<T>): FnCall<T>;
+// prettier-ignore
+export function atan<A extends Prim, B extends A>(a: Term<A>, b: Term<B>): FnCall<A>;
+export function atan(a: Term<any>, b?: Term<any>) {
+    return b
+        ? builtinCall("atan", a.type, a, b)
+        : builtinCall("atan", a.type, a);
+}
 
 export const pow = primOp2("pow");
 export const exp = primOp1("exp");

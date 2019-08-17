@@ -1,5 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { isNumber } from "@thi.ng/checks";
+import { illegalState } from "@thi.ng/errors";
 import { Attribs, PathSegment, SegmentType } from "@thi.ng/geom-api";
 import { eqDelta, rad } from "@thi.ng/math";
 import { map, mapcat } from "@thi.ng/transducers";
@@ -323,11 +324,11 @@ export const pathFromSvg = (svg: string) => {
                 case "a": {
                     [pa, i] = readPoint(svg, i);
                     [t1, i] = readFloat(svg, i);
-                    [t2, i] = readFloat(svg, i);
-                    [t3, i] = readFloat(svg, i);
+                    [t2, i] = readFlag(svg, i);
+                    [t3, i] = readFlag(svg, i);
                     [pb, i] = readPoint(svg, i);
                     // console.log("arc", pa.toString(), rad(t1), t2, t3, pb.toString());
-                    b.arcTo(pb, pa, rad(t1), !!t2, !!t3, cmd === "a");
+                    b.arcTo(pb, pa, rad(t1), t2, t3, cmd === "a");
                     break;
                 }
                 case "z":
@@ -347,6 +348,14 @@ export const pathFromSvg = (svg: string) => {
     }
 };
 
+const isWS = (c: string) => c === " " || c === "\n" || c === "\r" || c === "\t";
+
+const skipWS = (src: string, i: number) => {
+    const n = src.length;
+    while (i < n && isWS(src.charAt(i))) i++;
+    return i;
+};
+
 const readPoint = (src: string, index: number): [Vec, number] => {
     let x, y;
     [x, index] = readFloat(src, index);
@@ -355,12 +364,17 @@ const readPoint = (src: string, index: number): [Vec, number] => {
     return [[x, y], index];
 };
 
-const isWS = (c: string) => c === " " || c === "\n" || c === "\r" || c === "\t";
-
-const skipWS = (src: string, i: number) => {
-    const n = src.length;
-    while (i < n && isWS(src.charAt(i))) i++;
-    return i;
+const readFlag = (src: string, i: number): [boolean, number] => {
+    i = skipWS(src, i);
+    const c = src.charAt(i);
+    return [
+        c === "0"
+            ? false
+            : c === "1"
+            ? true
+            : illegalState(`expected '0' or '1' @ pos: ${i}`),
+        i + 1
+    ];
 };
 
 const readFloat = (src: string, index: number) => {
@@ -403,7 +417,7 @@ const readFloat = (src: string, index: number) => {
         break;
     }
     if (i === index) {
-        throw new Error(`expected coordinate @ pos: ${i}`);
+        illegalState(`expected coordinate @ pos: ${i}`);
     }
     return [parseFloat(src.substring(index, i)), i];
 };

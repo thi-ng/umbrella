@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.2.2...@thi.ng/checks@2.3.0) (2019-08-16)
+
+
+### Bug Fixes
+
+* **checks:** better hex string, export, isNil doc ([19b1981](https://github.com/thi-ng/umbrella/commit/19b1981))
+* **checks:** fix vscode autoimport ([8ac6408](https://github.com/thi-ng/umbrella/commit/8ac6408))
+* **checks:** test, better naming ([90dce20](https://github.com/thi-ng/umbrella/commit/90dce20))
+
+
+### Features
+
+* **checks:** isNil and isHexColorString ([ebaa15e](https://github.com/thi-ng/umbrella/commit/ebaa15e))
+
+
+
+
+
 ## [2.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.2.1...@thi.ng/checks@2.2.2) (2019-07-31)
 
 **Note:** Version bump only for package @thi.ng/checks
