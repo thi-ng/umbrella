@@ -122,9 +122,11 @@ export function atan<T extends Prim>(a: Term<T>): FnCall<T>;
 // prettier-ignore
 export function atan<A extends Prim, B extends A>(a: Term<A>, b: Term<B>): FnCall<A>;
 export function atan(a: Term<any>, b?: Term<any>) {
-    return b
+    const f = b
         ? builtinCall("atan", a.type, a, b)
         : builtinCall("atan", a.type, a);
+    b && (f.info = "nn");
+    return f;
 }
 
 export const pow = primOp2("pow");
