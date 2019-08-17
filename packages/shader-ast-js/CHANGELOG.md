@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.2.3...@thi.ng/shader-ast-js@0.3.0) (2019-08-17)
+
+
+### Features
+
+* **shader-ast-js:** add support for 2-arg atan(), move types to api.ts ([a760085](https://github.com/thi-ng/umbrella/commit/a760085))
+
+
+
+
+
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.2.2...@thi.ng/shader-ast-js@0.2.3) (2019-08-16)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-js

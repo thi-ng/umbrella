@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.2.20",
+    "version": "0.2.21",
     "description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,7 +39,7 @@
         "@thi.ng/math": "^1.4.2",
         "@thi.ng/random": "^1.1.10",
         "@thi.ng/transducers": "^5.4.3",
-        "@thi.ng/vectors": "^3.1.1"
+        "@thi.ng/vectors": "^3.2.0"
     },
     "keywords": [
         "axiom",

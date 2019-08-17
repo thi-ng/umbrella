@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.2.2...@thi.ng/shader-ast@0.2.3) (2019-08-17)
+
+
+### Bug Fixes
+
+* **shader-ast:** update atan built-in handling ([9f0c739](https://github.com/thi-ng/umbrella/commit/9f0c739))
+
+
+
+
+
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.2.1...@thi.ng/shader-ast@0.2.2) (2019-08-16)
 
 **Note:** Version bump only for package @thi.ng/shader-ast

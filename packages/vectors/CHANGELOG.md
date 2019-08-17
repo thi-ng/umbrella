@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.1.1...@thi.ng/vectors@3.2.0) (2019-08-17)
+
+
+### Features
+
+* **vectors:** add atan_2/22/23/24, update readme ([e9b156b](https://github.com/thi-ng/umbrella/commit/e9b156b))
+
+
+
+
+
 ## [3.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.1.0...@thi.ng/vectors@3.1.1) (2019-08-16)
 
 **Note:** Version bump only for package @thi.ng/vectors
