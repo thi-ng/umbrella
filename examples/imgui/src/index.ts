@@ -12,7 +12,6 @@ import {
     GUITheme,
     iconButton,
     IMGUI,
-    MouseButton,
     NONE,
     radialMenu,
     radio,
@@ -33,8 +32,8 @@ import {
 } from "@thi.ng/imgui";
 import { clamp, PI } from "@thi.ng/math";
 import { setInMany } from "@thi.ng/paths";
-import { sync, fromDOMEvent, sidechainPartition, fromRAF, merge, CloseMode, fromAtom } from "@thi.ng/rstream";
-import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import { sync, fromDOMEvent, sidechainPartition, fromRAF, merge, fromAtom } from "@thi.ng/rstream";
+import { gestureStream } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
 import { step, map, comp, mapcat, iterator } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -153,9 +152,7 @@ const app = () => {
                             next(e) {
                                 gui.setMouse(
                                     [...e[1].pos],
-                                    e[0] === GestureType.START || e[0] === GestureType.DRAG
-                                        ? MouseButton.LEFT
-                                        : 0
+                                    e[1].buttons
                                 )
                             }
                         }),
@@ -483,7 +480,6 @@ const main = sync<any,any>({
     src: {
         state: fromAtom(DB)
     },
-    close: CloseMode.NEVER
 });
 
 // transform the stream:
