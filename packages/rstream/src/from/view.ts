@@ -2,8 +2,9 @@ import { Predicate2 } from "@thi.ng/api";
 import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom";
 import { View } from "@thi.ng/atom";
 import { Path } from "@thi.ng/paths";
+import { CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Similar to `fromAtom()`, but creates an eager derived view for a
@@ -41,14 +42,14 @@ import { nextID } from "../utils/idgen";
  * @param path
  * @param tx
  * @param equiv
- * @param id
+ * @param opts
  */
 export const fromView = <T>(
     atom: ReadonlyAtom<any>,
     path: Path,
     tx?: ViewTransform<T>,
     equiv?: Predicate2<any>,
-    id?: string
+    opts?: Partial<CommonOpts>
 ): Stream<T> =>
     new Stream<T>((stream) => {
         let isActive = true;
@@ -61,5 +62,8 @@ export const fromView = <T>(
             false,
             equiv
         );
-        return () => ((isActive = false), view.release());
-    }, id || `view-${nextID()}`);
+        return () => {
+            isActive = false;
+            view.release();
+        };
+    }, optsWithID("view-", opts));

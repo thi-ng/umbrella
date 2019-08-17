@@ -38,12 +38,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected fail?: Fn<any, void>;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(
-            undefined,
-            undefined,
-            undefined,
-            opts.id || `resolve-${nextID()}`
-        );
+        super(undefined, { id: opts.id || `resolve-${nextID()}` });
         this.fail = opts.fail;
     }
 

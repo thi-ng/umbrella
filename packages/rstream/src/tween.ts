@@ -73,7 +73,7 @@ export const tween = <T>(
                     ? fromInterval(clock)
                     : clock
         },
-        close: CloseMode.FIRST
+        closeIn: CloseMode.FIRST
     }).transform(
         scan(reducer(() => initial, (acc, { src }) => mix(acc, src))),
         dedupe(stop || (() => false))

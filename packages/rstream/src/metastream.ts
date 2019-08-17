@@ -1,7 +1,7 @@
 import { assert, Fn } from "@thi.ng/api";
-import { State } from "./api";
+import { CommonOpts, State } from "./api";
 import { Subscription } from "./subscription";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
 /**
  * A `MetaStream` is a subscription type which transforms each incoming
@@ -73,16 +73,19 @@ import { nextID } from "./utils/idgen";
  */
 export const metaStream = <A, B>(
     factory: Fn<A, Subscription<B, B>>,
-    id?: string
-) => new MetaStream(factory, id);
+    opts?: Partial<CommonOpts>
+) => new MetaStream(factory, opts);
 
 export class MetaStream<A, B> extends Subscription<A, B> {
     factory: Fn<A, Subscription<B, B>>;
     stream?: Subscription<B, B>;
     sub?: Subscription<B, B>;
 
-    constructor(factory: Fn<A, Subscription<B, B>>, id?: string) {
-        super(undefined, undefined, undefined, id || `metastram-${nextID()}`);
+    constructor(
+        factory: Fn<A, Subscription<B, B>>,
+        opts?: Partial<CommonOpts>
+    ) {
+        super(undefined, optsWithID("metastram-", opts));
         this.factory = factory;
     }
 

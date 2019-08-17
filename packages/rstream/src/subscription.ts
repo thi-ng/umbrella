@@ -10,10 +10,12 @@ import {
     unreduced
 } from "@thi.ng/transducers";
 import {
+    CloseMode,
     ISubscribable,
     ISubscriber,
     LOGGER,
-    State
+    State,
+    SubscriptionOpts
 } from "./api";
 import { nextID } from "./utils/idgen";
 
@@ -53,37 +55,42 @@ import { nextID } from "./utils/idgen";
  */
 export const subscription = <A, B>(
     sub?: ISubscriber<B>,
-    xform?: Transducer<A, B>,
-    parent?: ISubscribable<A>,
-    id?: string
-) => new Subscription(sub, xform, parent, id);
+    opts?: Partial<SubscriptionOpts<A, B>>
+) => new Subscription(sub, opts);
 
 export class Subscription<A, B>
     implements IDeref<B>, ISubscriber<A>, ISubscribable<B> {
     id: string;
+
+    closeIn: CloseMode;
+    closeOut: CloseMode;
 
     protected parent?: ISubscribable<A>;
     protected subs: ISubscriber<B>[];
     protected xform?: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
+    protected cacheLast: boolean;
     protected last: any;
 
     constructor(
         sub?: ISubscriber<B>,
-        xform?: Transducer<A, B>,
-        parent?: ISubscribable<A>,
-        id?: string
+        opts: Partial<SubscriptionOpts<A, B>> = {}
     ) {
-        this.parent = parent;
-        this.id = id || `sub-${nextID()}`;
+        this.parent = opts.parent;
+        this.closeIn =
+            opts.closeIn !== undefined ? opts.closeIn : CloseMode.LAST;
+        this.closeOut =
+            opts.closeOut !== undefined ? opts.closeOut : CloseMode.LAST;
+        this.cacheLast = opts.cache !== false;
+        this.id = opts.id || `sub-${nextID()}`;
         this.last = SEMAPHORE;
         this.subs = [];
         if (sub) {
             this.subs.push(sub);
         }
-        if (xform) {
-            this.xform = xform(push());
+        if (opts.xform) {
+            this.xform = opts.xform(push());
         }
     }
 
@@ -135,11 +142,10 @@ export class Subscription<A, B>
         if (implementsFunction(sub, "subscribe")) {
             sub.parent = this;
         } else {
-            sub = subscription<B, B>(sub, xform, this, id);
+            // FIXME inherit options from this sub or defaults?
+            sub = subscription<B, B>(sub, { id, xform, parent: this });
         }
-        if (this.last !== SEMAPHORE) {
-            sub.next(this.last);
-        }
+        this.last !== SEMAPHORE && sub.next(this.last);
         return <Subscription<B, B>>this.addWrapped(sub);
     }
 
@@ -218,7 +224,10 @@ export class Subscription<A, B>
             const idx = this.subs.indexOf(sub);
             if (idx >= 0) {
                 this.subs.splice(idx, 1);
-                if (!this.subs.length) {
+                if (
+                    this.closeOut === CloseMode.FIRST ||
+                    (!this.subs.length && this.closeOut !== CloseMode.NEVER)
+                ) {
                     this.unsubscribe();
                 }
                 return true;
@@ -294,7 +303,7 @@ export class Subscription<A, B>
 
     protected dispatch(x: B) {
         // LOGGER.debug(this.id, "dispatch", x);
-        this.last = x;
+        this.cacheLast && (this.last = x);
         const subs = this.subs;
         let s: ISubscriber<B>;
         if (subs.length == 1) {

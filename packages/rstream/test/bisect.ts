@@ -31,11 +31,11 @@ describe("bisect", () => {
         const odds: number[] = [], evens: number[] = [];
         const subo = rs.subscription<number, number>(
             { next(x) { odds.push(x) }, done() { doneCount++; } },
-            tx.map<number, number>(x => x * 10)
+            { xform: tx.map<number, number>(x => x * 10) }
         );
         const sube = rs.subscription<number, number>(
             { next(x) { evens.push(x) }, done() { doneCount++; } },
-            tx.map<number, number>(x => x * 100)
+            { xform: tx.map<number, number>(x => x * 100) }
         );
         let doneCount = 0;
         src.subscribe(rs.bisect((x) => !!(x & 1), subo, sube));

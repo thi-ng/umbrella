@@ -1,5 +1,6 @@
+import { CloseMode, CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Returns a new `Stream` which emits a monotonically increasing counter
@@ -9,8 +10,13 @@ import { nextID } from "../utils/idgen";
  *
  * @param delay
  * @param count
+ * @param opts
  */
-export const fromInterval = (delay: number, count = Infinity) =>
+export const fromInterval = (
+    delay: number,
+    count = Infinity,
+    opts?: Partial<CommonOpts>
+) =>
     new Stream<number>((stream) => {
         let i = 0;
         stream.next(i++);
@@ -18,8 +24,8 @@ export const fromInterval = (delay: number, count = Infinity) =>
             stream.next(i++);
             if (--count <= 0) {
                 clearInterval(id);
-                stream.done();
+                stream.closeIn !== CloseMode.NEVER && stream.done();
             }
         }, delay);
         return () => clearInterval(id);
-    }, `interval-${nextID()}`);
+    }, optsWithID("interval-", opts));

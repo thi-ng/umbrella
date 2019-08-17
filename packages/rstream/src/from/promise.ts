@@ -1,6 +1,6 @@
-import { State } from "../api";
+import { CloseMode, CommonOpts, State } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Yields a single-value stream of the resolved promise and then
@@ -8,8 +8,9 @@ import { nextID } from "../utils/idgen";
  * resolves before the first subscriber has attached.
  *
  * @param src
+ * @param opts
  */
-export const fromPromise = <T>(src: Promise<T>) => {
+export const fromPromise = <T>(src: Promise<T>, opts?: Partial<CommonOpts>) => {
     let canceled = false;
     let isError = false;
     let err: any = {};
@@ -26,7 +27,7 @@ export const fromPromise = <T>(src: Promise<T>) => {
                         err = null;
                     } else {
                         stream.next(x);
-                        stream.done();
+                        stream.closeIn !== CloseMode.NEVER && stream.done();
                     }
                 }
             },
@@ -35,5 +36,5 @@ export const fromPromise = <T>(src: Promise<T>) => {
         return () => {
             canceled = true;
         };
-    }, `promise-${nextID()}`);
+    }, optsWithID("promise-", opts));
 };

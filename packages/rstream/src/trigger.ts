@@ -1,5 +1,6 @@
 import { fromIterable } from "./from/iterable";
 import { Stream } from "./stream";
+import { optsWithID } from "./utils/idgen";
 
 /**
  * Utility stream. Returns a new stream which emits a single value `x`
@@ -9,5 +10,5 @@ import { Stream } from "./stream";
 export function trigger(): Stream<boolean>;
 export function trigger<T>(x: T): Stream<T>;
 export function trigger(x: any = true) {
-    return fromIterable([x]);
+    return fromIterable([x], 0, optsWithID("trigger-"));
 }

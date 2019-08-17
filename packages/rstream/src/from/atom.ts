@@ -1,7 +1,8 @@
 import { Predicate2 } from "@thi.ng/api";
 import { ReadonlyAtom } from "@thi.ng/atom";
+import { CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Yields stream of value changes in given atom / cursor. Attaches watch
@@ -36,7 +37,8 @@ import { nextID } from "../utils/idgen";
 export const fromAtom = <T>(
     atom: ReadonlyAtom<T>,
     emitFirst = true,
-    changed?: Predicate2<T>
+    changed?: Predicate2<T>,
+    opts?: Partial<CommonOpts>
 ): Stream<T> =>
     new Stream<T>((stream) => {
         changed = changed || ((a, b) => a !== b);
@@ -47,4 +49,4 @@ export const fromAtom = <T>(
         });
         emitFirst && stream.next(atom.deref());
         return () => atom.removeWatch(stream.id);
-    }, `atom-${nextID()}`);
+    }, optsWithID("atom-", opts));

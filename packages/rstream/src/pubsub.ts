@@ -2,9 +2,9 @@ import { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
-import { ISubscriber, LOGGER } from "./api";
+import { ISubscriber, LOGGER, SubscriptionOpts } from "./api";
 import { Subscription, subscription } from "./subscription";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
 export interface PubSubOpts<A, B> {
     /**
@@ -57,9 +57,9 @@ export class PubSub<A, B> extends Subscription<A, B> {
         opts = opts || <PubSubOpts<A, B>>{};
         super(
             undefined,
-            opts.xform,
-            undefined,
-            opts.id || `pubsub-${nextID()}`
+            optsWithID("pubsub-", <Partial<SubscriptionOpts<A, B>>>{
+                xform: opts.xform
+            })
         );
         this.topicfn = opts.topic;
         this.topics = new EquivMap<any, Subscription<B, B>>(undefined, {

@@ -1,5 +1,6 @@
+import { CloseMode, CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Creates a new `Stream` of given iterable which asynchronously calls
@@ -11,22 +12,26 @@ import { nextID } from "../utils/idgen";
  *
  * @param src
  * @param delay
- * @param close
+ * @param opts
  */
-export const fromIterable = <T>(src: Iterable<T>, delay = 0, close = true) =>
+export const fromIterable = <T>(
+    src: Iterable<T>,
+    delay = 0,
+    opts?: Partial<CommonOpts>
+) =>
     new Stream<T>((stream) => {
         const iter = src[Symbol.iterator]();
         const id = setInterval(() => {
             let val: IteratorResult<T>;
             if ((val = iter.next()).done) {
                 clearInterval(id);
-                close && stream.done();
+                stream.closeIn !== CloseMode.NEVER && stream.done();
             } else {
                 stream.next(val.value);
             }
         }, delay);
         return () => clearInterval(id);
-    }, `iterable-${nextID()}`);
+    }, optsWithID("iterable-", opts));
 
 /**
  * Creates a new `Stream` of given iterable which synchronously calls
@@ -36,12 +41,15 @@ export const fromIterable = <T>(src: Iterable<T>, delay = 0, close = true) =>
  * be avoided by passing `false` as last argument.
  *
  * @param src
- * @param close
+ * @param opts
  */
-export const fromIterableSync = <T>(src: Iterable<T>, close = true) =>
+export const fromIterableSync = <T>(
+    src: Iterable<T>,
+    opts?: Partial<CommonOpts>
+) =>
     new Stream<T>((stream) => {
         for (let s of src) {
             stream.next(s);
         }
-        close && stream.done();
-    }, `iterable-${nextID()}`);
+        stream.closeIn !== CloseMode.NEVER && stream.done();
+    }, optsWithID("iterable-sync-", opts));

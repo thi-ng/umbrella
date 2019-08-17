@@ -68,7 +68,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
     index: number;
 
     constructor(opts: TunnelOpts<A>) {
-        super(undefined, undefined, undefined, opts.id || `tunnel-${nextID()}`);
+        super(undefined, { id: opts.id || `tunnel-${nextID()}` });
         this.src = opts.src;
         this.workers = new Array(opts.maxWorkers || 1);
         this.transferables = opts.transferables;

@@ -1,6 +1,7 @@
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 import * as rs from "../src/index";
+import { CloseMode } from "../src/index";
 
 describe("StreamMerge", () => {
     let src: rs.StreamMerge<number, number>;
@@ -40,7 +41,7 @@ describe("StreamMerge", () => {
     });
 
     it("merges dynamic inputs (synchronous)", (done) => {
-        src = rs.merge({ close: false });
+        src = rs.merge({ closeIn: CloseMode.NEVER });
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
         src.add(rs.fromIterableSync([1, 2, 3, 4]));
         src.add(rs.fromIterableSync([10, 20]));

@@ -1,7 +1,7 @@
-import { isString } from "@thi.ng/checks";
-import { illegalArity } from "@thi.ng/errors";
+import { isFunction } from "@thi.ng/checks";
 import { Transducer } from "@thi.ng/transducers";
 import {
+    CommonOpts,
     IStream,
     ISubscriber,
     LOGGER,
@@ -9,7 +9,7 @@ import {
     StreamSource
 } from "./api";
 import { Subscription } from "./subscription";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
 /**
  * Creates a new `Stream` instance, optionally with given `StreamSource`
@@ -43,7 +43,7 @@ import { nextID } from "./utils/idgen";
  * b.subscribe(trace("b1"));
  * b.subscribe(trace("b2"));
  *
- * // external trigger
+ * // external / manual trigger
  * b.next(42);
  * // b1 42
  * // b2 42
@@ -60,43 +60,26 @@ import { nextID } from "./utils/idgen";
  * @param id
  * @param src
  */
-export function stream<T>(): Stream<T>;
-export function stream<T>(id: string): Stream<T>;
-export function stream<T>(src: StreamSource<T>): Stream<T>;
-export function stream<T>(src: StreamSource<T>, id: string): Stream<T>;
-export function stream(src?: any, id?: string) {
-    return new Stream(src, id!);
+export function stream<T>(opts?: Partial<CommonOpts>): Stream<T>;
+// prettier-ignore
+export function stream<T>(src: StreamSource<T>, opts?: Partial<CommonOpts>): Stream<T>;
+export function stream<T>(src?: any, opts?: Partial<CommonOpts>): Stream<T> {
+    return new Stream<T>(src, opts);
 }
 
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
-    src: StreamSource<T>;
+    src?: StreamSource<T>;
 
     protected _cancel: StreamCancel | undefined;
 
     constructor();
-    constructor(id: string);
-    constructor(src: StreamSource<T>);
-    constructor(src: StreamSource<T>, id: string);
-    constructor(...args: any[]) {
-        let src, id;
-        switch (args.length) {
-            case 0:
-                break;
-            case 1:
-                if (isString(args[0])) {
-                    id = args[0];
-                } else {
-                    src = args[0];
-                }
-                break;
-            case 2:
-                [src, id] = args;
-                break;
-            default:
-                illegalArity(args.length);
-        }
-        super(undefined, undefined, undefined, id || `stream-${nextID()}`);
-        this.src = src;
+    constructor(opts: Partial<CommonOpts>);
+    constructor(src: StreamSource<T>, opts?: Partial<CommonOpts>);
+    // prettier-ignore
+    constructor(src?: StreamSource<T> | Partial<CommonOpts>, opts?: Partial<CommonOpts>) {
+        const [_src, _opts] = isFunction(src) ? [src, opts] : [undefined, src];
+        super(undefined, optsWithID("stream-", _opts));
+        this.src = _src;
     }
 
     subscribe<C>(

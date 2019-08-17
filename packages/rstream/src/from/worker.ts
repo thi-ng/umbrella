@@ -1,6 +1,6 @@
-import { LOGGER } from "../api";
+import { CommonOpts, LOGGER } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
 
 /**
@@ -21,12 +21,12 @@ import { makeWorker } from "../utils/worker";
  *
  * @param worker
  * @param terminate
- * @param id
+ * @param opts
  */
 export const fromWorker = <T>(
     worker: Worker | Blob | string,
     terminate = true,
-    id?: string
+    opts?: Partial<CommonOpts>
 ) => {
     const _worker = makeWorker(worker);
     return new Stream<T>((stream) => {
@@ -46,5 +46,5 @@ export const fromWorker = <T>(
                 _worker.terminate();
             }
         };
-    }, id || `worker-${nextID()}`);
+    }, optsWithID("worker-", opts));
 };

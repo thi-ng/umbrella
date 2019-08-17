@@ -1,6 +1,7 @@
 import { isNode } from "@thi.ng/checks";
+import { CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 import { fromInterval } from "./interval";
 
 /**
@@ -12,9 +13,9 @@ import { fromInterval } from "./interval";
  * Subscribers to this stream will be processed during that same loop
  * iteration.
  */
-export const fromRAF = () =>
+export const fromRAF = (opts?: Partial<CommonOpts>) =>
     isNode()
-        ? fromInterval(16)
+        ? fromInterval(16, undefined, opts)
         : new Stream<number>((stream) => {
               let i = 0;
               let isActive = true;
@@ -23,5 +24,8 @@ export const fromRAF = () =>
                   isActive && (id = requestAnimationFrame(loop));
               };
               let id = requestAnimationFrame(loop);
-              return () => ((isActive = false), cancelAnimationFrame(id));
-          }, `raf-${nextID()}`);
+              return () => {
+                  isActive = false;
+                  cancelAnimationFrame(id);
+              };
+          }, optsWithID("raf-", opts));

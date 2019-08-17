@@ -1,33 +1,17 @@
-import { IID } from "@thi.ng/api";
-import { Transducer } from "@thi.ng/transducers";
-import { CloseMode, ISubscribable, State } from "./api";
+import {
+    CloseMode,
+    ISubscribable,
+    State,
+    TransformableOpts
+} from "./api";
 import { Subscription } from "./subscription";
-import { closeMode } from "./utils/close";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
-export interface StreamMergeOpts<A, B> extends IID<string> {
+export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
     /**
      * Input sources.
      */
     src: ISubscribable<A>[];
-    /**
-     * Optional transducer applied to each input value.
-     */
-    xform: Transducer<A, B>;
-    /**
-     * If true (default), the `StreamMerge` closes once all inputs are
-     * exhausted. Set to false to keep the instance alive, regardless of
-     * inputs.
-     */
-
-    /**
-     * If false or `CloseMode.NEVER`, StreamMerge stays active even if
-     * all inputs are done. If true (default) or `CloseMode.LAST`, the
-     * StreamMerge closes when the last input is done. If
-     * `CloseMode.FIRST`, the instance closes when the first input is
-     * done.
-     */
-    close: boolean | CloseMode;
 }
 
 /**
@@ -84,21 +68,12 @@ export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
 
 export class StreamMerge<A, B> extends Subscription<A, B> {
     sources: Map<ISubscribable<A>, Subscription<A, any>>;
-    closeMode: CloseMode;
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};
-        super(
-            undefined,
-            opts.xform,
-            undefined,
-            opts.id || `streammerge-${nextID()}`
-        );
+        super(undefined, optsWithID("streammerge-", opts));
         this.sources = new Map();
-        this.closeMode = closeMode(opts.close);
-        if (opts.src) {
-            this.addAll(opts.src);
-        }
+        opts.src && this.addAll(opts.src);
     }
 
     add(src: ISubscribable<A>) {
@@ -177,8 +152,8 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
     protected markDone(src: ISubscribable<A>) {
         this.remove(src);
         if (
-            this.closeMode === CloseMode.FIRST ||
-            (this.closeMode === CloseMode.LAST && !this.sources.size)
+            this.closeIn === CloseMode.FIRST ||
+            (this.closeIn === CloseMode.LAST && !this.sources.size)
         ) {
             this.done();
         }

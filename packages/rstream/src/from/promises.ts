@@ -1,5 +1,7 @@
 import { mapcat } from "@thi.ng/transducers";
+import { CommonOpts } from "../api";
 import { Subscription } from "../subscription";
+import { optsWithID } from "../utils/idgen";
 import { fromPromise } from "./promise";
 
 /**
@@ -33,6 +35,9 @@ import { fromPromise } from "./promise";
  * @param promises
  */
 export const fromPromises = <T>(
-    promises: Iterable<Promise<T>>
+    promises: Iterable<Promise<T>>,
+    opts?: Partial<CommonOpts>
 ): Subscription<T[], T> =>
-    fromPromise(Promise.all(promises)).transform(mapcat((x: T[]) => x));
+    fromPromise(Promise.all(promises), optsWithID("promises-", opts)).transform(
+        mapcat((x: T[]) => x)
+    );
