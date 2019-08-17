@@ -404,6 +404,7 @@ Functions for memory mapped, strided vectors (without requiring wrappers):
 
 -   `angleBetween2` / `angleBetween3`
 -   `angleRatio`
+-   `atan_2` / `atan_22` / `atan_23` / `atan_24` (i.e. `Math.atan2(y, x)`)
 -   `bisect2`
 -   `degrees` / `degrees2` / `degrees3` / `degrees4`
 -   `direction`
@@ -447,7 +448,7 @@ All ops support custom PRNG impls based on the
 -   `abs` / `abs2` / `abs3` / `abs4`
 -   `acos` / `acos2` / `acos3` / `acos4`
 -   `asin` / `asin2` / `asin3` / `asin4`
--   `atan` / `atan2` / `atan3` / `atan4`
+-   `atan` / `atan2` / `atan3` / `atan4` (i.e. `Math.atan(y / x)`)
 -   `ceil` / `ceil2` / `ceil3` / `ceil4`
 -   `cos` / `cos2` / `cos3` / `cos4`
 -   `cosh` / `cosh2` / `cosh3` / `cosh4`
