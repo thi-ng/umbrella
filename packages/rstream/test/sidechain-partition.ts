@@ -1,17 +1,22 @@
 import * as assert from "assert";
-import * as rs from "../src/index";
+import {
+    sidechainPartition,
+    State,
+    Stream,
+    stream
+} from "../src/index";
 
 describe("SidechainPartition", function() {
-    let src: rs.Stream<any>, side: rs.Stream<any>, buf: any[];
+    let src: Stream<any>, side: Stream<any>, buf: any[];
 
     beforeEach(() => {
-        src = rs.stream();
-        side = rs.stream();
+        src = stream();
+        side = stream();
         buf = [];
     });
 
     it("partitions (manual)", (done) => {
-        src.subscribe(rs.sidechainPartition(side)).subscribe({
+        src.subscribe(sidechainPartition(side)).subscribe({
             next(x) {
                 buf.push(x);
             },
@@ -33,7 +38,7 @@ describe("SidechainPartition", function() {
     });
 
     it("partitions w/ predicate", (done) => {
-        src.subscribe(rs.sidechainPartition(side, (x) => x === 1)).subscribe({
+        src.subscribe(sidechainPartition(side, (x) => x === 1)).subscribe({
             next(x) {
                 buf.push(x);
             },
@@ -53,12 +58,12 @@ describe("SidechainPartition", function() {
     });
 
     it("unsubscribe chain (from child)", () => {
-        const part = src.subscribe(rs.sidechainPartition(side));
+        const part = src.subscribe(sidechainPartition(side));
         const sub = part.subscribe({});
         sub.unsubscribe();
-        assert.equal(src.getState(), rs.State.DONE);
-        assert.equal(side.getState(), rs.State.DONE);
-        assert.equal(part.getState(), rs.State.DONE);
-        assert.equal(sub.getState(), rs.State.DONE);
+        assert.equal(src.getState(), State.DONE);
+        assert.equal(side.getState(), State.DONE);
+        assert.equal(part.getState(), State.DONE);
+        assert.equal(sub.getState(), State.DONE);
     });
 });

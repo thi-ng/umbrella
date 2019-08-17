@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { timeout } from "../src/subs/timeout";
+import { timeout } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("Timeout", () => {

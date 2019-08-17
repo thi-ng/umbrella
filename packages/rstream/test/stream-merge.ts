@@ -1,10 +1,16 @@
-import * as tx from "@thi.ng/transducers";
+import { frequencies, map, mapcat } from "@thi.ng/transducers";
 import * as assert from "assert";
-import * as rs from "../src/index";
-import { CloseMode } from "../src/index";
+import {
+    CloseMode,
+    fromIterable,
+    fromIterableSync,
+    merge,
+    State,
+    StreamMerge
+} from "../src/index";
 
 describe("StreamMerge", () => {
-    let src: rs.StreamMerge<number, number>;
+    let src: StreamMerge<number, number>;
 
     let check = (expected: any, done: Function) => {
         let buf: any[] = [];
@@ -20,11 +26,11 @@ describe("StreamMerge", () => {
     };
 
     beforeEach(() => {
-        src = rs.merge<number, number>({
+        src = merge<number, number>({
             src: [
-                rs.fromIterable([1, 2]),
-                rs.fromIterable([10, 20, 30, 40]),
-                rs.fromIterable([100, 200, 300])
+                fromIterable([1, 2]),
+                fromIterable([10, 20, 30, 40]),
+                fromIterable([100, 200, 300])
             ]
         });
     });
@@ -34,47 +40,46 @@ describe("StreamMerge", () => {
     });
 
     it("merges dynamic inputs", (done) => {
-        src = rs.merge();
-        src.add(rs.fromIterable([1, 2, 3, 4], 10));
-        src.add(rs.fromIterable([10, 20], 5));
+        src = merge();
+        src.add(fromIterable([1, 2, 3, 4], 10));
+        src.add(fromIterable([10, 20], 5));
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
     });
 
     it("merges dynamic inputs (synchronous)", (done) => {
-        src = rs.merge({ closeIn: CloseMode.NEVER });
+        src = merge({ closeIn: CloseMode.NEVER });
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
-        src.add(rs.fromIterableSync([1, 2, 3, 4]));
-        src.add(rs.fromIterableSync([10, 20]));
+        src.add(fromIterableSync([1, 2, 3, 4]));
+        src.add(fromIterableSync([10, 20]));
         src.done();
     });
 
     it("stops when no more subs", () => {
-        assert(src.getState() === rs.State.IDLE);
+        assert(src.getState() === State.IDLE);
         let sub1 = src.subscribe({});
         let sub2 = src.subscribe({});
         sub1.unsubscribe();
-        assert(src.getState() === rs.State.ACTIVE);
+        assert(src.getState() === State.ACTIVE);
         sub2.unsubscribe();
-        assert(src.getState() === rs.State.DONE);
+        assert(src.getState() === State.DONE);
     });
 
     it("applies transducer", (done) => {
-        src = rs.merge<number, number>({
-            src: [rs.fromIterable([1, 2]), rs.fromIterable([10, 20])],
-            xform: tx.mapcat((x: number) => [x, x + 1])
+        src = merge<number, number>({
+            src: [fromIterable([1, 2]), fromIterable([10, 20])],
+            xform: mapcat((x: number) => [x, x + 1])
         });
         src.subscribe(check([1, 2, 2, 3, 10, 11, 20, 21], done));
     });
 
     it("transducer streams", (done) => {
-        const sources = [
-            rs.fromIterable([1, 2, 3]),
-            rs.fromIterable([4, 5, 6])
-        ].map((s) => s.subscribe(tx.map((x) => rs.fromIterable([x, x, x]))));
-        const merge = rs.merge({ src: <any>sources });
-        const histogram = tx.frequencies();
+        const sources = [fromIterable([1, 2, 3]), fromIterable([4, 5, 6])].map(
+            (s) => s.subscribe(map((x) => fromIterable([x, x, x])))
+        );
+        const main = merge({ src: <any>sources });
+        const histogram = frequencies();
         let acc: any = histogram[0]();
-        merge.subscribe({
+        main.subscribe({
             next(x) {
                 acc = histogram[2](acc, x);
             },
