@@ -367,24 +367,17 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         for (let q of spec.q) {
             if (isWhereQuery(q)) {
                 curr = this.addMultiJoin(this.addParamQueries(q.where));
-                query && (curr = this.addJoin(query, curr));
             } else if (isPathQuery(q)) {
                 curr = this.addPathQuery(q.path);
-                query && (curr = this.addJoin(query, curr));
             }
+            query && curr && (curr = this.addJoin(query, curr));
             query = curr;
         }
         assert(!!query, "illegal query spec");
         let xforms: Transducer<any, any>[] = [];
-        if (spec.limit) {
-            xforms.push(limitSolutions(spec.limit));
-        }
-        if (spec.bind) {
-            xforms.push(bindVars(spec.bind));
-        }
-        if (spec.select) {
-            xforms.push(filterSolutions(spec.select));
-        }
+        spec.limit && xforms.push(limitSolutions(spec.limit));
+        spec.bind && xforms.push(bindVars(spec.bind));
+        spec.select && xforms.push(filterSolutions(spec.select));
         if (xforms.length) {
             query = <ISubscribable<any>>(
                 query!.subscribe(comp.apply(null, <any>xforms))
@@ -404,10 +397,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     }
 
     protected nextID() {
-        if (this.freeIDs.length) {
-            return this.freeIDs.pop()!;
-        }
-        return this.NEXT_ID++;
+        return this.freeIDs.length ? this.freeIDs.pop()! : this.NEXT_ID++;
     }
 
     private broadcastTriple(
