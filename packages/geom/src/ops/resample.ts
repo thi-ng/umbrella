@@ -7,7 +7,8 @@ import {
     Type
 } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample";
-import { Polygon, Polyline } from "../api";
+import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
 

@@ -2,7 +2,7 @@ import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { grahamScan2 } from "@thi.ng/geom-hull";
-import { Polygon } from "../api";
+import { Polygon } from "../api/polygon";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 

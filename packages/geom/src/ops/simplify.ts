@@ -9,7 +9,9 @@ import {
 } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
 import { Vec } from "@thi.ng/vectors";
-import { Path, Polygon, Polyline } from "../api";
+import { Path } from "../api/path";
+import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 

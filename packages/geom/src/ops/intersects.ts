@@ -19,15 +19,13 @@ import {
     testRectCircle,
     testRectRect
 } from "@thi.ng/geom-isec";
-import {
-    AABB,
-    Circle,
-    Line,
-    Plane,
-    Ray,
-    Rect,
-    Sphere
-} from "../api";
+import { AABB } from "../api/aabb";
+import { Circle } from "../api/circle";
+import { Line } from "../api/line";
+import { Plane } from "../api/plane";
+import { Ray } from "../api/ray";
+import { Rect } from "../api/rect";
+import { Sphere } from "../api/sphere";
 import { dispatch2 } from "../internal/dispatch";
 
 export const intersects: MultiFn2O<

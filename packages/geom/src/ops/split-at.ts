@@ -5,13 +5,11 @@ import { Sampler } from "@thi.ng/geom-resample";
 import { cubicSplitAt, quadraticSplitAt } from "@thi.ng/geom-splines";
 import { fit01 } from "@thi.ng/math";
 import { copyVectors, set } from "@thi.ng/vectors";
-import {
-    Arc,
-    Cubic,
-    Line,
-    Polyline,
-    Quadratic
-} from "../api";
+import { Arc } from "../api/arc";
+import { Cubic } from "../api/cubic";
+import { Line } from "../api/line";
+import { Polyline } from "../api/polyline";
+import { Quadratic } from "../api/quadratic";
 import { dispatch } from "../internal/dispatch";
 import { splitLine } from "../internal/split";
 

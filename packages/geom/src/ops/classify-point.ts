@@ -4,7 +4,9 @@ import { IShape, Type } from "@thi.ng/geom-api";
 import { classifyPointInCircle, classifyPointInTriangle2 } from "@thi.ng/geom-isec";
 import { EPS, sign } from "@thi.ng/math";
 import { dot, ReadonlyVec } from "@thi.ng/vectors";
-import { Circle, Plane, Triangle } from "../api";
+import { Circle } from "../api/circle";
+import { Plane } from "../api/plane";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 
 export const classifyPoint: MultiFn2O<

@@ -14,12 +14,10 @@ import {
     ZERO2,
     ZERO3
 } from "@thi.ng/vectors";
-import {
-    Arc,
-    Circle,
-    Ellipse,
-    Sphere
-} from "../api";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Ellipse } from "../api/ellipse";
+import { Sphere } from "../api/sphere";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 import { translate } from "./translate";

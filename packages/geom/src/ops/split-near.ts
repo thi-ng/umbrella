@@ -6,12 +6,10 @@ import { Sampler } from "@thi.ng/geom-resample";
 import { quadraticSplitNearPoint, splitCubicNearPoint } from "@thi.ng/geom-splines";
 import { clamp01 } from "@thi.ng/math";
 import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
-import {
-    Cubic,
-    Line,
-    Polyline,
-    Quadratic
-} from "../api";
+import { Cubic } from "../api/cubic";
+import { Line } from "../api/line";
+import { Polyline } from "../api/polyline";
+import { Quadratic } from "../api/quadratic";
 import { dispatch } from "../internal/dispatch";
 import { splitLine } from "../internal/split";
 

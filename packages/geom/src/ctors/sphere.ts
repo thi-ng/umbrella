@@ -5,7 +5,7 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
-import { Sphere } from "../api";
+import { Sphere } from "../api/sphere";
 import { argsVN } from "../internal/args";
 
 export function sphere(pos: Vec, r: number, attribs?: Attribs): Sphere;

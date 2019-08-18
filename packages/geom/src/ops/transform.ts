@@ -11,19 +11,17 @@ import {
 } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
-import {
-    Cubic,
-    Group,
-    Line,
-    Path,
-    Points,
-    Polygon,
-    Polyline,
-    Quad,
-    Quadratic,
-    Rect,
-    Triangle
-} from "../api";
+import { Cubic } from "../api/cubic";
+import { Group } from "../api/group";
+import { Line } from "../api/line";
+import { Path } from "../api/path";
+import { Points } from "../api/points";
+import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
+import { Quad } from "../api/quad";
+import { Quadratic } from "../api/quadratic";
+import { Rect } from "../api/rect";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { transformedPoints } from "../internal/transform-points";
 import { asPath } from "./as-path";

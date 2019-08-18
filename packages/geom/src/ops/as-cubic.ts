@@ -4,17 +4,15 @@ import { CubicOpts, IShape, Type } from "@thi.ng/geom-api";
 import { closedCubicFromBreakPoints, closedCubicFromControlPoints, cubicFromArc } from "@thi.ng/geom-splines";
 import { TAU } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
-import {
-    Arc,
-    Circle,
-    Cubic,
-    Group,
-    Line,
-    Path,
-    Polygon,
-    Quadratic,
-    Rect
-} from "../api";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Cubic } from "../api/cubic";
+import { Group } from "../api/group";
+import { Line } from "../api/line";
+import { Path } from "../api/path";
+import { Polygon } from "../api/polygon";
+import { Quadratic } from "../api/quadratic";
+import { Rect } from "../api/rect";
 import { arc } from "../ctors/arc";
 import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
 import { dispatch } from "../internal/dispatch";

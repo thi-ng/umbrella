@@ -1,7 +1,8 @@
 import { Attribs } from "@thi.ng/geom-api";
 import { liangBarsky2 } from "@thi.ng/geom-clip";
 import { Vec, VecPair } from "@thi.ng/vectors";
-import { Line, Rect } from "../api";
+import { Line } from "../api/line";
+import { Rect } from "../api/rect";
 import { argAttribs } from "../internal/args";
 
 export function line(a: Vec, b: Vec, attribs?: Attribs): Line;

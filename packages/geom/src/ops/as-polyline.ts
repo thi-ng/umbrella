@@ -1,7 +1,8 @@
 import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
-import { Path, Polyline } from "../api";
+import { Path } from "../api/path";
+import { Polyline } from "../api/polyline";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 

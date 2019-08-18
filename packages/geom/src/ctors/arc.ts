@@ -2,7 +2,7 @@ import { isNumber } from "@thi.ng/checks";
 import { Attribs } from "@thi.ng/geom-api";
 import { fromEndPoints } from "@thi.ng/geom-arc";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { Arc } from "../api";
+import { Arc } from "../api/arc";
 
 export const arc = (
     pos: Vec,

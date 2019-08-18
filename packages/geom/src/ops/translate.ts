@@ -14,23 +14,21 @@ import {
     set2,
     set3
 } from "@thi.ng/vectors";
-import {
-    AABB,
-    Arc,
-    Circle,
-    Ellipse,
-    Group,
-    Line,
-    Path,
-    Points,
-    Polygon,
-    Polyline,
-    Quad,
-    Ray,
-    Rect,
-    Sphere,
-    Triangle
-} from "../api";
+import { AABB } from "../api/aabb";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Ellipse } from "../api/ellipse";
+import { Group } from "../api/group";
+import { Line } from "../api/line";
+import { Path } from "../api/path";
+import { Points } from "../api/points";
+import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
+import { Quad } from "../api/quad";
+import { Ray } from "../api/ray";
+import { Rect } from "../api/rect";
+import { Sphere } from "../api/sphere";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { translatedPoints } from "../internal/translate-points";
 
