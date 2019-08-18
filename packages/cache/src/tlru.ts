@@ -56,10 +56,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
     set(key: K, value: V, ttl = this.opts.ttl) {
         const size = this.opts.ksize(key) + this.opts.vsize(value);
         const e = this.map.get(key);
-        if (e) {
-            this._size -= e.value.s;
-        }
-        this._size += size;
+        this._size += Math.max(0, size - (e ? e.value.s : 0));
         if (this.ensureSize()) {
             const t = Date.now() + ttl;
             if (e) {
