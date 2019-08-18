@@ -6,6 +6,9 @@ import { HDOMImplementation, HDOMOpts } from "./api";
 const isArray = isa;
 const isNotStringAndIterable = isi;
 
+const maybeInitElement = <T>(el: T, tree: any) =>
+    tree.__init && tree.__init.apply(tree.__this, [el, ...tree.__args]);
+
 /**
  * See `HDOMImplementation` interface for further details.
  *
@@ -48,12 +51,7 @@ export const createTree = <T>(
                 createTree(opts, impl, el, tree[i]);
             }
         }
-        if ((<any>tree).__init) {
-            (<any>tree).__init.apply((<any>tree).__this, [
-                el,
-                ...(<any>tree).__args
-            ]);
-        }
+        maybeInitElement<T>(el, tree);
         return el;
     }
     if (isNotStringAndIterable(tree)) {
@@ -104,16 +102,9 @@ export const hydrateTree = <T>(
                 index
             );
         }
-        if ((<any>tree).__init) {
-            (<any>tree).__init.apply((<any>tree).__this, [
-                el,
-                ...(<any>tree).__args
-            ]);
-        }
+        maybeInitElement(el, tree);
         for (let a in attribs) {
-            if (a.indexOf("on") === 0) {
-                impl.setAttrib(el, a, attribs[a]);
-            }
+            a.indexOf("on") === 0 && impl.setAttrib(el, a, attribs[a]);
         }
         for (let n = tree.length, i = 2; i < n; i++) {
             hydrateTree(opts, impl, el, tree[i], i - 2);
@@ -149,34 +140,22 @@ export const createElement = (
     const el = SVG_TAGS[tag]
         ? document.createElementNS(SVG_NS, tag)
         : document.createElement(tag);
-    if (parent) {
-        if (insert == null) {
-            parent.appendChild(el);
-        } else {
-            parent.insertBefore(el, parent.children[insert]);
-        }
-    }
-    if (attribs) {
-        setAttribs(el, attribs);
-    }
-    return el;
+    attribs && setAttribs(el, attribs);
+    return addChild(parent, el, insert);
 };
 
 export const createTextElement = (
     parent: Element,
     content: string,
     insert?: number
-) => {
-    const el = document.createTextNode(content);
-    if (parent) {
-        if (insert === undefined) {
-            parent.appendChild(el);
-        } else {
-            parent.insertBefore(el, parent.children[insert]);
-        }
-    }
-    return el;
-};
+) => addChild(parent, document.createTextNode(content), insert);
+
+export const addChild = (parent: Element, child: Node, insert?: number) =>
+    parent
+        ? insert === undefined
+            ? parent.appendChild(child)
+            : parent.insertBefore(child, parent.children[insert])
+        : child;
 
 export const getChild = (parent: Element, child: number) =>
     parent.children[child];
@@ -250,11 +229,9 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
                 (<any>el)[id] = val;
                 break;
             default:
-                if (isListener) {
-                    setListener(el, id.substr(2), val);
-                } else {
-                    el.setAttribute(id, val);
-                }
+                isListener
+                    ? setListener(el, id.substr(2), val)
+                    : el.setAttribute(id, val);
         }
     } else {
         (<any>el)[id] != null ? ((<any>el)[id] = null) : el.removeAttribute(id);
@@ -322,13 +299,10 @@ export const setListener = (
     el: Element,
     id: string,
     listener: EventListener | [EventListener, boolean | AddEventListenerOptions]
-) => {
-    if (isArray(listener)) {
-        el.addEventListener(id, ...listener);
-    } else {
-        el.addEventListener(id, listener);
-    }
-};
+) =>
+    isArray(listener)
+        ? el.addEventListener(id, ...listener)
+        : el.addEventListener(id, listener);
 
 /**
  * Removes event listener (possibly with options).
@@ -341,13 +315,10 @@ export const removeListener = (
     el: Element,
     id: string,
     listener: EventListener | [EventListener, boolean | AddEventListenerOptions]
-) => {
-    if (isArray(listener)) {
-        el.removeEventListener(id, ...listener);
-    } else {
-        el.removeEventListener(id, listener);
-    }
-};
+) =>
+    isArray(listener)
+        ? el.removeEventListener(id, ...listener)
+        : el.removeEventListener(id, listener);
 
 export const clearDOM = (el: Element) => (el.innerHTML = "");
 
