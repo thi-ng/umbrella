@@ -3,13 +3,10 @@ import {
     Op1,
     Op2,
     Term
-} from "./api";
-import {
-    allChildren,
-    isLitNumeric,
-    lit,
-    walk
-} from "./ast";
+} from "./api/nodes";
+import { isLitNumeric } from "./ast/checks";
+import { lit } from "./ast/lit";
+import { allChildren, walk } from "./ast/scope";
 
 const replaceNode = (node: any, next: any) => {
     for (let k in node) {
