@@ -1,5 +1,5 @@
 import { Reducer } from "../api";
-import { $$reduce, reducer } from "../reduce";
+import { __mathop } from "./mathop";
 
 /**
  * Reducer to successively subtract values from optional `init` value
@@ -9,10 +9,5 @@ export function sub(init?: number): Reducer<number, number>;
 export function sub(xs: Iterable<number>): number;
 export function sub(init: number, xs: Iterable<number>): number;
 export function sub(...args: any[]): any {
-    const res = $$reduce(sub, args);
-    if (res !== undefined) {
-        return res;
-    }
-    const init = args[0] || 0;
-    return reducer(() => init, (acc, x: number) => acc - x);
+    return __mathop(sub, (acc, x: number) => acc - x, 0, args);
 }
