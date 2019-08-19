@@ -66,7 +66,7 @@ ops for signed & unsigned integer vectors.
 
 -   Small & fast: The vast majority of functions are code generated with
     fixed-sized versions not using any loops. Minified + gzipped, the
-    entire package is ~9.2KB.
+    entire package is ~9.5KB (though you'll hardly ever use all functions).
 -   Unified API: Any `ArrayLike` type can be used as vector containers
     (e.g. JS arrays, typed arrays, custom impls). Most functions are
     implemented as multi-methods, dispatching to any potentially optimized
@@ -107,8 +107,10 @@ ops for signed & unsigned integer vectors.
 
 -   [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
 -   [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
+-   [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/master/packages/imgui) - immediate mode GUI
 -   [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
--   [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+-   [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast) - Shader DSL & cross-compilation
+-   [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js) - JS code generator for shader-ast
 -   [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
 
 ## Installation
@@ -459,6 +461,8 @@ All ops support custom PRNG impls based on the
 -   `fromHomogeneous` / `fromHomogeneous3` / `fromHomogeneous4`
 -   `invert` / `invert2` / `invert3` / `invert4`
 -   `invSqrt` / `invSqrt2` / `invSqrt3` / `invSqrt4`
+-   `isInf` / `isInf2` / `isInf3` / `isInf4`
+-   `isNaN` / `isNaN2` / `isNaN3` / `isNaN4`
 -   `log` / `log2` / `log3` / `log4`
 -   `major` / `major2` / `major3` / `major4`
 -   `minor` / `minor2` / `minor3` / `minor4`
