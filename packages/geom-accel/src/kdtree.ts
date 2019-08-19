@@ -102,7 +102,7 @@ export class KdTree<K extends ReadonlyVec, V>
                 : parent;
         let parent: MaybeKdNode<K, V>;
         if (this.root) {
-            parent = nearest1(p, [eps * eps, null], [], this.dim, this.root)[1];
+            parent = nearest1(p, [eps * eps, null], this.dim, this.root)[1];
             if (parent) {
                 return false;
             }
@@ -154,7 +154,7 @@ export class KdTree<K extends ReadonlyVec, V>
     has(k: Readonly<K>, eps = EPS) {
         return (
             !!this.root &&
-            !!nearest1(k, [eps * eps, null], [], this.dim, this.root)[1]
+            !!nearest1(k, [eps * eps, null], this.dim, this.root)[1]
         );
     }
 
@@ -165,7 +165,6 @@ export class KdTree<K extends ReadonlyVec, V>
             const sel = nearest1(
                 q,
                 [maxDist != null ? maxDist * maxDist : Infinity, null],
-                [],
                 this.dim,
                 this.root
             )[1];
@@ -187,7 +186,6 @@ export class KdTree<K extends ReadonlyVec, V>
             const sel = nearest1(
                 q,
                 [maxDist != null ? maxDist * maxDist : Infinity, null],
-                [],
                 this.dim,
                 this.root
             )[1];
@@ -209,7 +207,6 @@ export class KdTree<K extends ReadonlyVec, V>
             const sel = nearest1(
                 q,
                 [maxDist != null ? maxDist * maxDist : Infinity, null],
-                [],
                 this.dim,
                 this.root
             )[1];
@@ -243,7 +240,7 @@ export class KdTree<K extends ReadonlyVec, V>
         for (let i = maxNum; --i >= 0; ) {
             nodes.push(c);
         }
-        nearest(q, nodes, [], this.dim, maxNum, this.root!);
+        nearest(q, nodes, this.dim, maxNum, this.root!);
         return nodes.values.sort(CMP);
     }
 
@@ -344,7 +341,6 @@ const remove = <K extends ReadonlyVec, V>(node: KdNode<K, V>) => {
 const nearest = <K extends ReadonlyVec, V>(
     q: K,
     acc: Heap<[number, MaybeKdNode<K, V>]>,
-    tmp: Vec,
     dims: number,
     maxNum: number,
     node: KdNode<K, V>
@@ -352,38 +348,16 @@ const nearest = <K extends ReadonlyVec, V>(
     const p = node.k;
     const ndist = distSq(p, q);
     if (!node.l && !node.r) {
-        if (!acc.length || ndist < acc.peek()[0]) {
-            if (acc.length >= maxNum) {
-                acc.pushPop([ndist, node]);
-            } else {
-                acc.push([ndist, node]);
-            }
-        }
+        collect(acc, node, maxNum, ndist);
         return;
     }
-    const ndim = node.d;
-    for (let i = dims; --i >= 0; ) {
-        tmp[i] = i === ndim ? q[i] : p[i];
-    }
-    const tdist = distSq(p, tmp);
-    let best = !node.r
-        ? node.l
-        : !node.l
-        ? node.r
-        : q[ndim] < p[ndim]
-        ? node.l
-        : node.r;
-    nearest(q, acc, tmp, dims, maxNum, best!);
-    if (!acc.length || ndist < acc.peek()[0]) {
-        if (acc.length >= maxNum) {
-            acc.pushPop([ndist, node]);
-        } else {
-            acc.push([ndist, node]);
-        }
-    }
+    const tdist = nodeDist(node, dims, q, p);
+    let best = bestChild(node, q);
+    nearest(q, acc, dims, maxNum, best!);
+    collect(acc, node, maxNum, ndist);
     if (!acc.length || tdist < acc.peek()[0]) {
         best = best === node.l ? node.r : node.l;
-        best && nearest(q, acc, tmp, dims, maxNum, best);
+        best && nearest(q, acc, dims, maxNum, best);
     }
 };
 
@@ -398,39 +372,64 @@ const nearest = <K extends ReadonlyVec, V>(
 const nearest1 = <K extends ReadonlyVec, V>(
     q: K,
     acc: [number, MaybeKdNode<K, V>],
-    tmp: Vec,
     dims: number,
     node: KdNode<K, V>
 ): [number, MaybeKdNode<K, V>] => {
     const p = node.k;
     const ndist = distSq(p, q);
     if (!node.l && !node.r) {
-        if (ndist < acc[0]) {
-            acc[0] = ndist;
-            acc[1] = node;
-        }
+        collect1(acc, node, ndist);
         return acc;
     }
-    const ndim = node.d;
-    for (let i = dims; --i >= 0; ) {
-        tmp[i] = i === ndim ? q[i] : p[i];
+    const tdist = nodeDist(node, dims, q, p);
+    let best = bestChild(node, q);
+    nearest1(q, acc, dims, best!);
+    collect1(acc, node, ndist);
+    if (tdist < acc[0]) {
+        best = best === node.l ? node.r : node.l;
+        best && nearest1(q, acc, dims, best);
     }
-    const tdist = distSq(p, tmp);
-    let best = !node.r
+    return acc;
+};
+
+const bestChild = <K extends ReadonlyVec, V>(node: KdNode<K, V>, q: K) => {
+    const d = node.d;
+    return !node.r
         ? node.l
         : !node.l
         ? node.r
-        : q[ndim] < p[ndim]
+        : q[d] < node.k[d]
         ? node.l
         : node.r;
-    nearest1(q, acc, tmp, dims, best!);
-    if (ndist < acc[0]) {
-        acc[0] = ndist;
-        acc[1] = node;
+};
+
+const collect = <K extends ReadonlyVec, V>(
+    acc: Heap<[number, MaybeKdNode<K, V>]>,
+    node: KdNode<K, V>,
+    maxNum: number,
+    ndist: number
+) =>
+    (!acc.length || ndist < acc.peek()[0]) &&
+    (acc.length >= maxNum
+        ? acc.pushPop([ndist, node])
+        : acc.push([ndist, node]));
+
+const collect1 = <K extends ReadonlyVec, V>(
+    acc: [number, MaybeKdNode<K, V>],
+    node: KdNode<K, V>,
+    ndist: number
+) => ndist < acc[0] && ((acc[0] = ndist), (acc[1] = node));
+
+const TMP: Vec = [];
+
+const nodeDist = <K extends ReadonlyVec, V>(
+    node: KdNode<K, V>,
+    dims: number,
+    q: K,
+    p: K
+) => {
+    for (let i = dims, d = node.d; --i >= 0; ) {
+        TMP[i] = i === d ? q[i] : p[i];
     }
-    if (tdist < acc[0]) {
-        best = best === node.l ? node.r : node.l;
-        best && nearest1(q, acc, tmp, dims, best);
-    }
-    return acc;
+    return distSq(TMP, p);
 };
