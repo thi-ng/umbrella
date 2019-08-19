@@ -98,7 +98,7 @@ export const createTree = (
             ctx!.clearRect(0, 0, canvas.width, canvas.height);
         }
     }
-    walk(ctx!, tree, { attribs: {} });
+    walk(ctx!, tree, { attribs: {}, edits: [] });
 };
 
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {

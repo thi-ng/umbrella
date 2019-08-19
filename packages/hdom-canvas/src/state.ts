@@ -50,6 +50,13 @@ const CTX_ATTRIBS: IObjectOf<string> = {
     weight: "lineWidth"
 };
 
+const newState = (state: DrawState, restore = false) => ({
+    attribs: { ...state.attribs },
+    grads: { ...state.grads },
+    edits: [],
+    restore
+});
+
 export const mergeState = (
     ctx: CanvasRenderingContext2D,
     state: DrawState,
@@ -58,27 +65,16 @@ export const mergeState = (
     let res: DrawState | undefined;
     if (!attribs) return;
     if (applyTransform(ctx, attribs)) {
-        res = {
-            attribs: { ...state.attribs },
-            grads: { ...state.grads },
-            edits: [],
-            restore: true
-        };
+        res = newState(state, true);
     }
     for (let id in attribs) {
         const k = CTX_ATTRIBS[id];
         if (k) {
             const v = attribs[id];
             if (v != null && state.attribs[id] !== v) {
-                if (!res) {
-                    res = {
-                        attribs: { ...state.attribs },
-                        grads: { ...state.grads },
-                        edits: []
-                    };
-                }
-                res!.attribs[id] = v;
-                res!.edits!.push(id);
+                !res && (res = newState(state));
+                res.attribs[id] = v;
+                res.edits!.push(id);
                 setAttrib(ctx, state, id, k, v);
             }
         }
@@ -96,18 +92,11 @@ export const restoreState = (
         return;
     }
     const edits = curr.edits;
-    if (edits) {
-        for (let attribs = prev.attribs, i = edits.length; --i >= 0; ) {
-            const id = edits[i];
-            const v = attribs[id];
-            setAttrib(
-                ctx,
-                prev,
-                id,
-                CTX_ATTRIBS[id],
-                v != null ? v : DEFAULTS[id]
-            );
-        }
+    const attribs = prev.attribs;
+    for (let i = edits.length; --i >= 0; ) {
+        const id = edits[i];
+        const v = attribs[id];
+        setAttrib(ctx, prev, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);
     }
 };
 
