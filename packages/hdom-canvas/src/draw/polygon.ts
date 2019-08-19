@@ -8,6 +8,21 @@ export const polygon = (
     pts: ReadonlyVec[]
 ) => {
     if (pts.length < 2) return;
+    __drawPoly(ctx, pts);
+    ctx.closePath();
+    endShape(ctx, attribs);
+};
+
+/**
+ * Shared internal helper for polygon & polyline fns.
+ *
+ * @param ctx
+ * @param pts
+ */
+export const __drawPoly = (
+    ctx: CanvasRenderingContext2D,
+    pts: ReadonlyVec[]
+) => {
     let p: ReadonlyVec = pts[0];
     ctx.beginPath();
     ctx.moveTo(p[0], p[1]);
@@ -15,6 +30,4 @@ export const polygon = (
         p = pts[i];
         ctx.lineTo(p[0], p[1]);
     }
-    ctx.closePath();
-    endShape(ctx, attribs);
 };
