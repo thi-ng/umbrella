@@ -1,4 +1,4 @@
-import { ICopy, Pair } from "@thi.ng/api";
+import { Fn, ICopy, Pair } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays";
 import { ISpatialAccel } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps";
@@ -159,66 +159,15 @@ export class KdTree<K extends ReadonlyVec, V>
     }
 
     select(q: Readonly<K>, maxNum: number, maxDist?: number): Pair<K, V>[] {
-        if (!this.root) return [];
-        const res: Pair<K, V>[] = [];
-        if (maxNum === 1) {
-            const sel = nearest1(
-                q,
-                [maxDist != null ? maxDist * maxDist : Infinity, null],
-                this.dim,
-                this.root
-            )[1];
-            sel && res.push([sel.k, sel.v]);
-        } else {
-            const sel = this.buildSelection(q, maxNum, maxDist);
-            for (let n = sel.length; --n >= 0; ) {
-                const nn = sel[n][1];
-                nn && res.push([nn.k, nn.v]);
-            }
-        }
-        return res;
+        return this.doSelect(q, (x) => [x.k, x.v], maxNum, maxDist);
     }
 
-    selectKeys(q: Readonly<K>, maxNum: number, maxDist?: number): K[] {
-        if (!this.root) return [];
-        const res: K[] = [];
-        if (maxNum === 1) {
-            const sel = nearest1(
-                q,
-                [maxDist != null ? maxDist * maxDist : Infinity, null],
-                this.dim,
-                this.root
-            )[1];
-            sel && res.push(sel.k);
-        } else {
-            const src = this.buildSelection(q, maxNum, maxDist);
-            for (let n = src.length; --n >= 0; ) {
-                const nn = src[n][1];
-                nn && res.push(nn.k);
-            }
-        }
-        return res;
+    selectKeys(q: Readonly<K>, maxNum: number, maxDist?: number) {
+        return this.doSelect(q, (x) => x.k, maxNum, maxDist);
     }
 
-    selectVals(q: Readonly<K>, maxNum: number, maxDist?: number): V[] {
-        if (!this.root) return [];
-        const res: V[] = [];
-        if (maxNum === 1) {
-            const sel = nearest1(
-                q,
-                [maxDist != null ? maxDist * maxDist : Infinity, null],
-                this.dim,
-                this.root
-            )[1];
-            sel && res.push(sel.v);
-        } else {
-            const src = this.buildSelection(q, maxNum, maxDist);
-            for (let n = src.length; --n >= 0; ) {
-                const nn = src[n][1];
-                nn && res.push(nn.v);
-            }
-        }
-        return res;
+    selectVals(q: Readonly<K>, maxNum: number, maxDist?: number) {
+        return this.doSelect(q, (x) => x.v, maxNum, maxDist);
     }
 
     balanceRatio() {
@@ -242,6 +191,32 @@ export class KdTree<K extends ReadonlyVec, V>
         }
         nearest(q, nodes, this.dim, maxNum, this.root!);
         return nodes.values.sort(CMP);
+    }
+
+    protected doSelect<T>(
+        q: Readonly<K>,
+        f: Fn<KdNode<K, V>, T>,
+        maxNum: number,
+        maxDist?: number
+    ): T[] {
+        if (!this.root) return [];
+        const res: any[] = [];
+        if (maxNum === 1) {
+            const sel = nearest1(
+                q,
+                [maxDist != null ? maxDist * maxDist : Infinity, null],
+                this.dim,
+                this.root
+            )[1];
+            sel && res.push(f(sel));
+        } else {
+            const sel = this.buildSelection(q, maxNum, maxDist);
+            for (let n = sel.length; --n >= 0; ) {
+                const s = sel[n][1];
+                s && res.push(f(s));
+            }
+        }
+        return res;
     }
 
     protected buildTree(
