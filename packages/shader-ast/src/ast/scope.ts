@@ -41,14 +41,9 @@ export const scopedChildren = (t: Term<any>) =>
  * @see scopedChildren
  */
 export const allChildren = (t: Term<any>) =>
-    t.tag === "scope"
+    scopedChildren(t) ||
+    (t.tag === "scope"
         ? (<Scope>t).body
-        : t.tag === "fn" || t.tag === "for" || t.tag == "while"
-        ? (<Func<any>>t).scope.body
-        : t.tag === "if"
-        ? (<Branch>t).f
-            ? (<Branch>t).t.body.concat((<Branch>t).f!.body)
-            : (<Branch>t).t.body
         : t.tag === "ternary"
         ? [(<Ternary<any>>t).t, (<Ternary<any>>t).f]
         : t.tag === "ret"
@@ -67,7 +62,7 @@ export const allChildren = (t: Term<any>) =>
         ? [(<Assign<any>>t).r]
         : isVec(t) || isMat(t)
         ? (<Lit<any>>t).val
-        : undefined;
+        : undefined);
 
 /**
  * Traverses given AST in depth-first order and applies `visit` and
