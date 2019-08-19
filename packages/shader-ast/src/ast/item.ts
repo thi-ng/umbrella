@@ -1,6 +1,13 @@
+import { IObjectOf } from "@thi.ng/api";
 import { Term } from "../api/nodes";
 import { FloatTerm } from "../api/terms";
-import { Int, Prim, Type } from "../api/types";
+import {
+    Int,
+    IVec,
+    Prim,
+    Type,
+    UVec
+} from "../api/types";
 import {
     bool,
     float,
@@ -45,3 +52,21 @@ export const matchingPrimFor = <T extends Prim>(
     const ctor = (<any>{ vec2, vec3, vec4 })[t.type];
     return ctor ? ctor(x) : x;
 };
+
+export const matchingBoolType = <T extends Prim | Int | IVec | UVec>(
+    t: Term<T>
+) =>
+    (<IObjectOf<Type>>{
+        float: "bool",
+        int: "bool",
+        uint: "bool",
+        vec2: "bvec2",
+        ivec2: "bvec2",
+        uvec2: "bvec2",
+        vec3: "bvec3",
+        ivec3: "bvec3",
+        uvec3: "bvec3",
+        vec4: "bvec4",
+        ivec4: "bvec4",
+        uvec4: "bvec4"
+    })[t.type];

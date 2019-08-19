@@ -1,8 +1,25 @@
-import { FnCall, Term } from "../api/nodes";
-import { FloatTerm, Vec3Term } from "../api/terms";
+import { FnCall, Sym, Term } from "../api/nodes";
+import {
+    BoolTerm,
+    BVec2Term,
+    BVec3Term,
+    BVec4Term,
+    FloatTerm,
+    IntTerm,
+    IVec2Term,
+    IVec3Term,
+    IVec4Term,
+    UintTerm,
+    UVec2Term,
+    UVec3Term,
+    UVec4Term,
+    Vec2Term,
+    Vec3Term,
+    Vec4Term
+} from "../api/terms";
 import { Mat, Prim, Vec } from "../api/types";
 import { builtinCall } from "../ast/function";
-import { matchingPrimFor } from "../ast/item";
+import { matchingBoolType, matchingPrimFor } from "../ast/item";
 
 const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
     builtinCall(name, a.type, a);
@@ -123,6 +140,18 @@ export function mod(a: Term<any>, b: Term<any>): FnCall<any> {
     return f;
 }
 
+/**
+ * Important: Currently unsupported by JS target.
+ *
+ * TODO add additional metadata for JS (`b` is an output var), issue #96
+ *
+ * @param a
+ * @param b
+ */
+// prettier-ignore
+export const modf = <A extends Prim, B extends A>(a: Term<A>, b: Sym<B>): FnCall<A> =>
+    builtinCall("modf", a.type, a, b);
+
 // prettier-ignore
 export function mix<A extends Prim, B extends A, C extends B>(a: Term<A>, b: Term<B>, c: Term<C>): FnCall<A>;
 // prettier-ignore
@@ -136,3 +165,29 @@ export function mix(a: Term<any>, b: Term<any>, c: Term<any>): FnCall<any> {
 // prettier-ignore
 export const matrixCompMult = <A extends Mat, B extends A>(a: Term<A>, b: Term<B>) =>
     builtinCall("matrixCompMult", a.type, a, b);
+
+/**
+ * Important: Not available in JS / GLSL ES 100
+ *
+ * @param a
+ */
+export function isnan(a: FloatTerm | IntTerm | UintTerm): BoolTerm;
+export function isnan(a: Vec2Term | IVec2Term | UVec2Term): BVec2Term;
+export function isnan(a: Vec3Term | IVec3Term | UVec3Term): BVec3Term;
+export function isnan(a: Vec4Term | IVec4Term | UVec4Term): BVec4Term;
+export function isnan(a: any): FnCall<any> {
+    return builtinCall("isnan", matchingBoolType(a), a);
+}
+
+/**
+ * Important: Not available in JS / GLSL ES 100
+ *
+ * @param a
+ */
+export function isinf(a: FloatTerm | IntTerm | UintTerm): BoolTerm;
+export function isinf(a: Vec2Term | IVec2Term | UVec2Term): BVec2Term;
+export function isinf(a: Vec3Term | IVec3Term | UVec3Term): BVec3Term;
+export function isinf(a: Vec4Term | IVec4Term | UVec4Term): BVec4Term;
+export function isinf(a: any): FnCall<any> {
+    return builtinCall("isinf", matchingBoolType(a), a);
+}
