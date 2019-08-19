@@ -71,93 +71,42 @@ export class PathBuilder {
     }
 
     hlineTo(x: number, relative = false): PathBuilder {
-        const prev = copy(this.currP);
-        this.currP[0] = relative ? this.currP[0] + x : x;
-        set2(this.bezierP, this.currP);
-        this.curr.add({
-            geo: new Line([prev, copy(this.currP)]),
-            type: SegmentType.LINE
-        });
+        this.addHVLine(x, 0, relative);
         return this;
     }
 
     vlineTo(y: number, relative = false): PathBuilder {
-        const prev = copy(this.currP);
-        this.currP[1] = relative ? this.currP[1] + y : y;
-        set2(this.bezierP, this.currP);
-        this.curr.add({
-            geo: new Line([prev, copy(this.currP)]),
-            type: SegmentType.LINE
-        });
+        this.addHVLine(y, 1, relative);
         return this;
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Cubic_B%C3%A9zier_Curve
     cubicTo(cp1: Vec, cp2: Vec, p: Vec, relative = false) {
-        const c2 = this.absPoint(cp2, relative);
-        set2(this.bezierP, c2);
-        this.curr.add({
-            geo: new Cubic([
-                copy(this.currP),
-                this.absPoint(cp1, relative),
-                c2,
-                this.updateCurrent(p, relative)
-            ]),
-            type: SegmentType.CUBIC
-        });
+        this.addCubic(this.absPoint(cp1, relative), cp2, p, relative);
         return this;
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Quadratic_B%C3%A9zier_Curve
     quadraticTo(cp: Vec, p: Vec, relative = false) {
-        const c1 = this.absPoint(cp, relative);
-        set2(this.bezierP, c1);
-        this.curr.add({
-            geo: new Quadratic([
-                copy(this.currP),
-                c1,
-                this.updateCurrent(p, relative)
-            ]),
-            type: SegmentType.QUADRATIC
-        });
+        this.addQuadratic(this.absPoint(cp, relative), p, relative);
         return this;
     }
 
     cubicChainTo(cp2: Vec, p: Vec, relative = false) {
         const prevMode = peek(this.curr.segments).type;
         const c1 = copy(this.currP);
-        if (prevMode === SegmentType.CUBIC) {
+        prevMode === SegmentType.CUBIC &&
             add2(null, sub2([], c1, this.bezierP), c1);
-        }
-        const c2 = this.absPoint(cp2, relative);
-        set2(this.bezierP, c2);
-        this.curr.add({
-            geo: new Cubic([
-                copy(this.currP),
-                c1,
-                c2,
-                this.updateCurrent(p, relative)
-            ]),
-            type: SegmentType.CUBIC
-        });
+        this.addCubic(c1, cp2, p, relative);
         return this;
     }
 
     quadraticChainTo(p: Vec, relative = false) {
         const prevMode = peek(this.curr.segments).type;
         const c1 = copy(this.currP);
-        if (prevMode === SegmentType.QUADRATIC) {
+        prevMode === SegmentType.QUADRATIC &&
             sub2(null, mulN2(null, c1, 2), this.bezierP);
-        }
-        set2(this.bezierP, c1);
-        this.curr.add({
-            geo: new Quadratic([
-                copy(this.currP),
-                c1,
-                this.updateCurrent(p, relative)
-            ]),
-            type: SegmentType.CUBIC
-        });
+        this.addQuadratic(c1, p, relative);
         return this;
     }
 
@@ -204,6 +153,42 @@ export class PathBuilder {
 
     protected absPoint(p: Vec, relative: boolean) {
         return relative ? add2(null, p, this.currP) : p;
+    }
+
+    protected addHVLine(p: number, i: number, relative: boolean) {
+        const prev = copy(this.currP);
+        this.currP[i] = relative ? this.currP[i] + p : p;
+        set2(this.bezierP, this.currP);
+        this.curr.add({
+            geo: new Line([prev, copy(this.currP)]),
+            type: SegmentType.LINE
+        });
+    }
+
+    protected addCubic(cp1: Vec, cp2: Vec, p: Vec, relative: boolean) {
+        cp2 = this.absPoint(cp2, relative);
+        set2(this.bezierP, cp2);
+        this.curr.add({
+            geo: new Cubic([
+                copy(this.currP),
+                cp1,
+                cp2,
+                this.updateCurrent(p, relative)
+            ]),
+            type: SegmentType.CUBIC
+        });
+    }
+
+    protected addQuadratic(cp: Vec, p: Vec, relative: boolean) {
+        set2(this.bezierP, cp);
+        this.curr.add({
+            geo: new Quadratic([
+                copy(this.currP),
+                cp,
+                this.updateCurrent(p, relative)
+            ]),
+            type: SegmentType.QUADRATIC
+        });
     }
 }
 
