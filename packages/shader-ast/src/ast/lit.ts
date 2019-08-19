@@ -125,6 +125,33 @@ const $mat = (xs: any[], init = FLOAT0) => [
     ...xs.slice(1).map(wrapInt)
 ];
 
+const $gvec2 = <T extends Type>(
+    type: T,
+    ctor: Fn<any[], (Term<any> | undefined)[]>,
+    xs: any[]
+) => lit(type, (xs = ctor(xs)), ["n", "n"][xs.length]);
+
+const $gvec3 = <T extends Type>(
+    type: T,
+    ctor: Fn<any[], (Term<any> | undefined)[]>,
+    xs: any[]
+) => lit(type, (xs = ctor(xs)), ["n", "n", "vn"][xs.length]);
+
+const $gvec4 = <T extends Type>(
+    type: T,
+    ctor: Fn<any[], (Term<any> | undefined)[]>,
+    xs: any[]
+) =>
+    lit(
+        type,
+        (xs = ctor(xs)),
+        xs.length === 2
+            ? isVec(xs[1])
+                ? "vv"
+                : "vn"
+            : ["n", "n", , "vnn"][xs.length]
+    );
+
 export function vec2(): Lit<"vec2">;
 export function vec2(x: NumericF): Lit<"vec2">;
 // export function vec2(x: Term<Vec | IVec | BVec>): Lit<"vec2">;
@@ -132,8 +159,7 @@ export function vec2(x: NumericF): Lit<"vec2">;
 export function vec2(x: NumericF, y: NumericF): Lit<"vec2">;
 // prettier-ignore
 export function vec2(...xs: any[]): Lit<"vec2"> {
-    xs = $vec(xs);
-    return lit("vec2", xs, ["n","n"][xs.length]);
+    return $gvec2("vec2", $vec, xs);
 }
 
 export function vec3(): Lit<"vec3">;
@@ -142,8 +168,7 @@ export function vec3(x: Vec2Term, y: NumericF): Lit<"vec3">;
 // prettier-ignore
 export function vec3(x: NumericF, y: NumericF, z: NumericF): Lit<"vec3">;
 export function vec3(...xs: any[]): Lit<"vec3"> {
-    xs = $vec(xs);
-    return lit("vec3", xs, ["n", "n", "vn"][xs.length]);
+    return $gvec3("vec3", $vec, xs);
 }
 
 export function vec4(): Lit<"vec4">;
@@ -155,16 +180,7 @@ export function vec4(x: Vec2Term, y: NumericF, z: NumericF): Lit<"vec4">;
 // prettier-ignore
 export function vec4(x: NumericF, y: NumericF, z: NumericF, w: NumericF): Lit<"vec4">;
 export function vec4(...xs: any[]): Lit<"vec4"> {
-    xs = $vec(xs);
-    return lit(
-        "vec4",
-        xs,
-        xs.length === 2
-            ? isVec(xs[1])
-                ? "vv"
-                : "vn"
-            : ["n", "n", , "vnn"][xs.length]
-    );
+    return $gvec4("vec4", $vec, xs);
 }
 
 export function ivec2(): Lit<"ivec2">;
@@ -173,7 +189,7 @@ export function ivec2(x: NumericI): Lit<"ivec2">;
 export function ivec2(x: NumericI, y: NumericI): Lit<"ivec2">;
 // prettier-ignore
 export function ivec2(...xs: any[]): Lit<"ivec2"> {
-    return lit("ivec2", $ivec(xs), ["n","n"][xs.length]);
+    return $gvec2("ivec2", $ivec, xs);
 }
 
 export function ivec3(): Lit<"ivec3">;
@@ -182,7 +198,7 @@ export function ivec3(x: Vec2Term, y: NumericI): Lit<"ivec3">;
 // prettier-ignore
 export function ivec3(x: NumericI, y: NumericI, z: NumericI): Lit<"ivec3">;
 export function ivec3(...xs: any[]): Lit<"ivec3"> {
-    return lit("ivec3", (xs = $ivec(xs)), ["n", "n", "vn"][xs.length]);
+    return $gvec3("ivec3", $ivec, xs);
 }
 
 export function ivec4(): Lit<"ivec4">;
@@ -194,15 +210,7 @@ export function ivec4(x: Vec2Term, y: NumericI, z: NumericI): Lit<"ivec4">;
 // prettier-ignore
 export function ivec4(x: NumericI, y: NumericI, z: NumericI, w: NumericI): Lit<"ivec4">;
 export function ivec4(...xs: any[]): Lit<"ivec4"> {
-    return lit(
-        "ivec4",
-        (xs = $ivec(xs)),
-        xs.length === 2
-            ? isVec(xs[1])
-                ? "vv"
-                : "vn"
-            : ["n", "n", , "vnn"][xs.length]
-    );
+    return $gvec4("ivec4", $ivec, xs);
 }
 
 export function uvec2(): Lit<"uvec2">;
@@ -211,7 +219,7 @@ export function uvec2(x: NumericU): Lit<"uvec2">;
 export function uvec2(x: NumericU, y: NumericU): Lit<"uvec2">;
 // prettier-ignore
 export function uvec2(...xs: any[]): Lit<"uvec2"> {
-    return lit("uvec2", $uvec(xs), ["n","n"][xs.length]);
+    return $gvec2("uvec2", $uvec, xs);
 }
 
 export function uvec3(): Lit<"uvec3">;
@@ -220,7 +228,7 @@ export function uvec3(x: Vec2Term, y: NumericU): Lit<"uvec3">;
 // prettier-ignore
 export function uvec3(x: NumericU, y: NumericU, z: NumericU): Lit<"uvec3">;
 export function uvec3(...xs: any[]): Lit<"uvec3"> {
-    return lit("uvec3", (xs = $uvec(xs)), ["n", "n", "vn"][xs.length]);
+    return $gvec3("uvec3", $uvec, xs);
 }
 
 export function uvec4(): Lit<"uvec4">;
@@ -232,15 +240,7 @@ export function uvec4(x: Vec2Term, y: NumericU, z: NumericU): Lit<"uvec4">;
 // prettier-ignore
 export function uvec4(x: NumericU, y: NumericU, z: NumericU, w: NumericU): Lit<"uvec4">;
 export function uvec4(...xs: any[]): Lit<"uvec4"> {
-    return lit(
-        "uvec4",
-        (xs = $uvec(xs)),
-        xs.length === 2
-            ? isVec(xs[1])
-                ? "vv"
-                : "vn"
-            : ["n", "n", , "vnn"][xs.length]
-    );
+    return $gvec4("uvec4", $uvec, xs);
 }
 
 export function bvec2(): Lit<"bvec2">;
@@ -249,7 +249,7 @@ export function bvec2(x: NumericB): Lit<"bvec2">;
 export function bvec2(x: NumericB, y: NumericB): Lit<"bvec2">;
 // prettier-ignore
 export function bvec2(...xs: any[]): Lit<"bvec2"> {
-    return lit("bvec2", $bvec(xs), ["n","n"][xs.length]);
+    return $gvec2("bvec2", $bvec, xs);
 }
 
 export function bvec3(): Lit<"bvec3">;
@@ -258,7 +258,7 @@ export function bvec3(x: Vec2Term, y: NumericB): Lit<"bvec3">;
 // prettier-ignore
 export function bvec3(x: NumericB, y: NumericB, z: NumericB): Lit<"bvec3">;
 export function bvec3(...xs: any[]): Lit<"bvec3"> {
-    return lit("bvec3", (xs = $bvec(xs)), ["n", "n", "vn"][xs.length]);
+    return $gvec3("bvec3", $bvec, xs);
 }
 
 export function bvec4(): Lit<"bvec4">;
@@ -270,15 +270,7 @@ export function bvec4(x: Vec2Term, y: NumericB, z: NumericB): Lit<"bvec4">;
 // prettier-ignore
 export function bvec4(x: NumericB, y: NumericB, z: NumericB, w: NumericB): Lit<"bvec4">;
 export function bvec4(...xs: any[]): Lit<"bvec4"> {
-    return lit(
-        "bvec4",
-        (xs = $bvec(xs)),
-        xs.length === 2
-            ? isVec(xs[1])
-                ? "vv"
-                : "vn"
-            : ["n", "n", , "vnn"][xs.length]
-    );
+    return $gvec4("bvec4", $bvec, xs);
 }
 
 export function mat2(): Lit<"mat2">;
@@ -287,7 +279,7 @@ export function mat2(x: Vec2Term, y: Vec2Term): Lit<"mat2">;
 // prettier-ignore
 export function mat2(a: NumericF, b: NumericF, c: NumericF, d: NumericF): Lit<"mat2">;
 export function mat2(...xs: any[]): Lit<"mat2"> {
-    return lit("mat2", (xs = $mat(xs, FLOAT1)), ["n", "n", "vv"][xs.length]);
+    return lit("mat2", (xs = $mat(xs)), ["n", "n", "vv"][xs.length]);
 }
 
 export function mat3(): Lit<"mat3">;
@@ -297,7 +289,7 @@ export function mat3(x: Vec3Term, y: Vec3Term, z: Vec3Term): Lit<"mat3">;
 // prettier-ignore
 export function mat3(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: NumericF, f: NumericF, g: NumericF, h: NumericF, i: NumericF): Lit<"mat3">;
 export function mat3(...xs: any[]): Lit<"mat3"> {
-    return lit("mat3", (xs = $mat(xs, FLOAT1)), ["n", "n", , "vvv"][xs.length]);
+    return lit("mat3", (xs = $mat(xs)), ["n", "n", , "vvv"][xs.length]);
 }
 
 export function mat4(): Lit<"mat4">;
@@ -307,9 +299,5 @@ export function mat4(x: Vec4Term, y: Vec4Term, z: Vec4Term, w: Vec4Term): Lit<"m
 // prettier-ignore
 export function mat4(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: NumericF, f: NumericF, g: NumericF, h: NumericF, i: NumericF, j: NumericF, k: NumericF, l: NumericF, m: NumericF, n: NumericF, o: NumericF, p: NumericF): Lit<"mat4">;
 export function mat4(...xs: any[]): Lit<"mat4"> {
-    return lit(
-        "mat4",
-        (xs = $mat(xs, FLOAT1)),
-        ["n", "n", , , "vvvv"][xs.length]
-    );
+    return lit("mat4", (xs = $mat(xs)), ["n", "n", , , "vvvv"][xs.length]);
 }

@@ -46,6 +46,23 @@ const texRetType = (sampler: Term<Sampler>) => {
         : illegalArgs(`unknown sampler type ${sampler.type}`);
 };
 
+const $call = (
+    name: string,
+    sampler: Term<Sampler>,
+    uv: Term<Vec>,
+    bias?: FloatTerm
+) => {
+    const f = builtinCall(
+        name,
+        texRetType(sampler),
+        sampler,
+        uv,
+        bias || FLOAT0
+    );
+    !isVec(f) && (f.info = "n");
+    return f;
+};
+
 // prettier-ignore
 export function textureSize(sampler: Sampler2DTerm, lod: IntTerm): FnCall<"ivec2">;
 // prettier-ignore
@@ -90,15 +107,7 @@ export function texture(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, bias?: 
 export function texture(sampler: Term<"samplerCubeShadow">, uvw: Vec4Term, bias?: FloatTerm): FnCall<"float">;
 // prettier-ignore
 export function texture(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm): FnCall<any> {
-    const f = builtinCall(
-        "texture",
-        texRetType(sampler),
-        sampler,
-        uv,
-        bias || FLOAT0
-    );
-    !isVec(f) && (f.info = "n");
-    return f;
+    return $call("texture", sampler, uv, bias);
 }
 
 // prettier-ignore
@@ -117,15 +126,7 @@ export function textureProj(sampler: USampler3DTerm, uvw: Vec4Term, bias?: Float
 export function textureProj(sampler: Term<"sampler2DShadow">, uvw: Vec4Term, bias?: FloatTerm): FnCall<"float">;
 // prettier-ignore
 export function textureProj(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm): FnCall<any> {
-    const f = builtinCall(
-        "textureProj",
-        texRetType(sampler),
-        sampler,
-        uv,
-        bias || FLOAT0
-    );
-    !isVec(f) && (f.info = "n");
-    return f;
+    return $call("textureProj", sampler, uv, bias);
 }
 
 // prettier-ignore
@@ -150,15 +151,7 @@ export function textureLod(sampler: USamplerCubeTerm, uvw: Vec3Term, bias?: Floa
 export function textureLod(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, bias?: FloatTerm): FnCall<"float">;
 // prettier-ignore
 export function textureLod(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm): FnCall<any> {
-    const f = builtinCall(
-        "textureLod",
-        texRetType(sampler),
-        sampler,
-        uv,
-        bias || FLOAT0
-    );
-    !isVec(f) && (f.info = "n");
-    return f;
+    return $call("textureLod", sampler, uv, bias);
 }
 
 // prettier-ignore
