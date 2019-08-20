@@ -1,4 +1,10 @@
-import { assert, TypedArray } from "@thi.ng/api";
+import {
+    assert,
+    Fn,
+    Fn2,
+    TypedArray,
+    UIntArray
+} from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
 import { BlitOpts, PackedFormat } from "./api";
 
@@ -63,4 +69,50 @@ export const prepRegions = (
         sy
     );
     return { sx, sy, dx, dy, rw, rh };
+};
+
+export const setChannelUni = (
+    dbuf: UIntArray,
+    src: number,
+    set: Fn2<number, number, number>
+) => {
+    for (let i = dbuf.length; --i >= 0; ) {
+        dbuf[i] = set(dbuf[i], src);
+    }
+};
+
+export const setChannelSame = (
+    dbuf: UIntArray,
+    sbuf: UIntArray,
+    get: Fn<number, number>,
+    set: Fn2<number, number, number>
+) => {
+    for (let i = dbuf.length; --i >= 0; ) {
+        dbuf[i] = set(dbuf[i], get(sbuf[i]));
+    }
+};
+
+export const setChannelConvert = (
+    dbuf: UIntArray,
+    sbuf: UIntArray,
+    from: Fn<number, number>,
+    sto: Fn<number, number>,
+    mask: number
+) => {
+    const invMask = ~mask;
+    for (let i = dbuf.length; --i >= 0; ) {
+        dbuf[i] = (dbuf[i] & invMask) | (from(sto(sbuf[i])) & mask);
+    }
+};
+
+export const transformABGR = (
+    pix: UIntArray,
+    format: PackedFormat,
+    fn: Fn<number, number>
+) => {
+    const from = format.fromABGR;
+    const to = format.toABGR;
+    for (let i = pix.length; --i >= 0; ) {
+        pix[i] = from(fn(to(pix[i])));
+    }
 };
