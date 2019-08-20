@@ -6,9 +6,11 @@ import {
     SEMAPHORE
 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-import { equiv } from "@thi.ng/equiv";
 import { isReduced, map, ReductionFn } from "@thi.ng/transducers";
 import { SortedMapOpts } from "./api";
+import { dissoc } from "./dissoc";
+import { equivMap } from "./internal/equiv";
+import { into } from "./into";
 
 interface SortedMapState<K, V> {
     head: Node<K, V>;
@@ -172,21 +174,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     equiv(o: any) {
-        if (this === o) {
-            return true;
-        }
-        if (!(o instanceof Map)) {
-            return false;
-        }
-        if (this.size !== o.size) {
-            return false;
-        }
-        for (let p of this.entries()) {
-            if (!equiv(o.get(p[0]), p[1])) {
-                return false;
-            }
-        }
-        return true;
+        return equivMap(this, o);
     }
 
     first(): Pair<K, V> | undefined {
@@ -272,17 +260,11 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     into(pairs: Iterable<Pair<K, V>>) {
-        for (let p of pairs) {
-            this.set(p[0], p[1]);
-        }
-        return this;
+        return <this>into(this, pairs);
     }
 
     dissoc(...keys: K[]) {
-        for (let k of keys) {
-            this.delete(k);
-        }
-        return this;
+        return <this>dissoc(this, keys);
     }
 
     forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {

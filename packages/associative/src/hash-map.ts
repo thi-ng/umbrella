@@ -10,6 +10,9 @@ import {
 import { ceilPow2 } from "@thi.ng/binary";
 import { equiv } from "@thi.ng/equiv";
 import { HashMapOpts } from "./api";
+import { dissoc } from "./dissoc";
+import { equivMap } from "./internal/equiv";
+import { into } from "./into";
 
 interface HashMapState<K, V> {
     hash: Fn<K, number>;
@@ -22,12 +25,19 @@ interface HashMapState<K, V> {
 
 const __private = new WeakMap<HashMap<any, any>, HashMapState<any, any>>();
 
+const __iterator = <K, V>(map: HashMap<K, V>, id: 0 | 1) =>
+    function*() {
+        for (let p of __private.get(map)!.bins) {
+            if (p) yield p[id];
+        }
+    };
+
 const DEFAULT_CAP = 16;
 
 /**
- * Configurable hash map implementation w/ ES6 Map API and using open
+ * Configurable hash map implementation w/ ES6 Map API. Uses open
  * addressing / linear probing to resolve key collisions. Supports any
- * key types, via user supplied hash function.
+ * key types via mandatory user supplied hash function.
  *
  * See `HashMapOpts` for further configuration & behavior details.
  *
@@ -87,16 +97,12 @@ export class HashMap<K, V> extends Map<K, V>
         }
     }
 
-    *keys(): IterableIterator<K> {
-        for (let p of __private.get(this)!.bins) {
-            if (p) yield p[0];
-        }
+    keys(): IterableIterator<K> {
+        return __iterator(this, 0)();
     }
 
-    *values(): IterableIterator<V> {
-        for (let p of __private.get(this)!.bins) {
-            if (p) yield p[1];
-        }
+    values(): IterableIterator<V> {
+        return __iterator(this, 1)();
     }
 
     forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
@@ -128,21 +134,7 @@ export class HashMap<K, V> extends Map<K, V>
     }
 
     equiv(o: any) {
-        if (this === o) {
-            return true;
-        }
-        if (!(o instanceof Map)) {
-            return false;
-        }
-        if (this.size !== o.size) {
-            return false;
-        }
-        for (let p of __private.get(this)!.bins) {
-            if (p && !equiv(o.get(p[0]), p[1])) {
-                return false;
-            }
-        }
-        return true;
+        return equivMap(this, o);
     }
 
     has(key: K): boolean {
@@ -197,17 +189,11 @@ export class HashMap<K, V> extends Map<K, V>
     }
 
     into(pairs: Iterable<Pair<K, V>>) {
-        for (let p of pairs) {
-            this.set(p[0], p[1]);
-        }
-        return this;
+        return <this>into(this, pairs);
     }
 
     dissoc(...keys: K[]) {
-        for (let k of keys) {
-            this.delete(k);
-        }
-        return this;
+        return <this>dissoc(this, keys);
     }
 
     opts(overrides?: Partial<HashMapOpts<K>>): HashMapOpts<K> {

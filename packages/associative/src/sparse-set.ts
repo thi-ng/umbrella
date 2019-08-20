@@ -7,6 +7,8 @@ import {
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { IEquivSet } from "./api";
+import { dissoc } from "./dissoc";
+import { into } from "./into";
 
 interface SparseSetProps {
     dense: UIntArray;
@@ -53,10 +55,7 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
         if (this === o) {
             return true;
         }
-        if (!(o instanceof Set)) {
-            return false;
-        }
-        if (this.size !== o.size) {
+        if (!(o instanceof Set) || this.size !== o.size) {
             return false;
         }
         const $this = __private.get(this)!;
@@ -69,27 +68,27 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
         return true;
     }
 
-    add(k: number) {
+    add(key: number) {
         const $this = __private.get(this)!;
         const dense = $this.dense;
         const sparse = $this.sparse;
         const max = dense.length;
-        const i = sparse[k];
+        const i = sparse[key];
         const n = $this.n;
-        if (k < max && n < max && !(i < n && dense[i] === k)) {
-            dense[n] = k;
-            sparse[k] = n;
+        if (key < max && n < max && !(i < n && dense[i] === key)) {
+            dense[n] = key;
+            sparse[key] = n;
             $this.n++;
         }
         return this;
     }
 
-    delete(k: number) {
+    delete(key: number) {
         const $this = __private.get(this)!;
         const dense = $this.dense;
         const sparse = $this.sparse;
-        const i = sparse[k];
-        if (i < $this.n && dense[i] === k) {
+        const i = sparse[key];
+        if (i < $this.n && dense[i] === key) {
             const j = dense[--$this.n];
             dense[i] = j;
             sparse[j] = i;
@@ -98,14 +97,14 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
         return false;
     }
 
-    has(k: number): boolean {
+    has(key: number): boolean {
         const $this = __private.get(this)!;
-        const i = $this.sparse[k];
-        return i < $this.n && $this.dense[i] === k;
+        const i = $this.sparse[key];
+        return i < $this.n && $this.dense[i] === key;
     }
 
-    get(k: number, notFound = -1) {
-        return this.has(k) ? k : notFound;
+    get(key: number, notFound = -1) {
+        return this.has(key) ? key : notFound;
     }
 
     first() {
@@ -113,18 +112,12 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
         return $this.n ? $this.dense[0] : undefined;
     }
 
-    into(ks: Iterable<number>) {
-        for (let k of ks) {
-            this.add(k);
-        }
-        return this;
+    into(keys: Iterable<number>) {
+        return <this>into(this, keys);
     }
 
-    disj(ks: Iterable<number>) {
-        for (let k of ks) {
-            this.delete(k);
-        }
-        return this;
+    disj(keys: Iterable<number>) {
+        return <this>dissoc(this, keys);
     }
 
     forEach(fn: Fn3<number, number, Set<number>, void>, thisArg?: any) {
@@ -159,12 +152,13 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
         return this.keys();
     }
 
-    protected __copy(c: ASparseSet<T>) {
+    protected __copyTo<S extends ASparseSet<T>>(dest: S) {
         const $this = __private.get(this)!;
-        const $c = __private.get(c)!;
+        const $c = __private.get(dest)!;
         $c.dense = $this.dense.slice();
         $c.sparse = $this.sparse.slice();
         $c.n = $this.n;
+        return dest;
     }
 }
 
@@ -189,9 +183,7 @@ export class SparseSet8 extends ASparseSet<Uint8Array>
     }
 
     copy() {
-        const c = new SparseSet8(0);
-        this.__copy(c);
-        return c;
+        return this.__copyTo(new SparseSet8(0));
     }
 
     empty() {
@@ -220,9 +212,7 @@ export class SparseSet16 extends ASparseSet<Uint16Array>
     }
 
     copy() {
-        const c = new SparseSet16(0);
-        this.__copy(c);
-        return c;
+        return this.__copyTo(new SparseSet16(0));
     }
 
     empty() {
@@ -251,9 +241,7 @@ export class SparseSet32 extends ASparseSet<Uint32Array>
     }
 
     copy() {
-        const c = new SparseSet8(0);
-        this.__copy(c);
-        return c;
+        return this.__copyTo(new SparseSet32(0));
     }
 
     empty() {

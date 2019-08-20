@@ -41,13 +41,19 @@ export interface EquivMapOpts<K> extends EquivSetOpts<K> {
 }
 
 /**
+ * Hash function for key values of type K
+ */
+export type HashFn<K> = Fn<K, number>;
+
+/**
  * Creation options for HashMap class.
  */
 export interface HashMapOpts<K> {
     /**
-     * Function for computing key hash codes. MUST be supplied.
+     * Function for computing key hash codes. MUST be supplied. Only
+     * numeric hashes are supported.
      */
-    hash: Fn<K, number>;
+    hash: HashFn<K>;
     /**
      * Optional key equality predicate. Default: thi.ng/equiv
      */

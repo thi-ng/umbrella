@@ -7,6 +7,9 @@ import {
 import { DCons } from "@thi.ng/dcons";
 import { equiv } from "@thi.ng/equiv";
 import { EquivSetOpts, IEquivSet } from "./api";
+import { dissoc } from "./dissoc";
+import { equivSet } from "./internal/equiv";
+import { into } from "./into";
 
 interface SetProps<T> {
     vals: DCons<T>;
@@ -14,6 +17,8 @@ interface SetProps<T> {
 }
 
 const __private = new WeakMap<LLSet<any>, SetProps<any>>();
+
+const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
 
 /**
  * Similar to `ArraySet`, this class is an alternative implementation of
@@ -38,7 +43,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *[Symbol.iterator](): IterableIterator<T> {
-        yield* __private.get(this)!.vals;
+        yield* __vals(this);
     }
 
     get [Symbol.species]() {
@@ -50,7 +55,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     get size(): number {
-        return __private.get(this)!.vals.length;
+        return __vals(this).length;
     }
 
     copy() {
@@ -65,44 +70,41 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     clear() {
-        __private.get(this)!.vals.clear();
+        __vals(this).clear();
     }
 
     first(): T | undefined {
         if (this.size) {
-            return __private.get(this)!.vals.head!.value;
+            return __vals(this).head!.value;
         }
     }
 
-    add(x: T) {
-        !this.has(x) && __private.get(this)!.vals.push(x);
+    add(key: T) {
+        !this.has(key) && __vals(this).push(key);
         return this;
     }
 
-    into(xs: Iterable<T>) {
-        for (let x of xs) {
-            this.add(x);
-        }
-        return this;
+    into(keys: Iterable<T>) {
+        return <this>into(this, keys);
     }
 
-    has(x: T) {
-        return this.get(x, <any>SEMAPHORE) !== <any>SEMAPHORE;
+    has(key: T) {
+        return this.get(key, <any>SEMAPHORE) !== <any>SEMAPHORE;
     }
 
     /**
-     * Returns the canonical value for `x`, if present. If the set
-     * contains no equivalent for `x`, returns `notFound`.
+     * Returns the canonical (stored) value for `key`, if present. If
+     * the set contains no equivalent for `key`, returns `notFound`.
      *
-     * @param x
+     * @param key
      * @param notFound
      */
-    get(x: T, notFound?: T): T | undefined {
+    get(key: T, notFound?: T): T | undefined {
         const $this = __private.get(this)!;
         const eq = $this.equiv;
         let i = $this.vals.head;
         while (i) {
-            if (eq(i.value, x)) {
+            if (eq(i.value, key)) {
                 return i.value;
             }
             i = i.next;
@@ -110,12 +112,12 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         return notFound;
     }
 
-    delete(x: T) {
+    delete(key: T) {
         const $this = __private.get(this)!;
         const eq = $this.equiv;
         let i = $this.vals.head;
         while (i) {
-            if (eq(i.value, x)) {
+            if (eq(i.value, key)) {
                 $this.vals.splice(i, 1);
                 return true;
             }
@@ -124,35 +126,16 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         return false;
     }
 
-    disj(xs: Iterable<T>) {
-        for (let x of xs) {
-            this.delete(x);
-        }
-        return this;
+    disj(keys: Iterable<T>) {
+        return <this>dissoc(this, keys);
     }
 
     equiv(o: any) {
-        if (this === o) {
-            return true;
-        }
-        if (!(o instanceof Set)) {
-            return false;
-        }
-        if (this.size !== o.size) {
-            return false;
-        }
-        let i = __private.get(this)!.vals.head;
-        while (i) {
-            if (!o.has(i.value)) {
-                return false;
-            }
-            i = i.next;
-        }
-        return true;
+        return equivSet(this, o);
     }
 
     forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
-        let i = __private.get(this)!.vals.head;
+        let i = __vals(this).head;
         while (i) {
             fn.call(thisArg, i.value, i.value, this);
             i = i.next;
@@ -160,17 +143,17 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *entries(): IterableIterator<Pair<T, T>> {
-        for (let v of __private.get(this)!.vals) {
+        for (let v of __vals(this)) {
             yield [v, v];
         }
     }
 
     *keys(): IterableIterator<T> {
-        yield* __private.get(this)!.vals;
+        yield* __vals(this);
     }
 
     *values(): IterableIterator<T> {
-        yield* this.keys();
+        yield* __vals(this);
     }
 
     opts(): EquivSetOpts<T> {
