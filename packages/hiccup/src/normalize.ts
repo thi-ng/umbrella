@@ -1,6 +1,6 @@
 import { isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { TAG_REGEXP } from "./api";
+import { RE_TAG } from "./api";
 import { css } from "./css";
 
 export const normalize = (tag: any[]) => {
@@ -10,7 +10,7 @@ export const normalize = (tag: any[]) => {
     let clazz: string;
     const hasAttribs = isPlainObject(tag[1]);
     const attribs: any = hasAttribs ? { ...tag[1] } : {};
-    if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
+    if (!isString(el) || !(match = RE_TAG.exec(el))) {
         illegalArgs(`"${el}" is not a valid tag name`);
     }
     el = match![1];
