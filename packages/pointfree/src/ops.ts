@@ -60,27 +60,37 @@ export const op2v = (f: Fn2<any, any, any>) => (
     const a = stack[n];
     const isa = isArray(a);
     const isb = isArray(b);
-    let c: any[];
-    if (isa && isb) {
-        c = new Array(Math.min(a.length, b.length));
-        for (let i = c.length - 1; i >= 0; i--) {
-            c[i] = f(b[i], a[i]);
-        }
-    } else {
-        if (isb && !isa) {
-            c = new Array(b.length);
-            for (let i = c.length - 1; i >= 0; i--) {
-                c[i] = f(b[i], a);
-            }
-        } else if (isa && !isb) {
-            c = new Array(a.length);
-            for (let i = c.length - 1; i >= 0; i--) {
-                c[i] = f(b, a[i]);
-            }
-        } else {
-            illegalArgs("at least one arg must be an array");
-        }
-    }
-    stack[n] = c!;
+    stack[n] =
+        isa && isb
+            ? op2vAB(f, a, b)
+            : isb && !isa
+            ? op2vB(f, a, b)
+            : isa && !isb
+            ? op2vA(f, a, b)
+            : illegalArgs("at least one arg must be an array");
     return ctx;
+};
+
+const op2vAB = (f: Fn2<any, any, any>, a: any, b: any) => {
+    const res = new Array(Math.min(a.length, b.length));
+    for (let i = res.length - 1; i >= 0; i--) {
+        res[i] = f(b[i], a[i]);
+    }
+    return res;
+};
+
+const op2vA = (f: Fn2<any, any, any>, a: any, b: any) => {
+    const res = new Array(a.length);
+    for (let i = res.length - 1; i >= 0; i--) {
+        res[i] = f(b, a[i]);
+    }
+    return res;
+};
+
+const op2vB = (f: Fn2<any, any, any>, a: any, b: any) => {
+    const res = new Array(b.length);
+    for (let i = res.length - 1; i >= 0; i--) {
+        res[i] = f(b[i], a);
+    }
+    return res;
 };
