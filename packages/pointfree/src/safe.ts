@@ -3,8 +3,8 @@ import { illegalState } from "@thi.ng/errors";
 import { Stack } from "./api";
 
 // ensure stack size
-export let $: Fn2<Stack, number, void> = NO_OP;
-export let $n: Fn2<number, number, void> = NO_OP;
+export let $: Fn2<Stack, number, void>;
+export let $n: Fn2<number, number, void>;
 
 export const safeMode = (state: boolean) => {
     if (state) {

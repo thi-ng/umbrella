@@ -13,9 +13,6 @@ export const run = (
     prog: StackProc,
     ctx: StackContext = [[], [], {}]
 ): StackContext => {
-    // !ctx[0] && (ctx[0] = []);
-    // !ctx[1] && (ctx[1] = []);
-    // !ctx[2] && (ctx[2] = {});
     if (isFunction(prog)) {
         return prog(ctx);
     }
