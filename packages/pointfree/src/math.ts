@@ -1,6 +1,5 @@
 import { StackContext } from "./api";
 import { op1, op2 } from "./ops";
-import { $ } from "./safe";
 import { swap } from "./stack";
 import { word } from "./word";
 
@@ -61,24 +60,6 @@ export const min = op2(Math.min);
  * @param ctx
  */
 export const max = op2(Math.max);
-
-/**
- * ( x -- x+1 )
- *
- * @param ctx
- */
-export const inc = (ctx: StackContext) => (
-    $(ctx[0], 1), ctx[0][ctx[0].length - 1]++, ctx
-);
-
-/**
- * ( x -- x-1 )
- *
- * @param ctx
- */
-export const dec = (ctx: StackContext) => (
-    $(ctx[0], 1), ctx[0][ctx[0].length - 1]--, ctx
-);
 
 /**
  * ( x -- -x )
