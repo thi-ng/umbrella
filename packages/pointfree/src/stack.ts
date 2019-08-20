@@ -5,9 +5,23 @@ const __xsp = (id: 0 | 1) => (ctx: StackContext) => (
     ctx[0].push(ctx[id].length), ctx
 );
 
-const __dup = (id: 0 | 1) => (ctx: StackContext) => (
-    $(ctx[id], 1), ctx[id].push(tos(ctx[id])), ctx
-);
+const __dup = (id: 0 | 1) => __copy(id, id);
+
+const __dup2 = (id: 0 | 1) => (ctx: StackContext) => {
+    const stack = ctx[id];
+    let n = stack.length - 2;
+    $n(n, 0);
+    stack.push(stack[n], stack[n + 1]);
+    return ctx;
+};
+
+const __dup3 = (id: 0 | 1) => (ctx: StackContext) => {
+    const stack = ctx[id];
+    let n = stack.length - 3;
+    $n(n, 0);
+    stack.push(stack[n], stack[n + 1], stack[n + 2]);
+    return ctx;
+};
 
 const __drop = (id: 0 | 1, n = 1) => (ctx: StackContext) => (
     $(ctx[id], 1), (ctx[id].length -= n), ctx
@@ -34,6 +48,14 @@ const __swap2 = (i: number) => (ctx: StackContext) => {
     a = stack[n];
     stack[n] = stack[n - 2];
     stack[n - 2] = a;
+    return ctx;
+};
+
+const __over = (id: 0 | 1) => (ctx: StackContext) => {
+    const stack = ctx[id];
+    const n = stack.length - 2;
+    $n(n, 0);
+    stack.push(stack[n]);
     return ctx;
 };
 
@@ -162,13 +184,7 @@ export const dup = __dup(0);
  *
  * @param ctx
  */
-export const dup2 = (ctx: StackContext) => {
-    const stack = ctx[0];
-    let n = stack.length - 2;
-    $n(n, 0);
-    stack.push(stack[n], stack[n + 1]);
-    return ctx;
-};
+export const dup2 = __dup2(0);
 
 /**
  * Duplicates top 3 vals on d-stack.
@@ -177,13 +193,7 @@ export const dup2 = (ctx: StackContext) => {
  *
  * @param ctx
  */
-export const dup3 = (ctx: StackContext) => {
-    const stack = ctx[0];
-    let n = stack.length - 3;
-    $n(n, 0);
-    stack.push(stack[n], stack[n + 1], stack[n + 2]);
-    return ctx;
-};
+export const dup3 = __dup3(0);
 
 /**
  * If TOS is truthy then push copy of it on d-stack:
@@ -294,13 +304,7 @@ export const invrot = (ctx: StackContext) => {
  *
  * @param ctx
  */
-export const over = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 2;
-    $n(n, 0);
-    stack.push(stack[n]);
-    return ctx;
-};
+export const over = __over(0);
 
 /**
  * ( x -- x+1 )
@@ -335,6 +339,24 @@ export const rsp = __xsp(1);
  * @param ctx
  */
 export const rdup = __dup(1);
+
+/**
+ * Duplicates top 2 vals on r-stack.
+ *
+ * ( x y -- x y x y )
+ *
+ * @param ctx
+ */
+export const rdup2 = __dup2(1);
+
+/**
+ * Duplicates top 3 vals on r-stack.
+ *
+ * ( x y -- x y x y )
+ *
+ * @param ctx
+ */
+export const rdup3 = __dup3(1);
 
 /**
  * Removes TOS from r-stack.
@@ -387,6 +409,15 @@ export const rswap = __swap(1);
  * @param ctx
  */
 export const rswap2 = __swap2(1);
+
+/**
+ * Pushes copy of TOS-1 as new TOS on r-stack.
+ *
+ * ( x y -- x y x )
+ *
+ * @param ctx
+ */
+export const rover = __over(1);
 
 /**
  * Like `inc`, but applies to r-stack TOS.
