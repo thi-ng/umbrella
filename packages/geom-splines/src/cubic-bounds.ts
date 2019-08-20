@@ -34,18 +34,17 @@ const axisBounds = (
 
     if (h > 0) {
         h = Math.sqrt(h);
-        let t = k0 / (-k1 - h);
-        if (t > 0 && t < 1) {
-            const q = mixCubic(pa, pb, pc, pd, t);
-            min[i] = Math.min(min[i], q);
-            max[i] = Math.max(max[i], q);
-        }
-        t = k0 / (-k1 + h);
-        if (t > 0 && t < 1) {
-            const q = mixCubic(pa, pb, pc, pd, t);
-            min[i] = Math.min(min[i], q);
-            max[i] = Math.max(max[i], q);
-        }
+
+        const update = (t: number) => {
+            if (t > 0 && t < 1) {
+                const q = mixCubic(pa, pb, pc, pd, t);
+                min[i] = Math.min(min[i], q);
+                max[i] = Math.max(max[i], q);
+            }
+        };
+
+        update(k0 / (-k1 - h));
+        update(k0 / (-k1 + h));
     }
 };
 
