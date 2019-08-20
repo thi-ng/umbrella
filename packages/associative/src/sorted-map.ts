@@ -163,10 +163,10 @@ export class SortedMap<K, V> extends Map<K, V> {
         let x: IteratorResult<Pair<K, V>>, y: IteratorResult<Pair<K, V>>;
         let c: number;
         while (((x = i.next()), (y = j.next()), !x.done && !y.done)) {
-            if ((c = compare(x.value[0], y.value[0])) !== 0) {
-                return c;
-            }
-            if ((c = compare(x.value[1], y.value[1])) !== 0) {
+            if (
+                (c = compare(x.value[0], y.value[0])) !== 0 ||
+                (c = compare(x.value[1], y.value[1])) !== 0
+            ) {
                 return c;
             }
         }
