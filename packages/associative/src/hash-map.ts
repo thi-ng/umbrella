@@ -192,7 +192,7 @@ export class HashMap<K, V> extends Map<K, V>
         return <this>into(this, pairs);
     }
 
-    dissoc(...keys: K[]) {
+    dissoc(keys: Iterable<K>) {
         return <this>dissoc(this, keys);
     }
 

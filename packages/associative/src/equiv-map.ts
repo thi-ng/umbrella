@@ -129,7 +129,7 @@ export class EquivMap<K, V> extends Map<K, V>
         return false;
     }
 
-    dissoc(...keys: K[]) {
+    dissoc(keys: Iterable<K>) {
         return <this>dissoc(this, keys);
     }
 
