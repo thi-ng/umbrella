@@ -1,33 +1,25 @@
 import { IObjectOf } from "@thi.ng/api";
-import { identity } from "@thi.ng/compose";
 import { GroupByOpts, Reducer } from "../api";
+import { __groupByOpts } from "../internal/group-opts";
 import { $$reduce, reducer } from "../reduce";
-import { push } from "./push";
 
-export function groupByObj<SRC, GROUP>(
-    opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>
-): Reducer<IObjectOf<GROUP>, SRC>;
+// prettier-ignore
+export function groupByObj<SRC, GROUP>(opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>): Reducer<IObjectOf<GROUP>, SRC>;
 export function groupByObj<SRC>(xs: Iterable<SRC>): IObjectOf<SRC[]>;
-export function groupByObj<SRC, GROUP>(
-    opts: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>,
-    xs: Iterable<SRC>
-): IObjectOf<GROUP>;
+// prettier-ignore
+export function groupByObj<SRC, GROUP>(opts: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>, xs: Iterable<SRC>): IObjectOf<GROUP>;
 export function groupByObj<SRC, GROUP>(...args: any[]): any {
     const res = $$reduce(groupByObj, args);
     if (res) {
         return res;
     }
-    const _opts = <GroupByOpts<SRC, PropertyKey, GROUP>>{
-        key: identity,
-        group: push(),
-        ...args[0]
-    };
-    const [_init, _, _reduce] = _opts.group;
-    _;
+    const opts = __groupByOpts<SRC, PropertyKey, GROUP>(args[0]);
+    const [_init, _, _reduce] = opts.group;
+    _; // ignore
     return reducer<IObjectOf<GROUP>, SRC>(
         () => ({}),
         (acc, x: SRC) => {
-            const k: any = _opts.key(x);
+            const k: any = opts.key(x);
             acc[k] = acc[k]
                 ? <GROUP>_reduce(acc[k], x)
                 : <GROUP>_reduce(_init(), x);

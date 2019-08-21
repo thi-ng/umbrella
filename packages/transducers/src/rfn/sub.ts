@@ -1,5 +1,5 @@
 import { Reducer } from "../api";
-import { __mathop } from "./mathop";
+import { __mathop } from "../internal/mathop";
 
 /**
  * Reducer to successively subtract values from optional `init` value

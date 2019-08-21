@@ -1,6 +1,6 @@
 import { Reducer, Transducer } from "../api";
+import { __drain } from "../internal/drain";
 import { iterator } from "../iterator";
-import { isReduced } from "../reduced";
 
 /**
  * Transducer which only yields the last `n` values. Assumes
@@ -23,12 +23,7 @@ export function takeLast<T>(n: number, src?: Iterable<T>): any {
               const buf: T[] = [];
               return <Reducer<any, T>>[
                   init,
-                  (acc) => {
-                      while (buf.length && !isReduced(acc)) {
-                          acc = reduce(acc, buf.shift()!);
-                      }
-                      return complete(acc);
-                  },
+                  __drain(buf, complete, reduce),
                   (acc, x) => {
                       if (buf.length === n) {
                           buf.shift();
