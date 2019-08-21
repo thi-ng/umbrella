@@ -1,6 +1,5 @@
 import { IHiccupPathSegment, Type } from "@thi.ng/geom-api";
-import { copyVectors } from "@thi.ng/vectors";
-import { copyAttribs } from "../internal/copy-attribs";
+import { copyShape } from "../internal/copy-shape";
 import { APC } from "./apc";
 
 export class Cubic extends APC implements IHiccupPathSegment {
@@ -9,7 +8,7 @@ export class Cubic extends APC implements IHiccupPathSegment {
     }
 
     copy(): Cubic {
-        return new Cubic(copyVectors(this.points), copyAttribs(this));
+        return <Cubic>copyShape(Cubic, this);
     }
 
     toHiccup() {

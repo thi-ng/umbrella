@@ -79,6 +79,7 @@ export * from "./ops/with-attribs";
 
 export * from "./internal/coll-bounds";
 export * from "./internal/copy-attribs";
+export * from "./internal/copy-shape";
 export * from "./internal/edges";
 export * from "./internal/pclike";
 export * from "./internal/points-as-shape";

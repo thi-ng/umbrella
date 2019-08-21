@@ -1,6 +1,5 @@
 import { IHiccupShape, Type } from "@thi.ng/geom-api";
-import { copyVectors } from "@thi.ng/vectors";
-import { copyAttribs } from "../internal/copy-attribs";
+import { copyShape } from "../internal/copy-shape";
 import { APC } from "./apc";
 
 export class Polygon extends APC implements IHiccupShape {
@@ -9,7 +8,7 @@ export class Polygon extends APC implements IHiccupShape {
     }
 
     copy(): Polygon {
-        return new Polygon(copyVectors(this.points), copyAttribs(this));
+        return <Polygon>copyShape(Polygon, this);
     }
 
     toHiccup() {

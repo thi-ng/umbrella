@@ -1,6 +1,5 @@
 import { IHiccupShape, Type } from "@thi.ng/geom-api";
-import { copyVectors } from "@thi.ng/vectors";
-import { copyAttribs } from "../internal/copy-attribs";
+import { copyShape } from "../internal/copy-shape";
 import { APC } from "./apc";
 
 export class Quad3 extends APC implements IHiccupShape {
@@ -9,7 +8,7 @@ export class Quad3 extends APC implements IHiccupShape {
     }
 
     copy(): Quad3 {
-        return new Quad3(copyVectors(this.points), copyAttribs(this));
+        return <Quad3>copyShape(Quad3, this);
     }
 
     toHiccup() {
