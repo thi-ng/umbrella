@@ -1,20 +1,15 @@
-import { isArrayLike, isNumber, isString } from "@thi.ng/checks";
-import { asCSS, ColorMode, ReadonlyColor } from "@thi.ng/color";
+import { isString } from "@thi.ng/checks";
+import { resolveAsCSS } from "@thi.ng/color";
 import { DrawState } from "../api";
 
-const resolve = (v: any) =>
-    isArrayLike(v)
-        ? isNumber((<any>v).mode)
-            ? asCSS(<any>v)
-            : asCSS(<ReadonlyColor>v, ColorMode.RGBA)
-        : isNumber(v)
-        ? asCSS(v, ColorMode.INT32)
-        : v;
-
-export const resolveColor = (v: any) => (isString(v) ? v : resolve(v));
+export const resolveColor = (v: any) => (isString(v) ? v : resolveAsCSS(v));
 
 export const resolveGradientOrColor = (state: DrawState, v: any) =>
-    isString(v) ? (v[0] === "$" ? state.grads![v.substr(1)] : v) : resolve(v);
+    isString(v)
+        ? v[0] === "$"
+            ? state.grads![v.substr(1)]
+            : v
+        : resolveAsCSS(v);
 
 export const defLinearGradient = (
     ctx: CanvasRenderingContext2D,
