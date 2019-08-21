@@ -1,4 +1,10 @@
-import { Fn, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
+import {
+    Fn,
+    ICompare,
+    IContains,
+    ICopy,
+    IEquiv
+} from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 
 export const enum Classifier {
@@ -30,8 +36,8 @@ export class Interval
      *
      * Openness / closedness symbols:
      *
-     * - LHS: `]` or `(` (open), `[` (closed)
-     * - RHS: `[` or `)` (open), `]` (closed)
+     * - LHS: open: `]` / `(`, closed: `[`
+     * - RHS: open: `[` / `)`, closed: `]`
      *
      * ```
      * // semi-open interval between -∞ and +1
@@ -70,8 +76,8 @@ export class Interval
                     (x === "" && i === 0) || (inf && inf[1] === "-")
                         ? -Infinity
                         : (x === "" && i > 0) || (inf && inf[1] !== "-")
-                            ? Infinity
-                            : parseFloat(x);
+                        ? Infinity
+                        : parseFloat(x);
                 if (isNaN(n)) {
                     illegalArgs(`term: '${x}'`);
                 }
@@ -147,12 +153,12 @@ export class Interval
         return this.l < i.l
             ? -1
             : this.l > i.l
-                ? 1
-                : this.r < i.r
-                    ? -1
-                    : this.r > i.r
-                        ? 1
-                        : 0;
+            ? 1
+            : this.r < i.r
+            ? -1
+            : this.r > i.r
+            ? 1
+            : 0;
     }
 
     equiv(i: any) {
@@ -211,8 +217,8 @@ export class Interval
         return this.isBefore(x)
             ? new Interval(x, this.r, false, this.ropen)
             : this.isAfter(x)
-                ? new Interval(this.l, x, this.lopen, false)
-                : this;
+            ? new Interval(this.l, x, this.lopen, false)
+            : this;
     }
 
     /**
@@ -225,8 +231,8 @@ export class Interval
         return this.overlaps(i)
             ? 0
             : this.l < i.l
-                ? i.l - this.r
-                : this.l - i.r;
+            ? i.l - this.r
+            : this.l - i.r;
     }
 
     /**
@@ -240,14 +246,14 @@ export class Interval
         return this.isBefore(i.r)
             ? Classifier.DISJOINT_RIGHT
             : this.isAfter(i.l)
-                ? Classifier.DISJOINT_LEFT
-                : this.contains(i.l)
-                    ? this.contains(i.r)
-                        ? Classifier.SUPERSET
-                        : Classifier.OVERLAP_RIGHT
-                    : this.contains(i.r)
-                        ? Classifier.OVERLAP_LEFT
-                        : Classifier.SUBSET;
+            ? Classifier.DISJOINT_LEFT
+            : this.contains(i.l)
+            ? this.contains(i.r)
+                ? Classifier.SUPERSET
+                : Classifier.OVERLAP_RIGHT
+            : this.contains(i.r)
+            ? Classifier.OVERLAP_LEFT
+            : Classifier.SUBSET;
     }
 
     overlaps(i: Readonly<Interval>) {
@@ -306,7 +312,7 @@ export class Interval
         ao: boolean,
         bo: boolean
     ): [number, boolean] {
-        return a < b ? [a, ao] : a === b ? [a, ao || bo] : [b, bo];
+        return minmax(a < b, a, b, ao, bo);
     }
 
     protected $max(
@@ -315,6 +321,14 @@ export class Interval
         ao: boolean,
         bo: boolean
     ): [number, boolean] {
-        return a > b ? [a, ao] : a === b ? [a, ao || bo] : [b, bo];
+        return minmax(a > b, a, b, ao, bo);
     }
 }
+
+const minmax = (
+    test: boolean,
+    a: number,
+    b: number,
+    ao: boolean,
+    bo: boolean
+): [number, boolean] => (test ? [a, ao] : a === b ? [a, ao || bo] : [b, bo]);
