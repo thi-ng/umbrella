@@ -1,8 +1,6 @@
-export class IllegalArityError extends Error {
-    constructor(n: number) {
-        super(`illegal arity: ${n}`);
-    }
-}
+import { defError } from "./deferror";
+
+export const IllegalArityError = defError<number>(() => "illegal arity");
 
 export const illegalArity = (n: number): never => {
     throw new IllegalArityError(n);

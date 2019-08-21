@@ -1,8 +1,8 @@
-export class UnsupportedOperationError extends Error {
-    constructor(msg?: any) {
-        super("unsupported operation" + (msg !== undefined ? ": " + msg : ""));
-    }
-}
+import { defError } from "./deferror";
+
+export const UnsupportedOperationError = defError<any>(
+    () => "unsupported operation"
+);
 
 export const unsupported = (msg?: any): never => {
     throw new UnsupportedOperationError(msg);
