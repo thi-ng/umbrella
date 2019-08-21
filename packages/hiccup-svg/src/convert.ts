@@ -125,7 +125,7 @@ const convertAttribs = (attribs: any) => {
         if (aid) {
             res[aid] = v;
         } else {
-            convertAttrib(id, v, res);
+            convertAttrib(res, id, v);
         }
     }
     return res;
