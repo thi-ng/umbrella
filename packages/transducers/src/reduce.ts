@@ -4,53 +4,66 @@ import { illegalArity } from "@thi.ng/errors";
 import { IReducible, Reducer, ReductionFn } from "./api";
 import { isReduced, unreduced } from "./reduced";
 
+const parseArgs = (args: any[]) =>
+    args.length === 2
+        ? [undefined, args[1]]
+        : args.length === 3
+        ? [args[1], args[2]]
+        : illegalArity(args.length);
+
 export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A;
 export function reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A;
 export function reduce<A, B>(rfn: Reducer<A, B>, xs: IReducible<A, B>): A;
-export function reduce<A, B>(
-    rfn: Reducer<A, B>,
-    acc: A,
-    xs: IReducible<A, B>
-): A;
+// prettier-ignore
+export function reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: IReducible<A, B>): A;
 export function reduce<A, B>(...args: any[]): A {
-    let acc!: A, xs!: Iterable<B> | IReducible<A, B>;
-    switch (args.length) {
-        case 3:
-            xs = args[2];
-            acc = args[1];
-            break;
-        case 2:
-            xs = args[1];
-            break;
-        default:
-            illegalArity(args.length);
-    }
     const rfn = args[0];
     const init = rfn[0];
     const complete = rfn[1];
     const reduce = rfn[2];
-    acc = acc == null ? init() : acc;
-    if (implementsFunction(xs, "$reduce")) {
-        acc = <any>(<IReducible<A, B>>xs).$reduce(reduce, acc);
-    } else if (isArrayLike(xs)) {
-        for (let i = 0, n = xs.length; i < n; i++) {
-            acc = <any>reduce(acc, xs[i]);
-            if (isReduced(acc)) {
-                acc = (<any>acc).deref();
-                break;
-            }
-        }
-    } else {
-        for (let x of <Iterable<B>>xs) {
-            acc = <any>reduce(acc, x);
-            if (isReduced(acc)) {
-                acc = (<any>acc).deref();
-                break;
-            }
+    args = parseArgs(args);
+    const acc: A = args[0] == null ? init() : args[0];
+    const xs: Iterable<B> | IReducible<A, B> = args[1];
+    return unreduced(
+        complete(
+            implementsFunction(xs, "$reduce")
+                ? (<IReducible<A, B>>xs).$reduce(reduce, acc)
+                : isArrayLike(xs)
+                ? reduceArray(reduce, acc, xs)
+                : reduceIterable(reduce, acc, <Iterable<B>>xs)
+        )
+    );
+}
+
+const reduceArray = <A, B>(
+    rfn: ReductionFn<A, B>,
+    acc: A,
+    xs: ArrayLike<B>
+) => {
+    for (let i = 0, n = xs.length; i < n; i++) {
+        acc = <any>rfn(acc, xs[i]);
+        if (isReduced(acc)) {
+            acc = (<any>acc).deref();
+            break;
         }
     }
-    return unreduced(complete(acc));
-}
+    return acc;
+};
+
+const reduceIterable = <A, B>(
+    rfn: ReductionFn<A, B>,
+    acc: A,
+    xs: Iterable<B>
+) => {
+    for (let x of xs) {
+        acc = <any>rfn(acc, x);
+        if (isReduced(acc)) {
+            acc = (<any>acc).deref();
+            break;
+        }
+    }
+    return acc;
+};
 
 /**
  * Convenience helper for building a full `Reducer` using the identity
