@@ -18,6 +18,7 @@ import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
 import { Ellipse } from "../api/ellipse";
 import { Sphere } from "../api/sphere";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 import { translate } from "./translate";
@@ -45,15 +46,15 @@ center.addAll(<
             $.end,
             $.xl,
             $.cw,
-            { ...$.attribs }
+            copyAttribs($)
         ),
 
     [Type.CIRCLE]: ($: Circle, origin = ZERO2) =>
-        new Circle(set2([], origin), $.r, { ...$.attribs }),
+        new Circle(set2([], origin), $.r, copyAttribs($)),
 
     [Type.ELLIPSE]: ($: Ellipse, origin = ZERO2) =>
-        new Ellipse(set2([], origin), set2([], $.r), { ...$.attribs }),
+        new Ellipse(set2([], origin), set2([], $.r), copyAttribs($)),
 
     [Type.SPHERE]: ($: Sphere, origin = ZERO3) =>
-        new Sphere(set3([], origin), $.r, { ...$.attribs })
+        new Sphere(set3([], origin), $.r, copyAttribs($))
 });

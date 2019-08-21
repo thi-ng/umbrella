@@ -3,6 +3,7 @@ import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { Path } from "../api/path";
 import { Polyline } from "../api/polyline";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
@@ -18,18 +19,19 @@ asPolyline.addAll(<
     >
 >{
     [Type.POINTS]: ($: IShape, opts) =>
-        new Polyline(vertices($, opts), { ...$.attribs }),
+        new Polyline(vertices($, opts), copyAttribs($)),
 
     [Type.PATH]: ($: Path, opts) => {
         const pts = vertices($, opts);
-        return new Polyline($.closed ? pts.concat([pts[0]]) : pts, {
-            ...$.attribs
-        });
+        return new Polyline(
+            $.closed ? pts.concat([pts[0]]) : pts,
+            copyAttribs($)
+        );
     },
 
     [Type.POLYGON]: ($: IShape, opts) => {
         const pts = vertices($, opts);
-        return new Polyline(pts.concat([pts[0]]), { ...$.attribs });
+        return new Polyline(pts.concat([pts[0]]), copyAttribs($));
     }
 });
 

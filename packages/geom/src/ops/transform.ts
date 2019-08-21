@@ -4,8 +4,6 @@ import {
     IHiccupShape,
     IShape,
     PathSegment,
-    PCLike,
-    PCLikeConstructor,
     SegmentType,
     Type
 } from "@thi.ng/geom-api";
@@ -22,13 +20,11 @@ import { Quad } from "../api/quad";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { Triangle } from "../api/triangle";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
-import { transformedPoints } from "../internal/transform-points";
+import { transformedShape as tx } from "../internal/transform-points";
 import { asPath } from "./as-path";
 import { asPolygon } from "./as-polygon";
-
-const tx = (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
-    new ctor(transformedPoints($.points, mat), { ...$.attribs });
 
 /**
  * Transforms given shape with provided matrix. Some shape types will be
@@ -50,7 +46,7 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
 
     [Type.GROUP]: ($: Group, mat) =>
         new Group(
-            { ...$.attribs },
+            copyAttribs($),
             $.children.map((x) => <IHiccupShape>transform(x, mat))
         ),
 
@@ -73,7 +69,7 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
                     $.segments
                 )
             ],
-            $.attribs
+            copyAttribs($)
         ),
 
     [Type.POINTS]: tx(Points),

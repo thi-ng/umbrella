@@ -1,12 +1,6 @@
 import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import {
-    IHiccupShape,
-    IShape,
-    PCLike,
-    PCLikeConstructor,
-    Type
-} from "@thi.ng/geom-api";
+import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
 import {
     add2,
     add3,
@@ -29,17 +23,15 @@ import { Ray } from "../api/ray";
 import { Rect } from "../api/rect";
 import { Sphere } from "../api/sphere";
 import { Triangle } from "../api/triangle";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
-import { translatedPoints } from "../internal/translate-points";
-
-const tx = (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyVec) =>
-    new ctor(translatedPoints($.points, mat), { ...$.attribs });
+import { translatedShape as tx } from "../internal/translate-points";
 
 export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
 
 translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
     [Type.AABB]: ($: AABB, delta) =>
-        new AABB(add3([], $.pos, delta), set3([], $.size), { ...$.attribs }),
+        new AABB(add3([], $.pos, delta), set3([], $.size), copyAttribs($)),
 
     [Type.ARC]: ($: Arc, delta) => {
         const a = $.copy();
@@ -48,14 +40,14 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
     },
 
     [Type.CIRCLE]: ($: Circle, delta) =>
-        new Circle(add2([], $.pos, delta), $.r, { ...$.attribs }),
+        new Circle(add2([], $.pos, delta), $.r, copyAttribs($)),
 
     [Type.ELLIPSE]: ($: Ellipse, delta) =>
-        new Ellipse(add2([], $.pos, delta), set2([], $.r), { ...$.attribs }),
+        new Ellipse(add2([], $.pos, delta), set2([], $.r), copyAttribs($)),
 
     [Type.GROUP]: ($: Group, delta) =>
         new Group(
-            { ...$.attribs },
+            copyAttribs($),
             $.children.map((s) => <IHiccupShape>translate(s, delta))
         ),
 
@@ -74,7 +66,7 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
                           point: add2([], s.point!, delta)
                       }
             ),
-            { ...$.attribs }
+            copyAttribs($)
         ),
 
     [Type.POINTS]: tx(Points),
@@ -86,13 +78,13 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
     [Type.QUAD]: tx(Quad),
 
     [Type.RAY]: ($: Ray, delta) =>
-        new Ray(add2([], $.pos, delta), $.dir, { ...$.attribs }),
+        new Ray(add2([], $.pos, delta), $.dir, copyAttribs($)),
 
     [Type.RECT]: ($: Rect, delta) =>
-        new Rect(add2([], $.pos, delta), set2([], $.size), { ...$.attribs }),
+        new Rect(add2([], $.pos, delta), set2([], $.size), copyAttribs($)),
 
     [Type.SPHERE]: ($: Sphere, delta) =>
-        new Sphere(add3([], $.pos, delta), $.r, { ...$.attribs }),
+        new Sphere(add3([], $.pos, delta), $.r, copyAttribs($)),
 
     [Type.TRIANGLE]: tx(Triangle)
 });

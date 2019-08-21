@@ -1,5 +1,6 @@
 import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
 import { set, Vec } from "@thi.ng/vectors";
+import { copyAttribs } from "../internal/copy-attribs";
 
 export class Plane implements IHiccupShape {
     normal: Vec;
@@ -16,8 +17,8 @@ export class Plane implements IHiccupShape {
         return Type.PLANE;
     }
 
-    copy() {
-        return new Plane(set([], this.normal), this.w, { ...this.attribs });
+    copy(): Plane {
+        return new Plane(set([], this.normal), this.w, copyAttribs(this));
     }
 
     toHiccup() {

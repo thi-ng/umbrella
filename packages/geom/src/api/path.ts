@@ -6,6 +6,7 @@ import {
     PathSegment,
     Type
 } from "@thi.ng/geom-api";
+import { copyAttribs } from "../internal/copy-attribs";
 
 export class Path implements IHiccupShape {
     segments: PathSegment[];
@@ -26,8 +27,8 @@ export class Path implements IHiccupShape {
         yield* this.segments;
     }
 
-    copy() {
-        const p = new Path([...this.segments], { ...this.attribs });
+    copy(): Path {
+        const p = new Path([...this.segments], copyAttribs(this));
         p.closed = this.closed;
         return p;
     }

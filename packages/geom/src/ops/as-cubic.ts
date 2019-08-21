@@ -15,6 +15,7 @@ import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { arc } from "../ctors/arc";
 import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
 
@@ -25,7 +26,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
     [Type.ARC]: ($: Arc) =>
         cubicFromArc($.pos, $.r, $.axis, $.start, $.end).map(
-            (c) => new Cubic(c, $.attribs)
+            (c) => new Cubic(c, copyAttribs($))
         ),
 
     [Type.CIRCLE]: ($: Circle) =>
@@ -48,7 +49,7 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
         return (opts.breakPoints
             ? closedCubicFromBreakPoints($.points, opts.scale, opts.uniform)
             : closedCubicFromControlPoints($.points, opts.scale, opts.uniform)
-        ).map((pts) => new Cubic(pts, { ...$.attribs }));
+        ).map((pts) => new Cubic(pts, copyAttribs($)));
     },
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic) => [

@@ -1,5 +1,6 @@
 import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
 import { maddN2, set, Vec } from "@thi.ng/vectors";
+import { copyAttribs } from "../internal/copy-attribs";
 
 export class Ray implements IHiccupShape {
     pos: Vec;
@@ -16,10 +17,8 @@ export class Ray implements IHiccupShape {
         return Type.RAY;
     }
 
-    copy() {
-        return new Ray(set([], this.pos), set([], this.dir), {
-            ...this.attribs
-        });
+    copy(): Ray {
+        return new Ray(set([], this.pos), set([], this.dir), copyAttribs(this));
     }
 
     toHiccup() {

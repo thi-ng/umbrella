@@ -1,5 +1,6 @@
 import { IHiccupPathSegment, IHiccupShape, Type } from "@thi.ng/geom-api";
 import { copyVectors } from "@thi.ng/vectors";
+import { copyAttribs } from "../internal/copy-attribs";
 import { APC } from "./apc";
 
 export class Line extends APC implements IHiccupShape, IHiccupPathSegment {
@@ -7,8 +8,8 @@ export class Line extends APC implements IHiccupShape, IHiccupPathSegment {
         return Type.LINE;
     }
 
-    copy() {
-        return new Line(copyVectors(this.points), { ...this.attribs });
+    copy(): Line {
+        return new Line(copyVectors(this.points), copyAttribs(this));
     }
 
     toHiccup() {

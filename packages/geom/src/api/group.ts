@@ -1,5 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
 import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
+import { copyAttribs } from "../internal/copy-attribs";
 
 export class Group implements IHiccupShape {
     children: IHiccupShape[];
@@ -18,8 +19,8 @@ export class Group implements IHiccupShape {
         yield* this.children;
     }
 
-    copy() {
-        return new Group({ ...this.attribs }, <IHiccupShape[]>(
+    copy(): Group {
+        return new Group(copyAttribs(this), <IHiccupShape[]>(
             this.children.map((c) => c.copy())
         ));
     }

@@ -6,6 +6,7 @@ import {
     Type
 } from "@thi.ng/geom-api";
 import { add2, set, Vec } from "@thi.ng/vectors";
+import { copyAttribs } from "../internal/copy-attribs";
 
 export class Rect implements AABBLike, IHiccupShape {
     pos: Vec;
@@ -22,10 +23,12 @@ export class Rect implements AABBLike, IHiccupShape {
         return Type.RECT;
     }
 
-    copy() {
-        return new Rect(set([], this.pos), set([], this.size), {
-            ...this.attribs
-        });
+    copy(): Rect {
+        return new Rect(
+            set([], this.pos),
+            set([], this.size),
+            copyAttribs(this)
+        );
     }
 
     max() {
