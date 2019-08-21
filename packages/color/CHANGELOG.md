@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.0.3...@thi.ng/color@1.1.0) (2019-08-21)
+
+
+### Features
+
+* **color:** add resolveAsCSS(), update deps ([f96ac92](https://github.com/thi-ng/umbrella/commit/f96ac92))
+
+
+
+
+
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.0.2...@thi.ng/color@1.0.3) (2019-08-17)
 
 **Note:** Version bump only for package @thi.ng/color

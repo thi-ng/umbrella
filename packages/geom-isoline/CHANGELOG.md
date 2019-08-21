@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.24...@thi.ng/geom-isoline@0.1.25) (2019-08-21)
+
+
+### Performance Improvements
+
+* **geom-isoline:** refactor contourVertex as jump table, minor updates ([d25827e](https://github.com/thi-ng/umbrella/commit/d25827e))
+
+
+
+
+
 ## [0.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.23...@thi.ng/geom-isoline@0.1.24) (2019-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-isoline

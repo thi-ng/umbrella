@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.2.6...@thi.ng/hiccup-svg@3.3.0) (2019-08-21)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** convertAttrib() arg order ([8b48a27](https://github.com/thi-ng/umbrella/commit/8b48a27))
+
+
+### Features
+
+* **hiccup-svg:** update polyline(), add fill: none default ([cff9e30](https://github.com/thi-ng/umbrella/commit/cff9e30))
+
+
+
+
+
 ## [3.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.2.5...@thi.ng/hiccup-svg@3.2.6) (2019-08-17)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg
