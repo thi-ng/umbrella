@@ -78,7 +78,10 @@ export * from "./ops/warp-points";
 export * from "./ops/with-attribs";
 
 export * from "./internal/coll-bounds";
+export * from "./internal/copy-attribs";
 export * from "./internal/edges";
+export * from "./internal/pclike";
+export * from "./internal/points-as-shape";
 export * from "./internal/split";
 export * from "./internal/transform-points";
 export * from "./internal/translate-points";
