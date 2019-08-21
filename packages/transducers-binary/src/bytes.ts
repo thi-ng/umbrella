@@ -65,11 +65,26 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
         return buf;
     };
 
+    const setArray = (
+        fn: string,
+        stride: number,
+        acc: Uint8Array,
+        x: any,
+        le: boolean
+    ) => {
+        const n = x.length;
+        acc = ensure(acc, stride * n);
+        for (let i = 0; i < n; i++, pos += stride) {
+            (<any>view)[fn](pos, x[i], le);
+        }
+        return acc;
+    };
+
     return src
         ? reduce(bytes(cap), src)
         : <Reducer<Uint8Array, BinStructItem>>[
               () => new Uint8Array(cap),
-              (acc) => acc.slice(0, pos),
+              (acc) => acc.subarray(0, pos),
               (acc, [type, x, le = false]) => {
                   if (!view || view.buffer !== acc.buffer) {
                       cap = acc.byteLength;
@@ -108,79 +123,49 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
                           view.setInt16(pos, <number>x, le);
                           pos += 2;
                           break;
-                      case Type.I16_ARRAY: {
-                          x = <ArrayLike<number>>x;
-                          const n = x.length;
-                          acc = ensure(acc, 2 * n);
-                          for (let i = 0; i < n; i++, pos += 2)
-                              view.setInt16(pos, x[i], le);
+                      case Type.I16_ARRAY:
+                          acc = setArray("setInt16", 2, acc, x, le);
                           break;
-                      }
                       case Type.U16:
                           acc = ensure(acc, 4);
                           view.setUint16(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.U16_ARRAY: {
-                          x = <ArrayLike<number>>x;
-                          const n = x.length;
-                          acc = ensure(acc, 2 * n);
-                          for (let i = 0; i < n; i++, pos += 2)
-                              view.setUint16(pos, x[i], le);
+                      case Type.U16_ARRAY:
+                          acc = setArray("setUint16", 2, acc, x, le);
                           break;
-                      }
                       case Type.I32:
                           acc = ensure(acc, 4);
                           view.setInt32(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.I32_ARRAY: {
-                          x = <ArrayLike<number>>x;
-                          const n = x.length;
-                          acc = ensure(acc, 4 * n);
-                          for (let i = 0; i < n; i++, pos += 4)
-                              view.setInt32(pos, x[i], le);
+                      case Type.I32_ARRAY:
+                          acc = setArray("setInt32", 4, acc, x, le);
                           break;
-                      }
                       case Type.U32:
                           acc = ensure(acc, 4);
                           view.setUint32(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.U32_ARRAY: {
-                          x = <ArrayLike<number>>x;
-                          const n = x.length;
-                          acc = ensure(acc, 4 * n);
-                          for (let i = 0; i < n; i++, pos += 4)
-                              view.setUint32(pos, x[i], le);
+                      case Type.U32_ARRAY:
+                          acc = setArray("setUint32", 4, acc, x, le);
                           break;
-                      }
                       case Type.F32:
                           acc = ensure(acc, 4);
                           view.setFloat32(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.F32_ARRAY: {
-                          x = <ArrayLike<number>>x;
-                          const n = x.length;
-                          acc = ensure(acc, 4 * n);
-                          for (let i = 0; i < n; i++, pos += 4)
-                              view.setFloat32(pos, x[i], le);
+                      case Type.F32_ARRAY:
+                          acc = setArray("setFloat32", 4, acc, x, le);
                           break;
-                      }
                       case Type.F64:
                           acc = ensure(acc, 8);
                           view.setFloat64(pos, <number>x, le);
                           pos += 8;
                           break;
-                      case Type.F64_ARRAY: {
-                          x = <ArrayLike<number>>x;
-                          const n = x.length;
-                          acc = ensure(acc, 8 * n);
-                          for (let i = 0; i < n; i++, pos += 8)
-                              view.setFloat64(pos, x[i], le);
+                      case Type.F64_ARRAY:
+                          acc = setArray("setFloat64", 8, acc, x, le);
                           break;
-                      }
                       case Type.STR: {
                           let utf = [...utf8Encode(<string>x)];
                           acc = ensure(acc, utf.length);

@@ -201,19 +201,18 @@ export const utf8Length = (str: string) => {
         if (u >= 0xd800 && u <= 0xdfff) {
             u = (0x10000 + ((u & 0x3ff) << 10)) | (str.charCodeAt(++i) & 0x3ff);
         }
-        if (u <= 0x7f) {
-            len++;
-        } else if (u <= 0x7ff) {
-            len += 2;
-        } else if (u <= 0xffff) {
-            len += 3;
-        } else if (u <= 0x1fffff) {
-            len += 4;
-        } else if (u <= 0x3ffffff) {
-            len += 5;
-        } else {
-            len += 6;
-        }
+        len +=
+            u <= 0x7f
+                ? 1
+                : u <= 0x7ff
+                ? 2
+                : u <= 0xffff
+                ? 3
+                : u <= 0x1fffff
+                ? 4
+                : u <= 0x3ffffff
+                ? 5
+                : 6;
     }
     return len;
 };

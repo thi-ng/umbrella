@@ -7,7 +7,8 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
-import { Quad, Rect } from "../api";
+import { Quad } from "../api/quad";
+import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 
 /**

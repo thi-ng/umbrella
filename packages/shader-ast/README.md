@@ -326,7 +326,7 @@ Swizzle patterns are type checked in the editor (and at compile time), i.e.
 ### Built-in functions
 
 The most common set of GLSL ES 3.0 builtins are supported. See
-[builtins.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/builtins.ts)
+[/builtin](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/builtin/)
 for reference.
 
 ### User defined functions
@@ -402,7 +402,7 @@ instantiated, typed symbols representing each arg and can use any name
 within that function (also as shown in the above example).
 
 See `SymOpts` interface in
-[api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/api.ts)
+[/api/syms.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/api/syms.ts)
 for more details about the options object...
 
 #### Inline functions

@@ -1,3 +1,4 @@
+import { ILogger, NULL_LOGGER } from "@thi.ng/api";
 import { ReadonlyAtom } from "@thi.ng/atom";
 
 export type InterceptorFn = (
@@ -81,3 +82,7 @@ export interface InterceptorContext {
     [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
     [id: string]: any;
 }
+
+export let LOGGER = NULL_LOGGER;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);

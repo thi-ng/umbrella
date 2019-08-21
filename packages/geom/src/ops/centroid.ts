@@ -16,14 +16,12 @@ import {
     set,
     Vec
 } from "@thi.ng/vectors";
-import {
-    Circle,
-    Group,
-    Line,
-    Plane,
-    Polygon,
-    Triangle
-} from "../api";
+import { Circle } from "../api/circle";
+import { Group } from "../api/group";
+import { Line } from "../api/line";
+import { Plane } from "../api/plane";
+import { Polygon } from "../api/polygon";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
 

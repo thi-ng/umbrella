@@ -18,10 +18,8 @@ import { iterator1 } from "../iterator";
  * @param src
  */
 export function movingAverage(period: number): Transducer<number, number>;
-export function movingAverage(
-    period: number,
-    src: Iterable<number>
-): IterableIterator<number>;
+// prettier-ignore
+export function movingAverage(period: number, src: Iterable<number>): IterableIterator<number>;
 export function movingAverage(period: number, src?: Iterable<number>): any {
     return src
         ? iterator1(movingAverage(period), src)

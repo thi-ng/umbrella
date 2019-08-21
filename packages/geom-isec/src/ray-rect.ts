@@ -21,13 +21,14 @@ const rayRect = (
     bmin: ReadonlyVec,
     bmax: ReadonlyVec
 ) => {
-    let p = rpos[0],
-        d = 1 / dir[0];
+    let p = rpos[0];
+    let d = 1 / dir[0];
     let t1 = (bmin[0] - p) * d;
     let t2 = (bmax[0] - p) * d;
     let tmin = min(t1, t2);
     let tmax = max(t1, t2);
-    (p = rpos[1]), (d = 1 / dir[1]);
+    p = rpos[1];
+    d = 1 / dir[1];
     t1 = (bmin[1] - p) * d;
     t2 = (bmax[1] - p) * d;
     return <[number, number]>[max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
@@ -47,16 +48,18 @@ const rayBox = (
     bmin: ReadonlyVec,
     bmax: ReadonlyVec
 ) => {
-    let p = rpos[0],
-        d = 1 / dir[0];
+    let p = rpos[0];
+    let d = 1 / dir[0];
     let t1 = (bmin[0] - p) * d;
     let t2 = (bmax[0] - p) * d;
     let tmin = min(t1, t2);
     let tmax = max(t1, t2);
-    (p = rpos[1]), (d = 1 / dir[1]);
+    p = rpos[1];
+    d = 1 / dir[1];
     t1 = (bmin[1] - p) * d;
     t2 = (bmax[1] - p) * d;
-    (p = rpos[2]), (d = 1 / dir[2]);
+    p = rpos[2];
+    d = 1 / dir[2];
     t1 = (bmin[2] - p) * d;
     t2 = (bmax[2] - p) * d;
     tmin = max(tmin, min(t1, t2));

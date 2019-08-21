@@ -7,10 +7,8 @@ import { isMap } from "@thi.ng/checks";
  * @param dest
  * @param src
  */
-export function into<K, V>(
-    dest: Map<K, V>,
-    src: Iterable<Pair<K, V>>
-): Map<K, V>;
+// prettier-ignore
+export function into<K, V>(dest: Map<K, V>, src: Iterable<Pair<K, V>>): Map<K, V>;
 export function into<T>(dest: Set<T>, src: Iterable<T>): Set<T>;
 export function into(dest: Map<any, any> | Set<any>, src: Iterable<any>) {
     if (isMap(dest)) {

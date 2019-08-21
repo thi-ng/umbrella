@@ -85,12 +85,12 @@ const kernelLookup1d = (
     border: number
 ): Fn<[number, number], number> =>
     wrap
-        ? ([w, ox]) => {
+        ? ({ 0: w, 1: ox }) => {
               const xx =
                   x < -ox ? width + ox : x >= width - ox ? ox - 1 : x + ox;
               return w * src[xx];
           }
-        : ([w, ox]) => {
+        : ({ 0: w, 1: ox }) => {
               return x < -ox || x >= width - ox ? border : w * src[x + ox];
           };
 
@@ -104,14 +104,14 @@ const kernelLookup2d = (
     border: number
 ): Fn<[number, [number, number]], number> =>
     wrap
-        ? ([w, [ox, oy]]) => {
+        ? ({ 0: w, 1: { 0: ox, 1: oy } }) => {
               const xx =
                   x < -ox ? width + ox : x >= width - ox ? ox - 1 : x + ox;
               const yy =
                   y < -oy ? height + oy : y >= height - oy ? oy - 1 : y + oy;
               return w * src[yy * width + xx];
           }
-        : ([w, [ox, oy]]) => {
+        : ({ 0: w, 1: { 0: ox, 1: oy } }) => {
               return x < -ox || y < -oy || x >= width - ox || y >= height - oy
                   ? border
                   : w * src[(y + oy) * width + x + ox];

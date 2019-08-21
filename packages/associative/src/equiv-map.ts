@@ -10,6 +10,9 @@ import {
 import { equiv } from "@thi.ng/equiv";
 import { EquivMapOpts, IEquivSet } from "./api";
 import { ArraySet } from "./array-set";
+import { dissoc } from "./dissoc";
+import { equivMap } from "./internal/equiv";
+import { into } from "./into";
 
 interface MapProps<K, V> {
     keys: IEquivSet<K>;
@@ -18,6 +21,8 @@ interface MapProps<K, V> {
 }
 
 const __private = new WeakMap<EquivMap<any, any>, MapProps<any, any>>();
+
+const __map = (map: EquivMap<any, any>) => __private.get(map)!.map;
 
 export class EquivMap<K, V> extends Map<K, V>
     implements
@@ -110,21 +115,7 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     equiv(o: any) {
-        if (this === o) {
-            return true;
-        }
-        if (!(o instanceof Map)) {
-            return false;
-        }
-        if (this.size !== o.size) {
-            return false;
-        }
-        for (let p of __private.get(this)!.map.entries()) {
-            if (!equiv(o.get(p[0]), p[1])) {
-                return false;
-            }
-        }
-        return true;
+        return equivMap(this, o);
     }
 
     delete(key: K) {
@@ -138,15 +129,12 @@ export class EquivMap<K, V> extends Map<K, V>
         return false;
     }
 
-    dissoc(...keys: K[]) {
-        for (let k of keys) {
-            this.delete(k);
-        }
-        return this;
+    dissoc(keys: Iterable<K>) {
+        return <this>dissoc(this, keys);
     }
 
     forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
-        for (let pair of __private.get(this)!.map) {
+        for (let pair of __map(this)) {
             fn.call(thisArg, pair[1], pair[0], this);
         }
     }
@@ -177,22 +165,19 @@ export class EquivMap<K, V> extends Map<K, V>
     }
 
     into(pairs: Iterable<Pair<K, V>>) {
-        for (let p of pairs) {
-            this.set(p[0], p[1]);
-        }
-        return this;
+        return <this>into(this, pairs);
     }
 
     entries(): IterableIterator<Pair<K, V>> {
-        return __private.get(this)!.map.entries();
+        return __map(this).entries();
     }
 
     keys(): IterableIterator<K> {
-        return __private.get(this)!.map.keys();
+        return __map(this).keys();
     }
 
     values(): IterableIterator<V> {
-        return __private.get(this)!.map.values();
+        return __map(this).values();
     }
 
     opts(): EquivMapOpts<K> {

@@ -100,24 +100,8 @@ export class LRUCache<K, V> implements ICache<K, V> {
     set(key: K, value: V) {
         const size = this.opts.ksize(key) + this.opts.vsize(value);
         const e = this.map.get(key);
-        if (e) {
-            this._size -= e.value.s;
-        }
-        this._size += size;
-        if (this.ensureSize()) {
-            if (e) {
-                e.value.v = value;
-                e.value.s = size;
-                this.items.asTail(e);
-            } else {
-                this.items.push({
-                    k: key,
-                    v: value,
-                    s: size
-                });
-                this.map.set(key, this.items.tail!);
-            }
-        }
+        this._size += Math.max(0, size - (e ? e.value.s : 0));
+        this.ensureSize() && this.doSetEntry(e, key, value, size);
         return value;
     }
 
@@ -172,5 +156,21 @@ export class LRUCache<K, V> implements ICache<K, V> {
         this.items.remove(e);
         this.opts.release && this.opts.release(ee.k, ee.v);
         this._size -= ee.s;
+    }
+
+    protected doSetEntry(
+        e: ConsCell<CacheEntry<K, V>> | undefined,
+        k: K,
+        v: V,
+        s: number
+    ) {
+        if (e) {
+            e.value.v = v;
+            e.value.s = s;
+            this.items.asTail(e);
+        } else {
+            this.items.push({ k, v, s });
+            this.map.set(k, this.items.tail!);
+        }
     }
 }

@@ -1,7 +1,8 @@
 import { assert, IObjectOf } from "@thi.ng/api";
-import { intersection, join } from "@thi.ng/associative";
+import { join } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
+import { min3id } from "@thi.ng/math";
 import {
     CloseMode,
     ISubscribable,
@@ -19,19 +20,14 @@ import {
 import {
     assocObj,
     comp,
-    compR,
     dedupe,
-    keySelector,
     map,
     mapIndexed,
-    Reducer,
     transduce,
     Transducer
 } from "@thi.ng/transducers";
 import {
-    BindFn,
     Edit,
-    LOGGER,
     PathPattern,
     PathQuerySpec,
     Pattern,
@@ -46,6 +42,16 @@ import {
 } from "./api";
 import { patternVars, resolvePathPattern } from "./pattern";
 import { isQVar, qvarResolver } from "./qvar";
+import {
+    bindVars,
+    filterSolutions,
+    indexSel,
+    intersect2,
+    intersect3,
+    joinSolutions,
+    limitSolutions,
+    resultTriples
+} from "./xforms";
 
 export class TripleStore implements Iterable<Triple>, IToDot {
     NEXT_ID: number;
@@ -362,24 +368,17 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         for (let q of spec.q) {
             if (isWhereQuery(q)) {
                 curr = this.addMultiJoin(this.addParamQueries(q.where));
-                query && (curr = this.addJoin(query, curr));
             } else if (isPathQuery(q)) {
                 curr = this.addPathQuery(q.path);
-                query && (curr = this.addJoin(query, curr));
             }
+            query && curr && (curr = this.addJoin(query, curr));
             query = curr;
         }
         assert(!!query, "illegal query spec");
         let xforms: Transducer<any, any>[] = [];
-        if (spec.limit) {
-            xforms.push(limitSolutions(spec.limit));
-        }
-        if (spec.bind) {
-            xforms.push(bindVars(spec.bind));
-        }
-        if (spec.select) {
-            xforms.push(filterSolutions(spec.select));
-        }
+        spec.limit && xforms.push(limitSolutions(spec.limit));
+        spec.bind && xforms.push(bindVars(spec.bind));
+        spec.select && xforms.push(filterSolutions(spec.select));
         if (xforms.length) {
             query = <ISubscribable<any>>(
                 query!.subscribe(comp.apply(null, <any>xforms))
@@ -399,10 +398,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     }
 
     protected nextID() {
-        if (this.freeIDs.length) {
-            return this.freeIDs.pop()!;
-        }
-        return this.NEXT_ID++;
+        return this.freeIDs.length ? this.freeIDs.pop()! : this.NEXT_ID++;
     }
 
     private broadcastTriple(
@@ -425,18 +421,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     ) {
         if (s && p && o) {
             const triples = this.triples;
-            const index =
-                s.size < p.size
-                    ? s.size < o.size
-                        ? s
-                        : p.size < o.size
-                        ? p
-                        : o
-                    : p.size < o.size
-                    ? p
-                    : s.size < o.size
-                    ? s
-                    : o;
+            const index = [s, p, o][min3id(s.size, p.size, o.size)];
             for (let id of index) {
                 if (equiv(triples[id], f)) {
                     return id;
@@ -482,83 +467,6 @@ const submit = (
         ids && stream.next({ index: ids, key });
     }
 };
-
-const intersect2: Transducer<IObjectOf<TripleIds>, TripleIds> = comp(
-    map(({ a, b }) => intersection(a, b)),
-    dedupe(equiv)
-);
-
-const intersect3: Transducer<IObjectOf<TripleIds>, TripleIds> = comp(
-    map(({ s, p, o }) => intersection(intersection(s, p), o)),
-    dedupe(equiv)
-);
-
-const indexSel = (key: any): Transducer<Edit, TripleIds> => (
-    rfn: Reducer<any, TripleIds>
-) => {
-    const r = rfn[2];
-    return compR(rfn, (acc, e) => {
-        LOGGER.fine("index sel", e.key, key);
-        if (equiv(e.key, key)) {
-            return r(acc, e.index);
-        }
-        return acc;
-    });
-};
-
-const resultTriples = (graph: TripleStore) =>
-    map<TripleIds, Set<Triple>>((ids) => {
-        const res = new Set<Triple>();
-        for (let id of ids) res.add(graph.triples[id]);
-        return res;
-    });
-
-const joinSolutions = (n: number) =>
-    map<IObjectOf<Solutions>, Solutions>((src) => {
-        let res: Solutions = src[0];
-        for (let i = 1; i < n && res.size; i++) {
-            res = join(res, src[i]);
-        }
-        return res;
-    });
-
-const filterSolutions = (qvars: Iterable<string>) => {
-    const filterVars = keySelector([...qvars]);
-    return map((sol: Solutions) => {
-        const res: Solutions = new Set();
-        for (let s of sol) {
-            res.add(filterVars(s));
-        }
-        return res;
-    });
-};
-
-const limitSolutions = (n: number) =>
-    map((sol: Solutions) => {
-        if (sol.size <= n) {
-            return sol;
-        }
-        const res: Solutions = new Set();
-        let m = n;
-        for (let s of sol) {
-            res.add(s);
-            if (--m <= 0) break;
-        }
-        return res;
-    });
-
-const bindVars = (bindings: IObjectOf<BindFn>) =>
-    map((sol: Solutions) => {
-        const res: Solutions = new Set();
-        for (let s of sol) {
-            s = { ...s };
-            res.add(s);
-            for (let b in bindings) {
-                s[b] = bindings[b](s);
-            }
-        }
-        return res;
-    });
 
 const isWhereQuery = (q: SubQuerySpec): q is WhereQuerySpec => !!(<any>q).where;
 

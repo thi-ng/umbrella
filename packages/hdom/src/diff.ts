@@ -12,6 +12,11 @@ import { HDOMImplementation, HDOMOpts } from "./api";
 const isArray = Array.isArray;
 const max = Math.max;
 
+const OBJP = Object.getPrototypeOf({});
+
+const FN = "function";
+const STR = "string";
+
 // child index tracking template buffer
 const INDEX = (() => {
     const res = new Array(2048);
@@ -73,10 +78,6 @@ export const diffTree = <T>(
     const el = impl.getChild(parent, child);
     let i: number;
     let ii: number;
-    let j: number;
-    let idx: number;
-    let k: any;
-    let eq: any[];
     let status: number;
     let val: any;
     if (edits[0] !== 0 || prev[1].key !== attribs.key) {
@@ -103,48 +104,102 @@ export const diffTree = <T>(
         status = edits[ii];
         if (!status) continue;
         if (status === -1) {
-            // element removed / edited?
-            val = edits[ii + 2];
-            if (isArray(val)) {
-                k = val[1].key;
-                if (k !== undefined && equivKeys[k][2] !== undefined) {
-                    eq = equivKeys[k];
-                    k = eq[0];
-                    // LOGGER.fine(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
-                    diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
-                } else {
-                    idx = edits[ii + 1];
-                    // LOGGER.fine("remove @", offsets[idx], val);
-                    releaseTree(val);
-                    impl.removeChild(el, offsets[idx]);
-                    for (j = prevLength; j > idx; j--) {
-                        offsets[j] = max(offsets[j] - 1, 0);
-                    }
-                }
-            } else if (typeof val === "string") {
-                impl.setContent(el, "");
-            }
+            diffDeleted<T>(
+                opts,
+                impl,
+                el,
+                prev,
+                curr,
+                edits,
+                ii,
+                equivKeys,
+                offsets,
+                prevLength
+            );
         } else {
-            // element added/inserted?
-            val = edits[ii + 2];
-            if (typeof val === "string") {
-                impl.setContent(el, val);
-            } else if (isArray(val)) {
-                k = val[1].key;
-                if (k === undefined || equivKeys[k][0] === undefined) {
-                    idx = edits[ii + 1];
-                    // LOGGER.fine("insert @", offsets[idx], val);
-                    impl.createTree(opts, el, val, offsets[idx]);
-                    for (j = prevLength; j >= idx; j--) {
-                        offsets[j]++;
-                    }
-                }
-            }
+            diffAdded<T>(
+                opts,
+                impl,
+                el,
+                edits,
+                ii,
+                equivKeys,
+                offsets,
+                prevLength
+            );
         }
     }
     // call __init after all children have been added/updated
     if ((val = (<any>curr).__init) && val != (<any>prev).__init) {
         val.apply(curr, [el, ...(<any>curr).__args]);
+    }
+};
+
+const diffDeleted = <T>(
+    opts: Partial<HDOMOpts>,
+    impl: HDOMImplementation<T>,
+    el: T,
+    prev: any[],
+    curr: any[],
+    edits: any[],
+    ii: number,
+    equivKeys: IObjectOf<any[]>,
+    offsets: any[],
+    prevLength: number
+) => {
+    const val = edits[ii + 2];
+    if (isArray(val)) {
+        let k = val[1].key;
+        if (k !== undefined && equivKeys[k][2] !== undefined) {
+            const eq = equivKeys[k];
+            k = eq[0];
+            // LOGGER.fine(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
+            diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
+        } else {
+            const idx = edits[ii + 1];
+            // LOGGER.fine("remove @", offsets[idx], val);
+            releaseTree(val);
+            impl.removeChild(el, offsets[idx]);
+            incOffsets(offsets, prevLength, idx);
+        }
+    } else if (typeof val === STR) {
+        impl.setContent(el, "");
+    }
+};
+
+const diffAdded = <T>(
+    opts: Partial<HDOMOpts>,
+    impl: HDOMImplementation<T>,
+    el: T,
+    edits: any[],
+    ii: number,
+    equivKeys: IObjectOf<any[]>,
+    offsets: any[],
+    prevLength: number
+) => {
+    const val = edits[ii + 2];
+    if (typeof val === STR) {
+        impl.setContent(el, val);
+    } else if (isArray(val)) {
+        const k = val[1].key;
+        if (k === undefined || equivKeys[k][0] === undefined) {
+            const idx = edits[ii + 1];
+            // LOGGER.fine("insert @", offsets[idx], val);
+            impl.createTree(opts, el, val, offsets[idx]);
+            decOffsets(offsets, prevLength, idx);
+        }
+    }
+};
+
+const incOffsets = (offsets: any[], j: number, idx: number) => {
+    for (; j > idx; j--) {
+        offsets[j] = max(offsets[j] - 1, 0);
+    }
+};
+
+const decOffsets = (offsets: any[], j: number, idx: number) => {
+    for (; j >= idx; j--) {
+        offsets[j]++;
     }
 };
 
@@ -169,26 +224,16 @@ export const diffAttributes = <T>(
     let i: number, e, edits;
     for (edits = delta.edits!, i = edits.length; (i -= 2) >= 0; ) {
         e = edits[i];
-        if (e.indexOf("on") === 0) {
-            impl.removeAttribs(el, [e], prev);
-        }
-        if (e !== "value") {
-            impl.setAttrib(el, e, edits[i + 1], curr);
-        } else {
-            val = edits[i + 1];
-        }
+        e.indexOf("on") === 0 && impl.removeAttribs(el, [e], prev);
+        e !== "value"
+            ? impl.setAttrib(el, e, edits[i + 1], curr)
+            : (val = edits[i + 1]);
     }
     for (edits = delta.adds!, i = edits.length; --i >= 0; ) {
         e = edits[i];
-        if (e !== "value") {
-            impl.setAttrib(el, e, curr[e], curr);
-        } else {
-            val = curr[e];
-        }
+        e !== "value" ? impl.setAttrib(el, e, curr[e], curr) : (val = curr[e]);
     }
-    if (val !== SEMAPHORE) {
-        impl.setAttrib(el, "value", val, curr);
-    }
+    val !== SEMAPHORE && impl.setAttrib(el, "value", val, curr);
 };
 
 /**
@@ -232,11 +277,6 @@ const extractEquivElements = (edits: any[]) => {
     }
     return equiv;
 };
-
-const OBJP = Object.getPrototypeOf({});
-
-const FN = "function";
-const STR = "string";
 
 /**
  * Customized version @thi.ng/equiv which takes `__diff` attributes into

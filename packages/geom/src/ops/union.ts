@@ -1,7 +1,8 @@
 import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { AABB, Rect } from "../api";
+import { AABB } from "../api/aabb";
+import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { unionBounds } from "../internal/union-bounds";
 

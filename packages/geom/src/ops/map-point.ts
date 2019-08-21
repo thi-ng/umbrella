@@ -7,7 +7,7 @@ import {
     sub,
     Vec
 } from "@thi.ng/vectors";
-import { Rect } from "../api";
+import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(<

@@ -135,6 +135,12 @@ export const ensurePred = (
           }
         : undefined;
 
+const eventPathState = (
+    state: any,
+    path: Fn<Event, Path> | undefined,
+    e: Event
+) => getIn(state, path ? path(e) : e[1]);
+
 /**
  * Specialization of `ensurePred()` to ensure a state value is less than
  * given max at the time when the event is being processed. The optional
@@ -158,7 +164,7 @@ export const ensureStateLessThan = (
     max: number,
     path?: Fn<Event, Path>,
     err?: InterceptorFn
-) => ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) < max, err);
+) => ensurePred((state, e) => eventPathState(state, path, e) < max, err);
 
 /**
  * Specialization of `ensurePred()` to ensure a state value is greater
@@ -172,7 +178,7 @@ export const ensureStateGreaterThan = (
     min: number,
     path?: Fn<Event, Path>,
     err?: InterceptorFn
-) => ensurePred((state, e) => getIn(state, path ? path(e) : e[1]) > min, err);
+) => ensurePred((state, e) => eventPathState(state, path, e) > min, err);
 
 /**
  * Specialization of `ensurePred()` to ensure a state value is within
@@ -191,7 +197,7 @@ export const ensureStateRange = (
     err?: InterceptorFn
 ) =>
     ensurePred((state, e) => {
-        const x = getIn(state, path ? path(e) : e[1]);
+        const x = eventPathState(state, path, e);
         return x >= min && x <= max;
     }, err);
 

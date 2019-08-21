@@ -1,28 +1,20 @@
-import { identity } from "@thi.ng/compose";
 import { GroupByOpts, Reducer } from "../api";
+import { __groupByOpts } from "../internal/group-opts";
 import { $$reduce, reducer } from "../reduce";
-import { push } from "./push";
 
-export function groupByMap<SRC, KEY, GROUP>(
-    opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>
-): Reducer<Map<KEY, GROUP>, SRC>;
+// prettier-ignore
+export function groupByMap<SRC, KEY, GROUP>(opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>): Reducer<Map<KEY, GROUP>, SRC>;
 export function groupByMap<SRC, GROUP>(xs: Iterable<SRC>): Map<SRC, GROUP>;
-export function groupByMap<SRC, KEY, GROUP>(
-    opts: Partial<GroupByOpts<SRC, KEY, GROUP>>,
-    xs: Iterable<SRC>
-): Map<KEY, GROUP>;
+// prettier-ignore
+export function groupByMap<SRC, KEY, GROUP>(opts: Partial<GroupByOpts<SRC, KEY, GROUP>>, xs: Iterable<SRC>): Map<KEY, GROUP>;
 export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
     const res = $$reduce(groupByMap, args);
     if (res !== undefined) {
         return res;
     }
-    const opts = <GroupByOpts<SRC, KEY, GROUP>>{
-        key: identity,
-        group: push(),
-        ...args[0]
-    };
+    const opts = __groupByOpts<SRC, KEY, GROUP>(args[0]);
     const [init, _, reduce] = opts.group;
-    _;
+    _; // ignore
     return reducer<Map<KEY, GROUP>, SRC>(
         () => new Map(),
         (acc, x) => {

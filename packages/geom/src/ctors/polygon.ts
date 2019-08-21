@@ -9,7 +9,7 @@ import {
     zip
 } from "@thi.ng/transducers";
 import { cartesian2, Vec } from "@thi.ng/vectors";
-import { Polygon } from "../api";
+import { Polygon } from "../api/polygon";
 
 export const polygon = (pts: Vec[], attribs?: Attribs) =>
     new Polygon(pts, attribs);

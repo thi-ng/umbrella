@@ -6,7 +6,8 @@ import {
     subN3,
     Vec
 } from "@thi.ng/vectors";
-import { AABB, Sphere } from "../api";
+import { AABB } from "../api/aabb";
+import { Sphere } from "../api/sphere";
 import { argsVV } from "../internal/args";
 
 export function aabb(pos: Vec, size: number | Vec, attribs?: Attribs): AABB;

@@ -18,16 +18,14 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
-import {
-    AABB,
-    Arc,
-    Circle,
-    Cubic,
-    Line,
-    Plane,
-    Quadratic,
-    Rect
-} from "../api";
+import { AABB } from "../api/aabb";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Cubic } from "../api/cubic";
+import { Line } from "../api/line";
+import { Plane } from "../api/plane";
+import { Quadratic } from "../api/quadratic";
+import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 
 export const closestPoint: MultiFn2O<

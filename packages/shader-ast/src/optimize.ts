@@ -1,15 +1,15 @@
+import { NO_OP } from "@thi.ng/api";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import {
     Lit,
     Op1,
     Op2,
     Term
-} from "./api";
-import {
-    allChildren,
-    isLitNumeric,
-    lit,
-    walk
-} from "./ast";
+} from "./api/nodes";
+import { Operator } from "./api/ops";
+import { isLitNumeric } from "./ast/checks";
+import { lit } from "./ast/lit";
+import { allChildren, walk } from "./ast/scope";
 
 const replaceNode = (node: any, next: any) => {
     for (let k in node) {
@@ -17,6 +17,44 @@ const replaceNode = (node: any, next: any) => {
     }
     return Object.assign(node, next);
 };
+
+const maybeFoldMath = (op: Operator, l: any, r: any) =>
+    op === "+"
+        ? l + r
+        : op === "-"
+        ? l - r
+        : op === "*"
+        ? l * r
+        : op === "/"
+        ? l / r
+        : undefined;
+
+export const foldNode = defmulti<Term<any>, void>((t) => t.tag);
+foldNode.add(DEFAULT, NO_OP);
+
+foldNode.addAll({
+    op1: (t) => {
+        const op = <Op1<any>>t;
+        if (op.op == "-" && isLitNumeric(op.val)) {
+            replaceNode(t, <Lit<"float">>op.val);
+            (<any>op).val = -(<any>op).val;
+        }
+    },
+
+    op2: (node) => {
+        const op = <Op2<any>>node;
+        if (isLitNumeric(op.l) && isLitNumeric(op.r)) {
+            const vl = (<Lit<"float">>op.l).val;
+            const vr = (<Lit<"float">>op.r).val;
+            let res = maybeFoldMath(op.op, vl, vr);
+            if (res !== undefined) {
+                op.type === "int" && (res |= 0);
+                op.type === "uint" && (res >>>= 0);
+                replaceNode(node, lit(op.type, res));
+            }
+        }
+    }
+});
 
 /**
  * Traverses given AST and applies constant folding optimizations where
@@ -50,47 +88,6 @@ const replaceNode = (node: any, next: any) => {
  * @param tree
  */
 export const constantFolding = (tree: Term<any>) => {
-    walk(
-        (_, node) => {
-            switch (node.tag) {
-                case "op1": {
-                    const n = <Op1<any>>node;
-                    if (n.op == "-" && isLitNumeric(n.val)) {
-                        replaceNode(node, <Lit<"float">>n.val);
-                        (<any>n).val = -(<any>n).val;
-                    }
-                    break;
-                }
-                case "op2": {
-                    const n = <Op2<any>>node;
-                    if (isLitNumeric(n.l) && isLitNumeric(n.r)) {
-                        const vl = (<Lit<"float">>n.l).val;
-                        const vr = (<Lit<"float">>n.r).val;
-                        let res =
-                            n.op === "+"
-                                ? vl + vr
-                                : n.op === "-"
-                                ? vl - vr
-                                : n.op === "*"
-                                ? vl * vr
-                                : n.op === "/"
-                                ? vl / vr
-                                : undefined;
-                        if (res !== undefined) {
-                            n.type === "int" && (res |= 0);
-                            n.type === "uint" && (res >>>= 0);
-                            replaceNode(node, lit(n.type, res));
-                        }
-                    }
-                    break;
-                }
-                default:
-            }
-        },
-        allChildren,
-        <any>null,
-        tree,
-        false
-    );
+    walk((_, node) => foldNode(node), allChildren, <any>null, tree, false);
     return tree;
 };

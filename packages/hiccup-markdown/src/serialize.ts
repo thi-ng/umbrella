@@ -9,10 +9,17 @@ import { illegalArgs } from "@thi.ng/errors";
 import { normalize } from "@thi.ng/hiccup";
 import { repeat, wrap } from "@thi.ng/strings";
 
+interface SerializeState {
+    indent: number;
+    sep: string;
+    id?: number;
+    pre?: boolean;
+}
+
 export const serialize = (tree: any, ctx: any) =>
     _serialize(tree, ctx, { indent: 0, sep: "" });
 
-const _serialize = (tree: any, ctx: any, state: any): string => {
+const _serialize = (tree: any, ctx: any, state: SerializeState): string => {
     if (tree == null) return "";
     if (Array.isArray(tree)) {
         if (!tree.length) {
@@ -62,7 +69,11 @@ const _serialize = (tree: any, ctx: any, state: any): string => {
     return tree.toString();
 };
 
-const serializeIter = (iter: Iterable<any>, ctx: any, state: any) => {
+const serializeIter = (
+    iter: Iterable<any>,
+    ctx: any,
+    state: SerializeState
+) => {
     if (!iter) return "";
     const res = [];
     for (let i of iter) {
@@ -71,86 +82,79 @@ const serializeIter = (iter: Iterable<any>, ctx: any, state: any) => {
     return res.join(state.sep);
 };
 
-const header = (level: number) => (el: any[], ctx: any, state: any) =>
-    repeat("#", level) + " " + body(el, ctx, state) + "\n\n";
+const header = (level: number) => (
+    el: any[],
+    ctx: any,
+    state: SerializeState
+) => repeat("#", level) + " " + body(el, ctx, state) + "\n\n";
 
-const body = (el: any[], ctx: any, state: any) =>
+const body = (el: any[], ctx: any, state: SerializeState) =>
     serializeIter(el[2], ctx, state);
 
-export const serializeElement: MultiFn3<any, any, any, string> = defmulti(
-    (el) => el[0]
-);
+export const serializeElement: MultiFn3<
+    any,
+    any,
+    SerializeState,
+    string
+> = defmulti((el) => el[0]);
 serializeElement.add(DEFAULT, body);
-serializeElement.add("h1", header(1));
-serializeElement.add("h2", header(2));
-serializeElement.add("h3", header(3));
-serializeElement.add("h4", header(4));
-serializeElement.add("h5", header(5));
-serializeElement.add("h6", header(6));
 
-serializeElement.add("p", (el, ctx, state) => `\n${body(el, ctx, state)}\n`);
+serializeElement.addAll({
+    h1: header(1),
+    h2: header(2),
+    h3: header(3),
+    h4: header(4),
+    h5: header(5),
+    h6: header(6),
 
-serializeElement.add("img", (el) => `![${el[1].alt || ""}](${el[1].src})`);
+    p: (el, ctx, state) => `\n${body(el, ctx, state)}\n`,
 
-serializeElement.add(
-    "a",
-    (el, ctx, state) => `[${body(el, ctx, state)}](${el[1].href})`
-);
+    img: (el) => `![${el[1].alt || ""}](${el[1].src})`,
 
-serializeElement.add("em", (el, ctx, state) => `_${body(el, ctx, state)}_`);
+    a: (el, ctx, state) => `[${body(el, ctx, state)}](${el[1].href})`,
 
-serializeElement.add(
-    "strong",
-    (el, ctx, state) => `**${body(el, ctx, state)}**`
-);
+    em: (el, ctx, state) => `_${body(el, ctx, state)}_`,
 
-serializeElement.add(
-    "pre",
-    (el, ctx, state) =>
+    strong: (el, ctx, state) => `**${body(el, ctx, state)}**`,
+
+    pre: (el, ctx, state) =>
         `\n\`\`\`${el[1].lang || ""}\n${body(el, ctx, {
             ...state,
             pre: true,
             sep: "\n"
-        })}\n\`\`\`\n`
-);
+        })}\n\`\`\`\n`,
 
-serializeElement.add("code", (el, ctx, state) =>
-    state.pre ? el[2][0] : `\`${body(el, ctx, state)}\``
-);
+    code: (el, ctx, state) =>
+        state.pre ? el[2][0] : `\`${body(el, ctx, state)}\``,
 
-serializeElement.add("ul", (el, ctx, state) => {
-    const cstate = {
-        ...state,
-        indent: state.indent + 4,
-        sep: "\n"
-    };
-    return wrap(state.indent === 0 ? "\n" : "")(body(el, ctx, cstate));
-});
+    ul: (el, ctx, state) => {
+        const cstate: SerializeState = {
+            ...state,
+            indent: state.indent + 4,
+            sep: "\n"
+        };
+        return wrap(state.indent === 0 ? "\n" : "")(body(el, ctx, cstate));
+    },
 
-serializeElement.add("ol", (el, ctx, state) => {
-    const cstate = {
-        ...state,
-        indent: state.indent + 4,
-        id: 0,
-        sep: "\n"
-    };
-    return wrap(state.indent === 0 ? "\n" : "")(body(el, ctx, cstate));
-});
+    ol: (el, ctx, state) => {
+        const cstate: SerializeState = {
+            ...state,
+            indent: state.indent + 4,
+            id: 0,
+            sep: "\n"
+        };
+        return wrap(state.indent === 0 ? "\n" : "")(body(el, ctx, cstate));
+    },
 
-serializeElement.add(
-    "li",
-    (el, ctx, state) =>
+    li: (el, ctx, state) =>
         repeat(" ", state.indent - 4) +
         (state.id != null ? ++state.id + "." : "-") +
         " " +
-        body(el, ctx, { ...state, sep: "" })
-);
+        body(el, ctx, { ...state, sep: "" }),
 
-serializeElement.add(
-    "blockquote",
-    (el, ctx, state) => `\n> ${body(el, ctx, state)}\n`
-);
+    blockquote: (el, ctx, state) => `\n> ${body(el, ctx, state)}\n`,
 
-serializeElement.add("br", () => "\\\n");
+    br: () => "\\\n",
 
-serializeElement.add("hr", () => "\n---\n");
+    hr: () => "\n---\n"
+});

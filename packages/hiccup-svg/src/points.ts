@@ -21,18 +21,8 @@ export const points = (
     const group = ["g", fattribs({ ...attribs })];
     let href: string;
     if (!shape || shape[0] !== "#") {
-        const r = ff(size);
         href = "_" + ((Math.random() * 1e6) | 0).toString(36);
-        group.push([
-            "g",
-            { opacity: 0 },
-            shape === "circle"
-                ? ["circle", { id: href, cx: 0, cy: 0, r: r }]
-                : [
-                      "rect",
-                      { id: href, x: -r / 2, y: -r / 2, width: r, height: r }
-                  ]
-        ]);
+        group.push(["g", { opacity: 0 }, buildShape(shape, href, size)]);
         href = "#" + href;
     } else {
         href = shape;
@@ -42,4 +32,13 @@ export const points = (
         group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
     }
     return group;
+};
+
+const buildShape = (shape: string, id: string, r: number) => {
+    const rf = ff(r);
+    if (shape === "circle") {
+        return ["circle", { id, cx: 0, cy: 0, r: rf }];
+    }
+    const rf2 = ff(-r / 2);
+    return ["rect", { id, x: rf2, y: rf2, width: rf, height: rf }];
 };

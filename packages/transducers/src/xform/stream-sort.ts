@@ -1,9 +1,8 @@
 import { binarySearch } from "@thi.ng/arrays";
-import { compare as cmp } from "@thi.ng/compare";
-import { identity } from "@thi.ng/compose";
 import { Reducer, SortOpts, Transducer } from "../api";
+import { __drain } from "../internal/drain";
+import { __sortOpts } from "../internal/sort-opts";
 import { $iter, iterator } from "../iterator";
-import { isReduced } from "../reduced";
 
 /**
  * Transducer. Similar to `partitionSort()`, however uses proper sliding
@@ -19,40 +18,24 @@ import { isReduced } from "../reduced";
  * @param key
  * @param cmp
  */
-export function streamSort<A, B>(
-    n: number,
-    opts?: Partial<SortOpts<A, B>>
-): Transducer<A, A>;
-export function streamSort<A, B>(
-    n: number,
-    src: Iterable<A>
-): IterableIterator<A>;
-export function streamSort<A, B>(
-    n: number,
-    opts: Partial<SortOpts<A, B>>,
-    src: Iterable<A>
-): IterableIterator<A>;
+// prettier-ignore
+export function streamSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
+// prettier-ignore
+export function streamSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
+// prettier-ignore
+export function streamSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
 export function streamSort<A, B>(...args: any[]): any {
     const iter = $iter(streamSort, args, iterator);
     if (iter) {
         return iter;
     }
-    const { key, compare } = <SortOpts<A, B>>{
-        key: <any>identity,
-        compare: cmp,
-        ...args[1]
-    };
+    const { key, compare } = __sortOpts<A, B>(args[1]);
     const n = args[0];
     return ([init, complete, reduce]: Reducer<any, A>) => {
         const buf: A[] = [];
         return <Reducer<any, A>>[
             init,
-            (acc) => {
-                while (buf.length && !isReduced(acc)) {
-                    acc = reduce(acc, buf.shift()!);
-                }
-                return complete(acc);
-            },
+            __drain(buf, complete, reduce),
             (acc, x) => {
                 const idx = binarySearch(buf, x, key, compare);
                 buf.splice(idx < 0 ? -(idx + 1) : idx, 0, x);

@@ -1,14 +1,14 @@
 import { Attribs } from "@thi.ng/geom-api";
 import { liangBarsky2 } from "@thi.ng/geom-clip";
 import { Vec, VecPair } from "@thi.ng/vectors";
-import { Line, Rect } from "../api";
-import { argAttribs } from "../internal/args";
+import { Line } from "../api/line";
+import { Rect } from "../api/rect";
+import { pclike } from "../internal/pclike";
 
 export function line(a: Vec, b: Vec, attribs?: Attribs): Line;
 export function line(pts: Vec[], attribs?: Attribs): Line;
 export function line(...args: any[]) {
-    const attr = argAttribs(args);
-    return new Line(args.length === 1 ? args[0] : args, attr);
+    return pclike(Line, args);
 }
 
 export const clippedLine = (l: Line, bounds: VecPair | Rect) => {

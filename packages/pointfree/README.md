@@ -57,7 +57,7 @@ Current features:
 - words implemented as tiny vanilla JS functions (easily extensible)
 - optimized pre-composition/compilation of custom user defined words
   (see
-  [comp.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/comp.ts))
+  [word.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/word.ts))
 - dual stack (main & stash/scratch space)
 - nested execution environments (scopes)
 - arbitrary stack values
@@ -204,7 +204,7 @@ The latter are replaced by calls to `push` which pushes the given value
 on the stack as is. Therefore, a stack program like: `[1, 2, pf.add]`
 compiles to:
 
-```
+```ts
 pf.add(pf.push(2)(pf.push(1)(<initial context>)))
 ```
 
@@ -213,7 +213,7 @@ pf.add(pf.push(2)(pf.push(1)(<initial context>)))
 Most concatenative languages use stack effect comments as the standard
 approach to document the effect a word has on the stack structure.
 
-```
+```forth
 ( x y -- x )
 ```
 
@@ -361,7 +361,7 @@ Since quoatations are just arrays, we can treat them as data, i.e. **the
 functional composition of two quotations is the same as concatenating
 two arrays**:
 
-```
+```js
 const add10 = [10, pf.add];
 const mul10 = [10, pf.mul];
 
@@ -786,157 +786,157 @@ at word construction time and return a pre-configured stack function.
 
 ### D-Stack modification
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `drop` | `( x -- )` | remove TOS |
-| `drop2` | `( x y -- )` | remove top 2 vals |
-| `dropif` | `( x -- ? )` | remove only if TOS truthy |
-| `dsp` | `( -- stack.length )` | push d-stack depth |
-| `dup` | `( x -- x x )` | duplicate TOS |
-| `dup2` | `( x y -- x y x y )` | duplicate top 2 vals |
-| `dup3` | `( x y z -- x y z x y z )` | duplicate top 3 vals |
-| `dupif` | `( x -- x x? )` | dup only if TOS truthy |
-| `maptos(fn)` | `( x -- f(x) )` | transform TOS w/ `f` |
-| `map2(fn)` | `( x y -- f(y, x) )` | reduce top 2 vals with `f`, single result |
-| `nip` | `( x y -- y )` | remove `x` from stack |
-| `over` | `( x y -- x y x )` | push dup of `x` |
-| `pick` | `( n -- stack[n] )` | dup deeper stack value |
-| `push(...args)` | `( -- ...args )` | push `args` on stack |
-| `rot` | `( x y z -- y z x )` | rotate top 3 vals down/left |
-| `invrot` | `( x y z -- z x y )` | rotate top 3 vals up/right |
-| `swap` | `( x y -- y x )` | swap top 2 vals |
-| `swap2` | `( a b c d -- c d a b )` | swap top 2 pairs |
-| `tuck` | `( x y -- y x y )` | insert dup of TOS |
+| Word            | Stack effect               | Description                               |
+|-----------------|----------------------------|-------------------------------------------|
+| `drop`          | `( x -- )`                 | remove TOS                                |
+| `drop2`         | `( x y -- )`               | remove top 2 vals                         |
+| `dropif`        | `( x -- ? )`               | remove only if TOS truthy                 |
+| `dsp`           | `( -- stack.length )`      | push d-stack depth                        |
+| `dup`           | `( x -- x x )`             | duplicate TOS                             |
+| `dup2`          | `( x y -- x y x y )`       | duplicate top 2 vals                      |
+| `dup3`          | `( x y z -- x y z x y z )` | duplicate top 3 vals                      |
+| `dupif`         | `( x -- x x? )`            | dup only if TOS truthy                    |
+| `maptos(fn)`    | `( x -- f(x) )`            | transform TOS w/ `f`                      |
+| `map2(fn)`      | `( x y -- f(y, x) )`       | reduce top 2 vals with `f`, single result |
+| `nip`           | `( x y -- y )`             | remove `x` from stack                     |
+| `over`          | `( x y -- x y x )`         | push dup of `x`                           |
+| `pick`          | `( n -- stack[n] )`        | dup deeper stack value                    |
+| `push(...args)` | `( -- ...args )`           | push `args` on stack                      |
+| `rot`           | `( x y z -- y z x )`       | rotate top 3 vals down/left               |
+| `invrot`        | `( x y z -- z x y )`       | rotate top 3 vals up/right                |
+| `swap`          | `( x y -- y x )`           | swap top 2 vals                           |
+| `swap2`         | `( a b c d -- c d a b )`   | swap top 2 pairs                          |
+| `tuck`          | `( x y -- y x y )`         | insert dup of TOS                         |
 
 ### R-Stack modification
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `rdrop` | `( x -- )` | drop TOS from r-stack |
-| `rdrop2` | `( x y -- )` | remove top 2 vals from r-stack |
-| `rswap` | `( x y -- y x )` | swap top 2 vals on r-stack |
-| `rswap2` | `( a b c d -- c d a b )` | swap top 2 pairs on r-stack |
-| `rsp` | `( -- stack.length )` | push r-stack depth on d-stack |
-| `movdr` | `( x -- )` (d-stack effect) | push d-stack TOS on r-stack |
-| `movrd` | `( -- x )` (d-stack effect) | push r-stack TOS on d-stack |
-| `cpdr` | `( x -- x )` (d-stack effect) | copy d-stack TOS on r-stack |
-| `cprd` | `( -- x )` (d-stack effect) | copy r-stack TOS on d-stack |
+| Word     | Stack effect                  | Description                    |
+|----------|-------------------------------|--------------------------------|
+| `rdrop`  | `( x -- )`                    | drop TOS from r-stack          |
+| `rdrop2` | `( x y -- )`                  | remove top 2 vals from r-stack |
+| `rswap`  | `( x y -- y x )`              | swap top 2 vals on r-stack     |
+| `rswap2` | `( a b c d -- c d a b )`      | swap top 2 pairs on r-stack    |
+| `rsp`    | `( -- stack.length )`         | push r-stack depth on d-stack  |
+| `movdr`  | `( x -- )` (d-stack effect)   | push d-stack TOS on r-stack    |
+| `movrd`  | `( -- x )` (d-stack effect)   | push r-stack TOS on d-stack    |
+| `cpdr`   | `( x -- x )` (d-stack effect) | copy d-stack TOS on r-stack    |
+| `cprd`   | `( -- x )` (d-stack effect)   | copy r-stack TOS on d-stack    |
 
 ### Word & quotation execution / combinators
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `exec` | `( w -- ? )` | call TOS as (compiled) word w/ curr ctx |
-| `dip` | `( x q -- .. x )` | |
-| `dip2` | `( x y q -- .. x y )` | |
-| `dip3` | `( x y z q -- .. x y z )` | |
-| `dip4` | `( x y z w q -- .. x y z w )` | |
-| `keep` | `( x q -- .. x )` | |
-| `keep2` | `( x y q -- .. x y )` | |
-| `keep3` | `( x y z q -- .. x y z )` | |
-| `bi` | `( x p q -- pres qres )` | |
-| `bi2` | `( x y p q -- pres qres )` | |
-| `bi3` | `( x y z p q -- pres qres )` | |
+| Word    | Stack effect                  | Description                             |
+|---------|-------------------------------|-----------------------------------------|
+| `exec`  | `( w -- ? )`                  | call TOS as (compiled) word w/ curr ctx |
+| `dip`   | `( x q -- .. x )`             |                                         |
+| `dip2`  | `( x y q -- .. x y )`         |                                         |
+| `dip3`  | `( x y z q -- .. x y z )`     |                                         |
+| `dip4`  | `( x y z w q -- .. x y z w )` |                                         |
+| `keep`  | `( x q -- .. x )`             |                                         |
+| `keep2` | `( x y q -- .. x y )`         |                                         |
+| `keep3` | `( x y z q -- .. x y z )`     |                                         |
+| `bi`    | `( x p q -- pres qres )`      |                                         |
+| `bi2`   | `( x y p q -- pres qres )`    |                                         |
+| `bi3`   | `( x y z p q -- pres qres )`  |                                         |
 
 ### Primitive math
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `add` | `( x y -- x+y )` |
-| `sub` | `( x y -- x-y )` |
-| `mul` | `( x y -- x*y )` |
-| `div` | `( x y -- x/y )` |
-| `mod` | `( x y -- x%y )` |
-| `inc` | `( x -- x+1 )` |
-| `dec` | `( x -- x-1 )` |
-| `neg` | `( x -- -x )` |
-| `even` | `( x -- bool )` | true, if `x` is even |
-| `odd` | `( x -- bool )` | true, if `x` is odd |
-| `min` | `( x y -- min(x, y) )` |
-| `max` | `( x y -- max(x, y) )` |
-| `log` | `( x -- log(x) )` |
-| `pow` | `( x y -- pow(x, y) )` |
-| `rand` | `( -- Math.random() )` |
-| `sqrt` | `( x -- sqrt(x) )` |
-| `sin` | `( x -- sin(x) )` |
-| `cos` | `( x -- cos(x) )` |
-| `atan2` | `( x y -- atan2(y, x) )` |
-| `lsl` | `( x y -- x<<y )` |
-| `lsr` | `( x y -- x>>y )` |
-| `lsru` | `( x y -- x>>>y )` |
-| `bitand` | `( x y -- x&y )` |
-| `bitor` | `( x y -- x\|y )` |
-| `bitxor` | `( x y -- x^y )` |
-| `bitnot` | `( x -- ~x )` |
+| Word     | Stack effect             | Description          |
+|----------|--------------------------|----------------------|
+| `add`    | `( x y -- x+y )`         |                      |
+| `sub`    | `( x y -- x-y )`         |                      |
+| `mul`    | `( x y -- x*y )`         |                      |
+| `div`    | `( x y -- x/y )`         |                      |
+| `mod`    | `( x y -- x%y )`         |                      |
+| `inc`    | `( x -- x+1 )`           |                      |
+| `dec`    | `( x -- x-1 )`           |                      |
+| `neg`    | `( x -- -x )`            |                      |
+| `even`   | `( x -- bool )`          | true, if `x` is even |
+| `odd`    | `( x -- bool )`          | true, if `x` is odd  |
+| `min`    | `( x y -- min(x, y) )`   |                      |
+| `max`    | `( x y -- max(x, y) )`   |                      |
+| `log`    | `( x -- log(x) )`        |                      |
+| `pow`    | `( x y -- pow(x, y) )`   |                      |
+| `rand`   | `( -- Math.random() )`   |                      |
+| `sqrt`   | `( x -- sqrt(x) )`       |                      |
+| `sin`    | `( x -- sin(x) )`        |                      |
+| `cos`    | `( x -- cos(x) )`        |                      |
+| `atan2`  | `( x y -- atan2(y, x) )` |                      |
+| `lsl`    | `( x y -- x<<y )`        |                      |
+| `lsr`    | `( x y -- x>>y )`        |                      |
+| `lsru`   | `( x y -- x>>>y )`       |                      |
+| `bitand` | `( x y -- x&y )`         |                      |
+| `bitor`  | `( x y -- x\|y )`        |                      |
+| `bitxor` | `( x y -- x^y )`         |                      |
+| `bitnot` | `( x -- ~x )`            |                      |
 
 ### Logic
 
-| Word | Stack effect |
-| --- | --- |
-| `eq` | `( x y -- x===y )` |
-| `equiv` | `( x y -- equiv(x,y) )` |
-| `neq` | `( x y -- x!==y )` |
-| `and` | `( x y -- x&&y )` |
-| `or` | `( x y -- x\|\|y )` |
-| `not` | `( x -- !x )` |
-| `lt` | `( x y -- x<y )` |
-| `gt` | `( x y -- x>y )` |
-| `lteq` | `( x y -- x<=y )` |
-| `gteq` | `( x y -- x>=y )` |
-| `iszero` | `( x -- x===0 )` |
-| `ispos` | `( x -- x>0 )` |
-| `isneg` | `( x -- x<0 )` |
-| `isnull` | `( x -- x==null )` |
+| Word     | Stack effect            |
+|----------|-------------------------|
+| `eq`     | `( x y -- x===y )`      |
+| `equiv`  | `( x y -- equiv(x,y) )` |
+| `neq`    | `( x y -- x!==y )`      |
+| `and`    | `( x y -- x&&y )`       |
+| `or`     | `( x y -- x\|\|y )`     |
+| `not`    | `( x -- !x )`           |
+| `lt`     | `( x y -- x<y )`        |
+| `gt`     | `( x y -- x>y )`        |
+| `lteq`   | `( x y -- x<=y )`       |
+| `gteq`   | `( x y -- x>=y )`       |
+| `iszero` | `( x -- x===0 )`        |
+| `ispos`  | `( x -- x>0 )`          |
+| `isneg`  | `( x -- x<0 )`          |
+| `isnull` | `( x -- x==null )`      |
 
 ### Environment
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `load` | `( k -- env[k] )` | pushes `env[k]` on d-stack |
-| `store` | `( x k -- )` | stores TOS as `env[k]` |
-| `loadkey(k)` | `( -- env[k] )` | like `load` w/ predefined key |
-| `storekey(k)` | `( x -- )` | like `store` w/ predefined key |
-| `pushenv` | `( -- env )` | pushes curr env on d-stack |
+| Word          | Stack effect      | Description                    |
+|---------------|-------------------|--------------------------------|
+| `load`        | `( k -- env[k] )` | pushes `env[k]` on d-stack     |
+| `store`       | `( x k -- )`      | stores TOS as `env[k]`         |
+| `loadkey(k)`  | `( -- env[k] )`   | like `load` w/ predefined key  |
+| `storekey(k)` | `( x -- )`        | like `store` w/ predefined key |
+| `pushenv`     | `( -- env )`      | pushes curr env on d-stack     |
 
 ### Arrays, objects, strings
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `at` | `( obj k -- obj[k] )` | `obj` can be array/obj/string |
-| `bindkeys` | `(v1 v2 .. [k1 k2 ..] obj -- obj )` | bind key/value pairs in `obj` |
-| `collect` | `( ... n -- [...] )` | tuple of top `n` vals |
-| `foldl` | `( arr q init -- x )` | like `mapl`, but w/ `init` val for reduction |
-| `length` | `( x -- x.length )` | length of arraylike |
-| `list` | `( -- [] )` | create new empty array |
-| `mapl` | `( arr q -- ? )` | transform array w/ quotation (no explicit result array) |
-| `mapll` | `( arr q -- ? )` | transform array w/ quotation |
-| `obj` | `( -- {} )` | create new empty object |
-| `pushl` | `( x arr -- arr )` | push `x` on LHS of array |
-| `pushr` | `( arr x -- arr )` | push `x` on RHS of array |
-| `popr` | `( arr -- arr arr[-1] )` | extract RHS of array as new TOS |
-| `pull` | `( arr -- x arr )` | short for: `[popr, swap]` |
-| `pull2` | `( arr -- x y arr )` | short for: `[pull, pull]` |
-| `pull3` | `( arr -- x y z arr )` | short for: `[pull2, pull]` |
-| `pull4` | `( arr -- a b c d arr )` | short for: `[pull2, pull2]` |
-| `split` | `( arr x -- [...] [...] )` | split array at index `x` |
-| `setat` | `( val obj k -- obj )` | `obj` can be array/obj |
-| `tuple(n)` | `( ... -- [...] )` | HOF, like `collect`, but w/ predefined size |
-| `vec2` | `( x y -- [x, y] )` | same as `tuple(2)` |
-| `vec3` | `( x y z -- [x, y, z] )` | same as `tuple(3)` |
-| `vec4` | `( x y z w -- [x, y, z, w] )` | same as `tuple(4)` |
-| `vadd` | `( a b -- c )` | add 2 arrays (or array + scalar) |
-| `vsub` | `( a b -- c )` | subtract 2 arrays (or array + scalar) |
-| `vmul` | `( a b -- c )` | multiply 2 arrays (or array + scalar) |
-| `vdiv` | `( a b -- c )` | divide 2 arrays (or array + scalar) |
-| `op2v(f)` | `( a b -- c )` | HOF word gen, e.g. `vadd` is based on |
+| Word       | Stack effect                        | Description                                             |
+|------------|-------------------------------------|---------------------------------------------------------|
+| `at`       | `( obj k -- obj[k] )`               | `obj` can be array/obj/string                           |
+| `bindkeys` | `(v1 v2 .. [k1 k2 ..] obj -- obj )` | bind key/value pairs in `obj`                           |
+| `collect`  | `( ... n -- [...] )`                | tuple of top `n` vals                                   |
+| `foldl`    | `( arr q init -- x )`               | like `mapl`, but w/ `init` val for reduction            |
+| `length`   | `( x -- x.length )`                 | length of arraylike                                     |
+| `list`     | `( -- [] )`                         | create new empty array                                  |
+| `mapl`     | `( arr q -- ? )`                    | transform array w/ quotation (no explicit result array) |
+| `mapll`    | `( arr q -- ? )`                    | transform array w/ quotation                            |
+| `obj`      | `( -- {} )`                         | create new empty object                                 |
+| `pushl`    | `( x arr -- arr )`                  | push `x` on LHS of array                                |
+| `pushr`    | `( arr x -- arr )`                  | push `x` on RHS of array                                |
+| `popr`     | `( arr -- arr arr[-1] )`            | extract RHS of array as new TOS                         |
+| `pull`     | `( arr -- x arr )`                  | short for: `[popr, swap]`                               |
+| `pull2`    | `( arr -- x y arr )`                | short for: `[pull, pull]`                               |
+| `pull3`    | `( arr -- x y z arr )`              | short for: `[pull2, pull]`                              |
+| `pull4`    | `( arr -- a b c d arr )`            | short for: `[pull2, pull2]`                             |
+| `split`    | `( arr x -- [...] [...] )`          | split array at index `x`                                |
+| `setat`    | `( val obj k -- obj )`              | `obj` can be array/obj                                  |
+| `tuple(n)` | `( ... -- [...] )`                  | HOF, like `collect`, but w/ predefined size             |
+| `vec2`     | `( x y -- [x, y] )`                 | same as `tuple(2)`                                      |
+| `vec3`     | `( x y z -- [x, y, z] )`            | same as `tuple(3)`                                      |
+| `vec4`     | `( x y z w -- [x, y, z, w] )`       | same as `tuple(4)`                                      |
+| `vadd`     | `( a b -- c )`                      | add 2 arrays (or array + scalar)                        |
+| `vsub`     | `( a b -- c )`                      | subtract 2 arrays (or array + scalar)                   |
+| `vmul`     | `( a b -- c )`                      | multiply 2 arrays (or array + scalar)                   |
+| `vdiv`     | `( a b -- c )`                      | divide 2 arrays (or array + scalar)                     |
+| `op2v(f)`  | `( a b -- c )`                      | HOF word gen, e.g. `vadd` is based on                   |
 
 ### I/O
 
-| Word | Stack effect | Description |
-| --- | --- | --- |
-| `print` | `( x -- )` | `console.log(x)` |
-| `printds` | `( -- )` | print out D-stack |
-| `printrs` | `( -- )` | print out R-stack |
+| Word      | Stack effect | Description       |
+|-----------|--------------|-------------------|
+| `print`   | `( x -- )`   | `console.log(x)`  |
+| `printds` | `( -- )`     | print out D-stack |
+| `printrs` | `( -- )`     | print out R-stack |
 
 ### Control flow
 
@@ -955,7 +955,7 @@ Non-HOF version of `cond`, expects `test` result and both branches on
 d-stack. Executes `thenq` word/quotation if `test` is truthy, else runs
 `elseq`.
 
-```
+```forth
 ( test thenq elseq -- ? )
 ```
 
@@ -980,13 +980,13 @@ executes body. Repeats while test is truthy.
 Non-HOF version of `loop`. Expects test result and body quotation/word
 on d-stack.
 
-```
+```forth
 ( testq bodyq -- ? )
 ```
 
 #### `dotimes`
 
-```
+```forth
 ( n body -- ? )
 ```
 

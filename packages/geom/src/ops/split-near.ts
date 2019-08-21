@@ -5,14 +5,14 @@ import { closestT } from "@thi.ng/geom-closest-point";
 import { Sampler } from "@thi.ng/geom-resample";
 import { quadraticSplitNearPoint, splitCubicNearPoint } from "@thi.ng/geom-splines";
 import { clamp01 } from "@thi.ng/math";
-import { copyVectors, ReadonlyVec } from "@thi.ng/vectors";
-import {
-    Cubic,
-    Line,
-    Polyline,
-    Quadratic
-} from "../api";
+import { ReadonlyVec } from "@thi.ng/vectors";
+import { Cubic } from "../api/cubic";
+import { Line } from "../api/line";
+import { Polyline } from "../api/polyline";
+import { Quadratic } from "../api/quadratic";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
+import { pointArraysAsShapes } from "../internal/points-as-shape";
 import { splitLine } from "../internal/split";
 
 /**
@@ -49,16 +49,16 @@ splitNearPoint.addAll(<
     [Type.LINE]: ($: Line, p) => {
         const t = closestT(p, $.points[0], $.points[1]) || 0;
         return splitLine($.points[0], $.points[1], clamp01(t)).map(
-            (pts) => new Line(pts, { ...$.attribs })
+            (pts) => new Line(pts, copyAttribs($))
         );
     },
 
-    [Type.POLYLINE]: ($: Polyline, p) => {
-        const res = new Sampler($.points).splitNear(p);
-        return res
-            ? res.map((pts) => new Polyline(copyVectors(pts), { ...$.attribs }))
-            : undefined;
-    },
+    [Type.POLYLINE]: ($: Polyline, p) =>
+        pointArraysAsShapes(
+            Polyline,
+            new Sampler($.points).splitNear(p),
+            $.attribs
+        ),
 
     [Type.QUADRATIC]: ({ points, attribs }: Quadratic, p) =>
         quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(

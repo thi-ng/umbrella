@@ -1,6 +1,8 @@
 import {
+    ILogger,
     IObjectOf,
     IRelease,
+    NULL_LOGGER,
     Type,
     TypedArray
 } from "@thi.ng/api";
@@ -98,3 +100,7 @@ export const TYPE2GL: { [id: number]: GLType } = {
     [Type.U32]: GLType.U32,
     [Type.F32]: GLType.F32
 };
+
+export let LOGGER = NULL_LOGGER;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);

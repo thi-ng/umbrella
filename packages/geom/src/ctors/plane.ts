@@ -6,7 +6,7 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
-import { Plane } from "../api";
+import { Plane } from "../api/plane";
 
 export const plane = (normal: Vec, w: number, attribs?: Attribs) =>
     new Plane(normalize(null, normal), w, attribs);

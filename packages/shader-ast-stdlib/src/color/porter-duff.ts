@@ -8,9 +8,17 @@ import {
     FloatTerm,
     mul,
     ret,
-    sub
+    sub,
+    vec4,
+    Vec4Sym
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
+
+const coeff = (
+    f: Fn2<FloatTerm, FloatTerm, FloatTerm>,
+    a: Vec4Sym,
+    b: Vec4Sym
+) => (f === ZERO ? FLOAT0 : f === ONE ? a : mul(a, f($w(a), $w(b))));
 
 /**
  * Higher-order Porter-Duff alpha compositing operator. See
@@ -23,6 +31,9 @@ import { clamp01 } from "../math/clamp";
  * for src/dest colors and are called with the alpha components of both
  * colors.
  *
+ * Optimization only happens for cases where either `fa` and/or `fb` are
+ * `ZERO`.
+ *
  * @param name function name
  * @param fa src coeff fn
  * @param fb dest coeff fn
@@ -33,19 +44,15 @@ export const porterDuff = (
     fb: Fn2<FloatTerm, FloatTerm, FloatTerm>
 ) =>
     defn("vec4", name, ["vec4", "vec4"], (a, b) => {
-        const src =
-            fa === ZERO ? FLOAT0 : fa === ONE ? a : mul(a, fa($w(a), $w(b)));
-        const dest =
-            fb === ZERO ? FLOAT0 : fb === ONE ? b : mul(b, fb($w(a), $w(b)));
+        const src = coeff(fa, a, b);
+        const dest = coeff(fb, a, b);
+        const srcZero = src === FLOAT0;
+        const destZero = dest === FLOAT0;
         return [
             ret(
-                clamp01(
-                    src === FLOAT0
-                        ? dest
-                        : dest === FLOAT0
-                        ? src
-                        : add(src, dest)
-                )
+                srcZero && destZero
+                    ? vec4()
+                    : clamp01(srcZero ? dest : destZero ? src : add(src, dest))
             )
         ];
     });

@@ -6,6 +6,9 @@ import {
 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { EquivSetOpts, IEquivSet } from "./api";
+import { dissoc } from "./dissoc";
+import { equivSet } from "./internal/equiv";
+import { into } from "./into";
 
 interface ArraySetProps<T> {
     vals: T[];
@@ -13,6 +16,8 @@ interface ArraySetProps<T> {
 }
 
 const __private = new WeakMap<ArraySet<any>, ArraySetProps<any>>();
+
+const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
 
 /**
  * An alternative set implementation to the native ES6 Set type. Uses
@@ -34,7 +39,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *[Symbol.iterator](): IterableIterator<T> {
-        yield* __private.get(this)!.vals;
+        yield* __vals(this);
     }
 
     get [Symbol.species]() {
@@ -46,7 +51,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     get size(): number {
-        return __private.get(this)!.vals.length;
+        return __vals(this).length;
     }
 
     copy(): ArraySet<T> {
@@ -61,56 +66,53 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     clear() {
-        __private.get(this)!.vals.length = 0;
+        __vals(this).length = 0;
     }
 
     first(): T | undefined {
         if (this.size) {
-            return __private.get(this)!.vals[0];
+            return __vals(this)[0];
         }
     }
 
-    add(x: T) {
-        !this.has(x) && __private.get(this)!.vals.push(x);
+    add(key: T) {
+        !this.has(key) && __vals(this).push(key);
         return this;
     }
 
-    into(xs: Iterable<T>) {
-        for (let x of xs) {
-            this.add(x);
-        }
-        return this;
+    into(keys: Iterable<T>) {
+        return <this>into(this, keys);
     }
 
-    has(x: T) {
-        return this.get(x, <any>SEMAPHORE) !== <any>SEMAPHORE;
+    has(key: T) {
+        return this.get(key, <any>SEMAPHORE) !== <any>SEMAPHORE;
     }
 
     /**
      * Returns the canonical value for `x`, if present. If the set
      * contains no equivalent for `x`, returns `notFound`.
      *
-     * @param x
+     * @param key
      * @param notFound
      */
-    get(x: T, notFound?: T): T | undefined {
+    get(key: T, notFound?: T): T | undefined {
         const $this = __private.get(this)!;
         const eq = $this.equiv;
         const vals = $this.vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
-            if (eq(vals[i], x)) {
+        for (let i = vals.length; --i >= 0; ) {
+            if (eq(vals[i], key)) {
                 return vals[i];
             }
         }
         return notFound;
     }
 
-    delete(x: T) {
+    delete(key: T) {
         const $this = __private.get(this)!;
         const eq = $this.equiv;
         const vals = $this.vals;
-        for (let i = vals.length - 1; i >= 0; i--) {
-            if (eq(vals[i], x)) {
+        for (let i = vals.length; --i >= 0; ) {
+            if (eq(vals[i], key)) {
                 vals.splice(i, 1);
                 return true;
             }
@@ -118,34 +120,16 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         return false;
     }
 
-    disj(xs: Iterable<T>) {
-        for (let x of xs) {
-            this.delete(x);
-        }
-        return this;
+    disj(keys: Iterable<T>) {
+        return <this>dissoc(this, keys);
     }
 
     equiv(o: any) {
-        if (this === o) {
-            return true;
-        }
-        if (!(o instanceof Set)) {
-            return false;
-        }
-        if (this.size !== o.size) {
-            return false;
-        }
-        const vals = __private.get(this)!.vals;
-        for (let i = vals.length; --i >= 0; ) {
-            if (!o.has(vals[i])) {
-                return false;
-            }
-        }
-        return true;
+        return equivSet(this, o);
     }
 
     forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
-        const vals = __private.get(this)!.vals;
+        const vals = __vals(this);
         for (let i = vals.length; --i >= 0; ) {
             const v = vals[i];
             fn.call(thisArg, v, v, this);
@@ -153,17 +137,17 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     *entries(): IterableIterator<Pair<T, T>> {
-        for (let v of __private.get(this)!.vals) {
+        for (let v of __vals(this)) {
             yield [v, v];
         }
     }
 
     *keys(): IterableIterator<T> {
-        yield* __private.get(this)!.vals;
+        yield* __vals(this);
     }
 
     *values(): IterableIterator<T> {
-        yield* this.keys();
+        yield* __vals(this);
     }
 
     opts(): EquivSetOpts<T> {
