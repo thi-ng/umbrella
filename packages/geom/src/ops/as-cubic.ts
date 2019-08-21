@@ -1,10 +1,9 @@
 import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
 import { CubicOpts, IShape, Type } from "@thi.ng/geom-api";
-import { closedCubicFromBreakPoints, closedCubicFromControlPoints, cubicFromArc } from "@thi.ng/geom-splines";
+import { closedCubicFromBreakPoints, closedCubicFromControlPoints } from "@thi.ng/geom-splines";
 import { TAU } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
-import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";
 import { Group } from "../api/group";
@@ -14,7 +13,7 @@ import { Polygon } from "../api/polygon";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { arc } from "../ctors/arc";
-import { cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
+import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
@@ -24,10 +23,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 );
 
 asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
-    [Type.ARC]: ($: Arc) =>
-        cubicFromArc($.pos, $.r, $.axis, $.start, $.end).map(
-            (c) => new Cubic(c, copyAttribs($))
-        ),
+    [Type.ARC]: cubicFromArc,
 
     [Type.CIRCLE]: ($: Circle) =>
         asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
