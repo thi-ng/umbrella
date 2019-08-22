@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { IObjectOf, Tuple } from "@thi.ng/api";
 import { IAtom } from "@thi.ng/atom";
 import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -269,6 +269,20 @@ export const node1 = (
     ensureInputs(src, [inputID], id),
     xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe({}, id)
 );
+
+/**
+ * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default
+ * named `a` & `b` (but can be overridden).
+ *
+ * @param xform
+ * @param inputIDs
+ * @param reset
+ */
+export const node2 = (
+    xform: Transducer<IObjectOf<any>, any>,
+    inputIDs: Tuple<string, 2> = ["a", "b"],
+    reset = false
+) => node(xform, inputIDs, reset);
 
 /**
  * Helper function to verify given object of inputs has required input IDs.
