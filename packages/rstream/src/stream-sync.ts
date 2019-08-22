@@ -44,6 +44,18 @@ export interface StreamSyncOpts<A, B>
      * the `all` to false.
      */
     all: boolean;
+    /**
+     * If > 0, then each labeled input will cache upto the stated number
+     * of input values, even if other inputs have not yet produced new
+     * values. Once the limit is reached, `partitionSync()` will throw
+     * an `IllegalState` error.
+     *
+     * Enabling this option will cause the same behavior as if `reset`
+     * is enabled (regardless of the actual configured `reset` setting).
+     * I.e. new results are only produced when ALL required inputs have
+     * available values...
+     */
+    backPressure: number;
 }
 
 /**
@@ -125,7 +137,8 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             key: (x) => x[0],
             mergeOnly: opts.mergeOnly === true,
             reset: opts.reset === true,
-            all: opts.all !== false
+            all: opts.all !== false,
+            backPressure: opts.backPressure || 0
         });
         const mapv = mapVals((x: [string, A]) => x[1]);
         super(

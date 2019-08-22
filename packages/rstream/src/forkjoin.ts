@@ -72,6 +72,18 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
      * Default: 1000
      */
     terminate?: number;
+    /**
+     * If > 0, then each labeled input will cache upto the stated number
+     * of input values, even if other inputs have not yet produced new
+     * values. Once the limit is reached, `partitionSync()` will throw
+     * an `IllegalState` error.
+     *
+     * Enabling this option will cause the same behavior as if `reset`
+     * is enabled (regardless of the actual configured `reset` setting).
+     * I.e. new results are only produced when ALL required inputs have
+     * available values...
+     */
+    backPressure?: number;
 }
 
 /**
@@ -113,6 +125,7 @@ export const forkJoin = <IN, MSG, RES, OUT>(
             // apply user join function
             map(opts.join)
         ),
-        reset: true
+        reset: true,
+        backPressure: opts.backPressure
     });
 };
