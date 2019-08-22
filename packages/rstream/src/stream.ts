@@ -82,12 +82,8 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
         this.src = _src;
     }
 
-    subscribe<C>(
-        sub: Partial<ISubscriber<C>>,
-        xform: Transducer<T, C>,
-        id?: string
-    ): Subscription<T, C>;
-    // subscribe<S extends Subscription<T, C>, C>(sub: S): S;
+    // prettier-ignore
+    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
     subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
     subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
     subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;

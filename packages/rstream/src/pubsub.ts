@@ -81,39 +81,22 @@ export class PubSub<A, B> extends Subscription<A, B> {
         return unsupported(`use subscribeTopic() instead`);
     }
 
-    subscribeTopic<C>(
-        topicID: any,
-        tx: Transducer<B, C>,
-        id?: string
-    ): Subscription<B, C>;
-    // subscribeTopic<S extends Subscription<B, C>, C>(topicID: any, sub: S): S;
-    subscribeTopic<C>(
-        topicID: any,
-        sub: Subscription<B, C>
-    ): Subscription<B, C>;
-    subscribeTopic(
-        topicID: any,
-        sub: Partial<ISubscriber<B>>,
-        id?: string
-    ): Subscription<B, B>;
-    subscribeTopic(
-        topicID: any,
-        sub: any,
-        id?: string
-    ): Subscription<any, any> {
+    // prettier-ignore
+    subscribeTopic<C>( topicID: any, tx: Transducer<B, C>, id?: string): Subscription<B, C>;
+    // prettier-ignore
+    subscribeTopic<C>(topicID: any, sub: Subscription<B, C>): Subscription<B, C>;
+    // prettier-ignore
+    subscribeTopic(topicID: any, sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
+    // prettier-ignore
+    subscribeTopic(topicID: any, sub: any, id?: string): Subscription<any, any> {
         let t = this.topics.get(topicID);
-        if (!t) {
-            this.topics.set(topicID, (t = subscription<B, B>()));
-        }
+        !t && this.topics.set(topicID, (t = subscription<B, B>()));
         return t.subscribe(sub, id);
     }
 
     unsubscribeTopic(topicID: any, sub: Subscription<B, any>) {
-        let t = this.topics.get(topicID);
-        if (t) {
-            return t.unsubscribe(sub);
-        }
-        return false;
+        const t = this.topics.get(topicID);
+        return t ? t.unsubscribe(sub) : false;
     }
 
     unsubscribe(sub?: Subscription<B, any>) {

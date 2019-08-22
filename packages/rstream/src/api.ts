@@ -89,6 +89,16 @@ export interface ISubscribable<T> extends IDeref<T>, IID<string> {
     getState(): State;
 }
 
+export interface ITransformable<B> {
+    transform<C>(a: Transducer<B, C>, id?: string): Subscription<B, C>;
+    // prettier-ignore
+    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, id?: string): Subscription<B, D>;
+    // prettier-ignore
+    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, id?: string): Subscription<B, E>;
+    // prettier-ignore
+    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, id?: string): Subscription<B, F>;
+}
+
 export interface ISubscribableSubscriber<T>
     extends ISubscriber<T>,
         ISubscribable<any> {}

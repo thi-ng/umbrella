@@ -13,6 +13,7 @@ import {
     CloseMode,
     ISubscribable,
     ISubscriber,
+    ITransformable,
     LOGGER,
     State,
     SubscriptionOpts
@@ -59,7 +60,7 @@ export const subscription = <A, B>(
 ) => new Subscription(sub, opts);
 
 export class Subscription<A, B>
-    implements IDeref<B>, ISubscriber<A>, ISubscribable<B> {
+    implements IDeref<B>, ISubscriber<A>, ISubscribable<B>, ITransformable<B> {
     id: string;
 
     closeIn: CloseMode;
@@ -106,11 +107,8 @@ export class Subscription<A, B>
      * Creates new child subscription with given subscriber and/or
      * transducer and optional subscription ID.
      */
-    subscribe<C>(
-        sub: Partial<ISubscriber<C>>,
-        xform: Transducer<B, C>,
-        id?: string
-    ): Subscription<B, C>;
+    // prettier-ignore
+    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>;
     // subscribe<S extends Subscription<B, C>, C>(sub: S): S;
     subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
     subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
@@ -172,24 +170,12 @@ export class Subscription<A, B>
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
     transform<C>(a: Transducer<B, C>, id?: string): Subscription<B, C>;
-    transform<C, D>(
-        a: Transducer<B, C>,
-        b: Transducer<C, D>,
-        id?: string
-    ): Subscription<B, D>;
-    transform<C, D, E>(
-        a: Transducer<B, C>,
-        b: Transducer<C, D>,
-        c: Transducer<D, E>,
-        id?: string
-    ): Subscription<B, E>;
-    transform<C, D, E, F>(
-        a: Transducer<B, C>,
-        b: Transducer<C, D>,
-        c: Transducer<D, E>,
-        d: Transducer<E, F>,
-        id?: string
-    ): Subscription<B, F>;
+    // prettier-ignore
+    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, id?: string): Subscription<B, D>;
+    // prettier-ignore
+    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, id?: string): Subscription<B, E>;
+    // prettier-ignore
+    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, id?: string): Subscription<B, F>;
     transform(...xf: any[]) {
         const n = xf.length - 1;
         if (isString(xf[n])) {
