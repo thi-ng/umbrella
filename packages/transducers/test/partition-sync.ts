@@ -64,4 +64,31 @@ describe("partitionSync", () => {
             b: ["b", 2]
         });
     });
+
+    it("back pressure", () => {
+        assert.deepEqual(
+            [
+                ...partitionSync(
+                    ["a", "b", "c"],
+                    { backPressure: 3, key: (x) => x[0], all: false },
+                    // prettier-ignore
+                    ["a1", "b1", "a2", "c1", "c2", "a3", "a4", "b2", "c3", "b3", "b4", "c4", "c5"]
+                )
+            ],
+            [
+                { a: "a1", b: "b1", c: "c1" },
+                { a: "a2", c: "c2", b: "b2" },
+                { a: "a3", c: "c3", b: "b3" },
+                { a: "a4", b: "b4", c: "c4" }
+            ]
+        );
+        assert.throws(() => [
+            ...partitionSync(
+                ["a", "b"],
+                { backPressure: 1, key: (x) => x[0] },
+                ["a1", "a2"]
+            ),
+            "pressure limit"
+        ]);
+    });
 });
