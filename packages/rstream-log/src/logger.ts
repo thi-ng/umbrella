@@ -49,37 +49,27 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
     }
 
     fine(...args: any[]) {
-        this.level <= LogLevel.FINE &&
-            super.next(<LogEntry>[LogLevel.FINE, this.id, Date.now(), ...args]);
+        this.log(LogLevel.FINE, args);
     }
 
     debug(...args: any[]) {
-        this.level <= LogLevel.DEBUG &&
-            super.next(<LogEntry>[
-                LogLevel.DEBUG,
-                this.id,
-                Date.now(),
-                ...args
-            ]);
+        this.log(LogLevel.DEBUG, args);
     }
 
     info(...args: any[]) {
-        this.level <= LogLevel.INFO &&
-            super.next(<LogEntry>[LogLevel.INFO, this.id, Date.now(), ...args]);
+        this.log(LogLevel.INFO, args);
     }
 
     warn(...args: any[]) {
-        this.level <= LogLevel.WARN &&
-            super.next(<LogEntry>[LogLevel.WARN, this.id, Date.now(), ...args]);
+        this.log(LogLevel.WARN, args);
     }
 
     severe(...args: any[]) {
-        this.level <= LogLevel.SEVERE &&
-            super.next(<LogEntry>[
-                LogLevel.SEVERE,
-                this.id,
-                Date.now(),
-                ...args
-            ]);
+        this.log(LogLevel.SEVERE, args);
+    }
+
+    protected log(level: LogLevel, args: any[]) {
+        this.level <= level &&
+            super.next(<LogEntry>[level, this.id, Date.now(), ...args]);
     }
 }
