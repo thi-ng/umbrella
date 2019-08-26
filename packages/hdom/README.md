@@ -153,7 +153,7 @@ diffing via RAF).
 ```ts
 import { fromInterval, stream, sync } from "@thi.ng/rstream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map, scan } from "@thi.ng/transducers";
+import { map, scan, count } from "@thi.ng/transducers";
 
 // root component function
 const app = ({ ticks, clicks }) =>
@@ -165,7 +165,7 @@ const app = ({ ticks, clicks }) =>
     ];
 
 // transformed stream to count clicks
-const clickStream = stream().transform(scan(tx.count(-1)));
+const clickStream = stream().transform(scan(count(-1)));
 // seed
 clickStream.next(0);
 
