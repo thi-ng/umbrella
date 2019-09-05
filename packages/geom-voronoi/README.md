@@ -53,7 +53,7 @@ yarn add @thi.ng/geom-voronoi
 
 ## Usage examples
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom-voronoi.jpg)
+![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
 
 ```ts
 import { DVMesh } from "@thi.ng/geom-voronoi";

@@ -42,7 +42,7 @@ Animated version:
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) |
 [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom-isoline.png)
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png)
 
 ```ts
 import * as g from "@thi.ng/geom";

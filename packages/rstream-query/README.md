@@ -162,7 +162,7 @@ addCity("paris", "france");
 After setting up the above query and its internal transformations, the
 generated dataflow topology then looks as follows:
 
-![graphviz output](../../assets/rs-query1.svg)
+![graphviz output](../../assets/examples/rs-query1.svg)
 
 - The blue nodes are `TripleStore`-internal index stream sources,
   emitting changes when new triples are added
