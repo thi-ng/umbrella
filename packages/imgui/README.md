@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/imgui-all.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 
 Currently still somewhat bare-bones, but already usable & customizable [immediate
 mode GUI](https://github.com/ocornut/imgui#references) implementation,
@@ -136,7 +136,7 @@ The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui-layout.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-layout.png)
 
 The code producing this structure:
 

@@ -48,7 +48,7 @@ yarn add @thi.ng/poisson
 
 ## Usage examples
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/poisson.jpg)
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/poisson.jpg)
 
 ```ts
 import { samplePoisson } from "@thi.ng/poisson";
