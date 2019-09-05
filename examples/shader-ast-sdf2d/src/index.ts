@@ -17,7 +17,7 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
-import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
+import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
 import {
     aspectCorrectedUV,
     fit1101,
@@ -114,10 +114,10 @@ if (JS_MODE) {
     // JS Canvas 2D shader emulation from here...
     //
     const fn = JS.compile(shaderProgram).mainImage;
-    const rt = initRuntime({ canvas });
+    const rt = canvasRenderer(canvas);
 
     setInterval(() => {
-        rt.update((frag) => fn(frag, size));
+        rt((frag) => fn(frag, size));
     }, 16);
 } else {
     //

@@ -17,7 +17,7 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
-import { initRuntime, targetJS } from "@thi.ng/shader-ast-js";
+import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
 import { fit0111, fit1101 } from "@thi.ng/shader-ast-stdlib";
 
 const js = targetJS();
@@ -80,10 +80,10 @@ canvas.width = W;
 canvas.height = H;
 document.body.appendChild(canvas);
 
-const rt = initRuntime({ canvas });
+const rt = canvasRenderer(canvas);
 const t0 = Date.now();
 
 setInterval(() => {
     const time = (Date.now() - t0) * 0.001;
-    rt.update((frag) => fn(frag, size, time));
+    rt((frag) => fn(frag, size, time));
 }, 16);
