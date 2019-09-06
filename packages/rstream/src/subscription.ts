@@ -241,7 +241,7 @@ export class Subscription<A, B>
     }
 
     done() {
-        LOGGER.debug(this.id, "done start");
+        LOGGER.debug(this.id, "entering done()");
         if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[1]([]);
@@ -292,7 +292,7 @@ export class Subscription<A, B>
         this.cacheLast && (this.last = x);
         const subs = this.subs;
         let s: ISubscriber<B>;
-        if (subs.length == 1) {
+        if (subs.length === 1) {
             s = subs[0];
             try {
                 s.next && s.next(x);
@@ -300,7 +300,7 @@ export class Subscription<A, B>
                 s.error ? s.error(e) : this.error(e);
             }
         } else {
-            for (let i = subs.length - 1; i >= 0; i--) {
+            for (let i = subs.length; --i >= 0; ) {
                 s = subs[i];
                 try {
                     s.next && s.next(x);
