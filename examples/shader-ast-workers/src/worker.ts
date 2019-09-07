@@ -46,12 +46,10 @@ import {
     step
 } from "@thi.ng/transducers";
 import { sma } from "@thi.ng/transducers-stats";
-import { WorkerJob, WorkerResult } from "./api";
+import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
 // color table to tint each worker's region
-const COLORS = [
-    ...map((i) => hueRgba([], i), normRange(navigator.hardwareConcurrency))
-];
+const COLORS = [...map((i) => hueRgba([], i), normRange(NUM_WORKERS))];
 
 // shader AST functions from the shader-ast-raymarch example
 const scene = defn("vec2", "scene", ["vec3"], (pos) => {

@@ -11,3 +11,5 @@ export interface WorkerResult {
     buf: Uint32Array;
     stats: number[];
 }
+
+export const NUM_WORKERS = navigator.hardwareConcurrency || 4;

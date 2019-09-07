@@ -3,14 +3,13 @@ import { fitClamped } from "@thi.ng/math";
 import { canvasPixels } from "@thi.ng/pixel";
 import { forkJoin, stream } from "@thi.ng/rstream";
 import { bounds } from "@thi.ng/transducers-stats";
-import { WorkerJob, WorkerResult } from "./api";
+import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
 const W = 256;
 const H = 256;
 
-const numWorkers = navigator.hardwareConcurrency;
-const rowsPerSlice = H / numWorkers;
-const pixelsPerSlice = (W * H) / numWorkers;
+const rowsPerSlice = H / NUM_WORKERS;
+const pixelsPerSlice = (W * H) / NUM_WORKERS;
 
 const canvas = canvasPixels(W, H);
 document.body.appendChild(canvas.canvas);
@@ -42,11 +41,11 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
         time.next(time.deref() + 0.05);
     },
     worker: "./worker.js",
-    numWorkers
+    numWorkers: NUM_WORKERS
 });
 
 const updatePixels = (parts: WorkerResult[]) => {
-    for (let i = 0; i < numWorkers; i++) {
+    for (let i = 0; i < NUM_WORKERS; i++) {
         imgU32.set(parts[i].buf, i * pixelsPerSlice);
     }
     canvas.ctx.putImageData(canvas.img, 0, 0);
@@ -54,7 +53,7 @@ const updatePixels = (parts: WorkerResult[]) => {
 
 const drawStats = (parts: WorkerResult[]) => {
     canvas.ctx.strokeStyle = "white";
-    for (let i = 0; i < numWorkers; i++) {
+    for (let i = 0; i < NUM_WORKERS; i++) {
         const x = i * 32 + 4;
         const stats = parts[i].stats;
         if (stats && x < W) {
