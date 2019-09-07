@@ -18,7 +18,7 @@ import { optsWithID } from "./utils/idgen";
  * the function returns null/undefined, no further action will be taken
  * (acts like a filter transducer).
  *
- * ```
+ * ```ts
  * // transform each received odd number into a stream
  * // producing 3 copies of that number in the metastream
  * // even numbers are ignored

@@ -35,7 +35,11 @@ import { nextID } from "./utils/idgen";
  *   subscribers has an error handler itself
  * - implement the @thi.ng/api `IDeref` interface
  *
- * ```
+ * Subscription behavior can be customized via the additional (optional)
+ * options arg. See `CommonOpts` and `SubscriptionOpts` for further
+ * details.
+ *
+ * ```ts
  * // as reactive value mechanism (same as with stream() above)
  * s = rs.subscription();
  * s.subscribe(trace("s1"));
@@ -50,9 +54,7 @@ import { nextID } from "./utils/idgen";
  * ```
  *
  * @param sub
- * @param xform
- * @param parent
- * @param id
+ * @param opts
  */
 export const subscription = <A, B>(
     sub?: ISubscriber<B>,

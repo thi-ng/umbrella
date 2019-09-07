@@ -19,14 +19,26 @@ export const enum State {
 }
 
 /**
- * Closing behavior for `StreamMerge` and `StreamSync`.
+ * Closing behaviors.
  */
 export const enum CloseMode {
+    /**
+     * Never close, even if no more inputs/outputs.
+     */
     NEVER,
+    /**
+     * Close when first input/output is done / removed.
+     */
     FIRST,
+    /**
+     * Close when last input/output is done / removed.
+     */
     LAST
 }
 
+/**
+ * Common base options for all stream / subscription types.
+ */
 export interface CommonOpts {
     /**
      * Internal ID associated with this stream. If omitted, an
@@ -57,10 +69,18 @@ export interface CommonOpts {
 }
 
 export interface TransformableOpts<A, B> extends CommonOpts {
+    /**
+     * Transducer to transform incoming stream values. If given, all
+     * child subscriptions will only receive the transformed result
+     * values.
+     */
     xform: Transducer<A, B>;
 }
 
 export interface SubscriptionOpts<A, B> extends TransformableOpts<A, B> {
+    /**
+     * Parent stream / subscription.
+     */
     parent: ISubscribable<A>;
 }
 

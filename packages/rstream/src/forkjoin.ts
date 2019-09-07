@@ -10,10 +10,6 @@ import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";
 import { Subscription } from "./subscription";
 
-type Sliceable<T> = ArrayLike<T> & {
-    slice(a: number, b?: number): Sliceable<T>;
-};
-
 export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
     /**
      * Input stream to attach to obtain work items from.
@@ -103,11 +99,12 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
 }
 
 /**
- * Creates a new `StreamSync` instance which uses multiple subscriptions
- * to given input stream `src` and processes each in parallel via web
- * workers.
+ * Creates a new `StreamSync` instance which creates & attaches multiple
+ * subscriptions to given `src` input stream, processes each in parallel
+ * via web workers, then recombines results and passes final transformed
+ * value downstream.
  *
- * See `ForkJoinOpts` for further details.
+ * See `ForkJoinOpts` for further details & behavior options.
  *
  * @param src input stream
  * @param opts
@@ -144,6 +141,10 @@ export const forkJoin = <IN, MSG, RES, OUT>(
         reset: true,
         backPressure: opts.backPressure
     });
+};
+
+type Sliceable<T> = ArrayLike<T> & {
+    slice(a: number, b?: number): Sliceable<T>;
 };
 
 /**
