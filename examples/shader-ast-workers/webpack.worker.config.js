@@ -1,7 +1,7 @@
 module.exports = {
     entry: "./src/worker.ts",
     output: {
-        filename: "worker.[hash].js",
+        filename: "worker.js",
         path: __dirname + "/out"
     },
     resolve: {
