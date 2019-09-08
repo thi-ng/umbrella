@@ -255,10 +255,14 @@ export class Subscription<A, B>
             }
             this.state = State.DONE;
             for (let s of [...this.subs]) {
-                s.done && s.done();
+                try {
+                    s.done && s.done();
+                } catch (e) {
+                    s.error ? s.error(e) : this.error(e);
+                }
             }
             this.unsubscribe();
-            LOGGER.debug(this.id, "done");
+            LOGGER.debug(this.id, "exiting done()");
         }
     }
 
