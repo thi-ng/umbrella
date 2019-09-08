@@ -8,17 +8,22 @@
 
 ## About
 
-Mono-repository for almost 100 thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 100+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
 - Functional programming (composition, memoization, transducers, multi-methods)
 - Stream based, reactive programming, dataflow graphs / pipelines
-- Data structures & data transformations for wide range of use cases
+- WebWorker workflow abstractions
+- Data structures & data transformations for wide range of use cases (list, sets, maps)
+- Value-based equivalence
 - Data driven UI components, event & side effect handling
-- Immutable data handling
+- Immediate mode GUI components
+- Immutable data handling, state containers, Undo-Redo history
 - Geometry generation, processing & visualization
 - Vector & matrix implementations with optional support for strided layouts
+- Color space conversions, cosine gradients
+- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
 - Declarative WebGL 1/2 abstraction layer
 - DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
 - Low-level tooling for binary data, shared memory / WASM / WebGL interop
@@ -78,7 +83,8 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are only available on their respective feature branches)
 
-- @thi.ng/scenegraph (not yet pushed) - 2D/3D scenegraph
+- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators) - 2D grid coordinate iterators
+- [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
 - [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/feature/shadertoy/packages/webgl-shadertoy) - WebGL shadertoy-like setup
 
 ### Fundamentals
