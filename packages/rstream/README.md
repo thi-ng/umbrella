@@ -43,15 +43,18 @@ This library provides & uses three key building blocks for reactive
 programming:
 
 -   **Stream sources**: event targets, iterables, timers, promises,
-    watches, workers, CSP channels, custom...
+    watches, workers, manual-push...
 -   **Subscriptions**: chained stream processors, each subscribable
     (one-to-many) itself
 -   **Transducers**: stream transformers, either as individual
-    subscription or to transform values for a single subscription. See
+    subscription or to transform incoming values for a single
+    subscription. See
     [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
     for 100+ composable operators.
 -   **Recursive teardown**: Whenever possible, any unsubscription
     initiates cleanup and propagates to parent(s).
+-   **Workers**: highly configurable, web worker integration for
+    concurrent / parallel stream processing
 
 ## Support packages
 
@@ -580,6 +583,53 @@ fromInterval(500)
 ```
 
 ### Worker support
+
+#### [forkJoin()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/forkjoin.ts)
+
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-forkjoin.png)
+
+##### worker.ts
+
+```ts
+const $self: Worker = <any>self;
+self.addEventListener("message", (e) => {
+    const { buf, factor } = e.data;
+    $self.postMessage(buf.map((x) => x * factor));
+});
+```
+
+##### main.ts
+
+```ts
+const src = stream<number[]>();
+
+// fork worker jobs & re-join results
+forkJoin({
+    src: src,
+    // worker job preparation
+    // this function is called for each worker ID and the results
+    // of that function are the messages sent to the workers...
+    fork: (id, numWorkers, buf) => {
+        const size = (buf.length / numWorkers) | 0;
+        return {
+            buf: id < numWorkers - 1
+                    ? buf.slice(id * size, (id + 1) * size)
+                    : buf.slice(id * size),
+            factor: id * 10
+        };
+    },
+    // re-join worker results
+    join: (parts) => <number[]>Array.prototype.concat.apply([], parts),
+    // worker script
+    worker: "./worker.js",
+    // default: navigator.hardwareConcurrency
+    numWorkers: 4
+}).subscribe(trace("results"));
+
+src.next(new Array(16).fill(1));
+
+// result: [0, 0, 0, 0, 10, 10, 10, 10, 20, 20, 20, 20, 30, 30, 30, 30]
+```
 
 #### [tunnel()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/tunnel.ts)
 
