@@ -20,28 +20,26 @@ interface _IEnable extends IEnable<any> {
 export const IEnableMixin = mixin(<IEnable<any>>{
     _enabled: true,
 
-    isEnabled() {
-        return (<_IEnable>this)._enabled;
+    isEnabled(this: _IEnable) {
+        return this._enabled;
     },
 
-    enable() {
-        const $this = <_IEnable>this;
-        $this._enabled = true;
-        if ($this.notify) {
-            $this.notify({ id: EVENT_ENABLE, target: this });
+    enable(this: _IEnable) {
+        this._enabled = true;
+        if (this.notify) {
+            this.notify({ id: EVENT_ENABLE, target: this });
         }
     },
 
-    disable() {
-        const $this = <_IEnable>this;
-        $this._enabled = false;
-        if ($this.notify) {
-            $this.notify({ id: EVENT_DISABLE, target: this });
+    disable(this: _IEnable) {
+        this._enabled = false;
+        if (this.notify) {
+            this.notify({ id: EVENT_DISABLE, target: this });
         }
     },
 
-    toggle() {
-        (<_IEnable>this)._enabled ? this.disable() : this.enable();
-        return (<_IEnable>this)._enabled;
+    toggle(this: _IEnable) {
+        this._enabled ? this.disable() : this.enable();
+        return this._enabled;
     }
 });

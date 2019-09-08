@@ -29,24 +29,24 @@ export const inotify_dispatch = (listeners: any[][], e: Event) => {
  * registered listeners.
  */
 export const INotifyMixin = mixin(<INotify>{
-    addListener(id: string, fn: Listener, scope?: any) {
-        let l = ((<_INotify>this)._listeners =
-            (<_INotify>this)._listeners || {})[id];
+    addListener(this: _INotify, id: string, fn: Listener, scope?: any) {
+        let l = (this._listeners =
+            this._listeners || {})[id];
         if (!l) {
-            l = (<any>this)._listeners[id] = [];
+            l = this._listeners[id] = [];
         }
-        if ((<_INotify>this).__listener(l, fn, scope) === -1) {
+        if (this.__listener(l, fn, scope) === -1) {
             l.push([fn, scope]);
             return true;
         }
         return false;
     },
 
-    removeListener(id: string, fn: Listener, scope?: any) {
-        if (!(<_INotify>this)._listeners) return false;
-        const l = (<_INotify>this)._listeners[id];
+    removeListener(this: _INotify, id: string, fn: Listener, scope?: any) {
+        if (!this._listeners) return false;
+        const l = this._listeners[id];
         if (l) {
-            const idx = (<_INotify>this).__listener(l, fn, scope);
+            const idx = this.__listener(l, fn, scope);
             if (idx !== -1) {
                 l.splice(idx, 1);
                 return true;
@@ -55,11 +55,11 @@ export const INotifyMixin = mixin(<INotify>{
         return false;
     },
 
-    notify(e: Event) {
-        if (!(<_INotify>this)._listeners) return;
+    notify(this: _INotify, e: Event) {
+        if (!this._listeners) return;
         e.target === undefined && (e.target = this);
-        inotify_dispatch((<_INotify>this)._listeners[<string>e.id], e);
-        inotify_dispatch((<_INotify>this)._listeners[EVENT_ALL], e);
+        inotify_dispatch(this._listeners[<string>e.id], e);
+        inotify_dispatch(this._listeners[EVENT_ALL], e);
     },
 
     __listener(listeners: [Listener, any][], f: Listener, scope: any) {
