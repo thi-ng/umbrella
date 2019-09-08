@@ -1,6 +1,7 @@
 import { isFunction } from "@thi.ng/checks";
 import { Transducer } from "@thi.ng/transducers";
 import {
+    CloseMode,
     CommonOpts,
     IStream,
     ISubscriber,
@@ -72,6 +73,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     src?: StreamSource<T>;
 
     protected _cancel: StreamCancel | undefined;
+    protected _inited: boolean;
 
     constructor();
     constructor(opts: Partial<CommonOpts>);
@@ -81,6 +83,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
         const [_src, _opts] = isFunction(src) ? [src, opts] : [undefined, src];
         super(undefined, optsWithID("stream", _opts));
         this.src = _src;
+        this._inited = false;
     }
 
     // prettier-ignore
@@ -90,15 +93,21 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
     subscribe(...args: any[]) {
         const wrapped = super.subscribe.apply(this, <any>args);
-        if (this.subs.length === 1) {
+        if (!this._inited) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
+            this._inited = true;
         }
         return wrapped;
     }
 
     unsubscribe(sub?: Subscription<T, any>) {
         const res = super.unsubscribe(sub);
-        if (res && (!sub || (!this.subs || !this.subs.length))) {
+        if (
+            res &&
+            (!sub ||
+                ((!this.subs || !this.subs.length) &&
+                    this.closeOut !== CloseMode.NEVER))
+        ) {
             this.cancel();
         }
         return res;
