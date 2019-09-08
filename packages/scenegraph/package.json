@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/scenegraph",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Extensible 2D/3D scene graph w/ node-to-node coord conversion & thi.ng/hdom-canvas support",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
