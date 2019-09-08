@@ -152,11 +152,32 @@ export class Node2D implements ISceneNode<Node2D>, IToHiccup {
                     return n;
                 }
             }
-            const q = mulV23([], this.invMat, p);
+            const q = this.mapGlobalPoint(p);
             if (this.containsLocalPoint(q)) {
                 return { node: this, p: q };
             }
         }
+    }
+
+    /**
+     * Returns copy of world space point `p`, transformed into this
+     * node's local coordinate system.
+     *
+     * @param p
+     */
+    mapGlobalPoint(p: ReadonlyVec) {
+        return mulV23([], this.invMat, p);
+    }
+
+    /**
+     * Returns copy of node local space point `p`, transformed into the
+     * coordinate system of `dest` node.
+     *
+     * @param dest
+     * @param p
+     */
+    mapLocalPointToNode(dest: Node2D, p: ReadonlyVec) {
+        return mulV23(null, dest.invMat, mulV23([], this.mat, p));
     }
 
     /**
