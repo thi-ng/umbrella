@@ -13,6 +13,7 @@ import {
     dot,
     float,
     FLOAT0,
+    FLOAT05,
     FLOAT1,
     FLOAT2,
     floor,
@@ -33,7 +34,6 @@ import {
     Vec4Sym,
     Vec4Term
 } from "@thi.ng/shader-ast";
-import { FLOAT05 } from "@thi.ng/shader-ast/ast/lit";
 import { permute4 } from "./permute";
 
 const taylorInvSqrt = (x: Vec4Term) =>
