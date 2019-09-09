@@ -69,7 +69,7 @@ export const VEC3: JSBuiltinsVec3 = {
     dFdy: () => ZERO3,
     distance: dist,
     div: (a, b) => div3([], a, b),
-    divnv: (a, b) => (a !== 0 ? mulN3([], b, 1 / a) : [0, 0, 0]),
+    divnv: (a, b) => div3(null, [a, a, a], b),
     divvn: (a, b) => divN3([], a, b),
     dot: (a, b) => dot3(a, b),
     exp: (a) => exp3([], a),

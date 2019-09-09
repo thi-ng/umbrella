@@ -67,7 +67,7 @@ export const VEC2: JSBuiltinsVec = {
     dFdy: () => ZERO2,
     distance: dist,
     div: (a, b) => div2([], a, b),
-    divnv: (a, b) => (a !== 0 ? mulN2([], b, 1 / a) : [0, 0]),
+    divnv: (a, b) => div2(null, [a, a], b),
     divvn: (a, b) => divN2([], a, b),
     dot: (a, b) => dot2(a, b),
     exp: (a) => exp2([], a),
