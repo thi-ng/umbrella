@@ -26,7 +26,7 @@ export const IVEC3: JSBuiltinsIntVec = {
     addnv: (a, b) => addNI3([], b, a),
     div: (a, b) => divI3([], a, b),
     divvn: (a, b) => divNI3([], a, b),
-    divnv: (a, b) => mulNI3([], b, 1 / a),
+    divnv: (a, b) => (a !== 0 ? mulNI3([], b, 1 / a) : [0, 0, 0]),
     modi: (a, b) => mod3([], a, b),
     modivn: (a, b) => modN3([], a, b),
     modinv: (a, b) => mod3([], [a, a, a], b),

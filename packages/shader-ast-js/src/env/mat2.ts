@@ -20,7 +20,7 @@ export const MAT2: JSBuiltinsMat = {
     addvn: (a, b) => addN22([], a, b),
     dec: (a) => subN22([], a, 1),
     div: (a, b) => div22([], a, b),
-    divnv: (a, b) => mulN22([], b, 1 / a),
+    divnv: (a, b) => (a !== 0 ? mulN22([], b, 1 / a) : [0, 0, 0, 0]),
     divvn: (a, b) => divN22([], a, b),
     inc: (a) => addN22([], a, 1),
     mul: (a, b) => mul22([], a, b),

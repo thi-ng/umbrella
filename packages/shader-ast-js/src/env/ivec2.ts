@@ -26,7 +26,7 @@ export const IVEC2: JSBuiltinsIntVec = {
     addnv: (a, b) => addNI2([], b, a),
     div: (a, b) => divI2([], a, b),
     divvn: (a, b) => divNI2([], a, b),
-    divnv: (a, b) => mulNI2([], b, 1 / a),
+    divnv: (a, b) => (a !== 0 ? mulNI2([], b, 1 / a) : [0, 0]),
     modi: (a, b) => mod2([], a, b),
     modivn: (a, b) => modN2([], a, b),
     modinv: (a, b) => mod2([], [a, a], b),

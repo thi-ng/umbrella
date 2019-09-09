@@ -26,7 +26,10 @@ export const UVEC4: JSBuiltinsIntVec = {
     addnv: (a, b) => addNU4([], b, a),
     div: (a, b) => divU4([], a, b),
     divvn: (a, b) => divNU4([], a, b),
-    divnv: (a, b) => mulNU4([], b, 1 / a),
+    divnv: (a, b) => {
+        // TODO writing this as w/o return statement causes rollup to hang?!
+        return a !== 0 ? mulNU4([], b, 1 / a) : [0, 0, 0, 0];
+    },
     modi: (a, b) => mod4([], a, b),
     modivn: (a, b) => modN4([], a, b),
     modinv: (a, b) => mod4([], [a, a, a, a], b),
