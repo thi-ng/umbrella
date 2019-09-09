@@ -3,7 +3,6 @@ import {
     $w,
     $x,
     $xy,
-    $xyz,
     $y,
     $z,
     abs,
@@ -34,32 +33,45 @@ import {
 import { permute4 } from "./permute";
 
 export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
-    let CX: Vec3Sym;
-    let CY: Vec3Sym;
-    let D: Vec4Sym;
     let g: Vec3Sym;
     let j: Vec4Sym;
     let l: Vec3Sym;
     let m: Vec4Sym;
-    let ns: Vec3Sym;
     let p: Vec4Sym;
     let norm: Vec4Sym;
-    let _x, x, y, h, sh, a0, a1, b0, b1, s0, s1: Vec4Sym;
-    let x0, x1, x2, x3, p0, p1, p2, p3: Vec3Sym;
-    let i, i1, i2: Vec3Sym;
+    let _x: Vec4Sym;
+    let x: Vec4Sym;
+    let y: Vec4Sym;
+    let h: Vec4Sym;
+    let sh: Vec4Sym;
+    let a0: Vec4Sym;
+    let a1: Vec4Sym;
+    let b0: Vec4Sym;
+    let b1: Vec4Sym;
+    let x0: Vec3Sym;
+    let x1: Vec3Sym;
+    let x2: Vec3Sym;
+    let x3: Vec3Sym;
+    let p0: Vec3Sym;
+    let p1: Vec3Sym;
+    let p2: Vec3Sym;
+    let p3: Vec3Sym;
+    let i: Vec3Sym;
+    let i1: Vec3Sym;
+    let i2: Vec3Sym;
+    const NS = 1 / 7;
+    const NSX = NS * 2;
+    const NSY = NS * 0.5 - 1;
     return [
-        (CX = sym(vec3(1 / 6))),
-        (CY = sym(vec3(1 / 3))),
-        (D = sym(vec4(FLOAT0, FLOAT05, FLOAT1, FLOAT2))),
-        (i = sym(floor(add(v, dot(v, CY))))),
-        (x0 = sym(add(sub(v, i), dot(i, CX)))),
-        (g = sym(step($(x0, "yzx"), $xyz(x0)))),
+        (i = sym(floor(add(v, dot(v, vec3(1 / 3)))))),
+        (x0 = sym(add(sub(v, i), dot(i, vec3(1 / 6))))),
+        (g = sym(step($(x0, "yzx"), x0))),
         (l = sym($(sub(FLOAT1, g), "zxy"))),
-        (i1 = sym(min($xyz(g), l))),
-        (i2 = sym(max($xyz(g), l))),
-        (x1 = sym(add(sub(x0, i1), CX))),
-        (x2 = sym(add(sub(x0, i2), CY))),
-        (x3 = sym(sub(x0, $(D, "yyy")))),
+        (i1 = sym(min(g, l))),
+        (i2 = sym(max(g, l))),
+        (x1 = sym(add(sub(x0, i1), 1 / 6))),
+        (x2 = sym(add(sub(x0, i2), 1 / 3))),
+        (x3 = sym(sub(x0, FLOAT05))),
         assign(i, mod(i, float(289))),
         (p = sym(
             permute4(
@@ -67,28 +79,41 @@ export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
                     permute4(
                         add(
                             permute4(
-                                add($z(i), vec4(FLOAT0, $z(i1), $z(i2), FLOAT1))
+                                add(vec4(FLOAT0, $z(i1), $z(i2), FLOAT1), $z(i))
                             ),
-                            add($y(i), vec4(FLOAT0, $y(i1), $y(i2), FLOAT1))
+                            add(vec4(FLOAT0, $y(i1), $y(i2), FLOAT1), $y(i))
                         )
                     ),
-                    add($x(i), vec4(FLOAT0, $x(i1), $x(i2), FLOAT1))
+                    add(vec4(FLOAT0, $x(i1), $x(i2), FLOAT1), $x(i))
                 )
             )
         )),
-        (ns = sym(sub(mul(0.142857142857, $(D, "wyz")), $(D, "xzx")))),
-        (j = sym(sub(p, mul(49, floor(mul(mul(p, $z(ns)), $z(ns))))))),
-        (_x = sym(floor(mul(j, $z(ns))))),
-        (x = sym(add(mul(_x, $x(ns)), $(ns, "yyyy")))),
-        (y = sym(add(mul(floor(sub(j, mul(7, _x))), $x(ns)), $(ns, "yyyy")))),
+        (j = sym(sub(p, mul(floor(mul(p, NS * NS)), 49)))),
+        (_x = sym(floor(mul(j, NS)))),
+        (x = sym(add(mul(_x, NSX), NSY))),
+        (y = sym(add(mul(floor(sub(j, mul(_x, 7))), NSX), NSY))),
         (h = sym(sub(sub(FLOAT1, abs(x)), abs(y)))),
+        (sh = sym(neg(step(h, vec4())))),
         (b0 = sym(vec4($xy(x), $xy(y)))),
         (b1 = sym(vec4($(x, "zw"), $(y, "zw")))),
-        (s0 = sym(add(mul(floor(b0), FLOAT2), FLOAT1))),
-        (s1 = sym(add(mul(floor(b1), FLOAT2), FLOAT1))),
-        (sh = sym(neg(step(h, vec4())))),
-        (a0 = sym(add($(b0, "xzyw"), mul($(s0, "xzyw"), $(sh, "xxyy"))))),
-        (a1 = sym(add($(b1, "xzyw"), mul($(s1, "xzyw"), $(sh, "zzww"))))),
+        (a0 = sym(
+            add(
+                $(b0, "xzyw"),
+                mul(
+                    $(add(mul(floor(b0), FLOAT2), FLOAT1), "xzyw"),
+                    $(sh, "xxyy")
+                )
+            )
+        )),
+        (a1 = sym(
+            add(
+                $(b1, "xzyw"),
+                mul(
+                    $(add(mul(floor(b1), FLOAT2), FLOAT1), "xzyw"),
+                    $(sh, "zzww")
+                )
+            )
+        )),
         (p0 = sym(vec3($xy(a0), $x(h)))),
         (p1 = sym(vec3($(a0, "zw"), $y(h)))),
         (p2 = sym(vec3($xy(a1), $z(h)))),
@@ -97,8 +122,8 @@ export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
             sub(
                 1.79284291400159,
                 mul(
-                    0.85373472095314,
-                    vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3))
+                    vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)),
+                    0.85373472095314
                 )
             )
         )),
