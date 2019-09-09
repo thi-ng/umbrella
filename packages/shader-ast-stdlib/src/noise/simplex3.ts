@@ -26,21 +26,16 @@ import {
     step,
     sub,
     sym,
-    vec2,
-    Vec2Sym,
     vec3,
     Vec3Sym,
     vec4,
-    Vec4Sym,
-    Vec4Term
+    Vec4Sym
 } from "@thi.ng/shader-ast";
 import { permute4 } from "./permute";
 
-const taylorInvSqrt = (x: Vec4Term) =>
-    sub(1.79284291400159, mul(0.85373472095314, x));
-
 export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
-    let C: Vec2Sym;
+    let CX: Vec3Sym;
+    let CY: Vec3Sym;
     let D: Vec4Sym;
     let g: Vec3Sym;
     let j: Vec4Sym;
@@ -53,16 +48,17 @@ export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
     let x0, x1, x2, x3, p0, p1, p2, p3: Vec3Sym;
     let i, i1, i2: Vec3Sym;
     return [
-        (C = sym(vec2(1.0 / 6.0, 1.0 / 3.0))),
+        (CX = sym(vec3(1 / 6))),
+        (CY = sym(vec3(1 / 3))),
         (D = sym(vec4(FLOAT0, FLOAT05, FLOAT1, FLOAT2))),
-        (i = sym(floor(add(v, dot(v, $(C, "yyy")))))),
-        (x0 = sym(add(sub(v, i), dot(i, $(C, "xxx"))))),
+        (i = sym(floor(add(v, dot(v, CY))))),
+        (x0 = sym(add(sub(v, i), dot(i, CX)))),
         (g = sym(step($(x0, "yzx"), $xyz(x0)))),
-        (l = sym(sub(FLOAT1, g))),
-        (i1 = sym(min($xyz(g), $(l, "zxy")))),
-        (i2 = sym(max($xyz(g), $(l, "zxy")))),
-        (x1 = sym(add(sub(x0, i1), $(C, "xxx")))),
-        (x2 = sym(add(sub(x0, i2), $(C, "yyy")))),
+        (l = sym($(sub(FLOAT1, g), "zxy"))),
+        (i1 = sym(min($xyz(g), l))),
+        (i2 = sym(max($xyz(g), l))),
+        (x1 = sym(add(sub(x0, i1), CX))),
+        (x2 = sym(add(sub(x0, i2), CY))),
         (x3 = sym(sub(x0, $(D, "yyy")))),
         assign(i, mod(i, float(289))),
         (p = sym(
@@ -98,8 +94,12 @@ export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
         (p2 = sym(vec3($xy(a1), $z(h)))),
         (p3 = sym(vec3($(a1, "zw"), $w(h)))),
         (norm = sym(
-            taylorInvSqrt(
-                vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3))
+            sub(
+                1.79284291400159,
+                mul(
+                    0.85373472095314,
+                    vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3))
+                )
             )
         )),
         assign(p0, mul(p0, $x(norm))),
