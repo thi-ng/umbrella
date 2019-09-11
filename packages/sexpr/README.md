@@ -26,7 +26,7 @@ This project is part of the
 ## About
 
 Basic, but configurable and extensible
-[S-expression](https://en.wikipedia.org/wiki/S-expression) tokenizer,
+[S-Expression](https://en.wikipedia.org/wiki/S-expression) tokenizer,
 parser, AST builder and runtime / interpreter skeleton for custom,
 sandboxed DSL implementations.
 
@@ -117,7 +117,7 @@ parse(tokenize(`(* (+ 3 5) 10)`));
 
 ```ts
 import { Fn2 } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti";
+import { defmulti, DEFAULT } from "@thi.ng/defmulti";
 import { Node, Sym } from "@thi.ng/sexpr";
 
 // multi-dispatch fn for DSL builtins
