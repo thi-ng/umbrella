@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { defError } from "@thi.ng/errors";
 import {
     DEFAULT_SYNTAX,
     Expression,
@@ -6,6 +6,8 @@ import {
     RootNode,
     SyntaxOpts
 } from "./api";
+
+const ParseError = defError<string>((msg?) => msg || "Parser error", () => "");
 
 export const parse = (tokens: Iterable<string>, opts?: Partial<SyntaxOpts>) => {
     const { scopeOpen, scopeClose } = {
@@ -18,7 +20,9 @@ export const parse = (tokens: Iterable<string>, opts?: Partial<SyntaxOpts>) => {
             tree.push({ type: "expr", value: t, children: [] });
         } else if (scopeClose.indexOf(t) !== -1) {
             // TODO check matching scope type
-            assert(tree.length > 1, "invalid nesting");
+            if (tree.length < 2) {
+                throw new ParseError(`unmatched '${t}'`);
+            }
             (<Expression>tree[tree.length - 2]).children!.push(tree.pop()!);
         } else {
             let node: Node;
@@ -36,6 +40,9 @@ export const parse = (tokens: Iterable<string>, opts?: Partial<SyntaxOpts>) => {
             }
             (<Expression>tree[tree.length - 1]).children!.push(node);
         }
+    }
+    if (tree.length > 1) {
+        throw new ParseError("invalid s-expression");
     }
     return <RootNode>tree[0];
 };
