@@ -4,15 +4,10 @@ import { illegalArgs } from "@thi.ng/errors";
 import { memoize1 } from "@thi.ng/memoize";
 import { fromView } from "@thi.ng/rstream";
 import {
-    add,
     addNode,
-    div,
-    mul,
     node,
-    NodeFactory,
     NodeInputSpec,
-    NodeSpec,
-    sub
+    NodeSpec
 } from "@thi.ng/rstream-graph";
 import {
     Node,
@@ -22,16 +17,26 @@ import {
     Sym,
     tokenize
 } from "@thi.ng/sexpr";
-import { maybeParseFloat } from "@thi.ng/strings";
+import { maybeParseFloat, Z2 } from "@thi.ng/strings";
 import { charRange } from "@thi.ng/strings";
 import {
+    add,
     assocObj,
     comp,
+    div,
+    filter,
     map,
+    mapcat,
+    mapIndexed,
+    max,
+    mean,
+    min,
+    mul,
     permutations,
     range,
-    transduce,
-    zip
+    Reducer,
+    sub,
+    transduce
 } from "@thi.ng/transducers";
 import { DB, graph, removeCell } from "./state";
 
@@ -65,31 +70,38 @@ const defNode = (spec: NodeSpec, vals: Node[], env: Env) => {
     return { stream: () => node.node };
 };
 
-const defOp = (op: NodeFactory<any>) => (_: Node, vals: Node[], env: Env) =>
-    defNode(
-        {
-            fn: op,
-            ins: cellInputs(vals.slice(1), env)
-        },
-        vals,
-        env
-    );
-
-const defSum = (_: Node, vals: Node[], env: Env) =>
+const defBuiltin = (rfn: () => Reducer<any, any>) => (
+    _: Node,
+    vals: Node[],
+    env: Env
+) =>
     defNode(
         {
             fn: node(
                 map((ports: IObjectOf<number>) => {
-                    let acc = 0;
-                    let v;
-                    for (let p in ports) {
-                        if ((v = ports[p]) == null) continue;
-                        acc += v;
-                    }
-                    return acc;
+                    const keys = Object.keys(ports).sort();
+                    return transduce(
+                        comp(map((k) => ports[k]), filter((x) => !!x)),
+                        rfn(),
+                        ports[keys.shift()!],
+                        keys
+                    );
                 })
             ),
-            ins: cellRangeInputs(vals[1])
+            ins: transduce(
+                comp(
+                    mapcat((i) => {
+                        try {
+                            return cellRangeInputs(i);
+                        } catch (e) {
+                            return <NodeInputSpec[]>[rt(i, env)];
+                        }
+                    }),
+                    mapIndexed((i, input) => [Z2(i), input])
+                ),
+                assocObj<NodeInputSpec>(),
+                vals.slice(1)
+            )
         },
         vals,
         env
@@ -104,18 +116,10 @@ const cellInput = memoize1(
     })
 );
 
-const cellInputs = (vals: Node[], env: Env) =>
-    transduce(
-        map(([k, v]) => [k, rt(v, env)]),
-        assocObj<NodeInputSpec>(),
-        zip(charRange("a", "z"), vals)
-    );
-
 const cellRangeInputs = (x: Node) => {
     const [acol, arow, bcol, brow] = parseCellIDRange(x);
-    return transduce(
-        comp(map(([c, r]) => `${c}${r}`), map((id) => [id, cellInput(id)])),
-        assocObj<NodeInputSpec>(),
+    return map<[string, number], NodeInputSpec>(
+        ([c, r]) => cellInput(`${c}${r}`),
         permutations(
             charRange(acol.toUpperCase(), bcol.toUpperCase()),
             range(parseInt(arow), parseInt(brow) + 1)
@@ -123,19 +127,21 @@ const cellRangeInputs = (x: Node) => {
     );
 };
 
-builtins.addAll({
-    "+": defOp(add),
-    "*": defOp(mul),
-    "-": defOp(sub),
-    "/": defOp(div),
-    sum: defSum
-});
-
 const parseCellIDRange = (x: Node) => {
     const match = /^([A-Z])(\d+):([A-Z])(\d+)$/i.exec((<StringNode>x).value);
     if (!match) illegalArgs("invalid cell range");
     return match!.slice(1, 5);
 };
+
+builtins.addAll({
+    "+": defBuiltin(add),
+    "*": defBuiltin(mul),
+    "-": defBuiltin(sub),
+    "/": defBuiltin(() => div(1)),
+    min: defBuiltin(min),
+    max: defBuiltin(max),
+    avg: defBuiltin(mean)
+});
 
 export const $eval = (src: string, cellID: string) =>
     rt(parse(tokenize(src)).children[0], { id: cellID, depth: 0 });
