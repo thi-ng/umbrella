@@ -17,7 +17,7 @@ export const DB = new Atom<IObjectOf<Cell>>(
     transduce(
         map(([col, row]) => [
             `${col}${row}`,
-            { formula: "", value: "", backup: "", focus: false, error: false }
+            { formula: "", value: "", backup: "", focus: false, error: "" }
         ]),
         assocObj(),
         permutations(charRange("A", MAX_COL), range(1, NUM_ROWS + 1))
@@ -49,14 +49,14 @@ export const updateCell = (id: string, val: string) => {
         DB.resetIn([id, "formula"], val);
         try {
             $eval(val, id);
-            DB.resetIn([id, "error"], false);
+            DB.resetIn([id, "error"], null);
         } catch (e) {
-            DB.resetIn([id, "error"], true);
+            DB.resetIn([id, "error"], e.message);
         }
     } else {
         removeCell(id);
         DB.swapIn(id, (cell) =>
-            setInMany(cell, "value", val, "formula", "", "error", false)
+            setInMany(cell, "value", val, "formula", "", "error", null)
         );
     }
 };

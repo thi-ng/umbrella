@@ -36,7 +36,7 @@ const cellBackground = (cell: any) =>
         ? "bg-yellow"
         : cell.formula
         ? cell.error
-            ? "bg-red"
+            ? "bg-red white"
             : "bg-light-green"
         : "";
 
@@ -85,7 +85,7 @@ const cell = ([row, col]: [number, string]) =>
                 String(
                     cell.focus && cell.formula
                         ? cell.formula
-                        : formatCell(cell.value)
+                        : cell.error || formatCell(cell.value)
                 )
             ];
         }

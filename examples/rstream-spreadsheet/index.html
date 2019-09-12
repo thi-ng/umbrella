@@ -20,19 +20,28 @@
                 >Source code</a
             >
         </div>
-        <h3>S-expression formula syntax examples</h3>
+        <h3>S-expression formula syntax</h3>
         <ul class="lh-copy">
             <li>
-                <code class="bg-light-gray">(* 10 a1 a2)</code> - 10 times cell
-                A1 times cell A2
+                <code class="bg-light-gray">a1</code> /
+                <code class="bg-light-gray">a1:c3</code> - cell ID / cell range
+                (case insensitive)
             </li>
             <li>
-                <code class="bg-light-gray">(sum a1:c3)</code> - sum of rows 1-3
-                in column A, B, C
+                <code class="bg-light-gray">(* 10 (+ a1 a2:e2))</code> - 10
+                times (cell A1 + entire row 2)
             </li>
             <li>
-                <code class="bg-light-gray">(/ (sum a1:a10) 10)</code> - average
-                value in column A
+                <code class="bg-light-gray">(min a1:c10)</code> - min value of
+                columns A-C
+            </li>
+            <li>
+                <code class="bg-light-gray">(max a1:c10)</code> - max value of
+                columns A-C
+            </li>
+            <li>
+                <code class="bg-light-gray">(avg a1:e5)</code> - average value
+                of 1st 5 rows
             </li>
         </ul>
         <script type="text/javascript" src="./src/index.ts"></script>

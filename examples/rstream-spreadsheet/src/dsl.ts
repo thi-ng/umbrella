@@ -38,6 +38,7 @@ import {
     sub,
     transduce
 } from "@thi.ng/transducers";
+import { RE_CELL_ID, RE_CELL_RANGE } from "./api";
 import { DB, graph, removeCell } from "./state";
 
 interface Env {
@@ -50,7 +51,10 @@ const builtins = defmulti<Node, Node[], Env, any>((x) => (<Sym>x).value);
 const rt = runtime<Env, any>({
     expr: (x, env) =>
         builtins(x.children[0], x.children, { ...env, depth: env.depth + 1 }),
-    sym: (x) => cellInput(x.value),
+    sym: (x) =>
+        RE_CELL_ID.test(x.value)
+            ? cellInput(x.value)
+            : illegalArgs("invalid cell ID"),
     str: (x) => ({ const: x.value }),
     num: (x) => ({ const: x.value })
 });
@@ -81,7 +85,7 @@ const defBuiltin = (rfn: () => Reducer<any, any>) => (
                 map((ports: IObjectOf<number>) => {
                     const keys = Object.keys(ports).sort();
                     return transduce(
-                        comp(map((k) => ports[k]), filter((x) => !!x)),
+                        comp(map((k) => ports[k]), filter((x) => x != null)),
                         rfn(),
                         ports[keys.shift()!],
                         keys
@@ -111,7 +115,7 @@ const cellInput = memoize1(
     (id: string): NodeInputSpec => ({
         stream: () =>
             fromView(DB, [id.toUpperCase(), "value"], (x) =>
-                maybeParseFloat(x, 0)
+                maybeParseFloat(x, null)
             )
     })
 );
@@ -128,7 +132,7 @@ const cellRangeInputs = (x: Node) => {
 };
 
 const parseCellIDRange = (x: Node) => {
-    const match = /^([A-Z])(\d+):([A-Z])(\d+)$/i.exec((<StringNode>x).value);
+    const match = RE_CELL_RANGE.exec((<StringNode>x).value);
     if (!match) illegalArgs("invalid cell range");
     return match!.slice(1, 5);
 };
@@ -140,7 +144,7 @@ builtins.addAll({
     "/": defBuiltin(() => div(1)),
     min: defBuiltin(min),
     max: defBuiltin(max),
-    avg: defBuiltin(mean)
+    avg: defBuiltin(() => mean())
 });
 
 export const $eval = (src: string, cellID: string) =>
