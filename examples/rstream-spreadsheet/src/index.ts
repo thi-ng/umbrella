@@ -1,23 +1,7 @@
-import { ConsoleLogger, IObjectOf } from "@thi.ng/api";
-import { Atom } from "@thi.ng/atom";
 import { isNumber } from "@thi.ng/checks";
-import { ILifecycle } from "@thi.ng/hdom";
-import { memoize1 } from "@thi.ng/memoize";
-import { setIn, setInMany } from "@thi.ng/paths";
-import { fromAtom, fromView, setLogger } from "@thi.ng/rstream";
+import { fromAtom } from "@thi.ng/rstream";
+import { charRange, float } from "@thi.ng/strings";
 import {
-    add,
-    addNode,
-    div,
-    mul,
-    Node,
-    NodeInputSpec,
-    removeNode,
-    sub
-} from "@thi.ng/rstream-graph";
-import { charRange, float, maybeParseFloat } from "@thi.ng/strings";
-import {
-    assocObj,
     comp,
     map,
     mapIndexed,
@@ -28,122 +12,22 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-
-const NUM_COLS = 4;
-const NUM_ROWS = 10;
-
-const MAX_COL = "A".charCodeAt(0) + NUM_COLS - 1;
-
-const RE_OP2 = /^=\s*([A-Z]\d+)\s*([+*/\-])\s*([A-Z]\d+)$/i;
-const RE_SUM = /^=\s*SUM\(\s*([A-Z])(\d+)\s*\:\s*([A-Z])(\d+)\s*\)$/i;
-
-const CELL_STYLE = "div.dib.h2.pa2.ma0.br.bb";
-
-interface Cell {
-    formula: string;
-    value: string | number;
-    backup: string;
-    focus: boolean;
-    error: boolean;
-}
-
-interface UICell extends ILifecycle {
-    element?: HTMLDivElement;
-    focus?: boolean;
-}
-
-const DB = new Atom<IObjectOf<Cell>>(
-    transduce(
-        map(([col, row]) => [
-            `${col}${row}`,
-            { formula: "", value: "", backup: "", focus: false, error: false }
-        ]),
-        assocObj(),
-        permutations(charRange("A", MAX_COL), range(1, NUM_ROWS + 1))
-    )
-);
-
-const graph: IObjectOf<Node> = {};
-
-const removeCell = (id: string) => removeNode(graph, id);
-
-const focusCell = (id: string) => {
-    DB.swapIn(id, (cell: Cell) =>
-        setInMany(cell, "focus", true, "backup", cell.formula)
-    );
-};
-
-const blurCell = (id: string) => {
-    DB.swapIn(id, (cell: Cell) => setIn(cell, "focus", false));
-};
-
-const cancelCell = (id: string) => {
-    DB.swapIn(id, (cell: Cell) =>
-        setInMany(cell, "focus", false, "formula", cell.backup)
-    );
-};
-
-const updateCell = (id: string, val: string) => {
-    if (val.startsWith("=")) {
-        DB.resetIn([id, "formula"], val);
-        let res = RE_OP2.exec(val);
-        if (res) {
-            DB.resetIn([id, "error"], false);
-            addBinOp(res, id);
-        } else if ((res = RE_SUM.exec(val))) {
-            DB.resetIn([id, "error"], false);
-            addSum(res, id);
-        } else {
-            DB.resetIn([id, "error"], true);
-        }
-    } else {
-        removeCell(id);
-        DB.swapIn(id, (cell) =>
-            setInMany(cell, "value", val, "formula", "", "error", false)
-        );
-    }
-};
-
-const cellInput = memoize1(
-    (id: string): NodeInputSpec => ({
-        stream: () =>
-            fromView(DB, [id.toUpperCase(), "value"], (x) =>
-                maybeParseFloat(x, 0)
-            )
-    })
-);
-
-const addBinOp = ([_, a, op, b]: RegExpExecArray, id: string) => {
-    removeCell(id);
-    addNode(graph, DB, id, {
-        fn: (<any>{ "+": add, "*": mul, "-": sub, "/": div })[op],
-        ins: { a: cellInput(a), b: cellInput(b) },
-        outs: {
-            "*": [id, "value"]
-        }
-    });
-};
-
-const addSum = (
-    [_, acol, arow, bcol, brow]: RegExpExecArray,
-    cellID: string
-) => {
-    removeCell(cellID);
-    addNode(graph, DB, cellID, {
-        fn: add,
-        ins: transduce(
-            comp(map(([c, r]) => `${c}${r}`), map((id) => [id, cellInput(id)])),
-            assocObj<NodeInputSpec>(),
-            permutations(
-                charRange(acol.toUpperCase(), bcol.toUpperCase()),
-                range(parseInt(arow), parseInt(brow) + 1)
-            )
-        ),
-        outs: {
-            "*": [cellID, "value"]
-        }
-    });
-};
+import {
+    CELL_STYLE,
+    MAX_COL,
+    NUM_COLS,
+    NUM_ROWS,
+    UICell
+} from "./api";
+import "./dsl";
+import {
+    blurCell,
+    cancelCell,
+    DB,
+    focusCell,
+    graph,
+    updateCell
+} from "./state";
 
 const formatCell = (x: string | number) => (isNumber(x) ? float(2)(x) : x);
 
