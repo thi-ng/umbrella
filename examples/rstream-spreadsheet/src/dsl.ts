@@ -1,6 +1,7 @@
-import { IObjectOf } from "@thi.ng/api";
+import { Fn, IObjectOf } from "@thi.ng/api";
 import { defmulti } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
+import { fit } from "@thi.ng/math";
 import { memoize1 } from "@thi.ng/memoize";
 import { fromView } from "@thi.ng/rstream";
 import {
@@ -74,24 +75,14 @@ const defNode = (spec: NodeSpec, vals: Node[], env: Env) => {
     return { stream: () => node.node };
 };
 
-const defBuiltin = (rfn: () => Reducer<any, any>) => (
+const defBuiltin = (fn: Fn<IObjectOf<number>, any>) => (
     _: Node,
     vals: Node[],
     env: Env
 ) =>
     defNode(
         {
-            fn: node(
-                map((ports: IObjectOf<number>) => {
-                    const keys = Object.keys(ports).sort();
-                    return transduce(
-                        comp(map((k) => ports[k]), filter((x) => x != null)),
-                        rfn(),
-                        ports[keys.shift()!],
-                        keys
-                    );
-                })
-            ),
+            fn: node(map(fn)),
             ins: transduce(
                 comp(
                     mapcat((i) => {
@@ -110,6 +101,20 @@ const defBuiltin = (rfn: () => Reducer<any, any>) => (
         vals,
         env
     );
+
+const defReducer = (
+    rfn: () => Reducer<any, any>,
+    xf: Fn<any, any> = (x) => x
+) =>
+    defBuiltin((ports: IObjectOf<number>) => {
+        const keys = Object.keys(ports).sort();
+        return transduce(
+            comp(map((k) => ports[k]), filter((x) => x != null), map(xf)),
+            rfn(),
+            xf(ports[keys.shift()!]),
+            keys
+        );
+    });
 
 const cellInput = memoize1(
     (id: string): NodeInputSpec => ({
@@ -138,13 +143,21 @@ const parseCellIDRange = (x: Node) => {
 };
 
 builtins.addAll({
-    "+": defBuiltin(add),
-    "*": defBuiltin(mul),
-    "-": defBuiltin(sub),
-    "/": defBuiltin(() => div(1)),
-    min: defBuiltin(min),
-    max: defBuiltin(max),
-    avg: defBuiltin(() => mean())
+    "+": defReducer(add),
+    "*": defReducer(mul),
+    "-": defReducer(sub),
+    "/": defReducer(() => div(1)),
+    min: defReducer(min),
+    max: defReducer(max),
+    avg: defReducer(() => mean()),
+    mag: defReducer(
+        () => [() => 0, (acc) => Math.sqrt(acc), (acc, x) => acc + x],
+        (x) => x * x
+    ),
+    abs: defBuiltin(({ "00": x }) => Math.abs(x)),
+    fit: defBuiltin(({ "00": x, "01": a, "02": b, "03": c, "04": d }) =>
+        fit(x, a, b, c, d)
+    )
 });
 
 export const $eval = (src: string, cellID: string) =>

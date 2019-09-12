@@ -12,7 +12,7 @@
         <style></style>
     </head>
     <body class="sans-serif ma3">
-        <div id="app"></div>
+        <div id="app" class="overflow-x-scroll"></div>
         <div>
             <a
                 class="link"
@@ -41,7 +41,19 @@
             </li>
             <li>
                 <code class="bg-light-gray">(avg a1:e5)</code> - average value
-                of 1st 5 rows
+                of first 5 rows
+            </li>
+            <li>
+                <code class="bg-light-gray">(mag a1:e1)</code> - vector
+                magnitude of row 1
+            </li>
+            <li>
+                <code class="bg-light-gray">(abs a1)</code> - absolute value of
+                cell A1
+            </li>
+            <li>
+                <code class="bg-light-gray">(fit a1 a2 a3 a4 a5)</code> - fit
+                cell value A1 from interval A2-A3 to A4-A5
             </li>
         </ul>
         <script type="text/javascript" src="./src/index.ts"></script>
