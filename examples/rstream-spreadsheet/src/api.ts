@@ -1,6 +1,6 @@
 import { ILifecycle } from "@thi.ng/hdom";
 
-export const NUM_COLS = 4;
+export const NUM_COLS = 5;
 export const NUM_ROWS = 10;
 
 export const MAX_COL = "A".charCodeAt(0) + NUM_COLS - 1;

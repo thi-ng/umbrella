@@ -5,19 +5,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>rstream-spreadsheet</title>
-        <!-- <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet"> -->
-        <link href="tachyons.min.css" rel="stylesheet" />
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
         <style></style>
     </head>
-    <body class="sans-serif">
+    <body class="sans-serif ma3">
         <div id="app"></div>
         <div>
             <a
                 class="link"
-                href="https://github.com/thi-ng/umbrella/tree/master/examples/spreadsheet"
+                href="https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet"
                 >Source code</a
             >
         </div>
+        <h3>S-expression formula syntax examples</h3>
+        <ul class="lh-copy">
+            <li>
+                <code class="bg-light-gray">(* 10 a1 a2)</code> - 10 times cell
+                A1 times cell A2
+            </li>
+            <li>
+                <code class="bg-light-gray">(sum a1:c3)</code> - sum of rows 1-3
+                in column A, B, C
+            </li>
+            <li>
+                <code class="bg-light-gray">(/ (sum a1:a10) 10)</code> - average
+                value in column A
+            </li>
+        </ul>
         <script type="text/javascript" src="./src/index.ts"></script>
     </body>
 </html>
