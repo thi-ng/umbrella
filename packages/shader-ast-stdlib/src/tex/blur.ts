@@ -5,13 +5,14 @@ import {
     div,
     mul,
     ret,
+    Sampler2DSym,
     sub,
     sym,
     texture,
     vec2,
+    Vec2Sym,
     Vec4Sym
 } from "@thi.ng/shader-ast";
-import { Sampler2DSym, Vec2Sym } from "@thi.ng/shader-ast/api";
 
 /**
  * Inline function. Computes single blur step for given +/- offset &
