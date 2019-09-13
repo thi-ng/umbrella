@@ -1,7 +1,5 @@
 import { align } from "@thi.ng/binary";
-import { radix } from "@thi.ng/strings";
-
-const B32 = radix(2, 32);
+import { B32 } from "@thi.ng/strings";
 
 export class BitField {
     data: Uint32Array;
