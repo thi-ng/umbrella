@@ -50,6 +50,10 @@ state and once entered will cause processing to terminate (also see API
 description further below).
 
 ```ts
+import { fsm } from '@thi.ng/transducers-fsm'
+import * as tx from '@thi.ng/transducers'
+import { isOdd } from '@thi.ng/checks'
+
 const testFSM = fsm.fsm({
 
     // initial state initializer
@@ -107,7 +111,7 @@ const testFSM = fsm.fsm({
             tx.mapcat((x) => x.split(/[,\s]+/g)),
             tx.map((x) => parseInt(x)),
             testFSM,
-            tx.filter(tx.odd),
+            tx.filter(isOdd),
         ),
         ["9,8,7,6", "14 1 0 17 15 16", "19,23,12,42,4"]
     )
