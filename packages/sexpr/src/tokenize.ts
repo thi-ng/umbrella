@@ -11,16 +11,18 @@ import { DEFAULT_SYNTAX, SyntaxOpts } from "./api";
  * @param opts
  */
 export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
-    const { scopeOpen, scopeClose, ws, string } = {
+    const { scopes: rawScopes, whiteSpace, string } = {
         ...DEFAULT_SYNTAX,
         ...opts
     };
-    const scopes = scopeOpen + scopeClose;
+    const scopes = rawScopes
+        .reduce((acc, x) => acc.concat(<any>x), [])
+        .join("");
     let curr = "";
     let isString = false;
     for (let c of src) {
         if (!isString) {
-            if (ws.test(c)) {
+            if (whiteSpace.test(c)) {
                 curr && (yield curr);
                 curr = "";
             } else if (scopes.indexOf(c) !== -1) {

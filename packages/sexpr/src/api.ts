@@ -1,53 +1,95 @@
 import { Fn2 } from "@thi.ng/api";
 
 export interface SyntaxOpts {
-    scopeOpen: string;
-    scopeClose: string;
-    ws: RegExp;
+    /**
+     * An array of string pairs defining possible S-expression / scope
+     * delimiters [open, close]. By default only the classic ["(",")"]
+     * pair is defined. Only single character delimiters are supported.
+     *
+     * @see DEFAULT_SYNTAX
+     */
+    scopes: string[][];
+    /**
+     * Regex to identify whitespace a single whitespace character.
+     * Default: space, tab, newline, comma
+     */
+    whiteSpace: RegExp;
+    /**
+     * Single character string to delineate string values.
+     * Default: `"`
+     */
     string: string;
 }
 
 export type NodeType = "root" | "expr" | "sym" | "str" | "num";
 
-export type Node = RootNode | Expression | Sym | StringNode | NumericNode;
+export type ASTNode = Root | Expression | Sym | Str | Numeric;
 
-export interface RootNode {
-    type: "root";
-    children: Node[];
+/**
+ * Base interface for custom AST nodes
+ */
+export interface INode {
+    type: string;
+    parent?: INode;
 }
 
-export interface Expression {
+export interface Root extends INode {
+    type: "root";
+    children: ASTNode[];
+}
+
+/**
+ * AST Node defining an S-expression.
+ */
+export interface Expression extends INode {
     type: "expr";
-    children: Node[];
+    /**
+     * Child nodes
+     */
+    children: ASTNode[];
+    /**
+     * Scope type char (as per configured syntax)
+     */
     value: string;
 }
 
-export interface Sym {
+/**
+ * AST symbol node. Merely holds symbol name.
+ */
+export interface Sym extends INode {
     type: "sym";
     value: string;
 }
 
-export interface StringNode {
+/**
+ * AST string node. Merely wraps string value.
+ */
+export interface Str extends INode {
     type: "str";
     value: string;
 }
 
-export interface NumericNode {
+/**
+ * AST numeric node. Merely wraps parsed numeric value.
+ */
+export interface Numeric extends INode {
     type: "num";
     value: number;
 }
 
+/**
+ * Type hinted runtime implementations.
+ */
 export interface Implementations<ENV, RES> {
-    root: Fn2<RootNode, ENV, RES>;
+    root: Fn2<Root, ENV, RES>;
     expr: Fn2<Expression, ENV, RES>;
     sym: Fn2<Sym, ENV, RES>;
-    str: Fn2<StringNode, ENV, RES>;
-    num: Fn2<NumericNode, ENV, RES>;
+    str: Fn2<Str, ENV, RES>;
+    num: Fn2<Numeric, ENV, RES>;
 }
 
 export const DEFAULT_SYNTAX: SyntaxOpts = {
-    scopeOpen: "(",
-    scopeClose: ")",
-    ws: /(\s|,)/,
+    scopes: [["(", ")"]],
+    whiteSpace: /(\s|,)/,
     string: '"'
 };

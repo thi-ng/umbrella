@@ -37,7 +37,7 @@ The following default syntax rules are used:
 - numbers: any float notation valid in JS, hex ints prefixed w/ `0x`
 - string delimiters: `"`
 
-Everything else parsed as is...
+Everything else is parsed as is, i.e. as symbol.
 
 ## Status
 
@@ -96,17 +96,17 @@ parse(tokenize(`(* (+ 3 5) 10)`));
               "value": "+"
             },
             {
-              "type": "number",
+              "type": "num",
               "value": 3
             },
             {
-              "type": "number",
+              "type": "num",
               "value": 5
             }
           ]
         },
         {
-          "type": "number",
+          "type": "num",
           "value": 10
         }
       ]
@@ -120,20 +120,20 @@ parse(tokenize(`(* (+ 3 5) 10)`));
 ```ts
 import { Fn2 } from "@thi.ng/api";
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
-import { Node, Sym } from "@thi.ng/sexpr";
+import { ASTNode, Implementations, Sym } from "@thi.ng/sexpr";
 
 // multi-dispatch fn for DSL builtins
 // we will call this function for each S-expression
 // and will delegate to the actual implementation based on
 // the expression's first item (a symbol name)
-const builtins = defmulti<Node, Node[], any>((x) => (<Sym>x).value);
+const builtins = defmulti<Sym, ASTNode[], any>((x) => x.value);
 
 // build runtime w/ impls for all AST node types
-// the two generics are the types of the custom environment (if used)
+// the generics are the types of: the custom environment (if used)
 // and the result type(s)
-const rt = runtime<any, any>({
+const rt = runtime<Implementations<any,any>, any, any>({
     // delegate to builtins
-    expr: (x, env) => builtins(x.children[0], x.children, env),
+    expr: (x, env) => builtins(<Sym>x.children[0], x.children, env),
     // lookup symbol in environment
     sym: (x, env) => env[x.value],
     // strings and numbers evaluate verbatim
@@ -143,7 +143,7 @@ const rt = runtime<any, any>({
 
 // helper HOF for math ops
 const op = (fn: Fn2<number, number, number>) =>
-    (_: Node, vals: Node[], env: any) =>
+    (_: ASTNode, vals: ASTNode[], env: any) =>
         vals.slice(2).reduce(
             (acc, x) => fn(acc, rt(x, env)),
             rt(vals[1], env)
@@ -191,7 +191,7 @@ for a more in-depth version of this example...
 
 ```ts
 // define syntax overrides (keep default whitespace rules)
-const syntax = { scopeOpen: "<{", scopeClose: "}>", string: "'" };
+const syntax = { scopes: [["<", ">"], ["{", "}"]], string: "'" };
 
 parse(tokenize(`<nest { a '2' b 3 }>`, syntax), syntax);
 ```
