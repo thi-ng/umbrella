@@ -9,11 +9,11 @@ This project is part of the
 
 ## About
 
-Custom error types and helper fns used by many packages in this repo.
+Custom error types (extending `Error`) and helper functions used by most
+other packages in this repo.
 
-This feature was previously part of the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-package.
+Additional error types can be defined using
+[`defError()`](https://github.com/thi-ng/umbrella/tree/master/packages/errors/src/deferror.ts)
 
 ## Installation
 
@@ -41,6 +41,21 @@ err.illegalState("oops");
 
 err.unsupported("TODO not yet implemented")
 // Error: unsupported operation: TODO not yet implemented
+
+// define custom error
+const MyError = err.defError(
+    () => "Eeek... ",
+    (x) => x + " is not allowed!"
+);
+
+try {
+    throw new MyError(23);
+} catch(e) {
+    console.warn(e.message);
+    console.log(e instanceof Error);
+}
+// Eeek... 23 is not allowed!
+// true
 ```
 
 ## Authors

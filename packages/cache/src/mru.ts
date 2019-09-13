@@ -14,32 +14,24 @@ export class MRUCache<K, V> extends LRUCache<K, V> {
         return new MRUCache<K, V>(null, this.opts);
     }
 
-    set(key: K, value: V) {
-        const size = this.opts.ksize(key) + this.opts.vsize(value);
-        const e = this.map.get(key);
-        if (e) {
-            this._size -= e.value.s;
-        }
-        this._size += size;
-        if (this.ensureSize()) {
-            if (e) {
-                e.value.v = value;
-                e.value.s = size;
-                this.items.asHead(e);
-            } else {
-                this.items.cons({
-                    k: key,
-                    v: value,
-                    s: size
-                });
-                this.map.set(key, this.items.head!);
-            }
-        }
-        return value;
-    }
-
     protected resetEntry(e: ConsCell<CacheEntry<K, V>>) {
         this.items.asHead(e);
         return e.value.v;
+    }
+
+    protected doSetEntry(
+        e: ConsCell<CacheEntry<K, V>> | undefined,
+        k: K,
+        v: V,
+        s: number
+    ) {
+        if (e) {
+            e.value.v = v;
+            e.value.s = s;
+            this.items.asHead(e);
+        } else {
+            this.items.cons({ k, v, s });
+            this.map.set(k, this.items.head!);
+        }
     }
 }

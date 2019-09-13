@@ -10,15 +10,13 @@ import {
     pointInTriangle2
 } from "@thi.ng/geom-isec";
 import { isInArray, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import {
-    AABB,
-    Circle,
-    Line,
-    Points,
-    Polygon,
-    Rect,
-    Triangle
-} from "../api";
+import { AABB } from "../api/aabb";
+import { Circle } from "../api/circle";
+import { Line } from "../api/line";
+import { Points } from "../api/points";
+import { Polygon } from "../api/polygon";
+import { Rect } from "../api/rect";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);

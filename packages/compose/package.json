@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compose",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "description": "Arity-optimized functional composition helpers",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,8 +33,8 @@
         "typescript": "^3.5.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.3.2",
-        "@thi.ng/errors": "^1.1.2"
+        "@thi.ng/api": "^6.3.3",
+        "@thi.ng/errors": "^1.2.0"
     },
     "keywords": [
         "composition",

@@ -7,7 +7,9 @@ import {
     Type
 } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample";
-import { Polygon, Polyline } from "../api";
+import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
 
@@ -23,10 +25,10 @@ resample.addAll(<
     [Type.CIRCLE]: ($: IShape, opts) => asPolygon($, opts),
 
     [Type.POLYGON]: ($: PCLike, opts) =>
-        new Polygon(_resample($.points, opts, true, true), { ...$.attribs }),
+        new Polygon(_resample($.points, opts, true, true), copyAttribs($)),
 
     [Type.POLYLINE]: ($: PCLike, opts) =>
-        new Polyline(_resample($.points, opts, false, true), { ...$.attribs })
+        new Polyline(_resample($.points, opts, false, true), copyAttribs($))
 });
 
 resample.isa(Type.ELLIPSE, Type.CIRCLE);

@@ -121,31 +121,36 @@ const convertAttribs = (attribs: any) => {
     // convertTransforms(res, attribs);
     for (let id in attribs) {
         const v = attribs[id];
-        if (ATTRIB_ALIASES[id]) {
-            res[ATTRIB_ALIASES[id]] = v;
+        const aid = ATTRIB_ALIASES[id];
+        if (aid) {
+            res[aid] = v;
         } else {
-            switch (id) {
-                case "font": {
-                    const i = v.indexOf(" ");
-                    res["font-size"] = v.substr(0, i);
-                    res["font-family"] = v.substr(i + 1);
-                    break;
-                }
-                case "align":
-                    res["text-anchor"] = TEXT_ALIGN[v];
-                    break;
-                case "baseline":
-                    // no SVG support?
-                    break;
-                case "filter":
-                    // TODO needs to be translated into <filter> def first
-                    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
-                    // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
-                    break;
-                default:
-                    res[id] = v;
-            }
+            convertAttrib(res, id, v);
         }
     }
     return res;
+};
+
+const convertAttrib = (res: any, id: string, v: any) => {
+    switch (id) {
+        case "font": {
+            const i = v.indexOf(" ");
+            res["font-size"] = v.substr(0, i);
+            res["font-family"] = v.substr(i + 1);
+            break;
+        }
+        case "align":
+            res["text-anchor"] = TEXT_ALIGN[v];
+            break;
+        case "baseline":
+            // no SVG support?
+            break;
+        case "filter":
+            // TODO needs to be translated into <filter> def first
+            // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+            // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+            break;
+        default:
+            res[id] = v;
+    }
 };

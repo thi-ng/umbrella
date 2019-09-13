@@ -4,15 +4,15 @@ import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cubicSplitAt, quadraticSplitAt } from "@thi.ng/geom-splines";
 import { fit01 } from "@thi.ng/math";
-import { copyVectors, set } from "@thi.ng/vectors";
-import {
-    Arc,
-    Cubic,
-    Line,
-    Polyline,
-    Quadratic
-} from "../api";
+import { set } from "@thi.ng/vectors";
+import { Arc } from "../api/arc";
+import { Cubic } from "../api/cubic";
+import { Line } from "../api/line";
+import { Polyline } from "../api/polyline";
+import { Quadratic } from "../api/quadratic";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
+import { pointArraysAsShapes } from "../internal/points-as-shape";
 import { splitLine } from "../internal/split";
 
 export const splitAt = defmulti<IShape, number, IShape[] | undefined>(dispatch);
@@ -29,7 +29,7 @@ splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
                 theta,
                 $.xl,
                 $.cw,
-                { ...$.attribs }
+                copyAttribs($)
             ),
             new Arc(
                 set([], $.pos),
@@ -39,7 +39,7 @@ splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
                 $.end,
                 $.xl,
                 $.cw,
-                { ...$.attribs }
+                copyAttribs($)
             )
         ];
     },
@@ -54,12 +54,12 @@ splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
             (pts) => new Line(pts, { ...attribs })
         ),
 
-    [Type.POLYLINE]: ($: Polyline, t) => {
-        const res = new Sampler($.points).splitAt(t);
-        return res
-            ? res.map((pts) => new Polyline(copyVectors(pts), { ...$.attribs }))
-            : undefined;
-    },
+    [Type.POLYLINE]: ($: Polyline, t) =>
+        pointArraysAsShapes(
+            Polyline,
+            new Sampler($.points).splitAt(t),
+            $.attribs
+        ),
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic, t: number) =>
         quadraticSplitAt(points[0], points[1], points[2], t).map(

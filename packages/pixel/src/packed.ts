@@ -20,7 +20,11 @@ import {
     clampRegion,
     ensureChannel,
     ensureSize,
-    prepRegions
+    prepRegions,
+    setChannelConvert,
+    setChannelSame,
+    setChannelUni,
+    transformABGR
 } from "./utils";
 
 interface UIntArrayConstructor {
@@ -235,26 +239,21 @@ export class PackedBuffer {
         const dbuf = this.pixels;
         const set = chan.setInt;
         if (isNumber(src)) {
-            for (let i = dbuf.length; --i >= 0; ) {
-                dbuf[i] = set(dbuf[i], src);
-            }
+            setChannelUni(dbuf, src, set);
         } else {
             const sbuf = src.pixels;
             const schan = src.format.channels[0];
             ensureSize(sbuf, this.width, this.height);
             if (chan.size === schan.size) {
-                const get = schan.int;
-                for (let i = dbuf.length; --i >= 0; ) {
-                    dbuf[i] = set(dbuf[i], get(sbuf[i]));
-                }
+                setChannelSame(dbuf, sbuf, schan.int, set);
             } else {
-                const sto = src.format.toABGR;
-                const from = this.format.fromABGR;
-                const mask = chan.maskA;
-                const invMask = ~mask;
-                for (let i = dbuf.length; --i >= 0; ) {
-                    dbuf[i] = (dbuf[i] & invMask) | (from(sto(sbuf[i])) & mask);
-                }
+                setChannelConvert(
+                    dbuf,
+                    sbuf,
+                    this.format.fromABGR,
+                    src.format.toABGR,
+                    chan.maskA
+                );
             }
         }
         return this;
@@ -271,22 +270,12 @@ export class PackedBuffer {
     }
 
     premultiply() {
-        const pix = this.pixels;
-        const from = this.format.fromABGR;
-        const to = this.format.toABGR;
-        for (let i = pix.length; --i >= 0; ) {
-            pix[i] = from(premultiplyInt(to(pix[i])));
-        }
+        transformABGR(this.pixels, this.format, premultiplyInt);
         return this;
     }
 
     postmultiply() {
-        const pix = this.pixels;
-        const from = this.format.fromABGR;
-        const to = this.format.toABGR;
-        for (let i = pix.length; --i >= 0; ) {
-            pix[i] = from(postmultiplyInt(to(pix[i])));
-        }
+        transformABGR(this.pixels, this.format, postmultiplyInt);
         return this;
     }
 

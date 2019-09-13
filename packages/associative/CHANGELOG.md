@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.4.3...@thi.ng/associative@3.0.0) (2019-08-21)
+
+
+### Code Refactoring
+
+* **associative:** update XXXMap.dissoc() signature to unify API ([632c57a](https://github.com/thi-ng/umbrella/commit/632c57a))
+
+
+### BREAKING CHANGES
+
+* **associative:** dissoc() method signature changed from varargs to `Iterable<K>`
+
+Example:
+
+- previously: `HashMap.dissoc(1, 2, 3)`
+- now: `HashMap.dissoc([1, 2, 3])`
+
+This new signature is the same as used by `dissoc()` standalone fn and
+the `disj()` methods of the various Sets in this package.
+
+
+
+
+
 ## [2.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@2.4.2...@thi.ng/associative@2.4.3) (2019-08-16)
 
 **Note:** Version bump only for package @thi.ng/associative

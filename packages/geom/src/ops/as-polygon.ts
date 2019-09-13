@@ -1,6 +1,7 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
-import { Polygon } from "../api";
+import { Polygon } from "../api/polygon";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
@@ -11,7 +12,7 @@ export const asPolygon: MultiFn1O<
 > = defmulti(dispatch);
 
 asPolygon.addAll({
-    [Type.POINTS]: ($, opts) => new Polygon(vertices($, opts), { ...$.attribs })
+    [Type.POINTS]: ($, opts) => new Polygon(vertices($, opts), copyAttribs($))
 });
 
 asPolygon.isa(Type.CIRCLE, Type.POINTS);

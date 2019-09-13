@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.3.4...@thi.ng/geom-splines@0.4.0) (2019-08-21)
+
+
+### Features
+
+* **geom-splines:** add cubicTangentAt / quadraticTangentAt() ([e1cf355](https://github.com/thi-ng/umbrella/commit/e1cf355))
+
+
+
+
+
 ## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.3.3...@thi.ng/geom-splines@0.3.4) (2019-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-splines

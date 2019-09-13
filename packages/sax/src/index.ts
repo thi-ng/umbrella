@@ -269,20 +269,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
         } else if (isWS(ch)) {
             state.state = State.MAYBE_ATTRIB;
         } else if (ch === ">") {
-            state.state = State.ELEM_BODY;
-            state.scope.push({
-                tag: state.tag,
-                attribs: state.attribs,
-                children: []
-            });
-            state.body = "";
-            return [
-                {
-                    type: Type.ELEM_START,
-                    tag: state.tag,
-                    attribs: state.attribs
-                }
-            ];
+            return beginElementBody(state);
         } else if (ch === "/") {
             state.state = State.ELEM_SINGLE;
         } else {

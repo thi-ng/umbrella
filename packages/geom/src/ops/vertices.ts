@@ -19,20 +19,18 @@ import {
     set2,
     Vec
 } from "@thi.ng/vectors";
-import {
-    AABB,
-    Arc,
-    Circle,
-    Cubic,
-    Ellipse,
-    Group,
-    Path,
-    Points,
-    Polygon,
-    Polyline,
-    Quadratic,
-    Rect
-} from "../api";
+import { AABB } from "../api/aabb";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Cubic } from "../api/cubic";
+import { Ellipse } from "../api/ellipse";
+import { Group } from "../api/group";
+import { Path } from "../api/path";
+import { Points } from "../api/points";
+import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
+import { Quadratic } from "../api/quadratic";
+import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 
 export const vertices: MultiFn1O<

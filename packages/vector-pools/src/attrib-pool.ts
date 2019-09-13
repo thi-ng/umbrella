@@ -6,10 +6,11 @@ import {
     TypedArray
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
+import { isNumber } from "@thi.ng/checks";
 import { MemPool, TYPEDARRAY_CTORS, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
-import { AttribPoolOpts, AttribSpec } from "./api";
+import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
 import { asNativeType } from "./convert";
 
 /*
@@ -90,7 +91,7 @@ export class AttribPool implements IRelease {
 
     attribValue(id: string, i: number): number | Vec | undefined {
         const spec = this.specs[id];
-        assert(!!spec, `invalid attrib: ${id}`);
+        ensureSpec(spec, id);
         if (i >= this.capacity) return;
         i *= spec.stride!;
         return spec.size > 1
@@ -100,7 +101,7 @@ export class AttribPool implements IRelease {
 
     *attribValues(id: string) {
         const spec = this.specs[id];
-        assert(!!spec, `invalid attrib: ${id}`);
+        ensureSpec(spec, id);
         const buf = this.attribs[id];
         const stride = spec.stride!;
         const size = spec.size;
@@ -117,7 +118,7 @@ export class AttribPool implements IRelease {
 
     attribArray(id: string) {
         const spec = this.specs[id];
-        assert(!!spec, `invalid attrib: ${id}`);
+        ensureSpec(spec, id);
         const n = this.capacity;
         const size = spec.size;
         const stride = spec.stride!;
@@ -137,22 +138,13 @@ export class AttribPool implements IRelease {
 
     setAttribValue(id: string, index: number, v: number | ReadonlyVec) {
         const spec = this.specs[id];
-        assert(!!spec, `invalid attrib: ${id}`);
         this.ensure(index + 1);
+        const isNum = isNumber(v);
+        ensureAttrib(spec, id, isNum);
         const buf = this.attribs[id];
         index *= spec.stride!;
-        const isNum = typeof v === "number";
-        assert(
-            () => (!isNum && spec.size > 1) || (isNum && spec.size === 1),
-            `incompatible value for attrib: ${id}`
-        );
         if (!isNum) {
-            assert(
-                (<Vec>v).length <= spec.size,
-                `wrong attrib val size, expected ${spec.size}, got ${
-                    (<Vec>v).length
-                }`
-            );
+            ensureValueSize(<ReadonlyVec>v, spec.size);
             buf.set(<ReadonlyVec>v, index);
         } else {
             buf[index] = <number>v;
@@ -161,25 +153,16 @@ export class AttribPool implements IRelease {
     }
 
     setAttribValues(id: string, vals: ReadonlyVec | ReadonlyVec[], index = 0) {
+        const v = vals[0];
         const spec = this.specs[id];
-        assert(!!spec, `invalid attrib: ${id}`);
+        const isNum = isNumber(v);
+        ensureAttrib(spec, id, isNum);
         const n = vals.length;
         this.ensure(index + n);
         const stride = spec.stride!;
         const buf = this.attribs[id];
-        const v = vals[0];
-        const isNum = typeof v === "number";
-        assert(
-            (!isNum && spec.size > 1) || (isNum && spec.size === 1),
-            `incompatible value(s) for attrib: ${id}`
-        );
         if (!isNum) {
-            assert(
-                (<ReadonlyVec>v).length <= spec.size,
-                `wrong attrib val size, expected ${spec.size}, got ${
-                    (<ReadonlyVec>v).length
-                }`
-            );
+            ensureValueSize(<ReadonlyVec>v, spec.size);
             for (let i = 0, j = index * stride; i < n; i++, j += stride) {
                 buf.set(<ReadonlyVec>vals[i], j);
             }
@@ -259,7 +242,7 @@ export class AttribPool implements IRelease {
             assert(a.size > 0, `attrib ${id}: illegal or missing size`);
             const size = SIZEOF[asNativeType(a.type)];
             a.default == null && (a.default = a.size > 1 ? zeroes(a.size) : 0);
-            const isNum = typeof a.default === "number";
+            const isNum = isNumber(a.default);
             assert(
                 () =>
                     (!isNum && a.size === (<Vec>a.default).length) ||
@@ -312,9 +295,9 @@ export class AttribPool implements IRelease {
             const buf = this.attribs[id];
             const s = a.stride!;
             const v = a.default;
-            if (typeof v === "number") {
+            if (a.size === 1) {
                 for (let i = start; i < end; i++) {
-                    buf[i * s] = v;
+                    buf[i * s] = <number>v;
                 }
             } else {
                 for (let i = start; i < end; i++) {
@@ -327,11 +310,11 @@ export class AttribPool implements IRelease {
     protected realign(newByteStride: number) {
         if (this.order.length === 0 || newByteStride === this.byteStride)
             return;
-        console.warn(`realigning ${this.byteStride} -> ${newByteStride}...`);
+        LOGGER.info(`realigning ${this.byteStride} -> ${newByteStride}...`);
         const grow = newByteStride > this.byteStride;
         let newAddr = this.addr;
         if (grow) {
-            assert(this.resizable, `pool resizing disabled`);
+            assert(this.resizable, `pool growth disabled`);
             newAddr = this.pool.realloc(
                 this.addr,
                 this.capacity * newByteStride
@@ -343,47 +326,23 @@ export class AttribPool implements IRelease {
         const sameBlock = newAddr === this.addr;
         const num = this.capacity - 1;
         const attribs = this.attribs;
-        const newAttribs: IObjectOf<[TypedArray, number]> = {};
         const specs = this.specs;
         const order = grow ? [...this.order].reverse() : this.order;
         // create resized attrib views (in old or new address space)
-        for (let id in specs) {
-            const a = specs[id];
-            const type = asNativeType(a.type);
-            const dStride = newByteStride / SIZEOF[type];
-            newAttribs[id] = [
-                wrap(
-                    type,
-                    this.pool.buf,
-                    newAddr + a.byteOffset,
-                    num * dStride + a.size
-                ),
-                dStride
-            ];
-        }
-        // process in opposite directions based on new stride size
+        const newAttribs = resizeAttribs(
+            specs,
+            this.pool.buf,
+            newAddr,
+            newByteStride,
+            num
+        );
+        // process in opposite directions based on new stride size and
+        // in offset order to avoid successor attrib vals getting
+        // overwritten...
         for (let i of newByteStride < this.byteStride
             ? range(num + 1)
             : range(num, -1, -1)) {
-            // ...in offset order to avoid successor attrib vals
-            for (let id of order) {
-                const a = specs[id];
-                const sStride = a.stride!;
-                const src = attribs[id];
-                const [dest, dStride] = newAttribs[id];
-                if (typeof a.default === "number") {
-                    dest[i * dStride] = src[i * sStride];
-                } else {
-                    const j = i * sStride;
-                    sameBlock
-                        ? (grow ? dest : src).copyWithin(
-                              i * dStride,
-                              j,
-                              j + a.size
-                          )
-                        : dest.set(src.subarray(j, j + a.size), i * dStride);
-                }
-            }
+            moveAttribs(order, specs, attribs, newAttribs, i, sameBlock, grow);
         }
         this.addr = newAddr;
         this.byteStride = newByteStride;
@@ -394,3 +353,66 @@ export class AttribPool implements IRelease {
         }
     }
 }
+
+const resizeAttribs = (
+    specs: IObjectOf<AttribSpec>,
+    buf: ArrayBuffer,
+    dest: number,
+    stride: number,
+    num: number
+) => {
+    const newAttribs: IObjectOf<[TypedArray, number]> = {};
+    for (let id in specs) {
+        const a = specs[id];
+        const type = asNativeType(a.type);
+        const dStride = stride / SIZEOF[type];
+        newAttribs[id] = [
+            wrap(type, buf, dest + a.byteOffset, num * dStride + a.size),
+            dStride
+        ];
+    }
+    return newAttribs;
+};
+
+const moveAttribs = (
+    order: string[],
+    specs: IObjectOf<AttribSpec>,
+    attribs: IObjectOf<TypedArray>,
+    newAttribs: IObjectOf<[TypedArray, number]>,
+    i: number,
+    sameBlock: boolean,
+    grow: boolean
+) => {
+    for (let id of order) {
+        const a = specs[id];
+        const sStride = a.stride!;
+        const src = attribs[id];
+        const [dest, dStride] = newAttribs[id];
+        if (a.size === 1) {
+            dest[i * dStride] = src[i * sStride];
+        } else {
+            const saddr = i * sStride;
+            const daddr = i * dStride;
+            sameBlock
+                ? (grow ? dest : src).copyWithin(daddr, saddr, saddr + a.size)
+                : dest.set(src.subarray(saddr, saddr + a.size), daddr);
+        }
+    }
+};
+
+const ensureSpec = (spec: AttribSpec, id: string) =>
+    assert(!!spec, `invalid attrib: ${id}`);
+
+const ensureAttrib = (spec: AttribSpec, id: string, isNum: boolean) => {
+    ensureSpec(spec, id);
+    assert(
+        () => (!isNum && spec.size > 1) || (isNum && spec.size === 1),
+        `incompatible value for attrib: ${id}`
+    );
+};
+
+const ensureValueSize = (v: ReadonlyVec, size: number) =>
+    assert(
+        v.length <= size,
+        `wrong attrib val size, expected ${size}, got ${v.length}`
+    );

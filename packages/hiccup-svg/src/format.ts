@@ -1,5 +1,5 @@
-import { isArrayLike, isNumber, isString } from "@thi.ng/checks";
-import { asCSS, ColorMode, ReadonlyColor } from "@thi.ng/color";
+import { isArrayLike, isString } from "@thi.ng/checks";
+import { resolveAsCSS } from "@thi.ng/color";
 import { Vec2Like } from "./api";
 
 let PRECISION = 2;
@@ -30,11 +30,11 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  * therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
  *
  * For color related attribs (`fill`, `stroke`), if given value is
- * array-like or a number, it will be converted into a CSS color string
- * using thi.ng/color/asCSS.
+ * array-like, a number or an `IColor` instance, it will be converted
+ * into a CSS color string using thi.ng/color's `asCSS()`.
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)`
- * refs (used for gradients).
+ * refs (used for referencing gradients).
  *
  * Returns updated attribs or `undefined` if `attribs` itself is
  * null-ish.
@@ -73,29 +73,34 @@ const ftransforms = (attribs: any) => {
             delete attribs.rotate;
             delete attribs.scale;
         } else {
-            const tx: string[] = [];
-            if ((v = attribs.translate)) {
-                tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
-                delete attribs.translate;
-            }
-            if ((v = attribs.rotate)) {
-                tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
-                delete attribs.rotate;
-            }
-            if ((v = attribs.scale)) {
-                tx.push(
-                    isString(v)
-                        ? v
-                        : isArrayLike(v)
-                            ? `scale(${ff(v[0])} ${ff(v[1])})`
-                            : `scale(${ff(v)})`
-                );
-                delete attribs.scale;
-            }
-            attribs.transform = tx.join(" ");
+            attribs.transform = buildTransform(attribs);
         }
     }
     return attribs;
+};
+
+const buildTransform = (attribs: any) => {
+    const tx: string[] = [];
+    let v: any;
+    if ((v = attribs.translate)) {
+        tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
+        delete attribs.translate;
+    }
+    if ((v = attribs.rotate)) {
+        tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
+        delete attribs.rotate;
+    }
+    if ((v = attribs.scale)) {
+        tx.push(
+            isString(v)
+                ? v
+                : isArrayLike(v)
+                ? `scale(${ff(v[0])} ${ff(v[1])})`
+                : `scale(${ff(v)})`
+        );
+        delete attribs.scale;
+    }
+    return tx.join(" ");
 };
 
 /**
@@ -110,10 +115,4 @@ export const fcolor = (col: any) =>
         ? col[0] === "$"
             ? `url(#${col.substr(1)})`
             : col
-        : isArrayLike(col)
-            ? isNumber((<any>col).mode)
-                ? asCSS(<any>col)
-                : asCSS(<ReadonlyColor>col, ColorMode.RGBA)
-            : isNumber(col)
-                ? asCSS(col, ColorMode.INT32)
-                : col;
+        : resolveAsCSS(col);

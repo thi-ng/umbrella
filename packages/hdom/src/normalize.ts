@@ -1,6 +1,6 @@
 import { isArray as isa, isNotStringAndIterable as isi, isPlainObject as iso } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { NO_SPANS, TAG_REGEXP } from "@thi.ng/hiccup";
+import { NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
 import { HDOMOpts } from "./api";
 
 const isArray = isa;
@@ -42,7 +42,7 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
     let id: string;
     let clazz: string;
     let attribs;
-    if (typeof tag !== "string" || !(match = TAG_REGEXP.exec(tag))) {
+    if (typeof tag !== "string" || !(match = RE_TAG.exec(tag))) {
         illegalArgs(`${tag} is not a valid tag name`);
     }
     mtag = match![1];

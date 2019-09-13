@@ -1,6 +1,6 @@
 # imgui
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/imgui-demo.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 
 [Live demo](http://demo.thi.ng/umbrella/imgui/)
 
@@ -9,7 +9,7 @@ WIP prototyping example for
 and realisation via
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas).
 
-Please consult package readmes for details. Also, please refer to the
+Please consult package readme for details. Also, please refer to the
 [example build
 instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
 on the wiki.

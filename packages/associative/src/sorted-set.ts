@@ -2,6 +2,9 @@ import { Fn3, ICompare, Pair } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 import { IReducible, map, ReductionFn } from "@thi.ng/transducers";
 import { IEquivSet, SortedSetOpts } from "./api";
+import { dissoc } from "./dissoc";
+import { equivSet } from "./internal/equiv";
+import { into } from "./into";
 import { SortedMap } from "./sorted-map";
 
 const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
@@ -87,21 +90,7 @@ export class SortedSet<T> extends Set<T>
     }
 
     equiv(o: any) {
-        if (this === o) {
-            return true;
-        }
-        if (!(o instanceof Set)) {
-            return false;
-        }
-        if (this.size !== o.size) {
-            return false;
-        }
-        for (let k of this.keys()) {
-            if (!o.has(k)) {
-                return false;
-            }
-        }
-        return true;
+        return equivSet(this, o);
     }
 
     $reduce(rfn: ReductionFn<any, T>, acc: any): any {
@@ -120,16 +109,13 @@ export class SortedSet<T> extends Set<T>
         return __private.get(this)!.values(key, max);
     }
 
-    add(value: T) {
-        __private.get(this)!.set(value, value);
+    add(key: T) {
+        __private.get(this)!.set(key, key);
         return this;
     }
 
-    into(xs: Iterable<T>) {
-        for (let x of xs) {
-            this.add(x);
-        }
-        return this;
+    into(keys: Iterable<T>) {
+        return <this>into(this, keys);
     }
 
     clear(): void {
@@ -141,15 +127,12 @@ export class SortedSet<T> extends Set<T>
         return first ? first[0] : undefined;
     }
 
-    delete(value: T): boolean {
-        return __private.get(this)!.delete(value);
+    delete(key: T): boolean {
+        return __private.get(this)!.delete(key);
     }
 
-    disj(xs: Iterable<T>) {
-        for (let x of xs) {
-            this.delete(x);
-        }
-        return this;
+    disj(keys: Iterable<T>) {
+        return <this>dissoc(this, keys);
     }
 
     forEach(
@@ -161,12 +144,12 @@ export class SortedSet<T> extends Set<T>
         }
     }
 
-    has(value: T): boolean {
-        return __private.get(this)!.has(value);
+    has(key: T): boolean {
+        return __private.get(this)!.has(key);
     }
 
-    get(value: T, notFound?: T): T | undefined {
-        return __private.get(this)!.get(value, notFound);
+    get(key: T, notFound?: T): T | undefined {
+        return __private.get(this)!.get(key, notFound);
     }
 
     opts(): SortedSetOpts<T> {

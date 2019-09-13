@@ -27,17 +27,15 @@ import {
     sub2,
     subN2
 } from "@thi.ng/vectors";
-import {
-    Arc,
-    Circle,
-    Cubic,
-    Ellipse,
-    Group,
-    Line,
-    Path,
-    Quadratic,
-    Rect
-} from "../api";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Cubic } from "../api/cubic";
+import { Ellipse } from "../api/ellipse";
+import { Group } from "../api/group";
+import { Line } from "../api/line";
+import { Path } from "../api/path";
+import { Quadratic } from "../api/quadratic";
+import { Rect } from "../api/rect";
 import { rectFromMinMax } from "../ctors/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { dispatch } from "../internal/dispatch";

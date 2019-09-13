@@ -4,15 +4,13 @@ import { IShape, Type } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils";
 import { PI, TAU } from "@thi.ng/math";
 import { dist } from "@thi.ng/vectors";
-import {
-    Circle,
-    Ellipse,
-    Group,
-    Line,
-    Polygon,
-    Rect,
-    Triangle
-} from "../api";
+import { Circle } from "../api/circle";
+import { Ellipse } from "../api/ellipse";
+import { Group } from "../api/group";
+import { Line } from "../api/line";
+import { Polygon } from "../api/polygon";
+import { Rect } from "../api/rect";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 
 /**

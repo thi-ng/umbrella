@@ -2,7 +2,8 @@ import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip";
-import { Polygon } from "../api";
+import { Polygon } from "../api/polygon";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 import { vertices } from "./vertices";
@@ -17,7 +18,7 @@ clipConvex.addAll(<IObjectOf<Implementation2<unknown, unknown, Polygon>>>{
                 vertices(boundary),
                 centroid(boundary)
             ),
-            { ...$.attribs }
+            copyAttribs($)
         ),
 
     [Type.RECT]: ($: IShape, boundary: IShape) =>
@@ -27,7 +28,7 @@ clipConvex.addAll(<IObjectOf<Implementation2<unknown, unknown, Polygon>>>{
                 vertices(boundary),
                 centroid(boundary)
             ),
-            { ...$.attribs }
+            copyAttribs($)
         )
 });
 

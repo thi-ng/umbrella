@@ -8,7 +8,9 @@ import {
     subN2,
     Vec
 } from "@thi.ng/vectors";
-import { Circle, Polygon, Rect } from "../api";
+import { Circle } from "../api/circle";
+import { Polygon } from "../api/polygon";
+import { Rect } from "../api/rect";
 import { argsVV } from "../internal/args";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;

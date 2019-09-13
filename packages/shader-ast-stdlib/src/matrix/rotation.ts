@@ -1,17 +1,27 @@
 import {
     $x,
     $y,
+    $z,
+    add,
+    cos,
     defn,
+    FloatSym,
     mat2,
     mat3,
     mat4,
+    mul,
     neg,
+    NumericF,
     ret,
+    sin,
+    sub,
     sym,
-    Vec2Term
+    Vec2Term,
+    vec3
 } from "@thi.ng/shader-ast";
 import { perpendicularCCW } from "../math/orthogonal";
 import { cossin } from "../math/sincos";
+import { m33ToM44 } from "./convert";
 
 export const rotation2 = defn("mat2", "rotation2", ["float"], (theta) => {
     let cs: Vec2Term;
@@ -122,3 +132,42 @@ export const rotationZ4 = defn("mat4", "rotationZ4", ["float"], (theta) => {
         )
     ];
 });
+
+export const rotationAroundAxis3 = defn(
+    "mat3",
+    "rotationAroundAxis3",
+    ["vec3", "float"],
+    (axis, theta) => {
+        let s: FloatSym;
+        let c: FloatSym;
+        let t: FloatSym;
+        const $$ = (
+            a: NumericF,
+            b: NumericF,
+            c: NumericF,
+            d: NumericF,
+            e: NumericF,
+            f: NumericF,
+            g: NumericF
+        ) => add(mul(mul(axis, a), t), mul(vec3(b, c, d), vec3(e, f, g)));
+        return [
+            (s = sym(sin(theta))),
+            (c = sym(cos(theta))),
+            (t = sym(sub(1, c))),
+            ret(
+                mat3(
+                    $$($x(axis), 1, $z(axis), neg($y(axis)), c, s, s),
+                    $$($y(axis), neg($z(axis)), 1, $x(axis), s, c, s),
+                    $$($z(axis), $y(axis), neg($x(axis)), 1, s, s, c)
+                )
+            )
+        ];
+    }
+);
+
+export const rotationAroundAxis4 = defn(
+    "mat4",
+    "rotationAroundAxis4",
+    ["vec3", "float"],
+    (axis, theta) => [ret(m33ToM44(rotationAroundAxis3(axis, theta)))]
+);

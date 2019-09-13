@@ -2,7 +2,6 @@ import {
     implementsFunction,
     isFunction,
     isNotStringAndIterable,
-    isPlainObject,
     isString
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -10,11 +9,10 @@ import {
     COMMENT,
     NO_SPANS,
     PROC_TAGS,
-    TAG_REGEXP,
     VOID_TAGS
 } from "./api";
-import { css } from "./css";
 import { escape } from "./escape";
+import { normalize } from "./normalize";
 
 /**
  * Recursively normalizes and serializes given tree as HTML/SVG/XML
@@ -164,94 +162,7 @@ const _serialize = (
         return "";
     }
     if (Array.isArray(tree)) {
-        if (!tree.length) {
-            return "";
-        }
-        let tag = tree[0];
-        if (isFunction(tag)) {
-            return _serialize(
-                tag.apply(null, [ctx, ...tree.slice(1)]),
-                ctx,
-                esc,
-                span,
-                keys,
-                path
-            );
-        }
-        if (implementsFunction(tag, "render")) {
-            return _serialize(
-                tag.render.apply(null, [ctx, ...tree.slice(1)]),
-                ctx,
-                esc,
-                span,
-                keys,
-                path
-            );
-        }
-        if (isString(tag)) {
-            if (tag === COMMENT) {
-                return tree.length > 2
-                    ? `\n<!--\n${tree
-                          .slice(1)
-                          .map((x) => "    " + x)
-                          .join("\n")}\n-->\n`
-                    : `\n<!-- ${tree[1]} -->\n`;
-            }
-            tree = normalize(tree);
-            tag = tree[0];
-            const attribs = tree[1];
-            if (attribs.__skip || attribs.__serialize === false) {
-                return "";
-            }
-            let body = tree[2];
-            let res = `<${tag}`;
-            if (keys && attribs.key === undefined) {
-                attribs.key = path.join("-");
-            }
-            for (let a in attribs) {
-                if (a.startsWith("__")) continue;
-                if (attribs.hasOwnProperty(a)) {
-                    let v = attribs[a];
-                    if (v != null) {
-                        if (isFunction(v)) {
-                            if (/^on\w+/.test(a) || (v = v(attribs)) == null) {
-                                continue;
-                            }
-                        }
-                        if (v === true) {
-                            res += " " + a;
-                        } else if (v !== false) {
-                            v = v.toString();
-                            if (v.length) {
-                                res += ` ${a}="${esc ? escape(v) : v}"`;
-                            }
-                        }
-                    }
-                }
-            }
-            if (body) {
-                if (VOID_TAGS[tag]) {
-                    illegalArgs(`No body allowed in tag: ${tag}`);
-                }
-                const proc = PROC_TAGS[tag];
-                res += proc ? " " : ">";
-                span = span && !proc && !NO_SPANS[tag];
-                for (let i = 0, n = body.length; i < n; i++) {
-                    res += _serialize(body[i], ctx, esc, span, keys, [
-                        ...path,
-                        i
-                    ]);
-                }
-                return (res += proc || `</${tag}>`);
-            } else if (!VOID_TAGS[tag]) {
-                return (res += `></${tag}>`);
-            }
-            return (res += PROC_TAGS[tag] || "/>");
-        }
-        if (isNotStringAndIterable(tree)) {
-            return _serializeIter(tree, ctx, esc, span, keys, path);
-        }
-        illegalArgs(`invalid tree node: ${tree}`);
+        return serializeElement(tree, ctx, esc, span, keys, path);
     }
     if (isFunction(tree)) {
         return _serialize(tree(ctx), ctx, esc, span, keys, path);
@@ -263,7 +174,7 @@ const _serialize = (
         return _serialize(tree.deref(), ctx, esc, span, keys, path);
     }
     if (isNotStringAndIterable(tree)) {
-        return _serializeIter(tree, ctx, esc, span, keys, path);
+        return serializeIter(tree, ctx, esc, span, keys, path);
     }
     tree = esc ? escape(tree.toString()) : tree;
     return span
@@ -271,7 +182,113 @@ const _serialize = (
         : tree;
 };
 
-const _serializeIter = (
+const serializeElement = (
+    tree: any[],
+    ctx: any,
+    esc: boolean,
+    span: boolean,
+    keys: boolean,
+    path: any[]
+) => {
+    if (!tree.length) {
+        return "";
+    }
+    let tag = tree[0];
+    if (isFunction(tag)) {
+        return _serialize(
+            tag.apply(null, [ctx, ...tree.slice(1)]),
+            ctx,
+            esc,
+            span,
+            keys,
+            path
+        );
+    }
+    if (implementsFunction(tag, "render")) {
+        return _serialize(
+            tag.render.apply(null, [ctx, ...tree.slice(1)]),
+            ctx,
+            esc,
+            span,
+            keys,
+            path
+        );
+    }
+    if (tag === COMMENT) {
+        return serializeComment(tree);
+    }
+    if (isString(tag)) {
+        tree = normalize(tree);
+        tag = tree[0];
+        const attribs = tree[1];
+        if (attribs.__skip || attribs.__serialize === false) {
+            return "";
+        }
+        let body = tree[2];
+        let res = `<${tag}`;
+        keys && attribs.key === undefined && (attribs.key = path.join("-"));
+        res += serializeAttribs(attribs, esc);
+        res += body
+            ? serializeBody(tag, body, ctx, esc, span, keys, path)
+            : !VOID_TAGS[tag]
+            ? `></${tag}>`
+            : PROC_TAGS[tag] || "/>";
+        return res;
+    }
+    if (isNotStringAndIterable(tree)) {
+        return serializeIter(tree, ctx, esc, span, keys, path);
+    }
+    return illegalArgs(`invalid tree node: ${tree}`);
+};
+
+const serializeAttribs = (attribs: any, esc: boolean) => {
+    let res = "";
+    for (let a in attribs) {
+        if (a.startsWith("__")) continue;
+        let v = attribs[a];
+        if (v == null) continue;
+        if (isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null))
+            continue;
+        if (v === true) {
+            res += " " + a;
+        } else if (v !== false) {
+            v = v.toString();
+            v.length && (res += ` ${a}="${esc ? escape(v) : v}"`);
+        }
+    }
+    return res;
+};
+
+const serializeBody = (
+    tag: string,
+    body: any[],
+    ctx: any,
+    esc: boolean,
+    span: boolean,
+    keys: boolean,
+    path: any[]
+) => {
+    if (VOID_TAGS[tag]) {
+        illegalArgs(`No body allowed in tag: ${tag}`);
+    }
+    const proc = PROC_TAGS[tag];
+    let res = proc ? " " : ">";
+    span = span && !proc && !NO_SPANS[tag];
+    for (let i = 0, n = body.length; i < n; i++) {
+        res += _serialize(body[i], ctx, esc, span, keys, [...path, i]);
+    }
+    return res + (proc || `</${tag}>`);
+};
+
+const serializeComment = (tree: any[]) =>
+    tree.length > 2
+        ? `\n<!--\n${tree
+              .slice(1)
+              .map((x) => "    " + x)
+              .join("\n")}\n-->\n`
+        : `\n<!-- ${tree[1]} -->\n`;
+
+const serializeIter = (
     iter: Iterable<any>,
     ctx: any,
     esc: boolean,
@@ -286,40 +303,4 @@ const _serializeIter = (
         res.push(_serialize(i, ctx, esc, span, keys, [...p, k++]));
     }
     return res.join("");
-};
-
-export const normalize = (tag: any[]) => {
-    let el = tag[0];
-    let match: RegExpExecArray | null;
-    let id: string;
-    let clazz: string;
-    const hasAttribs = isPlainObject(tag[1]);
-    const attribs: any = hasAttribs ? { ...tag[1] } : {};
-    if (!isString(el) || !(match = TAG_REGEXP.exec(el))) {
-        illegalArgs(`"${el}" is not a valid tag name`);
-    }
-    el = match![1];
-    id = match![2];
-    clazz = match![3];
-    if (id) {
-        attribs.id = id;
-    }
-    if (clazz) {
-        clazz = clazz.replace(/\./g, " ");
-        if (attribs.class) {
-            attribs.class += " " + clazz;
-        } else {
-            attribs.class = clazz;
-        }
-    }
-    if (tag.length > 1) {
-        if (isPlainObject(attribs.style)) {
-            attribs.style = css(attribs.style);
-        }
-        tag = tag.slice(hasAttribs ? 2 : 1).filter((x) => x != null);
-        if (tag.length > 0) {
-            return [el, attribs, tag];
-        }
-    }
-    return [el, attribs];
 };

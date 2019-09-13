@@ -13,6 +13,7 @@ export * from "./hue-rgba";
 export * from "./int-css";
 export * from "./int-rgba";
 export * from "./kelvin-rgba";
+export * from "./resolve";
 export * from "./rgba-css";
 export * from "./rgba-hcva";
 export * from "./rgba-hcya";

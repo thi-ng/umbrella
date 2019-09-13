@@ -11,7 +11,7 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
-import { Rect } from "../api";
+import { Rect } from "../api/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";
 import { center } from "./center";

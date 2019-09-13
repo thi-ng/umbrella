@@ -29,6 +29,7 @@ import {
     Interceptor,
     InterceptorContext,
     InterceptorFn,
+    LOGGER,
     SideEffect
 } from "./api";
 
@@ -195,10 +196,10 @@ export class StatelessEventBus implements IDispatch {
                                 this.dispatch([success, res])
                             ).catch((e) => this.dispatch([err, e]));
                         } else {
-                            console.warn("async effect did not return Promise");
+                            LOGGER.warn("async effect did not return Promise");
                         }
                     } else {
-                        console.warn(`skipping invalid async effect: ${id}`);
+                        LOGGER.warn(`skipping invalid async effect: ${id}`);
                     }
                 },
                 -999
@@ -224,15 +225,11 @@ export class StatelessEventBus implements IDispatch {
     }
 
     addHandler(id: string, spec: EventDef) {
-        const iceps = isArray(spec)
-            ? (<any>spec).map(asInterceptor)
-            : isFunction(spec)
-            ? [{ pre: spec }]
-            : [spec];
+        const iceps = this.interceptorsFromSpec(spec);
         if (iceps.length > 0) {
             if (this.handlers[id]) {
                 this.removeHandler(id);
-                console.warn(`overriding handler for ID: ${id}`);
+                LOGGER.warn(`overriding handler for ID: ${id}`);
             }
             this.handlers[id] = iceps;
         } else {
@@ -249,7 +246,7 @@ export class StatelessEventBus implements IDispatch {
     addEffect(id: string, fx: SideEffect, priority = 1) {
         if (this.effects[id]) {
             this.removeEffect(id);
-            console.warn(`overriding effect for ID: ${id}`);
+            LOGGER.warn(`overriding effect for ID: ${id}`);
         }
         this.effects[id] = fx;
         const p: EffectPriority = [id, priority];
@@ -425,22 +422,37 @@ export class StatelessEventBus implements IDispatch {
     protected processEvent(ctx: InterceptorContext, e: Event) {
         const iceps = this.handlers[<any>e[0]];
         if (!iceps) {
-            console.warn(`missing handler for event type: ${e[0].toString()}`);
+            LOGGER.warn(`missing handler for event type: ${e[0].toString()}`);
             return;
         }
-        const n = iceps.length - 1;
+        if (!this.processForward(ctx, iceps, e)) {
+            return;
+        }
+        this.processReverse(ctx, iceps, e);
+    }
+
+    protected processForward(
+        ctx: InterceptorContext,
+        iceps: Interceptor[],
+        e: Event
+    ) {
         let hasPost = false;
-        for (let i = 0; i <= n && !ctx[FX_CANCEL]; i++) {
+        for (let i = 0, n = iceps.length; i < n && !ctx[FX_CANCEL]; i++) {
             const icep = iceps[i];
             if (icep.pre) {
                 this.mergeEffects(ctx, icep.pre(ctx[FX_STATE], e, this, ctx));
             }
             hasPost = hasPost || !!icep.post;
         }
-        if (!hasPost) {
-            return;
-        }
-        for (let i = n; i >= 0 && !ctx[FX_CANCEL]; i--) {
+        return hasPost;
+    }
+
+    protected processReverse(
+        ctx: InterceptorContext,
+        iceps: Interceptor[],
+        e: Event
+    ) {
+        for (let i = iceps.length; --i >= 0 && !ctx[FX_CANCEL]; ) {
             const icep = iceps[i];
             if (icep.post) {
                 this.mergeEffects(ctx, icep.post(ctx[FX_STATE], e, this, ctx));
@@ -459,16 +471,23 @@ export class StatelessEventBus implements IDispatch {
         for (let p of this.priorities) {
             const id = p[0];
             const val = ctx[id];
-            if (val !== undefined) {
-                const fn = effects[id];
-                if (id !== FX_STATE) {
-                    for (let v of val) {
-                        fn(v, this, ctx);
-                    }
-                } else {
-                    fn(val, this, ctx);
-                }
+            val !== undefined && this.processEffect(ctx, effects, id, val);
+        }
+    }
+
+    protected processEffect(
+        ctx: InterceptorContext,
+        effects: IObjectOf<SideEffect>,
+        id: string,
+        val: any
+    ) {
+        const fn = effects[id];
+        if (id !== FX_STATE) {
+            for (let v of val) {
+                fn(v, this, ctx);
             }
+        } else {
+            fn(val, this, ctx);
         }
     }
 
@@ -542,6 +561,14 @@ export class StatelessEventBus implements IDispatch {
                 }
             }
         }
+    }
+
+    protected interceptorsFromSpec(spec: EventDef) {
+        return isArray(spec)
+            ? (<any>spec).map(asInterceptor)
+            : isFunction(spec)
+            ? [{ pre: spec }]
+            : [spec];
     }
 }
 
@@ -726,7 +753,7 @@ const undoHandler = (action: string): InterceptorFn => (
     bus,
     ctx
 ) => {
-    let id = ev ? ev[0] : "history";
+    const id = ev ? ev[0] : "history";
     if (implementsFunction(ctx[id], action)) {
         const ok = ctx[id][action]();
         return {
@@ -738,6 +765,6 @@ const undoHandler = (action: string): InterceptorFn => (
                 : undefined
         };
     } else {
-        console.warn("no history in context");
+        LOGGER.warn("no history in context");
     }
 };

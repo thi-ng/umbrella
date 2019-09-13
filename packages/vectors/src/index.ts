@@ -68,6 +68,8 @@ export * from "./heading-segment";
 export * from "./homogeneous";
 export * from "./invert";
 export * from "./invsqrt";
+export * from "./is-inf";
+export * from "./is-nan";
 export * from "./jitter";
 export * from "./limit";
 export * from "./log";

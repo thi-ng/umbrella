@@ -5,6 +5,7 @@ import {
     isReduced,
     iterator,
     Reducer,
+    ReductionFn,
     Transducer,
     unreduced
 } from "@thi.ng/transducers";
@@ -87,12 +88,7 @@ export function fsm<T, C, R>(
                                   );
                               }
                               if (res) {
-                                  for (let y of unreduced(res)) {
-                                      acc = reduce(acc, y);
-                                      if (isReduced(acc)) {
-                                          break;
-                                      }
-                                  }
+                                  acc = reduceResult(reduce, acc, res);
                                   isReduced(res) && (acc = ensureReduced(acc));
                               }
                               if (type === Match.FULL_NC && !isReduced(acc)) {
@@ -100,12 +96,7 @@ export function fsm<T, C, R>(
                               }
                           } else if (type === Match.FAIL) {
                               if (res) {
-                                  for (let y of unreduced(res)) {
-                                      acc = reduce(acc, y);
-                                      if (isReduced(acc)) {
-                                          break;
-                                      }
-                                  }
+                                  acc = reduceResult(reduce, acc, res);
                               }
                               return ensureReduced(acc);
                           }
@@ -116,3 +107,13 @@ export function fsm<T, C, R>(
               ];
           };
 }
+
+const reduceResult = <R>(rfn: ReductionFn<any, R>, acc: any, res: R[]) => {
+    for (let x of unreduced(res)) {
+        acc = rfn(acc, x);
+        if (isReduced(acc)) {
+            break;
+        }
+    }
+    return acc;
+};

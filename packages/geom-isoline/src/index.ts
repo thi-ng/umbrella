@@ -1,41 +1,13 @@
+import { Fn5 } from "@thi.ng/api";
 import { range2d } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-// flattened [to,clear] tuples
+// flattened [to, clear] tuples
 // all positive values are given as times 2
+// prettier-ignore
 const EDGE_INDEX = [
-    -1,
-    -1,
-    4,
-    0,
-    2,
-    0,
-    2,
-    0,
-    0,
-    0,
-    -1,
-    -1,
-    0,
-    0,
-    0,
-    0,
-    6,
-    0,
-    4,
-    0,
-    -1,
-    -1,
-    2,
-    0,
-    6,
-    0,
-    4,
-    0,
-    6,
-    0,
-    -1,
-    -1
+    -1, -1, 4, 0, 2, 0, 2, 0, 0, 0, -1, -1, 0, 0, 0, 0,
+    6, 0, 4, 0, -1, -1, 2, 0, 6, 0, 4, 0, 6, 0, -1, -1
 ];
 
 // flattened coord offsets [x,y] tuples
@@ -99,30 +71,17 @@ const mix = (
     return a === b ? 0 : (a - iso) / (a - b);
 };
 
-const contourVertex = (
-    src: ReadonlyVec,
-    w: number,
-    x: number,
-    y: number,
-    to: number,
-    iso: number
-) => {
-    switch (to) {
-        case 0:
-            return [x + mix(src, w, x, y, x + 1, y, iso), y];
-        case 2:
-            return [x + 1, y + mix(src, w, x + 1, y, x + 1, y + 1, iso)];
-        case 4:
-            return [x + mix(src, w, x, y + 1, x + 1, y + 1, iso), y + 1];
-        case 6:
-            return [x, y + mix(src, w, x, y, x, y + 1, iso)];
-        default:
-    }
-};
+// prettier-ignore
+const contourVertex: Fn5<ReadonlyVec, number, number, number, number, Vec>[] = [
+    (src, w, x, y, iso) => [x + mix(src, w, x, y, x + 1, y, iso), y],
+    (src, w, x, y, iso) => [x + 1, y + mix(src, w, x + 1, y, x + 1, y + 1, iso)],
+    (src, w, x, y, iso) => [x + mix(src, w, x, y + 1, x + 1, y + 1, iso), y + 1],
+    (src, w, x, y, iso) => [x, y + mix(src, w, x, y, x, y + 1, iso)]
+];
 
 export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
     const coded = encodeCrossings(src, w, h, iso);
-    let curr: number[][] = [];
+    let curr: Vec[] = [];
     let from: number;
     let to = -1;
     let clear: number;
@@ -166,15 +125,15 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
             to = EDGE_INDEX[id];
             clear = EDGE_INDEX[id + 1];
         }
-        if (curr.length > 0 && from === -1 && to > -1) {
+        if (from === -1 && to > -1 && curr.length > 0) {
             yield curr;
             curr = [];
         }
         if (clear !== -1) {
-            coded[y * w + x] = clear;
+            coded[i] = clear;
         }
         if (to >= 0) {
-            curr.push(contourVertex(src, w, x, y, to, iso)!);
+            curr.push(contourVertex[to >> 1](src, w, x, y, iso));
             x += NEXT_EDGES[to];
             y += NEXT_EDGES[to + 1];
         } else {

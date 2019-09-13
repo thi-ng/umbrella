@@ -30,9 +30,11 @@ export * from "./matrix/mvp";
 export * from "./matrix/normal";
 export * from "./matrix/rotation";
 
+export * from "./noise/curl3";
 export * from "./noise/hash";
 export * from "./noise/permute";
 export * from "./noise/simplex2";
+export * from "./noise/simplex3";
 export * from "./noise/voronoi2";
 export * from "./noise/worley2";
 

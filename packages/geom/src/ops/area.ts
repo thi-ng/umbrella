@@ -4,17 +4,15 @@ import { IShape, Type } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils";
 import { PI } from "@thi.ng/math";
 import { signedArea2, Vec } from "@thi.ng/vectors";
-import {
-    AABB,
-    Arc,
-    Circle,
-    Ellipse,
-    Group,
-    Polygon,
-    Rect,
-    Sphere,
-    Triangle
-} from "../api";
+import { AABB } from "../api/aabb";
+import { Arc } from "../api/arc";
+import { Circle } from "../api/circle";
+import { Ellipse } from "../api/ellipse";
+import { Group } from "../api/group";
+import { Polygon } from "../api/polygon";
+import { Rect } from "../api/rect";
+import { Sphere } from "../api/sphere";
+import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 
 /**

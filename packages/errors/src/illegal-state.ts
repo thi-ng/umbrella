@@ -1,8 +1,6 @@
-export class IllegalStateError extends Error {
-    constructor(msg?: any) {
-        super("illegal state" + (msg !== undefined ? ": " + msg : ""));
-    }
-}
+import { defError } from "./deferror";
+
+export const IllegalStateError = defError<any>(() => "illegal state");
 
 export const illegalState = (msg?: any): never => {
     throw new IllegalStateError(msg);

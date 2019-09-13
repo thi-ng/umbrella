@@ -2,17 +2,18 @@ import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { grahamScan2 } from "@thi.ng/geom-hull";
-import { Polygon } from "../api";
+import { Polygon } from "../api/polygon";
+import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
 export const convexHull = defmulti<IShape, IShape>(dispatch);
 
 convexHull.addAll(<IObjectOf<Implementation1<unknown, IShape>>>{
-    [Type.GROUP]: ($: IShape) => new Polygon(vertices($), { ...$.attribs }),
+    [Type.GROUP]: ($: IShape) => new Polygon(vertices($), copyAttribs($)),
 
     [Type.POINTS]: ($: PCLike) =>
-        new Polygon(grahamScan2($.points), { ...$.attribs }),
+        new Polygon(grahamScan2($.points), copyAttribs($)),
 
     [Type.TRIANGLE]: ($: IShape) => $.copy()
 });
