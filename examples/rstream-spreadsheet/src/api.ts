@@ -13,9 +13,9 @@ export const RE_CELL_RANGE = /^([A-Z])(\d+):([A-Z])(\d+)$/i;
 export interface Cell {
     formula: string;
     value: string | number;
+    error: string | null;
     backup: string;
     focus: boolean;
-    error: string | null;
 }
 
 export interface UICell extends ILifecycle {

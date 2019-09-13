@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks";
 import { fromAtom } from "@thi.ng/rstream";
-import { charRange, float } from "@thi.ng/strings";
+import { charRange } from "@thi.ng/strings";
 import {
     comp,
     map,
@@ -19,7 +19,6 @@ import {
     NUM_ROWS,
     UICell
 } from "./api";
-import "./dsl";
 import {
     blurCell,
     cancelCell,
@@ -29,8 +28,13 @@ import {
     updateCell
 } from "./state";
 
-const formatCell = (x: string | number) => (isNumber(x) ? float(2)(x) : x);
+const formatCell = (x: string | number) => (isNumber(x) ? x.toFixed(2) : x);
 
+/**
+ * Choose background color based on cell state.
+ *
+ * @param cell
+ */
 const cellBackground = (cell: any) =>
     cell.focus
         ? "bg-yellow"
@@ -40,6 +44,12 @@ const cellBackground = (cell: any) =>
             : "bg-light-green"
         : "";
 
+/**
+ * thi.ng/hdom cell component with lifecycle methods. (The current
+ * markup used (editable div's) is far from perfect...)
+ *
+ * @param cellid tuple
+ */
 const cell = ([row, col]: [number, string]) =>
     <UICell>{
         init(el: HTMLDivElement) {
@@ -91,6 +101,12 @@ const cell = ([row, col]: [number, string]) =>
         }
     };
 
+/**
+ * Main UI component HOF. Attached to to `main` rstream (defined below)
+ * and called with the DB state atom's current state when it changes.
+ * The function returns a thi.ng/hdom component tree representing the
+ * entire spreadsheet.
+ */
 const app = () => {
     const CELLS: UICell[][] = transduce(
         comp(map(cell), partition(NUM_COLS)),
@@ -123,7 +139,13 @@ const app = () => {
 
 // setLogger(new ConsoleLogger("rstream"));
 
+// main state value subscription
 const main = fromAtom(DB);
+
+// transform state value into UI components and then apply to DOM.
+// due to the use of `contentEditable` div's for spreadsheet cells, we
+// need to disable the use of automatic span wrappers for text content
+// in hdom
 main.transform(map(app()), updateDOM({ span: false }));
 
 (<any>window)["DB"] = DB;
