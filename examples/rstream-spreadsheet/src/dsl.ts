@@ -11,10 +11,11 @@ import {
     NodeSpec
 } from "@thi.ng/rstream-graph";
 import {
-    Node,
+    ASTNode,
+    Implementations,
     parse,
     runtime,
-    StringNode,
+    Str,
     Sym,
     tokenize
 } from "@thi.ng/sexpr";
@@ -52,17 +53,20 @@ interface Env {
 }
 
 // dynamic-dispatch function to delegate to actual DSL formula operators
-const builtins = defmulti<Node, Node[], Env, any>((x) => (<Sym>x).value);
+const builtins = defmulti<Sym, ASTNode[], Env, any>((x) => x.value);
 
 // init S-expression interpreter. this results in another
 // dynamic-dispatch function which delegates based on AST node type
-const rt = runtime<Env, any>({
+const rt = runtime<Implementations<Env, any>, Env, any>({
     // As per Lisp convention, S-expressions are treated as function
     // calls with 1st child item used as function name and rest as
     // arguments. E.g. `(+ a1 b1 c1)` is a function call to the `+`
     // function, with `a1`, `b1`, `c1` being arguments.
     expr: (x, env) =>
-        builtins(x.children[0], x.children, { ...env, depth: env.depth + 1 }),
+        builtins(<Sym>x.children[0], x.children, {
+            ...env,
+            depth: env.depth + 1
+        }),
     // other symbols are interpreted as cell IDs
     sym: (x) =>
         RE_CELL_ID.test(x.value)
@@ -99,7 +103,7 @@ export const $eval = (src: string, cellID: string) =>
  * @param vals
  * @param env
  */
-const defNode = (spec: NodeSpec, vals: Node[], env: Env) => {
+const defNode = (spec: NodeSpec, vals: ASTNode[], env: Env) => {
     let id: string;
     if (env.depth === 1) {
         id = env.id;
@@ -137,8 +141,8 @@ const defNode = (spec: NodeSpec, vals: Node[], env: Env) => {
  * @param fn
  */
 const defBuiltin = (fn: Fn<IObjectOf<number>, any>) => (
-    _: Node,
-    vals: Node[],
+    _: ASTNode,
+    vals: ASTNode[],
     env: Env
 ) =>
     defNode(
@@ -210,7 +214,7 @@ const cellInput = memoize1(
  *
  * @param x
  */
-const cellRangeInputs = (x: Node) => {
+const cellRangeInputs = (x: ASTNode) => {
     const [acol, arow, bcol, brow] = parseCellIDRange(x);
     return map<[string, number], NodeInputSpec>(
         ([c, r]) => cellInput(`${c}${r}`),
@@ -226,8 +230,8 @@ const cellRangeInputs = (x: Node) => {
  *
  * @param x
  */
-const parseCellIDRange = (x: Node) => {
-    const match = RE_CELL_RANGE.exec((<StringNode>x).value);
+const parseCellIDRange = (x: ASTNode) => {
+    const match = RE_CELL_RANGE.exec((<Str>x).value);
     if (!match) illegalArgs("invalid cell range");
     return match!.slice(1, 5);
 };
