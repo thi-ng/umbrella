@@ -21,7 +21,8 @@ import {
     ShaderSpec,
     ShaderUniformSpecs,
     texture,
-    TextureOpts
+    TextureOpts,
+    UniformValues
 } from "@thi.ng/webgl";
 import { ShaderToy } from "./api";
 
@@ -39,6 +40,7 @@ export interface ShaderPipelinePassOpts {
     inputs: string[];
     outputs: string[];
     uniforms?: ShaderUniformSpecs;
+    uniformVals?: UniformValues;
 }
 
 export const multipassToy = (opts: ShaderPipelineOpts) => {
@@ -115,25 +117,31 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
     let active: boolean;
     let t0: number;
 
+    const drawPass = (i: number, res: number[], time: number) => {
+        model.uniforms = {
+            ...opts.passes[i].uniformVals
+        };
+        const shader = shaders[i];
+        shader.uniforms.time && (model.uniforms!.time = time);
+        shader.uniforms.resolution && (model.uniforms!.resolution = res);
+        model.shader = shader;
+        model.textures = opts.passes[i].inputs.map((id) => textures[id]);
+        draw(model);
+    };
+
     const update = () => {
         const w = gl.drawingBufferWidth;
         const h = gl.drawingBufferHeight;
-        model.uniforms!.time = (Date.now() - t0) * 1e-3;
-        model.uniforms!.resolution = [w, h];
+        const time = (Date.now() - t0) * 1e-3;
+        const res = [w, h];
 
         gl.viewport(0, 0, w, h);
         for (let i = 0; i < fbos.length; i++) {
             fbos[i].bind();
-            model.shader = shaders[i];
-            model.textures = opts.passes[i].inputs.map((id) => textures[id]);
-            draw(model);
+            drawPass(i, res, time);
             fbos[i].unbind();
         }
-
-        const n = shaders.length - 1;
-        model.shader = shaders[n];
-        model.textures = opts.passes[n].inputs.map((id) => textures[id]);
-        draw(model);
+        drawPass(shaders.length - 1, res, time);
 
         if (active) {
             requestAnimationFrame(update);
