@@ -61,12 +61,6 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
         <IObjectOf<ITexture>>{}
     );
 
-    const fbos = opts.passes
-        .slice(0, opts.passes.length - 1)
-        .map((passOpts) =>
-            fbo(gl, { tex: passOpts.outputs.map((id) => textures[id]) })
-        );
-
     const shaders = opts.passes.map((passOpts) => {
         const numIns = passOpts.inputs.length;
         const numOuts = passOpts.outputs.length;
@@ -79,7 +73,15 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
             },
             uniforms: {
                 ...passOpts.uniforms,
-                ...(numIns ? { inputs: ["sampler2D[]", numIns] } : null)
+                ...(numIns
+                    ? {
+                          inputs: [
+                              "sampler2D[]",
+                              numIns,
+                              <any>[...range(numIns)]
+                          ]
+                      }
+                    : null)
             },
             outputs: numOuts
                 ? transduce(
@@ -110,6 +112,12 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
         }
         return shader(gl, spec);
     });
+
+    const fbos = opts.passes
+        .slice(0, opts.passes.length - 1)
+        .map((passOpts) =>
+            fbo(gl, { tex: passOpts.outputs.map((id) => textures[id]) })
+        );
 
     const model = quad(false);
     compileModel(gl, model);
