@@ -239,10 +239,10 @@ const compileExtensionPragma = (
     behavior: ExtensionBehavior,
     version: GLSLVersion
 ) => {
-    const ext = (<any>GL_EXT_INFO)[id];
+    const ext = GL_EXT_INFO[id];
     const gl2 = version === GLSLVersion.GLES_300;
-    return !ext || (!gl2 && ext.gl) || (gl2 && ext.gl2)
-        ? `#extension ${ext.alias || id} : ${
+    return ext && ((!gl2 && ext.gl) || (gl2 && ext.gl2))
+        ? `#extension ${(ext && ext.alias) || id} : ${
               isBoolean(behavior) ? (behavior ? "enable" : "disable") : behavior
           }\n`
         : "";
