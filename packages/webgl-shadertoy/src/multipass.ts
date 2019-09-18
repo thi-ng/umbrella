@@ -6,14 +6,18 @@ import {
     some,
     transduce
 } from "@thi.ng/transducers";
+import { AttribPool } from "@thi.ng/vector-pools";
 import {
     compileModel,
     draw,
     ExtensionBehaviors,
     fbo,
+    IndexBufferSpec,
+    InstancingSpec,
     isFloatTexture,
     isGL2Context,
     ITexture,
+    ModelAttributeSpecs,
     PASSTHROUGH_VS,
     quad,
     shader,
@@ -31,13 +35,15 @@ export interface ShaderPipelineOpts {
     canvas: HTMLCanvasElement;
     gl: WebGLRenderingContext;
     textures: IObjectOf<Partial<TextureOpts>>;
-    passes: ShaderPipelinePassOpts[];
+    passes: PipelinePassOpts[];
     bufferWidth: number;
     bufferHeight: number;
 }
 
-export interface ShaderPipelinePassOpts {
-    fn: ShaderFn;
+export interface PipelinePassOpts {
+    vs?: string | ShaderFn;
+    fs: string | ShaderFn;
+    model?: PipelinePassModelSpec;
     inputs: string[];
     outputs: string[];
     uniforms?: Partial<PipelinePassUniforms>;
@@ -45,42 +51,38 @@ export interface ShaderPipelinePassOpts {
 }
 
 export interface PipelinePassUniforms {
+    inputs: ["sampler2D[]", number, number[]];
     resolution: "vec2";
     time: "float";
-    inputs: ["sampler2D[]", number, number[]];
     [id: string]: UniformDecl;
+}
+
+export interface PipelinePassModelSpec {
+    attribs: ModelAttributeSpecs;
+    attribPool?: AttribPool;
+    uniforms?: UniformValues;
+    indices?: IndexBufferSpec;
+    instances?: InstancingSpec;
+    mode?: GLenum;
+    num: number;
 }
 
 export const multipassToy = (opts: ShaderPipelineOpts) => {
     const gl = opts.gl;
     const isGL2 = isGL2Context(gl);
-    const textures = Object.keys(opts.textures).reduce(
-        (acc, id) => {
-            acc[id] = texture(gl, {
-                width: opts.bufferWidth,
-                height: opts.bufferHeight,
-                filter: gl.NEAREST,
-                wrap: gl.CLAMP_TO_EDGE,
-                image: null,
-                ...opts.textures[id]
-            });
-            return acc;
-        },
-        <IObjectOf<ITexture>>{}
-    );
 
-    const shaders = opts.passes.map((passOpts) => {
-        const numIns = passOpts.inputs.length;
-        const numOuts = passOpts.outputs.length;
+    const initShader = (pass: PipelinePassOpts) => {
+        const numIns = pass.inputs.length;
+        const numOuts = pass.outputs.length;
         const ext: ExtensionBehaviors = {};
         const spec: ShaderSpec = {
-            vs: PASSTHROUGH_VS,
-            fs: passOpts.fn,
+            vs: pass.vs || PASSTHROUGH_VS,
+            fs: pass.fs,
             attribs: {
                 position: "vec2"
             },
             uniforms: <ShaderUniformSpecs>{
-                ...passOpts.uniforms,
+                ...pass.uniforms,
                 ...(numIns
                     ? {
                           inputs: ["sampler2D[]", numIns, [...range(numIns)]]
@@ -96,13 +98,10 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
                 : undefined,
             ext
         };
-        const floatIn = some(
-            (id) => isFloatTexture(textures[id]),
-            passOpts.inputs
-        );
+        const floatIn = some((id) => isFloatTexture(textures[id]), pass.inputs);
         const floatOut = some(
             (id) => isFloatTexture(textures[id]),
-            passOpts.outputs
+            pass.outputs
         );
         if (!isGL2 && floatIn) {
             ext.OES_texture_float = "require";
@@ -115,6 +114,30 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
             ext.WEBGL_draw_buffers = "require";
         }
         return shader(gl, spec);
+    };
+
+    const textures = Object.keys(opts.textures).reduce(
+        (acc, id) => {
+            acc[id] = texture(gl, {
+                width: opts.bufferWidth,
+                height: opts.bufferHeight,
+                filter: gl.NEAREST,
+                wrap: gl.CLAMP_TO_EDGE,
+                image: null,
+                ...opts.textures[id]
+            });
+            return acc;
+        },
+        <IObjectOf<ITexture>>{}
+    );
+
+    const model = compileModel(gl, quad(false));
+    const models = opts.passes.map((pass) => {
+        const m = pass.model ? compileModel(gl, <any>pass.model) : { ...model };
+        m.shader = initShader(pass);
+        m.uniforms = { ...pass.uniformVals };
+        m.textures = pass.inputs.map((id) => textures[id]);
+        return m;
     });
 
     const fbos = opts.passes
@@ -123,22 +146,15 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
             fbo(gl, { tex: passOpts.outputs.map((id) => textures[id]) })
         );
 
-    const model = quad(false);
-    compileModel(gl, model);
-
     const drawPass = (i: number, time: number) => {
-        const shader = shaders[i];
         const pass = opts.passes[i];
+        const model = models[i];
+        const shader = model.shader;
         const size = pass.outputs.length
             ? textures[pass.outputs[0]].size
             : [gl.drawingBufferWidth, gl.drawingBufferHeight];
-        model.uniforms = {
-            ...pass.uniformVals
-        };
         shader.uniforms.resolution && (model.uniforms!.resolution = size);
         shader.uniforms.time && (model.uniforms!.time = time);
-        model.shader = shader;
-        model.textures = pass.inputs.map((id) => textures[id]);
         gl.viewport(0, 0, size[0], size[1]);
         draw(model);
     };
@@ -149,7 +165,7 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
             drawPass(i, time);
             fbos[i].unbind();
         }
-        drawPass(shaders.length - 1, time);
+        drawPass(models.length - 1, time);
     };
 
     const updateRAF = () => {
