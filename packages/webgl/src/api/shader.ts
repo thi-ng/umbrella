@@ -120,9 +120,9 @@ export type UniformDecl =
     // | ["mat3x4[]", number, UniformDefault<GLVec>?]
     // | ["mat4x2[]", number, UniformDefault<GLVec>?]
     // | ["mat4x3[]", number, UniformDefault<GLVec>?]
-    | ["sampler2D[]", number, UniformDefault<number>?]
-    | ["sampler3D[]", number, UniformDefault<number>?]
-    | ["samplerCube[]", number, UniformDefault<number>?];
+    | ["sampler2D[]", number, UniformDefault<GLIntVec>?]
+    | ["sampler3D[]", number, UniformDefault<GLIntVec>?]
+    | ["samplerCube[]", number, UniformDefault<GLIntVec>?];
 
 /**
  * Object of attribute types w/ optional locations.
