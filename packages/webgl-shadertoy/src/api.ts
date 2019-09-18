@@ -37,6 +37,7 @@ export interface ShaderToyOpts {
 export interface ShaderToy {
     start(): void;
     stop(): void;
+    update(time?: number): void;
     recompile(main: MainImageFn): void;
     model: ModelSpec;
 }

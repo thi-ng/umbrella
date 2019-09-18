@@ -22,6 +22,7 @@ import {
     ShaderUniformSpecs,
     texture,
     TextureOpts,
+    UniformDecl,
     UniformValues
 } from "@thi.ng/webgl";
 import { ShaderToy } from "./api";
@@ -39,8 +40,15 @@ export interface ShaderPipelinePassOpts {
     fn: ShaderFn;
     inputs: string[];
     outputs: string[];
-    uniforms?: ShaderUniformSpecs;
+    uniforms?: Partial<PipelinePassUniforms>;
     uniformVals?: UniformValues;
+}
+
+export interface PipelinePassUniforms {
+    resolution: "vec2";
+    time: "float";
+    inputs: ["sampler2D[]", number, number[]];
+    [id: string]: UniformDecl;
 }
 
 export const multipassToy = (opts: ShaderPipelineOpts) => {
@@ -71,15 +79,11 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
             attribs: {
                 position: "vec2"
             },
-            uniforms: {
+            uniforms: <ShaderUniformSpecs>{
                 ...passOpts.uniforms,
                 ...(numIns
                     ? {
-                          inputs: [
-                              "sampler2D[]",
-                              numIns,
-                              <any>[...range(numIns)]
-                          ]
+                          inputs: ["sampler2D[]", numIns, [...range(numIns)]]
                       }
                     : null)
             },
@@ -122,48 +126,51 @@ export const multipassToy = (opts: ShaderPipelineOpts) => {
     const model = quad(false);
     compileModel(gl, model);
 
-    let active: boolean;
-    let t0: number;
-
-    const drawPass = (i: number, res: number[], time: number) => {
-        model.uniforms = {
-            ...opts.passes[i].uniformVals
-        };
+    const drawPass = (i: number, time: number) => {
         const shader = shaders[i];
+        const pass = opts.passes[i];
+        const size = pass.outputs.length
+            ? textures[pass.outputs[0]].size
+            : [gl.drawingBufferWidth, gl.drawingBufferHeight];
+        model.uniforms = {
+            ...pass.uniformVals
+        };
+        shader.uniforms.resolution && (model.uniforms!.resolution = size);
         shader.uniforms.time && (model.uniforms!.time = time);
-        shader.uniforms.resolution && (model.uniforms!.resolution = res);
         model.shader = shader;
-        model.textures = opts.passes[i].inputs.map((id) => textures[id]);
+        model.textures = pass.inputs.map((id) => textures[id]);
+        gl.viewport(0, 0, size[0], size[1]);
         draw(model);
     };
 
-    const update = () => {
-        const w = gl.drawingBufferWidth;
-        const h = gl.drawingBufferHeight;
-        const time = (Date.now() - t0) * 1e-3;
-        const res = [w, h];
-
-        gl.viewport(0, 0, w, h);
+    const update = (time: number) => {
         for (let i = 0; i < fbos.length; i++) {
             fbos[i].bind();
-            drawPass(i, res, time);
+            drawPass(i, time);
             fbos[i].unbind();
         }
-        drawPass(shaders.length - 1, res, time);
-
-        if (active) {
-            requestAnimationFrame(update);
-        }
+        drawPass(shaders.length - 1, time);
     };
+
+    const updateRAF = () => {
+        update((Date.now() - t0) * 1e-3);
+        active && requestAnimationFrame(updateRAF);
+    };
+
+    let active: boolean;
+    let t0 = Date.now();
 
     const instance: ShaderToy = {
         start() {
             t0 = Date.now();
             active = true;
-            requestAnimationFrame(update);
+            requestAnimationFrame(updateRAF);
         },
         stop() {
             active = false;
+        },
+        update(time: number) {
+            update(time);
         },
         recompile() {},
         model

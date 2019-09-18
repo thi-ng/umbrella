@@ -39,28 +39,32 @@ export const shaderToy = (opts: ShaderToyOpts) => {
     let active: boolean;
     let t0: number;
 
-    const update = () => {
+    const update = (time: number) => {
         const w = gl.drawingBufferWidth;
         const h = gl.drawingBufferHeight;
-        model.uniforms!.time = (Date.now() - t0) * 1e-3;
+        model.uniforms!.time = time;
         model.uniforms!.resolution = [w, h];
 
         gl.viewport(0, 0, w, h);
         draw(model);
+    };
 
-        if (active) {
-            requestAnimationFrame(update);
-        }
+    const updateRAF = () => {
+        update((Date.now() - t0) * 1e-3);
+        active && requestAnimationFrame(updateRAF);
     };
 
     const instance: ShaderToy = {
         start() {
             t0 = Date.now();
             active = true;
-            requestAnimationFrame(update);
+            requestAnimationFrame(updateRAF);
         },
         stop() {
             active = false;
+        },
+        update(time: number) {
+            update(time);
         },
         recompile(main: MainImageFn) {
             if (model.shader) {
