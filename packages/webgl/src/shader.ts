@@ -18,14 +18,17 @@ import {
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { vals } from "@thi.ng/transducers";
 import {
+    ExtensionBehavior,
+    ExtensionBehaviors,
+    ExtensionName,
+    GL_EXT_INFO
+} from "./api/ext";
+import { GLSL } from "./api/glsl";
+import { ModelAttributeSpecs, ModelSpec } from "./api/model";
+import {
     DEFAULT_OUTPUT,
-    GL_EXT_INFO,
-    GLSL,
     GLSLDeclPrefixes,
-    GLSLExtensionBehavior,
     IShader,
-    ModelAttributeSpecs,
-    ModelSpec,
     ShaderAttrib,
     ShaderAttribSpecs,
     ShaderFn,
@@ -37,12 +40,12 @@ import {
     ShaderUniformSpecs,
     UniformValue,
     UniformValues
-} from "./api";
+} from "./api/shader";
 import { getExtensions } from "./canvas";
+import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
-import { isGL2Context } from "./utils";
 
 const ERROR_REGEXP = /ERROR: \d+:(\d+): (.*)/;
 
@@ -233,13 +236,13 @@ const compileVars = (
 
 const compileExtensionPragma = (
     id: string,
-    behavior: GLSLExtensionBehavior,
+    behavior: ExtensionBehavior,
     version: GLSLVersion
 ) => {
-    const ext = (<any>GL_EXT_INFO)[id];
+    const ext = GL_EXT_INFO[id];
     const gl2 = version === GLSLVersion.GLES_300;
-    return !ext || (!gl2 && ext.gl) || (gl2 && ext.gl2)
-        ? `#extension ${ext.alias || id} : ${
+    return ext && ((!gl2 && ext.gl) || (gl2 && ext.gl2))
+        ? `#extension ${(ext && ext.alias) || id} : ${
               isBoolean(behavior) ? (behavior ? "enable" : "disable") : behavior
           }\n`
         : "";
@@ -247,11 +250,11 @@ const compileExtensionPragma = (
 
 const initShaderExtensions = (
     gl: WebGLRenderingContext,
-    exts: IObjectOf<GLSLExtensionBehavior> | undefined
+    exts: ExtensionBehaviors | undefined
 ) => {
     if (exts) {
         for (let id in exts) {
-            const state = exts[id];
+            const state = exts[<ExtensionName>id];
             if (state === true || state === "require") {
                 getExtensions(gl, <any>[id], state === "require");
             }
@@ -272,7 +275,11 @@ export const shaderSourceFromAST = (
         : GLSL_HEADER;
     if (spec.ext) {
         for (let id in spec.ext) {
-            prelude += compileExtensionPragma(id, spec.ext[id], version);
+            prelude += compileExtensionPragma(
+                id,
+                spec.ext[<ExtensionName>id]!,
+                version
+            );
         }
     }
     const inputs: IObjectOf<Sym<any>> = {};
@@ -370,7 +377,11 @@ export const prepareShaderSource = (
         : GLSL_HEADER;
     if (spec.ext) {
         for (let id in spec.ext) {
-            src += compileExtensionPragma(id, spec.ext[id], version);
+            src += compileExtensionPragma(
+                id,
+                spec.ext[<ExtensionName>id]!,
+                version
+            );
         }
     }
     if (spec.generateDecls !== false) {

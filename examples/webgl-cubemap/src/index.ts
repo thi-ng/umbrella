@@ -17,6 +17,7 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import {
+    BLEND_ADD,
     compileModel,
     cube,
     cubeMap,
@@ -50,7 +51,9 @@ const CUBEMAP_SHADER: ShaderSpec = {
         tex: "samplerCube"
     },
     state: {
-        depth: true
+        depth: false,
+        blend: true,
+        blendFn: BLEND_ADD
     }
 };
 
@@ -101,8 +104,8 @@ const app = () => {
         // prettier-ignore
         update: (el, gl, __, time) => {
             if (!model) return;
-            const bg = 0.1;
-            const p = perspective([], 45, gl.drawingBufferWidth/gl.drawingBufferHeight, 0.01, 5);
+            const bg = 0.01;
+            const p = perspective([], 45, gl.drawingBufferWidth/gl.drawingBufferHeight, 0.01, 10);
             const v = lookAt([],[0, 0, sin(time, 0.00008, 1.99, 2)],[0, 0, 0], [0, 1, 0]);
             const m = transform44([], [0, 0, 0], [sin(time, 0.0001, 0.7, 0.5), time * 0.0007,0], 1);
             model.uniforms!.mvp = <GLMat4>concat([], p, v, m);
