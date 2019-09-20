@@ -32,7 +32,7 @@ export const multipass = (opts: MultipassOpts) => {
         const spec: ShaderSpec = {
             vs: pass.vs || PASSTHROUGH_VS,
             fs: pass.fs,
-            attribs: {
+            attribs: pass.attribs || {
                 position: "vec2"
             },
             varying: pass.varying,
@@ -52,6 +52,10 @@ export const multipass = (opts: MultipassOpts) => {
                   )
                 : undefined,
             state: pass.state,
+            pre: pass.pre,
+            post: pass.post,
+            replacePrelude: pass.replacePrelude,
+            generateDecls: pass.generateDecls,
             ext
         };
         const floatIn = some((id) => isFloatTexture(textures[id]), pass.inputs);

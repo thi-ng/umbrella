@@ -3,6 +3,7 @@ import { AttribPool } from "@thi.ng/vector-pools";
 import { IFbo, IndexBufferSpec } from "./buffers";
 import { InstancingSpec, ModelAttributeSpecs, ModelSpec } from "./model";
 import {
+    ShaderAttribSpecs,
     ShaderFn,
     ShaderState,
     ShaderVaryingSpecs,
@@ -38,10 +39,15 @@ export interface PassOpts {
     model?: PassModelSpec;
     inputs: string[];
     outputs: string[];
+    attribs?: ShaderAttribSpecs;
     varying?: ShaderVaryingSpecs;
     uniforms?: Partial<PassUniforms>;
     uniformVals?: UniformValues;
-    state?: ShaderState;
+    pre?: string;
+    post?: string;
+    replacePrelude?: boolean;
+    generateDecls?: boolean;
+    state?: Partial<ShaderState>;
 }
 
 export interface PassUniforms {
@@ -55,7 +61,6 @@ export interface PassUniforms {
 export interface PassModelSpec {
     attribs: ModelAttributeSpecs;
     attribPool?: AttribPool;
-    uniforms?: UniformValues;
     indices?: IndexBufferSpec;
     instances?: InstancingSpec;
     mode?: GLenum;
