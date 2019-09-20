@@ -1,5 +1,5 @@
 {
-    "name": "webgl-gpgpu-basics",
+    "name": "webgl-multipass",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -12,13 +12,13 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.3",
-        "terser": "^4.0.0",
+        "terser": "^3.17.0",
         "typescript": "^3.5.3"
     },
     "dependencies": {
-        "@thi.ng/shader-ast": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/webgl": "latest"
+        "@thi.ng/api": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
