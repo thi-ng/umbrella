@@ -28,9 +28,8 @@ import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
 // the 2 args given are objects containing GLSL builtin vars and uniforms
 //
 // see:
-// https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-glsl/src/index.ts#L32
-// https://github.com/thi-ng/umbrella/blob/feature/shadertoy/packages/webgl-shadertoy/src/api.ts#L13
-//
+// https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-glsl/src/api.ts#L22
+// https://github.com/thi-ng/umbrella/blob/master/packages/webgl-shadertoy/src/api.ts#L13
 const mainImage: MainImageFn = (gl, unis) => {
     // predeclare local vars / symbols
     let uv: Vec2Sym;
