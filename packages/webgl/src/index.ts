@@ -20,6 +20,7 @@ export * from "./material";
 export * from "./matrices";
 export * from "./multipass";
 export * from "./rbo";
+export * from "./readpixels";
 export * from "./shader";
 export * from "./syntax";
 export * from "./texture";

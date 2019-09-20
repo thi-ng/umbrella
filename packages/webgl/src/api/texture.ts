@@ -595,6 +595,17 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     }
 };
 
+export type ReadableTextureFormat =
+    | TextureFormat.ALPHA
+    | TextureFormat.RED
+    | TextureFormat.RG
+    | TextureFormat.RGB
+    | TextureFormat.RGBA
+    | TextureFormat.RED_INTEGER
+    | TextureFormat.RG_INTEGER
+    | TextureFormat.RGB_INTEGER
+    | TextureFormat.RGBA_INTEGER;
+
 // export const RENDERABLE_TEX_FORMATS = Object.keys(TEX_FORMATS).filter(
 //     (id) => TEX_FORMATS[id].render!
 // );
