@@ -132,6 +132,10 @@ export interface TextureFormatDecl {
      */
     render?: boolean;
     /**
+     * Format is renderable via extension
+     */
+    renderExt?: boolean;
+    /**
      * Format is filterable (other than GL_NEAREST)
      */
     filter?: boolean;
@@ -223,6 +227,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     [TextureFormat.R11F_G11F_B10F]: {
         format: TextureFormat.RGB,
         filter: true,
+        renderExt: true,
         num: 3,
         types: [
             TextureType.FLOAT,
@@ -236,6 +241,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     [TextureFormat.R16F]: {
         format: TextureFormat.RED,
         filter: true,
+        renderExt: true,
         num: 1,
         types: [TextureType.FLOAT, 4, TextureType.HALF_FLOAT, 2]
     },
@@ -253,6 +259,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     },
     [TextureFormat.R32F]: {
         format: TextureFormat.RED,
+        renderExt: true,
         num: 1,
         types: [TextureType.FLOAT, 4]
     },
@@ -296,6 +303,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     [TextureFormat.RG16F]: {
         format: TextureFormat.RG,
         filter: true,
+        renderExt: true,
         num: 2,
         types: [TextureType.FLOAT, 8, TextureType.HALF_FLOAT, 4]
     },
@@ -313,6 +321,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     },
     [TextureFormat.RG32F]: {
         format: TextureFormat.RG,
+        renderExt: true,
         num: 2,
         types: [TextureType.FLOAT, 8]
     },
@@ -500,6 +509,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     [TextureFormat.RGBA16F]: {
         format: TextureFormat.RGBA,
         filter: true,
+        renderExt: true,
         num: 4,
         types: [TextureType.FLOAT, 16, TextureType.HALF_FLOAT, 8]
     },
@@ -517,6 +527,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     },
     [TextureFormat.RGBA32F]: {
         format: TextureFormat.RGBA,
+        renderExt: true,
         num: 4,
         types: [TextureType.FLOAT, 16]
     },

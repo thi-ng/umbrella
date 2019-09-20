@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/api";
 import { FboOpts, IFbo } from "./api/buffers";
-import { ITexture } from "./api/texture";
+import { ITexture, TEX_FORMATS } from "./api/texture";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { RBO } from "./rbo";
@@ -32,10 +32,11 @@ export class FBO implements IFbo {
     constructor(gl: WebGLRenderingContext, opts?: Partial<FboOpts>) {
         this.gl = gl;
         this.fbo = gl.createFramebuffer() || error("error creating FBO");
-        this.ext = (!isGL2Context(gl) && opts && opts!.tex && opts!.tex!.length > 1)
-            ? gl.getExtension("WEBGL_draw_buffers") ||
-              error("missing WEBGL_draw_buffers ext")
-            : undefined;
+        this.ext =
+            !isGL2Context(gl) && opts && opts!.tex && opts!.tex!.length > 1
+                ? gl.getExtension("WEBGL_draw_buffers") ||
+                  error("missing WEBGL_draw_buffers ext")
+                : undefined;
         this.maxAttachments = gl.getParameter(GL_MAX_COLOR_ATTACHMENTS_WEBGL);
         opts && this.configure(opts);
     }
@@ -67,12 +68,20 @@ export class FBO implements IFbo {
             );
             const attachments: number[] = [];
             for (let i = 0; i < opts.tex.length; i++) {
+                const tex = opts.tex[i];
+                assert(
+                    !!(
+                        TEX_FORMATS[tex.format].render ||
+                        TEX_FORMATS[tex.format].renderExt
+                    ),
+                    `texture #${i} has non-renderable format`
+                );
                 const attach = GL_COLOR_ATTACHMENT0_WEBGL + i;
                 gl.framebufferTexture2D(
                     gl.FRAMEBUFFER,
                     attach,
                     gl.TEXTURE_2D,
-                    opts.tex[i].tex,
+                    tex.tex,
                     0
                 );
                 attachments[i] = attach;
