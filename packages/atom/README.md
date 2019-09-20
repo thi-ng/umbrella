@@ -7,6 +7,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+<!-- TOC depthFrom:2 depthTo:3 -->
+
+- [About](#about)
+    - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+    - [Atom](#atom)
+    - [Transacted updates](#transacted-updates)
+    - [Cursor](#cursor)
+    - [Derived views](#derived-views)
+    - [Undo / Redo history](#undo--redo-history)
+- [Authors](#authors)
+- [License](#license)
+
+<!-- /TOC -->
+
 ## About
 
 Clojure inspired mutable wrappers for (usually) immutable values, with
@@ -15,6 +32,7 @@ infrastructure support for:
 - watches
 - derived view subscriptions
 - cursors (direct R/W access to nested values)
+- transacted updates
 - undo/redo history
 
 Together these types act as building blocks for various application
@@ -26,31 +44,10 @@ source of truth within an application.
 
 Stable, used in production and in active development.
 
-**Note: On 2018-03-17 this package was split to remain more focused.
-Path based getters/setters have been moved into the new
-[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
-package. Likewise, all interceptor based event handling functionality
-now lives in the
-[@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
-package.**
-
 ## Installation
 
 ```bash
 yarn add @thi.ng/atom
-```
-
-**New since 2018-03-15: You can now create a preconfigured app skeleton
-using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
-[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
-generator:**
-
-```bash
-yarn create hdom-app my-app
-
-cd my-app
-yarn install
-yarn start
 ```
 
 ## Dependencies
@@ -69,11 +66,11 @@ directory make heavy use of this library.
 
 ### Atom
 
-An `Atom` is a mutable wrapper for immutable values. The wrapped value
-can be obtained via `deref()`, replaced via `reset()` and updated using
-`swap()`. An atom too supports the concept of watches, essentially
-`onchange` event handlers which are called from `reset`/`swap` and
-receive both the old and new atom values.
+An `Atom` is a mutable wrapper for supposedly immutable values. The
+wrapped value can be obtained via `deref()`, replaced via `reset()` and
+updated using `swap()`. An atom too supports the concept of watches,
+essentially `onchange` event handlers which are called from
+`reset` / `swap` and receive both the old and new atom values.
 
 ```ts
 import * as atom from "@thi.ng/atom";
@@ -101,6 +98,70 @@ a.swap(add, 1);
 // reset atom's value
 a.reset(42);
 // foo: 24 -> 42
+```
+
+When atoms are used to wrap nested object values, the `resetIn()` /
+`swapIn()` methods can be used to directly manipulate nested values:
+
+```ts
+const db = new Atom<any>({ a: { b: 1, c: 2 } });
+
+db.resetIn("a.b", 100);
+// { a: { b: 100, c: 2 } }
+
+db.swapIn("a.c", (x) => x + 1);
+// { a: { b: 100, c: 3 } }
+
+// alternatively, the lookup path can be given as array
+// see @thi.ng/paths for further reference
+db.swapIn(["a", "c"], (x) => x + 1);
+// { a: { b: 100, c: 4 } }
+```
+
+### Transacted updates
+
+Since v3.1.0, multiple sequential state updates can be grouped in
+transactions and then applied in one go (or canceled altogether). This
+can be useful to produce a clean(er) sequence of undo snapshots (see
+further below) and avoids multiple / obsolete invocations of watches
+caused by each interim state update. Using a transaction, the parent
+state is only updated once and watches too are only notified once after
+each commit.
+
+Transactions can also be canceled, thus not modifying the parent state
+at all.
+
+The `Transacted` class can wrap any existing `IAtom` implementation,
+e.g. `Atom`, `Cursor` or `History` instances...
+
+```ts
+const db = new Atom({ a: 1, b: 2 });
+const tx = new Transacted(db);
+
+// start transaction
+tx.begin();
+
+// perform multiple updates
+// (none of them are applied until `commit` is called)
+// IMPORTANT: calling any of these update methods without
+// a running transaction will throw an error!
+tx.resetIn("a", 11);
+tx.resetIn("c", 33);
+
+// tx.deref() will always return latest state
+tx.deref()
+// { a: 11, b: 2, c: 33 }
+
+// however, at this point db.deref() still yields pre-transaction state
+db.deref()
+// { a: 1, b: 2 }
+
+// apply all changes at once (or `cancel()` transaction)
+tx.commit();
+// { a: 11, b: 2, c: 33 }
+
+db.deref()
+// { a: 11, b: 2, c: 33 }
 ```
 
 ### Cursor
@@ -360,15 +421,16 @@ const app = () =>
 start(document.body, app);
 ```
 
-### Undo history
+### Undo / Redo history
 
 The `History` type can be used with & behaves like an Atom or Cursor,
 but creates snapshots of the current state before applying the new
-state. By default history has length of 100 steps, but this is
-configurable.
+state. By default, the history has length of 100 steps, though this is
+configurable via ctor args.
 
 ```ts
-db = new atom.History(new atom.Atom({a: 1}))
+// create history w/ max. 100 steps
+db = new atom.History(new atom.Atom({a: 1}), 100)
 db.deref()
 // {a: 1}
 

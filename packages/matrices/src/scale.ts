@@ -8,8 +8,8 @@ import {
 import { Mat } from "./api";
 
 /**
- * Computes M22 scale matrix and writes result to `out`. If `s` is a
- * number, scaling will be uniform.
+ * Computes 2x2 matrix scale matrix and writes result to `out`. If `s`
+ * is a number, scaling will be uniform.
  *
  * @param m
  * @param s
@@ -19,8 +19,8 @@ export const scale22 = (m: Mat | null, s: number | ReadonlyVec) => (
 );
 
 /**
- * Computes M23 scale matrix and writes result to `out`. If `s` is a
- * number, scaling will be uniform.
+ * Computes 2x3 matrix scale matrix and writes result to `out`. If `s`
+ * is a number, scaling will be uniform.
  *
  * @param m
  * @param s
@@ -30,8 +30,8 @@ export const scale23 = (m: Mat | null, s: number | ReadonlyVec) => (
 );
 
 /**
- * Computes M33 scale matrix and writes result to `out`. If `s` is a
- * number, scaling will be uniform.
+ * Computes 3x3 matrix scale matrix and writes result to `out`. If `s`
+ * is a number, scaling will be uniform.
  *
  * @param m
  * @param s
@@ -42,8 +42,8 @@ export const scale33 = (m: Mat | null, s: number | ReadonlyVec) => (
 );
 
 /**
- * Computes M44 scale matrix and writes result to `out`. If `s` is a
- * number, scaling will be uniform.
+ * Computes 4x4 matrix scale matrix and writes result to `out`. If `s`
+ * is a number, scaling will be uniform.
  *
  * @param m
  * @param s
@@ -52,18 +52,22 @@ export const scale44 = (m: Mat | null, s: number | ReadonlyVec) => (
     (s = isNumber(s) ? [s, s, s] : s),
     setC(
         m || [],
+        // x
         s[0],
         0,
         0,
         0,
+        // y
         0,
         s[1],
         0,
         0,
+        // z
         0,
         0,
         s[2],
         0,
+        // w
         0,
         0,
         0,

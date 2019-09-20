@@ -25,7 +25,7 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
-import { initRuntime, JS_DEFAULT_ENV, targetJS } from "@thi.ng/shader-ast-js";
+import { canvasRenderer, JS_DEFAULT_ENV, targetJS } from "@thi.ng/shader-ast-js";
 import {
     compileModel,
     draw,
@@ -129,12 +129,12 @@ if (JS_MODE) {
         // under the hood all vector & matrix operations delegate to
         // thi.ng/vectors and thi.ng/matrices packages by default
         const fn = JS.compile(shaderProgram).mainImage;
-        const rt = initRuntime({ canvas });
+        const rt = canvasRenderer(canvas);
         let time = 0;
 
         setInterval(() => {
             time += 0.05;
-            rt.update((frag) => fn(frag, size, time));
+            rt((frag) => fn(frag, size, time));
         }, 16);
     });
 } else {

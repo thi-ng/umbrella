@@ -2,7 +2,8 @@ import { setS3 } from "@thi.ng/vectors";
 import { MatOpM } from "./api";
 
 /**
- * Converts M44 to M33 and writes result to `out`.
+ * Converts 4x4 to 3x3 matrix and writes result to `out`. Creates new
+ * matrix if `out` is `null`.
  *
  * @param out
  * @param m44

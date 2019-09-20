@@ -1,4 +1,4 @@
-import { IRenderBuffer, RboOpts } from "./api";
+import { IRenderBuffer, RboOpts } from "./api/buffers";
 import { error } from "./error";
 
 export class RBO implements IRenderBuffer {

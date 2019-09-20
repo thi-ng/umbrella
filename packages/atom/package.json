@@ -47,8 +47,12 @@
         "history",
         "immutable",
         "redo",
+        "state",
+        "transaction",
         "typescript",
-        "undo"
+        "undo",
+        "update",
+        "wrapper"
     ],
     "publishConfig": {
         "access": "public"

@@ -2,8 +2,8 @@ import { Mat } from "./api";
 import { frustum, frustumBounds } from "./frustum";
 
 /**
- * Computes a M44 perspective projection matrix and writes result to
- * `out`.
+ * Creates a 4x4 matrix perspective projection matrix and writes result
+ * to `out`.
  *
  * @param out
  * @param fov

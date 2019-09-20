@@ -2,7 +2,7 @@ import { ReadonlyVec, setC } from "@thi.ng/vectors";
 import { Mat } from "./api";
 
 /**
- * Converts quaternion into M33 and writes result to `out`.
+ * Converts quaternion into 3x3 matrix and writes result to `out`.
  *
  * @param out
  * @param q

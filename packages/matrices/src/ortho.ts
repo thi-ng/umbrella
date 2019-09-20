@@ -2,8 +2,8 @@ import { setC } from "@thi.ng/vectors";
 import { Mat } from "./api";
 
 /**
- * Computes a M44 orthographic projection matrix and writes result to
- * `out`.
+ * Creates a 4x4 matrix orthographic projection matrix and writes result
+ * to `out`.
  *
  * @param out
  * @param left
