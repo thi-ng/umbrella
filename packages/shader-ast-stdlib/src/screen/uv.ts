@@ -1,5 +1,6 @@
 import {
     $x,
+    $xy,
     $y,
     assign,
     defn,
@@ -7,9 +8,20 @@ import {
     mul,
     ret,
     sym,
-    Vec2Sym
+    Vec2Sym,
+    Vec2Term,
+    Vec4Term
 } from "@thi.ng/shader-ast";
 import { fit0111 } from "../math/fit";
+
+/**
+ * Computes UV coord in [0..1] interval from given `fragCoord` and screen `res`.
+ *
+ * @param fragCoord
+ * @param res
+ */
+export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
+    div($xy(fragCoord), res);
 
 /**
  * Takes `pos`, a screen coord (e.g. gl_FragCoord) and viewport
