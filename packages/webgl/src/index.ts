@@ -18,7 +18,7 @@ export * from "./fbo";
 export * from "./gpgpu";
 export * from "./material";
 export * from "./matrices";
-export * from "./pipeline";
+export * from "./multipass";
 export * from "./rbo";
 export * from "./shader";
 export * from "./syntax";
@@ -27,6 +27,7 @@ export * from "./utils";
 
 export * from "./shaders/lambert";
 export * from "./shaders/phong";
+export * from "./shaders/pipeline";
 
 export * from "./textures/checkerboard";
 export * from "./textures/stripes";

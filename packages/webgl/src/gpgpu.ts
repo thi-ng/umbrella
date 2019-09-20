@@ -24,8 +24,8 @@ import { isGL2Context } from "./checks";
 import { draw } from "./draw";
 import { FBO } from "./fbo";
 import { quad } from "./geo/quad";
-import { FX_SHADER_SPEC_UV } from "./pipeline";
 import { shader } from "./shader";
+import { FX_SHADER_SPEC_UV } from "./shaders/pipeline";
 import { floatTexture, texture } from "./texture";
 
 export const gpgpu = (opts: GPGPUOpts) => new GPGPU(opts);
@@ -189,9 +189,7 @@ export class GPGPUJob implements IRelease {
                 const expectedSize = ctx.inputSize(i);
                 assert(
                     tex.length >= expectedSize,
-                    `input #${i} too small (got ${
-                        tex.length
-                    }, expected ${expectedSize})`
+                    `input #${i} too small (got ${tex.length}, expected ${expectedSize})`
                 );
                 const input = ctx.inputs[i];
                 input.tex.configure({
@@ -250,9 +248,7 @@ export class GPGPUJob implements IRelease {
         if (opts.src) {
             shaderSpec = {
                 ...FX_SHADER_SPEC_UV,
-                pre: `#define WIDTH (${ctx.width})\n#define SIZE (ivec2(${
-                    ctx.width
-                }))`,
+                pre: `#define WIDTH (${ctx.width})\n#define SIZE (ivec2(${ctx.width}))`,
                 fs: opts.src,
                 uniforms: { ...opts.uniforms },
                 outputs: transduce(
