@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -23,6 +24,10 @@ This project is part of the
 Basic WebGL scaffolding for running interactive fragment shaders defined
 via
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast).
+
+## Status
+
+ALPHA - multi-pass support forthcoming
 
 ## Installation
 

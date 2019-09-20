@@ -41,9 +41,9 @@
     },
     "keywords": [
         "ES6",
-        "GPGPU",
         "graphics",
-        "shader",
+        "shader-ast",
+        "shadertoy",
         "texture",
         "typescript",
         "webgl",
