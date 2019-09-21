@@ -8,17 +8,22 @@
 
 ## About
 
-Mono-repository for almost 100 thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 100+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
 - Functional programming (composition, memoization, transducers, multi-methods)
 - Stream based, reactive programming, dataflow graphs / pipelines
-- Data structures & data transformations for wide range of use cases
+- WebWorker workflow abstractions
+- Data structures & data transformations for wide range of use cases (list, sets, maps)
+- Value-based equivalence
 - Data driven UI components, event & side effect handling
-- Immutable data handling
+- Immediate mode GUI components
+- Immutable data handling, state containers, Undo-Redo history
 - Geometry generation, processing & visualization
 - Vector & matrix implementations with optional support for strided layouts
+- Color space conversions, cosine gradients
+- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
 - Declarative WebGL 1/2 abstraction layer
 - DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
 - Low-level tooling for binary data, shared memory / WASM / WebGL interop
@@ -78,8 +83,8 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are only available on their respective feature branches)
 
-- @thi.ng/scenegraph (not yet pushed) - 2D/3D scenegraph
-- [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/feature/shadertoy/packages/webgl-shadertoy) - WebGL shadertoy-like setup
+- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators) - 2D grid coordinate iterators
+- [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
 
 ### Fundamentals
 
@@ -106,6 +111,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|----------------------------------|
 | [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                | Channel based async ops          |
 | [`@thi.ng/fsm`](./packages/fsm)                               | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                               | [changelog](./packages/fsm/CHANGELOG.md)                | FSM / parser primitives          |
+| [`@thi.ng/grid-iterators`](./packages/grid-iterators)         | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)         | [changelog](./packages/grid-iterators/CHANGELOG.md)     | 2D grid iterator strategies      |
 | [`@thi.ng/iterators`](./packages/iterators)                   | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)                   | [changelog](./packages/iterators/CHANGELOG.md)          | ES6 generators / iterators       |
 | [`@thi.ng/sax`](./packages/sax)                               | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                               | [changelog](./packages/sax/CHANGELOG.md)                | SAX-like XML parser / transducer |
 | [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        | Composable data transformations  |
@@ -202,6 +208,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | 100+ useful AST shader functions   |
 | [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             | WebGL 1/2 / GPGPU facilities       |
 | [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)               | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)               | [changelog](./packages/webgl-msdf/CHANGELOG.md)        | MSDF font rendering                |
+| [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy)     | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)     | [changelog](./packages/webgl-shadertoy/CHANGELOG.md)   | Shadertoy-like WebGL setup         |
 
 ### Low-level, binary, memory management
 
@@ -225,6 +232,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 |-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
+| [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure  |
 
 ## Building
 

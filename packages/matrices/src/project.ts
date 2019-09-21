@@ -10,14 +10,14 @@ import { invert23, invert44 } from "./invert";
 import { mulV23, mulV344, mulV44 } from "./mulv";
 
 /**
- * Transforms given point `p` (4D, homogeneous) with M44 `mvp`, applies
- * perspective divide and then transforms XY components with M23 `view`
- * matrix. Returns 3D vector. The result Z component can be used for
- * depth sorting.
+ * Transforms given point `p` (4D, homogeneous coordinates) with 4x4
+ * matrix `mvp`, applies perspective divide and then transforms XY
+ * components with 2x3 matrix `view` matrix. Returns 3D vector. The
+ * result Z component can be used for depth sorting.
  *
  * @param out
- * @param mvp
- * @param view
+ * @param mvp 4x4 matrix
+ * @param view 2x3 matrix
  * @param p
  */
 export const project = (
@@ -31,14 +31,14 @@ export const project = (
 );
 
 /**
- * Reverse operation of project. If `invert` is true (default: false),
- * both `mvp` and `view` matrices will be inverted first
+ * Reverse operation of `project()`. If `invert` is true (default:
+ * false), both `mvp` and `view` matrices will be inverted first
  * (non-destructively), else they're both assumed to be inverted
  * already.
  *
  * @param out
- * @param mvp
- * @param view
+ * @param mvp 4x4 matrix
+ * @param view 2x3 matrix
  * @param p
  * @param invert
  */

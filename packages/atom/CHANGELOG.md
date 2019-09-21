@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@3.0.4...@thi.ng/atom@3.1.0) (2019-09-21)
+
+
+### Features
+
+* **atom:** add Transacted wrapper & tests ([8aaf6e6](https://github.com/thi-ng/umbrella/commit/8aaf6e6))
+* **atom:** update Transacted watch ID handling, update tests, readme ([93d9e1d](https://github.com/thi-ng/umbrella/commit/93d9e1d))
+
+
+
+
+
 ## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@3.0.3...@thi.ng/atom@3.0.4) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/atom

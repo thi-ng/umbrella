@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/diff",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "description": "Array & object Diff",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,7 +32,7 @@
         "typescript": "^3.5.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.3.3",
+        "@thi.ng/api": "^6.4.0",
         "@thi.ng/equiv": "^1.0.9"
     },
     "keywords": [

@@ -4,7 +4,7 @@ import { scale23 } from "./scale";
 import { translation23 } from "./translation";
 
 /**
- * Produces a M23 viewport matrix to transform projected coordinates to
+ * Produces a 2x3 viewport matrix to transform projected coordinates to
  * screen space.
  *
  * @param out

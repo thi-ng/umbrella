@@ -11,4 +11,7 @@ export const endShape = (
     if ((v = attribs.stroke) && v !== "none") {
         ctx.stroke();
     }
+    if ((v = attribs.clip)) {
+        ctx.clip(v === true ? "nonzero" : v);
+    }
 };

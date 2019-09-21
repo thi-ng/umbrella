@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.2.3...@thi.ng/strings@1.3.0) (2019-09-21)
+
+
+### Features
+
+* **strings:** add charRange(), add radix & zero-pad presets ([c9e5a63](https://github.com/thi-ng/umbrella/commit/c9e5a63))
+
+
+
+
+
 ## [1.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.2.2...@thi.ng/strings@1.2.3) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/strings

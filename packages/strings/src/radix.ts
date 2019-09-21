@@ -30,6 +30,16 @@ export const radix: (
 export const B8 = radix(2, 8);
 
 /**
+ * 16bit binary conversion preset.
+ */
+export const B16 = radix(2, 16);
+
+/**
+ * 32bit binary conversion preset.
+ */
+export const B32 = radix(2, 32);
+
+/**
  * 8bit hex conversion preset.
  * Assumes unsigned inputs.
  */

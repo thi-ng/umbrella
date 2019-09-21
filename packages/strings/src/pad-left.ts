@@ -20,3 +20,18 @@ export const padLeft: (
             ? ((x = x.toString()), x.length < n ? buf.substr(x.length) + x : x)
             : buf;
 });
+
+/**
+ * Zero-padded 2 digit formatter.
+ */
+export const Z2 = padLeft(2, "0");
+
+/**
+ * Zero-padded 3 digit formatter.
+ */
+export const Z3 = padLeft(3, "0");
+
+/**
+ * Zero-padded 4 digit formatter.
+ */
+export const Z4 = padLeft(4, "0");
