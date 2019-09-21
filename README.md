@@ -13,18 +13,21 @@ collection of largely data transformation oriented packages and building
 blocks for:
 
 - Functional programming (composition, memoization, transducers, multi-methods)
+- ES6 iterators
 - Stream based, reactive programming, dataflow graphs / pipelines
 - WebWorker workflow abstractions
 - Data structures & data transformations for wide range of use cases (list, sets, maps)
 - Value-based equivalence
+- FSM primitives, parser generators
 - Data driven UI components, event & side effect handling
 - Immediate mode GUI components
-- Immutable data handling, state containers, Undo-Redo history
-- Geometry generation, processing & visualization
+- Immutable data handling, state containers, transacted state updates, Undo-Redo history
+- 2D geometry generation, processing, conversion & visualization
 - Vector & matrix implementations with optional support for strided layouts
 - Color space conversions, cosine gradients
 - Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
 - Declarative WebGL 1/2 abstraction layer
+- S-expression parser & runtime infrastructure for custom DSL creation
 - DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
 - Low-level tooling for binary data, shared memory / WASM / WebGL interop
 - etc. (see package overview below)
@@ -55,7 +58,7 @@ Most packages:
 
 ## Examples
 
-There's a steadily growing number (~60) of standalone examples
+There's a steadily growing number (~70) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [examples](./examples) directory.
 
@@ -83,7 +86,6 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are only available on their respective feature branches)
 
-- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators) - 2D grid coordinate iterators
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
 
 ### Fundamentals
