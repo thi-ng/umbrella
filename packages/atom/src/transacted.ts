@@ -6,11 +6,13 @@ import {
     SwapFn,
     ViewTransform
 } from "./api";
+import { nextID } from "./idgen";
 import { View } from "./view";
 
 export class Transacted<T> implements IAtom<T> {
     parent: IAtom<T>;
     current: T | undefined;
+    protected id: string;
     protected isActive: boolean;
     protected _watches: any;
 
@@ -18,6 +20,7 @@ export class Transacted<T> implements IAtom<T> {
         this.parent = parent;
         this.current = undefined;
         this.isActive = false;
+        this.id = `tx${nextID()}-`;
     }
 
     get value() {
@@ -26,6 +29,10 @@ export class Transacted<T> implements IAtom<T> {
 
     set value(val: T) {
         this.reset(val);
+    }
+
+    get isTransaction() {
+        return this.isActive;
     }
 
     deref() {
@@ -79,11 +86,13 @@ export class Transacted<T> implements IAtom<T> {
     }
 
     addWatch(id: string, watch: Watch<T>) {
-        return this.parent.addWatch(id, watch);
+        return this.parent.addWatch(this.id + id, (_, prev, curr) =>
+            watch(id, prev, curr)
+        );
     }
 
     removeWatch(id: string) {
-        return this.parent.removeWatch(id);
+        return this.parent.removeWatch(this.id + id);
     }
 
     notifyWatches(old: T, curr: T) {
@@ -91,7 +100,7 @@ export class Transacted<T> implements IAtom<T> {
     }
 
     addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this.parent, path, tx, lazy);
+        return new View<V>(this, path, tx, lazy);
     }
 
     release() {

@@ -25,7 +25,7 @@ describe("transacted", () => {
         assert.deepEqual(db.deref(), { a: 1, b: 2 });
         assert.deepEqual(tx.commit(), { a: 11, b: 22 });
         assert.deepEqual(tx.deref(), { a: 11, b: 22 });
-        assert.deepEqual(tx.deref(), db.deref());
+        assert.deepStrictEqual(tx.deref(), db.deref());
         assert.throws(() => tx.commit(), "no double commit");
     });
 
@@ -35,7 +35,7 @@ describe("transacted", () => {
         assert.deepEqual(tx.deref(), { a: 11, b: 2 });
         tx.cancel();
         assert.deepEqual(tx.deref(), { a: 1, b: 2 });
-        assert.deepEqual(tx.deref(), db.deref());
+        assert.deepStrictEqual(tx.deref(), db.deref());
         assert.throws(() => tx.cancel(), "no double cancel");
     });
 
@@ -60,5 +60,28 @@ describe("transacted", () => {
         tx.reset({ a: 22 });
         tx.commit();
         assert.equal(count, 1);
+    });
+
+    it("view (lazy)", () => {
+        const acc: any[] = [];
+        const view = tx.addView("a", (x) => (acc.push(x), x), true);
+        assert.equal(view.deref(), 1);
+        tx.begin();
+        tx.reset({ a: 11 });
+        tx.reset({ a: 22 });
+        tx.commit();
+        assert.equal(view.deref(), 22);
+        assert.deepEqual(acc, [1, 22]);
+    });
+
+    it("view (eager)", () => {
+        const acc: any[] = [];
+        const view = tx.addView("a", (x) => (acc.push(x), x), false);
+        tx.begin();
+        tx.reset({ a: 11 });
+        tx.reset({ a: 22 });
+        tx.commit();
+        assert.deepEqual(acc, [1, 22]);
+        assert.equal(view.deref(), 22);
     });
 });

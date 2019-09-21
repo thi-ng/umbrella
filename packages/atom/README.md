@@ -37,8 +37,8 @@ infrastructure support for:
 
 Together these types act as building blocks for various application
 state handling patterns, specifically aimed (though not exclusively) at
-the concept of using a nested, immutable, centralized atom as single
-source of truth within an application.
+the concept of using a centralized atom around a nested, immutable object
+as single source of truth within an application.
 
 ### Status
 
@@ -101,7 +101,9 @@ a.reset(42);
 ```
 
 When atoms are used to wrap nested object values, the `resetIn()` /
-`swapIn()` methods can be used to directly manipulate nested values:
+`swapIn()` methods can be used to directly update nested values. These
+updates are handled via immutable setters provided by
+[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths).
 
 ```ts
 const db = new Atom<any>({ a: { b: 1, c: 2 } });
@@ -128,11 +130,13 @@ caused by each interim state update. Using a transaction, the parent
 state is only updated once and watches too are only notified once after
 each commit.
 
-Transactions can also be canceled, thus not modifying the parent state
-at all.
+Transactions can also be canceled, thus not impacting the parent state
+at all. Nested transactions are *not* supported and attempting to do so
+will throw an error.
 
 The `Transacted` class can wrap any existing `IAtom` implementation,
-e.g. `Atom`, `Cursor` or `History` instances...
+e.g. `Atom`, `Cursor` or `History` instances and implements `IAtom`
+itself...
 
 ```ts
 const db = new Atom({ a: 1, b: 2 });
@@ -160,6 +164,7 @@ db.deref()
 tx.commit();
 // { a: 11, b: 2, c: 33 }
 
+// verify parent state
 db.deref()
 // { a: 11, b: 2, c: 33 }
 ```
