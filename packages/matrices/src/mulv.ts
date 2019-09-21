@@ -21,7 +21,7 @@ import { MatOpMV, MultiMatOpMV } from "./api";
 export const mulV: MultiMatOpMV = vop(1);
 
 /**
- * Multiplies M22 `m` with 2D vector `v`. Supports in-place
+ * Multiplies 2x2 matrix `m` with 2D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
  * @param out
@@ -33,7 +33,7 @@ export const mulV22: MatOpMV = mulV.add(4, (out, m, v) =>
 );
 
 /**
- * Multiplies M23 `m` with 2D vector `v`. Supports in-place
+ * Multiplies 2x3 matrix `m` with 2D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
  * @param out
@@ -45,7 +45,7 @@ export const mulV23: MatOpMV = mulV.add(6, (out, m, v) =>
 );
 
 /**
- * Multiplies M33 `m` with 3D vector `v`. Supports in-place
+ * Multiplies 3x3 matrix `m` with 3D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
  * @param out
@@ -62,7 +62,7 @@ export const mulV33: MatOpMV = mulV.add(9, (out, m, v) =>
 );
 
 /**
- * Multiplies M44 `m` with 4D vector `v`. Supports in-place
+ * Multiplies 4x4 matrix `m` with 4D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
  * @param out
@@ -80,9 +80,9 @@ export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
 );
 
 /**
- * Multiplies M44 `m` with 3D vector `v` and assumes `w=1`, i.e. the
- * vector is interpreted as `[x,y,z,1]`. After transformation applies
- * perspective divide of the resulting XYZ components.
+ * Multiplies 4x4 matrix `m` with 3D vector `v` and assumes `w=1`, i.e.
+ * the vector is interpreted as `[x,y,z,1]`. After transformation
+ * applies perspective divide of the resulting XYZ components.
  *
  * @param out
  * @param m

@@ -3,7 +3,8 @@ import { setC } from "@thi.ng/vectors";
 import { Mat } from "./api";
 
 /**
- * Constructs a M44 representing the given view frustum.
+ * Constructs a 4x4 matrix representing the given view frustum. Creates
+ * new matrix if `out` is `null`.
  *
  * @param out
  * @param left

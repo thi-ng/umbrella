@@ -9,7 +9,7 @@ import { scale23, scale44 } from "./scale";
 import { translation23 } from "./translation";
 
 /**
- * Creates M23 TRS transformation matrix from given translation vector,
+ * Creates 2x3 TRS transformation matrix from given translation vector,
  * rotation angle and scale factor/vector.
  *
  * @param out
@@ -31,10 +31,11 @@ export const transform23 = (
     );
 
 /**
- * Creates M44 TRS transformation matrix from given translation vector,
+ * Creates 4x4 TRS transformation matrix from given translation vector,
  * rotation angles (given as 3D vector) and scale factor/vector.
  * Internally, uses a quaternion for constructing the rotation matrix
- * part.
+ * part. The quaternion is created via `quatFromEuler()` with ZYX
+ * ordering.
  *
  * @param out
  * @param translate

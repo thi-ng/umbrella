@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/api",
-    "version": "6.3.3",
+    "version": "6.4.0",
     "description": "Common, generic types & interfaces for thi.ng projects",
     "module": "./index.js",
     "main": "./lib/index.js",

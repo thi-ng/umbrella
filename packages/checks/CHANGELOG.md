@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.3.0...@thi.ng/checks@2.4.0) (2019-09-21)
+
+
+### Features
+
+* **checks:** add generics to existsAndNotNull() ([bced8b9](https://github.com/thi-ng/umbrella/commit/bced8b9))
+
+
+
+
+
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.2.2...@thi.ng/checks@2.3.0) (2019-08-16)
 
 

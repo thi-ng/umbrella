@@ -116,7 +116,7 @@ const prepareNodeInputs = (
             s = fromView(state, i.path);
         } else if (i.stream) {
             s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
-        } else if (i.const) {
+        } else if (i.const != null) {
             s = fromIterableSync(
                 [isFunction(i.const) ? i.const(resolve) : i.const],
                 false

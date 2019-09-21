@@ -10,7 +10,12 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "@thi.ng/shader-ast-stdlib";
-import { FX_SHADER_SPEC, ShaderFn, ShaderSpec } from "@thi.ng/webgl";
+import {
+    FX_SHADER_SPEC,
+    FX_SHADER_SPEC_UV,
+    ShaderFn,
+    ShaderSpec
+} from "@thi.ng/webgl";
 
 export const LIGHT_SHADER: ShaderSpec = {
     vs: `void main() {
@@ -119,7 +124,7 @@ void main() {
     }
 };
 
-export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC, {
+export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC_UV, {
     fs: <ShaderFn>(
         ((_, unis, ins, outs) => [
             defMain(() => [

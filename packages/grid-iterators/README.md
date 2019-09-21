@@ -22,10 +22,10 @@ This project is part of the
 
 Collection of 2D grid iterators, providing the following orderings:
 
-| [Diagonal](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal2d.ts)         | [Hilbert curve](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hilbert2d.ts)     | [Outward spiral](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/spiral2d.ts) |
+| [Diagonal](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/diagonal2d.ts)         | [Hilbert curve](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/hilbert2d.ts)     | [Outward spiral](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/spiral2d.ts) |
 |---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-diagonal.gif)    | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-hilbert.gif)     | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-spiral.gif)  |
-| [Zigzag columns](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/columns2d.ts)    | [Zigzag rows](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/rows2d.ts)          |                                                                                                           |
+| [Zigzag columns](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/columns2d.ts)    | [Zigzag rows](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/rows2d.ts)          |                                                                                                           |
 | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-zigzag-cols.gif) | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-zigzag-rows.gif) |                                                                                                           |
 
 All functions have been ported from [Christopher

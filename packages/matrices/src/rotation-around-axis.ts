@@ -3,9 +3,9 @@ import { Mat } from "./api";
 import { mat33to44 } from "./m33-m44";
 
 /**
- * Constructs a M33 representing a rotation of `theta` around `axis` and
- * writes result to `out`. If `normalize` is true (default false),
- * non-destructively first normalizes axis vector.
+ * Constructs a 3x3 matrix representing a rotation of `theta` around
+ * `axis` and writes result to `out`. If `normalize` is true (default
+ * false), non-destructively first normalizes axis vector.
  *
  * @param out
  * @param axis
@@ -37,9 +37,9 @@ export const rotationAroundAxis33 = (
 };
 
 /**
- * Constructs a M44 representing a rotation of `theta` around `axis` and
- * writes result to `out`. If `normalize` is true (default false),
- * non-destructively first normalizes axis vector.
+ * Constructs a 4x4 matrix representing a rotation of `theta` around
+ * `axis` and writes result to `out`. If `normalize` is true (default
+ * false), non-destructively first normalizes axis vector.
  *
  * @param out
  * @param axis

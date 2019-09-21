@@ -1,8 +1,10 @@
 import { align } from "@thi.ng/binary";
-import { radix } from "@thi.ng/strings";
+import { B32 } from "@thi.ng/strings";
 
-const B32 = radix(2, 32);
-
+/**
+ * 1D bit field, backed by a Uint32Array. Size is always a multiple of
+ * 32.
+ */
 export class BitField {
     data: Uint32Array;
     n: number;
@@ -13,7 +15,8 @@ export class BitField {
     }
 
     /**
-     * Resizes bitfield to new size given (aligned to multiples of 32).
+     * Resizes bitfield to new size given (rounded up to multiples of
+     * 32).
      *
      * @param n
      */
@@ -27,7 +30,8 @@ export class BitField {
     }
 
     /**
-     * Returns a non-zero value if bit `n` is enabled.
+     * Returns a non-zero value if bit `n` is enabled. No bounds
+     * checking.
      *
      * @param n
      */
@@ -37,7 +41,7 @@ export class BitField {
 
     /**
      * Enables or disables bit `n`. Returns a non-zero value if the bit
-     * was previously enabled.
+     * was previously enabled. No bounds checking.
      * .
      * @param n
      * @param v

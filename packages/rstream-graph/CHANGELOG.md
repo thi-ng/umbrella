@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.1.6...@thi.ng/rstream-graph@3.1.7) (2019-09-21)
+
+
+### Bug Fixes
+
+* **rstream-graph:** const zero input spec handling ([27e9d30](https://github.com/thi-ng/umbrella/commit/27e9d30))
+
+
+
+
+
 ## [3.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.1.5...@thi.ng/rstream-graph@3.1.6) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/rstream-graph

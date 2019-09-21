@@ -8,11 +8,11 @@ import { reduce } from "../reduce";
 export function mean(): Reducer<number, number>;
 export function mean(xs: Iterable<number>): number;
 export function mean(xs?: Iterable<number>): any {
-    let n = 0;
+    let n = 1;
     return xs
         ? reduce(mean(), xs)
         : <Reducer<number, number>>[
-              () => 0,
+              () => (n = 0),
               (acc) => (n > 1 ? acc / n : acc),
               (acc, x) => (n++, acc + x)
           ];

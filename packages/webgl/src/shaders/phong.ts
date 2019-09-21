@@ -17,7 +17,8 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { diffuseLighting, surfaceNormal } from "@thi.ng/shader-ast-stdlib";
-import { Material, ShaderOpts, ShaderSpec } from "../api";
+import { Material } from "../api/material";
+import { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";
 import { autoNormalMatrix1 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
