@@ -56,7 +56,7 @@ yarn add @thi.ng/sexpr
 
 ## Usage examples
 
-- [DSL for spreadsheet formulas](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
+- [DSL for spreadsheet formulas](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
 
 ```ts
 import { tokenize, parse, runtime } from "@thi.ng/sexpr";

@@ -44,7 +44,7 @@ yarn add @thi.ng/rstream-graph
 Small(ish), fully commented projects can be found in the `/examples` folder:
 
 - **Spreadsheet w/ Lisp-style DSL** -
-  [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet),
+  [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet),
   [Live version](https://demo.thi.ng/umbrella/rstream-spreadsheet)
 - **SVG grid gen** -
   [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid),
