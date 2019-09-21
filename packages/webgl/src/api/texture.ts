@@ -145,13 +145,26 @@ export interface TextureFormatDecl {
     gl2?: boolean;
 }
 
+const $ = (
+    format: TextureFormat,
+    types: (TextureType | number)[],
+    num: number,
+    render = false,
+    filter = false,
+    renderExt = render
+) => ({
+    format,
+    types,
+    render,
+    renderExt,
+    filter,
+    num
+});
+
 export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
-    [TextureFormat.ALPHA]: {
-        format: TextureFormat.ALPHA,
-        render: true,
-        filter: true,
-        num: 1,
-        types: [
+    [TextureFormat.ALPHA]: $(
+        TextureFormat.ALPHA,
+        [
             TextureType.UNSIGNED_BYTE,
             1,
             TextureType.HALF_FLOAT,
@@ -160,44 +173,44 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             2,
             TextureType.FLOAT,
             4
-        ]
-    },
-    [TextureFormat.DEPTH_COMPONENT16]: {
-        format: TextureFormat.DEPTH_COMPONENT,
-        render: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_SHORT, 2, TextureType.UNSIGNED_INT, 4]
-    },
-    [TextureFormat.DEPTH_COMPONENT24]: {
-        format: TextureFormat.DEPTH_COMPONENT,
-        render: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_INT, 4]
-    },
-    [TextureFormat.DEPTH_COMPONENT32F]: {
-        format: TextureFormat.DEPTH_COMPONENT,
-        render: true,
-        num: 1,
-        types: [TextureType.FLOAT, 4]
-    },
-    [TextureFormat.DEPTH24_STENCIL8]: {
-        format: TextureFormat.DEPTH_STENCIL,
-        render: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_INT_24_8, 4]
-    },
-    [TextureFormat.DEPTH32F_STENCIL8]: {
-        format: TextureFormat.DEPTH_STENCIL,
-        render: true,
-        num: 1,
-        types: [TextureType.FLOAT_32_UNSIGNED_INT_24_8_REV, 4]
-    },
-    [TextureFormat.LUMINANCE_ALPHA]: {
-        format: TextureFormat.LUMINANCE_ALPHA,
-        render: true,
-        filter: true,
-        num: 2,
-        types: [
+        ],
+        1,
+        true,
+        true
+    ),
+    [TextureFormat.DEPTH_COMPONENT16]: $(
+        TextureFormat.DEPTH_COMPONENT,
+        [TextureType.UNSIGNED_SHORT, 2, TextureType.UNSIGNED_INT, 4],
+        1,
+        true
+    ),
+    [TextureFormat.DEPTH_COMPONENT24]: $(
+        TextureFormat.DEPTH_COMPONENT,
+        [TextureType.UNSIGNED_INT, 4],
+        1,
+        true
+    ),
+    [TextureFormat.DEPTH_COMPONENT32F]: $(
+        TextureFormat.DEPTH_COMPONENT,
+        [TextureType.FLOAT, 4],
+        1,
+        true
+    ),
+    [TextureFormat.DEPTH24_STENCIL8]: $(
+        TextureFormat.DEPTH_STENCIL,
+        [TextureType.UNSIGNED_INT_24_8, 4],
+        1,
+        true
+    ),
+    [TextureFormat.DEPTH32F_STENCIL8]: $(
+        TextureFormat.DEPTH_STENCIL,
+        [TextureType.FLOAT_32_UNSIGNED_INT_24_8_REV, 4],
+        1,
+        true
+    ),
+    [TextureFormat.LUMINANCE_ALPHA]: $(
+        TextureFormat.LUMINANCE_ALPHA,
+        [
             TextureType.UNSIGNED_BYTE,
             2,
             TextureType.HALF_FLOAT,
@@ -206,14 +219,14 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             4,
             TextureType.FLOAT,
             8
-        ]
-    },
-    [TextureFormat.LUMINANCE]: {
-        format: TextureFormat.LUMINANCE,
-        render: true,
-        filter: true,
-        num: 1,
-        types: [
+        ],
+        2,
+        true,
+        true
+    ),
+    [TextureFormat.LUMINANCE]: $(
+        TextureFormat.LUMINANCE,
+        [
             TextureType.UNSIGNED_BYTE,
             1,
             TextureType.HALF_FLOAT,
@@ -222,152 +235,161 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             2,
             TextureType.FLOAT,
             4
-        ]
-    },
-    [TextureFormat.R11F_G11F_B10F]: {
-        format: TextureFormat.RGB,
-        filter: true,
-        renderExt: true,
-        num: 3,
-        types: [
+        ],
+        1,
+        true,
+        true
+    ),
+    [TextureFormat.R11F_G11F_B10F]: $(
+        TextureFormat.RGB,
+        [
             TextureType.FLOAT,
             12,
             TextureType.HALF_FLOAT,
             6,
             TextureType.UNSIGNED_INT_10F_11F_11F_REV,
             4
-        ]
-    },
-    [TextureFormat.R16F]: {
-        format: TextureFormat.RED,
-        filter: true,
-        renderExt: true,
-        num: 1,
-        types: [TextureType.FLOAT, 4, TextureType.HALF_FLOAT, 2]
-    },
-    [TextureFormat.R16I]: {
-        format: TextureFormat.RED_INTEGER,
-        render: true,
-        num: 1,
-        types: [TextureType.SHORT, 2]
-    },
-    [TextureFormat.R16UI]: {
-        format: TextureFormat.RED_INTEGER,
-        render: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_SHORT, 2]
-    },
-    [TextureFormat.R32F]: {
-        format: TextureFormat.RED,
-        renderExt: true,
-        num: 1,
-        types: [TextureType.FLOAT, 4]
-    },
-    [TextureFormat.R32I]: {
-        format: TextureFormat.RED_INTEGER,
-        render: true,
-        num: 1,
-        types: [TextureType.INT, 4]
-    },
-    [TextureFormat.R32UI]: {
-        format: TextureFormat.RED_INTEGER,
-        render: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_INT, 4]
-    },
-    [TextureFormat.R8_SNORM]: {
-        format: TextureFormat.RED,
-        filter: true,
-        num: 1,
-        types: [TextureType.BYTE, 1]
-    },
-    [TextureFormat.R8]: {
-        format: TextureFormat.RED,
-        render: true,
-        filter: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_BYTE, 1]
-    },
-    [TextureFormat.R8I]: {
-        format: TextureFormat.RED_INTEGER,
-        render: true,
-        num: 1,
-        types: [TextureType.BYTE, 1]
-    },
-    [TextureFormat.R8UI]: {
-        format: TextureFormat.RED_INTEGER,
-        render: true,
-        num: 1,
-        types: [TextureType.UNSIGNED_BYTE, 1]
-    },
-    [TextureFormat.RG16F]: {
-        format: TextureFormat.RG,
-        filter: true,
-        renderExt: true,
-        num: 2,
-        types: [TextureType.FLOAT, 8, TextureType.HALF_FLOAT, 4]
-    },
-    [TextureFormat.RG16I]: {
-        format: TextureFormat.RG_INTEGER,
-        render: true,
-        num: 2,
-        types: [TextureType.SHORT, 4]
-    },
-    [TextureFormat.RG16UI]: {
-        format: TextureFormat.RG_INTEGER,
-        render: true,
-        num: 2,
-        types: [TextureType.UNSIGNED_SHORT, 4]
-    },
-    [TextureFormat.RG32F]: {
-        format: TextureFormat.RG,
-        renderExt: true,
-        num: 2,
-        types: [TextureType.FLOAT, 8]
-    },
-    [TextureFormat.RG32I]: {
-        format: TextureFormat.RG_INTEGER,
-        render: true,
-        num: 2,
-        types: [TextureType.INT, 8]
-    },
-    [TextureFormat.RG32UI]: {
-        format: TextureFormat.RG_INTEGER,
-        render: true,
-        num: 2,
-        types: [TextureType.UNSIGNED_INT, 8]
-    },
-    [TextureFormat.RG8_SNORM]: {
-        format: TextureFormat.RG,
-        filter: true,
-        num: 2,
-        types: [TextureType.BYTE, 2]
-    },
-    [TextureFormat.RG8]: {
-        format: TextureFormat.RG,
-        render: true,
-        filter: true,
-        num: 2,
-        types: [TextureType.UNSIGNED_BYTE, 2]
-    },
-    [TextureFormat.RG8I]: {
-        format: TextureFormat.RG_INTEGER,
-        render: true,
-        num: 2,
-        types: [TextureType.BYTE, 2]
-    },
-    [TextureFormat.RG8UI]: {
-        format: TextureFormat.RG_INTEGER,
-        render: true,
-        num: 2,
-        types: [TextureType.UNSIGNED_BYTE, 2]
-    },
-    [TextureFormat.RGB]: {
-        format: TextureFormat.RGB,
-        render: true,
-        filter: true,
-        num: 3,
-        types: [
+        ],
+        3,
+        false,
+        true,
+        true
+    ),
+    [TextureFormat.R16F]: $(
+        TextureFormat.RED,
+        [TextureType.FLOAT, 4, TextureType.HALF_FLOAT, 2],
+        1,
+        false,
+        true,
+        true
+    ),
+    [TextureFormat.R16I]: $(
+        TextureFormat.RED_INTEGER,
+        [TextureType.SHORT, 2],
+        1,
+        true
+    ),
+    [TextureFormat.R16UI]: $(
+        TextureFormat.RED_INTEGER,
+        [TextureType.UNSIGNED_SHORT, 2],
+        1,
+        true
+    ),
+    [TextureFormat.R32F]: $(
+        TextureFormat.RED,
+        [TextureType.FLOAT, 4],
+        1,
+        false,
+        false,
+        true
+    ),
+    [TextureFormat.R32I]: $(
+        TextureFormat.RED_INTEGER,
+        [TextureType.INT, 4],
+        1,
+        true
+    ),
+    [TextureFormat.R32UI]: $(
+        TextureFormat.RED_INTEGER,
+        [TextureType.UNSIGNED_INT, 4],
+        1,
+        true
+    ),
+    [TextureFormat.R8_SNORM]: $(
+        TextureFormat.RED,
+        [TextureType.BYTE, 1],
+        1,
+        false,
+        true
+    ),
+    [TextureFormat.R8]: $(
+        TextureFormat.RED,
+        [TextureType.UNSIGNED_BYTE, 1],
+        1,
+        true,
+        true
+    ),
+    [TextureFormat.R8I]: $(
+        TextureFormat.RED_INTEGER,
+        [TextureType.BYTE, 1],
+        1,
+        true
+    ),
+    [TextureFormat.R8UI]: $(
+        TextureFormat.RED_INTEGER,
+        [TextureType.UNSIGNED_BYTE, 1],
+        1,
+        true
+    ),
+    [TextureFormat.RG16F]: $(
+        TextureFormat.RG,
+        [TextureType.FLOAT, 8, TextureType.HALF_FLOAT, 4],
+        2,
+        false,
+        true,
+        true
+    ),
+    [TextureFormat.RG16I]: $(
+        TextureFormat.RG_INTEGER,
+        [TextureType.SHORT, 4],
+        2,
+        true
+    ),
+    [TextureFormat.RG16UI]: $(
+        TextureFormat.RG_INTEGER,
+        [TextureType.UNSIGNED_SHORT, 4],
+        2,
+        true
+    ),
+    [TextureFormat.RG32F]: $(
+        TextureFormat.RG,
+        [TextureType.FLOAT, 8],
+        2,
+        false,
+        false,
+        true
+    ),
+    [TextureFormat.RG32I]: $(
+        TextureFormat.RG_INTEGER,
+        [TextureType.INT, 8],
+        2,
+        true
+    ),
+    [TextureFormat.RG32UI]: $(
+        TextureFormat.RG_INTEGER,
+        [TextureType.UNSIGNED_INT, 8],
+        2,
+        true
+    ),
+    [TextureFormat.RG8_SNORM]: $(
+        TextureFormat.RG,
+        [TextureType.BYTE, 2],
+        2,
+        false,
+        true
+    ),
+    [TextureFormat.RG8]: $(
+        TextureFormat.RG,
+        [TextureType.UNSIGNED_BYTE, 2],
+        2,
+        true,
+        true
+    ),
+    [TextureFormat.RG8I]: $(
+        TextureFormat.RG_INTEGER,
+        [TextureType.BYTE, 2],
+        2,
+        true
+    ),
+    [TextureFormat.RG8UI]: $(
+        TextureFormat.RG_INTEGER,
+        [TextureType.UNSIGNED_BYTE, 2],
+        2,
+        true
+    ),
+    [TextureFormat.RGB]: $(
+        TextureFormat.RGB,
+        [
             TextureType.UNSIGNED_BYTE,
             3,
             TextureType.HALF_FLOAT,
@@ -378,120 +400,114 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             12,
             TextureType.UNSIGNED_SHORT_5_6_5,
             2
-        ]
-    },
-    [TextureFormat.RGB10_A2]: {
-        format: TextureFormat.RGBA,
-        render: true,
-        filter: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_INT_2_10_10_10_REV, 4]
-    },
-    [TextureFormat.RGB10_A2UI]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_INT_2_10_10_10_REV, 4]
-    },
-    [TextureFormat.RGB16F]: {
-        format: TextureFormat.RGB,
-        filter: true,
-        num: 3,
-        types: [TextureType.FLOAT, 12, TextureType.HALF_FLOAT, 6]
-    },
-    [TextureFormat.RGB16I]: {
-        format: TextureFormat.RGB_INTEGER,
-        num: 3,
-        types: [TextureType.SHORT, 6]
-    },
-    [TextureFormat.RGB16UI]: {
-        format: TextureFormat.RGB_INTEGER,
-        num: 3,
-        types: [TextureType.UNSIGNED_SHORT, 6]
-    },
-    [TextureFormat.RGB32F]: {
-        format: TextureFormat.RGB,
-        num: 3,
-        types: [TextureType.FLOAT, 12]
-    },
-    [TextureFormat.RGB32I]: {
-        format: TextureFormat.RGB_INTEGER,
-        num: 3,
-        types: [TextureType.INT, 12]
-    },
-    [TextureFormat.RGB32UI]: {
-        format: TextureFormat.RGB_INTEGER,
-        num: 3,
-        types: [TextureType.UNSIGNED_INT, 12]
-    },
-    [TextureFormat.RGB5_A1]: {
-        format: TextureFormat.RGBA,
-        render: true,
-        filter: true,
-        num: 4,
-        types: [
+        ],
+        3,
+        true,
+        true
+    ),
+    [TextureFormat.RGB10_A2]: $(
+        TextureFormat.RGBA,
+        [TextureType.UNSIGNED_INT_2_10_10_10_REV, 4],
+        4,
+        true,
+        true
+    ),
+    [TextureFormat.RGB10_A2UI]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.UNSIGNED_INT_2_10_10_10_REV, 4],
+        4,
+        true
+    ),
+    [TextureFormat.RGB16F]: $(
+        TextureFormat.RGB,
+        [TextureType.FLOAT, 12, TextureType.HALF_FLOAT, 6],
+        3,
+        false,
+        true
+    ),
+    [TextureFormat.RGB16I]: $(
+        TextureFormat.RGB_INTEGER,
+        [TextureType.SHORT, 6],
+        3
+    ),
+    [TextureFormat.RGB16UI]: $(
+        TextureFormat.RGB_INTEGER,
+        [TextureType.UNSIGNED_SHORT, 6],
+        3
+    ),
+    [TextureFormat.RGB32F]: $(TextureFormat.RGB, [TextureType.FLOAT, 12], 3),
+    [TextureFormat.RGB32I]: $(
+        TextureFormat.RGB_INTEGER,
+        [TextureType.INT, 12],
+        3
+    ),
+    [TextureFormat.RGB32UI]: $(
+        TextureFormat.RGB_INTEGER,
+        [TextureType.UNSIGNED_INT, 12],
+        3
+    ),
+    [TextureFormat.RGB5_A1]: $(
+        TextureFormat.RGBA,
+        [
             TextureType.UNSIGNED_BYTE,
             4,
             TextureType.UNSIGNED_SHORT_5_5_5_1,
             2,
             TextureType.UNSIGNED_INT_2_10_10_10_REV,
             4
-        ]
-    },
-    [TextureFormat.RGB565]: {
-        format: TextureFormat.RGB,
-        render: true,
-        filter: true,
-        num: 3,
-        types: [
-            TextureType.UNSIGNED_BYTE,
-            3,
-            TextureType.UNSIGNED_SHORT_5_6_5,
-            2
-        ]
-    },
-    [TextureFormat.RGB8_SNORM]: {
-        format: TextureFormat.RGB,
-        filter: true,
-        num: 3,
-        types: [TextureType.BYTE, 3]
-    },
-    [TextureFormat.RGB8]: {
-        format: TextureFormat.RGB,
-        render: true,
-        filter: true,
-        num: 3,
-        types: [TextureType.UNSIGNED_BYTE, 3]
-    },
-    [TextureFormat.RGB8I]: {
-        format: TextureFormat.RGB_INTEGER,
-        num: 3,
-        types: [TextureType.BYTE, 3]
-    },
-    [TextureFormat.RGB8UI]: {
-        format: TextureFormat.RGB_INTEGER,
-        num: 3,
-        types: [TextureType.UNSIGNED_BYTE, 3]
-    },
-    [TextureFormat.RGB9_E5]: {
-        format: TextureFormat.RGB,
-        filter: true,
-        num: 3,
-        types: [
+        ],
+        4,
+        true,
+        true
+    ),
+    [TextureFormat.RGB565]: $(
+        TextureFormat.RGB,
+        [TextureType.UNSIGNED_BYTE, 3, TextureType.UNSIGNED_SHORT_5_6_5, 2],
+        3,
+        true,
+        true
+    ),
+    [TextureFormat.RGB8_SNORM]: $(
+        TextureFormat.RGB,
+        [TextureType.BYTE, 3],
+        3,
+        false,
+        true
+    ),
+    [TextureFormat.RGB8]: $(
+        TextureFormat.RGB,
+        [TextureType.UNSIGNED_BYTE, 3],
+        3,
+        true,
+        true
+    ),
+    [TextureFormat.RGB8I]: $(
+        TextureFormat.RGB_INTEGER,
+        [TextureType.BYTE, 3],
+        3
+    ),
+    [TextureFormat.RGB8UI]: $(
+        TextureFormat.RGB_INTEGER,
+        [TextureType.UNSIGNED_BYTE, 3],
+        3
+    ),
+    [TextureFormat.RGB9_E5]: $(
+        TextureFormat.RGB,
+        [
             TextureType.FLOAT,
             12,
             TextureType.HALF_FLOAT,
             6,
             TextureType.UNSIGNED_INT_5_9_9_9_REV,
             4
-        ]
-    },
-    [TextureFormat.RGBA]: {
-        format: TextureFormat.RGBA,
-        render: true,
-        filter: true,
-        num: 4,
-        types: [
+        ],
+        3,
+        false,
+        true
+    ),
+    [TextureFormat.RGBA]: $(
+        TextureFormat.RGBA,
+        [
             TextureType.UNSIGNED_BYTE,
             4,
             TextureType.HALF_FLOAT,
@@ -504,95 +520,98 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             2,
             TextureType.UNSIGNED_SHORT_5_5_5_1,
             2
-        ]
-    },
-    [TextureFormat.RGBA16F]: {
-        format: TextureFormat.RGBA,
-        filter: true,
-        renderExt: true,
-        num: 4,
-        types: [TextureType.FLOAT, 16, TextureType.HALF_FLOAT, 8]
-    },
-    [TextureFormat.RGBA16I]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.SHORT, 8]
-    },
-    [TextureFormat.RGBA16UI]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_SHORT, 8]
-    },
-    [TextureFormat.RGBA32F]: {
-        format: TextureFormat.RGBA,
-        renderExt: true,
-        num: 4,
-        types: [TextureType.FLOAT, 16]
-    },
-    [TextureFormat.RGBA32I]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.INT, 16]
-    },
-    [TextureFormat.RGBA32UI]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_INT, 16]
-    },
-    [TextureFormat.RGBA4]: {
-        format: TextureFormat.RGBA,
-        render: true,
-        filter: true,
-        num: 4,
-        types: [
-            TextureType.UNSIGNED_BYTE,
-            4,
-            TextureType.UNSIGNED_SHORT_4_4_4_4,
-            2
-        ]
-    },
-    [TextureFormat.RGBA8_SNORM]: {
-        format: TextureFormat.RGBA,
-        filter: true,
-        num: 4,
-        types: [TextureType.BYTE, 4]
-    },
-    [TextureFormat.RGBA8]: {
-        format: TextureFormat.RGBA,
-        render: true,
-        filter: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_BYTE, 4]
-    },
-    [TextureFormat.RGBA8I]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.BYTE, 4]
-    },
-    [TextureFormat.RGBA8UI]: {
-        format: TextureFormat.RGBA_INTEGER,
-        render: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_BYTE, 4]
-    },
-    [TextureFormat.SRGB8_ALPHA8]: {
-        format: TextureFormat.RGBA,
-        render: true,
-        filter: true,
-        num: 4,
-        types: [TextureType.UNSIGNED_BYTE, 4]
-    },
-    [TextureFormat.SRGB8]: {
-        format: TextureFormat.RGB,
-        filter: true,
-        num: 3,
-        types: [TextureType.UNSIGNED_BYTE, 3]
-    }
+        ],
+        4,
+        true,
+        true
+    ),
+    [TextureFormat.RGBA16F]: $(
+        TextureFormat.RGBA,
+        [TextureType.FLOAT, 16, TextureType.HALF_FLOAT, 8],
+        4,
+        false,
+        true,
+        true
+    ),
+    [TextureFormat.RGBA16I]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.SHORT, 8],
+        4,
+        true
+    ),
+    [TextureFormat.RGBA16UI]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.UNSIGNED_SHORT, 8],
+        4,
+        true
+    ),
+    [TextureFormat.RGBA32F]: $(
+        TextureFormat.RGBA,
+        [TextureType.FLOAT, 16],
+        4,
+        false,
+        false,
+        true
+    ),
+    [TextureFormat.RGBA32I]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.INT, 16],
+        4,
+        true
+    ),
+    [TextureFormat.RGBA32UI]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.UNSIGNED_INT, 16],
+        4,
+        true
+    ),
+    [TextureFormat.RGBA4]: $(
+        TextureFormat.RGBA,
+        [TextureType.UNSIGNED_BYTE, 4, TextureType.UNSIGNED_SHORT_4_4_4_4, 2],
+        4,
+        true,
+        true
+    ),
+    [TextureFormat.RGBA8_SNORM]: $(
+        TextureFormat.RGBA,
+        [TextureType.BYTE, 4],
+        4,
+        false,
+        true
+    ),
+    [TextureFormat.RGBA8]: $(
+        TextureFormat.RGBA,
+        [TextureType.UNSIGNED_BYTE, 4],
+        4,
+        true,
+        true
+    ),
+    [TextureFormat.RGBA8I]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.BYTE, 4],
+        4,
+        true
+    ),
+    [TextureFormat.RGBA8UI]: $(
+        TextureFormat.RGBA_INTEGER,
+        [TextureType.UNSIGNED_BYTE, 4],
+        4,
+        true
+    ),
+    [TextureFormat.SRGB8_ALPHA8]: $(
+        TextureFormat.RGBA,
+        [TextureType.UNSIGNED_BYTE, 4],
+        4,
+        true,
+        true
+    ),
+    [TextureFormat.SRGB8]: $(
+        TextureFormat.RGB,
+        [TextureType.UNSIGNED_BYTE, 3],
+        3,
+        false,
+        true
+    )
 };
 
 export type ReadableTextureFormat =
