@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.3.3...@thi.ng/api@6.4.0) (2019-09-21)
+
+
+### Features
+
+* **api:** add Nullable ([8366223](https://github.com/thi-ng/umbrella/commit/8366223))
+
+
+
+
+
 ## [6.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.3.2...@thi.ng/api@6.3.3) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/api

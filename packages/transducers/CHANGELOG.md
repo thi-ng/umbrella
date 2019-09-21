@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.4...@thi.ng/transducers@5.4.5) (2019-09-21)
+
+
+### Bug Fixes
+
+* **transducers:** fix mean() for reduce w/ init value ([d993bf2](https://github.com/thi-ng/umbrella/commit/d993bf2))
+
+
+
+
+
 ## [5.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.3...@thi.ng/transducers@5.4.4) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/transducers

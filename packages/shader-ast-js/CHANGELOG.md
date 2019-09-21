@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.3.1...@thi.ng/shader-ast-js@0.4.0) (2019-09-21)
+
+
+### Bug Fixes
+
+* **shader-ast-js:** fix divisions ([bc81ff8](https://github.com/thi-ng/umbrella/commit/bc81ff8))
+
+
+### Features
+
+* **shader-ast-js:** add div-by-zero guards ([233528d](https://github.com/thi-ng/umbrella/commit/233528d))
+* **shader-ast-js:** replace JS runtime fns, add doc strings ([0798a35](https://github.com/thi-ng/umbrella/commit/0798a35))
+
+
+
+
+
 ## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.3.0...@thi.ng/shader-ast-js@0.3.1) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-js

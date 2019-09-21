@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.2.3...@thi.ng/shader-ast-stdlib@0.3.0) (2019-09-21)
+
+
+### Bug Fixes
+
+* **shader-ast-stdlib:** fix imports ([188309a](https://github.com/thi-ng/umbrella/commit/188309a))
+* **shader-ast-stdlib:** fix imports ([16823b2](https://github.com/thi-ng/umbrella/commit/16823b2))
+
+
+### Features
+
+* **shader-ast-stdlib:** add fragUV() ([b85dc8b](https://github.com/thi-ng/umbrella/commit/b85dc8b))
+* **shader-ast-stdlib:** add guassian blur fns ([759ace7](https://github.com/thi-ng/umbrella/commit/759ace7))
+* **shader-ast-stdlib:** add rotationAroundAxis3/4, matrix conversions ([8a473c1](https://github.com/thi-ng/umbrella/commit/8a473c1))
+* **shader-ast-stdlib:** add snoise3 & curlNoise3 ([a7dc75d](https://github.com/thi-ng/umbrella/commit/a7dc75d))
+
+
+
+
+
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.2.2...@thi.ng/shader-ast-stdlib@0.2.3) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-stdlib
