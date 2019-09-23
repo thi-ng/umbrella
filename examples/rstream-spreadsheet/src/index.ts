@@ -63,7 +63,8 @@ const cell = ([row, col]: [number, string]) =>
                 `${CELL_STYLE}.w4.overflow-y-hidden.overflow-x-scroll`,
                 {
                     class: cellBackground(cell),
-                    contentEditable: true,
+                    contenteditable: true,
+                    title: cell.formula,
                     onfocus: () => {
                         this.focus = true;
                         focusCell(id);
@@ -143,7 +144,7 @@ const app = () => {
 const main = fromAtom(DB);
 
 // transform state value into UI components and then apply to DOM.
-// due to the use of `contentEditable` div's for spreadsheet cells, we
+// due to the use of `contenteditable` div's for spreadsheet cells, we
 // need to disable the use of automatic span wrappers for text content
 // in hdom
 main.transform(map(app()), updateDOM({ span: false }));
