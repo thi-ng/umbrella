@@ -32,10 +32,10 @@ sandboxed DSL implementations.
 
 The following default syntax rules are used:
 
-- whitespace: space, tab, newline, comma
-- expression delimiters: `(`, `)`
-- numbers: any float notation valid in JS, hex ints prefixed w/ `0x`
-- string delimiters: `"`
+- **whitespace**: space, tab, newline, comma
+- **expression delimiters**: `(`, `)`
+- **numbers**: any float notation valid in JS, hex ints prefixed w/ `0x`
+- **string delimiters**: `"`
 
 Everything else is parsed as is, i.e. as symbol.
 
@@ -64,15 +64,34 @@ import { tokenize, parse, runtime } from "@thi.ng/sexpr";
 
 ### Tokenize only (iterator)
 
+The `tokenize` function returns an iterator of tokens incl. location
+details. Any whitespace is skipped and whitespace characters are
+configurable.
+
 ```ts
 [...tokenize(`(* (+ 3 5) 10)`)];
-// [ '(', '*', '(', '+', '3', '5', ')', '10', ')']
+// [
+//   { value: '(', line: 0, col: 0 },
+//   { value: '*', line: 0, col: 1 },
+//   { value: '(', line: 0, col: 3 },
+//   { value: '+', line: 0, col: 4 },
+//   { value: '3', line: 0, col: 6 },
+//   { value: '5', line: 0, col: 8 },
+//   { value: ')', line: 0, col: 9 },
+//   { value: '10', line: 0, col: 11 },
+//   { value: ')', line: 0, col: 13 }
+// ]
 ```
 
 ### AST generation
 
+The `parse` function takes a source string or iterable of tokens and
+parses it into an AST.
+
 ```ts
 parse(tokenize(`(* (+ 3 5) 10)`));
+// or directly from string
+parse(`(* (+ 3 5) 10)`);
 ```
 
 ```json
@@ -168,7 +187,7 @@ builtins.add(DEFAULT, (x, [_, ...args], env) => {
 
 // evaluator
 const $eval = (src: string, env: any = {}) =>
-    rt(parse(tokenize(src)).children[0], env);
+    rt(parse(src).children[0], env);
 
 // evaluate expression w/ given env bindings
 $eval(`(* foo (+ 1 2 3 (count "abcd")))`, { foo: 10 });
@@ -191,9 +210,12 @@ for a more in-depth version of this example...
 
 ```ts
 // define syntax overrides (keep default whitespace rules)
-const syntax = { scopes: [["<", ">"], ["{", "}"]], string: "'" };
+const syntax = {
+    scopes: [["<", ">"], ["{", "}"]],
+    string: "'"
+};
 
-parse(tokenize(`<nest { a '2' b 3 }>`, syntax), syntax);
+parse(`<nest { a '2' b 3 }>`, syntax);
 ```
 
 ```json

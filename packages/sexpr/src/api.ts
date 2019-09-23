@@ -21,6 +21,21 @@ export interface SyntaxOpts {
     string: string;
 }
 
+export interface Token {
+    /**
+     * Token value
+     */
+    value: string;
+    /**
+     * Token's start line
+     */
+    line: number;
+    /**
+     * Token's start column
+     */
+    col: number;
+}
+
 export type NodeType = "root" | "expr" | "sym" | "str" | "num";
 
 export type ASTNode = Root | Expression | Sym | Str | Numeric;

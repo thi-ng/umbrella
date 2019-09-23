@@ -34,8 +34,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.4.0",
-        "@thi.ng/defmulti": "^1.1.4",
-        "@thi.ng/errors": "1.2.0"
+        "@thi.ng/checks": "^2.4.0",
+        "@thi.ng/defmulti": "^1.1.4"
     },
     "keywords": [
         "DSL",
