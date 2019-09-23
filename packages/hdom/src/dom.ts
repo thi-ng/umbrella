@@ -221,17 +221,34 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
             case "value":
                 updateValueAttrib(<HTMLInputElement>el, val);
                 break;
-            case "id":
+            case "accesskey":
+                (<any>el).accessKey = val;
+                break;
+            case "contenteditable":
+                (<any>el).contentEditable = val;
+                break;
+            case "tabindex":
+                (<any>el).tabIndex = val;
+                break;
+            case "align":
+            case "autocapitalize":
             case "checked":
+            case "dir":
+            case "draggable":
+            case "hidden":
+            case "id":
+            case "lang":
+            case "namespaceURI":
             case "scrollTop":
             case "scrollLeft":
-                // TODO add more native attribs?
+            case "title":
+                // TODO add more properties / enumerated attribs?
                 (<any>el)[id] = val;
                 break;
             default:
                 isListener
                     ? setListener(el, id.substr(2), val)
-                    : el.setAttribute(id, val);
+                    : el.setAttribute(id, val === true ? "" : val);
         }
     } else {
         (<any>el)[id] != null ? ((<any>el)[id] = null) : el.removeAttribute(id);
