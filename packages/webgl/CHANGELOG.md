@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.7...@thi.ng/webgl@0.2.0) (2019-09-21)
+
+
+### Bug Fixes
+
+* **webgl:** update extension handling in shader(), add ExtensionInfo ([12abaa0](https://github.com/thi-ng/umbrella/commit/12abaa0))
+* **webgl:** update samplerXX[] uniform decl types ([48b8906](https://github.com/thi-ng/umbrella/commit/48b8906))
+
+
+### Features
+
+* **webgl:** add blending & stencil enums/types ([c8898a0](https://github.com/thi-ng/umbrella/commit/c8898a0))
+* **webgl:** add initial coll of blend mode presets ([58e0b04](https://github.com/thi-ng/umbrella/commit/58e0b04))
+* **webgl:** add readPixels/readTexture(), add ReadableTextureFormat ([355f785](https://github.com/thi-ng/umbrella/commit/355f785))
+* **webgl:** add renderExt to TextureFormatDecl, add FBO tex fmt checks ([180e89c](https://github.com/thi-ng/umbrella/commit/180e89c))
+* **webgl:** migrate multipass() & types from webgl-shadertoy pkg, reorg ([2aa31ce](https://github.com/thi-ng/umbrella/commit/2aa31ce))
+* **webgl:** update multipass / PassOpts ([95aba16](https://github.com/thi-ng/umbrella/commit/95aba16))
+* **webgl:** update texture config, split api.ts into mult files ([052552f](https://github.com/thi-ng/umbrella/commit/052552f))
+* **webgl:** update Texture.configure, store target, format, type, size ([9131310](https://github.com/thi-ng/umbrella/commit/9131310))
+
+
+
+
+
 ## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.6...@thi.ng/webgl@0.1.7) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/webgl

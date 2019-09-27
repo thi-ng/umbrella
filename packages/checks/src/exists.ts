@@ -1,1 +1,1 @@
-export const exists = (x: any) => x !== undefined;
+export const exists = <T>(t: T | undefined): t is T => t !== undefined;

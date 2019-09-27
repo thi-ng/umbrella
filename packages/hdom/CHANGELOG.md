@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.5...@thi.ng/hdom@8.0.6) (2019-09-23)
+
+
+### Bug Fixes
+
+* **hdom:** fix [#133](https://github.com/thi-ng/umbrella/issues/133) boolean attrib handling, add more element properties ([c4bf94f](https://github.com/thi-ng/umbrella/commit/c4bf94f))
+
+
+
+
+
+## [8.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.4...@thi.ng/hdom@8.0.5) (2019-09-21)
+
+**Note:** Version bump only for package @thi.ng/hdom
+
+
+
+
+
 ## [8.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.3...@thi.ng/hdom@8.0.4) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/hdom

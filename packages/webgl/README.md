@@ -41,12 +41,13 @@ updated from Clojure/ClojureScript versions of
     - customizable shader presets
 - Declarative geometry, attribute & index buffer specs
 - Declarative instancing (always available in WebGL2, or via ANGLE ext in WebGL1)
-    - also supported by bundled shader presets
-- Texture wrapper & declarative config
+- Texture wrapper, declarative config
+- Comprehensive texture format info (channels, strides, renderable, filterable etc.)
 - FBO support with multiple attachments & render buffers
-- GPGPU job utilities
+- Multi-pass shader pipeline (e.g. for GPGPU tasks)
+- Pixel reading from main color buffer and textures
 - Geometry & texture generators
-- WebGL extension helpers
+- WebGL extension helpers & semi-automatic extension enabling
 - WebGL canvas creation / setup
 
 Status: Alpha / WIP
@@ -76,6 +77,7 @@ yarn add @thi.ng/webgl
 
 - [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib) (also see readme for reference)
 - [@thi.ng/webgl-msdf](https://github.com/thi-ng/umbrella/tree/master/packages/webgl-msdf)
+- [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/master/packages/webgl-shadertoy)
 
 ## Usage examples
 
@@ -88,8 +90,9 @@ folder of this repo...
 - [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
 - [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
 - [Grid instancing](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
+- [Multipass / GPGPU](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-multipass)
 - [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+- [Minimal shadertoy](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-shadertoy)
 - [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 
 ## Authors

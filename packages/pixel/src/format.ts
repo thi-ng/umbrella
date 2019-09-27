@@ -1,4 +1,5 @@
 import { assert, Type } from "@thi.ng/api";
+import { clamp01 } from "@thi.ng/math";
 import {
     Lane,
     PackedChannel,
@@ -31,7 +32,7 @@ const defChannel = (
         int,
         setInt,
         float: (x) => int(x) / mask0,
-        setFloat: (src, x) => setInt(src, x * mask0)
+        setFloat: (src, x) => setInt(src, clamp01(x) * mask0)
     };
 };
 

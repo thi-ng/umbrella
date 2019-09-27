@@ -1,4 +1,4 @@
-import { StackContext } from "@thi.ng/pointfree/api";
+import { StackContext } from "@thi.ng/pointfree";
 import * as pf from "../src";
 
 const src = `

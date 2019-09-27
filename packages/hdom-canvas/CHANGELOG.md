@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.3.0...@thi.ng/hdom-canvas@2.3.1) (2019-09-23)
+
+**Note:** Version bump only for package @thi.ng/hdom-canvas
+
+
+
+
+
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.2.4...@thi.ng/hdom-canvas@2.3.0) (2019-09-21)
+
+
+### Features
+
+* **hdom-canvas:** add clip attrib support for paths ([2c2909d](https://github.com/thi-ng/umbrella/commit/2c2909d))
+
+
+
+
+
 ## [2.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.2.3...@thi.ng/hdom-canvas@2.2.4) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas

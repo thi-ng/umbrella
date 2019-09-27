@@ -275,6 +275,8 @@ export type Listener = Fn<Event, void>;
 
 export type NumericArray = number[] | TypedArray;
 
+export type Nullable<T> = T | null | undefined;
+
 export type Primitive = number | string | boolean | symbol;
 
 /**

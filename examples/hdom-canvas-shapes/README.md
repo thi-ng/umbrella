@@ -1,5 +1,7 @@
 # hdom-canvas-shapes
 
+![screenshots](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-shapes/)
 
 This example demonstrates different features of the upcoming
@@ -30,7 +32,7 @@ Related examples:
 
 Dataflow diagram:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas-shapes.png)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes.png)
 
 ## Building
 

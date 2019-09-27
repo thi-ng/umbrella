@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.1.12...@thi.ng/bitfield@0.2.0) (2019-09-21)
+
+
+### Features
+
+* **bitfield:** update BitMatrix to support non-squared sizes, update docstrings ([0fd8620](https://github.com/thi-ng/umbrella/commit/0fd8620))
+
+
+
+
+
 ## [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.1.11...@thi.ng/bitfield@0.1.12) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/bitfield

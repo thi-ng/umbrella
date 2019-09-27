@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.2.7...@thi.ng/geom-accel@1.2.8) (2019-09-21)
+
+**Note:** Version bump only for package @thi.ng/geom-accel
+
+
+
+
+
 ## [1.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.2.6...@thi.ng/geom-accel@1.2.7) (2019-08-21)
 
 **Note:** Version bump only for package @thi.ng/geom-accel

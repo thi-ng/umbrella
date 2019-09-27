@@ -1,6 +1,7 @@
 import { isArray } from "@thi.ng/checks";
 import { GLSLVersion } from "@thi.ng/shader-ast-glsl";
-import { GLSL, GLSLDeclPrefixes, GLSLSyntax } from "./api";
+import { GLSL } from "./api/glsl";
+import { GLSLDeclPrefixes, GLSLSyntax } from "./api/shader";
 
 export const PREFIXES: GLSLDeclPrefixes = {
     a: "a_",

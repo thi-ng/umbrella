@@ -37,7 +37,7 @@ This project is part of the
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/shader-ast-01.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
 Example shader running in plain JS & Canvas 2D context,
 cross-compiled JS/GLSL outputs shown on the right
 
@@ -62,13 +62,13 @@ VEX](http://www.sidefx.com/docs/houdini/vex/index.html) (in-progress),
 [WASM](https://webassembly.org), [WHLSL for
 WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 
-![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/shader-ast-raymarch-compare.jpg)
+![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch-compare.jpg)
 
 Comparison of the raymarch shader example (link further below), cross
 compiled to both GLSL/WebGL and JavaScript w/ Canvas2D API and showing
 the difference image of both results.
 
-![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/screenshots/shader-ast-raymarch-vex-sm.gif)
+![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch-vex-sm.gif)
 
 The same raymarching example compiled to Houdini VEX and used as "Point
 Wrangle" to displace a grid geometry (using only the depth value of the

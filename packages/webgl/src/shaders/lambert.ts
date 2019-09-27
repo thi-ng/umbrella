@@ -14,7 +14,8 @@ import {
     surfaceNormal,
     transformMVP
 } from "@thi.ng/shader-ast-stdlib";
-import { Material, ShaderOpts, ShaderSpec } from "../api";
+import { Material } from "../api/material";
+import { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";

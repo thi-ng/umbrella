@@ -75,7 +75,7 @@ dot -Tsvg -o graph.svg graph.dot
 
 This will generate this diagram:
 
-![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rs-dot-example.svg)
+![graphviz output](../../assets/examples/rs-dot-example.svg)
 
 ## Authors
 

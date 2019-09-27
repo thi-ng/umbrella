@@ -1,4 +1,4 @@
-import { ModelSpec } from "../api";
+import { ModelSpec } from "../api/model";
 
 export const quad = (uv = true): ModelSpec => ({
     attribs: {

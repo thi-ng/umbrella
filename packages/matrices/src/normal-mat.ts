@@ -4,10 +4,10 @@ import { mat44to33 } from "./m44-m33";
 import { transpose33, transpose44 } from "./transpose";
 
 /**
- * Converts given M44 to a M33 normal matrix, i.e. the transposed
+ * Converts given 4x4 matrix to a 3x3 normal matrix, i.e. the transposed
  * inverse of its upper-left 3x3 region. If `out` is null a new result
  * matrix will be created. Returns `undefined` if matrix inversion
- * fails.
+ * failed.
  *
  * @param out
  * @param m
@@ -18,9 +18,9 @@ export const normal33: MatOpMU = (out, m) => {
 };
 
 /**
- * Converts given M44 to a M44 normal matrix, i.e. the transposed
- * inverse. Writes results to `m` if `out` is null. Returns `undefined`
- * if matrix inversion fails.
+ * Converts given 4x4 matrix to a 4x4 matrix normal matrix, i.e. the
+ * transposed inverse. Writes results to `m` if `out` is null. Returns
+ * `undefined` if matrix inversion failed.
  *
  * @param out
  * @param m
