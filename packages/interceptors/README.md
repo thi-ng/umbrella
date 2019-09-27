@@ -28,7 +28,7 @@ yarn add @thi.ng/interceptors
 ## Usage examples
 
 ```ts
-importas interceptors from "@thi.ng/interceptors";
+import * as interceptors from "@thi.ng/interceptors";
 ```
 
 ## Event Bus, Interceptors, Side Effects
