@@ -56,6 +56,7 @@ export * from "./every";
 export * from "./exp";
 export * from "./exp_2";
 export * from "./face-forward";
+export * from "./fill";
 export * from "./fit";
 export * from "./floor";
 export * from "./fmod";
