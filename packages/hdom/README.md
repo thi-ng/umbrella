@@ -1223,6 +1223,10 @@ ignored during diffing. Therefore, if this attribute is enabled the
 element should either have no children OR the children are the same
 (type) as when the attribute is disabled (i.e. when `__skip` is falsy).
 
+Furthermore, once a previously skipped element is re-enabled (i.e. its
+`__skip` attrib is now falsy again), the element's entire sub-tree is
+re-created, but any lifecycle `init()` methods will not be re-executed.
+
 ### Benchmarks
 
 Some stress test benchmarks are here:

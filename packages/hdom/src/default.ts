@@ -18,8 +18,8 @@ import { normalizeTree } from "./normalize";
  * Default target implementation to manipulate browser DOM.
  */
 export const DEFAULT_IMPL: HDOMImplementation<any> = {
-    createTree(opts, parent, tree, child?) {
-        return createTree(opts, this, parent, tree, child);
+    createTree(opts, parent, tree, child?, init?) {
+        return createTree(opts, this, parent, tree, child, init);
     },
 
     hydrateTree(opts, parent, tree, child?) {
@@ -42,8 +42,8 @@ export const DEFAULT_IMPL: HDOMImplementation<any> = {
 
     createTextElement,
 
-    replaceChild(opts, parent, child, tree) {
-        replaceChild(opts, this, parent, child, tree);
+    replaceChild(opts, parent, child, tree, init?) {
+        replaceChild(opts, this, parent, child, tree, init);
     },
 
     removeChild,
