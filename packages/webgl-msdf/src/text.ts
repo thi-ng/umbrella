@@ -1,3 +1,4 @@
+import { GLType } from "@thi.ng/api";
 import {
     add,
     map,
@@ -5,7 +6,7 @@ import {
     range,
     transduce
 } from "@thi.ng/transducers";
-import { AttribPool, GLType } from "@thi.ng/vector-pools";
+import { AttribPool } from "@thi.ng/vector-pools";
 import {
     add2,
     div2,
