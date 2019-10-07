@@ -1,4 +1,4 @@
-import { ILogger, LogLevel } from "./api";
+import { ILogger, LogLevel } from "./api/logger";
 
 export const NULL_LOGGER: ILogger = Object.freeze({
     level: LogLevel.NONE,
