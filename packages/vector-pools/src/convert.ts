@@ -1,5 +1,9 @@
-import { Type } from "@thi.ng/api";
-import { GL2TYPE, GLType, TYPE2GL } from "./api";
+import {
+    GL2TYPE,
+    GLType,
+    Type,
+    TYPE2GL
+} from "@thi.ng/api";
 
 /**
  * Returns canonical `Type` value of `type` by first attempting to

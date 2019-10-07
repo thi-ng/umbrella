@@ -1,8 +1,8 @@
-import { Type, TypedArray } from "@thi.ng/api";
+import { GLType, Type, TypedArray } from "@thi.ng/api";
 import { isTypedArray } from "@thi.ng/checks";
 import { MemPool, MemPoolOpts, MemPoolStats } from "@thi.ng/malloc";
 import { StridedVec } from "@thi.ng/vectors";
-import { GLType, IVecPool } from "./api";
+import { IVecPool } from "./api";
 import { asNativeType } from "./convert";
 import { wrap } from "./wrap";
 
