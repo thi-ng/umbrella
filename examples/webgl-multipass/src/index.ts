@@ -123,6 +123,8 @@ new PackedBuffer(
     )
 ).blitCanvas(canv.canvas);
 
+toy.start();
+
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;
     hot && hot.dispose(() => toy.stop());
