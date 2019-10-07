@@ -72,21 +72,17 @@ const grid = <any>{
         for (let i = 0; i < numChanges; i++) {
             const idx = (Math.random() * num) | 0;
             changed.add(idx);
-            changedRows.add(~~(idx / w));
+            changedRows.add((idx / w) | 0);
             cells[idx] = (cells[idx] + 1) % 16;
         }
         const body = transduce<number, any, any[]>(
             comp(
                 mapIndexed((i, x) => [
                     "span",
-                    isFirst || this.prevChanged.has(i)
-                        ? { key: "c" + i, class: `cell cell-${x}` }
-                        : changed.has(i)
-                        ? {
-                              key: "c" + i,
-                              class: `cell xcell-${x}`
-                          }
-                        : { key: "c" + i, __skip: true }
+                    {
+                        key: "c" + i,
+                        class: `cell ${changed.has(i) ? "xcell" : "cell"}-${x}`
+                    }
                 ]),
                 partition(w),
                 mapIndexed((i, row) => [
@@ -101,7 +97,7 @@ const grid = <any>{
                 ])
             ),
             push(),
-            ["div"],
+            ["div", {}],
             cells
         );
         let mergedCells = new Set(changed);
