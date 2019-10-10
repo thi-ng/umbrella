@@ -1,7 +1,7 @@
 import { Fn, Type, TypedArray } from "@thi.ng/api";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-export interface SOAAttribSpec {
+export interface AOSAttribSpec {
     /**
      * Element size
      */
@@ -12,13 +12,16 @@ export interface SOAAttribSpec {
      */
     type: Type;
     /**
-     * Optional user supplied backing buffer.
-     */
-    buf: TypedArray;
-    /**
      * Default value
      */
     default: ReadonlyVec;
+}
+
+export interface SOAAttribSpec extends AOSAttribSpec {
+    /**
+     * Optional user supplied backing buffer.
+     */
+    buf: TypedArray;
     /**
      * Number of indices between each SOA value.
      * MUST be >= size
@@ -29,8 +32,13 @@ export interface SOAAttribSpec {
 
 /**
  * Alias for main config object of attribute specs. Declares an object
- * of partial SOAAttribSpec values (i.e. specs where every item is made
- * optional)
+ * of partial SOAAttribSpec values (i.e. every item is made optional)
+ */
+export type AOSSpecs<K extends string> = Record<K, Partial<AOSAttribSpec>>;
+
+/**
+ * Alias for main config object of attribute specs. Declares an object
+ * of partial SOAAttribSpec values (i.e. every item is made optional)
  */
 export type SOASpecs<K extends string> = Record<K, Partial<SOAAttribSpec>>;
 

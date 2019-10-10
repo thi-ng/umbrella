@@ -112,6 +112,13 @@ export class SOA<K extends string> implements ILength {
         return this;
     }
 
+    setValues(vals: Partial<SOATuple<K, Iterable<ReadonlyVec>>>, from = 0) {
+        for (let id in vals) {
+            this.setAttribValues(id, vals[id]!, from);
+        }
+        return this;
+    }
+
     copyTo(
         dest: SOA<K>,
         ids?: K[],
