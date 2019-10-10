@@ -3,9 +3,9 @@ import {
     Event,
     EVENT_ALL,
     INotify,
+    INotifyMixin,
     Listener
-} from "../src/api";
-import { INotifyMixin } from "../src/mixins/inotify";
+} from "../src";
 
 describe("mixins", () => {
     it("INotify", () => {
