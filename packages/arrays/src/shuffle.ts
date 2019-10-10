@@ -1,23 +1,31 @@
+import { assert, TypedArray } from "@thi.ng/api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 
 /**
- * Shuffles the first `n` items of given array, using Fisher-yates and
- * optional `rnd` PRNG. If `n` is `undefined`, the entire array will be
- * shuffled.
- *
+ * Shuffles the items in the given index range of array `buf` using
+ * Fisher-yates and optional `rnd` PRNG. If neither `start` / `end` are
+ * given, the entire array will be shuffled. Mutates original array.
  *
  * @param buf
  * @param n
  * @param rnd
  */
-export const shuffle = (buf: any[], n = buf.length, rnd: IRandom = SYSTEM) => {
-    n = Math.min(n, buf.length);
+export const shuffleRange = <T extends any[] | TypedArray>(
+    buf: T,
+    start = 0,
+    end = buf.length,
+    rnd: IRandom = SYSTEM
+) => {
+    assert(
+        start >= 0 && end >= start && end <= buf.length,
+        `illegal range ${start}..${end}`
+    );
+    let n = end - start;
     const l = n;
     if (l > 1) {
-        n = Math.min(n, l);
         while (--n >= 0) {
-            const a = rnd.float(l) | 0;
-            const b = rnd.float(l) | 0;
+            const a = (start + rnd.float(l)) | 0;
+            const b = (start + rnd.float(l)) | 0;
             const t = buf[a];
             buf[a] = buf[b];
             buf[b] = t;
@@ -25,3 +33,19 @@ export const shuffle = (buf: any[], n = buf.length, rnd: IRandom = SYSTEM) => {
     }
     return buf;
 };
+
+/**
+ * Applies `shuffleRange()` to the given array. If `n` is given, only
+ * the first `n` items are shuffled. Mutates original array.
+ *
+ * @see shuffleRange
+ *
+ * @param buf
+ * @param n
+ * @param rnd
+ */
+export const shuffle = <T extends any[] | TypedArray>(
+    buf: T,
+    n = buf.length,
+    rnd: IRandom = SYSTEM
+) => shuffleRange(buf, 0, n, rnd);
