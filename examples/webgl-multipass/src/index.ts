@@ -48,7 +48,7 @@ const toy = multipass({
     },
     passes: [
         {
-            fs: (gl, unis, ins, outs) => [
+            fs: (gl, unis, _, outs) => [
                 defMain(() => {
                     let uv: Vec2Sym;
                     return [
@@ -75,7 +75,7 @@ const toy = multipass({
             }
         },
         {
-            fs: (gl, unis, ins, outs) => [
+            fs: (gl, unis, _, outs) => [
                 defMain(() => {
                     let uv: Vec2Sym;
                     return [
