@@ -17,11 +17,11 @@ import {
  * @param type
  */
 export const asNativeType = (type: GLType | Type): Type => {
-    const t = GL2TYPE[type];
+    const t = (<any>GL2TYPE)[type];
     return t !== undefined ? t : <Type>type;
 };
 
 export const asGLType = (type: GLType | Type): GLType => {
-    const t = TYPE2GL[type];
+    const t = (<any>TYPE2GL)[type];
     return t !== undefined ? t : <GLType>type;
 };
