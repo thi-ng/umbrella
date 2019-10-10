@@ -24,6 +24,7 @@ export * from "./api/logger";
 export * from "./api/meta";
 export * from "./api/object";
 export * from "./api/predicate";
+export * from "./api/range";
 export * from "./api/release";
 export * from "./api/select";
 export * from "./api/set";
