@@ -30,7 +30,7 @@
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.5.3"
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "@thi.ng/checks": "^2.4.0",
