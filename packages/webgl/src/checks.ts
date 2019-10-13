@@ -1,7 +1,7 @@
 import { ITexture, TextureType } from "./api/texture";
 
 export const isGL2Context = (
-    gl: WebGLRenderingContext
+    gl: WebGLRenderingContext | WebGL2RenderingContext
 ): gl is WebGL2RenderingContext =>
     typeof WebGL2RenderingContext !== "undefined" &&
     gl instanceof WebGL2RenderingContext;

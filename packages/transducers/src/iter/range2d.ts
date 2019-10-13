@@ -19,7 +19,9 @@ export function range2d(
     stepX: number,
     stepY: number
 ): IterableIterator<[number, number]>;
-export function* range2d(...args: number[]) {
+export function* range2d(
+    ...args: number[]
+): IterableIterator<[number, number]> {
     let fromX!: number, toX!: number, stepX!: number;
     let fromY!: number, toY!: number, stepY!: number;
     switch (args.length) {

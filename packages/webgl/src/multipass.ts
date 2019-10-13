@@ -8,7 +8,7 @@ import {
 } from "@thi.ng/transducers";
 import { ExtensionBehaviors } from "./api/ext";
 import { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
-import { ShaderSpec, ShaderUniformSpecs } from "./api/shader";
+import { ShaderOutputSpec, ShaderSpec, ShaderUniformSpecs } from "./api/shader";
 import { ITexture } from "./api/texture";
 import { compileModel } from "./buffer";
 import { isFloatTexture, isGL2Context } from "./checks";
@@ -46,7 +46,10 @@ export const multipass = (opts: MultipassOpts) => {
             },
             outputs: numOuts
                 ? transduce(
-                      map((i) => [`output${i}`, ["vec4", i]]),
+                      map<number, [string, ShaderOutputSpec]>((i) => [
+                          `output${i}`,
+                          ["vec4", i]
+                      ]),
                       assocObj(),
                       range(numOuts)
                   )

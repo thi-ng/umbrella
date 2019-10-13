@@ -12,9 +12,9 @@
         "start": "tsc && node build/server/index.js"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.12.3",
-        "terser": "^4.0.0",
-        "typescript": "^3.5.3"
+        "parcel-bundler": "^1.12.4",
+        "terser": "^4.3.8",
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "express": "^4.16.3",

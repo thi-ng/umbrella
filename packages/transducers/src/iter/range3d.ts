@@ -25,7 +25,9 @@ export function range3d(
     stepY: number,
     stepZ: number
 ): IterableIterator<[number, number, number]>;
-export function* range3d(...args: number[]) {
+export function* range3d(
+    ...args: number[]
+): IterableIterator<[number, number, number]> {
     let fromX!: number, toX!: number, stepX!: number;
     let fromY!: number, toY!: number, stepY!: number;
     let fromZ!: number, toZ!: number, stepZ!: number;
