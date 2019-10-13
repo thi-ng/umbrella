@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/soa",
     "version": "0.0.1",
-    "description": "SOA & AOS memory mapped lenses with optional & extensible serialization",
+    "description": "SOA & AOS memory mapped structured lenses with optional & extensible serialization",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -31,7 +31,7 @@
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "typedoc": "^0.14.2",
-        "typescript": "^3.5.3"
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "@thi.ng/api": "^6.4.0",
