@@ -38,7 +38,7 @@ export function permutations<A, B, C, D>(
     d: Iterable<D>
 ): IterableIterator<[A, B, C, D]>;
 export function permutations(...src: Iterable<any>[]): IterableIterator<any[]>;
-export function* permutations(...src: any[]) {
+export function* permutations(...src: any[]): IterableIterator<any[]> {
     const n = src.length - 1;
     if (n < 0) {
         return;
