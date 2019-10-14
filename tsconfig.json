@@ -8,8 +8,7 @@
         "preserveConstEnums": true,
         "moduleResolution": "node",
         "strict": true,
-        "strictNullChecks": true,
-        "skipLibCheck": true
+        "strictNullChecks": true
     },
     "exclude": ["./**/node_modules"]
 }
