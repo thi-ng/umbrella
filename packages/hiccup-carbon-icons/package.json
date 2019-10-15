@@ -30,7 +30,7 @@
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
-        "typedoc": "^0.14.2",
+        "typedoc": "^0.15.0",
         "typescript": "^3.6.4"
     },
     "keywords": [

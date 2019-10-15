@@ -31,7 +31,7 @@
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
         "pegjs": "^0.11.0-dev.325",
-        "typedoc": "^0.14.2",
+        "typedoc": "^0.15.0",
         "typescript": "^3.6.4"
     },
     "dependencies": {
