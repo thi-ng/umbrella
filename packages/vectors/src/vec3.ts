@@ -17,9 +17,9 @@ import { hash } from "./hash";
 import { declareIndices } from "./internal/accessors";
 import { AVec } from "./internal/avec";
 import {
-    intoBuffer,
-    mapBuffer,
-    values,
+    intoStridedBuffer,
+    mapStridedBuffer,
+    stridedValues,
     vecIterator
 } from "./internal/vec-utils";
 import { setS3 } from "./sets";
@@ -46,7 +46,7 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
         cstride = 1,
         estride = 3
     ) {
-        return mapBuffer(Vec3, buf, num, start, cstride, estride);
+        return mapStridedBuffer(Vec3, buf, num, start, cstride, estride);
     }
 
     /**
@@ -70,7 +70,7 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
         cstride = 1,
         estride = 3
     ) {
-        return intoBuffer(setS3, buf, src, start, cstride, estride);
+        return intoStridedBuffer(setS3, buf, src, start, cstride, estride);
     }
 
     static iterator(
@@ -101,7 +101,7 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
     }
 
     [Symbol.iterator]() {
-        return values(this.buf, 3, this.offset, this.stride);
+        return stridedValues(this.buf, 3, this.offset, this.stride);
     }
 
     get length() {

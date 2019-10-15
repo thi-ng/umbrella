@@ -1,6 +1,6 @@
 import { Vec, VecOpSV, VectorConstructor } from "../api";
 
-export const mapBuffer = <T>(
+export const mapStridedBuffer = <T>(
     ctor: VectorConstructor<T>,
     buf: Vec,
     num: number,
@@ -16,7 +16,7 @@ export const mapBuffer = <T>(
     return res;
 };
 
-export const intoBuffer = (
+export const intoStridedBuffer = (
     set: VecOpSV,
     buf: Vec,
     src: Iterable<Vec>,
@@ -45,7 +45,12 @@ export function* vecIterator<T>(
     }
 }
 
-export function* values(buf: Vec, num: number, start: number, stride: number) {
+export function* stridedValues(
+    buf: Vec,
+    num: number,
+    start: number,
+    stride: number
+) {
     while (num-- > 0) {
         yield buf[start];
         start += stride;
