@@ -12,16 +12,12 @@ import {
     Z3,
     ZERO3
 } from "./api";
+import { intoStridedBuffer, mapStridedBuffer } from "./buffer";
 import { eqDelta3 } from "./eqdelta";
 import { hash } from "./hash";
 import { declareIndices } from "./internal/accessors";
 import { AVec } from "./internal/avec";
-import {
-    intoStridedBuffer,
-    mapStridedBuffer,
-    stridedValues,
-    vecIterator
-} from "./internal/vec-utils";
+import { stridedValues, vecIterator } from "./internal/vec-utils";
 import { setS3 } from "./sets";
 
 export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
