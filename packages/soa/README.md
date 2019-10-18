@@ -38,6 +38,11 @@ yarn add @thi.ng/soa
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
+## Related packages
+
+- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/master/packages/unionstruct)
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) (possibly will be deprecated / merged)
+
 ## Usage examples
 
 ```ts
