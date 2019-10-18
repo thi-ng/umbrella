@@ -87,6 +87,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 (These packages are only available on their respective feature branches)
 
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
+- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/soa) - Memory mapped data structures & serialization
 
 ### Fundamentals
 
