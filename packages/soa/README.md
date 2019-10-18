@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Related packages](#related-packages)
 - [Usage examples](#usage-examples)
 - [Authors](#authors)
 - [License](#license)
