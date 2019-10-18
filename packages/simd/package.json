@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/simd",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "WASM based SIMD vector operations for batch processing",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -35,11 +35,16 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0"
+        "@thi.ng/checks": "^2.4.0"
     },
     "keywords": [
+        "AssemblyScript",
+        "batch process",
         "ES6",
-        "typescript"
+        "SIMD",
+        "typescript",
+        "vector",
+        "WASM"
     ],
     "publishConfig": {
         "access": "public"
