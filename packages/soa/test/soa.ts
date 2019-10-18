@@ -11,7 +11,7 @@ describe("soa", () => {
             c: { type: Type.I8, size: 2, default: [-3, 4] }
         });
         assert.equal(struct.length, 2);
-        assert.deepEqual([...struct.keys()], ["a", "b", "c"]);
+        assert.deepEqual(struct.keys(), ["a", "b", "c"]);
         assert(struct.buffers.a instanceof Uint16Array);
         assert.equal(struct.buffers.a.length, 2);
         assert(struct.buffers.b instanceof Float32Array);
