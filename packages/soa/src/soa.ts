@@ -165,7 +165,9 @@ export class SOA<K extends string> implements ILength {
             const spec = prepareSpec(specs[id]);
             this.validateSpec(id, spec);
             const { stride, default: defVal } = spec;
-            const buffer = spec.buf || typedArray(spec.type!, num * stride!);
+            const buffer = spec.buf
+                ? typedArray(spec.type!, spec.buf, spec.byteOffset || 0)
+                : typedArray(spec.type!, num * stride!);
             if (defVal) {
                 for (let i = 0; i < num; i++) {
                     buffer.set(defVal, i * stride!);
@@ -180,8 +182,9 @@ export class SOA<K extends string> implements ILength {
         assert(spec.stride! >= spec.size!, `${id} illegal stride`);
         assert(
             !spec.buf ||
-                spec.buf.length >=
-                    (this.length - 1) * spec.stride! + spec.size!,
+                spec.buf.byteLength >=
+                    ((this.length - 1) * spec.stride! + spec.size!) *
+                        SIZEOF[spec.type!],
             `${id} buffer too small`
         );
         assert(

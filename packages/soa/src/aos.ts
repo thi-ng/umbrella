@@ -64,12 +64,8 @@ export const aos = <K extends string>(
         const spec = soaSpecs[id];
         const tsize = SIZEOF[spec.type!];
         spec.stride = total / tsize;
-        spec.buf = typedArray(
-            spec.type!,
-            buf,
-            byteOffset + offsets[id],
-            (num * total - offsets[id]) / tsize
-        );
+        spec.buf = buf;
+        spec.byteOffset = byteOffset + offsets[id];
     }
     return new SOA<K>(num, soaSpecs);
 };

@@ -21,7 +21,12 @@ export interface SOAAttribSpec extends AOSAttribSpec {
     /**
      * Optional user supplied backing buffer.
      */
-    buf: TypedArray;
+    buf: ArrayBuffer;
+    /**
+     * Optional start offset for mapped region in backing buffer. Only
+     * used if `buf` is given.
+     */
+    byteOffset: number;
     /**
      * Number of indices between each SOA value.
      * MUST be >= size
