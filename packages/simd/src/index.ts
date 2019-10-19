@@ -1,4 +1,5 @@
-import { isString } from "@thi.ng/checks";
+import { base64Decode } from "@thi.ng/transducers-binary";
+import { BINARY } from "./binary";
 
 export interface SIMD {
     /**
@@ -72,6 +73,21 @@ export interface SIMD {
     // prettier-ignore
     dot4_f32_aos(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
+    /**
+     * Takes two vec4 SOA buffers and computes their 4D dot products and
+     * writes results to `out`. `sa` and `sb` indicate the element
+     * stride size (in floats) of the respective vectors (should be
+     * multiple of 4). The results are always stored in a packed layout.
+     * Processes 4 vectors per iteration, hence `num` should be a
+     * multiple of 4 too.
+     *
+     * @param out
+     * @param a
+     * @param b
+     * @param num
+     * @param sa
+     * @param sb
+     */
     // prettier-ignore
     dot4_f32_soa(out: number, a: number, b: number, num: number, sa: number, sb: number): number;
 
@@ -98,42 +114,47 @@ export interface SIMD {
 
     // prettier-ignore
     maddn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sc: number): number;
+
+    // prettier-ignore
+    mul_m23v2_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
+
+    mul_m23v2_aos_single(out: number, mat: number, vec: number): number;
+
+    // prettier-ignore
+    mul_m44v4_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
+
+    mul_m44v4_aos_single(out: number, mat: number, vec: number): number;
 }
 
-export const init = async (
-    src: string | Buffer,
-    memory: WebAssembly.Memory
-): Promise<SIMD> => {
-    let wasm: WebAssembly.Instance;
-    const imports: any = {
-        env: {
-            memory,
-            abort(_: any, file: any, line: number, column: number) {
-                console.error(`abort called in ${file}: ${line}:${column}`);
-            }
-        }
-    };
-    if (isString(src)) {
-        wasm = (await (<any>WebAssembly).instantiateStreaming(
-            fetch(src),
-            imports
-        )).instance;
-    } else {
-        wasm = await WebAssembly.instantiate(
-            new WebAssembly.Module(src),
-            imports
-        );
+export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
+    try {
+        const buf = memory.buffer;
+        return <SIMD>{
+            ...new WebAssembly.Instance(
+                new WebAssembly.Module(
+                    new Uint8Array([...base64Decode(BINARY)])
+                ),
+                {
+                    env: {
+                        memory,
+                        abort(_: any, file: any, line: number, column: number) {
+                            console.error(
+                                `abort called in ${file}: ${line}:${column}`
+                            );
+                        }
+                    }
+                }
+            ).exports,
+            f32: new Float32Array(buf),
+            f64: new Float64Array(buf),
+            u32: new Uint32Array(buf),
+            i32: new Int32Array(buf),
+            u16: new Uint16Array(buf),
+            i16: new Int16Array(buf),
+            u8: new Uint8Array(buf),
+            i8: new Int8Array(buf)
+        };
+    } catch (e) {
+        console.warn(e);
     }
-    const buf = memory.buffer;
-    return <SIMD>{
-        ...wasm.exports,
-        f32: new Float32Array(buf),
-        f64: new Float64Array(buf),
-        u32: new Uint32Array(buf),
-        i32: new Int32Array(buf),
-        u16: new Uint16Array(buf),
-        i16: new Int16Array(buf),
-        u8: new Uint8Array(buf),
-        i8: new Int8Array(buf)
-    };
 };
