@@ -1,5 +1,45 @@
 /**
- * f32x4 dot product. `so` should be 1 for packed result buffer.
+ * Takes two densely packed vec2 AOS buffers `a` and `b`, computes their
+ * 2D dot products and stores results in `out`. Computes two results per
+ * iteration, hence `num` must be an even number or else the last vector
+ * will not be processed. `so` should be 1 for packed result buffer.
+ *
+ * `a` & `b` should be aligned to 16, `out` to multiples of 4.
+ *
+ * @param out
+ * @param a
+ * @param b
+ * @param num
+ * @param so
+ */
+export function dot2_f32_aos(
+    out: usize,
+    a: usize,
+    b: usize,
+    num: usize,
+    so: usize
+): usize {
+    const res = out;
+    const so2 = so << 3;
+    so <<= 2;
+    num >>= 1;
+    for (; num-- > 0; ) {
+        let m = v128.mul<f32>(v128.load(a), v128.load(b));
+        m = v128.add<f32>(m, v128.shuffle<f32>(m, m, 1, 0, 3, 2));
+        store<f32>(out, v128.extract_lane<f32>(m, 0));
+        store<f32>(out + so, v128.extract_lane<f32>(m, 2));
+        out += so2;
+        a += 16;
+        b += 16;
+    }
+    return res;
+}
+
+/**
+ * Takes two vec4 AOS buffers, computes their dot products and stores
+ * results in `out`. `so` should be 1 for packed result buffer. `sa` and
+ * `sb` indicate the stride lengths (in floats) between each vector in
+ * each respective buffer and should be a multiple of 4.
  *
  * @param out
  * @param a
@@ -9,7 +49,7 @@
  * @param sa
  * @param sb
  */
-export function dot4(
+export function dot4_f32_aos(
     out: usize,
     a: usize,
     b: usize,
@@ -33,6 +73,43 @@ export function dot4(
         out += so;
         a += sa;
         b += sb;
+    }
+    return res;
+}
+
+export function dot4_f32_soa(
+    out: usize,
+    a: usize,
+    b: usize,
+    num: usize,
+    sa: usize,
+    sb: usize
+): usize {
+    sa <<= 2;
+    sb <<= 2;
+    num >>= 2;
+    const sa2 = sa * 2;
+    const sb2 = sb * 2;
+    const sa3 = sa * 3;
+    const sb3 = sb * 3;
+    const res = out;
+    for (; num-- > 0; ) {
+        v128.store(
+            out,
+            v128.add<f32>(
+                v128.add<f32>(
+                    v128.add<f32>(
+                        v128.mul<f32>(v128.load(a), v128.load(b)),
+                        v128.mul<f32>(v128.load(a + sa), v128.load(b + sb))
+                    ),
+                    v128.mul<f32>(v128.load(a + sa2), v128.load(b + sb2))
+                ),
+                v128.mul<f32>(v128.load(a + sa3), v128.load(b + sb3))
+            )
+        );
+        out += 16;
+        sa += 16;
+        sb += 16;
     }
     return res;
 }

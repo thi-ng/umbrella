@@ -18,9 +18,9 @@
         "build:release": "yarn clean && yarn build:wasm && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --validate --optimize --enable simd --runtime none --importMemory --memoryBase 1024",
-        "test": "yarn build:test && mocha build/test/*.js",
-        "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
+        "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --validate --optimize --enable simd --runtime none --importMemory --memoryBase 0",
+        "test": "yarn build:test && node --experimental-wasm-simd build/test/index.js",
+        "cover": "yarn build:test && nyc node --experimental-wasm-simd build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build:release && yarn publish --access public"

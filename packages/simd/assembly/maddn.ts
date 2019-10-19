@@ -1,4 +1,4 @@
-export function maddN4(
+export function maddN4_f32(
     out: usize,
     a: usize,
     b: f32,
