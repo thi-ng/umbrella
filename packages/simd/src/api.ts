@@ -12,6 +12,9 @@ export interface SIMD {
     clamp4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sb: number, sc: number): number;
 
     // prettier-ignore
+    clampn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
     div4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
     // prettier-ignore
@@ -158,6 +161,8 @@ export interface SIMD {
 
     // prettier-ignore
     subn4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
+
+    sum4_f32(a: number, num: number, sa: number): number;
 
     /**
      * WASM memory instance given to `init()`.

@@ -23,7 +23,7 @@ This project is part of the
 ## About
 
 [WebAssembly SIMD](https://github.com/WebAssembly/simd) vector
-operations for batch processing, written in
+operations for array/batch processing, written in
 [AssemblyScript](https://docs.assemblyscript.org/).
 
 ## Available functions
@@ -36,6 +36,7 @@ for sources:
 - `add4_f32`
 - `addn4_f32`
 - `clamp4_f32`
+- `clampn4_f32`
 - `div4_f32` (*)
 - `divn4_f32` (*)
 - `dot2_f32_aos` (2x vec2 per iteration)
@@ -57,6 +58,7 @@ for sources:
 - `sqrt4_f32` (*)
 - `sub4_f32`
 - `subn4_f32`
+- `sum4_f32`
 
 (*) Missing native implementation, waiting on...
 
