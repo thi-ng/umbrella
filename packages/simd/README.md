@@ -10,6 +10,8 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+- [Available functions](#available-functions)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -20,8 +22,29 @@ This project is part of the
 
 ## About
 
-WASM based SIMD vector operations for batch processing, written in
+[WebAssembly SIMD](https://github.com/WebAssembly/simd) vector
+operations for batch processing, written in
 [AssemblyScript](https://docs.assemblyscript.org/).
+
+## Available functions
+
+See
+[/assembly](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/assembly)
+for sources:
+
+- `dot2_f32_aos()`
+- `dot4_f32_aos()`
+- `dot4_f32_soa()`
+- `madd4_f32()`
+- `maddn4_f32()`
+- `mul_m23v2_aos()`
+- `mul_m44v4_aos()`
+
+Also see [src/api.ts](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/src/api.ts) for documentation about the exposed TS/JS API...
+
+## Status
+
+ALPHA - unreleased
 
 ## Installation
 
@@ -35,38 +58,72 @@ yarn add @thi.ng/simd
 
 ## Usage examples
 
+The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is still WIP and (at the time of writing) only partially implemented.
+
+- NodeJS (v12.10+): `node --experimental-wasm-simd`
+- Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
+
 ```ts
 import { init } from "@thi.ng/simd";
 
-(async () => {
-    const simd = await init("simd.wasm", new WebAssembly.Memory({ initial: 1 })); })();
-    const f32 = new Float32Array(simd.memory.buffer);
-    // input data: 3x vec4
-    f32.set([
-        1, 2, 3, 4,
-        10, 20, 30, 40,
-        40, 30, 20, 10
-    ]);
+// the WASM module doesn't specify any own memory and it must be provided by user
+// the returned object contains all available vector functions & memory views
+const simd = init(new WebAssembly.Memory({ initial: 1 }));
 
-    // compute dot products
-    simd.dot4(
-        48, // output addr / pointer (bytes)
-        0,  // vector A addr (bytes)
-        16, // vector B addr (bytes)
-        2,  // number of vectors to process
-        1,  // output stride (floats)
-        0,  // A stride (floats)
-        4   // B stride (floats)
-    );
-    // by using 0 as stride for A, all dot products are using [1,2,3,4] for A
+// input data: 3x vec4 buffers
+const a = simd.f32.subarray(0, 4);
+const b = simd.f32.subarray(4, 16);
+const out = simd.f32.subarray(16, 18);
 
-    // result for dot(a0, b0)
-    f32[48 >> 2];
-    // 300
+a.set([1, 2, 3, 4])
+b.set([10, 20, 30, 40,  40, 30, 20, 10]);
 
-    // result for dot(a0, b1)
-    f32[(48 >> 2) + 1];
-    // 200
+// compute dot products
+// by using 0 as stride for A, all dot products are using [1,2,3,4] for A
+simd.dot4_f32_aos(
+    out.byteOffset, // output addr / pointer
+    a.byteOffset,   // vector A addr
+    b.byteOffset,   // vector B addr
+    2,              // number of vectors to process
+    1,              // output stride (floats)
+    0,              // A stride (floats)
+    4               // B stride (floats)
+);
+
+// results for [dot(a0, b0), dot(a0, b1)]
+out
+// [300, 200]
+
+// mat4 * vec4 matrix-vector multiplies
+const mat = simd.f32.subarray(0, 16);
+const points = simd.f32.subarray(16, 24);
+
+// mat4 (col major)
+mat.set([
+    10, 0, 0, 0,
+    0, 20, 0, 0,
+    0, 0, 30, 0,
+    100, 200, 300, 1
+]);
+
+// vec4 array
+points.set([
+    1, 2, 3, 1,
+    4, 5, 6, 1,
+]);
+
+simd.mul_m44v4_aos(
+    points.byteOffset, // output addr / pointer
+    mat.byteOffset,    // mat4 addr
+    points.byteOffset, // vec4 addr
+    2,                 // number of vectors to process
+    4,                 // output stride (float)
+    4                  // vec stride (float)
+);
+
+// transformed points
+points
+// [110, 240, 390, 1, 140, 300, 480, 1]
 ```
 
 ## Authors
