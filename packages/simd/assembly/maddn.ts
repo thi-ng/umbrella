@@ -14,10 +14,7 @@ export function maddn4_f32(
     sc <<= 2;
     const vb = v128.splat<f32>(b);
     for (; num-- > 0; ) {
-        v128.store(
-            out,
-            v128.add<f32>(v128.mul<f32>(v128.load(a), vb), v128.load(c))
-        );
+        v128.store(out, f32x4.add(f32x4.mul(v128.load(a), vb), v128.load(c)));
         out += so;
         a += sa;
         c += sc;

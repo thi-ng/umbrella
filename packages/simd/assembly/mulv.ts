@@ -20,10 +20,10 @@ export function mul_m23v2_aos(
         const v = v128.load(vec);
         v128.store(
             out,
-            v128.add<f32>(
-                v128.add<f32>(
-                    v128.mul<f32>(v128.shuffle<f32>(v, v, 0, 0, 2, 2), m1),
-                    v128.mul<f32>(v128.shuffle<f32>(v, v, 1, 1, 3, 3), m2)
+            f32x4.add(
+                f32x4.add(
+                    f32x4.mul(v128.shuffle<f32>(v, v, 0, 0, 2, 2), m1),
+                    f32x4.mul(v128.shuffle<f32>(v, v, 1, 1, 3, 3), m2)
                 ),
                 m3
             )
@@ -45,13 +45,13 @@ export function mul_m23v2_aos_single(
     const v = v128.load(vec);
     v128.store(
         out,
-        v128.add<f32>(
-            v128.add<f32>(
-                v128.mul<f32>(
+        f32x4.add(
+            f32x4.add(
+                f32x4.mul(
                     v128.shuffle<f32>(v, v, 0, 0, 2, 2),
                     v128.shuffle<f32>(m, m, 0, 1, 0, 1)
                 ),
-                v128.mul<f32>(
+                f32x4.mul(
                     v128.shuffle<f32>(v, v, 1, 1, 3, 3),
                     v128.shuffle<f32>(m, m, 2, 3, 2, 3)
                 )
@@ -90,23 +90,20 @@ export function mul_m44v4_aos_single(
     const v = v128.load(vec);
     v128.store(
         out,
-        v128.add<f32>(
-            v128.add<f32>(
-                v128.mul<f32>(
-                    v128.shuffle<f32>(v, v, 0, 0, 0, 0),
-                    v128.load(mat)
-                ),
-                v128.mul<f32>(
+        f32x4.add(
+            f32x4.add(
+                f32x4.mul(v128.shuffle<f32>(v, v, 0, 0, 0, 0), v128.load(mat)),
+                f32x4.mul(
                     v128.shuffle<f32>(v, v, 1, 1, 1, 1),
                     v128.load(mat, 16)
                 )
             ),
-            v128.add<f32>(
-                v128.mul<f32>(
+            f32x4.add(
+                f32x4.mul(
                     v128.shuffle<f32>(v, v, 2, 2, 2, 2),
                     v128.load(mat, 32)
                 ),
-                v128.mul<f32>(
+                f32x4.mul(
                     v128.shuffle<f32>(v, v, 3, 3, 3, 3),
                     v128.load(mat, 48)
                 )

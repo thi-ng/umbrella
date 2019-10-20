@@ -36,6 +36,12 @@ export interface SIMD {
      */
     i8: Int8Array;
 
+    // prettier-ignore
+    add4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
+    div4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
     /**
      * Takes two densely packed vec2 AOS buffers `a` and `b`, computes
      * their 2D dot products and stores results in `out`. Computes two
@@ -91,6 +97,20 @@ export interface SIMD {
     dot4_f32_soa(out: number, a: number, b: number, num: number, sa: number, sb: number): number;
 
     /**
+     * FIXME waiting for native impl of SIMD instr
+     *
+     * @see sqrt4_f32
+     *
+     * @param out
+     * @param a
+     * @param num
+     * @param so
+     * @param sa
+     */
+    // prettier-ignore
+    invsqrt4_f32(out: number, a: number, num: number, so: number, sa: number): number;
+
+    /**
      * Takes three vec4 buffers, computes componentwise `a * b + c` and
      * stores results in `out`. Both AOS / SOA layouts are supported, as
      * long as all buffers are using the same layout.
@@ -115,6 +135,9 @@ export interface SIMD {
     maddn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sc: number): number;
 
     // prettier-ignore
+    mul4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
     mul_m23v2_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
 
     mul_m23v2_aos_single(out: number, mat: number, vec: number): number;
@@ -123,4 +146,21 @@ export interface SIMD {
     mul_m44v4_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
 
     mul_m44v4_aos_single(out: number, mat: number, vec: number): number;
+
+    /**
+     * FIXME waiting for native impl of SIMD instr
+     *
+     * @see invsqrt4_f32
+     *
+     * @param out
+     * @param a
+     * @param num
+     * @param so
+     * @param sa
+     */
+    // prettier-ignore
+    sqrt4_f32(out: number, a: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    sub4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 }

@@ -32,13 +32,23 @@ See
 [/assembly](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/assembly)
 for sources:
 
-- `dot2_f32_aos()`
-- `dot4_f32_aos()`
-- `dot4_f32_soa()`
-- `madd4_f32()`
-- `maddn4_f32()`
-- `mul_m23v2_aos()`
-- `mul_m44v4_aos()`
+- `add4_f32`
+- `div4_f32` (*)
+- `dot2_f32_aos` (2x vec2 per iteration)
+- `dot4_f32_aos`
+- `dot4_f32_soa`
+- `invsqrt4_f32` (*)
+- `madd4_f32`
+- `maddn4_f32`
+- `mul4_f32`
+- `mul_m23v2_aos`
+- `mul_m23v2_aos_single` (2x vec2 per iteration)
+- `mul_m44v4_aos`
+- `mul_m44v4_aos_single`
+- `sqrt4_f32` (*)
+- `sub4_f32`
+
+(*) Missing native implementation, waiting on...
 
 Also see [src/api.ts](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/src/api.ts) for documentation about the exposed TS/JS API...
 
@@ -58,7 +68,9 @@ yarn add @thi.ng/simd
 
 ## Usage examples
 
-The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is still WIP and (at the time of writing) only partially implemented.
+The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
+still WIP and (at the time of writing) only partially implemented and
+hidden behind feature flags.
 
 - NodeJS (v12.10+): `node --experimental-wasm-simd`
 - Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
@@ -68,6 +80,7 @@ import { init } from "@thi.ng/simd";
 
 // the WASM module doesn't specify any own memory and it must be provided by user
 // the returned object contains all available vector functions & memory views
+// (an error will be thrown if WASM isn't available or SIMD unsupported)
 const simd = init(new WebAssembly.Memory({ initial: 1 }));
 
 // input data: 3x vec4 buffers
@@ -78,8 +91,8 @@ const out = simd.f32.subarray(16, 18);
 a.set([1, 2, 3, 4])
 b.set([10, 20, 30, 40,  40, 30, 20, 10]);
 
-// compute dot products
-// by using 0 as stride for A, all dot products are using [1,2,3,4] for A
+// compute dot products: dot(A[i], B[i])
+// by using 0 as stride for A, all dot products are using the same vec
 simd.dot4_f32_aos(
     out.byteOffset, // output addr / pointer
     a.byteOffset,   // vector A addr

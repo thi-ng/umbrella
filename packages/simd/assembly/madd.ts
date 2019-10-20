@@ -35,10 +35,7 @@ export function madd4_f32(
     for (; num-- > 0; ) {
         v128.store(
             out,
-            v128.add<f32>(
-                v128.mul<f32>(v128.load(a), v128.load(b)),
-                v128.load(c)
-            )
+            f32x4.add(f32x4.mul(v128.load(a), v128.load(b)), v128.load(c))
         );
         out += so;
         a += sa;

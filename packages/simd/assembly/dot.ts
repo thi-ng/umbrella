@@ -24,10 +24,10 @@ export function dot2_f32_aos(
     so <<= 2;
     num >>= 1;
     for (; num-- > 0; ) {
-        let m = v128.mul<f32>(v128.load(a), v128.load(b));
-        m = v128.add<f32>(m, v128.shuffle<f32>(m, m, 1, 0, 3, 2));
-        store<f32>(out, v128.extract_lane<f32>(m, 0));
-        store<f32>(out + so, v128.extract_lane<f32>(m, 2));
+        let m = f32x4.mul(v128.load(a), v128.load(b));
+        m = f32x4.add(m, v128.shuffle<f32>(m, m, 1, 0, 3, 2));
+        f32.store(out, f32x4.extract_lane(m, 0));
+        f32.store(out + so, f32x4.extract_lane(m, 2));
         out += so2;
         a += 16;
         b += 16;
@@ -64,12 +64,9 @@ export function dot4_f32_aos(
     sb <<= 2;
     // a1*b1 + a2*b2 + a3*b3 + a4*b4
     for (; num-- > 0; ) {
-        let m = v128.mul<f32>(v128.load(a), v128.load(b));
-        m = v128.add<f32>(m, v128.shuffle<f32>(m, m, 2, 3, 0, 1));
-        store<f32>(
-            out,
-            v128.extract_lane<f32>(m, 0) + v128.extract_lane<f32>(m, 1)
-        );
+        let m = f32x4.mul(v128.load(a), v128.load(b));
+        m = f32x4.add(m, v128.shuffle<f32>(m, m, 2, 3, 0, 1));
+        f32.store(out, f32x4.extract_lane(m, 0) + f32x4.extract_lane(m, 1));
         out += so;
         a += sa;
         b += sb;
@@ -96,15 +93,15 @@ export function dot4_f32_soa(
     for (; num-- > 0; ) {
         v128.store(
             out,
-            v128.add<f32>(
-                v128.add<f32>(
-                    v128.add<f32>(
-                        v128.mul<f32>(v128.load(a), v128.load(b)),
-                        v128.mul<f32>(v128.load(a + sa), v128.load(b + sb))
+            f32x4.add(
+                f32x4.add(
+                    f32x4.add(
+                        f32x4.mul(v128.load(a), v128.load(b)),
+                        f32x4.mul(v128.load(a + sa), v128.load(b + sb))
                     ),
-                    v128.mul<f32>(v128.load(a + sa2), v128.load(b + sb2))
+                    f32x4.mul(v128.load(a + sa2), v128.load(b + sb2))
                 ),
-                v128.mul<f32>(v128.load(a + sa3), v128.load(b + sb3))
+                f32x4.mul(v128.load(a + sa3), v128.load(b + sb3))
             )
         );
         out += 16;
