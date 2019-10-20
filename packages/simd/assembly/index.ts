@@ -12,6 +12,8 @@ export * from "./madd";
 export * from "./maddn";
 export * from "./max";
 export * from "./min";
+export * from "./msub";
+export * from "./msubn";
 export * from "./mul";
 export * from "./muln";
 export * from "./mulv";
