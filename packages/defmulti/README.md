@@ -46,7 +46,8 @@ varargs solution.
 The function returned by `defmulti` can be called like any other
 function, but also exposes the following operations:
 
-- `.add(id, fn)` - adds new implementation for given dispatch value
+- `.add(id, fn)` - adds/overrides implementation for given dispatch
+  value
 - `.remove(id)` - removes implementation for dispatch value
 - `.callable(...args)` - takes same args as if calling the
   multi-function, but only checks if an implementation exists for the
