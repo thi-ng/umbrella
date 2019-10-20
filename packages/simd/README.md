@@ -32,25 +32,37 @@ See
 [/assembly](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/assembly)
 for sources:
 
+- `abs4_f32`
 - `add4_f32`
+- `addn4_f32`
+- `clamp4_f32`
 - `div4_f32` (*)
+- `divn4_f32` (*)
 - `dot2_f32_aos` (2x vec2 per iteration)
 - `dot4_f32_aos`
 - `dot4_f32_soa`
 - `invsqrt4_f32` (*)
 - `madd4_f32`
 - `maddn4_f32`
+- `max4_f32`
+- `min4_f32`
+- `msub4_f32`
+- `msubn4_f32`
 - `mul4_f32`
-- `mul_m23v2_aos`
-- `mul_m23v2_aos_single` (2x vec2 per iteration)
+- `muln4_f32`
+- `mul_m23v2_aos` (2x vec2 per iteration)
 - `mul_m44v4_aos`
-- `mul_m44v4_aos_single`
+- `neg4_f32`
+- `normalize4_f32_aos`
 - `sqrt4_f32` (*)
 - `sub4_f32`
+- `subn4_f32`
 
 (*) Missing native implementation, waiting on...
 
-Also see [src/api.ts](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/src/api.ts) for documentation about the exposed TS/JS API...
+Also see
+[src/api.ts](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/src/api.ts)
+for documentation about the exposed TS/JS API...
 
 ## Status
 

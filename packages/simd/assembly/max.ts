@@ -1,4 +1,4 @@
-export function add4_f32(
+export function max4_f32(
     out: usize,
     a: usize,
     b: usize,
@@ -12,7 +12,7 @@ export function add4_f32(
     sb <<= 2;
     const res = out;
     for (; num-- > 0; ) {
-        v128.store(out, f32x4.add(v128.load(a), v128.load(b)));
+        v128.store(out, f32x4.max(v128.load(a), v128.load(b)));
         out += so;
         a += sa;
         b += sb;

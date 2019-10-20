@@ -1,46 +1,21 @@
 export interface SIMD {
-    /**
-     * WASM memory instance given to `init()`.
-     */
-    memory: WebAssembly.Memory;
-    /**
-     * Float64 view of WASM memory.
-     */
-    f64: Float64Array;
-    /**
-     * Float32 view of WASM memory.
-     */
-    f32: Float32Array;
-    /**
-     * Uint32 view of WASM memory.
-     */
-    u32: Uint32Array;
-    /**
-     * Int32 view of WASM memory.
-     */
-    i32: Int32Array;
-    /**
-     * Uint16 of WASM memory.
-     */
-    u16: Uint16Array;
-    /**
-     * Int16 view of WASM memory.
-     */
-    i16: Int16Array;
-    /**
-     * Uint8 view of WASM memory.
-     */
-    u8: Uint8Array;
-    /**
-     * Int8 view of WASM memory.
-     */
-    i8: Int8Array;
+    // prettier-ignore
+    abs4_f32(out: number, a: number, num: number, so: number, sa: number): number;
 
     // prettier-ignore
     add4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
     // prettier-ignore
+    addn4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    clamp4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sb: number, sc: number): number;
+
+    // prettier-ignore
     div4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
+    divn4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
 
     /**
      * Takes two densely packed vec2 AOS buffers `a` and `b`, computes
@@ -135,17 +110,34 @@ export interface SIMD {
     maddn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sc: number): number;
 
     // prettier-ignore
+    max4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
+    min4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
     mul4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
+    muln4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
 
     // prettier-ignore
     mul_m23v2_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
 
-    mul_m23v2_aos_single(out: number, mat: number, vec: number): number;
-
     // prettier-ignore
     mul_m44v4_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
 
-    mul_m44v4_aos_single(out: number, mat: number, vec: number): number;
+    // prettier-ignore
+    msub4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sb: number, sc: number): number;
+
+    // prettier-ignore
+    msubn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sc: number): number;
+
+    // prettier-ignore
+    neg4_f32(out: number, a: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    normalize4_f32(out: number, a: number, num: number, norm: number, so: number, sa: number): number;
 
     /**
      * FIXME waiting for native impl of SIMD instr
@@ -163,4 +155,44 @@ export interface SIMD {
 
     // prettier-ignore
     sub4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
+    subn4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
+
+    /**
+     * WASM memory instance given to `init()`.
+     */
+    memory: WebAssembly.Memory;
+    /**
+     * Float64 view of WASM memory.
+     */
+    f64: Float64Array;
+    /**
+     * Float32 view of WASM memory.
+     */
+    f32: Float32Array;
+    /**
+     * Uint32 view of WASM memory.
+     */
+    u32: Uint32Array;
+    /**
+     * Int32 view of WASM memory.
+     */
+    i32: Int32Array;
+    /**
+     * Uint16 of WASM memory.
+     */
+    u16: Uint16Array;
+    /**
+     * Int16 view of WASM memory.
+     */
+    i16: Int16Array;
+    /**
+     * Uint8 view of WASM memory.
+     */
+    u8: Uint8Array;
+    /**
+     * Int8 view of WASM memory.
+     */
+    i8: Int8Array;
 }
