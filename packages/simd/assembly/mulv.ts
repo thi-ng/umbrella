@@ -2,13 +2,9 @@ export function mul_m23v2_aos(
     out: usize,
     mat: usize,
     vec: usize,
-    num: usize,
-    so: usize,
-    sa: usize
+    num: usize
 ): usize {
     const res = out;
-    so <<= 2;
-    sa <<= 2;
     num >>= 1;
     const m0 = v128.load(mat);
     const m1 = v128.shuffle<f32>(m0, m0, 0, 1, 0, 1);
@@ -28,8 +24,8 @@ export function mul_m23v2_aos(
                 m3
             )
         );
-        out += so;
-        vec += sa;
+        out += 16;
+        vec += 16;
     }
     return res;
 }

@@ -37,12 +37,12 @@ for sources:
 - `addn4_f32`
 - `clamp4_f32`
 - `clampn4_f32`
-- `div4_f32` (*)
-- `divn4_f32` (*)
-- `dot2_f32_aos` (2x vec2 per iteration)
+- `div4_f32` (!)
+- `divn4_f32` (!)
+- `dot2_f32_aos` (2)
 - `dot4_f32_aos`
 - `dot4_f32_soa`
-- `invsqrt4_f32` (*)
+- `invsqrt4_f32` (!)
 - `madd4_f32`
 - `maddn4_f32`
 - `max4_f32`
@@ -51,16 +51,19 @@ for sources:
 - `msubn4_f32`
 - `mul4_f32`
 - `muln4_f32`
-- `mul_m23v2_aos` (2x vec2 per iteration)
+- `mul_m23v2_aos` (2)
 - `mul_m44v4_aos`
 - `neg4_f32`
+- `normalize2_f32_aos` (2)
 - `normalize4_f32_aos`
-- `sqrt4_f32` (*)
+- `sqrt4_f32` (!)
 - `sub4_f32`
 - `subn4_f32`
 - `sum4_f32`
 
-(*) Missing native implementation, waiting on...
+(!) Missing native implementation, waiting on...
+
+(2) 2x vec2 per iteration
 
 Also see
 [src/api.ts](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/src/api.ts)

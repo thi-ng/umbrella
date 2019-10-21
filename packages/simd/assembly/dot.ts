@@ -1,3 +1,5 @@
+import { hadd2_f32, hadd4_f32 } from "./hadd";
+
 /**
  * Takes two densely packed vec2 AOS buffers `a` and `b`, computes their
  * 2D dot products and stores results in `out`. Computes two results per
@@ -16,19 +18,15 @@ export function dot2_f32_aos(
     out: usize,
     a: usize,
     b: usize,
-    num: usize,
-    so: usize
+    num: usize
 ): usize {
     const res = out;
-    const so2 = so << 3;
-    so <<= 2;
     num >>= 1;
     for (; num-- > 0; ) {
-        let m = f32x4.mul(v128.load(a), v128.load(b));
-        m = f32x4.add(m, v128.shuffle<f32>(m, m, 1, 0, 3, 2));
+        const m = hadd2_f32(f32x4.mul(v128.load(a), v128.load(b)));
         f32.store(out, f32x4.extract_lane(m, 0));
-        f32.store(out + so, f32x4.extract_lane(m, 2));
-        out += so2;
+        f32.store(out, f32x4.extract_lane(m, 2), 4);
+        out += 8;
         a += 16;
         b += 16;
     }
@@ -37,9 +35,9 @@ export function dot2_f32_aos(
 
 /**
  * Takes two vec4 AOS buffers, computes their dot products and stores
- * results in `out`. `so` should be 1 for packed result buffer. `sa` and
- * `sb` indicate the stride lengths (in floats) between each vector in
- * each respective buffer and should be a multiple of 4.
+ * results in `out`. `so` should be 1 for a packed result buffer. `sa`
+ * and `sb` indicate the stride lengths (in floats) between each vector
+ * in each respective buffer and should be a multiple of 4.
  *
  * @param out
  * @param a
@@ -64,9 +62,7 @@ export function dot4_f32_aos(
     sb <<= 2;
     // a1*b1 + a2*b2 + a3*b3 + a4*b4
     for (; num-- > 0; ) {
-        let m = f32x4.mul(v128.load(a), v128.load(b));
-        m = f32x4.add(m, v128.shuffle<f32>(m, m, 2, 3, 0, 1));
-        f32.store(out, f32x4.extract_lane(m, 0) + f32x4.extract_lane(m, 1));
+        f32.store(out, hadd4_f32(f32x4.mul(v128.load(a), v128.load(b))));
         out += so;
         a += sa;
         b += sb;

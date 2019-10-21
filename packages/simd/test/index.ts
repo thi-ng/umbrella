@@ -22,7 +22,7 @@ simd.f32.set([
         // b
         10, 20, 30, 40
     ]);
-simd.dot2_f32_aos(1024, 0, 16, 2, 1);
+simd.dot2_f32_aos(1024, 0, 16, 2);
 assertEqual(res_f32(1024, 2), [50, 250]);
 
 // dot4_aos
@@ -96,7 +96,7 @@ simd.f32.set([
         // vec4
         1, 2, 3, 4
     ]);
-simd.mul_m23v2_aos(1024, 0, 32, 2, 2, 4);
+simd.mul_m23v2_aos(1024, 0, 32, 2);
 assertEqual(res_f32(1024, 4), [110, 240, 130, 280]);
 
 // mul_m44v4_aos

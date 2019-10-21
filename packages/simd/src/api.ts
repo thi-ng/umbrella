@@ -24,19 +24,17 @@ export interface SIMD {
      * Takes two densely packed vec2 AOS buffers `a` and `b`, computes
      * their 2D dot products and stores results in `out`. Computes two
      * results per iteration, hence `num` must be an even number or else
-     * the last vector will not be processed. `so` should be 1 for
-     * packed result buffer.
+     * the last vector will not be processed.
      *
-     * `a` & `b` should be aligned to 16, `out` to multiples of 4.
+     * `a` & `b` should be aligned to 16.
      *
      * @param out
      * @param a
      * @param b
      * @param num
-     * @param so
      */
     // prettier-ignore
-    dot2_f32_aos(out: number, a: number, b: number, num: number, so: number): number;
+    dot2_f32_aos(out: number, a: number, b: number, num: number): number;
 
     /**
      * Takes two vec4 AOS buffers, computes their dot products and
@@ -125,7 +123,7 @@ export interface SIMD {
     muln4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
 
     // prettier-ignore
-    mul_m23v2_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
+    mul_m23v2_aos(out: number, mat: number, vec: number, num: number): number;
 
     // prettier-ignore
     mul_m44v4_aos(out: number, mat: number, vec: number, num: number, so: number, sv: number): number;
@@ -138,6 +136,9 @@ export interface SIMD {
 
     // prettier-ignore
     neg4_f32(out: number, a: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    normalize2_f32_aos(out: number, a: number, num: number, norm: number): number;
 
     // prettier-ignore
     normalize4_f32(out: number, a: number, num: number, norm: number, so: number, sa: number): number;
