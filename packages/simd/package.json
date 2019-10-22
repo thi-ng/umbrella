@@ -1,0 +1,56 @@
+{
+    "name": "@thi.ng/simd",
+    "version": "0.0.1",
+    "description": "WASM based SIMD vector operations for batch processing",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/simd",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:wasm && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:wasm && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --validate --optimize --enable simd --runtime none --importMemory --memoryBase 0 && yarn build:binary",
+        "build:binary": "echo \"export const BINARY = \\\"$(base64 -i simd.wasm)\\\";\" > src/binary.ts",
+        "test": "yarn build:test && node --experimental-wasm-simd build/test/index.js",
+        "cover": "yarn build:test && nyc node --experimental-wasm-simd build/test/*.js && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.6.3",
+        "assemblyscript": "AssemblyScript/assemblyscript",
+        "mocha": "^6.1.4",
+        "nyc": "^14.0.0",
+        "typedoc": "^0.15.0",
+        "typescript": "^3.6.4"
+    },
+    "dependencies": {
+        "@thi.ng/checks": "^2.4.0",
+        "@thi.ng/transducers": "^5.4.5",
+        "@thi.ng/transducers-binary": "^0.4.5"
+    },
+    "keywords": [
+        "AssemblyScript",
+        "batch process",
+        "ES6",
+        "SIMD",
+        "typescript",
+        "vector",
+        "WASM"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false
+}
