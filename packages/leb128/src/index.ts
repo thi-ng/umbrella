@@ -15,22 +15,13 @@ interface LEB128 {
 let wasm: LEB128;
 let U8: Uint8Array;
 
-/**
- * Promise indicating that the WASM module has been initialized and is
- * ready to use. A `false` result means WASM isn't available at all.
- */
-export let READY: Promise<boolean>;
-
 if (hasWASM()) {
-    READY = WebAssembly.instantiate(new Uint8Array([...base64Decode(BINARY)]))
-        .then((inst) => {
-            wasm = inst.instance.exports;
-            // mapped view of the data buffer
-            U8 = new Uint8Array(wasm.memory.buffer, wasm.buf, 16);
-        })
-        .then(() => true);
-} else {
-    READY = Promise.resolve(false);
+    const inst = new WebAssembly.Instance(
+        new WebAssembly.Module(new Uint8Array([...base64Decode(BINARY)]))
+    );
+    wasm = inst.exports;
+    // mapped view of the data buffer
+    U8 = new Uint8Array(wasm.memory.buffer, wasm.buf, 16);
 }
 
 const ensureWASM = () => !wasm && unsupported("WASM module unavailable");

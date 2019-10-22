@@ -4,15 +4,13 @@ import {
     decodeSLEB128,
     decodeULEB128,
     encodeSLEB128,
-    encodeULEB128,
-    READY
+    encodeULEB128
 } from "../src/index";
 
 describe("leb128", () => {
     if (hasWASM()) {
-        it("signed", async () => {
+        it("signed", () => {
             let a;
-            assert(await READY, "WASM not available");
             assert.deepEqual(
                 [...(a = encodeSLEB128(Number.MAX_SAFE_INTEGER))],
                 [255, 255, 255, 255, 255, 255, 255, 15]
@@ -27,9 +25,8 @@ describe("leb128", () => {
             assert.deepEqual(decodeSLEB128(encodeSLEB128(-64)), [-64, 1]);
         });
 
-        it("unsigned", async () => {
+        it("unsigned", () => {
             let a;
-            assert(await READY, "WASM not available");
             assert.deepEqual(
                 [...(a = encodeULEB128(Number.MAX_SAFE_INTEGER))],
                 [255, 255, 255, 255, 255, 255, 255, 15]

@@ -8,7 +8,9 @@ import {
     Fn7,
     Fn8,
     FnAny,
-    IObjectOf
+    ILogger,
+    IObjectOf,
+    NULL_LOGGER
 } from "@thi.ng/api";
 
 export const DEFAULT: unique symbol = Symbol();
@@ -303,3 +305,7 @@ export interface MultiFn8O<A, B, C, D, E, F, G, H, I, T>
         MultiFnBase<Implementation8O<A, B, C, D, E, F, G, H, I, T>> {}
 
 export type AncestorDefs = IObjectOf<Iterable<PropertyKey>>;
+
+export let LOGGER: ILogger = NULL_LOGGER;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);
