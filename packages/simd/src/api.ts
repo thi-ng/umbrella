@@ -141,7 +141,7 @@ export interface SIMD {
     normalize2_f32_aos(out: number, a: number, num: number, norm: number): number;
 
     // prettier-ignore
-    normalize4_f32(out: number, a: number, num: number, norm: number, so: number, sa: number): number;
+    normalize4_f32_aos(out: number, a: number, num: number, norm: number, so: number, sa: number): number;
 
     /**
      * FIXME waiting for native impl of SIMD instr
