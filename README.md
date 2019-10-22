@@ -20,10 +20,10 @@ blocks for:
 - Value-based equivalence
 - FSM primitives, parser generators
 - Data driven UI components, event & side effect handling
-- Immediate mode GUI components
+- Canvas-based Immediate mode GUI components
 - Immutable data handling, state containers, transacted state updates, Undo-Redo history
 - 2D geometry generation, processing, conversion & visualization
-- Vector & matrix implementations with optional support for strided layouts
+- Vector & matrix implementations with optional support for strided layouts, SIMD etc.
 - Color space conversions, cosine gradients
 - Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
 - Declarative WebGL 1/2 abstraction layer
@@ -84,10 +84,10 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 ### New / unreleased packages in development
 
-(These packages are only available on their respective feature branches)
+(These packages are still unreleased and only available on their feature or `develop` branches)
 
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
-- [@thi.ng/simd](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd) - WebAssembly SIMD batch processing
+- [@thi.ng/simd](https://github.com/thi-ng/umbrella/tree/develop/packages/simd) - WebAssembly SIMD batch processing
 - [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/soa) - Memory mapped data structures & serialization
 
 ### Fundamentals
