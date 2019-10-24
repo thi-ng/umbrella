@@ -313,6 +313,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/arcticnoah"><img src="https://avatars2.githubusercontent.com/u/7544636?v=4" width="100px;" alt="arcticnoah"/><br /><sub><b>arcticnoah</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=arcticnoah" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/allforabit"><img src="https://avatars3.githubusercontent.com/u/537189?v=4" width="100px;" alt="allforabit"/><br /><sub><b>allforabit</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aallforabit" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=allforabit" title="Code">💻</a> <a href="#ideas-allforabit" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://yifanwu.studio/"><img src="https://avatars2.githubusercontent.com/u/15613549?v=4" width="100px;" alt="Yifan Wu"/><br /><sub><b>Yifan Wu</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AIvanWoo" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=IvanWoo" title="Documentation">📖</a></td>
   </tr>
 </table>
 
