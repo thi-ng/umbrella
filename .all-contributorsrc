@@ -1,59 +1,70 @@
 {
-    "files": [
-        "README.md"
-    ],
-    "imageSize": 100,
-    "commit": false,
-    "contributors": [
-        {
-            "login": "postspectacular",
-            "name": "Karsten Schmidt",
-            "avatar_url": "https://avatars1.githubusercontent.com/u/52302?v=4",
-            "profile": "http://thi.ng",
-            "contributions": [
-                "code",
-                "doc",
-                "maintenance"
-            ]
-        },
-        {
-            "login": "nkint",
-            "name": "Alberto",
-            "avatar_url": "https://avatars3.githubusercontent.com/u/609314?v=4",
-            "profile": "https://github.com/nkint",
-            "contributions": [
-                "code",
-                "example",
-                "bug"
-            ]
-        },
-        {
-            "login": "acarabott",
-            "name": "Arthur Carabott",
-            "avatar_url": "https://avatars1.githubusercontent.com/u/66132?v=4",
-            "profile": "http://www.arthurcarabott.com/",
-            "contributions": [
-                "code",
-                "ideas",
-                "example",
-                "blog"
-            ]
-        },
-        {
-            "login": "andrew8er",
-            "name": "André Wachter",
-            "avatar_url": "https://avatars1.githubusercontent.com/u/179225?v=4",
-            "profile": "http://andrewachter.de",
-            "contributions": [
-                "code",
-                "ideas",
-                "bug"
-            ]
-        }
-    ],
-    "contributorsPerLine": 7,
-    "projectName": "umbrella",
-    "projectOwner": "thi-ng",
-    "repoType": "github",
-    "repoHost": "https://github.com"
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "postspectacular",
+      "name": "Karsten Schmidt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/52302?v=4",
+      "profile": "http://thi.ng",
+      "contributions": [
+        "code",
+        "doc",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "nkint",
+      "name": "Alberto",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/609314?v=4",
+      "profile": "https://github.com/nkint",
+      "contributions": [
+        "code",
+        "example",
+        "bug"
+      ]
+    },
+    {
+      "login": "acarabott",
+      "name": "Arthur Carabott",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/66132?v=4",
+      "profile": "http://www.arthurcarabott.com/",
+      "contributions": [
+        "code",
+        "ideas",
+        "example",
+        "blog"
+      ]
+    },
+    {
+      "login": "andrew8er",
+      "name": "André Wachter",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/179225?v=4",
+      "profile": "http://andrewachter.de",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug"
+      ]
+    },
+    {
+      "login": "gavinpc-mindgrub",
+      "name": "Gavin Cannizzaro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/29873545?v=4",
+      "profile": "https://github.com/gavinpc-mindgrub",
+      "contributions": [
+        "code",
+        "bug",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "umbrella",
+  "projectOwner": "thi-ng",
+  "repoType": "github",
+  "repoHost": "https://github.com"
 }
