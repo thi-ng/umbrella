@@ -60,6 +60,17 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "loganpowell",
+      "name": "Logan Powell",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3408191?v=4",
+      "profile": "https://github.com/loganpowell",
+      "contributions": [
+        "doc",
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
