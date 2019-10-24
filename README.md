@@ -310,6 +310,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/loganpowell"><img src="https://avatars1.githubusercontent.com/u/3408191?v=4" width="100px;" alt="Logan Powell"/><br /><sub><b>Logan Powell</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=loganpowell" title="Documentation">📖</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aloganpowell" title="Bug reports">🐛</a> <a href="#ideas-loganpowell" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://marcinignac.com"><img src="https://avatars2.githubusercontent.com/u/171001?v=4" width="100px;" alt="Marcin Ignac"/><br /><sub><b>Marcin Ignac</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Avorg" title="Bug reports">🐛</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/arcticnoah"><img src="https://avatars2.githubusercontent.com/u/7544636?v=4" width="100px;" alt="arcticnoah"/><br /><sub><b>arcticnoah</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=arcticnoah" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
