@@ -120,6 +120,15 @@
         "code",
         "bug"
       ]
+    },
+    {
+      "login": "evilive3000",
+      "name": "evilive",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5011293?v=4",
+      "profile": "https://github.com/evilive3000",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
