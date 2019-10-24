@@ -71,6 +71,15 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "vorg",
+      "name": "Marcin Ignac",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/171001?v=4",
+      "profile": "http://marcinignac.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
