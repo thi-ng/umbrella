@@ -56,7 +56,7 @@ A complete, full commented demo app is here:
 [Live demo](https://demo.thi.ng/umbrella/router-basics/)
 
 ```ts
-import { HTMLRouter, EV_ROUTE_CHANGED } from "@thi.ng/router";
+import { HTMLRouter, EVENT_ROUTE_CHANGED } from "@thi.ng/router";
 
 // router configuration
 const config = {
@@ -140,7 +140,7 @@ const config = {
 // `HTMLRouter` ONLY works in browser environments
 // for non-browser use cases use `BasicRouter`
 const router = new HTMLRouter(config);
-router.addListener(EV_ROUTE_CHANGED, console.log);
+router.addListener(EVENT_ROUTE_CHANGED, console.log);
 
 router.start();
 ```

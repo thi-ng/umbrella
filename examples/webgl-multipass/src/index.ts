@@ -48,7 +48,7 @@ const toy = multipass({
     },
     passes: [
         {
-            fs: (gl, unis, ins, outs) => [
+            fs: (gl, unis, _, outs) => [
                 defMain(() => {
                     let uv: Vec2Sym;
                     return [
@@ -75,7 +75,7 @@ const toy = multipass({
             }
         },
         {
-            fs: (gl, unis, ins, outs) => [
+            fs: (gl, unis, _, outs) => [
                 defMain(() => {
                     let uv: Vec2Sym;
                     return [
@@ -122,6 +122,8 @@ new PackedBuffer(
         new Uint8Array(32 * 32)
     )
 ).blitCanvas(canv.canvas);
+
+toy.start();
 
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;

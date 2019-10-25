@@ -19,8 +19,7 @@ const rt = runtime<Implementations<any, any>, any, any>({
     num: (x) => x.value
 });
 
-const $eval = (src: string, env: any = {}) =>
-    rt(parse(tokenize(src)).children[0], env);
+const $eval = (src: string, env: any = {}) => rt(parse(src).children[0], env);
 
 const op = (fn: Fn2<number, number, number>) => (
     _: ASTNode,
@@ -72,52 +71,49 @@ describe("sexpr", () => {
             scopes: [["<", ">"], ["{", "}"]],
             string: "'"
         };
-        assert.deepEqual(
-            parse(tokenize(`<nest { a '2' b 3 }>`, syntax), syntax),
-            {
-                type: "root",
-                children: [
-                    {
-                        type: "expr",
-                        value: "<",
-                        children: [
-                            {
-                                type: "sym",
-                                value: "nest"
-                            },
-                            {
-                                type: "expr",
-                                value: "{",
-                                children: [
-                                    {
-                                        type: "sym",
-                                        value: "a"
-                                    },
-                                    {
-                                        type: "str",
-                                        value: "2"
-                                    },
-                                    {
-                                        type: "sym",
-                                        value: "b"
-                                    },
-                                    {
-                                        type: "num",
-                                        value: 3
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        );
+        assert.deepEqual(parse(`<nest { a '2' b 3 }>`, syntax), {
+            type: "root",
+            children: [
+                {
+                    type: "expr",
+                    value: "<",
+                    children: [
+                        {
+                            type: "sym",
+                            value: "nest"
+                        },
+                        {
+                            type: "expr",
+                            value: "{",
+                            children: [
+                                {
+                                    type: "sym",
+                                    value: "a"
+                                },
+                                {
+                                    type: "str",
+                                    value: "2"
+                                },
+                                {
+                                    type: "sym",
+                                    value: "b"
+                                },
+                                {
+                                    type: "num",
+                                    value: 3
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
     });
 
     it("unmatched", () => {
-        assert.throws(() => parse(tokenize(`(`)));
-        assert.throws(() => parse(tokenize(`((`)));
-        assert.throws(() => parse(tokenize(`(()`)));
+        assert.throws(() => parse(`(`));
+        assert.throws(() => parse(`((`));
+        assert.throws(() => parse(`(()`));
     });
 
     it("math", () => {

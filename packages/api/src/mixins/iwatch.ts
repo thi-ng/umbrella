@@ -1,9 +1,5 @@
-import {
-    Fn3,
-    IObjectOf,
-    IWatch,
-    Watch
-} from "../api";
+import { IObjectOf } from "../api/object";
+import { IWatch, Watch } from "../api/watch";
 import { mixin } from "../mixin";
 
 interface _IWatch extends IWatch<any> {
@@ -11,7 +7,7 @@ interface _IWatch extends IWatch<any> {
 }
 
 export const IWatchMixin = mixin(<IWatch<any>>{
-    addWatch(this: _IWatch, id: string, fn: Fn3<string, any, any, void>) {
+    addWatch(this: _IWatch, id: string, fn: Watch<any>) {
         this._watches = this._watches || {};
         if (this._watches[id]) {
             return false;

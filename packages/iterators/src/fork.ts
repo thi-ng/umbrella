@@ -5,7 +5,7 @@ export const fork = <T>(src: Iterable<T>, cacheLimit = 16) => {
     const iter = iterator(src);
     const cache = new DCons<T>();
     const forks: number[] = [];
-    let done = false;
+    let done: boolean | undefined = false;
     let total = 0;
 
     const consume = () => {

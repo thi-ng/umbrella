@@ -1,11 +1,13 @@
-import { DEFAULT_SYNTAX, SyntaxOpts } from "./api";
+import { DEFAULT_SYNTAX, SyntaxOpts, Token } from "./api";
 
 /**
- * Yields iterator of tokens from `src` string (or a **characterwise**
- * iterable). Scope and string delimiters and whitespace characters can be
- * configured via given `opts`. By default `DEFAULT_SYNTAX` is used.
+ * Yields iterator of `Token`s (incl. location info) from `src` string
+ * (or from a **characterwise** iterable). Scope and string delimiters
+ * and whitespace characters can be configured via given `opts`. By
+ * default `DEFAULT_SYNTAX` is used.
  *
  * @see SyntaxOpts
+ * @see Token
  *
  * @param src
  * @param opts
@@ -18,31 +20,55 @@ export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
     const scopes = rawScopes
         .reduce((acc, x) => acc.concat(<any>x), [])
         .join("");
-    let curr = "";
+    let token = "";
     let isString = false;
+    let tokenLine = 0;
+    let tokenCol = 0;
+    let line = 0;
+    let col = -1;
+    const $ = (value: string): Token => ({
+        value,
+        line: tokenLine,
+        col: tokenCol
+    });
     for (let c of src) {
+        if (c === "\n") {
+            line++;
+            col = -1;
+        } else {
+            col++;
+        }
         if (!isString) {
             if (whiteSpace.test(c)) {
-                curr && (yield curr);
-                curr = "";
+                token && (yield $(token));
+                token = "";
             } else if (scopes.indexOf(c) !== -1) {
-                curr && (yield curr);
-                yield c;
-                curr = "";
+                token && (yield $(token));
+                tokenLine = line;
+                tokenCol = col;
+                yield $(c);
+                token = "";
+                tokenCol++;
             } else if (c === string) {
-                curr && (yield curr);
-                curr = '"';
+                token && (yield $(token));
+                tokenLine = line;
+                tokenCol = col;
+                token = '"';
                 isString = true;
             } else {
-                curr += c;
+                if (!token) {
+                    tokenLine = line;
+                    tokenCol = col;
+                }
+                token += c;
             }
-        } else if (c === string && curr[curr.length - 1] !== "\\") {
-            curr += '"';
-            yield curr;
-            curr = "";
+        } else if (c === string && token[token.length - 1] !== "\\") {
+            token += '"';
+            yield $(token);
+            token = "";
             isString = false;
         } else {
-            curr += c;
+            token += c;
         }
     }
 }

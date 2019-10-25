@@ -1,5 +1,9 @@
-import { Type } from "@thi.ng/api";
-import { GL2TYPE, GLType, TYPE2GL } from "./api";
+import {
+    GL2TYPE,
+    GLType,
+    Type,
+    TYPE2GL
+} from "@thi.ng/api";
 
 /**
  * Returns canonical `Type` value of `type` by first attempting to
@@ -13,11 +17,11 @@ import { GL2TYPE, GLType, TYPE2GL } from "./api";
  * @param type
  */
 export const asNativeType = (type: GLType | Type): Type => {
-    const t = GL2TYPE[type];
+    const t = (<any>GL2TYPE)[type];
     return t !== undefined ? t : <Type>type;
 };
 
 export const asGLType = (type: GLType | Type): GLType => {
-    const t = TYPE2GL[type];
+    const t = (<any>TYPE2GL)[type];
     return t !== undefined ? t : <GLType>type;
 };

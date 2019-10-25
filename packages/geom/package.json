@@ -29,8 +29,8 @@
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
-        "typedoc": "^0.14.2",
-        "typescript": "^3.5.3"
+        "typedoc": "^0.15.0",
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "@thi.ng/api": "^6.4.0",
@@ -72,5 +72,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "shortlink": false
+    }
 }

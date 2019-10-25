@@ -1,4 +1,4 @@
-import { Fn0, NO_OP } from "./api";
+import { Fn0, NO_OP } from "./api/fn";
 
 /**
  * Takes a `test` result or predicate function without args and throws

@@ -21,6 +21,7 @@ import {
     DispatchFn8,
     DispatchFn8O,
     Implementation,
+    LOGGER,
     MultiFn,
     MultiFn1,
     MultiFn1O,
@@ -105,7 +106,9 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
             : unsupported(`missing implementation for: "${id.toString()}"`);
     };
     fn.add = (id: PropertyKey, g: Implementation<T>) => {
-        if (impls[<any>id]) return false;
+        if (impls[<any>id]) {
+            LOGGER.warn(`overwriting '${id.toString()}' impl`);
+        }
         impls[<any>id] = g;
         return true;
     };

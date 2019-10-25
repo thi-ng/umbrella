@@ -8,7 +8,10 @@
 *.js
 *.log
 *.map
+*.o
 *.tgz
+*.wasm
+*.wat
 *.zip
 /.gtm/
 build

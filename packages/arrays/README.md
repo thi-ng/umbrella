@@ -53,6 +53,7 @@ import * as a from "@thi.ng/arrays";
 - [fuzzyMatch()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/fuzzy-match.ts)
 - [peek()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/peek.ts)
 - [shuffle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
+- [shuffleRange()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [startsWith()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/starts-with.ts)
 - [swizzle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swizzle.ts)
 
