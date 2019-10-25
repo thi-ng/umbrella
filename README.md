@@ -20,10 +20,10 @@ blocks for:
 - Value-based equivalence
 - FSM primitives, parser generators
 - Data driven UI components, event & side effect handling
-- Immediate mode GUI components
+- Canvas-based Immediate mode GUI components
 - Immutable data handling, state containers, transacted state updates, Undo-Redo history
 - 2D geometry generation, processing, conversion & visualization
-- Vector & matrix implementations with optional support for strided layouts
+- Vector & matrix implementations with optional support for strided layouts, SIMD etc.
 - Color space conversions, cosine gradients
 - Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
 - Declarative WebGL 1/2 abstraction layer
@@ -84,9 +84,11 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 ### New / unreleased packages in development
 
-(These packages are only available on their respective feature branches)
+(These packages are still unreleased and only available on their feature or `develop` branches)
 
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
+- [@thi.ng/simd](https://github.com/thi-ng/umbrella/tree/develop/packages/simd) - WebAssembly SIMD batch processing
+- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/soa) - Memory mapped data structures & serialization
 
 ### Fundamentals
 
@@ -302,8 +304,18 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://thi.ng"><img src="https://avatars1.githubusercontent.com/u/52302?v=4" width="100px;" alt="Karsten Schmidt"/><br /><sub><b>Karsten Schmidt</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=postspectacular" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/commits?author=postspectacular" title="Documentation">📖</a> <a href="#maintenance-postspectacular" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/nkint"><img src="https://avatars3.githubusercontent.com/u/609314?v=4" width="100px;" alt="Alberto"/><br /><sub><b>Alberto</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=nkint" title="Code">💻</a> <a href="#example-nkint" title="Examples">💡</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ankint" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="http://www.arthurcarabott.com/"><img src="https://avatars1.githubusercontent.com/u/66132?v=4" width="100px;" alt="Arthur Carabott"/><br /><sub><b>Arthur Carabott</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=acarabott" title="Code">💻</a> <a href="#ideas-acarabott" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://www.arthurcarabott.com/"><img src="https://avatars1.githubusercontent.com/u/66132?v=4" width="100px;" alt="Arthur Carabott"/><br /><sub><b>Arthur Carabott</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=acarabott" title="Code">💻</a> <a href="#ideas-acarabott" title="Ideas, Planning, & Feedback">🤔</a> <a href="#example-acarabott" title="Examples">💡</a> <a href="#blog-acarabott" title="Blogposts">📝</a></td>
     <td align="center"><a href="http://andrewachter.de"><img src="https://avatars1.githubusercontent.com/u/179225?v=4" width="100px;" alt="André Wachter"/><br /><sub><b>André Wachter</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=andrew8er" title="Code">💻</a> <a href="#ideas-andrew8er" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aandrew8er" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/gavinpc-mindgrub"><img src="https://avatars1.githubusercontent.com/u/29873545?v=4" width="100px;" alt="Gavin Cannizzaro"/><br /><sub><b>Gavin Cannizzaro</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=gavinpc-mindgrub" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Agavinpc-mindgrub" title="Bug reports">🐛</a> <a href="#ideas-gavinpc-mindgrub" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/loganpowell"><img src="https://avatars1.githubusercontent.com/u/3408191?v=4" width="100px;" alt="Logan Powell"/><br /><sub><b>Logan Powell</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=loganpowell" title="Documentation">📖</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aloganpowell" title="Bug reports">🐛</a> <a href="#ideas-loganpowell" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://marcinignac.com"><img src="https://avatars2.githubusercontent.com/u/171001?v=4" width="100px;" alt="Marcin Ignac"/><br /><sub><b>Marcin Ignac</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Avorg" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/arcticnoah"><img src="https://avatars2.githubusercontent.com/u/7544636?v=4" width="100px;" alt="arcticnoah"/><br /><sub><b>arcticnoah</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=arcticnoah" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/allforabit"><img src="https://avatars3.githubusercontent.com/u/537189?v=4" width="100px;" alt="allforabit"/><br /><sub><b>allforabit</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aallforabit" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=allforabit" title="Code">💻</a> <a href="#ideas-allforabit" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://yifanwu.studio/"><img src="https://avatars2.githubusercontent.com/u/15613549?v=4" width="100px;" alt="Yifan Wu"/><br /><sub><b>Yifan Wu</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AIvanWoo" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=IvanWoo" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://pngupngu.com/"><img src="https://avatars0.githubusercontent.com/u/250297?v=4" width="100px;" alt="stwind"/><br /><sub><b>stwind</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=stwind" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Astwind" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/evilive3000"><img src="https://avatars1.githubusercontent.com/u/5011293?v=4" width="100px;" alt="evilive"/><br /><sub><b>evilive</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=evilive3000" title="Code">💻</a></td>
   </tr>
 </table>
 

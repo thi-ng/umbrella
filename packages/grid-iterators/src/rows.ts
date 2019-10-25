@@ -1,5 +1,5 @@
 /**
- * Yields sequence of 2D grid coordinates in zigzag column order starting
+ * Yields sequence of 2D grid coordinates in zigzag row order starting
  * from [0,0], given `cols` and `rows`.
  *
  * Ported & modified from original Java code by Christopher Kulla.
@@ -9,12 +9,12 @@
  * @param rows
  *
  */
-export function* zigzagColumns2d(cols: number, rows: number) {
+export function* zigzagRows2d(cols: number, rows = cols) {
     const num = cols * rows;
     for (let i = 0; i < num; i++) {
-        const x = (i / rows) | 0;
-        let y = i % rows;
-        x & 1 && (y = rows - 1 - y);
+        let x = i % cols;
+        const y = (i / cols) | 0;
+        y & 1 && (x = cols - 1 - x);
         yield [x, y];
     }
 }

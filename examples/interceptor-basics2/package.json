@@ -17,7 +17,7 @@
     "dependencies": {
         "@thi.ng/api": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/intereptors": "latest",
+        "@thi.ng/interceptors": "latest",
         "@thi.ng/paths": "latest"
     },
     "browserslist": [

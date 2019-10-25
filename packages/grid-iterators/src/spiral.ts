@@ -8,7 +8,7 @@
  * @param cols
  * @param rows
  */
-export function* spiral2d(cols: number, rows: number) {
+export function* spiral2d(cols: number, rows = cols) {
     const num = cols * rows;
     const center = (Math.min(cols, rows) - 1) >> 1;
     for (let i = 0; i < num; i++) {

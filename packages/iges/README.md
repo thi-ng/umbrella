@@ -45,7 +45,7 @@ doc.start = [
     "Defines single open 2D polyline (type 106)"
 ];
 
-iges.addPolyline2d(doc, [
+iges.addPolyline(doc, [
     [0,0],
     [0, 100],
     [50, 150],
@@ -59,6 +59,8 @@ iges.addPolyline2d(doc, [
 
 console.log(iges.serialize(doc));
 ```
+
+Resulting output (IGES is a text file format):
 
 ```iges
 Example file for @thi.ng/iges                                           S      1

@@ -60,6 +60,7 @@ for sources:
 - `sub4_f32`
 - `subn4_f32`
 - `sum4_f32`
+- `swizzle4_32` (!)
 
 (!) Missing native implementation, waiting on...
 

@@ -25,7 +25,7 @@
         "code",
         "example",
         "bug"
-      ],
+      ]
     },
     {
       "login": "acarabott",
@@ -48,8 +48,88 @@
         "code",
         "ideas",
         "bug"
-      ],
+      ]
     },
+    {
+      "login": "gavinpc-mindgrub",
+      "name": "Gavin Cannizzaro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/29873545?v=4",
+      "profile": "https://github.com/gavinpc-mindgrub",
+      "contributions": [
+        "code",
+        "bug",
+        "ideas"
+      ]
+    },
+    {
+      "login": "loganpowell",
+      "name": "Logan Powell",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3408191?v=4",
+      "profile": "https://github.com/loganpowell",
+      "contributions": [
+        "doc",
+        "bug",
+        "ideas"
+      ]
+    },
+    {
+      "login": "vorg",
+      "name": "Marcin Ignac",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/171001?v=4",
+      "profile": "http://marcinignac.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "arcticnoah",
+      "name": "arcticnoah",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7544636?v=4",
+      "profile": "https://github.com/arcticnoah",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "allforabit",
+      "name": "allforabit",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/537189?v=4",
+      "profile": "https://github.com/allforabit",
+      "contributions": [
+        "bug",
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "IvanWoo",
+      "name": "Yifan Wu",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15613549?v=4",
+      "profile": "https://yifanwu.studio/",
+      "contributions": [
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "stwind",
+      "name": "stwind",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/250297?v=4",
+      "profile": "https://pngupngu.com/",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "evilive3000",
+      "name": "evilive",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5011293?v=4",
+      "profile": "https://github.com/evilive3000",
+      "contributions": [
+        "code"
+      ]
+    }
   ],
   "contributorsPerLine": 7,
   "projectName": "umbrella",
