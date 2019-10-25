@@ -1,6 +1,6 @@
 /**
- * Yields sequence of 2D grid coordinates in zigzag column order starting
- * from [0,0], given `cols` and `rows`.
+ * Yields sequence of 2D grid coordinates in zigzag column order
+ * starting from [0,0], given `cols` and `rows`.
  *
  * Ported & modified from original Java code by Christopher Kulla.
  * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/SpiralBucketOrder.java

@@ -1,6 +1,7 @@
 /**
  * Yields sequence of 2D grid coordinates in diagonal order starting at
- * [0,0] and using given `cols` and `rows`.
+ * [0,0] and using given `cols` and `rows`. Each diagonal starts at y=0
+ * and progresses in -x,+y direction.
  *
  * Ported & modified from original Java code by Christopher Kulla.
  * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/DiagonalBucketOrder.java
