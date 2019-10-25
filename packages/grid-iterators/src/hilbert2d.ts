@@ -8,7 +8,7 @@
  * @param cols
  * @param rows
  */
-export function* hilbert2d(cols: number, rows: number) {
+export function* hilbert2d(cols: number, rows = cols) {
     let hIndex = 0; // hilbert curve index
     let hOrder = 0; // hilbert curve order
     // fit to number of buckets

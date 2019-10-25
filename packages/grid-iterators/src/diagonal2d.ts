@@ -12,16 +12,18 @@ export function* diagonal2d(cols: number, rows: number) {
     const num = cols * rows - 1;
     for (let x = 0, y = 0, nx = 1, ny = 0, i = 0; i <= num; i++) {
         yield [x, y];
-        do {
-            if (y === ny) {
-                y = 0;
-                x = nx;
-                ny++;
-                nx++;
-            } else {
-                x--;
-                y++;
-            }
-        } while ((y >= rows || x >= cols) && i != num);
+        if (i != num) {
+            do {
+                if (y === ny) {
+                    y = 0;
+                    x = nx;
+                    ny++;
+                    nx++;
+                } else {
+                    x--;
+                    y++;
+                }
+            } while (y >= rows || x >= cols);
+        }
     }
 }

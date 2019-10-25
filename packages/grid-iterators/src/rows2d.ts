@@ -9,7 +9,7 @@
  * @param rows
  *
  */
-export function* zigzagRows2d(cols: number, rows: number) {
+export function* zigzagRows2d(cols: number, rows = cols) {
     const num = cols * rows;
     for (let i = 0; i < num; i++) {
         let x = i % cols;
