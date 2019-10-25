@@ -12,6 +12,8 @@ This project is part of the
 - [About](#about)
     - [Diagonal](#diagonal)
     - [Hilbert curve](#hilbert-curve)
+    - [Interleave columns](#interleave-columns)
+    - [Interleave rows](#interleave-rows)
     - [Random](#random)
     - [Outward spiral](#outward-spiral)
     - [Z-curve](#z-curve)
@@ -40,6 +42,18 @@ Collection of 2D grid iterators, providing the following orderings:
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/hilbert2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hilbert.ts)
+
+### Interleave columns
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleavecolumns2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
+
+### Interleave rows
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleaverows2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
 ### Random
 
