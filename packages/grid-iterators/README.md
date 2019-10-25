@@ -10,6 +10,13 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Diagonal](#diagonal)
+    - [Hilbert curve](#hilbert-curve)
+    - [Random](#random)
+    - [Outward spiral](#outward-spiral)
+    - [Z-curve](#z-curve)
+    - [Zigzag columns](#zigzag-columns)
+    - [Zigzag rows](#zigzag-rows)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -22,17 +29,54 @@ This project is part of the
 
 Collection of 2D grid iterators, providing the following orderings:
 
-| [Diagonal](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/diagonal2d.ts)         | [Hilbert curve](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/hilbert2d.ts)     | [Outward spiral](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/spiral2d.ts) |
-|---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-diagonal.gif)    | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-hilbert.gif)     | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-spiral.gif)  |
-| [Zigzag columns](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/columns2d.ts)    | [Zigzag rows](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/rows2d.ts)          |                                                                                                           |
-| ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-zigzag-cols.gif) | ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/grid-zigzag-rows.gif) |                                                                                                           |
+### Diagonal
 
-All functions have been ported from [Christopher
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonal2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal.ts)
+
+### Hilbert curve
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/hilbert2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hilbert.ts)
+
+### Random
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/random2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/random.ts)
+
+### Outward spiral
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/spiral2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/spiral.ts)
+
+### Z-curve
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zcurve2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zcurve.ts)
+
+### Zigzag columns
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagcolumns2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/columns.ts)
+
+### Zigzag rows
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagrows2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/rows.ts)
+
+Some functions have been ported from [Christopher
 Kulla](https://fpsunflower.github.io/ckulla/)'s Java-based [Sunflow
 renderer](https://sunflow.sf.net).
 
-For alternative 2D/3D grid iteration, also see `range2d()` & `range3d()` in
+For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
+in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
 ## Installation
@@ -43,7 +87,11 @@ yarn add @thi.ng/grid-iterators
 
 ## Dependencies
 
-None
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
+- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/master/packages/morton)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
