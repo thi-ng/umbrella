@@ -18,6 +18,7 @@
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build:binary": "echo \"export const BINARY = \\\"$(../../scripts/base64 opt.wasm)\\\";\" > src/binary.ts",
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
@@ -29,8 +30,8 @@
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
-        "typedoc": "^0.14.2",
-        "typescript": "^3.5.3"
+        "typedoc": "^0.15.0",
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "@thi.ng/checks": "^2.4.0",

@@ -3,11 +3,12 @@ import {
     IObjectOf,
     IRelease,
     SIZEOF,
-    TypedArray
+    TypedArray,
+    TYPEDARRAY_CTORS
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
-import { MemPool, TYPEDARRAY_CTORS, wrap } from "@thi.ng/malloc";
+import { MemPool, wrap } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
@@ -123,7 +124,7 @@ export class AttribPool implements IRelease {
         const size = spec.size;
         const stride = spec.stride!;
         const src = this.attribs[id];
-        const dest = new TYPEDARRAY_CTORS[(asNativeType(spec.type))](n * size);
+        const dest = new TYPEDARRAY_CTORS[asNativeType(spec.type)](n * size);
         if (size > 1) {
             for (let i = 0, j = 0; i < n; i++, j += stride) {
                 dest.set(src.subarray(j, j + size), i * size);
@@ -247,9 +248,7 @@ export class AttribPool implements IRelease {
                 () =>
                     (!isNum && a.size === (<Vec>a.default).length) ||
                     (isNum && a.size === 1),
-                `attrib ${id}: incompatible default value, expected size ${
-                    a.size
-                }`
+                `attrib ${id}: incompatible default value, expected size ${a.size}`
             );
             assert(
                 a.byteOffset % size === 0,

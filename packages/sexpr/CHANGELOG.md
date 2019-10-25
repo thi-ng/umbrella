@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.1.0...@thi.ng/sexpr@0.2.0) (2019-09-23)
+
+
+### Features
+
+* **sexpr:** add Token w/ location info, update tokenize() & parse() ([3917775](https://github.com/thi-ng/umbrella/commit/3917775))
+
+
+
+
+
 # 0.1.0 (2019-09-21)
 
 

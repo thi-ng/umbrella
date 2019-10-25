@@ -10,9 +10,9 @@
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.12.3",
+        "parcel-bundler": "^1.12.4",
         "terser": "^3.17.0",
-        "typescript": "^3.5.3"
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "@thi.ng/hdom": "latest",

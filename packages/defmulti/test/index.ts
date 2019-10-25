@@ -1,9 +1,11 @@
+import { ConsoleLogger } from "@thi.ng/api";
 import * as assert from "assert";
 import {
     DEFAULT,
     defmulti,
     defmultiN,
-    implementations
+    implementations,
+    setLogger
 } from "../src/index";
 
 // prettier-ignore
@@ -26,10 +28,14 @@ describe("defmulti", () => {
         assert(exec.add("+", ([_, ...args]) => args.reduce((acc: number, n: any) => acc + exec(n), 0)));
         assert(exec.add("*", ([_, ...args]) => args.reduce((acc: number, n: any) => acc * exec(n), 1)));
         assert(exec.add("number", (x) => x));
-        assert(!exec.add("number", (x) => x));
         assert(exec.add(DEFAULT, (x) => { throw new Error(`invalid expr: ${x}`); }));
 
         assert.equal(exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]), 66);
+
+        setLogger(new ConsoleLogger("defmulti"));
+        assert(exec.add("number", (x) => x * 2));
+        assert.equal(exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]), ((1*2 + 2*2 + 3*2) * 10*2) + 6*2);
+
         assert.throws(() => exec(""));
     });
 

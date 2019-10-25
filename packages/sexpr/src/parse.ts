@@ -1,15 +1,38 @@
-import { defError } from "@thi.ng/errors";
+import { isString } from "@thi.ng/checks";
 import {
     ASTNode,
     DEFAULT_SYNTAX,
     Expression,
     Root,
-    SyntaxOpts
+    SyntaxOpts,
+    Token
 } from "./api";
+import { tokenize } from "./tokenize";
 
-const ParseError = defError<string>((msg?) => msg || "Parser error", () => "");
+class ParseError extends Error {
+    line: number;
+    col: number;
 
-export const parse = (tokens: Iterable<string>, opts?: Partial<SyntaxOpts>) => {
+    constructor(msg: string, line: number, col: number) {
+        super(msg);
+        this.line = line;
+        this.col = col;
+    }
+}
+
+/**
+ * Takes a `src` string or `Token` iteratable and parses it into an AST,
+ * then returns tree's root node. Throws `ParserError` if the token
+ * order causes illegal nesting. The error includes `line` and `column`
+ * information of the offending token.
+ *
+ * @param src
+ * @param opts
+ */
+export const parse = (
+    src: string | Iterable<Token>,
+    opts?: Partial<SyntaxOpts>
+) => {
     const { scopes } = {
         ...DEFAULT_SYNTAX,
         ...opts
@@ -18,14 +41,15 @@ export const parse = (tokens: Iterable<string>, opts?: Partial<SyntaxOpts>) => {
     const scopeClose = scopes.map((x) => x[1]);
     const tree: ASTNode[] = [{ type: "root", children: [] }];
     let currScope = -1;
-    for (let t of tokens) {
+    for (let token of isString(src) ? tokenize(src, opts) : src) {
+        const t = token.value;
         let tmp: number;
         if ((tmp = scopeOpen.indexOf(t)) !== -1) {
             tree.push({ type: "expr", value: t, children: [] });
             currScope = tmp;
         } else if ((tmp = scopeClose.indexOf(t)) !== -1) {
             if (tree.length < 2 || currScope !== tmp) {
-                throw new ParseError(`unmatched '${t}'`);
+                throw new ParseError(`unmatched '${t}'`, token.line, token.col);
             }
             (<Expression>tree[tree.length - 2]).children!.push(tree.pop()!);
             currScope = scopeOpen.indexOf(
@@ -49,7 +73,7 @@ export const parse = (tokens: Iterable<string>, opts?: Partial<SyntaxOpts>) => {
         }
     }
     if (tree.length > 1) {
-        throw new ParseError("unclosed s-expr");
+        throw new ParseError("unclosed s-expression", -1, -1);
     }
     return <Root>tree[0];
 };

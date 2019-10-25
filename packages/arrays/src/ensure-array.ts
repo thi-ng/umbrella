@@ -12,5 +12,12 @@ import { ensureIterable } from "./ensure-iterable";
 export const ensureArray = (x: any): any[] =>
     isArray(x) ? x : [...ensureIterable(x)];
 
+/**
+ * Similar to `ensureArray()`, but for `ArrayLike` types.
+ *
+ * @see ensureArray
+ *
+ * @param x
+ */
 export const ensureArrayLike = (x: any): ArrayLike<any> =>
     isArrayLike(x) ? x : [...ensureIterable(x)];

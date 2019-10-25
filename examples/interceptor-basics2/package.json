@@ -10,14 +10,14 @@
         "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.12.3",
-        "terser": "^4.0.0",
-        "typescript": "^3.5.3"
+        "parcel-bundler": "^1.12.4",
+        "terser": "^4.3.8",
+        "typescript": "^3.6.4"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/intereptors": "latest",
+        "@thi.ng/interceptors": "latest",
         "@thi.ng/paths": "latest"
     },
     "browserslist": [

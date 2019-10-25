@@ -2,9 +2,9 @@ import {
     Event,
     EVENT_ALL,
     INotify,
-    IObjectOf,
     Listener
-} from "../api";
+} from "../api/event";
+import { IObjectOf } from "../api/object";
 import { mixin } from "../mixin";
 
 interface _INotify extends INotify {
@@ -30,8 +30,7 @@ export const inotify_dispatch = (listeners: any[][], e: Event) => {
  */
 export const INotifyMixin = mixin(<INotify>{
     addListener(this: _INotify, id: string, fn: Listener, scope?: any) {
-        let l = (this._listeners =
-            this._listeners || {})[id];
+        let l = (this._listeners = this._listeners || {})[id];
         if (!l) {
             l = this._listeners[id] = [];
         }

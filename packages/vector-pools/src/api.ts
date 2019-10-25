@@ -1,4 +1,5 @@
 import {
+    GLType,
     ILogger,
     IObjectOf,
     IRelease,
@@ -54,52 +55,6 @@ export type VecFactory = (
     index: number,
     stride: number
 ) => StridedVec;
-
-/**
- * WebGL numeric type constants. These can be used by classes in this
- * package as aliases for thi.ng/malloc's `Type` enum (see `GL2TYPE` LUT
- * below), but also then used directly when initializing WebGL buffers
- * from given attribute buffer specs.
- *
- * See `AttribPool` & readme examples for more details.
- */
-export const enum GLType {
-    I8 = 0x1400,
-    U8 = 0x1401,
-    I16 = 0x1402,
-    U16 = 0x1403,
-    I32 = 0x1404,
-    U32 = 0x1405,
-    F32 = 0x1406
-}
-
-/**
- * Conversion from `GLType` to `Type`.
- */
-export const GL2TYPE: { [id: number]: Type } = {
-    [GLType.I8]: Type.I8,
-    [GLType.U8]: Type.U8,
-    [GLType.I16]: Type.I16,
-    [GLType.U16]: Type.U16,
-    [GLType.I32]: Type.I32,
-    [GLType.I32]: Type.I32,
-    [GLType.U32]: Type.U32,
-    [GLType.F32]: Type.F32
-};
-
-/**
- * Conversion from `Type` to `GLType`.
- */
-export const TYPE2GL: { [id: number]: GLType } = {
-    [Type.I8]: GLType.I8,
-    [Type.U8]: GLType.U8,
-    [Type.I16]: GLType.I16,
-    [Type.U16]: GLType.U16,
-    [Type.I32]: GLType.I32,
-    [Type.I32]: GLType.I32,
-    [Type.U32]: GLType.U32,
-    [Type.F32]: GLType.F32
-};
 
 export let LOGGER = NULL_LOGGER;
 

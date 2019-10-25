@@ -15,4 +15,5 @@ doc
 export
 src*
 test
+tools
 tsconfig.json
