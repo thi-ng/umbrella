@@ -19,7 +19,7 @@ export class SOA<K extends string> implements ILength {
         this.length = num;
         this.buffers = <Record<K, TypedArray>>{};
         this.specs = <SOASpecs<K>>{};
-        this.initSpecs(specs);
+        this.addSpecs(specs);
     }
 
     keys() {
@@ -159,9 +159,10 @@ export class SOA<K extends string> implements ILength {
         return dest;
     }
 
-    protected initSpecs(specs: SOASpecs<K>) {
+    addSpecs(specs: SOASpecs<K>) {
         const num = this.length;
         for (let id in specs) {
+            assert(!this.specs[id], `attrib ${id} already exists`);
             const spec = prepareSpec(specs[id]);
             this.validateSpec(id, spec);
             const { stride, default: defVal } = spec;
