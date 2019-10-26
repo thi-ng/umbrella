@@ -1,5 +1,6 @@
 import { assert, TypedArray } from "@thi.ng/api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
+import { AnyArray } from "./api";
 
 /**
  * Shuffles the items in the given index range of array `buf` using
@@ -10,7 +11,7 @@ import { IRandom, SYSTEM } from "@thi.ng/random";
  * @param n
  * @param rnd
  */
-export const shuffleRange = <T extends any[] | TypedArray>(
+export const shuffleRange = <T extends AnyArray>(
     buf: T,
     start = 0,
     end = buf.length,

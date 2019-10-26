@@ -51,10 +51,13 @@ import * as a from "@thi.ng/arrays";
 - [ensureArray()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ensure-array.ts)
 - [ensureIterable()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ensure-iterable.ts)
 - [fuzzyMatch()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/fuzzy-match.ts)
+- [multiSwap()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swap.ts)
 - [peek()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/peek.ts)
+- [quickSort()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/quicksort.ts)
 - [shuffle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [shuffleRange()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [startsWith()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/starts-with.ts)
+- [swap()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swap.ts)
 - [swizzle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swizzle.ts)
 
 ## Authors

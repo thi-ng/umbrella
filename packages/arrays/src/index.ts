@@ -5,6 +5,8 @@ export * from "./ensure-iterable";
 export * from "./find";
 export * from "./fuzzy-match";
 export * from "./peek";
+export * from "./quicksort";
 export * from "./shuffle";
 export * from "./starts-with";
+export * from "./swap";
 export * from "./swizzle";
