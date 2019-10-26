@@ -4,6 +4,7 @@ export * from "./ensure-array";
 export * from "./ensure-iterable";
 export * from "./find";
 export * from "./fuzzy-match";
+export * from "./is-sorted";
 export * from "./peek";
 export * from "./quicksort";
 export * from "./shuffle";

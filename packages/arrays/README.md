@@ -51,6 +51,7 @@ import * as a from "@thi.ng/arrays";
 - [ensureArray()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ensure-array.ts)
 - [ensureIterable()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ensure-iterable.ts)
 - [fuzzyMatch()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/fuzzy-match.ts)
+- [isSorted()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/is-sorted.ts)
 - [multiSwap()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swap.ts)
 - [peek()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/peek.ts)
 - [quickSort()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/quicksort.ts)
