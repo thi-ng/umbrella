@@ -1,4 +1,4 @@
-import { SIZEOF, typedArray } from "@thi.ng/api";
+import { SIZEOF } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
 import { AOSSpecs, SOASpecs } from "./api";
 import { SOA } from "./soa";

@@ -1,4 +1,4 @@
-import { Fn, Type, TypedArray } from "@thi.ng/api";
+import { Fn, Type } from "@thi.ng/api";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export interface AOSAttribSpec {
