@@ -11,11 +11,13 @@ try {
 [
     gi.diagonal2d,
     gi.hilbert2d,
+    gi.interleaveColumns2d,
+    gi.interleaveRows2d,
     gi.random2d,
     gi.spiral2d,
     gi.zcurve2d,
     gi.zigzagColumns2d,
-    // gi.zigzagDiagonal2d,
+    gi.zigzagDiagonal2d,
     gi.zigzagRows2d
 ].forEach((fn) => {
     console.log(`generating ${fn.name}...`);
