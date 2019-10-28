@@ -33,6 +33,7 @@ This project is part of the
     - [Path](#path)
         - [SVG paths with arc segments](#svg-paths-with-arc-segments)
     - [Points](#points)
+    - [Packed points](#packed-points)
     - [Text](#text)
     - [Image](#image)
     - [Gradients](#gradients)
@@ -398,6 +399,34 @@ The following shape specific attributes are used:
 
 - `shape`: `circle` or `rect` (default)
 - `size`: point size (radius for circles, width for rects) - default: 1
+
+### Packed points
+
+Similar to `points`, but uses a single packed buffer for all point
+coordinates.
+
+```ts
+["packedPoints", attribs, [x1,y1, x2,y2,...]]
+```
+
+Optional start index, number of points, component & point stride lengths
+(number of indices between each vector component and each point
+respectively) can be given as attributes.
+
+Defaults:
+
+- start index: 0
+- number of points: (array_length - start) / estride
+- component stride: 1
+- element stride: 2
+
+```ts
+["packedPoints", { cstride: 1, estride: 4 },
+    [x1, y1, 0, 0, x2, y2, 0, 0, ...]]
+
+["packedPoints", { offset: 8, num: 3, cstride: 4, estride: 1 },
+    [0, 0, 0, 0, 0, 0, 0, 0, x1, x2, x3, 0, y1, y2, y3, 0...]]
+```
 
 ### Text
 

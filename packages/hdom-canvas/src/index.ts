@@ -8,6 +8,7 @@ export * from "./draw/color";
 export * from "./draw/end-shape";
 export * from "./draw/image";
 export * from "./draw/line";
+export * from "./draw/packed-points";
 export * from "./draw/path";
 export * from "./draw/points";
 export * from "./draw/polygon";
