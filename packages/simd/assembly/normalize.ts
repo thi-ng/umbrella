@@ -1,4 +1,4 @@
-import { hadd2_f32, hadd4_f32 } from "./hadd";
+import { __magsq2, __magsq4 } from "./inline/magsq";
 
 export function normalize2_f32_aos(
     out: usize,
@@ -10,7 +10,7 @@ export function normalize2_f32_aos(
     num >>= 1;
     for (; num-- > 0; ) {
         const v = v128.load(a);
-        let vm = hadd2_f32(f32x4.mul(v, v));
+        let vm = __magsq2(v);
         const m1 = f32x4.extract_lane(vm, 0);
         const m2 = f32x4.extract_lane(vm, 2);
         vm = f32x4.replace_lane(
@@ -43,7 +43,7 @@ export function normalize4_f32_aos(
     const res = out;
     for (; num-- > 0; ) {
         const v = v128.load(a);
-        const mag = hadd4_f32(f32x4.mul(v, v));
+        const mag = __magsq4(v);
         v128.store(
             out,
             mag > f32.EPSILON

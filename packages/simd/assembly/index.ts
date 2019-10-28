@@ -10,6 +10,8 @@ export * from "./clamp";
 export * from "./dot";
 export * from "./madd";
 export * from "./maddn";
+export * from "./mag";
+export * from "./magsq";
 export * from "./max";
 export * from "./min";
 export * from "./mix";

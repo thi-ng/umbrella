@@ -48,6 +48,10 @@ for sources:
 - `invsqrt4_f32` (!)
 - `madd4_f32`
 - `maddn4_f32`
+- `mag2_f32_aos`
+- `mag4_f32_aos`
+- `magsq2_f32_aos`
+- `magsq4_f32_aos`
 - `max4_f32`
 - `min4_f32`
 - `mix4_f32`
