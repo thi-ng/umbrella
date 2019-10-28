@@ -7,6 +7,7 @@ import {
     Type,
     TypedArray,
     typedArray,
+    TypedArrayTypeMap,
     UIntArray
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
@@ -73,7 +74,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
     }
 
     packedValues() {
-        return this.vals.subarray(0, this.n * this.stride);
+        return <V>this.vals.subarray(0, this.n * this.stride);
     }
 
     add(key: number, val?: ArrayLike<number>) {
@@ -179,3 +180,20 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
     // @ts-ignore: arguments
     notify(event: Event) {}
 }
+
+const uintType = (num: number) =>
+    num <= 0x100 ? Type.U8 : num <= 0x10000 ? Type.U16 : Type.U32;
+
+export const defComponent = <T extends Type = Type.F32>(
+    id: string,
+    cap: number,
+    opts: Partial<ComponentOpts>
+) => {
+    const utype = uintType(cap);
+    return new Component<TypedArrayTypeMap[T]>(
+        id,
+        typedArray(utype, cap),
+        typedArray(utype, cap),
+        opts
+    );
+};
