@@ -117,10 +117,19 @@ export interface SIMD {
     min4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
     // prettier-ignore
+    mix4_f32(out: number, a: number, b: number, t: number, num: number, so: number, sa: number, sb: number, st: number): number;
+
+    // prettier-ignore
+    mixn4_f32(out: number, a: number, b: number, t: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
     mul4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
     // prettier-ignore
     muln4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    mul_m22v2_aos(out: number, mat: number, vec: number, num: number): number;
 
     // prettier-ignore
     mul_m23v2_aos(out: number, mat: number, vec: number, num: number): number;

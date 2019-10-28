@@ -18,6 +18,7 @@ This project is part of the
     - [Outward spiral](#outward-spiral)
     - [Z-curve](#z-curve)
     - [Zigzag columns](#zigzag-columns)
+    - [Zigzag diagonal](#zigzag-diagonal)
     - [Zigzag rows](#zigzag-rows)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -29,7 +30,7 @@ This project is part of the
 
 ## About
 
-Collection of 2D grid iterators, providing the following orderings:
+Collection of 2D grid iterators, providing the 10 following orderings:
 
 ### Diagonal
 
@@ -49,17 +50,24 @@ Collection of 2D grid iterators, providing the following orderings:
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
+Supports custom strides... example uses `step = 4`
+
 ### Interleave rows
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleaverows2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
+Supports custom strides... example uses `step = 4`
+
 ### Random
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/random2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/random.ts)
+
+Supports custom PRNG implementations via `IRandom` interface defined in
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 
 ### Outward spiral
 
@@ -77,13 +85,19 @@ Collection of 2D grid iterators, providing the following orderings:
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagcolumns2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/columns.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-columns.ts)
+
+### Zigzag diagonal
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagdiagonal2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-diagonal.ts)
 
 ### Zigzag rows
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagrows2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/rows.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-rows.ts)
 
 Some functions have been ported from [Christopher
 Kulla](https://fpsunflower.github.io/ckulla/)'s Java-based [Sunflow
