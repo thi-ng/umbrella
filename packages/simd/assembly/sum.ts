@@ -1,4 +1,4 @@
-import { hadd4_f32 } from "./hadd";
+import { __hadd4_f32 } from "./inline/hadd";
 
 export function sum4_f32(a: usize, num: usize, sa: usize): f32 {
     sa <<= 2;
@@ -7,5 +7,5 @@ export function sum4_f32(a: usize, num: usize, sa: usize): f32 {
         acc = f32x4.add(acc, v128.load(a));
         a += sa;
     }
-    return hadd4_f32(acc);
+    return __hadd4_f32(acc);
 }

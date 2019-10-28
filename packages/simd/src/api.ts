@@ -110,6 +110,16 @@ export interface SIMD {
     // prettier-ignore
     maddn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sc: number): number;
 
+    mag2_f32_aos(out: number, a: number, num: number): number;
+
+    magsq2_f32_aos(out: number, a: number, num: number): number;
+
+    // prettier-ignore
+    mag4_f32_aos( out: number, a: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    magsq4_f32_aos( out: number, a: number, num: number, so: number, sa: number): number;
+
     // prettier-ignore
     max4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 

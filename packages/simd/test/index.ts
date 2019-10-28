@@ -170,6 +170,29 @@ simd.msubn4_f32(1024, 0, 11, 32, 2, 4, 4, 4);
 // prettier-ignore
 assertEqual(res_f32(1024, 8), [-89, -178, -267, -356, -445, -534, -623, -712]);
 
+// magsq2
+// magsq4
+simd.f32.set([1, 2, 10, 20, -100, 200, 100, -200]);
+simd.magsq2_f32_aos(1024, 0, 4);
+assertEqualDelta(res_f32(1024, 4), [
+    1 * 1 + 2 * 2,
+    10 * 10 + 20 * 20,
+    100 * 100 + 200 * 200,
+    100 * 100 + 200 * 200
+]);
+simd.mag2_f32_aos(1024, 0, 4);
+assertEqualDelta(res_f32(1024, 4), [
+    Math.sqrt(5),
+    Math.sqrt(500),
+    Math.sqrt(50000),
+    Math.sqrt(50000)
+]);
+
+simd.magsq4_f32_aos(1024, 0, 2, 1, 4);
+assertEqualDelta(res_f32(1024, 2), [505, 100000]);
+simd.mag4_f32_aos(1024, 0, 2, 1, 4);
+assertEqualDelta(res_f32(1024, 2), [Math.sqrt(505), Math.sqrt(100000)]);
+
 // mix4_f32
 // mixn4_f32
 // prettier-ignore
