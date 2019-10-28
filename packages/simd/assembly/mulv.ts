@@ -1,3 +1,30 @@
+export function mul_m22v2_aos(
+    out: usize,
+    mat: usize,
+    vec: usize,
+    num: usize
+): usize {
+    const res = out;
+    num >>= 1;
+    const m0 = v128.load(mat);
+    const m1 = v128.shuffle<f32>(m0, m0, 0, 1, 0, 1);
+    const m2 = v128.shuffle<f32>(m0, m0, 2, 3, 2, 3);
+    for (; num-- > 0; ) {
+        // v1xv1xv2xv2x * m.0101 + v1yv1yv2yv2y * m.2323
+        const v = v128.load(vec);
+        v128.store(
+            out,
+            f32x4.add(
+                f32x4.mul(v128.shuffle<f32>(v, v, 0, 0, 2, 2), m1),
+                f32x4.mul(v128.shuffle<f32>(v, v, 1, 1, 3, 3), m2)
+            )
+        );
+        out += 16;
+        vec += 16;
+    }
+    return res;
+}
+
 export function mul_m23v2_aos(
     out: usize,
     mat: usize,
