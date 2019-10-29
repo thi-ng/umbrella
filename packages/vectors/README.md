@@ -23,7 +23,7 @@ This project is part of the
     - [Component swizzling](#component-swizzling)
     - [Vector creation](#vector-creation)
     - [Basic vector math](#basic-vector-math)
-    - [Multiply-add](#multiply-add)
+    - [Combined operations](#combined-operations)
     - [Constraints](#constraints)
     - [Cross product](#cross-product)
     - [Dot product](#dot-product)
@@ -52,7 +52,7 @@ This project is part of the
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.
 
-This package provides **600+ largely code generated functions** and
+This package provides **~720 largely code generated functions** and
 supporting types to perform vector operations on fixed and
 arbitrary-length vectors, both packed and strided (i.e. where individual
 vector components are not successive array elements, for example in SOA
@@ -66,7 +66,7 @@ ops for signed & unsigned integer vectors.
 
 -   Small & fast: The vast majority of functions are code generated with
     fixed-sized versions not using any loops. Minified + gzipped, the
-    entire package is ~9.5KB (though you'll hardly ever use all functions).
+    entire package is ~10.1KB (though you'll hardly ever use all functions).
 -   Unified API: Any `ArrayLike` type can be used as vector containers
     (e.g. JS arrays, typed arrays, custom impls). Most functions are
     implemented as multi-methods, dispatching to any potentially optimized
@@ -138,7 +138,8 @@ import * as v from "@thi.ng/vectors";
 v.add([], [1, 2, 3, 4], [10, 20, 30, 40]);
 // [11, 22, 33, 44]
 
-// mutable addition (if first arg is null)
+// mutable addition
+// (if first arg (output) is null writes result to 2nd arg)
 a = [1, 2, 3];
 v.add(null, a, a);
 // [2, 4, 6]
@@ -154,6 +155,12 @@ v.maddN([], [10, 20], 0.5, [1, 2]);
 // scalar addition w/ arbitrary length & strided vector
 v.addN([], gvec([0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 3, 1, 4), 10);
 // [11, 12, 13]
+
+// or operate on raw arrays directly...
+// here the last 4 args define:
+// out index, src index, out stride, src stride
+v.addSN3(null, [0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 10, 1, 1, 4, 4)
+// [0, 11, 0, 0, 0, 12, 0, 0, 0, 13, 0, 0, 0]
 
 v.dist([1, 2], [100, 200]);
 // 221.37072977247917
@@ -181,8 +188,9 @@ v.hash([1, 2, 3])
 
 ### Breaking changes in v3.0.0
 
-- to avoid confusion, the arg order of `madd` and `maddN` functions has
-  been updated to be compatible with the OpenCL `mad` function
+- to avoid confusion, the arg order of `madd` and `maddN` functions have
+  been updated to be compatible with the OpenCL `mad` function and to
+  generally follow the expanded name, i.e. multiply-add:
   - `madd([], a, b, c)`: before `a + b * c`, now: `a * b + c`
   - `maddN([], a, b, n)` => `maddN([], a, n, b)` (i.e. `a * n + b`)
 - rename `perpendicularLeft2` => `perpendicularCCW`
@@ -194,44 +202,27 @@ v.hash([1, 2, 3])
 Wherever possible, each operation comes in different variations. All
 fixed size versions use optimized, loop-free implementations.
 
-| Suffix          | Description                            | Example                                           |
-|-----------------|----------------------------------------|---------------------------------------------------|
-| none            | arbitrary length vector arg(s)         | `add([], [1,2], [10,20])`                         |
-|                 |                                        | => `[11,22]`                                      |
-| 2               | 2d vector arg(s)                       | `add2([], [1,2], [10,20])`                        |
-|                 |                                        | => `[11,22]`                                      |
-| 3               | 3d vector arg(s)                       | `add3([], [1,2,3], [10,20,30])`                   |
-|                 |                                        | => `[11,22,33]`                                   |
-| 4               | 4d vector arg(s)                       | `add4([], [1,2,3,4], [10,20,30,40])`              |
-|                 |                                        | => `[11,22,33,44]`                                |
-| N2              | 2d vector & scalar                     | `addN2([], [1,2], 10)`                            |
-|                 |                                        | => `[11,12]`                                      |
-| N3              | 3d vector & scalar                     | `addN3([], [1,2,3], 10)`                          |
-|                 |                                        | => `[11,12,13]`                                   |
-| N4              | 4d vector & scalar                     | `addN4([], [1,2,3,4], 10)`                        |
-|                 |                                        | => `[11,12,13,14]`                                |
-| I               | arbitrary len, signed int vec          | `addI([], [-1,2], [10,-20])`                      |
-|                 |                                        | => `[9,-18]`                                      |
-| U               | arbitrary len, unsigned int vec        | `addU([], [1,2], [10,20])`                        |
-|                 |                                        | => `[11,22]`                                      |
-| I2 / I3 / I4    | fixed size signed int vec              | `bitNotI3([], [10,-20,30])`                       |
-|                 |                                        | => `[-11,19,-31]`                                 |
-| U2 / U3 / U4    | fixed size signed int vec              | `bitNotU3([], [10,20,30])`                        |
-|                 |                                        | => `[4294967285,4294967275,4294967265]`           |
-| NI / NU         | arbitrary len, signed int vec & scalar | `addNI([], [1,-2,3], 10)`                         |
-|                 |                                        | => `[11,8,13]`                                    |
-| NI2 / NI3 / NI4 | fixed size signed int vec & scalar     | `addNI3([], [1,-2,3], 10)`                        |
-|                 |                                        | => `[11,8,13]`                                    |
-| NU2 / NU3 / NU4 | fixed size unsigned int vec & scalar   | `addNU3([], [1,2,3], 10)`                         |
-|                 |                                        | => `[11,12,13]`                                   |
-| S2 / S3 / S4    | fixed size strided vec into unstrided  | `addS2([], [0,1,0,2], [10,0,20,0], 0,1,0, 1,2,2)` |
-|                 |                                        | => `[11,22]`                                      |
-| SN2 / SN3 / SN4 | fixed size strided vec & scalar        | `setSN2([0,0,0,0], 10, 1, 2)`                     |
-|                 |                                        | => `[0,10,0,10]`                                  |
-| C               | arbitrary len vec, component wise args | `setC([], 1,2,3,4)`                               |
-|                 |                                        | => `[1,2,3,4]`                                    |
-| C2 / C3 / C4    | fixed size vec, component wise args    | `setC4([], 1,2,3,4)`                              |
-|                 |                                        | => `[1,2,3,4]`                                    |
+| Suffix          | Description                            |
+|-----------------|----------------------------------------|
+| none            | arbitrary length vector arg(s)         |
+| 2               | 2d vector arg(s)                       |
+| 3               | 3d vector arg(s)                       |
+| 4               | 4d vector arg(s)                       |
+| N2              | 2d vector(s) & scalar                  |
+| N3              | 3d vector(s) & scalar                  |
+| N4              | 4d vector(s) & scalar                  |
+| I               | arbitrary len, signed int vec          |
+| U               | arbitrary len, unsigned int vec        |
+| I2 / I3 / I4    | fixed size signed int vec              |
+| U2 / U3 / U4    | fixed size signed int vec              |
+| NI / NU         | arbitrary len, signed int vec & scalar |
+| NI2 / NI3 / NI4 | fixed size signed int vec & scalar     |
+| NU2 / NU3 / NU4 | fixed size unsigned int vec & scalar   |
+| S2 / S3 / S4    | fixed size strided vec                 |
+| SN2 / SN3 / SN4 | fixed size strided vec & scalar        |
+| C               | arbitrary len vec, component wise args |
+| C2 / C3 / C4    | fixed size vec, component wise args    |
+| SC2 / SC3 / SC4 | fixed size strided vec, component args |
 
 ### Constants
 
@@ -250,6 +241,7 @@ fixed size versions use optimized, loop-free implementations.
 -   `setC` / `setC2` / `setC3` / `setC4` / `setC6`
 -   `setN` / `setN2` / `setN3` / `setN4`
 -   `setS` / `setS2` / `setS3` / `setS4`
+-   `setSC2` / `setSC3` / `setSC4`
 -   `setSN2` / `setSN3` / `setSN4`
 -   `copy`
 -   `empty`
@@ -289,150 +281,168 @@ Vanilla vector (array) factories:
 
 Component wise op with 2 input vectors:
 
--   `add` / `add2` / `add3` / `add4`
--   `div` / `div2` / `div3` / `div4`
--   `mul` / `mul2` / `mul3` / `mul4`
--   `sub` / `sub2` / `sub3` / `sub4`
--   `fmod` / `fmod2` / `fmod3` / `fmod4` (GLSL behavior)
--   `mod` / `mod2` / `mod3` / `mod4` (JS modulo)
--   `pow` / `pow2` / `pow3` / `pow4`
+| Function | Generic | Fixed | Strided | Int          | Comments        |
+|----------|---------|-------|---------|--------------|-----------------|
+| `add`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `div`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `mul`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `sub`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `fmod`   | ✓       | 2-4   |         |              | (GLSL behavior) |
+| `mod`    | ✓       | 2-4   |         |              | (JS behavior)   |
+| `pow`    | ✓       | 2-4   |         |              |                 |
 
-#### Integer vector
+```ts
+// generic
+add([], [1, 2, 3, 4, 5], [10, 20, 30, 40, 50]);
+// [11, 22, 33, 44, 55]
 
-- `addI` / `addI2` / `addI3` / `addI4`
-- `addU` / `addU2` / `addU3` / `addU4`
-- `divI` / `divI2` / `divI3` / `divI4`
-- `divU` / `divU2` / `divU3` / `divU4`
-- `mulI` / `mulI2` / `mulI3` / `mulI4`
-- `mulU` / `mulU2` / `mulU3` / `mulU4`
-- `subI` / `subI2` / `subI3` / `subI4`
-- `subU` / `subU2` / `subU3` / `subU4`
+// fixed size & packed
+add2([], [1, 2], [10, 20])
+// [11, 22]
+
+// unsigned int
+addU2([], [1, -2], [-10, 20])
+// [4294967287, 18]
+
+// strided
+addS2([], [1,0,2,0], [0,10,0,0,0,20], 0, 0, 1, 1, 2, 4)
+// [11, 22]
+```
 
 #### Vector / scalar
 
 Component wise op with one input vector and single scalar:
 
--   `addN` / `addN2` / `addN3` / `addN4`
--   `divN` / `divN2` / `divN3` / `divN4`
--   `mulN` / `mulN2` / `mulN3` / `mulN4`
--   `subN` / `subN2` / `subN3` / `subN4`
--   `neg` - same as `mulN(out, v, -1)`
--   `fmodN` / `fmodN2` / `fmodN3` / `fmodN4` (GLSL behavior)
--   `modN` / `modN2` / `modN3` / `modN4` (JS modulo)
--   `powN` / `powN2` / `powN3` / `powN4`
+| Function | Generic | Fixed | Strided | Int          | Comments                   |
+|----------|---------|-------|---------|--------------|----------------------------|
+| `addN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `divN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `mulN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `subN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `neg`    | ✓       |       |         |              | same as `mulN(out, v, -1)` |
+| `fmodN`  | ✓       | 2-4   |         |              | (GLSL behavior)            |
+| `modN`   | ✓       | 2-4   |         |              | (JS behavior)              |
+| `powN`   | ✓       | 2-4   |         |              |                            |
 
-#### Integer vector / scalar
+### Combined operations
 
-- `addNI` / `addNI2` / `addNI3` / `addNI4`
-- `addNU` / `addNU2` / `addNU3` / `addNU4`
-- `divNI` / `divNI2` / `divNI3` / `divNI4`
-- `divNU` / `divNU2` / `divNU3` / `divNU4`
-- `mulNI` / `mulNI2` / `mulNI3` / `mulNI4`
-- `mulNU` / `mulNU2` / `mulNU3` / `mulNU4`
-- `subNI` / `subNI2` / `subNI3` / `subNI4`
-- `subNU` / `subNU2` / `subNU3` / `subNU4`
-
-#### Strided vectors
-
-Functions for memory mapped, strided vectors (without requiring wrappers):
-
--   `addS2` / `addS3` / `addS4`
--   `divS2` / `divS3` / `divS4`
--   `mulS2` / `mulS3` / `mulS4`
--   `subS2` / `subS3` / `subS4`
-
-### Multiply-add
-
--   `addm` / `addm2` / `addm3` / `addm4`
--   `addmN` / `addmN2` / `addmN3` / `addmN4`
--   `addW2` / `addW3` / `addW4` / `addW5`
--   `madd` / `madd2` / `madd3` / `madd4`
--   `maddN` / `maddN2` / `maddN3` / `maddN4`
--   `subm` / `subm2` / `subm3` / `subm4`
--   `submN` / `submN2` / `submN3` / `submN4`
+| Function | Generic | Fixed | Strided | Int | Comments    |
+|----------|---------|-------|---------|-----|-------------|
+| `addm`   | ✓       | 2-4   | S2-S4   |     | (a + b) * c |
+| `addmN`  | ✓       | 2-4   | S2-S4   |     | (a + b) * n |
+| `madd`   | ✓       | 2-4   | S2-S4   |     | a * n + c   |
+| `maddN`  | ✓       | 2-4   | S2-S4   |     | a * n + b   |
+| `msub`   | ✓       | 2-4   | S2-S4   |     | a * n - c   |
+| `msubN`  | ✓       | 2-4   | S2-S4   |     | a * n - b   |
+| `subm`   | ✓       | 2-4   | S2-S4   |     | (a - b) * c |
+| `submN`  | ✓       | 2-4   | S2-S4   |     | (a - b) * n |
 
 ### Constraints
 
--   `clamp`
--   `clamp2` / `clamp3` / `clamp4`
--   `clampN` / `clampN2` / `clampN3` / `clampN4`
--   `clamp01` / `clamp01_2` / `clamp01_3` / `clamp01_4`
--   `clamp11` / `clamp11_2` / `clamp11_3` / `clamp11_4`
--   `max` / `max2` / `max3` / `max4`
--   `min` / `min2` / `min3` / `min4`
+| Function  | Generic | Fixed   | Strided | Int | Comments             |
+|-----------|---------|---------|---------|-----|----------------------|
+| `clamp`   | ✓       | 2-4     |         |     | `min(max(a, b), c)`  |
+| `clampN`  | ✓       | 2-4     |         |     | `min(max(a, n), m)`  |
+| `clamp01` | ✓       | _2 - _4 |         |     | `min(max(a, 0), 1)`  |
+| `clamp11` | ✓       | _2 - _4 |         |     | `min(max(a, -1), 1)` |
+| `max`     | ✓       | 2-4     |         |     | `max(a, b)`          |
+| `min`     | ✓       | 2-4     |         |     | `min(a, b)`          |
 
 ### Cross product
 
--   `cross2`
--   `cross3`
--   `orthoNormal3`
--   `signedArea2`
+| Function      | Generic | Fixed | Strided | Int | Comments                  |
+|---------------|---------|-------|---------|-----|---------------------------|
+| `cross`       |         | 2, 3  | S2, S3  |     | 2D version returns scalar |
+| `orthoNormal` |         | 3     |         |     |                           |
+| `signedArea`  |         | 2     |         |     |                           |
 
 ### Dot product
 
--   `dot`
--   `dot2` / `dot3` / `dot4`
--   `dotC4` / `dotC6` / `dotC8`
--   `dotS2` / `dotS3` / `dotS4`
+| Function | Generic | Fixed | Strided | Cwise      | Comments |
+|----------|---------|-------|---------|------------|----------|
+| `dot`    | ✓       | 2-4   | S2-S4   | C4, C6, C8 |          |
 
 ### Interpolation
 
--   `fit` / `fit2` / `fit3` / `fit4`
--   `fit01` / `fit01_2` / `fit01_3` / `fit01_4`
--   `fit11` / `fit11_2` / `fit11_3` / `fit11_4`
--   `mix` / `mix2` / `mix3` / `mix4`
--   `mixN` / `mixN2` / `mixN3` / `mixN4`
--   `mixBilinear` / `mixBilinear2` / `mixBilinear3` / `mixBilinear4`
--   `mixCubic`
--   `mixQuadratic`
--   `smoothStep` / `smoothStep2` / `smoothStep3` / `smoothStep4`
--   `step` / `step2` / `step3` / `step4`
+| Function       | Generic | Fixed   | Strided | Int | Comments |
+|----------------|---------|---------|---------|-----|----------|
+| `fit`          | ✓       | 2-4     |         |     |          |
+| `fit01`        | ✓       | _2 - _4 |         |     |          |
+| `fit11`        | ✓       | _2 - _4 |         |     |          |
+| `mix`          | ✓       | 2-4     | S2 - S4 |     |          |
+| `mixN`         | ✓       | 2-4     | S2 - S4 |     |          |
+| `mixBilinear`  | ✓       | 2-4     |         |     |          |
+| `mixCubic`     | ✓       |         |         |     |          |
+| `mixQuadratic` | ✓       |         |         |     |          |
+| `smoothStep`   | ✓       | 2-4     |         |     |          |
+| `step`         | ✓       | 2-4     |         |     |          |
 
 ### Normalization / magnitude
 
--   `limit`
--   `mag`
--   `magSq` / `magSq2` / `magSq3` / `magSq4`
--   `normalize`
+| Function    | Generic | Fixed | Strided | Int | Comments             |
+|-------------|---------|-------|---------|-----|----------------------|
+| `limit`     | ✓       |       |         |     |                      |
+| `mag`       | ✓       |       | S2-S4   |     |                      |
+| `magSq`     | ✓       | 2-4   | S2-S4   |     |                      |
+| `normalize` | ✓       |       | S2-S4   |     | w/ opt target length |
 
 ### Distances
 
--   `dist`
--   `distSq` / `distSq2` / `distSq3` / `distSq4`
--   `distChebyshev` / `distChebyshev2` / `distChebyshev3` / `distChebyshev4`
--   `distManhattan` / `distManhattan2` / `distManhattan3` / `distManhattan4`
+| Function        | Generic | Fixed | Strided | Int | Comments |
+|-----------------|---------|-------|---------|-----|----------|
+| `dist`          | ✓       |       |         |     |          |
+| `distSq`        | ✓       | 2-4   |         |     |          |
+| `distChebyshev` | ✓       | 2-4   |         |     |          |
+| `distManhattan` | ✓       | 2-4   |         |     |          |
 
 ### Orientation
 
--   `angleBetween2` / `angleBetween3`
--   `angleRatio`
--   `atan_2` / `atan_22` / `atan_23` / `atan_24` (i.e. `Math.atan2(y, x)`)
--   `bisect2`
--   `degrees` / `degrees2` / `degrees3` / `degrees4`
--   `direction`
--   `faceForward`
--   `heading` / `headingXY` / `headingXZ` / `headingYZ`
--   `headingSegment` / `headingSegmentXY` / `headingSegmentXZ` / `headingSegmentYZ`
--   `normalLeft2` / `normalRight2`
--   `perpendicularLeft2` / `perpendicularRight2`
--   `project`
--   `radians` / `radians2` / `radians3` / `radians4`
--   `reflect`
--   `refract`
+| Function           | Generic | Fixed | Strided | Int | Comments                 |
+|--------------------|---------|-------|---------|-----|--------------------------|
+| `angleBetween`     |         | 2, 3  |         |     |                          |
+| `angleRatio`       | ✓       |       |         |     |                          |
+| `atan_2`           | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
+| `bisect`           |         | 2     |         |     |                          |
+| `degrees`          | ✓       | 2-4   |         |     |                          |
+| `direction`        | ✓       |       |         |     | normalize(b - a)         |
+| `faceForward`      | ✓       |       |         |     |                          |
+| `heading`          | ✓       |       |         |     | alias `headingXY`        |
+| `headingXY`        | ✓       |       |         |     |                          |
+| `headingXZ`        | ✓       |       |         |     |                          |
+| `headingYZ`        | ✓       |       |         |     |                          |
+| `headingSegment`   | ✓       |       |         |     | alias `headingSegmentXY` |
+| `headingSegmentXY` | ✓       |       |         |     |                          |
+| `headingSegmentXZ` | ✓       |       |         |     |                          |
+| `headingSegmentYZ` | ✓       |       |         |     |                          |
+| `normalCCW`        |         |       |         |     | 2D only                  |
+| `normalCW`         |         |       |         |     | 2D only                  |
+| `perpendicularCCW` |         |       |         |     | 2D only                  |
+| `perpendicularCW`  |         |       |         |     | 2D only                  |
+| `project`          | ✓       |       |         |     |                          |
+| `radians`          | ✓       | 2-4   |         |     |                          |
+| `reflect`          | ✓       |       |         |     |                          |
+| `refract`          | ✓       |       |         |     |                          |
 
 ### Rotations
 
 (Also see rotation matrices provided by
 [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices))
 
--   `rotateAroundAxis3`
--   `rotateAroundPoint2`
--   `rotateX` \ `rotateY` \ `rotateZ`
+| Function              | Generic | Fixed | Strided | Int | Comments            |
+|-----------------------|---------|-------|---------|-----|---------------------|
+| `rotationAroundAxis`  |         | 3     |         |     |                     |
+| `rotationAroundPoint` |         | 2     |         |     |                     |
+| `rotate`              |         |       |         |     | alias for `rotateZ` |
+| `rotateX`             |         |       |         |     |                     |
+| `rotateY`             |         |       |         |     |                     |
+| `rotateZ`             |         |       |         |     |                     |
 
 ### Polar / cartesian conversion
 
--   `cartesian` / `cartesian2` / `cartesian3`
--   `polar` / `polar2` / `polar3`
+| Function    | Generic | Fixed | Strided | Int | Comments   |
+|-------------|---------|-------|---------|-----|------------|
+| `cartesian` | ✓       | 2, 3  |         |     | 2D/3D only |
+| `polar`     | ✓       | 2, 3  |         |     | 2D/3D only |
 
 ### Randomness
 
@@ -440,43 +450,44 @@ All ops support custom PRNG impls based on the
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 `IRandom` interface and use `Math.random` by default:
 
--   `jitter`
--   `randMinMax` / `randMinMax2` / `randMinMax3` / `randMinMax4`
--   `randNorm`
--   `random` / `random2` / `random3` / `random4`
+| Function     | Generic | Fixed | Strided | Int | Comments |
+|--------------|---------|-------|---------|-----|----------|
+| `jitter`     | ✓       |       |         |     |          |
+| `randMinMax` | ✓       | 2-4   |         |     |          |
+| `randNorm`   | ✓       |       |         |     |          |
+| `random`     | ✓       | 2-4   |         |     |          |
 
 ### Unary vector math ops
 
--   `abs` / `abs2` / `abs3` / `abs4`
--   `acos` / `acos2` / `acos3` / `acos4`
--   `asin` / `asin2` / `asin3` / `asin4`
--   `atan` / `atan2` / `atan3` / `atan4` (i.e. `Math.atan(y / x)`)
--   `ceil` / `ceil2` / `ceil3` / `ceil4`
--   `cos` / `cos2` / `cos3` / `cos4`
--   `cosh` / `cosh2` / `cosh3` / `cosh4`
--   `exp` / `exp2` / `exp3` / `exp4`
--   `floor` / `floor2` / `floor3` / `floor4`
--   `fmod` / `fmod2` / `fmod3` / `fmod4` (C / GLSL modulo)
--   `fract` / `fract2` / `fract3` / `fract4`
--   `fromHomogeneous` / `fromHomogeneous3` / `fromHomogeneous4`
--   `invert` / `invert2` / `invert3` / `invert4`
--   `invSqrt` / `invSqrt2` / `invSqrt3` / `invSqrt4`
--   `isInf` / `isInf2` / `isInf3` / `isInf4`
--   `isNaN` / `isNaN2` / `isNaN3` / `isNaN4`
--   `log` / `log2` / `log3` / `log4`
--   `major` / `major2` / `major3` / `major4`
--   `minor` / `minor2` / `minor3` / `minor4`
--   `mod` / `mod2` / `mod3` / `mod4` (JS modulo)
--   `round` / `round2` / `round3` / `round4`
--   `sign` / `sign2` / `sign3` / `sign4`
--   `sin` / `sin2` / `sin3` / `sin4`
--   `sinh` / `sinh2` / `sinh3` / `sinh4`
--   `sqrt` / `sqrt2` / `sqrt3` / `sqrt4`
--   `sum` / `sum2` / `sum3` / `sum4`
--   `tan` / `tan2` / `tan3` / `tan4`
--   `tanh` / `tanh2` / `tanh3` / `tanh4`
--   `trunc` / `trunc2` / `trunc3` / `trunc4`
--   `wrap` / `wrap2` / `wrap3` / `wrap4`
+| Function          | Generic | Fixed | Strided | Int | Comments           |
+|-------------------|---------|-------|---------|-----|--------------------|
+| `abs`             | ✓       | 2-4   |         |     |                    |
+| `acos`            | ✓       | 2-4   |         |     |                    |
+| `asin`            | ✓       | 2-4   |         |     |                    |
+| `atan`            | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
+| `ceil`            | ✓       | 2-4   |         |     |                    |
+| `cos`             | ✓       | 2-4   |         |     |                    |
+| `cosh`            | ✓       | 2-4   |         |     |                    |
+| `exp`             | ✓       | 2-4   |         |     |                    |
+| `floor`           | ✓       | 2-4   |         |     |                    |
+| `fract`           | ✓       | 2-4   |         |     |                    |
+| `fromHomogeneous` | ✓       | 3, 4  |         |     | 3D/4D only         |
+| `invert`          | ✓       | 2-4   |         |     |                    |
+| `invSqrt`         | ✓       | 2-4   |         |     |                    |
+| `isInf`           | ✓       | 2-4   |         |     |                    |
+| `isNaN`           | ✓       | 2-4   |         |     |                    |
+| `log`             | ✓       | 2-4   |         |     |                    |
+| `major`           | ✓       | 2-4   |         |     |                    |
+| `minor`           | ✓       | 2-4   |         |     |                    |
+| `round`           | ✓       | 2-4   |         |     |                    |
+| `sign`            | ✓       | 2-4   |         |     |                    |
+| `sin`             | ✓       | 2-4   |         |     |                    |
+| `sinh`            | ✓       | 2-4   |         |     |                    |
+| `sqrt`            | ✓       | 2-4   |         |     |                    |
+| `sum`             | ✓       | 2-4   |         |     |                    |
+| `tan`             | ✓       | 2-4   |         |     |                    |
+| `trunc`           | ✓       | 2-4   |         |     |                    |
+| `wrap`            | ✓       | 2-4   |         |     |                    |
 
 ### Vector array batch processing
 
@@ -496,49 +507,45 @@ Functions to transform flat / strided buffers w/ vector operations:
 Arguments are assumed to be signed / unsigned ints. Results will be
 forced accordingly.
 
--   `bitAndI` / `bitAndI2` / `bitAndI3` / `bitAndI4`
--   `bitAndU` / `bitAndU2` / `bitAndU3` / `bitAndU4`
--   `bitAndNI` / `bitAndNI2` / `bitAndNI3` / `bitAndNI4`
--   `bitAndNU` / `bitAndNU2` / `bitAndNU3` / `bitAndNU4`
--   `bitNotI` / `bitNotI2` / `bitNotI3` / `bitNotI4` (unary)
--   `bitNotU` / `bitNotU2` / `bitNotU3` / `bitNotU4` (unary)
--   `bitOrI` / `bitOrI2` / `bitOrI3` / `bitOrI4`
--   `bitOrU` / `bitOrU2` / `bitOrU3` / `bitOrU4`
--   `bitOrNI` / `bitOrNI2` / `bitOrNI3` / `bitOrNI4`
--   `bitOrNU` / `bitOrNU2` / `bitOrNU3` / `bitOrNU4`
--   `bitXorI` / `bitXorI2` / `bitXorI3` / `bitXorI4`
--   `bitXorU` / `bitXorU2` / `bitXorU3` / `bitXorU4`
--   `bitXorNI` / `bitXorNI2` / `bitXorNI3` / `bitXorNI4`
--   `bitXorNU` / `bitXorNU2` / `bitXorNU3` / `bitXorNU4`
--   `lshiftI` / `lshiftI4` /`lshiftI4` / `lshiftI4`
--   `lshiftU` / `lshiftU4` /`lshiftU4` / `lshiftU4`
--   `rshiftI` / `rshiftI2` /`rshiftI3` / `rshiftI4`
--   `rshiftU` / `rshiftU2` /`rshiftU3` / `rshiftU4`
--   `lshiftNI` / `lshiftNI4` /`lshiftNI4` / `lshiftNI4`
--   `lshiftNU` / `lshiftNU4` /`lshiftNU4` / `lshiftNU4`
--   `rshiftNI` / `rshiftNI2` /`rshiftNI3` / `rshiftNI4`
--   `rshiftNU` / `rshiftNU2` /`rshiftNU3` / `rshiftNU4`
+| Function  | Generic | Fixed | Strided | Int          | Comments |
+|-----------|---------|-------|---------|--------------|----------|
+| `bitAnd`  | ✓       |       |         | I2-I4, U2-U4 |          |
+| `bitAndN` | ✓       |       |         | I2-I4, U2-U4 |          |
+| `bitNot`  | ✓       |       |         | I2-I4, U2-U4 |          |
+| `bitOr`   | ✓       |       |         | I2-I4, U2-U4 |          |
+| `bitOrN`  | ✓       |       |         | I2-I4, U2-U4 |          |
+| `bitXor`  | ✓       |       |         | I2-I4, U2-U4 |          |
+| `bitXorN` | ✓       |       |         | I2-I4, U2-U4 |          |
+| `lshift`  | ✓       |       |         | I2-I4, U2-U4 |          |
+| `rshift`  | ✓       |       |         | I2-I4, U2-U4 |          |
+| `lshiftN` | ✓       |       |         | I2-I4, U2-U4 |          |
+| `rshiftN` | ✓       |       |         | I2-I4, U2-U4 |          |
 
 ### Boolean vector logic
 
-- `logicAnd` / `logicAnd2` / `logicAnd3` / `logicAnd4`
-- `logicAndN` / `logicAndN2` / `logicAndN3` / `logicAndN4` (3rd arg is boolean)
-- `logicOr` / `logicOr2` / `logicOr3` / `logicOr4`
-- `logicOrN` / `logicOrN2` / `logicOrN3` / `logicOrN4`  (3rd arg is boolean)
-- `logicNot` / `logicNot2` / `logicNot3` / `logicNot4`
-- `every` / `every2` / `every3` / `every4`
-- `some` / `some2` / `some3` / `some4`
+| Function    | Generic | Fixed | Strided | Int | Comments |
+|-------------|---------|-------|---------|-----|----------|
+| `logicAnd`  | ✓       | 2-4   |         |     |          |
+| `logicAndN` | ✓       | 2-4   |         |     |          |
+| `logicOr`   | ✓       | 2-4   |         |     |          |
+| `logicOrN`  | ✓       | 2-4   |         |     |          |
+| `logicNot`  | ✓       | 2-4   |         |     |          |
+| `every`     | ✓       | 2-4   |         |     |          |
+| `some`      | ✓       | 2-4   |         |     |          |
 
 ### Componentwise comparisons
 
 All resulting in boolean vectors:
 
-- `lt` / `lt2` / `lt3`/ `lt4`
-- `lte` / `lte2` / `lte3`/ `lte4`
-- `gt` / `gt2` / `gt3`/ `gt4`
-- `gte` / `gte2` / `gte3`/ `gte4`
-- `eq` / `eq2` / `eq3`/ `eq4`
-- `neq` / `neq2` / `neq3`/ `neq4`
+| Function | Generic | Fixed | Strided | Int | Comments |
+|----------|---------|-------|---------|-----|----------|
+| `eq`     | ✓       | 2-4   |         |     |          |
+| `lt`     | ✓       | 2-4   |         |     |          |
+| `lte`    | ✓       | 2-4   |         |     |          |
+| `gt`     | ✓       | 2-4   |         |     |          |
+| `gte`    | ✓       | 2-4   |         |     |          |
+| `neq`    | ✓       | 2-4   |         |     |          |
+
 
 ### Hashing
 

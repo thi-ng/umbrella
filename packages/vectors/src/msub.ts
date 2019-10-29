@@ -13,7 +13,7 @@ import { MATH2 } from "./internal/templates";
  * @param b
  * @param c
  */
-export const [madd, madd2, madd3, madd4] = defOp<MultiVecOpVVV, VecOpVVV>(
-    MATH2("*", "+"),
+export const [msub, msub2, msub3, msub4] = defOp<MultiVecOpVVV, VecOpVVV>(
+    MATH2("*", "-"),
     ARGS_VVV
 );
