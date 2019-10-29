@@ -133,6 +133,7 @@ export * from "./refract";
 export * from "./rotate-around-axis";
 export * from "./rotate-around-point";
 export * from "./rotate";
+export * from "./rotates";
 export * from "./round";
 export * from "./rshift";
 export * from "./set";
