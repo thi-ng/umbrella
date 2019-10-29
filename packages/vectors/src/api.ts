@@ -206,6 +206,23 @@ export type VecOpSVO<T> = (
     sa?: number
 ) => Vec;
 
+export type VecOpSOO<A, B> = (
+    a: Vec | null,
+    opt1?: A,
+    opt2?: B,
+    ia?: number,
+    sa?: number
+) => Vec;
+
+export type VecOpSOOO<A, B, C> = (
+    a: Vec | null,
+    opt1?: A,
+    opt2?: B,
+    opt3?: C,
+    ia?: number,
+    sa?: number
+) => Vec;
+
 export interface MultiVecOpV extends VecOpV, MultiVecOp<VecOpV> {}
 export interface MultiVecOpN extends VecOpN, MultiVecOp<VecOpN> {}
 export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> {}

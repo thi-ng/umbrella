@@ -127,6 +127,7 @@ export * from "./pown";
 export * from "./project";
 export * from "./radians";
 export * from "./random";
+export * from "./randoms";
 export * from "./reflect";
 export * from "./refract";
 export * from "./rotate-around-axis";
