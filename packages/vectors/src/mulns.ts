@@ -7,7 +7,7 @@ import {
 } from "./internal/codegen";
 import { MATH_N } from "./internal/templates";
 
-export const [mulSN2, mulSN3, mulSN4] = defOpS<VecOpSVN>(
+export const [mulNS2, mulNS3, mulNS4] = defOpS<VecOpSVN>(
     MATH_N("*"),
     `${ARGS_VN},${SARGS_V}`,
     ARGS_V

@@ -1,6 +1,6 @@
 import { Vec } from "./api";
 
-export const setSC2 = (
+export const setCS2 = (
     out: Vec | null,
     x: number,
     y: number,
@@ -8,7 +8,7 @@ export const setSC2 = (
     so = 1
 ) => (!out && (out = []), (out[io] = x), (out[io + so] = y), out);
 
-export const setSC3 = (
+export const setCS3 = (
     out: Vec | null,
     x: number,
     y: number,
@@ -23,7 +23,7 @@ export const setSC3 = (
     out
 );
 
-export const setSC4 = (
+export const setCS4 = (
     out: Vec | null,
     x: number,
     y: number,

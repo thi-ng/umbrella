@@ -1,7 +1,7 @@
 import { EPS } from "@thi.ng/math";
 import { VecOpSVO } from "./api";
 import { magS2, magS3, magS4 } from "./mags";
-import { mulSN2, mulSN3, mulSN4 } from "./mulsn";
+import { mulNS2, mulNS3, mulNS4 } from "./mulns";
 import { setS2, setS3, setS4 } from "./sets";
 
 /**
@@ -24,7 +24,7 @@ export const normalizeS2: VecOpSVO<number> = (
     !out && (out = v);
     const m = magS2(v);
     return m >= EPS
-        ? mulSN2(out, v, n / m, io, ia, so, sa)
+        ? mulNS2(out, v, n / m, io, ia, so, sa)
         : out !== v
         ? setS2(out, v, io, ia, so, sa)
         : out;
@@ -50,7 +50,7 @@ export const normalizeS3: VecOpSVO<number> = (
     !out && (out = v);
     const m = magS3(v);
     return m >= EPS
-        ? mulSN3(out, v, n / m, io, ia, so, sa)
+        ? mulNS3(out, v, n / m, io, ia, so, sa)
         : out !== v
         ? setS3(out, v, io, ia, so, sa)
         : out;
@@ -76,7 +76,7 @@ export const normalizeS4: VecOpSVO<number> = (
     !out && (out = v);
     const m = magS4(v);
     return m >= EPS
-        ? mulSN4(out, v, n / m, io, ia, so, sa)
+        ? mulNS4(out, v, n / m, io, ia, so, sa)
         : out !== v
         ? setS4(out, v, io, ia, so, sa)
         : out;

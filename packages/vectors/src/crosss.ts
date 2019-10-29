@@ -1,5 +1,5 @@
 import { ReadonlyVec, Vec } from "./api";
-import { setSC3 } from "./setsc";
+import { setCS3 } from "./setcs";
 
 export const crossS2 = (
     a: ReadonlyVec,
@@ -21,7 +21,7 @@ export const crossS3 = (
     sa = 1,
     sb = 1
 ) =>
-    setSC3(
+    setCS3(
         out || a,
         a[ia + sa] * b[ib + 2 * sb] - a[ia + 2 * sa] * b[ib + sb],
         a[ia + 2 * sa] * b[ib] - a[ia] * b[ib + 2 * sb],
