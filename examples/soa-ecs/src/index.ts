@@ -45,11 +45,13 @@ const ALPHA = 0.3;
 const COLOR = [1, 0.7, 0.1, 0.001];
 const COLOR2 = [0.1, 0.9, 1, 0.001];
 
-const pos = defComponent("pos", NUM, {
+const pos = defComponent(NUM, {
+    id: "pos",
     size: 2
 });
 
-const vel = defComponent("vel", NUM, {
+const vel = defComponent(NUM, {
+    id: "vel",
     size: 2,
     default: () => randNormS2([0, 0])
 });
