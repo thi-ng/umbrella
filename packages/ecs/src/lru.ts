@@ -1,19 +1,31 @@
 import { Fn0 } from "@thi.ng/api";
 import { ConsCell, DCons } from "@thi.ng/dcons";
-import { ICache, LRUEntry } from "./api";
+import { ICache } from "./api";
+
+type LRUEntry<T> = { k: number; v: T };
 
 export class LRU<T> implements ICache<T> {
     items: DCons<LRUEntry<T>>;
     index: Map<number, ConsCell<LRUEntry<T>>>;
     capacity: number;
 
-    constructor(cap = 16) {
+    constructor(cap: number) {
         this.items = new DCons();
         this.index = new Map();
         this.capacity = cap;
     }
 
-    add(key: number, val: T) {
+    keys() {
+        return this.index.keys();
+    }
+
+    release() {
+        this.items.release();
+        this.index.clear();
+        return true;
+    }
+
+    set(key: number, val: T) {
         const { items, index } = this;
         let node = index.get(key);
         if (node) {
@@ -38,7 +50,8 @@ export class LRU<T> implements ICache<T> {
     }
 
     getSet(key: number, notFound: Fn0<T>) {
-        return this.get(key) || this.add(key, notFound());
+        let val = this.get(key);
+        return val !== undefined ? val : this.set(key, notFound());
     }
 
     delete(key: number) {

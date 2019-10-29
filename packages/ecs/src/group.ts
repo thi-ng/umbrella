@@ -7,9 +7,16 @@ import {
     TypedArray
 } from "@thi.ng/api";
 import { intersection } from "@thi.ng/associative";
-import { ComponentInfo, ICache } from "./api";
+import {
+    ComponentInfo,
+    ComponentTuple,
+    GroupOpts,
+    ICache
+} from "./api";
 import { Component } from "./component";
-import { LRU } from "./lru";
+import { UnboundedCache } from "./unbounded";
+
+let NEXT_ID = 0;
 
 export class Group implements IID<string> {
     readonly id: string;
@@ -20,20 +27,24 @@ export class Group implements IID<string> {
     n: number;
 
     info: IObjectOf<ComponentInfo>;
-    cache: ICache<IObjectOf<TypedArray>>;
+    cache: ICache<ComponentTuple>;
 
     constructor(
         comps: Component<TypedArray>[],
-        owned: Component<TypedArray>[] = comps
+        owned: Component<TypedArray>[] = comps,
+        opts: Partial<GroupOpts> = {}
     ) {
         this.components = comps;
         this.ids = new Set();
         this.n = 0;
-        this.id = comps.map((c) => c.id).join("-");
+        this.id = opts.id || `group-${NEXT_ID++}`;
+        this.cache = opts.cache || new UnboundedCache();
+
         this.info = comps.reduce((acc: IObjectOf<ComponentInfo>, c) => {
             acc[c.id] = { buffer: c.vals, size: c.size, stride: c.stride };
             return acc;
         }, {});
+
         // update ownerships
         owned.forEach((c) => {
             assert(
@@ -43,10 +54,8 @@ export class Group implements IID<string> {
             c.owner = this;
         });
         this.owned = owned;
-        // FIXME size
-        this.cache = new LRU(this.ids.size);
         this.addExisting();
-        // call addID for each
+
         comps.forEach((comp) => {
             comp.addListener("add", this.onAddListener, this);
             comp.addListener("delete", this.onDeleteListener, this);
@@ -55,10 +64,10 @@ export class Group implements IID<string> {
 
     *values() {
         const comps = this.components;
-        const n = comps.length;
+        const numComps = comps.length;
         for (let i = this.n; --i >= 0; ) {
             const tuple: any = { id: comps[0].dense[i] };
-            for (let j = n; --j >= 0; ) {
+            for (let j = numComps; --j >= 0; ) {
                 const c = comps[j];
                 tuple[c.id] = c.getIndex(i);
             }
@@ -77,13 +86,13 @@ export class Group implements IID<string> {
         }
     }
 
-    forEach(fn: Fn3<IObjectOf<TypedArray>, number, number, void>) {
-        const comps = this.components;
+    forEach(fn: Fn3<ComponentTuple, number, number, void>) {
+        const { components: comps, cache } = this;
         const n = comps.length;
         let i = 0;
         for (let id of this.ids) {
-            const tuple = this.cache.getSet(id, () => {
-                const tuple: IObjectOf<TypedArray> = {};
+            const tuple = cache.getSet(id, () => {
+                const tuple: ComponentTuple = {};
                 for (let j = n; --j >= 0; ) {
                     const c = comps[j];
                     tuple[c.id] = c.getIndex(c.sparse[id])!;
@@ -100,6 +109,7 @@ export class Group implements IID<string> {
             comp.removeListener("add", this.onAddListener, this);
             comp.removeListener("delete", this.onDeleteListener, this);
         });
+        this.cache.release();
     }
 
     onAddListener(e: Event) {
@@ -137,6 +147,7 @@ export class Group implements IID<string> {
     protected deleteID(id: number, validate = true) {
         if (validate && !this.validID(id)) return;
         this.ids.delete(id);
+        this.cache.delete(id);
         const n = --this.n;
         for (let comp of this.owned) {
             // console.log(`moving id: ${id} in ${comp.id}...`);

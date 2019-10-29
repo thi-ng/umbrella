@@ -14,6 +14,8 @@ import { isFunction } from "@thi.ng/checks";
 import { zeroes } from "@thi.ng/vectors";
 import { ComponentDefaultValue, ComponentOpts, ICache } from "./api";
 
+let NEXT_ID = 0;
+
 @INotifyMixin
 export class Component<V extends TypedArray> implements IID<string>, INotify {
     readonly id: string;
@@ -32,12 +34,10 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
     cache?: ICache<V>;
 
     constructor(
-        id: string,
         sparse: UIntArray,
         dense: UIntArray,
         opts: Partial<ComponentOpts> = {}
     ) {
-        this.id = id;
         this.sparse = sparse;
         this.dense = dense;
         opts = {
@@ -46,6 +46,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
             byteOffset: 0,
             ...opts
         };
+        this.id = opts.id || `comp-${NEXT_ID++}`;
         this.size = opts.size!;
         this.stride = opts.stride || this.size;
         this.default = opts.default || zeroes(this.size);
@@ -123,7 +124,6 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         return i < this.n && this.dense[i] === key
             ? this.cache
                 ? this.cache.getSet(i, () => {
-                      //   console.log(`cache miss: ${i}`);
                       i *= this.stride;
                       return <V>this.vals.subarray(i, i + this.size);
                   })
@@ -135,7 +135,6 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         return i < this.n
             ? this.cache
                 ? this.cache.getSet(i, () => {
-                      //   console.log(`cache miss: ${i}`);
                       i *= this.stride;
                       return <V>this.vals.subarray(i, i + this.size);
                   })
@@ -185,13 +184,11 @@ const uintType = (num: number) =>
     num <= 0x100 ? Type.U8 : num <= 0x10000 ? Type.U16 : Type.U32;
 
 export const defComponent = <T extends Type = Type.F32>(
-    id: string,
     cap: number,
     opts: Partial<ComponentOpts>
 ) => {
     const utype = uintType(cap);
     return new Component<TypedArrayTypeMap[T]>(
-        id,
         typedArray(utype, cap),
         typedArray(utype, cap),
         opts
