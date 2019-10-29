@@ -22,15 +22,16 @@ import {
     mixNS2,
     mulNS2,
     normalizeS2,
-    randNorm,
     randNormS2,
-    rotateS2
+    rotateS2,
+    setVN4
 } from "@thi.ng/vectors";
 import {
     BLEND_ADD,
     compileModel,
     draw,
     GLMat4,
+    GLVec4,
     ModelSpec,
     shader,
     ShaderSpec
@@ -41,8 +42,8 @@ const W = 480;
 const W2 = W / 2;
 
 const ALPHA = 0.3;
-const COLOR = [1, 0.7, 0.1];
-const COLOR2 = [0.1, 0.9, 1];
+const COLOR = [1, 0.7, 0.1, 0.001];
+const COLOR2 = [0.1, 0.9, 1, 0.001];
 
 const pos = defComponent("pos", NUM, {
     size: 2
@@ -131,6 +132,7 @@ const pointShader: ShaderSpec = {
 
 const app = () => {
     let model: ModelSpec;
+    let targetDir = [0, 0];
     const canvas = canvasWebGL({
         init: (_, gl) => {
             model = compileModel(gl, {
@@ -143,26 +145,31 @@ const app = () => {
                 shader: shader(gl, pointShader),
                 uniforms: {
                     proj: <GLMat4>ortho([], -W2, W2, -W2, W2, 0, 1),
-                    color: [...COLOR, 0.001],
-                    color2: [...COLOR2, 0.001]
+                    color: COLOR,
+                    color2: COLOR2
                 },
                 num: NUM,
                 mode: gl.POINTS
             });
         },
         update: (el, gl, __, time) => {
-            if (!model) return;
+            if (!model) {
+                adaptDPI(el, W, W);
+                return;
+            }
             time *= 0.001;
-            mixN2(dir, dir, randNormS2([0, 0]), 0.1);
+            mixN2(dir, dir, randNormS2(targetDir), 0.1);
             moveBatch(group.info, group.n, time, Math.sin(time / 8) * 4e-7);
             model.attribs.position.buffer!.set(model.attribs.position.data!);
 
             const alpha = Math.pow(Math.min(time / 5, 1), 3) * ALPHA;
-            model.uniforms!.color = [...COLOR, alpha];
-            model.uniforms!.color2 = [...COLOR2, alpha];
+            if (alpha < 1) {
+                const col1 = <GLVec4>model.uniforms!.color;
+                const col2 = <GLVec4>model.uniforms!.color2;
+                setVN4(col1, col1, alpha);
+                setVN4(col2, col2, alpha);
+            }
 
-            adaptDPI(el, W, W);
-            gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
             gl.clearColor(0, 0, 0, 1);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             draw(model);
