@@ -432,10 +432,10 @@ Component wise op with one input vector and single scalar:
 |-----------------------|---------|-------|---------|-----|---------------------|
 | `rotationAroundAxis`  |         | 3     |         |     |                     |
 | `rotationAroundPoint` |         | 2     |         |     |                     |
-| `rotate`              |         |       |         |     | alias for `rotateZ` |
-| `rotateX`             |         |       |         |     |                     |
-| `rotateY`             |         |       |         |     |                     |
-| `rotateZ`             |         |       |         |     |                     |
+| `rotate`              |         |       | S2      |     | alias for `rotateZ` |
+| `rotateX`             |         |       | S3      |     |                     |
+| `rotateY`             |         |       | S3      |     |                     |
+| `rotateZ`             |         |       | S3      |     |                     |
 
 ### Polar / cartesian conversion
 
@@ -453,9 +453,9 @@ All ops support custom PRNG impls based on the
 | Function     | Generic | Fixed | Strided | Int | Comments |
 |--------------|---------|-------|---------|-----|----------|
 | `jitter`     | ✓       |       |         |     |          |
-| `randMinMax` | ✓       | 2-4   |         |     |          |
-| `randNorm`   | ✓       |       |         |     |          |
-| `random`     | ✓       | 2-4   |         |     |          |
+| `randMinMax` | ✓       | 2-4   | S2-S4   |     |          |
+| `randNorm`   | ✓       |       | S2-S4   |     |          |
+| `random`     | ✓       | 2-4   | S2-S4   |     |          |
 
 ### Unary vector math ops
 
