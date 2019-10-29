@@ -22,7 +22,7 @@ export const normalizeS2: VecOpSVO<number> = (
     sa = 1
 ) => {
     !out && (out = v);
-    const m = magS2(v);
+    const m = magS2(v, ia, sa);
     return m >= EPS
         ? mulNS2(out, v, n / m, io, ia, so, sa)
         : out !== v
@@ -48,7 +48,7 @@ export const normalizeS3: VecOpSVO<number> = (
     sa = 1
 ) => {
     !out && (out = v);
-    const m = magS3(v);
+    const m = magS3(v, ia, sa);
     return m >= EPS
         ? mulNS3(out, v, n / m, io, ia, so, sa)
         : out !== v
@@ -74,7 +74,7 @@ export const normalizeS4: VecOpSVO<number> = (
     sa = 1
 ) => {
     !out && (out = v);
-    const m = magS4(v);
+    const m = magS4(v, ia, sa);
     return m >= EPS
         ? mulNS4(out, v, n / m, io, ia, so, sa)
         : out !== v
