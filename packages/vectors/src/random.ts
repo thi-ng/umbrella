@@ -11,6 +11,7 @@ import { normalize } from "./normalize";
 /**
  * Sets `v` to random vector, with each component in interval `[n..m)`.
  * If no `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * Creates new vector if `v` is null.
  *
  * @param v
  * @param n default -1
@@ -27,7 +28,7 @@ export const [random, random2, random3, random4] = defHofOp<
     "a",
     "a",
     0,
-    ""
+    "!a && (a=[]);"
 );
 
 /**
@@ -38,10 +39,8 @@ export const [random, random2, random3, random4] = defHofOp<
  * @param n
  * @param rnd
  */
-export const randNorm = (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) => {
-    v = random(v, -1, 1, rnd);
-    return normalize(v, v, n);
-};
+export const randNorm = (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
+    normalize((v = random(v, -1, 1, rnd)), v, n);
 
 /**
  * Sets `out` to random vector with each component in the semi-open
