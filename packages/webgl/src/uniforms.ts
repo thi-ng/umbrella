@@ -43,17 +43,17 @@ const uniformS = (fn: SetterS) => (
     };
 };
 
-const uniformV = (fn: SetterV, sysDefault?: ReadonlyVec) => (
+const uniformV = (fn: SetterV, sysDefault: ReadonlyVec) => (
     gl: WebGLRenderingContext,
     loc: WebGLUniformLocation,
     defaultVal = sysDefault
 ) => {
     let prev: GLVec = [];
-    return (x?: any) => {
+    return (x?: ReadonlyVec) => {
         x = x === undefined ? defaultVal : x;
         if (!equivArrayLike(prev, x)) {
             (<any>gl)["uniform" + fn](loc, x);
-            prev = x;
+            prev = [...x];
         }
     };
 };
@@ -68,10 +68,12 @@ const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
         x = x === undefined ? defaultVal : x;
         if (!equivArrayLike(prev, x)) {
             (<any>gl)["uniformMatrix" + fn](loc, false, x);
-            prev = x;
+            prev = [...x];
         }
     };
 };
+
+const Z1 = [0];
 
 export const UNIFORM_SETTERS: IObjectOf<
     Fn3<
@@ -102,25 +104,25 @@ export const UNIFORM_SETTERS: IObjectOf<
     sampler3D: uniformS("i"),
     samplerCube: uniformS("i"),
     samplerCubeShadow: uniformS("i"),
-    "bool[]": uniformV("1iv"),
-    "float[]": uniformV("1fv"),
-    "int[]": uniformV("1iv"),
-    "uint[]": uniformV("1uiv"),
-    "bvec2[]": uniformV("2iv"),
-    "bvec3[]": uniformV("3iv"),
-    "bvec4[]": uniformV("4iv"),
-    "ivec2[]": uniformV("2iv"),
-    "ivec3[]": uniformV("3iv"),
-    "ivec4[]": uniformV("4iv"),
-    "vec2[]": uniformV("2fv"),
-    "vec3[]": uniformV("3fv"),
-    "vec4[]": uniformV("4fv"),
-    "mat2[]": uniformM("2fv"),
-    "mat3[]": uniformM("3fv"),
-    "mat4[]": uniformM("4fv"),
-    "sampler2D[]": uniformV("1iv"),
-    "sampler2DShadow[]": uniformV("1iv"),
-    "sampler3D[]": uniformV("1iv"),
-    "samplerCube[]": uniformV("1iv"),
-    "samplerCubeShadow[]": uniformV("1iv")
+    "bool[]": uniformV("1iv", Z1),
+    "float[]": uniformV("1fv", Z1),
+    "int[]": uniformV("1iv", Z1),
+    "uint[]": uniformV("1uiv", Z1),
+    "bvec2[]": uniformV("2iv", ZERO2),
+    "bvec3[]": uniformV("3iv", ZERO3),
+    "bvec4[]": uniformV("4iv", ZERO4),
+    "ivec2[]": uniformV("2iv", ZERO2),
+    "ivec3[]": uniformV("3iv", ZERO3),
+    "ivec4[]": uniformV("4iv", ZERO4),
+    "vec2[]": uniformV("2fv", ZERO2),
+    "vec3[]": uniformV("3fv", ZERO3),
+    "vec4[]": uniformV("4fv", ZERO4),
+    "mat2[]": uniformM("2fv", ZERO2),
+    "mat3[]": uniformM("3fv", ZERO3),
+    "mat4[]": uniformM("4fv", ZERO4),
+    "sampler2D[]": uniformV("1iv", Z1),
+    "sampler2DShadow[]": uniformV("1iv", Z1),
+    "sampler3D[]": uniformV("1iv", Z1),
+    "samplerCube[]": uniformV("1iv", Z1),
+    "samplerCubeShadow[]": uniformV("1iv", Z1)
 };
