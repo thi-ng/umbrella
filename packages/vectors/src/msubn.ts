@@ -10,8 +10,8 @@ import { MATH2A_N } from "./internal/templates";
  * @param n scalar
  * @param b vec
  */
-export const [maddN, maddN2, maddN3, maddN4] = defOp<MultiVecOpVNV, VecOpVNV>(
-    MATH2A_N("*", "+"),
+export const [msubN, msubN2, msubN3, msubN4] = defOp<MultiVecOpVNV, VecOpVNV>(
+    MATH2A_N("*", "-"),
     ARGS_VNV,
     ARGS_VV
 );
