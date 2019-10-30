@@ -91,6 +91,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
 
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/ecs) - Memory mapped Entity-Component System
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
 - [@thi.ng/simd](https://github.com/thi-ng/umbrella/tree/develop/packages/simd) - WebAssembly SIMD batch processing
 - [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/soa) - Memory mapped data structures & serialization
