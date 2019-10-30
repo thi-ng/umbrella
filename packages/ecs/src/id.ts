@@ -11,17 +11,16 @@ export class IDGen {
         this.nextID = next;
     }
 
-    // FIXME return undefined if fail, update ECS.defEntity()
     next() {
-        if (this.ids.length) {
-            return this.ids.pop()!;
-        }
-        assert(this.nextID < this.capacity, "max capacity reached");
-        return this.nextID++;
+        return this.ids.length
+            ? this.ids.pop()!
+            : this.nextID < this.capacity
+            ? this.nextID++
+            : undefined;
     }
 
     free(id: number) {
-        if (id < this.nextID) {
+        if (this.isValid(id)) {
             this.ids.push(id);
             return true;
         }

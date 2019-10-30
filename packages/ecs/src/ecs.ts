@@ -31,23 +31,27 @@ export class ECS {
             | IObjectOf<ReadonlyVec | undefined>
     ) {
         const id = this.idgen.next();
+        assert(
+            id !== undefined,
+            `max number of components reached (${this.idgen.capacity})`
+        );
         if (comps) {
             if (isArray(comps)) {
-                if (!comps.length) return id;
+                if (!comps.length) return id!;
                 for (let cid of comps) {
                     const comp = isString(cid) ? this.components.get(cid) : cid;
                     assert(!!comp, `unknown component ID: ${cid}`);
-                    comp!.add(id);
+                    comp!.add(id!);
                 }
             } else {
                 for (let cid in comps) {
                     const comp = this.components.get(cid);
                     assert(!!comp, `unknown component ID: ${cid}`);
-                    comp!.add(id, comps[cid]);
+                    comp!.add(id!, comps[cid]);
                 }
             }
         }
-        return id;
+        return id!;
     }
 
     defComponent<T extends Type = Type.F32>(opts: Partial<ComponentOpts>) {

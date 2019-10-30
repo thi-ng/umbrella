@@ -51,7 +51,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
             byteOffset: 0,
             ...opts
         };
-        this.id = opts.id || `comp-${NEXT_ID++}`;
+        this.id = opts.id || `comp${NEXT_ID++}`;
         this.size = opts.size!;
         this.stride = opts.stride || this.size;
         this.default = opts.default; // || zeroes(this.size);
@@ -83,30 +83,31 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         return <V>this.vals.subarray(0, this.n * this.stride);
     }
 
-    add(key: number, val?: ArrayLike<number>) {
+    // TODO add version support via IDGen
+    add(id: number, val?: ArrayLike<number>) {
         const { dense, sparse, n } = this;
         const max = dense.length;
-        const i = sparse[key];
-        if (key < max && n < max && !(i < n && dense[i] === key)) {
-            dense[n] = key;
-            sparse[key] = n;
+        const i = sparse[id];
+        if (id < max && n < max && !(i < n && dense[i] === id)) {
+            dense[n] = id;
+            sparse[id] = n;
             const def = this.default;
             const initVal = val || (isFunction(def) ? def() : def);
             initVal && this.vals.set(initVal, n * this.stride);
             this.n++;
-            this.notify({ id: EVENT_ADDED, target: this, value: key });
+            this.notify({ id: EVENT_ADDED, target: this, value: id });
         }
         return this;
     }
 
-    delete(key: number) {
+    delete(id: number) {
         let { dense, sparse, n } = this;
-        let i = sparse[key];
-        if (i < n && dense[i] === key) {
+        let i = sparse[id];
+        if (i < n && dense[i] === id) {
             // notify listeners prior to removal to allow restructure / swaps
-            this.notify({ id: EVENT_PRE_REMOVE, target: this, value: key });
+            this.notify({ id: EVENT_PRE_REMOVE, target: this, value: id });
             // get possibly updated slot
-            i = sparse[key];
+            i = sparse[id];
             const j = dense[--n];
             dense[i] = j;
             sparse[j] = i;
@@ -120,14 +121,14 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         return false;
     }
 
-    has(key: number): boolean {
-        const i = this.sparse[key];
-        return i < this.n && this.dense[i] === key;
+    has(id: number): boolean {
+        const i = this.sparse[id];
+        return i < this.n && this.dense[i] === id;
     }
 
-    get(key: number) {
-        let i = this.sparse[key];
-        return i < this.n && this.dense[i] === key
+    get(id: number) {
+        let i = this.sparse[id];
+        return i < this.n && this.dense[i] === id
             ? this.cache
                 ? this.cache.getSet(i, () => {
                       i *= this.stride;
@@ -151,13 +152,14 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
     /**
      * Swaps slots of `src` & `dest` indices. The given args are NOT
      * keys, but indices in the `dense` array. The corresponding sparse
-     * & value slots are swapped too.
+     * & value slots are swapped too. Returns true if swap happened
+     * (false, if `src` and `dest` are equal)
      *
      * @param src
      * @param dest
      */
     swapIndices(src: number, dest: number) {
-        if (src === dest) return;
+        if (src === dest) return false;
         const { dense, sparse, vals, size, stride } = this;
         const ss = dense[src];
         const sd = dense[dest];
@@ -170,6 +172,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         const tmp = vals.slice(src, src + size);
         vals.copyWithin(src, dest, dest + size);
         vals.set(tmp, dest);
+        return true;
     }
 
     // @ts-ignore: arguments

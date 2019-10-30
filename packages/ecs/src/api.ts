@@ -1,5 +1,6 @@
 import {
     Fn0,
+    IID,
     IObjectOf,
     IRelease,
     Type,
@@ -12,7 +13,7 @@ export const EVENT_CHANGED = "changed";
 
 export type ComponentDefaultValue = ArrayLike<number> | Fn0<ArrayLike<number>>;
 
-export type ComponentTuple = IObjectOf<TypedArray>;
+export type ComponentTuple = IObjectOf<TypedArray> & IID<number>;
 
 export interface ComponentOpts {
     id: string;

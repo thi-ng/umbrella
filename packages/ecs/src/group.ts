@@ -2,6 +2,7 @@ import {
     assert,
     Event,
     Fn3,
+    FnO2,
     IID,
     IObjectOf,
     TypedArray
@@ -39,7 +40,7 @@ export class Group implements IID<string> {
         this.components = comps;
         this.ids = new Set();
         this.n = 0;
-        this.id = opts.id || `group-${NEXT_ID++}`;
+        this.id = opts.id || `group${NEXT_ID++}`;
         this.cache = opts.cache || new UnboundedCache();
 
         this.info = comps.reduce((acc: IObjectOf<ComponentInfo>, c) => {
@@ -76,55 +77,63 @@ export class Group implements IID<string> {
         this.cache.release();
     }
 
-    has(key: number) {
-        return this.ids.has(key);
+    has(id: number) {
+        return this.ids.has(id);
     }
 
-    *values() {
-        const comps = this.components;
-        const numComps = comps.length;
-        for (let i = this.n; --i >= 0; ) {
-            const tuple: any = { id: comps[0].dense[i] };
-            for (let j = numComps; --j >= 0; ) {
+    values() {
+        return this.isFullyOwning()
+            ? this.ownedValues()
+            : this.nonOwnedValues();
+    }
+
+    getIndex(i: number) {
+        this.ensureFullyOwning();
+        return i < this.n
+            ? this.getEntityUnsafe(this.components[0].dense[i])
+            : undefined;
+    }
+
+    getEntity(id: number) {
+        return this.has(id) ? this.getEntityUnsafe(id) : undefined;
+    }
+
+    getEntityUnsafe(id: number) {
+        return this.cache.getSet(id, () => {
+            const tuple = <ComponentTuple>{ id: id };
+            const comps = this.components;
+            for (let j = comps.length; --j >= 0; ) {
                 const c = comps[j];
-                tuple[c.id] = c.getIndex(i);
+                tuple[c.id] = c.getIndex(c.sparse[id])!;
             }
-            yield tuple;
-        }
+            return tuple;
+        });
     }
 
-    run(
-        fn: (info: IObjectOf<ComponentInfo>, n: number, ...xs: any[]) => void,
-        ...xs: any[]
-    ) {
-        this.ensureFullyOwned();
+    run(fn: FnO2<IObjectOf<ComponentInfo>, number, void>, ...xs: any[]) {
+        this.ensureFullyOwning();
         fn(this.info, this.n, ...xs);
     }
 
     forEachRaw(fn: Fn3<IObjectOf<ComponentInfo>, number, number, void>) {
-        this.ensureFullyOwned();
+        this.ensureFullyOwning();
+        const info = this.info;
         const ref = this.components[0].dense;
         for (let i = 0, n = this.n; i < n; i++) {
-            fn(this.info, ref[i], i);
+            fn(info, ref[i], i);
         }
     }
 
-    forEach(fn: Fn3<ComponentTuple, number, number, void>) {
-        const { components: comps, cache } = this;
-        const n = comps.length;
+    forEach(fn: Fn3<IObjectOf<ComponentInfo>, ComponentTuple, number, void>) {
         let i = 0;
+        const info = this.info;
         for (let id of this.ids) {
-            const tuple = cache.getSet(id, () => {
-                const tuple: ComponentTuple = {};
-                for (let j = n; --j >= 0; ) {
-                    const c = comps[j];
-                    tuple[c.id] = c.getIndex(c.sparse[id])!;
-                }
-                return tuple;
-            });
-            fn(tuple, id, i);
-            i++;
+            fn(info, this.getEntityUnsafe(id), i++);
         }
+    }
+
+    isFullyOwning() {
+        return this.owned.length === this.components.length;
     }
 
     protected onAddListener(e: Event) {
@@ -155,7 +164,7 @@ export class Group implements IID<string> {
         const n = this.n++;
         for (let comp of this.owned) {
             // console.log(`moving id: ${id} in ${comp.id}...`);
-            comp.swapIndices(comp.sparse[id], n);
+            comp.swapIndices(comp.sparse[id], n) && this.invalidateCache(id);
         }
     }
 
@@ -166,7 +175,7 @@ export class Group implements IID<string> {
         const n = --this.n;
         for (let comp of this.owned) {
             // console.log(`moving id: ${id} in ${comp.id}...`);
-            comp.swapIndices(comp.sparse[id], n);
+            comp.swapIndices(comp.sparse[id], n) && this.invalidateCache(id);
         }
     }
 
@@ -177,9 +186,27 @@ export class Group implements IID<string> {
         return true;
     }
 
-    protected ensureFullyOwned() {
+    protected invalidateCache(id: number) {
+        this.cache && this.cache.delete(id);
+    }
+
+    protected *ownedValues() {
+        const comps = this.components;
+        const ref = comps[0].dense;
+        for (let i = this.n; --i >= 0; ) {
+            yield this.getEntityUnsafe(ref[i]);
+        }
+    }
+
+    protected *nonOwnedValues() {
+        for (let id of this.ids) {
+            yield this.getEntityUnsafe(id);
+        }
+    }
+
+    protected ensureFullyOwning() {
         assert(
-            this.owned.length === this.components.length,
+            this.isFullyOwning(),
             `group ${this.id} isn't fully owning its components`
         );
     }
