@@ -6,6 +6,10 @@ import {
     TypedArray
 } from "@thi.ng/api";
 
+export const EVENT_ADDED = "added";
+export const EVENT_PRE_REMOVE = "pre-remove";
+export const EVENT_CHANGED = "changed";
+
 export type ComponentDefaultValue = ArrayLike<number> | Fn0<ArrayLike<number>>;
 
 export type ComponentTuple = IObjectOf<TypedArray>;

@@ -5,12 +5,13 @@ export class IDGen {
     nextID: number;
     capacity: number;
 
-    constructor(cap: number, next = 0) {
+    constructor(cap = Infinity, next = 0) {
         this.ids = [];
         this.capacity = cap;
         this.nextID = next;
     }
 
+    // FIXME return undefined if fail, update ECS.defEntity()
     next() {
         if (this.ids.length) {
             return this.ids.pop()!;

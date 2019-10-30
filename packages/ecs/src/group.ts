@@ -10,6 +10,8 @@ import { intersection } from "@thi.ng/associative";
 import {
     ComponentInfo,
     ComponentTuple,
+    EVENT_ADDED,
+    EVENT_PRE_REMOVE,
     GroupOpts,
     ICache
 } from "./api";
@@ -48,6 +50,10 @@ export class Group implements IID<string> {
         // update ownerships
         owned.forEach((c) => {
             assert(
+                comps.includes(c),
+                `owned component ${c.id} not in given list`
+            );
+            assert(
                 !c.owner,
                 () => `component ${c.id} already owned by ${c.owner!.id}`
             );
@@ -57,9 +63,21 @@ export class Group implements IID<string> {
         this.addExisting();
 
         comps.forEach((comp) => {
-            comp.addListener("add", this.onAddListener, this);
-            comp.addListener("delete", this.onDeleteListener, this);
+            comp.addListener(EVENT_ADDED, this.onAddListener, this);
+            comp.addListener(EVENT_PRE_REMOVE, this.onRemoveListener, this);
         });
+    }
+
+    release() {
+        this.components.forEach((comp) => {
+            comp.removeListener(EVENT_ADDED, this.onAddListener, this);
+            comp.removeListener(EVENT_PRE_REMOVE, this.onRemoveListener, this);
+        });
+        this.cache.release();
+    }
+
+    has(key: number) {
+        return this.ids.has(key);
     }
 
     *values() {
@@ -75,11 +93,16 @@ export class Group implements IID<string> {
         }
     }
 
+    run(
+        fn: (info: IObjectOf<ComponentInfo>, n: number, ...xs: any[]) => void,
+        ...xs: any[]
+    ) {
+        this.ensureFullyOwned();
+        fn(this.info, this.n, ...xs);
+    }
+
     forEachRaw(fn: Fn3<IObjectOf<ComponentInfo>, number, number, void>) {
-        assert(
-            this.owned.length === this.components.length,
-            `group ${this.id} isn't fully owning its components`
-        );
+        this.ensureFullyOwned();
         const ref = this.components[0].dense;
         for (let i = 0, n = this.n; i < n; i++) {
             fn(this.info, ref[i], i);
@@ -104,22 +127,14 @@ export class Group implements IID<string> {
         }
     }
 
-    release() {
-        this.components.forEach((comp) => {
-            comp.removeListener("add", this.onAddListener, this);
-            comp.removeListener("delete", this.onDeleteListener, this);
-        });
-        this.cache.release();
-    }
-
-    onAddListener(e: Event) {
+    protected onAddListener(e: Event) {
         // console.log(`add ${e.target.id}: ${e.value}`);
         this.addID(e.value);
     }
 
-    onDeleteListener(e: Event) {
+    protected onRemoveListener(e: Event) {
         // console.log(`delete ${e.target.id}: ${e.value}`);
-        this.deleteID(e.value);
+        this.removeID(e.value);
     }
 
     protected addExisting() {
@@ -144,7 +159,7 @@ export class Group implements IID<string> {
         }
     }
 
-    protected deleteID(id: number, validate = true) {
+    protected removeID(id: number, validate = true) {
         if (validate && !this.validID(id)) return;
         this.ids.delete(id);
         this.cache.delete(id);
@@ -160,5 +175,12 @@ export class Group implements IID<string> {
             if (!comp.has(id)) return false;
         }
         return true;
+    }
+
+    protected ensureFullyOwned() {
+        assert(
+            this.owned.length === this.components.length,
+            `group ${this.id} isn't fully owning its components`
+        );
     }
 }

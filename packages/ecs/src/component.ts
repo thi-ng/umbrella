@@ -7,12 +7,17 @@ import {
     Type,
     TypedArray,
     typedArray,
-    TypedArrayTypeMap,
     UIntArray
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
-import { zeroes } from "@thi.ng/vectors";
-import { ComponentDefaultValue, ComponentOpts, ICache } from "./api";
+import {
+    ComponentDefaultValue,
+    ComponentOpts,
+    EVENT_ADDED,
+    EVENT_CHANGED,
+    EVENT_PRE_REMOVE,
+    ICache
+} from "./api";
 
 let NEXT_ID = 0;
 
@@ -27,7 +32,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
 
     readonly size: number;
     readonly stride: number;
-    default: ComponentDefaultValue;
+    default?: ComponentDefaultValue;
 
     owner?: IID<string>;
 
@@ -49,7 +54,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         this.id = opts.id || `comp-${NEXT_ID++}`;
         this.size = opts.size!;
         this.stride = opts.stride || this.size;
-        this.default = opts.default || zeroes(this.size);
+        this.default = opts.default; // || zeroes(this.size);
         this.vals = opts.buf
             ? <V>(
                   typedArray(
@@ -85,11 +90,11 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         if (key < max && n < max && !(i < n && dense[i] === key)) {
             dense[n] = key;
             sparse[key] = n;
-            const addr = n * this.stride;
             const def = this.default;
-            this.vals.set(val || (isFunction(def) ? def() : def), addr);
+            const initVal = val || (isFunction(def) ? def() : def);
+            initVal && this.vals.set(initVal, n * this.stride);
             this.n++;
-            this.notify({ id: "add", target: this, value: key });
+            this.notify({ id: EVENT_ADDED, target: this, value: key });
         }
         return this;
     }
@@ -99,7 +104,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
         let i = sparse[key];
         if (i < n && dense[i] === key) {
             // notify listeners prior to removal to allow restructure / swaps
-            this.notify({ id: "delete", target: this, value: key });
+            this.notify({ id: EVENT_PRE_REMOVE, target: this, value: key });
             // get possibly updated slot
             i = sparse[key];
             const j = dense[--n];
@@ -109,6 +114,7 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
             const s = this.stride;
             n *= s;
             this.vals.copyWithin(i * s, n, n + this.size);
+            this.cache && this.cache.delete(i);
             return true;
         }
         return false;
@@ -178,19 +184,8 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
 
     // @ts-ignore: arguments
     notify(event: Event) {}
+
+    notifyChange(key: number) {
+        this.notify({ id: EVENT_CHANGED, target: this, value: key });
+    }
 }
-
-const uintType = (num: number) =>
-    num <= 0x100 ? Type.U8 : num <= 0x10000 ? Type.U16 : Type.U32;
-
-export const defComponent = <T extends Type = Type.F32>(
-    cap: number,
-    opts: Partial<ComponentOpts>
-) => {
-    const utype = uintType(cap);
-    return new Component<TypedArrayTypeMap[T]>(
-        typedArray(utype, cap),
-        typedArray(utype, cap),
-        opts
-    );
-};
