@@ -1,10 +1,10 @@
 import {
     Fn0,
     IID,
-    IObjectOf,
     IRelease,
     Type,
-    TypedArray
+    TypedArray,
+    TypedArrayTypeMap
 } from "@thi.ng/api";
 
 export const EVENT_ADDED = "added";
@@ -13,22 +13,23 @@ export const EVENT_CHANGED = "changed";
 
 export type ComponentDefaultValue = ArrayLike<number> | Fn0<ArrayLike<number>>;
 
-export type ComponentTuple = IObjectOf<TypedArray> & IID<number>;
+export type ComponentTuple<K extends string> = Record<K, TypedArray> &
+    IID<number>;
 
-export interface ComponentOpts {
-    id: string;
-    type: Type;
-    buf: ArrayBuffer;
-    byteOffset: number;
-    size: number;
-    stride: number;
-    default: ComponentDefaultValue;
-    cache: ICache<TypedArray>;
+export interface ComponentOpts<ID extends string, T extends Type = Type.F32> {
+    id: ID;
+    type?: T;
+    buf?: ArrayBuffer;
+    byteOffset?: number;
+    size?: number;
+    stride?: number;
+    default?: ComponentDefaultValue;
+    cache?: ICache<TypedArrayTypeMap[T]>;
 }
 
 export interface GroupOpts {
     id: string;
-    cache: ICache<ComponentTuple>;
+    cache: ICache<ComponentTuple<string>>;
 }
 
 export interface ComponentInfo {

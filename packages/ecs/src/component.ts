@@ -5,8 +5,8 @@ import {
     INotify,
     INotifyMixin,
     Type,
-    TypedArray,
     typedArray,
+    TypedArrayTypeMap,
     UIntArray
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
@@ -19,15 +19,14 @@ import {
     ICache
 } from "./api";
 
-let NEXT_ID = 0;
-
 @INotifyMixin
-export class Component<V extends TypedArray> implements IID<string>, INotify {
-    readonly id: string;
+export class Component<ID extends string, T extends Type = Type.F32>
+    implements IID<ID>, INotify {
+    readonly id: ID;
 
     sparse: UIntArray;
     dense: UIntArray;
-    vals: V;
+    vals: TypedArrayTypeMap[T];
     n: number;
 
     readonly size: number;
@@ -36,36 +35,34 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
 
     owner?: IID<string>;
 
-    cache?: ICache<V>;
+    cache?: ICache<TypedArrayTypeMap[T]>;
 
     constructor(
         sparse: UIntArray,
         dense: UIntArray,
-        opts: Partial<ComponentOpts> = {}
+        opts: ComponentOpts<ID, T>
     ) {
         this.sparse = sparse;
         this.dense = dense;
         opts = {
-            type: Type.F32,
+            type: <any>Type.F32,
             size: 1,
             byteOffset: 0,
             ...opts
         };
-        this.id = opts.id || `comp${NEXT_ID++}`;
+        this.id = opts.id;
         this.size = opts.size!;
         this.stride = opts.stride || this.size;
         this.default = opts.default; // || zeroes(this.size);
         this.vals = opts.buf
-            ? <V>(
-                  typedArray(
-                      opts.type!,
-                      opts.buf,
-                      opts.byteOffset!,
-                      dense.length * this.stride
-                  )
+            ? typedArray(
+                  opts.type!,
+                  opts.buf,
+                  opts.byteOffset!,
+                  dense.length * this.stride
               )
-            : <V>typedArray(opts.type!, dense.length * this.stride);
-        this.cache = <ICache<V>>opts.cache;
+            : typedArray(opts.type!, dense.length * this.stride);
+        this.cache = opts.cache;
         this.n = 0;
     }
 
@@ -75,12 +72,14 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
 
     *values() {
         for (let i = this.n; --i >= 0; ) {
-            yield this.getIndex(i);
+            yield this.getIndex(i)!;
         }
     }
 
     packedValues() {
-        return <V>this.vals.subarray(0, this.n * this.stride);
+        return <TypedArrayTypeMap[T]>(
+            this.vals.subarray(0, this.n * this.stride)
+        );
     }
 
     // TODO add version support via IDGen
@@ -132,9 +131,12 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
             ? this.cache
                 ? this.cache.getSet(i, () => {
                       i *= this.stride;
-                      return <V>this.vals.subarray(i, i + this.size);
+                      return <TypedArrayTypeMap[T]>(
+                          this.vals.subarray(i, i + this.size)
+                      );
                   })
-                : ((i *= this.stride), <V>this.vals.subarray(i, i + this.size))
+                : ((i *= this.stride),
+                  <TypedArrayTypeMap[T]>this.vals.subarray(i, i + this.size))
             : undefined;
     }
 
@@ -143,9 +145,12 @@ export class Component<V extends TypedArray> implements IID<string>, INotify {
             ? this.cache
                 ? this.cache.getSet(i, () => {
                       i *= this.stride;
-                      return <V>this.vals.subarray(i, i + this.size);
+                      return <TypedArrayTypeMap[T]>(
+                          this.vals.subarray(i, i + this.size)
+                      );
                   })
-                : ((i *= this.stride), <V>this.vals.subarray(i, i + this.size))
+                : ((i *= this.stride),
+                  <TypedArrayTypeMap[T]>this.vals.subarray(i, i + this.size))
             : undefined;
     }
 

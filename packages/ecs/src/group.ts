@@ -1,11 +1,10 @@
 import {
     assert,
     Event,
-    Fn3,
     FnO2,
+    FnO3,
     IID,
-    IObjectOf,
-    TypedArray
+    Type
 } from "@thi.ng/api";
 import { intersection } from "@thi.ng/associative";
 import {
@@ -21,20 +20,20 @@ import { UnboundedCache } from "./unbounded";
 
 let NEXT_ID = 0;
 
-export class Group implements IID<string> {
+export class Group<K extends string> implements IID<string> {
     readonly id: string;
 
-    components: Component<TypedArray>[];
-    owned: Component<TypedArray>[];
+    components: Component<K, Type>[];
+    owned: Component<K, Type>[];
     ids: Set<number>;
     n: number;
 
-    info: IObjectOf<ComponentInfo>;
-    cache: ICache<ComponentTuple>;
+    info: Record<K, ComponentInfo>;
+    cache: ICache<ComponentTuple<K>>;
 
     constructor(
-        comps: Component<TypedArray>[],
-        owned: Component<TypedArray>[] = comps,
+        comps: Component<K, Type>[],
+        owned: Component<K, Type>[] = comps,
         opts: Partial<GroupOpts> = {}
     ) {
         this.components = comps;
@@ -43,10 +42,13 @@ export class Group implements IID<string> {
         this.id = opts.id || `group${NEXT_ID++}`;
         this.cache = opts.cache || new UnboundedCache();
 
-        this.info = comps.reduce((acc: IObjectOf<ComponentInfo>, c) => {
-            acc[c.id] = { buffer: c.vals, size: c.size, stride: c.stride };
-            return acc;
-        }, {});
+        this.info = comps.reduce(
+            (acc: Record<K, ComponentInfo>, c) => {
+                acc[c.id] = { buffer: c.vals, size: c.size, stride: c.stride };
+                return acc;
+            },
+            <any>{}
+        );
 
         // update ownerships
         owned.forEach((c) => {
@@ -100,35 +102,37 @@ export class Group implements IID<string> {
 
     getEntityUnsafe(id: number) {
         return this.cache.getSet(id, () => {
-            const tuple = <ComponentTuple>{ id: id };
+            const tuple = <ComponentTuple<K>>{ id: id };
             const comps = this.components;
             for (let j = comps.length; --j >= 0; ) {
                 const c = comps[j];
-                tuple[c.id] = c.getIndex(c.sparse[id])!;
+                tuple[c.id] = <any>c.getIndex(c.sparse[id])!;
             }
             return tuple;
         });
     }
 
-    run(fn: FnO2<IObjectOf<ComponentInfo>, number, void>, ...xs: any[]) {
+    run(fn: FnO2<Record<K, ComponentInfo>, number, void>, ...xs: any[]) {
         this.ensureFullyOwning();
         fn(this.info, this.n, ...xs);
     }
 
-    forEachRaw(fn: Fn3<IObjectOf<ComponentInfo>, number, number, void>) {
+    forEachRaw(
+        fn: FnO3<Record<K, ComponentInfo>, number, number, void>,
+        ...xs: any[]
+    ) {
         this.ensureFullyOwning();
         const info = this.info;
         const ref = this.components[0].dense;
         for (let i = 0, n = this.n; i < n; i++) {
-            fn(info, ref[i], i);
+            fn(info, ref[i], i, ...xs);
         }
     }
 
-    forEach(fn: Fn3<IObjectOf<ComponentInfo>, ComponentTuple, number, void>) {
+    forEach(fn: FnO2<ComponentTuple<K>, number, void>, ...xs: any[]) {
         let i = 0;
-        const info = this.info;
         for (let id of this.ids) {
-            fn(info, this.getEntityUnsafe(id), i++);
+            fn(this.getEntityUnsafe(id), i++, ...xs);
         }
     }
 
