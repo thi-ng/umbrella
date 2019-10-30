@@ -1,5 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
-import { ComponentInfo, defComponent, Group } from "@thi.ng/ecs";
+import { ComponentInfo, ECS, Group } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
 import { adaptDPI, canvasWebGL } from "@thi.ng/hdom-components";
 import { fract } from "@thi.ng/math";
@@ -45,22 +45,23 @@ const ALPHA = 0.3;
 const COLOR = [1, 0.7, 0.1, 0.001];
 const COLOR2 = [0.1, 0.9, 1, 0.001];
 
-const pos = defComponent(NUM, {
+const ecs = new ECS(NUM);
+
+const pos = ecs.defComponent({
     id: "pos",
     size: 2
 });
 
-const vel = defComponent(NUM, {
+const vel = ecs.defComponent({
     id: "vel",
     size: 2,
     default: () => randNormS2([0, 0])
 });
 
-const group = new Group([pos, vel]);
+const group = ecs.defGroup([pos, vel]);
 
 for (let i = 0; i < NUM; i++) {
-    pos.add(i);
-    vel.add(i);
+    ecs.defEntity([pos, vel]);
 }
 
 const dir = [0, 0];
@@ -73,19 +74,16 @@ const moveBatch = (
 ) => {
     const { buffer: pos, stride: ps } = info.pos;
     const { buffer: vel, stride: vs } = info.vel;
+    const invNum = 1 / num;
     for (let i = 0; i < num; i++) {
         const ip = i * ps;
         const iv = i * vs;
-        normalizeS2(
-            vel,
-            mixNS2(vel, vel, dir, 0.01 + 0.2 * fract((i + t) / num), iv, iv, 0),
-            1,
-            iv,
-            iv
-        );
         const m = magSqS2(pos, ip);
         rotateS2(pos, pos, m * amp, ip, ip);
-        if (m >= 4e4) {
+        if (m < 4e4) {
+            mixNS2(vel, vel, dir, 0.01 + 0.2 * fract((i + t) * invNum), iv, iv);
+            normalizeS2(vel, vel, 1, iv, iv);
+        } else {
             mulNS2(pos, pos, 0.98, ip, ip);
             randNormS2(vel, 1, undefined, iv);
         }
@@ -161,7 +159,7 @@ const app = () => {
             }
             time *= 0.001;
             mixN2(dir, dir, randNormS2(targetDir), 0.1);
-            moveBatch(group.info, group.n, time, Math.sin(time / 8) * 4e-7);
+            group.run(moveBatch, time, Math.sin(time / 8) * 4e-7);
             model.attribs.position.buffer!.set(model.attribs.position.data!);
 
             const alpha = Math.pow(Math.min(time / 5, 1), 3) * ALPHA;
