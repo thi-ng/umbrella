@@ -1,5 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
-import { ComponentInfo, ECS, Group } from "@thi.ng/ecs";
+import { ComponentInfo, ComponentTuple, ECS } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
 import { adaptDPI, canvasWebGL } from "@thi.ng/hdom-components";
 import { fract } from "@thi.ng/math";
@@ -16,13 +15,19 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import {
+    add2,
     addS2,
+    magSq2,
     magSqS2,
     mixN2,
     mixNS2,
+    mulN2,
     mulNS2,
+    normalize,
     normalizeS2,
+    randNorm,
     randNormS2,
+    rotate,
     rotateS2,
     setVN4
 } from "@thi.ng/vectors";
@@ -36,6 +41,8 @@ import {
     shader,
     ShaderSpec
 } from "@thi.ng/webgl";
+
+const BATCH_UPDATE = true;
 
 const NUM = 100000;
 const W = 480;
@@ -66,8 +73,11 @@ for (let i = 0; i < NUM; i++) {
 
 const dir = [0, 0];
 
-const moveBatch = (
-    info: IObjectOf<ComponentInfo>,
+// batch version of `updateSingle` below...
+// uses strided vector ops to update the flat component buffers
+// on my MBP2015 this is about 1.5 - 2x faster
+const updateBatch = (
+    info: Record<"pos" | "vel", ComponentInfo>,
     num: number,
     t: number,
     amp: number
@@ -89,6 +99,23 @@ const moveBatch = (
         }
         addS2(pos, pos, vel, ip, ip, iv);
     }
+};
+
+const updateSingle = (
+    { pos, vel }: ComponentTuple<"pos" | "vel">,
+    i: number,
+    t: number,
+    amp: number
+) => {
+    const m = magSq2(pos);
+    rotate(pos, pos, m * amp);
+    if (m < 4e4) {
+        normalize(vel, mixN2(vel, vel, dir, 0.01 + 0.2 * fract((i + t) / NUM)));
+    } else {
+        mulN2(pos, pos, 0.98);
+        randNorm(vel);
+    }
+    add2(pos, pos, vel);
 };
 
 const pointShader: ShaderSpec = {
@@ -153,13 +180,18 @@ const app = () => {
             });
         },
         update: (el, gl, __, time) => {
+            // nothing to be done in first frame
             if (!model) {
                 adaptDPI(el, W, W);
                 return;
             }
             time *= 0.001;
             mixN2(dir, dir, randNormS2(targetDir), 0.1);
-            group.run(moveBatch, time, Math.sin(time / 8) * 4e-7);
+
+            // animate particles and update WebGL buffer
+            BATCH_UPDATE
+                ? group.run(updateBatch, time, Math.sin(time / 8) * 4e-7)
+                : group.forEach(updateSingle, time, Math.sin(time / 8) * 4e-7);
             model.attribs.position.buffer!.set(model.attribs.position.data!);
 
             const alpha = Math.pow(Math.min(time / 5, 1), 3) * ALPHA;
