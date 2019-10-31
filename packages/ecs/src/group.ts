@@ -3,37 +3,39 @@ import {
     Event,
     FnO2,
     FnO3,
-    IID,
-    Type
+    IID
 } from "@thi.ng/api";
 import { intersection } from "@thi.ng/associative";
 import {
-    ComponentInfo,
-    ComponentTuple,
+    ComponentID,
     EVENT_ADDED,
+    EVENT_CHANGED,
     EVENT_PRE_REMOVE,
+    GroupInfo,
     GroupOpts,
-    ICache
+    GroupTuple,
+    ICache,
+    IComponent
 } from "./api";
 import { Component } from "./component";
 import { UnboundedCache } from "./unbounded";
 
 let NEXT_ID = 0;
 
-export class Group<K extends string> implements IID<string> {
+export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     readonly id: string;
 
-    components: Component<K, Type>[];
-    owned: Component<K, Type>[];
+    components: IComponent<K, any, any>[];
+    owned: IComponent<K, any, any>[];
     ids: Set<number>;
     n: number;
 
-    info: Record<K, ComponentInfo>;
-    cache: ICache<ComponentTuple<K>>;
+    info: GroupInfo<SPEC, K>;
+    cache: ICache<GroupTuple<SPEC, K>>;
 
     constructor(
-        comps: Component<K, Type>[],
-        owned: Component<K, Type>[] = comps,
+        comps: IComponent<K, any, any>[],
+        owned: IComponent<K, any, any>[] = comps,
         opts: Partial<GroupOpts> = {}
     ) {
         this.components = comps;
@@ -43,8 +45,12 @@ export class Group<K extends string> implements IID<string> {
         this.cache = opts.cache || new UnboundedCache();
 
         this.info = comps.reduce(
-            (acc: Record<K, ComponentInfo>, c) => {
-                acc[c.id] = { buffer: c.vals, size: c.size, stride: c.stride };
+            (acc: GroupInfo<SPEC, K>, c) => {
+                acc[c.id] = {
+                    values: <any>c.vals,
+                    size: c.size,
+                    stride: c.stride
+                };
                 return acc;
             },
             <any>{}
@@ -68,6 +74,7 @@ export class Group<K extends string> implements IID<string> {
         comps.forEach((comp) => {
             comp.addListener(EVENT_ADDED, this.onAddListener, this);
             comp.addListener(EVENT_PRE_REMOVE, this.onRemoveListener, this);
+            comp.addListener(EVENT_CHANGED, this.onChangeListener, this);
         });
     }
 
@@ -75,6 +82,7 @@ export class Group<K extends string> implements IID<string> {
         this.components.forEach((comp) => {
             comp.removeListener(EVENT_ADDED, this.onAddListener, this);
             comp.removeListener(EVENT_PRE_REMOVE, this.onRemoveListener, this);
+            comp.removeListener(EVENT_CHANGED, this.onChangeListener, this);
         });
         this.cache.release();
     }
@@ -102,7 +110,7 @@ export class Group<K extends string> implements IID<string> {
 
     getEntityUnsafe(id: number) {
         return this.cache.getSet(id, () => {
-            const tuple = <ComponentTuple<K>>{ id: id };
+            const tuple = <GroupTuple<SPEC, K>>{ id: id };
             const comps = this.components;
             for (let j = comps.length; --j >= 0; ) {
                 const c = comps[j];
@@ -112,13 +120,13 @@ export class Group<K extends string> implements IID<string> {
         });
     }
 
-    run(fn: FnO2<Record<K, ComponentInfo>, number, void>, ...xs: any[]) {
+    run(fn: FnO2<GroupInfo<SPEC, K>, number, void>, ...xs: any[]) {
         this.ensureFullyOwning();
         fn(this.info, this.n, ...xs);
     }
 
     forEachRaw(
-        fn: FnO3<Record<K, ComponentInfo>, number, number, void>,
+        fn: FnO3<GroupInfo<SPEC, K>, number, number, void>,
         ...xs: any[]
     ) {
         this.ensureFullyOwning();
@@ -129,7 +137,7 @@ export class Group<K extends string> implements IID<string> {
         }
     }
 
-    forEach(fn: FnO2<ComponentTuple<K>, number, void>, ...xs: any[]) {
+    forEach(fn: FnO2<GroupTuple<SPEC, K>, number, void>, ...xs: any[]) {
         let i = 0;
         for (let id of this.ids) {
             fn(this.getEntityUnsafe(id), i++, ...xs);
@@ -140,6 +148,13 @@ export class Group<K extends string> implements IID<string> {
         return this.owned.length === this.components.length;
     }
 
+    isValidID(id: number) {
+        for (let comp of this.components) {
+            if (!comp.has(id)) return false;
+        }
+        return true;
+    }
+
     protected onAddListener(e: Event) {
         // console.log(`add ${e.target.id}: ${e.value}`);
         this.addID(e.value);
@@ -148,6 +163,13 @@ export class Group<K extends string> implements IID<string> {
     protected onRemoveListener(e: Event) {
         // console.log(`delete ${e.target.id}: ${e.value}`);
         this.removeID(e.value);
+    }
+
+    protected onChangeListener(e: Event) {
+        if (e.target instanceof Component) {
+            // console.log(`invalidate ${e.target.id}: ${e.value}`);
+            this.cache.delete(e.value);
+        }
     }
 
     protected addExisting() {
@@ -163,35 +185,29 @@ export class Group<K extends string> implements IID<string> {
     }
 
     protected addID(id: number, validate = true) {
-        if (validate && !this.validID(id)) return;
+        if (validate && !this.isValidID(id)) return;
         this.ids.add(id);
-        const n = this.n++;
-        for (let comp of this.owned) {
-            // console.log(`moving id: ${id} in ${comp.id}...`);
-            comp.swapIndices(comp.sparse[id], n) && this.invalidateCache(id);
-        }
+        this.reorderOwned(id, this.n++);
     }
 
     protected removeID(id: number, validate = true) {
-        if (validate && !this.validID(id)) return;
+        if (validate && !this.isValidID(id)) return;
         this.ids.delete(id);
-        this.cache.delete(id);
-        const n = --this.n;
+        this.reorderOwned(id, --this.n);
+    }
+
+    protected reorderOwned(id: number, n: number) {
+        if (!this.owned.length) return;
+        const id2 = this.owned[0].dense[n];
+        let swapped = false;
         for (let comp of this.owned) {
             // console.log(`moving id: ${id} in ${comp.id}...`);
-            comp.swapIndices(comp.sparse[id], n) && this.invalidateCache(id);
+            swapped = comp.swapIndices(comp.sparse[id], n) || swapped;
         }
-    }
-
-    protected validID(id: number) {
-        for (let comp of this.components) {
-            if (!comp.has(id)) return false;
+        if (swapped) {
+            this.cache.delete(id);
+            this.cache.delete(id2);
         }
-        return true;
-    }
-
-    protected invalidateCache(id: number) {
-        this.cache && this.cache.delete(id);
     }
 
     protected *ownedValues() {

@@ -1,41 +1,75 @@
 import {
+    ArrayLikeIterable,
     Fn0,
     IID,
+    INotify,
     IRelease,
     Type,
     TypedArray,
-    TypedArrayTypeMap
+    UIntArray
 } from "@thi.ng/api";
 
 export const EVENT_ADDED = "added";
 export const EVENT_PRE_REMOVE = "pre-remove";
 export const EVENT_CHANGED = "changed";
 
-export type ComponentDefaultValue = ArrayLike<number> | Fn0<ArrayLike<number>>;
+export type ComponentID<S> = keyof S & string;
 
-export type ComponentTuple<K extends string> = Record<K, TypedArray> &
+export type ComponentDefaultValue<T> = T | Fn0<T>;
+
+export type GroupTuple<SPEC, K extends ComponentID<SPEC>> = Pick<SPEC, K> &
     IID<number>;
 
-export interface ComponentOpts<ID extends string, T extends Type = Type.F32> {
+export type GroupInfo<SPEC, K extends ComponentID<SPEC>> = {
+    [P in K]: ComponentInfo<SPEC, P>;
+};
+
+export interface ComponentInfo<SPEC, K extends ComponentID<SPEC>> {
+    values: SPEC[K] extends TypedArray ? SPEC[K] : SPEC[K][];
+    size: number;
+    stride: number;
+}
+
+export interface IComponent<K extends string, T, V> extends IID<K>, INotify {
+    dense: UIntArray;
+    sparse: UIntArray;
+    vals: ArrayLike<any>;
+    size: number;
+    stride: number;
+
+    owner?: IID<string>;
+
+    has(id: number): boolean;
+    add(id: number, val?: V): boolean;
+    delete(id: number): boolean;
+    get(id: number): T | undefined;
+    getIndex(i: number): T | undefined;
+
+    keys(): ArrayLikeIterable<number>;
+    values(): IterableIterator<T>;
+
+    swapIndices(a: number, b: number): boolean;
+}
+
+export interface MemMappedComponentOpts<ID extends string> {
     id: ID;
-    type?: T;
+    type: Type;
     buf?: ArrayBuffer;
     byteOffset?: number;
     size?: number;
     stride?: number;
-    default?: ComponentDefaultValue;
-    cache?: ICache<TypedArrayTypeMap[T]>;
+    default?: ComponentDefaultValue<ArrayLike<number>>;
+    cache?: ICache<TypedArray>;
+}
+
+export interface ObjectComponentOpts<ID extends string, T> {
+    id: ID;
+    default?: ComponentDefaultValue<T>;
 }
 
 export interface GroupOpts {
     id: string;
-    cache: ICache<ComponentTuple<string>>;
-}
-
-export interface ComponentInfo {
-    buffer: TypedArray;
-    size: number;
-    stride: number;
+    cache: ICache<any>;
 }
 
 export interface ICache<T> extends IRelease {

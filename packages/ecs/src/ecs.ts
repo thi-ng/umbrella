@@ -1,27 +1,30 @@
 import { assert, Type, typedArray } from "@thi.ng/api";
 import { isArray, isString } from "@thi.ng/checks";
-import { ReadonlyVec } from "@thi.ng/vectors";
-import { ComponentOpts, GroupOpts } from "./api";
+import {
+    ComponentID,
+    GroupOpts,
+    IComponent,
+    MemMappedComponentOpts,
+    ObjectComponentOpts
+} from "./api";
 import { Component } from "./component";
+import { MemMappedComponent } from "./component-mm";
 import { Group } from "./group";
 import { IDGen } from "./id";
 
-export class ECS {
+export class ECS<SPEC> {
     idgen: IDGen;
-    components: Map<string, Component<string, Type>>;
-    groups: Map<string, Group<string>>;
+    components: Map<ComponentID<SPEC>, IComponent<ComponentID<SPEC>, any, any>>;
+    groups: Map<string, Group<SPEC, any>>;
 
     constructor(capacity = 1000) {
-        this.idgen = new IDGen(capacity);
+        this.idgen = new IDGen(capacity, 0);
         this.components = new Map();
         this.groups = new Map();
     }
 
-    defEntity<K extends string>(
-        comps?:
-            | string[]
-            | Component<K, Type>[]
-            | Record<K, ReadonlyVec | undefined>
+    defEntity<K extends ComponentID<SPEC>>(
+        comps?: string[] | IComponent<K, any, any>[] | Partial<Pick<SPEC, K>>
     ) {
         const id = this.idgen.next();
         assert(
@@ -32,7 +35,9 @@ export class ECS {
             if (isArray(comps)) {
                 if (!comps.length) return id!;
                 for (let cid of comps) {
-                    const comp = isString(cid) ? this.components.get(cid) : cid;
+                    const comp = isString(cid)
+                        ? this.components.get(<ComponentID<SPEC>>cid)
+                        : cid;
                     assert(!!comp, `unknown component ID: ${cid}`);
                     comp!.add(id!);
                 }
@@ -40,69 +45,39 @@ export class ECS {
                 for (let cid in comps) {
                     const comp = this.components.get(cid);
                     assert(!!comp, `unknown component ID: ${cid}`);
-                    comp!.add(id!, comps[cid]);
+                    comp!.add(id!, <any>comps[cid]);
                 }
             }
         }
         return id!;
     }
 
-    defComponent<K extends string, T extends Type = Type.F32>(
-        opts: ComponentOpts<K, T>
-    ) {
+    defComponent<K extends ComponentID<SPEC>>(
+        opts: MemMappedComponentOpts<K>
+    ): MemMappedComponent<K>;
+    defComponent<K extends ComponentID<SPEC>>(
+        opts: ObjectComponentOpts<K, SPEC[K]>
+    ): Component<K, SPEC[K]>;
+    defComponent<K extends ComponentID<SPEC>>(opts: any) {
         const cap = this.idgen.capacity;
         const utype = uintType(cap);
-        const comp = new Component<K, T>(
-            typedArray(utype, cap),
-            typedArray(utype, cap),
-            opts
-        );
+        const sparse = typedArray(utype, cap);
+        const dense = typedArray(utype, cap);
+        const comp: IComponent<K, any, any> =
+            opts.type !== undefined
+                ? new MemMappedComponent(dense, sparse, opts)
+                : new Component(sparse, dense, opts);
         // TODO add exist check
-        this.components.set(comp.id, comp);
+        this.components.set(opts.id, comp);
         return comp;
     }
 
-    defGroup<A extends string>(
-        comps: [Component<A, Type>],
-        owned?: Component<A, Type>[],
-        opts?: Partial<GroupOpts>
-    ): Group<A>;
-    defGroup<A extends string, B extends string>(
-        comps: [Component<A, Type>, Component<B, Type>],
-        owned?: Component<A | B, Type>[],
-        opts?: Partial<GroupOpts>
-    ): Group<A | B>;
-    defGroup<A extends string, B extends string, C extends string>(
-        comps: [Component<A, Type>, Component<B, Type>, Component<C, Type>],
-        owned?: Component<A | B | C, Type>[],
-        opts?: Partial<GroupOpts>
-    ): Group<A | B | C>;
-    defGroup<
-        A extends string,
-        B extends string,
-        C extends string,
-        D extends string
-    >(
-        comps: [
-            Component<A, Type>,
-            Component<B, Type>,
-            Component<C, Type>,
-            Component<D, Type>
-        ],
-        owned?: Component<A | B | C | D, Type>[],
-        opts?: Partial<GroupOpts>
-    ): Group<A | B | C | D>;
-    defGroup(
-        comps: Component<string, Type>[],
-        owned?: Component<string, Type>[],
-        opts?: Partial<GroupOpts>
-    ): Group<string>;
-    defGroup(
-        comps: Component<string, Type>[],
-        owned: Component<string, Type>[] = comps,
+    defGroup<K extends ComponentID<SPEC>>(
+        comps: IComponent<K, any, any>[],
+        owned: IComponent<K, any, any>[] = comps,
         opts: Partial<GroupOpts> = {}
-    ): Group<string> {
-        const g = new Group(comps, owned, opts);
+    ) {
+        const g = new Group<SPEC, K>(comps, owned, opts);
         // TODO add exist check
         this.groups.set(g.id, g);
         return g;

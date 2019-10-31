@@ -4,6 +4,9 @@ import {
     IID,
     INotify,
     INotifyMixin,
+    Type,
+    typedArray,
+    TypedArray,
     UIntArray
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
@@ -12,41 +15,56 @@ import {
     EVENT_ADDED,
     EVENT_CHANGED,
     EVENT_PRE_REMOVE,
+    ICache,
     IComponent,
-    ObjectComponentOpts
+    MemMappedComponentOpts
 } from "./api";
 
 @INotifyMixin
-export class Component<K extends string, T>
-    implements IComponent<K, T, T>, IID<K>, INotify {
+export class MemMappedComponent<K extends string>
+    implements IComponent<K, TypedArray, ArrayLike<number>>, INotify {
     readonly id: K;
 
     sparse: UIntArray;
     dense: UIntArray;
-    vals: T[];
+    vals: TypedArray;
     n: number;
 
-    default?: ComponentDefaultValue<T>;
+    readonly size: number;
+    readonly stride: number;
+    default?: ComponentDefaultValue<ArrayLike<number>>;
+
     owner?: IID<string>;
+
+    cache?: ICache<TypedArray>;
 
     constructor(
         sparse: UIntArray,
         dense: UIntArray,
-        opts: ObjectComponentOpts<K, T>
+        opts: MemMappedComponentOpts<K>
     ) {
         this.sparse = sparse;
         this.dense = dense;
+        opts = {
+            type: <any>Type.F32,
+            size: 1,
+            byteOffset: 0,
+            ...opts
+        };
         this.id = opts.id;
-        this.default = opts.default;
-        this.vals = new Array<T>(this.dense.length);
+        this.size = opts.size!;
+        this.stride = opts.stride || this.size;
+        this.default = opts.default; // || zeroes(this.size);
+        this.vals = opts.buf
+            ? typedArray(
+                  opts.type!,
+                  opts.buf,
+                  opts.byteOffset!,
+                  dense.length * this.stride
+              )
+            : typedArray(opts.type!, dense.length * this.stride);
+        this.cache = opts.cache;
         this.n = 0;
-    }
-
-    get size() {
-        return 1;
-    }
-    get stride() {
-        return 1;
     }
 
     keys() {
@@ -60,11 +78,11 @@ export class Component<K extends string, T>
     }
 
     packedValues() {
-        return this.vals.slice(0, this.n);
+        return this.vals.subarray(0, this.n * this.stride);
     }
 
     // TODO add version support via IDGen
-    add(id: number, val?: T) {
+    add(id: number, val?: ArrayLike<number>) {
         const { dense, sparse, n } = this;
         const max = dense.length;
         const i = sparse[id];
@@ -73,7 +91,7 @@ export class Component<K extends string, T>
             sparse[id] = n;
             const def = this.default;
             const initVal = val || (isFunction(def) ? def() : def);
-            initVal && (this.vals[n] = initVal);
+            initVal && this.vals.set(initVal, n * this.stride);
             this.n++;
             this.notify({ id: EVENT_ADDED, target: this, value: id });
             return true;
@@ -82,7 +100,7 @@ export class Component<K extends string, T>
     }
 
     delete(id: number) {
-        let { dense, sparse, vals, n } = this;
+        let { dense, sparse, n } = this;
         let i = sparse[id];
         if (i < n && dense[i] === id) {
             // notify listeners prior to removal to allow restructure / swaps
@@ -93,8 +111,10 @@ export class Component<K extends string, T>
             dense[i] = j;
             sparse[j] = i;
             this.n = n;
-            vals[i] = vals[n];
-            delete vals[n];
+            const s = this.stride;
+            n *= s;
+            this.vals.copyWithin(i * s, n, n + this.size);
+            this.cache && this.cache.delete(i);
             return true;
         }
         return false;
@@ -107,48 +127,64 @@ export class Component<K extends string, T>
 
     get(id: number) {
         let i = this.sparse[id];
-        return i < this.n && this.dense[i] === id ? this.vals[i] : undefined;
+        return i < this.n && this.dense[i] === id
+            ? this.cache
+                ? this.cache.getSet(i, () => {
+                      i *= this.stride;
+                      return this.vals.subarray(i, i + this.size);
+                  })
+                : ((i *= this.stride), this.vals.subarray(i, i + this.size))
+            : undefined;
     }
 
     getIndex(i: number) {
-        return i < this.n ? this.vals[i] : undefined;
+        return i < this.n
+            ? this.cache
+                ? this.cache.getSet(i, () => {
+                      i *= this.stride;
+                      return this.vals.subarray(i, i + this.size);
+                  })
+                : ((i *= this.stride), this.vals.subarray(i, i + this.size))
+            : undefined;
     }
 
-    set(id: number, val: T) {
+    set(id: number, val: ArrayLike<number>) {
         let i = this.sparse[id];
         if (i < this.n && this.dense[i] === id) {
-            this.vals[i] = val;
+            this.vals.set(val, i * this.stride);
             this.notifyChange(id);
             return true;
         }
         return false;
     }
 
-    setIndex(i: number, val: T) {
+    setIndex(i: number, val: ArrayLike<number>) {
         return this.set(this.dense[i], val);
     }
 
     /**
      * Swaps slots of `src` & `dest` indices. The given args are NOT
-     * keys, but indices in the `dense` array. The corresponding sparse
-     * & value slots are swapped too. Returns true if swap happened
-     * (false, if `src` and `dest` are equal)
+     * entity IDs, but indices in the `dense` array. The corresponding
+     * sparse & value slots are swapped too. Returns true if swap
+     * happened (false, if `src` and `dest` are equal)
      *
      * @param src
      * @param dest
      */
     swapIndices(src: number, dest: number) {
         if (src === dest) return false;
-        const { dense, sparse, vals } = this;
+        const { dense, sparse, vals, size, stride } = this;
         const ss = dense[src];
         const sd = dense[dest];
         dense[src] = sd;
         dense[dest] = ss;
         sparse[ss] = dest;
         sparse[sd] = src;
-        const tmp = vals[src];
-        vals[src] = vals[dest];
-        vals[dest] = tmp;
+        src *= stride;
+        dest *= stride;
+        const tmp = vals.slice(src, src + size);
+        vals.copyWithin(src, dest, dest + size);
+        vals.set(tmp, dest);
         return true;
     }
 
