@@ -1,4 +1,5 @@
-import { ComponentInfo, ComponentTuple, ECS } from "@thi.ng/ecs";
+import { Type } from "@thi.ng/api";
+import { ECS, GroupInfo, GroupTuple } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
 import { adaptDPI, canvasWebGL } from "@thi.ng/hdom-components";
 import { fract } from "@thi.ng/math";
@@ -52,15 +53,23 @@ const ALPHA = 0.3;
 const COLOR = [1, 0.7, 0.1, 0.001];
 const COLOR2 = [0.1, 0.9, 1, 0.001];
 
-const ecs = new ECS(NUM);
+// component type mapping used to configure ECS and all of its derived types
+interface CompSpecs {
+    pos: Float32Array;
+    vel: Float32Array;
+}
+
+const ecs = new ECS<CompSpecs>(NUM);
 
 const pos = ecs.defComponent({
     id: "pos",
+    type: Type.F32,
     size: 2
 });
 
 const vel = ecs.defComponent({
     id: "vel",
+    type: Type.F32,
     size: 2,
     default: () => randNormS2([0, 0])
 });
@@ -77,13 +86,13 @@ const dir = [0, 0];
 // uses strided vector ops to update the flat component buffers
 // on my MBP2015 this is about 1.5 - 2x faster
 const updateBatch = (
-    info: Record<"pos" | "vel", ComponentInfo>,
+    info: GroupInfo<CompSpecs, "pos" | "vel">,
     num: number,
     t: number,
     amp: number
 ) => {
-    const { buffer: pos, stride: ps } = info.pos;
-    const { buffer: vel, stride: vs } = info.vel;
+    const { values: pos, stride: ps } = info.pos;
+    const { values: vel, stride: vs } = info.vel;
     const invNum = 1 / num;
     for (let i = 0; i < num; i++) {
         const ip = i * ps;
@@ -102,7 +111,7 @@ const updateBatch = (
 };
 
 const updateSingle = (
-    { pos, vel }: ComponentTuple<"pos" | "vel">,
+    { pos, vel }: GroupTuple<CompSpecs, "pos" | "vel">,
     i: number,
     t: number,
     amp: number
@@ -165,7 +174,7 @@ const app = () => {
             model = compileModel(gl, {
                 attribs: {
                     position: {
-                        data: pos.packedValues(),
+                        data: <Float32Array>pos.packedValues(),
                         size: 2
                     }
                 },
