@@ -39,6 +39,7 @@
         "@thi.ng/checks": "^2.4.0",
         "@thi.ng/dcons": "^2.1.5",
         "@thi.ng/soa": "^0.0.1",
+        "@thi.ng/transducers": "^5.4.5",
         "@thi.ng/vectors": "^3.3.1"
     },
     "keywords": [

@@ -5,7 +5,8 @@ import {
     FnO3,
     IID
 } from "@thi.ng/api";
-import { intersection } from "@thi.ng/associative";
+import { intersectionR } from "@thi.ng/associative";
+import { map, transduce } from "@thi.ng/transducers";
 import {
     ComponentID,
     EVENT_ADDED,
@@ -173,12 +174,11 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     }
 
     protected addExisting() {
-        const existing = this.components
-            .slice(1)
-            .reduce(
-                (acc, c) => intersection(acc, new Set(c.keys())),
-                new Set<number>(this.components[0].keys())
-            );
+        const existing: Set<number> = transduce(
+            map((c) => c.keys()),
+            intersectionR(),
+            this.components
+        );
         for (let id of existing) {
             this.addID(id, false);
         }
@@ -197,10 +197,12 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     }
 
     protected reorderOwned(id: number, n: number) {
-        if (!this.owned.length) return;
-        const id2 = this.owned[0].dense[n];
+        const owned = this.owned;
+        if (!owned.length) return;
+        const id2 = owned[0].dense[n];
         let swapped = false;
-        for (let comp of this.owned) {
+        for (let i = owned.length; --i >= 0; ) {
+            const comp = owned[i];
             // console.log(`moving id: ${id} in ${comp.id}...`);
             swapped = comp.swapIndices(comp.sparse[id], n) || swapped;
         }
