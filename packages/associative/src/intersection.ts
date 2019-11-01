@@ -1,5 +1,6 @@
+import { reduce, Reducer } from "@thi.ng/transducers";
 import { into } from "./into";
-import { empty } from "./utils";
+import { empty, ensureSet } from "./utils";
 
 /**
  * Computes the intersection of sets `a` and `b` and writes results into
@@ -26,3 +27,23 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
     }
     return out!;
 };
+
+/**
+ * Reducer version of `intersection`. If `src` is given returns the
+ * reduced intersection of given inputs, else merely returns a reducer
+ * to be used with thi.ng/transducers `reduce` / `transduce` functions.
+ *
+ * @param src
+ */
+export function intersectionR<T>(): Reducer<Set<T>, Iterable<T>>;
+export function intersectionR<T>(src: Iterable<T>): Set<T>;
+export function intersectionR<T>(src?: Iterable<Iterable<T>>) {
+    return src
+        ? reduce(intersectionR<T>(), src)
+        : <Reducer<Set<T>, Iterable<T>>>[
+              () => <any>null,
+              (acc) => acc || new Set<T>(),
+              (acc, x) =>
+                  !acc ? ensureSet(x) : intersection(acc, ensureSet(x))
+          ];
+}

@@ -1,5 +1,6 @@
+import { reduce, Reducer } from "@thi.ng/transducers";
 import { into } from "./into";
-import { copy } from "./utils";
+import { copy, ensureSet } from "./utils";
 
 /**
  * Computes union of sets `a` and `b` and writes results to new set or
@@ -10,6 +11,30 @@ import { copy } from "./utils";
  * @param out
  */
 export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
+    if (a.size < b.size) {
+        const t = a;
+        a = b;
+        b = t;
+    }
     out = out ? into(out, a) : copy(a, Set);
     return a === b ? out! : into(out!, b);
 };
+
+/**
+ * Reducer version of `union`. If `src` is given returns the
+ * reduced union of given inputs, else merely returns a reducer
+ * to be used with thi.ng/transducers `reduce` / `transduce` functions.
+ *
+ * @param src
+ */
+export function unionR<T>(): Reducer<Set<T>, Iterable<T>>;
+export function unionR<T>(src: Iterable<T>): Set<T>;
+export function unionR<T>(src?: Iterable<Iterable<T>>) {
+    return src
+        ? reduce(unionR<T>(), src)
+        : <Reducer<Set<T>, Iterable<T>>>[
+              () => <any>null,
+              (acc) => acc || new Set<T>(),
+              (acc, x) => (!acc ? ensureSet(x) : union(acc, ensureSet(x)))
+          ];
+}
