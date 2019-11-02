@@ -1,5 +1,6 @@
 import { assert, Type, typedArray } from "@thi.ng/api";
 import { isArray, isString } from "@thi.ng/checks";
+import { filter } from "@thi.ng/transducers";
 import {
     ComponentID,
     GroupOpts,
@@ -24,7 +25,7 @@ export class ECS<SPEC> {
     }
 
     defEntity<K extends ComponentID<SPEC>>(
-        comps?: string[] | IComponent<K, any, any>[] | Partial<Pick<SPEC, K>>
+        comps?: K[] | IComponent<K, any, any>[] | Partial<Pick<SPEC, K>>
     ) {
         const id = this.idgen.next();
         assert(
@@ -35,9 +36,7 @@ export class ECS<SPEC> {
             if (isArray(comps)) {
                 if (!comps.length) return id!;
                 for (let cid of comps) {
-                    const comp = isString(cid)
-                        ? this.components.get(<ComponentID<SPEC>>cid)
-                        : cid;
+                    const comp = isString(cid) ? this.components.get(cid) : cid;
                     assert(!!comp, `unknown component ID: ${cid}`);
                     comp!.add(id!);
                 }
@@ -81,6 +80,14 @@ export class ECS<SPEC> {
         // TODO add exist check
         this.groups.set(g.id, g);
         return g;
+    }
+
+    componentsForID(id: number) {
+        return filter((c) => c.has(id), this.components.values());
+    }
+
+    groupsForID(id: number) {
+        return filter((g) => g.has(id), this.groups.values());
     }
 }
 

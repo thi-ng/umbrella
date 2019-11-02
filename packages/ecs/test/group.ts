@@ -13,13 +13,19 @@ describe("component", () => {
 
     beforeEach(() => (ecs = new ECS(16)));
 
-    it("group shrink", () => {
+    it("group", () => {
         const a = ecs.defComponent({ id: "a", default: () => "a" });
         const b = ecs.defComponent({ id: "b", type: 7, size: 2 });
         const g = ecs.defGroup([a, b]);
         ecs.defEntity(["a", "b"]);
         ecs.defEntity({ a: "aa", b: [1, 2] });
         ecs.defEntity({ a: "aaa", b: [3, 4] });
+        assert.ok(g.has(0));
+        assert.ok(g.has(1));
+        assert.ok(g.has(2));
+        assert.ok(!g.has(3));
+        assert.deepEqual([...ecs.componentsForID(2)], [a, b]);
+        assert.deepEqual([...ecs.groupsForID(2)], [g]);
         assert.ok(
             equiv(collect(g), [
                 { a: "a", b: [0, 0], id: 0 },
