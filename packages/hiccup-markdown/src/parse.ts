@@ -11,6 +11,7 @@ import {
     untilStr,
     whitespace
 } from "@thi.ng/fsm";
+import { comp, filter } from "@thi.ng/transducers";
 import { TagFactories } from "./api";
 
 type ParseResult = ResultBody<any[]>;
@@ -117,7 +118,7 @@ const pop = (result: Fn2<FSMCtx, string, any>) => (
 };
 
 const collectChildren = (ctx: FSMCtx) => (
-    ctx.children!.push(ctx.body), ctx.children!
+    ctx.children!.push(ctx.body!.trim()), ctx.children!
 );
 
 const collect = (id: State) => (ctx: FSMCtx, buf: string[]): ParseResult => (
@@ -243,122 +244,126 @@ const newTable = (ctx: FSMCtx) => (
  */
 export const parse = (_tags?: Partial<TagFactories>) => {
     const tags = <TagFactories>{ ...DEFAULT_TAGS, ..._tags };
-    return fsm<string, FSMCtx, any[]>(
-        {
-            [State.START]: alts(
-                [
-                    whitespace(() => [State.START]),
-                    repeat(str(HD), 1, Infinity, heading),
-                    str(BQUOTE, (ctx) => transition(ctx, State.BLOCKQUOTE)),
-                    str(LI, newList),
-                    alts(
-                        [
-                            seq([str(CODE), not(str(CODE))], newParaCode),
-                            str(CODEBLOCK, () => [State.START_CODEBLOCK])
-                        ],
-                        undefined,
-                        (_, next) => next
-                    ),
-                    seq([repeat(str(HR), 3, Infinity), str(NL)], () => [
-                        State.START,
-                        [tags.hr()]
-                    ]),
-                    str(IMG, newParaInline(State.IMG)),
-                    str(LINK_LABEL, newParaInline(State.LINK)),
-                    str(STRONG, newParaInline(State.STRONG)),
-                    str(STRIKE, newParaInline(State.STRIKE)),
-                    str(EM, newParaInline(State.EMPHASIS)),
-                    str(TD, newTable)
-                ],
-                newPara
-            ),
+    return comp(
+        filter((x) => x !== "\r"),
+        fsm<string, FSMCtx, any[]>(
+            {
+                [State.START]: alts(
+                    [
+                        whitespace(() => [State.START]),
+                        repeat(str(HD), 1, Infinity, heading),
+                        str(BQUOTE, (ctx) => transition(ctx, State.BLOCKQUOTE)),
+                        str(LI, newList),
+                        alts(
+                            [
+                                seq([str(CODE), not(str(CODE))], newParaCode),
+                                str(CODEBLOCK, () => [State.START_CODEBLOCK])
+                            ],
+                            undefined,
+                            (_, next) => next
+                        ),
+                        seq([repeat(str(HR), 3, Infinity), str(NL)], () => [
+                            State.START,
+                            [tags.hr()]
+                        ]),
+                        str(IMG, newParaInline(State.IMG)),
+                        str(LINK_LABEL, newParaInline(State.LINK)),
+                        str(STRONG, newParaInline(State.STRONG)),
+                        str(STRIKE, newParaInline(State.STRIKE)),
+                        str(EM, newParaInline(State.EMPHASIS)),
+                        str(TD, newTable)
+                    ],
+                    newPara
+                ),
 
-            [State.PARA]: matchPara(State.PARA, State.END_PARA),
+                [State.PARA]: matchPara(State.PARA, State.END_PARA),
 
-            [State.END_PARA]: alts(
-                [
-                    ...matchInline(State.PARA),
-                    str(NL, collectAndRestart(tags.paragraph))
-                ],
-                collect(State.PARA)
-            ),
+                [State.END_PARA]: alts(
+                    [
+                        ...matchInline(State.PARA),
+                        str(NL, collectAndRestart(tags.paragraph))
+                    ],
+                    collect(State.PARA)
+                ),
 
-            [State.BLOCKQUOTE]: matchPara(
-                State.BLOCKQUOTE,
-                State.END_BLOCKQUOTE
-            ),
+                [State.BLOCKQUOTE]: matchPara(
+                    State.BLOCKQUOTE,
+                    State.END_BLOCKQUOTE
+                ),
 
-            [State.END_BLOCKQUOTE]: alts(
-                [
-                    ...matchInline(State.BLOCKQUOTE),
-                    str(BQUOTE, collectBlockQuote),
-                    str(NL, collectAndRestart(tags.blockquote))
-                ],
-                collect(State.BLOCKQUOTE)
-            ),
+                [State.END_BLOCKQUOTE]: alts(
+                    [
+                        ...matchInline(State.BLOCKQUOTE),
+                        str(BQUOTE, collectBlockQuote),
+                        str(NL, collectAndRestart(tags.blockquote))
+                    ],
+                    collect(State.BLOCKQUOTE)
+                ),
 
-            [State.HEADING]: matchPara(State.HEADING, State.END_HEADING),
+                [State.HEADING]: matchPara(State.HEADING, State.END_HEADING),
 
-            [State.END_HEADING]: alts(
-                [
-                    ...matchInline(State.HEADING),
-                    str(NL, collectHeading(tags.heading))
-                ],
-                collect(State.HEADING)
-            ),
+                [State.END_HEADING]: alts(
+                    [
+                        ...matchInline(State.HEADING),
+                        str(NL, collectHeading(tags.heading))
+                    ],
+                    collect(State.HEADING)
+                ),
 
-            [State.START_CODEBLOCK]: untilStr(
-                NL,
-                (ctx, lang) => ((ctx.lang = lang), [State.CODEBLOCK])
-            ),
+                [State.START_CODEBLOCK]: untilStr(
+                    NL,
+                    (ctx, lang) => ((ctx.lang = lang), [State.CODEBLOCK])
+                ),
 
-            [State.CODEBLOCK]: untilStr(
-                CODEBLOCK_END,
-                collectCodeBlock(tags.codeblock)
-            ),
+                [State.CODEBLOCK]: untilStr(
+                    CODEBLOCK_END,
+                    collectCodeBlock(tags.codeblock)
+                ),
 
-            [State.LI]: matchPara(State.LI, State.END_LI),
+                [State.LI]: matchPara(State.LI, State.END_LI),
 
-            [State.END_LI]: alts(
-                [
-                    str(NL, collectList("ul", tags.list, tags.li)),
-                    str(
-                        LI,
-                        (ctx) => (
-                            collectLi(ctx, tags.li), transition(ctx, State.LI)
+                [State.END_LI]: alts(
+                    [
+                        str(NL, collectList("ul", tags.list, tags.li)),
+                        str(
+                            LI,
+                            (ctx) => (
+                                collectLi(ctx, tags.li),
+                                transition(ctx, State.LI)
+                            )
                         )
-                    )
-                ],
-                collect(State.LI)
-            ),
+                    ],
+                    collect(State.LI)
+                ),
 
-            [State.LINK]: matchLink(tags.link),
+                [State.LINK]: matchLink(tags.link),
 
-            [State.IMG]: matchLink(tags.img),
+                [State.IMG]: matchLink(tags.img),
 
-            [State.STRONG]: untilStr(STRONG, collectInline(tags.strong)),
+                [State.STRONG]: untilStr(STRONG, collectInline(tags.strong)),
 
-            [State.STRIKE]: untilStr(STRIKE, collectInline(tags.strike)),
+                [State.STRIKE]: untilStr(STRIKE, collectInline(tags.strike)),
 
-            [State.EMPHASIS]: untilStr(EM, collectInline(tags.em)),
+                [State.EMPHASIS]: untilStr(EM, collectInline(tags.em)),
 
-            [State.CODE]: untilStr(CODE, collectInline(tags.code)),
+                [State.CODE]: untilStr(CODE, collectInline(tags.code)),
 
-            [State.TABLE]: alts(
-                [
-                    ...matchInline(State.TABLE),
-                    str(TD, collectTD(tags.td)),
-                    str(NL, collectTR(tags.tr))
-                ],
-                collect(State.TABLE)
-            ),
+                [State.TABLE]: alts(
+                    [
+                        ...matchInline(State.TABLE),
+                        str(TD, collectTD(tags.td)),
+                        str(NL, collectTR(tags.tr))
+                    ],
+                    collect(State.TABLE)
+                ),
 
-            [State.END_TABLE]: alts([
-                str(NL, collectTable(tags.table)),
-                str(TD, () => [State.TABLE])
-            ])
-        },
-        { stack: [] },
-        State.START
+                [State.END_TABLE]: alts([
+                    str(NL, collectTable(tags.table)),
+                    str(TD, () => [State.TABLE])
+                ])
+            },
+            { stack: [] },
+            State.START
+        )
     );
 };
