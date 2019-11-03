@@ -118,7 +118,7 @@ const pop = (result: Fn2<FSMCtx, string, any>) => (
 };
 
 const collectChildren = (ctx: FSMCtx) => (
-    ctx.children!.push(ctx.body!.trim()), ctx.children!
+    ctx.children!.push(ctx.body), ctx.children!
 );
 
 const collect = (id: State) => (ctx: FSMCtx, buf: string[]): ParseResult => (

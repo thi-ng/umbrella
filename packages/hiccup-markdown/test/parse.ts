@@ -6,7 +6,7 @@ describe("parse", () => {
     it("CRLF", () => {
         assert.deepEqual(
             [...iterator(parse(), `# hello\r\n\r\nworld\r\n\r\n`)],
-            [["h1", "hello"], ["p", "world"]]
+            [["h1", " hello "], ["p", "world "]]
         );
     });
 
@@ -22,7 +22,7 @@ describe("parse", () => {
                     ["br"],
                     " two ",
                     ["em", "lines"],
-                    "."
+                    ". "
                 ]
             ]
         );
