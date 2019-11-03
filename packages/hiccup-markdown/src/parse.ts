@@ -59,7 +59,7 @@ interface FSMCtx {
  * Default hiccup element factories
  */
 const DEFAULT_TAGS: TagFactories = {
-    blockquote: (...xs) => ["blockquote", ...xs],
+    blockquote: (xs) => ["blockquote", ...xs],
     code: (body) => ["code", body],
     codeblock: (lang, body) => ["pre", { lang }, body],
     em: (body) => ["em", body],

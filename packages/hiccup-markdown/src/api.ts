@@ -1,5 +1,5 @@
 export interface TagFactories {
-    blockquote(...children: any[]): any[];
+    blockquote(children: any[]): any[];
     code(body: string): any[];
     codeblock(lang: string, body: string): any[];
     em(body: string): any[];
