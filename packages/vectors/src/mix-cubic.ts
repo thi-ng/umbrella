@@ -1,8 +1,8 @@
-import { ReadonlyVec, Vec } from "./api";
 import { addW4 } from "./addw";
+import { ReadonlyVec, Vec } from "./api";
 
 export const mixCubic = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,
