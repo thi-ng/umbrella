@@ -6,7 +6,7 @@ import {
     partition,
     push,
     transduce,
-    wrap
+    wrapSides
 } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -15,6 +15,6 @@ export const triFan: Tessellator = (points: ReadonlyVec[]) => {
     return transduce(
         comp(partition<Vec>(2, 1), map(([a, b]) => [a, b, c])),
         push(),
-        wrap(points, 1, false, true)
+        wrapSides(points, 0, 1)
     );
 };

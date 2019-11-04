@@ -6,7 +6,7 @@ import {
     partition,
     push,
     transduce,
-    wrap
+    wrapSides
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -21,6 +21,6 @@ export const edgeSplit: Tessellator = (points: ReadonlyVec[]) => {
             })
         ),
         push(),
-        wrap(points, 1, false, true)
+        wrapSides(points, 0, 1)
     );
 };
