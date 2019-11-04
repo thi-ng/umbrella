@@ -4,17 +4,16 @@ import { repeat } from "./repeat";
 
 /**
  * Takes a number of keyframe tuples (`stops`) and yields a sequence of
- * `n+1` equally spaced, interpolated values. Keyframes are defined as
- * `[pos, value]`. Only values in the closed `minPos` .. `maxPos`
- * interval will be computed.
+ * `n+1` equally spaced, tweened values. Keyframes are defined as `[pos,
+ * value]`. Only values in the closed `minPos` .. `maxPos` interval will
+ * be computed.
  *
  * Interpolation happens in two stages: First the given `init` function
  * is called to transform/prepare pairs of consecutive keyframes into a
- * single interval (user defined). Then to produce each interpolated
- * value calls `mix` with the currently active interval and
- * interpolation time value `t` (re-normalized and relative to current
- * interval). The iterator yields results of these `mix()` function
- * calls.
+ * single interval (user defined). Then to produce each tweened value
+ * calls `mix` with the currently active interval and interpolation time
+ * value `t` (re-normalized and relative to current interval). The
+ * iterator yields results of these `mix()` function calls.
  *
  * Depending on the overall number of samples requested and the distance
  * between keyframes, some keyframes MIGHT be skipped. E.g. if
@@ -25,13 +24,13 @@ import { repeat } from "./repeat";
  *
  * The given keyframe positions can lie outside the `minPos`/`maxPos`
  * range and also don't need to cover the range fully. In the latter
- * case, interpolated values before the first or after the last keyframe
- * will yield the value of the 1st/last keyframe. If only a single
- * keyframe is given in total, all `n` yielded samples will be that
- * keyframe's transformed value.
+ * case, tweened values before the first or after the last keyframe will
+ * yield the value of the 1st/last keyframe. If only a single keyframe
+ * is given in total, all `n` yielded samples will be that keyframe's
+ * transformed value.
  *
  * ```
- * [...interpolate(
+ * [...tween(
  *   10,
  *   0,
  *   100,
@@ -50,7 +49,7 @@ import { repeat } from "./repeat";
  * ```
  * import { mix, smoothStep } from "@thi.ng/math"
  *
- * [...interpolate(
+ * [...tween(
  *   10,
  *   0,
  *   100,
@@ -63,6 +62,10 @@ import { repeat } from "./repeat";
  * // [ 100, 100, 100, 120, 179, 200, 158, 41, 0, 0, 0 ]
  * ```
  *
+ * @see interpolate
+ * @see interpolateHermite
+ * @see interpolateLinear
+ *
  * @param n
  * @param minPos
  * @param maxPos
@@ -70,7 +73,7 @@ import { repeat } from "./repeat";
  * @param mix interval interpolator
  * @param stops keyframe / stops
  */
-export function* interpolate<A, B, C>(
+export function* tween<A, B, C>(
     n: number,
     minPos: number,
     maxPos: number,
