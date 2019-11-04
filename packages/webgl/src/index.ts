@@ -3,6 +3,7 @@ export * from "./api/buffers";
 export * from "./api/canvas";
 export * from "./api/ext";
 export * from "./api/glsl";
+export * from "./api/logger";
 export * from "./api/material";
 export * from "./api/model";
 export * from "./api/shader";
