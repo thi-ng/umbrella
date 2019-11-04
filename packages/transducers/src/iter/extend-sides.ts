@@ -3,8 +3,9 @@ import { repeat } from "./repeat";
 
 /**
  * Yields iterator of given iterable which repeats the first and/or last
- * value(s) `n` times (default: 1). By default both sides are repeated,
- * but can be adjusted via `left` / `right` flags.
+ * value(s) `numLeft`/`numRight` times (default: 1). By default both
+ * sides are repeated, but can be adjusted by setting either of them to
+ * zero. `numRight` defaults to same value as `numLeft`.
  *
  * ```
  * [...extendSides([1, 2, 3])]
@@ -13,34 +14,32 @@ import { repeat } from "./repeat";
  * [...extendSides([1, 2, 3], 3)]
  * // [ 1, 1, 1,  1, 2, 3,  3, 3, 3 ]
  *
- * [...extendSides([1, 2, 3], 3, false, true)]
- * // [ 1, 2, 3, 3, 3, 3 ]
+ * [...extendSides([1, 2, 3], 0, 3)]
+ * // [ 1, 2, 3,  3, 3, 3 ]
  * ```
  *
  * @see padSides
- * @see wrap
+ * @see wrapSides
  *
  * @param src
- * @param n
- * @param left
- * @param right
+ * @param numLeft
+ * @param numRight
  */
 export function* extendSides<T>(
     src: Iterable<T>,
-    n = 1,
-    left = true,
-    right = true
+    numLeft = 1,
+    numRight = numLeft
 ) {
     let prev: T | typeof SEMAPHORE = SEMAPHORE;
     for (let x of src) {
-        if (left && prev === SEMAPHORE) {
-            yield* repeat(x, n);
-            left = false;
+        if (numLeft > 0 && prev === SEMAPHORE) {
+            yield* repeat(x, numLeft);
+            numLeft = 0;
         }
         yield x;
         prev = x;
     }
-    if (right && prev !== SEMAPHORE) {
-        yield* repeat(prev, n);
+    if (numRight > 0 && prev !== SEMAPHORE) {
+        yield* repeat(prev, numRight);
     }
 }

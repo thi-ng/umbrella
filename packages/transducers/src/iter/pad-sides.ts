@@ -2,44 +2,42 @@ import { concat } from "./concat";
 import { repeat } from "./repeat";
 
 /**
- * Returns iterator of `src` padded with value `x`, repeated `n` times
- * (default: once) on either side (by default both sides are padded).
+ * Returns iterator of `src` padded with value `x`, repeated
+ * `numLeft`/`numRight` times (default: 1). By default both sides are
+ * padded, but can be adjusted by setting either of them to zero.
+ * `numRight` defaults to same value as `numLeft`.
  *
  * Essentially, syntax sugar for:
  *
  * ```
  * // default
- * concat(repeat(x, n), src, repeat(x, n))
+ * concat(repeat(x, numLeft), src, repeat(x, numRight))
  *
  * // left only
- * concat(repeat(x, n), src)
+ * concat(repeat(x, numLeft), src)
  *
  * // right only
- * concat(src, repeat(x, n))
+ * concat(src, repeat(x, numRight))
  * ```
  *
  * @see extendsSides
- * @see wrap
+ * @see wrapSides
  *
  * @param src
  * @param x
- * @param n
- * @param left
- * @param right
+ * @param numLeft
+ * @param numRight
  */
 export const padSides = <T>(
     src: Iterable<T>,
     x: T,
-    n = 1,
-    left = true,
-    right = true
-) => {
-    const pad = [...repeat(x, n)];
-    return left
-        ? right
-            ? concat(pad, src, pad)
-            : concat(pad, src)
-        : right
-        ? concat(src, pad)
+    numLeft = 1,
+    numRight = numLeft
+) =>
+    numLeft > 0
+        ? numRight > 0
+            ? concat(repeat(x, numLeft), src, repeat(x, numRight))
+            : concat(repeat(x, numLeft), src)
+        : numRight > 0
+        ? concat(src, repeat(x, numRight))
         : concat(src);
-};
