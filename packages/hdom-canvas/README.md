@@ -503,7 +503,8 @@ Converted to CSS color strings:
 ### Coordinate transformations
 
 Coordinate system transformations can be achieved via the following
-attributes. Nested transformations are supported.
+attributes (for groups and individual shapes).
+Nested transformations are supported.
 
 If using a combination of `translate`, `scale` and/or `rotate` attribs,
 the order of application is always TRS.
