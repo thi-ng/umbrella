@@ -66,7 +66,7 @@ const mainImage: MainImageFn = (gl, unis) => {
     ];
 };
 
-// create WebGL2 canvas
+// create WebGL canvas
 const canvas = glCanvas({
     width: window.innerWidth,
     height: window.innerHeight,
