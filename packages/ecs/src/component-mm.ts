@@ -14,7 +14,7 @@ import {
     ComponentDefaultValue,
     EVENT_ADDED,
     EVENT_CHANGED,
-    EVENT_PRE_REMOVE,
+    EVENT_PRE_DELETE,
     ICache,
     IComponent,
     MemMappedComponentOpts
@@ -104,7 +104,7 @@ export class MemMappedComponent<K extends string>
         let i = sparse[id];
         if (i < n && dense[i] === id) {
             // notify listeners prior to removal to allow restructure / swaps
-            this.notify({ id: EVENT_PRE_REMOVE, target: this, value: id });
+            this.notify({ id: EVENT_PRE_DELETE, target: this, value: id });
             // get possibly updated slot
             i = sparse[id];
             const j = dense[--n];

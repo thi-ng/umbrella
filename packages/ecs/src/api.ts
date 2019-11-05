@@ -10,7 +10,7 @@ import {
 } from "@thi.ng/api";
 
 export const EVENT_ADDED = "added";
-export const EVENT_PRE_REMOVE = "pre-remove";
+export const EVENT_PRE_DELETE = "pre-delete";
 export const EVENT_CHANGED = "changed";
 
 export type ComponentID<S> = keyof S & string;
@@ -69,7 +69,7 @@ export interface ObjectComponentOpts<ID extends string, T> {
 
 export interface GroupOpts {
     id: string;
-    cache: ICache<any>;
+    cache?: ICache<any>;
 }
 
 export interface ICache<T> extends IRelease {

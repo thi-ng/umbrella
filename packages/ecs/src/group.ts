@@ -11,7 +11,7 @@ import {
     ComponentID,
     EVENT_ADDED,
     EVENT_CHANGED,
-    EVENT_PRE_REMOVE,
+    EVENT_PRE_DELETE,
     GroupInfo,
     GroupOpts,
     GroupTuple,
@@ -20,8 +20,6 @@ import {
 } from "./api";
 import { Component } from "./component";
 import { UnboundedCache } from "./unbounded";
-
-let NEXT_ID = 0;
 
 export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     readonly id: string;
@@ -37,12 +35,12 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     constructor(
         comps: IComponent<K, any, any>[],
         owned: IComponent<K, any, any>[] = comps,
-        opts: Partial<GroupOpts> = {}
+        opts: GroupOpts
     ) {
         this.components = comps;
         this.ids = new Set();
         this.n = 0;
-        this.id = opts.id || `group${NEXT_ID++}`;
+        this.id = opts.id;
         this.cache = opts.cache || new UnboundedCache();
 
         this.info = comps.reduce(
@@ -74,7 +72,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 
         comps.forEach((comp) => {
             comp.addListener(EVENT_ADDED, this.onAddListener, this);
-            comp.addListener(EVENT_PRE_REMOVE, this.onRemoveListener, this);
+            comp.addListener(EVENT_PRE_DELETE, this.onDeleteListener, this);
             comp.addListener(EVENT_CHANGED, this.onChangeListener, this);
         });
     }
@@ -82,7 +80,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     release() {
         this.components.forEach((comp) => {
             comp.removeListener(EVENT_ADDED, this.onAddListener, this);
-            comp.removeListener(EVENT_PRE_REMOVE, this.onRemoveListener, this);
+            comp.removeListener(EVENT_PRE_DELETE, this.onDeleteListener, this);
             comp.removeListener(EVENT_CHANGED, this.onChangeListener, this);
         });
         this.cache.release();
@@ -161,7 +159,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
         this.addID(e.value);
     }
 
-    protected onRemoveListener(e: Event) {
+    protected onDeleteListener(e: Event) {
         // console.log(`delete ${e.target.id}: ${e.value}`);
         this.removeID(e.value);
     }

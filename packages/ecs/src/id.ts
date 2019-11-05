@@ -73,6 +73,7 @@ export class VersionedIdGen extends IDGen {
     }
 
     free(id: number) {
+        // FIXME use this.isValid()
         if ((id & this.mask) < this.nextID) {
             this.ids.push(id);
             return true;
@@ -81,6 +82,7 @@ export class VersionedIdGen extends IDGen {
     }
 
     isValid(id: number) {
+        // FIXME need to check/iterate ids manually & apply mask
         return super.isValid(id & this.mask);
     }
 }
