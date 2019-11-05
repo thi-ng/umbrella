@@ -159,7 +159,7 @@ v.addN([], gvec([0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 3, 1, 4), 10);
 // or operate on raw arrays directly...
 // here the last 4 args define:
 // out index, src index, out stride, src stride
-v.addSN3(null, [0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 10, 1, 1, 4, 4)
+v.addNS3(null, [0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 10, 1, 1, 4, 4)
 // [0, 11, 0, 0, 0, 12, 0, 0, 0, 13, 0, 0, 0]
 
 v.dist([1, 2], [100, 200]);
@@ -219,10 +219,10 @@ fixed size versions use optimized, loop-free implementations.
 | NI2 / NI3 / NI4 | fixed size signed int vec & scalar     |
 | NU2 / NU3 / NU4 | fixed size unsigned int vec & scalar   |
 | S2 / S3 / S4    | fixed size strided vec                 |
-| SN2 / SN3 / SN4 | fixed size strided vec & scalar        |
+| NS2 / NS3 / NS4 | fixed size strided vec & scalar        |
 | C               | arbitrary len vec, component wise args |
 | C2 / C3 / C4    | fixed size vec, component wise args    |
-| SC2 / SC3 / SC4 | fixed size strided vec, component args |
+| CS2 / CS3 / CS4 | fixed size strided vec, component args |
 
 ### Constants
 
@@ -241,8 +241,8 @@ fixed size versions use optimized, loop-free implementations.
 -   `setC` / `setC2` / `setC3` / `setC4` / `setC6`
 -   `setN` / `setN2` / `setN3` / `setN4`
 -   `setS` / `setS2` / `setS3` / `setS4`
--   `setSC2` / `setSC3` / `setSC4`
--   `setSN2` / `setSN3` / `setSN4`
+-   `setCS2` / `setCS3` / `setCS4`
+-   `setNS2` / `setNS3` / `setNS4`
 -   `copy`
 -   `empty`
 -   `one`
