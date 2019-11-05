@@ -5,7 +5,7 @@
 *.bak*
 *.d.ts
 *.gz
-*.js
+packages/**/*.js
 *.log
 *.map
 *.tgz
