@@ -19,7 +19,7 @@
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "test": "mocha test",
-        "cover": "nyc mocha test/* && nyc report --reporter=lcov",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
         "pub": "yarn build:release && yarn publish --access public"
