@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/webgl-msdf",
     "version": "0.1.8",
-    "description": "TODO",
+    "description": "Multi-channel SDF font rendering & basic text layout for WebGL",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -43,6 +43,7 @@
     "keywords": [
         "ES6",
         "font",
+        "layout",
         "MSDF",
         "shader",
         "text",

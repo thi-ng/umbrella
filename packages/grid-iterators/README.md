@@ -89,7 +89,7 @@ Supports custom PRNG implementations via `IRandom` interface defined in
 
 ### Zigzag diagonal
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagdiagonal2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagdiag2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-diagonal.ts)
 

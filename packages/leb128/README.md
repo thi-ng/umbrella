@@ -57,23 +57,20 @@ yarn add @thi.ng/leb128
 ```ts
 import * as leb from "@thi.ng/leb128";
 
-// since WASM initialization is async, need to wait until module is ready...
 // if WASM is unavailable, the encode/decode functions will throw an error
-leb.READY.then(()=> {
-    // encode unsigned int (input val up to 64 bits)
-    enc = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
-    // Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15 ]
+enc = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
+// Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15 ]
 
-    // decoding returns tuple of [value, bytes consumed]
-    leb.decodeULEB128(enc);
-    // [ 9007199254740991, 8 ]
+// decoding returns tuple of [value, bytes consumed]
+leb.decodeULEB128(enc);
+// [ 9007199254740991, 8 ]
 
-    // encode signed int
-    enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
-    // Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
-    leb.decodeSLEB128(enc)
-    // [ -9007199254740991, 8 ]
-});
+// encode signed int
+enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
+// Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
+
+leb.decodeSLEB128(enc)
+// [ -9007199254740991, 8 ]
 ```
 
 ## Building the binary
@@ -97,7 +94,7 @@ wasm-opt leb128.wasm -o opt.wasm -Os
 wasm2wat opt.wasm
 
 # base64 encode and generate src/binary.ts
-echo "export const BINARY = \"$(base64 -i opt.wasm)\";" > src/binary.ts
+yarn build:binary
 
 # test TS/JS version
 yarn test

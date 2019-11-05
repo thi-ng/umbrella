@@ -15,8 +15,9 @@ import {
     push,
     transduce,
     wordWrap,
-    wrap
+    wrapSides
 } from "@thi.ng/transducers";
+import { ReadonlyVec } from "@thi.ng/vectors";
 import {
     BooleanNode,
     BooleanTree,
@@ -254,7 +255,7 @@ const addEntity = (
 
 export const addPolyline = (
     doc: IGESDocument,
-    pts: ArrayLike<number>[],
+    pts: ReadonlyVec[],
     form = PolylineMode.OPEN,
     opts?: Partial<EntityOpts>
 ) => {
@@ -272,11 +273,9 @@ export const addPolyline = (
         },
         [
             ...params,
-            ...mapcat<number[], Param>(
+            ...mapcat<ReadonlyVec, Param>(
                 (p) => map((x) => <Param>[x, Type.FLOAT], p),
-                form === PolylineMode.CLOSED
-                    ? <any>wrap(pts, 1, false, true)
-                    : pts
+                form === PolylineMode.CLOSED ? wrapSides(pts, 0, 1) : pts
             )
         ],
         opts
@@ -285,13 +284,13 @@ export const addPolyline = (
 
 export const addPolygon = (
     doc: IGESDocument,
-    pts: ArrayLike<number>[],
+    pts: ReadonlyVec[],
     opts?: Partial<EntityOpts>
 ) => addPolyline(doc, pts, PolylineMode.FILLED, opts);
 
 export const addPoint = (
     doc: IGESDocument,
-    p: ArrayLike<number>,
+    p: ReadonlyVec,
     opts?: Partial<EntityOpts>
 ) =>
     addEntity(
@@ -309,8 +308,8 @@ export const addPoint = (
 
 export const addLine = (
     doc: IGESDocument,
-    a: ArrayLike<number>,
-    b: ArrayLike<number>,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
     opts?: Partial<EntityOpts>
 ) =>
     addEntity(
@@ -356,10 +355,10 @@ const postOrder = (acc: Param[], tree: BooleanNode) => {
 
 export const addCSGBox = (
     doc: IGESDocument,
-    pos: ArrayLike<number>,
-    size: ArrayLike<number>,
-    xaxis: ArrayLike<number> = [1, 0, 0],
-    zaxis: ArrayLike<number> = [0, 0, 1],
+    pos: ReadonlyVec,
+    size: ReadonlyVec,
+    xaxis: ReadonlyVec = [1, 0, 0],
+    zaxis: ReadonlyVec = [0, 0, 1],
     opts?: Partial<EntityOpts>
 ) =>
     addEntity(
@@ -385,10 +384,10 @@ export const addCSGBox = (
 
 export const addCSGCylinder = (
     doc: IGESDocument,
-    pos: ArrayLike<number>,
-    normal: ArrayLike<number>,
-    radius: ArrayLike<number>,
-    height: ArrayLike<number>,
+    pos: ReadonlyVec,
+    normal: ReadonlyVec,
+    radius: ReadonlyVec,
+    height: ReadonlyVec,
     opts?: Partial<EntityOpts>
 ) =>
     addEntity(

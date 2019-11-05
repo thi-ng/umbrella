@@ -2,11 +2,11 @@ import { IObjectOf } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose";
 import { clamp01, TAU } from "@thi.ng/math";
 import {
-    interpolate,
     map,
     normRange,
     push,
     transduce,
+    tween,
     zip
 } from "@thi.ng/transducers";
 import { Color, CosGradientSpec, ReadonlyColor } from "./api";
@@ -183,7 +183,7 @@ export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
  * )
  * ```
  *
- * @see thi.ng/transducers/iter/interpolate
+ * @see thi.ng/transducers/iter/tween
  *
  * @param n
  * @param stops
@@ -191,4 +191,4 @@ export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
 export const multiCosineGradient = (
     n: number,
     ...stops: [number, ReadonlyColor][]
-): Color[] => [...interpolate(n, 0, 1, cosineCoeffs, cosineColor, ...stops)];
+): Color[] => [...tween(n, 0, 1, cosineCoeffs, cosineColor, ...stops)];

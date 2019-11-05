@@ -18,7 +18,7 @@ This project is part of the
     - [Other parser features](#other-parser-features)
     - [Serializing to HTML](#serializing-to-html)
     - [Customizing tags](#customizing-tags)
-- [Serializer](#serializer)
+- [Serializer (Hiccup to Markdown)](#serializer-hiccup-to-markdown)
     - [Features](#features-1)
     - [Behaviors](#behaviors)
     - [Usage examples](#usage-examples)
@@ -31,7 +31,7 @@ This project is part of the
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-parser and an extensible Hiccup-to-Markdown serializer.
+parser and an extensible Hiccup-to-Markdown converter.
 
 ## Installation
 
@@ -41,12 +41,14 @@ yarn add @thi.ng/hiccup-markdown
 
 ## Dependencies
 
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Parser
 
@@ -72,7 +74,10 @@ features:
 | Code block  | GFM only (triple backtick prefix), w/ optional language hint                                        |
 | Horiz. Rule | only dash supported (e.g. `---`), min 3 chars required                                              |
 
-Note: Currently, the last heading, paragraph, blockquote, list or table requires an additional newline.
+**Note: Because of MD's line break handling and the fact the parser only
+consumes single characters from an iterable without knowledge of further
+values, the last heading, paragraph, blockquote, list or table requires
+an additional newline.**
 
 ### Limitations
 
@@ -93,6 +98,8 @@ requests are welcome, though!
 
 - **Functional:** parser entirely built using
   [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+  (specifically those defined in
+  [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm))
   & function composition. Use the parser in a transducer pipeline to
   easily apply post-processing of the emitted results
 - **Declarative:** parsing rules defined declaratively with only minimal
@@ -104,8 +111,8 @@ requests are welcome, though!
   or the serializer of this package for back conversion to MD
 - **Customizable:** supports custom tag factory functions to override
   default behavior / representation of each parsed result element
-- **Fast (enough):** parses this markdown file (5.8KB) in ~5ms on MBP2016 / Chrome 71
-- **Small:** minified + gzipped ~2.6KB (parser sub-module incl. deps)
+- **Fast (enough):** parses this markdown file (5.9KB) in ~5ms on MBP2016 / Chrome 71
+- **Small:** minified + gzipped ~2.5KB (parser sub-module incl. deps)
 
 ### Serializing to HTML
 
@@ -146,7 +153,7 @@ elements. User implementations / overrides can be given to the
 
 ```ts
 interface TagFactories {
-    blockquote(...children: any[]): any[];
+    blockquote(children: any[]): any[];
     code(body: string): any[];
     codeblock(lang: string, body: string): any[];
     em(body: string): any[];
@@ -178,7 +185,7 @@ serialize(iterator(parse(tags), src));
 // <p><a href="http://example.com" class="link blue">This</a> is a <em>test</em>. </p>
 ```
 
-## Serializer
+## Serializer (Hiccup to Markdown)
 
 For the reverse operation, the `serialize()` function can be used to
 convert an hiccup component tree into Markdown. Currently supports most

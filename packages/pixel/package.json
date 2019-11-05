@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
     "version": "0.1.4",
-    "description": "TODO",
+    "description": "Packed pixel buffer w/ customizable formats, blitting, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",

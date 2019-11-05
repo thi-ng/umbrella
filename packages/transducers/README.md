@@ -11,12 +11,14 @@ This project is part of the
 
 - [About](#about)
     - [Tutorial](#tutorial)
+    - [6.0.0 release](#600-release)
     - [5.0.0 release](#500-release)
     - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
     - [Basic usage patterns](#basic-usage-patterns)
+    - [Interpolation & SVG generation](#interpolation--svg-generation)
     - [Fuzzy search](#fuzzy-search)
     - [Histogram generation & result grouping](#histogram-generation--result-grouping)
     - [Pagination](#pagination)
@@ -72,6 +74,25 @@ patterns of this package, specifically these 3 parts:
 -   [Part 3 - Convolution, 1D/2D Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
 -   [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)
 
+### 6.0.0 release
+
+BREAKING CHANGES:
+
+- The `interpolate` iterator for keyframe interpolation has been renamed
+  to `tween`. In its place there's a new higher order transducer called
+  `interpolate`, incl. syntax-sugar versions `interpolateHermite` and
+  `interpolateLinear`.
+- The previously deprecated `wrapLeft`, `wrapRight` and `wrapBoth`
+  iterators have been removed.
+- The `wrap` iterator has been renamed to `wrapSides` and has a new
+  signature/arguments, more aligned with the ones listed below.
+
+The following new iterators have been added:
+
+- `extendSides`
+- `padSides`
+- `symmetric`
+
 ### 5.0.0 release
 
 Several previously included internal support functions have been
@@ -79,7 +100,7 @@ migrated to the
 [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
 package. You'll need to update your imports if you've been using any of
 these directly. Note that some of these functions also have changes to
-their arg order.
+their arg order. See changelog.
 
 Functions using randomness now all support an optional PRNG
 implementation of the `IRandom` interface from the
@@ -94,6 +115,7 @@ package.
 -   [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm) - Fine State Machine transducer
 -   [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom) - Transducer based [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) UI updates
 -   [@thi.ng/transducers-stats](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats) - Technical / statistical analysis transducers
+-   [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators) - 2D grid coordinate iteration strategies
 
 #### Packages utilizing transducers
 
@@ -113,11 +135,14 @@ yarn add @thi.ng/transducers
 ## Dependencies
 
 -   [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+-   [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
 -   [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 -   [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
 -   [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
 -   [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 -   [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+-   [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+-   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 -   [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
 
 ## Usage examples
@@ -175,6 +200,44 @@ f(3) // 9
 f(4) // undefined
 
 f = tx.step(take)
+```
+
+### Interpolation & SVG generation
+
+This example uses the
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+package for quick SVG generation.
+
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/transducers/hermite-tx.png)
+
+```ts
+import { asSvg, svgDoc, circle, polyline } from "@thi.ng/geom";
+
+// source values
+const values = [5, 10, 4, 8, 20, 2, 11, 7];
+
+// interpolate values and transform into 2D points
+const vertices = [...tx.iterator(
+    tx.comp(
+        tx.interpolateHermite(10),
+        tx.mapIndexed((x, y) => [x, y])
+    ),
+    // duplicate first & last vals (1x LHS / 2x RHS)
+    // this is only needed for hermite interpolation
+    // (see doc string for `interpolateHermite`)
+    tx.extendSides(values, 1, 2)
+)];
+
+// generate SVG
+asSvg(
+    svgDoc(
+        { width: 800, height: 200, "stroke-width": 0.1 },
+        // interpolated points as polyline
+        polyline(vertices, { stroke: "red" }),
+        // original values as dots
+        ...values.map((y, x) => circle([x * 10, y], 0.2))
+    )
+)
 ```
 
 ### Fuzzy search
@@ -677,6 +740,9 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 -   [flatten](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/flatten.ts)
 -   [indexed](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/indexed.ts)
 -   [interleave](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interleave.ts)
+-   [interpolate](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interpolate.ts)
+-   [interpolate-hermite](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interpolate-hermite.ts)
+-   [interpolate-linear](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interpolate-linear.ts)
 -   [interpose](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/interpose.ts)
 -   [keep](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/keep.ts)
 -   [labeled](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/labeled.ts)
@@ -727,10 +793,11 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 -   [choices](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/choices.ts)
 -   [concat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/concat.ts)
 -   [cycle](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/cycle.ts)
--   [interpolate](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/interpolate.ts)
+-   [extendSides](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/extend-sides.ts)
 -   [iterate](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/iterate.ts)
 -   [keys](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/keys.ts)
 -   [normRange](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/normRange.ts)
+-   [padSides](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/pad-sides.ts)
 -   [pairs](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/pairs.ts)
 -   [permutations](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/permutations.ts)
 -   [permutationsN](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/permutationsN.ts)
@@ -740,12 +807,10 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 -   [repeat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/repeat.ts)
 -   [repeatedly](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/repeatedly.ts)
 -   [reverse](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/reverse.ts)
--   [tuples](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/zip.ts) (deprecated, use `zip`)
+-   [symmetric](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/symmetric.ts)
+-   [tween](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/tween.ts)
 -   [vals](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/vals.ts)
--   [wrapBoth](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrapBoth.ts)
--   [wrapLeft](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrapLeft.ts)
--   [wrapRight](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrapRight.ts)
--   [wrap](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrap.ts)
+-   [wrapSides](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/wrap-sides.ts)
 -   [zip](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/zip.ts)
 
 ### Reducers
