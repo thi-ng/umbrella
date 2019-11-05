@@ -129,6 +129,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Bnaya",
+      "name": "Bnaya Peretz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1304862?v=4",
+      "profile": "https://github.com/Bnaya",
+      "contributions": [
+        "code",
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
