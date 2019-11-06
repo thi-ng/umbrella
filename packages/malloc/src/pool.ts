@@ -2,18 +2,13 @@ import {
     assert,
     SIZEOF,
     Type,
-    TypedArray
+    TypedArray,
+    typedArray
 } from "@thi.ng/api";
 import { align, isPow2, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    IMemPool,
-    MemBlock,
-    MemPoolOpts,
-    MemPoolStats
-} from "./api";
-import { wrap } from "./wrap";
+import { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
 
 const STATE_TOP = 0;
 const STATE_END = 1;
@@ -76,19 +71,19 @@ export class MemPool implements IMemPool {
             this.minSplit = opts.minSplit || 16;
             this.end = resolvedEnd;
             this.top = top;
-            this._free = null;
-            this._used = null;
+            this._free = 0;
+            this._used = 0;
         }
     }
 
     stats(): MemPoolStats {
-        const listStats = (block: MemBlock | null) => {
+        const listStats = (block: number) => {
             let count = 0;
             let size = 0;
             while (block) {
                 count++;
-                size += block.size;
-                block = block.next;
+                size += this.blockSize(block);
+                block = this.blockNext(block);
             }
             return { count, size };
         };
@@ -102,24 +97,24 @@ export class MemPool implements IMemPool {
         };
     }
 
-    callocAs(type: Type, num: number): TypedArray | undefined {
+    callocAs<T extends Type>(type: T, num: number) {
         const block = this.mallocAs(type, num);
         block && block.fill(0);
         return block;
     }
 
-    mallocAs(type: Type, num: number): TypedArray | undefined {
+    mallocAs<T extends Type>(type: T, num: number) {
         const addr = this.malloc(num * SIZEOF[type]);
-        return addr ? wrap(type, this.buf, addr, num) : undefined;
+        return addr ? typedArray(type, this.buf, addr, num) : undefined;
     }
 
-    calloc(size: number): number {
+    calloc(size: number) {
         const addr = this.malloc(size);
         addr && this.u8.fill(0, addr, align(addr + size, this.align));
         return addr;
     }
 
-    malloc(dataSize: number): number {
+    malloc(dataSize: number) {
         if (dataSize <= 0) {
             return 0;
         }
@@ -127,57 +122,54 @@ export class MemPool implements IMemPool {
         let top = this.top;
         const end = this.end;
         let block = this._free;
-        let prev = null;
+        let prev = 0;
         while (block) {
-            const isTop = block.addr + block.size >= top;
-            if (isTop || block.size >= memorySize) {
-                if (isTop && block.addr + memorySize > end) {
+            const isTop = block + this.blockSize(block) >= top;
+            if (isTop || this.blockSize(block) >= memorySize) {
+                if (isTop && block + memorySize > end) {
                     return 0;
                 }
                 if (prev) {
-                    prev.next = block.next;
+                    this.setBlockNext(prev, this.blockNext(block));
                 } else {
-                    this._free = block.next;
+                    this._free = this.blockNext(block);
                 }
-                block.next = this._used;
+                this.setBlockNext(block, this._used);
                 this._used = block;
                 if (isTop) {
-                    block.size = memorySize;
-                    this.top = block.addr + memorySize;
+                    this.setBlockSize(block, memorySize);
+                    this.top = block + memorySize;
                 } else if (this.doSplit) {
-                    const excess = block.size - memorySize;
+                    const excess = this.blockSize(block) - memorySize;
                     if (excess >= this.minSplit) {
-                        block.size = memorySize;
-                        const newBlock = new MemBlockWrapper(
-                            this.u32,
-                            block.addr + memorySize
-                        );
-                        newBlock.size = excess;
-                        newBlock.next = null;
+                        this.setBlockSize(block, memorySize);
+                        const newBlock = block + memorySize;
+                        this.setBlockSize(newBlock, excess);
+                        this.setBlockNext(newBlock, 0);
                         this.insert(newBlock);
                         this.doCompact && this.compact();
                     }
                 }
-                return toDataAddress(block.addr, this.align);
+                return blockDataAddress(block, this.align);
             }
             prev = block;
-            block = block.next;
+            block = this.blockNext(block);
         }
         const addr = align(top, this.align);
         top = addr + memorySize;
         if (top <= end) {
-            block = new MemBlockWrapper(this.u32, addr);
-            block.size = memorySize;
-            block.next = this._used;
+            block = addr;
+            this.setBlockSize(block, memorySize);
+            this.setBlockNext(block, this._used);
             this._used = block;
             this.top = top;
-            return toDataAddress(addr, this.align);
+            return blockDataAddress(block, this.align);
         }
         return 0;
     }
 
     realloc(dataAddr: number, size: number) {
-        const memoryAddr = toMemoryAddress(dataAddr, this.align);
+        const memoryAddr = blockSelfAddress(dataAddr, this.align);
         if (size <= 0) {
             return 0;
         }
@@ -186,22 +178,18 @@ export class MemPool implements IMemPool {
         let blockEnd = 0;
         let newAddr = 0;
         while (block) {
-            if (block.addr === memoryAddr) {
-                blockEnd = memoryAddr + block.size;
+            if (block === memoryAddr) {
+                blockEnd = memoryAddr + this.blockSize(block);
                 const isTop = blockEnd >= this.top;
                 // shrink & possibly split existing block
-                if (size <= block.size) {
+                if (size <= this.blockSize(block)) {
                     if (this.doSplit) {
-                        const excess = block.size - size;
+                        const excess = this.blockSize(block) - size;
                         if (excess >= this.minSplit) {
-                            block.size = size;
-                            const newBlock = new MemBlockWrapper(
-                                this.u32,
-                                block.addr + size
-                            );
-                            newBlock.size = excess;
-                            newBlock.next = null;
-
+                            this.setBlockSize(block, size);
+                            const newBlock = block + size;
+                            this.setBlockSize(newBlock, excess);
+                            this.setBlockNext(newBlock, 0);
                             this.insert(newBlock);
                             this.doCompact && this.compact();
                         } else if (isTop) {
@@ -215,7 +203,7 @@ export class MemPool implements IMemPool {
                 }
                 // try to enlarge block if current top
                 if (isTop && memoryAddr + size < this.end) {
-                    block.size = size;
+                    this.setBlockSize(block, size);
                     this.top = memoryAddr + size;
                     newAddr = memoryAddr;
                     break;
@@ -225,13 +213,13 @@ export class MemPool implements IMemPool {
                 newAddr = this.malloc(size);
                 break;
             }
-            block = block.next;
+            block = this.blockNext(block);
         }
         // copy old block contents to new addr
         if (newAddr && newAddr !== memoryAddr) {
             this.u8.copyWithin(newAddr, memoryAddr, blockEnd);
         }
-        return toDataAddress(newAddr, this.align);
+        return blockDataAddress(newAddr, this.align);
     }
 
     reallocArray(ptr: TypedArray, num: number): TypedArray | undefined {
@@ -250,35 +238,35 @@ export class MemPool implements IMemPool {
             if (ptrDataAddressOrTypedArray.buffer !== this.buf) {
                 return false;
             }
-            addr = toMemoryAddress(
+            addr = blockSelfAddress(
                 ptrDataAddressOrTypedArray.byteOffset,
                 this.align
             );
         } else {
-            addr = toMemoryAddress(ptrDataAddressOrTypedArray, this.align);
+            addr = blockSelfAddress(ptrDataAddressOrTypedArray, this.align);
         }
         let block = this._used;
-        let prev: MemBlock | null = null;
+        let prev = 0;
         while (block) {
-            if (block.addr === addr) {
+            if (block === addr) {
                 if (prev) {
-                    prev.next = block.next;
+                    this.setBlockNext(prev, this.blockNext(block));
                 } else {
-                    this._used = block.next;
+                    this._used = this.blockNext(block);
                 }
                 this.insert(block);
                 this.doCompact && this.compact();
                 return true;
             }
             prev = block;
-            block = block.next;
+            block = this.blockNext(block);
         }
         return false;
     }
 
     freeAll() {
-        this._free = null;
-        this._used = null;
+        this._free = 0;
+        this._used = 0;
         this.top = align(this.start + SIZEOF_STATE, this.align);
     }
 
@@ -315,26 +303,20 @@ export class MemPool implements IMemPool {
         this.state[STATE_TOP] = x;
     }
 
-    protected get _free(): MemBlock | null {
-        const freeAddress = this.state[STATE_FREE];
-        return freeAddress !== 0
-            ? new MemBlockWrapper(this.u32, freeAddress)
-            : null;
+    protected get _free() {
+        return this.state[STATE_FREE];
     }
 
-    protected set _free(block: MemBlock | null) {
-        this.state[STATE_FREE] = block ? block.addr : 0;
+    protected set _free(block: number) {
+        this.state[STATE_FREE] = block;
     }
 
-    protected get _used(): MemBlock | null {
-        const usedAddress = this.state[STATE_USED];
-        return usedAddress !== 0
-            ? new MemBlockWrapper(this.u32, usedAddress)
-            : null;
+    protected get _used() {
+        return this.state[STATE_USED];
     }
 
-    protected set _used(block: MemBlock | null) {
-        this.state[STATE_USED] = block ? block.addr : 0;
+    protected set _used(block: number) {
+        this.state[STATE_USED] = block;
     }
 
     protected get doCompact() {
@@ -371,104 +353,76 @@ export class MemPool implements IMemPool {
 
     protected compact() {
         let block = this._free;
-        let prev: MemBlock | null = null;
-        let scan: MemBlock | null = null;
-        let scanPrev: MemBlock;
+        let prev = 0;
+        let scan = 0;
+        let scanPrev: number;
         let res = false;
         while (block) {
             scanPrev = block;
-            scan = block.next;
-            while (scan && scanPrev.addr + scanPrev.size === scan.addr) {
+            scan = this.blockNext(block);
+            while (scan && scanPrev + this.blockSize(scanPrev) === scan) {
                 // console.log("merge:", scan.addr, scan.size);
                 scanPrev = scan;
-                scan = scan.next;
+                scan = this.blockNext(scan);
             }
             if (scanPrev !== block) {
-                const newSize = scanPrev.addr - block.addr + scanPrev.size;
+                const newSize = scanPrev - block + this.blockSize(scanPrev);
                 // console.log("merged size:", newSize);
-                block.size = newSize;
-                const next = scanPrev.next;
-                let tmp = block.next;
-                while (tmp && tmp !== scanPrev.next) {
+                this.setBlockSize(block, newSize);
+                const next = this.blockNext(scanPrev);
+                let tmp = this.blockNext(block);
+                while (tmp && tmp !== this.blockNext(scanPrev)) {
                     // console.log("release:", tmp.addr);
-                    const tn = tmp.next;
-                    tmp.next = null;
+                    const tn = this.blockNext(tmp);
+                    this.setBlockNext(tmp, 0);
                     tmp = tn;
                 }
-                block.next = next;
+                this.setBlockNext(block, next);
                 res = true;
             }
             // re-adjust top if poss
-            if (block.addr + block.size >= this.top) {
-                this.top = block.addr;
-                prev ? (prev.next = block.next) : (this._free = block.next);
+            if (block + this.blockSize(block) >= this.top) {
+                this.top = block;
+                prev
+                    ? this.setBlockNext(prev, this.blockNext(block))
+                    : (this._free = this.blockNext(block));
             }
             prev = block;
-            block = block.next;
+            block = this.blockNext(block);
         }
         return res;
     }
 
-    protected insert(block: MemBlock) {
+    protected insert(block: number) {
         let ptr = this._free;
-        let prev: MemBlock | null = null;
+        let prev = 0;
         while (ptr) {
-            if (block.addr <= ptr.addr) break;
+            if (block <= ptr) break;
             prev = ptr;
-            ptr = ptr.next;
+            ptr = this.blockNext(ptr);
         }
         if (prev) {
-            prev.next = block;
+            this.setBlockNext(prev, block);
         } else {
             this._free = block;
         }
-        block.next = ptr;
-    }
-}
-
-/**
- * The class acts as a fat pointer. All addresses saved in `_free` /
- * `_used` lists are those of each memory block, NOT the block's data
- * addresses, which are `align(SIZEOF_MEM_BLOCK, poolAlign)` after.
- * Users will only ever see the data addresses...
- *
- * TODO There's still scope avoiding this class altogether and replace
- * with plain functions and so avoid construction of various temp
- * objects during free/compaction...
- */
-class MemBlockWrapper implements MemBlock {
-    constructor(
-        private u32: Uint32Array,
-        /**
-         * This is the memory address, not the data address
-         */
-        public readonly addr: number
-    ) {}
-
-    get next(): MemBlock | null {
-        return this.nextAddress !== 0
-            ? new MemBlockWrapper(this.u32, this.nextAddress)
-            : null;
+        this.setBlockNext(block, ptr);
     }
 
-    set next(value: MemBlock | null) {
-        this.nextAddress = value ? value.addr : 0;
+    protected blockSize(block: number) {
+        return this.u32[(block >> 2) + MEM_BLOCK_SIZE];
     }
 
-    get size() {
-        return this.u32[(this.addr >> 2) + MEM_BLOCK_SIZE];
+    protected setBlockSize(block: number, size: number) {
+        this.u32[(block >> 2) + MEM_BLOCK_SIZE] = size;
     }
 
-    set size(value: number) {
-        this.u32[(this.addr >> 2) + MEM_BLOCK_SIZE] = value;
+    protected blockNext(block: number) {
+        return this.u32[(block >> 2) + MEM_BLOCK_NEXT];
     }
 
-    private get nextAddress() {
-        return this.u32[(this.addr >> 2) + MEM_BLOCK_NEXT];
-    }
-
-    private set nextAddress(value: number) {
-        this.u32[(this.addr >> 2) + MEM_BLOCK_NEXT] = value;
+    protected setBlockNext(block: number, next: number) {
+        this.u32[(block >> 2) + MEM_BLOCK_NEXT] = next;
     }
 }
 
@@ -478,7 +432,7 @@ class MemBlockWrapper implements MemBlock {
  * @param blockAddress
  * @param _align
  */
-const toDataAddress = (blockAddress: number, _align: Pow2) =>
+const blockDataAddress = (blockAddress: number, _align: Pow2) =>
     blockAddress + align(SIZEOF_MEM_BLOCK, _align);
 
 /**
@@ -487,5 +441,5 @@ const toDataAddress = (blockAddress: number, _align: Pow2) =>
  * @param blockAddress
  * @param _align
  */
-const toMemoryAddress = (dataAddress: number, _align: Pow2) =>
+const blockSelfAddress = (dataAddress: number, _align: Pow2) =>
     dataAddress - align(SIZEOF_MEM_BLOCK, _align);

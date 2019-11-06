@@ -1,7 +1,7 @@
-import { Type } from "@thi.ng/api";
+import { Type, TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary";
 import * as assert from "assert";
-import { MemBlock, MemPool } from "../src/index";
+import { MemPool } from "../src/index";
 
 const POOL_OVERHEAD = 7 * 4;
 const BLOCK_OVERHEAD = 2 * 4;
@@ -221,8 +221,8 @@ describe("malloc", () => {
     });
 
     it("callocAs", () => {
-        let a = pool.callocAs(Type.F32, 3);
-        let b = pool.callocAs(Type.F64, 3);
+        let a: TypedArray | undefined = pool.callocAs(Type.F32, 3);
+        let b: TypedArray | undefined = pool.callocAs(Type.F64, 3);
         assert(a instanceof Float32Array, "a type");
         assert(b instanceof Float64Array, "b type");
         a!.set([1, 2, 3]);
@@ -259,14 +259,15 @@ describe("malloc", () => {
         let p: any = pool;
 
         const ma1 = pool.malloc(8);
-        const { size, addr }: MemBlock = p._used;
-        assert.equal(size, 16);
+        const block = p._used;
+        const bsize = p.blockSize(block);
+        assert.equal(bsize, 16);
 
         pool.realloc(ma1, 16);
 
-        const usedBlockAfterRealloc: MemBlock = p._used;
-        assert.equal(usedBlockAfterRealloc.addr, addr);
-        assert.equal(usedBlockAfterRealloc.size, size);
+        const usedBlockAfterRealloc = p._used;
+        assert.equal(usedBlockAfterRealloc, block);
+        assert.equal(p.blockSize(usedBlockAfterRealloc), bsize);
     });
 
     it("no compact", () => {
@@ -278,10 +279,10 @@ describe("malloc", () => {
         pool.free(a);
         pool.free(a1);
         pool.free(a2);
-        assert.equal(p._free.addr + BLOCK_OVERHEAD, a);
-        assert.equal(p._free.next.addr + BLOCK_OVERHEAD, a1);
-        assert.equal(p._free.next.next.addr + BLOCK_OVERHEAD, a2);
-        assert.equal(p._free.next.next.next, null);
+        assert.equal(p._free + BLOCK_OVERHEAD, a);
+        assert.equal(p.blockNext(p._free) + BLOCK_OVERHEAD, a1);
+        assert.equal(p.blockNext(p.blockNext(p._free)) + BLOCK_OVERHEAD, a2);
+        assert.equal(p.blockNext(p.blockNext(p.blockNext(p._free))), 0);
     });
 
     it("no split", () => {
@@ -293,10 +294,10 @@ describe("malloc", () => {
         pool.malloc(8);
         pool.free(a);
         pool.malloc(8);
-        assert.equal(p._used.addr, base);
-        assert.equal(p._used.size, 8 + BLOCK_OVERHEAD);
-        assert.equal(p._free.addr, base + 8 + BLOCK_OVERHEAD);
-        assert.equal(p._free.size, 24);
+        assert.equal(p._used, base);
+        assert.equal(p.blockSize(p._used), 8 + BLOCK_OVERHEAD);
+        assert.equal(p._free, base + 8 + BLOCK_OVERHEAD);
+        assert.equal(p.blockSize(p._free), 24);
 
         pool = new MemPool({ size: 0x100, split: false });
         p = pool;
@@ -304,8 +305,8 @@ describe("malloc", () => {
         pool.malloc(8);
         pool.free(a);
         pool.malloc(8);
-        assert.equal(p._used.addr, base);
-        assert.equal(p._used.size, 32 + BLOCK_OVERHEAD);
-        assert.equal(p._free, null);
+        assert.equal(p._used, base);
+        assert.equal(p.blockSize(p._used), 32 + BLOCK_OVERHEAD);
+        assert.equal(p._free, 0);
     });
 });
