@@ -1,9 +1,10 @@
 import { Type } from "@thi.ng/api";
+import { align } from "@thi.ng/binary";
 import * as assert from "assert";
-import { MemPool, MemBlock } from "../src/index";
+import { MemBlock, MemPool } from "../src/index";
 
-const POOL_OVERHEAD = 16;
-const BLOCK_OVERHEAD = 8;
+const POOL_OVERHEAD = 7 * 4;
+const BLOCK_OVERHEAD = 2 * 4;
 
 describe("malloc", () => {
     let pool: MemPool;
@@ -15,8 +16,8 @@ describe("malloc", () => {
     it("ctor", () => {
         assert(pool instanceof MemPool);
         let p: any = pool;
-        assert.equal(p.start, 0x08);
-        assert.equal(p.top, 0x08 + POOL_OVERHEAD);
+        assert.equal(p.start, 0);
+        assert.equal(p.top, align(POOL_OVERHEAD, 8));
         assert(p.doCompact);
         assert(p.doSplit);
         assert.equal(
@@ -25,8 +26,8 @@ describe("malloc", () => {
             "When end option not specified, end should be byteLength"
         );
         p = new MemPool({ size: 0x100, start: 0x0c, end: 0x80 });
-        assert.equal(p.start, 0x10);
-        assert.equal(p.top, 0x10 + POOL_OVERHEAD);
+        assert.equal(p.start, 0x0c);
+        assert.equal(p.top, align(0x0c + POOL_OVERHEAD, 8));
         assert.equal(p.end, 0x80);
         assert.throws(() => new MemPool({ size: 0x100, start: 0x0, end: 0x0 }));
         assert.throws(
@@ -42,10 +43,11 @@ describe("malloc", () => {
         assert(!pool.malloc(-1), "neg size");
         assert(!pool.malloc(0), "zero size");
 
+        const base = pool.stats().top;
         let a = pool.malloc(12);
         let b = pool.malloc(31);
         let c = pool.malloc(24);
-        assert.equal(a, 8 + (POOL_OVERHEAD + BLOCK_OVERHEAD), "a");
+        assert.equal(a, base + BLOCK_OVERHEAD, "a");
         assert.equal(b, a + 16 + BLOCK_OVERHEAD, "b");
         assert.equal(c, b + 32 + BLOCK_OVERHEAD, "c");
 
@@ -55,7 +57,7 @@ describe("malloc", () => {
         assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, {
             count: 3,
-            size: 16 + 32 + 24 + (POOL_OVERHEAD + BLOCK_OVERHEAD)
+            size: 16 + 32 + 24 + 3 * BLOCK_OVERHEAD
         });
 
         // free all
@@ -64,89 +66,73 @@ describe("malloc", () => {
         assert(pool.free(b), "free c");
         assert(!pool.free(b), "free b (repeat)");
         stats = pool.stats();
-        assert.equal(stats.top, 8 + POOL_OVERHEAD, "top2");
+        assert.equal(stats.top, base, "top2");
         assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, { count: 0, size: 0 });
 
         // alloc & split free block
         a = pool.malloc(32);
-        assert.equal(a, 8 + POOL_OVERHEAD + BLOCK_OVERHEAD, "a2");
+        assert.equal(a, base + BLOCK_OVERHEAD, "a2");
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, { count: 1, size: 32 + BLOCK_OVERHEAD });
-        assert.equal(
-            stats.top,
-            40 + POOL_OVERHEAD + BLOCK_OVERHEAD * 1,
-            "top3"
-        );
+        assert.equal(stats.top, base + 32 + BLOCK_OVERHEAD, "top3");
         // alloc next block & free prev
         b = pool.malloc(12);
-        assert.equal(b, 40 + POOL_OVERHEAD + BLOCK_OVERHEAD * 2, "b2");
+        assert.equal(b, base + 32 + BLOCK_OVERHEAD * 2, "b2");
         assert(pool.free(a), "free a2");
 
         // re-alloc from free & split
         a = pool.malloc(8);
-        assert.equal(a, 8 + POOL_OVERHEAD + BLOCK_OVERHEAD * 1, "a3");
+        assert.equal(a, base + BLOCK_OVERHEAD, "a3");
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 1, size: 24 });
         assert.deepEqual(stats.used, {
             count: 2,
-            size: 24 + POOL_OVERHEAD + BLOCK_OVERHEAD * 0
+            size: 24 + 2 * BLOCK_OVERHEAD
         });
-        assert.equal(
-            stats.top,
-            56 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 2),
-            "top4"
-        );
+        assert.equal(stats.top, base + 32 + 16 + 2 * BLOCK_OVERHEAD, "top4");
 
         // join both free blocks
         assert(pool.free(b), "free b2");
 
         // extend free block + top
         b = pool.malloc(64);
-        assert.equal(b, 16 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 2), "b3");
+        assert.equal(b, base + 8 + 2 * BLOCK_OVERHEAD, "b3");
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 0, size: 0 });
-        assert.deepEqual(stats.used, { count: 2, size: 96 - BLOCK_OVERHEAD });
-        assert.equal(
-            stats.top,
-            80 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 2),
-            "top5"
-        );
+        assert.deepEqual(stats.used, {
+            count: 2,
+            size: 8 + 64 + 2 * BLOCK_OVERHEAD
+        });
+        assert.equal(stats.top, base + 8 + 64 + 2 * BLOCK_OVERHEAD, "top5");
 
-        // alloc below min size
+        // alloc at top, below min size
         c = pool.malloc(1);
-
         // non-continous free chain
         assert(pool.free(c), "free c2");
-        assert.equal(
-            stats.top,
-            80 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 2),
-            "top6"
-        );
+        // top reset to before
+        assert.equal(stats.top, base + 8 + 64 + 2 * BLOCK_OVERHEAD, "top6");
         assert(pool.free(a), "free a3");
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 1, size: 8 + BLOCK_OVERHEAD });
         assert.deepEqual(stats.used, { count: 1, size: 64 + BLOCK_OVERHEAD });
-        assert.equal(
-            stats.top,
-            80 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 2),
-            "top7"
-        );
+        // top remains unchanged
+        assert.equal(stats.top, base + 8 + 64 + 2 * BLOCK_OVERHEAD, "top7");
 
         // alloc larger size to force walking free chain
-        // and then alloc @ top (reuse block @ 80)
+        // and then alloc @ top (reuse earlier block)
         a = pool.malloc(27);
-        assert.equal(a, 80 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 3), "a4");
+        assert.equal(a, base + 8 + 64 + 3 * BLOCK_OVERHEAD, "a4");
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 1, size: 8 + BLOCK_OVERHEAD });
         assert.deepEqual(stats.used, {
             count: 2,
-            size: 96 + BLOCK_OVERHEAD * 2
+            size: 64 + 32 + 2 * BLOCK_OVERHEAD
         });
         assert.equal(
             stats.top,
-            80 + 32 + (POOL_OVERHEAD + BLOCK_OVERHEAD * 3),
+            base + 8 + 64 + 32 + 3 * BLOCK_OVERHEAD,
             "top8"
         );
 
@@ -155,16 +141,16 @@ describe("malloc", () => {
         stats = pool.stats();
         assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, { count: 0, size: 0 });
-        assert.equal(stats.available, 256 - 8 - POOL_OVERHEAD);
-        assert.equal(stats.top, 8 + POOL_OVERHEAD, "top9");
+        assert.equal(stats.available, 256 - base);
+        assert.equal(stats.top, base, "top9");
 
         pool.freeAll();
         assert.deepEqual(pool.stats(), {
             free: { count: 0, size: 0 },
             used: { count: 0, size: 0 },
-            available: pool.buf.byteLength - 8 - POOL_OVERHEAD,
+            available: pool.buf.byteLength - base,
             total: pool.buf.byteLength,
-            top: 8 + POOL_OVERHEAD
+            top: base
         });
         pool.release();
     });
@@ -176,18 +162,15 @@ describe("malloc", () => {
         assert.deepEqual(pool.mallocAs(Type.F64, 33), null);
         assert.deepEqual(pool.mallocAs(Type.U8, -1), null);
 
+        const base = pool.stats().top;
         let a = pool.mallocAs(Type.F32, 3);
         let b = pool.mallocAs(Type.F64, 3);
         assert(a instanceof Float32Array, "a type");
         assert(b instanceof Float64Array, "b type");
-        assert.equal(
-            a!.byteOffset,
-            8 + POOL_OVERHEAD + BLOCK_OVERHEAD,
-            "a addr"
-        );
+        assert.equal(a!.byteOffset, base + BLOCK_OVERHEAD, "a addr");
         assert.equal(
             b!.byteOffset,
-            24 + POOL_OVERHEAD + BLOCK_OVERHEAD * 2,
+            a!.byteOffset + 16 + BLOCK_OVERHEAD,
             "b addr"
         );
         assert.equal(a!.length, 3, "a.length");
@@ -203,7 +186,7 @@ describe("malloc", () => {
                 0x3f800000,
                 0x40000000,
                 0x40400000,
-                0,
+                0
             ]
         );
         assert.deepEqual(
@@ -229,7 +212,7 @@ describe("malloc", () => {
 
     it("calloc", () => {
         const u8: Uint8Array = (<any>pool).u8;
-        u8.fill(0xff, 24);
+        u8.fill(0xff, pool.stats().top);
         let a = pool.calloc(6);
         assert.deepEqual(
             [...u8.subarray(a, a + 9)],
@@ -273,28 +256,28 @@ describe("malloc", () => {
     });
 
     it("realloc", () => {
+        let p: any = pool;
+
         const ma1 = pool.malloc(8);
-
-        const { size, addr }: MemBlock = (pool as any)._used as MemBlock;
-
+        const { size, addr }: MemBlock = p._used;
         assert.equal(size, 16);
 
         pool.realloc(ma1, 16);
-        const usedBlockAfterRealloc: MemBlock = (pool as any)._used;
 
+        const usedBlockAfterRealloc: MemBlock = p._used;
         assert.equal(usedBlockAfterRealloc.addr, addr);
         assert.equal(usedBlockAfterRealloc.size, size);
     });
 
     it("no compact", () => {
         pool = new MemPool({ size: 0x100, compact: false });
+        const p: any = pool;
         const a = pool.malloc(8);
         const a1 = pool.malloc(8);
         const a2 = pool.malloc(8);
         pool.free(a);
         pool.free(a1);
         pool.free(a2);
-        let p: any = pool;
         assert.equal(p._free.addr + BLOCK_OVERHEAD, a);
         assert.equal(p._free.next.addr + BLOCK_OVERHEAD, a1);
         assert.equal(p._free.next.next.addr + BLOCK_OVERHEAD, a2);
@@ -303,23 +286,25 @@ describe("malloc", () => {
 
     it("no split", () => {
         pool = new MemPool({ size: 0x100, split: true });
-        const a1 = pool.malloc(32);
-        pool.malloc(8);
-        pool.free(a1);
-        pool.malloc(8);
         let p: any = pool;
-        assert.equal(p._used.addr, 8 + POOL_OVERHEAD);
+        const base = pool.stats().top;
+
+        let a = pool.malloc(32);
+        pool.malloc(8);
+        pool.free(a);
+        pool.malloc(8);
+        assert.equal(p._used.addr, base);
         assert.equal(p._used.size, 8 + BLOCK_OVERHEAD);
-        assert.equal(p._free.addr, 16 + POOL_OVERHEAD + BLOCK_OVERHEAD);
+        assert.equal(p._free.addr, base + 8 + BLOCK_OVERHEAD);
         assert.equal(p._free.size, 24);
 
         pool = new MemPool({ size: 0x100, split: false });
-        pool.malloc(32);
-        pool.malloc(8);
-        pool.free(8 + POOL_OVERHEAD + BLOCK_OVERHEAD);
-        pool.malloc(8);
         p = pool;
-        assert.equal(p._used.addr, 8 + POOL_OVERHEAD);
+        a = pool.malloc(32);
+        pool.malloc(8);
+        pool.free(a);
+        pool.malloc(8);
+        assert.equal(p._used.addr, base);
         assert.equal(p._used.size, 32 + BLOCK_OVERHEAD);
         assert.equal(p._free, null);
     });

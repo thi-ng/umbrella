@@ -1,5 +1,10 @@
-import { SIZEOF, Type, TypedArray } from "@thi.ng/api";
-import { align } from "@thi.ng/binary";
+import {
+    assert,
+    SIZEOF,
+    Type,
+    TypedArray
+} from "@thi.ng/api";
+import { align, isPow2, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import {
@@ -14,42 +19,50 @@ const STATE_TOP = 0;
 const STATE_END = 1;
 const STATE_FREE = 2;
 const STATE_USED = 3;
+const STATE_ALIGN = 4;
+const STATE_FLAGS = 5;
+const STATE_MIN_SPLIT = 6;
 
-const STATE_NUM_FIELDS = 4;
-const SIZEOF_STATE = STATE_NUM_FIELDS * Uint32Array.BYTES_PER_ELEMENT;
+const MASK_COMPACT = 1;
+const MASK_SPLIT = 2;
 
+const SIZEOF_STATE = 7 * 4;
+
+const MEM_BLOCK_SIZE = 0;
+const MEM_BLOCK_NEXT = 1;
+
+const SIZEOF_MEM_BLOCK = 2 * 4;
 
 export class MemPool implements IMemPool {
-    buf: ArrayBuffer;
+    buf: ArrayBufferLike;
 
-    /**
-     * Start is the anchor index inside the arraybuffer, so we can't save it inside the arraybuffer itself.
-     * If you pass the ArrayBuffer to other consumers they must use the same start value
-    */
     protected readonly start: number;
-
-    protected doCompact: boolean;
-    protected doSplit: boolean;
-    protected minSplit: number;
     protected u8: Uint8Array;
     protected u32: Uint32Array;
+    protected state: Uint32Array;
 
     constructor(opts: Partial<MemPoolOpts> = {}) {
         this.buf = opts.buf ? opts.buf : new ArrayBuffer(opts.size || 0x1000);
-        this.u8 = new Uint8Array(this.buf);
-        this.doCompact = opts.compact !== false;
-        this.doSplit = opts.split !== false;
-        this.minSplit = opts.minSplit || 16;
 
-        this.start = (opts.start != null ? align(Math.max(opts.start, 8), 8) : 8);
-        this.u32 = new Uint32Array(this.buf, this.start);
+        const _align = opts.align || 8;
+        assert(
+            _align >= 8 && isPow2(_align),
+            `invalid alignment: ${_align}, must be a pow2 and >= 8`
+        );
+
+        this.start = opts.start != null ? align(Math.max(opts.start, 0), 4) : 0;
+        this.u8 = new Uint8Array(this.buf);
+        this.u32 = new Uint32Array(this.buf);
+        this.state = new Uint32Array(this.buf, this.start, SIZEOF_STATE / 4);
 
         if (!opts.skipInitialization) {
-            const resolvedEnd = opts.end != null
-                ? Math.min(opts.end, this.buf.byteLength)
-                : this.buf.byteLength;
+            const top = align(this.start + SIZEOF_STATE, _align);
+            const resolvedEnd =
+                opts.end != null
+                    ? Math.min(opts.end, this.buf.byteLength)
+                    : this.buf.byteLength;
 
-            if (this.start >= resolvedEnd) {
+            if (top >= resolvedEnd) {
                 illegalArgs(
                     `invalid address range (0x${this.start.toString(
                         16
@@ -57,59 +70,16 @@ export class MemPool implements IMemPool {
                 );
             }
 
+            this.align = <Pow2>_align;
+            this.doCompact = opts.compact !== false;
+            this.doSplit = opts.split !== false;
+            this.minSplit = opts.minSplit || 16;
             this.end = resolvedEnd;
-            this.top = this.start + SIZEOF_STATE;
+            this.top = top;
             this._free = null;
             this._used = null;
         }
     }
-
-
-
-    protected get end(): number {
-        return this.u32[STATE_END];
-    }
-
-    protected set end(value: number) {
-        this.u32[STATE_END] = value;
-    }
-
-    protected get top(): number {
-        return this.u32[STATE_TOP];
-    }
-
-    protected set top(value: number) {
-        this.u32[STATE_TOP] = value;
-    }
-
-    protected get _free(): MemBlock | null {
-        const freeAddress = this.u32[STATE_FREE];
-
-        if (freeAddress == 0) {
-            return null;
-        }
-
-        return new MemBlockWrapper(this.u32, freeAddress);
-    }
-
-    protected set _free(block: MemBlock | null) {
-        this.u32[STATE_FREE] = block ? block.addr : 0;
-    }
-
-    protected get _used(): MemBlock | null {
-        const usedAddress = this.u32[STATE_USED];
-
-        if (usedAddress == 0) {
-            return null;
-        }
-
-        return new MemBlockWrapper(this.u32, usedAddress);
-    }
-
-    protected set _used(block: MemBlock | null) {
-        this.u32[STATE_USED] = block ? block.addr : 0;
-    }
-
 
     stats(): MemPoolStats {
         const listStats = (block: MemBlock | null) => {
@@ -145,7 +115,7 @@ export class MemPool implements IMemPool {
 
     calloc(size: number): number {
         const addr = this.malloc(size);
-        addr && this.u8.fill(0, addr, align(addr + size, 8));
+        addr && this.u8.fill(0, addr, align(addr + size, this.align));
         return addr;
     }
 
@@ -153,7 +123,7 @@ export class MemPool implements IMemPool {
         if (dataSize <= 0) {
             return 0;
         }
-        const memorySize = align(dataSize, 8) + MemBlockWrapper.OVERHEAD;
+        const memorySize = align(dataSize + SIZEOF_MEM_BLOCK, this.align);
         let top = this.top;
         const end = this.end;
         let block = this._free;
@@ -178,19 +148,22 @@ export class MemPool implements IMemPool {
                     const excess = block.size - memorySize;
                     if (excess >= this.minSplit) {
                         block.size = memorySize;
-                        const newBlock = new MemBlockWrapper(this.u32, block.addr + memorySize)
+                        const newBlock = new MemBlockWrapper(
+                            this.u32,
+                            block.addr + memorySize
+                        );
                         newBlock.size = excess;
                         newBlock.next = null;
                         this.insert(newBlock);
                         this.doCompact && this.compact();
                     }
                 }
-                return MemBlockWrapper.toDataAddress(block.addr);
+                return toDataAddress(block.addr, this.align);
             }
             prev = block;
             block = block.next;
         }
-        const addr = align(top, 8);
+        const addr = align(top, this.align);
         top = addr + memorySize;
         if (top <= end) {
             block = new MemBlockWrapper(this.u32, addr);
@@ -198,18 +171,17 @@ export class MemPool implements IMemPool {
             block.next = this._used;
             this._used = block;
             this.top = top;
-            return MemBlockWrapper.toDataAddress(addr);
+            return toDataAddress(addr, this.align);
         }
         return 0;
     }
 
     realloc(dataAddr: number, size: number) {
-        const memoryAddr = MemBlockWrapper.toMemoryAddress(dataAddr);
-
+        const memoryAddr = toMemoryAddress(dataAddr, this.align);
         if (size <= 0) {
             return 0;
         }
-        size = align(size, 8);
+        size = align(size, this.align);
         let block = this._used;
         let blockEnd = 0;
         let newAddr = 0;
@@ -223,7 +195,10 @@ export class MemPool implements IMemPool {
                         const excess = block.size - size;
                         if (excess >= this.minSplit) {
                             block.size = size;
-                            const newBlock = new MemBlockWrapper(this.u32, block.addr + size);
+                            const newBlock = new MemBlockWrapper(
+                                this.u32,
+                                block.addr + size
+                            );
                             newBlock.size = excess;
                             newBlock.next = null;
 
@@ -256,7 +231,7 @@ export class MemPool implements IMemPool {
         if (newAddr && newAddr !== memoryAddr) {
             this.u8.copyWithin(newAddr, memoryAddr, blockEnd);
         }
-        return MemBlockWrapper.toDataAddress(newAddr);
+        return toDataAddress(newAddr, this.align);
     }
 
     reallocArray(ptr: TypedArray, num: number): TypedArray | undefined {
@@ -275,9 +250,12 @@ export class MemPool implements IMemPool {
             if (ptrDataAddressOrTypedArray.buffer !== this.buf) {
                 return false;
             }
-            addr = MemBlockWrapper.toMemoryAddress(ptrDataAddressOrTypedArray.byteOffset);
+            addr = toMemoryAddress(
+                ptrDataAddressOrTypedArray.byteOffset,
+                this.align
+            );
         } else {
-            addr = MemBlockWrapper.toMemoryAddress(ptrDataAddressOrTypedArray);
+            addr = toMemoryAddress(ptrDataAddressOrTypedArray, this.align);
         }
         let block = this._used;
         let prev: MemBlock | null = null;
@@ -301,15 +279,94 @@ export class MemPool implements IMemPool {
     freeAll() {
         this._free = null;
         this._used = null;
-        this.top = this.start + SIZEOF_STATE;
+        this.top = align(this.start + SIZEOF_STATE, this.align);
     }
 
     release() {
         delete this.u8;
         delete this.u32;
+        delete this.state;
         delete this.buf;
 
         return true;
+    }
+
+    protected get align() {
+        return <Pow2>this.state[STATE_ALIGN];
+    }
+
+    protected set align(x: Pow2) {
+        this.state[STATE_ALIGN] = x;
+    }
+
+    protected get end() {
+        return this.state[STATE_END];
+    }
+
+    protected set end(x: number) {
+        this.state[STATE_END] = x;
+    }
+
+    protected get top() {
+        return this.state[STATE_TOP];
+    }
+
+    protected set top(x: number) {
+        this.state[STATE_TOP] = x;
+    }
+
+    protected get _free(): MemBlock | null {
+        const freeAddress = this.state[STATE_FREE];
+        return freeAddress !== 0
+            ? new MemBlockWrapper(this.u32, freeAddress)
+            : null;
+    }
+
+    protected set _free(block: MemBlock | null) {
+        this.state[STATE_FREE] = block ? block.addr : 0;
+    }
+
+    protected get _used(): MemBlock | null {
+        const usedAddress = this.state[STATE_USED];
+        return usedAddress !== 0
+            ? new MemBlockWrapper(this.u32, usedAddress)
+            : null;
+    }
+
+    protected set _used(block: MemBlock | null) {
+        this.state[STATE_USED] = block ? block.addr : 0;
+    }
+
+    protected get doCompact() {
+        return !!(this.state[STATE_FLAGS] & MASK_COMPACT);
+    }
+
+    protected set doCompact(flag: boolean) {
+        flag
+            ? (this.state[STATE_FLAGS] |= 1 << (MASK_COMPACT - 1))
+            : (this.state[STATE_FLAGS] &= ~MASK_COMPACT);
+    }
+
+    protected get doSplit() {
+        return !!(this.state[STATE_FLAGS] & MASK_SPLIT);
+    }
+
+    protected set doSplit(flag: boolean) {
+        flag
+            ? (this.state[STATE_FLAGS] |= 1 << (MASK_SPLIT - 1))
+            : (this.state[STATE_FLAGS] &= ~MASK_SPLIT);
+    }
+
+    protected get minSplit() {
+        return this.state[STATE_MIN_SPLIT];
+    }
+
+    protected set minSplit(x: number) {
+        assert(
+            x > SIZEOF_MEM_BLOCK,
+            `illegal min split threshold: ${x}, require at least ${SIZEOF_MEM_BLOCK}`
+        );
+        this.state[STATE_MIN_SPLIT] = x;
     }
 
     protected compact() {
@@ -369,59 +426,66 @@ export class MemPool implements IMemPool {
     }
 }
 
-
-const MEM_BLOCK_SIZE = 0;
-const MEM_BLOCK_NEXT = 1;
-
-const SIZEOF_MEM_BLOCK = 2 * Uint32Array.BYTES_PER_ELEMENT;
-
 /**
- * All of the addresses that saved are the memory address, and not the data address.
- * The user see the data address, we need to convert them in and out
+ * The class acts as a fat pointer. All addresses saved in `_free` /
+ * `_used` lists are those of each memory block, NOT the block's data
+ * addresses, which are `align(SIZEOF_MEM_BLOCK, poolAlign)` after.
+ * Users will only ever see the data addresses...
+ *
+ * TODO There's still scope avoiding this class altogether and replace
+ * with plain functions and so avoid construction of various temp
+ * objects during free/compaction...
  */
 class MemBlockWrapper implements MemBlock {
-    public static OVERHEAD = SIZEOF_MEM_BLOCK;
-
-    public static toDataAddress(blockAddress: number) {
-        return blockAddress + SIZEOF_MEM_BLOCK;
-    }
-
-    public static toMemoryAddress(dataAddress: number) {
-        return dataAddress - SIZEOF_MEM_BLOCK;
-    }
-
     constructor(
-        private u32: Uint32Array, 
+        private u32: Uint32Array,
         /**
          * This is the memory address, not the data address
          */
-        public readonly addr: number) {}
+        public readonly addr: number
+    ) {}
 
-    public get next(): MemBlock | null {
-        if (this.nextAddress !== 0) {
-            return new MemBlockWrapper(this.u32, this.nextAddress);
-        }
-
-        return null;
+    get next(): MemBlock | null {
+        return this.nextAddress !== 0
+            ? new MemBlockWrapper(this.u32, this.nextAddress)
+            : null;
     }
 
-    public set next(value: MemBlock | null) {
+    set next(value: MemBlock | null) {
         this.nextAddress = value ? value.addr : 0;
     }
 
-    public get size() {
-        return this.u32[((this.addr - this.u32.byteOffset) >> 2) + MEM_BLOCK_SIZE];
+    get size() {
+        return this.u32[(this.addr >> 2) + MEM_BLOCK_SIZE];
     }
 
-    public set size(value: number) {
-        this.u32[((this.addr - this.u32.byteOffset) >> 2) + MEM_BLOCK_SIZE] = value;
+    set size(value: number) {
+        this.u32[(this.addr >> 2) + MEM_BLOCK_SIZE] = value;
     }
-    
+
     private get nextAddress() {
-        return this.u32[((this.addr - this.u32.byteOffset) >> 2) + MEM_BLOCK_NEXT];
+        return this.u32[(this.addr >> 2) + MEM_BLOCK_NEXT];
     }
 
     private set nextAddress(value: number) {
-        this.u32[((this.addr - this.u32.byteOffset) >> 2) + MEM_BLOCK_NEXT] = value;
+        this.u32[(this.addr >> 2) + MEM_BLOCK_NEXT] = value;
     }
 }
+
+/**
+ * Returns a block's data address, based on given alignment.
+ *
+ * @param blockAddress
+ * @param _align
+ */
+const toDataAddress = (blockAddress: number, _align: Pow2) =>
+    blockAddress + align(SIZEOF_MEM_BLOCK, _align);
+
+/**
+ * Returns block start address for given data address and alignment.
+ *
+ * @param blockAddress
+ * @param _align
+ */
+const toMemoryAddress = (dataAddress: number, _align: Pow2) =>
+    dataAddress - align(SIZEOF_MEM_BLOCK, _align);
