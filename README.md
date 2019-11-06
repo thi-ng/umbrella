@@ -8,6 +8,11 @@
 
 ## About
 
+> "A collection of functional programming libraries that can be composed together.
+> Unlike a framework, thi.ng is a suite of instruments and you (the user) must be
+> the composer of. Geared towards versatility, not any specific type of music."
+> &mdash; [@loganpowell](https://github.com/loganpowell/)
+
 Mono-repository for 100+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
@@ -86,6 +91,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
 
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/ecs) - Memory mapped Entity-Component System
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
 - [@thi.ng/simd](https://github.com/thi-ng/umbrella/tree/develop/packages/simd) - WebAssembly SIMD batch processing
 - [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/feature/soa/packages/soa) - Memory mapped data structures & serialization
@@ -316,6 +322,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://yifanwu.studio/"><img src="https://avatars2.githubusercontent.com/u/15613549?v=4" width="100px;" alt="Yifan Wu"/><br /><sub><b>Yifan Wu</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AIvanWoo" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=IvanWoo" title="Documentation">📖</a></td>
     <td align="center"><a href="https://pngupngu.com/"><img src="https://avatars0.githubusercontent.com/u/250297?v=4" width="100px;" alt="stwind"/><br /><sub><b>stwind</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=stwind" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Astwind" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/evilive3000"><img src="https://avatars1.githubusercontent.com/u/5011293?v=4" width="100px;" alt="evilive"/><br /><sub><b>evilive</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=evilive3000" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Bnaya"><img src="https://avatars0.githubusercontent.com/u/1304862?v=4" width="100px;" alt="Bnaya Peretz"/><br /><sub><b>Bnaya Peretz</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Bnaya" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3ABnaya" title="Bug reports">🐛</a> <a href="#ideas-Bnaya" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 

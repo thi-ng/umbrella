@@ -9,11 +9,16 @@ export interface MemBlock {
 export interface MemPoolOpts {
     buf: ArrayBuffer;
     size: number;
+    /**
+     * Start is the anchor index inside the arraybuffer, so we can't save it inside the arraybuffer itself.
+     * If you pass the ArrayBuffer to other consumers they must use the same start value
+     */
     start: number;
     end: number;
     compact: boolean;
     split: boolean;
     minSplit: number;
+    skipInitialization: boolean
 }
 
 export interface MemPoolStats {
