@@ -5,7 +5,7 @@ import {
     TypedArray,
     typedArray
 } from "@thi.ng/api";
-import { align, isPow2, Pow2 } from "@thi.ng/binary";
+import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
@@ -46,7 +46,7 @@ export class MemPool implements IMemPool {
         if (!opts.skipInitialization) {
             const _align = opts.align || 8;
             assert(
-                _align >= 8 && isPow2(_align),
+                _align >= 8,
                 `invalid alignment: ${_align}, must be a pow2 and >= 8`
             );
             const top =
@@ -76,7 +76,7 @@ export class MemPool implements IMemPool {
         }
     }
 
-    stats(): MemPoolStats {
+    stats(): Readonly<MemPoolStats> {
         const listStats = (block: number) => {
             let count = 0;
             let size = 0;
@@ -260,7 +260,9 @@ export class MemPool implements IMemPool {
     freeAll() {
         this._free = 0;
         this._used = 0;
-        this.top = align(this.start + SIZEOF_STATE, this.align);
+        this.top =
+            align(this.start + SIZEOF_STATE + SIZEOF_MEM_BLOCK, this.align) -
+            SIZEOF_MEM_BLOCK;
     }
 
     release() {

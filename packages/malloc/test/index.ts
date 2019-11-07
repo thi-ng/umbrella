@@ -367,4 +367,13 @@ describe("malloc", () => {
         assert.equal(p._used, 0);
         assert.equal(p.top, base);
     });
+
+    it("freeAll (align 16)", () => {
+        pool = new MemPool({ size: 0x100, align: 16 });
+        const base = pool.stats().top;
+        pool.callocAs(Type.U8, 15);
+        pool.callocAs(Type.U8, 11);
+        pool.freeAll();
+        assert.equal(pool.stats().top, base);
+    });
 });
