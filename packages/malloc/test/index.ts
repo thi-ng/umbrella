@@ -216,23 +216,28 @@ describe("malloc", () => {
         let a = pool.calloc(6);
         assert.deepEqual(
             [...u8.subarray(a, a + 9)],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0xff]
+            [0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xff]
         );
     });
 
     it("callocAs", () => {
+        const u8: Uint8Array = (<any>pool).u8;
+        u8.fill(0xff, pool.stats().top);
         let a: TypedArray | undefined = pool.callocAs(Type.F32, 3);
         let b: TypedArray | undefined = pool.callocAs(Type.F64, 3);
+        let t = [0, 0, 0];
         assert(a instanceof Float32Array, "a type");
         assert(b instanceof Float64Array, "b type");
+        assert.deepEqual([...a!], t);
+        assert.deepEqual([...b!], t);
         a!.set([1, 2, 3]);
         b!.set([10, 20, 30]);
         assert(pool.free(a!), "free a");
         assert(pool.free(b!), "free b");
-        // returned arrays are zeroed
-        a = pool.callocAs(Type.U32, 3);
-        b = pool.callocAs(Type.U32, 3);
-        const t = [0, 0, 0];
+        // returned arrays are filled w/ given arg
+        a = pool.callocAs(Type.U32, 3, 0xaa55aa55);
+        b = pool.callocAs(Type.U32, 3, 0xaa55aa55);
+        t = [0xaa55aa55, 0xaa55aa55, 0xaa55aa55];
         assert.deepEqual([...a!], t);
         assert.deepEqual([...b!], t);
     });
@@ -258,16 +263,19 @@ describe("malloc", () => {
     it("realloc", () => {
         let p: any = pool;
 
-        const ma1 = pool.malloc(8);
+        const a = pool.malloc(8);
         const block = p._used;
         const bsize = p.blockSize(block);
-        assert.equal(bsize, 16);
+        assert.equal(bsize, align(8 + BLOCK_OVERHEAD, 8), "size a");
 
-        pool.realloc(ma1, 16);
+        pool.realloc(a, 17);
 
         const usedBlockAfterRealloc = p._used;
         assert.equal(usedBlockAfterRealloc, block);
-        assert.equal(p.blockSize(usedBlockAfterRealloc), bsize);
+        assert.equal(
+            p.blockSize(usedBlockAfterRealloc),
+            align(17 + BLOCK_OVERHEAD, 8)
+        );
     });
 
     it("no compact", () => {
@@ -308,5 +316,55 @@ describe("malloc", () => {
         assert.equal(p._used, base);
         assert.equal(p.blockSize(p._used), 32 + BLOCK_OVERHEAD);
         assert.equal(p._free, 0);
+    });
+
+    it("malloc (align 16)", () => {
+        pool = new MemPool({ size: 0x100, align: 16 });
+        let p: any = pool;
+        const base = pool.stats().top;
+        let a = pool.callocAs(Type.U8, 15);
+        let b = pool.callocAs(Type.U8, 11);
+        let c = pool.callocAs(Type.U8, 7);
+        let d = pool.callocAs(Type.U8, 3);
+        let e = pool.callocAs(Type.U8, 1);
+        assert.equal(a!.byteOffset, base + BLOCK_OVERHEAD, "a");
+        assert.equal(
+            b!.byteOffset,
+            align(a!.byteOffset + BLOCK_OVERHEAD + 15, 16),
+            "b"
+        );
+        assert.equal(
+            c!.byteOffset,
+            align(b!.byteOffset + BLOCK_OVERHEAD + 11, 16),
+            "c"
+        );
+        assert.equal(
+            d!.byteOffset,
+            align(c!.byteOffset + BLOCK_OVERHEAD + 7, 16),
+            "d"
+        );
+        assert.equal(
+            e!.byteOffset,
+            align(d!.byteOffset + BLOCK_OVERHEAD + 3, 16),
+            "e"
+        );
+        let stats = pool.stats();
+        assert.equal(stats.top, align(e!.byteOffset + 1, 16) - BLOCK_OVERHEAD);
+
+        pool.free(d!);
+        assert.equal(p._free, d!.byteOffset - BLOCK_OVERHEAD);
+        pool.free(b!);
+        assert.equal(p._free, b!.byteOffset - BLOCK_OVERHEAD);
+        assert.equal(p.blockNext(p._free), d!.byteOffset - BLOCK_OVERHEAD);
+        pool.free(c!);
+        assert.equal(p._free, b!.byteOffset - BLOCK_OVERHEAD);
+        assert.equal(p.blockSize(p._free), e!.byteOffset - b!.byteOffset);
+        pool.free(a!);
+        assert.equal(p._free, a!.byteOffset - BLOCK_OVERHEAD);
+        assert.equal(p.blockSize(p._free), e!.byteOffset - a!.byteOffset);
+        pool.free(e!);
+        assert.equal(p._free, 0);
+        assert.equal(p._used, 0);
+        assert.equal(p.top, base);
     });
 });
