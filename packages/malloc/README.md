@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+- [Memory layout](#memory-layout)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -47,6 +48,12 @@ backing memory chunk, e.g. the same buffer used by a WASM module.
 Even for non-WASM use cases, using this package can drastically speed up
 allocation of typed arrays and reduce GC pressure. See
 [benchmarks](#benchmarks) below.
+
+## Memory layout
+
+![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/malloc-layout.png)
+
+TODO
 
 ## Installation
 
