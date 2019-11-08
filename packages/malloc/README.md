@@ -20,8 +20,8 @@ This project is part of the
     - [MemPool](#mempool)
     - [`malloc(size: number)`](#mallocsize-number)
     - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
-    - [`calloc(size: number)`](#callocsize-number)
-    - [`callocAs(type: Type, num: number)`](#callocastype-type-num-number)
+    - [`calloc(size: number, fill = 0)`](#callocsize-number-fill--0)
+    - [`callocAs(type: Type, num: number, fill = 0)`](#callocastype-type-num-number-fill--0)
     - [`realloc(addr: number, size: number)`](#reallocaddr-number-size-number)
     - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf-typedarray-num-number)
     - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
@@ -53,6 +53,15 @@ allocation of typed arrays and reduce GC pressure. See
 
 ## Memory layout
 
+Since v4.1.0, all internal allocator state is stored in the
+`ArrayBuffer` itself (thanks to the [initial idea & work done by
+@Bnaya](https://github.com/thi-ng/umbrella/pull/153)). This change
+allows the `ArrayBuffer` (or `SharedArrayBuffer`) being passed to
+workers and/or the entire memory state being easily serialized/restored
+to/from local storage.
+
+The new memory layout is as follows:
+
 ![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/malloc-layout.png)
 
 ## Free block compaction / coalescing
@@ -71,8 +80,8 @@ In this example we start with three allocated neighboring blocks:
 
 **Non-continuous free blocks**
 
-After freeing the first & last blocks, the memory layout is as follows.
-The free blocks are linked, but occupy non-continuous memory regions.
+After freeing the first & last blocks, the free blocks are linked via
+their `next` pointers, but still occupy non-continuous memory regions.
 
 ![Block compaction (non-continuous)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/compact-02.png)
 
@@ -84,7 +93,8 @@ Furthermore, if that resulting new block turns out to be the top-most
 block (in terms of previously allocated address space), the allocator
 does not create a free block at all, but merely resets its heap `top`
 pointer to the beginning of that block and considers it blank space that
-way.
+way (essentially a merge with the remaining free/unallocated space of
+the array buffer).
 
 ![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/compact-03.png)
 
@@ -185,40 +195,27 @@ pool.stats();
 
 ### MemPool
 
-The `MemPool` constructor takes an `ArrayBuffer` (or size only) and an
-optional `MemPoolOpts` object for specifying start and end addresses
-(byte offsets) delineating the allocatable / managed region and other
-options.
+The `MemPool` constructor takes an object of optional configuration
+options. See
+[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/feature/malloc-align/packages/malloc/src/api.ts#L9)
+for further reference:
 
 ```ts
-// example with default options shown
-new MemPool(0x1000, {
-    start:    0x8,
-    end:      0x1000,
+// example with some default options shown
+new MemPool({
+    size:     0x1000,
     compact:  true,
     split:    true,
     minSplit: 16
 });
 ```
 
-The default `start` address is 8 and `end` the length of the buffer. This
-start address is also the minimum supported address for memory blocks.
-Address 0x0 is reserved as return value for allocation errors.
-
-The `compact` option enables recursive compaction / joining of
-neighboring free blocks. Enabled by default to minimize fragmentation.
-
-The `split` option is used to enable (default) splitting of a larger
-suitable free block when allocating a smaller size. `minSplit` specifies
-the minimum excess between requested size and actual block size, i.e. by
-default a block will be split during allocation if there're at least 16
-bytes left over. The given value should always be a multiple of 8.
-
 ### `malloc(size: number)`
 
 Attempts to allocate a new block of memory of given byte size and
 returns start address if successful, or zero (`0`) if unsuccessful.
-Memory blocks always start at multiples of 8.
+Memory blocks always start at multiples of the configured alignment
+(default: 8).
 
 ### `mallocAs(type: Type, num: number)`
 
@@ -232,15 +229,16 @@ package, e.g. `Type.F64`:
 
 `U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`
 
-### `calloc(size: number)`
+### `calloc(size: number, fill = 0)`
 
-Like `malloc()` but zeroes allocated block before returning. Unless the
-allocated block is immediately filled with user data, this method is
-preferred over `malloc()`.
+Like `malloc()` but fill allocated block with given `fill` value before
+returning. Unless the allocated block is immediately filled with user
+data, this method is preferred over `malloc()` for safety.
 
-### `callocAs(type: Type, num: number)`
+### `callocAs(type: Type, num: number, fill = 0)`
 
-Like `mallocAs()` but zeroes allocated block before returning.
+Like `mallocAs()` but fills allocated block with `fill` value before
+returning.
 
 ### `realloc(addr: number, size: number)`
 
@@ -283,17 +281,28 @@ Returns pool statistics (see above example).
 
 ## Benchmarks
 
+Benchmark
+([source](https://github.com/thi-ng/umbrella/blob/feature/malloc-align/packages/malloc/bench/index.js))
+comparing against raw typed array construction of different sizes:
+
 ```bash
 node bench/index.js
 ```
 
 ```text
-1x f64x4 malloc x 8,712,284 ops/sec ±0.39% (92 runs sampled) mean: 0.00011ms
-1x f64x4 vanilla x 1,714,557 ops/sec ±2.18% (82 runs sampled) mean: 0.00058ms
+malloc_f64x4 x 3,317,667 ops/sec ±0.61% (93 runs sampled) mean: 0.00030ms**
+malloc_f64x4_vanilla x 4,221,089 ops/sec ±0.32% (94 runs sampled) mean: 0.00024ms
 
-6x f64 malloc x 704,920 ops/sec ±1.20% (91 runs sampled) mean: 0.00142ms
-6x f64 vanilla x 251,799 ops/sec ±1.87% (84 runs sampled) mean: 0.00397ms
+malloc6_f64 x 358,405 ops/sec ±0.37% (90 runs sampled) mean: 0.00279ms
+malloc6_f64_vanilla x 283,487 ops/sec ±0.81% (90 runs sampled) mean: 0.00353ms
+
+malloc_f32x1024 x 13,700,920 ops/sec ±0.38% (96 runs sampled) mean: 0.00007ms
+malloc_f32x1024_vanilla x 694,747 ops/sec ±2.11% (78 runs sampled) mean: 0.00144ms
 ```
+
+In this micro benchmark, allocating 4KB blocks (1024 floats) is ~20x
+faster than calling `new Float32Array(1024)`. On the other hand,
+allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 
 ## Authors
 
