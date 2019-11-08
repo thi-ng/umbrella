@@ -11,6 +11,8 @@ This project is part of the
 
 - [About](#about)
 - [Memory layout](#memory-layout)
+- [Free block compaction / coalescing](#free-block-compaction--coalescing)
+- [Block splitting](#block-splitting)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -53,7 +55,59 @@ allocation of typed arrays and reduce GC pressure. See
 
 ![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/malloc-layout.png)
 
-TODO
+## Free block compaction / coalescing
+
+The allocator supports coalescing of free memory blocks to minimize
+fragmentation of the managed address space. This feature is enabled by
+default, but can be disabled via config options.
+
+The following diagrams show the different stages of this behavior:
+
+**Initial layout**
+
+In this example we start with three allocated neighboring blocks:
+
+![Block compaction (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/compact-01.png)
+
+**Non-continuous free blocks**
+
+After freeing the first & last blocks, the memory layout is as follows.
+The free blocks are linked, but occupy non-continuous memory regions.
+
+![Block compaction (non-continuous)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/compact-02.png)
+
+**Single compacted free block**
+
+After also freeing block #2, all three blocks now span a single
+continuous address range and are merged into a single larger free block.
+Furthermore, if that resulting new block turns out to be the top-most
+block (in terms of previously allocated address space), the allocator
+does not create a free block at all, but merely resets its heap `top`
+pointer to the beginning of that block and considers it blank space that
+way.
+
+![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/compact-03.png)
+
+## Block splitting
+
+In order to avoid unnecessary growing of the heap `top`, the allocator
+can split existing free blocks if the user requests allocating a smaller
+size than that of a suitable free block available. If the free block has
+sufficient excess space (configurable via the `minSplit` option), the
+free block will be split, the lower part marked as allocated and
+inserted into the used block list and the excess space inserted as new
+free block back into the free list.
+
+This behavior too is enabled by default, but can be turned off via the
+`split` config option.
+
+Initial example layout:
+
+![Block splitting (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/split-01.png)
+
+Layout after allocating only a smaller size than the free block's capacity:
+
+![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/feature/malloc-align/assets/malloc/split-02.png)
 
 ## Installation
 
@@ -66,6 +120,7 @@ yarn add @thi.ng/malloc
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage examples
 
@@ -83,8 +138,10 @@ const pool = new MemPool({ size: 0x1000, start: 8 });
 ptr = pool.malloc(16);
 // 8
 
-// request memory and return as typed view
+// request memory and return as typed array view
 // in this case we use number of elements, NOT bytes
+// IMPORTANT: there's no guarantee that the returned array's
+// values are zeroed. Use `calloc`/`callocAs` for that purpose
 vec = pool.mallocAs(Type.F64, 4);
 // Float64Array [ 0, 0, 0, 0 ]
 
