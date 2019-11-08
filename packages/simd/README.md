@@ -82,7 +82,7 @@ for documentation about the exposed TS/JS API...
 
 ## Status
 
-ALPHA - unreleased
+ALPHA - experimental
 
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
