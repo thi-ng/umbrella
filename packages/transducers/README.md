@@ -208,7 +208,7 @@ This example uses the
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
 package for quick SVG generation.
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/transducers/hermite-tx.png)
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/transducers/hermite-tx.png)
 
 ```ts
 import { asSvg, svgDoc, circle, polyline } from "@thi.ng/geom";
