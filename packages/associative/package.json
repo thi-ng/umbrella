@@ -57,6 +57,7 @@
         "skiplist",
         "sorted map",
         "sorted set",
+        "sparse set",
         "typescript",
         "union"
     ],

@@ -27,6 +27,7 @@ operations working with these types:
       implementations)
     - getters w/ optional "not-found" default value
     - `fromObject()` converters (for maps only)
+- `SparseSet` implementations for numeric values
 - Polymorphic set operations (union, intersection, difference) - works
   with both native and custom Sets and retains their types
 - Natural & selective
@@ -236,12 +237,47 @@ this (and other) package(s).
 
 This set uses a `SortedMap` as backing store.
 
+### SparseSet8/16/32
+
+[Sparse sets](https://research.swtch.com/sparse) provide super fast
+(approx. 4x faster than the native `Set` impl) insertion & lookups for
+numeric values in the interval `[0..n)` . The implementation in this
+package provides most of the ES6 Set API and internally relies on 2 uint
+typed arrays, with the actual backing type dependent on `n`.
+
+Furthermore, unless (or until) values are being removed from the set,
+they retain their original insertion order. For some use cases (e.g.
+deduplication of values), this property can be very useful.
+
+```ts
+// create sparse set for value range 0 - 99 (uint8 backed)
+const a = sparseSet(100);
+a.into([99, 42, 66, 23, 66, 42]);
+// SparseSet8 { 99, 42, 66, 23 }
+
+a.has(66)
+// true
+
+// sparse sets are iterable
+[...a]
+// [ 99, 42, 66, 23 ]
+
+// attempting to add out-of-range values will fail
+a.add(100)
+// SparseSet8 { 99, 42, 66, 23 }
+
+// create sparse set for 16 bit value range 0 - 0xffff (uint16 backed)
+const b = sparseSet(0x10000);
+// SparseSet16 {}
+```
+
 ## Usage examples
 
 Please see these packages for use cases:
 
 - [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/master/packages/cache)
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/master/packages/dgraph)
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs)
 - [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query)
 
 ## Authors
