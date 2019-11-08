@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Related packages](#related-packages)
@@ -24,7 +25,11 @@ This project is part of the
 SOA & AOS memory layouts, memory mapped lenses, optional & extensible
 serialization.
 
-WIP - See tests for usage.
+### Status
+
+ALPHA - WIP - See tests for usage. This package might be merged with
+and/or superseded by
+[@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs).
 
 ## Installation
 
