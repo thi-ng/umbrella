@@ -1,5 +1,7 @@
 # soa-ecs
 
+![100k particle system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
 [Live demo](http://demo.thi.ng/umbrella/soa-ecs/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

@@ -9,11 +9,33 @@ This project is part of the
 
 <!-- TOC depthFrom:2 depthTo:3 -->
 
+- [About](#about)
+    - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+    - [Basic concepts](#basic-concepts)
+- [Authors](#authors)
+- [License](#license)
+
 <!-- /TOC -->
 
 ## About
 
-TODO...
+Entity Component System based on memory mapped buffers & sparse sets.
+
+- Entities are merely numeric identifiers
+- Component types:
+    - Memory mapped (typed array views, customizable striding)
+    - JS objects
+- Component grouping w/ optional group ownership to allow re-ordering
+  components for optimized iteration
+- Systems are plain functions
+- Configurable caching of component views: LRU, Unbounded, Null (no-cache)
+
+### Status
+
+ALPHA - WIP
 
 ## Installation
 
@@ -23,12 +45,89 @@ yarn add @thi.ng/ecs
 
 ## Dependencies
 
-- TODO...
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
+![100k particle system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+See the ECS particle system example for usage/reference:
+
+[Live version](https://demo.thi.ng/umbrella/soa-ecs/) |
+[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs/)
+
+### Basic concepts
+
 ```ts
-import * as e from "@thi.ng/ecs";
+import { ECS } from "@thi.ng/ecs";
+
+interface ComSpecs {
+    pos: Float32Array;
+    vel: Float32Array;
+    color: string;
+}
+
+// init ECS w/ given max number of entities
+const ecs = new ECS<CompSpecs>(1000);
+
+// define components (and their memory layout)
+const pos = ecs.defComponent({
+    id: "pos",
+    type: Type.F32,
+    size: 2
+});
+
+const vel = ecs.defComponent({
+    id: "vel",
+    type: Type.F32,
+    size: 2,
+    stride: 4
+    default: () => [Math.random()*2-1, Math.random()*2-1]
+});
+
+// this component stores string values (not mem-mapped)
+const color = ecs.defComponent({
+    id: "color",
+    default: () => ["red","green","blue"][(Math.random()*3)|0]
+});
+
+// define group of given components
+// the group will obtain ownership of all by default, meaning
+// it is allowed to re-order entities to optimize iteration performance
+const group = ecs.defGroup([pos, vel, color]);
+
+// add entities and associate them w/ different components
+// if a component is part of a group, the group will be notified/updated
+ecs.defEntity(["pos", "vel", "color"]);
+
+ecs.defEntity([pos, vel]);
+
+ecs.defEntity({
+    pos: [1, 2],
+    vel: [-1, 0],
+    color: "red"
+});
+
+// apply given function to each entity in the group
+// note: entity (id=1) is NOT part of the group,
+// since it doesn't have a `color` component...
+group.forEach((x) => console.log(x));
+// {
+//   id: 0,
+//   color: 'green',
+//   vel: Float32Array [ 0.16836269199848175, -0.36699679493904114 ],
+//   pos: Float32Array [ 0, 0 ]
+// }
+// {
+//   id: 2,
+//   color: 'blue',
+//   vel: Float32Array [ -0.7642428278923035, -0.43176573514938354 ],
+//   pos: Float32Array [ 0, 0 ]
+// }
 ```
 
 ## Authors
