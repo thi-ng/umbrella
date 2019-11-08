@@ -261,12 +261,14 @@ export interface HDOMImplementation<T> {
      * @param parent
      * @param tree
      * @param child
+     * @param init
      */
     createTree(
         opts: Partial<HDOMOpts>,
         parent: T,
         tree: any,
-        child?: number
+        child?: number,
+        init?: boolean
     ): T | T[];
 
     /**
@@ -400,7 +402,8 @@ export interface HDOMImplementation<T> {
         opts: Partial<HDOMOpts>,
         parent: T,
         child: number,
-        newTree: any
+        newTree: any,
+        init?: boolean
     ): T | T[];
 
     /**

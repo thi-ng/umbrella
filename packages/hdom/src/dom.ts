@@ -22,7 +22,8 @@ export const createTree = <T>(
     impl: HDOMImplementation<T>,
     parent: T,
     tree: any,
-    insert?: number
+    insert?: number,
+    init = true
 ): any => {
     if (isArray(tree)) {
         const tag = tree[0];
@@ -41,23 +42,24 @@ export const createTree = <T>(
                 opts,
                 parent,
                 tree,
-                insert
+                insert,
+                init
             );
         }
         const el = impl.createElement(parent, tag, attribs, insert);
         if (tree.length > 2) {
             const n = tree.length;
             for (let i = 2; i < n; i++) {
-                createTree(opts, impl, el, tree[i]);
+                createTree(opts, impl, el, tree[i], undefined, init);
             }
         }
-        maybeInitElement<T>(el, tree);
+        init && maybeInitElement<T>(el, tree);
         return el;
     }
     if (isNotStringAndIterable(tree)) {
         const res = [];
         for (let t of tree) {
-            res.push(createTree(opts, impl, parent, t));
+            res.push(createTree(opts, impl, parent, t, insert, init));
         }
         return res;
     }
@@ -165,9 +167,11 @@ export const replaceChild = (
     impl: HDOMImplementation<any>,
     parent: Element,
     child: number,
-    tree: any
+    tree: any,
+    init = true
 ) => (
-    impl.removeChild(parent, child), impl.createTree(opts, parent, tree, child)
+    impl.removeChild(parent, child),
+    impl.createTree(opts, parent, tree, child, init)
 );
 
 export const cloneWithNewAttribs = (el: Element, attribs: any) => {

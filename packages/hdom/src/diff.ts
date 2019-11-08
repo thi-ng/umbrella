@@ -65,6 +65,11 @@ export const diffTree = <T>(
         impl.replaceChild(opts, parent, child, curr);
         return;
     }
+    const pattribs = prev[1];
+    if (pattribs && pattribs.__skip) {
+        impl.replaceChild(opts, parent, child, curr, false);
+        return;
+    }
     // delegate to branch-local implementation
     let _impl = attribs.__impl;
     if (_impl && _impl !== impl) {

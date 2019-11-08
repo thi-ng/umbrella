@@ -65,7 +65,7 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
         }
     }
     return attribs.__skip && spec.length < 3
-        ? [mtag, attribs, ""]
+        ? [mtag, attribs]
         : [mtag, attribs, ...spec.slice(hasAttribs ? 2 : 1)];
 };
 
