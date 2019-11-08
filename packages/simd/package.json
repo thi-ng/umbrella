@@ -52,8 +52,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
-    "thi.ng": {
-        "branch": "develop"
-    }
+    "sideEffects": false
 }
