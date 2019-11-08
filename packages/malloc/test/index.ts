@@ -264,17 +264,40 @@ describe("malloc", () => {
         let p: any = pool;
 
         const a = pool.malloc(8);
+        p.u8.fill(0xff, a, a + 8);
+
         const block = p._used;
         const bsize = p.blockSize(block);
         assert.equal(bsize, align(8 + BLOCK_OVERHEAD, 8), "size a");
-
-        pool.realloc(a, 17);
+        assert.equal(pool.realloc(a, 0), 0, "too small");
+        assert.equal(pool.realloc(a, 65), a, "enlarge a");
 
         const usedBlockAfterRealloc = p._used;
         assert.equal(usedBlockAfterRealloc, block);
         assert.equal(
             p.blockSize(usedBlockAfterRealloc),
-            align(17 + BLOCK_OVERHEAD, 8)
+            align(65 + BLOCK_OVERHEAD, 8)
+        );
+
+        // shrink & update top
+        assert.equal(pool.realloc(a, 31), a, "shrink a");
+        assert.equal(
+            p.blockSize(usedBlockAfterRealloc),
+            align(31 + BLOCK_OVERHEAD, 8)
+        );
+        assert.equal(p._free, 0);
+        assert.equal(p.top, a + 32);
+
+        // add new top block
+        const b = pool.malloc(8);
+        assert.equal(b, a + 40, "b");
+
+        // enlage a again, but need to move after b
+        const a2 = pool.realloc(a, 65);
+        assert.equal(a2, b + 16);
+        assert.deepEqual(
+            [...p.u8.slice(a2, a2 + 9)],
+            [0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0]
         );
     });
 
