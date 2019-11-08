@@ -301,6 +301,16 @@ describe("malloc", () => {
         );
     });
 
+    it("reallocArray", () => {
+        const a = pool.callocAs(Type.F32, 4, 1);
+        assert.deepEqual(
+            [...pool.reallocArray(a!, 8)!],
+            [1, 1, 1, 1, 0, 0, 0, 0]
+        );
+        assert.equal(pool.reallocArray(a!, 10000), undefined);
+        assert.equal(pool.reallocArray(new Float32Array(4), 8), undefined);
+    });
+
     it("no compact", () => {
         pool = new MemPool({ size: 0x100, compact: false });
         const p: any = pool;

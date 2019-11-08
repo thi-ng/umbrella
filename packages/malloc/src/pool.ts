@@ -117,13 +117,14 @@ export class MemPool implements IMemPool {
             return 0;
         }
         const paddedSize = align(bytes + SIZEOF_MEM_BLOCK, this.align);
-        let top = this.top;
         const end = this.end;
+        let top = this.top;
         let block = this._free;
         let prev = 0;
         while (block) {
-            const isTop = block + this.blockSize(block) >= top;
-            if (isTop || this.blockSize(block) >= paddedSize) {
+            const blockSize = this.blockSize(block);
+            const isTop = block + blockSize >= top;
+            if (isTop || blockSize >= paddedSize) {
                 if (isTop && block + paddedSize > end) {
                     return 0;
                 }
@@ -137,7 +138,7 @@ export class MemPool implements IMemPool {
                 if (isTop) {
                     this.top = block + this.setBlockSize(block, paddedSize);
                 } else if (this.doSplit) {
-                    const excess = this.blockSize(block) - paddedSize;
+                    const excess = blockSize - paddedSize;
                     if (excess >= this.minSplit) {
                         this.insert(
                             this.initBlock(
@@ -175,13 +176,14 @@ export class MemPool implements IMemPool {
         let blockEnd = 0;
         while (block) {
             if (block === oldAddr) {
-                blockEnd = oldAddr + this.blockSize(block);
+                const blockSize = this.blockSize(block);
+                blockEnd = oldAddr + blockSize;
                 const isTop = blockEnd >= this.top;
                 const paddedSize = align(bytes + SIZEOF_MEM_BLOCK, this.align);
                 // shrink & possibly split existing block
-                if (paddedSize <= this.blockSize(block)) {
+                if (paddedSize <= blockSize) {
                     if (this.doSplit) {
-                        const excess = this.blockSize(block) - paddedSize;
+                        const excess = blockSize - paddedSize;
                         if (excess >= this.minSplit) {
                             this.insert(
                                 this.initBlock(
@@ -244,10 +246,11 @@ export class MemPool implements IMemPool {
             if (ptrOrArray.buffer !== this.buf) {
                 return false;
             }
-            addr = blockSelfAddress(ptrOrArray.byteOffset);
+            addr = ptrOrArray.byteOffset;
         } else {
-            addr = blockSelfAddress(ptrOrArray);
+            addr = ptrOrArray;
         }
+        addr = blockSelfAddress(addr);
         let block = this._used;
         let prev = 0;
         while (block) {
@@ -278,7 +281,6 @@ export class MemPool implements IMemPool {
         delete this.u32;
         delete this.state;
         delete this.buf;
-
         return true;
     }
 

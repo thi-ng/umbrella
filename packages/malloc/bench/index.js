@@ -1,33 +1,35 @@
 "use strict";
 
 const Benchmark = require("benchmark");
+const Type = require("@thi.ng/api").Type;
+const bench = require("@thi.ng/bench").bench;
 const tx = require("@thi.ng/transducers");
-const m = require("../index");
+const m = require("../lib/index");
 
-const pool = new m.MemPool(new ArrayBuffer(1024));
-const Type = m.Type;
+const pool = new m.MemPool({ buf: new ArrayBuffer(1024) });
 
 const vals = [...tx.map((i) => [...tx.range(1 << i)], tx.range(6))];
 
 const malloc4 = () => {
     let a = pool.mallocAs(Type.F64, 4);
     a.set(vals[2]);
-    pool.free(a);
+    pool.freeAll();
 };
 
 const malloc6 = () => {
-    let a = pool.mallocAs(Type.F64, 8); a.set(vals[3]);
-    let b = pool.mallocAs(Type.F64, 16); b.set(vals[4]);
-    let c = pool.mallocAs(Type.F64, 1); c.set(vals[0]);
-    let d = pool.mallocAs(Type.F64, 32); d.set(vals[5]);
-    let e = pool.mallocAs(Type.F64, 2); e.set(vals[1]);
-    let f = pool.mallocAs(Type.F64, 4); f.set(vals[2]);
-    pool.free(a);
-    pool.free(b);
-    pool.free(c);
-    pool.free(d);
-    pool.free(e);
-    pool.free(f);
+    const a = pool.mallocAs(Type.F64, 8);
+    a.set(vals[3]);
+    const b = pool.mallocAs(Type.F64, 16);
+    b.set(vals[4]);
+    const c = pool.mallocAs(Type.F64, 1);
+    c.set(vals[0]);
+    const d = pool.mallocAs(Type.F64, 32);
+    d.set(vals[5]);
+    const e = pool.mallocAs(Type.F64, 2);
+    e.set(vals[1]);
+    const f = pool.mallocAs(Type.F64, 4);
+    f.set(vals[2]);
+    pool.freeAll();
 };
 
 const malloc4vanilla = () => new Float64Array(vals[2]);
@@ -52,7 +54,12 @@ new Benchmark.Suite()
             `mean: ${(event.target.stats.mean * 1e3).toFixed(5)}ms`
         )
     )
-    .on("complete", function () {
+    .on("complete", function() {
         console.log("Fastest is " + this.filter("fastest").map("name"));
     })
-    .run({ "async": false });
+    .run({ async: false });
+
+bench(malloc4);
+bench(malloc4vanilla);
+bench(malloc6);
+bench(malloc6vanilla);
