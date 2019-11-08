@@ -1,12 +1,11 @@
 import { IObjectOf } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors";
 
-export const points = (
+export const packedPoints = (
     ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>,
     opts: IObjectOf<any>,
-    pts: Iterable<ReadonlyVec>
+    pts: ArrayLike<number>
 ) => {
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
@@ -20,20 +19,30 @@ export const points = (
 const __drawPoints = (
     ctx: CanvasRenderingContext2D,
     opts: IObjectOf<any>,
-    pts: Iterable<ReadonlyVec>,
+    pts: ArrayLike<number>,
     cmd: "fill" | "stroke",
     cmdR: "fillRect" | "strokeRect"
 ) => {
-    const s: number = (opts && opts.size) || 1;
+    const { start, cstride, estride, size } = {
+        start: 0,
+        cstride: 1,
+        estride: 2,
+        size: 1,
+        ...opts
+    };
+    let num =
+        opts && opts.num != null
+            ? opts.num
+            : ((pts.length - start) / estride) | 0;
     if (opts.shape === "circle") {
-        for (let p of pts) {
+        for (let i = start; --num >= 0; i += estride) {
             ctx.beginPath();
-            ctx.arc(p[0], p[1], s, 0, TAU);
+            ctx.arc(pts[i], pts[i + cstride], size, 0, TAU);
             ctx[cmd]();
         }
     } else {
-        for (let p of pts) {
-            ctx[cmdR](p[0], p[1], s, s);
+        for (let i = start; --num >= 0; i += estride) {
+            ctx[cmdR](pts[i], pts[i + cstride], size, size);
         }
     }
 };

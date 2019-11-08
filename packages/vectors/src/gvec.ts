@@ -3,7 +3,7 @@ import { memoize1 } from "@thi.ng/memoize";
 import { map, range } from "@thi.ng/transducers";
 import { IVector, Vec } from "./api";
 import { eqDeltaS } from "./eqdelta";
-import { values } from "./internal/vec-utils";
+import { stridedValues } from "./internal/vec-utils";
 import { zeroes } from "./setn";
 import { setS } from "./sets";
 
@@ -107,7 +107,7 @@ export const gvec = (
         get(obj, id) {
             switch (id) {
                 case Symbol.iterator:
-                    return () => values(obj, size, offset, stride);
+                    return () => stridedValues(obj, size, offset, stride);
                 case SYM_L:
                     return size;
                 case SYM_B:
@@ -127,7 +127,9 @@ export const gvec = (
                         eqDeltaS(buf, o, size, eps, offset, 0, stride, 1);
                 case SYM_STR:
                     return () =>
-                        JSON.stringify([...values(obj, size, offset, stride)]);
+                        JSON.stringify([
+                            ...stridedValues(obj, size, offset, stride)
+                        ]);
                 default:
                     const j = parseInt(<string>id);
                     return !isNaN(j) && j >= 0 && j < size

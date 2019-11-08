@@ -4,6 +4,7 @@ import { circularArc, ellipticArc } from "./draw/arc";
 import { defLinearGradient, defRadialGradient } from "./draw/color";
 import { image } from "./draw/image";
 import { line } from "./draw/line";
+import { packedPoints } from "./draw/packed-points";
 import { path } from "./draw/path";
 import { points } from "./draw/points";
 import { polygon } from "./draw/polygon";
@@ -48,6 +49,9 @@ export const walk = (
             break;
         case "points":
             points(ctx, attribs, shape[1], shape[2]);
+            break;
+        case "packedPoints":
+            packedPoints(ctx, attribs, shape[1], shape[2]);
             break;
         case "line":
             line(ctx, attribs, shape[2], shape[3]);
