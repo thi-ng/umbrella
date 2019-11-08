@@ -42,7 +42,7 @@ This project is part of the
         - [String](#string)
         - [Number](#number)
         - [Array](#array)
-        - [[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) values](#thingcolorhttpsgithubcomthi-ngumbrellatreemasterpackagescolor-values)
+        - [@thi.ng/color values](#thingcolor-values)
     - [Coordinate transformations](#coordinate-transformations)
         - [Transform matrix](#transform-matrix)
         - [Override transform](#override-transform)
@@ -523,9 +523,11 @@ Interpreted as float RGB(A):
 
 `{ fill: [1, 0.8, 0.6, 0.4] }` => `{ fill: "rgba(255,204,153,0.40)" }`
 
-#### [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) values
+#### @thi.ng/color values
 
-Converted to CSS color strings:
+Colors defined via the
+[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
+package can be automatically converted to CSS color strings:
 
 `{ fill: hcya(0.1666, 1, 0.8859) }` => `{ fill: "#ffff00" }`
 
