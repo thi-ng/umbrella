@@ -139,16 +139,8 @@ export class MemPool implements IMemPool {
                     this.top = block + this.setBlockSize(block, paddedSize);
                 } else if (this.doSplit) {
                     const excess = blockSize - paddedSize;
-                    if (excess >= this.minSplit) {
-                        this.insert(
-                            this.initBlock(
-                                block + this.setBlockSize(block, paddedSize),
-                                excess,
-                                0
-                            )
-                        );
-                        this.doCompact && this.compact();
-                    }
+                    excess >= this.minSplit &&
+                        this.splitBlock(block, paddedSize, excess);
                 }
                 return blockDataAddress(block);
             }
@@ -185,15 +177,7 @@ export class MemPool implements IMemPool {
                     if (this.doSplit) {
                         const excess = blockSize - paddedSize;
                         if (excess >= this.minSplit) {
-                            this.insert(
-                                this.initBlock(
-                                    block +
-                                        this.setBlockSize(block, paddedSize),
-                                    excess,
-                                    0
-                                )
-                            );
-                            this.doCompact && this.compact();
+                            this.splitBlock(block, paddedSize, excess);
                         } else if (isTop) {
                             this.top = oldAddr + paddedSize;
                         }
@@ -401,6 +385,17 @@ export class MemPool implements IMemPool {
 
     protected unlinkBlock(prev: number, block: number) {
         this.setBlockNext(prev, this.blockNext(block));
+    }
+
+    protected splitBlock(block: number, blockSize: number, excess: number) {
+        this.insert(
+            this.initBlock(
+                block + this.setBlockSize(block, blockSize),
+                excess,
+                0
+            )
+        );
+        this.doCompact && this.compact();
     }
 
     protected initialTop(_align = this.align) {
