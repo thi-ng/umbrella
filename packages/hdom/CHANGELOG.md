@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.6...@thi.ng/hdom@8.0.7) (2019-11-09)
+
+
+### Bug Fixes
+
+* **hdom:** fix [#72](https://github.com/thi-ng/umbrella/issues/72), update __skip diff handling & HDOMImplementation ([0071df3](https://github.com/thi-ng/umbrella/commit/0071df3c770d6f9de10301853cbd6ecb06df83fb))
+
+
+
+
+
 ## [8.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.5...@thi.ng/hdom@8.0.6) (2019-09-23)
 
 

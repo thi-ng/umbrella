@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.1.1...@thi.ng/color@1.1.2) (2019-11-09)
+
+
+### Bug Fixes
+
+* **color:** update/rename imports (vectors pkg) ([7cb8877](https://github.com/thi-ng/umbrella/commit/7cb88771f88fc329a2728d9f86a18faf04ab0c35))
+
+
+
+
+
 ## [1.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.1.0...@thi.ng/color@1.1.1) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/color

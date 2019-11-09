@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/ecs",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -25,7 +25,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/equiv": "^1.0.9",
+        "@thi.ng/equiv": "^1.0.10",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
@@ -34,13 +34,13 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/associative": "^3.0.1",
-        "@thi.ng/checks": "^2.4.0",
-        "@thi.ng/dcons": "^2.1.5",
-        "@thi.ng/soa": "^0.0.1",
-        "@thi.ng/transducers": "^5.4.5",
-        "@thi.ng/vectors": "^3.3.1"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/associative": "^3.1.0",
+        "@thi.ng/checks": "^2.4.1",
+        "@thi.ng/dcons": "^2.1.6",
+        "@thi.ng/soa": "^0.1.0",
+        "@thi.ng/transducers": "^6.0.0",
+        "@thi.ng/vectors": "^4.0.0"
     },
     "keywords": [
         "ES6",

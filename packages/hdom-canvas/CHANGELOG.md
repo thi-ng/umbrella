@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.3.1...@thi.ng/hdom-canvas@2.4.0) (2019-11-09)
+
+
+### Features
+
+* **hdom-canvas:** add `packedPoints` shape type, update readme ([292611a](https://github.com/thi-ng/umbrella/commit/292611a44d1a661dcad4c293863517cac3791f28))
+
+
+
+
+
 ## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.3.0...@thi.ng/hdom-canvas@2.3.1) (2019-09-23)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas

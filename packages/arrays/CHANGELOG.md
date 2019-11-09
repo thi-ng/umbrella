@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.2.5...@thi.ng/arrays@0.3.0) (2019-11-09)
+
+
+### Features
+
+* **arrays:** add isSorted() ([65b29f4](https://github.com/thi-ng/umbrella/commit/65b29f487459c535acdbed3890c8a4e27d87ae2c))
+* **arrays:** add shuffleRange(), refactor shuffle(), add tests ([1924a05](https://github.com/thi-ng/umbrella/commit/1924a05ea093e3d1d0b3f063cb331b330cee0c0a))
+* **arrays:** add types, quickSort(), swap(), multiSwap(), update readme ([b834722](https://github.com/thi-ng/umbrella/commit/b83472237b3ba262dcbb644c8ccc516d0021bc84))
+
+
+
+
+
 ## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.2.4...@thi.ng/arrays@0.2.5) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/arrays

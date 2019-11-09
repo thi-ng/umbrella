@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.3.1...@thi.ng/vectors@4.0.0) (2019-11-09)
+
+
+### Bug Fixes
+
+* **vectors:** fix normalizeS2/3/4 ([f048393](https://github.com/thi-ng/umbrella/commit/f04839355c90e991b0a8970af469119283454637))
+* **vectors:** fix out args in mixCubic/mixQuadratic ([d02dae6](https://github.com/thi-ng/umbrella/commit/d02dae6b4bad2d026dec96c865292778e2c50ba2))
+* **vectors:** update random2/3/4 to return new vec if none given ([a0be4d4](https://github.com/thi-ng/umbrella/commit/a0be4d4a288c61e7860990bb3c5b6992af30552c))
+
+
+### Code Refactoring
+
+* **vectors:** rename strided-scalar op suffixes (SN => NS) ([66258d8](https://github.com/thi-ng/umbrella/commit/66258d8b096de2a49d2f801a5329a07e7ef97c56))
+
+
+### Features
+
+* **vectors:** add fill(), add MultiVecOp.impl(), update vop() ([21ff930](https://github.com/thi-ng/umbrella/commit/21ff930e3c902051ed937e9294d71dd25688d729))
+* **vectors:** add mixCubicHermite versions & tangent fns ([b382d25](https://github.com/thi-ng/umbrella/commit/b382d25e65d6371e6b76219fd2909ac991933db4))
+* **vectors:** add more strided vec ops, refactor templates ([ca91fa9](https://github.com/thi-ng/umbrella/commit/ca91fa92c5720f361291c0672a9af4f79b3eafa6))
+* **vectors:** add new intoBuffer(), move fns for wrapped versions ([53581f1](https://github.com/thi-ng/umbrella/commit/53581f16effb42a1b3cc9aac8bd438880aaf7c97))
+* **vectors:** add strided random ops, types, defHofOpS() codegen ([1e46f5a](https://github.com/thi-ng/umbrella/commit/1e46f5aa6ad6d64bef5afdd7baf2d218e4547d1d))
+* **vectors:** add strided rotate ops ([4f2b5a7](https://github.com/thi-ng/umbrella/commit/4f2b5a72948774966c5580bdf33f75b913b9f460))
+* **vectors:** update readme ([f16bb45](https://github.com/thi-ng/umbrella/commit/f16bb4567eb293e56eabd6c1fb6969e1217598e0))
+
+
+### Performance Improvements
+
+* **vectors:** minor optimization for 0-index Vec2/3/4 accessors ([a7c561d](https://github.com/thi-ng/umbrella/commit/a7c561df31d7466676a48880f1ae1083d8938397))
+
+
+### BREAKING CHANGES
+
+* **vectors:** setSN2/3/4 => setSN2/3/4
+
+
+
+
+
 ## [3.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.3.0...@thi.ng/vectors@3.3.1) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/vectors

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/soa",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "SOA & AOS memory mapped structured lenses with optional & extensible serialization",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -25,7 +25,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/equiv": "^1.0.9",
+        "@thi.ng/equiv": "^1.0.10",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
@@ -34,10 +34,10 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/binary": "^1.1.0",
-        "@thi.ng/transducers-binary": "^0.4.5",
-        "@thi.ng/vectors": "^3.3.1"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/binary": "^1.1.1",
+        "@thi.ng/transducers-binary": "^0.4.6",
+        "@thi.ng/vectors": "^4.0.0"
     },
     "keywords": [
         "AOS",

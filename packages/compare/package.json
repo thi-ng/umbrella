@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compare",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Comparator with optional delegation for types implementing @thi.ng/api/ICompare interface",
     "module": "./index.js",
     "main": "./lib/index.js",

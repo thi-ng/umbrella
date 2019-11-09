@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.0...@thi.ng/webgl@0.2.1) (2019-11-09)
+
+
+### Bug Fixes
+
+* **webgl:** add LOGGER, update initUniforms() ([4719110](https://github.com/thi-ng/umbrella/commit/471911084c8db79930cf273f222f345318671953))
+* **webgl:** ensure system defaults for all uniforms, update equiv checks ([39dc83f](https://github.com/thi-ng/umbrella/commit/39dc83ff49c97fb7ba70f7bbf0f7244d612c7fc8))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.7...@thi.ng/webgl@0.2.0) (2019-09-21)
 
 
