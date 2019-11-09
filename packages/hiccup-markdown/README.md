@@ -14,7 +14,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Parser](#parser)
     - [Features](#features)
-    - [Limitations](#limitations)
+    - [Current issues & limitations](#current-issues--limitations)
     - [Other parser features](#other-parser-features)
     - [Serializing to HTML](#serializing-to-html)
     - [Customizing tags](#customizing-tags)
@@ -79,9 +79,12 @@ consumes single characters from an iterable without knowledge of further
 values, the last heading, paragraph, blockquote, list or table requires
 an additional newline.**
 
-### Limitations
+### Current issues & limitations
 
-These MD features (and probably many more) are **not** supported:
+Paragraphs, headings and blockquotes ending with a character involved w/ inline formatting (e.g. `!`, `~`, `*`, `_`) either require an additional space or 2 empty lines (instead of just one) between the next paragraph. See [#156](https://github.com/thi-ng/umbrella/issues/156) for details.
+
+Also, these MD features (and probably many more) are currently **not**
+supported:
 
 - inline HTML
 - nested inline formats (e.g. **bold** inside _italic_)
@@ -93,6 +96,7 @@ These MD features (and probably many more) are **not** supported:
 
 Some of these are considered, though currently not high priority... Pull
 requests are welcome, though!
+
 
 ### Other parser features
 
