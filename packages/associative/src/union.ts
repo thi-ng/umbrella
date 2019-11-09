@@ -1,6 +1,7 @@
-import { reduce, Reducer } from "@thi.ng/transducers";
+import { Reducer } from "@thi.ng/transducers";
+import { xformSetOp } from "./internal/xform-setop";
 import { into } from "./into";
-import { copy, ensureSet } from "./utils";
+import { copy } from "./utils";
 
 /**
  * Computes union of sets `a` and `b` and writes results to new set or
@@ -30,11 +31,5 @@ export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 export function unionR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function unionR<T>(src: Iterable<T>): Set<T>;
 export function unionR<T>(src?: Iterable<Iterable<T>>) {
-    return src
-        ? reduce(unionR<T>(), src)
-        : <Reducer<Set<T>, Iterable<T>>>[
-              () => <any>null,
-              (acc) => acc || new Set<T>(),
-              (acc, x) => (!acc ? ensureSet(x) : union(acc, ensureSet(x)))
-          ];
+    return xformSetOp<T>(unionR, union, src);
 }

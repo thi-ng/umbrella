@@ -1,6 +1,7 @@
-import { reduce, Reducer } from "@thi.ng/transducers";
+import { Reducer } from "@thi.ng/transducers";
+import { xformSetOp } from "./internal/xform-setop";
 import { into } from "./into";
-import { empty, ensureSet } from "./utils";
+import { empty } from "./utils";
 
 /**
  * Computes the intersection of sets `a` and `b` and writes results into
@@ -38,12 +39,5 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 export function intersectionR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function intersectionR<T>(src: Iterable<T>): Set<T>;
 export function intersectionR<T>(src?: Iterable<Iterable<T>>) {
-    return src
-        ? reduce(intersectionR<T>(), src)
-        : <Reducer<Set<T>, Iterable<T>>>[
-              () => <any>null,
-              (acc) => acc || new Set<T>(),
-              (acc, x) =>
-                  !acc ? ensureSet(x) : intersection(acc, ensureSet(x))
-          ];
+    return xformSetOp<T>(intersectionR, intersection, src);
 }
