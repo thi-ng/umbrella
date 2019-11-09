@@ -185,10 +185,19 @@ export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
  *
  * @see thi.ng/transducers/iter/tween
  *
- * @param n
+ * @param num
  * @param stops
  */
 export const multiCosineGradient = (
-    n: number,
+    num: number,
     ...stops: [number, ReadonlyColor][]
-): Color[] => [...tween(n, 0, 1, cosineCoeffs, cosineColor, ...stops)];
+): Color[] => [
+    ...tween({
+        num,
+        min: 0,
+        max: 1,
+        init: cosineCoeffs,
+        mix: cosineColor,
+        stops
+    })
+];
