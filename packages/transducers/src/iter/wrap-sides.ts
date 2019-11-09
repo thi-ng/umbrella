@@ -1,5 +1,6 @@
 import { ensureArray } from "@thi.ng/arrays";
 import { illegalArgs } from "@thi.ng/errors";
+import { inRange } from "@thi.ng/math";
 
 /**
  * Yields iterator of `src` with the last `numLeft` values of `src`
@@ -21,13 +22,8 @@ export function* wrapSides<T>(
     numRight = numLeft
 ) {
     const _src: T[] = ensureArray(src);
-    (numLeft < 0 ||
-        numLeft > _src.length ||
-        numRight < 0 ||
-        numRight > _src.length) &&
-        illegalArgs(
-            `wrong number of wrap items: got ${numLeft}, but max: ${_src.length}`
-        );
+    !(inRange(numLeft, 0, _src.length) && inRange(numRight, 0, _src.length)) &&
+        illegalArgs(`allowed wrap range: [0..${_src.length}]`);
     if (numLeft > 0) {
         for (let m = _src.length, i = m - numLeft; i < m; i++) {
             yield _src[i];
