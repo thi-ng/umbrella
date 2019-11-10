@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.12...@thi.ng/random@1.1.13) (2019-11-09)
+
+**Note:** Version bump only for package @thi.ng/random
+
+
+
+
+
 ## [1.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.11...@thi.ng/random@1.1.12) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/random

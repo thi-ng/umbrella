@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "3.3.1",
+    "version": "4.0.0",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc": "typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,15 +33,15 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/binary": "^1.1.0",
-        "@thi.ng/checks": "^2.4.0",
-        "@thi.ng/equiv": "^1.0.9",
-        "@thi.ng/errors": "^1.2.0",
-        "@thi.ng/math": "^1.4.2",
-        "@thi.ng/memoize": "^1.1.4",
-        "@thi.ng/random": "^1.1.12",
-        "@thi.ng/transducers": "^5.4.5"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/binary": "^1.1.1",
+        "@thi.ng/checks": "^2.4.1",
+        "@thi.ng/equiv": "^1.0.10",
+        "@thi.ng/errors": "^1.2.1",
+        "@thi.ng/math": "^1.5.0",
+        "@thi.ng/memoize": "^1.1.5",
+        "@thi.ng/random": "^1.1.13",
+        "@thi.ng/transducers": "^6.0.0"
     },
     "keywords": [
         "2D",

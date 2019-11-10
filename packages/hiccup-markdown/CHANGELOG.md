@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.1.5...@thi.ng/hiccup-markdown@1.1.6) (2019-11-09)
+
+
+### Bug Fixes
+
+* **hiccup-markdown:** [#156](https://github.com/thi-ng/umbrella/issues/156) fix blockquote default tag factory args, add test ([12e445a](https://github.com/thi-ng/umbrella/commit/12e445ac27960d3498d8b57ed6daa1520a60158e))
+* **hiccup-markdown:** [#156](https://github.com/thi-ng/umbrella/issues/156) undo trimming of element children ([ccc9d40](https://github.com/thi-ng/umbrella/commit/ccc9d40723df1f898fba70be2e15352b8dfcb909))
+* **hiccup-markdown:** [#156](https://github.com/thi-ng/umbrella/issues/156) update parse(), remove CR chars, add initial test ([602510c](https://github.com/thi-ng/umbrella/commit/602510c5150dbf26d43a1c9e7ca8afd7c5230f28))
+
+
+
+
+
 ## [1.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.1.4...@thi.ng/hiccup-markdown@1.1.5) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/hiccup-markdown

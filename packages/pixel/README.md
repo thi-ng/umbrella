@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
 
 Typed array backed, packed integer pixel buffers with customizable
 layout formats and the following operations:
@@ -106,7 +106,7 @@ Porter-Duff operators:
 [Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png)
+![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff2.png)
 
 Code for the screenshot at the top of this readme...
 

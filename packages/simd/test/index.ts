@@ -170,6 +170,54 @@ simd.msubn4_f32(1024, 0, 11, 32, 2, 4, 4, 4);
 // prettier-ignore
 assertEqual(res_f32(1024, 8), [-89, -178, -267, -356, -445, -534, -623, -712]);
 
+// magsq2
+// magsq4
+simd.f32.set([1, 2, 10, 20, -100, 200, 100, -200]);
+simd.magsq2_f32_aos(1024, 0, 4);
+assertEqualDelta(res_f32(1024, 4), [
+    1 * 1 + 2 * 2,
+    10 * 10 + 20 * 20,
+    100 * 100 + 200 * 200,
+    100 * 100 + 200 * 200
+]);
+simd.mag2_f32_aos(1024, 0, 4);
+assertEqualDelta(res_f32(1024, 4), [
+    Math.sqrt(5),
+    Math.sqrt(500),
+    Math.sqrt(50000),
+    Math.sqrt(50000)
+]);
+
+simd.magsq4_f32_aos(1024, 0, 2, 1, 4);
+assertEqualDelta(res_f32(1024, 2), [505, 100000]);
+simd.mag4_f32_aos(1024, 0, 2, 1, 4);
+assertEqualDelta(res_f32(1024, 2), [Math.sqrt(505), Math.sqrt(100000)]);
+
+// mix4_f32
+// mixn4_f32
+// prettier-ignore
+simd.f32.set([
+    // a
+    1, 2, 3, 4, 5, 6, 7, 8,
+    // b
+    10, 20, 30, 40, 50, 60, 70, 80,
+    // t
+    0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8
+]);
+simd.mix4_f32(1024, 0, 32, 64, 2, 4, 4, 4, 4);
+// prettier-ignore
+assertEqualDelta(
+    res_f32(1024, 8),
+    [1.9, 5.6, 11.1, 18.4, 27.5, 38.4, 51.1, 65.6]
+);
+simd.mixn4_f32(1024, 0, 32, 0.5, 2, 4, 4, 4);
+// prettier-ignore
+assertEqualDelta(
+    res_f32(1024, 8),
+    [5.5, 11, 16.5, 22, 27.5, 33, 38.5, 44]
+);
+
+// mul_m22v2_aos
 // mul_m23v2_aos
 // prettier-ignore
 simd.f32.set([
@@ -185,6 +233,8 @@ simd.f32.set([
         5, 6,
         -1, -1
     ]);
+simd.mul_m22v2_aos(1024, 0, 32, 4);
+assertEqual(res_f32(1024, 8), [10, 40, 30, 80, 50, 120, -10, -20]);
 simd.mul_m23v2_aos(1024, 0, 32, 4);
 assertEqual(res_f32(1024, 8), [110, 240, 130, 280, 150, 320, 90, 180]);
 

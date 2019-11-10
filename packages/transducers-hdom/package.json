@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-hdom",
-    "version": "2.0.30",
+    "version": "2.0.31",
     "description": "Transducer based UI updater for @thi.ng/hdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,9 +33,9 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/hdom": "^8.0.6",
-        "@thi.ng/hiccup": "^3.2.5",
-        "@thi.ng/transducers": "^5.4.5"
+        "@thi.ng/hdom": "^8.0.7",
+        "@thi.ng/hiccup": "^3.2.6",
+        "@thi.ng/transducers": "^6.0.0"
     },
     "keywords": [
         "diff",

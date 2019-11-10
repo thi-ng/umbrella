@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/arrays",
-    "version": "0.2.5",
+    "version": "0.3.0",
     "description": "Array / Arraylike utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,12 +33,12 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/checks": "^2.4.0",
-        "@thi.ng/compare": "^1.0.9",
-        "@thi.ng/equiv": "^1.0.9",
-        "@thi.ng/errors": "^1.2.0",
-        "@thi.ng/random": "^1.1.12"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/checks": "^2.4.1",
+        "@thi.ng/compare": "^1.0.10",
+        "@thi.ng/equiv": "^1.0.10",
+        "@thi.ng/errors": "^1.2.1",
+        "@thi.ng/random": "^1.1.13"
     },
     "keywords": [
         "arrays",

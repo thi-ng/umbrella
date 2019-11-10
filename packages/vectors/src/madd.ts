@@ -1,6 +1,6 @@
 import { MultiVecOpVVV, VecOpVVV } from "./api";
 import { ARGS_VVV, defOp } from "./internal/codegen";
-import { MADD } from "./internal/templates";
+import { MATH2 } from "./internal/templates";
 
 /**
  * Returns `out = a * b + c`.
@@ -14,6 +14,6 @@ import { MADD } from "./internal/templates";
  * @param c
  */
 export const [madd, madd2, madd3, madd4] = defOp<MultiVecOpVVV, VecOpVVV>(
-    MADD,
+    MATH2("*", "+"),
     ARGS_VVV
 );

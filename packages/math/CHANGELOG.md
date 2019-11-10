@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.4.2...@thi.ng/math@1.5.0) (2019-11-09)
+
+
+### Features
+
+* **math:** add mixCubicHermite & tangent fns ([d6b4b37](https://github.com/thi-ng/umbrella/commit/d6b4b3710b80fa1366cb40c193ad745bc63d4253))
+
+
+
+
+
 ## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.4.1...@thi.ng/math@1.4.2) (2019-07-31)
 
 **Note:** Version bump only for package @thi.ng/math

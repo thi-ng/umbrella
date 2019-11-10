@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@3.0.1...@thi.ng/associative@3.1.0) (2019-11-09)
+
+
+### Bug Fixes
+
+* **associative:** fix off-by-one error in sparseSet() factory, add tests ([94ff308](https://github.com/thi-ng/umbrella/commit/94ff3089d7c24627e57c731d57ab048ca1eff5b1))
+
+
+### Features
+
+* **associative:** add reducer versions of difference, intersection, union ([058b9d3](https://github.com/thi-ng/umbrella/commit/058b9d38a1fe25ee4e09dde1ed3f9a52831a4769))
+
+
+
+
+
 ## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@3.0.0...@thi.ng/associative@3.0.1) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/associative

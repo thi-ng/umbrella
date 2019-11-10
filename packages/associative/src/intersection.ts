@@ -1,3 +1,5 @@
+import { Reducer } from "@thi.ng/transducers";
+import { xformSetOp } from "./internal/xform-setop";
 import { into } from "./into";
 import { empty } from "./utils";
 
@@ -26,3 +28,16 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
     }
     return out!;
 };
+
+/**
+ * Reducer version of `intersection`. If `src` is given returns the
+ * reduced intersection of given inputs, else merely returns a reducer
+ * to be used with thi.ng/transducers `reduce` / `transduce` functions.
+ *
+ * @param src
+ */
+export function intersectionR<T>(): Reducer<Set<T>, Iterable<T>>;
+export function intersectionR<T>(src: Iterable<T>): Set<T>;
+export function intersectionR<T>(src?: Iterable<Iterable<T>>) {
+    return xformSetOp<T>(intersectionR, intersection, src);
+}

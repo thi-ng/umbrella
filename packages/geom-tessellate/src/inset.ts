@@ -6,8 +6,8 @@ import {
     partition,
     push,
     transduce,
-    zip,
-    wrap
+    wrapSides,
+    zip
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -20,6 +20,6 @@ export const tesselInset = (inset = 0.5, keepInterior = false): Tessellator => (
         comp(partition<Vec[]>(2, 1), map(([[a, b], [c, d]]) => [a, b, d, c])),
         push(),
         keepInterior ? [inner] : [],
-        wrap([...zip(points, inner)], 1, false, true)
+        wrapSides([...zip(points, inner)], 0, 1)
     );
 };

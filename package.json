@@ -34,5 +34,8 @@
         "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
         "test": "yarn build && yarn test:only",
         "test:only": "lerna run test"
+    },
+    "resolutions": {
+        "typescript": "^3.6.4"
     }
 }

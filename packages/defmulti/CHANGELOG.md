@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.1.4...@thi.ng/defmulti@1.2.0) (2019-11-09)
+
+
+### Features
+
+* **defmulti:** allow .add() to overwrite existing impl, add logger ([e387622](https://github.com/thi-ng/umbrella/commit/e387622d3ad44bc0df029c5ba641244dc12c6353))
+
+
+
+
+
 ## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.1.3...@thi.ng/defmulti@1.1.4) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/defmulti

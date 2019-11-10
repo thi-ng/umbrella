@@ -1,6 +1,8 @@
+import { Pow2 } from "./api";
+
 // http://graphics.stanford.edu/~seander/bithacks.html
 
-export const isPow2 = (x: number) => !!x && !(x & (x - 1));
+export const isPow2 = (x: number): x is Pow2 => !!x && !(x & (x - 1));
 
 export const ceilPow2 = (x: number) => {
     x += <any>(x === 0);

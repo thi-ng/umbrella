@@ -63,7 +63,8 @@ const src = stream<string>();
 src.transform(
     map((src) => ({
         src,
-        parsed: timedResult(() => [...iterator(parse(CUSTOM_TAGS), src)])
+        // append exta newline to force last paragraph (see readme)
+        parsed: timedResult(() => [...iterator(parse(CUSTOM_TAGS), src + "\n")])
     })),
     map(app(src)),
     updateDOM()

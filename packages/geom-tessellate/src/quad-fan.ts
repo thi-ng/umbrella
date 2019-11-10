@@ -6,7 +6,7 @@ import {
     partition,
     push,
     transduce,
-    wrap
+    wrapSides
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -18,6 +18,6 @@ export const quadFan: Tessellator = (points: ReadonlyVec[]) => {
             map(([a, b, c]) => [mixN([], a, b, 0.5), b, mixN([], b, c, 0.5), p])
         ),
         push(),
-        wrap(points, 1, true, true)
+        wrapSides(points)
     );
 };

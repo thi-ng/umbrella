@@ -24,8 +24,10 @@ const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
     ["span.ml3", stream.deref()]
 ];
 
+type ParamDef = [string, any, number];
+
 // prettier-ignore
-export const PARAM_DEFS: IObjectOf<[string, any, number]> = {
+export const PARAM_DEFS: IObjectOf<ParamDef> = {
     radius: ["radius", { min: 2, max: 64, step: 1 }, 32],
     bias: ["bias", { min: -0.2, max: 0.2, step: 0.01 }, 0.09],
     baseAttenuation: ["base attenuation", { min: 0.1, max: 2, step: 0.01 }, 1],
@@ -37,12 +39,12 @@ export const PARAM_DEFS: IObjectOf<[string, any, number]> = {
 };
 
 export const PARAMS = transduce(
-    map(([id, spec]) => {
+    map<[string, ParamDef], [string, Stream<number>]>(([id, spec]) => {
         const param = stream<number>();
         param.next(spec[2]);
         return [id, param];
     }),
-    assocObj<Stream<number>>(),
+    assocObj(),
     pairs(PARAM_DEFS)
 );
 

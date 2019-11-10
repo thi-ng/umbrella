@@ -24,12 +24,15 @@ This project is part of the
 
 [WebAssembly SIMD](https://github.com/WebAssembly/simd) vector
 operations for array/batch processing, written in
-[AssemblyScript](https://docs.assemblyscript.org/).
+[AssemblyScript](https://docs.assemblyscript.org/). These functions use
+the CPU's vector instructions to process 128bit words at once, which is
+the equivalent width of a 4D vector with 4x 32bit components. Several of
+the provided functions can also be used to process 2D vectors.
 
 ## Available functions
 
 See
-[/assembly](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/assembly)
+[/assembly](https://github.com/thi-ng/umbrella/tree/master/packages/simd/assembly)
 for sources:
 
 - `abs4_f32`
@@ -45,12 +48,19 @@ for sources:
 - `invsqrt4_f32` (!)
 - `madd4_f32`
 - `maddn4_f32`
+- `mag2_f32_aos`
+- `mag4_f32_aos`
+- `magsq2_f32_aos`
+- `magsq4_f32_aos`
 - `max4_f32`
 - `min4_f32`
+- `mix4_f32`
+- `mixn4_f32`
 - `msub4_f32`
 - `msubn4_f32`
 - `mul4_f32`
 - `muln4_f32`
+- `mul_m22v2_aos` (2)
 - `mul_m23v2_aos` (2)
 - `mul_m44v4_aos`
 - `neg4_f32`
@@ -67,12 +77,19 @@ for sources:
 (2) 2x vec2 per iteration
 
 Also see
-[src/api.ts](https://github.com/thi-ng/umbrella/tree/feature/simd/packages/simd/src/api.ts)
+[src/api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/simd/src/api.ts)
 for documentation about the exposed TS/JS API...
 
 ## Status
 
-ALPHA - unreleased
+ALPHA - experimental
+
+The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
+still WIP and (at the time of writing) only partially implemented and
+hidden behind feature flags.
+
+- NodeJS (v12.10+): `node --experimental-wasm-simd`
+- Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
 
 ## Installation
 
@@ -85,13 +102,6 @@ yarn add @thi.ng/simd
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 
 ## Usage examples
-
-The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
-still WIP and (at the time of writing) only partially implemented and
-hidden behind feature flags.
-
-- NodeJS (v12.10+): `node --experimental-wasm-simd`
-- Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
 
 ```ts
 import { init } from "@thi.ng/simd";

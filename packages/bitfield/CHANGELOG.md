@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.2.0...@thi.ng/bitfield@0.2.1) (2019-11-09)
+
+**Note:** Version bump only for package @thi.ng/bitfield
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.1.12...@thi.ng/bitfield@0.2.0) (2019-09-21)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.0.5...@thi.ng/malloc@4.1.0) (2019-11-09)
+
+
+### Bug Fixes
+
+* **malloc:** fix realloc(), various refactorings, add tests ([fa3e1bc](https://github.com/thi-ng/umbrella/commit/fa3e1bcff26f553d845d2145ed7c8f9238b796bd))
+* **malloc:** update freeAll(), add test, doc strings, minor cleanup ([830b267](https://github.com/thi-ng/umbrella/commit/830b267f8bf3f050ea5914b7e9f8ba539dcd0c4e))
+
+
+### Features
+
+* **malloc:** add more buffered state, align opt, refactor, update tests ([1ff9487](https://github.com/thi-ng/umbrella/commit/1ff9487980645315e77df02af651ff442288f1a9))
+* **malloc:** fix block alignment/layout, update calloc/realloc ([a40c265](https://github.com/thi-ng/umbrella/commit/a40c265708fc6e66bef5a700b436569106f81e31))
+
+
+
+
+
 ## [4.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.0.4...@thi.ng/malloc@4.0.5) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/malloc

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.5...@thi.ng/fsm@2.3.0) (2019-11-09)
+
+
+### Features
+
+* **fsm:** update str() to NOT collect input by default (match only) ([6105ea7](https://github.com/thi-ng/umbrella/commit/6105ea7f8a9c99b0117bb6db2396607438c1eb02))
+
+
+
+
+
 ## [2.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.4...@thi.ng/fsm@2.2.5) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/fsm

@@ -4,11 +4,12 @@ import {
     IRelease,
     SIZEOF,
     TypedArray,
+    typedArray,
     TYPEDARRAY_CTORS
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
-import { MemPool, wrap } from "@thi.ng/malloc";
+import { MemPool } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
@@ -205,7 +206,7 @@ export class AttribPool implements IRelease {
         assert(newAddr > 0, `out of memory`);
         for (let id in this.specs) {
             const a = this.specs[id];
-            const buf = wrap(
+            const buf = typedArray(
                 asNativeType(a.type),
                 this.pool.buf,
                 newAddr + (a.byteOffset || 0),
@@ -273,7 +274,7 @@ export class AttribPool implements IRelease {
     ) {
         for (let id in specs) {
             const a = specs[id];
-            this.attribs[id] = wrap(
+            this.attribs[id] = typedArray(
                 asNativeType(a.type),
                 this.pool.buf,
                 this.addr + (a.byteOffset || 0),
@@ -366,7 +367,7 @@ const resizeAttribs = (
         const type = asNativeType(a.type);
         const dStride = stride / SIZEOF[type];
         newAttribs[id] = [
-            wrap(type, buf, dest + a.byteOffset, num * dStride + a.size),
+            typedArray(type, buf, dest + a.byteOffset, num * dStride + a.size),
             dStride
         ];
     }

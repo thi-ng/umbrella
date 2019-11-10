@@ -110,6 +110,16 @@ export interface SIMD {
     // prettier-ignore
     maddn4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sc: number): number;
 
+    mag2_f32_aos(out: number, a: number, num: number): number;
+
+    magsq2_f32_aos(out: number, a: number, num: number): number;
+
+    // prettier-ignore
+    mag4_f32_aos( out: number, a: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    magsq4_f32_aos( out: number, a: number, num: number, so: number, sa: number): number;
+
     // prettier-ignore
     max4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
@@ -117,10 +127,19 @@ export interface SIMD {
     min4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
     // prettier-ignore
+    mix4_f32(out: number, a: number, b: number, t: number, num: number, so: number, sa: number, sb: number, st: number): number;
+
+    // prettier-ignore
+    mixn4_f32(out: number, a: number, b: number, t: number, num: number, so: number, sa: number, sb: number): number;
+
+    // prettier-ignore
     mul4_f32(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
 
     // prettier-ignore
     muln4_f32(out: number, a: number, n: number, num: number, so: number, sa: number): number;
+
+    // prettier-ignore
+    mul_m22v2_aos(out: number, mat: number, vec: number, num: number): number;
 
     // prettier-ignore
     mul_m23v2_aos(out: number, mat: number, vec: number, num: number): number;

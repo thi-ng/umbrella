@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.3.1...@thi.ng/hiccup-svg@3.3.2) (2019-11-09)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** fix [#142](https://github.com/thi-ng/umbrella/issues/142), add missing exports (ellipse, image) ([1bd7f64](https://github.com/thi-ng/umbrella/commit/1bd7f6408e7b13f45363a8f90a9c043d27baffcb))
+
+
+
+
+
 ## [3.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.3.0...@thi.ng/hiccup-svg@3.3.1) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

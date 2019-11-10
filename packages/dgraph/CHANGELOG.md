@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.1.15...@thi.ng/dgraph@1.1.16) (2019-11-09)
+
+**Note:** Version bump only for package @thi.ng/dgraph
+
+
+
+
+
 ## [1.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.1.14...@thi.ng/dgraph@1.1.15) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/dgraph

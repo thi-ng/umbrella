@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-canvas",
-    "version": "2.3.1",
+    "version": "2.4.0",
     "description": "Declarative canvas scenegraph & visualization for @thi.ng/hdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib draw",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,13 +33,13 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/checks": "^2.4.0",
-        "@thi.ng/color": "^1.1.1",
-        "@thi.ng/diff": "^3.2.4",
-        "@thi.ng/hdom": "^8.0.6",
-        "@thi.ng/math": "^1.4.2",
-        "@thi.ng/vectors": "^3.3.1"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/checks": "^2.4.1",
+        "@thi.ng/color": "^1.1.2",
+        "@thi.ng/diff": "^3.2.5",
+        "@thi.ng/hdom": "^8.0.7",
+        "@thi.ng/math": "^1.5.0",
+        "@thi.ng/vectors": "^4.0.0"
     },
     "keywords": [
         "ES6",

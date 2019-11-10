@@ -8,13 +8,12 @@ export const points = (
     opts: IObjectOf<any>,
     pts: Iterable<ReadonlyVec>
 ) => {
-    const s: number = (opts && opts.size) || 1;
     let v: any;
     if ((v = attribs.fill) && v !== "none") {
-        __drawPoints(ctx, opts, pts, s, "fill", "fillRect");
+        __drawPoints(ctx, opts, pts, "fill", "fillRect");
     }
     if ((v = attribs.stroke) && v !== "none") {
-        __drawPoints(ctx, opts, pts, s, "stroke", "strokeRect");
+        __drawPoints(ctx, opts, pts, "stroke", "strokeRect");
     }
 };
 
@@ -22,10 +21,10 @@ const __drawPoints = (
     ctx: CanvasRenderingContext2D,
     opts: IObjectOf<any>,
     pts: Iterable<ReadonlyVec>,
-    s: number,
     cmd: "fill" | "stroke",
     cmdR: "fillRect" | "strokeRect"
 ) => {
+    const s: number = (opts && opts.size) || 1;
     if (opts.shape === "circle") {
         for (let p of pts) {
             ctx.beginPath();

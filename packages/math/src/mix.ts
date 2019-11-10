@@ -45,6 +45,137 @@ export const mixCubic = (
     return a * s2 * s + b * 3 * s2 * t + c * 3 * t2 * s + d * t2 * t;
 };
 
+/**
+ * Returns hermite interpolation of `a, b, c, d` at normalized position
+ * `t`, where `a` and `d` are used as predecessor/successor of `b` / `c`
+ * and only inform the tangent of the interpolation curve. The
+ * interpolated result is that of `b` and `c`.
+ *
+ * Assumes all inputs are uniformly spaced. If that's not the case, use
+ * `mixCubicHermite()` with one of the tangent generators supporting
+ * non-uniform spacing of points.
+ *
+ * See: https://www.desmos.com/calculator/j4gf8g9vkr
+ *
+ * Source:
+ * https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html
+ *
+ * @see mixCubicHermite
+ * @see tangentCardinal
+ * @see tangentDiff3
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param t
+ */
+export const mixHermite = (
+    a: number,
+    b: number,
+    c: number,
+    d: number,
+    t: number
+) => {
+    const y1 = 0.5 * (c - a);
+    const y2 = 1.5 * (b - c) + 0.5 * (d - a);
+    return ((y2 * t + a - b + y1 - y2) * t + y1) * t + b;
+};
+
+/**
+ * Computes cubic-hermite interpolation between `a` / `b` at normalized
+ * time `t` and using respective tangents `ta` / `tb`.
+ *
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+ *
+ * @see mixHermite
+ * @see tangentCardinal
+ * @see tangentDiff3
+ *
+ * @param a
+ * @param ta
+ * @param b
+ * @param tb
+ * @param t
+ */
+export const mixCubicHermite = (
+    a: number,
+    ta: number,
+    b: number,
+    tb: number,
+    t: number
+) => {
+    const s = t - 1;
+    const t2 = t * t;
+    const s2 = s * s;
+    const h00 = (1 + 2 * t) * s2;
+    const h10 = t * s2;
+    const h01 = t2 * (3 - 2 * t);
+    const h11 = t2 * s;
+    return h00 * a + h10 * ta + h01 * b + h11 * tb;
+};
+
+/**
+ * Helper function for `mixCubicHermite()`. Computes cardinal tangents
+ * based on point neighbors of a point B (not given), i.e. `a`
+ * (predecessor) and `c` (successor) and their times (defaults to
+ * uniformly spaced). The optional `tension` parameter can be used to
+ * scale the tangent where 0.0 produces a Cardinal spline tangent and
+ * 1.0 a Catmull-Rom (opposite to the Wikipedia ref).
+ *
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline
+ *
+ * @param prev
+ * @param next
+ * @param scale
+ * @param ta
+ * @param tc
+ */
+export const tangentCardinal = (
+    prev: number,
+    next: number,
+    scale = 0.5,
+    ta = 0,
+    tc = 2
+) => scale * ((next - prev) / (tc - ta));
+
+/**
+ * Helper function for `mixCubicHermite()`. Computes tangent for `curr`,
+ * based on 3-point finite difference, where `prev` & `next` are
+ * `curr`'s neighbors and the `tX` the three points' respective time
+ * values. The latter are equally spaced by default (each 1.0 apart).
+ *
+ * Using this function with equal spacing of 1.0 and together with
+ * `mixCubicHermite()` will produce same results as the somewhat
+ * optimized variant `mixHermite()`.
+ *
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference
+ *
+ * @param prev
+ * @param curr
+ * @param next
+ * @param ta
+ * @param tb
+ * @param tc
+ */
+export const tangentDiff3 = (
+    prev: number,
+    curr: number,
+    next: number,
+    ta = 0,
+    tb = 1,
+    tc = 2
+) => 0.5 * ((next - curr) / (tc - tb) + (curr - prev) / (tb - ta));
+
+/**
+ * HOF interpolator. Takes a timing function `f` and interval `[from,
+ * to]`. Returns function which takes normalized time as single arg and
+ * returns interpolated value.
+ *
+ * @param f
+ * @param from
+ * @param to
+ */
 export const tween = (f: (t: number) => number, from: number, to: number) => (
     t: number
 ) => mix(from, to, f(t));

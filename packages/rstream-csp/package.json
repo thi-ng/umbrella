@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-csp",
-    "version": "1.0.32",
+    "version": "1.0.33",
     "description": "@thi.ng/csp bridge module for @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib from",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,8 +33,8 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/csp": "^1.1.5",
-        "@thi.ng/rstream": "^2.5.5"
+        "@thi.ng/csp": "^1.1.6",
+        "@thi.ng/rstream": "^2.5.6"
     },
     "keywords": [
         "bridge",

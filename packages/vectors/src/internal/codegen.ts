@@ -295,6 +295,31 @@ export const defOpS = <V>(
         )
     );
 
+export const defHofOpS = <V>(
+    op: any,
+    tpl: Template,
+    args = `${ARGS_VV},${SARGS_VV}`,
+    syms = ARGS_VV,
+    ret = "o",
+    pre?: string,
+    sizes = [2, 3, 4]
+): V[] =>
+    sizes.map((dim) =>
+        compileHOF(
+            dim,
+            [op],
+            tpl,
+            "op",
+            args,
+            syms,
+            ret,
+            "",
+            pre != null ? pre : defaultOut(ret, args),
+            "",
+            true
+        )
+    );
+
 export const defMathOp = (op: string) => defOp<MultiVecOpVV, VecOpVV>(MATH(op));
 
 export const defMathOpN = (op: string) =>

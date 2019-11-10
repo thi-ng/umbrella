@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.4.0...@thi.ng/api@6.5.0) (2019-11-09)
+
+
+### Features
+
+* **api:** add RangeXX types ([fc9cf21](https://github.com/thi-ng/umbrella/commit/fc9cf212ec97a719bca6f3214215f5d0aa479ea8))
+* **api:** add typedArray() factory, update type mappers, docs ([ac7fa13](https://github.com/thi-ng/umbrella/commit/ac7fa13fa602947ae4b30c943d8d8fddcd602381))
+* **api:** add types, split api.ts into separate files ([b72e664](https://github.com/thi-ng/umbrella/commit/b72e6641626314761488122a1bc55bc2e802eb74))
+
+
+
+
+
 # [6.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.3.3...@thi.ng/api@6.4.0) (2019-09-21)
 
 
