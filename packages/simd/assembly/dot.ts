@@ -1,4 +1,4 @@
-import { hadd2_f32, hadd4_f32 } from "./hadd";
+import { __hadd2_f32, __hadd4_f32 } from "./inline/hadd";
 
 /**
  * Takes two densely packed vec2 AOS buffers `a` and `b`, computes their
@@ -23,7 +23,7 @@ export function dot2_f32_aos(
     const res = out;
     num >>= 1;
     for (; num-- > 0; ) {
-        const m = hadd2_f32(f32x4.mul(v128.load(a), v128.load(b)));
+        const m = __hadd2_f32(f32x4.mul(v128.load(a), v128.load(b)));
         f32.store(out, f32x4.extract_lane(m, 0));
         f32.store(out, f32x4.extract_lane(m, 2), 4);
         out += 8;
@@ -62,7 +62,7 @@ export function dot4_f32_aos(
     sb <<= 2;
     // a1*b1 + a2*b2 + a3*b3 + a4*b4
     for (; num-- > 0; ) {
-        f32.store(out, hadd4_f32(f32x4.mul(v128.load(a), v128.load(b))));
+        f32.store(out, __hadd4_f32(f32x4.mul(v128.load(a), v128.load(b))));
         out += so;
         a += sa;
         b += sb;

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.1.4",
-    "description": "TODO",
+    "version": "0.1.5",
+    "description": "Packed pixel buffer w/ customizable formats, blitting, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -33,10 +33,10 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/checks": "^2.4.0",
-        "@thi.ng/math": "^1.4.2",
-        "@thi.ng/porter-duff": "^0.1.3"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/checks": "^2.4.1",
+        "@thi.ng/math": "^1.5.0",
+        "@thi.ng/porter-duff": "^0.1.4"
     },
     "keywords": [
         "ES6",

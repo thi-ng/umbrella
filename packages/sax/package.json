@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/sax",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "Transducer-based, SAX-like, non-validating, speedy & tiny XML parser",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib internal",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,9 +33,9 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/transducers": "^5.4.5",
-        "@thi.ng/transducers-fsm": "^1.1.5"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/transducers": "^6.0.0",
+        "@thi.ng/transducers-fsm": "^1.1.6"
     },
     "keywords": [
         "ES6",

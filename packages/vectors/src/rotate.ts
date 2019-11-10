@@ -15,3 +15,8 @@ const _rotate = (u: number, v: number): VecOpVN => (out, a, theta) => {
 export const rotateX = _rotate(1, 2);
 export const rotateY = _rotate(2, 0);
 export const rotateZ = _rotate(0, 1);
+
+/**
+ * Alias for `rotateZ` (e.g. for 2D use cases)
+ */
+export const rotate = rotateZ;

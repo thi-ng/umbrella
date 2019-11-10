@@ -1,6 +1,6 @@
 import { MultiVecOpVNV, VecOpVNV } from "./api";
 import { ARGS_VNV, ARGS_VV, defOp } from "./internal/codegen";
-import { MADD_N } from "./internal/templates";
+import { MATH2A_N } from "./internal/templates";
 
 /**
  * Returns `out = a * n + b`.
@@ -11,7 +11,7 @@ import { MADD_N } from "./internal/templates";
  * @param b vec
  */
 export const [maddN, maddN2, maddN3, maddN4] = defOp<MultiVecOpVNV, VecOpVNV>(
-    MADD_N,
+    MATH2A_N("*", "+"),
     ARGS_VNV,
     ARGS_VV
 );

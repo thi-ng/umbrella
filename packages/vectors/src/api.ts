@@ -121,6 +121,17 @@ export type VecOpSV = (
     so?: number,
     sa?: number
 ) => Vec;
+
+export type VecOpSVN = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    n: number,
+    io?: number,
+    ia?: number,
+    so?: number,
+    sa?: number
+) => Vec;
+
 export type VecOpSVV = (
     out: Vec | null,
     a: ReadonlyVec,
@@ -132,6 +143,50 @@ export type VecOpSVV = (
     sa?: number,
     sb?: number
 ) => Vec;
+
+export type VecOpSVNV = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    n: number,
+    b: ReadonlyVec,
+    io?: number,
+    ia?: number,
+    ib?: number,
+    so?: number,
+    sa?: number,
+    sb?: number
+) => Vec;
+
+export type VecOpSVVN = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    n: number,
+    io?: number,
+    ia?: number,
+    ib?: number,
+    so?: number,
+    sa?: number,
+    sb?: number
+) => Vec;
+
+export type VecOpSVVV = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    io?: number,
+    ia?: number,
+    ib?: number,
+    ic?: number,
+    so?: number,
+    sa?: number,
+    sb?: number,
+    sc?: number
+) => Vec;
+
+export type VecOpSRoV<T> = (a: ReadonlyVec, ia?: number, sa?: number) => T;
+
 export type VecOpSRoVV<T> = (
     a: ReadonlyVec,
     b: ReadonlyVec,
@@ -140,6 +195,33 @@ export type VecOpSRoVV<T> = (
     sa?: number,
     sb?: number
 ) => T;
+
+export type VecOpSVO<T> = (
+    out: Vec | null,
+    a: ReadonlyVec,
+    b?: T,
+    io?: number,
+    ia?: number,
+    so?: number,
+    sa?: number
+) => Vec;
+
+export type VecOpSOO<A, B> = (
+    a: Vec | null,
+    opt1?: A,
+    opt2?: B,
+    ia?: number,
+    sa?: number
+) => Vec;
+
+export type VecOpSOOO<A, B, C> = (
+    a: Vec | null,
+    opt1?: A,
+    opt2?: B,
+    opt3?: C,
+    ia?: number,
+    sa?: number
+) => Vec;
 
 export interface MultiVecOpV extends VecOpV, MultiVecOp<VecOpV> {}
 export interface MultiVecOpN extends VecOpN, MultiVecOp<VecOpN> {}

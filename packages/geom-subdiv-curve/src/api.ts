@@ -1,5 +1,5 @@
 import { SubdivKernel } from "@thi.ng/geom-api";
-import { wrap } from "@thi.ng/transducers";
+import { wrapSides } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec } from "@thi.ng/vectors";
 import { kernel3 } from "./kernels";
 
@@ -15,8 +15,8 @@ const THIRDS = ([a, b]: ReadonlyVec[]) => [
     mixN([], a, b, 2 / 3)
 ];
 
-const wrap2 = (pts: ReadonlyVec[]) => wrap(pts, 1, false, true);
-const wrap3 = (pts: ReadonlyVec[]) => wrap(pts, 1, true, true);
+const wrap2 = (pts: ReadonlyVec[]) => wrapSides(pts, 0, 1);
+const wrap3 = (pts: ReadonlyVec[]) => wrapSides(pts, 1, 1);
 
 /**
  * Splits each curve / line segment into halves at midpoint. Version for
@@ -64,8 +64,8 @@ export const SUBDIV_CHAIKIN_OPEN: SubdivKernel = {
         i == 0
             ? [pts[0], ...CHAIKIN_FIRST(pts)]
             : i === n - 3
-                ? [...CHAIKIN_LAST(pts), pts[2]]
-                : CHAIKIN_MAIN(pts),
+            ? [...CHAIKIN_LAST(pts), pts[2]]
+            : CHAIKIN_MAIN(pts),
     size: 3
 };
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.5...@thi.ng/transducers@6.0.0) (2019-11-09)
+
+
+### Code Refactoring
+
+* **transducers:** rename old `interpolate` => `tween` ([918721d](https://github.com/thi-ng/umbrella/commit/918721dada9bab8045e397f13a2f77290eea2c88))
+* **transducers:** simplify args for extendSides, padSides, wrapSides ([a36651a](https://github.com/thi-ng/umbrella/commit/a36651a3aadb951a3d8bd117ddfa0dddf48d36ac))
+* **transducers:** update tween() args ([5523582](https://github.com/thi-ng/umbrella/commit/552358207cdf1dfdcb2ca78deac326ecad895fa9))
+
+
+### Features
+
+* **transducers:** add new iterators: extendSides/padSides/symmetric() ([47001fc](https://github.com/thi-ng/umbrella/commit/47001fc9c16f53af427e872b04929113d69463aa))
+* **transducers:** add new transducers: interpolate, interpolateHermite/Linear ([c3fa9ab](https://github.com/thi-ng/umbrella/commit/c3fa9ab90797af1d89e05f1c3821a87f9aa8a543))
+
+
+### BREAKING CHANGES
+
+* **transducers:** replace tween() args w/ `TweenOpts` config object
+* **transducers:** rename `interpolate` iterator  => `tween`
+* **transducers:** Rename wrap() => wrapSides(), update signature to be
+aligned w/ related iterators
+
+
+
+
+
 ## [5.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.4...@thi.ng/transducers@5.4.5) (2019-09-21)
 
 

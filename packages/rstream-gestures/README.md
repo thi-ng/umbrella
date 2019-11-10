@@ -44,7 +44,7 @@ yarn add @thi.ng/rstream-gestures
 
 Several small, fully commented projects can be found in the `/examples` folder:
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/canvas-dial.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial) |
 [Live version](https://demo.thi.ng/umbrella/canvas-dial)

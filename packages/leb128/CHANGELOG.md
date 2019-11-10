@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.5...@thi.ng/leb128@1.0.0) (2019-11-09)
+
+
+### Features
+
+* **leb128:** no more async init, remove READY promise, update tests ([2044583](https://github.com/thi-ng/umbrella/commit/20445837f5af1891703e1c51fe8db56e69f11c86))
+
+
+### BREAKING CHANGES
+
+* **leb128:** switch to synchronous initialization
+
+
+
+
+
 ## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.4...@thi.ng/leb128@0.1.5) (2019-09-21)
 
 **Note:** Version bump only for package @thi.ng/leb128

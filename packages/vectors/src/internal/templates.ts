@@ -5,6 +5,12 @@ export const MATH = (op: string): Template => ([o, a, b]) => `${o}=${a}${op}${b}
 // prettier-ignore
 export const MATH_N = (op: string): Template => ([o, a]) => `${o}=${a}${op}n;`;
 // prettier-ignore
+export const MATH2 = (op1: string, op2: string): Template => ([o, a, b, c]) => `${o}=(${a}${op1}${b})${op2}${c};`;
+// prettier-ignore
+export const MATH2_N = (op1: string, op2: string): Template => ([o, a, b]) => `${o}=(${a}${op1}${b})${op2}n;`;
+// prettier-ignore
+export const MATH2A_N = (op1: string, op2: string): Template => ([o, a, b]) => `${o}=(${a}${op1}n)${op2}${b};`;
+// prettier-ignore
 export const SIGNED = (op: string): Template => ([o, a, b]) => `${o}=(${a}${op}${b})|0;`;
 // prettier-ignore
 export const UNSIGNED = (op: string): Template => ([o, a, b]) => `${o}=(${a}${op}${b})>>>0;`;
@@ -28,11 +34,5 @@ export const DOT_G: Template = ([a, b]) => `s+=${a}*${b};`;
 export const SET: Template = ([o, a]) => `${o}=${a};`;
 export const SET_N: Template = ([a]) => `${a}=n;`;
 
-export const ADDM: Template = ([o, a, b, c]) => `${o}=(${a}+${b})*${c};`;
-export const ADDM_N: Template = ([o, a, b]) => `${o}=(${a}+${b})*n;`;
-export const MADD: Template = ([o, a, b, c]) => `${o}=${a}*${b}+${c};`;
-export const MADD_N: Template = ([o, a, b]) => `${o}=${a}*n+${b};`;
 export const MIX: Template = ([o, a, b, c]) => `${o}=${a}+(${b}-${a})*${c};`;
 export const MIX_N: Template = ([o, a, b]) => `${o}=${a}+(${b}-${a})*n;`;
-export const SUBM: Template = ([o, a, b, c]) => `${o}=(${a}-${b})*${c};`;
-export const SUBM_N: Template = ([o, a, b]) => `${o}=(${a}-${b})*n;`;

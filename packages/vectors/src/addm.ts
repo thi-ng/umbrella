@@ -1,6 +1,6 @@
 import { MultiVecOpVVV, VecOpVVV } from "./api";
 import { ARGS_VVV, defOp } from "./internal/codegen";
-import { ADDM } from "./internal/templates";
+import { MATH2 } from "./internal/templates";
 
 /**
  * Returns `out = (a + b) * c`.
@@ -9,6 +9,6 @@ import { ADDM } from "./internal/templates";
  * @see subm
  */
 export const [addm, addm2, addm3, addm4] = defOp<MultiVecOpVVV, VecOpVVV>(
-    ADDM,
+    MATH2("+", "*"),
     ARGS_VVV
 );

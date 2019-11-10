@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iterators",
-    "version": "5.1.5",
+    "version": "5.1.6",
     "description": "clojure.core inspired, composable ES6 iterators & generators",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -21,7 +21,7 @@
         "test": "yarn build:test && mocha build/test/*.js",
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -33,9 +33,9 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/dcons": "^2.1.5",
-        "@thi.ng/errors": "^1.2.0"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/dcons": "^2.1.6",
+        "@thi.ng/errors": "^1.2.1"
     },
     "keywords": [
         "clojure",

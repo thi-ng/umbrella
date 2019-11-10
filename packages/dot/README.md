@@ -34,7 +34,7 @@ yarn add @thi.ng/dot
 
 ## Usage examples
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dot/dot-example.png)
+![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/dot/dot-example.png)
 
 The source code of this example is also available in
 [/test/example.ts](https://github.com/thi-ng/umbrella/tree/master/packages/dot/test/example.ts).

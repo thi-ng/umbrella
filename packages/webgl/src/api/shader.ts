@@ -7,7 +7,7 @@ import {
     IDeref,
     IObjectOf,
     IRelease,
-    TypedArray
+    NumericArray
 } from "@thi.ng/api";
 import { Func, Sym } from "@thi.ng/shader-ast";
 import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
@@ -64,7 +64,7 @@ export type AttribBufferData =
     | Uint16Array
     | Float32Array;
 
-export type UniformValue = number | number[] | TypedArray;
+export type UniformValue = number | NumericArray;
 
 export type UniformValues = IObjectOf<
     UniformValue | Fn2<ShaderUniforms, any, UniformValue> | IDeref<UniformValue>

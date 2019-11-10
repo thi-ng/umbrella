@@ -257,8 +257,8 @@ export class SparseSet32 extends ASparseSet<Uint32Array>
  * @param n
  */
 export const sparseSet = (n: number) =>
-    n < 0x100
+    n <= 0x100
         ? new SparseSet8(n)
-        : n < 0x10000
+        : n <= 0x10000
         ? new SparseSet16(n)
         : new SparseSet32(n);

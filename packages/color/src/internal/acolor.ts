@@ -1,6 +1,6 @@
 import { IDeref } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
-import { eqDelta4, values } from "@thi.ng/vectors";
+import { eqDelta4, stridedValues } from "@thi.ng/vectors";
 import { Color, ColorMode, IColor } from "../api";
 
 export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
@@ -16,7 +16,7 @@ export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
     }
 
     [Symbol.iterator]() {
-        return values(this.buf, 4, this.offset, this.stride);
+        return stridedValues(this.buf, 4, this.offset, this.stride);
     }
 
     abstract get mode(): ColorMode;

@@ -322,7 +322,7 @@ previous DOM tree.
 - hdom can be used **without** diffing, i.e. for compact, one-off DOM
   creation (see [`renderOnce()`](#renderonce))
 
-![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom/hdom-dataflow.png)
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and
@@ -759,42 +759,42 @@ Non-exhaustive list:
 
 ### Realtime crypto candle chart
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
 [Live version](https://demo.thi.ng/umbrella/crypto-chart/)
 
 ### Git commit log table
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr) |
 [Live version](https://demo.thi.ng/umbrella/commit-table-ssr/)
 
 ### XML/HTML/SVG to Hiccup converter
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/xml-converter.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/xml-converter) |
 [Live version](https://demo.thi.ng/umbrella/xml-converter/)
 
 ### Interactive SVG grid generator
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
 [Live version](https://demo.thi.ng/umbrella/rstream-grid/)
 
 ### Interactive additive waveform visualization
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) |
 [Live version](https://demo.thi.ng/umbrella/svg-waveform/)
 
 ### Dataflow graph SVG components
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/estuary/estuary.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/estuary/estuary.jpg)
 
 This is a preview of the WIP
 [@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
@@ -805,14 +805,14 @@ package:
 
 ### Mouse gesture analysis
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
 | [Live version](https://demo.thi.ng/umbrella/gesture-analysis)
 
 ### Canvas based radial dial input widget
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/canvas-dial.png)
 
 [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial) |
 [Live version](https://demo.thi.ng/umbrella/canvas-dial/)
@@ -1222,6 +1222,10 @@ Note, skipped elements and their children are being normalized, but are
 ignored during diffing. Therefore, if this attribute is enabled the
 element should either have no children OR the children are the same
 (type) as when the attribute is disabled (i.e. when `__skip` is falsy).
+
+Furthermore, once a previously skipped element is re-enabled (i.e. its
+`__skip` attrib is now falsy again), the element's entire sub-tree is
+re-created, but any lifecycle `init()` methods will not be re-executed.
 
 ### Benchmarks
 

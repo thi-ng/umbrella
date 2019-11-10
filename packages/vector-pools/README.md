@@ -10,6 +10,7 @@ This project is part of the
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [About](#about)
+    - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -31,6 +32,13 @@ WASM use cases, e.g. to provide JS friendly views of a structured data
 region of a WebGL or WASM memory buffer.
 
 <sup>*</sup> The only copying taking place is to GPU memory
+
+### Status
+
+This package might be merged with and/or superseded by
+[@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs)
+/
+[@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/master/packages/soa).
 
 ## Installation
 

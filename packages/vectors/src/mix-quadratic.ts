@@ -2,7 +2,7 @@ import { addW3 } from "./addw";
 import { ReadonlyVec, Vec } from "./api";
 
 export const mixQuadratic = (
-    out: Vec,
+    out: Vec | null,
     a: ReadonlyVec,
     b: ReadonlyVec,
     c: ReadonlyVec,

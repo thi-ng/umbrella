@@ -24,6 +24,7 @@ import {
     GL_EXT_INFO
 } from "./api/ext";
 import { GLSL } from "./api/glsl";
+import { LOGGER } from "./api/logger";
 import { ModelAttributeSpecs, ModelSpec } from "./api/model";
 import {
     DEFAULT_OUTPUT,
@@ -478,18 +479,21 @@ const initUniforms = (
             type = val;
         }
         const loc = gl.getUniformLocation(prog, id)!;
-        loc == null && error(`unknown uniform: ${id}`);
-        const setter = UNIFORM_SETTERS[type];
-        if (setter) {
-            res[id] = {
-                loc,
-                setter: setter(gl, loc, defaultVal),
-                defaultFn,
-                defaultVal,
-                type
-            };
+        if (loc != null) {
+            const setter = UNIFORM_SETTERS[type];
+            if (setter) {
+                res[id] = {
+                    loc,
+                    setter: setter(gl, loc, defaultVal),
+                    defaultFn,
+                    defaultVal,
+                    type
+                };
+            } else {
+                error(`invalid uniform type: ${type}`);
+            }
         } else {
-            error(`invalid uniform type: ${type}`);
+            LOGGER.warn(`unknown uniform: ${id}`);
         }
     }
     return res;

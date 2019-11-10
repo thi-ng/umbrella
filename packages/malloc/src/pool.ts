@@ -1,59 +1,87 @@
-import { SIZEOF, Type, TypedArray } from "@thi.ng/api";
-import { align } from "@thi.ng/binary";
+import {
+    assert,
+    SIZEOF,
+    Type,
+    TypedArray,
+    typedArray
+} from "@thi.ng/api";
+import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    IMemPool,
-    MemBlock,
-    MemPoolOpts,
-    MemPoolStats
-} from "./api";
-import { wrap } from "./wrap";
+import { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
+
+const STATE_FREE = 0;
+const STATE_USED = 1;
+const STATE_TOP = 2;
+const STATE_END = 3;
+const STATE_ALIGN = 4;
+const STATE_FLAGS = 5;
+const STATE_MIN_SPLIT = 6;
+
+const MASK_COMPACT = 1;
+const MASK_SPLIT = 2;
+
+const SIZEOF_STATE = 7 * 4;
+
+const MEM_BLOCK_SIZE = 0;
+const MEM_BLOCK_NEXT = 1;
+
+const SIZEOF_MEM_BLOCK = 2 * 4;
 
 export class MemPool implements IMemPool {
-    buf: ArrayBuffer;
-    protected top: number;
-    protected start: number;
-    protected end: number;
-    protected doCompact: boolean;
-    protected doSplit: boolean;
-    protected minSplit: number;
-    protected _free: MemBlock | null;
-    protected _used: MemBlock | null;
+    buf: ArrayBufferLike;
 
+    protected readonly start: number;
     protected u8: Uint8Array;
+    protected u32: Uint32Array;
+    protected state: Uint32Array;
 
     constructor(opts: Partial<MemPoolOpts> = {}) {
         this.buf = opts.buf ? opts.buf : new ArrayBuffer(opts.size || 0x1000);
+        this.start = opts.start != null ? align(Math.max(opts.start, 0), 4) : 0;
         this.u8 = new Uint8Array(this.buf);
-        this.start = opts.start != null ? align(Math.max(opts.start, 8), 8) : 8;
-        this.end =
-            opts.end != null
-                ? Math.min(opts.end, this.buf.byteLength)
-                : this.buf.byteLength;
-        if (this.start >= this.end) {
-            illegalArgs(
-                `invalid address range (0x${this.start.toString(
-                    16
-                )} - 0x${this.end.toString(16)})`
+        this.u32 = new Uint32Array(this.buf);
+        this.state = new Uint32Array(this.buf, this.start, SIZEOF_STATE / 4);
+
+        if (!opts.skipInitialization) {
+            const _align = opts.align || 8;
+            assert(
+                _align >= 8,
+                `invalid alignment: ${_align}, must be a pow2 and >= 8`
             );
+            const top = this.initialTop(_align);
+            const resolvedEnd =
+                opts.end != null
+                    ? Math.min(opts.end, this.buf.byteLength)
+                    : this.buf.byteLength;
+
+            if (top >= resolvedEnd) {
+                illegalArgs(
+                    `insufficient address range (0x${this.start.toString(
+                        16
+                    )} - 0x${resolvedEnd.toString(16)})`
+                );
+            }
+
+            this.align = _align;
+            this.doCompact = opts.compact !== false;
+            this.doSplit = opts.split !== false;
+            this.minSplit = opts.minSplit || 16;
+            this.end = resolvedEnd;
+            this.top = top;
+            this._free = 0;
+            this._used = 0;
         }
-        this.top = this.start;
-        this.doCompact = opts.compact !== false;
-        this.doSplit = opts.split !== false;
-        this.minSplit = opts.minSplit || 16;
-        this._free = null;
-        this._used = null;
     }
 
-    stats(): MemPoolStats {
-        const listStats = (block: MemBlock | null) => {
+    stats(): Readonly<MemPoolStats> {
+        const listStats = (block: number) => {
             let count = 0;
             let size = 0;
             while (block) {
                 count++;
-                size += block.size;
-                block = block.next;
+                size += this.blockSize(block);
+                block = this.blockNext(block);
             }
             return { count, size };
         };
@@ -67,243 +95,397 @@ export class MemPool implements IMemPool {
         };
     }
 
-    callocAs(type: Type, num: number): TypedArray | undefined {
+    callocAs<T extends Type>(type: T, num: number, fill = 0) {
         const block = this.mallocAs(type, num);
-        block && block.fill(0);
+        block && block.fill(fill);
         return block;
     }
 
-    mallocAs(type: Type, num: number): TypedArray | undefined {
+    mallocAs<T extends Type>(type: T, num: number) {
         const addr = this.malloc(num * SIZEOF[type]);
-        return addr ? wrap(type, this.buf, addr, num) : undefined;
+        return addr ? typedArray(type, this.buf, addr, num) : undefined;
     }
 
-    calloc(size: number): number {
-        const addr = this.malloc(size);
-        addr && this.u8.fill(0, addr, align(addr + size, 8));
+    calloc(bytes: number, fill = 0) {
+        const addr = this.malloc(bytes);
+        addr && this.u8.fill(fill, addr, addr + bytes);
         return addr;
     }
 
-    malloc(size: number): number {
-        if (size <= 0) {
+    malloc(bytes: number) {
+        if (bytes <= 0) {
             return 0;
         }
-        size = align(size, 8);
-        let top = this.top;
+        const paddedSize = align(bytes + SIZEOF_MEM_BLOCK, this.align);
         const end = this.end;
+        let top = this.top;
         let block = this._free;
-        let prev = null;
+        let prev = 0;
         while (block) {
-            const isTop = block.addr + block.size >= top;
-            if (isTop || block.size >= size) {
-                if (isTop && block.addr + size > end) {
+            const blockSize = this.blockSize(block);
+            const isTop = block + blockSize >= top;
+            if (isTop || blockSize >= paddedSize) {
+                if (isTop && block + paddedSize > end) {
                     return 0;
                 }
                 if (prev) {
-                    prev.next = block.next;
+                    this.unlinkBlock(prev, block);
                 } else {
-                    this._free = block.next;
+                    this._free = this.blockNext(block);
                 }
-                block.next = this._used;
+                this.setBlockNext(block, this._used);
                 this._used = block;
                 if (isTop) {
-                    block.size = size;
-                    this.top = block.addr + size;
+                    this.top = block + this.setBlockSize(block, paddedSize);
                 } else if (this.doSplit) {
-                    const excess = block.size - size;
-                    if (excess >= this.minSplit) {
-                        block.size = size;
-                        this.insert({
-                            addr: block.addr + size,
-                            size: excess,
-                            next: null
-                        });
-                        this.doCompact && this.compact();
-                    }
+                    const excess = blockSize - paddedSize;
+                    excess >= this.minSplit &&
+                        this.splitBlock(block, paddedSize, excess);
                 }
-                return block.addr;
+                return blockDataAddress(block);
             }
             prev = block;
-            block = block.next;
+            block = this.blockNext(block);
         }
-        const addr = align(top, 8);
-        top = addr + size;
+        block = top;
+        top = block + paddedSize;
         if (top <= end) {
-            block = {
-                addr,
-                size,
-                next: this._used
-            };
+            this.initBlock(block, paddedSize, this._used);
             this._used = block;
             this.top = top;
-            return addr;
+            return blockDataAddress(block);
         }
         return 0;
     }
 
-    realloc(addr: number, size: number) {
-        if (size <= 0) {
+    realloc(ptr: number, bytes: number) {
+        if (bytes <= 0) {
             return 0;
         }
-        size = align(size, 8);
+        const oldAddr = blockSelfAddress(ptr);
+        let newAddr = 0;
         let block = this._used;
         let blockEnd = 0;
-        let newAddr = 0;
         while (block) {
-            if (block.addr === addr) {
-                blockEnd = addr + block.size;
+            if (block === oldAddr) {
+                const blockSize = this.blockSize(block);
+                blockEnd = oldAddr + blockSize;
                 const isTop = blockEnd >= this.top;
+                const paddedSize = align(bytes + SIZEOF_MEM_BLOCK, this.align);
                 // shrink & possibly split existing block
-                if (size <= block.size) {
+                if (paddedSize <= blockSize) {
                     if (this.doSplit) {
-                        const excess = block.size - size;
+                        const excess = blockSize - paddedSize;
                         if (excess >= this.minSplit) {
-                            block.size = size;
-                            this.insert({
-                                addr: block.addr + size,
-                                size: excess,
-                                next: null
-                            });
-                            this.doCompact && this.compact();
+                            this.splitBlock(block, paddedSize, excess);
                         } else if (isTop) {
-                            this.top = addr + size;
+                            this.top = oldAddr + paddedSize;
                         }
                     } else if (isTop) {
-                        this.top = addr + size;
+                        this.top = oldAddr + paddedSize;
                     }
-                    newAddr = addr;
+                    newAddr = oldAddr;
                     break;
                 }
                 // try to enlarge block if current top
-                if (isTop && addr + size < this.end) {
-                    block.size = size;
-                    this.top = addr + size;
-                    newAddr = addr;
+                if (isTop && oldAddr + paddedSize < this.end) {
+                    this.top = oldAddr + this.setBlockSize(block, paddedSize);
+                    newAddr = oldAddr;
                     break;
                 }
                 // fallback to free & malloc
-                this.free(addr);
-                newAddr = this.malloc(size);
+                this.free(oldAddr);
+                newAddr = blockSelfAddress(this.malloc(bytes));
                 break;
             }
-            block = block.next;
+            block = this.blockNext(block);
         }
         // copy old block contents to new addr
-        if (newAddr && newAddr !== addr) {
-            this.u8.copyWithin(newAddr, addr, blockEnd);
+        if (newAddr && newAddr !== oldAddr) {
+            this.u8.copyWithin(
+                blockDataAddress(newAddr),
+                blockDataAddress(oldAddr),
+                blockEnd
+            );
         }
-        return newAddr;
+        return blockDataAddress(newAddr);
     }
 
-    reallocArray(ptr: TypedArray, num: number): TypedArray | undefined {
-        if (ptr.buffer !== this.buf) {
+    reallocArray<T extends TypedArray>(array: T, num: number): T | undefined {
+        if (array.buffer !== this.buf) {
             return;
         }
-        const addr = this.realloc(ptr.byteOffset, num * ptr.BYTES_PER_ELEMENT);
+        const addr = this.realloc(
+            array.byteOffset,
+            num * array.BYTES_PER_ELEMENT
+        );
         return addr
-            ? new (<any>ptr.constructor)(this.buf, addr, num)
+            ? new (<any>array.constructor)(this.buf, addr, num)
             : undefined;
     }
 
-    free(ptr: number | TypedArray) {
+    free(ptrOrArray: number | TypedArray) {
         let addr: number;
-        if (!isNumber(ptr)) {
-            if (ptr.buffer !== this.buf) {
+        if (!isNumber(ptrOrArray)) {
+            if (ptrOrArray.buffer !== this.buf) {
                 return false;
             }
-            addr = ptr.byteOffset;
+            addr = ptrOrArray.byteOffset;
         } else {
-            addr = ptr;
+            addr = ptrOrArray;
         }
+        addr = blockSelfAddress(addr);
         let block = this._used;
-        let prev: MemBlock | null = null;
+        let prev = 0;
         while (block) {
-            if (block.addr === addr) {
+            if (block === addr) {
                 if (prev) {
-                    prev.next = block.next;
+                    this.unlinkBlock(prev, block);
                 } else {
-                    this._used = block.next;
+                    this._used = this.blockNext(block);
                 }
                 this.insert(block);
                 this.doCompact && this.compact();
                 return true;
             }
             prev = block;
-            block = block.next;
+            block = this.blockNext(block);
         }
         return false;
     }
 
     freeAll() {
-        this._free = null;
-        this._used = null;
-        this.top = this.start;
+        this._free = 0;
+        this._used = 0;
+        this.top = this.initialTop();
     }
 
     release() {
-        delete this._free;
-        delete this._used;
         delete this.u8;
+        delete this.u32;
+        delete this.state;
         delete this.buf;
-        delete this.top;
-        delete this.start;
-        delete this.end;
         return true;
     }
 
+    protected get align() {
+        return <Pow2>this.state[STATE_ALIGN];
+    }
+
+    protected set align(x: Pow2) {
+        this.state[STATE_ALIGN] = x;
+    }
+
+    protected get end() {
+        return this.state[STATE_END];
+    }
+
+    protected set end(x: number) {
+        this.state[STATE_END] = x;
+    }
+
+    protected get top() {
+        return this.state[STATE_TOP];
+    }
+
+    protected set top(x: number) {
+        this.state[STATE_TOP] = x;
+    }
+
+    protected get _free() {
+        return this.state[STATE_FREE];
+    }
+
+    protected set _free(block: number) {
+        this.state[STATE_FREE] = block;
+    }
+
+    protected get _used() {
+        return this.state[STATE_USED];
+    }
+
+    protected set _used(block: number) {
+        this.state[STATE_USED] = block;
+    }
+
+    protected get doCompact() {
+        return !!(this.state[STATE_FLAGS] & MASK_COMPACT);
+    }
+
+    protected set doCompact(flag: boolean) {
+        flag
+            ? (this.state[STATE_FLAGS] |= 1 << (MASK_COMPACT - 1))
+            : (this.state[STATE_FLAGS] &= ~MASK_COMPACT);
+    }
+
+    protected get doSplit() {
+        return !!(this.state[STATE_FLAGS] & MASK_SPLIT);
+    }
+
+    protected set doSplit(flag: boolean) {
+        flag
+            ? (this.state[STATE_FLAGS] |= 1 << (MASK_SPLIT - 1))
+            : (this.state[STATE_FLAGS] &= ~MASK_SPLIT);
+    }
+
+    protected get minSplit() {
+        return this.state[STATE_MIN_SPLIT];
+    }
+
+    protected set minSplit(x: number) {
+        assert(
+            x > SIZEOF_MEM_BLOCK,
+            `illegal min split threshold: ${x}, require at least ${SIZEOF_MEM_BLOCK +
+                1}`
+        );
+        this.state[STATE_MIN_SPLIT] = x;
+    }
+
+    protected blockSize(block: number) {
+        return this.u32[(block >> 2) + MEM_BLOCK_SIZE];
+    }
+
+    /**
+     * Sets & returns given block size.
+     *
+     * @param block
+     * @param size
+     */
+    protected setBlockSize(block: number, size: number) {
+        this.u32[(block >> 2) + MEM_BLOCK_SIZE] = size;
+        return size;
+    }
+
+    protected blockNext(block: number) {
+        return this.u32[(block >> 2) + MEM_BLOCK_NEXT];
+    }
+
+    /**
+     * Sets block next pointer to `next`. Use zero to indicate list end.
+     *
+     * @param block
+     */
+    protected setBlockNext(block: number, next: number) {
+        this.u32[(block >> 2) + MEM_BLOCK_NEXT] = next;
+    }
+
+    /**
+     * Initializes block header with given `size` and `next` pointer. Returns `block`.
+     *
+     * @param block
+     * @param size
+     * @param next
+     */
+    protected initBlock(block: number, size: number, next: number) {
+        const idx = block >>> 2;
+        this.u32[idx + MEM_BLOCK_SIZE] = size;
+        this.u32[idx + MEM_BLOCK_NEXT] = next;
+        return block;
+    }
+
+    protected unlinkBlock(prev: number, block: number) {
+        this.setBlockNext(prev, this.blockNext(block));
+    }
+
+    protected splitBlock(block: number, blockSize: number, excess: number) {
+        this.insert(
+            this.initBlock(
+                block + this.setBlockSize(block, blockSize),
+                excess,
+                0
+            )
+        );
+        this.doCompact && this.compact();
+    }
+
+    protected initialTop(_align = this.align) {
+        return (
+            align(this.start + SIZEOF_STATE + SIZEOF_MEM_BLOCK, _align) -
+            SIZEOF_MEM_BLOCK
+        );
+    }
+
+    /**
+     * Traverses free list and attempts to recursively merge blocks
+     * occupying consecutive memory regions. Returns true if any blocks
+     * have been merged. Only called if `compact` option is enabled.
+     */
     protected compact() {
         let block = this._free;
-        let prev: MemBlock | null = null;
-        let scan: MemBlock | null = null;
-        let scanPrev: MemBlock;
+        let prev = 0;
+        let scan = 0;
+        let scanPrev: number;
         let res = false;
         while (block) {
             scanPrev = block;
-            scan = block.next;
-            while (scan && scanPrev.addr + scanPrev.size === scan.addr) {
+            scan = this.blockNext(block);
+            while (scan && scanPrev + this.blockSize(scanPrev) === scan) {
                 // console.log("merge:", scan.addr, scan.size);
                 scanPrev = scan;
-                scan = scan.next;
+                scan = this.blockNext(scan);
             }
             if (scanPrev !== block) {
-                const newSize = scanPrev.addr - block.addr + scanPrev.size;
+                const newSize = scanPrev - block + this.blockSize(scanPrev);
                 // console.log("merged size:", newSize);
-                block.size = newSize;
-                const next = scanPrev.next;
-                let tmp = block.next;
-                while (tmp && tmp !== scanPrev.next) {
+                this.setBlockSize(block, newSize);
+                const next = this.blockNext(scanPrev);
+                let tmp = this.blockNext(block);
+                while (tmp && tmp !== next) {
                     // console.log("release:", tmp.addr);
-                    const tn = tmp.next;
-                    tmp.next = null;
+                    const tn = this.blockNext(tmp);
+                    this.setBlockNext(tmp, 0);
                     tmp = tn;
                 }
-                block.next = next;
+                this.setBlockNext(block, next);
                 res = true;
             }
             // re-adjust top if poss
-            if (block.addr + block.size >= this.top) {
-                this.top = block.addr;
-                prev ? (prev.next = block.next) : (this._free = block.next);
+            if (block + this.blockSize(block) >= this.top) {
+                this.top = block;
+                prev
+                    ? this.unlinkBlock(prev, block)
+                    : (this._free = this.blockNext(block));
             }
             prev = block;
-            block = block.next;
+            block = this.blockNext(block);
         }
         return res;
     }
 
-    protected insert(block: MemBlock) {
+    /**
+     * Inserts given block into list of free blocks, sorted by address.
+     *
+     * @param block
+     */
+    protected insert(block: number) {
         let ptr = this._free;
-        let prev: MemBlock | null = null;
+        let prev = 0;
         while (ptr) {
-            if (block.addr <= ptr.addr) break;
+            if (block <= ptr) break;
             prev = ptr;
-            ptr = ptr.next;
+            ptr = this.blockNext(ptr);
         }
         if (prev) {
-            prev.next = block;
+            this.setBlockNext(prev, block);
         } else {
             this._free = block;
         }
-        block.next = ptr;
+        this.setBlockNext(block, ptr);
     }
 }
+
+/**
+ * Returns a block's data address, based on given alignment.
+ *
+ * @param blockAddress
+ */
+const blockDataAddress = (blockAddress: number) =>
+    blockAddress + SIZEOF_MEM_BLOCK;
+
+/**
+ * Returns block start address for given data address and alignment.
+ *
+ * @param dataAddress
+ */
+const blockSelfAddress = (dataAddress: number) =>
+    dataAddress - SIZEOF_MEM_BLOCK;

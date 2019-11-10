@@ -68,7 +68,7 @@ For some realworld use, please see the [crypto
 chart](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
 example.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
 
 ```ts
 import * as tx from "@thi.ng/transducers";

@@ -1,4 +1,10 @@
-import { hadd2_f32, hadd4_f32 } from "./hadd";
+import { __magsq2, __magsq4 } from "./inline/magsq";
+
+// @ts-ignore: decorator
+@inline
+function $norm(m: f32, norm: f32): f32 {
+    return m > f32.EPSILON ? norm / sqrt<f32>(m) : 1;
+}
 
 export function normalize2_f32_aos(
     out: usize,
@@ -10,19 +16,9 @@ export function normalize2_f32_aos(
     num >>= 1;
     for (; num-- > 0; ) {
         const v = v128.load(a);
-        let vm = hadd2_f32(f32x4.mul(v, v));
-        const m1 = f32x4.extract_lane(vm, 0);
-        const m2 = f32x4.extract_lane(vm, 2);
-        vm = f32x4.replace_lane(
-            vm,
-            0,
-            m1 > f32.EPSILON ? norm / sqrt<f32>(m1) : 1
-        );
-        vm = f32x4.replace_lane(
-            vm,
-            2,
-            m2 > f32.EPSILON ? norm / sqrt<f32>(m2) : 1
-        );
+        let vm = __magsq2(v);
+        vm = f32x4.replace_lane(vm, 0, $norm(f32x4.extract_lane(vm, 0), norm));
+        vm = f32x4.replace_lane(vm, 2, $norm(f32x4.extract_lane(vm, 2), norm));
         v128.store(out, f32x4.mul(v, v128.shuffle<f32>(vm, vm, 0, 0, 2, 2)));
         out += 16;
         a += 16;
@@ -43,7 +39,7 @@ export function normalize4_f32_aos(
     const res = out;
     for (; num-- > 0; ) {
         const v = v128.load(a);
-        const mag = hadd4_f32(f32x4.mul(v, v));
+        const mag = __magsq4(v);
         v128.store(
             out,
             mag > f32.EPSILON
