@@ -33,10 +33,10 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.4.0",
-        "@thi.ng/checks": "^2.4.0",
-        "@thi.ng/matrices": "^0.5.8",
-        "@thi.ng/vectors": "^3.3.1"
+        "@thi.ng/api": "^6.5.0",
+        "@thi.ng/checks": "^2.4.1",
+        "@thi.ng/matrices": "^0.5.9",
+        "@thi.ng/vectors": "^4.0.0"
     },
     "keywords": [
         "ES6",
